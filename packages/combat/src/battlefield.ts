@@ -18,16 +18,21 @@ import type { TurnState } from '@ltw/rules';
  */
 export type Found<T> = { readonly ok: true; readonly value: T } | (Decision & { ok: false });
 
+/**
+ * One answer for "no encounter" and "an encounter you are not in", with the
+ * same message: a character outside a fight cannot learn that it exists
+ * (ADR 0016 §4).
+ */
+export const notInCombat = () => reject('NOT_IN_COMBAT', 'NOT_IN_COMBAT');
+
 export function encounterOf(state: WorldState): Found<EncounterState> {
-  return state.encounter
-    ? { ok: true, value: state.encounter }
-    : reject('NOT_IN_COMBAT', 'No encounter is running');
+  return state.encounter ? { ok: true, value: state.encounter } : notInCombat();
 }
 
 /** The combatant whose turn it is, which must be `combatantId`. */
 export function onTurn(encounter: EncounterState, combatantId: string): Found<CombatantRecord> {
   const combatant = combatantOf(encounter, combatantId);
-  if (!combatant) return reject('NOT_A_COMBATANT', 'Not a combatant');
+  if (!combatant) return notInCombat();
   if (currentCombatant(encounter)?.entityId !== combatantId) {
     return reject('NOT_YOUR_TURN', 'Not this combatant’s turn');
   }

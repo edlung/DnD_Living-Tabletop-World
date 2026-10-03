@@ -168,4 +168,24 @@ export {
   type MonsterSpell,
   type StatBlock,
 } from './combat/stat-block.ts';
-export type { EncounterCombatantView, EncounterResponse, EncounterView } from './combat/views.ts';
+export {
+  REACTION_COMMAND_TYPES,
+  REACTION_IDS,
+  REACTION_RESPONSES,
+  REACTION_WINDOW_STATUSES,
+  SPELL_COMPONENTS,
+  closeReactionWindowCommandSchema,
+  declineReactionCommandSchema,
+  useReactionCommandSchema,
+  type ReactionCommandType,
+  type ReactionId,
+  type ReactionResponse,
+  type ReactionWindowStatus,
+  type SpellComponent,
+} from './combat/reactions.ts';
+export type {
+  EncounterCombatantView,
+  EncounterResponse,
+  EncounterView,
+  ReactionWindowView,
+} from './combat/views.ts';

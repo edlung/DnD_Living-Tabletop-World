@@ -14,5 +14,10 @@ export {
   type CharacterSpellPlan,
   type Using,
 } from './spell-legality.ts';
+export {
+  counterspellCandidates,
+  counterspellPlan,
+  type CounterspellPlan,
+} from './reactions/eligibility.ts';
 export { hitPoints, vitalsOf, type Vitals } from './vitals.ts';
 export { encounterView } from './view.ts';

@@ -9,6 +9,14 @@ import {
   applyTurnStarted,
 } from '../combat/evolve.ts';
 import {
+  applyReactionDeclined,
+  applyReactionRestore,
+  applyReactionUsed,
+  applyReactionWindowExpired,
+  applyReactionWindowOpened,
+  applyReactionWindowResolved,
+} from '../combat/reaction-evolve.ts';
+import {
   applyClaimSet,
   applyContradictionDetected,
   applyEpistemicRestore,
@@ -178,6 +186,16 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'ConditionApplied':
     case 'DeathSaveRolled':
       return applyCombatRecord(state, event);
+    case 'ReactionWindowOpened':
+      return applyReactionWindowOpened(state, event);
+    case 'ReactionUsed':
+      return applyReactionUsed(state, event);
+    case 'ReactionDeclined':
+      return applyReactionDeclined(state, event);
+    case 'ReactionWindowExpired':
+      return applyReactionWindowExpired(state, event);
+    case 'ReactionWindowResolved':
+      return applyReactionWindowResolved(state, event);
   }
 }
 
@@ -283,6 +301,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'encounter':
     case 'statblock':
       return applyCombatRestore(state, restore);
+    case 'reactionWindow':
+      return applyReactionRestore(state, restore);
   }
 }
 

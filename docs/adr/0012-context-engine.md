@@ -109,6 +109,7 @@ A later AI ranker (Stage 140) may refine relevance using the same scoped inputs 
 
 ## Amendments
 
+- 2026-10-04 (Stage 90, ADR 0016 §4): while a reaction window is open, combat actions are illegal with `REACTION_PENDING`. A pending candidate who selects the window's caster sees `counterspell`, first among creature actions, relevance high; its legality and cost (slot level) come from the same Counterspell eligibility the World Engine applies. Nothing in a context names the suspended spell.
 - 2026-10-04 (Stage 80, ADR 0015 §6): when the acting character is a combatant, legality comes from `@ltw/combat`'s shared legality with the encounter's positions and turn: distance between combatants, range with `moveRequiredFt`, cover, and turn reasons. Creatures in the encounter gain a `fireball` action centered on them, with `area.affected` (perceived combatants, the caster included) and the hint `ALLY_IN_AREA`; `longbow_attack` may carry `LONG_RANGE`. A target outside the encounter is `NOT_IN_COMBAT`. Outside combat nothing changes.
 - 2026-10-03 (Stage 70, ADR 0014 §5): CONTRADICTION counts as an open question for relevance. Only the perspective's visible records are used.
 - 2026-10-03 (Stage 60, ADR 0013 §5): locations gain `enter_location` (`ALREADY_HERE`); evidence checks report `ALREADY_ATTEMPTED` and need a sheet (`NO_CHARACTER_SHEET`). Perception moved into `@ltw/domain` so the World Engine validates player commands with the same rule.

@@ -1,5 +1,6 @@
 import type { ClaimTarget } from '@ltw/contracts';
 
+import { consideredCombatants } from '../combat/reactions.ts';
 import type { Premise } from '../investigation/events.ts';
 import { attemptKey, scopedKey } from '../investigation/records.ts';
 import { pairKey } from '../contradiction/records.ts';
@@ -47,6 +48,7 @@ export const facts = {
   contradiction: (key: string): FactKey => `contradiction:${key}`,
   encounter: (): FactKey => 'world#encounter',
   statBlock: (entityId: string): FactKey => `statblock:${entityId}`,
+  reaction: (windowId: string): FactKey => `reaction:${windowId}`,
 };
 
 export interface Footprint {
@@ -78,9 +80,12 @@ export function footprintOf(event: KernelEvent): Footprint {
       };
     }
     case 'EntityPlaced':
+      // A combatant cannot change location while an encounter runs (ADR 0016 §5), so
+      // every placement relied on the encounter as it was.
       return {
         reads: [
           clock,
+          facts.encounter(),
           ...entityChecked(event.payload.entityId),
           ...entityChecked(event.payload.locationId),
         ],
@@ -297,6 +302,33 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ConditionApplied':
     case 'DeathSaveRolled':
       return { reads: [clock, facts.encounter()], writes: [] };
+    case 'ReactionWindowOpened': {
+      // Eligibility read every considered combatant (ADR 0016 §3): while the window
+      // stands, undoing what changed any of them is UNDO_UNSAFE, and the pause rule
+      // rejects commands that would change them.
+      const { window } = event.payload;
+      return {
+        reads: [
+          clock,
+          facts.encounter(),
+          ...consideredCombatants(window).flatMap((id) => [
+            ...entityChecked(id),
+            facts.entityPlacement(id),
+            facts.sheet(id),
+            facts.statBlock(id),
+          ]),
+        ],
+        writes: [facts.reaction(window.windowId)],
+      };
+    }
+    case 'ReactionUsed':
+    case 'ReactionDeclined':
+    case 'ReactionWindowExpired':
+    case 'ReactionWindowResolved': {
+      // Every answer and the close read and change the window: undo is strictly reverse.
+      const window = facts.reaction(event.payload.windowId);
+      return { reads: [clock, facts.encounter(), window], writes: [window] };
+    }
     case 'CharacterAssigned':
       return {
         reads: [clock, facts.entity(event.payload.characterId)],
@@ -389,6 +421,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.encounter()];
     case 'statblock':
       return [facts.statBlock(restore.entityId)];
+    case 'reactionWindow':
+      return [facts.reaction(restore.windowId)];
   }
 }
 

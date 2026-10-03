@@ -2,6 +2,11 @@ import type { CombatCommand, CombatPort, Decision, DecisionContext, Dice } from 
 
 import { decideAttack } from './attack.ts';
 import { decideMove } from './movement.ts';
+import {
+  decideCloseReactionWindow,
+  decideDeclineReaction,
+  decideUseReaction,
+} from './reactions/respond.ts';
 import { decideCastSpell } from './spells.ts';
 import { decideEndCombat, decideStartCombat } from './start-end.ts';
 import { decideEndTurn } from './turns.ts';
@@ -26,6 +31,12 @@ export function createCombatEngine(): CombatPort {
           return decideEndTurn(context, command, dice);
         case 'EndCombat':
           return decideEndCombat(context, command);
+        case 'UseReaction':
+          return decideUseReaction(context, command, dice);
+        case 'DeclineReaction':
+          return decideDeclineReaction(context, command, dice);
+        case 'CloseReactionWindow':
+          return decideCloseReactionWindow(context, command, dice);
       }
     },
   };

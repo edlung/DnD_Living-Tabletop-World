@@ -117,7 +117,7 @@ export const combatEventPayloadSchemas = {
       modifier: z.number().int(),
       total: z.number().int(),
       success: z.boolean(),
-      purpose: z.enum(['spell', 'concentration']),
+      purpose: z.enum(['spell', 'concentration', 'counterspell']),
     })
     .strict(),
   ConditionApplied: z

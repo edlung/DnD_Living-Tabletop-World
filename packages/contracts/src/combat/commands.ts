@@ -118,6 +118,8 @@ export const PLAYER_COMBAT_COMMAND_TYPES = [
   'Attack',
   'CastSpell',
   'EndTurn',
+  'UseReaction',
+  'DeclineReaction',
 ] as const;
 /** Every combat command decided by the combat engine (through the World Engine's port). */
 export const COMBAT_COMMAND_TYPES = [
@@ -127,5 +129,8 @@ export const COMBAT_COMMAND_TYPES = [
   'CastSpell',
   'EndTurn',
   'EndCombat',
+  'UseReaction',
+  'DeclineReaction',
+  'CloseReactionWindow',
 ] as const;
 export type CombatCommandType = (typeof COMBAT_COMMAND_TYPES)[number];

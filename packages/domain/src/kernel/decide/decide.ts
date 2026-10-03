@@ -22,6 +22,7 @@ import {
   decidePlaceEntity,
   decideUpdateEntityProfile,
 } from './entities.ts';
+import { pausedByChanges, pausedCombat } from './reaction-pause.ts';
 import { decideUndo } from './undo.ts';
 import {
   decideAdvanceWorldTime,
@@ -34,15 +35,19 @@ import {
  * Routes a resolved, authorized command to its pure decision function, then
  * records any contradictions the accepted events create (ADR 0014). A player
  * command must record its premises; when a controlling player issued it,
- * that authorization is one of them (Gate 02, G02-H03).
+ * that authorization is one of them (Gate 02, G02-H03). While a reaction
+ * window is open, the pause rule applies to every command (ADR 0016).
  */
 export function decide(context: DecisionContext, command: ResolvedCommand): Decision {
+  const paused = pausedCombat(context.state, command);
+  if (paused) return paused;
   const decision = route(context, command);
   if (!decision.ok) return decision;
   const events = PLAYER_TYPES.has(command.type)
     ? withAuthorityPremise(context, command.type, decision.events)
     : decision.events;
-  return accept(...withContradictions(context.state, events, context.commandId));
+  const all = withContradictions(context.state, events, context.commandId);
+  return pausedByChanges(context.state, command.type, all) ?? accept(...all);
 }
 
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
@@ -125,7 +130,10 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'Attack':
     case 'CastSpell':
     case 'EndTurn':
-    case 'EndCombat': {
+    case 'EndCombat':
+    case 'UseReaction':
+    case 'DeclineReaction':
+    case 'CloseReactionWindow': {
       if (!context.combat) throw new Error(`${command.type} needs the combat engine port`);
       const entropy = 'resolution' in command ? command.resolution.entropy : [];
       return context.combat.decide(context, command, poolDice(entropy));

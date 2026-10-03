@@ -1,3 +1,4 @@
+import { combatViolations } from '../../combat/integrity.ts';
 import { WORLD_TRUTH_TYPES, holderOf } from '../../knowledge/records.ts';
 import { PLACEABLE_KINDS, STATUSES_BY_KIND, type WorldState } from '../state.ts';
 import { isAtOrAfter } from '../world-time.ts';
@@ -186,5 +187,6 @@ export function checkWorldIntegrity(state: WorldState): string[] {
       report(`command ${trace.commandId} undone by a non-undo command`);
     }
   }
+  violations.push(...combatViolations(state));
   return violations;
 }

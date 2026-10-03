@@ -21,6 +21,7 @@ export const CONTEXT_ACTION_IDS = [
   'longbow_attack',
   'enter_location',
   'fireball',
+  'counterspell',
 ] as const;
 export type ContextActionId = (typeof CONTEXT_ACTION_IDS)[number];
 
@@ -33,6 +34,7 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'ALREADY_HERE',
   'ALREADY_ATTEMPTED',
   'NOT_IN_COMBAT',
+  'REACTION_PENDING',
   'INCAPACITATED',
   'NOT_YOUR_TURN',
   'NO_ACTION',

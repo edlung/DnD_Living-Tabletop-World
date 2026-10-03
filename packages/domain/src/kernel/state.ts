@@ -8,6 +8,7 @@ import type {
 } from '@ltw/contracts';
 
 import type { EncounterState } from '../combat/records.ts';
+import type { ReactionWindowRecord } from '../combat/reactions.ts';
 import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.ts';
 import { EMPTY_INVESTIGATION, type InvestigationState } from '../investigation/records.ts';
 import type { KnowledgeRecord } from '../knowledge/records.ts';
@@ -96,6 +97,8 @@ export interface WorldState {
   readonly statBlocks: ReadonlyMap<string, StatBlock>;
   /** The running encounter, if any (ADR 0015); positions exist only here. */
   readonly encounter: EncounterState | null;
+  /** Every reaction window by ID (ADR 0016); at most one is open. */
+  readonly reactionWindows: ReadonlyMap<string, ReactionWindowRecord>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -117,6 +120,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   epistemics: EMPTY_EPISTEMICS,
   statBlocks: new Map(),
   encounter: null,
+  reactionWindows: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

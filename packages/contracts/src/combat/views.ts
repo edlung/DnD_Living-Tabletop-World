@@ -1,6 +1,7 @@
 import type { EntityKind } from '../kernel/commands.ts';
 import type { Condition } from '../rules/character-sheet.ts';
 import type { Battlefield, Side } from './commands.ts';
+import type { ReactionResponse, SpellComponent } from './reactions.ts';
 
 /**
  * Perspective-scoped encounter view (docs/adr/0015-combat-engine.md §6).
@@ -28,6 +29,38 @@ export interface EncounterCombatantView {
   };
 }
 
+/**
+ * The open reaction window (docs/adr/0016-reaction-engine.md §4). The DM
+ * sees all of it; a candidate's player sees the caster, the components,
+ * their own answer, and their choices; the caster's player sees that the
+ * spell awaits reactions. Other players get no window at all.
+ */
+export interface ReactionWindowView {
+  readonly windowId: string;
+  readonly trigger: {
+    readonly kind: 'spell';
+    readonly caster: {
+      readonly entityId: string;
+      readonly kind: EntityKind;
+      readonly name: string | null;
+    };
+    readonly components: readonly SpellComponent[];
+    /** The DM and the caster's own player only. */
+    readonly spellId?: string;
+    /** DM only. */
+    readonly targetId?: string | null;
+    /** DM only. */
+    readonly point?: { readonly x: number; readonly y: number } | null;
+  };
+  /** The DM: every candidate. A player: only their own character, if it is one. */
+  readonly candidates: readonly {
+    readonly entityId: string;
+    readonly response: ReactionResponse;
+  }[];
+  /** What the viewing player's character may still answer; empty once it answered. */
+  readonly choices: readonly ('counterspell' | 'ignore')[];
+}
+
 export interface EncounterView {
   readonly encounterId: string;
   readonly round: number;
@@ -36,6 +69,8 @@ export interface EncounterView {
   readonly order: readonly string[];
   readonly battlefield: Battlefield;
   readonly combatants: readonly EncounterCombatantView[];
+  /** The open reaction window, as this perspective may see it; null when none (or not visible). */
+  readonly reactionWindow: ReactionWindowView | null;
 }
 
 export interface EncounterResponse {

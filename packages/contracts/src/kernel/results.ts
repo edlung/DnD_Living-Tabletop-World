@@ -82,6 +82,14 @@ export const REJECTION_CODES = [
   'NO_STAT_BLOCK',
   /** The Rules Engine refused the action; the message is the rules reason (for example OUT_OF_RANGE). */
   'ILLEGAL_ACTION',
+  /** A reaction window is open: the encounter waits for its answers (docs/adr/0016-reaction-engine.md). */
+  'REACTION_PENDING',
+  /** No open reaction window has this ID: it closed, expired, was undone, or never existed. */
+  'REACTION_WINDOW_CLOSED',
+  /** The combatant is not a candidate of this reaction window. */
+  'NOT_A_CANDIDATE',
+  /** The candidate already answered this reaction window. */
+  'ALREADY_RESPONDED',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

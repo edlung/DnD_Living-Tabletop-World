@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import type { ReactionId } from '../combat/reactions.ts';
 import { entityIdSchema, knowledgeIdSchema } from '../kernel/identifiers.ts';
 import { knowledgeRelationSchema } from '../knowledge/commands.ts';
 
@@ -94,6 +95,8 @@ export const PLAYER_COMMAND_TYPES = [
   'Attack',
   'CastSpell',
   'EndTurn',
+  'UseReaction',
+  'DeclineReaction',
 ] as const;
 export type PlayerCommandType = (typeof PLAYER_COMMAND_TYPES)[number];
 
@@ -134,5 +137,15 @@ export type PlayerOutcome =
         readonly healed: number | null;
       }[];
       readonly discovered: readonly string[];
+      /** The spell is suspended in a reaction window (docs/adr/0016-reaction-engine.md). */
+      readonly awaitingReaction?: true;
     }
-  | { readonly kind: 'EndTurn'; readonly nextCombatantId: string; readonly round: number };
+  | { readonly kind: 'EndTurn'; readonly nextCombatantId: string; readonly round: number }
+  | {
+      readonly kind: 'UseReaction';
+      readonly windowId: string;
+      readonly reaction: ReactionId;
+      /** True when the reaction stopped the spell. */
+      readonly countered: boolean;
+    }
+  | { readonly kind: 'DeclineReaction'; readonly windowId: string };

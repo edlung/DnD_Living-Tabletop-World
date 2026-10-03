@@ -5,11 +5,11 @@ import {
   SteppingClock,
   WorldEngine,
   entropyFor,
+  openReactionWindow,
   submissionsFromScript,
   type Actor,
   type EncounterState,
   type EntropySource,
-  type EventStore,
   type WorldState,
 } from '@ltw/domain';
 
@@ -53,7 +53,7 @@ export class ScriptedEntropy implements EntropySource {
 
 export interface RoadWorld {
   readonly engine: WorldEngine;
-  readonly store: EventStore;
+  readonly store: InMemoryEventStore;
   /** Queues dice faces for the next command. */
   readonly roll: (sides: number, ...faces: number[]) => void;
   readonly submit: (command: Record<string, unknown>, actor?: Actor) => Promise<CommandResult>;
@@ -62,15 +62,28 @@ export interface RoadWorld {
   readonly encounter: () => Promise<EncounterState>;
 }
 
-export async function roadWorld(): Promise<RoadWorld> {
+export interface RoadWorldOptions {
+  /**
+   * A store another world already seeded: this world is then a second engine
+   * on the same campaign, like a second server process (ADR 0006 §7).
+   */
+  readonly shared?: { readonly store: InMemoryEventStore; readonly namespace: number };
+  /** Randomness for property tests; `roll` then has no effect. */
+  readonly entropy?: EntropySource;
+}
+
+export async function roadWorld(options: RoadWorldOptions = {}): Promise<RoadWorld> {
   const entropy = new ScriptedEntropy();
-  const store = new InMemoryEventStore();
+  const store = options.shared?.store ?? new InMemoryEventStore();
+  const namespace = options.shared?.namespace ?? 0;
   const engine = new WorldEngine({
     store,
-    ids: new SequentialIds(),
+    ids: new SequentialIds(namespace),
     clock: new SteppingClock(),
     combat: createCombatEngine(),
-    entropy,
+    entropy: options.entropy ?? entropy,
+    // Concurrency tests race engines: retry at once, without random backoff.
+    backoff: () => Promise.resolve(),
   });
   const scripts = [
     [kernelSeed.commands, 'seed'],
@@ -81,7 +94,7 @@ export async function roadWorld(): Promise<RoadWorld> {
     [contradictionSeed.commands, 'contradiction'],
     [combatSeed.commands, 'combat'],
   ] as const;
-  for (const [commands, prefix] of scripts) {
+  for (const [commands, prefix] of options.shared ? [] : scripts) {
     for (const submission of submissionsFromScript({
       campaignId: CAMPAIGN,
       actor: DM,
@@ -96,7 +109,7 @@ export async function roadWorld(): Promise<RoadWorld> {
   const submit = (command: Record<string, unknown>, actor: Actor = PLAYER) => {
     counter += 1;
     return engine.execute({
-      commandId: `test.${String(counter)}`,
+      commandId: `test.${String(namespace)}.${String(counter)}`,
       campaignId: CAMPAIGN,
       actor,
       command,
@@ -140,6 +153,13 @@ export async function startAmbush(
   }
   world.roll(20, ...initiative);
   return world.dm(changes(structuredClone(ambush.startCombat)));
+}
+
+/** The ID of the open reaction window (ADR 0016); fails when none is open. */
+export async function openWindowId(world: RoadWorld): Promise<string> {
+  const window = openReactionWindow(await world.state());
+  if (!window) throw new Error('no reaction window is open');
+  return window.windowId;
 }
 
 export const codeOf = (result: CommandResult) =>

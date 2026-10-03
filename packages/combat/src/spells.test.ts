@@ -8,6 +8,7 @@ import {
   RAIDER_3,
   SHAMAN,
   codeOf,
+  openWindowId,
   recorded,
   roadWorld,
   startAmbush,
@@ -167,9 +168,16 @@ describe('other slice spells', () => {
 });
 
 describe('goblin spells', () => {
-  it('Ashen Bolt is a spell attack; Binding Hex a Wisdom save for half', async () => {
+  it('Ashen Bolt beyond Counterspell range is a spell attack that resolves at once', async () => {
     const world = await roadWorld();
-    await startAmbush(world);
+    // The Shaman 65 ft away: inside Ashen Bolt's 120 ft, outside Counterspell's 60 ft.
+    await startAmbush(world, undefined, (command) => ({
+      ...command,
+      battlefield: { ...command.battlefield, width: 20 },
+      combatants: command.combatants.map((c) =>
+        c.entityId === SHAMAN ? { ...c, position: { x: 15, y: 6 } } : c,
+      ),
+    }));
     await world.submit({ type: 'EndTurn', combatantId: ELOWEN });
     world.roll(20, 15);
     world.roll(8, 4, 4);
@@ -180,11 +188,34 @@ describe('goblin spells', () => {
       targetId: ELOWEN,
     });
     const events = await recorded(world, bolt);
+    expect(events.map((e) => e.type)).not.toContain('ReactionWindowOpened');
     expect(events.find((e) => e.type === 'SpellCast')?.payload).toMatchObject({
       free: true,
       slotLevel: null,
     });
     expect((await world.state()).characterSheets.get(ELOWEN)?.hitPoints.current).toBe(70);
+  });
+
+  it('Binding Hex within range waits for Elowen; ignoring it lets the Wisdom save for half happen', async () => {
+    const world = await roadWorld();
+    await startAmbush(world);
+    await world.submit({ type: 'EndTurn', combatantId: ELOWEN });
+    const hex = await world.dm({
+      type: 'CastSpell',
+      combatantId: SHAMAN,
+      spellId: 'binding-hex',
+      targetId: ELOWEN,
+    });
+    expect((await recorded(world, hex)).map((e) => e.type)).toContain('ReactionWindowOpened');
+    const windowId = await openWindowId(world);
+    world.roll(20, 15);
+    world.roll(6, 6, 6);
+    const ignored = await world.submit({ type: 'DeclineReaction', combatantId: ELOWEN, windowId });
+    expect(ignored.status === 'accepted' && ignored.outcome).toEqual({
+      kind: 'DeclineReaction',
+      windowId,
+    });
+    expect((await world.state()).characterSheets.get(ELOWEN)?.hitPoints.current).toBe(72);
     const again = await world.dm({
       type: 'CastSpell',
       combatantId: SHAMAN,
@@ -192,18 +223,5 @@ describe('goblin spells', () => {
       targetId: ELOWEN,
     });
     expect(message(again)).toBe('NO_ACTION');
-
-    for (const id of [SHAMAN, RAIDER_1, RAIDER_2, RAIDER_3, ELOWEN]) {
-      await world.dm({ type: 'EndTurn', combatantId: id });
-    }
-    world.roll(20, 15);
-    world.roll(6, 6, 6);
-    await world.dm({
-      type: 'CastSpell',
-      combatantId: SHAMAN,
-      spellId: 'binding-hex',
-      targetId: ELOWEN,
-    });
-    expect((await world.state()).characterSheets.get(ELOWEN)?.hitPoints.current).toBe(64);
   });
 });

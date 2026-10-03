@@ -12,6 +12,7 @@ import {
 import { playerOutcome } from '../../investigation/outcome.ts';
 import { ENTROPY_POOL, type CombatPort, type EntropySource } from '../../combat/port.ts';
 import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
+import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 
 import { authorize } from '../authorization.ts';
@@ -259,29 +260,36 @@ export class WorldEngine {
         resolution: { ids: [], d20: null, entropy: this.#entropyPool() },
       };
     }
+    if (command.type === 'CloseReactionWindow') {
+      // Closing may resolve the suspended spell (ADR 0016): its records and dice.
+      return { ...command, resolution: this.#combatResolution(RESOLVED_ID_POOL) };
+    }
     if (isPlayerCommand(command)) return { ...command, resolution: this.#draw(command) };
     return command;
   }
 
   /** IDs for every record the command may create, and the d20 of a check. */
   #draw(command: KernelCommandOf<PlayerCommandType>): Resolution {
+    if (COMBAT_TYPES.has(command.type)) return this.#combatResolution(combatIds(command.type));
     const count =
-      command.type === 'EnterLocation' || COMBAT_TYPES.has(command.type)
-        ? command.type === 'CastSpell'
-          ? RESOLVED_ID_POOL // Detect Magic may reveal records (ADR 0015 §3)
-          : 0
+      command.type === 'EnterLocation'
+        ? 0
         : command.type === 'FormHypothesis'
           ? 1
           : RESOLVED_ID_POOL;
     const ids = Array.from({ length: count }, () => this.#ids.next());
-    const entropy = COMBAT_TYPES.has(command.type) ? this.#entropyPool() : [];
     if (command.type !== 'ExamineEntity' || !CHECK_METHODS.has(command.method)) {
-      return { ids, d20: null, entropy };
+      return { ids, d20: null, entropy: [] };
     }
     if (!this.#checks) throw new Error('WorldEngine needs a SkillCheckPort to resolve checks');
     const d20 = this.#checks.rollD20();
     if (!Number.isInteger(d20) || d20 < 1 || d20 > 20) throw new Error(`invalid d20 ${d20}`);
-    return { ids, d20, entropy };
+    return { ids, d20, entropy: [] };
+  }
+
+  #combatResolution(idCount: number): Resolution {
+    const ids = Array.from({ length: idCount }, () => this.#ids.next());
+    return { ids, d20: null, entropy: this.#entropyPool() };
   }
 
   /** The recorded randomness of a combat command (ADR 0015, technical notes). */
@@ -365,6 +373,16 @@ const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
 const COMBAT_TYPES: ReadonlySet<string> = new Set(COMBAT_COMMAND_TYPES);
 const isPlayerCommand = (command: KernelCommand): command is KernelCommandOf<PlayerCommandType> =>
   PLAYER_TYPES.has(command.type);
+
+/**
+ * IDs a combat command may need: a cast may reveal records (Detect Magic,
+ * ADR 0015 §3) and open a reaction window; an answer that closes a window
+ * may resolve the suspended cast (ADR 0016).
+ */
+function combatIds(type: string): number {
+  if (type === 'CastSpell') return MAX_RESOLVED_IDS;
+  return type === 'UseReaction' || type === 'DeclineReaction' ? RESOLVED_ID_POOL : 0;
+}
 
 function accepted(
   status: 'accepted' | 'duplicate',

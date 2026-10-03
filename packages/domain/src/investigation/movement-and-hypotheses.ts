@@ -2,6 +2,7 @@ import type { KnowledgeScope } from '@ltw/contracts';
 
 import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { isCombatant } from '../combat/records.ts';
 import { isVisible } from '../knowledge/projection.ts';
 import type { Premise } from './events.ts';
 import { acting, knownPremise, notFound, premisesEvent, target } from './acting.ts';
@@ -17,6 +18,12 @@ export function decideEnterLocation(
 ): Decision {
   const actor = acting(state, command.characterId);
   if (!actor.ok) return actor;
+  if (isCombatant(state, command.characterId)) {
+    return reject(
+      'COMBAT_ALREADY_ACTIVE',
+      'A combatant stays on the battlefield until combat ends',
+    );
+  }
   const location = target(state, actor.value, command.locationId);
   if (!location.ok) return location;
   if (location.value.entity.kind !== 'location') {

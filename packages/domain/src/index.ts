@@ -118,10 +118,20 @@ export {
   combatantOf,
   currentCombatant,
   encounterAfterTurnStart,
+  isCombatant,
   type CombatantRecord,
   type EncounterState,
   type TurnRecord,
 } from './combat/records.ts';
+export {
+  REACTION_WINDOW_ID_INDEX,
+  consideredCombatants,
+  openReactionWindow,
+  pendingCandidates,
+  type ReactionTrigger,
+  type ReactionWindowRecord,
+} from './combat/reactions.ts';
+export { foldDrafts } from './kernel/provisional.ts';
 export type { DecisionContext, Decision, Resolution } from './kernel/decision.ts';
 export { accept, reject } from './kernel/decision.ts';
 export type { KernelEvent as DraftEvent } from './kernel/events.ts';

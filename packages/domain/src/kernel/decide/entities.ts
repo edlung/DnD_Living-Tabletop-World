@@ -2,6 +2,7 @@ import { formatWorldTime, isAtOrAfter } from '../world-time.ts';
 import { accept, reject, type Decision, type ResolvedCommandOf } from '../decision.ts';
 import type { KernelEvent } from '../events.ts';
 import { PLACEABLE_KINDS, STATUSES_BY_KIND, type WorldState } from '../state.ts';
+import { isCombatant } from '../../combat/records.ts';
 import { findEntity, findUsableLocation } from './lookups.ts';
 
 /**
@@ -96,6 +97,12 @@ export function decidePlaceEntity(
     return reject('ENTITY_DESTROYED', `Entity "${entity.entityId}" is destroyed`, {
       entityId: entity.entityId,
     });
+  }
+  if (isCombatant(state, entity.entityId)) {
+    return reject(
+      'COMBAT_ALREADY_ACTIVE',
+      'A combatant stays on the battlefield until combat ends',
+    );
   }
   const target = findUsableLocation(state, command.locationId);
   if (!target.ok) return target;

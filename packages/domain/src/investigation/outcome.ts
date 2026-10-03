@@ -77,6 +77,12 @@ function combatOutcome(
       };
     }
     case 'CastSpell': {
+      const opened = events.find((event) => event.type === 'ReactionWindowOpened');
+      if (opened?.type === 'ReactionWindowOpened') {
+        // Suspended in a reaction window (ADR 0016): nothing happened yet.
+        const { spellId } = opened.payload.window.trigger;
+        return { kind: 'CastSpell', spellId, results: [], discovered: [], awaitingReaction: true };
+      }
       const cast = events.find((event) => event.type === 'SpellCast');
       if (cast?.type !== 'SpellCast') return undefined;
       const targets = new Set<string>();
@@ -125,6 +131,21 @@ function combatOutcome(
             nextCombatantId: started.payload.combatantId,
             round: started.payload.round,
           }
+        : undefined;
+    }
+    case 'UseReaction': {
+      const used = events.find((event) => event.type === 'ReactionUsed');
+      if (used?.type !== 'ReactionUsed') return undefined;
+      const { windowId, reaction } = used.payload;
+      const countered = events.some(
+        (event) => event.type === 'ReactionWindowResolved' && event.payload.outcome === 'countered',
+      );
+      return { kind: 'UseReaction', windowId, reaction, countered };
+    }
+    case 'DeclineReaction': {
+      const declined = events.find((event) => event.type === 'ReactionDeclined');
+      return declined?.type === 'ReactionDeclined'
+        ? { kind: 'DeclineReaction', windowId: declined.payload.windowId }
         : undefined;
     }
     default:

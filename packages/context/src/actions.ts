@@ -1,7 +1,13 @@
 import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
 import { attemptKey, type EntityState } from '@ltw/domain';
 
-import { combatAttackVerdict, combatFrame, combatSpellVerdict, fireballVerdict } from './combat.ts';
+import {
+  combatAttackVerdict,
+  combatFrame,
+  combatSpellVerdict,
+  counterspellVerdict,
+  fireballVerdict,
+} from './combat.ts';
 import type { ContextInputs } from './inputs.ts';
 import {
   LEGAL,
@@ -58,6 +64,10 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
   ) => candidates.push({ id, requires, verdict, relevance });
 
   if (CREATURE_KINDS.has(target.kind)) {
+    // A pending candidate of the open reaction window may counter its caster
+    // (ADR 0016 §4): first in the catalog, since the encounter waits for it.
+    const counter = frame && !self ? counterspellVerdict(frame, inputs, target.entityId) : null;
+    if (counter) add('counterspell', 'present-alive', () => counter, 'high');
     if (!self) {
       const talk: Relevance = present && alive && target.kind === 'npc' ? 'medium' : 'low';
       add('talk', 'present-alive', () => capableVerdict(sheet), talk);

@@ -122,6 +122,15 @@ The fixture also defines an Old Trade Road battlefield (wagons give half cover, 
 - Stage 90 adds reaction windows (Counterspell against the Shaman's V/S spells) on top of these turns.
 - Combat is deterministic, replayable, and auditable. Deterministic combat integration tests are the gate.
 
+## Amendments
+
+- 2026-10-04 (Stage 90, ADR 0016, owner-approved):
+  - **Counterspell** works through reaction windows.
+  - **Opportunity attacks** are deferred by the owner's decision to a later combat-rules extension, which needs its own ADR amendment. Until then, moving away from an enemy still provokes nothing.
+  - **Leaving the battlefield.** A combatant cannot change location while the encounter runs: `EnterLocation` and `PlaceEntity` are rejected (`COMBAT_ALREADY_ACTIVE`), and every placement depends on the encounter for undo.
+  - **No probing.** A character outside the encounter gets the same `NOT_IN_COMBAT` answer as when no encounter runs, so it cannot detect a fight.
+  - **Encounter view** gains `reactionWindow`.
+
 ## Invariants affected
 
 Implements 8, 9, 10 (groundwork), and 20 for combat. Preserves 1, 4, 5, 11, and 12. No invariant is weakened.

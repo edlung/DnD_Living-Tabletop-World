@@ -53,6 +53,7 @@ export type ResolvedCommand =
           | 'StartSession'
           | 'AddClue'
           | 'StartCombat'
+          | 'CloseReactionWindow'
           | PlayerCommandType;
       }
     >
@@ -61,6 +62,7 @@ export type ResolvedCommand =
       readonly encounterId: string;
       readonly resolution: Resolution;
     })
+  | (KernelCommandOf<'CloseReactionWindow'> & { readonly resolution: Resolution })
   | (KernelCommandOf<PlayerCommandType> & { readonly resolution: Resolution })
   | (KernelCommandOf<'CreateEntity'> & { readonly entityId: string })
   | (KernelCommandOf<'StartScene'> & { readonly sceneId: string })

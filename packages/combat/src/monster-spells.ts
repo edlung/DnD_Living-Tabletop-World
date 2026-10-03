@@ -5,6 +5,7 @@ import {
   type DecisionContext,
   type Dice,
   type DraftEvent,
+  type WorldState,
 } from '@ltw/domain';
 import { COVER_BONUS, attackCircumstances, attackRoll, rollDamage } from '@ltw/rules';
 
@@ -12,7 +13,8 @@ import { combatantEvent, encounterOf, onTurn, withTurn } from './battlefield.ts'
 import { applyDamage } from './damage.ts';
 import { combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
-import { monsterSpellPlan } from './spell-legality.ts';
+import { suspendCast } from './reactions/suspend.ts';
+import { monsterSpellPlan, type MonsterSpellPlan } from './spell-legality.ts';
 import { armorClass, conditionsOf } from './vitals.ts';
 
 /**
@@ -37,13 +39,40 @@ export function decideMonsterSpell(context: DecisionContext, command: Cast, dice
   );
   if (!plan.legal) return refused(plan);
 
+  const premises = combatPremises(state, command.combatantId);
+  const suspended = suspendCast(
+    context,
+    {
+      casterId: command.combatantId,
+      spellId: plan.spell.spellId,
+      components: plan.spell.components,
+      economy: plan.spell.castingTime,
+      using: null,
+      targetId: plan.target.entityId,
+      point: null,
+    },
+    command.resolution?.ids ?? [],
+  );
+  if (suspended) return accept(premises, ...suspended);
+  return accept(premises, ...monsterSpellEvents(state, command.combatantId, plan, dice));
+}
+
+/**
+ * Everything a legal stat-block cast does after its premises. Also resolves a
+ * cast a reaction window let through (ADR 0016), against the state then.
+ */
+export function monsterSpellEvents(
+  state: WorldState,
+  casterId: string,
+  plan: MonsterSpellPlan,
+  dice: Dice,
+): DraftEvent[] {
   const { spell, target } = plan;
   const events: DraftEvent[] = [
-    combatPremises(state, command.combatantId),
     {
       type: 'SpellCast',
       payload: {
-        casterId: command.combatantId,
+        casterId: casterId,
         spellId: spell.spellId,
         slotLevel: null,
         free: true,
@@ -76,7 +105,7 @@ export function decideMonsterSpell(context: DecisionContext, command: Cast, dice
     events.push({
       type: 'AttackPerformed',
       payload: {
-        attackerId: command.combatantId,
+        attackerId: casterId,
         targetId: target.entityId,
         attackId: spell.spellId,
         rolls: [...roll.rolls],
@@ -109,7 +138,7 @@ export function decideMonsterSpell(context: DecisionContext, command: Cast, dice
   }
   if (rolls.length > 0) {
     const applied = applyDamage(state, dice, target.vitals, {
-      sourceId: command.combatantId,
+      sourceId: casterId,
       amount,
       damageType: effect.damage.type,
       rolls,
@@ -118,5 +147,5 @@ export function decideMonsterSpell(context: DecisionContext, command: Cast, dice
     events.push(...applied.events);
   }
   events.push(combatantEvent(withTurn(plan.record, plan.turn)));
-  return accept(...events);
+  return events;
 }

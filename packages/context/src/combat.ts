@@ -3,10 +3,16 @@ import {
   attackPlan,
   characterSpellPlan,
   chooseUsing,
+  counterspellPlan,
   fireballArea,
   type Refusal,
 } from '@ltw/combat';
-import { combatantOf, type CombatantRecord, type EncounterState } from '@ltw/domain';
+import {
+  combatantOf,
+  openReactionWindow,
+  type CombatantRecord,
+  type EncounterState,
+} from '@ltw/domain';
 import { squareDistanceFt } from '@ltw/rules';
 
 import type { ContextInputs } from './inputs.ts';
@@ -16,8 +22,12 @@ import type { Verdict } from './legality.ts';
  * Context in combat (docs/adr/0015-combat-engine.md §6, amending ADR 0012).
  * When the acting character is a combatant, legality comes from the same
  * combat legality the World Engine applies: real distances, cover, and the
- * turn's action economy. Distances are shown only between combatants.
+ * turn's action economy. Distances are shown only between combatants. While
+ * a reaction window is open the encounter waits (ADR 0016 §4): combat
+ * actions are `REACTION_PENDING`, and a pending candidate may counter.
  */
+const PAUSED: Verdict = { legal: false, reason: 'REACTION_PENDING' };
+const paused = (inputs: ContextInputs) => openReactionWindow(inputs.state) !== null;
 export interface CombatFrame {
   readonly encounter: EncounterState;
   readonly actor: CombatantRecord;
@@ -53,6 +63,7 @@ export function combatAttackVerdict(
   inputs: ContextInputs,
   targetId: string,
 ): Verdict {
+  if (paused(inputs)) return PAUSED;
   const plan = attackPlan(inputs.state, frame.encounter, frame.actor.entityId, 'longbow', targetId);
   if (!plan.legal) return fromRefusal(plan);
   return plan.longRange ? { legal: true, hints: ['LONG_RANGE'] } : { legal: true };
@@ -64,6 +75,7 @@ export function combatSpellVerdict(
   targetId?: string,
 ): Verdict {
   if (!inputs.sheet) return { legal: false, reason: 'NO_CHARACTER_SHEET' };
+  if (paused(inputs)) return PAUSED;
   const cost = chooseUsing(inputs.sheet, spellId);
   const plan = characterSpellPlan(inputs.state, inputs.actor.entityId, {
     spellId,
@@ -93,6 +105,7 @@ export function fireballVerdict(
   );
   const area = affected.map((c) => refOf(c.entityId));
   const ally = affected.some((c) => inputs.party.has(c.entityId));
+  if (paused(inputs)) return { ...PAUSED, area };
   const cost = chooseUsing(inputs.sheet, 'fireball');
   const plan = characterSpellPlan(inputs.state, inputs.actor.entityId, {
     spellId: 'fireball',
@@ -106,4 +119,29 @@ export function fireballVerdict(
     ...(ally ? { hints: ['ALLY_IN_AREA'] } : {}),
     area,
   };
+}
+
+/**
+ * Counterspell against the caster of the open window, for a pending candidate
+ * only (ADR 0016 §4); null when the action does not apply. Legality and cost
+ * come from the same eligibility check the World Engine applies to the answer.
+ */
+export function counterspellVerdict(
+  frame: CombatFrame,
+  inputs: ContextInputs,
+  targetId: string,
+): Verdict | null {
+  const window = openReactionWindow(inputs.state);
+  if (window?.trigger.casterId !== targetId) return null;
+  const mine = window.candidates.find((c) => c.entityId === inputs.actor.entityId);
+  if (mine?.response !== 'pending') return null;
+  const plan = counterspellPlan(
+    inputs.state,
+    frame.encounter,
+    inputs.actor.entityId,
+    targetId,
+    window.trigger.components,
+  );
+  if (!plan.legal) return fromRefusal(plan);
+  return { legal: true, cost: { kind: 'slot', slotLevel: plan.slotLevel } };
 }

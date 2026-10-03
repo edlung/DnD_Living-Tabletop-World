@@ -35,6 +35,18 @@ const refuse = (reason: CombatReason, resolution?: Refusal['resolution']): Refus
 
 export type Using = 'free' | { readonly slotLevel: number };
 
+/** What casting spends: a suspended cast already spent it (ADR 0016). */
+export type Economy = 'action' | 'bonus';
+
+/**
+ * The turn as if `refund` had not been spent yet: a cast suspended by a
+ * reaction window resolves later with the economy it already paid for.
+ */
+export function refunded(turn: TurnState, refund: Economy | undefined): TurnState {
+  if (refund === undefined) return turn;
+  return refund === 'action' ? { ...turn, actionUsed: false } : { ...turn, bonusActionUsed: false };
+}
+
 export interface TargetInfo {
   readonly entityId: string;
   readonly vitals: Vitals | null;
@@ -77,6 +89,7 @@ export function characterSpellPlan(
     readonly targetId?: string;
     readonly point?: Square;
   },
+  refund?: Economy,
 ): CharacterSpellPlan | Refusal {
   const { spellId } = request;
   const caster = vitalsOf(state, casterId);
@@ -85,7 +98,10 @@ export function characterSpellPlan(
   if (spellId === 'counterspell') return refuse('NO_VALID_TRIGGER');
   const encounter = state.encounter;
   const record = encounter ? (combatantOf(encounter, casterId) ?? null) : null;
-  const turn = encounter && record ? turnStateOf(encounter, record) : startTurn(true);
+  const turn = refunded(
+    encounter && record ? turnStateOf(encounter, record) : startTurn(true),
+    refund,
+  );
   const using = request.using ?? chooseUsing(caster.sheet, spellId);
 
   let target: TargetInfo | null = null;
@@ -175,12 +191,13 @@ export function monsterSpellPlan(
   casterId: string,
   spellId: string,
   targetId: string | undefined,
+  refund?: Economy,
 ): MonsterSpellPlan | Refusal {
   const record = combatantOf(encounter, casterId);
   const caster = vitalsOf(state, casterId);
   if (!record || caster?.kind !== 'creature') return refuse('NOT_A_COMBATANT');
   if (!isAlive(state, casterId)) return refuse('ACTOR_DEAD');
-  const turn = turnStateOf(encounter, record);
+  const turn = refunded(turnStateOf(encounter, record), refund);
   if (!turn.ownTurn) return refuse('NOT_YOUR_TURN');
   if (incapacitated(caster)) return refuse('INCAPACITATED');
   const spell = caster.block.spells.find((s) => s.spellId === spellId);

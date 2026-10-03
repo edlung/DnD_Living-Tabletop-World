@@ -22,6 +22,7 @@ Rules for changes:
 
 - Decisions are pure: no clocks, random numbers, or I/O. Inject and record nondeterminism through the engine.
 - Every new event type needs a zod schema, a fold case, a `footprintOf` case (reads **and** writes, including kernel facts it depends on), undo restore handling if its command is undoable, and tests for undo safety.
+- While a reaction window is open, `decide/reaction-pause.ts` applies the pause rule to every command (ADR 0016): combat waits, and nothing may write a fact the window's opening read. Undo keeps its own footprint rule. A decision that resolves things in turn folds its own drafts with `provisional.ts` (`foldDrafts`).
 - A decision's legality premises, including the authority it was issued under, must appear in its footprint. `verification/redecide.ts` re-decides every still-effective command after random undos; keep it in the randomized tests so that an omitted premise is caught even when nothing recorded it (Gate 02).
 - Never edit or reorder stored events; payload changes need a new `schemaVersion` and upcasting on load.
 - Canonical/DM data only. Any player-facing projection must go through the knowledge boundary (`packages/domain/src/knowledge/`).

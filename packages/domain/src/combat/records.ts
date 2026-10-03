@@ -31,6 +31,12 @@ export const combatantOf = (encounter: EncounterState, entityId: string) =>
 export const currentCombatant = (encounter: EncounterState) =>
   encounter.combatants[encounter.currentIndex];
 
+/** True while an encounter runs with this entity in it (ADR 0016 §5: it cannot leave). */
+export const isCombatant = (
+  state: { readonly encounter: EncounterState | null },
+  entityId: string,
+) => state.encounter?.combatants.some((c) => c.entityId === entityId) ?? false;
+
 /**
  * The encounter after `combatantId`'s turn starts: the slot-per-turn limit
  * resets for everyone; that creature regains its Reaction and gets a fresh

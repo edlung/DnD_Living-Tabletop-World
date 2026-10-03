@@ -82,6 +82,15 @@ Each event declares the facts it read and wrote. Later domains add their facts t
 - History grows without bound; snapshots may later cache replay, but they never replace the stream.
 - Because IDs are never reused, recreating something after an undo yields a new identity.
 
+## Amendments
+
+- 2026-10-04 (Stage 90, ADR 0016 §3): the §9 reaction obligation is declared and implemented. The §8 rule applies unchanged to reaction windows. The opening of a window reads the encounter and every considered combatant, and every answer reads the window, so:
+  - undo inside a window is strictly reverse;
+  - undoing the trigger is rejected once anyone answered;
+  - with no answer yet, undoing the trigger removes the window together with the suspended spell.
+
+  Rewind is a sequence of checked undos or an as-of read; it is never a separate operation.
+
 ## Invariants affected
 
 Implements 1, 11, 12, and 13 for the kernel and preserves 3 (only the DM authors and undoes). No invariant is weakened.

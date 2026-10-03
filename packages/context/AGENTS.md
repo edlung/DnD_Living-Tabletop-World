@@ -2,17 +2,17 @@
 
 The context of one selected entity for one acting character. Authority: `docs/adr/0012-context-engine.md` (owner-approved). Pure: no AI, no I/O, no persistence. Gate 02 reviews this package for secret leakage (`docs/GATE_COVERAGE.md`, Stages 50–60).
 
-| Concern                                                          | File                                                                                     |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Entry point (`entityContext`)                                    | `src/entity-context.ts`                                                                  |
-| Inputs gathered once: perceived, known, visible records/memories | `src/inputs.ts`                                                                          |
-| Perception                                                       | `@ltw/domain` (`src/investigation/perception.ts`), shared with player-command validation |
-| Whitelisted views (entity ref, visible state)                    | `src/views.ts`                                                                           |
-| Action catalog and check order                                   | `src/actions.ts`                                                                         |
-| Legality through `@ltw/rules`                                    | `src/legality.ts`                                                                        |
-| Legality in combat (positions, turn; ADR 0015 §6)                | `src/combat.ts` (through `@ltw/combat`)                                                  |
-| "Ask about" topics                                               | `src/topics.ts`                                                                          |
-| Relevance heuristics                                             | `src/relevance.ts`                                                                       |
+| Concern                                                                                                               | File                                                                                     |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Entry point (`entityContext`)                                                                                         | `src/entity-context.ts`                                                                  |
+| Inputs gathered once: perceived, known, visible records/memories                                                      | `src/inputs.ts`                                                                          |
+| Perception                                                                                                            | `@ltw/domain` (`src/investigation/perception.ts`), shared with player-command validation |
+| Whitelisted views (entity ref, visible state)                                                                         | `src/views.ts`                                                                           |
+| Action catalog and check order                                                                                        | `src/actions.ts`                                                                         |
+| Legality through `@ltw/rules`                                                                                         | `src/legality.ts`                                                                        |
+| Legality in combat (positions, turn; ADR 0015 §6); reaction windows (`REACTION_PENDING`, `counterspell`; ADR 0016 §4) | `src/combat.ts` (through `@ltw/combat`)                                                  |
+| "Ask about" topics                                                                                                    | `src/topics.ts`                                                                          |
+| Relevance heuristics                                                                                                  | `src/relevance.ts`                                                                       |
 
 Rules:
 

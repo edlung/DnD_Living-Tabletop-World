@@ -12,6 +12,7 @@ import {
   RAIDER_3,
   SHAMAN,
   codeOf,
+  openWindowId,
   roadWorld,
   startAmbush,
   type RoadWorld,
@@ -64,12 +65,18 @@ async function fight(world: RoadWorld) {
     path: [{ x: 2, y: 7 }],
   });
   const ended = await world.submit({ type: 'EndTurn', combatantId: ELOWEN });
-  world.roll(20, 19);
   const bolt = await world.dm({
     type: 'CastSpell',
     combatantId: SHAMAN,
     spellId: 'ashen-bolt',
     targetId: ELOWEN,
+  });
+  // The bolt waits for Elowen's Counterspell window; she ignores it (ADR 0016).
+  world.roll(20, 19);
+  const ignored = await world.submit({
+    type: 'DeclineReaction',
+    combatantId: ELOWEN,
+    windowId: await openWindowId(world),
   });
   const turns = [];
   for (const id of [SHAMAN, RAIDER_1, RAIDER_2, RAIDER_3]) {
@@ -81,7 +88,7 @@ async function fight(world: RoadWorld) {
     spellId: 'fireball',
     point: { x: 10, y: 6 },
   });
-  const steps = [start, mark, shot, moved, ended, bolt, ...turns, fireball];
+  const steps = [start, mark, shot, moved, ended, bolt, ignored, ...turns, fireball];
   expect(steps.map(codeOf)).toEqual(Array(steps.length).fill('accepted'));
   return steps;
 }

@@ -252,6 +252,23 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: before.encounter ? structuredClone(before.encounter) : null,
         });
         break;
+      case 'ReactionWindowOpened':
+      case 'ReactionUsed':
+      case 'ReactionDeclined':
+      case 'ReactionWindowExpired':
+      case 'ReactionWindowResolved': {
+        const windowId =
+          event.type === 'ReactionWindowOpened'
+            ? event.payload.window.windowId
+            : event.payload.windowId;
+        const prior = before.reactionWindows.get(windowId);
+        restores.push({
+          fact: 'reactionWindow',
+          windowId,
+          value: prior ? structuredClone(prior) : null,
+        });
+        break;
+      }
       case 'StatBlockSet':
         restores.push({
           fact: 'statblock',

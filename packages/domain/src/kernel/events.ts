@@ -24,6 +24,7 @@ import {
 } from '../memory/events.ts';
 import { characterRestoreSchemas, characterSheetSetPayloadSchema } from '../character/character.ts';
 import { combatEventPayloadSchemas, combatRestoreSchemas } from '../combat/events.ts';
+import { reactionEventPayloadSchemas, reactionRestoreSchemas } from '../combat/reaction-events.ts';
 import {
   claimSetPayloadSchema,
   contradictionDetectedPayloadSchema,
@@ -92,6 +93,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...investigationRestoreSchemas,
   ...epistemicRestoreSchemas,
   ...combatRestoreSchemas,
+  ...reactionRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -191,6 +193,11 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('SavingThrowRolled', combatEventPayloadSchemas.SavingThrowRolled),
   event('ConditionApplied', combatEventPayloadSchemas.ConditionApplied),
   event('DeathSaveRolled', combatEventPayloadSchemas.DeathSaveRolled),
+  event('ReactionWindowOpened', reactionEventPayloadSchemas.ReactionWindowOpened),
+  event('ReactionUsed', reactionEventPayloadSchemas.ReactionUsed),
+  event('ReactionDeclined', reactionEventPayloadSchemas.ReactionDeclined),
+  event('ReactionWindowExpired', reactionEventPayloadSchemas.ReactionWindowExpired),
+  event('ReactionWindowResolved', reactionEventPayloadSchemas.ReactionWindowResolved),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

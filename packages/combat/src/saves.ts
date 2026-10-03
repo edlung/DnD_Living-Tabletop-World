@@ -7,7 +7,7 @@ import { has, saveModifier, type Vitals } from './vitals.ts';
 /**
  * A spell's saving throw (SRD 5.2.1): cover adds to Dexterity saves; an
  * Unconscious creature automatically fails Strength and Dexterity saves
- * (no roll is recorded).
+ * (no roll is recorded). Counterspell's Constitution save uses the same rule.
  */
 export function spellSave(
   dice: Dice,
@@ -15,6 +15,7 @@ export function spellSave(
   ability: Ability,
   dc: number,
   cover: 'half' | 'three-quarters' | 'none',
+  purpose: 'spell' | 'counterspell' = 'spell',
 ): { success: boolean; event: DraftEvent } {
   const bonus = ability === 'dex' && cover !== 'none' ? COVER_BONUS[cover] : 0;
   const modifier = saveModifier(target, ability) + bonus;
@@ -34,7 +35,7 @@ export function spellSave(
         modifier,
         total: save.total,
         success: save.success,
-        purpose: 'spell',
+        purpose,
       },
     },
   };

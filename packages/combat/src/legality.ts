@@ -72,7 +72,8 @@ export function attackPlan(
 ): AttackPlan | Refusal {
   const attacker = combatantOf(encounter, attackerId);
   const target = combatantOf(encounter, targetId);
-  if (!attacker || !target) return refuse('NOT_A_COMBATANT');
+  if (!attacker) return refuse('NOT_IN_COMBAT');
+  if (!target) return refuse('NOT_A_COMBATANT');
   const attackerVitals = vitalsOf(state, attackerId);
   const targetVitals = vitalsOf(state, targetId);
   if (!attackerVitals || !targetVitals) return refuse('NOT_A_COMBATANT');

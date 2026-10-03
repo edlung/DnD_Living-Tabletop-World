@@ -2,6 +2,7 @@ import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { openReactionWindow } from './reactions.ts';
 import { encounterAfterTurnStart, type EncounterState } from './records.ts';
 
 /** Fold cases for combat events (called from kernel/evolve.ts). */
@@ -57,6 +58,7 @@ export function applyCombatEnded(state: WorldState, event: EventOf<'CombatEnded'
   if (encounter.encounterId !== event.payload.encounterId) {
     throw new CorruptHistoryError('ending another encounter');
   }
+  if (openReactionWindow(state)) throw new CorruptHistoryError('combat ended with a window open');
   return { ...state, encounter: null };
 }
 

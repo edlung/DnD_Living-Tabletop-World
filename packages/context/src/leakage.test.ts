@@ -183,6 +183,27 @@ describe('noninterference', () => {
     expect(await contexts(changed)).toBe(await contexts(baseline));
   });
 
+  it('the spell a reaction window suspends never changes any context (ADR 0016 §4)', async () => {
+    const contexts = async (spellId: string) => {
+      const world = await seedRavenford();
+      await world.apply(...ambush.place, ambush.startCombat);
+      for (const id of [ELOWEN, 'goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3']) {
+        await world.apply({ type: 'EndTurn', combatantId: id });
+      }
+      const state = await world.apply({
+        type: 'CastSpell',
+        combatantId: 'goblin-shaman',
+        spellId,
+        targetId: ELOWEN,
+      });
+      expect(state.reactionWindows.size).toBe(1);
+      return everyContext(state);
+    };
+    const bolt = await contexts('ashen-bolt');
+    expect(bolt).toBe(await contexts('binding-hex'));
+    expect(bolt).not.toMatch(/ashen|binding|Ashen|Binding/);
+  });
+
   it('is deterministic across independent replays', async () => {
     const first = await seedRavenford();
     const second = await seedRavenford();

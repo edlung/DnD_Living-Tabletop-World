@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), and 80 (Combat) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), and 90 (Reactions) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -48,6 +48,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Investigation: player commands, clues, NPC disclosure, hypotheses | `packages/domain/src/investigation/AGENTS.md`, ADR 0013 (owner-approved); fixture `fixtures/ravenford/investigation-seed.json` |
 | Contradictions, claims, valid knowledge transitions | `packages/domain/src/contradiction/AGENTS.md`, ADR 0014 (owner-approved); fixture `fixtures/ravenford/contradiction-seed.json` |
 | Combat: encounters, initiative, turns, attacks, spells, 0 HP, encounter view | `packages/combat/AGENTS.md`, ADR 0015 (owner-approved); contracts in `packages/contracts/src/combat/`; domain port and events in `packages/domain/src/combat/`; route `apps/server/src/http/routes/encounter-routes.ts`; fixtures `fixtures/ravenford/combat-seed.json`, `road-ambush.json` |
+| Reactions: windows, Counterspell, the pause, undo with an open window | `packages/combat/AGENTS.md` (`src/reactions/`), ADR 0016 (owner-approved); domain records/events/fold in `packages/domain/src/combat/reaction-*.ts`; pause rule `packages/domain/src/kernel/decide/reaction-pause.ts`; contracts `packages/contracts/src/combat/reactions.ts` |
 | Character sheets (canonical) | `packages/domain/src/character/character.ts`; schema in `packages/contracts/src/rules/character-sheet.ts` |
 | Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |
 | Client / UI | `apps/web/src/index.ts`, `packages/ui/src/index.ts` (placeholders; framework ADR at Stage 200) |

@@ -38,5 +38,6 @@ Never mark a product decision or invariant change `Accepted` on the owner's beha
 | [0013](0013-investigation.md)                          | Investigation: player actions, clues, disclosure, hypotheses             | Accepted (owner-approved product decision)         |
 | [0014](0014-contradictions-and-epistemic-integrity.md) | Contradictions, claims, and valid knowledge transitions                  | Accepted (owner-approved product decision)         |
 | [0015](0015-combat-engine.md)                          | Combat Engine: encounters, turns, attacks, spells, 0 HP                  | Accepted (owner-approved product decision)         |
+| [0016](0016-reaction-engine.md)                        | Reaction Engine: reaction windows and Counterspell                       | Accepted (owner-approved product decision)         |
 
 Pending product decisions (minimum authoring validation for Stage 110 and later ones) are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006.

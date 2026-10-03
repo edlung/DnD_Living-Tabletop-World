@@ -10,13 +10,13 @@ import { z } from 'zod';
 
 import { actorSchema } from '../actor.ts';
 import { ENTROPY_POOL } from '../../combat/port.ts';
-import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
+import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { ResolvedCommand } from '../decision.ts';
 import type { StoredCommand } from './event-store.ts';
 
 const resolutionSchema = z
   .object({
-    ids: z.array(z.string().regex(OBJECT_ID_PATTERN)).max(RESOLVED_ID_POOL),
+    ids: z.array(z.string().regex(OBJECT_ID_PATTERN)).max(MAX_RESOLVED_IDS),
     d20: z.number().int().min(1).max(20).nullable(),
     /** Absent in commands stored before combat existed (Stage 60). */
     entropy: z
@@ -31,8 +31,12 @@ const resolutionSchema = z
       .default([]),
   })
   .strict();
-/** Commands that carry an engine resolution: player commands and StartCombat. */
-const RESOLVED_TYPES: ReadonlySet<string> = new Set([...PLAYER_COMMAND_TYPES, 'StartCombat']);
+/** Commands that carry an engine resolution: player commands, StartCombat, and closing a reaction window. */
+const RESOLVED_TYPES: ReadonlySet<string> = new Set([
+  ...PLAYER_COMMAND_TYPES,
+  'StartCombat',
+  'CloseReactionWindow',
+]);
 
 /**
  * A stored command must carry the IDs and draws the engine resolved before

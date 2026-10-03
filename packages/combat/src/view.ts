@@ -7,6 +7,7 @@ import {
   type WorldState,
 } from '@ltw/domain';
 
+import { reactionWindowView } from './reactions/view.ts';
 import { conditionsOf, hitPoints, vitalsOf } from './vitals.ts';
 
 /**
@@ -67,5 +68,6 @@ export function encounterView(
       cover: battlefield.cover.map(({ x, y, level }) => ({ x, y, level })),
     },
     combatants,
+    reactionWindow: reactionWindowView(state, { dm, holder, known }),
   };
 }

@@ -22,6 +22,11 @@ import {
   moveCombatantCommandSchema,
   startCombatCommandSchema,
 } from '../combat/commands.ts';
+import {
+  closeReactionWindowCommandSchema,
+  declineReactionCommandSchema,
+  useReactionCommandSchema,
+} from '../combat/reactions.ts';
 import { setStatBlockCommandSchema } from '../combat/stat-block.ts';
 import { setClaimCommandSchema } from '../knowledge/claims.ts';
 import { setCharacterSheetCommandSchema } from '../rules/character-sheet.ts';
@@ -168,6 +173,9 @@ export const kernelCommandSchema = z
     castSpellCommandSchema,
     endTurnCommandSchema,
     endCombatCommandSchema,
+    useReactionCommandSchema,
+    declineReactionCommandSchema,
+    closeReactionWindowCommandSchema,
   ])
   .superRefine((command, context) => {
     if (
@@ -219,6 +227,9 @@ export const KERNEL_COMMAND_TYPES = [
   'CastSpell',
   'EndTurn',
   'EndCombat',
+  'UseReaction',
+  'DeclineReaction',
+  'CloseReactionWindow',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

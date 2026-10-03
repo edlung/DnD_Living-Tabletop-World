@@ -4,9 +4,11 @@ import {
   SteppingClock,
   WorldEngine,
   checkWorldIntegrity,
+  openReactionWindow,
   redecideEffective,
   replay,
   type Actor,
+  type WorldState,
 } from '@ltw/domain';
 import { scriptedDice } from '@ltw/rules';
 import pg from 'pg';
@@ -52,10 +54,23 @@ const submission = (commandId: string, actor: Actor, command: Record<string, unk
 
 /**
  * Every die rolls its middle face. Round 1: Fireball (32) kills the Raiders; the
- * Shaman saves (5 HP left) and misses with Ashen Bolt. Round 2: the marked
- * Shaman falls to Elowen's longbow.
+ * Shaman saves (5 HP left), and its Ashen Bolt waits for Elowen's Counterspell
+ * window (ADR 0016); she ignores it and it misses. Round 2: the marked Shaman
+ * falls to Elowen's longbow.
  */
-type Step = readonly [string, Actor, Record<string, unknown>];
+type Body = Record<string, unknown> | ((state: WorldState) => Record<string, unknown>);
+type Step = readonly [string, Actor, Body];
+const resolve = async (engine: WorldEngine, body: Body) => {
+  if (typeof body !== 'function') return body;
+  const state = (await engine.load(CAMPAIGN))?.state;
+  if (!state) throw new Error('missing campaign');
+  return body(state);
+};
+const ignoreWindow = (state: WorldState) => ({
+  type: 'DeclineReaction',
+  combatantId: ELOWEN,
+  windowId: openReactionWindow(state)?.windowId,
+});
 const cast = (combatantId: string, spellId: string, target: Record<string, unknown>) => ({
   type: 'CastSpell',
   combatantId,
@@ -69,6 +84,7 @@ const FIGHT: readonly Step[] = [
   ['mark', PLAYER, cast(ELOWEN, 'hunters-mark', { targetId: SHAMAN })],
   ['end-turn', PLAYER, { type: 'EndTurn', combatantId: ELOWEN }],
   ['bolt', DM, cast(SHAMAN, 'ashen-bolt', { targetId: ELOWEN })],
+  ['bolt-ignored', PLAYER, ignoreWindow],
   ['shaman-ends', DM, { type: 'EndTurn', combatantId: SHAMAN }],
   ['shot', PLAYER, { type: 'Attack', combatantId: ELOWEN, attackId: 'longbow', targetId: SHAMAN }],
 ];
@@ -93,7 +109,8 @@ describe('combat on PostgreSQL', () => {
       scriptedDice([]),
       MIDDLE_ENTROPY,
     );
-    for (const [id, actor, command] of FIGHT) {
+    for (const [id, actor, body] of FIGHT) {
+      const command = await resolve(engine, body);
       expect((await engine.execute(submission(id, actor, command))).status, id).toBe('accepted');
     }
     const fought = await verify(engine, new PostgresEventStore(pool));
@@ -112,20 +129,33 @@ describe('combat on PostgreSQL', () => {
     expect((await restarted.load(CAMPAIGN))?.state).toEqual(fought);
     const [, , shot] = FIGHT.find(([id]) => id === 'shot') ?? [];
     if (!shot) throw new Error('missing shot');
-    const retry = await restarted.execute(submission('shot', PLAYER, shot));
+    const retry = await restarted.execute(
+      submission('shot', PLAYER, await resolve(restarted, shot)),
+    );
     expect(retry).toMatchObject({ status: 'duplicate', outcome: { kind: 'Attack', hit: true } });
   });
 
   it('undoes the fight in reverse order back to the ambush setup', async () => {
     const store = new PostgresEventStore(pool);
     const engine = await seededEngine(store, scriptedDice([]), MIDDLE_ENTROPY);
-    for (const [id, actor, command] of FIGHT) await engine.execute(submission(id, actor, command));
+    for (const [id, actor, body] of FIGHT) {
+      await engine.execute(submission(id, actor, await resolve(engine, body)));
+    }
     const undo = (target: string) =>
       engine.execute(
         submission(`undo-${target}`, DM, { type: 'UndoCommand', targetCommandId: target }),
       );
     expect(await undo('mark')).toMatchObject({ status: 'rejected', code: 'UNDO_UNSAFE' });
-    for (const target of ['shot', 'shaman-ends', 'bolt', 'end-turn', 'mark', 'fireball', 'start']) {
+    for (const target of [
+      'shot',
+      'shaman-ends',
+      'bolt-ignored',
+      'bolt',
+      'end-turn',
+      'mark',
+      'fireball',
+      'start',
+    ]) {
       expect((await undo(target)).status, target).toBe('accepted');
     }
     const state = await verify(engine, store);
