@@ -38,6 +38,12 @@ importers:
 
   apps/server:
     dependencies:
+      '@ltw/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
+      '@ltw/domain':
+        specifier: workspace:*
+        version: link:../../packages/domain
       pg:
         specifier: ^8.23.1
         version: 8.23.1
@@ -54,9 +60,20 @@ importers:
 
   apps/web: {}
 
-  packages/contracts: {}
+  packages/contracts:
+    dependencies:
+      zod:
+        specifier: ^4.6.5
+        version: 4.6.5
 
-  packages/domain: {}
+  packages/domain:
+    dependencies:
+      '@ltw/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      zod:
+        specifier: ^4.6.5
+        version: 4.6.5
 
   packages/rules: {}
 

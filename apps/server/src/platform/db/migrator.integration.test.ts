@@ -1,9 +1,10 @@
-import { randomUUID } from 'node:crypto';
-
 import pg from 'pg';
-import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { loadConfig } from '../config/config.ts';
+import {
+  createThrowawayDatabase,
+  type ThrowawayDatabase,
+} from '../../testing/throwaway-database.ts';
 import { createLogger } from '../logging/logger.ts';
 import { loadMigrations, parseMigrations } from './migration-source.ts';
 import { MIGRATIONS_DIR } from './migrations-dir.ts';
@@ -12,19 +13,14 @@ import { MIGRATIONS_TABLE, runMigrations } from './migrator.ts';
 /**
  * Runs against the PostgreSQL instance from DATABASE_URL (docker-compose
  * locally, a service container in CI). Each test gets a throwaway database.
- * These tests fail, rather than skip, when PostgreSQL is unreachable.
  */
-const config = loadConfig({ ...process.env, NODE_ENV: 'test' });
 const logger = createLogger({ service: 'migrator-it', level: 'silent' });
 
-let admin: pg.Client;
-let databaseName: string;
+let database: ThrowawayDatabase;
 let clients: pg.Client[] = [];
 
 async function connect(): Promise<pg.Client> {
-  const url = new URL(config.databaseUrl);
-  url.pathname = `/${databaseName}`;
-  const client = new pg.Client({ connectionString: url.toString() });
+  const client = new pg.Client({ connectionString: database.url });
   await client.connect();
   clients.push(client);
   return client;
@@ -45,24 +41,14 @@ async function history(client: pg.Client): Promise<string[]> {
   return rows.map((row) => row.id);
 }
 
-beforeAll(async () => {
-  admin = new pg.Client({ connectionString: config.databaseUrl });
-  await admin.connect();
-});
-
-afterAll(async () => {
-  await admin.end();
-});
-
 beforeEach(async () => {
-  databaseName = `ltw_it_${randomUUID().replaceAll('-', '')}`;
-  await admin.query(`CREATE DATABASE ${databaseName}`);
+  database = await createThrowawayDatabase();
 });
 
 afterEach(async () => {
   await Promise.all(clients.map((client) => client.end()));
   clients = [];
-  await admin.query(`DROP DATABASE IF EXISTS ${databaseName} WITH (FORCE)`);
+  await database.drop();
 });
 
 describe('runMigrations against PostgreSQL', () => {

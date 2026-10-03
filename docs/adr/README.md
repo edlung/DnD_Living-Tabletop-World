@@ -29,4 +29,4 @@ Never mark a product decision or invariant change `Accepted` on the owner's beha
 | [0004](0004-module-boundaries.md)             | Module boundaries and dependency direction        | Accepted (technical) |
 | [0005](0005-server-runtime-foundations.md)    | Server runtime foundations: config, logging, HTTP | Accepted (technical) |
 
-Pending product decisions (temporal/undo for Stage 10, ruleset for Stage 40, minimum authoring validation for Stage 110) are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet.
+Pending product decisions (ruleset for Stage 40, minimum authoring validation for Stage 110) are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006.

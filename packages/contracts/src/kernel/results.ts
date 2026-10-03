@@ -1,0 +1,66 @@
+/**
+ * Outcome of submitting a World Kernel command. Rejections never change
+ * canonical state; `duplicate` reports the original outcome of a command ID
+ * that was already accepted (docs/adr/0006-temporal-model-and-undo.md §7).
+ */
+export const REJECTION_CODES = [
+  /** Malformed submission: schema validation failed. */
+  'INVALID_COMMAND',
+  /** The actor may not issue this command. Checked before any state is inspected. */
+  'FORBIDDEN',
+  'CAMPAIGN_NOT_FOUND',
+  'CAMPAIGN_ALREADY_EXISTS',
+  /** An entity or scene ID was used before (IDs are never reused). */
+  'ID_ALREADY_USED',
+  'ENTITY_NOT_FOUND',
+  'NOT_A_LOCATION',
+  'ENTITY_DESTROYED',
+  /** Location data present/absent inconsistently with the entity kind. */
+  'INVALID_ENTITY_DEFINITION',
+  'INVALID_PLACEMENT',
+  'INVALID_STATUS',
+  /** World-time rule violated (future existence, backstory before a parent, clock rewind, …). */
+  'TEMPORAL_CONFLICT',
+  /** The command would not change anything. */
+  'NO_EFFECT',
+  'SCENE_NOT_FOUND',
+  'SCENE_ALREADY_ACTIVE',
+  'SCENE_NOT_ACTIVE',
+  'COMMAND_NOT_FOUND',
+  'UNDO_NOT_SUPPORTED',
+  'ALREADY_UNDONE',
+  /** Later effective events depend on what the target command changed. */
+  'UNDO_UNSAFE',
+  /** `expectedVersion` did not match the campaign stream. */
+  'VERSION_MISMATCH',
+  /** The command ID was already used for a different command. */
+  'COMMAND_ID_CONFLICT',
+  /** Concurrent writers kept winning; safe to retry with the same command ID. */
+  'CONCURRENCY_CONFLICT',
+] as const;
+
+export type RejectionCode = (typeof REJECTION_CODES)[number];
+
+export interface EventSummary {
+  readonly sequence: number;
+  readonly eventId: string;
+  readonly type: string;
+}
+
+export interface CommandAccepted {
+  readonly status: 'accepted' | 'duplicate';
+  readonly commandId: string;
+  readonly campaignId: string;
+  readonly events: readonly EventSummary[];
+}
+
+export interface CommandRejected {
+  readonly status: 'rejected';
+  /** `null` only when the submission was too malformed to carry a command ID. */
+  readonly commandId: string | null;
+  readonly code: RejectionCode;
+  readonly message: string;
+  readonly details?: Readonly<Record<string, unknown>>;
+}
+
+export type CommandResult = CommandAccepted | CommandRejected;

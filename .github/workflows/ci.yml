@@ -71,5 +71,11 @@ jobs:
       - name: Migrate again (idempotent)
         run: pnpm run db:migrate
 
+      - name: Seed Ravenford through the World Engine
+        run: pnpm run seed:ravenford
+
+      - name: Seed again (idempotent)
+        run: pnpm run seed:ravenford
+
       - name: Integration tests
         run: pnpm run test:integration

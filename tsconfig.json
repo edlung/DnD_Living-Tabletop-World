@@ -4,7 +4,8 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true,
-    "customConditions": ["@ltw/source"]
+    "customConditions": ["@ltw/source"],
+    "resolveJsonModule": true
   },
   "include": [
     "apps/*/src/**/*.ts",

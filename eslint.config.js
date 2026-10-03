@@ -79,7 +79,7 @@ export default defineConfig(
   },
   {
     name: 'ltw/cli-entry-points',
-    files: ['scripts/**/cli.ts', 'apps/server/src/platform/db/migrate-cli.ts'],
+    files: ['scripts/**/cli.ts', 'apps/server/src/**/*-cli.ts'],
     rules: { 'no-console': 'off' },
   },
   ...boundaryConfigs,

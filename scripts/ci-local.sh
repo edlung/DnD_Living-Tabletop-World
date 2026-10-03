@@ -18,6 +18,8 @@ step 'Unit tests';                 pnpm run test
 step 'Clean build';                pnpm run clean && pnpm run build
 step 'Migrate (bootstrap)';        pnpm run db:migrate
 step 'Migrate again (idempotent)'; pnpm run db:migrate
+step 'Seed Ravenford';             pnpm run seed:ravenford
+step 'Seed again (idempotent)';    pnpm run seed:ravenford
 step 'Integration tests';          pnpm run test:integration
 
 printf '\nCI-equivalent validation passed.\n'

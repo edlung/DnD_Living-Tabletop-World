@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stage 0 (repository foundation) has added the code/tooling entry points in the second table; each later stage keeps them current. Its completion report is `reports/STAGE_000_COMPLETION.md`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stage 0 (repository foundation) and Stage 10 (World Kernel) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -34,13 +34,16 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Structured logging | `apps/server/src/platform/logging/logger.ts` |
 | Database migrations | `apps/server/migrations/AGENTS.md`, `apps/server/src/platform/db/` (`migration-source.ts`, `migrator.ts`, `migrate-cli.ts`), `docker-compose.yml` |
 | HTTP surface | `apps/server/src/http/health-server.ts` (liveness only so far) |
-| Domain (World Engine) | `packages/domain/src/index.ts` (Stage 0 placeholder) |
+| World Kernel: state, commands, events, engine, undo, projections | `packages/domain/src/kernel/AGENTS.md` (file map), ADRs 0006 (approved temporal/undo semantics) and 0007 (model, pipeline, storage) |
+| Add or change a kernel command/event | `packages/domain/src/kernel/AGENTS.md` rules, `decide/<area>.ts`, `events.ts`, `evolve.ts`, `facts.ts`, matching `*.test.ts` |
+| Event store / PostgreSQL persistence | `apps/server/src/world-engine/postgres-event-store.ts`, `apps/server/migrations/0001_world_event_store.sql` |
+| Seed Ravenford / dev harness | `apps/server/src/world-engine/seed-ravenford-cli.ts`, `fixtures/ravenford/kernel-seed.json` |
 | Deterministic rules | `packages/rules/src/index.ts` (Stage 0 placeholder) |
-| Shared contracts | `packages/contracts/src/index.ts` (Stage 0 placeholder) |
+| Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |
 | Client / UI | `apps/web/src/index.ts`, `packages/ui/src/index.ts` (placeholders; framework ADR at Stage 200) |
 | Ravenford fixtures | `fixtures/ravenford/AGENTS.md` |
 | Context-budget check | `scripts/context-budget/budget.ts` (policy constants), `scripts/context-budget/cli.ts` |
-| Test layout | `vitest.config.ts` (unit vs integration projects), `tests/AGENTS.md`; package tests sit beside source as `*.test.ts` / `*.integration.test.ts` |
+| Test layout | `vitest.config.ts` (unit vs integration projects), `tests/AGENTS.md`; package tests sit beside source as `*.test.ts` / `*.integration.test.ts`; test support in `testing/` folders (excluded from builds): `packages/domain/src/kernel/testing/`, `apps/server/src/testing/` |
 | Past stage outcomes | `reports/AGENTS.md`, then the one relevant `reports/STAGE_<NNN>_COMPLETION.md` |
 
 Do not load every work order or historical report for an ordinary task. Generated assets, migrations, logs, and large fixtures must have local context guidance (`AGENTS.md`) and be queried narrowly. `OPUS_STAGE_00.md` is a deprecated pointer, not a second Stage 0 specification.

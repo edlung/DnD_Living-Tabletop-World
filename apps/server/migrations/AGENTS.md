@@ -6,5 +6,5 @@ Forward-only PostgreSQL migrations applied by `pnpm db:migrate`
 - Name files `NNNN_snake_case_name.sql`; versions are strictly increasing four-digit numbers.
 - Never edit, rename, reorder, or delete a migration once it may have been applied; the runner rejects checksum or history drift. Add a new migration instead.
 - Each file runs in one transaction with its history record. Statements that cannot run in a transaction need an ADR first.
-- Schema follows the authorized stage only. Stage 0 ships no domain schema; the World Kernel schema starts in Stage 10.
+- Schema follows the authorized stage only. `0001_world_event_store.sql` (Stage 10) is the append-only campaign event store; later domains append to it rather than adding mutable state tables, unless an ADR says otherwise.
 - Read only the migrations relevant to the task; do not load this directory wholesale once it grows.

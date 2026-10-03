@@ -1,6 +1,10 @@
 # Ravenford Fixtures
 
-Canonical test fixtures for the Ravenford vertical slice (`RAVENFORD_SPEC.md`). Empty in Stage 0; fixtures are added by the stage that first needs them (World Kernel from Stage 10, knowledge scopes at Stage 20, and so on).
+Canonical test fixtures for the Ravenford vertical slice (`RAVENFORD_SPEC.md`), added by the stage that first needs them.
+
+| File               | Stage | Content                                                                                                                                                                                                                     |
+| ------------------ | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kernel-seed.json` | 10    | Public World Kernel seed: campaign, locations, Mira, Orin, Thorne (arrived 240 days before Day 1), Elowen, arrival scene. A command script run through the World Engine (`submissionsFromScript`), never inserted directly. |
 
 - Fixtures may contain WORLD_TRUTH and DM secrets. Never copy fixture secrets into player-facing code, prompts, or logs; tests must assert their absence from restricted projections.
 - Keep data (JSON/YAML/CSV) separate from hand-written fixture builders. Builders are active code and obey the 700-line budget; datasets are not loaded wholesale — query them narrowly.

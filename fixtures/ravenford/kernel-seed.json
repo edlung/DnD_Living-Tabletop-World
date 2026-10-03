@@ -1,0 +1,120 @@
+{
+  "$comment": "Minimum Ravenford world for Stage 10 kernel tests (RAVENFORD_SPEC.md). Public, non-secret content only; secret and knowledge fixtures arrive with Stage 20. Times are world seconds since Day 1 00:00:00. Seed with submissionsFromScript (deterministic command IDs).",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "CreateCampaign",
+      "name": "The Missing Caravan",
+      "worldName": "Ravenford",
+      "startsAt": 32400
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "ravenford",
+      "kind": "location",
+      "name": "Ravenford",
+      "description": "A trading town on the Old Trade Road.",
+      "existsSince": null,
+      "location": { "type": "settlement", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Market Square",
+      "existsSince": null,
+      "location": { "type": "site", "parentId": "ravenford" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "golden-stag-inn",
+      "kind": "location",
+      "name": "Golden Stag Inn",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "ravenford" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "orins-alchemy",
+      "kind": "location",
+      "name": "Orin's Alchemy",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "ravenford" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "merchant-guild",
+      "kind": "location",
+      "name": "Merchant Guild",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "ravenford" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "north-gate",
+      "kind": "location",
+      "name": "North Gate",
+      "existsSince": null,
+      "location": { "type": "site", "parentId": "ravenford" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "old-trade-road",
+      "kind": "location",
+      "name": "Old Trade Road",
+      "existsSince": null,
+      "location": { "type": "route", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "abandoned-caravan-site",
+      "kind": "location",
+      "name": "Abandoned Caravan Site",
+      "existsSince": null,
+      "location": { "type": "site", "parentId": "old-trade-road" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "mira-vale",
+      "kind": "npc",
+      "name": "Mira Vale",
+      "description": "Merchant; friendly, practical, observant.",
+      "existsSince": null,
+      "placement": { "locationId": "market-square", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "orin-stonebeard",
+      "kind": "npc",
+      "name": "Orin Stonebeard",
+      "description": "Alchemist; grumpy, cautious, observant.",
+      "existsSince": null,
+      "placement": { "locationId": "orins-alchemy", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "captain-thorne",
+      "kind": "npc",
+      "name": "Captain Thorne",
+      "description": "Captain of the Ravenford Guard; arrived in Ravenford eight months ago.",
+      "existsSince": null,
+      "placement": { "locationId": "north-gate", "since": -20736000 }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "elowen-starwhisper",
+      "kind": "character",
+      "name": "Elowen Starwhisper",
+      "description": "Ranger 7 / Wizard 8.",
+      "existsSince": null,
+      "placement": { "locationId": "market-square", "since": 32400 }
+    },
+    {
+      "type": "StartScene",
+      "sceneId": "arrival",
+      "title": "Arrival at Ravenford",
+      "locationId": "market-square"
+    }
+  ]
+}
