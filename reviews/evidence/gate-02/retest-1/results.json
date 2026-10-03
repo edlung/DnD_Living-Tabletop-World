@@ -1,0 +1,776 @@
+{
+  "reviewId": "ASTRA_GATE_02_RETEST_1",
+  "date": "2026-10-03 Europe/Oslo",
+  "codeRevision": "757db1066fc4b8fd14e26244c1e63adbdd0aa281",
+  "checkoutRevision": "856c7ea823f915acb2bd47fffe59b9634e157ec1",
+  "overallResult": "FAIL",
+  "findingIds": ["G02-H03", "G02-M01"],
+  "validation": {
+    "command": "pnpm validate:ci-local",
+    "exitCode": 0,
+    "unitFiles": 55,
+    "unitTestsPassed": 744,
+    "integrationFiles": 6,
+    "integrationTestsPassed": 22,
+    "activeFiles": 190,
+    "over500": 0,
+    "over700": 0,
+    "formatLintTypecheckBuild": "passed",
+    "migrations": "passed twice",
+    "seedRuns": [
+      {
+        "accepted": 0,
+        "alreadyPresent": 83,
+        "version": 92,
+        "entities": 21
+      },
+      {
+        "accepted": 0,
+        "alreadyPresent": 83,
+        "version": 92,
+        "entities": 21
+      }
+    ]
+  },
+  "notes": [
+    "State H01/H02 checks require remediated safe behavior.",
+    "Adjacent finding assertions intentionally reproduce unsafe or blocked behavior; they do not certify safety.",
+    "All scenario writes use isolated state; throwaway databases dropped.",
+    "The reviewer-started live server was stopped; the existing PostgreSQL service was retained."
+  ],
+  "live": {
+    "requests": 698,
+    "checks": {
+      "headers": 698,
+      "memory-visible-sets": 8,
+      "knowledge-regression": 8,
+      "memory-direct": 80,
+      "memory-kind": 40,
+      "memory-entity": 176,
+      "memory-time": 96,
+      "memory-text": 64,
+      "memory-location-fixture": 56,
+      "memory-limit": 8,
+      "memory-window": 8,
+      "memory-session": 8,
+      "forbidden-markers": 30470,
+      "no-dm-metadata": 498,
+      "context-crawl": 22,
+      "malformed": 21,
+      "forgery": 9,
+      "authentication": 6,
+      "context-no-actor": 4,
+      "sessions-membership": 4,
+      "interleaving": 80
+    },
+    "failures": []
+  },
+  "state": {
+    "requests": 202,
+    "checks": {
+      "player-result-hygiene": 2,
+      "testimony-contradiction": 2,
+      "npc-noninterference": 6,
+      "idempotency": 2,
+      "contradiction-undo": 2,
+      "epistemic-authority": 4,
+      "hypothesis-type": 4,
+      "joint-scope-oracle": 2,
+      "claim-secrecy": 12,
+      "no-truth-comparison": 4,
+      "explicit-fact-not-promotion": 2,
+      "memory-score-noninterference": 2,
+      "impossible-memories": 14,
+      "rejection-atomicity": 2,
+      "undiscovered-clue-noninterference": 2,
+      "failed-vs-empty-check": 2,
+      "evidence-outcome": 2,
+      "discovery-type": 2,
+      "discovery-memory": 2,
+      "one-attempt": 2,
+      "H01-fixed": 3,
+      "H02-fixed": 4,
+      "H02-reverse-undo": 4,
+      "postgres-restart": 4,
+      "memory-postgres-equality": 1
+    },
+    "failures": [],
+    "observations": [
+      {
+        "id": "G02-H01",
+        "mode": "memory",
+        "stage": "before-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          }
+        ]
+      },
+      {
+        "id": "G02-H02",
+        "mode": "memory",
+        "kind": "knowledge",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "rejected",
+        "undoCode": "UNDO_UNSAFE",
+        "blockers": [
+          {
+            "commandId": "http:player-elowen:astra-43",
+            "commandType": "EnterLocation",
+            "sequence": 151
+          }
+        ],
+        "placement": {
+          "locationId": "remote-knowledge",
+          "since": 36000
+        },
+        "sourceRemains": true,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-42",
+        "moveCommandId": "http:player-elowen:astra-43"
+      },
+      {
+        "id": "G02-H02",
+        "mode": "memory",
+        "kind": "memory",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "rejected",
+        "undoCode": "UNDO_UNSAFE",
+        "blockers": [
+          {
+            "commandId": "http:player-elowen:astra-50",
+            "commandType": "EnterLocation",
+            "sequence": 157
+          }
+        ],
+        "placement": {
+          "locationId": "remote-memory",
+          "since": 36000
+        },
+        "sourceRemains": true,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-49",
+        "moveCommandId": "http:player-elowen:astra-50"
+      },
+      {
+        "id": "G02-H01",
+        "mode": "postgres",
+        "stage": "before-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          }
+        ]
+      },
+      {
+        "id": "G02-H02",
+        "mode": "postgres",
+        "kind": "knowledge",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "rejected",
+        "undoCode": "UNDO_UNSAFE",
+        "blockers": [
+          {
+            "commandId": "http:player-elowen:astra-43",
+            "commandType": "EnterLocation",
+            "sequence": 151
+          }
+        ],
+        "placement": {
+          "locationId": "remote-knowledge",
+          "since": 36000
+        },
+        "sourceRemains": true,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-42",
+        "moveCommandId": "http:player-elowen:astra-43"
+      },
+      {
+        "id": "G02-H02",
+        "mode": "postgres",
+        "kind": "memory",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "rejected",
+        "undoCode": "UNDO_UNSAFE",
+        "blockers": [
+          {
+            "commandId": "http:player-elowen:astra-50",
+            "commandType": "EnterLocation",
+            "sequence": 157
+          }
+        ],
+        "placement": {
+          "locationId": "remote-memory",
+          "since": 36000
+        },
+        "sourceRemains": true,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-49",
+        "moveCommandId": "http:player-elowen:astra-50"
+      },
+      {
+        "id": "G02-H01",
+        "mode": "postgres",
+        "stage": "after-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          }
+        ]
+      }
+    ],
+    "temporaryDatabaseDropped": true
+  },
+  "adjacent": {
+    "requests": 110,
+    "controls": [
+      {
+        "mode": "memory",
+        "case": "earliest-knowledge",
+        "blocked": "UNDO_UNSAFE",
+        "redundantUndo": "accepted",
+        "reverseUndo": "accepted"
+      },
+      {
+        "mode": "memory",
+        "case": "earliest-memory",
+        "blocked": "UNDO_UNSAFE",
+        "redundantUndo": "accepted",
+        "reverseUndo": "accepted"
+      },
+      {
+        "mode": "memory",
+        "case": "known-chain",
+        "unknownIntermediate": "equal-to-absent",
+        "authorizedNesting": "available",
+        "dmNesting": "available"
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "earliest-knowledge",
+        "blocked": "UNDO_UNSAFE",
+        "redundantUndo": "accepted",
+        "reverseUndo": "accepted"
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "earliest-memory",
+        "blocked": "UNDO_UNSAFE",
+        "redundantUndo": "accepted",
+        "reverseUndo": "accepted"
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "known-chain",
+        "unknownIntermediate": "equal-to-absent",
+        "authorizedNesting": "available",
+        "dmNesting": "available"
+      }
+    ],
+    "observations": [
+      {
+        "case": "actor-assignment",
+        "mode": "memory",
+        "beforeAssignment": {
+          "http": 404,
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Not found"
+          },
+          "requestId": "29b1c9b0-07a7-4d6d-9753-51aa02959b9c"
+        },
+        "assignment": "http:dm-ravenford:auth-assign",
+        "moved": "http:outsider:auth-move",
+        "assignmentUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-2",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 97,
+              "eventId": "00000000-0000-4000-8000-000000000061",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "assignmentStillPresent": false,
+        "placement": {
+          "locationId": "market-square",
+          "since": 36000
+        },
+        "movement": {
+          "commandId": "http:outsider:auth-move",
+          "commandType": "EnterLocation",
+          "firstSequence": 95,
+          "lastSequence": 96,
+          "undoneBy": null
+        },
+        "subsequentAction": {
+          "http": 404,
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Not found"
+          },
+          "requestId": "4644caf3-3d05-4e66-9318-dd685b7853ca"
+        },
+        "premiseEvents": [
+          {
+            "type": "PremisesRecorded",
+            "payload": {
+              "characterId": "guest-character",
+              "premises": [
+                {
+                  "kind": "knowledge",
+                  "knowledgeId": "pub-market-square",
+                  "viaParty": false
+                }
+              ]
+            }
+          },
+          {
+            "type": "EntityPlaced",
+            "payload": {
+              "entityId": "guest-character",
+              "locationId": "market-square",
+              "since": 36000,
+              "previousLocationId": null
+            }
+          }
+        ]
+      },
+      {
+        "case": "hypothesis-actor-assignment",
+        "mode": "memory",
+        "assignment": "http:dm-ravenford:hyp-assign",
+        "hypothesis": "http:outsider:hyp-form",
+        "assignmentUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-3",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 101,
+              "eventId": "00000000-0000-4000-8000-000000000066",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "assignmentStillPresent": false,
+        "hypothesisStillPresent": "00000000-0000-4000-8000-000000000063",
+        "command": {
+          "commandId": "http:outsider:hyp-form",
+          "commandType": "FormHypothesis",
+          "firstSequence": 99,
+          "lastSequence": 100,
+          "undoneBy": null
+        },
+        "premises": [
+          {
+            "characterId": "guest-character",
+            "premises": []
+          }
+        ]
+      },
+      {
+        "case": "empty-inspection-undo-lock",
+        "mode": "memory",
+        "disclosure": "http:dm-ravenford:empty-reveal",
+        "entered": "http:player-elowen:empty-move",
+        "inspected": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:player-elowen:empty-inspect",
+          "campaignId": "ravenford",
+          "events": [],
+          "outcome": {
+            "kind": "ExamineEntity",
+            "roll": null,
+            "discovered": []
+          }
+        },
+        "disclosureUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-27",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:empty-reveal\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:player-elowen:empty-move",
+                "commandType": "EnterLocation",
+                "sequence": 126
+              }
+            ]
+          }
+        },
+        "moveUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-28",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:player-elowen:empty-move\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:player-elowen:empty-inspect",
+                "commandType": "ExamineEntity",
+                "sequence": 128
+              }
+            ]
+          }
+        },
+        "inspectUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-29",
+          "code": "NO_EFFECT",
+          "message": "Command \"http:player-elowen:empty-inspect\" changed nothing that can be undone"
+        },
+        "effectiveCommands": [
+          {
+            "commandId": "http:dm-ravenford:empty-reveal",
+            "commandType": "AddKnowledge",
+            "firstSequence": 125,
+            "lastSequence": 125,
+            "undoneBy": null
+          },
+          {
+            "commandId": "http:player-elowen:empty-move",
+            "commandType": "EnterLocation",
+            "firstSequence": 126,
+            "lastSequence": 127,
+            "undoneBy": null
+          },
+          {
+            "commandId": "http:player-elowen:empty-inspect",
+            "commandType": "ExamineEntity",
+            "firstSequence": 128,
+            "lastSequence": 129,
+            "undoneBy": null
+          }
+        ],
+        "readOnlyInspection": [
+          {
+            "type": "PremisesRecorded",
+            "payload": {
+              "characterId": "elowen-starwhisper",
+              "premises": [
+                {
+                  "kind": "perceived",
+                  "entityId": "empty-remote"
+                }
+              ]
+            }
+          },
+          {
+            "type": "EvidenceExamined",
+            "payload": {
+              "characterId": "elowen-starwhisper",
+              "entityId": "empty-remote",
+              "method": "inspect",
+              "scope": "PARTY",
+              "roll": null,
+              "revealed": []
+            }
+          }
+        ],
+        "unchangedOnRejectedUndo": true,
+        "replayEqual": true
+      },
+      {
+        "case": "actor-assignment",
+        "mode": "postgres-reloaded",
+        "beforeAssignment": {
+          "http": 404,
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Not found"
+          },
+          "requestId": "b7f9e37b-fc24-456b-8ccd-2e4967af300c"
+        },
+        "assignment": "http:dm-ravenford:auth-assign",
+        "moved": "http:outsider:auth-move",
+        "assignmentUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-2",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 97,
+              "eventId": "b94f089f-dc12-4da8-89c1-590cc6226239",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "assignmentStillPresent": false,
+        "placement": {
+          "locationId": "market-square",
+          "since": 36000
+        },
+        "movement": {
+          "commandId": "http:outsider:auth-move",
+          "commandType": "EnterLocation",
+          "firstSequence": 95,
+          "lastSequence": 96,
+          "undoneBy": null
+        },
+        "subsequentAction": {
+          "http": 404,
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Not found"
+          },
+          "requestId": "14112fd8-a9a4-4dc0-9f67-fa7ec04a711f"
+        },
+        "premiseEvents": [
+          {
+            "type": "PremisesRecorded",
+            "payload": {
+              "characterId": "guest-character",
+              "premises": [
+                {
+                  "kind": "knowledge",
+                  "knowledgeId": "pub-market-square",
+                  "viaParty": false
+                }
+              ]
+            }
+          },
+          {
+            "type": "EntityPlaced",
+            "payload": {
+              "entityId": "guest-character",
+              "locationId": "market-square",
+              "since": 36000,
+              "previousLocationId": null
+            }
+          }
+        ]
+      },
+      {
+        "case": "hypothesis-actor-assignment",
+        "mode": "postgres-reloaded",
+        "assignment": "http:dm-ravenford:hyp-assign",
+        "hypothesis": "http:outsider:hyp-form",
+        "assignmentUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-3",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 101,
+              "eventId": "dc049c51-9e87-40be-9af5-8671717ec1ed",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "assignmentStillPresent": false,
+        "hypothesisStillPresent": "209c308f-3954-49d5-a642-e5943725b65b",
+        "command": {
+          "commandId": "http:outsider:hyp-form",
+          "commandType": "FormHypothesis",
+          "firstSequence": 99,
+          "lastSequence": 100,
+          "undoneBy": null
+        },
+        "premises": [
+          {
+            "characterId": "guest-character",
+            "premises": []
+          }
+        ]
+      },
+      {
+        "case": "empty-inspection-undo-lock",
+        "mode": "postgres-reloaded",
+        "disclosure": "http:dm-ravenford:empty-reveal",
+        "entered": "http:player-elowen:empty-move",
+        "inspected": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:player-elowen:empty-inspect",
+          "campaignId": "ravenford",
+          "events": [],
+          "outcome": {
+            "kind": "ExamineEntity",
+            "roll": null,
+            "discovered": []
+          }
+        },
+        "disclosureUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-27",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:empty-reveal\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:player-elowen:empty-move",
+                "commandType": "EnterLocation",
+                "sequence": 126
+              }
+            ]
+          }
+        },
+        "moveUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-28",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:player-elowen:empty-move\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:player-elowen:empty-inspect",
+                "commandType": "ExamineEntity",
+                "sequence": 128
+              }
+            ]
+          }
+        },
+        "inspectUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-29",
+          "code": "NO_EFFECT",
+          "message": "Command \"http:player-elowen:empty-inspect\" changed nothing that can be undone"
+        },
+        "effectiveCommands": [
+          {
+            "commandId": "http:dm-ravenford:empty-reveal",
+            "commandType": "AddKnowledge",
+            "firstSequence": 125,
+            "lastSequence": 125,
+            "undoneBy": null
+          },
+          {
+            "commandId": "http:player-elowen:empty-move",
+            "commandType": "EnterLocation",
+            "firstSequence": 126,
+            "lastSequence": 127,
+            "undoneBy": null
+          },
+          {
+            "commandId": "http:player-elowen:empty-inspect",
+            "commandType": "ExamineEntity",
+            "firstSequence": 128,
+            "lastSequence": 129,
+            "undoneBy": null
+          }
+        ],
+        "readOnlyInspection": [
+          {
+            "type": "PremisesRecorded",
+            "payload": {
+              "characterId": "elowen-starwhisper",
+              "premises": [
+                {
+                  "kind": "perceived",
+                  "entityId": "empty-remote"
+                }
+              ]
+            }
+          },
+          {
+            "type": "EvidenceExamined",
+            "payload": {
+              "characterId": "elowen-starwhisper",
+              "entityId": "empty-remote",
+              "method": "inspect",
+              "scope": "PARTY",
+              "roll": null,
+              "revealed": []
+            }
+          }
+        ],
+        "unchangedOnRejectedUndo": true,
+        "replayEqual": true
+      }
+    ],
+    "temporaryDatabaseDropped": true
+  },
+  "totalIndependentHttpRequests": 1010
+}
