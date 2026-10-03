@@ -1,4 +1,10 @@
-import type { EntityKind, EntityStatus, KernelCommandType, LocationType } from '@ltw/contracts';
+import type {
+  CharacterSheet,
+  EntityKind,
+  EntityStatus,
+  KernelCommandType,
+  LocationType,
+} from '@ltw/contracts';
 
 import type { KnowledgeRecord } from '../knowledge/records.ts';
 import type { MemoryRecord, SessionRecord } from '../memory/records.ts';
@@ -76,6 +82,8 @@ export interface WorldState {
   readonly memories: ReadonlyMap<string, MemoryRecord>;
   readonly sessions: ReadonlyMap<string, SessionRecord>;
   readonly activeSessionId: string | null;
+  /** Character sheets by entity ID (ADR 0011). */
+  readonly characterSheets: ReadonlyMap<string, CharacterSheet>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -92,6 +100,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   memories: new Map(),
   sessions: new Map(),
   activeSessionId: null,
+  characterSheets: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

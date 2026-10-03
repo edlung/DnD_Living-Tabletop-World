@@ -6,6 +6,7 @@ import {
   recordMemoryCommandSchema,
   startSessionCommandSchema,
 } from '../memory/commands.ts';
+import { setCharacterSheetCommandSchema } from '../rules/character-sheet.ts';
 import { commandIdSchema, entityIdSchema, sceneIdSchema } from './identifiers.ts';
 import { worldDurationSchema, worldTimeSchema } from './world-time.ts';
 
@@ -134,6 +135,7 @@ export const kernelCommandSchema = z
     startSessionCommandSchema,
     endSessionCommandSchema,
     assignCharacterCommandSchema,
+    setCharacterSheetCommandSchema,
   ])
   .superRefine((command, context) => {
     if (
@@ -170,6 +172,7 @@ export const KERNEL_COMMAND_TYPES = [
   'RecordMemory',
   'StartSession',
   'EndSession',
+  'SetCharacterSheet',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

@@ -33,5 +33,6 @@ Never mark a product decision or invariant change `Accepted` on the owner's beha
 | [0008](0008-knowledge-boundary.md)                 | Knowledge records, scopes, and perspective boundary              | Accepted (owner-approved product decision)         |
 | [0009](0009-http-api-and-dev-authentication.md)    | HTTP API framework, development authentication, response hygiene | Accepted (technical)                               |
 | [0010](0010-memory-and-temporal-retrieval.md)      | Memory, sessions, impossible memories, and temporal retrieval    | Accepted (owner-approved product decision)         |
+| [0011](0011-ruleset-srd-5-2.md)                    | Ruleset: SRD 5.2.1 subset for the Ravenford slice                | Accepted (owner-approved product decision)         |
 
 Pending product decisions (ruleset for Stage 40, minimum authoring validation for Stage 110) are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006.

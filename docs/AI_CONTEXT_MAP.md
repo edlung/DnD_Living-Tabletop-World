@@ -43,7 +43,8 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Add or change a kernel command/event | `packages/domain/src/kernel/AGENTS.md` rules, `decide/<area>.ts`, `events.ts`, `evolve.ts`, `facts.ts`, matching `*.test.ts` |
 | Event store / PostgreSQL persistence | `apps/server/src/world-engine/postgres-event-store.ts`, `apps/server/migrations/0001_world_event_store.sql` |
 | Seed Ravenford / dev harness | `apps/server/src/world-engine/seed-ravenford-cli.ts`, `fixtures/ravenford/kernel-seed.json` |
-| Deterministic rules | `packages/rules/src/index.ts` (Stage 0 placeholder) |
+| Deterministic rules (SRD 5.2.1 slice) | `packages/rules/AGENTS.md`, ADR 0011 (owner-approved), `NOTICE.md` |
+| Character sheets (canonical) | `packages/domain/src/character/character.ts`; schema in `packages/contracts/src/rules/character-sheet.ts` |
 | Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |
 | Client / UI | `apps/web/src/index.ts`, `packages/ui/src/index.ts` (placeholders; framework ADR at Stage 200) |
 | Ravenford fixtures | `fixtures/ravenford/AGENTS.md` |

@@ -19,6 +19,8 @@ Owner approval is required for the supported product semantics. Stage 10 impleme
 
 Before implementing deterministic rule legality, obtain owner approval of a ruleset ADR specifying the rules source/edition or explicitly defined custom subset, permitted house rules, and the slice mechanics. Include ranges, resources, concentration, reactions, timing, and multiclass/spell-access assumptions for Elowen. Reconcile the Ravenford fixture with that choice rather than silently granting or removing abilities. Define reproducible random-input handling for tests and replay. Stages 80, 90, and 220 reuse this contract.
 
+**Recorded:** `docs/adr/0011-ruleset-srd-5-2.md`, approved by the project owner on 2026-10-03.
+
 ## Minimum authoring validation — Stage 110
 
 Before enabling the first canonical AI-assisted mutation, implement the complete invariant-16 pipeline for every command enabled in this stage: schema, permission, applicable rules, continuity/lore, risk/confirmation, then World Engine. Tomas must pass timeline, location, identity, and scoped-knowledge checks from `RAVENFORD_SPEC.md`.

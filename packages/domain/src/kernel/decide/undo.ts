@@ -167,6 +167,13 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         });
         restores.push({ fact: 'world.activeSession', value: before.activeSessionId });
         break;
+      case 'CharacterSheetSet':
+        restores.push({
+          fact: 'sheet',
+          entityId: event.payload.entityId,
+          value: before.characterSheets.get(event.payload.entityId) ?? null,
+        });
+        break;
       case 'CharacterAssigned':
         restores.push({
           fact: 'roster',

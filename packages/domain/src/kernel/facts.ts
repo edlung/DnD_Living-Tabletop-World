@@ -29,6 +29,7 @@ export const facts = {
   session: (id: string): FactKey => `session:${id}`,
   sessionEnded: (id: string): FactKey => `session:${id}#ended`,
   activeSession: (): FactKey => 'world#activeSession',
+  sheet: (entityId: string): FactKey => `sheet:${entityId}`,
 };
 
 export interface Footprint {
@@ -146,6 +147,11 @@ export function footprintOf(event: KernelEvent): Footprint {
         reads: [clock, facts.session(event.payload.sessionId)],
         writes: [facts.sessionEnded(event.payload.sessionId), facts.activeSession()],
       };
+    case 'CharacterSheetSet':
+      return {
+        reads: [clock, facts.entity(event.payload.entityId)],
+        writes: [facts.sheet(event.payload.entityId)],
+      };
     case 'CharacterAssigned':
       return {
         reads: [clock, facts.entity(event.payload.characterId)],
@@ -191,6 +197,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.sessionEnded(restore.sessionId)];
     case 'world.activeSession':
       return [facts.activeSession()];
+    case 'sheet':
+      return [facts.sheet(restore.entityId)];
   }
 }
 

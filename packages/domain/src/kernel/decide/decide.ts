@@ -1,3 +1,4 @@
+import { decideSetCharacterSheet } from '../../character/character.ts';
 import { decideAddKnowledge, decideAssignCharacter } from '../../knowledge/decide.ts';
 import { decideEndSession, decideRecordMemory, decideStartSession } from '../../memory/decide.ts';
 import type { Decision, DecisionContext, ResolvedCommand } from '../decision.ts';
@@ -47,5 +48,7 @@ export function decide(context: DecisionContext, command: ResolvedCommand): Deci
       return decideStartSession(state, command);
     case 'EndSession':
       return decideEndSession(state, command);
+    case 'SetCharacterSheet':
+      return decideSetCharacterSheet(state, command);
   }
 }

@@ -1,3 +1,4 @@
+import { applyCharacterSheetSet } from '../character/character.ts';
 import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
@@ -121,6 +122,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applySessionStarted(state, event);
     case 'SessionEnded':
       return applySessionEnded(state, event);
+    case 'CharacterSheetSet':
+      return applyCharacterSheetSet(state, event);
   }
 }
 
@@ -208,6 +211,12 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     }
     case 'world.activeSession':
       return { ...state, activeSessionId: restore.value };
+    case 'sheet': {
+      const sheets = new Map(state.characterSheets);
+      if (restore.value === null) sheets.delete(restore.entityId);
+      else sheets.set(restore.entityId, restore.value);
+      return { ...state, characterSheets: sheets };
+    }
   }
 }
 

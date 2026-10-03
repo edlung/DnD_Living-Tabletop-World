@@ -1,0 +1,80 @@
+{
+  "$comment": "Stage 40 rules fixture (docs/adr/0011-ruleset-srd-5-2.md): Elowen Starwhisper's reconciled SRD 5.2.1 character sheet. Seeded after memory-seed.json.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "SetCharacterSheet",
+      "entityId": "elowen-starwhisper",
+      "sheet": {
+        "classes": [
+          {
+            "classId": "ranger",
+            "level": 7,
+            "subclass": "Hunter"
+          },
+          {
+            "classId": "wizard",
+            "level": 8,
+            "subclass": "Evoker"
+          }
+        ],
+        "abilities": {
+          "str": 10,
+          "dex": 18,
+          "con": 14,
+          "int": 16,
+          "wis": 14,
+          "cha": 10
+        },
+        "hitPoints": {
+          "max": 78,
+          "current": 78
+        },
+        "armorClass": 17,
+        "speedFt": 30,
+        "savingThrows": ["str", "dex"],
+        "skills": {
+          "proficient": ["perception", "investigation", "insight", "survival", "arcana", "stealth"],
+          "expertise": ["perception"]
+        },
+        "fightingStyle": "archery",
+        "attacksPerAction": 2,
+        "weapons": ["longbow"],
+        "spellSlots": {
+          "max": [4, 3, 3, 3, 2, 1, 0, 0, 0],
+          "expended": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        "spellcasting": [
+          {
+            "source": "ranger",
+            "ability": "wis",
+            "spells": ["hunters-mark"],
+            "freeCasts": {
+              "spellId": "hunters-mark",
+              "perLongRest": 3,
+              "used": 0
+            }
+          },
+          {
+            "source": "wizard",
+            "ability": "int",
+            "spells": ["detect-magic", "misty-step", "fireball", "counterspell"]
+          },
+          {
+            "source": "magic-initiate",
+            "ability": "wis",
+            "spells": ["healing-word"],
+            "freeCasts": {
+              "spellId": "healing-word",
+              "perLongRest": 1,
+              "used": 0
+            }
+          }
+        ],
+        "conditions": [],
+        "concentration": null
+      }
+    }
+  ]
+}

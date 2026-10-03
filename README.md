@@ -2,11 +2,12 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 30 (Memory & Timeline). The stages so far provide:
+**Current state:** Stage 40 (Character & Rules Kernel). The stages so far provide:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
 - **Memory:** memories and sessions, rejection of impossible memories, and scoped recall over world time (Astra reviews it at Gate 02).
+- **Rules:** deterministic SRD 5.2.1 slice rules (`@ltw/rules`, ADR 0011) — range, spell slots, action economy, Counterspell, Concentration, movement, attacks, checks — plus Elowen's canonical sheet.
 - **HTTP API** with development persona authentication.
 
 No gameplay yet.
@@ -93,6 +94,10 @@ work-orders/         stage work orders (one authorized at a time)
 ```
 
 Dependency direction is declared in `workspace-boundaries.json` and enforced by ESLint and `tests/architecture/` (see `docs/adr/0004-module-boundaries.md`).
+
+## License notice
+
+Rules mechanics come from the SRD 5.2.1 under CC-BY-4.0; see [`NOTICE.md`](NOTICE.md).
 
 ## Decisions
 
