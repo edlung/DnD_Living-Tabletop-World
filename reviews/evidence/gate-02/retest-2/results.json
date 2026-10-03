@@ -1,0 +1,1144 @@
+{
+  "reviewId": "ASTRA_GATE_02_RETEST_2",
+  "date": "2026-10-03 Europe/Oslo",
+  "codeRevision": "017ab0b4fb1386dfc994a46bb4d82b762aaba237",
+  "checkoutRevision": "6f21fad0b791c44393f4716f0c7e3c3e0ff97c36",
+  "overallResult": "PASS",
+  "closedFindings": ["G02-H01", "G02-H02", "G02-H03", "G02-M01"],
+  "newFindings": [],
+  "validation": {
+    "command": "pnpm validate:ci-local",
+    "exitCode": 0,
+    "unitFiles": 56,
+    "unitTestsPassed": 753,
+    "integrationFiles": 6,
+    "integrationTestsPassed": 25,
+    "activeFiles": 192,
+    "over500": 0,
+    "over700": 0,
+    "formatLintTypecheckBuild": "passed",
+    "migrations": "passed twice",
+    "seedRuns": [
+      {
+        "accepted": 0,
+        "alreadyPresent": 83,
+        "version": 92,
+        "entities": 21
+      },
+      {
+        "accepted": 0,
+        "alreadyPresent": 83,
+        "version": 92,
+        "entities": 21
+      }
+    ]
+  },
+  "notes": [
+    "All probe assertions require safe behavior; previous finding-reproduction assertions were replaced.",
+    "Baseline and all four probe scripts exited 0.",
+    "Three scenario recipes independently create and drop their throwaway databases.",
+    "Only GETs use the normal development campaign; seed stayed at version 92.",
+    "The reviewer-started live server was stopped; the existing PostgreSQL service was retained."
+  ],
+  "live": {
+    "requests": 698,
+    "checks": {
+      "headers": 698,
+      "memory-visible-sets": 8,
+      "knowledge-regression": 8,
+      "memory-direct": 80,
+      "memory-kind": 40,
+      "memory-entity": 176,
+      "memory-time": 96,
+      "memory-text": 64,
+      "memory-location-fixture": 56,
+      "memory-limit": 8,
+      "memory-window": 8,
+      "memory-session": 8,
+      "forbidden-markers": 30470,
+      "no-dm-metadata": 498,
+      "context-crawl": 22,
+      "malformed": 21,
+      "forgery": 9,
+      "authentication": 6,
+      "context-no-actor": 4,
+      "sessions-membership": 4,
+      "interleaving": 80
+    },
+    "failures": []
+  },
+  "state": {
+    "requests": 202,
+    "checks": {
+      "player-result-hygiene": 2,
+      "testimony-contradiction": 2,
+      "npc-noninterference": 6,
+      "idempotency": 2,
+      "contradiction-undo": 2,
+      "epistemic-authority": 4,
+      "hypothesis-type": 4,
+      "joint-scope-oracle": 2,
+      "claim-secrecy": 12,
+      "no-truth-comparison": 4,
+      "explicit-fact-not-promotion": 2,
+      "memory-score-noninterference": 2,
+      "impossible-memories": 14,
+      "rejection-atomicity": 2,
+      "undiscovered-clue-noninterference": 2,
+      "failed-vs-empty-check": 2,
+      "evidence-outcome": 2,
+      "discovery-type": 2,
+      "discovery-memory": 2,
+      "one-attempt": 2,
+      "H01-fixed": 3,
+      "H02-fixed": 4,
+      "H02-reverse-undo": 4,
+      "postgres-restart": 4,
+      "memory-postgres-equality": 1
+    },
+    "failures": [],
+    "observations": [
+      {
+        "id": "G02-H01",
+        "mode": "memory",
+        "stage": "before-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          }
+        ]
+      },
+      {
+        "id": "G02-H02",
+        "mode": "memory",
+        "kind": "knowledge",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "rejected",
+        "undoCode": "UNDO_UNSAFE",
+        "blockers": [
+          {
+            "commandId": "http:player-elowen:astra-43",
+            "commandType": "EnterLocation",
+            "sequence": 151
+          }
+        ],
+        "placement": {
+          "locationId": "remote-knowledge",
+          "since": 36000
+        },
+        "sourceRemains": true,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-42",
+        "moveCommandId": "http:player-elowen:astra-43"
+      },
+      {
+        "id": "G02-H02",
+        "mode": "memory",
+        "kind": "memory",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "rejected",
+        "undoCode": "UNDO_UNSAFE",
+        "blockers": [
+          {
+            "commandId": "http:player-elowen:astra-50",
+            "commandType": "EnterLocation",
+            "sequence": 157
+          }
+        ],
+        "placement": {
+          "locationId": "remote-memory",
+          "since": 36000
+        },
+        "sourceRemains": true,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-49",
+        "moveCommandId": "http:player-elowen:astra-50"
+      },
+      {
+        "id": "G02-H01",
+        "mode": "postgres",
+        "stage": "before-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          }
+        ]
+      },
+      {
+        "id": "G02-H02",
+        "mode": "postgres",
+        "kind": "knowledge",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "rejected",
+        "undoCode": "UNDO_UNSAFE",
+        "blockers": [
+          {
+            "commandId": "http:player-elowen:astra-43",
+            "commandType": "EnterLocation",
+            "sequence": 151
+          }
+        ],
+        "placement": {
+          "locationId": "remote-knowledge",
+          "since": 36000
+        },
+        "sourceRemains": true,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-42",
+        "moveCommandId": "http:player-elowen:astra-43"
+      },
+      {
+        "id": "G02-H02",
+        "mode": "postgres",
+        "kind": "memory",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "rejected",
+        "undoCode": "UNDO_UNSAFE",
+        "blockers": [
+          {
+            "commandId": "http:player-elowen:astra-50",
+            "commandType": "EnterLocation",
+            "sequence": 157
+          }
+        ],
+        "placement": {
+          "locationId": "remote-memory",
+          "since": 36000
+        },
+        "sourceRemains": true,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-49",
+        "moveCommandId": "http:player-elowen:astra-50"
+      },
+      {
+        "id": "G02-H01",
+        "mode": "postgres",
+        "stage": "after-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 0,
+            "missingTotal": 0,
+            "memoryIds": []
+          }
+        ]
+      }
+    ],
+    "temporaryDatabaseDropped": true
+  },
+  "adjacent": {
+    "requests": 132,
+    "controls": [
+      {
+        "mode": "memory",
+        "case": "earliest-knowledge",
+        "blocked": "UNDO_UNSAFE",
+        "redundantUndo": "accepted",
+        "reverseUndo": "accepted"
+      },
+      {
+        "mode": "memory",
+        "case": "earliest-memory",
+        "blocked": "UNDO_UNSAFE",
+        "redundantUndo": "accepted",
+        "reverseUndo": "accepted"
+      },
+      {
+        "mode": "memory",
+        "case": "known-chain",
+        "unknownIntermediate": "equal-to-absent",
+        "authorizedNesting": "available",
+        "dmNesting": "available"
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "earliest-knowledge",
+        "blocked": "UNDO_UNSAFE",
+        "redundantUndo": "accepted",
+        "reverseUndo": "accepted"
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "earliest-memory",
+        "blocked": "UNDO_UNSAFE",
+        "redundantUndo": "accepted",
+        "reverseUndo": "accepted"
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "known-chain",
+        "unknownIntermediate": "equal-to-absent",
+        "authorizedNesting": "available",
+        "dmNesting": "available"
+      }
+    ],
+    "observations": [
+      {
+        "case": "H03-move-fixed",
+        "mode": "memory",
+        "assignment": "http:dm-ravenford:adj-3",
+        "actionId": "http:outsider:adj-4",
+        "blocked": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-5",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:adj-3\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:outsider:adj-4",
+                "commandType": "EnterLocation",
+                "sequence": 95
+              }
+            ]
+          }
+        },
+        "premises": [
+          {
+            "kind": "knowledge",
+            "knowledgeId": "pub-market-square",
+            "viaParty": false
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "outsider"
+          }
+        ],
+        "actionUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-6",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 97,
+              "eventId": "00000000-0000-4000-8000-000000000061",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "assignmentUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-7",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 98,
+              "eventId": "00000000-0000-4000-8000-000000000062",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "reverseStateVerified": true
+      },
+      {
+        "case": "H03-hypothesis-fixed",
+        "mode": "memory",
+        "assignment": "http:dm-ravenford:adj-10",
+        "actionId": "http:outsider:adj-11",
+        "blocked": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-12",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:adj-10\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:outsider:adj-11",
+                "commandType": "FormHypothesis",
+                "sequence": 100
+              }
+            ]
+          }
+        },
+        "premises": [
+          {
+            "kind": "controller",
+            "playerActorId": "outsider"
+          }
+        ],
+        "actionUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-13",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 102,
+              "eventId": "00000000-0000-4000-8000-000000000067",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "assignmentUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-14",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 103,
+              "eventId": "00000000-0000-4000-8000-000000000068",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "reverseStateVerified": true
+      },
+      {
+        "case": "M01-recovery-fixed",
+        "mode": "memory",
+        "disclosure": "http:dm-ravenford:empty-reveal",
+        "entered": "http:player-elowen:empty-move",
+        "inspected": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:player-elowen:empty-inspect",
+          "campaignId": "ravenford",
+          "events": [],
+          "outcome": {
+            "kind": "ExamineEntity",
+            "roll": null,
+            "discovered": []
+          }
+        },
+        "disclosureUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-39",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:empty-reveal\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:player-elowen:empty-move",
+                "commandType": "EnterLocation",
+                "sequence": 128
+              }
+            ]
+          }
+        },
+        "moveUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-40",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:player-elowen:empty-move\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:player-elowen:empty-inspect",
+                "commandType": "ExamineEntity",
+                "sequence": 130
+              }
+            ]
+          }
+        },
+        "inspectUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:undo-empty-inspect",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 132,
+              "eventId": "00000000-0000-4000-8000-00000000008e",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "duplicate": {
+          "http": 200,
+          "status": "duplicate",
+          "commandId": "http:dm-ravenford:undo-empty-inspect",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 132,
+              "eventId": "00000000-0000-4000-8000-00000000008e",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "emptyCompensation": {
+          "targetCommandId": "http:player-elowen:empty-inspect",
+          "targetCommandType": "ExamineEntity",
+          "restores": []
+        },
+        "chainFullyUndone": true,
+        "effectiveCommands": [
+          {
+            "commandId": "http:dm-ravenford:empty-reveal",
+            "commandType": "AddKnowledge",
+            "firstSequence": 127,
+            "lastSequence": 127,
+            "undoneBy": "http:dm-ravenford:adj-44"
+          },
+          {
+            "commandId": "http:player-elowen:empty-move",
+            "commandType": "EnterLocation",
+            "firstSequence": 128,
+            "lastSequence": 129,
+            "undoneBy": "http:dm-ravenford:adj-43"
+          },
+          {
+            "commandId": "http:player-elowen:empty-inspect",
+            "commandType": "ExamineEntity",
+            "firstSequence": 130,
+            "lastSequence": 131,
+            "undoneBy": "http:dm-ravenford:undo-empty-inspect"
+          }
+        ],
+        "readOnlyInspection": [
+          {
+            "type": "PremisesRecorded",
+            "payload": {
+              "characterId": "elowen-starwhisper",
+              "premises": [
+                {
+                  "kind": "perceived",
+                  "entityId": "empty-remote"
+                },
+                {
+                  "kind": "controller",
+                  "playerActorId": "player-elowen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "EvidenceExamined",
+            "payload": {
+              "characterId": "elowen-starwhisper",
+              "entityId": "empty-remote",
+              "method": "inspect",
+              "scope": "PARTY",
+              "roll": null,
+              "revealed": []
+            }
+          }
+        ],
+        "unchangedOnRejectedUndo": true,
+        "replayEqual": true
+      },
+      {
+        "case": "H03-move-fixed",
+        "mode": "postgres-reloaded",
+        "assignment": "http:dm-ravenford:adj-3",
+        "actionId": "http:outsider:adj-4",
+        "blocked": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-5",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:adj-3\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:outsider:adj-4",
+                "commandType": "EnterLocation",
+                "sequence": 95
+              }
+            ]
+          }
+        },
+        "premises": [
+          {
+            "kind": "knowledge",
+            "knowledgeId": "pub-market-square",
+            "viaParty": false
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "outsider"
+          }
+        ],
+        "actionUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-6",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 97,
+              "eventId": "97a76fd0-e6ee-4926-b7cc-9faaa9a9f83d",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "assignmentUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-7",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 98,
+              "eventId": "db101cbe-ccb7-4407-a6c4-902a9e44bb63",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "reverseStateVerified": true
+      },
+      {
+        "case": "H03-hypothesis-fixed",
+        "mode": "postgres-reloaded",
+        "assignment": "http:dm-ravenford:adj-10",
+        "actionId": "http:outsider:adj-11",
+        "blocked": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-12",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:adj-10\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:outsider:adj-11",
+                "commandType": "FormHypothesis",
+                "sequence": 100
+              }
+            ]
+          }
+        },
+        "premises": [
+          {
+            "kind": "controller",
+            "playerActorId": "outsider"
+          }
+        ],
+        "actionUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-13",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 102,
+              "eventId": "4fbb7709-0769-4d7a-89d4-b0b52bd6b9e2",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "assignmentUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:adj-14",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 103,
+              "eventId": "951fc18e-c692-4ca7-b118-d1e270363c75",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "reverseStateVerified": true
+      },
+      {
+        "case": "M01-recovery-fixed",
+        "mode": "postgres-reloaded",
+        "disclosure": "http:dm-ravenford:empty-reveal",
+        "entered": "http:player-elowen:empty-move",
+        "inspected": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:player-elowen:empty-inspect",
+          "campaignId": "ravenford",
+          "events": [],
+          "outcome": {
+            "kind": "ExamineEntity",
+            "roll": null,
+            "discovered": []
+          }
+        },
+        "disclosureUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-39",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:empty-reveal\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:player-elowen:empty-move",
+                "commandType": "EnterLocation",
+                "sequence": 128
+              }
+            ]
+          }
+        },
+        "moveUndo": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:adj-40",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:player-elowen:empty-move\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "http:player-elowen:empty-inspect",
+                "commandType": "ExamineEntity",
+                "sequence": 130
+              }
+            ]
+          }
+        },
+        "inspectUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:undo-empty-inspect",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 132,
+              "eventId": "6a07f80c-a5bb-4a1e-b7d7-793859f5e50f",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "duplicate": {
+          "http": 200,
+          "status": "duplicate",
+          "commandId": "http:dm-ravenford:undo-empty-inspect",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 132,
+              "eventId": "6a07f80c-a5bb-4a1e-b7d7-793859f5e50f",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "emptyCompensation": {
+          "targetCommandId": "http:player-elowen:empty-inspect",
+          "targetCommandType": "ExamineEntity",
+          "restores": []
+        },
+        "chainFullyUndone": true,
+        "effectiveCommands": [
+          {
+            "commandId": "http:dm-ravenford:empty-reveal",
+            "commandType": "AddKnowledge",
+            "firstSequence": 127,
+            "lastSequence": 127,
+            "undoneBy": "http:dm-ravenford:adj-44"
+          },
+          {
+            "commandId": "http:player-elowen:empty-move",
+            "commandType": "EnterLocation",
+            "firstSequence": 128,
+            "lastSequence": 129,
+            "undoneBy": "http:dm-ravenford:adj-43"
+          },
+          {
+            "commandId": "http:player-elowen:empty-inspect",
+            "commandType": "ExamineEntity",
+            "firstSequence": 130,
+            "lastSequence": 131,
+            "undoneBy": "http:dm-ravenford:undo-empty-inspect"
+          }
+        ],
+        "readOnlyInspection": [
+          {
+            "type": "PremisesRecorded",
+            "payload": {
+              "characterId": "elowen-starwhisper",
+              "premises": [
+                {
+                  "kind": "perceived",
+                  "entityId": "empty-remote"
+                },
+                {
+                  "kind": "controller",
+                  "playerActorId": "player-elowen"
+                }
+              ]
+            }
+          },
+          {
+            "type": "EvidenceExamined",
+            "payload": {
+              "characterId": "elowen-starwhisper",
+              "entityId": "empty-remote",
+              "method": "inspect",
+              "scope": "PARTY",
+              "roll": null,
+              "revealed": []
+            }
+          }
+        ],
+        "unchangedOnRejectedUndo": true,
+        "replayEqual": true
+      }
+    ],
+    "temporaryDatabaseDropped": true
+  },
+  "extended": {
+    "requests": 204,
+    "internalCommands": 4,
+    "results": [
+      {
+        "mode": "memory",
+        "case": "all-commands-public-move",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-3",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "memory",
+        "case": "all-commands-perceived-move",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-9",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "memory",
+        "case": "all-commands-examine",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-15",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "memory",
+        "case": "all-commands-ask",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-21",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "memory",
+        "case": "all-commands-hypothesis",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-27",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "memory",
+        "case": "authority-dm-move",
+        "assignmentUndo": "accepted",
+        "actionStayedEffective": true,
+        "noControllerPremise": true
+      },
+      {
+        "mode": "memory",
+        "case": "authority-dm-hypothesis",
+        "assignmentUndo": "accepted",
+        "actionStayedEffective": true,
+        "noControllerPremise": true
+      },
+      {
+        "mode": "memory",
+        "case": "authority-system-move",
+        "assignmentUndo": "accepted",
+        "actionStayedEffective": true,
+        "noControllerPremise": true
+      },
+      {
+        "mode": "memory",
+        "case": "authority-system-hypothesis",
+        "assignmentUndo": "accepted",
+        "actionStayedEffective": true,
+        "noControllerPremise": true
+      },
+      {
+        "mode": "memory",
+        "case": "multiple-read-only-commands",
+        "bothInitiallyBlockClock": true,
+        "firstUndoDoesNotEraseSecond": true,
+        "clockRecovered": 36000
+      },
+      {
+        "mode": "memory",
+        "case": "contradiction-identity",
+        "originalId": "ctr-3d70362c8a44b47b",
+        "newId": "ctr-9aa212df8ee4b3b0",
+        "retry": "duplicate",
+        "oldIdReserved": true,
+        "neutralContentUnchanged": true,
+        "typesUnchanged": true
+      },
+      {
+        "mode": "memory",
+        "case": "concurrent-assignment-undo",
+        "rounds": [
+          {
+            "round": 0,
+            "move": "accepted",
+            "undo": "rejected",
+            "undoCode": "UNDO_UNSAFE"
+          },
+          {
+            "round": 1,
+            "move": "NOT_FOUND",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 2,
+            "move": "accepted",
+            "undo": "rejected",
+            "undoCode": "UNDO_UNSAFE"
+          },
+          {
+            "round": 3,
+            "move": "NOT_FOUND",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 4,
+            "move": "accepted",
+            "undo": "rejected",
+            "undoCode": "UNDO_UNSAFE"
+          },
+          {
+            "round": 5,
+            "move": "NOT_FOUND",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 6,
+            "move": "accepted",
+            "undo": "rejected",
+            "undoCode": "UNDO_UNSAFE"
+          },
+          {
+            "round": 7,
+            "move": "NOT_FOUND",
+            "undo": "accepted",
+            "undoCode": null
+          }
+        ],
+        "invalidDoubleAcceptance": 0
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "all-commands-public-move",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-3",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "all-commands-perceived-move",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-9",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "all-commands-examine",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-15",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "all-commands-ask",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-21",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "all-commands-hypothesis",
+        "assignmentUndo": "UNDO_UNSAFE",
+        "exactBlocker": "http:outsider:ext-27",
+        "reverseUndo": "accepted",
+        "playerMetadataAbsent": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "authority-dm-move",
+        "assignmentUndo": "accepted",
+        "actionStayedEffective": true,
+        "noControllerPremise": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "authority-dm-hypothesis",
+        "assignmentUndo": "accepted",
+        "actionStayedEffective": true,
+        "noControllerPremise": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "authority-system-move",
+        "assignmentUndo": "accepted",
+        "actionStayedEffective": true,
+        "noControllerPremise": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "authority-system-hypothesis",
+        "assignmentUndo": "accepted",
+        "actionStayedEffective": true,
+        "noControllerPremise": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "multiple-read-only-commands",
+        "bothInitiallyBlockClock": true,
+        "firstUndoDoesNotEraseSecond": true,
+        "clockRecovered": 36000
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "contradiction-identity",
+        "originalId": "ctr-3d70362c8a44b47b",
+        "newId": "ctr-9aa212df8ee4b3b0",
+        "retry": "duplicate",
+        "oldIdReserved": true,
+        "neutralContentUnchanged": true,
+        "typesUnchanged": true
+      },
+      {
+        "mode": "postgres-reloaded",
+        "case": "concurrent-assignment-undo",
+        "rounds": [
+          {
+            "round": 0,
+            "move": "NOT_FOUND",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 1,
+            "move": "FORBIDDEN",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 2,
+            "move": "FORBIDDEN",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 3,
+            "move": "FORBIDDEN",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 4,
+            "move": "FORBIDDEN",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 5,
+            "move": "FORBIDDEN",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 6,
+            "move": "FORBIDDEN",
+            "undo": "accepted",
+            "undoCode": null
+          },
+          {
+            "round": 7,
+            "move": "FORBIDDEN",
+            "undo": "accepted",
+            "undoCode": null
+          }
+        ],
+        "invalidDoubleAcceptance": 0
+      }
+    ],
+    "temporaryDatabaseDropped": true
+  },
+  "totalIndependentHttpRequests": 1236,
+  "trustedInternalSystemCommands": 4
+}
