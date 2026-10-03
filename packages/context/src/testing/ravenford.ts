@@ -15,6 +15,7 @@ import boundary from '../../../../fixtures/ravenford/knowledge-boundary.json' wi
 import kernelSeed from '../../../../fixtures/ravenford/kernel-seed.json' with { type: 'json' };
 import knowledgeSeed from '../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
 import memorySeed from '../../../../fixtures/ravenford/memory-seed.json' with { type: 'json' };
+import contradictionSeed from '../../../../fixtures/ravenford/contradiction-seed.json' with { type: 'json' };
 import investigationSeed from '../../../../fixtures/ravenford/investigation-seed.json' with { type: 'json' };
 import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import { skillCheckPort, type Dice } from '@ltw/rules';
@@ -64,6 +65,7 @@ export async function seedRavenford(): Promise<SeededWorld> {
     [memorySeed.commands, 'memory'],
     [rulesSeed.commands, 'rules'],
     [investigationSeed.commands, 'investigation'],
+    [contradictionSeed.commands, 'contradiction'],
   ] as const;
   let counter = 0;
   const run = async (commands: readonly unknown[], prefix: string) => {

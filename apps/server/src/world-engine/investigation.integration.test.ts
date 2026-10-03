@@ -70,4 +70,28 @@ describe('investigation on PostgreSQL', () => {
     const stored = (await restarted.commandLog('ravenford')).find((c) => c.commandId === 'p3');
     expect(stored?.command).toMatchObject({ resolution: { d20: 7 } });
   });
+
+  it('persists claims and contradictions and rebuilds them after a restart', async () => {
+    const engine = await seededEngine(new PostgresEventStore(pool));
+    await engine.execute(submission('t1', { type: 'EnterLocation', locationId: 'north-gate' }));
+    const asked = await engine.execute(
+      submission('t2', { type: 'AskAbout', npcId: 'captain-thorne', topicId: 'guild-caravan' }),
+    );
+    expect(asked.status).toBe('accepted');
+    const before = await engine.load('ravenford');
+    expect(before?.state.epistemics.contradictions.size).toBe(1);
+
+    const restarted = new WorldEngine({
+      store: new PostgresEventStore(pool),
+      ids: new SequentialIds(7),
+      clock: new SteppingClock(),
+    });
+    const after = await restarted.load('ravenford');
+    expect(after?.state).toEqual(before?.state);
+    expect(
+      await restarted.execute(
+        submission('t2', { type: 'AskAbout', npcId: 'captain-thorne', topicId: 'guild-caravan' }),
+      ),
+    ).toMatchObject({ status: 'duplicate' });
+  });
 });

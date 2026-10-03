@@ -1,6 +1,7 @@
 import type { CommandResult } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
+import { parseRecordedEvent } from '../kernel/events.ts';
 import { replay } from '../kernel/evolve.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { CAMPAIGN, DM, ELOWEN, codeOf, investigationWorld } from './testing/world.ts';
@@ -74,6 +75,29 @@ describe('undo', () => {
     expect((await world.state()).investigation.disclosures.get('thorne-missing-patrol')).toBe(
       undefined,
     );
+  });
+});
+
+describe('undo of an examination that changed nothing', () => {
+  // Regression (found by the Stage 70 property test): undoing an inspection that
+  // revealed nothing produced a CommandUndone with no restores, which violates the
+  // event schema, so the campaign could not be reloaded from storage.
+  it('is NO_EFFECT and leaves a history that still parses', async () => {
+    const world = await investigationWorld();
+    const inspected = await world.submit({
+      type: 'ExamineEntity',
+      characterId: ELOWEN,
+      entityId: 'mira-vale',
+      method: 'inspect',
+    });
+    const result = await world.submit(
+      { type: 'UndoCommand', targetCommandId: commandIdOf(inspected) },
+      DM,
+    );
+    expect(codeOf(result)).toBe('NO_EFFECT');
+    const snapshot = await world.engine.load(CAMPAIGN);
+    const serialized = JSON.parse(JSON.stringify(snapshot?.history)) as unknown[];
+    expect(replay(serialized.map(parseRecordedEvent))).toEqual(snapshot?.state);
   });
 });
 

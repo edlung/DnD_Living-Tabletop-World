@@ -58,6 +58,10 @@
 - Later surfaces (memory, entity context, contradictions, AI/NPC contexts, Chronicle) must obtain knowledge only through these perspectives. `docs/GATE_COVERAGE.md` schedules their reviews.
 - Historical party membership (who was in the party at time T) is not modeled yet.
 
+## Amendments
+
+- 2026-10-03 (Stage 70, ADR 0014): **valid transitions decided.** Types never change. A holder gains a FACT only through a new, explicitly DM-authored record, which may relate to what it settles. Contradictions are new CONTRADICTION records in the joint holder scope. DM views also show a record's structured `claim`; non-DM views never do.
+
 ## Invariants affected
 
 Implements 4, 5, 6 (data scoping only; runtime dialogue is Stage 130), and 7 (no type changes). Preserves 1–3 and 11. No invariant is weakened.

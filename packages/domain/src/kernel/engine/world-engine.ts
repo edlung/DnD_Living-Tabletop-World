@@ -15,7 +15,12 @@ import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
 import type { Rejection, Resolution, ResolvedCommand } from '../decision.ts';
-import { EVENT_SCHEMA_VERSION, type KernelEvent, type RecordedEvent } from '../events.ts';
+import {
+  EVENT_SCHEMA_VERSION,
+  kernelEventSchema,
+  type KernelEvent,
+  type RecordedEvent,
+} from '../events.ts';
 import { evolve } from '../evolve.ts';
 import { EMPTY_WORLD_STATE, type WorldState } from '../state.ts';
 import {
@@ -266,6 +271,14 @@ export class WorldEngine {
     let next = state;
     const events: RecordedEvent[] = [];
     for (const draft of drafts) {
+      // Never persist what could not be read back: a decision bug must fail
+      // loudly here instead of leaving an unloadable stream behind.
+      const checked = kernelEventSchema.safeParse(draft);
+      if (!checked.success) {
+        throw new Error(
+          `decision produced an invalid ${draft.type} event: ${checked.error.message}`,
+        );
+      }
       const provisional: RecordedEvent = {
         ...draft,
         ...meta,

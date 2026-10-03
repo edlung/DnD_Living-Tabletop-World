@@ -10,9 +10,15 @@ import type { ContextInputs } from './inputs.ts';
  */
 export const RELEVANCE_RANK: Readonly<Record<Relevance, number>> = { high: 0, medium: 1, low: 2 };
 
-const OPEN_QUESTION_TYPES: ReadonlySet<KnowledgeType> = new Set(['UNKNOWN', 'HYPOTHESIS', 'RUMOR']);
+/** Open questions (ADR 0012), plus contradictions (ADR 0014 §5). */
+const OPEN_QUESTION_TYPES: ReadonlySet<KnowledgeType> = new Set([
+  'UNKNOWN',
+  'HYPOTHESIS',
+  'RUMOR',
+  'CONTRADICTION',
+]);
 
-/** Entities the perspective has an open question, hypothesis, or rumor about. */
+/** Entities the perspective has an open question, hypothesis, rumor, or contradiction about. */
 export function openQuestionSubjects(inputs: ContextInputs): Set<string> {
   const subjects = new Set<string>();
   for (const record of inputs.records) {

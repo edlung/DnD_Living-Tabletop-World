@@ -1,4 +1,5 @@
 import type { EntityKind } from '../kernel/commands.ts';
+import type { KnowledgeClaim } from './claims.ts';
 import type { KnowledgeRelationType, KnowledgeScope, KnowledgeType } from './commands.ts';
 
 /**
@@ -36,6 +37,8 @@ export interface KnowledgeView {
   }[];
   readonly knownSince: number | null;
   readonly origin?: KnowledgeOrigin;
+  /** Structured claim (ADR 0014); DM views only. */
+  readonly claim?: KnowledgeClaim;
 }
 
 export interface KnowledgeEdge {

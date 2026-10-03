@@ -154,6 +154,30 @@ export function checkWorldIntegrity(state: WorldState): string[] {
     }
   }
 
+  const { claims, clueClaims, contradictions } = state.epistemics;
+  for (const [knowledgeId, claim] of claims) {
+    const record = state.knowledge.get(knowledgeId);
+    if (!record) report(`claim on missing record ${knowledgeId}`);
+    else if (!record.subjects.includes(claim.subjectId)) {
+      report(`claim on ${knowledgeId} is about a non-subject`);
+    }
+  }
+  for (const clueId of clueClaims.keys()) {
+    if (!clues.has(clueId)) report(`claim on missing clue ${clueId}`);
+  }
+  for (const [key, contradictionId] of contradictions) {
+    const record = state.knowledge.get(contradictionId);
+    const sides = record?.relations.filter((relation) => relation.type === 'CONTRADICTS') ?? [];
+    if (record?.knowledgeType !== 'CONTRADICTION' || sides.length !== 2) {
+      report(`contradiction ${key} has no matching record`);
+      continue;
+    }
+    const [a, b] = sides.map((side) => claims.get(side.knowledgeId));
+    if (!a || !b || a.subjectId !== b.subjectId || a.aspect !== b.aspect || a.value === b.value) {
+      report(`contradiction ${key} does not join two conflicting claims`);
+    }
+  }
+
   for (const trace of state.commands.values()) {
     if (
       trace.undoneBy !== null &&

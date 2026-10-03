@@ -74,8 +74,16 @@ export function toView(
     knownSince: record.knownSince,
   };
   if (perspective.scopes !== 'ALL') return view;
+  // DM only: provenance and the structured claim (ADR 0014: claims are DM data).
   const { sequence, commandId, actorId, recordedAt, worldTime } = record.origin;
-  return { ...view, origin: { sequence, commandId, actorId, recordedAt, worldTime } };
+  const claim = state.epistemics.claims.get(record.knowledgeId);
+  return {
+    ...view,
+    origin: { sequence, commandId, actorId, recordedAt, worldTime },
+    ...(claim
+      ? { claim: { subjectId: claim.subjectId, aspect: claim.aspect, value: claim.value } }
+      : {}),
+  };
 }
 
 function copyScope(scope: KnowledgeScope): KnowledgeScope {

@@ -64,7 +64,10 @@ async function compareAll(world: SeededWorld, state: WorldState) {
           { type: 'UndoCommand', targetCommandId: outcome.commandId },
           DM,
         );
-        expect(undo.status).toBe('accepted');
+        // An inspection that found nothing changed nothing, so there is nothing to undo.
+        const undone =
+          undo.status === 'accepted' || (undo.status === 'rejected' && undo.code === 'NO_EFFECT');
+        expect(undone, JSON.stringify(undo)).toBe(true);
       }
       compared += 1;
     }

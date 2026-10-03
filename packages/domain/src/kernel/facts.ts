@@ -1,5 +1,8 @@
+import type { ClaimTarget } from '@ltw/contracts';
+
 import { attemptKey, scopedKey } from '../investigation/records.ts';
-import { holderOf } from '../knowledge/records.ts';
+import { pairKey } from '../contradiction/records.ts';
+import { holderOf, scopeKey } from '../knowledge/records.ts';
 import type { KernelEvent, Restore } from './events.ts';
 
 /**
@@ -36,6 +39,11 @@ export const facts = {
   attempt: (key: string): FactKey => `attempt:${key}`,
   revealed: (key: string): FactKey => `revealed:${key}`,
   shared: (key: string): FactKey => `shared:${key}`,
+  claim: (target: ClaimTarget): FactKey =>
+    target.kind === 'knowledge'
+      ? `claim:knowledge:${target.knowledgeId}`
+      : `claim:clue:${target.clueId}`,
+  contradiction: (key: string): FactKey => `contradiction:${key}`,
 };
 
 export interface Footprint {
@@ -209,6 +217,37 @@ export function footprintOf(event: KernelEvent): Footprint {
         writes: [facts.shared(scopedKey(scope, sourceKnowledgeId))],
       };
     }
+    case 'ClaimSet': {
+      // A claim depends on what it is attached to, its subject, and the claim it was copied from.
+      const { target, claim, source } = event.payload;
+      return {
+        reads: [
+          clock,
+          target.kind === 'knowledge'
+            ? facts.knowledge(target.knowledgeId)
+            : facts.clue(target.clueId),
+          facts.entity(claim.subjectId),
+          ...(source === null ? [] : [facts.claim(source)]),
+        ],
+        writes: [facts.claim(target)],
+      };
+    }
+    case 'ContradictionDetected': {
+      // Both records, both claims, and (for a character reached through the party) membership.
+      const { scope, between } = event.payload;
+      const [a, b] = between;
+      return {
+        reads: [
+          clock,
+          facts.knowledge(a),
+          facts.knowledge(b),
+          facts.claim({ kind: 'knowledge', knowledgeId: a }),
+          facts.claim({ kind: 'knowledge', knowledgeId: b }),
+          ...(scope.kind === 'CHARACTER' ? [facts.rosterCharacter(scope.characterId)] : []),
+        ],
+        writes: [facts.contradiction(pairKey(scopeKey(scope), a, b))],
+      };
+    }
     case 'CharacterAssigned':
       return {
         reads: [clock, facts.entity(event.payload.characterId)],
@@ -266,6 +305,10 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.revealed(restore.key)];
     case 'shared':
       return [facts.shared(restore.key)];
+    case 'claim':
+      return [facts.claim(restore.target)];
+    case 'contradiction':
+      return [facts.contradiction(restore.key)];
   }
 }
 

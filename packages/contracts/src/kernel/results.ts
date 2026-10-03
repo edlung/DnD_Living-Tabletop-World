@@ -69,6 +69,8 @@ export const REJECTION_CODES = [
   'INVALID_CLUE',
   /** Disclosure targets a non-NPC record or a never-shareable type. */
   'INVALID_DISCLOSURE',
+  /** Claim violates ADR 0014 (target scope/type, subject, already set). */
+  'INVALID_CLAIM',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

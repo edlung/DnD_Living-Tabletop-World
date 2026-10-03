@@ -109,6 +109,7 @@ A later AI ranker (Stage 140) may refine relevance using the same scoped inputs 
 
 ## Amendments
 
+- 2026-10-03 (Stage 70, ADR 0014 §5): CONTRADICTION counts as an open question for relevance. Only the perspective's visible records are used.
 - 2026-10-03 (Stage 60, ADR 0013 §5): locations gain `enter_location` (`ALREADY_HERE`); evidence checks report `ALREADY_ATTEMPTED` and need a sheet (`NO_CHARACTER_SHEET`). Perception moved into `@ltw/domain` so the World Engine validates player commands with the same rule.
 
 ## Invariants affected

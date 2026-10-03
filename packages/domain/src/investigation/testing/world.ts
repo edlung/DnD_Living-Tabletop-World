@@ -1,5 +1,6 @@
 import type { CommandResult, Skill } from '@ltw/contracts';
 
+import contradictionSeed from '../../../../../fixtures/ravenford/contradiction-seed.json' with { type: 'json' };
 import investigationSeed from '../../../../../fixtures/ravenford/investigation-seed.json' with { type: 'json' };
 import kernelSeed from '../../../../../fixtures/ravenford/kernel-seed.json' with { type: 'json' };
 import knowledgeSeed from '../../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
@@ -14,7 +15,7 @@ import type { WorldState } from '../../kernel/state.ts';
 import type { SkillCheckPort } from '../skill-checks.ts';
 
 /**
- * Test support: the full Ravenford seed with investigation data, and a fake
+ * Test support: the full Ravenford seed (through Stage 70 claims), and a fake
  * skill-check port (domain tests may not import @ltw/rules). The fake uses
  * Elowen's modifiers from ADR 0011: Investigation +8, Perception +12.
  */
@@ -55,6 +56,7 @@ export async function investigationWorld(): Promise<InvestigationWorld> {
     [memorySeed.commands, 'memory'],
     [rulesSeed.commands, 'rules'],
     [investigationSeed.commands, 'investigation'],
+    [contradictionSeed.commands, 'contradiction'],
   ] as const;
   for (const [commands, prefix] of scripts) {
     for (const submission of submissionsFromScript({

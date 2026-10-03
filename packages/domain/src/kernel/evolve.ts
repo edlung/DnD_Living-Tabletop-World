@@ -1,5 +1,10 @@
 import { applyCharacterSheetSet } from '../character/character.ts';
 import {
+  applyClaimSet,
+  applyContradictionDetected,
+  applyEpistemicRestore,
+} from '../contradiction/evolve.ts';
+import {
   applyClueAdded,
   applyDisclosureSet,
   applyEvidenceExamined,
@@ -139,6 +144,10 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyEvidenceExamined(state, event);
     case 'InformationShared':
       return applyInformationShared(state, event);
+    case 'ClaimSet':
+      return applyClaimSet(state, event);
+    case 'ContradictionDetected':
+      return applyContradictionDetected(state, event);
   }
 }
 
@@ -238,6 +247,9 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'revealed':
     case 'shared':
       return applyInvestigationRestore(state, restore);
+    case 'claim':
+    case 'contradiction':
+      return applyEpistemicRestore(state, restore);
   }
 }
 

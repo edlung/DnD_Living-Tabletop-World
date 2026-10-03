@@ -6,6 +6,7 @@ import type {
   LocationType,
 } from '@ltw/contracts';
 
+import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.ts';
 import { EMPTY_INVESTIGATION, type InvestigationState } from '../investigation/records.ts';
 import type { KnowledgeRecord } from '../knowledge/records.ts';
 import type { MemoryRecord, SessionRecord } from '../memory/records.ts';
@@ -87,6 +88,8 @@ export interface WorldState {
   readonly characterSheets: ReadonlyMap<string, CharacterSheet>;
   /** Clues, disclosure, attempts, revealed clues, shared records (ADR 0013). */
   readonly investigation: InvestigationState;
+  /** Claims and recorded contradictions (ADR 0014). */
+  readonly epistemics: EpistemicState;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -105,6 +108,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   activeSessionId: null,
   characterSheets: new Map(),
   investigation: EMPTY_INVESTIGATION,
+  epistemics: EMPTY_EPISTEMICS,
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

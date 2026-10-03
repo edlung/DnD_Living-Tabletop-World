@@ -14,6 +14,7 @@ import {
   formHypothesisCommandSchema,
   setDisclosureCommandSchema,
 } from '../investigation/commands.ts';
+import { setClaimCommandSchema } from '../knowledge/claims.ts';
 import { setCharacterSheetCommandSchema } from '../rules/character-sheet.ts';
 import { commandIdSchema, entityIdSchema, sceneIdSchema } from './identifiers.ts';
 import { worldDurationSchema, worldTimeSchema } from './world-time.ts';
@@ -150,6 +151,7 @@ export const kernelCommandSchema = z
     formHypothesisCommandSchema,
     addClueCommandSchema,
     setDisclosureCommandSchema,
+    setClaimCommandSchema,
   ])
   .superRefine((command, context) => {
     if (
@@ -193,6 +195,7 @@ export const KERNEL_COMMAND_TYPES = [
   'FormHypothesis',
   'AddClue',
   'SetDisclosure',
+  'SetClaim',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

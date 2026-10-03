@@ -134,3 +134,10 @@ export {
   type PlayerCommandType,
   type PlayerOutcome,
 } from './investigation/commands.ts';
+export {
+  CLAIM_SLUG_PATTERN,
+  claimTargetSchema,
+  knowledgeClaimSchema,
+  type ClaimTarget,
+  type KnowledgeClaim,
+} from './knowledge/claims.ts';

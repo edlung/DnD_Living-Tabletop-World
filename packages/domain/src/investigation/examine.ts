@@ -96,19 +96,37 @@ export function decideExamineEntity(
         revealed: revealed.map(({ clue, knowledgeId }) => ({ clueId: clue.clueId, knowledgeId })),
       },
     },
-    ...revealed.map(({ clue, knowledgeId }): KernelEvent => ({
-      type: 'KnowledgeAssigned',
-      payload: {
-        knowledgeId,
-        scope,
-        knowledgeType: 'EVIDENCE',
-        statement: clue.statement,
-        subjects: [...new Set([entityId, ...clue.subjects])],
-        attributedTo: null,
-        relations: [],
-        knownSince: state.clock,
-      },
-    })),
+    ...revealed.flatMap(({ clue, knowledgeId }): KernelEvent[] => {
+      const claim = state.epistemics.clueClaims.get(clue.clueId);
+      return [
+        {
+          type: 'KnowledgeAssigned',
+          payload: {
+            knowledgeId,
+            scope,
+            knowledgeType: 'EVIDENCE',
+            statement: clue.statement,
+            subjects: [...new Set([entityId, ...clue.subjects])],
+            attributedTo: null,
+            relations: [],
+            knownSince: state.clock,
+          },
+        },
+        // Revealed evidence asserts what the DM's clue claim says (ADR 0014 §1).
+        ...(claim
+          ? [
+              {
+                type: 'ClaimSet',
+                payload: {
+                  target: { kind: 'knowledge', knowledgeId },
+                  claim: { ...claim },
+                  source: { kind: 'clue', clueId: clue.clueId },
+                },
+              } satisfies KernelEvent,
+            ]
+          : []),
+      ];
+    }),
   ];
   const first = revealed[0];
   if (first) {

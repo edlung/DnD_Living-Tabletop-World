@@ -38,7 +38,12 @@ export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependenc
       return sendError(reply, request, 'INVALID_REQUEST');
 
     const state = (await deps.engine.load(path.campaignId))?.state ?? null;
-    if (campaignRole(state, actor) === null) return sendError(reply, request, 'NOT_FOUND');
+    const role = campaignRole(state, actor);
+    if (role === null) return sendError(reply, request, 'NOT_FOUND');
+    // Stream versions are campaign metadata players never see (ADR 0008, ADR 0014 §4).
+    if (role === 'PLAYER' && input.expectedVersion !== undefined) {
+      return sendError(reply, request, 'INVALID_REQUEST');
+    }
 
     const result = await deps.engine.execute({
       commandId: httpCommandId(actor.actorId, input.commandId),
@@ -55,8 +60,23 @@ export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependenc
     if (result.status === 'rejected' && result.code === 'FORBIDDEN') {
       return sendError(reply, request, 'FORBIDDEN');
     }
-    return reply.code(statusOf(result)).send(result);
+    return reply.code(statusOf(result)).send(role === 'PLAYER' ? forPlayer(result) : result);
   });
+}
+
+/**
+ * What a player sees of a result (ADR 0014 §4): never the event list (types,
+ * sequences, counts) and never rejection details, which could reveal DM
+ * structure or stream metadata. Schema issues about the player's own input
+ * are kept.
+ */
+export function forPlayer(result: CommandResult): CommandResult {
+  if (result.status === 'rejected') {
+    const { details, ...rest } = result;
+    return result.code === 'INVALID_COMMAND' && details !== undefined ? result : rest;
+  }
+  const { status, commandId, campaignId, outcome } = result;
+  return { status, commandId, campaignId, events: [], ...(outcome ? { outcome } : {}) };
 }
 
 function statusOf(result: CommandResult): number {

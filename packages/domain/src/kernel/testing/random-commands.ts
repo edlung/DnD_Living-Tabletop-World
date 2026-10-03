@@ -58,27 +58,27 @@ export function randomCommand(
       ...(rng() < 0.4 ? { placement: { locationId: pick(locations), since: someTime() } } : {}),
     };
   }
-  if (roll < 0.45) {
+  if (roll < 0.42) {
     return { type: 'PlaceEntity', entityId: pick(entities), locationId: pick(locations) };
   }
-  if (roll < 0.53) {
+  if (roll < 0.49) {
     return { type: 'UpdateEntityProfile', entityId: pick(entities), name: `Name ${step % 7}` };
   }
-  if (roll < 0.62) {
+  if (roll < 0.57) {
     return { type: 'ChangeEntityStatus', entityId: pick(entities), status: pick(ENTITY_STATUSES) };
   }
-  if (roll < 0.69) {
+  if (roll < 0.63) {
     return { type: 'StartScene', sceneId: `s${step}`, title: 'Scene', locationId: pick(locations) };
   }
-  if (roll < 0.71) return { type: 'EndScene', sceneId: pick([...state.scenes.keys(), 'none']) };
-  if (roll < 0.72) return { type: 'StartSession', sessionId: `ss${step}`, title: 'Session' };
-  if (roll < 0.73)
+  if (roll < 0.65) return { type: 'EndScene', sceneId: pick([...state.scenes.keys(), 'none']) };
+  if (roll < 0.66) return { type: 'StartSession', sessionId: `ss${step}`, title: 'Session' };
+  if (roll < 0.67)
     return { type: 'EndSession', sessionId: pick([...state.sessions.keys(), 'none']) };
-  if (roll < 0.76) return { type: 'AdvanceWorldTime', by: 1 + Math.floor(rng() * 7_200) };
-  if (roll < 0.82) return randomKnowledge(rng, pick, state, entities, step);
-  if (roll < 0.865) return randomMemory(rng, pick, state, entities, step);
-  if (roll < 0.91) return randomInvestigation(rng, pick, state, entities, step);
-  if (roll < 0.92) {
+  if (roll < 0.7) return { type: 'AdvanceWorldTime', by: 1 + Math.floor(rng() * 7_200) };
+  if (roll < 0.77) return randomKnowledge(rng, pick, state, entities, step);
+  if (roll < 0.82) return randomMemory(rng, pick, state, entities, step);
+  if (roll < 0.915) return randomInvestigation(rng, pick, state, entities, step);
+  if (roll < 0.925) {
     return {
       type: 'AssignCharacter',
       characterId: pick(entities),
@@ -111,8 +111,37 @@ function randomInvestigation(
       : 'inspect';
   const npcRecords = [...state.knowledge.values()].filter((k) => k.scope.kind === 'NPC');
   switch (
-    pick(['clue', 'clue', 'disclose', 'examine', 'examine', 'ask', 'enter', 'hypothesis'] as const)
+    pick([
+      'clue',
+      'clue',
+      'disclose',
+      'examine',
+      'examine',
+      'ask',
+      'enter',
+      'hypothesis',
+      'claim',
+      'claim',
+    ] as const)
   ) {
+    case 'claim': {
+      // ADR 0014: small slug domains so that claims often conflict.
+      const records = [...state.knowledge.values()].filter((k) => k.subjects.length > 0);
+      const record = records.length > 0 && rng() < 0.9 ? pick(records) : undefined;
+      const clues = [...state.investigation.clues.values()];
+      const onClue = clues.length > 0 && rng() < 0.2 ? pick(clues) : undefined;
+      return {
+        type: 'SetClaim',
+        target: onClue
+          ? { kind: 'clue', clueId: onClue.clueId }
+          : { kind: 'knowledge', knowledgeId: record?.knowledgeId ?? 'ghost-k' },
+        claim: {
+          subjectId: onClue ? onClue.entityId : record ? pick(record.subjects) : pick(entities),
+          aspect: pick(['when', 'who']),
+          value: pick(['a', 'b', 'c']),
+        },
+      };
+    }
     case 'clue':
       return {
         type: 'AddClue',

@@ -1,4 +1,6 @@
 import { decideSetCharacterSheet } from '../../character/character.ts';
+import { decideSetClaim } from '../../contradiction/decide.ts';
+import { withContradictions } from '../../contradiction/detect.ts';
 import { decideAddClue, decideSetDisclosure } from '../../investigation/authoring.ts';
 import { decideAskAbout } from '../../investigation/conversation.ts';
 import { decideExamineEntity } from '../../investigation/examine.ts';
@@ -8,7 +10,7 @@ import {
 } from '../../investigation/movement-and-hypotheses.ts';
 import { decideAddKnowledge, decideAssignCharacter } from '../../knowledge/decide.ts';
 import { decideEndSession, decideRecordMemory, decideStartSession } from '../../memory/decide.ts';
-import type { Decision, DecisionContext, ResolvedCommand } from '../decision.ts';
+import { accept, type Decision, type DecisionContext, type ResolvedCommand } from '../decision.ts';
 import {
   decideChangeEntityStatus,
   decideCreateEntity,
@@ -23,8 +25,16 @@ import {
   decideStartScene,
 } from './world.ts';
 
-/** Routes a resolved, authorized command to its pure decision function. */
+/**
+ * Routes a resolved, authorized command to its pure decision function, then
+ * records any contradictions the accepted events create (ADR 0014).
+ */
 export function decide(context: DecisionContext, command: ResolvedCommand): Decision {
+  const decision = route(context, command);
+  return decision.ok ? accept(...withContradictions(context.state, decision.events)) : decision;
+}
+
+function route(context: DecisionContext, command: ResolvedCommand): Decision {
   const { state } = context;
   switch (command.type) {
     case 'CreateCampaign':
@@ -69,5 +79,7 @@ export function decide(context: DecisionContext, command: ResolvedCommand): Deci
       return decideExamineEntity(context, command);
     case 'FormHypothesis':
       return decideFormHypothesis(state, command);
+    case 'SetClaim':
+      return decideSetClaim(state, command);
   }
 }

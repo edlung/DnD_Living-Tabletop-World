@@ -10,7 +10,9 @@ import {
 import type { RecordedEvent, Restore } from '../events.ts';
 import { replay } from '../evolve.ts';
 import { footprintOf, restoredFacts, type FactKey } from '../facts.ts';
+import { pairKey } from '../../contradiction/records.ts';
 import { attemptKey, scopedKey } from '../../investigation/records.ts';
+import { scopeKey } from '../../knowledge/records.ts';
 import type { WorldState } from '../state.ts';
 
 /**
@@ -59,12 +61,18 @@ export function decideUndo(
   }
 
   const before = replay(history, { untilSequence: target.firstSequence - 1 });
+  const restores = restoresFor(targetEvents, before);
+  // A command that changed no restorable fact (for example an inspection that
+  // found nothing) has nothing to undo; an empty compensation is not an event.
+  if (restores.length === 0) {
+    return reject('NO_EFFECT', `Command "${target.commandId}" changed nothing that can be undone`);
+  }
   return accept({
     type: 'CommandUndone',
     payload: {
       targetCommandId: target.commandId,
       targetCommandType: target.commandType,
-      restores: restoresFor(targetEvents, before),
+      restores,
     },
   });
 }
@@ -214,6 +222,18 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: null,
         });
         break;
+      case 'ClaimSet':
+        restores.push({ fact: 'claim', target: { ...event.payload.target }, value: null });
+        break;
+      case 'ContradictionDetected': {
+        const { scope, between } = event.payload;
+        restores.push({
+          fact: 'contradiction',
+          key: pairKey(scopeKey(scope), between[0], between[1]),
+          value: null,
+        });
+        break;
+      }
       case 'CampaignCreated':
       case 'CommandUndone':
         throw new Error(`${event.type} is not undoable`);

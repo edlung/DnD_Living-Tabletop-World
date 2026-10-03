@@ -16,6 +16,7 @@ const INVESTIGATION = new Set([
   'AskAbout',
   'EnterLocation',
   'FormHypothesis',
+  'SetClaim',
 ]);
 
 describe('deterministic replay over randomized command sequences', () => {

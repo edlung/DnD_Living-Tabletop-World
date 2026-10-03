@@ -79,6 +79,18 @@ export function decideAskAbout(
         },
       },
     );
+    // The shared copy asserts what its source asserts (ADR 0014 §1).
+    const claim = state.epistemics.claims.get(source.knowledgeId);
+    if (claim) {
+      events.push({
+        type: 'ClaimSet',
+        payload: {
+          target: { kind: 'knowledge', knowledgeId },
+          claim: { ...claim },
+          source: { kind: 'knowledge', knowledgeId: source.knowledgeId },
+        },
+      });
+    }
   });
   const memoryId = resolution.ids[willing.length];
   const topic = state.entities.get(topicId);

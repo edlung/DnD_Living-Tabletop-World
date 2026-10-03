@@ -128,6 +128,11 @@ No clue IDs, DCs, or source records appear.
 - The investigation path is fully deterministic and replayable. Stage 70 builds contradiction detection on the shared testimony.
 - Gate 02 attacks these paths: player commands, outcomes, rejection codes, clue secrecy, disclosure, and hypothesis citations.
 
+## Amendments
+
+- 2026-10-03 (Stage 70, ADR 0014 §4): player command results carry no event list and no rejection details, except schema issues. Players may not send `expectedVersion`.
+- 2026-10-03 (Stage 70, defect fix): undoing an examination that changed nothing restorable, such as an inspection that found nothing, is `NO_EFFECT`. Before the fix it produced an empty `CommandUndone`, which could not be read back from storage. A randomized replay test exposed it, and a regression test now covers it.
+
 ## Invariants affected
 
 Implements 7 for hypotheses. Preserves 1 (all through the World Engine), 3 (players act only through their own characters; authoring stays DM-only), 4, 5, 6, 8, 9, 11, 12, and 20. No invariant is weakened.
