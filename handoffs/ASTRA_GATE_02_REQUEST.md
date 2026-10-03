@@ -1,15 +1,26 @@
 # Astra Gate Handoff Request
 
 - Gate: #2 — Contradiction / Knowledge Integrity
-- Review type: INITIAL
+- Review type: RETEST
 - Completed stage: 70 (Contradiction Engine); the gate also covers Stages 30 and 50–60 per `docs/GATE_COVERAGE.md`
-- Revision/commit: `781dc750cafbd5fa6ec4d3168be6091c1c823ae8` (code under review; later commits on `main` add only this handoff and `reports/STAGE_070_COMPLETION.md`)
-- Prior report / remediation / retest number: N/A (initial review). Gate 01 passed at `641c6af` (`reviews/ASTRA_GATE_01_REPORT.md`).
-- Required output path: `reviews/ASTRA_GATE_02_REPORT.md`
+- Revision/commit: `757db1066fc4b8fd14e26244c1e63adbdd0aa281` (remediated code under retest; later commits on `main` add only this updated handoff and the remediation report). Initial review: `781dc75`.
+- Prior report / remediation / retest number: `reviews/ASTRA_GATE_02_REPORT.md` (FAIL: G02-H01, G02-H02) / `remediation/OPUS_GATE_02_REMEDIATION.md` / retest 1. Gate 01 passed at `641c6af` (`reviews/ASTRA_GATE_01_REPORT.md`).
+- Required output path: `reviews/ASTRA_GATE_02_RETEST_1.md`
 - Requested Astra effort: MAX
-- Status: AWAITING_ASTRA_REVIEW
+- Status: AWAITING_ASTRA_RETEST
 
 ## Review Objective
+
+**Retest scope.**
+
+- Independently retest G02-H01 and G02-H02 and their adjacent attack paths:
+  - any filter, ID, total, score, or order that could consult hidden structure;
+  - any premise of a player command that an undo could remove while the command stands.
+- Rerun the Gate 02 surfaces the remediation touched: memory recall, the known-entity projection, entity context, player commands, and contradictions.
+- The remediation is described in `remediation/OPUS_GATE_02_REMEDIATION.md`; treat its claims as non-authoritative.
+- One rule changed by owner decision: ADR 0010's location filter, see its 2026-10-03 amendment.
+
+The original Gate 02 objectives below still apply.
 
 Try to break knowledge integrity across the memory, entity-context, investigation, and contradiction surfaces. Four objectives:
 
@@ -32,14 +43,15 @@ Gate 01 regressions remain in scope wherever these stages changed shared surface
 - `docs/GATE_COVERAGE.md` — rows 30, 50–60, 70
 - Owner-approved product ADRs:
   - `docs/adr/0008-knowledge-boundary.md`
-  - `docs/adr/0010-memory-and-temporal-retrieval.md`
+  - `docs/adr/0010-memory-and-temporal-retrieval.md` (including its Gate 02 amendment on location containment)
   - `docs/adr/0012-context-engine.md`
-  - `docs/adr/0013-investigation.md`
+  - `docs/adr/0013-investigation.md` (including its Gate 02 amendment on premises)
   - `docs/adr/0014-contradictions-and-epistemic-integrity.md`
 - Technical ADRs:
   - `docs/adr/0009-http-api-and-dev-authentication.md` (HTTP check order, uniform errors)
   - `docs/adr/0006-temporal-model-and-undo.md` (only if you test undo or `asOf`)
 - `docs/adr/0011-ruleset-srd-5-2.md` — only as background for skill checks
+- Retest inputs: `reviews/ASTRA_GATE_02_REPORT.md` (the initial FAIL) and `remediation/OPUS_GATE_02_REMEDIATION.md` (non-authoritative)
 
 ## Surfaces Available to Reviewer
 
@@ -135,19 +147,19 @@ Epistemic invariants:
 
 ## Validation Already Run by Opus
 
-| Command                                                                                                                                             | Result                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `pnpm install --frozen-lockfile`                                                                                                                    | PASS                                                                                                                 |
-| `pnpm format:check`, `pnpm lint`, `pnpm typecheck`                                                                                                  | PASS                                                                                                                 |
-| `pnpm context-budget`                                                                                                                               | PASS — 183 active files, 0 over 500 lines, 0 over 700                                                                |
-| `pnpm test`                                                                                                                                         | PASS — 50 files, 706 tests                                                                                           |
-| `pnpm build`                                                                                                                                        | PASS                                                                                                                 |
-| `pnpm db:migrate` on a fresh volume, then again                                                                                                     | PASS — `0001_world_event_store` applied once                                                                         |
-| `pnpm seed:ravenford` on a fresh volume, then again                                                                                                 | PASS — 83 commands accepted (stream version 92, 21 entities); second run: 83 duplicates, nothing written             |
-| `pnpm test:integration`                                                                                                                             | PASS — 5 files, 19 tests (PostgreSQL vs in-memory equality across restart; resolution and contradiction persistence) |
-| `pnpm validate:ci-local`                                                                                                                            | PASS                                                                                                                 |
-| Live server smoke test with `curl`: PARTY contradictions before/after asking Thorne, `NPC:mira-vale`, player result shape, player `expectedVersion` | PASS. Afterwards the database was reset and reseeded clean                                                           |
-| Mutation checks of the Stage 60 and 70 suites (9 investigation and 14 contradiction defects injected one at a time)                                 | Each detected, then reverted                                                                                         |
+| Command                                                                                        | Result                                                                                                                                                                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm install --frozen-lockfile`                                                               | PASS                                                                                                                                                                                                                                      |
+| `pnpm format:check`, `pnpm lint`, `pnpm typecheck`                                             | PASS                                                                                                                                                                                                                                      |
+| `pnpm context-budget`                                                                          | PASS — 190 active files, 0 over 500 lines, 0 over 700                                                                                                                                                                                     |
+| `pnpm test`                                                                                    | PASS — 55 files, 744 tests (includes the Gate 02 regressions and the randomized noninterference and premise tests)                                                                                                                        |
+| `pnpm build`                                                                                   | PASS                                                                                                                                                                                                                                      |
+| `pnpm db:migrate` on a fresh volume, then again                                                | PASS — `0001_world_event_store` applied once                                                                                                                                                                                              |
+| `pnpm seed:ravenford` on a fresh volume, then again                                            | PASS — 83 commands accepted (stream version 92, 21 entities); second run: 83 duplicates, nothing written                                                                                                                                  |
+| `pnpm test:integration`                                                                        | PASS — 6 files, 22 tests (includes the Gate 02 regressions on PostgreSQL before and after reload)                                                                                                                                         |
+| `pnpm validate:ci-local`                                                                       | PASS                                                                                                                                                                                                                                      |
+| Live server: the reviewer's exact HTTP reproductions of G02-H01 and G02-H02 on PostgreSQL      | PASS. Hidden and nonexistent locations are identical for PUBLIC, PARTY, PLAYER, and `NPC:mira-vale`; disclosure undo is `UNDO_UNSAFE` with the move as blocker; reverse order is accepted. The database was then reset and reseeded clean |
+| Mutation checks (Stage 60/70: 9 + 14 defects; remediation: 10 defects), injected one at a time | Each detected, then reverted                                                                                                                                                                                                              |
 
 ## Known Limitations
 
@@ -157,7 +169,8 @@ Epistemic invariants:
 - **Disclosure:** NPC disclosure is policy-only (WILLING or GUARDED). Trust, motivation, and dialogue are Stage 130.
 - **Not executable yet:** Talk, Trade, and Insight are context descriptors only. Detect Magic execution is Stage 80.
 - **Skill checks:** one attempt per character, entity, and method. The engine draws a d20 even for a check that is then rejected; the draw is discarded and never shown.
-- **Undo footprints:** footprints of player commands do not record which knowledge made a target known. A DM may undo such knowledge after a player acted on it.
+- **Premises and undo:** a player command records the premise it used: perception, else the earliest premise that made the target known (ADR 0013 amendment). Undoing that premise is blocked while the command stands. A later, redundant disclosure is not a premise and stays undoable.
+- **Containment:** between two places a perspective knows, containment counts as known geography (ADR 0010 amendment, owner-approved). A place whose whereabouts must stay secret must itself stay unknown.
 - **Contradictions:** conflict detection uses strict equality of DM-authored claim values; free text is never compared. Players cannot set claims. Contradiction records are not listed in player command outcomes; players read them through the knowledge API.
 - **Party:** party membership follows the current assignment (no history), and there is no unassignment command.
 - **Intentional disclosures:** records the DM assigns to non-DM scopes, and records an NPC shares under a WILLING policy, are intentional disclosures, not leaks.
@@ -167,15 +180,17 @@ Epistemic invariants:
 
 Due surfaces (`docs/GATE_COVERAGE.md`):
 
-| Row             | Surface                                                                                                           | Reproducible access                                                                    | Opus evidence                                                                                                                                                                       |
-| --------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 30              | Memory and temporal retrieval scope: semantic, entity, location, time, kind, session queries; impossible memories | `/memories`, `/memories/:id`, `/sessions`; `RecordMemory` as DM                        | `packages/domain/src/memory/*.test.ts`, `apps/server/src/http/memory-routes.test.ts`, `fixtures/ravenford/memory-boundary.json`                                                     |
-| 30 → 60         | Memories created by play (DISCOVERY, CONVERSATION)                                                                | Player commands, then `/memories`                                                      | `packages/domain/src/investigation/{examine,conversation}.test.ts`                                                                                                                  |
-| 50–60           | Entity context: perception, visible state, actions, reasons, topics, relevance                                    | `/entities/:id/context`                                                                | `packages/context/src/{entity-context,legality,leakage,relevance,command-alignment}.test.ts`, `apps/server/src/http/context-routes.test.ts`                                         |
-| 50–60           | Investigation paths: movement, questioning, examination, outcomes, rejections, evidence relations, hypotheses     | Player commands; knowledge routes                                                      | `packages/domain/src/investigation/*.test.ts` (including the end-to-end `investigation-path.test.ts`), `apps/server/src/http/investigation-routes.test.ts`                          |
-| 70              | Contradictions: type preservation, neutrality, joint scope, no truth leakage, NPC isolation, DM-only claims       | Knowledge routes (`type=CONTRADICTION`, `/related`); `SetClaim` as DM; player commands | `packages/domain/src/contradiction/*.test.ts` (including the randomized oracle test), `apps/server/src/http/contradiction-routes.test.ts`, `packages/context/src/relevance.test.ts` |
-| 20 (regression) | Knowledge boundary after the changed shared surfaces (DM-only `claim` field, player result shape, new seeds)      | Knowledge routes                                                                       | `packages/domain/src/knowledge/*.test.ts` (including the randomized boundary test), `apps/server/src/http/knowledge-*.test.ts`                                                      |
-| All             | Persistence and restart                                                                                           | PostgreSQL server                                                                      | `apps/server/src/world-engine/*.integration.test.ts`                                                                                                                                |
+| Row             | Surface                                                                                                           | Reproducible access                                                                    | Opus evidence                                                                                                                                                                                                                                        |
+| --------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 30              | Memory and temporal retrieval scope: semantic, entity, location, time, kind, session queries; impossible memories | `/memories`, `/memories/:id`, `/sessions`; `RecordMemory` as DM                        | `packages/domain/src/memory/*.test.ts`, `apps/server/src/http/memory-routes.test.ts`, `fixtures/ravenford/memory-boundary.json`                                                                                                                      |
+| 30 → 60         | Memories created by play (DISCOVERY, CONVERSATION)                                                                | Player commands, then `/memories`                                                      | `packages/domain/src/investigation/{examine,conversation}.test.ts`                                                                                                                                                                                   |
+| 50–60           | Entity context: perception, visible state, actions, reasons, topics, relevance                                    | `/entities/:id/context`                                                                | `packages/context/src/{entity-context,legality,leakage,relevance,command-alignment}.test.ts`, `apps/server/src/http/context-routes.test.ts`                                                                                                          |
+| 50–60           | Investigation paths: movement, questioning, examination, outcomes, rejections, evidence relations, hypotheses     | Player commands; knowledge routes                                                      | `packages/domain/src/investigation/*.test.ts` (including the end-to-end `investigation-path.test.ts`), `apps/server/src/http/investigation-routes.test.ts`                                                                                           |
+| 70              | Contradictions: type preservation, neutrality, joint scope, no truth leakage, NPC isolation, DM-only claims       | Knowledge routes (`type=CONTRADICTION`, `/related`); `SetClaim` as DM; player commands | `packages/domain/src/contradiction/*.test.ts` (including the randomized oracle test), `apps/server/src/http/contradiction-routes.test.ts`, `packages/context/src/relevance.test.ts`                                                                  |
+| 20 (regression) | Knowledge boundary after the changed shared surfaces (DM-only `claim` field, player result shape, new seeds)      | Knowledge routes                                                                       | `packages/domain/src/knowledge/*.test.ts` (including the randomized boundary test), `apps/server/src/http/knowledge-*.test.ts`                                                                                                                       |
+| Gate 02 retest  | G02-H01: location filtering with hidden targets and ancestry                                                      | `/memories?location=…`, DM authoring                                                   | `packages/domain/src/memory/location-filter.test.ts`, `packages/domain/src/memory/recall-noninterference.property.test.ts`, `apps/server/src/http/gate02-regressions.test.ts`, `apps/server/src/world-engine/gate02-regressions.integration.test.ts` |
+| Gate 02 retest  | G02-H02: premises of player commands under undo                                                                   | Player commands, DM `UndoCommand`                                                      | `packages/domain/src/investigation/premises.test.ts`, `packages/domain/src/investigation/premises.property.test.ts`, `packages/domain/src/kernel/replay.test.ts`, the same HTTP and PostgreSQL regression files                                      |
+| All             | Persistence and restart                                                                                           | PostgreSQL server                                                                      | `apps/server/src/world-engine/*.integration.test.ts`                                                                                                                                                                                                 |
 
 Required but untestable surfaces: none known.
 
@@ -193,4 +208,4 @@ Future surfaces — NOT YET IN SCOPE (not tested, not passed):
 
 ## Required Output
 
-Write `reviews/ASTRA_GATE_02_REPORT.md` using `ASTRA_REVIEW.md`. Preserve previous reports. Do not modify source implementation. End with PASS or FAIL and STOP.
+Write `reviews/ASTRA_GATE_02_RETEST_1.md` using `ASTRA_REVIEW.md`. Preserve previous reports, including `reviews/ASTRA_GATE_02_REPORT.md`. Do not modify source implementation. End with PASS or FAIL and STOP.
