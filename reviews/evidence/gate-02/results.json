@@ -1,0 +1,252 @@
+{
+  "reviewDate": "2026-10-03",
+  "codeRevision": "781dc750cafbd5fa6ec4d3168be6091c1c823ae8",
+  "checkoutRevision": "d7b57ce293bdce8fe59c43338ca41c6815bdff8d",
+  "environment": {
+    "node": "25.8.1",
+    "pnpm": "11.11.0",
+    "postgres": "18-alpine"
+  },
+  "validation": {
+    "command": "pnpm validate:ci-local",
+    "exitCode": 0,
+    "unitTestFiles": 50,
+    "unitTests": 706,
+    "integrationTestFiles": 5,
+    "integrationTests": 19,
+    "activeFiles": 183,
+    "over500": 0,
+    "over700": 0,
+    "seedVersion": 92,
+    "seedEntities": 21,
+    "seedAccepted": 0,
+    "seedDuplicates": 83
+  },
+  "live": {
+    "requests": 698,
+    "checks": {
+      "headers": 698,
+      "memory-visible-sets": 8,
+      "knowledge-regression": 8,
+      "memory-direct": 80,
+      "memory-kind": 40,
+      "memory-entity": 176,
+      "memory-time": 96,
+      "memory-text": 64,
+      "memory-location-fixture": 56,
+      "memory-limit": 8,
+      "memory-window": 8,
+      "memory-session": 8,
+      "forbidden-markers": 30470,
+      "no-dm-metadata": 498,
+      "context-crawl": 22,
+      "malformed": 21,
+      "forgery": 9,
+      "authentication": 6,
+      "context-no-actor": 4,
+      "sessions-membership": 4,
+      "interleaving": 80
+    },
+    "failures": []
+  },
+  "state": {
+    "requests": 194,
+    "checks": {
+      "player-result-hygiene": 2,
+      "testimony-contradiction": 2,
+      "npc-noninterference": 6,
+      "idempotency": 2,
+      "contradiction-undo": 2,
+      "epistemic-authority": 4,
+      "hypothesis-type": 4,
+      "joint-scope-oracle": 2,
+      "claim-secrecy": 12,
+      "no-truth-comparison": 4,
+      "explicit-fact-not-promotion": 2,
+      "memory-score-noninterference": 2,
+      "impossible-memories": 14,
+      "rejection-atomicity": 2,
+      "undiscovered-clue-noninterference": 2,
+      "failed-vs-empty-check": 2,
+      "evidence-outcome": 2,
+      "discovery-type": 2,
+      "discovery-memory": 2,
+      "one-attempt": 2,
+      "H01-reproduced": 3,
+      "H02-reproduced": 4,
+      "postgres-restart": 4,
+      "memory-postgres-equality": 1
+    },
+    "failures": [],
+    "violations": [
+      {
+        "id": "G02-H01",
+        "mode": "memory",
+        "stage": "before-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          }
+        ]
+      },
+      {
+        "id": "G02-H02",
+        "mode": "memory",
+        "kind": "knowledge",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "accepted",
+        "placement": {
+          "locationId": "remote-knowledge",
+          "since": 36000
+        },
+        "sourceRemains": false,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-42",
+        "moveCommandId": "http:player-elowen:astra-43"
+      },
+      {
+        "id": "G02-H02",
+        "mode": "memory",
+        "kind": "memory",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "accepted",
+        "placement": {
+          "locationId": "remote-memory",
+          "since": 36000
+        },
+        "sourceRemains": false,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-47",
+        "moveCommandId": "http:player-elowen:astra-48"
+      },
+      {
+        "id": "G02-H01",
+        "mode": "postgres",
+        "stage": "before-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          }
+        ]
+      },
+      {
+        "id": "G02-H02",
+        "mode": "postgres",
+        "kind": "knowledge",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "accepted",
+        "placement": {
+          "locationId": "remote-knowledge",
+          "since": 36000
+        },
+        "sourceRemains": false,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-42",
+        "moveCommandId": "http:player-elowen:astra-43"
+      },
+      {
+        "id": "G02-H02",
+        "mode": "postgres",
+        "kind": "memory",
+        "unknownStatus": 422,
+        "unknownCode": "ENTITY_NOT_FOUND",
+        "moveStatus": "accepted",
+        "undoStatus": "accepted",
+        "placement": {
+          "locationId": "remote-memory",
+          "since": 36000
+        },
+        "sourceRemains": false,
+        "moveUndoneBy": null,
+        "sourceCommandId": "http:dm-ravenford:astra-47",
+        "moveCommandId": "http:player-elowen:astra-48"
+      },
+      {
+        "id": "G02-H01",
+        "mode": "postgres",
+        "stage": "after-restart",
+        "hiddenEntityStatus": 404,
+        "hiddenContextStatus": 404,
+        "rows": [
+          {
+            "perspective": "PUBLIC",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "PARTY",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "PLAYER",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          },
+          {
+            "perspective": "NPC:mira-vale",
+            "hiddenTotal": 1,
+            "missingTotal": 0,
+            "memoryIds": ["room-memory"]
+          }
+        ]
+      }
+    ],
+    "temporaryDatabaseDropped": true
+  }
+}
