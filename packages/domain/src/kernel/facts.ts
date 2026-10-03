@@ -295,6 +295,8 @@ function premiseFacts(characterId: string, premise: Premise): FactKey[] {
       return [facts.sheet(characterId)];
     case 'party':
       return party;
+    case 'controller':
+      return [...party, facts.rosterPlayer(premise.playerActorId)];
   }
 }
 

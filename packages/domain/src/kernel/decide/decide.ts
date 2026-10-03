@@ -1,3 +1,5 @@
+import { PLAYER_COMMAND_TYPES } from '@ltw/contracts';
+
 import { decideSetCharacterSheet } from '../../character/character.ts';
 import { decideSetClaim } from '../../contradiction/decide.ts';
 import { withContradictions } from '../../contradiction/detect.ts';
@@ -11,6 +13,7 @@ import {
 import { decideAddKnowledge, decideAssignCharacter } from '../../knowledge/decide.ts';
 import { decideEndSession, decideRecordMemory, decideStartSession } from '../../memory/decide.ts';
 import { accept, type Decision, type DecisionContext, type ResolvedCommand } from '../decision.ts';
+import type { KernelEvent } from '../events.ts';
 import {
   decideChangeEntityStatus,
   decideCreateEntity,
@@ -27,11 +30,43 @@ import {
 
 /**
  * Routes a resolved, authorized command to its pure decision function, then
- * records any contradictions the accepted events create (ADR 0014).
+ * records any contradictions the accepted events create (ADR 0014). A player
+ * command must record its premises; when a controlling player issued it,
+ * that authorization is one of them (Gate 02, G02-H03).
  */
 export function decide(context: DecisionContext, command: ResolvedCommand): Decision {
   const decision = route(context, command);
-  return decision.ok ? accept(...withContradictions(context.state, decision.events)) : decision;
+  if (!decision.ok) return decision;
+  const events = PLAYER_TYPES.has(command.type)
+    ? withAuthorityPremise(context, command.type, decision.events)
+    : decision.events;
+  return accept(...withContradictions(context.state, events, context.commandId));
+}
+
+const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
+
+function withAuthorityPremise(
+  context: DecisionContext,
+  commandType: string,
+  events: readonly KernelEvent[],
+): KernelEvent[] {
+  const index = events.findIndex((event) => event.type === 'PremisesRecorded');
+  const recorded = events[index];
+  if (recorded?.type !== 'PremisesRecorded') {
+    throw new Error(`${commandType} was accepted without recording its premises`);
+  }
+  if (context.authority !== 'controller') return [...events];
+  const withController: KernelEvent = {
+    type: 'PremisesRecorded',
+    payload: {
+      characterId: recorded.payload.characterId,
+      premises: [
+        ...recorded.payload.premises,
+        { kind: 'controller', playerActorId: context.actor.actorId },
+      ],
+    },
+  };
+  return events.map((event, position) => (position === index ? withController : event));
 }
 
 function route(context: DecisionContext, command: ResolvedCommand): Decision {

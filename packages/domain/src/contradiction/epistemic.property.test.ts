@@ -4,12 +4,14 @@ import { describe, expect, it } from 'vitest';
 import { replay } from '../kernel/evolve.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import {
+  CAMPAIGN,
   DM,
   createHarness,
   expectAccepted,
   seedBasicWorld,
 } from '../kernel/testing/kernel-harness.ts';
 import { mulberry32 } from '../kernel/testing/random-commands.ts';
+import { redecideEffective } from '../kernel/testing/redecide.ts';
 import { resolvePerspective } from '../knowledge/perspective.ts';
 import {
   entityKnowledge,
@@ -297,6 +299,9 @@ async function verify(run: Awaited<ReturnType<typeof scenario>>) {
   const { history } = await harness.snapshot();
   expect(replay(history)).toEqual(state);
   expect(checkWorldIntegrity(state)).toEqual([]);
+  // 5. Every still-effective command re-decides identically (Gate 02 oracle).
+  const log = await harness.engine.commandLog(CAMPAIGN);
+  expect(redecideEffective(log, { state, history }, () => 3)).toBeNull();
   return state.epistemics.contradictions.size;
 }
 

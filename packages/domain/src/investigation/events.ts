@@ -1,5 +1,6 @@
 import {
   DISCLOSURES,
+  actorIdSchema,
   EXAMINE_METHODS,
   clueIdSchema,
   entityIdSchema,
@@ -80,6 +81,8 @@ export const premiseSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('memory'), memoryId: memoryIdSchema, viaParty: z.boolean() }).strict(),
   z.object({ kind: z.literal('sheet') }).strict(),
   z.object({ kind: z.literal('party') }).strict(),
+  /** Authorized as the character's controlling player (Gate 02, G02-H03). */
+  z.object({ kind: z.literal('controller'), playerActorId: actorIdSchema }).strict(),
 ]);
 export type Premise = z.infer<typeof premiseSchema>;
 

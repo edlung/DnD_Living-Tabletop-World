@@ -150,8 +150,8 @@ export class WorldEngine {
       const state = snapshot?.state ?? EMPTY_WORLD_STATE;
       const history = snapshot?.history ?? [];
 
-      const denied = authorize(state, actor, command);
-      if (denied) return rejected(commandId, denied);
+      const authorization = authorize(state, actor, command);
+      if (!authorization.ok) return rejected(commandId, authorization.rejection);
       if (
         submission.expectedVersion !== undefined &&
         submission.expectedVersion !== state.version
@@ -170,6 +170,7 @@ export class WorldEngine {
           campaignId,
           commandId,
           actor,
+          authority: authorization.authority,
           ...(this.#checks ? { skillModifier: this.#checks.skillModifier.bind(this.#checks) } : {}),
         },
         command,

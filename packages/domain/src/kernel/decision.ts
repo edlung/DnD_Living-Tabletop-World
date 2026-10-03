@@ -8,6 +8,7 @@ import type {
 } from '@ltw/contracts';
 
 import type { Actor } from './actor.ts';
+import type { Authority } from './authorization.ts';
 import type { KernelEvent, RecordedEvent } from './events.ts';
 import type { WorldState } from './state.ts';
 
@@ -70,6 +71,8 @@ export interface DecisionContext {
   readonly campaignId: string;
   readonly commandId: string;
   readonly actor: Actor;
+  /** The authority `authorize` granted (Gate 02, G02-H03). */
+  readonly authority: Authority;
   /** Rules-provided skill modifier (ADR 0013); required only by skill checks. */
   readonly skillModifier?: (sheet: CharacterSheet, skill: Skill) => number;
 }

@@ -159,7 +159,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
       .object({
         targetCommandId: commandIdSchema,
         targetCommandType: kernelCommandTypeSchema,
-        restores: z.array(restoreSchema).min(1),
+        /** Empty when the undone command changed nothing restorable (Gate 02, G02-M01). */
+        restores: z.array(restoreSchema),
       })
       .strict(),
   ),

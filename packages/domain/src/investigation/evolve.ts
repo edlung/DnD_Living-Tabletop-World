@@ -100,6 +100,8 @@ export function applyPremisesRecorded(
         return state.knowledge.has(premise.knowledgeId);
       case 'memory':
         return state.memories.has(premise.memoryId);
+      case 'controller':
+        return state.roster.get(characterId) === premise.playerActorId;
       default:
         return true;
     }

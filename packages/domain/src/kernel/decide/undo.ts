@@ -61,12 +61,11 @@ export function decideUndo(
   }
 
   const before = replay(history, { untilSequence: target.firstSequence - 1 });
-  const restores = restoresFor(targetEvents, before);
   // A command that changed no restorable fact (for example an inspection that
-  // found nothing) has nothing to undo; an empty compensation is not an event.
-  if (restores.length === 0) {
-    return reject('NO_EFFECT', `Command "${target.commandId}" changed nothing that can be undone`);
-  }
+  // found nothing) is still undoable: the compensation restores nothing but
+  // takes the command out of current canon, so it stops holding read
+  // dependencies (Gate 02, G02-M01). History keeps its events.
+  const restores = restoresFor(targetEvents, before);
   return accept({
     type: 'CommandUndone',
     payload: {

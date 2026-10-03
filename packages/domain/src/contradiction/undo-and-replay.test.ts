@@ -9,6 +9,7 @@ import {
 } from '../investigation/testing/world.ts';
 import { replay } from '../kernel/evolve.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
+import { redecideEffective } from '../kernel/testing/redecide.ts';
 
 /** Contradictions depend explicitly on their records, claims and party membership (ADR 0014 §2). */
 async function afterThorne() {
@@ -80,6 +81,38 @@ describe('undo', () => {
     const blockers =
       result.status === 'rejected' ? (result.details?.['blockers'] as { commandId: string }[]) : [];
     expect(blockers.map((b) => b.commandId)).toContain(claimed.commandId);
+  });
+});
+
+describe('re-detection after undo', () => {
+  it('derives the same contradiction when the same command is re-decided under current canon', async () => {
+    const world = await investigationWorld();
+    const rumor = (knowledgeId: string) => ({
+      type: 'AddKnowledge',
+      knowledgeId,
+      scope: { kind: 'PARTY' },
+      knowledgeType: 'RUMOR',
+      statement: 'It left at noon.',
+      subjects: ['guild-caravan'],
+      knownSince: null,
+    });
+    const claim = (knowledgeId: string) => ({
+      type: 'SetClaim',
+      target: { kind: 'knowledge', knowledgeId },
+      claim: { subjectId: 'guild-caravan', aspect: 'departure-time', value: 'at-noon' },
+    });
+    await world.submit(rumor('x-noon'), DM);
+    const first = await world.submit(claim('x-noon'), DM);
+    if (first.status === 'rejected') throw new Error(first.code);
+    expect(
+      codeOf(await world.submit({ type: 'UndoCommand', targetCommandId: first.commandId }, DM)),
+    ).toBe('accepted');
+    expect(codeOf(await world.submit(claim('x-noon'), DM))).toBe('accepted');
+    const snapshot = await world.engine.load(CAMPAIGN);
+    if (!snapshot) throw new Error('missing campaign');
+    expect(snapshot.state.epistemics.contradictions.size).toBe(1);
+    const log = await world.engine.commandLog(CAMPAIGN);
+    expect(redecideEffective(log, snapshot, () => 0)).toBeNull();
   });
 });
 

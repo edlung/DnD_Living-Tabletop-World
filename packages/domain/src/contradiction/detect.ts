@@ -24,6 +24,7 @@ interface RecordLike {
 export function withContradictions(
   state: WorldState,
   events: readonly KernelEvent[],
+  commandId: string,
 ): KernelEvent[] {
   const added = events.flatMap((event) =>
     event.type === 'ClaimSet' && event.payload.target.kind === 'knowledge'
@@ -59,7 +60,7 @@ export function withContradictions(
       if (recorded.has(key)) continue;
       recorded.add(key);
 
-      const contradictionId = derivedId(key, used);
+      const contradictionId = derivedId(`${commandId}|${key}`, used);
       used.add(contradictionId);
       const [a, b] = knowledgeId < otherId ? [knowledgeId, otherId] : [otherId, knowledgeId];
       const [first, second] = [records.get(a), records.get(b)];
@@ -119,7 +120,11 @@ function neutralStatement(
     : `Conflicting accounts of ${subject}: ${a} and ${b} disagree.`;
 }
 
-/** `ctr-` + FNV-1a 64 of the pair key; deterministic, suffixed if ever taken. */
+/**
+ * `ctr-` + FNV-1a 64 of the causing command and pair key: deterministic and
+ * independent of other history, so re-deciding the same command yields the
+ * same ID; suffixed only if ever taken.
+ */
 function derivedId(key: string, used: ReadonlySet<string>): string {
   let hash = 0xcbf29ce484222325n;
   for (let index = 0; index < key.length; index += 1) {

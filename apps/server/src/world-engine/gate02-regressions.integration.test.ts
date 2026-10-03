@@ -6,8 +6,11 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   ELOWEN,
   H01_VIEWS,
+  assignAndAct,
   authorHiddenParent,
+  blockersOf,
   discloseAndEnter,
+  emptyInspectionChain,
   post,
   recallAt,
 } from '../testing/gate02-scenarios.ts';
@@ -109,4 +112,64 @@ describe('G02-H02 on PostgreSQL', () => {
       expect(after?.state.entities.get(ELOWEN)?.placement?.locationId).toBe('market-square');
     },
   );
+});
+
+describe('G02-H03 on PostgreSQL', () => {
+  it.each(['move', 'hypothesis'] as const)(
+    '%s: blocked after reload; reverse order works',
+    async (action) => {
+      const live = await app(await seededEngine(new PostgresEventStore(pool)));
+      const { assignmentId, actionId } = await assignAndAct(live, action, `pg-h03-${action}`);
+      const fresh = restarted();
+      const reloaded = await app(fresh);
+      const before = (await fresh.load('ravenford'))?.state;
+      const undone = await post(reloaded, TOKENS.dm, `pg-h03-${action}-undo`, {
+        type: 'UndoCommand',
+        targetCommandId: assignmentId,
+      });
+      expect(blockersOf(undone.body)).toEqual([actionId]);
+      expect((await fresh.load('ravenford'))?.state).toEqual(before);
+      expect(
+        (
+          await post(reloaded, TOKENS.dm, `pg-h03-${action}-undo-act`, {
+            type: 'UndoCommand',
+            targetCommandId: actionId,
+          })
+        ).status,
+      ).toBe(200);
+      expect(
+        (
+          await post(reloaded, TOKENS.dm, `pg-h03-${action}-undo-assign`, {
+            type: 'UndoCommand',
+            targetCommandId: assignmentId,
+          })
+        ).status,
+      ).toBe(200);
+      expect((await restarted().load('ravenford'))?.state.roster.has('guest-character')).toBe(
+        false,
+      );
+    },
+  );
+});
+
+describe('G02-M01 on PostgreSQL', () => {
+  it('unwinds the chain after reload, and the empty compensation reloads', async () => {
+    const live = await app(await seededEngine(new PostgresEventStore(pool)));
+    const { revealId, moveId, inspectId } = await emptyInspectionChain(live, 'pg-m01');
+    const reloaded = await app(restarted());
+    const undo = (key: string, target: string) =>
+      post(reloaded, TOKENS.dm, key, { type: 'UndoCommand', targetCommandId: target });
+    expect(blockersOf((await undo('pg-m01-u1', revealId)).body)).toEqual([moveId]);
+    expect(blockersOf((await undo('pg-m01-u2', moveId)).body)).toEqual([inspectId]);
+    for (const [key, target] of [
+      ['pg-m01-u3', inspectId],
+      ['pg-m01-u4', moveId],
+      ['pg-m01-u5', revealId],
+    ] as const) {
+      expect((await undo(key, target)).status, key).toBe(200);
+    }
+    const after = await restarted().load('ravenford');
+    expect(after?.state.entities.get(ELOWEN)?.placement?.locationId).toBe('market-square');
+    expect(after?.state.knowledge.has('empty-route')).toBe(false);
+  });
 });

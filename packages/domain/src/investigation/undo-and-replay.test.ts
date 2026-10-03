@@ -79,10 +79,10 @@ describe('undo', () => {
 });
 
 describe('undo of an examination that changed nothing', () => {
-  // Regression (found by the Stage 70 property test): undoing an inspection that
-  // revealed nothing produced a CommandUndone with no restores, which violates the
-  // event schema, so the campaign could not be reloaded from storage.
-  it('is NO_EFFECT and leaves a history that still parses', async () => {
+  // Regressions: Stage 70 (an empty CommandUndone must still parse after a reload)
+  // and Gate 02 G02-M01 (such an undo must be accepted, or the command would hold
+  // its read dependencies forever).
+  it('is accepted with an empty compensation, and the history still parses', async () => {
     const world = await investigationWorld();
     const inspected = await world.submit({
       type: 'ExamineEntity',
@@ -94,8 +94,11 @@ describe('undo of an examination that changed nothing', () => {
       { type: 'UndoCommand', targetCommandId: commandIdOf(inspected) },
       DM,
     );
-    expect(codeOf(result)).toBe('NO_EFFECT');
+    expect(codeOf(result)).toBe('accepted');
     const snapshot = await world.engine.load(CAMPAIGN);
+    const compensation = snapshot?.history.at(-1);
+    expect(compensation?.type === 'CommandUndone' && compensation.payload.restores).toEqual([]);
+    expect(snapshot?.state.commands.get(commandIdOf(inspected))?.undoneBy).not.toBeNull();
     const serialized = JSON.parse(JSON.stringify(snapshot?.history)) as unknown[];
     expect(replay(serialized.map(parseRecordedEvent))).toEqual(snapshot?.state);
   });

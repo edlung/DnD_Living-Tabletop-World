@@ -8,6 +8,7 @@ import { checkWorldIntegrity } from './projections/integrity.ts';
 import type { WorldState } from './state.ts';
 import { CAMPAIGN, createHarness, seedBasicWorld } from './testing/kernel-harness.ts';
 import { mulberry32, randomCommand } from './testing/random-commands.ts';
+import { redecideEffective } from './testing/redecide.ts';
 
 const INVESTIGATION = new Set([
   'AddClue',
@@ -99,6 +100,12 @@ describe('deterministic replay over randomized command sequences', () => {
       );
     });
     expect(broken).toEqual([]);
+
+    // Independent oracle (Gate 02): every still-effective command is authorized and
+    // decides identically when re-decided from scratch under current canon.
+    expect(
+      redecideEffective(await harness.engine.commandLog(CAMPAIGN), { state, history }, () => 3),
+    ).toBeNull();
 
     const effective = history.filter(
       (event) =>

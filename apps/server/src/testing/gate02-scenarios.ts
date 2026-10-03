@@ -147,3 +147,99 @@ export async function discloseAndEnter(
   }
   return { disclosureId: disclosed.body.commandId, moveId: moved.body.commandId };
 }
+
+/** G02-H03: assign a new character to `dev-outsider`, who then acts; returns both command IDs. */
+export async function assignAndAct(
+  app: FastifyInstance,
+  action: 'move' | 'hypothesis',
+  prefix: string,
+): Promise<{ assignmentId: string; actionId: string }> {
+  const created = await post(app, TOKENS.dm, `${prefix}-guest`, {
+    type: 'CreateEntity',
+    entityId: 'guest-character',
+    kind: 'character',
+    name: 'Guest',
+    existsSince: null,
+  });
+  if (created.body.status === 'rejected') throw new Error(created.body.code);
+  const command =
+    action === 'move'
+      ? { type: 'EnterLocation', characterId: 'guest-character', locationId: 'market-square' }
+      : {
+          type: 'FormHypothesis',
+          characterId: 'guest-character',
+          scope: 'CHARACTER',
+          statement: 'A private guess.',
+          subjects: [],
+        };
+  const before = await post(app, TOKENS.outsider, `${prefix}-early`, command);
+  if (before.status !== 404) throw new Error('an unassigned player must not be a campaign member');
+  const assigned = await post(app, TOKENS.dm, `${prefix}-assign`, {
+    type: 'AssignCharacter',
+    characterId: 'guest-character',
+    playerActorId: 'outsider',
+  });
+  const acted = await post(app, TOKENS.outsider, `${prefix}-act`, command);
+  if (assigned.body.status === 'rejected' || acted.body.status === 'rejected') {
+    throw new Error('assignment and action must be accepted');
+  }
+  return { assignmentId: assigned.body.commandId, actionId: acted.body.commandId };
+}
+
+/** G02-M01: disclose a remote place, enter it, and inspect it finding nothing. */
+export async function emptyInspectionChain(
+  app: FastifyInstance,
+  prefix: string,
+): Promise<{ revealId: string; moveId: string; inspectId: string }> {
+  const steps: [string, string, Record<string, unknown>][] = [
+    [
+      TOKENS.dm,
+      `${prefix}-place`,
+      {
+        type: 'CreateEntity',
+        entityId: 'empty-remote',
+        kind: 'location',
+        name: 'Empty remote',
+        existsSince: null,
+        location: { type: 'site', parentId: null },
+      },
+    ],
+    [
+      TOKENS.dm,
+      `${prefix}-reveal`,
+      {
+        type: 'AddKnowledge',
+        knowledgeId: 'empty-route',
+        scope: { kind: 'PARTY' },
+        knowledgeType: 'FACT',
+        statement: 'Known empty-remote',
+        subjects: ['empty-remote'],
+        knownSince: 36000,
+      },
+    ],
+    [
+      TOKENS.player,
+      `${prefix}-move`,
+      { type: 'EnterLocation', characterId: ELOWEN, locationId: 'empty-remote' },
+    ],
+    [
+      TOKENS.player,
+      `${prefix}-inspect`,
+      { type: 'ExamineEntity', characterId: ELOWEN, entityId: 'empty-remote', method: 'inspect' },
+    ],
+  ];
+  const ids: string[] = [];
+  for (const [token, commandId, command] of steps) {
+    const { body } = await post(app, token, commandId, command);
+    if (body.status === 'rejected') throw new Error(`${commandId}: ${body.code}`);
+    ids.push(body.commandId);
+  }
+  const [, revealId = '', moveId = '', inspectId = ''] = ids;
+  return { revealId, moveId, inspectId };
+}
+
+/** Blockers named by a rejected undo (DM results keep details). */
+export function blockersOf(body: CommandResult): string[] {
+  if (body.status !== 'rejected' || body.code !== 'UNDO_UNSAFE') return [];
+  return (body.details?.['blockers'] as { commandId: string }[]).map((b) => b.commandId);
+}
