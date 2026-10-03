@@ -3,6 +3,7 @@ import type { PerspectiveRequest } from '@ltw/contracts';
 import boundary from '../../../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import kernelSeed from '../../../../../fixtures/ravenford/kernel-seed.json' with { type: 'json' };
 import knowledgeSeed from '../../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
+import memorySeed from '../../../../../fixtures/ravenford/memory-seed.json' with { type: 'json' };
 import type { Actor } from '../../kernel/actor.ts';
 import { SequentialIds, SteppingClock } from '../../kernel/engine/deterministic-sources.ts';
 import { InMemoryEventStore } from '../../kernel/engine/in-memory-event-store.ts';
@@ -31,6 +32,12 @@ export async function seedRavenford(): Promise<{ engine: WorldEngine; state: Wor
       actor: DM,
       commands: knowledgeSeed.commands,
       commandIdPrefix: `${CAMPAIGN}.knowledge`,
+    }),
+    ...submissionsFromScript({
+      campaignId: CAMPAIGN,
+      actor: DM,
+      commands: memorySeed.commands,
+      commandIdPrefix: `${CAMPAIGN}.memory`,
     }),
   ];
   for (const submission of submissions) {

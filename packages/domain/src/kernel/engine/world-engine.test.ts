@@ -287,6 +287,45 @@ describe('WorldEngine: concurrency', () => {
     expect(await b.state()).toEqual(await a.state());
   });
 
+  it('reports a duplicate when its twin commits between the duplicate check and the decision', async () => {
+    const inner = new InMemoryEventStore();
+    const a = createHarness({ store: inner, namespace: 1 });
+    await seedBasicWorld(a);
+    const submission = {
+      commandId: 'twin',
+      campaignId: CAMPAIGN,
+      actor: DM,
+      command: { type: 'PlaceEntity', entityId: 'npc', locationId: 'inn' },
+    };
+    let twinCommitted = false;
+    const racing: EventStore = {
+      findCommand: async (id) => {
+        const found = await inner.findCommand(id);
+        if (!twinCommitted) {
+          // The twin commits right after this engine's first duplicate check.
+          twinCommitted = true;
+          expectAccepted(await a.engine.execute(submission));
+        }
+        return found;
+      },
+      loadStream: (id, after) => inner.loadStream(id, after),
+      loadCommands: (id) => inner.loadCommands(id),
+      append: (batch) => inner.append(batch),
+    };
+    const b = new WorldEngine({
+      store: racing,
+      ids: new SequentialIds(2),
+      clock: new SteppingClock(),
+    });
+
+    const result = await b.execute(submission);
+
+    expect(result.status).toBe('duplicate');
+    expect((await inner.loadCommands(CAMPAIGN)).filter((c) => c.commandId === 'twin')).toHaveLength(
+      1,
+    );
+  });
+
   it('gives up with CONCURRENCY_CONFLICT when the stream keeps moving', async () => {
     const inner = new InMemoryEventStore();
     const alwaysConflicting: EventStore = {

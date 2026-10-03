@@ -1,4 +1,5 @@
 import { decideAddKnowledge, decideAssignCharacter } from '../../knowledge/decide.ts';
+import { decideEndSession, decideRecordMemory, decideStartSession } from '../../memory/decide.ts';
 import type { Decision, DecisionContext, ResolvedCommand } from '../decision.ts';
 import {
   decideChangeEntityStatus,
@@ -40,5 +41,11 @@ export function decide(context: DecisionContext, command: ResolvedCommand): Deci
       return decideAddKnowledge(state, command);
     case 'AssignCharacter':
       return decideAssignCharacter(state, command);
+    case 'RecordMemory':
+      return decideRecordMemory(context, command);
+    case 'StartSession':
+      return decideStartSession(state, command);
+    case 'EndSession':
+      return decideEndSession(state, command);
   }
 }

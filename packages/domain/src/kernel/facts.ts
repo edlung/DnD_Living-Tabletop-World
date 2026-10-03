@@ -25,6 +25,10 @@ export const facts = {
   knowledge: (id: string): FactKey => `knowledge:${id}`,
   rosterCharacter: (characterId: string): FactKey => `roster:character:${characterId}`,
   rosterPlayer: (actorId: string): FactKey => `roster:player:${actorId}`,
+  memory: (id: string): FactKey => `memory:${id}`,
+  session: (id: string): FactKey => `session:${id}`,
+  sessionEnded: (id: string): FactKey => `session:${id}#ended`,
+  activeSession: (): FactKey => 'world#activeSession',
 };
 
 export interface Footprint {
@@ -107,6 +111,41 @@ export function footprintOf(event: KernelEvent): Footprint {
         writes: [facts.knowledge(knowledgeId)],
       };
     }
+    case 'MemoryRecorded': {
+      // A memory depends on every premise that made it possible (ADR 0010).
+      const p = event.payload;
+      const holder = holderOf(p.scope);
+      const entities = new Set([...p.participants, ...p.witnesses]);
+      if (p.locationId !== null) entities.add(p.locationId);
+      if (holder !== null) entities.add(holder);
+      return {
+        reads: [
+          clock,
+          ...[...entities].map((id) => facts.entity(id)),
+          ...p.witnesses.map((id) => facts.entityPlacement(id)),
+          ...(p.scope.kind === 'PARTY' ? p.witnesses.map((id) => facts.rosterCharacter(id)) : []),
+          ...(p.scope.kind === 'CHARACTER' ? [facts.rosterCharacter(p.scope.characterId)] : []),
+          ...p.relatedKnowledge.map((id) => facts.knowledge(id)),
+          ...p.causedBy.map((id) => facts.memory(id)),
+          ...(p.sessionId === null ? [] : [facts.session(p.sessionId)]),
+        ],
+        writes: [facts.memory(p.memoryId)],
+      };
+    }
+    case 'SessionStarted':
+      return {
+        reads: [clock, facts.activeSession()],
+        writes: [
+          facts.session(event.payload.sessionId),
+          facts.sessionEnded(event.payload.sessionId),
+          facts.activeSession(),
+        ],
+      };
+    case 'SessionEnded':
+      return {
+        reads: [clock, facts.session(event.payload.sessionId)],
+        writes: [facts.sessionEnded(event.payload.sessionId), facts.activeSession()],
+      };
     case 'CharacterAssigned':
       return {
         reads: [clock, facts.entity(event.payload.characterId)],
@@ -144,6 +183,14 @@ export function restoredFacts(restore: Restore): FactKey[] {
         facts.rosterCharacter(restore.characterId),
         facts.rosterPlayer(restore.playerActorId),
       ];
+    case 'memory':
+      return [facts.memory(restore.memoryId)];
+    case 'session':
+      return [facts.session(restore.sessionId), facts.sessionEnded(restore.sessionId)];
+    case 'session.ended':
+      return [facts.sessionEnded(restore.sessionId)];
+    case 'world.activeSession':
+      return [facts.activeSession()];
   }
 }
 

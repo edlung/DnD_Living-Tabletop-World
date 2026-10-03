@@ -10,6 +10,7 @@ Composition root of the modular monolith and the only workspace package allowed 
 | Database migrations  | `src/platform/db/`, `migrations/`                                         | Read `migrations/AGENTS.md` before adding SQL.                                              |
 | HTTP app             | `src/http/app.ts`, `src/http/routes/`                                     | Fastify (ADR 0009). Check order in `request-context.ts`; fixed error bodies in `errors.ts`. |
 | Authentication       | `src/http/auth.ts`                                                        | Dev persona tokens only outside production; actors never come from request data.            |
+| Memory routes        | `src/http/routes/memory-routes.ts`                                        | Scoped recall (`/memories`), single memory, member-only `/sessions` (ADR 0010).             |
 | World Engine runtime | `src/world-engine/runtime.ts`, `src/world-engine/postgres-event-store.ts` | PostgreSQL EventStore; the only canonical write path.                                       |
 | Ravenford seeding    | `src/world-engine/seed-ravenford-cli.ts`                                  | Idempotent; `pnpm seed:ravenford` after `pnpm build` and `pnpm db:migrate`.                 |
 

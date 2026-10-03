@@ -27,13 +27,19 @@ export function visibleRecords(
   );
 }
 
-/** Entity IDs the perspective knows exist (ADR 0008, "Entities"). */
+/** Entity IDs the perspective knows exist (ADR 0008 "Entities", ADR 0010). */
 export function knownEntityIds(state: WorldState, perspective: ResolvedPerspective): Set<string> {
   if (perspective.scopes === 'ALL') return new Set(state.entities.keys());
   const known = new Set<string>();
   for (const record of visibleRecords(state, perspective)) {
     record.subjects.forEach((entityId) => known.add(entityId));
     if (record.attributedTo !== null) known.add(record.attributedTo);
+  }
+  for (const memory of state.memories.values()) {
+    // Entities named by visible memories are known too (ADR 0010).
+    if (!perspective.scopes.has(scopeKey(memory.scope))) continue;
+    memory.participants.forEach((entityId) => known.add(entityId));
+    if (memory.locationId !== null) known.add(memory.locationId);
   }
   if (perspective.holderId !== null) known.add(perspective.holderId);
   if (perspective.scopes.has('PARTY')) {

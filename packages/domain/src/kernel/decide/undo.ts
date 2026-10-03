@@ -151,6 +151,22 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'KnowledgeAssigned':
         restores.push({ fact: 'knowledge', knowledgeId: event.payload.knowledgeId, value: null });
         break;
+      case 'MemoryRecorded':
+        restores.push({ fact: 'memory', memoryId: event.payload.memoryId, value: null });
+        break;
+      case 'SessionStarted':
+        removedScenes.add(event.payload.sessionId);
+        restores.push({ fact: 'session', sessionId: event.payload.sessionId, value: null });
+        restores.push({ fact: 'world.activeSession', value: before.activeSessionId });
+        break;
+      case 'SessionEnded':
+        restores.push({
+          fact: 'session.ended',
+          sessionId: event.payload.sessionId,
+          value: before.sessions.get(event.payload.sessionId)?.endedAt ?? null,
+        });
+        restores.push({ fact: 'world.activeSession', value: before.activeSessionId });
+        break;
       case 'CharacterAssigned':
         restores.push({
           fact: 'roster',
@@ -172,6 +188,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       if (removedEntities.has(restore.entityId)) return false;
     }
     if (restore.fact === 'scene.ended' && removedScenes.has(restore.sceneId)) return false;
+    if (restore.fact === 'session.ended' && removedScenes.has(restore.sessionId)) return false;
     const key = restoredFacts(restore).join('|');
     if (seen.has(key)) return false;
     seen.add(key);

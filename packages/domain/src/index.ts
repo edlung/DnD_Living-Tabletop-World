@@ -88,3 +88,15 @@ export {
   type KnowledgeFilter,
   type ListResult,
 } from './knowledge/queries.ts';
+export { holderPerspective } from './knowledge/perspective.ts';
+export type { MemoryRecord, SessionRecord } from './memory/records.ts';
+export {
+  DEFAULT_RECALL_LIMIT,
+  MAX_RECALL_LIMIT,
+  getMemory,
+  listSessions,
+  recallMemories,
+  type RecallQuery,
+  type RecallResult,
+} from './memory/retrieval.ts';
+export { placementAt } from './kernel/projections/world-view.ts';

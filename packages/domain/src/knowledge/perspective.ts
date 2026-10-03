@@ -86,6 +86,24 @@ export function resolvePerspective(
   }
 }
 
+/**
+ * What a holder scope itself can see (used to reject memories that cite
+ * knowledge or memories their holder could not have).
+ */
+export function holderPerspective(
+  state: WorldState,
+  scope:
+    | { readonly kind: 'PUBLIC' | 'PARTY' }
+    | { readonly kind: 'CHARACTER'; readonly characterId: string }
+    | { readonly kind: 'NPC'; readonly npcId: string },
+): ResolvedPerspective {
+  const holderId =
+    scope.kind === 'CHARACTER' ? scope.characterId : scope.kind === 'NPC' ? scope.npcId : null;
+  const access = granted(state, scope.kind, holderId);
+  if (!access.ok) throw new Error('unreachable: holder perspectives are always granted');
+  return access.perspective;
+}
+
 function granted(
   state: WorldState,
   kind: ResolvedPerspective['kind'],

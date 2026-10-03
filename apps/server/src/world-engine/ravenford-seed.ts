@@ -18,6 +18,7 @@ export const RAVENFORD_FIXTURES_DIR = fileURLToPath(
 const SEED_FILES = [
   { file: 'kernel-seed.json', prefix: 'seed' },
   { file: 'knowledge-seed.json', prefix: 'knowledge' },
+  { file: 'memory-seed.json', prefix: 'memory' },
 ] as const;
 
 const seedSchema = z.object({

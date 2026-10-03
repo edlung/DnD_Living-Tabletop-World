@@ -1,0 +1,124 @@
+{
+  "$comment": "Stage 30 memory boundary specification (ADR 0010): exact memories each perspective recalls, and text that must never appear for it (IDs JSON-quoted). Shared by domain and HTTP tests; update with memory-seed.json.",
+  "visible": {
+    "PUBLIC": ["mem-public-vanished-spring"],
+    "PARTY": [
+      "mem-public-vanished-spring",
+      "mem-party-talk-mira",
+      "mem-party-decide-road",
+      "mem-party-supplies"
+    ],
+    "CHARACTER:elowen-starwhisper": [
+      "mem-public-vanished-spring",
+      "mem-party-talk-mira",
+      "mem-party-decide-road",
+      "mem-party-supplies",
+      "mem-elowen-mira-glance"
+    ],
+    "NPC:mira-vale": ["mem-public-vanished-spring", "mem-mira-departure"],
+    "NPC:orin-stonebeard": ["mem-public-vanished-spring", "mem-orin-prior-symbol"],
+    "NPC:captain-thorne": [
+      "mem-public-vanished-spring",
+      "mem-thorne-departure",
+      "mem-thorne-patrol"
+    ]
+  },
+  "forbiddenMarkers": {
+    "PUBLIC": [
+      "traveller",
+      "crate",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "roll out of Market Square",
+      "\"mem-mira-departure\"",
+      "logged the caravan",
+      "patrol never returned",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\"",
+      "Mira told us",
+      "search the Old Trade Road",
+      "bought supplies",
+      "\"mem-party-talk-mira\"",
+      "\"mem-party-decide-road\"",
+      "\"mem-party-supplies\"",
+      "glancing nervously",
+      "\"mem-elowen-mira-glance\""
+    ],
+    "PARTY": [
+      "traveller",
+      "crate",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "roll out of Market Square",
+      "\"mem-mira-departure\"",
+      "logged the caravan",
+      "patrol never returned",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\"",
+      "glancing nervously",
+      "\"mem-elowen-mira-glance\""
+    ],
+    "CHARACTER:elowen-starwhisper": [
+      "traveller",
+      "crate",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "roll out of Market Square",
+      "\"mem-mira-departure\"",
+      "logged the caravan",
+      "patrol never returned",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\""
+    ],
+    "NPC:mira-vale": [
+      "traveller",
+      "crate",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "logged the caravan",
+      "patrol never returned",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\"",
+      "Mira told us",
+      "search the Old Trade Road",
+      "bought supplies",
+      "\"mem-party-talk-mira\"",
+      "\"mem-party-decide-road\"",
+      "\"mem-party-supplies\"",
+      "glancing nervously",
+      "\"mem-elowen-mira-glance\""
+    ],
+    "NPC:orin-stonebeard": [
+      "roll out of Market Square",
+      "\"mem-mira-departure\"",
+      "logged the caravan",
+      "patrol never returned",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\"",
+      "Mira told us",
+      "search the Old Trade Road",
+      "bought supplies",
+      "\"mem-party-talk-mira\"",
+      "\"mem-party-decide-road\"",
+      "\"mem-party-supplies\"",
+      "glancing nervously",
+      "\"mem-elowen-mira-glance\""
+    ],
+    "NPC:captain-thorne": [
+      "traveller",
+      "crate",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "roll out of Market Square",
+      "\"mem-mira-departure\"",
+      "Mira told us",
+      "search the Old Trade Road",
+      "bought supplies",
+      "\"mem-party-talk-mira\"",
+      "\"mem-party-decide-road\"",
+      "\"mem-party-supplies\"",
+      "glancing nervously",
+      "\"mem-elowen-mira-glance\""
+    ]
+  }
+}

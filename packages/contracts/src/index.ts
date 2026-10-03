@@ -74,3 +74,19 @@ export {
   type KnownEntitiesResponse,
   type RelatedKnowledgeResponse,
 } from './knowledge/views.ts';
+export {
+  MEMORY_KINDS,
+  memoryIdSchema,
+  memoryScopeSchema,
+  sessionIdSchema,
+  type MemoryKind,
+  type MemoryScope,
+} from './memory/commands.ts';
+export type {
+  MemoryRecallResponse,
+  MemoryRecordResponse,
+  MemoryView,
+  RecalledMemory,
+  SessionListResponse,
+  SessionView,
+} from './memory/views.ts';

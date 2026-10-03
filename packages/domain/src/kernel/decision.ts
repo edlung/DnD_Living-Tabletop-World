@@ -21,10 +21,15 @@ export type Decision =
 
 /** A command after the engine assigned any generated IDs. */
 export type ResolvedCommand =
-  | Exclude<KernelCommand, { type: 'CreateEntity' | 'StartScene' | 'AddKnowledge' }>
+  | Exclude<
+      KernelCommand,
+      { type: 'CreateEntity' | 'StartScene' | 'AddKnowledge' | 'RecordMemory' | 'StartSession' }
+    >
   | (KernelCommandOf<'CreateEntity'> & { readonly entityId: string })
   | (KernelCommandOf<'StartScene'> & { readonly sceneId: string })
-  | (KernelCommandOf<'AddKnowledge'> & { readonly knowledgeId: string });
+  | (KernelCommandOf<'AddKnowledge'> & { readonly knowledgeId: string })
+  | (KernelCommandOf<'RecordMemory'> & { readonly memoryId: string })
+  | (KernelCommandOf<'StartSession'> & { readonly sessionId: string });
 
 export type ResolvedCommandOf<T extends ResolvedCommand['type']> = Extract<
   ResolvedCommand,

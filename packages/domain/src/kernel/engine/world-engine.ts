@@ -107,12 +107,13 @@ export class WorldEngine {
   ): Promise<CommandResult> {
     const { commandId, actor } = submission;
     for (let attempt = 1; attempt <= this.#maxAttempts; attempt += 1) {
-      if (attempt > 1) {
-        await this.#backoff(attempt - 1);
-        const prior = await this.#store.findCommand(commandId);
-        if (prior) return this.#priorOutcome(prior, fingerprint);
-      }
+      if (attempt > 1) await this.#backoff(attempt - 1);
       const snapshot = await this.#catchUp(campaignId);
+      // Check for a committed twin AFTER loading state: a twin that committed
+      // since the caller's first check is now part of the state we would decide
+      // on, so its outcome must be reported instead of a decision against it.
+      const prior = await this.#store.findCommand(commandId);
+      if (prior) return this.#priorOutcome(prior, fingerprint);
       if (command.type === 'CreateCampaign' && snapshot) {
         return rejected(commandId, {
           code: 'CAMPAIGN_ALREADY_EXISTS',
@@ -203,6 +204,12 @@ export class WorldEngine {
     }
     if (command.type === 'AddKnowledge') {
       return { ...command, knowledgeId: command.knowledgeId ?? this.#ids.next() };
+    }
+    if (command.type === 'RecordMemory') {
+      return { ...command, memoryId: command.memoryId ?? this.#ids.next() };
+    }
+    if (command.type === 'StartSession') {
+      return { ...command, sessionId: command.sessionId ?? this.#ids.next() };
     }
     return command;
   }

@@ -44,6 +44,14 @@ export const REJECTION_CODES = [
   'INVALID_ASSIGNMENT',
   /** The character or the player is already assigned. */
   'ALREADY_ASSIGNED',
+  /** Memory shape violates ADR 0010 (holder kind, kind-specific fields). */
+  'INVALID_MEMORY',
+  /** The holder could not have this memory (future, before existence, absent, uncitable). */
+  'IMPOSSIBLE_MEMORY',
+  'MEMORY_NOT_FOUND',
+  'SESSION_NOT_FOUND',
+  'SESSION_ALREADY_ACTIVE',
+  'SESSION_NOT_ACTIVE',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

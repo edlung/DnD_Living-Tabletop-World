@@ -2,7 +2,14 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 20 (Knowledge Boundary), awaiting Astra Gate 01. Built on the World Kernel (campaign stream, World Engine, replay, audit, undo): typed knowledge records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes; perspective-scoped projections; and an HTTP API with development persona authentication. No gameplay yet.
+**Current state:** Stage 30 (Memory & Timeline). The stages so far provide:
+
+- **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
+- **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
+- **Memory:** memories and sessions, rejection of impossible memories, and scoped recall over world time (Astra reviews it at Gate 02).
+- **HTTP API** with development persona authentication.
+
+No gameplay yet.
 
 Agents: start with [`docs/AI_CONTEXT_MAP.md`](docs/AI_CONTEXT_MAP.md) and the nearest `AGENTS.md`.
 
@@ -61,9 +68,12 @@ Routes under `/campaigns/:campaignId/`:
 - `GET knowledge/:knowledgeId/related?depth=1..3`
 - `GET entities`
 - `GET entities/:entityId/knowledge`
+- `GET memories` (filters `q`, `entity`, `location`, `from`, `to`, `kind`, `session`, `asOf`, `limit`)
+- `GET memories/:memoryId`
+- `GET sessions` (campaign members; no perspective)
 - `POST commands`
 
-Every GET requires `perspective=DM|PUBLIC|PARTY|PLAYER|CHARACTER:<id>|NPC:<id>`. Persona tokens are in `fixtures/ravenford/personas.json` (development and test only; production refuses them). Who sees what: ADR 0008; HTTP behavior: ADR 0009.
+Every GET requires `perspective=DM|PUBLIC|PARTY|PLAYER|CHARACTER:<id>|NPC:<id>`. Persona tokens are in `fixtures/ravenford/personas.json` (development and test only; production refuses them). Who sees what: ADR 0008 (knowledge) and ADR 0010 (memories); HTTP behavior: ADR 0009.
 
 ## Repository layout
 

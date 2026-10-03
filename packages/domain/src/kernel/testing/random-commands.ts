@@ -70,9 +70,13 @@ export function randomCommand(
   if (roll < 0.69) {
     return { type: 'StartScene', sceneId: `s${step}`, title: 'Scene', locationId: pick(locations) };
   }
-  if (roll < 0.73) return { type: 'EndScene', sceneId: pick([...state.scenes.keys(), 'none']) };
-  if (roll < 0.79) return { type: 'AdvanceWorldTime', by: 1 + Math.floor(rng() * 7_200) };
-  if (roll < 0.9) return randomKnowledge(rng, pick, state, entities, step);
+  if (roll < 0.71) return { type: 'EndScene', sceneId: pick([...state.scenes.keys(), 'none']) };
+  if (roll < 0.72) return { type: 'StartSession', sessionId: `ss${step}`, title: 'Session' };
+  if (roll < 0.73)
+    return { type: 'EndSession', sessionId: pick([...state.sessions.keys(), 'none']) };
+  if (roll < 0.76) return { type: 'AdvanceWorldTime', by: 1 + Math.floor(rng() * 7_200) };
+  if (roll < 0.84) return randomKnowledge(rng, pick, state, entities, step);
+  if (roll < 0.9) return randomMemory(rng, pick, state, entities, step);
   if (roll < 0.92) {
     return {
       type: 'AssignCharacter',
@@ -137,5 +141,48 @@ function randomKnowledge(
     knownSince: valid
       ? pick([null, state.clock, state.clock - 3_600])
       : pick([null, state.clock + 1]),
+  };
+}
+
+function randomMemory(
+  rng: () => number,
+  pick: <T>(items: readonly T[]) => T,
+  state: WorldState,
+  entities: readonly string[],
+  step: number,
+): Record<string, unknown> {
+  // Mostly plausible memories (holder at its current place, now), sometimes impossible.
+  const holders = [...state.entities.values()].filter(
+    (e) => (e.kind === 'npc' || e.kind === 'character') && e.placement !== null,
+  );
+  const holder = holders.length > 0 && rng() < 0.8 ? pick(holders) : undefined;
+  const scope = holder
+    ? holder.kind === 'npc'
+      ? { kind: 'NPC', npcId: holder.entityId }
+      : { kind: 'CHARACTER', characterId: holder.entityId }
+    : pick([{ kind: 'PUBLIC' }, { kind: 'PARTY' }, { kind: 'NPC', npcId: pick(entities) }]);
+  const memoryKind = pick([
+    'OBSERVATION',
+    'CONVERSATION',
+    'DECISION',
+    'DISCOVERY',
+    'CONSEQUENCE',
+  ] as const);
+  const memories = [...state.memories.keys()];
+  return {
+    type: 'RecordMemory',
+    memoryId: `m${step}`,
+    scope,
+    memoryKind,
+    summary: `Memory ${step}`,
+    occurredAt: pick([state.clock, state.clock, state.clock - 600, state.clock + 60]),
+    ...(holder?.placement ? { locationId: holder.placement.locationId } : {}),
+    participants: holder && rng() < 0.9 ? [holder.entityId] : [],
+    ...(memoryKind === 'CONSEQUENCE' && memories.length > 0 && rng() < 0.6
+      ? { causedBy: [pick(memories)] }
+      : {}),
+    ...(state.sessions.size > 0 && rng() < 0.3
+      ? { sessionId: pick([...state.sessions.keys()]) }
+      : {}),
   };
 }

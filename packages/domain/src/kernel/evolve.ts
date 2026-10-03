@@ -1,4 +1,5 @@
 import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
+import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
 import { withEntry, withoutEntry } from './maps.ts';
@@ -114,6 +115,12 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyKnowledgeAssigned(state, event);
     case 'CharacterAssigned':
       return applyCharacterAssigned(state, event);
+    case 'MemoryRecorded':
+      return applyMemoryRecorded(state, event);
+    case 'SessionStarted':
+      return applySessionStarted(state, event);
+    case 'SessionEnded':
+      return applySessionEnded(state, event);
   }
 }
 
@@ -140,7 +147,8 @@ function applyUndo(
   return next;
 }
 
-const isRemoval = (restore: Restore) => restore.fact === 'entity' || restore.fact === 'scene';
+const isRemoval = (restore: Restore) =>
+  restore.fact === 'entity' || restore.fact === 'scene' || restore.fact === 'session';
 
 function applyRestore(state: WorldState, restore: Restore): WorldState {
   switch (restore.fact) {
@@ -177,6 +185,29 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
         throw new CorruptHistoryError(`unknown assignment of ${restore.characterId}`);
       }
       return { ...state, roster: withoutEntry(state.roster, restore.characterId) };
+    case 'memory':
+      if (!state.memories.has(restore.memoryId)) {
+        throw new CorruptHistoryError(`unknown memory ${restore.memoryId}`);
+      }
+      return { ...state, memories: withoutEntry(state.memories, restore.memoryId) };
+    case 'session':
+      if (!state.sessions.has(restore.sessionId)) {
+        throw new CorruptHistoryError(`unknown session ${restore.sessionId}`);
+      }
+      return { ...state, sessions: withoutEntry(state.sessions, restore.sessionId) };
+    case 'session.ended': {
+      const session = state.sessions.get(restore.sessionId);
+      if (!session) throw new CorruptHistoryError(`unknown session ${restore.sessionId}`);
+      return {
+        ...state,
+        sessions: withEntry(state.sessions, session.sessionId, {
+          ...session,
+          endedAt: restore.value,
+        }),
+      };
+    }
+    case 'world.activeSession':
+      return { ...state, activeSessionId: restore.value };
   }
 }
 

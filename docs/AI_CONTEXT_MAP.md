@@ -35,6 +35,8 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Database migrations | `apps/server/migrations/AGENTS.md`, `apps/server/src/platform/db/` (`migration-source.ts`, `migrator.ts`, `migrate-cli.ts`), `docker-compose.yml` |
 | HTTP API: app, auth, errors, routes | `apps/server/src/http/app.ts`, `auth.ts`, `errors.ts`, `request-context.ts`, `routes/`; ADR 0009 |
 | Knowledge boundary: records, perspectives, projections, queries | `packages/domain/src/knowledge/AGENTS.md`, ADR 0008 (owner-approved) |
+| Memory, sessions, impossible-memory rules, scoped recall | `packages/domain/src/memory/AGENTS.md`, ADR 0010 (owner-approved) |
+| Memory API routes | `apps/server/src/http/routes/memory-routes.ts`; contracts in `packages/contracts/src/memory/` |
 | Knowledge API contracts (perspective format, views, responses) | `packages/contracts/src/knowledge/` |
 | Gate 01 boundary specification and secret fixtures | `fixtures/ravenford/AGENTS.md`, `fixtures/ravenford/knowledge-boundary.json` |
 | World Kernel: state, commands, events, engine, undo, projections | `packages/domain/src/kernel/AGENTS.md` (file map), ADRs 0006 (approved temporal/undo semantics) and 0007 (model, pipeline, storage) |

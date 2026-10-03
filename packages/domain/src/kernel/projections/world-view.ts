@@ -2,7 +2,7 @@ import type { EntityKind, EntityStatus } from '@ltw/contracts';
 
 import type { RecordedEvent } from '../events.ts';
 import { replay } from '../evolve.ts';
-import type { LocationInfo } from '../state.ts';
+import type { LocationInfo, WorldState } from '../state.ts';
 import { isAtOrAfter } from '../world-time.ts';
 
 /**
@@ -99,4 +99,35 @@ export function worldViewAt(history: readonly RecordedEvent[], worldTime: number
     .map(({ sceneId, title, locationId }) => ({ sceneId, title, locationId }));
 
   return { worldTime, entities, scenes };
+}
+
+/**
+ * Where an entity was at a world time under the current canon (null if
+ * unplaced or unknown). Same semantics as `worldViewAt`, for one entity.
+ */
+export function placementAt(
+  state: WorldState,
+  history: readonly RecordedEvent[],
+  entityId: string,
+  worldTime: number,
+): string | null {
+  let locationId: string | null = null;
+  for (const event of history) {
+    if (event.type !== 'EntityPlaced' || event.payload.entityId !== entityId) continue;
+    if ((state.commands.get(event.causation.commandId)?.undoneBy ?? null) !== null) continue;
+    if (isAtOrAfter(worldTime, event.payload.since)) locationId = event.payload.locationId;
+  }
+  return locationId;
+}
+
+/** True if `inner` is `outer` or nested inside it (location containment is timeless). */
+export function isWithinLocation(state: WorldState, inner: string, outer: string): boolean {
+  const seen = new Set<string>();
+  let cursor: string | null = inner;
+  while (cursor !== null && !seen.has(cursor)) {
+    if (cursor === outer) return true;
+    seen.add(cursor);
+    cursor = state.entities.get(cursor)?.location?.parentId ?? null;
+  }
+  return false;
 }

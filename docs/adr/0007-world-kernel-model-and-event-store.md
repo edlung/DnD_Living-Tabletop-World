@@ -83,3 +83,7 @@ Each event type declares the facts it reads and writes (for example `entity:<id>
 ## Invariants affected
 
 Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic rejection). No invariant is weakened.
+
+## Amendments
+
+- **Stage 30 (2026-10-03), defect fix.** The duplicate-command lookup (pipeline step 2) is repeated on every attempt _after_ the stream is loaded. Previously, a twin submission that committed between the first lookup and the state load could make the second submission be decided against its own effect (for example `NO_EFFECT`) instead of returning `duplicate`. A two-process integration test exposed this; a deterministic unit regression test now covers it. The pipeline's order and guarantees are otherwise unchanged.

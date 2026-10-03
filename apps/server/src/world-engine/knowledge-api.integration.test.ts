@@ -48,6 +48,10 @@ const REQUESTS: [string, string][] = [
   ['/campaigns/ravenford/entities/guild-caravan/knowledge?perspective=NPC:mira-vale', TOKENS.dm],
   ['/campaigns/ravenford/knowledge?perspective=DM', TOKENS.dm],
   ['/campaigns/ravenford/knowledge?perspective=DM', TOKENS.outsider],
+  ['/campaigns/ravenford/memories?perspective=PARTY&q=caravan', TOKENS.player],
+  ['/campaigns/ravenford/memories?perspective=NPC:orin-stonebeard&q=symbol', TOKENS.dm],
+  ['/campaigns/ravenford/memories/mem-orin-prior-symbol?perspective=PARTY', TOKENS.player],
+  ['/campaigns/ravenford/sessions', TOKENS.player],
 ];
 
 async function responses(app: FastifyInstance) {
@@ -71,5 +75,8 @@ describe('knowledge API on PostgreSQL', () => {
     expect(await responses(live)).toEqual(expected);
     expect(await responses(restarted)).toEqual(expected);
     expect(JSON.stringify(expected.slice(0, 8))).not.toContain('Ashen');
+    const playerMemoryResponses = [expected[10], expected[12], expected[13]];
+    expect(JSON.stringify(playerMemoryResponses)).not.toContain('traveller');
+    expect(JSON.stringify(expected[11])).toContain('traveller');
   });
 });

@@ -16,6 +16,12 @@ import {
   knowledgeAssignedPayloadSchema,
   knowledgeRestoreSchemas,
 } from '../knowledge/events.ts';
+import {
+  memoryRecordedPayloadSchema,
+  memoryRestoreSchemas,
+  sessionEndedPayloadSchema,
+  sessionStartedPayloadSchema,
+} from '../memory/events.ts';
 import { actorSchema } from './actor.ts';
 
 /**
@@ -66,6 +72,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   z.object({ fact: z.literal('world.clock'), value: worldTimeSchema }).strict(),
   z.object({ fact: z.literal('world.activeScene'), value: sceneIdSchema.nullable() }).strict(),
   ...knowledgeRestoreSchemas,
+  ...memoryRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -141,6 +148,9 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   ),
   event('KnowledgeAssigned', knowledgeAssignedPayloadSchema),
   event('CharacterAssigned', characterAssignedPayloadSchema),
+  event('MemoryRecorded', memoryRecordedPayloadSchema),
+  event('SessionStarted', sessionStartedPayloadSchema),
+  event('SessionEnded', sessionEndedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

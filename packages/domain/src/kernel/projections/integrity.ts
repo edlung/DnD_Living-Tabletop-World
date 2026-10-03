@@ -110,6 +110,29 @@ export function checkWorldIntegrity(state: WorldState): string[] {
     players.add(playerId);
   }
 
+  for (const [id, memory] of state.memories) {
+    if (!state.usedIds.has(id)) report(`memory ${id} missing from used IDs`);
+    const referenced = [
+      ...memory.participants,
+      ...memory.witnesses,
+      ...(memory.locationId === null ? [] : [memory.locationId]),
+    ];
+    if (referenced.some((entityId) => !state.entities.has(entityId))) {
+      report(`memory ${id} references a missing entity`);
+    }
+    if (memory.relatedKnowledge.some((k) => !state.knowledge.has(k))) {
+      report(`memory ${id} cites missing knowledge`);
+    }
+    if (memory.causedBy.some((m) => !state.memories.has(m))) {
+      report(`memory ${id} cites a missing cause`);
+    }
+    if (memory.occurredAt > state.clock) report(`memory ${id} is from the future`);
+  }
+  const openSessions = [...state.sessions.values()].filter((session) => session.endedAt === null);
+  if ((openSessions[0]?.sessionId ?? null) !== state.activeSessionId || openSessions.length > 1) {
+    report('active session pointer does not match the open session');
+  }
+
   for (const trace of state.commands.values()) {
     if (
       trace.undoneBy !== null &&

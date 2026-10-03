@@ -16,7 +16,14 @@ describe('deterministic replay over randomized command sequences', () => {
     await seedBasicWorld(harness);
     const accepted: string[] = [];
     const snapshots = new Map<number, WorldState>();
-    const outcomes = { accepted: 0, rejected: 0, undone: 0, knowledge: 0, assigned: 0 };
+    const outcomes = {
+      accepted: 0,
+      rejected: 0,
+      undone: 0,
+      knowledge: 0,
+      assigned: 0,
+      memories: 0,
+    };
 
     for (let step = 0; step < 250; step += 1) {
       const before = await harness.state();
@@ -34,6 +41,7 @@ describe('deterministic replay over randomized command sequences', () => {
       if (command['type'] === 'UndoCommand') outcomes.undone += 1;
       if (command['type'] === 'AddKnowledge') outcomes.knowledge += 1;
       if (command['type'] === 'AssignCharacter') outcomes.assigned += 1;
+      if (command['type'] === 'RecordMemory') outcomes.memories += 1;
       accepted.push(commandId);
       expect(checkWorldIntegrity(after), JSON.stringify(command)).toEqual([]);
       snapshots.set(after.version, after);
@@ -44,6 +52,7 @@ describe('deterministic replay over randomized command sequences', () => {
     expect(outcomes.rejected).toBeGreaterThan(40);
     expect(outcomes.undone).toBeGreaterThan(3);
     expect(outcomes.knowledge).toBeGreaterThan(3);
+    expect(outcomes.memories).toBeGreaterThan(2);
 
     const { state, history } = await harness.snapshot();
     expect(replay(history)).toEqual(state);
