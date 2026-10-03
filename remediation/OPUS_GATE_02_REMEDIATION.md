@@ -127,3 +127,100 @@ Astra:
 ## Hard Stop
 
 Opus stops here. Do not begin Stage 80 until Astra writes PASS.
+
+---
+
+# Remediation for Retest 2 (after `reviews/ASTRA_GATE_02_RETEST_1.md`)
+
+- Astra report: `reviews/ASTRA_GATE_02_RETEST_1.md` (FAIL: G02-H03 High, G02-M01 Medium). G02-H01 and G02-H02 were confirmed closed.
+- Retest number / required output path: 2 — `reviews/ASTRA_GATE_02_RETEST_2.md`
+- Revision before remediation: `757db1066fc4b8fd14e26244c1e63adbdd0aa281`
+- Revision after remediation: `017ab0b4fb1386dfc994a46bb4d82b762aaba237`
+- Builder: Claude Opus 5.5, MAX
+- Status: AWAITING_ASTRA_RETEST
+
+## G02-H03 — Undo removes the controlling-player assignment while the player's action stands
+
+- **Severity:** High
+- **Violated invariant:** 1 (undo validation); 12 (ADR 0006 §8 dependency-preserving undo); ADR 0013 §1 (the controlling-player assignment authorizes player commands).
+- **Root cause:**
+  - Authorization read the roster, but returned only allow or deny, so the authority a command was accepted under never reached its footprint.
+  - My G02-H02 premises covered what made a _target_ legal, not _who_ was allowed to act.
+  - My randomized premise test only checked recorded premises, so it could not see an omitted one, as the reviewer noted.
+- **Regression tests added first** (all failed on `757db10` before the fix):
+  - `packages/domain/src/investigation/authority-and-recovery.test.ts`, `undo_controlling_assignment_is_blocked_by_player_action`. It covers EnterLocation to a PUBLIC-known destination, EnterLocation to a perceived destination, and a CHARACTER `FormHypothesis` with no subjects.
+    - The exact blocker is named, and a rejected undo changes nothing.
+    - Reverse-order undo is accepted.
+    - The re-decision oracle is clean.
+    - DM-issued actions stay independent of the assignment.
+  - `apps/server/src/http/gate02-regressions.test.ts` (in-memory) and `apps/server/src/world-engine/gate02-regressions.integration.test.ts` (PostgreSQL, undo after reload): the reviewer's reproduction for the move and hypothesis variants.
+  - All of these failed on `757db10` with the pre-fix domain sources restored temporarily (3 in-memory, 3 PostgreSQL).
+- **Fix:**
+  - `kernel/authorization.ts` returns the authority it granted: `campaign-creator`, `system`, `dm`, or `controller`. The engine passes it to `decide`.
+  - `kernel/decide/decide.ts` adds a `controller` premise to every player command issued by its controlling player. That premise reads `roster:character:<id>` and `roster:player:<actor>`.
+  - The dispatcher also refuses (throws on) any accepted player command that recorded no `PremisesRecorded`, so a future player command cannot skip the boundary.
+  - DM and system authority add nothing.
+- **Why this fixes the boundary rather than the symptom:**
+  - The premise comes from the authorization decision itself, centrally, for every player command, current and future. It is not attached per command type.
+  - **Independent detection of omitted premises:** `kernel/testing/redecide.ts` re-decides every still-effective command from an empty campaign: authorization, decision, and identical events. It runs:
+    - in `investigation/premises.property.test.ts` (8 seeds, 70 steps; now also with a second assigned player, inspections, DM-issued actions, and assignment undos), after every accepted undo and at the end;
+    - in `kernel/replay.test.ts` (5 × 250 random commands across all domains);
+    - in `contradiction/epistemic.property.test.ts`.
+  - On `757db10` the oracle independently reported a still-standing hypothesis as "no longer authorized: FORBIDDEN" after an assignment undo. It found no other divergence across the randomized suites after the fix.
+  - Audit of other authorization premises: DM authority depends on the campaign's DM, which no command can undo. System authority depends on nothing. HTTP membership uses the same roster facts.
+
+## G02-M01 — An empty inspection creates an undo blocker that cannot itself be undone
+
+- **Severity:** Medium
+- **Root cause:**
+  - My Stage 70 fix rejected undo of a command with no restorable writes (`NO_EFFECT`), to avoid an empty `CommandUndone`, which the event schema then forbade.
+  - Such a command stayed effective forever and kept its read dependencies, stranding the dependent-first recovery that ADR 0006 §8 and the ADR 0013 amendment describe.
+- **Regression tests added first** (failed on `757db10`):
+  - `authority-and-recovery.test.ts`, `empty_inspection_does_not_strand_dependency_undo`:
+    - It walks disclosure → move → empty inspection. Disclosure undo names the move as blocker; move undo names the inspection.
+    - The inspection undo is accepted, then the move, then the disclosure.
+    - History keeps `EvidenceExamined`; replay, integrity, and the oracle all hold.
+  - The same chain over HTTP (in-memory) and on PostgreSQL after reload.
+  - `investigation/undo-and-replay.test.ts` was updated: the empty compensation is accepted and reads back from storage.
+- **Fix:**
+  - `kernel/decide/undo.ts` accepts undo of a command that changed nothing restorable, with an empty restore list. The compensation takes the command out of current canon, which releases its reads, and its events stay in history.
+  - `CommandUndone.restores` may now be empty. This is a backward-compatible relaxation: every earlier event stays valid.
+- **Why this fixes the boundary:** every effective command except campaign creation and undo itself is now undoable when nothing later depends on it. So the latest dependent in any chain can always be unwound, and recovery cannot strand. Real dependencies are kept: the inspection still blocks its premises while it stands.
+- **Owner disposition:** not needed. The behavior follows ADR 0006 §8, which appends one compensation for any undone command. The Stage 70 `NO_EFFECT` note in ADR 0013 is revised in place and marked as revised.
+
+## Also changed
+
+- Contradiction IDs now derive from the causing command and the pair, not from other history. Re-decision therefore reproduces them; a test re-detects a contradiction after an undo and checks the oracle.
+- Documentation:
+  - ADR amendments 0013 and 0007.
+  - AGENTS for `kernel/` and `investigation/`.
+
+## Validation (revision `017ab0b`; Node 25.8.1, pnpm 11.11.0, PostgreSQL 18)
+
+| Command                                                                         | Result                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `pnpm validate:ci-local`                                                        | PASS                                                                                                                                                                                                                                                                                                                                                                                       |
+| `pnpm test`                                                                     | PASS — 56 files, 753 tests                                                                                                                                                                                                                                                                                                                                                                 |
+| `pnpm test:integration`                                                         | PASS — 6 files, 25 tests                                                                                                                                                                                                                                                                                                                                                                   |
+| `pnpm context-budget`                                                           | PASS — 192 active files, 0 over 500 lines                                                                                                                                                                                                                                                                                                                                                  |
+| Live built server on PostgreSQL, the reviewer's exact G02-H03 and G02-M01 steps | **G02-H03:** the assignment undo is `UNDO_UNSAFE`, naming the outsider's move, and also for the hypothesis variant; undoing the action first, then the assignment, is accepted. **G02-M01:** disclosure undo names the move, move undo names the inspection; the inspection, move, and disclosure undos are then all accepted. The database was reset and reseeded (version 92) afterwards |
+| Mutation checks                                                                 | Each detected: controller premise never recorded, controller premise not read, DM actions bound to an assignment, empty undo rejected again, history-dependent contradiction IDs                                                                                                                                                                                                           |
+
+## Deferred Findings
+
+None.
+
+## Retest Request
+
+Astra:
+
+- Independently retest G02-H03 and G02-M01 and their adjacent paths:
+  - authority premises of every player command;
+  - undo recovery for commands without restorable writes;
+  - dependent-first chains.
+- Recheck that G02-H01 and G02-H02 remain closed.
+- Write `reviews/ASTRA_GATE_02_RETEST_2.md`. Preserve all earlier reports, and do not rely on this report's claims.
+
+## Hard Stop
+
+Opus stops here. Do not begin Stage 80 until Astra writes PASS.
