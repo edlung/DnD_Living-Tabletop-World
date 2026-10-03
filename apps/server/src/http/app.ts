@@ -7,6 +7,7 @@ import type { Logger } from '../platform/logging/logger.ts';
 import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
 import { registerCommandRoutes } from './routes/command-routes.ts';
+import { registerContextRoutes } from './routes/context-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
 
@@ -53,6 +54,7 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   app.get('/healthz', (_request, reply) => reply.send({ status: 'ok' }));
   registerKnowledgeRoutes(app, deps);
   registerMemoryRoutes(app, deps);
+  registerContextRoutes(app, deps);
   registerCommandRoutes(app, deps);
   return app;
 }

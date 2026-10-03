@@ -47,6 +47,7 @@ export {
   applyMove,
   checkMove,
   effectiveSpeedFt,
+  isIncapacitated,
   startTurn,
   type Illegal,
   type IllegalReason,

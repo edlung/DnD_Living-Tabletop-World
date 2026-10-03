@@ -88,7 +88,8 @@ export {
   type KnowledgeFilter,
   type ListResult,
 } from './knowledge/queries.ts';
-export { holderPerspective } from './knowledge/perspective.ts';
+export { controlledCharacter, holderPerspective } from './knowledge/perspective.ts';
+export { knownEntityIds, visibleRecords } from './knowledge/projection.ts';
 export type { MemoryRecord, SessionRecord } from './memory/records.ts';
 export {
   DEFAULT_RECALL_LIMIT,

@@ -2,12 +2,13 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 40 (Character & Rules Kernel). The stages so far provide:
+**Current state:** Stage 50 (Context Engine). The stages so far provide:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
 - **Memory:** memories and sessions, rejection of impossible memories, and scoped recall over world time (Astra reviews it at Gate 02).
 - **Rules:** deterministic SRD 5.2.1 slice rules (`@ltw/rules`, ADR 0011) — range, spell slots, action economy, Counterspell, Concentration, movement, attacks, checks — plus Elowen's canonical sheet.
+- **Context Engine:** perception and the context of a selected entity for an acting character — whitelisted visible state, contextual actions, legality from the rules, deterministic relevance (`@ltw/context`, ADR 0012).
 - **HTTP API** with development persona authentication.
 
 No gameplay yet.
@@ -82,10 +83,11 @@ Every GET requires `perspective=DM|PUBLIC|PARTY|PLAYER|CHARACTER:<id>|NPC:<id>`.
 apps/server/         composition root: config, logging, migrations, HTTP (only package with I/O)
 apps/web/            client placeholder (framework ADR at Stage 200)
 packages/contracts/  shared serializable contracts: kernel commands, results, IDs, world time
-packages/domain/     World Kernel: state, events, World Engine, undo, projections (pure)
-packages/rules/      deterministic rules (placeholder; Stage 40+)
+packages/domain/     World Kernel, knowledge, memory, character sheets (pure)
+packages/rules/      deterministic SRD 5.2.1 slice rules (pure)
+packages/context/    Context Engine: entity context, actions, legality, relevance (pure)
 packages/ui/         presentation components (placeholder; Stage 200+)
-fixtures/ravenford/  Ravenford test fixtures (kernel seed from Stage 10)
+fixtures/ravenford/  Ravenford test fixtures and seeds (see its AGENTS.md)
 tests/               repository-level tests (architecture boundaries)
 scripts/             tooling (context budget, local CI)
 docs/adr/            architecture decision records

@@ -38,6 +38,9 @@ importers:
 
   apps/server:
     dependencies:
+      '@ltw/context':
+        specifier: workspace:*
+        version: link:../../packages/context
       '@ltw/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -62,6 +65,18 @@ importers:
         version: 8.23.1
 
   apps/web: {}
+
+  packages/context:
+    dependencies:
+      '@ltw/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@ltw/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@ltw/rules':
+        specifier: workspace:*
+        version: link:../rules
 
   packages/contracts:
     dependencies:

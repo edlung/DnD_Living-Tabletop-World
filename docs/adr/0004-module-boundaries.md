@@ -49,6 +49,10 @@ Conventions inside a package:
 - Where AI orchestration code lives (server module vs separate package) is decided at Stage 100; it must not gain a write path that bypasses the World Engine.
 - The web client framework is chosen by ADR at Stage 200.
 
+## Amendments
+
+- 2026-10-03 (Stage 50, ADR 0012): new package `@ltw/context -> rules, domain, contracts` (pure; same forbidden groups as `rules`); `@ltw/server` may also depend on `@ltw/context`. Clients still may not. No existing edge changed.
+
 ## Invariants affected
 
 Preserves 1, 2, 8, 9, 21, 22, 23 by making the forbidden dependency paths fail lint and tests.

@@ -107,3 +107,19 @@ export {
   type SpellcastingSource,
   type WeaponId,
 } from './rules/character-sheet.ts';
+export {
+  CONTEXT_ACTION_IDS,
+  CONTEXT_HINTS,
+  CONTEXT_ILLEGAL_REASONS,
+  RELEVANCE_LEVELS,
+  type ContextAction,
+  type ContextActionCost,
+  type ContextActionId,
+  type ContextEntityRef,
+  type ContextHint,
+  type ContextIllegalReason,
+  type ContextVisibleState,
+  type EntityContextResponse,
+  type EntityContextView,
+  type Relevance,
+} from './context/views.ts';

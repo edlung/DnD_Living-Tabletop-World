@@ -97,6 +97,7 @@ describe('workspace boundaries', () => {
     for (const client of ['@ltw/web', '@ltw/ui']) {
       expect(boundaries.packages[client]?.mayDependOn).not.toContain('@ltw/domain');
       expect(boundaries.packages[client]?.mayDependOn).not.toContain('@ltw/rules');
+      expect(boundaries.packages[client]?.mayDependOn).not.toContain('@ltw/context');
       expect(boundaries.packages[client]?.forbiddenGroups).toContain('ai-providers');
     }
   });

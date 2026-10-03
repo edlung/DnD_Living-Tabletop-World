@@ -1,0 +1,31 @@
+import type { EntityState, WorldState } from '@ltw/domain';
+
+/**
+ * What an acting character perceives right now (docs/adr/0012-context-engine.md
+ * "Perception"): entities placed at its current location, that location, its
+ * parent location, and its child locations. Perception reads canonical state
+ * but yields only entity IDs; views decide which fields of them are shown.
+ */
+export function perceivedEntityIds(state: WorldState, actingCharacterId: string): Set<string> {
+  const here = state.entities.get(actingCharacterId)?.placement?.locationId ?? null;
+  const perceived = new Set<string>();
+  if (here === null) return perceived;
+  const exists = (entity: EntityState) =>
+    entity.existsSince === null || entity.existsSince <= state.clock;
+
+  const location = state.entities.get(here);
+  if (location && exists(location)) {
+    perceived.add(here);
+    const parentId = location.location?.parentId ?? null;
+    const parent = parentId === null ? undefined : state.entities.get(parentId);
+    if (parent && exists(parent)) perceived.add(parent.entityId);
+  }
+  for (const entity of state.entities.values()) {
+    if (!exists(entity)) continue;
+    if (entity.placement?.locationId === here) perceived.add(entity.entityId);
+    if (entity.kind === 'location' && entity.location?.parentId === here) {
+      perceived.add(entity.entityId);
+    }
+  }
+  return perceived;
+}

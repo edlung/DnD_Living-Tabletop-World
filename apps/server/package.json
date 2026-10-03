@@ -11,6 +11,7 @@
     "seed:ravenford": "node --env-file-if-exists=../../.env dist/world-engine/seed-ravenford-cli.js"
   },
   "dependencies": {
+    "@ltw/context": "workspace:*",
     "@ltw/contracts": "workspace:*",
     "@ltw/domain": "workspace:*",
     "fastify": "~5.12.5",
