@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stage 0 (repository foundation) and Stage 10 (World Kernel) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), and 20 (Knowledge Boundary) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -33,7 +33,10 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Config / environment variables | `apps/server/src/platform/config/config.ts`, `.env.example` |
 | Structured logging | `apps/server/src/platform/logging/logger.ts` |
 | Database migrations | `apps/server/migrations/AGENTS.md`, `apps/server/src/platform/db/` (`migration-source.ts`, `migrator.ts`, `migrate-cli.ts`), `docker-compose.yml` |
-| HTTP surface | `apps/server/src/http/health-server.ts` (liveness only so far) |
+| HTTP API: app, auth, errors, routes | `apps/server/src/http/app.ts`, `auth.ts`, `errors.ts`, `request-context.ts`, `routes/`; ADR 0009 |
+| Knowledge boundary: records, perspectives, projections, queries | `packages/domain/src/knowledge/AGENTS.md`, ADR 0008 (owner-approved) |
+| Knowledge API contracts (perspective format, views, responses) | `packages/contracts/src/knowledge/` |
+| Gate 01 boundary specification and secret fixtures | `fixtures/ravenford/AGENTS.md`, `fixtures/ravenford/knowledge-boundary.json` |
 | World Kernel: state, commands, events, engine, undo, projections | `packages/domain/src/kernel/AGENTS.md` (file map), ADRs 0006 (approved temporal/undo semantics) and 0007 (model, pipeline, storage) |
 | Add or change a kernel command/event | `packages/domain/src/kernel/AGENTS.md` rules, `decide/<area>.ts`, `events.ts`, `evolve.ts`, `facts.ts`, matching `*.test.ts` |
 | Event store / PostgreSQL persistence | `apps/server/src/world-engine/postgres-event-store.ts`, `apps/server/migrations/0001_world_event_store.sql` |

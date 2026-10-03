@@ -1,3 +1,4 @@
+import { holderOf } from '../knowledge/records.ts';
 import type { KernelEvent, Restore } from './events.ts';
 
 /**
@@ -21,6 +22,9 @@ export const facts = {
   entityStatus: (id: string): FactKey => `entity:${id}#status`,
   scene: (id: string): FactKey => `scene:${id}`,
   sceneEnded: (id: string): FactKey => `scene:${id}#ended`,
+  knowledge: (id: string): FactKey => `knowledge:${id}`,
+  rosterCharacter: (characterId: string): FactKey => `roster:character:${characterId}`,
+  rosterPlayer: (actorId: string): FactKey => `roster:player:${actorId}`,
 };
 
 export interface Footprint {
@@ -88,6 +92,29 @@ export function footprintOf(event: KernelEvent): Footprint {
       return { reads: [clock], writes: [clock] };
     case 'CommandUndone':
       return { reads: [], writes: event.payload.restores.flatMap(restoredFacts) };
+    case 'KnowledgeAssigned': {
+      // A record depends on its holder, every entity it mentions, and its related records.
+      const { scope, subjects, attributedTo, relations, knowledgeId } = event.payload;
+      const holder = holderOf(scope);
+      const entities = new Set([...subjects, ...(attributedTo ? [attributedTo] : [])]);
+      if (holder !== null) entities.add(holder);
+      return {
+        reads: [
+          clock,
+          ...[...entities].map((id) => facts.entity(id)),
+          ...relations.map((relation) => facts.knowledge(relation.knowledgeId)),
+        ],
+        writes: [facts.knowledge(knowledgeId)],
+      };
+    }
+    case 'CharacterAssigned':
+      return {
+        reads: [clock, facts.entity(event.payload.characterId)],
+        writes: [
+          facts.rosterCharacter(event.payload.characterId),
+          facts.rosterPlayer(event.payload.playerActorId),
+        ],
+      };
   }
 }
 
@@ -110,6 +137,13 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.clock()];
     case 'world.activeScene':
       return [facts.activeScene()];
+    case 'knowledge':
+      return [facts.knowledge(restore.knowledgeId)];
+    case 'roster':
+      return [
+        facts.rosterCharacter(restore.characterId),
+        facts.rosterPlayer(restore.playerActorId),
+      ];
   }
 }
 

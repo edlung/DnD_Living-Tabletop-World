@@ -11,10 +11,17 @@ import {
 } from '@ltw/contracts';
 import { z } from 'zod';
 
+import {
+  characterAssignedPayloadSchema,
+  knowledgeAssignedPayloadSchema,
+  knowledgeRestoreSchemas,
+} from '../knowledge/events.ts';
 import { actorSchema } from './actor.ts';
 
 /**
- * World Kernel events (docs/adr/0007-world-kernel-model-and-event-store.md).
+ * Events of the campaign stream: World Kernel events
+ * (docs/adr/0007-world-kernel-model-and-event-store.md) plus knowledge events
+ * (docs/adr/0008-knowledge-boundary.md). `KernelEvent` is the whole union.
  * Events are facts: they are validated when loaded from storage and are
  * never edited. Payload changes require a new schemaVersion and upcasting.
  */
@@ -58,6 +65,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
     .strict(),
   z.object({ fact: z.literal('world.clock'), value: worldTimeSchema }).strict(),
   z.object({ fact: z.literal('world.activeScene'), value: sceneIdSchema.nullable() }).strict(),
+  ...knowledgeRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -131,6 +139,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
       })
       .strict(),
   ),
+  event('KnowledgeAssigned', knowledgeAssignedPayloadSchema),
+  event('CharacterAssigned', characterAssignedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

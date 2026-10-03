@@ -15,7 +15,8 @@ const resolvedCommandSchema = kernelCommandSchema
   .refine(
     (command) =>
       (command.type !== 'CreateEntity' || command.entityId !== undefined) &&
-      (command.type !== 'StartScene' || command.sceneId !== undefined),
+      (command.type !== 'StartScene' || command.sceneId !== undefined) &&
+      (command.type !== 'AddKnowledge' || command.knowledgeId !== undefined),
     'stored commands must have resolved IDs',
   )
   .transform((command) => command as ResolvedCommand);

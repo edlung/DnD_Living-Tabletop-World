@@ -1,3 +1,4 @@
+import { decideAddKnowledge, decideAssignCharacter } from '../../knowledge/decide.ts';
 import type { Decision, DecisionContext, ResolvedCommand } from '../decision.ts';
 import {
   decideChangeEntityStatus,
@@ -35,5 +36,9 @@ export function decide(context: DecisionContext, command: ResolvedCommand): Deci
       return decideAdvanceWorldTime(state, command);
     case 'UndoCommand':
       return decideUndo(context, command);
+    case 'AddKnowledge':
+      return decideAddKnowledge(state, command);
+    case 'AssignCharacter':
+      return decideAssignCharacter(state, command);
   }
 }

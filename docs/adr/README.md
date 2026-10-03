@@ -21,12 +21,16 @@ Never mark a product decision or invariant change `Accepted` on the owner's beha
 
 ## Index
 
-| ADR                                           | Title                                             | Status               |
-| --------------------------------------------- | ------------------------------------------------- | -------------------- |
-| [0001](0001-record-architecture-decisions.md) | Record architecture decisions                     | Accepted (technical) |
-| [0002](0002-toolchain-and-workspace.md)       | Toolchain and workspace layout                    | Accepted (technical) |
-| [0003](0003-persistence-and-migrations.md)    | PostgreSQL access and forward-only SQL migrations | Accepted (technical) |
-| [0004](0004-module-boundaries.md)             | Module boundaries and dependency direction        | Accepted (technical) |
-| [0005](0005-server-runtime-foundations.md)    | Server runtime foundations: config, logging, HTTP | Accepted (technical) |
+| ADR                                                | Title                                                            | Status                                             |
+| -------------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------- |
+| [0001](0001-record-architecture-decisions.md)      | Record architecture decisions                                    | Accepted (technical)                               |
+| [0002](0002-toolchain-and-workspace.md)            | Toolchain and workspace layout                                   | Accepted (technical)                               |
+| [0003](0003-persistence-and-migrations.md)         | PostgreSQL access and forward-only SQL migrations                | Accepted (technical)                               |
+| [0004](0004-module-boundaries.md)                  | Module boundaries and dependency direction                       | Accepted (technical)                               |
+| [0005](0005-server-runtime-foundations.md)         | Server runtime foundations: config, logging, HTTP                | Accepted (technical); HTTP part superseded by 0009 |
+| [0006](0006-temporal-model-and-undo.md)            | Temporal model, canonical history, and undo                      | Accepted (owner-approved product decision)         |
+| [0007](0007-world-kernel-model-and-event-store.md) | World Kernel model, command pipeline, and event store            | Accepted (technical)                               |
+| [0008](0008-knowledge-boundary.md)                 | Knowledge records, scopes, and perspective boundary              | Accepted (owner-approved product decision)         |
+| [0009](0009-http-api-and-dev-authentication.md)    | HTTP API framework, development authentication, response hygiene | Accepted (technical)                               |
 
 Pending product decisions (ruleset for Stage 40, minimum authoring validation for Stage 110) are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006.

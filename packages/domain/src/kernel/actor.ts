@@ -1,3 +1,4 @@
+import { actorIdSchema } from '@ltw/contracts';
 import { z } from 'zod';
 
 /**
@@ -7,9 +8,7 @@ import { z } from 'zod';
  */
 export const actorSchema = z
   .object({
-    actorId: z
-      .string()
-      .regex(/^[A-Za-z0-9][A-Za-z0-9._:@-]{0,127}$/, 'must be 1-128 safe identifier characters'),
+    actorId: actorIdSchema,
     kind: z.enum(['user', 'system']),
   })
   .strict();

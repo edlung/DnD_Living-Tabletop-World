@@ -1,14 +1,24 @@
 import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { campaignIdSchema } from '@ltw/contracts';
 import { actorSchema, submissionsFromScript, type Actor } from '@ltw/domain';
 import { z } from 'zod';
 
-/** `fixtures/ravenford/kernel-seed.json`, resolved from both `src/` and `dist/`. */
-export const RAVENFORD_SEED_PATH = fileURLToPath(
-  new URL('../../../../fixtures/ravenford/kernel-seed.json', import.meta.url),
+/** `fixtures/ravenford/`, resolved from both `src/` and `dist/`. */
+export const RAVENFORD_FIXTURES_DIR = fileURLToPath(
+  new URL('../../../../fixtures/ravenford/', import.meta.url),
 );
+
+/**
+ * Seed scripts in order, each with its command-ID prefix. Prefixes are part
+ * of seeded history (idempotency keys): never rename them.
+ */
+const SEED_FILES = [
+  { file: 'kernel-seed.json', prefix: 'seed' },
+  { file: 'knowledge-seed.json', prefix: 'knowledge' },
+] as const;
 
 const seedSchema = z.object({
   campaignId: campaignIdSchema,
@@ -23,16 +33,35 @@ export interface RavenfordSeed {
   readonly submissions: readonly unknown[];
 }
 
-export async function loadRavenfordSeed(path = RAVENFORD_SEED_PATH): Promise<RavenfordSeed> {
-  const seed = seedSchema.parse(JSON.parse(await readFile(path, 'utf8')));
-  const dm: Actor = { actorId: seed.dmActorId, kind: 'user' };
+export async function loadRavenfordSeed(
+  directory = RAVENFORD_FIXTURES_DIR,
+): Promise<RavenfordSeed> {
+  const scripts = await Promise.all(
+    SEED_FILES.map(async ({ file, prefix }) => ({
+      prefix,
+      seed: seedSchema.parse(JSON.parse(await readFile(join(directory, file), 'utf8'))),
+    })),
+  );
+  const first = scripts[0]?.seed;
+  if (
+    !first ||
+    scripts.some(
+      ({ seed }) => seed.campaignId !== first.campaignId || seed.dmActorId !== first.dmActorId,
+    )
+  ) {
+    throw new Error('Ravenford seed files disagree on campaign or DM');
+  }
+  const dm: Actor = { actorId: first.dmActorId, kind: 'user' };
   return {
-    campaignId: seed.campaignId,
+    campaignId: first.campaignId,
     dm,
-    submissions: submissionsFromScript({
-      campaignId: seed.campaignId,
-      actor: dm,
-      commands: seed.commands,
-    }),
+    submissions: scripts.flatMap(({ prefix, seed }) =>
+      submissionsFromScript({
+        campaignId: seed.campaignId,
+        actor: dm,
+        commands: seed.commands,
+        commandIdPrefix: `${seed.campaignId}.${prefix}`,
+      }),
+    ),
   };
 }

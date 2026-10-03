@@ -37,6 +37,13 @@ export const REJECTION_CODES = [
   'COMMAND_ID_CONFLICT',
   /** Concurrent writers kept winning; safe to retry with the same command ID. */
   'CONCURRENCY_CONFLICT',
+  /** Knowledge record violates ADR 0008 rules (holder kind, attribution, relations, types). */
+  'INVALID_KNOWLEDGE',
+  'KNOWLEDGE_NOT_FOUND',
+  /** Character assignment targets a non-character or the DM. */
+  'INVALID_ASSIGNMENT',
+  /** The character or the player is already assigned. */
+  'ALREADY_ASSIGNED',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

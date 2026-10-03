@@ -148,6 +148,17 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'WorldTimeAdvanced':
         restores.push({ fact: 'world.clock', value: before.clock });
         break;
+      case 'KnowledgeAssigned':
+        restores.push({ fact: 'knowledge', knowledgeId: event.payload.knowledgeId, value: null });
+        break;
+      case 'CharacterAssigned':
+        restores.push({
+          fact: 'roster',
+          characterId: event.payload.characterId,
+          playerActorId: event.payload.playerActorId,
+          value: null,
+        });
+        break;
       case 'CampaignCreated':
       case 'CommandUndone':
         throw new Error(`${event.type} is not undoable`);

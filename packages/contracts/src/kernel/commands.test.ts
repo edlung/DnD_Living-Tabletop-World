@@ -24,7 +24,7 @@ describe('identifiers', () => {
     expect(commandIdSchema.safeParse('ravenford.seed.0001').success).toBe(true);
     expect(commandIdSchema.safeParse('a:b-c_d').success).toBe(true);
     expect(commandIdSchema.safeParse(' x').success).toBe(false);
-    expect(commandIdSchema.safeParse('x'.repeat(129)).success).toBe(false);
+    expect(commandIdSchema.safeParse('x'.repeat(301)).success).toBe(false);
   });
 });
 

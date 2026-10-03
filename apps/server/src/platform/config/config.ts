@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+
 import { z } from 'zod';
 
 /**
@@ -10,6 +12,8 @@ import { z } from 'zod';
 export type NodeEnv = 'development' | 'test' | 'production';
 export type LogLevel = 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace' | 'silent';
 
+export type AuthMode = 'dev-personas' | 'disabled';
+
 export interface AppConfig {
   readonly nodeEnv: NodeEnv;
   readonly logLevel: LogLevel;
@@ -18,12 +22,23 @@ export interface AppConfig {
     readonly port: number;
   };
   readonly databaseUrl: string;
+  /** docs/adr/0009-http-api-and-dev-authentication.md */
+  readonly auth: {
+    readonly mode: AuthMode;
+    /** Persona token file; set only in dev-personas mode. */
+    readonly personasFile: string | null;
+  };
 }
 
 export type Env = Readonly<Record<string, string | undefined>>;
 
 /** Local development database exposed by docker-compose.yml. Never valid in production. */
 export const DEV_DATABASE_URL = 'postgres://ltw:ltw_dev_password@127.0.0.1:54329/ltw';
+
+/** Development persona tokens; resolved from both `src/` and `dist/`. */
+export const DEFAULT_PERSONAS_FILE = fileURLToPath(
+  new URL('../../../../../fixtures/ravenford/personas.json', import.meta.url),
+);
 
 const DEFAULT_LOG_LEVEL: Record<NodeEnv, LogLevel> = {
   development: 'debug',
@@ -47,6 +62,8 @@ const envSchema = z.object({
     z.coerce.number().int().min(0).max(65535).default(3000),
   ),
   DATABASE_URL: z.preprocess(emptyAsUndefined, z.url({ protocol: /^postgres(ql)?$/ }).optional()),
+  AUTH_MODE: z.preprocess(emptyAsUndefined, z.enum(['dev-personas', 'disabled']).optional()),
+  DEV_PERSONAS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
 });
 
 export class ConfigError extends Error {
@@ -86,6 +103,12 @@ export function loadConfig(env: Env = process.env): AppConfig {
     issues.push('DATABASE_URL: development default credentials are not allowed in production');
   }
 
+  const authMode: AuthMode =
+    values.AUTH_MODE ?? (values.NODE_ENV === 'production' ? 'disabled' : 'dev-personas');
+  if (values.NODE_ENV === 'production' && authMode === 'dev-personas') {
+    issues.push('AUTH_MODE: dev-personas is not allowed in production');
+  }
+
   if (issues.length > 0 || databaseUrl === undefined) {
     throw new ConfigError(issues);
   }
@@ -95,6 +118,11 @@ export function loadConfig(env: Env = process.env): AppConfig {
     logLevel: values.LOG_LEVEL ?? DEFAULT_LOG_LEVEL[values.NODE_ENV],
     http: Object.freeze({ host: values.HTTP_HOST, port: values.HTTP_PORT }),
     databaseUrl,
+    auth: Object.freeze({
+      mode: authMode,
+      personasFile:
+        authMode === 'dev-personas' ? (values.DEV_PERSONAS_FILE ?? DEFAULT_PERSONAS_FILE) : null,
+    }),
   });
 }
 

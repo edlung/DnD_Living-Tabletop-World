@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { ConfigError, DEV_DATABASE_URL, describeDatabaseUrl, loadConfig } from './config.ts';
+import {
+  ConfigError,
+  DEFAULT_PERSONAS_FILE,
+  DEV_DATABASE_URL,
+  describeDatabaseUrl,
+  loadConfig,
+} from './config.ts';
 
 describe('loadConfig', () => {
   it('applies safe development defaults when nothing is set', () => {
@@ -11,7 +17,9 @@ describe('loadConfig', () => {
       logLevel: 'debug',
       http: { host: '127.0.0.1', port: 3000 },
       databaseUrl: DEV_DATABASE_URL,
+      auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
     });
+    expect(DEFAULT_PERSONAS_FILE).toMatch(/fixtures\/ravenford\/personas\.json$/);
     expect(Object.isFrozen(config)).toBe(true);
     expect(Object.isFrozen(config.http)).toBe(true);
   });
@@ -37,6 +45,16 @@ describe('loadConfig', () => {
 
   it('treats empty strings as unset', () => {
     expect(loadConfig({ NODE_ENV: '', HTTP_PORT: '', LOG_LEVEL: '' }).http.port).toBe(3000);
+  });
+
+  it('disables development personas in production and refuses to enable them', () => {
+    const production = { NODE_ENV: 'production', DATABASE_URL: 'postgres://app:pw@db/ltw' };
+    expect(loadConfig(production).auth).toEqual({ mode: 'disabled', personasFile: null });
+    expect(() => loadConfig({ ...production, AUTH_MODE: 'dev-personas' })).toThrow(
+      /AUTH_MODE: dev-personas is not allowed in production/,
+    );
+    expect(loadConfig({ AUTH_MODE: 'disabled' }).auth.personasFile).toBeNull();
+    expect(loadConfig({ DEV_PERSONAS_FILE: '/tmp/p.json' }).auth.personasFile).toBe('/tmp/p.json');
   });
 
   it('requires DATABASE_URL in production', () => {

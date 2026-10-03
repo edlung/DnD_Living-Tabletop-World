@@ -79,7 +79,7 @@ export default defineConfig(
   },
   {
     name: 'ltw/cli-entry-points',
-    files: ['scripts/**/cli.ts', 'apps/server/src/**/*-cli.ts'],
+    files: ['scripts/**/cli.ts', 'apps/server/src/**/*-cli.ts', 'apps/server/src/main.ts'],
     rules: { 'no-console': 'off' },
   },
   ...boundaryConfigs,

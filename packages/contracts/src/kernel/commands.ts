@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { addKnowledgeCommandSchema, assignCharacterCommandSchema } from '../knowledge/commands.ts';
 import { commandIdSchema, entityIdSchema, sceneIdSchema } from './identifiers.ts';
 import { worldDurationSchema, worldTimeSchema } from './world-time.ts';
 
@@ -123,6 +124,8 @@ export const kernelCommandSchema = z
     endScene,
     advanceWorldTime,
     undoCommand,
+    addKnowledgeCommandSchema,
+    assignCharacterCommandSchema,
   ])
   .superRefine((command, context) => {
     if (
@@ -154,6 +157,8 @@ export const KERNEL_COMMAND_TYPES = [
   'EndScene',
   'AdvanceWorldTime',
   'UndoCommand',
+  'AddKnowledge',
+  'AssignCharacter',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

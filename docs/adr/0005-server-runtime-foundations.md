@@ -1,6 +1,6 @@
 # 0005. Server runtime foundations: config, logging, HTTP
 
-- Status: Accepted
+- Status: Accepted; the HTTP decision is superseded by [0009](0009-http-api-and-dev-authentication.md)
 - Date: 2026-10-03
 - Stage: 0
 - Decision type: technical

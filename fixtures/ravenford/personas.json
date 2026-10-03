@@ -1,0 +1,20 @@
+{
+  "$comment": "Development and test persona tokens (docs/adr/0009-http-api-and-dev-authentication.md). Not secrets: accepted only with AUTH_MODE=dev-personas, which production refuses. Every persona is a user actor; system actors are never available over HTTP.",
+  "personas": [
+    {
+      "token": "dev-dm-ravenford",
+      "actorId": "dm-ravenford",
+      "description": "DM of the ravenford campaign; may use any perspective, including NPC:mira-vale"
+    },
+    {
+      "token": "dev-player-elowen",
+      "actorId": "player-elowen",
+      "description": "Plays Elowen Starwhisper (party member); PLAYER, CHARACTER:elowen-starwhisper, PARTY, PUBLIC"
+    },
+    {
+      "token": "dev-outsider",
+      "actorId": "outsider",
+      "description": "Authenticated user who is not a member of the campaign"
+    }
+  ]
+}

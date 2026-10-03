@@ -1,0 +1,488 @@
+{
+  "$comment": "Stage 20 Ravenford knowledge fixture (docs/adr/0008-knowledge-boundary.md). Seeded after kernel-seed.json. Contains WORLD_TRUTH and DM secrets: never copy them into player-facing code, prompts, or logs. Secret entities use opaque IDs. Times are world seconds since Day 1 00:00:00.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "ravenford-guard",
+      "kind": "faction",
+      "name": "Ravenford Guard",
+      "existsSince": null,
+      "description": "The town watch of Ravenford."
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "merchant-guild-faction",
+      "kind": "faction",
+      "name": "Merchant Guild",
+      "existsSince": null,
+      "description": "Ravenford's guild of traders."
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53",
+      "kind": "faction",
+      "name": "Ashen Circle",
+      "existsSince": null,
+      "description": "A secret cult that staged the caravan attack to steal rare reagents."
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "guild-caravan",
+      "kind": "item",
+      "name": "Merchant Guild caravan",
+      "existsSince": null,
+      "description": "Wagons, drivers, and cargo that never reached their destination."
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "broken-wagon-wheel",
+      "kind": "item",
+      "name": "Broken Wagon Wheel",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "goblin-weapon",
+      "kind": "item",
+      "name": "Goblin Weapon",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "strange-symbol",
+      "kind": "feature",
+      "name": "Strange Symbol",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "wagon-tracks",
+      "kind": "feature",
+      "name": "Tracks",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "burned-cargo",
+      "kind": "item",
+      "name": "Burned Cargo",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "AssignCharacter",
+      "characterId": "elowen-starwhisper",
+      "playerActorId": "player-elowen"
+    },
+    {
+      "type": "AdvanceWorldTime",
+      "to": 36000
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-ravenford-town",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Ravenford is a trading town on the Old Trade Road.",
+      "subjects": ["ravenford", "old-trade-road"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-market-square",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Market Square is the busy heart of Ravenford.",
+      "subjects": ["market-square", "ravenford"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-golden-stag",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The Golden Stag Inn rents rooms to travelers.",
+      "subjects": ["golden-stag-inn"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-mira-trader",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Mira Vale trades in Market Square.",
+      "subjects": ["mira-vale", "market-square"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-orin-alchemist",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Orin Stonebeard runs Orin's Alchemy.",
+      "subjects": ["orin-stonebeard", "orins-alchemy"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-thorne-captain",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Captain Thorne commands the Ravenford Guard at the North Gate.",
+      "subjects": ["captain-thorne", "ravenford-guard", "north-gate"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-guild-caravans",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The Merchant Guild sends caravans along the Old Trade Road.",
+      "subjects": ["merchant-guild-faction", "merchant-guild", "old-trade-road"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-caravan-overdue",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "RUMOR",
+      "statement": "People in the market say a Merchant Guild caravan is overdue.",
+      "subjects": ["guild-caravan", "merchant-guild-faction"],
+      "knownSince": 21600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "mira-departure",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "mira-vale"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "The caravan left before dawn.",
+      "subjects": ["guild-caravan"],
+      "knownSince": -154800,
+      "attributedTo": "mira-vale"
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "mira-cargo-logistics",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "mira-vale"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The caravan carried goods for the Merchant Guild along the Old Trade Road.",
+      "subjects": ["guild-caravan", "merchant-guild-faction", "old-trade-road"],
+      "knownSince": -259200
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "mira-prior-incident",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "mira-vale"
+      },
+      "knowledgeType": "FACT",
+      "statement": "A similar caravan vanished on the Old Trade Road last spring.",
+      "subjects": ["old-trade-road"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "orin-symbol-secret",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Orin has seen the strange symbol before, on unusual reagent orders.",
+      "subjects": ["strange-symbol"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "orin-knows-thorne",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Orin knows Captain Thorne personally.",
+      "subjects": ["captain-thorne"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "orin-prior-incident",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Orin recognized the same symbol after a caravan vanished last spring.",
+      "subjects": ["strange-symbol", "old-trade-road"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "thorne-departure",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "captain-thorne"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "The caravan left after sunrise.",
+      "subjects": ["guild-caravan"],
+      "knownSince": -147600,
+      "attributedTo": "captain-thorne"
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "thorne-route",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "captain-thorne"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The caravan's route followed the Old Trade Road north.",
+      "subjects": ["guild-caravan", "old-trade-road"],
+      "knownSince": -147600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "thorne-missing-patrol",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "captain-thorne"
+      },
+      "knowledgeType": "FACT",
+      "statement": "A guard patrol on the Old Trade Road has not reported back.",
+      "subjects": ["ravenford-guard", "old-trade-road"],
+      "knownSince": -21600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-mira-departure",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Mira Vale says the caravan left before dawn.",
+      "subjects": ["guild-caravan"],
+      "knownSince": 34200,
+      "attributedTo": "mira-vale",
+      "relations": [
+        {
+          "type": "DERIVED_FROM",
+          "knowledgeId": "mira-departure"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-goblin-hypothesis",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "HYPOTHESIS",
+      "statement": "Goblins attacked the caravan.",
+      "subjects": ["guild-caravan"],
+      "knownSince": 35100
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-who-attacked",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "UNKNOWN",
+      "statement": "Who attacked the caravan?",
+      "subjects": ["guild-caravan"],
+      "knownSince": 35100,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledgeId": "party-goblin-hypothesis"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "elowen-sigil-lore",
+      "scope": {
+        "kind": "CHARACTER",
+        "characterId": "elowen-starwhisper"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Elowen once read that some cults mark their deeds with sigils.",
+      "subjects": ["elowen-starwhisper"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-cargo",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The caravan left Ravenford carrying rare alchemical reagents.",
+      "subjects": ["guild-caravan"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-disappeared",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The caravan disappeared on the Old Trade Road.",
+      "subjects": ["guild-caravan", "old-trade-road"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-site-manipulated",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The attack site was manipulated after the attack.",
+      "subjects": ["abandoned-caravan-site"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-goblin-frame",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Evidence at the site was arranged to suggest a goblin attack.",
+      "subjects": ["abandoned-caravan-site", "goblin-weapon", "wagon-tracks"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-not-goblins",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The attackers were not simply goblins.",
+      "subjects": ["guild-caravan"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "CONTRADICTS",
+          "knowledgeId": "party-goblin-hypothesis"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-ashen-circle",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "The Ashen Circle is connected to the caravan attack.",
+      "subjects": ["3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53", "guild-caravan"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "SUPPORTS",
+          "knowledgeId": "truth-not-goblins"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-symbol-meaning",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The strange symbol is the mark of the Ashen Circle.",
+      "subjects": ["strange-symbol", "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledgeId": "orin-symbol-secret"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-reveal-pacing",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Reveal the symbol's link to the Ashen Circle only after the party shows it to Orin.",
+      "subjects": ["strange-symbol", "orin-stonebeard"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledgeId": "truth-symbol-meaning"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-goblin-theory-note",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "The party's goblin theory is wrong; let the evidence contradict it.",
+      "subjects": [],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "CONTRADICTS",
+          "knowledgeId": "party-goblin-hypothesis"
+        }
+      ]
+    }
+  ]
+}

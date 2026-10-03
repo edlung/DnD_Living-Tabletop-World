@@ -1,3 +1,4 @@
+import { WORLD_TRUTH_TYPES, holderOf } from '../../knowledge/records.ts';
 import { PLACEABLE_KINDS, STATUSES_BY_KIND, type WorldState } from '../state.ts';
 import { isAtOrAfter } from '../world-time.ts';
 
@@ -70,6 +71,43 @@ export function checkWorldIntegrity(state: WorldState): string[] {
     if (scene.endedAt !== null && scene.endedAt < scene.startedAt) {
       report(`scene ${id} ends before it starts`);
     }
+  }
+
+  for (const [id, record] of state.knowledge) {
+    if (id !== record.knowledgeId) report(`knowledge key ${id} != ${record.knowledgeId}`);
+    if (!state.usedIds.has(id)) report(`knowledge ${id} missing from used IDs`);
+    const holder = holderOf(record.scope);
+    const holderKind = record.scope.kind === 'CHARACTER' ? 'character' : 'npc';
+    if (holder !== null && state.entities.get(holder)?.kind !== holderKind) {
+      report(`knowledge ${id} has an invalid holder`);
+    }
+    if (record.scope.kind === 'WORLD_TRUTH' && !WORLD_TRUTH_TYPES.has(record.knowledgeType)) {
+      report(`knowledge ${id} is WORLD_TRUTH of type ${record.knowledgeType}`);
+    }
+    for (const entityId of [
+      ...record.subjects,
+      ...(record.attributedTo ? [record.attributedTo] : []),
+    ]) {
+      if (!state.entities.has(entityId)) report(`knowledge ${id} references missing ${entityId}`);
+    }
+    for (const relation of record.relations) {
+      if (!state.knowledge.has(relation.knowledgeId)) {
+        report(`knowledge ${id} relates to missing ${relation.knowledgeId}`);
+      }
+    }
+    if (record.knownSince !== null && record.knownSince > state.clock) {
+      report(`knowledge ${id} learned after the clock`);
+    }
+  }
+
+  const players = new Set<string>();
+  for (const [characterId, playerId] of state.roster) {
+    if (state.entities.get(characterId)?.kind !== 'character') {
+      report(`roster entry ${characterId} is not a character`);
+    }
+    if (players.has(playerId)) report(`player ${playerId} controls several characters`);
+    if (playerId === state.campaign?.dmActorId) report('the DM is also a player');
+    players.add(playerId);
   }
 
   for (const trace of state.commands.values()) {

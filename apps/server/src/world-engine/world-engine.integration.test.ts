@@ -89,6 +89,7 @@ describe('World Engine on PostgreSQL', () => {
       clock: new SteppingClock(),
     });
     await seedWith(a);
+    const startClock = (await a.load(seed.campaignId))?.state.clock ?? Number.NaN;
 
     const results = await Promise.all(
       Array.from({ length: 20 }, (_, i) =>
@@ -103,7 +104,7 @@ describe('World Engine on PostgreSQL', () => {
     const sequences = stream?.events.map((event) => event.sequence) ?? [];
     expect(sequences).toEqual(sequences.map((_, i) => i + 1));
     expect((await a.load(seed.campaignId))?.state).toEqual((await b.load(seed.campaignId))?.state);
-    expect((await a.load(seed.campaignId))?.state.clock).toBe(32_400 + 20 * 60);
+    expect((await a.load(seed.campaignId))?.state.clock).toBe(startClock + 20 * 60);
     expect(conflicts).toBeGreaterThan(0);
   });
 

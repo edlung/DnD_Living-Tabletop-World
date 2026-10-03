@@ -1,4 +1,7 @@
+import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
+import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
+import { withEntry, withoutEntry } from './maps.ts';
 import { EMPTY_WORLD_STATE, type EntityState, type SceneState, type WorldState } from './state.ts';
 
 /**
@@ -6,12 +9,7 @@ import { EMPTY_WORLD_STATE, type EntityState, type SceneState, type WorldState }
  * same history always yields the same state (ADR 0006 §1, §6). An event that
  * cannot apply means the stored history is corrupt, never a user error.
  */
-export class CorruptHistoryError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'CorruptHistoryError';
-  }
-}
+export { CorruptHistoryError };
 
 export function replay(
   events: readonly RecordedEvent[],
@@ -112,6 +110,10 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     }
     case 'CommandUndone':
       return applyUndo(state, event);
+    case 'KnowledgeAssigned':
+      return applyKnowledgeAssigned(state, event);
+    case 'CharacterAssigned':
+      return applyCharacterAssigned(state, event);
   }
 }
 
@@ -142,24 +144,18 @@ const isRemoval = (restore: Restore) => restore.fact === 'entity' || restore.fac
 
 function applyRestore(state: WorldState, restore: Restore): WorldState {
   switch (restore.fact) {
-    case 'entity': {
+    case 'entity':
       requireEntity(state, restore.entityId);
-      const entities = new Map(state.entities);
-      entities.delete(restore.entityId);
-      return { ...state, entities };
-    }
+      return { ...state, entities: withoutEntry(state.entities, restore.entityId) };
     case 'entity.profile':
       return updateEntity(state, restore.entityId, restore.value);
     case 'entity.placement':
       return updateEntity(state, restore.entityId, { placement: restore.value });
     case 'entity.status':
       return updateEntity(state, restore.entityId, { status: restore.value });
-    case 'scene': {
+    case 'scene':
       requireScene(state, restore.sceneId);
-      const scenes = new Map(state.scenes);
-      scenes.delete(restore.sceneId);
-      return { ...state, scenes };
-    }
+      return { ...state, scenes: withoutEntry(state.scenes, restore.sceneId) };
     case 'scene.ended': {
       const scene = requireScene(state, restore.sceneId);
       return {
@@ -171,6 +167,16 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return { ...state, clock: restore.value };
     case 'world.activeScene':
       return { ...state, activeSceneId: restore.value };
+    case 'knowledge':
+      if (!state.knowledge.has(restore.knowledgeId)) {
+        throw new CorruptHistoryError(`unknown knowledge ${restore.knowledgeId}`);
+      }
+      return { ...state, knowledge: withoutEntry(state.knowledge, restore.knowledgeId) };
+    case 'roster':
+      if (state.roster.get(restore.characterId) !== restore.playerActorId) {
+        throw new CorruptHistoryError(`unknown assignment of ${restore.characterId}`);
+      }
+      return { ...state, roster: withoutEntry(state.roster, restore.characterId) };
   }
 }
 
@@ -217,8 +223,4 @@ function updateEntity(
 ): WorldState {
   const entity = requireEntity(state, entityId);
   return { ...state, entities: withEntry(state.entities, entityId, { ...entity, ...changes }) };
-}
-
-function withEntry<V>(map: ReadonlyMap<string, V>, key: string, value: V): ReadonlyMap<string, V> {
-  return new Map(map).set(key, value);
 }

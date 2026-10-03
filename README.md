@@ -2,7 +2,7 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 10 (World Kernel) — campaigns, world entities and locations, scenes, the world clock, the World Engine command pipeline, append-only PostgreSQL event history with replay, audit, and history-preserving undo. No gameplay, knowledge boundary, or player-facing API exists yet.
+**Current state:** Stage 20 (Knowledge Boundary), awaiting Astra Gate 01. Built on the World Kernel (campaign stream, World Engine, replay, audit, undo): typed knowledge records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes; perspective-scoped projections; and an HTTP API with development persona authentication. No gameplay yet.
 
 Agents: start with [`docs/AI_CONTEXT_MAP.md`](docs/AI_CONTEXT_MAP.md) and the nearest `AGENTS.md`.
 
@@ -39,12 +39,31 @@ Configuration is optional in development: safe defaults point at the docker-comp
 | `pnpm build` / `pnpm clean` | `tsc -b` build of all projects / remove outputs |
 | `pnpm db:up` / `pnpm db:down` | Start / stop local PostgreSQL |
 | `pnpm db:migrate` | Apply pending SQL migrations (run `pnpm build` first) |
-| `pnpm seed:ravenford` | Seed `fixtures/ravenford/kernel-seed.json` through the World Engine; rerunning reports duplicates only |
+| `pnpm seed:ravenford` | Seed the Ravenford kernel and knowledge fixtures through the World Engine; rerunning reports duplicates only |
 | `pnpm dev:server` / `pnpm --filter @ltw/server start` | Run the server from source (watch) / from `dist` |
 | `pnpm validate` | All checks in CI order, against a running database |
 | `pnpm validate:ci-local` | CI-equivalent run: frozen install, start database, clean build, every check (`scripts/ci-local.sh`) |
 
 CI (`.github/workflows/ci.yml`) runs the same steps on Node 24 with a PostgreSQL 18 service container.
+
+## Knowledge API (development)
+
+After `pnpm db:up`, `pnpm build`, `pnpm db:migrate`, and `pnpm seed:ravenford`, start the server (`pnpm dev:server`) and query:
+
+```bash
+curl -H "Authorization: Bearer dev-player-elowen" "http://127.0.0.1:3000/campaigns/ravenford/knowledge?perspective=PARTY"
+```
+
+Routes under `/campaigns/:campaignId/`:
+
+- `GET knowledge` (filters `type`, `about`, `asOf`)
+- `GET knowledge/:knowledgeId`
+- `GET knowledge/:knowledgeId/related?depth=1..3`
+- `GET entities`
+- `GET entities/:entityId/knowledge`
+- `POST commands`
+
+Every GET requires `perspective=DM|PUBLIC|PARTY|PLAYER|CHARACTER:<id>|NPC:<id>`. Persona tokens are in `fixtures/ravenford/personas.json` (development and test only; production refuses them). Who sees what: ADR 0008; HTTP behavior: ADR 0009.
 
 ## Repository layout
 

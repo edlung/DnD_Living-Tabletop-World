@@ -1,5 +1,7 @@
 import type { EntityKind, EntityStatus, KernelCommandType, LocationType } from '@ltw/contracts';
 
+import type { KnowledgeRecord } from '../knowledge/records.ts';
+
 /**
  * Canonical World Kernel state: the fold of a campaign's event stream
  * (docs/adr/0007-world-kernel-model-and-event-store.md). Never mutated in
@@ -62,9 +64,13 @@ export interface WorldState {
   readonly activeSceneId: string | null;
   readonly entities: ReadonlyMap<string, EntityState>;
   readonly scenes: ReadonlyMap<string, SceneState>;
-  /** Every entity/scene ID ever created, including undone ones (never reused). */
+  /** Every entity/scene/knowledge ID ever created, including undone ones (never reused). */
   readonly usedIds: ReadonlySet<string>;
   readonly commands: ReadonlyMap<string, CommandTrace>;
+  /** Knowledge records by ID (ADR 0008); canonical, never projected directly. */
+  readonly knowledge: ReadonlyMap<string, KnowledgeRecord>;
+  /** Character ID → controlling player actor ID; assigned characters form the party. */
+  readonly roster: ReadonlyMap<string, string>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -76,6 +82,8 @@ export const EMPTY_WORLD_STATE: WorldState = {
   scenes: new Map(),
   usedIds: new Set(),
   commands: new Map(),
+  knowledge: new Map(),
+  roster: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

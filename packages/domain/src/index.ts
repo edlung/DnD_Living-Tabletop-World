@@ -2,10 +2,11 @@
  * Public entry point of @ltw/domain.
  *
  * World Kernel (Stage 10): canonical state, commands, events, the World
- * Engine, and projections. Domain code is pure: no I/O, no persistence
- * drivers, no AI providers. Canonical mutation happens only through
- * `WorldEngine.execute` (ARCHITECTURE_INVARIANTS.md #1). Map:
- * src/kernel/AGENTS.md.
+ * Engine, and projections. Knowledge boundary (Stage 20): knowledge records,
+ * perspective resolution, and perspective-scoped queries. Domain code is
+ * pure: no I/O, no persistence drivers, no AI providers. Canonical mutation
+ * happens only through `WorldEngine.execute` (ARCHITECTURE_INVARIANTS.md #1).
+ * Maps: src/kernel/AGENTS.md, src/knowledge/AGENTS.md.
  */
 export { actorSchema, type Actor } from './kernel/actor.ts';
 export {
@@ -69,3 +70,21 @@ export {
   type WorldView,
 } from './kernel/projections/world-view.ts';
 export { checkWorldIntegrity } from './kernel/projections/integrity.ts';
+
+export { scopeKey, type KnowledgeRecord } from './knowledge/records.ts';
+export {
+  campaignRole,
+  resolvePerspective,
+  type CampaignRole,
+  type PerspectiveAccess,
+  type ResolvedPerspective,
+} from './knowledge/perspective.ts';
+export {
+  entityKnowledge,
+  getKnowledge,
+  knownEntities,
+  listKnowledge,
+  relatedKnowledge,
+  type KnowledgeFilter,
+  type ListResult,
+} from './knowledge/queries.ts';

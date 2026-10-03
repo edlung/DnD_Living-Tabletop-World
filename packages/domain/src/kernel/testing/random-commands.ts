@@ -1,4 +1,10 @@
-import { ENTITY_KINDS, ENTITY_STATUSES, LOCATION_TYPES } from '@ltw/contracts';
+import {
+  ENTITY_KINDS,
+  ENTITY_STATUSES,
+  KNOWLEDGE_RELATION_TYPES,
+  KNOWLEDGE_TYPES,
+  LOCATION_TYPES,
+} from '@ltw/contracts';
 
 import type { WorldState } from '../state.ts';
 
@@ -64,7 +70,72 @@ export function randomCommand(
   if (roll < 0.69) {
     return { type: 'StartScene', sceneId: `s${step}`, title: 'Scene', locationId: pick(locations) };
   }
-  if (roll < 0.75) return { type: 'EndScene', sceneId: pick([...state.scenes.keys(), 'none']) };
-  if (roll < 0.84) return { type: 'AdvanceWorldTime', by: 1 + Math.floor(rng() * 7_200) };
+  if (roll < 0.73) return { type: 'EndScene', sceneId: pick([...state.scenes.keys(), 'none']) };
+  if (roll < 0.79) return { type: 'AdvanceWorldTime', by: 1 + Math.floor(rng() * 7_200) };
+  if (roll < 0.9) return randomKnowledge(rng, pick, state, entities, step);
+  if (roll < 0.92) {
+    return {
+      type: 'AssignCharacter',
+      characterId: pick(entities),
+      playerActorId: pick(['player-a', 'player-b', 'dm-1']),
+    };
+  }
   return { type: 'UndoCommand', targetCommandId: pick([...acceptedCommandIds, 'none']) };
+}
+
+function randomKnowledge(
+  rng: () => number,
+  pick: <T>(items: readonly T[]) => T,
+  state: WorldState,
+  entities: readonly string[],
+  step: number,
+): Record<string, unknown> {
+  // Mostly valid records (right holder kinds, existing references), sometimes invalid.
+  const ofKind = (kind: string) =>
+    [...state.entities.values()].filter((e) => e.kind === kind).map((e) => e.entityId);
+  const valid = rng() < 0.75;
+  const holders = { character: ofKind('character'), npc: ofKind('npc') };
+  const scope = pick([
+    { kind: 'WORLD_TRUTH' },
+    { kind: 'DM' },
+    { kind: 'PUBLIC' },
+    { kind: 'PARTY' },
+    {
+      kind: 'CHARACTER',
+      characterId: pick(valid && holders.character.length ? holders.character : entities),
+    },
+    { kind: 'NPC', npcId: pick(valid && holders.npc.length ? holders.npc : entities) },
+  ]);
+  const knowledgeType =
+    scope.kind === 'WORLD_TRUTH' && valid
+      ? pick(['FACT', 'SECRET'] as const)
+      : pick(KNOWLEDGE_TYPES);
+  const existing = [...state.entities.keys()];
+  const subjects = [
+    ...new Set(
+      Array.from({ length: Math.floor(rng() * 3) }, () => pick(valid ? existing : entities)),
+    ),
+  ];
+  const speakers = [...holders.npc, ...holders.character];
+  const attributedTo =
+    knowledgeType === 'TESTIMONY' || (knowledgeType === 'RUMOR' && rng() < 0.5) || !valid
+      ? pick(valid && speakers.length ? speakers : entities)
+      : undefined;
+  const targets = valid ? [...state.knowledge.keys()] : [...state.knowledge.keys(), 'ghost-k'];
+  return {
+    type: 'AddKnowledge',
+    knowledgeId: `k${step}`,
+    scope,
+    knowledgeType,
+    statement: `Statement ${step}`,
+    subjects,
+    ...(attributedTo === undefined ? {} : { attributedTo }),
+    relations:
+      targets.length > 0 && rng() < 0.5
+        ? [{ type: pick(KNOWLEDGE_RELATION_TYPES), knowledgeId: pick(targets) }]
+        : [],
+    knownSince: valid
+      ? pick([null, state.clock, state.clock - 3_600])
+      : pick([null, state.clock + 1]),
+  };
 }

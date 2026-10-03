@@ -201,6 +201,9 @@ export class WorldEngine {
     if (command.type === 'StartScene') {
       return { ...command, sceneId: command.sceneId ?? this.#ids.next() };
     }
+    if (command.type === 'AddKnowledge') {
+      return { ...command, knowledgeId: command.knowledgeId ?? this.#ids.next() };
+    }
     return command;
   }
 
@@ -273,7 +276,7 @@ function rejected(commandId: string | null, rejection: Rejection): CommandResult
 function commandIdOf(input: unknown): string | null {
   if (input !== null && typeof input === 'object' && 'commandId' in input) {
     const { commandId } = input;
-    if (typeof commandId === 'string' && commandId.length <= 128) return commandId;
+    if (typeof commandId === 'string' && commandId.length <= 300) return commandId;
   }
   return null;
 }

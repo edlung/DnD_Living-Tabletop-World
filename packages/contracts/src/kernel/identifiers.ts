@@ -17,10 +17,21 @@ export const campaignIdSchema = objectId;
 export const entityIdSchema = objectId;
 export const sceneIdSchema = objectId;
 
-/** Caller-supplied idempotency key; globally unique per accepted command. */
+/**
+ * Idempotency key; globally unique per accepted command. The HTTP layer
+ * stores client keys namespaced by actor (`http:<actorId>:<clientKey>`).
+ */
 export const commandIdSchema = z
   .string()
   .regex(
-    /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/,
-    'must be 1-128 letters, digits, ".", "_", ":" or "-"',
+    /^[A-Za-z0-9][A-Za-z0-9._:@-]{0,299}$/,
+    'must be 1-300 letters, digits, ".", "_", ":", "@" or "-"',
   );
+
+/** Knowledge record IDs share the world-object format and namespace. */
+export const knowledgeIdSchema = objectId;
+
+/** Authenticated actor IDs (users, or trusted system processes). */
+export const actorIdSchema = z
+  .string()
+  .regex(/^[A-Za-z0-9][A-Za-z0-9._:@-]{0,127}$/, 'must be 1-128 safe identifier characters');
