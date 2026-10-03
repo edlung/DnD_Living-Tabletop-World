@@ -2,15 +2,15 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 70 (Contradictions), awaiting Astra Gate 02. The stages so far provide:
+**Current state:** Stage 70 (Contradictions) complete; Astra Gate 02 passed (retest 2, revision `017ab0b`). Stage 80 awaits the owner's authorization. The stages so far provide:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
-- **Memory:** memories and sessions, rejection of impossible memories, and scoped recall over world time (Astra reviews it at Gate 02).
+- **Memory:** memories and sessions, rejection of impossible memories, and scoped recall over world time. Passed Astra Gate 02.
 - **Rules:** deterministic SRD 5.2.1 slice rules (`@ltw/rules`, ADR 0011) — range, spell slots, action economy, Counterspell, Concentration, movement, attacks, checks — plus Elowen's canonical sheet.
 - **Context Engine:** perception and the context of a selected entity for an acting character — whitelisted visible state, contextual actions, legality from the rules, deterministic relevance (`@ltw/context`, ADR 0012).
 - **Investigation:** players move, ask NPCs, examine evidence (rules-resolved checks), and form hypotheses. Clues and NPC disclosure are DM data; hypotheses never become facts (ADR 0013).
-- **Contradictions:** DM-authored claims let the engine deterministically surface conflicting accounts (Mira vs Thorne) in the scope that sees both, without deciding who is lying. Records never change type; facts come only from DM authoring (ADR 0014).
+- **Contradictions:** DM-authored claims let the engine deterministically surface conflicting accounts (Mira vs Thorne) in the scope that sees both, without deciding who is lying. Records never change type; facts come only from DM authoring (ADR 0014). Context, investigation, and contradictions passed Astra Gate 02.
 - **HTTP API** with development persona authentication.
 
 No combat yet.
