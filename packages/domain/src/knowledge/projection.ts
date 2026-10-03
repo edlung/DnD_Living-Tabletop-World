@@ -30,22 +30,96 @@ export function visibleRecords(
 /** Entity IDs the perspective knows exist (ADR 0008 "Entities", ADR 0010). */
 export function knownEntityIds(state: WorldState, perspective: ResolvedPerspective): Set<string> {
   if (perspective.scopes === 'ALL') return new Set(state.entities.keys());
-  const known = new Set<string>();
-  for (const record of visibleRecords(state, perspective)) {
-    record.subjects.forEach((entityId) => known.add(entityId));
-    if (record.attributedTo !== null) known.add(record.attributedTo);
+  return new Set(knownEntityBases(state, perspective).keys());
+}
+
+/**
+ * Why a non-DM perspective knows an entity: the premise a decision relied on
+ * (Gate 02 remediation, G02-H02). The holder itself, then party members, then
+ * the earliest visible record or memory naming it. Recording this premise
+ * lets undo see the dependency (ADR 0006 §8).
+ */
+export type KnowledgeBasis =
+  | { readonly kind: 'self' }
+  | { readonly kind: 'party-member'; readonly characterId: string }
+  | { readonly kind: 'knowledge'; readonly knowledgeId: string; readonly viaParty: boolean }
+  | { readonly kind: 'memory'; readonly memoryId: string; readonly viaParty: boolean };
+
+/** Every entity a non-DM perspective knows, with its earliest premise. Single source of `knownEntityIds`. */
+export function knownEntityBases(
+  state: WorldState,
+  perspective: ResolvedPerspective,
+): Map<string, KnowledgeBasis> {
+  const bases = new Map<string, KnowledgeBasis>();
+  const offer = (entityId: string, basis: KnowledgeBasis) => {
+    if (!bases.has(entityId) && state.entities.has(entityId)) bases.set(entityId, basis);
+  };
+  if (perspective.holderId !== null) offer(perspective.holderId, { kind: 'self' });
+  if (perspective.scopes === 'ALL' || perspective.scopes.has('PARTY')) {
+    for (const characterId of state.roster.keys()) {
+      offer(characterId, { kind: 'party-member', characterId });
+    }
   }
-  for (const memory of state.memories.values()) {
+  const sources = [
+    ...visibleRecords(state, perspective).map((record) => ({
+      sequence: record.origin.sequence,
+      entityIds: [
+        ...record.subjects,
+        ...(record.attributedTo === null ? [] : [record.attributedTo]),
+      ],
+      basis: {
+        kind: 'knowledge',
+        knowledgeId: record.knowledgeId,
+        viaParty: record.scope.kind === 'PARTY',
+      } as const,
+    })),
     // Entities named by visible memories are known too (ADR 0010).
-    if (!perspective.scopes.has(scopeKey(memory.scope))) continue;
-    memory.participants.forEach((entityId) => known.add(entityId));
-    if (memory.locationId !== null) known.add(memory.locationId);
+    ...[...state.memories.values()]
+      .filter(
+        (memory) => perspective.scopes === 'ALL' || perspective.scopes.has(scopeKey(memory.scope)),
+      )
+      .map((memory) => ({
+        sequence: memory.origin.sequence,
+        entityIds: [
+          ...memory.participants,
+          ...(memory.locationId === null ? [] : [memory.locationId]),
+        ],
+        basis: {
+          kind: 'memory',
+          memoryId: memory.memoryId,
+          viaParty: memory.scope.kind === 'PARTY',
+        } as const,
+      })),
+  ].sort((a, b) => a.sequence - b.sequence);
+  for (const { entityIds, basis } of sources) {
+    for (const entityId of entityIds) offer(entityId, basis);
   }
-  if (perspective.holderId !== null) known.add(perspective.holderId);
-  if (perspective.scopes.has('PARTY')) {
-    for (const characterId of state.roster.keys()) known.add(characterId);
+  return bases;
+}
+
+/**
+ * Containment a perspective may use (ADR 0010, amended at Gate 02, G02-H01):
+ * `inner` lies in `outer` only along a chain of parent links whose every
+ * location the perspective knows. An unknown target, or an unknown link in
+ * the chain, behaves exactly like a nonexistent location, so hidden
+ * geography never influences a result. Containment between known places
+ * counts as known geography.
+ */
+export function isWithinKnownLocation(
+  state: WorldState,
+  known: ReadonlySet<string> | ReadonlyMap<string, unknown>,
+  inner: string,
+  outer: string,
+): boolean {
+  if (!known.has(outer)) return false;
+  const seen = new Set<string>();
+  let cursor: string | null = inner;
+  while (cursor !== null && known.has(cursor) && !seen.has(cursor)) {
+    if (cursor === outer) return true;
+    seen.add(cursor);
+    cursor = state.entities.get(cursor)?.location?.parentId ?? null;
   }
-  return new Set([...known].filter((entityId) => state.entities.has(entityId)));
+  return false;
 }
 
 /** Identity only: never the canonical description, placement, or status. */

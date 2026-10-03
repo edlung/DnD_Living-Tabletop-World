@@ -1,5 +1,6 @@
 import type { ClaimTarget } from '@ltw/contracts';
 
+import type { Premise } from '../investigation/events.ts';
 import { attemptKey, scopedKey } from '../investigation/records.ts';
 import { pairKey } from '../contradiction/records.ts';
 import { holderOf, scopeKey } from '../knowledge/records.ts';
@@ -248,6 +249,19 @@ export function footprintOf(event: KernelEvent): Footprint {
         writes: [facts.contradiction(pairKey(scopeKey(scope), a, b))],
       };
     }
+    case 'PremisesRecorded': {
+      // What a player command relied on to be legal (Gate 02, G02-H02): undoing any
+      // of it while the command stands is UNDO_UNSAFE.
+      const { characterId, premises } = event.payload;
+      return {
+        reads: [
+          clock,
+          ...entityChecked(characterId),
+          ...premises.flatMap((premise) => premiseFacts(characterId, premise)),
+        ],
+        writes: [],
+      };
+    }
     case 'CharacterAssigned':
       return {
         reads: [clock, facts.entity(event.payload.characterId)],
@@ -256,6 +270,31 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.rosterPlayer(event.payload.playerActorId),
         ],
       };
+  }
+}
+
+function premiseFacts(characterId: string, premise: Premise): FactKey[] {
+  const party = [facts.rosterCharacter(characterId)];
+  switch (premise.kind) {
+    case 'perceived':
+      // Seen where both stood: the target's existence and placement, and the character's.
+      return [
+        facts.entity(premise.entityId),
+        facts.entityPlacement(premise.entityId),
+        facts.entityPlacement(characterId),
+      ];
+    case 'self':
+      return [];
+    case 'party-member':
+      return [facts.rosterCharacter(premise.characterId), ...party];
+    case 'knowledge':
+      return [facts.knowledge(premise.knowledgeId), ...(premise.viaParty ? party : [])];
+    case 'memory':
+      return [facts.memory(premise.memoryId), ...(premise.viaParty ? party : [])];
+    case 'sheet':
+      return [facts.sheet(characterId)];
+    case 'party':
+      return party;
   }
 }
 

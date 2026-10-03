@@ -130,6 +130,13 @@ No clue IDs, DCs, or source records appear.
 
 ## Amendments
 
+- 2026-10-03 (Gate 02 remediation, G02-H02). Every accepted player command first records a DM-only `PremisesRecorded` event. It lists what made the command legal:
+  - the target being perceived (preferred), or else the **earliest** premise that made it known (the character itself, a party member, or the earliest visible record or memory naming it);
+  - the sheet, when the command required the character to speak or roll;
+  - party membership, when the command relied on it.
+
+  The event's footprint reads those facts. Undoing a premise while the command stands is therefore `UNDO_UNSAFE` and names the command as a blocker (ADR 0006 §8). Undoing the command first makes the premise undoable again. A redundant, later record about the same target is not a premise and stays undoable.
+
 - 2026-10-03 (Stage 70, ADR 0014 §4): player command results carry no event list and no rejection details, except schema issues. Players may not send `expectedVersion`.
 - 2026-10-03 (Stage 70, defect fix): undoing an examination that changed nothing restorable, such as an inspection that found nothing, is `NO_EFFECT`. Before the fix it produced an empty `CommandUndone`, which could not be read back from storage. A randomized replay test exposed it, and a regression test now covers it.
 

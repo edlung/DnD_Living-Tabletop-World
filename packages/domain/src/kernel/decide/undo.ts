@@ -234,6 +234,9 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         });
         break;
       }
+      case 'PremisesRecorded':
+        // Reads only: nothing to restore.
+        break;
       case 'CampaignCreated':
       case 'CommandUndone':
         throw new Error(`${event.type} is not undoable`);

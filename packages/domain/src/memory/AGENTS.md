@@ -14,5 +14,6 @@ Rules:
 
 - Filter memories to the perspective before matching, scoring, counting, or sorting. Never compute anything over hidden memories that reaches an output.
 - Views are built field by field in `retrieval.ts`; cited knowledge and causes are filtered to what the perspective can see.
-- Nothing creates memories implicitly. New memory sources (discoveries in Stage 60, dialogue in Stage 130) must go through `RecordMemory` and its checks.
+- Memories are created only by `RecordMemory` (DM/system) or by play (ADR 0013). Play memories are built in `investigation/acting.ts` (`memoryEvent`) from already-verified presence, at the current clock and location and witnessed by the acting character, so they satisfy the same impossible-memory rules. New sources (dialogue in Stage 130) must meet those rules too.
+- The location filter nests only through locations the perspective knows (`isWithinKnownLocation`, ADR 0010 amendment). A hidden target or link must answer exactly like a nonexistent location. Never walk canonical structure for a non-DM perspective. `recall-noninterference.property.test.ts` guards every read surface.
 - Footprints live in `kernel/facts.ts`; a memory reads every premise (witness placements, participants, location, cited knowledge/memories, session).

@@ -28,6 +28,7 @@ describe('asking Mira about the caravan', () => {
     });
     expect(sharedIds(result)).toHaveLength(1);
     expect(result.status !== 'rejected' && result.events.map((e) => e.type)).toEqual([
+      'PremisesRecorded',
       'KnowledgeAssigned',
       'InformationShared',
       'MemoryRecorded',

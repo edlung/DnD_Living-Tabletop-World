@@ -34,6 +34,7 @@ import {
   evidenceExaminedPayloadSchema,
   informationSharedPayloadSchema,
   investigationRestoreSchemas,
+  premisesRecordedPayloadSchema,
 } from '../investigation/events.ts';
 import { actorSchema } from './actor.ts';
 
@@ -174,6 +175,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('InformationShared', informationSharedPayloadSchema),
   event('ClaimSet', claimSetPayloadSchema),
   event('ContradictionDetected', contradictionDetectedPayloadSchema),
+  event('PremisesRecorded', premisesRecordedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

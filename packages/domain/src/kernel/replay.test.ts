@@ -82,9 +82,23 @@ describe('deterministic replay over randomized command sequences', () => {
       clock: new SteppingClock(),
     });
     expect((await fresh.load(CAMPAIGN))?.state).toEqual(state);
-    expect(
-      [...state.investigation.attempts].length + state.investigation.clues.size,
-    ).toBeGreaterThan(0);
+
+    // Gate 02 (G02-H02): no accepted undo ever removed a premise of a still-effective
+    // player command (ADR 0006 §8 dependency validation).
+    const broken = history.flatMap((event) => {
+      if (event.type !== 'PremisesRecorded') return [];
+      if (state.commands.get(event.causation.commandId)?.undoneBy !== null) return [];
+      const { characterId, premises } = event.payload;
+      return premises.filter(
+        (premise) =>
+          (premise.kind === 'knowledge' && !state.knowledge.has(premise.knowledgeId)) ||
+          (premise.kind === 'memory' && !state.memories.has(premise.memoryId)) ||
+          (premise.kind === 'party-member' && !state.roster.has(premise.characterId)) ||
+          ((premise.kind === 'party' || ('viaParty' in premise && premise.viaParty)) &&
+            !state.roster.has(characterId)),
+      );
+    });
+    expect(broken).toEqual([]);
 
     const effective = history.filter(
       (event) =>

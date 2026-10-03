@@ -86,6 +86,7 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Gate 02 remediation (2026-10-03).** `PremisesRecorded` is a reads-only event: it changes no state and needs no restore. It exists so that dependency-based undo sees the premises of player commands (ADR 0013 amendment, G02-H02). Known entities and their premises now come from one function (`knownEntityBases`), so the two cannot diverge.
 - **Stage 70 (2026-10-03), defect fix and guard.**
   - **Fix:** an undo whose target changed nothing restorable is rejected as `NO_EFFECT`, so a `CommandUndone` always restores at least one fact.
   - **Guard:** the engine validates every drafted event against the stored-event schema before stamping. A decision bug now fails the command loudly instead of writing a stream that cannot be loaded.

@@ -5,9 +5,11 @@ import {
   acting,
   incapacitated,
   isIncapacitated,
+  knownPremise,
   memoryEvent,
   notFound,
   notPresent,
+  premisesEvent,
   target,
 } from './acting.ts';
 import { MAX_SHARED_PER_ASK, scopedKey } from './records.ts';
@@ -28,9 +30,10 @@ export function decideAskAbout(
   if (isIncapacitated(actor.value)) return incapacitated();
   const found = target(state, actor.value, npcId);
   if (!found.ok) return found;
-  if (!actor.value.known.has(topicId) || !state.entities.has(topicId)) return notFound();
+  const topicPremise = knownPremise(actor.value, topicId);
+  if (topicPremise === null || !state.entities.has(topicId)) return notFound();
   if (!actor.value.perceived.has(npcId)) return notPresent();
-  const npc = found.value;
+  const npc = found.value.entity;
   if (npc.status !== 'active') return reject('TARGET_DEAD', 'Cannot answer');
   const nothing = () => reject('NO_EFFECT', 'Nothing new to share');
   if (npc.kind !== 'npc' || npcId === characterId) return nothing();
@@ -48,7 +51,16 @@ export function decideAskAbout(
     .slice(0, MAX_SHARED_PER_ASK);
   if (willing.length === 0) return nothing();
 
-  const events: KernelEvent[] = [];
+  // Legal because: the character could speak (sheet), sees the NPC, knows the
+  // topic, and (for the party scope) belongs to the party (Gate 02, G02-H02).
+  const events: KernelEvent[] = [
+    premisesEvent(characterId, [
+      { kind: 'sheet' },
+      found.value.premise,
+      topicPremise,
+      ...(scope.kind === 'PARTY' ? [{ kind: 'party' } as const] : []),
+    ]),
+  ];
   const sharedIds: string[] = [];
   willing.forEach((source, index) => {
     const knowledgeId = resolution.ids[index];

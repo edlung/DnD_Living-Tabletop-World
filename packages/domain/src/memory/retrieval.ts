@@ -10,7 +10,12 @@ import {
 import { isWithinLocation } from '../kernel/projections/world-view.ts';
 import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
-import { entityRef, isVisible } from '../knowledge/projection.ts';
+import {
+  entityRef,
+  isVisible,
+  isWithinKnownLocation,
+  knownEntityIds,
+} from '../knowledge/projection.ts';
 import { scopeKey } from '../knowledge/records.ts';
 import type { MemoryRecord } from './records.ts';
 
@@ -67,9 +72,10 @@ export function recallMemories(
   }
   const reference = asOf ?? state.clock;
   const terms = tokens(query.text ?? '');
+  const atLocation = locationMatcher(state, perspective, query.locationId);
 
   const scored = visibleMemories(state, perspective, asOf).flatMap((memory) => {
-    if (!matchesFilters(state, memory, query)) return [];
+    if (!atLocation(memory) || !matchesFilters(memory, query)) return [];
     const salience = memory.salience / 5;
     const days = Math.max(0, reference - memory.occurredAt) / SECONDS_PER_DAY;
     const recency = 1 / (1 + days);
@@ -144,14 +150,33 @@ export function toMemoryView(
   };
 }
 
-function matchesFilters(state: WorldState, memory: MemoryRecord, query: RecallQuery): boolean {
+/**
+ * Location filter "including places inside it" (ADR 0010). The DM uses all
+ * containment; any other perspective only chains of locations it knows, so a
+ * hidden location (or hidden link) matches nothing, exactly like a
+ * nonexistent one (Gate 02, G02-H01).
+ */
+function locationMatcher(
+  state: WorldState,
+  perspective: ResolvedPerspective,
+  locationId: string | undefined,
+): (memory: MemoryRecord) => boolean {
+  if (locationId === undefined) return () => true;
+  if (perspective.scopes === 'ALL') {
+    return (memory) =>
+      memory.locationId !== null && isWithinLocation(state, memory.locationId, locationId);
+  }
+  const known = knownEntityIds(state, perspective);
+  return (memory) =>
+    memory.locationId !== null &&
+    isWithinKnownLocation(state, known, memory.locationId, locationId);
+}
+
+function matchesFilters(memory: MemoryRecord, query: RecallQuery): boolean {
   return (
     (query.entityId === undefined ||
       memory.participants.includes(query.entityId) ||
       memory.locationId === query.entityId) &&
-    (query.locationId === undefined ||
-      (memory.locationId !== null &&
-        isWithinLocation(state, memory.locationId, query.locationId))) &&
     (query.from === undefined || memory.occurredAt >= query.from) &&
     (query.to === undefined || memory.occurredAt <= query.to) &&
     (query.memoryKind === undefined || memory.memoryKind === query.memoryKind) &&

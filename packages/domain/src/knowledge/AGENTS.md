@@ -18,6 +18,7 @@ Rules:
 - A hidden record or entity must be indistinguishable from a nonexistent one: return `null`/empty, never a different error, count, ID, or placeholder.
 - Permission depends only on the actor's role (`campaignRole`), never on whether a requested target exists.
 - Never add a default or fallback perspective. Missing or invalid means rejected.
+- `knownEntityIds` derives from `knownEntityBases` (the earliest premise per known entity), so known sets and recorded premises cannot diverge. `isWithinKnownLocation` is the only containment a non-DM read may use (Gate 02).
 - Records never change type. Facts come only from new DM-authored records (ADR 0014). Claims (`state.epistemics`) are DM data; only the DM projection shows them.
 - Footprints for knowledge events live in `kernel/facts.ts`; keep them complete (holder, subjects, attribution, related records).
 - Tests: `*.test.ts` here. Keep the randomized boundary test passing when adding fields or queries.

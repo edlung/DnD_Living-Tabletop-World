@@ -14,6 +14,7 @@ import {
   isIncapacitated,
   memoryEvent,
   notPresent,
+  premisesEvent,
   target,
 } from './acting.ts';
 import { attemptKey, scopedKey } from './records.ts';
@@ -51,7 +52,7 @@ export function decideExamineEntity(
   const found = target(state, actor.value, entityId);
   if (!found.ok) return found;
   if (!actor.value.perceived.has(entityId)) return notPresent();
-  const entity = found.value;
+  const entity = found.value.entity;
   if (!(check ? CHECKABLE : INSPECTABLE).has(entity.kind)) {
     return reject('NO_EFFECT', 'Nothing to examine that way');
   }
@@ -84,7 +85,12 @@ export function decideExamineEntity(
     return { clue, knowledgeId };
   });
 
+  // Legal because the character sees the target (and, for a check, has a sheet).
   const events: KernelEvent[] = [
+    premisesEvent(characterId, [
+      found.value.premise,
+      ...(check ? [{ kind: 'sheet' } as const] : []),
+    ]),
     {
       type: 'EvidenceExamined',
       payload: {

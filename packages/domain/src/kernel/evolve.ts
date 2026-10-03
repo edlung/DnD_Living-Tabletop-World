@@ -10,6 +10,7 @@ import {
   applyEvidenceExamined,
   applyInformationShared,
   applyInvestigationRestore,
+  applyPremisesRecorded,
 } from '../investigation/evolve.ts';
 import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
@@ -148,6 +149,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyClaimSet(state, event);
     case 'ContradictionDetected':
       return applyContradictionDetected(state, event);
+    case 'PremisesRecorded':
+      return applyPremisesRecorded(state, event);
   }
 }
 

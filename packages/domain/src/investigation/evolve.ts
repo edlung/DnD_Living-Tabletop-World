@@ -84,6 +84,32 @@ export function applyInformationShared(
   return withInvestigation(state, { shared: added(state.investigation.shared, key) });
 }
 
+/** Premises change no state; they must reference what existed when recorded. */
+export function applyPremisesRecorded(
+  state: WorldState,
+  event: EventOf<'PremisesRecorded'>,
+): WorldState {
+  const { characterId, premises } = event.payload;
+  const exists = premises.every((premise) => {
+    switch (premise.kind) {
+      case 'perceived':
+        return state.entities.has(premise.entityId);
+      case 'party-member':
+        return state.roster.has(premise.characterId);
+      case 'knowledge':
+        return state.knowledge.has(premise.knowledgeId);
+      case 'memory':
+        return state.memories.has(premise.memoryId);
+      default:
+        return true;
+    }
+  });
+  if (!state.entities.has(characterId) || !exists) {
+    throw new CorruptHistoryError(`premises of ${characterId} reference something missing`);
+  }
+  return state;
+}
+
 type InvestigationRestore = Extract<
   Restore,
   { fact: 'clue' | 'disclosure' | 'attempt' | 'revealed' | 'shared' }

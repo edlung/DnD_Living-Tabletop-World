@@ -3,11 +3,13 @@ import type { KnowledgeScope } from '@ltw/contracts';
 import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { isVisible } from '../knowledge/projection.ts';
-import { acting, notFound, target } from './acting.ts';
+import type { Premise } from './events.ts';
+import { acting, knownPremise, notFound, premisesEvent, target } from './acting.ts';
 
 /**
  * `EnterLocation` and `FormHypothesis` (docs/adr/0013-investigation.md §1, §4).
  * Hypotheses are created as HYPOTHESIS and nothing ever changes their type.
+ * Both record what made them legal (Gate 02, G02-H02).
  */
 export function decideEnterLocation(
   state: WorldState,
@@ -17,10 +19,12 @@ export function decideEnterLocation(
   if (!actor.ok) return actor;
   const location = target(state, actor.value, command.locationId);
   if (!location.ok) return location;
-  if (location.value.kind !== 'location') return reject('NOT_A_LOCATION', 'Not a location');
+  if (location.value.entity.kind !== 'location') {
+    return reject('NOT_A_LOCATION', 'Not a location');
+  }
   if (actor.value.locationId === command.locationId) return reject('NO_EFFECT', 'Already here');
   // A destroyed location may be entered: refusing would reveal the status of an absent place.
-  return accept({
+  return accept(premisesEvent(command.characterId, [location.value.premise]), {
     type: 'EntityPlaced',
     payload: {
       entityId: command.characterId,
@@ -48,7 +52,12 @@ export function decideFormHypothesis(
     return reject('INVALID_KNOWLEDGE', 'Subjects must be unique');
   }
   // Only entities the character knows, and only records its perspective can see.
-  if (subjects.some((entityId) => !actor.value.known.has(entityId))) return notFound();
+  const premises: Premise[] = [];
+  for (const entityId of subjects) {
+    const premise = knownPremise(actor.value, entityId);
+    if (premise === null) return notFound();
+    premises.push(premise);
+  }
   if (new Set(relations.map((r) => `${r.type}:${r.knowledgeId}`)).size !== relations.length) {
     return reject('INVALID_KNOWLEDGE', 'Relations must be unique');
   }
@@ -57,12 +66,15 @@ export function decideFormHypothesis(
     if (!record || !isVisible(record, actor.value.perspective)) {
       return reject('KNOWLEDGE_NOT_FOUND', 'Not found');
     }
+    // A cited PARTY record is visible only while the character is in the party.
+    if (record.scope.kind === 'PARTY') premises.push({ kind: 'party' });
   }
+  if (command.scope === 'PARTY') premises.push({ kind: 'party' });
   const scope: KnowledgeScope =
     command.scope === 'PARTY'
       ? { kind: 'PARTY' }
       : { kind: 'CHARACTER', characterId: command.characterId };
-  return accept({
+  return accept(premisesEvent(command.characterId, premises), {
     type: 'KnowledgeAssigned',
     payload: {
       knowledgeId,

@@ -4,6 +4,7 @@ import {
   clueIdSchema,
   entityIdSchema,
   knowledgeIdSchema,
+  memoryIdSchema,
 } from '@ltw/contracts';
 import { z } from 'zod';
 
@@ -60,6 +61,30 @@ export const informationSharedPayloadSchema = z
     sourceKnowledgeId: knowledgeIdSchema,
     knowledgeId: knowledgeIdSchema,
   })
+  .strict();
+
+/**
+ * What a player command relied on to be legal (Gate 02 remediation, G02-H02):
+ * the target being perceived, or the earliest premise that made it known, the
+ * sheet that let the character speak or roll, and party membership. Read by
+ * the command's footprint so that undoing a premise is UNDO_UNSAFE while the
+ * action stands (ADR 0006 §8). DM-only.
+ */
+export const premiseSchema = z.discriminatedUnion('kind', [
+  z.object({ kind: z.literal('perceived'), entityId: entityIdSchema }).strict(),
+  z.object({ kind: z.literal('self') }).strict(),
+  z.object({ kind: z.literal('party-member'), characterId: entityIdSchema }).strict(),
+  z
+    .object({ kind: z.literal('knowledge'), knowledgeId: knowledgeIdSchema, viaParty: z.boolean() })
+    .strict(),
+  z.object({ kind: z.literal('memory'), memoryId: memoryIdSchema, viaParty: z.boolean() }).strict(),
+  z.object({ kind: z.literal('sheet') }).strict(),
+  z.object({ kind: z.literal('party') }).strict(),
+]);
+export type Premise = z.infer<typeof premiseSchema>;
+
+export const premisesRecordedPayloadSchema = z
+  .object({ characterId: entityIdSchema, premises: z.array(premiseSchema).max(24) })
   .strict();
 
 export const investigationRestoreSchemas = [
