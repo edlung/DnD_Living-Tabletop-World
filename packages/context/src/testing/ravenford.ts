@@ -1,4 +1,4 @@
-import type { PerspectiveRequest } from '@ltw/contracts';
+import type { CommandResult, PerspectiveRequest } from '@ltw/contracts';
 import {
   InMemoryEventStore,
   SequentialIds,
@@ -15,9 +15,11 @@ import boundary from '../../../../fixtures/ravenford/knowledge-boundary.json' wi
 import kernelSeed from '../../../../fixtures/ravenford/kernel-seed.json' with { type: 'json' };
 import knowledgeSeed from '../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
 import memorySeed from '../../../../fixtures/ravenford/memory-seed.json' with { type: 'json' };
+import investigationSeed from '../../../../fixtures/ravenford/investigation-seed.json' with { type: 'json' };
 import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
+import { skillCheckPort, type Dice } from '@ltw/rules';
 
-/** Test support: the full Ravenford seed (kernel, knowledge, memory, rules). */
+/** Test support: the full Ravenford seed (kernel, knowledge, memory, rules, investigation). */
 export const CAMPAIGN = 'ravenford';
 export const DM: Actor = { actorId: 'dm-ravenford', kind: 'user' };
 export const PLAYER: Actor = { actorId: 'player-elowen', kind: 'user' };
@@ -32,20 +34,36 @@ export interface SeededWorld {
   readonly engine: WorldEngine;
   /** Submits more DM commands after the seed and returns the new state. */
   readonly apply: (...commands: Record<string, unknown>[]) => Promise<WorldState>;
+  /** Queues d20 results for the next skill checks. */
+  readonly roll: (...d20s: number[]) => void;
+  /** Submits one command as `actor` (default: Elowen's player); returns the result. */
+  readonly submit: (command: Record<string, unknown>, actor?: Actor) => Promise<CommandResult>;
+  /** Current state. */
+  readonly current: () => Promise<WorldState>;
   readonly state: WorldState;
 }
 
 export async function seedRavenford(): Promise<SeededWorld> {
+  const queue: number[] = [];
+  const dice: Dice = {
+    roll: () => {
+      const next = queue.shift();
+      if (next === undefined) throw new Error('no d20 queued');
+      return next;
+    },
+  };
   const engine = new WorldEngine({
     store: new InMemoryEventStore(),
     ids: new SequentialIds(),
     clock: new SteppingClock(),
+    checks: skillCheckPort(dice),
   });
   const scripts = [
     [kernelSeed.commands, 'seed'],
     [knowledgeSeed.commands, 'knowledge'],
     [memorySeed.commands, 'memory'],
     [rulesSeed.commands, 'rules'],
+    [investigationSeed.commands, 'investigation'],
   ] as const;
   let counter = 0;
   const run = async (commands: readonly unknown[], prefix: string) => {
@@ -70,6 +88,21 @@ export async function seedRavenford(): Promise<SeededWorld> {
   return {
     engine,
     state,
+    roll: (...d20s) => queue.push(...d20s),
+    submit: (command, actor = PLAYER) => {
+      counter += 1;
+      return engine.execute({
+        commandId: `test.${String(counter)}`,
+        campaignId: CAMPAIGN,
+        actor,
+        command,
+      });
+    },
+    current: async () => {
+      const snapshot = await engine.load(CAMPAIGN);
+      if (!snapshot) throw new Error('missing campaign');
+      return snapshot.state;
+    },
     apply: (...commands) => {
       counter += 1;
       return run(commands, `test-${String(counter)}`);

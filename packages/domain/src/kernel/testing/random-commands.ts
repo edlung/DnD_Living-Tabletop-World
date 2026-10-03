@@ -75,8 +75,9 @@ export function randomCommand(
   if (roll < 0.73)
     return { type: 'EndSession', sessionId: pick([...state.sessions.keys(), 'none']) };
   if (roll < 0.76) return { type: 'AdvanceWorldTime', by: 1 + Math.floor(rng() * 7_200) };
-  if (roll < 0.84) return randomKnowledge(rng, pick, state, entities, step);
-  if (roll < 0.9) return randomMemory(rng, pick, state, entities, step);
+  if (roll < 0.82) return randomKnowledge(rng, pick, state, entities, step);
+  if (roll < 0.865) return randomMemory(rng, pick, state, entities, step);
+  if (roll < 0.91) return randomInvestigation(rng, pick, state, entities, step);
   if (roll < 0.92) {
     return {
       type: 'AssignCharacter',
@@ -85,6 +86,63 @@ export function randomCommand(
     };
   }
   return { type: 'UndoCommand', targetCommandId: pick([...acceptedCommandIds, 'none']) };
+}
+
+function randomInvestigation(
+  rng: () => number,
+  pick: <T>(items: readonly T[]) => T,
+  state: WorldState,
+  entities: readonly string[],
+  step: number,
+): Record<string, unknown> {
+  // ADR 0013 commands; characters are often co-located with what they examine.
+  const characters = [...state.entities.values()].filter((e) => e.kind === 'character');
+  const characterId =
+    characters.length > 0 && rng() < 0.85 ? pick(characters).entityId : pick(entities);
+  const here = state.entities.get(characterId)?.placement?.locationId ?? null;
+  const nearby = [...state.entities.values()]
+    .filter((e) => here !== null && e.placement?.locationId === here)
+    .map((e) => e.entityId);
+  const target = nearby.length > 0 && rng() < 0.8 ? pick(nearby) : pick(entities);
+  const objectKind = ['item', 'feature'].includes(state.entities.get(target)?.kind ?? '');
+  const method =
+    objectKind || rng() < 0.2
+      ? pick(['inspect', 'investigation', 'perception'] as const)
+      : 'inspect';
+  const npcRecords = [...state.knowledge.values()].filter((k) => k.scope.kind === 'NPC');
+  switch (
+    pick(['clue', 'clue', 'disclose', 'examine', 'examine', 'ask', 'enter', 'hypothesis'] as const)
+  ) {
+    case 'clue':
+      return {
+        type: 'AddClue',
+        clueId: `c${step}`,
+        entityId: target,
+        method,
+        ...(method === 'inspect' ? {} : { dc: 5 + Math.floor(rng() * 16) }),
+        statement: `Clue ${step}`,
+      };
+    case 'disclose':
+      return {
+        type: 'SetDisclosure',
+        knowledgeId: npcRecords.length > 0 ? pick(npcRecords).knowledgeId : 'ghost-k',
+        disclosure: pick(['WILLING', 'GUARDED'] as const),
+      };
+    case 'examine':
+      return { type: 'ExamineEntity', characterId, entityId: target, method };
+    case 'ask':
+      return { type: 'AskAbout', characterId, npcId: target, topicId: pick(entities) };
+    case 'enter':
+      return { type: 'EnterLocation', characterId, locationId: pick(entities) };
+    case 'hypothesis':
+      return {
+        type: 'FormHypothesis',
+        characterId,
+        scope: pick(['PARTY', 'CHARACTER'] as const),
+        statement: `Hypothesis ${step}`,
+        subjects: rng() < 0.5 ? [pick(entities)] : [],
+      };
+  }
 }
 
 function randomKnowledge(

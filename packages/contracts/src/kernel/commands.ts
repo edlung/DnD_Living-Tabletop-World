@@ -6,6 +6,14 @@ import {
   recordMemoryCommandSchema,
   startSessionCommandSchema,
 } from '../memory/commands.ts';
+import {
+  addClueCommandSchema,
+  askAboutCommandSchema,
+  enterLocationCommandSchema,
+  examineEntityCommandSchema,
+  formHypothesisCommandSchema,
+  setDisclosureCommandSchema,
+} from '../investigation/commands.ts';
 import { setCharacterSheetCommandSchema } from '../rules/character-sheet.ts';
 import { commandIdSchema, entityIdSchema, sceneIdSchema } from './identifiers.ts';
 import { worldDurationSchema, worldTimeSchema } from './world-time.ts';
@@ -136,6 +144,12 @@ export const kernelCommandSchema = z
     endSessionCommandSchema,
     assignCharacterCommandSchema,
     setCharacterSheetCommandSchema,
+    enterLocationCommandSchema,
+    askAboutCommandSchema,
+    examineEntityCommandSchema,
+    formHypothesisCommandSchema,
+    addClueCommandSchema,
+    setDisclosureCommandSchema,
   ])
   .superRefine((command, context) => {
     if (
@@ -173,6 +187,12 @@ export const KERNEL_COMMAND_TYPES = [
   'StartSession',
   'EndSession',
   'SetCharacterSheet',
+  'EnterLocation',
+  'AskAbout',
+  'ExamineEntity',
+  'FormHypothesis',
+  'AddClue',
+  'SetDisclosure',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

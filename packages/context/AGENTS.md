@@ -2,16 +2,16 @@
 
 The context of one selected entity for one acting character. Authority: `docs/adr/0012-context-engine.md` (owner-approved). Pure: no AI, no I/O, no persistence. Gate 02 reviews this package for secret leakage (`docs/GATE_COVERAGE.md`, Stages 50–60).
 
-| Concern                                                          | File                    |
-| ---------------------------------------------------------------- | ----------------------- |
-| Entry point (`entityContext`)                                    | `src/entity-context.ts` |
-| Inputs gathered once: perceived, known, visible records/memories | `src/inputs.ts`         |
-| Perception (here, parent, child locations, who is here)          | `src/perception.ts`     |
-| Whitelisted views (entity ref, visible state)                    | `src/views.ts`          |
-| Action catalog and check order                                   | `src/actions.ts`        |
-| Legality through `@ltw/rules`                                    | `src/legality.ts`       |
-| "Ask about" topics                                               | `src/topics.ts`         |
-| Relevance heuristics                                             | `src/relevance.ts`      |
+| Concern                                                          | File                                                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Entry point (`entityContext`)                                    | `src/entity-context.ts`                                                                  |
+| Inputs gathered once: perceived, known, visible records/memories | `src/inputs.ts`                                                                          |
+| Perception                                                       | `@ltw/domain` (`src/investigation/perception.ts`), shared with player-command validation |
+| Whitelisted views (entity ref, visible state)                    | `src/views.ts`                                                                           |
+| Action catalog and check order                                   | `src/actions.ts`                                                                         |
+| Legality through `@ltw/rules`                                    | `src/legality.ts`                                                                        |
+| "Ask about" topics                                               | `src/topics.ts`                                                                          |
+| Relevance heuristics                                             | `src/relevance.ts`                                                                       |
 
 Rules:
 
@@ -20,4 +20,5 @@ Rules:
 - Check order protects secrets: actor state, then presence, then target status. An absent target is always `NOT_PRESENT`.
 - Views are built field by field. Never spread canonical objects into output.
 - Perceived entities are shown by ID and kind. An entity whose identity must stay secret needs an opaque ID (ADR 0008).
+- Executable actions (`enter_location`, `inspect`, checks, `ask_about`) must stay aligned with World Engine acceptance (ADR 0013): `command-alignment.test.ts`.
 - Tests: `src/testing/ravenford.ts` seeds the full Ravenford fixture. `leakage.test.ts` holds the marker crawl and the noninterference check; extend both when adding an action or field.

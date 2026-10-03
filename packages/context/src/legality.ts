@@ -95,7 +95,18 @@ export function longbowVerdict(sheet: CharacterSheet | undefined): Verdict {
   return { legal: true, hints: RANGE_HINT };
 }
 
-/** Speech and ability checks need only a capable actor (Incapacitated: SRD 5.2.1). */
+/**
+ * Skill checks on evidence (docs/adr/0013-investigation.md §2): a capable actor
+ * with a canonical sheet, one attempt per entity and method.
+ */
+export function checkVerdict(sheet: CharacterSheet | undefined, attempted: boolean): Verdict {
+  const capable = capableVerdict(sheet);
+  if (!capable.legal) return capable;
+  if (!sheet) return illegalBecause('NO_CHARACTER_SHEET');
+  return attempted ? illegalBecause('ALREADY_ATTEMPTED') : LEGAL;
+}
+
+/** Speech needs only a capable actor (Incapacitated: SRD 5.2.1). */
 export function capableVerdict(sheet: CharacterSheet | undefined): Verdict {
   return sheet && isIncapacitated(sheet) ? illegalBecause('INCAPACITATED') : LEGAL;
 }

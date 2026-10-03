@@ -123,3 +123,14 @@ export {
   type EntityContextView,
   type Relevance,
 } from './context/views.ts';
+export {
+  CHECK_METHODS,
+  DISCLOSURES,
+  EXAMINE_METHODS,
+  PLAYER_COMMAND_TYPES,
+  clueIdSchema,
+  type Disclosure,
+  type ExamineMethod,
+  type PlayerCommandType,
+  type PlayerOutcome,
+} from './investigation/commands.ts';

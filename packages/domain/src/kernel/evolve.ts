@@ -1,4 +1,11 @@
 import { applyCharacterSheetSet } from '../character/character.ts';
+import {
+  applyClueAdded,
+  applyDisclosureSet,
+  applyEvidenceExamined,
+  applyInformationShared,
+  applyInvestigationRestore,
+} from '../investigation/evolve.ts';
 import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
@@ -124,6 +131,14 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applySessionEnded(state, event);
     case 'CharacterSheetSet':
       return applyCharacterSheetSet(state, event);
+    case 'ClueAdded':
+      return applyClueAdded(state, event);
+    case 'DisclosureSet':
+      return applyDisclosureSet(state, event);
+    case 'EvidenceExamined':
+      return applyEvidenceExamined(state, event);
+    case 'InformationShared':
+      return applyInformationShared(state, event);
   }
 }
 
@@ -217,6 +232,12 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       else sheets.set(restore.entityId, restore.value);
       return { ...state, characterSheets: sheets };
     }
+    case 'clue':
+    case 'disclosure':
+    case 'attempt':
+    case 'revealed':
+    case 'shared':
+      return applyInvestigationRestore(state, restore);
   }
 }
 

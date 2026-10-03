@@ -133,6 +133,27 @@ export function checkWorldIntegrity(state: WorldState): string[] {
     report('active session pointer does not match the open session');
   }
 
+  const { clues, disclosures, revealed, shared } = state.investigation;
+  for (const [id, clue] of clues) {
+    if (!state.usedIds.has(id)) report(`clue ${id} missing from used IDs`);
+    if (![clue.entityId, ...clue.subjects].every((entityId) => state.entities.has(entityId))) {
+      report(`clue ${id} references a missing entity`);
+    }
+  }
+  for (const knowledgeId of disclosures.keys()) {
+    if (state.knowledge.get(knowledgeId)?.scope.kind !== 'NPC') {
+      report(`disclosure for ${knowledgeId}, which is not an NPC record`);
+    }
+  }
+  for (const key of revealed) {
+    if (!clues.has(key.slice(key.lastIndexOf('|') + 1))) report(`revealed key ${key} has no clue`);
+  }
+  for (const key of shared) {
+    if (!state.knowledge.has(key.slice(key.lastIndexOf('|') + 1))) {
+      report(`shared key ${key} has no source record`);
+    }
+  }
+
   for (const trace of state.commands.values()) {
     if (
       trace.undoneBy !== null &&

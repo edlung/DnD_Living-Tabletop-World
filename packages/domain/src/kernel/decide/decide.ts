@@ -1,4 +1,11 @@
 import { decideSetCharacterSheet } from '../../character/character.ts';
+import { decideAddClue, decideSetDisclosure } from '../../investigation/authoring.ts';
+import { decideAskAbout } from '../../investigation/conversation.ts';
+import { decideExamineEntity } from '../../investigation/examine.ts';
+import {
+  decideEnterLocation,
+  decideFormHypothesis,
+} from '../../investigation/movement-and-hypotheses.ts';
 import { decideAddKnowledge, decideAssignCharacter } from '../../knowledge/decide.ts';
 import { decideEndSession, decideRecordMemory, decideStartSession } from '../../memory/decide.ts';
 import type { Decision, DecisionContext, ResolvedCommand } from '../decision.ts';
@@ -50,5 +57,17 @@ export function decide(context: DecisionContext, command: ResolvedCommand): Deci
       return decideEndSession(state, command);
     case 'SetCharacterSheet':
       return decideSetCharacterSheet(state, command);
+    case 'AddClue':
+      return decideAddClue(state, command);
+    case 'SetDisclosure':
+      return decideSetDisclosure(state, command);
+    case 'EnterLocation':
+      return decideEnterLocation(state, command);
+    case 'AskAbout':
+      return decideAskAbout(state, command);
+    case 'ExamineEntity':
+      return decideExamineEntity(context, command);
+    case 'FormHypothesis':
+      return decideFormHypothesis(state, command);
   }
 }

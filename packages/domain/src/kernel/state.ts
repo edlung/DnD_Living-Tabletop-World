@@ -6,6 +6,7 @@ import type {
   LocationType,
 } from '@ltw/contracts';
 
+import { EMPTY_INVESTIGATION, type InvestigationState } from '../investigation/records.ts';
 import type { KnowledgeRecord } from '../knowledge/records.ts';
 import type { MemoryRecord, SessionRecord } from '../memory/records.ts';
 
@@ -84,6 +85,8 @@ export interface WorldState {
   readonly activeSessionId: string | null;
   /** Character sheets by entity ID (ADR 0011). */
   readonly characterSheets: ReadonlyMap<string, CharacterSheet>;
+  /** Clues, disclosure, attempts, revealed clues, shared records (ADR 0013). */
+  readonly investigation: InvestigationState;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -101,6 +104,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   sessions: new Map(),
   activeSessionId: null,
   characterSheets: new Map(),
+  investigation: EMPTY_INVESTIGATION,
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

@@ -20,6 +20,7 @@ const SEED_FILES = [
   { file: 'knowledge-seed.json', prefix: 'knowledge' },
   { file: 'memory-seed.json', prefix: 'memory' },
   { file: 'rules-seed.json', prefix: 'rules' },
+  { file: 'investigation-seed.json', prefix: 'investigation' },
 ] as const;
 
 const seedSchema = z.object({

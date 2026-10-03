@@ -35,5 +35,6 @@ Never mark a product decision or invariant change `Accepted` on the owner's beha
 | [0010](0010-memory-and-temporal-retrieval.md)      | Memory, sessions, impossible memories, and temporal retrieval            | Accepted (owner-approved product decision)         |
 | [0011](0011-ruleset-srd-5-2.md)                    | Ruleset: SRD 5.2.1 subset for the Ravenford slice                        | Accepted (owner-approved product decision)         |
 | [0012](0012-context-engine.md)                     | Context Engine: perception, entity context, actions, legality, relevance | Accepted (owner-approved product decision)         |
+| [0013](0013-investigation.md)                      | Investigation: player actions, clues, disclosure, hypotheses             | Accepted (owner-approved product decision)         |
 
 Pending product decisions (minimum authoring validation for Stage 110 and later ones) are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006.

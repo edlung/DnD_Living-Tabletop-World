@@ -1,3 +1,5 @@
+import type { PlayerOutcome } from '../investigation/commands.ts';
+
 /**
  * Outcome of submitting a World Kernel command. Rejections never change
  * canonical state; `duplicate` reports the original outcome of a command ID
@@ -52,6 +54,21 @@ export const REJECTION_CODES = [
   'SESSION_NOT_FOUND',
   'SESSION_ALREADY_ACTIVE',
   'SESSION_NOT_ACTIVE',
+  /** Investigation (ADR 0013): the acting character is dead. */
+  'ACTOR_DEAD',
+  /** The acting character is Incapacitated (speech and checks). */
+  'ACTOR_INCAPACITATED',
+  /** The target is not where the acting character is. */
+  'NOT_PRESENT',
+  'TARGET_DEAD',
+  /** One skill-check attempt per character, entity, and method. */
+  'ALREADY_ATTEMPTED',
+  /** A skill check needs the acting character's canonical sheet. */
+  'NO_CHARACTER_SHEET',
+  /** Clue shape violates ADR 0013 (DC, target, statement). */
+  'INVALID_CLUE',
+  /** Disclosure targets a non-NPC record or a never-shareable type. */
+  'INVALID_DISCLOSURE',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];
@@ -67,6 +84,8 @@ export interface CommandAccepted {
   readonly commandId: string;
   readonly campaignId: string;
   readonly events: readonly EventSummary[];
+  /** Player-visible outcome of a player command (docs/adr/0013-investigation.md §6). */
+  readonly outcome?: PlayerOutcome;
 }
 
 export interface CommandRejected {

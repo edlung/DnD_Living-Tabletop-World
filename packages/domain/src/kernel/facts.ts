@@ -1,3 +1,4 @@
+import { attemptKey, scopedKey } from '../investigation/records.ts';
 import { holderOf } from '../knowledge/records.ts';
 import type { KernelEvent, Restore } from './events.ts';
 
@@ -30,6 +31,11 @@ export const facts = {
   sessionEnded: (id: string): FactKey => `session:${id}#ended`,
   activeSession: (): FactKey => 'world#activeSession',
   sheet: (entityId: string): FactKey => `sheet:${entityId}`,
+  clue: (id: string): FactKey => `clue:${id}`,
+  disclosure: (knowledgeId: string): FactKey => `disclosure:${knowledgeId}`,
+  attempt: (key: string): FactKey => `attempt:${key}`,
+  revealed: (key: string): FactKey => `revealed:${key}`,
+  shared: (key: string): FactKey => `shared:${key}`,
 };
 
 export interface Footprint {
@@ -152,6 +158,57 @@ export function footprintOf(event: KernelEvent): Footprint {
         reads: [clock, facts.entity(event.payload.entityId)],
         writes: [facts.sheet(event.payload.entityId)],
       };
+    case 'ClueAdded':
+      return {
+        reads: [
+          clock,
+          ...entityChecked(event.payload.entityId),
+          ...event.payload.subjects.map((id) => facts.entity(id)),
+        ],
+        writes: [facts.clue(event.payload.clueId)],
+      };
+    case 'DisclosureSet':
+      return {
+        reads: [clock, facts.knowledge(event.payload.knowledgeId)],
+        writes: [facts.disclosure(event.payload.knowledgeId)],
+      };
+    case 'EvidenceExamined': {
+      // Depends on the examiner, the target being where the examiner is, the sheet
+      // that set the modifier, and every clue it revealed (ADR 0013).
+      const { characterId, entityId, method, scope, roll, revealed } = event.payload;
+      return {
+        reads: [
+          clock,
+          ...entityChecked(characterId),
+          facts.entityPlacement(characterId),
+          ...entityChecked(entityId),
+          facts.entityPlacement(entityId),
+          facts.rosterCharacter(characterId),
+          ...(roll === null ? [] : [facts.sheet(characterId)]),
+          ...revealed.map(({ clueId }) => facts.clue(clueId)),
+        ],
+        writes: [
+          ...(roll === null ? [] : [facts.attempt(attemptKey(characterId, entityId, method))]),
+          ...revealed.map(({ clueId }) => facts.revealed(scopedKey(scope, clueId))),
+        ],
+      };
+    }
+    case 'InformationShared': {
+      const { npcId, characterId, scope, sourceKnowledgeId } = event.payload;
+      return {
+        reads: [
+          clock,
+          ...entityChecked(npcId),
+          facts.entityPlacement(npcId),
+          ...entityChecked(characterId),
+          facts.entityPlacement(characterId),
+          facts.rosterCharacter(characterId),
+          facts.knowledge(sourceKnowledgeId),
+          facts.disclosure(sourceKnowledgeId),
+        ],
+        writes: [facts.shared(scopedKey(scope, sourceKnowledgeId))],
+      };
+    }
     case 'CharacterAssigned':
       return {
         reads: [clock, facts.entity(event.payload.characterId)],
@@ -199,6 +256,16 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.activeSession()];
     case 'sheet':
       return [facts.sheet(restore.entityId)];
+    case 'clue':
+      return [facts.clue(restore.clueId)];
+    case 'disclosure':
+      return [facts.disclosure(restore.knowledgeId)];
+    case 'attempt':
+      return [facts.attempt(restore.key)];
+    case 'revealed':
+      return [facts.revealed(restore.key)];
+    case 'shared':
+      return [facts.shared(restore.key)];
   }
 }
 

@@ -117,6 +117,43 @@ describe('noninterference', () => {
     expect(contexts(hidden)).toEqual(contexts(baseline.state));
   });
 
+  it('clues, DCs and disclosure policy never change any context (ADR 0013 §2–3)', async () => {
+    const baseline = await seedRavenford();
+    const changed = await seedRavenford();
+    for (const world of [baseline, changed]) {
+      await world.submit({
+        type: 'EnterLocation',
+        characterId: ELOWEN,
+        locationId: 'old-trade-road',
+      });
+      await world.submit({
+        type: 'EnterLocation',
+        characterId: ELOWEN,
+        locationId: 'abandoned-caravan-site',
+      });
+    }
+    await changed.apply(
+      {
+        type: 'AddClue',
+        entityId: 'goblin-weapon',
+        method: 'perception',
+        dc: 30,
+        statement: 'Hidden.',
+      },
+      { type: 'AddClue', entityId: 'wagon-tracks', method: 'inspect', statement: 'More tracks.' },
+      { type: 'AddClue', entityId: 'mira-vale', method: 'inspect', statement: 'Mira looks tired.' },
+      { type: 'SetDisclosure', knowledgeId: 'thorne-missing-patrol', disclosure: 'WILLING' },
+      { type: 'SetDisclosure', knowledgeId: 'mira-cargo-logistics', disclosure: 'GUARDED' },
+    );
+    const contexts = async (world: typeof baseline) => {
+      const state = await world.current();
+      return [...state.entities.keys()]
+        .sort()
+        .map((entityId) => entityContext(state, elowenView(state), entityId));
+    };
+    expect(await contexts(changed)).toEqual(await contexts(baseline));
+  });
+
   it('is deterministic across independent replays', async () => {
     const first = await seedRavenford();
     const second = await seedRavenford();

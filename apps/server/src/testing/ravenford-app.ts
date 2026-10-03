@@ -5,6 +5,7 @@ import {
   WorldEngine,
   type EventStore,
 } from '@ltw/domain';
+import { scriptedDice, skillCheckPort, type Dice } from '@ltw/rules';
 import type { FastifyInstance, LightMyRequestResponse } from 'fastify';
 
 import boundary from '../../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
@@ -27,8 +28,17 @@ export const FORBIDDEN_MARKERS: Readonly<Record<string, readonly string[]>> =
   boundary.forbiddenMarkers;
 export const ALL_SECRET_MARKERS = [...new Set(Object.values(FORBIDDEN_MARKERS).flat())];
 
-export async function seededEngine(store: EventStore = new InMemoryEventStore()) {
-  const engine = new WorldEngine({ store, ids: new SequentialIds(), clock: new SteppingClock() });
+/** Engine over the full Ravenford seed; checks roll from `dice` (scripted in tests). */
+export async function seededEngine(
+  store: EventStore = new InMemoryEventStore(),
+  dice: Dice = scriptedDice([]),
+) {
+  const engine = new WorldEngine({
+    store,
+    ids: new SequentialIds(),
+    clock: new SteppingClock(),
+    checks: skillCheckPort(dice),
+  });
   const seed = await loadRavenfordSeed();
   for (const submission of seed.submissions) {
     const result = await engine.execute(submission);

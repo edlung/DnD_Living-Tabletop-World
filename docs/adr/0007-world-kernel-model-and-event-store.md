@@ -86,4 +86,5 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Stage 60 (2026-10-03), ADR 0013.** Player commands carry an engine `resolution` (pre-generated IDs and the d20 of a skill check) on the stored command. Resolution happens after the idempotency lookup, so a retried command ID never draws again. Submissions cannot contain it (the submission schema is strict). The World Engine accepts an optional `SkillCheckPort`, and authorization now sees the command, not only its type.
 - **Stage 30 (2026-10-03), defect fix.** The duplicate-command lookup (pipeline step 2) is repeated on every attempt _after_ the stream is loaded. Previously, a twin submission that committed between the first lookup and the state load could make the second submission be decided against its own effect (for example `NO_EFFECT`) instead of returning `duplicate`. A two-process integration test exposed this; a deterministic unit regression test now covers it. The pipeline's order and guarantees are otherwise unchanged.

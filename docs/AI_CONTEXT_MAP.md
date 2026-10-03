@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), and 50 (Context Engine) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), and 60 (Investigation) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -45,6 +45,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Seed Ravenford / dev harness | `apps/server/src/world-engine/seed-ravenford-cli.ts`, `fixtures/ravenford/kernel-seed.json` |
 | Deterministic rules (SRD 5.2.1 slice) | `packages/rules/AGENTS.md`, ADR 0011 (owner-approved), `NOTICE.md` |
 | Context Engine: perception, entity context, actions, legality, relevance | `packages/context/AGENTS.md`, ADR 0012 (owner-approved); contracts in `packages/contracts/src/context/`; route `apps/server/src/http/routes/context-routes.ts` |
+| Investigation: player commands, clues, NPC disclosure, hypotheses | `packages/domain/src/investigation/AGENTS.md`, ADR 0013 (owner-approved); fixture `fixtures/ravenford/investigation-seed.json` |
 | Character sheets (canonical) | `packages/domain/src/character/character.ts`; schema in `packages/contracts/src/rules/character-sheet.ts` |
 | Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |
 | Client / UI | `apps/web/src/index.ts`, `packages/ui/src/index.ts` (placeholders; framework ADR at Stage 200) |

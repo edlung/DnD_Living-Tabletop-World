@@ -1,10 +1,11 @@
-import type { EntityState, WorldState } from '@ltw/domain';
+import type { EntityState, WorldState } from '../kernel/state.ts';
 
 /**
  * What an acting character perceives right now (docs/adr/0012-context-engine.md
  * "Perception"): entities placed at its current location, that location, its
  * parent location, and its child locations. Perception reads canonical state
  * but yields only entity IDs; views decide which fields of them are shown.
+ * Shared by the Context Engine and player-command validation (ADR 0013).
  */
 export function perceivedEntityIds(state: WorldState, actingCharacterId: string): Set<string> {
   const here = state.entities.get(actingCharacterId)?.placement?.locationId ?? null;

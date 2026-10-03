@@ -101,3 +101,6 @@ export {
   type RecallResult,
 } from './memory/retrieval.ts';
 export { placementAt } from './kernel/projections/world-view.ts';
+export { perceivedEntityIds } from './investigation/perception.ts';
+export { attemptKey, type Clue } from './investigation/records.ts';
+export type { SkillCheckPort } from './investigation/skill-checks.ts';

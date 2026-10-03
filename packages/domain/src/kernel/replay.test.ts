@@ -9,6 +9,15 @@ import type { WorldState } from './state.ts';
 import { CAMPAIGN, createHarness, seedBasicWorld } from './testing/kernel-harness.ts';
 import { mulberry32, randomCommand } from './testing/random-commands.ts';
 
+const INVESTIGATION = new Set([
+  'AddClue',
+  'SetDisclosure',
+  'ExamineEntity',
+  'AskAbout',
+  'EnterLocation',
+  'FormHypothesis',
+]);
+
 describe('deterministic replay over randomized command sequences', () => {
   it.each([1, 7, 42, 1337, 20261003])('seed %i', async (seed) => {
     const rng = mulberry32(seed);
@@ -23,6 +32,7 @@ describe('deterministic replay over randomized command sequences', () => {
       knowledge: 0,
       assigned: 0,
       memories: 0,
+      investigation: 0,
     };
 
     for (let step = 0; step < 250; step += 1) {
@@ -42,6 +52,7 @@ describe('deterministic replay over randomized command sequences', () => {
       if (command['type'] === 'AddKnowledge') outcomes.knowledge += 1;
       if (command['type'] === 'AssignCharacter') outcomes.assigned += 1;
       if (command['type'] === 'RecordMemory') outcomes.memories += 1;
+      if (INVESTIGATION.has(String(command['type']))) outcomes.investigation += 1;
       accepted.push(commandId);
       expect(checkWorldIntegrity(after), JSON.stringify(command)).toEqual([]);
       snapshots.set(after.version, after);
@@ -53,6 +64,7 @@ describe('deterministic replay over randomized command sequences', () => {
     expect(outcomes.undone).toBeGreaterThan(3);
     expect(outcomes.knowledge).toBeGreaterThan(3);
     expect(outcomes.memories).toBeGreaterThan(2);
+    expect(outcomes.investigation).toBeGreaterThan(2);
 
     const { state, history } = await harness.snapshot();
     expect(replay(history)).toEqual(state);
@@ -69,6 +81,9 @@ describe('deterministic replay over randomized command sequences', () => {
       clock: new SteppingClock(),
     });
     expect((await fresh.load(CAMPAIGN))?.state).toEqual(state);
+    expect(
+      [...state.investigation.attempts].length + state.investigation.clues.size,
+    ).toBeGreaterThan(0);
 
     const effective = history.filter(
       (event) =>

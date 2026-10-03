@@ -10,6 +10,7 @@ import {
 import type { RecordedEvent, Restore } from '../events.ts';
 import { replay } from '../evolve.ts';
 import { footprintOf, restoredFacts, type FactKey } from '../facts.ts';
+import { attemptKey, scopedKey } from '../../investigation/records.ts';
 import type { WorldState } from '../state.ts';
 
 /**
@@ -179,6 +180,37 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           fact: 'roster',
           characterId: event.payload.characterId,
           playerActorId: event.payload.playerActorId,
+          value: null,
+        });
+        break;
+      case 'ClueAdded':
+        restores.push({ fact: 'clue', clueId: event.payload.clueId, value: null });
+        break;
+      case 'DisclosureSet':
+        restores.push({
+          fact: 'disclosure',
+          knowledgeId: event.payload.knowledgeId,
+          value: before.investigation.disclosures.get(event.payload.knowledgeId) ?? null,
+        });
+        break;
+      case 'EvidenceExamined': {
+        const { characterId, entityId, method, scope, roll, revealed } = event.payload;
+        if (roll !== null) {
+          restores.push({
+            fact: 'attempt',
+            key: attemptKey(characterId, entityId, method),
+            value: null,
+          });
+        }
+        for (const { clueId } of revealed) {
+          restores.push({ fact: 'revealed', key: scopedKey(scope, clueId), value: null });
+        }
+        break;
+      }
+      case 'InformationShared':
+        restores.push({
+          fact: 'shared',
+          key: scopedKey(event.payload.scope, event.payload.sourceKnowledgeId),
           value: null,
         });
         break;

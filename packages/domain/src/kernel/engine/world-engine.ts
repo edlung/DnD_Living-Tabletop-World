@@ -1,8 +1,20 @@
-import type { CommandResult } from '@ltw/contracts';
+import {
+  CHECK_METHODS,
+  PLAYER_COMMAND_TYPES,
+  type CommandResult,
+  type KernelCommand,
+  type KernelCommandOf,
+  type KernelCommandType,
+  type PlayerCommandType,
+} from '@ltw/contracts';
+
+import { playerOutcome } from '../../investigation/outcome.ts';
+import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
+import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
-import type { Rejection, ResolvedCommand } from '../decision.ts';
+import type { Rejection, Resolution, ResolvedCommand } from '../decision.ts';
 import { EVENT_SCHEMA_VERSION, type KernelEvent, type RecordedEvent } from '../events.ts';
 import { evolve } from '../evolve.ts';
 import { EMPTY_WORLD_STATE, type WorldState } from '../state.ts';
@@ -35,6 +47,8 @@ export interface WorldEngineOptions {
    * influences decisions or recorded data).
    */
   readonly backoff?: (attempt: number) => Promise<void>;
+  /** Rules adapter for skill checks (ADR 0013); required to resolve checks. */
+  readonly checks?: SkillCheckPort;
 }
 
 const jitteredBackoff = (attempt: number): Promise<void> =>
@@ -51,6 +65,7 @@ export class WorldEngine {
   readonly #clock: WallClock;
   readonly #maxAttempts: number;
   readonly #backoff: (attempt: number) => Promise<void>;
+  readonly #checks: SkillCheckPort | undefined;
   readonly #mutex = new KeyedMutex();
   readonly #cache = new Map<string, CampaignSnapshot>();
 
@@ -60,6 +75,7 @@ export class WorldEngine {
     this.#clock = options.clock;
     this.#maxAttempts = options.maxAttempts ?? 10;
     this.#backoff = options.backoff ?? jitteredBackoff;
+    this.#checks = options.checks;
   }
 
   /** Validates and executes a submission. Never throws for domain rejections. */
@@ -129,7 +145,7 @@ export class WorldEngine {
       const state = snapshot?.state ?? EMPTY_WORLD_STATE;
       const history = snapshot?.history ?? [];
 
-      const denied = authorize(state, actor, command.type);
+      const denied = authorize(state, actor, command);
       if (denied) return rejected(commandId, denied);
       if (
         submission.expectedVersion !== undefined &&
@@ -142,7 +158,17 @@ export class WorldEngine {
         });
       }
 
-      const decision = decide({ state, history, campaignId, commandId, actor }, command);
+      const decision = decide(
+        {
+          state,
+          history,
+          campaignId,
+          commandId,
+          actor,
+          ...(this.#checks ? { skillModifier: this.#checks.skillModifier.bind(this.#checks) } : {}),
+        },
+        command,
+      );
       if (!decision.ok) return rejected(commandId, decision.rejection);
 
       const recordedAt = this.#clock.now();
@@ -180,12 +206,7 @@ export class WorldEngine {
         throw error;
       }
       this.#cache.set(campaignId, { state: next, history: Object.freeze([...history, ...events]) });
-      return {
-        status: 'accepted',
-        commandId,
-        campaignId,
-        events: events.map(({ sequence, eventId, type }) => ({ sequence, eventId, type })),
-      };
+      return accepted('accepted', commandId, campaignId, command.type, events);
     }
     return rejected(commandId, {
       code: 'CONCURRENCY_CONFLICT',
@@ -211,7 +232,29 @@ export class WorldEngine {
     if (command.type === 'StartSession') {
       return { ...command, sessionId: command.sessionId ?? this.#ids.next() };
     }
+    if (command.type === 'AddClue') {
+      return { ...command, clueId: command.clueId ?? this.#ids.next() };
+    }
+    if (isPlayerCommand(command)) return { ...command, resolution: this.#draw(command) };
     return command;
+  }
+
+  /** IDs for every record the command may create, and the d20 of a check. */
+  #draw(command: KernelCommandOf<PlayerCommandType>): Resolution {
+    const count =
+      command.type === 'EnterLocation'
+        ? 0
+        : command.type === 'FormHypothesis'
+          ? 1
+          : RESOLVED_ID_POOL;
+    const ids = Array.from({ length: count }, () => this.#ids.next());
+    if (command.type !== 'ExamineEntity' || !CHECK_METHODS.has(command.method)) {
+      return { ids, d20: null };
+    }
+    if (!this.#checks) throw new Error('WorldEngine needs a SkillCheckPort to resolve checks');
+    const d20 = this.#checks.rollD20();
+    if (!Number.isInteger(d20) || d20 < 1 || d20 > 20) throw new Error(`invalid d20 ${d20}`);
+    return { ids, d20 };
   }
 
   /** Assigns sequence, IDs, and times; folds each event to prove it applies. */
@@ -267,13 +310,29 @@ export class WorldEngine {
     // Read straight from the store: this may run while the campaign lock is held.
     const slice = await this.#store.loadStream(prior.campaignId, prior.firstSequence - 1);
     const events = (slice?.events ?? []).filter((event) => event.sequence <= prior.lastSequence);
-    return {
-      status: 'duplicate',
-      commandId: prior.commandId,
-      campaignId: prior.campaignId,
-      events: events.map(({ sequence, eventId, type }) => ({ sequence, eventId, type })),
-    };
+    return accepted('duplicate', prior.commandId, prior.campaignId, prior.commandType, events);
   }
+}
+
+const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
+const isPlayerCommand = (command: KernelCommand): command is KernelCommandOf<PlayerCommandType> =>
+  PLAYER_TYPES.has(command.type);
+
+function accepted(
+  status: 'accepted' | 'duplicate',
+  commandId: string,
+  campaignId: string,
+  commandType: KernelCommandType,
+  events: readonly RecordedEvent[],
+): CommandResult {
+  const outcome = playerOutcome(commandType, events);
+  return {
+    status,
+    commandId,
+    campaignId,
+    events: events.map(({ sequence, eventId, type }) => ({ sequence, eventId, type })),
+    ...(outcome ? { outcome } : {}),
+  };
 }
 
 function rejected(commandId: string | null, rejection: Rejection): CommandResult {

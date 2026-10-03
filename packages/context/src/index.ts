@@ -6,5 +6,4 @@
  * heuristic over the acting perspective's own data. No AI, no I/O.
  */
 export { entityContext, type EntityContextResult } from './entity-context.ts';
-export { perceivedEntityIds } from './perception.ts';
 export { MAX_TOPICS } from './topics.ts';

@@ -78,4 +78,5 @@ export {
   type AttackPlan,
   type Cover,
 } from './attacks.ts';
+export { skillCheckPort } from './skill-check-port.ts';
 export { applyHitPointChange, resolveCheck, resolveFireball, rollHealingWord } from './effects.ts';

@@ -19,6 +19,7 @@ export const CONTEXT_ACTION_IDS = [
   'hunters_mark',
   'detect_magic',
   'longbow_attack',
+  'enter_location',
 ] as const;
 export type ContextActionId = (typeof CONTEXT_ACTION_IDS)[number];
 
@@ -28,6 +29,8 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'NO_CHARACTER_SHEET',
   'NOT_PRESENT',
   'TARGET_DEAD',
+  'ALREADY_HERE',
+  'ALREADY_ATTEMPTED',
   'INCAPACITATED',
   'NOT_YOUR_TURN',
   'NO_ACTION',

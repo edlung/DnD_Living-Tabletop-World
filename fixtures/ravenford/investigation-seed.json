@@ -1,0 +1,112 @@
+{
+  "$comment": "Stage 60 investigation data (docs/adr/0013-investigation.md): NPC disclosure policy and DM clues on the caravan-site evidence. DM DATA \u2014 clue existence, DCs and statements must never reach a player before discovery. Seeded after rules-seed.json.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "SetDisclosure",
+      "knowledgeId": "mira-cargo-logistics",
+      "disclosure": "WILLING"
+    },
+    {
+      "type": "SetDisclosure",
+      "knowledgeId": "mira-prior-incident",
+      "disclosure": "WILLING"
+    },
+    {
+      "type": "SetDisclosure",
+      "knowledgeId": "thorne-route",
+      "disclosure": "WILLING"
+    },
+    {
+      "type": "SetDisclosure",
+      "knowledgeId": "thorne-departure",
+      "disclosure": "WILLING"
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-site-overview",
+      "entityId": "abandoned-caravan-site",
+      "method": "inspect",
+      "statement": "Broken wagons and scattered crates fill this roadside clearing; it is where the guild caravan was attacked.",
+      "subjects": ["guild-caravan", "old-trade-road"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-wheel-broken",
+      "entityId": "broken-wagon-wheel",
+      "method": "inspect",
+      "statement": "A wagon wheel lies broken beside the road.",
+      "subjects": []
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-wheel-sawn",
+      "entityId": "broken-wagon-wheel",
+      "method": "investigation",
+      "dc": 13,
+      "statement": "The spokes were sawn through cleanly, not smashed.",
+      "subjects": []
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-blade-found",
+      "entityId": "goblin-weapon",
+      "method": "inspect",
+      "statement": "A crude goblin blade lies in the grass.",
+      "subjects": []
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-blade-unused",
+      "entityId": "goblin-weapon",
+      "method": "investigation",
+      "dc": 15,
+      "statement": "The blade has never been used: no nicks, no blood.",
+      "subjects": []
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-symbol-seen",
+      "entityId": "strange-symbol",
+      "method": "inspect",
+      "statement": "A strange symbol is burned into a wagon plank.",
+      "subjects": []
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-symbol-careful",
+      "entityId": "strange-symbol",
+      "method": "investigation",
+      "dc": 14,
+      "statement": "The symbol was drawn with care by a practiced hand.",
+      "subjects": []
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-tracks-boots",
+      "entityId": "wagon-tracks",
+      "method": "perception",
+      "dc": 12,
+      "statement": "Heavy boot prints, too large for goblins, lead north off the road.",
+      "subjects": []
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-cargo-burned",
+      "entityId": "burned-cargo",
+      "method": "inspect",
+      "statement": "Some cargo was burned where it stood.",
+      "subjects": []
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-cargo-missing",
+      "entityId": "burned-cargo",
+      "method": "investigation",
+      "dc": 12,
+      "statement": "Only a few crates were burned; most of the cargo is gone.",
+      "subjects": []
+    }
+  ]
+}

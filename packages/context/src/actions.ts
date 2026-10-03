@@ -1,10 +1,11 @@
 import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
-import type { EntityState } from '@ltw/domain';
+import { attemptKey, type EntityState } from '@ltw/domain';
 
 import type { ContextInputs } from './inputs.ts';
 import {
   LEGAL,
   capableVerdict,
+  checkVerdict,
   illegalBecause,
   longbowVerdict,
   spellVerdict,
@@ -74,11 +75,22 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     }
   } else if (OBJECT_KINDS.has(target.kind)) {
     add('inspect', 'present', () => LEGAL, examine);
-    add('investigation_check', 'present', () => capableVerdict(sheet), examine);
-    add('perception_check', 'present', () => capableVerdict(sheet), examine);
+    const attempted = (method: 'investigation' | 'perception') =>
+      inputs.state.investigation.attempts.has(
+        attemptKey(inputs.actor.entityId, target.entityId, method),
+      );
+    add(
+      'investigation_check',
+      'present',
+      () => checkVerdict(sheet, attempted('investigation')),
+      examine,
+    );
+    add('perception_check', 'present', () => checkVerdict(sheet, attempted('perception')), examine);
     add('detect_magic', 'present', () => spellVerdict(sheet, 'detect-magic'), 'low');
   } else if (target.kind === 'location') {
     add('inspect', 'present', () => LEGAL, 'low');
+    const here = inputs.actor.placement?.locationId === target.entityId;
+    add('enter_location', 'none', () => (here ? illegalBecause('ALREADY_HERE') : LEGAL), 'low');
   }
   if (memoriesAbout(inputs, target.entityId) > 0) add('recall', 'none', () => LEGAL, 'high');
 

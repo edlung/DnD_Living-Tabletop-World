@@ -1,6 +1,7 @@
 import type { CharacterSheet } from '@ltw/contracts';
 import {
   knownEntityIds,
+  perceivedEntityIds,
   scopeKey,
   visibleRecords,
   type EntityState,
@@ -9,8 +10,6 @@ import {
   type ResolvedPerspective,
   type WorldState,
 } from '@ltw/domain';
-
-import { perceivedEntityIds } from './perception.ts';
 
 /**
  * Everything the Context Engine may use, gathered once per request

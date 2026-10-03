@@ -1,12 +1,21 @@
 import { describe, expect, it } from 'vitest';
 
 import { perceivedEntityIds } from './perception.ts';
-import { ELOWEN, seedRavenford } from './testing/ravenford.ts';
+import { DM, ELOWEN, investigationWorld } from './testing/world.ts';
 
 /** ADR 0012 "Perception": here, the parent location, child locations, and who is here. */
+async function worldAfter(...commands: Record<string, unknown>[]) {
+  const world = await investigationWorld();
+  for (const command of commands) {
+    const result = await world.submit(command, DM);
+    if (result.status === 'rejected') throw new Error(result.code);
+  }
+  return world.state();
+}
+
 describe('perception', () => {
   it('perceives Market Square, Ravenford, Mira and herself, nothing else', async () => {
-    const { state } = await seedRavenford();
+    const state = await worldAfter();
     expect([...perceivedEntityIds(state, ELOWEN)].sort()).toEqual([
       ELOWEN,
       'market-square',
@@ -16,8 +25,7 @@ describe('perception', () => {
   });
 
   it('includes child locations but not entities inside them, nor siblings', async () => {
-    const seeded = await seedRavenford();
-    const state = await seeded.apply({
+    const state = await worldAfter({
       type: 'PlaceEntity',
       entityId: ELOWEN,
       locationId: 'ravenford',
@@ -32,8 +40,7 @@ describe('perception', () => {
   });
 
   it('does not perceive entities placed in the parent location', async () => {
-    const seeded = await seedRavenford();
-    const state = await seeded.apply({
+    const state = await worldAfter({
       type: 'CreateEntity',
       entityId: 'town-crier',
       kind: 'npc',
@@ -45,8 +52,7 @@ describe('perception', () => {
   });
 
   it('follows the character when it moves', async () => {
-    const seeded = await seedRavenford();
-    const state = await seeded.apply({
+    const state = await worldAfter({
       type: 'PlaceEntity',
       entityId: ELOWEN,
       locationId: 'abandoned-caravan-site',
@@ -64,8 +70,7 @@ describe('perception', () => {
   });
 
   it('perceives nothing when the character is not placed anywhere', async () => {
-    const seeded = await seedRavenford();
-    const state = await seeded.apply({
+    const state = await worldAfter({
       type: 'CreateEntity',
       entityId: 'unplaced-hero',
       kind: 'character',

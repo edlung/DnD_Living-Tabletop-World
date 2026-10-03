@@ -47,6 +47,9 @@ importers:
       '@ltw/domain':
         specifier: workspace:*
         version: link:../../packages/domain
+      '@ltw/rules':
+        specifier: workspace:*
+        version: link:../../packages/rules
       fastify:
         specifier: ~5.12.5
         version: 5.12.5

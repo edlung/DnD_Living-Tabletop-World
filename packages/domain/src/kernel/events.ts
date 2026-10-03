@@ -23,6 +23,13 @@ import {
   sessionStartedPayloadSchema,
 } from '../memory/events.ts';
 import { characterRestoreSchemas, characterSheetSetPayloadSchema } from '../character/character.ts';
+import {
+  clueAddedPayloadSchema,
+  disclosureSetPayloadSchema,
+  evidenceExaminedPayloadSchema,
+  informationSharedPayloadSchema,
+  investigationRestoreSchemas,
+} from '../investigation/events.ts';
 import { actorSchema } from './actor.ts';
 
 /**
@@ -75,6 +82,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...knowledgeRestoreSchemas,
   ...memoryRestoreSchemas,
   ...characterRestoreSchemas,
+  ...investigationRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -154,6 +162,10 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('SessionStarted', sessionStartedPayloadSchema),
   event('SessionEnded', sessionEndedPayloadSchema),
   event('CharacterSheetSet', characterSheetSetPayloadSchema),
+  event('ClueAdded', clueAddedPayloadSchema),
+  event('DisclosureSet', disclosureSetPayloadSchema),
+  event('EvidenceExamined', evidenceExaminedPayloadSchema),
+  event('InformationShared', informationSharedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

@@ -107,6 +107,10 @@ A later AI ranker (Stage 140) may refine relevance using the same scoped inputs 
 - HTTP: `GET /campaigns/:campaignId/entities/:entityId/context?perspective=…` follows the ADR 0009 check order and returns a uniform 404 for anything not selectable.
 - Gate 02 reviews these paths: actions, reasons, topics, and relevance must not reveal secrets.
 
+## Amendments
+
+- 2026-10-03 (Stage 60, ADR 0013 §5): locations gain `enter_location` (`ALREADY_HERE`); evidence checks report `ALREADY_ATTEMPTED` and need a sheet (`NO_CHARACTER_SHEET`). Perception moved into `@ltw/domain` so the World Engine validates player commands with the same rule.
+
 ## Invariants affected
 
 Implements 5 and 9 for context. Preserves 4, 8, and 20 and the ADR 0008 and 0010 boundaries. No invariant is weakened.

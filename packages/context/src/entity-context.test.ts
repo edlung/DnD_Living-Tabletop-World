@@ -114,6 +114,15 @@ describe('the acting character and the party', () => {
   });
 });
 
+describe('locations (ADR 0013 §5)', () => {
+  it('offers travel to a known place and reports where the character already is', () => {
+    const road = contextOf('old-trade-road').actions.find((a) => a.id === 'enter_location');
+    expect(road).toEqual({ id: 'enter_location', legal: true, relevance: 'low' });
+    const here = contextOf('market-square').actions.find((a) => a.id === 'enter_location');
+    expect(here).toMatchObject({ legal: false, reason: 'ALREADY_HERE' });
+  });
+});
+
 describe('who may request a context', () => {
   it('returns the same context to the player and to the DM previewing her character', () => {
     const preview = perspective(state, DM, { kind: 'CHARACTER', characterId: ELOWEN });

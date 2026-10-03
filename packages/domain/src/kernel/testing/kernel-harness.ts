@@ -1,6 +1,7 @@
 import type { CommandResult, KernelCommand, RejectionCode } from '@ltw/contracts';
 import { expect } from 'vitest';
 
+import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 import type { Actor } from '../actor.ts';
 import { SequentialIds, SteppingClock } from '../engine/deterministic-sources.ts';
 import type { EventStore } from '../engine/event-store.ts';
@@ -23,6 +24,15 @@ export interface SubmitOptions {
   readonly reason?: string;
 }
 
+/** Deterministic skill-check port: d20s cycle 1..20, every modifier is +3. */
+export function cyclingChecks(): SkillCheckPort {
+  let next = 0;
+  return {
+    rollD20: () => (next++ % 20) + 1,
+    skillModifier: () => 3,
+  };
+}
+
 export type Harness = ReturnType<typeof createHarness>;
 
 export function createHarness(options: { store?: EventStore; namespace?: number } = {}) {
@@ -31,6 +41,7 @@ export function createHarness(options: { store?: EventStore; namespace?: number 
     store,
     ids: new SequentialIds(options.namespace ?? 0),
     clock: new SteppingClock(),
+    checks: cyclingChecks(),
   });
   let counter = 0;
 
