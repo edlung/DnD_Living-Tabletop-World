@@ -91,7 +91,7 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
   - `authorize` returns the authority it granted (`dm`, `system`, `campaign-creator`, or `controller`); `decide` receives it. A player command authorized as `controller` records that premise.
   - `CommandUndone.restores` may be empty: undoing a command that changed nothing restorable takes it out of current canon. Relaxing the minimum keeps every earlier event valid, so no schema version change is needed.
   - Contradiction IDs derive from the causing command and the pair, never from other history, so re-deciding a command yields the same IDs.
-  - Test support: `kernel/testing/redecide.ts` re-decides every still-effective command from scratch. It is an independent oracle for dependency-preserving undo, used by the randomized tests.
+  - Test support: `kernel/verification/redecide.ts` re-decides every still-effective command from scratch. It is an independent oracle for dependency-preserving undo, used by the randomized tests.
 - **Stage 70 (2026-10-03), defect fix and guard.**
   - **Fix (superseded at Gate 02 retest 1):** an undo whose target changed nothing restorable was rejected as `NO_EFFECT`. Such undo is now accepted with an empty compensation.
   - **Guard:** the engine validates every drafted event against the stored-event schema before stamping. A decision bug now fails the command loudly instead of writing a stream that cannot be loaded.

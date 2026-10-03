@@ -18,6 +18,7 @@ import {
   target,
 } from './acting.ts';
 import { attemptKey, scopedKey } from './records.ts';
+import { clueRecordEvents } from './reveal.ts';
 
 /**
  * `ExamineEntity` (docs/adr/0013-investigation.md §2). Inspect needs no roll
@@ -102,37 +103,9 @@ export function decideExamineEntity(
         revealed: revealed.map(({ clue, knowledgeId }) => ({ clueId: clue.clueId, knowledgeId })),
       },
     },
-    ...revealed.flatMap(({ clue, knowledgeId }): KernelEvent[] => {
-      const claim = state.epistemics.clueClaims.get(clue.clueId);
-      return [
-        {
-          type: 'KnowledgeAssigned',
-          payload: {
-            knowledgeId,
-            scope,
-            knowledgeType: 'EVIDENCE',
-            statement: clue.statement,
-            subjects: [...new Set([entityId, ...clue.subjects])],
-            attributedTo: null,
-            relations: [],
-            knownSince: state.clock,
-          },
-        },
-        // Revealed evidence asserts what the DM's clue claim says (ADR 0014 §1).
-        ...(claim
-          ? [
-              {
-                type: 'ClaimSet',
-                payload: {
-                  target: { kind: 'knowledge', knowledgeId },
-                  claim: { ...claim },
-                  source: { kind: 'clue', clueId: clue.clueId },
-                },
-              } satisfies KernelEvent,
-            ]
-          : []),
-      ];
-    }),
+    ...revealed.flatMap(({ clue, knowledgeId }) =>
+      clueRecordEvents(state, scope, clue, knowledgeId),
+    ),
   ];
   const first = revealed[0];
   if (first) {

@@ -9,7 +9,7 @@ import {
 } from '../investigation/testing/world.ts';
 import { replay } from '../kernel/evolve.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
-import { redecideEffective } from '../kernel/testing/redecide.ts';
+import { redecideEffective } from '../kernel/verification/redecide.ts';
 
 /** Contradictions depend explicitly on their records, claims and party membership (ADR 0014 §2). */
 async function afterThorne() {

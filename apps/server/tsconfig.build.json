@@ -20,6 +20,9 @@
     },
     {
       "path": "../../packages/rules/tsconfig.build.json"
+    },
+    {
+      "path": "../../packages/combat/tsconfig.build.json"
     }
   ]
 }

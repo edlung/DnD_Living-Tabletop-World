@@ -33,10 +33,16 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
   }
   if (actor.kind === 'system') return { ok: true, authority: 'system' };
   if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
+  const acting =
+    'characterId' in command
+      ? command.characterId
+      : 'combatantId' in command
+        ? command.combatantId
+        : null;
   if (
     PLAYER_TYPES.has(command.type) &&
-    'characterId' in command &&
-    state.roster.get(command.characterId) === actor.actorId
+    acting !== null &&
+    state.roster.get(acting) === actor.actorId
   ) {
     return { ok: true, authority: 'controller' };
   }

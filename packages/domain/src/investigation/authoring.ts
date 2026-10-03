@@ -28,7 +28,8 @@ export function decideAddClue(state: WorldState, command: ResolvedCommandOf<'Add
   }
   const entity = findEntity(state, entityId);
   if (!entity.ok) return entity;
-  const check = CHECK_METHODS.has(method);
+  // Skill-check clues need a DC; `inspect` and `magic` (Detect Magic, ADR 0015) never have one.
+  const check = (CHECK_METHODS as ReadonlySet<string>).has(method);
   if (!(check ? CHECKABLE : INSPECTABLE).has(entity.value.kind)) {
     return reject('INVALID_CLUE', `A ${method} clue cannot be placed on a ${entity.value.kind}`);
   }

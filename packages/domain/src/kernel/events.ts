@@ -23,6 +23,7 @@ import {
   sessionStartedPayloadSchema,
 } from '../memory/events.ts';
 import { characterRestoreSchemas, characterSheetSetPayloadSchema } from '../character/character.ts';
+import { combatEventPayloadSchemas, combatRestoreSchemas } from '../combat/events.ts';
 import {
   claimSetPayloadSchema,
   contradictionDetectedPayloadSchema,
@@ -90,6 +91,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...characterRestoreSchemas,
   ...investigationRestoreSchemas,
   ...epistemicRestoreSchemas,
+  ...combatRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -177,6 +179,18 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ClaimSet', claimSetPayloadSchema),
   event('ContradictionDetected', contradictionDetectedPayloadSchema),
   event('PremisesRecorded', premisesRecordedPayloadSchema),
+  event('CombatStarted', combatEventPayloadSchemas.CombatStarted),
+  event('TurnStarted', combatEventPayloadSchemas.TurnStarted),
+  event('CombatantUpdated', combatEventPayloadSchemas.CombatantUpdated),
+  event('CombatEnded', combatEventPayloadSchemas.CombatEnded),
+  event('StatBlockSet', combatEventPayloadSchemas.StatBlockSet),
+  event('AttackPerformed', combatEventPayloadSchemas.AttackPerformed),
+  event('SpellCast', combatEventPayloadSchemas.SpellCast),
+  event('DamageApplied', combatEventPayloadSchemas.DamageApplied),
+  event('HealingApplied', combatEventPayloadSchemas.HealingApplied),
+  event('SavingThrowRolled', combatEventPayloadSchemas.SavingThrowRolled),
+  event('ConditionApplied', combatEventPayloadSchemas.ConditionApplied),
+  event('DeathSaveRolled', combatEventPayloadSchemas.DeathSaveRolled),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

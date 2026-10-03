@@ -1,5 +1,6 @@
 import {
   CHECK_METHODS,
+  COMBAT_COMMAND_TYPES,
   PLAYER_COMMAND_TYPES,
   type CommandResult,
   type KernelCommand,
@@ -9,6 +10,7 @@ import {
 } from '@ltw/contracts';
 
 import { playerOutcome } from '../../investigation/outcome.ts';
+import { ENTROPY_POOL, type CombatPort, type EntropySource } from '../../combat/port.ts';
 import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
 import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 
@@ -54,6 +56,10 @@ export interface WorldEngineOptions {
   readonly backoff?: (attempt: number) => Promise<void>;
   /** Rules adapter for skill checks (ADR 0013); required to resolve checks. */
   readonly checks?: SkillCheckPort;
+  /** Combat engine (ADR 0015); required to decide combat commands. */
+  readonly combat?: CombatPort;
+  /** Uniform 32-bit randomness for combat, drawn at resolution and recorded. */
+  readonly entropy?: EntropySource;
 }
 
 const jitteredBackoff = (attempt: number): Promise<void> =>
@@ -71,6 +77,8 @@ export class WorldEngine {
   readonly #maxAttempts: number;
   readonly #backoff: (attempt: number) => Promise<void>;
   readonly #checks: SkillCheckPort | undefined;
+  readonly #combat: CombatPort | undefined;
+  readonly #entropy: EntropySource | undefined;
   readonly #mutex = new KeyedMutex();
   readonly #cache = new Map<string, CampaignSnapshot>();
 
@@ -81,6 +89,8 @@ export class WorldEngine {
     this.#maxAttempts = options.maxAttempts ?? 10;
     this.#backoff = options.backoff ?? jitteredBackoff;
     this.#checks = options.checks;
+    this.#combat = options.combat;
+    this.#entropy = options.entropy;
   }
 
   /** Validates and executes a submission. Never throws for domain rejections. */
@@ -171,6 +181,7 @@ export class WorldEngine {
           commandId,
           actor,
           authority: authorization.authority,
+          ...(this.#combat ? { combat: this.#combat } : {}),
           ...(this.#checks ? { skillModifier: this.#checks.skillModifier.bind(this.#checks) } : {}),
         },
         command,
@@ -241,6 +252,13 @@ export class WorldEngine {
     if (command.type === 'AddClue') {
       return { ...command, clueId: command.clueId ?? this.#ids.next() };
     }
+    if (command.type === 'StartCombat') {
+      return {
+        ...command,
+        encounterId: command.encounterId ?? this.#ids.next(),
+        resolution: { ids: [], d20: null, entropy: this.#entropyPool() },
+      };
+    }
     if (isPlayerCommand(command)) return { ...command, resolution: this.#draw(command) };
     return command;
   }
@@ -248,19 +266,34 @@ export class WorldEngine {
   /** IDs for every record the command may create, and the d20 of a check. */
   #draw(command: KernelCommandOf<PlayerCommandType>): Resolution {
     const count =
-      command.type === 'EnterLocation'
-        ? 0
+      command.type === 'EnterLocation' || COMBAT_TYPES.has(command.type)
+        ? command.type === 'CastSpell'
+          ? RESOLVED_ID_POOL // Detect Magic may reveal records (ADR 0015 §3)
+          : 0
         : command.type === 'FormHypothesis'
           ? 1
           : RESOLVED_ID_POOL;
     const ids = Array.from({ length: count }, () => this.#ids.next());
+    const entropy = COMBAT_TYPES.has(command.type) ? this.#entropyPool() : [];
     if (command.type !== 'ExamineEntity' || !CHECK_METHODS.has(command.method)) {
-      return { ids, d20: null };
+      return { ids, d20: null, entropy };
     }
     if (!this.#checks) throw new Error('WorldEngine needs a SkillCheckPort to resolve checks');
     const d20 = this.#checks.rollD20();
     if (!Number.isInteger(d20) || d20 < 1 || d20 > 20) throw new Error(`invalid d20 ${d20}`);
-    return { ids, d20 };
+    return { ids, d20, entropy };
+  }
+
+  /** The recorded randomness of a combat command (ADR 0015, technical notes). */
+  #entropyPool(): number[] {
+    if (!this.#entropy) throw new Error('WorldEngine needs an EntropySource to resolve combat');
+    return Array.from({ length: ENTROPY_POOL }, () => {
+      const value = this.#entropy?.next() ?? 0;
+      if (!Number.isInteger(value) || value < 0 || value >= 2 ** 32) {
+        throw new Error(`invalid entropy ${String(value)}`);
+      }
+      return value;
+    });
   }
 
   /** Assigns sequence, IDs, and times; folds each event to prove it applies. */
@@ -329,6 +362,7 @@ export class WorldEngine {
 }
 
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
+const COMBAT_TYPES: ReadonlySet<string> = new Set(COMBAT_COMMAND_TYPES);
 const isPlayerCommand = (command: KernelCommand): command is KernelCommandOf<PlayerCommandType> =>
   PLAYER_TYPES.has(command.type);
 

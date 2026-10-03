@@ -1,6 +1,7 @@
 import type { WorldState } from '@ltw/domain';
 import { describe, expect, it } from 'vitest';
 
+import ambush from '../../../fixtures/ravenford/road-ambush.json' with { type: 'json' };
 import { entityContext } from './entity-context.ts';
 import {
   DM,
@@ -152,6 +153,34 @@ describe('noninterference', () => {
         .map((entityId) => entityContext(state, elowenView(state), entityId));
     };
     expect(await contexts(changed)).toEqual(await contexts(baseline));
+  });
+
+  it('a goblin’s hidden statistics never change any context in combat (ADR 0015 §6)', async () => {
+    const baseline = await seedRavenford();
+    const changed = await seedRavenford();
+    const block = changed.state.statBlocks.get('goblin-raider-1');
+    if (!block) throw new Error('no stat block');
+    await changed.apply({
+      type: 'SetStatBlock',
+      entityId: 'goblin-raider-1',
+      statBlock: {
+        ...block,
+        armorClass: 21,
+        hitPoints: { max: 60, current: 7 },
+        savingThrows: { ...block.savingThrows, dex: 9 },
+      },
+    });
+    const contexts = async (world: typeof baseline) => {
+      const state = await world.apply(...ambush.place, ambush.startCombat);
+      const output = everyContext(state);
+      // As at the caravan site: perceived entities appear by ID, never by name or secret.
+      const ids = [...state.entities.keys()].map((entityId) => `"${entityId}"`);
+      for (const marker of ELOWEN_FORBIDDEN_MARKERS.filter((m) => !ids.includes(m))) {
+        expect(output, marker).not.toContain(marker);
+      }
+      return output;
+    };
+    expect(await contexts(changed)).toBe(await contexts(baseline));
   });
 
   it('is deterministic across independent replays', async () => {

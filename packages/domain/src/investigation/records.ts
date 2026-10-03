@@ -1,4 +1,4 @@
-import type { Disclosure, ExamineMethod, KnowledgeType } from '@ltw/contracts';
+import type { ClueMethod, Disclosure, KnowledgeType } from '@ltw/contracts';
 
 /**
  * Canonical investigation data (docs/adr/0013-investigation.md). Clues and
@@ -7,8 +7,8 @@ import type { Disclosure, ExamineMethod, KnowledgeType } from '@ltw/contracts';
 export interface Clue {
   readonly clueId: string;
   readonly entityId: string;
-  readonly method: ExamineMethod;
-  /** Null for `inspect`; the check total must reach it. */
+  readonly method: ClueMethod;
+  /** Null for `inspect` and `magic`; the check total must reach it. */
   readonly dc: number | null;
   /** The EVIDENCE statement revealed to the discoverer. */
   readonly statement: string;
@@ -35,7 +35,7 @@ export const EMPTY_INVESTIGATION: InvestigationState = {
   shared: new Set(),
 };
 
-export const attemptKey = (characterId: string, entityId: string, method: ExamineMethod) =>
+export const attemptKey = (characterId: string, entityId: string, method: ClueMethod) =>
   `${characterId}|${entityId}|${method}`;
 
 export const scopedKey = (scopeKey: string, id: string) => `${scopeKey}|${id}`;

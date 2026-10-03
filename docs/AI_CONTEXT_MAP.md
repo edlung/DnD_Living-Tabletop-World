@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), and 70 (Contradictions) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), and 80 (Combat) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -47,12 +47,13 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Context Engine: perception, entity context, actions, legality, relevance | `packages/context/AGENTS.md`, ADR 0012 (owner-approved); contracts in `packages/contracts/src/context/`; route `apps/server/src/http/routes/context-routes.ts` |
 | Investigation: player commands, clues, NPC disclosure, hypotheses | `packages/domain/src/investigation/AGENTS.md`, ADR 0013 (owner-approved); fixture `fixtures/ravenford/investigation-seed.json` |
 | Contradictions, claims, valid knowledge transitions | `packages/domain/src/contradiction/AGENTS.md`, ADR 0014 (owner-approved); fixture `fixtures/ravenford/contradiction-seed.json` |
+| Combat: encounters, initiative, turns, attacks, spells, 0 HP, encounter view | `packages/combat/AGENTS.md`, ADR 0015 (owner-approved); contracts in `packages/contracts/src/combat/`; domain port and events in `packages/domain/src/combat/`; route `apps/server/src/http/routes/encounter-routes.ts`; fixtures `fixtures/ravenford/combat-seed.json`, `road-ambush.json` |
 | Character sheets (canonical) | `packages/domain/src/character/character.ts`; schema in `packages/contracts/src/rules/character-sheet.ts` |
 | Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |
 | Client / UI | `apps/web/src/index.ts`, `packages/ui/src/index.ts` (placeholders; framework ADR at Stage 200) |
 | Ravenford fixtures | `fixtures/ravenford/AGENTS.md` |
 | Context-budget check | `scripts/context-budget/budget.ts` (policy constants), `scripts/context-budget/cli.ts` |
-| Test layout | `vitest.config.ts` (unit vs integration projects), `tests/AGENTS.md`; package tests sit beside source as `*.test.ts` / `*.integration.test.ts`; test support in `testing/` folders (excluded from builds): `packages/domain/src/kernel/testing/`, `packages/context/src/testing/`, `apps/server/src/testing/` |
+| Test layout | `vitest.config.ts` (unit vs integration projects), `tests/AGENTS.md`; package tests sit beside source as `*.test.ts` / `*.integration.test.ts`; test support in `testing/` folders (excluded from builds): `packages/domain/src/kernel/testing/`, `packages/context/src/testing/`, `packages/combat/src/testing/`, `apps/server/src/testing/` |
 | Past stage outcomes | `reports/AGENTS.md`, then the one relevant `reports/STAGE_<NNN>_COMPLETION.md` |
 
 Do not load every work order or historical report for an ordinary task. Generated assets, migrations, logs, and large fixtures must have local context guidance (`AGENTS.md`) and be queried narrowly. `OPUS_STAGE_00.md` is a deprecated pointer, not a second Stage 0 specification.

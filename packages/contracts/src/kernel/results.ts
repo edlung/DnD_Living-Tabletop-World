@@ -71,6 +71,17 @@ export const REJECTION_CODES = [
   'INVALID_DISCLOSURE',
   /** Claim violates ADR 0014 (target scope/type, subject, already set). */
   'INVALID_CLAIM',
+  /** Combat (ADR 0015): no encounter is running. */
+  'NOT_IN_COMBAT',
+  'COMBAT_ALREADY_ACTIVE',
+  /** Battlefield or combatant setup violates ADR 0015 §1. */
+  'INVALID_ENCOUNTER',
+  'NOT_A_COMBATANT',
+  'NOT_YOUR_TURN',
+  /** A creature without a stat block (or a character without a sheet) cannot fight. */
+  'NO_STAT_BLOCK',
+  /** The Rules Engine refused the action; the message is the rules reason (for example OUT_OF_RANGE). */
+  'ILLEGAL_ACTION',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

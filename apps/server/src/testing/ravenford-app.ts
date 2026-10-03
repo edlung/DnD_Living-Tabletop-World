@@ -1,8 +1,10 @@
+import { createCombatEngine } from '@ltw/combat';
 import {
   InMemoryEventStore,
   SequentialIds,
   SteppingClock,
   WorldEngine,
+  type EntropySource,
   type EventStore,
 } from '@ltw/domain';
 import { scriptedDice, skillCheckPort, type Dice } from '@ltw/rules';
@@ -28,16 +30,22 @@ export const FORBIDDEN_MARKERS: Readonly<Record<string, readonly string[]>> =
   boundary.forbiddenMarkers;
 export const ALL_SECRET_MARKERS = [...new Set(Object.values(FORBIDDEN_MARKERS).flat())];
 
-/** Engine over the full Ravenford seed; checks roll from `dice` (scripted in tests). */
+/** Combat dice at the middle face (11 on a d20). */
+export const MIDDLE_ENTROPY: EntropySource = { next: () => 2 ** 31 };
+
+/** Engine over the full Ravenford seed; checks roll from `dice`, combat from `entropy`. */
 export async function seededEngine(
   store: EventStore = new InMemoryEventStore(),
   dice: Dice = scriptedDice([]),
+  entropy: EntropySource = MIDDLE_ENTROPY,
 ) {
   const engine = new WorldEngine({
     store,
     ids: new SequentialIds(),
     clock: new SteppingClock(),
     checks: skillCheckPort(dice),
+    combat: createCombatEngine(),
+    entropy,
   });
   const seed = await loadRavenfordSeed();
   for (const submission of seed.submissions) {

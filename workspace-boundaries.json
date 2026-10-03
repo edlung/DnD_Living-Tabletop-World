@@ -58,9 +58,14 @@
       "mayDependOn": ["@ltw/domain", "@ltw/contracts"],
       "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
     },
+    "@ltw/combat": {
+      "path": "packages/combat",
+      "mayDependOn": ["@ltw/rules", "@ltw/domain", "@ltw/contracts"],
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+    },
     "@ltw/context": {
       "path": "packages/context",
-      "mayDependOn": ["@ltw/rules", "@ltw/domain", "@ltw/contracts"],
+      "mayDependOn": ["@ltw/combat", "@ltw/rules", "@ltw/domain", "@ltw/contracts"],
       "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
     },
     "@ltw/ui": {
@@ -70,7 +75,7 @@
     },
     "@ltw/server": {
       "path": "apps/server",
-      "mayDependOn": ["@ltw/context", "@ltw/domain", "@ltw/rules", "@ltw/contracts"],
+      "mayDependOn": ["@ltw/combat", "@ltw/context", "@ltw/domain", "@ltw/rules", "@ltw/contracts"],
       "forbiddenGroups": []
     },
     "@ltw/web": {

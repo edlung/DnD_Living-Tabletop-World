@@ -1,0 +1,19 @@
+{
+  "name": "@ltw/combat",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Combat engine: decides encounter commands through the World Engine's combat port. Pure, no AI.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@ltw/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@ltw/contracts": "workspace:*",
+    "@ltw/domain": "workspace:*",
+    "@ltw/rules": "workspace:*"
+  }
+}

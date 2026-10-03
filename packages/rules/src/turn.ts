@@ -63,8 +63,9 @@ export function startTurn(ownTurn: boolean, previous?: TurnState): TurnState {
   };
 }
 
-export const isIncapacitated = (sheet: CharacterSheet) =>
-  sheet.conditions.includes('incapacitated');
+/** Incapacitated, or Unconscious, which includes it (ADR 0015 §4). */
+export const isIncapacitated = (sheet: Pick<CharacterSheet, 'conditions'>) =>
+  sheet.conditions.some((c) => c === 'incapacitated' || c === 'unconscious');
 
 /** Speed after conditions; Slowed (Slow mastery) reduces Speed by 10 ft. */
 export function effectiveSpeedFt(sheet: CharacterSheet): number {

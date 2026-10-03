@@ -104,3 +104,27 @@ export { placementAt } from './kernel/projections/world-view.ts';
 export { perceivedEntityIds } from './investigation/perception.ts';
 export { attemptKey, type Clue } from './investigation/records.ts';
 export type { SkillCheckPort } from './investigation/skill-checks.ts';
+export {
+  ENTROPY_POOL,
+  entropyFor,
+  poolDice,
+  type CombatCommand,
+  type CombatPort,
+  type Dice,
+  type EntropySource,
+} from './combat/port.ts';
+export {
+  FRESH_TURN,
+  combatantOf,
+  currentCombatant,
+  encounterAfterTurnStart,
+  type CombatantRecord,
+  type EncounterState,
+  type TurnRecord,
+} from './combat/records.ts';
+export type { DecisionContext, Decision, Resolution } from './kernel/decision.ts';
+export { accept, reject } from './kernel/decision.ts';
+export type { KernelEvent as DraftEvent } from './kernel/events.ts';
+export { premisesEvent } from './investigation/acting.ts';
+export { redecideEffective, type Divergence } from './kernel/verification/redecide.ts';
+export { magicDiscoveryEvents } from './investigation/reveal.ts';

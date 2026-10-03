@@ -44,6 +44,90 @@ export function playerOutcome(
         : undefined;
     }
     default:
+      return combatOutcome(commandType, events);
+  }
+}
+
+/** Combat outcomes (ADR 0015): the acting player's own rolls and their results, never the target's vitals. */
+function combatOutcome(
+  commandType: KernelCommandType,
+  events: readonly KernelEvent[],
+): PlayerOutcome | undefined {
+  switch (commandType) {
+    case 'MoveCombatant': {
+      const moved = events.findLast((event) => event.type === 'CombatantUpdated');
+      return moved?.type === 'CombatantUpdated'
+        ? { kind: 'MoveCombatant', position: { ...moved.payload.combatant.position } }
+        : undefined;
+    }
+    case 'Attack': {
+      const attack = events.find((event) => event.type === 'AttackPerformed');
+      if (attack?.type !== 'AttackPerformed') return undefined;
+      const damage = events.find(
+        (event) =>
+          event.type === 'DamageApplied' && event.payload.targetId === attack.payload.targetId,
+      );
+      return {
+        kind: 'Attack',
+        d20: [...attack.payload.rolls],
+        attackTotal: attack.payload.total,
+        hit: attack.payload.hit,
+        critical: attack.payload.critical,
+        damage: damage?.type === 'DamageApplied' ? damage.payload.amount : null,
+      };
+    }
+    case 'CastSpell': {
+      const cast = events.find((event) => event.type === 'SpellCast');
+      if (cast?.type !== 'SpellCast') return undefined;
+      const targets = new Set<string>();
+      for (const event of events) {
+        if (event.type === 'DamageApplied' || event.type === 'HealingApplied')
+          targets.add(event.payload.targetId);
+        if (event.type === 'SavingThrowRolled' && event.payload.purpose === 'spell')
+          targets.add(event.payload.creatureId);
+        if (event.type === 'AttackPerformed') targets.add(event.payload.targetId);
+      }
+      const find = <T extends KernelEvent['type']>(type: T, id: string, key: string) =>
+        events.find(
+          (event) => event.type === type && (event.payload as Record<string, unknown>)[key] === id,
+        ) as Extract<KernelEvent, { type: T }> | undefined;
+      return {
+        kind: 'CastSpell',
+        spellId: cast.payload.spellId,
+        results: [...targets].map((targetId) => {
+          const save = events.find(
+            (e) =>
+              e.type === 'SavingThrowRolled' &&
+              e.payload.purpose === 'spell' &&
+              e.payload.creatureId === targetId,
+          );
+          const attack = find('AttackPerformed', targetId, 'targetId');
+          const damage = find('DamageApplied', targetId, 'targetId');
+          const healing = find('HealingApplied', targetId, 'targetId');
+          return {
+            targetId,
+            saved: save?.type === 'SavingThrowRolled' ? save.payload.success : null,
+            hit: attack ? attack.payload.hit : null,
+            damage: damage ? damage.payload.amount : null,
+            healed: healing ? healing.payload.amount : null,
+          };
+        }),
+        discovered: events.flatMap((event) =>
+          event.type === 'EvidenceExamined' ? event.payload.revealed.map((r) => r.knowledgeId) : [],
+        ),
+      };
+    }
+    case 'EndTurn': {
+      const started = events.find((event) => event.type === 'TurnStarted');
+      return started?.type === 'TurnStarted'
+        ? {
+            kind: 'EndTurn',
+            nextCombatantId: started.payload.combatantId,
+            round: started.payload.round,
+          }
+        : undefined;
+    }
+    default:
       return undefined;
   }
 }

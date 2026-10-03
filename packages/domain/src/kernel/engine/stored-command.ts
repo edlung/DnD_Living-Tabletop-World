@@ -9,6 +9,7 @@ import {
 import { z } from 'zod';
 
 import { actorSchema } from '../actor.ts';
+import { ENTROPY_POOL } from '../../combat/port.ts';
 import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
 import type { ResolvedCommand } from '../decision.ts';
 import type { StoredCommand } from './event-store.ts';
@@ -17,9 +18,21 @@ const resolutionSchema = z
   .object({
     ids: z.array(z.string().regex(OBJECT_ID_PATTERN)).max(RESOLVED_ID_POOL),
     d20: z.number().int().min(1).max(20).nullable(),
+    /** Absent in commands stored before combat existed (Stage 60). */
+    entropy: z
+      .array(
+        z
+          .number()
+          .int()
+          .min(0)
+          .max(2 ** 32 - 1),
+      )
+      .max(ENTROPY_POOL)
+      .default([]),
   })
   .strict();
-const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
+/** Commands that carry an engine resolution: player commands and StartCombat. */
+const RESOLVED_TYPES: ReadonlySet<string> = new Set([...PLAYER_COMMAND_TYPES, 'StartCombat']);
 
 /**
  * A stored command must carry the IDs and draws the engine resolved before
@@ -42,19 +55,20 @@ const resolvedCommandSchema = z.looseObject({ type: z.string() }).transform((raw
     (value.type !== 'AddKnowledge' || value.knowledgeId !== undefined) &&
     (value.type !== 'RecordMemory' || value.memoryId !== undefined) &&
     (value.type !== 'StartSession' || value.sessionId !== undefined) &&
-    (value.type !== 'AddClue' || value.clueId !== undefined);
+    (value.type !== 'AddClue' || value.clueId !== undefined) &&
+    (value.type !== 'StartCombat' || value.encounterId !== undefined);
   if (!resolved) {
     context.addIssue({ code: 'custom', message: 'stored commands must have resolved IDs' });
     return z.NEVER;
   }
-  if (!PLAYER_TYPES.has(value.type)) {
+  if (!RESOLVED_TYPES.has(value.type)) {
     if (resolution !== undefined)
       context.addIssue({ code: 'custom', message: 'unexpected resolution' });
     return value as ResolvedCommand;
   }
   const parsed = resolutionSchema.safeParse(resolution);
   if (!parsed.success) {
-    context.addIssue({ code: 'custom', message: 'player commands must carry their resolution' });
+    context.addIssue({ code: 'custom', message: 'this command must carry its resolution' });
     return z.NEVER;
   }
   return { ...value, resolution: parsed.data } as ResolvedCommand;

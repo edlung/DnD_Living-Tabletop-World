@@ -6,7 +6,7 @@ import { replay } from '../kernel/evolve.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { mulberry32 } from '../kernel/testing/random-commands.ts';
-import { redecideEffective } from '../kernel/testing/redecide.ts';
+import { redecideEffective } from '../kernel/verification/redecide.ts';
 import {
   CAMPAIGN,
   DM,

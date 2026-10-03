@@ -20,6 +20,7 @@ export const CONTEXT_ACTION_IDS = [
   'detect_magic',
   'longbow_attack',
   'enter_location',
+  'fireball',
 ] as const;
 export type ContextActionId = (typeof CONTEXT_ACTION_IDS)[number];
 
@@ -31,6 +32,7 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'TARGET_DEAD',
   'ALREADY_HERE',
   'ALREADY_ATTEMPTED',
+  'NOT_IN_COMBAT',
   'INCAPACITATED',
   'NOT_YOUR_TURN',
   'NO_ACTION',
@@ -57,8 +59,12 @@ export type ContextIllegalReason = (typeof CONTEXT_ILLEGAL_REASONS)[number];
 export const RELEVANCE_LEVELS = ['high', 'medium', 'low'] as const;
 export type Relevance = (typeof RELEVANCE_LEVELS)[number];
 
-/** `RANGE_NOT_TRACKED`: no canonical positions exist, so range was not evaluated. */
-export const CONTEXT_HINTS = ['RANGE_NOT_TRACKED'] as const;
+/**
+ * `RANGE_NOT_TRACKED`: no canonical positions exist, so range was not evaluated.
+ * `ALLY_IN_AREA`: an area spell would also affect a party member (a warning, never a block).
+ * `LONG_RANGE`: the attack would be at long range, with Disadvantage.
+ */
+export const CONTEXT_HINTS = ['RANGE_NOT_TRACKED', 'ALLY_IN_AREA', 'LONG_RANGE'] as const;
 export type ContextHint = (typeof CONTEXT_HINTS)[number];
 
 /** An entity as the acting character perceives it: the name only when known. */
@@ -93,6 +99,8 @@ export interface ContextAction {
   readonly relevance: Relevance;
   readonly cost?: ContextActionCost;
   readonly hints?: readonly ContextHint[];
+  /** Area spells: the combatants the area would affect (ADR 0015 §6). */
+  readonly area?: { readonly affected: readonly ContextEntityRef[] };
 }
 
 export interface EntityContextView {

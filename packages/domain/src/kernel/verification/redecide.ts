@@ -1,5 +1,6 @@
 import type { CharacterSheet, Skill } from '@ltw/contracts';
 
+import type { CombatPort } from '../../combat/port.ts';
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
 import type { StoredCommand } from '../engine/event-store.ts';
@@ -13,7 +14,7 @@ import { EMPTY_WORLD_STATE, type WorldState } from '../state.ts';
  * must each be authorized and accepted again, with the same events, when
  * re-decided in order from an empty campaign. A dependency missing from any
  * footprint shows up as a command that is no longer legal or decides
- * differently, whatever premises the command recorded. Test support only.
+ * differently, whatever premises the command recorded. Used by randomized tests and available for audits.
  */
 export interface Divergence {
   readonly commandId: string;
@@ -25,6 +26,7 @@ export function redecideEffective(
   log: readonly StoredCommand[],
   original: { readonly state: WorldState; readonly history: readonly RecordedEvent[] },
   skillModifier: (sheet: CharacterSheet, skill: Skill) => number,
+  combat?: CombatPort,
 ): Divergence | null {
   const recorded = new Map<string, unknown[]>();
   for (const event of original.history) {
@@ -51,6 +53,7 @@ export function redecideEffective(
         actor: stored.actor,
         authority: authorization.authority,
         skillModifier,
+        ...(combat ? { combat } : {}),
       },
       stored.command,
     );

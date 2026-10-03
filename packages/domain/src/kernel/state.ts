@@ -1,11 +1,13 @@
 import type {
   CharacterSheet,
+  StatBlock,
   EntityKind,
   EntityStatus,
   KernelCommandType,
   LocationType,
 } from '@ltw/contracts';
 
+import type { EncounterState } from '../combat/records.ts';
 import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.ts';
 import { EMPTY_INVESTIGATION, type InvestigationState } from '../investigation/records.ts';
 import type { KnowledgeRecord } from '../knowledge/records.ts';
@@ -90,6 +92,10 @@ export interface WorldState {
   readonly investigation: InvestigationState;
   /** Claims and recorded contradictions (ADR 0014). */
   readonly epistemics: EpistemicState;
+  /** Stat blocks of non-character combatants (ADR 0015). */
+  readonly statBlocks: ReadonlyMap<string, StatBlock>;
+  /** The running encounter, if any (ADR 0015); positions exist only here. */
+  readonly encounter: EncounterState | null;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -109,6 +115,8 @@ export const EMPTY_WORLD_STATE: WorldState = {
   characterSheets: new Map(),
   investigation: EMPTY_INVESTIGATION,
   epistemics: EMPTY_EPISTEMICS,
+  statBlocks: new Map(),
+  encounter: null,
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

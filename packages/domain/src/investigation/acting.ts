@@ -59,8 +59,9 @@ export function acting(state: WorldState, characterId: string): Lookup<Acting> {
   };
 }
 
+/** Incapacitated, or Unconscious, which includes it (ADR 0015 §4). */
 export const isIncapacitated = (actor: Acting) =>
-  actor.sheet?.conditions.includes('incapacitated') ?? false;
+  actor.sheet?.conditions.some((c) => c === 'incapacitated' || c === 'unconscious') ?? false;
 
 export const incapacitated = () => reject('ACTOR_INCAPACITATED', 'The character is incapacitated');
 

@@ -17,6 +17,9 @@
     },
     {
       "path": "../rules/tsconfig.build.json"
+    },
+    {
+      "path": "../combat/tsconfig.build.json"
     }
   ]
 }

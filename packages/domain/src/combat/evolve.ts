@@ -1,0 +1,102 @@
+import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
+import type { RecordedEvent, Restore } from '../kernel/events.ts';
+import { withEntry, withoutEntry } from '../kernel/maps.ts';
+import type { WorldState } from '../kernel/state.ts';
+import { encounterAfterTurnStart, type EncounterState } from './records.ts';
+
+/** Fold cases for combat events (called from kernel/evolve.ts). */
+type EventOf<T extends RecordedEvent['type']> = Extract<RecordedEvent, { type: T }>;
+
+function requireEncounter(state: WorldState, what: string): EncounterState {
+  if (!state.encounter) throw new CorruptHistoryError(`${what} without an encounter`);
+  return state.encounter;
+}
+
+export function applyCombatStarted(state: WorldState, event: EventOf<'CombatStarted'>): WorldState {
+  if (state.encounter) throw new CorruptHistoryError('combat started twice');
+  const encounter = event.payload;
+  if (!encounter.combatants.every((c) => state.entities.has(c.entityId))) {
+    throw new CorruptHistoryError('combat with a missing combatant');
+  }
+  return {
+    ...state,
+    encounter: structuredClone(encounter),
+    usedIds: new Set(state.usedIds).add(encounter.encounterId),
+  };
+}
+
+export function applyTurnStarted(state: WorldState, event: EventOf<'TurnStarted'>): WorldState {
+  const encounter = requireEncounter(state, 'turn');
+  const next = encounterAfterTurnStart(encounter, event.payload.combatantId, event.payload.round);
+  if (!next) throw new CorruptHistoryError('turn of a non-combatant');
+  return { ...state, encounter: next };
+}
+
+export function applyCombatantUpdated(
+  state: WorldState,
+  event: EventOf<'CombatantUpdated'>,
+): WorldState {
+  const encounter = requireEncounter(state, 'combatant update');
+  const { combatant } = event.payload;
+  if (!encounter.combatants.some((c) => c.entityId === combatant.entityId)) {
+    throw new CorruptHistoryError('update of a non-combatant');
+  }
+  return {
+    ...state,
+    encounter: {
+      ...encounter,
+      combatants: encounter.combatants.map((c) =>
+        c.entityId === combatant.entityId ? structuredClone(combatant) : c,
+      ),
+    },
+  };
+}
+
+export function applyCombatEnded(state: WorldState, event: EventOf<'CombatEnded'>): WorldState {
+  const encounter = requireEncounter(state, 'combat end');
+  if (encounter.encounterId !== event.payload.encounterId) {
+    throw new CorruptHistoryError('ending another encounter');
+  }
+  return { ...state, encounter: null };
+}
+
+export function applyStatBlockSet(state: WorldState, event: EventOf<'StatBlockSet'>): WorldState {
+  if (!state.entities.has(event.payload.entityId)) {
+    throw new CorruptHistoryError('stat block for a missing entity');
+  }
+  return {
+    ...state,
+    statBlocks: withEntry(
+      state.statBlocks,
+      event.payload.entityId,
+      structuredClone(event.payload.statBlock),
+    ),
+  };
+}
+
+/** Narrative combat events change no state; they must reference existing entities. */
+export function applyCombatRecord(state: WorldState, event: RecordedEvent): WorldState {
+  const ids = Object.entries(event.payload)
+    .filter(([key]) => key.endsWith('Id') && key !== 'spellId' && key !== 'attackId')
+    .map(([, value]): unknown => value)
+    .filter((value): value is string => typeof value === 'string');
+  if (ids.some((id) => !state.entities.has(id))) {
+    throw new CorruptHistoryError(`${event.type} references a missing entity`);
+  }
+  return state;
+}
+
+type CombatRestore = Extract<Restore, { fact: 'encounter' | 'statblock' }>;
+
+export function applyCombatRestore(state: WorldState, restore: CombatRestore): WorldState {
+  if (restore.fact === 'encounter') {
+    return { ...state, encounter: restore.value === null ? null : structuredClone(restore.value) };
+  }
+  return {
+    ...state,
+    statBlocks:
+      restore.value === null
+        ? withoutEntry(state.statBlocks, restore.entityId)
+        : withEntry(state.statBlocks, restore.entityId, structuredClone(restore.value)),
+  };
+}

@@ -1,5 +1,14 @@
 import { applyCharacterSheetSet } from '../character/character.ts';
 import {
+  applyCombatEnded,
+  applyCombatRecord,
+  applyCombatRestore,
+  applyCombatStarted,
+  applyCombatantUpdated,
+  applyStatBlockSet,
+  applyTurnStarted,
+} from '../combat/evolve.ts';
+import {
   applyClaimSet,
   applyContradictionDetected,
   applyEpistemicRestore,
@@ -151,6 +160,24 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyContradictionDetected(state, event);
     case 'PremisesRecorded':
       return applyPremisesRecorded(state, event);
+    case 'CombatStarted':
+      return applyCombatStarted(state, event);
+    case 'TurnStarted':
+      return applyTurnStarted(state, event);
+    case 'CombatantUpdated':
+      return applyCombatantUpdated(state, event);
+    case 'CombatEnded':
+      return applyCombatEnded(state, event);
+    case 'StatBlockSet':
+      return applyStatBlockSet(state, event);
+    case 'AttackPerformed':
+    case 'SpellCast':
+    case 'DamageApplied':
+    case 'HealingApplied':
+    case 'SavingThrowRolled':
+    case 'ConditionApplied':
+    case 'DeathSaveRolled':
+      return applyCombatRecord(state, event);
   }
 }
 
@@ -253,6 +280,9 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'claim':
     case 'contradiction':
       return applyEpistemicRestore(state, restore);
+    case 'encounter':
+    case 'statblock':
+      return applyCombatRestore(state, restore);
   }
 }
 

@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import type { Actor } from '../kernel/actor.ts';
 import { replay } from '../kernel/evolve.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
-import { redecideEffective } from '../kernel/testing/redecide.ts';
+import { redecideEffective } from '../kernel/verification/redecide.ts';
 import {
   CAMPAIGN,
   DM,

@@ -10,12 +10,13 @@ The context of one selected entity for one acting character. Authority: `docs/ad
 | Whitelisted views (entity ref, visible state)                    | `src/views.ts`                                                                           |
 | Action catalog and check order                                   | `src/actions.ts`                                                                         |
 | Legality through `@ltw/rules`                                    | `src/legality.ts`                                                                        |
+| Legality in combat (positions, turn; ADR 0015 §6)                | `src/combat.ts` (through `@ltw/combat`)                                                  |
 | "Ask about" topics                                               | `src/topics.ts`                                                                          |
 | Relevance heuristics                                             | `src/relevance.ts`                                                                       |
 
 Rules:
 
-- Legality comes only from `@ltw/rules` on the acting character's canonical sheet (invariant 9). Context never invents a legality rule; a new reason needs ADR 0012 or 0011 first, plus `CONTEXT_ILLEGAL_REASONS` in contracts.
+- Legality comes only from `@ltw/rules` on the acting character's canonical sheet (invariant 9); in combat through `@ltw/combat`'s shared legality, never a context-only rule. Context never invents a legality rule; a new reason needs ADR 0012 or 0011 first, plus `CONTEXT_ILLEGAL_REASONS` in contracts.
 - Relevance and topics read only `ContextInputs.records`, `memories`, `known`, and `perceived` — never `state.knowledge`, `state.memories`, or another holder's data. Relevance never changes legality.
 - Check order protects secrets: actor state, then presence, then target status. An absent target is always `NOT_PRESENT`.
 - Views are built field by field. Never spread canonical objects into output.

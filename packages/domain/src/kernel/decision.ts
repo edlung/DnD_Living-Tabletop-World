@@ -8,6 +8,7 @@ import type {
 } from '@ltw/contracts';
 
 import type { Actor } from './actor.ts';
+import type { CombatPort } from '../combat/port.ts';
 import type { Authority } from './authorization.ts';
 import type { KernelEvent, RecordedEvent } from './events.ts';
 import type { WorldState } from './state.ts';
@@ -35,6 +36,8 @@ export type Decision =
 export interface Resolution {
   readonly ids: readonly string[];
   readonly d20: number | null;
+  /** Combat (ADR 0015): a pool of uniform 32-bit values every die of the decision is drawn from. */
+  readonly entropy: readonly number[];
 }
 
 /** A command after the engine assigned any generated IDs and draws. */
@@ -49,10 +52,15 @@ export type ResolvedCommand =
           | 'RecordMemory'
           | 'StartSession'
           | 'AddClue'
+          | 'StartCombat'
           | PlayerCommandType;
       }
     >
   | (KernelCommandOf<'AddClue'> & { readonly clueId: string })
+  | (KernelCommandOf<'StartCombat'> & {
+      readonly encounterId: string;
+      readonly resolution: Resolution;
+    })
   | (KernelCommandOf<PlayerCommandType> & { readonly resolution: Resolution })
   | (KernelCommandOf<'CreateEntity'> & { readonly entityId: string })
   | (KernelCommandOf<'StartScene'> & { readonly sceneId: string })
@@ -73,6 +81,8 @@ export interface DecisionContext {
   readonly actor: Actor;
   /** The authority `authorize` granted (Gate 02, G02-H03). */
   readonly authority: Authority;
+  /** Combat engine (ADR 0015); required only by combat commands. */
+  readonly combat?: CombatPort;
   /** Rules-provided skill modifier (ADR 0013); required only by skill checks. */
   readonly skillModifier?: (sheet: CharacterSheet, skill: Skill) => number;
 }

@@ -11,7 +11,7 @@ import {
   seedBasicWorld,
 } from '../kernel/testing/kernel-harness.ts';
 import { mulberry32 } from '../kernel/testing/random-commands.ts';
-import { redecideEffective } from '../kernel/testing/redecide.ts';
+import { redecideEffective } from '../kernel/verification/redecide.ts';
 import { resolvePerspective } from '../knowledge/perspective.ts';
 import {
   entityKnowledge,

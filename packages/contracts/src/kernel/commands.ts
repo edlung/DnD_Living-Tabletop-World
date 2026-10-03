@@ -14,6 +14,15 @@ import {
   formHypothesisCommandSchema,
   setDisclosureCommandSchema,
 } from '../investigation/commands.ts';
+import {
+  attackCommandSchema,
+  castSpellCommandSchema,
+  endCombatCommandSchema,
+  endTurnCommandSchema,
+  moveCombatantCommandSchema,
+  startCombatCommandSchema,
+} from '../combat/commands.ts';
+import { setStatBlockCommandSchema } from '../combat/stat-block.ts';
 import { setClaimCommandSchema } from '../knowledge/claims.ts';
 import { setCharacterSheetCommandSchema } from '../rules/character-sheet.ts';
 import { commandIdSchema, entityIdSchema, sceneIdSchema } from './identifiers.ts';
@@ -152,6 +161,13 @@ export const kernelCommandSchema = z
     addClueCommandSchema,
     setDisclosureCommandSchema,
     setClaimCommandSchema,
+    setStatBlockCommandSchema,
+    startCombatCommandSchema,
+    moveCombatantCommandSchema,
+    attackCommandSchema,
+    castSpellCommandSchema,
+    endTurnCommandSchema,
+    endCombatCommandSchema,
   ])
   .superRefine((command, context) => {
     if (
@@ -196,6 +212,13 @@ export const KERNEL_COMMAND_TYPES = [
   'AddClue',
   'SetDisclosure',
   'SetClaim',
+  'SetStatBlock',
+  'StartCombat',
+  'MoveCombatant',
+  'Attack',
+  'CastSpell',
+  'EndTurn',
+  'EndCombat',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

@@ -38,6 +38,9 @@ importers:
 
   apps/server:
     dependencies:
+      '@ltw/combat':
+        specifier: workspace:*
+        version: link:../../packages/combat
       '@ltw/context':
         specifier: workspace:*
         version: link:../../packages/context
@@ -69,8 +72,23 @@ importers:
 
   apps/web: {}
 
+  packages/combat:
+    dependencies:
+      '@ltw/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@ltw/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@ltw/rules':
+        specifier: workspace:*
+        version: link:../rules
+
   packages/context:
     dependencies:
+      '@ltw/combat':
+        specifier: workspace:*
+        version: link:../combat
       '@ltw/contracts':
         specifier: workspace:*
         version: link:../contracts

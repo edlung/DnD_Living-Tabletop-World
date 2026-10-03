@@ -37,8 +37,11 @@ export type WeaponId = (typeof WEAPON_IDS)[number];
 export const CLASS_IDS = ['ranger', 'wizard'] as const;
 export type ClassId = (typeof CLASS_IDS)[number];
 
-/** Slice conditions; Incapacitated is the one that ends Concentration and blocks actions. */
-export const CONDITIONS = ['incapacitated', 'prone', 'slowed'] as const;
+/**
+ * Slice conditions. Incapacitated ends Concentration and blocks actions;
+ * Unconscious (a character at 0 HP, ADR 0015 §4) includes Incapacitated and Prone.
+ */
+export const CONDITIONS = ['incapacitated', 'prone', 'slowed', 'unconscious'] as const;
 export type Condition = (typeof CONDITIONS)[number];
 
 const score = z.number().int().min(1).max(30);
@@ -95,9 +98,21 @@ export const characterSheetSchema = z
     spellcasting: z.array(spellcastingSourceSchema),
     conditions: z.array(z.enum(CONDITIONS)),
     concentration: z
-      .object({ spellId: z.enum(SPELL_IDS) })
+      .object({
+        spellId: z.enum(SPELL_IDS),
+        /** The creature a targeted Concentration spell (Hunter's Mark) is on. */
+        targetId: entityIdSchema.optional(),
+      })
       .strict()
       .nullable(),
+    /** Death saving throws while at 0 HP (ADR 0015 §4); absent when not dying. */
+    deathSaves: z
+      .object({
+        successes: z.number().int().min(0).max(3),
+        failures: z.number().int().min(0).max(3),
+      })
+      .strict()
+      .optional(),
   })
   .strict()
   .superRefine((sheet, context) => {

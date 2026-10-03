@@ -234,7 +234,30 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         break;
       }
       case 'PremisesRecorded':
+      case 'AttackPerformed':
+      case 'SpellCast':
+      case 'DamageApplied':
+      case 'HealingApplied':
+      case 'SavingThrowRolled':
+      case 'ConditionApplied':
+      case 'DeathSaveRolled':
         // Reads only: nothing to restore.
+        break;
+      case 'CombatStarted':
+      case 'TurnStarted':
+      case 'CombatantUpdated':
+      case 'CombatEnded':
+        restores.push({
+          fact: 'encounter',
+          value: before.encounter ? structuredClone(before.encounter) : null,
+        });
+        break;
+      case 'StatBlockSet':
+        restores.push({
+          fact: 'statblock',
+          entityId: event.payload.entityId,
+          value: before.statBlocks.get(event.payload.entityId) ?? null,
+        });
         break;
       case 'CampaignCreated':
       case 'CommandUndone':

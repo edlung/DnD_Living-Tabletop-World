@@ -125,10 +125,12 @@ export {
 } from './context/views.ts';
 export {
   CHECK_METHODS,
+  CLUE_METHODS,
   DISCLOSURES,
   EXAMINE_METHODS,
   PLAYER_COMMAND_TYPES,
   clueIdSchema,
+  type ClueMethod,
   type Disclosure,
   type ExamineMethod,
   type PlayerCommandType,
@@ -141,3 +143,29 @@ export {
   type ClaimTarget,
   type KnowledgeClaim,
 } from './knowledge/claims.ts';
+export {
+  COMBAT_COMMAND_TYPES,
+  COVER_LEVELS,
+  MAX_BATTLEFIELD,
+  MAX_COMBATANTS,
+  PLAYER_COMBAT_COMMAND_TYPES,
+  SIDES,
+  battlefieldSchema,
+  squareSchema,
+  type Battlefield,
+  type CombatCommandType,
+  type CoverLevel,
+  type Side,
+  type Square,
+} from './combat/commands.ts';
+export {
+  damageSchema,
+  monsterAttackSchema,
+  monsterSpellSchema,
+  statBlockSchema,
+  type Damage,
+  type MonsterAttack,
+  type MonsterSpell,
+  type StatBlock,
+} from './combat/stat-block.ts';
+export type { EncounterCombatantView, EncounterResponse, EncounterView } from './combat/views.ts';

@@ -1,3 +1,4 @@
+import { createCombatEngine } from '@ltw/combat';
 import type { CommandResult, PerspectiveRequest } from '@ltw/contracts';
 import {
   InMemoryEventStore,
@@ -11,6 +12,7 @@ import {
   type WorldState,
 } from '@ltw/domain';
 
+import combatSeed from '../../../../fixtures/ravenford/combat-seed.json' with { type: 'json' };
 import boundary from '../../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import kernelSeed from '../../../../fixtures/ravenford/kernel-seed.json' with { type: 'json' };
 import knowledgeSeed from '../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
@@ -20,7 +22,11 @@ import investigationSeed from '../../../../fixtures/ravenford/investigation-seed
 import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import { skillCheckPort, type Dice } from '@ltw/rules';
 
-/** Test support: the full Ravenford seed (kernel, knowledge, memory, rules, investigation). */
+/**
+ * Test support: the full Ravenford seed (kernel, knowledge, memory, rules,
+ * investigation, contradiction, combat). Combat dice roll the middle face
+ * (11 on a d20), so in the ambush Elowen acts first.
+ */
 export const CAMPAIGN = 'ravenford';
 export const DM: Actor = { actorId: 'dm-ravenford', kind: 'user' };
 export const PLAYER: Actor = { actorId: 'player-elowen', kind: 'user' };
@@ -58,6 +64,8 @@ export async function seedRavenford(): Promise<SeededWorld> {
     ids: new SequentialIds(),
     clock: new SteppingClock(),
     checks: skillCheckPort(dice),
+    combat: createCombatEngine(),
+    entropy: { next: () => 2 ** 31 },
   });
   const scripts = [
     [kernelSeed.commands, 'seed'],
@@ -66,6 +74,7 @@ export async function seedRavenford(): Promise<SeededWorld> {
     [rulesSeed.commands, 'rules'],
     [investigationSeed.commands, 'investigation'],
     [contradictionSeed.commands, 'contradiction'],
+    [combatSeed.commands, 'combat'],
   ] as const;
   let counter = 0;
   const run = async (commands: readonly unknown[], prefix: string) => {

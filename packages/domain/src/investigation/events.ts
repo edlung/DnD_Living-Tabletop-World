@@ -1,7 +1,7 @@
 import {
+  CLUE_METHODS,
   DISCLOSURES,
   actorIdSchema,
-  EXAMINE_METHODS,
   clueIdSchema,
   entityIdSchema,
   knowledgeIdSchema,
@@ -15,13 +15,14 @@ import { z } from 'zod';
  * `scope` is a holder scope key (`PARTY` or `CHARACTER:<id>`).
  */
 const scope = z.string().regex(/^(PARTY|CHARACTER:[a-z0-9][a-z0-9_-]{0,63})$/);
-const method = z.enum(EXAMINE_METHODS);
+/** Detect Magic reveals `magic` clues through the same record (ADR 0015 §3). */
+const examination = z.enum(CLUE_METHODS);
 
 export const clueAddedPayloadSchema = z
   .object({
     clueId: clueIdSchema,
     entityId: entityIdSchema,
-    method,
+    method: z.enum(CLUE_METHODS),
     dc: z.number().int().min(5).max(30).nullable(),
     statement: z.string().min(1).max(2000),
     subjects: z.array(entityIdSchema).max(16),
@@ -36,7 +37,7 @@ export const evidenceExaminedPayloadSchema = z
   .object({
     characterId: entityIdSchema,
     entityId: entityIdSchema,
-    method,
+    method: examination,
     scope,
     /** Null for `inspect`; a check records its d20, modifier and total. */
     roll: z

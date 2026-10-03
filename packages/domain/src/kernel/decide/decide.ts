@@ -1,6 +1,8 @@
 import { PLAYER_COMMAND_TYPES } from '@ltw/contracts';
 
 import { decideSetCharacterSheet } from '../../character/character.ts';
+import { decideSetStatBlock } from '../../combat/authoring.ts';
+import { poolDice } from '../../combat/port.ts';
 import { decideSetClaim } from '../../contradiction/decide.ts';
 import { withContradictions } from '../../contradiction/detect.ts';
 import { decideAddClue, decideSetDisclosure } from '../../investigation/authoring.ts';
@@ -116,5 +118,17 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideFormHypothesis(state, command);
     case 'SetClaim':
       return decideSetClaim(state, command);
+    case 'SetStatBlock':
+      return decideSetStatBlock(state, command);
+    case 'StartCombat':
+    case 'MoveCombatant':
+    case 'Attack':
+    case 'CastSpell':
+    case 'EndTurn':
+    case 'EndCombat': {
+      if (!context.combat) throw new Error(`${command.type} needs the combat engine port`);
+      const entropy = 'resolution' in command ? command.resolution.entropy : [];
+      return context.combat.decide(context, command, poolDice(entropy));
+    }
   }
 }

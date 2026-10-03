@@ -52,6 +52,7 @@ Conventions inside a package:
 ## Amendments
 
 - 2026-10-03 (Stage 50, ADR 0012): new package `@ltw/context -> rules, domain, contracts` (pure; same forbidden groups as `rules`); `@ltw/server` may also depend on `@ltw/context`. Clients still may not. No existing edge changed.
+- 2026-10-04 (Stage 80, ADR 0015): new package `@ltw/combat -> rules, domain, contracts` (pure; same forbidden groups as `rules`). `@ltw/context` and `@ltw/server` may also depend on `@ltw/combat`; clients may not. The domain reaches combat only through its `CombatPort`, injected by the server. No existing edge changed.
 
 ## Invariants affected
 

@@ -1,0 +1,174 @@
+{
+  "$comment": "Old Trade Road ambush scenario (ADR 0015 \u00a75). Not auto-seeded: tests and the DM place the goblins and start combat.",
+  "locationId": "old-trade-road",
+  "place": [
+    {
+      "type": "PlaceEntity",
+      "entityId": "goblin-raider-1",
+      "locationId": "old-trade-road"
+    },
+    {
+      "type": "PlaceEntity",
+      "entityId": "goblin-raider-2",
+      "locationId": "old-trade-road"
+    },
+    {
+      "type": "PlaceEntity",
+      "entityId": "goblin-raider-3",
+      "locationId": "old-trade-road"
+    },
+    {
+      "type": "PlaceEntity",
+      "entityId": "goblin-shaman",
+      "locationId": "old-trade-road"
+    },
+    {
+      "type": "PlaceEntity",
+      "entityId": "elowen-starwhisper",
+      "locationId": "old-trade-road"
+    }
+  ],
+  "startCombat": {
+    "type": "StartCombat",
+    "locationId": "old-trade-road",
+    "battlefield": {
+      "width": 16,
+      "height": 12,
+      "difficult": [
+        {
+          "x": 0,
+          "y": 9
+        },
+        {
+          "x": 1,
+          "y": 9
+        },
+        {
+          "x": 2,
+          "y": 9
+        },
+        {
+          "x": 3,
+          "y": 9
+        },
+        {
+          "x": 4,
+          "y": 9
+        },
+        {
+          "x": 5,
+          "y": 9
+        },
+        {
+          "x": 6,
+          "y": 9
+        },
+        {
+          "x": 7,
+          "y": 9
+        },
+        {
+          "x": 8,
+          "y": 9
+        },
+        {
+          "x": 9,
+          "y": 9
+        },
+        {
+          "x": 10,
+          "y": 9
+        },
+        {
+          "x": 11,
+          "y": 9
+        },
+        {
+          "x": 12,
+          "y": 9
+        },
+        {
+          "x": 13,
+          "y": 9
+        },
+        {
+          "x": 14,
+          "y": 9
+        },
+        {
+          "x": 15,
+          "y": 9
+        }
+      ],
+      "cover": [
+        {
+          "x": 7,
+          "y": 4,
+          "level": "half"
+        },
+        {
+          "x": 8,
+          "y": 4,
+          "level": "half"
+        },
+        {
+          "x": 9,
+          "y": 4,
+          "level": "half"
+        },
+        {
+          "x": 12,
+          "y": 6,
+          "level": "three-quarters"
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "level": "total"
+        }
+      ]
+    },
+    "combatants": [
+      {
+        "entityId": "elowen-starwhisper",
+        "side": "party",
+        "position": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      {
+        "entityId": "goblin-raider-1",
+        "side": "hostile",
+        "position": {
+          "x": 8,
+          "y": 4
+        }
+      },
+      {
+        "entityId": "goblin-raider-2",
+        "side": "hostile",
+        "position": {
+          "x": 10,
+          "y": 7
+        }
+      },
+      {
+        "entityId": "goblin-raider-3",
+        "side": "hostile",
+        "position": {
+          "x": 11,
+          "y": 5
+        }
+      },
+      {
+        "entityId": "goblin-shaman",
+        "side": "hostile",
+        "position": {
+          "x": 12,
+          "y": 6
+        }
+      }
+    ]
+  }
+}

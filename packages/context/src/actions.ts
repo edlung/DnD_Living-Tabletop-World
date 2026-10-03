@@ -1,6 +1,7 @@
 import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
 import { attemptKey, type EntityState } from '@ltw/domain';
 
+import { combatAttackVerdict, combatFrame, combatSpellVerdict, fireballVerdict } from './combat.ts';
 import type { ContextInputs } from './inputs.ts';
 import {
   LEGAL,
@@ -12,6 +13,7 @@ import {
   type Verdict,
 } from './legality.ts';
 import { RELEVANCE_RANK, memoriesAbout } from './relevance.ts';
+import { entityRefFor } from './views.ts';
 import { askTopics } from './topics.ts';
 
 /**
@@ -40,6 +42,12 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
   const self = target.entityId === inputs.actor.entityId;
   const { sheet } = inputs;
   const examine: Relevance = present && OBJECT_KINDS.has(target.kind) ? 'medium' : 'low';
+  // In combat, legality uses the encounter's positions and turn (ADR 0015 §6).
+  const frame = combatFrame(inputs);
+  const spell = (spellId: 'healing-word' | 'hunters-mark' | 'detect-magic', targeted: boolean) =>
+    frame
+      ? () => combatSpellVerdict(inputs, spellId, targeted ? target.entityId : undefined)
+      : () => spellVerdict(sheet, spellId);
 
   const candidates: Candidate[] = [];
   const add = (
@@ -66,12 +74,26 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     add(
       'healing_word',
       'present-alive',
-      () => spellVerdict(sheet, 'healing-word'),
+      spell('healing-word', true),
       present && alive && wounded ? 'high' : 'low',
     );
     if (!self) {
-      add('hunters_mark', 'present-alive', () => spellVerdict(sheet, 'hunters-mark'), 'low');
-      add('longbow_attack', 'present-alive', () => longbowVerdict(sheet), 'low');
+      add('hunters_mark', 'present-alive', spell('hunters-mark', true), 'low');
+      add(
+        'longbow_attack',
+        'present-alive',
+        frame
+          ? () => combatAttackVerdict(frame, inputs, target.entityId)
+          : () => longbowVerdict(sheet),
+        'low',
+      );
+      if (frame)
+        add(
+          'fireball',
+          'present',
+          () => fireballVerdict(frame, inputs, target.entityId, (id) => entityRefFor(inputs, id)),
+          'low',
+        );
     }
   } else if (OBJECT_KINDS.has(target.kind)) {
     add('inspect', 'present', () => LEGAL, examine);
@@ -86,7 +108,7 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       examine,
     );
     add('perception_check', 'present', () => checkVerdict(sheet, attempted('perception')), examine);
-    add('detect_magic', 'present', () => spellVerdict(sheet, 'detect-magic'), 'low');
+    add('detect_magic', 'present', spell('detect-magic', false), 'low');
   } else if (target.kind === 'location') {
     add('inspect', 'present', () => LEGAL, 'low');
     const here = inputs.actor.placement?.locationId === target.entityId;
@@ -131,5 +153,6 @@ function toAction(
     relevance,
     ...(verdict.cost ? { cost: verdict.cost } : {}),
     ...(verdict.hints ? { hints: [...verdict.hints] } : {}),
+    ...(verdict.area ? { area: { affected: verdict.area.map((ref) => ({ ...ref })) } } : {}),
   };
 }

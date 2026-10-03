@@ -1,5 +1,6 @@
 import type { ContextEntityRef, ContextVisibleState } from '@ltw/contracts';
 
+import { distanceTo } from './combat.ts';
 import type { ContextInputs } from './inputs.ts';
 
 /**
@@ -22,9 +23,11 @@ export function visibleStateFor(inputs: ContextInputs, entityId: string): Contex
   if (!entity) throw new Error(`entity ${entityId} is missing from canonical state`);
   const present = inputs.perceived.has(entityId);
   const sheet = inputs.party.has(entityId) ? inputs.state.characterSheets.get(entityId) : undefined;
+  const distanceFt = distanceTo(inputs, entityId);
   return {
     present,
     ...(present ? { status: entity.status } : {}),
     ...(sheet ? { hitPoints: { current: sheet.hitPoints.current, max: sheet.hitPoints.max } } : {}),
+    ...(distanceFt === undefined ? {} : { distanceFt }),
   };
 }

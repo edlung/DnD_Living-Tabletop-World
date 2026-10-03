@@ -103,6 +103,10 @@ A character sheet (static statistics plus current resources: HP, slots, per-rest
 - Each further SRD rule needs an entry here or a new ADR before it is implemented.
 - Warnings (such as an ally inside a Fireball area) are presentation hints; they never make a legal action illegal (invariant 20).
 
+## Amendments
+
+- 2026-10-04 (Stage 80, ADR 0015 §3–4, owner-approved): the slice adds the Unconscious condition (it includes Incapacitated), death saving throws, damage at 0 HP and massive damage, cover (+2/+5 to AC and Dexterity saves; total cover cannot be targeted), Advantage and Disadvantage from Prone and Unconscious, and the Longbow's damage type and Slow mastery. Mechanics live in `packages/rules/src/combat.ts`.
+
 ## Invariants affected
 
 Implements 8 and 9 for the slice and preserves 20. No invariant is weakened.

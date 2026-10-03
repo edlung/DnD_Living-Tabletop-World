@@ -8,6 +8,7 @@ import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
 import { registerCommandRoutes } from './routes/command-routes.ts';
 import { registerContextRoutes } from './routes/context-routes.ts';
+import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
 
@@ -55,6 +56,7 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerKnowledgeRoutes(app, deps);
   registerMemoryRoutes(app, deps);
   registerContextRoutes(app, deps);
+  registerEncounterRoutes(app, deps);
   registerCommandRoutes(app, deps);
   return app;
 }

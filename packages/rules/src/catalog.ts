@@ -86,6 +86,9 @@ export interface WeaponDefinition {
   readonly longRangeFt: number;
   readonly damageDice: { readonly count: number; readonly sides: number };
   readonly ability: 'dex' | 'str';
+  readonly damageType: string;
+  /** Weapon mastery property (SRD 5.2.1); Slow on the Longbow (ADR 0011). */
+  readonly mastery: 'slow' | null;
 }
 
 export const WEAPONS: Readonly<Record<WeaponId, WeaponDefinition>> = {
@@ -96,5 +99,7 @@ export const WEAPONS: Readonly<Record<WeaponId, WeaponDefinition>> = {
     longRangeFt: 600,
     damageDice: { count: 1, sides: 8 },
     ability: 'dex',
+    damageType: 'piercing',
+    mastery: 'slow',
   },
 };

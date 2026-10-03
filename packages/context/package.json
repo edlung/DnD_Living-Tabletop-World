@@ -12,6 +12,7 @@
     }
   },
   "dependencies": {
+    "@ltw/combat": "workspace:*",
     "@ltw/contracts": "workspace:*",
     "@ltw/domain": "workspace:*",
     "@ltw/rules": "workspace:*"

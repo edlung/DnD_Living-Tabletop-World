@@ -1,6 +1,7 @@
 import type {
   CharacterSheet,
   ContextActionCost,
+  ContextEntityRef,
   ContextHint,
   ContextIllegalReason,
   SpellId,
@@ -21,8 +22,8 @@ import {
  * The Rules Engine decides; this module only frames the question. Outside
  * combat no turn order or canonical positions exist, so an action is
  * evaluated as at the start of a fresh turn of the acting character and
- * range is not evaluated (hint `RANGE_NOT_TRACKED`). Combat positions and
- * real turn state arrive at Stage 80.
+ * range is not evaluated (hint `RANGE_NOT_TRACKED`). In combat, `combat.ts`
+ * applies the encounter's positions and turn state instead (ADR 0015 §6).
  */
 export interface Verdict {
   readonly legal: boolean;
@@ -30,6 +31,8 @@ export interface Verdict {
   readonly resolution?: { readonly moveRequiredFt?: number };
   readonly cost?: ContextActionCost;
   readonly hints?: readonly ContextHint[];
+  /** Area spells: the combatants affected (ADR 0015 §6). */
+  readonly area?: readonly ContextEntityRef[];
 }
 
 export const LEGAL: Verdict = { legal: true };

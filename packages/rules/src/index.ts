@@ -80,3 +80,18 @@ export {
 } from './attacks.ts';
 export { skillCheckPort } from './skill-check-port.ts';
 export { applyHitPointChange, resolveCheck, resolveFireball, rollHealingWord } from './effects.ts';
+export {
+  COVER_BONUS,
+  attackCircumstances,
+  checkMonsterAttack,
+  damageAtZero,
+  initiativeOrder,
+  onGround,
+  rollDeathSave,
+  squareDistanceFt,
+  withinArea,
+  type AttackCircumstances,
+  type DeathSaveOutcome,
+  type DeathSaves,
+  type InitiativeEntry,
+} from './combat.ts';

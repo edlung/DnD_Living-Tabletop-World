@@ -10,6 +10,9 @@ import { knowledgeRelationSchema } from '../knowledge/commands.ts';
  */
 export const EXAMINE_METHODS = ['inspect', 'investigation', 'perception'] as const;
 export type ExamineMethod = (typeof EXAMINE_METHODS)[number];
+/** Clue methods: the examinations, plus `magic`, revealed by Detect Magic (ADR 0015 §3). */
+export const CLUE_METHODS = [...EXAMINE_METHODS, 'magic'] as const;
+export type ClueMethod = (typeof CLUE_METHODS)[number];
 /** Methods resolved by a skill check (one attempt per character, entity, method). */
 export const CHECK_METHODS: ReadonlySet<ExamineMethod> = new Set(['investigation', 'perception']);
 
@@ -64,8 +67,8 @@ export const addClueCommandSchema = z
     type: z.literal('AddClue'),
     clueId: clueIdSchema.optional(),
     entityId: entityIdSchema,
-    method: z.enum(EXAMINE_METHODS),
-    /** Required for checks, forbidden for `inspect`. */
+    method: z.enum(CLUE_METHODS),
+    /** Required for checks, forbidden for `inspect` and `magic`. */
     dc: z.number().int().min(5).max(30).optional(),
     /** The EVIDENCE statement revealed to the discoverer. */
     statement,
@@ -87,6 +90,10 @@ export const PLAYER_COMMAND_TYPES = [
   'AskAbout',
   'ExamineEntity',
   'FormHypothesis',
+  'MoveCombatant',
+  'Attack',
+  'CastSpell',
+  'EndTurn',
 ] as const;
 export type PlayerCommandType = (typeof PLAYER_COMMAND_TYPES)[number];
 
@@ -103,4 +110,29 @@ export type PlayerOutcome =
       } | null;
       readonly discovered: readonly string[];
     }
-  | { readonly kind: 'FormHypothesis'; readonly knowledgeId: string };
+  | { readonly kind: 'FormHypothesis'; readonly knowledgeId: string }
+  | {
+      readonly kind: 'MoveCombatant';
+      readonly position: { readonly x: number; readonly y: number };
+    }
+  | {
+      readonly kind: 'Attack';
+      readonly d20: readonly number[];
+      readonly attackTotal: number;
+      readonly hit: boolean;
+      readonly critical: boolean;
+      readonly damage: number | null;
+    }
+  | {
+      readonly kind: 'CastSpell';
+      readonly spellId: string;
+      readonly results: readonly {
+        readonly targetId: string;
+        readonly saved: boolean | null;
+        readonly hit: boolean | null;
+        readonly damage: number | null;
+        readonly healed: number | null;
+      }[];
+      readonly discovered: readonly string[];
+    }
+  | { readonly kind: 'EndTurn'; readonly nextCombatantId: string; readonly round: number };
