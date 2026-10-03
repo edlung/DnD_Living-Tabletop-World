@@ -1,0 +1,75 @@
+{
+  "reviewDate": "2026-10-03",
+  "codeRevision": "641c6af1e9651147107f4c9c3113535e36026520",
+  "checkoutRevision": "29e63d2",
+  "environment": {
+    "node": "25.8.1",
+    "pnpm": "11.11.0",
+    "postgres": "18-alpine"
+  },
+  "validation": {
+    "command": "pnpm validate:ci-local",
+    "exitCode": 0,
+    "unitTestFiles": 22,
+    "unitTests": 400,
+    "integrationTestFiles": 4,
+    "integrationTests": 17,
+    "activeFiles": 100,
+    "over500": 0,
+    "over700": 0,
+    "seedVersion": 64,
+    "seedEntities": 21,
+    "seedAccepted": 0,
+    "seedDuplicates": 55
+  },
+  "live": {
+    "requests": 1841,
+    "checks": {
+      "response-headers": 1841,
+      "positive-controls": 1,
+      "visible-sets": 8,
+      "direct-records": 248,
+      "graph": 744,
+      "entity-traversal": 176,
+      "subject-filter": 176,
+      "type-filter": 72,
+      "as-of": 112,
+      "marker-scan": 37730,
+      "projection-whitelist": 786,
+      "uniform-absence": 134,
+      "malformed-scopes": 20,
+      "forged-perspectives": 6,
+      "authentication-membership": 20,
+      "concurrent-reads": 96,
+      "command-denial": 7
+    },
+    "failures": [],
+    "anomalies": []
+  },
+  "state": {
+    "requests": 180,
+    "checks": {
+      "player-authority": 14,
+      "malformed-command": 14,
+      "rejected-atomicity": 2,
+      "authoring": 20,
+      "canary-scopes": 18,
+      "canary-as-of": 18,
+      "hidden-bridge": 30,
+      "undo-dependency": 2,
+      "undo-removal": 2,
+      "idempotency": 4,
+      "idempotency-actor-isolation": 2,
+      "roster-cache-revocation": 2,
+      "roster-cache-reassignment": 2,
+      "roster-former-character": 2,
+      "restart-equality": 9,
+      "cross-engine-catchup": 1,
+      "store-equality": 1,
+      "internal-error": 1,
+      "disabled-authentication": 1
+    },
+    "failures": [],
+    "temporaryDatabaseDropped": true
+  }
+}
