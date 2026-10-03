@@ -1,0 +1,14 @@
+# Generated / dependency / build output
+node_modules/
+dist/
+build/
+coverage/
+pnpm-lock.yaml
+
+# Development Pack product, architecture, and workflow documents are authored
+# by the project owner; tooling must not reformat them.
+/*.md
+work-orders/
+docs/AI_CONTEXT_MAP.md
+docs/GATE_COVERAGE.md
+docs/IMPLEMENTATION_PREREQUISITES.md

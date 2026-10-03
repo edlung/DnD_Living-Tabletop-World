@@ -1,0 +1,7 @@
+{
+  "name": "@ltw/web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Player/DM client application. Talks to the server API only.",
+  "type": "module"
+}

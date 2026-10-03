@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_USER: ltw
+          POSTGRES_PASSWORD: ltw_ci_password
+          POSTGRES_DB: ltw
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ltw -d ltw"
+          --health-interval 2s
+          --health-timeout 5s
+          --health-retries 30
+
+    env:
+      NODE_ENV: test
+      DATABASE_URL: postgres://ltw:ltw_ci_password@127.0.0.1:5432/ltw
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: pnpm run format:check
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Context budget
+        run: pnpm run context-budget
+
+      - name: Unit tests
+        run: pnpm run test
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Migrate (bootstrap empty database)
+        run: pnpm run db:migrate
+
+      - name: Migrate again (idempotent)
+        run: pnpm run db:migrate
+
+      - name: Integration tests
+        run: pnpm run test:integration

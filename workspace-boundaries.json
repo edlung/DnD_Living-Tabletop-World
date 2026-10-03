@@ -1,0 +1,77 @@
+{
+  "$comment": "Single source of truth for workspace dependency direction (docs/adr/0004-module-boundaries.md). Enforced by eslint.config.js and tests/architecture/. Changing an edge is an architecture decision: update the ADR first.",
+  "moduleGroups": {
+    "ai-providers": [
+      "openai",
+      "openai/*",
+      "@anthropic-ai/*",
+      "@google/genai",
+      "@google/generative-ai",
+      "@mistralai/*",
+      "cohere-ai",
+      "ollama",
+      "ai",
+      "@ai-sdk/*",
+      "langchain",
+      "@langchain/*"
+    ],
+    "persistence-drivers": [
+      "pg",
+      "pg/*",
+      "postgres",
+      "kysely",
+      "drizzle-orm",
+      "drizzle-orm/*",
+      "@prisma/client",
+      "typeorm",
+      "knex"
+    ],
+    "server-io": [
+      "node:fs",
+      "node:fs/*",
+      "fs",
+      "fs/*",
+      "node:http",
+      "http",
+      "node:https",
+      "https",
+      "node:net",
+      "net",
+      "node:child_process",
+      "child_process",
+      "pino"
+    ]
+  },
+  "packages": {
+    "@ltw/contracts": {
+      "path": "packages/contracts",
+      "mayDependOn": [],
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+    },
+    "@ltw/domain": {
+      "path": "packages/domain",
+      "mayDependOn": ["@ltw/contracts"],
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+    },
+    "@ltw/rules": {
+      "path": "packages/rules",
+      "mayDependOn": ["@ltw/domain", "@ltw/contracts"],
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+    },
+    "@ltw/ui": {
+      "path": "packages/ui",
+      "mayDependOn": ["@ltw/contracts"],
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+    },
+    "@ltw/server": {
+      "path": "apps/server",
+      "mayDependOn": ["@ltw/domain", "@ltw/rules", "@ltw/contracts"],
+      "forbiddenGroups": []
+    },
+    "@ltw/web": {
+      "path": "apps/web",
+      "mayDependOn": ["@ltw/ui", "@ltw/contracts"],
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+    }
+  }
+}

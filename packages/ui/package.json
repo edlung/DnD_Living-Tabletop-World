@@ -1,0 +1,14 @@
+{
+  "name": "@ltw/ui",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Presentation components for clients. Consumes contracts only.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@ltw/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  }
+}

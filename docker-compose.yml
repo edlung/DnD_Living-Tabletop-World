@@ -1,0 +1,21 @@
+# Local development/test infrastructure only. Credentials here are
+# development defaults and must never be used in production.
+services:
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: ltw
+      POSTGRES_PASSWORD: ltw_dev_password
+      POSTGRES_DB: ltw
+    ports:
+      - '127.0.0.1:54329:5432'
+    volumes:
+      - ltw-postgres:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ltw -d ltw']
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  ltw-postgres:
