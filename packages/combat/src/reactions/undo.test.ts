@@ -119,9 +119,10 @@ describe('undoing an answer', () => {
 describe('other undos while a window is open', () => {
   it('rejects what the window read, accepts what it did not', async () => {
     const world = await roadWorld();
+    await startAmbush(world);
+    // A sheet change after combat started: only the window's opening read it since.
     const sheet = (await world.state()).characterSheets.get(ELOWEN);
     const setSheet = await world.dm({ type: 'SetCharacterSheet', entityId: ELOWEN, sheet });
-    await startAmbush(world);
     world.roll(20, 15);
     const shot = await world.submit({
       type: 'Attack',
@@ -177,5 +178,24 @@ describe('rewind', () => {
       else expect(status).toBe('countered');
     }
     expect([trigger.status, countered.status]).toEqual(['accepted', 'accepted']);
+  });
+});
+
+describe('leaving the battlefield', () => {
+  it('blocks undoing the end of combat once a former combatant has left', async () => {
+    const world = await roadWorld();
+    await startAmbush(world);
+    const { encounterId } = await world.encounter();
+    const ended = await world.dm({ type: 'EndCombat', encounterId });
+    const left = await world.submit({
+      type: 'EnterLocation',
+      characterId: ELOWEN,
+      locationId: 'abandoned-caravan-site',
+    });
+    expect(codeOf(left)).toBe('accepted');
+    const refused = await undo(world, ended);
+    expect(codeOf(refused)).toBe('UNDO_UNSAFE');
+    expect(blockersOf(refused)).toEqual([left.commandId]);
+    await verifyHistory(world);
   });
 });
