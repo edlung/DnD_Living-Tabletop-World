@@ -1,0 +1,131 @@
+{
+  "prefixes": {
+    "writer": "b7a1a92fa5886c271d623d3a7a87fdeec9c7f8bf",
+    "commands": 103,
+    "statesEqual": true,
+    "normalization": "Current empty investigation.shown omitted; old writer had no such collection."
+  },
+  "undoSweep": {
+    "tried": 102,
+    "blocked": 101,
+    "accepted": 1,
+    "allStandingEarlierCommandsProtected": true
+  },
+  "postgres": {
+    "refusals": {
+      "rename-caravan": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g04-history-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:legacy-rename-caravan\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:legacy-ask-road",
+              "commandType": "AskAbout",
+              "sequence": 109
+            },
+            {
+              "commandId": "http:player-elowen:legacy-ask-caravan",
+              "commandType": "AskAbout",
+              "sequence": 113
+            },
+            {
+              "commandId": "http:player-elowen:legacy-inspect-weapon",
+              "commandType": "ExamineEntity",
+              "sequence": 122
+            },
+            {
+              "commandId": "http:player-elowen:legacy-ask-thorne",
+              "commandType": "AskAbout",
+              "sequence": 133
+            }
+          ]
+        }
+      },
+      "rename-weapon": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g04-history-2",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:legacy-rename-weapon\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:legacy-inspect-weapon",
+              "commandType": "ExamineEntity",
+              "sequence": 122
+            },
+            {
+              "commandId": "http:player-elowen:legacy-ask-thorne",
+              "commandType": "AskAbout",
+              "sequence": 133
+            }
+          ]
+        }
+      },
+      "mira-wagons-willing": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g04-history-3",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:legacy-mira-wagons-willing\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:legacy-ask-road",
+              "commandType": "AskAbout",
+              "sequence": 109
+            },
+            {
+              "commandId": "http:player-elowen:legacy-ask-caravan",
+              "commandType": "AskAbout",
+              "sequence": 112
+            },
+            {
+              "commandId": "http:player-elowen:legacy-inspect-weapon",
+              "commandType": "ExamineEntity",
+              "sequence": 122
+            },
+            {
+              "commandId": "http:player-elowen:legacy-ask-thorne",
+              "commandType": "AskAbout",
+              "sequence": 133
+            }
+          ]
+        }
+      },
+      "ask-road": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g04-history-4",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:legacy-ask-road\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:legacy-ask-caravan",
+              "commandType": "AskAbout",
+              "sequence": 113
+            },
+            {
+              "commandId": "http:player-elowen:legacy-inspect-weapon",
+              "commandType": "ExamineEntity",
+              "sequence": 122
+            },
+            {
+              "commandId": "http:player-elowen:legacy-ask-thorne",
+              "commandType": "AskAbout",
+              "sequence": 133
+            }
+          ]
+        }
+      }
+    },
+    "scenarioCommandsReversed": 12,
+    "laterCurrentNoteStillEffective": true,
+    "reloaded": true,
+    "replayEqual": true
+  }
+}

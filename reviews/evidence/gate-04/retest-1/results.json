@@ -1,0 +1,131 @@
+{
+  "reviewId": "ASTRA-GATE-04-RETEST-1",
+  "date": "2026-10-04",
+  "result": "PASS",
+  "reviewedCodeRevision": "987c22377bd571c86ad84187e810c95d78b511c5",
+  "testedHead": "a5befed7d98f2ee9aaf2872cfb990e0c7f68d686",
+  "headOnlyChanges": [
+    "README.md",
+    "handoffs/ASTRA_GATE_04_REQUEST.md",
+    "remediation/OPUS_GATE_04_REMEDIATION.md"
+  ],
+  "historicalReaderRevision": "b7a1a92fa5886c271d623d3a7a87fdeec9c7f8bf",
+  "validation": {
+    "pnpm test": {
+      "result": "PASS",
+      "files": 117,
+      "tests": 1273
+    },
+    "pnpm test:integration": {
+      "result": "PASS",
+      "files": 15,
+      "tests": 61
+    },
+    "pnpm lint": "PASS",
+    "pnpm typecheck": "PASS",
+    "pnpm build": "PASS",
+    "pnpm context-budget": {
+      "result": "PASS",
+      "activeFiles": 378,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "pnpm format:check": "PASS after formatting review artifacts"
+  },
+  "recipes": [
+    {
+      "recipe": "NPC_PROBES.md",
+      "results": "npc-results.json",
+      "groups": 3,
+      "exchanges": 66,
+      "providerRequests": 72,
+      "throwawayDatabases": 3,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "AUTHORING_PROBES.md",
+      "results": "authoring-results.json",
+      "groups": 18,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "AUTHORING_RACE_PROBES.md",
+      "results": "authoring-race-results.json",
+      "orderedRaces": 64,
+      "inMemoryRaces": 32,
+      "postgresActualChildProcessRaces": 32,
+      "aiTraceSourcedProposals": 32,
+      "retryGroups": 4,
+      "processKillRecoveryCases": 2,
+      "throwawayDatabases": 34,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "SUGGESTION_PROBES.md",
+      "results": "suggestion-results.json",
+      "groups": 4,
+      "throwawayDatabases": 4,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true,
+      "resolutions": ["dm-close", "decline", "counterspell-stops", "counterspell-fails"]
+    },
+    {
+      "recipe": "STATE_PROBES.md",
+      "results": "state-results.json",
+      "groups": 44,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "HISTORY_PROBES.md",
+      "results": "history-results.json",
+      "groups": 3,
+      "throwawayDatabases": 1,
+      "oldReaderPrefixComparisons": 103,
+      "undoAttempts": 102,
+      "undoBlocked": 101,
+      "undoAccepted": 1,
+      "scenarioCommandsReversed": 12,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    }
+  ],
+  "findings": {
+    "G04-H01": {
+      "originalSeverity": "High",
+      "status": "CLOSED",
+      "blocking": false
+    },
+    "G04-M01": {
+      "originalSeverity": "Medium",
+      "status": "CLOSED",
+      "blocking": false
+    },
+    "G04-M02": {
+      "originalSeverity": "Medium",
+      "status": "CLOSED",
+      "blocking": false
+    }
+  },
+  "findingCounts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "limits": [
+    "Exact provider requests were captured at the provider interface. Local/scripted providers and injected-fetch adapter tests were used; no live external model was called.",
+    "Fastify inject exercises actual authenticated handlers. No separately listening deployment was tested.",
+    "The concurrency scheduler pauses a real protected latest read. PostgreSQL cases observe an ungranted advisory lock and use actual separate child processes. All mutations use authenticated handlers.",
+    "Process-kill recovery does not exhaust network partitions, database failover or transaction failure schedules. Production proposal locks have no timeout; the dedicated lock pool has four connections.",
+    "Old prefix comparison omits only the new empty investigation.shown collection; stored historical events are never rewritten.",
+    "One complete independent recipe run owns and removes 42 throwaway databases and one old-reader archive; no development data is reset.",
+    "Old-reader dependencies use the frozen offline cache. Root reinstall, full CI wrapper and deployment were not run.",
+    "Only this review and new retest evidence were added; no source, existing tests, fixtures, handoff, remediation or prior reports/evidence were modified.",
+    "Astra/MAX was requested; the exact runtime variant and effort were not exposed for independent verification.",
+    "PASS permits the owner to authorize Stage 140 but does not start it. Future surface obligations remain in the report."
+  ]
+}

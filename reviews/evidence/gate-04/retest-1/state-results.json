@@ -1,0 +1,270 @@
+{
+  "disclosure-FACT-HOSTILE-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-FACT-HOSTILE-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-FACT-WARY-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-FACT-WARY-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-FACT-NEUTRAL-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-FACT-NEUTRAL-true": {
+    "expectedShared": true,
+    "result": "accepted",
+    "recovery": true,
+    "audit": true
+  },
+  "disclosure-FACT-FRIENDLY-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-FACT-FRIENDLY-true": {
+    "expectedShared": true,
+    "result": "accepted",
+    "recovery": true,
+    "audit": true
+  },
+  "disclosure-FACT-TRUSTED-false": {
+    "expectedShared": true,
+    "result": "accepted",
+    "recovery": true,
+    "audit": true
+  },
+  "disclosure-FACT-TRUSTED-true": {
+    "expectedShared": true,
+    "result": "accepted",
+    "recovery": true,
+    "audit": true
+  },
+  "disclosure-SECRET-HOSTILE-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-HOSTILE-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-WARY-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-WARY-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-NEUTRAL-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-NEUTRAL-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-FRIENDLY-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-FRIENDLY-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-TRUSTED-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-SECRET-TRUSTED-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-HOSTILE-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-HOSTILE-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-WARY-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-WARY-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-NEUTRAL-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-NEUTRAL-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-FRIENDLY-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-FRIENDLY-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-TRUSTED-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-UNKNOWN-TRUSTED-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-HOSTILE-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-HOSTILE-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-WARY-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-WARY-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-NEUTRAL-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-NEUTRAL-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-FRIENDLY-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-FRIENDLY-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-TRUSTED-false": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "disclosure-CONTRADICTION-TRUSTED-true": {
+    "expectedShared": false,
+    "result": "rejected",
+    "recovery": false,
+    "audit": true
+  },
+  "named-undo-ShowEvidence": {
+    "blocked": true,
+    "recovered": true,
+    "audit": true
+  },
+  "named-undo-AskAbout": {
+    "blocked": true,
+    "recovered": true,
+    "audit": true
+  },
+  "named-undo-InsightCheck": {
+    "blocked": true,
+    "recovered": true,
+    "audit": true
+  },
+  "insightFailure": {
+    "sameWithAndWithoutHiddenRecord": true,
+    "repeatBlocked": true,
+    "outcome": {
+      "kind": "InsightCheck",
+      "roll": {
+        "d20": 1,
+        "modifier": 0,
+        "total": 1
+      },
+      "inferred": []
+    }
+  }
+}
