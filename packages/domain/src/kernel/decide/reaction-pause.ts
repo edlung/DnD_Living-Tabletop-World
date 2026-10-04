@@ -38,7 +38,12 @@ export function pausedCombat(state: WorldState, command: KernelCommand): Decisio
   return openReactionWindow(state) ? pending() : null;
 }
 
-/** Checked after deciding: nothing else may change what the window depends on. */
+/**
+ * Checked after deciding: nothing else may change what the window depends on.
+ * Commands of a character outside the fight never get here: it cannot target
+ * a combatant (ADR 0015, Gate 03 retest 2, G03-H06), and nothing else it may
+ * do writes a combatant's facts, so this refusal reveals no hidden window.
+ */
 export function pausedByChanges(
   state: WorldState,
   type: KernelCommandType,

@@ -94,6 +94,7 @@ export function applyPremisesRecorded(
     switch (premise.kind) {
       case 'perceived':
       case 'vitals':
+      case 'placement': // legacy, revision 88d8137 (G03-H05)
         return state.entities.has(premise.entityId);
       case 'revealed':
         return state.investigation.clues.has(premise.clueId);

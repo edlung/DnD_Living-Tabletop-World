@@ -6,6 +6,7 @@ Authority: `docs/adr/0006-temporal-model-and-undo.md` (owner-approved semantics)
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | State shape, kind/status rules                                                 | `state.ts`                                                                                                         |
 | Event schemas, envelope, load-time parsing                                     | `events.ts`                                                                                                        |
+| Event schema versions and decoders of earlier versions                         | `event-versions.ts`                                                                                                |
 | Fold / replay                                                                  | `evolve.ts`                                                                                                        |
 | Undo dependency facts (reads/writes per event)                                 | `facts.ts`                                                                                                         |
 | Decision contract, resolved commands                                           | `decision.ts`                                                                                                      |
@@ -21,10 +22,13 @@ Authority: `docs/adr/0006-temporal-model-and-undo.md` (owner-approved semantics)
 Rules for changes:
 
 - Decisions are pure: no clocks, random numbers, or I/O. Inject and record nondeterminism through the engine.
-- Every new event type needs a zod schema, a fold case, a `footprintOf` case (reads **and** writes, including kernel facts it depends on), undo restore handling if its command is undoable, and tests for undo safety.
+- Every new event type needs a zod schema, a fold case, a `footprintOf` case (reads **and** writes, including kernel facts it depends on and everything its fold requires to exist), undo restore handling if its command is undoable, and tests for undo safety.
 - While a reaction window is open, `decide/reaction-pause.ts` applies the pause rule to every command (ADR 0016): combat waits, and nothing may write a fact the window's opening read. Undo keeps its own footprint rule; in addition, undoing the command that closed a window is refused while a later command changed what the window depends on (`../combat/reaction-undo.ts`; Gate 03, G03-H01). A decision that resolves things in turn folds its own drafts with `provisional.ts` (`foldDrafts`).
 - A decision's legality premises, including the authority it was issued under, must appear in its footprint. `verification/redecide.ts` re-decides every still-effective command after random undos; keep it in the randomized tests so that an omitted premise is caught even when nothing recorded it (Gate 02).
-- Never edit or reorder stored events; payload changes need a new `schemaVersion` and upcasting on load.
+- Never edit or reorder stored events. Every payload any revision wrote stays readable with its meaning (Gate 03 retest 2, G03-H05):
+  - A change that would reject a stored event or change what it means (removing or renaming a variant or field, narrowing a limit) gives the type its next version in `event-versions.ts`, with a decoder for every earlier version. Additive changes keep the version.
+  - Before such a change, add a history the previous revision wrote to `fixtures/history/` (see its `AGENTS.md`) and test that the current reader loads, replays, continues, and safely undoes it (`packages/combat/src/gate03-h05-regressions.test.ts` is the pattern).
+  - The re-decision oracle folds commands an earlier writer decided as recorded (their events carry an earlier version): it re-decides only what the current rules decided.
 - Canonical/DM data only. Any player-facing projection must go through the knowledge boundary (`packages/domain/src/knowledge/`).
 - `KernelEvent` is the whole campaign-stream union: kernel events plus knowledge events (`knowledge/events.ts`). Knowledge footprints live in `facts.ts` with the others.
 - Keep each file under 500 lines; when adding a domain (knowledge, memory, …), give it its own folder rather than growing these files.

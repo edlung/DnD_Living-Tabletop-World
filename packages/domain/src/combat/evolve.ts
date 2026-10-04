@@ -2,6 +2,7 @@ import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { namedEntityIds } from './named-entities.ts';
 import { openReactionWindow } from './reactions.ts';
 import { encounterAfterTurnStart, type EncounterState } from './records.ts';
 
@@ -78,11 +79,7 @@ export function applyStatBlockSet(state: WorldState, event: EventOf<'StatBlockSe
 
 /** Narrative combat events change no state; they must reference existing entities. */
 export function applyCombatRecord(state: WorldState, event: RecordedEvent): WorldState {
-  const ids = Object.entries(event.payload)
-    .filter(([key]) => key.endsWith('Id') && key !== 'spellId' && key !== 'attackId')
-    .map(([, value]): unknown => value)
-    .filter((value): value is string => typeof value === 'string');
-  if (ids.some((id) => !state.entities.has(id))) {
+  if (namedEntityIds(event.payload).some((id) => !state.entities.has(id))) {
     throw new CorruptHistoryError(`${event.type} references a missing entity`);
   }
   return state;

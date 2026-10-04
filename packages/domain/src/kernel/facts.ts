@@ -1,7 +1,8 @@
 import type { ClaimTarget } from '@ltw/contracts';
 
+import { namedEntityIds } from '../combat/named-entities.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
-import type { Premise } from '../investigation/events.ts';
+import type { RecordedPremise } from '../investigation/events.ts';
 import { attemptKey, scopedKey } from '../investigation/records.ts';
 import { pairKey } from '../contradiction/records.ts';
 import { holderOf, scopeKey } from '../knowledge/records.ts';
@@ -26,6 +27,8 @@ export const facts = {
   entityProfile: (id: string): FactKey => `entity:${id}#profile`,
   entityPlacement: (id: string): FactKey => `entity:${id}#placement`,
   entityStatus: (id: string): FactKey => `entity:${id}#status`,
+  /** The clues authored on an entity, as a whole (read only by legacy `placement` premises). */
+  entityClues: (id: string): FactKey => `entity:${id}#clues`,
   scene: (id: string): FactKey => `scene:${id}`,
   sceneEnded: (id: string): FactKey => `scene:${id}#ended`,
   knowledge: (id: string): FactKey => `knowledge:${id}`,
@@ -181,7 +184,7 @@ export function footprintOf(event: KernelEvent): Footprint {
           ...entityChecked(event.payload.entityId),
           ...event.payload.subjects.map((id) => facts.entity(id)),
         ],
-        writes: [facts.clue(event.payload.clueId)],
+        writes: [facts.clue(event.payload.clueId), facts.entityClues(event.payload.entityId)],
       };
     case 'DisclosureSet':
       return {
@@ -302,7 +305,11 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'SavingThrowRolled':
     case 'ConditionApplied':
     case 'DeathSaveRolled':
-      return { reads: [clock, facts.encounter()], writes: [] };
+      // Narrative records: their fold needs every creature they name (G03-H05).
+      return {
+        reads: [clock, facts.encounter(), ...namedEntityIds(event.payload).map(facts.entity)],
+        writes: [],
+      };
     case 'ReactionWindowOpened': {
       // Eligibility read every considered combatant (ADR 0016 §3): while the window
       // stands, undoing what changed any of them is UNDO_UNSAFE, and the pause rule
@@ -341,7 +348,7 @@ export function footprintOf(event: KernelEvent): Footprint {
   }
 }
 
-function premiseFacts(characterId: string, premise: Premise): FactKey[] {
+function premiseFacts(characterId: string, premise: RecordedPremise): FactKey[] {
   const party = [facts.rosterCharacter(characterId)];
   switch (premise.kind) {
     case 'perceived':
@@ -380,6 +387,14 @@ function premiseFacts(characterId: string, premise: Premise): FactKey[] {
         facts.clue(premise.clueId),
         facts.entity(premise.entityId),
         facts.entityPlacement(premise.entityId),
+      ];
+    case 'placement':
+      // Legacy (revision 88d8137, G03-H05): the cast passed over this entity's magic
+      // clues without naming them, so it read where the entity was and all its clues.
+      return [
+        facts.entity(premise.entityId),
+        facts.entityPlacement(premise.entityId),
+        facts.entityClues(premise.entityId),
       ];
   }
 }

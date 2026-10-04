@@ -36,18 +36,19 @@ import {
   evidenceExaminedPayloadSchema,
   informationSharedPayloadSchema,
   investigationRestoreSchemas,
-  premisesRecordedPayloadSchema,
+  recordedPremisesPayloadSchema,
 } from '../investigation/events.ts';
 import { actorSchema } from './actor.ts';
+import { decodePayload, isVersioned } from './event-versions.ts';
 
 /**
  * Events of the campaign stream: World Kernel events
  * (docs/adr/0007-world-kernel-model-and-event-store.md) plus knowledge events
  * (docs/adr/0008-knowledge-boundary.md). `KernelEvent` is the whole union.
  * Events are facts: they are validated when loaded from storage and are
- * never edited. Payload changes require a new schemaVersion and upcasting.
+ * never edited. Each type is written with its current schema version and
+ * every version it was ever written with stays readable (`event-versions.ts`).
  */
-export const EVENT_SCHEMA_VERSION = 1;
 
 const text = z.string().max(4000);
 const status = z.enum(ENTITY_STATUSES);
@@ -180,7 +181,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('InformationShared', informationSharedPayloadSchema),
   event('ClaimSet', claimSetPayloadSchema),
   event('ContradictionDetected', contradictionDetectedPayloadSchema),
-  event('PremisesRecorded', premisesRecordedPayloadSchema),
+  event('PremisesRecorded', recordedPremisesPayloadSchema),
   event('CombatStarted', combatEventPayloadSchemas.CombatStarted),
   event('TurnStarted', combatEventPayloadSchemas.TurnStarted),
   event('CombatantUpdated', combatEventPayloadSchemas.CombatantUpdated),
@@ -211,7 +212,8 @@ export const eventEnvelopeSchema = z
     /** Position in the campaign stream: 1, 2, 3, … without gaps. */
     sequence: z.number().int().min(1),
     eventId: z.uuid(),
-    schemaVersion: z.literal(EVENT_SCHEMA_VERSION),
+    /** The payload's schema version for its type (`event-versions.ts`). */
+    schemaVersion: z.number().int().min(1),
     /** World clock after the event (fictional time). */
     worldTime: worldTimeSchema,
     /** Wall-clock persistence time; informational, never used for ordering. */
@@ -229,11 +231,19 @@ export const eventEnvelopeSchema = z
 export type EventEnvelope = z.infer<typeof eventEnvelopeSchema>;
 export type RecordedEvent = KernelEvent & EventEnvelope;
 
-/** Validates a stored event (for example a database row) before it is folded. */
+/**
+ * Validates a stored event (for example a database row) before it is folded:
+ * its payload against the schema of the version it was written with, decoded
+ * into the current in-memory form (`event-versions.ts`).
+ */
 export function parseRecordedEvent(raw: unknown): RecordedEvent {
   if (raw === null || typeof raw !== 'object') {
     throw new TypeError('recorded event must be an object');
   }
-  const { type, payload, ...envelope } = raw as Record<string, unknown>;
-  return { ...eventEnvelopeSchema.parse(envelope), ...kernelEventSchema.parse({ type, payload }) };
+  const { type, payload, ...rest } = raw as Record<string, unknown>;
+  const envelope = eventEnvelopeSchema.parse(rest);
+  const event = kernelEventSchema.parse({ type, payload });
+  const decoded = decodePayload(event.type, envelope.schemaVersion, event.payload);
+  if (!isVersioned(event.type)) return { ...envelope, ...event };
+  return { ...envelope, ...kernelEventSchema.parse({ type: event.type, payload: decoded }) };
 }

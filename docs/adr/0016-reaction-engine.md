@@ -136,6 +136,10 @@ Positions are the only location of a combatant while an encounter runs, and elig
   - **Everything a combat decision read.** Every combat decision records each combatant's status, sheet, and stat block as premises. This includes results that changed nothing, such as a miss or a turn passing over the dead. Combat therefore unwinds strictly in reverse order, DM edits of combatants included.
   - **An open window stays legal.** The tests check after every step that an open window's suspended spell can still resolve and that every pending candidate can still react.
 - 2026-10-04 (Gate 03 retest 1 remediation, G03-H04): the combatants' premises above apply only to someone who takes part in the encounter. A decision by someone outside it records none of them, and its own premises follow ADR 0015's Gate 03 amendments.
+- 2026-10-04 (Gate 03 retest 2 remediation, G03-H06; owner decision of 2026-10-04): **outsiders cannot probe a window.**
+  - Before: a spell at a combatant from outside the fight met the pause (`REACTION_PENDING`) only while a window was open, which revealed the window.
+  - Now a caster outside the fight cannot target combatants (ADR 0015 retest 2 amendment), and nothing else such a character may do writes a combatant's facts. The pause never answers it, and its results are the same whether or not a window is open.
+  - By the same decision, "Outsiders cannot probe" (implementation notes) now reads: a window, never; a fight, only that a creature the character perceives is in it.
 
 ## Consequences
 

@@ -72,7 +72,7 @@ export const informationSharedPayloadSchema = z
  * the command's footprint so that undoing a premise is UNDO_UNSAFE while the
  * action stands (ADR 0006 §8). DM-only.
  */
-export const premiseSchema = z.discriminatedUnion('kind', [
+const currentPremises = [
   z.object({ kind: z.literal('perceived'), entityId: entityIdSchema }).strict(),
   z.object({ kind: z.literal('self') }).strict(),
   z.object({ kind: z.literal('party-member'), characterId: entityIdSchema }).strict(),
@@ -101,8 +101,32 @@ export const premiseSchema = z.discriminatedUnion('kind', [
   z
     .object({ kind: z.literal('unreached'), clueId: clueIdSchema, entityId: entityIdSchema })
     .strict(),
-]);
+] as const;
+
+/** The premises the current writer records. */
+export const premiseSchema = z.discriminatedUnion('kind', currentPremises);
 export type Premise = z.infer<typeof premiseSchema>;
+
+/**
+ * Every premise any writer ever recorded, read with its original meaning
+ * (Gate 03 retest 2, G03-H05). Besides the current ones: `placement`, written
+ * only by revision 88d8137 (Gate 03 retest 1), where Detect Magic passed over
+ * an entity's magic clues because the entity was out of reach. It names the
+ * entity but not its clues; `unreached` replaced it.
+ */
+export const recordedPremiseSchema = z.discriminatedUnion('kind', [
+  ...currentPremises,
+  z.object({ kind: z.literal('placement'), entityId: entityIdSchema }).strict(),
+]);
+export type RecordedPremise = z.infer<typeof recordedPremiseSchema>;
+
+/**
+ * `PremisesRecorded` as read, whatever its version (`kernel/event-versions.ts`):
+ * version 1 holds any recorded premise; version 2, written now, only current ones.
+ */
+export const recordedPremisesPayloadSchema = z
+  .object({ characterId: entityIdSchema, premises: z.array(recordedPremiseSchema).max(512) })
+  .strict();
 
 export const premisesRecordedPayloadSchema = z
   .object({ characterId: entityIdSchema, premises: z.array(premiseSchema).max(512) })

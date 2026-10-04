@@ -4,7 +4,8 @@ import type { CombatPort } from '../../combat/port.ts';
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
 import type { StoredCommand } from '../engine/event-store.ts';
-import { EVENT_SCHEMA_VERSION, type RecordedEvent } from '../events.ts';
+import { schemaVersionOf } from '../event-versions.ts';
+import type { KernelEvent, RecordedEvent } from '../events.ts';
 import { evolve } from '../evolve.ts';
 import { EMPTY_WORLD_STATE, type WorldState } from '../state.ts';
 
@@ -15,6 +16,12 @@ import { EMPTY_WORLD_STATE, type WorldState } from '../state.ts';
  * re-decided in order from an empty campaign. A dependency missing from any
  * footprint shows up as a command that is no longer legal or decides
  * differently, whatever premises the command recorded. Used by randomized tests and available for audits.
+ *
+ * A command an earlier writer decided (one of its events carries an earlier
+ * schema version than its type is written with now; Gate 03 retest 2,
+ * G03-H05) is canon as recorded: the rules that decided it may have changed
+ * since, so its recorded events are folded instead of re-decided, and they
+ * must still apply to the effective history.
  */
 export interface Divergence {
   readonly commandId: string;
@@ -28,18 +35,52 @@ export function redecideEffective(
   skillModifier: (sheet: CharacterSheet, skill: Skill) => number,
   combat?: CombatPort,
 ): Divergence | null {
-  const recorded = new Map<string, unknown[]>();
+  const recorded = new Map<string, RecordedEvent[]>();
   for (const event of original.history) {
     const list = recorded.get(event.causation.commandId) ?? [];
-    list.push({ type: event.type, payload: event.payload });
+    list.push(event);
     recorded.set(event.causation.commandId, list);
   }
   let state = EMPTY_WORLD_STATE;
   const history: RecordedEvent[] = [];
+  const append = (
+    stored: StoredCommand,
+    drafts: readonly (KernelEvent & { schemaVersion?: number })[],
+  ) => {
+    for (const draft of drafts) {
+      const sequence = state.version + 1;
+      const event = {
+        type: draft.type,
+        payload: draft.payload,
+        campaignId: stored.campaignId,
+        sequence,
+        eventId: `00000000-0000-4000-8000-${String(sequence).padStart(12, '0')}`,
+        schemaVersion: draft.schemaVersion ?? schemaVersionOf(draft.type),
+        worldTime: state.clock,
+        recordedAt: stored.recordedAt,
+        causation: {
+          commandId: stored.commandId,
+          commandType: stored.commandType,
+          actor: stored.actor,
+        },
+      } as RecordedEvent;
+      state = evolve(state, event);
+      history.push({ ...event, worldTime: state.clock });
+    }
+  };
   for (const stored of log) {
     if (stored.commandType === 'UndoCommand') continue;
     if (original.state.commands.get(stored.commandId)?.undoneBy !== null) continue;
     const where = { commandId: stored.commandId, commandType: stored.commandType };
+    const events = recorded.get(stored.commandId) ?? [];
+    if (events.some((event) => event.schemaVersion < schemaVersionOf(event.type))) {
+      try {
+        append(stored, events);
+      } catch (error) {
+        return { ...where, reason: `recorded events no longer apply: ${String(error)}` };
+      }
+      continue;
+    }
     const authorization = authorize(state, stored.actor, stored.command);
     if (!authorization.ok) {
       return { ...where, reason: `no longer authorized: ${authorization.rejection.code}` };
@@ -58,28 +99,11 @@ export function redecideEffective(
       stored.command,
     );
     if (!decision.ok) return { ...where, reason: `no longer accepted: ${decision.rejection.code}` };
-    if (canonical(decision.events) !== canonical(recorded.get(stored.commandId) ?? [])) {
+    const expected = events.map(({ type, payload }) => ({ type, payload }));
+    if (canonical(decision.events) !== canonical(expected)) {
       return { ...where, reason: 'decides differently under current canon' };
     }
-    for (const draft of decision.events) {
-      const sequence = state.version + 1;
-      const event = {
-        ...draft,
-        campaignId: stored.campaignId,
-        sequence,
-        eventId: `00000000-0000-4000-8000-${String(sequence).padStart(12, '0')}`,
-        schemaVersion: EVENT_SCHEMA_VERSION,
-        worldTime: state.clock,
-        recordedAt: stored.recordedAt,
-        causation: {
-          commandId: stored.commandId,
-          commandType: stored.commandType,
-          actor: stored.actor,
-        },
-      } as RecordedEvent;
-      state = evolve(state, event);
-      history.push({ ...event, worldTime: state.clock });
-    }
+    append(stored, decision.events);
   }
   return null;
 }

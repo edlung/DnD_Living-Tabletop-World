@@ -86,6 +86,13 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Gate 03 retest 2 (2026-10-04), G03-H05: history written by any revision stays readable.**
+  - **Versions per type.** The retest 1 remediation removed a premise variant (`placement`) that revision 88d8137 had stored, so its campaigns could no longer be loaded. Schema versions are now kept per event type (`kernel/event-versions.ts`). A type is written with its current version (1 unless listed there). Every version it was ever written with keeps a decoder that reads stored payloads into the current in-memory form. A version a type never had is refused.
+  - **What needs a version.** A change that would reject a stored event or change its meaning gets the next version. Additive changes keep the version, as the relaxation of `restores` below did.
+  - **`PremisesRecorded` version 2** never holds `placement`. Version 1, written by every earlier revision, holds any premise any of them recorded, `placement` included, read with its original meaning (ADR 0013 retest 2 amendment). The engine refuses to write a payload its type's current version cannot hold, so legacy variants are read-only.
+  - **Re-decision.** The re-decision oracle folds as recorded every command an earlier writer decided (one of its events has an earlier version than its type has now), since the rules that decided it may have changed. It re-decides only what the current rules decided, and the folded events must still apply.
+  - **Footprints.** Narrative combat records read every creature they name, as their fold requires. The randomized test on an old history found a record stranded by undo where its writer's premises did not cover its target.
+  - **Tests.** Histories written by earlier revisions are kept as genuine rows (`fixtures/history/`) and loaded, replayed, continued, and undone by the current code, both in memory and on PostgreSQL.
 - **Gate 02 remediation (2026-10-03).** `PremisesRecorded` is a reads-only event: it changes no state and needs no restore. It exists so that dependency-based undo sees the premises of player commands (ADR 0013 amendment, G02-H02). Known entities and their premises now come from one function (`knownEntityBases`), so the two cannot diverge.
 - **Gate 02 retest 1 (2026-10-03).**
   - `authorize` returns the authority it granted (`dm`, `system`, `campaign-creator`, or `controller`); `decide` receives it. A player command authorized as `controller` records that premise.

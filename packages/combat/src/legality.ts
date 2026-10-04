@@ -32,7 +32,12 @@ import { armorClass, conditionsOf, incapacitated, vitalsOf, type Vitals } from '
  * encounter.
  */
 export type CombatReason =
-  IllegalReason | 'NOT_IN_COMBAT' | 'NOT_A_COMBATANT' | 'ACTOR_DEAD' | 'TARGET_DEAD';
+  | IllegalReason
+  | 'NOT_IN_COMBAT'
+  | 'NOT_A_COMBATANT'
+  | 'ACTOR_DEAD'
+  | 'TARGET_DEAD'
+  | 'TARGET_IN_COMBAT';
 export type Refusal = {
   readonly legal: false;
   readonly reason: CombatReason;

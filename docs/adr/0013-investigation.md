@@ -139,6 +139,10 @@ No clue IDs, DCs, or source records appear.
     - every other magic clue, with where its entity was (premise `unreached`; see the retest 1 amendment).
   - Undoing any of these while the result stands is `UNDO_UNSAFE`.
 - 2026-10-04 (Gate 03 retest 1 remediation): Detect Magic **read every magic clue it did not reach**, not only where their entities were. The premise `unreached` (the clue, its entity, and that entity's placement) replaces `placement`. Undoing the creation of such a clue while the cast stands is therefore `UNDO_UNSAFE`; the randomized suite found this.
+- 2026-10-04 (Gate 03 retest 2 remediation, G03-H05): **`placement` premises already stored keep their meaning.**
+  - Revision 88d8137 stored `placement` in version 1 `PremisesRecorded` events. Those events are still read (ADR 0007 retest 2 amendment); no premise is written as `placement` again.
+  - A stored `placement` premise names an entity whose magic clues the cast passed over, but not the clues. It reads the entity, where it was, and the entity's clues as a whole: adding a clue writes that set.
+  - So, as for `unreached`, undoing the creation of a clue on that entity while the old cast stands is `UNDO_UNSAFE`.
 - 2026-10-04 (Stage 80, ADR 0015 §3): Detect Magic is executed through `CastSpell`. Clues gain the method `magic` (no DC, authored with `AddClue`); casting reveals the unrevealed `magic` clues on every entity the caster perceives, through the same discovery path as `inspect` (EVIDENCE records, one DISCOVERY memory, at most `MAX_CLUES_PER_METHOD`).
 - 2026-10-03 (Gate 02 remediation, G02-H02). Every accepted player command first records a DM-only `PremisesRecorded` event. It lists what made the command legal:
   - the target being perceived (preferred), or else the **earliest** premise that made it known (the character itself, a party member, or the earliest visible record or memory naming it);

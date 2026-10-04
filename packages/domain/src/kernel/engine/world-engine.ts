@@ -18,12 +18,8 @@ import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
 import type { Rejection, Resolution, ResolvedCommand } from '../decision.ts';
-import {
-  EVENT_SCHEMA_VERSION,
-  kernelEventSchema,
-  type KernelEvent,
-  type RecordedEvent,
-} from '../events.ts';
+import { assertWritable, schemaVersionOf } from '../event-versions.ts';
+import { kernelEventSchema, type KernelEvent, type RecordedEvent } from '../events.ts';
 import { evolve } from '../evolve.ts';
 import { EMPTY_WORLD_STATE, type WorldState } from '../state.ts';
 import {
@@ -321,12 +317,21 @@ export class WorldEngine {
           `decision produced an invalid ${draft.type} event: ${checked.error.message}`,
         );
       }
+      // Its current version, too: a premise only earlier writers recorded is never written.
+      try {
+        assertWritable(draft.type, draft.payload);
+      } catch (error) {
+        throw new Error(
+          `decision produced a ${draft.type} event its current schema version cannot hold`,
+          { cause: error },
+        );
+      }
       const provisional: RecordedEvent = {
         ...draft,
         ...meta,
         sequence: next.version + 1,
         eventId: this.#ids.next(),
-        schemaVersion: EVENT_SCHEMA_VERSION,
+        schemaVersion: schemaVersionOf(draft.type),
         worldTime: next.clock,
       };
       next = evolve(next, provisional);

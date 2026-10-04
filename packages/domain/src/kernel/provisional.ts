@@ -1,7 +1,8 @@
 import type { KernelCommandType } from '@ltw/contracts';
 
 import type { DecisionContext } from './decision.ts';
-import { EVENT_SCHEMA_VERSION, type KernelEvent, type RecordedEvent } from './events.ts';
+import { schemaVersionOf } from './event-versions.ts';
+import type { KernelEvent, RecordedEvent } from './events.ts';
 import { evolve } from './evolve.ts';
 import type { WorldState } from './state.ts';
 
@@ -23,7 +24,7 @@ export function foldDrafts(
       campaignId: state.campaign?.campaignId ?? 'provisional',
       sequence: state.version + 1,
       eventId: '00000000-0000-4000-8000-000000000000',
-      schemaVersion: EVENT_SCHEMA_VERSION,
+      schemaVersion: schemaVersionOf(draft.type),
       worldTime: state.clock,
       recordedAt: '1970-01-01T00:00:00.000Z',
       causation: { commandId: context.commandId, commandType, actor: context.actor },

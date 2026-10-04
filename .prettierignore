@@ -4,6 +4,8 @@ dist/
 build/
 coverage/
 pnpm-lock.yaml
+# Event histories written by earlier revisions: their genuine rows, never edited.
+fixtures/history/*.json
 
 # Development Pack product, architecture, and workflow documents are authored
 # by the project owner; tooling must not reformat them.

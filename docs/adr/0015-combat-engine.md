@@ -140,6 +140,12 @@ The fixture also defines an Old Trade Road battlefield (wagons give half cover, 
   - A spell is decided as in combat only when its caster takes part in the encounter, which is the same test its legality uses.
   - A caster outside a running fight casts exactly as with no fight. Its premises are its own sheet, its target's existence, status, sheet, stat block, and placement, and its own placement.
   - A fight the caster is not in adds no premise of its own.
+- 2026-10-04 (Gate 03 retest 2 remediation, G03-H06; owner decision of 2026-10-04): **a fight and the world outside it do not touch.**
+  - A caster outside a running fight cannot target any of its combatants. Healing Word and Hunter's Mark at a combatant are refused with `TARGET_IN_COMBAT` (an `ILLEGAL_ACTION`), between turns and while a reaction window is open alike. This mirrors §3, where a combatant's spells reach only combatants.
+  - The refusal comes after every other reason the caster would get, so it tells the player only that a creature the character perceives is fighting. A player whose character perceives combatants may learn that much, never anything about initiative, rolls, or reaction windows. The Context Engine shows the same reason (§6).
+  - Detect Magic, and spells at creatures outside the fight, are unchanged: the caster still casts exactly as with no fight (retest 1 amendment).
+  - So nothing a character outside the fight may do changes what a reaction window depends on (ADR 0016 retest 2 amendment).
+  - Technical note (G03-H05): narrative records (`AttackPerformed`, `SpellCast`, `DamageApplied`, `HealingApplied`, `SavingThrowRolled`, `ConditionApplied`, `DeathSaveRolled`) read every creature they name, as their fold requires, so undo cannot remove a creature a standing record names, whatever premises its writer recorded.
 
 ## Invariants affected
 

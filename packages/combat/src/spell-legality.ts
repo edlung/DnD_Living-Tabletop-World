@@ -29,6 +29,13 @@ import { incapacitated, vitalsOf, type Vitals } from './vitals.ts';
  * and the turn's economy, outside combat as at the start of a fresh turn
  * with range not tracked (ADR 0012). Fireball and Misty Step need the
  * battlefield. Counterspell is a reaction (Stage 90).
+ *
+ * A fight and the world outside it do not touch: a combatant's spells reach
+ * only combatants, and a caster outside the fight cannot target its
+ * combatants (`TARGET_IN_COMBAT`; owner decision, Gate 03 retest 2, G03-H06).
+ * That refusal comes last, so it tells the caster only what it could see: a
+ * creature it perceives is fighting. Nothing outside a fight can then change
+ * what an open reaction window depends on, so nothing outside can probe it.
  */
 const refuse = (reason: CombatReason, resolution?: Refusal['resolution']): Refusal =>
   resolution ? { legal: false, reason, resolution } : { legal: false, reason };
@@ -135,6 +142,9 @@ export function characterSpellPlan(
   if (incapacitated(caster)) return refuse('INCAPACITATED');
   const cast = checkCast(caster.sheet, turn, castRequest);
   if (!cast.legal) return refuse(cast.reason, cast.resolution);
+  if (!record && target && encounter && combatantOf(encounter, target.entityId)) {
+    return refuse('TARGET_IN_COMBAT');
+  }
   const after = applyCast(caster.sheet, turn, cast);
   const sheet =
     spellId === 'hunters-mark' && target

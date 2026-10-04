@@ -21,8 +21,8 @@ export {
   type SceneState,
   type WorldState,
 } from './kernel/state.ts';
+export { schemaVersionOf } from './kernel/event-versions.ts';
 export {
-  EVENT_SCHEMA_VERSION,
   kernelEventSchema,
   parseRecordedEvent,
   type KernelEvent,
@@ -136,6 +136,6 @@ export type { DecisionContext, Decision, Resolution } from './kernel/decision.ts
 export { accept, reject } from './kernel/decision.ts';
 export type { KernelEvent as DraftEvent } from './kernel/events.ts';
 export { premisesEvent } from './investigation/acting.ts';
-export type { Premise } from './investigation/events.ts';
+export type { Premise, RecordedPremise } from './investigation/events.ts';
 export { redecideEffective, type Divergence } from './kernel/verification/redecide.ts';
 export { magicDiscoveryEvents, magicSensingPremises } from './investigation/reveal.ts';

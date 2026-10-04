@@ -1,5 +1,5 @@
 import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
-import { attemptKey, type EntityState } from '@ltw/domain';
+import { attemptKey, combatantOf, type EntityState } from '@ltw/domain';
 
 import {
   combatAttackVerdict,
@@ -50,10 +50,16 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
   const examine: Relevance = present && OBJECT_KINDS.has(target.kind) ? 'medium' : 'low';
   // In combat, legality uses the encounter's positions and turn (ADR 0015 §6).
   const frame = combatFrame(inputs);
+  // Outside a fight, its combatants are out of a spell's reach, as the World
+  // Engine decides: the last reason, after the caster's own (Gate 03, G03-H06).
+  const encounter = inputs.state.encounter;
+  const fighting = encounter !== null && combatantOf(encounter, target.entityId) !== undefined;
+  const outside = (verdict: Verdict, targeted: boolean): Verdict =>
+    verdict.legal && targeted && fighting ? illegalBecause('TARGET_IN_COMBAT') : verdict;
   const spell = (spellId: 'healing-word' | 'hunters-mark' | 'detect-magic', targeted: boolean) =>
     frame
       ? () => combatSpellVerdict(inputs, spellId, targeted ? target.entityId : undefined)
-      : () => spellVerdict(sheet, spellId);
+      : () => outside(spellVerdict(sheet, spellId), targeted);
 
   const candidates: Candidate[] = [];
   const add = (

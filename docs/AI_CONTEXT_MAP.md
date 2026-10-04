@@ -41,6 +41,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Gate 01 boundary specification and secret fixtures | `fixtures/ravenford/AGENTS.md`, `fixtures/ravenford/knowledge-boundary.json` |
 | World Kernel: state, commands, events, engine, undo, projections | `packages/domain/src/kernel/AGENTS.md` (file map), ADRs 0006 (approved temporal/undo semantics) and 0007 (model, pipeline, storage) |
 | Add or change a kernel command/event | `packages/domain/src/kernel/AGENTS.md` rules, `decide/<area>.ts`, `events.ts`, `evolve.ts`, `facts.ts`, matching `*.test.ts` |
+| Change an event payload schema; read histories earlier revisions wrote | `packages/domain/src/kernel/AGENTS.md` (rules), `packages/domain/src/kernel/event-versions.ts`; histories `fixtures/history/AGENTS.md`; loaders `packages/combat/src/testing/history.ts`, `apps/server/src/testing/history-rows.ts` |
 | Event store / PostgreSQL persistence | `apps/server/src/world-engine/postgres-event-store.ts`, `apps/server/migrations/0001_world_event_store.sql` |
 | Seed Ravenford / dev harness | `apps/server/src/world-engine/seed-ravenford-cli.ts`, `fixtures/ravenford/kernel-seed.json` |
 | Deterministic rules (SRD 5.2.1 slice) | `packages/rules/AGENTS.md`, ADR 0011 (owner-approved), `NOTICE.md` |

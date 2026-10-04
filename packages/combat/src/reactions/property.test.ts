@@ -117,11 +117,19 @@ async function addBystanders(world: RoadWorld): Promise<void> {
   }
 }
 
+interface Step {
+  readonly type: string;
+  readonly result: CommandResult;
+  readonly undid?: string;
+  /** Bram's own command, outside the fight (G03-H06). */
+  readonly outsider?: Record<string, unknown>;
+}
+
 async function randomStep(
   world: RoadWorld,
   rng: () => number,
   mine: readonly string[],
-): Promise<{ type: string; result: CommandResult; undid?: string }> {
+): Promise<Step> {
   const pick = <T>(items: readonly T[]): T => {
     const item = items[Math.floor(rng() * items.length)];
     if (item === undefined) throw new Error('nothing to pick');
@@ -234,26 +242,24 @@ async function randomStep(
   // mostly at the newest bystander, so "author, cast, undo beneath" happens often.
   const newest = bystanders[bystanders.length - 1] ?? WANDERER;
   const target = rng() < 0.6 ? newest : pick([WANDERER, BRAM, ...bystanders, ...GOBLINS]);
+  const bram: { command?: Record<string, unknown> } = {};
+  const asBram = (command: Record<string, unknown>) => {
+    bram.command = command;
+    return world.submit(command, BRAM_PLAYER);
+  };
   const outside: typeof options = [
     {
       type: 'CastSpell',
-      run: () =>
-        world.submit(
-          cast(BRAM, pick(['hunters-mark', 'healing-word']), { targetId: target }),
-          BRAM_PLAYER,
-        ),
+      run: () => asBram(cast(BRAM, pick(['hunters-mark', 'healing-word']), { targetId: target })),
     },
     {
       type: 'EnterLocation',
       run: () =>
-        world.submit(
-          {
-            type: 'EnterLocation',
-            characterId: BRAM,
-            locationId: pick(['old-trade-road', 'north-gate']),
-          },
-          BRAM_PLAYER,
-        ),
+        asBram({
+          type: 'EnterLocation',
+          characterId: BRAM,
+          locationId: pick(['old-trade-road', 'north-gate']),
+        }),
     },
     {
       type: 'CreateEntity',
@@ -302,6 +308,16 @@ async function randomStep(
         }),
     });
   }
+  // While a window is open Bram often casts, mostly at a combatant: the probe that
+  // revealed a hidden window (G03-H06), with himself and bystanders as controls.
+  if (window && rng() < 0.3) {
+    const probe = pick([...GOBLINS, SEREN, ELOWEN, ...GOBLINS, BRAM, newest]);
+    const spellId = pick(['healing-word', 'hunters-mark', 'detect-magic']);
+    const result = await asBram(
+      cast(BRAM, spellId, spellId === 'detect-magic' ? {} : { targetId: probe }),
+    );
+    return { type: 'CastSpell', result, ...(bram.command ? { outsider: bram.command } : {}) };
+  }
   // Undo: the latest effective command (reverse order); often one just beneath later
   // commands, where an unsafe undo would strand a dependent (Gate 03); sometimes any.
   const latest = mine[mine.length - 1];
@@ -322,7 +338,54 @@ async function randomStep(
       : branch < 0.35 || options.length === 0
         ? pick(authoring)
         : pick(options);
-  return { type: chosen.type, result: await chosen.run() };
+  const result = await chosen.run();
+  return { type: chosen.type, result, ...(bram.command ? { outsider: bram.command } : {}) };
+}
+
+/** What a player sees of a result: status, code and message, or the outcome. */
+function seen(result: CommandResult): unknown {
+  if (result.status === 'rejected') return [result.code, result.message];
+  const outcome = structuredClone(result.outcome) as Record<string, unknown> | undefined;
+  if (outcome && Array.isArray(outcome['discovered'])) {
+    outcome['discovered'] = outcome['discovered'].length;
+  }
+  return outcome;
+}
+
+/**
+ * Non-interference (Gate 03, G03-H06): Bram, outside the fight, never meets
+ * the pause, and while a window is open his command looks to his player
+ * exactly as in a copy of the world where the window never opened (its
+ * trigger undone; same dice). When answers already rest on the window there is
+ * no such copy, and the pause check above still applies.
+ */
+async function expectWindowHidden(
+  world: RoadWorld,
+  before: WorldState,
+  command: Record<string, unknown>,
+  result: CommandResult,
+): Promise<boolean> {
+  expect(result.status === 'rejected' && result.code, 'Bram met the pause').not.toBe(
+    'REACTION_PENDING',
+  );
+  const window = openReactionWindow(before);
+  if (!window) return false;
+  const draws: number[] = [];
+  const fork = await forkWorld(world, 98, { next: () => draws.shift() ?? 2 ** 31 });
+  if (result.status !== 'rejected') {
+    const undone = await fork.dm({ type: 'UndoCommand', targetCommandId: result.commandId });
+    expect(undone.status).toBe('accepted');
+  }
+  const rewound = await fork.dm({ type: 'UndoCommand', targetCommandId: window.openedBy });
+  if (rewound.status !== 'accepted') return false;
+  const stored = (await world.store.loadCommands(CAMPAIGN)).find(
+    (c) => c.commandId === result.commandId,
+  )?.command;
+  draws.push(...(stored && 'resolution' in stored ? stored.resolution.entropy : []));
+  expect(seen(await fork.submit(command, BRAM_PLAYER)), JSON.stringify(command)).toEqual(
+    seen(result),
+  );
+  return true;
 }
 
 /**
@@ -358,6 +421,7 @@ async function expectAcceptedUndosSafe(world: RoadWorld, mine: readonly string[]
 }
 
 describe('randomized reaction integrity', () => {
+  let hidden = 0; // Bram's commands compared with a world where the window never opened
   it.each([1, 7, 42, 1337, 20261004, 90, 3, 11, 2026, 77, 5, 13])('seed %i', async (seed) => {
     const rng = mulberry32(seed);
     const world = await roadWorld({ entropy: { next: () => Math.floor(rng() * 2 ** 32) } });
@@ -378,7 +442,7 @@ describe('randomized reaction integrity', () => {
     let windows = 0;
     for (let step = 0; step < 70; step += 1) {
       const before = await world.state();
-      const { type, result, undid } = await randomStep(world, rng, mine);
+      const { type, result, undid, outsider } = await randomStep(world, rng, mine);
       const after = await world.state();
       if (result.status === 'rejected') {
         expect(after.version, `${type} rejected yet changed state`).toBe(before.version);
@@ -387,6 +451,7 @@ describe('randomized reaction integrity', () => {
         else mine.push(result.commandId);
       }
       await expectPauseHeld(world, before, type);
+      if (outsider && (await expectWindowHidden(world, before, outsider, result))) hidden += 1;
       await expectMagicWithinRange(world, before);
       expect(checkWorldIntegrity(after), `after ${type} at step ${String(step)}`).toEqual([]);
       expect(reactionWindowViolations(after), `after ${type} at step ${String(step)}`).toEqual([]);
@@ -396,5 +461,9 @@ describe('randomized reaction integrity', () => {
     }
     expect(windows).toBeGreaterThan(0);
     await verifyHistory(world);
+  });
+
+  it('compared Bram during open windows with worlds where they never opened', () => {
+    expect(hidden).toBeGreaterThanOrEqual(5);
   });
 });
