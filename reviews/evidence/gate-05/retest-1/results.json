@@ -1,0 +1,160 @@
+{
+  "review": "ASTRA_GATE_05_RETEST_1",
+  "date": "2026-10-04",
+  "overallResult": "FAIL",
+  "testedHead": "b0866225c02ffa4f7e15eb83238b9a6766010af6",
+  "reviewedCode": "a488de462ff5e4fa6f1513a831f38e63291e3c2a",
+  "baselineCode": "e9c05ad46c15863b124b20fc4dd217f654f29777",
+  "originalFindings": {
+    "G05-H01": "Closed for the reported name-dependency failure and tested premises; distinct missing source-occurrence dependency is G05-H02.",
+    "G05-M01": "Closed: same-time/later movements, historical membership, restart and independent undo pass."
+  },
+  "openFindings": {
+    "Critical": 0,
+    "High": 1,
+    "Medium": 0,
+    "Low": 0,
+    "blockers": ["G05-H02"]
+  },
+  "validation": {
+    "pnpm test": {
+      "result": "PASS",
+      "files": 148,
+      "tests": 1488
+    },
+    "pnpm test:integration": {
+      "result": "PASS",
+      "files": 20,
+      "tests": 72
+    },
+    "pnpm lint": "PASS",
+    "pnpm typecheck": "PASS",
+    "pnpm build": "PASS",
+    "pnpm context-budget": {
+      "result": "PASS",
+      "activeFiles": 470,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "pnpm format:check": "PASS after formatting new review artifacts"
+  },
+  "recipes": [
+    {
+      "recipe": "HISTORY_BOUNDARY_PROBES.md",
+      "resultFile": "history-boundary-results.json",
+      "outcome": "PASS",
+      "chronicleCases": 11,
+      "questCases": 8,
+      "membershipCases": 2,
+      "postgresDatabases": 16
+    },
+    {
+      "recipe": "SOURCE_OCCURRENCE_PROBES.md",
+      "resultFile": "source-occurrence-results.json",
+      "outcome": "G05-H02 REPRODUCED",
+      "variants": 2,
+      "postgresDatabases": 2
+    },
+    {
+      "recipe": "EARLIER_CHAPTERS_PROBES.md",
+      "resultFile": "earlier-chapters-results.json",
+      "outcome": "PASS",
+      "originalReaderPrefixes": 96,
+      "undoAttempts": 95,
+      "accepted": 1,
+      "refused": 94,
+      "postgresDatabases": 1
+    },
+    {
+      "recipe": "AI_CONSUMER_PROBES.md",
+      "resultFile": "ai-consumer-results.json",
+      "outcome": "PASS",
+      "rankingModes": 7,
+      "chronicleModes": 4,
+      "providerRequests": 17,
+      "postgresDatabases": 1
+    },
+    {
+      "recipe": "ASSET_VISUAL_PROBES.md",
+      "resultFile": "asset-visual-results.json",
+      "outcome": "PASS",
+      "postgresDatabases": 2
+    },
+    {
+      "recipe": "SCENARIO_SWEEP_PROBES.md",
+      "resultFile": "scenario-sweep-results.json",
+      "outcome": "PASS",
+      "commands": 167,
+      "events": 283,
+      "undoAttempts": 164,
+      "accepted": 40,
+      "refused": 124,
+      "divergences": 0,
+      "postgresDatabases": 1
+    },
+    {
+      "recipe": "regressions/NPC_PROBES.md",
+      "resultFile": "regressions/npc-results.json",
+      "outcome": "PASS",
+      "exchanges": 66,
+      "providerRequests": 72,
+      "postgresDatabases": 3
+    },
+    {
+      "recipe": "regressions/AUTHORING_PROBES.md",
+      "resultFile": "regressions/authoring-results.json",
+      "outcome": "PASS",
+      "groups": 18
+    },
+    {
+      "recipe": "regressions/AUTHORING_RACE_PROBES.md",
+      "resultFile": "regressions/authoring-race-results.json",
+      "outcome": "PASS",
+      "races": 64,
+      "retryGroups": 4,
+      "processLossCases": 2,
+      "postgresDatabases": 34
+    },
+    {
+      "recipe": "regressions/SUGGESTION_PROBES.md",
+      "resultFile": "regressions/suggestion-results.json",
+      "outcome": "PASS",
+      "resolutionPaths": 4,
+      "postgresDatabases": 4
+    },
+    {
+      "recipe": "regressions/STATE_PROBES.md",
+      "resultFile": "regressions/state-results.json",
+      "outcome": "PASS",
+      "cases": 44
+    },
+    {
+      "recipe": "regressions/HISTORY_PROBES.md",
+      "resultFile": "regressions/history-results.json",
+      "outcome": "PASS",
+      "originalReaderPrefixes": 103,
+      "undoAttempts": 102,
+      "accepted": 1,
+      "refused": 101,
+      "reverseRecoveryCommands": 12,
+      "postgresDatabases": 1
+    }
+  ],
+  "execution": {
+    "recipesExecuted": 12,
+    "ownedPostgresDatabasesPerCompleteSet": 65,
+    "oldReaderArchivesPerCompleteSet": 2,
+    "sourceChanges": false,
+    "existingEvidenceChanged": false,
+    "historicalFixturesChanged": false,
+    "newRecipesReexecutedAfterSaving": true
+  },
+  "limits": [
+    "Authenticated Fastify inject handlers and actual PostgreSQL; no separately listening deployment.",
+    "Local/scripted AI providers and placeholder images; no live external provider.",
+    "No root dependency reinstall, full CI wrapper, dev database reset, production deployment or source remediation.",
+    "Future UI Stages 200\u2013240 and release Stage 250 are not certified.",
+    "Finite schedules and histories; authoring process-loss tests do not exhaust storage failover/network partitions."
+  ],
+  "next": "Claude Opus 5.5 MAX remediation, then GPT-6 Astra MAX Retest 2. Stage 200 remains blocked."
+}

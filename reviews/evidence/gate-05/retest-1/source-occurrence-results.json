@@ -1,0 +1,1544 @@
+{
+  "finding": "G05-H02",
+  "cases": [
+    {
+      "mode": "repeat-after-discovery",
+      "examined": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:player-elowen:g05-r1-history-4",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "ExamineEntity",
+          "roll": null,
+          "discovered": []
+        }
+      },
+      "sourceEvents": [
+        {
+          "type": "PremisesRecorded",
+          "payload": {
+            "characterId": "elowen-starwhisper",
+            "premises": [
+              {
+                "kind": "perceived",
+                "entityId": "strange-symbol"
+              },
+              {
+                "kind": "revealed",
+                "scope": "PARTY",
+                "clueId": "clue-symbol-seen"
+              },
+              {
+                "kind": "controller",
+                "playerActorId": "player-elowen"
+              }
+            ]
+          },
+          "campaignId": "ravenford",
+          "recordedAt": "2026-01-01T00:01:34.000Z",
+          "causation": {
+            "commandId": "http:player-elowen:g05-r1-history-4",
+            "commandType": "ExamineEntity",
+            "actor": {
+              "actorId": "player-elowen",
+              "kind": "user"
+            }
+          },
+          "sequence": 109,
+          "eventId": "00000000-0000-4000-8000-00000000007f",
+          "schemaVersion": 3,
+          "worldTime": 36000
+        },
+        {
+          "type": "EvidenceExamined",
+          "payload": {
+            "characterId": "elowen-starwhisper",
+            "entityId": "strange-symbol",
+            "method": "inspect",
+            "scope": "PARTY",
+            "roll": null,
+            "revealed": []
+          },
+          "campaignId": "ravenford",
+          "recordedAt": "2026-01-01T00:01:34.000Z",
+          "causation": {
+            "commandId": "http:player-elowen:g05-r1-history-4",
+            "commandType": "ExamineEntity",
+            "actor": {
+              "actorId": "player-elowen",
+              "kind": "user"
+            }
+          },
+          "sequence": 110,
+          "eventId": "00000000-0000-4000-8000-000000000080",
+          "schemaVersion": 2,
+          "worldTime": 36000
+        }
+      ],
+      "chapterEvent": {
+        "type": "ChronicleGenerated",
+        "payload": {
+          "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+          "title": "Gate 05 history probe",
+          "perspective": "DM",
+          "from": 0,
+          "to": 36000,
+          "entries": [
+            {
+              "key": "e1",
+              "occurredAt": 32400,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.seed.0010",
+                "index": 0,
+                "eventType": "EntityCreated"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["mira-vale"],
+              "knowledge": [],
+              "text": "Mira Vale entered the story.",
+              "salience": 3
+            },
+            {
+              "key": "e2",
+              "occurredAt": 32400,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.seed.0011",
+                "index": 0,
+                "eventType": "EntityCreated"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["orin-stonebeard"],
+              "knowledge": [],
+              "text": "Orin Stonebeard entered the story.",
+              "salience": 3
+            },
+            {
+              "key": "e3",
+              "occurredAt": 32400,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.seed.0012",
+                "index": 0,
+                "eventType": "EntityCreated"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["captain-thorne"],
+              "knowledge": [],
+              "text": "Captain Thorne entered the story.",
+              "salience": 3
+            },
+            {
+              "key": "e4",
+              "occurredAt": 32400,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.seed.0013",
+                "index": 1,
+                "eventType": "EntityPlaced"
+              },
+              "memoryKind": null,
+              "locationId": "market-square",
+              "participants": ["elowen-starwhisper"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper went to Market Square.",
+              "salience": 3
+            },
+            {
+              "key": "e5",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "http:player-elowen:g05-r1-history-1",
+                "index": 1,
+                "eventType": "EntityPlaced"
+              },
+              "memoryKind": null,
+              "locationId": "old-trade-road",
+              "participants": ["elowen-starwhisper"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper went to Old Trade Road.",
+              "salience": 3
+            },
+            {
+              "key": "e6",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "http:player-elowen:g05-r1-history-2",
+                "index": 1,
+                "eventType": "EntityPlaced"
+              },
+              "memoryKind": null,
+              "locationId": "abandoned-caravan-site",
+              "participants": ["elowen-starwhisper"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+              "salience": 3
+            },
+            {
+              "key": "e7",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "http:player-elowen:g05-r1-history-3",
+                "index": 1,
+                "eventType": "EvidenceExamined"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["elowen-starwhisper", "strange-symbol"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper examined Strange Symbol.",
+              "salience": 3
+            },
+            {
+              "key": "e8",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "http:player-elowen:g05-r1-history-4",
+                "index": 1,
+                "eventType": "EvidenceExamined"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["elowen-starwhisper", "strange-symbol"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper examined Strange Symbol.",
+              "salience": 3
+            },
+            {
+              "key": "e9",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.knowledge.0030",
+                "index": 0,
+                "eventType": "KnowledgeAssigned"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": [],
+              "knowledge": [
+                {
+                  "knowledgeId": "party-goblin-hypothesis",
+                  "knowledgeType": "HYPOTHESIS",
+                  "statement": "Goblins attacked the caravan."
+                }
+              ],
+              "text": "A hypothesis was formed: Goblins attacked the caravan.",
+              "salience": 3
+            }
+          ],
+          "prose": {
+            "paragraphs": [
+              {
+                "text": "Mira Vale entered the story.",
+                "cites": ["e1"]
+              },
+              {
+                "text": "Orin Stonebeard entered the story.",
+                "cites": ["e2"]
+              },
+              {
+                "text": "Captain Thorne entered the story.",
+                "cites": ["e3"]
+              },
+              {
+                "text": "Elowen Starwhisper went to Market Square.",
+                "cites": ["e4"]
+              },
+              {
+                "text": "Elowen Starwhisper went to Old Trade Road.",
+                "cites": ["e5"]
+              },
+              {
+                "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                "cites": ["e6"]
+              },
+              {
+                "text": "Elowen Starwhisper examined Strange Symbol.",
+                "cites": ["e7"]
+              },
+              {
+                "text": "Elowen Starwhisper examined Strange Symbol.",
+                "cites": ["e8"]
+              },
+              {
+                "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                "cites": ["e9"]
+              }
+            ],
+            "provider": "local",
+            "model": "local-interpreter-1",
+            "traceId": "00000000-00a1-4000-8000-000000000001"
+          },
+          "rests": [
+            "entity:abandoned-caravan-site#profile",
+            "entity:captain-thorne",
+            "entity:captain-thorne#placement",
+            "entity:captain-thorne#profile",
+            "entity:captain-thorne#status",
+            "entity:elowen-starwhisper#placement",
+            "entity:elowen-starwhisper#profile",
+            "entity:market-square#profile",
+            "entity:mira-vale",
+            "entity:mira-vale#placement",
+            "entity:mira-vale#profile",
+            "entity:mira-vale#status",
+            "entity:old-trade-road#profile",
+            "entity:orin-stonebeard",
+            "entity:orin-stonebeard#placement",
+            "entity:orin-stonebeard#profile",
+            "entity:orin-stonebeard#status",
+            "entity:strange-symbol#profile",
+            "knowledge:party-goblin-hypothesis",
+            "revealed:PARTY|clue-symbol-seen",
+            "roster:character:elowen-starwhisper"
+          ]
+        },
+        "campaignId": "ravenford",
+        "recordedAt": "2026-01-01T00:01:35.000Z",
+        "causation": {
+          "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+          "commandType": "GenerateChronicle",
+          "actor": {
+            "actorId": "dm-ravenford",
+            "kind": "user"
+          }
+        },
+        "sequence": 111,
+        "eventId": "00000000-0000-4000-8000-000000000081",
+        "schemaVersion": 3,
+        "worldTime": 36000
+      },
+      "entry": {
+        "key": "e8",
+        "occurredAt": 36000,
+        "source": {
+          "kind": "event",
+          "commandId": "http:player-elowen:g05-r1-history-4",
+          "index": 1,
+          "eventType": "EvidenceExamined"
+        },
+        "memoryKind": null,
+        "locationId": null,
+        "participants": ["elowen-starwhisper", "strange-symbol"],
+        "knowledge": [],
+        "text": "Elowen Starwhisper examined Strange Symbol.",
+        "salience": 3
+      },
+      "protectedSource": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g05-r1-history-5",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"ravenford.seed.0013\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "ravenford.knowledge.0010",
+              "commandType": "AssignCharacter",
+              "sequence": 33
+            },
+            {
+              "commandId": "ravenford.knowledge.0032",
+              "commandType": "AddKnowledge",
+              "sequence": 55
+            },
+            {
+              "commandId": "ravenford.memory.0007",
+              "commandType": "RecordMemory",
+              "sequence": 71
+            },
+            {
+              "commandId": "ravenford.memory.0008",
+              "commandType": "RecordMemory",
+              "sequence": 72
+            },
+            {
+              "commandId": "ravenford.memory.0009",
+              "commandType": "RecordMemory",
+              "sequence": 73
+            },
+            {
+              "commandId": "ravenford.memory.0010",
+              "commandType": "RecordMemory",
+              "sequence": 74
+            },
+            {
+              "commandId": "ravenford.rules.0001",
+              "commandType": "SetCharacterSheet",
+              "sequence": 75
+            },
+            {
+              "commandId": "http:player-elowen:g05-r1-history-1",
+              "commandType": "EnterLocation",
+              "sequence": 101
+            },
+            {
+              "commandId": "http:player-elowen:g05-r1-history-2",
+              "commandType": "EnterLocation",
+              "sequence": 103
+            },
+            {
+              "commandId": "http:player-elowen:g05-r1-history-3",
+              "commandType": "ExamineEntity",
+              "sequence": 105
+            },
+            {
+              "commandId": "http:player-elowen:g05-r1-history-4",
+              "commandType": "ExamineEntity",
+              "sequence": 109
+            },
+            {
+              "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+              "commandType": "GenerateChronicle",
+              "sequence": 111
+            }
+          ]
+        }
+      },
+      "undone": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-r1-history-6",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 112,
+            "eventId": "00000000-0000-4000-8000-000000000082",
+            "type": "CommandUndone"
+          }
+        ]
+      },
+      "undoneSource": {
+        "commandId": "http:player-elowen:g05-r1-history-4",
+        "commandType": "ExamineEntity",
+        "firstSequence": 109,
+        "lastSequence": 110,
+        "undoneBy": "http:dm-ravenford:g05-r1-history-6"
+      },
+      "beforeEntry": {
+        "key": "e8",
+        "occurredAt": 36000,
+        "text": "Elowen Starwhisper examined Strange Symbol.",
+        "salience": 3,
+        "memoryId": null,
+        "memoryKind": null,
+        "eventType": "EvidenceExamined",
+        "location": null,
+        "participants": [
+          {
+            "entityId": "elowen-starwhisper",
+            "kind": "character",
+            "name": "Elowen Starwhisper"
+          },
+          {
+            "entityId": "strange-symbol",
+            "kind": "feature",
+            "name": "Strange Symbol"
+          }
+        ],
+        "knowledge": [],
+        "sources": [
+          {
+            "eventId": "00000000-0000-4000-8000-000000000080",
+            "eventType": "EvidenceExamined",
+            "sequence": 110
+          }
+        ]
+      },
+      "afterEntry": {
+        "key": "e8",
+        "occurredAt": 36000,
+        "text": "Elowen Starwhisper examined Strange Symbol.",
+        "salience": 3,
+        "memoryId": null,
+        "memoryKind": null,
+        "eventType": "EvidenceExamined",
+        "location": null,
+        "participants": [
+          {
+            "entityId": "elowen-starwhisper",
+            "kind": "character",
+            "name": "Elowen Starwhisper"
+          },
+          {
+            "entityId": "strange-symbol",
+            "kind": "feature",
+            "name": "Strange Symbol"
+          }
+        ],
+        "knowledge": [],
+        "sources": []
+      },
+      "viewAfter": {
+        "perspective": "DM",
+        "chapters": [
+          {
+            "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+            "title": "Gate 05 history probe",
+            "perspective": "DM",
+            "from": 0,
+            "to": 36000,
+            "generatedAt": 36000,
+            "entries": [
+              {
+                "key": "e1",
+                "occurredAt": 32400,
+                "text": "Mira Vale entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "mira-vale",
+                    "kind": "npc",
+                    "name": "Mira Vale"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000a",
+                    "eventType": "EntityCreated",
+                    "sequence": 10
+                  }
+                ]
+              },
+              {
+                "key": "e2",
+                "occurredAt": 32400,
+                "text": "Orin Stonebeard entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "orin-stonebeard",
+                    "kind": "npc",
+                    "name": "Orin Stonebeard"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000c",
+                    "eventType": "EntityCreated",
+                    "sequence": 12
+                  }
+                ]
+              },
+              {
+                "key": "e3",
+                "occurredAt": 32400,
+                "text": "Captain Thorne entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "captain-thorne",
+                    "kind": "npc",
+                    "name": "Captain Thorne"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000e",
+                    "eventType": "EntityCreated",
+                    "sequence": 14
+                  }
+                ]
+              },
+              {
+                "key": "e4",
+                "occurredAt": 32400,
+                "text": "Elowen Starwhisper went to Market Square.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "market-square",
+                  "kind": "location",
+                  "name": "Market Square"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000011",
+                    "eventType": "EntityPlaced",
+                    "sequence": 17
+                  }
+                ]
+              },
+              {
+                "key": "e5",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper went to Old Trade Road.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "old-trade-road",
+                  "kind": "location",
+                  "name": "Old Trade Road"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000066",
+                    "eventType": "EntityPlaced",
+                    "sequence": 102
+                  }
+                ]
+              },
+              {
+                "key": "e6",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "abandoned-caravan-site",
+                  "kind": "location",
+                  "name": "Abandoned Caravan Site"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000068",
+                    "eventType": "EntityPlaced",
+                    "sequence": 104
+                  }
+                ]
+              },
+              {
+                "key": "e7",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Strange Symbol.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "strange-symbol",
+                    "kind": "feature",
+                    "name": "Strange Symbol"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000073",
+                    "eventType": "EvidenceExamined",
+                    "sequence": 106
+                  }
+                ]
+              },
+              {
+                "key": "e8",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Strange Symbol.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "strange-symbol",
+                    "kind": "feature",
+                    "name": "Strange Symbol"
+                  }
+                ],
+                "knowledge": [],
+                "sources": []
+              },
+              {
+                "key": "e9",
+                "occurredAt": 36000,
+                "text": "A hypothesis was formed: Goblins attacked the caravan.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "KnowledgeAssigned",
+                "location": null,
+                "participants": [],
+                "knowledge": [
+                  {
+                    "knowledgeId": "party-goblin-hypothesis",
+                    "knowledgeType": "HYPOTHESIS",
+                    "statement": "Goblins attacked the caravan."
+                  }
+                ],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned",
+                    "sequence": 53
+                  }
+                ]
+              }
+            ],
+            "prose": {
+              "provider": "local",
+              "model": "local-interpreter-1",
+              "traceId": "00000000-00a1-4000-8000-000000000001",
+              "paragraphs": [
+                {
+                  "text": "Mira Vale entered the story.",
+                  "cites": ["e1"]
+                },
+                {
+                  "text": "Orin Stonebeard entered the story.",
+                  "cites": ["e2"]
+                },
+                {
+                  "text": "Captain Thorne entered the story.",
+                  "cites": ["e3"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "cites": ["e4"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Old Trade Road.",
+                  "cites": ["e5"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                  "cites": ["e6"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Strange Symbol.",
+                  "cites": ["e7"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Strange Symbol.",
+                  "cites": ["e8"]
+                },
+                {
+                  "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                  "cites": ["e9"]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "divergence": {
+        "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+        "commandType": "GenerateChronicle",
+        "reason": "no longer accepted: INVALID_CHRONICLE"
+      },
+      "storedChapterUnchanged": true,
+      "restartPreservesDivergence": true,
+      "replayEqual": true,
+      "structuralIntegrity": [],
+      "recovery": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-r1-history-7",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 113,
+            "eventId": "00000000-03b7-4000-8000-000000000001",
+            "type": "CommandUndone"
+          }
+        ]
+      },
+      "reverseRecovery": true
+    },
+    {
+      "mode": "first-inspection-no-clues",
+      "examined": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:player-elowen:g05-r1-history-4",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "ExamineEntity",
+          "roll": null,
+          "discovered": []
+        }
+      },
+      "sourceEvents": [
+        {
+          "type": "PremisesRecorded",
+          "payload": {
+            "characterId": "elowen-starwhisper",
+            "premises": [
+              {
+                "kind": "perceived",
+                "entityId": "r1-ordinary-token"
+              },
+              {
+                "kind": "controller",
+                "playerActorId": "player-elowen"
+              }
+            ]
+          },
+          "campaignId": "ravenford",
+          "recordedAt": "2026-01-01T00:01:34.000Z",
+          "causation": {
+            "commandId": "http:player-elowen:g05-r1-history-4",
+            "commandType": "ExamineEntity",
+            "actor": {
+              "actorId": "player-elowen",
+              "kind": "user"
+            }
+          },
+          "sequence": 107,
+          "eventId": "00000000-0000-4000-8000-000000000074",
+          "schemaVersion": 3,
+          "worldTime": 36000
+        },
+        {
+          "type": "EvidenceExamined",
+          "payload": {
+            "characterId": "elowen-starwhisper",
+            "entityId": "r1-ordinary-token",
+            "method": "inspect",
+            "scope": "PARTY",
+            "roll": null,
+            "revealed": []
+          },
+          "campaignId": "ravenford",
+          "recordedAt": "2026-01-01T00:01:34.000Z",
+          "causation": {
+            "commandId": "http:player-elowen:g05-r1-history-4",
+            "commandType": "ExamineEntity",
+            "actor": {
+              "actorId": "player-elowen",
+              "kind": "user"
+            }
+          },
+          "sequence": 108,
+          "eventId": "00000000-0000-4000-8000-000000000075",
+          "schemaVersion": 2,
+          "worldTime": 36000
+        }
+      ],
+      "chapterEvent": {
+        "type": "ChronicleGenerated",
+        "payload": {
+          "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+          "title": "Gate 05 history probe",
+          "perspective": "DM",
+          "from": 0,
+          "to": 36000,
+          "entries": [
+            {
+              "key": "e1",
+              "occurredAt": 32400,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.seed.0010",
+                "index": 0,
+                "eventType": "EntityCreated"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["mira-vale"],
+              "knowledge": [],
+              "text": "Mira Vale entered the story.",
+              "salience": 3
+            },
+            {
+              "key": "e2",
+              "occurredAt": 32400,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.seed.0011",
+                "index": 0,
+                "eventType": "EntityCreated"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["orin-stonebeard"],
+              "knowledge": [],
+              "text": "Orin Stonebeard entered the story.",
+              "salience": 3
+            },
+            {
+              "key": "e3",
+              "occurredAt": 32400,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.seed.0012",
+                "index": 0,
+                "eventType": "EntityCreated"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["captain-thorne"],
+              "knowledge": [],
+              "text": "Captain Thorne entered the story.",
+              "salience": 3
+            },
+            {
+              "key": "e4",
+              "occurredAt": 32400,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.seed.0013",
+                "index": 1,
+                "eventType": "EntityPlaced"
+              },
+              "memoryKind": null,
+              "locationId": "market-square",
+              "participants": ["elowen-starwhisper"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper went to Market Square.",
+              "salience": 3
+            },
+            {
+              "key": "e5",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "http:player-elowen:g05-r1-history-1",
+                "index": 1,
+                "eventType": "EntityPlaced"
+              },
+              "memoryKind": null,
+              "locationId": "old-trade-road",
+              "participants": ["elowen-starwhisper"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper went to Old Trade Road.",
+              "salience": 3
+            },
+            {
+              "key": "e6",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "http:player-elowen:g05-r1-history-2",
+                "index": 1,
+                "eventType": "EntityPlaced"
+              },
+              "memoryKind": null,
+              "locationId": "abandoned-caravan-site",
+              "participants": ["elowen-starwhisper"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+              "salience": 3
+            },
+            {
+              "key": "e7",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "http:player-elowen:g05-r1-history-4",
+                "index": 1,
+                "eventType": "EvidenceExamined"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": ["elowen-starwhisper", "r1-ordinary-token"],
+              "knowledge": [],
+              "text": "Elowen Starwhisper examined Ordinary token.",
+              "salience": 3
+            },
+            {
+              "key": "e8",
+              "occurredAt": 36000,
+              "source": {
+                "kind": "event",
+                "commandId": "ravenford.knowledge.0030",
+                "index": 0,
+                "eventType": "KnowledgeAssigned"
+              },
+              "memoryKind": null,
+              "locationId": null,
+              "participants": [],
+              "knowledge": [
+                {
+                  "knowledgeId": "party-goblin-hypothesis",
+                  "knowledgeType": "HYPOTHESIS",
+                  "statement": "Goblins attacked the caravan."
+                }
+              ],
+              "text": "A hypothesis was formed: Goblins attacked the caravan.",
+              "salience": 3
+            }
+          ],
+          "prose": {
+            "paragraphs": [
+              {
+                "text": "Mira Vale entered the story.",
+                "cites": ["e1"]
+              },
+              {
+                "text": "Orin Stonebeard entered the story.",
+                "cites": ["e2"]
+              },
+              {
+                "text": "Captain Thorne entered the story.",
+                "cites": ["e3"]
+              },
+              {
+                "text": "Elowen Starwhisper went to Market Square.",
+                "cites": ["e4"]
+              },
+              {
+                "text": "Elowen Starwhisper went to Old Trade Road.",
+                "cites": ["e5"]
+              },
+              {
+                "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                "cites": ["e6"]
+              },
+              {
+                "text": "Elowen Starwhisper examined Ordinary token.",
+                "cites": ["e7"]
+              },
+              {
+                "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                "cites": ["e8"]
+              }
+            ],
+            "provider": "local",
+            "model": "local-interpreter-1",
+            "traceId": "00000000-00a1-4000-8000-000000000001"
+          },
+          "rests": [
+            "entity:abandoned-caravan-site#profile",
+            "entity:captain-thorne",
+            "entity:captain-thorne#placement",
+            "entity:captain-thorne#profile",
+            "entity:captain-thorne#status",
+            "entity:elowen-starwhisper#placement",
+            "entity:elowen-starwhisper#profile",
+            "entity:market-square#profile",
+            "entity:mira-vale",
+            "entity:mira-vale#placement",
+            "entity:mira-vale#profile",
+            "entity:mira-vale#status",
+            "entity:old-trade-road#profile",
+            "entity:orin-stonebeard",
+            "entity:orin-stonebeard#placement",
+            "entity:orin-stonebeard#profile",
+            "entity:orin-stonebeard#status",
+            "entity:r1-ordinary-token#profile",
+            "knowledge:party-goblin-hypothesis",
+            "roster:character:elowen-starwhisper"
+          ]
+        },
+        "campaignId": "ravenford",
+        "recordedAt": "2026-01-01T00:01:35.000Z",
+        "causation": {
+          "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+          "commandType": "GenerateChronicle",
+          "actor": {
+            "actorId": "dm-ravenford",
+            "kind": "user"
+          }
+        },
+        "sequence": 109,
+        "eventId": "00000000-0000-4000-8000-000000000076",
+        "schemaVersion": 3,
+        "worldTime": 36000
+      },
+      "entry": {
+        "key": "e7",
+        "occurredAt": 36000,
+        "source": {
+          "kind": "event",
+          "commandId": "http:player-elowen:g05-r1-history-4",
+          "index": 1,
+          "eventType": "EvidenceExamined"
+        },
+        "memoryKind": null,
+        "locationId": null,
+        "participants": ["elowen-starwhisper", "r1-ordinary-token"],
+        "knowledge": [],
+        "text": "Elowen Starwhisper examined Ordinary token.",
+        "salience": 3
+      },
+      "protectedSource": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g05-r1-history-5",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"ravenford.seed.0013\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "ravenford.knowledge.0010",
+              "commandType": "AssignCharacter",
+              "sequence": 33
+            },
+            {
+              "commandId": "ravenford.knowledge.0032",
+              "commandType": "AddKnowledge",
+              "sequence": 55
+            },
+            {
+              "commandId": "ravenford.memory.0007",
+              "commandType": "RecordMemory",
+              "sequence": 71
+            },
+            {
+              "commandId": "ravenford.memory.0008",
+              "commandType": "RecordMemory",
+              "sequence": 72
+            },
+            {
+              "commandId": "ravenford.memory.0009",
+              "commandType": "RecordMemory",
+              "sequence": 73
+            },
+            {
+              "commandId": "ravenford.memory.0010",
+              "commandType": "RecordMemory",
+              "sequence": 74
+            },
+            {
+              "commandId": "ravenford.rules.0001",
+              "commandType": "SetCharacterSheet",
+              "sequence": 75
+            },
+            {
+              "commandId": "http:player-elowen:g05-r1-history-1",
+              "commandType": "EnterLocation",
+              "sequence": 101
+            },
+            {
+              "commandId": "http:player-elowen:g05-r1-history-2",
+              "commandType": "EnterLocation",
+              "sequence": 103
+            },
+            {
+              "commandId": "http:player-elowen:g05-r1-history-4",
+              "commandType": "ExamineEntity",
+              "sequence": 107
+            },
+            {
+              "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+              "commandType": "GenerateChronicle",
+              "sequence": 109
+            }
+          ]
+        }
+      },
+      "undone": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-r1-history-6",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 110,
+            "eventId": "00000000-0000-4000-8000-000000000077",
+            "type": "CommandUndone"
+          }
+        ]
+      },
+      "undoneSource": {
+        "commandId": "http:player-elowen:g05-r1-history-4",
+        "commandType": "ExamineEntity",
+        "firstSequence": 107,
+        "lastSequence": 108,
+        "undoneBy": "http:dm-ravenford:g05-r1-history-6"
+      },
+      "beforeEntry": {
+        "key": "e7",
+        "occurredAt": 36000,
+        "text": "Elowen Starwhisper examined Ordinary token.",
+        "salience": 3,
+        "memoryId": null,
+        "memoryKind": null,
+        "eventType": "EvidenceExamined",
+        "location": null,
+        "participants": [
+          {
+            "entityId": "elowen-starwhisper",
+            "kind": "character",
+            "name": "Elowen Starwhisper"
+          },
+          {
+            "entityId": "r1-ordinary-token",
+            "kind": "item",
+            "name": "Ordinary token"
+          }
+        ],
+        "knowledge": [],
+        "sources": [
+          {
+            "eventId": "00000000-0000-4000-8000-000000000075",
+            "eventType": "EvidenceExamined",
+            "sequence": 108
+          }
+        ]
+      },
+      "afterEntry": {
+        "key": "e7",
+        "occurredAt": 36000,
+        "text": "Elowen Starwhisper examined Ordinary token.",
+        "salience": 3,
+        "memoryId": null,
+        "memoryKind": null,
+        "eventType": "EvidenceExamined",
+        "location": null,
+        "participants": [
+          {
+            "entityId": "elowen-starwhisper",
+            "kind": "character",
+            "name": "Elowen Starwhisper"
+          },
+          {
+            "entityId": "r1-ordinary-token",
+            "kind": "item",
+            "name": "Ordinary token"
+          }
+        ],
+        "knowledge": [],
+        "sources": []
+      },
+      "viewAfter": {
+        "perspective": "DM",
+        "chapters": [
+          {
+            "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+            "title": "Gate 05 history probe",
+            "perspective": "DM",
+            "from": 0,
+            "to": 36000,
+            "generatedAt": 36000,
+            "entries": [
+              {
+                "key": "e1",
+                "occurredAt": 32400,
+                "text": "Mira Vale entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "mira-vale",
+                    "kind": "npc",
+                    "name": "Mira Vale"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000a",
+                    "eventType": "EntityCreated",
+                    "sequence": 10
+                  }
+                ]
+              },
+              {
+                "key": "e2",
+                "occurredAt": 32400,
+                "text": "Orin Stonebeard entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "orin-stonebeard",
+                    "kind": "npc",
+                    "name": "Orin Stonebeard"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000c",
+                    "eventType": "EntityCreated",
+                    "sequence": 12
+                  }
+                ]
+              },
+              {
+                "key": "e3",
+                "occurredAt": 32400,
+                "text": "Captain Thorne entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "captain-thorne",
+                    "kind": "npc",
+                    "name": "Captain Thorne"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000e",
+                    "eventType": "EntityCreated",
+                    "sequence": 14
+                  }
+                ]
+              },
+              {
+                "key": "e4",
+                "occurredAt": 32400,
+                "text": "Elowen Starwhisper went to Market Square.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "market-square",
+                  "kind": "location",
+                  "name": "Market Square"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000011",
+                    "eventType": "EntityPlaced",
+                    "sequence": 17
+                  }
+                ]
+              },
+              {
+                "key": "e5",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper went to Old Trade Road.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "old-trade-road",
+                  "kind": "location",
+                  "name": "Old Trade Road"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000066",
+                    "eventType": "EntityPlaced",
+                    "sequence": 102
+                  }
+                ]
+              },
+              {
+                "key": "e6",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "abandoned-caravan-site",
+                  "kind": "location",
+                  "name": "Abandoned Caravan Site"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000068",
+                    "eventType": "EntityPlaced",
+                    "sequence": 104
+                  }
+                ]
+              },
+              {
+                "key": "e7",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Ordinary token.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "r1-ordinary-token",
+                    "kind": "item",
+                    "name": "Ordinary token"
+                  }
+                ],
+                "knowledge": [],
+                "sources": []
+              },
+              {
+                "key": "e8",
+                "occurredAt": 36000,
+                "text": "A hypothesis was formed: Goblins attacked the caravan.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "KnowledgeAssigned",
+                "location": null,
+                "participants": [],
+                "knowledge": [
+                  {
+                    "knowledgeId": "party-goblin-hypothesis",
+                    "knowledgeType": "HYPOTHESIS",
+                    "statement": "Goblins attacked the caravan."
+                  }
+                ],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned",
+                    "sequence": 53
+                  }
+                ]
+              }
+            ],
+            "prose": {
+              "provider": "local",
+              "model": "local-interpreter-1",
+              "traceId": "00000000-00a1-4000-8000-000000000001",
+              "paragraphs": [
+                {
+                  "text": "Mira Vale entered the story.",
+                  "cites": ["e1"]
+                },
+                {
+                  "text": "Orin Stonebeard entered the story.",
+                  "cites": ["e2"]
+                },
+                {
+                  "text": "Captain Thorne entered the story.",
+                  "cites": ["e3"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "cites": ["e4"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Old Trade Road.",
+                  "cites": ["e5"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                  "cites": ["e6"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Ordinary token.",
+                  "cites": ["e7"]
+                },
+                {
+                  "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                  "cites": ["e8"]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "divergence": {
+        "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+        "commandType": "GenerateChronicle",
+        "reason": "no longer accepted: INVALID_CHRONICLE"
+      },
+      "storedChapterUnchanged": true,
+      "restartPreservesDivergence": true,
+      "replayEqual": true,
+      "structuralIntegrity": [],
+      "recovery": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-r1-history-7",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 111,
+            "eventId": "00000000-03b7-4000-8000-000000000001",
+            "type": "CommandUndone"
+          }
+        ]
+      },
+      "reverseRecovery": true
+    }
+  ]
+}

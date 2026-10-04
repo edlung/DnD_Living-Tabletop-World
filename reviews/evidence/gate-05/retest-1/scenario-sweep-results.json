@@ -1,0 +1,1337 @@
+{
+  "sweep": [
+    {
+      "commandId": "ravenford.seed.0002",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0003",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0004",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0005",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0006",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0007",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0008",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0009",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0010",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0011",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0012",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0013",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.seed.0014",
+      "type": "StartScene",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0001",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0002",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0003",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0004",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0005",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0006",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0007",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0008",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0009",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0010",
+      "type": "AssignCharacter",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0011",
+      "type": "AdvanceWorldTime",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0012",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0013",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0014",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0015",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0016",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0017",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0018",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0019",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0020",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0021",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0022",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0023",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0024",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0025",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0026",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0027",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0028",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0029",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0030",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0031",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0032",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0033",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0034",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0035",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0036",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0037",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0038",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0039",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0040",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.knowledge.0041",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0001",
+      "type": "StartSession",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0002",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0003",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0004",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0005",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0006",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0007",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0008",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0009",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.memory.0010",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.rules.0001",
+      "type": "SetCharacterSheet",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0001",
+      "type": "SetDisclosure",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0002",
+      "type": "SetDisclosure",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0003",
+      "type": "SetDisclosure",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0004",
+      "type": "SetDisclosure",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0005",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0006",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0007",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0008",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0009",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0010",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0011",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0012",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0013",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.investigation.0014",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.contradiction.0001",
+      "type": "SetClaim",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.contradiction.0002",
+      "type": "SetClaim",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.contradiction.0003",
+      "type": "SetClaim",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.combat.0001",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.combat.0002",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.combat.0003",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.combat.0004",
+      "type": "CreateEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.combat.0005",
+      "type": "SetStatBlock",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.combat.0006",
+      "type": "SetStatBlock",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.combat.0007",
+      "type": "SetStatBlock",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.combat.0008",
+      "type": "SetStatBlock",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0001",
+      "type": "CreateEntity",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0002",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0003",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0004",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0005",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0006",
+      "type": "SetDisclosure",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0007",
+      "type": "SetClaim",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0008",
+      "type": "AddKnowledge",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0009",
+      "type": "SetDisclosure",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0010",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0011",
+      "type": "AddKnowledge",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0012",
+      "type": "AddClue",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0013",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0014",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0015",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "ravenford.npc-boundary.0016",
+      "type": "RecordMemory",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "dialogue:player-elowen:7b0aa99a-f16d-4c60-933d-d74c1d28a015",
+      "type": "AskAbout",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.1",
+      "type": "AdvanceWorldTime",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.2",
+      "type": "EnterLocation",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.3",
+      "type": "EnterLocation",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.4",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.5",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.6",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.7",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.8",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.9",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.10",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.11",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.12",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.13",
+      "type": "ExamineEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.14",
+      "type": "FormHypothesis",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.15",
+      "type": "AdvanceWorldTime",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.16",
+      "type": "EnterLocation",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "dialogue:player-elowen:9d93082b-9f25-4b7b-b1af-3be0107c9cb5",
+      "type": "ShowEvidence",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "dialogue:player-elowen:63914e3d-8d7e-4c58-918a-7f48a5430187",
+      "type": "AskAbout",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "dialogue:player-elowen:9227753a-938a-47c3-8bac-340235dea58e",
+      "type": "InsightCheck",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.17",
+      "type": "EnterLocation",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "dialogue:player-elowen:a35ea669-249c-4ec7-928c-36a8fcd5695b",
+      "type": "AskAbout",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "authoring.00000000-00a2-4000-8000-000000000001",
+      "type": "ApplyAuthoring",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.18",
+      "type": "ApproveAsset",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.19",
+      "type": "UpdateEntityProfile",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "dialogue:player-elowen:f1fba3fd-b174-4384-9d5e-6d07a1acb6e9",
+      "type": "AskAbout",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.20",
+      "type": "AdvanceWorldTime",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.21",
+      "type": "PlaceEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.22",
+      "type": "PlaceEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.23",
+      "type": "PlaceEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.24",
+      "type": "PlaceEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.25",
+      "type": "PlaceEntity",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.26",
+      "type": "StartCombat",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.27",
+      "type": "Attack",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.28",
+      "type": "EndTurn",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.29",
+      "type": "EndTurn",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.30",
+      "type": "EndTurn",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.31",
+      "type": "EndTurn",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.32",
+      "type": "CastSpell",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.33",
+      "type": "UseReaction",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.35",
+      "type": "EndTurn",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.36",
+      "type": "CastSpell",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.37",
+      "type": "MoveCombatant",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.38",
+      "type": "EndCombat",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.39",
+      "type": "AdvanceWorldTime",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:player-elowen:scenario.40",
+      "type": "EnterLocation",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.41",
+      "type": "SetRelationship",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.42",
+      "type": "SetWeather",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.43",
+      "type": "AdvanceWorldTime",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.44",
+      "type": "SetWeather",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.45",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.46",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.47",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.48",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.49",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.50",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "http:dm-ravenford:scenario.51",
+      "type": "RecordMemory",
+      "status": "rejected",
+      "code": "UNDO_UNSAFE",
+      "integrity": [],
+      "divergence": null
+    },
+    {
+      "commandId": "chronicle.00000000-00a2-4000-8000-000000000003",
+      "type": "GenerateChronicle",
+      "status": "accepted",
+      "code": null,
+      "integrity": [],
+      "divergence": null
+    }
+  ],
+  "integration": {
+    "commands": 167,
+    "events": 283,
+    "readParity": [
+      "/quests?perspective=PARTY",
+      "/chronicle?perspective=PARTY",
+      "/knowledge?perspective=PARTY",
+      "/locations/market-square/scene?perspective=PLAYER&at=40000",
+      "/entities/tomas-reed/presentation?perspective=PLAYER"
+    ],
+    "leakScanPassed": true,
+    "replayEqual": true,
+    "integrity": [],
+    "baselineOracle": null
+  },
+  "summary": {
+    "attempts": 164,
+    "accepted": 40,
+    "rejected": 124,
+    "unsafe": []
+  }
+}

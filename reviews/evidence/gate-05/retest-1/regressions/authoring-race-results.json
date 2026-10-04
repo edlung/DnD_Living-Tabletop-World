@@ -1,0 +1,1908 @@
+{
+  "matrix": [
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "edit",
+      "secondOp": "edit",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "edit",
+      "secondOp": "option",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "edit",
+      "secondOp": "commit",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "edit",
+      "secondOp": "undo",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "option",
+      "secondOp": "edit",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "option",
+      "secondOp": "option",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "option",
+      "secondOp": "commit",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "option",
+      "secondOp": "undo",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "commit",
+      "secondOp": "edit",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "commit",
+      "secondOp": "option",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "commit",
+      "secondOp": "commit",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "commit",
+      "secondOp": "undo",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "undo",
+      "secondOp": "edit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "undo",
+      "secondOp": "option",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "undo",
+      "secondOp": "commit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "DRAFT",
+      "firstOp": "undo",
+      "secondOp": "undo",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "edit",
+      "secondOp": "edit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "edit",
+      "secondOp": "option",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "edit",
+      "secondOp": "commit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "edit",
+      "secondOp": "undo",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "option",
+      "secondOp": "edit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "option",
+      "secondOp": "option",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "option",
+      "secondOp": "commit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "option",
+      "secondOp": "undo",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "commit",
+      "secondOp": "edit",
+      "first": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "commit",
+      "secondOp": "option",
+      "first": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "commit",
+      "secondOp": "commit",
+      "first": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "commit",
+      "secondOp": "undo",
+      "first": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "undo",
+      "secondOp": "edit",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "undo",
+      "secondOp": "option",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "undo",
+      "secondOp": "commit",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "memory-one-process",
+      "source": {
+        "kind": "dm"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "undo",
+      "secondOp": "undo",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": false,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "edit",
+      "secondOp": "edit",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "edit",
+      "secondOp": "option",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "edit",
+      "secondOp": "commit",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "edit",
+      "secondOp": "undo",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "option",
+      "secondOp": "edit",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "option",
+      "secondOp": "option",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "option",
+      "secondOp": "commit",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "option",
+      "secondOp": "undo",
+      "first": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "commit",
+      "secondOp": "edit",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "commit",
+      "secondOp": "option",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "commit",
+      "secondOp": "commit",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "commit",
+      "secondOp": "undo",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "undo",
+      "secondOp": "edit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "undo",
+      "secondOp": "option",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 201,
+        "status": "DRAFT",
+        "code": null,
+        "revision": 2
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 2,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "undo",
+      "secondOp": "commit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "DRAFT",
+      "firstOp": "undo",
+      "secondOp": "undo",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": null,
+      "status": "DRAFT",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "edit",
+      "secondOp": "edit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "edit",
+      "secondOp": "option",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "edit",
+      "secondOp": "commit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "edit",
+      "secondOp": "undo",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "option",
+      "secondOp": "edit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "option",
+      "secondOp": "option",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "option",
+      "secondOp": "commit",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "option",
+      "secondOp": "undo",
+      "first": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "commit",
+      "secondOp": "edit",
+      "first": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "commit",
+      "secondOp": "option",
+      "first": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "commit",
+      "secondOp": "commit",
+      "first": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "COMMITTED",
+      "canonicalName": "Earlier name",
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "commit",
+      "secondOp": "undo",
+      "first": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "undo",
+      "secondOp": "edit",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "undo",
+      "secondOp": "option",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 409,
+        "status": null,
+        "code": "CONFLICT",
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "undo",
+      "secondOp": "commit",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    },
+    {
+      "mode": "postgres-two-processes",
+      "source": {
+        "kind": "ai",
+        "traceId": "00000000-00a1-4000-8000-000000000001"
+      },
+      "initial": "COMMITTED",
+      "firstOp": "undo",
+      "secondOp": "undo",
+      "first": {
+        "http": 200,
+        "status": "accepted",
+        "code": null,
+        "revision": null
+      },
+      "second": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "waited": true,
+      "restart": true,
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "status": "UNDONE",
+      "canonicalName": null,
+      "replayEqual": true
+    }
+  ],
+  "retries": [
+    {
+      "phase": "before-write",
+      "state": "COMMITTED",
+      "retry": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "changedRevision": 409,
+      "changedRisk": 409,
+      "changedWarnings": 409,
+      "restartDuplicate": true,
+      "eventCountUnchanged": true,
+      "noResurrection": false
+    },
+    {
+      "phase": "before-write",
+      "state": "UNDONE",
+      "retry": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "changedRevision": 409,
+      "changedRisk": 409,
+      "changedWarnings": 409,
+      "restartDuplicate": true,
+      "eventCountUnchanged": true,
+      "noResurrection": true
+    },
+    {
+      "phase": "after-write",
+      "state": "COMMITTED",
+      "retry": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "changedRevision": 409,
+      "changedRisk": 409,
+      "changedWarnings": 409,
+      "restartDuplicate": true,
+      "eventCountUnchanged": true,
+      "noResurrection": false
+    },
+    {
+      "phase": "after-write",
+      "state": "UNDONE",
+      "retry": {
+        "http": 200,
+        "status": "duplicate",
+        "code": null,
+        "revision": null
+      },
+      "changedRevision": 409,
+      "changedRisk": 409,
+      "changedWarnings": 409,
+      "restartDuplicate": true,
+      "eventCountUnchanged": true,
+      "noResurrection": true
+    }
+  ],
+  "recovery": [
+    {
+      "phase": "before-write",
+      "originalCommittedEventCount": 103,
+      "acceptedExactlyOnce": true,
+      "survivorUnblocked": true
+    },
+    {
+      "phase": "after-write",
+      "originalCommittedEventCount": 103,
+      "acceptedExactlyOnce": true,
+      "survivorUnblocked": true
+    }
+  ]
+}
