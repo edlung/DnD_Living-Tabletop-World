@@ -675,3 +675,136 @@ try {
   await database.drop();
 }
 ```
+
+## `a488de4-cited-examinations.json`, `a488de4-cited-examination-undone.json`
+
+Written on 2026-10-04 by revision `a488de462ff5e4fa6f1513a831f38e63291e3c2a` (Gate 05 retest 1) through its own HTTP app and `PostgresEventStore`, into a throwaway database it migrated, seeded, and dropped. One run wrote both files: the first before the undo, the second after it. Inspections roll nothing; chapter prose came from the local narrative provider. Recorded before the Gate 05 retest 1 remediation gave `ChronicleGenerated` version 4 (G05-H02; `packages/domain/src/kernel/event-versions.ts`).
+
+Steps:
+
+1. Check out the revision on its own (`git worktree add --detach <dir> a488de4`) and run `pnpm install --frozen-lockfile --offline` there.
+2. Save the script below in that checkout's root as `history-writer.mts`, with PostgreSQL running.
+3. Run `LTW_HISTORY_OUT=<first.json> LTW_HISTORY_OUT_UNDONE=<second.json> NODE_ENV=test node --conditions=@ltw/source history-writer.mts` from that root. It prints both inspections' outcomes (`"roll":null,"discovered":[]`), then `{"scenario":"cited-examinations","version":117,"events":117,"commands":99}` and `{"scenario":"cited-examination-undone","version":118,"events":118,"commands":100}`.
+4. Each JSON it writes was laid out one row per line, with a `$comment` and the revision added to `writer`; the rows themselves are unchanged.
+
+```ts
+// Runs inside a checkout of revision a488de4 (the Gate 05 retest 1 Chronicle writer):
+// drives that revision's own HTTP app and PostgreSQL store through examinations that
+// change no fact (a repeated inspection, and a first inspection of an item with no
+// clue), a DM chapter that tells them, and one more inspection after it, then dumps
+// the stored rows. It then undoes the repeated inspection beneath the chapter, which
+// that revision accepts (Gate 05 retest 1, G05-H02), and dumps the rows again.
+// LTW_HISTORY_OUT: output path; LTW_HISTORY_OUT_UNDONE: output path after the undo.
+import { writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+
+import { post as command } from './apps/server/src/testing/gate02-scenarios.ts';
+import {
+  TOKENS,
+  post,
+  ravenfordApp,
+  seededEngine,
+} from './apps/server/src/testing/ravenford-app.ts';
+import { createThrowawayDatabase } from './apps/server/src/testing/throwaway-database.ts';
+import { PostgresEventStore } from './apps/server/src/world-engine/postgres-event-store.ts';
+
+const require = createRequire(new URL('./apps/server/package.json', `file://${process.cwd()}/`));
+const { Pool } = require('pg');
+const OUT = process.env.LTW_HISTORY_OUT;
+const OUT_UNDONE = process.env.LTW_HISTORY_OUT_UNDONE;
+if (!OUT || !OUT_UNDONE) throw new Error('LTW_HISTORY_OUT and LTW_HISTORY_OUT_UNDONE are required');
+
+const database = await createThrowawayDatabase({ migrate: true });
+const pool = new Pool({ connectionString: database.url });
+let app: Awaited<ReturnType<typeof ravenfordApp>> | undefined;
+const labels: Record<string, string> = {};
+try {
+  app = await ravenfordApp(await seededEngine(new PostgresEventStore(pool)));
+  const live = app;
+  const submit = async (token: string, label: string, body: Record<string, unknown>) => {
+    const { status, body: result } = await command(live, token, `legacy-${label}`, body);
+    if (status !== 200 || result.status !== 'accepted') {
+      throw new Error(`${label}: ${String(status)} ${JSON.stringify(result)}`);
+    }
+    labels[label] = result.commandId;
+    return result;
+  };
+  const elowen = (label: string, body: Record<string, unknown>) =>
+    submit(TOKENS.player, label, { characterId: 'elowen-starwhisper', ...body });
+  const inspect = async (label: string, entityId: string) => {
+    const result = await elowen(label, { type: 'ExamineEntity', entityId, method: 'inspect' });
+    return result.status === 'accepted' ? result.outcome : null;
+  };
+  const chapter = async (label: string, perspective: string) => {
+    const response = await post(
+      live,
+      '/campaigns/ravenford/chronicle',
+      { title: `Legacy chapter (${perspective})`, perspective, from: 0 },
+      TOKENS.dm,
+    );
+    const body = response.json<{ chronicleId: string | null; result: { status: string } }>();
+    if (response.statusCode !== 200 || body.chronicleId === null) {
+      throw new Error(`${label}: ${String(response.statusCode)} ${response.body}`);
+    }
+    labels[label] = body.chronicleId;
+  };
+
+  await elowen('enter-road', { type: 'EnterLocation', locationId: 'old-trade-road' });
+  await elowen('enter-site', { type: 'EnterLocation', locationId: 'abandoned-caravan-site' });
+  // The first inspection finds the symbol's clue; the second finds nothing new and rolls nothing.
+  await inspect('first-inspection', 'strange-symbol');
+  const repeated = await inspect('repeat-inspection', 'strange-symbol');
+  await submit(TOKENS.dm, 'create-token', {
+    type: 'CreateEntity',
+    entityId: 'ordinary-token',
+    kind: 'item',
+    name: 'Ordinary Token',
+    existsSince: null,
+    placement: { locationId: 'abandoned-caravan-site', since: null },
+  });
+  // An item with no clue: its first inspection finds nothing and rolls nothing.
+  const plain = await inspect('token-inspection', 'ordinary-token');
+  await chapter('dm-chapter', 'DM');
+  // After the chapter, so no chapter tells it.
+  await inspect('later-inspection', 'ordinary-token');
+
+  const rows = async (sql: string) =>
+    (await pool.query(sql, ['ravenford'])).rows.map((row: { row: unknown }) => row.row);
+  const dump = async (out: string, scenario: string) => {
+    const dumped = {
+      campaignId: 'ravenford',
+      scenario,
+      labels,
+      stream: (
+        await rows('SELECT row_to_json(s) AS row FROM ltw_event_streams s WHERE stream_id = $1')
+      )[0],
+      commands: await rows(
+        'SELECT row_to_json(c) AS row FROM ltw_commands c WHERE stream_id = $1 ORDER BY first_sequence',
+      ),
+      events: await rows(
+        'SELECT row_to_json(e) AS row FROM ltw_events e WHERE stream_id = $1 ORDER BY sequence',
+      ),
+    };
+    await writeFile(out, `${JSON.stringify(dumped)}\n`);
+    console.log(
+      JSON.stringify({
+        scenario,
+        version: (dumped.stream as { version: number }).version,
+        events: dumped.events.length,
+        commands: dumped.commands.length,
+      }),
+    );
+  };
+  console.log(JSON.stringify({ repeated, plain }));
+  await dump(OUT, 'cited-examinations');
+  await submit(TOKENS.dm, 'undo-repeat-inspection', {
+    type: 'UndoCommand',
+    targetCommandId: labels['repeat-inspection'],
+  });
+  await dump(OUT_UNDONE, 'cited-examination-undone');
+} finally {
+  if (app) await app.close();
+  await pool.end();
+  await database.drop();
+}
+```
