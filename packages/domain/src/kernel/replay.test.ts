@@ -170,7 +170,7 @@ describe('corrupt history is detected, never folded', () => {
     for (const broken of [
       { ...raw, sequence: 0 },
       { ...raw, eventId: 'not-a-uuid' },
-      { ...raw, schemaVersion: 2 },
+      { ...raw, schemaVersion: 3 },
       { ...raw, recordedAt: 'yesterday' },
       { ...raw, extra: true },
       { ...raw, payload: { ...(raw['payload'] as object), secret: 'x' } },

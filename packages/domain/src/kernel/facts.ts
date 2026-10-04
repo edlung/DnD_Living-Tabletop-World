@@ -27,8 +27,6 @@ export const facts = {
   entityProfile: (id: string): FactKey => `entity:${id}#profile`,
   entityPlacement: (id: string): FactKey => `entity:${id}#placement`,
   entityStatus: (id: string): FactKey => `entity:${id}#status`,
-  /** The clues authored on an entity, as a whole (read only by legacy `placement` premises). */
-  entityClues: (id: string): FactKey => `entity:${id}#clues`,
   scene: (id: string): FactKey => `scene:${id}`,
   sceneEnded: (id: string): FactKey => `scene:${id}#ended`,
   knowledge: (id: string): FactKey => `knowledge:${id}`,
@@ -184,7 +182,7 @@ export function footprintOf(event: KernelEvent): Footprint {
           ...entityChecked(event.payload.entityId),
           ...event.payload.subjects.map((id) => facts.entity(id)),
         ],
-        writes: [facts.clue(event.payload.clueId), facts.entityClues(event.payload.entityId)],
+        writes: [facts.clue(event.payload.clueId)],
       };
     case 'DisclosureSet':
       return {
@@ -389,13 +387,9 @@ function premiseFacts(characterId: string, premise: RecordedPremise): FactKey[] 
         facts.entityPlacement(premise.entityId),
       ];
     case 'placement':
-      // Legacy (revision 88d8137, G03-H05): the cast passed over this entity's magic
-      // clues without naming them, so it read where the entity was and all its clues.
-      return [
-        facts.entity(premise.entityId),
-        facts.entityPlacement(premise.entityId),
-        facts.entityClues(premise.entityId),
-      ];
+      // Legacy (revision 88d8137, G03-H05), read with its original meaning: where the
+      // entity was. Its command rests on everything before it anyway (G03-H07).
+      return [facts.entity(premise.entityId), facts.entityPlacement(premise.entityId)];
   }
 }
 

@@ -94,6 +94,11 @@ Each event declares the facts it read and wrote. Later domains add their facts t
 - 2026-10-04 (Gate 03 remediation):
   - **Reopening a window.** Undoing the command that closed a reaction window is also rejected while a later, still-effective command changed what the window depends on.
   - **Results that changed nothing** still record what they read: combat decisions read every combatant, and examinations read the clues they passed over and where the things they could not reach were. Their premises therefore block unsafe undo like any other read.
+- 2026-10-04 (Gate 03 retest 3 remediation, G03-H07; owner decision of 2026-10-04): **history from earlier versions comes off only from its end.**
+  - Earlier versions of the system did not always record every fact a decision rested on. For example, revision 88d8137 recorded a spell cast outside an unrelated fight without its target's status or either participant's placement.
+  - A command decided by an earlier version therefore rests on everything before it. While it stands, nothing beneath it can be undone (`UNDO_UNSAFE`, listing the old commands that still stand after it). Old history is undone from its newest command backwards.
+  - History written by the current version is undone exactly as above. An earlier version's own undo records stay as they are.
+  - In practice this affects only campaigns started before the upgrade; today those exist only in test databases.
 
 ## Invariants affected
 

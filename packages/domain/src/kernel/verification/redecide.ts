@@ -4,7 +4,7 @@ import type { CombatPort } from '../../combat/port.ts';
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
 import type { StoredCommand } from '../engine/event-store.ts';
-import { schemaVersionOf } from '../event-versions.ts';
+import { schemaVersionOf, writtenEarlier } from '../event-versions.ts';
 import type { KernelEvent, RecordedEvent } from '../events.ts';
 import { evolve } from '../evolve.ts';
 import { EMPTY_WORLD_STATE, type WorldState } from '../state.ts';
@@ -73,7 +73,7 @@ export function redecideEffective(
     if (original.state.commands.get(stored.commandId)?.undoneBy !== null) continue;
     const where = { commandId: stored.commandId, commandType: stored.commandType };
     const events = recorded.get(stored.commandId) ?? [];
-    if (events.some((event) => event.schemaVersion < schemaVersionOf(event.type))) {
+    if (events.some(writtenEarlier)) {
       try {
         append(stored, events);
       } catch (error) {

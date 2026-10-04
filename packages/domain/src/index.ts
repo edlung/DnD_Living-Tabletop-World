@@ -21,7 +21,7 @@ export {
   type SceneState,
   type WorldState,
 } from './kernel/state.ts';
-export { schemaVersionOf } from './kernel/event-versions.ts';
+export { schemaVersionOf, writtenEarlier } from './kernel/event-versions.ts';
 export {
   kernelEventSchema,
   parseRecordedEvent,
@@ -138,4 +138,5 @@ export type { KernelEvent as DraftEvent } from './kernel/events.ts';
 export { premisesEvent } from './investigation/acting.ts';
 export type { Premise, RecordedPremise } from './investigation/events.ts';
 export { redecideEffective, type Divergence } from './kernel/verification/redecide.ts';
+export { undoneBeneathEarlierWriters } from './kernel/verification/earlier-writers.ts';
 export { magicDiscoveryEvents, magicSensingPremises } from './investigation/reveal.ts';

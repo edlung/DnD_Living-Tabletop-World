@@ -8,14 +8,21 @@ import type { KernelEventType } from './events.ts';
 
 /**
  * Event schema versions (docs/adr/0007-world-kernel-model-and-event-store.md,
- * Gate 03 retest 2 amendment; G03-H05). Each event type is written with its
- * current version: 1 unless listed here. A change that would leave an event
- * already stored unreadable, or change what it means, gives its type the next
- * version; every earlier version keeps a decoder that reads stored payloads
- * into the current in-memory form, so history is never edited or reset. A
- * change that keeps every stored event valid with its meaning (a new optional
- * field, a wider limit, a new variant) keeps the version.
+ * Gate 03 retest 2 and 3 amendments). Each event type is written with its
+ * current version; every version it was ever written with stays readable: a
+ * decoder reads stored payloads into the current in-memory form, so history
+ * is never edited or reset. A change that would leave a stored event
+ * unreadable, or change what it means, gives its type the next version; one
+ * that keeps every stored event valid with its meaning keeps the version.
+ *
+ * Version 2 of every type (G03-H07) means: written by a writer whose commands
+ * record every fact their decisions rested on. Version 1 events come from
+ * earlier writers, whose records may miss some, so undo treats a command
+ * they decided as resting on everything before it (`writtenEarlier`; ADR 0006
+ * retest 3 amendment).
  */
+const DEPENDENCY_CONTRACT = 2;
+
 interface Versioning {
   readonly current: number;
   /** What an event of the current version may hold: stricter than what is read. */
@@ -24,23 +31,32 @@ interface Versioning {
   readonly earlier: Readonly<Partial<Record<number, z.ZodType>>>;
 }
 
+/** Types whose payload changed between versions; every other type reads all versions alike. */
 const VERSIONING: Partial<Record<KernelEventType, Versioning>> = {
   /**
-   * 2 (Gate 03 retest 2): Detect Magic records `unreached` for each clue it did
-   * not reach, never the entity-only `placement`. 1: every earlier writer;
-   * revision 88d8137 wrote `placement`, still read with its original meaning.
+   * 3 (retest 3): the dependency contract. 2 (retest 2): Detect Magic records
+   * `unreached` for each clue it did not reach, never the entity-only
+   * `placement`. 1: every earlier writer; revision 88d8137 wrote `placement`,
+   * still read with its original meaning.
    */
   PremisesRecorded: {
-    current: 2,
+    current: 3,
     written: premisesRecordedPayloadSchema,
-    earlier: { 1: recordedPremisesPayloadSchema },
+    earlier: { 1: recordedPremisesPayloadSchema, 2: premisesRecordedPayloadSchema },
   },
 };
 
-export const schemaVersionOf = (type: KernelEventType): number => VERSIONING[type]?.current ?? 1;
+export const schemaVersionOf = (type: KernelEventType): number =>
+  VERSIONING[type]?.current ?? DEPENDENCY_CONTRACT;
 
-/** True when `type` keeps more than one version, so its payloads need decoding. */
+/** True when `type`'s payload changed between versions, so it needs decoding. */
 export const isVersioned = (type: KernelEventType): boolean => VERSIONING[type] !== undefined;
+
+/** Written by an earlier writer than the current one (an earlier version of its type). */
+export const writtenEarlier = (event: {
+  readonly type: KernelEventType;
+  readonly schemaVersion: number;
+}): boolean => event.schemaVersion < schemaVersionOf(event.type);
 
 /**
  * Reads a stored payload of `version` into the current in-memory form. Throws
@@ -49,8 +65,12 @@ export const isVersioned = (type: KernelEventType): boolean => VERSIONING[type] 
  */
 export function decodePayload(type: KernelEventType, version: number, payload: unknown): unknown {
   const versioning = VERSIONING[type];
-  if (version === (versioning?.current ?? 1)) return versioning?.written.parse(payload) ?? payload;
-  const decoder = versioning?.earlier[version];
+  if (!versioning) {
+    if (version >= 1 && version <= DEPENDENCY_CONTRACT) return payload;
+    throw new RangeError(`${type} was never written with schema version ${String(version)}`);
+  }
+  if (version === versioning.current) return versioning.written.parse(payload);
+  const decoder = versioning.earlier[version];
   if (!decoder) {
     throw new RangeError(`${type} was never written with schema version ${String(version)}`);
   }

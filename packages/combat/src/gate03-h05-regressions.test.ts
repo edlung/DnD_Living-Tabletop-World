@@ -81,7 +81,7 @@ describe('G03-H05 retest1_placement_premise_survives_current_reader', () => {
     );
     const detect = await accepted(world.submit(cast(ELOWEN, 'detect-magic')));
     const [written] = premisesOf(await recorded(world, detect));
-    expect(written?.schemaVersion).toBe(2);
+    expect(written?.schemaVersion).toBe(3);
     expect(written?.payload.premises).toContainEqual({
       kind: 'unreached',
       clueId: 'legacy-far-magic',
@@ -161,7 +161,7 @@ describe('G03-H05 retest1_placement_premise_survives_current_reader', () => {
     );
     const detect = await accepted(world.submit(cast(ELOWEN, 'detect-magic')));
     const [written] = premisesOf(await recorded(world, detect));
-    expect(written?.schemaVersion).toBe(2);
+    expect(written?.schemaVersion).toBe(3);
     for (const [premise, blockers] of [
       [charm, [clue.commandId, detect.commandId]],
       [clue, [detect.commandId]],

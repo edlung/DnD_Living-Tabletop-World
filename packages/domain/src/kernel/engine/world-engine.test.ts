@@ -60,7 +60,7 @@ describe('WorldEngine: stamping and ordering', () => {
     expect(event).toMatchObject({
       campaignId: CAMPAIGN,
       sequence: 1,
-      schemaVersion: 1,
+      schemaVersion: 2,
       worldTime: START,
       recordedAt: '2026-01-01T00:00:00.000Z',
       causation: { commandId: 'c-1', commandType: 'CreateCampaign', actor: DM },

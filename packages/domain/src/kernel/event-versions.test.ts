@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { SequentialIds, SteppingClock } from './engine/deterministic-sources.ts';
 import { InMemoryEventStore } from './engine/in-memory-event-store.ts';
 import { WorldEngine } from './engine/world-engine.ts';
-import { assertWritable, schemaVersionOf } from './event-versions.ts';
+import { assertWritable, schemaVersionOf, writtenEarlier } from './event-versions.ts';
 import { parseRecordedEvent } from './events.ts';
 import { CAMPAIGN, DM, START } from './testing/kernel-harness.ts';
 
@@ -31,10 +31,15 @@ const placement = { kind: 'placement', entityId: 'legacy-far-charm' };
 const unreached = { kind: 'unreached', clueId: 'legacy-far-magic', entityId: 'legacy-far-charm' };
 
 describe('event schema versions', () => {
-  it('writes PremisesRecorded as version 2 and every other type as version 1', () => {
-    expect(schemaVersionOf('PremisesRecorded')).toBe(2);
-    expect(schemaVersionOf('CampaignCreated')).toBe(1);
-    expect(schemaVersionOf('ClueAdded')).toBe(1);
+  it('writes PremisesRecorded as version 3 and every other type as version 2', () => {
+    // Version 2 of every type is the dependency contract (G03-H07); version 1 is earlier writers.
+    expect(schemaVersionOf('PremisesRecorded')).toBe(3);
+    expect(schemaVersionOf('CampaignCreated')).toBe(2);
+    expect(schemaVersionOf('ClueAdded')).toBe(2);
+    expect(writtenEarlier({ type: 'ClueAdded', schemaVersion: 1 })).toBe(true);
+    expect(writtenEarlier({ type: 'ClueAdded', schemaVersion: 2 })).toBe(false);
+    expect(writtenEarlier({ type: 'PremisesRecorded', schemaVersion: 2 })).toBe(true);
+    expect(writtenEarlier({ type: 'PremisesRecorded', schemaVersion: 3 })).toBe(false);
   });
 
   it('reads version 1 premises as every earlier writer stored them', () => {
@@ -48,15 +53,17 @@ describe('event schema versions', () => {
     }
   });
 
-  it('reads version 2 premises, never with the legacy placement', () => {
-    expect(parseRecordedEvent(stored(2, [unreached])).payload).toMatchObject({
-      premises: [unreached],
-    });
-    expect(() => parseRecordedEvent(stored(2, [placement]))).toThrow();
+  it('reads versions 2 (revision e893497) and 3, never with the legacy placement', () => {
+    for (const version of [2, 3]) {
+      expect(parseRecordedEvent(stored(version, [unreached])).payload).toMatchObject({
+        premises: [unreached],
+      });
+      expect(() => parseRecordedEvent(stored(version, [placement]))).toThrow();
+    }
   });
 
   it('refuses a version a type was never written with', () => {
-    expect(() => parseRecordedEvent(stored(3, [unreached]))).toThrow(/never written/);
+    expect(() => parseRecordedEvent(stored(4, [unreached]))).toThrow(/never written/);
     expect(() => parseRecordedEvent(stored(0, [unreached]))).toThrow();
     const payload = {
       campaignId: 'ravenford',
@@ -71,7 +78,8 @@ describe('event schema versions', () => {
       payload,
     });
     expect(parseRecordedEvent(created(1)).payload).toEqual(payload);
-    expect(() => parseRecordedEvent(created(2))).toThrow(/never written/);
+    expect(parseRecordedEvent(created(2)).payload).toEqual(payload);
+    expect(() => parseRecordedEvent(created(3))).toThrow(/never written/);
   });
 
   it('never writes a premise only earlier writers recorded', async () => {

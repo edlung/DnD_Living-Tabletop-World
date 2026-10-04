@@ -7,6 +7,7 @@ import {
   type DecisionContext,
   type ResolvedCommandOf,
 } from '../decision.ts';
+import { writtenEarlier } from '../event-versions.ts';
 import type { RecordedEvent, Restore } from '../events.ts';
 import { replay } from '../evolve.ts';
 import { footprintOf, restoredFacts, type FactKey } from '../facts.ts';
@@ -21,6 +22,12 @@ import type { WorldState } from '../state.ts';
  * CommandUndone event restoring the exact values C replaced. It is rejected
  * when any later event of a still-effective command read or wrote a fact C
  * wrote; the blockers are listed so the DM can resolve them explicitly.
+ *
+ * A command an earlier writer decided (its events carry an earlier schema
+ * version) may rest on facts its records do not name. It rests on everything
+ * before it: while it stands nothing beneath it can be undone, so history
+ * from earlier versions comes off only from its end backwards (owner
+ * decision, ADR 0006 Gate 03 retest 3 amendment; G03-H07).
  */
 const NOT_UNDOABLE: ReadonlySet<KernelCommandType> = new Set(['CreateCampaign', 'UndoCommand']);
 
@@ -86,9 +93,10 @@ const withoutDuplicates = (blockers: readonly UndoBlocker[]): UndoBlocker[] => [
 ];
 
 /**
- * Later events that depend on the written facts. Events of commands that
- * were themselves undone, and CommandUndone events, are ignored: each undone
- * command and its compensation cancel out.
+ * Later events that depend on the written facts, or whose command an earlier
+ * writer decided. Events of commands that were themselves undone, and
+ * CommandUndone events, are ignored: each undone command and its compensation
+ * cancel out, and a compensation's own footprint is exact for any writer.
  */
 function findBlockers(
   state: WorldState,
@@ -102,7 +110,7 @@ function findBlockers(
     const { commandId, commandType } = event.causation;
     if (blockers.has(commandId) || state.commands.get(commandId)?.undoneBy) continue;
     const { reads, writes } = footprintOf(event);
-    if ([...reads, ...writes].some((fact) => written.has(fact))) {
+    if (writtenEarlier(event) || [...reads, ...writes].some((fact) => written.has(fact))) {
       blockers.set(commandId, { commandId, commandType, sequence: event.sequence });
     }
   }

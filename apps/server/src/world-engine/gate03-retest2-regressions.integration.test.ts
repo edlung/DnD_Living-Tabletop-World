@@ -130,7 +130,7 @@ describe('G03-H05 on PostgreSQL: retest1_placement_premise_survives_current_read
       `SELECT schema_version FROM ltw_events WHERE command_id = $1 AND event_type = 'PremisesRecorded'`,
       [detect],
     );
-    expect(written.rows).toEqual([{ schema_version: 2 }]);
+    expect(written.rows).toEqual([{ schema_version: 3 }]);
     await verify(engine);
   });
 });

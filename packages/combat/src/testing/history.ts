@@ -1,9 +1,13 @@
 import {
+  EMPTY_WORLD_STATE,
   InMemoryEventStore,
+  evolve,
   parseRecordedEvent,
   parseStoredCommand,
+  perceivedEntityIds,
   type RecordedEvent,
   type StoredCommand,
+  type WorldState,
 } from '@ltw/domain';
 
 import { CAMPAIGN, roadWorld, type RoadWorld } from './road.ts';
@@ -103,4 +107,51 @@ export async function historicalWorld(fixture: HistoryFixture, namespace = 7): P
     });
   }
   return roadWorld({ shared: { store, namespace } });
+}
+
+/** Commands still effective after `commandId`, newest first: the explicit reverse order. */
+export function effectiveAfter(state: WorldState, commandId: string): string[] {
+  const target = state.commands.get(commandId);
+  if (!target) throw new Error(`no command ${commandId}`);
+  return [...state.commands.values()]
+    .filter((c) => c.firstSequence > target.lastSequence)
+    .filter((c) => c.commandType !== 'UndoCommand' && c.undoneBy === null)
+    .sort((a, b) => b.firstSequence - a.firstSequence)
+    .map((c) => c.commandId);
+}
+
+/**
+ * Current canon just before `commandId`: the events of the commands still
+ * effective, in order (undone commands and their compensations left out), as
+ * the re-decision oracle folds them.
+ */
+export async function canonBefore(world: RoadWorld, commandId: string): Promise<WorldState> {
+  const state = await world.state();
+  const command = state.commands.get(commandId);
+  if (!command) throw new Error(`no command ${commandId}`);
+  let canon = EMPTY_WORLD_STATE;
+  for (const event of (await world.store.loadStream(CAMPAIGN))?.events ?? []) {
+    if (event.sequence >= command.firstSequence) break;
+    if (event.type === 'CommandUndone') continue;
+    if (state.commands.get(event.causation.commandId)?.undoneBy) continue;
+    canon = evolve(canon, { ...event, sequence: canon.version + 1 });
+  }
+  return canon;
+}
+
+/**
+ * The legality an outside-combat spell had under the rules that decided it
+ * (revision 88d8137 and since): its caster alive, its target alive and
+ * perceived by the caster (G03-H07). Checked in current canon, where it must
+ * still hold while the cast stands.
+ */
+export async function outsideCastLegal(
+  world: RoadWorld,
+  castCommandId: string,
+  casterId: string,
+  targetId: string,
+): Promise<boolean> {
+  const canon = await canonBefore(world, castCommandId);
+  const alive = (id: string) => canon.entities.get(id)?.status === 'active';
+  return alive(casterId) && alive(targetId) && perceivedEntityIds(canon, casterId).has(targetId);
 }

@@ -86,6 +86,11 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Gate 03 retest 3 (2026-10-04), G03-H07: the dependency contract.**
+  - Every event type is now written as version 2 (`PremisesRecorded` as version 3). Version 2 means: the command recorded every fact its decision rested on. Version 1 events come from earlier writers, whose records may miss some. Every version stays readable.
+  - Undo applies the owner's rule for such history (ADR 0006 retest 3 amendment): a standing command whose events carry an earlier version blocks undo of anything beneath it (`decide/undo.ts`, `writtenEarlier`). Undo compensations keep their exact footprints for any writer.
+  - The re-decision oracle keeps folding those commands as recorded. An independent check, `verification/earlier-writers.ts` (`undoneBeneathEarlierWriters`), confirms that no undo the current writer accepted reached beneath a standing command an earlier writer decided.
+  - Genuine histories from five writers are kept in `fixtures/history/`: 017ab0b, 429e2a2, 88d8137 (two), and b38cbbc.
 - **Gate 03 retest 2 (2026-10-04), G03-H05: history written by any revision stays readable.**
   - **Versions per type.** The retest 1 remediation removed a premise variant (`placement`) that revision 88d8137 had stored, so its campaigns could no longer be loaded. Schema versions are now kept per event type (`kernel/event-versions.ts`). A type is written with its current version (1 unless listed there). Every version it was ever written with keeps a decoder that reads stored payloads into the current in-memory form. A version a type never had is refused.
   - **What needs a version.** A change that would reject a stored event or change its meaning gets the next version. Additive changes keep the version, as the relaxation of `restores` below did.
