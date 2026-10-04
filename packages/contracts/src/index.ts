@@ -303,6 +303,16 @@ export {
   type AssetVariant,
 } from './assets/commands.ts';
 export {
+  QUEST_MILESTONE_KINDS,
+  questBookSchema,
+  questDefinitionSchema,
+  questMilestoneSchema,
+  type QuestDefinition,
+  type QuestMilestone,
+  type QuestMilestoneKind,
+} from './quest/definitions.ts';
+export type { QuestListResponse, QuestTransitionView, QuestView } from './quest/views.ts';
+export {
   CHRONICLE_LIMITS,
   chronicleEntryKeySchema,
   chronicleOutputSchema,

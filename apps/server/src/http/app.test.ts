@@ -2,7 +2,12 @@ import { SequentialIds, SteppingClock, WorldEngine, type EventStore } from '@ltw
 import { describe, expect, it } from 'vitest';
 
 import { createLogger } from '../platform/logging/logger.ts';
-import { testAiGateway, testAssets, testAuthoring } from '../testing/ravenford-app.ts';
+import {
+  RAVENFORD_QUESTS,
+  testAiGateway,
+  testAssets,
+  testAuthoring,
+} from '../testing/ravenford-app.ts';
 import { buildApp } from './app.ts';
 import { devPersonaAuthenticator, disabledAuthenticator } from './auth.ts';
 
@@ -29,6 +34,7 @@ function appWith(store: EventStore, lines: Record<string, unknown>[] = []) {
     ai: testAiGateway(),
     authoring: testAuthoring(),
     assets: testAssets(),
+    quests: RAVENFORD_QUESTS,
   });
 }
 
@@ -93,6 +99,7 @@ describe('HTTP app', () => {
       ai: testAiGateway(),
       authoring: testAuthoring(),
       assets: testAssets(),
+      quests: RAVENFORD_QUESTS,
     });
     const response = await app.inject({
       method: 'GET',

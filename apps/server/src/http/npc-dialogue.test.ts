@@ -14,6 +14,7 @@ import {
   ravenfordApp,
   seededEngine,
   testAiGateway,
+  RAVENFORD_QUESTS,
   testAssets,
   testAuthoring,
   withoutRequestId,
@@ -239,6 +240,7 @@ describe('traces', () => {
       ai,
       authoring: testAuthoring(),
       assets: testAssets(),
+      quests: RAVENFORD_QUESTS,
       authenticator: await loadDevPersonaAuthenticator(DEFAULT_PERSONAS_FILE),
       logger: createLogger({
         service: 'npc-test',

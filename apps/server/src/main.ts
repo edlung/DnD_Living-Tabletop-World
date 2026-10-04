@@ -5,6 +5,7 @@ import { createPlaceholderImageGenerator } from '@ltw/ai';
 import { createAiGateway } from './ai/gateway.ts';
 import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
+import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresAiTraceStore } from './ai/postgres-trace-store.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { buildApp } from './http/app.ts';
@@ -40,7 +41,16 @@ async function main(): Promise<void> {
   };
   const engine = createWorldEngine(pool);
   const contents = new PostgresAssetContentStore(pool);
-  const app = buildApp({ engine, authenticator, logger, ai, authoring, assets: { contents } });
+  const quests = await loadQuestBook(config.questsFile);
+  const app = buildApp({
+    engine,
+    authenticator,
+    logger,
+    ai,
+    authoring,
+    assets: { contents },
+    quests,
+  });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
     {

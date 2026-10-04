@@ -56,4 +56,33 @@ describe('memory suggestions', () => {
     );
     expect(summaries).toEqual(['We arrived at Old Trade Road.', 'We returned to Ravenford.']);
   });
+
+  it('places an arrival where the party stood once that moment was over, so the engine accepts it', async () => {
+    const world = await chronicleWorld();
+    await world.enter('old-trade-road');
+    await world.dm({ type: 'AdvanceWorldTime', by: 3_600 });
+    // Back in town, Elowen steps into Orin's shop and out to the North Gate in the same minute.
+    await world.enter('orins-alchemy');
+    await world.enter('north-gate');
+    const { state, history } = await world.snapshot();
+    const returned = memorySuggestions(state, history, { kind: 'PARTY' }, 0, state.clock).find(
+      (suggestion) => suggestion.command['summary'] === 'We returned to Ravenford.',
+    );
+    expect(returned?.command['locationId']).toBe('north-gate');
+    expect(codeOf(await world.as(DM, { ...(returned?.command ?? {}) }))).toBe('accepted');
+  });
+
+  it('offers no arrival in a region the party only passed through within the same instant', async () => {
+    const world = await chronicleWorld();
+    await world.enter('old-trade-road');
+    await world.dm({ type: 'AdvanceWorldTime', by: 3_600 });
+    // Through Orin's shop and straight back out to the road, in the same minute.
+    await world.enter('orins-alchemy');
+    await world.enter('old-trade-road');
+    const { state, history } = await world.snapshot();
+    const summaries = memorySuggestions(state, history, { kind: 'PARTY' }, 0, state.clock).map(
+      (suggestion) => suggestion.command['summary'],
+    );
+    expect(summaries).toEqual(['We arrived at Old Trade Road.', 'We returned to Old Trade Road.']);
+  });
 });

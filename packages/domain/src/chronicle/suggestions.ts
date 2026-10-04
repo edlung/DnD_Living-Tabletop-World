@@ -137,11 +137,17 @@ export function memorySuggestions(
         const returned = visitedRoots.has(root);
         visitedRoots.add(root);
         if (!inWindow || before === undefined || before === root) break;
+        // Where the member stood once that moment was over: a memory must be had
+        // where its holder was (ADR 0010). Passing through within the same instant
+        // into another region is no arrival.
+        const settled = placementAt(state, history, entityId, event.worldTime);
+        if (settled === null || rootOf(settled) !== root) break;
         const covered = drafts.some(
           (d) =>
             d.reason === 'arrival' &&
-            d.locationId === locationId &&
-            d.occurredAt === event.worldTime,
+            d.occurredAt === event.worldTime &&
+            d.locationId !== null &&
+            rootOf(d.locationId) === root,
         );
         if (covered) break;
         const placeName = named(root, 'an unknown place');
@@ -152,7 +158,7 @@ export function memorySuggestions(
           memoryKind: 'OBSERVATION',
           summary: returned ? `We returned to ${placeName}.` : `We arrived at ${placeName}.`,
           occurredAt: event.worldTime,
-          locationId,
+          locationId: settled,
           participants: [entityId],
           relatedKnowledge: [],
           salience: 3,

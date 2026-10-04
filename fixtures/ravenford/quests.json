@@ -1,0 +1,59 @@
+{
+  "$comment": "Ravenford quest definitions (ADR 0025 §2; owner decisions of 2026-10-04). The Missing Caravan is a projection of the party's own records, memories, movements, examinations, and fights: it activates when the party first holds a record or memory of its own about the guild caravan (Mira's account), not on the public rumor, and has no completion in the slice. Summaries are what players read; they name nothing the party has not met by then.",
+  "quests": [
+    {
+      "questId": "missing-caravan",
+      "title": "The Missing Caravan",
+      "activation": {
+        "subject": "guild-caravan",
+        "summary": "We learned that the Merchant Guild caravan never arrived."
+      },
+      "milestones": [
+        {
+          "stage": "site-reached",
+          "kind": "reached",
+          "locationId": "abandoned-caravan-site",
+          "summary": "We found where the caravan was lost."
+        },
+        {
+          "stage": "evidence-examined",
+          "kind": "examined-at",
+          "locationId": "abandoned-caravan-site",
+          "summary": "We examined what was left behind."
+        },
+        {
+          "stage": "hypothesis-formed",
+          "kind": "hypothesized",
+          "subject": "guild-caravan",
+          "summary": "We formed a theory about what happened to the caravan."
+        },
+        {
+          "stage": "contradiction-found",
+          "kind": "contradiction-found",
+          "subject": "guild-caravan",
+          "summary": "We found that the accounts of the caravan disagree."
+        },
+        {
+          "stage": "symbol-recognized",
+          "kind": "told-by",
+          "informant": "orin-stonebeard",
+          "subject": "strange-symbol",
+          "summary": "Orin told us what he knows of the strange symbol."
+        },
+        {
+          "stage": "ambush-survived",
+          "kind": "survived-fight-at",
+          "locationId": "old-trade-road",
+          "summary": "We survived an ambush on the Old Trade Road."
+        },
+        {
+          "stage": "returned",
+          "kind": "returned-to",
+          "locationId": "ravenford",
+          "after": "ambush-survived",
+          "summary": "We returned to Ravenford."
+        }
+      ]
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import {
   ConfigError,
   DEFAULT_AI_MODEL,
   DEFAULT_PERSONAS_FILE,
+  DEFAULT_QUESTS_FILE,
   DEV_DATABASE_URL,
   describeDatabaseUrl,
   loadConfig,
@@ -22,8 +23,11 @@ describe('loadConfig', () => {
       databaseUrl: DEV_DATABASE_URL,
       auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
       ai: { anthropic: null, relevanceBudgetMs: 2_000 },
+      questsFile: DEFAULT_QUESTS_FILE,
       assets: { workerIntervalMs: 5_000, generationTimeoutMs: 60_000 },
     });
+    expect(DEFAULT_QUESTS_FILE).toMatch(/fixtures\/ravenford\/quests\.json$/);
+    expect(loadConfig({ LTW_QUESTS_FILE: '/tmp/quests.json' }).questsFile).toBe('/tmp/quests.json');
     expect(DEFAULT_PERSONAS_FILE).toMatch(/fixtures\/ravenford\/personas\.json$/);
     expect(Object.isFrozen(config)).toBe(true);
     expect(Object.isFrozen(config.http)).toBe(true);

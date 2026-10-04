@@ -131,6 +131,10 @@ Anything else is a 404, identical to a nonexistent memory.
 - **Hedging is checked lexically.** A provider could hedge in words while still implying a fact; the structured entries remain the authority, and the template never does.
 - **Live quality.** The prose has not been run against the live API.
 
+## Amendments
+
+- 2026-10-04 (Stage 180, ADR 0025 §4): **an arrival is suggested where the member stood once that instant was over.** The Ravenford integration found arrivals placed at a place the party left again within the same world time, which the memory presence check (ADR 0010) rightly refused. None is suggested for a region only passed through.
+
 ## Invariants affected
 
 Implements:

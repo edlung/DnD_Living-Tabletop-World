@@ -185,3 +185,4 @@ export { HEDGED_TYPES, type StoredEntry as ChronicleEntry } from './chronicle/re
 export { chronicleChapters } from './chronicle/views.ts';
 export { memorySuggestions, type SuggestionScope } from './chronicle/suggestions.ts';
 export { flashbackFor } from './chronicle/flashback.ts';
+export { questFor, questLog } from './quest/projection.ts';

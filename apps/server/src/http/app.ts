@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
 import type { RelevanceDeps } from '@ltw/ai';
+import type { QuestDefinition } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } from 'fastify';
 
@@ -19,6 +20,7 @@ import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
 import { registerNpcRoutes } from './routes/npc-routes.ts';
+import { registerQuestRoutes } from './routes/quest-routes.ts';
 import { registerVisualRoutes } from './routes/visual-routes.ts';
 
 /**
@@ -36,6 +38,8 @@ export interface AppDependencies {
   readonly authoring: AuthoringDependencies;
   /** Generated asset contents (docs/adr/0022-asset-identity.md); the worker runs outside requests. */
   readonly assets: { readonly contents: AssetContentStore };
+  /** Quest definitions (docs/adr/0025-ravenford-integration.md §2); the log is a projection. */
+  readonly quests: readonly QuestDefinition[];
 }
 
 export function buildApp(deps: AppDependencies): FastifyInstance {
@@ -79,5 +83,6 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerAssetRoutes(app, deps);
   registerVisualRoutes(app, deps);
   registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
+  registerQuestRoutes(app, deps);
   return app;
 }

@@ -39,6 +39,8 @@ export interface AppConfig {
     /** How long a context request waits for the relevance ranker (docs/adr/0021-ai-relevance.md). */
     readonly relevanceBudgetMs: number;
   };
+  /** Quest definitions (docs/adr/0025-ravenford-integration.md §2). */
+  readonly questsFile: string;
   /** The asset worker (docs/adr/0022-asset-identity.md §4); the local placeholder generator only. */
   readonly assets: {
     /** Pause between worker runs; 0 disables the worker. */
@@ -88,6 +90,11 @@ export const DEFAULT_PERSONAS_FILE = fileURLToPath(
   new URL('../../../../../fixtures/ravenford/personas.json', import.meta.url),
 );
 
+/** Ravenford's quest definitions (ADR 0025 §2); resolved from both `src/` and `dist/`. */
+export const DEFAULT_QUESTS_FILE = fileURLToPath(
+  new URL('../../../../../fixtures/ravenford/quests.json', import.meta.url),
+);
+
 const DEFAULT_LOG_LEVEL: Record<NodeEnv, LogLevel> = {
   development: 'debug',
   test: 'silent',
@@ -112,6 +119,7 @@ const envSchema = z.object({
   DATABASE_URL: z.preprocess(emptyAsUndefined, z.url({ protocol: /^postgres(ql)?$/ }).optional()),
   AUTH_MODE: z.preprocess(emptyAsUndefined, z.enum(['dev-personas', 'disabled']).optional()),
   DEV_PERSONAS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
+  LTW_QUESTS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
   ANTHROPIC_API_KEY: z.preprocess(emptyAsUndefined, z.string().trim().min(1).optional()),
   LTW_AI_MODEL: z.preprocess(
     emptyAsUndefined,
@@ -210,6 +218,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
             }),
       relevanceBudgetMs: values.LTW_AI_RELEVANCE_BUDGET_MS,
     }),
+    questsFile: values.LTW_QUESTS_FILE ?? DEFAULT_QUESTS_FILE,
     assets: Object.freeze({
       workerIntervalMs: values.LTW_ASSET_WORKER_INTERVAL_MS,
       generationTimeoutMs: values.LTW_ASSET_TIMEOUT_MS,

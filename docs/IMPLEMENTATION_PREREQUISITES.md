@@ -73,4 +73,4 @@ Which existing future work order owns the Missing Caravan quest projection and i
 
 Which of Stages 200–230 owns the return/Day 2, Chronicle/minimal flashback, DM time advancement, and DM performance-of-Tomas UI required by Stage 240?
 
-These assignments remain unresolved; this entry authorizes no additional feature or stage. It allocates no work to Stage 90 and changes no gate status. Backend ownership needs to be settled before the affected implementation and coverage in Stage 180; UX ownership needs to be settled when planning Stages 200–230, with the flows ready by the end of Stage 230.
+These assignments remain unresolved; this entry authorizes no additional feature or stage. It allocates no work to Stage 90 and changes no gate status. Backend ownership needs to be settled before the affected implementation and coverage in Stage 180; UX ownership needs to be settled when planning Stages 200–230, with the flows ready by the end of Stage 230. The quest projection was allocated to Stage 180 by the owner on 2026-10-04 and is recorded in ADR 0025 §2; the UX allocation remains open.

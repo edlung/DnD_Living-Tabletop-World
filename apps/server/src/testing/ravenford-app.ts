@@ -15,11 +15,13 @@ import {
   type EntropySource,
   type EventStore,
 } from '@ltw/domain';
+import { questBookSchema } from '@ltw/contracts';
 import { scriptedDice, skillCheckPort, type Dice } from '@ltw/rules';
 import type { FastifyInstance, LightMyRequestResponse } from 'fastify';
 
 import boundary from '../../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import npcBoundary from '../../../../fixtures/ravenford/npc-boundary.json' with { type: 'json' };
+import questBook from '../../../../fixtures/ravenford/quests.json' with { type: 'json' };
 import { InMemoryAssetContentStore, type AssetContentStore } from '../assets/content-store.ts';
 import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
@@ -121,6 +123,9 @@ export function testAuthoring(): AuthoringDependencies & {
   };
 }
 
+/** Ravenford's quest definitions (`fixtures/ravenford/quests.json`), validated. */
+export const RAVENFORD_QUESTS = questBookSchema.parse(questBook).quests;
+
 /** In-memory asset contents for an app under test. */
 export const testAssets = () => ({ contents: new InMemoryAssetContentStore() });
 
@@ -134,6 +139,7 @@ export async function ravenfordApp(
     ai,
     authoring,
     assets: { contents },
+    quests: RAVENFORD_QUESTS,
     engine: engine ?? (await seededEngine()),
     authenticator: await loadDevPersonaAuthenticator(DEFAULT_PERSONAS_FILE),
     logger: createLogger({ service: 'http-test', level: 'silent' }),
