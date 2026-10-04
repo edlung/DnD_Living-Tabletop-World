@@ -136,5 +136,6 @@ export type { DecisionContext, Decision, Resolution } from './kernel/decision.ts
 export { accept, reject } from './kernel/decision.ts';
 export type { KernelEvent as DraftEvent } from './kernel/events.ts';
 export { premisesEvent } from './investigation/acting.ts';
+export type { Premise } from './investigation/events.ts';
 export { redecideEffective, type Divergence } from './kernel/verification/redecide.ts';
-export { magicDiscoveryEvents } from './investigation/reveal.ts';
+export { magicDiscoveryEvents, magicSensingPremises } from './investigation/reveal.ts';

@@ -28,6 +28,7 @@ export const MODIFIERS: Partial<Record<Skill, number>> = { investigation: 8, per
 
 export interface InvestigationWorld {
   readonly engine: WorldEngine;
+  readonly store: InMemoryEventStore;
   /** Queues d20 results for the next checks. */
   readonly roll: (...d20s: number[]) => void;
   readonly submit: (command: Record<string, unknown>, actor?: Actor) => Promise<CommandResult>;
@@ -44,8 +45,9 @@ export async function investigationWorld(): Promise<InvestigationWorld> {
     },
     skillModifier: (_sheet, skill) => MODIFIERS[skill] ?? 0,
   };
+  const store = new InMemoryEventStore();
   const engine = new WorldEngine({
-    store: new InMemoryEventStore(),
+    store,
     ids: new SequentialIds(),
     clock: new SteppingClock(),
     checks,
@@ -72,6 +74,7 @@ export async function investigationWorld(): Promise<InvestigationWorld> {
   let counter = 0;
   return {
     engine,
+    store,
     roll: (...d20s) => queue.push(...d20s),
     submit: (command, actor = PLAYER) => {
       counter += 1;

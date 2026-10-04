@@ -3,6 +3,7 @@ import {
   reject,
   type Decision,
   type DraftEvent,
+  type Premise,
   type WorldState,
 } from '@ltw/domain';
 
@@ -33,11 +34,24 @@ export function refused(refusal: Refusal): Decision & { ok: false } {
 }
 
 /**
- * What a combat action relied on beyond the encounter (which every combat
- * event reads): a character's own sheet. The controlling-player premise is
- * added centrally by the World Engine (Gate 02, G02-H03).
+ * What a combat decision relied on beyond the encounter (which every combat
+ * event reads): a character's own sheet, and every combatant's status, sheet,
+ * and stat block. Any of them can decide a result (an Armor Class turning a
+ * hit into a miss, who is alive for turn order or occupancy), and a result
+ * that changed nothing must still block undo of what it read (Gate 03,
+ * G03-H02). The controlling-player premise is added centrally by the World
+ * Engine (Gate 02, G02-H03).
  */
-export function combatPremises(state: WorldState, combatantId: string): DraftEvent {
+export function combatPremiseList(state: WorldState, combatantId: string): Premise[] {
   const character = state.entities.get(combatantId)?.kind === 'character';
-  return premisesEvent(combatantId, character ? [{ kind: 'sheet' }] : []);
+  return [
+    ...(character ? [{ kind: 'sheet' } as const] : []),
+    ...(state.encounter?.combatants ?? []).map(({ entityId }): Premise => ({
+      kind: 'vitals',
+      entityId,
+    })),
+  ];
 }
+
+export const combatPremises = (state: WorldState, combatantId: string): DraftEvent =>
+  premisesEvent(combatantId, combatPremiseList(state, combatantId));

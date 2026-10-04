@@ -78,6 +78,8 @@ export const SPELLS: Readonly<Record<SpellId, SpellDefinition>> = {
 
 export const MISTY_STEP_DISTANCE_FT = 30;
 export const FIREBALL_RADIUS_FT = 20;
+/** Detect Magic senses magic within 30 ft (ADR 0011). */
+export const DETECT_MAGIC_RADIUS_FT = 30;
 
 export interface WeaponDefinition {
   readonly weaponId: WeaponId;

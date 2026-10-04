@@ -93,7 +93,11 @@ export function applyPremisesRecorded(
   const exists = premises.every((premise) => {
     switch (premise.kind) {
       case 'perceived':
+      case 'vitals':
+      case 'placement':
         return state.entities.has(premise.entityId);
+      case 'revealed':
+        return state.investigation.clues.has(premise.clueId);
       case 'party-member':
         return state.roster.has(premise.characterId);
       case 'knowledge':

@@ -290,8 +290,9 @@ export function footprintOf(event: KernelEvent): Footprint {
       // Combat is strictly sequential: undo unwinds it in reverse order (ADR 0015).
       return { reads: [clock, facts.encounter()], writes: [facts.encounter()] };
     case 'StatBlockSet':
+      // Authoring is refused for a combatant, so it relied on the encounter as it was (Gate 03).
       return {
-        reads: [clock, facts.entity(event.payload.entityId)],
+        reads: [clock, facts.encounter(), facts.entity(event.payload.entityId)],
         writes: [facts.statBlock(event.payload.entityId)],
       };
     case 'AttackPerformed':
@@ -364,6 +365,18 @@ function premiseFacts(characterId: string, premise: Premise): FactKey[] {
       return party;
     case 'controller':
       return [...party, facts.rosterPlayer(premise.playerActorId)];
+    case 'vitals':
+      // Everything a combat decision may read about a creature (Gate 03, G03-H02).
+      return [
+        ...entityChecked(premise.entityId),
+        facts.sheet(premise.entityId),
+        facts.statBlock(premise.entityId),
+      ];
+    case 'revealed':
+      // Negative premises: passed over because found before, or out of reach (Gate 03).
+      return [facts.clue(premise.clueId), facts.revealed(scopedKey(premise.scope, premise.clueId))];
+    case 'placement':
+      return [facts.entity(premise.entityId), facts.entityPlacement(premise.entityId)];
   }
 }
 

@@ -130,6 +130,12 @@ The fixture also defines an Old Trade Road battlefield (wagons give half cover, 
   - **Leaving the battlefield.** A combatant cannot change location while the encounter runs: `EnterLocation` and `PlaceEntity` are rejected (`COMBAT_ALREADY_ACTIVE`), and every placement depends on the encounter for undo.
   - **No probing.** A character outside the encounter gets the same `NOT_IN_COMBAT` answer as when no encounter runs, so it cannot detect a fight.
   - **Encounter view** gains `reactionWindow`.
+- 2026-10-04 (Gate 03 remediation, G03-H02, G03-H03):
+  - **Detect Magic in combat** senses only combatants within 30 ft of the caster, immediately or when a reaction window lets it through. By owner decision, entities without a battlefield square are not sensed during combat; after combat ends, Detect Magic senses the room again.
+  - **Premises:**
+    - Combat decisions record every combatant's status, sheet, and stat block (ADR 0016 amendment).
+    - A spell outside combat records its target's.
+    - Authoring a stat block depends on the encounter, because it is refused for combatants.
 
 ## Invariants affected
 

@@ -34,6 +34,7 @@ export {
   type DamageRoll,
 } from './d20.ts';
 export {
+  DETECT_MAGIC_RADIUS_FT,
   FIREBALL_RADIUS_FT,
   MISTY_STEP_DISTANCE_FT,
   SPELLS,

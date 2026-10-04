@@ -19,5 +19,6 @@ export {
   counterspellPlan,
   type CounterspellPlan,
 } from './reactions/eligibility.ts';
+export { reactionWindowViolations } from './reactions/invariants.ts';
 export { hitPoints, vitalsOf, type Vitals } from './vitals.ts';
 export { encounterView } from './view.ts';

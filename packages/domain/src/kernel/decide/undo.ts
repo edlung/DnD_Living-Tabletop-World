@@ -10,6 +10,7 @@ import {
 import type { RecordedEvent, Restore } from '../events.ts';
 import { replay } from '../evolve.ts';
 import { footprintOf, restoredFacts, type FactKey } from '../facts.ts';
+import { reopeningBlockers } from '../../combat/reaction-undo.ts';
 import { pairKey } from '../../contradiction/records.ts';
 import { attemptKey, scopedKey } from '../../investigation/records.ts';
 import { scopeKey } from '../../knowledge/records.ts';
@@ -51,7 +52,11 @@ export function decideUndo(
     (event) => event.sequence >= target.firstSequence && event.sequence <= target.lastSequence,
   );
   const written = new Set(targetEvents.flatMap((event) => footprintOf(event).writes));
-  const blockers = findBlockers(state, history, target.lastSequence, written);
+  const blockers = withoutDuplicates([
+    ...findBlockers(state, history, target.lastSequence, written),
+    // Reopening a reaction window must keep every later command legal (ADR 0016 §3).
+    ...reopeningBlockers(state, history, targetEvents),
+  ]);
   if (blockers.length > 0) {
     return reject(
       'UNDO_UNSAFE',
@@ -75,6 +80,10 @@ export function decideUndo(
     },
   });
 }
+
+const withoutDuplicates = (blockers: readonly UndoBlocker[]): UndoBlocker[] => [
+  ...new Map(blockers.map((blocker) => [blocker.commandId, blocker])).values(),
+];
 
 /**
  * Later events that depend on the written facts. Events of commands that

@@ -129,6 +129,13 @@ Positions are the only location of a combatant while an encounter runs, and elig
   - The pause applies only to combatants and to DM-only combat commands.
 - **Counterspell comes first.** In the Context Engine, the `counterspell` action is listed first among a creature's actions, because the encounter waits for it.
 
+## Amendments
+
+- 2026-10-04 (Gate 03 remediation, G03-H01, G03-H02):
+  - **Reopening by undo.** Undoing the command that closed a window puts the window back, open, before every later command. Such an undo is therefore rejected (`UNDO_UNSAFE`, with blockers) while any later, still-effective command changed something the window depends on: the facts its opening read. Undoing those commands first makes the reopening safe. Unrelated later commands do not block it.
+  - **Everything a combat decision read.** Every combat decision records each combatant's status, sheet, and stat block as premises. This includes results that changed nothing, such as a miss or a turn passing over the dead. Combat therefore unwinds strictly in reverse order, DM edits of combatants included.
+  - **An open window stays legal.** The tests check after every step that an open window's suspended spell can still resolve and that every pending candidate can still react.
+
 ## Consequences
 
 - The mandatory Ravenford case runs end to end: the Shaman's Ashen Bolt or Binding Hex opens a window, and Elowen counters it or ignores it.

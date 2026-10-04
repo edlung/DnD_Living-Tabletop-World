@@ -5,12 +5,18 @@ import {
   type Dice,
   type DraftEvent,
   type ReactionWindowRecord,
+  type WorldState,
 } from '@ltw/domain';
 
-import { isSliceSpell } from '../legality.ts';
+import { isSliceSpell, type Refusal } from '../legality.ts';
 import { monsterSpellEvents } from '../monster-spells.ts';
 import { combatPremises } from '../refusal.ts';
-import { characterSpellPlan, monsterSpellPlan } from '../spell-legality.ts';
+import {
+  characterSpellPlan,
+  monsterSpellPlan,
+  type CharacterSpellPlan,
+  type MonsterSpellPlan,
+} from '../spell-legality.ts';
 import { castEvents } from '../spells.ts';
 
 /**
@@ -18,24 +24,22 @@ import { castEvents } from '../spells.ts';
  * §1). It is decided again against the state after the window's answers
  * (for example the reactor's spent slot), with the economy it already spent
  * refunded for the check, and with the closing command's dice and IDs. The
- * pause rule keeps everything it depends on unchanged, so it is still legal;
- * if it were not, the command fails instead of recording a partial result.
+ * pause rule and the reopening rule keep everything it depends on unchanged,
+ * so it is still legal (`reactionWindowViolations` checks exactly that); if it
+ * were not, the command fails instead of recording a partial result.
  */
-export function completeSuspended(
-  context: DecisionContext,
-  commandType: KernelCommandType,
-  prior: readonly DraftEvent[],
-  window: ReactionWindowRecord,
-  dice: Dice,
-  ids: readonly string[],
-): DraftEvent[] {
-  const state = foldDrafts(context, commandType, prior);
-  const { trigger } = window;
-  const illegal = (reason: string) =>
-    new Error(`suspended ${trigger.spellId} became illegal (${reason})`);
+export type Replanned =
+  | { readonly kind: 'character'; readonly plan: CharacterSpellPlan }
+  | { readonly kind: 'creature'; readonly plan: MonsterSpellPlan };
 
+/** The suspended cast, planned again on `state` as if its economy were not spent yet. */
+export function replanSuspended(
+  state: WorldState,
+  window: ReactionWindowRecord,
+): Replanned | Refusal {
+  const { trigger } = window;
   if (state.entities.get(trigger.casterId)?.kind === 'character') {
-    if (!isSliceSpell(trigger.spellId)) throw illegal('NOT_KNOWN');
+    if (!isSliceSpell(trigger.spellId)) return { legal: false, reason: 'NOT_KNOWN' };
     const plan = characterSpellPlan(
       state,
       trigger.casterId,
@@ -47,22 +51,38 @@ export function completeSuspended(
       },
       trigger.economy,
     );
-    if (!plan.legal) throw illegal(plan.reason);
-    return castEvents(state, trigger.casterId, plan, dice, ids);
+    return plan.legal ? { kind: 'character', plan } : plan;
   }
-  const encounter = state.encounter;
-  if (!encounter) throw illegal('NOT_IN_COMBAT');
+  if (!state.encounter) return { legal: false, reason: 'NOT_IN_COMBAT' };
   const plan = monsterSpellPlan(
     state,
-    encounter,
+    state.encounter,
     trigger.casterId,
     trigger.spellId,
     trigger.targetId ?? undefined,
     trigger.economy,
   );
-  if (!plan.legal) throw illegal(plan.reason);
-  return [
-    combatPremises(state, trigger.casterId),
-    ...monsterSpellEvents(state, trigger.casterId, plan, dice),
-  ];
+  return plan.legal ? { kind: 'creature', plan } : plan;
+}
+
+export function completeSuspended(
+  context: DecisionContext,
+  commandType: KernelCommandType,
+  prior: readonly DraftEvent[],
+  window: ReactionWindowRecord,
+  dice: Dice,
+  ids: readonly string[],
+): DraftEvent[] {
+  const state = foldDrafts(context, commandType, prior);
+  const casterId = window.trigger.casterId;
+  const replanned = replanSuspended(state, window);
+  if ('legal' in replanned) {
+    throw new Error(`suspended ${window.trigger.spellId} became illegal (${replanned.reason})`);
+  }
+  return replanned.kind === 'character'
+    ? castEvents(state, casterId, replanned.plan, dice, ids)
+    : [
+        combatPremises(state, casterId),
+        ...monsterSpellEvents(state, casterId, replanned.plan, dice),
+      ];
 }

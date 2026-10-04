@@ -91,6 +91,10 @@ Each event declares the facts it read and wrote. Later domains add their facts t
 
   Rewind is a sequence of checked undos or an as-of read; it is never a separate operation.
 
+- 2026-10-04 (Gate 03 remediation):
+  - **Reopening a window.** Undoing the command that closed a reaction window is also rejected while a later, still-effective command changed what the window depends on.
+  - **Results that changed nothing** still record what they read: combat decisions read every combatant, and examinations read the clues they passed over and where the things they could not reach were. Their premises therefore block unsafe undo like any other read.
+
 ## Invariants affected
 
 Implements 1, 11, 12, and 13 for the kernel and preserves 3 (only the DM authors and undoes). No invariant is weakened.

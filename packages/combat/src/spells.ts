@@ -1,6 +1,8 @@
 import {
   accept,
+  combatantOf,
   magicDiscoveryEvents,
+  magicSensingPremises,
   premisesEvent,
   reject,
   type CombatCommand,
@@ -8,16 +10,24 @@ import {
   type DecisionContext,
   type Dice,
   type DraftEvent,
+  type Premise,
   type WorldState,
 } from '@ltw/domain';
-import { SPELLS, abilityModifier, rollDamage, rollHealingWord } from '@ltw/rules';
+import {
+  DETECT_MAGIC_RADIUS_FT,
+  SPELLS,
+  abilityModifier,
+  rollDamage,
+  rollHealingWord,
+  squareDistanceFt,
+} from '@ltw/rules';
 
 import { combatantEvent, coverAt, withTurn } from './battlefield.ts';
 import { applyDamage, applyHealing } from './damage.ts';
 import { isSliceSpell } from './legality.ts';
 import { decideMonsterSpell } from './monster-spells.ts';
 import { suspendCast } from './reactions/suspend.ts';
-import { refused } from './refusal.ts';
+import { combatPremiseList, combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { chooseUsing, characterSpellPlan, type CharacterSpellPlan } from './spell-legality.ts';
 import { vitalsEvent, vitalsOf, type Vitals } from './vitals.ts';
@@ -66,7 +76,7 @@ export function decideCastSpell(context: DecisionContext, command: Cast, dice: D
       ids,
     );
     if (suspended) {
-      return accept(premisesEvent(command.combatantId, [{ kind: 'sheet' }]), ...suspended);
+      return accept(combatPremises(state, command.combatantId), ...suspended);
     }
   }
   return accept(...castEvents(state, command.combatantId, plan, dice, ids));
@@ -91,7 +101,9 @@ export function castEvents(
   ]);
   const current = (id: string) => working.get(id) ?? vitalsOf(state, id);
   const effects: DraftEvent[] = [];
-  const premises: Parameters<typeof premisesEvent>[1][number][] = [{ kind: 'sheet' }];
+  // In combat every combatant may matter; outside it, the caster's sheet and the target.
+  const premises: Premise[] = combatPremiseList(state, casterId);
+  if (!encounter && plan.target) premises.push({ kind: 'vitals', entityId: plan.target.entityId });
   let record = plan.record ? withTurn(plan.record, plan.turn) : null;
 
   switch (plan.spellId) {
@@ -150,7 +162,19 @@ export function castEvents(
       break;
     }
     case 'detect-magic': {
-      const discovered = magicDiscoveryEvents(state, casterId, ids);
+      // In combat only combatants within 30 ft; without a battlefield square,
+      // nothing is within a measurable 30 ft (Gate 03, G03-H03; owner decision).
+      const caster = encounter && plan.record ? plan.record : null;
+      const sensed = (entityId: string) => {
+        if (!encounter || !caster) return true;
+        const other = combatantOf(encounter, entityId);
+        return (
+          other !== undefined &&
+          squareDistanceFt(caster.position, other.position) <= DETECT_MAGIC_RADIUS_FT
+        );
+      };
+      const discovered = magicDiscoveryEvents(state, casterId, ids, sensed);
+      premises.push(...magicSensingPremises(state, casterId, sensed));
       for (const event of discovered) {
         if (event.type === 'EvidenceExamined') {
           premises.push({ kind: 'perceived', entityId: event.payload.entityId });

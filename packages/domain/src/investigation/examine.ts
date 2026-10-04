@@ -17,6 +17,7 @@ import {
   premisesEvent,
   target,
 } from './acting.ts';
+import type { Premise } from './events.ts';
 import { attemptKey, scopedKey } from './records.ts';
 import { clueRecordEvents } from './reveal.ts';
 
@@ -50,10 +51,10 @@ export function decideExamineEntity(
   if (!actor.ok) return actor;
   const check = method !== 'inspect' ? method : null;
   if (check && isIncapacitated(actor.value)) return incapacitated();
-  const found = target(state, actor.value, entityId);
-  if (!found.ok) return found;
+  const seen = target(state, actor.value, entityId);
+  if (!seen.ok) return seen;
   if (!actor.value.perceived.has(entityId)) return notPresent();
-  const entity = found.value.entity;
+  const entity = seen.value.entity;
   if (!(check ? CHECKABLE : INSPECTABLE).has(entity.kind)) {
     return reject('NO_EFFECT', 'Nothing to examine that way');
   }
@@ -73,13 +74,18 @@ export function decideExamineEntity(
   }
 
   const { scopeKey, scope } = actor.value;
-  const clues = [...state.investigation.clues.values()].filter(
+  const reachable = [...state.investigation.clues.values()].filter(
     (clue) =>
       clue.entityId === entityId &&
       clue.method === method &&
-      !state.investigation.revealed.has(scopedKey(scopeKey, clue.clueId)) &&
       (clue.dc === null || (roll !== null && roll.total >= clue.dc)),
   );
+  const found = (clueId: string) => state.investigation.revealed.has(scopedKey(scopeKey, clueId));
+  const clues = reachable.filter((clue) => !found(clue.clueId));
+  // Passed over because the scope found them before: the result relies on that (Gate 03).
+  const alreadyFound = reachable
+    .filter((clue) => found(clue.clueId))
+    .map((clue): Premise => ({ kind: 'revealed', scope: scopeKey, clueId: clue.clueId }));
   const revealed = clues.map((clue, index) => {
     const knowledgeId = resolution.ids[index];
     if (knowledgeId === undefined) throw new Error('ExamineEntity ran out of resolved IDs');
@@ -89,8 +95,9 @@ export function decideExamineEntity(
   // Legal because the character sees the target (and, for a check, has a sheet).
   const events: KernelEvent[] = [
     premisesEvent(characterId, [
-      found.value.premise,
+      seen.value.premise,
       ...(check ? [{ kind: 'sheet' } as const] : []),
+      ...alreadyFound,
     ]),
     {
       type: 'EvidenceExamined',

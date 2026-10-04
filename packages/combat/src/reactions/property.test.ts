@@ -1,5 +1,13 @@
 import { REACTION_COMMAND_TYPES, type CommandResult } from '@ltw/contracts';
-import { checkWorldIntegrity, currentCombatant, openReactionWindow, type Actor } from '@ltw/domain';
+import {
+  checkWorldIntegrity,
+  combatantOf,
+  currentCombatant,
+  openReactionWindow,
+  type Actor,
+  type WorldState,
+} from '@ltw/domain';
+import { squareDistanceFt } from '@ltw/rules';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -13,6 +21,7 @@ import {
   withSeren,
 } from '../testing/reactions.ts';
 import {
+  CAMPAIGN,
   DM,
   ELOWEN,
   PLAYER,
@@ -24,14 +33,18 @@ import {
   startAmbush,
   type RoadWorld,
 } from '../testing/road.ts';
+import { forkWorld } from '../testing/fork.ts';
 import { verifyHistory } from '../testing/verify.ts';
+import { reactionWindowViolations } from './invariants.ts';
 
 /**
  * Randomized reaction integrity (docs/adr/0016-reaction-engine.md): casts,
- * answers, closes, illegal commands, and undos of anything, in random order
- * with random dice. After every step the state is consistent, a rejection
- * changed nothing, and nothing but answers, closes, and undos was accepted
- * while a window was open. At the end, replay and re-decision agree.
+ * answers, closes, DM authoring (statuses, sheets, time, magic clues),
+ * illegal commands, and undos of anything, in random order with random dice.
+ * After every step the state is consistent, an open window is still legal,
+ * a rejection changed nothing, and nothing but answers, closes, and undos
+ * changed what an open window depends on. Every ten steps and at the end,
+ * replay and re-decision agree (Gate 03).
  */
 function mulberry32(seed: number): () => number {
   let a = seed >>> 0;
@@ -46,7 +59,12 @@ function mulberry32(seed: number): () => number {
 
 const GOBLINS = [RAIDER_1, RAIDER_2, RAIDER_3, SHAMAN];
 const PLAYERS: Readonly<Record<string, Actor>> = { [ELOWEN]: PLAYER, [SEREN]: SEREN_PLAYER };
-const ANSWERS: ReadonlySet<string> = new Set([...REACTION_COMMAND_TYPES, 'UndoCommand']);
+/** Accepted while a window is open: its answers and close, undo, and authoring it does not depend on. */
+const DURING_WINDOW: ReadonlySet<string> = new Set([
+  ...REACTION_COMMAND_TYPES,
+  'UndoCommand',
+  'AddClue',
+]);
 
 async function randomStep(
   world: RoadWorld,
@@ -110,6 +128,10 @@ async function randomStep(
           type: 'CastSpell',
           run: () => world.submit(cast(current, 'hunters-mark', { targetId: target }), as(current)),
         },
+        {
+          type: 'CastSpell',
+          run: () => world.submit(cast(current, 'detect-magic'), as(current)),
+        },
       );
     } else {
       const target = pick([ELOWEN, SEREN]);
@@ -125,15 +147,94 @@ async function randomStep(
       });
     }
   }
-  // Undo: mostly the latest effective command (reverse order), sometimes any of them.
+  // DM authoring between and during turns (Gate 03): what a window or a result may depend on.
+  const anyone = pick([...GOBLINS, ELOWEN, SEREN]);
+  const pc = pick([ELOWEN, SEREN]);
+  const sheet = state.characterSheets.get(pc);
+  const authoring: typeof options = [];
+  authoring.push(
+    {
+      type: 'ChangeEntityStatus',
+      run: () =>
+        world.dm({
+          type: 'ChangeEntityStatus',
+          entityId: anyone,
+          status: pick(['dead', 'active']),
+        }),
+    },
+    { type: 'AdvanceWorldTime', run: () => world.dm({ type: 'AdvanceWorldTime', by: 60 }) },
+    {
+      type: 'AddClue',
+      run: () =>
+        world.dm({
+          type: 'AddClue',
+          entityId: anyone,
+          method: 'magic',
+          statement: `A faint aura (${String(Math.floor(rng() * 1e6))}).`,
+          subjects: [],
+        }),
+    },
+  );
+  if (sheet) {
+    authoring.push({
+      type: 'SetCharacterSheet',
+      run: () =>
+        world.dm({
+          type: 'SetCharacterSheet',
+          entityId: pc,
+          sheet: {
+            ...sheet,
+            armorClass: 10 + Math.floor(rng() * 21),
+            conditions: pick([[], ['prone'], ['incapacitated']]),
+          },
+        }),
+    });
+  }
+  // Undo: the latest effective command (reverse order); often one just beneath later
+  // commands, where an unsafe undo would strand a dependent (Gate 03); sometimes any.
   const latest = mine[mine.length - 1];
   if (latest !== undefined && rng() < 0.3) {
-    const target = rng() < 0.7 ? latest : pick(mine);
+    const roll = rng();
+    const recent = mine.slice(-4, -1);
+    const target =
+      roll < 0.45 ? latest : roll < 0.85 && recent.length > 0 ? pick(recent) : pick(mine);
     const result = await world.dm({ type: 'UndoCommand', targetCommandId: target });
     return { type: 'UndoCommand', result, undid: target };
   }
-  const chosen = pick(options);
+  const chosen = rng() < 0.2 || options.length === 0 ? pick(authoring) : pick(options);
   return { type: chosen.type, result: await chosen.run() };
+}
+
+/**
+ * A rule, not a determinism check (Gate 03, G03-H03): every magic clue a
+ * combatant senses belongs to a combatant within 30 ft of it.
+ */
+async function expectMagicWithinRange(world: RoadWorld, before: WorldState): Promise<void> {
+  const encounter = before.encounter;
+  if (!encounter) return;
+  const fresh = (await world.store.loadStream(CAMPAIGN, before.version))?.events ?? [];
+  for (const event of fresh) {
+    if (event.type !== 'EvidenceExamined' || event.payload.method !== 'magic') continue;
+    const caster = combatantOf(encounter, event.payload.characterId);
+    if (!caster) continue;
+    const target = combatantOf(encounter, event.payload.entityId);
+    const distance = target ? squareDistanceFt(caster.position, target.position) : Infinity;
+    expect(distance, `sensed ${event.payload.entityId}`).toBeLessThanOrEqual(30);
+  }
+}
+
+/**
+ * Systematic undo (Gate 03, G03-H01/H02): on a copy of the world, try undoing
+ * each of the latest effective commands, including ones beneath later
+ * commands. Whatever undo accepts must leave a history that replays, stays
+ * consistent (an open window still legal), and re-decides identically.
+ */
+async function expectAcceptedUndosSafe(world: RoadWorld, mine: readonly string[]) {
+  for (const target of mine.slice(-4)) {
+    const copy = await forkWorld(world);
+    const undone = await copy.dm({ type: 'UndoCommand', targetCommandId: target });
+    if (undone.status === 'accepted') await verifyHistory(copy);
+  }
 }
 
 describe('randomized reaction integrity', () => {
@@ -142,6 +243,16 @@ describe('randomized reaction integrity', () => {
     const world = await roadWorld({ entropy: { next: () => Math.floor(rng() * 2 ** 32) } });
     await addSeren(world);
     await startAmbush(world, [17, 3, 2, 1, 15, 5], withSeren());
+    // Magic on every goblin, near and far, so Detect Magic's range is always at stake.
+    for (const goblin of GOBLINS) {
+      await world.dm({
+        type: 'AddClue',
+        entityId: goblin,
+        method: 'magic',
+        statement: `${goblin} carries a charm.`,
+        subjects: [],
+      });
+    }
     const mine: string[] = []; // effective commands of this test, oldest first
     let windows = 0;
     for (let step = 0; step < 70; step += 1) {
@@ -154,9 +265,13 @@ describe('randomized reaction integrity', () => {
       } else {
         if (undid !== undefined) mine.splice(mine.indexOf(undid), 1);
         else mine.push(result.commandId);
-        if (paused) expect(ANSWERS.has(type), `${type} accepted during a window`).toBe(true);
+        if (paused) expect(DURING_WINDOW.has(type), `${type} accepted during a window`).toBe(true);
       }
+      await expectMagicWithinRange(world, before);
       expect(checkWorldIntegrity(after), `after ${type} at step ${String(step)}`).toEqual([]);
+      expect(reactionWindowViolations(after), `after ${type} at step ${String(step)}`).toEqual([]);
+      if (step % 10 === 9) await verifyHistory(world);
+      if (step % 5 === 4) await expectAcceptedUndosSafe(world, mine);
       windows = Math.max(windows, after.reactionWindows.size);
     }
     expect(windows).toBeGreaterThan(0);

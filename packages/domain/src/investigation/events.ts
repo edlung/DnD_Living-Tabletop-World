@@ -84,11 +84,26 @@ export const premiseSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('party') }).strict(),
   /** Authorized as the character's controlling player (Gate 02, G02-H03). */
   z.object({ kind: z.literal('controller'), playerActorId: actorIdSchema }).strict(),
+  /**
+   * A creature's status, sheet, and stat block were read: every combatant for a
+   * combat decision, or the target of a spell outside combat (Gate 03, G03-H02).
+   */
+  z.object({ kind: z.literal('vitals'), entityId: entityIdSchema }).strict(),
+  /**
+   * A clue was passed over because the scope had already found it: the result
+   * relied on that discovery (Gate 03 remediation, negative premises).
+   */
+  z.object({ kind: z.literal('revealed'), scope, clueId: clueIdSchema }).strict(),
+  /**
+   * Where an entity was: a sensing result that did not reach it relied on it
+   * being elsewhere (Gate 03 remediation, negative premises).
+   */
+  z.object({ kind: z.literal('placement'), entityId: entityIdSchema }).strict(),
 ]);
 export type Premise = z.infer<typeof premiseSchema>;
 
 export const premisesRecordedPayloadSchema = z
-  .object({ characterId: entityIdSchema, premises: z.array(premiseSchema).max(24) })
+  .object({ characterId: entityIdSchema, premises: z.array(premiseSchema).max(512) })
   .strict();
 
 export const investigationRestoreSchemas = [

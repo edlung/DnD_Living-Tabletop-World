@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
 import type { Actor } from '../kernel/actor.ts';
+import { SequentialIds, SteppingClock } from '../kernel/engine/deterministic-sources.ts';
+import { InMemoryEventStore } from '../kernel/engine/in-memory-event-store.ts';
+import { WorldEngine } from '../kernel/engine/world-engine.ts';
 import type { RecordedEvent } from '../kernel/events.ts';
 import { replay } from '../kernel/evolve.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
@@ -53,6 +56,40 @@ async function oracle(world: InvestigationWorld) {
   return redecideEffective(log, snapshot, (_sheet, skill) => MODIFIERS[skill] ?? 0);
 }
 
+/**
+ * Systematic undo (Gate 03 remediation): on a copy of the world, try undoing
+ * each of the latest accepted commands, including ones beneath later ones.
+ * Whatever undo accepts must leave every effective command re-deciding
+ * identically, including results that found nothing.
+ */
+async function whatIfUndo(world: InvestigationWorld, targets: readonly string[]) {
+  for (const target of targets) {
+    const store = new InMemoryEventStore();
+    const events = (await world.store.loadStream(CAMPAIGN))?.events ?? [];
+    for (const command of await world.store.loadCommands(CAMPAIGN)) {
+      await store.append({
+        campaignId: CAMPAIGN,
+        expectedVersion: command.firstSequence - 1,
+        command,
+        events: events.slice(command.firstSequence - 1, command.lastSequence),
+      });
+    }
+    const copy = new WorldEngine({ store, ids: new SequentialIds(9), clock: new SteppingClock() });
+    const undone = await copy.execute({
+      commandId: `what-if.${target}`,
+      campaignId: CAMPAIGN,
+      actor: DM,
+      command: { type: 'UndoCommand', targetCommandId: target },
+    });
+    if (undone.status !== 'accepted') continue;
+    const snapshot = await copy.load(CAMPAIGN);
+    if (!snapshot) throw new Error('missing campaign');
+    const log = await copy.commandLog(CAMPAIGN);
+    const divergence = redecideEffective(log, snapshot, (_sheet, skill) => MODIFIERS[skill] ?? 0);
+    expect(divergence, `what-if undo of ${target}`).toBeNull();
+  }
+}
+
 describe('player-command dependencies under random undo', () => {
   it.each([1, 2, 3, 4, 5, 6, 7, 8])(
     'seed %i',
@@ -71,6 +108,11 @@ describe('player-command dependencies under random undo', () => {
             existsSince: null,
             location: { type: 'site', parentId: null },
           },
+          DM,
+        );
+        // Something to find, so repeated inspections pass over what was found.
+        await world.submit(
+          { type: 'AddClue', entityId: id, method: 'inspect', statement: `Marks at ${id}.` },
           DM,
         );
       }
@@ -127,15 +169,20 @@ describe('player-command dependencies under random undo', () => {
             characterId: character,
             locationId: pick([...places, 'market-square', 'ravenford', 'north-gate']),
           };
-        } else if (roll < 0.56) {
+        } else if (roll < 0.6) {
           by = actor;
+          // Mostly where the character stands, so inspections repeat and pass over finds.
+          const here = (await world.state()).entities.get(character)?.placement?.locationId;
           command = {
             type: 'ExamineEntity',
             characterId: character,
-            entityId: pick([...places, 'market-square', 'north-gate']),
+            entityId:
+              here !== undefined && rng() < 0.7
+                ? here
+                : pick([...places, 'market-square', 'north-gate']),
             method: 'inspect',
           };
-        } else if (roll < 0.66) {
+        } else if (roll < 0.68) {
           by = actor;
           command = {
             type: 'FormHypothesis',
@@ -166,6 +213,7 @@ describe('player-command dependencies under random undo', () => {
         }
         const snapshot = await world.engine.load(CAMPAIGN);
         expect(brokenPremises(after, snapshot?.history ?? []), `step ${String(step)}`).toEqual([]);
+        if (step % 7 === 6) await whatIfUndo(world, accepted.slice(-4));
       }
 
       const snapshot = await world.engine.load(CAMPAIGN);
