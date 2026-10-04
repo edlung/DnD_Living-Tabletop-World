@@ -1,0 +1,2148 @@
+{
+  "reviewedCode": "a85b6f87f1dbd5ed8287e294acc6d18b191e5904",
+  "head": "ede93739c62cd3dbe48ea0aaf57023bd258b5a07",
+  "histories": [
+    {
+      "fixture": "a488de4-cited-examinations",
+      "writer": "a488de462ff5e4fa6f1513a831f38e63291e3c2a",
+      "originalChapterVersion": 3,
+      "originalReader": {
+        "eventPrefixes": 117,
+        "commands": 99,
+        "exactStates": true,
+        "exactChapterViews": true,
+        "normalization": "None",
+        "chapters": [
+          {
+            "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+            "title": "Legacy chapter (DM)",
+            "perspective": "DM",
+            "from": 0,
+            "to": 36000,
+            "generatedAt": 36000,
+            "entries": [
+              {
+                "key": "e1",
+                "occurredAt": 32400,
+                "text": "Mira Vale entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "mira-vale",
+                    "kind": "npc",
+                    "name": "Mira Vale"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000a",
+                    "eventType": "EntityCreated",
+                    "sequence": 10
+                  }
+                ]
+              },
+              {
+                "key": "e2",
+                "occurredAt": 32400,
+                "text": "Orin Stonebeard entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "orin-stonebeard",
+                    "kind": "npc",
+                    "name": "Orin Stonebeard"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000c",
+                    "eventType": "EntityCreated",
+                    "sequence": 12
+                  }
+                ]
+              },
+              {
+                "key": "e3",
+                "occurredAt": 32400,
+                "text": "Captain Thorne entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "captain-thorne",
+                    "kind": "npc",
+                    "name": "Captain Thorne"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000e",
+                    "eventType": "EntityCreated",
+                    "sequence": 14
+                  }
+                ]
+              },
+              {
+                "key": "e4",
+                "occurredAt": 32400,
+                "text": "Elowen Starwhisper went to Market Square.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "market-square",
+                  "kind": "location",
+                  "name": "Market Square"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000011",
+                    "eventType": "EntityPlaced",
+                    "sequence": 17
+                  }
+                ]
+              },
+              {
+                "key": "e5",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper went to Old Trade Road.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "old-trade-road",
+                  "kind": "location",
+                  "name": "Old Trade Road"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000066",
+                    "eventType": "EntityPlaced",
+                    "sequence": 102
+                  }
+                ]
+              },
+              {
+                "key": "e6",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "abandoned-caravan-site",
+                  "kind": "location",
+                  "name": "Abandoned Caravan Site"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000068",
+                    "eventType": "EntityPlaced",
+                    "sequence": 104
+                  }
+                ]
+              },
+              {
+                "key": "e7",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Strange Symbol.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "strange-symbol",
+                    "kind": "feature",
+                    "name": "Strange Symbol"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000073",
+                    "eventType": "EvidenceExamined",
+                    "sequence": 106
+                  }
+                ]
+              },
+              {
+                "key": "e8",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Strange Symbol.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "strange-symbol",
+                    "kind": "feature",
+                    "name": "Strange Symbol"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000080",
+                    "eventType": "EvidenceExamined",
+                    "sequence": 110
+                  }
+                ]
+              },
+              {
+                "key": "e9",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Ordinary Token.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "ordinary-token",
+                    "kind": "item",
+                    "name": "Ordinary Token"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000008d",
+                    "eventType": "EvidenceExamined",
+                    "sequence": 114
+                  }
+                ]
+              },
+              {
+                "key": "e10",
+                "occurredAt": 36000,
+                "text": "A hypothesis was formed: Goblins attacked the caravan.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "KnowledgeAssigned",
+                "location": null,
+                "participants": [],
+                "knowledge": [
+                  {
+                    "knowledgeId": "party-goblin-hypothesis",
+                    "knowledgeType": "HYPOTHESIS",
+                    "statement": "Goblins attacked the caravan."
+                  }
+                ],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned",
+                    "sequence": 53
+                  }
+                ]
+              }
+            ],
+            "prose": {
+              "provider": "local",
+              "model": "local-interpreter-1",
+              "traceId": "00000000-00a1-4000-8000-000000000001",
+              "paragraphs": [
+                {
+                  "text": "Mira Vale entered the story.",
+                  "cites": ["e1"]
+                },
+                {
+                  "text": "Orin Stonebeard entered the story.",
+                  "cites": ["e2"]
+                },
+                {
+                  "text": "Captain Thorne entered the story.",
+                  "cites": ["e3"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "cites": ["e4"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Old Trade Road.",
+                  "cites": ["e5"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                  "cites": ["e6"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Strange Symbol.",
+                  "cites": ["e7"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Strange Symbol.",
+                  "cites": ["e8"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Ordinary Token.",
+                  "cites": ["e9"]
+                },
+                {
+                  "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                  "cites": ["e10"]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "damaged": false,
+      "historicalOrphan": null,
+      "sweep": {
+        "attempts": 98,
+        "accepted": 2,
+        "refused": 96,
+        "all": [
+          {
+            "target": "ravenford.seed.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0009",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0010",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0011",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0012",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0013",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0014",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0009",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0010",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0011",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0012",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0013",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0014",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0015",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0016",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0017",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0018",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0019",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0020",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0021",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0022",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0023",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0024",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0025",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0026",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0027",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0028",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0029",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0030",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0031",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0032",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0033",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0034",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0035",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0036",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0037",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0038",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0039",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0040",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0041",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0009",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0010",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.rules.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0009",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0010",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0011",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0012",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0013",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0014",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.contradiction.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.contradiction.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.contradiction.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-enter-road",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-enter-site",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-first-inspection",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-repeat-inspection",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:dm-ravenford:legacy-create-token",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-token-inspection",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "chronicle.00000000-00a2-4000-8000-000000000001",
+            "status": "accepted",
+            "code": null
+          },
+          {
+            "target": "http:player-elowen:legacy-later-inspection",
+            "status": "accepted",
+            "code": null
+          }
+        ]
+      },
+      "databaseRestarts": [
+        {
+          "before": "2026-10-04 21:24:07.948742+00",
+          "after": "2026-10-04 21:24:08.649326+00",
+          "changed": true
+        },
+        {
+          "before": "2026-10-04 21:24:08.649326+00",
+          "after": "2026-10-04 21:24:09.397841+00",
+          "changed": true
+        }
+      ],
+      "postgres": {
+        "originalViewsEqual": true,
+        "restartStatesAndViewsEqual": true,
+        "blocked": [
+          {
+            "afterRestart": false,
+            "label": "first-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-0-1",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-first-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "http:player-elowen:legacy-repeat-inspection",
+                    "commandType": "ExamineEntity",
+                    "sequence": 109
+                  },
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "afterRestart": false,
+            "label": "token-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-0-2",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-token-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "afterRestart": false,
+            "label": "repeat-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-0-3",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-repeat-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "afterRestart": true,
+            "label": "first-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-0-4",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-first-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "http:player-elowen:legacy-repeat-inspection",
+                    "commandType": "ExamineEntity",
+                    "sequence": 109
+                  },
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "afterRestart": true,
+            "label": "token-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-0-5",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-token-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "afterRestart": true,
+            "label": "repeat-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-0-6",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-repeat-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "atomicity": "State, history, command log, and PostgreSQL event/command row counts unchanged on every refusal",
+        "laterUncitedUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:r2-v3-0-7",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 118,
+              "eventId": "00000000-070b-4000-8000-000000000001",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "recovery": [
+          {
+            "label": "dm-chapter",
+            "response": {
+              "http": 200,
+              "status": "accepted",
+              "commandId": "http:dm-ravenford:r2-v3-0-8",
+              "campaignId": "ravenford",
+              "events": [
+                {
+                  "sequence": 119,
+                  "eventId": "00000000-070b-4000-8000-000000000002",
+                  "type": "CommandUndone"
+                }
+              ]
+            }
+          },
+          {
+            "label": "token-inspection",
+            "response": {
+              "http": 200,
+              "status": "accepted",
+              "commandId": "http:dm-ravenford:r2-v3-0-9",
+              "campaignId": "ravenford",
+              "events": [
+                {
+                  "sequence": 120,
+                  "eventId": "00000000-070b-4000-8000-000000000003",
+                  "type": "CommandUndone"
+                }
+              ]
+            }
+          },
+          {
+            "label": "repeat-inspection",
+            "response": {
+              "http": 200,
+              "status": "accepted",
+              "commandId": "http:dm-ravenford:r2-v3-0-10",
+              "campaignId": "ravenford",
+              "events": [
+                {
+                  "sequence": 121,
+                  "eventId": "00000000-070b-4000-8000-000000000004",
+                  "type": "CommandUndone"
+                }
+              ]
+            }
+          }
+        ],
+        "currentChapterVersion": 4,
+        "currentSourceFactWrites": [],
+        "currentBlocked": [
+          {
+            "http": 422,
+            "status": "rejected",
+            "commandId": "http:dm-ravenford:r2-v3-0-12",
+            "code": "UNDO_UNSAFE",
+            "message": "Later commands depend on what \"http:dm-ravenford:r2-v3-0-11\" changed; undo them first",
+            "details": {
+              "blockers": [
+                {
+                  "commandId": "chronicle.00000000-070c-4000-8000-000000000001",
+                  "commandType": "GenerateChronicle",
+                  "sequence": 124
+                }
+              ]
+            }
+          },
+          {
+            "http": 422,
+            "status": "rejected",
+            "commandId": "http:dm-ravenford:r2-v3-0-13",
+            "code": "UNDO_UNSAFE",
+            "message": "Later commands depend on what \"http:dm-ravenford:r2-v3-0-11\" changed; undo them first",
+            "details": {
+              "blockers": [
+                {
+                  "commandId": "chronicle.00000000-070c-4000-8000-000000000001",
+                  "commandType": "GenerateChronicle",
+                  "sequence": 124
+                }
+              ]
+            }
+          }
+        ],
+        "currentChapterFirstRecovery": true,
+        "finalIntegrity": [],
+        "historicalAuditAfterRecovery": [],
+        "replayAndRedecisionEqual": true
+      },
+      "fixtureSha256": "509722ff2f5f90b670fffa22157e6a94b3172d6d1442176a1cb6e51cf44fd124",
+      "fixtureUnchanged": true
+    },
+    {
+      "fixture": "a488de4-cited-examination-undone",
+      "writer": "a488de462ff5e4fa6f1513a831f38e63291e3c2a",
+      "originalChapterVersion": 3,
+      "originalReader": {
+        "eventPrefixes": 118,
+        "commands": 100,
+        "exactStates": true,
+        "exactChapterViews": true,
+        "normalization": "None",
+        "chapters": [
+          {
+            "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+            "title": "Legacy chapter (DM)",
+            "perspective": "DM",
+            "from": 0,
+            "to": 36000,
+            "generatedAt": 36000,
+            "entries": [
+              {
+                "key": "e1",
+                "occurredAt": 32400,
+                "text": "Mira Vale entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "mira-vale",
+                    "kind": "npc",
+                    "name": "Mira Vale"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000a",
+                    "eventType": "EntityCreated",
+                    "sequence": 10
+                  }
+                ]
+              },
+              {
+                "key": "e2",
+                "occurredAt": 32400,
+                "text": "Orin Stonebeard entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "orin-stonebeard",
+                    "kind": "npc",
+                    "name": "Orin Stonebeard"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000c",
+                    "eventType": "EntityCreated",
+                    "sequence": 12
+                  }
+                ]
+              },
+              {
+                "key": "e3",
+                "occurredAt": 32400,
+                "text": "Captain Thorne entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "captain-thorne",
+                    "kind": "npc",
+                    "name": "Captain Thorne"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000e",
+                    "eventType": "EntityCreated",
+                    "sequence": 14
+                  }
+                ]
+              },
+              {
+                "key": "e4",
+                "occurredAt": 32400,
+                "text": "Elowen Starwhisper went to Market Square.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "market-square",
+                  "kind": "location",
+                  "name": "Market Square"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000011",
+                    "eventType": "EntityPlaced",
+                    "sequence": 17
+                  }
+                ]
+              },
+              {
+                "key": "e5",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper went to Old Trade Road.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "old-trade-road",
+                  "kind": "location",
+                  "name": "Old Trade Road"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000066",
+                    "eventType": "EntityPlaced",
+                    "sequence": 102
+                  }
+                ]
+              },
+              {
+                "key": "e6",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "abandoned-caravan-site",
+                  "kind": "location",
+                  "name": "Abandoned Caravan Site"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000068",
+                    "eventType": "EntityPlaced",
+                    "sequence": 104
+                  }
+                ]
+              },
+              {
+                "key": "e7",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Strange Symbol.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "strange-symbol",
+                    "kind": "feature",
+                    "name": "Strange Symbol"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000073",
+                    "eventType": "EvidenceExamined",
+                    "sequence": 106
+                  }
+                ]
+              },
+              {
+                "key": "e8",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Strange Symbol.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "strange-symbol",
+                    "kind": "feature",
+                    "name": "Strange Symbol"
+                  }
+                ],
+                "knowledge": [],
+                "sources": []
+              },
+              {
+                "key": "e9",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Ordinary Token.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "ordinary-token",
+                    "kind": "item",
+                    "name": "Ordinary Token"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000008d",
+                    "eventType": "EvidenceExamined",
+                    "sequence": 114
+                  }
+                ]
+              },
+              {
+                "key": "e10",
+                "occurredAt": 36000,
+                "text": "A hypothesis was formed: Goblins attacked the caravan.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "KnowledgeAssigned",
+                "location": null,
+                "participants": [],
+                "knowledge": [
+                  {
+                    "knowledgeId": "party-goblin-hypothesis",
+                    "knowledgeType": "HYPOTHESIS",
+                    "statement": "Goblins attacked the caravan."
+                  }
+                ],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned",
+                    "sequence": 53
+                  }
+                ]
+              }
+            ],
+            "prose": {
+              "provider": "local",
+              "model": "local-interpreter-1",
+              "traceId": "00000000-00a1-4000-8000-000000000001",
+              "paragraphs": [
+                {
+                  "text": "Mira Vale entered the story.",
+                  "cites": ["e1"]
+                },
+                {
+                  "text": "Orin Stonebeard entered the story.",
+                  "cites": ["e2"]
+                },
+                {
+                  "text": "Captain Thorne entered the story.",
+                  "cites": ["e3"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "cites": ["e4"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Old Trade Road.",
+                  "cites": ["e5"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Abandoned Caravan Site.",
+                  "cites": ["e6"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Strange Symbol.",
+                  "cites": ["e7"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Strange Symbol.",
+                  "cites": ["e8"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Ordinary Token.",
+                  "cites": ["e9"]
+                },
+                {
+                  "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                  "cites": ["e10"]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "damaged": true,
+      "historicalOrphan": {
+        "entryKey": "e8",
+        "sourceCommand": "http:player-elowen:legacy-repeat-inspection",
+        "chapterId": "chronicle.00000000-00a2-4000-8000-000000000001",
+        "integrity": [
+          "chronicle chronicle.00000000-00a2-4000-8000-000000000001 tells undone command http:player-elowen:legacy-repeat-inspection"
+        ],
+        "earlierWriterAudit": ["http:dm-ravenford:legacy-undo-repeat-inspection"],
+        "viewSources": []
+      },
+      "sweep": {
+        "attempts": 97,
+        "accepted": 2,
+        "refused": 95,
+        "all": [
+          {
+            "target": "ravenford.seed.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0009",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0010",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0011",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0012",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0013",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.seed.0014",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0009",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0010",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0011",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0012",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0013",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0014",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0015",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0016",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0017",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0018",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0019",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0020",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0021",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0022",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0023",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0024",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0025",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0026",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0027",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0028",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0029",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0030",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0031",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0032",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0033",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0034",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0035",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0036",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0037",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0038",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0039",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0040",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.knowledge.0041",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0009",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.memory.0010",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.rules.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0009",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0010",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0011",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0012",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0013",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.investigation.0014",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.contradiction.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.contradiction.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.contradiction.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0001",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0002",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0003",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0004",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0005",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0006",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0007",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "ravenford.combat.0008",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-enter-road",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-enter-site",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-first-inspection",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:dm-ravenford:legacy-create-token",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "http:player-elowen:legacy-token-inspection",
+            "status": "rejected",
+            "code": "UNDO_UNSAFE"
+          },
+          {
+            "target": "chronicle.00000000-00a2-4000-8000-000000000001",
+            "status": "accepted",
+            "code": null
+          },
+          {
+            "target": "http:player-elowen:legacy-later-inspection",
+            "status": "accepted",
+            "code": null
+          }
+        ]
+      },
+      "databaseRestarts": [
+        {
+          "before": "2026-10-04 21:24:11.282109+00",
+          "after": "2026-10-04 21:24:11.903186+00",
+          "changed": true
+        },
+        {
+          "before": "2026-10-04 21:24:11.903186+00",
+          "after": "2026-10-04 21:24:12.559288+00",
+          "changed": true
+        }
+      ],
+      "postgres": {
+        "originalViewsEqual": true,
+        "restartStatesAndViewsEqual": true,
+        "blocked": [
+          {
+            "afterRestart": false,
+            "label": "first-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-1-1",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-first-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "afterRestart": false,
+            "label": "token-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-1-2",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-token-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "afterRestart": true,
+            "label": "first-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-1-3",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-first-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "afterRestart": true,
+            "label": "token-inspection",
+            "response": {
+              "http": 422,
+              "status": "rejected",
+              "commandId": "http:dm-ravenford:r2-v3-1-4",
+              "code": "UNDO_UNSAFE",
+              "message": "Later commands depend on what \"http:player-elowen:legacy-token-inspection\" changed; undo them first",
+              "details": {
+                "blockers": [
+                  {
+                    "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                    "commandType": "GenerateChronicle",
+                    "sequence": 115
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "atomicity": "State, history, command log, and PostgreSQL event/command row counts unchanged on every refusal",
+        "laterUncitedUndo": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:r2-v3-1-5",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 119,
+              "eventId": "00000000-076f-4000-8000-000000000001",
+              "type": "CommandUndone"
+            }
+          ]
+        },
+        "recovery": [
+          {
+            "label": "dm-chapter",
+            "response": {
+              "http": 200,
+              "status": "accepted",
+              "commandId": "http:dm-ravenford:r2-v3-1-6",
+              "campaignId": "ravenford",
+              "events": [
+                {
+                  "sequence": 120,
+                  "eventId": "00000000-076f-4000-8000-000000000002",
+                  "type": "CommandUndone"
+                }
+              ]
+            }
+          },
+          {
+            "label": "token-inspection",
+            "response": {
+              "http": 200,
+              "status": "accepted",
+              "commandId": "http:dm-ravenford:r2-v3-1-7",
+              "campaignId": "ravenford",
+              "events": [
+                {
+                  "sequence": 121,
+                  "eventId": "00000000-076f-4000-8000-000000000003",
+                  "type": "CommandUndone"
+                }
+              ]
+            }
+          }
+        ],
+        "currentChapterVersion": 4,
+        "currentSourceFactWrites": [],
+        "currentBlocked": [
+          {
+            "http": 422,
+            "status": "rejected",
+            "commandId": "http:dm-ravenford:r2-v3-1-9",
+            "code": "UNDO_UNSAFE",
+            "message": "Later commands depend on what \"http:dm-ravenford:r2-v3-1-8\" changed; undo them first",
+            "details": {
+              "blockers": [
+                {
+                  "commandId": "chronicle.00000000-0770-4000-8000-000000000001",
+                  "commandType": "GenerateChronicle",
+                  "sequence": 124
+                }
+              ]
+            }
+          },
+          {
+            "http": 422,
+            "status": "rejected",
+            "commandId": "http:dm-ravenford:r2-v3-1-10",
+            "code": "UNDO_UNSAFE",
+            "message": "Later commands depend on what \"http:dm-ravenford:r2-v3-1-8\" changed; undo them first",
+            "details": {
+              "blockers": [
+                {
+                  "commandId": "chronicle.00000000-0770-4000-8000-000000000001",
+                  "commandType": "GenerateChronicle",
+                  "sequence": 124
+                }
+              ]
+            }
+          }
+        ],
+        "currentChapterFirstRecovery": true,
+        "finalIntegrity": [],
+        "historicalAuditAfterRecovery": ["http:dm-ravenford:legacy-undo-repeat-inspection"],
+        "replayAndRedecisionEqual": true
+      },
+      "fixtureSha256": "e7f95b7ff1629de0291d4637a1333fd9a10a6f525620d015ffe13c617d3fc0fc",
+      "fixtureUnchanged": true
+    }
+  ],
+  "summary": {
+    "exactOriginalReaderEventPrefixes": 235,
+    "independentUndoAttempts": 195,
+    "independentUndoRefusals": 191,
+    "independentUndoAcceptances": 4,
+    "actualDatabaseRestarts": 4,
+    "allAssertionsPassed": true
+  }
+}

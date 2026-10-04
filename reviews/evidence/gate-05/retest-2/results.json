@@ -1,0 +1,203 @@
+{
+  "review": "ASTRA_GATE_05_RETEST_2",
+  "date": "2026-10-04",
+  "overallResult": "PASS",
+  "testedHead": "ede93739c62cd3dbe48ea0aaf57023bd258b5a07",
+  "reviewedCode": "a85b6f87f1dbd5ed8287e294acc6d18b191e5904",
+  "previousReviewCode": "a488de462ff5e4fa6f1513a831f38e63291e3c2a",
+  "findingDisposition": {
+    "G05-H01": "REMAINS CLOSED",
+    "G05-M01": "REMAINS CLOSED",
+    "G05-H02": "CLOSED"
+  },
+  "openFindings": {
+    "Critical": 0,
+    "High": 0,
+    "Medium": 0,
+    "Low": 0,
+    "blockers": []
+  },
+  "validation": {
+    "pnpm test": {
+      "result": "PASS",
+      "files": 150,
+      "tests": 1505
+    },
+    "pnpm test:integration": {
+      "result": "PASS",
+      "files": 20,
+      "tests": 77
+    },
+    "pnpm lint": "PASS",
+    "pnpm typecheck": "PASS",
+    "pnpm build": "PASS",
+    "pnpm context-budget": {
+      "result": "PASS",
+      "activeFiles": 473,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "pnpm format:check": "PASS after formatting new review artifacts"
+  },
+  "recipes": [
+    {
+      "recipe": "SOURCE_OCCURRENCE_PROBES.md",
+      "resultFile": "source-occurrence-results.json",
+      "outcome": "PASS",
+      "originalH02Variants": 2,
+      "uncitedControls": 3,
+      "postgresDatabases": 5
+    },
+    {
+      "recipe": "ADJACENT_SOURCE_PROBES.md",
+      "resultFile": "adjacent-source-results.json",
+      "outcome": "PASS",
+      "otherSalienceFamilies": 10,
+      "resolvedSourceCommandChecks": 17,
+      "nonDmPerspectives": 4,
+      "selectionOccurrences": 43,
+      "kept": 40,
+      "discarded": 3,
+      "postgresDatabases": 1
+    },
+    {
+      "recipe": "SOURCE_RACE_PROBES.md",
+      "resultFile": "source-race-results.json",
+      "outcome": "PASS",
+      "twoEngineSchedules": 2,
+      "postgresDatabases": 2
+    },
+    {
+      "recipe": "HISTORY_BOUNDARY_PROBES.md",
+      "resultFile": "history-boundary-results.json",
+      "outcome": "PASS",
+      "chronicleCases": 11,
+      "questCases": 8,
+      "membershipCases": 2,
+      "postgresDatabases": 16
+    },
+    {
+      "recipe": "EARLIER_CHAPTERS_PROBES.md",
+      "resultFile": "earlier-chapters-results.json",
+      "outcome": "PASS",
+      "originalReaderCommandPrefixes": 96,
+      "undoAttempts": 95,
+      "accepted": 1,
+      "refused": 94,
+      "postgresDatabases": 1,
+      "actualDatabaseProcessRestarts": 2
+    },
+    {
+      "recipe": "VERSION3_HISTORY_PROBES.md",
+      "resultFile": "version3-history-results.json",
+      "outcome": "PASS",
+      "originalReaderEventPrefixes": 235,
+      "undoAttempts": 195,
+      "accepted": 4,
+      "refused": 191,
+      "postgresDatabases": 2,
+      "actualDatabaseProcessRestarts": 4
+    },
+    {
+      "recipe": "AI_CONSUMER_PROBES.md",
+      "resultFile": "ai-consumer-results.json",
+      "outcome": "PASS",
+      "rankingModes": 7,
+      "chronicleModes": 4,
+      "providerRequests": 17,
+      "postgresDatabases": 1
+    },
+    {
+      "recipe": "ASSET_VISUAL_PROBES.md",
+      "resultFile": "asset-visual-results.json",
+      "outcome": "PASS",
+      "postgresDatabases": 2
+    },
+    {
+      "recipe": "SCENARIO_SWEEP_PROBES.md",
+      "resultFile": "scenario-sweep-results.json",
+      "outcome": "PASS",
+      "commands": 167,
+      "events": 283,
+      "undoAttempts": 164,
+      "accepted": 40,
+      "refused": 124,
+      "divergences": 0,
+      "postgresDatabases": 1
+    },
+    {
+      "recipe": "regressions/NPC_PROBES.md",
+      "resultFile": "regressions/npc-results.json",
+      "outcome": "PASS",
+      "exchanges": 66,
+      "providerRequests": 72,
+      "postgresDatabases": 3
+    },
+    {
+      "recipe": "regressions/AUTHORING_PROBES.md",
+      "resultFile": "regressions/authoring-results.json",
+      "outcome": "PASS",
+      "groups": 18
+    },
+    {
+      "recipe": "regressions/AUTHORING_RACE_PROBES.md",
+      "resultFile": "regressions/authoring-race-results.json",
+      "outcome": "PASS",
+      "races": 64,
+      "retryGroups": 4,
+      "processLossCases": 2,
+      "postgresDatabases": 34
+    },
+    {
+      "recipe": "regressions/SUGGESTION_PROBES.md",
+      "resultFile": "regressions/suggestion-results.json",
+      "outcome": "PASS",
+      "resolutionPaths": 4,
+      "postgresDatabases": 4
+    },
+    {
+      "recipe": "regressions/STATE_PROBES.md",
+      "resultFile": "regressions/state-results.json",
+      "outcome": "PASS",
+      "cases": 44
+    },
+    {
+      "recipe": "regressions/HISTORY_PROBES.md",
+      "resultFile": "regressions/history-results.json",
+      "outcome": "PASS",
+      "originalReaderCommandPrefixes": 103,
+      "undoAttempts": 102,
+      "accepted": 1,
+      "refused": 101,
+      "reverseRecoveryCommands": 12,
+      "postgresDatabases": 1
+    }
+  ],
+  "inheritedRecipeExecution": "regression-replay-execution.json",
+  "historicalDamage": {
+    "fixture": "fixtures/history/a488de4-cited-examination-undone.json",
+    "behavior": "Read exactly as recorded. Current integrity names the orphan entry source; the earlier-writer audit names the old unsafe undo. Chapter-first recovery clears active integrity damage while preserving the historical audit warning.",
+    "limitation": "Earlier-writer re-decision folds stored chapters; use integrity and the historical audit as well as re-decision."
+  },
+  "execution": {
+    "recipesExecuted": 15,
+    "ownedPostgresDatabasesPerCompleteSet": 73,
+    "actualIsolatedDatabaseProcessRestarts": 6,
+    "sourceChanges": false,
+    "existingEvidenceChanged": false,
+    "historicalFixturesChanged": false,
+    "commitsCreated": false,
+    "oldReaderArchivesPerCompleteSet": 3,
+    "isolatedPostgresContainersPerCompleteSet": 3,
+    "scenarioUnsafeArrayIndependentlyCheckedEmpty": true
+  },
+  "limits": [
+    "Authenticated Fastify inject handlers and actual PostgreSQL; no separately listening deployment.",
+    "Source races use two independent engines/apps in one process; authoring races exercise separate Node processes.",
+    "Local/scripted AI providers and placeholder images; no live external provider.",
+    "No root dependency reinstall, full CI wrapper, development database reset, production deployment or source remediation.",
+    "Future UI Stages 200\u2013230, usability Stage 240 and release Stage 250 are not certified.",
+    "Finite schedules and histories; process-recovery checks do not exhaust network partitions or storage failover."
+  ],
+  "next": "Gate 05 is PASS. Await explicit owner authorization for Stage 200 with Claude Opus 5.5 HIGH; this review does not start it."
+}

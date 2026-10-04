@@ -1,0 +1,306 @@
+{
+  "codeRevision": "a85b6f87f1dbd5ed8287e294acc6d18b191e5904",
+  "checkoutRevision": "ede93739c62cd3dbe48ea0aaf57023bd258b5a07",
+  "salience": [
+    {
+      "eventType": "EntityCreated",
+      "commandId": "http:dm-ravenford:adj.002",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "EntityCreated"
+        }
+      ],
+      "entryIndexes": [0],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 1,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "EntityStatusChanged",
+      "commandId": "http:dm-ravenford:adj.002",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "EntityStatusChanged"
+        }
+      ],
+      "entryIndexes": [0],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 1,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "EntityPlaced",
+      "commandId": "http:dm-ravenford:adj.002",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "EntityPlaced"
+        }
+      ],
+      "entryIndexes": [0],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 1,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "WorldTimeAdvanced",
+      "commandId": "http:dm-ravenford:adj.002",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "WorldTimeAdvanced"
+        }
+      ],
+      "entryIndexes": [0],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 1,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "KnowledgeAssigned",
+      "commandId": "http:dm-ravenford:adj.002",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "KnowledgeAssigned"
+        }
+      ],
+      "entryIndexes": [0],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 1,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "InformationShared",
+      "commandId": "http:player-elowen:adj.002",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "PremisesRecorded"
+        },
+        {
+          "index": 1,
+          "type": "KnowledgeAssigned"
+        },
+        {
+          "index": 2,
+          "type": "InformationShared"
+        },
+        {
+          "index": 3,
+          "type": "MemoryRecorded"
+        }
+      ],
+      "entryIndexes": [2],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 1,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "ContradictionDetected",
+      "commandId": "http:player-elowen:adj.004",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "PremisesRecorded"
+        },
+        {
+          "index": 1,
+          "type": "KnowledgeAssigned"
+        },
+        {
+          "index": 2,
+          "type": "InformationShared"
+        },
+        {
+          "index": 3,
+          "type": "ClaimSet"
+        },
+        {
+          "index": 4,
+          "type": "KnowledgeAssigned"
+        },
+        {
+          "index": 5,
+          "type": "InformationShared"
+        },
+        {
+          "index": 6,
+          "type": "MemoryRecorded"
+        },
+        {
+          "index": 7,
+          "type": "KnowledgeAssigned"
+        },
+        {
+          "index": 8,
+          "type": "ContradictionDetected"
+        }
+      ],
+      "entryIndexes": [8],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 3,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "CombatStarted",
+      "commandId": "http:dm-ravenford:adj.007",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "CombatStarted"
+        },
+        {
+          "index": 1,
+          "type": "TurnStarted"
+        }
+      ],
+      "entryIndexes": [0],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 2,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "CombatEnded",
+      "commandId": "http:dm-ravenford:adj.008",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "CombatEnded"
+        }
+      ],
+      "entryIndexes": [0],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 3,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "eventType": "ReactionUsed",
+      "commandId": "http:player-elowen:adj.013",
+      "commandEvents": [
+        {
+          "index": 0,
+          "type": "PremisesRecorded"
+        },
+        {
+          "index": 1,
+          "type": "ReactionUsed"
+        },
+        {
+          "index": 2,
+          "type": "SpellCast"
+        },
+        {
+          "index": 3,
+          "type": "CharacterSheetSet"
+        },
+        {
+          "index": 4,
+          "type": "CombatantUpdated"
+        },
+        {
+          "index": 5,
+          "type": "SavingThrowRolled"
+        },
+        {
+          "index": 6,
+          "type": "ReactionWindowResolved"
+        }
+      ],
+      "entryIndexes": [1],
+      "everyResolvedSourceCommandProtected": true,
+      "protectedSourceCommands": 3,
+      "blockerIncludesChapter": true,
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    }
+  ],
+  "perspectives": [
+    {
+      "perspective": "PUBLIC",
+      "sources": ["MemoryRecorded", "KnowledgeAssigned"],
+      "playerReadLabel": "PUBLIC",
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "perspective": "PARTY",
+      "sources": ["MemoryRecorded", "KnowledgeAssigned"],
+      "playerReadLabel": "PARTY",
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "perspective": "CHARACTER:elowen-starwhisper",
+      "sources": ["MemoryRecorded", "KnowledgeAssigned"],
+      "playerReadLabel": "PLAYER",
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    },
+    {
+      "perspective": "NPC:mira-vale",
+      "sources": ["MemoryRecorded", "KnowledgeAssigned"],
+      "playerReadLabel": "not applicable",
+      "refusedAtomically": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass"
+    }
+  ],
+  "selection": [
+    {
+      "storage": "postgres",
+      "database": "ltw_it_215d2c9b163640dd8fca59e7b703e864",
+      "generatedOccurrences": 43,
+      "kept": 40,
+      "discarded": 3,
+      "reverseLexicalSubmission": true,
+      "selectedIndex": 1,
+      "allSelectedRefusedAtomically": true,
+      "allDiscardedUndoAccepted": true,
+      "chapterSourcesUnchanged": true,
+      "freshPoolEngineAppRestart": true,
+      "chapterFirstRecovery": true,
+      "replayIntegrityRedecision": "pass",
+      "databaseDropped": true
+    }
+  ],
+  "findings": [],
+  "limits": [
+    "Deterministic local AI and dice; no live external provider.",
+    "Salience and perspective sweeps use in-memory stores; selection cap uses an owned real PostgreSQL database and fresh pool/engine/app restart."
+  ],
+  "status": "PASS"
+}

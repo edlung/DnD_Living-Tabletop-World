@@ -1,0 +1,163 @@
+{
+  "productionRevision": "a85b6f87f1dbd5ed8287e294acc6d18b191e5904",
+  "testedHead": "ede93739c62cd3dbe48ea0aaf57023bd258b5a07",
+  "node": "v25.8.1",
+  "pnpm": "11.11.0",
+  "parallelism": 3,
+  "recipes": [
+    {
+      "recipe": "AI_CONSUMER_PROBES.md",
+      "sourceSha256": "74700cce14cb7a3acc03dc4d793fd632f9866c00fae77e2281fd5c358c68ea98",
+      "adaptations": ["Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2."],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:19:56.989958+00:00",
+      "durationSeconds": 1.555,
+      "exitCode": 0,
+      "stdout": "{\"ranking\":7,\"chronicle\":4,\"providerRequests\":17,\"allAssertionsPassed\":true}\n",
+      "stderr": ""
+    },
+    {
+      "recipe": "ASSET_VISUAL_PROBES.md",
+      "sourceSha256": "32e28e8e17d427db43ec5bdbb194a386455b7c94ee91c185f71cf9a2594fcafc",
+      "adaptations": ["Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2."],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:19:56.990136+00:00",
+      "durationSeconds": 2.203,
+      "exitCode": 0,
+      "stdout": "{\"worlds\":2,\"allAssertionsPassed\":true}\n",
+      "stderr": ""
+    },
+    {
+      "recipe": "SCENARIO_SWEEP_PROBES.md",
+      "sourceSha256": "948fb937c565ea317fb2e341e2607feae0a5ca3685e9e7c37cda85d154248844",
+      "adaptations": ["Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2."],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:19:56.990201+00:00",
+      "durationSeconds": 3.955,
+      "exitCode": 0,
+      "stdout": "{\"attempts\":164,\"accepted\":40,\"rejected\":124,\"unsafe\":[]}\n",
+      "stderr": ""
+    },
+    {
+      "recipe": "regressions/NPC_PROBES.md",
+      "sourceSha256": "a11a99ee441609cda75f6d3b223bd274937c90f9baaf2fade946a98f861c27ae",
+      "adaptations": ["Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2."],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:19:58.545467+00:00",
+      "durationSeconds": 2.484,
+      "exitCode": 0,
+      "stdout": "{\"npcs\":3,\"exchanges\":66,\"allAssertionsPassed\":true}\n",
+      "stderr": ""
+    },
+    {
+      "recipe": "regressions/AUTHORING_PROBES.md",
+      "sourceSha256": "5d30e3fa0fb07df302884ed928f6d3369d4cffc738cfc182073c2a52587b71f9",
+      "adaptations": ["Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2."],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:19:59.193345+00:00",
+      "durationSeconds": 0.367,
+      "exitCode": 0,
+      "stdout": "{\"groups\":18,\"allAssertionsPassed\":true}\n",
+      "stderr": ""
+    },
+    {
+      "recipe": "regressions/AUTHORING_RACE_PROBES.md",
+      "sourceSha256": "2b6c94abf560fad7ad9cd330044b4f7e18f8e896b79afc8770a54da9e273f35c",
+      "adaptations": ["Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2."],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:19:59.561080+00:00",
+      "durationSeconds": 49.583,
+      "exitCode": 0,
+      "stdout": "matrix complete: memory-one-process\nmatrix complete: postgres-two-processes\n{\"matrix\":64,\"retries\":4,\"recovery\":2,\"postgresDatabases\":34}\n",
+      "stderr": ""
+    },
+    {
+      "recipe": "regressions/SUGGESTION_PROBES.md",
+      "sourceSha256": "de38ed08931ba7c91f45e1e46ddd486c83d63ab93b048bda2d380fcb1bd3f2d4",
+      "adaptations": [
+        "Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2.",
+        "Stale gate-04/retest-1 mkdir destination corrected to gate-05/retest-2/regressions."
+      ],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:20:00.946036+00:00",
+      "durationSeconds": 3.653,
+      "exitCode": 0,
+      "stdout": "{\"worlds\":4,\"allAssertionsPassed\":true}\n",
+      "stderr": ""
+    },
+    {
+      "recipe": "regressions/STATE_PROBES.md",
+      "sourceSha256": "560ba1cf26684103388b1cefa3779075cac02aa1707d2f1900a2832ef87b2308",
+      "adaptations": ["Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2."],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:20:01.029769+00:00",
+      "durationSeconds": 0.445,
+      "exitCode": 0,
+      "stdout": "{\"cases\":44,\"allAssertionsPassed\":true}\n",
+      "stderr": ""
+    },
+    {
+      "recipe": "regressions/HISTORY_PROBES.md",
+      "sourceSha256": "112b660d38ba06b1adb0dae337c9fb1c368d41fec12280060cb0b6b8a6aafa08",
+      "adaptations": ["Run and output paths retargeted from gate-05/retest-1 to gate-05/retest-2."],
+      "assertionsChanged": false,
+      "startedAt": "2026-10-04T21:20:01.474784+00:00",
+      "durationSeconds": 3.195,
+      "exitCode": 0,
+      "stdout": "{\"groups\":3,\"undoAttempts\":102,\"allAssertionsPassed\":true}\n",
+      "stderr": ""
+    }
+  ],
+  "allExecutionsPassed": true,
+  "summary": {
+    "ai": {
+      "rankingModes": 7,
+      "chronicleModes": 4,
+      "providerRequests": 17
+    },
+    "assetVisualWorlds": 2,
+    "integratedSweep": {
+      "attempts": 164,
+      "accepted": 40,
+      "rejected": 124,
+      "unsafe": []
+    },
+    "npc": {
+      "worlds": 3,
+      "exchanges": 66,
+      "providerRequests": 72
+    },
+    "authoringGroups": 18,
+    "authoringRaces": {
+      "matrix": 64,
+      "retries": 4,
+      "recovery": 2,
+      "ownedDatabases": 34
+    },
+    "suggestionWorlds": 4,
+    "stateCases": 44,
+    "history": {
+      "prefixComparisons": 103,
+      "statesEqual": true,
+      "undoSweep": {
+        "tried": 102,
+        "blocked": 101,
+        "accepted": 1,
+        "allStandingEarlierCommandsProtected": true
+      },
+      "scenarioCommandsReversed": 12
+    },
+    "ownedDatabases": 46,
+    "temporaryOriginalReaderArchives": 1,
+    "cleanup": "All nine recipes exited zero after their awaited cleanup blocks, dropping the 46 owned databases and removing the temporary original-reader archive.",
+    "assertionAdaptations": []
+  },
+  "limitations": [
+    "Providers are local scripted doubles; no live external AI quality, latency, or cost measured.",
+    "Assets use the deterministic local placeholder image generator.",
+    "Authenticated Fastify inject() handlers exercise backend contracts; there is no browser/UI validation.",
+    "The integrated scenario is repository-provided input; assertions and command-by-command undo sweep are reviewer-owned.",
+    "The archived Stage 120 reader comparison omits only current empty investigation.shown, assets, weather, and chronicles collections, as in the original recipe.",
+    "This replays established regressions; targeted G05-H02 and earlier Chronicle writer attacks belong to separate Retest 2 evidence."
+  ]
+}

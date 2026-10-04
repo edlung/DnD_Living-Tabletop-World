@@ -1,0 +1,121 @@
+{
+  "visual": {
+    "day1": 36000,
+    "day2": 122400,
+    "seen": 126000,
+    "day60HistoryEqual": true,
+    "day2Presentation": {
+      "perspective": "CHARACTER:elowen-starwhisper",
+      "worldTime": 122400,
+      "phase": "day",
+      "presentation": {
+        "entityId": "mira-vale",
+        "kind": "npc",
+        "observed": true,
+        "status": "active",
+        "vitals": null,
+        "conditions": [],
+        "equipment": [],
+        "weather": "rain",
+        "tags": ["day", "rain"],
+        "image": {
+          "variant": "derived",
+          "version": 1,
+          "contentHash": "sha256:d351a104cb9b6e50f58074ceec967d4f9d5f0764dbbd89e6d77bfc393bec31ca",
+          "mediaType": "image/svg+xml"
+        }
+      }
+    },
+    "unknownObserved": {
+      "perspective": "CHARACTER:elowen-starwhisper",
+      "worldTime": 126000,
+      "phase": "day",
+      "presentation": {
+        "entityId": "nb-hooded-watcher",
+        "kind": "npc",
+        "observed": true,
+        "status": "active",
+        "vitals": null,
+        "conditions": [],
+        "equipment": [],
+        "weather": null,
+        "tags": ["day"],
+        "image": {
+          "variant": "reference",
+          "version": 1,
+          "contentHash": "sha256:9da125837d88a96790a7a561eed3c3f6d799b8a6bcf4cdbbd215667e587dd06f",
+          "mediaType": "image/svg+xml"
+        }
+      }
+    },
+    "safeMetadata": {
+      "perspective": "CHARACTER:elowen-starwhisper",
+      "assets": [
+        {
+          "variant": "reference",
+          "version": 1,
+          "contentHash": "sha256:233032730bf2c3ec9cdbdf74f6a490e272f1ee0b3d76dd8ad4a662206fcdc8f9",
+          "mediaType": "image/svg+xml"
+        },
+        {
+          "variant": "derived",
+          "version": 1,
+          "contentHash": "sha256:d351a104cb9b6e50f58074ceec967d4f9d5f0764dbbd89e6d77bfc393bec31ca",
+          "mediaType": "image/svg+xml"
+        },
+        {
+          "variant": "derived",
+          "version": 1,
+          "contentHash": "sha256:afe4a3f80ded5274a621495042a892843343fa5dbe2f7424ef941afa9e83ae62",
+          "mediaType": "image/svg+xml"
+        }
+      ]
+    },
+    "pastContentAvailableOnlyWhenSeen": true,
+    "restartEqual": true,
+    "permissionsAndHeaders": true
+  },
+  "externalUndo": {
+    "requestId": "authoring.00000000-00a2-4000-8000-000000000001#0",
+    "blocked": {
+      "status": "rejected",
+      "commandId": "authoring.00000000-00a2-4000-8000-000000000001.undo",
+      "code": "UNDO_UNSAFE",
+      "message": "Later commands depend on what \"authoring.00000000-00a2-4000-8000-000000000001\" changed; undo them first",
+      "details": {
+        "blockers": [
+          {
+            "commandId": "asset-worker.start.f8e09ded0fa149a2eb79d89ad358b0b28159fb91",
+            "commandType": "StartAssetJob",
+            "sequence": 121
+          }
+        ]
+      }
+    },
+    "settled": {
+      "started": 1,
+      "completed": 1,
+      "failed": 0
+    },
+    "discarded": {
+      "assetId": "authoring.00000000-00a2-4000-8000-000000000001#0~asset",
+      "requestId": "authoring.00000000-00a2-4000-8000-000000000001#0",
+      "entityId": "g05-pending-npc",
+      "variant": "reference",
+      "label": null,
+      "audience": "players",
+      "version": 1,
+      "derivedFrom": null,
+      "contentHash": "sha256:af893e025a166a85b052e56783e14bfbe1a33faaa9d1f1819a228ab635c812e3",
+      "mediaType": "image/svg+xml",
+      "generator": {
+        "provider": "review-slow",
+        "model": "placeholder-svg-1"
+      },
+      "status": "DISCARDED"
+    },
+    "entityRemoved": true,
+    "lineageSurvivesRestart": true,
+    "lateImageNotApprovable": true
+  }
+}

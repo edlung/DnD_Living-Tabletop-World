@@ -1,0 +1,508 @@
+{
+  "cases": [
+    {
+      "order": "undo-first",
+      "examined": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:player-elowen:r2-source-race-2",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "ExamineEntity",
+          "roll": null,
+          "discovered": []
+        }
+      },
+      "undoResponse": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:r2-source-race-3",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 105,
+            "eventId": "00000000-02b0-4000-8000-000000000001",
+            "type": "CommandUndone"
+          }
+        ]
+      },
+      "chapterResponse": {
+        "http": 409,
+        "result": {
+          "status": "rejected",
+          "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+          "code": "VERSION_MISMATCH",
+          "message": "Expected version 104, campaign is at 105",
+          "details": {
+            "expectedVersion": 104,
+            "version": 105
+          }
+        },
+        "chronicleId": null,
+        "rendering": {
+          "status": "RENDERED",
+          "provider": "r2-controlled-narrative",
+          "traceId": "00000000-00a1-4000-8000-000000000001"
+        }
+      },
+      "beforeVersion": 104,
+      "afterVersion": 105,
+      "requests": [
+        {
+          "capability": "narrative",
+          "task": {
+            "kind": "chronicle",
+            "prompt": {
+              "title": "Concurrent source undo",
+              "entries": [
+                {
+                  "key": "e1",
+                  "time": "Day 1 09:00:00",
+                  "text": "Mira Vale entered the story.",
+                  "place": null,
+                  "people": ["Mira Vale"],
+                  "accounts": []
+                },
+                {
+                  "key": "e2",
+                  "time": "Day 1 09:00:00",
+                  "text": "Orin Stonebeard entered the story.",
+                  "place": null,
+                  "people": ["Orin Stonebeard"],
+                  "accounts": []
+                },
+                {
+                  "key": "e3",
+                  "time": "Day 1 09:00:00",
+                  "text": "Captain Thorne entered the story.",
+                  "place": null,
+                  "people": ["Captain Thorne"],
+                  "accounts": []
+                },
+                {
+                  "key": "e4",
+                  "time": "Day 1 09:00:00",
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "place": "Market Square",
+                  "people": ["Elowen Starwhisper"],
+                  "accounts": []
+                },
+                {
+                  "key": "e5",
+                  "time": "Day 1 10:00:00",
+                  "text": "Elowen Starwhisper examined Race token.",
+                  "place": null,
+                  "people": ["Elowen Starwhisper", "Race token"],
+                  "accounts": []
+                },
+                {
+                  "key": "e6",
+                  "time": "Day 1 10:00:00",
+                  "text": "A hypothesis was formed: Goblins attacked the caravan.",
+                  "place": null,
+                  "people": [],
+                  "accounts": [
+                    {
+                      "type": "HYPOTHESIS",
+                      "statement": "Goblins attacked the caravan."
+                    }
+                  ]
+                }
+              ],
+              "template": [
+                {
+                  "text": "Mira Vale entered the story.",
+                  "cites": ["e1"]
+                },
+                {
+                  "text": "Orin Stonebeard entered the story.",
+                  "cites": ["e2"]
+                },
+                {
+                  "text": "Captain Thorne entered the story.",
+                  "cites": ["e3"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "cites": ["e4"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Race token.",
+                  "cites": ["e5"]
+                },
+                {
+                  "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                  "cites": ["e6"]
+                }
+              ]
+            },
+            "repair": null
+          }
+        }
+      ],
+      "view": {
+        "perspective": "DM",
+        "chapters": []
+      },
+      "bothEnginesAgree": true,
+      "restartEqual": true,
+      "redecisionEqual": true
+    },
+    {
+      "order": "chapter-first",
+      "examined": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:player-elowen:r2-source-race-2",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "ExamineEntity",
+          "roll": null,
+          "discovered": []
+        }
+      },
+      "undoResponse": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r2-source-race-3",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r2-source-race-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+              "commandType": "GenerateChronicle",
+              "sequence": 105
+            }
+          ]
+        }
+      },
+      "chapterResponse": {
+        "http": 200,
+        "result": {
+          "status": "accepted",
+          "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 105,
+              "eventId": "00000000-0000-4000-8000-000000000072",
+              "type": "ChronicleGenerated"
+            }
+          ]
+        },
+        "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+        "rendering": {
+          "status": "RENDERED",
+          "provider": "r2-controlled-narrative",
+          "traceId": "00000000-00a1-4000-8000-000000000001"
+        }
+      },
+      "beforeVersion": 104,
+      "afterVersion": 105,
+      "requests": [
+        {
+          "capability": "narrative",
+          "task": {
+            "kind": "chronicle",
+            "prompt": {
+              "title": "Concurrent source undo",
+              "entries": [
+                {
+                  "key": "e1",
+                  "time": "Day 1 09:00:00",
+                  "text": "Mira Vale entered the story.",
+                  "place": null,
+                  "people": ["Mira Vale"],
+                  "accounts": []
+                },
+                {
+                  "key": "e2",
+                  "time": "Day 1 09:00:00",
+                  "text": "Orin Stonebeard entered the story.",
+                  "place": null,
+                  "people": ["Orin Stonebeard"],
+                  "accounts": []
+                },
+                {
+                  "key": "e3",
+                  "time": "Day 1 09:00:00",
+                  "text": "Captain Thorne entered the story.",
+                  "place": null,
+                  "people": ["Captain Thorne"],
+                  "accounts": []
+                },
+                {
+                  "key": "e4",
+                  "time": "Day 1 09:00:00",
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "place": "Market Square",
+                  "people": ["Elowen Starwhisper"],
+                  "accounts": []
+                },
+                {
+                  "key": "e5",
+                  "time": "Day 1 10:00:00",
+                  "text": "Elowen Starwhisper examined Race token.",
+                  "place": null,
+                  "people": ["Elowen Starwhisper", "Race token"],
+                  "accounts": []
+                },
+                {
+                  "key": "e6",
+                  "time": "Day 1 10:00:00",
+                  "text": "A hypothesis was formed: Goblins attacked the caravan.",
+                  "place": null,
+                  "people": [],
+                  "accounts": [
+                    {
+                      "type": "HYPOTHESIS",
+                      "statement": "Goblins attacked the caravan."
+                    }
+                  ]
+                }
+              ],
+              "template": [
+                {
+                  "text": "Mira Vale entered the story.",
+                  "cites": ["e1"]
+                },
+                {
+                  "text": "Orin Stonebeard entered the story.",
+                  "cites": ["e2"]
+                },
+                {
+                  "text": "Captain Thorne entered the story.",
+                  "cites": ["e3"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "cites": ["e4"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Race token.",
+                  "cites": ["e5"]
+                },
+                {
+                  "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                  "cites": ["e6"]
+                }
+              ]
+            },
+            "repair": null
+          }
+        }
+      ],
+      "view": {
+        "perspective": "DM",
+        "chapters": [
+          {
+            "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+            "title": "Concurrent source undo",
+            "perspective": "DM",
+            "from": 0,
+            "to": 36000,
+            "generatedAt": 36000,
+            "entries": [
+              {
+                "key": "e1",
+                "occurredAt": 32400,
+                "text": "Mira Vale entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "mira-vale",
+                    "kind": "npc",
+                    "name": "Mira Vale"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000a",
+                    "eventType": "EntityCreated",
+                    "sequence": 10
+                  }
+                ]
+              },
+              {
+                "key": "e2",
+                "occurredAt": 32400,
+                "text": "Orin Stonebeard entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "orin-stonebeard",
+                    "kind": "npc",
+                    "name": "Orin Stonebeard"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000c",
+                    "eventType": "EntityCreated",
+                    "sequence": 12
+                  }
+                ]
+              },
+              {
+                "key": "e3",
+                "occurredAt": 32400,
+                "text": "Captain Thorne entered the story.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityCreated",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "captain-thorne",
+                    "kind": "npc",
+                    "name": "Captain Thorne"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-00000000000e",
+                    "eventType": "EntityCreated",
+                    "sequence": 14
+                  }
+                ]
+              },
+              {
+                "key": "e4",
+                "occurredAt": 32400,
+                "text": "Elowen Starwhisper went to Market Square.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EntityPlaced",
+                "location": {
+                  "entityId": "market-square",
+                  "kind": "location",
+                  "name": "Market Square"
+                },
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000011",
+                    "eventType": "EntityPlaced",
+                    "sequence": 17
+                  }
+                ]
+              },
+              {
+                "key": "e5",
+                "occurredAt": 36000,
+                "text": "Elowen Starwhisper examined Race token.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "EvidenceExamined",
+                "location": null,
+                "participants": [
+                  {
+                    "entityId": "elowen-starwhisper",
+                    "kind": "character",
+                    "name": "Elowen Starwhisper"
+                  },
+                  {
+                    "entityId": "r2-race-token",
+                    "kind": "item",
+                    "name": "Race token"
+                  }
+                ],
+                "knowledge": [],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000071",
+                    "eventType": "EvidenceExamined",
+                    "sequence": 104
+                  }
+                ]
+              },
+              {
+                "key": "e6",
+                "occurredAt": 36000,
+                "text": "A hypothesis was formed: Goblins attacked the caravan.",
+                "salience": 3,
+                "memoryId": null,
+                "memoryKind": null,
+                "eventType": "KnowledgeAssigned",
+                "location": null,
+                "participants": [],
+                "knowledge": [
+                  {
+                    "knowledgeId": "party-goblin-hypothesis",
+                    "knowledgeType": "HYPOTHESIS",
+                    "statement": "Goblins attacked the caravan."
+                  }
+                ],
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned",
+                    "sequence": 53
+                  }
+                ]
+              }
+            ],
+            "prose": {
+              "provider": "r2-controlled-narrative",
+              "model": "r2-source-race",
+              "traceId": "00000000-00a1-4000-8000-000000000001",
+              "paragraphs": [
+                {
+                  "text": "Mira Vale entered the story.",
+                  "cites": ["e1"]
+                },
+                {
+                  "text": "Orin Stonebeard entered the story.",
+                  "cites": ["e2"]
+                },
+                {
+                  "text": "Captain Thorne entered the story.",
+                  "cites": ["e3"]
+                },
+                {
+                  "text": "Elowen Starwhisper went to Market Square.",
+                  "cites": ["e4"]
+                },
+                {
+                  "text": "Elowen Starwhisper examined Race token.",
+                  "cites": ["e5"]
+                },
+                {
+                  "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+                  "cites": ["e6"]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "bothEnginesAgree": true,
+      "restartEqual": true,
+      "redecisionEqual": true
+    }
+  ]
+}

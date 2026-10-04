@@ -1,0 +1,1479 @@
+{
+  "reviewedCode": "a85b6f87f1dbd5ed8287e294acc6d18b191e5904",
+  "databaseRestarts": [
+    {
+      "before": "2026-10-04 21:24:06.403888+00",
+      "after": "2026-10-04 21:24:07.07148+00",
+      "changed": true
+    },
+    {
+      "before": "2026-10-04 21:24:07.07148+00",
+      "after": "2026-10-04 21:24:07.79177+00",
+      "changed": true
+    }
+  ],
+  "oldReaderChapters": [
+    {
+      "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000001",
+      "title": "Legacy chapter (DM)",
+      "perspective": "DM",
+      "from": 0,
+      "to": 36000,
+      "generatedAt": 36000,
+      "entries": [
+        {
+          "key": "e1",
+          "occurredAt": 32400,
+          "text": "Mira Vale entered the story.",
+          "salience": 3,
+          "memoryId": null,
+          "memoryKind": null,
+          "eventType": "EntityCreated",
+          "location": null,
+          "participants": [
+            {
+              "entityId": "mira-vale",
+              "kind": "npc",
+              "name": "Mira of the Stalls"
+            }
+          ],
+          "knowledge": [],
+          "sources": [
+            {
+              "eventId": "00000000-0000-4000-8000-00000000000a",
+              "eventType": "EntityCreated",
+              "sequence": 10
+            }
+          ]
+        },
+        {
+          "key": "e2",
+          "occurredAt": 32400,
+          "text": "Orin Stonebeard entered the story.",
+          "salience": 3,
+          "memoryId": null,
+          "memoryKind": null,
+          "eventType": "EntityCreated",
+          "location": null,
+          "participants": [
+            {
+              "entityId": "orin-stonebeard",
+              "kind": "npc",
+              "name": "Orin Stonebeard"
+            }
+          ],
+          "knowledge": [],
+          "sources": [
+            {
+              "eventId": "00000000-0000-4000-8000-00000000000c",
+              "eventType": "EntityCreated",
+              "sequence": 12
+            }
+          ]
+        },
+        {
+          "key": "e3",
+          "occurredAt": 32400,
+          "text": "Captain Thorne entered the story.",
+          "salience": 3,
+          "memoryId": null,
+          "memoryKind": null,
+          "eventType": "EntityCreated",
+          "location": null,
+          "participants": [
+            {
+              "entityId": "captain-thorne",
+              "kind": "npc",
+              "name": "Captain Thorne"
+            }
+          ],
+          "knowledge": [],
+          "sources": [
+            {
+              "eventId": "00000000-0000-4000-8000-00000000000e",
+              "eventType": "EntityCreated",
+              "sequence": 14
+            }
+          ]
+        },
+        {
+          "key": "e4",
+          "occurredAt": 32400,
+          "text": "Elowen of the Trade Road went to The Old Market.",
+          "salience": 3,
+          "memoryId": null,
+          "memoryKind": null,
+          "eventType": "EntityPlaced",
+          "location": {
+            "entityId": "market-square",
+            "kind": "location",
+            "name": "The Old Market"
+          },
+          "participants": [
+            {
+              "entityId": "elowen-starwhisper",
+              "kind": "character",
+              "name": "Elowen of the Trade Road"
+            }
+          ],
+          "knowledge": [],
+          "sources": [
+            {
+              "eventId": "00000000-0000-4000-8000-000000000011",
+              "eventType": "EntityPlaced",
+              "sequence": 17
+            }
+          ]
+        },
+        {
+          "key": "e5",
+          "occurredAt": 36000,
+          "text": "A hypothesis was formed: Goblins attacked the caravan.",
+          "salience": 3,
+          "memoryId": null,
+          "memoryKind": null,
+          "eventType": "KnowledgeAssigned",
+          "location": null,
+          "participants": [],
+          "knowledge": [
+            {
+              "knowledgeId": "party-goblin-hypothesis",
+              "knowledgeType": "HYPOTHESIS",
+              "statement": "Goblins attacked the caravan."
+            }
+          ],
+          "sources": [
+            {
+              "eventId": "00000000-0000-4000-8000-000000000035",
+              "eventType": "KnowledgeAssigned",
+              "sequence": 53
+            }
+          ]
+        }
+      ],
+      "prose": {
+        "provider": "local",
+        "model": "local-interpreter-1",
+        "traceId": "00000000-00a1-4000-8000-000000000001",
+        "paragraphs": [
+          {
+            "text": "Mira Vale entered the story.",
+            "cites": ["e1"]
+          },
+          {
+            "text": "Orin Stonebeard entered the story.",
+            "cites": ["e2"]
+          },
+          {
+            "text": "Captain Thorne entered the story.",
+            "cites": ["e3"]
+          },
+          {
+            "text": "Elowen of the Trade Road went to The Old Market.",
+            "cites": ["e4"]
+          },
+          {
+            "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+            "cites": ["e5"]
+          }
+        ]
+      }
+    },
+    {
+      "chronicleId": "chronicle.00000000-00a2-4000-8000-000000000002",
+      "title": "Legacy chapter (PARTY)",
+      "perspective": "PARTY",
+      "from": 0,
+      "to": 36000,
+      "generatedAt": 36000,
+      "entries": [
+        {
+          "key": "e1",
+          "occurredAt": 34200,
+          "text": "Mira told us the caravan left before dawn.",
+          "salience": 4,
+          "memoryId": "mem-party-talk-mira",
+          "memoryKind": "CONVERSATION",
+          "eventType": null,
+          "location": {
+            "entityId": "market-square",
+            "kind": "location",
+            "name": "The Old Market"
+          },
+          "participants": [
+            {
+              "entityId": "elowen-starwhisper",
+              "kind": "character",
+              "name": "Elowen of the Trade Road"
+            },
+            {
+              "entityId": "mira-vale",
+              "kind": "npc",
+              "name": "Mira of the Stalls"
+            }
+          ],
+          "knowledge": [
+            {
+              "knowledgeId": "party-mira-departure",
+              "knowledgeType": "TESTIMONY",
+              "statement": "Mira Vale says the caravan left before dawn."
+            }
+          ],
+          "sources": [
+            {
+              "eventId": "00000000-0000-4000-8000-000000000047",
+              "eventType": "MemoryRecorded",
+              "sequence": 71
+            },
+            {
+              "eventId": "00000000-0000-4000-8000-000000000034",
+              "eventType": "KnowledgeAssigned",
+              "sequence": 52
+            }
+          ]
+        },
+        {
+          "key": "e2",
+          "occurredAt": 35400,
+          "text": "We decided to search the Old Trade Road for the caravan.",
+          "salience": 5,
+          "memoryId": "mem-party-decide-road",
+          "memoryKind": "DECISION",
+          "eventType": null,
+          "location": {
+            "entityId": "market-square",
+            "kind": "location",
+            "name": "The Old Market"
+          },
+          "participants": [
+            {
+              "entityId": "elowen-starwhisper",
+              "kind": "character",
+              "name": "Elowen of the Trade Road"
+            }
+          ],
+          "knowledge": [],
+          "sources": [
+            {
+              "eventId": "00000000-0000-4000-8000-000000000049",
+              "eventType": "MemoryRecorded",
+              "sequence": 73
+            }
+          ]
+        },
+        {
+          "key": "e3",
+          "occurredAt": 35700,
+          "text": "Because of that decision, we bought supplies for the road.",
+          "salience": 2,
+          "memoryId": "mem-party-supplies",
+          "memoryKind": "CONSEQUENCE",
+          "eventType": null,
+          "location": {
+            "entityId": "market-square",
+            "kind": "location",
+            "name": "The Old Market"
+          },
+          "participants": [
+            {
+              "entityId": "elowen-starwhisper",
+              "kind": "character",
+              "name": "Elowen of the Trade Road"
+            }
+          ],
+          "knowledge": [],
+          "sources": [
+            {
+              "eventId": "00000000-0000-4000-8000-00000000004a",
+              "eventType": "MemoryRecorded",
+              "sequence": 74
+            }
+          ]
+        }
+      ],
+      "prose": {
+        "provider": "local",
+        "model": "local-interpreter-1",
+        "traceId": "00000000-00a1-4000-8000-000000000002",
+        "paragraphs": [
+          {
+            "text": "Mira told us the caravan left before dawn. According to that account: Mira Vale says the caravan left before dawn.",
+            "cites": ["e1"]
+          },
+          {
+            "text": "We decided to search the Old Trade Road for the caravan.",
+            "cites": ["e2"]
+          },
+          {
+            "text": "Because of that decision, we bought supplies for the road.",
+            "cites": ["e3"]
+          }
+        ]
+      }
+    }
+  ],
+  "prefixes": {
+    "writer": "e9c05ad46c15863b124b20fc4dd217f654f29777",
+    "commands": 96,
+    "statesEqual": true,
+    "normalization": "None: exact state and chapter-view equality with the original writer reader."
+  },
+  "sweep": {
+    "attempts": 95,
+    "accepted": 1,
+    "refused": 94,
+    "all": [
+      {
+        "target": "ravenford.seed.0002",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0003",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0004",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0005",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0006",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0007",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0008",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0009",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0010",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0011",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0012",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0013",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.seed.0014",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0001",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0002",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0003",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0004",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0005",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0006",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0007",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0008",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0009",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0010",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0011",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0012",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0013",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0014",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0015",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0016",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0017",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0018",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0019",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0020",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0021",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0022",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0023",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0024",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0025",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0026",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0027",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0028",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0029",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0030",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0031",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0032",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0033",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0034",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0035",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0036",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0037",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0038",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0039",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0040",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.knowledge.0041",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0001",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0002",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0003",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0004",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0005",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0006",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0007",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0008",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0009",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.memory.0010",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.rules.0001",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0001",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0002",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0003",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0004",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0005",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0006",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0007",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0008",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0009",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0010",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0011",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0012",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0013",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.investigation.0014",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.contradiction.0001",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.contradiction.0002",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.contradiction.0003",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.combat.0001",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.combat.0002",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.combat.0003",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.combat.0004",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.combat.0005",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.combat.0006",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.combat.0007",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "ravenford.combat.0008",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "http:dm-ravenford:legacy-rename-elowen",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "http:dm-ravenford:legacy-rename-square",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "http:dm-ravenford:legacy-rename-mira",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": [
+          "chronicle.00000000-00a2-4000-8000-000000000001",
+          "chronicle.00000000-00a2-4000-8000-000000000002"
+        ]
+      },
+      {
+        "target": "chronicle.00000000-00a2-4000-8000-000000000001",
+        "result": "rejected",
+        "code": "UNDO_UNSAFE",
+        "expectedBlockers": ["chronicle.00000000-00a2-4000-8000-000000000002"]
+      },
+      {
+        "target": "chronicle.00000000-00a2-4000-8000-000000000002",
+        "result": "accepted",
+        "code": null,
+        "expectedBlockers": []
+      }
+    ]
+  },
+  "postgres": {
+    "oldViewsEqual": true,
+    "blocked": [
+      {
+        "restart": false,
+        "label": "rename-elowen",
+        "result": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:r2-older-1",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:legacy-rename-elowen\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                "commandType": "GenerateChronicle",
+                "sequence": 104
+              },
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000002",
+                "commandType": "GenerateChronicle",
+                "sequence": 105
+              }
+            ]
+          }
+        }
+      },
+      {
+        "restart": false,
+        "label": "rename-square",
+        "result": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:r2-older-2",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:legacy-rename-square\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                "commandType": "GenerateChronicle",
+                "sequence": 104
+              },
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000002",
+                "commandType": "GenerateChronicle",
+                "sequence": 105
+              }
+            ]
+          }
+        }
+      },
+      {
+        "restart": false,
+        "label": "rename-mira",
+        "result": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:r2-older-3",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:legacy-rename-mira\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                "commandType": "GenerateChronicle",
+                "sequence": 104
+              },
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000002",
+                "commandType": "GenerateChronicle",
+                "sequence": 105
+              }
+            ]
+          }
+        }
+      },
+      {
+        "restart": false,
+        "label": "dm-chapter",
+        "result": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:r2-older-4",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"chronicle.00000000-00a2-4000-8000-000000000001\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000002",
+                "commandType": "GenerateChronicle",
+                "sequence": 105
+              }
+            ]
+          }
+        }
+      },
+      {
+        "restart": true,
+        "label": "rename-elowen",
+        "result": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:r2-older-5",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:legacy-rename-elowen\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                "commandType": "GenerateChronicle",
+                "sequence": 104
+              },
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000002",
+                "commandType": "GenerateChronicle",
+                "sequence": 105
+              }
+            ]
+          }
+        }
+      },
+      {
+        "restart": true,
+        "label": "rename-square",
+        "result": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:r2-older-6",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:legacy-rename-square\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                "commandType": "GenerateChronicle",
+                "sequence": 104
+              },
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000002",
+                "commandType": "GenerateChronicle",
+                "sequence": 105
+              }
+            ]
+          }
+        }
+      },
+      {
+        "restart": true,
+        "label": "rename-mira",
+        "result": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:r2-older-7",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"http:dm-ravenford:legacy-rename-mira\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+                "commandType": "GenerateChronicle",
+                "sequence": 104
+              },
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000002",
+                "commandType": "GenerateChronicle",
+                "sequence": 105
+              }
+            ]
+          }
+        }
+      },
+      {
+        "restart": true,
+        "label": "dm-chapter",
+        "result": {
+          "http": 422,
+          "status": "rejected",
+          "commandId": "http:dm-ravenford:r2-older-8",
+          "code": "UNDO_UNSAFE",
+          "message": "Later commands depend on what \"chronicle.00000000-00a2-4000-8000-000000000001\" changed; undo them first",
+          "details": {
+            "blockers": [
+              {
+                "commandId": "chronicle.00000000-00a2-4000-8000-000000000002",
+                "commandType": "GenerateChronicle",
+                "sequence": 105
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "recovery": [
+      {
+        "label": "party-chapter",
+        "result": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:r2-older-9",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 106,
+              "eventId": "00000000-0323-4000-8000-000000000001",
+              "type": "CommandUndone"
+            }
+          ]
+        }
+      },
+      {
+        "label": "dm-chapter",
+        "result": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:r2-older-10",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 107,
+              "eventId": "00000000-0323-4000-8000-000000000002",
+              "type": "CommandUndone"
+            }
+          ]
+        }
+      },
+      {
+        "label": "rename-mira",
+        "result": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:r2-older-11",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 108,
+              "eventId": "00000000-0323-4000-8000-000000000003",
+              "type": "CommandUndone"
+            }
+          ]
+        }
+      },
+      {
+        "label": "rename-square",
+        "result": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:r2-older-12",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 109,
+              "eventId": "00000000-0323-4000-8000-000000000004",
+              "type": "CommandUndone"
+            }
+          ]
+        }
+      },
+      {
+        "label": "rename-elowen",
+        "result": {
+          "http": 200,
+          "status": "accepted",
+          "commandId": "http:dm-ravenford:r2-older-13",
+          "campaignId": "ravenford",
+          "events": [
+            {
+              "sequence": 110,
+              "eventId": "00000000-0323-4000-8000-000000000005",
+              "type": "CommandUndone"
+            }
+          ]
+        }
+      }
+    ],
+    "currentChapterVersion": 4,
+    "protectedRename": {
+      "http": 422,
+      "status": "rejected",
+      "commandId": "http:dm-ravenford:r2-older-15",
+      "code": "UNDO_UNSAFE",
+      "message": "Later commands depend on what \"http:dm-ravenford:r2-older-14\" changed; undo them first",
+      "details": {
+        "blockers": [
+          {
+            "commandId": "chronicle.00000000-0385-4000-8000-000000000001",
+            "commandType": "GenerateChronicle",
+            "sequence": 112
+          }
+        ]
+      }
+    },
+    "restartEqual": true,
+    "reverseRecovery": true,
+    "redecisionEqual": true
+  },
+  "fixture": {
+    "path": "fixtures/history/e9c05ad-chronicle-names.json",
+    "sha256": "75d1c64c4fcd28d81b72586ef42d64d25dd8fd9bbcfc50bba2dbbde58c2db612",
+    "unchanged": true
+  }
+}
