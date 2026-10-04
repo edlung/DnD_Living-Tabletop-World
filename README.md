@@ -2,7 +2,7 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 90 (Reaction Engine) complete and awaiting Astra Gate 03 (`handoffs/ASTRA_GATE_03_REQUEST.md`); Stage 100 is not authorized until it passes. Astra Gate 02 passed earlier (retest 2, revision `017ab0b`). The stages so far provide:
+**Current state:** Stage 90 (Reaction Engine) complete. Astra Gate 03 failed its initial review (three High findings, `reviews/ASTRA_GATE_03_REPORT.md`); they are remediated (`remediation/OPUS_GATE_03_REMEDIATION.md`) and awaiting retest 1 (`handoffs/ASTRA_GATE_03_REQUEST.md`). Stage 100 is not authorized until Gate 03 passes. Astra Gate 02 passed earlier (retest 2, revision `017ab0b`). The stages so far provide:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
