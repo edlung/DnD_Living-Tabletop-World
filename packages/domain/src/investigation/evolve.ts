@@ -94,10 +94,13 @@ export function applyPremisesRecorded(
     switch (premise.kind) {
       case 'perceived':
       case 'vitals':
-      case 'placement':
         return state.entities.has(premise.entityId);
       case 'revealed':
         return state.investigation.clues.has(premise.clueId);
+      case 'unreached':
+        return (
+          state.investigation.clues.has(premise.clueId) && state.entities.has(premise.entityId)
+        );
       case 'party-member':
         return state.roster.has(premise.characterId);
       case 'knowledge':

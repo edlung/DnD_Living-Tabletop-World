@@ -95,10 +95,12 @@ export const premiseSchema = z.discriminatedUnion('kind', [
    */
   z.object({ kind: z.literal('revealed'), scope, clueId: clueIdSchema }).strict(),
   /**
-   * Where an entity was: a sensing result that did not reach it relied on it
-   * being elsewhere (Gate 03 remediation, negative premises).
+   * A clue the sensing did not reach: the result read the clue and relied on
+   * its entity being out of reach (Gate 03 remediation, negative premises).
    */
-  z.object({ kind: z.literal('placement'), entityId: entityIdSchema }).strict(),
+  z
+    .object({ kind: z.literal('unreached'), clueId: clueIdSchema, entityId: entityIdSchema })
+    .strict(),
 ]);
 export type Premise = z.infer<typeof premiseSchema>;
 

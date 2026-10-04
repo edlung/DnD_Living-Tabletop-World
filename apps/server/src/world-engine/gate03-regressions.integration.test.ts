@@ -201,3 +201,65 @@ describe('G03-H03 over HTTP on PostgreSQL', () => {
     await verify(engine);
   });
 });
+
+describe('G03-H04 on PostgreSQL', () => {
+  type Variant = 'creation' | 'revival' | 'placement';
+  const variants: Variant[] = ['creation', 'revival', 'placement'];
+  const cases = ['hunters-mark', 'healing-word'].flatMap((spell) =>
+    variants.map((variant) => [spell, variant] as const),
+  );
+
+  it.each(cases)(
+    'a fight without the caster: %s blocks undoing the target’s %s after a restart',
+    async (spell, variant) => {
+      const first = await live();
+      await startAmbush(first, 'h04', false, true);
+      const dm = (id: string, command: Record<string, unknown>) =>
+        expectAccepted(post(first, TOKENS.dm, `h04-${id}`, command));
+      const npc = (placed: boolean) =>
+        dm('npc', {
+          type: 'CreateEntity',
+          entityId: 'r1-bystander',
+          kind: 'npc',
+          name: 'Bystander',
+          existsSince: null,
+          ...(placed ? { placement: { locationId: 'old-trade-road', since: null } } : {}),
+        });
+      let premise = await npc(variant !== 'placement');
+      if (variant === 'revival') {
+        await dm('dead', { type: 'ChangeEntityStatus', entityId: 'r1-bystander', status: 'dead' });
+        premise = await dm('alive', {
+          type: 'ChangeEntityStatus',
+          entityId: 'r1-bystander',
+          status: 'active',
+        });
+      }
+      if (variant === 'placement') {
+        premise = await dm('place', {
+          type: 'PlaceEntity',
+          entityId: 'r1-bystander',
+          locationId: 'old-trade-road',
+        });
+      }
+      const spellCast = await expectAccepted(
+        post(first, TOKENS.player, 'h04-cast', {
+          type: 'CastSpell',
+          combatantId: ELOWEN,
+          spellId: spell,
+          targetId: 'r1-bystander',
+        }),
+      );
+
+      const engine = restarted();
+      const second = await app(engine);
+      const version = (await engine.load('ravenford'))?.state.version;
+      const refused = await undo(second, 'h04-undo-premise', premise);
+      expect(refused.status).toBe(422);
+      expect(blockersOf(refused.body)).toEqual([spellCast]);
+      expect((await engine.load('ravenford'))?.state.version).toBe(version);
+      await expectAccepted(undo(second, 'h04-undo-cast', spellCast));
+      await expectAccepted(undo(second, 'h04-undo-premise-2', premise));
+      await verify(engine);
+    },
+  );
+});

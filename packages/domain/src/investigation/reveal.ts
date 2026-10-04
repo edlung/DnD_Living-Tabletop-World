@@ -116,10 +116,10 @@ export function magicDiscoveryEvents(
 /**
  * What a Detect Magic result relied on besides what it revealed (Gate 03
  * remediation, negative premises): where the caster stood and, in the party,
- * its membership; every magic clue the scope had already found; and where
- * every other magic-bearing entity was, since a result that did not reach it
- * relied on it being out of reach. Undoing any of them while the cast stands
- * is then UNDO_UNSAFE.
+ * its membership; every magic clue the scope had already found; and every
+ * other magic clue with where its entity was, since a result that did not
+ * reach it read it and relied on it being out of reach. Undoing any of them
+ * while the cast stands is then UNDO_UNSAFE.
  */
 export function magicSensingPremises(
   state: WorldState,
@@ -134,15 +134,15 @@ export function magicSensingPremises(
     { kind: 'perceived', entityId: characterId },
     ...(scope.kind === 'PARTY' ? [{ kind: 'party' } as const] : []),
   ];
-  const elsewhere = new Set<string>();
+  // Every magic clue was read: found before, out of reach, or revealed now (that
+  // last one is read by its EvidenceExamined event).
   for (const clue of state.investigation.clues.values()) {
     if (clue.method !== 'magic') continue;
     if (state.investigation.revealed.has(scopedKey(scopeKey, clue.clueId))) {
       premises.push({ kind: 'revealed', scope: scopeKey, clueId: clue.clueId });
     } else if (!perceived.has(clue.entityId) || !sensed(clue.entityId)) {
-      elsewhere.add(clue.entityId);
+      premises.push({ kind: 'unreached', clueId: clue.clueId, entityId: clue.entityId });
     }
   }
-  for (const entityId of elsewhere) premises.push({ kind: 'placement', entityId });
   return premises;
 }

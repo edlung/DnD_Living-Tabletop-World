@@ -49,9 +49,6 @@ export function decideCastSpell(context: DecisionContext, command: Cast, dice: D
     return decideMonsterSpell(context, command, dice);
   }
   if (!isSliceSpell(command.spellId)) return refused({ legal: false, reason: 'NOT_KNOWN' });
-  if (state.encounter && state.encounter.currentIndex < 0) {
-    return refused({ legal: false, reason: 'NOT_YOUR_TURN' });
-  }
   const plan = characterSpellPlan(state, command.combatantId, {
     spellId: command.spellId,
     ...(command.using === undefined ? {} : { using: command.using }),
@@ -94,7 +91,9 @@ export function castEvents(
   dice: Dice,
   ids: readonly string[],
 ): DraftEvent[] {
-  const encounter = state.encounter;
+  // In combat only when the caster takes part, exactly as the plan decided its
+  // legality; an encounter the caster is not in changes nothing (G03-H04).
+  const encounter = plan.record ? state.encounter : null;
   // Every creature's latest vitals within this command (the caster may be in its own Fireball).
   const working = new Map<string, Vitals>([
     [casterId, { kind: 'character', entityId: casterId, sheet: plan.sheet }],

@@ -34,8 +34,17 @@ export const SEED_SHEET = rulesSeed.commands.find(
   (command) => command.type === 'SetCharacterSheet',
 )?.sheet;
 
-/** Places everyone on the Old Trade Road and starts the ambush (with Seren when asked). */
-export async function startAmbush(app: FastifyInstance, prefix: string, withSeren = false) {
+/**
+ * Places everyone on the Old Trade Road and starts the ambush: with Seren as a
+ * second party combatant, or without Elowen in it (she stays on the road,
+ * outside the fight; G03-H04).
+ */
+export async function startAmbush(
+  app: FastifyInstance,
+  prefix: string,
+  withSeren = false,
+  withoutElowen = false,
+) {
   const dm = (id: string, command: Record<string, unknown>) =>
     expectAccepted(post(app, TOKENS.dm, `${prefix}-${id}`, command));
   if (withSeren) {
@@ -55,15 +64,13 @@ export async function startAmbush(app: FastifyInstance, prefix: string, withSere
     });
   }
   for (const place of ambush.place) await dm(`place-${place.entityId}`, place);
-  const start = withSeren
-    ? {
-        ...ambush.startCombat,
-        combatants: [
-          ...ambush.startCombat.combatants,
-          { entityId: SEREN, side: 'party', position: { x: 2, y: 8 } },
-        ],
-      }
-    : ambush.startCombat;
+  const start = {
+    ...ambush.startCombat,
+    combatants: [
+      ...ambush.startCombat.combatants.filter((c) => !withoutElowen || c.entityId !== ELOWEN),
+      ...(withSeren ? [{ entityId: SEREN, side: 'party', position: { x: 2, y: 8 } }] : []),
+    ],
+  };
   await dm('start', start);
 }
 

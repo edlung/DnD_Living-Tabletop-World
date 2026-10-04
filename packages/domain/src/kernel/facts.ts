@@ -375,8 +375,12 @@ function premiseFacts(characterId: string, premise: Premise): FactKey[] {
     case 'revealed':
       // Negative premises: passed over because found before, or out of reach (Gate 03).
       return [facts.clue(premise.clueId), facts.revealed(scopedKey(premise.scope, premise.clueId))];
-    case 'placement':
-      return [facts.entity(premise.entityId), facts.entityPlacement(premise.entityId)];
+    case 'unreached':
+      return [
+        facts.clue(premise.clueId),
+        facts.entity(premise.entityId),
+        facts.entityPlacement(premise.entityId),
+      ];
   }
 }
 

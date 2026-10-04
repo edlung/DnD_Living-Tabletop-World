@@ -3,6 +3,7 @@ import {
   checkWorldIntegrity,
   combatantOf,
   currentCombatant,
+  footprintOf,
   openReactionWindow,
   type Actor,
   type WorldState,
@@ -58,13 +59,63 @@ function mulberry32(seed: number): () => number {
 }
 
 const GOBLINS = [RAIDER_1, RAIDER_2, RAIDER_3, SHAMAN];
-const PLAYERS: Readonly<Record<string, Actor>> = { [ELOWEN]: PLAYER, [SEREN]: SEREN_PLAYER };
-/** Accepted while a window is open: its answers and close, undo, and authoring it does not depend on. */
-const DURING_WINDOW: ReadonlySet<string> = new Set([
-  ...REACTION_COMMAND_TYPES,
-  'UndoCommand',
-  'AddClue',
-]);
+/** A character on the road outside the fight, and a bystander (Gate 03, G03-H04). */
+const BRAM = 'bram-holloway';
+const BRAM_PLAYER: Actor = { actorId: 'player-bram', kind: 'user' };
+const WANDERER = 'wanderer';
+const PLAYERS: Readonly<Record<string, Actor>> = {
+  [ELOWEN]: PLAYER,
+  [SEREN]: SEREN_PLAYER,
+  [BRAM]: BRAM_PLAYER,
+};
+/** Exempt from the pause: a window's answers and close, and undo (with its own rule). */
+const EXEMPT: ReadonlySet<string> = new Set([...REACTION_COMMAND_TYPES, 'UndoCommand']);
+
+/**
+ * The pause as an invariant (ADR 0016 §1), not a list of command types:
+ * whatever else was accepted while a window was open changed nothing the
+ * window depends on.
+ */
+async function expectPauseHeld(world: RoadWorld, before: WorldState, type: string) {
+  const window = openReactionWindow(before);
+  if (!window || EXEMPT.has(type)) return;
+  const opened = footprintOf({ type: 'ReactionWindowOpened', payload: { window } });
+  const depends = new Set([...opened.reads, ...opened.writes]);
+  const fresh = (await world.store.loadStream(CAMPAIGN, before.version))?.events ?? [];
+  for (const event of fresh) {
+    for (const fact of footprintOf(event).writes) {
+      expect(depends.has(fact), `${type} changed ${fact} during a window`).toBe(false);
+    }
+  }
+}
+
+/** Bram's world: on the road with Elowen's sheet but outside the fight, beside a bystander. */
+async function addBystanders(world: RoadWorld): Promise<void> {
+  const sheet = (await world.state()).characterSheets.get(ELOWEN);
+  for (const command of [
+    {
+      type: 'CreateEntity',
+      entityId: BRAM,
+      kind: 'character',
+      name: 'Bram Holloway',
+      existsSince: null,
+      placement: { locationId: 'old-trade-road', since: null },
+    },
+    { type: 'SetCharacterSheet', entityId: BRAM, sheet },
+    { type: 'AssignCharacter', characterId: BRAM, playerActorId: BRAM_PLAYER.actorId },
+    {
+      type: 'CreateEntity',
+      entityId: WANDERER,
+      kind: 'npc',
+      name: 'Wanderer',
+      existsSince: null,
+      placement: { locationId: 'old-trade-road', since: null },
+    },
+  ]) {
+    const result = await world.dm(command);
+    if (result.status === 'rejected') throw new Error(`bystander setup rejected: ${result.code}`);
+  }
+}
 
 async function randomStep(
   world: RoadWorld,
@@ -148,7 +199,10 @@ async function randomStep(
     }
   }
   // DM authoring between and during turns (Gate 03): what a window or a result may depend on.
-  const anyone = pick([...GOBLINS, ELOWEN, SEREN]);
+  const anyone = pick([...GOBLINS, ELOWEN, SEREN, WANDERER, BRAM]);
+  const bystanders = [...state.entities.values()]
+    .filter((e) => e.kind === 'npc' && e.entityId.startsWith('passer-'))
+    .map((e) => e.entityId);
   const pc = pick([ELOWEN, SEREN]);
   const sheet = state.characterSheets.get(pc);
   const authoring: typeof options = [];
@@ -175,6 +229,64 @@ async function randomStep(
         }),
     },
   );
+  // Outside the fight (G03-H04): Bram casts at bystanders or goblins, comes and goes;
+  // the DM brings, moves, kills, and revives bystanders beneath his spells. Casts aim
+  // mostly at the newest bystander, so "author, cast, undo beneath" happens often.
+  const newest = bystanders[bystanders.length - 1] ?? WANDERER;
+  const target = rng() < 0.6 ? newest : pick([WANDERER, BRAM, ...bystanders, ...GOBLINS]);
+  const outside: typeof options = [
+    {
+      type: 'CastSpell',
+      run: () =>
+        world.submit(
+          cast(BRAM, pick(['hunters-mark', 'healing-word']), { targetId: target }),
+          BRAM_PLAYER,
+        ),
+    },
+    {
+      type: 'EnterLocation',
+      run: () =>
+        world.submit(
+          {
+            type: 'EnterLocation',
+            characterId: BRAM,
+            locationId: pick(['old-trade-road', 'north-gate']),
+          },
+          BRAM_PLAYER,
+        ),
+    },
+    {
+      type: 'CreateEntity',
+      run: () =>
+        world.dm({
+          type: 'CreateEntity',
+          entityId: `passer-${String(Math.floor(rng() * 1e6))}`,
+          kind: 'npc',
+          name: 'Passer-by',
+          existsSince: null,
+          placement: { locationId: 'old-trade-road', since: null },
+        }),
+    },
+    {
+      type: 'PlaceEntity',
+      run: () =>
+        world.dm({
+          type: 'PlaceEntity',
+          entityId: rng() < 0.6 ? newest : pick([WANDERER, ...bystanders]),
+          locationId: pick(['old-trade-road', 'north-gate']),
+        }),
+    },
+    {
+      type: 'ChangeEntityStatus',
+      run: () =>
+        world.dm({
+          type: 'ChangeEntityStatus',
+          entityId: rng() < 0.6 ? newest : pick([WANDERER, BRAM, ...bystanders]),
+          status: pick(['dead', 'active']),
+        }),
+    },
+  ];
+  const casting = outside[0];
   if (sheet) {
     authoring.push({
       type: 'SetCharacterSheet',
@@ -201,7 +313,15 @@ async function randomStep(
     const result = await world.dm({ type: 'UndoCommand', targetCommandId: target });
     return { type: 'UndoCommand', result, undid: target };
   }
-  const chosen = rng() < 0.2 || options.length === 0 ? pick(authoring) : pick(options);
+  const branch = rng();
+  const chosen =
+    branch < 0.15 && casting
+      ? rng() < 0.5
+        ? casting
+        : pick(outside)
+      : branch < 0.35 || options.length === 0
+        ? pick(authoring)
+        : pick(options);
   return { type: chosen.type, result: await chosen.run() };
 }
 
@@ -230,7 +350,7 @@ async function expectMagicWithinRange(world: RoadWorld, before: WorldState): Pro
  * consistent (an open window still legal), and re-decides identically.
  */
 async function expectAcceptedUndosSafe(world: RoadWorld, mine: readonly string[]) {
-  for (const target of mine.slice(-4)) {
+  for (const target of mine.slice(-6)) {
     const copy = await forkWorld(world);
     const undone = await copy.dm({ type: 'UndoCommand', targetCommandId: target });
     if (undone.status === 'accepted') await verifyHistory(copy);
@@ -238,10 +358,11 @@ async function expectAcceptedUndosSafe(world: RoadWorld, mine: readonly string[]
 }
 
 describe('randomized reaction integrity', () => {
-  it.each([1, 7, 42, 1337, 20261004, 90])('seed %i', async (seed) => {
+  it.each([1, 7, 42, 1337, 20261004, 90, 3, 11, 2026, 77, 5, 13])('seed %i', async (seed) => {
     const rng = mulberry32(seed);
     const world = await roadWorld({ entropy: { next: () => Math.floor(rng() * 2 ** 32) } });
     await addSeren(world);
+    await addBystanders(world);
     await startAmbush(world, [17, 3, 2, 1, 15, 5], withSeren());
     // Magic on every goblin, near and far, so Detect Magic's range is always at stake.
     for (const goblin of GOBLINS) {
@@ -257,7 +378,6 @@ describe('randomized reaction integrity', () => {
     let windows = 0;
     for (let step = 0; step < 70; step += 1) {
       const before = await world.state();
-      const paused = openReactionWindow(before) !== null;
       const { type, result, undid } = await randomStep(world, rng, mine);
       const after = await world.state();
       if (result.status === 'rejected') {
@@ -265,8 +385,8 @@ describe('randomized reaction integrity', () => {
       } else {
         if (undid !== undefined) mine.splice(mine.indexOf(undid), 1);
         else mine.push(result.commandId);
-        if (paused) expect(DURING_WINDOW.has(type), `${type} accepted during a window`).toBe(true);
       }
+      await expectPauseHeld(world, before, type);
       await expectMagicWithinRange(world, before);
       expect(checkWorldIntegrity(after), `after ${type} at step ${String(step)}`).toEqual([]);
       expect(reactionWindowViolations(after), `after ${type} at step ${String(step)}`).toEqual([]);

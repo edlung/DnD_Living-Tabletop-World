@@ -136,6 +136,10 @@ The fixture also defines an Old Trade Road battlefield (wagons give half cover, 
     - Combat decisions record every combatant's status, sheet, and stat block (ADR 0016 amendment).
     - A spell outside combat records its target's.
     - Authoring a stat block depends on the encounter, because it is refused for combatants.
+- 2026-10-04 (Gate 03 retest 1 remediation, G03-H04): **participation, not the existence of a fight, decides.**
+  - A spell is decided as in combat only when its caster takes part in the encounter, which is the same test its legality uses.
+  - A caster outside a running fight casts exactly as with no fight. Its premises are its own sheet, its target's existence, status, sheet, stat block, and placement, and its own placement.
+  - A fight the caster is not in adds no premise of its own.
 
 ## Invariants affected
 

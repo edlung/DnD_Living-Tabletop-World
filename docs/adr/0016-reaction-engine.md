@@ -135,6 +135,7 @@ Positions are the only location of a combatant while an encounter runs, and elig
   - **Reopening by undo.** Undoing the command that closed a window puts the window back, open, before every later command. Such an undo is therefore rejected (`UNDO_UNSAFE`, with blockers) while any later, still-effective command changed something the window depends on: the facts its opening read. Undoing those commands first makes the reopening safe. Unrelated later commands do not block it.
   - **Everything a combat decision read.** Every combat decision records each combatant's status, sheet, and stat block as premises. This includes results that changed nothing, such as a miss or a turn passing over the dead. Combat therefore unwinds strictly in reverse order, DM edits of combatants included.
   - **An open window stays legal.** The tests check after every step that an open window's suspended spell can still resolve and that every pending candidate can still react.
+- 2026-10-04 (Gate 03 retest 1 remediation, G03-H04): the combatants' premises above apply only to someone who takes part in the encounter. A decision by someone outside it records none of them, and its own premises follow ADR 0015's Gate 03 amendments.
 
 ## Consequences
 
