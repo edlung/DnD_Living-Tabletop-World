@@ -1,0 +1,2373 @@
+{
+  "H05-88d8137": {
+    "writerRevision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "mode": "baseline",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-1",
+      "clue": "http:dm-ravenford:r4-legacy-2",
+      "cast": "http:player-elowen:r4-legacy-3",
+      "repeat": "http:player-elowen:r4-legacy-4",
+      "undoRepeat": "http:dm-ravenford:r4-legacy-5"
+    },
+    "oldVersion": 110,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 104,
+      "eventId": "00000000-0000-4000-8000-000000000072",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:33.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-3",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "elowen-starwhisper"
+          },
+          {
+            "kind": "party"
+          },
+          {
+            "kind": "placement",
+            "entityId": "legacy-far-charm"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 96,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "oldUndo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-3",
+              "commandType": "CastSpell",
+              "sequence": 104
+            }
+          ]
+        }
+      }
+    },
+    "newPremiseVersion": 3,
+    "versionGuards": true,
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-88d8137-existence": {
+    "writerRevision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "mode": "existence",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-7",
+      "cast": "http:player-elowen:r4-legacy-8"
+    },
+    "oldVersion": 112,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 110,
+      "eventId": "00000000-0000-4000-8000-000000000079",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:38.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-8",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-shaman"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-1"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-2"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-3"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 99,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-7\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-8",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-88d8137-status": {
+    "writerRevision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "mode": "status",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-9",
+      "cast": "http:player-elowen:r4-legacy-10"
+    },
+    "oldVersion": 114,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 112,
+      "eventId": "00000000-0000-4000-8000-00000000007b",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:40.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-10",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-shaman"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-1"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-2"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-3"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 101,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-10",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-88d8137-placement": {
+    "writerRevision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "mode": "placement",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-8",
+      "cast": "http:player-elowen:r4-legacy-9"
+    },
+    "oldVersion": 112,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 110,
+      "eventId": "00000000-0000-4000-8000-000000000079",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:39.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-9",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-shaman"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-1"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-2"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-3"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 100,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-9",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-88d8137-caster-placement": {
+    "writerRevision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "mode": "caster-placement",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:player-elowen:r4-legacy-8",
+      "cast": "http:player-elowen:r4-legacy-9"
+    },
+    "oldVersion": 114,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 112,
+      "eventId": "00000000-0000-4000-8000-00000000007b",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:39.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-9",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-shaman"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-1"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-2"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-3"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 100,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r4-legacy-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-9",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "golden-stag-inn",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "golden-stag-inn",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-88d8137-healing-status": {
+    "writerRevision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "mode": "healing-status",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-10",
+      "cast": "http:player-elowen:r4-legacy-11"
+    },
+    "oldVersion": 117,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 113,
+      "eventId": "00000000-0000-4000-8000-00000000007c",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:41.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-11",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-shaman"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-1"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-2"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "goblin-raider-3"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 102,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-10\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-11",
+              "commandType": "CastSpell",
+              "sequence": 113
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": null,
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H05-b38cbbc": {
+    "writerRevision": "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+    "mode": "baseline",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-1",
+      "clue": "http:dm-ravenford:r4-legacy-2",
+      "cast": "http:player-elowen:r4-legacy-3",
+      "repeat": "http:player-elowen:r4-legacy-4",
+      "undoRepeat": "http:dm-ravenford:r4-legacy-5"
+    },
+    "oldVersion": 110,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 104,
+      "eventId": "00000000-0000-4000-8000-000000000072",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:33.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-3",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "elowen-starwhisper"
+          },
+          {
+            "kind": "party"
+          },
+          {
+            "kind": "unreached",
+            "clueId": "legacy-far-magic",
+            "entityId": "legacy-far-charm"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 96,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "oldUndo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-3",
+              "commandType": "CastSpell",
+              "sequence": 104
+            }
+          ]
+        }
+      }
+    },
+    "newPremiseVersion": 3,
+    "versionGuards": true,
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-b38cbbc-existence": {
+    "writerRevision": "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+    "mode": "existence",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-7",
+      "cast": "http:player-elowen:r4-legacy-8"
+    },
+    "oldVersion": 112,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 110,
+      "eventId": "00000000-0000-4000-8000-000000000079",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:38.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-8",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 99,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-7\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-8",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-b38cbbc-status": {
+    "writerRevision": "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+    "mode": "status",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-9",
+      "cast": "http:player-elowen:r4-legacy-10"
+    },
+    "oldVersion": 114,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 112,
+      "eventId": "00000000-0000-4000-8000-00000000007b",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:40.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-10",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 101,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-10",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-b38cbbc-placement": {
+    "writerRevision": "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+    "mode": "placement",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-8",
+      "cast": "http:player-elowen:r4-legacy-9"
+    },
+    "oldVersion": 112,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 110,
+      "eventId": "00000000-0000-4000-8000-000000000079",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:39.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-9",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 100,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-9",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-b38cbbc-caster-placement": {
+    "writerRevision": "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+    "mode": "caster-placement",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:player-elowen:r4-legacy-8",
+      "cast": "http:player-elowen:r4-legacy-9"
+    },
+    "oldVersion": 114,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 112,
+      "eventId": "00000000-0000-4000-8000-00000000007b",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:39.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-9",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 100,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r4-legacy-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-9",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "golden-stag-inn",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "golden-stag-inn",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-b38cbbc-healing-status": {
+    "writerRevision": "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+    "mode": "healing-status",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-10",
+      "cast": "http:player-elowen:r4-legacy-11"
+    },
+    "oldVersion": 117,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 113,
+      "eventId": "00000000-0000-4000-8000-00000000007c",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:41.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-11",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 102,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-10\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-11",
+              "commandType": "CastSpell",
+              "sequence": 113
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": null,
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H05-e893497": {
+    "writerRevision": "e893497fef95e53ec54f4baa0a314a341d09515b",
+    "mode": "baseline",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-1",
+      "clue": "http:dm-ravenford:r4-legacy-2",
+      "cast": "http:player-elowen:r4-legacy-3",
+      "repeat": "http:player-elowen:r4-legacy-4",
+      "undoRepeat": "http:dm-ravenford:r4-legacy-5"
+    },
+    "oldVersion": 110,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 104,
+      "eventId": "00000000-0000-4000-8000-000000000072",
+      "schemaVersion": 2,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:33.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-3",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "elowen-starwhisper"
+          },
+          {
+            "kind": "party"
+          },
+          {
+            "kind": "unreached",
+            "clueId": "legacy-far-magic",
+            "entityId": "legacy-far-charm"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 96,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "oldUndo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-3",
+              "commandType": "CastSpell",
+              "sequence": 104
+            }
+          ]
+        }
+      }
+    },
+    "newPremiseVersion": 3,
+    "versionGuards": true,
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-e893497-existence": {
+    "writerRevision": "e893497fef95e53ec54f4baa0a314a341d09515b",
+    "mode": "existence",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-7",
+      "cast": "http:player-elowen:r4-legacy-8"
+    },
+    "oldVersion": 112,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 110,
+      "eventId": "00000000-0000-4000-8000-000000000079",
+      "schemaVersion": 2,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:38.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-8",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 99,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-7\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-8",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-e893497-status": {
+    "writerRevision": "e893497fef95e53ec54f4baa0a314a341d09515b",
+    "mode": "status",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-9",
+      "cast": "http:player-elowen:r4-legacy-10"
+    },
+    "oldVersion": 114,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 112,
+      "eventId": "00000000-0000-4000-8000-00000000007b",
+      "schemaVersion": 2,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:40.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-10",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 101,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-10",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-e893497-placement": {
+    "writerRevision": "e893497fef95e53ec54f4baa0a314a341d09515b",
+    "mode": "placement",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-8",
+      "cast": "http:player-elowen:r4-legacy-9"
+    },
+    "oldVersion": 112,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 110,
+      "eventId": "00000000-0000-4000-8000-000000000079",
+      "schemaVersion": 2,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:39.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-9",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 100,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-9",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-e893497-caster-placement": {
+    "writerRevision": "e893497fef95e53ec54f4baa0a314a341d09515b",
+    "mode": "caster-placement",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:player-elowen:r4-legacy-8",
+      "cast": "http:player-elowen:r4-legacy-9"
+    },
+    "oldVersion": 114,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 112,
+      "eventId": "00000000-0000-4000-8000-00000000007b",
+      "schemaVersion": 2,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:39.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-9",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 100,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r4-legacy-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-9",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "golden-stag-inn",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "golden-stag-inn",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-e893497-healing-status": {
+    "writerRevision": "e893497fef95e53ec54f4baa0a314a341d09515b",
+    "mode": "healing-status",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-10",
+      "cast": "http:player-elowen:r4-legacy-11"
+    },
+    "oldVersion": 117,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 113,
+      "eventId": "00000000-0000-4000-8000-00000000007c",
+      "schemaVersion": 2,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:41.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-11",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 102,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-10\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-11",
+              "commandType": "CastSpell",
+              "sequence": 113
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": null,
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H05-998887d": {
+    "writerRevision": "998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1",
+    "mode": "baseline",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-1",
+      "clue": "http:dm-ravenford:r4-legacy-2",
+      "cast": "http:player-elowen:r4-legacy-3",
+      "repeat": "http:player-elowen:r4-legacy-4",
+      "undoRepeat": "http:dm-ravenford:r4-legacy-5"
+    },
+    "oldVersion": 110,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 104,
+      "eventId": "00000000-0000-4000-8000-000000000072",
+      "schemaVersion": 3,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:33.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-3",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "elowen-starwhisper"
+          },
+          {
+            "kind": "party"
+          },
+          {
+            "kind": "unreached",
+            "clueId": "legacy-far-magic",
+            "entityId": "legacy-far-charm"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 96,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "oldUndo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-3",
+              "commandType": "CastSpell",
+              "sequence": 104
+            }
+          ]
+        }
+      }
+    },
+    "newPremiseVersion": 3,
+    "versionGuards": true,
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-998887d-existence": {
+    "writerRevision": "998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1",
+    "mode": "existence",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-7",
+      "cast": "http:player-elowen:r4-legacy-8"
+    },
+    "oldVersion": 112,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 110,
+      "eventId": "00000000-0000-4000-8000-000000000079",
+      "schemaVersion": 3,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:38.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-8",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 99,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-7\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-8",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-998887d-status": {
+    "writerRevision": "998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1",
+    "mode": "status",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-9",
+      "cast": "http:player-elowen:r4-legacy-10"
+    },
+    "oldVersion": 114,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 112,
+      "eventId": "00000000-0000-4000-8000-00000000007b",
+      "schemaVersion": 3,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:40.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-10",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 101,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-10",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-998887d-placement": {
+    "writerRevision": "998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1",
+    "mode": "placement",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-8",
+      "cast": "http:player-elowen:r4-legacy-9"
+    },
+    "oldVersion": 112,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 110,
+      "eventId": "00000000-0000-4000-8000-000000000079",
+      "schemaVersion": 3,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:39.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-9",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 100,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-9",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-998887d-caster-placement": {
+    "writerRevision": "998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1",
+    "mode": "caster-placement",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:player-elowen:r4-legacy-8",
+      "cast": "http:player-elowen:r4-legacy-9"
+    },
+    "oldVersion": 114,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 112,
+      "eventId": "00000000-0000-4000-8000-00000000007b",
+      "schemaVersion": 3,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:39.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-9",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 100,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r4-legacy-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-9",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "golden-stag-inn",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "golden-stag-inn",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "legacy-bystander"
+    },
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  },
+  "H07-998887d-healing-status": {
+    "writerRevision": "998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1",
+    "mode": "healing-status",
+    "labels": {
+      "entity": "http:dm-ravenford:r4-legacy-7",
+      "premise": "http:dm-ravenford:r4-legacy-10",
+      "cast": "http:player-elowen:r4-legacy-11"
+    },
+    "oldVersion": 117,
+    "oldPremiseEvent": {
+      "campaignId": "ravenford",
+      "sequence": 113,
+      "eventId": "00000000-0000-4000-8000-00000000007c",
+      "schemaVersion": 3,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:41.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:r4-legacy-11",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "vitals",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "legacy-bystander"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "prefixesCompared": 102,
+    "prefixStatesEqual": true,
+    "httpGet": 200,
+    "undoProtected": true,
+    "undo": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r4-current-1",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r4-legacy-10\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r4-legacy-11",
+              "commandType": "CastSpell",
+              "sequence": 113
+            }
+          ]
+        }
+      }
+    },
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "casterPlacement": {
+      "locationId": "old-trade-road",
+      "since": 36000
+    },
+    "concentration": null,
+    "castStillEffectiveAfterRejection": true,
+    "oldRulesBeforeUndo": {
+      "redecision": null
+    },
+    "oldRulesAfterRejection": {
+      "redecision": null
+    },
+    "survivesReload": true,
+    "protectedAudit": {
+      "replayEqual": true,
+      "structuralViolations": [],
+      "windowViolations": [],
+      "currentOracle": null
+    },
+    "reverseRecovery": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "currentOracle": null
+  }
+}

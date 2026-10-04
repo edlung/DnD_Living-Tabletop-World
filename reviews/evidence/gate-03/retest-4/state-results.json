@@ -1,0 +1,616 @@
+{
+  "H01-counter": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-decline": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-dm-close": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-failed-counter": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01Character": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.12"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01Clock": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.10"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-race-undo": {
+    "code": "REACTION_PENDING",
+    "conflicts": 1,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-race-edit": {
+    "code": "UNDO_UNSAFE",
+    "conflicts": 1,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H02-armor": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H02-condition": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-direct-30": {
+    "knowledge": true,
+    "memory": true,
+    "expected": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-direct-35": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-direct-50": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-decline-30": {
+    "knowledge": true,
+    "memory": true,
+    "expected": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-decline-35": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-decline-50": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-dm-close-30": {
+    "knowledge": true,
+    "memory": true,
+    "expected": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-dm-close-35": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-dm-close-50": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-countered-30": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-countered-35": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-countered-50": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03NoSquare": {
+    "inCombat": false,
+    "afterCombat": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentStatBlock": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.8"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentRepeat-inspect": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.4"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentRepeat-magic": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.4"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-hunters-mark-status": {
+    "premise": "test.0.3",
+    "cast": "test.0.4",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.4"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-hunters-mark-existence": {
+    "premise": "test.0.1",
+    "cast": "test.0.2",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.2"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-hunters-mark-placement": {
+    "premise": "test.0.2",
+    "cast": "test.0.3",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.3"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-hunters-mark-caster-placement": {
+    "premise": "test.0.2",
+    "cast": "test.0.3",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.3"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-healing-word-status": {
+    "premise": "test.0.3",
+    "cast": "test.0.4",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.4"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-healing-word-existence": {
+    "premise": "test.0.1",
+    "cast": "test.0.2",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.2"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-healing-word-placement": {
+    "premise": "test.0.2",
+    "cast": "test.0.3",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.3"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-healing-word-caster-placement": {
+    "premise": "test.0.2",
+    "cast": "test.0.3",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.3"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-hunters-mark-status": {
+    "premise": "test.0.9",
+    "cast": "test.0.10",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.10"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-hunters-mark-existence": {
+    "premise": "test.0.7",
+    "cast": "test.0.8",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.8"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-hunters-mark-placement": {
+    "premise": "test.0.8",
+    "cast": "test.0.9",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.9"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-hunters-mark-caster-placement": {
+    "premise": "test.0.8",
+    "cast": "test.0.9",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.9"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-healing-word-status": {
+    "premise": "test.0.9",
+    "cast": "test.0.10",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.10"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-healing-word-existence": {
+    "premise": "test.0.7",
+    "cast": "test.0.8",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.8"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-healing-word-placement": {
+    "premise": "test.0.8",
+    "cast": "test.0.9",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.9"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-healing-word-caster-placement": {
+    "premise": "test.0.8",
+    "cast": "test.0.9",
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.9"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-real-healing-no-fight-full": {
+    "hpBefore": 10,
+    "hpAfter": 10,
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.6"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-real-healing-no-fight-injured": {
+    "hpBefore": 1,
+    "hpAfter": 9,
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.6"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-real-healing-unrelated-fight-full": {
+    "hpBefore": 10,
+    "hpAfter": 10,
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.12"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-real-healing-unrelated-fight-injured": {
+    "hpBefore": 1,
+    "hpAfter": 9,
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.12"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-own-fight-hunters-mark": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.9"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-own-fight-healing-word": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.9"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-isolation-hunters-mark": {
+    "equivalent": true,
+    "outcome": {
+      "kind": "CastSpell",
+      "spellId": "hunters-mark",
+      "results": []
+    },
+    "discoveredCount": 0,
+    "premises": [
+      {
+        "kind": "sheet"
+      },
+      {
+        "kind": "vitals",
+        "entityId": "r4-bystander"
+      },
+      {
+        "kind": "perceived",
+        "entityId": "r4-bystander"
+      },
+      {
+        "kind": "controller",
+        "playerActorId": "player-elowen"
+      }
+    ],
+    "revealed": []
+  },
+  "H04-isolation-healing-word": {
+    "equivalent": true,
+    "outcome": {
+      "kind": "CastSpell",
+      "spellId": "healing-word",
+      "results": []
+    },
+    "discoveredCount": 0,
+    "premises": [
+      {
+        "kind": "sheet"
+      },
+      {
+        "kind": "vitals",
+        "entityId": "r4-bystander"
+      },
+      {
+        "kind": "perceived",
+        "entityId": "r4-bystander"
+      },
+      {
+        "kind": "controller",
+        "playerActorId": "player-elowen"
+      }
+    ],
+    "revealed": []
+  },
+  "H04-isolation-detect-magic": {
+    "equivalent": true,
+    "outcome": {
+      "kind": "CastSpell",
+      "spellId": "detect-magic",
+      "results": []
+    },
+    "discoveredCount": 2,
+    "premises": [
+      {
+        "kind": "sheet"
+      },
+      {
+        "kind": "perceived",
+        "entityId": "elowen-starwhisper"
+      },
+      {
+        "kind": "party"
+      },
+      {
+        "kind": "perceived",
+        "entityId": "goblin-shaman"
+      },
+      {
+        "kind": "perceived",
+        "entityId": "r4-bystander"
+      },
+      {
+        "kind": "controller",
+        "playerActorId": "player-elowen"
+      }
+    ],
+    "revealed": ["magic-goblin-shaman", "magic-r4-bystander"]
+  },
+  "AdjacentUnreached-another-location": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.3"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentUnreached-combat-radius": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.8"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentUnreached-combat-gridless": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.9"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  }
+}

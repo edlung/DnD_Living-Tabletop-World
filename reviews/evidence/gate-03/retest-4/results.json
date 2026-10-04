@@ -1,0 +1,144 @@
+{
+  "reviewId": "ASTRA-GATE-03-RETEST-4",
+  "date": "2026-10-04",
+  "result": "PASS",
+  "reviewedCodeRevision": "998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1",
+  "testedHead": "7c62d0a582acf0ff42f4529a2cd72bab56ae64e6",
+  "genuineFreshStreamWriters": [
+    "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+    "e893497fef95e53ec54f4baa0a314a341d09515b",
+    "998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1"
+  ],
+  "genuineFixtureNames": [
+    "88d8137-gate03-retest1",
+    "88d8137-outside-casts",
+    "b38cbbc-outside-casts",
+    "429e2a2-gaps",
+    "017ab0b-investigation"
+  ],
+  "headOnlyChanges": [
+    "README.md",
+    "handoffs/ASTRA_GATE_03_REQUEST.md",
+    "remediation/OPUS_GATE_03_REMEDIATION.md"
+  ],
+  "validation": {
+    "pnpm test": {
+      "result": "PASS",
+      "files": 84,
+      "tests": 976
+    },
+    "pnpm test:integration": {
+      "result": "PASS",
+      "files": 11,
+      "tests": 48
+    },
+    "pnpm lint": "PASS",
+    "pnpm typecheck": "PASS",
+    "pnpm build": "PASS",
+    "pnpm context-budget": {
+      "result": "PASS",
+      "activeFiles": 278,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "pnpm format:check": "PASS after formatting review artifacts"
+  },
+  "recipes": [
+    {
+      "recipe": "STATE_PROBES.md",
+      "results": "state-results.json",
+      "cases": 54,
+      "result": "PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "HTTP_POSTGRES_PROBES.md",
+      "results": "http-postgres-results.json",
+      "cases": 31,
+      "result": "PASS",
+      "finalMarkdownExecuted": true,
+      "throwawayDatabases": 31
+    },
+    {
+      "recipe": "BOUNDARY_PROBES.md",
+      "results": "boundary-results.json",
+      "cases": 27,
+      "result": "PASS",
+      "finalMarkdownExecuted": true,
+      "independentWorlds": 66
+    },
+    {
+      "recipe": "HISTORY_PROBES.md",
+      "results": "history-results.json",
+      "cases": 24,
+      "result": "PASS",
+      "finalMarkdownExecuted": true,
+      "throwawayDatabases": 24,
+      "composition": {
+        "compatibilityCases": 4,
+        "protectedPremiseUndoCases": 20
+      }
+    },
+    {
+      "recipe": "LEGACY_BOUNDARY_PROBES.md",
+      "results": "legacy-boundary-results.json",
+      "cases": 18,
+      "result": "PASS",
+      "finalMarkdownExecuted": true,
+      "countUnit": "groups",
+      "fixtureFiles": 5,
+      "fixtureWriterRevisions": 4,
+      "effectiveUndoableCommandsTried": 547,
+      "blocked": 542,
+      "acceptedNewest": 5,
+      "composition": {
+        "exhaustiveFixtureGroups": 5,
+        "mixedUnrelatedGroups": 5,
+        "mixedDependentGroups": 5,
+        "syntheticTemporalCheckerGroups": 1,
+        "raceOrders": 2
+      }
+    }
+  ],
+  "dispositions": {
+    "G03-H01": "Original reproduction remains closed in independent checks.",
+    "G03-H02": "Original reproduction remains closed in independent checks.",
+    "G03-H03": "Remains closed under the accepted range/gridless contract.",
+    "G03-H04": "Fresh-current target/caster dependency checks remain closed; supported old commands are now protected by the H07 contract.",
+    "G03-H05": "Earlier supported payloads remain readable with equal prefix states; continuation, schema guards, undo and recovery pass.",
+    "G03-H06": "Remains closed under the accepted TARGET_IN_COMBAT contract in ADRs 0015/0016.",
+    "G03-H07": {
+      "status": "CLOSED",
+      "ownerDecision": "ADR 0006 retest 3 amendment: every standing earlier-writer command depends on everything before it; current commands retain ordinary dependency checks.",
+      "originalReproductions": [
+        "history-results.json#H07-88d8137-status",
+        "history-results.json#H07-88d8137-placement",
+        "history-results.json#H07-88d8137-caster-placement"
+      ],
+      "httpOutcome": "422 UNDO_UNSAFE, cast named, unchanged snapshot",
+      "originalWriterOracle": "No divergence before or after the rejected undo",
+      "reverseRecovery": true,
+      "mixedHistories": true,
+      "temporalAudit": true,
+      "concurrency": true
+    }
+  },
+  "newFindings": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "limits": [
+    "Fastify inject exercises actual authentication and handlers with PostgreSQL; no independently listening deployment was tested.",
+    "Fresh historical streams were generated through genuine writers in isolated Git archives, never fabricated or rewritten.",
+    "Synthetic records occur only in the explicitly labelled in-memory temporal-checker group, never in PostgreSQL or genuine-writer output.",
+    "Historical dependencies were installed from the frozen offline cache. The root dependency reinstall and full CI wrapper were not run.",
+    "Every probe database and historical archive was owned by its probe and removed; development data was not reset.",
+    "No source, existing tests, historical fixtures/reports, handoff or remediation was changed.",
+    "Old compensations remain recorded; the conservative rule prevents new unsafe undo without retroactively repairing an invalid existing history.",
+    "Exact runtime Astra variant and MAX effort were requested but not exposed for independent verification.",
+    "Future coverage obligations remain in the report. Stage 100 requires explicit owner authorization and was not started."
+  ]
+}
