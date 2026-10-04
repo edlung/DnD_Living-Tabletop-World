@@ -146,6 +146,7 @@ export {
   type ReactionWindowRecord,
 } from './combat/reactions.ts';
 export { foldDrafts } from './kernel/provisional.ts';
+export { pausedCombat } from './kernel/decide/reaction-pause.ts';
 export type { DecisionContext, Decision, Resolution } from './kernel/decision.ts';
 export { accept, reject } from './kernel/decision.ts';
 export type { KernelEvent as DraftEvent } from './kernel/events.ts';

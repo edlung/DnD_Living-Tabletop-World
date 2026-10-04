@@ -182,8 +182,15 @@ describe('proposals', () => {
       (await post(app, `${at}/commit`, { revision: 2, confirmation }, TOKENS.dm)).statusCode,
     ).toBe(200);
     expect((await edit(2)).statusCode).toBe(409);
+    // An identical retry is the same command (ADR 0018 §5, G04-M02); any other second commit is not.
+    const retried = await post(app, `${at}/commit`, { revision: 2, confirmation }, TOKENS.dm);
+    expect([retried.statusCode, retried.json<{ status: string }>().status]).toEqual([
+      200,
+      'duplicate',
+    ]);
+    const other = { riskLevel: 'L3', acknowledgedWarnings: [] };
     expect(
-      (await post(app, `${at}/commit`, { revision: 2, confirmation }, TOKENS.dm)).statusCode,
+      (await post(app, `${at}/commit`, { revision: 2, confirmation: other }, TOKENS.dm)).statusCode,
     ).toBe(409);
   });
 });

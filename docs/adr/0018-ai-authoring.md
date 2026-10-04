@@ -132,6 +132,9 @@ Migration `0003_authoring_proposals.sql` adds `ltw_authoring_revisions`. Like tr
   - **Checks.** `KNOWN_AFTER_DEATH` blocks. `SPEAKER_NOT_ALIVE`, `MOVES_THE_DEAD`, `ENCOUNTER_HERE`, `RENAME_KNOWN`, `DUPLICATE_ACCOUNT`, `CLAIM_CONFLICT`, and `DISCLOSURE_AGAINST_ATTITUDE` warn. `CLAIM_AGREES` is a note.
   - **Issues have keys** (`CODE@index[:entityId]`, or `CODE@all`). Every issue and warning carries options. A revision may come from an option on the DM's request (`{ basedOnRevision, optionId }`); the revision records the option it applied.
   - **Premises.** A commit giving knowledge to an NPC that existed before the proposal records `AuthoringPremisesRecorded` (that NPC's existence and status), because `KNOWN_AFTER_DEATH` read its status history.
+- 2026-10-04 (Gate 04 remediation, G04-H01 and G04-M02):
+  - **Edits, commits, and undos of a proposal take turns** (§5–§6). Each checks and acts inside the proposal's exclusive section, reading canon there. Across processes this is a PostgreSQL advisory lock per proposal, held on connections of its own pool. An edit after a commit, and a commit of a revision an edit replaced, are `409`, whichever request arrived first; both can no longer succeed. This replaces the Stage 110 behavior in which the confirmed earlier revision could commit while an edit was stored.
+  - **An identical commit retry returns the original command as `duplicate`**, as §5 states, after a restart too. A different confirmation or revision is still `409`.
 
 ## Invariants affected
 

@@ -70,6 +70,24 @@ describe('suggestMonsterTurn', () => {
     });
   });
 
+  it('monster_suggestion_is_unavailable_while_reaction_pending (G04-M01)', async () => {
+    // The Shaman's cast waits in Elowen's Counterspell window: the encounter pauses (ADR 0016 §1).
+    const world = await shamansTurn();
+    await world.dm((await suggest(world))?.command ?? {});
+    const window = openReactionWindow(await world.state());
+    expect(window).not.toBeNull();
+    expect(await suggest(world)).toBeNull();
+    // A restarted engine over the same stream agrees.
+    const restarted = await roadWorld({ shared: { store: world.store, namespace: 5 } });
+    expect(suggestMonsterTurn(await restarted.state())).toBeNull();
+
+    // Once the window closes, advice returns, and it is accepted as is.
+    expect(codeOf(await world.dm(closeWindow(window?.windowId ?? '')))).toBe('accepted');
+    const after = await suggest(world);
+    expect(after).not.toBeNull();
+    expect(codeOf(await world.dm(after?.command ?? {}))).toBe('accepted');
+  });
+
   it('has a Raider attack with its first legal attack', async () => {
     const world = await roadWorld();
     await startAmbush(world, [1, 17, 3, 2, 15]);

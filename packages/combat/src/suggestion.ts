@@ -1,6 +1,7 @@
 import type { MonsterTurnSuggestion, Side, Square } from '@ltw/contracts';
 import {
   currentCombatant,
+  pausedCombat,
   type CombatantRecord,
   type EncounterState,
   type WorldState,
@@ -21,7 +22,7 @@ import { incapacitated, speedOf, vitalsOf, has } from './vitals.ts';
  * 3. otherwise a move toward the nearest hostile;
  * 4. otherwise ending the turn.
  * Legality comes only from the functions the decisions use (`monsterSpellPlan`,
- * `attackPlan`, `movePlan`). Pure and deterministic: ties go to turn order,
+ * `attackPlan`, `movePlan`) and the kernel's pause rule (`pausedCombat`). Pure and deterministic: ties go to turn order,
  * then to the lower row and column. No AI, and nothing acts by itself: the
  * DM reads it and submits it, or anything else, as a command.
  */
@@ -35,6 +36,13 @@ const ENEMIES: Readonly<Record<Side, readonly Side[]>> = {
 const MAX_PATH = 40;
 
 export function suggestMonsterTurn(state: WorldState): MonsterTurnSuggestion | null {
+  const suggestion = chooseTurn(state);
+  // While a reaction window is open the encounter waits (ADR 0016 §1): the
+  // kernel's own pause rule refuses the command, so none is suggested (G04-M01).
+  return suggestion && pausedCombat(state, suggestion.command) === null ? suggestion : null;
+}
+
+function chooseTurn(state: WorldState): MonsterTurnSuggestion | null {
   const encounter = state.encounter;
   const current = encounter ? currentCombatant(encounter) : undefined;
   if (!encounter || !current) return null;

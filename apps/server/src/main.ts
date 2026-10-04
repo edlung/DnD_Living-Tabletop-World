@@ -17,6 +17,8 @@ async function main(): Promise<void> {
   const config = loadConfig();
   const logger = createLogger({ service: 'ltw-server', level: config.logLevel });
   const pool = new pg.Pool({ connectionString: config.databaseUrl });
+  // Proposal locks wait for the event store while held, so they get connections of their own.
+  const proposalLocks = new pg.Pool({ connectionString: config.databaseUrl, max: 4 });
 
   const authenticator =
     config.auth.personasFile === null
@@ -28,7 +30,7 @@ async function main(): Promise<void> {
 
   const ai = createAiGateway(config.ai, new PostgresAiTraceStore(pool));
   const authoring = {
-    proposals: new PostgresProposalStore(pool),
+    proposals: new PostgresProposalStore(pool, proposalLocks),
     ids: randomIds,
     clock: systemClock,
   };
@@ -48,7 +50,7 @@ async function main(): Promise<void> {
     logger.info({ signal }, 'shutting down');
     app
       .close()
-      .then(() => pool.end())
+      .then(() => Promise.all([pool.end(), proposalLocks.end()]))
       .catch((error: unknown) => {
         logger.error({ err: error }, 'shutdown failed');
         process.exitCode = 1;

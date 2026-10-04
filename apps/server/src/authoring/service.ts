@@ -33,6 +33,11 @@ import {
  * DM's confirmed commit as one `ApplyAuthoring` command, and its undo. DM
  * only. Every legality and consent rule is the World Engine's; this service
  * only keeps proposals and binds a commit to the latest revision.
+ *
+ * An edit, a commit, and an undo each check and act inside the proposal's
+ * exclusive section (`ProposalStore.exclusive`), reading canon there, so
+ * they take turns across processes: an edit after a commit, or a commit of
+ * a revision an edit replaced, is a conflict (Gate 04, G04-H01).
  */
 export interface AuthoringDependencies {
   readonly proposals: ProposalStore;
@@ -132,87 +137,96 @@ export class AuthoringService {
     proposalId: string,
     request: ReviseProposalRequest,
   ): Promise<AuthoringOutcome<AuthoringProposalResponse>> {
-    const snapshot = await this.#asDm(actor, campaignId);
-    if (snapshot.kind !== 'ok') return snapshot;
-    const latest = await this.#deps.proposals.latest(campaignId, proposalId);
-    if (!latest) return error('NOT_FOUND');
-    if (committed(snapshot.value, proposalId) || request.basedOnRevision !== latest.revision) {
-      return error('CONFLICT');
-    }
-    let edited: Pick<ProposalRevision, 'summary' | 'appliedOption'> & {
-      readonly commands: readonly ProposableCommand[];
-    };
-    if ('optionId' in request) {
-      const preview = previewAuthoring(snapshot.value, actor, { ...latest });
-      const option = [...preview.issues, ...preview.warnings]
-        .flatMap((finding) => finding.options ?? [])
-        .find((candidate) => candidate.optionId === request.optionId);
-      if (!option) return error('CONFLICT');
-      if (option.commands === null) return error('UNPROCESSABLE');
-      const commands = proposalCommandsSchema.safeParse(option.commands);
-      if (!commands.success) return error('UNPROCESSABLE');
-      edited = {
-        summary: latest.summary,
-        commands: commands.data,
-        appliedOption: { optionId: option.optionId, label: option.label },
+    const allowed = await this.#asDm(actor, campaignId);
+    if (allowed.kind !== 'ok') return allowed;
+    return this.#deps.proposals.exclusive(campaignId, proposalId, async () => {
+      const latest = await this.#deps.proposals.latest(campaignId, proposalId);
+      if (!latest) return error('NOT_FOUND');
+      const snapshot = await this.#engine.load(campaignId);
+      if (!snapshot) return error('NOT_FOUND');
+      if (committed(snapshot, proposalId) || request.basedOnRevision !== latest.revision) {
+        return error('CONFLICT');
+      }
+      let edited: Pick<ProposalRevision, 'summary' | 'appliedOption'> & {
+        readonly commands: readonly ProposableCommand[];
       };
-    } else {
-      edited = {
-        summary: request.summary ?? latest.summary,
-        commands: request.commands,
-        appliedOption: null,
+      if ('optionId' in request) {
+        const preview = previewAuthoring(snapshot, actor, { ...latest });
+        const option = [...preview.issues, ...preview.warnings]
+          .flatMap((finding) => finding.options ?? [])
+          .find((candidate) => candidate.optionId === request.optionId);
+        if (!option) return error('CONFLICT');
+        if (option.commands === null) return error('UNPROCESSABLE');
+        const commands = proposalCommandsSchema.safeParse(option.commands);
+        if (!commands.success) return error('UNPROCESSABLE');
+        edited = {
+          summary: latest.summary,
+          commands: commands.data,
+          appliedOption: { optionId: option.optionId, label: option.label },
+        };
+      } else {
+        edited = {
+          summary: request.summary ?? latest.summary,
+          commands: request.commands,
+          appliedOption: null,
+        };
+      }
+      const revision: ProposalRevision = {
+        ...latest,
+        revision: latest.revision + 1,
+        summary: edited.summary,
+        commands: this.#resolved(edited.commands),
+        appliedOption: edited.appliedOption ?? null,
+        createdBy: actor.actorId,
+        createdAt: this.#deps.clock.now(),
       };
-    }
-    const revision: ProposalRevision = {
-      ...latest,
-      revision: latest.revision + 1,
-      summary: edited.summary,
-      commands: this.#resolved(edited.commands),
-      appliedOption: edited.appliedOption ?? null,
-      createdBy: actor.actorId,
-      createdAt: this.#deps.clock.now(),
-    };
-    try {
-      await this.#deps.proposals.append(revision);
-    } catch (cause) {
-      if (cause instanceof ProposalConflictError) return error('CONFLICT');
-      throw cause;
-    }
-    return ok(await this.#response(snapshot.value, actor, revision));
+      try {
+        await this.#deps.proposals.append(revision);
+      } catch (cause) {
+        if (cause instanceof ProposalConflictError) return error('CONFLICT');
+        throw cause;
+      }
+      return ok(await this.#response(snapshot, actor, revision));
+    });
   }
 
-  /** The DM's confirmed commit of the latest revision; decided by the World Engine now. */
+  /**
+   * The DM's confirmed commit of the latest revision; decided by the World
+   * Engine now. One commit per proposal: the engine answers an identical
+   * retry with the original command (`duplicate`) and any other second
+   * commit with `COMMAND_ID_CONFLICT`, here a conflict (ADR 0018 §5, G04-M02).
+   */
   async commit(
     actor: Actor,
     campaignId: string,
     proposalId: string,
     request: CommitProposalRequest,
   ): Promise<AuthoringOutcome<CommandResult>> {
-    const snapshot = await this.#asDm(actor, campaignId);
-    if (snapshot.kind !== 'ok') return snapshot;
-    const latest = await this.#deps.proposals.latest(campaignId, proposalId);
-    if (!latest) return error('NOT_FOUND');
-    if (committed(snapshot.value, proposalId) || request.revision !== latest.revision) {
-      return error('CONFLICT');
-    }
-    const result = await this.#engine.execute({
-      commandId: commitCommandId(proposalId),
-      campaignId,
-      actor,
-      command: {
-        type: 'ApplyAuthoring',
-        proposalId,
-        revision: latest.revision,
-        summary: latest.summary,
-        source: latest.source,
-        commands: latest.commands,
-        confirmation: request.confirmation,
-      },
+    const allowed = await this.#asDm(actor, campaignId);
+    if (allowed.kind !== 'ok') return allowed;
+    return this.#deps.proposals.exclusive(campaignId, proposalId, async () => {
+      const latest = await this.#deps.proposals.latest(campaignId, proposalId);
+      if (!latest) return error('NOT_FOUND');
+      // An edit voids every earlier revision's confirmation.
+      if (request.revision !== latest.revision) return error('CONFLICT');
+      const result = await this.#engine.execute({
+        commandId: commitCommandId(proposalId),
+        campaignId,
+        actor,
+        command: {
+          type: 'ApplyAuthoring',
+          proposalId,
+          revision: latest.revision,
+          summary: latest.summary,
+          source: latest.source,
+          commands: latest.commands,
+          confirmation: request.confirmation,
+        },
+      });
+      if (result.status !== 'rejected') return ok(result);
+      if (result.code === 'COMMAND_ID_CONFLICT') return error('CONFLICT');
+      return { kind: 'rejected', result };
     });
-    if (result.status !== 'rejected') return ok(result);
-    // A commit of another revision won the race (§5: one commit per proposal).
-    if (result.code === 'COMMAND_ID_CONFLICT') return error('CONFLICT');
-    return { kind: 'rejected', result };
   }
 
   /** Undoes the commit as one unit; blockers are listed when anything depends on it (§7). */
@@ -221,17 +235,20 @@ export class AuthoringService {
     campaignId: string,
     proposalId: string,
   ): Promise<AuthoringOutcome<CommandResult>> {
-    const snapshot = await this.#asDm(actor, campaignId);
-    if (snapshot.kind !== 'ok') return snapshot;
-    if (!(await this.#deps.proposals.latest(campaignId, proposalId))) return error('NOT_FOUND');
-    if (!committed(snapshot.value, proposalId)) return error('CONFLICT');
-    const result = await this.#engine.execute({
-      commandId: `${commitCommandId(proposalId)}.undo`,
-      campaignId,
-      actor,
-      command: { type: 'UndoCommand', targetCommandId: commitCommandId(proposalId) },
+    const allowed = await this.#asDm(actor, campaignId);
+    if (allowed.kind !== 'ok') return allowed;
+    return this.#deps.proposals.exclusive(campaignId, proposalId, async () => {
+      if (!(await this.#deps.proposals.latest(campaignId, proposalId))) return error('NOT_FOUND');
+      const snapshot = await this.#engine.load(campaignId);
+      if (!snapshot || !committed(snapshot, proposalId)) return error('CONFLICT');
+      const result = await this.#engine.execute({
+        commandId: `${commitCommandId(proposalId)}.undo`,
+        campaignId,
+        actor,
+        command: { type: 'UndoCommand', targetCommandId: commitCommandId(proposalId) },
+      });
+      return result.status === 'rejected' ? { kind: 'rejected', result } : ok(result);
     });
-    return result.status === 'rejected' ? { kind: 'rejected', result } : ok(result);
   }
 
   /** ADR 0009 order after input checks: membership (404), then role (403). */

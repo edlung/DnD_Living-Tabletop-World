@@ -164,6 +164,33 @@ describe('GET /campaigns/:campaignId/encounter/suggestion', () => {
     });
   });
 
+  it('suggests nothing while a reaction window is open (G04-M01)', async () => {
+    await startAmbush();
+    const windowNow = async () =>
+      (
+        await get(app, '/campaigns/ravenford/encounter?perspective=DM', TOKENS.dm)
+      ).json<EncounterResponse>().encounter?.reactionWindow?.windowId;
+    // Play suggested turns (Elowen only ends hers) until the Shaman's cast opens a window.
+    let pending: string | undefined;
+    for (let step = 0; step < 40 && !pending; step += 1) {
+      const { suggestion } = (await get(app, url, TOKENS.dm)).json<EncounterSuggestionResponse>();
+      const next = suggestion?.command ?? { type: 'EndTurn', combatantId: 'elowen-starwhisper' };
+      expect((await command({ ...next }, TOKENS.dm)).status).toBe(200);
+      pending = await windowNow();
+    }
+    expect(pending).toBeDefined();
+    expect((await get(app, url, TOKENS.dm)).json<EncounterSuggestionResponse>()).toEqual({
+      suggestion: null,
+    });
+    // Closed, the creature may act again.
+    expect(
+      (await command({ type: 'CloseReactionWindow', windowId: pending }, TOKENS.dm)).status,
+    ).toBe(200);
+    const { suggestion } = (await get(app, url, TOKENS.dm)).json<EncounterSuggestionResponse>();
+    expect(suggestion).not.toBeNull();
+    expect((await command({ ...suggestion?.command }, TOKENS.dm)).status).toBe(200);
+  });
+
   it('suggests a creature’s action, which the DM submits as any command', async () => {
     await startAmbush();
     expect(

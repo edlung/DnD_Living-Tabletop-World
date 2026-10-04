@@ -22,6 +22,13 @@ export interface ProposalRevision {
 }
 
 export interface ProposalStore {
+  /**
+   * Runs `work` while no other `exclusive` section of the same proposal runs,
+   * in any process (Gate 04, G04-H01). Every check-then-act on a proposal (an
+   * edit, a commit, an undo) runs inside one, so an edit and a commit of the
+   * same proposal take turns: the later sees the earlier's effect.
+   */
+  exclusive<T>(campaignId: string, proposalId: string, work: () => Promise<T>): Promise<T>;
   /** Throws `ProposalConflictError` when that revision of the proposal already exists. */
   append(revision: ProposalRevision): Promise<void>;
   /** The latest revision, or null when the proposal does not exist in that campaign. */
@@ -37,6 +44,24 @@ export class ProposalConflictError extends Error {
 
 export class InMemoryProposalStore implements ProposalStore {
   readonly #revisions = new Map<string, ProposalRevision[]>();
+  /** The tail of each proposal's queue of exclusive sections (one process only). */
+  readonly #turns = new Map<string, Promise<void>>();
+
+  async exclusive<T>(campaignId: string, proposalId: string, work: () => Promise<T>): Promise<T> {
+    const key = `${campaignId}|${proposalId}`;
+    const previous = this.#turns.get(key) ?? Promise.resolve();
+    let done: () => void = () => undefined;
+    const turn = new Promise<void>((resolve) => (done = resolve));
+    const tail = previous.then(() => turn);
+    this.#turns.set(key, tail);
+    await previous;
+    try {
+      return await work();
+    } finally {
+      done();
+      if (this.#turns.get(key) === tail) this.#turns.delete(key);
+    }
+  }
 
   append(revision: ProposalRevision): Promise<void> {
     const list = this.#revisions.get(revision.proposalId) ?? [];

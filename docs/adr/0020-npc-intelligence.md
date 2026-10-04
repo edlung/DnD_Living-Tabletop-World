@@ -110,6 +110,10 @@ Stage 130 found two gaps in what Stages 100–120 recorded: generated memory sum
 - **A future economy** needs its own decision before Trade executes.
 - A reply's tone may reflect the NPC's attitude, which players otherwise never see (ADR 0019 §3); the owner chose to give the NPC its attitude.
 
+## Amendments
+
+- 2026-10-04 (Gate 04 remediation, G04-M01): no suggestion while a reaction window is open. The suggested command is checked with the kernel's own pause rule (`pausedCombat`, ADR 0016 §1), so the route answers `suggestion: null` until the window is answered or closed. The DM resolves the window first; nothing answers it automatically.
+
 ## Invariants affected
 
 Implements 5 and 6 for runtime NPCs, keeps 2 and 7 (AI never decides or records knowledge), keeps 8–9 (rules decide legality), and preserves 1, 3, 11, 12, and 18. No invariant is weakened.
