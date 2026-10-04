@@ -1,0 +1,366 @@
+{
+  "H01-counter": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-decline": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-dm-close": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-failed-counter": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01Character": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.12"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01Clock": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.10"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-race-undo": {
+    "code": "REACTION_PENDING",
+    "conflicts": 1,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H01-race-edit": {
+    "code": "UNDO_UNSAFE",
+    "conflicts": 1,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H02-armor": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H02-condition": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.11"],
+    "atomic": true,
+    "recovery": "accepted",
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-direct-30": {
+    "knowledge": true,
+    "memory": true,
+    "expected": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-direct-35": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-direct-50": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-decline-30": {
+    "knowledge": true,
+    "memory": true,
+    "expected": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-decline-35": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-decline-50": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-dm-close-30": {
+    "knowledge": true,
+    "memory": true,
+    "expected": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-dm-close-35": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-dm-close-50": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-countered-30": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-countered-35": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-countered-50": {
+    "knowledge": false,
+    "memory": false,
+    "expected": false,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03NoSquare": {
+    "inCombat": false,
+    "afterCombat": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentStatBlock": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.8"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentRepeat-inspect": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.4"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentRepeat-magic": {
+    "code": "UNDO_UNSAFE",
+    "blockers": ["test.0.4"],
+    "atomic": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-status": {
+    "premise": "test.0.3",
+    "cast": "test.0.4",
+    "undo": "test.0.5",
+    "result": "UNDO_UNSAFE",
+    "targetExists": true,
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "market-square",
+      "since": null
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-existence": {
+    "premise": "test.0.1",
+    "cast": "test.0.2",
+    "undo": "test.0.3",
+    "result": "UNDO_UNSAFE",
+    "targetExists": true,
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "market-square",
+      "since": null
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-placement": {
+    "premise": "test.0.2",
+    "cast": "test.0.3",
+    "undo": "test.0.4",
+    "result": "UNDO_UNSAFE",
+    "targetExists": true,
+    "targetStatus": "active",
+    "targetPlacement": {
+      "locationId": "market-square",
+      "since": 36000
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-status": {
+    "premise": "test.0.9",
+    "cast": "test.0.10",
+    "undo": "test.0.11",
+    "result": "accepted",
+    "targetExists": true,
+    "targetStatus": "dead",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": {
+      "commandId": "test.0.10",
+      "commandType": "CastSpell",
+      "reason": "no longer accepted: TARGET_DEAD"
+    }
+  },
+  "H04-unrelated-fight-existence": {
+    "premise": "test.0.7",
+    "cast": "test.0.8",
+    "undo": "test.0.9",
+    "result": "accepted",
+    "targetExists": false,
+    "targetStatus": null,
+    "targetPlacement": null,
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": {
+      "commandId": "test.0.8",
+      "commandType": "CastSpell",
+      "reason": "no longer accepted: ILLEGAL_ACTION"
+    }
+  },
+  "H04-unrelated-fight-placement": {
+    "premise": "test.0.8",
+    "cast": "test.0.9",
+    "undo": "test.0.10",
+    "result": "accepted",
+    "targetExists": true,
+    "targetStatus": "active",
+    "targetPlacement": null,
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": {
+      "commandId": "test.0.9",
+      "commandType": "CastSpell",
+      "reason": "no longer accepted: ILLEGAL_ACTION"
+    }
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "H01-original": {
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r1-11",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r1-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:dm-ravenford:r1-10",
+              "commandType": "ChangeEntityStatus",
+              "sequence": 120
+            }
+          ]
+        }
+      }
+    },
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H02-original": {
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r1-11",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r1-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r1-10",
+              "commandType": "Attack",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-immediate": {
+    "nearVisible": true,
+    "farVisible": false,
+    "gridlessVisible": false,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-suspended": {
+    "nearVisible": true,
+    "farVisible": false,
+    "gridlessVisible": false,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-existence": {
+    "premise": "http:dm-ravenford:r1-7",
+    "cast": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r1-8",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "undo": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:r1-9",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 113,
+            "eventId": "00000000-0051-4000-8000-000000000001",
+            "type": "CommandUndone"
+          }
+        ]
+      }
+    },
+    "targetExists": false,
+    "targetStatus": null,
+    "targetPlacement": null,
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": {
+      "commandId": "http:player-elowen:r1-8",
+      "commandType": "CastSpell",
+      "reason": "no longer accepted: ILLEGAL_ACTION"
+    }
+  },
+  "H04-status": {
+    "premise": "http:dm-ravenford:r1-9",
+    "cast": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r1-10",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "undo": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:r1-11",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 115,
+            "eventId": "00000000-0051-4000-8000-000000000001",
+            "type": "CommandUndone"
+          }
+        ]
+      }
+    },
+    "targetExists": true,
+    "targetStatus": "dead",
+    "targetPlacement": {
+      "locationId": "old-trade-road",
+      "since": null
+    },
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": {
+      "commandId": "http:player-elowen:r1-10",
+      "commandType": "CastSpell",
+      "reason": "no longer accepted: TARGET_DEAD"
+    }
+  },
+  "H04-placement": {
+    "premise": "http:dm-ravenford:r1-8",
+    "cast": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r1-9",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "undo": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:r1-10",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 113,
+            "eventId": "00000000-0051-4000-8000-000000000001",
+            "type": "CommandUndone"
+          }
+        ]
+      }
+    },
+    "targetExists": true,
+    "targetStatus": "active",
+    "targetPlacement": null,
+    "concentration": {
+      "spellId": "hunters-mark",
+      "targetId": "r1-bystander"
+    },
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": {
+      "commandId": "http:player-elowen:r1-9",
+      "commandType": "CastSpell",
+      "reason": "no longer accepted: ILLEGAL_ACTION"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "review": "ASTRA-GATE-03-RETEST-1",
+  "date": "2026-10-04",
+  "reviewed_revision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+  "workspace_head": "c395d22f23488793b015523a410f90aec3c69b8e",
+  "head_delta": "README status, updated handoff and remediation report only; application sources match reviewed revision.",
+  "overall_result": "FAIL",
+  "prior_findings": {
+    "G03-H01": "Original and adjacent reopening reproductions now reject unsafe undo; safe recovery verified.",
+    "G03-H02": "Original missed-attack and target-condition reproductions fixed; additional target-premise gap is tracked as G03-H04.",
+    "G03-H03": "30/35/50-ft boundary, immediate/suspended/countered casts, and no-square rule verified."
+  },
+  "blocking_findings": {
+    "G03-H04": {
+      "severity": "High",
+      "summary": "Out-of-encounter casting drops target premises whenever the campaign has an active encounter. Undo can remove, unplace or kill the target beneath an accepted Hunter\u2019s Mark.",
+      "state_variants": ["status", "existence", "placement"],
+      "http_postgres_variants": ["status", "existence", "placement"],
+      "survives_restart": true
+    }
+  },
+  "validation": {
+    "pnpm test": {
+      "exit_code": 0,
+      "files": 76,
+      "tests": 887
+    },
+    "pnpm test:integration": {
+      "exit_code": 0,
+      "files": 9,
+      "tests": 36
+    },
+    "pnpm lint": {
+      "exit_code": 0
+    },
+    "pnpm typecheck": {
+      "exit_code": 0
+    },
+    "pnpm build": {
+      "exit_code": 0
+    },
+    "pnpm context-budget": {
+      "exit_code": 0,
+      "files": 263,
+      "over_500": 0,
+      "over_700": 0
+    },
+    "STATE_PROBES.md": {
+      "exit_code": 0,
+      "scenarios": 32,
+      "output": "state-results.json"
+    },
+    "HTTP_POSTGRES_PROBES.md": {
+      "exit_code": 0,
+      "scenarios": 7,
+      "output": "http-postgres-results.json"
+    }
+  },
+  "required_surfaces_unavailable": [],
+  "limitations": [
+    "HTTP injection uses actual authenticated handlers and PostgreSQL; no separate listening server or browser.",
+    "Finite deterministic and randomized coverage is not exhaustive.",
+    "No deployment, destructive development-database reset, or Stage 100 work."
+  ],
+  "production_source_modified": false,
+  "prior_reports_and_evidence_preserved": true
+}
