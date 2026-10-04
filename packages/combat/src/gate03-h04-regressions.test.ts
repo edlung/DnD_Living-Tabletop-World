@@ -3,12 +3,14 @@ import { describe, expect, it } from 'vitest';
 
 import { cast } from './testing/reactions.ts';
 import {
+  AMBUSH,
   ELOWEN,
   RAIDER_2,
+  SHAMAN,
   codeOf,
+  recorded,
   roadWorld,
   startAmbush,
-  type AMBUSH,
   type RoadWorld,
 } from './testing/road.ts';
 import { verifyHistory } from './testing/verify.ts';
@@ -34,16 +36,17 @@ const accepted = async (sent: Promise<CommandResult>) => {
   return result;
 };
 
+/** Elowen stands on the road (placed with everyone) but is not a combatant. */
+const startWithoutElowen = (world: RoadWorld) =>
+  startAmbush(world, [3, 2, 1, 15], (command: Start) => ({
+    ...command,
+    combatants: command.combatants.filter((c) => c.entityId !== ELOWEN),
+  }));
+
 /** The world, and the command whose undo the spell must block. */
 async function arrange(fight: Fight, premise: Premise) {
   const world = await roadWorld();
-  if (fight === 'a fight without the caster') {
-    // Elowen stands on the road (placed with everyone) but is not a combatant.
-    await startAmbush(world, [3, 2, 1, 15], (command: Start) => ({
-      ...command,
-      combatants: command.combatants.filter((c) => c.entityId !== ELOWEN),
-    }));
-  }
+  if (fight === 'a fight without the caster') await startWithoutElowen(world);
   const here = (await world.state()).entities.get(ELOWEN)?.placement?.locationId ?? '';
   const there = premise === 'caster placement' ? 'golden-stag-inn' : here;
   const npc = (placed: boolean) =>
@@ -128,21 +131,51 @@ describe('G03-H04 outside_encounter_cast_retains_target_premises_during_another_
     },
   );
 
-  it('a fight the caster is not in adds no premise of its own to the spell', async () => {
-    const quiet = await arrange('no fight', 'creation');
-    const busy = await arrange('a fight without the caster', 'creation');
-    const premisesOf = async (world: RoadWorld) => {
-      const result = await accepted(
-        world.submit(cast(ELOWEN, 'hunters-mark', { targetId: BYSTANDER })),
-      );
-      const events = (await world.store.loadStream('ravenford'))?.events ?? [];
-      const recorded = events.find(
-        (e) => e.causation.commandId === result.commandId && e.type === 'PremisesRecorded',
-      );
-      return recorded?.type === 'PremisesRecorded' ? recorded.payload.premises : [];
-    };
-    expect(await premisesOf(busy.world)).toEqual(await premisesOf(quiet.world));
-  });
+  /** Everyone on the road, magic on the Shaman and a bystander; a fight without Elowen, or none. */
+  async function roadside(fight: Fight) {
+    const world = await roadWorld();
+    if (fight === 'a fight without the caster') await startWithoutElowen(world);
+    else for (const place of AMBUSH.place) await accepted(world.dm(place));
+    await accepted(
+      world.dm({
+        type: 'CreateEntity',
+        entityId: BYSTANDER,
+        kind: 'npc',
+        name: 'Bystander',
+        existsSince: null,
+        placement: { locationId: 'old-trade-road', since: null },
+      }),
+    );
+    for (const entityId of [SHAMAN, BYSTANDER]) {
+      const clue = { clueId: `magic-${entityId}`, entityId, method: 'magic', subjects: [] };
+      await accepted(world.dm({ type: 'AddClue', ...clue, statement: `Magic on ${entityId}.` }));
+    }
+    return world;
+  }
+
+  it.each([...spells, 'detect-magic'])(
+    'a fight the caster is not in changes nothing about %s: same premises, same result',
+    async (spell) => {
+      const castOn = async (fight: Fight) => {
+        const world = await roadside(fight);
+        const target = spell === 'detect-magic' ? {} : { targetId: BYSTANDER };
+        const result = await accepted(world.submit(cast(ELOWEN, spell, target)));
+        const events = await recorded(world, result);
+        return {
+          premises: events.flatMap((e) =>
+            e.type === 'PremisesRecorded' ? e.payload.premises : [],
+          ),
+          revealed: events.flatMap((e) =>
+            e.type === 'EvidenceExamined' ? e.payload.revealed.map((r) => r.clueId) : [],
+          ),
+        };
+      };
+      const busy = await castOn('a fight without the caster');
+      expect(busy).toEqual(await castOn('no fight'));
+      // Outside the fight Detect Magic senses the room, not 30 ft of a square it lacks.
+      if (spell === 'detect-magic') expect(busy.revealed).toContain(`magic-${SHAMAN}`);
+    },
+  );
 });
 
 describe('found by the randomized suite: Detect Magic read every magic clue', () => {
