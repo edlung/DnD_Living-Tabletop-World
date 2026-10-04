@@ -2,7 +2,7 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 130 (NPC Intelligence) complete and awaiting Astra Gate 04 (`handoffs/ASTRA_GATE_04_REQUEST.md`), which reviews Stages 100–130. Astra Gate 03 passed at retest 4 (`reviews/ASTRA_GATE_03_RETEST_4.md`, revision `998887d`), after seven High findings were remediated (`remediation/OPUS_GATE_03_REMEDIATION.md`). Astra Gate 02 passed earlier (retest 2, revision `017ab0b`). The stages so far provide:
+**Current state:** Stage 130 (NPC Intelligence) complete. Astra Gate 04, which reviews Stages 100–130, failed initially (`reviews/ASTRA_GATE_04_REPORT.md`: one High authoring race and two Medium findings; no NPC leak). The findings are remediated (`remediation/OPUS_GATE_04_REMEDIATION.md`), and retest 1 is awaited (`handoffs/ASTRA_GATE_04_REQUEST.md`). Astra Gate 03 passed at retest 4 (`reviews/ASTRA_GATE_03_RETEST_4.md`, revision `998887d`), after seven High findings were remediated (`remediation/OPUS_GATE_03_REMEDIATION.md`). Astra Gate 02 passed earlier (retest 2, revision `017ab0b`). The stages so far provide:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
