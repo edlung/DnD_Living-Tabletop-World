@@ -371,3 +371,82 @@ Astra:
 ## Hard Stop
 
 Opus stops here. Do not begin Stage 100 until Astra writes PASS.
+
+---
+
+# Remediation for Retest 4 (after `reviews/ASTRA_GATE_03_RETEST_3.md`)
+
+- Astra report: `reviews/ASTRA_GATE_03_RETEST_3.md` (FAIL: G03-H07 High). The G03-H05 loading failure and the G03-H06 disclosure were confirmed closed; G03-H01 to G03-H04 remain closed.
+- Retest number / required output path: 4 — `reviews/ASTRA_GATE_03_RETEST_4.md`
+- Revision before remediation: `e893497fef95e53ec54f4baa0a314a341d09515b` (reviewed at `c4d3419`, the same implementation)
+- Revision after remediation: `998887d7c5ecd7ce28b3c01c13a37ee07dbf62f1`
+- Builder: Claude Opus 5.5, MAX
+- Owner decision: G03-H07, recorded as an amendment to ADR 0006 (2026-10-04)
+- Status: AWAITING_ASTRA_RETEST
+
+## G03-H07 — Current undo invalidates the original legality of old outside-encounter spells
+
+- **Severity:** High
+- **Violated invariants:** 1, 12; ADR 0006 §8.
+- **Root cause:**
+  - Earlier writers did not always record every fact a decision rested on. Revision 88d8137 recorded Elowen's spells outside an unrelated fight with that fight's combatants as premises, but not her target's status or either participant's placement. Revision 429e2a2 recorded missed attacks without the target's vitals, and earlier writers recorded results that found nothing without what they passed over.
+  - The current undo trusted those records as complete footprints. The retest 2 remediation added only the existence of the creatures a record names.
+  - No footprint can supply what an old record never named without inventing it. So the question was what undo should assume for such history: a product decision.
+- **Owner decision** (2026-10-04, ADR 0006 retest 3 amendment): a command decided by an earlier version rests on everything before it. While it stands, nothing beneath it can be undone, so old history comes off only from its end backwards. History written by the current version is undone exactly as before.
+- **Regression tests added first** (failing on `e893497`):
+  - New genuine histories, written through each revision's own HTTP app and `PostgresEventStore`; steps and script in `fixtures/history/WRITERS.md`:
+    - `88d8137-outside-casts.json`: the reviewer's three variants (revival, target placement, caster placement through `EnterLocation`), a Healing Word at a revived patient, and the creation control;
+    - `b38cbbc-outside-casts.json`: the same scenario, recorded completely (control);
+    - `429e2a2-gaps.json` and `017ab0b-investigation.json`: the audit below.
+  - `packages/combat/src/gate03-h07-regressions.test.ts`, `current_undo_preserves_old_spell_legality_premises`, for both writers and all five variants. The undo must be refused atomically, naming the old cast. The cast must stay legal under the rules that decided it: caster alive, target alive and perceived, in current canon just before the cast (`testing/history.ts`: `outsideCastLegal`). A fresh process must read the same canon, and explicit reverse order must recover. On `e893497` the four 88d8137 variants failed (undo accepted); the creation control and all b38cbbc cases passed.
+  - Audit, in the same file, of what other writers recorded incompletely. All six failed on `e893497` (undo accepted):
+    - 429e2a2: an inspection passing over a clue found before, Detect Magic after the DM moved a charm away, Hunter's Mark at a revived creature, a missed attack after an Armor Class edit (G03-H02's original), and a turn passing over a dead goblin;
+    - 017ab0b: an inspection passing over a clue found before.
+  - `apps/server/src/world-engine/gate03-retest3-regressions.integration.test.ts`: the 88d8137 rows on PostgreSQL over HTTP. The four variants are refused and stay refused after a restart, the version is unchanged, reverse order recovers, and the history verifies from the database. All four returned HTTP 200 on `e893497`.
+- **Fix:**
+  - **The dependency contract** (`packages/domain/src/kernel/event-versions.ts`): every event type is now written as version 2 (`PremisesRecorded` as version 3), meaning the command recorded every fact its decision rested on. Earlier versions mark earlier writers (`writtenEarlier`), and every version stays readable.
+  - **Undo** (`packages/domain/src/kernel/decide/undo.ts`): a standing command whose events carry an earlier version blocks undo of anything beneath it, and is listed as a blocker. Undo compensations keep their exact footprints for any writer.
+  - **Independent check** (`packages/domain/src/kernel/verification/earlier-writers.ts`, `undoneBeneathEarlierWriters`): no undo the current writer accepted reached beneath a standing command an earlier writer decided. `verifyHistory` and the PostgreSQL verification run it.
+  - The re-decision oracle keeps its rule-version distinction: commands earlier writers decided are folded as recorded.
+  - **Retired:** the retest 2 remediation's clue-set fact, which `ClueAdded` wrote and a stored `placement` premise read. The rule above makes it redundant: undo is refused beneath any old command anyway. A stored `placement` premise now reads only what it originally meant, the entity and where it was (ADR 0013 retest 3 amendment).
+- **Tests added with the fix:**
+  - The structural check is tested directly: a synthetic undo beneath a standing old cast is found, while an earlier writer's own undo and an undo of the newest old command are not.
+  - A standing old command with no premises (the DM's move of the charm) still blocks undo of what lies beneath it. This shows the rule, not a footprint, protects old history.
+  - `history.property.test.ts` now runs random commands and undos on all five histories (10 seeds).
+  - `packages/domain/src/combat/named-entities.test.ts` pins that every narrative record's footprint reads each creature its fold requires. That guarantee is redundant today, since current premises cover those creatures and old commands fall under the rule. It is kept as a structural rule of footprints and is now tested directly.
+- **What the decision costs:** in a campaign started before the upgrade, the DM undoes old commands newest first; some of those undos would have been safe. Today such campaigns exist only in test databases.
+
+## Validation (revision `998887d`; Node 25.8.1, pnpm 11.11.0, PostgreSQL 18)
+
+| Command                                                                                                                                                       | Result                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm validate:ci-local` (format, lint, typecheck, budget, unit, clean build, migrate ×2, seed ×2, integration)                                               | PASS on `998887d`                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `pnpm test`                                                                                                                                                   | PASS — 84 files, 976 tests                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `pnpm test:integration`                                                                                                                                       | PASS — 11 files, 48 tests (4 new: G03-H07 on PostgreSQL)                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `pnpm context-budget`                                                                                                                                         | PASS — 278 active files, 0 over 500 lines, 0 over 700                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Fresh volume: `pnpm db:migrate` ×2, `pnpm seed:ravenford` ×2                                                                                                  | PASS — the migration applied once; 91 commands, version 100, 25 entities; the second runs change nothing                                                                                                                                                                                                                                                                                                                                                                           |
+| A larger randomized campaign, run temporarily and then deleted: 80 reaction seeds × 120 steps, 60 domain seeds, 60 seeds × 60 steps across the five histories | 200 of 201 tests passed, covering every integrity, replay, pause, range, undo-safety, re-decision, window-hiding, and earlier-writer check. Seed 1666 failed only the coverage assertion that some window opened. This fix leaves fresh worlds unchanged, so it is the walk traced in the previous round: the Shaman's one turn passed without its cast                                                                                                                            |
+| Live server on PostgreSQL (crypto dice), over HTTP, built from `998887d`                                                                                      | PASS. With the rows 88d8137 stored for the outside casts, the player's encounter read returns 200. Undoing the revival, the target's placement, Elowen's entry to the inn, or the patient's revival beneath the old casts is refused (HTTP 422 `UNDO_UNSAFE`, naming the cast). The stream stays at version 133 and the targets stay alive. Explicit reverse order (11 later commands, newest first, then the revival) is accepted. The database was then reset and reseeded clean |
+| Mutation checks against the full unit suite, one at a time: the 17 Stage 90 defects and the fixes made for retests 1 to 4 (7 + 3 + 8 + 4)                     | All 39 detected on `998887d`. A first run had 41: 2 tested the clue-set fact, now retired, and 1 the narrative-record reads, now pinned by a direct test                                                                                                                                                                                                                                                                                                                           |
+
+## Deferred Findings
+
+None.
+
+## Retest Request
+
+Astra:
+
+- Independently retest G03-H07 and its adjacent paths:
+  - undo on history earlier revisions wrote, beneath and of old commands of every kind, with genuine writers;
+  - reverse-order recovery;
+  - histories mixing old and current commands;
+  - the version marking and the independent check.
+- The owner's decision is in ADR 0006 (Gate 03 retest 3 amendment).
+- Recheck that G03-H01 to G03-H06 remain closed.
+- Write `reviews/ASTRA_GATE_03_RETEST_4.md`. The handoff `handoffs/ASTRA_GATE_03_REQUEST.md` is updated to retest 4 with this output path.
+- Preserve every earlier report and its evidence. Do not rely on this report's claim that a fix is correct.
+
+## Hard Stop
+
+Opus stops here. Do not begin Stage 100 until Astra writes PASS.
