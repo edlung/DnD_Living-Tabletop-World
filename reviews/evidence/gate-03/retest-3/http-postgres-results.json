@@ -1,0 +1,1020 @@
+{
+  "H01-original": {
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-11",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r3-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:dm-ravenford:r3-10",
+              "commandType": "ChangeEntityStatus",
+              "sequence": 120
+            }
+          ]
+        }
+      }
+    },
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H02-original": {
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-11",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-10",
+              "commandType": "Attack",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-immediate": {
+    "nearVisible": true,
+    "farVisible": false,
+    "gridlessVisible": false,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H03-suspended": {
+    "nearVisible": true,
+    "farVisible": false,
+    "gridlessVisible": false,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-hunters-mark-existence": {
+    "premise": "http:dm-ravenford:r3-1",
+    "cast": "http:player-elowen:r3-2",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-3",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-1\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-2",
+              "commandType": "CastSpell",
+              "sequence": 103
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-hunters-mark-status": {
+    "premise": "http:dm-ravenford:r3-3",
+    "cast": "http:player-elowen:r3-4",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-5",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-3\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-4",
+              "commandType": "CastSpell",
+              "sequence": 105
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-hunters-mark-placement": {
+    "premise": "http:dm-ravenford:r3-2",
+    "cast": "http:player-elowen:r3-3",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-4",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-3",
+              "commandType": "CastSpell",
+              "sequence": 103
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-hunters-mark-caster-placement": {
+    "premise": "http:player-elowen:r3-2",
+    "cast": "http:player-elowen:r3-3",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-4",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r3-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-3",
+              "commandType": "CastSpell",
+              "sequence": 105
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-healing-word-existence": {
+    "premise": "http:dm-ravenford:r3-1",
+    "cast": "http:player-elowen:r3-2",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-3",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-1\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-2",
+              "commandType": "CastSpell",
+              "sequence": 103
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-healing-word-status": {
+    "premise": "http:dm-ravenford:r3-3",
+    "cast": "http:player-elowen:r3-4",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-5",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-3\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-4",
+              "commandType": "CastSpell",
+              "sequence": 105
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-healing-word-placement": {
+    "premise": "http:dm-ravenford:r3-2",
+    "cast": "http:player-elowen:r3-3",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-4",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-3",
+              "commandType": "CastSpell",
+              "sequence": 103
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-no-fight-healing-word-caster-placement": {
+    "premise": "http:player-elowen:r3-2",
+    "cast": "http:player-elowen:r3-3",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-4",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r3-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-3",
+              "commandType": "CastSpell",
+              "sequence": 105
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-hunters-mark-existence": {
+    "premise": "http:dm-ravenford:r3-7",
+    "cast": "http:player-elowen:r3-8",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-9",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-7\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-8",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-hunters-mark-status": {
+    "premise": "http:dm-ravenford:r3-9",
+    "cast": "http:player-elowen:r3-10",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-11",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-10",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-hunters-mark-placement": {
+    "premise": "http:dm-ravenford:r3-8",
+    "cast": "http:player-elowen:r3-9",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-10",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-9",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-hunters-mark-caster-placement": {
+    "premise": "http:player-elowen:r3-8",
+    "cast": "http:player-elowen:r3-9",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-10",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r3-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-9",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-healing-word-existence": {
+    "premise": "http:dm-ravenford:r3-7",
+    "cast": "http:player-elowen:r3-8",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-9",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-7\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-8",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-healing-word-status": {
+    "premise": "http:dm-ravenford:r3-9",
+    "cast": "http:player-elowen:r3-10",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-11",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-9\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-10",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-healing-word-placement": {
+    "premise": "http:dm-ravenford:r3-8",
+    "cast": "http:player-elowen:r3-9",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-10",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-9",
+              "commandType": "CastSpell",
+              "sequence": 110
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H04-unrelated-fight-healing-word-caster-placement": {
+    "premise": "http:player-elowen:r3-8",
+    "cast": "http:player-elowen:r3-9",
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-10",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:player-elowen:r3-8\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-9",
+              "commandType": "CastSpell",
+              "sequence": 112
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "AdjacentUnreached-clue": {
+    "refusal": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:r3-4",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"http:dm-ravenford:r3-2\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "http:player-elowen:r3-3",
+              "commandType": "CastSpell",
+              "sequence": 104
+            }
+          ]
+        }
+      }
+    },
+    "atomic": true,
+    "recovery": "accepted",
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  },
+  "H06-no-fight-healing-word": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r3-8",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "goblin-shaman",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      }
+    },
+    "expectedByVisibilityContract": "TARGET_IN_COMBAT in both fight phases; accepted without fight",
+    "leaksWindow": false,
+    "atomicRejection": null,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": true,
+          "relevance": "low",
+          "cost": {
+            "kind": "free"
+          },
+          "hints": ["RANGE_NOT_TRACKED"]
+        },
+        {
+          "id": "hunters_mark",
+          "legal": true,
+          "relevance": "low",
+          "cost": {
+            "kind": "free"
+          },
+          "hints": ["RANGE_NOT_TRACKED"]
+        }
+      ]
+    }
+  },
+  "H06-no-fight-hunters-mark": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r3-8",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "expectedByVisibilityContract": "TARGET_IN_COMBAT in both fight phases; accepted without fight",
+    "leaksWindow": false,
+    "atomicRejection": null,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": true,
+          "relevance": "low",
+          "cost": {
+            "kind": "free"
+          },
+          "hints": ["RANGE_NOT_TRACKED"]
+        },
+        {
+          "id": "hunters_mark",
+          "legal": true,
+          "relevance": "low",
+          "cost": {
+            "kind": "free"
+          },
+          "hints": ["RANGE_NOT_TRACKED"]
+        }
+      ]
+    }
+  },
+  "H06-no-fight-detect-magic": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r3-8",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "expectedByVisibilityContract": "accepted in all phases",
+    "leaksWindow": false,
+    "atomicRejection": null,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": true,
+          "relevance": "low",
+          "cost": {
+            "kind": "free"
+          },
+          "hints": ["RANGE_NOT_TRACKED"]
+        },
+        {
+          "id": "hunters_mark",
+          "legal": true,
+          "relevance": "low",
+          "cost": {
+            "kind": "free"
+          },
+          "hints": ["RANGE_NOT_TRACKED"]
+        }
+      ]
+    }
+  },
+  "H06-fight-no-window-healing-word": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:player-elowen:r3-9",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      }
+    },
+    "expectedByVisibilityContract": "TARGET_IN_COMBAT in both fight phases; accepted without fight",
+    "leaksWindow": false,
+    "atomicRejection": true,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        },
+        {
+          "id": "hunters_mark",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        }
+      ]
+    }
+  },
+  "H06-fight-no-window-hunters-mark": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:player-elowen:r3-9",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      }
+    },
+    "expectedByVisibilityContract": "TARGET_IN_COMBAT in both fight phases; accepted without fight",
+    "leaksWindow": false,
+    "atomicRejection": true,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        },
+        {
+          "id": "hunters_mark",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        }
+      ]
+    }
+  },
+  "H06-fight-no-window-detect-magic": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r3-9",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "expectedByVisibilityContract": "accepted in all phases",
+    "leaksWindow": false,
+    "atomicRejection": null,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        },
+        {
+          "id": "hunters_mark",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        }
+      ]
+    }
+  },
+  "H06-fight-open-window-healing-word": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:player-elowen:r3-10",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      }
+    },
+    "expectedByVisibilityContract": "TARGET_IN_COMBAT in both fight phases; accepted without fight",
+    "leaksWindow": false,
+    "atomicRejection": true,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        },
+        {
+          "id": "hunters_mark",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        }
+      ]
+    }
+  },
+  "H06-fight-open-window-hunters-mark": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:player-elowen:r3-10",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      }
+    },
+    "expectedByVisibilityContract": "TARGET_IN_COMBAT in both fight phases; accepted without fight",
+    "leaksWindow": false,
+    "atomicRejection": true,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        },
+        {
+          "id": "hunters_mark",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        }
+      ]
+    }
+  },
+  "H06-fight-open-window-detect-magic": {
+    "encounter": null,
+    "targetHp": {
+      "max": 21,
+      "current": 21
+    },
+    "response": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r3-10",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "expectedByVisibilityContract": "accepted in all phases",
+    "leaksWindow": false,
+    "atomicRejection": null,
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null,
+    "contextSummary": {
+      "equalAcrossWindow": true,
+      "spellActions": [
+        {
+          "id": "healing_word",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        },
+        {
+          "id": "hunters_mark",
+          "legal": false,
+          "reason": "TARGET_IN_COMBAT",
+          "relevance": "low"
+        }
+      ]
+    }
+  },
+  "H06-open-window-healing-outsider-control": {
+    "response": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:r3-10",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "elowen-starwhisper",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      }
+    },
+    "survivesRestart": true,
+    "replayEqual": true,
+    "structuralViolations": [],
+    "windowViolations": [],
+    "redecision": null
+  }
+}

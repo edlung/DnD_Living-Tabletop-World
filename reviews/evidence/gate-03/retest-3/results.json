@@ -1,0 +1,102 @@
+{
+  "reviewId": "ASTRA-GATE-03-RETEST-3",
+  "date": "2026-10-04",
+  "result": "FAIL",
+  "reviewedCodeRevision": "e893497fef95e53ec54f4baa0a314a341d09515b",
+  "testedHead": "c4d3419676f7f3b498ac7a5ffdacda29a8ba8643",
+  "historicalWriters": [
+    "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750"
+  ],
+  "headOnlyChanges": [
+    "README.md",
+    "handoffs/ASTRA_GATE_03_REQUEST.md",
+    "remediation/OPUS_GATE_03_REMEDIATION.md"
+  ],
+  "validation": {
+    "pnpm test": {
+      "result": "PASS",
+      "files": 82,
+      "tests": 949
+    },
+    "pnpm test:integration": {
+      "result": "PASS",
+      "files": 10,
+      "tests": 44
+    },
+    "pnpm lint": "PASS",
+    "pnpm typecheck": "PASS",
+    "pnpm build": "PASS",
+    "pnpm context-budget": {
+      "result": "PASS",
+      "activeFiles": 274,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "pnpm format:check": "PASS after formatting review artifacts"
+  },
+  "recipes": [
+    {
+      "recipe": "STATE_PROBES.md",
+      "results": "state-results.json",
+      "cases": 54,
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "HTTP_POSTGRES_PROBES.md",
+      "results": "http-postgres-results.json",
+      "cases": 31,
+      "throwawayDatabases": 31,
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "BOUNDARY_PROBES.md",
+      "results": "boundary-results.json",
+      "cases": 27,
+      "independentWorlds": 66,
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "HISTORY_PROBES.md",
+      "results": "history-results.json",
+      "cases": 15,
+      "throwawayDatabases": 15,
+      "finalMarkdownExecuted": true,
+      "composition": {
+        "compatibilityCases": 3,
+        "unsafeUndoReproductions": 3,
+        "safeTargetUndoControls": 9
+      }
+    }
+  ],
+  "dispositions": {
+    "G03-H01": "Original reproduction remains closed in independent checks.",
+    "G03-H02": "Original reproduction remains closed in independent checks.",
+    "G03-H03": "Original reproduction remains closed in independent checks.",
+    "G03-H04": "Fresh-current unsafe-undo reproduction remains closed. Supported old commands fail separately as H07.",
+    "G03-H05": "Original previous-version loading failure closed; historical undo remains incomplete as H07.",
+    "G03-H06": "Closed under the owner-approved TARGET_IN_COMBAT contract in ADRs 0015/0016.",
+    "G03-H07": {
+      "severity": "High",
+      "status": "BLOCKING",
+      "invariants": [1, 12],
+      "evidence": [
+        "history-results.json#H07-88d8137-status",
+        "history-results.json#H07-88d8137-placement",
+        "history-results.json#H07-88d8137-caster-placement"
+      ],
+      "currentOracle": null,
+      "originalWriterOracle": "No divergence before current undo; TARGET_DEAD or ILLEGAL_ACTION at the old cast after accepted current undo."
+    }
+  },
+  "limits": [
+    "Fastify inject exercises real authentication and handlers with PostgreSQL; no independently listening deployment was tested.",
+    "Historical streams were generated through genuine writers in isolated Git archives, never fabricated or rewritten.",
+    "Historical dependencies were installed from the frozen offline cache. The root dependency reinstall and full CI wrapper were not run.",
+    "Every probe database and historical archive was owned by its probe and removed; development data was not reset.",
+    "No source, existing tests, historical fixtures/reports, handoff or remediation was changed.",
+    "Successful vulnerability assertions demonstrate FAIL, not gate success.",
+    "Exact runtime Astra variant and MAX effort were requested but not exposed for independent verification.",
+    "Future obligations and residual risks are recorded in the report. Stage 100 remains blocked."
+  ]
+}

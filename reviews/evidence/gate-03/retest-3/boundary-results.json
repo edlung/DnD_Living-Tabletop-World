@@ -1,0 +1,860 @@
+{
+  "H06-full-healing-word-goblin-shaman": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "goblin-shaman",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "rejected",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      },
+      "open": {
+        "status": "rejected",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-full-hunters-mark-goblin-shaman": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "rejected",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      },
+      "open": {
+        "status": "rejected",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-full-healing-word-elowen-starwhisper": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "elowen-starwhisper",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "elowen-starwhisper",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "open": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "elowen-starwhisper",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-full-healing-word-r3-patient": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "r3-patient",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "r3-patient",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "open": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "r3-patient",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 0
+            }
+          ],
+          "discovered": []
+        }
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-full-hunters-mark-r3-patient": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "open": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-full-detect-magic-room": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "open": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-injured-healing-word-goblin-shaman": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "goblin-shaman",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 8
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "rejected",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      },
+      "open": {
+        "status": "rejected",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-injured-hunters-mark-goblin-shaman": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "rejected",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      },
+      "open": {
+        "status": "rejected",
+        "code": "ILLEGAL_ACTION",
+        "message": "TARGET_IN_COMBAT"
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-injured-healing-word-elowen-starwhisper": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "elowen-starwhisper",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 8
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "elowen-starwhisper",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 8
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "open": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "elowen-starwhisper",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 8
+            }
+          ],
+          "discovered": []
+        }
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-injured-healing-word-r3-patient": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "r3-patient",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 8
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "r3-patient",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 8
+            }
+          ],
+          "discovered": []
+        }
+      },
+      "open": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "healing-word",
+          "results": [
+            {
+              "targetId": "r3-patient",
+              "saved": null,
+              "hit": null,
+              "damage": null,
+              "healed": 8
+            }
+          ],
+          "discovered": []
+        }
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-injured-hunters-mark-r3-patient": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "open": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "hunters-mark",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-injured-detect-magic-room": {
+    "phases": 3,
+    "windowHidden": true,
+    "pausePreserved": true,
+    "responses": {
+      "none": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "fight": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      },
+      "open": {
+        "status": "accepted",
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": []
+        }
+      }
+    },
+    "contextEqualAcrossWindow": true
+  },
+  "H06-precedence-absent-healing-word": {
+    "windowHidden": true,
+    "response": {
+      "status": "rejected",
+      "code": "ILLEGAL_ACTION",
+      "message": "TARGET_NOT_VISIBLE"
+    },
+    "context": {
+      "ok": false,
+      "reason": "NOT_FOUND"
+    }
+  },
+  "H06-precedence-absent-hunters-mark": {
+    "windowHidden": true,
+    "response": {
+      "status": "rejected",
+      "code": "ILLEGAL_ACTION",
+      "message": "TARGET_NOT_VISIBLE"
+    },
+    "context": {
+      "ok": false,
+      "reason": "NOT_FOUND"
+    }
+  },
+  "H06-precedence-incapacitated-healing-word": {
+    "windowHidden": true,
+    "response": {
+      "status": "rejected",
+      "code": "ILLEGAL_ACTION",
+      "message": "INCAPACITATED"
+    },
+    "context": {
+      "ok": true,
+      "actingCharacterId": "elowen-starwhisper",
+      "context": {
+        "entity": {
+          "entityId": "goblin-shaman",
+          "kind": "creature",
+          "name": null
+        },
+        "visibleState": {
+          "present": true,
+          "status": "active"
+        },
+        "actions": [
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "merchant-guild-faction",
+              "kind": "faction",
+              "name": "Merchant Guild"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "high"
+          },
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "guild-caravan",
+              "kind": "item",
+              "name": "Merchant Guild caravan"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "high"
+          },
+          {
+            "id": "talk",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "old-trade-road",
+              "kind": "location",
+              "name": "Old Trade Road"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "seren-ashgrove",
+              "kind": "character",
+              "name": "Seren Ashgrove"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "captain-thorne",
+              "kind": "npc",
+              "name": "Captain Thorne"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "inspect",
+            "legal": true,
+            "relevance": "low"
+          },
+          {
+            "id": "insight_check",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "healing_word",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "hunters_mark",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "longbow_attack",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          }
+        ]
+      }
+    }
+  },
+  "H06-precedence-incapacitated-hunters-mark": {
+    "windowHidden": true,
+    "response": {
+      "status": "rejected",
+      "code": "ILLEGAL_ACTION",
+      "message": "INCAPACITATED"
+    },
+    "context": {
+      "ok": true,
+      "actingCharacterId": "elowen-starwhisper",
+      "context": {
+        "entity": {
+          "entityId": "goblin-shaman",
+          "kind": "creature",
+          "name": null
+        },
+        "visibleState": {
+          "present": true,
+          "status": "active"
+        },
+        "actions": [
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "merchant-guild-faction",
+              "kind": "faction",
+              "name": "Merchant Guild"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "high"
+          },
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "guild-caravan",
+              "kind": "item",
+              "name": "Merchant Guild caravan"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "high"
+          },
+          {
+            "id": "talk",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "old-trade-road",
+              "kind": "location",
+              "name": "Old Trade Road"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "seren-ashgrove",
+              "kind": "character",
+              "name": "Seren Ashgrove"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "ask_about",
+            "topic": {
+              "entityId": "captain-thorne",
+              "kind": "npc",
+              "name": "Captain Thorne"
+            },
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "inspect",
+            "legal": true,
+            "relevance": "low"
+          },
+          {
+            "id": "insight_check",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "healing_word",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "hunters_mark",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          },
+          {
+            "id": "longbow_attack",
+            "legal": false,
+            "reason": "INCAPACITATED",
+            "relevance": "low"
+          }
+        ]
+      }
+    }
+  },
+  "H06-other-0-EnterLocation": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "accepted",
+      "outcome": {
+        "kind": "EnterLocation",
+        "locationId": "north-gate"
+      }
+    }
+  },
+  "H06-other-1-ExamineEntity": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "accepted",
+      "outcome": {
+        "kind": "ExamineEntity",
+        "roll": null,
+        "discovered": []
+      }
+    }
+  },
+  "H06-other-2-ExamineEntity": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "NO_EFFECT",
+      "message": "Nothing to examine that way"
+    }
+  },
+  "H06-other-3-ExamineEntity": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "NO_EFFECT",
+      "message": "Nothing to examine that way"
+    }
+  },
+  "H06-other-4-AskAbout": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "NO_EFFECT",
+      "message": "Nothing new to share"
+    }
+  },
+  "H06-other-5-FormHypothesis": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "ENTITY_NOT_FOUND",
+      "message": "Not found"
+    }
+  },
+  "H06-other-6-MoveCombatant": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "NOT_IN_COMBAT",
+      "message": "NOT_IN_COMBAT"
+    }
+  },
+  "H06-other-7-Attack": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "NOT_IN_COMBAT",
+      "message": "NOT_IN_COMBAT"
+    }
+  },
+  "H06-other-8-EndTurn": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "NOT_IN_COMBAT",
+      "message": "NOT_IN_COMBAT"
+    }
+  },
+  "H06-other-9-UseReaction": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "REACTION_WINDOW_CLOSED",
+      "message": "This reaction window is not open"
+    }
+  },
+  "H06-other-10-DeclineReaction": {
+    "windowHidden": true,
+    "pausePreserved": true,
+    "response": {
+      "status": "rejected",
+      "code": "REACTION_WINDOW_CLOSED",
+      "message": "This reaction window is not open"
+    }
+  }
+}
