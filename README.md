@@ -2,7 +2,7 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 90 (Reaction Engine) complete. Astra Gate 03 failed its initial review (three High findings, `reviews/ASTRA_GATE_03_REPORT.md`), retest 1 (G03-H04), retest 2 (G03-H05 and G03-H06), and retest 3 (G03-H07, `reviews/ASTRA_GATE_03_RETEST_3.md`). All seven are remediated (`remediation/OPUS_GATE_03_REMEDIATION.md`) and await retest 4 (`handoffs/ASTRA_GATE_03_REQUEST.md`). Stage 100 is not authorized until Gate 03 passes. Astra Gate 02 passed earlier (retest 2, revision `017ab0b`). The stages so far provide:
+**Current state:** Stage 90 (Reaction Engine) complete. Astra Gate 03 passed at retest 4 (`reviews/ASTRA_GATE_03_RETEST_4.md`, revision `998887d`), after seven High findings were remediated (`remediation/OPUS_GATE_03_REMEDIATION.md`). Stage 100 awaits the owner's authorization. Astra Gate 02 passed earlier (retest 2, revision `017ab0b`). The stages so far provide:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
@@ -12,7 +12,7 @@ AI-native tabletop RPG platform where the world is the interface. Product and ar
 - **Investigation:** players move, ask NPCs, examine evidence (rules-resolved checks), and form hypotheses. Clues and NPC disclosure are DM data; hypotheses never become facts (ADR 0013).
 - **Contradictions:** DM-authored claims let the engine deterministically surface conflicting accounts (Mira vs Thorne) in the scope that sees both, without deciding who is lying. Records never change type; facts come only from DM authoring (ADR 0014). Context, investigation, and contradictions passed Astra Gate 02.
 - **Combat:** deterministic encounters on a 5-ft battlefield — initiative, turns and action economy, movement with difficult terrain, cover, weapon and spell attacks, Fireball (allies included), conditions, death saves, the Old Trade Road goblins. Every roll is recorded, so combat replays and undoes in reverse order (`@ltw/combat`, ADR 0015).
-- **Reactions:** a spell someone could counter waits in a canonical reaction window while the encounter pauses; Elowen counters the Goblin Shaman with Counterspell or ignores it, and the DM may close the window. Windows are race-safe, replayable, and undo strictly in reverse (ADR 0016). Opportunity attacks are deferred.
+- **Reactions:** a spell someone could counter waits in a canonical reaction window while the encounter pauses; Elowen counters the Goblin Shaman with Counterspell or ignores it, and the DM may close the window. Windows are race-safe, replayable, and undo strictly in reverse (ADR 0016). Opportunity attacks are deferred. Passed Astra Gate 03, together with the combat surfaces.
 - **HTTP API** with development persona authentication.
 
 Agents: start with [`docs/AI_CONTEXT_MAP.md`](docs/AI_CONTEXT_MAP.md) and the nearest `AGENTS.md`.
