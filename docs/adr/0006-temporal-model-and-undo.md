@@ -121,6 +121,11 @@ Each event declares the facts it read and wrote. Later domains add their facts t
   - A queued request comes off with the undo. A failed, cancelled, or retracted job keeps its lineage after the entity is gone; an image that arrives after its job was cancelled is recorded as discarded.
   - Approving an asset is undoable under §8.
 
+- 2026-10-04 (Stage 160, ADR 0023; owner decision of 2026-10-04): **weather is a world fact.** This supersedes §2's sentence that weather is presentation; calendars stay out of scope.
+  - The DM sets a location's weather from the current world time on (`SetWeather`). It is undone like any other fact.
+  - The world timeline at T gains weather, day phases, and vitals (hit points, conditions, equipment) from effective events by their world times.
+  - Visual state at T is derived from that timeline and the current approved images; it is never stored.
+
 ## Invariants affected
 
 Implements 1, 11, 12, and 13 for the kernel and preserves 3 (only the DM authors and undoes). No invariant is weakened.

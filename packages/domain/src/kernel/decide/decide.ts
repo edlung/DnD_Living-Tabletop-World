@@ -15,6 +15,7 @@ import {
   decideRetractAsset,
   decideStartAssetJob,
 } from '../../assets/decide.ts';
+import { decideSetWeather } from '../../weather/weather.ts';
 import { decideAddClue, decideSetDisclosure } from '../../investigation/authoring.ts';
 import { decideAskAbout } from '../../investigation/conversation.ts';
 import { decideInsightCheck } from '../../investigation/insight.ts';
@@ -166,6 +167,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideRetractAsset(state, command);
     case 'ApproveAsset':
       return decideApproveAsset(state, command);
+    case 'SetWeather':
+      return decideSetWeather(state, command);
     case 'StartCombat':
     case 'MoveCombatant':
     case 'Attack':

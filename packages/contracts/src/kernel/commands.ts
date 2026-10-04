@@ -9,6 +9,7 @@ import {
   retractAssetCommandSchema,
   startAssetJobCommandSchema,
 } from '../assets/commands.ts';
+import { setWeatherCommandSchema } from '../visual/commands.ts';
 import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
 import { addKnowledgeCommandSchema, assignCharacterCommandSchema } from '../knowledge/commands.ts';
 import {
@@ -145,6 +146,7 @@ export const kernelCommandSchema = z
     cancelAssetRequestCommandSchema,
     retractAssetCommandSchema,
     approveAssetCommandSchema,
+    setWeatherCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -199,6 +201,7 @@ export const KERNEL_COMMAND_TYPES = [
   'CancelAssetRequest',
   'RetractAsset',
   'ApproveAsset',
+  'SetWeather',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

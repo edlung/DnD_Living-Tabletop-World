@@ -2,6 +2,7 @@ import { parsePerspective } from '@ltw/contracts';
 import {
   resolvePerspective,
   type Actor,
+  type RecordedEvent,
   type ResolvedPerspective,
   type WorldEngine,
   type WorldState,
@@ -49,6 +50,8 @@ export function parseInput<T>(
 export interface PerspectiveContext {
   readonly actor: Actor;
   readonly state: WorldState;
+  /** The campaign's recorded events, for views at a past world time (ADR 0023). */
+  readonly history: readonly RecordedEvent[];
   readonly perspective: ResolvedPerspective;
 }
 
@@ -73,7 +76,8 @@ export async function withPerspective<
     return null;
   }
 
-  const state = (await deps.engine.load(params.campaignId))?.state ?? null;
+  const snapshot = await deps.engine.load(params.campaignId);
+  const state = snapshot?.state ?? null;
   const access = resolvePerspective(state, actor, perspectiveRequest);
   if (!access.ok || state === null) {
     sendError(reply, request, access.ok ? 'NOT_FOUND' : access.reason);
@@ -83,5 +87,6 @@ export async function withPerspective<
     { actorId: actor.actorId, perspective: access.perspective.label },
     'knowledge query',
   );
-  return { context: { actor, state, perspective: access.perspective }, params, query };
+  const history = snapshot?.history ?? [];
+  return { context: { actor, state, history, perspective: access.perspective }, params, query };
 }

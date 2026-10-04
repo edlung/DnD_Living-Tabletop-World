@@ -40,17 +40,27 @@ interface Timeline {
   readonly statuses: { readonly at: number; readonly status: EntityStatus }[];
 }
 
-export function worldViewAt(history: readonly RecordedEvent[], worldTime: number): WorldView {
-  const current = replay(history);
-  if (worldTime > current.clock) {
-    throw new RangeError('The world timeline is only known up to the current world clock');
-  }
-
-  const effective = history.filter(
+/** Events of commands still in effect: no undone command, no compensation. */
+export const effectiveEvents = (
+  history: readonly RecordedEvent[],
+  current: WorldState,
+): RecordedEvent[] =>
+  history.filter(
     (event) =>
       event.type !== 'CommandUndone' &&
       (current.commands.get(event.causation.commandId)?.undoneBy ?? null) === null,
   );
+
+export function worldViewAt(
+  history: readonly RecordedEvent[],
+  worldTime: number,
+  current: WorldState = replay(history),
+): WorldView {
+  if (worldTime > current.clock) {
+    throw new RangeError('The world timeline is only known up to the current world clock');
+  }
+
+  const effective = effectiveEvents(history, current);
   const timelines = new Map<string, Timeline>();
   const timeline = (entityId: string): Timeline => {
     let found = timelines.get(entityId);

@@ -311,6 +311,13 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         });
         break;
       }
+      case 'WeatherSet':
+        restores.push({
+          fact: 'weather',
+          locationId: event.payload.locationId,
+          value: before.weather.get(event.payload.locationId) ?? null,
+        });
+        break;
       case 'RelationshipChanged':
         restores.push({
           fact: 'relationship',

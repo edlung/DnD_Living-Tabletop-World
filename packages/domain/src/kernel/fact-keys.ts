@@ -43,6 +43,7 @@ export const facts = {
   assetJob: (requestId: string): FactKey => `assetjob:${requestId}`,
   asset: (assetId: string): FactKey => `asset:${assetId}`,
   assetCanonical: (entityId: string): FactKey => `assetcanonical:${entityId}`,
+  weather: (locationId: string): FactKey => `weather:${locationId}`,
 };
 
 export const allEntityFacts = (id: string): FactKey[] => [

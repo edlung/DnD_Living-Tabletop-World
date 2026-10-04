@@ -172,3 +172,10 @@ export {
   type AssetRequestRecord,
   type AssetState,
 } from './assets/records.ts';
+export {
+  assetContentAt,
+  entityPresentationAt,
+  scenePresentationAt,
+  type Snapshot as VisualSnapshot,
+} from './visual/views.ts';
+export { dayPhaseAt, visualTimelineAt, type VisualTimeline } from './visual/timeline.ts';

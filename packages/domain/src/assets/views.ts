@@ -76,8 +76,9 @@ export function assetContentFor(
   state: WorldState,
   perspective: ResolvedPerspective,
   contentHash: string,
+  /** The entities it may see; by default those it knows or perceives now (ADR 0023 adds a past time). */
+  visible: ReadonlySet<string> | 'ALL' = assetVisibleEntityIds(state, perspective),
 ): { readonly mediaType: AssetMediaType } | null {
-  const visible = assetVisibleEntityIds(state, perspective);
   for (const asset of state.assets.assets.values()) {
     if (asset.contentHash !== contentHash) continue;
     if (visible === 'ALL') return { mediaType: asset.mediaType };

@@ -4,7 +4,13 @@ import {
   entityIdSchema,
   type EntityAssetsResponse,
 } from '@ltw/contracts';
-import { assetContentFor, assetLineage, campaignRole, entityAssetsFor } from '@ltw/domain';
+import {
+  assetContentAt,
+  assetContentFor,
+  assetLineage,
+  campaignRole,
+  entityAssetsFor,
+} from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -16,12 +22,14 @@ import {
   withPerspective,
   type RouteDependencies,
 } from '../request-context.ts';
+import { atQuery } from './visual-routes.ts';
 
 /**
  * Asset reads (docs/adr/0022-asset-identity.md §5–§6). The DM reads the
  * whole lineage. A perspective reads the approved assets of an entity it
  * knows or perceives, and their bytes by content hash; anything else is a
- * 404 identical to a nonexistent entity or content. Requests, cancels,
+ * 404 identical to a nonexistent entity or content. With `at`, content is
+ * served for a view at that world time (docs/adr/0023-world-visual-state.md). Requests, cancels,
  * retractions, and approvals are commands (`POST /campaigns/:id/commands`).
  */
 export interface AssetRouteDependencies extends RouteDependencies {
@@ -67,11 +75,18 @@ export function registerAssetRoutes(app: FastifyInstance, deps: AssetRouteDepend
   app.get('/campaigns/:campaignId/assets/content/:contentHash', async (request, reply) => {
     const ready = await withPerspective(request, reply, deps, {
       params: contentParams,
-      query: perspectiveQuery,
+      query: atQuery,
     });
     if (!ready) return reply;
-    const { context, params } = ready;
-    const shown = assetContentFor(context.state, context.perspective, params.contentHash);
+    const { context, params, query } = ready;
+    // With `at`, the bytes of what the perspective could see then (ADR 0023 §4).
+    if (query.at !== undefined && query.at > context.state.clock) {
+      return sendError(reply, request, 'INVALID_REQUEST');
+    }
+    const shown =
+      query.at === undefined
+        ? assetContentFor(context.state, context.perspective, params.contentHash)
+        : assetContentAt(context, context.perspective, params.contentHash, query.at);
     const content =
       shown === null ? null : await deps.assets.contents.get(params.campaignId, params.contentHash);
     if (content === null) return sendError(reply, request, 'NOT_FOUND');

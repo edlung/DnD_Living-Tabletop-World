@@ -301,6 +301,18 @@ export {
   type AssetStatus,
   type AssetVariant,
 } from './assets/commands.ts';
+export {
+  DAY_PHASES,
+  WEATHERS,
+  setWeatherCommandSchema,
+  type DayPhase,
+  type Weather,
+} from './visual/commands.ts';
+export type {
+  EntityPresentation,
+  EntityPresentationResponse,
+  ScenePresentationResponse,
+} from './visual/views.ts';
 export type {
   AssetLineageResponse,
   AssetRequestView,

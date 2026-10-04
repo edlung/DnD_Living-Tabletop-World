@@ -86,6 +86,11 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Stage 160 (2026-10-04), ADR 0023: weather.**
+  - New command `SetWeather` (DM or system) and event `WeatherSet { locationId, from, to }`, listed in `INTRODUCED_AT`. New rejection code `INVALID_WEATHER`.
+  - **Footprint.** The event reads the clock and the location's existence and status, and writes `weather:<locationId>`. Restore `weather` returns the value before.
+  - **State** gains `weather`: each location's own weather. Integrity requires that every key is a location.
+  - `worldViewAt` accepts the current state, and `effectiveEvents` is shared with the visual timeline.
 - **Stage 150 (2026-10-04), ADR 0022: asset lineage.**
   - New commands:
     - `RequestAsset`, `CancelAssetRequest`, `RetractAsset`, and `ApproveAsset` (DM or system);

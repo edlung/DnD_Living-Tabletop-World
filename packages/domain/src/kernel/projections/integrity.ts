@@ -16,6 +16,10 @@ export function checkWorldIntegrity(state: WorldState): string[] {
 
   if (state.version > 0 && state.campaign === null) report('events exist without a campaign');
 
+  for (const locationId of state.weather.keys()) {
+    if (!isLocation(locationId)) report(`weather of non-location ${locationId}`);
+  }
+
   for (const npcId of state.relationships.keys()) {
     if (state.entities.get(npcId)?.kind !== 'npc') report(`relationship of non-NPC ${npcId}`);
   }

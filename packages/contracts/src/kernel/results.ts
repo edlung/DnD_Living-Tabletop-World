@@ -100,6 +100,8 @@ export const REJECTION_CODES = [
   'INVALID_RELATIONSHIP',
   /** Assets (ADR 0022): a request, job, or asset that does not allow this. */
   'INVALID_ASSET',
+  /** Weather (ADR 0023): not a location that exists now, or no change. */
+  'INVALID_WEATHER',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

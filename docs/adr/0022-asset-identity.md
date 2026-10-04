@@ -115,6 +115,12 @@
 - **Image quality.** Placeholder images carry identity, not likeness, until a real generator is approved.
 - **History.** Asset lineage grows with every request; nothing is deleted.
 
+## Amendments
+
+- 2026-10-04 (Stage 160, ADR 0023 §4):
+  - **Presentation picks the image.** A presentation chooses among an entity's current approved images by state tags.
+  - **Content for a past view.** The content route accepts `at`, serving the bytes of what the perspective could see at that world time.
+
 ## Invariants affected
 
 Implements:

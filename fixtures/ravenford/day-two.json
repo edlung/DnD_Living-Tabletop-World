@@ -1,0 +1,8 @@
+{
+  "$comment": "Ravenford Day 1 → Day 2 (RAVENFORD_SPEC.md, Return / Time; ADR 0023). Run by the DM after the full seed, whose clock stands at Day 1 10:00: clear skies over Ravenford on Day 1, then the clock moves to Day 2 10:00 and rain sets in. Not seeded; tests and the DM run it.",
+  "commands": [
+    { "type": "SetWeather", "locationId": "ravenford", "weather": "clear" },
+    { "type": "AdvanceWorldTime", "to": 122400 },
+    { "type": "SetWeather", "locationId": "ravenford", "weather": "rain" }
+  ]
+}

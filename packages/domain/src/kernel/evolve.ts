@@ -34,6 +34,7 @@ import {
 import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
 import { applyAssetEvent, applyAssetRestore } from '../assets/evolve.ts';
+import { applyWeatherRestore, applyWeatherSet } from '../weather/weather.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
@@ -202,6 +203,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyReactionWindowResolved(state, event);
     case 'RelationshipChanged':
       return applyRelationshipChanged(state, event);
+    case 'WeatherSet':
+      return applyWeatherSet(state, event);
     case 'EvidenceShown':
       return applyEvidenceShown(state, event);
     case 'InsightChecked':
@@ -332,6 +335,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'asset':
     case 'assetCanonical':
       return applyAssetRestore(state, restore);
+    case 'weather':
+      return applyWeatherRestore(state, restore);
   }
 }
 

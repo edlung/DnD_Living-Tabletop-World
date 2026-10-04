@@ -345,6 +345,12 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'AssetRetracted':
     case 'AssetApproved':
       return assetFootprint(event);
+    case 'WeatherSet':
+      // A location's own weather, from now on (ADR 0023 §1).
+      return {
+        reads: [clock, ...entityChecked(event.payload.locationId)],
+        writes: [facts.weather(event.payload.locationId)],
+      };
     case 'RelationshipChanged':
       // A living NPC's attitude (ADR 0019 §3).
       return {
@@ -427,6 +433,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
     case 'asset':
     case 'assetCanonical':
       return assetRestoredFacts(restore);
+    case 'weather':
+      return [facts.weather(restore.locationId)];
   }
 }
 

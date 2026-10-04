@@ -18,6 +18,7 @@ import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
 import { registerNpcRoutes } from './routes/npc-routes.ts';
+import { registerVisualRoutes } from './routes/visual-routes.ts';
 
 /**
  * The server's HTTP application (docs/adr/0009-http-api-and-dev-authentication.md).
@@ -75,5 +76,6 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerNpcRoutes(app, deps);
   registerAuthoringRoutes(app, deps);
   registerAssetRoutes(app, deps);
+  registerVisualRoutes(app, deps);
   return app;
 }

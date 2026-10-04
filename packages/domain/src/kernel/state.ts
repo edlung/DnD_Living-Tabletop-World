@@ -6,6 +6,7 @@ import type {
   KernelCommandType,
   LocationType,
   StatBlock,
+  Weather,
 } from '@ltw/contracts';
 
 import { EMPTY_ASSETS, type AssetState } from '../assets/records.ts';
@@ -105,6 +106,8 @@ export interface WorldState {
   readonly relationships: ReadonlyMap<string, Attitude>;
   /** Asset lineage (ADR 0022): requests, jobs, assets, canonical references. Never world state. */
   readonly assets: AssetState;
+  /** Location ID → its own weather (ADR 0023 §1); children inherit it. Absent means unset. */
+  readonly weather: ReadonlyMap<string, Weather>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -129,6 +132,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   reactionWindows: new Map(),
   relationships: new Map(),
   assets: EMPTY_ASSETS,
+  weather: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

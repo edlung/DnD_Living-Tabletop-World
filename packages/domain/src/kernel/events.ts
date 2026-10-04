@@ -55,6 +55,7 @@ import {
   assetRestoreSchemas,
   assetRetractedPayloadSchema,
 } from '../assets/events.ts';
+import { weatherRestoreSchemas, weatherSetPayloadSchema } from '../weather/weather.ts';
 import { actorSchema } from './actor.ts';
 import { decodePayload, isVersioned } from './event-versions.ts';
 
@@ -114,6 +115,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...reactionRestoreSchemas,
   ...relationshipRestoreSchemas,
   ...assetRestoreSchemas,
+  ...weatherRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -229,6 +231,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AssetRequestCancelled', assetRequestCancelledPayloadSchema),
   event('AssetRetracted', assetRetractedPayloadSchema),
   event('AssetApproved', assetApprovedPayloadSchema),
+  event('WeatherSet', weatherSetPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;
