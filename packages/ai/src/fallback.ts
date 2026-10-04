@@ -1,4 +1,4 @@
-import type { AiAttemptView, AttemptKind, CommandProposal } from '@ltw/contracts';
+import type { AiAttemptView, AttemptKind } from '@ltw/contracts';
 
 import {
   failureCode,
@@ -6,10 +6,10 @@ import {
   type ProviderRequest,
   type RepairNote,
 } from './providers.ts';
-import type { ProposalCheck } from './validation.ts';
 
 /**
- * The fallback policy (owner decision, docs/adr/0017-ai-gateway.md §5).
+ * The fallback policy (owner decision, docs/adr/0017-ai-gateway.md §5), for
+ * every AI use case (DM intents; NPC replies, ADR 0020 §3).
  * - Provider failure: the next provider for the capability is tried once,
  *   with the identical request; with none left, `AI_UNAVAILABLE`.
  * - Invalid output: one repair attempt on the same provider, given its
@@ -18,10 +18,14 @@ import type { ProposalCheck } from './validation.ts';
  * from the same context by `build`, so no fallback widens what the
  * provider sees, and nothing here can commit anything.
  */
-export type FallbackResult =
+export type OutputCheck<T> =
+  | { readonly ok: true; readonly value: T }
+  | { readonly ok: false; readonly issues: readonly string[] };
+
+export type FallbackResult<T> =
   | {
-      readonly status: 'PROPOSED';
-      readonly proposal: CommandProposal;
+      readonly status: 'VALID';
+      readonly value: T;
       readonly attempts: readonly AiAttemptView[];
     }
   | {
@@ -31,10 +35,10 @@ export type FallbackResult =
     }
   | { readonly status: 'AI_UNAVAILABLE'; readonly attempts: readonly AiAttemptView[] };
 
-export interface FallbackDeps {
+export interface FallbackDeps<T> {
   readonly providers: readonly AiProvider[];
   readonly build: (repair: RepairNote | null) => ProviderRequest;
-  readonly validate: (output: unknown) => ProposalCheck;
+  readonly validate: (output: unknown) => OutputCheck<T>;
   /** Milliseconds, for latency only. */
   readonly nowMs: () => number;
 }
@@ -53,7 +57,7 @@ function serialize(output: unknown): string {
   return text.length > MAX_OUTPUT_CHARS ? `${text.slice(0, MAX_OUTPUT_CHARS)}…` : text;
 }
 
-export async function runWithFallback(deps: FallbackDeps): Promise<FallbackResult> {
+export async function runWithFallback<T>(deps: FallbackDeps<T>): Promise<FallbackResult<T>> {
   const attempts: AiAttemptView[] = [];
   let index = 0;
   let kind: AttemptKind = 'initial';
@@ -98,7 +102,7 @@ export async function runWithFallback(deps: FallbackDeps): Promise<FallbackResul
       latencyMs: Math.round(deps.nowMs() - started),
       usage: response.usage,
     });
-    if (check.ok) return { status: 'PROPOSED', proposal: check.proposal, attempts };
+    if (check.ok) return { status: 'VALID', value: check.value, attempts };
     if (repaired) return { status: 'INVALID_OUTPUT', issues: check.issues, attempts };
     repaired = true;
     kind = 'repair';

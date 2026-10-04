@@ -1,5 +1,5 @@
 import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
-import { attemptKey, combatantOf, type EntityState } from '@ltw/domain';
+import { attemptKey, combatantOf, insightKey, type EntityState } from '@ltw/domain';
 
 import {
   combatAttackVerdict,
@@ -8,6 +8,7 @@ import {
   counterspellVerdict,
   fireballVerdict,
 } from './combat.ts';
+import { showableEvidence } from './evidence.ts';
 import type { ContextInputs } from './inputs.ts';
 import {
   LEGAL,
@@ -16,6 +17,7 @@ import {
   illegalBecause,
   longbowVerdict,
   spellVerdict,
+  unavailable,
   type Verdict,
 } from './legality.ts';
 import { RELEVANCE_RANK, memoriesAbout } from './relevance.ts';
@@ -46,6 +48,8 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
   const present = inputs.perceived.has(target.entityId);
   const alive = target.status === 'active';
   const self = target.entityId === inputs.actor.entityId;
+  const npc = target.kind === 'npc' && !self;
+  const { attempts } = inputs.state.investigation;
   const { sheet } = inputs;
   const examine: Relevance = present && OBJECT_KINDS.has(target.kind) ? 'medium' : 'low';
   // In combat, legality uses the encounter's positions and turn (ADR 0015 §6).
@@ -74,13 +78,21 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     // (ADR 0016 §4): first in the catalog, since the encounter waits for it.
     const counter = frame && !self ? counterspellVerdict(frame, inputs, target.entityId) : null;
     if (counter) add('counterspell', 'present-alive', () => counter, 'high');
-    if (!self) {
-      const talk: Relevance = present && alive && target.kind === 'npc' ? 'medium' : 'low';
-      add('talk', 'present-alive', () => capableVerdict(sheet), talk);
-      if (target.kind === 'npc') add('trade', 'present-alive', () => capableVerdict(sheet), 'low');
+    if (npc) {
+      // Talk and Insight are NPC dialogue (ADR 0020 §1); Trade is not carried out in the slice.
+      add(
+        'talk',
+        'present-alive',
+        () => capableVerdict(sheet),
+        present && alive ? 'medium' : 'low',
+      );
+      add('trade', 'present-alive', () => unavailable(capableVerdict(sheet)), 'low');
     }
     add('inspect', 'present', () => LEGAL, 'low');
-    if (!self) add('insight_check', 'present-alive', () => capableVerdict(sheet), 'low');
+    if (npc) {
+      const read = attempts.has(insightKey(inputs.actor.entityId, target.entityId));
+      add('insight_check', 'present-alive', () => checkVerdict(sheet, read), 'low');
+    }
     const wounded = (() => {
       const hp = inputs.party.has(target.entityId)
         ? inputs.state.characterSheets.get(target.entityId)?.hitPoints
@@ -146,9 +158,16 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     const verdict = judge('present-alive', () => capableVerdict(sheet));
     const position = actions.findIndex((action) => action.id === 'inspect');
     const asks = askTopics(inputs, target.entityId).map((topic) =>
-      toAction('ask_about', verdict, topic.relevance, topic.ref),
+      toAction('ask_about', verdict, topic.relevance, { topic: topic.ref }),
     );
-    actions.splice(position, 0, ...asks);
+    const shows = npc
+      ? showableEvidence(inputs, target.entityId, present && alive).map((evidence) =>
+          toAction('show_evidence', verdict, evidence.relevance, {
+            evidence: { knowledgeId: evidence.knowledgeId },
+          }),
+        )
+      : [];
+    actions.splice(position, 0, ...asks, ...shows);
   }
   // Stable: equal relevance keeps catalog order.
   return actions.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);
@@ -158,11 +177,12 @@ function toAction(
   id: ContextActionId,
   verdict: Verdict,
   relevance: Relevance,
-  topic?: ContextAction['topic'],
+  about: Pick<ContextAction, 'topic' | 'evidence'> = {},
 ): ContextAction {
   return {
     id,
-    ...(topic ? { topic } : {}),
+    ...(about.topic ? { topic: about.topic } : {}),
+    ...(about.evidence ? { evidence: { knowledgeId: about.evidence.knowledgeId } } : {}),
     legal: verdict.legal,
     ...(verdict.reason ? { reason: verdict.reason } : {}),
     ...(verdict.resolution ? { resolution: verdict.resolution } : {}),

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
 import type { KernelEvent } from '../kernel/events.ts';
-import { facts, footprintOf } from '../kernel/facts.ts';
+import { facts } from '../kernel/fact-keys.ts';
+import { footprintOf } from '../kernel/facts.ts';
 import { namedEntityIds } from './named-entities.ts';
 
 /**

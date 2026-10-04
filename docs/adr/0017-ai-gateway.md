@@ -75,6 +75,8 @@ Option 2.
 
 - 2026-10-04 (Stage 120, ADR 0019): proposals may also contain `SetClaim` (on a record the same proposal adds; the validator refuses any other target) and `SetRelationship` (an NPC in the directory or created by the proposal). The prompt asks for a relationship only when the request says so.
 
+- 2026-10-04 (Stage 130, ADR 0020 §3): the `npc-dialogue` capability routes like `reasoning` (`[anthropic, local]` with a key, `[local]` without). Its context is the NPC's minimal context, rendered without IDs; the local provider replies from templates. The fallback policy is shared by both use cases (`runWithFallback` over any validated output). Traces are a union by purpose (`dm-intent`, `npc-dialogue`); only a DM intent's trace can seed an authoring proposal.
+
 ## Invariants affected
 
 Implements 2, 18, 21, and 22 for this stage; preserves 1, 5, 11, and 17. No invariant is weakened.

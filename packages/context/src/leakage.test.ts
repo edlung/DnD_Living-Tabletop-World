@@ -155,6 +155,54 @@ describe('noninterference', () => {
     expect(await contexts(changed)).toEqual(await contexts(baseline));
   });
 
+  it('an NPC’s attitude, and what another holder showed it, never change any context (ADR 0020)', async () => {
+    const baseline = await seedRavenford();
+    const changed = await seedRavenford();
+    for (const world of [baseline, changed]) {
+      await world.apply(
+        {
+          type: 'CreateEntity',
+          entityId: 'bram-tull',
+          kind: 'character',
+          name: 'Bram Tull',
+          existsSince: null,
+          placement: { locationId: 'orins-alchemy', since: null },
+        },
+        {
+          type: 'AddKnowledge',
+          knowledgeId: 'bram-symbol-evidence',
+          scope: { kind: 'CHARACTER', characterId: 'bram-tull' },
+          knowledgeType: 'EVIDENCE',
+          statement: 'Bram found the symbol too.',
+          subjects: ['strange-symbol'],
+          knownSince: null,
+        },
+      );
+      await world.submit({
+        type: 'EnterLocation',
+        characterId: ELOWEN,
+        locationId: 'orins-alchemy',
+      });
+    }
+    await changed.apply(
+      { type: 'SetRelationship', npcId: 'orin-stonebeard', attitude: 'HOSTILE' },
+      {
+        type: 'ShowEvidence',
+        characterId: 'bram-tull',
+        npcId: 'orin-stonebeard',
+        knowledgeId: 'bram-symbol-evidence',
+      },
+      { type: 'SetDisclosure', knowledgeId: 'orin-prior-incident', disclosure: 'WILLING' },
+    );
+    const contexts = async (world: typeof baseline) => {
+      const state = await world.current();
+      return [...state.entities.keys()]
+        .sort()
+        .map((entityId) => entityContext(state, elowenView(state), entityId));
+    };
+    expect(await contexts(changed)).toEqual(await contexts(baseline));
+  });
+
   it('a goblin’s hidden statistics never change any context in combat (ADR 0015 §6)', async () => {
     const baseline = await seedRavenford();
     const changed = await seedRavenford();

@@ -1,4 +1,4 @@
-import type { EntityKind } from '../kernel/commands.ts';
+import type { EntityKind, KernelCommandOf } from '../kernel/commands.ts';
 import type { Condition } from '../rules/character-sheet.ts';
 import type { Battlefield, Side } from './commands.ts';
 import type { ReactionResponse, SpellComponent } from './reactions.ts';
@@ -77,4 +77,22 @@ export interface EncounterResponse {
   readonly perspective: string;
   /** Null when no encounter runs that the perspective takes part in. */
   readonly encounter: EncounterView | null;
+}
+
+/**
+ * The DM's suggestion for a creature's turn (docs/adr/0020-npc-intelligence.md
+ * §5): one legal action by a fixed tactic, with the exact command. Nothing
+ * acts by itself; the DM submits it, or another action, as any command.
+ */
+export interface MonsterTurnSuggestion {
+  readonly combatantId: string;
+  readonly tactic: 'spell' | 'attack' | 'move' | 'end-turn';
+  readonly command: KernelCommandOf<'CastSpell' | 'Attack' | 'MoveCombatant' | 'EndTurn'>;
+  readonly explanation: string;
+}
+
+/** `GET /campaigns/:campaignId/encounter/suggestion` (DM only). */
+export interface EncounterSuggestionResponse {
+  /** Null outside combat, or when the current combatant is not a creature. */
+  readonly suggestion: MonsterTurnSuggestion | null;
 }

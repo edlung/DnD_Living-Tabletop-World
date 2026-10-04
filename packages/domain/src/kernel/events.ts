@@ -34,7 +34,9 @@ import {
   clueAddedPayloadSchema,
   disclosureSetPayloadSchema,
   evidenceExaminedPayloadSchema,
+  evidenceShownPayloadSchema,
   informationSharedPayloadSchema,
+  insightCheckedPayloadSchema,
   investigationRestoreSchemas,
   recordedPremisesPayloadSchema,
 } from '../investigation/events.ts';
@@ -207,6 +209,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ReactionWindowResolved', reactionEventPayloadSchemas.ReactionWindowResolved),
   event('RelationshipChanged', relationshipChangedPayloadSchema),
   event('AuthoringPremisesRecorded', authoringPremisesPayloadSchema),
+  event('EvidenceShown', evidenceShownPayloadSchema),
+  event('InsightChecked', insightCheckedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

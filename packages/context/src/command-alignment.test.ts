@@ -1,15 +1,24 @@
 import type { CommandResult, ContextAction } from '@ltw/contracts';
-import type { WorldState } from '@ltw/domain';
+import { checkTalk, type WorldState } from '@ltw/domain';
 import { describe, expect, it } from 'vitest';
 
 import { entityContext } from './entity-context.ts';
-import { DM, ELOWEN, elowenView, seedRavenford, type SeededWorld } from './testing/ravenford.ts';
+import {
+  DM,
+  ELOWEN,
+  PLAYER,
+  elowenView,
+  seedRavenford,
+  type SeededWorld,
+} from './testing/ravenford.ts';
 
 /**
- * Context legality and World Engine acceptance agree (docs/adr/0013-investigation.md §1):
- * every executable context action is tried as a command, compared, then undone.
- * `AskAbout` may be NO_EFFECT when nothing is shared: that outcome is hidden
- * from context on purpose, so it counts as "legal".
+ * Context legality and World Engine acceptance agree (docs/adr/0013-investigation.md §1,
+ * docs/adr/0020-npc-intelligence.md §1): every executable context action is
+ * tried as a command, compared, then undone. `AskAbout` may be NO_EFFECT when
+ * nothing is shared: that outcome is hidden from context on purpose, so it
+ * counts as "legal". Talk runs no command: it must match the dialogue's own
+ * check (`checkTalk`). Insight is tried on a topic the character knows.
  */
 const EXECUTABLE: Partial<
   Record<ContextAction['id'], (entityId: string, action: ContextAction) => Record<string, unknown>>
@@ -39,6 +48,18 @@ const EXECUTABLE: Partial<
     npcId,
     topicId: action.topic?.entityId,
   }),
+  show_evidence: (npcId, action) => ({
+    type: 'ShowEvidence',
+    characterId: ELOWEN,
+    npcId,
+    knowledgeId: action.evidence?.knowledgeId,
+  }),
+  insight_check: (npcId) => ({
+    type: 'InsightCheck',
+    characterId: ELOWEN,
+    npcId,
+    topicId: 'ravenford',
+  }),
 };
 
 const acceptedOrHidden = (result: CommandResult, id: string) =>
@@ -51,6 +72,13 @@ async function compareAll(world: SeededWorld, state: WorldState) {
     const result = entityContext(state, view, entityId);
     if (!result.ok) continue;
     for (const action of result.context.actions) {
+      if (action.id === 'talk') {
+        expect(checkTalk(state, PLAYER, ELOWEN, entityId).ok, `talk ${entityId}`).toBe(
+          action.legal,
+        );
+        compared += 1;
+        continue;
+      }
       const build = EXECUTABLE[action.id];
       if (!build) continue;
       world.roll(10);
@@ -109,6 +137,68 @@ describe('context legality matches command acceptance', () => {
       reason: 'ALREADY_ATTEMPTED',
     });
     expect(await compareAll(world, state)).toBeGreaterThan(20);
+  });
+
+  it('in Orin’s shop, with evidence to show, after showing it and reading him', async () => {
+    const world = await seedRavenford();
+    await world.apply({
+      type: 'AddKnowledge',
+      knowledgeId: 'party-symbol-evidence',
+      scope: { kind: 'PARTY' },
+      knowledgeType: 'EVIDENCE',
+      statement: 'A strange symbol is burned into a wagon plank.',
+      subjects: ['strange-symbol'],
+      knownSince: null,
+    });
+    // Evidence everyone knows is no one's to show.
+    await world.apply({
+      type: 'AddKnowledge',
+      knowledgeId: 'public-symbol-evidence',
+      scope: { kind: 'PUBLIC' },
+      knowledgeType: 'EVIDENCE',
+      statement: 'Everyone has seen the symbol on the notice board.',
+      subjects: ['strange-symbol'],
+      knownSince: null,
+    });
+    await world.submit({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'orins-alchemy' });
+    const before = await world.current();
+    const orin = entityContext(before, elowenView(before), 'orin-stonebeard');
+    const shows = orin.ok ? orin.context.actions.filter((a) => a.id === 'show_evidence') : [];
+    expect(shows).toEqual([
+      {
+        id: 'show_evidence',
+        evidence: { knowledgeId: 'party-symbol-evidence' },
+        legal: true,
+        relevance: 'medium',
+      },
+    ]);
+    expect(await compareAll(world, before)).toBeGreaterThan(10);
+
+    await world.submit({
+      type: 'ShowEvidence',
+      characterId: ELOWEN,
+      npcId: 'orin-stonebeard',
+      knowledgeId: 'party-symbol-evidence',
+    });
+    world.roll(10);
+    await world.submit({
+      type: 'InsightCheck',
+      characterId: ELOWEN,
+      npcId: 'orin-stonebeard',
+      topicId: 'ravenford',
+    });
+    const after = await world.current();
+    const shown = entityContext(after, elowenView(after), 'orin-stonebeard');
+    const byId = (id: string, topic?: string) =>
+      shown.ok
+        ? shown.context.actions.find((a) => a.id === id && (!topic || a.topic?.entityId === topic))
+        : undefined;
+    // Shown the symbol, "ask about the symbol" surfaces (RAVENFORD_SPEC, the Orin scene).
+    expect(byId('ask_about', 'strange-symbol')).toMatchObject({ legal: true, relevance: 'high' });
+    expect(byId('insight_check')).toMatchObject({ legal: false, reason: 'ALREADY_ATTEMPTED' });
+    expect(byId('show_evidence')).toMatchObject({ legal: true, relevance: 'low' });
+    expect(byId('trade')).toMatchObject({ legal: false, reason: 'NOT_AVAILABLE' });
+    expect(await compareAll(world, after)).toBeGreaterThan(10);
   });
 
   it('when the character is dead or Incapacitated', async () => {

@@ -1,7 +1,8 @@
 import type { KernelCommandType } from '@ltw/contracts';
 
 import type { RecordedEvent } from '../kernel/events.ts';
-import { footprintOf, type FactKey } from '../kernel/facts.ts';
+import type { FactKey } from '../kernel/fact-keys.ts';
+import { footprintOf } from '../kernel/facts.ts';
 import type { WorldState } from '../kernel/state.ts';
 
 /**

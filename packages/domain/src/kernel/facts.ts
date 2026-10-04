@@ -1,12 +1,11 @@
-import type { ClaimTarget } from '@ltw/contracts';
-
 import { namedEntityIds } from '../combat/named-entities.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
-import type { RecordedPremise } from '../investigation/events.ts';
-import { attemptKey, scopedKey } from '../investigation/records.ts';
+import { attemptKey, insightKey, scopedKey, shownKey } from '../investigation/records.ts';
 import { pairKey } from '../contradiction/records.ts';
 import { holderOf, scopeKey } from '../knowledge/records.ts';
 import type { KernelEvent, Restore } from './events.ts';
+import { allEntityFacts, entityChecked, facts, type FactKey } from './fact-keys.ts';
+import { premiseFacts } from './premise-facts.ts';
 
 /**
  * Fact footprints (docs/adr/0007-world-kernel-model-and-event-store.md,
@@ -16,57 +15,13 @@ import type { KernelEvent, Restore } from './events.ts';
  *
  * Later domains must declare footprints for their events, including reads of
  * kernel facts (for example knowledge about an entity reads `entity:<id>`).
+ * Fact names live in `fact-keys.ts`; what a recorded premise stands for, in
+ * `premise-facts.ts`.
  */
-export type FactKey = string;
-
-export const facts = {
-  campaign: (): FactKey => 'campaign',
-  clock: (): FactKey => 'world#clock',
-  activeScene: (): FactKey => 'world#activeScene',
-  entity: (id: string): FactKey => `entity:${id}`,
-  entityProfile: (id: string): FactKey => `entity:${id}#profile`,
-  entityPlacement: (id: string): FactKey => `entity:${id}#placement`,
-  entityStatus: (id: string): FactKey => `entity:${id}#status`,
-  scene: (id: string): FactKey => `scene:${id}`,
-  sceneEnded: (id: string): FactKey => `scene:${id}#ended`,
-  knowledge: (id: string): FactKey => `knowledge:${id}`,
-  rosterCharacter: (characterId: string): FactKey => `roster:character:${characterId}`,
-  rosterPlayer: (actorId: string): FactKey => `roster:player:${actorId}`,
-  memory: (id: string): FactKey => `memory:${id}`,
-  session: (id: string): FactKey => `session:${id}`,
-  sessionEnded: (id: string): FactKey => `session:${id}#ended`,
-  activeSession: (): FactKey => 'world#activeSession',
-  sheet: (entityId: string): FactKey => `sheet:${entityId}`,
-  clue: (id: string): FactKey => `clue:${id}`,
-  disclosure: (knowledgeId: string): FactKey => `disclosure:${knowledgeId}`,
-  attempt: (key: string): FactKey => `attempt:${key}`,
-  revealed: (key: string): FactKey => `revealed:${key}`,
-  shared: (key: string): FactKey => `shared:${key}`,
-  claim: (target: ClaimTarget): FactKey =>
-    target.kind === 'knowledge'
-      ? `claim:knowledge:${target.knowledgeId}`
-      : `claim:clue:${target.clueId}`,
-  contradiction: (key: string): FactKey => `contradiction:${key}`,
-  encounter: (): FactKey => 'world#encounter',
-  statBlock: (entityId: string): FactKey => `statblock:${entityId}`,
-  reaction: (windowId: string): FactKey => `reaction:${windowId}`,
-  relationship: (npcId: string): FactKey => `relationship:${npcId}`,
-};
-
 export interface Footprint {
   readonly reads: readonly FactKey[];
   readonly writes: readonly FactKey[];
 }
-
-const allEntityFacts = (id: string): FactKey[] => [
-  facts.entity(id),
-  facts.entityProfile(id),
-  facts.entityPlacement(id),
-  facts.entityStatus(id),
-];
-
-/** Reading an entity for validation depends on its existence and status. */
-const entityChecked = (id: string): FactKey[] => [facts.entity(id), facts.entityStatus(id)];
 
 export function footprintOf(event: KernelEvent): Footprint {
   // Every event happens at the current world time, so it depends on the clock.
@@ -153,6 +108,8 @@ export function footprintOf(event: KernelEvent): Footprint {
           ...p.relatedKnowledge.map((id) => facts.knowledge(id)),
           ...p.causedBy.map((id) => facts.memory(id)),
           ...(p.sessionId === null ? [] : [facts.session(p.sessionId)]),
+          // A generated summary rests on the names it quotes (Stage 130).
+          ...(p.named ?? []).map((id) => facts.entityProfile(id)),
         ],
         writes: [facts.memory(p.memoryId)],
       };
@@ -209,6 +166,39 @@ export function footprintOf(event: KernelEvent): Footprint {
           ...(roll === null ? [] : [facts.attempt(attemptKey(characterId, entityId, method))]),
           ...revealed.map(({ clueId }) => facts.revealed(scopedKey(scope, clueId))),
         ],
+      };
+    }
+    case 'EvidenceShown': {
+      // The NPC saw it; the subjects it newly shows to that NPC (ADR 0020 §1).
+      const { characterId, npcId, scope, knowledgeId, subjects } = event.payload;
+      return {
+        reads: [
+          clock,
+          ...entityChecked(characterId),
+          facts.entityPlacement(characterId),
+          ...entityChecked(npcId),
+          facts.entityPlacement(npcId),
+          facts.knowledge(knowledgeId),
+        ],
+        writes: subjects.map((subjectId) => facts.shown(shownKey(scope, npcId, subjectId))),
+      };
+    }
+    case 'InsightChecked': {
+      // The check, its sheet, and the names its inference quotes (ADR 0020 §4).
+      const { characterId, npcId, topicId, inferenceId } = event.payload;
+      return {
+        reads: [
+          clock,
+          ...entityChecked(characterId),
+          facts.entityPlacement(characterId),
+          ...entityChecked(npcId),
+          facts.entityPlacement(npcId),
+          facts.sheet(characterId),
+          ...(inferenceId === null
+            ? []
+            : [facts.entityProfile(npcId), facts.entityProfile(topicId)]),
+        ],
+        writes: [facts.attempt(insightKey(characterId, npcId))],
       };
     }
     case 'InformationShared': {
@@ -364,53 +354,6 @@ export function footprintOf(event: KernelEvent): Footprint {
   }
 }
 
-function premiseFacts(characterId: string, premise: RecordedPremise): FactKey[] {
-  const party = [facts.rosterCharacter(characterId)];
-  switch (premise.kind) {
-    case 'perceived':
-      // Seen where both stood: the target's existence and placement, and the character's.
-      return [
-        facts.entity(premise.entityId),
-        facts.entityPlacement(premise.entityId),
-        facts.entityPlacement(characterId),
-      ];
-    case 'self':
-      return [];
-    case 'party-member':
-      return [facts.rosterCharacter(premise.characterId), ...party];
-    case 'knowledge':
-      return [facts.knowledge(premise.knowledgeId), ...(premise.viaParty ? party : [])];
-    case 'memory':
-      return [facts.memory(premise.memoryId), ...(premise.viaParty ? party : [])];
-    case 'sheet':
-      return [facts.sheet(characterId)];
-    case 'party':
-      return party;
-    case 'controller':
-      return [...party, facts.rosterPlayer(premise.playerActorId)];
-    case 'vitals':
-      // Everything a combat decision may read about a creature (Gate 03, G03-H02).
-      return [
-        ...entityChecked(premise.entityId),
-        facts.sheet(premise.entityId),
-        facts.statBlock(premise.entityId),
-      ];
-    case 'revealed':
-      // Negative premises: passed over because found before, or out of reach (Gate 03).
-      return [facts.clue(premise.clueId), facts.revealed(scopedKey(premise.scope, premise.clueId))];
-    case 'unreached':
-      return [
-        facts.clue(premise.clueId),
-        facts.entity(premise.entityId),
-        facts.entityPlacement(premise.entityId),
-      ];
-    case 'placement':
-      // Legacy (revision 88d8137, G03-H05), read with its original meaning: where the
-      // entity was. Its command rests on everything before it anyway (G03-H07).
-      return [facts.entity(premise.entityId), facts.entityPlacement(premise.entityId)];
-  }
-}
-
 /** Facts a restore entry rewrites. Removing an entity or scene rewrites all its facts. */
 export function restoredFacts(restore: Restore): FactKey[] {
   switch (restore.fact) {
@@ -457,6 +400,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.revealed(restore.key)];
     case 'shared':
       return [facts.shared(restore.key)];
+    case 'shown':
+      return [facts.shown(restore.key)];
     case 'claim':
       return [facts.claim(restore.target)];
     case 'contradiction':

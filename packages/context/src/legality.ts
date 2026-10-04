@@ -113,3 +113,11 @@ export function checkVerdict(sheet: CharacterSheet | undefined, attempted: boole
 export function capableVerdict(sheet: CharacterSheet | undefined): Verdict {
   return sheet && isIncapacitated(sheet) ? illegalBecause('INCAPACITATED') : LEGAL;
 }
+
+/**
+ * An action the slice does not carry out (Trade, docs/adr/0020-npc-intelligence.md
+ * §1): the actor's own state first, then `NOT_AVAILABLE`.
+ */
+export function unavailable(verdict: Verdict): Verdict {
+  return verdict.legal ? illegalBecause('NOT_AVAILABLE') : verdict;
+}

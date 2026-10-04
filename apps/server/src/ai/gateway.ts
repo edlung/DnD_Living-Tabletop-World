@@ -13,8 +13,9 @@ import { createAnthropicProvider } from './anthropic-provider.ts';
 
 /**
  * Composition of the AI gateway (docs/adr/0017-ai-gateway.md §2): `reasoning`
- * routes to `[anthropic, local]` with a key and `[local]` without. The
- * gateway holds no World Engine: it reads snapshots and proposes.
+ * (DM intents) and `npc-dialogue` (NPC replies, ADR 0020 §3) route to
+ * `[anthropic, local]` with a key and `[local]` without. The gateway holds
+ * no World Engine: it reads what it is given and proposes or phrases.
  */
 export function createAiGateway(
   config: AppConfig['ai'],
@@ -35,7 +36,7 @@ export function createAiGateway(
   }
   providers.push(createLocalProvider());
   return {
-    router: new CapabilityRouter({ reasoning: providers }),
+    router: new CapabilityRouter({ reasoning: providers, 'npc-dialogue': providers }),
     traces,
     ids: { next: () => randomUUID() },
     clock: { now: () => new Date().toISOString(), nowMs: () => performance.now() },

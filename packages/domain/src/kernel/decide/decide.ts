@@ -8,6 +8,8 @@ import { decideSetClaim } from '../../contradiction/decide.ts';
 import { withContradictions } from '../../contradiction/detect.ts';
 import { decideAddClue, decideSetDisclosure } from '../../investigation/authoring.ts';
 import { decideAskAbout } from '../../investigation/conversation.ts';
+import { decideInsightCheck } from '../../investigation/insight.ts';
+import { decideShowEvidence } from '../../investigation/show.ts';
 import { decideExamineEntity } from '../../investigation/examine.ts';
 import {
   decideEnterLocation,
@@ -125,6 +127,10 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideEnterLocation(state, command);
     case 'AskAbout':
       return decideAskAbout(state, command);
+    case 'ShowEvidence':
+      return decideShowEvidence(state, command);
+    case 'InsightCheck':
+      return decideInsightCheck(context, command);
     case 'ExamineEntity':
       return decideExamineEntity(context, command);
     case 'FormHypothesis':

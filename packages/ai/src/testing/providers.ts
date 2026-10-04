@@ -1,4 +1,4 @@
-import type { AiProvider, ProviderRequest } from '../providers.ts';
+import type { AiProvider, IntentTask, ProviderRequest } from '../providers.ts';
 
 /**
  * Test support: a provider that plays back a script, one step per call, and
@@ -27,4 +27,10 @@ export function scripted(id: string, ...steps: unknown[]): ScriptedProvider {
 export function steppingMs(): () => number {
   let now = 0;
   return () => (now += 5);
+}
+
+/** The DM-intent task a request carried (tests read its context). */
+export function intentTaskOf(request: ProviderRequest | undefined): IntentTask {
+  if (request?.task.kind !== 'dm-intent') throw new Error('not a DM-intent request');
+  return request.task;
 }

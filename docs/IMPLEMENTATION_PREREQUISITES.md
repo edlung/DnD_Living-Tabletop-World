@@ -53,13 +53,13 @@ Decision needed before enabling the affected operations in Stage 110, and before
 
 What minimal Ravenford relationship/trust state and `RelationshipChanged` semantics should Stage 120 validation and Stage 130 Orin disclosure use? Which authorized domain decision may make a `GUARDED` record shareable, and under what conditions? Existing scope and knowledge-type restrictions remain unchanged.
 
-Decision needed before dependent relationship checks in Stage 120 and before the affected runtime disclosures in Stage 130. The relationship part is decided (ADR 0019 §3: an NPC's attitude toward the party, owner, 2026-10-04); which domain decision makes a GUARDED record shareable remains open for Stage 130.
+Decision needed before dependent relationship checks in Stage 120 and before the affected runtime disclosures in Stage 130. Both parts are decided: the relationship in ADR 0019 §3 (an NPC's attitude toward the party), and the guarded disclosure rule in ADR 0020 §2 (evidence shown or trust, never while hostile or wary; owner, 2026-10-04).
 
 ### Q3. Bounded NPC action scope — Stage 130
 
 What exact Ravenford behavior fulfills the Stage 130 obligations for Insight, Talk, Trade from ADR 0013 §5 and monster actions from ADR 0015 §7? Which minimal trade semantics require the owner decision identified in ADR 0012? A general economy or unrestricted autonomous NPC system is not assumed.
 
-Decision needed before implementing the affected behavior in Stage 130.
+Decision needed before implementing the affected behavior in Stage 130. Decided in ADR 0020 (owner, 2026-10-04): Talk replies from a minimal context without a command, Insight is a DC 13 check yielding an INFERENCE, Trade is not available in the slice, and monsters get deterministic suggestions the DM confirms.
 
 ### Q4. Release environment — Stages 200/250
 

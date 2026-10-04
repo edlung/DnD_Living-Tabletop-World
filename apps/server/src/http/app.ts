@@ -15,6 +15,7 @@ import { registerContextRoutes } from './routes/context-routes.ts';
 import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
+import { registerNpcRoutes } from './routes/npc-routes.ts';
 
 /**
  * The server's HTTP application (docs/adr/0009-http-api-and-dev-authentication.md).
@@ -25,7 +26,7 @@ export interface AppDependencies {
   readonly engine: WorldEngine;
   readonly authenticator: Authenticator;
   readonly logger: Logger;
-  /** The AI gateway (docs/adr/0017-ai-gateway.md); it has no write path. */
+  /** The AI gateway (docs/adr/0017-ai-gateway.md): DM intents and NPC replies; it has no write path. */
   readonly ai: IntentDeps;
   /** Authoring proposals (docs/adr/0018-ai-authoring.md); commits go through the World Engine. */
   readonly authoring: AuthoringDependencies;
@@ -67,6 +68,7 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerEncounterRoutes(app, deps);
   registerCommandRoutes(app, deps);
   registerAiRoutes(app, deps);
+  registerNpcRoutes(app, deps);
   registerAuthoringRoutes(app, deps);
   return app;
 }

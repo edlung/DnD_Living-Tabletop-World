@@ -2,7 +2,7 @@ import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
-import { attemptKey, scopedKey, type InvestigationState } from './records.ts';
+import { attemptKey, insightKey, scopedKey, shownKey, type InvestigationState } from './records.ts';
 
 /** Fold cases for investigation events (called from kernel/evolve.ts). */
 type EventOf<T extends RecordedEvent['type']> = Extract<RecordedEvent, { type: T }>;
@@ -84,6 +84,27 @@ export function applyInformationShared(
   return withInvestigation(state, { shared: added(state.investigation.shared, key) });
 }
 
+export function applyEvidenceShown(state: WorldState, event: EventOf<'EvidenceShown'>): WorldState {
+  const { npcId, scope, knowledgeId, subjects } = event.payload;
+  if (!state.knowledge.has(knowledgeId) || state.entities.get(npcId)?.kind !== 'npc') {
+    throw new CorruptHistoryError(`evidence shown references something missing`);
+  }
+  const keys = subjects.map((subjectId) => shownKey(scope, npcId, subjectId));
+  if (keys.some((key) => state.investigation.shown.has(key))) {
+    throw new CorruptHistoryError(`evidence shown twice to ${npcId}`);
+  }
+  return withInvestigation(state, { shown: added(state.investigation.shown, ...keys) });
+}
+
+export function applyInsightChecked(
+  state: WorldState,
+  event: EventOf<'InsightChecked'>,
+): WorldState {
+  const key = insightKey(event.payload.characterId, event.payload.npcId);
+  if (state.investigation.attempts.has(key)) throw new CorruptHistoryError(`repeated ${key}`);
+  return withInvestigation(state, { attempts: added(state.investigation.attempts, key) });
+}
+
 /** Premises change no state; they must reference what existed when recorded. */
 export function applyPremisesRecorded(
   state: WorldState,
@@ -110,6 +131,10 @@ export function applyPremisesRecorded(
         return state.memories.has(premise.memoryId);
       case 'controller':
         return state.roster.get(characterId) === premise.playerActorId;
+      case 'attitude':
+        return state.entities.has(premise.npcId);
+      case 'considered':
+        return state.knowledge.has(premise.knowledgeId);
       default:
         return true;
     }
@@ -122,7 +147,7 @@ export function applyPremisesRecorded(
 
 type InvestigationRestore = Extract<
   Restore,
-  { fact: 'clue' | 'disclosure' | 'attempt' | 'revealed' | 'shared' }
+  { fact: 'clue' | 'disclosure' | 'attempt' | 'revealed' | 'shared' | 'shown' }
 >;
 
 export function applyInvestigationRestore(
@@ -146,5 +171,7 @@ export function applyInvestigationRestore(
       return withInvestigation(state, { revealed: removed(investigation.revealed, restore.key) });
     case 'shared':
       return withInvestigation(state, { shared: removed(investigation.shared, restore.key) });
+    case 'shown':
+      return withInvestigation(state, { shown: removed(investigation.shown, restore.key) });
   }
 }

@@ -109,6 +109,11 @@ Each event declares the facts it read and wrote. Later domains add their facts t
   - Undoing `SetRelationship` restores the previous attitude. A relationship change reads its NPC, which therefore cannot be undone beneath it.
   - An authoring commit that checked a holder's status history records it (`AuthoringPremisesRecorded`), so undoing a death or resurrection beneath such a commit is refused.
   - A contradiction reads the names its statement quotes (ADR 0014 Stage 120 amendment), so undoing such a rename beneath it is refused.
+- 2026-10-04 (Stage 130, ADR 0020): the §8 rule covers NPC interactions.
+  - An answer (`AskAbout`) reads the NPC's attitude whenever it considered a guarded record, the shown subject that unlocked one, and every record about the topic it passed over, withheld or told before. Undoing a disclosure change, an attitude, a showing, or an earlier answer beneath it is refused while it stands.
+  - An Insight reads every record the NPC holds about the topic and its disclosure; a showing reads the evidence and the NPC's presence.
+  - A play memory reads the names its summary quotes (`named`).
+  - Commands earlier writers decided with incomplete records of these kinds carry version 2 memories or contradictions, so they rest on everything before them (ADR 0007 Stage 130 amendment).
 
 ## Invariants affected
 

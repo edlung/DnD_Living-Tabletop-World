@@ -105,6 +105,8 @@ export function memoryEvent(
     readonly summary: string;
     readonly participants: readonly string[];
     readonly relatedKnowledge: readonly string[];
+    /** Entities whose names the summary quotes; the memory rests on them. */
+    readonly named: readonly string[];
   },
 ): KernelEvent {
   return {
@@ -122,6 +124,7 @@ export function memoryEvent(
       causedBy: [],
       salience: DEFAULT_SALIENCE,
       witnesses: [actor.character.entityId],
+      ...(memory.named.length > 0 ? { named: [...new Set(memory.named)] } : {}),
     },
   };
 }

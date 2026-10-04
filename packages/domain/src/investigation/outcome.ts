@@ -24,6 +24,22 @@ export function playerOutcome(
           event.type === 'InformationShared' ? [event.payload.knowledgeId] : [],
         ),
       };
+    case 'ShowEvidence': {
+      const shown = events.find((event) => event.type === 'EvidenceShown');
+      return shown?.type === 'EvidenceShown'
+        ? { kind: 'ShowEvidence', shown: shown.payload.knowledgeId }
+        : undefined;
+    }
+    case 'InsightCheck': {
+      const checked = events.find((event) => event.type === 'InsightChecked');
+      if (checked?.type !== 'InsightChecked') return undefined;
+      const { roll, inferenceId } = checked.payload;
+      return {
+        kind: 'InsightCheck',
+        roll: { d20: roll.d20, modifier: roll.modifier, total: roll.total },
+        inferred: inferenceId === null ? [] : [inferenceId],
+      };
+    }
     case 'ExamineEntity': {
       const examined = events.find((event) => event.type === 'EvidenceExamined');
       if (!examined) return undefined;

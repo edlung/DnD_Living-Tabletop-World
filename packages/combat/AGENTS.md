@@ -10,7 +10,8 @@ Decides encounter commands for the World Engine through the domain's `CombatPort
 | Rejection mapping, premises                                                          | `src/refusal.ts`               |
 | `StartCombat` (initiative), `EndCombat`                                              | `src/start-end.ts`             |
 | Turn order, start-of-turn effects (Slow ends, death saves)                           | `src/turns.ts`                 |
-| `MoveCombatant`                                                                      | `src/movement.ts`              |
+| `MoveCombatant`; its legality (`movePlan`, shared with suggestions)                  | `src/movement.ts`              |
+| Monster turn suggestion for the DM (ADR 0020 §5): spell, attack, move, end turn      | `src/suggestion.ts`            |
 | Attack legality (shared with the Context Engine)                                     | `src/legality.ts`              |
 | `Attack` resolution (crits, Hunter's Mark, Slow, goblin die)                         | `src/attack.ts`                |
 | Spell legality: character slice spells and stat-block spells                         | `src/spell-legality.ts`        |
@@ -42,3 +43,5 @@ Rules:
 - The randomized `reactions/property.test.ts` (12 seeds) runs DM authoring between turns and Bram, a character outside the fight, casting at bystanders the DM brings, moves, kills, and revives (G03-H04), and, while a window is open, at combatants (G03-H06). After every step it checks window legality and that the pause held. Bram never meets the pause, and his result during a window matches a copy of the world where the window never opened. On a copy of the world (`testing/fork.ts`) it tries undoing each of the latest commands and re-decides whatever undo accepts.
 - `history.property.test.ts` runs random commands and undos on the histories in `fixtures/history/`, written by five earlier revisions. `testing/verify.ts` also checks that no undo reached beneath a standing command an earlier writer decided (G03-H07).
 - Tests use `src/testing/road.ts`: the full Ravenford seed plus `combat-seed.json`, the ambush scenario `road-ambush.json`, and scripted entropy (`roll(sides, ...faces)`; unqueued draws roll the middle face). Reaction tests add `testing/reactions.ts` (Seren, a test-only second Counterspell caster), `testing/racing.ts` (a rival engine on the same store that loses a race on purpose), and `testing/verify.ts` (replay, integrity, re-decision).
+- A monster suggestion (ADR 0020 §5) uses only the decisions' own legality (`monsterSpellPlan`, `attackPlan`, `movePlan`) and never acts: the DM submits it. `suggestion.test.ts` drives a whole fight with suggested commands only, each accepted.
+- `npc-memories-history.test.ts` holds the Stage 130 earlier-writer regression (`fixtures/history/b7a1a92-npc-memories.json`).

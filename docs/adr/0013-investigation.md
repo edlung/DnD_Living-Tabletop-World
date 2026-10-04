@@ -160,6 +160,7 @@ No clue IDs, DCs, or source records appear.
   - An empty compensation reads back from storage: the event schema accepts an empty restore list.
 
 - 2026-10-04 (Stage 120, ADR 0019 §3): NPCs now have an attitude toward the party. It does not yet change disclosure: §3 applies unchanged until Stage 130 decides how an attitude affects sharing GUARDED records. Authoring warns when a hostile or wary NPC is made WILLING (`DISCLOSURE_AGAINST_ATTITUDE`).
+- 2026-10-04 (Stage 130, ADR 0020, owner decisions): **§3 disclosure** gains the guarded rule of ADR 0020 §2: a GUARDED record of a shareable type is shared when the NPC is neither hostile nor wary and either the asker's scope showed it evidence about one of the record's subjects or it trusts the party. SECRET, UNKNOWN, and CONTRADICTION are never shared. The answer records the attitude, the unlocking showing, and every record it passed over. **§5 obligations:** Talk replies without a command (ADR 0020 §3); Insight is a DC 13 check yielding an INFERENCE (§4); Trade stays a descriptor, `NOT_AVAILABLE`.
 
 ## Invariants affected
 

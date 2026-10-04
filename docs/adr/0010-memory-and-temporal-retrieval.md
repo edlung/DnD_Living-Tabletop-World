@@ -72,6 +72,7 @@ Pillar 2 ("World as Memory") requires that observations, conversations, discover
 ## Amendments
 
 - 2026-10-03 (Gate 02 remediation, G02-H01; owner-approved). The location filter ("including places inside it") follows, for any non-DM perspective, only parent links where every location in the chain is known to that perspective. A location the perspective does not know, or an unknown link in the chain, matches nothing, exactly as a nonexistent location does. Totals, scores, and order are therefore identical. Containment between two known places counts as known geography; to keep a place's whereabouts secret, the DM keeps the place itself unknown (ADR 0008). The DM perspective uses all containment.
+- 2026-10-04 (Stage 130, ADR 0020): a play memory names the entities its generated summary quotes (`named`) and reads those names, so undoing a rename beneath it is refused. Showing an NPC evidence records a CONVERSATION memory for the party. NPC dialogue records no memory: a reply is never canonical. An NPC's own memories are given to its dialogue only when recallable (ADR 0020 §3a), never through retrieval.
 
 ## Invariants affected
 

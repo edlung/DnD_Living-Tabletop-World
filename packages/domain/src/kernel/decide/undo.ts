@@ -10,10 +10,11 @@ import {
 import { writtenEarlier } from '../event-versions.ts';
 import type { RecordedEvent, Restore } from '../events.ts';
 import { replay } from '../evolve.ts';
-import { footprintOf, restoredFacts, type FactKey } from '../facts.ts';
+import type { FactKey } from '../fact-keys.ts';
+import { footprintOf, restoredFacts } from '../facts.ts';
 import { reopeningBlockers } from '../../combat/reaction-undo.ts';
 import { pairKey } from '../../contradiction/records.ts';
-import { attemptKey, scopedKey } from '../../investigation/records.ts';
+import { attemptKey, insightKey, scopedKey, shownKey } from '../../investigation/records.ts';
 import { scopeKey } from '../../knowledge/records.ts';
 import type { WorldState } from '../state.ts';
 
@@ -231,6 +232,20 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         }
         break;
       }
+      case 'EvidenceShown': {
+        const { scope, npcId, subjects } = event.payload;
+        for (const subjectId of subjects) {
+          restores.push({ fact: 'shown', key: shownKey(scope, npcId, subjectId), value: null });
+        }
+        break;
+      }
+      case 'InsightChecked':
+        restores.push({
+          fact: 'attempt',
+          key: insightKey(event.payload.characterId, event.payload.npcId),
+          value: null,
+        });
+        break;
       case 'InformationShared':
         restores.push({
           fact: 'shared',

@@ -6,7 +6,7 @@ import { createLocalProvider } from './local-provider.ts';
 import { ProviderError, type AiProvider } from './providers.ts';
 import { CapabilityRouter } from './router.ts';
 import { InMemoryAiTraceStore } from './traces.ts';
-import { scripted, steppingMs } from './testing/providers.ts';
+import { intentTaskOf, scripted, steppingMs } from './testing/providers.ts';
 import {
   ASHEN_CIRCLE_ID,
   CAMPAIGN,
@@ -116,13 +116,15 @@ describe('interpretDmIntent', () => {
     expect(requests).toHaveLength(3);
     // Owner decision (ADR 0017 §3): entities and world time only, no knowledge records.
     for (const request of requests) {
-      expect(new Set(request.task.context.items.map((item) => item.kind))).toEqual(
+      expect(new Set(intentTaskOf(request).context.items.map((item) => item.kind))).toEqual(
         new Set(['world-time', 'entity']),
       );
     }
     const directories = requests.map((r) => r.prompt.split('</directory>')[0]);
     expect(new Set(directories).size).toBe(1);
-    expect(requests.every((r) => r.task.context === requests[0]?.task.context)).toBe(true);
+    expect(
+      requests.every((r) => intentTaskOf(r).context === intentTaskOf(requests[0]).context),
+    ).toBe(true);
     for (const request of requests) {
       const sent = JSON.stringify({
         ...request,

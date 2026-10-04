@@ -34,7 +34,8 @@ export {
   type Restore,
 } from './kernel/events.ts';
 export { CorruptHistoryError, evolve, replay } from './kernel/evolve.ts';
-export { facts, footprintOf, type FactKey, type Footprint } from './kernel/facts.ts';
+export { facts, type FactKey } from './kernel/fact-keys.ts';
+export { footprintOf, type Footprint } from './kernel/facts.ts';
 export type { Rejection, ResolvedCommand } from './kernel/decision.ts';
 export type { UndoBlocker } from './kernel/decide/undo.ts';
 export { formatWorldTime, worldTimeAt } from './kernel/world-time.ts';
@@ -104,7 +105,18 @@ export {
 } from './memory/retrieval.ts';
 export { placementAt } from './kernel/projections/world-view.ts';
 export { perceivedEntityIds } from './investigation/perception.ts';
-export { attemptKey, type Clue } from './investigation/records.ts';
+export { checkTalk, type TalkCheck } from './npc/talk.ts';
+export {
+  DIALOGUE_LIMITS,
+  dialogueSourceIds,
+  npcDialogueContext,
+  sharedSources,
+  type DialogueContextRequest,
+  type DialogueEntity,
+  type DialogueLine,
+  type NpcDialogueContext,
+} from './npc/dialogue-context.ts';
+export { attemptKey, insightKey, shownKey, type Clue } from './investigation/records.ts';
 export type { SkillCheckPort } from './investigation/skill-checks.ts';
 export {
   ENTROPY_POOL,

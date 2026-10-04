@@ -4,6 +4,8 @@ import {
   type ProposableCommand,
 } from '@ltw/contracts';
 
+import type { OutputCheck } from './fallback.ts';
+
 /**
  * Structured-output validation (docs/adr/0017-ai-gateway.md §4): the shape
  * through the World Engine's own command schemas, then every entity a
@@ -12,9 +14,7 @@ import {
  * a proposal reviewable, never committable: the authoring pipeline decides
  * that against the world at commit (docs/adr/0018-ai-authoring.md).
  */
-export type ProposalCheck =
-  | { readonly ok: true; readonly proposal: CommandProposal }
-  | { readonly ok: false; readonly issues: readonly string[] };
+export type ProposalCheck = OutputCheck<CommandProposal>;
 
 const MAX_ISSUES = 20;
 
@@ -97,5 +97,5 @@ export function validateProposal(output: unknown, directory: ReadonlySet<string>
   });
   return issues.length > 0
     ? { ok: false, issues: issues.slice(0, MAX_ISSUES) }
-    : { ok: true, proposal: parsed.data };
+    : { ok: true, value: parsed.data };
 }

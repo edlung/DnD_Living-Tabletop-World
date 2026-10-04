@@ -10,6 +10,7 @@ export const CONTEXT_ACTION_IDS = [
   'talk',
   'trade',
   'ask_about',
+  'show_evidence',
   'inspect',
   'recall',
   'insight_check',
@@ -56,6 +57,8 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'NO_ATTACKS_LEFT',
   'INVALID_PATH',
   'NOT_ENOUGH_MOVEMENT',
+  /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
+  'NOT_AVAILABLE',
 ] as const;
 export type ContextIllegalReason = (typeof CONTEXT_ILLEGAL_REASONS)[number];
 
@@ -96,6 +99,8 @@ export interface ContextAction {
   readonly id: ContextActionId;
   /** The subject of `ask_about`; always an entity the perspective knows. */
   readonly topic?: ContextEntityRef;
+  /** What `show_evidence` would show: an EVIDENCE record of the acting character's own scope. */
+  readonly evidence?: { readonly knowledgeId: string };
   readonly legal: boolean;
   readonly reason?: ContextIllegalReason;
   readonly resolution?: { readonly moveRequiredFt?: number };

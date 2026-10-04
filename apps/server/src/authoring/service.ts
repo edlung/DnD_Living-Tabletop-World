@@ -81,7 +81,10 @@ export class AuthoringService {
       // The AI's proposal comes from its trace, never from the client (§5).
       const trace = await this.#traces.get(campaignId, request.traceId);
       if (!trace) return error('NOT_FOUND');
-      if (trace.status !== 'PROPOSED' || !trace.proposal) return error('UNPROCESSABLE');
+      // Only a DM intent's valid proposal; an NPC's reply is never a proposal.
+      if (trace.purpose !== 'dm-intent' || trace.status !== 'PROPOSED' || !trace.proposal) {
+        return error('UNPROCESSABLE');
+      }
       content = {
         summary: trace.proposal.summary,
         source: { kind: 'ai', traceId: trace.traceId },

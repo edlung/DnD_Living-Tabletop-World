@@ -28,6 +28,7 @@ const HISTORIES: readonly HistoryFixture[] = await Promise.all(
     'b38cbbc-outside-casts',
     '429e2a2-gaps',
     '017ab0b-investigation',
+    'b7a1a92-npc-memories',
   ].map(loadHistory),
 );
 const PLACES = ['old-trade-road', 'north-gate', 'market-square', 'abandoned-caravan-site'];

@@ -25,6 +25,8 @@ export interface InvestigationState {
   readonly revealed: ReadonlySet<string>;
   /** NPC records shared with a scope, keyed by `scopedKey(scope, knowledgeId)`. */
   readonly shared: ReadonlySet<string>;
+  /** Subjects a scope has shown an NPC evidence about, keyed by `shownKey` (ADR 0020 §1). */
+  readonly shown: ReadonlySet<string>;
 }
 
 export const EMPTY_INVESTIGATION: InvestigationState = {
@@ -33,12 +35,20 @@ export const EMPTY_INVESTIGATION: InvestigationState = {
   attempts: new Set(),
   revealed: new Set(),
   shared: new Set(),
+  shown: new Set(),
 };
 
 export const attemptKey = (characterId: string, entityId: string, method: ClueMethod) =>
   `${characterId}|${entityId}|${method}`;
 
 export const scopedKey = (scopeKey: string, id: string) => `${scopeKey}|${id}`;
+
+/** A subject a scope has shown an NPC evidence about (ADR 0020 §1). */
+export const shownKey = (scopeKey: string, npcId: string, subjectId: string) =>
+  `${scopeKey}|${npcId}|${subjectId}`;
+
+/** One Insight attempt per character and NPC (ADR 0020 §4). */
+export const insightKey = (characterId: string, npcId: string) => `${characterId}|${npcId}|insight`;
 
 /** Bounds that let the engine pre-generate every ID a command may need. */
 export const MAX_CLUES_PER_METHOD = 8;

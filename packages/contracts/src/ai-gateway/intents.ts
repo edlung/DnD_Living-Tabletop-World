@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { proposalCommandsSchema, proposalSummarySchema } from '../authoring/commands.ts';
+import type { DialogueIntent, DialogueStatus } from '../npc/dialogue.ts';
 
 /**
  * AI gateway contracts (docs/adr/0017-ai-gateway.md). The AI proposes; it
@@ -70,22 +71,38 @@ export interface AiAttemptView {
   readonly usage: { readonly inputTokens: number; readonly outputTokens: number } | null;
 }
 
-/** `GET /campaigns/:campaignId/ai/traces/:traceId` (DM only): why the system proposed this. */
-export interface AiTraceView {
+interface AiTraceBase {
   readonly traceId: string;
   readonly campaignId: string;
   readonly actorId: string;
-  readonly purpose: 'dm-intent';
   readonly capability: AiCapability;
   /** The knowledge perspective the context came from. */
   readonly scope: string;
   readonly sourceIds: readonly string[];
+  /** The DM's text, or the player's own words to an NPC ('' when none). */
   readonly input: string;
   readonly attempts: readonly AiAttemptView[];
-  readonly status: IntentStatus;
-  readonly proposal: CommandProposal | null;
   readonly issues: readonly string[];
-  /** Canonical events this request produced: always none in Stage 100. */
+  /** Canonical events this AI request produced: always none. */
   readonly canonicalEvents: readonly string[];
   readonly createdAt: string;
 }
+
+export interface DmIntentTraceView extends AiTraceBase {
+  readonly purpose: 'dm-intent';
+  readonly status: IntentStatus;
+  readonly proposal: CommandProposal | null;
+}
+
+/** An NPC's reply (docs/adr/0020-npc-intelligence.md §3); its scope is `NPC:<id>`. */
+export interface NpcDialogueTraceView extends AiTraceBase {
+  readonly purpose: 'npc-dialogue';
+  readonly status: DialogueStatus;
+  readonly intent: DialogueIntent;
+  /** The canonical command the World Engine decided before the reply; null for Talk. */
+  readonly commandId: string | null;
+  readonly reply: string | null;
+}
+
+/** `GET /campaigns/:campaignId/ai/traces/:traceId` (DM only): why the system said or proposed this. */
+export type AiTraceView = DmIntentTraceView | NpcDialogueTraceView;

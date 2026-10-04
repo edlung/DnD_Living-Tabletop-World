@@ -86,6 +86,12 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Stage 130 (2026-10-04), ADR 0020: NPC interactions and records earlier writers left incomplete.**
+  - New player commands `ShowEvidence` and `InsightCheck`, with events `EvidenceShown { characterId, npcId, scope, knowledgeId, subjects }` (writes `shown:<scope>|<npc>|<subject>` for newly shown subjects) and `InsightChecked { characterId, npcId, topicId, scope, roll, inferenceId }` (writes the attempt `<character>|<npc>|insight`). Both are listed in `INTRODUCED_AT`. `InsightCheck` draws a d20 at resolution, like the other checks.
+  - `PremisesRecorded` (version 3) gains the additive premise kinds `attitude`, `shown`, and `considered`.
+  - `MemoryRecorded` gains the optional `named`: a play memory names the entities its generated summary quotes, and reads those names.
+  - **Versions.** `MemoryRecorded` and `ContradictionDetected` move to version 3; earlier versions read alike. Their version 2 writers quoted names without recording them, and the answers among those commands did not record what they passed over, so a command with such an event rests on everything before it (ADR 0006 retest 3 amendment). This supersedes the Stage 120 note that `ContradictionDetected`'s `named` kept the version. History: `fixtures/history/b7a1a92-npc-memories.json`.
+  - Fact keys and premise facts moved out of `facts.ts` into `fact-keys.ts` and `premise-facts.ts`; footprints are unchanged.
 - **Stage 120 (2026-10-04), ADR 0019: relationships, premises, and types introduced at the contract.**
   - New command `SetRelationship` (DM or system) and event `RelationshipChanged { npcId, from, to }`. It reads the NPC's existence and status and writes `relationship:<npcId>`; state keeps `relationships` (absent means neutral).
   - New reads-only event `AuthoringPremisesRecorded { premises }`, written first in an authoring commit whose blocking checks read facts its operations' events do not record (a holder's status).

@@ -55,6 +55,35 @@ export const evidenceExaminedPayloadSchema = z
   })
   .strict();
 
+/** An EVIDENCE record shown to an NPC; `subjects` are those newly shown to it by `scope` (ADR 0020 §1). */
+export const evidenceShownPayloadSchema = z
+  .object({
+    characterId: entityIdSchema,
+    npcId: entityIdSchema,
+    scope,
+    knowledgeId: knowledgeIdSchema,
+    subjects: z.array(entityIdSchema).max(16),
+  })
+  .strict();
+
+/** A Wisdom (Insight) check on an NPC; `inferenceId` is the record it yielded, if any (ADR 0020 §4). */
+export const insightCheckedPayloadSchema = z
+  .object({
+    characterId: entityIdSchema,
+    npcId: entityIdSchema,
+    topicId: entityIdSchema,
+    scope,
+    roll: z
+      .object({
+        d20: z.number().int().min(1).max(20),
+        modifier: z.number().int().min(-10).max(30),
+        total: z.number().int(),
+      })
+      .strict(),
+    inferenceId: knowledgeIdSchema.nullable(),
+  })
+  .strict();
+
 export const informationSharedPayloadSchema = z
   .object({
     npcId: entityIdSchema,
@@ -101,6 +130,23 @@ const currentPremises = [
   z
     .object({ kind: z.literal('unreached'), clueId: clueIdSchema, entityId: entityIdSchema })
     .strict(),
+  /** The NPC's attitude toward the party decided whether a guarded record could be shared (ADR 0020 §2). */
+  z.object({ kind: z.literal('attitude'), npcId: entityIdSchema }).strict(),
+  /** A subject the scope had shown the NPC unlocked a guarded record (ADR 0020 §2). */
+  z
+    .object({
+      kind: z.literal('shown'),
+      scope,
+      npcId: entityIdSchema,
+      subjectId: entityIdSchema,
+    })
+    .strict(),
+  /**
+   * An NPC record about the topic was considered and not shared by this answer: the
+   * result relied on its disclosure and on whether the scope had been told it
+   * before (ADR 0020 §2, §4).
+   */
+  z.object({ kind: z.literal('considered'), scope, knowledgeId: knowledgeIdSchema }).strict(),
 ] as const;
 
 /** The premises the current writer records. */
@@ -150,4 +196,5 @@ export const investigationRestoreSchemas = [
   z
     .object({ fact: z.literal('shared'), key: z.string().min(1).max(200), value: z.null() })
     .strict(),
+  z.object({ fact: z.literal('shown'), key: z.string().min(1).max(300), value: z.null() }).strict(),
 ] as const;

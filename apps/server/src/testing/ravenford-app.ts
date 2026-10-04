@@ -11,6 +11,7 @@ import {
   SequentialIds,
   SteppingClock,
   WorldEngine,
+  submissionsFromScript,
   type EntropySource,
   type EventStore,
 } from '@ltw/domain';
@@ -18,6 +19,7 @@ import { scriptedDice, skillCheckPort, type Dice } from '@ltw/rules';
 import type { FastifyInstance, LightMyRequestResponse } from 'fastify';
 
 import boundary from '../../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
+import npcBoundary from '../../../../fixtures/ravenford/npc-boundary.json' with { type: 'json' };
 import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import { buildApp } from '../http/app.ts';
@@ -64,17 +66,35 @@ export async function seededEngine(
   return engine;
 }
 
-/** A deterministic AI gateway: the given providers (default: local only) and in-memory traces. */
+/** Gate 04 fixture: the NPC dialogue boundary markers (`fixtures/ravenford/npc-boundary.json`). */
+export const NPC_BOUNDARY = npcBoundary;
+
+/** Plants the NPC dialogue boundary markers in a seeded engine, as the DM. */
+export async function plantNpcBoundary(engine: WorldEngine): Promise<void> {
+  for (const submission of submissionsFromScript({
+    campaignId: 'ravenford',
+    actor: { actorId: 'dm-ravenford', kind: 'user' },
+    commands: npcBoundary.commands,
+    commandIdPrefix: 'ravenford.npc-boundary',
+  })) {
+    const result = await engine.execute(submission);
+    if (result.status === 'rejected') throw new Error(`npc boundary rejected: ${result.code}`);
+  }
+}
+
+/**
+ * A deterministic AI gateway for DM intents and NPC replies: the given
+ * providers (default: local only) and in-memory traces.
+ */
 export function testAiGateway(...providers: AiProvider[]): IntentDeps & {
   readonly traces: InMemoryAiTraceStore;
 } {
   const ids = new SequentialIds(0xa1);
   const clock = new SteppingClock();
   let ms = 0;
+  const routed = providers.length > 0 ? providers : [createLocalProvider()];
   return {
-    router: new CapabilityRouter({
-      reasoning: providers.length > 0 ? providers : [createLocalProvider()],
-    }),
+    router: new CapabilityRouter({ reasoning: routed, 'npc-dialogue': routed }),
     traces: new InMemoryAiTraceStore(),
     ids,
     clock: { now: () => clock.now(), nowMs: () => (ms += 5) },

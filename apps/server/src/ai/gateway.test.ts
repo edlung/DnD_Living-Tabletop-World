@@ -1,28 +1,37 @@
 import { InMemoryAiTraceStore } from '@ltw/ai';
+import type { AiCapability } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { loadConfig } from '../platform/config/config.ts';
 import { createAiGateway } from './gateway.ts';
 
-/** Routing for `reasoning` (ADR 0017 §2): `[anthropic, local]` with a key, `[local]` without. */
-const routeOf = (env: Record<string, string>) =>
+/**
+ * Routing for `reasoning` (ADR 0017 §2) and `npc-dialogue` (ADR 0020 §3):
+ * `[anthropic, local]` with a key, `[local]` without.
+ */
+const routeOf = (env: Record<string, string>, capability: AiCapability = 'reasoning') =>
   createAiGateway(loadConfig(env).ai, new InMemoryAiTraceStore())
-    .router.providersFor('reasoning')
+    .router.providersFor(capability)
     .map((provider) => provider.id);
 
 describe('createAiGateway', () => {
   it('routes to the local provider only without a key', () => {
     expect(routeOf({})).toEqual(['local']);
+    expect(routeOf({}, 'npc-dialogue')).toEqual(['local']);
   });
 
   it('routes to Anthropic first, then local, with a key', () => {
     expect(routeOf({ ANTHROPIC_API_KEY: 'sk-ant-test' })).toEqual(['anthropic', 'local']);
+    expect(routeOf({ ANTHROPIC_API_KEY: 'sk-ant-test' }, 'npc-dialogue')).toEqual([
+      'anthropic',
+      'local',
+    ]);
   });
 
-  it('routes no other capability in Stage 100', () => {
+  it('routes no other capability', () => {
     const gateway = createAiGateway(loadConfig({}).ai, new InMemoryAiTraceStore());
 
-    for (const capability of ['fast-context', 'npc-dialogue', 'narrative', 'vision'] as const) {
+    for (const capability of ['fast-context', 'continuity', 'narrative', 'vision'] as const) {
       expect(gateway.router.providersFor(capability)).toEqual([]);
     }
   });

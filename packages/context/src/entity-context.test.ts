@@ -41,7 +41,8 @@ describe('selecting Mira Vale in Market Square (RAVENFORD_SPEC)', () => {
       'recall legal high',
       'talk legal medium',
       'ask_about market-square legal medium',
-      'trade legal low',
+      // No economy in the slice (ADR 0020 §1).
+      'trade NOT_AVAILABLE low',
       'ask_about ravenford legal low',
       'ask_about captain-thorne legal low',
       'inspect legal low',

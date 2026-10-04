@@ -1,4 +1,4 @@
-import type { CommandResult, EncounterResponse } from '@ltw/contracts';
+import type { CommandResult, EncounterResponse, EncounterSuggestionResponse } from '@ltw/contracts';
 import type { FastifyInstance } from 'fastify';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
@@ -146,5 +146,33 @@ describe('player combat commands', () => {
       (await command({ type: 'EndCombat', encounterId: encounter?.encounterId }, TOKENS.dm)).status,
     ).toBe(200);
     expect((await encounterFor('DM', TOKENS.dm)).body.encounter).toBeNull();
+  });
+});
+
+describe('GET /campaigns/:campaignId/encounter/suggestion', () => {
+  const url = '/campaigns/ravenford/encounter/suggestion';
+
+  it('is the DM’s alone, and null outside combat', async () => {
+    expect((await get(app, url)).statusCode).toBe(401);
+    expect((await get(app, url, TOKENS.outsider)).statusCode).toBe(404);
+    expect(
+      (await get(app, '/campaigns/elsewhere/encounter/suggestion', TOKENS.dm)).statusCode,
+    ).toBe(404);
+    expect((await get(app, url, TOKENS.player)).statusCode).toBe(403);
+    expect((await get(app, url, TOKENS.dm)).json<EncounterSuggestionResponse>()).toEqual({
+      suggestion: null,
+    });
+  });
+
+  it('suggests a creature’s action, which the DM submits as any command', async () => {
+    await startAmbush();
+    expect(
+      (await command({ type: 'EndTurn', combatantId: 'elowen-starwhisper' }, TOKENS.player)).status,
+    ).toBe(200);
+    const { suggestion } = (await get(app, url, TOKENS.dm)).json<EncounterSuggestionResponse>();
+
+    expect(suggestion?.explanation).toEqual(expect.any(String));
+    const submitted = await command({ ...suggestion?.command }, TOKENS.dm);
+    expect(submitted.result.status).toBe('accepted');
   });
 });

@@ -12,6 +12,7 @@ The context of one selected entity for one acting character. Authority: `docs/ad
 | Legality through `@ltw/rules`                                                                                         | `src/legality.ts`                                                                        |
 | Legality in combat (positions, turn; ADR 0015 §6); reaction windows (`REACTION_PENDING`, `counterspell`; ADR 0016 §4) | `src/combat.ts` (through `@ltw/combat`)                                                  |
 | "Ask about" topics                                                                                                    | `src/topics.ts`                                                                          |
+| "Show evidence": the acting scope's EVIDENCE, and what it has shown an NPC (ADR 0020 §1)                              | `src/evidence.ts`                                                                        |
 | Relevance heuristics                                                                                                  | `src/relevance.ts`                                                                       |
 
 Rules:
@@ -21,5 +22,6 @@ Rules:
 - Check order protects secrets: actor state, then presence, then target status. An absent target is always `NOT_PRESENT`.
 - Views are built field by field. Never spread canonical objects into output.
 - Perceived entities are shown by ID and kind. An entity whose identity must stay secret needs an opaque ID (ADR 0008).
-- Executable actions (`enter_location`, `inspect`, checks, `ask_about`) must stay aligned with World Engine acceptance (ADR 0013): `command-alignment.test.ts`.
+- Executable actions (`enter_location`, `inspect`, checks, `ask_about`, `show_evidence`, `insight_check`) must stay aligned with World Engine acceptance (ADR 0013, ADR 0020), and `talk` with the dialogue's `checkTalk`: `command-alignment.test.ts`. `trade` is `NOT_AVAILABLE`.
+- Relevance may read the acting scope's own showings (`inputs.shown`), never an NPC's attitude, disclosure, or another holder's showings.
 - Tests: `src/testing/ravenford.ts` seeds the full Ravenford fixture. `leakage.test.ts` holds the marker crawl and the noninterference check; extend both when adding an action or field.

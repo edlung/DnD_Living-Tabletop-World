@@ -287,13 +287,16 @@ export class WorldEngine {
     const count =
       command.type === 'EnterLocation'
         ? 0
-        : command.type === 'FormHypothesis'
+        : command.type === 'FormHypothesis' ||
+            command.type === 'ShowEvidence' ||
+            command.type === 'InsightCheck'
           ? 1
           : RESOLVED_ID_POOL;
     const ids = Array.from({ length: count }, () => this.#ids.next());
-    if (command.type !== 'ExamineEntity' || !CHECK_METHODS.has(command.method)) {
-      return { ids, d20: null, entropy: [] };
-    }
+    const checked =
+      command.type === 'InsightCheck' ||
+      (command.type === 'ExamineEntity' && CHECK_METHODS.has(command.method));
+    if (!checked) return { ids, d20: null, entropy: [] };
     if (!this.#checks) throw new Error('WorldEngine needs a SkillCheckPort to resolve checks');
     const d20 = this.#checks.rollD20();
     if (!Number.isInteger(d20) || d20 < 1 || d20 > 20) throw new Error(`invalid d20 ${d20}`);

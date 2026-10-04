@@ -1,13 +1,15 @@
 import type { EntityRef, ProposableCommand } from '@ltw/contracts';
 
+import { replyLocally } from './local-dialogue.ts';
 import type { AiProvider, ProviderRequest } from './providers.ts';
 
 /**
  * The deterministic local provider (docs/adr/0017-ai-gateway.md §2): an
- * offline interpreter of a few slice phrasings, for tests, development
- * without a key, and fallback. It reads only the structured task (the DM's
- * words and the context's directory), so it can never see more than an
- * external provider would. It answers the same request the same way.
+ * offline interpreter of a few slice phrasings, and NPC replies from
+ * templates (`local-dialogue.ts`, ADR 0020 §3), for tests, development
+ * without a key, and fallback. It reads only the structured task, so it can
+ * never see more than an external provider would. It answers the same
+ * request the same way.
  */
 export const LOCAL_MODEL = 'local-interpreter-1';
 
@@ -167,9 +169,12 @@ export function createLocalProvider(): AiProvider {
   return {
     id: 'local',
     generate: (request: ProviderRequest) => {
-      const { text, context } = request.task;
+      const { task } = request;
       return Promise.resolve({
-        output: interpretLocally(text, context.entities),
+        output:
+          task.kind === 'npc-dialogue'
+            ? replyLocally(task.prompt)
+            : interpretLocally(task.text, task.context.entities),
         model: LOCAL_MODEL,
         usage: null,
       });

@@ -8,13 +8,18 @@ import {
   type WorldState,
 } from '@ltw/domain';
 
+import contradictionSeed from '../../../../fixtures/ravenford/contradiction-seed.json' with { type: 'json' };
+import investigationSeed from '../../../../fixtures/ravenford/investigation-seed.json' with { type: 'json' };
 import kernelSeed from '../../../../fixtures/ravenford/kernel-seed.json' with { type: 'json' };
 import knowledgeSeed from '../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
 import memorySeed from '../../../../fixtures/ravenford/memory-seed.json' with { type: 'json' };
+import npcBoundary from '../../../../fixtures/ravenford/npc-boundary.json' with { type: 'json' };
+import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import boundary from '../../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 
 /**
- * Test support: Ravenford's kernel, knowledge, and memory seed. Seeding goes
+ * Test support: Ravenford's kernel, knowledge, and memory seed, and for NPC
+ * dialogue the full seed plus the Gate 04 boundary markers. Seeding goes
  * through the World Engine, which @ltw/ai source may not import; only tests
  * and this folder may (workspace-boundaries.json `forbiddenNames`).
  */
@@ -35,17 +40,31 @@ export interface SeededWorld {
   readonly version: () => Promise<number>;
 }
 
-export async function seedRavenford(): Promise<SeededWorld> {
+/** Gate 04 fixture: the dialogue boundary markers (`fixtures/ravenford/npc-boundary.json`). */
+export const NPC_BOUNDARY = npcBoundary;
+
+const BASE = [
+  [kernelSeed.commands, 'seed'],
+  [knowledgeSeed.commands, 'knowledge'],
+  [memorySeed.commands, 'memory'],
+] as const;
+
+/** The base seed; with `dialogue`, also rules, disclosure, claims, and the NPC boundary. */
+export async function seedRavenford(options: { dialogue?: boolean } = {}): Promise<SeededWorld> {
   const engine = new WorldEngine({
     store: new InMemoryEventStore(),
     ids: new SequentialIds(),
     clock: new SteppingClock(),
   });
-  const scripts = [
-    [kernelSeed.commands, 'seed'],
-    [knowledgeSeed.commands, 'knowledge'],
-    [memorySeed.commands, 'memory'],
-  ] as const;
+  const scripts: (readonly [readonly unknown[], string])[] = [...BASE];
+  if (options.dialogue) {
+    scripts.push(
+      [rulesSeed.commands, 'rules'],
+      [investigationSeed.commands, 'investigation'],
+      [contradictionSeed.commands, 'contradiction'],
+      [npcBoundary.commands, 'npc-boundary'],
+    );
+  }
   for (const [commands, prefix] of scripts) {
     const submissions = submissionsFromScript({
       campaignId: CAMPAIGN,

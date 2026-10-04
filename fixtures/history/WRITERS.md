@@ -437,3 +437,128 @@ try {
   await database.drop();
 }
 ```
+
+## `b7a1a92-npc-memories.json`
+
+Written on 2026-10-04 by revision `b7a1a92fa5886c271d623d3a7a87fdeec9c7f8bf` (Stage 120) through its own HTTP app and `PostgresEventStore`, into a throwaway database it migrated, seeded, and dropped. Dice roll the middle face. Recorded before Stage 130 gave `MemoryRecorded` and `ContradictionDetected` version 3 (ADR 0020; `packages/domain/src/kernel/event-versions.ts`).
+
+Steps:
+
+1. Check out the revision on its own (`git worktree add --detach <dir> b7a1a92`) and run `pnpm install --frozen-lockfile --offline` there.
+2. Save the script below in that checkout's root as `history-writer.mts`, with PostgreSQL running.
+3. Run `LTW_HISTORY_OUT=<output.json> node --conditions=@ltw/source history-writer.mts` from that root. It prints `{"version":135,"events":135,"commands":103}`.
+4. The JSON it writes was laid out one row per line, with a `$comment` and the revision added to `writer`; the rows themselves are unchanged.
+
+```ts
+// Runs inside a checkout of revision b7a1a92 (the Stage 120 writer): drives that
+// revision's own HTTP app and PostgreSQL store through the npc-memories scenario,
+// then dumps the stored rows. LTW_HISTORY_OUT: output path.
+import { writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+
+import { post } from './apps/server/src/testing/gate02-scenarios.ts';
+import { TOKENS, ravenfordApp, seededEngine } from './apps/server/src/testing/ravenford-app.ts';
+import { createThrowawayDatabase } from './apps/server/src/testing/throwaway-database.ts';
+import { PostgresEventStore } from './apps/server/src/world-engine/postgres-event-store.ts';
+
+const require = createRequire(new URL('./apps/server/package.json', `file://${process.cwd()}/`));
+const { Pool } = require('pg');
+const ELOWEN = 'elowen-starwhisper';
+const OUT = process.env.LTW_HISTORY_OUT;
+if (!OUT) throw new Error('LTW_HISTORY_OUT is required');
+
+const database = await createThrowawayDatabase({ migrate: true });
+const pool = new Pool({ connectionString: database.url });
+let app: Awaited<ReturnType<typeof ravenfordApp>> | undefined;
+const labels: Record<string, string> = {};
+try {
+  app = await ravenfordApp(await seededEngine(new PostgresEventStore(pool)));
+  const live = app;
+  const send = async (token: string, label: string, command: Record<string, unknown>) => {
+    const { status, body } = await post(live, token, `legacy-${label}`, command);
+    if (status !== 200 || body.status !== 'accepted') {
+      throw new Error(`${label}: ${String(status)} ${JSON.stringify(body)}`);
+    }
+    labels[label] = body.commandId;
+    return body;
+  };
+  const dm = (label: string, command: Record<string, unknown>) => send(TOKENS.dm, label, command);
+  const player = (label: string, command: Record<string, unknown>) =>
+    send(TOKENS.player, label, command);
+  const enter = (label: string, locationId: string) =>
+    player(label, { type: 'EnterLocation', characterId: ELOWEN, locationId });
+  const ask = (label: string, npcId: string, topicId: string) =>
+    player(label, { type: 'AskAbout', characterId: ELOWEN, npcId, topicId });
+
+  // Generated text quoting names, and answers passing over what was told before (ADR 0020).
+  await dm('rename-caravan', {
+    type: 'UpdateEntityProfile',
+    entityId: 'guild-caravan',
+    name: 'The Lost Caravan',
+  });
+  await dm('mira-wagons', {
+    type: 'AddKnowledge',
+    knowledgeId: 'legacy-mira-wagons',
+    scope: { kind: 'NPC', npcId: 'mira-vale' },
+    knowledgeType: 'FACT',
+    statement: 'The wagons were freshly painted.',
+    subjects: ['guild-caravan'],
+    knownSince: null,
+  });
+  await dm('mira-wagons-willing', {
+    type: 'SetDisclosure',
+    knowledgeId: 'legacy-mira-wagons',
+    disclosure: 'WILLING',
+  });
+  // Mira tells the cargo and the prior incident, then, asked about the caravan,
+  // only the wagons: the cargo was told before, the departure is guarded.
+  await ask('ask-road', 'mira-vale', 'old-trade-road');
+  await ask('ask-caravan', 'mira-vale', 'guild-caravan');
+  await dm('rename-weapon', {
+    type: 'UpdateEntityProfile',
+    entityId: 'goblin-weapon',
+    name: 'Notched Blade',
+  });
+  await enter('to-road', 'old-trade-road');
+  await enter('to-site', 'abandoned-caravan-site');
+  await player('inspect-weapon', {
+    type: 'ExamineEntity',
+    characterId: ELOWEN,
+    entityId: 'goblin-weapon',
+    method: 'inspect',
+  });
+  await enter('back-to-road', 'old-trade-road');
+  await enter('to-gate', 'north-gate');
+  // Thorne's account contradicts Mira's, as the party copied it.
+  await ask('ask-thorne', 'captain-thorne', 'guild-caravan');
+
+  const rows = async (sql: string) =>
+    (await pool.query(sql, ['ravenford'])).rows.map((row: { row: unknown }) => row.row);
+  const dump = {
+    campaignId: 'ravenford',
+    scenario: 'npc-memories',
+    labels,
+    stream: (
+      await rows('SELECT row_to_json(s) AS row FROM ltw_event_streams s WHERE stream_id = $1')
+    )[0],
+    commands: await rows(
+      'SELECT row_to_json(c) AS row FROM ltw_commands c WHERE stream_id = $1 ORDER BY first_sequence',
+    ),
+    events: await rows(
+      'SELECT row_to_json(e) AS row FROM ltw_events e WHERE stream_id = $1 ORDER BY sequence',
+    ),
+  };
+  await writeFile(OUT, `${JSON.stringify(dump)}\n`);
+  console.log(
+    JSON.stringify({
+      version: (dump.stream as { version: number }).version,
+      events: dump.events.length,
+      commands: dump.commands.length,
+    }),
+  );
+} finally {
+  if (app) await app.close();
+  await pool.end();
+  await database.drop();
+}
+```

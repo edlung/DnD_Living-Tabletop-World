@@ -42,5 +42,6 @@ Never mark a product decision or invariant change `Accepted` on the owner's beha
 | [0017](0017-ai-gateway.md)                             | AI Gateway: providers, capability routing, scoped context, proposals, traces    | Accepted (owner-approved product decision)         |
 | [0018](0018-ai-authoring.md)                           | AI authoring: proposals, validation, confirmation, commit, and undo             | Accepted (owner-approved product decision)         |
 | [0019](0019-continuity-engine.md)                      | Continuity Engine: conflicts, explanations, options, relationships, lore claims | Accepted (owner-approved product decision)         |
+| [0020](0020-npc-intelligence.md)                       | NPC intelligence: scoped dialogue, guarded disclosure, Insight, monster turns   | Accepted (owner-approved product decision)         |
 
-Pending product decisions for later stages are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006; minimum authoring validation (Stage 110) is ADR 0018; the Stage 120 continuity checks, relationships, and lore are ADR 0019.
+Pending product decisions for later stages are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006; minimum authoring validation (Stage 110) is ADR 0018; the Stage 120 continuity checks, relationships, and lore are ADR 0019; Stage 130's NPC dialogue, disclosure, Insight, and monster suggestions are ADR 0020.

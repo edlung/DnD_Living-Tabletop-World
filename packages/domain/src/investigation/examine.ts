@@ -125,6 +125,7 @@ export function decideExamineEntity(
         summary: `${actor.value.character.name} examined ${entity.name}: ${first.clue.statement}`,
         participants: [characterId, entityId],
         relatedKnowledge: revealed.map(({ knowledgeId }) => knowledgeId),
+        named: [characterId, entityId],
       }),
     );
   }

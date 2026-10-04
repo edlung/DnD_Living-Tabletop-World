@@ -40,6 +40,14 @@ describe('event schema versions', () => {
     expect(writtenEarlier({ type: 'ClueAdded', schemaVersion: 2 })).toBe(false);
     expect(writtenEarlier({ type: 'PremisesRecorded', schemaVersion: 2 })).toBe(true);
     expect(writtenEarlier({ type: 'PremisesRecorded', schemaVersion: 3 })).toBe(false);
+    // Stage 130: generated text records the names it quotes (ADR 0020).
+    for (const type of ['MemoryRecorded', 'ContradictionDetected'] as const) {
+      expect(schemaVersionOf(type)).toBe(3);
+      expect(writtenEarlier({ type, schemaVersion: 2 })).toBe(true);
+      expect(writtenEarlier({ type, schemaVersion: 3 })).toBe(false);
+    }
+    expect(schemaVersionOf('EvidenceShown')).toBe(2);
+    expect(schemaVersionOf('InsightChecked')).toBe(2);
   });
 
   it('reads version 1 premises as every earlier writer stored them', () => {

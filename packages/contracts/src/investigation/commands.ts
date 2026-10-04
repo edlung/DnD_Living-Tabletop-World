@@ -43,6 +43,26 @@ export const askAboutCommandSchema = z
   })
   .strict();
 
+/** Show an NPC an EVIDENCE record the asker holds (docs/adr/0020-npc-intelligence.md §1). */
+export const showEvidenceCommandSchema = z
+  .object({
+    type: z.literal('ShowEvidence'),
+    characterId: entityIdSchema,
+    npcId: entityIdSchema,
+    knowledgeId: knowledgeIdSchema,
+  })
+  .strict();
+
+/** A Wisdom (Insight) check on an NPC about a known topic (docs/adr/0020-npc-intelligence.md §4). */
+export const insightCheckCommandSchema = z
+  .object({
+    type: z.literal('InsightCheck'),
+    characterId: entityIdSchema,
+    npcId: entityIdSchema,
+    topicId: entityIdSchema,
+  })
+  .strict();
+
 export const examineEntityCommandSchema = z
   .object({
     type: z.literal('ExamineEntity'),
@@ -89,6 +109,8 @@ export const setDisclosureCommandSchema = z
 export const PLAYER_COMMAND_TYPES = [
   'EnterLocation',
   'AskAbout',
+  'ShowEvidence',
+  'InsightCheck',
   'ExamineEntity',
   'FormHypothesis',
   'MoveCombatant',
@@ -104,6 +126,13 @@ export type PlayerCommandType = (typeof PLAYER_COMMAND_TYPES)[number];
 export type PlayerOutcome =
   | { readonly kind: 'EnterLocation'; readonly locationId: string }
   | { readonly kind: 'AskAbout'; readonly shared: readonly string[] }
+  | { readonly kind: 'ShowEvidence'; readonly shown: string }
+  | {
+      readonly kind: 'InsightCheck';
+      readonly roll: { readonly d20: number; readonly modifier: number; readonly total: number };
+      /** The INFERENCE record gained, if any; a failure and nothing to sense look alike. */
+      readonly inferred: readonly string[];
+    }
   | {
       readonly kind: 'ExamineEntity';
       readonly roll: {

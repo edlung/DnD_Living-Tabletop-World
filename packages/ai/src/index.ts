@@ -9,13 +9,27 @@ export {
   type ContextItem,
   type ContextSection,
 } from './context-builder.ts';
-export { runWithFallback, type FallbackDeps, type FallbackResult } from './fallback.ts';
+export { replyAsNpc, validateReply, type DialogueDeps, type DialogueInput } from './dialogue.ts';
+export {
+  REPLY_OUTPUT,
+  dialoguePrompt,
+  dialogueRequest,
+  type DialoguePrompt,
+  type Exchange,
+} from './dialogue-prompt.ts';
+export {
+  runWithFallback,
+  type FallbackDeps,
+  type FallbackResult,
+  type OutputCheck,
+} from './fallback.ts';
 export {
   interpretDmIntent,
   type IntentDeps,
   type IntentInput,
   type IntentOutcome,
 } from './intent.ts';
+export { replyLocally } from './local-dialogue.ts';
 export { LOCAL_MODEL, createLocalProvider, interpretLocally } from './local-provider.ts';
 export { PROPOSAL_OUTPUT, intentRequest } from './prompt.ts';
 export {
@@ -23,6 +37,7 @@ export {
   ProviderError,
   failureCode,
   type AiProvider,
+  type DialogueTask,
   type IntentTask,
   type ProviderErrorCode,
   type ProviderRequest,

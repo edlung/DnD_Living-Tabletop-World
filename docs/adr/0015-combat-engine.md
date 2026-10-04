@@ -146,6 +146,7 @@ The fixture also defines an Old Trade Road battlefield (wagons give half cover, 
   - Detect Magic, and spells at creatures outside the fight, are unchanged: the caster still casts exactly as with no fight (retest 1 amendment).
   - So nothing a character outside the fight may do changes what a reaction window depends on (ADR 0016 retest 2 amendment).
   - Technical note (G03-H05): narrative records (`AttackPerformed`, `SpellCast`, `DamageApplied`, `HealingApplied`, `SavingThrowRolled`, `ConditionApplied`, `DeathSaveRolled`) read every creature they name, as their fold requires, so undo cannot remove a creature a standing record names, whatever premises its writer recorded.
+- 2026-10-04 (Stage 130, ADR 0020 §5, owner decision): the §7 monster-behavior obligation is met by deterministic suggestions for the DM: spell, then attack, then move toward, then end the turn, each legal by the decisions' own functions (`movePlan` now shared by `MoveCombatant` and the suggestion). Nothing acts by itself.
 
 ## Invariants affected
 

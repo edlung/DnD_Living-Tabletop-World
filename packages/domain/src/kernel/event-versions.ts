@@ -1,9 +1,11 @@
 import type { z } from 'zod';
 
+import { contradictionDetectedPayloadSchema } from '../contradiction/events.ts';
 import {
   premisesRecordedPayloadSchema,
   recordedPremisesPayloadSchema,
 } from '../investigation/events.ts';
+import { memoryRecordedPayloadSchema } from '../memory/events.ts';
 import type { KernelEventType } from './events.ts';
 
 /**
@@ -44,15 +46,39 @@ const VERSIONING: Partial<Record<KernelEventType, Versioning>> = {
     written: premisesRecordedPayloadSchema,
     earlier: { 1: recordedPremisesPayloadSchema, 2: premisesRecordedPayloadSchema },
   },
+  /**
+   * 3 (Stage 130, ADR 0020): a play memory names the entities its generated
+   * summary quotes (`named`), and the command that records it (`AskAbout`,
+   * an examination, Detect Magic, showing evidence) records every record it
+   * passed over. Earlier writers' commands did neither, so they rest on
+   * everything before them. The payload is read alike.
+   */
+  MemoryRecorded: {
+    current: 3,
+    written: memoryRecordedPayloadSchema,
+    earlier: { 1: memoryRecordedPayloadSchema, 2: memoryRecordedPayloadSchema },
+  },
+  /**
+   * 3 (Stage 130): every writer records the names the neutral statement
+   * quotes (`named`). Version 2 writers before Stage 120 did not.
+   */
+  ContradictionDetected: {
+    current: 3,
+    written: contradictionDetectedPayloadSchema,
+    earlier: { 1: contradictionDetectedPayloadSchema, 2: contradictionDetectedPayloadSchema },
+  },
 };
 
 /**
- * Types first written after the dependency contract (Stage 120, ADR 0019): no
- * writer ever wrote them with an earlier version, so one is refused.
+ * Types first written after the dependency contract (Stages 120–130, ADR 0019
+ * and ADR 0020): no writer ever wrote them with an earlier version, so one is
+ * refused.
  */
 const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   RelationshipChanged: DEPENDENCY_CONTRACT,
   AuthoringPremisesRecorded: DEPENDENCY_CONTRACT,
+  EvidenceShown: DEPENDENCY_CONTRACT,
+  InsightChecked: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>

@@ -108,6 +108,7 @@ export function magicDiscoveryEvents(
       summary: `${actor.value.character.name} sensed magic: ${first.clue.statement}`,
       participants: [characterId, ...entities].slice(0, 16),
       relatedKnowledge: found.map(({ knowledgeId }) => knowledgeId),
+      named: [characterId],
     }),
   );
   return events;

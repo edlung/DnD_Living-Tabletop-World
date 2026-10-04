@@ -27,6 +27,11 @@ export const memoryRecordedPayloadSchema = z
     causedBy: z.array(memoryIdSchema).max(16),
     salience: z.number().int().min(1).max(5),
     witnesses: z.array(entityIdSchema).max(16),
+    /**
+     * Entities whose names a generated summary quotes (Stage 130): the memory
+     * rests on those names. Absent for DM-authored memories and earlier events.
+     */
+    named: z.array(entityIdSchema).min(1).max(16).optional(),
   })
   .strict();
 

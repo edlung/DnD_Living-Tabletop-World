@@ -1,6 +1,7 @@
 import type { AiCapability } from '@ltw/contracts';
 
 import type { BuiltContext } from './context-builder.ts';
+import type { DialoguePrompt } from './dialogue-prompt.ts';
 
 /**
  * The provider port (docs/adr/0017-ai-gateway.md §2). Providers are
@@ -29,12 +30,19 @@ export interface IntentTask {
   readonly repair: RepairNote | null;
 }
 
+/** An NPC's reply (ADR 0020 §3): exactly what the prose says, with no IDs. */
+export interface DialogueTask {
+  readonly kind: 'npc-dialogue';
+  readonly prompt: DialoguePrompt;
+  readonly repair: RepairNote | null;
+}
+
 export interface ProviderRequest {
   readonly capability: AiCapability;
   readonly system: string;
   readonly prompt: string;
   readonly output: StructuredOutputSpec;
-  readonly task: IntentTask;
+  readonly task: IntentTask | DialogueTask;
 }
 
 export interface ProviderResponse {

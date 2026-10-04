@@ -77,6 +77,10 @@ ADR 0018's checks remain as they were (`KNOWLEDGE_BEFORE_SUBJECT` blocks; `NAME_
 - **Stage 230** builds the conflict, option, and acknowledgement UI on these previews.
 - **Free-text lore** conflicts stay undetected unless the DM records them as claims.
 
+## Amendments
+
+- 2026-10-04 (Stage 130, ADR 0020 §2–3): an NPC's attitude now changes disclosure (hostile or wary keeps guarded records back; trusted shares them without evidence) and is part of the NPC's own dialogue context, so a reply's tone may reflect it. No player view or outcome shows the attitude itself.
+
 ## Invariants affected
 
 Implements 7 (claims structure lore without changing any record), 11, 16, and 17 for continuity; preserves 1–6, 12, and 13. No invariant is weakened: options never apply themselves, and warnings never cover a blocking issue.

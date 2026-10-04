@@ -103,6 +103,7 @@ When the party asks Thorne about the caravan, the PARTY scope gains one contradi
   - **Claims on world truth.** The DM or the system may put claims on WORLD_TRUTH records, for continuity checks only. Detection never joins WORLD_TRUTH (§2), so these claims never produce a contradiction, a player view, or an outcome. DM notes still never carry claims.
   - **AI-proposed claims.** As anticipated above, an authoring proposal may set claims on records an NPC holds, confirmed by the DM (ADR 0018, ADR 0019).
   - **Quoted names are premises.** The neutral statement quotes the subject's and the speakers' names. `ContradictionDetected` now lists them (`named`), and its footprint reads those names, so undoing a rename it quoted is refused while the contradiction stands. Without this, re-deciding the command after such an undo would give another statement; the Stage 120 randomized test found it. The field is additive: events written earlier lack it, and their footprint reads only the subject's name.
+- 2026-10-04 (Stage 130, ADR 0020 §6): `ContradictionDetected` moves to version 3. Writers before Stage 120 did not record the quoted names, so a command with a version 2 contradiction rests on everything before it (ADR 0007 Stage 130 amendment).
 
 ## Invariants affected
 

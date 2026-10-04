@@ -1,6 +1,6 @@
 # Investigation (`src/investigation/`)
 
-Player actions, clues, NPC disclosure, and hypotheses. Authority: `docs/adr/0013-investigation.md` (owner-approved). Gate 02 attacks these paths (`docs/GATE_COVERAGE.md`, Stages 50–60).
+Player actions, clues, NPC disclosure, and hypotheses. Authority: `docs/adr/0013-investigation.md` and, for guarded disclosure, showing evidence, and Insight, `docs/adr/0020-npc-intelligence.md` (both owner-approved). Gate 02 attacks these paths (`docs/GATE_COVERAGE.md`, Stages 50–60).
 
 | Concern                                                               | File                         |
 | --------------------------------------------------------------------- | ---------------------------- |
@@ -12,7 +12,10 @@ Player actions, clues, NPC disclosure, and hypotheses. Authority: `docs/adr/0013
 | `AddClue`, `SetDisclosure` (DM)                                       | `authoring.ts`               |
 | `EnterLocation`, `FormHypothesis`                                     | `movement-and-hypotheses.ts` |
 | `ExamineEntity` (inspect, one-attempt checks)                         | `examine.ts`                 |
-| `AskAbout` (WILLING records as attributed testimony)                  | `conversation.ts`            |
+| `AskAbout` (shareable records as attributed testimony)                | `conversation.ts`            |
+| What an NPC would tell a scope now (ADR 0020 §2)                      | `disclosure.ts`              |
+| `ShowEvidence` (ADR 0020 §1)                                          | `show.ts`                    |
+| `InsightCheck` (DC 13, one per character and NPC; ADR 0020 §4)        | `insight.ts`                 |
 | Player-visible outcome on command results                             | `outcome.ts`                 |
 | Rules port for skill checks (adapter in `@ltw/rules`)                 | `skill-checks.ts`            |
 
@@ -27,3 +30,5 @@ Rules:
 - No command changes a record's type. Hypotheses stay HYPOTHESIS; a DM FACT is a new record.
 - The engine draws IDs and the d20 at resolution (`Resolution` on the stored command). Decisions stay pure; replay never rolls.
 - Tests: `testing/world.ts` (full Ravenford seed plus a fake skill-check port with Elowen's modifiers). The validation gate test is `investigation-path.test.ts`. The Context Engine's `command-alignment.test.ts` proves context legality matches acceptance.
+- An NPC's disclosure is decided once, by `npcDisclosure` (ADR 0020 §2), for `AskAbout`, Insight, and the dialogue context. Its premises name the attitude when a guarded record was considered, the showing that unlocked one, and every record passed over, withheld or told before (`considered`). A new consumer must record the same premises. `npc-disclosure.test.ts`, `insight.test.ts`, and `npc.property.test.ts` (random undo with the re-decision oracle) guard this.
+- A play memory names the entities its generated summary quotes (`memoryEvent`'s `named`); the footprint reads those names.

@@ -12,13 +12,17 @@ import {
   premisesEvent,
   target,
 } from './acting.ts';
-import { MAX_SHARED_PER_ASK, scopedKey } from './records.ts';
+import { npcDisclosure } from './disclosure.ts';
+import { MAX_SHARED_PER_ASK } from './records.ts';
 
 /**
- * `AskAbout` (docs/adr/0013-investigation.md §3). An NPC shares only WILLING
- * records of its own scope that mention the topic and were not yet shared
- * with the asker's scope. Nothing to share is `NO_EFFECT`, whether the NPC
- * knows nothing, guards everything, or has already told everything.
+ * `AskAbout` (docs/adr/0013-investigation.md §3, docs/adr/0020-npc-intelligence.md
+ * §2). An NPC shares the records of its own scope about the topic that it
+ * would tell the asker's scope now (`npcDisclosure`): WILLING ones, and
+ * guarded ones that evidence shown to it or its trust unlocks. Nothing to
+ * share is `NO_EFFECT`, whether the NPC knows nothing, guards everything, or
+ * has already told everything. The records it considered and did not share
+ * are premises too, so undo keeps the answer exact.
  */
 export function decideAskAbout(
   state: WorldState,
@@ -39,16 +43,8 @@ export function decideAskAbout(
   if (npc.kind !== 'npc' || npcId === characterId) return nothing();
 
   const { scopeKey, scope } = actor.value;
-  const willing = [...state.knowledge.values()]
-    .filter(
-      (record) =>
-        record.scope.kind === 'NPC' &&
-        record.scope.npcId === npcId &&
-        state.investigation.disclosures.get(record.knowledgeId) === 'WILLING' &&
-        (record.subjects.includes(topicId) || record.attributedTo === topicId) &&
-        !state.investigation.shared.has(scopedKey(scopeKey, record.knowledgeId)),
-    )
-    .slice(0, MAX_SHARED_PER_ASK);
+  const disclosure = npcDisclosure(state, npcId, scopeKey, topicId);
+  const willing = disclosure.shareable.slice(0, MAX_SHARED_PER_ASK);
   if (willing.length === 0) return nothing();
 
   // Legal because: the character could speak (sheet), sees the NPC, knows the
@@ -58,6 +54,7 @@ export function decideAskAbout(
       { kind: 'sheet' },
       found.value.premise,
       topicPremise,
+      ...disclosure.premises,
       ...(scope.kind === 'PARTY' ? [{ kind: 'party' } as const] : []),
     ]),
   ];
@@ -114,6 +111,7 @@ export function decideAskAbout(
       summary: `${npc.name} told ${actor.value.character.name} about ${topic.name}.`,
       participants: [characterId, npcId],
       relatedKnowledge: sharedIds,
+      named: [npcId, characterId, topicId],
     }),
   );
   return accept(...events);

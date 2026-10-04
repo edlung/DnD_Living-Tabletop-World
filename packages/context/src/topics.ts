@@ -1,5 +1,6 @@
 import type { ContextEntityRef, Relevance } from '@ltw/contracts';
 
+import { shownSubjects } from './evidence.ts';
 import type { ContextInputs } from './inputs.ts';
 import { RELEVANCE_RANK, openQuestionSubjects, sharedRecordEntities } from './relevance.ts';
 import { entityRefFor } from './views.ts';
@@ -8,7 +9,10 @@ import { entityRefFor } from './views.ts';
  * "Ask about <topic>" (docs/adr/0012-context-engine.md). Topics come only
  * from entities the acting perspective knows; nothing about what the target
  * knows is consulted, so a topic can never reveal another holder's secret.
- * Order: relevance, then perceived before not perceived, then name, then ID.
+ * A subject the acting character's scope has shown the target evidence about
+ * ranks high (docs/adr/0020-npc-intelligence.md §1: show the symbol, then ask
+ * about it). Order: relevance, then perceived before not perceived, then
+ * name, then ID.
  */
 export const MAX_TOPICS = 5;
 
@@ -19,17 +23,19 @@ export interface Topic {
 
 export function askTopics(inputs: ContextInputs, targetId: string): Topic[] {
   const open = openQuestionSubjects(inputs);
+  const shown = shownSubjects(inputs, targetId);
   const shared = sharedRecordEntities(inputs, targetId);
   const candidates = [...inputs.known].filter(
     (entityId) => entityId !== targetId && entityId !== inputs.actor.entityId,
   );
   return candidates
     .map((entityId) => {
-      const relevance: Relevance = open.has(entityId)
-        ? 'high'
-        : shared.has(entityId)
-          ? 'medium'
-          : 'low';
+      const relevance: Relevance =
+        open.has(entityId) || shown.has(entityId)
+          ? 'high'
+          : shared.has(entityId)
+            ? 'medium'
+            : 'low';
       return { ref: entityRefFor(inputs, entityId), relevance };
     })
     .sort(

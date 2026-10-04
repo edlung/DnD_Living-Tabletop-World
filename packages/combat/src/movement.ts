@@ -1,9 +1,13 @@
+import type { Square } from '@ltw/contracts';
 import {
   accept,
+  type CombatantRecord,
   type CombatCommand,
   type Decision,
   type DecisionContext,
   type DraftEvent,
+  type EncounterState,
+  type WorldState,
 } from '@ltw/domain';
 import { onGround, pathCostFt } from '@ltw/rules';
 
@@ -17,8 +21,17 @@ import {
   onTurn,
   withTurn,
 } from './battlefield.ts';
+import type { Refusal } from './legality.ts';
 import { refused, combatPremises } from './refusal.ts';
-import { has, incapacitated, speedOf, vitalsEvent, vitalsOf, withConditions } from './vitals.ts';
+import {
+  has,
+  incapacitated,
+  speedOf,
+  vitalsEvent,
+  vitalsOf,
+  withConditions,
+  type Vitals,
+} from './vitals.ts';
 
 /**
  * `MoveCombatant` (docs/adr/0015-combat-engine.md §3): square by square from
@@ -28,31 +41,53 @@ import { has, incapacitated, speedOf, vitalsEvent, vitalsOf, withConditions } fr
  */
 type Move = Extract<CombatCommand, { type: 'MoveCombatant' }>;
 
+export interface MovePlan {
+  readonly legal: true;
+  readonly vitals: Vitals;
+  /** Half Speed to stand up from Prone first, or 0. */
+  readonly standUpFt: number;
+  /** Movement used this turn once the move is made. */
+  readonly usedFt: number;
+}
+
+/**
+ * Whether the combatant on its turn may walk `path` now. Shared by the
+ * decision and the DM's monster suggestions (docs/adr/0020-npc-intelligence.md §5).
+ */
+export function movePlan(
+  state: WorldState,
+  encounter: EncounterState,
+  mover: CombatantRecord,
+  path: readonly Square[],
+): MovePlan | Refusal {
+  const vitals = vitalsOf(state, mover.entityId);
+  if (!vitals) return { legal: false, reason: 'NOT_A_COMBATANT' };
+  if (!isAlive(state, mover.entityId)) return { legal: false, reason: 'ACTOR_DEAD' };
+  if (incapacitated(vitals)) return { legal: false, reason: 'INCAPACITATED' };
+  for (const square of path) {
+    if (!inBounds(encounter, square) || occupant(state, encounter, square, mover.entityId)) {
+      return { legal: false, reason: 'INVALID_PATH' };
+    }
+  }
+  const walked = [mover.position, ...path].map(onGround);
+  const cost = pathCostFt(walked, (p) => isDifficult(encounter, p));
+  if (!cost.valid) return { legal: false, reason: 'INVALID_PATH' };
+  const speed = speedOf(vitals);
+  const standUpFt = has(vitals, 'prone') ? Math.floor(speed / 10) * 5 : 0;
+  const usedFt = mover.turn.movementUsedFt + standUpFt + cost.costFt;
+  if (usedFt > speed) return { legal: false, reason: 'NOT_ENOUGH_MOVEMENT' };
+  return { legal: true, vitals, standUpFt, usedFt };
+}
+
 export function decideMove(context: DecisionContext, command: Move): Decision {
   const { state } = context;
   const encounter = encounterOf(state);
   if (!encounter.ok) return encounter;
   const mover = onTurn(encounter.value, command.combatantId);
   if (!mover.ok) return mover;
-  const vitals = vitalsOf(state, command.combatantId);
-  if (!vitals) return refused({ legal: false, reason: 'NOT_A_COMBATANT' });
-  if (!isAlive(state, command.combatantId)) return refused({ legal: false, reason: 'ACTOR_DEAD' });
-  if (incapacitated(vitals)) return refused({ legal: false, reason: 'INCAPACITATED' });
-  for (const square of command.path) {
-    if (
-      !inBounds(encounter.value, square) ||
-      occupant(state, encounter.value, square, command.combatantId)
-    ) {
-      return refused({ legal: false, reason: 'INVALID_PATH' });
-    }
-  }
-  const path = [mover.value.position, ...command.path].map(onGround);
-  const cost = pathCostFt(path, (p) => isDifficult(encounter.value, p));
-  if (!cost.valid) return refused({ legal: false, reason: 'INVALID_PATH' });
-  const speed = speedOf(vitals);
-  const standUp = has(vitals, 'prone') ? Math.floor(speed / 10) * 5 : 0;
-  const used = mover.value.turn.movementUsedFt + standUp + cost.costFt;
-  if (used > speed) return refused({ legal: false, reason: 'NOT_ENOUGH_MOVEMENT' });
+  const plan = movePlan(state, encounter.value, mover.value, command.path);
+  if (!plan.legal) return refused(plan);
+  const { vitals, standUpFt: standUp, usedFt: used } = plan;
 
   const events: DraftEvent[] = [combatPremises(state, command.combatantId)];
   if (standUp > 0) {

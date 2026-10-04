@@ -109,6 +109,11 @@ A later AI ranker (Stage 140) may refine relevance using the same scoped inputs 
 
 ## Amendments
 
+- 2026-10-04 (Stage 130, ADR 0020 §1): NPC interactions are carried out.
+  - `talk` and `insight_check` are offered for NPC targets only, since only NPCs answer them; `talk` matches the dialogue's own check, `insight_check` needs a sheet and reports `ALREADY_ATTEMPTED` after the character's one attempt on that NPC.
+  - `trade` is illegal with the new reason `NOT_AVAILABLE` (no economy in the slice), after the actor's own state.
+  - New action `show_evidence`, one per EVIDENCE record of the acting character's own scope (at most 5), with the record as `evidence`; medium relevance while it holds a subject not yet shown to this NPC.
+  - "Ask about" a subject the acting scope has shown the NPC is high relevance. Inputs gain the acting scope and its own showings only, never another holder's.
 - 2026-10-04 (Stage 90, ADR 0016 §4): while a reaction window is open, combat actions are illegal with `REACTION_PENDING`. A pending candidate who selects the window's caster sees `counterspell`, first among creature actions, relevance high; its legality and cost (slot level) come from the same Counterspell eligibility the World Engine applies. Nothing in a context names the suspended spell.
 - 2026-10-04 (Stage 80, ADR 0015 §6): when the acting character is a combatant, legality comes from `@ltw/combat`'s shared legality with the encounter's positions and turn: distance between combatants, range with `moveRequiredFt`, cover, and turn reasons. Creatures in the encounter gain a `fireball` action centered on them, with `area.affected` (perceived combatants, the caster included) and the hint `ALLY_IN_AREA`; `longbow_attack` may carry `LONG_RANGE`. A target outside the encounter is `NOT_IN_COMBAT`. Outside combat nothing changes.
 - 2026-10-03 (Stage 70, ADR 0014 §5): CONTRADICTION counts as an open question for relevance. Only the perspective's visible records are used.

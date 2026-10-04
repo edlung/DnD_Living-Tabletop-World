@@ -29,6 +29,10 @@ export interface ContextInputs {
   readonly memories: readonly MemoryRecord[];
   /** The acting character plus, if it is in the party, every party member. */
   readonly party: ReadonlySet<string>;
+  /** Where the acting character's discoveries go: the party's scope, or its own. */
+  readonly scopeKey: string;
+  /** What that scope has shown NPCs (`shownKey`): its own actions, never another holder's. */
+  readonly shown: ReadonlySet<string>;
 }
 
 /** Null when the perspective has no acting character (ADR 0012 "Acting character"). */
@@ -41,6 +45,9 @@ export function gatherInputs(
   if (actor?.kind !== 'character') return null;
   const party = new Set([actor.entityId]);
   if (state.roster.has(actor.entityId)) state.roster.forEach((_, id) => party.add(id));
+  const own = state.roster.has(actor.entityId)
+    ? scopeKey({ kind: 'PARTY' })
+    : scopeKey({ kind: 'CHARACTER', characterId: actor.entityId });
   return {
     state,
     perspective,
@@ -53,5 +60,7 @@ export function gatherInputs(
       (memory) => perspective.scopes === 'ALL' || perspective.scopes.has(scopeKey(memory.scope)),
     ),
     party,
+    scopeKey: own,
+    shown: new Set([...state.investigation.shown].filter((key) => key.startsWith(`${own}|`))),
   };
 }

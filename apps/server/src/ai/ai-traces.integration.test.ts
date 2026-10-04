@@ -1,4 +1,4 @@
-import type { AiTraceView, DmIntentResponse } from '@ltw/contracts';
+import type { AiTraceView, DmIntentResponse, NpcDialogueResponse } from '@ltw/contracts';
 import type { FastifyInstance } from 'fastify';
 import pg from 'pg';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -12,7 +12,8 @@ import { PostgresAiTraceStore } from './postgres-trace-store.ts';
 /**
  * AI traces in PostgreSQL (migration 0002, ADR 0017 §7): append-only, per
  * campaign, and an intent request over a PostgreSQL World Engine leaves the
- * event store untouched.
+ * event store untouched. An NPC reply (ADR 0020 §3) is traced the same way;
+ * only its intent's command reaches the event store.
  */
 let database: ThrowawayDatabase;
 let pool: pg.Pool;
@@ -110,5 +111,57 @@ describe('PostgresAiTraceStore', () => {
     expect(await count('ltw_ai_traces')).toBe(1);
     const trace = await get(app, `/campaigns/ravenford/ai/traces/${traceId}`, TOKENS.dm);
     expect(trace.json<AiTraceView>()).toMatchObject({ traceId, canonicalEvents: [] });
+  });
+
+  it('records NPC replies over HTTP: only the intent’s command reaches the event store', async () => {
+    const engine = createWorldEngine(pool);
+    for (const submission of (await loadRavenfordSeed()).submissions) {
+      const result = await engine.execute(submission);
+      if (result.status === 'rejected') throw new Error(`seed rejected: ${result.code}`);
+    }
+    const ai = { ...testAiGateway(), traces: new PostgresAiTraceStore(pool) };
+    const app = await ravenfordApp(engine, ai);
+    apps.push(app);
+    const say = (intent: Record<string, unknown>) =>
+      app.inject({
+        method: 'POST',
+        url: '/campaigns/ravenford/npcs/mira-vale/dialogue',
+        payload: { characterId: 'elowen-starwhisper', intent, line: 'Hello, Mira.' },
+        headers: { authorization: `Bearer ${TOKENS.player}` },
+      });
+    const commands = await count('ltw_commands');
+    const events = await count('ltw_events');
+
+    const talked = (await say({ kind: 'talk' })).json<NpcDialogueResponse>();
+    expect(talked.reply?.status).toBe('REPLIED');
+    expect(await count('ltw_commands')).toBe(commands);
+    expect(await count('ltw_events')).toBe(events);
+
+    const asked = (
+      await say({ kind: 'ask', topicId: 'old-trade-road' })
+    ).json<NpcDialogueResponse>();
+    const read = (
+      await say({ kind: 'insight', topicId: 'guild-caravan' })
+    ).json<NpcDialogueResponse>();
+    expect(asked.command?.status).toBe('accepted');
+    expect(read.command?.status).toBe('accepted');
+    expect(await count('ltw_commands')).toBe(commands + 2);
+    expect(await count('ltw_events')).toBeGreaterThan(events);
+    expect(await count('ltw_ai_traces')).toBe(3);
+
+    const trace = await get(
+      app,
+      `/campaigns/ravenford/ai/traces/${asked.reply?.traceId ?? ''}`,
+      TOKENS.dm,
+    );
+    expect(trace.json<AiTraceView>()).toMatchObject({
+      purpose: 'npc-dialogue',
+      scope: 'NPC:mira-vale',
+      input: 'Hello, Mira.',
+      commandId: asked.command?.commandId,
+      canonicalEvents: [],
+    });
+    // The new events survive a reload from PostgreSQL.
+    expect((await engine.load('ravenford'))?.state.investigation.attempts.size).toBeGreaterThan(0);
   });
 });

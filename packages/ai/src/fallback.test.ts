@@ -1,8 +1,9 @@
+import type { CommandProposal } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { runWithFallback, type FallbackDeps } from './fallback.ts';
 import { ProviderError, type AiProvider, type RepairNote } from './providers.ts';
-import { scripted, steppingMs } from './testing/providers.ts';
+import { intentTaskOf, scripted, steppingMs } from './testing/providers.ts';
 import { validateProposal } from './validation.ts';
 
 /**
@@ -20,7 +21,7 @@ const UNKNOWN_REF = {
 const CONTEXT = { scope: 'PUBLIC', items: [], entities: [], worldTime: 0 };
 
 /** Requests carry the repair note verbatim so tests can see what each attempt was given. */
-function deps(...providers: AiProvider[]): FallbackDeps {
+function deps(...providers: AiProvider[]): FallbackDeps<CommandProposal> {
   return {
     providers,
     build: (repair: RepairNote | null) => ({
@@ -44,7 +45,7 @@ describe('runWithFallback', () => {
   it('returns a valid first answer with a single attempt', async () => {
     const result = await runWithFallback(deps(scripted('a', VALID), scripted('b', VALID)));
 
-    expect(result.status).toBe('PROPOSED');
+    expect(result.status).toBe('VALID');
     expect(result.attempts.map((a) => [a.provider, a.kind, a.outcome])).toEqual([
       ['a', 'initial', 'valid'],
     ]);
@@ -56,7 +57,7 @@ describe('runWithFallback', () => {
     const b = scripted('b', VALID);
     const result = await runWithFallback(deps(a, b));
 
-    expect(result.status).toBe('PROPOSED');
+    expect(result.status).toBe('VALID');
     expect(result.attempts.map((x) => [x.provider, x.kind, x.outcome])).toEqual([
       ['a', 'initial', 'invalid'],
       ['a', 'repair', 'valid'],
@@ -66,7 +67,7 @@ describe('runWithFallback', () => {
       output: UNKNOWN_REF,
       issues: ['commands.0.entityId: unknown entity "nobody"'],
     });
-    expect(a.requests[1]?.task.context).toBe(a.requests[0]?.task.context);
+    expect(intentTaskOf(a.requests[1]).context).toBe(intentTaskOf(a.requests[0]).context);
     expect(b.requests).toHaveLength(0);
   });
 
@@ -79,7 +80,7 @@ describe('runWithFallback', () => {
       status: 'INVALID_OUTPUT',
       issues: ['commands.0.entityId: unknown entity "nobody"'],
     });
-    expect(result).not.toHaveProperty('proposal');
+    expect(result).not.toHaveProperty('value');
     expect(result.attempts.map((x) => x.kind)).toEqual(['initial', 'repair']);
     expect(a.requests).toHaveLength(2);
     expect(b.requests).toHaveLength(0);
@@ -90,7 +91,7 @@ describe('runWithFallback', () => {
     const b = scripted('b', VALID);
     const result = await runWithFallback(deps(a, b));
 
-    expect(result.status).toBe('PROPOSED');
+    expect(result.status).toBe('VALID');
     expect(result.attempts.map((x) => [x.provider, x.kind, x.outcome, x.error])).toEqual([
       ['a', 'initial', 'error', 'TIMEOUT'],
       ['b', 'fallback', 'valid', null],
@@ -130,7 +131,7 @@ describe('runWithFallback', () => {
     const b = scripted('b', INVALID, VALID);
     const result = await runWithFallback(deps(scripted('a', new Error('down')), b));
 
-    expect(result.status).toBe('PROPOSED');
+    expect(result.status).toBe('VALID');
     expect(result.attempts.map((x) => [x.provider, x.kind])).toEqual([
       ['a', 'initial'],
       ['b', 'fallback'],

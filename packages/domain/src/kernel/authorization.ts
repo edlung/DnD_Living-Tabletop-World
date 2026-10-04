@@ -37,22 +37,33 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
       ? { ok: true, authority: 'dm' }
       : forbidden('Only the DM can confirm authoring');
   }
-  if (actor.kind === 'system') return { ok: true, authority: 'system' };
-  if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
-  const acting =
-    'characterId' in command
+  const acting = !PLAYER_TYPES.has(command.type)
+    ? null
+    : 'characterId' in command
       ? command.characterId
       : 'combatantId' in command
         ? command.combatantId
         : null;
-  if (
-    PLAYER_TYPES.has(command.type) &&
-    acting !== null &&
-    state.roster.get(acting) === actor.actorId
-  ) {
+  const authorization = authorizeActingFor(state, actor, acting);
+  return authorization.ok ? authorization : forbidden(`Not permitted to issue ${command.type}`);
+}
+
+/**
+ * Who may act for a character: the DM, a trusted system process, or the
+ * player who controls it. Shared by player commands and by speech that is
+ * no command (Talk, docs/adr/0020-npc-intelligence.md §3).
+ */
+export function authorizeActingFor(
+  state: WorldState,
+  actor: Actor,
+  characterId: string | null,
+): Authorization {
+  if (actor.kind === 'system') return { ok: true, authority: 'system' };
+  if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
+  if (characterId !== null && state.roster.get(characterId) === actor.actorId) {
     return { ok: true, authority: 'controller' };
   }
-  return forbidden(`Not permitted to issue ${command.type}`);
+  return forbidden('Not permitted to act for this character');
 }
 
 const forbidden = (message: string): Authorization => ({

@@ -1,4 +1,4 @@
-import type { AiTraceView, DmIntentResponse } from '@ltw/contracts';
+import type { AiTraceView, CommandProposal, DmIntentResponse } from '@ltw/contracts';
 import {
   campaignRole,
   holderPerspective,
@@ -44,11 +44,11 @@ export type IntentOutcome =
 
 const CAPABILITY = 'reasoning';
 
-function responseOf(traceId: string, result: FallbackResult): DmIntentResponse {
+function responseOf(traceId: string, result: FallbackResult<CommandProposal>): DmIntentResponse {
   return {
     traceId,
-    status: result.status,
-    proposal: result.status === 'PROPOSED' ? result.proposal : null,
+    status: result.status === 'VALID' ? 'PROPOSED' : result.status,
+    proposal: result.status === 'VALID' ? result.value : null,
     issues: result.status === 'INVALID_OUTPUT' ? result.issues : [],
     committable: false,
   };

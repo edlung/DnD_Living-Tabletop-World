@@ -25,7 +25,9 @@ import {
   applyClueAdded,
   applyDisclosureSet,
   applyEvidenceExamined,
+  applyEvidenceShown,
   applyInformationShared,
+  applyInsightChecked,
   applyInvestigationRestore,
   applyPremisesRecorded,
 } from '../investigation/evolve.ts';
@@ -199,6 +201,10 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyReactionWindowResolved(state, event);
     case 'RelationshipChanged':
       return applyRelationshipChanged(state, event);
+    case 'EvidenceShown':
+      return applyEvidenceShown(state, event);
+    case 'InsightChecked':
+      return applyInsightChecked(state, event);
     case 'AuthoringPremisesRecorded':
       // Reads only (ADR 0019 §2): the entities it names must exist.
       for (const premise of event.payload.premises) requireEntity(state, premise.entityId);
@@ -301,6 +307,7 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'attempt':
     case 'revealed':
     case 'shared':
+    case 'shown':
       return applyInvestigationRestore(state, restore);
     case 'claim':
     case 'contradiction':

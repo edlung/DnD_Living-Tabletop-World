@@ -22,3 +22,5 @@ export {
 export { reactionWindowViolations } from './reactions/invariants.ts';
 export { hitPoints, vitalsOf, type Vitals } from './vitals.ts';
 export { encounterView } from './view.ts';
+export { suggestMonsterTurn } from './suggestion.ts';
+export { movePlan, type MovePlan } from './movement.ts';

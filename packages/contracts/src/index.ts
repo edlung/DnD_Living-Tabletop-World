@@ -186,7 +186,9 @@ export {
 export type {
   EncounterCombatantView,
   EncounterResponse,
+  EncounterSuggestionResponse,
   EncounterView,
+  MonsterTurnSuggestion,
   ReactionWindowView,
 } from './combat/views.ts';
 export {
@@ -202,8 +204,24 @@ export {
   type CommandProposal,
   type DmIntentRequest,
   type DmIntentResponse,
+  type DmIntentTraceView,
   type IntentStatus,
+  type NpcDialogueTraceView,
 } from './ai-gateway/intents.ts';
+export {
+  DIALOGUE_STATUSES,
+  MAX_DIALOGUE_LINE,
+  MAX_NPC_REPLY,
+  dialogueIntentSchema,
+  npcDialogueRequestSchema,
+  npcReplyOutputSchema,
+  type DialogueIntent,
+  type DialogueStatus,
+  type NpcDialogueRequest,
+  type NpcDialogueResponse,
+  type NpcReply,
+  type NpcReplyOutput,
+} from './npc/dialogue.ts';
 export {
   AUTHORING_ISSUE_CODES,
   AUTHORING_NOTE_CODES,

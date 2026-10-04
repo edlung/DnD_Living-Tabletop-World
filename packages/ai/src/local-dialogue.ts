@@ -1,0 +1,49 @@
+import { MAX_NPC_REPLY, type Attitude } from '@ltw/contracts';
+
+import type { DialoguePrompt } from './dialogue-prompt.ts';
+
+/**
+ * Deterministic NPC replies for the local provider (docs/adr/0020-npc-intelligence.md
+ * §3): templates filled only from the prompt, which holds only the NPC's
+ * minimal context. The player's words are never read, so they cannot steer
+ * the reply. The same prompt always gets the same reply.
+ */
+const MANNER: Readonly<Record<Attitude, string>> = {
+  HOSTILE: 'glares',
+  WARY: 'eyes you warily',
+  NEUTRAL: 'looks up',
+  FRIENDLY: 'smiles',
+  TRUSTED: 'greets you warmly',
+};
+
+const GREETING: Readonly<Record<Attitude, string>> = {
+  HOSTILE: 'Say what you want and go.',
+  WARY: 'What do you want?',
+  NEUTRAL: 'Can I help you?',
+  FRIENDLY: 'Good to see you. What can I do for you?',
+  TRUSTED: 'Always glad to see you, friend.',
+};
+
+function said(prompt: DialoguePrompt): string {
+  if (prompt.justTold.length > 0) return prompt.justTold.join(' ');
+  if (prompt.intent === 'ask') {
+    if (prompt.topic === null) return 'I know nothing about that.';
+    return prompt.guarded.includes(prompt.topic)
+      ? `${prompt.topic} is not something I will discuss.`
+      : `I know nothing about ${prompt.topic}.`;
+  }
+  if (prompt.intent === 'show' && prompt.accepted) {
+    return prompt.mayTell.length > 0
+      ? 'I see. Ask what you want to know.'
+      : 'I see. It tells me nothing.';
+  }
+  return GREETING[prompt.attitude];
+}
+
+export function replyLocally(prompt: DialoguePrompt): { reply: string } {
+  const who = prompt.npc ?? 'The stranger';
+  const reply = `${who} ${MANNER[prompt.attitude]}. “${said(prompt)}”`;
+  return {
+    reply: reply.length <= MAX_NPC_REPLY ? reply : `${reply.slice(0, MAX_NPC_REPLY - 2)}…”`,
+  };
+}

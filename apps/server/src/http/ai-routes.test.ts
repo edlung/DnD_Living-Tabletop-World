@@ -108,7 +108,10 @@ describe('POST /campaigns/:campaignId/ai/intents', () => {
       ['remote', 'initial', 'error', 'TIMEOUT'],
       ['local', 'fallback', 'valid', null],
     ]);
-    expect(local.requests[0]?.task.context.scope).toBe('PUBLIC');
+    expect(local.requests[0]?.task).toMatchObject({
+      kind: 'dm-intent',
+      context: { scope: 'PUBLIC' },
+    });
   });
 
   it('reports AI_UNAVAILABLE as a result, not an error', async () => {
