@@ -1,0 +1,127 @@
+{
+  "openWindow": {
+    "windowId": "00000000-0000-4000-8000-000000000078",
+    "suggestion": {
+      "combatantId": "goblin-shaman",
+      "tactic": "move",
+      "command": {
+        "type": "MoveCombatant",
+        "combatantId": "goblin-shaman",
+        "path": [
+          {
+            "x": 11,
+            "y": 6
+          },
+          {
+            "x": 10,
+            "y": 5
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 8,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 6,
+            "y": 2
+          }
+        ]
+      },
+      "explanation": "Goblin Shaman moves toward Elowen Starwhisper, the nearest hostile (50 ft away)."
+    },
+    "result": {
+      "http": 422,
+      "status": "rejected",
+      "commandId": "http:dm-ravenford:g04-suggest-9",
+      "code": "REACTION_PENDING",
+      "message": "A reaction is pending"
+    },
+    "atomic": true,
+    "survivesRestart": true
+  },
+  "closedControl": {
+    "suggestion": {
+      "combatantId": "goblin-shaman",
+      "tactic": "move",
+      "command": {
+        "type": "MoveCombatant",
+        "combatantId": "goblin-shaman",
+        "path": [
+          {
+            "x": 11,
+            "y": 6
+          },
+          {
+            "x": 10,
+            "y": 5
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 8,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 6,
+            "y": 2
+          }
+        ]
+      },
+      "explanation": "Goblin Shaman moves toward Elowen Starwhisper, the nearest hostile (50 ft away)."
+    },
+    "result": {
+      "http": 200,
+      "status": "accepted",
+      "commandId": "http:dm-ravenford:g04-suggest-11",
+      "campaignId": "ravenford",
+      "events": [
+        {
+          "sequence": 119,
+          "eventId": "00000000-0059-4000-8000-000000000010",
+          "type": "PremisesRecorded"
+        },
+        {
+          "sequence": 120,
+          "eventId": "00000000-0059-4000-8000-000000000011",
+          "type": "CombatantUpdated"
+        }
+      ],
+      "outcome": {
+        "kind": "MoveCombatant",
+        "position": {
+          "x": 6,
+          "y": 2
+        }
+      }
+    }
+  },
+  "endTurnControl": {
+    "suggestion": {
+      "combatantId": "goblin-shaman",
+      "tactic": "end-turn",
+      "command": {
+        "type": "EndTurn",
+        "combatantId": "goblin-shaman"
+      },
+      "explanation": "Goblin Shaman ends its turn: nothing it may do reaches a hostile."
+    },
+    "accepted": true
+  },
+  "permissions": {
+    "player": 403,
+    "outsider": 404
+  }
+}

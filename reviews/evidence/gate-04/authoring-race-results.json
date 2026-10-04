@@ -1,0 +1,389 @@
+{
+  "edit-during-commit": {
+    "traceId": "00000000-00a1-4000-8000-000000000001",
+    "proposalId": "00000000-00a2-4000-8000-000000000001",
+    "edit": {
+      "http": 201,
+      "body": {
+        "proposal": {
+          "proposalId": "00000000-00a2-4000-8000-000000000001",
+          "campaignId": "ravenford",
+          "revision": 2,
+          "summary": "Replace the earlier proposal.",
+          "source": {
+            "kind": "ai",
+            "traceId": "00000000-00a1-4000-8000-000000000001"
+          },
+          "commands": [
+            {
+              "type": "CreateEntity",
+              "entityId": "g04-revision-npc",
+              "kind": "npc",
+              "name": "Latest edited name",
+              "existsSince": null,
+              "placement": {
+                "locationId": "north-gate",
+                "since": null
+              }
+            }
+          ],
+          "createdBy": "dm-ravenford",
+          "createdAt": "2026-01-01T00:00:01.000Z",
+          "appliedOption": null,
+          "status": "DRAFT",
+          "commit": null
+        },
+        "preview": {
+          "stateVersion": 100,
+          "warnings": [],
+          "notes": [],
+          "risk": {
+            "level": "L2",
+            "reasons": [
+              {
+                "commandIndex": 0,
+                "level": "L2",
+                "reason": "Adds a new NPC to the world"
+              }
+            ]
+          },
+          "committable": true,
+          "issues": [],
+          "confirmation": {
+            "riskLevel": "L2",
+            "acknowledgedWarnings": []
+          },
+          "changes": [
+            {
+              "type": "EntityCreated",
+              "payload": {
+                "entityId": "g04-revision-npc",
+                "kind": "npc",
+                "name": "Latest edited name",
+                "description": "",
+                "existsSince": null,
+                "location": null
+              }
+            },
+            {
+              "type": "EntityPlaced",
+              "payload": {
+                "entityId": "g04-revision-npc",
+                "locationId": "north-gate",
+                "since": null,
+                "previousLocationId": null
+              }
+            }
+          ]
+        }
+      }
+    },
+    "commit": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "authoring.00000000-00a2-4000-8000-000000000001",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 101,
+            "eventId": "00000000-0000-4000-8000-000000000065",
+            "type": "EntityCreated"
+          },
+          {
+            "sequence": 102,
+            "eventId": "00000000-0000-4000-8000-000000000066",
+            "type": "EntityPlaced"
+          }
+        ]
+      }
+    },
+    "retry": {
+      "http": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "Conflict"
+        },
+        "requestId": "ed84e6d8-bfd2-42af-9401-ce8bdd9df18a"
+      }
+    },
+    "afterRestart": {
+      "latestRevision": 2,
+      "committedRevision": 1,
+      "latestName": "Latest edited name",
+      "canonicalName": "Earlier approved name",
+      "status": "COMMITTED"
+    },
+    "replayEqual": true
+  },
+  "commit-during-edit": {
+    "traceId": "00000000-00a1-4000-8000-000000000001",
+    "proposalId": "00000000-00a2-4000-8000-000000000001",
+    "edit": {
+      "http": 201,
+      "body": {
+        "proposal": {
+          "proposalId": "00000000-00a2-4000-8000-000000000001",
+          "campaignId": "ravenford",
+          "revision": 2,
+          "summary": "Replace the earlier proposal.",
+          "source": {
+            "kind": "ai",
+            "traceId": "00000000-00a1-4000-8000-000000000001"
+          },
+          "commands": [
+            {
+              "type": "CreateEntity",
+              "entityId": "g04-revision-npc",
+              "kind": "npc",
+              "name": "Latest edited name",
+              "existsSince": null,
+              "placement": {
+                "locationId": "north-gate",
+                "since": null
+              }
+            }
+          ],
+          "createdBy": "dm-ravenford",
+          "createdAt": "2026-01-01T00:00:01.000Z",
+          "appliedOption": null,
+          "status": "DRAFT",
+          "commit": null
+        },
+        "preview": {
+          "stateVersion": 100,
+          "warnings": [],
+          "notes": [],
+          "risk": {
+            "level": "L2",
+            "reasons": [
+              {
+                "commandIndex": 0,
+                "level": "L2",
+                "reason": "Adds a new NPC to the world"
+              }
+            ]
+          },
+          "committable": true,
+          "issues": [],
+          "confirmation": {
+            "riskLevel": "L2",
+            "acknowledgedWarnings": []
+          },
+          "changes": [
+            {
+              "type": "EntityCreated",
+              "payload": {
+                "entityId": "g04-revision-npc",
+                "kind": "npc",
+                "name": "Latest edited name",
+                "description": "",
+                "existsSince": null,
+                "location": null
+              }
+            },
+            {
+              "type": "EntityPlaced",
+              "payload": {
+                "entityId": "g04-revision-npc",
+                "locationId": "north-gate",
+                "since": null,
+                "previousLocationId": null
+              }
+            }
+          ]
+        }
+      }
+    },
+    "commit": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "authoring.00000000-00a2-4000-8000-000000000001",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 101,
+            "eventId": "00000000-0000-4000-8000-000000000065",
+            "type": "EntityCreated"
+          },
+          {
+            "sequence": 102,
+            "eventId": "00000000-0000-4000-8000-000000000066",
+            "type": "EntityPlaced"
+          }
+        ]
+      }
+    },
+    "retry": {
+      "http": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "Conflict"
+        },
+        "requestId": "c4b4352f-2360-47a6-9d36-6ed4823e44d7"
+      }
+    },
+    "afterRestart": {
+      "latestRevision": 2,
+      "committedRevision": 1,
+      "latestName": "Latest edited name",
+      "canonicalName": "Earlier approved name",
+      "status": "COMMITTED"
+    },
+    "replayEqual": true
+  },
+  "sequential-edit": {
+    "traceId": "00000000-00a1-4000-8000-000000000001",
+    "proposalId": "00000000-00a2-4000-8000-000000000001",
+    "edit": {
+      "http": 201,
+      "body": {
+        "proposal": {
+          "proposalId": "00000000-00a2-4000-8000-000000000001",
+          "campaignId": "ravenford",
+          "revision": 2,
+          "summary": "Replace the earlier proposal.",
+          "source": {
+            "kind": "ai",
+            "traceId": "00000000-00a1-4000-8000-000000000001"
+          },
+          "commands": [
+            {
+              "type": "CreateEntity",
+              "entityId": "g04-revision-npc",
+              "kind": "npc",
+              "name": "Latest edited name",
+              "existsSince": null,
+              "placement": {
+                "locationId": "north-gate",
+                "since": null
+              }
+            }
+          ],
+          "createdBy": "dm-ravenford",
+          "createdAt": "2026-01-01T00:00:01.000Z",
+          "appliedOption": null,
+          "status": "DRAFT",
+          "commit": null
+        },
+        "preview": {
+          "stateVersion": 100,
+          "warnings": [],
+          "notes": [],
+          "risk": {
+            "level": "L2",
+            "reasons": [
+              {
+                "commandIndex": 0,
+                "level": "L2",
+                "reason": "Adds a new NPC to the world"
+              }
+            ]
+          },
+          "committable": true,
+          "issues": [],
+          "confirmation": {
+            "riskLevel": "L2",
+            "acknowledgedWarnings": []
+          },
+          "changes": [
+            {
+              "type": "EntityCreated",
+              "payload": {
+                "entityId": "g04-revision-npc",
+                "kind": "npc",
+                "name": "Latest edited name",
+                "description": "",
+                "existsSince": null,
+                "location": null
+              }
+            },
+            {
+              "type": "EntityPlaced",
+              "payload": {
+                "entityId": "g04-revision-npc",
+                "locationId": "north-gate",
+                "since": null,
+                "previousLocationId": null
+              }
+            }
+          ]
+        }
+      }
+    },
+    "commit": {
+      "http": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "Conflict"
+        },
+        "requestId": "7f484b7a-8dd7-4bb2-83ba-dd46dc3a8f48"
+      }
+    },
+    "retry": null,
+    "afterRestart": {
+      "latestRevision": 2,
+      "committedRevision": null,
+      "latestName": "Latest edited name",
+      "canonicalName": null,
+      "status": "DRAFT"
+    },
+    "replayEqual": true
+  },
+  "sequential-commit": {
+    "traceId": "00000000-00a1-4000-8000-000000000001",
+    "proposalId": "00000000-00a2-4000-8000-000000000001",
+    "edit": {
+      "http": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "Conflict"
+        },
+        "requestId": "4ce32174-ecb3-4478-95c0-aae08194390a"
+      }
+    },
+    "commit": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "authoring.00000000-00a2-4000-8000-000000000001",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 101,
+            "eventId": "00000000-0000-4000-8000-000000000065",
+            "type": "EntityCreated"
+          },
+          {
+            "sequence": 102,
+            "eventId": "00000000-0000-4000-8000-000000000066",
+            "type": "EntityPlaced"
+          }
+        ]
+      }
+    },
+    "retry": {
+      "http": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "Conflict"
+        },
+        "requestId": "b8495d65-2728-4b5c-8d53-cc04000ee05a"
+      }
+    },
+    "afterRestart": {
+      "latestRevision": 1,
+      "committedRevision": 1,
+      "latestName": "Earlier approved name",
+      "canonicalName": "Earlier approved name",
+      "status": "COMMITTED"
+    },
+    "replayEqual": true
+  }
+}

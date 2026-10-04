@@ -1,0 +1,130 @@
+{
+  "reviewId": "ASTRA-GATE-04-INITIAL",
+  "date": "2026-10-04",
+  "result": "FAIL",
+  "reviewedCodeRevision": "0f2ae9071a8b7ac558f7c0b8bae1302f1f15ef9f",
+  "testedHead": "b3e4bcf77258760f72df63421e9930f2fa1fabae",
+  "headOnlyChanges": ["handoffs/ASTRA_GATE_04_REQUEST.md", "reports/STAGE_130_COMPLETION.md"],
+  "historicalReaderRevision": "b7a1a92fa5886c271d623d3a7a87fdeec9c7f8bf",
+  "validation": {
+    "pnpm test": {
+      "result": "PASS",
+      "files": 116,
+      "tests": 1269
+    },
+    "pnpm test:integration": {
+      "result": "PASS",
+      "files": 14,
+      "tests": 57
+    },
+    "pnpm lint": "PASS",
+    "pnpm typecheck": "PASS",
+    "pnpm build": "PASS",
+    "pnpm context-budget": {
+      "result": "PASS",
+      "activeFiles": 376,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "pnpm format:check": "PASS after formatting review artifacts"
+  },
+  "recipes": [
+    {
+      "recipe": "NPC_PROBES.md",
+      "results": "npc-results.json",
+      "groups": 3,
+      "exchanges": 66,
+      "providerRequests": 72,
+      "throwawayDatabases": 3,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "AUTHORING_PROBES.md",
+      "results": "authoring-results.json",
+      "groups": 18,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "AUTHORING_RACE_PROBES.md",
+      "results": "authoring-race-results.json",
+      "groups": 4,
+      "throwawayDatabases": 4,
+      "outcome": "G04-H01 and G04-M02 reproduced",
+      "interleavings": 2,
+      "sequentialControls": 2,
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "SUGGESTION_PROBES.md",
+      "results": "suggestion-results.json",
+      "groups": 4,
+      "throwawayDatabases": 1,
+      "outcome": "G04-M01 reproduced; controls PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "STATE_PROBES.md",
+      "results": "state-results.json",
+      "groups": 44,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    },
+    {
+      "recipe": "HISTORY_PROBES.md",
+      "results": "history-results.json",
+      "groups": 3,
+      "throwawayDatabases": 1,
+      "oldReaderPrefixComparisons": 103,
+      "undoAttempts": 102,
+      "undoBlocked": 101,
+      "undoAccepted": 1,
+      "scenarioCommandsReversed": 12,
+      "outcome": "PASS",
+      "finalMarkdownExecuted": true
+    }
+  ],
+  "findings": {
+    "G04-H01": {
+      "severity": "High",
+      "invariants": [3, 16],
+      "blocking": true,
+      "summary": "Concurrent edit and commit both succeed; latest revision 2 but canonical commit from superseded revision 1.",
+      "evidence": [
+        "authoring-race-results.json#edit-during-commit",
+        "authoring-race-results.json#commit-during-edit"
+      ]
+    },
+    "G04-M01": {
+      "severity": "Medium",
+      "summary": "Monster suggestion during open reaction window is rejected unchanged by the World Engine as REACTION_PENDING.",
+      "canonicalMutationPrevented": true,
+      "evidence": ["suggestion-results.json#openWindow"]
+    },
+    "G04-M02": {
+      "severity": "Medium",
+      "summary": "Identical successful commit retry returns 409 CONFLICT rather than duplicate.",
+      "duplicateCanonicalMutation": false,
+      "evidence": ["authoring-race-results.json#sequential-commit.retry"]
+    }
+  },
+  "findingCounts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 0
+  },
+  "limits": [
+    "Exact provider requests were captured at the provider interface. Local/scripted providers and injected-fetch adapter tests were used; no live external model was called.",
+    "Fastify inject exercises actual authenticated handlers. No separately listening deployment was tested.",
+    "Concurrency reproduction pauses the public ProposalStore after an actual SELECT; all writes occur through authenticated application routes and real PostgreSQL stores.",
+    "Old prefix comparison omits only the new empty investigation.shown collection; stored historical events are never rewritten.",
+    "Each complete recipe run owns and removes nine throwaway databases and one old-reader Git archive; no development data is reset.",
+    "Old-reader dependencies use the frozen offline cache. Root reinstall, full CI wrapper and deployment were not run.",
+    "Only this review and its evidence were added; no source, existing tests, historical fixtures, handoff or prior reports were modified.",
+    "Vulnerability recipes intentionally assert the failing behavior, so their successful execution supports FAIL.",
+    "Astra/MAX was requested; the exact runtime variant and effort were not exposed for independent verification.",
+    "Stage 140 remains blocked; future surface obligations and residual risks are recorded in the report."
+  ]
+}
