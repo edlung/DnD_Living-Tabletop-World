@@ -562,3 +562,116 @@ try {
   await database.drop();
 }
 ```
+
+## `e9c05ad-chronicle-names.json`
+
+Written on 2026-10-04 by revision `e9c05ad46c15863b124b20fc4dd217f654f29777` (Stages 170–180) through its own HTTP app and `PostgresEventStore`, into a throwaway database it migrated, seeded, and dropped. Dice roll the middle face; chapter prose came from the local narrative provider. Recorded before the Gate 05 remediation gave `ChronicleGenerated` version 3 (G05-H01; `packages/domain/src/kernel/event-versions.ts`).
+
+Steps:
+
+1. Check out the revision on its own (`git worktree add --detach <dir> e9c05ad`) and run `pnpm install --frozen-lockfile --offline` there.
+2. Save the script below in that checkout's root as `history-writer.mts`, with PostgreSQL running.
+3. Run `LTW_HISTORY_OUT=<output.json> NODE_ENV=test node --conditions=@ltw/source history-writer.mts` from that root. It prints `{"version":105,"events":105,"commands":96}`.
+4. The JSON it writes was laid out one row per line, with a `$comment` and the revision added to `writer`; the rows themselves are unchanged.
+
+```ts
+// Runs inside a checkout of revision e9c05ad (the Stage 170–180 Chronicle writer):
+// drives that revision's own HTTP app and PostgreSQL store through renames and two
+// chapters whose entries and prose use those names, then dumps the stored rows.
+// LTW_HISTORY_OUT: output path.
+import { writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+
+import { post as command } from './apps/server/src/testing/gate02-scenarios.ts';
+import {
+  TOKENS,
+  post,
+  ravenfordApp,
+  seededEngine,
+} from './apps/server/src/testing/ravenford-app.ts';
+import { createThrowawayDatabase } from './apps/server/src/testing/throwaway-database.ts';
+import { PostgresEventStore } from './apps/server/src/world-engine/postgres-event-store.ts';
+
+const require = createRequire(new URL('./apps/server/package.json', `file://${process.cwd()}/`));
+const { Pool } = require('pg');
+const OUT = process.env.LTW_HISTORY_OUT;
+if (!OUT) throw new Error('LTW_HISTORY_OUT is required');
+
+const database = await createThrowawayDatabase({ migrate: true });
+const pool = new Pool({ connectionString: database.url });
+let app: Awaited<ReturnType<typeof ravenfordApp>> | undefined;
+const labels: Record<string, string> = {};
+try {
+  app = await ravenfordApp(await seededEngine(new PostgresEventStore(pool)));
+  const live = app;
+  const dm = async (label: string, body: Record<string, unknown>) => {
+    const { status, body: result } = await command(live, TOKENS.dm, `legacy-${label}`, body);
+    if (status !== 200 || result.status !== 'accepted') {
+      throw new Error(`${label}: ${String(status)} ${JSON.stringify(result)}`);
+    }
+    labels[label] = result.commandId;
+  };
+  const chapter = async (label: string, perspective: string) => {
+    const response = await post(
+      live,
+      '/campaigns/ravenford/chronicle',
+      { title: `Legacy chapter (${perspective})`, perspective, from: 0 },
+      TOKENS.dm,
+    );
+    const body = response.json<{ chronicleId: string | null; result: { status: string } }>();
+    if (response.statusCode !== 200 || body.chronicleId === null) {
+      throw new Error(`${label}: ${String(response.statusCode)} ${response.body}`);
+    }
+    labels[label] = body.chronicleId;
+  };
+
+  // Names the chapters will use: the DM chapter tells Elowen going to the square;
+  // the party chapter's prose is rendered from Mira, Elowen, and the square.
+  await dm('rename-elowen', {
+    type: 'UpdateEntityProfile',
+    entityId: 'elowen-starwhisper',
+    name: 'Elowen of the Trade Road',
+  });
+  await dm('rename-square', {
+    type: 'UpdateEntityProfile',
+    entityId: 'market-square',
+    name: 'The Old Market',
+  });
+  await dm('rename-mira', {
+    type: 'UpdateEntityProfile',
+    entityId: 'mira-vale',
+    name: 'Mira of the Stalls',
+  });
+  await chapter('dm-chapter', 'DM');
+  await chapter('party-chapter', 'PARTY');
+
+  const rows = async (sql: string) =>
+    (await pool.query(sql, ['ravenford'])).rows.map((row: { row: unknown }) => row.row);
+  const dump = {
+    campaignId: 'ravenford',
+    scenario: 'chronicle-names',
+    labels,
+    stream: (
+      await rows('SELECT row_to_json(s) AS row FROM ltw_event_streams s WHERE stream_id = $1')
+    )[0],
+    commands: await rows(
+      'SELECT row_to_json(c) AS row FROM ltw_commands c WHERE stream_id = $1 ORDER BY first_sequence',
+    ),
+    events: await rows(
+      'SELECT row_to_json(e) AS row FROM ltw_events e WHERE stream_id = $1 ORDER BY sequence',
+    ),
+  };
+  await writeFile(OUT, `${JSON.stringify(dump)}\n`);
+  console.log(
+    JSON.stringify({
+      version: (dump.stream as { version: number }).version,
+      events: dump.events.length,
+      commands: dump.commands.length,
+    }),
+  );
+} finally {
+  if (app) await app.close();
+  await pool.end();
+  await database.drop();
+}
+```
