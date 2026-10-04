@@ -1,0 +1,199 @@
+{
+  "H05-upgrade-from-retest-1": {
+    "writerRevision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+    "castCommand": "http:player-elowen:legacy-3",
+    "event": {
+      "campaignId": "ravenford",
+      "sequence": 104,
+      "eventId": "00000000-0000-4000-8000-000000000072",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:33.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:legacy-3",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "elowen-starwhisper"
+          },
+          {
+            "kind": "party"
+          },
+          {
+            "kind": "placement",
+            "entityId": "legacy-far-charm"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "version": 106,
+    "reloaded": true,
+    "httpStatus": 200,
+    "parseError": {
+      "name": "ZodError",
+      "issues": [
+        {
+          "code": "invalid_union",
+          "errors": [],
+          "note": "No matching discriminator",
+          "discriminator": "kind",
+          "options": [
+            "perceived",
+            "self",
+            "party-member",
+            "knowledge",
+            "memory",
+            "sheet",
+            "party",
+            "controller",
+            "vitals",
+            "revealed",
+            "unreached"
+          ],
+          "path": ["payload", "premises", 3, "kind"],
+          "message": "Invalid discriminator value. Expected 'perceived' | 'self' | 'party-member' | 'knowledge' | 'memory' | 'sheet' | 'party' | 'controller' | 'vitals' | 'revealed' | 'unreached'"
+        }
+      ]
+    },
+    "loadError": {
+      "name": "ZodError",
+      "issues": [
+        {
+          "code": "invalid_union",
+          "errors": [],
+          "note": "No matching discriminator",
+          "discriminator": "kind",
+          "options": [
+            "perceived",
+            "self",
+            "party-member",
+            "knowledge",
+            "memory",
+            "sheet",
+            "party",
+            "controller",
+            "vitals",
+            "revealed",
+            "unreached"
+          ],
+          "path": ["payload", "premises", 3, "kind"],
+          "message": "Invalid discriminator value. Expected 'perceived' | 'self' | 'party-member' | 'knowledge' | 'memory' | 'sheet' | 'party' | 'controller' | 'vitals' | 'revealed' | 'unreached'"
+        }
+      ]
+    },
+    "currentGet": {
+      "http": 500,
+      "body": {
+        "error": {
+          "code": "INTERNAL",
+          "message": "Internal error"
+        }
+      }
+    },
+    "currentCommand": {
+      "http": 500,
+      "body": {
+        "error": {
+          "code": "INTERNAL",
+          "message": "Internal error"
+        }
+      }
+    },
+    "after": {
+      "version": 106,
+      "events": 106
+    }
+  },
+  "H05-fresh-current-control": {
+    "writerRevision": "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+    "castCommand": "http:player-elowen:legacy-3",
+    "event": {
+      "campaignId": "ravenford",
+      "sequence": 104,
+      "eventId": "00000000-0000-4000-8000-000000000072",
+      "schemaVersion": 1,
+      "worldTime": 36000,
+      "recordedAt": "2026-01-01T00:01:33.000Z",
+      "causation": {
+        "commandId": "http:player-elowen:legacy-3",
+        "commandType": "CastSpell",
+        "actor": {
+          "actorId": "player-elowen",
+          "kind": "user"
+        }
+      },
+      "type": "PremisesRecorded",
+      "payload": {
+        "characterId": "elowen-starwhisper",
+        "premises": [
+          {
+            "kind": "sheet"
+          },
+          {
+            "kind": "perceived",
+            "entityId": "elowen-starwhisper"
+          },
+          {
+            "kind": "party"
+          },
+          {
+            "kind": "unreached",
+            "clueId": "legacy-far-magic",
+            "entityId": "legacy-far-charm"
+          },
+          {
+            "kind": "controller",
+            "playerActorId": "player-elowen"
+          }
+        ]
+      }
+    },
+    "version": 106,
+    "reloaded": true,
+    "httpStatus": 200,
+    "parseError": null,
+    "loadError": null,
+    "currentGet": {
+      "http": 200,
+      "body": {
+        "perspective": "CHARACTER:elowen-starwhisper",
+        "encounter": null
+      }
+    },
+    "currentCommand": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:after-upgrade",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 107,
+            "eventId": "00000000-0061-4000-8000-000000000002",
+            "type": "KnowledgeAssigned"
+          }
+        ]
+      }
+    },
+    "after": {
+      "version": 107,
+      "events": 107
+    }
+  }
+}

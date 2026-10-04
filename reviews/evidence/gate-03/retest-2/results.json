@@ -1,0 +1,87 @@
+{
+  "reviewId": "ASTRA-GATE-03-RETEST-2",
+  "date": "2026-10-04",
+  "result": "FAIL",
+  "reviewedCodeRevision": "b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750",
+  "testedHead": "37523d19d24a9ca829cb8c20efeab5a860ea38d9",
+  "legacyWriterRevision": "88d8137401451dd6a6d6703217bf53e273a2ede4",
+  "headOnlyChanges": [
+    "README.md",
+    "handoffs/ASTRA_GATE_03_REQUEST.md",
+    "remediation/OPUS_GATE_03_REMEDIATION.md"
+  ],
+  "validation": {
+    "pnpm test": {
+      "result": "PASS",
+      "files": 77,
+      "tests": 915
+    },
+    "pnpm test:integration": {
+      "result": "PASS",
+      "files": 9,
+      "tests": 42
+    },
+    "pnpm lint": "PASS",
+    "pnpm typecheck": "PASS",
+    "pnpm build": "PASS",
+    "pnpm context-budget": {
+      "result": "PASS",
+      "activeFiles": 264,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "pnpm format:check": "PASS after formatting review artifacts"
+  },
+  "recipes": [
+    {
+      "recipe": "STATE_PROBES.md",
+      "results": "state-results.json",
+      "cases": 54,
+      "finalMarkdownExecuted": true,
+      "description": "Original fixes, H04 undo matrix and recovery, real healing, spell isolation without open windows, and adjacent negative premises."
+    },
+    {
+      "recipe": "HTTP_POSTGRES_PROBES.md",
+      "results": "http-postgres-results.json",
+      "cases": 31,
+      "finalMarkdownExecuted": true,
+      "throwawayDatabases": 31,
+      "description": "Authenticated handlers, atomic refusals, PostgreSQL reload and reverse recovery; deliberate H06 reproduction with controls."
+    },
+    {
+      "recipe": "COMPATIBILITY_PROBES.md",
+      "results": "compatibility-results.json",
+      "cases": 2,
+      "finalMarkdownExecuted": true,
+      "throwawayDatabases": 2,
+      "description": "Genuine old-writer stream/current-reader failure and fresh-current success; old source isolated by git archive and offline locked install."
+    }
+  ],
+  "dispositions": {
+    "G03-H01": "Original reproduction remains closed in independent checks.",
+    "G03-H02": "Original reproduction remains closed in independent checks.",
+    "G03-H03": "Original reproduction remains closed in independent checks.",
+    "G03-H04": "Original unsafe-undo finding closed. Open-window isolation fails separately as H06.",
+    "G03-H05": {
+      "severity": "High",
+      "status": "BLOCKING",
+      "invariants": [12],
+      "evidence": "compatibility-results.json#H05-upgrade-from-retest-1"
+    },
+    "G03-H06": {
+      "severity": "High",
+      "status": "BLOCKING",
+      "invariants": [5],
+      "evidence": "http-postgres-results.json#H06-fight-open-window-healing-word"
+    }
+  },
+  "limits": [
+    "HTTP checks use Fastify inject with actual authentication/routes and PostgreSQL, not an independently listening deployment.",
+    "Successful vulnerability assertions demonstrate FAIL; they are not a passing gate.",
+    "All probe databases were owned throwaway databases and dropped afterward. Existing development data was not reset.",
+    "No production source, existing tests, handoff, remediation or historical review artifacts were changed.",
+    "Full CI wrapper, deployment and root dependency reinstall were not run; dependencies were installed only in the historical snapshot.",
+    "Exact runtime Astra variant and MAX effort were requested but not exposed for independent verification.",
+    "Future obligations and residual risks are recorded in the report. Stage 100 remains blocked."
+  ]
+}
