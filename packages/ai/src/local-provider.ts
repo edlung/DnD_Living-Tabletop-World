@@ -1,7 +1,7 @@
 import type { EntityRef, ProposableCommand } from '@ltw/contracts';
 
 import { replyLocally } from './local-dialogue.ts';
-import type { AiProvider, ProviderRequest } from './providers.ts';
+import { ProviderError, type AiProvider, type ProviderRequest } from './providers.ts';
 
 /**
  * The deterministic local provider (docs/adr/0017-ai-gateway.md §2): an
@@ -170,6 +170,10 @@ export function createLocalProvider(): AiProvider {
     id: 'local',
     generate: (request: ProviderRequest) => {
       const { task } = request;
+      // Relevance has no local ranker: its deterministic fallback is the Context Engine (ADR 0021).
+      if (task.kind === 'relevance') {
+        return Promise.reject(new ProviderError('UNAVAILABLE', 'no local relevance ranker'));
+      }
       return Promise.resolve({
         output:
           task.kind === 'npc-dialogue'

@@ -100,6 +100,7 @@ export {
   getMemory,
   listSessions,
   recallMemories,
+  visibleMemories,
   type RecallQuery,
   type RecallResult,
 } from './memory/retrieval.ts';

@@ -21,7 +21,7 @@ describe('loadConfig', () => {
       http: { host: '127.0.0.1', port: 3000 },
       databaseUrl: DEV_DATABASE_URL,
       auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
-      ai: { anthropic: null },
+      ai: { anthropic: null, relevanceBudgetMs: 2_000 },
     });
     expect(DEFAULT_PERSONAS_FILE).toMatch(/fixtures\/ravenford\/personas\.json$/);
     expect(Object.isFrozen(config)).toBe(true);
@@ -127,6 +127,11 @@ describe('describeDatabaseUrl', () => {
       expect(anthropic).toMatchObject({ model: 'claude-sonnet-5-5', timeoutMs: 5_000 });
     });
 
+    it('reads the relevance budget, with or without a key (ADR 0021)', () => {
+      expect(loadConfig({ LTW_AI_RELEVANCE_BUDGET_MS: '750' }).ai.relevanceBudgetMs).toBe(750);
+      expect(() => loadConfig({ LTW_AI_RELEVANCE_BUDGET_MS: '50' })).toThrow(ConfigError);
+    });
+
     it('never renders the key in JSON, strings, or inspection', () => {
       const config = loadConfig({ ANTHROPIC_API_KEY: KEY });
 
@@ -138,6 +143,7 @@ describe('describeDatabaseUrl', () => {
     it.each([
       ['LTW_AI_TIMEOUT_MS', '7'],
       ['LTW_AI_MODEL', 'Bad Model!'],
+      ['LTW_AI_RELEVANCE_BUDGET_MS', '99999'],
     ])('rejects an invalid %s without echoing it', (name, value) => {
       const error = (() => {
         try {

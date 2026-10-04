@@ -3,7 +3,7 @@ import {
   InMemoryAiTraceStore,
   createLocalProvider,
   type AiProvider,
-  type IntentDeps,
+  type RelevanceDeps,
 } from '@ltw/ai';
 import { createCombatEngine } from '@ltw/combat';
 import {
@@ -83,10 +83,11 @@ export async function plantNpcBoundary(engine: WorldEngine): Promise<void> {
 }
 
 /**
- * A deterministic AI gateway for DM intents and NPC replies: the given
- * providers (default: local only) and in-memory traces.
+ * A deterministic AI gateway for DM intents, NPC replies, and relevance: the
+ * given providers (default: local only; relevance then has none, as without
+ * a key) and in-memory traces. Relevance waits at most 2 s by default.
  */
-export function testAiGateway(...providers: AiProvider[]): IntentDeps & {
+export function testAiGateway(...providers: AiProvider[]): RelevanceDeps & {
   readonly traces: InMemoryAiTraceStore;
 } {
   const ids = new SequentialIds(0xa1);
@@ -94,7 +95,12 @@ export function testAiGateway(...providers: AiProvider[]): IntentDeps & {
   let ms = 0;
   const routed = providers.length > 0 ? providers : [createLocalProvider()];
   return {
-    router: new CapabilityRouter({ reasoning: routed, 'npc-dialogue': routed }),
+    router: new CapabilityRouter({
+      reasoning: routed,
+      'npc-dialogue': routed,
+      'fast-context': providers,
+    }),
+    relevanceBudgetMs: 2_000,
     traces: new InMemoryAiTraceStore(),
     ids,
     clock: { now: () => clock.now(), nowMs: () => (ms += 5) },
@@ -115,7 +121,7 @@ export function testAuthoring(): AuthoringDependencies & {
 
 export async function ravenfordApp(
   engine?: WorldEngine,
-  ai: IntentDeps = testAiGateway(),
+  ai: RelevanceDeps = testAiGateway(),
   authoring: AuthoringDependencies = testAuthoring(),
 ): Promise<FastifyInstance> {
   const app = buildApp({

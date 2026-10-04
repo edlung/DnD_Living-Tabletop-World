@@ -2,6 +2,7 @@ import type { AiCapability } from '@ltw/contracts';
 
 import type { BuiltContext } from './context-builder.ts';
 import type { DialoguePrompt } from './dialogue-prompt.ts';
+import type { RelevancePrompt } from './relevance-prompt.ts';
 
 /**
  * The provider port (docs/adr/0017-ai-gateway.md §2). Providers are
@@ -37,12 +38,21 @@ export interface DialogueTask {
   readonly repair: RepairNote | null;
 }
 
+/** A relevance ranking (ADR 0021): the legal actions under opaque keys, with no IDs. */
+export interface RelevanceTask {
+  readonly kind: 'relevance';
+  readonly prompt: RelevancePrompt;
+  readonly repair: RepairNote | null;
+}
+
 export interface ProviderRequest {
   readonly capability: AiCapability;
   readonly system: string;
   readonly prompt: string;
   readonly output: StructuredOutputSpec;
-  readonly task: IntentTask | DialogueTask;
+  readonly task: IntentTask | DialogueTask | RelevanceTask;
+  /** Aborted when the caller stops waiting (a time budget, ADR 0021); adapters stop then. */
+  readonly signal?: AbortSignal;
 }
 
 export interface ProviderResponse {

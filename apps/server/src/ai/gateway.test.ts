@@ -28,10 +28,18 @@ describe('createAiGateway', () => {
     ]);
   });
 
+  it('routes relevance to Anthropic alone, and nowhere without a key (ADR 0021)', () => {
+    expect(routeOf({ ANTHROPIC_API_KEY: 'sk-ant-test' }, 'fast-context')).toEqual(['anthropic']);
+    expect(routeOf({}, 'fast-context')).toEqual([]);
+    expect(createAiGateway(loadConfig({}).ai, new InMemoryAiTraceStore()).relevanceBudgetMs).toBe(
+      2_000,
+    );
+  });
+
   it('routes no other capability', () => {
     const gateway = createAiGateway(loadConfig({}).ai, new InMemoryAiTraceStore());
 
-    for (const capability of ['fast-context', 'continuity', 'narrative', 'vision'] as const) {
+    for (const capability of ['continuity', 'narrative', 'vision'] as const) {
       expect(gateway.router.providersFor(capability)).toEqual([]);
     }
   });

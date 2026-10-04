@@ -117,10 +117,34 @@ export interface EntityContextView {
   readonly actions: readonly ContextAction[];
 }
 
+/**
+ * How the actions were ranked (docs/adr/0021-ai-relevance.md). `ai`: the
+ * relevance ranker re-rated the legal actions; anything else leaves the
+ * Context Engine's deterministic ranking as it was.
+ */
+export const RANKING_STATUSES = [
+  'NOT_REQUESTED',
+  /** Fewer than two legal actions: there is nothing to rank, and no provider is asked. */
+  'NOTHING_TO_RANK',
+  'RANKED',
+  'AI_UNAVAILABLE',
+  'INVALID_OUTPUT',
+  'TIMEOUT',
+] as const;
+export type RankingStatus = (typeof RANKING_STATUSES)[number];
+
+export interface ContextRanking {
+  readonly source: 'ai' | 'deterministic';
+  readonly status: RankingStatus;
+  /** The AI request's trace (DM only); null when the ranker was not asked. */
+  readonly traceId: string | null;
+}
+
 /** HTTP body of `GET /campaigns/:campaignId/entities/:entityId/context`. */
 export interface EntityContextResponse {
   readonly perspective: string;
   readonly actingCharacterId: string;
   readonly worldTime: number;
   readonly context: EntityContextView;
+  readonly ranking: ContextRanking;
 }

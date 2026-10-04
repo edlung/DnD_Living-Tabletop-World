@@ -165,4 +165,30 @@ describe('createAnthropicProvider', () => {
     expect(error.code).toBe('TIMEOUT');
     expect(calls[0]?.init.signal?.aborted).toBe(true);
   });
+
+  it('stops when the caller stops waiting, long before its own timeout (ADR 0021)', async () => {
+    const { calls, provider: anthropic } = provider(
+      ({ init }) =>
+        new Promise<Response>((_resolve, reject) => {
+          init.signal?.addEventListener('abort', () => {
+            reject(new DOMException('aborted', 'AbortError'));
+          });
+        }),
+      60_000,
+    );
+    const budget = new AbortController();
+    setTimeout(() => {
+      budget.abort();
+    }, 20);
+    const started = performance.now();
+    const error = await failure(anthropic.generate({ ...REQUEST, signal: budget.signal }));
+
+    expect(error.code).toBe('TIMEOUT');
+    expect(performance.now() - started).toBeLessThan(5_000);
+    expect(calls[0]?.init.signal?.aborted).toBe(true);
+    // The caller's signal is never sent anywhere: the body is the request's text alone.
+    const body = calls[0]?.init.body;
+    expect(typeof body).toBe('string');
+    expect(typeof body === 'string' ? body : '').not.toContain('signal');
+  });
 });

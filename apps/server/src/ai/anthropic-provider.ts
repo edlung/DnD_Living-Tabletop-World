@@ -5,6 +5,8 @@ import { z } from 'zod';
  * The Anthropic Messages API adapter (docs/adr/0017-ai-gateway.md §2):
  * structured output as a forced tool call, over `fetch`. Errors carry a code
  * and a fixed message only: never the key, the request, or the response body.
+ * A call stops at its own timeout, or when the request's `signal` aborts
+ * (a caller's time budget, ADR 0021); either is `TIMEOUT`.
  */
 export const ANTHROPIC_MESSAGES_URL = 'https://api.anthropic.com/v1/messages';
 export const ANTHROPIC_VERSION = '2023-06-01';
@@ -54,6 +56,10 @@ export function createAnthropicProvider(options: AnthropicOptions): AiProvider {
       const timer = setTimeout(() => {
         controller.abort();
       }, options.timeoutMs);
+      // The caller's own budget (ADR 0021) stops the call too.
+      const signal = request.signal
+        ? AbortSignal.any([controller.signal, request.signal])
+        : controller.signal;
       let response: Response;
       let body: unknown;
       try {
@@ -65,7 +71,7 @@ export function createAnthropicProvider(options: AnthropicOptions): AiProvider {
             'anthropic-version': ANTHROPIC_VERSION,
           },
           body: bodyOf(options.model, request),
-          signal: controller.signal,
+          signal,
         });
         if (!response.ok) {
           const retryable = response.status === 429 || response.status >= 500;
@@ -75,12 +81,12 @@ export function createAnthropicProvider(options: AnthropicOptions): AiProvider {
           );
         }
         body = await response.json().catch((error: unknown) => {
-          if (controller.signal.aborted) throw error;
+          if (signal.aborted) throw error;
           throw new ProviderError('BAD_RESPONSE', 'provider output unreadable', { cause: error });
         });
       } catch (error) {
         if (error instanceof ProviderError) throw error;
-        if (controller.signal.aborted) {
+        if (signal.aborted) {
           throw new ProviderError('TIMEOUT', 'provider timed out', { cause: error });
         }
         throw new ProviderError('UNAVAILABLE', 'provider unreachable', { cause: error });

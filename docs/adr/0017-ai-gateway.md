@@ -77,6 +77,8 @@ Option 2.
 
 - 2026-10-04 (Stage 130, ADR 0020 §3): the `npc-dialogue` capability routes like `reasoning` (`[anthropic, local]` with a key, `[local]` without). Its context is the NPC's minimal context, rendered without IDs; the local provider replies from templates. The fallback policy is shared by both use cases (`runWithFallback` over any validated output). Traces are a union by purpose (`dm-intent`, `npc-dialogue`); only a DM intent's trace can seed an authoring proposal.
 
+- 2026-10-04 (Stage 140, ADR 0021): the `fast-context` capability ranks context actions. It routes to `[anthropic]` with a key and to no provider without one: its deterministic fallback is the Context Engine, and the local provider refuses the task. A provider request may carry an abort `signal` for a caller's time budget; the Anthropic adapter stops then, reporting `TIMEOUT`. Traces gain the purpose `relevance`.
+
 ## Invariants affected
 
 Implements 2, 18, 21, and 22 for this stage; preserves 1, 5, 11, and 17. No invariant is weakened.

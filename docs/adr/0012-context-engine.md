@@ -109,6 +109,7 @@ A later AI ranker (Stage 140) may refine relevance using the same scoped inputs 
 
 ## Amendments
 
+- 2026-10-04 (Stage 140, ADR 0021, owner decisions): on request (`ranking=ai`), an AI ranker in `@ltw/ai` re-rates and reorders the **legal** actions only, from the same scoped inputs: the actions, the target as the character sees it, and the perspective's own visible records and memories. Legality, reasons, the set of actions, and illegal actions' relevance never change. Any failure, invalid output, or exceeded budget returns this engine's deterministic context unchanged. The response gains `ranking { source, status, traceId }`. This package stays deterministic and imports no AI.
 - 2026-10-04 (Stage 130, ADR 0020 §1): NPC interactions are carried out.
   - `talk` and `insight_check` are offered for NPC targets only, since only NPCs answer them; `talk` matches the dialogue's own check, `insight_check` needs a sheet and reports `ALREADY_ATTEMPTED` after the character's one attempt on that NPC.
   - `trade` is illegal with the new reason `NOT_AVAILABLE` (no economy in the slice), after the actor's own state.

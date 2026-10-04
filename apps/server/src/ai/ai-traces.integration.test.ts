@@ -1,4 +1,10 @@
-import type { AiTraceView, DmIntentResponse, NpcDialogueResponse } from '@ltw/contracts';
+import type { ProviderRequest } from '@ltw/ai';
+import type {
+  AiTraceView,
+  DmIntentResponse,
+  EntityContextResponse,
+  NpcDialogueResponse,
+} from '@ltw/contracts';
 import type { FastifyInstance } from 'fastify';
 import pg from 'pg';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -163,5 +169,47 @@ describe('PostgresAiTraceStore', () => {
     });
     // The new events survive a reload from PostgreSQL.
     expect((await engine.load('ravenford'))?.state.investigation.attempts.size).toBeGreaterThan(0);
+  });
+
+  it('records a relevance ranking over HTTP: traced, nothing canonical (ADR 0021)', async () => {
+    const engine = createWorldEngine(pool);
+    for (const submission of (await loadRavenfordSeed()).submissions) {
+      const result = await engine.execute(submission);
+      if (result.status === 'rejected') throw new Error(`seed rejected: ${result.code}`);
+    }
+    const ranker = {
+      id: 'reverser',
+      generate: (request: ProviderRequest) => {
+        if (request.task.kind !== 'relevance') return Promise.reject(new Error('not ranking'));
+        const ranking = [...request.task.prompt.actions]
+          .reverse()
+          .map(({ key }) => ({ key, relevance: 'high' }));
+        return Promise.resolve({ output: { ranking }, model: 'reverser', usage: null });
+      },
+    };
+    const ai = { ...testAiGateway(ranker), traces: new PostgresAiTraceStore(pool) };
+    const app = await ravenfordApp(engine, ai);
+    apps.push(app);
+    const events = await count('ltw_events');
+
+    const response = await app.inject({
+      method: 'GET',
+      url: '/campaigns/ravenford/entities/mira-vale/context?perspective=PLAYER&ranking=ai',
+      headers: { authorization: `Bearer ${TOKENS.player}` },
+    });
+    const { ranking } = response.json<EntityContextResponse>();
+
+    expect(ranking).toMatchObject({ source: 'ai', status: 'RANKED' });
+    expect(await count('ltw_events')).toBe(events);
+    const trace = await get(
+      app,
+      `/campaigns/ravenford/ai/traces/${ranking.traceId ?? ''}`,
+      TOKENS.dm,
+    );
+    expect(trace.json<AiTraceView>()).toMatchObject({
+      purpose: 'relevance',
+      entityId: 'mira-vale',
+      canonicalEvents: [],
+    });
   });
 });

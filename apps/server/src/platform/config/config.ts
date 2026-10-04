@@ -36,6 +36,8 @@ export interface AppConfig {
       readonly model: string;
       readonly timeoutMs: number;
     } | null;
+    /** How long a context request waits for the relevance ranker (docs/adr/0021-ai-relevance.md). */
+    readonly relevanceBudgetMs: number;
   };
 }
 
@@ -66,6 +68,7 @@ export class Secret {
 
 export const DEFAULT_AI_MODEL = 'claude-opus-5-5';
 export const DEFAULT_AI_TIMEOUT_MS = 30_000;
+export const DEFAULT_RELEVANCE_BUDGET_MS = 2_000;
 
 export type Env = Readonly<Record<string, string | undefined>>;
 
@@ -112,6 +115,10 @@ const envSchema = z.object({
   LTW_AI_TIMEOUT_MS: z.preprocess(
     emptyAsUndefined,
     z.coerce.number().int().min(1_000).max(300_000).default(DEFAULT_AI_TIMEOUT_MS),
+  ),
+  LTW_AI_RELEVANCE_BUDGET_MS: z.preprocess(
+    emptyAsUndefined,
+    z.coerce.number().int().min(100).max(30_000).default(DEFAULT_RELEVANCE_BUDGET_MS),
   ),
 });
 
@@ -181,6 +188,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
               model: values.LTW_AI_MODEL,
               timeoutMs: values.LTW_AI_TIMEOUT_MS,
             }),
+      relevanceBudgetMs: values.LTW_AI_RELEVANCE_BUDGET_MS,
     }),
   });
 }

@@ -18,6 +18,22 @@ export {
   type Exchange,
 } from './dialogue-prompt.ts';
 export {
+  applyRanking,
+  rankContextActions,
+  validateRanking,
+  type RankedContext,
+  type RelevanceDeps,
+  type RelevanceInput,
+} from './relevance.ts';
+export {
+  RANKER_LIMITS,
+  RANKING_OUTPUT,
+  rankerContext,
+  relevanceRequest,
+  type RankerContext,
+  type RelevancePrompt,
+} from './relevance-prompt.ts';
+export {
   runWithFallback,
   type FallbackDeps,
   type FallbackResult,
@@ -39,6 +55,7 @@ export {
   type AiProvider,
   type DialogueTask,
   type IntentTask,
+  type RelevanceTask,
   type ProviderErrorCode,
   type ProviderRequest,
   type ProviderResponse,

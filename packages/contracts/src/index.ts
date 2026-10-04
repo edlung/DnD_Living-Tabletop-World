@@ -111,6 +111,7 @@ export {
   CONTEXT_ACTION_IDS,
   CONTEXT_HINTS,
   CONTEXT_ILLEGAL_REASONS,
+  RANKING_STATUSES,
   RELEVANCE_LEVELS,
   type ContextAction,
   type ContextActionCost,
@@ -118,11 +119,18 @@ export {
   type ContextEntityRef,
   type ContextHint,
   type ContextIllegalReason,
+  type ContextRanking,
   type ContextVisibleState,
   type EntityContextResponse,
   type EntityContextView,
+  type RankingStatus,
   type Relevance,
 } from './context/views.ts';
+export {
+  MAX_RANKED_ACTIONS,
+  relevanceOutputSchema,
+  type RelevanceOutput,
+} from './ai-gateway/relevance.ts';
 export {
   CHECK_METHODS,
   CLUE_METHODS,
@@ -207,6 +215,7 @@ export {
   type DmIntentTraceView,
   type IntentStatus,
   type NpcDialogueTraceView,
+  type RelevanceTraceView,
 } from './ai-gateway/intents.ts';
 export {
   DIALOGUE_STATUSES,

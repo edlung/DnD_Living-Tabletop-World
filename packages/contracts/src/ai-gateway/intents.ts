@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { proposalCommandsSchema, proposalSummarySchema } from '../authoring/commands.ts';
+import type { RankingStatus, Relevance } from '../context/views.ts';
 import type { DialogueIntent, DialogueStatus } from '../npc/dialogue.ts';
 
 /**
@@ -104,5 +105,24 @@ export interface NpcDialogueTraceView extends AiTraceBase {
   readonly reply: string | null;
 }
 
-/** `GET /campaigns/:campaignId/ai/traces/:traceId` (DM only): why the system said or proposed this. */
-export type AiTraceView = DmIntentTraceView | NpcDialogueTraceView;
+/**
+ * A relevance ranking (docs/adr/0021-ai-relevance.md); its scope is the acting
+ * perspective. Maps each opaque key back to the action it stood for.
+ */
+export interface RelevanceTraceView extends AiTraceBase {
+  readonly purpose: 'relevance';
+  readonly status: Exclude<RankingStatus, 'NOT_REQUESTED' | 'NOTHING_TO_RANK'>;
+  /** The selected entity. */
+  readonly entityId: string;
+  readonly actions: readonly {
+    readonly key: string;
+    readonly id: string;
+    readonly topicId: string | null;
+    readonly evidenceId: string | null;
+  }[];
+  /** The validated ranking that was applied; null when none was. */
+  readonly ranking: readonly { readonly key: string; readonly relevance: Relevance }[] | null;
+}
+
+/** `GET /campaigns/:campaignId/ai/traces/:traceId` (DM only): why the system said, ranked, or proposed this. */
+export type AiTraceView = DmIntentTraceView | NpcDialogueTraceView | RelevanceTraceView;
