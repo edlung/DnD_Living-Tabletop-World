@@ -17,6 +17,8 @@ export interface ProposalRevision {
   readonly commands: readonly ResolvedProposable[];
   readonly createdBy: string;
   readonly createdAt: string;
+  /** The option this revision applied (ADR 0019 §1); absent in revisions stored before Stage 120. */
+  readonly appliedOption?: { readonly optionId: string; readonly label: string } | null;
 }
 
 export interface ProposalStore {

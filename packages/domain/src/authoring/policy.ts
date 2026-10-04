@@ -7,8 +7,9 @@ import { knownEntityIds } from '../knowledge/projection.ts';
 
 /**
  * What authoring may apply, and at which risk level (owner decisions,
- * docs/adr/0018-ai-authoring.md §2 and §4). Judged on the state the
- * operation will be decided against.
+ * docs/adr/0018-ai-authoring.md §2 and §4; claims and relationships since
+ * docs/adr/0019-continuity-engine.md). Judged on the state the operation will
+ * be decided against.
  */
 export interface OperationPolicy {
   readonly supported: boolean;
@@ -80,6 +81,24 @@ export function operationPolicy(
         ? allowed('L3', 'Lets an NPC share a record about a non-public entity')
         : allowed('L2', 'Lets an NPC share a record when asked');
     }
+    case 'SetClaim': {
+      if (command.target.kind !== 'knowledge') {
+        return refused('L3', 'Claims on clues are not authored');
+      }
+      const record = state.knowledge.get(command.target.knowledgeId);
+      return record && record.scope.kind !== 'NPC'
+        ? refused(
+            'L3',
+            `Claims on ${record.scope.kind} records are not authored; only on records an NPC holds`,
+          )
+        : allowed('L2', 'Adds a structured claim to an account');
+    }
+    case 'SetRelationship':
+      return npcOnly(
+        state,
+        command.npcId,
+        allowed('L2', 'Changes how an NPC feels about the party'),
+      );
     case 'ChangeEntityStatus':
       return refused('L4', 'Deaths and destruction are destructive and cannot be authored');
     case 'AdvanceWorldTime':

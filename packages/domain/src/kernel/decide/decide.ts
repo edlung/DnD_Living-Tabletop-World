@@ -15,6 +15,7 @@ import {
 } from '../../investigation/movement-and-hypotheses.ts';
 import { decideAddKnowledge, decideAssignCharacter } from '../../knowledge/decide.ts';
 import { decideEndSession, decideRecordMemory, decideStartSession } from '../../memory/decide.ts';
+import { decideSetRelationship } from '../../relationships/decide.ts';
 import { accept, type Decision, type DecisionContext, type ResolvedCommand } from '../decision.ts';
 import type { KernelEvent } from '../events.ts';
 import {
@@ -134,6 +135,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideSetStatBlock(state, command);
     case 'ApplyAuthoring':
       return decideApplyAuthoring(context, command);
+    case 'SetRelationship':
+      return decideSetRelationship(state, command);
     case 'StartCombat':
     case 'MoveCombatant':
     case 'Attack':

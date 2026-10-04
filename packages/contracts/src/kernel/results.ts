@@ -96,6 +96,8 @@ export const REJECTION_CODES = [
   'AUTHORING_INVALID',
   /** Authoring (ADR 0018 §4): the confirmation does not cover the current risk level or warnings. */
   'CONFIRMATION_REQUIRED',
+  /** Relationships (ADR 0019 §3): only an NPC has an attitude toward the party. */
+  'INVALID_RELATIONSHIP',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

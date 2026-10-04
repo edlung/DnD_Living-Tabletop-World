@@ -159,6 +159,8 @@ No clue IDs, DCs, or source records appear.
   - Stage 70 had made such an undo `NO_EFFECT`. That left the inspection blocking undo of its premises forever.
   - An empty compensation reads back from storage: the event schema accepts an empty restore list.
 
+- 2026-10-04 (Stage 120, ADR 0019 §3): NPCs now have an attitude toward the party. It does not yet change disclosure: §3 applies unchanged until Stage 130 decides how an attitude affects sharing GUARDED records. Authoring warns when a hostile or wary NPC is made WILLING (`DISCLOSURE_AGAINST_ATTITUDE`).
+
 ## Invariants affected
 
 Implements 7 for hypotheses. Preserves 1 (all through the World Engine), 3 (players act only through their own characters; authoring stays DM-only), 4, 5, 6, 8, 9, 11, 12, and 20. No invariant is weakened.

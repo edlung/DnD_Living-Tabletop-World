@@ -37,6 +37,12 @@ export const contradictionDetectedPayloadSchema = z
     aspect: knowledgeClaimSchema.shape.aspect,
     /** The two conflicting records, in ID order. */
     between: z.tuple([knowledgeIdSchema, knowledgeIdSchema]),
+    /**
+     * Entities whose names the neutral statement quotes: the subject and the
+     * speakers (Stage 120). Absent in events written earlier, whose footprint
+     * then reads only the subject's name.
+     */
+    named: z.array(entityIdSchema).min(1).max(3).optional(),
   })
   .strict();
 

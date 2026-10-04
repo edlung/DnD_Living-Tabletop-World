@@ -46,6 +46,15 @@ const VERSIONING: Partial<Record<KernelEventType, Versioning>> = {
   },
 };
 
+/**
+ * Types first written after the dependency contract (Stage 120, ADR 0019): no
+ * writer ever wrote them with an earlier version, so one is refused.
+ */
+const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
+  RelationshipChanged: DEPENDENCY_CONTRACT,
+  AuthoringPremisesRecorded: DEPENDENCY_CONTRACT,
+};
+
 export const schemaVersionOf = (type: KernelEventType): number =>
   VERSIONING[type]?.current ?? DEPENDENCY_CONTRACT;
 
@@ -66,7 +75,7 @@ export const writtenEarlier = (event: {
 export function decodePayload(type: KernelEventType, version: number, payload: unknown): unknown {
   const versioning = VERSIONING[type];
   if (!versioning) {
-    if (version >= 1 && version <= DEPENDENCY_CONTRACT) return payload;
+    if (version >= (INTRODUCED_AT[type] ?? 1) && version <= DEPENDENCY_CONTRACT) return payload;
     throw new RangeError(`${type} was never written with schema version ${String(version)}`);
   }
   if (version === versioning.current) return versioning.written.parse(payload);

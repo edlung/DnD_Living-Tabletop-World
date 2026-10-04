@@ -251,6 +251,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         break;
       }
       case 'PremisesRecorded':
+      case 'AuthoringPremisesRecorded':
       case 'AttackPerformed':
       case 'SpellCast':
       case 'DamageApplied':
@@ -286,6 +287,13 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         });
         break;
       }
+      case 'RelationshipChanged':
+        restores.push({
+          fact: 'relationship',
+          npcId: event.payload.npcId,
+          value: before.relationships.get(event.payload.npcId) ?? null,
+        });
+        break;
       case 'StatBlockSet':
         restores.push({
           fact: 'statblock',

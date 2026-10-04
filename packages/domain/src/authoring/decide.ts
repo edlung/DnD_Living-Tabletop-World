@@ -17,7 +17,7 @@ export function decideApplyAuthoring(
   context: DecisionContext,
   command: ResolvedCommandOf<'ApplyAuthoring'>,
 ): Decision {
-  const { drafts, issues, warnings, risk } = assessAuthoring(context, command.commands);
+  const { drafts, issues, warnings, notes, risk } = assessAuthoring(context, command.commands);
   if (issues.length > 0) {
     const unsupported = issues.some((issue) => issue.code === 'UNSUPPORTED_OPERATION');
     return reject(
@@ -25,7 +25,7 @@ export function decideApplyAuthoring(
       unsupported
         ? 'The proposal holds operations authoring may not apply'
         : 'The proposal cannot be applied to the world as it is now',
-      { issues, warnings, risk },
+      { issues, warnings, notes, risk },
     );
   }
   return {

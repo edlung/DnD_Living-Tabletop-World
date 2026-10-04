@@ -3,7 +3,7 @@ import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { scopeKey } from '../knowledge/records.ts';
-import { isHolderScope, pairKey, type EpistemicState } from './records.ts';
+import { carriesClaims, pairKey, type EpistemicState } from './records.ts';
 
 /** Fold cases for claim and contradiction events (called from kernel/evolve.ts). */
 type EventOf<T extends RecordedEvent['type']> = Extract<RecordedEvent, { type: T }>;
@@ -21,7 +21,7 @@ export function applyClaimSet(state: WorldState, event: EventOf<'ClaimSet'>): Wo
   }
   if (target.kind === 'knowledge') {
     const record = state.knowledge.get(target.knowledgeId);
-    if (!record || !isHolderScope(record.scope) || !record.subjects.includes(claim.subjectId)) {
+    if (!record || !carriesClaims(record.scope) || !record.subjects.includes(claim.subjectId)) {
       throw new CorruptHistoryError(`invalid claim on ${target.knowledgeId}`);
     }
     if (epistemics.claims.has(target.knowledgeId)) {

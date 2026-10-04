@@ -44,6 +44,13 @@ export const isHolderScope = (scope: KnowledgeScope): scope is HolderScope =>
   scope.kind === 'CHARACTER' ||
   scope.kind === 'NPC';
 
+/**
+ * Scopes whose records may carry a claim: the holder scopes, and world truth
+ * for continuity only (ADR 0019 §4; detection never joins it).
+ */
+export const carriesClaims = (scope: KnowledgeScope): boolean =>
+  isHolderScope(scope) || scope.kind === 'WORLD_TRUTH';
+
 /** One contradiction per unordered pair of records per scope. */
 export function pairKey(scopeKey: string, first: string, second: string): string {
   const [a, b] = first < second ? [first, second] : [second, first];

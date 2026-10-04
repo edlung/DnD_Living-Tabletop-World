@@ -131,6 +131,87 @@ describe('authoring over the PostgreSQL event store', () => {
     ).toBe('UNDONE');
   });
 
+  it('stores relationships, premises, and applied options, and reloads them after a restart', async () => {
+    await seeded();
+    const first = await server(0xd1);
+    const relationship = await post(
+      first,
+      '/campaigns/ravenford/commands',
+      {
+        commandId: 'orin-wary',
+        command: { type: 'SetRelationship', npcId: 'orin-stonebeard', attitude: 'WARY' },
+      },
+      TOKENS.dm,
+    );
+    expect(relationship.json<CommandResult>().status).toBe('accepted');
+    // Knowledge for an existing NPC, so the commit records its premise (ADR 0019 §2).
+    const created = (
+      await post(
+        first,
+        PROPOSALS,
+        {
+          summary: 'Mira remembers the axle.',
+          commands: [
+            {
+              type: 'AddKnowledge',
+              knowledgeId: 'mira-axle',
+              scope: { kind: 'NPC', npcId: 'mira-vale' },
+              knowledgeType: 'FACT',
+              statement: 'The caravan axle was new.',
+              subjects: ['guild-caravan'],
+              knownSince: null,
+            },
+            { type: 'SetDisclosure', knowledgeId: 'orin-prior-incident', disclosure: 'WILLING' },
+          ],
+        },
+        TOKENS.dm,
+      )
+    ).json<AuthoringProposalResponse>();
+    const at = `${PROPOSALS}/${created.proposal.proposalId}`;
+    const guarded = created.preview?.warnings
+      .find((warning) => warning.code === 'DISCLOSURE_AGAINST_ATTITUDE')
+      ?.options?.find((option) => option.kind === 'remove');
+    const revised = (
+      await post(
+        first,
+        `${at}/revisions`,
+        { basedOnRevision: 1, optionId: guarded?.optionId },
+        TOKENS.dm,
+      )
+    ).json<AuthoringProposalResponse>();
+    expect(revised.proposal.appliedOption?.optionId).toBe(guarded?.optionId);
+    const committed = await post(
+      first,
+      `${at}/commit`,
+      { revision: 2, confirmation: revised.preview?.confirmation },
+      TOKENS.dm,
+    );
+    expect(committed.json<CommandResult>()).toMatchObject({
+      status: 'accepted',
+      events: [{ type: 'AuthoringPremisesRecorded' }, { type: 'KnowledgeAssigned' }],
+    });
+
+    const restarted = await server(0xd2);
+    const viewed = (await get(restarted, at, TOKENS.dm)).json<AuthoringProposalResponse>();
+    expect(viewed.proposal).toMatchObject({
+      status: 'COMMITTED',
+      revision: 2,
+      appliedOption: { optionId: guarded?.optionId },
+    });
+    const engine = createWorldEngine(pool);
+    expect((await engine.load('ravenford'))?.state.relationships.get('orin-stonebeard')).toBe(
+      'WARY',
+    );
+    const stored = await pool.query<{ event_type: string; schema_version: number }>(
+      `SELECT event_type, schema_version FROM ltw_events
+        WHERE event_type IN ('RelationshipChanged', 'AuthoringPremisesRecorded')`,
+    );
+    expect(stored.rows.map((row) => [row.event_type, row.schema_version]).sort()).toEqual([
+      ['AuthoringPremisesRecorded', 2],
+      ['RelationshipChanged', 2],
+    ]);
+  });
+
   it('lets exactly one of two racing processes create the same NPC', async () => {
     await seeded();
     const [a, b] = [await server(0xc1), await server(0xc2)];

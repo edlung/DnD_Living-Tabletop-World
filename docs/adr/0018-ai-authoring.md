@@ -125,6 +125,14 @@ Migration `0003_authoring_proposals.sql` adds `ltw_authoring_revisions`. Like tr
 - Stage 230 builds the DM's preview, edit, and confirm UI on these routes. A UI may make L1 confirmation one click, but it cannot remove the confirmation.
 - Direct DM commands keep the kernel's own rules. The authoring guards apply to AI-assisted mutations, which pass through proposals.
 
+## Amendments
+
+- 2026-10-04 (Stage 120, ADR 0019; owner decisions of 2026-10-04):
+  - **Enabled operations** also include `SetClaim` on records an NPC holds (L2) and `SetRelationship` for an NPC (L2). Claims on clues and on other scopes are unsupported.
+  - **Checks.** `KNOWN_AFTER_DEATH` blocks. `SPEAKER_NOT_ALIVE`, `MOVES_THE_DEAD`, `ENCOUNTER_HERE`, `RENAME_KNOWN`, `DUPLICATE_ACCOUNT`, `CLAIM_CONFLICT`, and `DISCLOSURE_AGAINST_ATTITUDE` warn. `CLAIM_AGREES` is a note.
+  - **Issues have keys** (`CODE@index[:entityId]`, or `CODE@all`). Every issue and warning carries options. A revision may come from an option on the DM's request (`{ basedOnRevision, optionId }`); the revision records the option it applied.
+  - **Premises.** A commit giving knowledge to an NPC that existed before the proposal records `AuthoringPremisesRecorded` (that NPC's existence and status), because `KNOWN_AFTER_DEATH` read its status history.
+
 ## Invariants affected
 
 Implements 2, 3, 16, 17, and 18 for authoring; preserves 1, 5, 11, 12, and 13. No invariant is weakened.

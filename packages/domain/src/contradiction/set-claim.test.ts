@@ -13,7 +13,7 @@ const onRecord = (knowledgeId: string, subjectId?: string) =>
 
 describe('SetClaim', () => {
   it.each([
-    ['truth-cargo', 'INVALID_CLAIM'], // WORLD_TRUTH is never compared
+    ['truth-cargo', 'accepted'], // lore for continuity only, never compared (ADR 0019 §4)
     ['dm-reveal-pacing', 'INVALID_CLAIM'], // DM notes neither
     ['party-who-attacked', 'INVALID_CLAIM'], // UNKNOWN asserts nothing
     ['no-such-record', 'KNOWLEDGE_NOT_FOUND'],

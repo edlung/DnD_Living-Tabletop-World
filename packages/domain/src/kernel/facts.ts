@@ -50,6 +50,7 @@ export const facts = {
   encounter: (): FactKey => 'world#encounter',
   statBlock: (entityId: string): FactKey => `statblock:${entityId}`,
   reaction: (windowId: string): FactKey => `reaction:${windowId}`,
+  relationship: (npcId: string): FactKey => `relationship:${npcId}`,
 };
 
 export interface Footprint {
@@ -242,8 +243,9 @@ export function footprintOf(event: KernelEvent): Footprint {
       };
     }
     case 'ContradictionDetected': {
-      // Both records, both claims, and (for a character reached through the party) membership.
-      const { scope, between } = event.payload;
+      // Both records, both claims, (for a character reached through the party) membership,
+      // and the names its statement quotes (Stage 120; earlier events name only the subject).
+      const { scope, between, subjectId, named } = event.payload;
       const [a, b] = between;
       return {
         reads: [
@@ -253,6 +255,7 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.claim({ kind: 'knowledge', knowledgeId: a }),
           facts.claim({ kind: 'knowledge', knowledgeId: b }),
           ...(scope.kind === 'CHARACTER' ? [facts.rosterCharacter(scope.characterId)] : []),
+          ...(named ?? [subjectId]).map((id) => facts.entityProfile(id)),
         ],
         writes: [facts.contradiction(pairKey(scopeKey(scope), a, b))],
       };
@@ -342,6 +345,21 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.rosterCharacter(event.payload.characterId),
           facts.rosterPlayer(event.payload.playerActorId),
         ],
+      };
+    case 'RelationshipChanged':
+      // A living NPC's attitude (ADR 0019 §3).
+      return {
+        reads: [clock, ...entityChecked(event.payload.npcId)],
+        writes: [facts.relationship(event.payload.npcId)],
+      };
+    case 'AuthoringPremisesRecorded':
+      // Reads only: what an authoring commit's legality rested on (ADR 0019 §2).
+      return {
+        reads: [
+          clock,
+          ...event.payload.premises.flatMap((premise) => entityChecked(premise.entityId)),
+        ],
+        writes: [],
       };
   }
 }
@@ -449,6 +467,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.statBlock(restore.entityId)];
     case 'reactionWindow':
       return [facts.reaction(restore.windowId)];
+    case 'relationship':
+      return [facts.relationship(restore.npcId)];
   }
 }
 

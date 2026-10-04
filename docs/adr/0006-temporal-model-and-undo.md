@@ -105,6 +105,11 @@ Each event declares the facts it read and wrote. Later domains add their facts t
   - "Create Tomas → player learns testimony → undo Tomas" is rejected (`UNDO_UNSAFE`) with the conversation listed as the blocker; a memory naming Tomas blocks it the same way. The DM undoes the blockers explicitly, newest first, then the commit. The owner chose these explicit blockers over a DM-confirmed cascade; no cascade is offered.
   - Undone authoring keeps its history and its IDs: re-creating `tomas-reed` is rejected.
 
+- 2026-10-04 (Stage 120, ADR 0019): relationships and continuity premises follow §8.
+  - Undoing `SetRelationship` restores the previous attitude. A relationship change reads its NPC, which therefore cannot be undone beneath it.
+  - An authoring commit that checked a holder's status history records it (`AuthoringPremisesRecorded`), so undoing a death or resurrection beneath such a commit is refused.
+  - A contradiction reads the names its statement quotes (ADR 0014 Stage 120 amendment), so undoing such a rename beneath it is refused.
+
 ## Invariants affected
 
 Implements 1, 11, 12, and 13 for the kernel and preserves 3 (only the DM authors and undoes). No invariant is weakened.

@@ -2,7 +2,7 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 110 (AI Authoring) complete; Stage 120 awaits the owner's authorization. Astra Gate 03 passed at retest 4 (`reviews/ASTRA_GATE_03_RETEST_4.md`, revision `998887d`), after seven High findings were remediated (`remediation/OPUS_GATE_03_REMEDIATION.md`). Astra Gate 02 passed earlier (retest 2, revision `017ab0b`). The stages so far provide:
+**Current state:** Stage 120 (Continuity Engine) complete; Stage 130 awaits the owner's authorization. Astra Gate 03 passed at retest 4 (`reviews/ASTRA_GATE_03_RETEST_4.md`, revision `998887d`), after seven High findings were remediated (`remediation/OPUS_GATE_03_REMEDIATION.md`). Astra Gate 02 passed earlier (retest 2, revision `017ab0b`). The stages so far provide:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
@@ -15,6 +15,7 @@ AI-native tabletop RPG platform where the world is the interface. Product and ar
 - **Reactions:** a spell someone could counter waits in a canonical reaction window while the encounter pauses; Elowen counters the Goblin Shaman with Counterspell or ignores it, and the DM may close the window. Windows are race-safe, replayable, and undo strictly in reverse (ADR 0016). Opportunity attacks are deferred. Passed Astra Gate 03, together with the combat surfaces.
 - **AI Gateway:** provider port and capability routing (an Anthropic adapter, enabled only by `ANTHROPIC_API_KEY`, then a deterministic local provider), context built only from the public directory, structured proposals validated with the World Engine's own command schemas, the owner's fallback policy, and append-only traces. The DM's words become a **proposal** only: nothing is committed (`@ltw/ai`, ADR 0017).
 - **AI Authoring:** the DM turns a proposal into an authoring proposal, edits it, previews it, and confirms it. The World Engine applies it as one command or not at all, after checking the owner-approved operations (create, edit, and move NPCs; their own knowledge and its disclosure), each operation's own rules, continuity, and the DM's confirmation against the world at commit. Tomas Reed is the acceptance case. Undo takes the whole commit back, and is refused with the dependents named while anything relies on it (ADR 0018).
+- **Continuity Engine:** checks across time, geography, identity, knowledge, relationships, and lore. Impossible history blocks; implausible authoring warns, with an explanation and options the DM may apply as a new revision. NPCs have an attitude toward the party, and lore is compared through claims, including DM claims on world truth that players never meet (ADR 0019).
 - **HTTP API** with development persona authentication.
 
 Agents: start with [`docs/AI_CONTEXT_MAP.md`](docs/AI_CONTEXT_MAP.md) and the nearest `AGENTS.md`.

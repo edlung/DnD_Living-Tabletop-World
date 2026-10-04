@@ -97,6 +97,13 @@ When the party asks Thorne about the caravan, the PARTY scope gains one contradi
 - Value equality is deliberately strict: the DM chooses values so that compatible accounts share one.
 - Any future party-membership change (unassignment) must respect contradiction dependencies.
 
+## Amendments
+
+- 2026-10-04 (Stage 120, ADR 0019 §4; owner decision of 2026-10-04):
+  - **Claims on world truth.** The DM or the system may put claims on WORLD_TRUTH records, for continuity checks only. Detection never joins WORLD_TRUTH (§2), so these claims never produce a contradiction, a player view, or an outcome. DM notes still never carry claims.
+  - **AI-proposed claims.** As anticipated above, an authoring proposal may set claims on records an NPC holds, confirmed by the DM (ADR 0018, ADR 0019).
+  - **Quoted names are premises.** The neutral statement quotes the subject's and the speakers' names. `ContradictionDetected` now lists them (`named`), and its footprint reads those names, so undoing a rename it quoted is refused while the contradiction stands. Without this, re-deciding the command after such an undo would give another statement; the Stage 120 randomized test found it. The field is additive: events written earlier lack it, and their footprint reads only the subject's name.
+
 ## Invariants affected
 
 Implements 7 (types never change; facts only through explicit authoring) and 4–6 for contradictions. Preserves 1, 2, 3, 11, 12, and 19 (DM views show claims; holders see every contradiction recorded in their scope). No invariant is weakened.

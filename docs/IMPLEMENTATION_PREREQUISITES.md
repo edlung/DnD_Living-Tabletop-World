@@ -47,13 +47,13 @@ These are unanswered questions, not approved product semantics. They apply only 
 
 Which authoring operations are enabled in Stage 110, which require confirmation under the risk policy, and which non-invariant continuity conflicts may be accepted after a warning? What additional Ravenford constraints are included at Stage 120? Destructive proposals and overrides of protected invariants remain disallowed by the existing work orders.
 
-Decision needed before enabling the affected operations in Stage 110, and before enabling their extensions in Stage 120. The Stage 110 part is decided (ADR 0018 §2–§4); the Stage 120 part remains open.
+Decision needed before enabling the affected operations in Stage 110, and before enabling their extensions in Stage 120. Both parts are decided: Stage 110 in ADR 0018 §2–§4, Stage 120 in ADR 0019 §2 and §4 (owner, 2026-10-04).
 
 ### Q2. Relationships and guarded disclosure — Stages 120/130
 
 What minimal Ravenford relationship/trust state and `RelationshipChanged` semantics should Stage 120 validation and Stage 130 Orin disclosure use? Which authorized domain decision may make a `GUARDED` record shareable, and under what conditions? Existing scope and knowledge-type restrictions remain unchanged.
 
-Decision needed before dependent relationship checks in Stage 120 and before the affected runtime disclosures in Stage 130.
+Decision needed before dependent relationship checks in Stage 120 and before the affected runtime disclosures in Stage 130. The relationship part is decided (ADR 0019 §3: an NPC's attitude toward the party, owner, 2026-10-04); which domain decision makes a GUARDED record shareable remains open for Stage 130.
 
 ### Q3. Bounded NPC action scope — Stage 130
 

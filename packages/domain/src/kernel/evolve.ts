@@ -31,6 +31,7 @@ import {
 } from '../investigation/evolve.ts';
 import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
+import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
 import { withEntry, withoutEntry } from './maps.ts';
@@ -196,6 +197,12 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyReactionWindowExpired(state, event);
     case 'ReactionWindowResolved':
       return applyReactionWindowResolved(state, event);
+    case 'RelationshipChanged':
+      return applyRelationshipChanged(state, event);
+    case 'AuthoringPremisesRecorded':
+      // Reads only (ADR 0019 §2): the entities it names must exist.
+      for (const premise of event.payload.premises) requireEntity(state, premise.entityId);
+      return state;
   }
 }
 
@@ -303,6 +310,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyCombatRestore(state, restore);
     case 'reactionWindow':
       return applyReactionRestore(state, restore);
+    case 'relationship':
+      return applyRelationshipRestore(state, restore);
   }
 }
 

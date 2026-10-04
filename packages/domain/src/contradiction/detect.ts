@@ -90,12 +90,21 @@ export function withContradictions(
             subjectId: claim.subjectId,
             aspect: claim.aspect,
             between: [a, b],
+            named: namedBy(claim.subjectId, first, second),
           },
         },
       );
     }
   }
   return [...events, ...detected];
+}
+
+/** The entities whose names `neutralStatement` quotes, so its footprint reads them. */
+function namedBy(subjectId: string, first: RecordLike, second: RecordLike): string[] {
+  const speakers = [first.attributedTo, second.attributedTo].filter(
+    (speaker): speaker is string => speaker !== null,
+  );
+  return [...new Set([subjectId, ...speakers])];
 }
 
 /**

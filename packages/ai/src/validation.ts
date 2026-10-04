@@ -8,7 +8,7 @@ import {
  * Structured-output validation (docs/adr/0017-ai-gateway.md §4): the shape
  * through the World Engine's own command schemas, then every entity a
  * command names must be in the context's directory or created earlier in
- * the same proposal; a disclosure, a record the proposal adds. Passing makes
+ * the same proposal; a disclosure or a claim, a record the proposal adds. Passing makes
  * a proposal reviewable, never committable: the authoring pipeline decides
  * that against the world at commit (docs/adr/0018-ai-authoring.md).
  */
@@ -36,7 +36,10 @@ function references(command: ProposableCommand): [string, string][] {
       return [['entityId', command.entityId]];
     case 'AdvanceWorldTime':
     case 'SetDisclosure':
+    case 'SetClaim':
       return [];
+    case 'SetRelationship':
+      return [['npcId', command.npcId]];
     case 'AddKnowledge': {
       const holder =
         command.scope.kind === 'NPC'
@@ -74,6 +77,13 @@ export function validateProposal(output: unknown, directory: ReadonlySet<string>
     }
     if (command.type === 'SetDisclosure' && !records.has(command.knowledgeId)) {
       issues.push(`${at}.knowledgeId: unknown record "${command.knowledgeId}"`);
+    }
+    if (command.type === 'SetClaim') {
+      const target =
+        command.target.kind === 'knowledge' ? command.target.knowledgeId : command.target.clueId;
+      if (command.target.kind !== 'knowledge' || !records.has(target)) {
+        issues.push(`${at}.target: unknown record "${target}"`);
+      }
     }
     if (command.type === 'AddKnowledge' && command.knowledgeId !== undefined) {
       records.add(command.knowledgeId);

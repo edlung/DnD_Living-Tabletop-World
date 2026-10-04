@@ -1,13 +1,14 @@
 import type { AiTraceStore } from '@ltw/ai';
-import type {
-  AuthoringProposalResponse,
-  AuthoringProposalView,
-  CommandRejected,
-  CommandResult,
-  CommitProposalRequest,
-  CreateProposalRequest,
-  ProposableCommand,
-  ReviseProposalRequest,
+import {
+  proposalCommandsSchema,
+  type AuthoringProposalResponse,
+  type AuthoringProposalView,
+  type CommandRejected,
+  type CommandResult,
+  type CommitProposalRequest,
+  type CreateProposalRequest,
+  type ProposableCommand,
+  type ReviseProposalRequest,
 } from '@ltw/contracts';
 import {
   campaignRole,
@@ -95,6 +96,7 @@ export class AuthoringService {
       revision: 1,
       ...content,
       commands: this.#resolved(content.commands),
+      appliedOption: null,
       createdBy: actor.actorId,
       createdAt: this.#deps.clock.now(),
     };
@@ -114,7 +116,13 @@ export class AuthoringService {
     return ok(await this.#response(snapshot.value, actor, latest));
   }
 
-  /** An edit: a new revision of a draft, which voids every earlier preview and confirmation. */
+  /**
+   * An edit: a new revision of a draft, which voids every earlier preview and
+   * confirmation. Either the DM's own commands, or one option of the latest
+   * revision's preview, recomputed against the world now (ADR 0019 §1). An
+   * option that no longer exists is a conflict; an acknowledgement is given
+   * with the commit, not as a revision.
+   */
   async revise(
     actor: Actor,
     campaignId: string,
@@ -128,11 +136,36 @@ export class AuthoringService {
     if (committed(snapshot.value, proposalId) || request.basedOnRevision !== latest.revision) {
       return error('CONFLICT');
     }
+    let edited: Pick<ProposalRevision, 'summary' | 'appliedOption'> & {
+      readonly commands: readonly ProposableCommand[];
+    };
+    if ('optionId' in request) {
+      const preview = previewAuthoring(snapshot.value, actor, { ...latest });
+      const option = [...preview.issues, ...preview.warnings]
+        .flatMap((finding) => finding.options ?? [])
+        .find((candidate) => candidate.optionId === request.optionId);
+      if (!option) return error('CONFLICT');
+      if (option.commands === null) return error('UNPROCESSABLE');
+      const commands = proposalCommandsSchema.safeParse(option.commands);
+      if (!commands.success) return error('UNPROCESSABLE');
+      edited = {
+        summary: latest.summary,
+        commands: commands.data,
+        appliedOption: { optionId: option.optionId, label: option.label },
+      };
+    } else {
+      edited = {
+        summary: request.summary ?? latest.summary,
+        commands: request.commands,
+        appliedOption: null,
+      };
+    }
     const revision: ProposalRevision = {
       ...latest,
       revision: latest.revision + 1,
-      summary: request.summary ?? latest.summary,
-      commands: this.#resolved(request.commands),
+      summary: edited.summary,
+      commands: this.#resolved(edited.commands),
+      appliedOption: edited.appliedOption ?? null,
       createdBy: actor.actorId,
       createdAt: this.#deps.clock.now(),
     };
@@ -246,6 +279,7 @@ export class AuthoringService {
       commands,
       createdBy,
       createdAt,
+      appliedOption: revision.appliedOption ?? null,
     };
     if (!trace) return { ...base, status: 'DRAFT', commit: null };
     const stored = (await this.#engine.commandLog(campaignId)).find(

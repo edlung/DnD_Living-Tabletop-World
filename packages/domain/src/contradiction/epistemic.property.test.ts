@@ -180,8 +180,9 @@ async function scenario(seed: number) {
       },
       { commandId },
     );
+    // World truth takes claims (lore, ADR 0019 §4); DM notes never do.
     const allowed =
-      !['WORLD_TRUTH', 'DM'].includes(record.scope) &&
+      record.scope !== 'DM' &&
       !['UNKNOWN'].includes(record.type) &&
       record.subjects.includes(draft.subjectId) &&
       !claims.has(knowledgeId);

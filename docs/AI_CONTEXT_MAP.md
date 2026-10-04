@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), and 110 (AI Authoring) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), 110 (AI Authoring), and 120 (Continuity Engine) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -51,6 +51,8 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Combat: encounters, initiative, turns, attacks, spells, 0 HP, encounter view | `packages/combat/AGENTS.md`, ADR 0015 (owner-approved); contracts in `packages/contracts/src/combat/`; domain port and events in `packages/domain/src/combat/`; route `apps/server/src/http/routes/encounter-routes.ts`; fixtures `fixtures/ravenford/combat-seed.json`, `road-ambush.json` |
 | Reactions: windows, Counterspell, the pause, undo with an open window | `packages/combat/AGENTS.md` (`src/reactions/`), ADR 0016 (owner-approved); domain records/events/fold in `packages/domain/src/combat/reaction-*.ts`; pause rule `packages/domain/src/kernel/decide/reaction-pause.ts`; contracts `packages/contracts/src/combat/reactions.ts` |
 | AI gateway: providers, capability routing, ContextBuilder, structured proposals, fallback, traces | `packages/ai/AGENTS.md`, ADR 0017 (owner-approved); contracts `packages/contracts/src/ai-gateway/intents.ts`; Anthropic adapter and composition `apps/server/src/ai/`; routes `apps/server/src/http/routes/ai-routes.ts`; traces `apps/server/migrations/0002_ai_traces.sql` |
+| Continuity Engine: checks by domain, explanations, options, lore claims | `packages/domain/src/authoring/AGENTS.md` (`continuity/`), ADR 0019 (owner-approved) |
+| Relationships: NPC attitude toward the party | `packages/domain/src/relationships/AGENTS.md`, ADR 0019 §3 (owner-approved) |
 | AI authoring: proposals, enabled operations, risk, continuity, preview, consent, commit, undo | `packages/domain/src/authoring/AGENTS.md`, ADR 0018 (owner-approved); contracts `packages/contracts/src/authoring/`; service and stores `apps/server/src/authoring/`; routes `apps/server/src/http/routes/authoring-routes.ts`; revisions `apps/server/migrations/0003_authoring_proposals.sql` |
 | Character sheets (canonical) | `packages/domain/src/character/character.ts`; schema in `packages/contracts/src/rules/character-sheet.ts` |
 | Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |

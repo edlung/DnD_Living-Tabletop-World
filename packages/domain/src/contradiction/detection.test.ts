@@ -189,8 +189,10 @@ describe('which scope records a conflict', () => {
     const world = await investigationWorld();
     // Mira's and Thorne's own accounts conflict, but no non-DM holder sees both.
     expect(await contradictions(world)).toEqual([]);
+    // A truth claim (lore for continuity, ADR 0019 §4) conflicts with nothing anyone sees.
     await dm(world, record('x-truth', { kind: 'WORLD_TRUTH' }, 'FACT'));
-    expect(codeOf(await world.submit(claim('x-truth', 'at-noon'), DM))).toBe('INVALID_CLAIM');
+    expect(codeOf(await world.submit(claim('x-truth', 'at-noon'), DM))).toBe('accepted');
+    expect(await contradictions(world)).toEqual([]);
   });
 
   it('records PARTY versus a party member’s own account in that character', async () => {

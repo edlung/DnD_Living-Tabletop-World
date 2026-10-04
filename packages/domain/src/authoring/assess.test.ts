@@ -254,7 +254,8 @@ describe('identity', () => {
 
     expect(warningKeys(created)).toEqual(['NAME_IN_USE@0']);
     expect(created.warnings[0]?.entityIds).toEqual([TOMAS, 'captain-thorne']);
-    expect(warningKeys(renamed)).toEqual(['NAME_IN_USE@0']);
+    // Stage 120 adds that the party and the public know Mira (ADR 0019 §2).
+    expect(warningKeys(renamed)).toEqual(['NAME_IN_USE@0', 'RENAME_KNOWN@0:mira-vale']);
   });
 });
 

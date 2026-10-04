@@ -1,10 +1,11 @@
 import type {
+  Attitude,
   CharacterSheet,
-  StatBlock,
   EntityKind,
   EntityStatus,
   KernelCommandType,
   LocationType,
+  StatBlock,
 } from '@ltw/contracts';
 
 import type { EncounterState } from '../combat/records.ts';
@@ -99,6 +100,8 @@ export interface WorldState {
   readonly encounter: EncounterState | null;
   /** Every reaction window by ID (ADR 0016); at most one is open. */
   readonly reactionWindows: ReadonlyMap<string, ReactionWindowRecord>;
+  /** NPC ID → attitude toward the party (ADR 0019 §3); absent means neutral. DM data. */
+  readonly relationships: ReadonlyMap<string, Attitude>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -121,6 +124,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   statBlocks: new Map(),
   encounter: null,
   reactionWindows: new Map(),
+  relationships: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

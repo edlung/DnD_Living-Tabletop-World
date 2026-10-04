@@ -38,6 +38,11 @@ import {
   investigationRestoreSchemas,
   recordedPremisesPayloadSchema,
 } from '../investigation/events.ts';
+import { authoringPremisesPayloadSchema } from '../authoring/events.ts';
+import {
+  relationshipChangedPayloadSchema,
+  relationshipRestoreSchemas,
+} from '../relationships/events.ts';
 import { actorSchema } from './actor.ts';
 import { decodePayload, isVersioned } from './event-versions.ts';
 
@@ -95,6 +100,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...epistemicRestoreSchemas,
   ...combatRestoreSchemas,
   ...reactionRestoreSchemas,
+  ...relationshipRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -199,6 +205,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ReactionDeclined', reactionEventPayloadSchemas.ReactionDeclined),
   event('ReactionWindowExpired', reactionEventPayloadSchemas.ReactionWindowExpired),
   event('ReactionWindowResolved', reactionEventPayloadSchemas.ReactionWindowResolved),
+  event('RelationshipChanged', relationshipChangedPayloadSchema),
+  event('AuthoringPremisesRecorded', authoringPremisesPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

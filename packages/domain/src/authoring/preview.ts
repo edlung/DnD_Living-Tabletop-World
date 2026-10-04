@@ -12,6 +12,7 @@ import type { ResolvedCommandOf, ResolvedProposable } from '../kernel/decision.t
 import type { RecordedEvent } from '../kernel/events.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { assessAuthoring } from './assess.ts';
+import { findingKey } from './continuity/describe.ts';
 
 /**
  * The DM's preview of a proposal revision (docs/adr/0018-ai-authoring.md
@@ -56,6 +57,7 @@ export function previewAuthoring(
   const base = {
     stateVersion: state.version,
     warnings: assessment.warnings,
+    notes: assessment.notes,
     risk: assessment.risk,
   };
   const blocked = (issues: readonly AuthoringIssue[]): AuthoringPreview => ({
@@ -66,17 +68,18 @@ export function previewAuthoring(
     changes: [],
   });
 
+  const whole = ({ code, message }: { code: string; message: string }): AuthoringIssue => ({
+    key: findingKey(code, null),
+    commandIndex: null,
+    code,
+    message,
+    options: [],
+  });
   const authorization = authorize(state, actor, command);
-  if (!authorization.ok) {
-    const { code, message } = authorization.rejection;
-    return blocked([{ commandIndex: null, code, message }]);
-  }
+  if (!authorization.ok) return blocked([whole(authorization.rejection)]);
   const decision = decide({ ...context, authority: authorization.authority }, command);
   if (!decision.ok) {
-    const { code, message } = decision.rejection;
-    return blocked(
-      assessment.issues.length > 0 ? assessment.issues : [{ commandIndex: null, code, message }],
-    );
+    return blocked(assessment.issues.length > 0 ? assessment.issues : [whole(decision.rejection)]);
   }
   if (!decision.requires || decision.requires.riskLevel === 'L4') {
     throw new Error('a legal proposal always states a confirmable consent requirement');

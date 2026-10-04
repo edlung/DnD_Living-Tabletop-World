@@ -206,6 +206,7 @@ export {
 } from './ai-gateway/intents.ts';
 export {
   AUTHORING_ISSUE_CODES,
+  AUTHORING_NOTE_CODES,
   AUTHORING_WARNING_CODES,
   CONFIRMABLE_RISK_LEVELS,
   MAX_PROPOSAL_COMMANDS,
@@ -222,6 +223,7 @@ export {
   traceIdSchema,
   type AuthoringConfirmation,
   type AuthoringIssueCode,
+  type AuthoringNoteCode,
   type AuthoringSource,
   type AuthoringWarningCode,
   type ConfirmableRiskLevel,
@@ -234,6 +236,7 @@ export {
   createProposalRequestSchema,
   reviseProposalRequestSchema,
   type AuthoringIssue,
+  type AuthoringNote,
   type AuthoringPreview,
   type AuthoringProposalResponse,
   type AuthoringProposalView,
@@ -241,6 +244,13 @@ export {
   type CommitProposalRequest,
   type CreateProposalRequest,
   type ProposalStatus,
+  type ResolutionOption,
   type ReviseProposalRequest,
   type RiskReason,
 } from './authoring/views.ts';
+export {
+  ATTITUDES,
+  DEFAULT_ATTITUDE,
+  setRelationshipCommandSchema,
+  type Attitude,
+} from './relationships/commands.ts';

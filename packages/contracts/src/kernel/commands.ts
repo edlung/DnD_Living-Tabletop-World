@@ -30,6 +30,7 @@ import {
 } from '../combat/reactions.ts';
 import { setStatBlockCommandSchema } from '../combat/stat-block.ts';
 import { setClaimCommandSchema } from '../knowledge/claims.ts';
+import { setRelationshipCommandSchema } from '../relationships/commands.ts';
 import { setCharacterSheetCommandSchema } from '../rules/character-sheet.ts';
 import { commandIdSchema, entityIdSchema, sceneIdSchema } from './identifiers.ts';
 import {
@@ -123,6 +124,7 @@ export const kernelCommandSchema = z
     declineReactionCommandSchema,
     closeReactionWindowCommandSchema,
     applyAuthoringCommandSchema,
+    setRelationshipCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -167,6 +169,7 @@ export const KERNEL_COMMAND_TYPES = [
   'DeclineReaction',
   'CloseReactionWindow',
   'ApplyAuthoring',
+  'SetRelationship',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

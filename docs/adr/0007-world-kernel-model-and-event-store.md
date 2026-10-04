@@ -86,6 +86,11 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Stage 120 (2026-10-04), ADR 0019: relationships, premises, and types introduced at the contract.**
+  - New command `SetRelationship` (DM or system) and event `RelationshipChanged { npcId, from, to }`. It reads the NPC's existence and status and writes `relationship:<npcId>`; state keeps `relationships` (absent means neutral).
+  - New reads-only event `AuthoringPremisesRecorded { premises }`, written first in an authoring commit whose blocking checks read facts its operations' events do not record (a holder's status).
+  - Types first written after the dependency contract (`INTRODUCED_AT` in `event-versions.ts`) refuse versions before it: no writer ever wrote them.
+  - `ContradictionDetected` gains the optional `named` field and reads those names (ADR 0014 Stage 120 amendment). This is additive, so it keeps the version.
 - **Stage 110 (2026-10-04), ADR 0018: authoring and the consent step.**
   - New command `ApplyAuthoring` (DM only; the system actor is refused). It applies a confirmed proposal as one command: each operation is decided by its own decision function, in order, on the provisional state of its predecessors, and the events of all of them are appended together. Its operations' generated IDs are resolved before deciding, and the stored command must carry them.
   - **Pipeline step 7b, consent.** A decision may state a consent requirement (`Decision.requires`, authoring only: a risk level and warning keys). After a successful decision the engine refuses (`CONFIRMATION_REQUIRED`) a command whose confirmation does not cover it, before stamping. Consent is a commit-time gate, not a premise: the re-decision oracle compares events only, and footprints do not record it.

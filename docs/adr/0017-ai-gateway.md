@@ -73,6 +73,8 @@ Option 2.
   - An intent's proposal is still never committed as is (`committable: false`). The DM turns it into an authoring proposal, whose content the server copies from the trace, and commits that through ADR 0018's pipeline.
   - The local provider also recognises people and things by a distinctive last word (`the caravan`, `Thorne`) when no other directory name ends with it, never places or factions. This lets it read the DM acceptance request of `RAVENFORD_SPEC.md` ("Add a young guard near North Gate who saw the caravan leave.").
 
+- 2026-10-04 (Stage 120, ADR 0019): proposals may also contain `SetClaim` (on a record the same proposal adds; the validator refuses any other target) and `SetRelationship` (an NPC in the directory or created by the proposal). The prompt asks for a relationship only when the request says so.
+
 ## Invariants affected
 
 Implements 2, 18, 21, and 22 for this stage; preserves 1, 5, 11, and 17. No invariant is weakened.

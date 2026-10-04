@@ -137,6 +137,40 @@ describe('validateProposal (ADR 0017 §4)', () => {
     ]);
   });
 
+  it('lets a claim name only a record the proposal adds, and a relationship a known NPC', () => {
+    const record = {
+      type: 'AddKnowledge',
+      knowledgeId: 'thorne-saw',
+      scope: { kind: 'NPC', npcId: 'captain-thorne' },
+      knowledgeType: 'TESTIMONY',
+      statement: 'Thorne saw it.',
+      subjects: ['guild-caravan'],
+      attributedTo: 'captain-thorne',
+      knownSince: null,
+    };
+    const claim = (target: Record<string, string>) => ({
+      type: 'SetClaim',
+      target,
+      claim: { subjectId: 'guild-caravan', aspect: 'departure-time', value: 'at-noon' },
+    });
+
+    expect(
+      issuesOf(proposal(record, claim({ kind: 'knowledge', knowledgeId: 'thorne-saw' }))),
+    ).toEqual([]);
+    expect(
+      issuesOf(proposal(claim({ kind: 'knowledge', knowledgeId: 'thorne-departure' }))),
+    ).toEqual(['commands.0.target: unknown record "thorne-departure"']);
+    expect(issuesOf(proposal(claim({ kind: 'clue', clueId: 'clue-tracks-boots' })))).toEqual([
+      'commands.0.target: unknown record "clue-tracks-boots"',
+    ]);
+    expect(
+      issuesOf(proposal({ type: 'SetRelationship', npcId: 'captain-thorne', attitude: 'WARY' })),
+    ).toEqual([]);
+    expect(
+      issuesOf(proposal({ type: 'SetRelationship', npcId: 'secret-npc', attitude: 'WARY' })),
+    ).toEqual(['commands.0.npcId: unknown entity "secret-npc"']);
+  });
+
   it('caps issues at 20', () => {
     const many = Array.from({ length: 12 }, (_, i) => ({
       type: 'PlaceEntity',

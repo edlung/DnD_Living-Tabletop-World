@@ -23,7 +23,8 @@ import {
 } from './testing/world.ts';
 
 /**
- * Randomized authoring under undo (docs/adr/0018-ai-authoring.md §4, §6, §7).
+ * Randomized authoring under undo (docs/adr/0018-ai-authoring.md §4, §6, §7;
+ * docs/adr/0019-continuity-engine.md: claims, attitudes, deaths, premises).
  * The DM commits random proposals — valid, illegal, unsupported, with exact,
  * missing, or stale confirmations — renames and moves NPCs directly, the
  * player meets NPCs and asks them things, time passes, and the DM undoes
@@ -128,7 +129,26 @@ describe('authoring commits under random undo', () => {
             disclosure: pick(['WILLING', 'GUARDED'] as const),
           };
         }
-        if (roll < 0.84) {
+        if (roll < 0.78) {
+          // ADR 0019: claims compared with every account (and world truth), and attitudes.
+          const target = pick([...records, ...[...state.knowledge.keys()].slice(0, 40)]);
+          return rng() < 0.5
+            ? {
+                type: 'SetClaim',
+                target: { kind: 'knowledge', knowledgeId: target },
+                claim: {
+                  subjectId: pick(['guild-caravan', 'north-gate', ...created]),
+                  aspect: pick(['departure-time', 'cargo']),
+                  value: pick(['before-dawn', 'after-sunrise', 'grain']),
+                },
+              }
+            : {
+                type: 'SetRelationship',
+                npcId: pick([...holders, 'north-gate']),
+                attitude: pick(['HOSTILE', 'WARY', 'NEUTRAL', 'FRIENDLY', 'TRUSTED'] as const),
+              };
+        }
+        if (roll < 0.86) {
           return {
             type: 'PlaceEntity',
             entityId: pick([...holders, 'guild-caravan']),
@@ -148,24 +168,36 @@ describe('authoring commits under random undo', () => {
       };
 
       /** A plausible witness, as the DM would author one: often legal, sometimes warned about. */
+      /**
+       * A plausible witness, as the DM would author one: often legal, sometimes
+       * warned about. Sometimes an existing NPC (its commit then records the
+       * premise of its status), sometimes with a claim on the departure time.
+       */
       const witness = (
         state: Awaited<ReturnType<AuthoringWorld['state']>>,
         step: number,
       ): ResolvedProposable[] => {
-        const id = `witness-${String(step)}`;
         const knowledgeId = `witness-${String(step)}-saw`;
+        const existing = rng() < 0.35;
+        const id = existing
+          ? pick(['mira-vale', 'orin-stonebeard', 'captain-thorne'])
+          : `witness-${String(step)}`;
         return [
-          {
-            type: 'CreateEntity',
-            entityId: id,
-            kind: 'npc',
-            name: pick(NAMES),
-            existsSince: null,
-            placement: {
-              locationId: pick(LOCATIONS.slice(0, 4)),
-              since: pick([null, DEPARTURE, state.clock - 3_600]),
-            },
-          },
+          ...(existing
+            ? []
+            : [
+                {
+                  type: 'CreateEntity',
+                  entityId: id,
+                  kind: 'npc',
+                  name: pick(NAMES),
+                  existsSince: null,
+                  placement: {
+                    locationId: pick(LOCATIONS.slice(0, 4)),
+                    since: pick([null, DEPARTURE, state.clock - 3_600]),
+                  },
+                } as const,
+              ]),
           {
             type: 'AddKnowledge',
             knowledgeId,
@@ -176,8 +208,21 @@ describe('authoring commits under random undo', () => {
             attributedTo: id,
             knownSince: pick([null, DEPARTURE, state.clock]),
           },
-          ...(rng() < 0.7
+          ...(rng() < 0.6
             ? [{ type: 'SetDisclosure', knowledgeId, disclosure: 'WILLING' } as const]
+            : []),
+          ...(rng() < 0.5
+            ? [
+                {
+                  type: 'SetClaim',
+                  target: { kind: 'knowledge', knowledgeId },
+                  claim: {
+                    subjectId: 'guild-caravan',
+                    aspect: 'departure-time',
+                    value: pick(['before-dawn', 'after-sunrise']),
+                  },
+                } as const,
+              ]
             : []),
         ];
       };
@@ -219,6 +264,10 @@ describe('authoring commits under random undo', () => {
             { type: 'UpdateEntityProfile', entityId: pick(npcs), name: pick(NAMES) },
             { type: 'PlaceEntity', entityId: pick(npcs), locationId: pick(LOCATIONS) },
             { type: 'AdvanceWorldTime', by: 1_800 },
+            // Deaths and resurrections the death checks and their premises rest on.
+            { type: 'ChangeEntityStatus', entityId: pick(npcs), status: pick(['dead', 'active']) },
+            { type: 'ChangeEntityStatus', entityId: pick(npcs), status: pick(['dead', 'active']) },
+            { type: 'SetRelationship', npcId: pick(npcs), attitude: pick(['HOSTILE', 'FRIENDLY']) },
           ]);
           result = await world.engine.execute({
             commandId: `direct.${String(direct)}`,
