@@ -45,7 +45,13 @@ function occurrences(
   events: readonly RecordedEvent[],
   quest: QuestDefinition,
 ): { activation: Occurrence[]; milestones: Map<string, Occurrence[]> } {
-  const members = new Set(state.roster.keys());
+  // Everything a milestone asks of the past is read as it was at that event,
+  // never from the present state (Gate 05, G05-M01): who was in the party,
+  // where each thing was, and what each record was about. Location nesting
+  // is timeless (ADR 0006 §3).
+  const members = new Set<string>();
+  const placements = new Map<string, string>();
+  const subjectsOf = new Map<string, readonly string[]>();
   const within = (locationId: string | null, outer: string) =>
     locationId !== null &&
     state.entities.has(locationId) &&
@@ -64,8 +70,12 @@ function occurrences(
 
   for (const event of events) {
     switch (event.type) {
+      case 'CharacterAssigned':
+        members.add(event.payload.characterId);
+        break;
       case 'KnowledgeAssigned': {
         const record = event.payload;
+        subjectsOf.set(record.knowledgeId, record.subjects);
         if (record.scope.kind !== PARTY) break;
         const at = { worldTime: record.knownSince ?? event.worldTime, events: [event] };
         if (record.subjects.includes(quest.activation.subject)) activation.push(at);
@@ -99,13 +109,14 @@ function occurrences(
         const aboutSubject =
           memory.participants.includes(quest.activation.subject) ||
           memory.relatedKnowledge.some((id) =>
-            state.knowledge.get(id)?.subjects.includes(quest.activation.subject),
+            subjectsOf.get(id)?.includes(quest.activation.subject),
           );
         if (aboutSubject) activation.push({ worldTime: memory.occurredAt, events: [event] });
         break;
       }
       case 'EntityPlaced': {
         const { entityId, locationId, since } = event.payload;
+        placements.set(entityId, locationId);
         if (!members.has(entityId)) break;
         const at = { worldTime: since ?? event.worldTime, events: [event] };
         for (const milestone of quest.milestones) {
@@ -121,7 +132,8 @@ function occurrences(
       case 'EvidenceExamined': {
         const { characterId, entityId, scope } = event.payload;
         if (!members.has(characterId) || scope !== PARTY) break;
-        const place = state.entities.get(entityId)?.placement?.locationId ?? entityId;
+        // Where it was when examined: a later move changes nothing here.
+        const place = placements.get(entityId) ?? entityId;
         for (const milestone of quest.milestones) {
           if (milestone.kind === 'examined-at' && within(place, milestone.locationId)) {
             add(milestone, { worldTime: event.worldTime, events: [event] });

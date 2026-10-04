@@ -126,6 +126,15 @@ Memory suggestions (ADR 0024 §6) placed an arrival at the place first entered, 
 - **The UI allocation stays open.** The second open allocation in `docs/IMPLEMENTATION_PREREQUISITES.md` (which of Stages 200–230 owns the return, Chronicle, time, and Tomas UI) remains for the planning of those stages.
 - **Further quests** are definitions in the same file. A new milestone kind needs an amendment.
 
+## Amendments
+
+- 2026-10-04 (Gate 05 remediation, G05-M01): **a milestone reads the past as it was** (§2). The projection reads each condition from the effective history at the event that met it, never from the present state:
+  - where an examined thing stood when it was examined;
+  - who was in the party then, so a character's steps count only from when they joined;
+  - what a record was about.
+
+  A later move of evidence, at a later world time or later within the same one, never adds or removes an earlier milestone. Location nesting is timeless (ADR 0006 §3).
+
 ## Invariants affected
 
 Implements 15 (quest state is a projection).

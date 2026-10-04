@@ -134,6 +134,17 @@ Anything else is a 404, identical to a nonexistent memory.
 ## Amendments
 
 - 2026-10-04 (Stage 180, ADR 0025 §4): **an arrival is suggested where the member stood once that instant was over.** The Ravenford integration found arrivals placed at a place the party left again within the same world time, which the memory presence check (ADR 0010) rightly refused. None is suggested for a region only passed through.
+- 2026-10-04 (Gate 05 remediation, G05-H01): **a chapter rests on everything it was told with**, not only on what it tells (§4).
+  - **What `rests` adds.** It also holds:
+    - the profile (name) of every participant and place of every entry, which the entries' words and the prose were rendered from;
+    - the records whose statements entries quote;
+    - the party membership that selected a party member's move;
+    - the holder of a character's or NPC's perspective, and a character's membership in the party.
+
+    Undoing a rename beneath a standing chapter is therefore refused (`UNDO_UNSAFE`, naming the chapter) until the DM undoes the chapter.
+
+  - **Names now.** Every entry tells the name an entity has now, a new NPC's included (it used to tell the name it was created with).
+  - **Version 3.** `ChronicleGenerated` moves to version 3. Version 2 chapters, recorded by the Stages 170–180 writer, rest on everything before them, as earlier writers' commands do (ADR 0006 retest 3 amendment): undo beneath them is refused, they are re-decided as recorded, and they read and display exactly as stored. History: `fixtures/history/e9c05ad-chronicle-names.json`.
 
 ## Invariants affected
 

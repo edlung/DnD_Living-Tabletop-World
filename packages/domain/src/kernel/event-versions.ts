@@ -5,6 +5,7 @@ import {
   premisesRecordedPayloadSchema,
   recordedPremisesPayloadSchema,
 } from '../investigation/events.ts';
+import { chronicleGeneratedPayloadSchema } from '../chronicle/records.ts';
 import { memoryRecordedPayloadSchema } from '../memory/events.ts';
 import type { KernelEventType } from './events.ts';
 
@@ -66,6 +67,18 @@ const VERSIONING: Partial<Record<KernelEventType, Versioning>> = {
     current: 3,
     written: contradictionDetectedPayloadSchema,
     earlier: { 1: contradictionDetectedPayloadSchema, 2: contradictionDetectedPayloadSchema },
+  },
+  /**
+   * 3 (Gate 05, G05-H01): a chapter's `rests` hold every premise of its
+   * entries and prose, the names it used among them. Version 2 chapters
+   * (Stages 170–180) rested only on what they told, so they rest on
+   * everything before them. No version 1 was ever written. The payload is
+   * read alike.
+   */
+  ChronicleGenerated: {
+    current: 3,
+    written: chronicleGeneratedPayloadSchema,
+    earlier: { 2: chronicleGeneratedPayloadSchema },
   },
 };
 

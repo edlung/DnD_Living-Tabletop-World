@@ -15,6 +15,11 @@ import { salientEvents } from './salience.ts';
  * events: each memory it may see in the window, with the related knowledge
  * it may see and that knowledge's epistemic type. The DM is told from
  * salient events. At most 40, the most salient, in world-time order.
+ *
+ * A chapter rests on everything it tells and everything it was told with
+ * (Gate 05, G05-H01): the memories, records, and events it tells; the names
+ * of everyone and everywhere its entries and prose use; the party membership
+ * that selected an entry; and the holder whose perspective it is told from.
  */
 export interface ChronicleDraft {
   readonly entries: StoredEntry[];
@@ -58,6 +63,29 @@ function memoryEntries(
     });
 }
 
+/** What an entry's words and selection rest on, beyond the source it tells. */
+function premisesOf(entry: Omit<StoredEntry, 'key'>): string[] {
+  const named = [...entry.participants, ...(entry.locationId === null ? [] : [entry.locationId])];
+  const member =
+    entry.source.kind === 'event' && entry.source.eventType === 'EntityPlaced'
+      ? entry.participants.map((id) => facts.rosterCharacter(id))
+      : [];
+  return [
+    ...named.map((id) => facts.entityProfile(id)),
+    ...entry.knowledge.map(({ knowledgeId }) => facts.knowledge(knowledgeId)),
+    ...member,
+  ];
+}
+
+/** What the perspective itself rests on: its holder, and a character's place in the party. */
+function perspectivePremises(perspective: ResolvedPerspective): string[] {
+  const holder = perspective.holderId;
+  if (holder === null) return [];
+  return perspective.kind === 'CHARACTER'
+    ? [facts.entity(holder), facts.rosterCharacter(holder)]
+    : [facts.entity(holder)];
+}
+
 const orderKey = (entry: Omit<StoredEntry, 'key'>) =>
   entry.source.kind === 'memory'
     ? entry.source.memoryId
@@ -82,6 +110,11 @@ export function chronicleEntries(
     .sort(chronological);
   return {
     entries: kept.map(({ entry }, index) => ({ key: `e${String(index + 1)}`, ...entry })),
-    rests: [...new Set(kept.flatMap(({ rests }) => rests))].sort(),
+    rests: [
+      ...new Set([
+        ...kept.flatMap(({ entry, rests }) => [...rests, ...premisesOf(entry)]),
+        ...perspectivePremises(perspective),
+      ]),
+    ].sort(),
   };
 }

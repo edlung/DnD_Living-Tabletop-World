@@ -14,7 +14,7 @@ import type { StoredEntry } from './records.ts';
  */
 export interface SalientEvent {
   readonly entry: Omit<StoredEntry, 'key'>;
-  /** The facts the event wrote; a chapter telling it rests on them. */
+  /** The facts the event wrote; a chapter telling it rests on them (and on the names it uses). */
   readonly rests: readonly string[];
 }
 
@@ -160,7 +160,7 @@ export function salientEvents(
         if (event.payload.kind !== 'npc') break;
         entry = {
           ...base,
-          text: `${event.payload.name} entered the story.`,
+          text: `${name(event.payload.entityId)} entered the story.`,
           salience: 3,
           participants: [event.payload.entityId],
         };

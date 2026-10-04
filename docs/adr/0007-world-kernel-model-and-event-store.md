@@ -86,6 +86,10 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Gate 05 remediation (2026-10-04), G05-H01: complete chapter premises.**
+  - `ChronicleGenerated` moves to version 3: its `rests` hold every premise of its entries and prose, the names they used among them.
+  - Version 2 chapters (Stages 170–180) are read alike, and rest on everything before them (`writtenEarlier`). No version 1 was ever written.
+  - History: `fixtures/history/e9c05ad-chronicle-names.json`.
 - **Stage 170 (2026-10-04), ADR 0024: Chronicle.**
   - New command `GenerateChronicle` (DM or system; refused on the generic HTTP route) and event `ChronicleGenerated`, listed in `INTRODUCED_AT`. The event holds the recomputed entries, the checked prose, and `rests`. New rejection code `INVALID_CHRONICLE`.
   - **Footprint.** The event reads the clock and every fact in `rests`, and writes `chronicle:<id>`. Restore `chronicle` removes it.

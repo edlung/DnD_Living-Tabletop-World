@@ -18,7 +18,14 @@ Chapters told from a perspective, traced to their source events; memory suggesti
 Rules:
 
 - A non-DM chapter never reads raw events: memories the perspective may see, and the knowledge it may see (ADR 0010). Keep every entry's epistemic types.
-- The World Engine recomputes the entries and checks the prose; it never interprets prose. A chapter writes only `chronicle:<id>` and rests on what it tells (`rests`).
+- The World Engine recomputes the entries and checks the prose; it never interprets prose. A chapter writes only `chronicle:<id>` and rests (`rests`) on what it tells and on everything it was told with:
+  - the names of its participants and places;
+  - the records it quotes;
+  - the membership that selected an entry;
+  - its perspective's holder.
+
+  Anything new an entry reads or a renderer is given must join `rests` (`premisesOf`, `perspectivePremises` in `entries.ts`), or undo can leave the chapter founded on a removed fact (Gate 05, G05-H01). `ChronicleGenerated` version 2 chapters rest on everything before them.
+
 - Entries name sources by record or by command and event index, never by event ID or sequence, so the re-decision oracle reproduces them. Views resolve them; sequences and trace IDs are the DM's only.
 - Suggestions record nothing. Changing the salience table or suggestion kinds changes what the DM sees: amend ADR 0024.
-- Tests: `chronicle.test.ts` (the gate, epistemic types, prose rules, no mutation, undo), `suggestions.test.ts`, `flashback.test.ts`, `defense.test.ts`, `chronicle.property.test.ts` (random memories, chapters, undos, oracle); prose rendering in `packages/ai/src/chronicle.test.ts`; Chapter I over HTTP in `apps/server/src/http/chronicle-routes.test.ts`.
+- Tests: `chronicle.test.ts` (the gate, epistemic types, prose rules, no mutation, undo), `suggestions.test.ts`, `flashback.test.ts`, `defense.test.ts`, `gate05-h01.test.ts` (`chronicle_protects_generated_name_dependencies`), `chronicle.property.test.ts` (random memories, chapters, undos, oracle); prose rendering in `packages/ai/src/chronicle.test.ts`; Chapter I over HTTP in `apps/server/src/http/chronicle-routes.test.ts`.
