@@ -189,3 +189,20 @@ export type {
   EncounterView,
   ReactionWindowView,
 } from './combat/views.ts';
+export {
+  AI_CAPABILITIES,
+  INTENT_STATUSES,
+  commandProposalSchema,
+  dmIntentRequestSchema,
+  proposableCommandSchema,
+  type AiAttemptView,
+  type AiCapability,
+  type AiTraceView,
+  type AttemptKind,
+  type AttemptOutcome,
+  type CommandProposal,
+  type DmIntentRequest,
+  type DmIntentResponse,
+  type IntentStatus,
+  type ProposableCommand,
+} from './ai-gateway/intents.ts';

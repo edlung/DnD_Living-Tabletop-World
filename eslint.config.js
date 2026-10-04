@@ -10,7 +10,7 @@ import tseslint from 'typescript-eslint';
 /**
  * Module boundaries come from workspace-boundaries.json so ESLint and
  * tests/architecture/ enforce the same dependency graph.
- * @typedef {{ path: string, mayDependOn: string[], forbiddenGroups: string[] }} PackageRule
+ * @typedef {{ path: string, mayDependOn: string[], forbiddenGroups: string[], forbiddenNames?: Record<string, string[]> }} PackageRule
  * @typedef {{ moduleGroups: Record<string, string[]>, packages: Record<string, PackageRule> }} Boundaries
  */
 const boundaries = /** @type {Boundaries} */ (
@@ -18,7 +18,7 @@ const boundaries = /** @type {Boundaries} */ (
 );
 const workspacePackages = Object.keys(boundaries.packages);
 
-const boundaryConfigs = Object.entries(boundaries.packages).map(([name, rule]) => {
+const boundaryConfigs = Object.entries(boundaries.packages).flatMap(([name, rule]) => {
   const disallowedWorkspace = workspacePackages.filter(
     (other) => other !== name && !rule.mayDependOn.includes(other),
   );
@@ -40,11 +40,29 @@ const boundaryConfigs = Object.entries(boundaries.packages).map(([name, rule]) =
       message: `${name} must not import ${group} modules (ARCHITECTURE_INVARIANTS.md; docs/adr/0004-module-boundaries.md).`,
     })),
   ];
-  return {
+  const files = [`${rule.path}/**/*.{ts,tsx,js,mjs}`];
+  const base = {
     name: `ltw/boundaries/${name}`,
-    files: [`${rule.path}/**/*.{ts,tsx,js,mjs}`],
+    files,
     rules: { 'no-restricted-imports': ['error', { patterns }] },
   };
+  const named = Object.entries(rule.forbiddenNames ?? {});
+  if (named.length === 0) return [base];
+  // Named exports barred from production sources; tests and testing/ may seed through them.
+  const paths = named.map(([module, importNames]) => ({
+    name: module,
+    importNames,
+    message: `${name} must not use these ${module} exports outside tests (docs/adr/0004-module-boundaries.md).`,
+  }));
+  return [
+    base,
+    {
+      name: `ltw/boundaries/${name}/names`,
+      files,
+      ignores: [`${rule.path}/**/*.test.ts`, `${rule.path}/**/testing/**`],
+      rules: { 'no-restricted-imports': ['error', { paths, patterns }] },
+    },
+  ];
 });
 
 export default defineConfig(

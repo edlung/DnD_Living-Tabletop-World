@@ -36,6 +36,15 @@ describe('ESLint module-boundary enforcement', () => {
     ['apps/web/src/probe.ts', "import 'openai';", /ai-providers/],
     ['apps/web/src/probe.ts', "import '@ltw/server';", /may depend only on/],
     ['apps/server/src/probe.ts', "import '@ltw/domain/src/internal';", /public entry point/],
+    ['packages/ai/src/probe.ts', "import { WorldEngine } from '@ltw/domain';", /outside tests/],
+    ['packages/ai/src/probe.ts', "import { evolve } from '@ltw/domain';", /outside tests/],
+    ['packages/ai/src/probe.ts', "import '@anthropic-ai/sdk';", /ai-providers/],
+    ['packages/ai/src/probe.ts', "import 'node:fs';", /server-io/],
+    ['packages/ai/src/probe.ts', "import 'pg';", /persistence-drivers/],
+    ['packages/ai/src/probe.ts', "import '@ltw/server';", /may depend only on/],
+    ['packages/ai/src/probe.ts', "import '@ltw/rules';", /may depend only on/],
+    ['packages/domain/src/probe.ts', "import '@ltw/ai';", /may depend only on/],
+    ['apps/web/src/probe.ts', "import '@ltw/ai';", /may depend only on/],
   ])('%s rejects %s', async (filePath, source, expected) => {
     const messages = await restrictedImports(filePath, source);
 
@@ -51,6 +60,10 @@ describe('ESLint module-boundary enforcement', () => {
     ['apps/web/src/probe.ts', "import '@ltw/ui';"],
     ['apps/server/src/probe.ts', "import 'pg';"],
     ['apps/server/src/probe.ts', "import '@ltw/rules';"],
+    ['apps/server/src/probe.ts', "import '@ltw/ai';"],
+    ['packages/ai/src/probe.ts', "import { knownEntities, type WorldState } from '@ltw/domain';"],
+    ['packages/ai/src/testing/probe.ts', "import { WorldEngine } from '@ltw/domain';"],
+    ['packages/ai/src/probe.test.ts', "import { WorldEngine } from '@ltw/domain';"],
   ])('%s allows %s', async (filePath, source) => {
     expect(await restrictedImports(filePath, source)).toEqual([]);
   });

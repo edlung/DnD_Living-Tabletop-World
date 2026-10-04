@@ -1,3 +1,10 @@
+import {
+  CapabilityRouter,
+  InMemoryAiTraceStore,
+  createLocalProvider,
+  type AiProvider,
+  type IntentDeps,
+} from '@ltw/ai';
 import { createCombatEngine } from '@ltw/combat';
 import {
   InMemoryEventStore,
@@ -55,8 +62,29 @@ export async function seededEngine(
   return engine;
 }
 
-export async function ravenfordApp(engine?: WorldEngine): Promise<FastifyInstance> {
+/** A deterministic AI gateway: the given providers (default: local only) and in-memory traces. */
+export function testAiGateway(...providers: AiProvider[]): IntentDeps & {
+  readonly traces: InMemoryAiTraceStore;
+} {
+  const ids = new SequentialIds(0xa1);
+  const clock = new SteppingClock();
+  let ms = 0;
+  return {
+    router: new CapabilityRouter({
+      reasoning: providers.length > 0 ? providers : [createLocalProvider()],
+    }),
+    traces: new InMemoryAiTraceStore(),
+    ids,
+    clock: { now: () => clock.now(), nowMs: () => (ms += 5) },
+  };
+}
+
+export async function ravenfordApp(
+  engine?: WorldEngine,
+  ai: IntentDeps = testAiGateway(),
+): Promise<FastifyInstance> {
   const app = buildApp({
+    ai,
     engine: engine ?? (await seededEngine()),
     authenticator: await loadDevPersonaAuthenticator(DEFAULT_PERSONAS_FILE),
     logger: createLogger({ service: 'http-test', level: 'silent' }),

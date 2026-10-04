@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
+import { inspect } from 'node:util';
+
 import {
   ConfigError,
+  DEFAULT_AI_MODEL,
   DEFAULT_PERSONAS_FILE,
   DEV_DATABASE_URL,
   describeDatabaseUrl,
@@ -18,6 +21,7 @@ describe('loadConfig', () => {
       http: { host: '127.0.0.1', port: 3000 },
       databaseUrl: DEV_DATABASE_URL,
       auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
+      ai: { anthropic: null },
     });
     expect(DEFAULT_PERSONAS_FILE).toMatch(/fixtures\/ravenford\/personas\.json$/);
     expect(Object.isFrozen(config)).toBe(true);
@@ -99,5 +103,55 @@ describe('describeDatabaseUrl', () => {
     expect(describeDatabaseUrl('postgres://user:pw@db.internal:5432/ltw')).toBe(
       'postgres://db.internal:5432/ltw',
     );
+  });
+
+  describe('AI provider (ADR 0017 §2)', () => {
+    const KEY = 'sk-ant-test-key-never-shown';
+
+    it('enables the Anthropic adapter only when a key is set', () => {
+      expect(loadConfig({ ANTHROPIC_API_KEY: '' }).ai.anthropic).toBeNull();
+      const anthropic = loadConfig({ ANTHROPIC_API_KEY: KEY }).ai.anthropic;
+
+      expect(anthropic?.apiKey.reveal()).toBe(KEY);
+      expect(anthropic).toMatchObject({ model: DEFAULT_AI_MODEL, timeoutMs: 30_000 });
+      expect(DEFAULT_AI_MODEL).toBe('claude-opus-5-5');
+    });
+
+    it('reads the model and timeout', () => {
+      const anthropic = loadConfig({
+        ANTHROPIC_API_KEY: KEY,
+        LTW_AI_MODEL: 'claude-sonnet-5-5',
+        LTW_AI_TIMEOUT_MS: '5000',
+      }).ai.anthropic;
+
+      expect(anthropic).toMatchObject({ model: 'claude-sonnet-5-5', timeoutMs: 5_000 });
+    });
+
+    it('never renders the key in JSON, strings, or inspection', () => {
+      const config = loadConfig({ ANTHROPIC_API_KEY: KEY });
+
+      expect(JSON.stringify(config)).not.toContain(KEY);
+      expect(inspect(config, { depth: 10 })).not.toContain(KEY);
+      expect(String(config.ai.anthropic?.apiKey)).toBe('[redacted]');
+    });
+
+    it.each([
+      ['LTW_AI_TIMEOUT_MS', '7'],
+      ['LTW_AI_MODEL', 'Bad Model!'],
+    ])('rejects an invalid %s without echoing it', (name, value) => {
+      const error = (() => {
+        try {
+          loadConfig({ ANTHROPIC_API_KEY: KEY, [name]: value });
+        } catch (caught) {
+          return caught;
+        }
+        return null;
+      })();
+
+      expect(error).toBeInstanceOf(ConfigError);
+      expect((error as ConfigError).message).toContain(name);
+      expect((error as ConfigError).message).not.toContain(value);
+      expect((error as ConfigError).message).not.toContain(KEY);
+    });
   });
 });

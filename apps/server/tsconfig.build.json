@@ -23,6 +23,9 @@
     },
     {
       "path": "../../packages/combat/tsconfig.build.json"
+    },
+    {
+      "path": "../../packages/ai/tsconfig.build.json"
     }
   ]
 }

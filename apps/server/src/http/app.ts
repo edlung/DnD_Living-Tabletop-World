@@ -1,11 +1,13 @@
 import { randomUUID } from 'node:crypto';
 
+import type { IntentDeps } from '@ltw/ai';
 import type { WorldEngine } from '@ltw/domain';
 import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } from 'fastify';
 
 import type { Logger } from '../platform/logging/logger.ts';
 import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
+import { registerAiRoutes } from './routes/ai-routes.ts';
 import { registerCommandRoutes } from './routes/command-routes.ts';
 import { registerContextRoutes } from './routes/context-routes.ts';
 import { registerEncounterRoutes } from './routes/encounter-routes.ts';
@@ -21,6 +23,8 @@ export interface AppDependencies {
   readonly engine: WorldEngine;
   readonly authenticator: Authenticator;
   readonly logger: Logger;
+  /** The AI gateway (docs/adr/0017-ai-gateway.md); it has no write path. */
+  readonly ai: IntentDeps;
 }
 
 export function buildApp(deps: AppDependencies): FastifyInstance {
@@ -58,5 +62,6 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerContextRoutes(app, deps);
   registerEncounterRoutes(app, deps);
   registerCommandRoutes(app, deps);
+  registerAiRoutes(app, deps);
   return app;
 }

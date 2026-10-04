@@ -1,0 +1,19 @@
+{
+  "name": "@ltw/ai",
+  "version": "0.0.0",
+  "private": true,
+  "description": "AI gateway: provider ports, capability routing, scoped context, structured proposals, traces. Pure, no I/O; proposes only.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@ltw/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@ltw/contracts": "workspace:*",
+    "@ltw/domain": "workspace:*",
+    "zod": "^4.6.5"
+  }
+}

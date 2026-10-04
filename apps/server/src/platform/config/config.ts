@@ -28,7 +28,44 @@ export interface AppConfig {
     /** Persona token file; set only in dev-personas mode. */
     readonly personasFile: string | null;
   };
+  /** docs/adr/0017-ai-gateway.md §2 */
+  readonly ai: {
+    /** The Anthropic adapter; null (local provider only) unless a key is set. */
+    readonly anthropic: {
+      readonly apiKey: Secret;
+      readonly model: string;
+      readonly timeoutMs: number;
+    } | null;
+  };
 }
+
+/** A value that renders as `[redacted]` in logs, JSON, and inspection; read it with `reveal()`. */
+export class Secret {
+  readonly #value: string;
+
+  constructor(value: string) {
+    this.#value = value;
+  }
+
+  reveal(): string {
+    return this.#value;
+  }
+
+  toJSON(): string {
+    return '[redacted]';
+  }
+
+  toString(): string {
+    return '[redacted]';
+  }
+
+  [Symbol.for('nodejs.util.inspect.custom')](): string {
+    return '[redacted]';
+  }
+}
+
+export const DEFAULT_AI_MODEL = 'claude-opus-5-5';
+export const DEFAULT_AI_TIMEOUT_MS = 30_000;
 
 export type Env = Readonly<Record<string, string | undefined>>;
 
@@ -64,6 +101,18 @@ const envSchema = z.object({
   DATABASE_URL: z.preprocess(emptyAsUndefined, z.url({ protocol: /^postgres(ql)?$/ }).optional()),
   AUTH_MODE: z.preprocess(emptyAsUndefined, z.enum(['dev-personas', 'disabled']).optional()),
   DEV_PERSONAS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
+  ANTHROPIC_API_KEY: z.preprocess(emptyAsUndefined, z.string().trim().min(1).optional()),
+  LTW_AI_MODEL: z.preprocess(
+    emptyAsUndefined,
+    z
+      .string()
+      .regex(/^[a-z0-9][a-z0-9.-]{0,99}$/)
+      .default(DEFAULT_AI_MODEL),
+  ),
+  LTW_AI_TIMEOUT_MS: z.preprocess(
+    emptyAsUndefined,
+    z.coerce.number().int().min(1_000).max(300_000).default(DEFAULT_AI_TIMEOUT_MS),
+  ),
 });
 
 export class ConfigError extends Error {
@@ -122,6 +171,16 @@ export function loadConfig(env: Env = process.env): AppConfig {
       mode: authMode,
       personasFile:
         authMode === 'dev-personas' ? (values.DEV_PERSONAS_FILE ?? DEFAULT_PERSONAS_FILE) : null,
+    }),
+    ai: Object.freeze({
+      anthropic:
+        values.ANTHROPIC_API_KEY === undefined
+          ? null
+          : Object.freeze({
+              apiKey: new Secret(values.ANTHROPIC_API_KEY),
+              model: values.LTW_AI_MODEL,
+              timeoutMs: values.LTW_AI_TIMEOUT_MS,
+            }),
     }),
   });
 }

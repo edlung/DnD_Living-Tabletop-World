@@ -1,5 +1,7 @@
 import pg from 'pg';
 
+import { createAiGateway } from './ai/gateway.ts';
+import { PostgresAiTraceStore } from './ai/postgres-trace-store.ts';
 import { buildApp } from './http/app.ts';
 import { disabledAuthenticator, loadDevPersonaAuthenticator } from './http/auth.ts';
 import { describeDatabaseUrl, loadConfig } from './platform/config/config.ts';
@@ -23,13 +25,15 @@ async function main(): Promise<void> {
     logger.warn('development persona authentication is enabled (never use in production)');
   }
 
-  const app = buildApp({ engine: createWorldEngine(pool), authenticator, logger });
+  const ai = createAiGateway(config.ai, new PostgresAiTraceStore(pool));
+  const app = buildApp({ engine: createWorldEngine(pool), authenticator, logger, ai });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
     {
       nodeEnv: config.nodeEnv,
       authMode: config.auth.mode,
       database: describeDatabaseUrl(config.databaseUrl),
+      aiProviders: ai.router.providersFor('reasoning').map((provider) => provider.id),
     },
     'server ready',
   );

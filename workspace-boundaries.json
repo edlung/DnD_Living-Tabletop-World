@@ -1,5 +1,5 @@
 {
-  "$comment": "Single source of truth for workspace dependency direction (docs/adr/0004-module-boundaries.md). Enforced by eslint.config.js and tests/architecture/. Changing an edge is an architecture decision: update the ADR first.",
+  "$comment": "Single source of truth for workspace dependency direction (docs/adr/0004-module-boundaries.md). Enforced by eslint.config.js and tests/architecture/. Changing an edge is an architecture decision: update the ADR first. forbiddenNames bars named exports of an allowed package from non-test sources.",
   "moduleGroups": {
     "ai-providers": [
       "openai",
@@ -68,6 +68,27 @@
       "mayDependOn": ["@ltw/combat", "@ltw/rules", "@ltw/domain", "@ltw/contracts"],
       "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
     },
+    "@ltw/ai": {
+      "path": "packages/ai",
+      "mayDependOn": ["@ltw/domain", "@ltw/contracts"],
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"],
+      "forbiddenNames": {
+        "@ltw/domain": [
+          "WorldEngine",
+          "InMemoryEventStore",
+          "evolve",
+          "replay",
+          "foldDrafts",
+          "accept",
+          "reject",
+          "premisesEvent",
+          "magicDiscoveryEvents",
+          "redecideEffective",
+          "submissionsFromScript",
+          "parseStoredCommand"
+        ]
+      }
+    },
     "@ltw/ui": {
       "path": "packages/ui",
       "mayDependOn": ["@ltw/contracts"],
@@ -75,7 +96,14 @@
     },
     "@ltw/server": {
       "path": "apps/server",
-      "mayDependOn": ["@ltw/combat", "@ltw/context", "@ltw/domain", "@ltw/rules", "@ltw/contracts"],
+      "mayDependOn": [
+        "@ltw/ai",
+        "@ltw/combat",
+        "@ltw/context",
+        "@ltw/domain",
+        "@ltw/rules",
+        "@ltw/contracts"
+      ],
       "forbiddenGroups": []
     },
     "@ltw/web": {

@@ -13,7 +13,15 @@ const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 
 interface Boundaries {
   moduleGroups: Record<string, string[]>;
-  packages: Record<string, { path: string; mayDependOn: string[]; forbiddenGroups: string[] }>;
+  packages: Record<
+    string,
+    {
+      path: string;
+      mayDependOn: string[];
+      forbiddenGroups: string[];
+      forbiddenNames?: Record<string, string[]>;
+    }
+  >;
 }
 
 interface Manifest {
@@ -99,7 +107,28 @@ describe('workspace boundaries', () => {
       expect(boundaries.packages[client]?.mayDependOn).not.toContain('@ltw/rules');
       expect(boundaries.packages[client]?.mayDependOn).not.toContain('@ltw/context');
       expect(boundaries.packages[client]?.mayDependOn).not.toContain('@ltw/combat');
+      expect(boundaries.packages[client]?.mayDependOn).not.toContain('@ltw/ai');
       expect(boundaries.packages[client]?.forbiddenGroups).toContain('ai-providers');
+    }
+  });
+
+  it('keeps the AI gateway pure and off the World Engine (ADR 0017 §1)', () => {
+    const ai = boundaries.packages['@ltw/ai'];
+    expect(ai?.mayDependOn.sort()).toEqual(['@ltw/contracts', '@ltw/domain']);
+    expect(ai?.forbiddenGroups.sort()).toEqual([
+      'ai-providers',
+      'persistence-drivers',
+      'server-io',
+    ]);
+    expect(ai?.forbiddenNames?.['@ltw/domain']).toEqual(
+      expect.arrayContaining(['WorldEngine', 'InMemoryEventStore', 'evolve', 'replay']),
+    );
+    for (const [name, rule] of entries) {
+      for (const [module] of Object.entries(rule.forbiddenNames ?? {})) {
+        expect(rule.mayDependOn, `${name} forbiddenNames on undeclared ${module}`).toContain(
+          module,
+        );
+      }
     }
   });
 

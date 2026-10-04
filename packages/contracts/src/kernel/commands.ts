@@ -75,7 +75,7 @@ const createCampaign = z
   })
   .strict();
 
-const createEntity = z
+export const createEntityCommandSchema = z
   .object({
     type: z.literal('CreateEntity'),
     entityId: entityIdSchema.optional(),
@@ -97,11 +97,11 @@ const createEntity = z
   })
   .strict();
 
-const placeEntity = z
+export const placeEntityCommandSchema = z
   .object({ type: z.literal('PlaceEntity'), entityId: entityIdSchema, locationId: entityIdSchema })
   .strict();
 
-const updateEntityProfile = z
+export const updateEntityProfileCommandSchema = z
   .object({
     type: z.literal('UpdateEntityProfile'),
     entityId: entityIdSchema,
@@ -110,7 +110,7 @@ const updateEntityProfile = z
   })
   .strict();
 
-const changeEntityStatus = z
+export const changeEntityStatusCommandSchema = z
   .object({
     type: z.literal('ChangeEntityStatus'),
     entityId: entityIdSchema,
@@ -130,7 +130,7 @@ const startScene = z
 const endScene = z.object({ type: z.literal('EndScene'), sceneId: sceneIdSchema }).strict();
 
 /** Exactly one of `by` (duration) or `to` (absolute world time). */
-const advanceWorldTime = z
+export const advanceWorldTimeCommandSchema = z
   .object({
     type: z.literal('AdvanceWorldTime'),
     by: worldDurationSchema.optional(),
@@ -145,13 +145,13 @@ const undoCommand = z
 export const kernelCommandSchema = z
   .discriminatedUnion('type', [
     createCampaign,
-    createEntity,
-    placeEntity,
-    updateEntityProfile,
-    changeEntityStatus,
+    createEntityCommandSchema,
+    placeEntityCommandSchema,
+    updateEntityProfileCommandSchema,
+    changeEntityStatusCommandSchema,
     startScene,
     endScene,
-    advanceWorldTime,
+    advanceWorldTimeCommandSchema,
     undoCommand,
     addKnowledgeCommandSchema,
     recordMemoryCommandSchema,
