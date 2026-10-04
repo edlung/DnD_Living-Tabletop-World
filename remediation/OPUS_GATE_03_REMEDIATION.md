@@ -145,3 +145,92 @@ Astra: independently retest G03-H01, G03-H02, and G03-H03 and their adjacent att
 ## Hard Stop
 
 Opus stops here. Do not begin Stage 100 until Astra writes PASS.
+
+---
+
+# Remediation for Retest 2 (after `reviews/ASTRA_GATE_03_RETEST_1.md`)
+
+- Astra report: `reviews/ASTRA_GATE_03_RETEST_1.md` (FAIL: G03-H04 High). G03-H01, the original G03-H02 reproduction, and G03-H03 were confirmed closed.
+- Retest number / required output path: 2 — `reviews/ASTRA_GATE_03_RETEST_2.md`
+- Revision before remediation: `88d8137401451dd6a6d6703217bf53e273a2ede4`
+- Revision after remediation: `b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750` (fixes in `447e31f`; `b38cbbc` widens the isolation test)
+- Builder: Claude Opus 5.5, MAX
+- Status: AWAITING_ASTRA_RETEST
+
+## G03-H04 — An unrelated active encounter removes target dependencies from out-of-encounter spells
+
+- **Severity:** High
+- **Violated invariant:** 1, 12; ADR 0006 §8; ADR 0007 (complete premises); ADR 0015's Gate 03 amendment.
+- **Root cause:**
+  - Two different tests decided "in combat":
+    - the spell planner (`characterSpellPlan`), and therefore legality, asks whether the caster is a combatant;
+    - `castEvents` and `combatPremiseList` asked only whether some encounter exists.
+  - With a fight running that the caster was not in, legality was decided as outside combat, but the premises were recorded as if in combat:
+    - the target's existence, status, and placement and the caster's own placement were dropped;
+    - the unrelated fight's combatants were recorded instead.
+- **Regression tests added first** (the failing cases failed on `88d8137`; the controls passed):
+  - `packages/combat/src/gate03-h04-regressions.test.ts`, `outside_encounter_cast_retains_target_premises_during_another_fight`:
+    - Hunter's Mark and Healing Word, each against undo of the target's creation, revival, and placement and of the caster's placement, with no fight and with a fight without the caster: 16 cases.
+    - The caster in the fight: undo of the target's revival, for both spells.
+    - Isolation, for Hunter's Mark, Healing Word, and Detect Magic: with everyone on the road and magic on the Shaman and a bystander, a fight the caster is not in yields exactly the premises and revealed clues of no fight.
+    - Each undo case checks an atomic `UNDO_UNSAFE` naming the cast, reverse-order recovery, and replay, integrity, window legality, and re-decision.
+    - Checked on a scratch worktree of `88d8137`: the 8 fight-without-caster cases, the 3 isolation cases, and the unreached-clue test below fail (12); the no-fight and caster-in-fight controls pass (10).
+  - `apps/server/src/world-engine/gate03-regressions.integration.test.ts`, `G03-H04 on PostgreSQL`: both spells × creation, revival, and placement over HTTP. After a restart with a fresh engine, the rejection names the cast and leaves the version unchanged; reverse-order recovery works; the history is checked from the database. All 6 fail on `88d8137`.
+- **Fix:** one participation test, the planner's own.
+  - `castEvents` (`packages/combat/src/spells.ts`) treats a cast as in combat only when the plan has the caster's combatant record. Outside it, the cast records its target's `vitals` and perception, and with them the caster's placement, as with no fight.
+  - `combatPremiseList` (`packages/combat/src/refusal.ts`) records combatants only for an actor that takes part in the encounter.
+  - A dead check at the top of `decideCastSpell` that also tested only an encounter's existence (it could never trigger) is removed.
+- **Audit of every other "in combat" decision:** all already use participation, and none needed a change:
+  - the spell planner;
+  - `onTurn` (moves, attacks, monster spells, turn ends; a monster outside the fight gets `NOT_IN_COMBAT`);
+  - reaction answers (membership);
+  - suspension and completion (the caster's record);
+  - the pause rule;
+  - Detect Magic's radius;
+  - the Context Engine frame;
+  - the encounter view.
+- **Randomized coverage:**
+  - `reactions/property.test.ts` now has Bram, a character on the road outside the fight. He casts Hunter's Mark and Healing Word at bystanders and goblins, and comes and goes, while the DM brings, moves, kills, and revives bystanders.
+  - The what-if undo check covers the last 6 commands, and the suite runs 12 seeds.
+  - The pause check is now an invariant: nothing accepted during a window, other than its answers, its close, and undo, wrote a fact the window depends on. It no longer relies on a list of command types.
+  - On `88d8137` the new suite fails seeds 1337 and 3. With only the participation test in `castEvents` reverted, it still fails (seed 1337).
+
+## Found by the strengthened randomized suite: Detect Magic did not record the clues it could not reach
+
+- **Defect:** the first remediation's sensing premises recorded where each unreached magic-bearing entity was, but not that the cast had read the clue itself. Undoing the creation of such a clue changed which premises the cast would record, so re-decision diverged; the revealed results did not change.
+- **Test:** `gate03-h04-regressions.test.ts`, "a clue it passed over, out of reach, cannot be taken back beneath it". It fails on `88d8137`. With the fix removed, the randomized suite also fails (seeds 3 and 13).
+- **Fix:** premise `unreached` (the clue, its entity, and that entity's placement) replaces `placement` (`domain/investigation/reveal.ts`, `events.ts`, `evolve.ts`, `kernel/facts.ts`). The revealed results and every player-visible output are unchanged; only more undos are refused. ADR 0013 records it as a dated amendment.
+
+## Validation (revision `b38cbbc`; Node 25.8.1, pnpm 11.11.0, PostgreSQL 18)
+
+| Command                                                                                                                                                                                                                                       | Result                                                                                                                                                                                                                                                                                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `pnpm validate:ci-local` (format, lint, typecheck, budget, unit, clean build, migrate ×2, seed ×2, integration)                                                                                                                               | PASS on `b38cbbc`                                                                                                                                                                                                                                                                                                                                                                                            |
+| `pnpm test`                                                                                                                                                                                                                                   | PASS — 77 files, 915 tests                                                                                                                                                                                                                                                                                                                                                                                   |
+| `pnpm test:integration`                                                                                                                                                                                                                       | PASS — 9 files, 42 tests (6 new: G03-H04 on PostgreSQL)                                                                                                                                                                                                                                                                                                                                                      |
+| `pnpm context-budget`                                                                                                                                                                                                                         | PASS — 264 active files, 0 over 500 lines, 0 over 700                                                                                                                                                                                                                                                                                                                                                        |
+| Fresh volume: `pnpm db:migrate` ×2, `pnpm seed:ravenford` ×2                                                                                                                                                                                  | PASS — the migration applied once; 91 commands, version 100, 25 entities; the second runs change nothing                                                                                                                                                                                                                                                                                                     |
+| A larger randomized campaign, run temporarily and then deleted: 80 combat seeds × 120 steps, 60 domain seeds                                                                                                                                  | Every integrity, replay, pause, range, undo-safety, and re-decision check passed in all 140 runs. Seed 1666 failed only the suite's coverage assertion that some window opened. A step trace shows the Shaman's one turn passed without its cast, so no window could open                                                                                                                                    |
+| Live server on PostgreSQL (crypto dice), over HTTP, built from `447e31f` (`b38cbbc` changes only a test)                                                                                                                                      | PASS. A fight runs without Elowen, and the player sees no encounter. Hunter's Mark at a DM-created bystander: undoing the creation is refused, naming the cast; reverse order recovers. Detect Magic outside the fight leaves a market-square magic clue out of the player's knowledge: undoing the clue is refused, naming the cast; reverse order recovers. The database was then reset and reseeded clean |
+| Mutation checks against the full unit suite, one at a time: the 17 Stage 90 defects, the 7 retest 1 fixes, and 3 for this remediation (each participation test, the clue in `unreached`), on the source of `447e31f` (unchanged in `b38cbbc`) | All 27 detected. The retest 1 "combatants' vitals" mutation was restated for the new code                                                                                                                                                                                                                                                                                                                    |
+
+## Deferred Findings
+
+None.
+
+## Retest Request
+
+Astra:
+
+- Independently retest G03-H04 and its adjacent paths:
+  - casting outside an encounter, with no fight and with a fight the caster is not in;
+  - the premises and results of Hunter's Mark, Healing Word, and Detect Magic;
+  - undo of target creation, revival, and placement, and of the caster's placement.
+- Retest the unreached-clue premise found by the randomized suite.
+- Recheck that G03-H01, G03-H02, and G03-H03 remain closed.
+- Write `reviews/ASTRA_GATE_03_RETEST_2.md`. The handoff `handoffs/ASTRA_GATE_03_REQUEST.md` is updated to retest 2 with this output path.
+- Preserve `reviews/ASTRA_GATE_03_REPORT.md`, `reviews/ASTRA_GATE_03_RETEST_1.md`, and their evidence. Do not rely on this report's claim that a fix is correct.
+
+## Hard Stop
+
+Opus stops here. Do not begin Stage 100 until Astra writes PASS.
