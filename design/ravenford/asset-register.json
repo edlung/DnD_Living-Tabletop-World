@@ -1,0 +1,411 @@
+{
+  "register_version": 1,
+  "purpose": "DESIGN_ONLY",
+  "assets": [
+    {
+      "asset_id": "location-market-square",
+      "kind": "location",
+      "label": "Market Square",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        160,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "location-golden-stag-inn",
+      "kind": "location",
+      "label": "Golden Stag Inn",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "location-orins-alchemy",
+      "kind": "location",
+      "label": "Orin's Alchemy",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "location-merchant-guild",
+      "kind": "location",
+      "label": "Merchant Guild",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "location-north-gate",
+      "kind": "location",
+      "label": "North Gate",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        230
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "location-old-trade-road",
+      "kind": "location",
+      "label": "Old Trade Road",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        220
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "location-caravan-site",
+      "kind": "location",
+      "label": "Abandoned Caravan Site",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "character-elowen",
+      "kind": "character",
+      "label": "Elowen Starwhisper",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210,
+        220
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "character-mira",
+      "kind": "character",
+      "label": "Mira Vale",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "character-orin",
+      "kind": "character",
+      "label": "Orin Stonebeard",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "character-thorne",
+      "kind": "character",
+      "label": "Captain Thorne",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "character-tomas-example",
+      "kind": "character",
+      "label": "Tomas acceptance example",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        230
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "character-goblin-raider",
+      "kind": "character",
+      "label": "Goblin Raider archetype",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        220
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "character-goblin-shaman",
+      "kind": "character",
+      "label": "Goblin Shaman",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        220
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "clue-broken-wagon-wheel",
+      "kind": "clue",
+      "label": "Broken Wagon Wheel",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "clue-goblin-weapon",
+      "kind": "clue",
+      "label": "Goblin Weapon",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "clue-strange-symbol",
+      "kind": "clue",
+      "label": "Strange Symbol",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "clue-tracks",
+      "kind": "clue",
+      "label": "Tracks",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    },
+    {
+      "asset_id": "clue-burned-cargo",
+      "kind": "clue",
+      "label": "Burned Cargo",
+      "canonical_entity_id": null,
+      "consumer_stages": [
+        150,
+        210
+      ],
+      "intended_view": "UNRESOLVED",
+      "status": "PLANNED",
+      "parent_asset_id": null,
+      "deliverables": [],
+      "provenance": {
+        "source": null,
+        "permission_note": null
+      },
+      "qa_report": null
+    }
+  ],
+  "ui_families": [
+    {
+      "family_id": "typography",
+      "status": "PLANNED",
+      "evidence": null
+    },
+    {
+      "family_id": "tokens-and-surfaces",
+      "status": "PLANNED",
+      "evidence": null
+    },
+    {
+      "family_id": "icons-and-frames",
+      "status": "PLANNED",
+      "evidence": null
+    },
+    {
+      "family_id": "common-states",
+      "status": "PLANNED",
+      "evidence": null
+    },
+    {
+      "family_id": "exploration",
+      "status": "PLANNED",
+      "evidence": null
+    },
+    {
+      "family_id": "combat-and-reactions",
+      "status": "PLANNED",
+      "evidence": null
+    },
+    {
+      "family_id": "authoring",
+      "status": "PLANNED",
+      "evidence": null
+    },
+    {
+      "family_id": "chronicle-and-flashback",
+      "status": "PLANNED",
+      "evidence": null
+    }
+  ]
+}

@@ -6,6 +6,8 @@ Prepare a coherent, usable graphics package for the Ravenford vertical slice: wo
 
 ## Sources and scope
 
+The executable supporting packet is [Ravenford graphics development pack](graphics/README.md), requested for GPT-6.1 Sol / HIGH. It adds a documentation-only GFX00 preparation job and bounded production jobs within the stage sequence below. Model assignment is recorded in EFFORT_MATRIX.md; production application implementation remains with Opus.
+
 Read [Product Blueprint](../PRODUCT_BLUEPRINT.md), [Ravenford Specification](../RAVENFORD_SPEC.md), [Architecture Invariants](../ARCHITECTURE_INVARIANTS.md), and the relevant stage in [Execution Plan](../EXECUTION_PLAN.md). [Gate Coverage](GATE_COVERAGE.md) and [Implementation Prerequisites](IMPLEMENTATION_PREREQUISITES.md) retain authority over acceptance and unresolved product decisions.
 
 Use the visual concepts from the [original discussion](https://chatgpt.com/share/6ac102c5-03f0-83ed-b78a-ad40ef9621f0) as candidate references. They have not been imported or approved as production assets by this plan. The owner selects the reference images that represent the intended look; record stable copies and their provenance when visual production begins.

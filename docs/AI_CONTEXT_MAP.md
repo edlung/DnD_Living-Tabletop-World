@@ -20,6 +20,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Remediation/retest | Exact failed report, `OPUS_REMEDIATION_TEMPLATE.md`, `HANDOFF_TEMPLATE.md`, `AGENT_WORKFLOW.md` (Retest Rule) |
 | UX, validation, release | Authorized Stage 200–250 work order, relevant product/Ravenford acceptance sections |
 | UI graphics planning and asset handoff | `docs/UI_GRAPHICS_PLAN.md` (proposed stage allocations, minimum inventory, UI states, export and acceptance checks); then only the relevant visual/UX work order |
+| Execute an isolated Sol graphics job | `docs/graphics/README.md`, `work-orders/sol-graphics/AGENTS.md`, the one authorized job; output routing in `design/ravenford/AGENTS.md` |
 
 ## Code and tooling
 

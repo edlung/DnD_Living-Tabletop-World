@@ -37,6 +37,12 @@ Do not switch effort merely because a new ordinary stage begins. Switch Opus to 
 | 240 | Claude Opus 5.5 | HIGH | Product validation and usability evidence |
 | 250 | Claude Opus 5.5 | HIGH | Vertical slice release |
 
+## Isolated graphics assignments
+
+The owner requested **GPT-6.1 Sol / HIGH** for the supporting Ravenford graphics package on 2026-10-04. This assignment applies only to the explicitly selected job under `work-orders/sol-graphics/`, with outputs scoped by `docs/graphics/README.md`. GFX00 is documentation-only preparation; production jobs require authorization of their consuming numbered stage.
+
+This does not reassign any numbered implementation stage, remediation, or formal review in the table above. Opus remains the application builder; Astra remains the independent gate reviewer. Preparing the package does not launch a job or approve a visual direction.
+
 ## Remediation Rule
 
 Any Astra **FAIL** containing a **Critical or High** finding:
