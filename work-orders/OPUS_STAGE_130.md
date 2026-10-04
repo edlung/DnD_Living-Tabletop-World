@@ -32,6 +32,8 @@ NPC dialogue/actions from strictly scoped NPC context.
 ## Validation Gate
 Context isolation tests pass before adversarial review.
 
+In addition to inspecting the actual supplied NPC context, test permission, applicable Rules legality, and disclosure outcomes for actions introduced here. Account for the Stage 130 obligations delegated by ADR 0013 §5 and ADR 0015 §7; context isolation alone does not demonstrate their functional completion.
+
 ## Completion Artifacts
 - code/tests for this stage;
 - exact validation commands/results;

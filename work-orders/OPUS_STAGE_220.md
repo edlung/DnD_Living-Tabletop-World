@@ -24,6 +24,7 @@ Present the existing combat and reaction domain through a persistent battlefield
 - Display movement, range, cover, targets, and AoE from existing contracts. Fireball previews affected entities and warns about allies while preserving legal suboptimal choices.
 - Present Counterspell CAST/IGNORE and expiry from the domain ReactionWindow lifecycle.
 - Handle stale actions, duplicate submissions, and resolved/expired windows through backend results. Clients do not decide legality or consume resources locally as authority.
+- Expose the existing DM-authorized encounter start/end and reaction-window close operations needed to complete the Ravenford combat flow. Verify that the session can leave the encounter through the domain lifecycle. Existing untimed expiry semantics remain valid.
 
 ## Rules
 - Implement only this explicitly authorized stage and preserve all architecture invariants.

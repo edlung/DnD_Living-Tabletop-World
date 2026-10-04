@@ -20,6 +20,8 @@
 ## Objective
 Structured-event salience and narrative rendering with source event IDs.
 
+For non-DM Chronicle and flashbacks, select content from scoped memories under ADR 0010, not raw events. Preserve epistemic types and traceability to source events without exposing unauthorized source data. Include Ravenford's minimal flashback: scene image, dialogue fragment, participants, and world time, using the existing asset and temporal contracts. Any required memory creation follows validated DM/system commands.
+
 ## Rules
 - Preserve all architecture invariants.
 - Do not implement future stages.
@@ -30,6 +32,8 @@ Structured-event salience and narrative rendering with source event IDs.
 
 ## Validation Gate
 Every material Chronicle claim traces to source events; prose cannot mutate state.
+
+Cover scoped retrieval, epistemic-type preservation, and the minimal flashback, as scheduled in `docs/GATE_COVERAGE.md`.
 
 ## Completion Artifacts
 - code/tests for this stage;

@@ -32,6 +32,8 @@ Automate complete Ravenford scenario across all implemented domains.
 ## Validation Gate
 Full vertical-slice integration suite and relevant prior regression suites pass. All backend obligations in `docs/GATE_COVERAGE.md` are now due; include executable surfaces and evidence in the Gate 05 handoff.
 
+In the existing integration evidence, account for Ravenford's required command/event semantics and their accepted ADR equivalents, including Missing Caravan quest-projection transitions. Exercise them through public or explicit test interfaces. A required semantic without an executable path is recorded as required-but-unavailable, not silently treated as optional.
+
 ## Completion Artifacts
 - code/tests for this stage;
 - exact validation commands/results;

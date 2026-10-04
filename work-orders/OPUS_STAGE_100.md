@@ -31,6 +31,8 @@ Provider abstraction, capability router, ContextBuilder, structured output and t
 ## Validation Gate
 AI cannot mutate canonical state; structured-output validation and fallback tests pass.
 
+Test the selected fallback policy for provider failure and invalid structured output. Every implemented fallback preserves the original permission and knowledge scope, performs no canonical mutation, and does not make invalid output committable.
+
 ## Completion Artifacts
 - code/tests for this stage;
 - exact validation commands/results;
