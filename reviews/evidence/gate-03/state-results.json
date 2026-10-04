@@ -1,0 +1,131 @@
+{
+  "undoReopensInvalidWindow": {
+    "windowId": "00000000-0000-4000-8000-000000000078",
+    "answer": "test.0.9",
+    "edit": "test.0.10",
+    "undo": "test.0.11",
+    "failure": "suspended ashen-bolt became illegal (ACTOR_DEAD)",
+    "atomic": true,
+    "replayEqual": true,
+    "integrity": [],
+    "redecision": {
+      "commandId": "test.0.10",
+      "commandType": "ChangeEntityStatus",
+      "reason": "no longer accepted: REACTION_PENDING"
+    }
+  },
+  "undoReopensIncapacitatedCaster": {
+    "windowId": "00000000-0000-4000-8000-00000000007a",
+    "failure": "suspended detect-magic became illegal (INCAPACITATED)",
+    "replayEqual": true,
+    "integrity": [],
+    "redecision": {
+      "commandId": "test.0.12",
+      "commandType": "SetCharacterSheet",
+      "reason": "no longer accepted: REACTION_PENDING"
+    }
+  },
+  "undoTargetDefense": {
+    "edit": "test.0.10",
+    "attack": "test.0.11",
+    "undo": "test.0.12",
+    "outcome": {
+      "kind": "Attack",
+      "d20": [10],
+      "attackTotal": 21,
+      "hit": false,
+      "critical": false,
+      "damage": null
+    },
+    "restoredArmorClass": 17,
+    "replayEqual": true,
+    "integrity": [],
+    "redecision": {
+      "commandId": "test.0.11",
+      "commandType": "Attack",
+      "reason": "decides differently under current canon"
+    }
+  },
+  "detectMagicAt30Ft": {
+    "distanceFt": 30,
+    "expectedDisclosure": true,
+    "actualDisclosure": true
+  },
+  "detectMagicAt35Ft": {
+    "distanceFt": 35,
+    "expectedDisclosure": false,
+    "actualDisclosure": true
+  },
+  "detectMagicAt50Ft": {
+    "distanceFt": 50,
+    "expectedDisclosure": false,
+    "actualDisclosure": true
+  },
+  "directDetectMagicRange": {
+    "casterPosition": {
+      "x": 2,
+      "y": 6
+    },
+    "targetPosition": {
+      "x": 12,
+      "y": 6
+    },
+    "cast": "test.0.8",
+    "discovery": {
+      "knowledgeId": "00000000-0000-4000-8000-00000000006e",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "EVIDENCE",
+      "statement": "G03_DISTANT_MAGIC_SECRET",
+      "subjects": ["goblin-shaman"],
+      "attributedTo": null,
+      "relations": [],
+      "knownSince": 36000,
+      "origin": {
+        "sequence": 113,
+        "commandId": "test.0.8",
+        "actorId": "player-elowen",
+        "recordedAt": "2026-01-01T00:01:38.000Z",
+        "worldTime": 36000
+      }
+    },
+    "replayEqual": true,
+    "integrity": [],
+    "redecision": null
+  },
+  "suspendedDetectMagicRange": {
+    "casterPosition": {
+      "x": 2,
+      "y": 6
+    },
+    "targetPosition": {
+      "x": 12,
+      "y": 6
+    },
+    "cast": "test.0.11",
+    "close": "test.0.12",
+    "discovery": {
+      "knowledgeId": "00000000-0000-4000-8000-00000000007f",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "EVIDENCE",
+      "statement": "G03_DISTANT_MAGIC_SECRET",
+      "subjects": ["goblin-shaman"],
+      "attributedTo": null,
+      "relations": [],
+      "knownSince": 36000,
+      "origin": {
+        "sequence": 122,
+        "commandId": "test.0.12",
+        "actorId": "dm-ravenford",
+        "recordedAt": "2026-01-01T00:01:42.000Z",
+        "worldTime": 36000
+      }
+    },
+    "replayEqual": true,
+    "integrity": [],
+    "redecision": null
+  }
+}

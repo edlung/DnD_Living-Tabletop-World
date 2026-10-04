@@ -1,0 +1,190 @@
+{
+  "undoWindow": {
+    "answered": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:counter",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "UseReaction",
+          "windowId": "00000000-0000-4000-8000-000000000078",
+          "reaction": "counterspell",
+          "countered": true
+        }
+      }
+    },
+    "duplicate": {
+      "http": 200,
+      "body": {
+        "status": "duplicate",
+        "commandId": "http:player-elowen:counter",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "UseReaction",
+          "windowId": "00000000-0000-4000-8000-000000000078",
+          "reaction": "counterspell",
+          "countered": true
+        }
+      }
+    },
+    "edit": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g03-10",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 120,
+            "eventId": "00000000-0000-4000-8000-000000000095",
+            "type": "EntityStatusChanged"
+          }
+        ]
+      }
+    },
+    "undo": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g03-11",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 121,
+            "eventId": "00000000-001e-4000-8000-000000000001",
+            "type": "CommandUndone"
+          }
+        ]
+      }
+    },
+    "ignored": {
+      "http": 500,
+      "body": {
+        "error": {
+          "code": "INTERNAL",
+          "message": "Internal error"
+        }
+      }
+    },
+    "closed": {
+      "http": 500,
+      "body": {
+        "error": {
+          "code": "INTERNAL",
+          "message": "Internal error"
+        }
+      }
+    },
+    "ended": {
+      "http": 422,
+      "body": {
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g03-14",
+        "code": "REACTION_PENDING",
+        "message": "A reaction is pending"
+      }
+    },
+    "survivesRestart": true,
+    "atomicFailures": true,
+    "redecision": {
+      "commandId": "http:dm-ravenford:g03-10",
+      "commandType": "ChangeEntityStatus",
+      "reason": "no longer accepted: REACTION_PENDING"
+    }
+  },
+  "undoDefense": {
+    "defense": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g03-21",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 135,
+            "eventId": "00000000-001f-4000-8000-00000000002a",
+            "type": "CharacterSheetSet"
+          }
+        ]
+      }
+    },
+    "attack": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:g03-22",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "Attack",
+          "d20": [10],
+          "attackTotal": 21,
+          "hit": false,
+          "critical": false,
+          "damage": null
+        }
+      }
+    },
+    "undo": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g03-23",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 139,
+            "eventId": "00000000-002a-4000-8000-000000000001",
+            "type": "CommandUndone"
+          }
+        ]
+      }
+    },
+    "survivesRestart": true,
+    "redecision": {
+      "commandId": "http:player-elowen:g03-22",
+      "commandType": "Attack",
+      "reason": "decides differently under current canon"
+    }
+  },
+  "detectMagic": {
+    "detected": {
+      "http": 200,
+      "body": {
+        "status": "accepted",
+        "commandId": "http:player-elowen:g03-31",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "CastSpell",
+          "spellId": "detect-magic",
+          "results": [],
+          "discovered": [],
+          "awaitingReaction": true
+        }
+      }
+    },
+    "leaked": {
+      "knowledgeId": "00000000-002b-4000-8000-00000000001b",
+      "knowledgeType": "EVIDENCE",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "statement": "G03_HTTP_DISTANT_SECRET",
+      "subjects": [
+        {
+          "entityId": "goblin-shaman",
+          "kind": "creature",
+          "name": "Goblin Shaman"
+        }
+      ],
+      "attributedTo": null,
+      "relations": [],
+      "knownSince": 36000
+    },
+    "survivesRestart": true
+  }
+}

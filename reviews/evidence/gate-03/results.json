@@ -1,0 +1,61 @@
+{
+  "review": "Gate 03 initial",
+  "date": "2026-10-04",
+  "reviewed_revision": "429e2a273ef17a304c09d62965cc60b6cf3be7ad",
+  "workspace_head": "b6f4cff5376b477ffcecc68ba32198fa1802f246",
+  "head_diff": "Only the Stage 90 handoff and completion report differ from the reviewed revision.",
+  "result": "FAIL",
+  "findings": {
+    "G03-H01": "Undo reopens a reaction window after a dependent combatant mutation.",
+    "G03-H02": "Missed attacks omit the target defense from undo dependencies.",
+    "G03-H03": "Detect Magic reveals combat clues beyond 30 feet."
+  },
+  "validation": {
+    "pnpm test": {
+      "exit_code": 0,
+      "files": 73,
+      "tests": 862
+    },
+    "pnpm test:integration": {
+      "exit_code": 0,
+      "files": 8,
+      "tests": 31
+    },
+    "pnpm lint": {
+      "exit_code": 0
+    },
+    "pnpm typecheck": {
+      "exit_code": 0
+    },
+    "pnpm context-budget": {
+      "exit_code": 0,
+      "active_files": 255,
+      "over_target": 0,
+      "over_hard_limit": 0
+    },
+    "pnpm build": {
+      "exit_code": 0
+    },
+    "pnpm format:check": {
+      "exit_code": 0
+    },
+    "STATE_PROBES.md": {
+      "exit_code": 0,
+      "output": "state-results.json",
+      "meaning": "Eight scenarios reproduced vulnerable behavior and boundary controls, with replay and re-decision checks where applicable."
+    },
+    "HTTP_POSTGRES_PROBES.md": {
+      "exit_code": 0,
+      "output": "http-postgres-results.json",
+      "meaning": "All three findings reproduced through actual authenticated Fastify handlers on a throwaway PostgreSQL database, with engine restarts; not a listening network server."
+    }
+  },
+  "required_surfaces_unavailable": [],
+  "production_source_modified": false,
+  "database_policy": "Only probe-created throwaway databases were dropped; existing development data was not reset.",
+  "limitations": [
+    "Finite deterministic cases, not an exhaustive state-space proof.",
+    "No live UI; stages 200 onward.",
+    "No production authentication or external AI surface exists in the reviewed scope."
+  ]
+}
