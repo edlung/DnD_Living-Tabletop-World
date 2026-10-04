@@ -6,7 +6,8 @@ import { loadConfig } from '../platform/config/config.ts';
 import { createAiGateway } from './gateway.ts';
 
 /**
- * Routing for `reasoning` (ADR 0017 §2) and `npc-dialogue` (ADR 0020 §3):
+ * Routing for `reasoning` (ADR 0017 §2), `npc-dialogue` (ADR 0020 §3), and
+ * `narrative` (Chronicle prose, ADR 0024 §3):
  * `[anthropic, local]` with a key, `[local]` without.
  */
 const routeOf = (env: Record<string, string>, capability: AiCapability = 'reasoning') =>
@@ -18,11 +19,16 @@ describe('createAiGateway', () => {
   it('routes to the local provider only without a key', () => {
     expect(routeOf({})).toEqual(['local']);
     expect(routeOf({}, 'npc-dialogue')).toEqual(['local']);
+    expect(routeOf({}, 'narrative')).toEqual(['local']);
   });
 
   it('routes to Anthropic first, then local, with a key', () => {
     expect(routeOf({ ANTHROPIC_API_KEY: 'sk-ant-test' })).toEqual(['anthropic', 'local']);
     expect(routeOf({ ANTHROPIC_API_KEY: 'sk-ant-test' }, 'npc-dialogue')).toEqual([
+      'anthropic',
+      'local',
+    ]);
+    expect(routeOf({ ANTHROPIC_API_KEY: 'sk-ant-test' }, 'narrative')).toEqual([
       'anthropic',
       'local',
     ]);
@@ -39,7 +45,7 @@ describe('createAiGateway', () => {
   it('routes no other capability', () => {
     const gateway = createAiGateway(loadConfig({}).ai, new InMemoryAiTraceStore());
 
-    for (const capability of ['continuity', 'narrative', 'vision'] as const) {
+    for (const capability of ['continuity', 'vision'] as const) {
       expect(gateway.router.providersFor(capability)).toEqual([]);
     }
   });

@@ -1,25 +1,27 @@
 # AI Gateway (`@ltw/ai`)
 
-ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the World Engine**. Use cases: DM intents (ADR 0017), NPC replies (ADR 0020 §3), relevance ranking (ADR 0021), and the image-generation port (ADR 0022). `workspace-boundaries.json` `forbiddenNames` bars `WorldEngine`, event stores, and decision functions from non-test sources. The package reads a `WorldState` snapshot and returns proposals. Stage 110 owns any commit.
+ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the World Engine**. Use cases: DM intents (ADR 0017), NPC replies (ADR 0020 §3), relevance ranking (ADR 0021), the image-generation port (ADR 0022), and Chronicle prose (ADR 0024). `workspace-boundaries.json` `forbiddenNames` bars `WorldEngine`, event stores, and decision functions from non-test sources. The package reads a `WorldState` snapshot and returns proposals. Stage 110 owns any commit.
 
-| File                        | Responsibility                                                                                              |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `src/providers.ts`          | Provider port: `AiProvider`, `ProviderRequest`/`Response`, `ProviderError` codes                            |
-| `src/router.ts`             | `CapabilityRouter`: capability → ordered providers                                                          |
-| `src/context-builder.ts`    | Context from one resolved perspective's projections; every item has a `sourceId`                            |
-| `src/prompt.ts`             | Fixed instructions, the output tool schema, the delimited directory/request prompt                          |
-| `src/validation.ts`         | Proposal schema plus reference checks against the directory                                                 |
-| `src/fallback.ts`           | Owner's fallback policy: one switch on failure, one repair on invalid output                                |
-| `src/dialogue.ts`           | NPC reply use case (ADR 0020 §3): fallback over `npc-dialogue`, validation, trace                           |
-| `src/dialogue-prompt.ts`    | NPC prompt: the minimal context as names and sentences (no IDs), quoted player words                        |
-| `src/local-dialogue.ts`     | Deterministic NPC replies from templates (never reads the player's words)                                   |
-| `src/relevance.ts`          | Relevance use case (ADR 0021): budgeted `fast-context` ranking, validation, application, trace              |
-| `src/relevance-prompt.ts`   | Ranker request: legal actions under opaque keys, the target as seen, the perspective's records and memories |
-| `src/local-provider.ts`     | Deterministic offline interpreter (tests, development, fallback)                                            |
-| `src/intent.ts`             | DM intent use case: role check, PUBLIC context, fallback, trace                                             |
-| `src/traces.ts`             | `AiTraceStore` port and in-memory store                                                                     |
-| `src/images.ts`             | Image port (ADR 0022 §3): `ImageGenerator`, `ImageBrief`, failure codes                                     |
-| `src/placeholder-images.ts` | Deterministic local SVG placeholder: no text, never reads names, descriptions, or notes                     |
+| File                        | Responsibility                                                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `src/providers.ts`          | Provider port: `AiProvider`, `ProviderRequest`/`Response`, `ProviderError` codes                                               |
+| `src/router.ts`             | `CapabilityRouter`: capability → ordered providers                                                                             |
+| `src/context-builder.ts`    | Context from one resolved perspective's projections; every item has a `sourceId`                                               |
+| `src/prompt.ts`             | Fixed instructions, the output tool schema, the delimited directory/request prompt                                             |
+| `src/validation.ts`         | Proposal schema plus reference checks against the directory                                                                    |
+| `src/fallback.ts`           | Owner's fallback policy: one switch on failure, one repair on invalid output                                                   |
+| `src/dialogue.ts`           | NPC reply use case (ADR 0020 §3): fallback over `npc-dialogue`, validation, trace                                              |
+| `src/dialogue-prompt.ts`    | NPC prompt: the minimal context as names and sentences (no IDs), quoted player words                                           |
+| `src/local-dialogue.ts`     | Deterministic NPC replies from templates (never reads the player's words)                                                      |
+| `src/relevance.ts`          | Relevance use case (ADR 0021): budgeted `fast-context` ranking, validation, application, trace                                 |
+| `src/relevance-prompt.ts`   | Ranker request: legal actions under opaque keys, the target as seen, the perspective's records and memories                    |
+| `src/local-provider.ts`     | Deterministic offline interpreter (tests, development, fallback)                                                               |
+| `src/intent.ts`             | DM intent use case: role check, PUBLIC context, fallback, trace                                                                |
+| `src/traces.ts`             | `AiTraceStore` port and in-memory store                                                                                        |
+| `src/images.ts`             | Image port (ADR 0022 §3): `ImageGenerator`, `ImageBrief`, failure codes                                                        |
+| `src/placeholder-images.ts` | Deterministic local SVG placeholder: no text, never reads names, descriptions, or notes                                        |
+| `src/chronicle.ts`          | Chronicle prose (ADR 0024 §3): `narrative` rendering, validation with the World Engine's prose rules, template fallback, trace |
+| `src/chronicle-prompt.ts`   | Renderer request: a chapter's entries under keys, names and times, labelled accounts, no IDs                                   |
 
 - DM intents use the **PUBLIC** horizon only (entities and world time). Do not widen the context or add records, memories, or DM data without a new owner decision.
 - Every fallback reuses the same built context and actor. Never build a broader context for a retry.

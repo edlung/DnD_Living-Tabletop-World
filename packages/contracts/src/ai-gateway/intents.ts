@@ -124,5 +124,20 @@ export interface RelevanceTraceView extends AiTraceBase {
   readonly ranking: readonly { readonly key: string; readonly relevance: Relevance }[] | null;
 }
 
+/**
+ * A Chronicle rendering (docs/adr/0024-chronicle.md); its scope is the
+ * chapter's perspective. Maps each opaque entry key to the entry's sources.
+ */
+export interface ChronicleTraceView extends AiTraceBase {
+  readonly purpose: 'chronicle';
+  readonly status: 'RENDERED' | 'AI_UNAVAILABLE' | 'INVALID_OUTPUT';
+  readonly title: string;
+  readonly entries: readonly { readonly key: string; readonly source: string }[];
+  /** The validated paragraphs; null when the template was used instead. */
+  readonly paragraphs:
+    readonly { readonly text: string; readonly cites: readonly string[] }[] | null;
+}
+
 /** `GET /campaigns/:campaignId/ai/traces/:traceId` (DM only): why the system said, ranked, or proposed this. */
-export type AiTraceView = DmIntentTraceView | NpcDialogueTraceView | RelevanceTraceView;
+export type AiTraceView =
+  DmIntentTraceView | NpcDialogueTraceView | RelevanceTraceView | ChronicleTraceView;

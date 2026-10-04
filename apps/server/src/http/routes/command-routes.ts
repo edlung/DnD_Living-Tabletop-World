@@ -35,8 +35,13 @@ export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependenc
     if (!path) return reply;
     const input = parseInput(body, request.body, request, reply);
     if (!input) return reply;
-    // Authoring commits only through its proposals (docs/adr/0018-ai-authoring.md §6).
-    if (input.command.type === 'CreateCampaign' || input.command.type === 'ApplyAuthoring') {
+    // Authoring commits only through its proposals (docs/adr/0018-ai-authoring.md §6), and
+    // chapters only through the chronicle route, which renders them (ADR 0024 §4).
+    if (
+      input.command.type === 'CreateCampaign' ||
+      input.command.type === 'ApplyAuthoring' ||
+      input.command.type === 'GenerateChronicle'
+    ) {
       return sendError(reply, request, 'INVALID_REQUEST');
     }
 

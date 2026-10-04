@@ -174,6 +174,14 @@ export function createLocalProvider(): AiProvider {
       if (task.kind === 'relevance') {
         return Promise.reject(new ProviderError('UNAVAILABLE', 'no local relevance ranker'));
       }
+      // The local chronicle writer is the deterministic template (ADR 0024 §3).
+      if (task.kind === 'chronicle') {
+        return Promise.resolve({
+          output: { paragraphs: task.prompt.template.map((p) => ({ ...p, cites: [...p.cites] })) },
+          model: LOCAL_MODEL,
+          usage: null,
+        });
+      }
       return Promise.resolve({
         output:
           task.kind === 'npc-dialogue'

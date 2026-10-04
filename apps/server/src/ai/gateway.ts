@@ -16,7 +16,8 @@ import { createAnthropicProvider } from './anthropic-provider.ts';
  * (DM intents) and `npc-dialogue` (NPC replies, ADR 0020 §3) route to
  * `[anthropic, local]` with a key and `[local]` without. `fast-context`
  * (relevance, ADR 0021) routes to `[anthropic]` with a key and nowhere
- * without: its deterministic fallback is the Context Engine itself. The
+ * without: its deterministic fallback is the Context Engine itself.
+ * `narrative` (Chronicle prose, ADR 0024) routes like `reasoning`. The
  * gateway holds no World Engine: it reads what it is given.
  */
 export function createAiGateway(
@@ -42,6 +43,7 @@ export function createAiGateway(
     router: new CapabilityRouter({
       reasoning: providers,
       'npc-dialogue': providers,
+      narrative: providers,
       'fast-context': remote,
     }),
     relevanceBudgetMs: config.relevanceBudgetMs,

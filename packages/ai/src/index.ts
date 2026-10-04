@@ -77,3 +77,16 @@ export {
   createPlaceholderImageGenerator,
   placeholderSvg,
 } from './placeholder-images.ts';
+export {
+  TEMPLATE_MODEL,
+  renderChronicle,
+  validateChronicle,
+  type ChronicleInput,
+  type RenderedChronicle,
+} from './chronicle.ts';
+export {
+  CHRONICLE_OUTPUT,
+  chroniclePrompt,
+  renderChroniclePrompt,
+  type ChroniclePrompt,
+} from './chronicle-prompt.ts';

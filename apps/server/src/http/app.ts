@@ -11,6 +11,7 @@ import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
 import { registerAiRoutes } from './routes/ai-routes.ts';
 import { registerAssetRoutes } from './routes/asset-routes.ts';
+import { registerChronicleRoutes } from './routes/chronicle-routes.ts';
 import { registerAuthoringRoutes } from './routes/authoring-routes.ts';
 import { registerCommandRoutes } from './routes/command-routes.ts';
 import { registerContextRoutes } from './routes/context-routes.ts';
@@ -77,5 +78,6 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerAuthoringRoutes(app, deps);
   registerAssetRoutes(app, deps);
   registerVisualRoutes(app, deps);
+  registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
   return app;
 }

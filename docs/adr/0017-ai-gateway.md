@@ -81,6 +81,11 @@ Option 2.
 
 - 2026-10-04 (Stage 150, ADR 0022 §3): the `image-generation` capability has its own port, `ImageGenerator`, which returns bytes rather than structured output. Its only implementation is the local placeholder generator (`placeholder-svg-1`); no external image provider is configured. Briefs are DM data, never stored or traced; each asset records its provider and model.
 
+- 2026-10-04 (Stage 170, ADR 0024 §3): **`narrative` renders Chronicle prose.**
+  - **Routing:** it routes like `reasoning`, `[anthropic, local]` with a key and `[local]` without. The local writer is the deterministic template.
+  - **Requests** carry a chapter's entries under opaque keys, with no IDs. Output is validated with the World Engine's own prose rules; invalid output after one repair falls back to the template.
+  - **Traces** gain the purpose `chronicle`.
+
 ## Invariants affected
 
 Implements 2, 18, 21, and 22 for this stage; preserves 1, 5, 11, and 17. No invariant is weakened.

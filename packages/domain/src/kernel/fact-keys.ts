@@ -44,6 +44,7 @@ export const facts = {
   asset: (assetId: string): FactKey => `asset:${assetId}`,
   assetCanonical: (entityId: string): FactKey => `assetcanonical:${entityId}`,
   weather: (locationId: string): FactKey => `weather:${locationId}`,
+  chronicle: (chronicleId: string): FactKey => `chronicle:${chronicleId}`,
 };
 
 export const allEntityFacts = (id: string): FactKey[] => [

@@ -99,6 +99,7 @@ export function testAiGateway(...providers: AiProvider[]): RelevanceDeps & {
     router: new CapabilityRouter({
       reasoning: routed,
       'npc-dialogue': routed,
+      narrative: routed,
       'fast-context': providers,
     }),
     relevanceBudgetMs: 2_000,

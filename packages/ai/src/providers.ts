@@ -2,6 +2,7 @@ import type { AiCapability } from '@ltw/contracts';
 
 import type { BuiltContext } from './context-builder.ts';
 import type { DialoguePrompt } from './dialogue-prompt.ts';
+import type { ChroniclePrompt } from './chronicle-prompt.ts';
 import type { RelevancePrompt } from './relevance-prompt.ts';
 
 /**
@@ -45,12 +46,19 @@ export interface RelevanceTask {
   readonly repair: RepairNote | null;
 }
 
+/** A Chronicle chapter (ADR 0024 §3): entries under opaque keys, with no IDs. */
+export interface ChronicleTask {
+  readonly kind: 'chronicle';
+  readonly prompt: ChroniclePrompt;
+  readonly repair: RepairNote | null;
+}
+
 export interface ProviderRequest {
   readonly capability: AiCapability;
   readonly system: string;
   readonly prompt: string;
   readonly output: StructuredOutputSpec;
-  readonly task: IntentTask | DialogueTask | RelevanceTask;
+  readonly task: IntentTask | DialogueTask | RelevanceTask | ChronicleTask;
   /** Aborted when the caller stops waiting (a time budget, ADR 0021); adapters stop then. */
   readonly signal?: AbortSignal;
 }

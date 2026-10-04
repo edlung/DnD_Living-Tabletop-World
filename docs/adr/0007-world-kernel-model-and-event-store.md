@@ -86,6 +86,10 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Stage 170 (2026-10-04), ADR 0024: Chronicle.**
+  - New command `GenerateChronicle` (DM or system; refused on the generic HTTP route) and event `ChronicleGenerated`, listed in `INTRODUCED_AT`. The event holds the recomputed entries, the checked prose, and `rests`. New rejection code `INVALID_CHRONICLE`.
+  - **Footprint.** The event reads the clock and every fact in `rests`, and writes `chronicle:<id>`. Restore `chronicle` removes it.
+  - **State** gains `chronicles`, read by no decision. Integrity requires that every memory and knowledge record a chapter cites still exists.
 - **Stage 160 (2026-10-04), ADR 0023: weather.**
   - New command `SetWeather` (DM or system) and event `WeatherSet { locationId, from, to }`, listed in `INTRODUCED_AT`. New rejection code `INVALID_WEATHER`.
   - **Footprint.** The event reads the clock and the location's existence and status, and writes `weather:<locationId>`. Restore `weather` returns the value before.

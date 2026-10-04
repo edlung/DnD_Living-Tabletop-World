@@ -10,6 +10,7 @@ import type {
 } from '@ltw/contracts';
 
 import { EMPTY_ASSETS, type AssetState } from '../assets/records.ts';
+import type { ChronicleRecord } from '../chronicle/records.ts';
 import type { EncounterState } from '../combat/records.ts';
 import type { ReactionWindowRecord } from '../combat/reactions.ts';
 import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.ts';
@@ -108,6 +109,8 @@ export interface WorldState {
   readonly assets: AssetState;
   /** Location ID → its own weather (ADR 0023 §1); children inherit it. Absent means unset. */
   readonly weather: ReadonlyMap<string, Weather>;
+  /** Chronicle chapters (ADR 0024): records of what was told, never world facts. */
+  readonly chronicles: ReadonlyMap<string, ChronicleRecord>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -133,6 +136,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   relationships: new Map(),
   assets: EMPTY_ASSETS,
   weather: new Map(),
+  chronicles: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

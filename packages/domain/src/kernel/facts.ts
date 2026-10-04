@@ -1,4 +1,5 @@
 import { assetFootprint, assetRestoredFacts } from '../assets/footprints.ts';
+import { chronicleFootprint } from '../chronicle/decide.ts';
 import { namedEntityIds } from '../combat/named-entities.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
 import { attemptKey, insightKey, scopedKey, shownKey } from '../investigation/records.ts';
@@ -345,6 +346,9 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'AssetRetracted':
     case 'AssetApproved':
       return assetFootprint(event);
+    case 'ChronicleGenerated':
+      // A chapter rests on everything it tells (ADR 0024 §4).
+      return chronicleFootprint(event.payload);
     case 'WeatherSet':
       // A location's own weather, from now on (ADR 0023 §1).
       return {
@@ -435,6 +439,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return assetRestoredFacts(restore);
     case 'weather':
       return [facts.weather(restore.locationId)];
+    case 'chronicle':
+      return [facts.chronicle(restore.chronicleId)];
   }
 }
 

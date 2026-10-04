@@ -207,6 +207,7 @@ export {
   type AiAttemptView,
   type AiCapability,
   type AiTraceView,
+  type ChronicleTraceView,
   type AttemptKind,
   type AttemptOutcome,
   type CommandProposal,
@@ -301,6 +302,28 @@ export {
   type AssetStatus,
   type AssetVariant,
 } from './assets/commands.ts';
+export {
+  CHRONICLE_LIMITS,
+  chronicleEntryKeySchema,
+  chronicleOutputSchema,
+  chronicleParagraphSchema,
+  chronicleProseSchema,
+  generateChronicleCommandSchema,
+  type ChronicleParagraph,
+  type ChronicleProse,
+} from './chronicle/commands.ts';
+export type {
+  ChronicleChapterView,
+  ChronicleEntryView,
+  ChronicleKnowledgeView,
+  ChronicleListResponse,
+  ChronicleSourceView,
+  FlashbackResponse,
+  GenerateChronicleRequest,
+  GenerateChronicleResponse,
+  MemorySuggestionView,
+  MemorySuggestionsResponse,
+} from './chronicle/views.ts';
 export {
   DAY_PHASES,
   WEATHERS,

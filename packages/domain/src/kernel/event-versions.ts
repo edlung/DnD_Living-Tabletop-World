@@ -87,6 +87,7 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   AssetRetracted: DEPENDENCY_CONTRACT,
   AssetApproved: DEPENDENCY_CONTRACT,
   WeatherSet: DEPENDENCY_CONTRACT,
+  ChronicleGenerated: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>

@@ -102,6 +102,8 @@ export const REJECTION_CODES = [
   'INVALID_ASSET',
   /** Weather (ADR 0023): not a location that exists now, or no change. */
   'INVALID_WEATHER',
+  /** Chronicle (ADR 0024): an empty window, an unknown perspective, or prose that does not trace. */
+  'INVALID_CHRONICLE',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];
