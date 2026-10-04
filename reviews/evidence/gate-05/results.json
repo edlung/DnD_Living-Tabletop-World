@@ -1,0 +1,164 @@
+{
+  "reviewId": "ASTRA-GATE-05-INITIAL",
+  "date": "2026-10-04",
+  "result": "FAIL",
+  "reviewedCodeRevision": "e9c05ad46c15863b124b20fc4dd217f654f29777",
+  "testedHead": "33d1c978ccddd876429452ca7e79615f109d43db",
+  "headOnlyChanges": ["reports/STAGE_180_COMPLETION.md", "handoffs/ASTRA_GATE_05_REQUEST.md"],
+  "validation": {
+    "pnpm test": {
+      "result": "PASS",
+      "files": 145,
+      "tests": 1476
+    },
+    "pnpm test:integration": {
+      "result": "PASS",
+      "files": 18,
+      "tests": 67
+    },
+    "pnpm lint": "PASS",
+    "pnpm typecheck": "PASS",
+    "pnpm build": "PASS",
+    "pnpm context-budget": {
+      "result": "PASS",
+      "activeFiles": 465,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "pnpm format:check": "PASS after formatting review artifacts"
+  },
+  "recipes": [
+    {
+      "recipe": "HISTORY_BOUNDARY_PROBES.md",
+      "results": "history-boundary-results.json",
+      "throwawayDatabases": 4,
+      "chronicleVariants": 2,
+      "questVariants": 2,
+      "outcome": "G05-H01 and G05-M01 reproduced; controls pass",
+      "executed": true
+    },
+    {
+      "recipe": "AI_CONSUMER_PROBES.md",
+      "results": "ai-consumer-results.json",
+      "throwawayDatabases": 1,
+      "rankingModes": 7,
+      "chronicleModes": 4,
+      "providerRequests": 17,
+      "outcome": "PASS",
+      "executed": true
+    },
+    {
+      "recipe": "ASSET_VISUAL_PROBES.md",
+      "results": "asset-visual-results.json",
+      "throwawayDatabases": 2,
+      "outcome": "PASS",
+      "executed": true
+    },
+    {
+      "recipe": "SCENARIO_SWEEP_PROBES.md",
+      "results": "scenario-sweep-results.json",
+      "throwawayDatabases": 1,
+      "commands": 167,
+      "events": 283,
+      "undoAttempts": 164,
+      "accepted": 40,
+      "refused": 124,
+      "divergences": 0,
+      "outcome": "PASS",
+      "executed": true
+    },
+    {
+      "recipe": "regressions/NPC_PROBES.md",
+      "results": "regressions/npc-results.json",
+      "groups": 3,
+      "exchanges": 66,
+      "providerRequests": 72,
+      "throwawayDatabases": 3,
+      "outcome": "PASS",
+      "executed": true
+    },
+    {
+      "recipe": "regressions/AUTHORING_PROBES.md",
+      "results": "regressions/authoring-results.json",
+      "groups": 18,
+      "outcome": "PASS",
+      "executed": true
+    },
+    {
+      "recipe": "regressions/AUTHORING_RACE_PROBES.md",
+      "results": "regressions/authoring-race-results.json",
+      "orderedRaces": 64,
+      "inMemoryRaces": 32,
+      "postgresActualChildProcessRaces": 32,
+      "aiTraceSourcedProposals": 32,
+      "retryGroups": 4,
+      "processKillRecoveryCases": 2,
+      "throwawayDatabases": 34,
+      "outcome": "PASS",
+      "executed": true
+    },
+    {
+      "recipe": "regressions/SUGGESTION_PROBES.md",
+      "results": "regressions/suggestion-results.json",
+      "groups": 4,
+      "throwawayDatabases": 4,
+      "outcome": "PASS",
+      "resolutions": ["dm-close", "decline", "counterspell-stops", "counterspell-fails"],
+      "executed": true
+    },
+    {
+      "recipe": "regressions/STATE_PROBES.md",
+      "results": "regressions/state-results.json",
+      "groups": 44,
+      "outcome": "PASS",
+      "executed": true
+    },
+    {
+      "recipe": "regressions/HISTORY_PROBES.md",
+      "results": "regressions/history-results.json",
+      "groups": 3,
+      "throwawayDatabases": 1,
+      "oldReaderPrefixComparisons": 103,
+      "undoAttempts": 102,
+      "undoBlocked": 101,
+      "undoAccepted": 1,
+      "scenarioCommandsReversed": 12,
+      "outcome": "PASS",
+      "executed": true
+    }
+  ],
+  "findings": {
+    "G05-H01": {
+      "severity": "High",
+      "invariants": [11, 12],
+      "blocking": true,
+      "summary": "Chronicle omits profile-name dependencies and accepts undo that invalidates a standing chapter.",
+      "evidence": "history-boundary-results.json#chronicle"
+    },
+    "G05-M01": {
+      "severity": "Medium",
+      "invariants": [12],
+      "blocking": true,
+      "summary": "Quest examination milestones use current evidence placement and change when it moves later.",
+      "evidence": "history-boundary-results.json#quest"
+    }
+  },
+  "findingCounts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 0
+  },
+  "limits": [
+    "Fastify inject exercises the authenticated production handlers; no separately listening deployment was tested.",
+    "Provider requests were captured directly. Local/scripted AI and the local placeholder image generator were used; no external model was called.",
+    "Chronicle lexical hedging is an accepted limitation, not a proof of semantic entailment for arbitrary prose.",
+    "One complete recipe run creates and removes 50 owned PostgreSQL databases and one old-reader archive. No development database was reset.",
+    "Old-reader comparison normalizes only newly introduced empty investigation.shown, assets, weather and chronicles collections, with emptiness assertions for the Stage 150\u2013170 additions. Historical events are unchanged.",
+    "The root dependency reinstall, full CI wrapper and deployment were not run. Old-reader dependencies used the frozen offline cache.",
+    "Only this report and gate-05 evidence were added; production, existing tests, fixtures, handoff, completion reports and prior evidence are unchanged.",
+    "Astra/MAX was requested; the runtime variant and effort are not exposed for independent verification.",
+    "Production authentication and UI obligations remain tied to the explicit Stage 200/240/250 planning and release contracts; no backend coverage row is deferred.",
+    "Stage 200 is blocked. Required remediation setting: Claude Opus 5.5/MAX, followed by GPT-6 Astra/MAX Retest 1."
+  ]
+}

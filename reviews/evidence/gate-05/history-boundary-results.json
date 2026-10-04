@@ -1,0 +1,609 @@
+{
+  "chronicle": [
+    {
+      "entityId": "elowen-starwhisper",
+      "rename": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-history-1",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 101,
+            "eventId": "00000000-0000-4000-8000-000000000065",
+            "type": "EntityProfileUpdated"
+          }
+        ]
+      },
+      "chapterId": "chronicle.00000000-00a2-4000-8000-000000000001",
+      "traceId": "00000000-00a1-4000-8000-000000000001",
+      "protectedSource": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g05-history-2",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"ravenford.seed.0013\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "ravenford.knowledge.0010",
+              "commandType": "AssignCharacter",
+              "sequence": 33
+            },
+            {
+              "commandId": "ravenford.knowledge.0032",
+              "commandType": "AddKnowledge",
+              "sequence": 55
+            },
+            {
+              "commandId": "ravenford.memory.0007",
+              "commandType": "RecordMemory",
+              "sequence": 71
+            },
+            {
+              "commandId": "ravenford.memory.0008",
+              "commandType": "RecordMemory",
+              "sequence": 72
+            },
+            {
+              "commandId": "ravenford.memory.0009",
+              "commandType": "RecordMemory",
+              "sequence": 73
+            },
+            {
+              "commandId": "ravenford.memory.0010",
+              "commandType": "RecordMemory",
+              "sequence": 74
+            },
+            {
+              "commandId": "ravenford.rules.0001",
+              "commandType": "SetCharacterSheet",
+              "sequence": 75
+            },
+            {
+              "commandId": "http:dm-ravenford:g05-history-1",
+              "commandType": "UpdateEntityProfile",
+              "sequence": 101
+            },
+            {
+              "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+              "commandType": "GenerateChronicle",
+              "sequence": 102
+            }
+          ]
+        }
+      },
+      "undo": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-history-3",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 103,
+            "eventId": "00000000-0000-4000-8000-000000000067",
+            "type": "CommandUndone"
+          }
+        ]
+      },
+      "canonicalName": "Elowen Starwhisper",
+      "persistedEntry": {
+        "key": "e4",
+        "occurredAt": 32400,
+        "text": "G05 NAME THAT MUST NOT SURVIVE UNDO went to Market Square.",
+        "salience": 3,
+        "memoryId": null,
+        "memoryKind": null,
+        "eventType": "EntityPlaced",
+        "location": {
+          "entityId": "market-square",
+          "kind": "location",
+          "name": "Market Square"
+        },
+        "participants": [
+          {
+            "entityId": "elowen-starwhisper",
+            "kind": "character",
+            "name": "Elowen Starwhisper"
+          }
+        ],
+        "knowledge": [],
+        "sources": [
+          {
+            "eventId": "00000000-0000-4000-8000-000000000011",
+            "eventType": "EntityPlaced",
+            "sequence": 17
+          }
+        ]
+      },
+      "persistedProse": [
+        {
+          "text": "Mira Vale entered the story.",
+          "cites": ["e1"]
+        },
+        {
+          "text": "Orin Stonebeard entered the story.",
+          "cites": ["e2"]
+        },
+        {
+          "text": "Captain Thorne entered the story.",
+          "cites": ["e3"]
+        },
+        {
+          "text": "G05 NAME THAT MUST NOT SURVIVE UNDO went to Market Square.",
+          "cites": ["e4"]
+        },
+        {
+          "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+          "cites": ["e5"]
+        }
+      ],
+      "divergence": {
+        "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+        "commandType": "GenerateChronicle",
+        "reason": "decides differently under current canon"
+      },
+      "replayEqual": true,
+      "structuralIntegrity": [],
+      "restartPreservesMismatch": true,
+      "explicitChapterUndoRecovers": true
+    },
+    {
+      "entityId": "market-square",
+      "rename": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-history-1",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 101,
+            "eventId": "00000000-0000-4000-8000-000000000065",
+            "type": "EntityProfileUpdated"
+          }
+        ]
+      },
+      "chapterId": "chronicle.00000000-00a2-4000-8000-000000000001",
+      "traceId": "00000000-00a1-4000-8000-000000000001",
+      "protectedSource": {
+        "http": 422,
+        "status": "rejected",
+        "commandId": "http:dm-ravenford:g05-history-2",
+        "code": "UNDO_UNSAFE",
+        "message": "Later commands depend on what \"ravenford.seed.0013\" changed; undo them first",
+        "details": {
+          "blockers": [
+            {
+              "commandId": "ravenford.knowledge.0010",
+              "commandType": "AssignCharacter",
+              "sequence": 33
+            },
+            {
+              "commandId": "ravenford.knowledge.0032",
+              "commandType": "AddKnowledge",
+              "sequence": 55
+            },
+            {
+              "commandId": "ravenford.memory.0007",
+              "commandType": "RecordMemory",
+              "sequence": 71
+            },
+            {
+              "commandId": "ravenford.memory.0008",
+              "commandType": "RecordMemory",
+              "sequence": 72
+            },
+            {
+              "commandId": "ravenford.memory.0009",
+              "commandType": "RecordMemory",
+              "sequence": 73
+            },
+            {
+              "commandId": "ravenford.memory.0010",
+              "commandType": "RecordMemory",
+              "sequence": 74
+            },
+            {
+              "commandId": "ravenford.rules.0001",
+              "commandType": "SetCharacterSheet",
+              "sequence": 75
+            },
+            {
+              "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+              "commandType": "GenerateChronicle",
+              "sequence": 102
+            }
+          ]
+        }
+      },
+      "undo": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-history-3",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 103,
+            "eventId": "00000000-0000-4000-8000-000000000067",
+            "type": "CommandUndone"
+          }
+        ]
+      },
+      "canonicalName": "Market Square",
+      "persistedEntry": {
+        "key": "e4",
+        "occurredAt": 32400,
+        "text": "Elowen Starwhisper went to G05 NAME THAT MUST NOT SURVIVE UNDO.",
+        "salience": 3,
+        "memoryId": null,
+        "memoryKind": null,
+        "eventType": "EntityPlaced",
+        "location": {
+          "entityId": "market-square",
+          "kind": "location",
+          "name": "Market Square"
+        },
+        "participants": [
+          {
+            "entityId": "elowen-starwhisper",
+            "kind": "character",
+            "name": "Elowen Starwhisper"
+          }
+        ],
+        "knowledge": [],
+        "sources": [
+          {
+            "eventId": "00000000-0000-4000-8000-000000000011",
+            "eventType": "EntityPlaced",
+            "sequence": 17
+          }
+        ]
+      },
+      "persistedProse": [
+        {
+          "text": "Mira Vale entered the story.",
+          "cites": ["e1"]
+        },
+        {
+          "text": "Orin Stonebeard entered the story.",
+          "cites": ["e2"]
+        },
+        {
+          "text": "Captain Thorne entered the story.",
+          "cites": ["e3"]
+        },
+        {
+          "text": "Elowen Starwhisper went to G05 NAME THAT MUST NOT SURVIVE UNDO.",
+          "cites": ["e4"]
+        },
+        {
+          "text": "A hypothesis was formed: Goblins attacked the caravan. A suspicion, not established: Goblins attacked the caravan.",
+          "cites": ["e5"]
+        }
+      ],
+      "divergence": {
+        "commandId": "chronicle.00000000-00a2-4000-8000-000000000001",
+        "commandType": "GenerateChronicle",
+        "reason": "decides differently under current canon"
+      },
+      "replayEqual": true,
+      "structuralIntegrity": [],
+      "restartPreservesMismatch": true,
+      "explicitChapterUndoRecovers": true
+    }
+  ],
+  "quest": [
+    {
+      "mode": "move-away-after-site-examination",
+      "examined": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:player-elowen:g05-history-3",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "ExamineEntity",
+          "roll": null,
+          "discovered": ["00000000-0000-4000-8000-000000000069"]
+        }
+      },
+      "moved": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-history-5",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 110,
+            "eventId": "00000000-0000-4000-8000-000000000077",
+            "type": "EntityPlaced"
+          }
+        ]
+      },
+      "recordedExamination": {
+        "type": "EvidenceExamined",
+        "payload": {
+          "characterId": "elowen-starwhisper",
+          "entityId": "strange-symbol",
+          "method": "inspect",
+          "scope": "PARTY",
+          "roll": null,
+          "revealed": [
+            {
+              "clueId": "clue-symbol-seen",
+              "knowledgeId": "00000000-0000-4000-8000-000000000069"
+            }
+          ]
+        },
+        "campaignId": "ravenford",
+        "recordedAt": "2026-01-01T00:01:33.000Z",
+        "causation": {
+          "commandId": "http:player-elowen:g05-history-3",
+          "commandType": "ExamineEntity",
+          "actor": {
+            "actorId": "player-elowen",
+            "kind": "user"
+          }
+        },
+        "sequence": 106,
+        "eventId": "00000000-0000-4000-8000-000000000073",
+        "schemaVersion": 2,
+        "worldTime": 36000
+      },
+      "before": {
+        "perspective": "PARTY",
+        "quests": [
+          {
+            "questId": "missing-caravan",
+            "title": "The Missing Caravan",
+            "transitions": [
+              {
+                "type": "QuestActivated",
+                "stage": "activated",
+                "worldTime": 34200,
+                "summary": "We learned that the Merchant Guild caravan never arrived.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000034",
+                    "eventType": "KnowledgeAssigned"
+                  }
+                ]
+              },
+              {
+                "type": "QuestUpdated",
+                "stage": "hypothesis-formed",
+                "worldTime": 35100,
+                "summary": "We formed a theory about what happened to the caravan.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned"
+                  }
+                ]
+              },
+              {
+                "type": "QuestUpdated",
+                "stage": "site-reached",
+                "worldTime": 36000,
+                "summary": "We found where the caravan was lost.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000068",
+                    "eventType": "EntityPlaced"
+                  }
+                ]
+              },
+              {
+                "type": "QuestUpdated",
+                "stage": "evidence-examined",
+                "worldTime": 36000,
+                "summary": "We examined what was left behind.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000073",
+                    "eventType": "EvidenceExamined"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "perspective": "PARTY",
+        "quests": [
+          {
+            "questId": "missing-caravan",
+            "title": "The Missing Caravan",
+            "transitions": [
+              {
+                "type": "QuestActivated",
+                "stage": "activated",
+                "worldTime": 34200,
+                "summary": "We learned that the Merchant Guild caravan never arrived.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000034",
+                    "eventType": "KnowledgeAssigned"
+                  }
+                ]
+              },
+              {
+                "type": "QuestUpdated",
+                "stage": "hypothesis-formed",
+                "worldTime": 35100,
+                "summary": "We formed a theory about what happened to the caravan.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned"
+                  }
+                ]
+              },
+              {
+                "type": "QuestUpdated",
+                "stage": "site-reached",
+                "worldTime": 36000,
+                "summary": "We found where the caravan was lost.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000068",
+                    "eventType": "EntityPlaced"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "examinationUnchanged": true,
+      "restartPreservesChangedPast": true,
+      "undoMoveRestoresQuest": true,
+      "replayEqual": true
+    },
+    {
+      "mode": "move-to-site-after-town-examination",
+      "examined": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:player-elowen:g05-history-2",
+        "campaignId": "ravenford",
+        "events": [],
+        "outcome": {
+          "kind": "ExamineEntity",
+          "roll": null,
+          "discovered": ["00000000-0000-4000-8000-000000000066"]
+        }
+      },
+      "moved": {
+        "http": 200,
+        "status": "accepted",
+        "commandId": "http:dm-ravenford:g05-history-4",
+        "campaignId": "ravenford",
+        "events": [
+          {
+            "sequence": 107,
+            "eventId": "00000000-0000-4000-8000-000000000074",
+            "type": "EntityPlaced"
+          }
+        ]
+      },
+      "recordedExamination": {
+        "type": "EvidenceExamined",
+        "payload": {
+          "characterId": "elowen-starwhisper",
+          "entityId": "strange-symbol",
+          "method": "inspect",
+          "scope": "PARTY",
+          "roll": null,
+          "revealed": [
+            {
+              "clueId": "clue-symbol-seen",
+              "knowledgeId": "00000000-0000-4000-8000-000000000066"
+            }
+          ]
+        },
+        "campaignId": "ravenford",
+        "recordedAt": "2026-01-01T00:01:32.000Z",
+        "causation": {
+          "commandId": "http:player-elowen:g05-history-2",
+          "commandType": "ExamineEntity",
+          "actor": {
+            "actorId": "player-elowen",
+            "kind": "user"
+          }
+        },
+        "sequence": 103,
+        "eventId": "00000000-0000-4000-8000-000000000070",
+        "schemaVersion": 2,
+        "worldTime": 36000
+      },
+      "before": {
+        "perspective": "PARTY",
+        "quests": [
+          {
+            "questId": "missing-caravan",
+            "title": "The Missing Caravan",
+            "transitions": [
+              {
+                "type": "QuestActivated",
+                "stage": "activated",
+                "worldTime": 34200,
+                "summary": "We learned that the Merchant Guild caravan never arrived.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000034",
+                    "eventType": "KnowledgeAssigned"
+                  }
+                ]
+              },
+              {
+                "type": "QuestUpdated",
+                "stage": "hypothesis-formed",
+                "worldTime": 35100,
+                "summary": "We formed a theory about what happened to the caravan.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "perspective": "PARTY",
+        "quests": [
+          {
+            "questId": "missing-caravan",
+            "title": "The Missing Caravan",
+            "transitions": [
+              {
+                "type": "QuestActivated",
+                "stage": "activated",
+                "worldTime": 34200,
+                "summary": "We learned that the Merchant Guild caravan never arrived.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000034",
+                    "eventType": "KnowledgeAssigned"
+                  }
+                ]
+              },
+              {
+                "type": "QuestUpdated",
+                "stage": "hypothesis-formed",
+                "worldTime": 35100,
+                "summary": "We formed a theory about what happened to the caravan.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000035",
+                    "eventType": "KnowledgeAssigned"
+                  }
+                ]
+              },
+              {
+                "type": "QuestUpdated",
+                "stage": "evidence-examined",
+                "worldTime": 36000,
+                "summary": "We examined what was left behind.",
+                "sources": [
+                  {
+                    "eventId": "00000000-0000-4000-8000-000000000070",
+                    "eventType": "EvidenceExamined"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "examinationUnchanged": true,
+      "restartPreservesChangedPast": true,
+      "undoMoveRestoresQuest": true,
+      "replayEqual": true
+    }
+  ]
+}
