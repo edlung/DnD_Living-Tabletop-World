@@ -1,4 +1,8 @@
-import { PLAYER_COMMAND_TYPES, type KernelCommand } from '@ltw/contracts';
+import {
+  ASSET_WORKER_COMMAND_TYPES,
+  PLAYER_COMMAND_TYPES,
+  type KernelCommand,
+} from '@ltw/contracts';
 
 import type { Actor } from './actor.ts';
 import type { Rejection } from './decision.ts';
@@ -24,6 +28,7 @@ export type Authorization =
   | { readonly ok: false; readonly rejection: Rejection };
 
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
+const WORKER_TYPES: ReadonlySet<string> = new Set(ASSET_WORKER_COMMAND_TYPES);
 
 export function authorize(state: WorldState, actor: Actor, command: KernelCommand): Authorization {
   if (command.type === 'CreateCampaign') {
@@ -36,6 +41,12 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
     return actor.kind === 'user' && actor.actorId === state.campaign?.dmActorId
       ? { ok: true, authority: 'dm' }
       : forbidden('Only the DM can confirm authoring');
+  }
+  if (WORKER_TYPES.has(command.type)) {
+    // Only the asset worker reports what external work did (ADR 0022 §4).
+    return actor.kind === 'system'
+      ? { ok: true, authority: 'system' }
+      : forbidden('Only the asset worker reports asset jobs');
   }
   const acting = !PLAYER_TYPES.has(command.type)
     ? null

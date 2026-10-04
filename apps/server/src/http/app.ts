@@ -4,11 +4,13 @@ import type { RelevanceDeps } from '@ltw/ai';
 import type { WorldEngine } from '@ltw/domain';
 import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } from 'fastify';
 
+import type { AssetContentStore } from '../assets/content-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import type { Logger } from '../platform/logging/logger.ts';
 import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
 import { registerAiRoutes } from './routes/ai-routes.ts';
+import { registerAssetRoutes } from './routes/asset-routes.ts';
 import { registerAuthoringRoutes } from './routes/authoring-routes.ts';
 import { registerCommandRoutes } from './routes/command-routes.ts';
 import { registerContextRoutes } from './routes/context-routes.ts';
@@ -30,6 +32,8 @@ export interface AppDependencies {
   readonly ai: RelevanceDeps;
   /** Authoring proposals (docs/adr/0018-ai-authoring.md); commits go through the World Engine. */
   readonly authoring: AuthoringDependencies;
+  /** Generated asset contents (docs/adr/0022-asset-identity.md); the worker runs outside requests. */
+  readonly assets: { readonly contents: AssetContentStore };
 }
 
 export function buildApp(deps: AppDependencies): FastifyInstance {
@@ -70,5 +74,6 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerAiRoutes(app, deps);
   registerNpcRoutes(app, deps);
   registerAuthoringRoutes(app, deps);
+  registerAssetRoutes(app, deps);
   return app;
 }

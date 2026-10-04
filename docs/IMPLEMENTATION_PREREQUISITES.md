@@ -13,7 +13,7 @@ Before implementing the World Kernel's persistence/replay contract, record an AD
 
 Owner approval is required for the supported product semantics. Stage 10 implements only the kernel portion. Stage 30 extends temporal tests to memory; Stage 90 implements and tests the declared behavior for undo/rewind while a reaction window is open, including rejection when unsafe. Stage 110 implements the safe Tomas authoring undo path required by Ravenford and tests downstream knowledge dependencies. Stage 150 extends the existing contract to asset jobs. Rejecting unsafe undo is allowed; omitting every safe authoring undo path does not satisfy DM acceptance.
 
-**Recorded:** `docs/adr/0006-temporal-model-and-undo.md`, approved by the project owner on 2026-10-03. Later stages extend it as listed above.
+**Recorded:** `docs/adr/0006-temporal-model-and-undo.md`, approved by the project owner on 2026-10-03. Later stages extend it as listed above. Stage 150's asset jobs follow ADR 0022 §4 (ADR 0006 Stage 150 amendment).
 
 ## Ruleset — Stage 40
 

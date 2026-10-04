@@ -46,6 +46,8 @@ describe('the Tomas acceptance case', () => {
       'EntityPlaced',
       'KnowledgeAssigned',
       'DisclosureSet',
+      // Tomas is an NPC: the commit queues his visual reference (ADR 0022 §2).
+      'AssetRequested',
     ]);
     expect(preview.risk.reasons.map((reason) => reason.level)).toEqual(['L2', 'L2', 'L2']);
   });

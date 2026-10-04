@@ -33,6 +33,7 @@ import {
 } from '../investigation/evolve.ts';
 import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
+import { applyAssetEvent, applyAssetRestore } from '../assets/evolve.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
@@ -205,6 +206,14 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyEvidenceShown(state, event);
     case 'InsightChecked':
       return applyInsightChecked(state, event);
+    case 'AssetRequested':
+    case 'AssetJobStarted':
+    case 'AssetGenerated':
+    case 'AssetJobFailed':
+    case 'AssetRequestCancelled':
+    case 'AssetRetracted':
+    case 'AssetApproved':
+      return applyAssetEvent(state, event);
     case 'AuthoringPremisesRecorded':
       // Reads only (ADR 0019 §2): the entities it names must exist.
       for (const premise of event.payload.premises) requireEntity(state, premise.entityId);
@@ -319,6 +328,10 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyReactionRestore(state, restore);
     case 'relationship':
       return applyRelationshipRestore(state, restore);
+    case 'assetRequest':
+    case 'asset':
+    case 'assetCanonical':
+      return applyAssetRestore(state, restore);
   }
 }
 

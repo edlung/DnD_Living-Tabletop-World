@@ -1,4 +1,4 @@
-import type { CharacterSheet, Skill } from '@ltw/contracts';
+import { ASSET_SETTLING_COMMAND_TYPES, type CharacterSheet, type Skill } from '@ltw/contracts';
 
 import type { CombatPort } from '../../combat/port.ts';
 import { authorize } from '../authorization.ts';
@@ -22,6 +22,10 @@ import { EMPTY_WORLD_STATE, type WorldState } from '../state.ts';
  * G03-H05) is canon as recorded: the rules that decided it may have changed
  * since, so its recorded events are folded instead of re-decided, and they
  * must still apply to the effective history.
+ *
+ * What settles external asset work is canon as recorded too (ADR 0006 §9,
+ * ADR 0022): it reports what happened outside the campaign, which no
+ * re-decision can repeat.
  */
 export interface Divergence {
   readonly commandId: string;
@@ -35,6 +39,7 @@ export function redecideEffective(
   skillModifier: (sheet: CharacterSheet, skill: Skill) => number,
   combat?: CombatPort,
 ): Divergence | null {
+  const settling: ReadonlySet<string> = new Set(ASSET_SETTLING_COMMAND_TYPES);
   const recorded = new Map<string, RecordedEvent[]>();
   for (const event of original.history) {
     const list = recorded.get(event.causation.commandId) ?? [];
@@ -73,7 +78,7 @@ export function redecideEffective(
     if (original.state.commands.get(stored.commandId)?.undoneBy !== null) continue;
     const where = { commandId: stored.commandId, commandType: stored.commandType };
     const events = recorded.get(stored.commandId) ?? [];
-    if (events.some(writtenEarlier)) {
+    if (settling.has(stored.commandType) || events.some(writtenEarlier)) {
       try {
         append(stored, events);
       } catch (error) {

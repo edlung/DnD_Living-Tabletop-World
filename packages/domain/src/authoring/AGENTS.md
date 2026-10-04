@@ -22,6 +22,7 @@ AI-assisted authoring: a DM-confirmed proposal applied by the World Engine as on
 
 Rules:
 
+- A commit that creates an NPC or a location also requests its visual reference (`../assets/authoring.ts`, ADR 0022 §2). The preview decides under the commit's own command ID (`authoringCommandId`), so it lists the exact request IDs the commit records.
 - Operations are decided by their own kernel decision functions, in order, on the provisional state of their predecessors (`kernel/provisional.ts`). Never duplicate a kernel rule here.
 - Legality — enabled operations, operation rules, and blocking continuity — must only rest on facts the operations' event footprints record, so dependency-checked undo and the re-decision oracle stay exact. `authoring.property.test.ts` runs the oracle under random undo.
 - Risk levels and warnings are consent, not legality. They are computed at decision time and enforced by the World Engine against the command's `confirmation`, never re-checked by re-decision (ADR 0018 §4). A new warning must have a stable key (`CODE@index[:entityId]`).

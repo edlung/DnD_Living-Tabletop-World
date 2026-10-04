@@ -45,6 +45,16 @@ import {
   relationshipChangedPayloadSchema,
   relationshipRestoreSchemas,
 } from '../relationships/events.ts';
+import {
+  assetApprovedPayloadSchema,
+  assetGeneratedPayloadSchema,
+  assetJobFailedPayloadSchema,
+  assetJobStartedPayloadSchema,
+  assetRequestCancelledPayloadSchema,
+  assetRequestedPayloadSchema,
+  assetRestoreSchemas,
+  assetRetractedPayloadSchema,
+} from '../assets/events.ts';
 import { actorSchema } from './actor.ts';
 import { decodePayload, isVersioned } from './event-versions.ts';
 
@@ -103,6 +113,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...combatRestoreSchemas,
   ...reactionRestoreSchemas,
   ...relationshipRestoreSchemas,
+  ...assetRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -211,6 +222,13 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AuthoringPremisesRecorded', authoringPremisesPayloadSchema),
   event('EvidenceShown', evidenceShownPayloadSchema),
   event('InsightChecked', insightCheckedPayloadSchema),
+  event('AssetRequested', assetRequestedPayloadSchema),
+  event('AssetJobStarted', assetJobStartedPayloadSchema),
+  event('AssetGenerated', assetGeneratedPayloadSchema),
+  event('AssetJobFailed', assetJobFailedPayloadSchema),
+  event('AssetRequestCancelled', assetRequestCancelledPayloadSchema),
+  event('AssetRetracted', assetRetractedPayloadSchema),
+  event('AssetApproved', assetApprovedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

@@ -22,10 +22,21 @@ describe('loadConfig', () => {
       databaseUrl: DEV_DATABASE_URL,
       auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
       ai: { anthropic: null, relevanceBudgetMs: 2_000 },
+      assets: { workerIntervalMs: 5_000, generationTimeoutMs: 60_000 },
     });
     expect(DEFAULT_PERSONAS_FILE).toMatch(/fixtures\/ravenford\/personas\.json$/);
     expect(Object.isFrozen(config)).toBe(true);
     expect(Object.isFrozen(config.http)).toBe(true);
+  });
+
+  it('reads the asset worker settings, where 0 disables the worker', () => {
+    expect(
+      loadConfig({ LTW_ASSET_WORKER_INTERVAL_MS: '0', LTW_ASSET_TIMEOUT_MS: '5000' }).assets,
+    ).toEqual({ workerIntervalMs: 0, generationTimeoutMs: 5_000 });
+    expect(() => loadConfig({ LTW_ASSET_WORKER_INTERVAL_MS: '10' })).toThrow(
+      /LTW_ASSET_WORKER_INTERVAL_MS/,
+    );
+    expect(() => loadConfig({ LTW_ASSET_TIMEOUT_MS: '10' })).toThrow(/LTW_ASSET_TIMEOUT_MS/);
   });
 
   it('silences logs by default in test', () => {

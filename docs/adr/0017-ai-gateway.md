@@ -79,6 +79,8 @@ Option 2.
 
 - 2026-10-04 (Stage 140, ADR 0021): the `fast-context` capability ranks context actions. It routes to `[anthropic]` with a key and to no provider without one: its deterministic fallback is the Context Engine, and the local provider refuses the task. A provider request may carry an abort `signal` for a caller's time budget; the Anthropic adapter stops then, reporting `TIMEOUT`. Traces gain the purpose `relevance`.
 
+- 2026-10-04 (Stage 150, ADR 0022 §3): the `image-generation` capability has its own port, `ImageGenerator`, which returns bytes rather than structured output. Its only implementation is the local placeholder generator (`placeholder-svg-1`); no external image provider is configured. Briefs are DM data, never stored or traced; each asset records its provider and model.
+
 ## Invariants affected
 
 Implements 2, 18, 21, and 22 for this stage; preserves 1, 5, 11, and 17. No invariant is weakened.

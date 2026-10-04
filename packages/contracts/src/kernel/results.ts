@@ -98,6 +98,8 @@ export const REJECTION_CODES = [
   'CONFIRMATION_REQUIRED',
   /** Relationships (ADR 0019 §3): only an NPC has an attitude toward the party. */
   'INVALID_RELATIONSHIP',
+  /** Assets (ADR 0022): a request, job, or asset that does not allow this. */
+  'INVALID_ASSET',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

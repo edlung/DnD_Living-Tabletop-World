@@ -1,6 +1,10 @@
 import pg from 'pg';
 
+import { createPlaceholderImageGenerator } from '@ltw/ai';
+
 import { createAiGateway } from './ai/gateway.ts';
+import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
+import { startAssetWorkerLoop } from './assets/worker-loop.ts';
 import { PostgresAiTraceStore } from './ai/postgres-trace-store.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { buildApp } from './http/app.ts';
@@ -34,7 +38,9 @@ async function main(): Promise<void> {
     ids: randomIds,
     clock: systemClock,
   };
-  const app = buildApp({ engine: createWorldEngine(pool), authenticator, logger, ai, authoring });
+  const engine = createWorldEngine(pool);
+  const contents = new PostgresAssetContentStore(pool);
+  const app = buildApp({ engine, authenticator, logger, ai, authoring, assets: { contents } });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
     {
@@ -46,10 +52,20 @@ async function main(): Promise<void> {
     'server ready',
   );
 
+  const stopAssets = startAssetWorkerLoop({
+    engine,
+    contents,
+    generator: createPlaceholderImageGenerator(),
+    timeoutMs: config.assets.generationTimeoutMs,
+    intervalMs: config.assets.workerIntervalMs,
+    campaigns: () => PostgresAssetContentStore.campaignsWithAssetWork(pool),
+    logger,
+  });
+
   const shutdown = (signal: NodeJS.Signals): void => {
     logger.info({ signal }, 'shutting down');
-    app
-      .close()
+    stopAssets()
+      .then(() => app.close())
       .then(() => Promise.all([pool.end(), proposalLocks.end()]))
       .catch((error: unknown) => {
         logger.error({ err: error }, 'shutdown failed');

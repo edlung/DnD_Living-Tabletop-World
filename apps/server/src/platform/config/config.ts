@@ -39,6 +39,12 @@ export interface AppConfig {
     /** How long a context request waits for the relevance ranker (docs/adr/0021-ai-relevance.md). */
     readonly relevanceBudgetMs: number;
   };
+  /** The asset worker (docs/adr/0022-asset-identity.md §4); the local placeholder generator only. */
+  readonly assets: {
+    /** Pause between worker runs; 0 disables the worker. */
+    readonly workerIntervalMs: number;
+    readonly generationTimeoutMs: number;
+  };
 }
 
 /** A value that renders as `[redacted]` in logs, JSON, and inspection; read it with `reveal()`. */
@@ -69,6 +75,8 @@ export class Secret {
 export const DEFAULT_AI_MODEL = 'claude-opus-5-5';
 export const DEFAULT_AI_TIMEOUT_MS = 30_000;
 export const DEFAULT_RELEVANCE_BUDGET_MS = 2_000;
+export const DEFAULT_ASSET_WORKER_INTERVAL_MS = 5_000;
+export const DEFAULT_ASSET_TIMEOUT_MS = 60_000;
 
 export type Env = Readonly<Record<string, string | undefined>>;
 
@@ -119,6 +127,18 @@ const envSchema = z.object({
   LTW_AI_RELEVANCE_BUDGET_MS: z.preprocess(
     emptyAsUndefined,
     z.coerce.number().int().min(100).max(30_000).default(DEFAULT_RELEVANCE_BUDGET_MS),
+  ),
+  LTW_ASSET_WORKER_INTERVAL_MS: z.preprocess(
+    emptyAsUndefined,
+    z.coerce
+      .number()
+      .int()
+      .refine((ms) => ms === 0 || (ms >= 500 && ms <= 600_000), 'must be 0 or 500-600000')
+      .default(DEFAULT_ASSET_WORKER_INTERVAL_MS),
+  ),
+  LTW_ASSET_TIMEOUT_MS: z.preprocess(
+    emptyAsUndefined,
+    z.coerce.number().int().min(1_000).max(600_000).default(DEFAULT_ASSET_TIMEOUT_MS),
   ),
 });
 
@@ -189,6 +209,10 @@ export function loadConfig(env: Env = process.env): AppConfig {
               timeoutMs: values.LTW_AI_TIMEOUT_MS,
             }),
       relevanceBudgetMs: values.LTW_AI_RELEVANCE_BUDGET_MS,
+    }),
+    assets: Object.freeze({
+      workerIntervalMs: values.LTW_ASSET_WORKER_INTERVAL_MS,
+      generationTimeoutMs: values.LTW_ASSET_TIMEOUT_MS,
     }),
   });
 }

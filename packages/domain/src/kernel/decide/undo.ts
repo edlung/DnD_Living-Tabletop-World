@@ -1,4 +1,6 @@
-import type { KernelCommandType } from '@ltw/contracts';
+import { ASSET_SETTLING_COMMAND_TYPES, type KernelCommandType } from '@ltw/contracts';
+
+import { assetHoldBlockers } from '../../assets/hold.ts';
 
 import {
   accept,
@@ -30,7 +32,12 @@ import type { WorldState } from '../state.ts';
  * from earlier versions comes off only from its end backwards (owner
  * decision, ADR 0006 Gate 03 retest 3 amendment; G03-H07).
  */
-const NOT_UNDOABLE: ReadonlySet<KernelCommandType> = new Set(['CreateCampaign', 'UndoCommand']);
+const NOT_UNDOABLE: ReadonlySet<KernelCommandType> = new Set([
+  'CreateCampaign',
+  'UndoCommand',
+  // What settles external asset work is final (ADR 0006 §9, ADR 0022).
+  ...ASSET_SETTLING_COMMAND_TYPES,
+]);
 
 export interface UndoBlocker {
   readonly commandId: string;
@@ -64,6 +71,8 @@ export function decideUndo(
     ...findBlockers(state, history, target.lastSequence, written),
     // Reopening a reaction window must keep every later command legal (ADR 0016 §3).
     ...reopeningBlockers(state, history, targetEvents),
+    // A started asset job cannot be recalled (ADR 0006 §9).
+    ...assetHoldBlockers(state, history, targetEvents),
   ]);
   if (blockers.length > 0) {
     return reject(
@@ -316,6 +325,28 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: before.statBlocks.get(event.payload.entityId) ?? null,
         });
         break;
+      case 'AssetRequested':
+        restores.push({ fact: 'assetRequest', requestId: event.payload.requestId, value: null });
+        break;
+      case 'AssetApproved': {
+        const { assetId, entityId, previous } = event.payload;
+        for (const id of previous === null ? [assetId] : [assetId, previous]) {
+          const prior = before.assets.assets.get(id);
+          if (!prior) throw new Error(`asset ${id} missing before the undone approval`);
+          restores.push({ fact: 'asset', assetId: id, value: structuredClone(prior) });
+        }
+        restores.push({
+          fact: 'assetCanonical',
+          entityId,
+          value: before.assets.canonical.get(entityId) ?? null,
+        });
+        break;
+      }
+      case 'AssetJobStarted':
+      case 'AssetGenerated':
+      case 'AssetJobFailed':
+      case 'AssetRequestCancelled':
+      case 'AssetRetracted':
       case 'CampaignCreated':
       case 'CommandUndone':
         throw new Error(`${event.type} is not undoable`);

@@ -156,6 +156,19 @@ export type { Premise, RecordedPremise } from './investigation/events.ts';
 export { redecideEffective, type Divergence } from './kernel/verification/redecide.ts';
 export { undoneBeneathEarlierWriters } from './kernel/verification/earlier-writers.ts';
 export { magicDiscoveryEvents, magicSensingPremises } from './investigation/reveal.ts';
-export { previewAuthoring, type PreviewInput } from './authoring/preview.ts';
+export { authoringCommandId, previewAuthoring, type PreviewInput } from './authoring/preview.ts';
 export type { ConsentRequirement } from './authoring/consent.ts';
 export type { ResolvedProposable } from './kernel/decision.ts';
+export {
+  assetContentFor,
+  assetLineage,
+  assetVisibleEntityIds,
+  entityAssetsFor,
+} from './assets/views.ts';
+export {
+  assetIdFor,
+  type AssetJobRecord,
+  type AssetRecord,
+  type AssetRequestRecord,
+  type AssetState,
+} from './assets/records.ts';

@@ -1,3 +1,4 @@
+import { assetFootprint, assetRestoredFacts } from '../assets/footprints.ts';
 import { namedEntityIds } from '../combat/named-entities.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
 import { attemptKey, insightKey, scopedKey, shownKey } from '../investigation/records.ts';
@@ -336,6 +337,14 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.rosterPlayer(event.payload.playerActorId),
         ],
       };
+    case 'AssetRequested':
+    case 'AssetJobStarted':
+    case 'AssetGenerated':
+    case 'AssetJobFailed':
+    case 'AssetRequestCancelled':
+    case 'AssetRetracted':
+    case 'AssetApproved':
+      return assetFootprint(event);
     case 'RelationshipChanged':
       // A living NPC's attitude (ADR 0019 §3).
       return {
@@ -414,6 +423,10 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.reaction(restore.windowId)];
     case 'relationship':
       return [facts.relationship(restore.npcId)];
+    case 'assetRequest':
+    case 'asset':
+    case 'assetCanonical':
+      return assetRestoredFacts(restore);
   }
 }
 

@@ -14,7 +14,7 @@ import {
 import type { Actor } from '../../kernel/actor.ts';
 import type { ResolvedProposable } from '../../kernel/decision.ts';
 import { worldTimeAt } from '../../kernel/world-time.ts';
-import { previewAuthoring } from '../preview.ts';
+import { authoringCommandId, previewAuthoring } from '../preview.ts';
 
 /**
  * Test support for authoring (docs/adr/0018-ai-authoring.md): the full
@@ -96,14 +96,16 @@ export interface AuthoringWorld extends InvestigationWorld {
   readonly version: () => Promise<number>;
 }
 
-export const commitIdOf = (proposalId: string) => `authoring.${proposalId}`;
+export const commitIdOf = authoringCommandId;
 
 export async function authoringWorld(): Promise<AuthoringWorld> {
   const world = await investigationWorld();
   let proposals = 0;
+  const proposalIdAt = (index: number) =>
+    `00000000-0000-4000-8000-${String(index).padStart(12, '0')}`;
   const nextProposal = () => {
     proposals += 1;
-    return `00000000-0000-4000-8000-${String(proposals).padStart(12, '0')}`;
+    return proposalIdAt(proposals);
   };
   const snapshot = async () => {
     const loaded = await world.engine.load(CAMPAIGN);
@@ -133,7 +135,8 @@ export async function authoringWorld(): Promise<AuthoringWorld> {
     preview: async (commands, actor = DM) =>
       previewAuthoring(await snapshot(), actor, {
         campaignId: CAMPAIGN,
-        proposalId: '00000000-0000-4000-8000-0000000000ff',
+        // The proposal the next commit will make, as a DM previews before committing.
+        proposalId: proposalIdAt(proposals + 1),
         revision: 1,
         summary: 'Preview under test.',
         source: { kind: 'dm' },

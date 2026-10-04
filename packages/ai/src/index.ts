@@ -65,3 +65,15 @@ export {
 export { CapabilityRouter } from './router.ts';
 export { InMemoryAiTraceStore, type AiTraceStore } from './traces.ts';
 export { validateProposal, type ProposalCheck } from './validation.ts';
+export {
+  ImageGenerationError,
+  imageFailureCode,
+  type GeneratedImage,
+  type ImageBrief,
+  type ImageGenerator,
+} from './images.ts';
+export {
+  PLACEHOLDER_MODEL,
+  createPlaceholderImageGenerator,
+  placeholderSvg,
+} from './placeholder-images.ts';

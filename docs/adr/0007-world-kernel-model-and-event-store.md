@@ -86,6 +86,19 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Stage 150 (2026-10-04), ADR 0022: asset lineage.**
+  - New commands:
+    - `RequestAsset`, `CancelAssetRequest`, `RetractAsset`, and `ApproveAsset` (DM or system);
+    - `StartAssetJob`, `CompleteAssetJob`, and `FailAssetJob` (system only).
+  - New events, all listed in `INTRODUCED_AT`: `AssetRequested`, `AssetJobStarted`, `AssetGenerated`, `AssetJobFailed`, `AssetRequestCancelled`, `AssetRetracted`, `AssetApproved`. New rejection code `INVALID_ASSET`.
+  - **Fact keys:** `assetrequest:<requestId>`, `assetjob:<requestId>`, `asset:<assetId>`, and `assetcanonical:<entityId>`.
+    - A request reads the clock, its entity, and (for a variant) the canonical reference.
+    - Worker events and settlements read nothing and write only their job or asset.
+    - An approval reads and writes the assets and the canonical reference it changes.
+  - **Restores:** `assetRequest` (removal), `asset` (the record before), and `assetCanonical`.
+  - **State** gains `assets` (requests, jobs, assets, canonical references). Integrity requires that standing requests, running jobs, and unsettled assets depict existing entities, and that every canonical reference is a `CANONICAL` asset of its entity.
+  - **Undo.** Settling commands are not undoable; asset holds join the undo blockers (ADR 0006 Stage 150 amendment).
+  - **Re-decision.** The oracle folds settling commands as recorded, since no re-decision can repeat external work.
 - **Stage 130 (2026-10-04), ADR 0020: NPC interactions and records earlier writers left incomplete.**
   - New player commands `ShowEvidence` and `InsightCheck`, with events `EvidenceShown { characterId, npcId, scope, knowledgeId, subjects }` (writes `shown:<scope>|<npc>|<subject>` for newly shown subjects) and `InsightChecked { characterId, npcId, topicId, scope, roll, inferenceId }` (writes the attempt `<character>|<npc>|insight`). Both are listed in `INTRODUCED_AT`. `InsightCheck` draws a d20 at resolution, like the other checks.
   - `PremisesRecorded` (version 3) gains the additive premise kinds `attitude`, `shown`, and `considered`.

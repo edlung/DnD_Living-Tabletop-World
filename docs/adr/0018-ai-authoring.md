@@ -135,6 +135,10 @@ Migration `0003_authoring_proposals.sql` adds `ltw_authoring_revisions`. Like tr
 - 2026-10-04 (Gate 04 remediation, G04-H01 and G04-M02):
   - **Edits, commits, and undos of a proposal take turns** (§5–§6). Each checks and acts inside the proposal's exclusive section, reading canon there. Across processes this is a PostgreSQL advisory lock per proposal, held on connections of its own pool. An edit after a commit, and a commit of a revision an edit replaced, are `409`, whichever request arrived first; both can no longer succeed. This replaces the Stage 110 behavior in which the confirmed earlier revision could commit while an edit was stored.
   - **An identical commit retry returns the original command as `duplicate`**, as §5 states, after a restart too. A different confirmation or revision is still `409`.
+- 2026-10-04 (Stage 150, ADR 0022 §2; owner decision of 2026-10-04):
+  - **A commit that creates an NPC or a location also requests its visual reference.** The `AssetRequested` events are part of the commit's command, after its operations' events.
+  - **The preview decides under the commit's own command ID** (`authoring.<proposalId>`), so the changes it lists match the events the commit records exactly, including request IDs.
+  - **Undo.** Undoing the commit is held while a requested job runs, or while its image stands, until the DM cancels the job or retracts the image (ADR 0006 Stage 150 amendment).
 
 ## Invariants affected
 

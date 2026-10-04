@@ -79,6 +79,13 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   AuthoringPremisesRecorded: DEPENDENCY_CONTRACT,
   EvidenceShown: DEPENDENCY_CONTRACT,
   InsightChecked: DEPENDENCY_CONTRACT,
+  AssetRequested: DEPENDENCY_CONTRACT,
+  AssetJobStarted: DEPENDENCY_CONTRACT,
+  AssetGenerated: DEPENDENCY_CONTRACT,
+  AssetJobFailed: DEPENDENCY_CONTRACT,
+  AssetRequestCancelled: DEPENDENCY_CONTRACT,
+  AssetRetracted: DEPENDENCY_CONTRACT,
+  AssetApproved: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>

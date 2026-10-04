@@ -11,6 +11,7 @@ import {
   type ReviseProposalRequest,
 } from '@ltw/contracts';
 import {
+  authoringCommandId,
   campaignRole,
   previewAuthoring,
   type Actor,
@@ -59,7 +60,7 @@ const error = <T>(
 ): AuthoringOutcome<T> => ({ kind: 'error', code });
 
 /** One commit per proposal: the World Engine's idempotency key (§5). */
-export const commitCommandId = (proposalId: string) => `authoring.${proposalId}`;
+export const commitCommandId = authoringCommandId;
 
 export class AuthoringService {
   readonly #engine: WorldEngine;

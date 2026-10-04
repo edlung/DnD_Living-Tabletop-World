@@ -21,6 +21,9 @@ import { findingKey } from './continuity/describe.ts';
  * and the events it would record. Grants nothing: the commit is decided
  * again against the state at that time.
  */
+/** The ID of the command that commits a proposal: one commit per proposal, ever. */
+export const authoringCommandId = (proposalId: string) => `authoring.${proposalId}`;
+
 export interface PreviewInput {
   readonly campaignId: string;
   readonly proposalId: string;
@@ -50,7 +53,8 @@ export function previewAuthoring(
     state,
     history,
     campaignId: input.campaignId,
-    commandId: `preview.${input.proposalId}`,
+    // The commit's own ID, so the preview shows the asset request IDs it will record.
+    commandId: authoringCommandId(input.proposalId),
     actor,
   };
   const assessment = assessAuthoring({ ...context, authority: 'dm' }, input.commands);

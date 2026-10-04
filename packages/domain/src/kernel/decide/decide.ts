@@ -6,6 +6,15 @@ import { decideSetStatBlock } from '../../combat/authoring.ts';
 import { poolDice } from '../../combat/port.ts';
 import { decideSetClaim } from '../../contradiction/decide.ts';
 import { withContradictions } from '../../contradiction/detect.ts';
+import {
+  decideApproveAsset,
+  decideCancelAssetRequest,
+  decideCompleteAssetJob,
+  decideFailAssetJob,
+  decideRequestAsset,
+  decideRetractAsset,
+  decideStartAssetJob,
+} from '../../assets/decide.ts';
 import { decideAddClue, decideSetDisclosure } from '../../investigation/authoring.ts';
 import { decideAskAbout } from '../../investigation/conversation.ts';
 import { decideInsightCheck } from '../../investigation/insight.ts';
@@ -143,6 +152,20 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideApplyAuthoring(context, command);
     case 'SetRelationship':
       return decideSetRelationship(state, command);
+    case 'RequestAsset':
+      return decideRequestAsset(state, context.commandId, command);
+    case 'StartAssetJob':
+      return decideStartAssetJob(state, command);
+    case 'CompleteAssetJob':
+      return decideCompleteAssetJob(state, command);
+    case 'FailAssetJob':
+      return decideFailAssetJob(state, command);
+    case 'CancelAssetRequest':
+      return decideCancelAssetRequest(state, command);
+    case 'RetractAsset':
+      return decideRetractAsset(state, command);
+    case 'ApproveAsset':
+      return decideApproveAsset(state, command);
     case 'StartCombat':
     case 'MoveCombatant':
     case 'Attack':

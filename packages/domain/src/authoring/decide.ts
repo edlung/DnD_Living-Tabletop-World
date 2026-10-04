@@ -4,6 +4,7 @@ import {
   type DecisionContext,
   type ResolvedCommandOf,
 } from '../kernel/decision.ts';
+import { authoringAssetRequests } from '../assets/authoring.ts';
 import { assessAuthoring } from './assess.ts';
 
 /**
@@ -12,6 +13,8 @@ import { assessAuthoring } from './assess.ts';
  * blocking issue rejects the whole proposal with every issue listed. When
  * it is legal, the decision states the consent it needs; the World Engine
  * checks the command's confirmation against it before appending (§4).
+ * Each NPC or location it creates is queued for a visual reference (ADR
+ * 0022 §2).
  */
 export function decideApplyAuthoring(
   context: DecisionContext,
@@ -30,7 +33,10 @@ export function decideApplyAuthoring(
   }
   return {
     ok: true,
-    events: drafts,
+    events: [
+      ...drafts,
+      ...authoringAssetRequests(context.state, context.commandId, command.proposalId, drafts),
+    ],
     requires: { riskLevel: risk.level, warnings: warnings.map((warning) => warning.key) },
   };
 }

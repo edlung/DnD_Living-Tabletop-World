@@ -281,3 +281,30 @@ export {
   setRelationshipCommandSchema,
   type Attitude,
 } from './relationships/commands.ts';
+export {
+  ASSET_AUDIENCES,
+  ASSET_FAILURES,
+  ASSET_MEDIA_TYPES,
+  ASSET_REQUEST_STATUSES,
+  ASSET_SETTLING_COMMAND_TYPES,
+  ASSET_STATUSES,
+  ASSET_VARIANTS,
+  ASSET_WORKER_COMMAND_TYPES,
+  assetIdSchema,
+  assetLabelSchema,
+  assetRequestIdSchema,
+  contentHashSchema,
+  type AssetAudience,
+  type AssetFailure,
+  type AssetMediaType,
+  type AssetRequestStatus,
+  type AssetStatus,
+  type AssetVariant,
+} from './assets/commands.ts';
+export type {
+  AssetLineageResponse,
+  AssetRequestView,
+  AssetView,
+  EntityAssetsResponse,
+  PlayerAssetView,
+} from './assets/views.ts';

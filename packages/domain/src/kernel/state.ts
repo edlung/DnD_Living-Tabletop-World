@@ -8,6 +8,7 @@ import type {
   StatBlock,
 } from '@ltw/contracts';
 
+import { EMPTY_ASSETS, type AssetState } from '../assets/records.ts';
 import type { EncounterState } from '../combat/records.ts';
 import type { ReactionWindowRecord } from '../combat/reactions.ts';
 import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.ts';
@@ -102,6 +103,8 @@ export interface WorldState {
   readonly reactionWindows: ReadonlyMap<string, ReactionWindowRecord>;
   /** NPC ID → attitude toward the party (ADR 0019 §3); absent means neutral. DM data. */
   readonly relationships: ReadonlyMap<string, Attitude>;
+  /** Asset lineage (ADR 0022): requests, jobs, assets, canonical references. Never world state. */
+  readonly assets: AssetState;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -125,6 +128,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   encounter: null,
   reactionWindows: new Map(),
   relationships: new Map(),
+  assets: EMPTY_ASSETS,
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

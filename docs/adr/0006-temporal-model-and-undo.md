@@ -115,6 +115,12 @@ Each event declares the facts it read and wrote. Later domains add their facts t
   - A play memory reads the names its summary quotes (`named`).
   - Commands earlier writers decided with incomplete records of these kinds carry version 2 memories or contradictions, so they rest on everything before them (ADR 0007 Stage 130 amendment).
 
+- 2026-10-04 (Stage 150, ADR 0022 §4): the §9 external asset obligation is implemented.
+  - Asset lineage is recorded in the campaign stream but writes no world fact. Starting, completing, failing, cancelling, and retracting asset work are final (`UNDO_NOT_SUPPORTED`) and read nothing a world command wrote.
+  - **The hold.** Undoing a command that requested an asset (`RequestAsset`, or an authoring commit that created an NPC or a location) is refused (`UNDO_UNSAFE`) while the job runs, or while its image is neither retracted nor discarded. The latest job or approval command is named as the blocker. Cancelling the job or retracting the image releases the hold.
+  - A queued request comes off with the undo. A failed, cancelled, or retracted job keeps its lineage after the entity is gone; an image that arrives after its job was cancelled is recorded as discarded.
+  - Approving an asset is undoable under §8.
+
 ## Invariants affected
 
 Implements 1, 11, 12, and 13 for the kernel and preserves 3 (only the DM authors and undoes). No invariant is weakened.

@@ -39,6 +39,10 @@ export const facts = {
   reaction: (windowId: string): FactKey => `reaction:${windowId}`,
   relationship: (npcId: string): FactKey => `relationship:${npcId}`,
   shown: (key: string): FactKey => `shown:${key}`,
+  assetRequest: (requestId: string): FactKey => `assetrequest:${requestId}`,
+  assetJob: (requestId: string): FactKey => `assetjob:${requestId}`,
+  asset: (assetId: string): FactKey => `asset:${assetId}`,
+  assetCanonical: (entityId: string): FactKey => `assetcanonical:${entityId}`,
 };
 
 export const allEntityFacts = (id: string): FactKey[] => [

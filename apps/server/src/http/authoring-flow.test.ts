@@ -95,6 +95,7 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
       'EntityPlaced',
       'KnowledgeAssigned',
       'DisclosureSet',
+      'AssetRequested',
     ]);
     const confirmation = second.preview?.confirmation;
     const before = await version();
@@ -122,6 +123,7 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
       'EntityPlaced',
       'KnowledgeAssigned',
       'DisclosureSet',
+      'AssetRequested',
     ]);
 
     // Tomas is native to the world; players learn his account only by asking him.

@@ -120,7 +120,8 @@ describe('authoring over the PostgreSQL event store', () => {
     const committed = await post(first, `${at}/commit`, { revision: 1, confirmation }, TOKENS.dm);
     expect(committed.json<CommandResult>().status).toBe('accepted');
     expect(await count('ltw_commands')).toBe(commands + 1);
-    expect(await count('ltw_events')).toBe(events + 2);
+    // Tomas, his placement, and the reference request for him (ADR 0022 §2).
+    expect(await count('ltw_events')).toBe(events + 3);
 
     const restarted = await server(0xb2);
     const viewed = (await get(restarted, at, TOKENS.dm)).json<AuthoringProposalResponse>();

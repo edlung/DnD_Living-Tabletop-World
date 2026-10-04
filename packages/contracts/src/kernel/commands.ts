@@ -1,5 +1,14 @@
 import { z } from 'zod';
 
+import {
+  approveAssetCommandSchema,
+  cancelAssetRequestCommandSchema,
+  completeAssetJobCommandSchema,
+  failAssetJobCommandSchema,
+  requestAssetCommandSchema,
+  retractAssetCommandSchema,
+  startAssetJobCommandSchema,
+} from '../assets/commands.ts';
 import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
 import { addKnowledgeCommandSchema, assignCharacterCommandSchema } from '../knowledge/commands.ts';
 import {
@@ -129,6 +138,13 @@ export const kernelCommandSchema = z
     closeReactionWindowCommandSchema,
     applyAuthoringCommandSchema,
     setRelationshipCommandSchema,
+    requestAssetCommandSchema,
+    startAssetJobCommandSchema,
+    completeAssetJobCommandSchema,
+    failAssetJobCommandSchema,
+    cancelAssetRequestCommandSchema,
+    retractAssetCommandSchema,
+    approveAssetCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -176,6 +192,13 @@ export const KERNEL_COMMAND_TYPES = [
   'CloseReactionWindow',
   'ApplyAuthoring',
   'SetRelationship',
+  'RequestAsset',
+  'StartAssetJob',
+  'CompleteAssetJob',
+  'FailAssetJob',
+  'CancelAssetRequest',
+  'RetractAsset',
+  'ApproveAsset',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);
