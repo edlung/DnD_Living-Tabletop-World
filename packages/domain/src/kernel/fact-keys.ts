@@ -45,6 +45,12 @@ export const facts = {
   assetCanonical: (entityId: string): FactKey => `assetcanonical:${entityId}`,
   weather: (locationId: string): FactKey => `weather:${locationId}`,
   chronicle: (chronicleId: string): FactKey => `chronicle:${chronicleId}`,
+  /**
+   * A command's standing in current canon: every command writes its own, and
+   * only its undo changes it. A record citing the command's events reads it
+   * (Gate 05, G05-H02).
+   */
+  command: (commandId: string): FactKey => `command:${commandId}`,
 };
 
 export const allEntityFacts = (id: string): FactKey[] => [

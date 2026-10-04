@@ -145,6 +145,11 @@ Anything else is a 404, identical to a nonexistent memory.
 
   - **Names now.** Every entry tells the name an entity has now, a new NPC's included (it used to tell the name it was created with).
   - **Version 3.** `ChronicleGenerated` moves to version 3. Version 2 chapters, recorded by the Stages 170–180 writer, rest on everything before them, as earlier writers' commands do (ADR 0006 retest 3 amendment): undo beneath them is refused, they are re-decided as recorded, and they read and display exactly as stored. History: `fixtures/history/e9c05ad-chronicle-names.json`.
+- 2026-10-04 (Gate 05 retest 1 remediation, G05-H02): **a chapter rests on every occurrence it tells, whatever that occurrence changed** (§4, §5).
+  - **What `rests` adds.** The standing (`command:<id>`) of the command behind every event a DM entry tells. Every command writes its own standing, and only its undo changes it (ADR 0007 amendment). Undoing a told command is therefore refused while the chapter stands (`UNDO_UNSAFE`, naming the chapter), even an examination that rolled nothing and found nothing, until the DM undoes the chapter. An examination no standing chapter tells stays undoable. A memory entry already rests on its memory, and quoted knowledge on its record, so every source a view resolves stays resolved.
+  - **Integrity.** A standing chapter tells only events whose command still stands, besides memories and knowledge that still exist.
+  - **Version 4.** `ChronicleGenerated` moves to version 4. Version 3 chapters, recorded by the Gate 05 retest 1 writer, rest on everything before them, like version 2 chapters.
+  - **What that writer may have left.** It accepted the undo of a told examination beneath its chapter. Such a history reads as recorded: the entry shows no source, integrity names it, and the earlier-writers audit names the undo. Undoing the chapter recovers. Histories: `fixtures/history/a488de4-cited-examinations.json`, `fixtures/history/a488de4-cited-examination-undone.json`.
 
 ## Invariants affected
 

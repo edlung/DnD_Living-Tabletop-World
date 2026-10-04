@@ -12,7 +12,7 @@ import {
 import { writtenEarlier } from '../event-versions.ts';
 import type { RecordedEvent, Restore } from '../events.ts';
 import { replay } from '../evolve.ts';
-import type { FactKey } from '../fact-keys.ts';
+import { facts, type FactKey } from '../fact-keys.ts';
 import { footprintOf, restoredFacts } from '../facts.ts';
 import { reopeningBlockers } from '../../combat/reaction-undo.ts';
 import { pairKey } from '../../contradiction/records.ts';
@@ -66,7 +66,13 @@ export function decideUndo(
   const targetEvents = history.filter(
     (event) => event.sequence >= target.firstSequence && event.sequence <= target.lastSequence,
   );
-  const written = new Set(targetEvents.flatMap((event) => footprintOf(event).writes));
+  // The target also wrote its own standing: a record citing its events (a
+  // chapter telling one) rests on it even when it changed no other fact
+  // (Gate 05, G05-H02).
+  const written = new Set([
+    facts.command(target.commandId),
+    ...targetEvents.flatMap((event) => footprintOf(event).writes),
+  ]);
   const blockers = withoutDuplicates([
     ...findBlockers(state, history, target.lastSequence, written),
     // Reopening a reaction window must keep every later command legal (ADR 0016 §3).

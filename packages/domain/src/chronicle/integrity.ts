@@ -1,6 +1,10 @@
 import type { WorldState } from '../kernel/state.ts';
 
-/** Every chapter's memory and knowledge sources still exist (ADR 0024 §4). */
+/**
+ * Every chapter's sources are still in canon (ADR 0024 §4): the memories and
+ * knowledge it cites exist, and the command of every event it tells stands
+ * (Gate 05, G05-H02).
+ */
 export function chronicleViolations(state: WorldState): string[] {
   const violations: string[] = [];
   for (const record of state.chronicles.values()) {
@@ -9,6 +13,13 @@ export function chronicleViolations(state: WorldState): string[] {
         violations.push(
           `chronicle ${record.chronicleId} tells missing memory ${entry.source.memoryId}`,
         );
+      }
+      if (entry.source.kind === 'event') {
+        const { commandId } = entry.source;
+        const command = state.commands.get(commandId);
+        if (!command || command.undoneBy !== null) {
+          violations.push(`chronicle ${record.chronicleId} tells undone command ${commandId}`);
+        }
       }
       for (const { knowledgeId } of entry.knowledge) {
         if (!state.knowledge.has(knowledgeId)) {

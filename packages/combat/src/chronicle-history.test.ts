@@ -1,22 +1,14 @@
-import type { CommandResult } from '@ltw/contracts';
-import {
-  chronicleEntries,
-  checkWorldIntegrity,
-  holderPerspective,
-  replay,
-  templateProse,
-  writtenEarlier,
-  type ResolvedPerspective,
-} from '@ltw/domain';
+import { checkWorldIntegrity, holderPerspective, replay, writtenEarlier } from '@ltw/domain';
 import { describe, expect, it } from 'vitest';
 
+import { DM_PERSPECTIVE, blockersOf, chapter, stepOf, undo } from './testing/chronicle.ts';
 import {
   eventFromRow,
   historicalWorld,
   loadHistory,
   type HistoryFixture,
 } from './testing/history.ts';
-import { CAMPAIGN, codeOf, type RoadWorld } from './testing/road.ts';
+import { CAMPAIGN, codeOf } from './testing/road.ts';
 import { verifyHistory } from './testing/verify.ts';
 
 /**
@@ -29,42 +21,7 @@ import { verifyHistory } from './testing/verify.ts';
  * when the DM undoes them newest first, and records complete rests from now on.
  */
 const fixture: HistoryFixture = await loadHistory('e9c05ad-chronicle-names');
-const step = (name: string) => {
-  const commandId = fixture.labels[name];
-  if (commandId === undefined) throw new Error(`no step ${name}`);
-  return commandId;
-};
-const undo = (world: RoadWorld, commandId: string) =>
-  world.dm({ type: 'UndoCommand', targetCommandId: commandId });
-const blockersOf = (result: CommandResult) =>
-  result.status === 'rejected'
-    ? ((result.details?.['blockers'] ?? []) as { commandId: string }[]).map((b) => b.commandId)
-    : [];
-
-async function chapter(world: RoadWorld, perspective: ResolvedPerspective, label: string) {
-  const snapshot = await world.engine.load(CAMPAIGN);
-  if (!snapshot) throw new Error('missing campaign');
-  const { entries } = chronicleEntries(
-    snapshot.state,
-    snapshot.history,
-    perspective,
-    0,
-    snapshot.state.clock,
-  );
-  return world.dm({
-    type: 'GenerateChronicle',
-    title: `Current writer (${label})`,
-    perspective: perspective.label,
-    from: 0,
-    to: snapshot.state.clock,
-    prose: {
-      paragraphs: templateProse(entries),
-      provider: 'template',
-      model: 'chronicle-template-1',
-      traceId: null,
-    },
-  });
-}
+const step = stepOf(fixture);
 
 describe('the Stages 170–180 writer’s chapters under the current reader', () => {
   it('parses and replays every prefix; its chapters were written earlier and tell the names of then', () => {
@@ -123,11 +80,7 @@ describe('the Stages 170–180 writer’s chapters under the current reader', ()
     const state = await world.state();
     const told = await chapter(world, holderPerspective(state, { kind: 'PARTY' }), 'PARTY');
     expect(codeOf(told)).toBe('accepted');
-    const dm = await chapter(
-      world,
-      { label: 'DM', kind: 'DM', holderId: null, scopes: 'ALL' },
-      'DM',
-    );
+    const dm = await chapter(world, DM_PERSPECTIVE, 'DM');
     expect(codeOf(dm)).toBe('accepted');
     const recorded = (await world.store.loadStream(CAMPAIGN))?.events.filter(
       (event) => event.type === 'ChronicleGenerated' && !writtenEarlier(event),

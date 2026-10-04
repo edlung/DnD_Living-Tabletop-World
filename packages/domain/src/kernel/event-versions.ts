@@ -69,16 +69,19 @@ const VERSIONING: Partial<Record<KernelEventType, Versioning>> = {
     earlier: { 1: contradictionDetectedPayloadSchema, 2: contradictionDetectedPayloadSchema },
   },
   /**
-   * 3 (Gate 05, G05-H01): a chapter's `rests` hold every premise of its
-   * entries and prose, the names it used among them. Version 2 chapters
-   * (Stages 170–180) rested only on what they told, so they rest on
-   * everything before them. No version 1 was ever written. The payload is
-   * read alike.
+   * 4 (Gate 05 retest 1, G05-H02): a chapter's `rests` also hold the standing
+   * (`command:<id>`) of every command whose event it tells, whatever that
+   * command changed. 3 (Gate 05, G05-H01): they hold every premise of its
+   * entries and prose, the names it used among them. Version 3 chapters (the
+   * Gate 05 retest 1 writer) did not rest on told commands that wrote no
+   * fact, and version 2 chapters (Stages 170–180) rested only on what they
+   * told, so both rest on everything before them. No version 1 was ever
+   * written. The payload is read alike.
    */
   ChronicleGenerated: {
-    current: 3,
+    current: 4,
     written: chronicleGeneratedPayloadSchema,
-    earlier: { 2: chronicleGeneratedPayloadSchema },
+    earlier: { 2: chronicleGeneratedPayloadSchema, 3: chronicleGeneratedPayloadSchema },
   },
 };
 

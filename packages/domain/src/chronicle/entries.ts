@@ -20,6 +20,8 @@ import { salientEvents } from './salience.ts';
  * (Gate 05, G05-H01): the memories, records, and events it tells; the names
  * of everyone and everywhere its entries and prose use; the party membership
  * that selected an entry; and the holder whose perspective it is told from.
+ * An event it tells stands as long as its command does, whatever that
+ * command changed (Gate 05, G05-H02).
  */
 export interface ChronicleDraft {
   readonly entries: StoredEntry[];
@@ -61,6 +63,16 @@ function memoryEntries(
         ],
       };
     });
+}
+
+/**
+ * The standing of the occurrence an entry tells: an event entry rests on its
+ * command's standing, which only that command's undo changes, so a told event
+ * stays in canon even when it wrote no fact (Gate 05, G05-H02). A memory
+ * entry rests on its memory record.
+ */
+function standingOf(entry: Omit<StoredEntry, 'key'>): string[] {
+  return entry.source.kind === 'event' ? [facts.command(entry.source.commandId)] : [];
 }
 
 /** What an entry's words and selection rest on, beyond the source it tells. */
@@ -112,7 +124,11 @@ export function chronicleEntries(
     entries: kept.map(({ entry }, index) => ({ key: `e${String(index + 1)}`, ...entry })),
     rests: [
       ...new Set([
-        ...kept.flatMap(({ entry, rests }) => [...rests, ...premisesOf(entry)]),
+        ...kept.flatMap(({ entry, rests }) => [
+          ...rests,
+          ...standingOf(entry),
+          ...premisesOf(entry),
+        ]),
         ...perspectivePremises(perspective),
       ]),
     ].sort(),

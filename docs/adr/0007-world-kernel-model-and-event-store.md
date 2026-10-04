@@ -86,6 +86,11 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Gate 05 retest 1 remediation (2026-10-04), G05-H02: a command's standing.**
+  - New fact key `command:<commandId>`: the command's standing in current canon. Every command writes its own, and only its undo changes it. Undo of _C_ counts `command:<C>` among the facts _C_ wrote (`decide/undo.ts`), so a later record that reads it blocks the undo even when _C_ changed no other fact. Event footprints do not list it, and `CommandUndone` keeps its exact restore footprint.
+  - `ChronicleGenerated` moves to version 4: its `rests` hold the standing of every command whose event a chapter tells. Version 3 chapters (the Gate 05 retest 1 writer) rest on everything before them, like version 2 chapters.
+  - **Integrity** requires that a standing chapter tells only events whose command still stands.
+  - Histories: `fixtures/history/a488de4-cited-examinations.json`, `fixtures/history/a488de4-cited-examination-undone.json`.
 - **Gate 05 remediation (2026-10-04), G05-H01: complete chapter premises.**
   - `ChronicleGenerated` moves to version 3: its `rests` hold every premise of its entries and prose, the names they used among them.
   - Version 2 chapters (Stages 170–180) are read alike, and rest on everything before them (`writtenEarlier`). No version 1 was ever written.

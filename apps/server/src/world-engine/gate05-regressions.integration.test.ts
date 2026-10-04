@@ -34,7 +34,9 @@ import { PostgresEventStore } from './postgres-event-store.ts';
  * reproduced them: through the authenticated HTTP app on PostgreSQL, with a
  * restart. G05-H01: a standing chapter protects the names it told. G05-M01:
  * a later move of the evidence never rewrites the quest's earlier
- * examination milestone.
+ * examination milestone. G05-H02 (reviews/ASTRA_GATE_05_RETEST_1.md): a
+ * standing chapter protects the examinations it tells, even those that
+ * changed no fact.
  */
 const BASE = '/campaigns/ravenford';
 const NAME = 'G05 NAME THAT MUST NOT SURVIVE UNDO';
@@ -192,4 +194,110 @@ describe('G05-M01: a later move never rewrites an earlier examination', () => {
       expect(replay(snapshot.history)).toEqual(snapshot.state);
     },
   );
+});
+
+describe('G05-H02: a chapter protects the examinations it tells, whatever they changed', () => {
+  const act = (body: Record<string, unknown>) =>
+    command({ characterId: 'elowen-starwhisper', ...body }, TOKENS.player);
+  const chapter = async (perspective: string, from = 0) => {
+    const generated = await post(
+      app,
+      `${BASE}/chronicle`,
+      { title: 'Gate 05 retest regression', perspective, from },
+      TOKENS.dm,
+    );
+    expect(generated.statusCode).toBe(200);
+    return generated.json<GenerateChronicleResponse>().chronicleId ?? '';
+  };
+  /** Elowen at the caravan site, then an inspection that rolls nothing and finds nothing. */
+  async function emptyExamination(mode: string) {
+    await act({ type: 'EnterLocation', locationId: 'old-trade-road' });
+    await act({ type: 'EnterLocation', locationId: 'abandoned-caravan-site' });
+    let entityId = 'strange-symbol';
+    if (mode === 'repeated inspection') {
+      await act({ type: 'ExamineEntity', entityId, method: 'inspect' });
+    } else {
+      entityId = 'g05-plain-token';
+      await command({
+        type: 'CreateEntity',
+        entityId,
+        kind: 'item',
+        name: 'Plain Token',
+        existsSince: null,
+        placement: { locationId: 'abandoned-caravan-site', since: null },
+      });
+    }
+    const examined = await act({ type: 'ExamineEntity', entityId, method: 'inspect' });
+    expect(examined.result).toMatchObject({
+      status: 'accepted',
+      outcome: { roll: null, discovered: [] },
+    });
+    return examined.result.commandId;
+  }
+
+  it.each(['repeated inspection', 'first inspection without clues'])(
+    'refuses to undo a %s beneath it, across a restart, until the chapter is undone',
+    async (mode) => {
+      const examination = await emptyExamination(mode);
+      const chapterId = await chapter('DM');
+      const { snapshot: before, divergence } = await oracle();
+      expect(divergence).toBeNull();
+      const source = before.history.find(
+        (event) => event.type === 'EvidenceExamined' && event.causation.commandId === examination,
+      );
+      const told = async () =>
+        (await get(app, `${BASE}/chronicle?perspective=DM`, TOKENS.dm))
+          .json<ChronicleListResponse>()
+          .chapters.find((c) => c.chronicleId === chapterId)
+          ?.entries.find((e) => e.sources.some((s) => s.eventId === source?.eventId));
+      const entry = await told();
+      expect(entry?.sources).toEqual([
+        { eventId: source?.eventId, eventType: 'EvidenceExamined', sequence: source?.sequence },
+      ]);
+
+      const refused = await command({ type: 'UndoCommand', targetCommandId: examination });
+      expect(refused.http).toBe(422);
+      expect(refused.result).toMatchObject({ code: 'UNDO_UNSAFE' });
+      expect(
+        refused.result.status === 'rejected' ? refused.result.details?.['blockers'] : [],
+      ).toEqual([
+        expect.objectContaining({ commandId: chapterId, commandType: 'GenerateChronicle' }),
+      ]);
+      // Nothing changed: no compensation, and the entry keeps its source.
+      expect((await oracle()).snapshot).toEqual(before);
+      expect(await told()).toEqual(entry);
+
+      await restart();
+      const reloaded = await oracle();
+      expect(reloaded.divergence).toBeNull();
+      expect(reloaded.snapshot.state).toEqual(before.state);
+      expect(await told()).toEqual(entry);
+      expect((await get(app, `${BASE}/chronicle?perspective=DM`, TOKENS.player)).statusCode).toBe(
+        403,
+      );
+      expect((await get(app, `${BASE}/chronicle?perspective=DM`, TOKENS.outsider)).statusCode).toBe(
+        404,
+      );
+      expect((await command({ type: 'UndoCommand', targetCommandId: examination })).http).toBe(422);
+
+      // Explicit reverse recovery: the chapter, then the examination.
+      expect((await command({ type: 'UndoCommand', targetCommandId: chapterId })).http).toBe(200);
+      expect((await command({ type: 'UndoCommand', targetCommandId: examination })).http).toBe(200);
+      const { snapshot, divergence: after } = await oracle();
+      expect(after).toBeNull();
+      expect(replay(snapshot.history)).toEqual(snapshot.state);
+      expect(checkWorldIntegrity(snapshot.state)).toEqual([]);
+    },
+  );
+
+  it('leaves an examination that changed nothing undoable while no standing chapter tells it', async () => {
+    const examination = await emptyExamination('repeated inspection');
+    const examinedAt = (await oracle()).snapshot.state.clock;
+    await command({ type: 'AdvanceWorldTime', by: 3_600 });
+    await act({ type: 'EnterLocation', locationId: 'old-trade-road' });
+    await chapter('DM', examinedAt + 1);
+    await chapter('PARTY');
+    expect((await command({ type: 'UndoCommand', targetCommandId: examination })).http).toBe(200);
+    expect((await oracle()).divergence).toBeNull();
+  });
 });
