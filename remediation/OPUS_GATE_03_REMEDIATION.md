@@ -234,3 +234,140 @@ Astra:
 ## Hard Stop
 
 Opus stops here. Do not begin Stage 100 until Astra writes PASS.
+
+---
+
+# Remediation for Retest 3 (after `reviews/ASTRA_GATE_03_RETEST_2.md`)
+
+- Astra report: `reviews/ASTRA_GATE_03_RETEST_2.md` (FAIL: G03-H05 High, G03-H06 High). G03-H01 to G03-H04 were confirmed closed.
+- Retest number / required output path: 3 — `reviews/ASTRA_GATE_03_RETEST_3.md`
+- Revision before remediation: `b38cbbcb6dcf340a5ab207a3fb2f4a8dac9f2750` (reviewed at `37523d1`, the same implementation)
+- Revision after remediation: `e893497fef95e53ec54f4baa0a314a341d09515b`
+- Builder: Claude Opus 5.5, MAX
+- Owner decision: G03-H06, recorded as an amendment to ADR 0015 and ADR 0016 (2026-10-04)
+- Status: AWAITING_ASTRA_RETEST
+
+## G03-H05 — Replacing a stored premise variant makes legitimate previous-version campaigns unloadable
+
+- **Severity:** High
+- **Violated invariant:** 12; ADR 0006 (append-only reconstruction); ADR 0007 (upcasting on load).
+- **Root cause:**
+  - The retest 1 remediation replaced the `placement` premise with `unreached` in the one schema that both wrote and read `PremisesRecorded`, so events revision 88d8137 had stored could no longer be parsed.
+  - The schema version was a single constant (1) for every type, and the parser knew only the current schema.
+  - No test read history written by an earlier revision: every test wrote and read with the same code.
+- **Regression tests added first** (failing before the fix):
+  - **Fixture** `fixtures/history/88d8137-gate03-retest1.json`: the genuine rows revision 88d8137 stored through its own HTTP app and `PostgresEventStore` (178 events, 125 commands). Its writer script and steps are in `WRITERS.md`. The scenario after the seed:
+    - the reviewer's case: a far charm at the North Gate, and Detect Magic recording a version 1 `placement` premise;
+    - a cast the DM undid;
+    - Hunter's Mark and Healing Word by Elowen outside a fight;
+    - Detect Magic in combat, with `placement` for the Shaman;
+    - a countered Ashen Bolt, an expired Binding Hex, and an undone `EndCombat`.
+  - `packages/combat/src/gate03-h05-regressions.test.ts`, `retest1_placement_premise_survives_current_reader`. Four of its five tests failed with a `ZodError` at `placement`, and the fifth (the control) failed because version 1 was written. The tests check that:
+    - every row parses, and the state at every recorded command is consistent (as-of reconstruction);
+    - the current engine loads the stream, continues it, and the result verifies (DM authoring and a player cast; replay, integrity, window legality, re-decision);
+    - undo beneath the old casts is refused, atomically;
+    - every command the old writer added after the seed comes off in reverse order, and the stream then verifies;
+    - a fresh-current control writes version 2 and protects the same facts.
+  - `apps/server/src/world-engine/gate03-retest2-regressions.integration.test.ts`, on PostgreSQL. The rows are inserted exactly as stored. The player's encounter `GET` returned HTTP 500 before the fix. The test then checks:
+    - a DM command is accepted, and the result holds after a restart;
+    - undo beneath the old casts is refused and leaves the version unchanged;
+    - a current cast is stored with `schema_version` 2;
+    - the history verifies from the database.
+- **Fix:** history is never edited, reset, or given clue IDs it did not contain.
+  - **Per-type schema versions** (`packages/domain/src/kernel/event-versions.ts`):
+    - Each type is written with its current version; `PremisesRecorded` is now version 2.
+    - Every earlier version keeps a decoder.
+    - `parseRecordedEvent` checks a payload against the version it was written with and decodes it into the current in-memory form. A version a type never had is refused.
+  - **Premise vocabulary:** premises are written with `premiseSchema` and read with `recordedPremiseSchema`, which keeps the legacy `placement`.
+  - **Meaning of `placement`:**
+    - Its fold requires the entity to exist, as in 88d8137.
+    - Its footprint reads the entity and where it was. The old event does not name the clues, so the footprint also reads the entity's clues as a whole: `ClueAdded` now writes `entity:<id>#clues`.
+    - So undoing a clue beneath an old cast is `UNDO_UNSAFE`, as it is for current casts.
+  - **Write guard:** the engine refuses to write a payload its type's current version cannot hold, so legacy variants are read-only.
+  - **Re-decision oracle:** it folds as recorded every command an earlier writer decided (one of its events has an earlier version), and re-decides only what the current rules decided. Folded events must still apply.
+  - Tests added with the fix, `packages/domain/src/kernel/event-versions.test.ts`:
+    - version 1 is read with `placement` (written by 88d8137) or `unreached` (written by b38cbbc);
+    - version 2 never holds `placement`;
+    - versions a type was never written with are refused;
+    - the engine refuses to write a legacy premise.
+- **Found by the new randomized test on the old history:**
+  - Narrative combat records (`SpellCast`, `HealingApplied`, …) require the creatures they name to exist when folded, but their footprints did not read them.
+  - An old outside-the-fight Hunter's Mark, recorded by 88d8137 without its target's premises (the G03-H04 era), let undo remove its target. The record was stranded, and re-decision reported "SpellCast references a missing entity".
+  - Fix: these records read every creature they name. `packages/domain/src/combat/named-entities.ts` is shared by the fold and the footprint, so the two cannot drift.
+  - A deterministic test covers it on the old history: "undo cannot remove a creature an old record names, whatever its premises" (`gate03-h05-regressions.test.ts`).
+- **Guards for the class:**
+  - Kernel rules (`packages/domain/src/kernel/AGENTS.md`): a change that would reject or reinterpret stored events needs a new version and decoders, and, before the change, a history written by the previous revision in `fixtures/history/`.
+  - `packages/combat/src/history.property.test.ts` runs random commands and undos, old commands included, on that history (8 seeds). It checks consistency after every step, and replay plus re-decision every five steps. On copies of the world it also tries undoing each of the latest commands.
+- **Compatibility audit:** I diffed every event and stored-command schema from the Gate 01 pass (`641c6af`) to now:
+  - every change was additive (new types, enum values, optional fields, wider limits) or the documented relaxation of `restores`;
+  - `placement` was the only removal.
+
+## G03-H06 — Outside-encounter Healing Word reveals whether a hidden reaction window is open
+
+- **Severity:** High
+- **Violated invariant:** 5; ADR 0016 §4 ("Outsiders cannot probe").
+- **Root cause:**
+  - A caster outside a running fight could target its combatants.
+  - Healing writes the target's stat block or sheet, which every open window depends on: a window reads every combatant.
+  - So the pause refused it (`REACTION_PENDING`) only while a window was open.
+  - While outsiders can change combatants, pause integrity and non-interference cannot both hold, so this needed an owner decision.
+- **Owner decision** (2026-10-04, recorded as amendments to ADR 0015 and ADR 0016):
+  - A character outside a fight cannot target its combatants (`TARGET_IN_COMBAT`, as `ILLEGAL_ACTION`), in every phase of the fight. This mirrors the existing rule that a combatant's spells reach only combatants.
+  - A witness may thus learn that a creature it perceives is fighting, never anything about a reaction window.
+  - Detect Magic, and spells at creatures outside the fight, are unchanged.
+- **Regression tests added first** (failing before the fix):
+  - `packages/combat/src/gate03-h06-regressions.test.ts`, `outsider_healing_does_not_reveal_hidden_reaction_window`. Before the fix, 4 of its 12 tests failed. Healing Word at the Shaman got `REACTION_PENDING` with a window open and was accepted without one. Hunter's Mark at the Shaman was accepted where the owner's rule now refuses it.
+    - Phases: no fight, a fight without Elowen, and that fight with an open window (Seren is the candidate).
+    - Targets: the Shaman unhurt and injured, Elowen herself unhurt and injured, and a bystander.
+    - All three spells, each after a fresh engine reload.
+    - Results with and without a window must be identical.
+    - What the window depends on must be unchanged after every accepted probe, and the history must verify.
+  - `gate03-retest2-regressions.integration.test.ts` (PostgreSQL over HTTP, after a restart):
+    - the player's encounter view and six probes return the same response sequence with and without a window;
+    - with no fight, the combatant probes are accepted;
+    - during the fight they are refused with `TARGET_IN_COMBAT`.
+- **Fix:**
+  - `packages/combat/src/spell-legality.ts`: a caster outside a running fight cannot target its combatants. This check comes after every reason the caster would get anyway.
+  - The Context Engine mirrors it (`packages/context/src/actions.ts`; the reason is added to the contracts).
+  - `decide/reaction-pause.ts` documents why such a character can no longer reach the pause.
+  - Test added with the fix, `packages/context/src/outsider.test.ts`: the context shows the same reason, agrees with the World Engine, and is identical with and without a window.
+- **Randomized coverage, added with the fix** (`packages/combat/src/reactions/property.test.ts`):
+  - While a window is open, Bram (outside the fight) casts at combatants, at himself, and at bystanders.
+  - He must never meet the pause.
+  - His result must match a copy of the world where the window never opened: the trigger undone, with the same dice.
+  - Across the 12 seeds there were 66 such casts. 32 were compared; 34 were skipped because answers already rested on the window. A coverage assertion requires at least 5 comparisons.
+  - With the fix removed, 6 of the 12 seeds fail.
+
+## Validation (revision `e893497`; Node 25.8.1, pnpm 11.11.0, PostgreSQL 18)
+
+| Command                                                                                                                                                     | Result                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm validate:ci-local` (format, lint, typecheck, budget, unit, clean build, migrate ×2, seed ×2, integration)                                             | PASS on `e893497`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `pnpm test`                                                                                                                                                 | PASS — 82 files, 949 tests                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `pnpm test:integration`                                                                                                                                     | PASS — 10 files, 44 tests (2 new: G03-H05 and G03-H06 on PostgreSQL)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `pnpm context-budget`                                                                                                                                       | PASS — 274 active files, 0 over 500 lines, 0 over 700                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Fresh volume: `pnpm db:migrate` ×2, `pnpm seed:ravenford` ×2                                                                                                | PASS — the migration applied once; 91 commands, version 100, 25 entities; the second runs change nothing                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| A larger randomized campaign, run temporarily and then deleted: 80 reaction seeds × 120 steps, 60 domain seeds, 60 seeds × 60 steps on the retest 1 history | 200 of 201 tests passed, covering every integrity, replay, pause, range, undo-safety, re-decision, window-hiding, and legacy-history check. Bram was compared with a world where the window never opened at least 40 times. Seed 1666 again failed only the coverage assertion that some window opened: a step trace shows the Shaman's one turn passed without its cast                                                                                                                                                                                                                                   |
+| Live server on PostgreSQL (crypto dice), over HTTP, built from `e893497`                                                                                    | PASS. With the retest 1 rows in the development database, the player's encounter read returns 200 and a DM command is accepted. Undo of the far charm or its clue beneath the old casts is refused, naming them. A new Detect Magic is stored as version 2, and the 18 version 1 premise events are untouched. Then, in a fight without Elowen, her Healing Word at the Shaman is refused with `TARGET_IN_COMBAT`, identically before and while Seren's window is open. Healing herself with the window open is accepted, and her player sees no encounter. The database was then reset and reseeded clean |
+| Mutation checks against the full unit suite, one at a time: the 17 Stage 90 defects, the 7 and 3 fixes of retests 1 and 2, and 10 of this remediation       | All 37 detected. Two of the new ones first survived because their tests passed for another reason. The tests were sharpened: the engine's write guard now names its reason, and a deterministic test covers the stranded record. Both are now detected                                                                                                                                                                                                                                                                                                                                                     |
+
+## Deferred Findings
+
+None.
+
+## Retest Request
+
+Astra:
+
+- Independently retest G03-H05 and G03-H06 and their adjacent paths:
+  - history written by earlier revisions: reload, as-of reconstruction, continuation, undo beneath and of old commands, and the version-aware parser and oracle;
+  - outsider spells at combatants and at creatures outside the fight, with and without an open window, in the World Engine and the Context Engine;
+  - narrative combat records under undo.
+- The owner's G03-H06 decision is in ADR 0015 and ADR 0016 (retest 2 amendments).
+- Recheck that G03-H01 to G03-H04 remain closed.
+- Write `reviews/ASTRA_GATE_03_RETEST_3.md`. The handoff `handoffs/ASTRA_GATE_03_REQUEST.md` is updated to retest 3 with this output path.
+- Preserve every earlier report and its evidence. Do not rely on this report's claim that a fix is correct.
+
+## Hard Stop
+
+Opus stops here. Do not begin Stage 100 until Astra writes PASS.
