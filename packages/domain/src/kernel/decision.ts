@@ -3,10 +3,12 @@ import type {
   KernelCommand,
   KernelCommandOf,
   PlayerCommandType,
+  ProposableCommand,
   RejectionCode,
   Skill,
 } from '@ltw/contracts';
 
+import type { ConsentRequirement } from '../authoring/consent.ts';
 import type { Actor } from './actor.ts';
 import type { CombatPort } from '../combat/port.ts';
 import type { Authority } from './authorization.ts';
@@ -25,7 +27,16 @@ export interface Rejection {
 }
 
 export type Decision =
-  | { readonly ok: true; readonly events: readonly KernelEvent[] }
+  | {
+      readonly ok: true;
+      readonly events: readonly KernelEvent[];
+      /**
+       * Consent the World Engine must find in the command before appending
+       * (authoring, docs/adr/0018-ai-authoring.md §4). A commit-time gate,
+       * not a premise: re-decision ignores it.
+       */
+      readonly requires?: ConsentRequirement;
+    }
   | { readonly ok: false; readonly rejection: Rejection };
 
 /**
@@ -39,6 +50,12 @@ export interface Resolution {
   /** Combat (ADR 0015): a pool of uniform 32-bit values every die of the decision is drawn from. */
   readonly entropy: readonly number[];
 }
+
+/** A proposed authoring operation with its generated IDs (docs/adr/0018-ai-authoring.md). */
+export type ResolvedProposable =
+  | Exclude<ProposableCommand, { type: 'CreateEntity' | 'AddKnowledge' }>
+  | (KernelCommandOf<'CreateEntity'> & { readonly entityId: string })
+  | (KernelCommandOf<'AddKnowledge'> & { readonly knowledgeId: string });
 
 /** A command after the engine assigned any generated IDs and draws. */
 export type ResolvedCommand =
@@ -54,9 +71,13 @@ export type ResolvedCommand =
           | 'AddClue'
           | 'StartCombat'
           | 'CloseReactionWindow'
+          | 'ApplyAuthoring'
           | PlayerCommandType;
       }
     >
+  | (Omit<KernelCommandOf<'ApplyAuthoring'>, 'commands'> & {
+      readonly commands: ResolvedProposable[];
+    })
   | (KernelCommandOf<'AddClue'> & { readonly clueId: string })
   | (KernelCommandOf<'StartCombat'> & {
       readonly encounterId: string;

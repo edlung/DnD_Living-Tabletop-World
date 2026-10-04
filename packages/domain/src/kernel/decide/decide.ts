@@ -1,5 +1,6 @@
 import { PLAYER_COMMAND_TYPES } from '@ltw/contracts';
 
+import { decideApplyAuthoring } from '../../authoring/decide.ts';
 import { decideSetCharacterSheet } from '../../character/character.ts';
 import { decideSetStatBlock } from '../../combat/authoring.ts';
 import { poolDice } from '../../combat/port.ts';
@@ -37,17 +38,23 @@ import {
  * command must record its premises; when a controlling player issued it,
  * that authorization is one of them (Gate 02, G02-H03). While a reaction
  * window is open, the pause rule applies to every command (ADR 0016).
+ * Authoring decisions also state the consent their commit needs (ADR 0018).
  */
 export function decide(context: DecisionContext, command: ResolvedCommand): Decision {
-  const paused = pausedCombat(context.state, command);
-  if (paused) return paused;
+  const waiting = pausedCombat(context.state, command);
+  if (waiting) return waiting;
   const decision = route(context, command);
   if (!decision.ok) return decision;
   const events = PLAYER_TYPES.has(command.type)
     ? withAuthorityPremise(context, command.type, decision.events)
     : decision.events;
   const all = withContradictions(context.state, events, context.commandId);
-  return pausedByChanges(context.state, command.type, all) ?? accept(...all);
+  const paused = pausedByChanges(context.state, command.type, all);
+  if (paused) return paused;
+  // Authoring states the consent its commit needs (ADR 0018 §4).
+  return decision.requires
+    ? { ok: true, events: all, requires: decision.requires }
+    : accept(...all);
 }
 
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
@@ -125,6 +132,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideSetClaim(state, command);
     case 'SetStatBlock':
       return decideSetStatBlock(state, command);
+    case 'ApplyAuthoring':
+      return decideApplyAuthoring(context, command);
     case 'StartCombat':
     case 'MoveCombatant':
     case 'Attack':

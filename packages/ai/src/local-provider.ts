@@ -20,10 +20,45 @@ const slug = (text: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-/** How a name may be written: in full, or by its last two words when it has more. */
-function aliases(name: string): string[] {
-  const words = name.toLowerCase().split(/\s+/);
-  return words.length > 2 ? [words.join(' '), words.slice(-2).join(' ')] : [words.join(' ')];
+/** Kinds that may be named by their last word alone ("the caravan", "Thorne"). */
+const SHORT_NAMED: ReadonlySet<EntityRef['kind']> = new Set([
+  'npc',
+  'character',
+  'creature',
+  'item',
+]);
+
+/**
+ * How each name may be written: in full; by its last two words when it has
+ * more; and, for people and things, by its last word when that word is long
+ * and no other directory name ends with it.
+ */
+function aliasesOf(directory: readonly EntityRef[]): Map<EntityRef, string[]> {
+  const words = (name: string) => name.toLowerCase().split(/\s+/);
+  const endings = new Map<string, number>();
+  for (const entity of directory) {
+    const last = words(entity.name).at(-1) ?? '';
+    endings.set(last, (endings.get(last) ?? 0) + 1);
+  }
+  return new Map(
+    directory.map((entity) => {
+      const name = words(entity.name);
+      const last = name.at(-1) ?? '';
+      const short =
+        SHORT_NAMED.has(entity.kind) &&
+        name.length > 1 &&
+        last.length >= 5 &&
+        endings.get(last) === 1;
+      return [
+        entity,
+        [
+          name.join(' '),
+          ...(name.length > 2 ? [name.slice(-2).join(' ')] : []),
+          ...(short ? [last] : []),
+        ],
+      ];
+    }),
+  );
 }
 
 /**
@@ -33,8 +68,9 @@ function aliases(name: string): string[] {
  */
 function mentioned(text: string, directory: readonly EntityRef[]): EntityRef[] {
   const lower = text.toLowerCase();
+  const aliases = aliasesOf(directory);
   const found = directory.flatMap((entity) => {
-    const spans = aliases(entity.name).flatMap((alias) => {
+    const spans = (aliases.get(entity) ?? []).flatMap((alias) => {
       const at = lower.indexOf(alias);
       return at < 0 ? [] : [{ entity, start: at, end: at + alias.length }];
     });

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
 import { addKnowledgeCommandSchema, assignCharacterCommandSchema } from '../knowledge/commands.ts';
 import {
   endSessionCommandSchema,
@@ -31,90 +32,44 @@ import { setStatBlockCommandSchema } from '../combat/stat-block.ts';
 import { setClaimCommandSchema } from '../knowledge/claims.ts';
 import { setCharacterSheetCommandSchema } from '../rules/character-sheet.ts';
 import { commandIdSchema, entityIdSchema, sceneIdSchema } from './identifiers.ts';
-import { worldDurationSchema, worldTimeSchema } from './world-time.ts';
+import {
+  advanceWorldTimeCommandSchema,
+  changeEntityStatusCommandSchema,
+  createEntityCommandSchema,
+  entityNameSchema,
+  placeEntityCommandSchema,
+  updateEntityProfileCommandSchema,
+  worldCommandIssue,
+} from './world-commands.ts';
+import { worldTimeSchema } from './world-time.ts';
+
+export {
+  ENTITY_KINDS,
+  ENTITY_STATUSES,
+  LOCATION_TYPES,
+  advanceWorldTimeCommandSchema,
+  changeEntityStatusCommandSchema,
+  createEntityCommandSchema,
+  entityNameSchema,
+  placeEntityCommandSchema,
+  updateEntityProfileCommandSchema,
+  worldCommandIssue,
+  type EntityKind,
+  type EntityStatus,
+  type LocationType,
+} from './world-commands.ts';
 
 /**
  * World Kernel commands (docs/adr/0007-world-kernel-model-and-event-store.md).
  * Schemas validate shape only; legality is decided by the World Engine.
  * Every object is strict: unknown fields are rejected, never ignored.
  */
-export const ENTITY_KINDS = [
-  'location',
-  'character',
-  'npc',
-  'creature',
-  'item',
-  'feature',
-  'faction',
-] as const;
-export type EntityKind = (typeof ENTITY_KINDS)[number];
-
-export const LOCATION_TYPES = [
-  'region',
-  'settlement',
-  'district',
-  'site',
-  'building',
-  'room',
-  'route',
-] as const;
-export type LocationType = (typeof LOCATION_TYPES)[number];
-
-export const ENTITY_STATUSES = ['active', 'dead', 'destroyed'] as const;
-export type EntityStatus = (typeof ENTITY_STATUSES)[number];
-
-const name = z.string().trim().min(1).max(120);
-const description = z.string().trim().max(4000);
-
 const createCampaign = z
   .object({
     type: z.literal('CreateCampaign'),
-    name,
-    worldName: name,
+    name: entityNameSchema,
+    worldName: entityNameSchema,
     startsAt: worldTimeSchema,
-  })
-  .strict();
-
-export const createEntityCommandSchema = z
-  .object({
-    type: z.literal('CreateEntity'),
-    entityId: entityIdSchema.optional(),
-    kind: z.enum(ENTITY_KINDS),
-    name,
-    description: description.optional(),
-    /** World time the entity began to exist; `null` = before recorded history. */
-    existsSince: worldTimeSchema.nullable(),
-    /** Required exactly when `kind` is `location`. */
-    location: z
-      .object({ type: z.enum(LOCATION_TYPES), parentId: entityIdSchema.nullable() })
-      .strict()
-      .optional(),
-    /** Initial placement; `since` may be backdated within the entity's existence. */
-    placement: z
-      .object({ locationId: entityIdSchema, since: worldTimeSchema.nullable() })
-      .strict()
-      .optional(),
-  })
-  .strict();
-
-export const placeEntityCommandSchema = z
-  .object({ type: z.literal('PlaceEntity'), entityId: entityIdSchema, locationId: entityIdSchema })
-  .strict();
-
-export const updateEntityProfileCommandSchema = z
-  .object({
-    type: z.literal('UpdateEntityProfile'),
-    entityId: entityIdSchema,
-    name: name.optional(),
-    description: description.optional(),
-  })
-  .strict();
-
-export const changeEntityStatusCommandSchema = z
-  .object({
-    type: z.literal('ChangeEntityStatus'),
-    entityId: entityIdSchema,
-    status: z.enum(ENTITY_STATUSES),
   })
   .strict();
 
@@ -128,15 +83,6 @@ const startScene = z
   .strict();
 
 const endScene = z.object({ type: z.literal('EndScene'), sceneId: sceneIdSchema }).strict();
-
-/** Exactly one of `by` (duration) or `to` (absolute world time). */
-export const advanceWorldTimeCommandSchema = z
-  .object({
-    type: z.literal('AdvanceWorldTime'),
-    by: worldDurationSchema.optional(),
-    to: worldTimeSchema.optional(),
-  })
-  .strict();
 
 const undoCommand = z
   .object({ type: z.literal('UndoCommand'), targetCommandId: commandIdSchema })
@@ -176,21 +122,11 @@ export const kernelCommandSchema = z
     useReactionCommandSchema,
     declineReactionCommandSchema,
     closeReactionWindowCommandSchema,
+    applyAuthoringCommandSchema,
   ])
   .superRefine((command, context) => {
-    if (
-      command.type === 'AdvanceWorldTime' &&
-      (command.by === undefined) === (command.to === undefined)
-    ) {
-      context.addIssue({ code: 'custom', message: 'provide exactly one of "by" or "to"' });
-    }
-    if (
-      command.type === 'UpdateEntityProfile' &&
-      command.name === undefined &&
-      command.description === undefined
-    ) {
-      context.addIssue({ code: 'custom', message: 'provide "name" and/or "description"' });
-    }
+    const issue = worldCommandIssue(command);
+    if (issue !== null) context.addIssue({ code: 'custom', message: issue });
   });
 
 export type KernelCommand = z.infer<typeof kernelCommandSchema>;
@@ -230,6 +166,7 @@ export const KERNEL_COMMAND_TYPES = [
   'UseReaction',
   'DeclineReaction',
   'CloseReactionWindow',
+  'ApplyAuthoring',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

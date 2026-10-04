@@ -2,11 +2,12 @@ import pg from 'pg';
 
 import { createAiGateway } from './ai/gateway.ts';
 import { PostgresAiTraceStore } from './ai/postgres-trace-store.ts';
+import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { buildApp } from './http/app.ts';
 import { disabledAuthenticator, loadDevPersonaAuthenticator } from './http/auth.ts';
 import { describeDatabaseUrl, loadConfig } from './platform/config/config.ts';
 import { createLogger } from './platform/logging/logger.ts';
-import { createWorldEngine } from './world-engine/runtime.ts';
+import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
 
 /**
  * Server composition root. Wires platform services, the World Engine, and
@@ -26,7 +27,12 @@ async function main(): Promise<void> {
   }
 
   const ai = createAiGateway(config.ai, new PostgresAiTraceStore(pool));
-  const app = buildApp({ engine: createWorldEngine(pool), authenticator, logger, ai });
+  const authoring = {
+    proposals: new PostgresProposalStore(pool),
+    ids: randomIds,
+    clock: systemClock,
+  };
+  const app = buildApp({ engine: createWorldEngine(pool), authenticator, logger, ai, authoring });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
     {

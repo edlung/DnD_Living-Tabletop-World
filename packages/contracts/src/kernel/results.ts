@@ -90,6 +90,12 @@ export const REJECTION_CODES = [
   'NOT_A_CANDIDATE',
   /** The candidate already answered this reaction window. */
   'ALREADY_RESPONDED',
+  /** Authoring (ADR 0018 §2): the proposal holds an operation that is not enabled, or destructive or global. */
+  'AUTHORING_UNSUPPORTED',
+  /** Authoring (ADR 0018 §3): an operation is illegal now or breaks continuity; `details.issues` lists each. */
+  'AUTHORING_INVALID',
+  /** Authoring (ADR 0018 §4): the confirmation does not cover the current risk level or warnings. */
+  'CONFIRMATION_REQUIRED',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

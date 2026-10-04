@@ -3,6 +3,7 @@ import { campaignRole } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
+import { statusOf } from '../command-status.ts';
 import { sendError } from '../errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../request-context.ts';
 
@@ -34,8 +35,10 @@ export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependenc
     if (!path) return reply;
     const input = parseInput(body, request.body, request, reply);
     if (!input) return reply;
-    if (input.command.type === 'CreateCampaign')
+    // Authoring commits only through its proposals (docs/adr/0018-ai-authoring.md §6).
+    if (input.command.type === 'CreateCampaign' || input.command.type === 'ApplyAuthoring') {
       return sendError(reply, request, 'INVALID_REQUEST');
+    }
 
     const state = (await deps.engine.load(path.campaignId))?.state ?? null;
     const role = campaignRole(state, actor);
@@ -77,18 +80,4 @@ export function forPlayer(result: CommandResult): CommandResult {
   }
   const { status, commandId, campaignId, outcome } = result;
   return { status, commandId, campaignId, events: [], ...(outcome ? { outcome } : {}) };
-}
-
-function statusOf(result: CommandResult): number {
-  if (result.status !== 'rejected') return 200;
-  switch (result.code) {
-    case 'INVALID_COMMAND':
-      return 400;
-    case 'VERSION_MISMATCH':
-    case 'COMMAND_ID_CONFLICT':
-    case 'CONCURRENCY_CONFLICT':
-      return 409;
-    default:
-      return 422;
-  }
 }

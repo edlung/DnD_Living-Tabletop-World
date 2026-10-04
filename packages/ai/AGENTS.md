@@ -16,6 +16,7 @@ ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the 
 
 - DM intents use the **PUBLIC** horizon only (entities and world time). Do not widen the context or add records, memories, or DM data without a new owner decision.
 - Every fallback reuses the same built context and actor. Never build a broader context for a retry.
-- Results are `committable: false`. Do not add a commit path here.
+- Results are `committable: false`. Do not add a commit path here: the DM commits through an authoring proposal (ADR 0018), whose content the server copies from the trace.
+- A proposal may contain `SetDisclosure` only for a record it adds (the directory holds no records).
 - Provider adapters with I/O (Anthropic) and the PostgreSQL trace store live in `apps/server/src/ai/`.
 - Test support: `src/testing/ravenford.ts` (seeds through the World Engine, allowed in tests only) and `src/testing/providers.ts` (scripted providers).

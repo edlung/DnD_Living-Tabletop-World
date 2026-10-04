@@ -9,6 +9,7 @@ import {
   type PlayerCommandType,
 } from '@ltw/contracts';
 
+import { consentRejection } from '../../authoring/consent.ts';
 import { playerOutcome } from '../../investigation/outcome.ts';
 import { ENTROPY_POOL, type CombatPort, type EntropySource } from '../../combat/port.ts';
 import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
@@ -36,7 +37,8 @@ import { commandSubmissionSchema, fingerprintOf, type CommandSubmission } from '
 /**
  * The World Engine: the only path to canonical mutation (invariant 1).
  * Pipeline: schema → idempotency → ID resolution → stream → authorization →
- * expected version → pure decision → stamp/fold → atomic append
+ * expected version → pure decision → consent (authoring) → stamp/fold →
+ * atomic append
  * (docs/adr/0007-world-kernel-model-and-event-store.md).
  */
 export interface WorldEngineOptions {
@@ -184,6 +186,9 @@ export class WorldEngine {
         command,
       );
       if (!decision.ok) return rejected(commandId, decision.rejection);
+      // Risk and confirmation (invariant 16): authoring commits only with consent covering now (ADR 0018 §4).
+      const refused = consentRejection(command, decision.requires);
+      if (refused) return rejected(commandId, refused);
 
       const recordedAt = this.#clock.now();
       const { events, next } = this.#stamp(state, decision.events, {
@@ -233,6 +238,18 @@ export class WorldEngine {
     const { command } = submission;
     if (command.type === 'CreateEntity') {
       return { ...command, entityId: command.entityId ?? this.#ids.next() };
+    }
+    if (command.type === 'ApplyAuthoring') {
+      return {
+        ...command,
+        commands: command.commands.map((operation) =>
+          operation.type === 'CreateEntity'
+            ? { ...operation, entityId: operation.entityId ?? this.#ids.next() }
+            : operation.type === 'AddKnowledge'
+              ? { ...operation, knowledgeId: operation.knowledgeId ?? this.#ids.next() }
+              : operation,
+        ),
+      };
     }
     if (command.type === 'StartScene') {
       return { ...command, sceneId: command.sceneId ?? this.#ids.next() };

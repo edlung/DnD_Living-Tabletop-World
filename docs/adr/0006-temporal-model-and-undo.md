@@ -100,6 +100,11 @@ Each event declares the facts it read and wrote. Later domains add their facts t
   - History written by the current version is undone exactly as above. An earlier version's own undo records stay as they are.
   - In practice this affects only campaigns started before the upgrade; today those exist only in test databases.
 
+- 2026-10-04 (Stage 110, ADR 0018 §7; owner decision of 2026-10-04): the §9 authoring obligation is implemented.
+  - An authoring commit is one command (`ApplyAuthoring`), so it is undone as one unit: one `CommandUndone` restores the NPC, its placement, its knowledge, and its disclosure.
+  - "Create Tomas → player learns testimony → undo Tomas" is rejected (`UNDO_UNSAFE`) with the conversation listed as the blocker; a memory naming Tomas blocks it the same way. The DM undoes the blockers explicitly, newest first, then the commit. The owner chose these explicit blockers over a DM-confirmed cascade; no cascade is offered.
+  - Undone authoring keeps its history and its IDs: re-creating `tomas-reed` is rejected.
+
 ## Invariants affected
 
 Implements 1, 11, 12, and 13 for the kernel and preserves 3 (only the DM authors and undoes). No invariant is weakened.

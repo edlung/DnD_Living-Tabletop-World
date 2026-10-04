@@ -60,7 +60,13 @@ const resolvedCommandSchema = z.looseObject({ type: z.string() }).transform((raw
     (value.type !== 'RecordMemory' || value.memoryId !== undefined) &&
     (value.type !== 'StartSession' || value.sessionId !== undefined) &&
     (value.type !== 'AddClue' || value.clueId !== undefined) &&
-    (value.type !== 'StartCombat' || value.encounterId !== undefined);
+    (value.type !== 'StartCombat' || value.encounterId !== undefined) &&
+    (value.type !== 'ApplyAuthoring' ||
+      value.commands.every(
+        (operation) =>
+          (operation.type !== 'CreateEntity' || operation.entityId !== undefined) &&
+          (operation.type !== 'AddKnowledge' || operation.knowledgeId !== undefined),
+      ));
   if (!resolved) {
     context.addIssue({ code: 'custom', message: 'stored commands must have resolved IDs' });
     return z.NEVER;

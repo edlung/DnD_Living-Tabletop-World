@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), and 100 (AI Gateway) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), and 110 (AI Authoring) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -15,7 +15,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Knowledge boundary and later leakage paths | `docs/GATE_COVERAGE.md`, relevant knowledge/memory/NPC work order, `ARCHITECTURE.md` (Knowledge Architecture, NPC Context Isolation) |
 | History, replay, undo | `docs/IMPLEMENTATION_PREREQUISITES.md` (Temporal and undo contracts), Stages 10, 90, or 110 as applicable |
 | Deterministic rules | `docs/IMPLEMENTATION_PREREQUISITES.md` (Ruleset), Stage 40, relevant Ravenford mechanics |
-| AI authoring or continuity | Stages 110/120, invariant 16, `RAVENFORD_SPEC.md` (DM Authoring Acceptance Flow); builds on the AI gateway below (ADR 0017) |
+| AI authoring or continuity | Stages 110/120, invariant 16, `RAVENFORD_SPEC.md` (DM Authoring Acceptance Flow); code entry points in the authoring row below (ADR 0018) |
 | Prepare/review a checkpoint | `CHECKPOINTS.md`, `docs/GATE_COVERAGE.md`, exact handoff, `ASTRA_MASTER.md`, relevant mission in `ASTRA_GATE_PROMPTS.md`, `ASTRA_REVIEW.md` |
 | Remediation/retest | Exact failed report, `OPUS_REMEDIATION_TEMPLATE.md`, `HANDOFF_TEMPLATE.md`, `AGENT_WORKFLOW.md` (Retest Rule) |
 | UX, validation, release | Authorized Stage 200–250 work order, relevant product/Ravenford acceptance sections |
@@ -42,7 +42,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | World Kernel: state, commands, events, engine, undo, projections | `packages/domain/src/kernel/AGENTS.md` (file map), ADRs 0006 (approved temporal/undo semantics) and 0007 (model, pipeline, storage) |
 | Add or change a kernel command/event | `packages/domain/src/kernel/AGENTS.md` rules, `decide/<area>.ts`, `events.ts`, `evolve.ts`, `facts.ts`, matching `*.test.ts` |
 | Change an event payload schema; read or undo histories earlier revisions wrote | `packages/domain/src/kernel/AGENTS.md` (rules), `packages/domain/src/kernel/event-versions.ts`; undo on them `kernel/decide/undo.ts`, check `kernel/verification/earlier-writers.ts`; histories `fixtures/history/AGENTS.md`; loaders `packages/combat/src/testing/history.ts`, `apps/server/src/testing/history-rows.ts` |
-| Event store / PostgreSQL persistence | `apps/server/src/world-engine/postgres-event-store.ts`, `apps/server/migrations/0001_world_event_store.sql` (AI traces: `0002_ai_traces.sql`, not canonical) |
+| Event store / PostgreSQL persistence | `apps/server/src/world-engine/postgres-event-store.ts`, `apps/server/migrations/0001_world_event_store.sql` (AI traces `0002_ai_traces.sql` and authoring revisions `0003_authoring_proposals.sql`: not canonical) |
 | Seed Ravenford / dev harness | `apps/server/src/world-engine/seed-ravenford-cli.ts`, `fixtures/ravenford/kernel-seed.json` |
 | Deterministic rules (SRD 5.2.1 slice) | `packages/rules/AGENTS.md`, ADR 0011 (owner-approved), `NOTICE.md` |
 | Context Engine: perception, entity context, actions, legality, relevance | `packages/context/AGENTS.md`, ADR 0012 (owner-approved); contracts in `packages/contracts/src/context/`; route `apps/server/src/http/routes/context-routes.ts` |
@@ -51,12 +51,13 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Combat: encounters, initiative, turns, attacks, spells, 0 HP, encounter view | `packages/combat/AGENTS.md`, ADR 0015 (owner-approved); contracts in `packages/contracts/src/combat/`; domain port and events in `packages/domain/src/combat/`; route `apps/server/src/http/routes/encounter-routes.ts`; fixtures `fixtures/ravenford/combat-seed.json`, `road-ambush.json` |
 | Reactions: windows, Counterspell, the pause, undo with an open window | `packages/combat/AGENTS.md` (`src/reactions/`), ADR 0016 (owner-approved); domain records/events/fold in `packages/domain/src/combat/reaction-*.ts`; pause rule `packages/domain/src/kernel/decide/reaction-pause.ts`; contracts `packages/contracts/src/combat/reactions.ts` |
 | AI gateway: providers, capability routing, ContextBuilder, structured proposals, fallback, traces | `packages/ai/AGENTS.md`, ADR 0017 (owner-approved); contracts `packages/contracts/src/ai-gateway/intents.ts`; Anthropic adapter and composition `apps/server/src/ai/`; routes `apps/server/src/http/routes/ai-routes.ts`; traces `apps/server/migrations/0002_ai_traces.sql` |
+| AI authoring: proposals, enabled operations, risk, continuity, preview, consent, commit, undo | `packages/domain/src/authoring/AGENTS.md`, ADR 0018 (owner-approved); contracts `packages/contracts/src/authoring/`; service and stores `apps/server/src/authoring/`; routes `apps/server/src/http/routes/authoring-routes.ts`; revisions `apps/server/migrations/0003_authoring_proposals.sql` |
 | Character sheets (canonical) | `packages/domain/src/character/character.ts`; schema in `packages/contracts/src/rules/character-sheet.ts` |
 | Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |
 | Client / UI | `apps/web/src/index.ts`, `packages/ui/src/index.ts` (placeholders; framework ADR at Stage 200) |
 | Ravenford fixtures | `fixtures/ravenford/AGENTS.md` |
 | Context-budget check | `scripts/context-budget/budget.ts` (policy constants), `scripts/context-budget/cli.ts` |
-| Test layout | `vitest.config.ts` (unit vs integration projects), `tests/AGENTS.md`; package tests sit beside source as `*.test.ts` / `*.integration.test.ts`; test support in `testing/` folders (excluded from builds): `packages/domain/src/kernel/testing/`, `packages/context/src/testing/`, `packages/combat/src/testing/`, `packages/ai/src/testing/`, `apps/server/src/testing/` |
+| Test layout | `vitest.config.ts` (unit vs integration projects), `tests/AGENTS.md`; package tests sit beside source as `*.test.ts` / `*.integration.test.ts`; test support in `testing/` folders (excluded from builds): `packages/domain/src/kernel/testing/`, `packages/context/src/testing/`, `packages/combat/src/testing/`, `packages/ai/src/testing/`, `packages/domain/src/authoring/testing/`, `apps/server/src/testing/` |
 | Past stage outcomes | `reports/AGENTS.md`, then the one relevant `reports/STAGE_<NNN>_COMPLETION.md` |
 
 Do not load every work order or historical report for an ordinary task. Generated assets, migrations, logs, and large fixtures must have local context guidance (`AGENTS.md`) and be queried narrowly. `OPUS_STAGE_00.md` is a deprecated pointer, not a second Stage 0 specification.

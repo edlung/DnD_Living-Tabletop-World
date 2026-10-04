@@ -18,6 +18,8 @@ import { scriptedDice, skillCheckPort, type Dice } from '@ltw/rules';
 import type { FastifyInstance, LightMyRequestResponse } from 'fastify';
 
 import boundary from '../../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
+import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
+import type { AuthoringDependencies } from '../authoring/service.ts';
 import { buildApp } from '../http/app.ts';
 import { loadDevPersonaAuthenticator } from '../http/auth.ts';
 import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
@@ -79,12 +81,26 @@ export function testAiGateway(...providers: AiProvider[]): IntentDeps & {
   };
 }
 
+/** Deterministic authoring dependencies with in-memory proposals. */
+export function testAuthoring(): AuthoringDependencies & {
+  readonly proposals: InMemoryProposalStore;
+} {
+  const clock = new SteppingClock();
+  return {
+    proposals: new InMemoryProposalStore(),
+    ids: new SequentialIds(0xa2),
+    clock: { now: () => clock.now() },
+  };
+}
+
 export async function ravenfordApp(
   engine?: WorldEngine,
   ai: IntentDeps = testAiGateway(),
+  authoring: AuthoringDependencies = testAuthoring(),
 ): Promise<FastifyInstance> {
   const app = buildApp({
     ai,
+    authoring,
     engine: engine ?? (await seededEngine()),
     authenticator: await loadDevPersonaAuthenticator(DEFAULT_PERSONAS_FILE),
     logger: createLogger({ service: 'http-test', level: 'silent' }),
@@ -101,6 +117,20 @@ export function get(
   return app.inject({
     method: 'GET',
     url,
+    headers: token === undefined ? {} : { authorization: `Bearer ${token}` },
+  });
+}
+
+export function post(
+  app: FastifyInstance,
+  url: string,
+  body: unknown,
+  token?: string,
+): Promise<LightMyRequestResponse> {
+  return app.inject({
+    method: 'POST',
+    url,
+    payload: body as Record<string, unknown>,
     headers: token === undefined ? {} : { authorization: `Bearer ${token}` },
   });
 }

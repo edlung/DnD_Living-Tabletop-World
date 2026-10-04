@@ -86,6 +86,10 @@ Implements 1, 11, 12, and 13; prepares 16–17 (pipeline ordering, atomic reject
 
 ## Amendments
 
+- **Stage 110 (2026-10-04), ADR 0018: authoring and the consent step.**
+  - New command `ApplyAuthoring` (DM only; the system actor is refused). It applies a confirmed proposal as one command: each operation is decided by its own decision function, in order, on the provisional state of its predecessors, and the events of all of them are appended together. Its operations' generated IDs are resolved before deciding, and the stored command must carry them.
+  - **Pipeline step 7b, consent.** A decision may state a consent requirement (`Decision.requires`, authoring only: a risk level and warning keys). After a successful decision the engine refuses (`CONFIRMATION_REQUIRED`) a command whose confirmation does not cover it, before stamping. Consent is a commit-time gate, not a premise: the re-decision oracle compares events only, and footprints do not record it.
+  - The generic HTTP command route refuses `ApplyAuthoring`; authoring commits come only from stored proposal revisions (ADR 0018 §5).
 - **Gate 03 retest 3 (2026-10-04), G03-H07: the dependency contract.**
   - Every event type is now written as version 2 (`PremisesRecorded` as version 3). Version 2 means: the command recorded every fact its decision rested on. Version 1 events come from earlier writers, whose records may miss some. Every version stays readable.
   - Undo applies the owner's rule for such history (ADR 0006 retest 3 amendment): a standing command whose events carry an earlier version blocks undo of anything beneath it (`decide/undo.ts`, `writtenEarlier`). Undo compensations keep their exact footprints for any writer.

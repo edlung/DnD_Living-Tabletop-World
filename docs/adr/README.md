@@ -40,5 +40,6 @@ Never mark a product decision or invariant change `Accepted` on the owner's beha
 | [0015](0015-combat-engine.md)                          | Combat Engine: encounters, turns, attacks, spells, 0 HP                      | Accepted (owner-approved product decision)         |
 | [0016](0016-reaction-engine.md)                        | Reaction Engine: reaction windows and Counterspell                           | Accepted (owner-approved product decision)         |
 | [0017](0017-ai-gateway.md)                             | AI Gateway: providers, capability routing, scoped context, proposals, traces | Accepted (owner-approved product decision)         |
+| [0018](0018-ai-authoring.md)                           | AI authoring: proposals, validation, confirmation, commit, and undo          | Accepted (owner-approved product decision)         |
 
-Pending product decisions (minimum authoring validation for Stage 110 and later ones) are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006.
+Pending product decisions for later stages are tracked in `docs/IMPLEMENTATION_PREREQUISITES.md` and have no ADR yet. The temporal/undo decision is ADR 0006; minimum authoring validation (Stage 110) is ADR 0018.

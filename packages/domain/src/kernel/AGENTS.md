@@ -2,23 +2,24 @@
 
 Authority: `docs/adr/0006-temporal-model-and-undo.md` (owner-approved semantics) and `docs/adr/0007-world-kernel-model-and-event-store.md` (model, pipeline, storage). Read the relevant ADR section before changing behavior.
 
-| Concern                                                                        | File                                                                                                               |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| State shape, kind/status rules                                                 | `state.ts`                                                                                                         |
-| Event schemas, envelope, load-time parsing                                     | `events.ts`                                                                                                        |
-| Event schema versions and decoders of earlier versions                         | `event-versions.ts`                                                                                                |
-| Fold / replay                                                                  | `evolve.ts`                                                                                                        |
-| Undo dependency facts (reads/writes per event)                                 | `facts.ts`                                                                                                         |
-| Decision contract, resolved commands                                           | `decision.ts`                                                                                                      |
-| Authorization and the authority it grants (DM, system, controlling player)     | `authorization.ts`                                                                                                 |
-| Command rules                                                                  | `decide/entities.ts`, `decide/world.ts` (campaign, scenes, clock), `decide/undo.ts`, dispatcher `decide/decide.ts` |
-| Engine pipeline, caching, retries                                              | `engine/world-engine.ts`                                                                                           |
-| Store port + in-memory store                                                   | `engine/event-store.ts`, `engine/in-memory-event-store.ts`                                                         |
-| Projections                                                                    | `projections/audit-trail.ts`, `projections/world-view.ts`, `projections/integrity.ts`                              |
-| Test support: harness, random commands                                         | `testing/kernel-harness.ts`, `testing/random-commands.ts`                                                          |
-| Re-decision oracle (exported for tests and audits)                             | `verification/redecide.ts`                                                                                         |
-| Check that no undo reached beneath an earlier writer's standing command        | `verification/earlier-writers.ts`                                                                                  |
-| Combat port, encounter records and events (decided by `@ltw/combat`, ADR 0015) | `../combat/` (`port.ts`, `records.ts`, `events.ts`, `evolve.ts`, `authoring.ts`)                                   |
+| Concern                                                                          | File                                                                                                               |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| State shape, kind/status rules                                                   | `state.ts`                                                                                                         |
+| Event schemas, envelope, load-time parsing                                       | `events.ts`                                                                                                        |
+| Event schema versions and decoders of earlier versions                           | `event-versions.ts`                                                                                                |
+| Fold / replay                                                                    | `evolve.ts`                                                                                                        |
+| Undo dependency facts (reads/writes per event)                                   | `facts.ts`                                                                                                         |
+| Decision contract, resolved commands                                             | `decision.ts`                                                                                                      |
+| Authorization and the authority it grants (DM, system, controlling player)       | `authorization.ts`                                                                                                 |
+| Command rules                                                                    | `decide/entities.ts`, `decide/world.ts` (campaign, scenes, clock), `decide/undo.ts`, dispatcher `decide/decide.ts` |
+| Engine pipeline, caching, retries                                                | `engine/world-engine.ts`                                                                                           |
+| Store port + in-memory store                                                     | `engine/event-store.ts`, `engine/in-memory-event-store.ts`                                                         |
+| Projections                                                                      | `projections/audit-trail.ts`, `projections/world-view.ts`, `projections/integrity.ts`                              |
+| Test support: harness, random commands                                           | `testing/kernel-harness.ts`, `testing/random-commands.ts`                                                          |
+| Re-decision oracle (exported for tests and audits)                               | `verification/redecide.ts`                                                                                         |
+| Check that no undo reached beneath an earlier writer's standing command          | `verification/earlier-writers.ts`                                                                                  |
+| AI-assisted authoring: `ApplyAuthoring` and the engine's consent step (ADR 0018) | `../authoring/` (`AGENTS.md`); consent applied in `engine/world-engine.ts`                                         |
+| Combat port, encounter records and events (decided by `@ltw/combat`, ADR 0015)   | `../combat/` (`port.ts`, `records.ts`, `events.ts`, `evolve.ts`, `authoring.ts`)                                   |
 
 Rules for changes:
 

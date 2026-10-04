@@ -83,6 +83,34 @@ describe('interpretLocally', () => {
     expect(output.commands[0]?.entityId).toBe('ada-brook');
   });
 
+  it('reads the DM acceptance request of RAVENFORD_SPEC.md', () => {
+    const { output, check } = interpret(
+      'Add a young guard near North Gate who saw the caravan leave.',
+    );
+
+    expect(check.ok).toBe(true);
+    expect(output).toMatchObject({
+      commands: [
+        { type: 'CreateEntity', entityId: 'tomas-reed', description: 'A young guard.' },
+        {
+          type: 'AddKnowledge',
+          statement: 'Tomas Reed saw the caravan leave.',
+          subjects: ['guild-caravan', 'north-gate'],
+        },
+      ],
+    });
+  });
+
+  it('names people and things by a distinctive last word, never places or factions', () => {
+    const thorne = interpret('Thorne is dead.');
+    const guard = interpret('Move the guard to the Golden Stag Inn.');
+
+    expect(thorne.output).toMatchObject({
+      commands: [{ type: 'ChangeEntityStatus', entityId: 'captain-thorne' }],
+    });
+    expect(guard.check.ok).toBe(false);
+  });
+
   it.each([
     [
       'Captain Thorne is dead.',

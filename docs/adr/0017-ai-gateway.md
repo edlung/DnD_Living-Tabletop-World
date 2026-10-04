@@ -66,6 +66,13 @@ Option 2.
 - Later capabilities (NPC dialogue, Chronicle) reuse the router, ContextBuilder, and traces with their own perspectives (NPC scope for Stage 130).
 - Adding a provider is a new adapter plus a route entry; no domain change.
 
+## Amendments
+
+- 2026-10-04 (Stage 110, ADR 0018):
+  - Proposals may also contain `SetDisclosure` (whether an NPC shares a record when asked). The validator accepts a disclosure only for a record the same proposal adds, since the directory holds no records, and the prompt asks for one only when the request does.
+  - An intent's proposal is still never committed as is (`committable: false`). The DM turns it into an authoring proposal, whose content the server copies from the trace, and commits that through ADR 0018's pipeline.
+  - The local provider also recognises people and things by a distinctive last word (`the caravan`, `Thorne`) when no other directory name ends with it, never places or factions. This lets it read the DM acceptance request of `RAVENFORD_SPEC.md` ("Add a young guard near North Gate who saw the caravan leave.").
+
 ## Invariants affected
 
 Implements 2, 18, 21, and 22 for this stage; preserves 1, 5, 11, and 17. No invariant is weakened.

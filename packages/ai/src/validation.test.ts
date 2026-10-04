@@ -111,6 +111,32 @@ describe('validateProposal (ADR 0017 §4)', () => {
     expect(issuesOf(output).length).toBeGreaterThan(0);
   });
 
+  it('lets a disclosure name only a record the proposal adds', () => {
+    const record = {
+      type: 'AddKnowledge',
+      knowledgeId: 'tomas-saw',
+      scope: { kind: 'NPC', npcId: 'captain-thorne' },
+      knowledgeType: 'TESTIMONY',
+      statement: 'Thorne saw it.',
+      subjects: ['guild-caravan'],
+      attributedTo: 'captain-thorne',
+      knownSince: null,
+    };
+    const disclose = (knowledgeId: string) => ({
+      type: 'SetDisclosure',
+      knowledgeId,
+      disclosure: 'WILLING',
+    });
+
+    expect(issuesOf(proposal(record, disclose('tomas-saw')))).toEqual([]);
+    expect(issuesOf(proposal(disclose('tomas-saw'), record))).toEqual([
+      'commands.0.knowledgeId: unknown record "tomas-saw"',
+    ]);
+    expect(issuesOf(proposal(disclose('thorne-departure')))).toEqual([
+      'commands.0.knowledgeId: unknown record "thorne-departure"',
+    ]);
+  });
+
   it('caps issues at 20', () => {
     const many = Array.from({ length: 12 }, (_, i) => ({
       type: 'PlaceEntity',

@@ -6,7 +6,9 @@
  * perspective resolution, and perspective-scoped queries. Domain code is
  * pure: no I/O, no persistence drivers, no AI providers. Canonical mutation
  * happens only through `WorldEngine.execute` (ARCHITECTURE_INVARIANTS.md #1).
- * Maps: src/kernel/AGENTS.md, src/knowledge/AGENTS.md.
+ * Authoring (Stage 110): confirmed proposals applied as one command
+ * (`ApplyAuthoring`) and previewed with `previewAuthoring`.
+ * Maps: src/kernel/AGENTS.md, src/knowledge/AGENTS.md, src/authoring/AGENTS.md.
  */
 export { actorSchema, type Actor } from './kernel/actor.ts';
 export {
@@ -140,3 +142,6 @@ export type { Premise, RecordedPremise } from './investigation/events.ts';
 export { redecideEffective, type Divergence } from './kernel/verification/redecide.ts';
 export { undoneBeneathEarlierWriters } from './kernel/verification/earlier-writers.ts';
 export { magicDiscoveryEvents, magicSensingPremises } from './investigation/reveal.ts';
+export { previewAuthoring, type PreviewInput } from './authoring/preview.ts';
+export type { ConsentRequirement } from './authoring/consent.ts';
+export type { ResolvedProposable } from './kernel/decision.ts';

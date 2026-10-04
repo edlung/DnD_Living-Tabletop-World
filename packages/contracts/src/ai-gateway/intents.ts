@@ -1,18 +1,12 @@
 import { z } from 'zod';
 
-import {
-  advanceWorldTimeCommandSchema,
-  changeEntityStatusCommandSchema,
-  createEntityCommandSchema,
-  placeEntityCommandSchema,
-  updateEntityProfileCommandSchema,
-} from '../kernel/commands.ts';
-import { addKnowledgeCommandSchema } from '../knowledge/commands.ts';
+import { proposalCommandsSchema, proposalSummarySchema } from '../authoring/commands.ts';
 
 /**
  * AI gateway contracts (docs/adr/0017-ai-gateway.md). The AI proposes; it
  * never commits. A proposal carries commands in the World Engine's own
- * schemas, and Stage 100 never makes one committable.
+ * schemas (`authoring/commands.ts`); only the DM's confirmed authoring
+ * proposal commits (docs/adr/0018-ai-authoring.md).
  */
 
 /** Capability-oriented provider interfaces (ARCHITECTURE.md, Provider Routing). */
@@ -27,23 +21,11 @@ export const AI_CAPABILITIES = [
 ] as const;
 export type AiCapability = (typeof AI_CAPABILITIES)[number];
 
-/** DM authoring commands a proposal may contain (ADR 0017 §4). */
-export const proposableCommandSchema = z.discriminatedUnion('type', [
-  createEntityCommandSchema,
-  placeEntityCommandSchema,
-  updateEntityProfileCommandSchema,
-  changeEntityStatusCommandSchema,
-  advanceWorldTimeCommandSchema,
-  addKnowledgeCommandSchema,
-]);
-export type ProposableCommand = z.infer<typeof proposableCommandSchema>;
-
 /** The structured output every intent provider must return. */
 export const commandProposalSchema = z
   .object({
-    /** One sentence for the DM: what the commands would do. */
-    summary: z.string().trim().min(1).max(500),
-    commands: z.array(proposableCommandSchema).min(1).max(12),
+    summary: proposalSummarySchema,
+    commands: proposalCommandsSchema,
   })
   .strict();
 export type CommandProposal = z.infer<typeof commandProposalSchema>;
@@ -63,7 +45,10 @@ export interface DmIntentResponse {
   /** Present only when the output passed validation. */
   readonly proposal: CommandProposal | null;
   readonly issues: readonly string[];
-  /** Always false in Stage 100: nothing an AI proposes is committed here. */
+  /**
+   * Always false: an intent's proposal is never committed as is. The DM
+   * commits it through an authoring proposal (docs/adr/0018-ai-authoring.md).
+   */
   readonly committable: false;
 }
 

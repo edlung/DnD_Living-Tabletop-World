@@ -17,7 +17,17 @@ export function foldDrafts(
   commandType: KernelCommandType,
   drafts: readonly KernelEvent[],
 ): WorldState {
+  return foldDraftsWithEvents(context, commandType, drafts).state;
+}
+
+/** As `foldDrafts`, also returning the provisional events, for checks that read history. */
+export function foldDraftsWithEvents(
+  context: Pick<DecisionContext, 'state' | 'commandId' | 'actor'>,
+  commandType: KernelCommandType,
+  drafts: readonly KernelEvent[],
+): { readonly state: WorldState; readonly events: readonly RecordedEvent[] } {
   let state = context.state;
+  const events: RecordedEvent[] = [];
   for (const draft of drafts) {
     const provisional: RecordedEvent = {
       ...draft,
@@ -30,6 +40,7 @@ export function foldDrafts(
       causation: { commandId: context.commandId, commandType, actor: context.actor },
     };
     state = evolve(state, provisional);
+    events.push({ ...provisional, worldTime: state.clock });
   }
-  return state;
+  return { state, events };
 }

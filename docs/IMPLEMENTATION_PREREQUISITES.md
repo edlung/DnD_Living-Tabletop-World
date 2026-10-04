@@ -31,6 +31,8 @@ Editing a proposal invalidates or recomputes the relevant preview and confirmati
 
 Stage 120 expands continuity coverage, conflict explanations, and options across domains. It does not introduce the first continuity guard or make Stage 110's earlier mutations retroactively valid. Warnings never silently rewrite DM intent or waive protected invariants.
 
+**Recorded:** `docs/adr/0018-ai-authoring.md`, with the owner's Stage 110 answers to Q1 (enabled operations, risk policy, acceptable warnings) and the undo choice, approved on 2026-10-04.
+
 ## Review coverage and release evidence
 
 Follow `docs/GATE_COVERAGE.md` as each read/mutation surface is introduced. Record actual evidence at the stage where it becomes testable. Stage 240 requires a real uncoached usability session; a scripted automated walkthrough is not a substitute. Stage 250 requires traceable product, architecture, adversarial, and usability acceptance for the release candidate. Do not invent approvals or mark unperformed checks complete.
@@ -45,7 +47,7 @@ These are unanswered questions, not approved product semantics. They apply only 
 
 Which authoring operations are enabled in Stage 110, which require confirmation under the risk policy, and which non-invariant continuity conflicts may be accepted after a warning? What additional Ravenford constraints are included at Stage 120? Destructive proposals and overrides of protected invariants remain disallowed by the existing work orders.
 
-Decision needed before enabling the affected operations in Stage 110, and before enabling their extensions in Stage 120.
+Decision needed before enabling the affected operations in Stage 110, and before enabling their extensions in Stage 120. The Stage 110 part is decided (ADR 0018 §2–§4); the Stage 120 part remains open.
 
 ### Q2. Relationships and guarded disclosure — Stages 120/130
 

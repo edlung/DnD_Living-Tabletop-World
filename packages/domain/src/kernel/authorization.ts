@@ -31,6 +31,12 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
       ? { ok: true, authority: 'campaign-creator' }
       : forbidden('A campaign is created by the user who will be its DM');
   }
+  if (command.type === 'ApplyAuthoring') {
+    // AI-assisted authoring needs the DM's own confirmation (invariant 3, ADR 0018 §1).
+    return actor.kind === 'user' && actor.actorId === state.campaign?.dmActorId
+      ? { ok: true, authority: 'dm' }
+      : forbidden('Only the DM can confirm authoring');
+  }
   if (actor.kind === 'system') return { ok: true, authority: 'system' };
   if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
   const acting =
