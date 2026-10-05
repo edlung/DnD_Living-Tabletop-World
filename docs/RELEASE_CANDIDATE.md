@@ -1,8 +1,8 @@
 # Ravenford Vertical Slice v0.1 — release candidate
 
-**Status: release candidate prepared. Not released.** Product and usability acceptance are
-incomplete (see `reports/STAGE_240_USABILITY.md`) and no publication target is authorized
-(`reports/STAGE_250_RELEASE.md`).
+**Status: release candidate prepared. Not released — release to a VPS is deferred by the
+owner.** Usability evidence is an AI stand-in pass accepted by the owner, not a human session
+(`reports/STAGE_240_USABILITY.md`). The visual design is not finished.
 
 ## What it is
 
@@ -13,13 +13,13 @@ bundle is a build artifact with no hosting, and no live AI provider has been exe
 
 ## Identification
 
-- Code revision under validation: `47f4da4` (validated in a fresh clone). Later commits on
+- Code revision under validation: `83b1344` (validated in a fresh clone). Later commits on
   the branch change documentation and reports only; the tag/identifier is to be assigned by
   the owner when a target is authorized.
-- Web bundle from that clone: `assets/index-C2LN-Xy5.js` SHA-256
-  `e5d19cde2735524e7e72a29c9118a9bd6ec4e1faee93c22cae032f586652441b`;
-  `assets/index-CDTB2acu.css` SHA-256
-  `df6b3ffa479865237cbbee4fdabfb657c7d2f967ebe539b8ad77db03c6fd56f6`.
+- Web bundle from that clone: `assets/index-L2jN_3Bl.js` SHA-256
+  `d39e0aae9cc7e9c0d2daf5ee319ea1349378b8c5c51589646e43770cd0bfc32e`;
+  `assets/index-Q_19hvXj.css` SHA-256
+  `e9b2015aefd3492f73f9fe6e48fcb0899ff2222ec81f77631fd4cde1ff633c41`.
 
 ## Install, start, validate (reproducible)
 
@@ -59,8 +59,10 @@ move time and weather; write Chronicle chapters.
 
 ## Known limitations
 
-- **Usability acceptance incomplete:** no human uncoached session; an AI-stand-in pass found
-  ten friction points awaiting owner disposition (`reports/STAGE_240_USABILITY.md`).
+- **Usability:** no human uncoached session (AI stand-in pass accepted by the owner); the
+  visual design is unfinished and unreviewed. Deferred findings: the authoring undo control
+  is lost on perspective change or reload (no history of past additions); the DM cannot skip
+  an absent player's turn; the "Advance to Day 2" label does not change after the day passes.
 - Development personas only; production authentication is undecided (prerequisites Q4).
 - No live AI runs; the offline interpreter understands few phrasings; scripted d20 in tests.
 - No live event subscription (explicit refresh); creature turns are DM-run; no opportunity
@@ -91,3 +93,15 @@ move time and weather; write Chronicle chapters.
 | Deterministic validation     | `pnpm validate`                                  | Exit 0 in a fresh clone; see the Stage 250 report                                                  |
 | Usability                    | none yet                                         | Open: `reports/STAGE_240_USABILITY.md`                                                             |
 | Architecture decisions       | ADRs 0001–0030 (`docs/adr/README.md`)            | Stages 200–240: ADRs 0026–0030                                                                     |
+
+## Before a VPS release (not done; deferred)
+
+- **Production authentication does not exist.** The server refuses `AUTH_MODE=dev-personas`
+  in production, so a VPS deployment cannot sign anyone in until the owner decides and builds
+  it (prerequisites Q4; ADR 0009).
+- Set `NODE_ENV=production`, `DATABASE_URL`, `HTTP_HOST`/`HTTP_PORT`; keep any AI key in the
+  environment only.
+- Serve `apps/web/build` as static files and reverse-proxy `/api` to the server over TLS.
+- Back up PostgreSQL (the event store is canonical); run `pnpm db:migrate` on upgrade.
+- Re-run the full validation on the final revision and record the release in
+  `reports/STAGE_250_RELEASE.md`.

@@ -1,12 +1,12 @@
 # Stage 240 — Product validation: usability session
 
 - Date: 2026-10-05 (Europe/Oslo).
-- Status: **INCOMPLETE against the gate. No real human uncoached session has been held.**
-  An exploratory pass by **AI stand-in participants** was run at the owner's instruction
+- Status: **COMPLETE by owner disposition (AI stand-in evidence; no human session).** See
+  "Owner disposition" below. An exploratory pass by **AI stand-in participants** was run at the owner's instruction
   ("take the participants yourself") and is recorded below. It is **not** a human usability
   session and is **not** acceptance. Findings await owner disposition.
 - Work order: `work-orders/OPUS_STAGE_240.md`.
-- Build: revision `4c0ce49` (Stage 230 `ccae57f` + the bounded remediation below), Vite dev
+- Build for the pass: revision `4c0ce49` (Stage 230 `ccae57f` + the bounded remediation below); fixes landed in `83b1344`, Vite dev
   server on the browser-test API server (`apps/server/src/testing/ui-server.ts`), scripted
   d20 results of 15, deterministic offline interpreter for AI features, dev persona tokens.
 - Model exception: the owner told this session (Claude Sonnet 5.5) to proceed instead of
@@ -98,11 +98,35 @@ behaviour and says little about people.
 `pnpm validate` exit 0: 1,553+ unit tests (161+ files), 77 integration tests, 40 Chromium
 journeys, context-budget in limits. (Exact counts are repeated in the Stage 250 report.)
 
-## Blockers and owner disposition
+## Owner disposition (2026-10-05)
 
-- **Gate not met:** a real uncoached human session has not happened. The AI pass cannot
-  replace it; the validation gate and Stage 250's usability acceptance stay open.
-- **Owner disposition required** for findings 1–10 (fix now / defer / accept), and a decision
-  on whether and when a human session is held. No finding has been dispositioned.
+The owner decided, in chat: fix all findings per the recommendation; **count the AI stand-in
+pass as this stage's usability evidence**; no human testers are available; the visual design
+is not ready yet; the release goes to a VPS, later.
 
-Stage 240 is **not** complete. No claim here asserts human usability acceptance.
+| #   | Disposition    | What changed (commit `83b1344`)                                                                                                                                                |
+| --- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | Fixed          | Action notice stays pinned in view (sticky)                                                                                                                                    |
+| 2   | Fixed          | Help text under "Beyond this place": choose to look, use Enter in the details to go                                                                                            |
+| 3   | Fixed          | "Waiting for <name>; the DM runs creature turns." in the anchor strip                                                                                                          |
+| 4   | Fixed          | Fireball reports saves and total damage; non-evidence spells say "You cast …"; Healing Word on any combatant stays as the server lists it (accepted)                           |
+| 5   | Fixed/Accepted | Ignore and Counterspell explained on the card; the spell's name stays hidden by design (ADR 0016, accepted)                                                                    |
+| 6   | Fixed          | Perform-NPC states why (e.g. not in the same place) or that no voice is available; line explained                                                                              |
+| 7   | **Deferred**   | Undo control lost after perspective change or reload; needs a list of past additions (new feature); recorded as a known limitation                                             |
+| 8   | Fixed/Deferred | "End encounter" now asks first; DM token click shows a plain combatant card. **Deferred:** skipping an absent player's turn                                                    |
+| 9   | Fixed          | Plain wording for proposed changes and undo blockers (no `AskAbout`/`EntityCreated`)                                                                                           |
+| 10  | Fixed (mostly) | Memory times read as world time; chapter text no longer repeats; weather choice persists. **Not fixed:** the "Advance to Day 2" label does not change after the day has passed |
+
+Tests updated or added for the changed behaviour (`combat-*`, `authoring-undo`, `dm-tools`).
+
+## Status
+
+- **Stage 240 is recorded COMPLETE under the owner's disposition**, with this explicit caveat:
+  the usability evidence is an AI stand-in pass, **not a human uncoached session**, which
+  `EFFORT_MATRIX.md` asks for. The owner accepted the substitute knowingly; this report does not
+  claim human acceptance. The AI pass was not repeated after the fixes, so the fixes are
+  verified by automated journeys only.
+- Visual design is not ready: layout, styling, and art were not evaluated and this evidence
+  says nothing about them.
+- Regression evidence after the fixes (revision `83b1344`, fresh clone): `pnpm validate`
+  exit 0; unit 162 files / 1,556 tests; integration 20 files / 77 tests; Chromium 41 journeys.

@@ -1,7 +1,7 @@
 # Stage 250 — Vertical Slice Release
 
 - Date: 2026-10-05 (Europe/Oslo).
-- Status: **RELEASE CANDIDATE PREPARED — NOT RELEASED. Stage 250 is not complete.**
+- Status: **RELEASE CANDIDATE PREPARED — NOT RELEASED. Release deferred by the owner. Stage 250 is not complete.**
 - Work order: `work-orders/OPUS_STAGE_250.md`.
 - Model exception: the owner told this session (Claude Sonnet 5.5) to start Stage 250 instead
   of Opus 5.5/HIGH. Later model/gate requirements are unchanged.
@@ -10,12 +10,11 @@
 
 ## Why it stops here
 
-1. **Usability acceptance is not evidenced.** The gate requires a real uncoached session
-   (`reports/STAGE_240_USABILITY.md`). Only an AI stand-in pass exists, with ten findings
-   awaiting owner disposition. Required checks may not be relabelled as passed.
-2. **No authorized release target.** The owner has not stated the target, and production
-   authentication/environment (prerequisites Q4) is undecided. The slice is a local
-   development distribution until the owner says otherwise.
+Owner decision (2026-10-05): the release goes to a VPS, **later**. The visual part is not
+finished. The usability evidence is an AI stand-in pass that the owner accepted (not a human
+session). A VPS release also needs production authentication, which does not exist yet
+(`docs/RELEASE_CANDIDATE.md`, "Before a VPS release"). No tag, publication, or deployment was
+made; the repository has no remote.
 
 ## Prepared candidate
 
@@ -25,16 +24,14 @@
 - Decisions: ADR 0030 (Stage 240 remediation); ADRs 0026–0029 earlier.
 - No new gameplay or UX was added during packaging.
 
-## Fresh-environment smoke (clone of `47f4da4`, scratch directory, throwaway database)
+## Fresh-environment smoke (clone of `83b1344`, scratch directory, throwaway database)
 
-| Step                                           | Result                                                                                                                                                                                                                                                                                                                                                 |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `git clone` → `pnpm install --frozen-lockfile` | PASS (pnpm store already warm, so install time says nothing about a cold machine)                                                                                                                                                                                                                                                                      |
-| `pnpm build`                                   | PASS; bundle `index-C2LN-Xy5.js` SHA-256 `e5d19cde2735524e7e72a29c9118a9bd6ec4e1faee93c22cae032f586652441b`                                                                                                                                                                                                                                            |
-| `pnpm db:migrate` (new database)               | PASS; 0001–0004 applied                                                                                                                                                                                                                                                                                                                                |
-| `pnpm seed:ravenford`                          | PASS; 91 accepted, 25 entities, Day 1 10:00                                                                                                                                                                                                                                                                                                            |
-| Start server (`@ltw/server start`)             | PASS; `/healthz` ok; entities query with `dev-player-elowen` returned the player's view; unauthenticated request returned 401                                                                                                                                                                                                                          |
-| `pnpm validate` in the clone                   | format, lint, typecheck, context-budget (569 files, none over limits), unit 162 files / 1,555 tests, build, migrate, seed (idempotent), integration 20 files / 77 tests: PASS. E2E: first run failed to start because port 4310 was held by my own leftover dev server from the AI pass; after freeing it, `pnpm test:e2e` PASSED 40 Chromium journeys |
+| Step                                              | Result                                                                                                                                                                                          |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `git clone` → `pnpm install --frozen-lockfile`    | PASS (pnpm store already warm, so install time says nothing about a cold machine)                                                                                                               |
+| `pnpm validate` in the clone (throwaway database) | exit 0: format, lint, typecheck, context-budget, unit 162 files / 1,556 tests, build, migrate, seed (idempotent), integration 20 files / 77 tests, E2E 41 Chromium journeys                     |
+| Bundle                                            | `index-L2jN_3Bl.js` SHA-256 `d39e0aae9cc7e9c0d2daf5ee319ea1349378b8c5c51589646e43770cd0bfc32e`; `index-Q_19hvXj.css` SHA-256 `e9b2015aefd3492f73f9fe6e48fcb0899ff2222ec81f77631fd4cde1ff633c41` |
+| Earlier smoke on `47f4da4`                        | build, fresh migrate (0001–0004), seed (91), server start, `/healthz`, authorized query, 401 without a token: PASS                                                                              |
 
 The throwaway database was dropped afterwards. The web bundle was not served from a production
 host; only the local dev proxy and the server were exercised.
@@ -47,12 +44,11 @@ additive (three read routes and contracts, Stage 200 introduction evidence), so 
 coverage is invalidated and none is reopened. The client has no independent review (the Astra
 gates are backend-scoped, as Gate 05 states).
 
-## Required from the owner before this stage can complete
+## Required before this stage can complete
 
-1. Disposition of the ten Stage 240 findings (fix / defer / accept).
-2. A real uncoached human session, or an explicit owner statement of how usability
-   acceptance is to be satisfied. This report does not treat the AI pass as acceptance.
-3. The authorized release target and identifier, and the environment decision (Q4).
-4. Then: re-run the complete validation on the final revision and record the release here.
+1. Production authentication and the VPS environment (prerequisites Q4), plus the release
+   identifier and destination.
+2. The visual design finished and reviewed (the owner's note); the evidence here does not cover it.
+3. Re-run the complete validation on the final revision and record the release here.
 
 Nothing in this report claims the release happened.
