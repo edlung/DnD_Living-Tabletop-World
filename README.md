@@ -2,7 +2,7 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 200 (UX foundation) implemented; see `reports/STAGE_200_COMPLETION.md` for validation and limitations. Backend Gate 05 passed at retest 2 (`reviews/ASTRA_GATE_05_RETEST_2.md`); no findings remain open. Stage 210 requires separate owner authorization. Earlier capabilities:
+**Current state:** Stages 0–240 are implemented and Astra Gates 01–05 passed (Gate 05 at retest 2, `reviews/ASTRA_GATE_05_RETEST_2.md`). Stage 250 prepared a release candidate, tagged `v0.1.0-rc.1`, that is **not released** (`docs/RELEASE_CANDIDATE.md`, `reports/STAGE_250_RELEASE.md`). The alpha phase in `EXECUTION_PLAN.md` (Stages 290–360 and Gate 06) leads to a closed alpha with real people, in Russian, and then to the v0.1 release; its first stage, 290, requires separate owner authorization. Capabilities so far:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
