@@ -11,6 +11,11 @@ export const RAVENFORD_FIXTURES_DIR = fileURLToPath(
   new URL('../../../../fixtures/ravenford/', import.meta.url),
 );
 
+/** `fixtures/ravenford-ru/`: the Russian Ravenford (docs/adr/0031-play-language.md §9). */
+export const RAVENFORD_RU_FIXTURES_DIR = fileURLToPath(
+  new URL('../../../../fixtures/ravenford-ru/', import.meta.url),
+);
+
 /**
  * Seed scripts in order, each with its command-ID prefix. Prefixes are part
  * of seeded history (idempotency keys): never rename them.

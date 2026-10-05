@@ -132,12 +132,12 @@ const ru: ChronicleText = {
 
   aFoe: 'противник',
   unknownPlace: 'неизвестное место',
-  foes: (count) => `противников: ${String(count)}`,
+  foes: (count) => String(count),
   battle: (place, foes, fell, countered) =>
     `Бой. Место: ${place}. Противники: ${foes}.${fell > 0 ? ` Пало: ${String(fell)}.` : ''}${
       countered ? ' Заклинание отражено.' : ''
     }`,
-  accountsDisagree: (statement) => `Рассказы расходятся: ${statement}`,
+  accountsDisagree: (statement) => `Открытие. ${statement}`,
   arrived: (place) => `Прибытие: ${place}.`,
   returned: (place) => `Возвращение: ${place}.`,
   dayDawned: (day) => `Начался день ${String(day)}.`,

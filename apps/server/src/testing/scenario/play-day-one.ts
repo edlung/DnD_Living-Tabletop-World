@@ -15,7 +15,7 @@ import { BASE, type RavenfordSession, type Reply } from './session.ts';
  * step goes through a public route as the persona who would take it, and
  * throws when the route refuses what the scenario needs.
  */
-export const TOMAS_REQUEST = 'Add a young guard near North Gate who saw the caravan leave.';
+export { EN_SCRIPT } from './script.ts';
 
 export function ok(reply: Reply, expected = 200): Reply {
   if (reply.status !== expected)
@@ -68,7 +68,7 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
   ok(await session.get('player', `${BASE}/locations/market-square/scene?perspective=PLAYER`));
   const miraContext = await contextOf(session, 'mira-vale');
   const talk = ok(
-    await dialogue(session, 'mira-vale', { kind: 'talk' }, 'Good morning!'),
+    await dialogue(session, 'mira-vale', { kind: 'talk' }, session.script.talkLine),
   ).json<NpcDialogueResponse>();
   const askMira = ok(
     await dialogue(session, 'mira-vale', { kind: 'ask', topicId: 'guild-caravan' }),
@@ -98,7 +98,7 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
   await session.act({
     type: 'FormHypothesis',
     scope: 'PARTY',
-    statement: 'Someone wanted the attack to look like goblins.',
+    statement: session.script.hypothesis,
     subjects: ['guild-caravan'],
   });
 
@@ -135,7 +135,7 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
   // The DM authors Tomas in natural language, edits, confirms, and performs him.
   session.phase('authoring');
   const intent = ok(
-    await session.post('dm', `${BASE}/ai/intents`, { text: TOMAS_REQUEST }),
+    await session.post('dm', `${BASE}/ai/intents`, { text: session.script.tomasRequest }),
   ).json<DmIntentResponse>();
   const proposals = `${BASE}/authoring/proposals`;
   const first = ok(
@@ -146,7 +146,7 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
   const proposal = ok(
     await session.post('dm', `${at}/revisions`, {
       basedOnRevision: 1,
-      commands: edited(first.proposal.commands),
+      commands: edited(first.proposal.commands, session.script.tomasEdited),
     }),
     201,
   ).json<AuthoringProposalResponse>();
@@ -166,8 +166,7 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
   await session.dm({
     type: 'UpdateEntityProfile',
     entityId: 'tomas-reed',
-    description:
-      'A young guard of the Ravenford Guard, 22 years old, sharp-eyed on the night watch.',
+    description: session.script.tomasRefined,
   });
   const tomasContext = await contextOf(session, 'tomas-reed');
   const askTomas = ok(
@@ -200,16 +199,14 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
 }
 
 /** The DM's edit: Tomas's age and role, and his willingness to tell what he saw. */
-function edited(commands: readonly ProposableCommand[]): ProposableCommand[] {
+function edited(commands: readonly ProposableCommand[], description: string): ProposableCommand[] {
   const record = commands.find((command) => command.type === 'AddKnowledge');
   if (record?.type !== 'AddKnowledge' || record.knowledgeId === undefined) {
     throw new Error('the stored revision has a resolved record ID');
   }
   return [
     ...commands.map((command) =>
-      command.type === 'CreateEntity'
-        ? { ...command, description: 'A young guard of the Ravenford Guard, 22 years old.' }
-        : command,
+      command.type === 'CreateEntity' ? { ...command, description } : command,
     ),
     { type: 'SetDisclosure', knowledgeId: record.knowledgeId, disclosure: 'WILLING' },
   ];
