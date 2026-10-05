@@ -82,7 +82,8 @@ const RU_REACTIONS: Readonly<Record<string, string>> = { counterspell: 'Конт
  */
 const RU_HEDGE_STEMS = [
   'говор',
-  'сказ',
+  'сказал',
+  'сказан',
   'расска',
   'сообщ',
   'утвержд',
