@@ -1,6 +1,7 @@
 import type { KernelEvent } from '../kernel/events.ts';
 import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { investigationText, languageOf } from '../language/index.ts';
 import {
   acting,
   incapacitated,
@@ -108,7 +109,11 @@ export function decideAskAbout(
     memoryEvent(state, actor.value, {
       memoryId,
       memoryKind: 'CONVERSATION',
-      summary: `${npc.name} told ${actor.value.character.name} about ${topic.name}.`,
+      summary: investigationText(languageOf(state)).told(
+        npc.name,
+        actor.value.character.name,
+        topic.name,
+      ),
       participants: [characterId, npcId],
       relatedKnowledge: sharedIds,
       named: [npcId, characterId, topicId],

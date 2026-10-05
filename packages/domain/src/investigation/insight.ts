@@ -6,6 +6,7 @@ import {
   type ResolvedCommandOf,
 } from '../kernel/decision.ts';
 import type { KernelEvent } from '../kernel/events.ts';
+import { investigationText, languageOf } from '../language/index.ts';
 import {
   acting,
   incapacitated,
@@ -103,7 +104,7 @@ export function decideInsightCheck(
         knowledgeId: inferenceId,
         scope,
         knowledgeType: 'INFERENCE',
-        statement: `${npc.name} seems to be holding something back about ${topic?.name ?? 'it'}.`,
+        statement: investigationText(languageOf(state)).holdingBack(npc.name, topic?.name ?? null),
         subjects: [npcId, topicId],
         attributedTo: null,
         relations: [],

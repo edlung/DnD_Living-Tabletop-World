@@ -1,6 +1,7 @@
 import type { KernelEvent } from '../kernel/events.ts';
 import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { investigationText, languageOf } from '../language/index.ts';
 import { scopeKey as keyOf } from '../knowledge/records.ts';
 import {
   acting,
@@ -75,7 +76,11 @@ export function decideShowEvidence(
     memoryEvent(state, actor.value, {
       memoryId,
       memoryKind: 'CONVERSATION',
-      summary: `${actor.value.character.name} showed ${npc.name} evidence about ${names}.`,
+      summary: investigationText(languageOf(state)).showed(
+        actor.value.character.name,
+        npc.name,
+        names,
+      ),
       participants: [characterId, npcId],
       relatedKnowledge: [knowledgeId],
       named: [characterId, npcId, ...record.subjects],

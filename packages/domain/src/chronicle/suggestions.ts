@@ -3,6 +3,7 @@ import { SECONDS_PER_DAY, type MemoryKind, type MemorySuggestionView } from '@lt
 import type { RecordedEvent } from '../kernel/events.ts';
 import { effectiveEvents, placementAt } from '../kernel/projections/world-view.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { chronicleText, languageOf } from '../language/index.ts';
 import { holderPerspective } from '../knowledge/perspective.ts';
 import { knownEntityIds } from '../knowledge/projection.ts';
 import { sourceIndex, sourcesOf } from './views.ts';
@@ -45,6 +46,7 @@ export function memorySuggestions(
     scope.kind === 'PARTY' ? new Set(state.roster.keys()) : new Set([scope.characterId]);
   const perspective = holderPerspective(state, scope);
   const known = knownEntityIds(state, perspective);
+  const words = chronicleText(languageOf(state));
   const named = (id: string, otherwise: string) =>
     known.has(id) ? (state.entities.get(id)?.name ?? otherwise) : otherwise;
   const rootOf = (locationId: string) => {
@@ -87,17 +89,15 @@ export function memorySuggestions(
         );
         const foes = ids.filter((id) => !members.has(id));
         const foeWords = foes.every((id) => known.has(id))
-          ? foes.map((id) => named(id, 'a foe')).join(', ')
-          : `${String(foes.length)} foes`;
-        const fell = deaths.length > 0 ? ` ${String(deaths.length)} of them fell.` : '';
-        const countered = counters.length > 0 ? ' A spell was countered.' : '';
-        const place = named(event.payload.locationId, 'an unknown place');
+          ? foes.map((id) => named(id, words.aFoe)).join(', ')
+          : words.foes(foes.length);
+        const place = named(event.payload.locationId, words.unknownPlace);
         drafts.push({
           reason: 'battle',
           anchor: event,
           cited: [event, ...deaths, ...counters, ...during.filter((e) => e.type === 'CombatEnded')],
           memoryKind: 'OBSERVATION',
-          summary: `We fought ${foeWords} at ${place}.${fell}${countered}`,
+          summary: words.battle(place, foeWords, deaths.length, counters.length > 0),
           occurredAt: event.worldTime,
           locationId: event.payload.locationId,
           participants: ids.slice(0, 16),
@@ -119,7 +119,7 @@ export function memorySuggestions(
           anchor: event,
           cited: [event],
           memoryKind: 'DISCOVERY',
-          summary: `We realized that the accounts disagree: ${record.statement}`,
+          summary: words.accountsDisagree(record.statement),
           occurredAt: event.worldTime,
           locationId: whereAt(event.worldTime),
           participants: known.has(subjectId) ? [subjectId] : [],
@@ -150,13 +150,13 @@ export function memorySuggestions(
             rootOf(d.locationId) === root,
         );
         if (covered) break;
-        const placeName = named(root, 'an unknown place');
+        const placeName = named(root, words.unknownPlace);
         drafts.push({
           reason: 'arrival',
           anchor: event,
           cited: [event],
           memoryKind: 'OBSERVATION',
-          summary: returned ? `We returned to ${placeName}.` : `We arrived at ${placeName}.`,
+          summary: returned ? words.returned(placeName) : words.arrived(placeName),
           occurredAt: event.worldTime,
           locationId: settled,
           participants: [entityId],
@@ -176,7 +176,7 @@ export function memorySuggestions(
           anchor: event,
           cited: [event],
           memoryKind: 'OBSERVATION',
-          summary: `Day ${String(day)} dawned.`,
+          summary: words.dayDawned(day),
           occurredAt: after,
           locationId: where,
           participants: [...members].slice(0, 16),

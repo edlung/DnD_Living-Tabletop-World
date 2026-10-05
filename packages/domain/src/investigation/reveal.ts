@@ -1,5 +1,6 @@
 import type { KernelEvent } from '../kernel/events.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { investigationText, languageOf } from '../language/index.ts';
 import { acting, memoryEvent, type Acting } from './acting.ts';
 import type { Premise } from './events.ts';
 import { perceivedEntityIds } from './perception.ts';
@@ -105,7 +106,10 @@ export function magicDiscoveryEvents(
     memoryEvent(state, actor.value, {
       memoryId,
       memoryKind: 'DISCOVERY',
-      summary: `${actor.value.character.name} sensed magic: ${first.clue.statement}`,
+      summary: investigationText(languageOf(state)).sensedMagic(
+        actor.value.character.name,
+        first.clue.statement,
+      ),
       participants: [characterId, ...entities].slice(0, 16),
       relatedKnowledge: found.map(({ knowledgeId }) => knowledgeId),
       named: [characterId],

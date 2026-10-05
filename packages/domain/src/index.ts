@@ -183,6 +183,7 @@ export {
 export { dayPhaseAt, visualTimelineAt, type VisualTimeline } from './visual/timeline.ts';
 export { chronicleEntries, type ChronicleDraft } from './chronicle/entries.ts';
 export { checkProse, templateProse } from './chronicle/prose.ts';
+export { chronicleText, languageOf, type ChronicleText } from './language/index.ts';
 export { HEDGED_TYPES, type StoredEntry as ChronicleEntry } from './chronicle/records.ts';
 export { chronicleChapters } from './chronicle/views.ts';
 export { memorySuggestions, type SuggestionScope } from './chronicle/suggestions.ts';

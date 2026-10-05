@@ -8,6 +8,7 @@ import {
   type ResolvedCommandOf,
 } from '../kernel/decision.ts';
 import type { KernelEvent } from '../kernel/events.ts';
+import { investigationText, languageOf } from '../language/index.ts';
 import {
   acting,
   incapacitated,
@@ -122,7 +123,11 @@ export function decideExamineEntity(
       memoryEvent(state, actor.value, {
         memoryId,
         memoryKind: 'DISCOVERY',
-        summary: `${actor.value.character.name} examined ${entity.name}: ${first.clue.statement}`,
+        summary: investigationText(languageOf(state)).examined(
+          actor.value.character.name,
+          entity.name,
+          first.clue.statement,
+        ),
         participants: [characterId, entityId],
         relatedKnowledge: revealed.map(({ knowledgeId }) => knowledgeId),
         named: [characterId, entityId],

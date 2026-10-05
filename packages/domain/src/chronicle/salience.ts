@@ -4,6 +4,7 @@ import type { RecordedEvent } from '../kernel/events.ts';
 import { footprintOf } from '../kernel/facts.ts';
 import { effectiveEvents } from '../kernel/projections/world-view.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { chronicleText, languageOf } from '../language/index.ts';
 import type { StoredEntry } from './records.ts';
 
 /**
@@ -28,6 +29,7 @@ export function salientEvents(
   from: number,
   to: number,
 ): SalientEvent[] {
+  const words = chronicleText(languageOf(state));
   const name = (id: string) => state.entities.get(id)?.name ?? id;
   const statementOf = (knowledgeId: string) => state.knowledge.get(knowledgeId);
   const indexes = new Map<string, number>();
@@ -50,10 +52,9 @@ export function salientEvents(
       case 'EntityStatusChanged': {
         const { entityId, to: status } = event.payload;
         if (status === 'active') break;
-        const verb = status === 'dead' ? 'died' : 'was destroyed';
         entry = {
           ...base,
-          text: `${name(entityId)} ${verb}.`,
+          text: status === 'dead' ? words.died(name(entityId)) : words.destroyed(name(entityId)),
           salience: 5,
           participants: [entityId],
         };
@@ -64,7 +65,7 @@ export function salientEvents(
         const ids = combatants.map((combatant) => combatant.entityId);
         entry = {
           ...base,
-          text: `A fight broke out at ${name(locationId)}: ${ids.map(name).join(', ')}.`,
+          text: words.fightBroke(name(locationId), ids.map(name).join(', ')),
           salience: 4,
           locationId,
           participants: ids.slice(0, 16),
@@ -72,13 +73,13 @@ export function salientEvents(
         break;
       }
       case 'CombatEnded':
-        entry = { ...base, text: 'The fight ended.', salience: 3 };
+        entry = { ...base, text: words.fightEnded, salience: 3 };
         break;
       case 'ReactionUsed': {
         const { reactorId, reaction } = event.payload;
         entry = {
           ...base,
-          text: `${name(reactorId)} answered with ${reaction}.`,
+          text: words.answeredWith(name(reactorId), reaction),
           salience: 4,
           participants: [reactorId],
         };
@@ -108,7 +109,7 @@ export function salientEvents(
         if (!record) break;
         entry = {
           ...base,
-          text: `${name(npcId)} told ${name(characterId)}: ${record.statement}`,
+          text: words.toldTo(name(npcId), name(characterId), record.statement),
           salience: 4,
           participants: [npcId, characterId],
           knowledge: [
@@ -121,7 +122,7 @@ export function salientEvents(
         const { characterId, entityId } = event.payload;
         entry = {
           ...base,
-          text: `${name(characterId)} examined ${name(entityId)}.`,
+          text: words.examined(name(characterId), name(entityId)),
           salience: 3,
           participants: [characterId, entityId],
         };
@@ -132,7 +133,7 @@ export function salientEvents(
         if (knowledgeType !== 'HYPOTHESIS') break;
         entry = {
           ...base,
-          text: `A hypothesis was formed: ${statement}`,
+          text: words.hypothesis(statement),
           salience: 3,
           knowledge: [{ knowledgeId, knowledgeType, statement }],
         };
@@ -141,7 +142,7 @@ export function salientEvents(
       case 'WorldTimeAdvanced': {
         const { from: before, to: after } = event.payload;
         if (dayOf(after) === dayOf(before)) break;
-        entry = { ...base, text: `Day ${String(dayOf(after))} began.`, salience: 3 };
+        entry = { ...base, text: words.dayBegan(dayOf(after)), salience: 3 };
         break;
       }
       case 'EntityPlaced': {
@@ -149,7 +150,7 @@ export function salientEvents(
         if (!state.roster.has(entityId)) break;
         entry = {
           ...base,
-          text: `${name(entityId)} went to ${name(locationId)}.`,
+          text: words.wentTo(name(entityId), name(locationId)),
           salience: 3,
           locationId,
           participants: [entityId],
@@ -160,7 +161,7 @@ export function salientEvents(
         if (event.payload.kind !== 'npc') break;
         entry = {
           ...base,
-          text: `${name(event.payload.entityId)} entered the story.`,
+          text: words.enteredStory(name(event.payload.entityId)),
           salience: 3,
           participants: [event.payload.entityId],
         };

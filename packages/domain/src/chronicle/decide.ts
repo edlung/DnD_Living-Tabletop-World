@@ -13,6 +13,7 @@ import { facts, type FactKey } from '../kernel/fact-keys.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { resolvePerspective } from '../knowledge/perspective.ts';
+import { languageOf } from '../language/index.ts';
 import { chronicleEntries } from './entries.ts';
 import { checkProse } from './prose.ts';
 
@@ -40,7 +41,7 @@ export function decideGenerateChronicle(
   if (!access?.ok) return invalid('No perspective the chapter can be told from');
   const draft = chronicleEntries(state, history, access.perspective, command.from, command.to);
   if (draft.entries.length === 0) return invalid('Nothing to tell from that perspective then');
-  const issues = checkProse(draft.entries, command.prose.paragraphs);
+  const issues = checkProse(draft.entries, command.prose.paragraphs, languageOf(state));
   if (issues.length > 0) return invalid('The prose does not follow the chapter', { issues });
   return accept({
     type: 'ChronicleGenerated',
