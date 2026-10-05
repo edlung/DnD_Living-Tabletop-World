@@ -1,0 +1,7 @@
+{
+  "time": "ui-dm-time",
+  "chronicle": "ui-dm-chronicle",
+  "perform": "ui-dm-perform",
+  "sessionPlayer": "ui-session-player",
+  "sessionDm": "ui-session-dm"
+}

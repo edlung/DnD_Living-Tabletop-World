@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { formatWorldTime } from '../dm/world-time.ts';
 import { SceneImage } from './scene-image.tsx';
 import { SceneObjects } from './scene-objects.tsx';
 
@@ -53,7 +54,7 @@ export function Scene({
         <div className="exploration-meta" aria-label="Scene conditions">
           <span>{scene.phase}</span>
           {scene.location.weather && <span>{scene.location.weather}</span>}
-          <span>World time {scene.worldTime}</span>
+          <span>{formatWorldTime(scene.worldTime)}</span>
         </div>
       </header>
       <div className="exploration-presence">

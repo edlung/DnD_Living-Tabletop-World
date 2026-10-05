@@ -13,6 +13,8 @@ import { useCallback, useRef, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { AuthoringPanel } from '../authoring/authoring-panel.tsx';
+import { ChroniclePanel } from '../chronicle/chronicle-panel.tsx';
+import { DmWorldControls } from '../dm/world-controls.tsx';
 import { CombatPanel } from '../combat/combat-panel.tsx';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
 import { ActionNotice } from '../exploration/action-notice.tsx';
@@ -38,6 +40,8 @@ export function World({
   readonly canAct: boolean;
 }) {
   const [revision, setRevision] = useState(0);
+  // Kept here so the panel stays open across the refresh each command causes.
+  const [dmToolsOpen, setDmToolsOpen] = useState(false);
   const [viewing, setViewing] = useState<string | null>(null);
   const [selected, setSelected] = useState<Selected | null>(null);
   const acting = effectivePerspective.startsWith('CHARACTER:');
@@ -169,6 +173,16 @@ export function World({
               onRun={action.run}
             />
           )}
+          {effectivePerspective === 'DM' && (
+            <DmWorldControls
+              locationId={placeId}
+              locationName={location?.name ?? 'this place'}
+              locked={action.locked}
+              open={dmToolsOpen}
+              onToggle={setDmToolsOpen}
+              onRun={action.run}
+            />
+          )}
           {data.encounter.encounter && (
             <CombatPanel
               key={`combat:${String(revision)}`}
@@ -289,6 +303,12 @@ export function World({
             <EncounterSummary encounter={data.encounter.encounter} />
             <RecentEvents key={revision} api={api} />
           </div>
+          <ChroniclePanel
+            key={`chronicle:${String(revision)}`}
+            api={api}
+            isDm={effectivePerspective === 'DM'}
+            characters={data.directory.entities.filter((entity) => entity.kind === 'character')}
+          />
         </>
       )}
     </main>

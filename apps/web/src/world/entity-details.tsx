@@ -10,6 +10,7 @@ import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { PerformNpc } from '../dm/perform-npc.tsx';
 import { ContextActions } from '../exploration/context-actions.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 
@@ -130,6 +131,14 @@ export function EntityDetails({
                   </div>
                 ))}
             </section>
+          )}
+          {effectivePerspective === 'DM' && kind === 'npc' && (
+            <PerformNpc
+              api={api}
+              npcId={entityId}
+              npcName={name ?? entityId}
+              directory={directory}
+            />
           )}
           <details className="disclosure">
             <summary>Full knowledge</summary>

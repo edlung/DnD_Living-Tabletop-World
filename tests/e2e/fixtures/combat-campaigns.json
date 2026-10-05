@@ -6,5 +6,7 @@
   "expire": "ui-combat-expire",
   "stale": "ui-combat-stale",
   "lifecycle": "ui-combat-lifecycle",
-  "preview": "ui-combat-preview"
+  "preview": "ui-combat-preview",
+  "sessionTurn": "ui-session-turn",
+  "sessionWindow": "ui-session-window"
 }

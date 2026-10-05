@@ -64,6 +64,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   expire: 'window',
   stale: 'window',
   lifecycle: 'placed',
+  sessionTurn: 'started',
+  sessionWindow: 'window',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {

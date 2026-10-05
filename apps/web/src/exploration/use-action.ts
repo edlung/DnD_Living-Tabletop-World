@@ -3,11 +3,15 @@ import { useEffect, useRef, useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
 import type { CombatUiCommand } from '../combat/combat-bindings.ts';
+import type { DmWorldCommand } from '../dm/world-controls.tsx';
 import type { ExplorationCommand } from './action-bindings.ts';
 import { outcomeMessage, rejectionMessage } from './outcome-messages.ts';
 
 export type ExplorationIntent =
-  | { readonly kind: 'command'; readonly command: ExplorationCommand | CombatUiCommand }
+  | {
+      readonly kind: 'command';
+      readonly command: ExplorationCommand | CombatUiCommand | DmWorldCommand;
+    }
   | { readonly kind: 'talk'; readonly characterId: string; readonly npcId: string };
 
 export interface ActionNotice {
