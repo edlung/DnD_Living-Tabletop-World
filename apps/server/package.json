@@ -5,10 +5,10 @@
   "description": "Modular-monolith server: composition root, HTTP API, persistence, and platform services.",
   "type": "module",
   "scripts": {
-    "start": "node --env-file-if-exists=../../.env dist/main.js",
-    "dev": "node --env-file-if-exists=../../.env --conditions=@ltw/source --watch src/main.ts",
-    "db:migrate": "node --env-file-if-exists=../../.env dist/platform/db/migrate-cli.js",
-    "seed:ravenford": "node --env-file-if-exists=../../.env dist/world-engine/seed-ravenford-cli.js"
+    "start": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/main.js",
+    "dev": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local --conditions=@ltw/source --watch src/main.ts",
+    "db:migrate": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/platform/db/migrate-cli.js",
+    "seed:ravenford": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/world-engine/seed-ravenford-cli.js"
   },
   "dependencies": {
     "@ltw/ai": "workspace:*",

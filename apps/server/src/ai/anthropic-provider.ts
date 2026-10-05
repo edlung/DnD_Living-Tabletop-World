@@ -3,7 +3,11 @@ import { z } from 'zod';
 
 /**
  * The Anthropic Messages API adapter (docs/adr/0017-ai-gateway.md §2):
- * structured output as a forced tool call, over `fetch`. Errors carry a code
+ * structured output as a tool call the model is told to make, over `fetch`.
+ * Current Claude models reject a forced `tool_choice` with a 400 (checked live on
+ * 2026-10-05), so the request uses `auto` and the system text names the tool; a
+ * reply without the tool call is `BAD_RESPONSE` and the gateway's repair and
+ * fallback policy applies (docs/adr/0032-live-ai.md). Errors carry a code
  * and a fixed message only: never the key, the request, or the response body.
  * A call stops at its own timeout, or when the request's `signal` aborts
  * (a caller's time budget, ADR 0021); either is `TIMEOUT`.
@@ -17,6 +21,9 @@ export interface AnthropicOptions {
   readonly apiKey: () => string;
   readonly model: string;
   readonly timeoutMs: number;
+  /** `output_config.effort`; the model's default when absent. */
+  readonly effort?: 'low' | 'medium' | 'high';
+  readonly maxTokens?: number;
   readonly fetch?: typeof fetch;
 }
 
@@ -30,11 +37,16 @@ const messagesResponseSchema = z.looseObject({
   usage: z.looseObject({ input_tokens: z.number(), output_tokens: z.number() }).optional(),
 });
 
-function bodyOf(model: string, request: ProviderRequest): string {
+function bodyOf(
+  model: string,
+  request: ProviderRequest,
+  options: Pick<AnthropicOptions, 'effort' | 'maxTokens'>,
+): string {
   return JSON.stringify({
     model,
-    max_tokens: MAX_TOKENS,
-    system: request.system,
+    max_tokens: options.maxTokens ?? MAX_TOKENS,
+    ...(options.effort ? { output_config: { effort: options.effort } } : {}),
+    system: `${request.system}\nAnswer only by calling the ${request.output.name} tool.`,
     messages: [{ role: 'user', content: request.prompt }],
     tools: [
       {
@@ -43,7 +55,7 @@ function bodyOf(model: string, request: ProviderRequest): string {
         input_schema: request.output.schema,
       },
     ],
-    tool_choice: { type: 'tool', name: request.output.name },
+    tool_choice: { type: 'auto' },
   });
 }
 
@@ -70,7 +82,7 @@ export function createAnthropicProvider(options: AnthropicOptions): AiProvider {
             'x-api-key': options.apiKey(),
             'anthropic-version': ANTHROPIC_VERSION,
           },
-          body: bodyOf(options.model, request),
+          body: bodyOf(options.model, request, options),
           signal,
         });
         if (!response.ok) {
@@ -97,6 +109,9 @@ export function createAnthropicProvider(options: AnthropicOptions): AiProvider {
       const parsed = messagesResponseSchema.safeParse(body);
       if (!parsed.success || parsed.data.stop_reason === 'max_tokens') {
         throw new ProviderError('BAD_RESPONSE', 'provider output incomplete');
+      }
+      if (parsed.data.stop_reason === 'refusal') {
+        throw new ProviderError('BAD_RESPONSE', 'provider declined the request');
       }
       const { content, model, usage } = parsed.data;
       const call = content.find(

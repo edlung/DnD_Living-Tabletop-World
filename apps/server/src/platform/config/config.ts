@@ -38,6 +38,16 @@ export interface AppConfig {
     } | null;
     /** How long a context request waits for the relevance ranker (docs/adr/0021-ai-relevance.md). */
     readonly relevanceBudgetMs: number;
+    /** The DeepSeek adapter (docs/adr/0032-live-ai.md); null unless a key is set. */
+    readonly deepseek: {
+      readonly apiKey: Secret;
+      readonly model: string;
+      readonly timeoutMs: number;
+    } | null;
+    /** Per-capability provider lists, `provider:model` in order; null = the default routing. */
+    readonly routes: Readonly<Record<string, readonly string[]>> | null;
+    /** The daily spending ceiling in US dollars for every live provider together. */
+    readonly dailyBudgetUsd: number;
   };
   /** Quest definitions (docs/adr/0025-ravenford-integration.md §2). */
   readonly questsFile: string;
@@ -78,6 +88,8 @@ export const DEFAULT_AI_MODEL = 'claude-opus-5-5';
 export const DEFAULT_AI_TIMEOUT_MS = 30_000;
 export const DEFAULT_RELEVANCE_BUDGET_MS = 2_000;
 export const DEFAULT_ASSET_WORKER_INTERVAL_MS = 5_000;
+export const DEFAULT_DEEPSEEK_MODEL = 'deepseek-flash';
+export const DEFAULT_DAILY_BUDGET_USD = 5;
 export const DEFAULT_ASSET_TIMEOUT_MS = 60_000;
 
 export type Env = Readonly<Record<string, string | undefined>>;
@@ -131,6 +143,19 @@ const envSchema = z.object({
   LTW_AI_TIMEOUT_MS: z.preprocess(
     emptyAsUndefined,
     z.coerce.number().int().min(1_000).max(300_000).default(DEFAULT_AI_TIMEOUT_MS),
+  ),
+  DEEPSEEK_API_KEY: z.preprocess(emptyAsUndefined, z.string().trim().min(1).optional()),
+  LTW_DEEPSEEK_MODEL: z.preprocess(
+    emptyAsUndefined,
+    z
+      .string()
+      .regex(/^[a-z0-9][a-z0-9.-]{0,99}$/)
+      .default(DEFAULT_DEEPSEEK_MODEL),
+  ),
+  LTW_AI_ROUTES: z.preprocess(emptyAsUndefined, z.string().max(2_000).optional()),
+  LTW_AI_DAILY_BUDGET_USD: z.preprocess(
+    emptyAsUndefined,
+    z.coerce.number().min(0).max(10_000).default(DEFAULT_DAILY_BUDGET_USD),
   ),
   LTW_AI_RELEVANCE_BUDGET_MS: z.preprocess(
     emptyAsUndefined,
@@ -193,6 +218,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
     issues.push('AUTH_MODE: dev-personas is not allowed in production');
   }
 
+  const routes = parseRoutes(values.LTW_AI_ROUTES, issues);
   if (issues.length > 0 || databaseUrl === undefined) {
     throw new ConfigError(issues);
   }
@@ -217,6 +243,16 @@ export function loadConfig(env: Env = process.env): AppConfig {
               timeoutMs: values.LTW_AI_TIMEOUT_MS,
             }),
       relevanceBudgetMs: values.LTW_AI_RELEVANCE_BUDGET_MS,
+      deepseek:
+        values.DEEPSEEK_API_KEY === undefined
+          ? null
+          : Object.freeze({
+              apiKey: new Secret(values.DEEPSEEK_API_KEY),
+              model: values.LTW_DEEPSEEK_MODEL,
+              timeoutMs: values.LTW_AI_TIMEOUT_MS,
+            }),
+      routes: routes === null ? null : Object.freeze(routes),
+      dailyBudgetUsd: values.LTW_AI_DAILY_BUDGET_USD,
     }),
     questsFile: values.LTW_QUESTS_FILE ?? DEFAULT_QUESTS_FILE,
     assets: Object.freeze({
@@ -224,6 +260,37 @@ export function loadConfig(env: Env = process.env): AppConfig {
       generationTimeoutMs: values.LTW_ASSET_TIMEOUT_MS,
     }),
   });
+}
+
+const ROUTE_CAPABILITIES = ['reasoning', 'npc-dialogue', 'narrative', 'fast-context'] as const;
+
+/**
+ * `LTW_AI_ROUTES`: `capability=provider:model,provider:model;capability=…`. Providers are
+ * `anthropic` and `deepseek`; `local` may end a list. Names the problem, never a value.
+ */
+function parseRoutes(
+  text: string | undefined,
+  issues: string[],
+): Record<string, readonly string[]> | null {
+  if (text === undefined) return null;
+  const routes: Record<string, readonly string[]> = {};
+  for (const part of text.split(';').filter((entry) => entry.trim() !== '')) {
+    const [capability, list] = part.split('=').map((piece) => piece.trim());
+    const entries = (list ?? '').split(',').map((entry) => entry.trim());
+    const valid =
+      capability !== undefined &&
+      (ROUTE_CAPABILITIES as readonly string[]).includes(capability) &&
+      entries.length > 0 &&
+      entries.every(
+        (entry) => entry === 'local' || /^(anthropic|deepseek):[a-z0-9][a-z0-9.-]*$/.test(entry),
+      );
+    if (!valid) {
+      issues.push('LTW_AI_ROUTES: expected capability=provider:model[,provider:model];…');
+      return null;
+    }
+    routes[capability] = entries;
+  }
+  return routes;
 }
 
 /** Renders a connection string safe for logs: credentials are removed. */

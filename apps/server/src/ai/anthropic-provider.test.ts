@@ -91,10 +91,10 @@ describe('createAnthropicProvider', () => {
     const body = JSON.parse(call?.init.body as string) as Record<string, unknown>;
     expect(body).toMatchObject({
       model: 'claude-opus-5-5',
-      system: REQUEST.system,
+      system: `${REQUEST.system}\nAnswer only by calling the propose_commands tool.`,
       messages: [{ role: 'user', content: REQUEST.prompt }],
       tools: [{ name: 'propose_commands', input_schema: REQUEST.output.schema }],
-      tool_choice: { type: 'tool', name: 'propose_commands' },
+      tool_choice: { type: 'auto' },
     });
     expect(REQUEST.output.schema).not.toHaveProperty('$schema');
     expect(JSON.stringify(body)).not.toContain(KEY);

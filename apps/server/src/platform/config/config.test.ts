@@ -22,7 +22,13 @@ describe('loadConfig', () => {
       http: { host: '127.0.0.1', port: 3000 },
       databaseUrl: DEV_DATABASE_URL,
       auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
-      ai: { anthropic: null, relevanceBudgetMs: 2_000 },
+      ai: {
+        anthropic: null,
+        relevanceBudgetMs: 2_000,
+        deepseek: null,
+        routes: null,
+        dailyBudgetUsd: 5,
+      },
       questsFile: DEFAULT_QUESTS_FILE,
       assets: { workerIntervalMs: 5_000, generationTimeoutMs: 60_000 },
     });
