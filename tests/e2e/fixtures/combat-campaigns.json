@@ -1,0 +1,10 @@
+{
+  "turn": "ui-combat-turn",
+  "area": "ui-combat-area",
+  "counter": "ui-combat-counter",
+  "ignore": "ui-combat-ignore",
+  "expire": "ui-combat-expire",
+  "stale": "ui-combat-stale",
+  "lifecycle": "ui-combat-lifecycle",
+  "preview": "ui-combat-preview"
+}

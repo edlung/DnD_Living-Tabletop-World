@@ -41,3 +41,11 @@ single-record retry after an interrupted response, and late-result isolation;
 `apps/web/src/exploration/action-bindings.test.ts` covers the command mapping.
 No contract, mutation path, or reviewed projection changed, so no gate is reopened.
 Evidence and commands: `reports/STAGE_210_COMPLETION.md`.
+
+Stage 220 introduction evidence (ADR 0028): `tests/e2e/combat-*.spec.ts` cover movement and
+attack with a server-refused over-speed move, Fireball preview with the ally warning and a
+legal cast, a valid Counterspell, Ignore, DM-closed expiry with a stale answer refused,
+duplicate and repeated answers spending one slot, and the DM start/run/end lifecycle returning
+players to exploration. `apps/web/src/combat/*.test.ts` cover route planning and command
+bindings. No rules, combat, reaction, contract, or route code changed, so the deterministic
+suites run unchanged and no gate is reopened. Evidence: `reports/STAGE_220_COMPLETION.md`.

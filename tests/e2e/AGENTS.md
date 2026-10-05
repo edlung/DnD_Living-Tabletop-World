@@ -20,8 +20,9 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
 - The UI server also gives Mira the approved reference sheet via a real DM
   command, proving that authorized NPC sheets stay reachable for the DM.
 - `ui-campaigns.ts` prepares a separate `ui-combat` campaign with the existing
-  ambush fixture and a real open Counterspell window. Encounter journeys only
-  read its scoped status; no browser test executes combat actions.
+  ambush fixture and a real open Counterspell window and stays read-only. Each
+  Stage 220 combat mutation journey owns a campaign from
+  `fixtures/combat-campaigns.json`, prepared by `ui-combat-campaigns.ts`.
 - Investigation checks use scripted d20 results of 15. The unknown-concept
   campaign omits initial caravan-related visible knowledge and visible
   memories; it tests server-driven action visibility before and after learning.

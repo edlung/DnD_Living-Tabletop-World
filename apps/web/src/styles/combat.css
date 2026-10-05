@@ -1,0 +1,146 @@
+.combat-panel {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+.combat-anchor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--forest);
+}
+.combat-anchor span {
+  font-weight: 600;
+}
+.battlefield-grid {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  max-width: 46rem;
+  padding: 4px;
+  background: #d9dfd4;
+  border-radius: 6px;
+}
+.battle-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: #f4f3ed;
+  cursor: pointer;
+}
+.battle-cell:hover {
+  border-color: var(--accent);
+}
+.battle-cell:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 1px;
+  z-index: 2;
+}
+.battle-cell.is-difficult {
+  background: repeating-linear-gradient(45deg, #e5dcc2 0 4px, #f4f3ed 4px 8px);
+}
+.battle-cell.has-cover {
+  border: 2px solid #5f7d6c;
+}
+.battle-cell.cover-total {
+  border-style: double;
+  border-width: 4px;
+}
+.battle-cell.cover-three-quarters {
+  border-width: 3px;
+}
+.battle-cell.on-path {
+  background: #cfe3d2;
+}
+.battle-cell.in-area {
+  box-shadow: inset 0 0 0 3px #d98324;
+}
+.battle-cell.is-selected {
+  outline: 2px solid var(--accent);
+  z-index: 1;
+}
+.battle-cell.has-turn::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border: 2px dashed var(--forest);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.battle-token {
+  display: grid;
+  place-items: center;
+  width: 82%;
+  height: 82%;
+  border-radius: 50%;
+  font-size: clamp(0.5rem, 1.2vw, 0.8rem);
+  font-weight: 700;
+  color: #fff;
+}
+.battle-token.side-party {
+  background: #2f6f57;
+}
+.battle-token.side-hostile {
+  background: #a3402f;
+}
+.battle-token.side-neutral {
+  background: #6b6f7a;
+}
+.battle-token.state-down,
+.battle-token.state-dead {
+  opacity: 0.45;
+}
+.battlefield-legend {
+  margin: 0;
+  font-size: 0.8rem;
+}
+.combat-popover,
+.reaction-prompt {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: #fbf7ea;
+}
+.reaction-prompt {
+  border-width: 2px;
+}
+.combat-popover h3,
+.reaction-prompt h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+.combat-options {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.combat-options li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+}
+.ally-warning {
+  flex-basis: 100%;
+  color: #8a4b00;
+}
+.dm-combat {
+  margin-bottom: 1rem;
+}
+.monster-suggestion {
+  flex-basis: 100%;
+}

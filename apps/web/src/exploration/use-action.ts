@@ -2,10 +2,12 @@ import type { CommandResult, NpcDialogueResponse, PlayerOutcome } from '@ltw/con
 import { useEffect, useRef, useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
+import type { CombatUiCommand } from '../combat/combat-bindings.ts';
 import type { ExplorationCommand } from './action-bindings.ts';
+import { outcomeMessage, rejectionMessage } from './outcome-messages.ts';
 
 export type ExplorationIntent =
-  | { readonly kind: 'command'; readonly command: ExplorationCommand }
+  | { readonly kind: 'command'; readonly command: ExplorationCommand | CombatUiCommand }
   | { readonly kind: 'talk'; readonly characterId: string; readonly npcId: string };
 
 export interface ActionNotice {
@@ -69,7 +71,7 @@ export function useAction(
         if (!['accepted', 'duplicate', 'rejected'].includes(result.status)) throw new ApiError(0);
         notice =
           result.status === 'rejected'
-            ? { message: rejectionMessage(result.code) }
+            ? { message: rejectionMessage(result.code, result.message) }
             : {
                 message: outcomeMessage(result.outcome),
                 ...(result.outcome ? { outcome: result.outcome } : {}),
@@ -108,42 +110,4 @@ export function useAction(
       if (current.current) void execute(current.current);
     },
   };
-}
-
-function rejectionMessage(code: string): string {
-  const messages: Readonly<Record<string, string>> = {
-    ALREADY_ATTEMPTED: 'This check has already been attempted.',
-    NOT_PRESENT: 'That subject is no longer within reach.',
-    FORBIDDEN: 'You cannot perform this action from this session.',
-    ENTITY_NOT_FOUND: 'That subject is no longer available in your view.',
-    REACTION_PENDING: 'The world is waiting for a reaction to resolve.',
-    ILLEGAL_ACTION: 'This action is not available in the current world.',
-    NO_EFFECT: 'This action would make no change.',
-  };
-  return `${messages[code] ?? 'The world could not accept this action.'} Your view has been refreshed.`;
-}
-
-function outcomeMessage(outcome: PlayerOutcome | undefined): string {
-  switch (outcome?.kind) {
-    case 'EnterLocation':
-      return 'You arrived. Your surroundings have been refreshed.';
-    case 'AskAbout':
-      return outcome.shared.length ? 'New testimony recorded.' : 'Nothing new was shared.';
-    case 'ExamineEntity':
-      return outcome.discovered.length ? 'Evidence discovered.' : 'No new evidence was discovered.';
-    case 'ShowEvidence':
-      return 'You showed the evidence. The conversation may have new leads.';
-    case 'InsightCheck':
-      return outcome.inferred.length
-        ? 'An inference was recorded.'
-        : 'No new inference was recorded.';
-    case 'FormHypothesis':
-      return 'Hypothesis recorded as HYPOTHESIS.';
-    case 'CastSpell':
-      return outcome.discovered.length
-        ? 'Magic revealed new evidence.'
-        : 'The spell resolved without new evidence.';
-    default:
-      return 'Action resolved. Your view has been refreshed.';
-  }
 }

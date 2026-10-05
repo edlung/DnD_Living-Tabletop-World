@@ -1,11 +1,10 @@
-import { commandSubmissionSchema, submissionsFromScript, type WorldEngine } from '@ltw/domain';
+import { submissionsFromScript, type WorldEngine } from '@ltw/domain';
 import { scriptedDice } from '@ltw/rules';
 
-import ambush from '../../../../fixtures/ravenford/road-ambush.json' with { type: 'json' };
 import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import hiddenCharacter from '../../../../tests/e2e/fixtures/hidden-character.json' with { type: 'json' };
-import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
 import { seededEngine } from './ravenford-app.ts';
+import { seedCombatCampaign, seedUiCombatCampaigns } from './ui-combat-campaigns.ts';
 import { seedUiInvestigationCampaigns } from './ui-investigation-campaigns.ts';
 
 const COMBAT_CAMPAIGN = 'ui-combat';
@@ -26,38 +25,9 @@ export async function uiCampaigns(): Promise<WorldEngine> {
     await executeSeed(engine, submission);
   }
 
-  // Clone the authorized fixture script into an isolated campaign through the
-  // engine. Identity, membership, rules, and all projections remain real.
-  for (const input of (await loadRavenfordSeed()).submissions) {
-    const submission = commandSubmissionSchema.parse(input);
-    await executeSeed(engine, {
-      ...submission,
-      campaignId: COMBAT_CAMPAIGN,
-      commandId: `ui-combat.${submission.commandId}`,
-    });
-  }
-  // Same deterministic setup as reaction-routes.test.ts: initiative is Elowen,
-  // three Raiders, then the Shaman. Pause at a genuine open Counterspell window.
-  for (const submission of submissionsFromScript({
-    campaignId: COMBAT_CAMPAIGN,
-    actor: DM,
-    commandIdPrefix: 'ui-combat.open-window',
-    commands: [
-      ...ambush.place,
-      ambush.startCombat,
-      ...['elowen-starwhisper', 'goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3'].map(
-        (combatantId) => ({ type: 'EndTurn', combatantId }),
-      ),
-      {
-        type: 'CastSpell',
-        combatantId: 'goblin-shaman',
-        spellId: 'ashen-bolt',
-        targetId: 'elowen-starwhisper',
-      },
-    ],
-  })) {
-    await executeSeed(engine, submission);
-  }
+  // The read-only baseline: a genuine open Counterspell window.
+  await seedCombatCampaign(engine, COMBAT_CAMPAIGN, 'window');
+  await seedUiCombatCampaigns(engine);
   await seedUiInvestigationCampaigns(engine);
   return engine;
 }

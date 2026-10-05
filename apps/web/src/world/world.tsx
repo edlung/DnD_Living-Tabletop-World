@@ -11,6 +11,8 @@ import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { CombatPanel } from '../combat/combat-panel.tsx';
+import { DmCombatControls } from '../combat/dm-controls.tsx';
 import { ActionNotice } from '../exploration/action-notice.tsx';
 import { useAction } from '../exploration/use-action.ts';
 import { EntityDetails } from './entity-details.tsx';
@@ -59,7 +61,8 @@ export function World({
     }
     setRevision((value) => value + 1);
   }, []);
-  const action = useAction(api, canAct, onResolved);
+  // Players act as their character; the DM alone runs the existing encounter operations.
+  const action = useAction(api, canAct || effectivePerspective === 'DM', onResolved);
   const choose = (entityId: string, kind: string) => {
     setSelected({ entityId, kind });
   };
@@ -141,6 +144,28 @@ export function World({
             </div>
             <span className="session-caption">{openSession?.title ?? 'No open play session'}</span>
           </div>
+          {effectivePerspective === 'DM' && (
+            <DmCombatControls
+              key={`dm:${String(revision)}`}
+              api={api}
+              encounter={data.encounter.encounter}
+              locationId={placeId}
+              directory={data.directory.entities}
+              locked={action.locked}
+              onRun={action.run}
+            />
+          )}
+          {data.encounter.encounter && (
+            <CombatPanel
+              key={`combat:${String(revision)}`}
+              api={api}
+              encounter={data.encounter.encounter}
+              actorId={data.surroundings?.actingCharacterId ?? null}
+              canAct={canAct}
+              locked={action.locked}
+              onRun={action.run}
+            />
+          )}
           <div className="world-grid">
             <section aria-label="Scene" className="scene-panel">
               {location ? (
