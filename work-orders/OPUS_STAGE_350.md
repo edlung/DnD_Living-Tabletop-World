@@ -35,7 +35,7 @@ Run the slice on the owner's VPS, reproducibly and recoverably, ready for indepe
 - Follow `AGENTS.md` module/context limits and update `docs/AI_CONTEXT_MAP.md` for new entry points.
 - Add meaningful behavior/journey tests for introduced behavior and run relevant prior regressions.
 - Record material undecided technical choices as ADRs. If a change conflicts with a protected contract, stop for an owner decision.
-- Ask the owner the open questions named below before implementation; never self-approve a product decision.
+- Ask the owner this stage's open questions (Required Deliverables; `docs/IMPLEMENTATION_PREREQUISITES.md`) before implementation; never self-approve a product decision.
 - Record every change to a boundary reviewed by Gates 01–05 in the completion report and in `docs/GATE_COVERAGE.md` for Gate 06.
 
 ## Validation Gate
