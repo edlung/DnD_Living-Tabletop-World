@@ -1,107 +1,108 @@
 # Stage 240 — Product validation: usability session
 
 - Date: 2026-10-05 (Europe/Oslo).
-- Status: **INCOMPLETE — NO SESSION WAS RUN. Stage 240 is not complete.**
+- Status: **INCOMPLETE against the gate. No real human uncoached session has been held.**
+  An exploratory pass by **AI stand-in participants** was run at the owner's instruction
+  ("take the participants yourself") and is recorded below. It is **not** a human usability
+  session and is **not** acceptance. Findings await owner disposition.
 - Work order: `work-orders/OPUS_STAGE_240.md`.
-- Build under validation: revision `ccae57f` (Stage 230), clean tree; web bundle
-  `assets/index-CG7lCGno.js` SHA-256
-  `5de1de92920d25c7ff5fd88f3e10c1949edab57c03f2169edb1a0f8a25a6e2dc`.
-- Model exception: the owner told this session (Claude Sonnet 5.5) to proceed instead
-  of Opus 5.5/HIGH. Later model/gate requirements are unchanged.
+- Build: revision `4c0ce49` (Stage 230 `ccae57f` + the bounded remediation below), Vite dev
+  server on the browser-test API server (`apps/server/src/testing/ui-server.ts`), scripted
+  d20 results of 15, deterministic offline interpreter for AI features, dev persona tokens.
+- Model exception: the owner told this session (Claude Sonnet 5.5) to proceed instead of
+  Opus 5.5/HIGH. Later model/gate requirements are unchanged.
 
-## Result
+## Owner decisions this report follows
 
-The validation gate requires a real, uncoached session with real participants. None
-took place: this session is an AI agent, has no participants, and a scripted or
-simulated walkthrough is explicitly not a substitute (`EFFORT_MATRIX.md`). No
-participant, observation, task outcome, assistance event, or acceptance is recorded
-here because none exists. Per the work order, validation is recorded as **incomplete**
-and work stops for the owner.
+1. Remediate the missing UI on Sonnet 5.5 (done, below).
+2. "Take the participants yourself": real people are unavailable to this agent, so the
+   participants are separate AI agents. Their limits are stated below; they cannot stand in
+   for human behaviour, so the human-session requirement of `EFFORT_MATRIX.md` stays open.
+3. The owner evaluates the result (this report).
 
-## Blocker 1 — the integrated build lacks required Player/DM flows
+## Remediation done before the pass (bounded; the three gaps from the first report)
 
-`EFFORT_MATRIX.md` requires the Stage 230 build to already support every acceptance
-flow. Checked against `RAVENFORD_SPEC.md` (Player and DM Acceptance) and the browser
-client (`apps/web/src`, covered by `tests/e2e`):
+| Flow                              | Added                                                                                              |
+| --------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Day 2 return, DM time and weather | DM "Time and weather" controls; readable world time ("Day 2 · 10:00") in the scene header          |
+| Chronicle and minimal flashback   | Chronicle panel (cited entries with epistemic types, "Open flashback"), DM "Write a chapter"       |
+| DM performs an NPC                | DM "Perform <NPC>" over the existing dialogue route; words labelled "Spoken, not a recorded fact." |
 
-| Acceptance flow                                               | Browser support at `ccae57f`                                  |
-| ------------------------------------------------------------- | ------------------------------------------------------------- |
-| Enter Ravenford, find Mira without an NPC menu                | Yes — Stage 200/210 journeys                                  |
-| Discover the caravan; investigate world objects               | Yes — `investigation-journey.spec.ts`                         |
-| Surface a contradiction; interact with Orin; memory recall    | Yes — same journey                                            |
-| Combat with a contextual reaction (Counterspell / Ignore)     | Yes — `combat-*.spec.ts`                                      |
-| DM creates Tomas in natural language; preview/edit/confirm    | Yes — `authoring-flow.spec.ts`                                |
-| See Tomas in Ravenford; Player View secrecy; safe/unsafe undo | Yes — `authoring-flow`, `authoring-undo`                      |
-| **Return to a changed Ravenford (Day 2) and DM time advance** | **No client UI.** Backend and fixture exist (`day-two.json`)  |
-| **Open Chronicle; minimal flashback**                         | **No client UI.** Server routes exist (`chronicle-routes.ts`) |
-| **DM performs Tomas as an NPC**                               | **No client UI.** Server dialogue route exists                |
+Commit `4c0ce49`; three new E2E journeys (`tests/e2e/dm-tools.spec.ts`); no server, rules, or
+contract code changed.
 
-`docs/IMPLEMENTATION_PREREQUISITES.md` ("Pending allocation") records that no stage owns
-the Day 2 / time advancement, Chronicle / flashback, and DM performance-of-Tomas UI; it
-was to be settled when planning Stages 200–230. It was not, and Stages 200–230 as
-authorized did not add them. A session today could not exercise three of the Player and
-DM acceptance items, so it could not pass them. Implementing them is new feature work and
-needs the owner's allocation; it is not done here.
+## Method of the AI stand-in pass (conditions and limits)
 
-## Blocker 2 — no participants or session conditions
+- Two fresh agents, each given only neutral task prompts with no feature names, browser tools
+  only (no repository, shell, API, or page source), no facilitator help. Player agent:
+  campaigns `ui-session-player`, `ui-session-turn`, `ui-session-window`. DM agent:
+  `ui-session-dm`, `ui-session-player`, `ui-session-window`. Raw notes, as delivered:
+  `reports/evidence/stage-240/session-player.md`, `session-dm.md`.
+- **Limits.** They are language models, not people: their navigation, patience, and reading
+  differ from human behaviour. The player agent wrote its notes after the run from its action
+  log. Screenshots lagged one step and a form field did not always register (the DM agent
+  suspects its own tooling for early sign-in failures). Roughly 45 (player) and a few hundred
+  (DM) browser actions.
+- **Protocol flaw (mine).** The DM agent's Phase 3 reused `ui-session-window`, whose
+  Counterspell window the player agent had already answered. The DM therefore did not meet the
+  intended "spell waiting for an absent player" condition, and its Phase 3 findings do not test it.
+- Observations below are the agents' own reports, not independently reproduced by me unless noted.
 
-No Player participant, DM participant, facilitator, observer, schedule, or recording
-setup has been provided. The 30–45 minute target cannot be assessed without them.
+## Observations (agent-reported; interpretation kept apart)
 
-## What was verified (engineering evidence, not usability evidence)
+**Player agent.** Phase A, reached with some difficulty: asked Mira about the caravan through
+the scene (no NPC menu), traveled to the Old Trade Road, inspected and investigated site
+objects, recorded a hypothesis; did not follow the North Gate lead. Phase B, reached with
+difficulty: selected a goblin on the grid, chose Fireball, End turn; then saw "Turn:
+goblin-shaman" and nothing further. Phase C, reached: answered the Counterspell card.
 
-| Check                   | Result at `ccae57f`                                            |
-| ----------------------- | -------------------------------------------------------------- |
-| `pnpm validate`         | PASS (exit 0): format, lint, typecheck, context-budget, build  |
-| `pnpm test`             | PASS, 161 files / 1,553 tests (includes integrity suites)      |
-| `pnpm test:integration` | PASS, 20 files / 77 tests                                      |
-| `pnpm test:e2e`         | PASS, 37 Chromium journeys (scripted; not a usability session) |
+**DM agent.** Phase 1: added the guard through the authoring panel (a first, longer wording
+was not understood by the offline interpreter), edited, confirmed, checked Elowen and Public
+views (nothing of him). Could not speak as him ("cannot speak with this character now", no
+reason) because the player character was elsewhere; the undo control was lost after changing
+perspective. Phase 2, reached unaided: advanced to Day 2, set weather, wrote and viewed a
+chapter. Phase 3: see protocol flaw; reached "End encounter" without confirmation.
 
-These show the implemented flows behave as designed; they say nothing about whether a
-person finds Mira by interacting with world objects or hunts through the interface.
+## Candidate defects and friction (for owner disposition; severity is my interpretation)
 
-## Session protocol (ready to use once blockers are cleared)
+| #   | Finding (source)                                                                                                                                                      | Reproducible by design / code?                                                                    | Suggested weight |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ---------------- |
+| 1   | Action results appear at the top of a long page, away from the click (player)                                                                                         | Yes — notice renders in the page header                                                           | High (feedback)  |
+| 2   | "Explore <place>" selects a place; travelling needs a second "Enter" action; "Unidentified location" wording (player)                                                 | Yes — Stage 210 design (ADR 0027)                                                                 | Medium           |
+| 3   | After End turn, no waiting indicator; creatures wait for the DM, so a lone player sees a stall (player)                                                               | Yes — by design (creature turns are DM-run), nothing tells the player                             | High (flow)      |
+| 4   | Combat feedback lacks rolls and damage; Hunter's Mark says "resolved without new evidence" (player)                                                                   | Yes — `outcome-messages.ts`; Healing Word is offered on any combatant because the server lists it | Medium           |
+| 5   | Reaction card does not name the spell or say what Ignore does (player)                                                                                                | Partly intended: the spell is the caster's secret (ADR 0016)                                      | Medium (copy)    |
+| 6   | "Speak as NPC" refusal gives no reason; free-text line has no visible effect; subject list stale (DM)                                                                 | Yes — `perform-npc.tsx` shows one generic refusal text                                            | High (DM)        |
+| 7   | Undo of an authoring commit is only on the proposal card and is lost on perspective change or reload (DM)                                                             | Yes — chosen in ADR 0029 §8 (secrecy); no proposal list exists                                    | High (DM)        |
+| 8   | In combat the DM cannot act for or skip an absent player; token clicks show a generic error; "End encounter" has no confirmation (DM)                                 | Partly — DM has no acting character; End encounter is unguarded                                   | Medium           |
+| 9   | Jargon and generic errors (`AskAbout`, `EntityCreated`, "not available in the current view") (DM)                                                                     | Yes — raw command and event type names in the review                                              | Medium           |
+| 10  | Stale controls: weather select stays on "rain" after setting fog; advance button unchanged; chapter lines repeated; raw timestamps ("OBSERVATION · -17366400") (both) | Yes — local state and unformatted times in existing components                                    | Low–Medium       |
 
-- **Build and conditions to record:** exact revision and bundle hash above (or newer
-  authorized revision), `pnpm build` then the browser-test or local server, dev persona
-  tokens (ADR 0009; not production authentication), browser and screen size, scripted
-  d20 vs live dice, AI provider (offline interpreter vs configured), date/time.
-- **Roles:** one Player (new to the world, uncoached), one DM; facilitator speaks only to
-  read the neutral prompt and may not hint; one observer logs; consent to record.
-- **Neutral prompts:** Player — "You have just arrived in a town; explore it and do
-  what seems natural." DM — "Run a short session: add a witness to your story, check
-  what the players would see, and undo it if it is safe." No feature names.
-- **Record, separating observation from interpretation:** for each acceptance step
-  (table above) — reached unaided or after assistance (verbatim help given), time taken,
-  whether the participant used world objects or searched menus, errors and dead ends,
-  outcome (pass / pass with help / fail / not reachable), and quoted participant remarks.
-  Defects need reproduction steps and the revision.
-- **Integrity acceptance** (direct/indirect extraction of DM-only truth, Mira's limits,
-  AI prose cannot kill Orin, invalid Counterspell, timeline-conflict warning, undo
-  consistency) is covered by the existing integrity suites listed above; a human session
-  may additionally probe it.
+Object-first interaction: the player agent reached Mira, the site, and the combat target by
+selecting objects in the scene or on the grid and did not need a quest or NPC menu; its
+friction was in feedback and travel wording, not in finding objects. This is one agent's
+behaviour and says little about people.
 
-## Observation record (to be completed by the real session)
+## Acceptance status against `RAVENFORD_SPEC.md`
 
-| Field                                  | Entry                     |
-| -------------------------------------- | ------------------------- |
-| Date, revision, bundle hash            | not run                   |
-| Participants and roles                 | none                      |
-| Task outcomes per acceptance step      | none                      |
-| Assistance events                      | none                      |
-| Object-first interaction vs UI hunting | none                      |
-| Observed failures / defects            | none                      |
-| Owner disposition of findings          | none — requires the owner |
+| Step                                                                     | Evidence                                                                                 | Status                               |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------ |
+| Find Mira without an NPC menu; caravan; investigate; contradiction; Orin | E2E journey; player agent (Mira, objects; Orin/contradiction not exercised by the agent) | Engineering PASS; human session open |
+| Combat with contextual reaction                                          | E2E; player agent (Counterspell chosen blind)                                            | Engineering PASS; human session open |
+| Return to a changed Ravenford; Chronicle; flashback                      | E2E; DM agent wrote and viewed a chapter and moved time/weather                          | Engineering PASS; human session open |
+| DM creates, previews, edits, confirms Tomas; secrecy; undo; performs him | E2E; DM agent (create/edit/confirm/secrecy; perform and original undo not reached)       | Engineering PASS; human session open |
+| Integrity acceptance                                                     | existing integrity suites (1553 unit, 77 integration)                                    | PASS (automated)                     |
 
-## Decisions needed from the owner
+## Regression evidence at `4c0ce49`
 
-1. Allocate the missing UI (Day 2 return and DM time advancement; Chronicle and minimal
-   flashback; DM performance of Tomas) to a bounded remediation, with its model/effort
-   per `EFFORT_MATRIX.md`, before any session. This is the planning decision the
-   prerequisites document left open.
-2. Provide the participants and the session conditions, or state that Stage 240 is
-   deferred.
-3. After a real session: record the disposition of every finding.
+`pnpm validate` exit 0: 1,553+ unit tests (161+ files), 77 integration tests, 40 Chromium
+journeys, context-budget in limits. (Exact counts are repeated in the Stage 250 report.)
 
-Stage 240 is **not** complete and Stage 250 must not start. Nothing in this report claims
-a usability result.
+## Blockers and owner disposition
+
+- **Gate not met:** a real uncoached human session has not happened. The AI pass cannot
+  replace it; the validation gate and Stage 250's usability acceptance stay open.
+- **Owner disposition required** for findings 1–10 (fix now / defer / accept), and a decision
+  on whether and when a human session is held. No finding has been dispositioned.
+
+Stage 240 is **not** complete. No claim here asserts human usability acceptance.
