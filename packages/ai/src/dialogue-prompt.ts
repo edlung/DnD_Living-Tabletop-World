@@ -1,7 +1,14 @@
-import { npcReplyOutputSchema, type Attitude, type DialogueIntent } from '@ltw/contracts';
+import {
+  DEFAULT_LANGUAGE,
+  npcReplyOutputSchema,
+  type Attitude,
+  type DialogueIntent,
+  type Language,
+} from '@ltw/contracts';
 import { formatWorldTime, type DialogueEntity, type NpcDialogueContext } from '@ltw/domain';
 import { z } from 'zod';
 
+import { languageNote } from './language-note.ts';
 import type { ProviderRequest, RepairNote, StructuredOutputSpec } from './providers.ts';
 
 /**
@@ -32,12 +39,15 @@ export interface DialoguePrompt {
   readonly guarded: readonly string[];
   /** The player's own words, as said. */
   readonly line: string | null;
+  /** The campaign's play language (ADR 0031); English when absent. */
+  readonly language?: Language;
 }
 
 export interface Exchange {
   readonly intent: DialogueIntent['kind'];
   readonly accepted: boolean;
   readonly line: string | null;
+  readonly language?: Language;
 }
 
 const named = (entity: DialogueEntity) => entity.name ?? `an unfamiliar ${entity.kind}`;
@@ -61,6 +71,7 @@ export function dialoguePrompt(context: NpcDialogueContext, exchange: Exchange):
     shown: context.shown.map(named),
     guarded: context.guarded.map(named),
     line: exchange.line,
+    language: exchange.language ?? DEFAULT_LANGUAGE,
   };
 }
 
@@ -159,7 +170,7 @@ export function dialogueRequest(
 ): ProviderRequest {
   return {
     capability: 'npc-dialogue',
-    system: SYSTEM,
+    system: [SYSTEM, languageNote(prompt.language ?? DEFAULT_LANGUAGE)].filter(Boolean).join('\n'),
     prompt: render(prompt, repair),
     output: REPLY_OUTPUT,
     task: { kind: 'npc-dialogue', prompt, repair },

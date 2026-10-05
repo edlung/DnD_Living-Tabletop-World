@@ -18,7 +18,7 @@ import {
 
 import {
   CHRONICLE_OUTPUT,
-  CHRONICLE_SYSTEM,
+  chronicleSystem,
   chroniclePrompt,
   renderChroniclePrompt,
 } from './chronicle-prompt.ts';
@@ -84,7 +84,7 @@ export async function renderChronicle(
     providers: deps.router.providersFor(CAPABILITY),
     build: (repair) => ({
       capability: CAPABILITY,
-      system: CHRONICLE_SYSTEM,
+      system: chronicleSystem(language),
       prompt: renderChroniclePrompt(prompt, repair),
       output: CHRONICLE_OUTPUT,
       task: { kind: 'chronicle', prompt, repair },

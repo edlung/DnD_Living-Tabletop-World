@@ -1,6 +1,7 @@
 import type { EntityRef, ProposableCommand } from '@ltw/contracts';
 
 import { replyLocally } from './local-dialogue.ts';
+import { interpretRussian } from './local-provider-ru.ts';
 import { ProviderError, type AiProvider, type ProviderRequest } from './providers.ts';
 
 /**
@@ -155,6 +156,8 @@ function advanced(text: string): ProposableCommand[] | null {
 }
 
 export function interpretLocally(text: string, directory: readonly EntityRef[]): unknown {
+  // A request written in Cyrillic is read by the Russian phrasings (ADR 0031 §8).
+  if (/[\u0400-\u04FF]/u.test(text)) return interpretRussian(text, directory);
   const commands =
     addPerson(text, directory) ??
     moved(text, directory) ??

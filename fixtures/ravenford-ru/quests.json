@@ -1,0 +1,59 @@
+{
+  "$comment": "Ravenford quest definitions (ADR 0025 §2; owner decisions of 2026-10-04). The Missing Caravan is a projection of the party's own records, memories, movements, examinations, and fights: it activates when the party first holds a record or memory of its own about the guild caravan (Mira's account), not on the public rumor, and has no completion in the slice. Summaries are what players read; they name nothing the party has not met by then.",
+  "quests": [
+    {
+      "questId": "missing-caravan",
+      "title": "Пропавший караван",
+      "activation": {
+        "subject": "guild-caravan",
+        "summary": "Мы узнали, что караван Торговой гильдии так и не прибыл."
+      },
+      "milestones": [
+        {
+          "stage": "site-reached",
+          "kind": "reached",
+          "locationId": "abandoned-caravan-site",
+          "summary": "Мы нашли место, где пропал караван."
+        },
+        {
+          "stage": "evidence-examined",
+          "kind": "examined-at",
+          "locationId": "abandoned-caravan-site",
+          "summary": "Мы осмотрели то, что осталось."
+        },
+        {
+          "stage": "hypothesis-formed",
+          "kind": "hypothesized",
+          "subject": "guild-caravan",
+          "summary": "Мы выдвинули версию о том, что случилось с караваном."
+        },
+        {
+          "stage": "contradiction-found",
+          "kind": "contradiction-found",
+          "subject": "guild-caravan",
+          "summary": "Мы обнаружили, что рассказы о караване расходятся."
+        },
+        {
+          "stage": "symbol-recognized",
+          "kind": "told-by",
+          "informant": "orin-stonebeard",
+          "subject": "strange-symbol",
+          "summary": "Орин рассказал нам, что знает о странном знаке."
+        },
+        {
+          "stage": "ambush-survived",
+          "kind": "survived-fight-at",
+          "locationId": "old-trade-road",
+          "summary": "Мы пережили засаду на Старой Торговой дороге."
+        },
+        {
+          "stage": "returned",
+          "kind": "returned-to",
+          "locationId": "ravenford",
+          "after": "ambush-survived",
+          "summary": "Мы вернулись в Равенфорд."
+        }
+      ]
+    }
+  ]
+}

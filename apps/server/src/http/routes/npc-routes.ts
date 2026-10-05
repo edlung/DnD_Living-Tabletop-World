@@ -9,7 +9,13 @@ import {
   type DialogueIntent,
   type NpcDialogueResponse,
 } from '@ltw/contracts';
-import { campaignRole, checkTalk, npcDialogueContext, sharedSources } from '@ltw/domain';
+import {
+  campaignRole,
+  checkTalk,
+  languageOf,
+  npcDialogueContext,
+  sharedSources,
+} from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -99,6 +105,7 @@ export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependenci
       accepted,
       commandId: result?.commandId ?? null,
       line: body.line ?? null,
+      language: languageOf(after.state),
     });
     request.log.info(
       {

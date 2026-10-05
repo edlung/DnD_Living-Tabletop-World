@@ -1,0 +1,566 @@
+{
+  "$comment": "Stage 20 Ravenford knowledge fixture (docs/adr/0008-knowledge-boundary.md). Seeded after kernel-seed.json. Contains WORLD_TRUTH and DM secrets: never copy them into player-facing code, prompts, or logs. Secret entities use opaque IDs. Times are world seconds since Day 1 00:00:00.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "ravenford-guard",
+      "kind": "faction",
+      "name": "Равенфордская стража",
+      "existsSince": null,
+      "description": "Городская стража Равенфорда."
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "merchant-guild-faction",
+      "kind": "faction",
+      "name": "Торговая гильдия",
+      "existsSince": null,
+      "description": "Гильдия торговцев Равенфорда."
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53",
+      "kind": "faction",
+      "name": "Пепельный круг",
+      "existsSince": null,
+      "description": "Тайный культ, устроивший нападение на караван, чтобы украсть редкие реагенты."
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "guild-caravan",
+      "kind": "item",
+      "name": "Караван Торговой гильдии",
+      "existsSince": null,
+      "description": "Повозки, возницы и груз, не добравшиеся до места назначения."
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "broken-wagon-wheel",
+      "kind": "item",
+      "name": "Сломанное колесо повозки",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "goblin-weapon",
+      "kind": "item",
+      "name": "Оружие гоблина",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "strange-symbol",
+      "kind": "feature",
+      "name": "Странный знак",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "wagon-tracks",
+      "kind": "feature",
+      "name": "Следы",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "burned-cargo",
+      "kind": "item",
+      "name": "Сожжённый груз",
+      "existsSince": null,
+      "placement": {
+        "locationId": "abandoned-caravan-site",
+        "since": -100800
+      }
+    },
+    {
+      "type": "AssignCharacter",
+      "characterId": "elowen-starwhisper",
+      "playerActorId": "player-elowen"
+    },
+    {
+      "type": "AdvanceWorldTime",
+      "to": 36000
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-ravenford-town",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Равенфорд — торговый городок на Старой Торговой дороге.",
+      "subjects": [
+        "ravenford",
+        "old-trade-road"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-market-square",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Рыночная площадь — оживлённое сердце Равенфорда.",
+      "subjects": [
+        "market-square",
+        "ravenford"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-golden-stag",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "В «Золотом Олене» сдают комнаты путникам.",
+      "subjects": [
+        "golden-stag-inn"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-mira-trader",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Мира Вейл торгует на Рыночной площади.",
+      "subjects": [
+        "mira-vale",
+        "market-square"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-orin-alchemist",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Орин Стоунберд держит алхимическую лавку.",
+      "subjects": [
+        "orin-stonebeard",
+        "orins-alchemy"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-thorne-captain",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Капитан Торн командует Равенфордской стражей у Северных ворот.",
+      "subjects": [
+        "captain-thorne",
+        "ravenford-guard",
+        "north-gate"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-guild-caravans",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Торговая гильдия отправляет караваны по Старой Торговой дороге.",
+      "subjects": [
+        "merchant-guild-faction",
+        "merchant-guild",
+        "old-trade-road"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-caravan-overdue",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "RUMOR",
+      "statement": "На рынке говорят, что караван Торговой гильдии задерживается.",
+      "subjects": [
+        "guild-caravan",
+        "merchant-guild-faction"
+      ],
+      "knownSince": 21600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "mira-departure",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "mira-vale"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Караван ушёл до рассвета.",
+      "subjects": [
+        "guild-caravan"
+      ],
+      "knownSince": -154800,
+      "attributedTo": "mira-vale"
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "mira-cargo-logistics",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "mira-vale"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Караван вёз товары для Торговой гильдии по Старой Торговой дороге.",
+      "subjects": [
+        "guild-caravan",
+        "merchant-guild-faction",
+        "old-trade-road"
+      ],
+      "knownSince": -259200
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "mira-prior-incident",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "mira-vale"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Похожий караван пропал на Старой Торговой дороге прошлой весной.",
+      "subjects": [
+        "old-trade-road"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "orin-symbol-secret",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Орин уже видел странный знак на необычных заказах реагентов.",
+      "subjects": [
+        "strange-symbol"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "orin-knows-thorne",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Орин лично знаком с капитаном Торном.",
+      "subjects": [
+        "captain-thorne"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "orin-prior-incident",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Орин узнал тот же знак после того, как прошлой весной пропал караван.",
+      "subjects": [
+        "strange-symbol",
+        "old-trade-road"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "thorne-departure",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "captain-thorne"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Караван ушёл после восхода солнца.",
+      "subjects": [
+        "guild-caravan"
+      ],
+      "knownSince": -147600,
+      "attributedTo": "captain-thorne"
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "thorne-route",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "captain-thorne"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Путь каравана лежал на север по Старой Торговой дороге.",
+      "subjects": [
+        "guild-caravan",
+        "old-trade-road"
+      ],
+      "knownSince": -147600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "thorne-missing-patrol",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "captain-thorne"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Стражный патруль на Старой Торговой дороге не вернулся с докладом.",
+      "subjects": [
+        "ravenford-guard",
+        "old-trade-road"
+      ],
+      "knownSince": -21600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-mira-departure",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Мира Вейл говорит, что караван ушёл до рассвета.",
+      "subjects": [
+        "guild-caravan"
+      ],
+      "knownSince": 34200,
+      "attributedTo": "mira-vale",
+      "relations": [
+        {
+          "type": "DERIVED_FROM",
+          "knowledgeId": "mira-departure"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-goblin-hypothesis",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "HYPOTHESIS",
+      "statement": "Караван атаковали гоблины.",
+      "subjects": [
+        "guild-caravan"
+      ],
+      "knownSince": 35100
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-who-attacked",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "UNKNOWN",
+      "statement": "Кто напал на караван?",
+      "subjects": [
+        "guild-caravan"
+      ],
+      "knownSince": 35100,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledgeId": "party-goblin-hypothesis"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "elowen-sigil-lore",
+      "scope": {
+        "kind": "CHARACTER",
+        "characterId": "elowen-starwhisper"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Эловен когда-то читала, что некоторые культы отмечают свои дела сигилами.",
+      "subjects": [
+        "elowen-starwhisper"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-cargo",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Караван покинул Равенфорд, увозя редкие алхимические реагенты.",
+      "subjects": [
+        "guild-caravan"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-disappeared",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Караван пропал на Старой Торговой дороге.",
+      "subjects": [
+        "guild-caravan",
+        "old-trade-road"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-site-manipulated",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Место нападения подделали после нападения.",
+      "subjects": [
+        "abandoned-caravan-site"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-goblin-frame",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Улики на месте были расставлены так, чтобы указывать на нападение гоблинов.",
+      "subjects": [
+        "abandoned-caravan-site",
+        "goblin-weapon",
+        "wagon-tracks"
+      ],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-not-goblins",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Нападавшими были не просто гоблины.",
+      "subjects": [
+        "guild-caravan"
+      ],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "CONTRADICTS",
+          "knowledgeId": "party-goblin-hypothesis"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-ashen-circle",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Пепельный круг причастен к нападению на караван.",
+      "subjects": [
+        "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53",
+        "guild-caravan"
+      ],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "SUPPORTS",
+          "knowledgeId": "truth-not-goblins"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-symbol-meaning",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Странный знак — метка Пепельного круга.",
+      "subjects": [
+        "strange-symbol",
+        "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53"
+      ],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledgeId": "orin-symbol-secret"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-reveal-pacing",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Раскрывать связь знака с Пепельным кругом лишь после того, как отряд покажет его Орину.",
+      "subjects": [
+        "strange-symbol",
+        "orin-stonebeard"
+      ],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledgeId": "truth-symbol-meaning"
+        }
+      ]
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-goblin-theory-note",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Гоблинская версия отряда неверна; пусть улики ей противоречат.",
+      "subjects": [],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "CONTRADICTS",
+          "knowledgeId": "party-goblin-hypothesis"
+        }
+      ]
+    }
+  ]
+}
