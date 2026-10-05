@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), 110 (AI Authoring), 120 (Continuity Engine), 130 (NPC Intelligence), 140 (AI Relevance), 150 (Asset Identity), 160 (World Visual State), 170 (Chronicle), 180 (Ravenford Integration), and 200 (UX Foundation) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), 110 (AI Authoring), 120 (Continuity Engine), 130 (NPC Intelligence), 140 (AI Relevance), 150 (Asset Identity), 160 (World Visual State), 170 (Chronicle), 180 (Ravenford Integration), 200 (UX Foundation), and 210 (World as Interface) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -66,6 +66,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Character sheets (canonical) | `packages/domain/src/character/character.ts`; schema in `packages/contracts/src/rules/character-sheet.ts` |
 | Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |
 | Client / UI | `apps/web/AGENTS.md`, ADR 0026; entry `apps/web/src/main.tsx`; shared presentation `packages/ui/AGENTS.md` |
+| Object-first exploration: actions, hypotheses, recall, travel | `apps/web/src/exploration/`, `apps/web/src/world/world.tsx`, ADR 0027; journeys `tests/e2e/investigation-*.spec.ts` |
 | Browser session, perspective changes, stale requests | `apps/web/src/session/app.tsx`, `apps/web/src/api/client.ts`, `resource.ts`; E2E `tests/e2e/AGENTS.md` |
 | Session identity and full authorized character sheets | `packages/domain/src/knowledge/session.ts`, `packages/domain/src/character/AGENTS.md`; routes `apps/server/src/http/routes/session-routes.ts`, `character-routes.ts`; contracts `packages/contracts/src/session/views.ts`, `rules/character-view.ts` |
 | Ravenford fixtures | `fixtures/ravenford/AGENTS.md` |

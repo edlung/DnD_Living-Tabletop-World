@@ -33,3 +33,11 @@ are unchanged; the new reads apply the same boundary with explicit field lists.
 No prior gate coverage was invalidated; this is new UI introduction evidence, not
 an assertion that Gate 05 reviewed the frontend. Completion evidence and exact
 commands: `reports/STAGE_200_COMPLETION.md`.
+
+Stage 210 introduction evidence (ADR 0027): `tests/e2e/investigation-*.spec.ts` cover
+the object-first arrival/investigation journey, knowledge-dependent action
+visibility, hypotheses staying hypotheses, hidden-data scans of DOM and responses,
+single-record retry after an interrupted response, and late-result isolation;
+`apps/web/src/exploration/action-bindings.test.ts` covers the command mapping.
+No contract, mutation path, or reviewed projection changed, so no gate is reopened.
+Evidence and commands: `reports/STAGE_210_COMPLETION.md`.
