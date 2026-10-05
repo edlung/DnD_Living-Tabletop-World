@@ -1,4 +1,4 @@
-# Desktop Workflow Quickstart — v1.2
+# Desktop Workflow Quickstart — v1.3
 
 ## Tools
 - **Claude Desktop + Claude Opus 5.5** = primary builder.
@@ -13,8 +13,8 @@
 5. Use the matrix for all changes, including remediation. Banners must agree with it. Stop after each stage and explicitly authorize the next one only after its prerequisites pass.
 
 ## Astra Gate
-Use `CHECKPOINTS.md` for exact filenames and `docs/GATE_COVERAGE.md` for due surfaces. The review called Stage 190 is Gate 05; it has no Opus implementation work order.
-At Stages 20, 70, 90, 130, and 180, Opus must:
+Use `CHECKPOINTS.md` for exact filenames and `docs/GATE_COVERAGE.md` for due surfaces. The review called Stage 190 is Gate 05, and the review called Stage 355 is Gate 06; neither has an Opus implementation work order.
+At Stages 20, 70, 90, 130, 180, and 350, Opus must:
 - run its deterministic validation;
 - create `handoffs/ASTRA_GATE_XX_REQUEST.md`;
 - stop;
@@ -28,7 +28,7 @@ Then:
 5. Astra writes `reviews/ASTRA_GATE_XX_REPORT.md`.
 
 ## If Astra PASS
-Return to Claude Desktop. Confirm the report applies to the reviewed revision, set Opus to the effort in the matrix, and explicitly authorize the next work order. Stage 200 follows Gate 05 PASS; Stages 200–250 each require their own authorization.
+Return to Claude Desktop. Confirm the report applies to the reviewed revision, set Opus to the effort in the matrix, and explicitly authorize the next work order. Stage 200 follows Gate 05 PASS; Stages 200–250 each require their own authorization. The alpha phase (Stages 290–360) works the same way: each stage needs its own authorization, and Stage 360 follows Gate 06 PASS.
 
 ## If Astra FAIL
 For any Critical/High finding:

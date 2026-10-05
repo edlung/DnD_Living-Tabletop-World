@@ -14,8 +14,10 @@ bundle is a build artifact with no hosting, and no live AI provider has been exe
 ## Identification
 
 - Code revision under validation: `83b1344` (validated in a fresh clone). Later commits on
-  the branch change documentation and reports only; the tag/identifier is to be assigned by
-  the owner when a target is authorized.
+  the branch change documentation and reports only.
+- Tag `v0.1.0-rc.1` (owner-approved on 2026-10-05) marks `7d7e8b3`: the candidate together
+  with its documentation, with code identical to `83b1344`. The release identifier itself is
+  assigned when the release happens (Stage 360).
 - Web bundle from that clone: `assets/index-L2jN_3Bl.js` SHA-256
   `d39e0aae9cc7e9c0d2daf5ee319ea1349378b8c5c51589646e43770cd0bfc32e`;
   `assets/index-Q_19hvXj.css` SHA-256
@@ -71,7 +73,10 @@ move time and weather; write Chronicle chapters.
   control are lost on perspective change or reload.
 - Carried backend limits from the stage reports: no seasons; lexical Chronicle hedging;
   heuristic memory suggestions; full replay per view.
-- Hosted CI has not been executed remotely; the web bundle has no production hosting.
+- Hosted CI runs on GitHub Actions since 2026-10-05. The first run failed at lint, out of
+  memory at the runner's 2 GB default heap; the lint script now sets a 4 GB heap, and the run
+  on `894ae25` passed every step, the 41 browser journeys included. The web bundle has no
+  production hosting.
 
 ## Recovery
 
@@ -84,17 +89,21 @@ move time and weather; write Chronicle chapters.
 
 ## Evidence and review mapping
 
-| Boundary                     | Independent review                               | Release-candidate relation                                                                         |
-| ---------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
-| Knowledge / memory / context | Gate 01 PASS; Gate 02 Retest 2 PASS (`reviews/`) | Reviewed code unchanged; new reads are additive with boundary tests                                |
-| Reactions                    | Gate 03 Retest 4 PASS                            | Unchanged; UI consumes the existing window lifecycle (E2E stale/duplicate)                         |
-| AI authoring / NPC           | Gate 04 Retest 1 PASS                            | Unchanged; UI uses the same routes (E2E preview, stale, undo)                                      |
-| Full Ravenford red team      | Gate 05 Retest 2 PASS at reviewed `a85b6f8`      | Backend diff since is additive (session, sheet, surroundings reads); client not certified by Astra |
-| Deterministic validation     | `pnpm validate`                                  | Exit 0 in a fresh clone; see the Stage 250 report                                                  |
-| Usability                    | none yet                                         | Open: `reports/STAGE_240_USABILITY.md`                                                             |
-| Architecture decisions       | ADRs 0001–0030 (`docs/adr/README.md`)            | Stages 200–240: ADRs 0026–0030                                                                     |
+| Boundary                     | Independent review                               | Release-candidate relation                                                                              |
+| ---------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Knowledge / memory / context | Gate 01 PASS; Gate 02 Retest 2 PASS (`reviews/`) | Reviewed code unchanged; new reads are additive with boundary tests                                     |
+| Reactions                    | Gate 03 Retest 4 PASS                            | Unchanged; UI consumes the existing window lifecycle (E2E stale/duplicate)                              |
+| AI authoring / NPC           | Gate 04 Retest 1 PASS                            | Unchanged; UI uses the same routes (E2E preview, stale, undo)                                           |
+| Full Ravenford red team      | Gate 05 Retest 2 PASS at reviewed `a85b6f8`      | Backend diff since is additive (session, sheet, surroundings reads); client not certified by Astra      |
+| Deterministic validation     | `pnpm validate`                                  | Exit 0 in a fresh clone; see the Stage 250 report                                                       |
+| Usability                    | none (no human session)                          | AI stand-in pass accepted by the owner (`reports/STAGE_240_USABILITY.md`); human sessions are Stage 360 |
+| Architecture decisions       | ADRs 0001–0030 (`docs/adr/README.md`)            | Stages 200–240: ADRs 0026–0030                                                                          |
 
 ## Before a VPS release (not done; deferred)
+
+These items are now stages of the alpha phase in `EXECUTION_PLAN.md`: production
+authentication is Stage 340 and deployment is Stage 350, followed by Astra Gate 06 and the
+human playtests of Stage 360.
 
 - **Production authentication does not exist.** The server refuses `AUTH_MODE=dev-personas`
   in production, so a VPS deployment cannot sign anyone in until the owner decides and builds

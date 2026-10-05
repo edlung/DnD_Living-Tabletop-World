@@ -18,7 +18,21 @@ All existing surfaces relevant to an invariant remain subject to review. This ta
 
 Gate 01 uses Mira as an NPC scope fixture. It does not claim to test runtime NPC dialogue or the Stage 30 memory engine. Carry those obligations to their introducing stages and next gates above.
 
-Every handoff/review records due surfaces, actual evidence, required-but-unavailable surfaces, and future obligations. Missing required coverage blocks PASS. A future obligation is NOT YET IN SCOPE, never PASS; it must name its introduction stage and review gate. Gate 05 closes all backend obligations in this table.
+Every handoff/review records due surfaces, actual evidence, required-but-unavailable surfaces, and future obligations. Missing required coverage blocks PASS. A future obligation is NOT YET IN SCOPE, never PASS; it must name its introduction stage and review gate. Gate 05 closes all backend obligations in the table above; the alpha-phase table below is due at Gate 06.
+
+## Alpha phase (Stages 200–350)
+
+| Introduced at | Required deterministic coverage at introduction | Next independent review |
+|---:|---|---|
+| 200–240 | Client consumers of reviewed contracts: perspective switching, isolation of DOM and responses, stale actions and previews. Introduction evidence is listed below; no gate has reviewed it | Gate 06 |
+| 290 | Play language: Russian equivalents of the Chronicle hedging rule and of lexical memory recall keep the reviewed guarantees; every boundary and isolation suite has a Russian counterpart; histories that earlier revisions wrote load, replay, and undo identically | Gate 06 |
+| 300 | Live providers: what each provider receives is exactly what the reviewed context builders produce; outage, invalid output, timeout, refusal, and exhausted budget fall back; keys never reach logs or traces | Gate 06 |
+| 310 | Change signal: carries no world content and reveals nothing a perspective could not read; authorized on connect and cut off on revocation; the DM's action for an absent player is an authorized, audited, undoable command | Gate 06 |
+| 330 | Real images: no image reaches a player before DM approval; requests and metadata respect scope; refusals and failures leave the neutral fallback | Gate 06 |
+| 340 | Production sign-in: forged, expired, revoked, replayed, and cross-campaign credentials fail closed; the check order of ADR 0009 is unchanged; no credential in logs, traces, or URLs | Gate 06 |
+| 350 | Deployed build: TLS, server reachable only through the proxy, secrets from the environment, a restore drill that replays to the same world | Gate 06 / Stage 355 |
+
+A stage that changes a boundary reviewed by Gates 01–05 names the change in its completion report and in the Gate 06 handoff. Stage 290 is known to do so (ADR 0010 recall, ADR 0024 prose rules).
 
 Stages 200–230 introduce real UI consumers of reviewed contracts. Run boundary/E2E regressions as those consumers appear, including perspective switching and stale action/preview handling. Backend review does not certify UI behavior. If a change invalidates a previously reviewed invariant boundary, reopen the affected gate with a RETEST handoff and next unused retest number, preserving earlier reports under `AGENT_WORKFLOW.md`. Stage 250 must link the resulting evidence to its release candidate.
 

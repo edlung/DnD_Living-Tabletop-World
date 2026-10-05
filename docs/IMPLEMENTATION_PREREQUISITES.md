@@ -37,6 +37,8 @@ Stage 120 expands continuity coverage, conflict explanations, and options across
 
 Follow `docs/GATE_COVERAGE.md` as each read/mutation surface is introduced. Record actual evidence at the stage where it becomes testable. Stage 240 requires a real uncoached usability session; a scripted automated walkthrough is not a substitute. Stage 250 requires traceable product, architecture, adversarial, and usability acceptance for the release candidate. Do not invent approvals or mark unperformed checks complete.
 
+**Recorded (2026-10-05):** no human session was run. The owner accepted an AI stand-in pass as Stage 240's evidence, knowing it is not a human session (`reports/STAGE_240_USABILITY.md`). The human sessions this section asks for are Stage 360, and the release does not complete without them.
+
 The integrated Stage 230 build used by Stage 240 must already support the existing Ravenford Player/DM acceptance flows, including return/time change, Chronicle/minimal flashback, and DM performance of Tomas. Stage 240 validates these flows; it is not their first implementation stage. Their assignment within the existing UX stages remains an explicit planning decision.
 
 ## Pending owner decisions for future stages
@@ -67,10 +69,44 @@ Is the intended release a local development distribution or a deployment requiri
 
 Decision needed when defining the session/authentication UX in Stage 200 if production is intended, and before any such deployment. The exact authorized publication target is required for Stage 250.
 
+**Update (owner, 2026-10-05):** the release goes to a VPS, so production authentication is required. The sign-in method is still undecided and is due before implementation of Stage 340. The provider and domain are Q10.
+
+### Q5. Runtime text models — Stage 300
+
+**Decided (owner, 2026-10-05):** Claude and DeepSeek. DM intents and Chronicle prose use Claude Opus 5.5. NPC dialogue is compared between Claude Sonnet 5.5 (baseline) and DeepSeek V4.1 Flash (challenger); the owner picks from a blind comparison in Stage 300. Relevance ranking uses DeepSeek V4.1 Flash. Carry this into the Stage 300 ADR.
+
+Still open, needed before the first paid call in Stage 300: the spending ceiling for the stage and per session, and the owner's keys, supplied through the environment only. DeepSeek's privacy policy states that it processes and stores data in the People's Republic of China; whether participants are told this is part of Q11.
+
+### Q6. Image provider — Stage 330
+
+**Decided (owner, 2026-10-05):** OpenAI only (the GPT Image 2.5 family at the time of the decision), without a cross-provider comparison. Still open: the art style, decided together with Q8, and the spending ceiling.
+
+### Q7. Language of play — Stages 290–360
+
+**Decided (owner, 2026-10-05):** the alpha is played in Russian. The interface and Ravenford content are translated in a separate stage before the playtests (Stage 290), and live models are evaluated in Russian (Stage 300).
+
+Still open, needed in Stage 290: approval of the glossary of names and terms, and how Russian sentences handle the grammatical case of proper names, including names authored in play.
+
+### Q8. Visual direction — Stage 320
+
+Which visual direction should the client take? The owner decides from two or three prototypes of the key screens, before implementation of Stage 320. The decision also fixes the art style for Q6.
+
+### Q9. Live-session rules — Stage 310
+
+What may the change signal reveal to a perspective about changes it cannot read (by default, nothing)? What may the DM do for an absent player: skip the turn, act as the character, or neither? Decision needed before implementation of Stage 310.
+
+### Q10. Deployment target — Stage 350
+
+Which VPS provider, domain, and backup location? Decision needed before implementation of Stage 350.
+
+### Q11. Playtest participants — Stage 360
+
+Who takes part in the uncoached sessions, and do they consent to recording and to their text being processed by the AI providers named to them? Needed before Stage 360 starts. The owner stated on 2026-10-05 that no human testers were available then.
+
 ## Pending allocation of existing Ravenford obligations
 
 Which existing future work order owns the Missing Caravan quest projection and its required `QuestActivated`/`QuestUpdated` semantics for Stage 180 integration?
 
 Which of Stages 200–230 owns the return/Day 2, Chronicle/minimal flashback, DM time advancement, and DM performance-of-Tomas UI required by Stage 240?
 
-These assignments remain unresolved; this entry authorizes no additional feature or stage. It allocates no work to Stage 90 and changes no gate status. Backend ownership needs to be settled before the affected implementation and coverage in Stage 180; UX ownership needs to be settled when planning Stages 200–230, with the flows ready by the end of Stage 230. The quest projection was allocated to Stage 180 by the owner on 2026-10-04 and is recorded in ADR 0025 §2; the UX allocation remains open.
+These assignments remain unresolved; this entry authorizes no additional feature or stage. It allocates no work to Stage 90 and changes no gate status. Backend ownership needs to be settled before the affected implementation and coverage in Stage 180; UX ownership needs to be settled when planning Stages 200–230, with the flows ready by the end of Stage 230. The quest projection was allocated to Stage 180 by the owner on 2026-10-04 and is recorded in ADR 0025 §2. The UX flows were added in the Stage 240 remediation at the owner's instruction on 2026-10-05 (ADR 0030), which closes the UX allocation.
