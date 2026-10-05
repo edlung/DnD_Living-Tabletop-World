@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { formatWorldTime } from '../dm/world-time.ts';
 
 /** Remembered events are the existing scoped projection, never raw world history. */
 export function RecentEvents({ api }: { readonly api: WorldApi }) {
@@ -28,7 +29,8 @@ export function RecentEvents({ api }: { readonly api: WorldApi }) {
           {resource.value.memories.map(({ memory }) => (
             <li key={memory.memoryId}>
               <span className="eyebrow">
-                {memory.memoryKind.replaceAll('_', ' ')} · {memory.occurredAt}
+                {memory.memoryKind.replaceAll('_', ' ').toLowerCase()} ·{' '}
+                {formatWorldTime(memory.occurredAt)}
               </span>
               <p>{memory.summary}</p>
               <details>

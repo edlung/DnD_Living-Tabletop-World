@@ -71,6 +71,12 @@ export function CombatPanel({
             You: {self.hitPoints.current} / {self.hitPoints.max} HP
           </span>
         )}
+        {self && !myTurn && !waiting && (
+          <span className="muted">
+            Waiting for {current ? combatantLabel(current) : 'the next turn'}; the DM runs creature
+            turns.
+          </span>
+        )}
         {myTurn && !waiting && canAct && (
           <button
             disabled={locked}
@@ -111,7 +117,22 @@ export function CombatPanel({
         Shaded squares are difficult terrain; outlined squares give cover. Select a square to move
         or a combatant to act.
       </p>
-      {focus?.kind === 'combatant' && (
+      {focus?.kind === 'combatant' && actorId === null && (
+        <section className="combat-popover" aria-label="Combatant">
+          <p>
+            {(() => {
+              const picked = encounter.combatants.find(
+                (entry) => entry.entity.entityId === focus.id,
+              );
+              return picked ? `${combatantLabel(picked)} · ${picked.side} · ${picked.state}` : '';
+            })()}
+          </p>
+          <p className="muted">
+            The DM acts for creatures with the encounter controls above (suggested turn).
+          </p>
+        </section>
+      )}
+      {focus?.kind === 'combatant' && actorId !== null && (
         <TargetOptions
           key={focus.id}
           api={api}

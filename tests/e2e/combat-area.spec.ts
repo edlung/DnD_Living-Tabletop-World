@@ -41,7 +41,7 @@ test('Fireball previews who it affects, warns about an ally, and still casts whe
   expectAccepted(cast);
   expect(cast.body.outcome?.kind).toBe('CastSpell');
   await expect(
-    page.getByRole('status').filter({ hasText: /fireball resolved on \d+ targets?\./ }),
+    page.getByRole('status').filter({ hasText: /fireball resolved on \d+ targets?.*\./ }),
   ).toBeVisible();
   // The server spent exactly one slot and the ally warning was a warning, not a block.
   const after = await expendedSlots(page, campaign);

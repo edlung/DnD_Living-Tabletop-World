@@ -12,6 +12,15 @@ import { describeCommand } from './command-text.ts';
 import { ProposalEditor } from './proposal-editor.tsx';
 import type { Blocker } from './use-authoring.ts';
 
+const CHANGE_TEXT: Readonly<Record<string, string>> = {
+  EntityCreated: 'A new person or place is created',
+  EntityPlaced: 'They are placed in the world',
+  KnowledgeAssigned: 'Someone is given an account to hold',
+  DisclosureSet: 'Their willingness to share is set',
+  AssetRequested: 'A portrait is requested',
+};
+const words = (type: string) => type.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+
 const STATUS_TEXT = { DRAFT: 'Draft', COMMITTED: 'Added to the world', UNDONE: 'Undone' } as const;
 
 function Options({
@@ -161,7 +170,7 @@ export function ProposalReview({
             <summary>What will change in the world</summary>
             <ul>
               {preview.changes.map((change, index) => (
-                <li key={index}>{change.type}</li>
+                <li key={index}>{CHANGE_TEXT[change.type] ?? words(change.type)}</li>
               ))}
             </ul>
           </details>
@@ -201,14 +210,14 @@ export function ProposalReview({
           <ul>
             {blockers.map((blocker) => (
               <li key={blocker.commandId}>
-                {blocker.commandType}
+                {words(blocker.commandType)}
                 <button
                   disabled={busy}
                   onClick={() => {
                     actions.undoBlocker(blocker.commandId);
                   }}
                 >
-                  Undo {blocker.commandType} first
+                  Undo “{words(blocker.commandType)}” first
                 </button>
               </li>
             ))}

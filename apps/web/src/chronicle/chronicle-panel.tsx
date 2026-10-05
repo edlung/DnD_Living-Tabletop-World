@@ -95,7 +95,7 @@ function Chapter({
               if (!entry) return null;
               return (
                 <li key={key}>
-                  <span>{entry.text}</span>{' '}
+                  {entry.text !== paragraph.text && <span>{entry.text} </span>}
                   {entry.knowledge.map((record) => (
                     <span key={record.knowledgeId} className="badge">
                       {record.knowledgeType}

@@ -3,6 +3,17 @@ import { useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 
+function refusal(code: string, npc: string): string {
+  if (code === 'NOT_PRESENT') {
+    return `${npc} is not in the same place as this character. Move the character to ${npc}, or ${npc} to them, first.`;
+  }
+  if (code === 'ACTOR_DEAD' || code === 'ACTOR_INCAPACITATED') {
+    return 'This character cannot speak right now.';
+  }
+  if (code === 'TARGET_DEAD') return `${npc} cannot answer.`;
+  return `${npc} cannot speak with this character now (${code.replaceAll('_', ' ').toLowerCase()}).`;
+}
+
 /**
  * The DM performs an NPC for one of the party's characters through the existing
  * dialogue route. The World Engine decides the canonical outcome of Ask first; the
@@ -42,8 +53,13 @@ export function PerformNpc({
       );
       setSaid(
         result.refused
-          ? `${npcName} cannot speak with this character now.`
-          : (result.reply?.text ?? `${npcName} has nothing to say.`),
+          ? refusal(result.refused, npcName)
+          : (result.reply?.text ??
+              `No words are available for ${npcName} right now (${
+                result.reply?.status === 'AI_UNAVAILABLE'
+                  ? 'the voice is unavailable'
+                  : 'no reply was produced'
+              }). You can speak for ${npcName} yourself.`),
       );
     } catch {
       setSaid('The conversation could not be performed. Please try again.');
@@ -70,6 +86,9 @@ export function PerformNpc({
         ))}
       </select>
       <label htmlFor="perform-line">What the character says (optional)</label>
+      <p className="muted">
+        Given to the NPC as context for the reply; it never changes the world.
+      </p>
       <textarea
         id="perform-line"
         value={line}

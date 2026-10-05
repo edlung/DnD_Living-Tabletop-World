@@ -83,6 +83,9 @@ export function ReactionPrompt({
           </button>
         )}
       </div>
+      <p className="muted">
+        Counterspell spends a spell slot and may stop the spell. Ignore lets the spell happen.
+      </p>
       {counter && !counter.legal && (
         <small>
           Counterspell unavailable: {(counter.reason ?? '').replaceAll('_', ' ').toLowerCase()}

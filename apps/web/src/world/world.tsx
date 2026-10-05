@@ -6,6 +6,7 @@ import type {
   PlayerOutcome,
   SessionListResponse,
   SurroundingsResponse,
+  Weather,
 } from '@ltw/contracts';
 import { EncounterSummary, KnowledgeDetails, StatusPanel } from '@ltw/ui';
 import { useCallback, useRef, useState } from 'react';
@@ -42,6 +43,7 @@ export function World({
   const [revision, setRevision] = useState(0);
   // Kept here so the panel stays open across the refresh each command causes.
   const [dmToolsOpen, setDmToolsOpen] = useState(false);
+  const [dmWeather, setDmWeather] = useState<Weather>('rain');
   const [viewing, setViewing] = useState<string | null>(null);
   const [selected, setSelected] = useState<Selected | null>(null);
   const acting = effectivePerspective.startsWith('CHARACTER:');
@@ -180,6 +182,8 @@ export function World({
               locked={action.locked}
               open={dmToolsOpen}
               onToggle={setDmToolsOpen}
+              weather={dmWeather}
+              onWeather={setDmWeather}
               onRun={action.run}
             />
           )}
@@ -214,6 +218,9 @@ export function World({
               {data.surroundings && data.surroundings.nearby.length > 0 && (
                 <section className="nearby-places" aria-label="Nearby places">
                   <h3>Beyond this place</h3>
+                  <p className="muted">
+                    Choose a place to look at it. To go there, use Enter in its details.
+                  </p>
                   {data.surroundings.nearby.map((place) => (
                     <button
                       key={place.entityId}

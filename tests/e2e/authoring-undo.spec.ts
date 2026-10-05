@@ -61,7 +61,7 @@ test('undo is refused while the story depends on him, and works after the depend
 
   await review(page).getByRole('button', { name: 'Undo this addition' }).click();
   const blockers = review(page).getByRole('alert', { name: 'Undo blockers' });
-  await expect(blockers).toContainText('AskAbout');
+  await expect(blockers).toContainText('ask about');
   await expect(
     page.getByRole('alert').filter({ hasText: 'Other parts of the story now depend on this.' }),
   ).toBeVisible();
@@ -70,7 +70,7 @@ test('undo is refused while the story depends on him, and works after the depend
   await expect(tomas(page)).toBeVisible();
 
   // The DM resolves the dependency explicitly, then the same undo succeeds.
-  await blockers.getByRole('button', { name: 'Undo AskAbout first' }).click();
+  await blockers.getByRole('button', { name: 'Undo “ask about” first' }).click();
   await expect(blockers).toHaveCount(0);
   await review(page).getByRole('button', { name: 'Undo this addition' }).click();
   await expect(review(page)).toContainText('Undone');

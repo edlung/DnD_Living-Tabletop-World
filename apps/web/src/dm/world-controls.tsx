@@ -16,8 +16,12 @@ export function DmWorldControls({
   locked,
   open,
   onToggle,
+  weather,
+  onWeather,
   onRun,
 }: {
+  readonly weather: (typeof WEATHERS)[number];
+  readonly onWeather: (weather: (typeof WEATHERS)[number]) => void;
   readonly open: boolean;
   readonly onToggle: (open: boolean) => void;
   readonly locationId: string;
@@ -26,7 +30,6 @@ export function DmWorldControls({
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const [hours, setHours] = useState('8');
-  const [weather, setWeather] = useState<(typeof WEATHERS)[number]>('rain');
   const run = (command: DmWorldCommand) => {
     onRun({ kind: 'command', command });
   };
@@ -74,7 +77,7 @@ export function DmWorldControls({
         id="weather-choice"
         value={weather}
         onChange={(event) => {
-          setWeather(event.target.value as (typeof WEATHERS)[number]);
+          onWeather(event.target.value as (typeof WEATHERS)[number]);
         }}
       >
         {WEATHERS.map((entry) => (

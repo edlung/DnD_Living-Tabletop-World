@@ -109,3 +109,20 @@ test('the DM performs Tomas for Elowen and the words are not recorded as fact', 
   await expect(dm.getByRole('status', { name: 'Tomas Reed says' })).toContainText('Spoken');
   await dm.close();
 });
+
+test('refusals and technical words are explained in plain language', async ({ browser }) => {
+  const campaign = campaigns.chronicle;
+  const dm = await browser.newPage();
+  await enterWorld(dm, TOKENS.dm, campaign);
+  // Elowen is at Market Square, so Captain Thorne at North Gate cannot hear her.
+  await dm.getByLabel('Location', { exact: true }).selectOption('north-gate');
+  await dm.getByRole('button', { name: 'Captain Thorne', exact: true }).click();
+  await dm.getByText('Perform Captain Thorne (DM)', { exact: true }).click();
+  await dm.getByRole('button', { name: 'Speak as Captain Thorne' }).click();
+  await expect(dm.getByRole('status', { name: 'Captain Thorne says' })).toContainText(
+    'is not in the same place as this character',
+  );
+  // Remembered events read as world time, not raw seconds.
+  await expect(dm.locator('.memory-list')).not.toContainText(/-?\d{6,}/);
+  await dm.close();
+});

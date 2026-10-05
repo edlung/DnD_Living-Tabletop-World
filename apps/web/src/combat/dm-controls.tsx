@@ -167,6 +167,7 @@ function RunningControls({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const [confirmingEnd, setConfirmingEnd] = useState(false);
   const window = encounter.reactionWindow;
   const load = useCallback(
     (signal: AbortSignal) =>
@@ -208,17 +209,38 @@ function RunningControls({
           </button>
         </div>
       )}
-      <button
-        disabled={locked}
-        onClick={() => {
-          onRun({
-            kind: 'command',
-            command: { type: 'EndCombat', encounterId: encounter.encounterId },
-          });
-        }}
-      >
-        End encounter
-      </button>
+      {confirmingEnd ? (
+        <>
+          <span>End the encounter for everyone?</span>
+          <button
+            disabled={locked}
+            onClick={() => {
+              onRun({
+                kind: 'command',
+                command: { type: 'EndCombat', encounterId: encounter.encounterId },
+              });
+            }}
+          >
+            Yes, end encounter
+          </button>
+          <button
+            onClick={() => {
+              setConfirmingEnd(false);
+            }}
+          >
+            Keep fighting
+          </button>
+        </>
+      ) : (
+        <button
+          disabled={locked}
+          onClick={() => {
+            setConfirmingEnd(true);
+          }}
+        >
+          End encounter
+        </button>
+      )}
     </div>
   );
 }

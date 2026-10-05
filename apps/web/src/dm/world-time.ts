@@ -2,6 +2,10 @@ const DAY = 86_400;
 
 /** "Day 2 · 10:00" for a world time in seconds (Day 1 starts at 0). */
 export function formatWorldTime(seconds: number): string {
+  if (seconds < 0) {
+    const days = Math.ceil(-seconds / DAY);
+    return `${String(days)} ${days === 1 ? 'day' : 'days'} before Day 1`;
+  }
   const day = Math.floor(seconds / DAY) + 1;
   const within = ((seconds % DAY) + DAY) % DAY;
   const hours = String(Math.floor(within / 3600)).padStart(2, '0');

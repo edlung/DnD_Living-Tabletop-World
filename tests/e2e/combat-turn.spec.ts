@@ -63,6 +63,7 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   expectAccepted(ended);
   await expect(anchor(page)).toContainText('Turn: goblin-raider-1');
   await expect(anchor(page).getByRole('button', { name: 'End turn' })).toHaveCount(0);
+  await expect(anchor(page)).toContainText('the DM runs creature turns');
   await traffic.assertPlayerBoundary(
     ['"initiative"', '"armorClass"'],
     ['"abandoned-caravan-site"'],

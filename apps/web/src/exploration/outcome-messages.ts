@@ -57,11 +57,18 @@ export function outcomeMessage(outcome: PlayerOutcome | undefined): string {
         return `${spellName(outcome.spellId)} is waiting for reactions.`;
       }
       if (outcome.results.length > 0) {
-        return `${spellName(outcome.spellId)} resolved on ${String(outcome.results.length)} ${outcome.results.length === 1 ? 'target' : 'targets'}.`;
+        const total = outcome.results.reduce((sum, entry) => sum + (entry.damage ?? 0), 0);
+        const healed = outcome.results.reduce((sum, entry) => sum + (entry.healed ?? 0), 0);
+        const saved = outcome.results.filter((entry) => entry.saved === true).length;
+        const count = outcome.results.length;
+        return `${spellName(outcome.spellId)} resolved on ${String(count)} ${count === 1 ? 'target' : 'targets'}${
+          saved > 0 ? ` (${String(saved)} saved)` : ''
+        }${total > 0 ? `: ${String(total)} damage in all` : ''}${healed > 0 ? `: ${String(healed)} healed` : ''}.`;
       }
-      return outcome.discovered.length
-        ? 'Magic revealed new evidence.'
-        : 'The spell resolved without new evidence.';
+      if (outcome.discovered.length) return 'Magic revealed new evidence.';
+      return outcome.spellId === 'detect-magic'
+        ? 'Nothing magical was found.'
+        : `You cast ${spellName(outcome.spellId)}.`;
     case 'EndTurn':
       return `Turn ended. Round ${String(outcome.round)}.`;
     case 'UseReaction':
