@@ -3,14 +3,14 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { russianSentence } from './index.ts';
+import { russianSentence } from '../../packages/domain/src/index.ts';
 
 /**
  * Every sentence the DM's authoring and continuity text can say has a Russian entry that keeps
  * its `{placeholders}` (docs/adr/0031-play-language.md §5). Keys are read from the source:
  * `say('…')` calls and the fixed labels and reasons that reach the DM through `say`.
  */
-const root = new URL('../authoring/', import.meta.url).pathname;
+const root = new URL('../../packages/domain/src/authoring/', import.meta.url).pathname;
 
 function sources(dir: string): string[] {
   return readdirSync(dir).flatMap((name) => {

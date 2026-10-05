@@ -29,10 +29,7 @@
       "entityId": "abandoned-caravan-site",
       "method": "inspect",
       "statement": "Сломанные повозки и разбросанные ящики заполняют придорожную поляну: здесь напали на гильдейский караван.",
-      "subjects": [
-        "guild-caravan",
-        "old-trade-road"
-      ]
+      "subjects": ["guild-caravan", "old-trade-road"]
     },
     {
       "type": "AddClue",

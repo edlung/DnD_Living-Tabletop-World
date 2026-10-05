@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import './i18n/ru.ts';
+import './i18n/ru-play.ts';
 import { App } from './session/app.tsx';
 import './styles/base.css';
 import './styles/scene.css';

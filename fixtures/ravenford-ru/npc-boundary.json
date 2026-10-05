@@ -1,0 +1,258 @@
+{
+  "$comment": "Russian counterpart of fixtures/ravenford/npc-boundary.json (ADR 0031 §9): planted markers are language-neutral; the guarded and sayable phrases follow the Russian seed.",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "nb-hooded-watcher",
+      "kind": "npc",
+      "name": "Sable NBXHIDDENNAME",
+      "existsSince": null,
+      "description": "NBXDESCRIPTION: a lookout for the circle.",
+      "placement": {
+        "locationId": "orins-alchemy",
+        "since": null
+      }
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "nb-truth",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "NBXTRUTH: the shrine lies beneath the mill.",
+      "subjects": ["ravenford"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "nb-dm-note",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "NBXDMNOTE: reveal the shrine in session three.",
+      "subjects": ["ravenford"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "nb-orin-secret",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "NBXORINSECRET: Orin sold the reagents himself.",
+      "subjects": ["strange-symbol"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "nb-orin-willing",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "knowledgeType": "FACT",
+      "statement": "NBXORINWILLING: the shop opens at dawn.",
+      "subjects": ["orins-alchemy"],
+      "knownSince": null
+    },
+    {
+      "type": "SetDisclosure",
+      "knowledgeId": "nb-orin-willing",
+      "disclosure": "WILLING"
+    },
+    {
+      "type": "SetClaim",
+      "target": {
+        "kind": "knowledge",
+        "knowledgeId": "nb-orin-willing"
+      },
+      "claim": {
+        "subjectId": "orins-alchemy",
+        "aspect": "nbxclaimaspect",
+        "value": "nbxclaimvalue"
+      }
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "nb-mira-willing",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "mira-vale"
+      },
+      "knowledgeType": "FACT",
+      "statement": "NBXMIRAWILLING: the stalls restock on market day.",
+      "subjects": ["market-square"],
+      "knownSince": null
+    },
+    {
+      "type": "SetDisclosure",
+      "knowledgeId": "nb-mira-willing",
+      "disclosure": "WILLING"
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "nb-party-note",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "HYPOTHESIS",
+      "statement": "NBXPARTY: the miller may be involved.",
+      "subjects": ["ravenford"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "nb-elowen-note",
+      "scope": {
+        "kind": "CHARACTER",
+        "characterId": "elowen-starwhisper"
+      },
+      "knowledgeType": "FACT",
+      "statement": "NBXELOWEN: Elowen keeps a sealed letter.",
+      "subjects": ["ravenford"],
+      "knownSince": null
+    },
+    {
+      "type": "AddClue",
+      "clueId": "nb-clue",
+      "entityId": "burned-cargo",
+      "method": "inspect",
+      "statement": "NBXCLUE: the soot forms a hidden sign.",
+      "subjects": []
+    },
+    {
+      "type": "RecordMemory",
+      "memoryId": "nb-orin-memory-secret",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "memoryKind": "DISCOVERY",
+      "summary": "NBXMEMSECRET: Orin counted the reagent coins.",
+      "occurredAt": 0,
+      "participants": ["orin-stonebeard"],
+      "relatedKnowledge": ["nb-orin-secret"]
+    },
+    {
+      "type": "RecordMemory",
+      "memoryId": "nb-orin-memory-uncited",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "memoryKind": "DISCOVERY",
+      "summary": "NBXMEMUNCITED: Orin dreamed of the shrine.",
+      "occurredAt": 0,
+      "participants": ["orin-stonebeard"]
+    },
+    {
+      "type": "RecordMemory",
+      "memoryId": "nb-orin-memory-willing",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "orin-stonebeard"
+      },
+      "memoryKind": "DISCOVERY",
+      "summary": "NBXORINMEMORY: Orin swept the shop at dawn.",
+      "occurredAt": 0,
+      "participants": ["orin-stonebeard"],
+      "relatedKnowledge": ["nb-orin-willing"]
+    },
+    {
+      "type": "RecordMemory",
+      "memoryId": "nb-mira-memory",
+      "scope": {
+        "kind": "NPC",
+        "npcId": "mira-vale"
+      },
+      "memoryKind": "DISCOVERY",
+      "summary": "NBXMIRAMEMORY: Mira counted her stock.",
+      "occurredAt": 0,
+      "participants": ["mira-vale"],
+      "relatedKnowledge": ["nb-mira-willing"]
+    }
+  ],
+  "neverSaid": {
+    "*": [
+      "NBXHIDDENNAME",
+      "NBXDESCRIPTION",
+      "NBXTRUTH",
+      "NBXDMNOTE",
+      "NBXORINSECRET",
+      "NBXPARTY",
+      "NBXELOWEN",
+      "NBXCLUE",
+      "nbxclaim",
+      "NBXMEMSECRET",
+      "NBXMEMUNCITED",
+      "необычных заказах реагентов",
+      "дружелюбная, практичная",
+      "ворчливый, осторожный",
+      "восемь месяцев назад",
+      "Следопыт 7",
+      "Городская стража",
+      "Гильдия торговцев",
+      "Тайный культ",
+      "не добравшиеся до места назначения",
+      "устроивший нападение на караван",
+      "Пепельн",
+      "алхимические реагенты",
+      "подделали",
+      "не просто гоблины",
+      "Раскрывать связь",
+      "Караван атаковали гоблины",
+      "Кто напал",
+      "Мира рассказала нам",
+      "сигилами",
+      "нервно поглядывает",
+      "искать караван",
+      "закупили припасы",
+      "before-dawn",
+      "after-sunrise",
+      "departure-time"
+    ],
+    "mira-vale": [
+      "NBXORINWILLING",
+      "NBXORINMEMORY",
+      "после восхода",
+      "патруль",
+      "Напуганный путник",
+      "записал в журнал"
+    ],
+    "orin-stonebeard": [
+      "NBXMIRAWILLING",
+      "NBXMIRAMEMORY",
+      "до рассвета",
+      "после восхода",
+      "патруль",
+      "вёз товары для Торговой гильдии",
+      "выкатился с Рыночной площади"
+    ],
+    "captain-thorne": [
+      "NBXORINWILLING",
+      "NBXMIRAWILLING",
+      "до рассвета",
+      "вёз товары для Торговой гильдии",
+      "Напуганный путник",
+      "выкатился с Рыночной площади"
+    ]
+  },
+  "sayableBy": {
+    "mira-vale": ["NBXMIRAWILLING", "NBXMIRAMEMORY"],
+    "orin-stonebeard": ["NBXORINWILLING", "NBXORINMEMORY"],
+    "captain-thorne": ["после восхода", "Путь каравана лежал"]
+  },
+  "guardedBy": {
+    "mira-vale": ["до рассвета", "выкатился с Рыночной площади"],
+    "orin-stonebeard": [
+      "узнал тот же знак",
+      "лично знаком с капитаном Торном",
+      "Напуганный путник"
+    ],
+    "captain-thorne": ["не вернулся с докладом", "патруль не вернулся"]
+  }
+}

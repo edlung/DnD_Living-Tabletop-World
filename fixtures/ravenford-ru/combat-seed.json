@@ -304,10 +304,7 @@
             "level": 1,
             "castingTime": "action",
             "rangeFt": 120,
-            "components": [
-              "V",
-              "S"
-            ],
+            "components": ["V", "S"],
             "effect": {
               "kind": "attack",
               "bonus": 4,
@@ -325,10 +322,7 @@
             "level": 1,
             "castingTime": "action",
             "rangeFt": 60,
-            "components": [
-              "V",
-              "S"
-            ],
+            "components": ["V", "S"],
             "effect": {
               "kind": "save",
               "ability": "wis",

@@ -107,10 +107,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Равенфорд — торговый городок на Старой Торговой дороге.",
-      "subjects": [
-        "ravenford",
-        "old-trade-road"
-      ],
+      "subjects": ["ravenford", "old-trade-road"],
       "knownSince": null
     },
     {
@@ -121,10 +118,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Рыночная площадь — оживлённое сердце Равенфорда.",
-      "subjects": [
-        "market-square",
-        "ravenford"
-      ],
+      "subjects": ["market-square", "ravenford"],
       "knownSince": null
     },
     {
@@ -135,9 +129,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "В «Золотом Олене» сдают комнаты путникам.",
-      "subjects": [
-        "golden-stag-inn"
-      ],
+      "subjects": ["golden-stag-inn"],
       "knownSince": null
     },
     {
@@ -148,10 +140,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Мира Вейл торгует на Рыночной площади.",
-      "subjects": [
-        "mira-vale",
-        "market-square"
-      ],
+      "subjects": ["mira-vale", "market-square"],
       "knownSince": null
     },
     {
@@ -162,10 +151,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Орин Стоунберд держит алхимическую лавку.",
-      "subjects": [
-        "orin-stonebeard",
-        "orins-alchemy"
-      ],
+      "subjects": ["orin-stonebeard", "orins-alchemy"],
       "knownSince": null
     },
     {
@@ -176,11 +162,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Капитан Торн командует Равенфордской стражей у Северных ворот.",
-      "subjects": [
-        "captain-thorne",
-        "ravenford-guard",
-        "north-gate"
-      ],
+      "subjects": ["captain-thorne", "ravenford-guard", "north-gate"],
       "knownSince": null
     },
     {
@@ -191,11 +173,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Торговая гильдия отправляет караваны по Старой Торговой дороге.",
-      "subjects": [
-        "merchant-guild-faction",
-        "merchant-guild",
-        "old-trade-road"
-      ],
+      "subjects": ["merchant-guild-faction", "merchant-guild", "old-trade-road"],
       "knownSince": null
     },
     {
@@ -206,10 +184,7 @@
       },
       "knowledgeType": "RUMOR",
       "statement": "На рынке говорят, что караван Торговой гильдии задерживается.",
-      "subjects": [
-        "guild-caravan",
-        "merchant-guild-faction"
-      ],
+      "subjects": ["guild-caravan", "merchant-guild-faction"],
       "knownSince": 21600
     },
     {
@@ -221,9 +196,7 @@
       },
       "knowledgeType": "TESTIMONY",
       "statement": "Караван ушёл до рассвета.",
-      "subjects": [
-        "guild-caravan"
-      ],
+      "subjects": ["guild-caravan"],
       "knownSince": -154800,
       "attributedTo": "mira-vale"
     },
@@ -236,11 +209,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Караван вёз товары для Торговой гильдии по Старой Торговой дороге.",
-      "subjects": [
-        "guild-caravan",
-        "merchant-guild-faction",
-        "old-trade-road"
-      ],
+      "subjects": ["guild-caravan", "merchant-guild-faction", "old-trade-road"],
       "knownSince": -259200
     },
     {
@@ -252,9 +221,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Похожий караван пропал на Старой Торговой дороге прошлой весной.",
-      "subjects": [
-        "old-trade-road"
-      ],
+      "subjects": ["old-trade-road"],
       "knownSince": null
     },
     {
@@ -266,9 +233,7 @@
       },
       "knowledgeType": "SECRET",
       "statement": "Орин уже видел странный знак на необычных заказах реагентов.",
-      "subjects": [
-        "strange-symbol"
-      ],
+      "subjects": ["strange-symbol"],
       "knownSince": null
     },
     {
@@ -280,9 +245,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Орин лично знаком с капитаном Торном.",
-      "subjects": [
-        "captain-thorne"
-      ],
+      "subjects": ["captain-thorne"],
       "knownSince": null
     },
     {
@@ -294,10 +257,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Орин узнал тот же знак после того, как прошлой весной пропал караван.",
-      "subjects": [
-        "strange-symbol",
-        "old-trade-road"
-      ],
+      "subjects": ["strange-symbol", "old-trade-road"],
       "knownSince": null
     },
     {
@@ -309,9 +269,7 @@
       },
       "knowledgeType": "TESTIMONY",
       "statement": "Караван ушёл после восхода солнца.",
-      "subjects": [
-        "guild-caravan"
-      ],
+      "subjects": ["guild-caravan"],
       "knownSince": -147600,
       "attributedTo": "captain-thorne"
     },
@@ -324,10 +282,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Путь каравана лежал на север по Старой Торговой дороге.",
-      "subjects": [
-        "guild-caravan",
-        "old-trade-road"
-      ],
+      "subjects": ["guild-caravan", "old-trade-road"],
       "knownSince": -147600
     },
     {
@@ -339,10 +294,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Стражный патруль на Старой Торговой дороге не вернулся с докладом.",
-      "subjects": [
-        "ravenford-guard",
-        "old-trade-road"
-      ],
+      "subjects": ["ravenford-guard", "old-trade-road"],
       "knownSince": -21600
     },
     {
@@ -353,9 +305,7 @@
       },
       "knowledgeType": "TESTIMONY",
       "statement": "Мира Вейл говорит, что караван ушёл до рассвета.",
-      "subjects": [
-        "guild-caravan"
-      ],
+      "subjects": ["guild-caravan"],
       "knownSince": 34200,
       "attributedTo": "mira-vale",
       "relations": [
@@ -373,9 +323,7 @@
       },
       "knowledgeType": "HYPOTHESIS",
       "statement": "Караван атаковали гоблины.",
-      "subjects": [
-        "guild-caravan"
-      ],
+      "subjects": ["guild-caravan"],
       "knownSince": 35100
     },
     {
@@ -386,9 +334,7 @@
       },
       "knowledgeType": "UNKNOWN",
       "statement": "Кто напал на караван?",
-      "subjects": [
-        "guild-caravan"
-      ],
+      "subjects": ["guild-caravan"],
       "knownSince": 35100,
       "relations": [
         {
@@ -406,9 +352,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Эловен когда-то читала, что некоторые культы отмечают свои дела сигилами.",
-      "subjects": [
-        "elowen-starwhisper"
-      ],
+      "subjects": ["elowen-starwhisper"],
       "knownSince": null
     },
     {
@@ -419,9 +363,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Караван покинул Равенфорд, увозя редкие алхимические реагенты.",
-      "subjects": [
-        "guild-caravan"
-      ],
+      "subjects": ["guild-caravan"],
       "knownSince": null
     },
     {
@@ -432,10 +374,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Караван пропал на Старой Торговой дороге.",
-      "subjects": [
-        "guild-caravan",
-        "old-trade-road"
-      ],
+      "subjects": ["guild-caravan", "old-trade-road"],
       "knownSince": null
     },
     {
@@ -446,9 +385,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Место нападения подделали после нападения.",
-      "subjects": [
-        "abandoned-caravan-site"
-      ],
+      "subjects": ["abandoned-caravan-site"],
       "knownSince": null
     },
     {
@@ -459,11 +396,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Улики на месте были расставлены так, чтобы указывать на нападение гоблинов.",
-      "subjects": [
-        "abandoned-caravan-site",
-        "goblin-weapon",
-        "wagon-tracks"
-      ],
+      "subjects": ["abandoned-caravan-site", "goblin-weapon", "wagon-tracks"],
       "knownSince": null
     },
     {
@@ -474,9 +407,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Нападавшими были не просто гоблины.",
-      "subjects": [
-        "guild-caravan"
-      ],
+      "subjects": ["guild-caravan"],
       "knownSince": null,
       "relations": [
         {
@@ -493,10 +424,7 @@
       },
       "knowledgeType": "SECRET",
       "statement": "Пепельный круг причастен к нападению на караван.",
-      "subjects": [
-        "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53",
-        "guild-caravan"
-      ],
+      "subjects": ["3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53", "guild-caravan"],
       "knownSince": null,
       "relations": [
         {
@@ -513,10 +441,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Странный знак — метка Пепельного круга.",
-      "subjects": [
-        "strange-symbol",
-        "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53"
-      ],
+      "subjects": ["strange-symbol", "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53"],
       "knownSince": null,
       "relations": [
         {
@@ -533,10 +458,7 @@
       },
       "knowledgeType": "SECRET",
       "statement": "Раскрывать связь знака с Пепельным кругом лишь после того, как отряд покажет его Орину.",
-      "subjects": [
-        "strange-symbol",
-        "orin-stonebeard"
-      ],
+      "subjects": ["strange-symbol", "orin-stonebeard"],
       "knownSince": null,
       "relations": [
         {

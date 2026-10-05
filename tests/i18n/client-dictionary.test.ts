@@ -1,10 +1,11 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { russianEntry } from '@ltw/ui';
+import { russianEntry } from '../../packages/ui/src/index.ts';
 import { describe, expect, it } from 'vitest';
 
-import './ru.ts';
+import '../../apps/web/src/i18n/ru.ts';
+import '../../apps/web/src/i18n/ru-play.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the
@@ -13,8 +14,8 @@ import './ru.ts';
  * that reach the screen through `t()` at render.
  */
 const roots = [
-  new URL('../', import.meta.url),
-  new URL('../../../../packages/ui/src/', import.meta.url),
+  new URL('../../apps/web/src/', import.meta.url),
+  new URL('../../packages/ui/src/', import.meta.url),
 ];
 const T_CALL = /\bt\(\s*(['"])((?:\\.|(?!\1).)*?)\1/gs;
 /** Sentence-like literals in constant tables: a capital, a space, and a sentence's worth of text. */
@@ -28,7 +29,7 @@ function sources(dir: URL): string[] {
     if (statSync(full).isDirectory()) return sources(new URL(`${name}/`, dir));
     return /\.(ts|tsx)$/.test(name) &&
       !/\.test\.|\.d\.ts$|\/ru\.ts$/.test(full) &&
-      name !== 'ru.ts' &&
+      !/^ru(-play)?\.ts$/.test(name) &&
       name !== 'i18n.tsx'
       ? [full]
       : [];

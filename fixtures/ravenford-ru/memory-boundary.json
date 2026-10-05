@@ -1,0 +1,124 @@
+{
+  "$comment": "Russian counterpart of fixtures/ravenford/memory-boundary.json (ADR 0031 §9): the same records, the markers as the Russian seed words them.",
+  "visible": {
+    "PUBLIC": ["mem-public-vanished-spring"],
+    "PARTY": [
+      "mem-public-vanished-spring",
+      "mem-party-talk-mira",
+      "mem-party-decide-road",
+      "mem-party-supplies"
+    ],
+    "CHARACTER:elowen-starwhisper": [
+      "mem-public-vanished-spring",
+      "mem-party-talk-mira",
+      "mem-party-decide-road",
+      "mem-party-supplies",
+      "mem-elowen-mira-glance"
+    ],
+    "NPC:mira-vale": ["mem-public-vanished-spring", "mem-mira-departure"],
+    "NPC:orin-stonebeard": ["mem-public-vanished-spring", "mem-orin-prior-symbol"],
+    "NPC:captain-thorne": [
+      "mem-public-vanished-spring",
+      "mem-thorne-departure",
+      "mem-thorne-patrol"
+    ]
+  },
+  "forbiddenMarkers": {
+    "PUBLIC": [
+      "Напуганный путник",
+      "ящике",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "выкатился с Рыночной площади",
+      "\"mem-mira-departure\"",
+      "записал в журнал",
+      "патруль не вернулся",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\"",
+      "Мира рассказала нам",
+      "искать караван",
+      "закупили припасы",
+      "\"mem-party-talk-mira\"",
+      "\"mem-party-decide-road\"",
+      "\"mem-party-supplies\"",
+      "нервно поглядывает",
+      "\"mem-elowen-mira-glance\""
+    ],
+    "PARTY": [
+      "Напуганный путник",
+      "ящике",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "выкатился с Рыночной площади",
+      "\"mem-mira-departure\"",
+      "записал в журнал",
+      "патруль не вернулся",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\"",
+      "нервно поглядывает",
+      "\"mem-elowen-mira-glance\""
+    ],
+    "CHARACTER:elowen-starwhisper": [
+      "Напуганный путник",
+      "ящике",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "выкатился с Рыночной площади",
+      "\"mem-mira-departure\"",
+      "записал в журнал",
+      "патруль не вернулся",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\""
+    ],
+    "NPC:mira-vale": [
+      "Напуганный путник",
+      "ящике",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "записал в журнал",
+      "патруль не вернулся",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\"",
+      "Мира рассказала нам",
+      "искать караван",
+      "закупили припасы",
+      "\"mem-party-talk-mira\"",
+      "\"mem-party-decide-road\"",
+      "\"mem-party-supplies\"",
+      "нервно поглядывает",
+      "\"mem-elowen-mira-glance\""
+    ],
+    "NPC:orin-stonebeard": [
+      "выкатился с Рыночной площади",
+      "\"mem-mira-departure\"",
+      "записал в журнал",
+      "патруль не вернулся",
+      "\"mem-thorne-departure\"",
+      "\"mem-thorne-patrol\"",
+      "Мира рассказала нам",
+      "искать караван",
+      "закупили припасы",
+      "\"mem-party-talk-mira\"",
+      "\"mem-party-decide-road\"",
+      "\"mem-party-supplies\"",
+      "нервно поглядывает",
+      "\"mem-elowen-mira-glance\""
+    ],
+    "NPC:captain-thorne": [
+      "Напуганный путник",
+      "ящике",
+      "\"mem-orin-prior-symbol\"",
+      "\"strange-symbol\"",
+      "выкатился с Рыночной площади",
+      "\"mem-mira-departure\"",
+      "Мира рассказала нам",
+      "искать караван",
+      "закупили припасы",
+      "\"mem-party-talk-mira\"",
+      "\"mem-party-decide-road\"",
+      "\"mem-party-supplies\"",
+      "нервно поглядывает",
+      "\"mem-elowen-mira-glance\""
+    ]
+  }
+}

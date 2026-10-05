@@ -19,6 +19,7 @@ Canonical test fixtures for the Ravenford vertical slice (`RAVENFORD_SPEC.md`), 
 | `day-two.json`            | 160   | Day 1 → Day 2 (ADR 0023): clear skies over Ravenford on Day 1 at 10:00, then the clock to Day 2 at 10:00 and rain. Not seeded; tests and the DM run it after the full seed.                                                                                                                                                                                    |
 | `quests.json`             | 180   | Quest definitions (ADR 0025 §2): the Missing Caravan's activation subject, milestones, and the summaries players read. Loaded and validated at server start (`LTW_QUESTS_FILE`); content, not state.                                                                                                                                                           |
 
+- The Russian Ravenford is in `../ravenford-ru/` (ADR 0031); keep the two in step.
 - Fixtures may contain WORLD_TRUTH and DM secrets. Never copy fixture secrets into player-facing code, prompts, or logs; tests must assert their absence from restricted projections.
 - Keep data (JSON/YAML/CSV) separate from hand-written fixture builders. Builders are active code and obey the 700-line budget; datasets are not loaded wholesale — query them narrowly.
 - Do not reconcile or change rules-dependent character data without the Stage 40 ruleset ADR (`docs/IMPLEMENTATION_PREREQUISITES.md`).

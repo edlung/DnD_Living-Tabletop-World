@@ -31,15 +31,10 @@
       "memoryKind": "OBSERVATION",
       "summary": "Мира видела, как гильдейский караван выкатился с Рыночной площади до рассвета.",
       "occurredAt": -154800,
-      "participants": [
-        "mira-vale",
-        "guild-caravan"
-      ],
+      "participants": ["mira-vale", "guild-caravan"],
       "salience": 4,
       "locationId": "market-square",
-      "relatedKnowledge": [
-        "mira-departure"
-      ]
+      "relatedKnowledge": ["mira-departure"]
     },
     {
       "type": "RecordMemory",
@@ -51,15 +46,10 @@
       "memoryKind": "OBSERVATION",
       "summary": "Напуганный путник показал Орину странный знак, нацарапанный на разбитом ящике.",
       "occurredAt": -17323200,
-      "participants": [
-        "orin-stonebeard",
-        "strange-symbol"
-      ],
+      "participants": ["orin-stonebeard", "strange-symbol"],
       "salience": 5,
       "locationId": "orins-alchemy",
-      "relatedKnowledge": [
-        "orin-prior-incident"
-      ]
+      "relatedKnowledge": ["orin-prior-incident"]
     },
     {
       "type": "RecordMemory",
@@ -71,15 +61,10 @@
       "memoryKind": "OBSERVATION",
       "summary": "Торн записал в журнал, что караван миновал Северные ворота после восхода.",
       "occurredAt": -147600,
-      "participants": [
-        "captain-thorne",
-        "guild-caravan"
-      ],
+      "participants": ["captain-thorne", "guild-caravan"],
       "salience": 4,
       "locationId": "north-gate",
-      "relatedKnowledge": [
-        "thorne-departure"
-      ]
+      "relatedKnowledge": ["thorne-departure"]
     },
     {
       "type": "RecordMemory",
@@ -91,14 +76,10 @@
       "memoryKind": "DISCOVERY",
       "summary": "Торн понял, что вечерний патруль не вернулся.",
       "occurredAt": -21600,
-      "participants": [
-        "captain-thorne"
-      ],
+      "participants": ["captain-thorne"],
       "salience": 3,
       "locationId": "north-gate",
-      "relatedKnowledge": [
-        "thorne-missing-patrol"
-      ]
+      "relatedKnowledge": ["thorne-missing-patrol"]
     },
     {
       "type": "RecordMemory",
@@ -109,15 +90,10 @@
       "memoryKind": "CONVERSATION",
       "summary": "Мира рассказала нам, что караван ушёл до рассвета.",
       "occurredAt": 34200,
-      "participants": [
-        "elowen-starwhisper",
-        "mira-vale"
-      ],
+      "participants": ["elowen-starwhisper", "mira-vale"],
       "salience": 4,
       "locationId": "market-square",
-      "relatedKnowledge": [
-        "party-mira-departure"
-      ],
+      "relatedKnowledge": ["party-mira-departure"],
       "sessionId": "ravenford-s1"
     },
     {
@@ -130,10 +106,7 @@
       "memoryKind": "OBSERVATION",
       "summary": "Эловен заметила, как Мира нервно поглядывает в сторону Северных ворот.",
       "occurredAt": 34500,
-      "participants": [
-        "elowen-starwhisper",
-        "mira-vale"
-      ],
+      "participants": ["elowen-starwhisper", "mira-vale"],
       "salience": 2,
       "locationId": "market-square",
       "sessionId": "ravenford-s1"
@@ -147,9 +120,7 @@
       "memoryKind": "DECISION",
       "summary": "Мы решили искать караван на Старой Торговой дороге.",
       "occurredAt": 35400,
-      "participants": [
-        "elowen-starwhisper"
-      ],
+      "participants": ["elowen-starwhisper"],
       "salience": 5,
       "locationId": "market-square",
       "sessionId": "ravenford-s1"
@@ -163,14 +134,10 @@
       "memoryKind": "CONSEQUENCE",
       "summary": "Из-за этого решения мы закупили припасы в дорогу.",
       "occurredAt": 35700,
-      "participants": [
-        "elowen-starwhisper"
-      ],
+      "participants": ["elowen-starwhisper"],
       "salience": 2,
       "locationId": "market-square",
-      "causedBy": [
-        "mem-party-decide-road"
-      ],
+      "causedBy": ["mem-party-decide-road"],
       "sessionId": "ravenford-s1"
     }
   ]
