@@ -21,5 +21,7 @@ step 'Migrate again (idempotent)'; pnpm run db:migrate
 step 'Seed Ravenford';             pnpm run seed:ravenford
 step 'Seed again (idempotent)';    pnpm run seed:ravenford
 step 'Integration tests';          pnpm run test:integration
+step 'Chromium for UI journeys';  pnpm exec playwright install chromium
+step 'UI and API journeys';       pnpm run test:e2e
 
 printf '\nCI-equivalent validation passed.\n'

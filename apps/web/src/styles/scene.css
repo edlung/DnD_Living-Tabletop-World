@@ -1,0 +1,328 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem 3vw;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.session-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.session-controls label {
+  color: var(--muted);
+  font-size: 0.73rem;
+}
+.session-controls select {
+  font-size: 0.8rem;
+  max-width: 15rem;
+}
+.world-main {
+  max-width: 1440px;
+  margin: auto;
+  padding: 2.6rem 4vw;
+  outline: none;
+}
+.world-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+.world-heading .eyebrow {
+  color: var(--muted);
+}
+.perspective-badge {
+  border-radius: 20px;
+  background: #e3eadd;
+  color: #456044;
+  border: 1px solid #d5dfcd;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+.dm-badge {
+  background: #f0e4cb;
+  border-color: #ddc28e;
+  color: #715925;
+}
+.world-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+}
+.location-control {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.location-control label {
+  color: var(--muted);
+}
+.location-control select {
+  min-width: 13rem;
+  font-size: 0.85rem;
+}
+.session-caption {
+  font-size: 0.73rem;
+  color: var(--muted);
+}
+.world-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(300px, 1fr);
+  gap: 1.35rem;
+  align-items: start;
+}
+.scene-panel,
+.detail-panel {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--paper);
+  min-width: 0;
+  overflow: hidden;
+}
+.scene-banner {
+  background: #24453a;
+  position: relative;
+  min-height: 290px;
+  display: flex;
+  align-items: end;
+  isolation: isolate;
+  color: #fffbed;
+}
+.scene-title {
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: linear-gradient(transparent, #142f28ed);
+}
+.scene-title h2 {
+  font-size: 2.45rem;
+  margin-bottom: 0.8rem;
+}
+.scene-title .eyebrow {
+  color: #d4be87;
+}
+.scene-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.7rem;
+  color: #d7e3d7;
+  text-transform: capitalize;
+}
+.scene-art-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: 7rem;
+  color: #c1d0b1;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff02 0,
+    #ffffff02 1px,
+    transparent 1px,
+    transparent 18px
+  );
+}
+.scene-art-placeholder > span {
+  font-size: 4rem;
+  font-weight: 200;
+  opacity: 0.4;
+}
+.scene-art-placeholder small {
+  font-size: 0.7rem;
+}
+.scene-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.scene-contents {
+  padding: 1.6rem;
+}
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.section-heading h3,
+.section-heading p {
+  margin-bottom: 0;
+}
+.section-heading > button {
+  background: transparent;
+  border: 0;
+  font-size: 1.2rem;
+}
+.entity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+.entity-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: start;
+  padding: 1.2rem;
+  gap: 0.4rem;
+  min-height: 190px;
+  background: #f6f6ee;
+  border-color: #e1e5d9;
+}
+.entity-card[aria-pressed='true'] {
+  border-color: #648061;
+  background: #e9efdf;
+  box-shadow: inset 0 0 0 1px #648061;
+}
+.entity-symbol {
+  font-size: 2.2rem;
+  color: #6b805e;
+  line-height: 1;
+  margin-bottom: 0.55rem;
+}
+.entity-kind {
+  color: var(--muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.entity-card strong {
+  font:
+    400 1.25rem Georgia,
+    serif;
+  color: #253d2e;
+}
+.entity-status {
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: #647361;
+  text-transform: capitalize;
+}
+.entity-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: #6c7d63;
+}
+.known-directory {
+  border-top: 1px solid var(--line);
+  padding: 1.2rem 1.6rem;
+}
+.known-directory > summary {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.known-directory p {
+  margin-top: 1rem;
+}
+.directory-list {
+  display: grid;
+  gap: 0.35rem;
+}
+.directory-list button {
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: 500;
+}
+.directory-list button span {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+.detail-panel {
+  padding: 1.5rem;
+}
+.detail-panel > h2 {
+  margin-bottom: 0.5rem;
+  overflow-wrap: anywhere;
+}
+.selection-empty {
+  min-height: 490px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--muted);
+  padding: 2rem 0.5rem;
+}
+.selection-empty h2 {
+  color: #3f5044;
+  line-height: 1.3;
+  font-size: 1.85rem;
+}
+.selection-empty p:last-child {
+  font-size: 0.83rem;
+  max-width: 16rem;
+  margin-bottom: 0;
+}
+.selection-mark {
+  font-size: 3.5rem;
+  color: #b7bda3;
+  margin-bottom: 1.3rem;
+}
+.presence-label {
+  font-size: 0.75rem;
+  color: #537049;
+  border-left: 2px solid #9eab82;
+  padding-left: 0.75rem;
+  margin-top: 1.5rem;
+}
+.world-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+  margin-top: 1.4rem;
+}
+.world-footer-grid > section {
+  border: 1px solid var(--line);
+  padding: 1.5rem;
+  border-radius: 8px;
+  min-width: 0;
+  background: #f9f9f3;
+}
+.world-footer-grid h2 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+}
+.memory-list {
+  list-style: none;
+  padding: 0;
+  max-height: 24rem;
+  overflow-y: auto;
+}
+.memory-list > li {
+  border-top: 1px solid var(--line);
+  padding: 1rem 0;
+}
+.memory-list p {
+  font-size: 0.83rem;
+  margin: 0.5rem 0;
+}
+.memory-list summary {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+.memory-list code {
+  font-size: 0.68rem;
+}

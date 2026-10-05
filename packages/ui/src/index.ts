@@ -1,8 +1,8 @@
-/**
- * Public entry point of @ltw/ui.
- *
- * Stage 0 placeholder. Presentation components arrive with the UX stages
- * (200+). UI consumes @ltw/contracts only; it never imports domain/rules
- * internals or AI providers (ARCHITECTURE_INVARIANTS.md #14, #22).
- */
-export {};
+/** Shared presentation only; authorized projections and callbacks come from the client. */
+export {
+  CharacterSheetDetails,
+  type CharacterSheetDetailsProps,
+} from './character-sheet-details.tsx';
+export { EncounterSummary, type EncounterSummaryProps } from './encounter-summary.tsx';
+export { KnowledgeDetails, type KnowledgeDetailsProps } from './knowledge-details.tsx';
+export { StatusPanel, type StatusPanelProps } from './status-panel.tsx';

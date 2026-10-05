@@ -92,6 +92,8 @@ export {
   type ListResult,
 } from './knowledge/queries.ts';
 export { controlledCharacter, holderPerspective } from './knowledge/perspective.ts';
+export { campaignSession } from './knowledge/session.ts';
+export { characterSheetView } from './character/view.ts';
 export { knownEntityIds, visibleRecords } from './knowledge/projection.ts';
 export type { MemoryRecord, SessionRecord } from './memory/records.ts';
 export {

@@ -90,6 +90,9 @@ export type {
   SessionListResponse,
   SessionView,
 } from './memory/views.ts';
+export type { SessionResponse } from './session/views.ts';
+export type { CharacterSheetResponse } from './rules/character-view.ts';
+export type { SurroundingsResponse } from './context/surroundings.ts';
 export {
   ABILITIES,
   CLASS_IDS,

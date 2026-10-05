@@ -10,5 +10,9 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     }
+  },
+  "dependencies": {
+    "@ltw/contracts": "workspace:*",
+    "react": "^19.3.0"
   }
 }

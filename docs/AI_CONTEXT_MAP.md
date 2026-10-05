@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), 110 (AI Authoring), 120 (Continuity Engine), 130 (NPC Intelligence), 140 (AI Relevance), 150 (Asset Identity), 160 (World Visual State), 170 (Chronicle), and 180 (Ravenford Integration) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), 110 (AI Authoring), 120 (Continuity Engine), 130 (NPC Intelligence), 140 (AI Relevance), 150 (Asset Identity), 160 (World Visual State), 170 (Chronicle), 180 (Ravenford Integration), and 200 (UX Foundation) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -65,7 +65,9 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Ravenford end to end: the played slice, the semantics ledger, acceptance, PostgreSQL | `apps/server/src/scenario/AGENTS.md`, ADR 0025 §1, §3 |
 | Character sheets (canonical) | `packages/domain/src/character/character.ts`; schema in `packages/contracts/src/rules/character-sheet.ts` |
 | Shared contracts (command shapes, results, IDs, world time) | `packages/contracts/src/index.ts`, `packages/contracts/src/kernel/` |
-| Client / UI | `apps/web/src/index.ts`, `packages/ui/src/index.ts` (placeholders; framework ADR at Stage 200) |
+| Client / UI | `apps/web/AGENTS.md`, ADR 0026; entry `apps/web/src/main.tsx`; shared presentation `packages/ui/AGENTS.md` |
+| Browser session, perspective changes, stale requests | `apps/web/src/session/app.tsx`, `apps/web/src/api/client.ts`, `resource.ts`; E2E `tests/e2e/AGENTS.md` |
+| Session identity and full authorized character sheets | `packages/domain/src/knowledge/session.ts`, `packages/domain/src/character/AGENTS.md`; routes `apps/server/src/http/routes/session-routes.ts`, `character-routes.ts`; contracts `packages/contracts/src/session/views.ts`, `rules/character-view.ts` |
 | Ravenford fixtures | `fixtures/ravenford/AGENTS.md` |
 | Context-budget check | `scripts/context-budget/budget.ts` (policy constants), `scripts/context-budget/cli.ts` |
 | Test layout | `vitest.config.ts` (unit vs integration projects), `tests/AGENTS.md`; package tests sit beside source as `*.test.ts` / `*.integration.test.ts`; test support in `testing/` folders (excluded from builds): `packages/domain/src/kernel/testing/`, `packages/context/src/testing/`, `packages/combat/src/testing/`, `packages/ai/src/testing/`, `packages/domain/src/authoring/testing/`, `packages/domain/src/assets/testing/`, `packages/domain/src/visual/testing/`, `packages/domain/src/chronicle/testing/`, `apps/server/src/testing/` (including `scenario/`) |

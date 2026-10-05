@@ -2,7 +2,7 @@
 
 AI-native tabletop RPG platform where the world is the interface. Product and architecture authority lives in the root documents: `PRODUCT_BLUEPRINT.md`, `ARCHITECTURE.md`, `ARCHITECTURE_INVARIANTS.md`, `RAVENFORD_SPEC.md`. Development proceeds in gated stages (`EXECUTION_PLAN.md`, `AGENT_WORKFLOW.md`, `work-orders/`).
 
-**Current state:** Stage 180 (Full Ravenford Integration) complete. Astra Gate 05, the full red team, failed on one High and one Medium finding (`reviews/ASTRA_GATE_05_REPORT.md`); retest 1 confirmed both closed and found one more High (`reviews/ASTRA_GATE_05_RETEST_1.md`), now remediated (`remediation/OPUS_GATE_05_REMEDIATION.md`) and awaiting Astra retest 2 (`handoffs/ASTRA_GATE_05_REQUEST.md`). Astra Gate 04, covering Stages 100–130, passed at retest 1 (`reviews/ASTRA_GATE_04_RETEST_1.md`, revision `987c223`), after one High and two Medium findings were remediated (`remediation/OPUS_GATE_04_REMEDIATION.md`). Astra Gate 03 passed earlier (retest 4, revision `998887d`), and Gate 02 before it (retest 2, revision `017ab0b`). The stages so far provide:
+**Current state:** Stage 200 (UX foundation) implemented; see `reports/STAGE_200_COMPLETION.md` for validation and limitations. Backend Gate 05 passed at retest 2 (`reviews/ASTRA_GATE_05_RETEST_2.md`); no findings remain open. Stage 210 requires separate owner authorization. Earlier capabilities:
 
 - **World Kernel:** campaign event stream, World Engine, replay, audit, undo.
 - **Knowledge Boundary:** typed records in WORLD_TRUTH, DM, PUBLIC, PARTY, CHARACTER, and NPC scopes, with perspective-scoped projections. Passed Astra Gate 01.
@@ -40,10 +40,34 @@ pnpm db:up            # start PostgreSQL and wait until healthy
 pnpm build
 pnpm db:migrate       # bootstrap/upgrade the database schema
 pnpm seed:ravenford   # seed the Ravenford kernel fixture (idempotent)
-pnpm dev:server       # http://127.0.0.1:3000/healthz
+pnpm dev:server       # API on http://127.0.0.1:3000
+# In another terminal:
+pnpm dev:web          # open http://127.0.0.1:5173
 ```
 
 Configuration is optional in development: safe defaults point at the docker-compose database. Copy `.env.example` to `.env` to override. Production requires `DATABASE_URL`.
+
+## Player/DM local experience
+
+Open the web client, keep campaign `ravenford`, and enter the development persona token
+`dev-player-elowen` or `dev-dm-ravenford` from `fixtures/ravenford/personas.json`.
+Tokens are entered explicitly and live only in memory. These personas are for local
+development; production authentication is not implemented.
+
+Select a location to view its authorized scene, then a visible entity. Expand **Full
+knowledge** or **Full character sheet** for details. DM may select Elowen's perspective
+to inspect the player view. **Refresh world** discards the current projection and
+reloads it; **Leave session** clears the session. Viewing a location does not move a
+character. Contextual options and encounter/reaction summaries are read-only in Stage
+200; interaction, combat, and authoring workflows belong to later stages.
+
+`LTW_API_TARGET=http://127.0.0.1:3000 pnpm dev:web` overrides the local API proxy target.
+No AI provider is needed. The client bundle is in `apps/web/build`; this is a build
+artifact, not a production deployment.
+
+Install the browser once with `pnpm exec playwright install chromium`, then run
+`pnpm test:e2e`. The test suite owns isolated API/Vite servers on ports 4311/4310 and
+uses a real seeded in-memory World Engine. It requires no database or external AI.
 
 ## Commands
 
@@ -56,7 +80,9 @@ Configuration is optional in development: safe defaults point at the docker-comp
 | `pnpm context-budget` | Fails if any active source/test/stylesheet file exceeds 700 lines (warns above 500) |
 | `pnpm test` | Unit tests (no external services) |
 | `pnpm test:integration` | Integration tests; needs PostgreSQL (`pnpm db:up`) |
-| `pnpm build` / `pnpm clean` | `tsc -b` build of all projects / remove outputs |
+| `pnpm test:e2e` | Browser/API journeys; install Playwright Chromium first |
+| `pnpm dev:web` | Local Player/DM web client and API proxy |
+| `pnpm build` / `pnpm clean` | Compile all projects and bundle the web app / remove TypeScript outputs |
 | `pnpm db:up` / `pnpm db:down` | Start / stop local PostgreSQL |
 | `pnpm db:migrate` | Apply pending SQL migrations (run `pnpm build` first) |
 | `pnpm seed:ravenford` | Seed the Ravenford kernel and knowledge fixtures through the World Engine; rerunning reports duplicates only |
@@ -84,6 +110,8 @@ Routes under `/campaigns/:campaignId/`:
 - `GET memories` (filters `q`, `entity`, `location`, `from`, `to`, `kind`, `session`, `asOf`, `limit`)
 - `GET memories/:memoryId`
 - `GET sessions` (campaign members; no perspective)
+- `GET session` (caller identity and permitted views; no perspective)
+- `GET entities/:entityId/sheet` (DM or the perspective’s own character; ADR 0026)
 - `GET entities/:entityId/context` (acting character only; ADR 0012)
 - `GET encounter` (the running encounter as the perspective sees it; ADR 0015)
 - `POST commands`
@@ -97,16 +125,16 @@ Every knowledge GET requires `perspective=DM|PUBLIC|PARTY|PLAYER|CHARACTER:<id>|
 
 ```text
 apps/server/         composition root: config, logging, migrations, HTTP (only package with I/O)
-apps/web/            client placeholder (framework ADR at Stage 200)
+apps/web/            React/Vite Player/DM client (ADR 0026)
 packages/contracts/  shared serializable contracts: kernel commands, results, IDs, world time
 packages/domain/     World Kernel, knowledge, memory, character sheets (pure)
 packages/rules/      deterministic SRD 5.2.1 slice rules (pure)
 packages/context/    Context Engine: entity context, actions, legality, relevance (pure)
 packages/combat/     Combat Engine: encounters, turns, attacks, spells, damage (pure)
 packages/ai/         AI gateway: providers, routing, scoped context, proposals, traces (pure; no World Engine)
-packages/ui/         presentation components (placeholder; Stage 200+)
+packages/ui/         shared character, knowledge, encounter, and status components
 fixtures/ravenford/  Ravenford test fixtures and seeds (see its AGENTS.md)
-tests/               repository-level tests (architecture boundaries)
+tests/               repository-level architecture tests and browser journeys
 scripts/             tooling (context budget, local CI)
 docs/adr/            architecture decision records
 reports/             stage completion reports

@@ -1,0 +1,9 @@
+{
+  "journey": "ui-investigation-journey",
+  "unknownConcept": "ui-investigation-unknown",
+  "commandFailure": "ui-investigation-failure",
+  "selectionRace": "ui-investigation-selection",
+  "perspectiveRace": "ui-investigation-perspective",
+  "logoutRace": "ui-investigation-logout",
+  "recallRace": "ui-investigation-recall"
+}

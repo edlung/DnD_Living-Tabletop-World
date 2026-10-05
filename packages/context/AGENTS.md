@@ -21,6 +21,7 @@ Rules:
 - Relevance and topics read only `ContextInputs.records`, `memories`, `known`, and `perceived` — never `state.knowledge`, `state.memories`, or another holder's data. Relevance never changes legality.
 - Check order protects secrets: actor state, then presence, then target status. An absent target is always `NOT_PRESENT`.
 - Views are built field by field. Never spread canonical objects into output.
+- Stage 210 `src/surroundings.ts` enumerates only the acting character's already-perceived current/nearby locations using `gatherInputs` and `entityRefFor`. It never adds knowledge or reveals unknown names. Boundary tests: `src/surroundings.test.ts`; HTTP route/tests: `apps/server/src/http/routes/surroundings-routes.ts`, `surroundings-routes.test.ts`.
 - Perceived entities are shown by ID and kind. An entity whose identity must stay secret needs an opaque ID (ADR 0008).
 - Executable actions (`enter_location`, `inspect`, checks, `ask_about`, `show_evidence`, `insight_check`) must stay aligned with World Engine acceptance (ADR 0013, ADR 0020), and `talk` with the dialogue's `checkTalk`: `command-alignment.test.ts`. `trade` is `NOT_AVAILABLE`.
 - Relevance may read the acting scope's own showings (`inputs.shown`), never an NPC's attitude, disclosure, or another holder's showings.

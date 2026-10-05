@@ -79,3 +79,9 @@ jobs:
 
       - name: Integration tests
         run: pnpm run test:integration
+
+      - name: Install Chromium for UI journeys
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: UI and API journeys
+        run: pnpm run test:e2e

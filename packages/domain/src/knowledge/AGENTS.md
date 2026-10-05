@@ -2,15 +2,16 @@
 
 Security-critical module. Authority: `docs/adr/0008-knowledge-boundary.md` (owner-approved), invariants 4–7. Gate 01 reviews it; every later stage that reads knowledge must go through `perspective.ts` → `queries.ts`.
 
-| Concern                                         | File                                           |
-| ----------------------------------------------- | ---------------------------------------------- |
-| Record shape, scope keys                        | `records.ts`                                   |
-| Event payloads and undo restores                | `events.ts` (composed into `kernel/events.ts`) |
-| Authoring rules (AddKnowledge, AssignCharacter) | `decide.ts`                                    |
-| Fold                                            | `evolve.ts`                                    |
-| Who may use which perspective; visible scopes   | `perspective.ts`                               |
-| Canonical → view whitelist                      | `projection.ts`                                |
-| Perspective-scoped queries                      | `queries.ts`                                   |
+| Concern                                              | File                                                                              |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Record shape, scope keys                             | `records.ts`                                                                      |
+| Event payloads and undo restores                     | `events.ts` (composed into `kernel/events.ts`)                                    |
+| Authoring rules (AddKnowledge, AssignCharacter)      | `decide.ts`                                                                       |
+| Fold                                                 | `evolve.ts`                                                                       |
+| Who may use which perspective; visible scopes        | `perspective.ts`                                                                  |
+| Canonical → view whitelist                           | `projection.ts`                                                                   |
+| Perspective-scoped queries                           | `queries.ts`                                                                      |
+| Authenticated caller and current perspective choices | `session.ts` (current assignment only; no credentials or other player identities) |
 
 Rules:
 

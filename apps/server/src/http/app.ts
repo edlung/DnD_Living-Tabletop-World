@@ -13,6 +13,7 @@ import { sendError } from './errors.ts';
 import { registerAiRoutes } from './routes/ai-routes.ts';
 import { registerAssetRoutes } from './routes/asset-routes.ts';
 import { registerChronicleRoutes } from './routes/chronicle-routes.ts';
+import { registerCharacterRoutes } from './routes/character-routes.ts';
 import { registerAuthoringRoutes } from './routes/authoring-routes.ts';
 import { registerCommandRoutes } from './routes/command-routes.ts';
 import { registerContextRoutes } from './routes/context-routes.ts';
@@ -21,6 +22,8 @@ import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
 import { registerNpcRoutes } from './routes/npc-routes.ts';
 import { registerQuestRoutes } from './routes/quest-routes.ts';
+import { registerSessionRoutes } from './routes/session-routes.ts';
+import { registerSurroundingsRoutes } from './routes/surroundings-routes.ts';
 import { registerVisualRoutes } from './routes/visual-routes.ts';
 
 /**
@@ -73,8 +76,11 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
 
   app.get('/healthz', (_request, reply) => reply.send({ status: 'ok' }));
   registerKnowledgeRoutes(app, deps);
+  registerSessionRoutes(app, deps);
+  registerCharacterRoutes(app, deps);
   registerMemoryRoutes(app, deps);
   registerContextRoutes(app, deps);
+  registerSurroundingsRoutes(app, deps);
   registerEncounterRoutes(app, deps);
   registerCommandRoutes(app, deps);
   registerAiRoutes(app, deps);

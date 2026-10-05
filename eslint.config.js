@@ -68,7 +68,14 @@ const boundaryConfigs = Object.entries(boundaries.packages).flatMap(([name, rule
 export default defineConfig(
   {
     name: 'ltw/ignores',
-    ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/coverage/**'],
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/coverage/**',
+      'playwright-report/**',
+      'test-results/**',
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.strictTypeChecked,

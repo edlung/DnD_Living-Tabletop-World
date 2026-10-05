@@ -21,3 +21,15 @@ Gate 01 uses Mira as an NPC scope fixture. It does not claim to test runtime NPC
 Every handoff/review records due surfaces, actual evidence, required-but-unavailable surfaces, and future obligations. Missing required coverage blocks PASS. A future obligation is NOT YET IN SCOPE, never PASS; it must name its introduction stage and review gate. Gate 05 closes all backend obligations in this table.
 
 Stages 200–230 introduce real UI consumers of reviewed contracts. Run boundary/E2E regressions as those consumers appear, including perspective switching and stale action/preview handling. Backend review does not certify UI behavior. If a change invalidates a previously reviewed invariant boundary, reopen the affected gate with a RETEST handoff and next unused retest number, preserving earlier reports under `AGENT_WORKFLOW.md`. Stage 250 must link the resulting evidence to its release candidate.
+
+Stage 200 introduction evidence (ADR 0026): session bootstrap and full-sheet routes
+have membership/perspective/whitelist tests in `apps/server/src/http/` and
+`packages/domain/src/character/view.test.ts`. Browser journeys are routed by
+`tests/e2e/AGENTS.md`; they cover Player/DM DOM and response isolation, delayed and
+failed perspective changes, hidden character options, selection races, full sheets,
+loading/empty/recovery, logout/history navigation, and keyboard/narrow layouts.
+Existing authorization rules, canonical mutation paths, and reviewed projections
+are unchanged; the new reads apply the same boundary with explicit field lists.
+No prior gate coverage was invalidated; this is new UI introduction evidence, not
+an assertion that Gate 05 reviewed the frontend. Completion evidence and exact
+commands: `reports/STAGE_200_COMPLETION.md`.

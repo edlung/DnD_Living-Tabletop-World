@@ -1,0 +1,8 @@
+{
+  "type": "CreateEntity",
+  "entityId": "b27fefda-3a9e-416a-8580-8ab36924f200",
+  "kind": "character",
+  "name": "Veiled Archivist Q7",
+  "description": "A browser-boundary sentinel, unknown to the party.",
+  "existsSince": null
+}

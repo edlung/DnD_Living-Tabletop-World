@@ -1,0 +1,281 @@
+.exploration-scene {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  overflow: hidden;
+  color: #f4f0e2;
+  background:
+    radial-gradient(ellipse at 50% 55%, #54624a45, transparent 65%),
+    repeating-linear-gradient(135deg, #ffffff03 0 1px, transparent 1px 14px), #203e35;
+}
+.exploration-art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.exploration-art .scene-image {
+  opacity: 0.25;
+}
+.exploration-art .scene-art-placeholder {
+  display: none;
+}
+.exploration-heading {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1.25rem;
+  padding: 2rem 2rem 1.4rem;
+  border-bottom: 1px solid #e2d1a524;
+}
+.exploration-heading .eyebrow {
+  color: #d7bf89;
+  font-size: 0.6rem;
+  margin-bottom: 0.45rem;
+}
+.exploration-heading h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.exploration-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 0.4rem 0.75rem;
+  max-width: 12rem;
+  padding-top: 0.2rem;
+  font-size: 0.68rem;
+  line-height: 1.6;
+  color: #d8dfcb;
+  text-transform: capitalize;
+  text-align: right;
+}
+.exploration-meta > span:last-child {
+  flex-basis: 100%;
+  font-variant-numeric: tabular-nums;
+}
+.exploration-presence {
+  position: relative;
+  padding: 1.2rem 1.4rem 1.8rem;
+  min-height: 360px;
+}
+.exploration-presence-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 0.6rem;
+  gap: 1rem;
+  color: #d2dbc8;
+}
+.exploration-presence-heading h3 {
+  font-size: 0.68rem;
+  font-weight: 500;
+  margin: 0;
+}
+.exploration-presence-heading > span {
+  font-size: 0.63rem;
+  color: #b6c3ad;
+}
+.exploration-presence > .status-panel {
+  max-width: 28rem;
+  margin: 4rem auto;
+  text-align: center;
+  color: #e4e5d7;
+  background: #1b352ed9;
+  border-color: #a7b69b45;
+}
+.world-objects {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 138px), 1fr));
+  align-items: start;
+  justify-content: center;
+  gap: 1.25rem 0.5rem;
+  list-style: none;
+  padding: 2.4rem 0 1.6rem;
+  margin: 0 auto;
+  max-width: 680px;
+}
+.world-objects::before {
+  content: '';
+  position: absolute;
+  inset: 0.8rem 8% 0.5rem;
+  border: 1px solid #d0b88114;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow:
+    0 0 0 1.2rem #d0b88104,
+    inset 0 0 45px #b6c59b08;
+}
+.world-objects > li {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+.world-objects > li:nth-child(3n + 2) {
+  padding-top: 1rem;
+}
+.world-object {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 0.35rem;
+  width: 100%;
+  max-width: 195px;
+  min-height: 165px;
+  padding: 0.8rem 0.45rem;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 12px;
+  text-align: center;
+  color: #f2efdf;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+.world-object:hover,
+.world-object[aria-pressed='true'] {
+  color: #fff8e7;
+  background: #e6d6a911;
+  border-color: #d6bb7838;
+}
+.world-object:focus-visible {
+  outline-color: #ecd598;
+  outline-offset: 2px;
+}
+.world-object-marker {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 0.6rem;
+  border: 1px solid #d0be8b;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, #f3ebd3, #d5c8a0);
+  color: #3d5141;
+  box-shadow:
+    0 5px 0 #897d5d,
+    0 9px 14px #0c211b8c,
+    0 0 0 5px #142d2538;
+  transition: box-shadow 150ms ease;
+}
+.world-object-marker > svg {
+  width: 42px;
+  height: 42px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.world-object[aria-pressed='true'] .world-object-marker {
+  background: radial-gradient(circle at 35% 25%, #fff3c8, #e5c77d);
+  box-shadow:
+    0 5px 0 #9c844c,
+    0 9px 14px #0c211b8c,
+    0 0 0 5px #d6bb7840;
+}
+.world-object-selected {
+  position: absolute;
+  right: -5px;
+  bottom: -1px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #e1c88b;
+  border-radius: 50%;
+  background: #234b37;
+  color: #fff5d7;
+  font-size: 0.75rem;
+}
+.world-object-kind {
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #d4c296;
+}
+.world-object strong {
+  font:
+    400 1.02rem Georgia,
+    serif;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.world-object-state {
+  font-weight: 400;
+  font-size: 0.63rem;
+  line-height: 1.5;
+  color: #c0cdb5;
+  text-transform: capitalize;
+}
+.exploration-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  border-top: 1px solid #e2d1a524;
+  padding: 1rem 2rem;
+  background: #152f2740;
+}
+.exploration-caption p {
+  font-size: 0.69rem;
+  margin: 0;
+  color: #e0e3d3;
+}
+.exploration-caption > span {
+  font-size: 0.6rem;
+  color: #bbc9b1;
+}
+@media (max-width: 760px) {
+  .exploration-heading {
+    flex-wrap: wrap;
+    padding: 1.5rem 1.25rem 1rem;
+    gap: 0.8rem;
+  }
+  .exploration-meta {
+    justify-content: start;
+    text-align: left;
+    max-width: none;
+    padding: 0;
+  }
+  .exploration-meta > span:last-child {
+    flex-basis: auto;
+  }
+  .exploration-presence {
+    padding: 1rem 0.8rem;
+  }
+  .world-objects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem 0;
+    padding-top: 1.5rem;
+  }
+  .world-objects > li:nth-child(3n + 2) {
+    padding-top: 0;
+  }
+  .world-objects > li:nth-child(even) {
+    padding-top: 1.25rem;
+  }
+  .world-object {
+    padding-inline: 0.3rem;
+  }
+  .world-object strong {
+    font-size: 0.98rem;
+  }
+  .exploration-caption {
+    padding: 1rem 1.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-object,
+  .world-object-marker {
+    transition: none;
+  }
+}
