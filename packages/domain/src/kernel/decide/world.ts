@@ -26,6 +26,8 @@ export function decideCreateCampaign(
       worldName: command.worldName,
       startsAt: command.startsAt,
       dmActorId: context.actor.actorId,
+      // Recorded only when chosen, so English campaigns write the same event as before.
+      ...(command.language === undefined ? {} : { language: command.language }),
     },
   });
 }

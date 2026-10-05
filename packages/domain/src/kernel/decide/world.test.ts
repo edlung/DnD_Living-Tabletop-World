@@ -27,8 +27,43 @@ describe('campaign creation', () => {
       worldName: 'Testland',
       startsAt: START,
       dmActorId: 'dm-1',
+      language: 'en',
     });
     expect(state.clock).toBe(START);
+  });
+
+  it('reads a history that never recorded a language as English, and writes none for English', async () => {
+    const history = await harness.history();
+    const created = history.find((event) => event.type === 'CampaignCreated');
+    expect(created?.payload).not.toHaveProperty('language');
+  });
+
+  it('records a chosen language once, as the campaign language', async () => {
+    const russian = createHarness();
+    expectAccepted(
+      await russian.submit({
+        type: 'CreateCampaign',
+        name: 'Пропавший караван',
+        worldName: 'Равенфорд',
+        startsAt: START,
+        language: 'ru',
+      }),
+    );
+    expect((await russian.state()).campaign?.language).toBe('ru');
+    const created = (await russian.history()).find((event) => event.type === 'CampaignCreated');
+    expect(created?.payload).toMatchObject({ language: 'ru' });
+  });
+
+  it('rejects an unknown language as invalid input', async () => {
+    const odd = createHarness();
+    const result = await odd.submit({
+      type: 'CreateCampaign',
+      name: 'X',
+      worldName: 'Y',
+      startsAt: START,
+      language: 'de',
+    });
+    expect(result.status).toBe('rejected');
   });
 });
 

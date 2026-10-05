@@ -6,6 +6,7 @@ import {
   commandIdSchema,
   entityIdSchema,
   kernelCommandTypeSchema,
+  languageSchema,
   sceneIdSchema,
   worldTimeSchema,
 } from '@ltw/contracts';
@@ -131,6 +132,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
         worldName: text,
         startsAt: worldTimeSchema,
         dmActorId: actorSchema.shape.actorId,
+        /** Absent in histories written before ADR 0031: they read as English. */
+        language: languageSchema.optional(),
       })
       .strict(),
   ),

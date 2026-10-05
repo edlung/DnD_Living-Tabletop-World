@@ -91,6 +91,7 @@ export type {
   SessionView,
 } from './memory/views.ts';
 export type { SessionResponse } from './session/views.ts';
+export { DEFAULT_LANGUAGE, LANGUAGES, languageSchema, type Language } from './language/language.ts';
 export type { CharacterSheetResponse } from './rules/character-view.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';
 export {

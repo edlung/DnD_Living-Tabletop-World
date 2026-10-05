@@ -33,7 +33,11 @@ export function campaignSession(state: WorldState, actor: Actor): SessionRespons
     actorId: actor.actorId,
     role,
     character,
-    campaign: { campaignId: state.campaign.campaignId, name: state.campaign.name },
+    campaign: {
+      campaignId: state.campaign.campaignId,
+      name: state.campaign.name,
+      language: state.campaign.language,
+    },
     perspectives,
   };
 }

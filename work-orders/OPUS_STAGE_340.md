@@ -1,7 +1,7 @@
 # Opus Work Order — Stage 340: Production Authentication
 
 > [!IMPORTANT]
-> **MODEL:** Claude Opus 5.5  
+> **MODEL:** Claude Sonnet 5.5 (per `EFFORT_MATRIX.md`)  
 > **EFFORT:** MAX  
 > **AUTHORIZED STAGE:** 340 ONLY  
 > **NEXT ACTION AFTER PASS:** Stage 350 — Opus effort HIGH  

@@ -1,7 +1,7 @@
 # Opus Work Order — Stage 320: Visual Language and Scene
 
 > [!IMPORTANT]
-> **MODEL:** Claude Opus 5.5  
+> **MODEL:** Claude Sonnet 5.5 (per `EFFORT_MATRIX.md`)  
 > **EFFORT:** HIGH  
 > **AUTHORIZED STAGE:** 320 ONLY  
 > **NEXT ACTION AFTER PASS:** Stage 330 — Opus effort HIGH  

@@ -36,19 +36,19 @@ Do not switch effort merely because a new ordinary stage begins. Switch Opus to 
 | 230 | Claude Opus 5.5 | HIGH | DM authoring UX using validated commands |
 | 240 | Claude Opus 5.5 | HIGH | Product validation and usability evidence |
 | 250 | Claude Opus 5.5 | HIGH | Vertical slice release |
-| 290 | Claude Opus 5.5 | **MAX** | Language enters canonical history; reviewed Chronicle and recall rules change |
-| 300 | Claude Opus 5.5 | HIGH | Live AI behind the existing gateway; no new mutation path |
-| 310 | Claude Opus 5.5 | **MAX** | Change signal is a new knowledge-boundary surface; DM acts for an absent player |
-| 320 | Claude Opus 5.5 | HIGH | Visual language; presentation only |
-| 330 | Claude Opus 5.5 | HIGH | Real images behind the existing image port |
-| 340 | Claude Opus 5.5 | **MAX** | Production authentication boundary |
-| 350 | Claude Opus 5.5 | HIGH | Deployment → **Astra Gate 06 / MAX Full-Stack Red Team** |
+| 290 | Claude Sonnet 5.5 | **MAX** | Language enters canonical history; reviewed Chronicle and recall rules change |
+| 300 | Claude Sonnet 5.5 | HIGH | Live AI behind the existing gateway; no new mutation path |
+| 310 | Claude Sonnet 5.5 | **MAX** | Change signal is a new knowledge-boundary surface; DM acts for an absent player |
+| 320 | Claude Sonnet 5.5 | HIGH | Visual language; presentation only |
+| 330 | Claude Sonnet 5.5 | HIGH | Real images behind the existing image port |
+| 340 | Claude Sonnet 5.5 | **MAX** | Production authentication boundary |
+| 350 | Claude Sonnet 5.5 | HIGH | Deployment → **Astra Gate 06 / MAX Full-Stack Red Team** |
 | 355 | GPT-6 Astra | **MAX** | Gate 06 review of the deployed build; no Opus implementation work order |
-| 360 | Claude Opus 5.5 | HIGH | Human playtests and the v0.1 release |
+| 360 | Claude Sonnet 5.5 | HIGH | Human playtests and the v0.1 release |
 
 ## Model Exceptions
 
-Stages 200–250 ran under owner exceptions recorded in their reports (a GPT model for Stage 200, Claude Sonnet 5.5 for Stages 210–250). From Stage 290 on, the owner changes this matrix before a stage starts when a different builder model or effort is wanted; a stage does not start under an unrecorded exception. Reviewer independence does not change: no model approves its own checkpoint.
+Stages 200–250 ran under owner exceptions recorded in their reports (a GPT model for Stage 200, Claude Sonnet 5.5 for Stages 210–250). From Stage 290 on, the builder is Claude Sonnet 5.5 (owner decision, 2026-10-05, after its results in Stages 210–250); the owner changes this matrix before a stage starts when a different builder model or effort is wanted; a stage does not start under an unrecorded exception. Reviewer independence does not change: no model approves its own checkpoint.
 
 ## Remediation Rule
 

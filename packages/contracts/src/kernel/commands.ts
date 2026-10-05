@@ -9,6 +9,7 @@ import {
   retractAssetCommandSchema,
   startAssetJobCommandSchema,
 } from '../assets/commands.ts';
+import { languageSchema } from '../language/language.ts';
 import { setWeatherCommandSchema } from '../visual/commands.ts';
 import { generateChronicleCommandSchema } from '../chronicle/commands.ts';
 import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
@@ -84,6 +85,8 @@ const createCampaign = z
     name: entityNameSchema,
     worldName: entityNameSchema,
     startsAt: worldTimeSchema,
+    /** Play language (ADR 0031); `en` when omitted. */
+    language: languageSchema.optional(),
   })
   .strict();
 

@@ -1,7 +1,7 @@
 # Opus Work Order — Stage 360: Playtests and Release v0.1
 
 > [!IMPORTANT]
-> **MODEL:** Claude Opus 5.5  
+> **MODEL:** Claude Sonnet 5.5 (per `EFFORT_MATRIX.md`)  
 > **EFFORT:** HIGH  
 > **AUTHORIZED STAGE:** 360 ONLY  
 > **NEXT ACTION AFTER PASS:** STOP — release complete; no further stage authorized  
