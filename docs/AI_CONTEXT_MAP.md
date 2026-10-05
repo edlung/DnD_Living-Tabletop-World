@@ -19,6 +19,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Prepare/review a checkpoint | `CHECKPOINTS.md`, `docs/GATE_COVERAGE.md`, exact handoff, `ASTRA_MASTER.md`, relevant mission in `ASTRA_GATE_PROMPTS.md`, `ASTRA_REVIEW.md` |
 | Remediation/retest | Exact failed report, `OPUS_REMEDIATION_TEMPLATE.md`, `HANDOFF_TEMPLATE.md`, `AGENT_WORKFLOW.md` (Retest Rule) |
 | UX, validation, release | Authorized Stage 200–250 work order, relevant product/Ravenford acceptance sections |
+| Alpha phase: language, live AI, live session, visual, images, sign-in, deployment, playtests | `EXECUTION_PLAN.md` (Alpha Phase), `docs/IMPLEMENTATION_PREREQUISITES.md` (Q4–Q11), the one authorized Stage 290–360 work order; Gate 06 mission in `ASTRA_GATE_PROMPTS.md` |
 
 ## Code and tooling
 

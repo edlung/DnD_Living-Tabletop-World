@@ -1,4 +1,4 @@
-# Living Tabletop World --- Execution Plan v0.2
+# Living Tabletop World --- Execution Plan v0.3
 
 ## Purpose
 
@@ -36,7 +36,8 @@ agent.
 Stage prerequisites are in `docs/IMPLEMENTATION_PREREQUISITES.md`; surface
 introduction and recurring review obligations are in `docs/GATE_COVERAGE.md`.
 Missing required checks cannot be reported as PASS. Every implementation
-stage has one work order; Stage 190 is the independent Gate #5 review.
+stage has one work order; Stage 190 is the independent Gate #5 review and
+Stage 355 is the independent Gate #6 review.
 
 ### Stage 0 --- Repository Foundation
 
@@ -217,6 +218,123 @@ the world or hunt through UI?**
 
 Release `Ravenford Vertical Slice v0.1` only after product,
 architecture, adversarial, and usability gates pass.
+
+A release candidate was prepared on 2026-10-05 and not released
+(`reports/STAGE_250_RELEASE.md`). The release completes at Stage 360.
+
+## Alpha Phase --- Stages 290--360 (added in v0.3)
+
+Approved in outline by the project owner on 2026-10-05. The owner's
+decisions and the questions still open are in
+`docs/IMPLEMENTATION_PREREQUISITES.md` (Q4--Q11).
+
+**Goal:** a closed alpha --- several uncoached sessions with real people,
+in Russian, on a deployed build --- and then the v0.1 release. Stages
+0--250 showed that the world keeps its integrity. Nothing yet shows that a
+session feels like a living world: no person has played the slice, no live
+model has run, and the client has had no independent review.
+
+**Order:** language first, so that models are evaluated and the client is
+rebuilt on real Russian content; then live AI, the cheapest test of
+whether the world comes alive; then what several people need to play
+together; then the visual work; then what a deployment needs.
+
+### Stage 290 --- Language Foundation and Russian Ravenford
+
+A campaign has one play language. Everything a Player or DM reads follows
+it: client text, text the World Engine records, fixtures, deterministic
+templates, AI output, and the lexical rules that check prose and search
+memories. English stays supported and every existing suite keeps running
+in English. Ravenford gains a Russian seed built on an owner-approved
+glossary of names and terms. Text recorded in events must replay
+identically, so how language enters history is settled in an ADR first.
+
+**Gate:** existing suites pass unchanged in English; the Russian Ravenford
+scenario passes end to end, including Chronicle hedging and memory recall;
+a Russian player's view shows no English beyond the glossary's names. The
+reviewed Chronicle and recall rules change here; Gate #6 reviews them.
+
+### Stage 300 --- Live AI
+
+Run real providers behind the existing gateway: correct the Anthropic
+adapter for current models, add an adapter for OpenAI-compatible APIs
+(DeepSeek), route each capability to its own model, and record latency,
+tokens, and cost in traces under enforced budgets. Build an evaluation
+harness with Russian cases for every AI use. The owner chooses the
+NPC-dialogue model from a blind comparison. AI still only proposes; no
+write path is added.
+
+**Gate:** deterministic suites unchanged without keys; an evaluation
+report with pass rates, latency, and cost per session for each model;
+outage, invalid output, timeout, refusal, and exhausted budget fall back
+as ADR 0017 requires.
+
+### Stage 310 --- Live Session
+
+Several people play at once without refreshing. The server tells connected
+clients that the campaign changed; each client re-reads its own scoped
+projections. A waiting reaction appears for its player at once. The DM can
+keep a session moving when a player is away, and can find and undo earlier
+authoring commits after a reload.
+
+**Gate:** the change signal carries no world content and reveals nothing a
+perspective could not already read; multi-client journeys for combat,
+reactions, and authoring; reconnect and stale-client recovery.
+
+### Stage 320 --- Visual Language and Scene
+
+The owner picks a direction from prototypes of the key screens. Rebuild
+the client around the scene: the place and who is in it fill the view, NPC
+speech appears in the scene, the battlefield is a map, the Chronicle reads
+as a book, and controls appear in context. Presentation only: no contract,
+rule, or projection changes, and visual state stays outside world state.
+
+### Stage 330 --- Images
+
+Replace the placeholder generator with the OpenAI image adapter behind the
+existing image port. Generate the fixed Ravenford cast and places once as
+a curated, DM-approved set; generate on demand only what the DM authors in
+play. Variants derive from the approved canonical reference. Add the DM's
+approval flow to the client, cost limits, and durable content storage.
+
+### Stage 340 --- Production Authentication
+
+Decide and build production sign-in and campaign membership; development
+personas stay refused in production. Sessions, revocation, rate limits,
+and the DM's management of who may join.
+
+**Gate:** the request check order of ADR 0009 holds; forged, expired,
+revoked, and cross-campaign credentials fail closed; no credential reaches
+logs, traces, URLs, or browser storage beyond what the ADR allows.
+
+### Stage 350 --- Deployment
+
+Deploy the slice to the owner's VPS: containers, TLS, static client
+hosting, secrets from the environment, migrations on deploy, PostgreSQL
+backups with a restore drill, health checks, logs, and a runbook. Nothing
+is announced or released here.
+
+### Stage 355 --- Astra Gate #6 Full-Stack Red Team
+
+Attack the deployed build without source modification: sign-in and
+sessions, perspective isolation in the client and over the change signal,
+prompt injection against live models in Russian and English, the
+language-dependent rules changed at Stage 290, image visibility, abuse and
+cost limits, and backup/restore integrity. This is also the first
+independent review of the client built in Stages 200--240. This is Gate
+#6; use `handoffs/ASTRA_GATE_06_REQUEST.md` and
+`reviews/ASTRA_GATE_06_REPORT.md`. There is no Opus implementation work
+order for Stage 355.
+
+### Stage 360 --- Playtests and Release v0.1
+
+Run three to five uncoached sessions with real people (a DM and one to
+three players) in Russian on the deployed build. Primary question, as in
+Stage 240: **did they interact with the world or hunt through UI?** Record
+observations apart from interpretation, obtain the owner's disposition,
+remediate within bounds, and then complete the release that Stage 250
+prepared. An AI stand-in pass may precede the sessions as a filter; it is
+never acceptance.
 
 ## Responsibility Split
 

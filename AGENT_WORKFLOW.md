@@ -1,4 +1,4 @@
-# Living Tabletop World — Agent Workflow Contract v1.2
+# Living Tabletop World — Agent Workflow Contract v1.3
 
 ## Purpose
 This file defines the mandatory Opus ↔ Astra development loop. It is an execution protocol, not product documentation.
@@ -25,15 +25,19 @@ At a formal checkpoint, `GATE_PASS` is required before the owner may authorize t
 - After Stage 90: Astra Gate #3 — Reaction Integrity.
 - After Stage 130: Astra Gate #4 — NPC Isolation.
 - After Stage 180: Astra Gate #5 — Full Red Team (the review activity called Stage 190).
+- After Stage 350: Astra Gate #6 — Full-Stack Red Team (the review activity called Stage 355).
 
 Stages between gates still require deterministic validation but not formal Astra handoff unless the project owner requests one.
 
-`CHECKPOINTS.md` defines artifact paths. Stage 190 is Gate #5, not another implementation stage; all its artifacts use gate number `05`.
+`CHECKPOINTS.md` defines artifact paths. Stage 190 is Gate #5, not another implementation stage; all its artifacts use gate number `05`. Stage 355 is Gate #6 in the same way; its artifacts use gate number `06`.
 
 ## Coverage Across Stages
 Use `docs/GATE_COVERAGE.md` to distinguish surfaces due now from future surfaces. A gate must exercise all due surfaces and relevant prior regressions. A missing or untestable required surface blocks PASS; describe the gap rather than certifying it.
 
 Record future surfaces as NOT YET IN SCOPE with their introduction stage and next review gate. This is not a passed test or a deferred defect. The introducing stage must add deterministic boundary tests, and the next designated gate must review the integrated surface. No future-surface deferrals remain at Gate #5 for the backend slice.
+
+## Product Acceptance
+Independent gates test integrity, not experience. From Stage 290 on, a stage that changes what a Player or DM sees or does is complete only after the owner has played the affected flows on that stage's build and the completion report records the owner's disposition. An AI stand-in pass may come first as a filter for obvious friction. It is never acceptance and never replaces a human session where one is required (Stage 360).
 
 ## Mandatory Opus Behavior at a Gate
 When a gate stage is complete, Opus MUST:
