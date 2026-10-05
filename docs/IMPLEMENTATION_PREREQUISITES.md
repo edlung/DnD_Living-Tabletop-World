@@ -79,7 +79,7 @@ Still open, needed before the first paid call in Stage 300: the spending ceiling
 
 ### Q6. Image provider — Stage 330
 
-**Decided (owner, 2026-10-05):** OpenAI only (the GPT Image 2.5 family at the time of the decision), without a cross-provider comparison. Still open: the art style, decided together with Q8, and the spending ceiling.
+**Decided (owner, 2026-10-05):** OpenAI only (the GPT Image 2.5 family at the time of the decision), without a cross-provider comparison. **Access (owner, 2026-10-05):** through an OpenRouter API key (`OPENROUTER_API_KEY` in `.env.local`), not an OpenAI key or a ChatGPT subscription. Stage 330 must confirm that OpenRouter exposes the chosen image model with reference-image input before relying on it. Still open: the art style, decided together with Q8, and the spending ceiling.
 
 ### Q7. Language of play — Stages 290–360
 
