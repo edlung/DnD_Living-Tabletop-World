@@ -1,5 +1,5 @@
 import type { SessionResponse } from '@ltw/contracts';
-import { StatusPanel } from '@ltw/ui';
+import { LanguageProvider, StatusPanel, useT, type Language } from '@ltw/ui';
 import {
   Component,
   useCallback,
@@ -15,6 +15,19 @@ import { useResource } from '../api/resource.ts';
 import { World } from '../world/world.tsx';
 import { Login } from './login.tsx';
 
+function BoundaryFallback({ onLeave }: { readonly onLeave: () => void }) {
+  const t = useT();
+  return (
+    <main className="connection-state">
+      <StatusPanel
+        state="error"
+        label={t('This world response could not be displayed. Reconnect to try again.')}
+      />
+      <button onClick={onLeave}>{t('Leave session')}</button>
+    </main>
+  );
+}
+
 /** Last-resort malformed-response boundary; no stale projection survives. */
 class SessionBoundary extends Component<
   { children: ReactNode; onLeave: () => void },
@@ -26,17 +39,17 @@ class SessionBoundary extends Component<
   }
   override render() {
     return this.state.failed ? (
-      <main className="connection-state">
-        <StatusPanel
-          state="error"
-          label="This world response could not be displayed. Reconnect to try again."
-        />
-        <button onClick={this.props.onLeave}>Leave session</button>
-      </main>
+      <BoundaryFallback onLeave={this.props.onLeave} />
     ) : (
       this.props.children
     );
   }
+}
+
+function browserLanguage(): Language {
+  return typeof navigator !== 'undefined' && navigator.language.toLowerCase().startsWith('ru')
+    ? 'ru'
+    : 'en';
 }
 
 export function App() {
@@ -56,12 +69,17 @@ export function App() {
       window.removeEventListener('pageshow', clear);
     };
   }, []);
-  return connection ? (
-    <SessionBoundary onLeave={leave}>
-      <SessionGate connection={connection} onLeave={leave} />
-    </SessionBoundary>
-  ) : (
-    <Login onConnect={setConnection} />
+  // Before a session names the campaign's language, the browser's language speaks.
+  return (
+    <LanguageProvider language={browserLanguage()}>
+      {connection ? (
+        <SessionBoundary onLeave={leave}>
+          <SessionGate connection={connection} onLeave={leave} />
+        </SessionBoundary>
+      ) : (
+        <Login onConnect={setConnection} />
+      )}
+    </LanguageProvider>
   );
 }
 
@@ -72,6 +90,7 @@ function SessionGate({
   readonly connection: Connection;
   readonly onLeave: () => void;
 }) {
+  const t = useT();
   const api = useMemo(() => new WorldApi(connection, ''), [connection]);
   const load = useCallback(
     (signal: AbortSignal) => api.get<SessionResponse>('session', signal, false),
@@ -81,16 +100,21 @@ function SessionGate({
   if (resource.status !== 'ready')
     return (
       <main className="connection-state">
-        <p className="wordmark">◈ Living Tabletop World</p>
+        <p className="wordmark">{t('◈ Living Tabletop World')}</p>
         <StatusPanel
           state={resource.status}
-          label={resource.status === 'error' ? resource.message : 'Opening your session…'}
+          label={resource.status === 'error' ? resource.message : t('Opening your session…')}
           onRetry={retry}
         />
-        <button onClick={onLeave}>Leave session</button>
+        <button onClick={onLeave}>{t('Leave session')}</button>
       </main>
     );
-  return <SessionWorld connection={connection} identity={resource.value} onLeave={onLeave} />;
+  // From here on the campaign's own language speaks, whatever the browser's is.
+  return (
+    <LanguageProvider language={resource.value.campaign.language}>
+      <SessionWorld connection={connection} identity={resource.value} onLeave={onLeave} />
+    </LanguageProvider>
+  );
 }
 
 function SessionWorld({
@@ -102,6 +126,7 @@ function SessionWorld({
   readonly identity: SessionResponse;
   readonly onLeave: () => void;
 }) {
+  const t = useT();
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -126,14 +151,14 @@ function SessionWorld({
   return (
     <>
       <a className="skip-link" href="#world-main">
-        Skip to world
+        {t('Skip to world')}
       </a>
       <header className="app-header">
         <div className="wordmark">
-          <span aria-hidden="true">◈</span> Living Tabletop World
+          <span aria-hidden="true">◈</span> {t('Living Tabletop World')}
         </div>
         <div className="session-controls">
-          <label htmlFor="perspective">Perspective</label>
+          <label htmlFor="perspective">{t('Perspective')}</label>
           <select
             id="perspective"
             value={perspective}
@@ -152,10 +177,10 @@ function SessionWorld({
               setRevision((value) => value + 1);
             }}
           >
-            Refresh world
+            {t('Refresh world')}
           </button>
           <button className="quiet-button" onClick={onLeave}>
-            Leave session
+            {t('Leave session')}
           </button>
         </div>
       </header>

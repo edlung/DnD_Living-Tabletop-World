@@ -12,6 +12,7 @@ import { ConversationOptions } from './conversation-options.tsx';
 import { Hypothesis } from './hypothesis.tsx';
 import { Recall } from './recall.tsx';
 import type { ExplorationIntent } from './use-action.ts';
+import { useT, type Translate } from '@ltw/ui';
 
 const executable = new Set([
   'talk',
@@ -42,16 +43,17 @@ export function ContextActions({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   const [recall, setRecall] = useState(false);
   const { entity, actions } = context.context;
   const actor = context.actingCharacterId;
-  const name = entity.name ?? `Unidentified ${entity.kind}`;
+  const name = entity.name ?? t('Unidentified {kind}', { kind: t(entity.kind) });
   return (
-    <section className="exploration-actions" aria-label="Contextual actions">
-      <h3>What would you like to do?</h3>
+    <section className="exploration-actions" aria-label={t('Contextual actions')}>
+      <h3>{t('What would you like to do?')}</h3>
       {!canAct && (
         <p className="muted">
-          This is a read-only view. Use your character's session outside an encounter to act.
+          {t("This is a read-only view. Use your character's session outside an encounter to act.")}
         </p>
       )}
       <div className="context-buttons">
@@ -74,18 +76,18 @@ export function ContextActions({
                     else if (command) onRun({ kind: 'command', command });
                   }}
                 >
-                  {label(action, name, knowledge)}
+                  {label(t, action, name, knowledge)}
                 </button>
                 {!action.legal && (
                   <small>
-                    {action.reason?.replaceAll('_', ' ').toLowerCase() ?? 'Unavailable'}
+                    {t(action.reason?.replaceAll('_', ' ').toLowerCase() ?? 'Unavailable')}
                   </small>
                 )}
                 {action.cost && (
                   <small>
                     {action.cost.kind === 'free'
-                      ? 'Free cast'
-                      : `Level ${action.cost.slotLevel} slot`}
+                      ? t('Free cast')
+                      : t('Level {level} slot', { level: action.cost.slotLevel })}
                   </small>
                 )}
               </div>
@@ -107,28 +109,32 @@ export function ContextActions({
         <Hypothesis characterId={actor} entityId={entity.entityId} locked={locked} onRun={onRun} />
       )}
       <details className="disclosure">
-        <summary>All contextual options</summary>
+        <summary>{t('All contextual options')}</summary>
         <ul className="context-actions">
           {actions.map((action, index) => (
             <li key={`${action.id}:${index}`}>
-              <strong>{label(action, name, knowledge)}</strong>
+              <strong>{label(t, action, name, knowledge)}</strong>
               <span>
                 {action.legal
-                  ? 'Available in the world'
-                  : action.reason?.replaceAll('_', ' ').toLowerCase()}
+                  ? t('Available in the world')
+                  : t(action.reason?.replaceAll('_', ' ').toLowerCase() ?? 'Unavailable')}
               </span>
               {action.hints?.map((hint) => (
-                <small key={hint}>{hint.replaceAll('_', ' ').toLowerCase()}</small>
+                <small key={hint}>{t(hint.replaceAll('_', ' ').toLowerCase())}</small>
               ))}
               {action.resolution?.moveRequiredFt !== undefined && (
-                <small>Move required: {action.resolution.moveRequiredFt} ft</small>
+                <small>
+                  {t('Move required: {feet} ft', { feet: action.resolution.moveRequiredFt })}
+                </small>
               )}
               {action.area && (
                 <small>
-                  Affected:{' '}
-                  {action.area.affected
-                    .map((ref) => ref.name ?? 'Unidentified creature')
-                    .join(', ') || 'None'}
+                  {t('Affected: {names}', {
+                    names:
+                      action.area.affected
+                        .map((ref) => ref.name ?? t('Unidentified creature'))
+                        .join(', ') || t('None'),
+                  })}
                 </small>
               )}
             </li>
@@ -139,27 +145,36 @@ export function ContextActions({
   );
 }
 
-function label(action: ContextAction, target: string, knowledge: readonly KnowledgeView[]): string {
+function label(
+  t: Translate,
+  action: ContextAction,
+  target: string,
+  knowledge: readonly KnowledgeView[],
+): string {
   switch (action.id) {
     case 'ask_about':
-      return `Ask about ${action.topic?.name ?? 'Unidentified subject'}`;
+      return t('Ask about {topic}', { topic: action.topic?.name ?? t('Unidentified subject') });
     case 'show_evidence':
-      return `Show evidence: ${knowledge.find((record) => record.knowledgeId === action.evidence?.knowledgeId)?.statement ?? 'Known evidence'}`;
+      return t('Show evidence: {statement}', {
+        statement:
+          knowledge.find((record) => record.knowledgeId === action.evidence?.knowledgeId)
+            ?.statement ?? t('Known evidence'),
+      });
     case 'enter_location':
-      return `Enter ${target}`;
+      return t('Enter {place}', { place: target });
     case 'inspect':
-      return 'Inspect';
+      return t('Inspect');
     case 'investigation_check':
-      return 'Investigate';
+      return t('Investigate');
     case 'perception_check':
-      return 'Perception check';
+      return t('Perception check');
     case 'detect_magic':
-      return 'Detect magic';
+      return t('Detect magic');
     case 'recall':
-      return 'Recall memories';
+      return t('Recall memories');
     case 'talk':
-      return 'Talk';
+      return t('Talk');
     default:
-      return action.id.replaceAll('_', ' ');
+      return t(action.id.replaceAll('_', ' '));
   }
 }

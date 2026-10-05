@@ -7,9 +7,9 @@ import {
   ACKNOWLEDGE,
   findingKey,
   nameOf,
-  when,
   type ContinuityInput,
   type WarningDraft,
+  voice,
 } from './describe.ts';
 import { edit, removal, replaced } from './edits.ts';
 
@@ -63,7 +63,11 @@ export function witnessElsewhere(
     isWithinLocation(input.state, other, at ?? '');
   if (at !== null && places.some(there)) return [];
 
-  const where = at === null ? 'nowhere recorded' : `at ${nameOf(input.state, at)}`;
+  const v = voice(input.state);
+  const where =
+    at === null
+      ? v.say('nowhere recorded')
+      : v.say('at {place}', { place: nameOf(input.state, at) });
   const created = input.commands.findIndex(
     (other) => other.type === 'CreateEntity' && other.entityId === holder,
   );
@@ -75,12 +79,21 @@ export function witnessElsewhere(
       commandIndex: index,
       entityIds: [holder, ...places],
       knowledgeIds: [command.knowledgeId],
-      message: `${nameOf(input.state, holder)} was ${where} ${when(command.knownSince)}, not at ${places.map((id) => nameOf(input.state, id)).join(' or ')}`,
+      message: v.say('{holder} was {where} {when}, not at {places}', {
+        holder: nameOf(input.state, holder),
+        where,
+        when: v.when(command.knownSince),
+        places: places.map((id) => nameOf(input.state, id)).join(v.say(' or ')),
+      }),
       options: [
         ...(creation?.type === 'CreateEntity'
           ? [
               edit(
-                `Place ${nameOf(input.state, holder)} at ${nameOf(input.state, place)} from ${when(command.knownSince)}`,
+                v.say('Place {name} at {place} from {when}', {
+                  name: nameOf(input.state, holder),
+                  place: nameOf(input.state, place),
+                  when: v.when(command.knownSince),
+                }),
                 replaced(input.commands, created, {
                   ...creation,
                   placement: { locationId: place, since: command.knownSince },
@@ -123,7 +136,13 @@ export function encounterHere(
       commandIndex: index,
       entityIds: [placed.entityId, encounter.locationId],
       knowledgeIds: [],
-      message: `A fight is running at ${nameOf(input.state, encounter.locationId)}; ${nameOf(input.state, placed.entityId)} would be there without taking part`,
+      message: voice(input.state).say(
+        'A fight is running at {place}; {name} would be there without taking part',
+        {
+          place: nameOf(input.state, encounter.locationId),
+          name: nameOf(input.state, placed.entityId),
+        },
+      ),
       options: [...removal(input.commands, index), ACKNOWLEDGE],
     },
   ];

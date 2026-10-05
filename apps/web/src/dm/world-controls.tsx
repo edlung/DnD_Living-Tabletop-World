@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { DAY_TWO_MORNING } from './world-time.ts';
+import { useT } from '@ltw/ui';
 
 export type DmWorldCommand = KernelCommandOf<'AdvanceWorldTime' | 'SetWeather'>;
 
@@ -29,6 +30,7 @@ export function DmWorldControls({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   const [hours, setHours] = useState('8');
   const run = (command: DmWorldCommand) => {
     onRun({ kind: 'command', command });
@@ -42,7 +44,7 @@ export function DmWorldControls({
         onToggle(event.currentTarget.open);
       }}
     >
-      <summary>Time and weather (DM)</summary>
+      <summary>{t('Time and weather (DM)')}</summary>
       <div className="action-row">
         <button
           disabled={locked}
@@ -50,10 +52,10 @@ export function DmWorldControls({
             run({ type: 'AdvanceWorldTime', to: DAY_TWO_MORNING });
           }}
         >
-          Advance to Day 2, 10:00
+          {t('Advance to Day 2, 10:00')}
         </button>
       </div>
-      <label htmlFor="advance-hours">Or advance by (hours)</label>
+      <label htmlFor="advance-hours">{t('Or advance by (hours)')}</label>
       <input
         id="advance-hours"
         type="number"
@@ -70,9 +72,9 @@ export function DmWorldControls({
           run({ type: 'AdvanceWorldTime', by: amount * 3600 });
         }}
       >
-        Advance time
+        {t('Advance time')}
       </button>
-      <label htmlFor="weather-choice">Weather at {locationName}</label>
+      <label htmlFor="weather-choice">{t('Weather at {place}', { place: locationName })}</label>
       <select
         id="weather-choice"
         value={weather}
@@ -82,7 +84,7 @@ export function DmWorldControls({
       >
         {WEATHERS.map((entry) => (
           <option key={entry} value={entry}>
-            {entry}
+            {t(entry)}
           </option>
         ))}
       </select>
@@ -92,7 +94,7 @@ export function DmWorldControls({
           run({ type: 'SetWeather', locationId, weather });
         }}
       >
-        Set weather
+        {t('Set weather')}
       </button>
     </details>
   );

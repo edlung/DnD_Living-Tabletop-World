@@ -1,5 +1,5 @@
 import type { EntityRef, ScenePresentationResponse } from '@ltw/contracts';
-import { StatusPanel } from '@ltw/ui';
+import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -21,6 +21,7 @@ export function Scene({
   readonly selectedId: string | null;
   readonly onSelect: (entityId: string, kind: string) => void;
 }) {
+  const t = useT();
   const load = useCallback(
     (signal: AbortSignal) =>
       api.get<ScenePresentationResponse>(
@@ -34,7 +35,7 @@ export function Scene({
     return (
       <StatusPanel
         state={resource.status}
-        label={resource.status === 'error' ? resource.message : 'Loading the scene…'}
+        label={resource.status === 'error' ? resource.message : t('Loading the scene…')}
         onRetry={retry}
       />
     );
@@ -48,27 +49,27 @@ export function Scene({
       ) : null}
       <header className="exploration-heading">
         <div>
-          <p className="eyebrow">World view</p>
+          <p className="eyebrow">{t('World view')}</p>
           <h2>{location.name}</h2>
         </div>
-        <div className="exploration-meta" aria-label="Scene conditions">
-          <span>{scene.phase}</span>
-          {scene.location.weather && <span>{scene.location.weather}</span>}
-          <span>{formatWorldTime(scene.worldTime)}</span>
+        <div className="exploration-meta" aria-label={t('Scene conditions')}>
+          <span>{t(scene.phase)}</span>
+          {scene.location.weather && <span>{t(scene.location.weather)}</span>}
+          <span>{formatWorldTime(scene.worldTime, t)}</span>
         </div>
       </header>
       <div className="exploration-presence">
         <div className="exploration-presence-heading">
-          <h3>In this scene</h3>
-          <span>{scene.present.length} visible</span>
+          <h3>{t('In this scene')}</h3>
+          <span>{t('{count} visible', { count: scene.present.length })}</span>
         </div>
         {!scene.location.observed ? (
           <StatusPanel
             state="empty"
-            label="This location is known, but it is not observed in this perspective."
+            label={t('This location is known, but it is not observed in this perspective.')}
           />
         ) : scene.present.length === 0 ? (
-          <StatusPanel state="empty" label="No entities are visible in this scene." />
+          <StatusPanel state="empty" label={t('No entities are visible in this scene.')} />
         ) : (
           <SceneObjects
             present={scene.present}
@@ -79,8 +80,8 @@ export function Scene({
         )}
       </div>
       <footer className="exploration-caption">
-        <p>Choose a person or object to look closer.</p>
-        <span>Symbolic arrangement · no distances shown</span>
+        <p>{t('Choose a person or object to look closer.')}</p>
+        <span>{t('Symbolic arrangement · no distances shown')}</span>
       </footer>
     </div>
   );

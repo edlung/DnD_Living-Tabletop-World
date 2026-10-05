@@ -2,7 +2,7 @@ import type { RejectionCode } from '@ltw/contracts';
 
 import type { ResolvedProposable } from '../../kernel/decision.ts';
 import type { WorldState } from '../../kernel/state.ts';
-import { nameOf, when, type DraftOption } from './describe.ts';
+import { nameOf, voice, type DraftOption } from './describe.ts';
 import { edit, replaced } from './edits.ts';
 
 /**
@@ -18,23 +18,30 @@ export function rejectionOptions(
   index: number,
   code: RejectionCode,
 ): DraftOption[] {
+  const v = voice(state);
+  const say = v.say;
   const command = commands[index];
   if (!command) return [];
   if (code === 'ID_ALREADY_USED' && command.type === 'CreateEntity') {
     const fresh = freshId(state, commands, command.entityId);
-    return [edit(`Use the ID ${fresh}`, renamed(commands, command.entityId, fresh))];
+    return [
+      edit(say('Use the ID {id}', { id: fresh }), renamed(commands, command.entityId, fresh)),
+    ];
   }
   if (code === 'ID_ALREADY_USED' && command.type === 'AddKnowledge') {
     const fresh = freshId(state, commands, command.knowledgeId);
     return [
-      edit(`Use the record ID ${fresh}`, renamedRecord(commands, command.knowledgeId, fresh)),
+      edit(
+        say('Use the record ID {id}', { id: fresh }),
+        renamedRecord(commands, command.knowledgeId, fresh),
+      ),
     ];
   }
   if (code !== 'TEMPORAL_CONFLICT') return [];
   if (command.type === 'CreateEntity') {
     return [
       edit(
-        `Let ${command.name} exist since before recorded history`,
+        say('Let {name} exist since before recorded history', { name: command.name }),
         replaced(commands, index, {
           ...command,
           existsSince: null,
@@ -56,10 +63,10 @@ export function rejectionOptions(
         : holder === null
           ? null
           : (state.entities.get(holder)?.existsSince ?? null);
-    const who = holder === null ? 'the holder' : nameOf(state, holder);
+    const who = holder === null ? say('the holder') : nameOf(state, holder);
     return [
       edit(
-        `Learn it ${when(knownSince)}, while ${who} exists`,
+        say('Learn it {when}, while {who} exists', { when: v.when(knownSince), who }),
         replaced(commands, index, { ...command, knownSince }),
       ),
     ];

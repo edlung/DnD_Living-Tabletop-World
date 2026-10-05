@@ -1,6 +1,7 @@
 import type { EncounterView, Square } from '@ltw/contracts';
 
 import { squareLabel } from './combat-bindings.ts';
+import { useT } from '@ltw/ui';
 
 export const combatantLabel = (combatant: EncounterView['combatants'][number]): string =>
   combatant.entity.name ?? combatant.entity.entityId;
@@ -38,6 +39,7 @@ export function BattlefieldGrid({
   readonly affected: ReadonlySet<string>;
   readonly onPick: (square: Square) => void;
 }) {
+  const t = useT();
   const { width, height, difficult, cover } = encounter.battlefield;
   const hard = new Set(difficult.map(key));
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
@@ -93,7 +95,7 @@ export function BattlefieldGrid({
     <div
       className="battlefield-grid"
       role="group"
-      aria-label="Battlefield"
+      aria-label={t('Battlefield')}
       style={{ gridTemplateColumns: `repeat(${String(width)}, minmax(0, 1fr))` }}
     >
       {cells}

@@ -7,6 +7,7 @@ import {
   normalized,
   type ContinuityInput,
   type WarningDraft,
+  voice,
 } from './describe.ts';
 import { edit, removal, replaced } from './edits.ts';
 
@@ -53,7 +54,10 @@ export function nameInUse(
       commandIndex: index,
       entityIds: [named.entityId, ...others.map((entity) => entity.entityId)],
       knowledgeIds: [],
-      message: `"${named.name}" is also the name of ${others.map((entity) => entity.entityId).join(', ')}`,
+      message: voice(input.state).say('"{name}" is also the name of {others}', {
+        name: named.name,
+        others: others.map((entity) => entity.entityId).join(', '),
+      }),
       options: [...keepName, ...removal(input.commands, index), ACKNOWLEDGE],
     },
   ];
@@ -75,8 +79,13 @@ export function renameKnown(
     knownEntityIds(input.before, holderPerspective(input.before, { kind })).has(command.entityId),
   );
   if (knownBy.length === 0) return [];
-  const description =
-    `${command.description ?? current.description} Also known as ${command.name}.`.trim();
+  const v = voice(input.state);
+  const description = v
+    .say('{description} Also known as {name}.', {
+      description: command.description ?? current.description,
+      name: command.name,
+    })
+    .trim();
   return [
     {
       key: findingKey('RENAME_KNOWN', index, command.entityId),
@@ -84,10 +93,19 @@ export function renameKnown(
       commandIndex: index,
       entityIds: [command.entityId],
       knowledgeIds: [],
-      message: `The ${knownBy.map((kind) => kind.toLowerCase()).join(' and the ')} know ${current.name}; renaming changes that name in every account they hold`,
+      message: v.say(
+        'The {kinds} know {name}; renaming changes that name in every account they hold',
+        {
+          kinds: knownBy.map((kind) => v.say(kind.toLowerCase())).join(v.say(' and the ')),
+          name: current.name,
+        },
+      ),
       options: [
         edit(
-          `Keep "${current.name}" and note "${command.name}" in the description`,
+          v.say('Keep "{name}" and note "{other}" in the description', {
+            name: current.name,
+            other: command.name,
+          }),
           replaced(input.commands, index, {
             type: 'UpdateEntityProfile',
             entityId: command.entityId,

@@ -1,5 +1,7 @@
 import type { AuthoringNote, AuthoringWarning } from '@ltw/contracts';
 
+import { languageOf, sayIn } from '../../language/index.ts';
+
 import {
   withOptionIds,
   type ContinuityInput,
@@ -43,5 +45,6 @@ export function continuityFindings(input: ContinuityInput): {
     warnings.push(...lore.warnings);
     notes.push(...lore.notes);
   });
-  return { warnings: warnings.map(withOptionIds), notes };
+  const say = sayIn(languageOf(input.state));
+  return { warnings: warnings.map((warning) => withOptionIds(warning, say)), notes };
 }

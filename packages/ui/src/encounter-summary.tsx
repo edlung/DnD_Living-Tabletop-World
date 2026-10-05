@@ -2,6 +2,7 @@ import type { EncounterResponse, EncounterView, ReactionWindowView } from '@ltw/
 
 import { readableLabel, readableList } from './labels.ts';
 import { StatusPanel } from './status-panel.tsx';
+import { useT } from './i18n.tsx';
 
 export interface EncounterSummaryProps {
   readonly encounter: EncounterResponse['encounter'];
@@ -21,48 +22,52 @@ function ReactionSummary({
   readonly window: ReactionWindowView;
   readonly encounter: EncounterView;
 }) {
+  const t = useT();
   return (
-    <section className="reaction-summary" aria-label="Reaction window">
-      <p role="status">Spell resolution is waiting for reactions.</p>
+    <section className="reaction-summary" aria-label={t('Reaction window')}>
+      <p role="status">{t('Spell resolution is waiting for reactions.')}</p>
       <dl className="field-list">
         <div>
-          <dt>Caster</dt>
+          <dt>{t('Caster')}</dt>
           <dd>{window.trigger.caster.name ?? window.trigger.caster.entityId}</dd>
         </div>
         <div>
-          <dt>Components</dt>
-          <dd>{window.trigger.components.join(', ') || 'None recorded'}</dd>
+          <dt>{t('Components')}</dt>
+          <dd>
+            {window.trigger.components.map((component) => t(component)).join(', ') ||
+              t('None recorded')}
+          </dd>
         </div>
         {window.trigger.spellId ? (
           <div>
-            <dt>Spell</dt>
-            <dd>{readableLabel(window.trigger.spellId)}</dd>
+            <dt>{t('Spell')}</dt>
+            <dd>{readableLabel(window.trigger.spellId, t)}</dd>
           </div>
         ) : null}
         {window.trigger.targetId ? (
           <div>
-            <dt>Target</dt>
+            <dt>{t('Target')}</dt>
             <dd>{combatantName(encounter, window.trigger.targetId)}</dd>
           </div>
         ) : null}
         {window.trigger.point ? (
           <div>
-            <dt>Target point</dt>
+            <dt>{t('Target point')}</dt>
             <dd>
               {window.trigger.point.x}, {window.trigger.point.y}
             </dd>
           </div>
         ) : null}
         <div>
-          <dt>Your available responses</dt>
-          <dd>{readableList(window.choices)}</dd>
+          <dt>{t('Your available responses')}</dt>
+          <dd>{readableList(window.choices, t)}</dd>
         </div>
       </dl>
       {window.candidates.length > 0 ? (
         <ul>
           {window.candidates.map((candidate) => (
             <li key={candidate.entityId}>
-              {combatantName(encounter, candidate.entityId)}: {readableLabel(candidate.response)}
+              {combatantName(encounter, candidate.entityId)}: {readableLabel(candidate.response, t)}
             </li>
           ))}
         </ul>
@@ -73,25 +78,26 @@ function ReactionSummary({
 
 /** A scoped status summary, without combat command execution or client-side legality. */
 export function EncounterSummary({ encounter }: EncounterSummaryProps) {
+  const t = useT();
   if (!encounter) {
     return (
-      <StatusPanel state="empty" label="No active encounter is visible in this perspective." />
+      <StatusPanel state="empty" label={t('No active encounter is visible in this perspective.')} />
     );
   }
   return (
-    <section className="encounter-summary" aria-label="Encounter summary">
+    <section className="encounter-summary" aria-label={t('Encounter summary')}>
       <dl className="stat-grid">
         <div>
-          <dt>Round</dt>
+          <dt>{t('Round')}</dt>
           <dd>{encounter.round}</dd>
         </div>
         <div>
-          <dt>Current turn</dt>
+          <dt>{t('Current turn')}</dt>
           <dd>{combatantName(encounter, encounter.currentCombatantId)}</dd>
         </div>
       </dl>
       <details className="disclosure">
-        <summary>Combatants and turn order</summary>
+        <summary>{t('Combatants and turn order')}</summary>
         <ol className="record-list">
           {encounter.order.map((entityId) => {
             const combatant = encounter.combatants.find(
@@ -111,26 +117,26 @@ export function EncounterSummary({ encounter }: EncounterSummaryProps) {
                 <h4>{combatant.entity.name ?? entityId}</h4>
                 <dl className="field-list">
                   <div>
-                    <dt>Side</dt>
-                    <dd>{readableLabel(combatant.side)}</dd>
+                    <dt>{t('Side')}</dt>
+                    <dd>{readableLabel(combatant.side, t)}</dd>
                   </div>
                   <div>
-                    <dt>State</dt>
-                    <dd>{readableLabel(combatant.state)}</dd>
+                    <dt>{t('State')}</dt>
+                    <dd>{readableLabel(combatant.state, t)}</dd>
                   </div>
                   <div>
-                    <dt>Conditions</dt>
-                    <dd>{readableList(combatant.conditions)}</dd>
+                    <dt>{t('Conditions')}</dt>
+                    <dd>{readableList(combatant.conditions, t)}</dd>
                   </div>
                   <div>
-                    <dt>Position</dt>
+                    <dt>{t('Position')}</dt>
                     <dd>
                       {combatant.position.x}, {combatant.position.y}
                     </dd>
                   </div>
                   {combatant.hitPoints ? (
                     <div>
-                      <dt>Hit points</dt>
+                      <dt>{t('Hit points')}</dt>
                       <dd>
                         {combatant.hitPoints.current} / {combatant.hitPoints.max}
                       </dd>
@@ -138,7 +144,7 @@ export function EncounterSummary({ encounter }: EncounterSummaryProps) {
                   ) : null}
                   {combatant.initiative ? (
                     <div>
-                      <dt>Initiative</dt>
+                      <dt>{t('Initiative')}</dt>
                       <dd>
                         {combatant.initiative.total} (roll {combatant.initiative.roll}, modifier{' '}
                         {combatant.initiative.modifier})

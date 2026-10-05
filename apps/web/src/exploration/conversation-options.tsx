@@ -1,5 +1,5 @@
 import type { EntityRef, KnowledgeListResponse } from '@ltw/contracts';
-import { StatusPanel } from '@ltw/ui';
+import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -22,6 +22,7 @@ export function ConversationOptions({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   const [topic, setTopic] = useState('');
   const [evidence, setEvidence] = useState('');
   const [showEvidence, setShowEvidence] = useState(false);
@@ -32,9 +33,9 @@ export function ConversationOptions({
   );
   return (
     <details className="disclosure">
-      <summary>More conversation options</summary>
-      <p className="muted">Choose another subject you know, or show a piece of evidence.</p>
-      <label htmlFor="conversation-subject">Conversation subject</label>
+      <summary>{t('More conversation options')}</summary>
+      <p className="muted">{t('Choose another subject you know, or show a piece of evidence.')}</p>
+      <label htmlFor="conversation-subject">{t('Conversation subject')}</label>
       <select
         id="conversation-subject"
         value={topic}
@@ -42,7 +43,7 @@ export function ConversationOptions({
           setTopic(event.target.value);
         }}
       >
-        <option value="">Choose a known subject</option>
+        <option value="">{t('Choose a known subject')}</option>
         {directory
           .filter((entity) => entity.entityId !== npcId && entity.entityId !== characterId)
           .map((entity) => (
@@ -61,7 +62,7 @@ export function ConversationOptions({
             });
           }}
         >
-          Ask selected subject
+          {t('Ask selected subject')}
         </button>
         <button
           disabled={locked || !topic}
@@ -72,7 +73,7 @@ export function ConversationOptions({
             });
           }}
         >
-          Read intentions
+          {t('Read intentions')}
         </button>
       </div>
       <button
@@ -81,7 +82,7 @@ export function ConversationOptions({
         }}
         aria-expanded={showEvidence}
       >
-        Show evidence
+        {t('Show evidence')}
       </button>
       {showEvidence && (
         <EvidencePicker
@@ -114,6 +115,7 @@ function EvidencePicker({
   readonly onSubmit: () => void;
   readonly locked: boolean;
 }) {
+  const t = useT();
   const { resource, retry } = useResource('evidence', load);
   if (resource.status !== 'ready')
     return (
@@ -125,7 +127,7 @@ function EvidencePicker({
     );
   return (
     <div className="evidence-picker">
-      <label htmlFor="evidence-to-show">Evidence to show</label>
+      <label htmlFor="evidence-to-show">{t('Evidence to show')}</label>
       <select
         id="evidence-to-show"
         value={evidence}
@@ -133,16 +135,18 @@ function EvidencePicker({
           onSelect(event.target.value);
         }}
       >
-        <option value="">Choose evidence</option>
+        <option value="">{t('Choose evidence')}</option>
         {resource.value.knowledge.map((record) => (
           <option key={record.knowledgeId} value={record.knowledgeId}>
             {record.statement}
           </option>
         ))}
       </select>
-      {resource.value.knowledge.length === 0 && <p>No evidence is known in this perspective.</p>}
+      {resource.value.knowledge.length === 0 && (
+        <p>{t('No evidence is known in this perspective.')}</p>
+      )}
       <button disabled={locked || !evidence} onClick={onSubmit}>
-        Show selected evidence
+        {t('Show selected evidence')}
       </button>
     </div>
   );

@@ -1,5 +1,5 @@
 import type { EncounterView, EntityContextResponse } from '@ltw/contracts';
-import { StatusPanel } from '@ltw/ui';
+import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -27,6 +27,7 @@ export function ReactionPrompt({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   const window = encounter.reactionWindow;
   const casterId = window?.trigger.caster.entityId ?? '';
   const load = useCallback(
@@ -52,11 +53,15 @@ export function ReactionPrompt({
         )
       : null;
   return (
-    <section className="reaction-prompt" role="alertdialog" aria-label="Reaction">
-      <h3>{caster} is casting a spell</h3>
-      <p>Components: {window.trigger.components.join(', ')}. The spell waits until you answer.</p>
+    <section className="reaction-prompt" role="alertdialog" aria-label={t('Reaction')}>
+      <h3>{t('{caster} is casting a spell', { caster })}</h3>
+      <p>
+        {t('Components: {components}. The spell waits until you answer.', {
+          components: window.trigger.components.map((component) => t(component)).join(', '),
+        })}
+      </p>
       {resource.status === 'loading' && (
-        <StatusPanel state="loading" label="Checking Counterspell…" />
+        <StatusPanel state="loading" label={t('Checking Counterspell…')} />
       )}
       {resource.status === 'error' && (
         <StatusPanel state="error" label={resource.message} onRetry={retry} />
@@ -69,7 +74,7 @@ export function ReactionPrompt({
               if (command) onRun({ kind: 'command', command });
             }}
           >
-            Cast Counterspell
+            {t('Cast Counterspell')}
           </button>
         )}
         {window.choices.includes('ignore') && (
@@ -79,19 +84,25 @@ export function ReactionPrompt({
               onRun({ kind: 'command', command: ignoreReaction(actorId, window.windowId) });
             }}
           >
-            Ignore
+            {t('Ignore')}
           </button>
         )}
       </div>
       <p className="muted">
-        Counterspell spends a spell slot and may stop the spell. Ignore lets the spell happen.
+        {t(
+          'Counterspell spends a spell slot and may stop the spell. Ignore lets the spell happen.',
+        )}
       </p>
       {counter && !counter.legal && (
         <small>
-          Counterspell unavailable: {(counter.reason ?? '').replaceAll('_', ' ').toLowerCase()}
+          {t('Counterspell unavailable: {reason}', {
+            reason: t((counter.reason ?? '').replaceAll('_', ' ').toLowerCase()),
+          })}
         </small>
       )}
-      {counter?.cost?.kind === 'slot' && <small>Uses a level {counter.cost.slotLevel} slot.</small>}
+      {counter?.cost?.kind === 'slot' && (
+        <small>{t('Uses a level {level} slot.', { level: counter.cost.slotLevel })}</small>
+      )}
     </section>
   );
 }

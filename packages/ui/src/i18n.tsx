@@ -1,0 +1,48 @@
+import { createContext, useContext, type ReactNode } from 'react';
+
+/**
+ * Client text in the campaign's play language (docs/adr/0031-play-language.md §10).
+ * The key is the English source string, so English reads as written and needs no
+ * dictionary. `{name}` marks a value filled in at render. Russian entries are registered
+ * by the package that owns the strings; a key without an entry shows in English, and the
+ * coverage test and the Russian journeys fail on it.
+ */
+export type Language = 'en' | 'ru';
+export type Params = Readonly<Record<string, string | number>>;
+export type Translate = (key: string, params?: Params) => string;
+
+const russian = new Map<string, string>();
+
+export function registerRussian(entries: Readonly<Record<string, string>>): void {
+  for (const [key, value] of Object.entries(entries)) russian.set(key, value);
+}
+
+/** The Russian entry for a key, if one is registered (for tests). */
+export const russianEntry = (key: string): string | undefined => russian.get(key);
+
+export function translate(language: Language, key: string, params?: Params): string {
+  const text = language === 'ru' ? (russian.get(key) ?? key) : key;
+  return params === undefined
+    ? text
+    : text.replace(/\{(\w+)\}/g, (whole, name: string) => String(params[name] ?? whole));
+}
+
+const LanguageContext = createContext<Language>('en');
+
+export function LanguageProvider({
+  language,
+  children,
+}: {
+  readonly language: Language;
+  readonly children: ReactNode;
+}) {
+  return <LanguageContext.Provider value={language}>{children}</LanguageContext.Provider>;
+}
+
+export const useLanguage = (): Language => useContext(LanguageContext);
+
+/** The translator of the surrounding campaign's language. */
+export function useT(): Translate {
+  const language = useContext(LanguageContext);
+  return (key, params) => translate(language, key, params);
+}

@@ -2,6 +2,7 @@ import type { PlayerAssetView } from '@ltw/contracts';
 import { useEffect, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { useT } from '@ltw/ui';
 
 /** Fetch approved content with authorization; revoke URLs on scope/asset change. */
 export function SceneImage({
@@ -13,6 +14,7 @@ export function SceneImage({
   readonly image: PlayerAssetView | null;
   readonly name: string;
 }) {
+  const t = useT();
   const [loaded, setLoaded] = useState<{ hash: string; url: string } | null>(null);
   useEffect(() => {
     if (!image) return;
@@ -38,9 +40,9 @@ export function SceneImage({
   return loaded && loaded.hash === image?.contentHash ? (
     <img className="scene-image" src={loaded.url} alt={name} />
   ) : (
-    <div className="scene-art-placeholder" aria-label="No scene image available">
+    <div className="scene-art-placeholder" aria-label={t('No scene image available')}>
       <span aria-hidden="true">◇</span>
-      <small>Scene image unavailable</small>
+      <small>{t('Scene image unavailable')}</small>
     </div>
   );
 }
