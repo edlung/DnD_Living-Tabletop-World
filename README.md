@@ -77,7 +77,7 @@ uses a real seeded in-memory World Engine. It requires no database or external A
 |---|---|
 | `pnpm install --frozen-lockfile` | Reproducible install from `pnpm-lock.yaml` |
 | `pnpm format` / `pnpm format:check` | Prettier write / check |
-| `pnpm lint` | ESLint (type-aware, module boundaries), zero warnings allowed |
+| `pnpm lint` | ESLint (type-aware, module boundaries), zero warnings allowed; runs with a 4 GB heap, which type-aware linting needs on machines with 8 GB of memory or less |
 | `pnpm typecheck` | Strict TypeScript over sources, tests, scripts |
 | `pnpm context-budget` | Fails if any active source/test/stylesheet file exceeds 700 lines (warns above 500) |
 | `pnpm test` | Unit tests (no external services) |

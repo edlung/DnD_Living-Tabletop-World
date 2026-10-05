@@ -10,7 +10,7 @@
   "scripts": {
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "eslint . --max-warnings=0",
+    "lint": "node --max-old-space-size=4096 node_modules/eslint/bin/eslint.js . --max-warnings=0",
     "typecheck": "tsc -p tsconfig.json",
     "context-budget": "node scripts/context-budget/cli.ts",
     "test": "vitest run --project unit",
