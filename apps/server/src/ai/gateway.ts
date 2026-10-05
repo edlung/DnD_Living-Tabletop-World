@@ -53,7 +53,9 @@ export function createAiGateway(
           apiKey: () => anthropic.apiKey.reveal(),
           model: model ?? anthropic.model,
           timeoutMs: anthropic.timeoutMs,
-          effort: EFFORT[capability],
+          // Haiku 4.5 rejects `output_config.effort`; the newer models take it.
+          ...(/haiku/.test(model ?? anthropic.model) ? {} : { effort: EFFORT[capability] }),
+
           ...withFetch,
         }),
         ledger,

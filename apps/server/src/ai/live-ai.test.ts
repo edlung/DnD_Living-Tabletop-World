@@ -1,5 +1,10 @@
-import { ProviderError, intentRequest, type AiProvider, type ProviderRequest } from '@ltw/ai';
-import { InMemoryAiTraceStore } from '@ltw/ai';
+import {
+  InMemoryAiTraceStore,
+  ProviderError,
+  intentRequest,
+  type AiProvider,
+  type ProviderRequest,
+} from '@ltw/ai';
 import { describe, expect, it } from 'vitest';
 
 import { ConfigError, loadConfig } from '../platform/config/config.ts';
@@ -42,13 +47,13 @@ const provider = (fetchImpl: typeof fetch) =>
 
 describe('the OpenAI-compatible adapter', () => {
   it('sends a forced function call with thinking off, and returns the arguments and usage', async () => {
-    let sent: { url: string; body: Record<string, unknown>; auth: string } | null = null;
+    const seen: { url: string; body: Record<string, unknown>; auth: string }[] = [];
     const fetchImpl = ((url: string, init: RequestInit) => {
-      sent = {
+      seen.push({
         url,
         body: JSON.parse(init.body as string) as Record<string, unknown>,
         auth: (init.headers as Record<string, string>)['authorization'] ?? '',
-      };
+      });
       return reply(call({ summary: 'ok', commands: [] }));
     }) as unknown as typeof fetch;
     const out = await provider(fetchImpl).generate(REQUEST);
@@ -57,39 +62,34 @@ describe('the OpenAI-compatible adapter', () => {
       model: 'deepseek-flash',
       usage: { inputTokens: 100, outputTokens: 20 },
     });
+    const sent = seen[0];
     expect(sent).toMatchObject({
       url: 'https://example.test/chat/completions',
       auth: `Bearer ${KEY}`,
     });
-    expect(sent!.body).toMatchObject({
+    expect(sent?.body).toMatchObject({
       thinking: { type: 'disabled' },
       tool_choice: { type: 'function', function: { name: 'propose_commands' } },
     });
-    expect(JSON.stringify(sent!.body)).not.toContain(KEY);
+    expect(JSON.stringify(sent?.body)).not.toContain(KEY);
   });
 
   it('maps failures to codes without echoing anything', async () => {
     const codes = async (fetchImpl: typeof fetch) =>
       provider(fetchImpl)
         .generate(REQUEST)
-        .catch((error: ProviderError) => `${error.code}: ${error.message}`);
-    expect(await codes((() => reply({}, 503)) as unknown as typeof fetch)).toBe(
-      'UNAVAILABLE: provider responded 503',
-    );
-    expect(await codes((() => reply({}, 400)) as unknown as typeof fetch)).toBe(
-      'BAD_RESPONSE: provider responded 400',
-    );
+        .catch((error: unknown) =>
+          error instanceof ProviderError ? `${error.code}: ${error.message}` : 'other',
+        );
+    expect(await codes(() => reply({}, 503))).toBe('UNAVAILABLE: provider responded 503');
+    expect(await codes(() => reply({}, 400))).toBe('BAD_RESPONSE: provider responded 400');
     expect(
-      await codes((() =>
-        reply(
-          call({}, { choices: [{ finish_reason: 'length', message: {} }] }),
-        )) as unknown as typeof fetch),
+      await codes(() => reply(call({}, { choices: [{ finish_reason: 'length', message: {} }] }))),
     ).toBe('BAD_RESPONSE: provider output incomplete');
-    expect(
-      await codes((() =>
-        reply({ choices: [{ message: { content: 'no tool' } }] })) as unknown as typeof fetch),
-    ).toBe('BAD_RESPONSE: provider returned no structured output');
-    expect(await codes((() => Promise.reject(new Error(KEY))) as unknown as typeof fetch)).toBe(
+    expect(await codes(() => reply({ choices: [{ message: { content: 'no tool' } }] }))).toBe(
+      'BAD_RESPONSE: provider returned no structured output',
+    );
+    expect(await codes(() => Promise.reject(new Error(KEY)))).toBe(
       'UNAVAILABLE: provider unreachable',
     );
   });

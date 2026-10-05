@@ -58,6 +58,7 @@ async function main(): Promise<void> {
       authMode: config.auth.mode,
       database: describeDatabaseUrl(config.databaseUrl),
       aiProviders: ai.router.providersFor('reasoning').map((provider) => provider.id),
+      aiDailyBudgetUsd: ai.ledger.dailyCeilingUsd,
     },
     'server ready',
   );
