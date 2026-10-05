@@ -60,3 +60,10 @@ undo refused with named blockers, then succeeding after they are undone.
 contract, rules, or authoring-pipeline code changed, so the authoring atomicity and
 continuity suites run unchanged and no gate is reopened. Evidence:
 `reports/STAGE_230_COMPLETION.md`.
+
+Stage 240 remediation (ADR 0030): `tests/e2e/dm-tools.spec.ts` covers DM time/weather with the
+player's changed view, a written chapter with cited entries and flashback inside the player
+boundary, and the DM performing an NPC. These use existing routes; no server, rules, or
+contract code changed. Between the Gate 05 reviewed revision `a85b6f8` and the release
+candidate the only backend changes are additive (session, character-sheet, surroundings
+reads; Stage 200 introduction evidence); reviewed code paths are unchanged.

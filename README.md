@@ -54,12 +54,14 @@ Open the web client, keep campaign `ravenford`, and enter the development person
 Tokens are entered explicitly and live only in memory. These personas are for local
 development; production authentication is not implemented.
 
-Select a location to view its authorized scene, then a visible entity. Expand **Full
-knowledge** or **Full character sheet** for details. DM may select Elowen's perspective
-to inspect the player view. **Refresh world** discards the current projection and
-reloads it; **Leave session** clears the session. Viewing a location does not move a
-character. Contextual options and encounter/reaction summaries are read-only in Stage
-200; interaction, combat, and authoring workflows belong to later stages.
+Pick a location, then select people and objects in the scene: contextual options are
+the server's, and the client submits only the commands it lists. Players explore,
+investigate, fight (battlefield, Fireball preview, Counterspell/Ignore), and read the
+Chronicle with flashbacks. The DM can add an NPC in natural language (preview, edit,
+confirm, cancel, undo), perform an NPC, run encounters, move time and weather, and
+write Chronicle chapters; the DM can preview the Player View. **Refresh world**
+discards the current projection and reloads it; **Leave session** clears the session.
+See [`docs/RELEASE_CANDIDATE.md`](docs/RELEASE_CANDIDATE.md) for the release candidate.
 
 `LTW_API_TARGET=http://127.0.0.1:3000 pnpm dev:web` overrides the local API proxy target.
 No AI provider is needed. The client bundle is in `apps/web/build`; this is a build
