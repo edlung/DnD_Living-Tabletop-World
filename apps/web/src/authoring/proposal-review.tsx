@@ -1,0 +1,220 @@
+import type {
+  AuthoringIssue,
+  AuthoringProposalResponse,
+  AuthoringWarning,
+  EntityRef,
+  ProposableCommand,
+  ResolutionOption,
+} from '@ltw/contracts';
+import { useState } from 'react';
+
+import { describeCommand } from './command-text.ts';
+import { ProposalEditor } from './proposal-editor.tsx';
+import type { Blocker } from './use-authoring.ts';
+
+const STATUS_TEXT = { DRAFT: 'Draft', COMMITTED: 'Added to the world', UNDONE: 'Undone' } as const;
+
+function Options({
+  options,
+  busy,
+  onPick,
+}: {
+  readonly options: readonly ResolutionOption[] | undefined;
+  readonly busy: boolean;
+  readonly onPick: (optionId: string) => void;
+}) {
+  return (
+    <>
+      {options
+        ?.filter((option) => option.commands !== null)
+        .map((option) => (
+          <button
+            key={option.optionId}
+            disabled={busy}
+            onClick={() => {
+              onPick(option.optionId);
+            }}
+          >
+            {option.label}
+          </button>
+        ))}
+    </>
+  );
+}
+
+/**
+ * One proposal as the DM must judge it: what it would do, how risky it is, what
+ * blocks it, what it warns about, and the single confirm. Everything shown is
+ * the server's latest preview; a new revision clears every acknowledgement.
+ */
+export function ProposalReview({
+  data,
+  directory,
+  busy,
+  blockers,
+  actions,
+}: {
+  readonly data: AuthoringProposalResponse;
+  readonly directory: readonly EntityRef[];
+  readonly busy: boolean;
+  readonly blockers: readonly Blocker[];
+  readonly actions: {
+    readonly revise: (commands: readonly ProposableCommand[]) => void;
+    readonly applyOption: (optionId: string) => void;
+    readonly commit: (acknowledged: readonly string[]) => void;
+    readonly cancel: () => void;
+    readonly undo: () => void;
+    readonly undoBlocker: (commandId: string) => void;
+    readonly clear: () => void;
+  };
+}) {
+  const { proposal, preview } = data;
+  const [accepted, setAccepted] = useState<readonly string[]>([]);
+  const names = new Map(
+    proposal.commands.flatMap((command) =>
+      command.type === 'CreateEntity' && command.entityId !== undefined
+        ? [[command.entityId, command.name] as const]
+        : [],
+    ),
+  );
+  const locations = directory.filter((entity) => entity.kind === 'location');
+  const warnings: readonly AuthoringWarning[] = preview?.warnings ?? [];
+  const allAccepted = warnings.every((warning) => accepted.includes(warning.key));
+  const issues: readonly AuthoringIssue[] = preview?.issues ?? [];
+  return (
+    <section
+      className="proposal-review"
+      aria-label="Authoring proposal"
+      key={`${proposal.proposalId}:${String(proposal.revision)}`}
+    >
+      <div className="section-heading">
+        <h3>{proposal.summary}</h3>
+        <span className="status-pill">
+          {STATUS_TEXT[proposal.status]} · revision {proposal.revision}
+        </span>
+      </div>
+      <ol className="proposal-commands" aria-label="Proposed changes">
+        {proposal.commands.map((command, index) => (
+          <li key={index}>{describeCommand(command, directory, names)}</li>
+        ))}
+      </ol>
+      {proposal.status === 'DRAFT' && preview && (
+        <>
+          <p className="risk-line">
+            Risk: <strong>{preview.risk.level}</strong>
+            {preview.risk.reasons.length > 0 &&
+              ` — ${preview.risk.reasons.map((reason) => reason.reason).join('; ')}`}
+          </p>
+          {issues.length > 0 && (
+            <div role="alert" aria-label="Blocking issues" className="issue-list">
+              <strong>This cannot be added until fixed:</strong>
+              <ul>
+                {issues.map((issue) => (
+                  <li key={issue.key}>
+                    {issue.message}
+                    <Options options={issue.options} busy={busy} onPick={actions.applyOption} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {warnings.length > 0 && (
+            <fieldset className="warning-list">
+              <legend>Warnings you must accept to continue</legend>
+              {warnings.map((warning) => (
+                <div key={warning.key}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={accepted.includes(warning.key)}
+                      onChange={(event) => {
+                        setAccepted((current) =>
+                          event.target.checked
+                            ? [...current, warning.key]
+                            : current.filter((key) => key !== warning.key),
+                        );
+                      }}
+                    />{' '}
+                    {warning.message}
+                  </label>
+                  <Options options={warning.options} busy={busy} onPick={actions.applyOption} />
+                </div>
+              ))}
+            </fieldset>
+          )}
+          {preview.notes.map((note) => (
+            <p key={`${note.code}:${String(note.commandIndex)}`} className="muted">
+              {note.message}
+            </p>
+          ))}
+          <details className="disclosure">
+            <summary>Edit proposal</summary>
+            <ProposalEditor
+              key={proposal.revision}
+              commands={proposal.commands}
+              locations={locations}
+              busy={busy}
+              onApply={actions.revise}
+            />
+          </details>
+          <details className="disclosure">
+            <summary>What will change in the world</summary>
+            <ul>
+              {preview.changes.map((change, index) => (
+                <li key={index}>{change.type}</li>
+              ))}
+            </ul>
+          </details>
+          <div className="action-row">
+            <button
+              disabled={busy || !preview.committable || !allAccepted}
+              onClick={() => {
+                actions.commit(accepted);
+              }}
+            >
+              Confirm and add to the world
+            </button>
+            <button disabled={busy} onClick={actions.cancel}>
+              Cancel proposal
+            </button>
+          </div>
+        </>
+      )}
+      {proposal.status === 'COMMITTED' && (
+        <div className="action-row">
+          <button disabled={busy} onClick={actions.undo}>
+            Undo this addition
+          </button>
+          <button disabled={busy} onClick={actions.clear}>
+            Start another
+          </button>
+        </div>
+      )}
+      {proposal.status === 'UNDONE' && (
+        <div className="action-row">
+          <button onClick={actions.clear}>Start another</button>
+        </div>
+      )}
+      {blockers.length > 0 && (
+        <div role="alert" aria-label="Undo blockers" className="issue-list">
+          <strong>Undo is blocked by later steps that depend on this:</strong>
+          <ul>
+            {blockers.map((blocker) => (
+              <li key={blocker.commandId}>
+                {blocker.commandType}
+                <button
+                  disabled={busy}
+                  onClick={() => {
+                    actions.undoBlocker(blocker.commandId);
+                  }}
+                >
+                  Undo {blocker.commandType} first
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  );
+}

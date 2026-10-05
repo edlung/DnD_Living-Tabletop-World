@@ -5,6 +5,7 @@ import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { ty
 import hiddenCharacter from '../../../../tests/e2e/fixtures/hidden-character.json' with { type: 'json' };
 import { seededEngine } from './ravenford-app.ts';
 import { seedCombatCampaign, seedUiCombatCampaigns } from './ui-combat-campaigns.ts';
+import { seedUiAuthoringCampaigns } from './ui-authoring-campaigns.ts';
 import { seedUiInvestigationCampaigns } from './ui-investigation-campaigns.ts';
 
 const COMBAT_CAMPAIGN = 'ui-combat';
@@ -29,6 +30,7 @@ export async function uiCampaigns(): Promise<WorldEngine> {
   await seedCombatCampaign(engine, COMBAT_CAMPAIGN, 'window');
   await seedUiCombatCampaigns(engine);
   await seedUiInvestigationCampaigns(engine);
+  await seedUiAuthoringCampaigns(engine);
   return engine;
 }
 

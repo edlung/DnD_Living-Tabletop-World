@@ -1,5 +1,6 @@
 import type {
   EncounterResponse,
+  EntityRef,
   KnowledgeListResponse,
   KnownEntitiesResponse,
   PlayerOutcome,
@@ -7,10 +8,11 @@ import type {
   SurroundingsResponse,
 } from '@ltw/contracts';
 import { EncounterSummary, KnowledgeDetails, StatusPanel } from '@ltw/ui';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { AuthoringPanel } from '../authoring/authoring-panel.tsx';
 import { CombatPanel } from '../combat/combat-panel.tsx';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
 import { ActionNotice } from '../exploration/action-notice.tsx';
@@ -67,6 +69,9 @@ export function World({
     setSelected({ entityId, kind });
   };
   const data = resource.status === 'ready' ? resource.value : null;
+  // The authoring session outlives each refresh, so it keeps the last directory meanwhile.
+  const knownDirectory = useRef<readonly EntityRef[]>([]);
+  if (data) knownDirectory.current = data.directory.entities;
   const locations = data?.directory.entities.filter((entity) => entity.kind === 'location') ?? [];
   const current = data?.surroundings?.location;
   const placeId =
@@ -98,6 +103,15 @@ export function World({
         </span>
       </div>
       <ActionNotice notice={action.notice} status={action.status} onRetry={action.retry} />
+      {effectivePerspective === 'DM' && (
+        <AuthoringPanel
+          api={api}
+          directory={data?.directory.entities ?? knownDirectory.current}
+          onWorldChanged={() => {
+            setRevision((value) => value + 1);
+          }}
+        />
+      )}
       {!data ? (
         <StatusPanel
           state={resource.status === 'error' ? 'error' : 'loading'}

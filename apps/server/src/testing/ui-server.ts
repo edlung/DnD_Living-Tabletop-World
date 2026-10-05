@@ -1,4 +1,4 @@
-import { CapabilityRouter, InMemoryAiTraceStore } from '@ltw/ai';
+import { CapabilityRouter, createLocalProvider, InMemoryAiTraceStore } from '@ltw/ai';
 import { SequentialIds, SteppingClock } from '@ltw/domain';
 
 import { ravenfordApp } from './ravenford-app.ts';
@@ -13,7 +13,8 @@ const clock = new SteppingClock();
 let elapsed = 0;
 const app = await ravenfordApp(await uiCampaigns(), {
   router: new CapabilityRouter({
-    reasoning: [],
+    // The deterministic offline interpreter (ADR 0017 §2); no external provider runs.
+    reasoning: [createLocalProvider()],
     'npc-dialogue': [],
     narrative: [],
     'fast-context': [],

@@ -1,7 +1,7 @@
 # Web client (`@ltw/web`)
 
 Stage 200 is the shared Player/DM foundation (ADR 0026); Stage 210 adds
-object-first exploration (ADR 0027). Stage 220 adds combat UX (ADR 0028). Authoring is a later stage. Browser code imports only `@ltw/contracts`
+object-first exploration (ADR 0027). Stage 220 adds combat UX (ADR 0028); Stage 230 adds DM authoring UX (ADR 0029). Browser code imports only `@ltw/contracts`
 and presentation components from `@ltw/ui`; never domain, rules, or providers.
 
 | Concern                                                               | Read first                                                                                                        |
@@ -15,6 +15,7 @@ and presentation components from `@ltw/ui`; never domain, rules, or providers.
 | Event references through scoped memories                              | `src/world/recent-events.tsx`                                                                                     |
 | Contextual actions, hypotheses, recall                                | `src/exploration/` (`context-actions.tsx`, `action-bindings.ts`, `use-action.ts`)                                 |
 | Battlefield, movement, area preview, reactions, DM encounter controls | `src/combat/` (`combat-panel.tsx`, `target-options.tsx`, `reaction-prompt.tsx`, `dm-controls.tsx`, `movement.ts`) |
+| DM authoring: intent, preview, edit, confirm, undo                    | `src/authoring/` (`authoring-panel.tsx`, `use-authoring.ts`, `proposal-review.tsx`, `proposal-editor.tsx`)        |
 | Visual design                                                         | `src/styles/base.css`, `scene.css`, `details.css`, `responsive.css`                                               |
 | Browser journeys                                                      | `../../tests/e2e/AGENTS.md`                                                                                       |
 

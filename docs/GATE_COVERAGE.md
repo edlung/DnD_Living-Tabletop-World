@@ -49,3 +49,14 @@ duplicate and repeated answers spending one slot, and the DM start/run/end lifec
 players to exploration. `apps/web/src/combat/*.test.ts` cover route planning and command
 bindings. No rules, combat, reaction, contract, or route code changed, so the deterministic
 suites run unchanged and no gate is reopened. Evidence: `reports/STAGE_220_COMPLETION.md`.
+
+Stage 230 introduction evidence (ADR 0029): `tests/e2e/authoring-*.spec.ts` cover Tomas Reed
+from sentence to preview, edit (new revision, recomputed preview), confirm, and native
+visibility; scoped secrecy in the player's DOM and responses and in the DM's Player View;
+a stale confirmation refused with the latest revision reloaded; a blocking proposal that
+cannot be confirmed or forced; warning acknowledgement reset by an edit; safe undo; and
+undo refused with named blockers, then succeeding after they are undone.
+`apps/web/src/authoring/command-text.test.ts` covers the command wording. No server,
+contract, rules, or authoring-pipeline code changed, so the authoring atomicity and
+continuity suites run unchanged and no gate is reopened. Evidence:
+`reports/STAGE_230_COMPLETION.md`.

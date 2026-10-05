@@ -113,7 +113,9 @@ export class WorldApi {
       if (typeof data !== 'object' || data === null || 'error' in data)
         throw new ApiError(response.status);
       return data as T;
-    } catch {
+    } catch (error) {
+      // A refusal keeps its status so callers can tell a conflict from a lost response.
+      if (error instanceof ApiError) throw error;
       throw new ApiError(0);
     }
   }

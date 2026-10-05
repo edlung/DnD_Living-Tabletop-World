@@ -28,3 +28,8 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   memories; it tests server-driven action visibility before and after learning.
 - Generated traces/screenshots belong in ignored `test-results/`;
   inspect a failed journey narrowly, never load generated artifacts wholesale.
+- Stage 230 authoring journeys each own a campaign from `fixtures/authoring-campaigns.json`
+  (`ui-authoring-campaigns.ts`). The browser-test server routes `reasoning` to the
+  deterministic offline interpreter, so "Add a young guard near North Gate…" proposes
+  Tomas Reed with no external provider. Namespace player command IDs per campaign (IDs
+  are unique per actor across campaigns); scan rendered text, not stylesheets, for UI words.
