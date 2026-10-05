@@ -5,8 +5,8 @@
 - Work order: `work-orders/OPUS_STAGE_200.md`.
 - Prerequisite: Gate 05 **PASS**, `reviews/ASTRA_GATE_05_RETEST_2.md`; no open findings.
 - Starting revision: `5cdd5bb4ece280045286b76bfde32f6403e256d4`.
-- Delivery: uncommitted Stage 200 working-tree changes on that revision, identified
-  by the successful build below. No existing user changes were present at start.
+- Delivery: committed as `a36ba3f` (parent `5cdd5bb`); the build below is that
+  tree. No existing user changes were present at start.
 - Model exception: the owner explicitly authorized the current GPT model in this
   chat instead of Opus 5.5/HIGH. Future model/gate requirements are unchanged.
 - Technical decision: `docs/adr/0026-ux-foundation.md`.
