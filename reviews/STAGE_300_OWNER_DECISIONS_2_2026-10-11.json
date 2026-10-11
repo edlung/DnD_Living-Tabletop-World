@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-11",
+  "source": "Owner message in a Claude Code session, 2026-10-11",
+  "ownerAnswer": "2. давай 30$. 3. Выбираем Sonnet 5.5 ... 5. Будем тестить позже. Делаем коммит",
+  "decisions": {
+    "textProviderSpendingAuthorization": {
+      "amountUsd": 30,
+      "amountMicrodollars": 30000000,
+      "scope": "Cumulative Stage 300 grant for text providers (Anthropic and DeepSeek combined)",
+      "replaces": "The withdrawn earlier $30 approval claim; this is the explicit owner authorization",
+      "notYetDone": [
+        "No operator billing-account or approval records are created",
+        "Global daily, campaign daily and per-session sub-ceilings and the provider split are not set; each must stay within the $30 grant",
+        "No paid runtime calls are made; B1 acceptance and B2 remain prerequisites"
+      ]
+    },
+    "npcDialogueModel": {
+      "choice": "claude-sonnet-5-5",
+      "blindComparison": "Waived by the owner; chosen directly",
+      "route": "npc-dialogue=anthropic:claude-sonnet-5-5 (matches .env.example)"
+    },
+    "ownerPlayAcceptance": "Stages 290 and 300 play testing deferred to later",
+    "commit": "Authorized: commit the Stage 300 working tree to branch stage-300-live-ai"
+  },
+  "unchanged": {
+    "chronicleAfterPlaySessionClosed": "local only (owner decision recorded in STAGE_300_PRODUCT_DECISIONS_2026-10-11.json)",
+    "solDesktopAttestationRestart": "Deferred; B1 acceptance remains pending"
+  }
+}

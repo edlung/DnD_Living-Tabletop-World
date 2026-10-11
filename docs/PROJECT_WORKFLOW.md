@@ -32,12 +32,19 @@ Older assignments below are historical and do not authorize a different model or
 ## Current checkpoint
 
 - Source baseline: `bc6c116`, branch `stage-300-live-ai`, PR 3 (stacked on Stage 290, PR 2).
-- Stage 300: implemented, independent acceptance and owner NPC voice choice pending. The spending
-  ledger and trace deliverables require review; the original $30 approval claim is withdrawn.
+- Committed 2026-10-11: `f7518a6` holds accepted A, B1 repair 4 and all review evidence (no source
+  change after the reviewed B1 manifest).
+- Stage 300: implemented, independent acceptance pending. The spending ledger and trace
+  deliverables require review; the original $30 approval claim is withdrawn.
+- Owner decisions 2026-10-11 (`reviews/STAGE_300_OWNER_DECISIONS_2_2026-10-11.json`): explicit
+  $30 cumulative Stage 300 text-provider grant (Anthropic and DeepSeek combined); NPC dialogue uses
+  Sonnet 5.5, blind comparison waived; play testing of Stages 290/300 deferred. Chronicle after
+  session close and preparation without an active session stay local-only (earlier decision).
 - Stage 310: continuation authorized 2026-10-11; DM skip/act policy decided the same day. Design
   preparation may proceed, but dependent implementation waits for the Stage 300 checkpoint and
   fresh Astra/Fable xhigh architecture approval. No Stage 320 work is authorized.
-- No new paid runtime calls until explicit text-provider spending ceilings are supplied.
+- No paid runtime calls yet: the $30 grant is recorded, but no operator billing-account/approval
+  records exist, daily/campaign/session sub-ceilings within it are unset, and B1/B2 are not accepted.
 - Stage 300 remediation drafts 1–3 received CHANGES REQUIRED. Draft 4 pins bounded whole-request
   and accounting deadlines, uniform runtime-session eligibility, restrictive automatic stops without
   lock upgrades, denied-repair/suspect-output outcomes and post-terminal evidence arithmetic.
