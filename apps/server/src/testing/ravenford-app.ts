@@ -30,10 +30,12 @@ import { InMemoryAssetContentStore, type AssetContentStore } from '../assets/con
 import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import { buildApp } from '../http/app.ts';
+import type { AccountingDiagnostics } from '../http/routes/ai-routes.ts';
 import { loadDevPersonaAuthenticator } from '../http/auth.ts';
 import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
+import { memoryDiagnose } from './memory-journal.ts';
 
 /** Test support (excluded from builds): the HTTP app over a seeded Ravenford. */
 export const TOKENS = {
@@ -119,15 +121,18 @@ export function recording(inner: RoutedProvider = createLocalProvider()): Routed
 /**
  * A deterministic AI gateway for DM intents, NPC replies, and relevance: the
  * given providers (default: local only; relevance then has none, as without
- * a key) and in-memory traces. Relevance waits at most 2 s by default.
+ * a key), in-memory traces with their lifecycle-only accounting diagnostic, and a 60 s
+ * whole-request deadline. Relevance waits at most 2 s by default.
  */
 export function testAiGateway(...providers: RoutedProvider[]): RelevanceDeps & {
   readonly traces: InMemoryAiTraceStore;
+  readonly diagnostics: AccountingDiagnostics;
 } {
   const ids = new SequentialIds(0xa1);
   const clock = new SteppingClock();
   let ms = 0;
   const routed = providers.length > 0 ? providers : [createLocalProvider()];
+  const traces = new InMemoryAiTraceStore();
   return {
     router: new CapabilityRouter({
       reasoning: routed,
@@ -136,9 +141,11 @@ export function testAiGateway(...providers: RoutedProvider[]): RelevanceDeps & {
       'fast-context': providers,
     }),
     relevanceBudgetMs: 2_000,
-    traces: new InMemoryAiTraceStore(),
+    traces,
+    diagnostics: { diagnose: (campaignId, traceId) => memoryDiagnose(traces, campaignId, traceId) },
     ids,
     clock: { now: () => clock.now(), nowMs: () => (ms += 5) },
+    requestTimeoutMs: 60_000,
   };
 }
 

@@ -1,17 +1,19 @@
-import { readFile, readdir } from 'node:fs/promises';
-import { join, relative } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-import { InMemoryAiTraceStore, createLocalProvider, outputResponse } from '@ltw/ai';
+import { createLocalProvider, outputResponse } from '@ltw/ai';
 import type {
   AiCapability,
   DmIntentResponse,
   EntityContextResponse,
+  GenerateChronicleResponse,
   NpcDialogueResponse,
 } from '@ltw/contracts';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { Secret, loadConfig, type AppConfig } from '../platform/config/config.ts';
+import { FIXTURE_CATALOG } from '../testing/catalog-fixtures.ts';
+import { fakeBudgetStore } from '../testing/fake-budget-store.ts';
+import { fakeFetch, jsonResponse } from '../testing/fake-fetch.ts';
+import { composedGateway } from '../testing/gateways.ts';
+import { ANTHROPIC } from '../testing/raw-adapter-fixtures.ts';
 import {
   TOKENS,
   get,
@@ -21,146 +23,245 @@ import {
   seededEngine,
   testProvider,
 } from '../testing/ravenford-app.ts';
+import { AccountingTasks, type AccountingIssue } from './accounting-tasks.ts';
 import { CompositionError, composeRouter } from './composition.ts';
-import { createAiGateway } from './gateway.ts';
+import type { AiGatewayOptions } from './gateway.ts';
+import { LOCAL_ONLY } from './journal.ts';
 
 /**
- * Composition at Stage 300 remediation checkpoints A and B1 (docs/adr/0032-live-ai.md, amendment
- * 2026-10-11): every capability is local or deterministic whatever keys and routes say; no remote
- * adapter is built, no key revealed, nothing fetched. A key alone implies no route. The router
- * admits only the genuine local provider and registered admitted wrappers, by identity.
+ * Gateway composition at checkpoint B2 (docs/adr/0032-live-ai.md): a configured remote entry is
+ * routed only as an admitted wrapper, and only with a selected stored approval, an accounting store
+ * and a verified catalog entry. Otherwise it is refused before any adapter is built or key read,
+ * and the route is local only. Admission comes before any key or transport. Fixture catalog only.
  */
-class ThrowingSecret extends Secret {
+class CountingSecret extends Secret {
+  reveals = 0;
   override reveal(): string {
-    throw new Error('a provider key was revealed');
+    this.reveals += 1;
+    return 'sk-never-a-real-key';
   }
 }
 
-const routeOf = (ai: AppConfig['ai'], capability: AiCapability) =>
-  createAiGateway(ai, new InMemoryAiTraceStore())
-    .router.providersFor(capability)
-    .map((provider) => provider.id);
-
-const keyed: AppConfig['ai'] = {
-  ...loadConfig({}).ai,
-  anthropic: { apiKey: new ThrowingSecret('k'), model: 'claude-opus-5-5', timeoutMs: 30_000 },
-  deepseek: { apiKey: new ThrowingSecret('k'), model: 'deepseek-flash', timeoutMs: 30_000 },
-  routes: {
-    reasoning: ['anthropic:claude-opus-5-5', 'local'],
-    'npc-dialogue': ['deepseek:deepseek-flash', 'local'],
-    narrative: ['anthropic:claude-opus-5-5', 'deepseek:deepseek-flash', 'local'],
-    'fast-context': ['deepseek:deepseek-flash'],
-  },
+const SONNET = 'anthropic:claude-sonnet-5-5';
+// Owner decision 3 (2026-10-11): Sonnet 5.5 for every capability; relevance has no local entry.
+const ROUTES = {
+  reasoning: [SONNET, 'local'],
+  'npc-dialogue': [SONNET, 'local'],
+  narrative: [SONNET, 'local'],
+  'fast-context': [SONNET],
 };
+
+function keyed(approvalId: string | null = 'approval-1') {
+  const secret = new CountingSecret('k');
+  const ai: AppConfig['ai'] = {
+    ...loadConfig({}).ai,
+    anthropic: { apiKey: secret, model: 'claude-sonnet-5-5', timeoutMs: 30_000 },
+    deepseek: { apiKey: secret, model: 'deepseek-flash', timeoutMs: 30_000 },
+    routes: ROUTES,
+    approvalId,
+  };
+  return { ai, secret };
+}
+
+const routeOf = (options: Parameters<typeof composedGateway>, capability: AiCapability) =>
+  composedGateway(...options)
+    .gateway.router.providersFor(capability)
+    .map((provider) => provider.id);
 
 afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe('createAiGateway at checkpoints A and B1', () => {
-  it('routes locally without keys, and relevance nowhere (ADR 0021)', () => {
-    const none = loadConfig({}).ai;
-    expect(routeOf(none, 'reasoning')).toEqual(['local']);
-    expect(routeOf(none, 'npc-dialogue')).toEqual(['local']);
-    expect(routeOf(none, 'narrative')).toEqual(['local']);
-    expect(routeOf(none, 'fast-context')).toEqual([]);
-    for (const capability of ['continuity', 'vision'] as const) {
-      expect(routeOf(none, capability)).toEqual([]);
-    }
-  });
-
-  it('builds no remote provider from keys or routes, and reports those routes as disabled', () => {
-    expect(routeOf(keyed, 'reasoning')).toEqual(['local']);
-    expect(routeOf(keyed, 'npc-dialogue')).toEqual(['local']);
-    expect(routeOf(keyed, 'narrative')).toEqual(['local']);
-    expect(routeOf(keyed, 'fast-context')).toEqual([]);
-    expect(createAiGateway(keyed, new InMemoryAiTraceStore()).disabledRemoteRoutes).toEqual([
-      'reasoning=anthropic:claude-opus-5-5',
-      'npc-dialogue=deepseek:deepseek-flash',
-      'narrative=anthropic:claude-opus-5-5',
-      'narrative=deepseek:deepseek-flash',
-      'fast-context=deepseek:deepseek-flash',
-    ]);
-    // A key alone is not a route.
-    const keyOnly = loadConfig({ ANTHROPIC_API_KEY: 'sk-ant-test', DEEPSEEK_API_KEY: 'sk-test' });
-    expect(routeOf(keyOnly.ai, 'reasoning')).toEqual(['local']);
-    expect(createAiGateway(keyOnly.ai, new InMemoryAiTraceStore()).disabledRemoteRoutes).toEqual(
-      [],
+/** Every capability over HTTP: an intent, an NPC reply, a ranking and a Chronicle chapter. */
+async function serveAll(options: Partial<AiGatewayOptions>, ai: AppConfig['ai']) {
+  const { gateway, journal } = composedGateway(ai, options);
+  const app = await ravenfordApp(await seededEngine(), gateway);
+  try {
+    const intent = await post(
+      app,
+      '/campaigns/ravenford/ai/intents',
+      { text: 'Advance time by 1 hour.' },
+      TOKENS.dm,
     );
+    const reply = await post(
+      app,
+      '/campaigns/ravenford/npcs/mira-vale/dialogue',
+      { characterId: 'elowen-starwhisper', intent: { kind: 'talk' }, line: 'Hello.' },
+      TOKENS.player,
+    );
+    const ranked = await get(
+      app,
+      '/campaigns/ravenford/entities/mira-vale/context?perspective=PLAYER&ranking=ai',
+      TOKENS.player,
+    );
+    const chapter = await post(
+      app,
+      '/campaigns/ravenford/chronicle',
+      { title: 'Chapter I', perspective: 'PARTY', from: 0 },
+      TOKENS.dm,
+    );
+    await gateway.accounting.idle();
+    return {
+      gateway,
+      journal,
+      intent: intent.json<DmIntentResponse>(),
+      reply: reply.json<NpcDialogueResponse>(),
+      ranked: ranked.json<EntityContextResponse>(),
+      chapter: chapter.json<GenerateChronicleResponse>(),
+    };
+  } finally {
+    await app.close();
+  }
+}
+
+describe('createAiGateway at checkpoint B2', () => {
+  it('routes locally without keys, and relevance nowhere (ADR 0021), reporting every capability', () => {
+    const none = loadConfig({}).ai;
+    expect(routeOf([none], 'reasoning')).toEqual(['local']);
+    expect(routeOf([none], 'npc-dialogue')).toEqual(['local']);
+    expect(routeOf([none], 'narrative')).toEqual(['local']);
+    expect(routeOf([none], 'fast-context')).toEqual([]);
+    expect(composedGateway(none).gateway.routes).toEqual([
+      { capability: 'reasoning', providers: ['local'], refused: [] },
+      { capability: 'npc-dialogue', providers: ['local'], refused: [] },
+      { capability: 'narrative', providers: ['local'], refused: [] },
+      { capability: 'fast-context', providers: [], refused: [] },
+    ]);
   });
 
-  it('serves every capability over HTTP without revealing a key or fetching', async () => {
-    const fetchSpy = vi.spyOn(globalThis, 'fetch');
-    const ai = createAiGateway(keyed, new InMemoryAiTraceStore());
-    const app = await ravenfordApp(await seededEngine(), ai);
-    try {
-      const intent = await post(
-        app,
-        '/campaigns/ravenford/ai/intents',
-        { text: 'Advance time by 1 hour.' },
-        TOKENS.dm,
+  const REFUSALS = [
+    ['no approval is selected', null, {}, 'NO_APPROVAL_SELECTED'],
+    [
+      'the approval is not stored',
+      'approval-1',
+      { catalog: FIXTURE_CATALOG },
+      'APPROVAL_NOT_STORED',
+    ],
+    [
+      'there is no accounting store',
+      'approval-1',
+      { catalog: FIXTURE_CATALOG, approvalStored: true },
+      'NO_ACCOUNTING_STORE',
+    ],
+    [
+      'the model has no verified catalog entry (this build)',
+      'approval-1',
+      { approvalStored: true, budget: fakeBudgetStore() },
+      'UNVERIFIED_MODEL',
+    ],
+  ] as const;
+
+  it.each(REFUSALS)(
+    'refuses every remote entry when %s: zero outbound, no key read',
+    async (_label, approvalId, options, reason) => {
+      const fetchSpy = vi.spyOn(globalThis, 'fetch');
+      const { ai, secret } = keyed(approvalId);
+      const served = await serveAll(options, ai);
+      expect(served.gateway.routes.map((route) => route.refused)).toEqual(
+        ['reasoning', 'npc-dialogue', 'narrative', 'fast-context'].map(() => [
+          { entry: SONNET, reason },
+        ]),
       );
-      expect(intent.json<DmIntentResponse>().status).toBe('PROPOSED');
-      const reply = await post(
-        app,
-        '/campaigns/ravenford/npcs/mira-vale/dialogue',
-        { characterId: 'elowen-starwhisper', intent: { kind: 'talk' }, line: 'Hello.' },
-        TOKENS.player,
-      );
-      expect(reply.statusCode).toBeLessThan(500);
-      expect(reply.json<NpcDialogueResponse>().reply?.status ?? 'none').not.toBe('AI_UNAVAILABLE');
-      const ranked = await get(
-        app,
-        '/campaigns/ravenford/entities/mira-vale/context?perspective=PLAYER&ranking=ai',
-        TOKENS.player,
-      );
-      expect(ranked.json<EntityContextResponse>().ranking).toMatchObject({
+      expect(served.intent.status).toBe('PROPOSED');
+      expect(served.reply.reply?.status).toBe('REPLIED');
+      expect(served.ranked.ranking).toMatchObject({
         source: 'deterministic',
         status: 'AI_UNAVAILABLE',
       });
+      expect(served.chapter.rendering.status).toBe('RENDERED');
+      // A refused route is local only: no fictitious denied remote attempt.
+      const trace = await served.journal.get('ravenford', served.intent.traceId ?? '');
+      expect(trace?.attempts.map((a) => a.provider)).toEqual(['local']);
+      expect([...served.journal.identities.values()].every((i) => i === LOCAL_ONLY)).toBe(true);
+      if ('budget' in options) expect(options.budget.calls).toEqual([]);
+      expect(secret.reveals).toBe(0);
+      expect(fetchSpy).not.toHaveBeenCalled();
+    },
+  );
+
+  it('admits before any key or transport: a denied admission switches to local and sends nothing', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch');
+    const { ai, secret } = keyed();
+    const budget = fakeBudgetStore({
+      decide: () => ({ status: 'denied', code: 'ADMISSION_DISABLED', detail: 'NOT_ELIGIBLE' }),
+    });
+    const served = await serveAll({ catalog: FIXTURE_CATALOG, approvalStored: true, budget }, ai);
+    expect(served.gateway.routes.map((route) => route.providers)).toEqual([
+      [SONNET, 'local'],
+      [SONNET, 'local'],
+      [SONNET, 'local'],
+      [SONNET],
+    ]);
+    expect(served.intent.status).toBe('PROPOSED');
+    const trace = await served.journal.get('ravenford', served.intent.traceId ?? '');
+    expect(trace?.attempts).toMatchObject([
+      {
+        provider: 'anthropic',
+        outcome: 'error',
+        error: 'ADMISSION_DISABLED',
+        billing: { status: 'not_dispatched' },
+      },
+      { provider: 'local', kind: 'fallback', outcome: 'valid', billing: { status: 'local' } },
+    ]);
+    expect(served.ranked.ranking).toMatchObject({ status: 'AI_UNAVAILABLE' });
+    expect(budget.calls.map((call) => call.kind)).toEqual(['admit', 'admit', 'admit', 'admit']);
+    expect(budget.calls[0]).toMatchObject({
+      request: { provider: 'anthropic', model: 'claude-sonnet-5-5' },
+    });
+    expect(secret.reveals).toBe(0);
+    expect(fetchSpy).not.toHaveBeenCalled();
+    // The request start carried the approval and the configured alias (journal identity).
+    expect(served.journal.identities.get(served.intent.traceId ?? '')).toEqual({
+      approvalId: 'approval-1',
+      configuredModel: 'claude-sonnet-5-5',
+    });
+  });
+
+  it('dispatches an admitted attempt through the injected transport only, and settles it', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch');
+    const issues: AccountingIssue[] = [];
+    const { ai, secret } = keyed();
+    const budget = fakeBudgetStore();
+    const fake = fakeFetch(() => jsonResponse(ANTHROPIC.reply({ model: 'claude-sonnet-5-5' })));
+    const { gateway, journal } = composedGateway(
+      { ...ai, routes: { reasoning: [SONNET, 'local'] } },
+      {
+        catalog: FIXTURE_CATALOG,
+        approvalStored: true,
+        budget,
+        fetch: fake.fetchImpl,
+        tasks: new AccountingTasks((issue) => issues.push(issue)),
+      },
+    );
+    const app = await ravenfordApp(await seededEngine(), gateway);
+    try {
+      const intent = (
+        await post(
+          app,
+          '/campaigns/ravenford/ai/intents',
+          { text: 'Advance time by 1 hour.' },
+          TOKENS.dm,
+        )
+      ).json<DmIntentResponse>();
+      await gateway.accounting.idle();
+      expect(intent.status).toBe('PROPOSED');
+      const trace = await journal.get('ravenford', intent.traceId ?? '');
+      expect(trace?.attempts).toMatchObject([
+        {
+          provider: 'anthropic',
+          outcome: 'valid',
+          billing: { status: 'known', costMicros: '3396' },
+        },
+      ]);
+      expect(budget.calls.map((call) => call.kind)).toEqual(['admit', 'response', 'settle']);
+      expect(fake.calls).toHaveLength(1);
+      expect(fake.calls[0]?.body).not.toContain(intent.traceId ?? '');
+      expect(secret.reveals).toBe(1);
+      expect(fetchSpy).not.toHaveBeenCalled();
+      expect(issues).toEqual([]);
     } finally {
       await app.close();
     }
-    expect(fetchSpy).not.toHaveBeenCalled();
-  });
-
-  it('keeps raw adapters out of every non-test module, testing and evaluation included', async () => {
-    const root = fileURLToPath(new URL('..', import.meta.url));
-    const raw = new Set([
-      'anthropic-provider.ts',
-      'openai-compatible-provider.ts',
-      'raw-provider.ts',
-    ]);
-    const offenders: string[] = [];
-    const routers: string[] = [];
-    const walk = async (dir: string): Promise<void> => {
-      for (const entry of await readdir(dir, { withFileTypes: true })) {
-        const path = join(dir, entry.name);
-        if (entry.isDirectory()) await walk(path);
-        else if (entry.name.endsWith('.ts') && !entry.name.endsWith('.test.ts')) {
-          const text = await readFile(path, 'utf8');
-          const file = relative(root, path);
-          const specifiers = [...text.matchAll(/(?:from|import\()\s*['"]([^'"]+)['"]/g)].map(
-            (match) => match[1] ?? '',
-          );
-          const importsRaw = specifiers.some((specifier) =>
-            raw.has(specifier.split('/').at(-1) ?? ''),
-          );
-          if (importsRaw && !raw.has(entry.name)) offenders.push(file);
-          if (text.includes('new CapabilityRouter(')) routers.push(file);
-        }
-      }
-    };
-    await walk(root);
-    expect(offenders).toEqual([]);
-    // Runtime (main) and evaluation build their router through `composeRouter` only; the other
-    // routers are test support for HTTP/UI tests, never composition.
-    expect(routers.sort()).toEqual([
-      join('ai', 'composition.ts'),
-      join('testing', 'ravenford-app.ts'),
-      join('testing', 'scenario', 'session.ts'),
-      join('testing', 'ui-server.ts'),
-    ]);
   });
 
   it('admits only the genuine local provider and registered admitted wrappers', () => {
@@ -182,8 +283,8 @@ describe('createAiGateway at checkpoints A and B1', () => {
   it.each(['Advance time by 0 minutes.', 'Advance time by 99999999999999 days.'])(
     'answers an invalid local intent (%s) after one local attempt, over HTTP',
     async (text) => {
-      const traces = new InMemoryAiTraceStore();
-      const app = await ravenfordApp(await seededEngine(), createAiGateway(keyed, traces));
+      const { gateway, journal } = composedGateway(keyed().ai);
+      const app = await ravenfordApp(await seededEngine(), gateway);
       try {
         const response = await post(app, '/campaigns/ravenford/ai/intents', { text }, TOKENS.dm);
         expect(response.json<DmIntentResponse>()).toMatchObject({
@@ -191,7 +292,10 @@ describe('createAiGateway at checkpoints A and B1', () => {
           proposal: null,
           committable: false,
         });
-        const trace = await traces.get('ravenford', response.json<DmIntentResponse>().traceId);
+        const trace = await journal.get(
+          'ravenford',
+          response.json<DmIntentResponse>().traceId ?? '',
+        );
         expect(trace?.attempts.map((a) => [a.provider, a.kind, a.outcome])).toEqual([
           ['local', 'initial', 'invalid'],
         ]);
@@ -201,13 +305,14 @@ describe('createAiGateway at checkpoints A and B1', () => {
     },
   );
 
-  it('issues UUID trace IDs and ISO timestamps', () => {
-    const gateway = createAiGateway(loadConfig({}).ai, new InMemoryAiTraceStore());
+  it('issues UUID trace IDs, ISO timestamps and the configured deadlines', () => {
+    const { gateway } = composedGateway(loadConfig({}).ai);
     expect(gateway.ids.next()).toMatch(
       /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
     );
     const now = gateway.clock.now();
     expect(new Date(now).toISOString()).toBe(now);
     expect(gateway.relevanceBudgetMs).toBe(2_000);
+    expect(gateway.requestTimeoutMs).toBe(60_000);
   });
 });

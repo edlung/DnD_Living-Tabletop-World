@@ -60,3 +60,8 @@ reviews/STAGE_300_CHECKPOINT_B1_IMPLEMENTATION_REPAIR_4_RECEIPT_2026-10-11.json
 # Verbatim independent B1 Opus max acceptance evidence.
 reviews/STAGE_300_CHECKPOINT_B1_OPUS_MAX_REVIEW_2026-10-11.md
 reviews/STAGE_300_CHECKPOINT_B1_OPUS_MAX_RECEIPT_2026-10-11.json
+
+# Verbatim independent B2 acceptance reviews.
+reviews/STAGE_300_CHECKPOINT_B2_OPUS_*_REVIEW*.md
+reviews/STAGE_300_CHECKPOINT_B2_REVIEW_RECEIPTS_2026-10-11.json
+reviews/evidence/stage-300-b2-2026-10-11/

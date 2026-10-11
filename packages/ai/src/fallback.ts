@@ -1,18 +1,24 @@
 import type { AiAttemptView, AttemptKind } from '@ltw/contracts';
 
 import {
-  DENIAL_CODES,
-  MALFORMED_CODES,
+  answerOf,
+  billingOf,
+  factsOf,
+  isDeclineEnvelope,
+  serialize,
+  type Answer,
+} from './fallback-answer.ts';
+import {
   ProviderError,
-  SUSPECT_CODES,
   failureCode,
   type DenialCode,
-  type MalformedCode,
+  type ProviderKind,
+  type ProviderPayload,
   type ProviderRequest,
   type RepairNote,
+  type RequestAccounting,
   type RoutedProvider,
   type SuspectCode,
-  type TokenUsage,
 } from './providers.ts';
 
 /**
@@ -41,6 +47,8 @@ import {
  * - An invoked provider that resolves no well-formed response (not an object, an unknown kind or
  *   code, unreadable) is an uncertain `BAD_RESPONSE` provider failure with no model, usage or
  *   output, or CALLER_CANCELLED once the caller has gone (B1 repair 3).
+ * - Each invocation gets a fresh attempt ID and carries the request's trusted accounting identity
+ *   (B2); its `onStart` hook counts once while the attempt runs and is ignored afterwards (B2).
  * Every attempt is built from the same context by `build`, so no fallback widens what the
  * provider sees, and nothing here can commit anything.
  */
@@ -96,16 +104,27 @@ export type AttemptProgress =
   | {
       readonly type: 'start';
       readonly provider: string;
+      readonly providerKind: ProviderKind;
       readonly kind: AttemptKind;
+      readonly attemptId: string;
       readonly startedMs: number;
     }
   | { readonly type: 'abandoned' }
   | { readonly type: 'dispatched' }
   | { readonly type: 'end'; readonly attempt: AiAttemptView };
 
+/** The request's accounting identity; the policy adds each attempt's ID and kind. */
+export interface FallbackAccounting extends Omit<RequestAccounting, 'attemptId' | 'attemptKind'> {
+  /** A fresh unique attempt ID per invocation (a UUID in the server). */
+  readonly newAttemptId: () => string;
+}
+
 export interface FallbackDeps<T> {
   readonly providers: readonly RoutedProvider[];
-  readonly build: (repair: RepairNote | null) => ProviderRequest;
+  readonly build: (repair: RepairNote | null) => ProviderPayload;
+  readonly accounting: FallbackAccounting;
+  /** The whole request's monotonic deadline, passed to every attempt; none is unbounded. */
+  readonly deadlineAtMs?: number;
   readonly validate: (output: unknown) => OutputCheck<T>;
   /** Milliseconds, for latency only. */
   readonly nowMs: () => number;
@@ -125,101 +144,10 @@ export const WRONG_OUTPUT_KIND = 'WRONG_OUTPUT_KIND';
  */
 export const INTERNAL_ERROR = 'INTERNAL_ERROR';
 
-const MAX_OUTPUT_CHARS = 8 * 1024;
 const NEVER_ABORTED = new AbortController().signal;
-
-function serialize(output: unknown): string {
-  let text: string;
-  try {
-    // JSON.stringify returns undefined for undefined and functions, despite its type.
-    const raw = JSON.stringify(output) as string | undefined;
-    text = raw ?? 'undefined';
-  } catch {
-    text = '"(unserializable output)"';
-  }
-  return text.length > MAX_OUTPUT_CHARS ? `${text.slice(0, MAX_OUTPUT_CHARS)}…` : text;
-}
-
-/** Whether `output` is a decline envelope; an output whose reading throws is not one. */
-function isDeclineEnvelope(output: unknown): boolean {
-  try {
-    return (
-      typeof output === 'object' &&
-      output !== null &&
-      (output as { readonly kind?: unknown }).kind === 'decline'
-    );
-  } catch {
-    return false;
-  }
-}
-
-type Facts = Pick<AiAttemptView, 'model' | 'usage'>;
-
-/** A provider's resolution as the policy reads it, copied once with well-formed facts only. */
-type Answer =
-  | { readonly kind: 'denied'; readonly code: DenialCode }
-  | (Facts &
-      (
-        | { readonly kind: 'output'; readonly output: unknown }
-        | { readonly kind: 'refusal' }
-        | { readonly kind: 'malformed'; readonly code: MalformedCode }
-        | { readonly kind: 'suspect'; readonly code: SuspectCode }
-      ));
 
 /** An invoked provider that resolved no well-formed response: an uncertain provider failure. */
 const NO_RESPONSE = new ProviderError('BAD_RESPONSE', 'provider resolved no response');
-
-const isCount = (value: unknown): value is number =>
-  typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
-const isOneOf = <C extends string>(codes: readonly C[], value: unknown): value is C =>
-  (codes as readonly unknown[]).includes(value);
-
-function usageOf(value: unknown): TokenUsage | null {
-  if (typeof value !== 'object' || value === null) return null;
-  const { inputTokens, outputTokens } = value as Partial<Record<keyof TokenUsage, unknown>>;
-  return isCount(inputTokens) && isCount(outputTokens) ? { inputTokens, outputTokens } : null;
-}
-
-/**
- * Reads a resolution once (B1 repair 3). Anything but an object with a known kind (and, where the
- * kind has one, a known code), or a value whose reading throws, is null: a non-response, never a
- * source of model, usage or output. A model or usage that is not well-formed is kept as unknown.
- */
-function answerOf(value: unknown): Answer | null {
-  try {
-    if (typeof value !== 'object' || value === null) return null;
-    const fields = value as Readonly<Record<string, unknown>>;
-    const kind = fields['kind'];
-    const code = fields['code'];
-    if (kind === 'denied') return isOneOf(DENIAL_CODES, code) ? { kind, code } : null;
-    if (kind !== 'output' && kind !== 'refusal' && kind !== 'malformed' && kind !== 'suspect') {
-      return null;
-    }
-    const model = fields['model'];
-    const facts: Facts = {
-      model: typeof model === 'string' ? model : null,
-      usage: usageOf(fields['usage']),
-    };
-    switch (kind) {
-      case 'output':
-        return { kind, output: fields['output'], ...facts };
-      case 'refusal':
-        return { kind, ...facts };
-      case 'malformed':
-        return isOneOf(MALFORMED_CODES, code) ? { kind, code, ...facts } : null;
-      case 'suspect':
-        return isOneOf(SUSPECT_CODES, code) ? { kind, code, ...facts } : null;
-    }
-  } catch {
-    return null;
-  }
-}
-
-/** A denied attempt was never dispatched: no model, and known zero usage (not unknown). */
-const factsOf = (answer: Answer): Facts =>
-  answer.kind === 'denied'
-    ? { model: null, usage: { inputTokens: 0, outputTokens: 0 } }
-    : { model: answer.model, usage: answer.usage };
 
 /** What happens after an invocation's one attempt is recorded. */
 type Next<T> =
@@ -233,8 +161,10 @@ type Next<T> =
 export async function runWithFallback<T>(deps: FallbackDeps<T>): Promise<FallbackResult<T>> {
   const attempts: AiAttemptView[] = [];
   const signal = deps.signal ?? NEVER_ABORTED;
-  // A function, not a narrowed property: the signal can abort while an attempt is awaited.
-  const callerGone = () => signal.aborted;
+  const deadlineAtMs = deps.deadlineAtMs ?? Number.POSITIVE_INFINITY;
+  // A function, not a narrowed property: the signal can abort while an attempt is awaited. The
+  // monotonic deadline is read too: its abort timer can run late (B2 repair 1).
+  const callerGone = () => signal.aborted || performance.now() >= deadlineAtMs;
   /** Publishes a notice; a throwing listener is returned, never thrown here. */
   const notify = (event: AttemptProgress): { readonly error: unknown } | null => {
     try {
@@ -262,11 +192,24 @@ export async function runWithFallback<T>(deps: FallbackDeps<T>): Promise<Fallbac
     if (!provider) return { status: 'AI_UNAVAILABLE', code: firstFailure, attempts };
     if (callerGone()) return cancelled();
 
-    // Before the invocation boundary: an exception from `nowMs` or `build` propagates as is.
+    // Before the invocation boundary: an exception from `nowMs`, the attempt-ID source or `build`
+    // propagates as is.
     const started = deps.nowMs();
-    const request = deps.build(repair);
+    const attemptId = deps.accounting.newAttemptId();
+    const { requestId, campaignId, capability, sessionId } = deps.accounting;
+    const request: ProviderRequest = {
+      ...deps.build(repair),
+      accounting: { requestId, campaignId, capability, sessionId, attemptId, attemptKind: kind },
+    };
     if (callerGone()) return cancelled();
-    const startFailure = notify({ type: 'start', provider: provider.id, kind, startedMs: started });
+    const startFailure = notify({
+      type: 'start',
+      provider: provider.id,
+      providerKind: provider.kind,
+      kind,
+      attemptId,
+      startedMs: started,
+    });
     if (startFailure !== null || callerGone()) {
       // The announced invocation does not happen: withdraw it; the first exception wins.
       const withdrawFailure = notify({ type: 'abandoned' });
@@ -278,11 +221,16 @@ export async function runWithFallback<T>(deps: FallbackDeps<T>): Promise<Fallbac
     // The invocation boundary: from here exactly one attempt is recorded for this invocation, and
     // exceptions from the caller's code wait until it is (`late`), then the first propagates.
     const late: unknown[] = [];
+    // The start hook counts once while this attempt runs; a call after it settled is ignored.
+    const hook = { live: true, fired: false };
     let settled: { readonly answer: Answer } | { readonly error: unknown };
     try {
       const resolved: unknown = await provider.generate(request, {
         signal,
+        deadlineAtMs,
         onStart: () => {
+          if (!hook.live || hook.fired) return;
+          hook.fired = true;
           const failure = notify({ type: 'dispatched' });
           if (failure !== null) late.push(failure.error);
         },
@@ -293,13 +241,14 @@ export async function runWithFallback<T>(deps: FallbackDeps<T>): Promise<Fallbac
     } catch (error) {
       settled = { error };
     }
+    hook.live = false;
     let latencyMs = 0;
     try {
       latencyMs = Math.round(deps.nowMs() - started);
     } catch (error) {
       late.push(error);
     }
-    const base = { provider: provider.id, kind, latencyMs };
+    const base = { provider: provider.id, kind, latencyMs, attemptId };
     /** The one attempt for this invocation and what follows it. Pure but for `validate`. */
     const settle = (
       outcome: { readonly answer: Answer } | { readonly error: unknown },
@@ -383,7 +332,16 @@ export async function runWithFallback<T>(deps: FallbackDeps<T>): Promise<Fallbac
         }
       }
     };
-    const [attempt, next] = settle(settled);
+    const [settledAttempt, next] = settle(settled);
+    const attempt: AiAttemptView = {
+      ...settledAttempt,
+      billing: billingOf(
+        provider.kind,
+        'answer' in settled
+          ? settled
+          : { notStarted: failureCode(settled.error) === 'TRANSPORT_NOT_STARTED' },
+      ),
+    };
     attempts.push(attempt);
     const endFailure = notify({ type: 'end', attempt });
     if (endFailure !== null) late.push(endFailure.error);

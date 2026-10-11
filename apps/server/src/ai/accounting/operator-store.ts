@@ -230,27 +230,23 @@ export class OperatorStore {
     attemptId: string;
     chargeMicros: bigint;
     authorization: Authorization;
-  }): Promise<void> {
-    return this.#exclusive(async (tx) => {
-      await appendVerifiedCharge(
-        tx,
-        input.attemptId,
-        input.chargeMicros,
-        null,
-        input.authorization,
-        {
-          terminal: false,
-        },
-      );
-    });
+  }): Promise<VerifiedCharge> {
+    return this.#exclusive((tx) =>
+      appendVerifiedCharge(tx, input.attemptId, input.chargeMicros, null, input.authorization, {
+        terminal: false,
+      }),
+    );
   }
 
-  /** A verified absolute charge for one attempt: terminal if none exists, else evidence. */
+  /**
+   * A verified absolute charge for one attempt: terminal if none exists, else evidence. The result
+   * names any stop it appended, so the operator can identify the one clearance target (B2).
+   */
   reconcileAttempt(input: {
     attemptId: string;
     chargeMicros: bigint;
     authorization: Authorization;
-  }): Promise<'reconciled' | 'evidence'> {
+  }): Promise<VerifiedCharge> {
     return this.#exclusive((tx) =>
       appendVerifiedCharge(tx, input.attemptId, input.chargeMicros, null, input.authorization),
     );
@@ -267,7 +263,7 @@ export class OperatorStore {
    * attempt without a terminal row rejects the batch and keeps its full hold. A batch therefore
    * only appends non-reducing evidence; it never writes a terminal row.
    */
-  recordBatchEvidence(input: BatchEvidence, authorization: Authorization): Promise<void> {
+  recordBatchEvidence(input: BatchEvidence, authorization: Authorization): Promise<string[]> {
     return this.#exclusive(async (tx) => {
       const window = (
         await tx.query<{ closed: boolean; attempts: string[]; unresolved: string[] }>(
@@ -309,11 +305,21 @@ export class OperatorStore {
           ...auth(authorization),
         ],
       );
+      const stops: string[] = [];
       for (const [attemptId, charge] of input.allocations) {
-        await appendVerifiedCharge(tx, attemptId, charge, input.batchId, authorization, {
-          terminal: false,
-        });
+        const verified = await appendVerifiedCharge(
+          tx,
+          attemptId,
+          charge,
+          input.batchId,
+          authorization,
+          {
+            terminal: false,
+          },
+        );
+        stops.push(...verified.stops);
       }
+      return stops;
     });
   }
 }
@@ -351,6 +357,12 @@ async function insertApprovalRevision(
   );
 }
 
+/** What a verified charge appended: its row kind and the IDs of any stops it called for. */
+export interface VerifiedCharge {
+  readonly recorded: 'reconciled' | 'evidence';
+  readonly stops: string[];
+}
+
 /** Under the exclusive policy lock: no settlement can race this append. */
 async function appendVerifiedCharge(
   tx: Tx,
@@ -359,7 +371,7 @@ async function appendVerifiedCharge(
   batchId: string | null,
   authorization: Authorization,
   options: { terminal: boolean } = { terminal: true },
-): Promise<'reconciled' | 'evidence'> {
+): Promise<VerifiedCharge> {
   const prior = await readAttemptCharge(tx, attemptId);
   if (prior === null) throw new AccountingRejection('UNKNOWN_ATTEMPT');
   const kind = prior.terminal || !options.terminal ? 'evidence' : 'reconciled';
@@ -377,6 +389,7 @@ async function appendVerifiedCharge(
     ],
   );
   const stop = stopForCharge(charge, prior);
+  const stops: string[] = [];
   if (stop !== null) {
     const attempt = (
       await tx.query<{ account_id: string; approval_id: string; provider: string; model: string }>(
@@ -385,7 +398,7 @@ async function appendVerifiedCharge(
       )
     ).rows[0];
     if (attempt !== undefined) {
-      await appendStop(
+      const stopId = await appendStop(
         tx,
         {
           attemptId,
@@ -396,7 +409,8 @@ async function appendVerifiedCharge(
         },
         stop,
       );
+      stops.push(stopId);
     }
   }
-  return kind;
+  return { recorded: kind, stops };
 }

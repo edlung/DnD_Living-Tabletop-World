@@ -17,7 +17,7 @@ import type { FastifyInstance } from 'fastify';
 import pg from 'pg';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { PostgresAiTraceStore } from '../ai/postgres-trace-store.ts';
+import { PostgresAiJournal } from '../ai/journal.ts';
 import {
   TOKENS,
   get,
@@ -50,7 +50,7 @@ beforeEach(async () => {
   database = await createThrowawayDatabase({ migrate: true });
   pool = new pg.Pool({ connectionString: database.url });
   engine = await seededEngine(new PostgresEventStore(pool));
-  app = await ravenfordApp(engine, { ...testAiGateway(), traces: new PostgresAiTraceStore(pool) });
+  app = await ravenfordApp(engine, { ...testAiGateway(), traces: new PostgresAiJournal(pool) });
 });
 
 afterEach(async () => {
@@ -83,7 +83,7 @@ async function restart() {
     clock: new SteppingClock(),
     combat: createCombatEngine(),
   });
-  app = await ravenfordApp(engine, { ...testAiGateway(), traces: new PostgresAiTraceStore(pool) });
+  app = await ravenfordApp(engine, { ...testAiGateway(), traces: new PostgresAiJournal(pool) });
 }
 
 describe('G05-H01: a chapter protects the names it told', () => {

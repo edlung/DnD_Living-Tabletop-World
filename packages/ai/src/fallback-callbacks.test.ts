@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { runWithFallback, type AttemptProgress, type FallbackDeps } from './fallback.ts';
 import { ProviderError, outputResponse, type RoutedProvider } from './providers.ts';
-import { steppingMs, testBrand } from './testing/providers.ts';
+import { steppingMs, testAccounting, testBrand } from './testing/providers.ts';
 import { validateProposal } from './validation.ts';
 
 /**
@@ -55,6 +55,7 @@ async function run(
     }),
     validate: (output) => validateProposal(output, new Set()),
     nowMs: steppingMs(),
+    accounting: testAccounting(),
     onProgress: (event) => {
       events.push(event.type);
       if (event.type === 'end') ends.push(event.attempt);

@@ -9,7 +9,8 @@ import { AccountingRejection, sessionKey, type RequestStart } from './types.ts';
 
 /**
  * Request starts, caller outcomes and recovery (docs/STAGE_300_REMEDIATION_DESIGN.md §2).
- * Checkpoint A provides these primitives; use cases connect to them at B2.
+ * Checkpoint A provided these primitives; at B2 every AI use case runs through them
+ * (`ai/journal.ts`), and the live outcome also records the fallback outcome code (migration 0007).
  *
  * - A start commits in its own short transaction with no advisory lock; its stored deadline is
  *   database `clock_timestamp()` plus the caller's remaining monotonic time, computed after every
@@ -80,6 +81,8 @@ export interface FinalOutcome {
   readonly requestId: string;
   readonly status: string;
   readonly provider: string | null;
+  /** The fallback result's fixed code (migration 0007); null for a valid result. */
+  readonly code: string | null;
   /** The trace exactly as stored: serialized once by the caller. */
   readonly traceJson: string;
   readonly trace: {
@@ -158,11 +161,18 @@ export async function finalize(
       window.cutoff = after;
       tx.clamp(after);
       const inserted = await tx.query(
-        `INSERT INTO ltw_ai_request_outcomes (request_id, kind, status, provider, trace_digest)
-         SELECT r.request_id, 'live', $2, $3, $4 FROM ltw_ai_requests r
+        `INSERT INTO ltw_ai_request_outcomes (request_id, kind, status, provider, trace_digest, code)
+         SELECT r.request_id, 'live', $2, $3, $4, $6 FROM ltw_ai_requests r
          WHERE r.request_id = $1
            AND clock_timestamp() <= r.deadline_at + make_interval(secs => $5)`,
-        [outcome.requestId, outcome.status, outcome.provider, digest, FINALIZER_GRACE_MS / 1000],
+        [
+          outcome.requestId,
+          outcome.status,
+          outcome.provider,
+          digest,
+          FINALIZER_GRACE_MS / 1000,
+          outcome.code,
+        ],
       );
       if (inserted.rowCount !== 1) throw new AccountingRejection('WINDOW_CLOSED');
       await tx.query(

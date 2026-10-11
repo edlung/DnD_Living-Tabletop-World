@@ -8,7 +8,13 @@ import {
   type OutputCheck,
 } from './fallback.ts';
 import { ProviderError, outputResponse, type RoutedProvider } from './providers.ts';
-import { scripted, scriptedLocal, steppingMs, testBrand } from './testing/providers.ts';
+import {
+  scripted,
+  scriptedLocal,
+  steppingMs,
+  testAccounting,
+  testBrand,
+} from './testing/providers.ts';
 import { validateProposal } from './validation.ts';
 
 /**
@@ -41,6 +47,7 @@ function deps(
     }),
     validate: (output) => validateProposal(output, new Set()),
     nowMs: steppingMs(),
+    accounting: testAccounting(),
     ...extra,
   };
 }

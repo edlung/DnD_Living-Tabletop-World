@@ -40,6 +40,17 @@ export interface AppConfig {
     } | null;
     /** How long a context request waits for the relevance ranker (docs/adr/0021-ai-relevance.md). */
     readonly relevanceBudgetMs: number;
+    /**
+     * The whole-request deadline of DM intents, NPC replies and Chronicle prose
+     * (docs/adr/0032-live-ai.md, B2): request start, admission, every attempt and the wait for the
+     * trace write. `LTW_AI_TIMEOUT_MS` stays the per-attempt transport bound within it.
+     */
+    readonly requestTimeoutMs: number;
+    /**
+     * The operator-created approval this process selects (`LTW_AI_APPROVAL_ID`), or null. It only
+     * names a stored record: ceilings live in that record and cannot be set or raised here.
+     */
+    readonly approvalId: string | null;
     /** The DeepSeek adapter (docs/adr/0032-live-ai.md); null unless a key is set. */
     readonly deepseek: {
       readonly apiKey: Secret;
@@ -91,6 +102,7 @@ export class Secret {
 export const DEFAULT_AI_MODEL = 'claude-opus-5-5';
 export const DEFAULT_AI_TIMEOUT_MS = 30_000;
 export const DEFAULT_RELEVANCE_BUDGET_MS = 2_000;
+export const DEFAULT_REQUEST_TIMEOUT_MS = 60_000;
 export const DEFAULT_ASSET_WORKER_INTERVAL_MS = 5_000;
 export const DEFAULT_DEEPSEEK_MODEL = 'deepseek-flash';
 export const DEFAULT_ASSET_TIMEOUT_MS = 60_000;
@@ -156,6 +168,17 @@ const envSchema = z.object({
       .default(DEFAULT_DEEPSEEK_MODEL),
   ),
   LTW_AI_ROUTES: z.preprocess(emptyAsUndefined, z.string().max(2_000).optional()),
+  LTW_AI_REQUEST_TIMEOUT_MS: z.preprocess(
+    emptyAsUndefined,
+    z.coerce.number().int().min(1_000).max(300_000).default(DEFAULT_REQUEST_TIMEOUT_MS),
+  ),
+  LTW_AI_APPROVAL_ID: z.preprocess(
+    emptyAsUndefined,
+    z
+      .string()
+      .regex(/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/)
+      .optional(),
+  ),
   LTW_AI_RELEVANCE_BUDGET_MS: z.preprocess(
     emptyAsUndefined,
     z.coerce.number().int().min(100).max(30_000).default(DEFAULT_RELEVANCE_BUDGET_MS),
@@ -258,6 +281,8 @@ export function loadConfig(env: Env = process.env): AppConfig {
               timeoutMs: values.LTW_AI_TIMEOUT_MS,
             }),
       relevanceBudgetMs: values.LTW_AI_RELEVANCE_BUDGET_MS,
+      requestTimeoutMs: values.LTW_AI_REQUEST_TIMEOUT_MS,
+      approvalId: values.LTW_AI_APPROVAL_ID ?? null,
       deepseek:
         values.DEEPSEEK_API_KEY === undefined
           ? null

@@ -212,6 +212,7 @@ export {
   type AiAttemptView,
   type AiCapability,
   type AiTraceView,
+  type AttemptBillingView,
   type ChronicleTraceView,
   type AttemptKind,
   type AttemptOutcome,
@@ -224,6 +225,11 @@ export {
   type NpcDialogueTraceView,
   type RelevanceTraceView,
 } from './ai-gateway/intents.ts';
+export type {
+  AccountingAttemptView,
+  AiAccountingDiagnosticView,
+  AiRequestLifecycle,
+} from './ai-gateway/accounting.ts';
 export {
   DIALOGUE_STATUSES,
   MAX_DIALOGUE_LINE,

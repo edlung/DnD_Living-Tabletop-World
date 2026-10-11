@@ -10,6 +10,7 @@ import {
   seedApproval,
   startedRequest,
   type AccountingDb,
+  TEST_RESOLVE,
 } from '../../testing/accounting.ts';
 import { deadlineIn } from './deadline.ts';
 import { PostgresBudgetStore } from './postgres-budget-store.ts';
@@ -24,7 +25,7 @@ let db: AccountingDb;
 let store: PostgresBudgetStore;
 beforeEach(async () => {
   db = await accountingDb();
-  store = new PostgresBudgetStore(db.pool);
+  store = new PostgresBudgetStore(db.pool, TEST_RESOLVE);
 });
 afterEach(async () => {
   await db.close();

@@ -130,6 +130,7 @@ export class RavenfordSession {
       traces: new InMemoryAiTraceStore(),
       ids: new SequentialIds(0xa1),
       clock: { now: () => clock.now(), nowMs: () => (ms += 5) },
+      requestTimeoutMs: 60_000,
     };
     const contents = options.contents ?? new InMemoryAssetContentStore();
     const app = await ravenfordApp(engine, ai, testAuthoring(), contents);

@@ -6,16 +6,29 @@ import { ProviderError, intentRequest, type ProviderRequest } from '@ltw/ai';
  * see `gateway.test.ts`); tests construct adapters in their own files.
  */
 export const KEY = 'sk-test-key-never-shown';
-export const REQUEST: ProviderRequest = intentRequest(
-  'Advance time by 1 hour.',
-  {
-    scope: 'PUBLIC',
-    items: [{ sourceId: 'north-gate', kind: 'entity', text: 'north-gate (location): North Gate' }],
-    entities: [{ entityId: 'north-gate', kind: 'location', name: 'North Gate' }],
-    worldTime: 0,
+/** With trusted accounting metadata, which no adapter may serialize (`raw-adapters.test.ts`). */
+export const REQUEST: ProviderRequest = {
+  ...intentRequest(
+    'Advance time by 1 hour.',
+    {
+      scope: 'PUBLIC',
+      items: [
+        { sourceId: 'north-gate', kind: 'entity', text: 'north-gate (location): North Gate' },
+      ],
+      entities: [{ entityId: 'north-gate', kind: 'location', name: 'North Gate' }],
+      worldTime: 0,
+    },
+    null,
+  ),
+  accounting: {
+    requestId: '7d3f0b8e-1c2a-4e5f-9a6b-0c1d2e3f4a5b',
+    campaignId: 'campaign-accounting-marker',
+    capability: 'reasoning',
+    sessionId: 'session-accounting-marker',
+    attemptId: '0f1e2d3c-4b5a-4968-8776-655443322110',
+    attemptKind: 'initial',
   },
-  null,
-);
+};
 export const OUTPUT = {
   kind: 'proposal',
   proposal: { summary: 'An hour passes.', commands: [{ type: 'AdvanceWorldTime', by: 3_600 }] },
@@ -124,10 +137,8 @@ export const anthropicOptions = (options: MakeOptions) => ({
   ...options,
 });
 
-/** Options for `createOpenAiCompatibleProvider` with a fake key. */
+/** Options for `createDeepSeekProvider` with a fake key. */
 export const openAiOptions = (options: MakeOptions) => ({
-  id: 'deepseek',
-  baseUrl: 'https://example.test',
   apiKey: () => KEY,
   model: DEEPSEEK.model,
   timeoutMs: 1_000,

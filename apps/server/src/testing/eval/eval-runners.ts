@@ -10,6 +10,8 @@ import { InMemoryEventStore } from '@ltw/domain';
 import { scriptedDice } from '@ltw/rules';
 
 import { createAiGateway } from '../../ai/gateway.ts';
+import { VERIFIED_CATALOG } from '../../ai/catalog.ts';
+import { MemoryAiJournal } from '../memory-journal.ts';
 import { loadConfig, type Env } from '../../platform/config/config.ts';
 import { RAVENFORD_RU_FIXTURES_DIR } from '../../world-engine/ravenford-seed.ts';
 import {
@@ -36,14 +38,25 @@ export const CAPABILITIES = ['reasoning', 'npc-dialogue', 'narrative', 'fast-con
 export type Capability = (typeof CAPABILITIES)[number];
 
 /** Variables that could name or reach a remote provider; never read by an offline run. */
-const REMOTE_VARIABLES = ['ANTHROPIC_API_KEY', 'DEEPSEEK_API_KEY', 'LTW_AI_ROUTES'];
+const REMOTE_VARIABLES = [
+  'ANTHROPIC_API_KEY',
+  'DEEPSEEK_API_KEY',
+  'LTW_AI_ROUTES',
+  'LTW_AI_APPROVAL_ID',
+];
 
 export const offlineEnv = (env: Env): Env =>
   Object.fromEntries(Object.entries(env).filter(([name]) => !REMOTE_VARIABLES.includes(name)));
 
 async function world(env: Env) {
   const traces = new InMemoryAiTraceStore();
-  const ai = createAiGateway(loadConfig(offlineEnv(env)).ai, traces);
+  // Offline: no accounting store and no approval, so composition admits no remote provider.
+  const ai = createAiGateway(loadConfig(offlineEnv(env)).ai, {
+    journal: new MemoryAiJournal(traces),
+    budget: null,
+    catalog: VERIFIED_CATALOG,
+    approvalStored: false,
+  });
   const engine = await seededEngine(
     new InMemoryEventStore(),
     scriptedDice(Array(40).fill(15)),

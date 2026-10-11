@@ -29,7 +29,9 @@ import { forPlayer } from './command-routes.ts';
  * Engine like any player command, and only then is the reply phrased, from
  * the NPC's minimal context built on the state after it. A player sees the
  * command's result as `forPlayer` shows it. Logs carry statuses and the
- * trace ID, never the player's words or the reply.
+ * trace ID, never the player's words or the reply. The reply's accounting
+ * session comes from the snapshot before the command; a reply without a
+ * durable request start has `traceId: null` and the command's result stands.
  */
 export interface NpcRouteDependencies extends RouteDependencies {
   readonly ai: DialogueDeps;
@@ -62,6 +64,9 @@ export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependenci
     const before = await deps.engine.load(path.campaignId);
     const role = campaignRole(before?.state ?? null, actor);
     if (role === null || !before) return sendError(reply, request, 'NOT_FOUND');
+    // The only session this reply may be charged to: captured once, from the authorized snapshot
+    // before the command (docs/adr/0032-live-ai.md, B2). Never re-read, never from the body.
+    const accountingSessionId = before.state.activeSessionId;
     const refused = (code: NpcDialogueResponse['refused'], command: CommandResult | null) => {
       const response: NpcDialogueResponse = { command, refused: code, reply: null };
       return reply.code(422).send(response);
@@ -106,6 +111,7 @@ export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependenci
       commandId: result?.commandId ?? null,
       line: body.line ?? null,
       language: languageOf(after.state),
+      accountingSessionId,
     });
     request.log.info(
       {

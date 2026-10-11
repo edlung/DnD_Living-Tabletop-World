@@ -1,8 +1,10 @@
 import type pg from 'pg';
 
 import { admit } from './admission.ts';
+import { recordResponse } from './attempt-responses.ts';
 import { fixedStep, type Deadline } from './deadline.ts';
 import { readCommitted } from './pg-transaction.ts';
+import type { Resolve } from './stop-scope.ts';
 import { holdWithStop, releasePreDispatch, settle } from './settlement.ts';
 import type {
   AdmissionRequest,
@@ -14,16 +16,21 @@ import type {
   SuspectReason,
 } from './types.ts';
 
-/** The PostgreSQL budget store (migration 0005): the only production spending authority. */
+/**
+ * The PostgreSQL budget store (migration 0005): the only production spending authority. `resolve`
+ * maps recorded identities to canonical models through the pinned verified catalog (B2).
+ */
 export class PostgresBudgetStore implements BudgetStore {
   readonly #pool: pg.Pool;
+  readonly #resolve: Resolve;
 
-  constructor(pool: pg.Pool) {
+  constructor(pool: pg.Pool, resolve: Resolve) {
     this.#pool = pool;
+    this.#resolve = resolve;
   }
 
   admit(request: AdmissionRequest, requestDeadline: Deadline): Promise<AdmissionResult> {
-    return admit(this.#pool, request, requestDeadline);
+    return admit(this.#pool, request, requestDeadline, this.#resolve);
   }
 
   settle(input: SettlementInput): Promise<SettlementOutcome> {
@@ -40,6 +47,14 @@ export class PostgresBudgetStore implements BudgetStore {
     returnedModel: string | null,
   ): Promise<void> {
     return holdWithStop(this.#pool, attemptId, reason, returnedModel);
+  }
+
+  recordResponse(
+    attemptId: string,
+    providerRequestId: string,
+    returnedModel: string | null,
+  ): Promise<void> {
+    return recordResponse(this.#pool, attemptId, providerRequestId, returnedModel);
   }
 }
 
@@ -76,4 +91,22 @@ export function accountingStatus(pool: pg.Pool): Promise<AccountingStatus> {
     if (row === undefined) throw new Error('accounting status unavailable');
     return row;
   });
+}
+
+/**
+ * Whether an approval record exists (B2 composition). Approvals are append-only and never deleted,
+ * so a stored one stays stored; any failure answers false, which keeps every route local.
+ */
+export async function approvalExists(pool: pg.Pool, approvalId: string): Promise<boolean> {
+  try {
+    return await readCommitted(pool, fixedStep(), async (tx) => {
+      const { rows } = await tx.query<{ stored: boolean }>(
+        'SELECT EXISTS (SELECT 1 FROM ltw_ai_approvals WHERE approval_id = $1) AS stored',
+        [approvalId],
+      );
+      return rows[0]?.stored === true;
+    });
+  } catch {
+    return false;
+  }
 }

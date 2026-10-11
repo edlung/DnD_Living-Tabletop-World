@@ -10,6 +10,7 @@ import {
   seedApproval,
   startedRequest,
   type AccountingDb,
+  TEST_RESOLVE,
 } from '../../testing/accounting.ts';
 import { deadlineIn } from './deadline.ts';
 import { PostgresBudgetStore, accountingStatus } from './postgres-budget-store.ts';
@@ -74,6 +75,7 @@ const outcome = (requestId: string, text = 'trace body'): FinalOutcome => {
     requestId,
     status: 'RANKED',
     provider: 'local',
+    code: null,
     traceJson,
     trace: {
       campaignId: 'ravenford',
@@ -194,7 +196,7 @@ describe('recovery', () => {
   it('keeps holds; the sweep reports what it did', async () => {
     const { approvalId } = await seedApproval(db);
     const requestId = await startedRequest(db.pool, approvalId);
-    const store = new PostgresBudgetStore(db.pool);
+    const store = new PostgresBudgetStore(db.pool, TEST_RESOLVE);
     expect((await store.admit(admission(requestId, 100n), deadlineIn(10_000))).status).toBe(
       'admitted',
     );
@@ -210,12 +212,12 @@ describe('recovery', () => {
   it('runs a finalizer and a settlement of the same request without lock inversion', async () => {
     const { approvalId } = await seedApproval(db);
     const requestId = await startedRequest(db.pool, approvalId);
-    const store = new PostgresBudgetStore(db.pool);
+    const store = new PostgresBudgetStore(db.pool, TEST_RESOLVE);
     const admitted = await store.admit(admission(requestId, 100n), deadlineIn(10_000));
     if (admitted.status !== 'admitted') throw new Error('not admitted');
     const [finalized, settled] = await Promise.all([
       finalize(db.pool, outcome(requestId), deadlineIn(5_000)),
-      new PostgresBudgetStore(db.pool2()).settle({
+      new PostgresBudgetStore(db.pool2(), TEST_RESOLVE).settle({
         attemptId: admitted.attemptId,
         chargeMicros: 50n,
         usage: null,

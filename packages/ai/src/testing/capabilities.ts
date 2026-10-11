@@ -6,6 +6,7 @@ import {
   chronicleEntries,
   holderPerspective,
   npcDialogueContext,
+  type WorldState,
 } from '@ltw/domain';
 
 import { renderChronicle } from '../chronicle.ts';
@@ -15,7 +16,7 @@ import { createLocalProvider } from '../local-provider.ts';
 import type { ProviderRequest, RoutedProvider } from '../providers.ts';
 import { rankContextActions } from '../relevance.ts';
 import { CapabilityRouter } from '../router.ts';
-import { InMemoryAiTraceStore } from '../traces.ts';
+import { InMemoryAiTraceStore, type AiTraceStore } from '../traces.ts';
 import { steppingMs, testBrand } from './providers.ts';
 import { CAMPAIGN, DM, PLAYER, seedRavenford } from './ravenford.ts';
 
@@ -72,23 +73,40 @@ const VIEW: EntityContextView = {
   ],
 };
 
+/** What a use case answered, before any trace is looked up. */
+export interface CapabilityAnswer {
+  readonly status: string;
+  readonly result: unknown;
+  readonly issues: readonly string[];
+  /** The public trace ID (null for a no-start response). */
+  readonly traceId: string | null;
+  /** The answer's full public value: the intent response, reply, rendering or ranked context. */
+  readonly value: unknown;
+}
+
+export interface RunOptions {
+  /** The journal; default: a fresh in-memory store. */
+  readonly traces?: AiTraceStore;
+  /** The whole-request deadline (also relevance's budget); default 60 s (relevance 2 s). */
+  readonly timeoutMs?: number;
+  /** The campaign's active play session; default: the seeded one. */
+  readonly session?: string | null;
+}
+
 export async function capabilityHarness() {
   const world = await seedRavenford({ dialogue: true });
-  const { state } = world;
+  const seeded = world.state;
   const clock = new SteppingClock();
 
-  return async function run(
+  /** Runs one use case over `providers` and answers what it returned. */
+  async function answer(
     capability: Capability,
-    route: (local: RoutedProvider) => readonly RoutedProvider[],
-  ): Promise<CapabilityRun> {
-    const genuine = createLocalProvider();
-    let localCalls = 0;
-    const local = testBrand('local', 'local', (request, attempt) => {
-      localCalls += 1;
-      return genuine.generate(request, attempt);
-    });
-    const traces = new InMemoryAiTraceStore();
-    const providers = route(local);
+    providers: readonly RoutedProvider[],
+    traces: AiTraceStore,
+    options: RunOptions,
+  ): Promise<CapabilityAnswer> {
+    const state: WorldState =
+      options.session === undefined ? seeded : { ...seeded, activeSessionId: options.session };
     const deps = {
       router: new CapabilityRouter({
         reasoning: providers,
@@ -99,13 +117,8 @@ export async function capabilityHarness() {
       traces,
       ids: new SequentialIds(0xe1),
       clock: { now: () => clock.now(), nowMs: steppingMs() },
+      requestTimeoutMs: options.timeoutMs ?? 60_000,
     };
-    const done = (status: string, result: unknown, issues: readonly string[]) => {
-      const [trace] = traces.all();
-      if (!trace) throw new Error('no trace');
-      return { status, result, issues, trace, attempts: trace.attempts, localCalls };
-    };
-
     switch (capability) {
       case 'intent': {
         const outcome = await interpretDmIntent(deps, {
@@ -116,7 +129,13 @@ export async function capabilityHarness() {
         });
         if (!outcome.ok) throw new Error(outcome.reason);
         const { response } = outcome;
-        return done(response.status, response.proposal, response.issues);
+        return {
+          status: response.status,
+          result: response.proposal,
+          issues: response.issues,
+          traceId: response.traceId,
+          value: response,
+        };
       }
       case 'dialogue': {
         const talk = checkTalk(state, PLAYER, 'elowen-starwhisper', 'mira-vale');
@@ -130,6 +149,7 @@ export async function capabilityHarness() {
         if (!context) throw new Error('no context');
         const reply = await replyAsNpc(deps, {
           campaignId: CAMPAIGN,
+          accountingSessionId: state.activeSessionId,
           actor: PLAYER,
           context,
           intent: { kind: 'talk' },
@@ -137,7 +157,13 @@ export async function capabilityHarness() {
           commandId: null,
           line: null,
         });
-        return done(reply.status, reply.text, []);
+        return {
+          status: reply.status,
+          result: reply.text,
+          issues: [],
+          traceId: reply.traceId,
+          value: reply,
+        };
       }
       case 'chronicle': {
         const party = holderPerspective(state, { kind: 'PARTY' });
@@ -150,11 +176,17 @@ export async function capabilityHarness() {
           title: 'Chapter I',
           entries,
         });
-        return done(rendered.status, rendered.prose.provider, []);
+        return {
+          status: rendered.status,
+          result: rendered.prose.provider,
+          issues: [],
+          traceId: rendered.traceId,
+          value: rendered,
+        };
       }
       case 'relevance': {
         const ranked = await rankContextActions(
-          { ...deps, relevanceBudgetMs: 2_000 },
+          { ...deps, relevanceBudgetMs: options.timeoutMs ?? 2_000 },
           {
             campaignId: CAMPAIGN,
             actor: PLAYER,
@@ -170,8 +202,56 @@ export async function capabilityHarness() {
         if (ranked.ranking.source === 'deterministic' && ranked.actions !== VIEW.actions) {
           throw new Error('deterministic actions changed');
         }
-        return done(ranked.ranking.status, ranked.ranking.source, []);
+        return {
+          status: ranked.ranking.status,
+          result: ranked.ranking.source,
+          issues: [],
+          traceId: ranked.ranking.traceId,
+          value: ranked,
+        };
       }
     }
-  };
+  }
+
+  /** A local provider that counts its calls and answers as the genuine one does. */
+  function countingLocal() {
+    const genuine = createLocalProvider();
+    const counter = { calls: 0 };
+    const local = testBrand('local', 'local', (request, attempt) => {
+      counter.calls += 1;
+      return genuine.generate(request, attempt);
+    });
+    return { local, counter };
+  }
+
+  async function run(
+    capability: Capability,
+    route: (local: RoutedProvider) => readonly RoutedProvider[],
+  ): Promise<CapabilityRun> {
+    const { local, counter } = countingLocal();
+    const traces = new InMemoryAiTraceStore();
+    const answered = await answer(capability, route(local), traces, {});
+    const [trace] = traces.all();
+    if (!trace) throw new Error('no trace');
+    const { status, result, issues } = answered;
+    return { status, result, issues, trace, attempts: trace.attempts, localCalls: counter.calls };
+  }
+
+  /** Runs with a given journal, deadline or session; nothing is assumed about traces. */
+  async function runWith(
+    capability: Capability,
+    route: (local: RoutedProvider) => readonly RoutedProvider[],
+    options: RunOptions = {},
+  ): Promise<CapabilityAnswer & { readonly localCalls: number }> {
+    const { local, counter } = countingLocal();
+    const answered = await answer(
+      capability,
+      route(local),
+      options.traces ?? new InMemoryAiTraceStore(),
+      options,
+    );
+    return { ...answered, localCalls: counter.calls };
+  }
+
+  return Object.assign(run, { runWith });
 }

@@ -1,0 +1,58 @@
+{
+  "checkpoint": "Stage 300 remediation B2",
+  "date": "2026-10-12",
+  "status": "ACCEPTED",
+  "policy": "Two independent fresh Opus 5.5 acceptance reviews, xhigh and max (reviews/STAGE_300_OWNER_DECISIONS_3_2026-10-11.json)",
+  "artifact": {
+    "baseHead": "9be13071914755abb78006b054cce83eb4038978",
+    "handoff": "handoffs/STAGE_300_CHECKPOINT_B2_REQUEST.md (RETEST, repair 1)",
+    "handoffDirtyListingSha256": "589b980e3be3787ac41f7d6a29c6dff8514806355bf482c7b8d7b9d288feb20e",
+    "reviewerCliManifest": "2926e398fdb5a7b90cd3c4e6209b257a445644b1b2a77cffd254f659c0961be9",
+    "designSha256": "23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2",
+    "stopScopeDeltaSha256": "6bba003055bfd53ac4e069d01d5bf6e3a5a6e272fddb41a2f8305b55e153b485"
+  },
+  "implementation": {
+    "session": "c5c1ac6f-12d0-4b1b-b072-bca3075ef38d",
+    "model": "claude-opus-5-5",
+    "effort": "medium (B2), xhigh (repair 1)",
+    "elapsedSeconds": { "b2": 3130.6, "repair1": 865.0 }
+  },
+  "reviews": {
+    "opusXhigh": {
+      "initial": "PASS with M1 (Medium), L1, L2",
+      "repair1": "PASS; M1, L1, L2 fixed; new pre-existing Low L-N1 (flaky test)",
+      "reports": [
+        "reviews/STAGE_300_CHECKPOINT_B2_OPUS_XHIGH_REVIEW.md",
+        "reviews/STAGE_300_CHECKPOINT_B2_OPUS_XHIGH_REVIEW_REPAIR_1_2026-10-11.md"
+      ],
+      "note": "reviewer-cli marked the session blocked after repair 1 (transcript cwd inside the snapshot after `cd apps/server`); snapshot unchanged; see receipts"
+    },
+    "opusMax": {
+      "initial": "PASS with F1 (Medium), F2, F3, F4 (Low)",
+      "repair1": "PASS; F1-F3 fixed, F4 deferred by the owner; no new defects",
+      "reports": [
+        "reviews/STAGE_300_CHECKPOINT_B2_OPUS_MAX_REVIEW.md",
+        "reviews/STAGE_300_CHECKPOINT_B2_OPUS_MAX_REVIEW_REPAIR_1_2026-10-11.md"
+      ]
+    },
+    "receipts": "reviews/STAGE_300_CHECKPOINT_B2_REVIEW_RECEIPTS_2026-10-11.json",
+    "evidence": "reviews/evidence/stage-300-b2-2026-10-11/"
+  },
+  "checks": "pnpm validate offline: 2170 unit, 173 integration, 45 E2E; 686 active files within limits",
+  "ownerApprovedDeferrals": {
+    "F4": "Admission with an unconfirmed COMMIT keeps any hold until operator reconciliation (conservative)",
+    "sonnetAllowlists": "Sonnet 5.5 usage/model allowlists wait for separately authorized catalog verification",
+    "L-N1": "transaction-bounds.integration.test.ts keeps the holder connection after a failure and times out under load; fix first in checkpoint C"
+  },
+  "carriedIntoC": [
+    "Fix L-N1: release the holder client in finally (apps/server/src/ai/accounting/transaction-bounds.integration.test.ts:231-258)",
+    "packages/ai/AGENTS.md:42 states cancellation only in terms of the signal; align with the clock-based rule",
+    "journal.begin records session class play only; extend for evaluation runs"
+  ],
+  "liveUsePrerequisites": [
+    "Owner-authorized catalog verification for claude-sonnet-5-5 (prices, usage/model allowlists, bound proof)",
+    "Operator billing-account and approval records within the $30 grant",
+    "Checkpoint C acceptance"
+  ],
+  "paidRuntimeCalls": "None"
+}

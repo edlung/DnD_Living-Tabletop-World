@@ -1,5 +1,9 @@
 import { interpretDmIntent, type IntentDeps } from '@ltw/ai';
-import { campaignIdSchema, dmIntentRequestSchema } from '@ltw/contracts';
+import {
+  campaignIdSchema,
+  dmIntentRequestSchema,
+  type AiAccountingDiagnosticView,
+} from '@ltw/contracts';
 import { campaignRole } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
@@ -11,10 +15,22 @@ import { authenticate, parseInput, type RouteDependencies } from '../request-con
  * The AI gateway over HTTP (docs/adr/0017-ai-gateway.md §6), DM only, with
  * the ADR 0009 check order. A proposal is returned for review and is never
  * committable here: no route submits it. Logs carry the trace ID and status,
- * never the DM's text or the provider's output.
+ * never the DM's text or the provider's output. An intent without a durable
+ * request start answers `traceId: null` (docs/adr/0032-live-ai.md, B2).
+ *
+ * `GET …/ai/accounting/:traceId` (B2) is the DM's read-only accounting diagnostic
+ * of one request in this campaign: its lifecycle (pending, recorded, or
+ * recovered as incomplete), caller outcome and attempts, even when the trace
+ * never arrived. Never bucket totals, capacity, stops or another campaign's
+ * data, and never an authoring source. An unknown ID is the same 404 as ever.
  */
+export interface AccountingDiagnostics {
+  diagnose(campaignId: string, traceId: string): Promise<AiAccountingDiagnosticView | null>;
+}
+
 export interface AiRouteDependencies extends RouteDependencies {
-  readonly ai: IntentDeps;
+  /** Without `diagnostics` (no journal) every accounting read is 404. */
+  readonly ai: IntentDeps & { readonly diagnostics?: AccountingDiagnostics };
 }
 
 const campaignParams = z.object({ campaignId: campaignIdSchema }).strict();
@@ -63,5 +79,21 @@ export function registerAiRoutes(app: FastifyInstance, deps: AiRouteDependencies
     const trace = await deps.ai.traces.get(params.campaignId, params.traceId);
     if (!trace) return sendError(reply, request, 'NOT_FOUND');
     return reply.send(trace);
+  });
+
+  app.get('/campaigns/:campaignId/ai/accounting/:traceId', async (request, reply) => {
+    const actor = authenticate(request, reply, deps);
+    if (!actor) return reply;
+    const params = parseInput(traceParams, request.params, request, reply);
+    if (!params) return reply;
+
+    const state = (await deps.engine.load(params.campaignId))?.state ?? null;
+    const role = campaignRole(state, actor);
+    if (role === null) return sendError(reply, request, 'NOT_FOUND');
+    if (role !== 'DM') return sendError(reply, request, 'FORBIDDEN');
+    const diagnostic =
+      (await deps.ai.diagnostics?.diagnose(params.campaignId, params.traceId)) ?? null;
+    if (!diagnostic) return sendError(reply, request, 'NOT_FOUND');
+    return reply.send(diagnostic);
   });
 }

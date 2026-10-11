@@ -1,17 +1,17 @@
-import { intentRequest, type ProviderRequest } from '@ltw/ai';
+import { intentRequest, type ProviderPayload } from '@ltw/ai';
 import { describe, expect, it } from 'vitest';
 
 import { ConfigError, loadConfig, obsoleteVariables } from '../platform/config/config.ts';
 import { routeIssues } from '../platform/config/ai-routes.ts';
 import { fakeFetch, jsonResponse } from '../testing/fake-fetch.ts';
-import { createOpenAiCompatibleProvider } from './openai-compatible-provider.ts';
+import { DEEPSEEK_CHAT_URL, createDeepSeekProvider } from './openai-compatible-provider.ts';
 
 /**
  * Stage 300 (docs/adr/0032-live-ai.md): the DeepSeek adapter's wire format over injected `fetch`
  * (the shared raw adapter contract is `raw-adapters.test.ts`), and route validation. No network.
- * Composition builds no remote adapter at checkpoints A and B1 (`gateway.test.ts`).
+ * Composition routes a remote adapter only inside the admission wrapper (`gateway.test.ts`).
  */
-const REQUEST: ProviderRequest = intentRequest(
+const REQUEST: ProviderPayload = intentRequest(
   'Advance time by 1 hour.',
   { scope: 'PUBLIC', items: [], entities: [], worldTime: 0 },
   null,
@@ -21,9 +21,7 @@ const KEY = 'sk-test-deepseek-never-shown';
 describe('the OpenAI-compatible adapter', () => {
   it('prepares a forced function call with thinking off, from an allowlist', async () => {
     const fake = fakeFetch(() => jsonResponse({}));
-    const deepseek = createOpenAiCompatibleProvider({
-      id: 'deepseek',
-      baseUrl: 'https://example.test',
+    const deepseek = createDeepSeekProvider({
       apiKey: () => KEY,
       model: 'deepseek-flash',
       timeoutMs: 1_000,
@@ -32,7 +30,11 @@ describe('the OpenAI-compatible adapter', () => {
     });
     const prepared = deepseek.prepare(REQUEST);
 
-    expect(prepared.url).toBe('https://example.test/chat/completions');
+    // Identity and endpoint are pinned in trusted code, never configured (B2 stop-scope delta).
+    expect(deepseek.id).toBe('deepseek');
+    expect(prepared.provider).toBe('deepseek');
+    expect(prepared.url).toBe(DEEPSEEK_CHAT_URL);
+    expect(DEEPSEEK_CHAT_URL).toBe('https://api.deepseek.com/chat/completions');
     expect(JSON.parse(prepared.body)).toEqual({
       model: 'deepseek-flash',
       max_tokens: 4_096,
@@ -148,5 +150,86 @@ describe('route configuration', () => {
       'LTW_AI_DAILY_BUDGET_USD',
     ]);
     expect(obsoleteVariables({})).toEqual([]);
+  });
+});
+
+describe('DeepSeek classification edge cases (B2, B1 Opus max finding 7)', () => {
+  const reply = (choices: unknown[]) => ({
+    id: 'chatcmpl-1',
+    model: 'deepseek-flash',
+    choices,
+    usage: { prompt_tokens: 10, completion_tokens: 2, total_tokens: 12 },
+  });
+  const toolCall = {
+    function: {
+      name: 'propose_commands',
+      arguments: JSON.stringify({ kind: 'decline', reason: 'not_game' }),
+    },
+  };
+  const classify = async (body: unknown) => {
+    const deepseek = createDeepSeekProvider({
+      apiKey: () => KEY,
+      model: 'deepseek-flash',
+      timeoutMs: 1_000,
+      thinking: 'disabled',
+      fetch: fakeFetch(() => jsonResponse(body)).fetchImpl,
+    });
+    return deepseek.dispatch(
+      deepseek.prepare(REQUEST),
+      new AbortController().signal,
+      () => undefined,
+    );
+  };
+
+  it.each([
+    ['a non-string refusal', { refusal: { reason: 'policy' }, tool_calls: null }],
+    ['a refusal string next to a tool call', { refusal: 'No.', tool_calls: [toolCall] }],
+  ])('treats %s as a refusal, never a repairable missing tool', async (_label, message) => {
+    expect(await classify(reply([{ finish_reason: 'stop', message }]))).toMatchObject({
+      kind: 'refusal',
+    });
+  });
+
+  it('treats more than one choice as an unrequested billing option', async () => {
+    const choice = { finish_reason: 'tool_calls', message: { tool_calls: [toolCall] } };
+    expect(await classify(reply([choice, choice]))).toMatchObject({
+      kind: 'suspect',
+      code: 'UNVERIFIED_BILLING',
+    });
+  });
+
+  it.each(['insufficient_system_resource', 'length', 'something_new'])(
+    'treats a %s stop as truncation even with a complete tool call',
+    async (finish) => {
+      const response = await classify(
+        reply([{ finish_reason: finish, message: { tool_calls: [toolCall] } }]),
+      );
+      expect(response).toMatchObject({ kind: 'malformed', code: 'TRUNCATED' });
+      expect(response).not.toHaveProperty('output');
+    },
+  );
+
+  it('still reads a complete tool call', async () => {
+    expect(
+      await classify(reply([{ finish_reason: 'tool_calls', message: { tool_calls: [toolCall] } }])),
+    ).toMatchObject({ kind: 'output', output: { kind: 'decline', reason: 'not_game' } });
+  });
+});
+
+describe('the .env.example routes (owner decision 3)', () => {
+  it('name Sonnet 5.5 for every capability, in shapes runtime validation accepts', async () => {
+    const { readFile } = await import('node:fs/promises');
+    const example = await readFile(new URL('../../../../.env.example', import.meta.url), 'utf8');
+    const line = example.split('\n').find((text) => text.startsWith('# LTW_AI_ROUTES='));
+    const routes = loadConfig({
+      ANTHROPIC_API_KEY: KEY,
+      LTW_AI_ROUTES: line?.slice('# LTW_AI_ROUTES='.length),
+    }).ai.routes;
+    expect(routes).toEqual({
+      reasoning: ['anthropic:claude-sonnet-5-5', 'local'],
+      'npc-dialogue': ['anthropic:claude-sonnet-5-5', 'local'],
+      narrative: ['anthropic:claude-sonnet-5-5', 'local'],
+      'fast-context': ['anthropic:claude-sonnet-5-5'],
+    });
   });
 });

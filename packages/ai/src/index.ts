@@ -67,6 +67,7 @@ export {
   failureCode,
   outputResponse,
   type AdmittedProvider,
+  type AttemptCharge,
   type AttemptContext,
   type BillingFacts,
   type DenialCode,
@@ -77,9 +78,11 @@ export {
   type ProviderKind,
   type RelevanceTask,
   type ProviderErrorCode,
+  type ProviderPayload,
   type ProviderRequest,
   type ProviderResponse,
   type RepairNote,
+  type RequestAccounting,
   type ResponseFacts,
   type RoutedProvider,
   type StructuredOutputSpec,
@@ -93,7 +96,19 @@ export {
   type RouteSnapshot,
   type Routes,
 } from './router.ts';
-export { InMemoryAiTraceStore, type AiTraceStore } from './traces.ts';
+export {
+  InMemoryAiTraceStore,
+  OutcomeConflict,
+  type AiRequestStart,
+  type AiTraceStore,
+  type FrozenOutcome,
+} from './traces.ts';
+export {
+  DeadlineConfigError,
+  isExpired,
+  openDeadline,
+  type RequestDeadline,
+} from './request-deadline.ts';
 export {
   NO_PROPOSAL,
   intentOutputSchema,

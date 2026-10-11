@@ -11,6 +11,7 @@ import {
   seedApproval,
   startedRequest,
   type AccountingDb,
+  TEST_RESOLVE,
 } from '../../testing/accounting.ts';
 import { deadlineIn } from './deadline.ts';
 import { bucketLockKey } from './lock-keys.ts';
@@ -27,7 +28,7 @@ let store: PostgresBudgetStore;
 let approvalId: string;
 beforeEach(async () => {
   db = await accountingDb();
-  store = new PostgresBudgetStore(db.pool);
+  store = new PostgresBudgetStore(db.pool, TEST_RESOLVE);
   ({ approvalId } = await seedApproval(db, { ceilings: { playSessionMicros: 1_000n } }));
 });
 afterEach(async () => {
@@ -103,13 +104,15 @@ describe('terminal settlement', () => {
         chargeMicros: 100n,
         authorization: TEST_AUTH,
       }),
-    ).toBe('evidence');
+    ).toEqual({ recorded: 'evidence', stops: [] });
     expect((await effective(attempt))?.effective).toBe(300n);
-    await db.operator.reconcileAttempt({
+    // The operator learns the one stop this appended, its single clearance target.
+    const raised = await db.operator.reconcileAttempt({
       attemptId: attempt,
       chargeMicros: 400n,
       authorization: TEST_AUTH,
     });
+    expect(raised).toMatchObject({ recorded: 'evidence', stops: [expect.any(String)] });
     expect((await effective(attempt))?.effective).toBe(400n);
     expect(await stops()).toEqual(['DISCREPANCY']);
   });
@@ -122,7 +125,7 @@ describe('terminal settlement', () => {
         chargeMicros: 200n,
         authorization: TEST_AUTH,
       }),
-    ).toBe('reconciled');
+    ).toEqual({ recorded: 'reconciled', stops: [] });
     expect((await effective(attempt))?.effective).toBe(200n);
     expect(await charge(attempt, 150n)).toBe('evidence');
     expect((await effective(attempt))?.effective).toBe(200n);
@@ -248,7 +251,7 @@ describe('concurrent stopping settlements', () => {
       db.database.url,
       bucketLockKey({ kind: 'account-control', accountId: 'acct' }),
     );
-    const other = new PostgresBudgetStore(db.pool2());
+    const other = new PostgresBudgetStore(db.pool2(), TEST_RESOLVE);
     const settled = Promise.all([
       store.settle({
         attemptId: yesterday,

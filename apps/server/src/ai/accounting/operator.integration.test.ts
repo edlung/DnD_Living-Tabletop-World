@@ -9,6 +9,7 @@ import {
   seedApproval,
   startedRequest,
   type AccountingDb,
+  TEST_RESOLVE,
 } from '../../testing/accounting.ts';
 import { deadlineIn } from './deadline.ts';
 import { parseOperatorArgs } from './operator-args.ts';
@@ -111,7 +112,7 @@ describe('batch evidence', () => {
   /** Two attempts in one window: `a` (hold 500) still open, `b` (hold 400) settled at 300. */
   async function windowWithAttempts() {
     const { approvalId } = await seedApproval(db, { ceilings: { playSessionMicros: 10_000n } });
-    const store = new PostgresBudgetStore(db.pool);
+    const store = new PostgresBudgetStore(db.pool, TEST_RESOLVE);
     const ids: { request: string; attempt: string }[] = [];
     for (const micros of [500n, 400n]) {
       const request = await startedRequest(db.pool, approvalId);
@@ -172,6 +173,7 @@ describe('batch evidence', () => {
         requestId: a.request,
         status: 'TIMEOUT',
         provider: null,
+        code: 'CALLER_CANCELLED',
         traceJson,
         trace: {
           campaignId: 'ravenford',

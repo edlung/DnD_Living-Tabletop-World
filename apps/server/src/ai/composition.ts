@@ -1,25 +1,17 @@
 import { CapabilityRouter, isLocalProvider, snapshotRoutes, type Routes } from '@ltw/ai';
 
+import { isAdmittedProvider } from './admitted-provider.ts';
+
 /**
  * The only way runtime and evaluation build a router (docs/adr/0032-live-ai.md, checkpoint B1).
  * Each entry must be, by object identity, the genuine local provider (`isLocalProvider`, never its
- * `local` ID) or an admitted wrapper registered in this module's private set. A look-alike with a
- * forged brand, a pure-package test fixture, a wrapper around the local provider or a raw adapter is
- * refused at runtime whatever its TypeScript type. Relevance has no local entry (ADR 0021).
+ * `local` ID) or an admitted wrapper registered in the private set of `admitted-provider.ts` (B2).
+ * A look-alike with a forged brand, a pure-package test fixture, a wrapper around the local
+ * provider or a raw adapter is refused at runtime whatever its TypeScript type. Relevance has no local entry (ADR 0021).
  * Composition reads its input once (`snapshotRoutes`), checks that snapshot, builds the router from
  * the same snapshot and freezes the router, so a getter, Proxy or iterable that answers differently
  * later, or a write after composition, cannot add an unchecked provider (B1 repair 1).
  */
-
-/**
- * Admitted wrappers. Only the admission wrapper registers here, once durable admission and the
- * request journal reach every remote path (B2); at B1 it is empty, so composition admits no remote
- * provider at all.
- */
-const admitted = new WeakSet<object>();
-
-export const isAdmittedProvider = (provider: unknown): boolean =>
-  typeof provider === 'object' && provider !== null && admitted.has(provider);
 
 export class CompositionError extends Error {
   constructor(message: string) {

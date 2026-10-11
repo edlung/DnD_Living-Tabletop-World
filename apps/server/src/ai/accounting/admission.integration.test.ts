@@ -11,6 +11,7 @@ import {
   seedApproval,
   startedRequest,
   type AccountingDb,
+  TEST_RESOLVE,
 } from '../../testing/accounting.ts';
 import { deadlineIn } from './deadline.ts';
 import { scopeBuckets, sortedLockKeys, type AttemptScope } from './lock-keys.ts';
@@ -55,8 +56,8 @@ describe('admission competing for the same capacity', () => {
     // Barrier: both admissions block on the first lock of their identical sorted set.
     const [lowest] = sortedLockKeys(scopeBuckets(await scopeOf(accountId, approvalId)));
     const barrier = await holdLock(db.database.url, lowest ?? 0n);
-    const processA = new PostgresBudgetStore(db.pool);
-    const processB = new PostgresBudgetStore(db.pool2());
+    const processA = new PostgresBudgetStore(db.pool, TEST_RESOLVE);
+    const processB = new PostgresBudgetStore(db.pool2(), TEST_RESOLVE);
     const results = Promise.all([
       processA.admit(admission(first, 600n), deadlineIn(10_000)),
       processB.admit(admission(second, 600n), deadlineIn(10_000)),
@@ -81,7 +82,7 @@ describe('admission competing for the same capacity', () => {
     try {
       await stale.query('BEGIN ISOLATION LEVEL REPEATABLE READ');
       await stale.query('SELECT pg_advisory_xact_lock_shared(-1)');
-      const store = new PostgresBudgetStore(db.pool);
+      const store = new PostgresBudgetStore(db.pool, TEST_RESOLVE);
       const admitted = await store.admit(
         admission(await startedRequest(db.pool, approvalId), 600n),
         deadlineIn(10_000),
@@ -109,7 +110,7 @@ describe('admission competing for the same capacity', () => {
     );
     const pool = db.pool2();
     const { approvalId } = await seedApproval(db, { ceilings: { playSessionMicros: 1_000n } });
-    const store = new PostgresBudgetStore(pool);
+    const store = new PostgresBudgetStore(pool, TEST_RESOLVE);
     const one = await store.admit(
       admission(await startedRequest(pool, approvalId), 600n),
       deadlineIn(10_000),
@@ -126,14 +127,14 @@ describe('durability', () => {
   it('keeps holds across a restart and across processes', async () => {
     const { approvalId } = await seedApproval(db, { ceilings: { playSessionMicros: 1_000n } });
     const before = new pg.Pool({ connectionString: db.database.url });
-    const admitted = await new PostgresBudgetStore(before).admit(
+    const admitted = await new PostgresBudgetStore(before, TEST_RESOLVE).admit(
       admission(await startedRequest(before, approvalId), 900n),
       deadlineIn(10_000),
     );
     expect(admitted.status).toBe('admitted');
     await before.end();
 
-    const after = new PostgresBudgetStore(db.pool2());
+    const after = new PostgresBudgetStore(db.pool2(), TEST_RESOLVE);
     const denied = await after.admit(
       admission(await startedRequest(db.pool, approvalId), 200n),
       deadlineIn(10_000),
@@ -153,7 +154,10 @@ describe('durability', () => {
       sessionId: 's-9',
     });
     const request = admission(requestId, 1_234n, { attemptKind: 'repair', pricingVersion: 'p-7' });
-    const result = await new PostgresBudgetStore(db.pool).admit(request, deadlineIn(10_000));
+    const result = await new PostgresBudgetStore(db.pool, TEST_RESOLVE).admit(
+      request,
+      deadlineIn(10_000),
+    );
     expect(result).toMatchObject({ status: 'admitted', reservedMicros: 1_234n });
     const { rows } = await db.pool.query(
       `SELECT request_id, account_id, approval_id, campaign_id, session_class, session_id,

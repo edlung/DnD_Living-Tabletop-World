@@ -2,7 +2,7 @@ import { INTENT_DECLINE_REASONS, commandProposalSchema } from '@ltw/contracts';
 import { z } from 'zod';
 
 import type { BuiltContext } from './context-builder.ts';
-import type { ProviderRequest, RepairNote, StructuredOutputSpec } from './providers.ts';
+import type { ProviderPayload, RepairNote, StructuredOutputSpec } from './providers.ts';
 
 /**
  * The DM-intent request sent to a `reasoning` provider (docs/adr/0017-ai-gateway.md).
@@ -74,7 +74,7 @@ export function intentRequest(
   text: string,
   context: BuiltContext,
   repair: RepairNote | null,
-): ProviderRequest {
+): ProviderPayload {
   return {
     capability: 'reasoning',
     system: SYSTEM,

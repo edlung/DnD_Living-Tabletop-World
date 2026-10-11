@@ -49,6 +49,7 @@ function deps(...providers: RoutedProvider[]): IntentDeps {
     traces,
     ids: new SequentialIds(),
     clock: { now: () => clock.now(), nowMs: steppingMs() },
+    requestTimeoutMs: 60_000,
   };
 }
 
@@ -69,7 +70,7 @@ describe('interpretDmIntent', () => {
     ]);
     expect(await world.version()).toBe(before);
 
-    const trace = await traces.get(CAMPAIGN, response.traceId);
+    const trace = await traces.get(CAMPAIGN, response.traceId ?? '');
     expect(trace).toMatchObject({
       campaignId: CAMPAIGN,
       actorId: DM.actorId,
@@ -149,7 +150,7 @@ describe('interpretDmIntent', () => {
     expect(failing.requests[1]?.prompt).toContain('<previous_output_was_invalid>');
     expect(backup.requests[0]?.prompt).not.toContain('<previous_output_was_invalid>');
 
-    const trace = await traces.get(CAMPAIGN, outcome.response.traceId);
+    const trace = await traces.get(CAMPAIGN, outcome.response.traceId ?? '');
     expect(trace?.attempts.map((a) => [a.provider, a.kind, a.outcome])).toEqual([
       ['remote', 'initial', 'invalid'],
       ['remote', 'repair', 'error'],
@@ -176,7 +177,7 @@ describe('interpretDmIntent', () => {
     });
     expect(outcome.response.issues.join('\n')).toContain(`unknown entity "${ASHEN_CIRCLE_ID}"`);
     expect(await world.version()).toBe(before);
-    const trace = await traces.get(CAMPAIGN, outcome.response.traceId);
+    const trace = await traces.get(CAMPAIGN, outcome.response.traceId ?? '');
     expect(trace).toMatchObject({ status: 'INVALID_OUTPUT', proposal: null, canonicalEvents: [] });
   });
 
@@ -193,13 +194,13 @@ describe('interpretDmIntent', () => {
       issues: [],
       committable: false,
     });
-    expect((await traces.get(CAMPAIGN, outcome.response.traceId))?.attempts).toHaveLength(2);
+    expect((await traces.get(CAMPAIGN, outcome.response.traceId ?? ''))?.attempts).toHaveLength(2);
   });
 
   it('keeps traces per campaign', async () => {
     const outcome = await ask(deps(createLocalProvider()));
     if (!outcome.ok) throw new Error(outcome.reason);
 
-    expect(await traces.get('another-campaign', outcome.response.traceId)).toBeNull();
+    expect(await traces.get('another-campaign', outcome.response.traceId ?? '')).toBeNull();
   });
 });

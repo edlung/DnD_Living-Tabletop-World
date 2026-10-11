@@ -137,7 +137,12 @@ export async function releasePreDispatch(
   });
 }
 
-/** Unexpected model or unverified billing: the full hold stays and the route is stopped. */
+/**
+ * Unexpected model or unverified billing: the full hold stays and the route is stopped. Idempotent
+ * per attempt and reason (B2 repair 1): under the attempt's account lock, a stop this attempt
+ * already caused for this reason (committed by an earlier try whose answer was lost, and possibly
+ * cleared since) is never appended again, so the write may be retried safely.
+ */
 export async function holdWithStop(
   pool: pg.Pool,
   attemptId: string,
@@ -147,7 +152,11 @@ export async function holdWithStop(
   await readCommitted(pool, fixedStep(), async (tx) => {
     const attempt = await lockAttempt(tx, attemptId);
     if (attempt === null) throw new AccountingRejection('UNKNOWN_ATTEMPT');
-    await appendStop(tx, attempt, reason, returnedModel);
+    const existing = await tx.query(
+      'SELECT 1 FROM ltw_ai_stops WHERE attempt_id = $1 AND reason = $2',
+      [attemptId, reason],
+    );
+    if (existing.rowCount === 0) await appendStop(tx, attempt, reason, returnedModel);
   });
 }
 
@@ -156,14 +165,16 @@ export const SETTLEMENT_RETRY_DELAYS_MS = [100, 500, 2_000] as const;
 /**
  * Known usage whose settlement failed: the hold stays and settlement is retried after 100, 500 and
  * 2,000 ms, stopping on success or shutdown. Exhausted retries leave the hold for the operator.
+ * The same bounded schedule retries the other idempotent accounting writes of an attempt (its
+ * automatic stop, its response record; B2 repair 1). A rejection is final and thrown at once.
  */
-export async function settleWithRetry(
-  attemptSettle: () => Promise<SettlementOutcome>,
+export async function settleWithRetry<T = SettlementOutcome>(
+  attemptSettle: () => Promise<T>,
   options: {
     readonly shutdown: AbortSignal;
     readonly sleep?: (ms: number) => Promise<void>;
   },
-): Promise<SettlementOutcome | 'held'> {
+): Promise<T | 'held'> {
   const sleep =
     options.sleep ?? ((ms: number) => new Promise<void>((done) => setTimeout(done, ms)));
   const stopping = (): boolean => options.shutdown.aborted;

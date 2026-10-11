@@ -1,0 +1,38 @@
+Bounded re-review of Stage 300 checkpoint B2, repair 1, in your same review session.
+
+The snapshot (your working directory) has been refreshed to the repaired artifact: the same base
+commit 9be1307 plus the updated uncommitted tree. The implementer describes the repair in the
+"Repair 1" section of `handoffs/STAGE_300_CHECKPOINT_B2_REQUEST.md` (claims to verify); its new
+dirty manifest lists 113 files with listing hash
+589b980e3be3787ac41f7d6a29c6dff8514806355bf482c7b8d7b9d288feb20e. Verify that listing against the
+snapshot.
+
+Your earlier findings were addressed as follows (by the implementer's account):
+- F1 (dispatch or local switch after the deadline): every dispatch/provider decision now also treats
+  `performance.now() >= deadlineAtMs` as caller gone; a commit after the deadline is released live
+  with no key read, onStart or fetch; no local provider starts after expiry; the adapter's
+  per-attempt timeout is clamped to the remaining request time.
+- F2 (automatic stop not retried): the stop write is idempotent per attempt and reason and is
+  retried (100, 500, 2,000 ms); until it commits the process refuses that route in-process.
+- F3 (provider request IDs not stored for unsettled attempts): a new append-only table records the
+  provider request ID for every attempt that has one; the DM diagnostic shows it; traces unchanged.
+- F4 (unconfirmed COMMIT hold): owner-approved deferral, see below.
+- Informational notes: the stale `accounting/types.ts` header and `docs/AI_CONTEXT_MAP.md` row are fixed.
+
+Owner-approved deferrals recorded in the handoff (do not fail B2 for them): an admission denied
+because its COMMIT was sent but not confirmed keeps any hold until operator reconciliation; Sonnet
+5.5 usage/model allowlists wait for the separately authorized catalog verification.
+
+What to do:
+1. Verify each of your findings is fixed at the root, with regressions that would fail without the fix.
+2. Review the whole repair delta for new defects, including the new migration
+   `0008_ai_attempt_responses.sql`, the checkpoint-A module changes (`settlement.ts`, `types.ts`),
+   the in-process route refusal and the stop-write retry, against the same requirements as before
+   (design draft 7, the approved stop-scope delta, ARCHITECTURE_INVARIANTS.md).
+3. Rerun the full set of checks yourself (same commands and the same PostgreSQL and E2E-port notes
+   as in your first brief) and add probes where useful.
+Same constraints as before: review only, no edits to snapshot sources, no network or paid calls,
+no `.env*` files, no installs; read nothing outside your permitted directories.
+
+Final message: the full report in the same format as before, starting with exactly one line
+`**Verdict: PASS**` or `**Verdict: FAIL**`, and covering the repaired artifact as a whole.

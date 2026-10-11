@@ -17,7 +17,7 @@ import {
   type MakeOptions,
 } from '../testing/raw-adapter-fixtures.ts';
 import { createAnthropicProvider } from './anthropic-provider.ts';
-import { createOpenAiCompatibleProvider } from './openai-compatible-provider.ts';
+import { createDeepSeekProvider } from './openai-compatible-provider.ts';
 import type { RawRemoteProvider } from './raw-provider.ts';
 
 /**
@@ -32,7 +32,7 @@ const subjectOf = (fixture: AdapterFixture): Subject => ({
   make: (options) =>
     fixture.name === 'Anthropic'
       ? createAnthropicProvider(anthropicOptions(options))
-      : createOpenAiCompatibleProvider(openAiOptions(options)),
+      : createDeepSeekProvider(openAiOptions(options)),
 });
 
 describe.each([subjectOf(ANTHROPIC), subjectOf(DEEPSEEK)])('the raw $name adapter', (subject) => {
@@ -68,6 +68,11 @@ describe.each([subjectOf(ANTHROPIC), subjectOf(DEEPSEEK)])('the raw $name adapte
     expect(prepared.body).toContain(JSON.stringify(REQUEST.prompt).slice(1, -1));
     expect(subject.schemaOf(body)).toEqual(REQUEST.output.schema);
     expect(prepared.body).not.toContain(KEY);
+    // Trusted accounting metadata is never serialized (design §2).
+    const { requestId, campaignId, sessionId, attemptId } = REQUEST.accounting;
+    for (const value of [requestId, campaignId, sessionId ?? '', attemptId]) {
+      expect(prepared.body).not.toContain(value);
+    }
 
     await adapter.dispatch(prepared, never, () => undefined);
     expect(fake.calls).toHaveLength(1);
@@ -120,16 +125,6 @@ describe.each([subjectOf(ANTHROPIC), subjectOf(DEEPSEEK)])('the raw $name adapte
           throw new Error(`no key ${KEY}`);
         },
         onStart: () => undefined,
-      }),
-    ],
-    [
-      'a start hook that fails',
-      () => ({
-        signal: never,
-        apiKey: () => KEY,
-        onStart: () => {
-          throw new Error('journal down');
-        },
       }),
     ],
   ])('proves TRANSPORT_NOT_STARTED for %s, with no fetch', async (_label, setup) => {

@@ -14,7 +14,7 @@ import { createLocalProvider } from './local-provider.ts';
 import { outputResponse, type ProviderRequest, type RoutedProvider } from './providers.ts';
 import { CapabilityRouter } from './router.ts';
 import { InMemoryAiTraceStore } from './traces.ts';
-import { steppingMs, testBrand } from './testing/providers.ts';
+import { payloadOf, steppingMs, testBrand } from './testing/providers.ts';
 import { CAMPAIGN, DM, NPC_BOUNDARY, PLAYER, seedRavenford } from './testing/ravenford.ts';
 
 /**
@@ -116,6 +116,7 @@ async function run(npcId: Npc, scenario: Scenario) {
     traces,
     ids,
     clock: { now: () => clock.now(), nowMs: steppingMs() },
+    requestTimeoutMs: 60_000,
   });
   const replies: { text: string; shown: number }[] = [];
   const sources: string[] = [];
@@ -143,6 +144,7 @@ async function run(npcId: Npc, scenario: Scenario) {
       for (const providers of [[remote], [createLocalProvider()]]) {
         const answer = await replyAsNpc(deps(providers), {
           campaignId: CAMPAIGN,
+          accountingSessionId: 'session-test',
           actor: PLAYER,
           context,
           intent,
@@ -174,7 +176,7 @@ describe('what an NPC’s provider is sent', () => {
           if (request.task.kind !== 'npc-dialogue') throw new Error('not a dialogue request');
           const { prompt } = request.task;
           // The player's own words are theirs to say; everything else must be clean.
-          const sent = JSON.stringify(request).replaceAll(
+          const sent = JSON.stringify(payloadOf(request)).replaceAll(
             JSON.stringify(prompt.line ?? '').slice(1, -1),
             '',
           );

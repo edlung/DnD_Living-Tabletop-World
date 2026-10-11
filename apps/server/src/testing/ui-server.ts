@@ -22,6 +22,7 @@ const app = await ravenfordApp(await uiCampaigns(), {
   traces: new InMemoryAiTraceStore(),
   ids: new SequentialIds(0xe2e),
   clock: { now: () => clock.now(), nowMs: () => (elapsed += 5) },
+  requestTimeoutMs: 60_000,
   relevanceBudgetMs: 100,
 });
 

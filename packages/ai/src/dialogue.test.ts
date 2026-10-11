@@ -15,7 +15,7 @@ import { createLocalProvider } from './local-provider.ts';
 import { ProviderError, type RoutedProvider } from './providers.ts';
 import { CapabilityRouter } from './router.ts';
 import { InMemoryAiTraceStore } from './traces.ts';
-import { scripted, steppingMs } from './testing/providers.ts';
+import { payloadOf, scripted, steppingMs } from './testing/providers.ts';
 import { CAMPAIGN, PLAYER, seedRavenford, type SeededWorld } from './testing/ravenford.ts';
 
 /**
@@ -44,6 +44,7 @@ function deps(...providers: RoutedProvider[]): DialogueDeps {
     traces,
     ids,
     clock: { now: () => clock.now(), nowMs: steppingMs() },
+    requestTimeoutMs: 60_000,
   };
 }
 
@@ -74,6 +75,7 @@ const reply = (
 ) =>
   replyAsNpc(d, {
     campaignId: CAMPAIGN,
+    accountingSessionId: 'session-test',
     actor: PLAYER,
     context,
     intent: options.intent ?? TALK,
@@ -156,7 +158,7 @@ describe('replyAsNpc', () => {
     const [first, second] = provider.requests;
     expect(first?.capability).toBe('npc-dialogue');
     expect(first?.system).toBe(second?.system);
-    const sent = JSON.stringify(first);
+    const sent = JSON.stringify(payloadOf(first));
     for (const sourceId of dialogueSourceIds(context)) expect(sent).not.toContain(sourceId);
     expect(first?.prompt).toContain('You are Mira Vale.');
     expect(first?.prompt).toContain('NBXMIRAWILLING');

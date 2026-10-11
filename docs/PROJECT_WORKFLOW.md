@@ -75,6 +75,15 @@ Older assignments below are historical and do not authorize a different model or
 
 ## Current continuation — remediation draft 7
 
+**Checkpoint B2: ACCEPTED 2026-10-12** (`reviews/STAGE_300_CHECKPOINT_B2_ACCEPTANCE_2026-10-12.json`).
+Fresh Opus 5.5 xhigh and Opus 5.5 max both PASS on the repair-1 artifact (handoff
+`handoffs/STAGE_300_CHECKPOINT_B2_REQUEST.md`, dirty listing `589b980e…`); reports, receipts and
+evidence under `reviews/`. Owner-approved deferrals: unconfirmed-COMMIT hold (F4), Sonnet 5.5
+allowlists (catalog verification), flaky transaction-bounds test L-N1 (first item of C). The
+verified pricing catalog is empty, so every remote route is refused and nothing is sent. Next:
+checkpoint C on owner go-ahead. Live use additionally needs owner-authorized catalog verification
+for Sonnet 5.5 and operator approval records within the $30 grant. No paid runtime calls.
+
 **Checkpoint B1: ACCEPTED 2026-10-11** (`reviews/STAGE_300_CHECKPOINT_B1_ACCEPTANCE_2026-10-11.json`).
 Opus 5.5 xhigh PASS (repair 4) and a fresh Opus 5.5 max PASS
 (`reviews/STAGE_300_CHECKPOINT_B1_OPUS_MAX_REVIEW_2026-10-11.md`, receipt and evidence) on the same

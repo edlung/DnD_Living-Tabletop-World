@@ -53,8 +53,8 @@ export interface ChronicleTask {
   readonly repair: RepairNote | null;
 }
 
-/** What an attempt asks. Cancellation travels separately (`AttemptContext`), never in the request. */
-export interface ProviderRequest {
+/** What an attempt asks of a provider: the only content an adapter may serialize. */
+export interface ProviderPayload {
   readonly capability: AiCapability;
   readonly system: string;
   readonly prompt: string;
@@ -62,11 +62,40 @@ export interface ProviderRequest {
   readonly task: IntentTask | DialogueTask | RelevanceTask | ChronicleTask;
 }
 
+/**
+ * Trusted accounting identity of one attempt (docs/STAGE_300_REMEDIATION_DESIGN.md §2; ADR 0032,
+ * B2). The use case allocates the request (its ID is also the parent trace ID); the fallback policy
+ * allocates each attempt. Application metadata only: an adapter never serializes it, it never enters
+ * prompt text or a cache prefix, and it never comes from a player's request body.
+ */
+export interface RequestAccounting {
+  readonly requestId: string;
+  readonly campaignId: string;
+  readonly capability: AiCapability;
+  /** The play session captured when the request began; null means the request may only run locally. */
+  readonly sessionId: string | null;
+  readonly attemptId: string;
+  readonly attemptKind: 'initial' | 'repair' | 'fallback';
+}
+
+/** What an attempt asks, with its accounting identity. Cancellation travels in `AttemptContext`. */
+export interface ProviderRequest extends ProviderPayload {
+  readonly accounting: RequestAccounting;
+}
+
 /** Per-attempt controls from the fallback policy. */
 export interface AttemptContext {
   /** The caller's whole-request signal; aborted, no new transport starts. */
   readonly signal: AbortSignal;
-  /** Called synchronously immediately before transport starts; never for a non-dispatched attempt. */
+  /**
+   * The whole request's monotonic deadline (`performance.now()` milliseconds). Admission is bounded
+   * by it; a provider that needs a bound refuses a non-finite one.
+   */
+  readonly deadlineAtMs: number;
+  /**
+   * Called synchronously immediately before transport starts; never for a non-dispatched attempt.
+   * Only its first call during the attempt counts; later calls are ignored.
+   */
   readonly onStart: () => void;
 }
 
@@ -86,6 +115,17 @@ export interface BillingFacts {
   readonly unrecognized: readonly string[];
 }
 
+/**
+ * What the admission wrapper knew about an admitted attempt's cost when it answered (B2): the
+ * pricing version and reservation, and the priced charge of validated usage, or null when the
+ * usage is unknown and the full reservation stays held. Integer microdollars as decimal strings.
+ */
+export interface AttemptCharge {
+  readonly pricingVersion: string;
+  readonly reservedMicros: string;
+  readonly costMicros: string | null;
+}
+
 /** Response metadata kept whatever the output's fate; never provider prose or error bodies. */
 export interface ResponseFacts {
   /** The returned model identifier, when it is a safe identifier. */
@@ -94,6 +134,8 @@ export interface ResponseFacts {
   readonly billing: BillingFacts | null;
   /** The provider's request/message ID, when it is a safe identifier. */
   readonly providerRequestId: string | null;
+  /** Set only by the server's admission wrapper. */
+  readonly charge?: AttemptCharge;
 }
 
 /** Structured output missing or unusable: invalid output (one repair), not provider failure. */

@@ -50,7 +50,11 @@ export const INTENT_STATUSES = ['PROPOSED', 'INVALID_OUTPUT', 'AI_UNAVAILABLE'] 
 export type IntentStatus = (typeof INTENT_STATUSES)[number];
 
 export interface DmIntentResponse {
-  readonly traceId: string;
+  /**
+   * The persisted trace, or null when no durable request start was confirmed (docs/adr/0032-live-ai.md,
+   * B2): then nothing was proposed and nothing can be authored from this response.
+   */
+  readonly traceId: string | null;
   readonly status: IntentStatus;
   /** Present only when the output passed validation. */
   readonly proposal: CommandProposal | null;
@@ -65,6 +69,21 @@ export interface DmIntentResponse {
 export type AttemptKind = 'initial' | 'repair' | 'fallback';
 export type AttemptOutcome = 'valid' | 'invalid' | 'error';
 
+/**
+ * What an attempt's trace records about its cost when the result froze (docs/adr/0032-live-ai.md,
+ * B2). `local`: the zero-cost local provider. `not_dispatched`: refused before transport (an
+ * admission denial or proven not-started transport), zero. `known`: validated usage priced at the
+ * attempt's pricing version. `unknown`: possibly billed with no priced usage; the reservation stays
+ * held. Amounts are integer microdollars as decimal strings. Later settlement resolves only through
+ * the accounting diagnostic; a trace never changes.
+ */
+export interface AttemptBillingView {
+  readonly status: 'local' | 'not_dispatched' | 'known' | 'unknown';
+  readonly pricingVersion: string | null;
+  readonly reservedMicros: string | null;
+  readonly costMicros: string | null;
+}
+
 /** One provider call within a request. */
 export interface AiAttemptView {
   readonly provider: string;
@@ -74,7 +93,8 @@ export interface AiAttemptView {
   /**
    * The fixed code when the attempt failed or was not dispatched: a transport code
    * (`TRANSPORT_NOT_STARTED`, `UNAVAILABLE`, `TIMEOUT`, `BAD_RESPONSE`), `PROVIDER_REFUSAL`,
-   * `UNEXPECTED_MODEL`, `UNVERIFIED_BILLING`, an admission denial or `CALLER_CANCELLED`.
+   * `UNEXPECTED_MODEL`, `UNVERIFIED_BILLING`, an admission denial, `CALLER_CANCELLED`, or
+   * `INTERNAL_ERROR` (the caller's own validation threw; never persisted, the request is recovered).
    */
   readonly error: string | null;
   readonly issues: readonly string[];
@@ -82,6 +102,10 @@ export interface AiAttemptView {
   readonly output: string | null;
   readonly latencyMs: number;
   readonly usage: { readonly inputTokens: number; readonly outputTokens: number } | null;
+  /** Additive (B2): the journal's attempt ID. Absent on earlier traces: legacy, unknown cost. */
+  readonly attemptId?: string;
+  /** Additive (B2): cost metadata at freeze. Absent means legacy or unknown, never zero. */
+  readonly billing?: AttemptBillingView;
 }
 
 interface AiTraceBase {

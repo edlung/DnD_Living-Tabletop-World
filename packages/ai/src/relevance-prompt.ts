@@ -15,7 +15,7 @@ import {
 } from '@ltw/domain';
 import { z } from 'zod';
 
-import type { ProviderRequest, RepairNote, StructuredOutputSpec } from './providers.ts';
+import type { ProviderPayload, RepairNote, StructuredOutputSpec } from './providers.ts';
 
 /**
  * The relevance ranker's request (docs/adr/0021-ai-relevance.md, owner
@@ -233,7 +233,7 @@ function render(prompt: RelevancePrompt, repair: RepairNote | null): string {
 export function relevanceRequest(
   prompt: RelevancePrompt,
   repair: RepairNote | null,
-): ProviderRequest {
+): ProviderPayload {
   return {
     capability: 'fast-context',
     system: SYSTEM,

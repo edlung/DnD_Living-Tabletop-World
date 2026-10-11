@@ -131,6 +131,7 @@ describe('the local provider', () => {
         traces,
         ids: new SequentialIds(),
         clock: { now: () => clock.now(), nowMs: steppingMs() },
+        requestTimeoutMs: 60_000,
       },
       { campaignId: CAMPAIGN, state: world.state, actor: DM, text },
     );

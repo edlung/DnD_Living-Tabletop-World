@@ -142,3 +142,31 @@ changes provider-facing envelopes, all recorded for Gate 06; scoped context buil
   as a genuine, unchanged, allowlisted `ProviderError`; anything else is one uncertain `UNAVAILABLE`
   attempt. Evidence: `packages/ai/src/{providers,fallback-rejection}.test.ts`.
 
+- **B1 tool description (recorded at B2):** `INTENT_OUTPUT.description` changed from "Propose World
+  Engine commands that would carry out the game master’s request. They are only a proposal: …" to
+  "Propose World Engine commands that would carry out the game master’s request, or decline. A
+  proposal is only a proposal: …". Provider-facing tool text only; no scoped data.
+
+Stage 300 remediation checkpoint B2 (2026-10-11; design SHA256 `23e53e4d…aab2`, stop-scope delta
+`6bba0030…b485`; acceptance pending) changes provider-facing envelopes as follows, for Gate 06;
+scoped context builders, prompts and instructions are unchanged:
+- **Cache-block framing** (Anthropic only, `apps/server/src/ai/anthropic-provider.ts`): when the
+  verified catalog entry allows a 5-minute cache, `system` is sent as one text block carrying
+  `cache_control: {type: "ephemeral"}`; its text is byte-identical to the uncached string, and every
+  other field is unchanged. The cached prefix is the tool definition plus that fixed per-capability,
+  per-language system text: no campaign, NPC, speaker, perspective, source ID or scoped content
+  precedes the breakpoint (`anthropic-provider.test.ts`: identical prefix across two NPCs, two
+  speakers and two intent directories; scoped markers absent). DeepSeek sends no cache directive.
+  No verified catalog entry exists in this build, so no route sends it at runtime.
+- **Accounting metadata** (`ProviderRequest.accounting`: request, attempt, session, campaign) never
+  enters a provider body (`raw-adapters.test.ts`, `request-lifecycle.test.ts`, `npc-session.test.ts`).
+- **No-start answers**: intent/NPC reply/Chronicle rendering trace IDs may be null; no provider,
+  local included, runs without a durable request start (`no-start.test.ts`, `request-lifecycle.test.ts`).
+- **DeepSeek classification**: a non-string refusal is a refusal, more than one choice is unverified
+  billing, an `insufficient_system_resource` or unknown stop is truncation (`live-ai.test.ts`).
+- **B2 repair 1** changes no provider-facing envelope, prompt or body. Outcomes only: past the
+  request's monotonic deadline nothing is admitted, dispatched or invoked (local included) even
+  before its abort timer runs (`fallback-deadline.test.ts`, `admitted-provider-holds.test.ts`,
+  `raw-adapter-hardening.test.ts`, `request-lifecycle.test.ts`); suspect stops are retried and their
+  route refused in-process until committed; provider request IDs are kept for every attempt
+  (`suspect-records.integration.test.ts`).

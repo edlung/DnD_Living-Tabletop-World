@@ -4,7 +4,8 @@ import { expired, storageStep, type Deadline } from './deadline.ts';
 import { scopeBuckets, sortedLockKeys, type AttemptScope, type SessionClass } from './lock-keys.ts';
 import { MAX_MICROS } from './money.ts';
 import { StorageUnavailable, readCommitted, type Tx } from './pg-transaction.ts';
-import { hasActiveStop, readBucketSpend } from './spend.ts';
+import { readBucketSpend } from './spend.ts';
+import { stopDenies, type Resolve } from './stop-scope.ts';
 import type { AdmissionRequest, AdmissionResult, DenialCode, DenialDetail } from './types.ts';
 
 /**
@@ -14,6 +15,11 @@ import type { AdmissionRequest, AdmissionResult, DenialCode, DenialDetail } from
  * account-control locks, one statement each; then stops and totals; and only if every ceiling
  * admits, the attempt row with its reservation. Identity, campaign and session come from the stored
  * request, never from the caller.
+ *
+ * B2: the requested model must be the canonical model of its verified pricing version (`resolve`,
+ * from the pinned catalog), and stops are matched by `stop-scope.ts`, with every recorded or source
+ * identity resolved inside this transaction. Any identity gap denies as `ADMISSION_DISABLED` with
+ * the fixed `STOPPED` detail; a storage timeout is unavailability, never a dispatch.
  */
 const denied = (code: DenialCode, detail: DenialDetail): AdmissionResult => ({
   status: 'denied',
@@ -61,7 +67,11 @@ const POLICY = `
                 ORDER BY r.revision DESC LIMIT 1) acr ON true
   WHERE ap.approval_id = $1`;
 
-async function admitIn(tx: Tx, request: AdmissionRequest): Promise<AdmissionResult> {
+async function admitIn(
+  tx: Tx,
+  request: AdmissionRequest,
+  resolve: Resolve,
+): Promise<AdmissionResult> {
   await tx.policy('shared');
   const stored = (
     await tx.query<RequestRow>(
@@ -108,10 +118,13 @@ async function admitIn(tx: Tx, request: AdmissionRequest): Promise<AdmissionResu
   };
   for (const key of sortedLockKeys(scopeBuckets(scope))) await tx.lock(key, 'exclusive');
 
-  const route = { provider: request.provider, model: request.model };
-  if (await hasActiveStop(tx, { accountId: scope.accountId, approvalId, ...route })) {
-    return denied('ADMISSION_DISABLED', 'STOPPED');
-  }
+  const target = {
+    accountId: scope.accountId,
+    approvalId,
+    provider: request.provider,
+    model: request.model,
+  };
+  if (await stopDenies(tx, target, resolve)) return denied('ADMISSION_DISABLED', 'STOPPED');
   const spent = await readBucketSpend(tx, scope);
   const order = [
     ['globalDay', 'GLOBAL_DAY'],
@@ -167,13 +180,20 @@ export async function admit(
   pool: pg.Pool,
   request: AdmissionRequest,
   requestDeadline: Deadline,
+  resolve: Resolve,
 ): Promise<AdmissionResult> {
   if (expired(requestDeadline)) return denied('CALLER_CANCELLED', 'STORAGE');
   if (request.reserveMicros <= 0n || request.reserveMicros > MAX_MICROS) {
     return denied('ADMISSION_DISABLED', 'INVALID_RESERVATION');
   }
+  // Only a verified canonical model of its pricing version is ever admitted.
+  if (resolve(request.provider, request.model, request.pricingVersion) !== request.model) {
+    return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
+  }
   try {
-    return await readCommitted(pool, storageStep(requestDeadline), (tx) => admitIn(tx, request));
+    return await readCommitted(pool, storageStep(requestDeadline), (tx) =>
+      admitIn(tx, request, resolve),
+    );
   } catch (error) {
     const detail =
       error instanceof StorageUnavailable && error.commitUnknown ? 'COMMIT_UNKNOWN' : 'STORAGE';

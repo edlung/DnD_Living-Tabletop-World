@@ -1,10 +1,4 @@
-import {
-  InMemoryAiTraceStore,
-  createLocalProvider,
-  isLocalProvider,
-  outputResponse,
-  type RoutedProvider,
-} from '@ltw/ai';
+import { createLocalProvider, isLocalProvider, outputResponse, type RoutedProvider } from '@ltw/ai';
 import type { AiCapability, DmIntentResponse } from '@ltw/contracts';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -16,8 +10,8 @@ import {
   seededEngine,
   testProvider,
 } from '../testing/ravenford-app.ts';
+import { composedGateway } from '../testing/gateways.ts';
 import { composeRouter } from './composition.ts';
-import { createAiGateway } from './gateway.ts';
 
 /**
  * Composition validates and builds from one snapshot of its input (docs/adr/0032-live-ai.md, B1
@@ -106,7 +100,7 @@ describe('composeRouter', () => {
 
 describe('the composed gateway over HTTP', () => {
   it('invokes no injected provider, whatever is written to it after composition', async () => {
-    const ai = createAiGateway(loadConfig({}).ai, new InMemoryAiTraceStore());
+    const ai = composedGateway(loadConfig({}).ai).gateway;
     expect(() => {
       (ai.router.providersFor('reasoning') as RoutedProvider[])[0] = forged;
     }).toThrow(TypeError);

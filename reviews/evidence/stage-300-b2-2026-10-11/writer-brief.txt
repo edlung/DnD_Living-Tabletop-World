@@ -1,0 +1,132 @@
+You are the implementation session for Stage 300 remediation checkpoint B2 of Living Tabletop World.
+
+## Role and ownership
+
+- Sole checkout ownership is explicitly transferred to this NEW cohesive B2 implementation session:
+  /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2, branch `stage-300-live-ai`,
+  HEAD `9be13071914755abb78006b054cce83eb4038978`, clean working tree (verified before transfer).
+- Model claude-opus-5-5, effort medium, native Anthropic subscription. Related review repairs stay
+  in this same session at xhigh. Stop if the actual model is not claude-opus-5-5.
+- Owner authorized B2 on 2026-10-11. Release ownership explicitly in your final message.
+
+## Authority (read these; do not change the bytes of the first two)
+
+- Approved design draft 7: `docs/STAGE_300_REMEDIATION_DESIGN.md`
+  SHA256 23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2.
+- Approved B2 stop-scope delta: `docs/STAGE_300_B2_STOP_SCOPE_DESIGN.md`
+  SHA256 6bba003055bfd53ac4e069d01d5bf6e3a5a6e272fddb41a2f8305b55e153b485 (approved by Astra and
+  Fable xhigh; its "DRAFT" header is frozen for identity, the approval is in the review records).
+- Fable's nonblocking clarifications to that delta (implementation/ADR clarifications within the
+  approved architecture, never a reason to weaken fail-closed behavior):
+  composition-refused identity leaves the route local-only, with no fictitious denied remote
+  attempt; the runtime admission identity gap is fixed by the existing stopped detail (no campaign
+  or stop facts exposed); the ADR amendment enumerates all four accepted stop row shapes; an
+  unexpected-model stop uses the canonical attempt model rather than the raw returned string; the
+  request journal retains the configured alias; historical-registry coverage resolution happens
+  inside the bounded storage transaction, and its timeout means unavailable with no dispatch;
+  trusted operator diagnostics identify the cause to inform clearance without exposing facts to
+  campaign diagnostics.
+- Checkpoint A (accounting, migrations 0005/0006) and checkpoint B1 are accepted. B1 acceptance and
+  the findings carried into B2: `reviews/STAGE_300_CHECKPOINT_B1_ACCEPTANCE_2026-10-11.json`,
+  details in `reviews/STAGE_300_CHECKPOINT_B1_OPUS_MAX_REVIEW_2026-10-11.md` and
+  `reviews/STAGE_300_CHECKPOINT_B1_OPUS_REVIEW_REPAIR_2_2026-10-11.md` (advisory A1 and residual
+  risks deferred to B2).
+- Owner decisions: `reviews/STAGE_300_OWNER_DECISIONS_2_2026-10-11.json` and
+  `reviews/STAGE_300_OWNER_DECISIONS_3_2026-10-11.json` (runtime text model is Sonnet 5.5 only;
+  $30 Stage 300 grant; paid AI only in active play sessions and registered evaluation runs;
+  DM preparation without a session and Chronicle after session close stay local-only).
+- Current workflow: `docs/PROJECT_WORKFLOW.md`. Scope: `work-orders/OPUS_STAGE_300.md`.
+
+## Read first (minimal)
+
+`docs/AI_CONTEXT_MAP.md`, `docs/PROJECT_WORKFLOW.md`, `ARCHITECTURE_INVARIANTS.md`, the nearest
+`AGENTS.md` files (`packages/ai`, `packages/contracts`, `apps/server`, `apps/server/src/ai/accounting`,
+`apps/server/migrations`), the design sections you need (1 admission/catalog/stops/settlement;
+2 observability, request start, caller outcome freeze and recovery; 3 adapters, routing, caching,
+client and the outcome contract table; "Allowed source boundaries"; "Checkpoints and required
+evidence" including the test list at its end), the stop-scope delta, and the current contract parts
+of `docs/adr/0017-ai-gateway.md` and `docs/adr/0032-live-ai.md`. Use rg and narrow line ranges;
+leave historical reports and evidence alone.
+
+## B2 deliverables
+
+1. Everything the design assigns to checkpoint B2: journal/gateway integration (every remote attempt
+   goes through durable admission, the request journal and settlement; the admitted wrapper is the
+   only dispatch path), whole-request deadlines, hard-abort recovery (outcome freeze, unique atomic
+   caller-outcome/trace finalization, bounded recovery, permanent diagnostic-only record when
+   delivery is unknowable), diagnostic reads (trusted operator vs campaign scope), cache accounting,
+   nullable trace IDs and the no-start responses, and the related tests in the design's test list.
+   Build on the accepted A accounting modules; change them only where the design or the stop-scope
+   delta requires it, and list every such change in the handoff.
+2. The stop-scope delta exactly as approved (one immutable stop, two effective restrictions,
+   reason-specific predicates, fail-closed on unexpected row shapes).
+3. Pricing catalog mechanism per design section 1 (versioned pricing functions over every billing
+   dimension, usage/option allowlists, fail closed on unknowns). Catalog verification is a separate
+   activity the owner has NOT authorized: do not fetch pricing pages or add a verified production
+   entry for any model. Tests use fixture catalog entries only. Consequently remote routes remain
+   unusable in B2 and the build stays offline: with keys present and no stored approval or no
+   verified catalog entry there must be zero outbound requests and no secret reveal. Remove the
+   temporary construction guard only when every remote path uses durable admission and journaling,
+   as the design allows, and prove zero outbound with tests (Secret whose reveal throws, global
+   fetch trap).
+4. B1 carry-overs (from the acceptance record):
+   - Align the raw adapter start boundary with design section 1: any failure after `onStart` fires
+     is post-dispatch uncertainty; only a failure strictly before it may be TRANSPORT_NOT_STARTED.
+     This is the conservative reading and needs no new architecture decision. Update the tests.
+   - Fallback `onStart` fires at most once and is ignored after its attempt settles; listener errors
+     are not silently dropped.
+   - Decide advisory A1 (a throwing `dispatched` listener) so that a paid call's usage is always
+     settled by the admitted wrapper; document the decision in ADR 0032.
+   - Rejected use cases after an admitted invocation are still finalized and accounted by the
+     journal/recovery; apply the outcome freeze to the abort-in-`end`-hook case; persist the
+     fallback outcome code in the caller-outcome record.
+   - Replace the filename-only raw-adapter import guard with a resolver-based or lint-backed check.
+   - `fetch` uses `redirect: 'error'` before any dispatch is possible.
+   - Pin provider identity and base URL in trusted code for the OpenAI-compatible adapter, per the
+     stop-scope delta.
+   - Fix the DeepSeek classification edge cases if cheap (non-string refusal, only `choices[0]`,
+     `insufficient_system_resource`); DeepSeek is unused at runtime per owner decision 3.
+   - Startup log reports the resolved route of every capability.
+   - ADR fixes: the missing-tool delta and evaluation counting clause in ADR 0032; mark stale
+     ADR 0032 decisions 1 and 3 and the consequences line as superseded; record the changed
+     `INTENT_OUTPUT.description` in `docs/GATE_COVERAGE.md`.
+5. Owner decision 3: update the `LTW_AI_ROUTES` example in `.env.example` to Sonnet 5.5
+   (`anthropic:claude-sonnet-5-5`) for every capability, in the shapes route validation accepts
+   (relevance has no local entry), and record the decision in ADR 0032. Do not remove the DeepSeek
+   adapter code.
+
+If a requirement needs a material new architectural choice, or the design is missing or
+inconsistent on something you need, stop and report the exact decision needed instead of
+redesigning. Never weaken fail-closed behavior or tests to make progress.
+
+## Prohibited
+
+No git commit or push. No other agents or sessions. No provider, network or paid runtime calls,
+no pricing/catalog lookups. Do not read `.env.local` or any secret. No real operator records: use
+throwaway test databases only. No checkpoint C (evaluation admission/oracles/reporting, client
+feedback), Stage 310 or Stage 320 work. Do not edit the two design documents or historical
+reviews/reports/evidence.
+
+## Engineering rules
+
+Cohesive feature modules, thin orchestration, direct imports. Active source/test files target 500
+lines, hard limit 700: extract a cohesive boundary before growing a large file. Update
+`docs/AI_CONTEXT_MAP.md` and local `AGENTS.md` files when entry points change. Do not change
+canonical commands, context builders, legal actions or UI beyond what the design requires for B2.
+
+## Verification
+
+Write the meaningful failing regression first for each changed contract. Run focused tests while
+working. At the end run the full offline `pnpm validate` (PostgreSQL is running in Docker at
+127.0.0.1:54329; do not run `db:down`). Report exact counts.
+
+## Stop at CHECKPOINT_READY
+
+Write `handoffs/STAGE_300_CHECKPOINT_B2_REQUEST.md` from `HANDOFF_TEMPLATE.md`: neutral
+requirements, the B2 delta by file, checks with results, HEAD and dirty-file SHA256 list, design
+and delta hashes, accepted A/B1 base, your actual model/effort, limitations and items deferred to
+C. Status AWAITING_INDEPENDENT_ACCEPTANCE by two fresh Opus 5.5 reviewers (xhigh and max), output
+paths `reviews/STAGE_300_CHECKPOINT_B2_OPUS_XHIGH_REVIEW.md` and
+`reviews/STAGE_300_CHECKPOINT_B2_OPUS_MAX_REVIEW.md`. No reviewer verdicts or self-acceptance in the
+handoff. Your final message: changed files, implemented behavior, test summary, blockers, residual
+risks, and the explicit ownership release.

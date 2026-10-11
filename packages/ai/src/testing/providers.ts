@@ -1,3 +1,4 @@
+import type { FallbackAccounting } from '../fallback.ts';
 import {
   branded,
   outputResponse,
@@ -6,6 +7,7 @@ import {
   type IntentTask,
   type MalformedCode,
   type ProviderKind,
+  type ProviderPayload,
   type ProviderRequest,
   type ProviderResponse,
   type RoutedProvider,
@@ -95,3 +97,22 @@ export function intentTaskOf(request: ProviderRequest | undefined): IntentTask {
 
 /** An intent proposal in the tool's envelope. */
 export const proposal = (value: unknown) => ({ kind: 'proposal', proposal: value });
+
+/** A trusted accounting identity for direct fallback-policy tests: fresh attempt IDs per call. */
+export function testAccounting(): FallbackAccounting {
+  let attempts = 0;
+  return {
+    requestId: '00000000-0000-4000-8000-0000000000aa',
+    campaignId: 'ravenford',
+    capability: 'reasoning',
+    sessionId: 'session-test',
+    newAttemptId: () => `00000000-0000-4000-8000-${(attempts += 1).toString(16).padStart(12, '0')}`,
+  };
+}
+
+/** What a provider may serialize: the request without its trusted accounting metadata. */
+export function payloadOf(request: ProviderRequest | undefined): ProviderPayload | undefined {
+  if (request === undefined) return undefined;
+  const { capability, system, prompt, output, task } = request;
+  return { capability, system, prompt, output, task };
+}

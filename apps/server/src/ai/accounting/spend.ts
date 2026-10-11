@@ -83,30 +83,12 @@ export async function readAttemptCharge(
     : null;
 }
 
-/** Any uncleared stop on this approval, or on the billing account for this provider/model. */
-export async function hasActiveStop(
-  db: Queryable,
-  stop: { accountId: string; approvalId: string; provider: string; model: string },
-): Promise<boolean> {
-  const { rows } = await db.query<{ stopped: boolean }>(
-    `SELECT EXISTS (
-       SELECT 1 FROM ltw_ai_stops s
-       WHERE s.account_id = $1
-         AND (s.approval_id IS NULL OR s.approval_id = $2)
-         AND (s.provider IS NULL OR s.provider = $3)
-         AND (s.model IS NULL OR s.model = $4)
-         AND NOT EXISTS (SELECT 1 FROM ltw_ai_stop_clearances c WHERE c.stop_id = s.stop_id)
-     ) AS stopped`,
-    [stop.accountId, stop.approvalId, stop.provider, stop.model],
-  );
-  return rows[0]?.stopped === true;
-}
-
 export type StopReason = 'OVERRUN' | 'DISCREPANCY' | 'UNEXPECTED_MODEL' | 'UNVERIFIED_BILLING';
 
 /**
- * The stop a new absolute charge calls for: above the reservation is an overrun (stops the
- * approval); above an earlier terminal charge is a discrepancy (stops the approval).
+ * The stop a new absolute charge calls for: above the reservation is an overrun; above an earlier
+ * terminal charge is a discrepancy. Each stops its approval and, through its source attempt, the
+ * account's provider/model on every approval (`stop-scope.ts`, B2 stop-scope delta).
  */
 export function stopForCharge(
   charge: bigint,
@@ -117,7 +99,12 @@ export function stopForCharge(
   return null;
 }
 
-/** Appends a stop: approval-scoped for overruns/discrepancies, account-scoped for suspect output. */
+/**
+ * Appends one immutable stop in its accepted shape (`stop-scope.ts`): an overrun or discrepancy
+ * records its approval and source attempt; suspect output records the account's provider (and,
+ * for an unexpected model, the attempt's canonical model; the returned one is only observed).
+ * Returns the stop ID, which only an operator clearance lifts.
+ */
 export async function appendStop(
   db: Queryable,
   attempt: {
@@ -129,14 +116,15 @@ export async function appendStop(
   },
   reason: StopReason,
   observedModel: string | null = null,
-): Promise<void> {
+): Promise<string> {
   const accountWide = reason === 'UNEXPECTED_MODEL' || reason === 'UNVERIFIED_BILLING';
+  const stopId = randomUUID();
   await db.query(
     `INSERT INTO ltw_ai_stops
        (stop_id, account_id, approval_id, provider, model, reason, attempt_id, observed_model)
      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
     [
-      randomUUID(),
+      stopId,
       attempt.accountId,
       accountWide ? null : attempt.approvalId,
       accountWide ? attempt.provider : null,
@@ -146,4 +134,5 @@ export async function appendStop(
       observedModel,
     ],
   );
+  return stopId;
 }

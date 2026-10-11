@@ -1,4 +1,4 @@
-import { ProviderError, type ProviderRequest, type ProviderResponse } from '@ltw/ai';
+import { ProviderError, type ProviderPayload, type ProviderResponse } from '@ltw/ai';
 import { z } from 'zod';
 
 import {
@@ -17,8 +17,14 @@ import { usageFacts, usageSpec, type UsageSpec } from './usage-facts.ts';
  * the request uses `auto` and the system text names the tool. `prepare` serializes the whole body;
  * `dispatch` sends exactly it and classifies the response: an unaccepted model or unrecognized
  * usage is suspect (output discarded); a refusal is a refusal; truncation or a missing tool call is
- * malformed (invalid output, preserving usage). No cache metadata is sent at B1. Errors carry a
- * fixed code and message only: never the key, the request, or the response body.
+ * malformed (invalid output, preserving usage). Errors carry a fixed code and message only: never
+ * the key, the request, or the response body.
+ *
+ * Prompt caching (B2, design §3): with `cache: '5m'` the system text becomes one text block with
+ * an ephemeral (5-minute) cache breakpoint. The cached prefix is the tool definition and that system
+ * text only, both fixed per capability and language: no campaign, NPC, perspective or scoped data
+ * comes before the breakpoint, and the text itself is unchanged. Cache writes and reads are billed
+ * dimensions the catalog prices; a prefix below the model's cache minimum is simply uncached.
  */
 export const ANTHROPIC_MESSAGES_URL = 'https://api.anthropic.com/v1/messages';
 export const ANTHROPIC_VERSION = '2023-06-01';
@@ -34,6 +40,8 @@ export interface AnthropicOptions {
   /** `output_config.effort`; the model's default when absent. */
   readonly effort?: 'low' | 'medium' | 'high';
   readonly maxTokens?: number;
+  /** A 5-minute cache breakpoint after the fixed system text; none when absent. */
+  readonly cache?: '5m';
   readonly fetch?: typeof fetch;
 }
 
@@ -54,12 +62,16 @@ const contentSchema = z.array(
   z.looseObject({ type: z.string(), name: z.string().optional(), input: z.unknown().optional() }),
 );
 
-function bodyOf(request: ProviderRequest, options: AnthropicOptions): string {
+function bodyOf(request: ProviderPayload, options: AnthropicOptions): string {
+  const system = `${request.system}\nAnswer only by calling the ${request.output.name} tool.`;
   return JSON.stringify({
     model: options.model,
     max_tokens: options.maxTokens ?? MAX_TOKENS,
     ...(options.effort ? { output_config: { effort: options.effort } } : {}),
-    system: `${request.system}\nAnswer only by calling the ${request.output.name} tool.`,
+    system:
+      options.cache === '5m'
+        ? [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }]
+        : system,
     messages: [{ role: 'user', content: request.prompt }],
     tools: [
       {
@@ -116,7 +128,7 @@ export function createAnthropicProvider(options: AnthropicOptions): RawRemotePro
         toolName: request.output.name,
         body: bodyOf(request, options),
       }),
-    dispatch: async (request, signal, onStart) => {
+    dispatch: async (request, signal, onStart, deadlineAtMs) => {
       if (!prepared.owns(request)) {
         throw new ProviderError('TRANSPORT_NOT_STARTED', 'request was not prepared here');
       }
@@ -130,6 +142,7 @@ export function createAnthropicProvider(options: AnthropicOptions): RawRemotePro
         signal,
         onStart,
         timeoutMs: options.timeoutMs,
+        deadlineAtMs,
         fetch: options.fetch,
       });
       return classify(body, request.toolName, accepted);

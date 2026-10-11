@@ -13,6 +13,7 @@ import {
   seedApproval,
   startedRequest,
   type AccountingDb,
+  TEST_RESOLVE,
 } from '../../testing/accounting.ts';
 import { deadlineIn } from './deadline.ts';
 import { POLICY_LOCK_KEY, bucketLockKey } from './lock-keys.ts';
@@ -49,7 +50,7 @@ describe('deadlines on locks, statements and checkout', () => {
     const held = await holdLock(db.database.url, await globalDayKey());
     const started = performance.now();
     try {
-      const result = await new PostgresBudgetStore(db.pool).admit(
+      const result = await new PostgresBudgetStore(db.pool, TEST_RESOLVE).admit(
         admission(requestId, 1n),
         deadlineIn(8_000),
       );
@@ -72,7 +73,7 @@ describe('deadlines on locks, statements and checkout', () => {
     const held = await holdLock(db.database.url, await globalDayKey());
     const started = performance.now();
     try {
-      const result = await new PostgresBudgetStore(db.pool).admit(
+      const result = await new PostgresBudgetStore(db.pool, TEST_RESOLVE).admit(
         admission(requestId, 1n),
         deadlineIn(300),
       );
@@ -87,7 +88,7 @@ describe('deadlines on locks, statements and checkout', () => {
   it('starts no database work once the deadline has passed', async () => {
     const pool = db.pool2();
     const connect = vi.spyOn(pool, 'connect');
-    const store = new PostgresBudgetStore(pool);
+    const store = new PostgresBudgetStore(pool, TEST_RESOLVE);
     const gone = deadlineIn(-1);
     expect(
       await store.admit(admission('00000000-0000-4000-8000-000000000001', 1n), gone),
@@ -122,7 +123,7 @@ describe('deadlines on locks, statements and checkout', () => {
     const { pool, sent } = delayedResponsePool(db.database.url, /set_config/, 1_000);
     const started = performance.now();
     try {
-      const result = await new PostgresBudgetStore(pool).admit(
+      const result = await new PostgresBudgetStore(pool, TEST_RESOLVE).admit(
         admission(requestId, 1n),
         deadlineIn(300),
       );
@@ -148,7 +149,7 @@ describe('deadlines on locks, statements and checkout', () => {
     const { pool } = delayedResponsePool(db.database.url, /^COMMIT$/, 3_000);
     const started = performance.now();
     try {
-      const result = await new PostgresBudgetStore(pool).admit(
+      const result = await new PostgresBudgetStore(pool, TEST_RESOLVE).admit(
         admission(requestId, 100n),
         deadlineIn(1_200),
       );
@@ -163,7 +164,7 @@ describe('deadlines on locks, statements and checkout', () => {
     }
     // The hold did commit, and it still counts: nothing was refunded.
     expect(await attempts()).toBe(1);
-    const again = await new PostgresBudgetStore(db.pool).admit(
+    const again = await new PostgresBudgetStore(db.pool, TEST_RESOLVE).admit(
       admission(await startedRequest(db.pool, tight), 1n),
       deadlineIn(10_000),
     );
@@ -185,7 +186,7 @@ describe('deadlines on locks, statements and checkout', () => {
       });
       const pool = answeredCommitPool(db.database.url, 'COMMIT', answer);
       try {
-        const result = await new PostgresBudgetStore(pool).admit(
+        const result = await new PostgresBudgetStore(pool, TEST_RESOLVE).admit(
           admission(await startedRequest(db.pool, tight), 100n),
           deadlineIn(5_000),
         );
@@ -198,7 +199,7 @@ describe('deadlines on locks, statements and checkout', () => {
         await pool.end();
       }
       expect(await attempts()).toBe(1);
-      const again = await new PostgresBudgetStore(db.pool).admit(
+      const again = await new PostgresBudgetStore(db.pool, TEST_RESOLVE).admit(
         admission(await startedRequest(db.pool, tight), 1n),
         deadlineIn(10_000),
       );
@@ -212,7 +213,7 @@ describe('deadlines on locks, statements and checkout', () => {
       severity: 'ERROR',
     });
     try {
-      const result = await new PostgresBudgetStore(pool).admit(
+      const result = await new PostgresBudgetStore(pool, TEST_RESOLVE).admit(
         admission(await startedRequest(db.pool, approvalId), 100n),
         deadlineIn(5_000),
       );
@@ -239,7 +240,7 @@ describe('deadlines on locks, statements and checkout', () => {
       };
     });
     try {
-      const result = await new PostgresBudgetStore(pool).admit(
+      const result = await new PostgresBudgetStore(pool, TEST_RESOLVE).admit(
         admission(await startedRequest(db.pool, approvalId), 1n),
         deadlineIn(200),
       );
@@ -261,7 +262,7 @@ describe('deadlines on locks, statements and checkout', () => {
     url.port = '1';
     const unreachable = new pg.Pool({ connectionString: url.toString() });
     try {
-      const result = await new PostgresBudgetStore(unreachable).admit(
+      const result = await new PostgresBudgetStore(unreachable, TEST_RESOLVE).admit(
         admission('00000000-0000-4000-8000-000000000003', 1n),
         deadlineIn(3_000),
       );
@@ -319,7 +320,7 @@ describe('the policy lock', () => {
     expect(await revised).toBe(2);
 
     const exclusive = await holdLock(db.database.url, POLICY_LOCK_KEY, 'exclusive');
-    const admitted = new PostgresBudgetStore(db.pool).admit(
+    const admitted = new PostgresBudgetStore(db.pool, TEST_RESOLVE).admit(
       admission(await startedRequest(db.pool, approvalId), 1n),
       deadlineIn(10_000),
     );

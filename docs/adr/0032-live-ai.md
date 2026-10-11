@@ -18,10 +18,15 @@ accepts forced function calls with `thinking` disabled.
    `output_config.effort` (not for Haiku 4.5, which rejects it), and treats a refusal or a reply without
    the tool call as `BAD_RESPONSE`, so the gateway's repair and fallback policy (ADR 0017 §5) applies.
    It stays on `fetch`: no SDK dependency for one endpoint.
+   _Superseded in part (2026-10-11, checkpoint B1): a refusal is `PROVIDER_REFUSAL` and a missing
+   tool call is invalid output (one same-provider repair); see the B1 and B2 amendments below._
 2. **OpenAI-compatible adapter** (`openai-compatible-provider.ts`) serves DeepSeek: a forced function
    call, thinking disabled, usage from `usage`. Errors carry a code and a fixed message only.
 3. **Routes.** `LTW_AI_ROUTES` gives each capability an ordered `provider:model` list, ending in
    `local` where an offline fallback is wanted. Unset, the previous default holds (Anthropic then local).
+   _Superseded (2026-10-11, checkpoints A–B2): a key or the default model never implies a route;
+   unset routes are local (relevance: none), and a remote entry is routed only through admission
+   with a verified catalog entry. See the B2 amendment below._
 4. **Spending ceiling.** Every remote call passes a ledger priced from the providers' published rates
    (DeepSeek at its peak rate; cache discounts ignored, so it overestimates). At the daily ceiling
    (`LTW_AI_DAILY_BUDGET_USD`, default $5) calls are refused as `UNAVAILABLE` and the capability falls
@@ -53,6 +58,8 @@ unimplemented. Stage 300 independent acceptance is pending; this ADR is not evid
 for paid calls. See `docs/PROJECT_WORKFLOW.md` and the correction in the completion report.
 
 - The default model names (`claude-opus-5-5`) apply to every capability unless routes are set; set routes.
+  _Superseded (2026-10-11): no default model creates a route; owner decision 3 sets Sonnet 5.5 as the
+  only runtime text model (B2 amendment)._
 - A cheaper model for NPC replies is a configuration change, not a code change.
 - Prompt injection resistance still rests on context isolation (ADR 0020 §3), not on the model.
 
@@ -263,3 +270,134 @@ unreadable code, is `UNAVAILABLE`: an uncertain failure of the invoked attempt, 
 model, usage or output and followed by the ordinary transition (or `CALLER_CANCELLED` once the
 caller has gone). A `TRANSPORT_NOT_STARTED` release proof is never inferred from an unverifiable
 rejection. Error codes, public statuses and interfaces are unchanged.
+
+### 2026-10-11 — Journal, gateway admission, deadlines, recovery and stop scope (remediation checkpoint B2)
+
+Approved design: `docs/STAGE_300_REMEDIATION_DESIGN.md` (SHA256 `23e53e4d…aab2`) and the approved
+stop-scope delta `docs/STAGE_300_B2_STOP_SCOPE_DESIGN.md` (SHA256 `6bba0030…b485`; Astra/Fable xhigh,
+with Fable's nonblocking clarifications). This records the implemented contract; acceptance pending.
+
+- **One lifecycle per request** (`packages/ai/src/request.ts`, `runAiRequest`). Each use case opens
+  one monotonic whole-request deadline first (`LTW_AI_REQUEST_TIMEOUT_MS`, default 60,000 ms,
+  1,000–300,000, for intents, NPC replies and Chronicle; `LTW_AI_RELEVANCE_BUDGET_MS` for
+  relevance); NPC replies open it in `replyAsNpc`, after the canonical command. An invalid duration
+  is a construction error. The request start is persisted first (its UUID is the trace ID); without
+  a confirmed start the use case answers its no-start response and runs no provider, local
+  included: intent `AI_UNAVAILABLE` with `traceId: null`; NPC reply `AI_UNAVAILABLE`, `traceId: null`
+  (the command result stands); Chronicle template prose, `traceId: null`, committed by the unchanged
+  `GenerateChronicle`; relevance deterministic actions, `TIMEOUT` if the budget ran out, else
+  `AI_UNAVAILABLE`. `DmIntentResponse.traceId`, `NpcReply.traceId` and `RenderedChronicle.traceId`
+  are nullable (reviewed response delta; no new status). The web client never sends a null source.
+- **Outcome freeze.** The public result and its trace are decided once, synchronously. If the
+  deadline has passed at that moment (including inside the last progress hook), the cancellation
+  row is frozen instead, with the attempts known then; an attempt in flight is `CALLER_CANCELLED`
+  and no output survives. The caller waits for the write at most until its deadline and returns
+  exactly the frozen result. Relevance therefore returns a durable trace ID at its deadline before
+  the trace may exist (explicit delta: an immediate read can be a pending 404; the diagnostic tells
+  pending from recovered).
+- **Journal** (`apps/server/src/ai/journal.ts` over `accounting/request-journal.ts`). The start
+  carries campaign, actor, purpose, capability, scope, sources, the session captured from the
+  authorized snapshot (NPC: before the command, never re-read), the configured model alias, and the
+  approval only for a capability with an admitted remote route and a session. A request without a
+  play session runs only its local provider: no fictitious denied remote attempt. The live finalizer
+  stores the caller outcome (status, provider, fallback outcome code: migration
+  `0007_ai_outcome_code.sql`, digest) and the insert-only trace atomically, within the stored window;
+  a conflicting digest is reported, never overwritten. A use case that rejects (caller code threw)
+  leaves its start for recovery and its attempts for accounting. Recovery is unchanged (operator
+  `recover-incomplete`): `recovered_incomplete` is permanent and diagnostic-only.
+- **Admission wrapper** (`apps/server/src/ai/admitted-provider.ts`): the only maker of
+  `AdmittedProvider`s (module-private identity set, frozen data properties) and the only dispatch
+  path. Per attempt: trusted accounting identity and a finite deadline, else denied; `prepare`;
+  reservation from the exact body and the verified catalog entry; durable admission within the
+  request's deadline; dispatch of that same body. Only a failure strictly before `onStart` releases
+  the hold. Known usage is priced and settled in the background (retried 100/500/2,000 ms; never
+  delaying the caller); absent usage keeps the hold; an unexpected model or unverified billing keeps
+  the hold, appends the stop and discards the output. **Advisory A1 decision:** a throwing progress
+  listener inside the start hook does not stop the transport or the wrapper's settlement; the fallback
+  records the attempt and then propagates the listener's error, so a paid call's usage is always
+  settled by the wrapper.
+- **Start boundary (B1 carry-over, design §1 reading).** `sendPrepared` calls `onStart`
+  synchronously immediately before `fetch`. Only failures strictly before it are
+  `TRANSPORT_NOT_STARTED`; a throwing hook is `UNAVAILABLE` and a caller who aborts inside it is
+  `CALLER_CANCELLED`, both uncertain (no fetch, hold kept). This supersedes the B1 repair 1 wording
+  above. `fetch` uses `redirect: 'error'`. The fallback's `onStart` counts once per attempt and is
+  ignored after the attempt settles.
+- **Pricing catalog** (`apps/server/src/ai/catalog.ts`, `pricing.ts`): versioned pricing functions
+  over every billing dimension and context tier; usage-field and label allowlists; request-field and
+  option allowlists; documented limits. The reservation is the full documented context at the
+  highest input rate of any dimension and tier plus `max_tokens` at the highest output rate (no
+  verified tokenizer byte bound exists). Unknown usage, inconsistent totals or unpriced dimensions are
+  unverified billing. **`VERIFIED_CATALOG` is empty**: catalog verification is not authorized, so
+  composition refuses every remote route (fixed reason `UNVERIFIED_MODEL`) before building an adapter
+  or reading a key. Tests use invented fixture entries only. Usage/model allowlists for Sonnet 5.5
+  wait for that verification.
+- **Composition** (`gateway.ts`) builds a remote provider only with a selected (`LTW_AI_APPROVAL_ID`)
+  and stored approval, the accounting store, a verified entry and the key; otherwise the entry is
+  refused with `NO_APPROVAL_SELECTED`, `APPROVAL_NOT_STORED`, `NO_ACCOUNTING_STORE`,
+  `UNVERIFIED_MODEL` or `NO_KEY` and the route is local only. DeepSeek's identity and endpoint are
+  fixed in trusted code. Startup logs every capability's resolved route and refusals, plus counts.
+  The temporary construction guard of A/B1 is removed: every remote path is admitted and journaled.
+  Raw adapter imports are checked by resolved module path (`tests/architecture/raw-adapter-imports.test.ts`).
+- **Stop scope (amends the A stop sentences above).** One immutable stop row, two effective
+  restrictions joined by OR: the recorded predicate always, and for `OVERRUN`/`DISCREPANCY` the
+  source attempt's account, provider and canonical model on every approval and UTC day. The four
+  accepted row shapes: `OVERRUN` and `DISCREPANCY` (approval set, provider and model null, source
+  attempt present with the same account and approval); `UNEXPECTED_MODEL` (approval null, provider
+  and canonical model set); `UNVERIFIED_BILLING` (approval null, provider set, model null:
+  provider-wide). Any other shape, a missing or mismatched source attempt, or a model or historical
+  `(provider, model, pricing version)` the verified registry cannot map to one stable canonical model
+  denies every remote route of that account with the fixed `ADMISSION_DISABLED`/`STOPPED`; the
+  resolution runs inside the bounded admission transaction, whose timeout is unavailability, never a
+  dispatch. Admission accepts only the canonical model of its verified pricing version; the journal
+  keeps the configured alias. An unexpected-model stop records the attempt's canonical model and
+  only observes the returned string. One authorized `stop-clear` lifts both restrictions; clearing
+  never reduces charges or holds. Charge commands return the stop IDs they append; the trusted
+  read-only `pnpm ai:operator stops --account <id>` explains each uncleared stop's cause. Campaign
+  diagnostics never show stops.
+- **Diagnostics.** `GET /campaigns/:campaignId/ai/accounting/:traceId` (DM only, ADR 0009 order):
+  read-only lifecycle (`pending`, `recorded`, `recovered_incomplete`), caller outcome with code,
+  trace presence and the request's attempts with their accounting state and effective charge. No
+  bucket totals, capacity, approvals, stops or other campaigns; never an authoring source; an
+  unknown ID is the usual 404. Attempt views in new traces add `attemptId` and frozen `billing`
+  (absent on older traces: unknown, never zero).
+- **Prompt caching** (Anthropic, entry permitting): a 5-minute breakpoint after the fixed system
+  text; cache reads and writes are priced dimensions. Recorded in `docs/GATE_COVERAGE.md`.
+- **Missing-tool delta and evaluation counting (design §3; was written into ADR 0017 at B1).** The
+  baseline mapped a missing tool call to provider failure and a free local switch; the reviewed
+  contract treats it as invalid structured output, which may spend on one newly admitted repair of
+  the same remote provider. Remote-only evaluation counts both attempts and both charges. Repair
+  denial follows the invalid-output branch. This grants no allowance and no extra retry.
+- **Owner decision 3 (2026-10-11).** Sonnet 5.5 is the only runtime text model for all four
+  capabilities; no Opus or DeepSeek at runtime; the $30 Stage 300 grant covers Sonnet only. The
+  `.env.example` route example is `anthropic:claude-sonnet-5-5,local` for intents, NPC replies and
+  Chronicle, and `anthropic:claude-sonnet-5-5` for relevance. The DeepSeek adapter stays in the code.
+- **Not changed.** No paid call, no verified catalog content, no operator record, no evaluation
+  admission, oracle or report (checkpoint C), no client feedback work beyond null-ID narrowing.
+
+#### B2 repair 1 (2026-10-11)
+
+Same approved design and stop-scope delta; this closes gaps in the B2 implementation.
+
+- **Deadline read from the clock.** Wherever a dispatch or provider invocation is decided (the
+  fallback policy, the admission wrapper, the raw adapter's checks before its start boundary), the
+  caller has gone when its signal has aborted **or** `performance.now()` has reached the request's
+  monotonic deadline: the signal is set by a timer that can run late. Past the deadline nothing is
+  admitted, dispatched or invoked (the local provider included), and no late result is selected.
+  An admission that commits after the deadline is never dispatched and its hold is released at
+  once, as live proof that transport never started. The raw adapter's `dispatch` takes the request
+  deadline (the wrapper always passes it) and clamps its per-attempt timeout to the time left.
+- **Automatic stops retried.** The stop write for an unexpected model or unverified billing is
+  idempotent per attempt and reason (a stop that attempt already caused, even if since cleared, is
+  not appended again) and is retried on the settlement schedule (100, 500, 2,000 ms). Until it
+  commits, the process refuses the route itself (provider and canonical model, or the whole
+  provider for unverified billing) before admission; if every retry fails, the route stays refused
+  for the life of the process and `STOP_FAILED` is reported. Other processes rely on the committed
+  stop only.
+- **Provider request IDs.** Every admitted attempt whose response carries a request/message ID
+  records it, with the reported model, in the append-only `ltw_ai_attempt_responses` (migration
+  `0008_ai_attempt_responses.sql`; one row per attempt; retried; no charge), whether its usage was
+  settled, absent or suspect. The DM diagnostic shows it for that campaign's attempts; traces do not
+  carry it.
+- **Owner-approved deferrals.** An admission denied with an unconfirmed COMMIT keeps any hold until
+  operator reconciliation, although transport never started, and its trace reports "not dispatched,
+  cost 0". Sonnet 5.5 usage/model allowlists wait for catalog verification.

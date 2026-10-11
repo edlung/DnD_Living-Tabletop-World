@@ -78,6 +78,7 @@ function deps(budgetMs: number, ...providers: RoutedProvider[]) {
     traces,
     ids: new SequentialIds(),
     clock: { now: () => clock.now(), nowMs: steppingMs() },
+    requestTimeoutMs: 60_000,
     relevanceBudgetMs: budgetMs,
   };
   return { deps: value, traces };

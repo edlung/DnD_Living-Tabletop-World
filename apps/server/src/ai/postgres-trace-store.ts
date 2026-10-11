@@ -1,13 +1,14 @@
-import type { AiTraceStore } from '@ltw/ai';
 import type { AiTraceView } from '@ltw/contracts';
 import type pg from 'pg';
 
 /**
- * PostgreSQL trace store (migration 0002_ai_traces.sql, docs/adr/0017-ai-gateway.md §7).
+ * PostgreSQL trace table (migration 0002_ai_traces.sql, docs/adr/0017-ai-gateway.md §7).
  * Insert-only; the table rejects updates and deletes. A trace is returned
- * only within its own campaign.
+ * only within its own campaign. Since B2 (docs/adr/0032-live-ai.md) live traces are written only
+ * by the request journal's finalizer (`journal.ts`), together with their caller outcome; `append`
+ * remains for tests that seed legacy traces written before the journal existed.
  */
-export class PostgresAiTraceStore implements AiTraceStore {
+export class PostgresAiTraceStore {
   readonly #pool: pg.Pool;
 
   constructor(pool: pg.Pool) {

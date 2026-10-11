@@ -1,4 +1,4 @@
-import { ProviderError, type ProviderRequest, type ProviderResponse } from '@ltw/ai';
+import { ProviderError, type ProviderPayload, type ProviderResponse } from '@ltw/ai';
 import { z } from 'zod';
 
 import {
@@ -11,17 +11,22 @@ import {
 import { usageFacts, usageSpec, type UsageSpec } from './usage-facts.ts';
 
 /**
- * A raw adapter for OpenAI-compatible chat APIs (docs/adr/0032-live-ai.md, checkpoint B1), used
- * for DeepSeek. Structured output is a forced function call. The body is built from an allowlist:
- * the only provider switch is `thinking` (DeepSeek reasoning, billed and slow, off for these short
- * structured replies). `prepare` serializes the whole body; `dispatch` sends exactly it and
- * classifies the response like the Anthropic adapter (suspect, refusal, malformed, output).
- * DeepSeek caches automatically; no cache directive is sent. Errors carry a code and a fixed
- * message only: never the key, the request, or the body.
+ * A raw adapter for OpenAI-compatible chat APIs (docs/adr/0032-live-ai.md, checkpoints B1 and B2),
+ * used for DeepSeek. Structured output is a forced function call. The body is built from an
+ * allowlist: the only provider switch is `thinking` (DeepSeek reasoning, billed and slow, off for
+ * these short structured replies). `prepare` serializes the whole body; `dispatch` sends exactly it
+ * and classifies the response like the Anthropic adapter (suspect, refusal, malformed, output).
+ * Provider identity (`deepseek`) and its endpoint are fixed here in trusted code, never configured,
+ * so a relabelled provider cannot bypass a stop (B2 stop-scope delta). Exactly one choice is
+ * accepted: more is an unrequested billing option (unverified billing). A refusal is any non-empty
+ * refusal value; a length or `insufficient_system_resource` stop is truncation. DeepSeek caches
+ * automatically; no cache directive is sent. Unused at runtime (owner decision 3, 2026-10-11).
+ * Errors carry a code and a fixed message only: never the key, the request, or the body.
  */
-export interface OpenAiCompatibleOptions {
-  readonly id: string;
-  readonly baseUrl: string;
+export const DEEPSEEK_PROVIDER = 'deepseek';
+export const DEEPSEEK_CHAT_URL = 'https://api.deepseek.com/chat/completions';
+
+export interface DeepSeekOptions {
   /** Read only by `dispatch`, before the start boundary; never logged. */
   readonly apiKey: () => string;
   readonly model: string;
@@ -56,7 +61,7 @@ const choicesSchema = z
       finish_reason: z.string().nullable().optional(),
       message: z
         .looseObject({
-          refusal: z.string().nullable().optional(),
+          refusal: z.unknown().optional(),
           tool_calls: z
             .array(
               z.looseObject({
@@ -71,7 +76,10 @@ const choicesSchema = z
   )
   .min(1);
 
-function bodyOf(request: ProviderRequest, options: OpenAiCompatibleOptions): string {
+/** Finish reasons after which a tool call is complete; any other is truncation. */
+const COMPLETE = new Set<string | null | undefined>(['tool_calls', 'stop', null, undefined]);
+
+function bodyOf(request: ProviderPayload, options: DeepSeekOptions): string {
   return JSON.stringify({
     model: options.model,
     max_tokens: options.maxTokens ?? 4_096,
@@ -112,11 +120,20 @@ function classify(
     return { kind: 'suspect', code: 'UNVERIFIED_BILLING', ...facts };
   }
   const choices = choicesSchema.safeParse(completion['choices']);
+  if (choices.success && choices.data.length > 1) {
+    return { kind: 'suspect', code: 'UNVERIFIED_BILLING', ...facts };
+  }
   const choice = choices.success ? choices.data[0] : undefined;
-  if (choice?.finish_reason === 'content_filter' || (choice?.message?.refusal ?? '') !== '') {
+  const refusal = choice?.message?.refusal;
+  if (
+    choice?.finish_reason === 'content_filter' ||
+    (refusal !== undefined && refusal !== null && refusal !== '')
+  ) {
     return { kind: 'refusal', ...facts };
   }
-  if (choice?.finish_reason === 'length') return { kind: 'malformed', code: 'TRUNCATED', ...facts };
+  if (choice !== undefined && !COMPLETE.has(choice.finish_reason)) {
+    return { kind: 'malformed', code: 'TRUNCATED', ...facts };
+  }
   const call = choice?.message?.tool_calls?.find((c) => c.function.name === toolName);
   if (!call) return { kind: 'malformed', code: 'MISSING_TOOL', ...facts };
   let output: unknown;
@@ -128,23 +145,21 @@ function classify(
   return { kind: 'output', output, ...facts };
 }
 
-export function createOpenAiCompatibleProvider(
-  options: OpenAiCompatibleOptions,
-): RawRemoteProvider {
+export function createDeepSeekProvider(options: DeepSeekOptions): RawRemoteProvider {
   const prepared = preparedRequests();
   const accepted = new Set(options.acceptedModels ?? [options.model]);
   return {
-    id: options.id,
+    id: DEEPSEEK_PROVIDER,
     model: options.model,
     prepare: (request) =>
       prepared.issue({
-        provider: options.id,
+        provider: DEEPSEEK_PROVIDER,
         model: options.model,
-        url: `${options.baseUrl}/chat/completions`,
+        url: DEEPSEEK_CHAT_URL,
         toolName: request.output.name,
         body: bodyOf(request, options),
       }),
-    dispatch: async (request, signal, onStart) => {
+    dispatch: async (request, signal, onStart, deadlineAtMs) => {
       if (!prepared.owns(request)) {
         throw new ProviderError('TRANSPORT_NOT_STARTED', 'request was not prepared here');
       }
@@ -157,6 +172,7 @@ export function createOpenAiCompatibleProvider(
         signal,
         onStart,
         timeoutMs: options.timeoutMs,
+        deadlineAtMs,
         fetch: options.fetch,
       });
       return classify(body, request.toolName, accepted);

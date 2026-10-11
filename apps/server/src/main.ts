@@ -2,12 +2,18 @@ import pg from 'pg';
 
 import { createPlaceholderImageGenerator } from '@ltw/ai';
 
-import { accountingStatus } from './ai/accounting/postgres-budget-store.ts';
-import { createAiGateway } from './ai/gateway.ts';
+import { AccountingTasks } from './ai/accounting-tasks.ts';
+import {
+  PostgresBudgetStore,
+  accountingStatus,
+  approvalExists,
+} from './ai/accounting/postgres-budget-store.ts';
+import { VERIFIED_CATALOG, identityResolver } from './ai/catalog.ts';
+import { createAiGateway, type AiGateway } from './ai/gateway.ts';
+import { PostgresAiJournal } from './ai/journal.ts';
 import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
-import { PostgresAiTraceStore } from './ai/postgres-trace-store.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { buildApp } from './http/app.ts';
 import { disabledAuthenticator, loadDevPersonaAuthenticator } from './http/auth.ts';
@@ -34,7 +40,20 @@ async function main(): Promise<void> {
     logger.warn('development persona authentication is enabled (never use in production)');
   }
 
-  const ai = createAiGateway(config.ai, new PostgresAiTraceStore(pool));
+  // Accounting failures are reported by fixed code only: never amounts, campaigns or providers.
+  const tasks = new AccountingTasks((issue) => {
+    logger.warn({ issue }, 'AI accounting needs operator attention');
+  });
+  const ai = createAiGateway(config.ai, {
+    journal: new PostgresAiJournal(pool, (issue) => {
+      tasks.report(issue);
+    }),
+    budget: new PostgresBudgetStore(pool, identityResolver(VERIFIED_CATALOG)),
+    catalog: VERIFIED_CATALOG,
+    approvalStored:
+      config.ai.approvalId !== null && (await approvalExists(pool, config.ai.approvalId)),
+    tasks,
+  });
   const authoring = {
     proposals: new PostgresProposalStore(pool, proposalLocks),
     ids: randomIds,
@@ -58,11 +77,10 @@ async function main(): Promise<void> {
       nodeEnv: config.nodeEnv,
       authMode: config.auth.mode,
       database: describeDatabaseUrl(config.databaseUrl),
-      aiProviders: ai.router.providersFor('reasoning').map((provider) => provider.id),
     },
     'server ready',
   );
-  reportAiSpending(logger, pool, ai.disabledRemoteRoutes);
+  reportAiSpending(logger, pool, ai);
 
   const stopAssets = startAssetWorkerLoop({
     engine,
@@ -78,6 +96,8 @@ async function main(): Promise<void> {
     logger.info({ signal }, 'shutting down');
     stopAssets()
       .then(() => app.close())
+      // Settlement retries stop; any unsettled hold stays for the operator.
+      .then(() => ai.accounting.shutdown())
       .then(() => Promise.all([pool.end(), proposalLocks.end()]))
       .catch((error: unknown) => {
         logger.error({ err: error }, 'shutdown failed');
@@ -88,27 +108,27 @@ async function main(): Promise<void> {
   process.once('SIGTERM', shutdown);
 }
 
-/** Reports held and pending AI accounting state; never reconciles it (docs/adr/0032-live-ai.md). */
-function reportAiSpending(
-  logger: Logger,
-  pool: pg.Pool,
-  disabledRemoteRoutes: readonly string[],
-): void {
+/**
+ * Reports the resolved route of every AI capability, any refused remote entry with its fixed reason,
+ * and held and pending accounting state as counts; never keys, prompts, campaigns or amounts, and
+ * never reconciles anything (docs/adr/0032-live-ai.md).
+ */
+function reportAiSpending(logger: Logger, pool: pg.Pool, ai: AiGateway): void {
   for (const variable of obsoleteVariables()) {
     logger.warn(
       { variable },
       'ignored: AI spending ceilings are operator records, not configuration',
     );
   }
-  if (disabledRemoteRoutes.length > 0) {
-    logger.warn(
-      { routes: disabledRemoteRoutes },
-      'remote AI routes are disabled in this build; every capability runs locally',
-    );
+  for (const route of ai.routes) {
+    logger.info({ capability: route.capability, providers: route.providers }, 'AI route');
+    for (const { entry, reason } of route.refused) {
+      logger.warn({ capability: route.capability, entry, reason }, 'remote AI route refused');
+    }
   }
   accountingStatus(pool).then(
     (status) => {
-      logger.info(status, 'AI accounting status');
+      logger.info(status, 'AI accounting status (shared by every player and DM request)');
     },
     () => {
       logger.warn('AI accounting status unavailable');

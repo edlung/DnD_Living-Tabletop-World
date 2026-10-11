@@ -45,6 +45,7 @@ function deps(...providers: RoutedProvider[]) {
     traces: new InMemoryAiTraceStore(),
     ids: new SequentialIds(0xc1),
     clock: { now: () => clock.now(), nowMs: steppingMs() },
+    requestTimeoutMs: 60_000,
   };
 }
 
@@ -101,7 +102,10 @@ describe('rendering a chapter', () => {
       status: 'RENDERED',
       prose: { provider: 'anthropic', model: 'anthropic-model', paragraphs: GOOD.paragraphs },
     });
-    const trace = (await d.traces.get(CAMPAIGN, rendered.traceId)) as ChronicleTraceView | null;
+    const trace = (await d.traces.get(
+      CAMPAIGN,
+      rendered.traceId ?? '',
+    )) as ChronicleTraceView | null;
     expect(trace).toMatchObject({
       purpose: 'chronicle',
       capability: 'narrative',

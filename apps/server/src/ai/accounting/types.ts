@@ -4,7 +4,8 @@ import type { BillingDay, SessionClass } from './lock-keys.ts';
 /**
  * Ports of the durable accounting store (docs/adr/0032-live-ai.md, amendment 2026-10-11;
  * docs/STAGE_300_REMEDIATION_DESIGN.md §1–2). Production uses PostgreSQL; nothing else is a
- * spending authority. Checkpoint A provides the store only: no use case calls it yet (B2).
+ * spending authority. Since checkpoint B2 every remote attempt is admitted, settled, released or
+ * held through this port by the admission wrapper (`ai/admitted-provider.ts`).
  */
 
 /**
@@ -102,10 +103,19 @@ export interface BudgetStore {
   settle(input: SettlementInput): Promise<SettlementOutcome>;
   /** Only with the live process's proof that transport never started. */
   releasePreDispatch(attemptId: string): Promise<ReleaseOutcome>;
-  /** Keeps the full hold and stops the account's provider/model until an operator clears it. */
+  /**
+   * Keeps the full hold and stops the account's provider/model until an operator clears it.
+   * Idempotent per attempt and reason, so it may be retried.
+   */
   holdWithStop(
     attemptId: string,
     reason: SuspectReason,
+    returnedModel: string | null,
+  ): Promise<void>;
+  /** Records the provider's request/message ID of an attempt (idempotent). Fixed 5,000 ms bound. */
+  recordResponse(
+    attemptId: string,
+    providerRequestId: string,
     returnedModel: string | null,
   ): Promise<void>;
 }

@@ -10,7 +10,9 @@ import {
   scripted,
   scriptedLocal,
   steppingMs,
+  payloadOf,
   suspect,
+  testAccounting,
 } from './testing/providers.ts';
 import { validateProposal } from './validation.ts';
 
@@ -46,6 +48,7 @@ function deps(...providers: RoutedProvider[]): FallbackDeps<CommandProposal> {
     }),
     validate: (output) => validateProposal(output, new Set(['north-gate'])),
     nowMs: steppingMs(),
+    accounting: testAccounting(),
   };
 }
 
@@ -105,7 +108,7 @@ describe('runWithFallback', () => {
       ['a', 'initial', 'error', 'TIMEOUT'],
       ['local', 'fallback', 'valid', null],
     ]);
-    expect(b.requests[0]).toEqual(a.requests[0]);
+    expect(payloadOf(b.requests[0])).toEqual(payloadOf(a.requests[0]));
     expect(result.attempts[0]).toMatchObject({ model: null, output: null, usage: null });
   });
 
@@ -198,7 +201,7 @@ describe('runWithFallback', () => {
       ['local', 'fallback', 'invalid'],
     ]);
     expect(b.requests[0]?.task.repair).toBeNull();
-    expect(b.requests[0]).toEqual(a.requests[0]);
+    expect(payloadOf(b.requests[0])).toEqual(payloadOf(a.requests[0]));
   });
 
   it('records raw output cut at 8 KB, and never an error message', async () => {

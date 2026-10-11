@@ -6,6 +6,7 @@ import { deadlineIn } from '../ai/accounting/deadline.ts';
 import { OperatorStore, type ApprovalCeilings } from '../ai/accounting/operator-store.ts';
 import { startRequest } from '../ai/accounting/request-journal.ts';
 import type { Queryable } from '../ai/accounting/spend.ts';
+import type { Resolve } from '../ai/accounting/stop-scope.ts';
 import type { AccountingSession, AdmissionRequest, Authorization } from '../ai/accounting/types.ts';
 import { createThrowawayDatabase, type ThrowawayDatabase } from './throwaway-database.ts';
 
@@ -247,3 +248,10 @@ export function answeredCommitPool(
   });
   return pool;
 }
+
+/**
+ * A test-only identity resolver: every recorded `(provider, model)` is its own verified canonical
+ * model. Production resolves through the verified catalog (`ai/catalog.ts`); stop-scope tests use
+ * explicit alias registries instead.
+ */
+export const TEST_RESOLVE: Resolve = (_provider, model) => model;

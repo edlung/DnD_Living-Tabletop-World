@@ -46,6 +46,7 @@ const outcomeOf = (requestId: string): FinalOutcome => ({
   requestId,
   status: 'RANKED',
   provider: 'local',
+  code: null,
   traceJson: JSON.stringify({ traceId: requestId }),
   trace: {
     campaignId: 'ravenford',

@@ -19,6 +19,7 @@ import {
 import { createThrowawayDatabase, type ThrowawayDatabase } from '../testing/throwaway-database.ts';
 import { createWorldEngine } from '../world-engine/runtime.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
+import { PostgresAiJournal } from './journal.ts';
 import { PostgresAiTraceStore } from './postgres-trace-store.ts';
 
 /**
@@ -103,7 +104,7 @@ describe('PostgresAiTraceStore', () => {
       const result = await engine.execute(submission);
       if (result.status === 'rejected') throw new Error(`seed rejected: ${result.code}`);
     }
-    const ai = { ...testAiGateway(), traces: new PostgresAiTraceStore(pool) };
+    const ai = { ...testAiGateway(), traces: new PostgresAiJournal(pool) };
     const app = await ravenfordApp(engine, ai);
     apps.push(app);
     const events = await count('ltw_events');
@@ -131,7 +132,7 @@ describe('PostgresAiTraceStore', () => {
       const result = await engine.execute(submission);
       if (result.status === 'rejected') throw new Error(`seed rejected: ${result.code}`);
     }
-    const ai = { ...testAiGateway(), traces: new PostgresAiTraceStore(pool) };
+    const ai = { ...testAiGateway(), traces: new PostgresAiJournal(pool) };
     const app = await ravenfordApp(engine, ai);
     apps.push(app);
     const say = (intent: Record<string, unknown>) =>
@@ -190,7 +191,7 @@ describe('PostgresAiTraceStore', () => {
         .map(({ key }) => ({ key, relevance: 'high' }));
       return Promise.resolve(outputResponse({ ranking }, 'reverser'));
     });
-    const ai = { ...testAiGateway(ranker), traces: new PostgresAiTraceStore(pool) };
+    const ai = { ...testAiGateway(ranker), traces: new PostgresAiJournal(pool) };
     const app = await ravenfordApp(engine, ai);
     apps.push(app);
     const events = await count('ltw_events');

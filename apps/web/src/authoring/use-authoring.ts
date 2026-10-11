@@ -139,18 +139,17 @@ export function useAuthoring(api: WorldApi, onWorldChanged: () => void) {
         setBlockers([]);
         const intent = await api.post<DmIntentResponse>('ai/intents', { text }, signal);
         if (!isLive()) return;
-        if (intent.status !== 'PROPOSED' || !intent.proposal) {
+        // Authoring needs a persisted PROPOSED trace: a null trace ID (no durable request start,
+        // ADR 0032 B2) is never sent as a source.
+        const traceId = intent.traceId;
+        if (intent.status !== 'PROPOSED' || !intent.proposal || traceId === null) {
           setNotice({
             kind: 'error',
             text: 'The assistant could not turn that into a proposal. Try describing it differently.',
           });
           return;
         }
-        const created = await api.post<unknown>(
-          'authoring/proposals',
-          { traceId: intent.traceId },
-          signal,
-        );
+        const created = await api.post<unknown>('authoring/proposals', { traceId }, signal);
         if (!isLive()) return;
         if (isProposal(created)) setProposal(created);
         else setNotice({ kind: 'error', text: 'The proposal could not be stored.' });
