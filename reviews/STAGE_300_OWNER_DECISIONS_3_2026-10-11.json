@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-11",
+  "source": "Owner messages in a Claude Code session, 2026-10-11 (after decisions 2)",
+  "ownerAnswer": "1. Пусть проверку сделает агент с чистой сессией - Opus 5.5 max вместо Sol. 2. Используем только Sonnet 5.5 3. Можно не только Chronicle использовать. Хочешь добавь еще кампанию для тестов. Отправь коммиты на GitHub",
+  "clarifications": {
+    "Opus max replacement scope": "Для всех следующих (Recommended)",
+    "Chronicle and test campaign": "Правило оставить, без кампании (Recommended)"
+  },
+  "decisions": {
+    "acceptanceReviewers": {
+      "pair": ["claude-opus-5-5 / xhigh", "claude-opus-5-5 / max"],
+      "replaces": "gpt-6.1-sol / xhigh",
+      "scope": "Stage 300 checkpoint B1 and every later acceptance (B2, C, Stage 310 and on)",
+      "rule": "Each reviewer is a fresh clean session, independent of the other and of the implementer",
+      "residualRisk": "Both reviewers are the same model family, so shared blind spots are more likely than with Sol"
+    },
+    "runtimeTextModel": {
+      "choice": "claude-sonnet-5-5 only",
+      "capabilities": ["DM intents", "NPC dialogue", "Chronicle", "relevance"],
+      "excluded": ["claude-opus-5-5 at runtime", "DeepSeek"],
+      "spending": "The $30 Stage 300 grant (decisions 2) applies to Sonnet 5.5 only",
+      "notes": [
+        "Stage 300 trials: Sonnet 5.5 scored 5/6 on DM intents (invented a command for a non-game request) and declined a name once in Chronicle",
+        "Relevance has a 2-3 s budget; slower answers fall back to deterministic context",
+        "Route configuration (.env.example LTW_AI_ROUTES) changes with B2 so the reviewed B1 artifact stays unchanged"
+      ]
+    },
+    "paidAiScope": "Unchanged: paid AI only inside an active play session or a registered evaluation run, for all four capabilities; DM preparation without a session and Chronicle after session close stay local-only",
+    "testCampaign": "Not added; evaluation runs use Ravenford with registered run ceilings",
+    "push": "Authorized and done: branch stage-300-live-ai pushed to origin (PR 3)"
+  }
+}

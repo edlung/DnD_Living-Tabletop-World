@@ -9,8 +9,12 @@ Updated 2026-10-11. The owner's current AGENTS instructions take precedence over
   native Anthropic subscription authentication. Review repairs retain xhigh.
 - Architecture: independent fresh GPT-6 Astra (`gpt-6-astra`), xhigh, and Claude Fable 5.1
   (`claude-fable-5-1`), xhigh, approvals of the same exact artifact before implementation.
-- Checkpoint acceptance: independent clean GPT-6.1 Sol (`gpt-6.1-sol`), xhigh, and Claude
-  Opus 5.5 (`claude-opus-5-5`), xhigh, approvals of the same actual changes and checks.
+- Checkpoint acceptance: two independent fresh Claude Opus 5.5 (`claude-opus-5-5`) sessions, one at
+  xhigh and one at max, approving the same actual changes and checks. Owner decision 2026-10-11
+  (`reviews/STAGE_300_OWNER_DECISIONS_3_2026-10-11.json`): Opus max replaces GPT-6.1 Sol from B1 on,
+  because Codex Desktop cannot attest Sol's response model. `reviewer-cli` pins xhigh only, so the
+  max session runs through Claude Code CLI with the same isolation (clean environment, exported
+  snapshot without review records, Read/Grep/Glob/scoped Bash, no MCP, dontAsk, persistent session).
 - Owner exception 2026-10-11: for Astra's native Codex subagent only, explicit
   `gpt-6-astra`/`xhigh` launch configuration is sufficient identity/effort evidence even when actual
   response attestation is not exposed. Record that limitation; this does not waive independence,
@@ -43,6 +47,9 @@ Older assignments below are historical and do not authorize a different model or
 - Stage 310: continuation authorized 2026-10-11; DM skip/act policy decided the same day. Design
   preparation may proceed, but dependent implementation waits for the Stage 300 checkpoint and
   fresh Astra/Fable xhigh architecture approval. No Stage 320 work is authorized.
+- Owner decisions 3 (same day): runtime text model is Sonnet 5.5 only for all four capabilities (no
+  Opus or DeepSeek at runtime; the $30 grant covers Sonnet only). Route configuration changes with B2.
+  Paid AI stays limited to active play sessions and registered evaluation runs; no test campaign.
 - No paid runtime calls yet: the $30 grant is recorded, but no operator billing-account/approval
   records exist, daily/campaign/session sub-ceilings within it are unset, and B1/B2 are not accepted.
 - Stage 300 remediation drafts 1–3 received CHANGES REQUIRED. Draft 4 pins bounded whole-request
@@ -67,6 +74,14 @@ Older assignments below are historical and do not authorize a different model or
 4. Owner plays affected flows. Preserve pending acceptance accurately; stop at Stage 310 boundary.
 
 ## Current continuation — remediation draft 7
+
+**Checkpoint B1: ACCEPTED 2026-10-11** (`reviews/STAGE_300_CHECKPOINT_B1_ACCEPTANCE_2026-10-11.json`).
+Opus 5.5 xhigh PASS (repair 4) and a fresh Opus 5.5 max PASS
+(`reviews/STAGE_300_CHECKPOINT_B1_OPUS_MAX_REVIEW_2026-10-11.md`, receipt and evidence) on the same
+artifact (manifest `188e7f16…`, commit `f7518a6`). The Opus max review found 0 Critical/High and 7 Low
+findings, carried into B2 in the acceptance record. B2 may start after owner go-ahead, implementing
+the approved draft 7 B2 scope plus the approved stop-scope delta. No paid runtime calls before B2 is
+accepted. The Sol attestation notes below are historical.
 
 Draft 7 pins outcome freeze, unique atomic caller-outcome/trace finalization and bounded recovery.
 Recovery leaves a permanent diagnostic-only record when delivery is unknowable. It also addresses

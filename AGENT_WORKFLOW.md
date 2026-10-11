@@ -1,6 +1,7 @@
 > Current owner policy (2026-10-11): `docs/PROJECT_WORKFLOW.md` controls new work.
 > Architecture: Astra/Fable xhigh. Implementation: Opus medium; review repairs xhigh.
-> Acceptance: fresh independent Sol/Opus xhigh. Orchestration: Sol medium.
+> Acceptance: fresh independent Opus 5.5 xhigh and Opus 5.5 max (owner 2026-10-11: Opus max replaces Sol;
+> read older "Sol/Opus xhigh acceptance" as this pair). Orchestration: Sol medium.
 > Older model assignments are historical; preserve their evidence, not their future authority.
 
 # Living Tabletop World — Agent Workflow Contract v1.4

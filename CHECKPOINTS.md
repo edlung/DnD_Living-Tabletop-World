@@ -1,6 +1,7 @@
 # Formal Checkpoints
 
-Owner decision 2026-10-11: new reviews/retests require separate fresh Sol and Opus xhigh approvals.
+Owner decision 2026-10-11: new reviews/retests require separate fresh Opus 5.5 xhigh and Opus 5.5 max approvals
+(Opus max replaced Sol later that day; older "Sol/Opus" wording below means this pair).
 For future gates, retain the listed Opus report path and add a separate `SOL_REVIEW_GATE_<NN>_REPORT.md`
 (or next numbered retest) covering the same artifact. Neither report alone permits dependent work.
 Rows for Gates 01–05 preserve historical Astra assignments and artifact names.

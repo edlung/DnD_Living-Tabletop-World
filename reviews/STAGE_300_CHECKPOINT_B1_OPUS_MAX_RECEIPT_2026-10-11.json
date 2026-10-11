@@ -1,0 +1,85 @@
+{
+  "checkpoint": "Stage 300 B1 (artifact of B1 repair 4)",
+  "role": "independent acceptance reviewer replacing gpt-6.1-sol (owner decision 2026-10-11)",
+  "exitCode": 0,
+  "requestedModel": "claude-opus-5-5",
+  "requestedEffort": "max (--effort max and settings effortLevel max; effort is not reported by the stream)",
+  "responseMessageModels": [
+    "claude-opus-5-5"
+  ],
+  "identityMismatch": false,
+  "initEvent": {
+    "model": "claude-opus-5-5",
+    "tools": [
+      "Bash",
+      "Glob",
+      "Grep",
+      "Read"
+    ],
+    "mcpServers": [],
+    "permissionMode": "dontAsk",
+    "apiKeySource": "none",
+    "claudeCodeVersion": "2.1.293"
+  },
+  "sessionId": "f2c4503e-55aa-452b-ab91-4d3e8e995da7",
+  "sessionIdsInStream": [
+    "f2c4503e-55aa-452b-ab91-4d3e8e995da7"
+  ],
+  "isError": false,
+  "resultSubtype": "success",
+  "durationSeconds": 1302.0,
+  "numTurns": 119,
+  "toolCalls": 118,
+  "deniedToolCalls": 10,
+  "usage": {
+    "input_tokens": 154,
+    "cache_creation_input_tokens": 380148,
+    "cache_read_input_tokens": 17590554,
+    "output_tokens": 131847,
+    "output_tokens_details": {
+      "thinking_tokens": 95844
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 380148,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 14751,
+        "cache_read_input_tokens": 383735,
+        "cache_creation_input_tokens": 7435,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 7435
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "startedAt": "2026-10-11T19:38:04Z",
+  "finishedAt": "2026-10-11T19:59:51Z",
+  "provider": "native Anthropic firstParty claude.ai subscription (claude auth status, clean env, apiKeySource none)",
+  "billingChanged": false,
+  "launch": "Claude Code CLI 2.1.293 with the reviewer-cli Claude argv except effort max, plus --add-dir scratch; env -i",
+  "snapshot": {
+    "source": "git archive f7518a6 without reviews/, handoffs/STAGE_300_CHECKPOINT_*, docs/PROJECT_WORKFLOW.md and .git",
+    "b1ManifestSha256": "188e7f16d6f6ae7082bf82b05a5769b343a2e81dd55e65265e6b6f42a3b82729",
+    "b1ManifestEntriesChecked": 113,
+    "b1ManifestMismatches": 0,
+    "fileListHashBefore": "da1e3cb77f5d89f19cb81efbd4db1a7c0d8b563567e0d5694aedc8fc3d9c967b",
+    "fileListHashAfter": "da1e3cb77f5d89f19cb81efbd4db1a7c0d8b563567e0d5694aedc8fc3d9c967b",
+    "unchangedByReview": true
+  },
+  "attempt1": "Aborted by the orchestrator after 21 tool calls (scratch denied without --add-dir); snapshot unchanged",
+  "packetSha256": "a83a1d357280f0691211fe316c07817788618d95c4aed01eada93ff892e27d87",
+  "rawStdoutSha256": "8fe222a9b354a5a3beadf0b47e45a1d4d5cab7105676459fc5d044cce3206c41"
+}

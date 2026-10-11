@@ -1,6 +1,6 @@
 # Gate Handoffs
 
-Current requests require separate fresh Sol/Opus xhigh acceptance of the same artifact, per
+Current requests require separate fresh Opus xhigh and Opus max acceptance (Opus max replaced Sol, owner 2026-10-11) of the same artifact, per
 `docs/PROJECT_WORKFLOW.md`. Historical requests remain preserved. Use `HANDOFF_TEMPLATE.md`;
 formal paths are in `CHECKPOINTS.md`. Intermediate checkpoint requests name both exact reports.
 
