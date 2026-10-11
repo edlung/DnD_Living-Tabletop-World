@@ -81,6 +81,10 @@ Still open, needed before the first paid call in Stage 300: the spending ceiling
 
 **Decided (owner, 2026-10-05):** OpenAI only (the GPT Image 2.5 family at the time of the decision), without a cross-provider comparison. **Access (owner, 2026-10-05):** through an OpenRouter API key (`OPENROUTER_API_KEY` in `.env.local`), not an OpenAI key or a ChatGPT subscription. Stage 330 must confirm that OpenRouter exposes the chosen image model with reference-image input before relying on it. Still open: the art style, decided together with Q8, and the spending ceiling.
 
+**Budget clarification (2026-10-11):** the owner supplied the OpenRouter key with an external $20 key
+limit. That limit applies to OpenRouter image access; it does not authorize a $30 text-provider budget.
+Art style and the allocation within that key limit remain to be settled before Stage 330.
+
 ### Q7. Language of play — Stages 290–360
 
 **Decided (owner, 2026-10-05):** the alpha is played in Russian. The interface and Ravenford content are translated in a separate stage before the playtests (Stage 290), and live models are evaluated in Russian (Stage 300).
@@ -94,6 +98,11 @@ Which visual direction should the client take? The owner decides from two or thr
 ### Q9. Live-session rules — Stage 310
 
 What may the change signal reveal to a perspective about changes it cannot read (by default, nothing)? What may the DM do for an absent player: skip the turn, act as the character, or neither? Decision needed before implementation of Stage 310.
+
+**Decided (owner, 2026-10-11):** the DM may skip the absent player's turn or act as that character.
+Actions must be auditable and support undo through the World Engine. The proposal presented with
+this choice retains the default that hidden changes reveal nothing, including through notifications.
+Transport presence is not sufficient proof of absence and does not automatically transfer authority.
 
 ### Q10. Deployment target — Stage 350
 

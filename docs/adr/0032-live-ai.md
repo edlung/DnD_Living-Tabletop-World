@@ -46,6 +46,12 @@ accepts forced function calls with `thinking` disabled.
 
 ## Consequences
 
+**Correction (2026-10-11):** §4 describes an implemented best-effort in-process ledger, not a strict
+spending ceiling. It has no durable reservations, resets on restart, and does not account for
+failed/missing-usage responses. Required per-campaign limits and per-attempt computed costs remain
+unimplemented. Stage 300 independent acceptance is pending; this ADR is not evidence of approval
+for paid calls. See `docs/PROJECT_WORKFLOW.md` and the correction in the completion report.
+
 - The default model names (`claude-opus-5-5`) apply to every capability unless routes are set; set routes.
 - A cheaper model for NPC replies is a configuration change, not a code change.
 - Prompt injection resistance still rests on context isolation (ADR 0020 §3), not on the model.

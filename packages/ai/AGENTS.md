@@ -31,5 +31,8 @@ ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the 
 - A reply is never canonical and never a proposal: an `npc-dialogue` trace cannot seed authoring.
 - Relevance (ADR 0021) may change only the `relevance` and order of legal actions (`applyRanking`). Offer only legal actions, under opaque keys; never an ID; only the acting perspective's own visible records and memories. Every failure, invalid output, or exceeded budget returns the deterministic actions as given. `relevance.test.ts` guards each rule.
 - Images (ADR 0022 §3): a brief is DM data, never stored or traced. The placeholder draws a pattern from the seed only; it must never render text or anything from the subject (`placeholder-images.test.ts`). A real image provider is an owner decision; its adapter would live in the server.
-- Provider adapters with I/O (Anthropic) and the PostgreSQL trace store live in `apps/server/src/ai/`.
+- Provider adapters with I/O (Anthropic and OpenAI-compatible DeepSeek), capability composition,
+  current in-process spend ledger and PostgreSQL trace store live in `apps/server/src/ai/`.
+  Stage 300 acceptance is pending; consult `docs/PROJECT_WORKFLOW.md` before extending metering,
+  fallback or trace contracts. Runtime budgets are not development/reviewer billing authorization.
 - Test support: `src/testing/ravenford.ts` (seeds through the World Engine, allowed in tests only) and `src/testing/providers.ts` (scripted providers).

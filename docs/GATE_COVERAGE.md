@@ -97,3 +97,16 @@ and PostgreSQL restart), `packages/domain/src/language/*.test.ts` and
 `tests/e2e/language-ru.spec.ts` (the client in Russian, no English left on screen). Fixtures:
 `fixtures/ravenford-ru/`. No reviewed projection, mutation path, or authorization rule changed.
 
+Stage 300 introduction evidence (ADR 0032, baseline `bc6c116`): live Anthropic and DeepSeek adapters,
+per-capability routing and Russian evaluation were introduced. Provider request instructions changed
+in `apps/server/src/ai/anthropic-provider.ts` (tool-only suffix) and `packages/ai/src/prompt.ts`
+(non-game empty-list instruction). The reviewed scoped builders remain unchanged, but their full
+request envelopes and prompt deltas need Gate 06 coverage. Existing provider/fallback/isolation
+unit suites passed in the 2026-10-11 audit; this does not certify live model behavior.
+**Acceptance is pending:** `reviews/STAGE_300_AUDIT_DISPOSITION_2026-10-11.md` records budget,
+trace-accounting, evaluation and fallback defects. Missing usage on refusal/truncation and timed-out
+relevance attempts, absent per-campaign ceilings and prompt caching, and false-positive evaluation
+predicates require regression coverage before this stage can be accepted. Current review/model
+evidence limits are in `docs/PROJECT_WORKFLOW.md`. Future remediation must add its exact revision,
+tests and provider-envelope deltas here without rewriting the historical results.
+

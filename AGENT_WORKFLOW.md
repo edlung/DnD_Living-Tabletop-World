@@ -1,5 +1,9 @@
 # Living Tabletop World — Agent Workflow Contract v1.3
 
+> Current owner override, 2026-10-11: `docs/PROJECT_WORKFLOW.md` records the active assignments and
+> review requirements. Fresh dual architecture review and independent checkpoint acceptance apply
+> to new work even between the historical numbered gates below. Owner acceptance remains separate.
+
 ## Purpose
 This file defines the mandatory Opus ↔ Astra development loop. It is an execution protocol, not product documentation.
 

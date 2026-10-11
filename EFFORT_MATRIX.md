@@ -1,5 +1,11 @@
 # Model & Effort Matrix — v1.3
 
+> Current owner override, 2026-10-11: use `docs/PROJECT_WORKFLOW.md` for new work and remediation.
+> Sonnet 5.5 medium handles bounded implementation; Opus 5.5 high handles authorization, isolation,
+> migrations, concurrency and recovery. Architecture requires independent Astra xhigh and Fable 5.1
+> high approval of the same artifact; implementation checkpoints require Astra acceptance. Older
+> MAX/HIGH banners below describe the earlier stage policy and do not override this instruction.
+
 ## Operating Rule
 
 **Claude Opus 5.5 / HIGH is the stable default for the entire build.**

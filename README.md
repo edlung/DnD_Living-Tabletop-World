@@ -83,6 +83,7 @@ uses a real seeded in-memory World Engine. It requires no database or external A
 | `pnpm test` | Unit tests (no external services) |
 | `pnpm test:integration` | Integration tests; needs PostgreSQL (`pnpm db:up`) |
 | `pnpm test:e2e` | Browser/API journeys; install Playwright Chromium first |
+| `pnpm eval:ai` | Explicit live-provider evaluation; excluded from validation/CI. Do not run until text-provider spending ceilings are approved; Stage 300 accounting/evaluation remediation is pending. See `docs/PROJECT_WORKFLOW.md`. |
 | `pnpm dev:web` | Local Player/DM web client and API proxy |
 | `pnpm build` / `pnpm clean` | Compile all projects and bundle the web app / remove TypeScript outputs |
 | `pnpm db:up` / `pnpm db:down` | Start / stop local PostgreSQL |

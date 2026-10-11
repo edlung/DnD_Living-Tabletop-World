@@ -9,6 +9,9 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Task | Smallest starting set |
 |---|---|
 | Start or authorize a stage | `QUICKSTART.md`, `EFFORT_MATRIX.md`, `AGENT_WORKFLOW.md`, the one authorized file in `work-orders/` |
+| Current delivery assignments, review requirements, and checkpoint status | `docs/PROJECT_WORKFLOW.md` (current owner policy supersedes older model/effort banners) |
+| Stage 310 design preparation | `docs/STAGE_310_DESIGN.md` (draft; not implementation approval) |
+| Stage 300 contract completion | `docs/STAGE_300_REMEDIATION_DESIGN.md` (draft; audits and dual design approval required) |
 | Repository foundation | `work-orders/OPUS_STAGE_000.md`, `ARCHITECTURE.md` (System Shape, Persistence, Deployment) |
 | Product behavior or invariant | `ARCHITECTURE_INVARIANTS.md`, relevant section of `PRODUCT_BLUEPRINT.md` or `RAVENFORD_SPEC.md` |
 | Find a stage or dependency | Relevant stage in `EXECUTION_PLAN.md`, `docs/IMPLEMENTATION_PREREQUISITES.md` |
@@ -56,6 +59,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Combat: encounters, initiative, turns, attacks, spells, 0 HP, encounter view | `packages/combat/AGENTS.md`, ADR 0015 (owner-approved); contracts in `packages/contracts/src/combat/`; domain port and events in `packages/domain/src/combat/`; route `apps/server/src/http/routes/encounter-routes.ts`; fixtures `fixtures/ravenford/combat-seed.json`, `road-ambush.json` |
 | Reactions: windows, Counterspell, the pause, undo with an open window | `packages/combat/AGENTS.md` (`src/reactions/`), ADR 0016 (owner-approved); domain records/events/fold in `packages/domain/src/combat/reaction-*.ts`; pause rule `packages/domain/src/kernel/decide/reaction-pause.ts`; contracts `packages/contracts/src/combat/reactions.ts` |
 | AI gateway: providers, capability routing, ContextBuilder, structured proposals, fallback, traces | `packages/ai/AGENTS.md`, ADR 0017 (owner-approved); contracts `packages/contracts/src/ai-gateway/intents.ts`; Anthropic adapter and composition `apps/server/src/ai/`; routes `apps/server/src/http/routes/ai-routes.ts`; traces `apps/server/migrations/0002_ai_traces.sql` |
+| Live providers, capability routes, spending and evaluation | ADR 0032; `apps/server/src/ai/{anthropic-provider,openai-compatible-provider,gateway,budget}.ts`; `apps/server/src/platform/config/config.ts`; `apps/server/src/testing/eval/`; current audit and pending remediation in `docs/PROJECT_WORKFLOW.md`. No paid runs without explicit text budgets. |
 | Continuity Engine: checks by domain, explanations, options, lore claims | `packages/domain/src/authoring/AGENTS.md` (`continuity/`), ADR 0019 (owner-approved) |
 | Relationships: NPC attitude toward the party | `packages/domain/src/relationships/AGENTS.md`, ADR 0019 §3 (owner-approved) |
 | AI authoring: proposals, enabled operations, risk, continuity, preview, consent, commit, undo | `packages/domain/src/authoring/AGENTS.md`, ADR 0018 (owner-approved); contracts `packages/contracts/src/authoring/`; service and stores `apps/server/src/authoring/`; routes `apps/server/src/http/routes/authoring-routes.ts`; revisions `apps/server/migrations/0003_authoring_proposals.sql` |
