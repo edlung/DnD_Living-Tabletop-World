@@ -1,96 +1,102 @@
-# Living Tabletop World — Agent Workflow Contract v1.3
+# Living Tabletop World — Agent Workflow Contract v1.4
 
-> Current owner override, 2026-10-11: `docs/PROJECT_WORKFLOW.md` records the active assignments and
-> review requirements. Fresh dual architecture review and independent checkpoint acceptance apply
-> to new work even between the historical numbered gates below. Owner acceptance remains separate.
+Updated by owner decision 2026-10-11. Current assignments and checkpoint status are in
+`docs/PROJECT_WORKFLOW.md`; effort selection is in `EFFORT_MATRIX.md`.
 
-## Purpose
-This file defines the mandatory Opus ↔ Astra development loop. It is an execution protocol, not product documentation.
+## Roles and independence
 
-## Roles
-- **Claude Opus 5.5 — BUILDER.** Implements exactly one authorized stage at a time, writes tests, runs validation, and prepares checkpoint handoffs.
-- **GPT-6 Astra — REVIEWER.** Independently attacks the implementation at designated gates, does not implement fixes, and writes a Markdown report.
-- **Project owner — AUTHORITY.** May approve ADRs, architecture-invariant changes, and exceptional continuation.
+- Codex coordinates, prepares designs and handoffs, integrates, and records evidence.
+- Claude Code implements authorized work using native Anthropic authentication: Sonnet 5.5 medium
+  for bounded work; Opus 5.5 high for authorization, isolation, migrations, concurrency and recovery.
+- **Claude Opus 5.5 (`claude-opus-5-5`), xhigh, in a fresh session** performs mandatory reviews,
+  checkpoint acceptance and retests. It replaces Astra from this decision forward.
+- **Claude Fable 5.1 (`claude-fable-5-1`), high** remains the second independent architecture reviewer.
+- The project owner approves product decisions and dispositions. Human play acceptance is separate.
 
-## Effort Policy
-`EFFORT_MATRIX.md` is the single authority for model and effort settings. Work order banners summarize it; they do not define a second policy. Resolve any mismatch before execution.
+A reviewer session never implements or resumes an implementer's session. Even where Opus is the
+implementation model, acceptance uses a different fresh Opus session. Do not pass another reviewer's
+verdict into an initial independent review. A model request or self-identification is not proof:
+pin model/effort and verify native provider routing and actual response-model evidence. No fallback
+model satisfies a named-model gate. Do not enable API billing or credits to obtain a review.
 
-## State Machine
-`OPUS_IMPLEMENTING -> OPUS_CHECKPOINT_READY -> ASTRA_REVIEWING -> {GATE_PASS | GATE_FAIL}`
+## State machine and approvals
 
-If FAIL:
-`GATE_FAIL -> OPUS_REMEDIATING -> ASTRA_RETESTING -> {GATE_PASS | GATE_FAIL}`
+`DESIGN_DRAFT -> OPUS_AND_FABLE_REVIEW -> APPROVED_DESIGN -> IMPLEMENTING -> CHECKPOINT_READY -> OPUS_REVIEW -> PASS | FAIL`
 
-At a formal checkpoint, `GATE_PASS` is required before the owner may authorize the next stage. PASS does not itself start that stage. Between formal gates, successful deterministic validation followed by explicit owner authorization permits the next stage; no Astra report is required there.
+Before a stage or material architecture change, both architecture reviewers approve the same exact
+artifact/hash. Roadmap approval does not approve a future stage. Each implementation checkpoint
+requires fresh-session Opus xhigh acceptance of actual changes and checks before dependent work.
+A FAIL goes to remediation, new verification evidence, and a fresh Opus xhigh retest. No implementation
+session marks its own fixes accepted. Preserve initial reports, findings and every retest.
 
-## Gate Schedule
-- After Stage 20: Astra Gate #1 — Knowledge Boundary.
-- After Stage 70: Astra Gate #2 — Contradiction / Knowledge Integrity.
-- After Stage 90: Astra Gate #3 — Reaction Integrity.
-- After Stage 130: Astra Gate #4 — NPC Isolation.
-- After Stage 180: Astra Gate #5 — Full Red Team (the review activity called Stage 190).
-- After Stage 350: Astra Gate #6 — Full-Stack Red Team (the review activity called Stage 355).
+Each stage still needs explicit owner authorization. PASS does not start the next stage. Stage 310
+continuation is authorized, but its dependent implementation waits for Stage 300 acceptance and its
+own dual architecture approval. Stop at the authorized stage boundary.
 
-Stages between gates still require deterministic validation but not formal Astra handoff unless the project owner requests one.
+## Coverage and formal gates
 
-`CHECKPOINTS.md` defines artifact paths. Stage 190 is Gate #5, not another implementation stage; all its artifacts use gate number `05`. Stage 355 is Gate #6 in the same way; its artifacts use gate number `06`.
+Historical Gates 01–05 were Astra reviews and remain immutable records. Their findings and valid
+coverage are preserved. Future Gate 06, after Stage 350, is the Opus 5.5 xhigh full-stack review
+(Stage 355); numbering and coverage obligations do not change. Follow `docs/GATE_COVERAGE.md`.
+Legacy `ASTRA_MASTER.md`, `ASTRA_GATE_PROMPTS.md` and `ASTRA_REVIEW.md` remain reference mission/
+report templates; their old reviewer names do not override this assignment. Use new Opus filenames
+for current review artifacts, as specified in `CHECKPOINTS.md`.
 
-## Coverage Across Stages
-Use `docs/GATE_COVERAGE.md` to distinguish surfaces due now from future surfaces. A gate must exercise all due surfaces and relevant prior regressions. A missing or untestable required surface blocks PASS; describe the gap rather than certifying it.
+Every introducing stage records changed reviewed boundaries, deterministic regressions and the next
+integrated review obligation. Missing required coverage blocks PASS. A future surface is NOT YET IN
+SCOPE, never passed. Reopen affected accepted coverage when changes invalidate it; preserve the
+previous report and identify the new revision, delta and next retest number.
 
-Record future surfaces as NOT YET IN SCOPE with their introduction stage and next review gate. This is not a passed test or a deferred defect. The introducing stage must add deterministic boundary tests, and the next designated gate must review the integrated surface. No future-surface deferrals remain at Gate #5 for the backend slice.
+## Checkpoint handoff and reviewer behavior
 
-## Product Acceptance
-Independent gates test integrity, not experience. From Stage 290 on, a stage that changes what a Player or DM sees or does is complete only after the owner has played the affected flows on that stage's build and the completion report records the owner's disposition. An AI stand-in pass may come first as a filter for obvious friction. It is never acceptance and never replaces a human session where one is required (Stage 360).
+The implementation writer finishes and releases checkout ownership before review:
+1. Run required checks and relevant prior regressions; never report unperformed checks as passed.
+2. Record commit/package identity, dirty hashes, design hash, findings, fixes and residual risks.
+3. Prepare the Markdown handoff with exact reproduction commands, fixtures, due coverage and output
+   report path; set status AWAITING_OPUS_REVIEW.
+4. Stop dependent implementation until acceptance.
 
-## Mandatory Opus Behavior at a Gate
-When a gate stage is complete, Opus MUST:
-1. run all stage validation and relevant prior regression suites;
-2. commit/record the exact revision under review;
-3. create `handoffs/ASTRA_GATE_<NN>_REQUEST.md` using `HANDOFF_TEMPLATE.md`;
-4. include exact commands to reproduce/start the system and test personas/fixtures required by Astra;
-5. include known limitations honestly, without coaching Astra toward implementation details;
-6. set status to `AWAITING_ASTRA_REVIEW`;
-7. STOP. Do not start the next stage and do not attempt to self-certify the gate.
+Launch a fresh read-only Opus review with explicit model and xhigh effort. The reviewer independently
+inspects contracts, actual source and evidence, reproduces relevant attacks/checks, and reports
+PASS or FAIL with severity, exact evidence, violated invariant, required regression and limitations.
+For independent architecture review, scope searches to named source/contract paths; repo-wide
+searches must not leak other review reports into the fresh session. Record any incidental exposure.
+Source fixes belong to the implementation writer. The orchestrator may save the returned report and
+transport receipt. One writer owns each checkout; parallel reviews/checks must not modify reviewed
+files or conflict over shared resources. Isolate any additional writers in explicit worktrees.
 
-The final chat message from Opus at a gate should be concise: checkpoint reached, handoff path, revision, validation status, and explicit request to run Astra review.
+## Remediation and severity
 
-## Mandatory Astra Behavior
-Astra MUST:
-1. read the authoritative product/architecture docs relevant to the gate, the handoff request, public contracts, and testable implementation;
-2. treat Opus implementation explanations as non-authoritative;
-3. attack the system without modifying production/source implementation during the review;
-4. create `reviews/ASTRA_GATE_<NN>_REPORT.md` from `ASTRA_REVIEW.md`;
-5. include reproducible findings, severity, violated invariant, evidence, and required regression test;
-6. end with exactly one gate result: `PASS` or `FAIL`;
-7. if FAIL, identify blocking findings but do not fix them;
-8. STOP after writing the report.
+For Critical/High findings, add a failing regression where feasible, identify and repair the root
+contract, run affected and prior checks, record finding-to-fix evidence and stop for fresh Opus retest.
+After two repair attempts without meaningful progress, diagnose/re-plan rather than blindly retry.
+Unresolved Critical/High or Medium invariant violations block PASS. Other findings require explicit
+recorded owner-approved disposition before deferral. Critical contract changes require renewed
+architecture review of the new exact artifact before implementation.
 
-## Mandatory Opus Remediation Behavior
-On FAIL, Opus MUST:
-1. read the Astra report in full;
-2. create a failing regression test for every Critical/High finding before the fix whenever technically feasible;
-3. identify root cause and fix the architectural boundary rather than only the exposed endpoint;
-4. preserve architecture invariants;
-5. run the affected stage suite plus relevant earlier regression suites;
-6. create `remediation/OPUS_GATE_<NN>_REMEDIATION.md` listing finding -> root cause -> regression test -> fix -> validation evidence;
-7. create/update the handoff as a RETEST request;
-8. STOP and request Astra retest.
+Track effective model/effort, elapsed time, attributable usage where available and rework. Cache
+statistics and API cost estimates do not prove subscription quota savings. Named-model gates stay
+pending if model identity, access or authorized billing is unavailable.
 
 ## Retest Rule
-Astra writes `reviews/ASTRA_GATE_<NN>_RETEST_<K>.md`. The RETEST handoff names that exact output, the original report, the remediation artifact, and the new revision. A previous FAIL can only become PASS through an Astra retest report. Opus may not mark its own remediation PASS.
 
-When later changes invalidate coverage after a PASS, reopen the affected gate using review type RETEST and the next unused retest number. Link the previous report and changed revision/surfaces; if this is coverage expansion rather than FAIL remediation, mark the remediation artifact N/A with that reason. Never overwrite an initial report or an earlier retest. The reopened gate must PASS before the dependent stage can complete.
+A RETEST handoff names the exact new report path from `CHECKPOINTS.md`, original report, remediation
+artifact, new revision and relevant delta. A past FAIL becomes PASS only through an independent fresh
+Opus xhigh retest report. Preserve every initial report and previous retest. When later changes
+invalidate accepted coverage, reopen the affected gate with the next unused retest number; mark the
+remediation artifact N/A with a reason if this is coverage expansion. The reopened scope must pass
+before dependent work advances. Formal gate reports use PASS or FAIL in both header and final result;
+record nonblocking findings and owner-approved dispositions separately.
 
-## Severity Gate Policy
-- Any unresolved Critical or High finding => FAIL.
-- Medium findings that violate an architecture invariant => FAIL unless explicitly accepted by the project owner through ADR/risk acceptance.
-- Other Medium/Low findings may be deferred only when recorded with owner-approved disposition.
+## Product acceptance
 
-The report header and final result must both be exactly PASS or FAIL. Accepted nonblocking findings remain separate from that result and link their owner-approved dispositions.
+From Stage 290, a stage changing what a Player/DM sees or does is complete only after the owner plays
+its affected flows and the report records disposition. An AI stand-in is a useful filter, never
+human acceptance. Stage 360 requires real uncoached human playtests. The user's deferral of Stage
+290/300 personal acceptance remains recorded; do not infer approval or repeatedly ask for it.
 
-## Context Discipline
-Do not force either model to reread every document on every task. Read the documents named by the work order/handoff plus any directly relevant architecture/invariant sections. This avoids bloated context while preserving authority.
+## Protected contracts and context
 
-## No Silent Architecture Changes
-If implementation requires changing a product invariant or a material architecture contract, STOP and request an ADR decision. Neither agent may silently rewrite the contract.
+Follow `ARCHITECTURE_INVARIANTS.md`. Obtain an owner ADR decision before changing a protected product
+contract. Read only the authorized work order, relevant docs/AGENTS and smallest source/test entry
+points. Preserve historical reports and never rewrite a past FAIL into a PASS.

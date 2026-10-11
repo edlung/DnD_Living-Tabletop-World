@@ -1,4 +1,7 @@
-# Astra Gate Reviews
+# Independent Reviews
+
+New reviews use Opus 5.5 xhigh in a fresh session (owner decision 2026-10-11).
+Historical Astra reports remain unchanged; follow `docs/PROJECT_WORKFLOW.md` and `CHECKPOINTS.md`.
 
 Historical gate reports and their reproduction evidence. Read the exact report named by the current handoff; do not load this directory wholesale.
 

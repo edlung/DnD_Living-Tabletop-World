@@ -1,0 +1,112 @@
+[
+  {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "xhigh",
+    "elapsedSeconds": 334.3,
+    "sessionId": "fe4fcfd1-7f01-4810-9b01-3709e5efc975",
+    "isError": false,
+    "subtype": "success",
+    "usage": {
+      "input_tokens": 32,
+      "cache_creation_input_tokens": 72453,
+      "cache_read_input_tokens": 580961,
+      "output_tokens": 33393,
+      "output_tokens_details": {
+        "thinking_tokens": 25684
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 72453,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 8988,
+          "cache_read_input_tokens": 55725,
+          "cache_creation_input_tokens": 19733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "apiCostEstimateNotSubscriptionQuota": 1.3638042000000001,
+    "provider": "native Anthropic firstParty claude.ai; Max auth; no provider overrides",
+    "billingEvidence": "cached extra usage org_level_disabled, no credits enabled by this run",
+    "rawSha256": "0bf3989f63eefe15c9cebbbac5089302b1abeb8f780045793097bf0074af336f",
+    "artifact": "docs/STAGE_300_REMEDIATION_DESIGN.md",
+    "artifactSha256": "ad700826921b809a150a577d76607a0c40d6f918fadbf10b410f0713428ddd7c",
+    "sourceBaseline": "bc6c1162073f6c1c1e7bfb5b775d88a50b639181",
+    "freshSession": true,
+    "otherReviewerVerdictSupplied": false,
+    "promptSha256": "f5bab69424a02b6aa62efc457d961145cd61e0f5e00e75efa2f2027d2771f58d",
+    "verdict": "CHANGES REQUIRED"
+  },
+  {
+    "exitCode": 0,
+    "requestedModel": "claude-fable-5-1",
+    "responseMessageModels": ["claude-fable-5-1"],
+    "effort": "high",
+    "elapsedSeconds": 260.5,
+    "sessionId": "d36cbdd0-f6bd-46bd-8610-a7a41710b33d",
+    "isError": false,
+    "subtype": "success",
+    "usage": {
+      "input_tokens": 162,
+      "cache_creation_input_tokens": 51183,
+      "cache_read_input_tokens": 158314,
+      "output_tokens": 18506,
+      "output_tokens_details": {
+        "thinking_tokens": 11807
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 51183,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 32,
+          "output_tokens": 13370,
+          "cache_read_input_tokens": 50318,
+          "cache_creation_input_tokens": 6648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "apiCostEstimateNotSubscriptionQuota": 1.9901585,
+    "provider": "native Anthropic firstParty claude.ai; Max auth; no provider overrides",
+    "billingEvidence": "cached extra usage org_level_disabled, no credits enabled by this run",
+    "rawSha256": "1e6de8b197926db27802c8712a753742e0687bbe05fd4350c5d090ad0b9ee6bc",
+    "artifact": "docs/STAGE_300_REMEDIATION_DESIGN.md",
+    "artifactSha256": "ad700826921b809a150a577d76607a0c40d6f918fadbf10b410f0713428ddd7c",
+    "sourceBaseline": "bc6c1162073f6c1c1e7bfb5b775d88a50b639181",
+    "freshSession": true,
+    "otherReviewerVerdictSupplied": false,
+    "promptSha256": "f5bab69424a02b6aa62efc457d961145cd61e0f5e00e75efa2f2027d2771f58d",
+    "verdict": "CHANGES REQUIRED"
+  }
+]

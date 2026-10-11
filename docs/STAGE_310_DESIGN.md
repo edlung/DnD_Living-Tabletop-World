@@ -89,12 +89,12 @@ do not offer the already-completed Day 2 action. Keep time changes behind existi
 ## Implementation checkpoints and evidence
 
 1. Contracts/projection coverage, scoped transport, reconnect and isolation. Opus 5.5 high owns
-   implementation because this changes isolation and recovery. Astra xhigh acceptance before step 2.
+   implementation because this changes isolation and recovery. Fresh-session Opus 5.5 xhigh acceptance before step 2.
 2. DM proxy domain commands, audit, replay/undo and permission regressions. Opus 5.5 high;
-   Astra xhigh acceptance before step 3.
+   fresh-session Opus 5.5 xhigh acceptance before step 3.
 3. Persistent authoring list, day controls and multi-client UI. Assign Opus high where authorization
    or persistence changes; bounded presentation may use Sonnet 5.5 medium in a separate writer task.
-   Full required validation and Astra xhigh checkpoint acceptance. Owner play acceptance pending.
+   Full required validation and fresh-session Opus 5.5 xhigh checkpoint acceptance. Owner play acceptance pending.
 
 Every checkpoint records exact source/artifact identity, tests, findings, fixes and residual risks.
 Initial dual reviews must cover this same design revision; later critical-scope changes require fresh
@@ -114,4 +114,4 @@ durable reload. Finish with `pnpm validate` using no live provider calls.
 - Specify proxy action envelope and atomic provenance event version/undo treatment.
 - Specify presence identity filtering and authoring pagination contract.
 - Confirm transport works with the existing dev proxy and planned deployment; no deployment now.
-- Obtain Stage 300 acceptance and fresh Astra/Fable approval of the resulting exact design.
+- Obtain Stage 300 acceptance and fresh Opus/Fable approval of the resulting exact design.

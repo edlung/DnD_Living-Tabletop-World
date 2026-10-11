@@ -19,8 +19,8 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | History, replay, undo | `docs/IMPLEMENTATION_PREREQUISITES.md` (Temporal and undo contracts), Stages 10, 90, 110, 150, or 160 as applicable |
 | Deterministic rules | `docs/IMPLEMENTATION_PREREQUISITES.md` (Ruleset), Stage 40, relevant Ravenford mechanics |
 | AI authoring or continuity | Stages 110/120, invariant 16, `RAVENFORD_SPEC.md` (DM Authoring Acceptance Flow); code entry points in the authoring row below (ADR 0018) |
-| Prepare/review a checkpoint | `CHECKPOINTS.md`, `docs/GATE_COVERAGE.md`, exact handoff, `ASTRA_MASTER.md`, relevant mission in `ASTRA_GATE_PROMPTS.md`, `ASTRA_REVIEW.md` |
-| Remediation/retest | Exact failed report, `OPUS_REMEDIATION_TEMPLATE.md`, `HANDOFF_TEMPLATE.md`, `AGENT_WORKFLOW.md` (Retest Rule) |
+| Prepare/review a checkpoint | `docs/PROJECT_WORKFLOW.md` (fresh Opus 5.5 xhigh reviewer), `CHECKPOINTS.md`, `docs/GATE_COVERAGE.md`, exact handoff, `ASTRA_MASTER.md`, relevant mission in `ASTRA_GATE_PROMPTS.md`, `ASTRA_REVIEW.md` |
+| Remediation/retest | Exact failed report, `OPUS_REMEDIATION_TEMPLATE.md`, `HANDOFF_TEMPLATE.md`, `AGENT_WORKFLOW.md` (Remediation and severity) |
 | UX, validation, release | Authorized Stage 200–250 work order, relevant product/Ravenford acceptance sections |
 | Alpha phase: language, live AI, live session, visual, images, sign-in, deployment, playtests | `EXECUTION_PLAN.md` (Alpha Phase), `docs/IMPLEMENTATION_PREREQUISITES.md` (Q4–Q11), the one authorized Stage 290–360 work order; Gate 06 mission in `ASTRA_GATE_PROMPTS.md` |
 

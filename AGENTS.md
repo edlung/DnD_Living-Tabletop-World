@@ -5,11 +5,13 @@ Read `EFFORT_MATRIX.md` before executing any work order. It is the single author
 # Living Tabletop World Agent Instructions
 
 Start with `docs/AI_CONTEXT_MAP.md`, then read the nearest applicable `AGENTS.md` and the files needed for the task.
-Use `AGENT_WORKFLOW.md` for the Opus↔Astra stage/gate protocol.
+Use `AGENT_WORKFLOW.md` for the implementation/review protocol. Owner decision 2026-10-11:
+Opus 5.5 (`claude-opus-5-5`), xhigh, in a fresh session replaces Astra for required review and
+checkpoint acceptance. Fable 5.1 high remains the second independent architecture reviewer.
 Use `ARCHITECTURE_INVARIANTS.md` whenever work touches authority, state, knowledge, rules, history, AI mutation, or UX guarantees.
 Use the current file under `work-orders/` as the only authorized implementation scope.
 Do not begin a later stage unless explicitly authorized.
-At formal checkpoints, create the required Markdown handoff and STOP for Astra review.
+At formal checkpoints, create the required Markdown handoff and STOP for fresh-session Opus review.
 
 # Context and Module Boundaries
 
