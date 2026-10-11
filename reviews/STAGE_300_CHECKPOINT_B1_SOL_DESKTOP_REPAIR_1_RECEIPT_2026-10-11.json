@@ -1,0 +1,101 @@
+{
+  "checkpoint": "Stage 300 B1 repair1",
+  "reviewer": {
+    "configured_runtime": "native Codex Desktop subagent",
+    "configured_model": "gpt-6.1-sol",
+    "configured_effort": "xhigh",
+    "configuration_source": "explicit launch task",
+    "actual_response_model_attestation": "unavailable",
+    "actual_effort_attestation": "unavailable",
+    "named_model_acceptance_gate": "pending",
+    "configuration_only_waiver": false
+  },
+  "technical_verdict": "FAIL",
+  "findings": [
+    {
+      "severity": "Medium",
+      "file": "packages/ai/src/fallback.ts",
+      "line": 239,
+      "summary": "Cancellation during validation can still select and return VALID."
+    },
+    {
+      "severity": "Medium",
+      "file": "packages/ai/src/fallback.ts",
+      "line": 262,
+      "summary": "Aborted pre-invocation callback exceptions fabricate a provider attempt."
+    }
+  ],
+  "artifact": {
+    "head": "406904343bfe8542640035564d3e044561824125",
+    "manifest_path": "/tmp/ltw-stage300-checkpoint-b1-repair1/review-manifest.json",
+    "manifest_sha256": "1dd2e1481c93f8bbf251abbf5e852fb47bee5986be1c9ef9f8ca08cef16b3550",
+    "design_sha256": "23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2",
+    "handoff_sha256": "68e2dae089e1915d92df17ab73b02441c9804d2ad35aa5a538f6c5d9b34c6152",
+    "pins_verified_before_and_after": true,
+    "existing_files": 160,
+    "intentional_deletions": 1,
+    "dirty_paths": 161,
+    "extra_or_missing_dirty_paths": 0
+  },
+  "independent_checks": {
+    "focused_vitest": {
+      "status": "PASS",
+      "files": 22,
+      "tests": 327,
+      "command": "node node_modules/vitest/vitest.mjs run --project unit packages/ai/src apps/server/src/platform/config/config.test.ts apps/server/src/http/ai-routes.test.ts apps/server/src/http/authoring-routes.test.ts apps/server/src/http/context-ranking.test.ts apps/server/src/http/npc-isolation.test.ts apps/server/src/http/russian-boundary.test.ts tests/architecture/test-support-imports.test.ts --maxWorkers 1"
+    },
+    "native_router_probes": "PASS",
+    "native_config_syntax_rejects": 5,
+    "native_config_shape_cases": 7,
+    "native_in_memory_http_cases": 4,
+    "key_reveals": 0,
+    "fetches": 0,
+    "forged_provider_invocations": 0,
+    "canonical_world_version_unchanged": true,
+    "context_budget": {
+      "status": "PASS",
+      "active_files": 648,
+      "over_target": 0,
+      "over_hard_limit": 0
+    },
+    "validation_abort_assertion": {
+      "status": "FAIL",
+      "expected": "AI_UNAVAILABLE/CALLER_CANCELLED",
+      "actual": "VALID"
+    },
+    "pre_invocation_callback_abort_throw_probes": {
+      "points": [
+        "build",
+        "start",
+        "abandoned"
+      ],
+      "provider_calls_each": 0,
+      "recorded_attempts_each": 1
+    }
+  },
+  "supplied_validation": {
+    "independently_rerun": false,
+    "unit_tests": 1959,
+    "integration_tests": 138,
+    "e2e_tests": 45,
+    "validate_log_sha256": "11f1a5a1dc0462d26770205d7d0181a5e9cf4da032cdace70f519bccc9e9bf7b",
+    "pre_and_post_validate_manifest_sha256": "09661b071c6d3d9267d93ebaaaddfdc5b75853c59d1c4924c90403b9fe92c719"
+  },
+  "scope_limits": [
+    "No public HTTP failure reproduced for findings.",
+    "Post-selection end-hook abort observations excluded from blockers.",
+    "B2/C and live-provider behavior not accepted."
+  ],
+  "independence": {
+    "peer_or_prior_verdict_read": false,
+    "codex_cli_used": false,
+    "agents_spawned": false,
+    "network_or_live_provider_calls": false,
+    "credentials_or_auth_stores_read": false,
+    "checkout_edits": false,
+    "followup_writes": "authorized /tmp evidence only"
+  },
+  "report_path": "/tmp/ltw-stage300-checkpoint-b1-repair1/sol-review-report.md",
+  "report_sha256": "19b45a8c7ffce3459c78db3cd8ffd04d0ee0eedf90c00f57b145345cf16ef671",
+  "stop": true
+}

@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-11",
+  "questionScope": "Checkpoint B1 native Sol actual model evidence exception",
+  "answer": "Нет, оставить Sol-gate ожидающим",
+  "disposition": "No native configuration exception; required Sol gate remains pending. No B2 implementation before both required acceptance approvals.",
+  "solReviewerLaunched": false
+}

@@ -2,8 +2,12 @@ import {
   CapabilityRouter,
   InMemoryAiTraceStore,
   createLocalProvider,
-  type AiProvider,
+  type AttemptContext,
+  type ProviderKind,
+  type ProviderRequest,
+  type ProviderResponse,
   type RelevanceDeps,
+  type RoutedProvider,
 } from '@ltw/ai';
 import { createCombatEngine } from '@ltw/combat';
 import {
@@ -88,11 +92,36 @@ export async function plantNpcBoundary(engine: WorldEngine): Promise<void> {
 }
 
 /**
+ * A test-only routable provider made from a fake (docs/adr/0032-live-ai.md, B1). It has the
+ * router's brand and no server identity: `composeRouter` (runtime and evaluation) refuses it, so it
+ * reaches only the routers test support builds directly.
+ */
+export function testProvider(
+  id: string,
+  kind: ProviderKind,
+  generate: (request: ProviderRequest, attempt: AttemptContext) => Promise<ProviderResponse>,
+): RoutedProvider {
+  return { id, kind, generate } as unknown as RoutedProvider;
+}
+
+/** A provider that records each request and answers as `inner` does. */
+export function recording(inner: RoutedProvider = createLocalProvider()): RoutedProvider & {
+  readonly requests: ProviderRequest[];
+} {
+  const requests: ProviderRequest[] = [];
+  const provider = testProvider(inner.id, inner.kind, (request, attempt) => {
+    requests.push(request);
+    return inner.generate(request, attempt);
+  });
+  return Object.assign(provider, { requests });
+}
+
+/**
  * A deterministic AI gateway for DM intents, NPC replies, and relevance: the
  * given providers (default: local only; relevance then has none, as without
  * a key) and in-memory traces. Relevance waits at most 2 s by default.
  */
-export function testAiGateway(...providers: AiProvider[]): RelevanceDeps & {
+export function testAiGateway(...providers: RoutedProvider[]): RelevanceDeps & {
   readonly traces: InMemoryAiTraceStore;
 } {
   const ids = new SequentialIds(0xa1);

@@ -27,7 +27,6 @@ describe('loadConfig', () => {
         relevanceBudgetMs: 2_000,
         deepseek: null,
         routes: null,
-        dailyBudgetUsd: 5,
       },
       questsFile: DEFAULT_QUESTS_FILE,
       assets: { workerIntervalMs: 5_000, generationTimeoutMs: 60_000 },

@@ -1,4 +1,10 @@
-import type { AiTraceView, CommandProposal, DmIntentResponse } from '@ltw/contracts';
+import {
+  INTENT_DECLINE_REASONS,
+  type AiTraceView,
+  type CommandProposal,
+  type DmIntentResponse,
+  type IntentDeclineReason,
+} from '@ltw/contracts';
 import {
   campaignRole,
   holderPerspective,
@@ -13,7 +19,7 @@ import { runWithFallback, type FallbackResult } from './fallback.ts';
 import { intentRequest } from './prompt.ts';
 import type { CapabilityRouter } from './router.ts';
 import type { AiTraceStore } from './traces.ts';
-import { validateProposal } from './validation.ts';
+import { validateIntent } from './validation.ts';
 
 /**
  * DM natural language → a proposed structured command (Stage 100's one use
@@ -21,7 +27,9 @@ import { validateProposal } from './validation.ts';
  * check runs before any provider is called. The context is the PUBLIC
  * directory (owner decision, §3), built once and reused by every attempt.
  * The result is traced and is never committable: this function reads a
- * snapshot and has no path to the World Engine.
+ * snapshot and has no path to the World Engine. A provider's deliberate
+ * decline is a terminal INVALID_OUTPUT with the issue NO_PROPOSAL and no
+ * repair (docs/adr/0032-live-ai.md, B1); its reason is traced.
  */
 export interface IntentDeps {
   readonly router: CapabilityRouter;
@@ -70,9 +78,14 @@ export async function interpretDmIntent(
   const result = await runWithFallback({
     providers: deps.router.providersFor(CAPABILITY),
     build: (repair) => intentRequest(input.text, context, repair),
-    validate: (output) => validateProposal(output, directory),
+    validate: (output) => validateIntent(output, directory),
+    declines: true,
     nowMs: deps.clock.nowMs,
   });
+  const declineReason: IntentDeclineReason | undefined =
+    result.status === 'INVALID_OUTPUT'
+      ? INTENT_DECLINE_REASONS.find((reason) => reason === result.decline)
+      : undefined;
 
   const response = responseOf(deps.ids.next(), result);
   const trace: AiTraceView = {
@@ -87,6 +100,7 @@ export async function interpretDmIntent(
     attempts: result.attempts,
     status: response.status,
     proposal: response.proposal,
+    ...(declineReason ? { declineReason } : {}),
     issues: response.issues,
     canonicalEvents: [],
     createdAt: deps.clock.now(),

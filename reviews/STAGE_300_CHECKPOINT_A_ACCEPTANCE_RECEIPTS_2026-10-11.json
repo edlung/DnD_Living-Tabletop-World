@@ -1,0 +1,134 @@
+{
+  "checkpoint": "Stage 300 A",
+  "verdict": "PASS",
+  "head": "406904343bfe8542640035564d3e044561824125",
+  "acceptedManifestSha256": "0c5e7373fee933f92b259798531cd51401022bc7c6446da16535435dffe5e63e",
+  "acceptedManifest": "reviews/STAGE_300_CHECKPOINT_A_ACCEPTED_MANIFEST_2026-10-11.json",
+  "designSha256": "23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2",
+  "handoffSha256": "5c186a6abe0ac97f0644c810c67d26a1e9f9e674c95ffd78e41a972c3ee39b27",
+  "repair2": {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "xhigh",
+    "identityMismatch": false,
+    "elapsedSeconds": 906.9,
+    "sessionId": "7f6a4deb-68d2-4865-a195-f68c65553d07",
+    "isError": false,
+    "usage": {
+      "input_tokens": 62,
+      "cache_creation_input_tokens": 89336,
+      "cache_read_input_tokens": 15080238,
+      "output_tokens": 56884,
+      "output_tokens_details": {
+        "thinking_tokens": 26153
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 89336,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1546,
+          "cache_read_input_tokens": 521626,
+          "cache_creation_input_tokens": 1560,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1560
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "16ec463f6098edaad5706ed9fd8404c772d4ba128f7ae6d6a85c268797d84da0",
+    "promptSha256": "167b151bf52253715d4c6d6ffbd457ac93d02c5d63d146503cb39060098cdd20"
+  },
+  "opusAcceptance": {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "xhigh",
+    "identityMismatch": false,
+    "elapsedSeconds": 341.9,
+    "sessionId": "cb1e609d-92ad-4a1f-a287-1275eaa28aae",
+    "isError": false,
+    "usage": {
+      "input_tokens": 28,
+      "cache_creation_input_tokens": 60336,
+      "cache_read_input_tokens": 3586953,
+      "output_tokens": 27470,
+      "output_tokens_details": {
+        "thinking_tokens": 13913
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 60336,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4450,
+          "cache_read_input_tokens": 281843,
+          "cache_creation_input_tokens": 963,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 963
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "e60637f13a70b1354c5d287d75597d779a22dd0e5a2103fde9aa9be9af5dc0de",
+    "promptSha256": "55331485e7ee87555de129659c681ad4b91fc1a6132eb42b8cf081522b51d8e9"
+  },
+  "solAcceptance": {
+    "agent": "/root/sol_checkpoint_a_clean",
+    "model": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "verdict": "PASS",
+    "identityEvidence": "user exception: Да, для этого Sol-ревью достаточно явной конфигурации",
+    "responseAttestationAvailable": false,
+    "cleanInitialSession": true,
+    "boundedRepair2": true
+  },
+  "verification": {
+    "writerFullValidate": {
+      "unit": 1674,
+      "integration": 138,
+      "e2e": 45
+    },
+    "opusFocused": {
+      "unit": 86,
+      "accountingIntegration": 60,
+      "otherIntegration": 10
+    },
+    "solFocused": {
+      "unit": 73,
+      "accountingIntegration": 60
+    }
+  },
+  "noPaidRuntimeCalls": true,
+  "noCommitsOrPushes": true,
+  "dependentScope": "B1 may start only after source identity recheck; no later stage authorized by this receipt"
+}

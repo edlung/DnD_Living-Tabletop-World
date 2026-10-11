@@ -1,0 +1,85 @@
+{
+  "checkpoint": "Stage 300 B1 repair2 bounded independent re-review",
+  "technical_verdict": "PASS",
+  "blocking_findings": [],
+  "prior_findings": {
+    "cancellation_during_valid_or_decline_validation": "closed",
+    "fabricated_pre_invocation_attempts": "closed"
+  },
+  "architecture_fit": "Within approved B1 scope; no new architecture gate required for this repair.",
+  "reviewer": {
+    "runtime": "native Codex Desktop subagent",
+    "configured_model": "gpt-6.1-sol",
+    "configured_effort": "xhigh",
+    "configuration_source": "explicit launch task",
+    "actual_response_model_attestation": "unavailable",
+    "actual_effort_attestation": "unavailable",
+    "configuration_only_exception": false,
+    "named_model_acceptance_gate": "pending",
+    "session": "bounded re-review in same independent acceptance session"
+  },
+  "artifact": {
+    "head": "406904343bfe8542640035564d3e044561824125",
+    "manifest_path": "/tmp/ltw-stage300-checkpoint-b1-repair2/review-manifest.json",
+    "manifest_sha256": "bcccf113804382b680f28536923333f2b75382dc29ffdcc35c3c983f20fc31b6",
+    "entries": 169,
+    "existing_files": 168,
+    "intentional_deletions": 1,
+    "before_and_after_pins_match": true,
+    "dirty_paths": 169,
+    "extra_or_missing_dirty_paths": 0,
+    "design_sha256": "23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2",
+    "b2_stop_scope_sha256": "6bba003055bfd53ac4e069d01d5bf6e3a5a6e272fddb41a2f8305b55e153b485",
+    "handoff_sha256": "ff7b3828655a24d17ee635aaccf58e746bd0d5837a7df2d0b3f9e8913e91f3ab",
+    "accepted_a_manifest_sha256": "0c5e7373fee933f92b259798531cd51401022bc7c6446da16535435dffe5e63e",
+    "accepted_a_accounting_migration_files_unchanged": 30
+  },
+  "independent_checks": {
+    "focused_vitest": {
+      "status": "PASS",
+      "files": 23,
+      "tests": 343,
+      "duration_seconds": 7.08
+    },
+    "native_probes": {
+      "status": "PASS",
+      "cases": 21,
+      "callback_cases": 18,
+      "raw_fake_fetch_cases": 3,
+      "path": "/tmp/ltw-stage300-checkpoint-b1-repair2/sol-native-probes.mjs",
+      "sha256": "37885a448ae90ae493371b4faa2be7acfb028e6c75b3949204fec5da1ab778c7"
+    },
+    "context_budget": {
+      "status": "PASS",
+      "active_files": 649,
+      "over_target": 0,
+      "over_hard_limit": 0
+    }
+  },
+  "supplied_validation": {
+    "independently_rerun": false,
+    "unit_tests": 1975,
+    "integration_tests": 138,
+    "e2e_tests": 45,
+    "validate_log_sha256": "b2d8a65f81cf26f1130c0ebc000bf7cb54786ec7f12eb416fb04b03045f1f3d2",
+    "pre_and_post_manifest_sha256": "4c40ba802118c5aa0cf5e4d090476365b2f5219349e6781dae2aed43916472e7",
+    "fail_first_log_sha256": "a2fa80dbfcc4d391f0d8711360ea76dbd4c3da2bd773b87bfef80ac051f31f7f"
+  },
+  "independence": {
+    "peer_or_prior_reports_read": false,
+    "implementation_stream_read": false,
+    "acceptance_receipts_read": false,
+    "auth_or_credential_stores_read": false,
+    "codex_cli_used": false,
+    "agents_spawned": false,
+    "network_or_paid_calls": false,
+    "shared_db_or_build_or_e2e": false,
+    "checkout_edits": false,
+    "writes": "authorized /tmp evidence and normal ignored test tooling only"
+  },
+  "report_path": "/tmp/ltw-stage300-checkpoint-b1-repair2/sol-review-report.md",
+  "report_sha256": "8a2e1fadb1f1140c40284c4a93f651fe4a16fb0e7e30a8f56328b3a835e408c6",
+  "usage": "attributable model usage unavailable",
+  "advances_b2": false,
+  "stop": true
+}

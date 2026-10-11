@@ -1,20 +1,12 @@
+> Current owner policy (2026-10-11): `docs/PROJECT_WORKFLOW.md` controls new work.
+> Architecture: Astra/Fable xhigh. Implementation: Opus medium; review repairs xhigh.
+> Acceptance: fresh independent Sol/Opus xhigh. Orchestration: Sol medium.
+> Older model assignments are historical; preserve their evidence, not their future authority.
+
 # Model & Effort Matrix — v1.4
 
-> Current owner override, 2026-10-11: use `docs/PROJECT_WORKFLOW.md` for new work and remediation.
-> Sonnet 5.5 medium handles bounded implementation; Opus 5.5 high handles authorization, isolation,
-> migrations, concurrency and recovery. Architecture requires independent fresh-session Opus 5.5
-> xhigh and Fable 5.1 high approval of the same artifact; checkpoints require fresh-session Opus
-> 5.5 xhigh acceptance (owner decision 2026-10-11, replacing Astra). Older
-> MAX/HIGH banners below describe the earlier stage policy and do not override this instruction.
-
-## Operating Rule
-
-Use Sonnet 5.5 / MEDIUM for bounded implementation and Opus 5.5 / HIGH for the critical concerns
-listed in the current owner override. Earlier stage implementation efforts below are historical
-assignments, not defaults for new work or remediation.
-
-**Current reviews and retests: Claude Opus 5.5 / XHIGH in a fresh session.**
-Historical Astra assignments below record the earlier policy; they do not assign future reviews.
+Current assignments are pinned in `docs/PROJECT_WORKFLOW.md`. The stage table below records
+historical assignments and never overrides the current owner policy.
 
 | Stage | Model | Effort | Reason / Next |
 |---:|---|---|---|
@@ -60,13 +52,12 @@ Stages 200–250 ran under owner exceptions recorded in their reports (a GPT mod
 
 ## Remediation Rule
 
-Any current reviewer **FAIL** containing a **Critical or High** finding (older Astra findings remain valid):
-1. delegate critical remediation to Claude Opus 5.5 at **HIGH**, in an implementation session;
-2. add a failing regression test first;
-3. fix the root architectural cause;
-4. write the remediation artifact;
-5. stop;
-6. start a **fresh Claude Opus 5.5 / XHIGH** review session for retest.
+Any current reviewer FAIL containing a Critical or High finding:
+1. delegate remediation to Claude Opus 5.5 at xhigh (review repairs), in an implementation session;
+2. add a failing regression first;
+3. fix the root contract;
+4. write the remediation artifact and stop;
+5. obtain independent Sol/Opus xhigh acceptance before dependent work.
 
 For Medium/Low-only findings, follow the gate report and project-owner decision; do not silently bypass blocking invariants.
 
@@ -76,4 +67,4 @@ The workflow intentionally minimizes routine effort changes. Keep the same Claud
 
 ## Golden Rule
 
-**No implementation session approves its own checkpoint. Fresh Opus review is mandatory.**
+**No implementation session approves its own checkpoint. Fresh independent Sol/Opus acceptance is mandatory.**

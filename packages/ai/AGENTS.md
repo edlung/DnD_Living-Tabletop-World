@@ -4,18 +4,18 @@ ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the 
 
 | File                        | Responsibility                                                                                                                 |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `src/providers.ts`          | Provider port: `AiProvider`, `ProviderRequest`/`Response`, `ProviderError` codes                                               |
-| `src/router.ts`             | `CapabilityRouter`: capability → ordered providers                                                                             |
+| `src/providers.ts`          | Provider port: branded `RoutedProvider` (local/remote), classified `ProviderResponse`, `ProviderError` codes                   |
+| `src/router.ts`             | `CapabilityRouter`: capability → `[]`, `[x]` or `[remote, local]`                                                              |
 | `src/context-builder.ts`    | Context from one resolved perspective's projections; every item has a `sourceId`                                               |
 | `src/prompt.ts`             | Fixed instructions, the output tool schema, the delimited directory/request prompt                                             |
-| `src/validation.ts`         | Proposal schema plus reference checks against the directory                                                                    |
-| `src/fallback.ts`           | Owner's fallback policy: one switch on failure, one repair on invalid output                                                   |
+| `src/validation.ts`         | Intent envelope (proposal/decline), proposal schema plus reference checks against the directory                                |
+| `src/fallback.ts`           | Outcome table (ADR 0017 §5, ADR 0032 B1): one local switch, one same-remote repair, decline, cancellation, progress            |
 | `src/dialogue.ts`           | NPC reply use case (ADR 0020 §3): fallback over `npc-dialogue`, validation, trace                                              |
 | `src/dialogue-prompt.ts`    | NPC prompt: the minimal context as names and sentences (no IDs), quoted player words                                           |
 | `src/local-dialogue.ts`     | Deterministic NPC replies from templates (never reads the player's words)                                                      |
 | `src/relevance.ts`          | Relevance use case (ADR 0021): budgeted `fast-context` ranking, validation, application, trace                                 |
 | `src/relevance-prompt.ts`   | Ranker request: legal actions under opaque keys, the target as seen, the perspective's records and memories                    |
-| `src/local-provider.ts`     | Deterministic offline interpreter (tests, development, fallback)                                                               |
+| `src/local-provider.ts`     | Deterministic offline interpreter (tests, development, fallback); identity `isLocalProvider`                                   |
 | `src/intent.ts`             | DM intent use case: role check, PUBLIC context, fallback, trace                                                                |
 | `src/traces.ts`             | `AiTraceStore` port and in-memory store                                                                                        |
 | `src/images.ts`             | Image port (ADR 0022 §3): `ImageGenerator`, `ImageBrief`, failure codes                                                        |
@@ -32,7 +32,10 @@ ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the 
 - Relevance (ADR 0021) may change only the `relevance` and order of legal actions (`applyRanking`). Offer only legal actions, under opaque keys; never an ID; only the acting perspective's own visible records and memories. Every failure, invalid output, or exceeded budget returns the deterministic actions as given. `relevance.test.ts` guards each rule.
 - Images (ADR 0022 §3): a brief is DM data, never stored or traced. The placeholder draws a pattern from the seed only; it must never render text or anything from the subject (`placeholder-images.test.ts`). A real image provider is an owner decision; its adapter would live in the server.
 - Provider adapters with I/O (Anthropic and OpenAI-compatible DeepSeek), capability composition,
-  current in-process spend ledger and PostgreSQL trace store live in `apps/server/src/ai/`.
-  Stage 300 acceptance is pending; consult `docs/PROJECT_WORKFLOW.md` before extending metering,
-  fallback or trace contracts. Runtime budgets are not development/reviewer billing authorization.
-- Test support: `src/testing/ravenford.ts` (seeds through the World Engine, allowed in tests only) and `src/testing/providers.ts` (scripted providers).
+  the durable accounting store (`accounting/`) and PostgreSQL trace store live in
+  `apps/server/src/ai/`. Stage 300 remediation is in progress; consult `docs/PROJECT_WORKFLOW.md`
+  before extending metering, fallback or trace contracts. Runtime budgets are not
+  development/reviewer billing authorization.
+- Outcomes (ADR 0032, B1): provider failures switch at most once, only to the zero-cost local provider; invalid output (including missing tool, truncation, unreadable JSON) gets one repair on the same remote provider (the local provider is never repaired: one local call per request); a valid intent decline is terminal `INVALID_OUTPUT`/`NO_PROPOSAL`; after the caller's signal aborts nothing new is dispatched. An exception from caller-supplied code (`build`, `validate`, `nowMs`, a progress listener) is never a provider attempt or transition (`fallback-callbacks.test.ts`). A provider resolving no well-formed response is one uncertain `BAD_RESPONSE` attempt (`fallback-nonresponse.test.ts`). A rejection keeps its code only as a genuine, unchanged `ProviderError` (`failureCode`); anything else is `UNAVAILABLE` (`providers.test.ts`, `fallback-rejection.test.ts`). `outcome-table.test.ts` pins every capability's row; never add a second paid provider to a route.
+- The local provider is known by identity (`isLocalProvider`), never by the ID `local`. Only `createLocalProvider()` makes one; server composition refuses look-alikes.
+- Test support: `src/testing/ravenford.ts` (seeds through the World Engine, allowed in tests only), `src/testing/providers.ts` (scripted providers; `testBrand`, the only test-only brand) and `src/testing/capabilities.ts` (each use case over a route). Production sources never import `testing/` (`tests/architecture/test-support-imports.test.ts`).

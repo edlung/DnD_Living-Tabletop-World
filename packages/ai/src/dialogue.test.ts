@@ -12,7 +12,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { replyAsNpc, type DialogueDeps } from './dialogue.ts';
 import { createLocalProvider } from './local-provider.ts';
-import { ProviderError, type AiProvider } from './providers.ts';
+import { ProviderError, type RoutedProvider } from './providers.ts';
 import { CapabilityRouter } from './router.ts';
 import { InMemoryAiTraceStore } from './traces.ts';
 import { scripted, steppingMs } from './testing/providers.ts';
@@ -37,7 +37,7 @@ beforeEach(async () => {
   ids = new SequentialIds();
 });
 
-function deps(...providers: AiProvider[]): DialogueDeps {
+function deps(...providers: RoutedProvider[]): DialogueDeps {
   const clock = new SteppingClock();
   return {
     router: new CapabilityRouter({ 'npc-dialogue': providers }),

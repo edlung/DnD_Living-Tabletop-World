@@ -1,0 +1,92 @@
+{
+  "checkpoint": "STAGE_300_B1_REPAIR_4",
+  "review_date": "2026-10-11",
+  "reviewer": "native Codex Desktop independent Sol acceptance session; bounded re-review",
+  "configured_model": "gpt-6.1-sol",
+  "configured_effort": "xhigh",
+  "actual_response_model_attestation": "unavailable",
+  "actual_effective_effort_attestation": "unavailable",
+  "named_model_acceptance_gate": "PENDING",
+  "configuration_only_exception": "owner declined; no waiver",
+  "technical_verdict": "PASS",
+  "required_findings": [],
+  "closed_finding": "Rejected-error inspection cannot throw, lose a real attempt/end, or record an arbitrary error code.",
+  "head": "406904343bfe8542640035564d3e044561824125",
+  "artifact_manifest": "/tmp/ltw-stage300-checkpoint-b1-repair4/review-manifest.json",
+  "artifact_manifest_sha256": "188e7f16d6f6ae7082bf82b05a5769b343a2e81dd55e65265e6b6f42a3b82729",
+  "artifact_before_after": {
+    "all_186_pins_match": true,
+    "present_files": 185,
+    "intentional_deletions": 1,
+    "exact_dirty_paths": 186,
+    "extra_or_missing_dirty_paths": 0,
+    "head_unchanged": true,
+    "designs_unchanged": true,
+    "accepted_A_accounting_migration_files_unchanged": 30
+  },
+  "design_sha256": {
+    "remediation": "23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2",
+    "B2_stop_scope": "6bba003055bfd53ac4e069d01d5bf6e3a5a6e272fddb41a2f8305b55e153b485"
+  },
+  "accepted_A_manifest_sha256": "0c5e7373fee933f92b259798531cd51401022bc7c6446da16535435dffe5e63e",
+  "handoff_sha256": "58d0faff1bd2cfbcab6308d92e373f2e8ff3bb8c438e3c95220f7e2e95a4c795",
+  "independent_checks": {
+    "focused_vitest": {
+      "result": "PASS",
+      "tests": 410,
+      "files": 26
+    },
+    "repair4_native": {
+      "result": "PASS",
+      "cases": 66,
+      "route_cases": 63,
+      "direct_factory_checks": 21
+    },
+    "prior_rejection_native": {
+      "result": "PASS",
+      "cases": 6
+    },
+    "prior_resolution_native": {
+      "result": "PASS",
+      "cases": 52
+    },
+    "prior_callback_fakefetch_native": {
+      "result": "PASS",
+      "cases": 21
+    },
+    "context_budget": {
+      "result": "PASS",
+      "active_files": 652,
+      "over_target": 0,
+      "over_hard_ceiling": 0
+    }
+  },
+  "supplied_validation": {
+    "independently_full_rerun": false,
+    "unit_tests": 2042,
+    "integration_tests": 138,
+    "e2e_tests": 45,
+    "validate_sha256": "2dc8b9bda63c90112d3f570e9ca280100ab2be44bcf689e63facc3ee228a17b0",
+    "pre_post_manifest_sha256": "dc1aa2a8fe0ea3bd4db75f50137a6a995b99b73c4be16fec52a0e60a8a5b0f2a",
+    "fail_first_sha256": "bb6bea92c5ecc5edb32a067d3d67368a5a68cf99a2373e92c1ffdd4550dc2d68"
+  },
+  "native_probe_sha256": {
+    "repair4": "b7349d049574827a37859b808adbfae307997504f107fa32de9412bb80090b4e",
+    "repair3_rejection": "07eb7a5ca40fe3b206e9723768253e83b4c818fb5bb53c3436b3d07426a4d869",
+    "repair3_resolution": "8766f0b3a9729f3994c7692423ebe23d2e8e257e914d2838626b1c89ae9873ff",
+    "repair2_callback_fakefetch": "37885a448ae90ae493371b4faa2be7acfb028e6c75b3949204fec5da1ab778c7"
+  },
+  "architecture_fit": "Existing B1 classification contract restored; fallback/server unchanged; no new architecture gate required by delta.",
+  "limits": [
+    "Cross-module ProviderError copies conservatively classify UNAVAILABLE.",
+    "B2/C, paid remote admission and lifecycle machinery remain deferred.",
+    "Actual response-model acceptance remains pending."
+  ],
+  "checkout_writes": false,
+  "peer_evidence_read": false,
+  "network_or_paid_calls": false,
+  "codex_cli_used": false,
+  "report_path": "/tmp/ltw-stage300-checkpoint-b1-repair4/sol-review-report.md",
+  "report_sha256": "0c76f97f66a593063c1dd6cfb676d1466bd153b1566fc75233792d75c64035eb",
+  "status": "STOP"
+}

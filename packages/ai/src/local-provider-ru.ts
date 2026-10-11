@@ -1,5 +1,7 @@
 import type { EntityRef, ProposableCommand } from '@ltw/contracts';
 
+import type { LocalInterpretation } from './local-provider.ts';
+
 /**
  * The offline interpreter's Russian phrasings (docs/adr/0031-play-language.md §8). It
  * understands a short, documented list and nothing else; anything more is for a live
@@ -151,7 +153,10 @@ function advanced(text: string): ProposableCommand[] | null {
   return unit ? [{ type: 'AdvanceWorldTime', by: Number(match[1]) * unit[1] }] : null;
 }
 
-export function interpretRussian(text: string, directory: readonly EntityRef[]): unknown {
+export function interpretRussian(
+  text: string,
+  directory: readonly EntityRef[],
+): LocalInterpretation {
   const commands =
     addPerson(text, directory) ??
     moved(text, directory) ??

@@ -110,3 +110,35 @@ predicates require regression coverage before this stage can be accepted. Curren
 evidence limits are in `docs/PROJECT_WORKFLOW.md`. Future remediation must add its exact revision,
 tests and provider-envelope deltas here without rewriting the historical results.
 
+Stage 300 remediation checkpoint B1 (2026-10-11; design SHA256 `23e53e4d…aab2`; acceptance pending)
+changes provider-facing envelopes, all recorded for Gate 06; scoped context builders are unchanged:
+- **Intent wire schema** (`packages/ai/src/prompt.ts` `INTENT_OUTPUT`): one top-level object
+  `{kind, proposal, reason}`; `kind` is `proposal` (the unchanged canonical proposal schema) or
+  `decline` (`not_game` | `ambiguous` | `unsupported`); exact combinations are enforced in
+  `validateIntent`. Both adapters send it unchanged (`raw-adapters.test.ts`).
+- **Intent instructions**: the "empty commands list" line is replaced by the decline instruction
+  (never invent a command); the repair request ends "Return a corrected answer." instead of
+  "Return a corrected proposal.". The directory and request rendering are unchanged.
+- **Adapter bodies** are serialized once by `prepare` and sent byte for byte; the Anthropic
+  tool-only system suffix is unchanged; the DeepSeek `thinking` switch is now an allowlisted option.
+  No cache metadata is sent at B1 (cache framing is B2 and needs its own coverage entry).
+- **Outcomes**: missing tool, truncation and unreadable arguments are invalid output (one repair on
+  the same provider), no longer provider failure; refusal, suspect model/billing and admission
+  denial switch at most once to the local provider; a valid intent decline is terminal
+  `INVALID_OUTPUT`/`NO_PROPOSAL`; the local provider declines unreadable intents in one attempt.
+  Evidence: `packages/ai/src/{outcome-table,fallback-cancellation,intent-envelope}.test.ts`.
+- **B1 repair 1** changes no provider-facing envelope or prompt. Outcomes only: the local provider
+  is never repaired (one local call per request), and cancellation from a callback invokes nothing
+  further. Routers keep one frozen snapshot of their routes; usage allowlists match own names only.
+  Evidence: `packages/ai/src/router.test.ts`, `apps/server/src/ai/{composition,raw-adapter-hardening}.test.ts`.
+- **B1 repair 2** changes no provider-facing envelope or prompt. Outcomes only: cancellation during
+  validation discards a valid output or decline; an exception from the gateway's own callbacks never
+  becomes a provider attempt, repair or switch. Evidence: `packages/ai/src/fallback-callbacks.test.ts`,
+  `packages/ai/src/fallback-cancellation.test.ts`.
+- **B1 repair 3** changes no provider-facing envelope or prompt. An invoked provider resolving no
+  well-formed response is one uncertain `BAD_RESPONSE` attempt with no invented model, usage or
+  output. Evidence: `packages/ai/src/fallback-nonresponse.test.ts`.
+- **B1 repair 4** changes no provider-facing envelope or prompt. A rejection keeps its code only
+  as a genuine, unchanged, allowlisted `ProviderError`; anything else is one uncertain `UNAVAILABLE`
+  attempt. Evidence: `packages/ai/src/{providers,fallback-rejection}.test.ts`.
+

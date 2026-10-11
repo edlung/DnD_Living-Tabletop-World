@@ -1,3 +1,8 @@
+> Current owner policy (2026-10-11): `docs/PROJECT_WORKFLOW.md` controls new work.
+> Architecture: Astra/Fable xhigh. Implementation: Opus medium; review repairs xhigh.
+> Acceptance: fresh independent Sol/Opus xhigh. Orchestration: Sol medium.
+> Older model assignments are historical; preserve their evidence, not their future authority.
+
 # Runtime Model Selection Notice
 
 Read `EFFORT_MATRIX.md` before executing any work order. It is the single authority for model/effort selection, including remediation; work order banners are summaries. At a checkpoint, obey the HARD STOP and model-switch instruction.
@@ -5,13 +10,11 @@ Read `EFFORT_MATRIX.md` before executing any work order. It is the single author
 # Living Tabletop World Agent Instructions
 
 Start with `docs/AI_CONTEXT_MAP.md`, then read the nearest applicable `AGENTS.md` and the files needed for the task.
-Use `AGENT_WORKFLOW.md` for the implementation/review protocol. Owner decision 2026-10-11:
-Opus 5.5 (`claude-opus-5-5`), xhigh, in a fresh session replaces Astra for required review and
-checkpoint acceptance. Fable 5.1 high remains the second independent architecture reviewer.
+Use `AGENT_WORKFLOW.md` for protocol and `docs/PROJECT_WORKFLOW.md` for current roles.
 Use `ARCHITECTURE_INVARIANTS.md` whenever work touches authority, state, knowledge, rules, history, AI mutation, or UX guarantees.
 Use the current file under `work-orders/` as the only authorized implementation scope.
 Do not begin a later stage unless explicitly authorized.
-At formal checkpoints, create the required Markdown handoff and STOP for fresh-session Opus review.
+At formal checkpoints, create the required Markdown handoff and STOP for fresh independent Sol/Opus xhigh acceptance.
 
 # Context and Module Boundaries
 

@@ -2,7 +2,13 @@ import type { EntityRef, ProposableCommand } from '@ltw/contracts';
 
 import { replyLocally } from './local-dialogue.ts';
 import { interpretRussian } from './local-provider-ru.ts';
-import { ProviderError, type AiProvider, type ProviderRequest } from './providers.ts';
+import {
+  ProviderError,
+  branded,
+  outputResponse,
+  type LocalProvider,
+  type ProviderRequest,
+} from './providers.ts';
 
 /**
  * The deterministic local provider (docs/adr/0017-ai-gateway.md §2): an
@@ -10,7 +16,9 @@ import { ProviderError, type AiProvider, type ProviderRequest } from './provider
  * templates (`local-dialogue.ts`, ADR 0020 §3), for tests, development
  * without a key, and fallback. It reads only the structured task, so it can
  * never see more than an external provider would. It answers the same
- * request the same way.
+ * request the same way. Its identity is the object `createLocalProvider()`
+ * returned (`isLocalProvider`), never the string `local`: server composition
+ * admits no other zero-cost provider (docs/adr/0032-live-ai.md, B1).
  */
 export const LOCAL_MODEL = 'local-interpreter-1';
 
@@ -155,7 +163,15 @@ function advanced(text: string): ProposableCommand[] | null {
   return [{ type: 'AdvanceWorldTime', by: Number(match[1]) * SECONDS[unit] }];
 }
 
-export function interpretLocally(text: string, directory: readonly EntityRef[]): unknown {
+export interface LocalInterpretation {
+  readonly summary: string;
+  readonly commands: ProposableCommand[];
+}
+
+export function interpretLocally(
+  text: string,
+  directory: readonly EntityRef[],
+): LocalInterpretation {
   // A request written in Cyrillic is read by the Russian phrasings (ADR 0031 §8).
   if (/[\u0400-\u04FF]/u.test(text)) return interpretRussian(text, directory);
   const commands =
@@ -168,31 +184,53 @@ export function interpretLocally(text: string, directory: readonly EntityRef[]):
     : { summary: 'No interpretation for this request.', commands: [] };
 }
 
-export function createLocalProvider(): AiProvider {
-  return {
-    id: 'local',
-    generate: (request: ProviderRequest) => {
-      const { task } = request;
-      // Relevance has no local ranker: its deterministic fallback is the Context Engine (ADR 0021).
-      if (task.kind === 'relevance') {
-        return Promise.reject(new ProviderError('UNAVAILABLE', 'no local relevance ranker'));
-      }
-      // The local chronicle writer is the deterministic template (ADR 0024 §3).
-      if (task.kind === 'chronicle') {
-        return Promise.resolve({
-          output: { paragraphs: task.prompt.template.map((p) => ({ ...p, cites: [...p.cites] })) },
-          model: LOCAL_MODEL,
-          usage: null,
-        });
-      }
-      return Promise.resolve({
-        output:
-          task.kind === 'npc-dialogue'
-            ? replyLocally(task.prompt)
-            : interpretLocally(task.text, task.context.entities),
-        model: LOCAL_MODEL,
-        usage: null,
-      });
-    },
-  };
+const genuine = new WeakSet<object>();
+
+/** Whether `provider` is an object `createLocalProvider()` made; a look-alike never is. */
+export const isLocalProvider = (provider: unknown): provider is LocalProvider =>
+  typeof provider === 'object' && provider !== null && genuine.has(provider);
+
+/**
+ * An intent in the tool's envelope: an interpretation with commands is a proposal; the phrasings
+ * it cannot read (`commands: []`) are a decline, `unsupported`, answered in one attempt.
+ */
+function intentOutput(interpretation: LocalInterpretation): unknown {
+  return interpretation.commands.length > 0
+    ? { kind: 'proposal', proposal: interpretation }
+    : { kind: 'decline', reason: 'unsupported' };
+}
+
+export function createLocalProvider(): LocalProvider {
+  const provider = branded(
+    Object.freeze({
+      id: 'local',
+      kind: 'local' as const,
+      generate: (request: ProviderRequest) => {
+        const { task } = request;
+        // Relevance has no local ranker: its deterministic fallback is the Context Engine (ADR 0021).
+        if (task.kind === 'relevance') {
+          return Promise.reject(new ProviderError('UNAVAILABLE', 'no local relevance ranker'));
+        }
+        // The local chronicle writer is the deterministic template (ADR 0024 §3).
+        if (task.kind === 'chronicle') {
+          return Promise.resolve(
+            outputResponse(
+              { paragraphs: task.prompt.template.map((p) => ({ ...p, cites: [...p.cites] })) },
+              LOCAL_MODEL,
+            ),
+          );
+        }
+        return Promise.resolve(
+          outputResponse(
+            task.kind === 'npc-dialogue'
+              ? replyLocally(task.prompt)
+              : intentOutput(interpretLocally(task.text, task.context.entities)),
+            LOCAL_MODEL,
+          ),
+        );
+      },
+    }),
+  );
+  genuine.add(provider);
+  return provider;
 }

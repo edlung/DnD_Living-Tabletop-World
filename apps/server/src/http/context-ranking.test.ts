@@ -1,4 +1,4 @@
-import { ProviderError, type AiProvider, type ProviderRequest } from '@ltw/ai';
+import { ProviderError, outputResponse, type ProviderRequest, type RoutedProvider } from '@ltw/ai';
 import type { ContextAction, EntityContextResponse, RelevanceTraceView } from '@ltw/contracts';
 import type { FastifyInstance } from 'fastify';
 import { describe, expect, it } from 'vitest';
@@ -11,6 +11,7 @@ import {
   ravenfordApp,
   seededEngine,
   testAiGateway,
+  testProvider,
 } from '../testing/ravenford-app.ts';
 
 /**
@@ -23,23 +24,20 @@ const MIRA = '/campaigns/ravenford/entities/mira-vale/context?perspective=PLAYER
 const ELOWEN = 'elowen-starwhisper';
 
 /** A ranker that puts every offered key at `high`, in reverse order. */
-function reversing(): AiProvider & { readonly requests: ProviderRequest[] } {
+function reversing(): RoutedProvider & { readonly requests: ProviderRequest[] } {
   const requests: ProviderRequest[] = [];
-  return {
-    id: 'reverser',
-    requests,
-    generate: (request) => {
-      requests.push(request);
-      if (request.task.kind !== 'relevance') return Promise.reject(new Error('not ranking'));
-      const ranking = [...request.task.prompt.actions]
-        .reverse()
-        .map(({ key }) => ({ key, relevance: 'high' }));
-      return Promise.resolve({ output: { ranking }, model: 'reverser', usage: null });
-    },
-  };
+  const provider = testProvider('reverser', 'remote', (request) => {
+    requests.push(request);
+    if (request.task.kind !== 'relevance') return Promise.reject(new Error('not ranking'));
+    const ranking = [...request.task.prompt.actions]
+      .reverse()
+      .map(({ key }) => ({ key, relevance: 'high' }));
+    return Promise.resolve(outputResponse({ ranking }, 'reverser'));
+  });
+  return Object.assign(provider, { requests });
 }
 
-async function appWith(budgetMs: number, ...providers: AiProvider[]) {
+async function appWith(budgetMs: number, ...providers: RoutedProvider[]) {
   const engine = await seededEngine();
   await plantNpcBoundary(engine);
   const ai = { ...testAiGateway(...providers), relevanceBudgetMs: budgetMs };
@@ -102,21 +100,24 @@ describe('GET …/context?ranking=ai', () => {
   });
 
   it('AI outage or failure leaves valid deterministic context behavior', async () => {
-    const silent: AiProvider = { id: 'silent', generate: () => new Promise(() => undefined) };
-    const invalid = {
-      id: 'invalid',
-      generate: () => Promise.resolve({ output: { ranking: [] }, model: 'x', usage: null }),
-    };
-    const failures: [string, AiProvider[], string][] = [
+    const silent = testProvider('silent', 'remote', () => new Promise(() => undefined));
+    const invalid = testProvider('invalid', 'remote', () =>
+      Promise.resolve(outputResponse({ ranking: [] }, 'x')),
+    );
+    const failures: [string, RoutedProvider[], string][] = [
       ['no ranker configured', [], 'AI_UNAVAILABLE'],
       [
         'provider error',
-        [{ id: 'down', generate: () => Promise.reject(new ProviderError('UNAVAILABLE', 'down')) }],
+        [
+          testProvider('down', 'remote', () =>
+            Promise.reject(new ProviderError('UNAVAILABLE', 'down')),
+          ),
+        ],
         'AI_UNAVAILABLE',
       ],
       [
         'provider crash',
-        [{ id: 'crash', generate: () => Promise.reject(new TypeError('boom')) }],
+        [testProvider('crash', 'remote', () => Promise.reject(new TypeError('boom')))],
         'AI_UNAVAILABLE',
       ],
       ['invalid output, repaired invalid', [invalid], 'INVALID_OUTPUT'],

@@ -1,16 +1,18 @@
-# Astra Gate Handoff Request
+# Independent Checkpoint Handoff Request
 
 - Gate: <# / name>
 - Review type: INITIAL / RETEST
 - Completed stage: <stage>
 - Revision/commit: <sha or immutable build id>
 - Prior report / remediation / retest number: <required for RETEST; remediation may be N/A with reason for coverage expansion after PASS>
-- Required output path: <exact initial report or numbered retest path from CHECKPOINTS.md>
-- Requested Astra effort: MAX
-- Status: <AWAITING_ASTRA_REVIEW for INITIAL; AWAITING_ASTRA_RETEST for RETEST>
+- Required output paths: <separate Sol and Opus reports for this same artifact; formal gates use CHECKPOINTS.md>
+- Requested reviewers: gpt-6.1-sol / xhigh and claude-opus-5-5 / xhigh, independent clean sessions
+- Accepted architecture artifact: <design SHA256 and independent Astra/Fable evidence>
+- Dirty-file hashes / package identity: <exact manifest; preserve existing dirty work>
+- Status: <AWAITING_SOL_AND_OPUS_REVIEW / AWAITING_SOL_AND_OPUS_RETEST>
 
 ## Review Objective
-<one paragraph describing the boundary Astra must try to break>
+<one paragraph describing the boundary each reviewer must try to break>
 
 ## Authoritative Documents
 <List only documents relevant to this gate. Always include ARCHITECTURE_INVARIANTS.md.>
@@ -30,9 +32,9 @@
 <List credentials/fixtures/personas such as PLAYER, PARTY, MIRA, PUBLIC, DM. Never include production secrets.>
 
 ## Canonical Secret or Invariant Under Test
-<Describe what must remain protected/correct without revealing it to an unauthorized runtime persona. Astra as reviewer may know the expected canonical fixture.>
+<Describe what must remain protected/correct without revealing it to an unauthorized runtime persona. Each reviewer may know the expected canonical fixture.>
 
-## Validation Already Run by Opus
+## Validation Already Run by Implementation Writer
 | Command | Result |
 |---|---|
 | ... | PASS |
@@ -44,4 +46,8 @@
 Use `docs/GATE_COVERAGE.md`. List each due surface with reproducible access, plus future surfaces with their introduction stage and next review gate. Required but untestable surfaces block PASS. Do not label future or unavailable surfaces as tested.
 
 ## Required Output
-Write the exact required output path above using `ASTRA_REVIEW.md`: `reviews/ASTRA_GATE_<NN>_REPORT.md` for INITIAL or `reviews/ASTRA_GATE_<NN>_RETEST_<K>.md` for RETEST. Gate #5 uses `05`, including the review activity called Stage 190. Preserve previous reports. Do not modify source implementation. End with PASS or FAIL and STOP.
+Return a separate report for each exact output path above, using the relevant review mission and
+PASS/FAIL evidence. Formal gate naming is in `CHECKPOINTS.md`; intermediate checkpoints name both
+reports explicitly. Preserve earlier reports and requests. Reviewers do not modify implementation
+or inspect their peer's current verdict; the orchestrator may save returned reports and receipts.
+End with PASS or FAIL and STOP. Neither approval alone advances dependent work.

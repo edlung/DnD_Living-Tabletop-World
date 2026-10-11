@@ -1,7 +1,12 @@
+> Current owner policy (2026-10-11): `docs/PROJECT_WORKFLOW.md` controls new work.
+> Architecture: Astra/Fable xhigh. Implementation: Opus medium; review repairs xhigh.
+> Acceptance: fresh independent Sol/Opus xhigh. Orchestration: Sol medium.
+> Older model assignments are historical; preserve their evidence, not their future authority.
+
 # Independent Reviews
 
-New reviews use Opus 5.5 xhigh in a fresh session (owner decision 2026-10-11).
-Historical Astra reports remain unchanged; follow `docs/PROJECT_WORKFLOW.md` and `CHECKPOINTS.md`.
+Use `docs/PROJECT_WORKFLOW.md` for current role identities, efforts and dual-review gates.
+Historical review assignments and evidence remain unchanged.
 
 Historical gate reports and their reproduction evidence. Read the exact report named by the current handoff; do not load this directory wholesale.
 

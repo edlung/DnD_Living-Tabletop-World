@@ -1,157 +1,152 @@
-import {
-  InMemoryAiTraceStore,
-  ProviderError,
-  intentRequest,
-  type AiProvider,
-  type ProviderRequest,
-} from '@ltw/ai';
+import { intentRequest, type ProviderRequest } from '@ltw/ai';
 import { describe, expect, it } from 'vitest';
 
-import { ConfigError, loadConfig } from '../platform/config/config.ts';
-import { SpendLedger, budgeted, costUsd } from './budget.ts';
-import { createAiGateway } from './gateway.ts';
+import { ConfigError, loadConfig, obsoleteVariables } from '../platform/config/config.ts';
+import { routeIssues } from '../platform/config/ai-routes.ts';
+import { fakeFetch, jsonResponse } from '../testing/fake-fetch.ts';
 import { createOpenAiCompatibleProvider } from './openai-compatible-provider.ts';
 
-/** Stage 300 (docs/adr/0032-live-ai.md): the DeepSeek adapter, routes, and the spending ceiling. No network. */
+/**
+ * Stage 300 (docs/adr/0032-live-ai.md): the DeepSeek adapter's wire format over injected `fetch`
+ * (the shared raw adapter contract is `raw-adapters.test.ts`), and route validation. No network.
+ * Composition builds no remote adapter at checkpoints A and B1 (`gateway.test.ts`).
+ */
 const REQUEST: ProviderRequest = intentRequest(
   'Advance time by 1 hour.',
   { scope: 'PUBLIC', items: [], entities: [], worldTime: 0 },
   null,
 );
 const KEY = 'sk-test-deepseek-never-shown';
-const reply = (body: unknown, status = 200) =>
-  Promise.resolve(new Response(JSON.stringify(body), { status }));
-const call = (args: unknown, extra: object = {}) => ({
-  model: 'deepseek-flash',
-  choices: [
-    {
-      finish_reason: 'tool_calls',
-      message: {
-        tool_calls: [{ function: { name: 'propose_commands', arguments: JSON.stringify(args) } }],
-      },
-    },
-  ],
-  usage: { prompt_tokens: 100, completion_tokens: 20 },
-  ...extra,
-});
-const provider = (fetchImpl: typeof fetch) =>
-  createOpenAiCompatibleProvider({
-    id: 'deepseek',
-    baseUrl: 'https://example.test',
-    apiKey: () => KEY,
-    model: 'deepseek-flash',
-    timeoutMs: 1_000,
-    extraBody: { thinking: { type: 'disabled' } },
-    fetch: fetchImpl,
-  });
 
 describe('the OpenAI-compatible adapter', () => {
-  it('sends a forced function call with thinking off, and returns the arguments and usage', async () => {
-    const seen: { url: string; body: Record<string, unknown>; auth: string }[] = [];
-    const fetchImpl = ((url: string, init: RequestInit) => {
-      seen.push({
-        url,
-        body: JSON.parse(init.body as string) as Record<string, unknown>,
-        auth: (init.headers as Record<string, string>)['authorization'] ?? '',
-      });
-      return reply(call({ summary: 'ok', commands: [] }));
-    }) as unknown as typeof fetch;
-    const out = await provider(fetchImpl).generate(REQUEST);
-    expect(out).toEqual({
-      output: { summary: 'ok', commands: [] },
-      model: 'deepseek-flash',
-      usage: { inputTokens: 100, outputTokens: 20 },
-    });
-    const sent = seen[0];
-    expect(sent).toMatchObject({
-      url: 'https://example.test/chat/completions',
-      auth: `Bearer ${KEY}`,
-    });
-    expect(sent?.body).toMatchObject({
-      thinking: { type: 'disabled' },
-      tool_choice: { type: 'function', function: { name: 'propose_commands' } },
-    });
-    expect(JSON.stringify(sent?.body)).not.toContain(KEY);
-  });
-
-  it('maps failures to codes without echoing anything', async () => {
-    const codes = async (fetchImpl: typeof fetch) =>
-      provider(fetchImpl)
-        .generate(REQUEST)
-        .catch((error: unknown) =>
-          error instanceof ProviderError ? `${error.code}: ${error.message}` : 'other',
-        );
-    expect(await codes(() => reply({}, 503))).toBe('UNAVAILABLE: provider responded 503');
-    expect(await codes(() => reply({}, 400))).toBe('BAD_RESPONSE: provider responded 400');
-    expect(
-      await codes(() => reply(call({}, { choices: [{ finish_reason: 'length', message: {} }] }))),
-    ).toBe('BAD_RESPONSE: provider output incomplete');
-    expect(await codes(() => reply({ choices: [{ message: { content: 'no tool' } }] }))).toBe(
-      'BAD_RESPONSE: provider returned no structured output',
-    );
-    expect(await codes(() => Promise.reject(new Error(KEY)))).toBe(
-      'UNAVAILABLE: provider unreachable',
-    );
-  });
-});
-
-describe('the spending ledger', () => {
-  it('prices a call from its model and refuses further calls once the ceiling is reached', async () => {
-    expect(costUsd('claude-opus-5-5', 1_000_000, 1_000_000)).toBe(24);
-    const ledger = new SpendLedger(0.0001, () => '2026-10-05');
-    let calls = 0;
-    const inner: AiProvider = {
+  it('prepares a forced function call with thinking off, from an allowlist', async () => {
+    const fake = fakeFetch(() => jsonResponse({}));
+    const deepseek = createOpenAiCompatibleProvider({
       id: 'deepseek',
-      generate: () => {
-        calls += 1;
-        return Promise.resolve({
-          output: {},
-          model: 'deepseek-flash',
-          usage: { inputTokens: 1_000, outputTokens: 1_000 },
-        });
-      },
-    };
-    const guarded = budgeted(inner, ledger);
-    await guarded.generate(REQUEST);
-    expect(ledger.exhausted).toBe(true);
-    await expect(guarded.generate(REQUEST)).rejects.toMatchObject({ code: 'UNAVAILABLE' });
-    expect(calls).toBe(1);
-  });
+      baseUrl: 'https://example.test',
+      apiKey: () => KEY,
+      model: 'deepseek-flash',
+      timeoutMs: 1_000,
+      thinking: 'disabled',
+      fetch: fake.fetchImpl,
+    });
+    const prepared = deepseek.prepare(REQUEST);
 
-  it('starts a new day with a fresh allowance', () => {
-    let day = '2026-10-05';
-    const ledger = new SpendLedger(1, () => day);
-    ledger.record('m', 2);
-    expect(ledger.exhausted).toBe(true);
-    day = '2026-10-06';
-    expect(ledger.exhausted).toBe(false);
+    expect(prepared.url).toBe('https://example.test/chat/completions');
+    expect(JSON.parse(prepared.body)).toEqual({
+      model: 'deepseek-flash',
+      max_tokens: 4_096,
+      messages: [
+        { role: 'system', content: REQUEST.system },
+        { role: 'user', content: REQUEST.prompt },
+      ],
+      tools: [
+        {
+          type: 'function',
+          function: {
+            name: 'propose_commands',
+            description: REQUEST.output.description,
+            parameters: REQUEST.output.schema,
+          },
+        },
+      ],
+      tool_choice: { type: 'function', function: { name: 'propose_commands' } },
+      thinking: { type: 'disabled' },
+    });
+    await deepseek
+      .dispatch(prepared, new AbortController().signal, () => undefined)
+      .catch(() => undefined);
+    expect((fake.calls[0]?.init.headers as Record<string, string>)['authorization']).toBe(
+      `Bearer ${KEY}`,
+    );
+    expect(fake.calls[0]?.body).not.toContain(KEY);
   });
 });
 
-describe('routes', () => {
-  const env = {
-    ANTHROPIC_API_KEY: 'sk-ant-test',
-    DEEPSEEK_API_KEY: 'sk-test',
-    LTW_AI_ROUTES:
-      'reasoning=anthropic:claude-opus-5-5,local;npc-dialogue=anthropic:claude-sonnet-5-5,deepseek:deepseek-flash,local;fast-context=deepseek:deepseek-flash',
+describe('route configuration', () => {
+  const KEYS = { ANTHROPIC_API_KEY: 'sk-ant-route', DEEPSEEK_API_KEY: 'sk-route' };
+  const routesOf = (text: string) => loadConfig({ ...KEYS, LTW_AI_ROUTES: text }).ai.routes;
+  const issuesOf = (text: string) => {
+    try {
+      routesOf(text);
+      return [];
+    } catch (error) {
+      if (error instanceof ConfigError) return error.issues;
+      throw error;
+    }
   };
-  const ids = (
-    capability: Parameters<ReturnType<typeof createAiGateway>['router']['providersFor']>[0],
-    e = env,
-  ) =>
-    createAiGateway(loadConfig(e).ai, new InMemoryAiTraceStore())
-      .router.providersFor(capability)
-      .map((p) => p.id);
 
-  it('gives each capability its own list', () => {
-    expect(ids('reasoning')).toEqual(['anthropic', 'local']);
-    expect(ids('npc-dialogue')).toEqual(['anthropic', 'deepseek', 'local']);
-    expect(ids('fast-context')).toEqual(['deepseek']);
-    expect(ids('narrative')).toEqual(['anthropic', 'local']);
+  it('accepts local, one remote then local, and one remote ranker', () => {
+    expect(
+      routesOf(
+        'reasoning=anthropic:claude-opus-5-5,local;npc-dialogue=local;narrative=deepseek:deepseek-flash,local;fast-context=deepseek:deepseek-flash',
+      ),
+    ).toEqual({
+      reasoning: ['anthropic:claude-opus-5-5', 'local'],
+      'npc-dialogue': ['local'],
+      narrative: ['deepseek:deepseek-flash', 'local'],
+      'fast-context': ['deepseek:deepseek-flash'],
+    });
   });
 
-  it('skips a provider whose key is missing, and rejects a malformed list', () => {
-    expect(ids('npc-dialogue', { ...env, DEEPSEEK_API_KEY: '' })).toEqual(['anthropic', 'local']);
-    expect(() => loadConfig({ LTW_AI_ROUTES: 'reasoning=openai:gpt' })).toThrow(ConfigError);
+  it.each([
+    ['three entries', 'narrative=anthropic:claude-opus-5-5,deepseek:deepseek-flash,local'],
+    ['two remotes', 'reasoning=anthropic:claude-opus-5-5,deepseek:deepseek-flash'],
+    ['a remote-only intent route', 'reasoning=anthropic:claude-opus-5-5'],
+    ['local before the remote', 'npc-dialogue=local,anthropic:claude-sonnet-5-5'],
+    ['local twice', 'narrative=local,local'],
+    ['a local ranker', 'fast-context=local'],
+    ['a ranker with a local fallback', 'fast-context=deepseek:deepseek-flash,local'],
+    ['a capability twice', 'reasoning=local;reasoning=anthropic:claude-opus-5-5,local'],
+    ['an unknown provider', 'reasoning=openai:gpt'],
+    ['an empty list', 'reasoning='],
+    [
+      'a second "=" after a list',
+      'reasoning=anthropic:claude-opus-5-5,local=deepseek:deepseek-flash',
+    ],
+    [
+      'a second "=" after a ranker',
+      'fast-context=deepseek:deepseek-flash=anthropic:claude-opus-5-5',
+    ],
+    ['a second "=" after local', 'reasoning=local=anthropic:claude-opus-5-5'],
+    ['no "=" at all', 'reasoning'],
+  ])('rejects %s at runtime rather than truncating it', (_label, text) => {
+    const issues = issuesOf(text);
+    expect(issues.length).toBeGreaterThan(0);
+    expect(issues.join('\n')).not.toMatch(/claude-|deepseek-flash|gpt|sk-/);
+  });
+
+  it('refuses a remote entry whose provider has no key, naming no key', () => {
+    expect(() =>
+      loadConfig({
+        DEEPSEEK_API_KEY: 'sk-x',
+        LTW_AI_ROUTES: 'reasoning=anthropic:claude-opus-5-5,local',
+      }),
+    ).toThrow(/reasoning names anthropic, which has no key/);
+  });
+
+  it('allows exactly one remote and no local only in trusted evaluation mode', () => {
+    const keyed = new Set(['anthropic', 'deepseek'] as const);
+    expect(
+      routeIssues(
+        { reasoning: ['anthropic:claude-opus-5-5'], 'fast-context': ['deepseek:deepseek-flash'] },
+        'evaluation',
+        keyed,
+      ),
+    ).toEqual([]);
+    for (const entries of [['local'], ['anthropic:claude-opus-5-5', 'local'], []]) {
+      expect(routeIssues({ narrative: entries }, 'evaluation', keyed)).not.toEqual([]);
+    }
+    expect(routeIssues({ reasoning: ['anthropic:claude-opus-5-5'] }, 'runtime', keyed)).not.toEqual(
+      [],
+    );
+  });
+
+  it('has no dollar ceiling setting; the removed variable is reported, never parsed', () => {
+    expect(loadConfig({ LTW_AI_DAILY_BUDGET_USD: '5' }).ai).not.toHaveProperty('dailyBudgetUsd');
+    expect(obsoleteVariables({ LTW_AI_DAILY_BUDGET_USD: '5' })).toEqual([
+      'LTW_AI_DAILY_BUDGET_USD',
+    ]);
+    expect(obsoleteVariables({})).toEqual([]);
   });
 });

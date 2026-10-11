@@ -2,6 +2,7 @@ import pg from 'pg';
 
 import { createPlaceholderImageGenerator } from '@ltw/ai';
 
+import { accountingStatus } from './ai/accounting/postgres-budget-store.ts';
 import { createAiGateway } from './ai/gateway.ts';
 import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
@@ -10,8 +11,8 @@ import { PostgresAiTraceStore } from './ai/postgres-trace-store.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { buildApp } from './http/app.ts';
 import { disabledAuthenticator, loadDevPersonaAuthenticator } from './http/auth.ts';
-import { describeDatabaseUrl, loadConfig } from './platform/config/config.ts';
-import { createLogger } from './platform/logging/logger.ts';
+import { describeDatabaseUrl, loadConfig, obsoleteVariables } from './platform/config/config.ts';
+import { createLogger, type Logger } from './platform/logging/logger.ts';
 import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
 
 /**
@@ -58,10 +59,10 @@ async function main(): Promise<void> {
       authMode: config.auth.mode,
       database: describeDatabaseUrl(config.databaseUrl),
       aiProviders: ai.router.providersFor('reasoning').map((provider) => provider.id),
-      aiDailyBudgetUsd: ai.ledger.dailyCeilingUsd,
     },
     'server ready',
   );
+  reportAiSpending(logger, pool, ai.disabledRemoteRoutes);
 
   const stopAssets = startAssetWorkerLoop({
     engine,
@@ -85,6 +86,34 @@ async function main(): Promise<void> {
   };
   process.once('SIGINT', shutdown);
   process.once('SIGTERM', shutdown);
+}
+
+/** Reports held and pending AI accounting state; never reconciles it (docs/adr/0032-live-ai.md). */
+function reportAiSpending(
+  logger: Logger,
+  pool: pg.Pool,
+  disabledRemoteRoutes: readonly string[],
+): void {
+  for (const variable of obsoleteVariables()) {
+    logger.warn(
+      { variable },
+      'ignored: AI spending ceilings are operator records, not configuration',
+    );
+  }
+  if (disabledRemoteRoutes.length > 0) {
+    logger.warn(
+      { routes: disabledRemoteRoutes },
+      'remote AI routes are disabled in this build; every capability runs locally',
+    );
+  }
+  accountingStatus(pool).then(
+    (status) => {
+      logger.info(status, 'AI accounting status');
+    },
+    () => {
+      logger.warn('AI accounting status unavailable');
+    },
+  );
 }
 
 main().catch((error: unknown) => {

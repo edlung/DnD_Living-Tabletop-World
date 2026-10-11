@@ -2,10 +2,13 @@
 
 Composition root of the modular monolith and the only workspace package allowed to perform I/O (`docs/adr/0004-module-boundaries.md`).
 
-Live AI (Stage 300, acceptance pending): start with ADR 0032, `src/ai/gateway.ts`,
-`src/ai/budget.ts`, the Anthropic/OpenAI-compatible adapters, and `src/testing/eval/` only as needed.
-The current spend ledger is not a durable or concurrency-safe cap. Follow `docs/PROJECT_WORKFLOW.md`
-and the reviewed remediation scope before changing accounting. Never run paid evaluation without
+Live AI (Stage 300, remediation in progress): start with ADR 0032 (amendment 2026-10-11),
+`src/ai/gateway.ts` and `src/ai/accounting/AGENTS.md`. Through remediation checkpoint B1 composition
+is local-only (no remote adapter is built, no key revealed); the durable PostgreSQL accounting store
+exists but no use case calls it until B2. Raw adapters (`prepare`/`dispatch`, `src/ai/raw-provider.ts`)
+are reached only by their unit tests with injected `fetch`; routers for runtime and evaluation come
+only from `src/ai/composition.ts` (`composeRouter`, identity-checked). Follow
+`docs/PROJECT_WORKFLOW.md` and the approved remediation scope. Never run paid evaluation without
 explicit text-provider ceilings; OpenRouter's $20 image-key limit is a separate authorization.
 
 | Area                  | Entry                                                                                                                                                         | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |

@@ -1,0 +1,61 @@
+# Stage 300 remediation design 6 — Fable review
+
+Date: 2026-10-11. Verdict: CHANGES REQUIRED.
+Artifact SHA256: `a4a7da26179263a61ce80a4900b0f931503f34e1e9009d244aeee6f4b061c56e`.
+Native Anthropic response model: `claude-fable-5-1`; configured effort xhigh.
+Fresh read-only session; no peer verdict supplied. Orchestrator verified hash before/after.
+The returned report below is verbatim.
+
+---
+
+<!-- prettier-ignore-start -->
+
+**Verdict: CHANGES REQUIRED.** The conservation, freeze, recovery and isolation models in draft 6 hold against the source. Two specification defects remain that would let implementers satisfy the pinned outcome contract in two incompatible ways. Both are small text fixes. Everything else below is clarification or residual risk.
+
+## Verdict and scope
+
+Disclosures first.
+- I could not compute the SHA256. I have no shell tool. I reviewed the working-tree file `docs/STAGE_300_REMEDIATION_DESIGN.md`, 638 lines, titled "draft 6", dated 2026-10-11, which git shows as an uncommitted modification. The orchestrator's before/after hash check is the authority for which text this verdict applies to.
+- My model identity and effort are not self-attested. Treat them as whatever the launch configuration records.
+- This review authorizes no code, no spending and no product limitation. The Q5 Chronicle limitation in design lines 136-141 stays pending owner disposition, as the design itself states.
+- Source inspection stayed inside the named paths. No `reviews/`, `reports/`, `handoffs/` or `.env` files were read.
+
+What I verified holds.
+- `WorldState.activeSessionId` is `string | null` at `packages/domain/src/kernel/state.ts:96`. The design's read-only source claim is correct.
+- Chronicle DTOs already allow a null trace: `packages/contracts/src/chronicle/commands.ts:44` and `views.ts:57,83`. Only `RenderedChronicle.traceId` at `packages/ai/src/chronicle.ts:53` must change, as the design says. Intent and NPC trace IDs are non-nullable today at `packages/contracts/src/ai-gateway/intents.ts:45` and `packages/contracts/src/npc/dialogue.ts:44`. The web client sends the trace unguarded at `apps/web/src/authoring/use-authoring.ts:149-153`, so the required client narrowing is real work, not already present.
+- The audit findings the design remediates are real in the baseline. The unknown-model price fallback is at `apps/server/src/ai/budget.ts:18`. The in-process ledger records usage only after success at `budget.ts:60-69`, so failed or aborted billed calls vanish. A three-entry route never reaches local because `packages/ai/src/fallback.ts:87` breaks after one switch. The implicit paid relevance route from the global model is at `apps/server/src/ai/gateway.ts:83-87`. A missing key silently shortens a route at `gateway.ts:89-94`. The daily-budget default is at `apps/server/src/platform/config/config.ts:92,156-159`. The false-positive evaluation predicates are at `apps/server/src/testing/eval/eval-cli.ts:113-117`, `:130` and `:171-176`, the hardcoded relevance deadline at `:249`, and evidence overwriting at `:311-313`.
+- Budget conservation. Reservation before dispatch, bucket totals read only after exclusive advisory locks under READ COMMITTED, MAX-of-absolute-charges settlement, evidence that can only raise, no refund without a same-process transport-not-started proof, and stops appended under the already-held account lock without lock upgrade form a sound model. The sorted nonnegative bucket set plus the negative policy and request keys cannot collide, and PostgreSQL's two-int32 and single-int64 advisory key spaces are disjoint, so the authoring lock namespace claim is correct.
+- Freeze and recovery. Both the live finalizer and recovery take the request lock, then check outcome absence, and `UNIQUE(request_id)` backs them. There is no window where both commit. A finalizer committing just after its deadline is harmless because recovery sees the committed row after the lock. Two recovery sweeps cannot both win.
+- Fallback semantics stay inside ADR 0017 §5 at `docs/adr/0017-ai-gateway.md:47-51`. One switch on failure, one repair on invalid output, no paid second route, local calls counted toward the switch.
+- Isolation. The accounting metadata rides on `ProviderRequest`, which the adapters never serialize beyond `system`, `prompt` and `output` at `apps/server/src/ai/anthropic-provider.ts:45-59` and `openai-compatible-provider.ts:64-83`. The stable prefixes per capability and language are already free of scoped data at `packages/ai/src/prompt.ts:24-34`, `dialogue-prompt.ts:88-96,173`, `chronicle-prompt.ts:66-85` and `relevance-prompt.ts:196-202`.
+
+## Blocking findings
+
+**B1. Request-start coupled to the first admission transaction makes the public contract depend on lock contention.** Design line 233 allows request-start to share the first admission transaction. Lines 73-75 make lock_timeout and statement_timeout abort that transaction. Lines 311-312 say a missing durable start overrides the whole local/fallback table with the no-start responses of lines 263-271. Lines 46-47 and 394-395 and table rows 464-471 promise that store failure or budget denial on the initial remote attempt falls back to one local attempt with a trace. Under the shared-transaction option, every initial admission timeout or store error rolls back the start row, so intent returns AI_UNAVAILABLE with a null trace and no local proposal, and dialogue returns null text with no template reply. Under the separate-transaction option the same event yields the budget-denial row. Two correct implementations would disagree on public behavior and on the exact-response tests demanded at lines 612-614.
+- Fix: require request-start in its own short transaction, with no advisory locks, bounded by the whole-request deadline, committed before any admission. Delete "may share the first admission transaction" at line 233. Keep line 235 as is, since reservation and attempt-start must still share one transaction. State that a committed request-start is never voided by a later admission failure.
+- Tests: for each capability, fail and stall the budget store and force a lock timeout on the first remote admission with the start already durable. Assert the ADMISSION_UNAVAILABLE or BUDGET_DENIED row, a non-null trace ID and exactly one local attempt. Assert the no-start responses only when the start write itself fails or expires.
+
+**B2. Request identity and the preallocated parent trace ID are named as if they could differ.** Lines 216-217 and 231 speak of a "preallocated parent trace ID". Line 249 keys the diagnostic by `:traceId` and says it returns unfinished request metadata. Line 281 calls the same thing the "internal preallocated request identity". Lines 294 and 298 key the outcome row and the request lock by `request_id` and `hash(requestId)`. Line 369 returns "its preallocated trace ID" to the relevance caller. If an implementer mints two IDs, the diagnostic needs an unspecified join, and the lock domain that recovery correctness rests on is keyed by a value the caller never sees.
+- Fix: one sentence stating that the request ID is the preallocated parent trace ID, and that the request-start row, `UNIQUE(request_id)`, the request advisory lock, `ltw_ai_traces.trace_id` and the diagnostic path parameter all use that one UUID.
+- Tests: a diagnostic read of an orphan start using the ID returned to a relevance caller at its deadline. A normal trace read of a no-start internal ID returns the existing 404 and never a journal-derived body.
+
+## Required clarifications and residual risks
+
+Clarifications to land in the same revision. None changes the architecture.
+- **C1. Where the token bound is computed.** Lines 150-153 reserve on "the exact serialized request" and line 403 requires TRANSPORT_NOT_STARTED strictly before transport. Both adapters build the body and call fetch inside `generate`, at `anthropic-provider.ts:40-87` and `openai-compatible-provider.ts:58-85`, and the Anthropic adapter appends its own system line at `:49`. A wrapper outside the adapter cannot measure that body or know the transport boundary. State that the adapter port splits into a prepare step returning the final body and a dispatch step, and that bounds and the not-started outcome attach to the prepared body. This also makes the "documented tokenizer byte-bound for that request shape" claim at lines 151-153 testable.
+- **C2. The branded router type and pure-package tests.** Lines 219-228 restrict the router to `AdmittedProvider` or the identity-matched local provider. `CapabilityRouter` at `packages/ai/src/router.ts:13` is constructed with scripted providers throughout `packages/ai` tests via `src/testing/providers.ts`. State that a test-only brand constructor in that support module is permitted, and that the runtime WeakSet check lives in server composition only.
+- **C3. "Verified provider billing-account identity" at lines 35-40.** Neither Messages nor Chat Completions responses expose a billing-account identifier. The identity is operator-attested. Reword so the uniqueness constraint prevents accidental duplicates while owner authorization records remain the control, and drop the cloning-prevention claim. No technical gate weakens.
+- **C4. Dialogue deadline start.** Lines 79-80 create the deadline "before request-start or admission". The NPC route runs the canonical command first at `npc-routes.ts:77-85` and only then renders at `:100-109`. State that the AI whole-request deadline starts at the reply phase, not at HTTP arrival, so World Engine time is not charged against AI time.
+- **C5. Attempts recorded after freeze.** Lines 288-292 forbid late output changing the frozen result. Lines 358-362 let an abort-ignoring provider finish and settle. State whether the frozen trace's `attempts` array may include the late attempt row with its discarded output when the finalizer still has window, or whether such attempts are accounting-only.
+- **C6. Reclassifying a missing tool call.** ADR 0032 at `docs/adr/0032-live-ai.md:17-19` and `anthropic-provider.ts:120-122` treat a reply without the tool call as provider failure, which switches to free local. Design line 390 makes it invalid output, which buys a paid repair on the same provider. Record this as an explicit delta in the ADR 0032 correction with the cost consequence, and make sure remote-only evaluation counts it.
+
+Residual risks, accepted or to disclose.
+- **Relevance holds.** With a 2,000 ms default at `config.ts:160-163`, admission plus lock waits plus provider latency measured at 1.1 to 2.1 s in ADR 0032 will routinely abort after dispatch, each a full uncertain hold needing operator reconciliation, as lines 355-361 accept. A conservation-neutral mitigation is a minimum dispatch headroom rule: do not dispatch when remaining time is below a configured floor. Recommend adding it or raising the default with owner visibility.
+- **Reservation magnitude.** Without a verified byte-bound, each attempt reserves the full model input limit at the highest tier. Sequential use settles fine. Concurrency under small session ceilings will be near one attempt at a time. The design discloses this at lines 154-156.
+- **Unknown usage fields fail closed** at lines 162-166. A provider adding an informational field halts all paid AI until an operator reconciles. Deliberate, but an operational outage class worth naming in the runbook.
+- **Bucket totals are sums over append-only rows.** The cumulative stage bucket grows across days. Fine for alpha. An append-only snapshot row would be the eventual fix.
+- **Prompt caching yield.** The dialogue and relevance stable prefixes are a few hundred characters, likely below the provider minimum. Only the intent tool schema is plausibly cacheable. The design correctly forbids padding.
+- **PostgreSQL in CI.** The required integration tests need a database in the validation that gates checkpoints. Confirm the runner provides one before checkpoint A acceptance.
+- **Operator-attested identities throughout.** Approvals, grants and billing accounts rest on recorded owner authorization, not on cryptographic or provider-side proof. The design is honest about this except at C3.
+
+<!-- prettier-ignore-end -->

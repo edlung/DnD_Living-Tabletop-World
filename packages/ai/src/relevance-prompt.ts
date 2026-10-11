@@ -233,7 +233,6 @@ function render(prompt: RelevancePrompt, repair: RepairNote | null): string {
 export function relevanceRequest(
   prompt: RelevancePrompt,
   repair: RepairNote | null,
-  signal: AbortSignal,
 ): ProviderRequest {
   return {
     capability: 'fast-context',
@@ -241,6 +240,5 @@ export function relevanceRequest(
     prompt: render(prompt, repair),
     output: RANKING_OUTPUT,
     task: { kind: 'relevance', prompt, repair },
-    signal,
   };
 }

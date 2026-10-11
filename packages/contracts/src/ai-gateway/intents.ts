@@ -32,6 +32,14 @@ export const commandProposalSchema = z
   .strict();
 export type CommandProposal = z.infer<typeof commandProposalSchema>;
 
+/**
+ * Why an intent provider deliberately proposed nothing (docs/adr/0032-live-ai.md, B1). A decline
+ * is the provider's valid answer, never a proposal: the public result stays `INVALID_OUTPUT` with
+ * the fixed issue `NO_PROPOSAL`, and only the trace records the reason.
+ */
+export const INTENT_DECLINE_REASONS = ['not_game', 'ambiguous', 'unsupported'] as const;
+export type IntentDeclineReason = (typeof INTENT_DECLINE_REASONS)[number];
+
 /** `POST /campaigns/:campaignId/ai/intents` body. */
 export const dmIntentRequestSchema = z
   .object({ text: z.string().trim().min(1).max(2000) })
@@ -63,7 +71,11 @@ export interface AiAttemptView {
   readonly model: string | null;
   readonly kind: AttemptKind;
   readonly outcome: AttemptOutcome;
-  /** `ProviderError` code when the call failed. */
+  /**
+   * The fixed code when the attempt failed or was not dispatched: a transport code
+   * (`TRANSPORT_NOT_STARTED`, `UNAVAILABLE`, `TIMEOUT`, `BAD_RESPONSE`), `PROVIDER_REFUSAL`,
+   * `UNEXPECTED_MODEL`, `UNVERIFIED_BILLING`, an admission denial or `CALLER_CANCELLED`.
+   */
   readonly error: string | null;
   readonly issues: readonly string[];
   /** The provider's raw structured output as JSON, cut at 8 KB; null when it failed. */
@@ -93,6 +105,8 @@ export interface DmIntentTraceView extends AiTraceBase {
   readonly purpose: 'dm-intent';
   readonly status: IntentStatus;
   readonly proposal: CommandProposal | null;
+  /** Additive (B1): the validated decline reason; absent on earlier traces and on other outcomes. */
+  readonly declineReason?: IntentDeclineReason;
 }
 
 /** An NPC's reply (docs/adr/0020-npc-intelligence.md §3); its scope is `NPC:<id>`. */

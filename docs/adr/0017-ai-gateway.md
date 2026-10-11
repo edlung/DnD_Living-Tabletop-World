@@ -86,6 +86,32 @@ Option 2.
   - **Requests** carry a chapter's entries under opaque keys, with no IDs. Output is validated with the World Engine's own prose rules; invalid output after one repair falls back to the template.
   - **Traces** gain the purpose `chronicle`.
 
+- 2026-10-11 (Stage 300 remediation checkpoint B1, ADR 0032; reviewed delta, design SHA256
+  `23e53e4d…aab2`). The owner's one-switch/one-repair policy (§5) stands; these transitions refine it:
+  - **Missing tool call, truncation, unreadable structured arguments** are now _invalid structured
+    output_: one repair on the same remote provider, a separate newly admitted (potentially paid)
+    attempt, instead of the earlier provider-failure free local switch. Still invalid ends
+    `INVALID_OUTPUT` with no switch. This authorizes no allowance and no extra retry.
+  - **Refusal, transport failure, suspect model or billing, initial admission denial**: at most one
+    switch, and only to the zero-cost local provider with the identical request; never another paid
+    provider. Relevance has no local provider and answers deterministically.
+  - **Denied repair** (budget, disabled or unavailable admission): `INVALID_OUTPUT`, the previous
+    invalid output kept, no switch.
+  - **Local provider**: never repaired. A local-only route, like the local switch, makes exactly one
+    local call; its invalid output is final `INVALID_OUTPUT` (B1 repair 1).
+  - **Intent decline**: the intent tool returns `{kind: "proposal", proposal}` or
+    `{kind: "decline", reason}` (`not_game`, `ambiguous`, `unsupported`). A valid decline is terminal:
+    public `INVALID_OUTPUT`, null proposal, `committable: false`, the fixed issue `NO_PROPOSAL`; the
+    trace adds `declineReason`. The local provider declines what it cannot read (`unsupported`) in
+    one attempt instead of failing schema twice. Other capabilities treat a decline envelope as
+    `WRONG_OUTPUT_KIND` invalid output.
+  - **Caller cancellation**: once the caller's whole-request signal aborts nothing new is dispatched
+    (no repair, no switch, not even local) and late output is discarded, including output that
+    validated while the caller went away; an attempt's own timeout that coincides with it is
+    `CALLER_CANCELLED`. An attempt timeout while the caller still waits is a provider failure. An
+    exception from the gateway's own code is never a provider failure (B1 repair 2). Fixed codes
+    are in ADR 0032; public status sets are unchanged.
+
 ## Invariants affected
 
 Implements 2, 18, 21, and 22 for this stage; preserves 1, 5, 11, and 17. No invariant is weakened.

@@ -1,10 +1,14 @@
+> Current owner policy (2026-10-11): `docs/PROJECT_WORKFLOW.md` controls new work.
+> Architecture: Astra/Fable xhigh. Implementation: Opus medium; review repairs xhigh.
+> Acceptance: fresh independent Sol/Opus xhigh. Orchestration: Sol medium.
+> Older model assignments are historical; preserve their evidence, not their future authority.
+
 # Work Order Routing
 
 Read only the explicitly authorized stage, its Read First entries, and directly relevant prerequisite/coverage rows. Do not load this directory wholesale during implementation.
 
-Current owner decision (2026-10-11): mandatory reviews/acceptance use Opus 5.5 xhigh in a fresh
-session, replacing Astra. Fable 5.1 high remains the other architecture reviewer. Older reviewer
-banners are historical summaries; `docs/PROJECT_WORKFLOW.md` records the current policy.
+Use `docs/PROJECT_WORKFLOW.md` for current role identities, efforts and dual-review gates.
+Historical review assignments and evidence remain unchanged.
 
 Every path inside a work order is relative to the repository root. `EFFORT_MATRIX.md` owns model/effort settings. Banners summarize that policy and never authorize the next stage.
 

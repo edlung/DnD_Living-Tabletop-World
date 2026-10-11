@@ -34,10 +34,14 @@ export {
   type RelevancePrompt,
 } from './relevance-prompt.ts';
 export {
+  WRONG_OUTPUT_KIND,
   runWithFallback,
+  type AttemptProgress,
   type FallbackDeps,
   type FallbackResult,
+  type InvalidCode,
   type OutputCheck,
+  type UnavailableCode,
 } from './fallback.ts';
 export {
   interpretDmIntent,
@@ -46,25 +50,57 @@ export {
   type IntentOutcome,
 } from './intent.ts';
 export { replyLocally } from './local-dialogue.ts';
-export { LOCAL_MODEL, createLocalProvider, interpretLocally } from './local-provider.ts';
-export { PROPOSAL_OUTPUT, intentRequest } from './prompt.ts';
 export {
+  LOCAL_MODEL,
+  createLocalProvider,
+  interpretLocally,
+  isLocalProvider,
+  type LocalInterpretation,
+} from './local-provider.ts';
+export { INTENT_OUTPUT, intentRequest } from './prompt.ts';
+export {
+  DENIAL_CODES,
+  MALFORMED_CODES,
   PROVIDER_ERROR_CODES,
   ProviderError,
+  SUSPECT_CODES,
   failureCode,
-  type AiProvider,
+  outputResponse,
+  type AdmittedProvider,
+  type AttemptContext,
+  type BillingFacts,
+  type DenialCode,
   type DialogueTask,
   type IntentTask,
+  type LocalProvider,
+  type MalformedCode,
+  type ProviderKind,
   type RelevanceTask,
   type ProviderErrorCode,
   type ProviderRequest,
   type ProviderResponse,
   type RepairNote,
+  type ResponseFacts,
+  type RoutedProvider,
   type StructuredOutputSpec,
+  type SuspectCode,
+  type TokenUsage,
 } from './providers.ts';
-export { CapabilityRouter } from './router.ts';
+export {
+  CapabilityRouter,
+  routeShapeIssue,
+  snapshotRoutes,
+  type RouteSnapshot,
+  type Routes,
+} from './router.ts';
 export { InMemoryAiTraceStore, type AiTraceStore } from './traces.ts';
-export { validateProposal, type ProposalCheck } from './validation.ts';
+export {
+  NO_PROPOSAL,
+  intentOutputSchema,
+  validateIntent,
+  validateProposal,
+  type ProposalCheck,
+} from './validation.ts';
 export {
   ImageGenerationError,
   imageFailureCode,

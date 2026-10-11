@@ -1,4 +1,4 @@
-import type { AiProvider } from '@ltw/ai';
+import { outputResponse } from '@ltw/ai';
 import { createCombatEngine } from '@ltw/combat';
 import type {
   AuthoringProposalResponse,
@@ -13,6 +13,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { partyKnowledge, playDayOne, type DayOne } from '../testing/scenario/play-day-one.ts';
 import { ambushUntilTheHex, playRoad } from '../testing/scenario/play-road.ts';
+import { testProvider } from '../testing/ravenford-app.ts';
 import { NEVER_FOR_PLAYERS } from '../testing/scenario/secrets.ts';
 import { BASE, CAMPAIGN, ELOWEN, RavenfordSession } from '../testing/scenario/session.ts';
 
@@ -116,11 +117,10 @@ describe('integrity acceptance', () => {
   });
 
   it('lets no AI text kill Orin: an intent stays a proposal, and prose stays prose', async () => {
-    const liar: AiProvider = {
-      id: 'liar',
-      generate: () =>
-        Promise.resolve({
-          output: {
+    const liar = testProvider('liar', 'remote', () =>
+      Promise.resolve(
+        outputResponse(
+          {
             paragraphs: [
               {
                 text: 'Orin Stonebeard died that night, and Ravenford burned to the ground.',
@@ -128,10 +128,10 @@ describe('integrity acceptance', () => {
               },
             ],
           },
-          model: 'liar-1',
-          usage: null,
-        }),
-    };
+          'liar-1',
+        ),
+      ),
+    );
     const { session } = await played({ narrative: [liar] });
     const version = async () => (await session.snapshot()).state.version;
     const before = await version();

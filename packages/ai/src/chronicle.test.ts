@@ -12,7 +12,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 
 import { renderChronicle, validateChronicle, TEMPLATE_MODEL } from './chronicle.ts';
 import { createLocalProvider } from './local-provider.ts';
-import { ProviderError, type AiProvider } from './providers.ts';
+import { ProviderError, type RoutedProvider } from './providers.ts';
 import { CapabilityRouter } from './router.ts';
 import { scripted, steppingMs } from './testing/providers.ts';
 import {
@@ -38,7 +38,7 @@ beforeAll(async () => {
   entries = chronicleEntries(state, [], party, 0, state.clock).entries;
 });
 
-function deps(...providers: AiProvider[]) {
+function deps(...providers: RoutedProvider[]) {
   const clock = new SteppingClock();
   return {
     router: new CapabilityRouter({ narrative: providers }),

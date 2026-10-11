@@ -205,6 +205,7 @@ export type {
 } from './combat/views.ts';
 export {
   AI_CAPABILITIES,
+  INTENT_DECLINE_REASONS,
   INTENT_STATUSES,
   commandProposalSchema,
   dmIntentRequestSchema,
@@ -218,6 +219,7 @@ export {
   type DmIntentRequest,
   type DmIntentResponse,
   type DmIntentTraceView,
+  type IntentDeclineReason,
   type IntentStatus,
   type NpcDialogueTraceView,
   type RelevanceTraceView,

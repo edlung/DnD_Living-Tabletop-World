@@ -1,0 +1,107 @@
+{
+  "checkpoint": "Stage 300 B1 repair3 bounded independent re-review",
+  "technical_verdict": "FAIL",
+  "reviewer": {
+    "runtime": "native Codex Desktop subagent",
+    "configured_model": "gpt-6.1-sol",
+    "configured_effort": "xhigh",
+    "configuration_source": "explicit launch task",
+    "actual_response_model_attestation": "unavailable",
+    "actual_effort_attestation": "unavailable",
+    "configuration_only_exception": false,
+    "named_model_acceptance_gate": "pending"
+  },
+  "findings": [
+    {
+      "severity": "Medium",
+      "location": "packages/ai/src/fallback.ts:309; packages/ai/src/providers.ts:194",
+      "summary": "Rejected-error inspection may throw before recording an invoked provider; unknown error codes are copied into attempt metadata.",
+      "missing_attempt_cases": 4,
+      "unchecked_code_cases": 1,
+      "public_http_or_paid_failure_reproduced": false,
+      "required_fix": "Defensively normalize rejected errors with nonthrowing single-read allowlisted code inspection; retain one attempt/end and genuine TRANSPORT_NOT_STARTED; cancellation blocks further invocation."
+    }
+  ],
+  "prior_findings": {
+    "validation_cancellation": "closed",
+    "callback_phantom_or_duplicate_attempts": "closed",
+    "resolved_nonresponse_observation": "fixed in tested resolution cases"
+  },
+  "architecture_fit": "Repair3 normalization is within approved B1 architecture; no new architecture gate required for this delta.",
+  "artifact": {
+    "head": "406904343bfe8542640035564d3e044561824125",
+    "manifest_path": "/tmp/ltw-stage300-checkpoint-b1-repair3/review-manifest.json",
+    "manifest_sha256": "a8b7505993b634703b8a9475f04d9c56c3e51b472c5662d71d527bc633bd65db",
+    "entries": 177,
+    "existing_files": 176,
+    "intentional_deletions": 1,
+    "pins_before_after_match": true,
+    "dirty_paths": 177,
+    "extra_or_missing_dirty_paths": 0,
+    "handoff_sha256": "7ea5efc4e234d16925031b42c1afedee6f0b8f9faaa4cea6424a52516275054f",
+    "design_sha256": "23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2",
+    "b2_stop_scope_sha256": "6bba003055bfd53ac4e069d01d5bf6e3a5a6e272fddb41a2f8305b55e153b485",
+    "accepted_a_manifest_sha256": "0c5e7373fee933f92b259798531cd51401022bc7c6446da16535435dffe5e63e",
+    "accepted_a_accounting_migration_files_unchanged": 30
+  },
+  "independent_checks": {
+    "focused_vitest": {
+      "status": "PASS",
+      "files": 24,
+      "tests": 370,
+      "duration_seconds": 6.28
+    },
+    "native_resolution_probes": {
+      "status": "PASS",
+      "cases": 52
+    },
+    "prior_callback_raw_adapter_probes_on_current_artifact": {
+      "status": "PASS",
+      "cases": 21
+    },
+    "rejection_probe": {
+      "status": "FAIL",
+      "cases": 6,
+      "missing_attempt_cases": 4,
+      "unchecked_code_cases": 1,
+      "exit_code": 1
+    },
+    "context_budget": {
+      "status": "PASS",
+      "active_files": 650,
+      "over_target": 0,
+      "over_hard_limit": 0
+    }
+  },
+  "supplied_validation": {
+    "independently_rerun": false,
+    "unit_tests": 2002,
+    "integration_tests": 138,
+    "e2e_tests": 45,
+    "validate_log_sha256": "fac70f29bdaae0eb852926df2836c7da80485eac6c489c44403e66bbc3709e3e",
+    "pre_and_post_manifest_sha256": "571056b8e2b5685abe1038a9e5a8601d6f28b63210002c50b4613d8a2122008b",
+    "corrected_fail_first_log_sha256": "fcb2847305b4680c28d9841e6d20fc52b63d0cd2e26f8b5d913c3d766d67f30e"
+  },
+  "independence": {
+    "peer_or_prior_reports_read": false,
+    "implementation_reports_stream_or_brief_read": false,
+    "acceptance_receipts_read": false,
+    "workflow_status_read": false,
+    "codex_cli_used": false,
+    "agents_spawned": false,
+    "network_or_paid_calls": false,
+    "auth_or_credential_stores_read": false,
+    "shared_db_build_e2e": false,
+    "checkout_edits": false,
+    "writes": "authorized /tmp evidence and normal ignored test tooling only"
+  },
+  "report_path": "/tmp/ltw-stage300-checkpoint-b1-repair3/sol-review-report.md",
+  "report_sha256": "b50a57da31f057a03930013b40a04ed43fffc17f72343c851ad8c9d37f82eb1d",
+  "probe_sha256": {
+    "sol-rejection-probe.mjs": "07eb7a5ca40fe3b206e9723768253e83b4c818fb5bb53c3436b3d07426a4d869",
+    "sol-resolution-probes.mjs": "8766f0b3a9729f3994c7692423ebe23d2e8e257e914d2838626b1c89ae9873ff"
+  },
+  "usage": "attributable model usage unavailable",
+  "advances_b2": false,
+  "stop": true
+}

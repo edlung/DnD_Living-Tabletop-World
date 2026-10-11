@@ -1,5 +1,6 @@
 import {
   relevanceOutputSchema,
+  type AiAttemptView,
   type AiTraceView,
   type ContextAction,
   type ContextRanking,
@@ -9,7 +10,12 @@ import {
 } from '@ltw/contracts';
 import type { Actor, ResolvedPerspective, WorldState } from '@ltw/domain';
 
-import { runWithFallback, type FallbackResult, type OutputCheck } from './fallback.ts';
+import {
+  runWithFallback,
+  type AttemptProgress,
+  type FallbackResult,
+  type OutputCheck,
+} from './fallback.ts';
 import type { IntentDeps } from './intent.ts';
 import { rankerContext, relevanceRequest, type RankerContext } from './relevance-prompt.ts';
 
@@ -123,11 +129,23 @@ export async function rankContextActions(
     controller.abort();
   }, deps.relevanceBudgetMs);
   const keys = built.keys.map(({ key }) => key);
+  // What happened so far, so the budget's end records the attempt in flight without awaiting it.
+  const settled: AiAttemptView[] = [];
+  let pending: Extract<AttemptProgress, { type: 'start' }> | null = null;
   const running = runWithFallback({
     providers: deps.router.providersFor(CAPABILITY),
-    build: (repair) => relevanceRequest(built.prompt, repair, controller.signal),
+    build: (repair) => relevanceRequest(built.prompt, repair),
     validate: (output) => validateRanking(output, keys),
     nowMs: deps.clock.nowMs,
+    signal: controller.signal,
+    onProgress: (event) => {
+      if (event.type === 'start') pending = event;
+      else if (event.type === 'abandoned') pending = null;
+      else if (event.type === 'end') {
+        settled.push(event.attempt);
+        pending = null;
+      }
+    },
   });
   // A provider that ignores the signal is left behind; its result is never used.
   running.catch(() => undefined);
@@ -138,6 +156,26 @@ export async function rankContextActions(
     clearTimeout(timer);
   }
   const answered = result === 'TIMEOUT' || controller.signal.aborted ? null : result;
+  // Assigned in `onProgress`, which control-flow analysis cannot see.
+  const inFlight = pending as Extract<AttemptProgress, { type: 'start' }> | null;
+  const attempts: readonly AiAttemptView[] =
+    answered?.attempts ??
+    (inFlight === null
+      ? [...settled]
+      : [
+          ...settled,
+          {
+            provider: inFlight.provider,
+            kind: inFlight.kind,
+            model: null,
+            outcome: 'error',
+            error: 'CALLER_CANCELLED',
+            issues: [],
+            output: null,
+            latencyMs: Math.round(deps.clock.nowMs() - inFlight.startedMs),
+            usage: null,
+          },
+        ]);
   const status: RelevanceTraceView['status'] =
     answered === null ? 'TIMEOUT' : answered.status === 'VALID' ? 'RANKED' : answered.status;
   const applied = answered?.status === 'VALID' ? answered.value : null;
@@ -151,7 +189,7 @@ export async function rankContextActions(
     scope: input.perspective.label,
     sourceIds: built.sourceIds,
     input: '',
-    attempts: answered?.attempts ?? [],
+    attempts,
     status,
     entityId: input.context.entity.entityId,
     actions: built.keys.map(({ key, index }) => {

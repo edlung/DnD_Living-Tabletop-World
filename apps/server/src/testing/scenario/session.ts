@@ -3,7 +3,7 @@ import {
   InMemoryAiTraceStore,
   createLocalProvider,
   createPlaceholderImageGenerator,
-  type AiProvider,
+  type RoutedProvider,
   type RelevanceDeps,
 } from '@ltw/ai';
 import { createCombatEngine } from '@ltw/combat';
@@ -66,7 +66,7 @@ export interface SessionOptions {
   readonly entropy?: EntropySource;
   readonly contents?: AssetContentStore;
   /** Providers for `narrative` (Chronicle prose); the local writer by default. */
-  readonly narrative?: readonly AiProvider[];
+  readonly narrative?: readonly RoutedProvider[];
   /** The scenario's language; English by default (docs/adr/0031-play-language.md). */
   readonly script?: ScenarioScript;
 }

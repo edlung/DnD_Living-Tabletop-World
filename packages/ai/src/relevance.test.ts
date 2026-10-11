@@ -2,7 +2,7 @@ import type { ContextAction, EntityContextView, RelevanceTraceView } from '@ltw/
 import { SequentialIds, SteppingClock, holderPerspective, type WorldState } from '@ltw/domain';
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { ProviderError, type AiProvider, type ProviderRequest } from './providers.ts';
+import { ProviderError, type RoutedProvider } from './providers.ts';
 import {
   applyRanking,
   rankContextActions,
@@ -12,7 +12,7 @@ import {
 import { rankerContext } from './relevance-prompt.ts';
 import { CapabilityRouter } from './router.ts';
 import { InMemoryAiTraceStore } from './traces.ts';
-import { scripted, steppingMs } from './testing/providers.ts';
+import { scripted, steppingMs, testBrand } from './testing/providers.ts';
 import {
   CAMPAIGN,
   FORBIDDEN_MARKERS,
@@ -70,7 +70,7 @@ beforeAll(async () => {
   state = (await seedRavenford({ dialogue: true })).state;
 });
 
-function deps(budgetMs: number, ...providers: AiProvider[]) {
+function deps(budgetMs: number, ...providers: RoutedProvider[]) {
   const clock = new SteppingClock();
   const traces = new InMemoryAiTraceStore();
   const value: RelevanceDeps = {
@@ -155,23 +155,28 @@ describe('rankContextActions', () => {
   });
 
   it('leaves a ranker behind once the budget runs out, whether or not it stops', async () => {
-    const silent: AiProvider = { id: 'silent', generate: () => new Promise(() => undefined) };
-    const polite: AiProvider = {
-      id: 'polite',
-      generate: (request: ProviderRequest) =>
+    const silent = testBrand('silent', 'remote', () => new Promise(() => undefined));
+    const polite = testBrand(
+      'polite',
+      'remote',
+      (_request, attempt) =>
         new Promise((_, reject) => {
-          request.signal?.addEventListener('abort', () => {
-            reject(new ProviderError('TIMEOUT', 'stopped'));
+          attempt.signal.addEventListener('abort', () => {
+            reject(new ProviderError('CALLER_CANCELLED', 'stopped'));
           });
         }),
-    };
+    );
     for (const provider of [silent, polite]) {
-      const { deps: d } = deps(50, provider);
+      const { deps: d, traces } = deps(50, provider);
       const started = performance.now();
       const ranked = await rank(d);
       expect(performance.now() - started).toBeLessThan(1_000);
       expect(ranked.actions).toBe(VIEW.actions);
       expect(ranked.ranking).toMatchObject({ source: 'deterministic', status: 'TIMEOUT' });
+      // The attempt in flight at the deadline is traced as cancelled, without waiting for it.
+      expect(traces.all()[0]?.attempts).toMatchObject([
+        { provider: provider.id, kind: 'initial', outcome: 'error', error: 'CALLER_CANCELLED' },
+      ]);
     }
   });
 
@@ -200,7 +205,7 @@ describe('what the ranker is sent', () => {
     const { deps: d } = deps(2_000, provider);
     await rank(d);
     const request = provider.requests[0];
-    const sent = JSON.stringify({ ...request, signal: undefined });
+    const sent = JSON.stringify(request);
 
     expect(sent).toContain('Ask them about Merchant Guild caravan');
     expect(sent).toContain('a level 1 slot');
