@@ -22,4 +22,21 @@ export async function seedUiAuthoringCampaigns(engine: WorldEngine): Promise<voi
       if (result.status !== 'accepted') throw new Error(`UI authoring ${campaignId} seed failed`);
     }
   }
+  // The AI feedback journey switches the DM's "speaking with" character mid-reply: a second
+  // character at Market Square, created by a real DM command.
+  const result = await engine.execute({
+    commandId: `${dmTools.aiFeedback}.second-character`,
+    campaignId: dmTools.aiFeedback,
+    actor: { actorId: 'dm-ravenford', kind: 'user' },
+    command: {
+      type: 'CreateEntity',
+      entityId: 'bram-holt',
+      kind: 'character',
+      name: 'Bram Holt',
+      description: 'A second traveller, for the AI feedback journey.',
+      existsSince: null,
+      placement: { locationId: 'market-square', since: null },
+    },
+  });
+  if (result.status !== 'accepted') throw new Error('UI AI feedback character seed failed');
 }

@@ -2,8 +2,8 @@ import { verifiedCatalog, type CatalogEntry } from '../ai/catalog.ts';
 
 /**
  * Test support: catalog entries for tests only (docs/adr/0032-live-ai.md, B2). PRICES, LIMITS AND
- * ALIASES HERE ARE INVENTED FIXTURES, NOT PROVIDER PRICES: catalog verification has not been
- * authorized, and nothing here may be copied into the production catalog. The numbers are small
+ * ALIASES HERE ARE INVENTED FIXTURES, NOT PROVIDER PRICES, and nothing here may be copied into the
+ * production catalog (whose one verified entry is `ai/catalog-sonnet-5-5.ts`). The numbers are small
  * and round so reservations and settlements can be checked by hand.
  *
  * Anthropic fixture (`claude-sonnet-5-5`): context tier at 10,000 input tokens; per token, below /
@@ -55,8 +55,8 @@ export const FIXTURE_SONNET: CatalogEntry = {
     labels: { service_tier: ['standard'] },
   },
   request: {
-    fields: ['model', 'max_tokens', 'system', 'messages', 'tools', 'tool_choice'],
-    options: {},
+    fields: ['model', 'max_tokens', 'output_config', 'system', 'messages', 'tools', 'tool_choice'],
+    options: { output_config: ['{"effort":"low"}', '{"effort":"medium"}'] },
   },
   cache: '5m',
   verification: {

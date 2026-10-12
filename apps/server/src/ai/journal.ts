@@ -9,6 +9,7 @@ import type { AiAccountingDiagnosticView, AiTraceView } from '@ltw/contracts';
 import type pg from 'pg';
 
 import type { AccountingIssue } from './accounting-tasks.ts';
+import type { AccountingSession } from './accounting/types.ts';
 import { FINALIZER_GRACE_MS, finalize, startRequest } from './accounting/request-journal.ts';
 import { readDiagnostic } from './diagnostics.ts';
 import { PostgresAiTraceStore } from './postgres-trace-store.ts';
@@ -19,9 +20,10 @@ import { PostgresAiTraceStore } from './postgres-trace-store.ts';
  *
  * - `begin` commits the durable request start in its own short transaction, bounded by
  *   MIN(the caller's remaining time, 5 s); its ID is the trace ID. Composition supplies the route
- *   identity: the approval (only for a capability with an admitted remote route and a play
- *   session) and the configured model alias. Admission later reads them from this stored row,
- *   never from a caller.
+ *   identity: the approval (only for a capability with an admitted remote route and a session)
+ *   and the configured model alias; the journal's session binding decides the session class (a
+ *   play session, or the registered evaluation run of a trusted evaluation composition, C).
+ *   Admission later reads them from this stored row, never from a caller.
  * - `finalize` stores the frozen caller outcome (status, provider, fallback code, digest) and the
  *   insert-only trace atomically, once, inside the stored window (caller deadline plus 5 s). A
  *   conflicting outcome is an integrity failure, reported and never overwritten; a closed window
@@ -34,6 +36,29 @@ export interface RouteIdentity {
 }
 
 export const LOCAL_ONLY: RouteIdentity = { approvalId: null, configuredModel: null };
+
+/**
+ * Which session class a journal charges (design §1; ADR 0032, checkpoint C). Runtime charges the
+ * play session the use case captured from the authorized campaign snapshot. A trusted evaluation
+ * composition charges its operator-registered run instead (the evaluation CLI, after checking the
+ * run's binding to the approval and campaign); the run ID never comes from a request or a world.
+ * In both, a request the use case began without a session stays local only (no approval).
+ */
+export type SessionBinding =
+  { readonly class: 'play' } | { readonly class: 'evaluation'; readonly runId: string };
+
+export const PLAY_SESSIONS: SessionBinding = Object.freeze({ class: 'play' });
+
+/** The accounting session of a request start under `binding`, or null (local only). */
+export function accountingSession(
+  binding: SessionBinding,
+  sessionId: string | null,
+): AccountingSession | null {
+  if (sessionId === null) return null;
+  return binding.class === 'play'
+    ? { class: 'play', sessionId }
+    : { class: 'evaluation', runId: binding.runId };
+}
 
 export interface AiJournal extends AiTraceStore {
   begin(
@@ -48,11 +73,17 @@ export class PostgresAiJournal implements AiJournal {
   readonly #pool: pg.Pool;
   readonly #traces: PostgresAiTraceStore;
   readonly #report: (issue: AccountingIssue) => void;
+  readonly #sessions: SessionBinding;
 
-  constructor(pool: pg.Pool, report: (issue: AccountingIssue) => void = () => undefined) {
+  constructor(
+    pool: pg.Pool,
+    report: (issue: AccountingIssue) => void = () => undefined,
+    sessions: SessionBinding = PLAY_SESSIONS,
+  ) {
     this.#pool = pool;
     this.#traces = new PostgresAiTraceStore(pool);
     this.#report = report;
+    this.#sessions = sessions;
   }
 
   async begin(
@@ -70,7 +101,7 @@ export class PostgresAiJournal implements AiJournal {
         capability: start.capability,
         scope: start.scope,
         sourceIds: start.sourceIds,
-        session: start.sessionId === null ? null : { class: 'play', sessionId: start.sessionId },
+        session: accountingSession(this.#sessions, start.sessionId),
         // An approval only with a session: a session-less request is local only.
         approvalId: start.sessionId === null ? null : identity.approvalId,
         configuredModel: identity.configuredModel,

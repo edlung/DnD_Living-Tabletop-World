@@ -252,8 +252,14 @@ describe.each([subjectOf(ANTHROPIC), subjectOf(DEEPSEEK)])('the raw $name adapte
   it.each([
     [
       'an unknown usage field',
+      { ...subject.usage, code_execution: { requests: 1 } },
+      'code_execution',
+    ],
+    [
+      'a server-tool count above zero',
       { ...subject.usage, server_tool_use: { web_search_requests: 1 } },
-      'server_tool_use',
+      // Anthropic allows the field only at zero (catalog verification of 2026-10-12).
+      subject.name === 'Anthropic' ? 'server_tool_use.web_search_requests' : 'server_tool_use',
     ],
     [
       'a negative count',

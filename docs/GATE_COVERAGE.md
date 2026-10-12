@@ -170,3 +170,38 @@ scoped context builders, prompts and instructions are unchanged:
   `raw-adapter-hardening.test.ts`, `request-lifecycle.test.ts`); suspect stops are retried and their
   route refused in-process until committed; provider request IDs are kept for every attempt
   (`suspect-records.integration.test.ts`).
+
+Stage 300 remediation checkpoint C (2026-10-12; design SHA256 `23e53e4d…aab2`, stop-scope delta
+`6bba0030…b485`; catalog record `reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md`;
+acceptance pending) changes provider-facing envelopes as follows, for Gate 06; scoped context
+builders, prompts, instructions and tool schemas are unchanged:
+- **Anthropic request settings** (`apps/server/src/ai/request-settings.ts`, `gateway.ts`): every
+  Anthropic body now carries `output_config: {effort}` and a per-capability `max_tokens` (relevance
+  `low`/2,048, NPC dialogue `low`/4,096, DM intent `medium`/8,192, Chronicle `medium`/12,288)
+  instead of the model default effort and 4,096. Still no `thinking`, sampling parameter, forced
+  tool choice or prefill (`catalog-sonnet-5-5.test.ts`, every capability).
+- **Verified catalog entry** for `claude-sonnet-5-5` only: with keys, a stored approval and an
+  eligible session, Sonnet routes now dispatch (cache-block framing of B2 applies). Usage
+  classification accepts the documented and conservatively allowlisted fields only
+  (`raw-adapters.test.ts`, `catalog-sonnet-5-5.test.ts`); zero outbound without approval, store, key
+  or session (`gateway-verified.test.ts`); every Vitest project traps the global `fetch`.
+- **Evaluation** (`apps/server/src/testing/eval/`, as corrected at repair 1): the Gate 04 replay
+  covers all five injection lines of `npc-isolation.test.ts` (in Russian), the five intents (talk,
+  two asks, insight, showing evidence) and the four attitude/disclosure scenarios of
+  `dialogue-isolation.test.ts`, each intent paired with a rotated line per scenario (69 requests,
+  not the full cross product). The exact provider request bodies are checked against the context
+  the builder exposes, rebuilt per request with the route's domain functions: by ID (recorded
+  sources equal the builder's; no boundary or source ID sent) and lexically by phrase (no planted
+  secret, other NPC's fact or still-locked guarded content; the `sayableBy` content the builder
+  exposed is present), separately from the lexical reply scan. Intent bodies get a lexical planted-
+  marker scan only. A paraphrased secret is not caught by any phrase scan (`oracles.test.ts`,
+  `eval-live.integration.test.ts` over a fake Sonnet transport). No live provider was called.
+- **Repair 1, request shape** (`apps/server/src/ai/request-shape.ts`): before any reservation a body
+  may carry only the adapter's messages (Anthropic: one user message; OpenAI-compatible: one system
+  and one user message; no assistant turn or prefill), only its one client tool (no server or typed
+  tool) and no `cache_control` but the single 5-minute ephemeral system breakpoint where the entry
+  allows it (`pricing-shape.test.ts`). The adapters' bodies are unchanged.
+- **Repair 1, runtime relevance** (owner decisions 6): the documented runtime routes send no
+  relevance request to any provider; rankings stay on the Context Engine (`gateway-verified.test.ts`
+  reads the `.env.example` example). An explicitly configured remote ranker remains possible and
+  keeps its B2 coverage.

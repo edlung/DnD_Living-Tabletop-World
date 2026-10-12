@@ -198,7 +198,10 @@ describe('the automatic stop of a suspect response', () => {
       [
         () =>
           jsonResponse(
-            ANTHROPIC.reply({ model: MODEL, usage: { ...ANTHROPIC.usage, server_tool_use: {} } }),
+            ANTHROPIC.reply({
+              model: MODEL,
+              usage: { ...ANTHROPIC.usage, server_tool_use: { web_search_requests: 1 } },
+            }),
           ),
         true,
       ],
@@ -242,7 +245,10 @@ describe('provider request IDs', () => {
       'unverified billing',
       () =>
         jsonResponse(
-          ANTHROPIC.reply({ model: MODEL, usage: { ...ANTHROPIC.usage, server_tool_use: {} } }),
+          ANTHROPIC.reply({
+            model: MODEL,
+            usage: { ...ANTHROPIC.usage, server_tool_use: { web_search_requests: 1 } },
+          }),
         ),
       MODEL,
     ],

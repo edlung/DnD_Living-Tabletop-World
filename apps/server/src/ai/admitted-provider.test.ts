@@ -158,7 +158,20 @@ describe('the admitted provider', () => {
   });
 
   it.each([
-    ['an unpriced request option', { adapter: { effort: 'low' as const } }],
+    ['a request option value outside the allowlist', { adapter: { effort: 'high' as const } }],
+    [
+      'an unpriced request field',
+      {
+        adapter: { effort: 'low' as const },
+        entry: {
+          ...FIXTURE_SONNET,
+          request: {
+            ...FIXTURE_SONNET.request,
+            fields: FIXTURE_SONNET.request.fields.filter((field) => field !== 'output_config'),
+          },
+        },
+      },
+    ],
     [
       'a body over the size limit',
       { entry: { ...FIXTURE_SONNET, limits: { ...FIXTURE_SONNET.limits, maxRequestBytes: 100 } } },

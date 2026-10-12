@@ -138,6 +138,7 @@ registerRussian({
   'Retry action': 'Повторить действие',
   'Check: {d20} + {modifier} = {total}': 'Проверка: {d20} + {modifier} = {total}',
   'Resolving your action…': 'Выполняем ваше действие…',
+  'Waiting for a reply…': 'Ждём ответа…',
   'Spoken reply · not a fact': 'Слова вслух · не факт',
   'Spoken, not a recorded fact.': 'Сказано вслух, не записанный факт.',
   'No spoken reply is available. You can still ask about a subject.':

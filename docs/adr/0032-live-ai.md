@@ -401,3 +401,160 @@ Same approved design and stop-scope delta; this closes gaps in the B2 implementa
 - **Owner-approved deferrals.** An admission denied with an unconfirmed COMMIT keeps any hold until
   operator reconciliation, although transport never started, and its trace reports "not dispatched,
   cost 0". Sonnet 5.5 usage/model allowlists wait for catalog verification.
+
+### 2026-10-12 — Verified Sonnet 5.5 entry, request settings, evaluation integrity, client feedback and Q5 (remediation checkpoint C)
+
+Approved design: `docs/STAGE_300_REMEDIATION_DESIGN.md` (SHA256 `23e53e4d…aab2`) and the B2
+stop-scope delta (`6bba0030…b485`), unchanged. Owner authorization: decisions 5 of 2026-10-12
+(checkpoint C, catalog verification; no live run, no paid call). Catalog record:
+`reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md`. This records the
+implemented contract; acceptance pending.
+
+- **One verified entry** (`apps/server/src/ai/catalog-sonnet-5-5.ts`): Anthropic
+  `claude-sonnet-5-5`, which is also its only alias and only accepted response model; pricing
+  version `anthropic-claude-sonnet-5-5-2026-10-12` at 2 / 2.5 / 0.1 / 10 µ$ per token (input,
+  5-minute cache write, cache read, output including thinking); no context tiers; 1,000,000 input
+  and 128,000 output tokens; 32,000,000 request bytes. No other model has an entry, so every other
+  remote route is still refused at startup (`UNVERIFIED_MODEL`).
+  - The 1-hour cache-write rate is deliberately not priced: the adapter only ever sends a 5-minute
+    breakpoint, so the reservation's highest input rate is the 5-minute write, exactly the record's
+    example (2,540,960 µ$ at 4,096 output tokens). A reported 1-hour write, or a cache-write total
+    without its 5-minute/1-hour split (B2 priced that at the 1-hour rate), is now unpriced: unverified
+    billing, hold kept, route stopped. This is stricter, never cheaper.
+  - Usage labels: `service_tier` only `standard`, `inference_geo` only `global`. A null or absent
+    `service_tier`, `inference_geo` or `speed` reads as the default (owner decisions 6,
+    `nullUsageLabels`, clarifying the verification record: the published schema allows null);
+    any explicit other value has another price and fails closed.
+  - **Fields outside the public schema**, within design §1's "known informational usage fields and
+    their permitted values" (no new mechanism beyond the allowlist): the Anthropic adapter's usage
+    spec (`usage-facts.ts`) gained null-only labels (`fallback_credit`), zero-only counts (server-tool
+    `web_search_requests`/`web_fetch_requests`, recorded as label `'0'`) and one array check
+    (`iterations`: every entry `type: "message"`, only known counts, their sums equal to the
+    top-level counts it restates, always including input and output; recorded as label
+    `message`). `speed` is a label allowed only as `standard`; `output_tokens_details.thinking_tokens`
+    is a count that must not exceed `output_tokens` and is never priced twice. Each catalog entry
+    then accepts only the labels it lists (the test fixture entry accepts none of these). Anything
+    else is unverified billing.
+  - Usability limitation (design §1, unchanged): with no verified tokenizer bound every attempt holds
+    the full context plus `max_tokens`, $2.520480–$2.622880; a ceiling below one hold admits nothing,
+    concurrent requests need one hold each, and a post-dispatch timeout (for example a ranking past
+    its deadline) keeps its full hold until operator reconciliation.
+- **Request settings** (`apps/server/src/ai/request-settings.ts`, trusted code, not configuration).
+  The Anthropic body already had no forced tool choice, no `thinking` (adaptive; `disabled` would be
+  a 400 on Sonnet 5.5), no sampling parameters and no prefill; that is now pinned per capability
+  (`catalog-sonnet-5-5.test.ts`). Adaptive thinking spends output inside `max_tokens` and Sonnet's
+  default effort is `high`, which risks truncation (invalid output, then a paid repair). Each
+  capability now sends an explicit effort with room for thinking plus its answer: relevance `low`,
+  2,048; NPC dialogue `low`, 4,096; DM intent `medium`, 8,192; Chronicle `medium`, 12,288. The entry
+  allowlists only `low` and `medium` and `tool_choice` `auto`. These are initial settings, to be
+  revisited after a live evaluation; the relevance deadline (`LTW_AI_RELEVANCE_BUDGET_MS`, default
+  2,000 ms) is unmeasured for Sonnet 5.5.
+- **Eligibility.** The entry alone sends nothing: a Sonnet route needs its key, a selected stored
+  approval and the accounting store, and each request an eligible session that admission accepts.
+  Tests prove zero outbound requests and no key read without an approval, with an unstored
+  approval, without a store, without a key and without an active play session
+  (`gateway-verified.test.ts`), and every Vitest project now replaces the global `fetch` with a trap
+  that fails any test calling it (`tests/setup/no-network.ts`).
+- **Evaluation integrity** (design §4; `apps/server/src/testing/eval/`). `pnpm eval:ai --live
+--approval <id> --run <id>` refuses, before any provider is built or key read, in this order: no
+  verified entry, no configured database, no key, an invalid evaluation route (before any
+  connection), a failed database read (`DATABASE_UNAVAILABLE`, never read as an absent record), no
+  stored approval, a run not registered to that approval and the evaluation campaign, and finally a
+  route composition refuses; no argument sets a ceiling. The
+  evaluation journal records the **evaluation session class with the run ID**
+  (`journal.ts` `SessionBinding`), so admission charges the run's bucket under the approval in the
+  shared ledger. Routes are one remote per capability. Each run writes a new directory (never
+  overwritten): manifest (source commit and dirty-file hashes, configuration without keys, model
+  identity, case inventory, known missing charges, summaries), results and report. Intent oracles
+  accept exactly the asked command list (count, types, targets, values, scope) and an explicit
+  proposal/decline expectation; negative controls reject a wrong name, target or command type, a
+  partial substring, extra commands, an unrelated account, a paraphrased secret, guarded
+  (`guardedBy`) and never-said content, a wrong Chronicle citation, a missing hedge and a broken
+  relevance action-set or deadline contract (repair 1 below). The Gate 04 replay covers the five
+  injection lines, the five intents and the four attitude/disclosure scenarios; the exact provider
+  input is checked against the context the builder exposes (sources by ID, phrases lexically)
+  separately from the lexical output scan. Reports separate semantic correctness, safe decline,
+  technical provider success and (unjudged) quality, with end-to-end latency apart from attempt
+  latency and the relevance deadline read from configuration. The 45-minute session estimate for
+  the runtime configuration is labelled an estimate, with known charges, holds and unknowns
+  apart. **The blind NPC comparison is
+  waived by the owner** (decisions 2): no blind artifact. Nothing ran against a live provider.
+- **Client feedback** (design §2–3): the player's talk says it waits for a reply; the DM's NPC panel
+  says the NPC is replying and discards a reply for a listener the DM has since changed; Chronicle
+  says it is writing and, without the narrator, that the chapter is the plain record; an unavailable
+  assistant (including a null trace ID) is told apart from a declined request. The client opens no
+  trace view; authoring never sends a null source (B2). Russian and English messages
+  (`apps/web/src/i18n/`); browser journeys `tests/e2e/ai-feedback.spec.ts`.
+- **Q5 product disposition (owner, 2026-10-11:** `reviews/STAGE_300_PRODUCT_DECISIONS_2026-10-11.json`,
+  reaffirmed in decisions 3). Paid AI runs only inside an active play session or a registered
+  evaluation run, for all four capabilities. DM preparation without an active play session and
+  Chronicle rendering after a session closes are **local-only**: no paid preparation session is
+  created by a login, a key or a route. A paid campaign-preparation session would need a separately
+  reviewed explicit grant. Design §1 required this disposition before checkpoint C completion.
+- **Not changed.** No paid call, no live evaluation run, no operator record (test databases only),
+  no new public status, no prompt or scoped-context change, no migration.
+
+#### C repair 1 (2026-10-12)
+
+Same approved design and stop-scope delta; owner decisions 6 of 2026-10-12
+(`reviews/STAGE_300_OWNER_DECISIONS_6_2026-10-12.json`). This closes gaps found in review.
+
+- **Exact intent oracles** (`apps/server/src/testing/eval/intent-cases.ts`). A proposal is correct
+  only when it is exactly the asked command list: number, types, targets (entity, place, account
+  holder and author, subjects), values and knowledge scope; any further command or unrequested
+  optional field (relations, another subject) is wrong. The guard's account must be the new guard's
+  own TESTIMONY, attributed to it, and say the caravan left (a lexical check, so labelled). The
+  injection's only acceptable proposal is the requested fact word for word, as world truth about
+  the guild; a paraphrase is scored wrong (a possible false negative, never a false pass), so a
+  paraphrased planted secret cannot pass.
+- **Chronicle verdict for the model only** (`oracles.ts` `chronicleModelVerdict`). Prose is judged
+  only when the configured remote model wrote the committed chapter. Validation rejects wrong
+  citations and missing hedges before any commit and commits the template instead, so such a
+  chapter is scored as a model failure with each rejected answer's causes (wrong citation, missing
+  hedge, no citation, ID in prose, schema or malformed codes). Template and local chapters are
+  reported apart, by authorship, and are never a model pass.
+- **Measured estimate from known charges** (`eval-world.ts`, `eval-report.ts`,
+  `session-estimate.ts`). A measured sample is one request's known charge: its dispatched
+  attempts' terminal charges, priced from every billed usage class (uncached input, cache writes
+  and reads, output). Requests never dispatched (denied or released before transport) or with a
+  held attempt of unknown charge give no sample. Assumed token ranges count every billed input
+  token, and their high end prices each at the highest input rate, so that bound holds.
+- **Relevance at runtime (owner decisions 6, `relevanceRoute`).** Runtime ranking uses the
+  deterministic Context Engine with no paid model; Sonnet 5.5 serves DM intents, NPC dialogue and
+  Chronicle. The `.env.example` route example has no `fast-context` entry, and the startup report
+  for it shows relevance with no provider and no refusal (`gateway-verified.test.ts`). The design's
+  explicit remote ranker stays possible but is not the runtime configuration. The session estimate
+  prices rankings at zero and shows a Sonnet-relevance alternative apart, labelled. A live
+  evaluation measures relevance only when `fast-context` is named.
+- **Null usage labels (owner decisions 6, `nullUsageLabels`).** Unchanged behavior, now recorded
+  and tested explicitly: null or absent `service_tier`, `inference_geo` and `speed` are the
+  defaults; explicit other values fail closed.
+- **Gate 04 replay** (`cases.ts`, `dialogue-runner.ts`). All five injection lines of
+  `npc-isolation.test.ts` (in Russian), the five intents (talk, two asks, insight, showing the
+  party's evidence) and the four attitude/disclosure scenarios of `dialogue-isolation.test.ts`; in
+  each scenario every intent is paired with a line, rotated per scenario (69 requests per run, not
+  the full cross product). After each request the runner rebuilds the NPC context with the route's
+  own domain functions on the same snapshot and checks the exact provider input against it: by ID,
+  the recorded sources equal the builder's and no boundary or source ID is sent; by phrase
+  (lexical), no planted secret, other NPC's fact or still-locked guarded content is sent (the
+  player's own words excepted) and every `sayableBy` marker the builder exposed is present. A
+  paraphrase of a secret is not caught by the phrase scan; the source comparison bounds the input.
+- **Request shape below the top level** (`apps/server/src/ai/request-shape.ts`, before any
+  reservation). Anthropic: exactly one user message with string content (no assistant turn or
+  prefill), exactly the one client tool the request names (no server or typed tool), and no
+  `cache_control` but the single `{type: "ephemeral"}` breakpoint on the one system text block, only
+  where the entry permits caching. OpenAI-compatible: exactly one system and one user message, one
+  function tool of that name, no cache directive. Anything else is refused (`messages`, `tools`,
+  `cache` or `system`).
+- **Test hygiene.** The no-network proofs recognize the trap by its registry symbol without
+  importing the setup file, so they fail if `setupFiles` stops installing it. The stalled-finalizer
+  relevance test uses a 3 s budget and asserts the dispatch, so admission always finishes before
+  the deadline under load; it still proves the return at the deadline without waiting for the
+  stalled write, the pending trace and open hold, and the later recorded trace.
+- **Evaluation preflight and client.** Every preflight database read failure is the fixed refusal
+  `DATABASE_UNAVAILABLE`, never a thrown error or an absent approval. The Chronicle writer tells an
+  unavailable narrator apart from a narrator whose text failed the chronicle's checks (English and
+  Russian).
+- **Operator ceilings (owner decisions 6, `operatorCeilings`)** — $30 stage grant, $15 global daily,
+  $15 Ravenford daily, $10 per play session, $10 per evaluation run — are to be recorded through
+  the operator CLI after checkpoint C acceptance; none is recorded here.

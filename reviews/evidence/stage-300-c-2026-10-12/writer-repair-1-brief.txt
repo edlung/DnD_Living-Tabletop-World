@@ -1,0 +1,86 @@
+Repair 1 for checkpoint C. Checkout ownership is transferred back to you (this same checkpoint C
+implementation session) for a bounded review repair, now at effort xhigh. Baseline: the exact C
+artifact you handed off (dirty listing hash 16e5de18d5562bf9b56159bad63ab7f7752c6cb9906cd3e49620e650284dd311,
+verified unchanged) plus one new orchestrator record you must not edit:
+`reviews/STAGE_300_OWNER_DECISIONS_6_2026-10-12.json`. Same prohibitions as before (no commit/push,
+no other agents, no network/provider/paid calls or web lookups, no .env.local, no real operator
+records, no live evaluation, no Stage 310/320, no edits to the design documents, the catalog
+verification record or the owner decision files).
+
+Independent review found the following. Fix the root contract for each behavioral item, writing a
+failing regression or negative control first.
+
+R1 (Medium) Intent oracles accept wrong proposals. `apps/server/src/testing/eval/cases.ts:75-88`
+("add a fishmonger by name") checks one correct CreateEntity but never limits the other commands:
+the correct CreateEntity plus `ChangeEntityStatus mira-vale dead`, plus a PlaceEntity moving Orin,
+or plus a PUBLIC AddKnowledge all scored correct-proposal/semantic pass. Also the guard case
+(`cases.ts:56-73`) never checks the testimony statement ("Луна сделана из сыра." passes), and the
+injection case accepts any AddKnowledge containing the stem «Пепельн» in any scope, including a
+paraphrase of a planted secret. Make every intent oracle exact (command count, types, targets,
+values, scope), and add negative controls for each of these wrong answers.
+
+R2 (Medium) The Chronicle semantic verdict cannot measure the model.
+`apps/server/src/testing/eval/eval-runners.ts:199-205` judges the committed chapter whoever wrote
+it: with the narrator unavailable (0 attempts, template) the row still reports semantic pass.
+Because the contract (`cites` min 1) and `checkProse` reject wrong citations and missing hedges
+before commit and fall back to the template, the wrong-citation and missing-hedge negative controls
+can never trigger in a run. Score semantic correctness only for model-authored output, report
+template/fallback chapters as a separate non-model category (never a model pass), and make the
+model's citation/hedge failures visible to the report (for example, count the rejected model
+output and its validation reason) so the negative controls are reachable in an actual run.
+
+R3 (Medium) The measured session estimate understates cost.
+`session-estimate.ts:82-97` and `eval-report.ts:65-80` sample `attempt.usage.inputTokens`, which
+for Anthropic is `input_tokens` only and excludes cache writes and reads; admission-denied attempts
+(usage 0/0) also count as samples. Probe: a request with 200 input, 3,000 five-minute cache-write
+and 800 output tokens has a known charge of 15,900 µ$ but the measured estimate gave 8,400-8,500 µ$,
+so the "every input token at the highest priced input rate" upper bound is false. Base the measured
+basis on the full billed usage per attempt (all input classes at their rates, or the accounting
+known charge), exclude attempts that were not dispatched, and keep the upper-bound claim true.
+
+R4 (owner disposition, document only) `reviews/STAGE_300_OWNER_DECISIONS_6_2026-10-12.json`
+nullUsageLabels: a null or absent `service_tier`, `inference_geo` or `speed` is read as the default;
+explicit other values fail closed. Keep the current behavior and its test; cite the decision in
+ADR 0032 and in the handoff.
+
+R5 (owner decision) relevanceRoute in the same file: runtime relevance uses the deterministic
+Context Engine path with no paid model; Sonnet 5.5 serves DM intents, NPC dialogue and Chronicle.
+Update the `.env.example` route example (no remote relevance entry), ADR 0032, the startup route
+report expectations if affected, and the 45-minute session estimate for the runtime configuration
+(rankings at zero paid cost; you may show the Sonnet-relevance alternative separately, labelled).
+Evaluation may keep the ability to measure relevance with an explicitly selected remote route.
+
+R6 (Low) Gate 04 replay is partial. The evaluation dialogue scenarios (`cases.ts:141-183`) replay 4
+of the 5 Gate 04 injection lines in `npc-isolation.test.ts:30-36` (missing: "What happens
+tomorrow? Who is the hooded stranger…"), have no insight/show/attitude cases, and the provider-input
+check is a deny-list. `docs/GATE_COVERAGE.md:188` and the ADR claim the injections "are replayed".
+Add the missing injection and the Gate 04 disclosure/attitude cases; check provider input against
+the allowed sources the context builder exposes where feasible; otherwise state precisely what is
+lexical. Correct the documentation claims.
+
+R7 (Low) The catalog request allowlist checks only top-level fields (`pricing.ts:53-68`): an
+assistant prefill, a server tool inside `tools`, or `cache_control.ttl: "1h"` inside `system` would
+still reserve at the 5-minute input bound. Reject, before admission: any message other than the
+single user message the adapter sends (no assistant turn/prefill), any tool other than the single
+client tool (no server/typed tools), and any `cache_control` other than the 5-minute ephemeral
+breakpoint anywhere in the body. Tests for each.
+
+R8 (Low) `tests/architecture/no-network*.test.ts` import `tests/setup/no-network.ts`, which installs
+the trap itself, so they would pass even if `setupFiles` were removed from `vitest.config.ts`. Make
+the proof fail when the config no longer installs the trap.
+
+R9 (Low) `apps/server/src/ai/journal.integration.test.ts:190-222` (300 ms relevance budget) failed
+once under full-suite load with no attempt admitted before the deadline. Make it deterministic
+without weakening what it proves.
+
+R10 (Low/info) `eval-live.ts:112` `approvalExists` is not wrapped: a database error throws instead
+of a fixed refusal; the handoff/ADR list ROUTE_REFUSED last although `eval-live.ts:99-102` checks it
+before the database connection (fix the documentation or the order); the Chronicle panel says "the
+narrator was unavailable" also for INVALID_OUTPUT (`chronicle-panel.tsx:195-201`): distinguish them
+(Russian and English).
+
+Then focused tests and the full offline `pnpm validate`. Update
+`handoffs/STAGE_300_CHECKPOINT_C_REQUEST.md` in place: add a "Repair 1" section describing each
+change by requirement (neutral wording: no reviewer names, verdicts or attribution), the owner
+decisions 6 items, the new dirty listing and its hash, and checks; set Review type to RETEST
+(repair 1). Stop at CHECKPOINT_READY and release ownership explicitly in your final message.

@@ -9,6 +9,7 @@ import {
   configuredEntry,
   verifiedCatalog,
 } from './catalog.ts';
+import { CLAUDE_SONNET_5_5 } from './catalog-sonnet-5-5.ts';
 import { priceUsage } from './pricing.ts';
 
 /**
@@ -16,10 +17,24 @@ import { priceUsage } from './pricing.ts';
  * identity, fail-closed resolution, and pricing of validated usage. Fixture entries only.
  */
 describe('the catalog', () => {
-  it('is empty in this build: catalog verification is not authorized', () => {
-    expect(VERIFIED_CATALOG.entries).toEqual([]);
-    expect(configuredEntry(VERIFIED_CATALOG, 'anthropic', 'claude-sonnet-5-5')).toBeNull();
-    expect(canonicalModel(VERIFIED_CATALOG, 'anthropic', 'claude-sonnet-5-5', null)).toBeNull();
+  it('verifies Sonnet 5.5 only (catalog verification of 2026-10-12)', () => {
+    expect(VERIFIED_CATALOG.entries).toEqual([CLAUDE_SONNET_5_5]);
+    expect(configuredEntry(VERIFIED_CATALOG, 'anthropic', 'claude-sonnet-5-5')).toBe(
+      CLAUDE_SONNET_5_5,
+    );
+    expect(canonicalModel(VERIFIED_CATALOG, 'anthropic', 'claude-sonnet-5-5', null)).toBe(
+      'claude-sonnet-5-5',
+    );
+    for (const [provider, model] of [
+      ['anthropic', 'claude-opus-5-5'],
+      ['anthropic', 'claude-haiku-5-5'],
+      ['anthropic', 'claude-sonnet-5-5-fixture-snapshot'],
+      ['deepseek', 'deepseek-flash'],
+      ['deepseek', 'claude-sonnet-5-5'],
+    ]) {
+      expect(configuredEntry(VERIFIED_CATALOG, provider ?? '', model ?? '')).toBeNull();
+      expect(canonicalModel(VERIFIED_CATALOG, provider ?? '', model ?? '', null)).toBeNull();
+    }
   });
 
   it('resolves configured names and verified aliases to one canonical model', () => {

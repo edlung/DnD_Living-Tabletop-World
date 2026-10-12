@@ -2,14 +2,20 @@
 
 Composition root of the modular monolith and the only workspace package allowed to perform I/O (`docs/adr/0004-module-boundaries.md`).
 
-Live AI (Stage 300, remediation in progress): start with ADR 0032 (amendments 2026-10-11, B2 last),
+Live AI (Stage 300, remediation in progress): start with ADR 0032 (amendments 2026-10-11 and later, C last),
 `src/ai/gateway.ts` and `src/ai/accounting/AGENTS.md`. Since checkpoint B2 every AI request runs
 through the PostgreSQL request journal (`src/ai/journal.ts`), and a remote provider exists only as
 an admitted wrapper (`src/ai/admitted-provider.ts`) built by `gateway.ts` with a selected stored
 approval, the accounting store and a verified catalog entry (`src/ai/catalog.ts`, `pricing.ts`).
-The verified catalog is empty (verification not authorized), so every remote route is refused at
-startup and nothing is sent. Raw adapters (`prepare`/`dispatch`, `src/ai/raw-provider.ts`) are
-imported only by `gateway.ts` and tests (`tests/architecture/raw-adapter-imports.test.ts`); routers
+The verified catalog has exactly one entry since checkpoint C, `anthropic:claude-sonnet-5-5`
+(`src/ai/catalog-sonnet-5-5.ts`, from the owner-authorized verification record of 2026-10-12); every
+other model is refused at startup. A Sonnet route sends only with its key, a selected stored approval
+and an eligible session that admission accepts; per-capability effort and `max_tokens` are trusted code
+(`src/ai/request-settings.ts`), and a body outside the adapter's own shape is refused before
+reservation (`src/ai/request-shape.ts`). Runtime relevance stays deterministic (owner decisions 6). Every Vitest project runs with a global `fetch` trap
+(`tests/setup/no-network.ts`): tests inject `fetch`. Live evaluation (`src/testing/eval/`, `pnpm eval:ai
+--live`) needs a stored approval and an operator-registered run; see `src/testing/eval/eval-live.ts`.
+Raw adapters (`prepare`/`dispatch`, `src/ai/raw-provider.ts`) are imported only by `gateway.ts` and tests (`tests/architecture/raw-adapter-imports.test.ts`); routers
 come only from `src/ai/composition.ts` (`composeRouter`, identity-checked). The DM's accounting
 diagnostic is `GET …/ai/accounting/:traceId` (`src/ai/diagnostics.ts`). Follow
 `docs/PROJECT_WORKFLOW.md` and the approved remediation scope. Never run paid evaluation without

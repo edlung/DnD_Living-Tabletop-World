@@ -11,6 +11,7 @@ import { useCallback, useState } from 'react';
 import { ApiError, type WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
+import { chapterMessage } from './chapter-message.ts';
 
 /**
  * The Chronicle: chapters told from the viewing perspective's own memories, each
@@ -191,11 +192,8 @@ function Generate({
         { title, perspective: scope, from: 0 },
         new AbortController().signal,
       );
-      setMessage(
-        result.result.status === 'rejected'
-          ? t('The chronicle could not be written from the current events.')
-          : t('Chapter written.'),
-      );
+      // Honest provenance (ADR 0032, C): which prose the chapter holds, and why.
+      setMessage(t(chapterMessage(result)));
       if (result.result.status !== 'rejected') onDone();
     } catch (error) {
       setMessage(
@@ -237,6 +235,7 @@ function Generate({
       <button disabled={busy || title.trim() === ''} onClick={() => void generate()}>
         {t('Write chapter')}
       </button>
+      {busy && <p role="status">{t('Writing the chapter…')}</p>}
       {message && <p role="status">{message}</p>}
     </details>
   );

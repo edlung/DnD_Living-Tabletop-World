@@ -1,0 +1,351 @@
+{
+  "opusXhighInitial": {
+    "requestedModel": "claude-opus-5-5",
+    "requestedEffort": "xhigh",
+    "responseMessageModels": [
+      "claude-opus-5-5"
+    ],
+    "sessionId": "887d5949-ad49-4180-8bfe-9178de63ed24",
+    "isError": false,
+    "durationSeconds": 678.8,
+    "numTurns": 110,
+    "usage": {
+      "input_tokens": 172,
+      "cache_creation_input_tokens": 262336,
+      "cache_read_input_tokens": 14108835,
+      "output_tokens": 62714,
+      "output_tokens_details": {
+        "thinking_tokens": 35570
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 262336,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 7271,
+          "cache_read_input_tokens": 265967,
+          "cache_creation_input_tokens": 561,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 561
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "rawSha256": "b908663458b1380a0cceedb056f82c68967925ba6acebac68a9ee1182b7afc2b",
+    "verdictLine": "**Verdict: PASS**",
+    "wrapper": {
+      "artifact": "6e8e1850adeade6008c9667601801a9e98aa6a855a283444b39ac9723e5fe042",
+      "auth": {
+        "apiProvider": "firstParty",
+        "auth": "claude.ai",
+        "provider": "claude"
+      },
+      "evidence_dir": "/private/tmp/ltw-stage300-checkpoint-c-review/state/reviewers/claude/turns/001-start",
+      "failures": [],
+      "kind": "start",
+      "note": "transport/session success only; not an acceptance verdict",
+      "ok": true,
+      "requested_effort": "xhigh",
+      "requested_model": "claude-opus-5-5",
+      "response_model_status": "client-reported assistant.message.model (not server attestation)",
+      "response_models": [
+        "claude-opus-5-5"
+      ],
+      "reviewer": "claude",
+      "reviewer_status": "ready",
+      "session_id": "887d5949-ad49-4180-8bfe-9178de63ed24",
+      "status": "completed",
+      "turn": 1
+    }
+  },
+  "opusXhighRepair1": {
+    "requestedModel": "claude-opus-5-5",
+    "requestedEffort": "xhigh",
+    "responseMessageModels": [
+      "claude-opus-5-5"
+    ],
+    "sessionId": "887d5949-ad49-4180-8bfe-9178de63ed24",
+    "isError": false,
+    "durationSeconds": 313.4,
+    "numTurns": 62,
+    "usage": {
+      "input_tokens": 98,
+      "cache_creation_input_tokens": 371562,
+      "cache_read_input_tokens": 16375326,
+      "output_tokens": 29532,
+      "output_tokens_details": {
+        "thinking_tokens": 9956
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 371562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3835,
+          "cache_read_input_tokens": 375136,
+          "cache_creation_input_tokens": 618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "rawSha256": "b40797f7ad88b6029a1e2d0b2916d76893d180a9860252a316ed0eae98aa9e35",
+    "verdictLine": "**Verdict: PASS**",
+    "wrapper": {
+      "artifact": "ed2c39ed687db156947468f5c9ec9dad5817ae74a6cb56666929547d13a95edc",
+      "auth": {
+        "apiProvider": "firstParty",
+        "auth": "claude.ai",
+        "provider": "claude"
+      },
+      "evidence_dir": "/private/tmp/ltw-stage300-checkpoint-c-review/state/reviewers/claude/turns/002-resume",
+      "failures": [],
+      "kind": "resume",
+      "note": "transport/session success only; not an acceptance verdict",
+      "ok": true,
+      "requested_effort": "xhigh",
+      "requested_model": "claude-opus-5-5",
+      "response_model_status": "client-reported assistant.message.model (not server attestation)",
+      "response_models": [
+        "claude-opus-5-5"
+      ],
+      "reviewer": "claude",
+      "reviewer_status": "ready",
+      "session_id": "887d5949-ad49-4180-8bfe-9178de63ed24",
+      "status": "completed",
+      "turn": 2
+    }
+  },
+  "opusMaxInitial": {
+    "requestedModel": "claude-opus-5-5",
+    "requestedEffort": "max",
+    "responseMessageModels": [
+      "claude-opus-5-5"
+    ],
+    "sessionId": "0c181819-8f53-488a-a1b1-3c58dab69e56",
+    "isError": false,
+    "durationSeconds": 1329.0,
+    "numTurns": 173,
+    "usage": {
+      "input_tokens": 236,
+      "cache_creation_input_tokens": 401144,
+      "cache_read_input_tokens": 29768798,
+      "output_tokens": 137489,
+      "output_tokens_details": {
+        "thinking_tokens": 89920
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 401144,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 15898,
+          "cache_read_input_tokens": 404436,
+          "cache_creation_input_tokens": 900,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 900
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "rawSha256": "f40103dfde6e78e952f8ddf4a5e55a1aa101fcd772e85ed6dedd4a9d54780415",
+    "verdictLine": "**Verdict: PASS**",
+    "launch": "Claude Code CLI with the reviewer-cli Claude argv except effort max, plus --add-dir scratch; env -i; separate snapshot of the same artifact"
+  },
+  "opusMaxRepair1": {
+    "requestedModel": "claude-opus-5-5",
+    "requestedEffort": "max",
+    "responseMessageModels": [
+      "claude-opus-5-5"
+    ],
+    "sessionId": "0c181819-8f53-488a-a1b1-3c58dab69e56",
+    "isError": false,
+    "durationSeconds": 631.9,
+    "numTurns": 95,
+    "usage": {
+      "input_tokens": 136,
+      "cache_creation_input_tokens": 598429,
+      "cache_read_input_tokens": 35292709,
+      "output_tokens": 59227,
+      "output_tokens_details": {
+        "thinking_tokens": 29180
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 598429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 5581,
+          "cache_read_input_tokens": 599306,
+          "cache_creation_input_tokens": 3315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "rawSha256": "236ec7e291d5e0908d90f60c1587ddc147a15cce645867e469f1b97b2c56f61e",
+    "verdictLine": "**Verdict: PASS**",
+    "launch": "Claude Code CLI with the reviewer-cli Claude argv except effort max, plus --add-dir scratch; env -i; separate snapshot of the same artifact"
+  },
+  "writer": {
+    "turn1": {
+      "mode": "start",
+      "turn": 1,
+      "exitCode": 0,
+      "requestedModel": "claude-opus-5-5",
+      "responseMessageModels": [
+        "claude-opus-5-5"
+      ],
+      "effort": "medium",
+      "identityMismatch": false,
+      "elapsedSeconds": 2623.6,
+      "sessionId": "602eed75-9e1c-4c80-8cb4-563091f50796",
+      "isError": false,
+      "usage": {
+        "input_tokens": 410,
+        "cache_creation_input_tokens": 450739,
+        "cache_read_input_tokens": 56909132,
+        "output_tokens": 213053,
+        "output_tokens_details": {
+          "thinking_tokens": 62610
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 450739,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 2310,
+            "cache_read_input_tokens": 455719,
+            "cache_creation_input_tokens": 715,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 715
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "provider": "native Anthropic firstParty claude.ai subscription",
+      "billingChanged": false,
+      "rawSha256": "77f9fe30bf59b83bdd97325f7456861383507b07f7e23468109c418819e45fb2",
+      "promptSha256": "9561bfbcfe8d5441feb5082b6baaba15280e007b417fe4ecf1820454b9d5d38b"
+    },
+    "turn2Repair1": {
+      "mode": "resume",
+      "turn": 2,
+      "exitCode": 0,
+      "requestedModel": "claude-opus-5-5",
+      "responseMessageModels": [
+        "claude-opus-5-5"
+      ],
+      "effort": "xhigh",
+      "identityMismatch": false,
+      "elapsedSeconds": 1747.3,
+      "sessionId": "602eed75-9e1c-4c80-8cb4-563091f50796",
+      "isError": false,
+      "usage": {
+        "input_tokens": 184,
+        "cache_creation_input_tokens": 674993,
+        "cache_read_input_tokens": 54061348,
+        "output_tokens": 142254,
+        "output_tokens_details": {
+          "thinking_tokens": 41558
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 674993,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 1801,
+            "cache_read_input_tokens": 678419,
+            "cache_creation_input_tokens": 1350,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 1350
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "provider": "native Anthropic firstParty claude.ai subscription",
+      "billingChanged": false,
+      "rawSha256": "9eade6a98228039c837e760ac40af0937f59ddf0deb9d4a55879c98f959df00c",
+      "promptSha256": "1c1d4cf93aeecb76a15aa6f88db23c94dda926cb1339a2caa5ba68ea222c10a5"
+    }
+  },
+  "artifact": {
+    "reviewerCliManifest": "ed2c39ed687db156947468f5c9ec9dad5817ae74a6cb56666929547d13a95edc",
+    "handoffDirtyListingSha256": "7f4c4eb41ae365751990501fdab5464dd0006f07e403d194e476a46e003108dc",
+    "baseHead": "e288678"
+  }
+}

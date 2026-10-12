@@ -1,4 +1,5 @@
 import type { PricingVersion } from './accounting/money.ts';
+import { CLAUDE_SONNET_5_5 } from './catalog-sonnet-5-5.ts';
 
 /**
  * The pricing and model-identity catalog (docs/STAGE_300_REMEDIATION_DESIGN.md §1;
@@ -17,9 +18,12 @@ import type { PricingVersion } from './accounting/money.ts';
  * model. A string or tuple that maps to no model, or to two, is unresolved: the caller denies.
  *
  * Catalog verification against the providers' official documentation is a separate activity the
- * owner has not authorized (2026-10-11). `VERIFIED_CATALOG` is therefore empty: every remote route
- * is refused at composition, before any adapter is built or key revealed. Tests use fixture
- * entries only (`testing/catalog-fixtures.ts`), whose prices are not real.
+ * owner authorizes per model. `VERIFIED_CATALOG` holds exactly one entry, Anthropic
+ * `claude-sonnet-5-5` (`catalog-sonnet-5-5.ts`, verified 2026-10-12 under owner decisions 5); any
+ * other model is refused at composition, before any adapter is built or key revealed. A verified
+ * entry alone sends nothing: composition also needs a selected stored approval, the accounting
+ * store and the key, and admission an eligible session (`gateway.ts`). Other tests use fixture
+ * entries (`testing/catalog-fixtures.ts`), whose prices are not real.
  */
 export type CatalogProvider = 'anthropic' | 'deepseek';
 
@@ -139,8 +143,8 @@ export function verifiedCatalog(entries: readonly CatalogEntry[]): Catalog {
   return Object.freeze({ entries: Object.freeze([...entries]) });
 }
 
-/** The production catalog: empty until catalog verification is separately authorized. */
-export const VERIFIED_CATALOG: Catalog = verifiedCatalog([]);
+/** The production catalog: only the owner-authorized verified entries. */
+export const VERIFIED_CATALOG: Catalog = verifiedCatalog([CLAUDE_SONNET_5_5]);
 
 /** The entry a configured `provider:model` names (canonical name or a verified alias), or null. */
 export function configuredEntry(

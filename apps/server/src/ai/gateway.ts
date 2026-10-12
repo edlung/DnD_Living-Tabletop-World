@@ -14,6 +14,7 @@ import { AccountingTasks } from './accounting-tasks.ts';
 import type { BudgetStore } from './accounting/types.ts';
 import { admittedProvider } from './admitted-provider.ts';
 import { createAnthropicProvider } from './anthropic-provider.ts';
+import { ANTHROPIC_REQUEST_SETTINGS } from './request-settings.ts';
 import { configuredEntry, type Catalog, type CatalogEntry } from './catalog.ts';
 import { composeRouter } from './composition.ts';
 import { LOCAL_ONLY, type AiJournal, type RouteIdentity } from './journal.ts';
@@ -31,8 +32,11 @@ import type { RawRemoteProvider } from './raw-provider.ts';
  * accounting store, the store itself, an explicitly verified catalog entry for that provider and
  * model, and the provider's key. Otherwise the entry is refused here, before any adapter is built or
  * key revealed, and the route is local only (no fictitious denied attempt). The key is read only by
- * `dispatch`, after durable admission. With the empty verified catalog of this build, every remote
- * entry is refused: no outbound request is possible.
+ * `dispatch`, after durable admission. The verified catalog has one entry, `claude-sonnet-5-5`
+ * (checkpoint C): any other model is refused. Even a routed Sonnet entry dispatches only for a
+ * request with an eligible session (a play session captured from the campaign, or a registered
+ * evaluation run) that durable admission accepts; otherwise nothing is sent and no key is read.
+ * Anthropic requests carry the per-capability effort and `max_tokens` of `request-settings.ts`.
  *
  * Every request runs through the journal (`journal.ts`); a request start carries the approval only
  * for a capability whose route has an admitted remote provider. The gateway holds no World Engine.
@@ -90,7 +94,12 @@ export function createAiGateway(config: AppConfig['ai'], options: AiGatewayOptio
   const resolved: ResolvedRoute[] = [];
   const routes: Partial<Record<AiCapability, readonly RoutedProvider[]>> = {};
 
-  const raw = (provider: string, model: string, entry: CatalogEntry): RawRemoteProvider | null => {
+  const raw = (
+    capability: (typeof ROUTE_CAPABILITIES)[number],
+    provider: string,
+    model: string,
+    entry: CatalogEntry,
+  ): RawRemoteProvider | null => {
     const common = {
       model,
       acceptedModels: [entry.model, ...entry.aliases],
@@ -99,10 +108,13 @@ export function createAiGateway(config: AppConfig['ai'], options: AiGatewayOptio
     };
     if (provider === 'anthropic' && config.anthropic !== null) {
       const { apiKey, timeoutMs } = config.anthropic;
+      const settings = ANTHROPIC_REQUEST_SETTINGS[capability];
       return createAnthropicProvider({
         ...common,
         apiKey: () => apiKey.reveal(),
         timeoutMs,
+        effort: settings.effort,
+        maxTokens: Math.min(settings.maxTokens, entry.limits.maxOutputTokens),
         ...(entry.cache === '5m' ? { cache: '5m' as const } : {}),
       });
     }
@@ -141,7 +153,8 @@ export function createAiGateway(config: AppConfig['ai'], options: AiGatewayOptio
               : entry === null
                 ? 'UNVERIFIED_MODEL'
                 : null;
-      const adapter = reason === null && entry !== null ? raw(provider, model, entry) : null;
+      const adapter =
+        reason === null && entry !== null ? raw(capability, provider, model, entry) : null;
       if (reason !== null || entry === null || adapter === null || options.budget === null) {
         refused.push({ entry: spec, reason: reason ?? 'NO_KEY' });
         continue;

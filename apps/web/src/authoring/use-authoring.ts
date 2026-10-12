@@ -143,9 +143,14 @@ export function useAuthoring(api: WorldApi, onWorldChanged: () => void) {
         // ADR 0032 B2) is never sent as a source.
         const traceId = intent.traceId;
         if (intent.status !== 'PROPOSED' || !intent.proposal || traceId === null) {
+          // Honest feedback (ADR 0032, C): an unavailable assistant (including no recorded
+          // request) is not a request the assistant declined; neither promises a trace.
           setNotice({
             kind: 'error',
-            text: 'The assistant could not turn that into a proposal. Try describing it differently.',
+            text:
+              intent.status === 'AI_UNAVAILABLE' || traceId === null
+                ? 'The assistant is unavailable right now, so nothing was proposed. Try again later.'
+                : 'The assistant could not turn that into a proposal. Try describing it differently.',
           });
           return;
         }

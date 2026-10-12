@@ -1,6 +1,7 @@
 import { CapabilityRouter, createLocalProvider, InMemoryAiTraceStore } from '@ltw/ai';
 import { SequentialIds, SteppingClock } from '@ltw/domain';
 
+import dmTools from '../../../../tests/e2e/fixtures/dm-tool-campaigns.json' with { type: 'json' };
 import { ravenfordApp } from './ravenford-app.ts';
 import { uiCampaigns } from './ui-campaigns.ts';
 
@@ -11,6 +12,7 @@ import { uiCampaigns } from './ui-campaigns.ts';
  */
 const clock = new SteppingClock();
 let elapsed = 0;
+const traces = new InMemoryAiTraceStore();
 const app = await ravenfordApp(await uiCampaigns(), {
   router: new CapabilityRouter({
     // The deterministic offline interpreter (ADR 0017 §2); no external provider runs.
@@ -19,7 +21,14 @@ const app = await ravenfordApp(await uiCampaigns(), {
     narrative: [],
     'fast-context': [],
   }),
-  traces: new InMemoryAiTraceStore(),
+  // One campaign never gets a durable request start (ADR 0032, B2/C): its AI answers are the
+  // no-start responses with a null trace ID, for the honest client feedback journeys.
+  traces: {
+    start: (start) =>
+      start.campaignId === dmTools.aiNoStart ? Promise.resolve(false) : traces.start(start),
+    finalize: (outcome) => traces.finalize(outcome),
+    get: (campaignId, traceId) => traces.get(campaignId, traceId),
+  },
   ids: new SequentialIds(0xe2e),
   clock: { now: () => clock.now(), nowMs: () => (elapsed += 5) },
   requestTimeoutMs: 60_000,

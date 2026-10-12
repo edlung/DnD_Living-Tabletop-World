@@ -3,5 +3,7 @@
   "chronicle": "ui-dm-chronicle",
   "perform": "ui-dm-perform",
   "sessionPlayer": "ui-session-player",
-  "sessionDm": "ui-session-dm"
+  "sessionDm": "ui-session-dm",
+  "aiFeedback": "ui-ai-feedback",
+  "aiNoStart": "ui-ai-no-start"
 }

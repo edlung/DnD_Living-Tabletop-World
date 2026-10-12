@@ -1,0 +1,122 @@
+You are the implementation session for Stage 300 remediation checkpoint C of Living Tabletop World.
+
+## Role and ownership
+
+- Sole checkout ownership is explicitly transferred to this NEW cohesive checkpoint C session:
+  /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2, branch `stage-300-live-ai`,
+  HEAD `e288678` (B2 accepted and committed) plus two new uncommitted records written by the
+  orchestrator: `reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md` and
+  `reviews/STAGE_300_OWNER_DECISIONS_5_2026-10-12.json`. Do not edit those two files.
+- Model claude-opus-5-5, effort medium, native Anthropic subscription. Related review repairs stay in
+  this same session at xhigh. Stop if the actual model is not claude-opus-5-5.
+- The owner authorized checkpoint C, the Sonnet 5.5 catalog verification and (later) operator
+  records on 2026-10-12. Release ownership explicitly in your final message.
+
+## Authority
+
+- Approved design draft 7 `docs/STAGE_300_REMEDIATION_DESIGN.md` (SHA256
+  23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2) and the approved stop-scope
+  delta `docs/STAGE_300_B2_STOP_SCOPE_DESIGN.md` (SHA256
+  6bba003055bfd53ac4e069d01d5bf6e3a5a6e272fddb41a2f8305b55e153b485). Do not change their bytes.
+- Checkpoints A, B1, B2 accepted: `reviews/STAGE_300_CHECKPOINT_B2_ACCEPTANCE_2026-10-12.json`
+  (its `carriedIntoC`, `ownerApprovedDeferrals` and `liveUsePrerequisites`) and the B2 handoff's
+  "Deferred to checkpoint C" list in `handoffs/STAGE_300_CHECKPOINT_B2_REQUEST.md`.
+- Owner decisions: `reviews/STAGE_300_OWNER_DECISIONS_{2,3}_2026-10-11.json`,
+  `reviews/STAGE_300_OWNER_DECISIONS_4_2026-10-12.json`, `reviews/STAGE_300_OWNER_DECISIONS_5_2026-10-12.json`,
+  `reviews/STAGE_300_PRODUCT_DECISIONS_2026-10-11.json`. Key points: runtime text model is Sonnet
+  5.5 only for all four capabilities; the owner chose Sonnet 5.5 for NPC voice and waived the blind
+  comparison; paid AI only in active play sessions and registered evaluation runs; DM preparation
+  without a session and Chronicle after session close stay local-only (this is the Q5 product
+  disposition the design asks to record before C completion).
+- Catalog verification record: `reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md`.
+- Current workflow `docs/PROJECT_WORKFLOW.md`; scope `work-orders/OPUS_STAGE_300.md`.
+
+Read first, minimally: `docs/AI_CONTEXT_MAP.md`, nearest `AGENTS.md` files, `ARCHITECTURE_INVARIANTS.md`,
+design section 4 "Evaluation integrity", the client parts of section 2 (nullable IDs, rendering
+missing traces), section 3 where routes/evaluation/intent decline touch C, "Allowed source
+boundaries" and "Checkpoints and required evidence" (C), and the current ADR 0032.
+
+## Checkpoint C deliverables
+
+1. First: fix the flaky test L-N1 in
+   `apps/server/src/ai/accounting/transaction-bounds.integration.test.ts:231-258` (release the
+   `holder` client in `finally` so an earlier failure surfaces instead of hanging). Also align
+   `packages/ai/AGENTS.md:42` with the clock-based cancellation rule.
+2. Verified catalog entry for Sonnet 5.5 in `VERIFIED_CATALOG` (`apps/server/src/ai/catalog.ts`),
+   exactly from the verification record: canonical model and alias `claude-sonnet-5-5`, pricing
+   version `anthropic-claude-sonnet-5-5-2026-10-12`, rates, no tiers, limits, usage dimensions and
+   labels (`service_tier` = `standard`, `inference_geo` = `global`, server-tool counts zero or
+   absent), request allowlist matching the adapter's actual body, `verification.source` pointing to
+   the record. Handle the non-schema usage fields as the record describes if the catalog mechanism
+   can express it within the approved design; if it cannot, keep them fail-closed and say so.
+   Tests: entry validation, reservation arithmetic equal to the record's example, rejection of
+   `service_tier` other than standard, `inference_geo` other than global, nonzero server-tool use,
+   unknown fields, wrong response model. No other model gets a verified entry.
+   With the entry present, a remote Sonnet route becomes usable ONLY with keys plus a stored
+   operator approval and an eligible session; keep and extend the tests proving zero outbound
+   requests and no secret reveal without an approval, without an eligible session, and in every
+   test environment.
+3. Sonnet 5.5 request compatibility: confirm the Anthropic adapter body is valid for Sonnet 5.5
+   (no forced tool choice, no disabled thinking, no sampling parameters, no prefill). Adaptive
+   thinking spends output tokens within `max_tokens` (default effort `high`), which risks
+   truncation and paid repairs. Set an explicit effort per capability and an adequate `max_tokens`
+   (suggested start: relevance `low`, NPC dialogue `low`, DM intent `medium`, Chronicle `medium`;
+   keep relevance within its latency budget), document the rationale in ADR 0032 as an initial
+   setting to revisit after live evaluation, and keep `.env.example` consistent.
+4. Evaluation integrity per design section 4: evaluation admission with an existing approval and
+   an operator-registered run binding pinned to its campaign (ceilings only from the approval);
+   `journal.begin` records the evaluation session class for runs; refuse live evaluation without
+   the database, approval, run binding or verified catalog entry; immutable, non-overwriting run
+   directories with manifest, source commit/dirty hashes, configuration without keys, model
+   response identity, case inventory, latency/usage/cost and known missing charges; oracles and
+   negative controls (wrong requested name, wrong target or command type, partial substring match,
+   guarded content from `guardedBy` and `neverSaid`, Chronicle wrong citation and missing hedge,
+   relevance deadline/action-set contract); Gate 04 injection replays with context isolation
+   checked separately from output markers; reports that separate semantic proposal correctness,
+   safe decline, technical provider success and quality judgment; end-to-end latency separate from
+   attempt latency; the effective relevance deadline read from configuration; the 45-minute
+   session estimate for the Sonnet-only configuration from the disclosed workload (60 NPC replies,
+   5 DM intents, 2 chapters, 100 rankings) using the verified prices, with known charges,
+   outstanding holds and unknowns separate, labelled as an estimate. The blind comparison is waived
+   by the owner: record that, produce no blind artifacts. Everything runs offline with fake
+   providers; no live measurement.
+5. Client feedback per design section 2: clients narrow nullable trace IDs before opening traces or
+   starting authoring; a missing trace renders as unavailable without a broken link or promise;
+   replying/failure behavior and its Russian (and English) client messages, narrowly, in the
+   affected UI files only; browser journeys updated or added for these states.
+6. Records: the Q5 product disposition (local-only DM preparation and post-session Chronicle) in
+   ADR 0032; the ADR C amendments; `docs/GATE_COVERAGE.md` for any provider-facing change;
+   `docs/AI_CONTEXT_MAP.md` and local `AGENTS.md` updates; and a corrected Stage 300 report section
+   in `reports/STAGE_300_COMPLETION.md` that distinguishes historical baseline measurements
+   (structural only, per the A correction) from the remediated offline evidence, with no claim of
+   new live results.
+
+If a requirement needs a material new architectural choice, or the design is missing or
+inconsistent on something you need, stop and report the exact decision needed. Never weaken
+fail-closed behavior or tests.
+
+## Prohibited
+
+No git commit or push. No other agents or sessions. No provider, network or paid runtime calls, no
+web lookups. Do not read `.env.local` or any secret. No real operator records (throwaway test
+databases only). No live evaluation run. No Stage 310 or 320 work. Do not edit the two design
+documents, the two orchestrator records above, or historical reviews/reports/evidence (append new
+report sections; do not rewrite earlier ones).
+
+## Engineering rules
+
+Cohesive feature modules, thin orchestration, direct imports; active files target 500 lines, hard
+limit 700 (extract a boundary before growing a large file). Write the failing regression first for
+each changed contract. Focused tests while working; at the end the full offline `pnpm validate`
+(PostgreSQL in Docker at 127.0.0.1:54329; do not run `db:down`). Report exact counts.
+
+## Stop at CHECKPOINT_READY
+
+Write `handoffs/STAGE_300_CHECKPOINT_C_REQUEST.md` from `HANDOFF_TEMPLATE.md`: neutral
+requirements, the C delta by file, checks with results, HEAD and dirty-file SHA256 listing with its
+hash, design/delta hashes, accepted A/B1/B2 base, the catalog verification record, your actual
+model/effort, limitations and anything left for live evaluation. Status
+AWAITING_INDEPENDENT_ACCEPTANCE by two fresh Opus 5.5 reviewers (xhigh and max), output paths
+`reviews/STAGE_300_CHECKPOINT_C_OPUS_XHIGH_REVIEW.md` and `reviews/STAGE_300_CHECKPOINT_C_OPUS_MAX_REVIEW.md`.
+No reviewer verdicts or self-acceptance. Final message: changed files, behavior, test summary,
+blockers, residual risks, explicit ownership release.

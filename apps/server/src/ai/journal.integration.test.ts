@@ -169,7 +169,8 @@ describe('the journal of an admitted request', () => {
         'traceRecorded',
       ].sort(),
     );
-    expect(JSON.stringify(view)).not.toMatch(/a1|acct|ceiling|remaining/);
+    // Quoted values: a bare `a1` also occurs in random UUID hex (a flaky false match).
+    expect(JSON.stringify(view)).not.toMatch(/"a1"|"acct"|ceiling|remaining/);
   });
 
   it('keeps the 401/400/404/403 order and answers 404 for another campaign or an unknown ID', async () => {
@@ -193,10 +194,14 @@ describe('a stalled finalizer', () => {
       1_500,
     );
     closers.push(() => delayed.pool.end());
-    const { app, gateway } = await rig({
+    // A budget long enough that start and admission always finish and the attempt is dispatched
+    // even under a loaded suite (repair 1: 300 ms let the deadline pass before admission); the
+    // provider never answers, so the request still times out at its deadline.
+    const budgetMs = 3_000;
+    const { app, gateway, calls } = await rig({
       journalPool: delayed.pool,
       respond: hanging,
-      relevanceBudgetMs: 300,
+      relevanceBudgetMs: budgetMs,
     });
     const began = performance.now();
     const ranked = (
@@ -206,7 +211,11 @@ describe('a stalled finalizer', () => {
         TOKENS.player,
       )
     ).json<EntityContextResponse>();
-    expect(performance.now() - began).toBeLessThan(1_200);
+    const elapsed = performance.now() - began;
+    // Returned at its deadline: not before it, and without waiting 1.5 s for the stalled write.
+    expect(elapsed).toBeGreaterThan(budgetMs - 100);
+    expect(elapsed).toBeLessThan(budgetMs + 1_000);
+    expect(calls).toHaveLength(1);
     expect(ranked.ranking).toMatchObject({ source: 'deterministic', status: 'TIMEOUT' });
     const traceId = ranked.ranking.traceId ?? '';
     expect(traceId).not.toBe('');
@@ -216,9 +225,11 @@ describe('a stalled finalizer', () => {
       lifecycle: 'pending',
       traceRecorded: false,
       incomplete: true,
-      attempts: [{ accounting: 'open', effectiveMicros: '332160' }],
+      // Fixture bound: 20,000 × 12 + 2,048 (relevance max_tokens, C) × 22.5 µ$.
+      attempts: [{ accounting: 'open', effectiveMicros: '286080' }],
     });
-    await sleep(2_000);
+    // The stalled write lands about 1.5 s after the deadline, inside the 5 s finalizer window.
+    await sleep(2_500);
     await gateway.accounting.idle();
     expect((await trace(app, traceId)).json()).toMatchObject({ status: 'TIMEOUT', ranking: null });
     expect((await diagnostic(app, traceId)).json()).toMatchObject({

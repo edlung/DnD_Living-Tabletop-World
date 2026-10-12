@@ -43,7 +43,9 @@ class CountingSecret extends Secret {
 }
 
 const SONNET = 'anthropic:claude-sonnet-5-5';
-// Owner decision 3 (2026-10-11): Sonnet 5.5 for every capability; relevance has no local entry.
+// Sonnet 5.5 on every capability, to exercise each composition path. At runtime relevance has no
+// paid route (owner decisions 6, `.env.example`); an explicit remote ranker stays allowed and has no
+// local entry.
 const ROUTES = {
   reasoning: [SONNET, 'local'],
   'npc-dialogue': [SONNET, 'local'],
@@ -51,13 +53,21 @@ const ROUTES = {
   'fast-context': [SONNET],
 };
 
-function keyed(approvalId: string | null = 'approval-1') {
+function keyed(approvalId: string | null = 'approval-1', remote = SONNET) {
   const secret = new CountingSecret('k');
   const ai: AppConfig['ai'] = {
     ...loadConfig({}).ai,
     anthropic: { apiKey: secret, model: 'claude-sonnet-5-5', timeoutMs: 30_000 },
     deepseek: { apiKey: secret, model: 'deepseek-flash', timeoutMs: 30_000 },
-    routes: ROUTES,
+    routes:
+      remote === SONNET
+        ? ROUTES
+        : {
+            reasoning: [remote, 'local'],
+            'npc-dialogue': [remote, 'local'],
+            narrative: [remote, 'local'],
+            'fast-context': [remote],
+          },
     approvalId,
   };
   return { ai, secret };
@@ -143,24 +153,31 @@ describe('createAiGateway at checkpoint B2', () => {
       { catalog: FIXTURE_CATALOG, approvalStored: true },
       'NO_ACCOUNTING_STORE',
     ],
+    // The production catalog verifies Sonnet 5.5 only (checkpoint C): any other model is refused.
     [
-      'the model has no verified catalog entry (this build)',
+      'the model has no verified catalog entry (Opus 5.5)',
       'approval-1',
       { approvalStored: true, budget: fakeBudgetStore() },
       'UNVERIFIED_MODEL',
+      'anthropic:claude-opus-5-5',
+    ],
+    [
+      'the model has no verified catalog entry (DeepSeek)',
+      'approval-1',
+      { approvalStored: true, budget: fakeBudgetStore() },
+      'UNVERIFIED_MODEL',
+      'deepseek:deepseek-flash',
     ],
   ] as const;
 
   it.each(REFUSALS)(
     'refuses every remote entry when %s: zero outbound, no key read',
-    async (_label, approvalId, options, reason) => {
+    async (_label, approvalId, options, reason, entry: string = SONNET) => {
       const fetchSpy = vi.spyOn(globalThis, 'fetch');
-      const { ai, secret } = keyed(approvalId);
+      const { ai, secret } = keyed(approvalId, entry);
       const served = await serveAll(options, ai);
       expect(served.gateway.routes.map((route) => route.refused)).toEqual(
-        ['reasoning', 'npc-dialogue', 'narrative', 'fast-context'].map(() => [
-          { entry: SONNET, reason },
-        ]),
+        ['reasoning', 'npc-dialogue', 'narrative', 'fast-context'].map(() => [{ entry, reason }]),
       );
       expect(served.intent.status).toBe('PROPOSED');
       expect(served.reply.reply?.status).toBe('REPLIED');

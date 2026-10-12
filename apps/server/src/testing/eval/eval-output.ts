@@ -6,13 +6,18 @@ import { fileURLToPath } from 'node:url';
 /**
  * Immutable evaluation evidence. Every run gets a fresh directory that must not exist yet, and
  * every file is created exclusively (`wx`): nothing is ever overwritten. The historical
- * `reports/evidence/stage-300/` results, blind comparison and key are never written.
+ * `reports/evidence/stage-300/` results, blind comparison and key are never written, and no run
+ * writes a blind artifact (the owner waived the blind NPC comparison, decisions 2 of 2026-10-11).
  */
 export const HISTORICAL_EVIDENCE = fileURLToPath(
   new URL('../../../../../reports/evidence/stage-300/', import.meta.url),
 );
 export const OFFLINE_EVIDENCE_ROOT = fileURLToPath(
   new URL('../../../../../reports/evidence/stage-300-offline/', import.meta.url),
+);
+/** Live runs (checkpoint C): only with a stored approval and a registered run. */
+export const LIVE_EVIDENCE_ROOT = fileURLToPath(
+  new URL('../../../../../reports/evidence/stage-300-live/', import.meta.url),
 );
 
 export const newRunId = (now: Date = new Date()): string =>

@@ -11,6 +11,8 @@ const exclude = ['**/node_modules/**', '**/dist/**'];
 export default defineConfig({
   ssr: { resolve: { conditions: ['@ltw/source', 'node', 'development|production'] } },
   test: {
+    // Both projects: the global `fetch` is a trap (no test reaches the network; ADR 0032, C).
+    setupFiles: ['./tests/setup/no-network.ts'],
     projects: [
       {
         extends: true,

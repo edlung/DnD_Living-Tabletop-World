@@ -45,6 +45,15 @@ export interface AnthropicOptions {
   readonly fetch?: typeof fetch;
 }
 
+/**
+ * Every usage field the adapter can read (catalog verification of 2026-10-12, `reviews/
+ * STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md`): the documented counts, the
+ * thinking decomposition (part of `output_tokens`), the price-relevant labels at their only
+ * standard value, server-tool counts only at zero (no server tool is ever requested), and the
+ * undocumented fields seen on this machine, conservatively: `speed` only `standard`,
+ * `fallback_credit` only null, `iterations` only as message entries adding up to the top-level
+ * counts. Each catalog entry then accepts a subset (`pricing.ts`); anything else fails closed.
+ */
 export const ANTHROPIC_USAGE: UsageSpec = usageSpec({
   counts: [
     'input_tokens',
@@ -52,8 +61,18 @@ export const ANTHROPIC_USAGE: UsageSpec = usageSpec({
     'cache_creation_input_tokens',
     'cache_read_input_tokens',
   ],
-  nested: { cache_creation: ['ephemeral_5m_input_tokens', 'ephemeral_1h_input_tokens'] },
-  labels: { service_tier: ['standard'] },
+  nested: {
+    cache_creation: ['ephemeral_5m_input_tokens', 'ephemeral_1h_input_tokens'],
+    output_tokens_details: ['thinking_tokens'],
+  },
+  labels: {
+    service_tier: ['standard'],
+    inference_geo: ['global'],
+    speed: ['standard'],
+    fallback_credit: [],
+  },
+  zeroCounts: { server_tool_use: ['web_search_requests', 'web_fetch_requests'] },
+  iterations: { field: 'iterations', type: 'message' },
   input: 'input_tokens',
   output: 'output_tokens',
 });

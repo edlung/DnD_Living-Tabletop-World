@@ -75,6 +75,15 @@ Older assignments below are historical and do not authorize a different model or
 
 ## Current continuation — remediation draft 7
 
+**Checkpoint C: ACCEPTED 2026-10-12** (`reviews/STAGE_300_CHECKPOINT_C_ACCEPTANCE_2026-10-12.json`).
+Fresh Opus 5.5 xhigh and Opus 5.5 max both PASS on the repair-1 artifact (handoff
+`handoffs/STAGE_300_CHECKPOINT_C_REQUEST.md`, dirty listing `7f4c4eb4…`). The Stage 300 remediation
+(A, B1, B2, C) is complete. Sonnet 5.5 has a verified catalog entry
+(`reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md`); runtime relevance uses
+no paid model (decisions 6). Owner-approved Low deferrals are listed in the acceptance record. Next:
+operator records with the owner's ceilings (decisions 6). Any live run needs separate owner
+authorization; owner play acceptance of Stages 290/300 stays deferred. No paid runtime calls so far.
+
 **Checkpoint B2: ACCEPTED 2026-10-12** (`reviews/STAGE_300_CHECKPOINT_B2_ACCEPTANCE_2026-10-12.json`).
 Fresh Opus 5.5 xhigh and Opus 5.5 max both PASS on the repair-1 artifact (handoff
 `handoffs/STAGE_300_CHECKPOINT_B2_REQUEST.md`, dirty listing `589b980e…`); reports, receipts and

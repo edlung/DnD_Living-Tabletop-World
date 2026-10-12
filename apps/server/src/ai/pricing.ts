@@ -10,6 +10,7 @@ import {
 } from './accounting/money.ts';
 import type { CatalogEntry } from './catalog.ts';
 import type { PreparedRequest } from './raw-provider.ts';
+import { requestShapeIssue } from './request-shape.ts';
 
 /**
  * Prices an admitted attempt against its verified catalog entry (docs/STAGE_300_REMEDIATION_DESIGN.md
@@ -17,7 +18,8 @@ import type { PreparedRequest } from './raw-provider.ts';
  *
  * The reservation is computed from the exact prepared body, which `dispatch` cannot change. The
  * body must fit the entry's allowlists (top-level fields, option values, model name, `max_tokens`,
- * request bytes, a cache breakpoint only where the entry permits one). With no verified tokenizer
+ * request bytes) and, below the top level, the adapter's own shape (`request-shape.ts`: its
+ * messages only, its one client tool, a 5-minute breakpoint only where the entry permits one). With no verified tokenizer
  * byte bound, the input bound is the model's full documented context, priced at the highest input
  * rate of any dimension and tier (uncached, cache read, 5-minute or 1-hour cache write); output is
  * `max_tokens` at the highest output rate (reasoning is billed as output, within `max_tokens`). The
@@ -65,7 +67,9 @@ export function reservationFor(entry: CatalogEntry, prepared: PreparedRequest): 
     return refuse('max_tokens');
   }
   if (maxTokens > entry.limits.maxOutputTokens) return refuse('max_tokens');
-  if (Array.isArray(body['system']) && entry.cache !== '5m') return refuse('cache');
+  // Below the top level: the adapter's messages, its one client tool, its one breakpoint only.
+  const shape = requestShapeIssue(entry.provider, body, prepared.toolName, entry.cache === '5m');
+  if (shape !== null) return refuse(shape);
   try {
     const priced = INPUT.filter((dimension) =>
       entry.pricing.tiers.some((tier) => tier.rates[dimension] !== undefined),
@@ -105,6 +109,9 @@ function countsOf(
     const input = get('input_tokens');
     const output = get('output_tokens');
     if (input === undefined || output === undefined) return null;
+    // Thinking is billed as output, inside `output_tokens`: a decomposition, never priced twice.
+    const thinking = get('output_tokens_details.thinking_tokens');
+    if (thinking !== undefined && thinking > output) return null;
     const total = get('cache_creation_input_tokens');
     const five = get('cache_creation.ephemeral_5m_input_tokens');
     const hour = get('cache_creation.ephemeral_1h_input_tokens');

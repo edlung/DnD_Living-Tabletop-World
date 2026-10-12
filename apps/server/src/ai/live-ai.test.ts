@@ -216,8 +216,8 @@ describe('DeepSeek classification edge cases (B2, B1 Opus max finding 7)', () =>
   });
 });
 
-describe('the .env.example routes (owner decision 3)', () => {
-  it('name Sonnet 5.5 for every capability, in shapes runtime validation accepts', async () => {
+describe('the .env.example routes (owner decisions 3 and 6)', () => {
+  it('name Sonnet 5.5 for every paid capability and leave relevance deterministic', async () => {
     const { readFile } = await import('node:fs/promises');
     const example = await readFile(new URL('../../../../.env.example', import.meta.url), 'utf8');
     const line = example.split('\n').find((text) => text.startsWith('# LTW_AI_ROUTES='));
@@ -229,7 +229,6 @@ describe('the .env.example routes (owner decision 3)', () => {
       reasoning: ['anthropic:claude-sonnet-5-5', 'local'],
       'npc-dialogue': ['anthropic:claude-sonnet-5-5', 'local'],
       narrative: ['anthropic:claude-sonnet-5-5', 'local'],
-      'fast-context': ['anthropic:claude-sonnet-5-5'],
     });
   });
 });

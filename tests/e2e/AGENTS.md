@@ -33,3 +33,7 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   deterministic offline interpreter, so "Add a young guard near North Gate…" proposes
   Tomas Reed with no external provider. Namespace player command IDs per campaign (IDs
   are unique per actor across campaigns); scan rendered text, not stylesheets, for UI words.
+- AI feedback (`ai-feedback.spec.ts`, ADR 0032 checkpoint C): `ui-ai-feedback` adds a second
+  character (Bram Holt) for the stale-reply check, and `ui-ai-no-start` never gets a durable AI
+  request start in `ui-server.ts`, so its intents, replies and chapters carry a null trace ID. Only
+  dialogue delays are intercepted; the answers are the real server's.

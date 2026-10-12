@@ -1,0 +1,227 @@
+{
+  "schema": "reviewer-cli/spec-v1",
+  "project": "/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2",
+  "boundary": "stage-300-checkpoint-c-opus-xhigh-2026-10-12",
+  "role": "acceptance",
+  "workflow_reference": "docs/PROJECT_WORKFLOW.md#current-owner-policy",
+  "app_home": "/Users/oleksandr/.codex",
+  "codex_review_home": "/Users/oleksandr/.codex-review-cli",
+  "claude_home": "/Users/oleksandr/.claude",
+  "exclusions": [
+    ".git",
+    ".env.local",
+    "node_modules",
+    "apps/server/dist",
+    "apps/server/node_modules",
+    "apps/web/build",
+    "apps/web/dist",
+    "apps/web/node_modules",
+    "test-results",
+    "playwright-report",
+    "coverage",
+    "packages/ai/dist",
+    "packages/ai/node_modules",
+    "packages/combat/dist",
+    "packages/combat/node_modules",
+    "packages/context/dist",
+    "packages/context/node_modules",
+    "packages/contracts/dist",
+    "packages/contracts/node_modules",
+    "packages/domain/dist",
+    "packages/domain/node_modules",
+    "packages/rules/dist",
+    "packages/rules/node_modules",
+    "packages/ui/dist",
+    "packages/ui/node_modules"
+  ],
+  "reviewers": {
+    "codex": {
+      "snapshot": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot",
+      "scratch": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-scratch"
+    },
+    "claude": {
+      "snapshot": "/private/tmp/ltw-stage300-checkpoint-c-review/xhigh-snapshot",
+      "scratch": "/private/tmp/ltw-stage300-checkpoint-c-review/xhigh-scratch",
+      "bash_allow_rules": [
+        "Bash(pnpm run *)",
+        "Bash(pnpm exec *)",
+        "Bash(pnpm vitest *)",
+        "Bash(pnpm --filter *)",
+        "Bash(node *)",
+        "Bash(npx vitest *)",
+        "Bash(npx tsc *)",
+        "Bash(npx playwright *)",
+        "Bash(ls *)",
+        "Bash(cat *)",
+        "Bash(head *)",
+        "Bash(tail *)",
+        "Bash(sed -n *)",
+        "Bash(wc *)",
+        "Bash(rg *)",
+        "Bash(grep *)",
+        "Bash(find *)",
+        "Bash(shasum *)",
+        "Bash(diff *)",
+        "Bash(jq *)",
+        "Bash(sort *)",
+        "Bash(uniq *)",
+        "Bash(echo *)",
+        "Bash(printf *)",
+        "Bash(pwd)",
+        "Bash(lsof -i *)",
+        "Bash(sleep *)"
+      ]
+    }
+  },
+  "approved_context": [
+    {
+      "path": "/Users/oleksandr/.claude/CLAUDE.md",
+      "sha256": "93d2e4df3204ca76b595c9fe0034ed23fb70e5711fb569eae2a6407e8113141f"
+    },
+    {
+      "path": "/Users/oleksandr/.claude/settings.json",
+      "sha256": "1c3e4213708232daa7535a8444f2f787e45f357f5a4bdfc25c0aa8d31580c652"
+    },
+    {
+      "path": "/Users/oleksandr/.claude/settings.local.json",
+      "sha256": "1f56bdca6b86481f6917d118a9a56dddf88128896da03ab2487f2291dcbc7484"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/AGENTS.md",
+      "sha256": "174dcc436826d9589aaf4653b8c195d73fac130f2646e3dcf37573f3c082ae26"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/apps/server/AGENTS.md",
+      "sha256": "9e7fc6be84f5f98eb090310c3a748b34da300a9836b84bb56ae2bfad80a6a775"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/apps/server/migrations/AGENTS.md",
+      "sha256": "339753175c6d1f293443931504306481e97d0a3cc661ae9ceefba006ad6bd589"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/apps/server/src/ai/accounting/AGENTS.md",
+      "sha256": "abb2d66d5a9e82ff124cc7038a1dca46baa0ecaaa383ad3b78ca7def3d1893fa"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/apps/server/src/scenario/AGENTS.md",
+      "sha256": "0e0d9f4a7f2b94c3a4709895b08e1187ba3452e7516e6d38ed6d237fe5481947"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/apps/web/AGENTS.md",
+      "sha256": "69754e88a74541b2215e81e03724aa0cf6b26b5de5badd598694218ed0bf1de2"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/fixtures/history/AGENTS.md",
+      "sha256": "2530253693f0250ed288605cb2bd753ba8b615b527f22d380a10fe0c86e54dd5"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/fixtures/ravenford-ru/AGENTS.md",
+      "sha256": "8afc7002f3d692142bfecfccd3cce6148b732b817ba034941d8d55801661e08f"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/fixtures/ravenford/AGENTS.md",
+      "sha256": "640910d6426dd3417ee4248bc68a7be890409c8888f40ebea6dd227c34d288ec"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/handoffs/AGENTS.md",
+      "sha256": "b89f2c26a1ca4187277d28a61131dd2e958190c76e48c7ff5eb3ab1475cfdb63"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/ai/AGENTS.md",
+      "sha256": "2511827f4462c079664b4ca2c11855b9707277107d1efc10578d051183ce8a08"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/combat/AGENTS.md",
+      "sha256": "9edebdc2cbcc52982735057eb5b30c91db70b7e35a74952941cb51b4d520addf"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/context/AGENTS.md",
+      "sha256": "3202b285e54b9383c6bbafab89d1d1deff3709fc28569be7efefc97286a00fe6"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/assets/AGENTS.md",
+      "sha256": "ff86d6da31575758aef9fbe36a5f1273aebcb9614120a0fb36003bde1e7a8599"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/authoring/AGENTS.md",
+      "sha256": "110917d0615b4f8b3bbd73af9bca9fa4cb724f7ee28ac238c1182898f33b49fa"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/character/AGENTS.md",
+      "sha256": "d103149048356ea1ce48bcb075bc3348697b5ec6ed69a4a72b6981d9e883dd41"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/chronicle/AGENTS.md",
+      "sha256": "25d10809614b502525cf21c6d221ba5c6815bd3417a93b9c21d4a3bf023af742"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/contradiction/AGENTS.md",
+      "sha256": "b2f4d7da349bdf14c832d784d14e23f48a556dc98e71067312c90e69e31924d6"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/investigation/AGENTS.md",
+      "sha256": "740ba7d487162735d8aa7c1f7863d31096298a3289e582b79f81898db282bda9"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/kernel/AGENTS.md",
+      "sha256": "9ec6ad4a2de1bde1ba0f4dde401b1226c40bef2c5ff9c034d92ea7c4afbbacb6"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/knowledge/AGENTS.md",
+      "sha256": "aa0be2e6a5840e02ea7fa423575f65edc12b7e39e0bf13a5549736965edf985d"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/memory/AGENTS.md",
+      "sha256": "ee190539114edf669dcb0cf82622b71a6faf8395d3a5d9d26afb8e96640f08dc"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/npc/AGENTS.md",
+      "sha256": "db9bd7fd7ae56802578e5aaf4440ae9734b86d77e3306e0b166adb357e155a31"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/quest/AGENTS.md",
+      "sha256": "ba0f4fba3e9b88900e281fff352e0c38afd6d068e32ea6e72a0d6b876727241c"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/relationships/AGENTS.md",
+      "sha256": "67c93f0c3132075eca7a9a60c7ead6f0257277ede4af524df4ca03d3d502cd40"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/domain/src/visual/AGENTS.md",
+      "sha256": "b36e91fc1614c4390e0553d00268e1dc18ca463ae621768aee8cb1fa5b476d5d"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/rules/AGENTS.md",
+      "sha256": "378382e9601856b044fcd642f1e98bf75193fd287945ab1236fc081230c0d304"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/packages/ui/AGENTS.md",
+      "sha256": "41e303e50decd2f43416616f2640acbcc252457eff33b13cda84690e878b6a3e"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/remediation/AGENTS.md",
+      "sha256": "021efc49c2c6fa853832ae657819ec81bcd787b9fec4e604fbe9470123125a5e"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/reports/AGENTS.md",
+      "sha256": "6e5888c47dd23f9cb548d5af9432eecd5a7f0f10fcd85b5e5a7798abc5238399"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/reviews/AGENTS.md",
+      "sha256": "e53451119dd9f436633e20cc92a1d50e2322cb3e7f7566cd608fa6fa630fd48a"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/tests/AGENTS.md",
+      "sha256": "750beb9747f42bb8a6c5c3fa2418bf14a028409eed6d89b42e6c02f9900c1e61"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/tests/e2e/AGENTS.md",
+      "sha256": "1dc22830b80e5bfca46761af56c5277ca5922f41aa6a0f2ea06dfb7a7f364839"
+    },
+    {
+      "path": "/private/tmp/ltw-stage300-checkpoint-c-review/codex-unused-snapshot/work-orders/AGENTS.md",
+      "sha256": "8824f01dedd1756cd98034e0d8a9bd10c2c799c485fb106190e0bb417556f6a4"
+    }
+  ],
+  "managed_hooks_strategy": null
+}

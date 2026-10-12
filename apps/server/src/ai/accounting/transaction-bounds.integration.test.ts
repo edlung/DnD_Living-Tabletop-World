@@ -231,6 +231,13 @@ describe('deadlines on locks, statements and checkout', () => {
   it('releases a client that arrives after the deadline without running anything', async () => {
     const pool = new pg.Pool({ connectionString: db.database.url, max: 1 });
     const holder = await pool.connect();
+    let held = true;
+    const releaseHolder = () => {
+      if (held) {
+        held = false;
+        holder.release();
+      }
+    };
     const lateQueries: string[] = [];
     pool.on('acquire', (client) => {
       const query = client.query.bind(client) as (...args: unknown[]) => unknown;
@@ -245,7 +252,7 @@ describe('deadlines on locks, statements and checkout', () => {
         deadlineIn(200),
       );
       expect(result).toMatchObject({ code: 'CALLER_CANCELLED' });
-      holder.release();
+      releaseHolder();
       for (let tries = 0; tries < 40 && pool.idleCount < 1; tries += 1) {
         await new Promise((done) => setTimeout(done, 25));
       }
@@ -253,6 +260,8 @@ describe('deadlines on locks, statements and checkout', () => {
       expect(lateQueries).toEqual([]);
       expect(await attempts()).toBe(0);
     } finally {
+      // An earlier failure must surface, not hang `pool.end()` on a checked-out client (L-N1).
+      releaseHolder();
       await pool.end();
     }
   });

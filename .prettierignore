@@ -8,6 +8,9 @@ test-results/
 pnpm-lock.yaml
 # Event histories written by earlier revisions: their genuine rows, never edited.
 fixtures/history/*.json
+# Immutable evaluation evidence written by `pnpm eval:ai` (ADR 0032, C): exact bytes, never reformatted.
+reports/evidence/stage-300-offline/
+reports/evidence/stage-300-live/
 
 # Development Pack product, architecture, and workflow documents are authored
 # by the project owner; tooling must not reformat them.
@@ -65,3 +68,8 @@ reviews/STAGE_300_CHECKPOINT_B1_OPUS_MAX_RECEIPT_2026-10-11.json
 reviews/STAGE_300_CHECKPOINT_B2_OPUS_*_REVIEW*.md
 reviews/STAGE_300_CHECKPOINT_B2_REVIEW_RECEIPTS_2026-10-11.json
 reviews/evidence/stage-300-b2-2026-10-11/
+
+# Verbatim independent checkpoint C acceptance reviews.
+reviews/STAGE_300_CHECKPOINT_C_OPUS_*_REVIEW*.md
+reviews/STAGE_300_CHECKPOINT_C_REVIEW_RECEIPTS_2026-10-12.json
+reviews/evidence/stage-300-c-2026-10-12/
