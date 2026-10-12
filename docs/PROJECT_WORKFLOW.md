@@ -80,9 +80,13 @@ Fresh Opus 5.5 xhigh and Opus 5.5 max both PASS on the repair-1 artifact (handof
 `handoffs/STAGE_300_CHECKPOINT_C_REQUEST.md`, dirty listing `7f4c4eb4…`). The Stage 300 remediation
 (A, B1, B2, C) is complete. Sonnet 5.5 has a verified catalog entry
 (`reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md`); runtime relevance uses
-no paid model (decisions 6). Owner-approved Low deferrals are listed in the acceptance record. Next:
-operator records with the owner's ceilings (decisions 6). Any live run needs separate owner
-authorization; owner play acceptance of Stages 290/300 stays deferred. No paid runtime calls so far.
+no paid model (decisions 6). Owner-approved Low deferrals are listed in the acceptance record.
+Operator records created 2026-10-12 in the local development database
+(`reviews/STAGE_300_OPERATOR_RECORDS_2026-10-12.json`): account `anthropic-owner` ($15/day) and
+approval `stage-300-sonnet` ($30 stage, $15 campaign/day, $10 per session and per evaluation run,
+campaign `ravenford`). They stay inert until `.env.local` selects remote routes and the approval.
+Any live run needs separate owner authorization; owner play acceptance of Stages 290/300 stays
+deferred. No paid runtime calls so far.
 
 **Checkpoint B2: ACCEPTED 2026-10-12** (`reviews/STAGE_300_CHECKPOINT_B2_ACCEPTANCE_2026-10-12.json`).
 Fresh Opus 5.5 xhigh and Opus 5.5 max both PASS on the repair-1 artifact (handoff
