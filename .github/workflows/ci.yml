@@ -86,3 +86,18 @@ jobs:
 
       - name: UI and API journeys
         run: pnpm run test:e2e
+
+  deploy:
+    name: Deployment check
+    # Docker Engine with BuildKit and the Compose plugin are preinstalled on this image.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Images of this revision, a local stack behind Caddy with internal TLS, smoke checks,
+      # backup and restore drill, retention and CSP checks, the live stream through the proxy
+      # (docs/adr/0037-deployment.md). The script removes everything it created.
+      - name: Build, run and check the deployment
+        run: bash deploy/verify/ci.sh

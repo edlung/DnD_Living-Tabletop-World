@@ -78,21 +78,27 @@ export async function loadMigrations(directory: string): Promise<Migration[]> {
   return parseMigrations(files);
 }
 
+/** How recorded history relates to the files on disk. */
+export interface MigrationComparison {
+  /** Files not yet applied, in order. */
+  readonly pending: readonly Migration[];
+  /**
+   * Applied migrations this build does not carry: only a newer build can have applied them
+   * (a rollback to an earlier image, docs/adr/0037-deployment.md). Empty when `pending` is not.
+   */
+  readonly newer: readonly string[];
+}
+
 /**
- * Returns the migrations still to apply, or throws if recorded history and
- * the files on disk disagree. History must be an exact prefix of the files:
- * no edited, deleted, or out-of-order migrations.
+ * Compares recorded history with the files on disk. Throws on drift: an edited applied
+ * migration, or history that diverges from disk order where both have entries. History that
+ * extends beyond the files is reported as `newer`, never accepted here.
  */
-export function planMigrations(
+export function compareMigrations(
   available: readonly Migration[],
   applied: readonly AppliedMigration[],
-): Migration[] {
-  if (applied.length > available.length) {
-    const missing = applied.slice(available.length).map((migration) => migration.id);
-    throw new MigrationIntegrityError(`Applied migrations missing on disk: ${missing.join(', ')}`);
-  }
-
-  applied.forEach((record, index) => {
+): MigrationComparison {
+  applied.slice(0, available.length).forEach((record, index) => {
     const expected = available[index];
     if (expected?.id !== record.id) {
       throw new MigrationIntegrityError(
@@ -105,6 +111,26 @@ export function planMigrations(
       );
     }
   });
+  return {
+    pending: available.slice(applied.length),
+    newer: applied.slice(available.length).map((migration) => migration.id),
+  };
+}
 
-  return available.slice(applied.length);
+/** The message every refusal of a newer database uses. */
+export const newerDatabaseMessage = (newer: readonly string[]): string =>
+  `Applied migrations missing on disk: ${newer.join(', ')}`;
+
+/**
+ * Returns the migrations still to apply, or throws if recorded history and
+ * the files on disk disagree. History must be an exact prefix of the files:
+ * no edited, deleted, or out-of-order migrations.
+ */
+export function planMigrations(
+  available: readonly Migration[],
+  applied: readonly AppliedMigration[],
+): Migration[] {
+  const { pending, newer } = compareMigrations(available, applied);
+  if (newer.length > 0) throw new MigrationIntegrityError(newerDatabaseMessage(newer));
+  return [...pending];
 }

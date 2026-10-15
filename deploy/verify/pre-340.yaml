@@ -1,0 +1,8 @@
+# Stage 350 part A local verification only, until Stage 340 (invitation sign-in) is merged:
+# this revision's server knows no AUTH_MODE=invitations, so the stack runs with the only other
+# production mode, `disabled` (nobody can sign in). Delete this file once Stage 340 is merged.
+# Used through COMPOSE_FILE=compose.yaml:verify/pre-340.yaml in a local deploy/.env.
+services:
+  server:
+    environment:
+      AUTH_MODE: disabled

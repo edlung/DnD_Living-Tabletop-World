@@ -5,6 +5,7 @@ import { OperatorStore } from './operator-store.ts';
 import { accountingStatus } from './postgres-budget-store.ts';
 import { identityResolver, VERIFIED_CATALOG } from '../catalog.ts';
 import { recoverIncomplete } from './recovery.ts';
+import { spendReport } from './spend-report.ts';
 import { explainStops } from './stop-diagnostics.ts';
 
 /**
@@ -13,7 +14,8 @@ import { explainStops } from './stop-diagnostics.ts';
  * reconciliations, evidence batches and incomplete-request recovery. Its existence authorizes
  * nothing: run a mutation only with the owner's recorded spending authorization. Charge commands
  * return the IDs of any stops they appended; `stops` (read-only) explains each uncleared stop of an
- * account for the operator deciding on a clearance, and is never shown to a campaign (B2).
+ * account for the operator deciding on a clearance, and is never shown to a campaign (B2). `spend`
+ * (read-only) prints the spending counters (`spend-report.ts`, docs/adr/0037-deployment.md).
  */
 export async function runOperatorCommand(
   pool: pg.Pool,
@@ -59,5 +61,7 @@ export async function runOperatorCommand(
       return explainStops(pool, command.accountId, identityResolver(VERIFIED_CATALOG));
     case 'status':
       return accountingStatus(pool);
+    case 'spend':
+      return spendReport(pool);
   }
 }

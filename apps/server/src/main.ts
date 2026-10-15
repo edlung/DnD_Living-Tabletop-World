@@ -19,8 +19,11 @@ import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
 import { disabledAuthenticator, loadDevPersonaAuthenticator } from './http/auth.ts';
 import { buildLiveApp } from './live/live-app.ts';
 import { describeDatabaseUrl, loadConfig, obsoleteVariables } from './platform/config/config.ts';
+import { loadMigrations } from './platform/db/migration-source.ts';
+import { MIGRATIONS_DIR } from './platform/db/migrations-dir.ts';
 import { createLogger, type Logger } from './platform/logging/logger.ts';
 import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
+import { storeReadiness } from './world-engine/store-readiness.ts';
 
 /**
  * Server composition root. Wires platform services, the World Engine, and
@@ -63,6 +66,7 @@ async function main(): Promise<void> {
   const engine = createWorldEngine(pool);
   const contents = new PostgresAssetContentStore(pool);
   const quests = await loadQuestBook(config.questsFile);
+  const readiness = storeReadiness(pool, await loadMigrations(MIGRATIONS_DIR), logger);
   // The live session (ADR 0033) closes its streams with `shutdown` when the app closes.
   const { app } = buildLiveApp({
     engine,
@@ -74,6 +78,7 @@ async function main(): Promise<void> {
     dm: { substitutions: new PostgresSubstitutionStore(pool), clock: systemClock },
     assets: { contents },
     quests,
+    readiness,
   });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
@@ -85,6 +90,8 @@ async function main(): Promise<void> {
     'server ready',
   );
   reportAiSpending(logger, pool, ai);
+  // The first verdict is logged now; later probes log only changes.
+  void readiness();
 
   const stopAssets = startAssetWorkerLoop({
     engine,

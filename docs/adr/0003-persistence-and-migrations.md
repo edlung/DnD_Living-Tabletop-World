@@ -34,6 +34,7 @@ Option 4.
 
 - Schema changes are reviewed as plain SQL, which suits audit and event tables.
 - No rollback ("down") migrations: corrections are new forward migrations, consistent with history-preserving undo.
+- Amendment (Stage 350, ADR 0037): a deployment rollback starts an earlier image on the same database. Only then, through the explicit `--allow-newer-database` option of `migrate-cli`, the runner accepts history that extends its files when every shared entry is identical, and applies nothing; drift is still refused.
 - Replacing the runner later (for example with a library) only needs to preserve the history table semantics.
 
 ## Invariants affected

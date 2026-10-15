@@ -45,3 +45,37 @@ runbook. The owner has not yet provided a server, a domain or an off-host backup
 - Off-host backup copying is a documented step pending the owner's backup location.
 - A single instance: in-memory limits (ADR 0036) and the live hub (ADR 0033) assume one server
   process; scaling out needs shared state (recorded triggers).
+
+## 2026-10-16 — Part A implementation notes (technical)
+
+Implemented as designed; these points make the decisions concrete. Files: `deploy/` (`AGENTS.md`).
+
+- **Rollback and the strict migrator.** ADR 0003 refuses a database whose history holds
+  migrations missing on disk, which is exactly what an earlier image meets after a later one
+  migrated. The runner gains one explicit exception, used only by the deployment's rollback step:
+  `migrate-cli --allow-newer-database` (`deploy.sh --rollback`, `LTW_ALLOW_NEWER_SCHEMA=true`)
+  accepts history that extends this build's files when every shared entry is identical, and
+  applies nothing. Drift is still refused. Every other start stays strict.
+- **Readiness** (`/readyz`, `apps/server/src/world-engine/store-readiness.ts`): `database` (a
+  query answers), `migrations` (nothing this build carries is pending; a database a newer build
+  migrated passes, since the rollback step accepted it), `eventStore` (the newest event of every
+  stream parses with this build's schemas and every stream head has its event; until it first
+  succeeds, one stored event of every type and schema version is parsed too, so an earlier image
+  never reports ready over history it cannot read). Each check is bounded (3 s), concurrent probes
+  share one run, the body names failed checks only, and transitions are logged. Health requests
+  log only warnings.
+- **Restore drill.** The digest is SHA-256 over a canonical encoding of the World Engine state
+  (`state-digest.ts`: maps and sets sorted, so fill order never matters). `replay-digest-cli.js`
+  digests every stream (or given versions) and compares a restored database's digests with the
+  live database replayed at the same versions; integrity violations never count as a match.
+- **Proxy.** HTTP/3 is off (TCP 80/443 only); the client is `apps/web/build` (the design's
+  `dist` was a slip); `/api` is never compressed; the proxy adds its CSP only where the server set
+  none (asset content keeps its sandboxed policy); `Server` and `Via` are removed. The proxy and
+  the server run non-root with every capability dropped (the proxy binds 80/443 through the
+  unprivileged-port sysctl); base images are pinned by digest.
+- **Spending counters.** `ai:operator spend` (read-only, operator only) reports effective spend
+  per billing account (today and in total, open holds) and per approval against its stage
+  ceiling, with `spend.ts`'s definition; startup logs still carry counts only.
+- **Verification before Stage 340.** This revision has no `AUTH_MODE=invitations`; the local run
+  uses `deploy/verify/pre-340.yaml` (`disabled`) and, for the live stream only,
+  `deploy/verify/dev-personas.yaml` (public persona tokens, local only). Part B deletes both.
