@@ -116,3 +116,27 @@ export function decideAssignCharacter(
     payload: { characterId: command.characterId, playerActorId: command.playerActorId },
   });
 }
+
+/**
+ * The DM frees a character from its player from now on (docs/adr/0036-production-sign-in.md §4).
+ * The event names the player, so the release can be undone; commands the player issued before
+ * stay history, and the character can be assigned again.
+ */
+export function decideReleaseCharacter(
+  state: WorldState,
+  command: ResolvedCommandOf<'ReleaseCharacter'>,
+): Decision {
+  const character = findEntity(state, command.characterId);
+  if (!character.ok) return character;
+  if (character.value.kind !== 'character') {
+    return reject('INVALID_ASSIGNMENT', 'Only entities of kind "character" have a player');
+  }
+  const playerActorId = state.roster.get(command.characterId);
+  if (playerActorId === undefined) {
+    return reject('NO_EFFECT', 'The character has no player');
+  }
+  return accept({
+    type: 'CharacterReleased',
+    payload: { characterId: command.characterId, playerActorId },
+  });
+}

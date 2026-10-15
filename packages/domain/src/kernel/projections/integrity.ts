@@ -112,6 +112,7 @@ export function checkWorldIntegrity(state: WorldState): string[] {
   }
 
   const players = new Set<string>();
+  let assignedBefore = 0;
   for (const [characterId, playerId] of state.roster) {
     if (state.entities.get(characterId)?.kind !== 'character') {
       report(`roster entry ${characterId} is not a character`);
@@ -119,6 +120,13 @@ export function checkWorldIntegrity(state: WorldState): string[] {
     if (players.has(playerId)) report(`player ${playerId} controls several characters`);
     if (playerId === state.campaign?.dmActorId) report('the DM is also a player');
     players.add(playerId);
+    // The roster stays in assignment order (ADR 0036 §4: undoing a release restores it).
+    const assignedAt = state.rosterAssignedAt.get(characterId) ?? 0;
+    if (assignedAt <= assignedBefore) report(`roster entry ${characterId} is out of order`);
+    assignedBefore = assignedAt;
+  }
+  if (state.rosterAssignedAt.size !== state.roster.size) {
+    report('roster assignment order does not match the roster');
   }
 
   for (const [id, memory] of state.memories) {

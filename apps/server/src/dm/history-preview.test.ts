@@ -87,7 +87,7 @@ const kinds = (stream: LiveStream) => stream.messages().map((message) => message
 const dmVerdict = (app: FastifyInstance) =>
   fingerprintViews(
     app,
-    `Bearer ${TOKENS.dm}`,
+    { authorization: `Bearer ${TOKENS.dm}` },
     coverageInventory({
       campaignId: 'ravenford',
       perspective: 'DM',

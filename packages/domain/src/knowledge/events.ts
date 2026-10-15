@@ -30,6 +30,11 @@ export const characterAssignedPayloadSchema = z
   .object({ characterId: entityIdSchema, playerActorId: actorIdSchema })
   .strict();
 
+/** The character's player from before the release (docs/adr/0036-production-sign-in.md §4). */
+export const characterReleasedPayloadSchema = z
+  .object({ characterId: entityIdSchema, playerActorId: actorIdSchema })
+  .strict();
+
 export const knowledgeRestoreSchemas = [
   z
     .object({ fact: z.literal('knowledge'), knowledgeId: knowledgeIdSchema, value: z.null() })
@@ -39,6 +44,17 @@ export const knowledgeRestoreSchemas = [
       fact: z.literal('roster'),
       characterId: entityIdSchema,
       playerActorId: actorIdSchema,
+      value: z.null(),
+    })
+    .strict(),
+  // Undoing a release: the release goes back to nothing, so the player controls the character
+  // again, in its place in assignment order (the sequence of the assignment it had).
+  z
+    .object({
+      fact: z.literal('release'),
+      characterId: entityIdSchema,
+      playerActorId: actorIdSchema,
+      assignedAt: z.number().int().min(1),
       value: z.null(),
     })
     .strict(),

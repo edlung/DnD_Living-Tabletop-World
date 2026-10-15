@@ -321,6 +321,7 @@ registerRussian({
   'end scene': 'конец сцены',
   'undo command': 'отмена',
   'assign character': 'назначение персонажа',
+  'release character': 'освобождение персонажа',
   'record memory': 'запись воспоминания',
   'start session': 'начало сессии',
   'end session': 'конец сессии',

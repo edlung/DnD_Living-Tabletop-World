@@ -314,3 +314,66 @@ contracts).
   `drafts.spec.ts`, `phone-layout.spec.ts`, `chronicle-book.spec.ts`, the perspective-isolation
   and boundary journeys unchanged in strength; axe scans at three widths
   (`accessibility.spec.ts`); the screenshot set `reports/evidence/stage-320/index.md`.
+
+Stage 340 part A introduction evidence (ADR 0036; `docs/STAGE_340_DESIGN.md` with its part A
+implementation notes; baseline `e2c4bca`; acceptance pending): **new surfaces for Gate 06**, row
+340 of the alpha-phase table. Invitation mode only (`AUTH_MODE=invitations`); development personas
+behave as before and stay refused in production.
+- **`POST /auth/redeem`** (`apps/server/src/auth/auth-routes.ts`): `{token}` from a link's
+  fragment; limits first (10/min per address, 5 failures per token prefix, 15 min lockout after 20
+  failures/hour; fixed 429), then 400 for a malformed body, then one fixed 401 for every
+  well-formed failure (unknown, used, revoked, expired, the seat no longer free). A player's seat
+  is `AssignCharacter` by the system actor `sign-in` under `invite:<invitationId>` (actor stored
+  first, so a retry converges); marking the invitation used, creating the session and revoking
+  the seat's other open invitations are one transaction; a redeem whose invitation is revoked or
+  expires while it takes the seat undoes that assignment. Answers `{campaignId}` and sets
+  `ltw_session` (`Path=/api; HttpOnly; SameSite=Strict; Max-Age=1209600`, `Secure` except http
+  loopback); a session the browser held before is revoked.
+- **`GET /auth/session`**: `{campaignId}` only while the session is live and its actor still a
+  member, else 401 with the cookie cleared. **`POST /auth/sign-out`**: revokes the session, clears
+  the cookie (204), 401 without a live session.
+- **DM only, ADR 0009 order (401, 400, then the 404 of a missing campaign for anyone but this
+  campaign's DM):** `POST /campaigns/:campaignId/invitations {characterId, expiresHours?}` (404
+  for a non-character, 409 for a taken seat, 20/hour per DM; the link is shown once), `GET
+  …/invitations` (newest 100 invitations with status and times, members as character, live
+  session count and coarse last-seen; never a token, hash or actor ID), `POST
+  …/invitations/:invitationId/revoke` (404 for another campaign's, 409 once used), `POST
+  …/members/:characterId/revoke` (the player's sessions and the character's open invitations
+  revoked first, then `ReleaseCharacter` as the DM; a World Engine refusal is answered as the
+  command route would).
+- **Credential binding**: a session opens only its campaign; elsewhere its actor is one no
+  campaign has (`apps/server/src/http/auth.ts`, `actorFor`), so after input validation it gets the
+  non-member 404 — even where the same actor is the DM. Unknown, non-member and released
+  campaigns answer identically; revoked, expired and forged sessions answer the 401 of no cookie.
+- **Origin and headers** (`apps/server/src/http/security.ts`): before anything else, a non-GET
+  request needs `Origin` = `PUBLIC_ORIGIN`, the live stream that `Origin` or, without one,
+  `Sec-Fetch-Site: same-origin`; fixed 403 otherwise. Every response (and the stream) carries the
+  design's CSP, `Referrer-Policy: no-referrer`, `nosniff`; `Vary: Cookie`. JSON bodies only.
+- **Limits on expensive routes**: DM intents, NPC dialogue, Chronicle generation and
+  `RequestAsset` commands, 20/min per actor with 2 in flight (released when the work ends),
+  answered 429 right after authentication; the refused request starts no AI request.
+- **Live stream**: injected views carry the subscriber's cookie; sign-out, revocation and expiry
+  close it (`unauthenticated`) within one cycle; a seat released behind a live session closes it
+  (`gone`).
+- **Kernel: `ReleaseCharacter {characterId}`** (DM only; `CharacterReleased {characterId,
+  playerActorId}`, introduced at the dependency contract). Footprint reads the clock, the
+  character and its roster entry, writes the roster entry and the player's. Undo restores the
+  seat in assignment order (`rosterAssignedAt`) and is refused while any later command stands,
+  since later decisions may rest on the empty seat; the release protects the assignment it ended.
+  The generic command route refuses `ReleaseCharacter`. Earlier commands of the released player
+  stay valid history (re-decision oracle).
+- **Table** `0010_auth.sql`: hashes only, format checks, one-way update triggers, invitations never
+  deleted; redeem evidence keyed by an HMAC under a process-local key, pruned after 7 days.
+- **Deterministic evidence**: `apps/server/src/auth/sign-in.test.ts`, `member-routes.test.ts`,
+  `sign-in-limits.test.ts`, `limits.test.ts`, `browser-checks.test.ts`, `sign-in-live.test.ts`,
+  `sign-in-logs.test.ts` (captured logger at trace level, AI traces, evidence rows, live frames and
+  response bodies hold no token, hash or cookie), `modes.test.ts`,
+  `credentials.integration.test.ts`; `packages/domain/src/knowledge/release.test.ts` (decide,
+  fold, replay from stored rows, undo order, strictly reverse undo, randomized seats with party
+  memories under the re-decision oracle), `kernel/replay.test.ts` and `undo-preview.test.ts` with
+  releases in the random command generator. Every reviewed suite passes unchanged except
+  mechanical updates for the asynchronous `Authenticator` port.
+- **Changed reviewed boundary**: none of the projections, the perspective rules or the ADR 0009
+  order changed. The roster gained a removal path going forward (`ReleaseCharacter`), so Gate 06
+  should review party-scoped projections after a release (a released character leaves the party
+  view from then on, as after an undone assignment).

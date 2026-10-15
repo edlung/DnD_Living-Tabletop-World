@@ -28,7 +28,8 @@
     "test:e2e": "playwright test",
     "evidence:screens": "playwright test -c playwright.evidence.config.ts",
     "eval:ai": "node --conditions=@ltw/source apps/server/src/testing/eval/eval-cli.ts",
-    "ai:operator": "pnpm --filter @ltw/server run ai:operator"
+    "ai:operator": "pnpm --filter @ltw/server run ai:operator",
+    "auth:operator": "pnpm --filter @ltw/server run auth:operator"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

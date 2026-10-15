@@ -6,6 +6,9 @@ import type { WorldEngine } from '@ltw/domain';
 import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } from 'fastify';
 
 import type { AssetContentStore } from '../assets/content-store.ts';
+import { registerAuthRoutes } from '../auth/auth-routes.ts';
+import { registerMemberRoutes } from '../auth/member-routes.ts';
+import type { SignInDependencies } from '../auth/sign-in.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import { registerDmRoutes, type DmDependencies } from '../dm/dm-routes.ts';
 import { registerPresenceRoutes } from '../live/presence.ts';
@@ -28,6 +31,7 @@ import { registerQuestRoutes } from './routes/quest-routes.ts';
 import { registerSessionRoutes } from './routes/session-routes.ts';
 import { registerSurroundingsRoutes } from './routes/surroundings-routes.ts';
 import { registerVisualRoutes } from './routes/visual-routes.ts';
+import { SECURITY_HEADERS, registerOriginCheck } from './security.ts';
 
 /**
  * The server's HTTP application (docs/adr/0009-http-api-and-dev-authentication.md).
@@ -53,9 +57,22 @@ export interface AppDependencies {
    * silent fingerprint twin (`src/live/live-app.ts`). Without a live session nobody is present.
    */
   readonly presence?: PresenceSource;
+  /**
+   * Production sign-in (docs/adr/0036-production-sign-in.md), invitation mode only: the
+   * `/auth/*` routes, the DM's members and invitations, the origin check, request limits.
+   * Absent with development personas, which behave as before.
+   */
+  readonly signIn?: SignInDependencies;
 }
 
-export function buildApp(deps: AppDependencies): FastifyInstance {
+/** The request header that carries the credential: responses vary on it. */
+export const credentialHeaderOf = (deps: Pick<AppDependencies, 'signIn'>) =>
+  deps.signIn ? ('Cookie' as const) : ('Authorization' as const);
+
+export function buildApp(input: AppDependencies): FastifyInstance {
+  // Request limits apply in invitation mode (ADR 0036 §6); routes read them from their deps.
+  const deps = input.signIn ? { ...input, limits: input.signIn.limits } : input;
+  const vary = credentialHeaderOf(deps);
   // Typed as Fastify's base logger so routes share one instance type.
   const loggerInstance: FastifyBaseLogger = deps.logger;
   const app = Fastify({
@@ -69,9 +86,13 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   app.addHook('onSend', async (request, reply) => {
     reply.header('x-request-id', request.id);
     reply.header('cache-control', 'no-store');
-    reply.header('vary', 'Authorization');
-    reply.header('x-content-type-options', 'nosniff');
+    reply.header('vary', vary);
+    for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+      // A route's own stricter policy (asset content) stays.
+      if (!reply.hasHeader(name)) reply.header(name, value);
+    }
   });
+  if (deps.signIn) registerOriginCheck(app, deps.signIn.publicOrigin);
 
   app.setNotFoundHandler((request, reply) => sendError(reply, request, 'NOT_FOUND'));
   app.setErrorHandler((error, request, reply) => {
@@ -102,5 +123,10 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   registerDmRoutes(app, deps);
+  if (deps.signIn) {
+    const signIn = { ...deps, signIn: deps.signIn };
+    registerAuthRoutes(app, signIn);
+    registerMemberRoutes(app, signIn);
+  }
   return app;
 }

@@ -42,6 +42,12 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
       ? { ok: true, authority: 'dm' }
       : forbidden('Only the DM can confirm authoring');
   }
+  if (command.type === 'ReleaseCharacter') {
+    // Taking a seat away is the DM's decision alone (docs/adr/0036-production-sign-in.md §4).
+    return actor.kind === 'user' && actor.actorId === state.campaign?.dmActorId
+      ? { ok: true, authority: 'dm' }
+      : forbidden('Only the DM can release a character');
+  }
   if (WORKER_TYPES.has(command.type)) {
     // Only the asset worker reports what external work did (ADR 0022 §4).
     return actor.kind === 'system'

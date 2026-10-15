@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import { statusOf } from '../command-status.ts';
 import { sendError } from '../errors.ts';
-import { authenticate, parseInput, type RouteDependencies } from '../request-context.ts';
+import { authenticate, limitKey, parseInput, type RouteDependencies } from '../request-context.ts';
 
 /**
  * World Engine commands over HTTP (docs/adr/0009-http-api-and-dev-authentication.md).
@@ -29,18 +29,21 @@ export function httpCommandId(actorId: string, clientCommandId: string): string 
 
 export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependencies): void {
   app.post('/campaigns/:campaignId/commands', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const path = parseInput(params, request.params, request, reply);
     if (!path) return reply;
     const input = parseInput(body, request.body, request, reply);
     if (!input) return reply;
-    // Authoring commits only through its proposals (docs/adr/0018-ai-authoring.md §6), and
-    // chapters only through the chronicle route, which renders them (ADR 0024 §4).
+    // Authoring commits only through its proposals (docs/adr/0018-ai-authoring.md §6),
+    // chapters only through the chronicle route, which renders them (ADR 0024 §4), and a
+    // member's release only through the members route, which revokes their sessions first
+    // (docs/adr/0036-production-sign-in.md §4).
     if (
       input.command.type === 'CreateCampaign' ||
       input.command.type === 'ApplyAuthoring' ||
-      input.command.type === 'GenerateChronicle'
+      input.command.type === 'GenerateChronicle' ||
+      input.command.type === 'ReleaseCharacter'
     ) {
       return sendError(reply, request, 'INVALID_REQUEST');
     }
@@ -52,15 +55,25 @@ export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependenc
     if (role === 'PLAYER' && input.expectedVersion !== undefined) {
       return sendError(reply, request, 'INVALID_REQUEST');
     }
-
-    const result = await deps.engine.execute({
-      commandId: httpCommandId(actor.actorId, input.commandId),
-      campaignId: path.campaignId,
-      actor,
-      command: input.command,
-      ...(input.expectedVersion === undefined ? {} : { expectedVersion: input.expectedVersion }),
-      ...(input.reason === undefined ? {} : { reason: input.reason }),
-    });
+    // An image request is limited per actor like AI work (ADR 0036 §6), in invitation mode.
+    const slot =
+      deps.limits && input.command.type === 'RequestAsset'
+        ? deps.limits.expensive(limitKey({ actor, campaignId: path.campaignId }))
+        : undefined;
+    if (slot === null) return sendError(reply, request, 'RATE_LIMITED');
+    let result: CommandResult;
+    try {
+      result = await deps.engine.execute({
+        commandId: httpCommandId(actor.actorId, input.commandId),
+        campaignId: path.campaignId,
+        actor,
+        command: input.command,
+        ...(input.expectedVersion === undefined ? {} : { expectedVersion: input.expectedVersion }),
+        ...(input.reason === undefined ? {} : { reason: input.reason }),
+      });
+    } finally {
+      slot?.release();
+    }
     request.log.info(
       { actorId: actor.actorId, commandType: input.command.type, status: result.status },
       'command submitted',

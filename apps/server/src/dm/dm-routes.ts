@@ -55,7 +55,7 @@ export function registerDmRoutes(app: FastifyInstance, deps: DmRouteDependencies
     reply: FastifyReply,
     input: (request: FastifyRequest, reply: FastifyReply) => B | null,
   ): Promise<{ actor: Actor; campaignId: string; snapshot: CampaignSnapshot; input: B } | null> => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return null;
     const path = parseInput(params, request.params, request, reply);
     if (!path) return null;

@@ -12,7 +12,7 @@ const query = z.object({}).strict();
 /** Caller identity and available view choices, never credentials or another player's identity. */
 export function registerSessionRoutes(app: FastifyInstance, deps: RouteDependencies): void {
   app.get('/campaigns/:campaignId/session', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const path = parseInput(params, request.params, request, reply);
     if (!path || !parseInput(query, request.query, request, reply)) return reply;

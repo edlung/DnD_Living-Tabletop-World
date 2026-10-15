@@ -87,3 +87,36 @@ token in logs (captured logger), traces or error bodies; CSRF: missing or foreig
 dev personas refused when `NODE_ENV=production`. Kernel: `ReleaseCharacter` decide/evolve/undo/
 replay tests. Browser: DM invites, player joins through the link, plays, DM revokes, player is
 signed out live. The completion report lists every new route for Gate 06.
+
+## Implementation notes (part A, server)
+
+Where the server refines or departs from the text above, and why (recorded for part B and Gate 06):
+
+- **Live stream origin.** Browsers send no `Origin` on a same-origin GET, so the stream accepts
+  `Origin` = `PUBLIC_ORIGIN` or, without an `Origin`, `Sec-Fetch-Site: same-origin`; any foreign
+  `Origin` or other fetch metadata is refused (403). Non-GET requests need the exact `Origin`.
+- **Modes.** `AUTH_MODE` keeps `disabled`, still the production default (nobody signs in until the
+  operator chooses `invitations`); `PUBLIC_ORIGIN` is required in invitation mode, an exact origin,
+  `https` (plain `http` only for a loopback host outside production). The sign-in routes, limits
+  and origin check exist only in invitation mode, so development personas behave as before.
+- **Binding.** A session on another campaign becomes an actor no campaign has, so validation still
+  precedes the non-member 404 (ADR 0009 order); this holds even where its actor is that
+  campaign's DM too.
+- **Redeem.** A malformed body is 400 (ADR 0009); every well-formed failure is the same 401.
+  Redeeming in a browser that holds a session revokes that session. Taking a seat revokes the
+  character's other open invitations in the same transaction; a redeem whose invitation is revoked
+  or expires while it takes the seat undoes that assignment (fail closed). Inviting for a taken
+  seat is 409, for anything but a character 404.
+- **`GET /auth/session`** answers 401 (and clears the cookie) when the session's actor is no longer
+  a member, so a client never treats a seatless session as signed in.
+- **Revocation.** The generic command route refuses `ReleaseCharacter`: a release always goes
+  through `POST …/members/:characterId/revoke`, which revokes sessions first. Undoing a release is
+  allowed only while no later command stands (later decisions may rest on the empty seat, which no
+  footprint records) and restores the roster in assignment order.
+- **Limits** answer right after authentication on AI routes and after the DM check on invitations;
+  the per-address limits read `request.ip`, so Stage 350 must make the proxy pass the client
+  address (Fastify `trustProxy` for the proxy only) or they count the proxy.
+- **Evidence.** `ltw_auth_attempts` keys addresses and token prefixes by an HMAC whose key lives in
+  the process only; rows are pruned after 7 days, dead sessions 30 days after expiry.
+- **Headers.** `Vary: Cookie` in invitation mode (`Authorization` with personas); a route's
+  stricter CSP (asset content) is kept.

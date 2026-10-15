@@ -86,6 +86,8 @@ export const API_ERROR_CODES = [
   'CONFLICT',
   'UNPROCESSABLE',
   'INTERNAL',
+  /** A request limit (docs/adr/0036-production-sign-in.md §6): 429 with a fixed body. */
+  'RATE_LIMITED',
 ] as const;
 export type ApiErrorCode = (typeof API_ERROR_CODES)[number];
 
