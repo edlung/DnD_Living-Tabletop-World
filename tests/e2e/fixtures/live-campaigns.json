@@ -1,0 +1,6 @@
+{
+  "turn": "ui-live-turn",
+  "counterspell": "ui-live-counterspell",
+  "authoring": "ui-live-authoring",
+  "reconnect": "ui-live-reconnect"
+}

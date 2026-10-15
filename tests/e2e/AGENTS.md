@@ -37,3 +37,11 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   character (Bram Holt) for the stale-reply check, and `ui-ai-no-start` never gets a durable AI
   request start in `ui-server.ts`, so its intents, replies and chapters carry a null trace ID. Only
   dialogue delays are intercepted; the answers are the real server's.
+- Live session (`live-*.spec.ts`, ADR 0033): two browsers share each campaign of
+  `fixtures/live-campaigns.json` (`ui-live-campaigns.ts`) and never press "Refresh world".
+  The live stream never ends while a page lives, so response-body collectors skip it
+  (`isLiveStream` in `support/session.ts`); its frames are held to the fixed grammar by the
+  server tests. Only the stream's transport is touched: the reconnect journey cuts the open
+  stream (`window.stop()`) and fails reconnects through `LIVE_URL`, and the stale-window
+  journey in `combat-reactions.spec.ts` keeps its player's stream down so that only the
+  backend learns of the close.

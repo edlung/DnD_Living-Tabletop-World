@@ -2,7 +2,7 @@ import { expect, type Page, type Response } from '@playwright/test';
 
 import { NEVER_FOR_PLAYERS } from '../../../apps/server/src/testing/scenario/secrets.ts';
 import campaigns from '../fixtures/investigation-campaigns.json' with { type: 'json' };
-import { enterWorld, TOKENS } from './session.ts';
+import { enterWorld, isLiveStream, TOKENS } from './session.ts';
 
 export const INVESTIGATION_CAMPAIGNS = campaigns;
 export const ELOWEN = 'elowen-starwhisper';
@@ -71,7 +71,7 @@ export async function playerKnowledge(
 export function investigationBoundary(page: Page): { assertClean(): Promise<void> } {
   const pending: Promise<string>[] = [];
   page.on('response', (response: Response) => {
-    if (new URL(response.url()).pathname.startsWith('/api/')) {
+    if (new URL(response.url()).pathname.startsWith('/api/') && !isLiveStream(response)) {
       pending.push(response.text().catch(() => ''));
     }
   });

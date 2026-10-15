@@ -9,9 +9,10 @@ import type {
   Weather,
 } from '@ltw/contracts';
 import { EncounterSummary, KnowledgeDetails, StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { useLiveTarget } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
 import { AuthoringPanel } from '../authoring/authoring-panel.tsx';
 import { ChroniclePanel } from '../chronicle/chronicle-panel.tsx';
@@ -20,6 +21,7 @@ import { CombatPanel } from '../combat/combat-panel.tsx';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
 import { ActionNotice } from '../exploration/action-notice.tsx';
 import { useAction } from '../exploration/use-action.ts';
+import { TablePresence } from '../session/live-status.tsx';
 import { EntityDetails } from './entity-details.tsx';
 import { RecentEvents } from './recent-events.tsx';
 import { Scene } from './scene.tsx';
@@ -87,6 +89,14 @@ export function World({
     locations.find((place) => place.entityId === 'market-square')?.entityId ??
     locations[0]?.entityId ??
     '';
+  // The live subscription also covers the selected entity and the viewed place (ADR 0033);
+  // while a reload has no place yet, it keeps following the previous one.
+  const report = useLiveTarget();
+  const focus = selected?.entityId ?? null;
+  const settled = data !== null || placeId !== '';
+  useEffect(() => {
+    if (settled) report(focus, placeId === '' ? null : placeId);
+  }, [report, settled, focus, placeId]);
   const knownPlace = locations.find((place) => place.entityId === placeId);
   const location =
     knownPlace ??
@@ -109,6 +119,7 @@ export function World({
           {effectivePerspective === 'DM' ? t('DM view · all knowledge') : t('Scoped perspective')}
         </span>
       </div>
+      <TablePresence api={api} />
       <ActionNotice notice={action.notice} status={action.status} onRetry={action.retry} />
       {effectivePerspective === 'DM' && (
         <AuthoringPanel

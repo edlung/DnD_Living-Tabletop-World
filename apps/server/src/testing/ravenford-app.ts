@@ -29,9 +29,9 @@ import questBook from '../../../../fixtures/ravenford/quests.json' with { type: 
 import { InMemoryAssetContentStore, type AssetContentStore } from '../assets/content-store.ts';
 import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
-import { buildApp } from '../http/app.ts';
 import type { AccountingDiagnostics } from '../http/routes/ai-routes.ts';
 import { loadDevPersonaAuthenticator } from '../http/auth.ts';
+import { buildLiveApp } from '../live/live-app.ts';
 import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
@@ -173,7 +173,8 @@ export async function ravenfordApp(
   authoring: AuthoringDependencies = testAuthoring(),
   contents: AssetContentStore = new InMemoryAssetContentStore(),
 ): Promise<FastifyInstance> {
-  const app = buildApp({
+  // The production composition, live session included (ADR 0033), as the browser tests use it.
+  const { app } = buildLiveApp({
     ai,
     authoring,
     assets: { contents },

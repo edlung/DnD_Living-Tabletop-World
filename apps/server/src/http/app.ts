@@ -7,6 +7,8 @@ import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } 
 
 import type { AssetContentStore } from '../assets/content-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
+import { registerPresenceRoutes } from '../live/presence.ts';
+import { NOBODY_CONNECTED, type PresenceSource } from '../live/registry.ts';
 import type { Logger } from '../platform/logging/logger.ts';
 import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
@@ -43,6 +45,11 @@ export interface AppDependencies {
   readonly assets: { readonly contents: AssetContentStore };
   /** Quest definitions (docs/adr/0025-ravenford-integration.md §2); the log is a projection. */
   readonly quests: readonly QuestDefinition[];
+  /**
+   * Live subscriptions (docs/adr/0033-live-session.md §5), shared by the application and its
+   * silent fingerprint twin (`src/live/live-app.ts`). Without a live session nobody is present.
+   */
+  readonly presence?: PresenceSource;
 }
 
 export function buildApp(deps: AppDependencies): FastifyInstance {
@@ -90,5 +97,6 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
   registerVisualRoutes(app, deps);
   registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
   registerQuestRoutes(app, deps);
+  registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   return app;
 }

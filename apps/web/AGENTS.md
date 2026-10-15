@@ -16,7 +16,8 @@ and presentation components from `@ltw/ui`; never domain, rules, or providers.
 | Contextual actions, hypotheses, recall                                | `src/exploration/` (`context-actions.tsx`, `action-bindings.ts`, `use-action.ts`)                                 |
 | Battlefield, movement, area preview, reactions, DM encounter controls | `src/combat/` (`combat-panel.tsx`, `target-options.tsx`, `reaction-prompt.tsx`, `dm-controls.tsx`, `movement.ts`) |
 | DM authoring: intent, preview, edit, confirm, undo                    | `src/authoring/` (`authoring-panel.tsx`, `use-authoring.ts`, `proposal-review.tsx`, `proposal-editor.tsx`)        |
-| Visual design                                                         | `src/styles/base.css`, `scene.css`, `details.css`, `responsive.css`                                               |
+| Live session: signal, background refresh, badge, presence, whose turn | `src/api/live.ts`, `live-protocol.ts`, `live-context.ts`, `src/session/use-live-session.ts`, `live-status.tsx`    |
+| Visual design                                                         | `src/styles/base.css`, `scene.css`, `details.css`, `responsive.css`, `live.css`                                   |
 | Browser journeys                                                      | `../../tests/e2e/AGENTS.md`                                                                                       |
 
 - Credentials live only in memory. No tokens or world projections in URLs,
@@ -36,5 +37,10 @@ and presentation components from `@ltw/ui`; never domain, rules, or providers.
   source; discard a reply that arrives for a listener the DM has since changed.
 - No invented canonical scene images or placeholders with fictional state.
   An unavailable approved image has a neutral visual fallback.
+- Live session (ADR 0033): the session screen owns the one live connection, read with
+  `fetch` (never `EventSource`; the credential stays in the header). `useResource` re-reads
+  in the background on its signals: never remount, clear, or flash a shown view for a
+  signal, and keep drafts, selections and unsubmitted intent. Announce turn changes in the
+  turn banner's live region only, never on every refresh.
 - Root `pnpm build` compiles libraries/server and bundles the web client into
   `apps/web/build`. Vite proxies `/api` to the local server in development.

@@ -205,3 +205,35 @@ builders, prompts, instructions and tool schemas are unchanged:
   relevance request to any provider; rankings stay on the Context Engine (`gateway-verified.test.ts`
   reads the `.env.example` example). An explicitly configured remote ranker remains possible and
   keeps its B2 coverage.
+
+Stage 310 part A introduction evidence (ADR 0033; `docs/STAGE_310_DESIGN.md` §A; baseline
+`edeae54`; acceptance pending): **new surfaces for Gate 06**, row 310 of the alpha-phase table.
+- **`GET /campaigns/:campaignId/live`** (`apps/server/src/live/`): the ADR 0009 check order before
+  the stream opens; an event stream of `ready`, `changed {seq}`, `closed {reason}` and comment
+  heartbeats only. A signal is a change of the SHA-256 over the subscriber's own coverage views,
+  each injected with the subscriber's credential into a silent twin of the same application
+  (same engine and stores, no workers, no live route), so the reviewed routes and projections
+  decide what is visible. Every cycle rechecks through those views: 401, 403 and 404 close the
+  stream, and a failure closes it without a signal. Caps 4 per actor per campaign and 200 per
+  process; a consumer whose backlog exceeds 64 KiB is dropped.
+- **`GET /campaigns/:campaignId/presence`**: characters of the perspective's own `knownEntities`
+  and whether their players (and the DM) hold a live subscription, with a 10 s grace; never an
+  actor ID.
+- **Boundary decisions to review**: a focus or place view that answers 404 is fingerprinted by its
+  status (it does not close the stream); the DM's identity view is not covered while the DM holds
+  a lower perspective (it lists hidden characters); entity context and surroundings are covered
+  only for acting characters.
+- **Deterministic evidence**: `apps/server/src/live/live-isolation.test.ts` (every non-DM
+  perspective of Ravenford, with and without focus and place, and the hidden-character sentinel's,
+  stay silent on five DM-only commits while the DM is signalled; a party record signals each
+  reader once; every frame matches the fixed grammar), `live-stream.test.ts` (check order,
+  headers, mid-stream 401/403/404 with a flippable authenticator, failure, disconnect, shutdown,
+  caps), `live-socket.test.ts` (a real connection), `hub.test.ts` (no overlapping cycles,
+  baseline before `ready`, slow consumer, heartbeat, caps), `fingerprint.test.ts` (view answers
+  to verdicts: a hidden focus by its status, errors never a fingerprint), `presence.test.ts` (no hidden character or actor ID; a hidden player's
+  arrival changes no other perspective's views or signals), `inventory.test.ts`; client
+  `apps/web/src/api/live.test.ts`, `live-protocol.test.ts`, `resource.test.ts`; browser journeys
+  `tests/e2e/live-combat.spec.ts` and `live-world.spec.ts` (turn hand-off, Counterspell window
+  answered without refresh, private authoring silent until published, reconnect).
+- No reviewed projection, mutation path or authorization rule changed. The design promises
+  protocol non-disclosure, not constant-time execution: fingerprint cost varies with load.

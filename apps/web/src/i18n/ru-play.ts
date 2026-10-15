@@ -233,6 +233,26 @@ registerRussian({
   'change entity status': 'смена состояния сущности',
   'update entity profile': 'обновление профиля сущности',
 
+  // Live session (ADR 0033)
+  Live: 'На связи',
+  'Connecting…': 'Подключение…',
+  'Reconnecting…': 'Переподключение…',
+  Offline: 'Нет связи',
+  'Live updates:': 'Обновления:',
+  'Changes appear here as they happen.': 'Изменения появляются здесь сразу.',
+  'Live updates are paused. Refresh world shows the latest.':
+    'Обновления приостановлены. «Обновить мир» покажет последнее.',
+  'Live updates are off. Refresh world shows the latest.':
+    'Обновления выключены. «Обновить мир» покажет последнее.',
+  'At the table': 'За столом',
+  'DM connected': 'Мастер на связи',
+  'DM not connected': 'Мастера нет на связи',
+  '{name} · connected': '{name} · на связи',
+  '{name} · not connected': '{name} · нет на связи',
+  'Your turn': 'Ваш ход',
+  "{name}'s turn": 'Ходит: {name}',
+  'Your reaction is needed': 'Нужна ваша реакция',
+
   // Transport and sign-in
   'Your access token was not accepted. Leave the session to reconnect.':
     'Токен доступа не принят. Выйдите из сессии и подключитесь заново.',

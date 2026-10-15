@@ -1,6 +1,6 @@
 # AI Context Map
 
-Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), 110 (AI Authoring), 120 (Continuity Engine), 130 (NPC Intelligence), 140 (AI Relevance), 150 (Asset Identity), 160 (World Visual State), 170 (Chronicle), 180 (Ravenford Integration), 200 (UX Foundation), 210 (World as Interface), 220 (Combat UX), and 230 (DM Authoring UX), and 240 (DM session tools) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
+Product/architecture documents are at the repository root. Paths below are relative to that root. Stages 0 (repository foundation), 10 (World Kernel), 20 (Knowledge Boundary), 30 (Memory), 40 (Rules), 50 (Context Engine), 60 (Investigation), 70 (Contradictions), 80 (Combat), 90 (Reactions), 100 (AI Gateway), 110 (AI Authoring), 120 (Continuity Engine), 130 (NPC Intelligence), 140 (AI Relevance), 150 (Asset Identity), 160 (World Visual State), 170 (Chronicle), 180 (Ravenford Integration), 200 (UX Foundation), 210 (World as Interface), 220 (Combat UX), and 230 (DM Authoring UX), 240 (DM session tools), and 310 part A (live session) have added the code/tooling entry points in the second table; each later stage keeps them current. Completion reports live in `reports/`; gate handoffs in `handoffs/`.
 
 Read the nearest `AGENTS.md`, then only the entries needed for the task.
 
@@ -10,7 +10,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 |---|---|
 | Start or authorize a stage | `QUICKSTART.md`, `EFFORT_MATRIX.md`, `AGENT_WORKFLOW.md`, the one authorized file in `work-orders/` |
 | Current delivery assignments, review requirements, and checkpoint status | `docs/PROJECT_WORKFLOW.md` (current owner policy supersedes older model/effort banners) |
-| Stage 310 design preparation | `docs/STAGE_310_DESIGN.md` (draft; not implementation approval) |
+| Stage 310 live session (contract) | `docs/STAGE_310_DESIGN.md` (draft 2, adopted), `docs/adr/0033-live-session.md`; part A (signal, presence, live refresh) is implemented, parts B (DM substitution) and C (DM history, day control) are not yet |
 | Stage 300 contract completion | `docs/STAGE_300_REMEDIATION_DESIGN.md` (draft 7, approved by independent Astra/Fable xhigh on SHA256 `23e53e4d…aab2`; its "DRAFT" header is frozen for identity); checkpoint status in `docs/PROJECT_WORKFLOW.md` |
 | Stage 300 B2 stop scope | `docs/STAGE_300_B2_STOP_SCOPE_DESIGN.md` (approved exact-byte delta; implemented at B2: `apps/server/src/ai/accounting/stop-scope.ts`, ADR 0032 B2 amendment) |
 | Repository foundation | `work-orders/OPUS_STAGE_000.md`, `ARCHITECTURE.md` (System Shape, Persistence, Deployment) |
@@ -80,6 +80,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Release candidate: install, start, limits, recovery | `docs/RELEASE_CANDIDATE.md`, `reports/STAGE_250_RELEASE.md` |
 | Play language: campaign language, catalogs, Russian rules and seed, client dictionary | `docs/adr/0031-play-language.md`; `packages/domain/src/language/` (catalogs, `say.ts`); `fixtures/ravenford-ru/AGENTS.md`; client `packages/ui/src/i18n.tsx`, `apps/web/src/i18n/ru.ts`; Russian suites `apps/server/src/scenario/ravenford-ru.test.ts`, `apps/server/src/http/russian-boundary.test.ts`, `tests/e2e/language-ru.spec.ts` |
 | Browser session, perspective changes, stale requests | `apps/web/src/session/app.tsx`, `apps/web/src/api/client.ts`, `resource.ts`; E2E `tests/e2e/AGENTS.md` |
+| Live session: change signal, fingerprints, presence, background refresh, connection badge | `apps/server/src/live/AGENTS.md` (`live-app.ts` composition, `hub.ts` loop, `inventory.ts`, `fingerprint.ts`, `presence.ts`), ADR 0033; contracts `packages/contracts/src/session/live.ts`; client `apps/web/src/api/live.ts`, `live-protocol.ts`, `live-context.ts`, `resource.ts`, `apps/web/src/session/use-live-session.ts`, `live-status.tsx`; journeys `tests/e2e/live-*.spec.ts`, campaigns `apps/server/src/testing/ui-live-campaigns.ts` |
 | Session identity and full authorized character sheets | `packages/domain/src/knowledge/session.ts`, `packages/domain/src/character/AGENTS.md`; routes `apps/server/src/http/routes/session-routes.ts`, `character-routes.ts`; contracts `packages/contracts/src/session/views.ts`, `rules/character-view.ts` |
 | Ravenford fixtures | `fixtures/ravenford/AGENTS.md` |
 | Context-budget check | `scripts/context-budget/budget.ts` (policy constants), `scripts/context-budget/cli.ts` |
