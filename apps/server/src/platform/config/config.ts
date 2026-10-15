@@ -315,7 +315,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
 /**
  * `LTW_TRUST_PROXY` (docs/adr/0037-deployment.md): which peers may name the client's address in
  * `X-Forwarded-For`. Unset: none (a forged header changes nothing). A comma-separated list of
- * addresses or CIDR ranges: only those peers (the deployment passes its proxy network). A hop
+ * addresses or CIDR ranges: only those peers (the deployment passes its proxy's address). A hop
  * count 1-5: that many proxies in front, whoever connects; only for a server nothing else can
  * reach. A range wider than /8 (IPv4) or /16 (IPv6) is refused: it would trust strangers.
  */

@@ -32,7 +32,10 @@ services:
     volumes:
       - caddy-data:/data
       - caddy-config:/config
-    networks: [edge]
+    networks:
+      edge:
+        # A fixed address: the server trusts X-Forwarded-For from it alone (LTW_TRUST_PROXY).
+        ipv4_address: ${LTW_PROXY_ADDRESS:-10.231.250.10}
     read_only: true
     tmpfs: [/tmp]
     cap_drop: [ALL]
@@ -70,8 +73,8 @@ services:
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?set PUBLIC_ORIGIN in deploy/.env}
       HTTP_HOST: 0.0.0.0
       HTTP_PORT: '3000'
-      # Only the proxy's network may name the client in X-Forwarded-For (per-address limits).
-      LTW_TRUST_PROXY: ${LTW_EDGE_SUBNET:-10.231.250.0/24}
+      # Only the proxy may name the client in X-Forwarded-For (per-address limits).
+      LTW_TRUST_PROXY: ${LTW_PROXY_ADDRESS:-10.231.250.10}
       DATABASE_URL: postgres://ltw:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}@postgres:5432/ltw
       DEV_PERSONAS_FILE: ''
       LTW_ALLOW_NEWER_SCHEMA: ${LTW_ALLOW_NEWER_SCHEMA:-false}
@@ -175,8 +178,8 @@ services:
     logging: *logging
 
 networks:
-  # Proxy and server; outbound traffic for certificates and AI providers. A fixed range: the
-  # server trusts X-Forwarded-For from it alone (LTW_TRUST_PROXY).
+  # Proxy and server; outbound traffic for certificates and AI providers. A fixed range, so the
+  # proxy can have a fixed address (LTW_PROXY_ADDRESS, inside it).
   edge:
     ipam:
       config:

@@ -63,7 +63,7 @@ export interface AppDependencies {
   readonly readiness?: ReadinessProbe;
   /**
    * Peers whose `X-Forwarded-For` names the client (`request.ip`; docs/adr/0037-deployment.md):
-   * the deployment's proxy network. None by default: a forged header changes nothing.
+   * the deployment's proxy. None by default: a forged header changes nothing.
    */
   readonly trustProxy?: TrustProxy;
 }

@@ -35,9 +35,9 @@ from a committed revision, verified locally in Docker. Operations for people: `R
 - `verify/dev-personas.yaml` signs anyone in with public tokens: local verification only, never on
   a server. `verify/pre-340.yaml` exists only until Stage 340 is merged (no `invitations` mode
   before it); part B of Stage 350 deletes both.
-- The server trusts `X-Forwarded-For` only from the proxy network (`LTW_EDGE_SUBNET`, passed as
-  `LTW_TRUST_PROXY`; `apps/server/src/http/trust-proxy.test.ts`), so per-address limits (Stage 340)
-  see real clients. Never publish the server's port or put anything else on `edge`.
+- The server trusts `X-Forwarded-For` only from the proxy's fixed address (`LTW_PROXY_ADDRESS` in
+  the range `LTW_EDGE_SUBNET`, passed as `LTW_TRUST_PROXY`; `apps/server/src/http/trust-proxy.test.ts`),
+  so per-address limits (Stage 340) see real clients. Never publish the server's port.
 - `PUBLIC_ORIGIN` is required (invitation sign-in, ADR 0036): exactly `https://<PUBLIC_HOST>`, with
   `:<port>` when the published HTTPS port is not 443.
 - Shell scripts are bash (host) or POSIX `sh` (inside the Alpine images); keep them under the
