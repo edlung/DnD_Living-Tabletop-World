@@ -104,3 +104,23 @@ per evaluation run) admit at most a few concurrent holds per session.
 independent acceptance of checkpoint C, and a separately authorized live evaluation (owner
 decisions 5: not authorized). Quality and NPC voice remain human judgments; lexical checks are
 lexical only. No streaming.
+
+## First live run (2026-10-15)
+
+Authorized by the owner (`reviews/OWNER_DECISIONS_9_2026-10-15.json`, live AI within the stored
+ceilings). Run `eval-2026-10-15-sonnet-1`, registered under approval `stage-300-sonnet`, model
+`anthropic:claude-sonnet-5-5`; evidence in
+`reports/evidence/stage-300-live/live-eval-2026-10-15-sonnet-1-2026-10-15T17-46-24.333Z-b9c2b0d3/`.
+
+- DM intents: 6 of 6 semantic passes (4 exact proposals, 2 deliberate declines for the
+  non-game and injection requests); latency p50 2,433 ms, p95 3,091 ms.
+- NPC dialogue: 69 of 69 replies (scenarios plus the full Gate 04 replay); provider input held
+  no forbidden item in 69 of 69 requests and matched the context builder's sources in 69 of 69;
+  the lexical output scan matched nothing; latency p50 2,588 ms, p95 3,948 ms. Quality and voice
+  were not judged.
+- Chronicle: 1 of 1 model chapter accepted, 2,205 ms.
+- Accounting: 76 remote attempts, $0.237486 settled, no outstanding hold, no stop; real
+  response usage fields passed the verified catalog unchanged.
+- Measured 45-minute session estimate for the runtime configuration: $0.16–$0.32.
+- Sonnet's ~2.4 s median confirms the decision to keep runtime relevance off the paid model
+  (2,000 ms budget).
