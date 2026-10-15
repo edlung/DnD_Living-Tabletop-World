@@ -75,12 +75,13 @@ Implemented as designed; these points make the decisions concrete. Files: `deplo
   none (asset content keeps its sandboxed policy); `Server` and `Via` are removed. The proxy and
   the server run non-root with every capability dropped (the proxy binds 80/443 through the
   unprivileged-port sysctl); base images are pinned by digest.
-- **Client address.** Per-address limits (ADR 0036 §6) read `request.ip`. The server trusts
-  `X-Forwarded-For` only from the peers in `LTW_TRUST_PROXY` (unset: none; addresses or CIDR
-  ranges, or a hop count 1-5; wider than /8 or /16 refused); compose gives the proxy a fixed
-  address (`LTW_PROXY_ADDRESS`, default `10.231.250.10`, in `LTW_EDGE_SUBNET`, default
-  `10.231.250.0/24`) and passes that address alone, so a forged header from anyone else (even
-  the network's gateway) changes nothing. `PUBLIC_ORIGIN` is required by compose (invitation mode).
+- **Client address.** Per-address limits (ADR 0036 §6) read the client address, which behind the
+  proxy only `X-Forwarded-For` carries. Stage 340 owns the server setting (`LTW_TRUST_PROXY`:
+  `none` or the proxy's addresses/CIDR ranges, required in invitation mode); compose pins the
+  `edge` network's range (`LTW_EDGE_SUBNET`, default `10.231.250.0/24`) and passes it, and Caddy
+  replaces any `X-Forwarded-For` a client sends. The network's gateway lies in that range; with no
+  server port published, only processes on the host could use it. `PUBLIC_ORIGIN` is required by
+  compose (invitation mode).
 - **Database restarts.** The local run showed that an idle pool connection closed by PostgreSQL
   ended the server process (pg-pool's `error` had no listener). Both server pools now come from
   `createPool` (`apps/server/src/platform/db/pool.ts`): the loss is logged by code, the pool

@@ -1,4 +1,3 @@
-import { isIP } from 'node:net';
 import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
@@ -17,20 +16,12 @@ export type LogLevel = 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace' |
 
 export type AuthMode = 'dev-personas' | 'disabled';
 
-/** Fastify's `trustProxy`: none, a hop count, or the proxy's addresses and CIDR ranges. */
-export type TrustProxy = false | number | readonly string[];
-
 export interface AppConfig {
   readonly nodeEnv: NodeEnv;
   readonly logLevel: LogLevel;
   readonly http: {
     readonly host: string;
     readonly port: number;
-    /**
-     * `LTW_TRUST_PROXY` (docs/adr/0037-deployment.md): the peers whose `X-Forwarded-For` names
-     * the client (`request.ip`, which per-address limits read). False: the socket's address.
-     */
-    readonly trustProxy: TrustProxy;
   };
   readonly databaseUrl: string;
   /** docs/adr/0009-http-api-and-dev-authentication.md */
@@ -152,7 +143,6 @@ const envSchema = z.object({
     emptyAsUndefined,
     z.coerce.number().int().min(0).max(65535).default(3000),
   ),
-  LTW_TRUST_PROXY: z.preprocess(emptyAsUndefined, z.string().max(1_000).optional()),
   DATABASE_URL: z.preprocess(emptyAsUndefined, z.url({ protocol: /^postgres(ql)?$/ }).optional()),
   AUTH_MODE: z.preprocess(emptyAsUndefined, z.enum(['dev-personas', 'disabled']).optional()),
   DEV_PERSONAS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
@@ -259,7 +249,6 @@ export function loadConfig(env: Env = process.env): AppConfig {
     issues.push('AUTH_MODE: dev-personas is not allowed in production');
   }
 
-  const trustProxy = parseTrustProxy(values.LTW_TRUST_PROXY, issues);
   const routes = parseRoutes(values.LTW_AI_ROUTES, issues);
   if (routes !== null) {
     const keyed = new Set<RouteProvider>([
@@ -275,7 +264,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
   return Object.freeze({
     nodeEnv: values.NODE_ENV,
     logLevel: values.LOG_LEVEL ?? DEFAULT_LOG_LEVEL[values.NODE_ENV],
-    http: Object.freeze({ host: values.HTTP_HOST, port: values.HTTP_PORT, trustProxy }),
+    http: Object.freeze({ host: values.HTTP_HOST, port: values.HTTP_PORT }),
     databaseUrl,
     auth: Object.freeze({
       mode: authMode,
@@ -310,35 +299,6 @@ export function loadConfig(env: Env = process.env): AppConfig {
       generationTimeoutMs: values.LTW_ASSET_TIMEOUT_MS,
     }),
   });
-}
-
-/**
- * `LTW_TRUST_PROXY` (docs/adr/0037-deployment.md): which peers may name the client's address in
- * `X-Forwarded-For`. Unset: none (a forged header changes nothing). A comma-separated list of
- * addresses or CIDR ranges: only those peers (the deployment passes its proxy's address). A hop
- * count 1-5: that many proxies in front, whoever connects; only for a server nothing else can
- * reach. A range wider than /8 (IPv4) or /16 (IPv6) is refused: it would trust strangers.
- */
-export function parseTrustProxy(value: string | undefined, issues: string[]): TrustProxy {
-  if (value === undefined) return false;
-  if (/^[1-5]$/.test(value)) return Number(value);
-  const entries = value.split(',').map((entry) => entry.trim());
-  if (entries.every(isProxyRange)) return Object.freeze(entries);
-  issues.push(
-    'LTW_TRUST_PROXY: expected a hop count 1-5 or the proxy addresses and CIDR ranges ' +
-      '(at most /8 for IPv4, /16 for IPv6)',
-  );
-  return false;
-}
-
-function isProxyRange(entry: string): boolean {
-  const [address, prefix, ...rest] = entry.split('/');
-  const family = address === undefined ? 0 : isIP(address);
-  if (family === 0 || rest.length > 0) return false;
-  if (prefix === undefined) return true;
-  if (!/^\d{1,3}$/.test(prefix)) return false;
-  const bits = Number(prefix);
-  return family === 4 ? bits >= 8 && bits <= 32 : bits >= 16 && bits <= 128;
 }
 
 /** Renders a connection string safe for logs: credentials are removed. */

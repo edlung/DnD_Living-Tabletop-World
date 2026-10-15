@@ -32,10 +32,7 @@ services:
     volumes:
       - caddy-data:/data
       - caddy-config:/config
-    networks:
-      edge:
-        # A fixed address: the server trusts X-Forwarded-For from it alone (LTW_TRUST_PROXY).
-        ipv4_address: ${LTW_PROXY_ADDRESS:-10.231.250.10}
+    networks: [edge]
     read_only: true
     tmpfs: [/tmp]
     cap_drop: [ALL]
@@ -73,8 +70,9 @@ services:
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?set PUBLIC_ORIGIN in deploy/.env}
       HTTP_HOST: 0.0.0.0
       HTTP_PORT: '3000'
-      # Only the proxy may name the client in X-Forwarded-For (per-address limits).
-      LTW_TRUST_PROXY: ${LTW_PROXY_ADDRESS:-10.231.250.10}
+      # Stage 340's server takes the client's address from X-Forwarded-For only from these peers
+      # (per-address limits); the proxy's network, pinned below. Caddy sets the header itself.
+      LTW_TRUST_PROXY: ${LTW_EDGE_SUBNET:-10.231.250.0/24}
       DATABASE_URL: postgres://ltw:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}@postgres:5432/ltw
       DEV_PERSONAS_FILE: ''
       LTW_ALLOW_NEWER_SCHEMA: ${LTW_ALLOW_NEWER_SCHEMA:-false}
@@ -178,8 +176,8 @@ services:
     logging: *logging
 
 networks:
-  # Proxy and server; outbound traffic for certificates and AI providers. A fixed range, so the
-  # proxy can have a fixed address (LTW_PROXY_ADDRESS, inside it).
+  # Proxy and server; outbound traffic for certificates and AI providers. A fixed range: the
+  # server trusts X-Forwarded-For from it (LTW_TRUST_PROXY).
   edge:
     ipam:
       config:

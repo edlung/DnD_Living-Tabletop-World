@@ -84,19 +84,18 @@ the domain; until then the stack is verified locally (section 11).
 
    RU: `PUBLIC_ORIGIN` обязателен: вход по приглашениям строит из него ссылки, cookie и проверку
    `Origin`; ровно `https://<домен>` без косой черты (с `:<порт>`, если HTTPS не на 443). Адрес
-   клиента: сервер верит `X-Forwarded-For` только от постоянного адреса прокси (`LTW_PROXY_ADDRESS`,
-   по умолчанию `10.231.250.10`, в сети `LTW_EDGE_SUBNET`, по умолчанию `10.231.250.0/24`; compose
-   передаёт его как `LTW_TRUST_PROXY`), а Caddy заменяет заголовок, присланный клиентом, — поэтому
-   ограничения по адресу (Stage 340) видят настоящих клиентов. Меняйте оба значения вместе и только
-   если сеть пересекается с другой сетью сервера; никогда не публикуйте порт `server`.
+   клиента: сервер (Stage 340) верит `X-Forwarded-For` только из сети прокси — compose передаёт её
+   диапазон (`LTW_EDGE_SUBNET`, по умолчанию `10.231.250.0/24`) как `LTW_TRUST_PROXY`, — а Caddy
+   заменяет заголовок, присланный клиентом; поэтому ограничения по адресу видят настоящих клиентов.
+   Меняйте диапазон, только если он пересекается с другой сетью сервера; никогда не публикуйте порт
+   `server`.
    EN: `PUBLIC_ORIGIN` is required: invitation sign-in builds links, the cookie and the `Origin`
    check from it; exactly `https://<domain>` without a trailing slash (with `:<port>` when HTTPS is
-   not on 443). The client's address: the server trusts `X-Forwarded-For` only from the proxy's
-   fixed address (`LTW_PROXY_ADDRESS`, default `10.231.250.10`, in the network `LTW_EDGE_SUBNET`,
-   default `10.231.250.0/24`; passed by compose as `LTW_TRUST_PROXY`), and Caddy replaces any such
-   header a client sends, so per-address limits (Stage 340) see real clients. Change both values
-   together, only if the network collides with another of the server; never publish the `server`
-   port.
+   not on 443). The client's address: the server (Stage 340) trusts `X-Forwarded-For` only from
+   the proxy's network, whose range compose passes as `LTW_TRUST_PROXY` (`LTW_EDGE_SUBNET`, default
+   `10.231.250.0/24`), and Caddy replaces any such header a client sends, so per-address limits
+   see real clients. Change the range only if it collides with another network of the server;
+   never publish the `server` port.
 
 6. **Сборка и запуск / Build and start.** RU: сборка из закоммиченной ревизии печатает тег; запуск
    ждёт, пока все сервисы станут здоровыми; сертификат выпускается автоматически. EN: the build

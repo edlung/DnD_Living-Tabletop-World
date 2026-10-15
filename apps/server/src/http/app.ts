@@ -10,7 +10,6 @@ import type { AuthoringDependencies } from '../authoring/service.ts';
 import { registerDmRoutes, type DmDependencies } from '../dm/dm-routes.ts';
 import { registerPresenceRoutes } from '../live/presence.ts';
 import { NOBODY_CONNECTED, type PresenceSource } from '../live/registry.ts';
-import type { TrustProxy } from '../platform/config/config.ts';
 import { processReadiness, type ReadinessProbe } from '../platform/health/readiness.ts';
 import type { Logger } from '../platform/logging/logger.ts';
 import type { Authenticator } from './auth.ts';
@@ -61,19 +60,6 @@ export interface AppDependencies {
    * without external stores (tests, in-memory journeys) are ready while the process runs.
    */
   readonly readiness?: ReadinessProbe;
-  /**
-   * Peers whose `X-Forwarded-For` names the client (`request.ip`; docs/adr/0037-deployment.md):
-   * the deployment's proxy. None by default: a forged header changes nothing.
-   */
-  readonly trustProxy?: TrustProxy;
-}
-
-/** A hop count as the function proxy-addr compiles it to: the `count` nearest hops are trusted. */
-function fastifyTrustProxy(
-  trust: TrustProxy,
-): boolean | string[] | ((address: string, hop: number) => boolean) {
-  if (typeof trust === 'number') return (_address, hop) => hop < trust;
-  return trust === false ? false : [...trust];
 }
 
 export function buildApp(deps: AppDependencies): FastifyInstance {
@@ -85,7 +71,6 @@ export function buildApp(deps: AppDependencies): FastifyInstance {
     requestIdHeader: false,
     logController: new LogController({ requestIdLogLabel: 'requestId' }),
     bodyLimit: 64 * 1024,
-    trustProxy: fastifyTrustProxy(deps.trustProxy ?? false),
   });
 
   app.addHook('onSend', async (request, reply) => {
