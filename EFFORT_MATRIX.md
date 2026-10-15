@@ -1,13 +1,11 @@
-> Current owner policy (2026-10-11): `docs/PROJECT_WORKFLOW.md` controls new work.
-> Architecture: Astra/Fable xhigh. Implementation: Opus medium; review repairs xhigh.
-> Acceptance: fresh independent Opus 5.5 xhigh and Opus 5.5 max (owner 2026-10-11: Opus max replaces Sol;
-> read older "Sol/Opus xhigh acceptance" as this pair). Orchestration: Sol medium.
-> Older model assignments are historical; preserve their evidence, not their future authority.
+> Current owner policy (2026-10-15): one session, one model. `docs/PROJECT_WORKFLOW.md` controls new work.
+> The model selected in the session plans, implements, verifies and reports; no orchestrator, no
+> separate writer/reviewer roles, no model or effort pinning. Older assignments are historical.
 
-# Model & Effort Matrix — v1.4
+# Model & Effort Matrix — v1.5 (historical)
 
-Current assignments are pinned in `docs/PROJECT_WORKFLOW.md`. The stage table below records
-historical assignments and never overrides the current owner policy.
+Since 2026-10-15 the model selected in the session does all the work and effort is the session's
+choice. The tables below record historical assignments and suggestions only; they pin nothing.
 
 | Stage | Model | Effort | Reason / Next |
 |---:|---|---|---|
@@ -53,14 +51,9 @@ Stages 200–250 ran under owner exceptions recorded in their reports (a GPT mod
 
 ## Remediation Rule
 
-Any current reviewer FAIL containing a Critical or High finding:
-1. delegate remediation to Claude Opus 5.5 at xhigh (review repairs), in an implementation session;
-2. add a failing regression first;
-3. fix the root contract;
-4. write the remediation artifact and stop;
-5. obtain independent Sol/Opus xhigh acceptance before dependent work.
-
-For Medium/Low-only findings, follow the gate report and project-owner decision; do not silently bypass blocking invariants.
+A Critical/High finding or a violated invariant: add a failing regression first, fix the root contract,
+re-run affected and prior checks, record the finding-to-fix evidence and stop. Medium/Low findings follow
+the owner's disposition. Do not silently bypass blocking invariants.
 
 ## Context/Cache Practicality
 
@@ -68,4 +61,4 @@ The workflow intentionally minimizes routine effort changes. Keep the same Claud
 
 ## Golden Rule
 
-**No implementation session approves its own checkpoint. Fresh independent Sol/Opus acceptance is mandatory.**
+**A stage is accepted by the owner, never by the session that built it. Run every check, attack your own change, report honestly, and stop at the checkpoint.**

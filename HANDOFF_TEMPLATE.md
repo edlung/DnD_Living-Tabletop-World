@@ -1,23 +1,23 @@
-# Independent Checkpoint Handoff Request
+# Checkpoint Handoff
 
 - Gate: <# / name>
-- Review type: INITIAL / RETEST
+- Type: INITIAL / RETEST
 - Completed stage: <stage>
 - Revision/commit: <sha or immutable build id>
 - Prior report / remediation / retest number: <required for RETEST; remediation may be N/A with reason for coverage expansion after PASS>
-- Required output paths: <separate Sol and Opus reports for this same artifact; formal gates use CHECKPOINTS.md>
-- Requested reviewers: gpt-6.1-sol / xhigh and claude-opus-5-5 / xhigh, independent clean sessions
-- Accepted architecture artifact: <design SHA256 and independent Astra/Fable evidence>
+- Report path: <formal gates use CHECKPOINTS.md>
+- Session model: <model that did the work>
+- Approved design: <design SHA256 and the owner's approval record>
 - Dirty-file hashes / package identity: <exact manifest; preserve existing dirty work>
-- Status: <AWAITING_SOL_AND_OPUS_REVIEW / AWAITING_SOL_AND_OPUS_RETEST>
+- Status: <AWAITING_OWNER_DISPOSITION>
 
-## Review Objective
-<one paragraph describing the boundary each reviewer must try to break>
+## Objective
+<one paragraph describing the boundary this checkpoint must hold>
 
 ## Authoritative Documents
 <List only documents relevant to this gate. Always include ARCHITECTURE_INVARIANTS.md.>
 
-## Surfaces Available to Reviewer
+## Surfaces to Attack
 - API/routes:
 - CLI/test harness:
 - UI if relevant:
@@ -34,7 +34,7 @@
 ## Canonical Secret or Invariant Under Test
 <Describe what must remain protected/correct without revealing it to an unauthorized runtime persona. Each reviewer may know the expected canonical fixture.>
 
-## Validation Already Run by Implementation Writer
+## Validation Run
 | Command | Result |
 |---|---|
 | ... | PASS |
@@ -45,9 +45,9 @@
 ## Coverage Ledger
 Use `docs/GATE_COVERAGE.md`. List each due surface with reproducible access, plus future surfaces with their introduction stage and next review gate. Required but untestable surfaces block PASS. Do not label future or unavailable surfaces as tested.
 
+## Adversarial Pass
+<attacks tried against this boundary and their results; findings fixed or listed with disposition>
+
 ## Required Output
-Return a separate report for each exact output path above, using the relevant review mission and
-PASS/FAIL evidence. Formal gate naming is in `CHECKPOINTS.md`; intermediate checkpoints name both
-reports explicitly. Preserve earlier reports and requests. Reviewers do not modify implementation
-or inspect their peer's current verdict; the orchestrator may save returned reports and receipts.
-End with PASS or FAIL and STOP. Neither approval alone advances dependent work.
+The report named above, ending with PASS or FAIL and the honest limits of what was verified. STOP for the
+owner's disposition. An optional independent review (`AGENT_WORKFLOW.md`) is recorded separately.

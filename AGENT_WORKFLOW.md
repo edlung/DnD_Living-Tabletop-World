@@ -1,103 +1,87 @@
-> Current owner policy (2026-10-11): `docs/PROJECT_WORKFLOW.md` controls new work.
-> Architecture: Astra/Fable xhigh. Implementation: Opus medium; review repairs xhigh.
-> Acceptance: fresh independent Opus 5.5 xhigh and Opus 5.5 max (owner 2026-10-11: Opus max replaces Sol;
-> read older "Sol/Opus xhigh acceptance" as this pair). Orchestration: Sol medium.
-> Older model assignments are historical; preserve their evidence, not their future authority.
+> Current owner policy (2026-10-15): one session, one model. `docs/PROJECT_WORKFLOW.md` controls new work.
+> The model selected in the session plans, implements, verifies and reports. There is no orchestrator,
+> no separate writer/reviewer role assignment and no model or effort pinning. Older assignments are
+> historical; preserve their evidence, not their future authority.
 
-# Living Tabletop World — Agent Workflow Contract v1.4
+# Living Tabletop World — Agent Workflow Contract v2.0
 
-Updated by owner decision 2026-10-11. Current assignments and checkpoint status are in
-`docs/PROJECT_WORKFLOW.md`; effort selection is in `EFFORT_MATRIX.md`.
+Updated by owner decision 2026-10-15. Current status is in `docs/PROJECT_WORKFLOW.md`.
 
-## Roles and independence
+## Who does what
 
-Current role identities and pinned efforts are in `docs/PROJECT_WORKFLOW.md`.
-- The project owner approves product decisions and dispositions. Human play acceptance is separate.
+- The **session model** (whichever model the owner selected) does all the work: reads the work order,
+  writes the design where one is needed, implements, runs every check, reviews its own change
+  adversarially, writes the handoff and reports. It may use subagents or tools when that helps; they are
+  an implementation detail, not a role in this process.
+- The **project owner** makes every product decision, authorizes each stage, gives dispositions for
+  findings that are deferred, and does the human play acceptance.
+- No model approves a stage on the owner's behalf. A report from the session is evidence, not approval.
 
-A reviewer session never implements or resumes an implementer's session. Even where Opus is the
-implementation model, acceptance uses a different fresh Opus session. Do not pass another reviewer's
-verdict into an initial independent review. A model request or self-identification is not proof:
-pin model/effort and verify native provider routing and actual response-model evidence. No fallback
-model satisfies a named-model gate. Do not enable API billing or credits to obtain a review.
+## State machine
 
-## State machine and approvals
+`DESIGN_DRAFT -> APPROVED_DESIGN -> IMPLEMENTING -> CHECKPOINT_READY -> OWNER_DISPOSITION`
 
-`DESIGN_DRAFT -> ASTRA_AND_FABLE_REVIEW -> APPROVED_DESIGN -> IMPLEMENTING -> CHECKPOINT_READY -> SOL_AND_OPUS_REVIEW -> PASS | FAIL`
+- A stage or material architecture change starts with a design draft where the work order or the
+  change needs one. The owner approves it (or amends it) before implementation. Roadmap approval does
+  not approve a future stage.
+- At `CHECKPOINT_READY` the session writes the handoff (below) and **stops**. PASS does not start the
+  next stage; the owner authorizes it explicitly.
+- Stop at the authorized stage boundary. Never begin a later stage on your own.
 
-Before a stage or material architecture change, both architecture reviewers approve the same exact
-artifact/hash. Roadmap approval does not approve a future stage. Each implementation checkpoint
-requires fresh independent Sol/Opus xhigh acceptance of actual changes and checks before dependent work.
-A FAIL goes to remediation, new verification evidence, and fresh independent Sol/Opus xhigh retests. No implementation
-session marks its own fixes accepted. Preserve initial reports, findings and every retest.
+## Verification the session owns
 
-Each stage still needs explicit owner authorization. PASS does not start the next stage. Stage 310
-continuation is authorized, but its dependent implementation waits for Stage 300 acceptance and its
-own dual architecture approval. Stop at the authorized stage boundary.
+1. Write the failing regression first for each changed contract; fix the root contract.
+2. Run the full validation (`pnpm validate`, offline: no paid provider calls) and the relevant prior
+   regressions. Never report an unperformed check as passed; state what was and was not verified.
+3. Do an adversarial pass of your own change against `ARCHITECTURE_INVARIANTS.md` and the stage's
+   gate coverage in `docs/GATE_COVERAGE.md`: try to break the boundary, do not only confirm it works.
+   Record the attacks tried and results in the handoff or report.
+4. Record commit/package identity, dirty-file hashes, findings, fixes and residual risks.
+5. After two repair attempts without progress, diagnose and re-plan instead of retrying blindly.
 
-## Coverage and formal gates
+An **independent review** (a separate fresh session, possibly another model) is optional. Use it when
+the owner asks for it or when a stage is a security boundary and the owner wants it. Such a review
+reads the artifact without the author's verdict and reports PASS or FAIL with evidence; it never
+edits the reviewed source. Its absence never blocks a stage, and its presence never replaces the
+owner's play acceptance.
 
-Historical Gates 01–05 were Astra reviews and remain immutable records. Their findings and valid
-coverage are preserved. Future Gate 06, after Stage 350, requires independent Sol/Opus xhigh full-stack reviews
-(Stage 355); numbering and coverage obligations do not change. Follow `docs/GATE_COVERAGE.md`.
-Legacy `ASTRA_MASTER.md`, `ASTRA_GATE_PROMPTS.md` and `ASTRA_REVIEW.md` remain reference mission/
-report templates; their old reviewer names do not override this assignment. Use new Opus filenames
-for current review artifacts, as specified in `CHECKPOINTS.md`.
+## Findings and severity
+
+A Critical/High finding or a violated architecture invariant blocks the checkpoint until fixed and
+re-verified. Other findings are fixed or listed with an owner-approved disposition before deferral.
+Preserve initial reports and every retest; never rewrite a past FAIL into a PASS. A critical contract
+change needs the owner's approval of the new design before implementation.
+
+## Coverage and gates
+
+Historical Gates 01–05 (Astra reviews) are immutable records; their findings and valid coverage are
+preserved. Gate 06 (Stage 355, after Stage 350) remains a full-stack red-team pass of the deployed
+build: the session performs it as a documented attack pass, and the owner may order a fresh-session
+or other-model repeat. Follow `docs/GATE_COVERAGE.md`.
 
 Every introducing stage records changed reviewed boundaries, deterministic regressions and the next
-integrated review obligation. Missing required coverage blocks PASS. A future surface is NOT YET IN
-SCOPE, never passed. Reopen affected accepted coverage when changes invalidate it; preserve the
-previous report and identify the new revision, delta and next retest number.
+review obligation. Missing required coverage blocks the checkpoint. A future surface is NOT YET IN
+SCOPE, never passed. Reopen affected coverage when a change invalidates it, preserving the earlier
+report and naming the new revision and delta.
 
-## Checkpoint handoff and reviewer behavior
+## Checkpoint handoff
 
-The implementation writer finishes and releases checkout ownership before review:
-1. Run required checks and relevant prior regressions; never report unperformed checks as passed.
-2. Record commit/package identity, dirty hashes, design hash, findings, fixes and residual risks.
-3. Prepare the Markdown handoff with exact reproduction commands, fixtures, due coverage and output
-   report path; set status AWAITING_SOL_AND_OPUS_REVIEW.
-4. Stop dependent implementation until acceptance.
-
-Launch separate fresh read-only Sol and Opus reviews with explicit models and xhigh effort. The reviewer independently
-inspects contracts, actual source and evidence, reproduces relevant attacks/checks, and reports
-PASS or FAIL with severity, exact evidence, violated invariant, required regression and limitations.
-For independent architecture review, scope searches to named source/contract paths; repo-wide
-searches must not leak other review reports into the fresh session. Record any incidental exposure.
-Source fixes belong to the implementation writer. The orchestrator may save the returned report and
-transport receipt. One writer owns each checkout; parallel reviews/checks must not modify reviewed
-files or conflict over shared resources. Isolate any additional writers in explicit worktrees.
-
-## Remediation and severity
-
-For Critical/High findings, add a failing regression where feasible, identify and repair the root
-contract, run affected and prior checks, record finding-to-fix evidence and stop for fresh independent Sol/Opus retests.
-After two repair attempts without meaningful progress, diagnose/re-plan rather than blindly retry.
-Unresolved Critical/High or Medium invariant violations block PASS. Other findings require explicit
-recorded owner-approved disposition before deferral. Critical contract changes require renewed
-architecture review of the new exact artifact before implementation.
-
-Track effective model/effort, elapsed time, attributable usage where available and rework. Cache
-statistics and API cost estimates do not prove subscription quota savings. Named-model gates stay
-pending if model identity, access or authorized billing is unavailable.
-
-## Retest Rule
-
-A RETEST handoff names the exact new report path from `CHECKPOINTS.md`, original report, remediation
-artifact, new revision and relevant delta. A past FAIL becomes PASS only through an independent fresh
-Sol/Opus xhigh retest reports. Preserve every initial report and previous retest. When later changes
-invalidate accepted coverage, reopen the affected gate with the next unused retest number; mark the
-remediation artifact N/A with a reason if this is coverage expansion. The reopened scope must pass
-before dependent work advances. Formal gate reports use PASS or FAIL in both header and final result;
-record nonblocking findings and owner-approved dispositions separately.
+Use `HANDOFF_TEMPLATE.md`. Exact reproduction commands, fixtures, due coverage, validation results,
+known limitations. Status `AWAITING_OWNER_DISPOSITION`. Handoffs go in `handoffs/`, reports in
+`reviews/` or `reports/`. Freeze a handoff once the owner starts reviewing it; later changes get a
+numbered request.
 
 ## Product acceptance
 
-From Stage 290, a stage changing what a Player/DM sees or does is complete only after the owner plays
-its affected flows and the report records disposition. An AI stand-in is a useful filter, never
-human acceptance. Stage 360 requires real uncoached human playtests. The user's deferral of Stage
-290/300 personal acceptance remains recorded; do not infer approval or repeatedly ask for it.
+From Stage 290, a stage that changes what a Player or DM sees or does is complete only after the owner
+plays its affected flows and the report records the disposition. An AI stand-in is a useful filter,
+never human acceptance. Stage 360 requires real uncoached human playtests. The owner's deferral of
+Stage 290/300 personal acceptance stays recorded; do not infer approval or keep asking for it.
 
-## Protected contracts and context
+## Protected contracts, spending and context
 
 Follow `ARCHITECTURE_INVARIANTS.md`. Obtain an owner ADR decision before changing a protected product
-contract. Read only the authorized work order, relevant docs/AGENTS and smallest source/test entry
-points. Preserve historical reports and never rewrite a past FAIL into a PASS.
+contract. Spending: no paid provider call without the owner's explicit authorization, a stored
+operator approval and a verified catalog entry (ADR 0032); never read or expose `.env.local`.
+Read only the authorized work order, relevant docs/AGENTS and the smallest source/test entry points;
+query large files narrowly. Preserve historical reports and evidence.

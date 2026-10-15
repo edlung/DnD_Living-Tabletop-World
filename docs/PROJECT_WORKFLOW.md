@@ -2,36 +2,18 @@
 
 Updated 2026-10-11. The owner's current AGENTS instructions take precedence over older process banners.
 
-## Current owner policy — 2026-10-11 (supersedes older assignments)
+## Current owner policy — 2026-10-15 (supersedes all older assignments)
 
-- Orchestration: GPT-6.1 Sol (`gpt-6.1-sol`), medium.
-- Implementation and related fixes: Claude Code CLI, Opus 5.5 (`claude-opus-5-5`), medium,
-  native Anthropic subscription authentication. Review repairs retain xhigh.
-- Architecture: independent fresh GPT-6 Astra (`gpt-6-astra`), xhigh, and Claude Fable 5.1
-  (`claude-fable-5-1`), xhigh, approvals of the same exact artifact before implementation.
-- Checkpoint acceptance: two independent fresh Claude Opus 5.5 (`claude-opus-5-5`) sessions, one at
-  xhigh and one at max, approving the same actual changes and checks. Owner decision 2026-10-11
-  (`reviews/STAGE_300_OWNER_DECISIONS_3_2026-10-11.json`): Opus max replaces GPT-6.1 Sol from B1 on,
-  because Codex Desktop cannot attest Sol's response model. `reviewer-cli` pins xhigh only, so the
-  max session runs through Claude Code CLI with the same isolation (clean environment, exported
-  snapshot without review records, Read/Grep/Glob/scoped Bash, no MCP, dontAsk, persistent session).
-- Owner exception 2026-10-11: for Astra's native Codex subagent only, explicit
-  `gpt-6-astra`/`xhigh` launch configuration is sufficient identity/effort evidence even when actual
-  response attestation is not exposed. Record that limitation; this does not waive independence,
-  hash agreement or any other model/provider/billing requirement.
-- Pin each invocation explicitly; verify effective response identity, effort and native subscription
-  routing. An unavailable setting leaves its named gate pending; no fallback or API billing.
-- One checkout writer; transfer ownership explicitly. Preserve historical verdicts and receipts.
-- Existing scope, spending restrictions, checkpoint dependencies and human acceptance deferrals remain.
-
-Older assignments below are historical and do not authorize a different model or effort for new work.
-
-- Native subscriptions only for development/reviews; do not enable credits or change API billing.
-  Runtime provider keys and budgets are separate. Do not expose or commit `.env.local`.
-- Preserve baseline commit, dirty-file hashes, reviewed artifact hash, findings, fixes, checks,
-  effective model/effort, elapsed time and attributable usage when available. Do not infer quota
-  savings from API cost estimates or cache percentages.
-- Owner play acceptance of Stages 290/300 remains deferred; independent review does not replace it.
+- One session, one model: the model selected in the session plans, implements, verifies and reports.
+  No orchestrator, no separate writer/reviewer role assignments, no model or effort pinning, no
+  `reviewer-cli`, no Codex/Astra/Fable/Sol/Opus-max gates. Contract: `AGENT_WORKFLOW.md` v2.0.
+- The owner decides product questions, authorizes each stage and gives dispositions; the session
+  stops at every checkpoint. Independent review is optional and never blocks.
+- Existing scope, spending restrictions (ADR 0032: owner authorization, stored operator approval,
+  verified catalog entry, never read `.env.local`), checkpoint dependencies and human acceptance
+  deferrals remain.
+- Everything below this section up to "Current continuation" and the older sections is **historical
+  record** of the 2026-10-11/12 role-based process; preserve it, do not follow its role rules.
 
 ## Current checkpoint
 

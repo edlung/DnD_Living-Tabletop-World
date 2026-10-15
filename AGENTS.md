@@ -1,21 +1,19 @@
-> Current owner policy (2026-10-11): `docs/PROJECT_WORKFLOW.md` controls new work.
-> Architecture: Astra/Fable xhigh. Implementation: Opus medium; review repairs xhigh.
-> Acceptance: fresh independent Opus 5.5 xhigh and Opus 5.5 max (owner 2026-10-11: Opus max replaces Sol;
-> read older "Sol/Opus xhigh acceptance" as this pair). Orchestration: Sol medium.
-> Older model assignments are historical; preserve their evidence, not their future authority.
+> Current owner policy (2026-10-15): one session, one model. `docs/PROJECT_WORKFLOW.md` controls new work.
+> The model selected in the session plans, implements, verifies and reports; no orchestrator, no
+> separate writer/reviewer roles, no model or effort pinning. Older assignments are historical.
 
-# Runtime Model Selection Notice
+# Model Selection Notice
 
-Read `EFFORT_MATRIX.md` before executing any work order. It is the single authority for model/effort selection, including remediation; work order banners are summaries. At a checkpoint, obey the HARD STOP and model-switch instruction.
+The model selected in the session does the work. `EFFORT_MATRIX.md` and work-order model/effort banners are historical suggestions, not requirements. At a checkpoint, obey the HARD STOP.
 
 # Living Tabletop World Agent Instructions
 
 Start with `docs/AI_CONTEXT_MAP.md`, then read the nearest applicable `AGENTS.md` and the files needed for the task.
-Use `AGENT_WORKFLOW.md` for protocol and `docs/PROJECT_WORKFLOW.md` for current roles.
+Use `AGENT_WORKFLOW.md` for protocol and `docs/PROJECT_WORKFLOW.md` for current status.
 Use `ARCHITECTURE_INVARIANTS.md` whenever work touches authority, state, knowledge, rules, history, AI mutation, or UX guarantees.
 Use the current file under `work-orders/` as the only authorized implementation scope.
 Do not begin a later stage unless explicitly authorized.
-At formal checkpoints, create the required Markdown handoff and STOP for fresh independent Sol/Opus xhigh acceptance.
+At formal checkpoints, run all checks and your own adversarial pass, create the required Markdown handoff and STOP for the owner's disposition.
 
 # Context and Module Boundaries
 
