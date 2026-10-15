@@ -26,6 +26,7 @@ import { statusOf } from '../command-status.ts';
 import { sendError } from '../errors.ts';
 import {
   authenticate,
+  expensive,
   parseInput,
   withPerspective,
   type RouteDependencies,
@@ -76,7 +77,7 @@ export function registerChronicleRoutes(
     reply: FastifyReply,
     params: z.ZodType<P>,
   ) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return null;
     const parsed = parseInput(params, request.params, request, reply);
     if (!parsed) return null;
@@ -93,7 +94,7 @@ export function registerChronicleRoutes(
     return { actor, snapshot, params: parsed };
   };
 
-  app.post('/campaigns/:campaignId/chronicle', async (request, reply) => {
+  const generate = async (request: FastifyRequest, reply: FastifyReply) => {
     const dm = await forDm(request, reply, campaignParams);
     if (!dm) return reply;
     const body = parseInput(generateBody, request.body, request, reply);
@@ -146,7 +147,9 @@ export function registerChronicleRoutes(
       },
     };
     return reply.code(statusOf(result)).send(response);
-  });
+  };
+  // AI work: limited per actor in invitation mode (docs/adr/0036-production-sign-in.md §6).
+  app.post('/campaigns/:campaignId/chronicle', expensive(generate));
 
   app.get('/campaigns/:campaignId/chronicle', async (request, reply) => {
     const ready = await withPerspective(request, reply, deps, {

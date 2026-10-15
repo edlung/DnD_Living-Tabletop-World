@@ -10,27 +10,76 @@ import {
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import type { z } from 'zod';
 
-import type { Authenticator } from './auth.ts';
+import type { RequestLimits, Slot } from '../auth/limits.ts';
+import { actorFor, type Authenticator, type Credentials, type Principal } from './auth.ts';
 import { sendError } from './errors.ts';
 
 /**
  * The fixed check order of every campaign request (ADR 0009):
  * authenticate (401) → validate input (400) → membership (404) →
  * perspective permission (403). Returns null after sending the error.
+ * An expensive route (AI, images) admits its request right after authentication: 429 over the
+ * actor's limits (docs/adr/0036-production-sign-in.md §6), decided from the caller alone.
  */
 export interface RouteDependencies {
   readonly engine: WorldEngine;
   readonly authenticator: Authenticator;
+  /** Per-process request limits; absent with development personas (ADR 0036 §6). */
+  readonly limits?: RequestLimits;
 }
 
-export function authenticate(
+/** The credential headers of a request, for the authenticator and nothing else. */
+export const credentialsOf = (request: FastifyRequest): Credentials => ({
+  authorization: request.headers.authorization,
+  cookie: request.headers.cookie,
+});
+
+/** Requests of an expensive route (see `expensive`) and the slot each one holds. */
+const EXPENSIVE = new WeakSet<FastifyRequest>();
+const SLOTS = new WeakMap<FastifyRequest, Slot>();
+
+/** The key of an actor's expensive-request limits: one per actor within its session's campaign. */
+export const limitKey = (principal: Principal): string =>
+  `${principal.campaignId ?? ''}\n${principal.actor.actorId}`;
+
+/**
+ * Marks a route handler as expensive (AI or image work): its request is admitted against the
+ * actor's limits when it authenticates, and its in-flight slot is released when the handler's
+ * work is over, whether or not the client is still there.
+ */
+export function expensive(
+  handler: (request: FastifyRequest, reply: FastifyReply) => Promise<FastifyReply>,
+): (request: FastifyRequest, reply: FastifyReply) => Promise<FastifyReply> {
+  return async (request, reply) => {
+    EXPENSIVE.add(request);
+    try {
+      return await handler(request, reply);
+    } finally {
+      SLOTS.get(request)?.release();
+    }
+  };
+}
+
+export async function authenticate(
   request: FastifyRequest,
   reply: FastifyReply,
   deps: RouteDependencies,
-): Actor | null {
-  const actor = deps.authenticator.authenticate(request.headers.authorization);
-  if (!actor) sendError(reply, request, 'UNAUTHENTICATED');
-  return actor;
+): Promise<Actor | null> {
+  const principal = await deps.authenticator.authenticate(credentialsOf(request));
+  if (!principal) {
+    sendError(reply, request, 'UNAUTHENTICATED');
+    return null;
+  }
+  if (deps.limits && EXPENSIVE.has(request) && !SLOTS.has(request)) {
+    const slot = deps.limits.expensive(limitKey(principal));
+    if (!slot) {
+      request.log.info({ limit: 'expensive' }, 'request limited');
+      sendError(reply, request, 'RATE_LIMITED');
+      return null;
+    }
+    SLOTS.set(request, slot);
+  }
+  return actorFor(principal, (request.params as { campaignId?: unknown } | null)?.campaignId);
 }
 
 export function parseInput<T>(
@@ -64,7 +113,7 @@ export async function withPerspective<
   deps: RouteDependencies,
   schemas: { readonly params: z.ZodType<P>; readonly query: z.ZodType<Q> },
 ): Promise<{ context: PerspectiveContext; params: P; query: Q } | null> {
-  const actor = authenticate(request, reply, deps);
+  const actor = await authenticate(request, reply, deps);
   if (!actor) return null;
   const params = parseInput(schemas.params, request.params, request, reply);
   if (!params) return null;

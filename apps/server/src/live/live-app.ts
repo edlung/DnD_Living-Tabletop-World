@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 
-import { buildApp, type AppDependencies } from '../http/app.ts';
+import { buildApp, credentialHeaderOf, type AppDependencies } from '../http/app.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { fingerprintSubscription } from './fingerprint.ts';
 import { LIVE_LIMITS, LiveHub, systemTimers, type LiveLimits, type LiveTimers } from './hub.ts';
@@ -48,7 +48,12 @@ export function buildLiveApp(
     fingerprint: (subscription) =>
       fingerprintSubscription(twin(), deps.authenticator, subscription),
   });
-  registerLiveRoute(app, { engine: deps.engine, authenticator: deps.authenticator, hub });
+  registerLiveRoute(app, {
+    engine: deps.engine,
+    authenticator: deps.authenticator,
+    hub,
+    credentialHeader: credentialHeaderOf(deps),
+  });
   app.addHook('preClose', async () => {
     await hub.shutdown();
   });

@@ -35,6 +35,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   UndoCommand: 'undo command',
   AddKnowledge: 'add knowledge',
   AssignCharacter: 'assign character',
+  ReleaseCharacter: 'release character',
   RecordMemory: 'record memory',
   StartSession: 'start session',
   EndSession: 'end session',

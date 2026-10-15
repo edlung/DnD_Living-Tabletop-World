@@ -135,20 +135,31 @@ function actingCharacter(stored: StoredCommand): string | null {
 
 /**
  * Whether a character had a controlling player at a sequence: assigned before it, and that
- * assignment not undone before it.
+ * assignment not undone before it, nor released (ADR 0036 §4) in between unless that release
+ * was itself undone by then.
  */
 function assignedBetween(snapshot: CampaignSnapshot) {
   const { state, history } = snapshot;
+  const endOf = (commandId: string) => {
+    const undoneBy = state.commands.get(commandId)?.undoneBy ?? null;
+    return undoneBy === null
+      ? Number.POSITIVE_INFINITY
+      : (state.commands.get(undoneBy)?.firstSequence ?? Number.POSITIVE_INFINITY);
+  };
   const spans = new Map<string, { from: number; to: number }[]>();
   for (const event of history) {
+    if (event.type === 'CharacterReleased') {
+      const list = spans.get(event.payload.characterId) ?? [];
+      const held = list.find((span) => span.from < event.sequence && event.sequence < span.to);
+      if (!held) continue;
+      const restoredAt = endOf(event.causation.commandId);
+      if (restoredAt < held.to) list.push({ from: restoredAt, to: held.to });
+      held.to = event.sequence;
+      continue;
+    }
     if (event.type !== 'CharacterAssigned') continue;
-    const undoneBy = state.commands.get(event.causation.commandId)?.undoneBy ?? null;
-    const to =
-      undoneBy === null
-        ? Number.POSITIVE_INFINITY
-        : (state.commands.get(undoneBy)?.firstSequence ?? Number.POSITIVE_INFINITY);
     const list = spans.get(event.payload.characterId) ?? [];
-    list.push({ from: event.sequence, to });
+    list.push({ from: event.sequence, to: endOf(event.causation.commandId) });
     spans.set(event.payload.characterId, list);
   }
   return (characterId: string, sequence: number) =>

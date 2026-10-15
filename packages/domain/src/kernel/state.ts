@@ -90,6 +90,12 @@ export interface WorldState {
   readonly knowledge: ReadonlyMap<string, KnowledgeRecord>;
   /** Character ID → controlling player actor ID; assigned characters form the party. */
   readonly roster: ReadonlyMap<string, string>;
+  /**
+   * Character ID → sequence of the `CharacterAssigned` event its current assignment came from.
+   * The roster is kept in this order (assignment order), so undoing a release
+   * (docs/adr/0036-production-sign-in.md §4) puts the entry back exactly where it was.
+   */
+  readonly rosterAssignedAt: ReadonlyMap<string, number>;
   /** Memories by ID (ADR 0010); canonical, never projected directly. */
   readonly memories: ReadonlyMap<string, MemoryRecord>;
   readonly sessions: ReadonlyMap<string, SessionRecord>;
@@ -127,6 +133,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   commands: new Map(),
   knowledge: new Map(),
   roster: new Map(),
+  rosterAssignedAt: new Map(),
   memories: new Map(),
   sessions: new Map(),
   activeSessionId: null,

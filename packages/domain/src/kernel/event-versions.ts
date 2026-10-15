@@ -87,8 +87,8 @@ const VERSIONING: Partial<Record<KernelEventType, Versioning>> = {
 
 /**
  * Types first written after the dependency contract (Stages 120–130, ADR 0019
- * and ADR 0020): no writer ever wrote them with an earlier version, so one is
- * refused.
+ * and ADR 0020, and later ones): no writer ever wrote them with an earlier
+ * version, so one is refused.
  */
 const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   RelationshipChanged: DEPENDENCY_CONTRACT,
@@ -104,6 +104,8 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   AssetApproved: DEPENDENCY_CONTRACT,
   WeatherSet: DEPENDENCY_CONTRACT,
   ChronicleGenerated: DEPENDENCY_CONTRACT,
+  // Stage 340 (ADR 0036): a member's release.
+  CharacterReleased: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>

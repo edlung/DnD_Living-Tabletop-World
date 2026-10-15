@@ -31,6 +31,12 @@ import type { WorldState } from '../state.ts';
  * before it: while it stands nothing beneath it can be undone, so history
  * from earlier versions comes off only from its end backwards (owner
  * decision, ADR 0006 Gate 03 retest 3 amendment; G03-H07).
+ *
+ * A release (`ReleaseCharacter`, docs/adr/0036-production-sign-in.md §4) is
+ * likewise undone only from the end of history: a later command may rest on
+ * the seat being empty (a party memory listing its witnesses, the DM acting
+ * for the character outside the party), which no footprint records, so every
+ * later still-effective command blocks it.
  */
 const NOT_UNDOABLE: ReadonlySet<KernelCommandType> = new Set([
   'CreateCampaign',
@@ -74,7 +80,13 @@ export function decideUndo(
     ...targetEvents.flatMap((event) => footprintOf(event).writes),
   ]);
   const blockers = withoutDuplicates([
-    ...findBlockers(state, history, target.lastSequence, written),
+    ...findBlockers(
+      state,
+      history,
+      target.lastSequence,
+      written,
+      target.commandType === 'ReleaseCharacter',
+    ),
     // Reopening a reaction window must keep every later command legal (ADR 0016 §3).
     ...reopeningBlockers(state, history, targetEvents),
     // A started asset job cannot be recalled (ADR 0006 §9).
@@ -110,15 +122,17 @@ const withoutDuplicates = (blockers: readonly UndoBlocker[]): UndoBlocker[] => [
 
 /**
  * Later events that depend on the written facts, or whose command an earlier
- * writer decided. Events of commands that were themselves undone, and
- * CommandUndone events, are ignored: each undone command and its compensation
- * cancel out, and a compensation's own footprint is exact for any writer.
+ * writer decided (or every later one, for a target later commands may rest on
+ * wholly). Events of commands that were themselves undone, and CommandUndone
+ * events, are ignored: each undone command and its compensation cancel out,
+ * and a compensation's own footprint is exact for any writer.
  */
 function findBlockers(
   state: WorldState,
   history: readonly RecordedEvent[],
   afterSequence: number,
   written: ReadonlySet<FactKey>,
+  everything: boolean,
 ): UndoBlocker[] {
   const blockers = new Map<string, UndoBlocker>();
   for (const event of history) {
@@ -126,7 +140,11 @@ function findBlockers(
     const { commandId, commandType } = event.causation;
     if (blockers.has(commandId) || state.commands.get(commandId)?.undoneBy) continue;
     const { reads, writes } = footprintOf(event);
-    if (writtenEarlier(event) || [...reads, ...writes].some((fact) => written.has(fact))) {
+    if (
+      everything ||
+      writtenEarlier(event) ||
+      [...reads, ...writes].some((fact) => written.has(fact))
+    ) {
       blockers.set(commandId, { commandId, commandType, sequence: event.sequence });
     }
   }
@@ -230,6 +248,14 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: null,
         });
         break;
+      case 'CharacterReleased': {
+        const { characterId, playerActorId } = event.payload;
+        const assignedAt = before.rosterAssignedAt.get(characterId);
+        if (assignedAt === undefined)
+          throw new Error(`${characterId} had no assignment to restore`);
+        restores.push({ fact: 'release', characterId, playerActorId, assignedAt, value: null });
+        break;
+      }
       case 'ClueAdded':
         restores.push({ fact: 'clue', clueId: event.payload.clueId, value: null });
         break;

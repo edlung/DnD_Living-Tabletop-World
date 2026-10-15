@@ -33,7 +33,13 @@ import {
   applyInvestigationRestore,
   applyPremisesRecorded,
 } from '../investigation/evolve.ts';
-import { applyCharacterAssigned, applyKnowledgeAssigned } from '../knowledge/evolve.ts';
+import {
+  applyCharacterAssigned,
+  applyCharacterReleased,
+  applyKnowledgeAssigned,
+  restoreReleasedCharacter,
+  withoutAssignment,
+} from '../knowledge/evolve.ts';
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
 import { applyAssetEvent, applyAssetRestore } from '../assets/evolve.ts';
 import { applyWeatherRestore, applyWeatherSet } from '../weather/weather.ts';
@@ -161,6 +167,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyKnowledgeAssigned(state, event);
     case 'CharacterAssigned':
       return applyCharacterAssigned(state, event);
+    case 'CharacterReleased':
+      return applyCharacterReleased(state, event);
     case 'MemoryRecorded':
       return applyMemoryRecorded(state, event);
     case 'SessionStarted':
@@ -296,7 +304,9 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       if (state.roster.get(restore.characterId) !== restore.playerActorId) {
         throw new CorruptHistoryError(`unknown assignment of ${restore.characterId}`);
       }
-      return { ...state, roster: withoutEntry(state.roster, restore.characterId) };
+      return withoutAssignment(state, restore.characterId);
+    case 'release':
+      return restoreReleasedCharacter(state, restore);
     case 'memory':
       if (!state.memories.has(restore.memoryId)) {
         throw new CorruptHistoryError(`unknown memory ${restore.memoryId}`);

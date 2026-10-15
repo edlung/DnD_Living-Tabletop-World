@@ -101,7 +101,7 @@ export function registerMemoryRoutes(app: FastifyInstance, deps: RouteDependenci
   });
 
   app.get('/campaigns/:campaignId/sessions', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(campaignParams, request.params, request, reply);
     if (!params) return reply;

@@ -33,17 +33,17 @@ describe('fingerprints of the coverage views', () => {
   it('hash what the views answer, the same for the same answers', async () => {
     const first = await fingerprintViews(
       twin({ '/entities': [200, 'a'], '/entities/mira-vale/knowledge': [200, 'b'] }),
-      'Bearer x',
+      { authorization: 'Bearer x' },
       VIEWS,
     );
     const again = await fingerprintViews(
       twin({ '/entities': [200, 'a'], '/entities/mira-vale/knowledge': [200, 'b'] }),
-      'Bearer x',
+      { authorization: 'Bearer x' },
       VIEWS,
     );
     const changed = await fingerprintViews(
       twin({ '/entities': [200, 'a'], '/entities/mira-vale/knowledge': [200, 'c'] }),
-      'Bearer x',
+      { authorization: 'Bearer x' },
       VIEWS,
     );
     expect(first.kind).toBe('fingerprint');
@@ -54,17 +54,17 @@ describe('fingerprints of the coverage views', () => {
   it('record a focus that is not visible by its status alone, and its appearance as a change', async () => {
     const hidden = await fingerprintViews(
       twin({ '/entities': [200, 'a'], '/entities/mira-vale/knowledge': [404, 'not found'] }),
-      'Bearer x',
+      { authorization: 'Bearer x' },
       VIEWS,
     );
     const stillHidden = await fingerprintViews(
       twin({ '/entities': [200, 'a'], '/entities/mira-vale/knowledge': [404, 'not found'] }),
-      'Bearer x',
+      { authorization: 'Bearer x' },
       VIEWS,
     );
     const shown = await fingerprintViews(
       twin({ '/entities': [200, 'a'], '/entities/mira-vale/knowledge': [200, 'b'] }),
-      'Bearer x',
+      { authorization: 'Bearer x' },
       VIEWS,
     );
     expect(hidden.kind).toBe('fingerprint');
@@ -80,7 +80,7 @@ describe('fingerprints of the coverage views', () => {
     [{ '/entities': [200, 'a'], '/entities/mira-vale/knowledge': [400, 'x'] }, 'gone'],
     [{ '/entities': [500, 'x'], '/entities/mira-vale/knowledge': [200, 'b'] }, 'gone'],
   ] as const)('close on %j with %s', async (answers, reason) => {
-    expect(await fingerprintViews(twin(answers), 'Bearer x', VIEWS)).toEqual({
+    expect(await fingerprintViews(twin(answers), { authorization: 'Bearer x' }, VIEWS)).toEqual({
       kind: 'close',
       reason,
     });
@@ -96,7 +96,8 @@ describe('fingerprints of the coverage views', () => {
       ),
     });
     const someoneElse: Authenticator = {
-      authenticate: () => ({ actorId: 'player-elowen', kind: 'user' }),
+      authenticate: () =>
+        Promise.resolve({ actor: { actorId: 'player-elowen', kind: 'user' }, campaignId: null }),
     };
     const subscription = {
       target: {
@@ -107,7 +108,7 @@ describe('fingerprints of the coverage views', () => {
         place: null,
         identity: false,
       },
-      authorization: 'Bearer x',
+      credentials: { authorization: 'Bearer x' },
     };
     expect(
       await fingerprintSubscription(views, someoneElse, {

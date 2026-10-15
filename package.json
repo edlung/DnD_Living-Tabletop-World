@@ -27,7 +27,8 @@
     "dev:web": "pnpm --filter @ltw/web run dev",
     "test:e2e": "playwright test",
     "eval:ai": "node --conditions=@ltw/source apps/server/src/testing/eval/eval-cli.ts",
-    "ai:operator": "pnpm --filter @ltw/server run ai:operator"
+    "ai:operator": "pnpm --filter @ltw/server run ai:operator",
+    "auth:operator": "pnpm --filter @ltw/server run auth:operator"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

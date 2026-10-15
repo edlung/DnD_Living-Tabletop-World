@@ -338,6 +338,19 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.rosterPlayer(event.payload.playerActorId),
         ],
       };
+    case 'CharacterReleased':
+      // Who controlled the character is what the release read and changed (ADR 0036 §4).
+      return {
+        reads: [
+          clock,
+          facts.entity(event.payload.characterId),
+          facts.rosterCharacter(event.payload.characterId),
+        ],
+        writes: [
+          facts.rosterCharacter(event.payload.characterId),
+          facts.rosterPlayer(event.payload.playerActorId),
+        ],
+      };
     case 'AssetRequested':
     case 'AssetJobStarted':
     case 'AssetGenerated':
@@ -395,6 +408,7 @@ export function restoredFacts(restore: Restore): FactKey[] {
     case 'knowledge':
       return [facts.knowledge(restore.knowledgeId)];
     case 'roster':
+    case 'release':
       return [
         facts.rosterCharacter(restore.characterId),
         facts.rosterPlayer(restore.playerActorId),

@@ -69,3 +69,11 @@ export const assignCharacterCommandSchema = z
     playerActorId: actorIdSchema,
   })
   .strict();
+
+/**
+ * The DM frees an assigned character from its player from now on (docs/adr/0036-production-sign-in.md
+ * §4): the character leaves the party and can be invited again; earlier commands stay history.
+ */
+export const releaseCharacterCommandSchema = z
+  .object({ type: z.literal('ReleaseCharacter'), characterId: entityIdSchema })
+  .strict();

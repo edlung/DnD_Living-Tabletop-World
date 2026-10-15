@@ -14,7 +14,12 @@ import { parseRoutes, routeIssues, type RouteProvider } from './ai-routes.ts';
 export type NodeEnv = 'development' | 'test' | 'production';
 export type LogLevel = 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace' | 'silent';
 
-export type AuthMode = 'dev-personas' | 'disabled';
+/**
+ * `invitations`: production sign-in, session cookies only (docs/adr/0036-production-sign-in.md);
+ * `dev-personas`: bearer persona tokens (development and test, refused in production);
+ * `disabled`: nobody signs in (the production default until a mode is chosen).
+ */
+export type AuthMode = 'invitations' | 'dev-personas' | 'disabled';
 
 export interface AppConfig {
   readonly nodeEnv: NodeEnv;
@@ -24,11 +29,16 @@ export interface AppConfig {
     readonly port: number;
   };
   readonly databaseUrl: string;
-  /** docs/adr/0009-http-api-and-dev-authentication.md */
+  /** docs/adr/0009-http-api-and-dev-authentication.md, docs/adr/0036-production-sign-in.md */
   readonly auth: {
     readonly mode: AuthMode;
     /** Persona token file; set only in dev-personas mode. */
     readonly personasFile: string | null;
+    /**
+     * `PUBLIC_ORIGIN`, the browser's origin: invitation links, the cookie's `Secure` flag and
+     * the origin check. Present (and required) in invitations mode only.
+     */
+    readonly publicOrigin?: string;
   };
   /** docs/adr/0017-ai-gateway.md §2 */
   readonly ai: {
@@ -144,7 +154,11 @@ const envSchema = z.object({
     z.coerce.number().int().min(0).max(65535).default(3000),
   ),
   DATABASE_URL: z.preprocess(emptyAsUndefined, z.url({ protocol: /^postgres(ql)?$/ }).optional()),
-  AUTH_MODE: z.preprocess(emptyAsUndefined, z.enum(['dev-personas', 'disabled']).optional()),
+  AUTH_MODE: z.preprocess(
+    emptyAsUndefined,
+    z.enum(['invitations', 'dev-personas', 'disabled']).optional(),
+  ),
+  PUBLIC_ORIGIN: z.preprocess(emptyAsUndefined, z.string().max(200).optional()),
   DEV_PERSONAS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
   LTW_QUESTS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
   ANTHROPIC_API_KEY: z.preprocess(emptyAsUndefined, z.string().trim().min(1).optional()),
@@ -248,6 +262,13 @@ export function loadConfig(env: Env = process.env): AppConfig {
   if (values.NODE_ENV === 'production' && authMode === 'dev-personas') {
     issues.push('AUTH_MODE: dev-personas is not allowed in production');
   }
+  const publicOrigin = values.PUBLIC_ORIGIN;
+  if (publicOrigin !== undefined) {
+    const issue = originIssue(publicOrigin, values.NODE_ENV);
+    if (issue !== null) issues.push(`PUBLIC_ORIGIN: ${issue}`);
+  } else if (authMode === 'invitations') {
+    issues.push('PUBLIC_ORIGIN: required in invitations mode');
+  }
 
   const routes = parseRoutes(values.LTW_AI_ROUTES, issues);
   if (routes !== null) {
@@ -270,6 +291,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
       mode: authMode,
       personasFile:
         authMode === 'dev-personas' ? (values.DEV_PERSONAS_FILE ?? DEFAULT_PERSONAS_FILE) : null,
+      ...(authMode === 'invitations' && publicOrigin !== undefined ? { publicOrigin } : {}),
     }),
     ai: Object.freeze({
       anthropic:
@@ -299,6 +321,27 @@ export function loadConfig(env: Env = process.env): AppConfig {
       generationTimeoutMs: values.LTW_ASSET_TIMEOUT_MS,
     }),
   });
+}
+
+const LOOPBACK = new Set(['localhost', '127.0.0.1', '[::1]']);
+
+/**
+ * Why a public origin is unusable, or null: exactly `scheme://host[:port]`, HTTPS, or plain
+ * HTTP for a loopback host outside production (the only case the cookie drops `Secure`).
+ */
+function originIssue(value: string, nodeEnv: NodeEnv): string | null {
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    return 'must be an origin: https://<host>[:<port>]';
+  }
+  if (url.origin !== value) return 'must be an origin: https://<host>[:<port>]';
+  if (url.protocol === 'https:') return null;
+  if (url.protocol === 'http:' && LOOPBACK.has(url.hostname) && nodeEnv !== 'production') {
+    return null;
+  }
+  return 'must use https (plain http only for localhost outside production)';
 }
 
 /** Renders a connection string safe for logs: credentials are removed. */

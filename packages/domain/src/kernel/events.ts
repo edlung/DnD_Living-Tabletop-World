@@ -14,6 +14,7 @@ import { z } from 'zod';
 
 import {
   characterAssignedPayloadSchema,
+  characterReleasedPayloadSchema,
   knowledgeAssignedPayloadSchema,
   knowledgeRestoreSchemas,
 } from '../knowledge/events.ts';
@@ -238,6 +239,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AssetApproved', assetApprovedPayloadSchema),
   event('WeatherSet', weatherSetPayloadSchema),
   event('ChronicleGenerated', chronicleGeneratedPayloadSchema),
+  event('CharacterReleased', characterReleasedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

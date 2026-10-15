@@ -60,3 +60,13 @@ Out of scope for the alpha: a compromised host or database, distributed denial o
 - New routes (`/auth/*`, invitations, members) and the kernel command are Gate 06 surfaces
   (`docs/GATE_COVERAGE.md`).
 - Limits are per process; scaling past one instance needs a shared limiter (recorded trigger).
+
+## Implementation (Stage 340 part A, 2026-10-16)
+
+- The live stream's origin check accepts `Sec-Fetch-Site: same-origin` when a same-origin GET
+  carries no `Origin` (browsers send none); non-GET requests still need `Origin` = `PUBLIC_ORIGIN`.
+- `ReleaseCharacter` is the DM's alone; its undo is allowed only while no later command stands
+  (later decisions may rest on the empty seat) and restores the roster in assignment order. The
+  generic command route refuses it, so a release always revokes the player's sessions first.
+- `AUTH_MODE=disabled` stays the production default; invitation mode requires `PUBLIC_ORIGIN`.
+  Details: `docs/STAGE_340_DESIGN.md`, "Implementation notes (part A, server)".

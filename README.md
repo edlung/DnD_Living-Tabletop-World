@@ -84,6 +84,7 @@ uses a real seeded in-memory World Engine. It requires no database or external A
 | `pnpm test:integration` | Integration tests; needs PostgreSQL (`pnpm db:up`) |
 | `pnpm test:e2e` | Browser/API journeys; install Playwright Chromium first |
 | `pnpm eval:ai` | Explicit live-provider evaluation; excluded from validation/CI. Do not run until text-provider spending ceilings are approved; Stage 300 accounting/evaluation remediation is pending. See `docs/PROJECT_WORKFLOW.md`. |
+| `pnpm auth:operator dm-invite --campaign <id> --expires-hours <n>` | Prints the DM's single-use sign-in link for a campaign (`AUTH_MODE=invitations`, `PUBLIC_ORIGIN`; ADR 0036); the only way to DM access in production |
 | `pnpm dev:web` | Local Player/DM web client and API proxy |
 | `pnpm build` / `pnpm clean` | Compile all projects and bundle the web app / remove TypeScript outputs |
 | `pnpm db:up` / `pnpm db:down` | Start / stop local PostgreSQL |
@@ -121,6 +122,8 @@ Routes under `/campaigns/:campaignId/`:
 - `POST ai/intents` with `{ "text": … }` (DM only; returns a proposal, never committed; ADR 0017)
 - `GET ai/traces/:traceId` (DM only)
 - `POST authoring/proposals` with `{ traceId }` or `{ summary, commands }`; `GET authoring/proposals/:proposalId`; `POST …/revisions`, `…/commit`, `…/undo` (DM only; ADR 0018)
+
+With `AUTH_MODE=invitations` (production, ADR 0036) there are no persona tokens: `POST /auth/redeem` turns a DM invitation link's token into an `ltw_session` cookie, `GET /auth/session` and `POST /auth/sign-out` follow, and the DM manages `GET|POST invitations`, `POST invitations/:invitationId/revoke` and `POST members/:characterId/revoke`. Every non-GET request needs the `Origin` of `PUBLIC_ORIGIN`.
 
 Every knowledge GET requires `perspective=DM|PUBLIC|PARTY|PLAYER|CHARACTER:<id>|NPC:<id>`. Persona tokens are in `fixtures/ravenford/personas.json` (development and test only; production refuses them). Who sees what: ADR 0008 (knowledge) and ADR 0010 (memories); HTTP behavior: ADR 0009.
 

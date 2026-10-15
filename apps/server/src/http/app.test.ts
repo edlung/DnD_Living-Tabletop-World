@@ -114,12 +114,17 @@ describe('HTTP app', () => {
 });
 
 describe('devPersonaAuthenticator', () => {
-  it('maps bearer tokens to user actors only', () => {
+  it('maps bearer tokens to user actors only', async () => {
     const auth = devPersonaAuthenticator(personas);
-    expect(auth.authenticate('Bearer dev-test-token')).toEqual({ actorId: 'tester', kind: 'user' });
-    expect(auth.authenticate('Bearer dev-test-tokenX')).toBeNull();
-    expect(auth.authenticate(undefined)).toBeNull();
-    expect(auth.authenticate('dev-test-token')).toBeNull();
+    expect(await auth.authenticate({ authorization: 'Bearer dev-test-token' })).toEqual({
+      actor: { actorId: 'tester', kind: 'user' },
+      campaignId: null,
+    });
+    expect(await auth.authenticate({ authorization: 'Bearer dev-test-tokenX' })).toBeNull();
+    expect(await auth.authenticate({})).toBeNull();
+    expect(await auth.authenticate({ authorization: 'dev-test-token' })).toBeNull();
+    // A persona never comes from a cookie (docs/adr/0036-production-sign-in.md §5).
+    expect(await auth.authenticate({ cookie: 'ltw_session=dev-test-token' })).toBeNull();
   });
 
   it('refuses ambiguous persona files', () => {

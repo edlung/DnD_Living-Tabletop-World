@@ -9,7 +9,8 @@
     "dev": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local --conditions=@ltw/source --watch src/main.ts",
     "db:migrate": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/platform/db/migrate-cli.js",
     "seed:ravenford": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/world-engine/seed-ravenford-cli.js",
-    "ai:operator": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/ai/accounting/operator-cli.js"
+    "ai:operator": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/ai/accounting/operator-cli.js",
+    "auth:operator": "node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/auth/operator-cli.js"
   },
   "dependencies": {
     "@ltw/ai": "workspace:*",
