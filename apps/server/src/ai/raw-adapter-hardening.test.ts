@@ -257,4 +257,42 @@ describe.each([ANTHROPIC, DEEPSEEK])('the raw $name adapter at its deadline', (f
     expect(performance.now() - began).toBeLessThan(1_000);
     expect(error.code).toBe('CALLER_CANCELLED');
   });
+
+  it('reports a timeout clamped to the request deadline as the caller’s, even if the clock lags', async () => {
+    // Node timers can fire a little before `performance.now()` reaches their deadline; force that
+    // race: from 20 ms on the clock reads 15 ms behind, so it has not reached the deadline when the
+    // clamped attempt timer fires at 50 ms.
+    const real = performance.now.bind(performance);
+    let lag = 0;
+    const clock = vi.spyOn(performance, 'now').mockImplementation(() => real() - lag);
+    setTimeout(() => {
+      lag = 15;
+    }, 20);
+    try {
+      const fake = fakeFetch(
+        ({ init }) =>
+          new Promise<Response>((_resolve, reject) => {
+            init.signal?.addEventListener('abort', () => {
+              reject(new DOMException('aborted', 'AbortError'));
+            });
+          }),
+      );
+      const adapter = make(fixture, {
+        fetch: fake.fetchImpl,
+        apiKey: () => KEY,
+        timeoutMs: 60_000,
+      });
+      const error = await failure(
+        adapter.dispatch(
+          adapter.prepare(REQUEST),
+          new AbortController().signal,
+          vi.fn(),
+          performance.now() + 50,
+        ),
+      );
+      expect(error.code).toBe('CALLER_CANCELLED');
+    } finally {
+      clock.mockRestore();
+    }
+  });
 });

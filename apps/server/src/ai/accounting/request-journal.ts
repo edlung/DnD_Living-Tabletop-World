@@ -2,7 +2,14 @@ import { createHash } from 'node:crypto';
 
 import type pg from 'pg';
 
-import { expired, fixedStep, remainingMs, storageStep, type Deadline } from './deadline.ts';
+import {
+  boundByRequest,
+  expired,
+  fixedStep,
+  remainingMs,
+  storageStep,
+  type Deadline,
+} from './deadline.ts';
 import { requestLockKey } from './lock-keys.ts';
 import { StorageUnavailable, readCommitted, type Tx } from './pg-transaction.ts';
 import { AccountingRejection, sessionKey, type RequestStart } from './types.ts';
@@ -36,8 +43,9 @@ export async function startRequest(
 ): Promise<StartOutcome> {
   if (expired(requestDeadline)) return { status: 'failed', reason: 'CALLER_CANCELLED' };
   const session = start.session === null ? null : sessionKey(start.session);
+  const step = storageStep(requestDeadline);
   try {
-    await readCommitted(pool, storageStep(requestDeadline), async (tx) => {
+    await readCommitted(pool, step, async (tx) => {
       await tx.query(
         `INSERT INTO ltw_ai_requests (request_id, campaign_id, actor_id, purpose, capability, scope,
            source_ids, approval_id, session_class, session_id, configured_model, deadline_at)
@@ -65,10 +73,15 @@ export async function startRequest(
       );
     });
     return { status: 'started' };
-  } catch {
+  } catch (error) {
+    // A timeout of a step bounded by the request's deadline is that deadline (deadline.ts).
+    const requestTimedOut =
+      error instanceof StorageUnavailable &&
+      error.reason === 'timeout' &&
+      boundByRequest(requestDeadline, step);
     return {
       status: 'failed',
-      reason: expired(requestDeadline) ? 'CALLER_CANCELLED' : 'UNAVAILABLE',
+      reason: expired(requestDeadline) || requestTimedOut ? 'CALLER_CANCELLED' : 'UNAVAILABLE',
     };
   }
 }

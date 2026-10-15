@@ -1,6 +1,6 @@
 import type pg from 'pg';
 
-import { expired, storageStep, type Deadline } from './deadline.ts';
+import { boundByRequest, expired, storageStep, type Deadline } from './deadline.ts';
 import { scopeBuckets, sortedLockKeys, type AttemptScope, type SessionClass } from './lock-keys.ts';
 import { MAX_MICROS } from './money.ts';
 import { StorageUnavailable, readCommitted, type Tx } from './pg-transaction.ts';
@@ -171,7 +171,8 @@ async function admitIn(
 /**
  * Admits within MIN(remaining request time, 5,000 ms). A storage failure or timeout before the
  * request expires is ADMISSION_UNAVAILABLE; once the request has expired it is CALLER_CANCELLED,
- * and no database work starts. An admission that commits is returned even if the request expired
+ * and no database work starts. A timeout of a step bounded by the request's deadline is that
+ * deadline, whatever the clock reads when the timer fires. An admission that commits is returned even if the request expired
  * meanwhile: the caller must then not dispatch, and the hold stays until a proven release. A
  * COMMIT that was sent but not confirmed denies with detail COMMIT_UNKNOWN: the hold may exist and
  * is never assumed rolled back or refunded.
@@ -190,14 +191,15 @@ export async function admit(
   if (resolve(request.provider, request.model, request.pricingVersion) !== request.model) {
     return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   }
+  const step = storageStep(requestDeadline);
   try {
-    return await readCommitted(pool, storageStep(requestDeadline), (tx) =>
-      admitIn(tx, request, resolve),
-    );
+    return await readCommitted(pool, step, (tx) => admitIn(tx, request, resolve));
   } catch (error) {
-    const detail =
-      error instanceof StorageUnavailable && error.commitUnknown ? 'COMMIT_UNKNOWN' : 'STORAGE';
-    return expired(requestDeadline)
+    const unavailable = error instanceof StorageUnavailable ? error : null;
+    const detail = unavailable?.commitUnknown === true ? 'COMMIT_UNKNOWN' : 'STORAGE';
+    const requestTimedOut =
+      unavailable?.reason === 'timeout' && boundByRequest(requestDeadline, step);
+    return expired(requestDeadline) || requestTimedOut
       ? denied('CALLER_CANCELLED', detail)
       : denied('ADMISSION_UNAVAILABLE', detail);
   }

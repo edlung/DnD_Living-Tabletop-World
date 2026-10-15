@@ -98,15 +98,20 @@ export async function sendPrepared(options: SendOptions): Promise<unknown> {
   // Resolved per call, so a replaced global `fetch` (a test trap) is the one used.
   const send = options.fetch ?? globalThis.fetch;
   const timeout = new AbortController();
+  const untilDeadline = Math.ceil(deadlineAtMs - performance.now());
+  // When the request's deadline is the nearer bound, the attempt timer is that deadline: its firing
+  // is the caller going away even if the clock has not quite reached the deadline yet (Node timers
+  // can fire a little early), so it is never reported as the provider's own timeout.
+  const clampedToDeadline = untilDeadline <= options.timeoutMs;
   const timer = setTimeout(
     () => {
       timeout.abort();
     },
-    Math.max(0, Math.min(options.timeoutMs, Math.ceil(deadlineAtMs - performance.now()))),
+    Math.max(0, Math.min(options.timeoutMs, untilDeadline)),
   );
   const signal = AbortSignal.any([timeout.signal, options.signal]);
   const stopped = () =>
-    callerGone()
+    callerGone() || (clampedToDeadline && timeout.signal.aborted)
       ? new ProviderError('CALLER_CANCELLED', 'caller cancelled')
       : new ProviderError('TIMEOUT', 'provider timed out');
   try {

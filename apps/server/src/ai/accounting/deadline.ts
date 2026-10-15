@@ -26,6 +26,14 @@ export const storageStep = (request: Deadline, now: number = performance.now()):
   atMs: Math.min(request.atMs, now + STORAGE_STEP_MS),
 });
 
+/**
+ * Whether a storage step was bounded by the request's own deadline rather than by the fixed
+ * 5,000 ms. A timeout of such a step is the request expiring: timers can fire a little before the
+ * clock reaches the deadline they were set for, so its classification must not re-read the clock.
+ */
+export const boundByRequest = (request: Deadline, step: Deadline): boolean =>
+  step.atMs === request.atMs;
+
 /** The fixed bound for a transaction outside the caller's lifetime. */
 export const fixedStep = (now: number = performance.now()): Deadline =>
   deadlineIn(STORAGE_STEP_MS, now);
