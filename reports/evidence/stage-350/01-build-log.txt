@@ -1,0 +1,1192 @@
+
+### Images of the first part A revision, from git archive (2026-10-15T23:17:47Z)
+$ deploy/scripts/build.sh 3e90904 --progress=plain
+==> building ltw-server:3e9090467a4b from 3e9090467a4b343a39ce5cf917c17002ba32c5e7
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.4s
+
+#1 [internal] load remote build context
+#1 DONE 0.4s
+
+#2 copy /context /
+#2 DONE 0.3s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#4 DONE 0.0s
+
+#5 [pnpm 2/4] WORKDIR /app
+#5 CACHED
+
+#6 [pnpm 3/4] COPY package.json ./
+#6 DONE 0.2s
+
+#7 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#7 0.490 Adding pnpm@11.11.0 to the cache...
+#7 DONE 2.5s
+
+#8 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#8 DONE 0.1s
+
+#9 [manifests 2/4] COPY apps apps
+#9 DONE 0.1s
+
+#10 [manifests 3/4] COPY packages packages
+#10 DONE 0.1s
+
+#11 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#11 DONE 0.9s
+
+#12 [build 1/9] COPY --from=manifests /app /app
+#12 DONE 0.0s
+
+#13 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#13 1.613 Scope: 7 of 10 workspace projects
+#13 1.663 ? Verifying lockfile against supply-chain policies (237 entries)...
+#13 1.675 Lockfile is up to date, resolution step is skipped
+#13 1.892 Progress: resolved 1, reused 0, downloaded 0, added 0
+#13 2.001 .                                        |  +63 ++++++
+#13 2.904 Progress: resolved 63, reused 61, downloaded 0, added 0
+#13 3.951 Progress: resolved 63, reused 63, downloaded 0, added 18
+#13 4.963 Progress: resolved 63, reused 63, downloaded 0, added 60
+#13 5.964 Progress: resolved 63, reused 63, downloaded 0, added 62
+#13 6.598 Progress: resolved 63, reused 63, downloaded 0, added 63, done
+#13 8.696 ✓ Lockfile passes supply-chain policies (237 entries in 7s)
+#13 8.961 Done in 8.5s using pnpm v11.11.0
+#13 ...
+
+#14 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#14 1.554 Scope: all 10 workspace projects
+#14 1.634 ? Verifying lockfile against supply-chain policies (237 entries)...
+#14 1.644 Lockfile is up to date, resolution step is skipped
+#14 1.845 Progress: resolved 1, reused 0, downloaded 0, added 0
+#14 2.060 Packages: +212
+#14 2.060 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#14 2.864 Progress: resolved 212, reused 46, downloaded 0, added 0
+#14 3.867 Progress: resolved 212, reused 212, downloaded 0, added 25
+#14 4.866 Progress: resolved 212, reused 212, downloaded 0, added 83
+#14 5.871 Progress: resolved 212, reused 212, downloaded 0, added 107
+#14 6.881 Progress: resolved 212, reused 212, downloaded 0, added 185
+#14 7.210 Progress: resolved 212, reused 212, downloaded 0, added 212, done
+#14 8.741 ✓ Lockfile passes supply-chain policies (237 entries in 7.1s)
+#14 8.844 
+#14 8.844 devDependencies:
+#14 8.844 + @eslint/js 10.0.1
+#14 8.844 + @playwright/test 1.63.0
+#14 8.844 + @types/node 24.19.1
+#14 8.844 + @types/react 19.3.0
+#14 8.844 + @types/react-dom 19.3.0
+#14 8.844 + eslint 10.11.0
+#14 8.844 + eslint-config-prettier 10.1.8
+#14 8.844 + globals 17.13.0
+#14 8.844 + prettier 3.9.9
+#14 8.844 + typescript 6.0.3
+#14 8.844 + typescript-eslint 8.71.0
+#14 8.844 + vite 8.3.2
+#14 8.844 + vitest 4.1.11
+#14 8.844 
+#14 9.101 Done in 8.6s using pnpm v11.11.0
+#14 DONE 9.5s
+
+#13 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#13 DONE 9.6s
+
+#15 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#15 DONE 0.7s
+
+#16 [build 4/9] COPY apps apps
+#16 DONE 0.2s
+
+#17 [build 5/9] COPY packages packages
+#17 DONE 0.4s
+
+#18 [build 6/9] RUN pnpm build
+#18 ...
+
+#19 [server 3/5] COPY --from=prod-deps /app /app
+#19 DONE 1.8s
+
+#18 [build 6/9] RUN pnpm build
+#18 2.585 $ tsc -b tsconfig.build.json && pnpm --filter @ltw/web run build
+#18 39.81 $ vite build
+#18 40.81 [36mvite v8.3.2 [32mbuilding client environment for production...[36m[39m
+#18 40.88 transforming...
+#18 43.36 ✓ 206 modules transformed.
+#18 43.72 rendering chunks...
+#18 44.06 computing gzip size...
+#18 44.07 build/index.html                   0.50 kB │ gzip:   0.30 kB
+#18 44.07 build/assets/index-CSeyxMGq.css   24.82 kB │ gzip:   6.44 kB
+#18 44.07 build/assets/index-z9Od83Hl.js   474.85 kB │ gzip: 142.96 kB
+#18 44.07 
+#18 44.07 [32m✓ built in 3.25s[39m
+#18 DONE 44.5s
+
+#20 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#20 DONE 0.8s
+
+#21 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#21 DONE 0.1s
+
+#22 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#22 DONE 0.1s
+
+#23 [server 4/5] COPY --from=build /out /app
+#23 DONE 0.2s
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 DONE 0.0s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 0.8s done
+#25 exporting manifest sha256:ffbe713f8f9fc7775894c4f543789be2464f3e71169b7d5d0329a05a438c44e8 0.0s done
+#25 exporting config sha256:aa5ffb1c965a412ebbfa408b46559fffd3aee4848d26727d636501ff8c17444c 0.0s done
+#25 exporting attestation manifest sha256:fa2cd0d3db51346c69491c88bdf9bc5200174a20b0dd7ceb28419d0fe5f40044 0.0s done
+#25 exporting manifest list sha256:3301db2da5be0245056c8993559c858847f1ab24c04f510355e84e3d17811bcc 0.0s done
+#25 naming to docker.io/library/ltw-server:3e9090467a4b
+#25 naming to docker.io/library/ltw-server:3e9090467a4b done
+#25 unpacking to docker.io/library/ltw-server:3e9090467a4b
+#25 unpacking to docker.io/library/ltw-server:3e9090467a4b 0.7s done
+#25 DONE 1.8s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/e75n7qlo3ahtmiadvyoiq14j0
+==> building ltw-proxy:3e9090467a4b from 3e9090467a4b343a39ce5cf917c17002ba32c5e7
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.6s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#4 DONE 0.1s
+
+#5 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#5 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#5 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.0s done
+#5 CACHED
+
+#6 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#6 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#6 DONE 0.1s
+
+#7 [pnpm 3/4] COPY package.json ./
+#7 CACHED
+
+#8 [manifests 3/4] COPY packages packages
+#8 CACHED
+
+#9 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#9 CACHED
+
+#10 [build 6/9] RUN pnpm build
+#10 CACHED
+
+#11 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#11 CACHED
+
+#12 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#12 CACHED
+
+#13 [manifests 2/4] COPY apps apps
+#13 CACHED
+
+#14 [build 5/9] COPY packages packages
+#14 CACHED
+
+#15 [build 1/9] COPY --from=manifests /app /app
+#15 CACHED
+
+#16 [build 4/9] COPY apps apps
+#16 CACHED
+
+#17 [pnpm 2/4] WORKDIR /app
+#17 CACHED
+
+#18 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#18 CACHED
+
+#19 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#19 CACHED
+
+#20 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#20 CACHED
+
+#21 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#21 CACHED
+
+#22 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#22 CACHED
+
+#23 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#23 DONE 2.1s
+
+#24 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#24 DONE 0.1s
+
+#25 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#25 DONE 0.1s
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 1.033 {"level":"info","ts":1792106337.7445803,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 1.042 {"level":"info","ts":1792106337.7517486,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 1.042 {"level":"info","ts":1792106337.752067,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 1.042 {"level":"info","ts":1792106337.751285,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 1.042 {"level":"info","ts":1792106337.7516341,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 1.047 {"level":"info","ts":1792106337.7579646,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x400060a980"}
+#26 1.094 {"level":"info","ts":1792106337.8059754,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x400060a980"}
+#26 1.094 {"level":"info","ts":1792106337.806021,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 1.094 Valid configuration
+#26 1.158 {"level":"info","ts":1792106337.8702142,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 1.161 {"level":"info","ts":1792106337.872862,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 1.161 {"level":"info","ts":1792106337.8735154,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 1.163 {"level":"info","ts":1792106337.8740861,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x40001bb480"}
+#26 1.163 {"level":"info","ts":1792106337.87416,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 1.163 {"level":"info","ts":1792106337.8741727,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 1.163 {"level":"info","ts":1792106337.875099,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x40001bb480"}
+#26 1.163 {"level":"info","ts":1792106337.8751395,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 1.163 Valid configuration
+#26 DONE 1.2s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 3.1s done
+#27 exporting manifest sha256:8cc1abf73a1eaf2b2816c90639943e88c0b6f3a8045fdbff86bfbff71ba053f0 0.0s done
+#27 exporting config sha256:7c53275e13d7fea54a407a20105beb3f9a1c7ad3de338918c9b64cb6112b90f1 0.0s done
+#27 exporting attestation manifest sha256:b66f7a22d16aadec22551f8e12bf9f7517ad6c69b93551813625e8daf73da2e5 0.0s done
+#27 exporting manifest list sha256:be2b49f9e5098ba1e98ed2e4611a9dd6c3eb9cf151d68d0308e7027bec6ba5e4 0.0s done
+#27 naming to docker.io/library/ltw-proxy:3e9090467a4b
+#27 naming to docker.io/library/ltw-proxy:3e9090467a4b done
+#27 unpacking to docker.io/library/ltw-proxy:3e9090467a4b
+#27 unpacking to docker.io/library/ltw-proxy:3e9090467a4b 0.6s done
+#27 DONE 3.8s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/244jsuij85lnmr70ah8669oub
+3e9090467a4b
+[exit 0]
+
+### Images of the second part A revision (trusted proxy network), from git archive (2026-10-15T23:19:02Z)
+$ deploy/scripts/build.sh 4a17f1c --progress=plain
+==> building ltw-server:4a17f1c6c79a from 4a17f1c6c79a82222219278632092cadb470dbce
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 3.0s
+
+#1 [internal] load remote build context
+#1 DONE 3.0s
+
+#2 copy /context /
+#2 DONE 1.4s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.1s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#4 DONE 0.1s
+
+#5 [pnpm 2/4] WORKDIR /app
+#5 CACHED
+
+#6 [pnpm 3/4] COPY package.json ./
+#6 CACHED
+
+#7 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#7 CACHED
+
+#8 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#8 CACHED
+
+#9 [manifests 2/4] COPY apps apps
+#9 DONE 0.8s
+
+#10 [manifests 3/4] COPY packages packages
+#10 DONE 1.2s
+
+#11 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#11 DONE 1.4s
+
+#12 [build 1/9] COPY --from=manifests /app /app
+#12 CACHED
+
+#13 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#13 CACHED
+
+#14 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#14 CACHED
+
+#15 [build 4/9] COPY apps apps
+#15 DONE 0.2s
+
+#16 [build 5/9] COPY packages packages
+#16 DONE 0.3s
+
+#17 [build 6/9] RUN pnpm build
+#17 1.211 $ tsc -b tsconfig.build.json && pnpm --filter @ltw/web run build
+#17 26.28 $ vite build
+#17 26.82 [36mvite v8.3.2 [32mbuilding client environment for production...[36m[39m
+#17 27.11 transforming...
+#17 30.34 ✓ 206 modules transformed.
+#17 32.37 rendering chunks...
+#17 32.45 computing gzip size...
+#17 32.46 build/index.html                   0.50 kB │ gzip:   0.30 kB
+#17 32.46 build/assets/index-CSeyxMGq.css   24.82 kB │ gzip:   6.44 kB
+#17 32.46 build/assets/index-z9Od83Hl.js   474.85 kB │ gzip: 142.96 kB
+#17 32.46 
+#17 32.47 [32m✓ built in 5.64s[39m
+#17 DONE 33.0s
+
+#18 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#18 DONE 2.2s
+
+#19 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#19 DONE 0.2s
+
+#20 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#20 DONE 0.1s
+
+#21 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#21 CACHED
+
+#22 [server 3/5] COPY --from=prod-deps /app /app
+#22 CACHED
+
+#23 [server 4/5] COPY --from=build /out /app
+#23 DONE 0.6s
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 DONE 0.1s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 0.6s done
+#25 exporting manifest sha256:02008779e06fafd554518bf5d783f50b433406d633e3a93bac20f3492bd0522d 0.0s done
+#25 exporting config sha256:7afc0ef0fa5d5f9ea71bd01618cf2c5e00dd8a7fa1fcb340f23302c462782fbe 0.1s done
+#25 exporting attestation manifest sha256:3adf6c53e5b42165e06d705654c0d40e8cb72492d21a32a78a8215ee8fa9f29a
+#25 exporting attestation manifest sha256:3adf6c53e5b42165e06d705654c0d40e8cb72492d21a32a78a8215ee8fa9f29a 0.1s done
+#25 exporting manifest list sha256:7558bebd8a94a0b976f417760767225615f819b28d4522b462cfe075cf5acf68 0.0s done
+#25 naming to docker.io/library/ltw-server:4a17f1c6c79a
+#25 naming to docker.io/library/ltw-server:4a17f1c6c79a done
+#25 unpacking to docker.io/library/ltw-server:4a17f1c6c79a
+#25 unpacking to docker.io/library/ltw-server:4a17f1c6c79a 0.3s done
+#25 DONE 1.3s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/q4jfvtjzaw69e2hsttyelj4cz
+==> building ltw-proxy:4a17f1c6c79a from 4a17f1c6c79a82222219278632092cadb470dbce
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 2.0s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.3s
+
+#4 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#4 DONE 0.3s
+
+#5 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.2s done
+#5 DONE 0.3s
+
+#6 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.2s done
+#6 DONE 0.4s
+
+#6 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 CACHED
+
+#7 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#7 CACHED
+
+#8 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#8 CACHED
+
+#9 [build 1/9] COPY --from=manifests /app /app
+#9 CACHED
+
+#10 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#10 CACHED
+
+#11 [pnpm 2/4] WORKDIR /app
+#11 CACHED
+
+#12 [pnpm 3/4] COPY package.json ./
+#12 CACHED
+
+#13 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#13 CACHED
+
+#14 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#14 CACHED
+
+#15 [build 5/9] COPY packages packages
+#15 CACHED
+
+#16 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#16 CACHED
+
+#17 [manifests 2/4] COPY apps apps
+#17 CACHED
+
+#18 [build 4/9] COPY apps apps
+#18 CACHED
+
+#19 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#19 CACHED
+
+#20 [manifests 3/4] COPY packages packages
+#20 CACHED
+
+#21 [build 6/9] RUN pnpm build
+#21 CACHED
+
+#22 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#22 CACHED
+
+#23 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#23 DONE 1.4s
+
+#24 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#24 DONE 0.1s
+
+#25 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#25 DONE 0.1s
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 0.705 {"level":"info","ts":1792106403.6256697,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.712 {"level":"info","ts":1792106403.6317074,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.715 {"level":"info","ts":1792106403.6340292,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.715 {"level":"info","ts":1792106403.634243,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.715 {"level":"info","ts":1792106403.6342652,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.715 {"level":"info","ts":1792106403.6361096,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x40005ae400"}
+#26 0.749 {"level":"info","ts":1792106403.6709769,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x40005ae400"}
+#26 0.749 {"level":"info","ts":1792106403.6710556,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.749 Valid configuration
+#26 0.842 {"level":"info","ts":1792106403.7635126,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.867 {"level":"info","ts":1792106403.7878952,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.872 {"level":"info","ts":1792106403.793004,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.872 {"level":"info","ts":1792106403.7930365,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.872 {"level":"info","ts":1792106403.7924104,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.875 {"level":"info","ts":1792106403.7946677,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x400082ae00"}
+#26 0.875 {"level":"info","ts":1792106403.7947738,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x400082ae00"}
+#26 0.875 {"level":"info","ts":1792106403.7948704,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.875 Valid configuration
+#26 DONE 1.1s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 2.8s done
+#27 exporting manifest sha256:485686d7ee27aa7cf5a5dede3a32af918630db817bd288cda106a257eca6cce4 0.1s done
+#27 exporting config sha256:fb535e316d3cf07e9558e4bdf3813a7d5ab6ab6852914bf7dec8544623e7b9be
+#27 exporting config sha256:fb535e316d3cf07e9558e4bdf3813a7d5ab6ab6852914bf7dec8544623e7b9be 0.1s done
+#27 exporting attestation manifest sha256:85c0311a6786990eeb578178f1c8342eff6c13f4fffc46284eca58289271039f
+#27 exporting attestation manifest sha256:85c0311a6786990eeb578178f1c8342eff6c13f4fffc46284eca58289271039f 0.1s done
+#27 exporting manifest list sha256:64c2ede30c59723b9364440adbe162557007388cb1cd537191bf45f654040da4 0.0s done
+#27 naming to docker.io/library/ltw-proxy:4a17f1c6c79a
+#27 naming to docker.io/library/ltw-proxy:4a17f1c6c79a done
+#27 unpacking to docker.io/library/ltw-proxy:4a17f1c6c79a
+#27 unpacking to docker.io/library/ltw-proxy:4a17f1c6c79a 2.5s done
+#27 DONE 5.9s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/8inb0mj0x96df6qgonsclm3f7
+4a17f1c6c79a
+[exit 0]
+
+### Images of the third part A revision (the server survives a database restart), from git archive (2026-10-15T23:25:34Z)
+$ deploy/scripts/build.sh 56ec5d8 --progress=plain
+==> building ltw-server:56ec5d8b14fa from 56ec5d8b14fa5e998423189aa70c7c0c5dee72cd
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.7s
+
+#1 [internal] load remote build context
+#1 DONE 0.7s
+
+#2 copy /context /
+#2 DONE 1.2s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.1s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#4 DONE 0.0s
+
+#5 [pnpm 2/4] WORKDIR /app
+#5 CACHED
+
+#6 [pnpm 3/4] COPY package.json ./
+#6 CACHED
+
+#7 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#7 CACHED
+
+#8 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#8 CACHED
+
+#9 [manifests 2/4] COPY apps apps
+#9 DONE 0.9s
+
+#10 [manifests 3/4] COPY packages packages
+#10 DONE 0.9s
+
+#11 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#11 DONE 2.3s
+
+#12 [build 1/9] COPY --from=manifests /app /app
+#12 CACHED
+
+#13 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#13 CACHED
+
+#14 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#14 CACHED
+
+#15 [build 4/9] COPY apps apps
+#15 DONE 0.2s
+
+#16 [build 5/9] COPY packages packages
+#16 DONE 0.3s
+
+#17 [build 6/9] RUN pnpm build
+#17 1.365 $ tsc -b tsconfig.build.json && pnpm --filter @ltw/web run build
+#17 27.67 $ vite build
+#17 28.91 [36mvite v8.3.2 [32mbuilding client environment for production...[36m[39m
+#17 28.93 transforming...
+#17 29.42 ✓ 206 modules transformed.
+#17 29.62 rendering chunks...
+#17 29.69 computing gzip size...
+#17 29.69 build/index.html                   0.50 kB │ gzip:   0.30 kB
+#17 29.69 build/assets/index-CSeyxMGq.css   24.82 kB │ gzip:   6.44 kB
+#17 29.69 build/assets/index-z9Od83Hl.js   474.85 kB │ gzip: 142.96 kB
+#17 29.69 
+#17 29.69 [32m✓ built in 782ms[39m
+#17 DONE 29.9s
+
+#18 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#18 DONE 0.5s
+
+#19 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#19 DONE 0.1s
+
+#20 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#20 DONE 0.0s
+
+#21 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#21 CACHED
+
+#22 [server 3/5] COPY --from=prod-deps /app /app
+#22 CACHED
+
+#23 [server 4/5] COPY --from=build /out /app
+#23 DONE 0.2s
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 DONE 0.0s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 0.2s done
+#25 exporting manifest sha256:40b9f752d7404f7c0d4d6904001a6902cc44ba93596e42f1ad16c6a9944a26f8 0.0s done
+#25 exporting config sha256:70bbb6dea0b9a41feea976f78bd845aea975a3b0fa61b8c7f7c53855d2217bea 0.0s done
+#25 exporting attestation manifest sha256:1e449db0439998c498e15fbb39b52e02c6a0a164f30455c8c7440cfc9dfcc131 0.0s done
+#25 exporting manifest list sha256:69761f18ee462e5744de99e5762774bb46062284d39016f64af572f1ace35190 0.0s done
+#25 naming to docker.io/library/ltw-server:56ec5d8b14fa done
+#25 unpacking to docker.io/library/ltw-server:56ec5d8b14fa 0.1s done
+#25 DONE 0.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/q16cxl3khpuvyafnr8k1b87hp
+==> building ltw-proxy:56ec5d8b14fa from 56ec5d8b14fa5e998423189aa70c7c0c5dee72cd
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.4s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.1s
+
+#4 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#4 DONE 0.1s
+
+#5 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#5 DONE 0.1s
+
+#6 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.0s done
+#6 CACHED
+
+#7 [pnpm 3/4] COPY package.json ./
+#7 CACHED
+
+#8 [build 4/9] COPY apps apps
+#8 CACHED
+
+#9 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#9 CACHED
+
+#10 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#10 CACHED
+
+#11 [pnpm 2/4] WORKDIR /app
+#11 CACHED
+
+#12 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#12 CACHED
+
+#13 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#13 CACHED
+
+#14 [manifests 3/4] COPY packages packages
+#14 CACHED
+
+#15 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#15 CACHED
+
+#16 [manifests 2/4] COPY apps apps
+#16 CACHED
+
+#17 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#17 CACHED
+
+#18 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#18 CACHED
+
+#19 [build 1/9] COPY --from=manifests /app /app
+#19 CACHED
+
+#20 [build 5/9] COPY packages packages
+#20 CACHED
+
+#21 [build 6/9] RUN pnpm build
+#21 CACHED
+
+#22 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#22 CACHED
+
+#23 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#23 DONE 0.7s
+
+#24 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#24 DONE 0.0s
+
+#25 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#25 DONE 0.0s
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 0.254 {"level":"info","ts":1792106779.1814456,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.257 {"level":"info","ts":1792106779.1840243,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.257 {"level":"info","ts":1792106779.184037,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.257 {"level":"info","ts":1792106779.1834254,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.257 {"level":"info","ts":1792106779.1839404,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.258 {"level":"info","ts":1792106779.184481,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x400049b980"}
+#26 0.269 {"level":"info","ts":1792106779.1965322,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.269 {"level":"info","ts":1792106779.1965897,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x400049b980"}
+#26 0.269 Valid configuration
+#26 0.306 {"level":"info","ts":1792106779.2328715,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.307 {"level":"info","ts":1792106779.2342749,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.307 {"level":"info","ts":1792106779.2348368,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.308 {"level":"info","ts":1792106779.235609,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.308 {"level":"info","ts":1792106779.23566,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.311 {"level":"info","ts":1792106779.2361903,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.311 {"level":"info","ts":1792106779.2362368,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x400053c200"}
+#26 0.311 {"level":"info","ts":1792106779.236271,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x400053c200"}
+#26 0.311 Valid configuration
+#26 DONE 0.4s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 2.0s done
+#27 exporting manifest sha256:0441b2e62f8291b95eaf3c2092cea33a1d0b5f9c46e1288c1d28481e2f67a9b9 0.1s done
+#27 exporting config sha256:843f14d85628569dcb37c07acefeae04feb999326aab74ee8687127119999885 0.0s done
+#27 exporting attestation manifest sha256:7de4cf145aebcbad76fad4a7108bbe89597c7c49cd8da0f59cf326f60e227929 0.1s done
+#27 exporting manifest list sha256:5900720a16073918a4df45e52158ac2596e75152a00813702226174487a153e5
+#27 exporting manifest list sha256:5900720a16073918a4df45e52158ac2596e75152a00813702226174487a153e5 0.0s done
+#27 naming to docker.io/library/ltw-proxy:56ec5d8b14fa done
+#27 unpacking to docker.io/library/ltw-proxy:56ec5d8b14fa
+#27 unpacking to docker.io/library/ltw-proxy:56ec5d8b14fa 0.7s done
+#27 DONE 3.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/rceyt0h6abpki8x9mfjrdfrxf
+56ec5d8b14fa
+[exit 0]
+
+### Images of the fourth part A revision (the proxy at a fixed address; comments), from git archive (2026-10-15T23:29:53Z)
+$ deploy/scripts/build.sh 049db30 --progress=plain
+==> building ltw-server:049db3031faa from 049db3031faa9f37f20174c9642e81e329247809
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.4s
+
+#1 [internal] load remote build context
+#1 DONE 0.4s
+
+#2 copy /context /
+#2 DONE 0.2s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#4 DONE 0.0s
+
+#5 [pnpm 2/4] WORKDIR /app
+#5 CACHED
+
+#6 [pnpm 3/4] COPY package.json ./
+#6 CACHED
+
+#7 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#7 CACHED
+
+#8 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#8 CACHED
+
+#9 [manifests 2/4] COPY apps apps
+#9 DONE 0.1s
+
+#10 [manifests 3/4] COPY packages packages
+#10 DONE 0.1s
+
+#11 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#11 DONE 0.8s
+
+#12 [build 1/9] COPY --from=manifests /app /app
+#12 CACHED
+
+#13 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#13 CACHED
+
+#14 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#14 CACHED
+
+#15 [build 4/9] COPY apps apps
+#15 DONE 0.1s
+
+#16 [build 5/9] COPY packages packages
+#16 DONE 0.1s
+
+#17 [build 6/9] RUN pnpm build
+#17 1.231 $ tsc -b tsconfig.build.json && pnpm --filter @ltw/web run build
+#17 19.85 $ vite build
+#17 21.76 [36mvite v8.3.2 [32mbuilding client environment for production...[36m[39m
+#17 21.78 transforming...
+#17 22.02 ✓ 206 modules transformed.
+#17 22.09 rendering chunks...
+#17 22.16 computing gzip size...
+#17 22.17 build/index.html                   0.50 kB │ gzip:   0.30 kB
+#17 22.17 build/assets/index-CSeyxMGq.css   24.82 kB │ gzip:   6.44 kB
+#17 22.17 build/assets/index-z9Od83Hl.js   474.85 kB │ gzip: 142.96 kB
+#17 22.17 
+#17 22.17 [32m✓ built in 403ms[39m
+#17 DONE 22.5s
+
+#18 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#18 DONE 0.5s
+
+#19 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#19 DONE 0.0s
+
+#20 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#20 DONE 0.0s
+
+#21 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#21 CACHED
+
+#22 [server 3/5] COPY --from=prod-deps /app /app
+#22 CACHED
+
+#23 [server 4/5] COPY --from=build /out /app
+#23 DONE 0.3s
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 DONE 0.1s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 0.3s done
+#25 exporting manifest sha256:4d1b4219dcf4224dc0e0baf6ec9b998d42c32ade6fc006485b1cba2b1e167947 0.0s done
+#25 exporting config sha256:813c17effb39d66def6d2a7d577d49b04268ff593e9b3ee820e1d831386a4c4a done
+#25 exporting attestation manifest sha256:88b9303374d111c47a1e5a5f09aaeef89e49d526e2d08ad280e7af4c9c390c6e 0.0s done
+#25 exporting manifest list sha256:901729a8d6109d242ea038b30db0584ac6a98d790fb5da33df3710ab3ce569a4 done
+#25 naming to docker.io/library/ltw-server:049db3031faa done
+#25 unpacking to docker.io/library/ltw-server:049db3031faa
+#25 unpacking to docker.io/library/ltw-server:049db3031faa 0.2s done
+#25 DONE 0.6s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/v32jmxm0onv3d05t5uioabcny
+==> building ltw-proxy:049db3031faa from 049db3031faa9f37f20174c9642e81e329247809
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.4s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#3 DONE 0.1s
+
+#4 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 DONE 0.1s
+
+#5 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#5 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.0s done
+#5 CACHED
+
+#6 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#6 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#6 DONE 0.0s
+
+#7 [manifests 3/4] COPY packages packages
+#7 CACHED
+
+#8 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#8 CACHED
+
+#9 [build 1/9] COPY --from=manifests /app /app
+#9 CACHED
+
+#10 [manifests 2/4] COPY apps apps
+#10 CACHED
+
+#11 [build 5/9] COPY packages packages
+#11 CACHED
+
+#12 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#12 CACHED
+
+#13 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#13 CACHED
+
+#14 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#14 CACHED
+
+#15 [build 4/9] COPY apps apps
+#15 CACHED
+
+#16 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#16 CACHED
+
+#17 [pnpm 2/4] WORKDIR /app
+#17 CACHED
+
+#18 [pnpm 3/4] COPY package.json ./
+#18 CACHED
+
+#19 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#19 CACHED
+
+#20 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#20 CACHED
+
+#21 [build 6/9] RUN pnpm build
+#21 CACHED
+
+#22 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#22 CACHED
+
+#23 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#23 DONE 0.8s
+
+#24 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#24 DONE 0.0s
+
+#25 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#25 DONE 0.0s
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 0.260 {"level":"info","ts":1792107024.0568256,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.263 {"level":"info","ts":1792107024.0604146,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.264 {"level":"info","ts":1792107024.0609703,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.264 {"level":"info","ts":1792107024.0611634,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.264 {"level":"info","ts":1792107024.0612478,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.264 {"level":"info","ts":1792107024.0612662,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x40005b0d80"}
+#26 0.276 {"level":"info","ts":1792107024.0736575,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x40005b0d80"}
+#26 0.276 {"level":"info","ts":1792107024.0737011,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.276 Valid configuration
+#26 0.318 {"level":"info","ts":1792107024.1151013,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.320 {"level":"info","ts":1792107024.1174986,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.321 {"level":"info","ts":1792107024.118544,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.322 {"level":"info","ts":1792107024.1192534,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.322 {"level":"info","ts":1792107024.1192923,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.322 {"level":"info","ts":1792107024.1192975,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x4000832800"}
+#26 0.323 {"level":"info","ts":1792107024.1200767,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.323 {"level":"info","ts":1792107024.1201823,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x4000832800"}
+#26 0.323 Valid configuration
+#26 DONE 0.3s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 1.3s done
+#27 exporting manifest sha256:5f1e9ec91ec10e8ee0c87174ba7b1efcf1609cb95c08b53210285b463b9524a9 done
+#27 exporting config sha256:8c9da4bc0b44c09984c46428f5c7bccd80366307aebaac74742fde3ba3ee2a23 0.0s done
+#27 exporting attestation manifest sha256:aa305e1baa6d901d68e94ff65668868acaa8522947cdd978653960fcaaf41804 0.0s done
+#27 exporting manifest list sha256:bae81c25ed7c9b559efcf887e85704752fe3330ab3f01032dcf3c2a389f1a632 done
+#27 naming to docker.io/library/ltw-proxy:049db3031faa done
+#27 unpacking to docker.io/library/ltw-proxy:049db3031faa
+#27 unpacking to docker.io/library/ltw-proxy:049db3031faa 0.2s done
+#27 DONE 1.6s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/joaiyngciwbdp2hja95iv0qsw
+049db3031faa
+[exit 0]
+
+### Images of the fifth (final code) part A revision: the trust-proxy server setting left to Stage 340, from git archive (2026-10-15T23:34:26Z)
+$ deploy/scripts/build.sh 73ce95b --progress=plain
+==> building ltw-server:73ce95bad8a0 from 73ce95bad8a0e6dc41755a60c6d98646316a236a
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.2s
+
+#1 [internal] load remote build context
+#1 DONE 0.2s
+
+#2 copy /context /
+#2 DONE 0.4s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#4 DONE 0.0s
+
+#5 [pnpm 3/4] COPY package.json ./
+#5 CACHED
+
+#6 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#6 CACHED
+
+#7 [pnpm 2/4] WORKDIR /app
+#7 CACHED
+
+#8 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#8 CACHED
+
+#9 [manifests 2/4] COPY apps apps
+#9 DONE 0.4s
+
+#10 [manifests 3/4] COPY packages packages
+#10 DONE 0.2s
+
+#11 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#11 DONE 0.6s
+
+#12 [build 1/9] COPY --from=manifests /app /app
+#12 CACHED
+
+#13 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#13 CACHED
+
+#14 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#14 CACHED
+
+#15 [build 4/9] COPY apps apps
+#15 DONE 0.1s
+
+#16 [build 5/9] COPY packages packages
+#16 DONE 0.2s
+
+#17 [build 6/9] RUN pnpm build
+#17 0.745 $ tsc -b tsconfig.build.json && pnpm --filter @ltw/web run build
+#17 13.42 $ vite build
+#17 13.94 [36mvite v8.3.2 [32mbuilding client environment for production...[36m[39m
+#17 13.95 transforming...
+#17 14.15 ✓ 206 modules transformed.
+#17 14.22 rendering chunks...
+#17 14.26 computing gzip size...
+#17 14.27 build/index.html                   0.50 kB │ gzip:   0.30 kB
+#17 14.27 build/assets/index-CSeyxMGq.css   24.82 kB │ gzip:   6.44 kB
+#17 14.27 build/assets/index-z9Od83Hl.js   474.85 kB │ gzip: 142.96 kB
+#17 14.27 
+#17 14.27 [32m✓ built in 328ms[39m
+#17 DONE 14.4s
+
+#18 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#18 DONE 0.4s
+
+#19 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#19 DONE 0.0s
+
+#20 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#20 DONE 0.0s
+
+#21 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#21 CACHED
+
+#22 [server 3/5] COPY --from=prod-deps /app /app
+#22 CACHED
+
+#23 [server 4/5] COPY --from=build /out /app
+#23 DONE 0.1s
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 DONE 0.0s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 0.2s done
+#25 exporting manifest sha256:1b4cdea1ad7eeb0768e9e9b73c97201848203866ddcaa3340ef2bf5c0b887735 0.0s done
+#25 exporting config sha256:1950bb334594ad7a7f1fa29deec4dc78fc75f582cd077fe2e1758f6a091941f1 done
+#25 exporting attestation manifest sha256:a7ca04a10a7fb5ce1018684efb5002b9b134bfb792f9a93daea82208796948ec 0.0s done
+#25 exporting manifest list sha256:c22d55ff9fb66a93f95a56afff6b6e4e5f54dd53fa083fe38597a819a82bfb21 done
+#25 naming to docker.io/library/ltw-server:73ce95bad8a0 done
+#25 unpacking to docker.io/library/ltw-server:73ce95bad8a0 0.1s done
+#25 DONE 0.3s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/lucnp6oej5zjxqzpvlu1ow5fv
+==> building ltw-proxy:73ce95bad8a0 from 73ce95bad8a0e6dc41755a60c6d98646316a236a
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.3s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 DONE 0.0s
+
+#5 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#5 DONE 0.0s
+
+#6 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.0s done
+#6 CACHED
+
+#7 [build 5/9] COPY packages packages
+#7 CACHED
+
+#8 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#8 CACHED
+
+#9 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#9 CACHED
+
+#10 [pnpm 3/4] COPY package.json ./
+#10 CACHED
+
+#11 [manifests 2/4] COPY apps apps
+#11 CACHED
+
+#12 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#12 CACHED
+
+#13 [manifests 3/4] COPY packages packages
+#13 CACHED
+
+#14 [build 1/9] COPY --from=manifests /app /app
+#14 CACHED
+
+#15 [build 6/9] RUN pnpm build
+#15 CACHED
+
+#16 [build 4/9] COPY apps apps
+#16 CACHED
+
+#17 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#17 CACHED
+
+#18 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#18 CACHED
+
+#19 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#19 CACHED
+
+#20 [pnpm 2/4] WORKDIR /app
+#20 CACHED
+
+#21 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#21 CACHED
+
+#22 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#22 CACHED
+
+#23 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#23 DONE 0.3s
+
+#24 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#24 DONE 0.0s
+
+#25 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#25 DONE 0.0s
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 0.175 {"level":"info","ts":1792107286.1928556,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.177 {"level":"info","ts":1792107286.194335,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.177 {"level":"info","ts":1792107286.1947615,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.177 {"level":"info","ts":1792107286.194774,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.178 {"level":"info","ts":1792107286.1946762,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.178 {"level":"info","ts":1792107286.1956413,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x4000535e80"}
+#26 0.188 {"level":"info","ts":1792107286.205287,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x4000535e80"}
+#26 0.188 {"level":"info","ts":1792107286.2053146,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.188 Valid configuration
+#26 0.215 {"level":"info","ts":1792107286.2320516,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.216 {"level":"info","ts":1792107286.2330089,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.216 {"level":"info","ts":1792107286.2332406,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.216 {"level":"info","ts":1792107286.2334807,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.216 {"level":"info","ts":1792107286.2334929,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.216 {"level":"info","ts":1792107286.2336044,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x400051be00"}
+#26 0.216 {"level":"info","ts":1792107286.2337556,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x400051be00"}
+#26 0.216 {"level":"info","ts":1792107286.233766,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.216 Valid configuration
+#26 DONE 0.2s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 1.0s done
+#27 exporting manifest sha256:739dee177ca9b41c85ac184c74f0ef87f735f14027eb5b7ea79a5881f0a4dc6e done
+#27 exporting config sha256:e15d35f898a8c94eb8412d0a9d418f22fffabfd4e9ac54e9a2940c0e83e9a767 done
+#27 exporting attestation manifest sha256:087585ec99e263a0b666f672f1dc1d1f0b3ef68891670fb7ee299f43310bb1fb 0.0s done
+#27 exporting manifest list sha256:c6e1ef297c87d6eb9b61b472c472ddfafcee417519bd677c1d8880cd0f7520c2 done
+#27 naming to docker.io/library/ltw-proxy:73ce95bad8a0 done
+#27 unpacking to docker.io/library/ltw-proxy:73ce95bad8a0
+#27 unpacking to docker.io/library/ltw-proxy:73ce95bad8a0 0.2s done
+#27 DONE 1.2s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/si1d8xrlrk6on5r73yrg9efjt
+73ce95bad8a0
+[exit 0]

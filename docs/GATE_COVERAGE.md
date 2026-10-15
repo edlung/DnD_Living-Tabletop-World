@@ -299,7 +299,8 @@ deployment) follows Stage 340.
   a client's `X-Forwarded-For` is replaced. Compose passes `LTW_TRUST_PROXY` (Stage 340's server
   setting) as the pinned proxy network `10.231.250.0/24`. Evidence:
   `deploy/verify/smoke.sh`, `deploy/verify/proxy-contract.sh`, `deploy/verify/live-stream.sh`;
-  the server's own handling of the header is Stage 340's (its tests).
+  the server's own handling of the header is Stage 340's (its tests). Transcripts:
+  `reports/evidence/stage-350/` (index `00-index.txt`).
 - **Headers**: CSP `default-src 'self'; img-src 'self' blob: data:; connect-src 'self';
   object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'` added only
   where the server set none (`deploy/verify/proxy-contract.sh`: the asset content route's
@@ -314,7 +315,8 @@ deployment) follows Stage 340.
   database with migrations missing on disk unless the deployment's explicit rollback step passes
   `--allow-newer-database`; then it applies nothing, and drift is still refused
   (`migration-source.test.ts`, `migrator.integration.test.ts`). No canonical state, projection,
-  mutation path or authorization rule changed.
+  mutation path or authorization rule changed. Operationally, a database restart no longer ends
+  the server (`apps/server/src/platform/db/pool.ts`, `pool.test.ts`); `/readyz` reports it.
 - **Backup and restore**: `deploy/backup/backup.sh` (custom-format dumps, retention, SHA-256
   manifest, `verify` before use; `deploy/verify/retention-check.sh`), the replay/digest CLI
   (`apps/server/src/world-engine/replay-digest*.ts`, `state-digest.ts`; tests beside them,

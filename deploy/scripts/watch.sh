@@ -62,7 +62,8 @@ check_memory() {
 check_services() {
   local service state
   for service in $SERVICES; do
-    state=$(compose ps --all --format '{{.State}} {{.Health}}' "$service" 2>/dev/null | head -n 1)
+    state=$(compose ps --all --format '{{.State}} {{.Health}}' "$service" 2>/dev/null | head -n 1 |
+      sed 's/ *$//')
     [ "$state" = 'running healthy' ] || alarm "service $service is '${state:-missing}'"
   done
 }

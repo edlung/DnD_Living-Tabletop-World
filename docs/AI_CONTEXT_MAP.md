@@ -35,7 +35,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Technical decisions | `docs/adr/README.md` index, then only the relevant ADR |
 | Module boundaries / add a dependency edge | `docs/adr/0004-module-boundaries.md`, `workspace-boundaries.json`, `eslint.config.js`, `tests/architecture/` |
 | TypeScript / build wiring | `tsconfig.base.json`, `tsconfig.json` (typecheck), `tsconfig.build.json` + `<project>/tsconfig.build.json` (build) |
-| Server startup and composition | `apps/server/AGENTS.md`, `apps/server/src/main.ts` |
+| Server startup and composition | `apps/server/AGENTS.md`, `apps/server/src/main.ts`; database pools `apps/server/src/platform/db/pool.ts` |
 | Config / environment variables | `apps/server/src/platform/config/config.ts`, `.env.example` |
 | Structured logging | `apps/server/src/platform/logging/logger.ts` |
 | Database migrations | `apps/server/migrations/AGENTS.md`, `apps/server/src/platform/db/` (`migration-source.ts`, `migrator.ts`, `migrate-cli.ts`; `--allow-newer-database` is the deployment's rollback step, ADR 0037), `docker-compose.yml` |

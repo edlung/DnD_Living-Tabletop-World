@@ -12,8 +12,9 @@ commit=$(git -C "$REPO_DIR" rev-parse --verify --quiet "$ref^{commit}") ||
   die "not a commit: $ref"
 tag=${commit:0:12}
 
+# Progress goes to stderr: stdout carries only the tag, for `tag=$(build.sh …)`.
 for target in server proxy; do
-  say "building ltw-$target:$tag from $commit"
+  say "building ltw-$target:$tag from $commit" >&2
   git -C "$REPO_DIR" archive --format=tar "$commit" |
     docker build --file deploy/Dockerfile --target "$target" \
       --build-arg "LTW_REVISION=$commit" --tag "ltw-$target:$tag" "$@" - >&2

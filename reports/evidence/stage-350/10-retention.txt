@@ -1,0 +1,13 @@
+
+### Backup retention and manifest in the backup image: 480 dumps, one every 6 h for 120 days (2026-10-15T23:40:08Z)
+$ deploy/verify/retention-check.sh
+{"time":"2026-10-15T23:40:10Z","service":"ltw-backup","level":"info","msg":"retention: kept 21, removed 459"}
+kept 21 of 480
+retention check passed
+[exit 0]
+
+### The backup service health check (newest dump younger than the interval plus an hour) (2026-10-15T23:40:10Z)
+$ cd deploy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh health && echo healthy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh latest
+healthy
+ltw-20261015T233936Z.dump
+[exit 0]

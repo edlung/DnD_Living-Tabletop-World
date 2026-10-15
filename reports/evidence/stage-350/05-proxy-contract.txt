@@ -1,0 +1,60 @@
+
+### What the proxy forwards and returns, against a stand-in server (private network, nothing published) (2026-10-15T23:28:10Z)
+$ deploy/verify/proxy-contract.sh 56ec5d8b14fa
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+[exit 0]
+
+### End to end: a client forges X-Forwarded-For through the real proxy; the server logs the real peer (the host as Docker NAT presents it), never the forged address (2026-10-15T23:28:13Z)
+$ cd deploy && docker compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt > /tmp/ltw350-root.crt && curl -sS --cacert /tmp/ltw350-root.crt -o /dev/null -w "%{http_code}\n" -H "X-Forwarded-For: 203.0.113.66" "https://localhost/api/campaigns/ravenford/knowledge?perspective=PUBLIC&marker=xff-check"; rm -f /tmp/ltw350-root.crt; sleep 1; docker compose logs --no-color --since 1m server | grep "xff-check" | grep "incoming request" | sed -E "s/.*\"req\":(\{[^}]*\}).*/\1/"; echo "proxy address on edge: $(docker inspect "$(docker compose ps -q proxy)" --format "{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}")"
+401
+{"method":"GET","url":"/campaigns/ravenford/knowledge?perspective=PUBLIC&marker=xff-check","host":"localhost","remoteAddress":"10.231.250.1","remotePort":33214}
+proxy address on edge: 10.231.250.3 
+[exit 0]
+
+### End to end on 049db3031faa: the proxy at its fixed address; a forged X-Forwarded-For through it never becomes the client address (2026-10-15T23:30:44Z)
+$ cd deploy && docker inspect "$(docker compose ps -q proxy)" --format "proxy: {{range \$n, \$c := .NetworkSettings.Networks}}{{\$n}}={{\$c.IPAddress}} {{end}}" && docker compose exec -T server printenv LTW_TRUST_PROXY && docker compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt > /tmp/ltw350-root.crt && curl -sS --cacert /tmp/ltw350-root.crt -o /dev/null -w "%{http_code}\n" -H "X-Forwarded-For: 203.0.113.66" "https://localhost/api/campaigns/ravenford/knowledge?perspective=PUBLIC&marker=xff-check-2"; rm -f /tmp/ltw350-root.crt; sleep 1; docker compose logs --no-color --since 1m server | grep "xff-check-2" | grep "incoming request" | sed -E "s/.*\"req\":(\{[^}]*\}).*/\1/"
+proxy: ltw-stage350_edge=10.231.250.10 
+10.231.250.10
+401
+{"method":"GET","url":"/campaigns/ravenford/knowledge?perspective=PUBLIC&marker=xff-check-2","host":"localhost","remoteAddress":"10.231.250.1","remotePort":44468}
+[exit 0]
+
+### Proxy contract on 049db3031faa (2026-10-15T23:30:46Z)
+$ deploy/verify/proxy-contract.sh 049db3031faa
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+[exit 0]
+
+### Proxy contract on the fifth (final code) revision 73ce95bad8a0 (2026-10-15T23:35:22Z)
+$ deploy/verify/proxy-contract.sh 73ce95bad8a0
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+[exit 0]

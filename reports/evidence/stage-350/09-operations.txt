@@ -1,0 +1,54 @@
+
+### watch.sh on this development machine, default limits (its data volume is above 80 % used: a real alarm) (2026-10-15T23:39:17Z)
+$ WATCH_ALARM_LOG=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/alarms.log deploy/scripts/watch.sh; echo "watch exit status: $?"
+2026-10-15T23:39:18Z ltw-watch ALARM disk /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/backups-run at 82% (limit 80%)
+watch exit status: 1
+[exit 0]
+
+### watch.sh with the disk limit raised to 90 % for this machine: nothing else to report (2026-10-15T23:39:19Z)
+$ WATCH_DISK_PERCENT=90 WATCH_ALARM_LOG=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/alarms.log deploy/scripts/watch.sh; echo "watch exit status: $?"
+2026-10-15T23:39:20Z ltw-watch ok
+watch exit status: 0
+[exit 0]
+
+### Forced alarm: the backup service stopped; alarm lines go to the alarm log and to a local webhook receiver (ALARM_WEBHOOK_URL set to it for this test) (2026-10-15T23:39:35Z)
+$ cd deploy && docker compose stop backup >/dev/null 2>&1 && WATCH_DISK_PERCENT=90 WATCH_ALARM_LOG=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/alarms.log scripts/watch.sh; echo "watch exit status: $?"; echo '--- received by the webhook:'; cat /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/hook.log; docker compose start backup >/dev/null 2>&1; docker compose up --detach --wait backup >/dev/null 2>&1; docker compose ps --format '{{.Service}} {{.Status}}' backup
+2026-10-15T23:39:35Z ltw-watch ALARM service backup is 'exited '
+watch exit status: 1
+--- received by the webhook:
+application/json {"text":"2026-10-15T23:39:35Z ltw-watch ALARM service backup is 'exited '"}
+backup Up 10 seconds (healthy)
+[exit 0]
+
+### Spending counters through the operator CLI in the server container (no operator records in this local database) (2026-10-15T23:39:58Z)
+$ deploy/scripts/spend.sh
+==> AI and image accounting status (counts)
+{"openHolds":0,"activeStops":0,"incompleteRequests":0,"disabledAccounts":0,"disabledApprovals":0}
+==> AI spending (microdollars)
+{"day":"2026-10-15","accounts":[],"approvals":[]}
+[exit 0]
+
+### Error lines of the last hour (the database outages and the strict start refusal of the drills above) (2026-10-15T23:39:58Z)
+$ deploy/scripts/logs.sh --since 1h --errors | cut -c1-220 | sort | uniq -c | sort -rn | head -12
+   1 postgres-1  | 2026-10-15 23:35:24.981 UTC [764] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-15 23:35:24.981 UTC [763] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-15 23:35:24.981 UTC [739] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-15 23:27:43.292 UTC [34] FATAL:  the database system is starting up
+   1 postgres-1  | 2026-10-15 23:27:43.292 UTC [33] FATAL:  the database system is starting up
+   1 postgres-1  | 2026-10-15 23:27:43.289 UTC [32] FATAL:  the database system is starting up
+   1 postgres-1  | 2026-10-15 23:27:11.723 UTC [229] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-15 23:27:11.723 UTC [228] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-15 23:27:11.723 UTC [213] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-15 23:24:31.245 UTC [272] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-15 23:24:31.245 UTC [271] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-15 23:24:31.245 UTC [270] FATAL:  terminating connection due to administrator command
+[exit 0]
+
+### One service, last 2 minutes (JSON on stdout; health requests are not logged) (2026-10-15T23:39:59Z)
+$ deploy/scripts/logs.sh --since 2m server | cut -c1-220 | tail -5
+server-1  | {"level":"info","time":"2026-10-15T23:38:59.895Z","service":"ltw-server","capability":"npc-dialogue","providers":["local"],"msg":"AI route"}
+server-1  | {"level":"info","time":"2026-10-15T23:38:59.895Z","service":"ltw-server","capability":"narrative","providers":["local"],"msg":"AI route"}
+server-1  | {"level":"info","time":"2026-10-15T23:38:59.895Z","service":"ltw-server","capability":"fast-context","providers":[],"msg":"AI route"}
+server-1  | {"level":"info","time":"2026-10-15T23:38:59.921Z","service":"ltw-server","openHolds":0,"activeStops":0,"incompleteRequests":0,"disabledAccounts":0,"disabledApprovals":0,"msg":"AI accounting status (shared by 
+server-1  | {"level":"info","time":"2026-10-15T23:38:59.922Z","service":"ltw-server","module":"readiness","msg":"ready"}
+[exit 0]
