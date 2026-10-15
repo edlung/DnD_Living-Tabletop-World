@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import type { ExplorationIntent } from './use-action.ts';
+import { useT } from '@ltw/ui';
 
 export function Hypothesis({
   characterId,
@@ -13,12 +14,15 @@ export function Hypothesis({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   const [statement, setStatement] = useState('');
   const [scope, setScope] = useState<'PARTY' | 'CHARACTER'>('PARTY');
   return (
     <details className="disclosure hypothesis-form">
-      <summary>Form a hypothesis</summary>
-      <p className="muted">Record your interpretation. A hypothesis does not establish a fact.</p>
+      <summary>{t('Form a hypothesis')}</summary>
+      <p className="muted">
+        {t('Record your interpretation. A hypothesis does not establish a fact.')}
+      </p>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -35,7 +39,7 @@ export function Hypothesis({
             });
         }}
       >
-        <label htmlFor="hypothesis">Hypothesis</label>
+        <label htmlFor="hypothesis">{t('Hypothesis')}</label>
         <textarea
           id="hypothesis"
           required
@@ -45,7 +49,7 @@ export function Hypothesis({
             setStatement(event.target.value);
           }}
         />
-        <label htmlFor="hypothesis-scope">Share with</label>
+        <label htmlFor="hypothesis-scope">{t('Share with')}</label>
         <select
           id="hypothesis-scope"
           value={scope}
@@ -53,11 +57,11 @@ export function Hypothesis({
             setScope(event.target.value === 'PARTY' ? 'PARTY' : 'CHARACTER');
           }}
         >
-          <option value="PARTY">Party</option>
-          <option value="CHARACTER">Only my character</option>
+          <option value="PARTY">{t('Party')}</option>
+          <option value="CHARACTER">{t('Only my character')}</option>
         </select>
         <button type="submit" disabled={locked || !statement.trim()}>
-          Record hypothesis
+          {t('Record hypothesis')}
         </button>
       </form>
     </details>

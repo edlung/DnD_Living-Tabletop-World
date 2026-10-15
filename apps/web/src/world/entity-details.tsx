@@ -5,7 +5,7 @@ import type {
   EntityRef,
   KnowledgeView,
 } from '@ltw/contracts';
-import { CharacterSheetDetails, KnowledgeDetails, StatusPanel } from '@ltw/ui';
+import { CharacterSheetDetails, KnowledgeDetails, StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -43,6 +43,7 @@ export function EntityDetails({
   readonly onSelect: (entityId: string, kind: string) => void;
   readonly onClose: () => void;
 }) {
+  const t = useT();
   const acting = effectivePerspective.startsWith('CHARACTER:');
   const [sheetOpen, setSheetOpen] = useState(false);
   const load = useCallback(
@@ -65,17 +66,17 @@ export function EntityDetails({
   return (
     <>
       <div className="section-heading">
-        <p className="eyebrow">A closer look</p>
-        <button aria-label="Close details" onClick={onClose}>
+        <p className="eyebrow">{t('A closer look')}</p>
+        <button aria-label={t('Close details')} onClick={onClose}>
           ×
         </button>
       </div>
-      <h2>{name ?? `Unidentified ${kind}`}</h2>
-      <p className="entity-kind">{kind}</p>
+      <h2>{name ?? t('Unidentified {kind}', { kind: t(kind) })}</h2>
+      <p className="entity-kind">{t(kind)}</p>
       {resource.status !== 'ready' ? (
         <StatusPanel
           state={resource.status}
-          label={resource.status === 'error' ? resource.message : 'Loading entity details…'}
+          label={resource.status === 'error' ? resource.message : t('Loading entity details…')}
           onRetry={retry}
         />
       ) : (
@@ -84,17 +85,23 @@ export function EntityDetails({
             <>
               <p className="presence-label">
                 {resource.value.context.context.visibleState.present
-                  ? 'Present in your surroundings'
-                  : 'Known, but not here'}
+                  ? t('Present in your surroundings')
+                  : t('Known, but not here')}
               </p>
               {resource.value.context.context.visibleState.hitPoints && (
                 <p>
-                  Hit points: {resource.value.context.context.visibleState.hitPoints.current} /{' '}
-                  {resource.value.context.context.visibleState.hitPoints.max}
+                  {t('Hit points: {current} / {max}', {
+                    current: resource.value.context.context.visibleState.hitPoints.current,
+                    max: resource.value.context.context.visibleState.hitPoints.max,
+                  })}
                 </p>
               )}
               {resource.value.context.context.visibleState.distanceFt !== undefined && (
-                <p>Distance: {resource.value.context.context.visibleState.distanceFt} ft</p>
+                <p>
+                  {t('Distance: {feet} ft', {
+                    feet: resource.value.context.context.visibleState.distanceFt,
+                  })}
+                </p>
               )}
               <ContextActions
                 api={api}
@@ -108,8 +115,8 @@ export function EntityDetails({
             </>
           )}
           {resource.value.knowledge && (
-            <section className="related-leads" aria-label="Related leads">
-              <h3>Follow a lead</h3>
+            <section className="related-leads" aria-label={t('Related leads')}>
+              <h3>{t('Follow a lead')}</h3>
               {resource.value.knowledge.relatedEntities
                 .filter((entity) => entity.entityId !== entityId)
                 .map((entity) => (
@@ -119,14 +126,14 @@ export function EntityDetails({
                       onSelect(entity.entityId, entity.kind);
                     }}
                   >
-                    Explore {entity.name}
+                    {t('Explore {place}', { place: entity.name })}
                   </button>
                 ))}
               {resource.value.knowledge.knowledge
                 .filter((record) => record.knowledgeType === 'CONTRADICTION')
                 .map((record) => (
                   <div className="contradiction-highlight" key={record.knowledgeId}>
-                    <span className="badge badge--contradiction">CONTRADICTION</span>
+                    <span className="badge badge--contradiction">{t('CONTRADICTION')}</span>
                     <p>{record.statement}</p>
                   </div>
                 ))}
@@ -141,7 +148,7 @@ export function EntityDetails({
             />
           )}
           <details className="disclosure">
-            <summary>Full knowledge</summary>
+            <summary>{t('Full knowledge')}</summary>
             <KnowledgeDetails knowledge={resource.value.knowledge?.knowledge ?? []} />
           </details>
           {canReadSheet && (
@@ -153,7 +160,7 @@ export function EntityDetails({
                   setSheetOpen((open) => !open);
                 }}
               >
-                Full character sheet
+                {t('Full character sheet')}
               </button>
               {sheetOpen && <Sheet api={api} entityId={entityId} />}
             </div>
@@ -165,6 +172,8 @@ export function EntityDetails({
 }
 
 function Sheet({ api, entityId }: { readonly api: WorldApi; readonly entityId: string }) {
+  const t = useT();
+
   const load = useCallback(
     (signal: AbortSignal) =>
       api.get<CharacterSheetResponse>(`entities/${encodeURIComponent(entityId)}/sheet`, signal),
@@ -176,7 +185,9 @@ function Sheet({ api, entityId }: { readonly api: WorldApi; readonly entityId: s
   ) : (
     <StatusPanel
       state={resource.status}
-      label={resource.status === 'error' ? resource.message : 'Loading the full character sheet…'}
+      label={
+        resource.status === 'error' ? resource.message : t('Loading the full character sheet…')
+      }
       onRetry={retry}
     />
   );

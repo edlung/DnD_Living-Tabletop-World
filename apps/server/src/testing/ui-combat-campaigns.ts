@@ -19,8 +19,10 @@ export async function seedCombatCampaign(
   engine: WorldEngine,
   campaignId: string,
   stage: CombatStage,
+  /** The Ravenford fixtures to seed from; the Russian ones for a Russian campaign (ADR 0031). */
+  fixturesDir?: string,
 ): Promise<void> {
-  for (const input of (await loadRavenfordSeed()).submissions) {
+  for (const input of (await loadRavenfordSeed(fixturesDir)).submissions) {
     const submission = commandSubmissionSchema.parse(input);
     await accept(engine, {
       ...submission,

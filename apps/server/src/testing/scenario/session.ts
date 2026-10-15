@@ -24,6 +24,7 @@ import { InMemoryAssetContentStore, type AssetContentStore } from '../../assets/
 import { AssetWorker } from '../../assets/worker.ts';
 import { createLogger } from '../../platform/logging/logger.ts';
 import { loadRavenfordSeed } from '../../world-engine/ravenford-seed.ts';
+import { EN_SCRIPT, type ScenarioScript } from './script.ts';
 import {
   MIDDLE_ENTROPY,
   TOKENS,
@@ -66,6 +67,8 @@ export interface SessionOptions {
   readonly contents?: AssetContentStore;
   /** Providers for `narrative` (Chronicle prose); the local writer by default. */
   readonly narrative?: readonly AiProvider[];
+  /** The scenario's language; English by default (docs/adr/0031-play-language.md). */
+  readonly script?: ScenarioScript;
 }
 
 export const CAMPAIGN = 'ravenford';
@@ -81,17 +84,20 @@ export class RavenfordSession {
   readonly engine: WorldEngine;
   readonly contents: AssetContentStore;
   readonly ai: RelevanceDeps & { readonly traces: InMemoryAiTraceStore };
+  readonly script: ScenarioScript;
 
   private constructor(parts: {
     app: FastifyInstance;
     engine: WorldEngine;
     contents: AssetContentStore;
     ai: RelevanceDeps & { readonly traces: InMemoryAiTraceStore };
+    script: ScenarioScript;
   }) {
     this.app = parts.app;
     this.engine = parts.engine;
     this.contents = parts.contents;
     this.ai = parts.ai;
+    this.script = parts.script;
   }
 
   /** Seeds Ravenford (with Gate 04's planted secrets) and opens the app. */
@@ -104,7 +110,8 @@ export class RavenfordSession {
       combat: createCombatEngine(),
       entropy: options.entropy ?? MIDDLE_ENTROPY,
     });
-    for (const submission of (await loadRavenfordSeed()).submissions) {
+    const script = options.script ?? EN_SCRIPT;
+    for (const submission of (await loadRavenfordSeed(script.fixturesDir)).submissions) {
       const result = await engine.execute(submission);
       if (result.status === 'rejected') throw new Error(`seed rejected: ${result.code}`);
     }
@@ -126,7 +133,7 @@ export class RavenfordSession {
     };
     const contents = options.contents ?? new InMemoryAssetContentStore();
     const app = await ravenfordApp(engine, ai, testAuthoring(), contents);
-    return new RavenfordSession({ app, engine, contents, ai });
+    return new RavenfordSession({ app, engine, contents, ai, script });
   }
 
   /** Names the phase the following exchanges belong to. */

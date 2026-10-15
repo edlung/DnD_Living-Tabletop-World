@@ -8,6 +8,7 @@ import { squareLabel } from './combat-bindings.ts';
 import { planPath } from './movement.ts';
 import { ReactionPrompt } from './reaction-prompt.tsx';
 import { TargetOptions } from './target-options.tsx';
+import { useT } from '@ltw/ui';
 
 type Focus =
   | { readonly kind: 'square'; readonly square: Square }
@@ -34,6 +35,7 @@ export function CombatPanel({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   const [focus, setFocus] = useState<Focus | null>(null);
   const [affected, setAffected] = useState<ReadonlySet<string>>(new Set());
   const self = encounter.combatants.find((entry) => entry.entity.entityId === actorId);
@@ -62,19 +64,27 @@ export function CombatPanel({
           null)
         : null;
   return (
-    <section className="combat-panel" aria-label="Battlefield">
-      <div className="combat-anchor" role="status" aria-label="Encounter anchor">
-        <span>Round {encounter.round}</span>
-        <span>Turn: {current ? combatantLabel(current) : encounter.currentCombatantId}</span>
+    <section className="combat-panel" aria-label={t('Battlefield')}>
+      <div className="combat-anchor" role="status" aria-label={t('Encounter anchor')}>
+        <span>{t('Round {round}', { round: encounter.round })}</span>
+        <span>
+          {t('Turn: {name}', {
+            name: current ? combatantLabel(current) : encounter.currentCombatantId,
+          })}
+        </span>
         {self?.hitPoints && (
           <span>
-            You: {self.hitPoints.current} / {self.hitPoints.max} HP
+            {t('You: {current} / {max} HP', {
+              current: self.hitPoints.current,
+              max: self.hitPoints.max,
+            })}
           </span>
         )}
         {self && !myTurn && !waiting && (
           <span className="muted">
-            Waiting for {current ? combatantLabel(current) : 'the next turn'}; the DM runs creature
-            turns.
+            {t('Waiting for {name}; the DM runs creature turns.', {
+              name: current ? combatantLabel(current) : t('the next turn'),
+            })}
           </span>
         )}
         {myTurn && !waiting && canAct && (
@@ -86,7 +96,7 @@ export function CombatPanel({
               }
             }}
           >
-            End turn
+            {t('End turn')}
           </button>
         )}
       </div>
@@ -102,7 +112,7 @@ export function CombatPanel({
       )}
       {waiting && actorId !== null && encounter.reactionWindow.choices.length === 0 && (
         <p className="muted" role="status">
-          Waiting for reactions to resolve.
+          {t('Waiting for reactions to resolve.')}
         </p>
       )}
       <BattlefieldGrid
@@ -114,21 +124,24 @@ export function CombatPanel({
         onPick={pick}
       />
       <p className="battlefield-legend muted">
-        Shaded squares are difficult terrain; outlined squares give cover. Select a square to move
-        or a combatant to act.
+        {t(
+          'Shaded squares are difficult terrain; outlined squares give cover. Select a square to move or a combatant to act.',
+        )}
       </p>
       {focus?.kind === 'combatant' && actorId === null && (
-        <section className="combat-popover" aria-label="Combatant">
+        <section className="combat-popover" aria-label={t('Combatant')}>
           <p>
             {(() => {
               const picked = encounter.combatants.find(
                 (entry) => entry.entity.entityId === focus.id,
               );
-              return picked ? `${combatantLabel(picked)} · ${picked.side} · ${picked.state}` : '';
+              return picked
+                ? `${combatantLabel(picked)} · ${t(picked.side)} · ${t(picked.state)}`
+                : '';
             })()}
           </p>
           <p className="muted">
-            The DM acts for creatures with the encounter controls above (suggested turn).
+            {t('The DM acts for creatures with the encounter controls above (suggested turn).')}
           </p>
         </section>
       )}
@@ -149,11 +162,11 @@ export function CombatPanel({
         />
       )}
       {focus?.kind === 'square' && actorId !== null && (
-        <section className="combat-popover" aria-label="Move options">
+        <section className="combat-popover" aria-label={t('Move options')}>
           <div className="section-heading">
             <h3>Square {squareLabel(focus.square)}</h3>
             <button
-              aria-label="Close options"
+              aria-label={t('Close options')}
               onClick={() => {
                 setFocus(null);
               }}
@@ -161,14 +174,18 @@ export function CombatPanel({
               ×
             </button>
           </div>
-          {!myTurn && <p className="muted">You can move on your own turn.</p>}
+          {!myTurn && <p className="muted">{t('You can move on your own turn.')}</p>}
           {plan ? (
             <p className="muted">
-              Route: {plan.path.length} {plan.path.length === 1 ? 'square' : 'squares'}, about{' '}
-              {plan.costFt} ft. The rules confirm your speed.
+              {t(
+                plan.path.length === 1
+                  ? 'Route: {count} square, about {feet} ft. The rules confirm your speed.'
+                  : 'Route: {count} squares, about {feet} ft. The rules confirm your speed.',
+                { count: plan.path.length, feet: plan.costFt },
+              )}
             </p>
           ) : (
-            <p className="muted">No open route to this square.</p>
+            <p className="muted">{t('No open route to this square.')}</p>
           )}
           <button
             disabled={!canAct || locked || !myTurn || waiting || !plan}
@@ -181,7 +198,7 @@ export function CombatPanel({
               }
             }}
           >
-            Move here
+            {t('Move here')}
           </button>
         </section>
       )}

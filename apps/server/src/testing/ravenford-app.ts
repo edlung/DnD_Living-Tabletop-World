@@ -52,6 +52,8 @@ export async function seededEngine(
   store: EventStore = new InMemoryEventStore(),
   dice: Dice = scriptedDice([]),
   entropy: EntropySource = MIDDLE_ENTROPY,
+  /** The fixtures to seed from: `fixtures/ravenford-ru/` for the Russian campaign (ADR 0031). */
+  fixturesDir?: string,
 ) {
   const engine = new WorldEngine({
     store,
@@ -61,7 +63,7 @@ export async function seededEngine(
     combat: createCombatEngine(),
     entropy,
   });
-  const seed = await loadRavenfordSeed();
+  const seed = await loadRavenfordSeed(fixturesDir);
   for (const submission of seed.submissions) {
     const result = await engine.execute(submission);
     if (result.status === 'rejected') throw new Error(`seed rejected: ${result.code}`);

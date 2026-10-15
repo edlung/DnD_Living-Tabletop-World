@@ -1,5 +1,6 @@
 import type { EntityRef, ProposableCommand } from '@ltw/contracts';
 import { useState } from 'react';
+import { useT } from '@ltw/ui';
 
 type Create = Extract<ProposableCommand, { type: 'CreateEntity' }>;
 type Know = Extract<ProposableCommand, { type: 'AddKnowledge' }>;
@@ -75,6 +76,7 @@ export function ProposalEditor({
   readonly busy: boolean;
   readonly onApply: (commands: readonly ProposableCommand[]) => void;
 }) {
+  const t = useT();
   const npc = editableNpc(commands);
   const [name, setName] = useState(npc?.create.name ?? '');
   const [description, setDescription] = useState(npc?.create.description ?? '');
@@ -84,7 +86,7 @@ export function ProposalEditor({
   if (!npc) {
     return (
       <p className="muted">
-        This kind of proposal cannot be edited here. Describe it differently to try again.
+        {t('This kind of proposal cannot be edited here. Describe it differently to try again.')}
       </p>
     );
   }
@@ -98,7 +100,7 @@ export function ProposalEditor({
           onApply(applyNpcEdit(commands, { name, description, locationId, statement, willing }));
       }}
     >
-      <label htmlFor="edit-name">Name</label>
+      <label htmlFor="edit-name">{t('Name')}</label>
       <input
         id="edit-name"
         value={name}
@@ -106,7 +108,7 @@ export function ProposalEditor({
           setName(event.target.value);
         }}
       />
-      <label htmlFor="edit-description">Description</label>
+      <label htmlFor="edit-description">{t('Description')}</label>
       <textarea
         id="edit-description"
         value={description}
@@ -114,7 +116,7 @@ export function ProposalEditor({
           setDescription(event.target.value);
         }}
       />
-      <label htmlFor="edit-location">Where they stand</label>
+      <label htmlFor="edit-location">{t('Where they stand')}</label>
       <select
         id="edit-location"
         value={locationId}
@@ -130,7 +132,7 @@ export function ProposalEditor({
       </select>
       {npc.record && (
         <>
-          <label htmlFor="edit-statement">What they saw or know</label>
+          <label htmlFor="edit-statement">{t('What they saw or know')}</label>
           <textarea
             id="edit-statement"
             value={statement}
@@ -146,12 +148,12 @@ export function ProposalEditor({
                 setWilling(event.target.checked);
               }}
             />{' '}
-            Willing to tell this when asked
+            {t('Willing to tell this when asked')}
           </label>
         </>
       )}
       <button type="submit" disabled={busy || !valid}>
-        Apply changes
+        {t('Apply changes')}
       </button>
     </form>
   );

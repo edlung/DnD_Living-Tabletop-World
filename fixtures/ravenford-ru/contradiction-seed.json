@@ -1,0 +1,43 @@
+{
+  "$comment": "Stage 70 contradiction data (docs/adr/0014-contradictions-and-epistemic-integrity.md): DM claims on the conflicting departure accounts. DM DATA — claims never reach a player. Seeded after investigation-seed.json.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "SetClaim",
+      "target": {
+        "kind": "knowledge",
+        "knowledgeId": "mira-departure"
+      },
+      "claim": {
+        "subjectId": "guild-caravan",
+        "aspect": "departure-time",
+        "value": "before-dawn"
+      }
+    },
+    {
+      "type": "SetClaim",
+      "target": {
+        "kind": "knowledge",
+        "knowledgeId": "thorne-departure"
+      },
+      "claim": {
+        "subjectId": "guild-caravan",
+        "aspect": "departure-time",
+        "value": "after-sunrise"
+      }
+    },
+    {
+      "type": "SetClaim",
+      "target": {
+        "kind": "knowledge",
+        "knowledgeId": "party-mira-departure"
+      },
+      "claim": {
+        "subjectId": "guild-caravan",
+        "aspect": "departure-time",
+        "value": "before-dawn"
+      }
+    }
+  ]
+}

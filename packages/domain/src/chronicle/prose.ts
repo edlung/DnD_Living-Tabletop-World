@@ -1,5 +1,11 @@
-import { CHRONICLE_LIMITS, type ChronicleParagraph } from '@ltw/contracts';
+import {
+  CHRONICLE_LIMITS,
+  DEFAULT_LANGUAGE,
+  type ChronicleParagraph,
+  type Language,
+} from '@ltw/contracts';
 
+import { chronicleText } from '../language/chronicle-text.ts';
 import { HEDGED_TYPES, type StoredEntry } from './records.ts';
 
 /**
@@ -8,10 +14,9 @@ import { HEDGED_TYPES, type StoredEntry } from './records.ts';
  * tells, by key. A paragraph citing an account, a rumor, an inference, a
  * hypothesis, a contradiction, or an unknown must say so in words, so a
  * hypothesis is never told as established history. Prose never carries IDs.
- * The template below always satisfies these rules.
+ * The template below always satisfies these rules. The words that count as saying so
+ * belong to the campaign's language (ADR 0031 §7).
  */
-const HEDGE =
-  /\b(said|says|told|tells|claim\w*|according|report\w*|suspect\w*|suspicio\w*|believ\w*|thought|think\w*|rumou?r\w*|perhaps|maybe|might|may|seem\w*|wonder\w*|account\w*|disagree\w*|unclear|unknown|uncertain\w*|apparently|suppos\w*|hypothes\w*|guess\w*)\b/i;
 
 /** IDs that must never appear in prose: the structured ones (with `-`, `_`, or digits). */
 function idsOf(entries: readonly StoredEntry[]): string[] {
@@ -28,7 +33,9 @@ function idsOf(entries: readonly StoredEntry[]): string[] {
 export function checkProse(
   entries: readonly StoredEntry[],
   paragraphs: readonly ChronicleParagraph[],
+  language: Language = DEFAULT_LANGUAGE,
 ): string[] {
+  const { hedge } = chronicleText(language);
   const byKey = new Map(entries.map((entry) => [entry.key, entry]));
   const ids = idsOf(entries);
   const issues: string[] = [];
@@ -42,7 +49,7 @@ export function checkProse(
         HEDGED_TYPES.has(knowledgeType),
       ),
     );
-    if (hedged && !HEDGE.test(paragraph.text)) {
+    if (hedged && !hedge.test(paragraph.text)) {
       issues.push(`${at}.text: tells an account or a guess as fact; say whose or how uncertain`);
     }
     const leaked = ids.find((id) => paragraph.text.includes(id));
@@ -51,28 +58,21 @@ export function checkProse(
   return issues;
 }
 
-const LABEL: Readonly<Record<string, string>> = {
-  TESTIMONY: 'According to that account',
-  RUMOR: 'A rumor said',
-  INFERENCE: 'It seemed',
-  HYPOTHESIS: 'A suspicion, not established',
-  CONTRADICTION: 'Accounts disagreed',
-  UNKNOWN: 'It remained unknown',
-};
-
 const fit = (text: string) =>
   text.length <= CHRONICLE_LIMITS.paragraphChars
     ? text
     : `${text.slice(0, CHRONICLE_LIMITS.paragraphChars - 1)}…`;
 
 /** The deterministic template: one paragraph per entry, each account labelled as one. */
-export function templateProse(entries: readonly StoredEntry[]): ChronicleParagraph[] {
+export function templateProse(
+  entries: readonly StoredEntry[],
+  language: Language = DEFAULT_LANGUAGE,
+): ChronicleParagraph[] {
+  const words = chronicleText(language);
   return entries.map((entry) => {
     const accounts = entry.knowledge
       .filter(({ knowledgeType }) => HEDGED_TYPES.has(knowledgeType))
-      .map(
-        ({ knowledgeType, statement }) => `${LABEL[knowledgeType] ?? 'Reportedly'}: ${statement}`,
-      );
+      .map(({ knowledgeType, statement }) => `${words.accountLabel(knowledgeType)}: ${statement}`);
     return { text: fit([entry.text, ...accounts].join(' ')), cites: [entry.key] };
   });
 }

@@ -1,12 +1,15 @@
 import {
+  DEFAULT_LANGUAGE,
   chronicleOutputSchema,
   type AiTraceView,
   type ChronicleParagraph,
   type ChronicleProse,
   type ChronicleTraceView,
+  type Language,
 } from '@ltw/contracts';
 import {
   checkProse,
+  languageOf,
   templateProse,
   type Actor,
   type ChronicleEntry,
@@ -15,7 +18,7 @@ import {
 
 import {
   CHRONICLE_OUTPUT,
-  CHRONICLE_SYSTEM,
+  chronicleSystem,
   chroniclePrompt,
   renderChroniclePrompt,
 } from './chronicle-prompt.ts';
@@ -53,6 +56,7 @@ export interface RenderedChronicle {
 export function validateChronicle(
   output: unknown,
   entries: readonly ChronicleEntry[],
+  language: Language = DEFAULT_LANGUAGE,
 ): OutputCheck<ChronicleParagraph[]> {
   const parsed = chronicleOutputSchema.safeParse(output);
   if (!parsed.success) {
@@ -63,7 +67,7 @@ export function validateChronicle(
         .map((issue) => `${issue.path.join('.') || '(output)'}: ${issue.message}`),
     };
   }
-  const issues = checkProse(entries, parsed.data.paragraphs);
+  const issues = checkProse(entries, parsed.data.paragraphs, language);
   return issues.length > 0
     ? { ok: false, issues: issues.slice(0, MAX_ISSUES) }
     : { ok: true, value: parsed.data.paragraphs };
@@ -73,18 +77,19 @@ export async function renderChronicle(
   deps: IntentDeps,
   input: ChronicleInput,
 ): Promise<RenderedChronicle> {
-  const template = templateProse(input.entries);
+  const language = languageOf(input.state);
+  const template = templateProse(input.entries, language);
   const prompt = chroniclePrompt(input.state, input.title, input.entries, template);
   const result = await runWithFallback({
     providers: deps.router.providersFor(CAPABILITY),
     build: (repair) => ({
       capability: CAPABILITY,
-      system: CHRONICLE_SYSTEM,
+      system: chronicleSystem(language),
       prompt: renderChroniclePrompt(prompt, repair),
       output: CHRONICLE_OUTPUT,
       task: { kind: 'chronicle', prompt, repair },
     }),
-    validate: (output) => validateChronicle(output, input.entries),
+    validate: (output) => validateChronicle(output, input.entries, language),
     nowMs: deps.clock.nowMs,
   });
   const traceId = deps.ids.next();

@@ -2,6 +2,7 @@ import {
   npcReplyOutputSchema,
   type AiTraceView,
   type DialogueIntent,
+  type Language,
   type NpcReply,
 } from '@ltw/contracts';
 import { dialogueSourceIds, type Actor, type NpcDialogueContext } from '@ltw/domain';
@@ -30,6 +31,8 @@ export interface DialogueInput {
   readonly commandId: string | null;
   /** The player's own words, if any. */
   readonly line: string | null;
+  /** The campaign's play language (ADR 0031); English when absent. */
+  readonly language?: Language;
 }
 
 const CAPABILITY = 'npc-dialogue';
@@ -52,6 +55,7 @@ export async function replyAsNpc(deps: DialogueDeps, input: DialogueInput): Prom
     intent: input.intent.kind,
     accepted: input.accepted,
     line: input.line,
+    ...(input.language ? { language: input.language } : {}),
   });
   const result = await runWithFallback({
     providers: deps.router.providersFor(CAPABILITY),

@@ -1,7 +1,7 @@
 # Opus Work Order — Stage 310: Live Session
 
 > [!IMPORTANT]
-> **MODEL:** Claude Opus 5.5  
+> **MODEL:** Claude Sonnet 5.5 (per `EFFORT_MATRIX.md`)  
 > **EFFORT:** MAX  
 > **AUTHORIZED STAGE:** 310 ONLY  
 > **NEXT ACTION AFTER PASS:** Stage 320 — Opus effort HIGH  

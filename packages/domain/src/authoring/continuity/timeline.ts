@@ -7,7 +7,7 @@ import {
   ACKNOWLEDGE,
   findingKey,
   nameOf,
-  when,
+  voice,
   type ContinuityInput,
   type IssueDraft,
   type WarningDraft,
@@ -57,15 +57,23 @@ export function knowledgeBeforeSubject(
     return entity && !isAtOrAfter(command.knownSince, entity.existsSince) ? [entity] : [];
   });
   return late.map((entity) => {
+    const v = voice(state);
     const fixed = edit(
-      `Learn it ${when(entity.existsSince)}, once ${entity.name} exists`,
+      v.say('Learn it {when}, once {name} exists', {
+        when: v.when(entity.existsSince),
+        name: entity.name,
+      }),
       replaced(commands, index, { ...command, knownSince: entity.existsSince }),
     );
     return {
       key: findingKey('KNOWLEDGE_BEFORE_SUBJECT', index, entity.entityId),
       commandIndex: index,
       code: 'KNOWLEDGE_BEFORE_SUBJECT',
-      message: `It would be known ${when(command.knownSince)}, before ${entity.name} existed (${when(entity.existsSince)})`,
+      message: v.say('It would be known {when}, before {name} existed ({exists})', {
+        when: v.when(command.knownSince),
+        name: entity.name,
+        exists: v.when(entity.existsSince),
+      }),
       options: [fixed, ...removal(commands, index)],
     };
   });
@@ -83,6 +91,7 @@ export function knownAfterDeath(
   const holder = command.scope.npcId;
   const death = deathAt(state, history, holder, command.knownSince);
   if (death === null) return [];
+  const v = voice(state);
   const name = nameOf(state, holder);
   const before = death - 1;
   const fits = isAtOrAfter(before, state.entities.get(holder)?.existsSince ?? null);
@@ -91,12 +100,19 @@ export function knownAfterDeath(
       key: findingKey('KNOWN_AFTER_DEATH', index, holder),
       commandIndex: index,
       code: 'KNOWN_AFTER_DEATH',
-      message: `${name} would learn it ${when(command.knownSince)}, after dying (${when(death)})`,
+      message: v.say('{name} would learn it {when}, after dying ({death})', {
+        name,
+        when: v.when(command.knownSince),
+        death: v.when(death),
+      }),
       options: [
         ...(fits
           ? [
               edit(
-                `Learn it just before ${name} died (${when(before)})`,
+                v.say('Learn it just before {name} died ({before})', {
+                  name,
+                  before: v.when(before),
+                }),
                 replaced(commands, index, { ...command, knownSince: before }),
               ),
             ]
@@ -119,6 +135,7 @@ export function speakerNotAlive(
   if (speaker === undefined || speaker === holder) return [];
   const death = deathAt(input.state, input.history, speaker, command.knownSince);
   if (death === null) return [];
+  const v = voice(input.state);
   const name = nameOf(input.state, speaker);
   const before = death - 1;
   return [
@@ -128,10 +145,14 @@ export function speakerNotAlive(
       commandIndex: index,
       entityIds: [speaker, ...(holder === null ? [] : [holder])],
       knowledgeIds: [command.knowledgeId],
-      message: `${name} died ${when(death)}, before telling this ${when(command.knownSince)}`,
+      message: v.say('{name} died {death}, before telling this {when}', {
+        name,
+        death: v.when(death),
+        when: v.when(command.knownSince),
+      }),
       options: [
         edit(
-          `Heard just before ${name} died (${when(before)})`,
+          v.say('Heard just before {name} died ({before})', { name, before: v.when(before) }),
           replaced(input.commands, index, { ...command, knownSince: before }),
         ),
         edit(
@@ -159,7 +180,10 @@ export function movesTheDead(
       commandIndex: index,
       entityIds: [command.entityId, command.locationId],
       knowledgeIds: [],
-      message: `${nameOf(input.state, command.entityId)} is dead; this moves the body to ${nameOf(input.state, command.locationId)}`,
+      message: voice(input.state).say('{name} is dead; this moves the body to {place}', {
+        name: nameOf(input.state, command.entityId),
+        place: nameOf(input.state, command.locationId),
+      }),
       options: [...removal(input.commands, index), ACKNOWLEDGE],
     },
   ];

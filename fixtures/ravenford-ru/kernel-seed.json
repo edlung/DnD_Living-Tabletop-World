@@ -1,0 +1,157 @@
+{
+  "$comment": "Russian Ravenford (ADR 0031): the same IDs and structure as fixtures/ravenford/kernel-seed.json, with Russian content and language ru.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "CreateCampaign",
+      "name": "Пропавший караван",
+      "worldName": "Равенфорд",
+      "startsAt": 32400,
+      "language": "ru"
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "ravenford",
+      "kind": "location",
+      "name": "Равенфорд",
+      "description": "Торговый городок на Старой Торговой дороге.",
+      "existsSince": null,
+      "location": {
+        "type": "settlement",
+        "parentId": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "golden-stag-inn",
+      "kind": "location",
+      "name": "«Золотой Олень»",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "orins-alchemy",
+      "kind": "location",
+      "name": "Алхимическая лавка",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "merchant-guild",
+      "kind": "location",
+      "name": "Торговая гильдия",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "north-gate",
+      "kind": "location",
+      "name": "Северные ворота",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "old-trade-road",
+      "kind": "location",
+      "name": "Старая Торговая дорога",
+      "existsSince": null,
+      "location": {
+        "type": "route",
+        "parentId": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "abandoned-caravan-site",
+      "kind": "location",
+      "name": "Заброшенная стоянка каравана",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parentId": "old-trade-road"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "mira-vale",
+      "kind": "npc",
+      "name": "Мира Вейл",
+      "description": "Торговка: дружелюбная, практичная, наблюдательная.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "market-square",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "orin-stonebeard",
+      "kind": "npc",
+      "name": "Орин Стоунберд",
+      "description": "Алхимик: ворчливый, осторожный, наблюдательный.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "orins-alchemy",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "captain-thorne",
+      "kind": "npc",
+      "name": "Капитан Торн",
+      "description": "Капитан Равенфордской стражи; прибыл в Равенфорд восемь месяцев назад.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "north-gate",
+        "since": -20736000
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "elowen-starwhisper",
+      "kind": "character",
+      "name": "Эловен Старвиспер",
+      "description": "Следопыт 7 / Волшебник 8.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "market-square",
+        "since": 32400
+      }
+    },
+    {
+      "type": "StartScene",
+      "sceneId": "arrival",
+      "title": "Прибытие в Равенфорд",
+      "locationId": "market-square"
+    }
+  ]
+}

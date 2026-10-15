@@ -8,6 +8,7 @@ import type {
 import type { ResolvedProposable } from '../../kernel/decision.ts';
 import type { RecordedEvent } from '../../kernel/events.ts';
 import type { WorldState } from '../../kernel/state.ts';
+import { languageOf, sayIn, type Say } from '../../language/index.ts';
 import { formatWorldTime } from '../../kernel/world-time.ts';
 
 /**
@@ -41,6 +42,28 @@ export type NoteDraft = AuthoringNote;
 export const when = (time: number | null) =>
   time === null ? 'before recorded history' : formatWorldTime(time);
 
+/**
+ * The words of one campaign's language for the DM (docs/adr/0031-play-language.md): `say`
+ * fills an English template or its Russian entry, `when` writes a world time, `name`
+ * a known entity's name.
+ */
+export function voice(state: WorldState) {
+  const language = languageOf(state);
+  const say = sayIn(language);
+  return {
+    say,
+    name: (id: string) => nameOf(state, id),
+    when: (time: number | null) =>
+      time === null
+        ? say('before recorded history')
+        : language === 'ru'
+          ? formatWorldTime(time).replace(/^Day (\d+) (.*)$/, (_, day: string, clock: string) =>
+              say('Day {day} {time}', { day, time: clock }),
+            )
+          : formatWorldTime(time),
+  };
+}
+
 export const nameOf = (state: WorldState, id: string) => state.entities.get(id)?.name ?? id;
 
 export const normalized = (text: string) => text.trim().replace(/\s+/g, ' ').toLowerCase();
@@ -49,21 +72,27 @@ export const normalized = (text: string) => text.trim().replace(/\s+/g, ' ').toL
 export const findingKey = (code: string, index: number | null, entityId?: string) =>
   `${code}@${index === null ? 'all' : String(index)}${entityId === undefined ? '' : `:${entityId}`}`;
 
+export const ACKNOWLEDGE_LABEL = 'Accept it, and acknowledge it when confirming the commit';
 export const ACKNOWLEDGE: DraftOption = {
   kind: 'acknowledge',
-  label: 'Accept it, and acknowledge it when confirming the commit',
+  label: ACKNOWLEDGE_LABEL,
   commands: null,
 };
 
 /** Gives each option its ID, `<finding key>/<n>`. */
 export function withOptionIds<
   T extends { readonly key: string; readonly options: readonly DraftOption[] },
->(finding: T): Omit<T, 'options'> & { readonly options: readonly ResolutionOption[] } {
+>(
+  finding: T,
+  say: Say = sayIn('en'),
+): Omit<T, 'options'> & { readonly options: readonly ResolutionOption[] } {
   return {
     ...finding,
     options: finding.options.map((option, position) => ({
       optionId: `${finding.key}/${String(position + 1)}`,
       ...option,
+      // Fixed labels are English keys; labels built with names were said when they were made.
+      label: say(option.label),
     })),
   };
 }

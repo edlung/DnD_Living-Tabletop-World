@@ -2,21 +2,25 @@ import type { KnowledgeScope, KnowledgeView } from '@ltw/contracts';
 
 import { readableLabel } from './labels.ts';
 import { StatusPanel } from './status-panel.tsx';
+import { useT, type Translate } from './i18n.tsx';
 
 export interface KnowledgeDetailsProps {
   readonly knowledge: readonly KnowledgeView[];
 }
 
-function scopeLabel(scope: KnowledgeScope): string {
-  if (scope.kind === 'CHARACTER') return `Character: ${scope.characterId}`;
-  if (scope.kind === 'NPC') return `NPC: ${scope.npcId}`;
-  return readableLabel(scope.kind);
+function scopeLabel(t: Translate, scope: KnowledgeScope): string {
+  if (scope.kind === 'CHARACTER') return t('Character: {id}', { id: scope.characterId });
+  if (scope.kind === 'NPC') return t('NPC: {id}', { id: scope.npcId });
+  return readableLabel(scope.kind, t);
 }
 
 /** Display the projection's epistemic types verbatim, including conflicting statements. */
 export function KnowledgeDetails({ knowledge }: KnowledgeDetailsProps) {
+  const t = useT();
   if (knowledge.length === 0) {
-    return <StatusPanel state="empty" label="No knowledge is available in this perspective." />;
+    return (
+      <StatusPanel state="empty" label={t('No knowledge is available in this perspective.')} />
+    );
   }
   return (
     <ul className="record-list knowledge-list">
@@ -24,41 +28,43 @@ export function KnowledgeDetails({ knowledge }: KnowledgeDetailsProps) {
         <li key={record.knowledgeId}>
           <article className="knowledge-record">
             <span className={`badge badge--${record.knowledgeType.toLowerCase()}`}>
-              {record.knowledgeType}
+              {t(record.knowledgeType)}
             </span>
             <p>{record.statement}</p>
-            {record.attributedTo ? <p>Attributed to {record.attributedTo.name}</p> : null}
+            {record.attributedTo ? (
+              <p>{t('Attributed to {name}', { name: record.attributedTo.name })}</p>
+            ) : null}
             <details className="disclosure">
-              <summary>Record details</summary>
+              <summary>{t('Record details')}</summary>
               <dl className="field-list">
                 <div>
-                  <dt>Record</dt>
+                  <dt>{t('Record')}</dt>
                   <dd>
                     <code>{record.knowledgeId}</code>
                   </dd>
                 </div>
                 <div>
-                  <dt>Scope</dt>
-                  <dd>{scopeLabel(record.scope)}</dd>
+                  <dt>{t('Scope')}</dt>
+                  <dd>{scopeLabel(t, record.scope)}</dd>
                 </div>
                 <div>
-                  <dt>Known since</dt>
+                  <dt>{t('Known since')}</dt>
                   <dd>
                     {record.knownSince === null
-                      ? 'Before recorded history'
-                      : `World time ${record.knownSince}`}
+                      ? t('Before recorded history')
+                      : t('World time {time}', { time: record.knownSince })}
                   </dd>
                 </div>
                 <div>
-                  <dt>Subjects</dt>
+                  <dt>{t('Subjects')}</dt>
                   <dd>
                     {record.subjects.length === 0 ? (
-                      'None recorded'
+                      t('None recorded')
                     ) : (
                       <ul>
                         {record.subjects.map((subject) => (
                           <li key={subject.entityId}>
-                            {subject.name} ({readableLabel(subject.kind)}) ·{' '}
+                            {subject.name} ({readableLabel(subject.kind, t)}) ·{' '}
                             <code>{subject.entityId}</code>
                           </li>
                         ))}
@@ -68,23 +74,23 @@ export function KnowledgeDetails({ knowledge }: KnowledgeDetailsProps) {
                 </div>
                 {record.attributedTo ? (
                   <div>
-                    <dt>Attribution</dt>
+                    <dt>{t('Attribution')}</dt>
                     <dd>
-                      {record.attributedTo.name} ({readableLabel(record.attributedTo.kind)}) ·{' '}
+                      {record.attributedTo.name} ({readableLabel(record.attributedTo.kind, t)}) ·{' '}
                       <code>{record.attributedTo.entityId}</code>
                     </dd>
                   </div>
                 ) : null}
                 <div>
-                  <dt>Relations</dt>
+                  <dt>{t('Relations')}</dt>
                   <dd>
                     {record.relations.length === 0 ? (
-                      'None recorded'
+                      t('None recorded')
                     ) : (
                       <ul>
                         {record.relations.map((relation, index) => (
                           <li key={`${relation.type}-${relation.knowledgeId}-${index}`}>
-                            {readableLabel(relation.type)} · <code>{relation.knowledgeId}</code>
+                            {readableLabel(relation.type, t)} · <code>{relation.knowledgeId}</code>
                           </li>
                         ))}
                       </ul>
@@ -94,20 +100,20 @@ export function KnowledgeDetails({ knowledge }: KnowledgeDetailsProps) {
               </dl>
               {record.claim ? (
                 <details className="disclosure">
-                  <summary>Structured claim</summary>
+                  <summary>{t('Structured claim')}</summary>
                   <dl className="field-list">
                     <div>
-                      <dt>Subject</dt>
+                      <dt>{t('Subject')}</dt>
                       <dd>
                         <code>{record.claim.subjectId}</code>
                       </dd>
                     </div>
                     <div>
-                      <dt>Aspect</dt>
+                      <dt>{t('Aspect')}</dt>
                       <dd>{record.claim.aspect}</dd>
                     </div>
                     <div>
-                      <dt>Value</dt>
+                      <dt>{t('Value')}</dt>
                       <dd>{record.claim.value}</dd>
                     </div>
                   </dl>
@@ -115,30 +121,30 @@ export function KnowledgeDetails({ knowledge }: KnowledgeDetailsProps) {
               ) : null}
               {record.origin ? (
                 <details className="disclosure">
-                  <summary>Provenance</summary>
+                  <summary>{t('Provenance')}</summary>
                   <dl className="field-list">
                     <div>
-                      <dt>Event sequence</dt>
+                      <dt>{t('Event sequence')}</dt>
                       <dd>{record.origin.sequence}</dd>
                     </div>
                     <div>
-                      <dt>Command</dt>
+                      <dt>{t('Command')}</dt>
                       <dd>
                         <code>{record.origin.commandId}</code>
                       </dd>
                     </div>
                     <div>
-                      <dt>Actor</dt>
+                      <dt>{t('Actor')}</dt>
                       <dd>
                         <code>{record.origin.actorId}</code>
                       </dd>
                     </div>
                     <div>
-                      <dt>Recorded at</dt>
+                      <dt>{t('Recorded at')}</dt>
                       <dd>{record.origin.recordedAt}</dd>
                     </div>
                     <div>
-                      <dt>World time</dt>
+                      <dt>{t('World time')}</dt>
                       <dd>{record.origin.worldTime}</dd>
                     </div>
                   </dl>

@@ -1,5 +1,5 @@
 import type { ContextAction, EncounterView, EntityContextResponse } from '@ltw/contracts';
-import { StatusPanel } from '@ltw/ui';
+import { StatusPanel, useT, type Translate } from '@ltw/ui';
 import { useCallback, useEffect } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -16,15 +16,15 @@ const COMBAT_ACTIONS = new Set([
   'hunters_mark',
 ]);
 
-const LABELS: Readonly<Record<string, (target: string) => string>> = {
-  longbow_attack: (target) => `Attack ${target} with longbow`,
-  fireball: (target) => `Cast Fireball at ${target}`,
-  counterspell: () => 'Cast Counterspell',
-  healing_word: (target) => `Cast Healing Word on ${target}`,
-  hunters_mark: (target) => `Cast Hunter’s Mark on ${target}`,
+const LABELS: Readonly<Record<string, (t: Translate, target: string) => string>> = {
+  longbow_attack: (t, target) => t('Attack {target} with longbow', { target }),
+  fireball: (t, target) => t('Cast Fireball at {target}', { target }),
+  counterspell: (t) => t('Cast Counterspell'),
+  healing_word: (t, target) => t('Cast Healing Word on {target}', { target }),
+  hunters_mark: (t, target) => t('Cast Hunter’s Mark on {target}', { target }),
 };
 
-const words = (text: string) => text.replaceAll('_', ' ').toLowerCase();
+const words = (t: Translate, text: string) => t(text.replaceAll('_', ' ').toLowerCase());
 
 /**
  * Ephemeral options for one selected combatant. Everything listed here, its
@@ -53,6 +53,7 @@ export function TargetOptions({
   readonly onArea: (affected: ReadonlySet<string>) => void;
   readonly onClose: () => void;
 }) {
+  const t = useT();
   const target = encounter.combatants.find((entry) => entry.entity.entityId === targetId);
   const load = useCallback(
     (signal: AbortSignal) =>
@@ -77,25 +78,29 @@ export function TargetOptions({
   if (!target) return null;
   const name = combatantLabel(target);
   return (
-    <section className="combat-popover" aria-label={`Options for ${name}`}>
+    <section className="combat-popover" aria-label={t('Options for {name}', { name })}>
       <div className="section-heading">
         <h3>{name}</h3>
-        <button aria-label="Close options" onClick={onClose}>
+        <button aria-label={t('Close options')} onClick={onClose}>
           ×
         </button>
       </div>
       {resource.status !== 'ready' ? (
         <StatusPanel
           state={resource.status}
-          label={resource.status === 'error' ? resource.message : 'Checking what you can do…'}
+          label={resource.status === 'error' ? resource.message : t('Checking what you can do…')}
           onRetry={retry}
         />
       ) : (
         <>
           {resource.value.context.visibleState.distanceFt !== undefined && (
-            <p className="muted">Distance: {resource.value.context.visibleState.distanceFt} ft</p>
+            <p className="muted">
+              {t('Distance: {feet} ft', { feet: resource.value.context.visibleState.distanceFt })}
+            </p>
           )}
-          {actions.length === 0 && <p className="muted">Nothing to do with this combatant.</p>}
+          {actions.length === 0 && (
+            <p className="muted">{t('Nothing to do with this combatant.')}</p>
+          )}
           <ul className="combat-options">
             {actions.map((action, index) => {
               const command =
@@ -107,7 +112,10 @@ export function TargetOptions({
                       { entityId: targetId, position: target.position },
                       encounter,
                     );
-              const label = (LABELS[action.id] ?? (() => words(action.id)))(name);
+              const label = (LABELS[action.id] ?? ((tr: Translate) => words(tr, action.id)))(
+                t,
+                name,
+              );
               const warning = action.hints?.includes('ALLY_IN_AREA') ?? false;
               return (
                 <li key={`${action.id}:${index}`}>
@@ -119,28 +127,34 @@ export function TargetOptions({
                   >
                     {label}
                   </button>
-                  {!action.legal && <small>{words(action.reason ?? 'unavailable')}</small>}
+                  {!action.legal && <small>{words(t, action.reason ?? 'unavailable')}</small>}
                   {action.cost && (
                     <small>
                       {action.cost.kind === 'free'
-                        ? 'Free cast'
-                        : `Level ${action.cost.slotLevel} slot`}
+                        ? t('Free cast')
+                        : t('Level {level} slot', { level: action.cost.slotLevel })}
                     </small>
                   )}
                   {action.resolution?.moveRequiredFt !== undefined && (
-                    <small>Move {action.resolution.moveRequiredFt} ft closer first</small>
+                    <small>
+                      {t('Move {feet} ft closer first', { feet: action.resolution.moveRequiredFt })}
+                    </small>
                   )}
-                  {action.hints?.includes('LONG_RANGE') && <small>long range: disadvantage</small>}
+                  {action.hints?.includes('LONG_RANGE') && (
+                    <small>{t('long range: disadvantage')}</small>
+                  )}
                   {action.area && (
                     <small>
-                      Would affect:{' '}
-                      {action.area.affected.map((ref) => ref.name ?? ref.entityId).join(', ') ||
-                        'no one'}
+                      {t('Would affect: {names}', {
+                        names:
+                          action.area.affected.map((ref) => ref.name ?? ref.entityId).join(', ') ||
+                          t('no one'),
+                      })}
                     </small>
                   )}
                   {warning && (
                     <strong className="ally-warning" role="alert">
-                      Warning: this area includes a party member. You may still cast it.
+                      {t('Warning: this area includes a party member. You may still cast it.')}
                     </strong>
                   )}
                 </li>

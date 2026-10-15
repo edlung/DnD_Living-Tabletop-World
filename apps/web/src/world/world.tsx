@@ -8,7 +8,7 @@ import type {
   SurroundingsResponse,
   Weather,
 } from '@ltw/contracts';
-import { EncounterSummary, KnowledgeDetails, StatusPanel } from '@ltw/ui';
+import { EncounterSummary, KnowledgeDetails, StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -40,6 +40,7 @@ export function World({
   readonly effectivePerspective: string;
   readonly canAct: boolean;
 }) {
+  const t = useT();
   const [revision, setRevision] = useState(0);
   // Kept here so the panel stays open across the refresh each command causes.
   const [dmToolsOpen, setDmToolsOpen] = useState(false);
@@ -90,7 +91,7 @@ export function World({
   const location =
     knownPlace ??
     (current?.entityId === placeId
-      ? { ...current, name: current.name ?? 'Unidentified location' }
+      ? { ...current, name: current.name ?? t('Unidentified location') }
       : null);
   const selectedKnown = data?.directory.entities.find(
     (entity) => entity.entityId === selected?.entityId,
@@ -101,11 +102,11 @@ export function World({
     <main id="world-main" className="world-main" tabIndex={-1}>
       <div className="world-heading">
         <div>
-          <p className="eyebrow">Your shared world</p>
+          <p className="eyebrow">{t('Your shared world')}</p>
           <h1>{campaignName}</h1>
         </div>
         <span className={`perspective-badge ${effectivePerspective === 'DM' ? 'dm-badge' : ''}`}>
-          {effectivePerspective === 'DM' ? 'DM view · all knowledge' : 'Scoped perspective'}
+          {effectivePerspective === 'DM' ? t('DM view · all knowledge') : t('Scoped perspective')}
         </span>
       </div>
       <ActionNotice notice={action.notice} status={action.status} onRetry={action.retry} />
@@ -129,7 +130,7 @@ export function World({
       ) : (
         <>
           {discovered.length > 0 && (
-            <section className="discovered-knowledge" aria-label="New knowledge">
+            <section className="discovered-knowledge" aria-label={t('New knowledge')}>
               <KnowledgeDetails
                 knowledge={data.knowledge.knowledge.filter((record) =>
                   discovered.includes(record.knowledgeId),
@@ -139,7 +140,7 @@ export function World({
           )}
           <div className="world-toolbar">
             <div className="location-control">
-              <label htmlFor="location">Location</label>
+              <label htmlFor="location">{t('Location')}</label>
               <select
                 id="location"
                 value={placeId}
@@ -150,7 +151,7 @@ export function World({
                 }}
               >
                 {!location && locations.length === 0 && (
-                  <option value="">No known locations</option>
+                  <option value="">{t('No known locations')}</option>
                 )}
                 {location && !knownPlace && (
                   <option value={location.entityId}>{location.name}</option>
@@ -162,7 +163,9 @@ export function World({
                 ))}
               </select>
             </div>
-            <span className="session-caption">{openSession?.title ?? 'No open play session'}</span>
+            <span className="session-caption">
+              {openSession?.title ?? t('No open play session')}
+            </span>
           </div>
           {effectivePerspective === 'DM' && (
             <DmCombatControls
@@ -199,7 +202,7 @@ export function World({
             />
           )}
           <div className="world-grid">
-            <section aria-label="Scene" className="scene-panel">
+            <section aria-label={t('Scene')} className="scene-panel">
               {location ? (
                 <Scene
                   key={`${placeId}:${revision}`}
@@ -212,14 +215,14 @@ export function World({
               ) : (
                 <StatusPanel
                   state="empty"
-                  label="There are no known locations in this perspective yet."
+                  label={t('There are no known locations in this perspective yet.')}
                 />
               )}
               {data.surroundings && data.surroundings.nearby.length > 0 && (
-                <section className="nearby-places" aria-label="Nearby places">
-                  <h3>Beyond this place</h3>
+                <section className="nearby-places" aria-label={t('Nearby places')}>
+                  <h3>{t('Beyond this place')}</h3>
                   <p className="muted">
-                    Choose a place to look at it. To go there, use Enter in its details.
+                    {t('Choose a place to look at it. To go there, use Enter in its details.')}
                   </p>
                   {data.surroundings.nearby.map((place) => (
                     <button
@@ -228,13 +231,13 @@ export function World({
                         choose(place.entityId, place.kind);
                       }}
                     >
-                      Explore {place.name ?? 'Unidentified location'}
+                      {t('Explore {place}', { place: place.name ?? t('Unidentified location') })}
                     </button>
                   ))}
                 </section>
               )}
               <details className="known-directory">
-                <summary>Known destinations</summary>
+                <summary>{t('Known destinations')}</summary>
                 <div className="directory-list">
                   {locations.map((place) => (
                     <button
@@ -243,15 +246,15 @@ export function World({
                         choose(place.entityId, place.kind);
                       }}
                     >
-                      Explore {place.name}
+                      {t('Explore {place}', { place: place.name })}
                     </button>
                   ))}
                 </div>
               </details>
               <details className="known-directory">
-                <summary>Known people &amp; places</summary>
+                <summary>{t('Known people & places')}</summary>
                 <p className="muted">
-                  What this perspective knows. Presence is shown separately in the scene.
+                  {t('What this perspective knows. Presence is shown separately in the scene.')}
                 </p>
                 <div className="directory-list">
                   {data.directory.entities.map((entity) => (
@@ -263,14 +266,14 @@ export function World({
                       }}
                     >
                       {entity.name}
-                      <span>{entity.kind}</span>
+                      <span>{t(entity.kind)}</span>
                     </button>
                   ))}
                 </div>
-                {data.directory.entities.length === 0 && <p>No entities are known yet.</p>}
+                {data.directory.entities.length === 0 && <p>{t('No entities are known yet.')}</p>}
               </details>
             </section>
-            <aside aria-label="Entity details" className="detail-panel">
+            <aside aria-label={t('Entity details')} className="detail-panel">
               {selected ? (
                 <EntityDetails
                   key={`${selected.entityId}:${revision}`}
@@ -295,13 +298,15 @@ export function World({
                   <span className="selection-mark" aria-hidden="true">
                     ◇
                   </span>
-                  <p className="eyebrow">A closer look</p>
+                  <p className="eyebrow">{t('A closer look')}</p>
                   <h2>
-                    The details are
+                    {t('The details are')}
                     <br />
-                    in the world.
+                    {t('in the world.')}
                   </h2>
-                  <p>Select a person, place, or object to see what this perspective knows.</p>
+                  <p>
+                    {t('Select a person, place, or object to see what this perspective knows.')}
+                  </p>
                 </div>
               )}
             </aside>

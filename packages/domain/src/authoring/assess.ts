@@ -23,6 +23,7 @@ import type { KernelEvent, RecordedEvent } from '../kernel/events.ts';
 import { foldDraftsWithEvents } from '../kernel/provisional.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { decideAddKnowledge } from '../knowledge/decide.ts';
+import { languageOf, sayIn } from '../language/index.ts';
 import { decideSetRelationship } from '../relationships/decide.ts';
 import { highestRisk } from './consent.ts';
 import { findingKey, withOptionIds, type IssueDraft } from './continuity/describe.ts';
@@ -114,7 +115,7 @@ export function assessAuthoring(
       premises.length > 0
         ? [{ type: 'AuthoringPremisesRecorded', payload: { premises } }, ...drafts]
         : drafts,
-    issues: issues.map(withOptionIds),
+    issues: issues.map((issue) => withOptionIds(issue, sayIn(languageOf(context.state)))),
     warnings: findings.warnings,
     notes: findings.notes,
     risk: { level: highestRisk(reasons.map((reason) => reason.level)), reasons },

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { ProposalReview } from './proposal-review.tsx';
 import { useAuthoring } from './use-authoring.ts';
+import { useT } from '@ltw/ui';
 
 /**
  * DM only. Natural-language intent → structured preview → edit, confirm, or
@@ -20,29 +21,30 @@ export function AuthoringPanel({
   readonly directory: readonly EntityRef[];
   readonly onWorldChanged: () => void;
 }) {
+  const t = useT();
   const authoring = useAuthoring(api, onWorldChanged);
   const [text, setText] = useState('');
   const draft = authoring.proposal?.proposal.status === 'DRAFT';
   return (
     <details className="disclosure authoring">
-      <summary>Add to the world (DM)</summary>
+      <summary>{t('Add to the world (DM)')}</summary>
       <form
         onSubmit={(event) => {
           event.preventDefault();
           if (text.trim() !== '') void authoring.propose(text.trim());
         }}
       >
-        <label htmlFor="authoring-intent">Describe what to add</label>
+        <label htmlFor="authoring-intent">{t('Describe what to add')}</label>
         <textarea
           id="authoring-intent"
           value={text}
-          placeholder="Add a young guard near North Gate who saw the caravan leave."
+          placeholder={t('Add a young guard near North Gate who saw the caravan leave.')}
           onChange={(event) => {
             setText(event.target.value);
           }}
         />
         <button type="submit" disabled={authoring.busy || draft || text.trim() === ''}>
-          Propose
+          {t('Propose')}
         </button>
       </form>
       {authoring.notice && (
@@ -50,7 +52,7 @@ export function AuthoringPanel({
           role={authoring.notice.kind === 'error' ? 'alert' : 'status'}
           className={`authoring-notice ${authoring.notice.kind}`}
         >
-          {authoring.notice.text}
+          {t(authoring.notice.text)}
         </p>
       )}
       {authoring.proposal && (

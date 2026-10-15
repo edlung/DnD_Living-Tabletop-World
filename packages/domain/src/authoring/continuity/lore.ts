@@ -9,6 +9,7 @@ import {
   type ContinuityInput,
   type NoteDraft,
   type WarningDraft,
+  voice,
 } from './describe.ts';
 import { edit, removal, replaced } from './edits.ts';
 
@@ -27,20 +28,28 @@ interface Claimed {
 }
 
 function claimsOf(state: WorldState): Claimed[] {
+  const v = voice(state);
+
   const records = [...state.epistemics.claims].map(([knowledgeId, claim]) => {
     const record = state.knowledge.get(knowledgeId);
     const whose =
       record?.scope.kind === 'WORLD_TRUTH'
-        ? `the world truth (${knowledgeId})`
+        ? v.say('the world truth ({id})', { id: knowledgeId })
         : record?.attributedTo
-          ? `${nameOf(state, record.attributedTo)}'s account (${knowledgeId})`
-          : `the ${record?.knowledgeType.toLowerCase() ?? 'record'} ${knowledgeId}`;
+          ? v.say("{name}'s account ({id})", {
+              name: nameOf(state, record.attributedTo),
+              id: knowledgeId,
+            })
+          : v.say('the {type} {id}', {
+              type: v.say(record?.knowledgeType.toLowerCase() ?? 'record'),
+              id: knowledgeId,
+            });
     return { id: knowledgeId, claim, whose };
   });
   const clues = [...state.epistemics.clueClaims].map(([clueId, claim]) => ({
     id: clueId,
     claim,
-    whose: `the clue ${clueId}`,
+    whose: v.say('the clue {id}', { id: clueId }),
   }));
   return [...records, ...clues];
 }
@@ -61,6 +70,7 @@ export function claimFindings(
       other.claim.subjectId === claim.subjectId &&
       other.claim.aspect === claim.aspect,
   );
+  const v = voice(input.state);
   const about = `${nameOf(input.state, claim.subjectId)} (${claim.aspect})`;
   const warnings = related
     .filter((other) => other.claim.value !== claim.value)
@@ -70,10 +80,15 @@ export function claimFindings(
       commandIndex: index,
       entityIds: [claim.subjectId],
       knowledgeIds: [own, other.id],
-      message: `About ${about}: this says ${claim.value}; ${other.whose} says ${other.claim.value}`,
+      message: v.say('About {about}: this says {value}; {whose} says {other}', {
+        about,
+        value: claim.value,
+        whose: other.whose,
+        other: other.claim.value,
+      }),
       options: [
         edit(
-          `Agree with ${other.whose}: ${other.claim.value}`,
+          v.say('Agree with {whose}: {value}', { whose: other.whose, value: other.claim.value }),
           replaced(input.commands, index, {
             ...command,
             claim: { ...claim, value: other.claim.value },
@@ -90,7 +105,11 @@ export function claimFindings(
       commandIndex: index,
       entityIds: [claim.subjectId],
       knowledgeIds: [own, other.id],
-      message: `About ${about}: agrees with ${other.whose} (${claim.value})`,
+      message: v.say('About {about}: agrees with {whose} ({value})', {
+        about,
+        whose: other.whose,
+        value: claim.value,
+      }),
     }));
   return { warnings, notes };
 }

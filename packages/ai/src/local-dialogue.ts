@@ -24,6 +24,42 @@ const GREETING: Readonly<Record<Attitude, string>> = {
   TRUSTED: 'Always glad to see you, friend.',
 };
 
+/**
+ * Russian replies (ADR 0031): present tense and nominative names only, so nothing
+ * agrees with anyone's gender and no name is declined.
+ */
+const MANNER_RU: Readonly<Record<Attitude, string>> = {
+  HOSTILE: 'смотрит с неприязнью',
+  WARY: 'смотрит настороженно',
+  NEUTRAL: 'поднимает взгляд',
+  FRIENDLY: 'улыбается',
+  TRUSTED: 'тепло встречает вас',
+};
+
+const GREETING_RU: Readonly<Record<Attitude, string>> = {
+  HOSTILE: 'Говорите, что нужно, и уходите.',
+  WARY: 'Что вам нужно?',
+  NEUTRAL: 'Чем могу помочь?',
+  FRIENDLY: 'Добро пожаловать. Чем могу помочь?',
+  TRUSTED: 'Всегда приятно вас видеть, друг мой.',
+};
+
+function saidRu(prompt: DialoguePrompt): string {
+  if (prompt.justTold.length > 0) return prompt.justTold.join(' ');
+  if (prompt.intent === 'ask') {
+    if (prompt.topic === null) return 'Я об этом ничего не знаю.';
+    return prompt.guarded.includes(prompt.topic)
+      ? `Тема «${prompt.topic}» — не для разговора.`
+      : `О теме «${prompt.topic}» мне ничего не известно.`;
+  }
+  if (prompt.intent === 'show' && prompt.accepted) {
+    return prompt.mayTell.length > 0
+      ? 'Понимаю. Спрашивайте, что хотите узнать.'
+      : 'Понимаю. Мне это ничего не говорит.';
+  }
+  return GREETING_RU[prompt.attitude];
+}
+
 function said(prompt: DialoguePrompt): string {
   if (prompt.justTold.length > 0) return prompt.justTold.join(' ');
   if (prompt.intent === 'ask') {
@@ -41,9 +77,14 @@ function said(prompt: DialoguePrompt): string {
 }
 
 export function replyLocally(prompt: DialoguePrompt): { reply: string } {
-  const who = prompt.npc ?? 'The stranger';
-  const reply = `${who} ${MANNER[prompt.attitude]}. “${said(prompt)}”`;
+  const russian = prompt.language === 'ru';
+  const reply = russian
+    ? `${prompt.npc ?? 'Незнакомец'} ${MANNER_RU[prompt.attitude]}. «${saidRu(prompt)}»`
+    : `${prompt.npc ?? 'The stranger'} ${MANNER[prompt.attitude]}. “${said(prompt)}”`;
   return {
-    reply: reply.length <= MAX_NPC_REPLY ? reply : `${reply.slice(0, MAX_NPC_REPLY - 2)}…”`,
+    reply:
+      reply.length <= MAX_NPC_REPLY
+        ? reply
+        : `${reply.slice(0, MAX_NPC_REPLY - 2)}…${russian ? '»' : '”'}`,
   };
 }

@@ -1,4 +1,5 @@
 import type { CommandResult, NpcDialogueResponse, PlayerOutcome } from '@ltw/contracts';
+import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
@@ -27,6 +28,7 @@ export function useAction(
   canAct: boolean,
   onResolved: (outcome?: PlayerOutcome) => void,
 ) {
+  const t = useT();
   const [state, setState] = useState<{
     status: 'idle' | 'busy' | 'uncertain' | 'done';
     notice: ActionNotice | null;
@@ -51,7 +53,7 @@ export function useAction(
     current.current = attempt;
     const request = new AbortController();
     controller.current = request;
-    setState({ status: 'busy', notice: { message: 'Resolving your action…' } });
+    setState({ status: 'busy', notice: { message: t('Resolving your action…') } });
     try {
       let notice: ActionNotice;
       if (attempt.intent.kind === 'talk') {
@@ -62,10 +64,10 @@ export function useAction(
           request.signal,
         );
         notice = result.refused
-          ? { message: 'The conversation is not available now. Your view has been refreshed.' }
+          ? { message: t('The conversation is not available now. Your view has been refreshed.') }
           : result.reply?.text
-            ? { message: 'Spoken reply · not a fact', speech: result.reply.text }
-            : { message: 'No spoken reply is available. You can still ask about a subject.' };
+            ? { message: t('Spoken reply · not a fact'), speech: result.reply.text }
+            : { message: t('No spoken reply is available. You can still ask about a subject.') };
       } else {
         const result = await api.post<CommandResult>(
           'commands',
@@ -75,9 +77,9 @@ export function useAction(
         if (!['accepted', 'duplicate', 'rejected'].includes(result.status)) throw new ApiError(0);
         notice =
           result.status === 'rejected'
-            ? { message: rejectionMessage(result.code, result.message) }
+            ? { message: rejectionMessage(t, result.code, result.message) }
             : {
-                message: outcomeMessage(result.outcome),
+                message: outcomeMessage(t, result.outcome),
                 ...(result.outcome ? { outcome: result.outcome } : {}),
               };
       }
@@ -88,14 +90,15 @@ export function useAction(
     } catch (error) {
       if (isLive() && error instanceof ApiError && error.status >= 400 && error.status < 500) {
         current.current = null;
-        setState({ status: 'done', notice: { message: error.message } });
+        setState({ status: 'done', notice: { message: t(error.message) } });
         onResolved();
       } else if (isLive())
         setState({
           status: 'uncertain',
           notice: {
-            message:
+            message: t(
               'The response was interrupted. The action may have completed. Retry this same action to check its result.',
+            ),
           },
         });
     } finally {

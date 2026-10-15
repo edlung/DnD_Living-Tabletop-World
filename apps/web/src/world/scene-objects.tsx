@@ -1,4 +1,5 @@
 import type { EntityKind, EntityPresentation, EntityRef } from '@ltw/contracts';
+import { useT } from '@ltw/ui';
 
 /** Category symbols describe supplied entity kinds, never an invented appearance. */
 function ObjectSymbol({ kind }: { readonly kind: EntityKind }) {
@@ -39,11 +40,12 @@ export function SceneObjects({
   readonly selectedId: string | null;
   readonly onSelect: (entityId: string, kind: string) => void;
 }) {
+  const t = useT();
   return (
-    <ul className="world-objects" aria-label="Visible world objects">
+    <ul className="world-objects" aria-label={t('Visible world objects')}>
       {present.map((entity) => {
         const known = directory.find((item) => item.entityId === entity.entityId);
-        const name = known?.name ?? `Unidentified ${entity.kind}`;
+        const name = known?.name ?? t('Unidentified {kind}', { kind: t(entity.kind) });
         const selected = selectedId === entity.entityId;
         return (
           <li key={entity.entityId}>
@@ -60,12 +62,12 @@ export function SceneObjects({
                 <ObjectSymbol kind={entity.kind} />
                 {selected ? <span className="world-object-selected">✓</span> : null}
               </span>
-              <span className="world-object-kind">{entity.kind}</span>
+              <span className="world-object-kind">{t(entity.kind)}</span>
               <strong>{name}</strong>
               <span className="world-object-state">
-                {entity.status ?? 'Not observed'}
-                {entity.vitals?.wounded ? ' · wounded' : ''}
-                {entity.vitals?.unconscious ? ' · unconscious' : ''}
+                {entity.status ? t(entity.status) : t('Not observed')}
+                {entity.vitals?.wounded ? t(' · wounded') : ''}
+                {entity.vitals?.unconscious ? t(' · unconscious') : ''}
               </span>
             </button>
           </li>

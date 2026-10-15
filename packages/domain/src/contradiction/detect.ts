@@ -2,6 +2,7 @@ import type { KnowledgeScope, KnowledgeType } from '@ltw/contracts';
 
 import type { KernelEvent } from '../kernel/events.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { contradictionText, languageOf } from '../language/index.ts';
 import { scopeKey } from '../knowledge/records.ts';
 import { jointScope } from './joint-scope.ts';
 import { conflicts, pairKey, type Claim } from './records.ts';
@@ -118,15 +119,14 @@ function neutralStatement(
   first: RecordLike,
   second: RecordLike,
 ): string {
-  const subject = state.entities.get(subjectId)?.name ?? 'something';
+  const words = contradictionText(languageOf(state));
+  const subject = state.entities.get(subjectId)?.name ?? words.something;
   const label = (record: RecordLike) =>
     record.attributedTo !== null
-      ? (state.entities.get(record.attributedTo)?.name ?? 'someone')
-      : `the ${record.knowledgeType.toLowerCase()}`;
+      ? (state.entities.get(record.attributedTo)?.name ?? words.someone)
+      : words.anonymous(record.knowledgeType);
   const [a, b] = [label(first), label(second)];
-  return a === b
-    ? `Conflicting accounts of ${subject}: ${a} said different things.`
-    : `Conflicting accounts of ${subject}: ${a} and ${b} disagree.`;
+  return a === b ? words.sameHolder(subject, a) : words.twoHolders(subject, a, b);
 }
 
 /**

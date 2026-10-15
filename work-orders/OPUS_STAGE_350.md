@@ -1,7 +1,7 @@
 # Opus Work Order — Stage 350: Deployment
 
 > [!IMPORTANT]
-> **MODEL:** Claude Opus 5.5  
+> **MODEL:** Claude Sonnet 5.5 (per `EFFORT_MATRIX.md`)  
 > **EFFORT:** HIGH  
 > **AUTHORIZED STAGE:** 350 ONLY  
 > **NEXT ACTION AFTER PASS:** SWITCH TO GPT-6 ASTRA — EFFORT MAX — GATE #6  

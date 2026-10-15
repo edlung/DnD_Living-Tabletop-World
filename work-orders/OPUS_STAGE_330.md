@@ -1,7 +1,7 @@
 # Opus Work Order — Stage 330: Images
 
 > [!IMPORTANT]
-> **MODEL:** Claude Opus 5.5  
+> **MODEL:** Claude Sonnet 5.5 (per `EFFORT_MATRIX.md`)  
 > **EFFORT:** HIGH  
 > **AUTHORIZED STAGE:** 330 ONLY  
 > **NEXT ACTION AFTER PASS:** Stage 340 — Opus effort MAX  

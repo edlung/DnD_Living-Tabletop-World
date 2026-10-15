@@ -4,6 +4,7 @@ import type {
   EntityKind,
   EntityStatus,
   KernelCommandType,
+  Language,
   LocationType,
   StatBlock,
   Weather,
@@ -30,6 +31,8 @@ export interface CampaignState {
   readonly worldName: string;
   readonly startsAt: number;
   readonly dmActorId: string;
+  /** The play language (ADR 0031); `en` for every history that never recorded one. */
+  readonly language: Language;
 }
 
 export interface LocationInfo {

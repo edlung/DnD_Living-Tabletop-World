@@ -81,3 +81,19 @@ boundary, and the DM performing an NPC. These use existing routes; no server, ru
 contract code changed. Between the Gate 05 reviewed revision `a85b6f8` and the release
 candidate the only backend changes are additive (session, character-sheet, surroundings
 reads; Stage 200 introduction evidence); reviewed code paths are unchanged.
+
+Stage 290 introduction evidence (ADR 0031): the play language is a campaign property recorded once
+(`CampaignCreated.language`, additive, absent = English). Recorded sentences are written in that
+language at decision time and replay as stored. **Reviewed boundaries changed here, for Gate 06:**
+lexical memory recall (ADR 0010; `packages/domain/src/memory/retrieval.ts`, a bounded Russian
+stemmer) and the Chronicle hedging rule (ADR 0024; `packages/domain/src/language/chronicle-text.ts`).
+English behaviour is unchanged and every reviewed English suite passes unchanged. Russian
+counterparts: `apps/server/src/http/russian-boundary.test.ts` (Gates 01, 02, and 04: exact visible
+sets, forbidden markers through every endpoint and query, identical hidden/nonexistent answers,
+NPC provider inputs under Russian injection attempts), `apps/server/src/scenario/ravenford-ru.test.ts`
+and `ravenford-ru.integration.test.ts` (the played slice, the no-leak scan, integrity, oracle, replay,
+and PostgreSQL restart), `packages/domain/src/language/*.test.ts` and
+`packages/domain/src/memory/retrieval-ru.test.ts` (hedging and recall), and
+`tests/e2e/language-ru.spec.ts` (the client in Russian, no English left on screen). Fixtures:
+`fixtures/ravenford-ru/`. No reviewed projection, mutation path, or authorization rule changed.
+

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { describeCommand } from './command-text.ts';
 import { ProposalEditor } from './proposal-editor.tsx';
 import type { Blocker } from './use-authoring.ts';
+import { useT } from '@ltw/ui';
 
 const CHANGE_TEXT: Readonly<Record<string, string>> = {
   EntityCreated: 'A new person or place is created',
@@ -77,6 +78,7 @@ export function ProposalReview({
     readonly clear: () => void;
   };
 }) {
+  const t = useT();
   const { proposal, preview } = data;
   const [accepted, setAccepted] = useState<readonly string[]>([]);
   const names = new Map(
@@ -93,30 +95,31 @@ export function ProposalReview({
   return (
     <section
       className="proposal-review"
-      aria-label="Authoring proposal"
+      aria-label={t('Authoring proposal')}
       key={`${proposal.proposalId}:${String(proposal.revision)}`}
     >
       <div className="section-heading">
         <h3>{proposal.summary}</h3>
         <span className="status-pill">
-          {STATUS_TEXT[proposal.status]} · revision {proposal.revision}
+          {t(STATUS_TEXT[proposal.status])} ·{' '}
+          {t('revision {revision}', { revision: proposal.revision })}
         </span>
       </div>
-      <ol className="proposal-commands" aria-label="Proposed changes">
+      <ol className="proposal-commands" aria-label={t('Proposed changes')}>
         {proposal.commands.map((command, index) => (
-          <li key={index}>{describeCommand(command, directory, names)}</li>
+          <li key={index}>{describeCommand(t, command, directory, names)}</li>
         ))}
       </ol>
       {proposal.status === 'DRAFT' && preview && (
         <>
           <p className="risk-line">
-            Risk: <strong>{preview.risk.level}</strong>
+            {t('Risk:')} <strong>{preview.risk.level}</strong>
             {preview.risk.reasons.length > 0 &&
               ` — ${preview.risk.reasons.map((reason) => reason.reason).join('; ')}`}
           </p>
           {issues.length > 0 && (
-            <div role="alert" aria-label="Blocking issues" className="issue-list">
-              <strong>This cannot be added until fixed:</strong>
+            <div role="alert" aria-label={t('Blocking issues')} className="issue-list">
+              <strong>{t('This cannot be added until fixed:')}</strong>
               <ul>
                 {issues.map((issue) => (
                   <li key={issue.key}>
@@ -129,7 +132,7 @@ export function ProposalReview({
           )}
           {warnings.length > 0 && (
             <fieldset className="warning-list">
-              <legend>Warnings you must accept to continue</legend>
+              <legend>{t('Warnings you must accept to continue')}</legend>
               {warnings.map((warning) => (
                 <div key={warning.key}>
                   <label>
@@ -157,7 +160,7 @@ export function ProposalReview({
             </p>
           ))}
           <details className="disclosure">
-            <summary>Edit proposal</summary>
+            <summary>{t('Edit proposal')}</summary>
             <ProposalEditor
               key={proposal.revision}
               commands={proposal.commands}
@@ -167,10 +170,10 @@ export function ProposalReview({
             />
           </details>
           <details className="disclosure">
-            <summary>What will change in the world</summary>
+            <summary>{t('What will change in the world')}</summary>
             <ul>
               {preview.changes.map((change, index) => (
-                <li key={index}>{CHANGE_TEXT[change.type] ?? words(change.type)}</li>
+                <li key={index}>{t(CHANGE_TEXT[change.type] ?? words(change.type))}</li>
               ))}
             </ul>
           </details>
@@ -181,10 +184,10 @@ export function ProposalReview({
                 actions.commit(accepted);
               }}
             >
-              Confirm and add to the world
+              {t('Confirm and add to the world')}
             </button>
             <button disabled={busy} onClick={actions.cancel}>
-              Cancel proposal
+              {t('Cancel proposal')}
             </button>
           </div>
         </>
@@ -192,32 +195,32 @@ export function ProposalReview({
       {proposal.status === 'COMMITTED' && (
         <div className="action-row">
           <button disabled={busy} onClick={actions.undo}>
-            Undo this addition
+            {t('Undo this addition')}
           </button>
           <button disabled={busy} onClick={actions.clear}>
-            Start another
+            {t('Start another')}
           </button>
         </div>
       )}
       {proposal.status === 'UNDONE' && (
         <div className="action-row">
-          <button onClick={actions.clear}>Start another</button>
+          <button onClick={actions.clear}>{t('Start another')}</button>
         </div>
       )}
       {blockers.length > 0 && (
-        <div role="alert" aria-label="Undo blockers" className="issue-list">
-          <strong>Undo is blocked by later steps that depend on this:</strong>
+        <div role="alert" aria-label={t('Undo blockers')} className="issue-list">
+          <strong>{t('Undo is blocked by later steps that depend on this:')}</strong>
           <ul>
             {blockers.map((blocker) => (
               <li key={blocker.commandId}>
-                {words(blocker.commandType)}
+                {t(words(blocker.commandType))}
                 <button
                   disabled={busy}
                   onClick={() => {
                     actions.undoBlocker(blocker.commandId);
                   }}
                 >
-                  Undo “{words(blocker.commandType)}” first
+                  {t('Undo “{step}” first', { step: t(words(blocker.commandType)) })}
                 </button>
               </li>
             ))}

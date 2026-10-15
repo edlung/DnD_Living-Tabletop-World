@@ -1,5 +1,5 @@
 import type { MemoryRecallResponse } from '@ltw/contracts';
-import { StatusPanel } from '@ltw/ui';
+import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -7,6 +7,7 @@ import { useResource } from '../api/resource.ts';
 
 /** The selected object constrains the recall; neither scope nor NPC is broadened. */
 export function Recall({ api, entityId }: { readonly api: WorldApi; readonly entityId: string }) {
+  const t = useT();
   const [text, setText] = useState('');
   const [query, setQuery] = useState('');
   const load = useCallback(
@@ -20,15 +21,15 @@ export function Recall({ api, entityId }: { readonly api: WorldApi; readonly ent
   );
   const { resource, retry } = useResource(`${entityId}:${query}`, load);
   return (
-    <section className="context-recall" aria-label="Recalled memories">
-      <h3>Recalled memories</h3>
+    <section className="context-recall" aria-label={t('Recalled memories')}>
+      <h3>{t('Recalled memories')}</h3>
       <form
         onSubmit={(event) => {
           event.preventDefault();
           setQuery(text.trim());
         }}
       >
-        <label htmlFor="recall-query">Search these memories</label>
+        <label htmlFor="recall-query">{t('Search these memories')}</label>
         <input
           id="recall-query"
           value={text}
@@ -37,31 +38,31 @@ export function Recall({ api, entityId }: { readonly api: WorldApi; readonly ent
             setText(event.target.value);
           }}
         />
-        <button type="submit">Search memories</button>
+        <button type="submit">{t('Search memories')}</button>
       </form>
       {resource.status !== 'ready' ? (
         <StatusPanel
           state={resource.status}
-          label={resource.status === 'error' ? resource.message : 'Recalling this subject…'}
+          label={resource.status === 'error' ? resource.message : t('Recalling this subject…')}
           onRetry={retry}
         />
       ) : (
         <>
           <p className="muted">
-            {resource.value.total} matching memories
+            {t('{count} matching memories', { count: resource.value.total })}
             {resource.value.total > 50
-              ? ' · showing the first 50; narrow your search for more'
+              ? t(' · showing the first 50; narrow your search for more')
               : ''}
           </p>
           {resource.value.memories.length === 0 ? (
-            <p>No memories about this subject are available in this perspective.</p>
+            <p>{t('No memories about this subject are available in this perspective.')}</p>
           ) : (
             <ul className="memory-list">
               {resource.value.memories.map(({ memory }) => (
                 <li key={memory.memoryId}>
-                  <span className="badge">{memory.memoryKind}</span>
+                  <span className="badge">{t(memory.memoryKind)}</span>
                   <p>{memory.summary}</p>
-                  <small>World time {memory.occurredAt}</small>
+                  <small>{t('World time {time}', { time: memory.occurredAt })}</small>
                 </li>
               ))}
             </ul>

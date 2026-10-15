@@ -9,6 +9,7 @@ import {
   normalized,
   type ContinuityInput,
   type WarningDraft,
+  voice,
 } from './describe.ts';
 import { edit, removal, replaced } from './edits.ts';
 
@@ -34,7 +35,9 @@ export function secretSubject(
         command.attributedTo !== id
           ? [
               edit(
-                `Leave ${nameOf(input.state, id)} out of the record`,
+                voice(input.state).say('Leave {name} out of the record', {
+                  name: nameOf(input.state, id),
+                }),
                 replaced(input.commands, index, { ...command, subjects }),
               ),
             ]
@@ -45,7 +48,10 @@ export function secretSubject(
         commandIndex: index,
         entityIds: [holder, id],
         knowledgeIds: [command.knowledgeId],
-        message: `${nameOf(input.state, holder)} would know about ${nameOf(input.state, id)}, which neither the public nor the party knows`,
+        message: voice(input.state).say(
+          '{holder} would know about {id}, which neither the public nor the party knows',
+          { holder: nameOf(input.state, holder), id: nameOf(input.state, id) },
+        ),
         options: [...leaveOut, ACKNOWLEDGE],
       };
     });
@@ -71,7 +77,10 @@ export function duplicateAccount(
       commandIndex: index,
       entityIds: [command.scope.npcId],
       knowledgeIds: [twin.knowledgeId, command.knowledgeId],
-      message: `${nameOf(input.state, command.scope.npcId)} already holds this account (${twin.knowledgeId})`,
+      message: voice(input.state).say('{name} already holds this account ({id})', {
+        name: nameOf(input.state, command.scope.npcId),
+        id: twin.knowledgeId,
+      }),
       options: [...removal(input.commands, index), ACKNOWLEDGE],
     },
   ];
@@ -96,7 +105,13 @@ export function disclosureAgainstAttitude(
       commandIndex: index,
       entityIds: [npcId],
       knowledgeIds: [command.knowledgeId],
-      message: `${nameOf(input.state, npcId)} is ${attitude.toLowerCase()} toward the party, yet would share this willingly`,
+      message: voice(input.state).say(
+        '{name} is {attitude} toward the party, yet would share this willingly',
+        {
+          name: nameOf(input.state, npcId),
+          attitude: voice(input.state).say(attitude.toLowerCase()),
+        },
+      ),
       options: [...removal(input.commands, index, 'Keep it guarded'), ACKNOWLEDGE],
     },
   ];

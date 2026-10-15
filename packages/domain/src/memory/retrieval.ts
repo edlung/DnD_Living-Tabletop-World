@@ -192,12 +192,94 @@ function visibleText(state: WorldState, memory: MemoryRecord): string {
   return [memory.summary, ...names].join(' ');
 }
 
+/**
+ * Common Russian case, number, and gender endings, longest first. A Russian word is
+ * reduced to its stem so that «караван», «каравана», and «караване» recall the same
+ * memories (docs/adr/0031-play-language.md §7). A stem keeps at least four letters, so
+ * short words are never cut; words in other scripts are compared as written.
+ */
+const RU_ENDINGS = [
+  'ировать',
+  'ами',
+  'ями',
+  'ого',
+  'его',
+  'ому',
+  'ему',
+  'ыми',
+  'ими',
+  'ать',
+  'ять',
+  'ить',
+  'еть',
+  'ует',
+  'уют',
+  'ают',
+  'яют',
+  'ила',
+  'ило',
+  'или',
+  'ала',
+  'ало',
+  'али',
+  'ов',
+  'ев',
+  'ом',
+  'ем',
+  'ой',
+  'ей',
+  'ий',
+  'ый',
+  'ая',
+  'яя',
+  'ое',
+  'ее',
+  'ые',
+  'ие',
+  'ую',
+  'юю',
+  'ам',
+  'ям',
+  'ах',
+  'ях',
+  'ла',
+  'ло',
+  'ли',
+  'ет',
+  'ут',
+  'ют',
+  'ит',
+  'ат',
+  'ят',
+  'ы',
+  'и',
+  'а',
+  'я',
+  'о',
+  'е',
+  'у',
+  'ю',
+  'ь',
+  'й',
+  'л',
+].sort((a, b) => b.length - a.length);
+const MIN_STEM = 4;
+
+function stem(word: string): string {
+  if (!/^[а-яё]+$/u.test(word)) return word;
+  const ending = RU_ENDINGS.find(
+    (suffix) => word.length - suffix.length >= MIN_STEM && word.endsWith(suffix),
+  );
+  return ending === undefined ? word : word.slice(0, -ending.length);
+}
+
 export function tokens(text: string): Set<string> {
   return new Set(
     text
       .toLowerCase()
       .split(/[^\p{L}\p{N}]+/u)
-      .filter((token) => token.length >= 3),
+      .filter((token) => token.length >= 3)
+      .map(stem),
   );
 }
 

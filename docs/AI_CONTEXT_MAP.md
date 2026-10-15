@@ -72,6 +72,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | DM authoring UX: intent, preview, edit, confirm, cancel, undo | `apps/web/src/authoring/`, ADR 0029; journeys `tests/e2e/authoring-*.spec.ts`, campaigns `apps/server/src/testing/ui-authoring-campaigns.ts` |
 | DM time/weather, perform an NPC; Chronicle and flashback | `apps/web/src/dm/`, `apps/web/src/chronicle/`, ADR 0030; journeys `tests/e2e/dm-tools.spec.ts` |
 | Release candidate: install, start, limits, recovery | `docs/RELEASE_CANDIDATE.md`, `reports/STAGE_250_RELEASE.md` |
+| Play language: campaign language, catalogs, Russian rules and seed, client dictionary | `docs/adr/0031-play-language.md`; `packages/domain/src/language/` (catalogs, `say.ts`); `fixtures/ravenford-ru/AGENTS.md`; client `packages/ui/src/i18n.tsx`, `apps/web/src/i18n/ru.ts`; Russian suites `apps/server/src/scenario/ravenford-ru.test.ts`, `apps/server/src/http/russian-boundary.test.ts`, `tests/e2e/language-ru.spec.ts` |
 | Browser session, perspective changes, stale requests | `apps/web/src/session/app.tsx`, `apps/web/src/api/client.ts`, `resource.ts`; E2E `tests/e2e/AGENTS.md` |
 | Session identity and full authorized character sheets | `packages/domain/src/knowledge/session.ts`, `packages/domain/src/character/AGENTS.md`; routes `apps/server/src/http/routes/session-routes.ts`, `character-routes.ts`; contracts `packages/contracts/src/session/views.ts`, `rules/character-view.ts` |
 | Ravenford fixtures | `fixtures/ravenford/AGENTS.md` |

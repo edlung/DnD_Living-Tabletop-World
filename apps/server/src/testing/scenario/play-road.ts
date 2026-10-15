@@ -15,6 +15,7 @@ import type {
 import ambush from '../../../../../fixtures/ravenford/road-ambush.json' with { type: 'json' };
 import dayTwo from '../../../../../fixtures/ravenford/day-two.json' with { type: 'json' };
 import { contextOf, ok } from './play-day-one.ts';
+import { EN_SCRIPT } from './script.ts';
 import { BASE, ELOWEN, type RavenfordSession } from './session.ts';
 
 /**
@@ -23,7 +24,7 @@ import { BASE, ELOWEN, type RavenfordSession } from './session.ts';
  * Combat Encounter → Chronicle). Combat dice sit at their middle face, so
  * the order is Elowen, the Raiders, then the Shaman.
  */
-export const CHAPTER_TITLE = 'Chapter I — Shadows on the Trade Road';
+export const CHAPTER_TITLE = EN_SCRIPT.chapterTitle;
 const RAIDERS = ['goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3'];
 
 export interface Road {
@@ -162,7 +163,7 @@ export async function playRoad(session: RavenfordSession): Promise<Road> {
   for (const suggestion of suggestions.suggestions) await session.dm({ ...suggestion.command });
   const chapter = ok(
     await session.post('dm', `${BASE}/chronicle`, {
-      title: CHAPTER_TITLE,
+      title: session.script.chapterTitle,
       perspective: 'PARTY',
       from: 0,
     }),
@@ -175,9 +176,14 @@ export async function playRoad(session: RavenfordSession): Promise<Road> {
       await session.get('player', `${BASE}/memories/${memoryId}/flashback?perspective=PARTY`),
     ).json<FlashbackResponse>();
   const memories = ok(
-    await session.get('player', `${BASE}/memories?perspective=PARTY&q=fought`),
+    await session.get(
+      'player',
+      `${BASE}/memories?perspective=PARTY&q=${encodeURIComponent(session.script.battleQuery)}`,
+    ),
   ).json<MemoryRecallResponse>();
-  const battle = memories.memories.find((m) => m.memory.summary.startsWith('We fought'));
+  const battle = memories.memories.find((m) =>
+    m.memory.summary.startsWith(session.script.battlePrefix),
+  );
   if (!battle) throw new Error('the party remembers no fight');
   const miraFlashback = await flashback('mem-party-talk-mira');
   const battleFlashback = await flashback(battle.memory.memoryId);

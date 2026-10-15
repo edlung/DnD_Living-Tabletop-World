@@ -4,7 +4,7 @@ import type {
   EntityRef,
   ScenePresentationResponse,
 } from '@ltw/contracts';
-import { StatusPanel } from '@ltw/ui';
+import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -50,9 +50,10 @@ export function DmCombatControls({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   return (
     <details className="disclosure dm-combat" open={encounter !== null}>
-      <summary>{encounter ? 'Encounter controls (DM)' : 'Start an encounter (DM)'}</summary>
+      <summary>{encounter ? t('Encounter controls (DM)') : t('Start an encounter (DM)')}</summary>
       {encounter ? (
         <RunningControls api={api} encounter={encounter} locked={locked} onRun={onRun} />
       ) : (
@@ -81,6 +82,7 @@ function StartControls({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   const load = useCallback(
     (signal: AbortSignal) =>
       api.get<ScenePresentationResponse>(
@@ -95,7 +97,7 @@ function StartControls({
     return (
       <StatusPanel
         state={resource.status}
-        label={resource.status === 'error' ? resource.message : 'Looking at who is here…'}
+        label={resource.status === 'error' ? resource.message : t('Looking at who is here…')}
         onRetry={retry}
       />
     );
@@ -112,8 +114,9 @@ function StartControls({
   return (
     <div>
       <p className="muted">
-        Characters join the party and creatures are hostile, on open ground. Initiative is rolled by
-        the rules.
+        {t(
+          'Characters join the party and creatures are hostile, on open ground. Initiative is rolled by the rules.',
+        )}
       </p>
       <ul className="combat-options">
         {fighters.map((entity) => (
@@ -150,7 +153,7 @@ function StartControls({
           });
         }}
       >
-        Start encounter
+        {t('Start encounter')}
       </button>
     </div>
   );
@@ -167,6 +170,7 @@ function RunningControls({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
+  const t = useT();
   const [confirmingEnd, setConfirmingEnd] = useState(false);
   const window = encounter.reactionWindow;
   const load = useCallback(
@@ -191,13 +195,13 @@ function RunningControls({
             });
           }}
         >
-          Close reaction window
+          {t('Close reaction window')}
         </button>
       )}
       {suggestion && !window && (
         <div className="monster-suggestion">
           <p>
-            <strong>Suggested turn:</strong> {suggestion.explanation}
+            <strong>{t('Suggested turn:')}</strong> {suggestion.explanation}
           </p>
           <button
             disabled={locked}
@@ -205,13 +209,13 @@ function RunningControls({
               onRun({ kind: 'command', command: suggestion.command });
             }}
           >
-            Run suggested {suggestion.tactic.replace('-', ' ')}
+            {t('Run suggested {tactic}', { tactic: t(suggestion.tactic.replace('-', ' ')) })}
           </button>
         </div>
       )}
       {confirmingEnd ? (
         <>
-          <span>End the encounter for everyone?</span>
+          <span>{t('End the encounter for everyone?')}</span>
           <button
             disabled={locked}
             onClick={() => {
@@ -221,14 +225,14 @@ function RunningControls({
               });
             }}
           >
-            Yes, end encounter
+            {t('Yes, end encounter')}
           </button>
           <button
             onClick={() => {
               setConfirmingEnd(false);
             }}
           >
-            Keep fighting
+            {t('Keep fighting')}
           </button>
         </>
       ) : (
@@ -238,7 +242,7 @@ function RunningControls({
             setConfirmingEnd(true);
           }}
         >
-          End encounter
+          {t('End encounter')}
         </button>
       )}
     </div>

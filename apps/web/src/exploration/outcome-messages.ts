@@ -1,5 +1,11 @@
 import type { PlayerOutcome } from '@ltw/contracts';
+import type { Translate } from '@ltw/ui';
 
+/**
+ * The words of what happened. Every sentence is an English key the client dictionary
+ * translates (docs/adr/0031-play-language.md §10); the server's developer messages are
+ * never shown.
+ */
 const REJECTIONS: Readonly<Record<string, string>> = {
   ALREADY_ATTEMPTED: 'This check has already been attempted.',
   NOT_PRESENT: 'That subject is no longer within reach.',
@@ -22,60 +28,83 @@ const REJECTIONS: Readonly<Record<string, string>> = {
 const readableReason = (reason: string) =>
   /^[A-Z_]+$/.test(reason) ? reason.replaceAll('_', ' ').toLowerCase() : null;
 
-export function rejectionMessage(code: string, message?: string): string {
-  const base = REJECTIONS[code] ?? 'The world could not accept this action.';
+export function rejectionMessage(t: Translate, code: string, message?: string): string {
+  const base = t(REJECTIONS[code] ?? 'The world could not accept this action.');
   const reason = code === 'ILLEGAL_ACTION' && message ? readableReason(message) : null;
-  return `${reason ? `${base} (${reason})` : base} Your view has been refreshed.`;
+  return `${reason ? `${base} (${t(reason)})` : base} ${t('Your view has been refreshed.')}`;
 }
 
-const spellName = (id: string) => id.replaceAll('-', ' ');
+/** A spell by its ID, in the form the dictionary keys it ("detect magic"). */
+export const spellName = (t: Translate, id: string) => t(id.replaceAll('-', ' '));
 
-export function outcomeMessage(outcome: PlayerOutcome | undefined): string {
+export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined): string {
   switch (outcome?.kind) {
     case 'EnterLocation':
-      return 'You arrived. Your surroundings have been refreshed.';
+      return t('You arrived. Your surroundings have been refreshed.');
     case 'AskAbout':
-      return outcome.shared.length ? 'New testimony recorded.' : 'Nothing new was shared.';
+      return outcome.shared.length ? t('New testimony recorded.') : t('Nothing new was shared.');
     case 'ExamineEntity':
-      return outcome.discovered.length ? 'Evidence discovered.' : 'No new evidence was discovered.';
+      return outcome.discovered.length
+        ? t('Evidence discovered.')
+        : t('No new evidence was discovered.');
     case 'ShowEvidence':
-      return 'You showed the evidence. The conversation may have new leads.';
+      return t('You showed the evidence. The conversation may have new leads.');
     case 'InsightCheck':
       return outcome.inferred.length
-        ? 'An inference was recorded.'
-        : 'No new inference was recorded.';
+        ? t('An inference was recorded.')
+        : t('No new inference was recorded.');
     case 'FormHypothesis':
-      return 'Hypothesis recorded as HYPOTHESIS.';
+      return t('Hypothesis recorded as HYPOTHESIS.');
     case 'MoveCombatant':
-      return `You moved to ${String(outcome.position.x)}, ${String(outcome.position.y)}.`;
+      return t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });
     case 'Attack':
       return outcome.hit
-        ? `${outcome.critical ? 'Critical hit' : 'Hit'}: ${String(outcome.damage ?? 0)} damage (attack ${String(outcome.attackTotal)}).`
-        : `Miss (attack ${String(outcome.attackTotal)}).`;
-    case 'CastSpell':
-      if (outcome.awaitingReaction) {
-        return `${spellName(outcome.spellId)} is waiting for reactions.`;
-      }
+        ? t(
+            outcome.critical
+              ? 'Critical hit: {damage} damage (attack {total}).'
+              : 'Hit: {damage} damage (attack {total}).',
+            {
+              damage: outcome.damage ?? 0,
+              total: outcome.attackTotal,
+            },
+          )
+        : t('Miss (attack {total}).', { total: outcome.attackTotal });
+    case 'CastSpell': {
+      const spell = spellName(t, outcome.spellId);
+      if (outcome.awaitingReaction) return t('{spell} is waiting for reactions.', { spell });
       if (outcome.results.length > 0) {
         const total = outcome.results.reduce((sum, entry) => sum + (entry.damage ?? 0), 0);
         const healed = outcome.results.reduce((sum, entry) => sum + (entry.healed ?? 0), 0);
         const saved = outcome.results.filter((entry) => entry.saved === true).length;
         const count = outcome.results.length;
-        return `${spellName(outcome.spellId)} resolved on ${String(count)} ${count === 1 ? 'target' : 'targets'}${
-          saved > 0 ? ` (${String(saved)} saved)` : ''
-        }${total > 0 ? `: ${String(total)} damage in all` : ''}${healed > 0 ? `: ${String(healed)} healed` : ''}.`;
+        return [
+          t(
+            count === 1
+              ? '{spell} resolved on {count} target'
+              : '{spell} resolved on {count} targets',
+            {
+              spell,
+              count,
+            },
+          ),
+          saved > 0 ? t(' ({saved} saved)', { saved }) : '',
+          total > 0 ? t(': {total} damage in all', { total }) : '',
+          healed > 0 ? t(': {healed} healed', { healed }) : '',
+          '.',
+        ].join('');
       }
-      if (outcome.discovered.length) return 'Magic revealed new evidence.';
+      if (outcome.discovered.length) return t('Magic revealed new evidence.');
       return outcome.spellId === 'detect-magic'
-        ? 'Nothing magical was found.'
-        : `You cast ${spellName(outcome.spellId)}.`;
+        ? t('Nothing magical was found.')
+        : t('You cast {spell}.', { spell });
+    }
     case 'EndTurn':
-      return `Turn ended. Round ${String(outcome.round)}.`;
+      return t('Turn ended. Round {round}.', { round: outcome.round });
     case 'UseReaction':
-      return outcome.countered ? 'Counterspell stopped the spell.' : 'The reaction was used.';
+      return outcome.countered ? t('Counterspell stopped the spell.') : t('The reaction was used.');
     case 'DeclineReaction':
-      return 'You let the spell happen.';
+      return t('You let the spell happen.');
     default:
-      return 'Action resolved. Your view has been refreshed.';
+      return t('Action resolved. Your view has been refreshed.');
   }
 }

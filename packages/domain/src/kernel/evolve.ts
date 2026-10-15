@@ -1,3 +1,5 @@
+import { DEFAULT_LANGUAGE } from '@ltw/contracts';
+
 import { applyCharacterSheetSet } from '../character/character.ts';
 import {
   applyCombatEnded,
@@ -81,10 +83,17 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
   switch (event.type) {
     case 'CampaignCreated': {
       if (state.campaign !== null) throw new CorruptHistoryError('campaign created twice');
-      const { campaignId, name, worldName, startsAt, dmActorId } = event.payload;
+      const { campaignId, name, worldName, startsAt, dmActorId, language } = event.payload;
       return {
         ...state,
-        campaign: { campaignId, name, worldName, startsAt, dmActorId },
+        campaign: {
+          campaignId,
+          name,
+          worldName,
+          startsAt,
+          dmActorId,
+          language: language ?? DEFAULT_LANGUAGE,
+        },
         clock: startsAt,
       };
     }
