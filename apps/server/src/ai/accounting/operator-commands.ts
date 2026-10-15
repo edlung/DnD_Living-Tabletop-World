@@ -1,5 +1,6 @@
 import type pg from 'pg';
 
+import { imageBudgetStatus, setImageCeiling } from '../../images/ledger.ts';
 import type { OperatorCommand } from './operator-args.ts';
 import { OperatorStore } from './operator-store.ts';
 import { accountingStatus } from './postgres-budget-store.ts';
@@ -14,6 +15,8 @@ import { explainStops } from './stop-diagnostics.ts';
  * nothing: run a mutation only with the owner's recorded spending authorization. Charge commands
  * return the IDs of any stops they appended; `stops` (read-only) explains each uncleared stop of an
  * account for the operator deciding on a clearance, and is never shown to a campaign (B2).
+ * `image-budget-set` records the image ceiling (docs/adr/0035-images.md §2); `status` adds the
+ * image ledger's counters, amounts included, for the operator only (startup logs keep counts).
  */
 export async function runOperatorCommand(
   pool: pg.Pool,
@@ -58,6 +61,14 @@ export async function runOperatorCommand(
     case 'stops':
       return explainStops(pool, command.accountId, identityResolver(VERIFIED_CATALOG));
     case 'status':
-      return accountingStatus(pool);
+      return { ...(await accountingStatus(pool)), images: await imageBudgetStatus(pool) };
+    case 'image-budget-set':
+      return {
+        imageBudgetRevision: await setImageCeiling(
+          pool,
+          command.ceilingMicros,
+          command.authorization,
+        ),
+      };
   }
 }

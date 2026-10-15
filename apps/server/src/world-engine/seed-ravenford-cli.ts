@@ -1,6 +1,9 @@
 import { formatWorldTime } from '@ltw/domain';
 import pg from 'pg';
 
+import { importCuratedSet } from '../images/curated-import.ts';
+import { loadCuratedSet } from '../images/curated-set.ts';
+import { PostgresAssetContentStore } from '../assets/postgres-content-store.ts';
 import { describeDatabaseUrl, loadConfig } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { loadRavenfordSeed } from './ravenford-seed.ts';
@@ -8,7 +11,10 @@ import { createWorldEngine } from './runtime.ts';
 
 /**
  * Seeds the minimum Ravenford world through the World Engine (development
- * and CI bootstrap). Idempotent: rerunning reports every command as duplicate.
+ * and CI bootstrap), then imports the curated Ravenford pictures into it
+ * through real commands, approved by the DM for players (docs/adr/0035-images.md §3).
+ * Idempotent: rerunning reports every command as duplicate. Run it while the
+ * server is stopped, so that no other asset worker runs the curated jobs.
  */
 async function main(): Promise<void> {
   const config = loadConfig();
@@ -28,6 +34,16 @@ async function main(): Promise<void> {
       }
       counts[result.status] += 1;
     }
+    const curated = await importCuratedSet(
+      {
+        engine,
+        contents: new PostgresAssetContentStore(pool),
+        set: await loadCuratedSet(),
+        logger,
+      },
+      seed.campaignId,
+      seed.dm,
+    );
     const state = (await engine.load(seed.campaignId))?.state;
     logger.info(
       {
@@ -36,11 +52,13 @@ async function main(): Promise<void> {
         version: state?.version,
         entities: state?.entities.size,
         worldTime: state ? formatWorldTime(state.clock) : null,
+        curated,
       },
       'Ravenford seeded',
     );
     console.log(
       `ravenford: ${String(counts.accepted)} accepted, ${String(counts.duplicate)} already present; ` +
+        `curated pictures: ${String(curated.imported)} imported, ${String(curated.present)} already present; ` +
         `version ${String(state?.version)}, ${String(state?.entities.size)} entities`,
     );
   } finally {

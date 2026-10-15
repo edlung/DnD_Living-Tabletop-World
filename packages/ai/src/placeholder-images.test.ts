@@ -11,11 +11,18 @@ import {
 /** The local placeholder generator (owner decision, ADR 0022 §3). */
 const brief = (changes: Partial<ImageBrief> = {}): ImageBrief => ({
   seed: 'authoring.p1#0',
-  subject: { kind: 'npc', name: 'Sable SECRETNAME', description: 'SECRETDESCRIPTION' },
+  subject: {
+    entityId: 'secret-entity',
+    kind: 'npc',
+    name: 'Sable SECRETNAME',
+    description: 'SECRETDESCRIPTION',
+  },
   variant: 'reference',
+  purpose: 'image',
   label: null,
   note: 'SECRETNOTE',
   basedOn: null,
+  reference: null,
   ...changes,
 });
 
@@ -51,10 +58,16 @@ describe('the placeholder image generator', () => {
     ]) {
       expect(svg.replace(/<rect|width|height|none/g, '')).not.toContain(forbidden);
     }
-    // Changing what the brief says about the entity changes nothing drawn.
+    // Changing what the brief says about the entity changes nothing drawn, nor do the purpose
+    // and the reference bytes it was given (ADR 0035).
     expect(
       placeholderSvg(
-        brief({ subject: { kind: 'location', name: 'Other', description: null }, note: null }),
+        brief({
+          subject: { entityId: 'other', kind: 'location', name: 'Other', description: null },
+          note: null,
+          purpose: 'battle-map',
+          reference: { bytes: new Uint8Array([1, 2, 3]), mediaType: 'image/webp' },
+        }),
       ),
     ).toBe(svg);
   });

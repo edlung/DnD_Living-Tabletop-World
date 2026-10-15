@@ -46,3 +46,34 @@ approval; storage and backup must be decided for production.
   regenerated or reported.
 - The DM gets approval controls (approve, discard, generate again, replace) in the client.
 - Image routes are Gate 06 surfaces (cost, visibility, prompt injection through descriptions).
+
+## Amendments
+
+- 2026-10-16 (Stage 330 part A, implementation details within the design):
+  - **Failure code.** A generator that makes no provider call because no ceiling is stored, the
+    ceiling is reached, the ledger is unavailable, the canonical reference is not stored or is no
+    raster picture (a placeholder SVG), or the curated set lacks the picture fails the job with a
+    new asset failure `UNAVAILABLE`; refusals, timeouts and provider errors keep `REFUSED`,
+    `TIMEOUT` and `PROVIDER_ERROR` (the worker's own "entity gone" stays `PROVIDER_ERROR`).
+  - **Versions** count per purpose too: a `wounded` figure is version 1 beside a `wounded` image.
+  - **Reported cost.** Recorded as reported, capped, never dropped; a cost above the reservation
+    is logged without the amount.
+  - **Purpose in history.** An event payload carries `purpose` only when it is not `image`, so
+    every asset event type kept its version; the lineage the revision before wrote
+    (`fixtures/history/5da1b05-asset-lineage.json`) reads as images and re-decides unchanged.
+  - **Ledger tables.** Settlements are a third append-only table (`ltw_image_settlements`, at most
+    one per reservation), beside `ltw_image_budget` and `ltw_image_charges`.
+  - **Reservations.** $0.50 per call of `openai/gpt-5.4-image-2` and $0.20 of
+    `openai/gpt-5-image-mini` (`apps/server/src/images/models.ts`): conservative worst cases until
+    the live smoke reports real costs; each call settles to the reported cost.
+  - **References.** A new reference is sent with two curated style references (downscaled); a
+    derived variant with its canonical reference only, so nothing competes with its identity.
+  - **Processing.** Re-encoding lowers WebP quality from 82 to 72 and 62 only if a picture would
+    not fit 1.5 MB; a figure's black background becomes transparent and a battle map is cropped to
+    4:3, as the curated set's processing does.
+  - **Seed.** Both Ravenford fixtures use the campaign ID `ravenford`, so `seed:ravenford` creates
+    one campaign and imports the set into it; the browser-test server imports it into its listed
+    campaigns (`apps/server/src/testing/ui-image-campaigns.ts`). The import approves only a job
+    that produced the committed picture (provider `curated`, the manifest's hash) and retries a
+    failed job under the next derived ID (at most three); the server's asset worker leaves the
+    import's requests (`<campaignId>.curated.…`) alone.

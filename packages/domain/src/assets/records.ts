@@ -2,6 +2,7 @@ import type {
   AssetAudience,
   AssetFailure,
   AssetMediaType,
+  AssetPurpose,
   AssetStatus,
   AssetVariant,
 } from '@ltw/contracts';
@@ -19,6 +20,8 @@ export interface AssetRequestRecord {
   readonly requestId: string;
   readonly entityId: string;
   readonly variant: AssetVariant;
+  /** `image` for every request written before purposes existed (ADR 0035 §4). */
+  readonly purpose: AssetPurpose;
   readonly label: string | null;
   readonly audience: AssetAudience;
   readonly note: string | null;
@@ -35,6 +38,7 @@ export interface AssetJobRecord {
   readonly requestId: string;
   readonly entityId: string;
   readonly variant: AssetVariant;
+  readonly purpose: AssetPurpose;
   readonly label: string | null;
   readonly audience: AssetAudience;
   readonly note: string | null;
@@ -50,6 +54,7 @@ export interface AssetRecord {
   readonly requestId: string;
   readonly entityId: string;
   readonly variant: AssetVariant;
+  readonly purpose: AssetPurpose;
   readonly label: string | null;
   readonly audience: AssetAudience;
   readonly version: number;
@@ -83,3 +88,17 @@ export const assetIdFor = (requestId: string) => `${requestId}~asset`;
 export const SETTLED_ASSET: ReadonlySet<AssetStatus> = new Set(['RETRACTED', 'DISCARDED']);
 /** Statuses players may ever see. */
 export const SHOWN_ASSET: ReadonlySet<AssetStatus> = new Set(['CANONICAL', 'APPROVED']);
+
+/**
+ * A purpose as an event payload carries it (ADR 0035 §4): absent for `image`, so an image request
+ * is written exactly as before purposes existed and re-decides identically against old histories.
+ */
+export const purposeField = (purpose: AssetPurpose): { readonly purpose?: AssetPurpose } =>
+  purpose === 'image' ? {} : { purpose };
+
+/** Which entity kinds each non-image purpose depicts (ADR 0035 §4). */
+export const PURPOSE_KINDS: Readonly<Record<Exclude<AssetPurpose, 'image'>, ReadonlySet<string>>> =
+  {
+    figure: new Set(['character', 'npc', 'creature']),
+    'battle-map': new Set(['location']),
+  };

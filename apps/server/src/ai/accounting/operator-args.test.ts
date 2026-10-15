@@ -134,4 +134,39 @@ describe('operator CLI arguments', () => {
     ).toThrow(OperatorUsageError);
     expect(() => parseOperatorArgs(batch)).toThrow(/--allocation is required/);
   });
+
+  it('sets the image ceiling only as explicit microdollars with recorded authorization', () => {
+    expect(parseOperatorArgs(['image-budget-set', '--micros', '5000000', ...AUTH])).toEqual({
+      kind: 'image-budget-set',
+      ceilingMicros: 5_000_000n,
+      authorization: {
+        ownerId: 'owner',
+        authorizedOn: '2026-10-11',
+        source: 'owner-message-1',
+      },
+    });
+    // Zero is allowed: it stops every image call.
+    expect(parseOperatorArgs(['image-budget-set', '--micros', '0', ...AUTH])).toMatchObject({
+      ceilingMicros: 0n,
+    });
+    for (const amount of ['-5', '1.5', '5e6', '$5', '']) {
+      expect(() => parseOperatorArgs(['image-budget-set', '--micros', amount, ...AUTH])).toThrow(
+        OperatorUsageError,
+      );
+    }
+    expect(() => parseOperatorArgs(['image-budget-set', '--micros', '5'])).toThrow(
+      /--owner is required|--authorized-on is required|--authorization-source is required/,
+    );
+    expect(() => parseOperatorArgs(['image-budget-set', ...AUTH])).toThrow(/--micros is required/);
+    expect(() =>
+      parseOperatorArgs([
+        'image-budget-set',
+        '--micros',
+        '5',
+        '--global-daily-ceiling-micros',
+        '5',
+        ...AUTH,
+      ]),
+    ).toThrow(OperatorUsageError);
+  });
 });

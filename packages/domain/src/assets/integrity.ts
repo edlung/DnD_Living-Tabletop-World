@@ -26,7 +26,12 @@ export function assetViolations(state: WorldState): string[] {
   for (const [id, job] of jobs) {
     if (id !== job.requestId) report(`asset job key ${id} != ${job.requestId}`);
     const request = requests.get(id);
-    if (request && (request.entityId !== job.entityId || request.variant !== job.variant)) {
+    if (
+      request &&
+      (request.entityId !== job.entityId ||
+        request.variant !== job.variant ||
+        request.purpose !== job.purpose)
+    ) {
       report(`asset job ${id} does not copy its request`);
     }
     if (job.status === 'STARTED' && !exists(job.entityId)) {
@@ -47,7 +52,13 @@ export function assetViolations(state: WorldState): string[] {
       report(`asset key ${id} does not match its request ${asset.requestId}`);
     }
     const job = jobs.get(asset.requestId);
-    if (job?.entityId !== asset.entityId) report(`asset ${id} has no matching job`);
+    if (job?.entityId !== asset.entityId || job.purpose !== asset.purpose) {
+      report(`asset ${id} has no matching job`);
+    }
+    // A figure or a battle map is a derived variant (ADR 0035 §4).
+    if (asset.purpose !== 'image' && asset.variant !== 'derived') {
+      report(`asset ${id} is a ${asset.purpose} but no derived variant`);
+    }
     if (!SETTLED_ASSET.has(asset.status) && !exists(asset.entityId)) {
       report(`asset ${id} depicts missing ${asset.entityId}`);
     }

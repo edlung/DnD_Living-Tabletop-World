@@ -1,4 +1,4 @@
-import type { CommandResult } from '@ltw/contracts';
+import type { AssetPurpose, CommandResult } from '@ltw/contracts';
 import { expect } from 'vitest';
 
 import { authoringWorld, type AuthoringWorld } from '../../authoring/testing/world.ts';
@@ -24,13 +24,17 @@ export const hash = (n: number) => `sha256:${n.toString(16).padStart(64, '0')}`;
 export const codeOf = (result: CommandResult) =>
   result.status === 'rejected' ? result.code : result.status;
 
+export interface RequestOptions {
+  readonly variant?: 'reference' | 'derived';
+  readonly label?: string;
+  readonly audience?: 'players' | 'dm';
+  readonly purpose?: AssetPurpose;
+}
+
 export interface AssetWorld extends AuthoringWorld {
   readonly as: (actor: Actor, command: Record<string, unknown>) => Promise<CommandResult>;
   /** The DM requests an asset; returns the request ID. */
-  readonly request: (
-    entityId: string,
-    options?: { variant?: 'reference' | 'derived'; label?: string; audience?: 'players' | 'dm' },
-  ) => Promise<string>;
+  readonly request: (entityId: string, options?: RequestOptions) => Promise<string>;
   readonly start: (requestId: string) => Promise<CommandResult>;
   readonly complete: (requestId: string, content: number) => Promise<CommandResult>;
   readonly fail: (requestId: string) => Promise<CommandResult>;
@@ -42,7 +46,7 @@ export interface AssetWorld extends AuthoringWorld {
   readonly approved: (
     entityId: string,
     content: number,
-    options?: { variant?: 'reference' | 'derived'; label?: string; audience?: 'players' | 'dm' },
+    options?: RequestOptions,
   ) => Promise<string>;
   /** Integrity, the re-decision oracle, and replay from stored JSON all hold. */
   readonly verified: () => Promise<void>;

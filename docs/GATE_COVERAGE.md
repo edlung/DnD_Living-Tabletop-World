@@ -452,3 +452,62 @@ browser end of row 340, **for Gate 06**. No route, projection or authorization c
   `sign-in-tabs.spec.ts`, `sign-in-ru.spec.ts`, `sign-in-accessibility.spec.ts` on the
   invitation-mode test server (`apps/server/src/testing/ui-sign-in-server.ts`); every
   development-persona journey unchanged.
+
+Stage 330 part A introduction evidence (ADR 0035; `docs/STAGE_330_DESIGN.md`; baseline `5da1b05`;
+part B, the live smoke and acceptance pending): **new surfaces for Gate 06**, row 330 of the
+alpha-phase table ("no image reaches a player before DM approval; requests and metadata respect
+scope; refusals and failures leave the neutral fallback").
+- **Image routes** (ADR 0022 §5–6, ADR 0023; check order and visibility unchanged):
+  `GET …/entities/:entityId/assets`, `GET …/assets/content/:contentHash`,
+  `GET …/entities/:entityId/presentation`, `GET …/locations/:locationId/scene` and the DM's
+  `GET …/assets`. Additive fields: `PlayerAssetView.purpose`, `EntityPresentation.figure` (a
+  character, NPC or creature) and `battleMap` (a location), each the newest approved asset of that
+  purpose under the images' rule (approved, players' audience, of an entity the perspective may
+  see); `purpose` on the DM's requests and assets. `RequestAsset` (DM or system only, unchanged)
+  takes an optional `purpose`; a `figure` or `battle-map` is a derived variant of the right kind.
+  A job that made no provider call fails with the new asset failure `UNAVAILABLE`.
+- **`openrouter-openai` generator** (`apps/server/src/images/`, `LTW_IMAGE_GENERATOR`; placeholder
+  by default): `POST https://openrouter.ai/api/v1/chat/completions`, allowlisted OpenAI models, a
+  fixed style system prompt, a task built from the entity's kind and recorded description, the
+  variant, the purpose and the DM's typed note (never its name or ID); a derived variant sends its
+  canonical reference as the input image, a new reference two curated style references.
+  `redirect: 'error'`, a bounded time and answer size, only an inline PNG/JPEG/WebP data URL (no
+  URL is ever fetched), re-encoded to WebP ≤ 1,536 px and ≤ 1.5 MB without metadata. The key comes
+  only from `OPENROUTER_API_KEY`, is revealed only for the header, and reaches no log, error or
+  record. Refusals, timeouts and provider errors map to `REFUSED`, `TIMEOUT`, `PROVIDER_ERROR`.
+- **Image ledger** (migration `0011_image_budget.sql`, append-only): the ceiling exists only as an
+  operator revision with the owner's authorization (`pnpm ai:operator image-budget-set`); no stored
+  ceiling or zero denies every call; each call reserves its model's worst case under one exclusive
+  advisory lock before it is sent, then settles to the reported cost (the whole reservation when
+  none is reported; nothing only when provably never sent). Counters in `ai:operator status`.
+- **Curated set import** (`seed:ravenford`, the browser-test server): every manifest entry through
+  `RequestAsset` (DM) → `StartAssetJob`/`CompleteAssetJob` (worker, `curated` generator) →
+  `ApproveAsset` (DM, players), idempotent by derived command IDs (a failed job is retried under
+  the next derived ID, at most three); files are hash-checked first, and only a job that produced
+  the committed picture (provider `curated`, the manifest's hash) is approved. The server's asset
+  worker never runs the import's requests.
+- **Boundary decisions to review**: the provider receives the entity's canonical description as
+  the DM knows it (ADR 0035 §6), quoted as a description but not filtered for injected
+  instructions (the output is an image the DM must approve); a 400 answer is read (at most 64 KiB,
+  never logged) only to tell a refusal; an unsettled or unpriced call keeps its reservation; the
+  curated import approves as the DM by the owner's decision (Q6), only pictures whose provenance
+  it checked.
+- **Deterministic evidence**: `packages/domain/src/assets/purposes.test.ts` (lineage, refusals,
+  payloads, versions, undo hold, player view), `purposes.property.test.ts` (random figures and
+  battle maps, presentation per perspective after every step),
+  `packages/domain/src/visual/figures.test.ts` (figure/battle map per kind and perspective, never
+  a candidate, DM-only to the DM, never chosen as the image),
+  `apps/server/src/http/image-purposes.test.ts` (over HTTP; `UNAVAILABLE` leaves the fallback),
+  `apps/server/src/images/openrouter-generator.test.ts` (request shape, answers, failure mapping,
+  the key on every path), `openrouter-spending.test.ts` (reservation, settlement, release),
+  `in-play.test.ts` (through the asset worker: the stored canonical reference reaches the
+  provider), `reencode.test.ts`, `curated-import.test.ts` (idempotence, provenance, retries),
+  `ledger.integration.test.ts` (ceiling, settle, append-only, the lock, races, operator CLI),
+  `images.integration.test.ts`, `apps/server/src/assets/worker.test.ts`,
+  `apps/server/src/platform/config/config.test.ts`.
+- **Changed reviewed boundary (Gate 05, rows 150–160)**: asset event payloads gained an optional
+  `purpose`, absent for an image, so every type kept its version; the lineage the revision before
+  wrote (`fixtures/history/5da1b05-asset-lineage.json`) loads, replays, re-decides, shows the same
+  pictures and continues (`packages/combat/src/asset-history.test.ts`,
+  `apps/server/src/images/images.integration.test.ts`). Presentation chooses its image among
+  `image` assets only. No authorization rule, mutation path or undo rule changed.

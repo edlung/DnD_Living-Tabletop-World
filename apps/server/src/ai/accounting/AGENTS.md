@@ -26,7 +26,7 @@ by `ai/admitted-provider.ts`. Stop scope follows the approved B2 delta
 | `request-journal.ts`                                          | Request start, outcome+trace finalization, per-request recovery                                |
 | `recovery.ts`                                                 | `recover-incomplete` sweep (operator CLI only)                                                 |
 | `operator-store.ts`                                           | Accounts, approvals, revisions, runs, clearances, reconciliation, batches                      |
-| `operator-args.ts`, `operator-commands.ts`, `operator-cli.ts` | `pnpm ai:operator` parsing, dispatch, entry                                                    |
+| `operator-args.ts`, `operator-commands.ts`, `operator-cli.ts` | `pnpm ai:operator` parsing, dispatch, entry; image ceiling (`image-budget-set`, ADR 0035)      |
 | `postgres-budget-store.ts`                                    | `PostgresBudgetStore` (with the catalog's identity resolver), startup status, `approvalExists` |
 
 - PostgreSQL is the only spending authority. Never add an in-memory or environment cap to production.
@@ -46,5 +46,8 @@ by `ai/admitted-provider.ts`. Stop scope follows the approved B2 delta
   clamps to it and migration 0006 guards the commit. A caller deadline can only shorten it.
 - Operator commands need recorded owner authorization; the CLI authorizes nothing by existing. Run
   them only against the intended database; tests use throwaway databases (`src/testing/accounting.ts`).
+- The image ceiling is a separate ledger (`src/images/ledger.ts`, migration 0011): `image-budget-set`
+  appends a revision, and `status` adds its counters (amounts in microdollars) for the operator
+  only; startup logs keep `accountingStatus` counts only.
 - Integration tests: `*.integration.test.ts` here (two-connection competition, REPEATABLE READ
   negative control, timeouts, stops, recovery races).

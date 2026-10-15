@@ -31,7 +31,11 @@ describe('loadConfig', () => {
         routes: null,
       },
       questsFile: DEFAULT_QUESTS_FILE,
-      assets: { workerIntervalMs: 5_000, generationTimeoutMs: 60_000 },
+      assets: {
+        workerIntervalMs: 5_000,
+        generationTimeoutMs: 60_000,
+        generator: { kind: 'placeholder' },
+      },
     });
     expect(DEFAULT_QUESTS_FILE).toMatch(/fixtures\/ravenford\/quests\.json$/);
     expect(loadConfig({ LTW_QUESTS_FILE: '/tmp/quests.json' }).questsFile).toBe('/tmp/quests.json');
@@ -43,11 +47,62 @@ describe('loadConfig', () => {
   it('reads the asset worker settings, where 0 disables the worker', () => {
     expect(
       loadConfig({ LTW_ASSET_WORKER_INTERVAL_MS: '0', LTW_ASSET_TIMEOUT_MS: '5000' }).assets,
-    ).toEqual({ workerIntervalMs: 0, generationTimeoutMs: 5_000 });
+    ).toEqual({
+      workerIntervalMs: 0,
+      generationTimeoutMs: 5_000,
+      generator: { kind: 'placeholder' },
+    });
     expect(() => loadConfig({ LTW_ASSET_WORKER_INTERVAL_MS: '10' })).toThrow(
       /LTW_ASSET_WORKER_INTERVAL_MS/,
     );
     expect(() => loadConfig({ LTW_ASSET_TIMEOUT_MS: '10' })).toThrow(/LTW_ASSET_TIMEOUT_MS/);
+  });
+
+  it('runs the OpenRouter image generator only with its key, and an allowed model', () => {
+    const key = 'sk-or-v1-TEST-ONLY-config-key';
+    const remote = loadConfig({
+      LTW_IMAGE_GENERATOR: 'openrouter-openai',
+      OPENROUTER_API_KEY: key,
+    });
+    expect(remote.assets.generationTimeoutMs).toBe(180_000);
+    const { generator } = remote.assets;
+    if (generator.kind !== 'openrouter-openai') throw new Error('expected the remote generator');
+    expect(generator.model).toBe('openai/gpt-5.4-image-2');
+    expect(generator.apiKey.reveal()).toBe(key);
+    expect(JSON.stringify(remote)).not.toContain(key);
+    expect(inspect(remote, { depth: 10 })).not.toContain(key);
+    expect(
+      loadConfig({
+        LTW_IMAGE_GENERATOR: 'openrouter-openai',
+        OPENROUTER_API_KEY: key,
+        LTW_IMAGE_MODEL: 'openai/gpt-5-image-mini',
+        LTW_ASSET_TIMEOUT_MS: '90000',
+      }).assets,
+    ).toMatchObject({
+      generationTimeoutMs: 90_000,
+      generator: { model: 'openai/gpt-5-image-mini' },
+    });
+
+    // A key alone selects nothing; the placeholder stays the default.
+    expect(loadConfig({ OPENROUTER_API_KEY: key }).assets.generator).toEqual({
+      kind: 'placeholder',
+    });
+    expect(() => loadConfig({ LTW_IMAGE_GENERATOR: 'openrouter-openai' })).toThrow(
+      /OPENROUTER_API_KEY: required/,
+    );
+    for (const env of [
+      { LTW_IMAGE_GENERATOR: 'dall-e' },
+      { LTW_IMAGE_MODEL: 'openai/dall-e-3-SECRETMODEL' },
+    ]) {
+      try {
+        loadConfig({ ...env, OPENROUTER_API_KEY: key });
+        throw new Error('accepted');
+      } catch (error) {
+        expect(error).toBeInstanceOf(ConfigError);
+        expect(String(error)).not.toContain(key);
+        expect(String(error)).not.toContain('SECRETMODEL');
+      }
+    }
   });
 
   it('silences logs by default in test', () => {

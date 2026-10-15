@@ -76,7 +76,12 @@ export type OperatorCommand =
     }
   | { kind: 'recover-incomplete' }
   | { kind: 'stops'; accountId: string }
-  | { kind: 'status' };
+  | { kind: 'status' }
+  /**
+   * The image ceiling (docs/adr/0035-images.md §2): a new revision, zero to stop image calls.
+   * Its own ledger, apart from the text-provider accounts and approvals above.
+   */
+  | { kind: 'image-budget-set'; ceilingMicros: bigint; authorization: Authorization };
 
 export class OperatorUsageError extends Error {
   constructor(message: string) {
@@ -124,6 +129,7 @@ const FLAGS: Record<OperatorCommand['kind'], readonly string[]> = {
   'recover-incomplete': [],
   stops: ['account'],
   status: [],
+  'image-budget-set': ['micros', ...AUTH],
 };
 const SWITCHES = new Set(['enable', 'disable']);
 const REPEATABLE = new Set(['campaign', 'allocation']);
@@ -311,6 +317,12 @@ export function parseOperatorArgs(argv: readonly string[]): OperatorCommand {
     }
     case 'stops':
       return { kind: command, accountId: flags.one('account') };
+    case 'image-budget-set':
+      return {
+        kind: command,
+        ceilingMicros: nonNegativeMicros(flags.one('micros')),
+        authorization: authorization(flags),
+      };
     case 'recover-incomplete':
     case 'status':
       return { kind: command };
