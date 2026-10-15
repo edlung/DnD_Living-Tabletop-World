@@ -1,6 +1,6 @@
 # Current delivery workflow
 
-Updated 2026-10-11. The owner's current AGENTS instructions take precedence over older process banners.
+Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
 ## Current owner policy — 2026-10-15 (supersedes all older assignments)
 
@@ -15,7 +15,21 @@ Updated 2026-10-11. The owner's current AGENTS instructions take precedence over
 - Everything below this section up to "Current continuation" and the older sections is **historical
   record** of the 2026-10-11/12 role-based process; preserve it, do not follow its role rules.
 
-## Current checkpoint
+## Current status — 2026-10-15
+
+- Authorized by the owner (`reviews/OWNER_DECISIONS_9_2026-10-15.json`): Stages 310, 320, 330, 340,
+  350, the Gate 06 red-team pass (355) and the non-human parts of 360; the session adopts each
+  stage's design without stopping; each stage on its own branch and PR, merged on green CI. Owner
+  play acceptance (290 onward) and all manual checks are deferred to the owner; no v0.1 tag before
+  the owner's human playtests.
+- Stage 300: merged (PR 3). Stage 310: implemented (parts A–C), one independent review of B/C with
+  all findings fixed (`e7507fd`); PR 4; report `reports/STAGE_310_COMPLETION.md`.
+- Stage 320: direction set by the owner's concepts; all art by GPT
+  (`reviews/OWNER_DECISIONS_10_2026-10-15.json`, ADR 0034, `docs/STAGE_320_DESIGN.md`).
+- Spending: paid runtime calls only within the stored operator ceilings (ADR 0032); in-play images
+  through OpenRouter within $5 (Stage 330); never read `.env.local`.
+
+## Current checkpoint (historical, 2026-10-11/12)
 
 - Source baseline: `bc6c116`, branch `stage-300-live-ai`, PR 3 (stacked on Stage 290, PR 2).
 - Committed 2026-10-11: `f7518a6` holds accepted A, B1 repair 4 and all review evidence (no source

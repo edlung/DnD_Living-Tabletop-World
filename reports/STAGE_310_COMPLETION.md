@@ -3,7 +3,8 @@
 - Date: 2026-10-15 (Europe/Oslo). Branch `stage-310-live-session`.
 - Status: **IMPLEMENTED (parts A, B and C); OWNER PLAY ACCEPTANCE PENDING.** The owner deferred
   play acceptance of this stage; per `AGENT_WORKFLOW.md` (Product Acceptance) the stage is complete
-  only after the owner plays its affected flows. **No independent review was run.**
+  only after the owner plays its affected flows. An independent adversarial review of parts B
+  and C (a fresh agent, read-only) found three defects; all are fixed in `e7507fd` (below).
 - Work order: `work-orders/OPUS_STAGE_310.md`. Contract: `docs/STAGE_310_DESIGN.md` (draft 2,
   adopted under the owner's delegation, `reviews/OWNER_DECISIONS_9_2026-10-15.json`). Decisions:
   `docs/adr/0033-live-session.md`. Owner decisions Q9 (2026-10-11): the DM may skip an absent
@@ -160,9 +161,11 @@ Parts B and C (this work):
 
 `GET …/live`, `GET …/presence` (part A); `POST …/dm/substitutions`, `GET …/dm/history`, the
 `dm/history` entry of the DM perspective's live inventory, `previewUndo`, and the
-`ltw_dm_substitutions` table (parts B and C). No reviewed projection, mutation path, undo rule or
-authorization rule changed; the client's screen-local authoring undo (alpha row 200–240) was
-replaced by the history list.
+`ltw_dm_substitutions` table (parts B and C). No reviewed projection, mutation path or
+authorization rule changed. One undo rule was corrected (`e7507fd`): undoing a command that created
+an entity and also edited its profile or status in the same command threw (pre-existing); such
+edits now restore nothing of their own, since removing the entity restores all of its facets. The
+client's screen-local authoring undo (alpha row 200–240) was replaced by the history list.
 
 ## Adversarial checks tried (all held)
 
@@ -183,9 +186,11 @@ one row. Presence never gates the controls (the DM skips while the player is con
 
 ## Limitations and residual risks
 
-- **Owner play acceptance pending** (deferred by the owner); **no independent review** of any part.
-  Hosted CI was not run on this branch; results above are local. `docs/PROJECT_WORKFLOW.md` was
-  not updated.
+- **Owner play acceptance pending** (deferred by the owner). Independent review: parts B and C
+  once (three findings: undo of create+edit commits broke the DM history and stream; the trailing
+  re-read missed signalled reads; older history pages flashed on new entries — all fixed with
+  regression tests in `e7507fd`); part A was not independently reviewed.
+  Hosted CI ran green on `6d3182f` (PR 4) and runs again on the fix commit before the merge.
 - **Part A signal ABA window (found while verifying B/C) — fixed by the session, corrected after
   review.** A view change undone within one 1 s comparison cycle never reaches the fingerprint, so
   a screen that read the state in between could keep it, whatever caused that read. The first fix
