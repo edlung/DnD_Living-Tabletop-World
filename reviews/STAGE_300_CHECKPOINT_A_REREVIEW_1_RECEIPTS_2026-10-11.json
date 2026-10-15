@@ -1,0 +1,130 @@
+{
+  "artifactManifestSha256": "d4f97d288afcc69b0d3d9e62a710f0dfb7f90d3fb13dfd659cd1c998d8e8b442",
+  "repair1": {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "xhigh",
+    "identityMismatch": false,
+    "elapsedSeconds": 776.1,
+    "sessionId": "7f6a4deb-68d2-4865-a195-f68c65553d07",
+    "isError": false,
+    "usage": {
+      "input_tokens": 84,
+      "cache_creation_input_tokens": 104759,
+      "cache_read_input_tokens": 16497989,
+      "output_tokens": 60988,
+      "output_tokens_details": {
+        "thinking_tokens": 23473
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 104759,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1495,
+          "cache_read_input_tokens": 432402,
+          "cache_creation_input_tokens": 1448,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1448
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "3ebf943c2acbd525b2286516dfd2ed0e8811efc3ad2f0aa73bc2db4441d17d21",
+    "promptSha256": "6bf568e19e77b2a57e7fea9c8b07847660d12acc73967dbfe924981f81376ae2"
+  },
+  "opus": {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "xhigh",
+    "identityMismatch": false,
+    "elapsedSeconds": 684.3,
+    "sessionId": "cb1e609d-92ad-4a1f-a287-1275eaa28aae",
+    "isError": false,
+    "usage": {
+      "input_tokens": 98,
+      "cache_creation_input_tokens": 217359,
+      "cache_read_input_tokens": 5657678,
+      "output_tokens": 65565,
+      "output_tokens_details": {
+        "thinking_tokens": 39812
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 217359,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 6541,
+          "cache_read_input_tokens": 220006,
+          "cache_creation_input_tokens": 2464,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2464
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "4ab38bd6d177f6433a9066bd2aff18e3fdd351d8465190778a2719e0a464f88d",
+    "promptSha256": "4b9c412e3efe7172b297e47d2806a3e6412d40632c3586938d7054bee2eabf0d"
+  },
+  "sol": {
+    "agent": "/root/sol_checkpoint_a_clean",
+    "model": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "identityEvidence": "owner explicit-native-config exception for checkpoint A Sol review",
+    "responseAttestationAvailable": false,
+    "verdict": "FAIL"
+  },
+  "opusVerdict": "PASS",
+  "checkpointVerdict": "FAIL",
+  "interruptedBoundedReview": {
+    "reason": "handoff exposed historical peer verdict; both sessions stopped/replaced with fresh clean assessments before acceptance",
+    "opus": {
+      "exitCode": 143,
+      "requestedModel": "claude-opus-5-5",
+      "responseMessageModels": ["claude-opus-5-5"],
+      "effort": "xhigh",
+      "identityMismatch": false,
+      "elapsedSeconds": 87.5,
+      "sessionId": null,
+      "isError": null,
+      "usage": null,
+      "provider": "native Anthropic firstParty claude.ai subscription",
+      "billingChanged": false,
+      "rawSha256": "f9cb11b73449b668284bdd020f89d200a586e6eb0a948255e19bf4dba9353949",
+      "promptSha256": "cba390cfba305c467d46598c7374f9b40b3b15955d8e017bf7b18cfc5bdc1902"
+    },
+    "solAgent": "/root/sol_checkpoint_a",
+    "acceptedAsEvidence": false
+  },
+  "cleanReviewPacketSha256": "4b9c412e3efe7172b297e47d2806a3e6412d40632c3586938d7054bee2eabf0d"
+}

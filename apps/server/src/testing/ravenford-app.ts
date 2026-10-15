@@ -2,8 +2,12 @@ import {
   CapabilityRouter,
   InMemoryAiTraceStore,
   createLocalProvider,
-  type AiProvider,
+  type AttemptContext,
+  type ProviderKind,
+  type ProviderRequest,
+  type ProviderResponse,
   type RelevanceDeps,
+  type RoutedProvider,
 } from '@ltw/ai';
 import { createCombatEngine } from '@ltw/combat';
 import {
@@ -26,10 +30,12 @@ import { InMemoryAssetContentStore, type AssetContentStore } from '../assets/con
 import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import { buildApp } from '../http/app.ts';
+import type { AccountingDiagnostics } from '../http/routes/ai-routes.ts';
 import { loadDevPersonaAuthenticator } from '../http/auth.ts';
 import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
+import { memoryDiagnose } from './memory-journal.ts';
 
 /** Test support (excluded from builds): the HTTP app over a seeded Ravenford. */
 export const TOKENS = {
@@ -88,17 +94,45 @@ export async function plantNpcBoundary(engine: WorldEngine): Promise<void> {
 }
 
 /**
+ * A test-only routable provider made from a fake (docs/adr/0032-live-ai.md, B1). It has the
+ * router's brand and no server identity: `composeRouter` (runtime and evaluation) refuses it, so it
+ * reaches only the routers test support builds directly.
+ */
+export function testProvider(
+  id: string,
+  kind: ProviderKind,
+  generate: (request: ProviderRequest, attempt: AttemptContext) => Promise<ProviderResponse>,
+): RoutedProvider {
+  return { id, kind, generate } as unknown as RoutedProvider;
+}
+
+/** A provider that records each request and answers as `inner` does. */
+export function recording(inner: RoutedProvider = createLocalProvider()): RoutedProvider & {
+  readonly requests: ProviderRequest[];
+} {
+  const requests: ProviderRequest[] = [];
+  const provider = testProvider(inner.id, inner.kind, (request, attempt) => {
+    requests.push(request);
+    return inner.generate(request, attempt);
+  });
+  return Object.assign(provider, { requests });
+}
+
+/**
  * A deterministic AI gateway for DM intents, NPC replies, and relevance: the
  * given providers (default: local only; relevance then has none, as without
- * a key) and in-memory traces. Relevance waits at most 2 s by default.
+ * a key), in-memory traces with their lifecycle-only accounting diagnostic, and a 60 s
+ * whole-request deadline. Relevance waits at most 2 s by default.
  */
-export function testAiGateway(...providers: AiProvider[]): RelevanceDeps & {
+export function testAiGateway(...providers: RoutedProvider[]): RelevanceDeps & {
   readonly traces: InMemoryAiTraceStore;
+  readonly diagnostics: AccountingDiagnostics;
 } {
   const ids = new SequentialIds(0xa1);
   const clock = new SteppingClock();
   let ms = 0;
   const routed = providers.length > 0 ? providers : [createLocalProvider()];
+  const traces = new InMemoryAiTraceStore();
   return {
     router: new CapabilityRouter({
       reasoning: routed,
@@ -107,9 +141,11 @@ export function testAiGateway(...providers: AiProvider[]): RelevanceDeps & {
       'fast-context': providers,
     }),
     relevanceBudgetMs: 2_000,
-    traces: new InMemoryAiTraceStore(),
+    traces,
+    diagnostics: { diagnose: (campaignId, traceId) => memoryDiagnose(traces, campaignId, traceId) },
     ids,
     clock: { now: () => clock.now(), nowMs: () => (ms += 5) },
+    requestTimeoutMs: 60_000,
   };
 }
 

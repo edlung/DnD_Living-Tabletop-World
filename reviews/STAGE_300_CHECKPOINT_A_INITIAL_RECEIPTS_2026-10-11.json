@@ -1,0 +1,114 @@
+{
+  "stage": "300 checkpoint A",
+  "artifactManifestSha256": "89b3acc588129a283826055ee818c226c4b6e3c8e4e277910a1ab7abf2cb8c4c",
+  "implementation": {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "medium",
+    "identityMismatch": false,
+    "elapsedSeconds": 1819.5,
+    "sessionId": "7f6a4deb-68d2-4865-a195-f68c65553d07",
+    "isError": false,
+    "usage": {
+      "input_tokens": 192,
+      "cache_creation_input_tokens": 323396,
+      "cache_read_input_tokens": 20774111,
+      "output_tokens": 184824,
+      "output_tokens_details": {
+        "thinking_tokens": 56499
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 323396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1426,
+          "cache_read_input_tokens": 328698,
+          "cache_creation_input_tokens": 393,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 393
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "c43f2f6b68ff25e913de90d46006de1d6473d35a33bd9371a1561d7ac9067514",
+    "promptSha256": "252568a7ca02e6713686e810c6e75f15fdf043e63bf1993c7e79750c4c15ce94"
+  },
+  "opusAcceptance": {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "xhigh",
+    "identityMismatch": false,
+    "elapsedSeconds": 740.7,
+    "sessionId": "0e30aedb-6a94-4b9d-acea-06a727885728",
+    "isError": false,
+    "usage": {
+      "input_tokens": 106,
+      "cache_creation_input_tokens": 219963,
+      "cache_read_input_tokens": 6664174,
+      "output_tokens": 68943,
+      "output_tokens_details": {
+        "thinking_tokens": 48008
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 219963,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4683,
+          "cache_read_input_tokens": 218186,
+          "cache_creation_input_tokens": 5969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "6baedd75ebd47ba8dd0afb78bc2401a12e0850e10d05dff056bc81145e0014f8",
+    "promptSha256": "eff3a0d0bc9e1229beea9cc0f371df0ab4868980078e8f47892948dacfd452eb"
+  },
+  "solAcceptance": {
+    "role": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "review": "Stage 300 checkpoint A initial acceptance",
+    "userAuthorization": "Да, для этого Sol-ревью достаточно явной конфигурации",
+    "date": "2026-10-11",
+    "agent": "/root/sol_checkpoint_a",
+    "scope": "this review only; native explicit configuration sufficient, actual response attestation unavailable"
+  },
+  "solVerdict": "FAIL",
+  "opusVerdict": "FAIL",
+  "findings": "Sol P1 absolute DB deadline, P2 stored deadline drift, P1 unresolved batch hold; Opus Medium higher repeated settlement evidence discarded",
+  "sourceChangesDuringReviews": false,
+  "administrativeNote": "Sol report added after frozen snapshot; manifest entries unchanged. No peer report was read by either reviewer."
+}

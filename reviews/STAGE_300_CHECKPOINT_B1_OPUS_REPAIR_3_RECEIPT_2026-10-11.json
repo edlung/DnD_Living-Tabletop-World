@@ -1,0 +1,50 @@
+{
+  "exitCode": 0,
+  "requestedModel": "claude-opus-5-5",
+  "responseMessageModels": [
+    "claude-opus-5-5"
+  ],
+  "effort": "xhigh",
+  "identityMismatch": false,
+  "elapsedSeconds": 250.8,
+  "sessionId": "aca33efa-d0ca-4415-94f2-24f59bb57e2c",
+  "isError": false,
+  "usage": {
+    "input_tokens": 32,
+    "cache_creation_input_tokens": 55803,
+    "cache_read_input_tokens": 4978159,
+    "output_tokens": 23438,
+    "output_tokens_details": {
+      "thinking_tokens": 10786
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55803,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4250,
+        "cache_read_input_tokens": 334675,
+        "cache_creation_input_tokens": 852,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 852
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "provider": "native Anthropic firstParty claude.ai subscription",
+  "billingChanged": false,
+  "rawSha256": "52b15ab20af0b8abc5bfc04621826d765a92431aeb7d1a0093c1b3c27912445e",
+  "promptSha256": "c486948bc2cab5ce107b661b3d20373fa7b3eac559f831bd1b065ac0f8737323"
+}

@@ -38,7 +38,9 @@ import {
  * `GenerateChronicle` records both if the campaign has not moved meanwhile.
  * A perspective reads its chapters; the DM reads memory suggestions; anyone
  * may open a flashback of a memory it may recall. The generic command route
- * refuses `GenerateChronicle`.
+ * refuses `GenerateChronicle`. A rendering without a durable request start is
+ * the template with no trace ID (docs/adr/0032-live-ai.md, B2), committed by the
+ * same validated command; the AI never commits or bypasses that validation.
  */
 export interface ChronicleRouteDependencies extends RouteDependencies {
   readonly ai: IntentDeps;

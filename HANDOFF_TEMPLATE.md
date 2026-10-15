@@ -1,21 +1,23 @@
-# Astra Gate Handoff Request
+# Checkpoint Handoff
 
 - Gate: <# / name>
-- Review type: INITIAL / RETEST
+- Type: INITIAL / RETEST
 - Completed stage: <stage>
 - Revision/commit: <sha or immutable build id>
 - Prior report / remediation / retest number: <required for RETEST; remediation may be N/A with reason for coverage expansion after PASS>
-- Required output path: <exact initial report or numbered retest path from CHECKPOINTS.md>
-- Requested Astra effort: MAX
-- Status: <AWAITING_ASTRA_REVIEW for INITIAL; AWAITING_ASTRA_RETEST for RETEST>
+- Report path: <formal gates use CHECKPOINTS.md>
+- Session model: <model that did the work>
+- Approved design: <design SHA256 and the owner's approval record>
+- Dirty-file hashes / package identity: <exact manifest; preserve existing dirty work>
+- Status: <AWAITING_OWNER_DISPOSITION>
 
-## Review Objective
-<one paragraph describing the boundary Astra must try to break>
+## Objective
+<one paragraph describing the boundary this checkpoint must hold>
 
 ## Authoritative Documents
 <List only documents relevant to this gate. Always include ARCHITECTURE_INVARIANTS.md.>
 
-## Surfaces Available to Reviewer
+## Surfaces to Attack
 - API/routes:
 - CLI/test harness:
 - UI if relevant:
@@ -30,9 +32,9 @@
 <List credentials/fixtures/personas such as PLAYER, PARTY, MIRA, PUBLIC, DM. Never include production secrets.>
 
 ## Canonical Secret or Invariant Under Test
-<Describe what must remain protected/correct without revealing it to an unauthorized runtime persona. Astra as reviewer may know the expected canonical fixture.>
+<Describe what must remain protected/correct without revealing it to an unauthorized runtime persona. Each reviewer may know the expected canonical fixture.>
 
-## Validation Already Run by Opus
+## Validation Run
 | Command | Result |
 |---|---|
 | ... | PASS |
@@ -43,5 +45,9 @@
 ## Coverage Ledger
 Use `docs/GATE_COVERAGE.md`. List each due surface with reproducible access, plus future surfaces with their introduction stage and next review gate. Required but untestable surfaces block PASS. Do not label future or unavailable surfaces as tested.
 
+## Adversarial Pass
+<attacks tried against this boundary and their results; findings fixed or listed with disposition>
+
 ## Required Output
-Write the exact required output path above using `ASTRA_REVIEW.md`: `reviews/ASTRA_GATE_<NN>_REPORT.md` for INITIAL or `reviews/ASTRA_GATE_<NN>_RETEST_<K>.md` for RETEST. Gate #5 uses `05`, including the review activity called Stage 190. Preserve previous reports. Do not modify source implementation. End with PASS or FAIL and STOP.
+The report named above, ending with PASS or FAIL and the honest limits of what was verified. STOP for the
+owner's disposition. An optional independent review (`AGENT_WORKFLOW.md`) is recorded separately.

@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-15",
+  "source": "Owner message in a Claude Code session and AskUserQuestion answer",
+  "ownerRequest": "нужно убрать оркестрацию из проекта, все будет делать выбранная в сессии модель",
+  "ownerAnswer": "Убрать роли и модели (Recommended)",
+  "decision": "One session, one model: no orchestrator, no separate writer/reviewer role assignments, no model or effort pinning, no reviewer-cli, no cross-model gates. The session verifies its own work (all checks plus an adversarial pass) and stops at checkpoints for the owner's disposition. Independent review is optional. Owner authorization per stage, owner product decisions, spending restrictions and owner play acceptance remain.",
+  "supersedes": "The 2026-10-11 role policy (Sol orchestration, Astra/Fable architecture, Opus implementation, Opus xhigh + max acceptance). Historical evidence is preserved unchanged.",
+  "changedFiles": [
+    "AGENTS.md",
+    "AGENT_WORKFLOW.md",
+    "EFFORT_MATRIX.md",
+    "CHECKPOINTS.md",
+    "HANDOFF_TEMPLATE.md",
+    "handoffs/AGENTS.md",
+    "work-orders/AGENTS.md",
+    "docs/PROJECT_WORKFLOW.md",
+    "docs/AI_CONTEXT_MAP.md"
+  ],
+  "notChanged": "Product architecture (the runtime AI Orchestrator module in ARCHITECTURE.md), work-order model/effort banners (now historical suggestions), historical reviews, handoffs and receipts"
+}

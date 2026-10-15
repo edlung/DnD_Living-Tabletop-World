@@ -6,9 +6,9 @@ import type { ChroniclePrompt } from './chronicle-prompt.ts';
 import type { RelevancePrompt } from './relevance-prompt.ts';
 
 /**
- * The provider port (docs/adr/0017-ai-gateway.md §2). Providers are
- * replaceable behind capabilities (invariant 21); adapters with I/O live in
- * the server. A provider only answers: it receives data and returns data.
+ * The provider port (docs/adr/0017-ai-gateway.md §2; docs/adr/0032-live-ai.md, checkpoint B1).
+ * Providers are replaceable behind capabilities (invariant 21); adapters with I/O live in the
+ * server. A provider only answers: it receives data and returns a classified response.
  */
 
 /** The structured output a request expects, as a named JSON Schema. */
@@ -53,33 +53,180 @@ export interface ChronicleTask {
   readonly repair: RepairNote | null;
 }
 
-export interface ProviderRequest {
+/** What an attempt asks of a provider: the only content an adapter may serialize. */
+export interface ProviderPayload {
   readonly capability: AiCapability;
   readonly system: string;
   readonly prompt: string;
   readonly output: StructuredOutputSpec;
   readonly task: IntentTask | DialogueTask | RelevanceTask | ChronicleTask;
-  /** Aborted when the caller stops waiting (a time budget, ADR 0021); adapters stop then. */
-  readonly signal?: AbortSignal;
 }
 
-export interface ProviderResponse {
-  /** The structured output, parsed but not yet validated. */
-  readonly output: unknown;
-  readonly model: string;
-  readonly usage: { readonly inputTokens: number; readonly outputTokens: number } | null;
+/**
+ * Trusted accounting identity of one attempt (docs/STAGE_300_REMEDIATION_DESIGN.md §2; ADR 0032,
+ * B2). The use case allocates the request (its ID is also the parent trace ID); the fallback policy
+ * allocates each attempt. Application metadata only: an adapter never serializes it, it never enters
+ * prompt text or a cache prefix, and it never comes from a player's request body.
+ */
+export interface RequestAccounting {
+  readonly requestId: string;
+  readonly campaignId: string;
+  readonly capability: AiCapability;
+  /** The play session captured when the request began; null means the request may only run locally. */
+  readonly sessionId: string | null;
+  readonly attemptId: string;
+  readonly attemptKind: 'initial' | 'repair' | 'fallback';
 }
 
-export interface AiProvider {
+/** What an attempt asks, with its accounting identity. Cancellation travels in `AttemptContext`. */
+export interface ProviderRequest extends ProviderPayload {
+  readonly accounting: RequestAccounting;
+}
+
+/** Per-attempt controls from the fallback policy. */
+export interface AttemptContext {
+  /** The caller's whole-request signal; aborted, no new transport starts. */
+  readonly signal: AbortSignal;
+  /**
+   * The whole request's monotonic deadline (`performance.now()` milliseconds). Admission is bounded
+   * by it; a provider that needs a bound refuses a non-finite one.
+   */
+  readonly deadlineAtMs: number;
+  /**
+   * Called synchronously immediately before transport starts; never for a non-dispatched attempt.
+   * Only its first call during the attempt counts; later calls are ignored.
+   */
+  readonly onStart: () => void;
+}
+
+export interface TokenUsage {
+  readonly inputTokens: number;
+  readonly outputTokens: number;
+}
+
+/**
+ * Safe, opaque usage facts for later verification against a pricing catalog. Only allowlisted
+ * fields with nonnegative safe-integer values are kept; anything else is named (never valued) in
+ * `unrecognized`, which makes the response unverified billing (fail closed).
+ */
+export interface BillingFacts {
+  readonly dimensions: Readonly<Record<string, number>>;
+  readonly informational: Readonly<Record<string, string>>;
+  readonly unrecognized: readonly string[];
+}
+
+/**
+ * What the admission wrapper knew about an admitted attempt's cost when it answered (B2): the
+ * pricing version and reservation, and the priced charge of validated usage, or null when the
+ * usage is unknown and the full reservation stays held. Integer microdollars as decimal strings.
+ */
+export interface AttemptCharge {
+  readonly pricingVersion: string;
+  readonly reservedMicros: string;
+  readonly costMicros: string | null;
+}
+
+/** Response metadata kept whatever the output's fate; never provider prose or error bodies. */
+export interface ResponseFacts {
+  /** The returned model identifier, when it is a safe identifier. */
+  readonly model: string | null;
+  readonly usage: TokenUsage | null;
+  readonly billing: BillingFacts | null;
+  /** The provider's request/message ID, when it is a safe identifier. */
+  readonly providerRequestId: string | null;
+  /** Set only by the server's admission wrapper. */
+  readonly charge?: AttemptCharge;
+}
+
+/** Structured output missing or unusable: invalid output (one repair), not provider failure. */
+export const MALFORMED_CODES = ['MISSING_TOOL', 'TRUNCATED', 'INVALID_JSON'] as const;
+export type MalformedCode = (typeof MALFORMED_CODES)[number];
+
+/** A response whose model or billing cannot be trusted: output discarded unseen. */
+export const SUSPECT_CODES = ['UNEXPECTED_MODEL', 'UNVERIFIED_BILLING'] as const;
+export type SuspectCode = (typeof SUSPECT_CODES)[number];
+
+/** An attempt refused before dispatch by admission: zero usage, no transport. */
+export const DENIAL_CODES = [
+  'BUDGET_DENIED',
+  'ADMISSION_DISABLED',
+  'ADMISSION_UNAVAILABLE',
+] as const;
+export type DenialCode = (typeof DENIAL_CODES)[number];
+
+export type ProviderResponse =
+  | (ResponseFacts & { readonly kind: 'output'; readonly output: unknown })
+  | (ResponseFacts & { readonly kind: 'refusal' })
+  | (ResponseFacts & { readonly kind: 'malformed'; readonly code: MalformedCode })
+  | (ResponseFacts & { readonly kind: 'suspect'; readonly code: SuspectCode })
+  | { readonly kind: 'denied'; readonly code: DenialCode };
+
+/** A structured output with no metadata (the local provider and test scripts). */
+export const outputResponse = (output: unknown, model: string): ProviderResponse => ({
+  kind: 'output',
+  output,
+  model,
+  usage: null,
+  billing: null,
+  providerRequestId: null,
+});
+
+declare const ROUTED: unique symbol;
+
+/**
+ * `local`: the zero-cost deterministic provider from `createLocalProvider()`. `remote`: a metered
+ * provider, routable only as an admitted wrapper (server composition checks both by identity).
+ */
+export type ProviderKind = 'local' | 'remote';
+
+/**
+ * A provider the router accepts. The brand cannot be written outside a cast: the local factory,
+ * the server's admission wrapper (B2) and explicit test fixtures are the only sources, and server
+ * composition verifies identity at runtime, so a forged brand never reaches runtime or evaluation.
+ */
+export interface RoutedProvider {
   /** Stable name for routing and traces, for example `anthropic` or `local`. */
   readonly id: string;
-  generate(request: ProviderRequest): Promise<ProviderResponse>;
+  readonly kind: ProviderKind;
+  generate(request: ProviderRequest, attempt: AttemptContext): Promise<ProviderResponse>;
+  readonly [ROUTED]: ProviderKind;
 }
 
-export const PROVIDER_ERROR_CODES = ['UNAVAILABLE', 'TIMEOUT', 'BAD_RESPONSE'] as const;
+export type LocalProvider = RoutedProvider & { readonly kind: 'local' };
+export type AdmittedProvider = RoutedProvider & { readonly kind: 'remote' };
+
+/**
+ * Package-internal (not exported from the package entry): attaches the brand type for the local
+ * factory and test fixtures. It confers no server identity.
+ */
+export const branded = <K extends ProviderKind>(provider: {
+  readonly id: string;
+  readonly kind: K;
+  readonly generate: RoutedProvider['generate'];
+}): RoutedProvider & { readonly kind: K } =>
+  provider as unknown as RoutedProvider & { readonly kind: K };
+
+/**
+ * Transport failures. `TRANSPORT_NOT_STARTED` is emitted only strictly before transport is invoked
+ * (the one proof a reservation may be released); every other code after the start is uncertain.
+ * `TIMEOUT` is the attempt's own bound; `CALLER_CANCELLED` the caller's whole-request signal.
+ */
+export const PROVIDER_ERROR_CODES = [
+  'TRANSPORT_NOT_STARTED',
+  'UNAVAILABLE',
+  'TIMEOUT',
+  'BAD_RESPONSE',
+  'CALLER_CANCELLED',
+] as const;
 export type ProviderErrorCode = (typeof PROVIDER_ERROR_CODES)[number];
 
-/** A provider call that produced no output. Never carries secrets or request data. */
+/**
+ * The code each genuine `ProviderError` was constructed with, by object identity: a Proxy, a copy
+ * or an object made with its prototype is never found here (B1 repair 4).
+ */
+const constructedCodes = new WeakMap<object, unknown>();
+
+/** A provider call that produced no response. Never carries secrets or request data. */
 export class ProviderError extends Error {
   readonly code: ProviderErrorCode;
 
@@ -87,9 +234,28 @@ export class ProviderError extends Error {
     super(message, options);
     this.name = 'ProviderError';
     this.code = code;
+    constructedCodes.set(this, code);
   }
 }
 
-/** Any failure, as the code a trace records; unknown errors count as unavailability. */
-export const failureCode = (error: unknown): ProviderErrorCode =>
-  error instanceof ProviderError ? error.code : 'UNAVAILABLE';
+const isProviderErrorCode = (value: unknown): value is ProviderErrorCode =>
+  (PROVIDER_ERROR_CODES as readonly unknown[]).includes(value);
+
+/**
+ * Any failure, as the fixed code a trace records (docs/adr/0032-live-ai.md, B1 repair 4). Never
+ * throws, and reads `code` at most once. Only a genuine `ProviderError` whose code is allowlisted and
+ * unchanged since construction keeps it; anything else (another error, a look-alike, a Proxy, an
+ * unknown, changed or unreadable code) is `UNAVAILABLE`, an uncertain failure, so a
+ * `TRANSPORT_NOT_STARTED` release proof is never inferred from an unverifiable rejection.
+ */
+export function failureCode(error: unknown): ProviderErrorCode {
+  try {
+    if (typeof error !== 'object' || error === null) return 'UNAVAILABLE';
+    const constructed = constructedCodes.get(error);
+    if (constructed === undefined) return 'UNAVAILABLE';
+    const code: unknown = (error as { readonly code?: unknown }).code;
+    return code === constructed && isProviderErrorCode(code) ? code : 'UNAVAILABLE';
+  } catch {
+    return 'UNAVAILABLE';
+  }
+}

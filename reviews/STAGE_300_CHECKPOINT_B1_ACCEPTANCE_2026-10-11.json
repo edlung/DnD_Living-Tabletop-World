@@ -1,0 +1,41 @@
+{
+  "checkpoint": "Stage 300 remediation B1",
+  "date": "2026-10-11",
+  "status": "ACCEPTED",
+  "policy": "Owner decision 2026-10-11 (reviews/STAGE_300_OWNER_DECISIONS_3_2026-10-11.json): acceptance by two independent fresh Opus 5.5 sessions, xhigh and max; Opus max replaces Sol",
+  "artifact": {
+    "reviewedManifestSha256": "188e7f16d6f6ae7082bf82b05a5769b343a2e81dd55e65265e6b6f42a3b82729",
+    "commit": "f7518a6",
+    "note": "All 113 source/test/config entries of the reviewed manifest are byte-identical in commit f7518a6 and in the Opus max snapshot"
+  },
+  "reviews": {
+    "opusXhigh": {
+      "verdict": "PASS",
+      "report": "reviews/STAGE_300_CHECKPOINT_B1_OPUS_REVIEW_REPAIR_4_2026-10-11.md",
+      "receipt": "reviews/STAGE_300_CHECKPOINT_B1_OPUS_REPAIR_4_RECEIPT_2026-10-11.json",
+      "responseModels": ["claude-opus-5-5"]
+    },
+    "opusMax": {
+      "verdict": "PASS",
+      "report": "reviews/STAGE_300_CHECKPOINT_B1_OPUS_MAX_REVIEW_2026-10-11.md",
+      "receipt": "reviews/STAGE_300_CHECKPOINT_B1_OPUS_MAX_RECEIPT_2026-10-11.json",
+      "evidence": "reviews/evidence/stage-300-b1-opus-max-2026-10-11/",
+      "responseModels": ["claude-opus-5-5"],
+      "findings": "0 Critical, 0 High, 7 Low, 1 informational"
+    }
+  },
+  "superseded": "The Sol named-model gate (PENDING_SOL_ACTUAL_MODEL_ATTESTATION) is closed by the owner's reviewer replacement, not by attestation; historical Sol reviews and receipts are preserved unchanged",
+  "carriedIntoB2": [
+    "Raw adapter start signal versus design section 1 release-proof boundary (raw-provider.ts:96-101): architects confirm the reading or align code before B2 relies on it",
+    "Make fallback onStart fire at most once and ignore it after its attempt settles (fallback.ts:283-289)",
+    "Back the raw-adapter import guard with a lint rule or resolver-based check (gateway.test.ts:127-164)",
+    "ADR 0032: missing-tool delta and evaluation counting clause; mark stale decisions 1 and 3 and consequences as superseded; record INTENT_OUTPUT.description change in GATE_COVERAGE",
+    "Use redirect: 'error' in raw-provider fetch before any dispatch",
+    "Pin provider identity and base URL in trusted code (openai-compatible-provider.ts), per the B2 stop-scope delta",
+    "DeepSeek classification edge cases (non-string refusal, choices[0] only, insufficient_system_resource); DeepSeek is unused at runtime per owner decision 3",
+    "Startup log reports the resolved route of every capability (main.ts:56-65)",
+    "Persist the fallback outcome code in the B2 caller-outcome record",
+    "Define usage/model allowlists for Sonnet 5.5 in the B2 catalog so live responses are not all suspect"
+  ],
+  "paidRuntimeCalls": "None; B2 is required before any dispatch"
+}

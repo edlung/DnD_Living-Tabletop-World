@@ -1,4 +1,3 @@
-import { createLocalProvider, type AiProvider, type ProviderRequest } from '@ltw/ai';
 import type {
   KnownEntitiesResponse,
   KnowledgeListResponse,
@@ -23,6 +22,7 @@ import {
   plantNpcBoundary,
   post,
   ravenfordApp,
+  recording,
   seededEngine,
   testAiGateway,
   withoutRequestId,
@@ -208,18 +208,7 @@ describe('NPC isolation in Russian (Gate 04)', () => {
     { kind: 'insight', topicId: 'old-trade-road' },
     { kind: 'show', knowledgeId: 'party-symbol-evidence' },
   ];
-  const spy = (): AiProvider & { readonly requests: ProviderRequest[] } => {
-    const inner = createLocalProvider();
-    const requests: ProviderRequest[] = [];
-    return {
-      id: 'local',
-      requests,
-      generate: (request) => {
-        requests.push(request);
-        return inner.generate(request);
-      },
-    };
-  };
+  const spy = () => recording();
 
   for (const npcId of Object.keys(PLACES) as Npc[]) {
     it(

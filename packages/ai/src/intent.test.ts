@@ -3,10 +3,16 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { interpretDmIntent, type IntentDeps } from './intent.ts';
 import { createLocalProvider } from './local-provider.ts';
-import { ProviderError, type AiProvider } from './providers.ts';
+import { ProviderError, type RoutedProvider } from './providers.ts';
 import { CapabilityRouter } from './router.ts';
 import { InMemoryAiTraceStore } from './traces.ts';
-import { intentTaskOf, scripted, steppingMs } from './testing/providers.ts';
+import {
+  intentTaskOf,
+  proposal,
+  scripted,
+  scriptedLocal,
+  steppingMs,
+} from './testing/providers.ts';
 import {
   ASHEN_CIRCLE_ID,
   CAMPAIGN,
@@ -24,7 +30,10 @@ import {
  * is committable.
  */
 const TOMAS = 'Add a fisherman near the North Gate who saw the guild caravan leave before dawn.';
-const VALID = { summary: 'An hour passes.', commands: [{ type: 'AdvanceWorldTime', by: 3_600 }] };
+const VALID = proposal({
+  summary: 'An hour passes.',
+  commands: [{ type: 'AdvanceWorldTime', by: 3_600 }],
+});
 
 let world: SeededWorld;
 let traces: InMemoryAiTraceStore;
@@ -33,13 +42,14 @@ beforeEach(async () => {
   traces = new InMemoryAiTraceStore();
 });
 
-function deps(...providers: AiProvider[]): IntentDeps {
+function deps(...providers: RoutedProvider[]): IntentDeps {
   const clock = new SteppingClock();
   return {
     router: new CapabilityRouter({ reasoning: providers }),
     traces,
     ids: new SequentialIds(),
     clock: { now: () => clock.now(), nowMs: steppingMs() },
+    requestTimeoutMs: 60_000,
   };
 }
 
@@ -60,7 +70,7 @@ describe('interpretDmIntent', () => {
     ]);
     expect(await world.version()).toBe(before);
 
-    const trace = await traces.get(CAMPAIGN, response.traceId);
+    const trace = await traces.get(CAMPAIGN, response.traceId ?? '');
     expect(trace).toMatchObject({
       campaignId: CAMPAIGN,
       actorId: DM.actorId,
@@ -105,9 +115,13 @@ describe('interpretDmIntent', () => {
     expect(spy.requests).toHaveLength(0);
   });
 
-  it('sends providers only the public directory, identical on fallback and repair', async () => {
-    const failing = scripted('remote', new ProviderError('TIMEOUT', 'slow'));
-    const backup = scripted('backup', { summary: 'bad', commands: [] }, VALID);
+  it('sends providers only the public directory, identical on repair and fallback', async () => {
+    const failing = scripted(
+      'remote',
+      proposal({ summary: 'bad', commands: [] }),
+      new ProviderError('TIMEOUT', 'slow'),
+    );
+    const backup = scriptedLocal(VALID);
     const outcome = await ask(deps(failing, backup));
     if (!outcome.ok) throw new Error(outcome.reason);
 
@@ -133,21 +147,22 @@ describe('interpretDmIntent', () => {
       });
       for (const marker of FORBIDDEN_MARKERS['PUBLIC'] ?? []) expect(sent).not.toContain(marker);
     }
-    expect(backup.requests[1]?.prompt).toContain('<previous_output_was_invalid>');
+    expect(failing.requests[1]?.prompt).toContain('<previous_output_was_invalid>');
+    expect(backup.requests[0]?.prompt).not.toContain('<previous_output_was_invalid>');
 
-    const trace = await traces.get(CAMPAIGN, outcome.response.traceId);
+    const trace = await traces.get(CAMPAIGN, outcome.response.traceId ?? '');
     expect(trace?.attempts.map((a) => [a.provider, a.kind, a.outcome])).toEqual([
-      ['remote', 'initial', 'error'],
-      ['backup', 'fallback', 'invalid'],
-      ['backup', 'repair', 'valid'],
+      ['remote', 'initial', 'invalid'],
+      ['remote', 'repair', 'error'],
+      ['local', 'fallback', 'valid'],
     ]);
   });
 
   it('reports invalid output without a proposal, and traces it', async () => {
-    const secret = {
+    const secret = proposal({
       summary: 'Reveal the cult.',
       commands: [{ type: 'ChangeEntityStatus', entityId: ASHEN_CIRCLE_ID, status: 'destroyed' }],
-    };
+    });
     const before = await world.version();
     const outcome = await ask(
       deps(scripted('remote', secret, secret)),
@@ -162,13 +177,13 @@ describe('interpretDmIntent', () => {
     });
     expect(outcome.response.issues.join('\n')).toContain(`unknown entity "${ASHEN_CIRCLE_ID}"`);
     expect(await world.version()).toBe(before);
-    const trace = await traces.get(CAMPAIGN, outcome.response.traceId);
+    const trace = await traces.get(CAMPAIGN, outcome.response.traceId ?? '');
     expect(trace).toMatchObject({ status: 'INVALID_OUTPUT', proposal: null, canonicalEvents: [] });
   });
 
   it('reports AI_UNAVAILABLE when every provider fails, and traces it', async () => {
     const outcome = await ask(
-      deps(scripted('a', new Error('down')), scripted('b', new ProviderError('TIMEOUT', 'slow'))),
+      deps(scripted('a', new Error('down')), scriptedLocal(new ProviderError('TIMEOUT', 'slow'))),
     );
     if (!outcome.ok) throw new Error(outcome.reason);
 
@@ -179,13 +194,13 @@ describe('interpretDmIntent', () => {
       issues: [],
       committable: false,
     });
-    expect((await traces.get(CAMPAIGN, outcome.response.traceId))?.attempts).toHaveLength(2);
+    expect((await traces.get(CAMPAIGN, outcome.response.traceId ?? ''))?.attempts).toHaveLength(2);
   });
 
   it('keeps traces per campaign', async () => {
     const outcome = await ask(deps(createLocalProvider()));
     if (!outcome.ok) throw new Error(outcome.reason);
 
-    expect(await traces.get('another-campaign', outcome.response.traceId)).toBeNull();
+    expect(await traces.get('another-campaign', outcome.response.traceId ?? '')).toBeNull();
   });
 });

@@ -8,15 +8,19 @@ import {
 import { dialogueSourceIds, type Actor, type NpcDialogueContext } from '@ltw/domain';
 
 import { dialoguePrompt, dialogueRequest } from './dialogue-prompt.ts';
-import { runWithFallback, type OutputCheck } from './fallback.ts';
+import type { OutputCheck } from './fallback.ts';
 import type { IntentDeps } from './intent.ts';
+import { runAiRequest } from './request.ts';
 
 /**
  * An NPC's reply (docs/adr/0020-npc-intelligence.md §3). The caller has
  * already run the intent's command and built the NPC's minimal context from
  * the state after it; this phrases the reply from that context alone, under
  * the owner's fallback policy, and traces it. The reply is never canonical,
- * and this function has no path to the World Engine.
+ * and this function has no path to the World Engine. Its whole-request deadline starts here, after
+ * the canonical command (docs/adr/0032-live-ai.md, B2): the World Engine's time is not charged to
+ * the AI. Without a durable start the reply is AI_UNAVAILABLE with no trace ID; the command's
+ * result stands either way.
  */
 export type DialogueDeps = IntentDeps;
 
@@ -33,6 +37,11 @@ export interface DialogueInput {
   readonly line: string | null;
   /** The campaign's play language (ADR 0031); English when absent. */
   readonly language?: Language;
+  /**
+   * The play session captured by the route from its authorized snapshot before the command ran;
+   * null means local only. Trusted accounting metadata: never prompt content, never re-read.
+   */
+  readonly accountingSessionId: string | null;
 }
 
 const CAPABILITY = 'npc-dialogue';
@@ -57,37 +66,56 @@ export async function replyAsNpc(deps: DialogueDeps, input: DialogueInput): Prom
     line: input.line,
     ...(input.language ? { language: input.language } : {}),
   });
-  const result = await runWithFallback({
-    providers: deps.router.providersFor(CAPABILITY),
-    build: (repair) => dialogueRequest(prompt, repair),
-    validate: validateReply,
-    nowMs: deps.clock.nowMs,
-  });
-
-  const reply: NpcReply = {
-    traceId: deps.ids.next(),
-    status: result.status === 'VALID' ? 'REPLIED' : result.status,
-    text: result.status === 'VALID' ? result.value : null,
-    canonical: false,
-  };
-  const trace: AiTraceView = {
-    traceId: reply.traceId,
-    campaignId: input.campaignId,
-    actorId: input.actor.actorId,
-    purpose: 'npc-dialogue',
-    capability: CAPABILITY,
-    scope: `NPC:${input.context.npc.entityId}`,
-    sourceIds: dialogueSourceIds(input.context),
-    input: input.line ?? '',
-    attempts: result.attempts,
-    status: reply.status,
-    intent: input.intent,
-    commandId: input.commandId,
-    reply: reply.text,
-    issues: result.status === 'INVALID_OUTPUT' ? result.issues : [],
-    canonicalEvents: [],
-    createdAt: deps.clock.now(),
-  };
-  await deps.traces.append(trace);
-  return reply;
+  const scope = `NPC:${input.context.npc.entityId}`;
+  const sourceIds = dialogueSourceIds(input.context);
+  return runAiRequest(
+    { traces: deps.traces, ids: deps.ids, nowMs: deps.clock.nowMs },
+    {
+      timeoutMs: deps.requestTimeoutMs,
+      start: {
+        campaignId: input.campaignId,
+        actorId: input.actor.actorId,
+        purpose: 'npc-dialogue',
+        capability: CAPABILITY,
+        scope,
+        sourceIds,
+        sessionId: input.accountingSessionId,
+      },
+      providers: deps.router.providersFor(CAPABILITY),
+      fallback: { build: (repair) => dialogueRequest(prompt, repair), validate: validateReply },
+      noStart: (): NpcReply => ({
+        traceId: null,
+        status: 'AI_UNAVAILABLE',
+        text: null,
+        canonical: false,
+      }),
+      freeze: (result, traceId) => {
+        const reply: NpcReply = {
+          traceId,
+          status: result.status === 'VALID' ? 'REPLIED' : result.status,
+          text: result.status === 'VALID' ? result.value : null,
+          canonical: false,
+        };
+        const trace: AiTraceView = {
+          traceId,
+          campaignId: input.campaignId,
+          actorId: input.actor.actorId,
+          purpose: 'npc-dialogue',
+          capability: CAPABILITY,
+          scope,
+          sourceIds,
+          input: input.line ?? '',
+          attempts: result.attempts,
+          status: reply.status,
+          intent: input.intent,
+          commandId: input.commandId,
+          reply: reply.text,
+          issues: result.status === 'INVALID_OUTPUT' ? result.issues : [],
+          canonicalEvents: [],
+          createdAt: deps.clock.now(),
+        };
+        return { response: reply, trace };
+      },
+    },
+  );
 }

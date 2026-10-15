@@ -40,7 +40,12 @@ test('a written chapter opens for the player with cited entries and a flashback'
   await dm.getByText('Write a chapter (DM)', { exact: true }).click();
   await dm.getByLabel('Told from', { exact: true }).selectOption('CHARACTER:elowen-starwhisper');
   await dm.getByRole('button', { name: 'Write chapter' }).click();
-  await expect(dm.getByRole('status').filter({ hasText: 'Chapter written.' })).toBeVisible();
+  // The browser-test server has no narrator (ADR 0032, C): the chapter is the plain record, said so.
+  await expect(
+    dm.getByRole('status').filter({
+      hasText: 'Chapter written as the plain record: the narrator was unavailable.',
+    }),
+  ).toBeVisible();
 
   const player = await browser.newPage();
   const traffic = collectApiBodies(player);

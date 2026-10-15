@@ -11,10 +11,10 @@ import { describe, expect, it } from 'vitest';
 
 import { replyAsNpc } from './dialogue.ts';
 import { createLocalProvider } from './local-provider.ts';
-import type { AiProvider, ProviderRequest } from './providers.ts';
+import { outputResponse, type ProviderRequest, type RoutedProvider } from './providers.ts';
 import { CapabilityRouter } from './router.ts';
 import { InMemoryAiTraceStore } from './traces.ts';
-import { steppingMs } from './testing/providers.ts';
+import { payloadOf, steppingMs, testBrand } from './testing/providers.ts';
 import { CAMPAIGN, DM, NPC_BOUNDARY, PLAYER, seedRavenford } from './testing/ravenford.ts';
 
 /**
@@ -63,16 +63,13 @@ const INTENTS: readonly DialogueIntent[] = [
 ];
 
 /** A provider that records each request and answers validly. */
-function recorder(): AiProvider & { readonly requests: ProviderRequest[] } {
+function recorder(): RoutedProvider & { readonly requests: ProviderRequest[] } {
   const requests: ProviderRequest[] = [];
-  return {
-    id: 'recorder',
-    requests,
-    generate: (request) => {
-      requests.push(request);
-      return Promise.resolve({ output: { reply: 'Hm.' }, model: 'recorder', usage: null });
-    },
-  };
+  const provider = testBrand('recorder', 'remote', (request) => {
+    requests.push(request);
+    return Promise.resolve(outputResponse({ reply: 'Hm.' }, 'recorder'));
+  });
+  return Object.assign(provider, { requests });
 }
 
 async function run(npcId: Npc, scenario: Scenario) {
@@ -114,11 +111,12 @@ async function run(npcId: Npc, scenario: Scenario) {
   const traces = new InMemoryAiTraceStore();
   const ids = new SequentialIds();
   const clock = new SteppingClock();
-  const deps = (providers: AiProvider[]) => ({
+  const deps = (providers: RoutedProvider[]) => ({
     router: new CapabilityRouter({ 'npc-dialogue': providers }),
     traces,
     ids,
     clock: { now: () => clock.now(), nowMs: steppingMs() },
+    requestTimeoutMs: 60_000,
   });
   const replies: { text: string; shown: number }[] = [];
   const sources: string[] = [];
@@ -146,6 +144,7 @@ async function run(npcId: Npc, scenario: Scenario) {
       for (const providers of [[remote], [createLocalProvider()]]) {
         const answer = await replyAsNpc(deps(providers), {
           campaignId: CAMPAIGN,
+          accountingSessionId: 'session-test',
           actor: PLAYER,
           context,
           intent,
@@ -177,7 +176,7 @@ describe('what an NPC’s provider is sent', () => {
           if (request.task.kind !== 'npc-dialogue') throw new Error('not a dialogue request');
           const { prompt } = request.task;
           // The player's own words are theirs to say; everything else must be clean.
-          const sent = JSON.stringify(request).replaceAll(
+          const sent = JSON.stringify(payloadOf(request)).replaceAll(
             JSON.stringify(prompt.line ?? '').slice(1, -1),
             '',
           );

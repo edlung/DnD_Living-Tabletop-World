@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-11",
+  "ownerDecision": "Пока не перезапускать; сохранить подготовленный способ",
+  "state": "PREPARED_NOT_APPLIED_RESTART_DEFERRED_BY_OWNER",
+  "candidateProven": false,
+  "solB1Gate": "PENDING_ACTUAL_MODEL_ATTESTATION",
+  "scripts": {
+    "extract_metadata.py": {
+      "path": "reviews/evidence/sol-desktop-attestation-2026-10-11/extract_metadata.py",
+      "sha256": "f78214fc41cf485e12c2999a5e4d864b0458ffa8e4c844c7a29ce0a894cec63e"
+    },
+    "temporary_http_config.py": {
+      "path": "reviews/evidence/sol-desktop-attestation-2026-10-11/temporary_http_config.py",
+      "sha256": "22f42839678a1d130c58bb519f960c96403d41140288d69bb6fdc3a8f57ab5a9"
+    },
+    "launch_desktop.sh": {
+      "path": "reviews/evidence/sol-desktop-attestation-2026-10-11/launch_desktop.sh",
+      "sha256": "87a939e05ba5695af22cebcd0ad4857f982d8d0909c078ea3f3f20600fcc2342"
+    }
+  },
+  "resumeProcedure": [
+    "Obtain owner authorization for a controlled Desktop restart.",
+    "Copy preserved scripts to /tmp/ltw-stage300-sol-desktop-attestation and verify the recorded hashes.",
+    "Recheck current artifact identity, native ChatGPT authentication, configuration and installed Desktop support before applying the candidate.",
+    "Preview temporary transport configuration, then apply only during the authorized diagnostic window.",
+    "Launch Desktop with the prepared GUI launcher after closing the app; run an independent bounded Sol/xhigh review and extract server metadata joined to the exact review turn.",
+    "Restore configuration byte-for-byte and relaunch Desktop normally. If raw server metadata is absent or unexpected, keep the named-model gate pending."
+  ],
+  "codexCliInvoked": false,
+  "apiBillingEnabled": false,
+  "desktopRestarted": false,
+  "globalConfigModified": false
+}

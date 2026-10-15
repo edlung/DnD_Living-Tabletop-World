@@ -108,7 +108,9 @@ test('a Russian DM moves time and weather, and writes a chapter that reads in Ru
   await page.getByText('Написать главу (мастер)', { exact: true }).click();
   await expect(page.getByLabel('Название')).toHaveValue('Глава I — Тени на Торговой дороге');
   await page.getByRole('button', { name: 'Написать главу', exact: true }).click();
-  await expect(page.getByText('Глава написана.')).toBeVisible();
+  await expect(
+    page.getByText('Глава записана простым перечнем событий: рассказчик был недоступен.'),
+  ).toBeVisible();
   await expect(page.getByRole('heading', { name: /Глава I/ })).toBeVisible();
   await expectNoEnglish(page, 'the written chapter');
 });

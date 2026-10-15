@@ -10,7 +10,7 @@ import type { AuthoringDependencies } from '../authoring/service.ts';
 import type { Logger } from '../platform/logging/logger.ts';
 import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
-import { registerAiRoutes } from './routes/ai-routes.ts';
+import { registerAiRoutes, type AiRouteDependencies } from './routes/ai-routes.ts';
 import { registerAssetRoutes } from './routes/asset-routes.ts';
 import { registerChronicleRoutes } from './routes/chronicle-routes.ts';
 import { registerCharacterRoutes } from './routes/character-routes.ts';
@@ -36,7 +36,7 @@ export interface AppDependencies {
   readonly authenticator: Authenticator;
   readonly logger: Logger;
   /** The AI gateway (docs/adr/0017-ai-gateway.md): DM intents, NPC replies, relevance; no write path. */
-  readonly ai: RelevanceDeps;
+  readonly ai: RelevanceDeps & AiRouteDependencies['ai'];
   /** Authoring proposals (docs/adr/0018-ai-authoring.md); commits go through the World Engine. */
   readonly authoring: AuthoringDependencies;
   /** Generated asset contents (docs/adr/0022-asset-identity.md); the worker runs outside requests. */

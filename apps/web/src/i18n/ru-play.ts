@@ -86,6 +86,7 @@ registerRussian({
   'no reply was produced': 'ответ не получен',
   'The conversation could not be performed. Please try again.':
     'Беседу не удалось провести. Попробуйте ещё раз.',
+  '{npc} is replying…': 'Отвечает: {npc}…',
 
   // Chronicle
   Chronicle: 'Хроника',
@@ -103,6 +104,11 @@ registerRussian({
   'Told from': 'С чьей стороны',
   'Chapter I — Shadows on the Trade Road': 'Глава I — Тени на Торговой дороге',
   'Chapter written.': 'Глава написана.',
+  'Chapter written as the plain record: the narrator was unavailable.':
+    'Глава записана простым перечнем событий: рассказчик был недоступен.',
+  'Chapter written as the plain record: the narrator’s text did not pass the chronicle’s checks.':
+    'Глава записана простым перечнем событий: текст рассказчика не прошёл проверку хроники.',
+  'Writing the chapter…': 'Пишем главу…',
   'The chronicle could not be written from the current events.':
     'Хронику не удалось написать по текущим событиям.',
   'There is nothing to tell for that view yet.': 'Для этого вида пока нечего рассказывать.',
@@ -203,6 +209,8 @@ registerRussian({
     'Предложение изменилось с тех пор, как вы его открыли. Загружена последняя версия; проверьте её снова.',
   'The assistant could not turn that into a proposal. Try describing it differently.':
     'Помощнику не удалось превратить это в предложение. Попробуйте описать иначе.',
+  'The assistant is unavailable right now, so nothing was proposed. Try again later.':
+    'Помощник сейчас недоступен, поэтому ничего не предложено. Попробуйте позже.',
   'The proposal could not be stored.': 'Предложение не удалось сохранить.',
   'Added to the world.': 'Добавлено в мир.',
   'Undone. The world no longer holds this.': 'Отменено. Мира это больше не касается.',

@@ -1,0 +1,61 @@
+{
+  "astra": {
+    "agent": "/root/astra_b2_stop_design1",
+    "requestedModel": "gpt-6-astra",
+    "effort": "xhigh",
+    "review": "bounded independent architecture re-review",
+    "identityEvidence": "Explicit native configuration under owner exception",
+    "verdict": "APPROVE",
+    "artifactSha256": "6bba003055bfd53ac4e069d01d5bf6e3a5a6e272fddb41a2f8305b55e153b485",
+    "hashVerifiedBeforeAfter": true
+  },
+  "fable": {
+    "exitCode": 0,
+    "requestedModel": "claude-fable-5-1",
+    "responseMessageModels": ["claude-fable-5-1"],
+    "effort": "xhigh",
+    "identityMismatch": false,
+    "elapsedSeconds": 104.1,
+    "sessionId": "54ff90e8-823c-4135-9a82-d8ea986f806d",
+    "isError": false,
+    "usage": {
+      "input_tokens": 34,
+      "cache_creation_input_tokens": 14886,
+      "cache_read_input_tokens": 232941,
+      "output_tokens": 8080,
+      "output_tokens_details": {
+        "thinking_tokens": 6454
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14886,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 32,
+          "output_tokens": 7944,
+          "cache_read_input_tokens": 121367,
+          "cache_creation_input_tokens": 5093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "1ae9d25ee35f714acf11b2361319742a9ace6edd72c43c1d4c905eaf7506d54b",
+    "promptSha256": "edb5a8e8a4743c4c44ed24673eb9df4d579af0b3ac8cd32fa5898ebcd0cbfcfc"
+  },
+  "externalArtifactHashBeforeAfter": true
+}

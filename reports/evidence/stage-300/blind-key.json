@@ -1,0 +1,20 @@
+{
+  "1": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "2": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5",
+  "3": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "4": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5",
+  "5": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "6": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5",
+  "7": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "8": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5",
+  "9": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "10": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5",
+  "11": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "12": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5",
+  "13": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "14": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5",
+  "15": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "16": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5",
+  "17": "A=anthropic:claude-sonnet-5-5; B=deepseek:deepseek-flash",
+  "18": "A=deepseek:deepseek-flash; B=anthropic:claude-sonnet-5-5"
+}

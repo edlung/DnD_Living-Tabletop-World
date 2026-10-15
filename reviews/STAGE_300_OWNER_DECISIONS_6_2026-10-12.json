@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-12",
+  "source": "Owner answers in a Claude Code session (AskUserQuestion)",
+  "decisions": {
+    "operatorCeilings": {
+      "ownerAnswer": "Сбалансированно (Recommended)",
+      "ceilingsUsd": {
+        "stageGrantCumulative": 30,
+        "globalDailyBillingAccount": 15,
+        "campaignDailyRavenford": 15,
+        "perPlaySession": 10,
+        "perEvaluationRun": 10
+      },
+      "context": "Per-attempt reservation for claude-sonnet-5-5 is about $2.5 (1M-token input bound) plus max_tokens output; actual charges settle at real usage.",
+      "status": "To be recorded through the operator CLI after checkpoint C acceptance"
+    },
+    "relevanceRoute": {
+      "ownerAnswer": "Подбор без платной модели (Recommended)",
+      "decision": "Runtime relevance ranking uses the deterministic Context Engine path with no paid model. Sonnet 5.5 stays the only paid runtime model, for DM intents, NPC dialogue and Chronicle. Revisit after Sonnet latency is measured.",
+      "reason": "With a 2,000 ms relevance deadline, each post-dispatch timeout keeps a ~$2.5 hold until operator reconciliation; a few would lock the $10 session ceiling."
+    },
+    "nullUsageLabels": {
+      "ownerAnswer": "Да, пустое = обычный тариф (Recommended)",
+      "decision": "A null or absent `service_tier`, `inference_geo` or `speed` in a Sonnet 5.5 response is read as the default (standard tier, global inference, standard speed), as the published response schema allows null. Any explicit other value still fails closed. This clarifies reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md."
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "checkpoint": "Stage 300 remediation C (final remediation checkpoint)",
+  "date": "2026-10-12",
+  "status": "ACCEPTED",
+  "policy": "Two independent fresh Opus 5.5 acceptance reviews, xhigh and max (reviews/STAGE_300_OWNER_DECISIONS_3_2026-10-11.json)",
+  "artifact": {
+    "baseHead": "e288678",
+    "handoff": "handoffs/STAGE_300_CHECKPOINT_C_REQUEST.md (RETEST, repair 1)",
+    "handoffDirtyListingSha256": "7f4c4eb41ae365751990501fdab5464dd0006f07e403d194e476a46e003108dc",
+    "reviewerCliManifest": "ed2c39ed687db156947468f5c9ec9dad5817ae74a6cb56666929547d13a95edc",
+    "catalogVerification": "reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md"
+  },
+  "implementation": {
+    "session": "602eed75-9e1c-4c80-8cb4-563091f50796",
+    "model": "claude-opus-5-5",
+    "effort": "medium (C), xhigh (repair 1)",
+    "elapsedSeconds": { "c": 2623.6, "repair1": 1747.3 }
+  },
+  "reviews": {
+    "opusXhigh": {
+      "initial": "PASS with M1 (exact intent oracles), M2 (measured estimate), Low items",
+      "repair1": "PASS; all earlier findings fixed or handled per owner decisions 6; three new Low items",
+      "reports": [
+        "reviews/STAGE_300_CHECKPOINT_C_OPUS_XHIGH_REVIEW.md",
+        "reviews/STAGE_300_CHECKPOINT_C_OPUS_XHIGH_REVIEW_REPAIR_1_2026-10-12.md"
+      ]
+    },
+    "opusMax": {
+      "initial": "PASS with M1-M4, Low items",
+      "repair1": "PASS; all eight earlier findings fixed or handled per owner decisions 6; two new Low items",
+      "reports": [
+        "reviews/STAGE_300_CHECKPOINT_C_OPUS_MAX_REVIEW.md",
+        "reviews/STAGE_300_CHECKPOINT_C_OPUS_MAX_REVIEW_REPAIR_1_2026-10-12.md"
+      ]
+    },
+    "receipts": "reviews/STAGE_300_CHECKPOINT_C_REVIEW_RECEIPTS_2026-10-12.json",
+    "evidence": "reviews/evidence/stage-300-c-2026-10-12/"
+  },
+  "checks": "pnpm validate offline: 2348 unit, 182 integration, 49 E2E; 718 active files within limits",
+  "ownerDecisions": [
+    "reviews/STAGE_300_OWNER_DECISIONS_5_2026-10-12.json",
+    "reviews/STAGE_300_OWNER_DECISIONS_6_2026-10-12.json",
+    "reviews/STAGE_300_OWNER_DECISIONS_7_2026-10-12.json"
+  ],
+  "ownerApprovedDeferrals": {
+    "flakyBoundaryTest": "transaction-bounds.integration.test.ts:71-86 can see ADMISSION_UNAVAILABLE instead of CALLER_CANCELLED at the lock/deadline boundary (both deny; predates C)",
+    "lexicalOracles": "Negated or paraphrased guard accounts and paraphrased secrets are judged lexically; CreateEntity.placement extra keys unchecked",
+    "isolationReference": "The dialogue isolation check uses the system's context builder as its reference; builder correctness stays with the Gate 04 suites",
+    "relevanceByConfiguration": "No paid runtime relevance is enforced by route configuration and the startup report, not by code",
+    "estimateHeldRequests": "The measured estimate excludes requests with held attempts; holds are reported separately",
+    "carriedFromB2": "F4 unconfirmed-COMMIT hold"
+  },
+  "beforeFirstLiveRun": [
+    "Operator billing-account and approval records with the owner's ceilings (decisions 6)",
+    "Separate owner authorization of a live evaluation or live play run",
+    "Measure Sonnet 5.5 latency, truncation, real usage fields and response model on the first live run"
+  ],
+  "paidRuntimeCalls": "None"
+}

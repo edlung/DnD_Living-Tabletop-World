@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-12",
+  "createdBy": "Orchestration session (Claude Code, claude-opus-5-5) through `pnpm --filter @ltw/server run ai:operator`",
+  "authorization": [
+    "reviews/STAGE_300_OWNER_DECISIONS_2_2026-10-11.json#textProviderSpendingAuthorization ($30 Stage 300 grant)",
+    "reviews/STAGE_300_OWNER_DECISIONS_5_2026-10-12.json (operator records authorized)",
+    "reviews/STAGE_300_OWNER_DECISIONS_6_2026-10-12.json#operatorCeilings (ceilings)"
+  ],
+  "database": "Local development PostgreSQL 127.0.0.1:54329/ltw (the default; .env.local sets no DATABASE_URL). Records are database state, not repository content; a database reset removes them.",
+  "billingAccount": {
+    "accountId": "anthropic-owner",
+    "providerAccountRef": "anthropic-console:owner-primary-api-key (the owner's Anthropic Console account whose key is ANTHROPIC_API_KEY in .env.local; operator-attested, not provider-verified)",
+    "globalDailyCeilingMicros": 15000000,
+    "revision": 1,
+    "enabled": true
+  },
+  "approval": {
+    "approvalId": "stage-300-sonnet",
+    "accountId": "anthropic-owner",
+    "stage": "stage-300",
+    "grantReference": "reviews/STAGE_300_OWNER_DECISIONS_2_2026-10-11.json#textProviderSpendingAuthorization",
+    "ceilingsMicros": {
+      "stage": 30000000,
+      "campaignDaily": 15000000,
+      "playSession": 10000000,
+      "evaluationRun": 10000000
+    },
+    "campaignIds": ["ravenford"],
+    "revision": 1,
+    "enabled": true
+  },
+  "readBack": "Rows in ltw_ai_billing_accounts, ltw_ai_account_revisions, ltw_ai_approvals and ltw_ai_approval_revisions match the values above; operator status: 0 open holds, 0 stops, 0 incomplete requests.",
+  "stillInert": "No paid call is possible until .env.local selects remote routes (LTW_AI_ROUTES) and this approval (LTW_AI_APPROVAL_ID=stage-300-sonnet); neither is set. Any live run needs separate owner authorization.",
+  "paidRuntimeCalls": "None"
+}

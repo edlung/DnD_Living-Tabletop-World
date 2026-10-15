@@ -1,0 +1,41 @@
+Bounded re-review of Stage 300 checkpoint C, repair 1, in your same review session.
+
+The snapshot (your working directory) has been refreshed to the repaired artifact: the same base
+commit e288678 plus the updated uncommitted tree. The implementer describes the repair in the
+"Repair 1" section of `handoffs/STAGE_300_CHECKPOINT_C_REQUEST.md` (claims to verify); its dirty
+manifest lists 82 files with listing hash
+7f4c4eb41ae365751990501fdab5464dd0006f07e403d194e476a46e003108dc. Verify that listing.
+
+New owner decisions in `reviews/STAGE_300_OWNER_DECISIONS_6_2026-10-12.json` (requirements, not
+findings): runtime relevance uses the deterministic Context Engine path with no paid model, Sonnet
+5.5 serves DM intents, NPC dialogue and Chronicle; a null or absent `service_tier`,
+`inference_geo` or `speed` is read as the default while any explicit other value fails closed; the
+operator ceilings to be recorded after acceptance.
+
+Your earlier findings were addressed as follows (by the implementer's account):
+- M1 (intent oracle accepted extra commands; guard statement unchecked): every intent oracle is
+  now exact (count, types, targets, values, scope); the guard account must be the guard's own
+  testimony; the injection case accepts only the requested fact as world truth; new negative controls.
+- M2 (measured estimate excluded cached input; denied attempts sampled): the measured basis now
+  uses each request's known charge from accounting; undispatched or still-held requests excluded.
+- L1 (null/absent labels accepted): unchanged behavior, now an explicit owner decision (decisions 6)
+  with an explicit test.
+- L2 (nested request content unchecked): new `request-shape.ts` refuses, before any reservation, an
+  assistant turn/prefill, any server, extra or renamed tool, and any cache_control other than the
+  single 5-minute breakpoint on the system text.
+- L3 (no-network proof passed without setupFiles): the tests no longer import the setup file.
+- L4 (timing-sensitive 300 ms relevance test): now a 3 s budget asserting the dispatch happened.
+- Info: preflight database read errors now return DATABASE_UNAVAILABLE; refusal order documentation corrected.
+
+What to do:
+1. Verify each of your findings is fixed at the root (or handled per the owner decision), with
+   regressions or negative controls that would fail without the fix.
+2. Review the whole repair delta for new defects against the same requirements as before,
+   including the new `request-shape.ts`, the Gate 04 replay and provider-input source checks, the
+   Chronicle model-only scoring, the measured estimate from accounting charges, the route example
+   and startup report, and the evaluation preflight error handling.
+3. Rerun the full set of checks yourself (same commands, PostgreSQL and E2E-port notes as in your
+   first brief; run everything from the snapshot root, do not `cd` into subdirectories) and add
+   probes where useful.
+Same constraints as before. Final message: the full report in the same format, starting with
+exactly one line `**Verdict: PASS**` or `**Verdict: FAIL**`, covering the repaired artifact as a whole.

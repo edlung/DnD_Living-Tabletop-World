@@ -1,4 +1,3 @@
-import { createLocalProvider, type AiProvider, type ProviderRequest } from '@ltw/ai';
 import { InMemoryEventStore } from '@ltw/domain';
 import { scriptedDice } from '@ltw/rules';
 import { describe, expect, it } from 'vitest';
@@ -9,6 +8,7 @@ import {
   plantNpcBoundary,
   post,
   ravenfordApp,
+  recording,
   seededEngine,
   testAiGateway,
 } from '../testing/ravenford-app.ts';
@@ -42,18 +42,7 @@ const INTENTS = [
   { kind: 'show', knowledgeId: 'party-symbol-evidence' },
 ];
 
-function spy(): AiProvider & { readonly requests: ProviderRequest[] } {
-  const inner = createLocalProvider();
-  const requests: ProviderRequest[] = [];
-  return {
-    id: 'local',
-    requests,
-    generate: (request) => {
-      requests.push(request);
-      return inner.generate(request);
-    },
-  };
-}
+const spy = () => recording();
 
 describe('a player cannot make an NPC reveal what it was never given', () => {
   for (const npcId of Object.keys(PLACES) as Npc[]) {

@@ -1,0 +1,1 @@
+Aborted by orchestrator after 21 tool calls: launch defect, scratch outside cwd was denied in dontAsk mode (no --add-dir). Read only snapshot files; snapshot unchanged.

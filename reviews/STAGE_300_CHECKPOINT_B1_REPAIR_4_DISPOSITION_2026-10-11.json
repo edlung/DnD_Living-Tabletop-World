@@ -1,0 +1,88 @@
+{
+  "checkpoint": "Stage300 B1 repair4",
+  "head": "406904343bfe8542640035564d3e044561824125",
+  "reviewedManifestSha256": "188e7f16d6f6ae7082bf82b05a5769b343a2e81dd55e65265e6b6f42a3b82729",
+  "technicalVerdicts": {
+    "sol": "PASS",
+    "opus": "PASS"
+  },
+  "acceptanceStatus": "PENDING_SOL_ACTUAL_MODEL_ATTESTATION",
+  "sol": {
+    "transport": "Codex Desktop native subagent",
+    "configuredModel": "gpt-6.1-sol",
+    "configuredEffort": "xhigh",
+    "actualResponseModelAttestation": null,
+    "configurationExceptionGranted": false
+  },
+  "opus": {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "xhigh",
+    "identityMismatch": false,
+    "elapsedSeconds": 223.7,
+    "sessionId": "aca33efa-d0ca-4415-94f2-24f59bb57e2c",
+    "isError": false,
+    "usage": {
+      "input_tokens": 28,
+      "cache_creation_input_tokens": 44835,
+      "cache_read_input_tokens": 5026829,
+      "output_tokens": 22337,
+      "output_tokens_details": {
+        "thinking_tokens": 9155
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 44835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4045,
+          "cache_read_input_tokens": 379564,
+          "cache_creation_input_tokens": 798,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 798
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "e95b31368f10c0aa23ed3cf9a66ed76ee683af41e018c875ca4551d0ea5de0e4",
+    "promptSha256": "6bd89041a5e5bd4e80e610cd7578c3ce5b3f2bf6d05d2d559ef300d1b208b047"
+  },
+  "implementationSession": "15ae1625-61f1-4101-94e2-bfab23ace5cb",
+  "validation": {
+    "unit": 2042,
+    "integration": 138,
+    "e2e": 45,
+    "activeFiles": 652,
+    "overBudget": 0,
+    "validateLogSha256": "2dc8b9bda63c90112d3f570e9ca280100ab2be44bcf689e63facc3ee228a17b0",
+    "prePostValidateManifestSha256": "dc1aa2a8fe0ea3bd4db75f50137a6a995b99b73c4be16fec52a0e60a8a5b0f2a"
+  },
+  "dependentB2Started": false,
+  "codexCliUsedSinceOwnerExclusion": false,
+  "apiBillingEnabled": false,
+  "usageCreditsEnabled": false,
+  "reports": {
+    "reviews/STAGE_300_CHECKPOINT_B1_REPAIR_4_REVIEWED_MANIFEST_2026-10-11.json": "188e7f16d6f6ae7082bf82b05a5769b343a2e81dd55e65265e6b6f42a3b82729",
+    "reviews/STAGE_300_CHECKPOINT_B1_SOL_REVIEW_REPAIR_4_2026-10-11.md": "0c76f97f66a593063c1dd6cfb676d1466bd153b1566fc75233792d75c64035eb",
+    "reviews/STAGE_300_CHECKPOINT_B1_SOL_DESKTOP_REPAIR_4_RECEIPT_2026-10-11.json": "c8292aa51267b816ce3455746a73efb5409b11e21e0d003652ad387fe6eb05ee",
+    "reviews/STAGE_300_CHECKPOINT_B1_OPUS_REVIEW_REPAIR_4_2026-10-11.md": "14ff3549cd676c894357ca13008a132e9d796a9484ac04efbd143b6d4682ef22",
+    "reviews/STAGE_300_CHECKPOINT_B1_OPUS_REPAIR_4_RECEIPT_2026-10-11.json": "9b7c9693a09bb95d0010cce92f6ac71009554d28a62759576abce0432883f374",
+    "reviews/STAGE_300_CHECKPOINT_B1_IMPLEMENTATION_REPAIR_4_RECEIPT_2026-10-11.json": "6e78be85dfee58a93653dfeef4264e91bc83e9d3816ff0e72fcf5611c96ccadb",
+    "handoffs/STAGE_300_CHECKPOINT_B1_REPAIR_4_REQUEST_2026-10-11.md": "58d0faff1bd2cfbcab6308d92e373f2e8ff3bb8c438e3c95220f7e2e95a4c795"
+  }
+}

@@ -1,8 +1,10 @@
 import {
+  INTENT_DECLINE_REASONS,
   commandProposalSchema,
   type CommandProposal,
   type ProposableCommand,
 } from '@ltw/contracts';
+import { z } from 'zod';
 
 import type { OutputCheck } from './fallback.ts';
 
@@ -98,4 +100,38 @@ export function validateProposal(output: unknown, directory: ReadonlySet<string>
   return issues.length > 0
     ? { ok: false, issues: issues.slice(0, MAX_ISSUES) }
     : { ok: true, value: parsed.data };
+}
+
+/**
+ * The intent tool's envelope (docs/adr/0032-live-ai.md, B1): exactly `{kind: "proposal",
+ * proposal}` or `{kind: "decline", reason}`. The proposal branch reuses the canonical proposal
+ * schema unchanged; a mixed or partial envelope is invalid output.
+ */
+export const intentOutputSchema = z.discriminatedUnion('kind', [
+  z.object({ kind: z.literal('proposal'), proposal: commandProposalSchema }).strict(),
+  z.object({ kind: z.literal('decline'), reason: z.enum(INTENT_DECLINE_REASONS) }).strict(),
+]);
+
+/** The fixed issue of a validated decline: there is no proposal, by the provider's choice. */
+export const NO_PROPOSAL = 'NO_PROPOSAL';
+
+/**
+ * An intent provider's output: a validated decline is terminal (`decline`), a proposal passes
+ * `validateProposal` against the directory; anything else is invalid output for one repair.
+ */
+export function validateIntent(output: unknown, directory: ReadonlySet<string>): ProposalCheck {
+  const parsed = intentOutputSchema.safeParse(output);
+  if (!parsed.success) {
+    return {
+      ok: false,
+      issues: parsed.error.issues
+        .slice(0, MAX_ISSUES)
+        .map((issue) => `${issue.path.join('.') || '(output)'}: ${issue.message}`),
+    };
+  }
+  if (parsed.data.kind === 'decline') {
+    return { ok: false, issues: [NO_PROPOSAL], decline: parsed.data.reason };
+  }
+  const check = validateProposal(parsed.data.proposal, directory);
+  return check.ok ? check : { ok: false, issues: check.issues.map((issue) => `proposal.${issue}`) };
 }

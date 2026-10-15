@@ -1,12 +1,11 @@
-# Model & Effort Matrix — v1.3
+> Current owner policy (2026-10-15): one session, one model. `docs/PROJECT_WORKFLOW.md` controls new work.
+> The model selected in the session plans, implements, verifies and reports; no orchestrator, no
+> separate writer/reviewer roles, no model or effort pinning. Older assignments are historical.
 
-## Operating Rule
+# Model & Effort Matrix — v1.5 (historical)
 
-**Claude Opus 5.5 / HIGH is the stable default for the entire build.**
-
-Do not switch effort merely because a new ordinary stage begins. Switch Opus to **MAX only for the architecture-critical stages listed below or for Critical/High Astra remediation**.
-
-**GPT-6 Astra always runs checkpoint reviews and retests at MAX.**
+Since 2026-10-15 the model selected in the session does all the work and effort is the session's
+choice. The tables below record historical assignments and suggestions only; they pin nothing.
 
 | Stage | Model | Effort | Reason / Next |
 |---:|---|---|---|
@@ -42,30 +41,24 @@ Do not switch effort merely because a new ordinary stage begins. Switch Opus to 
 | 320 | Claude Sonnet 5.5 | HIGH | Visual language; presentation only |
 | 330 | Claude Sonnet 5.5 | HIGH | Real images behind the existing image port |
 | 340 | Claude Sonnet 5.5 | **MAX** | Production authentication boundary |
-| 350 | Claude Sonnet 5.5 | HIGH | Deployment → **Astra Gate 06 / MAX Full-Stack Red Team** |
-| 355 | GPT-6 Astra | **MAX** | Gate 06 review of the deployed build; no Opus implementation work order |
+| 350 | Claude Sonnet 5.5 | HIGH | Deployment → **fresh Opus Gate 06 / XHIGH Full-Stack Red Team** |
+| 355 | Claude Opus 5.5 (fresh review session) | **XHIGH** | Gate 06 review of the deployed build; review only |
 | 360 | Claude Sonnet 5.5 | HIGH | Human playtests and the v0.1 release |
 
 ## Model Exceptions
 
-Stages 200–250 ran under owner exceptions recorded in their reports (a GPT model for Stage 200, Claude Sonnet 5.5 for Stages 210–250). From Stage 290 on, the builder is Claude Sonnet 5.5 (owner decision, 2026-10-05, after its results in Stages 210–250); the owner changes this matrix before a stage starts when a different builder model or effort is wanted; a stage does not start under an unrecorded exception. Reviewer independence does not change: no model approves its own checkpoint.
+Stages 200–250 ran under owner exceptions recorded in their reports (a GPT model for Stage 200, Claude Sonnet 5.5 for Stages 210–250). From Stage 290 on, the builder is Claude Sonnet 5.5 (owner decision, 2026-10-05, after its results in Stages 210–250); the owner changes this matrix before a stage starts when a different builder model or effort is wanted; a stage does not start under an unrecorded exception. Reviewer independence is enforced by separate fresh sessions; no implementation session approves its own checkpoint.
 
 ## Remediation Rule
 
-Any Astra **FAIL** containing a **Critical or High** finding:
-1. switch/keep Claude Opus 5.5 at **MAX**;
-2. add a failing regression test first;
-3. fix the root architectural cause;
-4. write the remediation artifact;
-5. stop;
-6. switch to **GPT-6 Astra / MAX** for retest.
-
-For Medium/Low-only findings, follow the gate report and project-owner decision; do not silently bypass blocking invariants.
+A Critical/High finding or a violated invariant: add a failing regression first, fix the root contract,
+re-run affected and prior checks, record the finding-to-fix evidence and stop. Medium/Low findings follow
+the owner's disposition. Do not silently bypass blocking invariants.
 
 ## Context/Cache Practicality
 
-The workflow intentionally minimizes routine effort changes. Keep the same Claude Desktop project/session when practical and let repository documents carry durable state. Astra remains a separate independent review context by design.
+The workflow intentionally minimizes routine effort changes. Keep the same Claude Desktop project/session when practical and let repository documents carry durable state. Opus review remains a fresh session separate from implementation.
 
 ## Golden Rule
 
-**No model approves its own checkpoint.**
+**A stage is accepted by the owner, never by the session that built it. Run every check, attack your own change, report honestly, and stop at the checkpoint.**

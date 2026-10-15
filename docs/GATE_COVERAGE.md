@@ -97,3 +97,111 @@ and PostgreSQL restart), `packages/domain/src/language/*.test.ts` and
 `tests/e2e/language-ru.spec.ts` (the client in Russian, no English left on screen). Fixtures:
 `fixtures/ravenford-ru/`. No reviewed projection, mutation path, or authorization rule changed.
 
+Stage 300 introduction evidence (ADR 0032, baseline `bc6c116`): live Anthropic and DeepSeek adapters,
+per-capability routing and Russian evaluation were introduced. Provider request instructions changed
+in `apps/server/src/ai/anthropic-provider.ts` (tool-only suffix) and `packages/ai/src/prompt.ts`
+(non-game empty-list instruction). The reviewed scoped builders remain unchanged, but their full
+request envelopes and prompt deltas need Gate 06 coverage. Existing provider/fallback/isolation
+unit suites passed in the 2026-10-11 audit; this does not certify live model behavior.
+**Acceptance is pending:** `reviews/STAGE_300_AUDIT_DISPOSITION_2026-10-11.md` records budget,
+trace-accounting, evaluation and fallback defects. Missing usage on refusal/truncation and timed-out
+relevance attempts, absent per-campaign ceilings and prompt caching, and false-positive evaluation
+predicates require regression coverage before this stage can be accepted. Current review/model
+evidence limits are in `docs/PROJECT_WORKFLOW.md`. Future remediation must add its exact revision,
+tests and provider-envelope deltas here without rewriting the historical results.
+
+Stage 300 remediation checkpoint B1 (2026-10-11; design SHA256 `23e53e4d…aab2`; acceptance pending)
+changes provider-facing envelopes, all recorded for Gate 06; scoped context builders are unchanged:
+- **Intent wire schema** (`packages/ai/src/prompt.ts` `INTENT_OUTPUT`): one top-level object
+  `{kind, proposal, reason}`; `kind` is `proposal` (the unchanged canonical proposal schema) or
+  `decline` (`not_game` | `ambiguous` | `unsupported`); exact combinations are enforced in
+  `validateIntent`. Both adapters send it unchanged (`raw-adapters.test.ts`).
+- **Intent instructions**: the "empty commands list" line is replaced by the decline instruction
+  (never invent a command); the repair request ends "Return a corrected answer." instead of
+  "Return a corrected proposal.". The directory and request rendering are unchanged.
+- **Adapter bodies** are serialized once by `prepare` and sent byte for byte; the Anthropic
+  tool-only system suffix is unchanged; the DeepSeek `thinking` switch is now an allowlisted option.
+  No cache metadata is sent at B1 (cache framing is B2 and needs its own coverage entry).
+- **Outcomes**: missing tool, truncation and unreadable arguments are invalid output (one repair on
+  the same provider), no longer provider failure; refusal, suspect model/billing and admission
+  denial switch at most once to the local provider; a valid intent decline is terminal
+  `INVALID_OUTPUT`/`NO_PROPOSAL`; the local provider declines unreadable intents in one attempt.
+  Evidence: `packages/ai/src/{outcome-table,fallback-cancellation,intent-envelope}.test.ts`.
+- **B1 repair 1** changes no provider-facing envelope or prompt. Outcomes only: the local provider
+  is never repaired (one local call per request), and cancellation from a callback invokes nothing
+  further. Routers keep one frozen snapshot of their routes; usage allowlists match own names only.
+  Evidence: `packages/ai/src/router.test.ts`, `apps/server/src/ai/{composition,raw-adapter-hardening}.test.ts`.
+- **B1 repair 2** changes no provider-facing envelope or prompt. Outcomes only: cancellation during
+  validation discards a valid output or decline; an exception from the gateway's own callbacks never
+  becomes a provider attempt, repair or switch. Evidence: `packages/ai/src/fallback-callbacks.test.ts`,
+  `packages/ai/src/fallback-cancellation.test.ts`.
+- **B1 repair 3** changes no provider-facing envelope or prompt. An invoked provider resolving no
+  well-formed response is one uncertain `BAD_RESPONSE` attempt with no invented model, usage or
+  output. Evidence: `packages/ai/src/fallback-nonresponse.test.ts`.
+- **B1 repair 4** changes no provider-facing envelope or prompt. A rejection keeps its code only
+  as a genuine, unchanged, allowlisted `ProviderError`; anything else is one uncertain `UNAVAILABLE`
+  attempt. Evidence: `packages/ai/src/{providers,fallback-rejection}.test.ts`.
+
+- **B1 tool description (recorded at B2):** `INTENT_OUTPUT.description` changed from "Propose World
+  Engine commands that would carry out the game master’s request. They are only a proposal: …" to
+  "Propose World Engine commands that would carry out the game master’s request, or decline. A
+  proposal is only a proposal: …". Provider-facing tool text only; no scoped data.
+
+Stage 300 remediation checkpoint B2 (2026-10-11; design SHA256 `23e53e4d…aab2`, stop-scope delta
+`6bba0030…b485`; acceptance pending) changes provider-facing envelopes as follows, for Gate 06;
+scoped context builders, prompts and instructions are unchanged:
+- **Cache-block framing** (Anthropic only, `apps/server/src/ai/anthropic-provider.ts`): when the
+  verified catalog entry allows a 5-minute cache, `system` is sent as one text block carrying
+  `cache_control: {type: "ephemeral"}`; its text is byte-identical to the uncached string, and every
+  other field is unchanged. The cached prefix is the tool definition plus that fixed per-capability,
+  per-language system text: no campaign, NPC, speaker, perspective, source ID or scoped content
+  precedes the breakpoint (`anthropic-provider.test.ts`: identical prefix across two NPCs, two
+  speakers and two intent directories; scoped markers absent). DeepSeek sends no cache directive.
+  No verified catalog entry exists in this build, so no route sends it at runtime.
+- **Accounting metadata** (`ProviderRequest.accounting`: request, attempt, session, campaign) never
+  enters a provider body (`raw-adapters.test.ts`, `request-lifecycle.test.ts`, `npc-session.test.ts`).
+- **No-start answers**: intent/NPC reply/Chronicle rendering trace IDs may be null; no provider,
+  local included, runs without a durable request start (`no-start.test.ts`, `request-lifecycle.test.ts`).
+- **DeepSeek classification**: a non-string refusal is a refusal, more than one choice is unverified
+  billing, an `insufficient_system_resource` or unknown stop is truncation (`live-ai.test.ts`).
+- **B2 repair 1** changes no provider-facing envelope, prompt or body. Outcomes only: past the
+  request's monotonic deadline nothing is admitted, dispatched or invoked (local included) even
+  before its abort timer runs (`fallback-deadline.test.ts`, `admitted-provider-holds.test.ts`,
+  `raw-adapter-hardening.test.ts`, `request-lifecycle.test.ts`); suspect stops are retried and their
+  route refused in-process until committed; provider request IDs are kept for every attempt
+  (`suspect-records.integration.test.ts`).
+
+Stage 300 remediation checkpoint C (2026-10-12; design SHA256 `23e53e4d…aab2`, stop-scope delta
+`6bba0030…b485`; catalog record `reviews/STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md`;
+acceptance pending) changes provider-facing envelopes as follows, for Gate 06; scoped context
+builders, prompts, instructions and tool schemas are unchanged:
+- **Anthropic request settings** (`apps/server/src/ai/request-settings.ts`, `gateway.ts`): every
+  Anthropic body now carries `output_config: {effort}` and a per-capability `max_tokens` (relevance
+  `low`/2,048, NPC dialogue `low`/4,096, DM intent `medium`/8,192, Chronicle `medium`/12,288)
+  instead of the model default effort and 4,096. Still no `thinking`, sampling parameter, forced
+  tool choice or prefill (`catalog-sonnet-5-5.test.ts`, every capability).
+- **Verified catalog entry** for `claude-sonnet-5-5` only: with keys, a stored approval and an
+  eligible session, Sonnet routes now dispatch (cache-block framing of B2 applies). Usage
+  classification accepts the documented and conservatively allowlisted fields only
+  (`raw-adapters.test.ts`, `catalog-sonnet-5-5.test.ts`); zero outbound without approval, store, key
+  or session (`gateway-verified.test.ts`); every Vitest project traps the global `fetch`.
+- **Evaluation** (`apps/server/src/testing/eval/`, as corrected at repair 1): the Gate 04 replay
+  covers all five injection lines of `npc-isolation.test.ts` (in Russian), the five intents (talk,
+  two asks, insight, showing evidence) and the four attitude/disclosure scenarios of
+  `dialogue-isolation.test.ts`, each intent paired with a rotated line per scenario (69 requests,
+  not the full cross product). The exact provider request bodies are checked against the context
+  the builder exposes, rebuilt per request with the route's domain functions: by ID (recorded
+  sources equal the builder's; no boundary or source ID sent) and lexically by phrase (no planted
+  secret, other NPC's fact or still-locked guarded content; the `sayableBy` content the builder
+  exposed is present), separately from the lexical reply scan. Intent bodies get a lexical planted-
+  marker scan only. A paraphrased secret is not caught by any phrase scan (`oracles.test.ts`,
+  `eval-live.integration.test.ts` over a fake Sonnet transport). No live provider was called.
+- **Repair 1, request shape** (`apps/server/src/ai/request-shape.ts`): before any reservation a body
+  may carry only the adapter's messages (Anthropic: one user message; OpenAI-compatible: one system
+  and one user message; no assistant turn or prefill), only its one client tool (no server or typed
+  tool) and no `cache_control` but the single 5-minute ephemeral system breakpoint where the entry
+  allows it (`pricing-shape.test.ts`). The adapters' bodies are unchanged.
+- **Repair 1, runtime relevance** (owner decisions 6): the documented runtime routes send no
+  relevance request to any provider; rankings stay on the Context Engine (`gateway-verified.test.ts`
+  reads the `.env.example` example). An explicitly configured remote ranker remains possible and
+  keeps its B2 coverage.

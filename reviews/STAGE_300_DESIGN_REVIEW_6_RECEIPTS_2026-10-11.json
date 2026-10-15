@@ -1,0 +1,66 @@
+{
+  "fable": {
+    "exitCode": 0,
+    "requestedModel": "claude-fable-5-1",
+    "responseMessageModels": ["claude-fable-5-1"],
+    "effort": "xhigh",
+    "elapsedSeconds": 732.5,
+    "isError": false,
+    "subtype": "success",
+    "sessionId": "51ca50ac-de8a-4132-822b-857878850c5c",
+    "usage": {
+      "input_tokens": 162,
+      "cache_creation_input_tokens": 135413,
+      "cache_read_input_tokens": 287428,
+      "output_tokens": 52305,
+      "output_tokens_details": {
+        "thinking_tokens": 43408
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 135413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 32,
+          "output_tokens": 45703,
+          "cache_read_input_tokens": 120061,
+          "cache_creation_input_tokens": 21842,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21842
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai; Max auth; no provider overrides",
+    "billingEvidence": "cachedExtraUsageDisabledReason org_level_disabled; no billing changed",
+    "artifactSha256": "a4a7da26179263a61ce80a4900b0f931503f34e1e9009d244aeee6f4b061c56e",
+    "freshSession": true,
+    "otherReviewerVerdictSupplied": false,
+    "rawSha256": "0d5975d197a6f1ce3448cd32e6e7a55482ed91326b90d5efe13fdcb7da6f2b9d",
+    "orchestratorArtifactHashVerifiedAfterReview": "a4a7da26179263a61ce80a4900b0f931503f34e1e9009d244aeee6f4b061c56e",
+    "verdict": "CHANGES REQUIRED",
+    "promptSha256": "f1a484a9492af66343db6dffb5cf7cf94ae79a78512e00ece1af633f76a49d39"
+  },
+  "astra": {
+    "requestedModel": "gpt-6-astra",
+    "effort": "xhigh",
+    "nativeAgent": "/root/astra_design6",
+    "responseModelAttestation": "unavailable",
+    "ownerException": "2026-10-11 current Codex chat: explicit native Astra configuration accepted as sufficient identity/effort evidence",
+    "verdict": "APPROVE",
+    "artifactSha256": "a4a7da26179263a61ce80a4900b0f931503f34e1e9009d244aeee6f4b061c56e",
+    "freshSession": true,
+    "otherReviewerVerdictSupplied": false
+  }
+}

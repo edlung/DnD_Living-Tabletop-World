@@ -205,12 +205,14 @@ export type {
 } from './combat/views.ts';
 export {
   AI_CAPABILITIES,
+  INTENT_DECLINE_REASONS,
   INTENT_STATUSES,
   commandProposalSchema,
   dmIntentRequestSchema,
   type AiAttemptView,
   type AiCapability,
   type AiTraceView,
+  type AttemptBillingView,
   type ChronicleTraceView,
   type AttemptKind,
   type AttemptOutcome,
@@ -218,10 +220,16 @@ export {
   type DmIntentRequest,
   type DmIntentResponse,
   type DmIntentTraceView,
+  type IntentDeclineReason,
   type IntentStatus,
   type NpcDialogueTraceView,
   type RelevanceTraceView,
 } from './ai-gateway/intents.ts';
+export type {
+  AccountingAttemptView,
+  AiAccountingDiagnosticView,
+  AiRequestLifecycle,
+} from './ai-gateway/accounting.ts';
 export {
   DIALOGUE_STATUSES,
   MAX_DIALOGUE_LINE,

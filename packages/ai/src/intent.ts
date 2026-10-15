@@ -1,4 +1,10 @@
-import type { AiTraceView, CommandProposal, DmIntentResponse } from '@ltw/contracts';
+import {
+  INTENT_DECLINE_REASONS,
+  type AiTraceView,
+  type CommandProposal,
+  type DmIntentResponse,
+  type IntentDeclineReason,
+} from '@ltw/contracts';
 import {
   campaignRole,
   holderPerspective,
@@ -9,11 +15,12 @@ import {
 } from '@ltw/domain';
 
 import { buildContext } from './context-builder.ts';
-import { runWithFallback, type FallbackResult } from './fallback.ts';
+import type { FallbackResult } from './fallback.ts';
 import { intentRequest } from './prompt.ts';
+import { runAiRequest } from './request.ts';
 import type { CapabilityRouter } from './router.ts';
 import type { AiTraceStore } from './traces.ts';
-import { validateProposal } from './validation.ts';
+import { validateIntent } from './validation.ts';
 
 /**
  * DM natural language → a proposed structured command (Stage 100's one use
@@ -21,13 +28,23 @@ import { validateProposal } from './validation.ts';
  * check runs before any provider is called. The context is the PUBLIC
  * directory (owner decision, §3), built once and reused by every attempt.
  * The result is traced and is never committable: this function reads a
- * snapshot and has no path to the World Engine.
+ * snapshot and has no path to the World Engine. A provider's deliberate
+ * decline is a terminal INVALID_OUTPUT with the issue NO_PROPOSAL and no
+ * repair (docs/adr/0032-live-ai.md, B1); its reason is traced.
+ *
+ * Every request runs one lifecycle (`runAiRequest`, ADR 0032 B2): a whole-request deadline of
+ * `requestTimeoutMs`, a durable start, the outcome freeze and the stored trace. Without a confirmed
+ * start the answer is AI_UNAVAILABLE with no trace ID and no proposal, and no provider runs, not
+ * even locally: a proposal without a trace could never become an authoring source. The campaign's
+ * active play session, read from this snapshot, is the only one the request may be charged to.
  */
 export interface IntentDeps {
   readonly router: CapabilityRouter;
   readonly traces: AiTraceStore;
   readonly ids: IdGenerator;
   readonly clock: WallClock & { readonly nowMs: () => number };
+  /** The whole-request deadline of intents, NPC replies and Chronicle (`LTW_AI_REQUEST_TIMEOUT_MS`). */
+  readonly requestTimeoutMs: number;
 }
 
 export interface IntentInput {
@@ -54,6 +71,15 @@ function responseOf(traceId: string, result: FallbackResult<CommandProposal>): D
   };
 }
 
+/** No durable start: nothing proposed, nothing to author from. */
+const NO_START: DmIntentResponse = {
+  traceId: null,
+  status: 'AI_UNAVAILABLE',
+  proposal: null,
+  issues: [],
+  committable: false,
+};
+
 export async function interpretDmIntent(
   deps: IntentDeps,
   input: IntentInput,
@@ -67,30 +93,53 @@ export async function interpretDmIntent(
     'entities',
   ]);
   const directory = new Set(context.entities.map((entity) => entity.entityId));
-  const result = await runWithFallback({
-    providers: deps.router.providersFor(CAPABILITY),
-    build: (repair) => intentRequest(input.text, context, repair),
-    validate: (output) => validateProposal(output, directory),
-    nowMs: deps.clock.nowMs,
-  });
-
-  const response = responseOf(deps.ids.next(), result);
-  const trace: AiTraceView = {
-    traceId: response.traceId,
-    campaignId: input.campaignId,
-    actorId: input.actor.actorId,
-    purpose: 'dm-intent',
-    capability: CAPABILITY,
-    scope: context.scope,
-    sourceIds: context.items.map((item) => item.sourceId),
-    input: input.text,
-    attempts: result.attempts,
-    status: response.status,
-    proposal: response.proposal,
-    issues: response.issues,
-    canonicalEvents: [],
-    createdAt: deps.clock.now(),
-  };
-  await deps.traces.append(trace);
+  const sourceIds = context.items.map((item) => item.sourceId);
+  const response = await runAiRequest(
+    { traces: deps.traces, ids: deps.ids, nowMs: deps.clock.nowMs },
+    {
+      timeoutMs: deps.requestTimeoutMs,
+      start: {
+        campaignId: input.campaignId,
+        actorId: input.actor.actorId,
+        purpose: 'dm-intent',
+        capability: CAPABILITY,
+        scope: context.scope,
+        sourceIds,
+        sessionId: input.state.activeSessionId,
+      },
+      providers: deps.router.providersFor(CAPABILITY),
+      fallback: {
+        build: (repair) => intentRequest(input.text, context, repair),
+        validate: (output) => validateIntent(output, directory),
+        declines: true,
+      },
+      noStart: () => NO_START,
+      freeze: (result, traceId) => {
+        const frozen = responseOf(traceId, result);
+        const declineReason: IntentDeclineReason | undefined =
+          result.status === 'INVALID_OUTPUT'
+            ? INTENT_DECLINE_REASONS.find((reason) => reason === result.decline)
+            : undefined;
+        const trace: AiTraceView = {
+          traceId,
+          campaignId: input.campaignId,
+          actorId: input.actor.actorId,
+          purpose: 'dm-intent',
+          capability: CAPABILITY,
+          scope: context.scope,
+          sourceIds,
+          input: input.text,
+          attempts: result.attempts,
+          status: frozen.status,
+          proposal: frozen.proposal,
+          ...(declineReason ? { declineReason } : {}),
+          issues: frozen.issues,
+          canonicalEvents: [],
+          createdAt: deps.clock.now(),
+        };
+        return { response: frozen, trace };
+      },
+    },
+  );
   return { ok: true, response };
 }

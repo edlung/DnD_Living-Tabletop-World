@@ -1,0 +1,50 @@
+# AI spending accounting
+
+Durable admission, accounting journal and operator records for live AI
+(`docs/adr/0032-live-ai.md`, amendment 2026-10-11; `docs/STAGE_300_REMEDIATION_DESIGN.md` §1–2).
+Schema: `apps/server/migrations/0005_ai_accounting.sql` (append-only),
+`0006_ai_outcome_window.sql` (live outcomes commit only inside their finalizer window) and
+`0007_ai_outcome_code.sql` (the caller outcome's fallback code) and `0008_ai_attempt_responses.sql`
+(provider request IDs). Checkpoint B2: every AI request
+starts and finalizes through `ai/journal.ts`, and every remote attempt is admitted, settled or held
+by `ai/admitted-provider.ts`. Stop scope follows the approved B2 delta
+(`docs/STAGE_300_B2_STOP_SCOPE_DESIGN.md`): `stop-scope.ts` is the one admission predicate.
+
+| File                                                          | Responsibility                                                                                 |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `types.ts`                                                    | `BudgetStore` port, session classes, admission/settlement results, rejections                  |
+| `money.ts`                                                    | Integer microdollars: per-dimension `ceil`, tiers, reservation at highest rate                 |
+| `lock-keys.ts`                                                | Policy `-1`, nonnegative bucket/account keys, negative request keys, ordering                  |
+| `deadline.ts`                                                 | Monotonic deadlines; storage step = MIN(request, 5 s); fixed 5 s steps                         |
+| `pg-transaction.ts`                                           | Every DB wait raced against one deadline; READ COMMITTED; unknown-COMMIT flag                  |
+| `spend.ts`                                                    | Effective spend per bucket (max of absolute charges / hold), appending stops                   |
+| `stop-scope.ts`                                               | What an uncleared stop forbids: accepted shapes, recorded and source routes                    |
+| `stop-diagnostics.ts`                                         | Trusted operator explanation of each uncleared stop (`ai:operator stops`)                      |
+| `admission.ts`                                                | The admission transaction (canonical model check, stop scope, ceilings)                        |
+| `settlement.ts`                                               | Settle, pre-dispatch release, idempotent suspect hold, retry schedule                          |
+| `attempt-responses.ts`                                        | Provider request ID of an attempt, idempotent (migration 0008)                                 |
+| `request-journal.ts`                                          | Request start, outcome+trace finalization, per-request recovery                                |
+| `recovery.ts`                                                 | `recover-incomplete` sweep (operator CLI only)                                                 |
+| `operator-store.ts`                                           | Accounts, approvals, revisions, runs, clearances, reconciliation, batches                      |
+| `operator-args.ts`, `operator-commands.ts`, `operator-cli.ts` | `pnpm ai:operator` parsing, dispatch, entry                                                    |
+| `postgres-budget-store.ts`                                    | `PostgresBudgetStore` (with the catalog's identity resolver), startup status, `approvalExists` |
+
+- PostgreSQL is the only spending authority. Never add an in-memory or environment cap to production.
+- One READ COMMITTED transaction per operation on one checked-out client; shared policy lock for
+  accounting, exclusive for every operator mutation and recovery; sorted bucket locks before reading
+  totals; never nest a bucket lock inside a request lock.
+- Charges are absolute; effective charge is a maximum. Never subtract, delete or update history.
+- Stops: one immutable row, two effective restrictions (recorded predicate OR, for overruns and
+  discrepancies, the source attempt's account/provider/canonical model on every approval and day).
+  An unexpected shape, a missing or mismatched source, or an identity the verified registry cannot
+  map fails closed for the account. Only an operator clearance lifts a stop; campaign views never
+  show stops. Identities resolve through `ai/catalog.ts`; tests use `TEST_RESOLVE` or fixtures.
+- A caller outcome never proves a provider attempt finished: only terminal accounting resolves an
+  attempt. An unconfirmed COMMIT may have committed: never treat its hold as absent. Only definite
+  abort evidence (ERROR severity and a listed SQLSTATE) clears that uncertainty.
+- A live outcome commits only inside its stored finalizer window (database clock); `finalize`
+  clamps to it and migration 0006 guards the commit. A caller deadline can only shorten it.
+- Operator commands need recorded owner authorization; the CLI authorizes nothing by existing. Run
+  them only against the intended database; tests use throwaway databases (`src/testing/accounting.ts`).
+- Integration tests: `*.integration.test.ts` here (two-connection competition, REPEATABLE READ
+  negative control, timeouts, stops, recovery races).

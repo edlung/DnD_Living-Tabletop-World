@@ -53,7 +53,14 @@ export function useAction(
     current.current = attempt;
     const request = new AbortController();
     controller.current = request;
-    setState({ status: 'busy', notice: { message: t('Resolving your action…') } });
+    setState({
+      status: 'busy',
+      notice: {
+        // A live NPC reply can take a while (ADR 0032, C): say what is being waited for.
+        message:
+          attempt.intent.kind === 'talk' ? t('Waiting for a reply…') : t('Resolving your action…'),
+      },
+    });
     try {
       let notice: ActionNotice;
       if (attempt.intent.kind === 'talk') {

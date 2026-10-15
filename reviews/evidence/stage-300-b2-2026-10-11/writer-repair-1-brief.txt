@@ -1,0 +1,59 @@
+Repair 1 for checkpoint B2. Checkout ownership is transferred back to you (this same B2 implementation
+session) for a bounded review repair, now at effort xhigh. Baseline: the exact B2 artifact you
+handed off (HEAD 9be13071914755abb78006b054cce83eb4038978 plus the uncommitted tree whose dirty
+manifest hash is 980b1f67e5df3fa5a6f913afb299a8b588c96c7cf70b404e5b0f309f5e1f22cf; verified
+unchanged since your handoff). Same prohibitions as before: no commit/push, no other agents, no
+network/provider/paid calls or catalog lookups, no .env.local, no real operator records, no
+checkpoint C work, no edits to the two design documents.
+
+Independent review found the following. Fix the root contract for R1-R4, writing a failing
+regression first for each behavioral item.
+
+R1 (Medium, required). Dispatch can start after the whole-request deadline. Every "caller gone"
+check reads only `signal.aborted`, which a setTimeout sets and which can lag the monotonic
+deadline. Reproduced: admission COMMIT processed after `deadlineAtMs` but before the abort timer
+fired; the wrapper revealed the key, fired onStart and called fetch (~0.4-40 ms late), the attempt
+ended CALLER_CANCELLED with its full hold kept for operator reconciliation instead of a live
+pre-dispatch release. Second form: for intent/dialogue/Chronicle a denial answered after the
+deadline made the fallback start the local provider after expiry (output discarded at freeze).
+Locations: apps/server/src/ai/admitted-provider.ts:93,137-145; packages/ai/src/fallback.ts:166;
+apps/server/src/ai/raw-provider.ts:79,106. Design: "If admission resolves after expiry, do not
+dispatch" (line 397), "Expiry prevents any new dispatch" (95), "no new provider (including local)
+runs" (669-670). Fix: treat `performance.now() >= deadlineAtMs` (the same test `isExpired` uses) as
+caller gone everywhere a dispatch or provider invocation is decided, release the pre-dispatch hold
+live when admission committed but dispatch is refused, and never start the local provider after
+expiry. Tests must force the lag deterministically (e.g. resolve admission after the deadline with
+the abort timer not yet run).
+
+R2 (Low, fix). A failed automatic stop for a suspect response is not retried: `holdWithStop` runs
+once in the background (admitted-provider.ts:162-170, accounting-tasks.ts:29-42); on a transient
+failure (e.g. the 5 s bound while the policy lock is held) only STOP_FAILED is logged, no stop row
+exists, and the next request is admitted to the same suspect route. The design requires an
+unexpected model to disable remote admission until reconciliation (lines 370-371). Fix within the
+approved architecture: retry the same stop write with the bounded settlement retry schedule without
+creating duplicate stops, and/or refuse further admissions in-process for that account/route until
+the stop commits. If either option needs a new architectural choice, stop and report it.
+
+R3 (Low, fix). Provider request/message IDs are stored only when known usage is settled; for
+responses with no usage and for suspect responses (UNEXPECTED_MODEL, UNVERIFIED_BILLING) the ID is
+dropped (admitted-provider.ts:162-183; settlement.ts:141-152 `holdWithStop` keeps only the model).
+Design section 2: "Store provider request/message IDs when available" (line 372). Persist it for
+every attempt that has one, in the journal (and the trace attempt view if the design calls for it),
+without exposing it in campaign diagnostics beyond what the design allows.
+
+R4 (documentation). `apps/server/src/ai/accounting/types.ts:7` still says "no use case calls it yet
+(B2)"; `docs/AI_CONTEXT_MAP.md:14` still describes the design as a draft needing approval. Update
+both.
+
+Owner-approved deferrals (2026-10-11), record them in the handoff as known limitations, do not fix:
+- An admission denied because its COMMIT was sent but not confirmed keeps any hold until operator
+  reconciliation even though the transport never started (admitted-provider.ts:121-126); the trace
+  reports "not dispatched, cost 0". Conservative; deferred.
+- Sonnet 5.5 usage/model allowlists wait for the separately authorized catalog verification.
+
+Then run focused tests and the full offline `pnpm validate`. Update
+`handoffs/STAGE_300_CHECKPOINT_B2_REQUEST.md` in place: add a "Repair 1" section describing each
+change by requirement (neutral wording: no reviewer names, verdicts or attribution), the new dirty
+manifest and its hash, checks and the deferrals; set Review type to RETEST (repair 1). Stop at
+CHECKPOINT_READY and release ownership explicitly in your final message (changed files, behavior,
+tests, blockers, residual risks).

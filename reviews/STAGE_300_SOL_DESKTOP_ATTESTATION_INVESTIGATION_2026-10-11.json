@@ -1,0 +1,40 @@
+{
+  "existingReviewerThread": "01a12a73-9f92-7172-afa5-06e1dff382e5",
+  "originator": "Codex Desktop",
+  "configuredModel": "gpt-6.1-sol",
+  "configuredEffort": "xhigh",
+  "configuredProvider": "openai",
+  "observedAuthMode": "Chatgpt",
+  "existingTranscriptResponseIds": 59,
+  "existingServerModelMetadataFound": false,
+  "candidate": "Desktop RUST_LOG codex_api::sse::responses=trace with temporary HTTP flags and a new bounded native Sol review",
+  "candidateProven": false,
+  "requiresControlledDesktopRestart": true,
+  "codexCliInvoked": false,
+  "apiBillingEnabled": false,
+  "globalConfigModified": false,
+  "applicationBinaryModified": false,
+  "scripts": {
+    "extract_metadata.py": {
+      "path": "/tmp/ltw-stage300-sol-desktop-attestation/extract_metadata.py",
+      "sha256": "f78214fc41cf485e12c2999a5e4d864b0458ffa8e4c844c7a29ce0a894cec63e"
+    },
+    "launch_desktop.sh": {
+      "path": "/tmp/ltw-stage300-sol-desktop-attestation/launch_desktop.sh",
+      "sha256": "87a939e05ba5695af22cebcd0ad4857f982d8d0909c078ea3f3f20600fcc2342"
+    },
+    "temporary_http_config.py": {
+      "path": "/tmp/ltw-stage300-sol-desktop-attestation/temporary_http_config.py",
+      "sha256": "22f42839678a1d130c58bb519f960c96403d41140288d69bb6fdc3a8f57ab5a9"
+    }
+  },
+  "currentState": "PREPARED_NOT_APPLIED_AWAITING_CONTROLLED_DESKTOP_RESTART_APPROVAL",
+  "documentation": [
+    "https://learn.chatgpt.com/docs/reference/troubleshooting",
+    "https://learn.chatgpt.com/docs/config-file/environment-variables",
+    "https://learn.chatgpt.com/docs/config-file/config-advanced"
+  ],
+  "acceptanceRule": "Only raw server response.model and response.reasoning.effort, joined by response_id to all completed responses of the exact independent review turn; configuration and usage labels are not proof.",
+  "existingReviewTurn": "01a12aa6-7262-7393-aa88-c38d3eac76e1",
+  "configPreviewOriginalSha256": "ac1e608c020982440740ce2878703103c270e9ef816ead4af67c6090c2a163a7"
+}

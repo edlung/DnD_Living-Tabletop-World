@@ -9,7 +9,7 @@ import { formatWorldTime, type DialogueEntity, type NpcDialogueContext } from '@
 import { z } from 'zod';
 
 import { languageNote } from './language-note.ts';
-import type { ProviderRequest, RepairNote, StructuredOutputSpec } from './providers.ts';
+import type { ProviderPayload, RepairNote, StructuredOutputSpec } from './providers.ts';
 
 /**
  * The NPC-dialogue request sent to an `npc-dialogue` provider
@@ -167,7 +167,7 @@ function render(prompt: DialoguePrompt, repair: RepairNote | null): string {
 export function dialogueRequest(
   prompt: DialoguePrompt,
   repair: RepairNote | null,
-): ProviderRequest {
+): ProviderPayload {
   return {
     capability: 'npc-dialogue',
     system: [SYSTEM, languageNote(prompt.language ?? DEFAULT_LANGUAGE)].filter(Boolean).join('\n'),

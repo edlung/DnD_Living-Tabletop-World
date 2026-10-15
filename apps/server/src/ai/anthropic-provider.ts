@@ -1,40 +1,96 @@
-import { ProviderError, type AiProvider, type ProviderRequest } from '@ltw/ai';
+import { ProviderError, type ProviderPayload, type ProviderResponse } from '@ltw/ai';
 import { z } from 'zod';
 
+import {
+  preparedRequests,
+  responseObject,
+  safeIdentifier,
+  sendPrepared,
+  type RawRemoteProvider,
+} from './raw-provider.ts';
+import { usageFacts, usageSpec, type UsageSpec } from './usage-facts.ts';
+
 /**
- * The Anthropic Messages API adapter (docs/adr/0017-ai-gateway.md §2):
- * structured output as a forced tool call, over `fetch`. Errors carry a code
- * and a fixed message only: never the key, the request, or the response body.
- * A call stops at its own timeout, or when the request's `signal` aborts
- * (a caller's time budget, ADR 0021); either is `TIMEOUT`.
+ * The raw Anthropic Messages API adapter (docs/adr/0017-ai-gateway.md §2; docs/adr/0032-live-ai.md,
+ * checkpoint B1): structured output as a tool call the model is told to make, over `fetch`.
+ * Current Claude models reject a forced `tool_choice` with a 400 (checked live on 2026-10-05), so
+ * the request uses `auto` and the system text names the tool. `prepare` serializes the whole body;
+ * `dispatch` sends exactly it and classifies the response: an unaccepted model or unrecognized
+ * usage is suspect (output discarded); a refusal is a refusal; truncation or a missing tool call is
+ * malformed (invalid output, preserving usage). Errors carry a fixed code and message only: never
+ * the key, the request, or the response body.
+ *
+ * Prompt caching (B2, design §3): with `cache: '5m'` the system text becomes one text block with
+ * an ephemeral (5-minute) cache breakpoint. The cached prefix is the tool definition and that system
+ * text only, both fixed per capability and language: no campaign, NPC, perspective or scoped data
+ * comes before the breakpoint, and the text itself is unchanged. Cache writes and reads are billed
+ * dimensions the catalog prices; a prefix below the model's cache minimum is simply uncached.
  */
 export const ANTHROPIC_MESSAGES_URL = 'https://api.anthropic.com/v1/messages';
 export const ANTHROPIC_VERSION = '2023-06-01';
 const MAX_TOKENS = 4_096;
 
 export interface AnthropicOptions {
-  /** Read only when a request is sent; never logged. */
+  /** Read only by `dispatch`, before the start boundary; never logged. */
   readonly apiKey: () => string;
   readonly model: string;
+  /** Returned model identifiers accepted for `model` (an explicit alias mapping); default: `model`. */
+  readonly acceptedModels?: readonly string[];
   readonly timeoutMs: number;
+  /** `output_config.effort`; the model's default when absent. */
+  readonly effort?: 'low' | 'medium' | 'high';
+  readonly maxTokens?: number;
+  /** A 5-minute cache breakpoint after the fixed system text; none when absent. */
+  readonly cache?: '5m';
   readonly fetch?: typeof fetch;
 }
 
-/** The parts of a Messages API response the adapter reads; anything else is ignored. */
-const messagesResponseSchema = z.looseObject({
-  model: z.string().optional(),
-  stop_reason: z.string().nullable().optional(),
-  content: z.array(
-    z.looseObject({ type: z.string(), name: z.string().optional(), input: z.unknown().optional() }),
-  ),
-  usage: z.looseObject({ input_tokens: z.number(), output_tokens: z.number() }).optional(),
+/**
+ * Every usage field the adapter can read (catalog verification of 2026-10-12, `reviews/
+ * STAGE_300_CATALOG_VERIFICATION_CLAUDE_SONNET_5_5_2026-10-12.md`): the documented counts, the
+ * thinking decomposition (part of `output_tokens`), the price-relevant labels at their only
+ * standard value, server-tool counts only at zero (no server tool is ever requested), and the
+ * undocumented fields seen on this machine, conservatively: `speed` only `standard`,
+ * `fallback_credit` only null, `iterations` only as message entries adding up to the top-level
+ * counts. Each catalog entry then accepts a subset (`pricing.ts`); anything else fails closed.
+ */
+export const ANTHROPIC_USAGE: UsageSpec = usageSpec({
+  counts: [
+    'input_tokens',
+    'output_tokens',
+    'cache_creation_input_tokens',
+    'cache_read_input_tokens',
+  ],
+  nested: {
+    cache_creation: ['ephemeral_5m_input_tokens', 'ephemeral_1h_input_tokens'],
+    output_tokens_details: ['thinking_tokens'],
+  },
+  labels: {
+    service_tier: ['standard'],
+    inference_geo: ['global'],
+    speed: ['standard'],
+    fallback_credit: [],
+  },
+  zeroCounts: { server_tool_use: ['web_search_requests', 'web_fetch_requests'] },
+  iterations: { field: 'iterations', type: 'message' },
+  input: 'input_tokens',
+  output: 'output_tokens',
 });
 
-function bodyOf(model: string, request: ProviderRequest): string {
+const contentSchema = z.array(
+  z.looseObject({ type: z.string(), name: z.string().optional(), input: z.unknown().optional() }),
+);
+
+function bodyOf(request: ProviderPayload, options: AnthropicOptions): string {
+  const system = `${request.system}\nAnswer only by calling the ${request.output.name} tool.`;
   return JSON.stringify({
-    model,
-    max_tokens: MAX_TOKENS,
-    system: request.system,
+    model: options.model,
+    max_tokens: options.maxTokens ?? MAX_TOKENS,
+    ...(options.effort ? { output_config: { effort: options.effort } } : {}),
+    system:
+      options.cache === '5m'
+        ? [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }]
+        : system,
     messages: [{ role: 'user', content: request.prompt }],
     tools: [
       {
@@ -43,75 +99,72 @@ function bodyOf(model: string, request: ProviderRequest): string {
         input_schema: request.output.schema,
       },
     ],
-    tool_choice: { type: 'tool', name: request.output.name },
+    tool_choice: { type: 'auto' },
   });
 }
 
-export function createAnthropicProvider(options: AnthropicOptions): AiProvider {
-  const send = options.fetch ?? fetch;
+function classify(
+  body: unknown,
+  toolName: string,
+  accepted: ReadonlySet<string>,
+): ProviderResponse {
+  const message = responseObject(body);
+  const facts = {
+    model: safeIdentifier(message['model']),
+    ...usageFacts(message['usage'], ANTHROPIC_USAGE),
+    providerRequestId: safeIdentifier(message['id']),
+  };
+  if (facts.model === null || !accepted.has(facts.model)) {
+    return { kind: 'suspect', code: 'UNEXPECTED_MODEL', ...facts };
+  }
+  if (facts.billing && facts.billing.unrecognized.length > 0) {
+    return { kind: 'suspect', code: 'UNVERIFIED_BILLING', ...facts };
+  }
+  const stop = message['stop_reason'];
+  if (stop === 'refusal') return { kind: 'refusal', ...facts };
+  if (stop === 'max_tokens' || stop === 'model_context_window_exceeded') {
+    return { kind: 'malformed', code: 'TRUNCATED', ...facts };
+  }
+  const content = contentSchema.safeParse(message['content']);
+  const call = content.success
+    ? content.data.find((block) => block.type === 'tool_use' && block.name === toolName)
+    : undefined;
+  if (call?.input === undefined) return { kind: 'malformed', code: 'MISSING_TOOL', ...facts };
+  return { kind: 'output', output: call.input, ...facts };
+}
+
+export function createAnthropicProvider(options: AnthropicOptions): RawRemoteProvider {
+  const prepared = preparedRequests();
+  const accepted = new Set(options.acceptedModels ?? [options.model]);
   return {
     id: 'anthropic',
-    generate: async (request) => {
-      const controller = new AbortController();
-      const timer = setTimeout(() => {
-        controller.abort();
-      }, options.timeoutMs);
-      // The caller's own budget (ADR 0021) stops the call too.
-      const signal = request.signal
-        ? AbortSignal.any([controller.signal, request.signal])
-        : controller.signal;
-      let response: Response;
-      let body: unknown;
-      try {
-        response = await send(ANTHROPIC_MESSAGES_URL, {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            'x-api-key': options.apiKey(),
-            'anthropic-version': ANTHROPIC_VERSION,
-          },
-          body: bodyOf(options.model, request),
-          signal,
-        });
-        if (!response.ok) {
-          const retryable = response.status === 429 || response.status >= 500;
-          throw new ProviderError(
-            retryable ? 'UNAVAILABLE' : 'BAD_RESPONSE',
-            `provider responded ${String(response.status)}`,
-          );
-        }
-        body = await response.json().catch((error: unknown) => {
-          if (signal.aborted) throw error;
-          throw new ProviderError('BAD_RESPONSE', 'provider output unreadable', { cause: error });
-        });
-      } catch (error) {
-        if (error instanceof ProviderError) throw error;
-        if (signal.aborted) {
-          throw new ProviderError('TIMEOUT', 'provider timed out', { cause: error });
-        }
-        throw new ProviderError('UNAVAILABLE', 'provider unreachable', { cause: error });
-      } finally {
-        clearTimeout(timer);
+    model: options.model,
+    prepare: (request) =>
+      prepared.issue({
+        provider: 'anthropic',
+        model: options.model,
+        url: ANTHROPIC_MESSAGES_URL,
+        toolName: request.output.name,
+        body: bodyOf(request, options),
+      }),
+    dispatch: async (request, signal, onStart, deadlineAtMs) => {
+      if (!prepared.owns(request)) {
+        throw new ProviderError('TRANSPORT_NOT_STARTED', 'request was not prepared here');
       }
-
-      const parsed = messagesResponseSchema.safeParse(body);
-      if (!parsed.success || parsed.data.stop_reason === 'max_tokens') {
-        throw new ProviderError('BAD_RESPONSE', 'provider output incomplete');
-      }
-      const { content, model, usage } = parsed.data;
-      const call = content.find(
-        (block) => block.type === 'tool_use' && block.name === request.output.name,
-      );
-      if (!call || call.input === undefined) {
-        throw new ProviderError('BAD_RESPONSE', 'provider returned no structured output');
-      }
-      return {
-        output: call.input,
-        model: model ?? options.model,
-        usage: usage
-          ? { inputTokens: usage.input_tokens, outputTokens: usage.output_tokens }
-          : null,
-      };
+      const body = await sendPrepared({
+        prepared: request,
+        headers: () => ({
+          'content-type': 'application/json',
+          'x-api-key': options.apiKey(),
+          'anthropic-version': ANTHROPIC_VERSION,
+        }),
+        signal,
+        onStart,
+        timeoutMs: options.timeoutMs,
+        deadlineAtMs,
+        fetch: options.fetch,
+      });
+      return classify(body, request.toolName, accepted);
     },
   };
 }

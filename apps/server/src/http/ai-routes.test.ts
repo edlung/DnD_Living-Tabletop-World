@@ -1,4 +1,4 @@
-import { ProviderError, createLocalProvider, type AiProvider, type ProviderRequest } from '@ltw/ai';
+import { ProviderError } from '@ltw/ai';
 import type { AiTraceView, DmIntentResponse } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
@@ -10,8 +10,10 @@ import {
   TOKENS,
   get,
   ravenfordApp,
+  recording,
   seededEngine,
   testAiGateway,
+  testProvider,
   withoutRequestId,
 } from '../testing/ravenford-app.ts';
 
@@ -22,22 +24,14 @@ import {
 const INTENTS = '/campaigns/ravenford/ai/intents';
 const TEXT = 'Add a fisherman near the North Gate who saw the guild caravan leave.';
 
-function spy(inner: AiProvider = createLocalProvider()) {
-  const requests: ProviderRequest[] = [];
-  const provider: AiProvider = {
-    id: inner.id,
-    generate: (request) => {
-      requests.push(request);
-      return inner.generate(request);
-    },
-  };
-  return { provider, requests };
+function spy() {
+  const provider = recording();
+  return { provider, requests: provider.requests };
 }
 
-const failing: AiProvider = {
-  id: 'remote',
-  generate: () => Promise.reject(new ProviderError('TIMEOUT', 'slow')),
-};
+const failing = testProvider('remote', 'remote', () =>
+  Promise.reject(new ProviderError('TIMEOUT', 'slow')),
+);
 
 const post = (app: FastifyInstance, body: unknown, token?: string, url = INTENTS) =>
   app.inject({

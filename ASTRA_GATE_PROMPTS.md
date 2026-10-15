@@ -1,4 +1,8 @@
-# Astra Formal Gate Missions
+# Formal Gate Missions (legacy filename)
+
+Owner decision 2026-10-11: future reviews, including Gate 06, are performed by
+Opus 5.5 xhigh in a fresh session. Historical Astra missions/reports are preserved.
+Use `docs/PROJECT_WORKFLOW.md` and `CHECKPOINTS.md` for current assignments/output names.
 
 Use these mission statements together with `ASTRA_MASTER.md`, the generated handoff request, and `ASTRA_REVIEW.md`. Effort: **MAX** for every formal gate.
 

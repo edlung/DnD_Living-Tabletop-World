@@ -1,0 +1,9 @@
+{
+  "dates": ["2026-10-11", "2026-10-12"],
+  "source": "Owner answers in a Claude Code session",
+  "decisions": {
+    "startB2": "Да, начинаем B2",
+    "b2InitialFindings": "F1–F3 сейчас, F4 отложить (Recommended): fix the deadline dispatch, stop-write retry and request-ID findings and stale docs now; defer the unconfirmed-COMMIT hold and the Sonnet 5.5 allowlists",
+    "flakyTestLN1": "Принять B2, исправить в C (Recommended): accept B2 now; fix the pre-existing flaky transaction-bounds test first in checkpoint C"
+  }
+}

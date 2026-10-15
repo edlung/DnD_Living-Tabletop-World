@@ -41,7 +41,8 @@ export type DialogueStatus = (typeof DIALOGUE_STATUSES)[number];
 
 /** The NPC's words: prose for the table, never a fact (invariant 7). */
 export interface NpcReply {
-  readonly traceId: string;
+  /** Null when no durable request start was confirmed (docs/adr/0032-live-ai.md, B2). */
+  readonly traceId: string | null;
   readonly status: DialogueStatus;
   /** Present only when the output passed validation. */
   readonly text: string | null;

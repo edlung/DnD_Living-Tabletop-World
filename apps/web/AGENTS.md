@@ -29,6 +29,11 @@ and presentation components from `@ltw/ui`; never domain, rules, or providers.
   Only server-listed actions with a binding in `action-bindings.ts` or
   `combat/combat-bindings.ts` are executable. The client never computes legality,
   cost, range, or area; movement routes are advisory and the server decides.
+- AI feedback (ADR 0032, C): say what an AI request waits for (a reply, a
+  chapter); say honestly when no words, no narrator (or text that failed the
+  chronicle's checks) or no assistant came, never
+  promise a trace or a later reply; never send a null trace ID as an authoring
+  source; discard a reply that arrives for a listener the DM has since changed.
 - No invented canonical scene images or placeholders with fictional state.
   An unavailable approved image has a neutral visual fallback.
 - Root `pnpm build` compiles libraries/server and bundles the web client into

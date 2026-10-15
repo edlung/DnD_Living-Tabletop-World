@@ -7,7 +7,7 @@ import { checkWorldIntegrity, replay } from '@ltw/domain';
 import pg from 'pg';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { PostgresAiTraceStore } from '../ai/postgres-trace-store.ts';
+import { PostgresAiJournal } from '../ai/journal.ts';
 import { TOKENS, get, post, ravenfordApp, testAiGateway } from '../testing/ravenford-app.ts';
 import { createThrowawayDatabase, type ThrowawayDatabase } from '../testing/throwaway-database.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
@@ -38,7 +38,7 @@ describe('the Chronicle on PostgreSQL', () => {
       const result = await engine.execute(submission);
       if (result.status === 'rejected') throw new Error(`seed rejected: ${result.code}`);
     }
-    const traces = new PostgresAiTraceStore(pool);
+    const traces = new PostgresAiJournal(pool);
     const app = await ravenfordApp(engine, { ...testAiGateway(), traces });
     const generated = await post(
       app,

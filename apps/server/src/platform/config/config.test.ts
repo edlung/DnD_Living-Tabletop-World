@@ -22,7 +22,14 @@ describe('loadConfig', () => {
       http: { host: '127.0.0.1', port: 3000 },
       databaseUrl: DEV_DATABASE_URL,
       auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
-      ai: { anthropic: null, relevanceBudgetMs: 2_000 },
+      ai: {
+        anthropic: null,
+        relevanceBudgetMs: 2_000,
+        requestTimeoutMs: 60_000,
+        approvalId: null,
+        deepseek: null,
+        routes: null,
+      },
       questsFile: DEFAULT_QUESTS_FILE,
       assets: { workerIntervalMs: 5_000, generationTimeoutMs: 60_000 },
     });
@@ -147,6 +154,20 @@ describe('describeDatabaseUrl', () => {
       expect(() => loadConfig({ LTW_AI_RELEVANCE_BUDGET_MS: '50' })).toThrow(ConfigError);
     });
 
+    it('reads the whole-request deadline (1,000–300,000 ms) and the selected approval (B2)', () => {
+      expect(loadConfig({ LTW_AI_REQUEST_TIMEOUT_MS: '1000' }).ai.requestTimeoutMs).toBe(1_000);
+      expect(loadConfig({ LTW_AI_REQUEST_TIMEOUT_MS: '300000' }).ai.requestTimeoutMs).toBe(300_000);
+      for (const invalid of ['0', '999', '300001', '1.5', 'never']) {
+        expect(() => loadConfig({ LTW_AI_REQUEST_TIMEOUT_MS: invalid })).toThrow(ConfigError);
+      }
+      expect(loadConfig({ LTW_AI_APPROVAL_ID: 'stage-300-sonnet' }).ai.approvalId).toBe(
+        'stage-300-sonnet',
+      );
+      expect(loadConfig({ LTW_AI_APPROVAL_ID: '' }).ai.approvalId).toBeNull();
+      // It names a stored record; it can never carry a ceiling or an amount.
+      expect(() => loadConfig({ LTW_AI_APPROVAL_ID: '$30 grant' })).toThrow(ConfigError);
+    });
+
     it('never renders the key in JSON, strings, or inspection', () => {
       const config = loadConfig({ ANTHROPIC_API_KEY: KEY });
 
@@ -159,6 +180,8 @@ describe('describeDatabaseUrl', () => {
       ['LTW_AI_TIMEOUT_MS', '7'],
       ['LTW_AI_MODEL', 'Bad Model!'],
       ['LTW_AI_RELEVANCE_BUDGET_MS', '99999'],
+      ['LTW_AI_REQUEST_TIMEOUT_MS', '424242424'],
+      ['LTW_AI_APPROVAL_ID', 'drop table;'],
     ])('rejects an invalid %s without echoing it', (name, value) => {
       const error = (() => {
         try {

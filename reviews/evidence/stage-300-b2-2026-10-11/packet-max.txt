@@ -1,0 +1,87 @@
+You are an independent acceptance reviewer for Living Tabletop World, Stage 300 remediation
+checkpoint B2. This is a fresh initial review in a clean session (claude-opus-5-5, max effort). The owner's current
+policy (2026-10-11) requires two independent fresh Claude Opus 5.5 acceptance reviews (one xhigh,
+one max) of the same artifact; you are one of them and will not see the other. Review only: never
+modify, format or regenerate any file in the snapshot.
+
+## Where to work
+
+- Snapshot (your working directory): /private/tmp/ltw-stage300-checkpoint-b2-review/max-snapshot
+  It is an exact copy of the canonical working tree: base commit 9be13071914755abb78006b054cce83eb4038978
+  on branch stage-300-live-ai plus the uncommitted B2 changes. Git metadata, `.env.local`, build
+  outputs and installed dependencies are not part of the artifact (dependencies were installed
+  offline from the lockfile).
+- Scratch (your writable area for probe scripts and logs): /private/tmp/ltw-stage300-checkpoint-b2-review/max-scratch . The project's own commands may create their usual outputs in the snapshot (dist/, build/, test-results/, *.tsbuildinfo).
+- Read nothing outside the snapshot and your scratch. Do not open the canonical checkout under
+  /Users/oleksandr/Documents/, any /tmp/ltw-* or /private/tmp/ltw-* directory other than yours,
+  other Claude or Codex sessions, transcripts or memory.
+
+## Requirements
+
+- Implementer's handoff (claims to verify, not evidence): `handoffs/STAGE_300_CHECKPOINT_B2_REQUEST.md`.
+  Verify its dirty-file SHA256 listing against the snapshot.
+- Approved design draft 7: `docs/STAGE_300_REMEDIATION_DESIGN.md`, SHA256
+  23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2. B2 = "Journal/gateway
+  integration, whole-request deadlines and hard-abort recovery, diagnostic read and cache
+  accounting" plus the related parts of sections 1-3 and the test list at the end of "Checkpoints
+  and required evidence".
+- Approved B2 stop-scope delta: `docs/STAGE_300_B2_STOP_SCOPE_DESIGN.md`, SHA256
+  6bba003055bfd53ac4e069d01d5bf6e3a5a6e272fddb41a2f8305b55e153b485 (its DRAFT header is frozen
+  for identity; it was approved by the architecture reviewers).
+- Architecture reviewer clarifications to that delta (within the approved architecture, never a
+  reason to weaken fail-closed behavior): composition-refused identity leaves the route local-only
+  with no fictitious denied remote attempt; the runtime admission identity gap is fixed by the
+  existing stopped detail (no campaign or stop facts exposed); the ADR amendment enumerates all four
+  accepted stop row shapes; an unexpected-model stop uses the canonical attempt model rather than
+  the raw returned string; the request journal retains the configured alias; historical-registry
+  coverage resolution happens inside the bounded storage transaction and its timeout means
+  unavailable with no dispatch; trusted operator diagnostics identify the cause to inform clearance
+  without exposing facts to campaign diagnostics.
+- Items carried into B2 from the accepted B1 checkpoint: `carriedIntoB2` in
+  `reviews/STAGE_300_CHECKPOINT_B1_ACCEPTANCE_2026-10-11.json`.
+- Owner decisions: `reviews/STAGE_300_OWNER_DECISIONS_2_2026-10-11.json` and
+  `reviews/STAGE_300_OWNER_DECISIONS_3_2026-10-11.json` (Sonnet 5.5 only at runtime; paid AI only
+  in active play sessions and registered evaluation runs).
+- Hard constraints for this build: no verified production pricing-catalog entry exists (catalog
+  verification is not authorized), so the build must make zero outbound provider requests and
+  reveal no secret even when keys are present; accepted checkpoint A behavior may change only where
+  the design or the delta requires it.
+- Out of scope (checkpoint C): evaluation admission/oracles/reporting and client feedback. Do not
+  fail B2 for their absence, but report B2 code that contradicts them.
+- Also applicable: `ARCHITECTURE_INVARIANTS.md`, `docs/adr/0017-ai-gateway.md`,
+  `docs/adr/0032-live-ai.md` (its B2 notes are the implementer's account), nearest `AGENTS.md`
+  files, and the context budget (no active file over 700 lines).
+
+## What to do
+
+Inspect the actual code, migrations, tests and configuration yourself. Run the checks yourself and
+add your own adversarial probes where useful: concurrency and crash points around request start,
+admission, settlement, outcome freeze and recovery; deadline expiry at each stage; stop-scope
+predicates and malformed stop rows; catalog fail-closed behavior; secret and network isolation;
+cross-campaign diagnostic isolation.
+
+Checks (from the snapshot root): `pnpm run format:check`, `pnpm run lint`, `pnpm run typecheck`,
+`pnpm run context-budget`, `pnpm run test`, `pnpm run build`, `pnpm run db:migrate`,
+`pnpm run seed:ravenford`, `pnpm run test:integration`, `pnpm run test:e2e`.
+- PostgreSQL is already running at 127.0.0.1:54329 (development default). Integration tests use
+  their own throwaway databases. Do not run db:up, db:down or docker, and drop or truncate nothing
+  by hand.
+- E2E uses fixed ports 4310 and 4311. Another process on this machine may be using them: before
+  `pnpm run test:e2e`, check with `lsof -i :4310` and `lsof -i :4311`; if either is busy, wait
+  (`sleep 60`) and check again, up to 15 minutes, then report if it never frees.
+Write probe scripts in your scratch area or run them inline with `node --conditions=@ltw/source --input-type=module -e "..."`; multi-line shell heredocs may be denied by the permission mode.
+
+Constraints: no paid or network AI calls, no `.env*` files, no package installs or lockfile
+changes, no edits to snapshot sources.
+
+## Report
+
+Your final message is the review report in Markdown, starting with exactly one line
+`**Verdict: PASS**` or `**Verdict: FAIL**`. FAIL if any Critical or High finding exists or a
+required check fails. Then:
+1. Artifact identity you verified.
+2. Findings, each with severity (Critical/High/Medium/Low), file:line, the concrete failing
+   scenario or reproduction, and why it violates the requirement.
+3. Every check with its result (counts for test suites).
+4. Probes you added and their outcomes.
+5. Residual risks and anything you could not verify.

@@ -1,0 +1,29 @@
+{
+  "exitCode": 0,
+  "requestedModel": "gpt-6.1-sol",
+  "effort": "xhigh",
+  "actualResponseModels": ["gpt-6.1-sol"],
+  "actualResponseEfforts": ["xhigh"],
+  "serverCompletedResponses": 23,
+  "identityMismatch": false,
+  "identityConfirmed": true,
+  "identityEvidence": "Server response.created/response.completed model and reasoning.effort via native ChatGPT SSE",
+  "providerEndpoint": "https://chatgpt.com/backend-api/codex",
+  "authentication": "ChatGPT subscription (login status; requires_openai_auth=true; forced_login_method=chatgpt)",
+  "apiKeysRemoved": true,
+  "apiBillingEnabled": false,
+  "threadId": "01a12a46-565a-7f71-8bfa-63c197dcf361",
+  "freshSession": true,
+  "elapsedSeconds": 664.0,
+  "usage": {
+    "input_tokens": 2226041,
+    "cached_input_tokens": 2075776,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 23193,
+    "reasoning_output_tokens": 8441
+  },
+  "errors": [],
+  "promptSha256": "f72871eb4f50acae5ae245013e9167c7a3a805bbd7e9551a6fdd411aaf2e327c",
+  "responseMetadataSha256": "5fea1b439816c3adb6226e9110902e7a70b8ad5fbf47b1e6205645b50ce5451c",
+  "artifactManifestSha256": "077be8cde263d8510d4fda8af6040717faf4c705da962f47bad3f3dbf769f357"
+}

@@ -1,4 +1,4 @@
-import { ProviderError, type AiProvider } from '@ltw/ai';
+import { ProviderError } from '@ltw/ai';
 import type { AuthoringProposalResponse, CommandResult, DmIntentResponse } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
@@ -11,6 +11,7 @@ import {
   ravenfordApp,
   seededEngine,
   testAiGateway,
+  testProvider,
   withoutRequestId,
 } from '../testing/ravenford-app.ts';
 
@@ -130,10 +131,9 @@ describe('check order and permission', () => {
 
 describe('proposals', () => {
   it('rejects malformed proposals and unknown or unusable traces', async () => {
-    const failing: AiProvider = {
-      id: 'remote',
-      generate: () => Promise.reject(new ProviderError('TIMEOUT', 'slow')),
-    };
+    const failing = testProvider('remote', 'remote', () =>
+      Promise.reject(new ProviderError('TIMEOUT', 'slow')),
+    );
     const offline = await ravenfordApp(engine, testAiGateway(failing));
     const unavailable = (
       await post(offline, '/campaigns/ravenford/ai/intents', { text: 'Add a guard.' }, TOKENS.dm)
@@ -156,6 +156,14 @@ describe('proposals', () => {
     expect(
       (await post(offline, PROPOSALS, { traceId: unavailable.traceId }, TOKENS.dm)).statusCode,
     ).toBe(422);
+    // A deliberate decline (ADR 0032, B1) is never an authoring source.
+    const declined = (
+      await post(app, '/campaigns/ravenford/ai/intents', { text: 'Tell me a joke.' }, TOKENS.dm)
+    ).json<DmIntentResponse>();
+    expect(declined).toMatchObject({ status: 'INVALID_OUTPUT', issues: ['NO_PROPOSAL'] });
+    expect((await post(app, PROPOSALS, { traceId: declined.traceId }, TOKENS.dm)).statusCode).toBe(
+      422,
+    );
   });
 
   it('resolves generated IDs when a revision is stored', async () => {

@@ -1,0 +1,100 @@
+{
+  "checkpoint": "B1",
+  "artifactManifestSha256": "077be8cde263d8510d4fda8af6040717faf4c705da962f47bad3f3dbf769f357",
+  "opus": {
+    "exitCode": 0,
+    "requestedModel": "claude-opus-5-5",
+    "responseMessageModels": ["claude-opus-5-5"],
+    "effort": "xhigh",
+    "identityMismatch": false,
+    "elapsedSeconds": 595.6,
+    "sessionId": "811ccbfa-e82b-41fc-8e93-ff1c3b081175",
+    "isError": false,
+    "usage": {
+      "input_tokens": 122,
+      "cache_creation_input_tokens": 200913,
+      "cache_read_input_tokens": 7549259,
+      "output_tokens": 58104,
+      "output_tokens_details": {
+        "thinking_tokens": 33650
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 200913,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4725,
+          "cache_read_input_tokens": 203279,
+          "cache_creation_input_tokens": 2745,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2745
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "provider": "native Anthropic firstParty claude.ai subscription",
+    "billingChanged": false,
+    "rawSha256": "8e2bf70fab0b6e1b85b64042a7e24826dd8af49d7c7283d2a6c689ab479410ef",
+    "promptSha256": "df15cf4a54b908c1a9a315454ec238d0508202f1bbf284393ff272ec39f20711"
+  },
+  "opusVerdict": "PASS with 3 Low findings",
+  "independentChecks": {
+    "unit": 466,
+    "files": 33,
+    "typecheck": "PASS",
+    "contextBudget": "PASS"
+  },
+  "solGate": "Completed through Codex CLI with server-confirmed actual model/effort; technical acceptance FAIL",
+  "bothAccepted": false,
+  "sourceHashesMatchedBeforeAfter": true,
+  "B2ImplementationStarted": false,
+  "paidRuntimeCalls": false,
+  "sol": {
+    "exitCode": 0,
+    "requestedModel": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "actualResponseModels": ["gpt-6.1-sol"],
+    "actualResponseEfforts": ["xhigh"],
+    "serverCompletedResponses": 23,
+    "identityMismatch": false,
+    "identityConfirmed": true,
+    "identityEvidence": "Server response.created/response.completed model and reasoning.effort via native ChatGPT SSE",
+    "providerEndpoint": "https://chatgpt.com/backend-api/codex",
+    "authentication": "ChatGPT subscription (login status; requires_openai_auth=true; forced_login_method=chatgpt)",
+    "apiKeysRemoved": true,
+    "apiBillingEnabled": false,
+    "threadId": "01a12a46-565a-7f71-8bfa-63c197dcf361",
+    "freshSession": true,
+    "elapsedSeconds": 664.0,
+    "usage": {
+      "input_tokens": 2226041,
+      "cached_input_tokens": 2075776,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 23193,
+      "reasoning_output_tokens": 8441
+    },
+    "errors": [],
+    "promptSha256": "f72871eb4f50acae5ae245013e9167c7a3a805bbd7e9551a6fdd411aaf2e327c",
+    "responseMetadataSha256": "5fea1b439816c3adb6226e9110902e7a70b8ad5fbf47b1e6205645b50ce5451c",
+    "artifactManifestSha256": "077be8cde263d8510d4fda8af6040717faf4c705da962f47bad3f3dbf769f357"
+  },
+  "solVerdict": "FAIL: 2 High, 2 Medium",
+  "requiredRepairs": [
+    "Runtime route snapshot and immutable returned arrays",
+    "Own-property billing allowlists preserving facts",
+    "Cancellation rechecks after callbacks and before invocation",
+    "Exactly one attempt on invalid initial local-only output"
+  ]
+}

@@ -1,5 +1,5 @@
 import type { EntityRef, NpcDialogueResponse } from '@ltw/contracts';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useT, type Translate } from '@ltw/ui';
@@ -24,7 +24,9 @@ function refusal(t: Translate, code: string, npc: string): string {
 /**
  * The DM performs an NPC for one of the party's characters through the existing
  * dialogue route. The World Engine decides the canonical outcome of Ask first; the
- * words that follow are table prose and never a fact.
+ * words that follow are table prose and never a fact. While a (possibly live) reply is
+ * awaited the panel says so; a reply for another NPC or character, or one arriving after
+ * the panel closed, is discarded (ADR 0032, C). The DM's line is kept as a draft.
  */
 export function PerformNpc({
   api,
@@ -45,7 +47,21 @@ export function PerformNpc({
   const [line, setLine] = useState('');
   const [busy, setBusy] = useState(false);
   const [said, setSaid] = useState<string | null>(null);
+  // The one request whose answer may still be shown; replaced when the NPC or character changes.
+  const pending = useRef<AbortController | null>(null);
+  useEffect(() => {
+    setSaid(null);
+    setBusy(false);
+    return () => {
+      pending.current?.abort();
+      pending.current = null;
+    };
+  }, [npcId, characterId]);
   const perform = async (intent: { kind: 'talk' } | { kind: 'ask'; topicId: string }) => {
+    pending.current?.abort();
+    const request = new AbortController();
+    pending.current = request;
+    const current = () => pending.current === request && !request.signal.aborted;
     setBusy(true);
     setSaid(null);
     try {
@@ -57,8 +73,9 @@ export function PerformNpc({
       const result = await api.post<NpcDialogueResponse>(
         `npcs/${encodeURIComponent(npcId)}/dialogue`,
         body,
-        new AbortController().signal,
+        request.signal,
       );
+      if (!current()) return;
       setSaid(
         result.refused
           ? refusal(t, result.refused, npcName)
@@ -75,9 +92,12 @@ export function PerformNpc({
               )),
       );
     } catch {
-      setSaid(t('The conversation could not be performed. Please try again.'));
+      if (current()) setSaid(t('The conversation could not be performed. Please try again.'));
     } finally {
-      setBusy(false);
+      if (current()) {
+        pending.current = null;
+        setBusy(false);
+      }
     }
   };
   if (characters.length === 0) return null;
@@ -138,6 +158,11 @@ export function PerformNpc({
       >
         {t('Answer the question')}
       </button>
+      {busy && (
+        <p role="status" className="muted">
+          {t('{npc} is replying…', { npc: npcName })}
+        </p>
+      )}
       {said && (
         <blockquote role="status" aria-label={t('{npc} says', { npc: npcName })}>
           {said}

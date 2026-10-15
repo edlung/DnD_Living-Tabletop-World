@@ -12,7 +12,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 
 import { renderChronicle, validateChronicle, TEMPLATE_MODEL } from './chronicle.ts';
 import { createLocalProvider } from './local-provider.ts';
-import { ProviderError, type AiProvider } from './providers.ts';
+import { ProviderError, type RoutedProvider } from './providers.ts';
 import { CapabilityRouter } from './router.ts';
 import { scripted, steppingMs } from './testing/providers.ts';
 import {
@@ -38,13 +38,14 @@ beforeAll(async () => {
   entries = chronicleEntries(state, [], party, 0, state.clock).entries;
 });
 
-function deps(...providers: AiProvider[]) {
+function deps(...providers: RoutedProvider[]) {
   const clock = new SteppingClock();
   return {
     router: new CapabilityRouter({ narrative: providers }),
     traces: new InMemoryAiTraceStore(),
     ids: new SequentialIds(0xc1),
     clock: { now: () => clock.now(), nowMs: steppingMs() },
+    requestTimeoutMs: 60_000,
   };
 }
 
@@ -101,7 +102,10 @@ describe('rendering a chapter', () => {
       status: 'RENDERED',
       prose: { provider: 'anthropic', model: 'anthropic-model', paragraphs: GOOD.paragraphs },
     });
-    const trace = (await d.traces.get(CAMPAIGN, rendered.traceId)) as ChronicleTraceView | null;
+    const trace = (await d.traces.get(
+      CAMPAIGN,
+      rendered.traceId ?? '',
+    )) as ChronicleTraceView | null;
     expect(trace).toMatchObject({
       purpose: 'chronicle',
       capability: 'narrative',

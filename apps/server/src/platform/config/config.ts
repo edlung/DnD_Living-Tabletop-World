@@ -2,6 +2,8 @@ import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
 
+import { parseRoutes, routeIssues, type RouteProvider } from './ai-routes.ts';
+
 /**
  * Validated runtime configuration for the server process.
  *
@@ -38,6 +40,29 @@ export interface AppConfig {
     } | null;
     /** How long a context request waits for the relevance ranker (docs/adr/0021-ai-relevance.md). */
     readonly relevanceBudgetMs: number;
+    /**
+     * The whole-request deadline of DM intents, NPC replies and Chronicle prose
+     * (docs/adr/0032-live-ai.md, B2): request start, admission, every attempt and the wait for the
+     * trace write. `LTW_AI_TIMEOUT_MS` stays the per-attempt transport bound within it.
+     */
+    readonly requestTimeoutMs: number;
+    /**
+     * The operator-created approval this process selects (`LTW_AI_APPROVAL_ID`), or null. It only
+     * names a stored record: ceilings live in that record and cannot be set or raised here.
+     */
+    readonly approvalId: string | null;
+    /** The DeepSeek adapter (docs/adr/0032-live-ai.md); null unless a key is set. */
+    readonly deepseek: {
+      readonly apiKey: Secret;
+      readonly model: string;
+      readonly timeoutMs: number;
+    } | null;
+    /**
+     * Per-capability provider lists, `provider:model` in order, validated as runtime routes
+     * (`ai-routes.ts`); null = none. Spending ceilings are never configuration: they are operator
+     * records (docs/adr/0032-live-ai.md, 2026-10-11).
+     */
+    readonly routes: Readonly<Record<string, readonly string[]>> | null;
   };
   /** Quest definitions (docs/adr/0025-ravenford-integration.md §2). */
   readonly questsFile: string;
@@ -77,7 +102,9 @@ export class Secret {
 export const DEFAULT_AI_MODEL = 'claude-opus-5-5';
 export const DEFAULT_AI_TIMEOUT_MS = 30_000;
 export const DEFAULT_RELEVANCE_BUDGET_MS = 2_000;
+export const DEFAULT_REQUEST_TIMEOUT_MS = 60_000;
 export const DEFAULT_ASSET_WORKER_INTERVAL_MS = 5_000;
+export const DEFAULT_DEEPSEEK_MODEL = 'deepseek-flash';
 export const DEFAULT_ASSET_TIMEOUT_MS = 60_000;
 
 export type Env = Readonly<Record<string, string | undefined>>;
@@ -132,6 +159,26 @@ const envSchema = z.object({
     emptyAsUndefined,
     z.coerce.number().int().min(1_000).max(300_000).default(DEFAULT_AI_TIMEOUT_MS),
   ),
+  DEEPSEEK_API_KEY: z.preprocess(emptyAsUndefined, z.string().trim().min(1).optional()),
+  LTW_DEEPSEEK_MODEL: z.preprocess(
+    emptyAsUndefined,
+    z
+      .string()
+      .regex(/^[a-z0-9][a-z0-9.-]{0,99}$/)
+      .default(DEFAULT_DEEPSEEK_MODEL),
+  ),
+  LTW_AI_ROUTES: z.preprocess(emptyAsUndefined, z.string().max(2_000).optional()),
+  LTW_AI_REQUEST_TIMEOUT_MS: z.preprocess(
+    emptyAsUndefined,
+    z.coerce.number().int().min(1_000).max(300_000).default(DEFAULT_REQUEST_TIMEOUT_MS),
+  ),
+  LTW_AI_APPROVAL_ID: z.preprocess(
+    emptyAsUndefined,
+    z
+      .string()
+      .regex(/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/)
+      .optional(),
+  ),
   LTW_AI_RELEVANCE_BUDGET_MS: z.preprocess(
     emptyAsUndefined,
     z.coerce.number().int().min(100).max(30_000).default(DEFAULT_RELEVANCE_BUDGET_MS),
@@ -149,6 +196,15 @@ const envSchema = z.object({
     z.coerce.number().int().min(1_000).max(600_000).default(DEFAULT_ASSET_TIMEOUT_MS),
   ),
 });
+
+/**
+ * Variables that no longer configure anything. The daily dollar ceiling was removed: a value set
+ * here would otherwise look like a cap. Startup warns about them by name, never by value.
+ */
+export const OBSOLETE_VARIABLES = ['LTW_AI_DAILY_BUDGET_USD'] as const;
+
+export const obsoleteVariables = (env: Env = process.env): string[] =>
+  OBSOLETE_VARIABLES.filter((name) => env[name] !== undefined && env[name] !== '');
 
 export class ConfigError extends Error {
   readonly issues: readonly string[];
@@ -193,6 +249,14 @@ export function loadConfig(env: Env = process.env): AppConfig {
     issues.push('AUTH_MODE: dev-personas is not allowed in production');
   }
 
+  const routes = parseRoutes(values.LTW_AI_ROUTES, issues);
+  if (routes !== null) {
+    const keyed = new Set<RouteProvider>([
+      ...(values.ANTHROPIC_API_KEY === undefined ? [] : (['anthropic'] as const)),
+      ...(values.DEEPSEEK_API_KEY === undefined ? [] : (['deepseek'] as const)),
+    ]);
+    issues.push(...routeIssues(routes, 'runtime', keyed));
+  }
   if (issues.length > 0 || databaseUrl === undefined) {
     throw new ConfigError(issues);
   }
@@ -217,6 +281,17 @@ export function loadConfig(env: Env = process.env): AppConfig {
               timeoutMs: values.LTW_AI_TIMEOUT_MS,
             }),
       relevanceBudgetMs: values.LTW_AI_RELEVANCE_BUDGET_MS,
+      requestTimeoutMs: values.LTW_AI_REQUEST_TIMEOUT_MS,
+      approvalId: values.LTW_AI_APPROVAL_ID ?? null,
+      deepseek:
+        values.DEEPSEEK_API_KEY === undefined
+          ? null
+          : Object.freeze({
+              apiKey: new Secret(values.DEEPSEEK_API_KEY),
+              model: values.LTW_DEEPSEEK_MODEL,
+              timeoutMs: values.LTW_AI_TIMEOUT_MS,
+            }),
+      routes: routes === null ? null : Object.freeze(routes),
     }),
     questsFile: values.LTW_QUESTS_FILE ?? DEFAULT_QUESTS_FILE,
     assets: Object.freeze({

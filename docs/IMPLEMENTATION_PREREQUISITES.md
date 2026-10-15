@@ -71,6 +71,8 @@ Decision needed when defining the session/authentication UX in Stage 200 if prod
 
 **Update (owner, 2026-10-05):** the release goes to a VPS, so production authentication is required. The sign-in method is still undecided and is due before implementation of Stage 340. The provider and domain are Q10.
 
+**Decided (owner, 2026-10-15):** single-use invitation links issued by the DM, with no passwords and no e-mail (`reviews/OWNER_DECISIONS_9_2026-10-15.json`).
+
 ### Q5. Runtime text models — Stage 300
 
 **Decided (owner, 2026-10-05):** Claude and DeepSeek. DM intents and Chronicle prose use Claude Opus 5.5. NPC dialogue is compared between Claude Sonnet 5.5 (baseline) and DeepSeek V4.1 Flash (challenger); the owner picks from a blind comparison in Stage 300. Relevance ranking uses DeepSeek V4.1 Flash. Carry this into the Stage 300 ADR.
@@ -79,7 +81,13 @@ Still open, needed before the first paid call in Stage 300: the spending ceiling
 
 ### Q6. Image provider — Stage 330
 
-**Decided (owner, 2026-10-05):** OpenAI only (the GPT Image 2.5 family at the time of the decision), without a cross-provider comparison. Still open: the art style, decided together with Q8, and the spending ceiling.
+**Decided (owner, 2026-10-05):** OpenAI only (the GPT Image 2.5 family at the time of the decision), without a cross-provider comparison. **Access (owner, 2026-10-05):** through an OpenRouter API key (`OPENROUTER_API_KEY` in `.env.local`), not an OpenAI key or a ChatGPT subscription. Stage 330 must confirm that OpenRouter exposes the chosen image model with reference-image input before relying on it. Still open: the art style, decided together with Q8, and the spending ceiling.
+
+**Budget clarification (2026-10-11):** the owner supplied the OpenRouter key with an external $20 key
+limit. That limit applies to OpenRouter image access; it does not authorize a $30 text-provider budget.
+Art style and the allocation within that key limit remain to be settled before Stage 330.
+
+**Decided (owner, 2026-10-15):** the curated Ravenford set is generated through Codex CLI with the owner's ChatGPT subscription and imported as DM-approved; images the DM authors in play use the OpenRouter key with a $5 ceiling (`reviews/OWNER_DECISIONS_9_2026-10-15.json`).
 
 ### Q7. Language of play — Stages 290–360
 
@@ -91,17 +99,28 @@ Still open, needed in Stage 290: approval of the glossary of names and terms, an
 
 Which visual direction should the client take? The owner decides from two or three prototypes of the key screens, before implementation of Stage 320. The decision also fixes the art style for Q6.
 
+**Decided (owner, 2026-10-15):** the session builds three prototypes of the key screens, picks one and records it in an ADR with design tokens; the other prototypes are kept for the owner to switch later (`reviews/OWNER_DECISIONS_9_2026-10-15.json`).
+
 ### Q9. Live-session rules — Stage 310
 
 What may the change signal reveal to a perspective about changes it cannot read (by default, nothing)? What may the DM do for an absent player: skip the turn, act as the character, or neither? Decision needed before implementation of Stage 310.
+
+**Decided (owner, 2026-10-11):** the DM may skip the absent player's turn or act as that character.
+Actions must be auditable and support undo through the World Engine. The proposal presented with
+this choice retains the default that hidden changes reveal nothing, including through notifications.
+Transport presence is not sufficient proof of absence and does not automatically transfer authority.
 
 ### Q10. Deployment target — Stage 350
 
 Which VPS provider, domain, and backup location? Decision needed before implementation of Stage 350.
 
+**Decided (owner, 2026-10-15):** prepare the reproducible deployment and verify it locally in Docker (TLS proxy, backups, restore drill, runbook); deployment to a server waits for the owner's access and domain (`reviews/OWNER_DECISIONS_9_2026-10-15.json`).
+
 ### Q11. Playtest participants — Stage 360
 
 Who takes part in the uncoached sessions, and do they consent to recording and to their text being processed by the AI providers named to them? Needed before Stage 360 starts. The owner stated on 2026-10-05 that no human testers were available then.
+
+**Decided (owner, 2026-10-15):** human playtests are the owner's; the session prepares everything else (AI stand-in pass, playtest kit, prepared release) and the v0.1 tag waits for those playtests (`reviews/OWNER_DECISIONS_9_2026-10-15.json`).
 
 ## Pending allocation of existing Ravenford obligations
 

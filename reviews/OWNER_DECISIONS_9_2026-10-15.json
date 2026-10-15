@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-15",
+  "source": "Owner messages and AskUserQuestion answers in a Claude Code session",
+  "ownerRequest": "Доделай проект полностью. Ручными проверками я займусь потом.",
+  "decisions": {
+    "authorization": "Stages 310, 320, 330, 340, 350, the Gate 06 red-team pass (355) and the non-human parts of 360 are authorized; owner play acceptance and other manual checks are deferred to the owner",
+    "designs": "Иди дальше без остановок (Recommended): the session writes each stage's design, takes the recommended options, records them in ADRs and implements without stopping; the owner reviews and may change them later",
+    "Q8visualDirection": "Сделай 3 прототипа и выбери сам (Recommended): three prototypes of the key screens, the session picks one and records it in an ADR with design tokens; the other prototypes are kept",
+    "Q4signIn": "Ссылки-приглашения от DM (Recommended): single-use DM invitation links, no passwords and no e-mail",
+    "Q10deployment": "Подготовь и проверь локально (Recommended): reproducible deployment (containers, TLS proxy, backups, restore drill, runbook) verified locally in Docker; deploying to a server waits for the owner's access and domain",
+    "Q6images": "Набор — подписка, в игре — OpenRouter до $5 (Recommended): the curated Ravenford set is generated through Codex CLI with the owner's ChatGPT subscription and imported as DM-approved; in-play generation (DM-authored entities) uses the OpenRouter key with a $5 ceiling",
+    "liveAi": "Да, в пределах заведённых лимитов (Recommended): live Sonnet 5.5 evaluation run and stage smoke checks are allowed within the stored operator ceilings ($30 stage, $15/day, $10 per session or evaluation run)",
+    "branches": "Вливать по зелёному CI (Recommended): merge PR 2 and PR 3 into main once CI is green; each later stage gets its own branch and PR, merged after its checks",
+    "Q11release": "Всё, кроме людей и релиза (Recommended): AI stand-in pass, playtest kit and a prepared release; the v0.1 tag waits for the owner's human playtests"
+  }
+}

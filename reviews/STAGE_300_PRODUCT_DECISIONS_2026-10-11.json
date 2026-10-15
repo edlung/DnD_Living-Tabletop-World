@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-11",
+  "userAnswer": "Да, сохранить оба правила",
+  "decisions": {
+    "spendingCeilings": "operator CLI records rather than environment",
+    "dmPreparationWithoutActivePlaySession": "local only",
+    "chronicleAfterPlaySessionClosed": "local only"
+  },
+  "scope": "Stage 300 product dispositions; no paid runtime authorization"
+}

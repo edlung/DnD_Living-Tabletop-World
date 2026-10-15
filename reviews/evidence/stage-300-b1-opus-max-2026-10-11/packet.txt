@@ -1,0 +1,78 @@
+You are an independent acceptance reviewer for Living Tabletop World, Stage 300 remediation
+checkpoint B1. This is a fresh initial review in a clean session (claude-opus-5-5, max effort),
+assigned by the project owner on 2026-10-11 as one of the two required independent checkpoint
+acceptance reviews. Review only: never modify, format or regenerate any file in the snapshot.
+
+## Where to work
+
+- Snapshot (your working directory): /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/b1-opus-max/snapshot
+  It is an exact export of commit f7518a6 with dependencies installed. Git history, prior review
+  records (`reviews/`), checkpoint handoffs and the status document `docs/PROJECT_WORKFLOW.md` were
+  removed on purpose so that your review is independent.
+- Scratch (your writable area for probe scripts, logs and build output you create yourself):
+  /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/b1-opus-max/scratch
+- Read nothing outside these two directories. In particular do not open the canonical checkout
+  under /Users/oleksandr/Documents/, any /tmp/ltw-* directory, other Claude/Codex sessions,
+  transcripts or memory. Standard tool output written by the project's own commands (dist/,
+  test-results/, *.tsbuildinfo, playwright-report/) inside the snapshot is acceptable.
+
+## Reference material in scratch
+
+- `base-4069043-to-artifact.diff`: the full change from the last commit before remediation
+  (4069043) to this artifact, without review records. It contains checkpoint A and B1 together.
+- `checkpoint-a-accepted-files.sha256`: SHA256 of every file in the accepted checkpoint A
+  artifact. Checkpoint A (durable admission, accounting journal, migrations 0005/0006, operator
+  store/CLI) is already accepted; files whose hash still matches were not changed by B1. Treat A as
+  a dependency: inspect it where B1 relies on it and report any defect you find, but the B1 scope
+  is what changed after A.
+
+## Requirements
+
+- Approved architecture: `docs/STAGE_300_REMEDIATION_DESIGN.md` (draft 7, SHA256
+  23e53e4d24e01e6b3752c61de1f698a594c2ee763a746f184f062cebfef4aab2; verify it). B1 is defined in
+  "Checkpoints and required evidence": adapter outcome classification, fallback transitions,
+  terminal intent decline and routes. The governing sections are 2 (observability of every
+  dispatched attempt) and 3 (adapters, routing, caching and client, including the outcome contract
+  table), plus the A/B1 constraints: composition constructs no remote adapter and never reveals
+  provider secrets even when keys and an approval exist; keys without a stored approval produce
+  zero outbound requests; the remote-dispatch construction guard stays in place; the B1 build is
+  offline-only.
+- Out of scope for B1 (later checkpoint B2/C, do not fail B1 for their absence, but report any B1
+  code that contradicts them): journal/gateway integration, whole-request deadlines and hard-abort
+  recovery, diagnostic reads, cache accounting, the approved B2 stop-scope delta
+  `docs/STAGE_300_B2_STOP_SCOPE_DESIGN.md`, evaluation admission/oracles/reporting, client feedback.
+- Also applicable: `ARCHITECTURE_INVARIANTS.md`, `docs/adr/0017-ai-gateway.md`,
+  `docs/adr/0032-live-ai.md` (its B1 sections are the implementer's own account, not evidence),
+  nearest `AGENTS.md` files, and the context budget (no active file over 700 lines).
+
+## What to do
+
+Inspect the actual code, tests and configuration yourself; the implementer's comments and ADR
+notes are claims to verify. Run the checks yourself and add your own probes where useful
+(for example adversarial inputs to failure classification, cancellation and fallback paths,
+forged or unusual provider errors and usage objects, route parsing, and proof that no network
+request or secret reveal can happen in this build).
+
+Checks (from the snapshot root):
+- `pnpm run format:check`, `pnpm run lint`, `pnpm run typecheck`, `pnpm run context-budget`
+- `pnpm run test` (unit), `pnpm run build`
+- `pnpm run db:migrate`, `pnpm run seed:ravenford`, `pnpm run test:integration`
+  PostgreSQL is already running at 127.0.0.1:54329 (the project's development default). Do not
+  run `db:up`, `db:down` or any docker command; the database is shared, so do not drop or
+  truncate anything by hand.
+- `pnpm run test:e2e` (Playwright) if it can run in this environment; report if it cannot.
+
+Constraints: no paid or network AI calls (there are no keys in the snapshot; do not create
+`.env*` files), no package installs or lockfile changes, no edits to snapshot sources.
+
+## Report
+
+Your final message is the review report, in Markdown, starting with exactly one line
+`**Verdict: PASS**` or `**Verdict: FAIL**`. FAIL if any Critical or High finding exists or a
+required check fails. Then list:
+1. Artifact identity you verified (design hash, anything else you checked).
+2. Findings, each with severity (Critical/High/Medium/Low), file:line, the concrete failing
+   scenario or reproduction, and why it violates the requirement.
+3. Every check you ran with its result (counts for test suites).
+4. Probes you added and their outcomes.
+5. Residual risks and anything you could not verify.
