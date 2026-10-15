@@ -133,9 +133,15 @@ function findBlockers(
   return [...blockers.values()];
 }
 
-/** Exact prior values for every fact the target command wrote. */
+/**
+ * Exact prior values for every fact the target command wrote. An entity the command created
+ * (an authoring commit may create an NPC and then edit him) had no earlier facets: removing it
+ * restores them all, so its later edits in the same command restore nothing of their own.
+ */
 function restoresFor(events: readonly RecordedEvent[], before: WorldState): Restore[] {
-  const removedEntities = new Set<string>();
+  const removedEntities = new Set(
+    events.flatMap((event) => (event.type === 'EntityCreated' ? [event.payload.entityId] : [])),
+  );
   const removedScenes = new Set<string>();
   const restores: Restore[] = [];
   const entityBefore = (entityId: string) => {
@@ -147,7 +153,6 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
   for (const event of events) {
     switch (event.type) {
       case 'EntityCreated':
-        removedEntities.add(event.payload.entityId);
         restores.push({ fact: 'entity', entityId: event.payload.entityId, value: null });
         break;
       case 'EntityPlaced':
@@ -158,6 +163,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         });
         break;
       case 'EntityProfileUpdated': {
+        if (removedEntities.has(event.payload.entityId)) break;
         const { name, description } = entityBefore(event.payload.entityId);
         restores.push({
           fact: 'entity.profile',
@@ -167,6 +173,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         break;
       }
       case 'EntityStatusChanged':
+        if (removedEntities.has(event.payload.entityId)) break;
         restores.push({
           fact: 'entity.status',
           entityId: event.payload.entityId,

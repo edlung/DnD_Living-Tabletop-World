@@ -7,6 +7,7 @@ import {
   testAiGateway,
   testAssets,
   testAuthoring,
+  testDm,
 } from '../testing/ravenford-app.ts';
 import { buildApp } from './app.ts';
 import { devPersonaAuthenticator, disabledAuthenticator } from './auth.ts';
@@ -33,6 +34,7 @@ function appWith(store: EventStore, lines: Record<string, unknown>[] = []) {
     logger,
     ai: testAiGateway(),
     authoring: testAuthoring(),
+    dm: testDm(),
     assets: testAssets(),
     quests: RAVENFORD_QUESTS,
   });
@@ -98,6 +100,7 @@ describe('HTTP app', () => {
       logger: createLogger({ service: 'app-test', level: 'silent' }),
       ai: testAiGateway(),
       authoring: testAuthoring(),
+      dm: testDm(),
       assets: testAssets(),
       quests: RAVENFORD_QUESTS,
     });

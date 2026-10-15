@@ -1,5 +1,11 @@
-import type { CommandResult, NpcDialogueResponse, PlayerOutcome } from '@ltw/contracts';
-import { useT } from '@ltw/ui';
+import type {
+  CommandResult,
+  NpcDialogueResponse,
+  PlayerOutcome,
+  RecordSubstitutionRequest,
+  RecordSubstitutionResponse,
+} from '@ltw/contracts';
+import { useT, type Translate } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
@@ -8,10 +14,17 @@ import type { DmWorldCommand } from '../dm/world-controls.tsx';
 import type { ExplorationCommand } from './action-bindings.ts';
 import { outcomeMessage, rejectionMessage } from './outcome-messages.ts';
 
+/**
+ * The DM acting for a player's character (docs/adr/0033-live-session.md §6): the DM's reason,
+ * recorded under the command's own client ID before the command is submitted.
+ */
+export type StandInReason = Omit<RecordSubstitutionRequest, 'clientCommandId'>;
+
 export type ExplorationIntent =
   | {
       readonly kind: 'command';
       readonly command: ExplorationCommand | CombatUiCommand | DmWorldCommand;
+      readonly standIn?: StandInReason;
     }
   | { readonly kind: 'talk'; readonly characterId: string; readonly npcId: string };
 
@@ -76,15 +89,24 @@ export function useAction(
             ? { message: t('Spoken reply · not a fact'), speech: result.reply.text }
             : { message: t('No spoken reply is available. You can still ask about a subject.') };
       } else {
+        const { command, standIn } = attempt.intent;
+        // The reason first, under the same client command ID: a retry repeats both safely.
+        if (standIn && !(await recordReason(api, attempt.commandId, standIn, request.signal))) {
+          if (!isLive()) return;
+          current.current = null;
+          setState({ status: 'done', notice: { message: t(REASON_REFUSED) } });
+          onResolved();
+          return;
+        }
         const result = await api.post<CommandResult>(
           'commands',
-          { commandId: attempt.commandId, command: attempt.intent.command },
+          { commandId: attempt.commandId, command },
           request.signal,
         );
         if (!['accepted', 'duplicate', 'rejected'].includes(result.status)) throw new ApiError(0);
         notice =
           result.status === 'rejected'
-            ? { message: rejectionMessage(t, result.code, result.message) }
+            ? { message: refusal(t, attempt.intent, result.code, result.message) }
             : {
                 message: outcomeMessage(t, result.outcome),
                 ...(result.outcome ? { outcome: result.outcome } : {}),
@@ -124,4 +146,40 @@ export function useAction(
       if (current.current) void execute(current.current);
     },
   };
+}
+
+const REASON_REFUSED = 'Your reason could not be recorded, so nothing was done for the player.';
+
+/** Whether the DM's reason is recorded (now or already); a lost response throws to retry. */
+async function recordReason(
+  api: WorldApi,
+  clientCommandId: string,
+  reason: StandInReason,
+  signal: AbortSignal,
+): Promise<boolean> {
+  try {
+    const body: RecordSubstitutionRequest = { clientCommandId, ...reason };
+    const answer = await api.post<RecordSubstitutionResponse>('dm/substitutions', body, signal);
+    // Anything but these two answers is treated as a lost response: the same attempt retries.
+    if (!['recorded', 'duplicate'].includes(answer.status)) throw new ApiError(0);
+    return true;
+  } catch (error) {
+    if (error instanceof ApiError && error.status >= 400 && error.status < 500) return false;
+    throw error;
+  }
+}
+
+/** A refusal in words; skipping a player's turn says plainly why it waits (ADR 0016). */
+function refusal(t: Translate, intent: ExplorationIntent, code: string, message: string): string {
+  if (
+    intent.kind === 'command' &&
+    intent.standIn &&
+    intent.command.type === 'EndTurn' &&
+    code === 'REACTION_PENDING'
+  ) {
+    return t(
+      'The turn cannot end while a reaction is pending. Close the reaction window first, or wait for the answer.',
+    );
+  }
+  return rejectionMessage(t, code, message);
 }

@@ -44,6 +44,16 @@ export function CombatPanel({
   );
   const myTurn = self !== undefined && encounter.currentCombatantId === actorId;
   const waiting = encounter.reactionWindow !== null;
+  // Whose turn it is, said once when it changes (ADR 0033): this is the live region, and
+  // the anchor below stays quiet so a background refresh announces nothing by itself.
+  const asked = actorId !== null && (encounter.reactionWindow?.choices.length ?? 0) > 0;
+  const turn = asked
+    ? t('Your reaction is needed')
+    : myTurn
+      ? t('Your turn')
+      : t("{name}'s turn", {
+          name: current ? combatantLabel(current) : encounter.currentCombatantId,
+        });
   const plan =
     focus?.kind === 'square' && actorId !== null
       ? planPath(encounter, actorId, focus.square)
@@ -65,7 +75,19 @@ export function CombatPanel({
         : null;
   return (
     <section className="combat-panel" aria-label={t('Battlefield')}>
-      <div className="combat-anchor" role="status" aria-label={t('Encounter anchor')}>
+      <p
+        className={`turn-banner${asked || myTurn ? ' turn-banner--yours' : ''}`}
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {turn}
+      </p>
+      <div
+        className="combat-anchor"
+        role="status"
+        aria-live="off"
+        aria-label={t('Encounter anchor')}
+      >
         <span>{t('Round {round}', { round: encounter.round })}</span>
         <span>
           {t('Turn: {name}', {

@@ -22,6 +22,9 @@ test('the DM moves time and weather and the player returns to a changed Ravenfor
   await dm.getByLabel('Weather at Market Square').selectOption('rain');
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Set weather' })));
   await expect(dm.getByLabel('Scene conditions')).toContainText('Day 2 · 10:00');
+  // The day control now offers the next morning, never a day already reached (ADR 0033 §8).
+  await expect(dm.getByRole('button', { name: 'Advance to Day 3, 10:00' })).toBeVisible();
+  await expect(dm.getByRole('button', { name: 'Advance to Day 2, 10:00' })).toHaveCount(0);
 
   // The player looks again and finds a different morning.
   await player.getByRole('button', { name: 'Refresh world' }).click();

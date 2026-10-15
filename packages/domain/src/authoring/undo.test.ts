@@ -2,6 +2,7 @@ import type { CommandResult } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { MODIFIERS } from '../investigation/testing/world.ts';
+import { previewUndo } from '../kernel/decide/undo-preview.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { redecideEffective } from '../kernel/verification/redecide.ts';
 import { holderPerspective } from '../knowledge/perspective.ts';
@@ -74,6 +75,34 @@ describe('undoing the Tomas commit', () => {
     // History keeps every event; one compensation was appended.
     expect(snapshot.history.length).toBe(before + 1);
     expect(snapshot.history.at(-1)?.type).toBe('CommandUndone');
+  });
+
+  it('removes him whole when the same proposal also edited his profile', async () => {
+    const world = await authoringWorld();
+    const renamed = {
+      type: 'UpdateEntityProfile',
+      entityId: TOMAS,
+      name: 'Tomas the Younger',
+    } as const;
+    const result = await world.commit([tomas(), renamed], { confirmation: confirm('L3') });
+    if (result.status !== 'accepted') throw new Error(`commit ${codeOf(result)}`);
+    const commitId = result.commandId;
+    // The dry decision and the undo agree: his profile had no value before the commit.
+    const committed = await world.engine.load(CAMPAIGN);
+    if (!committed) throw new Error('missing campaign');
+    expect(previewUndo(committed, DM, CAMPAIGN, commitId)).toEqual({ undoable: true });
+
+    expect(codeOf(await undo(world, commitId, 'undo.tomas'))).toBe('accepted');
+    const snapshot = await verified(world);
+    expect(snapshot.state.entities.has(TOMAS)).toBe(false);
+    const compensation = snapshot.history.at(-1);
+    if (compensation?.type !== 'CommandUndone') throw new Error('expected CommandUndone');
+    // One removal stands for every facet the commit gave him.
+    expect(
+      compensation.payload.restores.filter(
+        (restore) => 'entityId' in restore && restore.entityId === TOMAS,
+      ),
+    ).toEqual([{ fact: 'entity', entityId: TOMAS, value: null }]);
   });
 
   it('never reuses his identity', async () => {

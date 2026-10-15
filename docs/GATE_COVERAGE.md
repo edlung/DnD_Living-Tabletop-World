@@ -205,3 +205,79 @@ builders, prompts, instructions and tool schemas are unchanged:
   relevance request to any provider; rankings stay on the Context Engine (`gateway-verified.test.ts`
   reads the `.env.example` example). An explicitly configured remote ranker remains possible and
   keeps its B2 coverage.
+
+Stage 310 part A introduction evidence (ADR 0033; `docs/STAGE_310_DESIGN.md` §A; baseline
+`edeae54`; acceptance pending): **new surfaces for Gate 06**, row 310 of the alpha-phase table.
+- **`GET /campaigns/:campaignId/live`** (`apps/server/src/live/`): the ADR 0009 check order before
+  the stream opens; an event stream of `ready`, `changed {seq}`, `closed {reason}` and comment
+  heartbeats only. A signal is a change of the SHA-256 over the subscriber's own coverage views,
+  each injected with the subscriber's credential into a silent twin of the same application
+  (same engine and stores, no workers, no live route), so the reviewed routes and projections
+  decide what is visible. Every cycle rechecks through those views: 401, 403 and 404 close the
+  stream, and a failure closes it without a signal. Caps 4 per actor per campaign and 200 per
+  process; a consumer whose backlog exceeds 64 KiB is dropped.
+- **`GET /campaigns/:campaignId/presence`**: characters of the perspective's own `knownEntities`
+  and whether their players (and the DM) hold a live subscription, with a 10 s grace; never an
+  actor ID.
+- **Boundary decisions to review**: a focus or place view that answers 404 is fingerprinted by its
+  status (it does not close the stream); the DM's identity view is not covered while the DM holds
+  a lower perspective (it lists hidden characters); entity context and surroundings are covered
+  only for acting characters.
+- **Deterministic evidence**: `apps/server/src/live/live-isolation.test.ts` (every non-DM
+  perspective of Ravenford, with and without focus and place, and the hidden-character sentinel's,
+  stay silent on five DM-only commits while the DM is signalled; a party record signals each
+  reader once; every frame matches the fixed grammar), `live-stream.test.ts` (check order,
+  headers, mid-stream 401/403/404 with a flippable authenticator, failure, disconnect, shutdown,
+  caps), `live-socket.test.ts` (a real connection), `hub.test.ts` (no overlapping cycles,
+  baseline before `ready`, slow consumer, heartbeat, caps), `fingerprint.test.ts` (view answers
+  to verdicts: a hidden focus by its status, errors never a fingerprint), `presence.test.ts` (no hidden character or actor ID; a hidden player's
+  arrival changes no other perspective's views or signals), `inventory.test.ts`; client
+  `apps/web/src/api/live.test.ts`, `live-protocol.test.ts`, `resource.test.ts`; browser journeys
+  `tests/e2e/live-combat.spec.ts` and `live-world.spec.ts` (turn hand-off, Counterspell window
+  answered without refresh, private authoring silent until published, reconnect).
+- No reviewed projection, mutation path or authorization rule changed. The design promises
+  protocol non-disclosure, not constant-time execution: fingerprint cost varies with load.
+
+Stage 310 parts B and C introduction evidence (ADR 0033 §6–8; `docs/STAGE_310_DESIGN.md` §B–C;
+baseline `13cfaef`; acceptance pending): **new surfaces for Gate 06**, row 310 of the alpha-phase
+table ("the DM's action for an absent player is an authorized, audited, undoable command").
+- **`POST /campaigns/:campaignId/dm/substitutions`** (`apps/server/src/dm/`): the DM's reason
+  (`absent`/`asked`/`other`, optional note of at most 200 characters) recorded before the DM
+  submits the command with the same client command ID. ADR 0009 order: 401, 400 (strict body),
+  then the 404 of a missing campaign for anyone who is not the campaign's DM, players included;
+  422 for a character without a player, 409 for a different reason under the same ID or for a
+  command already stored under it. Answers `{status: recorded|duplicate}` only; logs the reason
+  code only. Append-only table `ltw_dm_substitutions` (migration 0009): descriptive, never
+  canonical; the stored command with the DM as issuer is the record.
+- **`GET /campaigns/:campaignId/dm/history?perspective=DM[&before=<sequence>]`**: 404 for anyone
+  but the DM, 403 for every lower perspective including the DM's own (decided without looking at
+  what it names). Newest first, 20 per page: authoring commits with their summary, and player
+  commands the DM issued for a character that had a player when they were decided (the command
+  without its recorded draws; the reason only when recorded for the same character). Status from
+  stored commands and `CommandUndone`; undo availability from `previewUndo`
+  (`packages/domain/src/kernel/decide/undo-preview.ts`): the World Engine's own authorization and
+  `UndoCommand` decision against the snapshot, never committed. Covered by the DM perspective's
+  live inventory only.
+- **No new authority**: `authorize` is unchanged; acting for a player uses the DM's existing
+  authority (ADR 0013), records no controller premise, and every command still goes through
+  `POST …/commands`; undo uses the existing routes.
+- **Boundary decisions to review**: the two `dm/*` routes answer a non-DM member 404 (design §C),
+  where older DM-only views answer 403; the DM history returns the DM's own submitted command
+  bodies and authoring summaries; the client's acting mode is the DM holding the character's
+  perspective, enabled only after the DM's explicit choice; presence never gates anything.
+- **Deterministic evidence**: `apps/server/src/dm/substitution-routes.test.ts` (check order,
+  identical 404 bodies for a player and a missing campaign, validation, idempotency and conflict,
+  roster refusal, reason-before-command, no world content echoed, no player view changes, no note
+  in logs), `history-routes.test.ts` (check order with 403 for every lower perspective,
+  cross-campaign 404 both ways, listing rules, blockers identical to the undo route's refusal,
+  status after undo, paging without gaps, a fresh application over the same stores),
+  `stand-in.test.ts` (a player cannot act for another character or a creature; the DM's End turn
+  for a player's character is `REACTION_PENDING` while a window waits; issuer and premises),
+  `dm-live.test.ts` (recording a reason signals nobody; its command signals the DM and the
+  character's readers), `dm.integration.test.ts` (append-only rows, racing records, restart),
+  `packages/domain/src/kernel/decide/undo-preview.test.ts` (equal to submitting the undo over
+  randomized histories; commits nothing), `apps/server/src/live/inventory.test.ts`; browser
+  journeys `tests/e2e/live-stand-in.spec.ts`, `dm-history.spec.ts`, `authoring-undo.spec.ts`.
+- **Changed client consumer** (alpha row 200–240): ADR 0029 §8's screen-local authoring undo is
+  replaced by the DM history list; no reviewed projection, mutation path, undo rule or
+  authorization rule changed.

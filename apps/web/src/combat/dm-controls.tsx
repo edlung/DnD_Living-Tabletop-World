@@ -11,6 +11,8 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import type { CombatUiCommand } from './combat-bindings.ts';
+import type { StandIn } from './stand-in.ts';
+import { StandInControls } from './stand-in-controls.tsx';
 
 const FIELD = { width: 16, height: 12 } as const;
 
@@ -31,9 +33,10 @@ export function openGroundStart(
 
 /**
  * The DM's existing combat operations, offered only where they apply: start an
- * encounter from the scene, end it, close an open reaction window, and run the
- * suggested monster turn (the exact command the server proposes). Nothing
- * here acts by itself and no panel of actions stays on screen otherwise.
+ * encounter from the scene, end it, close an open reaction window, run the
+ * suggested monster turn (the exact command the server proposes), and skip a
+ * player's turn or act as that character (ADR 0033 §6). Nothing here acts by
+ * itself and no panel of actions stays on screen otherwise.
  */
 export function DmCombatControls({
   api,
@@ -42,6 +45,7 @@ export function DmCombatControls({
   directory,
   locked,
   onRun,
+  onActAs,
 }: {
   readonly api: WorldApi;
   readonly encounter: EncounterView | null;
@@ -49,13 +53,23 @@ export function DmCombatControls({
   readonly directory: readonly EntityRef[];
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
+  readonly onActAs: (standIn: StandIn) => void;
 }) {
   const t = useT();
   return (
     <details className="disclosure dm-combat" open={encounter !== null}>
       <summary>{encounter ? t('Encounter controls (DM)') : t('Start an encounter (DM)')}</summary>
       {encounter ? (
-        <RunningControls api={api} encounter={encounter} locked={locked} onRun={onRun} />
+        <>
+          <RunningControls api={api} encounter={encounter} locked={locked} onRun={onRun} />
+          <StandInControls
+            api={api}
+            encounter={encounter}
+            locked={locked}
+            onRun={onRun}
+            onActAs={onActAs}
+          />
+        </>
       ) : (
         <StartControls
           api={api}

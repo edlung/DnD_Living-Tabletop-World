@@ -11,9 +11,14 @@ import {
 } from 'react';
 
 import { WorldApi, type Connection } from '../api/client.ts';
+import { LiveActiveContext, LiveRefreshContext, LiveTargetContext } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
+import type { StandIn } from '../combat/stand-in.ts';
 import { World } from '../world/world.tsx';
+import { ActingBar } from './acting-bar.tsx';
+import { ConnectionBadge } from './live-status.tsx';
 import { Login } from './login.tsx';
+import { useLiveSession } from './use-live-session.ts';
 
 function BoundaryFallback({ onLeave }: { readonly onLeave: () => void }) {
   const t = useT();
@@ -117,6 +122,12 @@ function SessionGate({
   );
 }
 
+/**
+ * The session screen owns the one live connection (docs/adr/0033-live-session.md §4): every
+ * view below re-reads in the background on its signals, and the world screen tells it what is
+ * selected and viewed. It also holds the DM's choice to act as a player's character (§6): the
+ * DM then holds that character's perspective until stopping or choosing another one.
+ */
 function SessionWorld({
   connection,
   identity,
@@ -126,12 +137,75 @@ function SessionWorld({
   readonly identity: SessionResponse;
   readonly onLeave: () => void;
 }) {
-  const t = useT();
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const [perspective, setPerspective] = useState(identity.perspectives[0]?.value ?? 'PUBLIC');
+  const [standIn, setStandIn] = useState<StandIn | null>(null);
+  const live = useLiveSession(connection, perspective);
+  const choose = (value: string, acting: StandIn | null = null) => {
+    live.report(null, null);
+    setStandIn(acting);
+    setPerspective(value);
+  };
+  return (
+    <LiveActiveContext.Provider value={true}>
+      <LiveRefreshContext.Provider value={live.refresh}>
+        <LiveTargetContext.Provider value={live.report}>
+          <SessionShell
+            connection={connection}
+            initial={identity}
+            perspective={perspective}
+            onPerspective={(value) => {
+              choose(value);
+            }}
+            standIn={standIn}
+            onActAs={(acting) => {
+              choose(`CHARACTER:${acting.characterId}`, acting);
+            }}
+            onStopActing={() => {
+              choose('DM');
+            }}
+            status={live.status}
+            onLeave={onLeave}
+          />
+        </LiveTargetContext.Provider>
+      </LiveRefreshContext.Provider>
+    </LiveActiveContext.Provider>
+  );
+}
+
+function SessionShell({
+  connection,
+  initial,
+  perspective,
+  onPerspective,
+  standIn,
+  onActAs,
+  onStopActing,
+  status,
+  onLeave,
+}: {
+  readonly connection: Connection;
+  readonly initial: SessionResponse;
+  readonly perspective: string;
+  readonly onPerspective: (perspective: string) => void;
+  readonly standIn: StandIn | null;
+  readonly onActAs: (standIn: StandIn) => void;
+  readonly onStopActing: () => void;
+  readonly status: ReturnType<typeof useLiveSession>['status'];
+  readonly onLeave: () => void;
+}) {
+  const t = useT();
   const [revision, setRevision] = useState(0);
+  // The caller's identity is re-read in the background like every other view.
+  const identityApi = useMemo(() => new WorldApi(connection, ''), [connection]);
+  const loadIdentity = useCallback(
+    (signal: AbortSignal) => identityApi.get<SessionResponse>('session', signal, false),
+    [identityApi],
+  );
+  const { resource } = useResource('identity', loadIdentity);
+  const identity = resource.status === 'ready' ? resource.value : initial;
   const effective =
     perspective === 'PLAYER' ? `CHARACTER:${identity.character?.entityId ?? ''}` : perspective;
   // Names/IDs of other DM-only characters must not survive in option elements.
@@ -148,6 +222,11 @@ function SessionWorld({
     () => new WorldApi(connection, perspective, effective),
     [connection, perspective, effective, revision],
   );
+  // Only the DM, only in the perspective of the character the DM chose to act as.
+  const actingAs =
+    identity.role === 'DM' && standIn !== null && perspective === `CHARACTER:${standIn.characterId}`
+      ? standIn
+      : null;
   return (
     <>
       <a className="skip-link" href="#world-main">
@@ -158,12 +237,13 @@ function SessionWorld({
           <span aria-hidden="true">◈</span> {t('Living Tabletop World')}
         </div>
         <div className="session-controls">
+          <ConnectionBadge status={status} />
           <label htmlFor="perspective">{t('Perspective')}</label>
           <select
             id="perspective"
             value={perspective}
             onChange={(event) => {
-              setPerspective(event.target.value);
+              onPerspective(event.target.value);
             }}
           >
             {perspectiveChoices.map((item) => (
@@ -184,6 +264,7 @@ function SessionWorld({
           </button>
         </div>
       </header>
+      {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
       <World
         key={`${perspective}:${revision}`}
         api={api}
@@ -193,6 +274,8 @@ function SessionWorld({
           identity.role === 'PLAYER' &&
           effective === `CHARACTER:${identity.character?.entityId ?? ''}`
         }
+        standIn={actingAs}
+        onActAs={onActAs}
       />
     </>
   );

@@ -91,6 +91,30 @@ export type {
   SessionView,
 } from './memory/views.ts';
 export type { SessionResponse } from './session/views.ts';
+export {
+  LIVE_CLOSE_REASONS,
+  LIVE_FINAL_REASONS,
+  type LiveCloseReason,
+  type LiveMessage,
+  type PresenceEntry,
+  type PresenceResponse,
+} from './session/live.ts';
+export {
+  DM_HISTORY_PAGE_SIZE,
+  SUBSTITUTION_NOTE_CHARS,
+  SUBSTITUTION_REASONS,
+  clientCommandIdSchema,
+  recordSubstitutionRequestSchema,
+  type DmAuthoringEntry,
+  type DmHistoryEntry,
+  type DmHistoryResponse,
+  type DmSubstitutionEntry,
+  type DmUndoAvailability,
+  type DmUndoBlocker,
+  type RecordSubstitutionRequest,
+  type RecordSubstitutionResponse,
+  type SubstitutionReason,
+} from './session/dm.ts';
 export { DEFAULT_LANGUAGE, LANGUAGES, languageSchema, type Language } from './language/language.ts';
 export type { CharacterSheetResponse } from './rules/character-view.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';

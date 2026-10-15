@@ -13,6 +13,7 @@ Authority: `docs/adr/0006-temporal-model-and-undo.md` (owner-approved semantics)
 | Decision contract, resolved commands                                                   | `decision.ts`                                                                                                      |
 | Authorization and the authority it grants (DM, system, controlling player)             | `authorization.ts`                                                                                                 |
 | Command rules                                                                          | `decide/entities.ts`, `decide/world.ts` (campaign, scenes, clock), `decide/undo.ts`, dispatcher `decide/decide.ts` |
+| Would an undo be accepted now: the engine's own decision, dry (ADR 0033 §7)            | `decide/undo-preview.ts` (`previewUndo`; commits nothing, grants nothing)                                          |
 | Engine pipeline, caching, retries                                                      | `engine/world-engine.ts`                                                                                           |
 | Store port + in-memory store                                                           | `engine/event-store.ts`, `engine/in-memory-event-store.ts`                                                         |
 | Projections                                                                            | `projections/audit-trail.ts`, `projections/world-view.ts`, `projections/integrity.ts`                              |

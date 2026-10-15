@@ -1,17 +1,23 @@
-import { WEATHERS, type KernelCommandOf } from '@ltw/contracts';
-import { useState } from 'react';
+import { WEATHERS, type KernelCommandOf, type ScenePresentationResponse } from '@ltw/contracts';
+import { useCallback, useState } from 'react';
 
+import type { WorldApi } from '../api/client.ts';
+import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
-import { DAY_TWO_MORNING } from './world-time.ts';
+import { nextMorning } from './world-time.ts';
 import { useT } from '@ltw/ui';
 
 export type DmWorldCommand = KernelCommandOf<'AdvanceWorldTime' | 'SetWeather'>;
 
 /**
  * The DM moves the clock and the weather with the existing commands. The world
- * answers: players see a changed time and sky the next time they look.
+ * answers: players see a changed time and sky the next time they look. The day control
+ * offers the next day's morning after the current world time, read from the viewed
+ * place's scene, so it never offers a day already reached (ADR 0033 §8).
  */
 export function DmWorldControls({
+  api,
+  revision,
   locationId,
   locationName,
   locked,
@@ -25,6 +31,9 @@ export function DmWorldControls({
   readonly onWeather: (weather: (typeof WEATHERS)[number]) => void;
   readonly open: boolean;
   readonly onToggle: (open: boolean) => void;
+  readonly api: WorldApi;
+  /** The world screen's refresh count: the clock is read again after each command. */
+  readonly revision: number;
   readonly locationId: string;
   readonly locationName: string;
   readonly locked: boolean;
@@ -36,6 +45,16 @@ export function DmWorldControls({
     onRun({ kind: 'command', command });
   };
   const amount = Number(hours);
+  const loadNow = useCallback(
+    (signal: AbortSignal) =>
+      api.get<ScenePresentationResponse>(
+        `locations/${encodeURIComponent(locationId)}/scene`,
+        signal,
+      ),
+    [api, locationId],
+  );
+  const { resource: now } = useResource(`clock:${locationId}:${String(revision)}`, loadNow);
+  const next = now.status === 'ready' ? nextMorning(now.value.worldTime) : null;
   return (
     <details
       className="disclosure dm-world"
@@ -45,16 +64,18 @@ export function DmWorldControls({
       }}
     >
       <summary>{t('Time and weather (DM)')}</summary>
-      <div className="action-row">
-        <button
-          disabled={locked}
-          onClick={() => {
-            run({ type: 'AdvanceWorldTime', to: DAY_TWO_MORNING });
-          }}
-        >
-          {t('Advance to Day 2, 10:00')}
-        </button>
-      </div>
+      {next && (
+        <div className="action-row">
+          <button
+            disabled={locked}
+            onClick={() => {
+              run({ type: 'AdvanceWorldTime', to: next.at });
+            }}
+          >
+            {t('Advance to Day {day}, 10:00', { day: next.day })}
+          </button>
+        </div>
+      )}
       <label htmlFor="advance-hours">{t('Or advance by (hours)')}</label>
       <input
         id="advance-hours"

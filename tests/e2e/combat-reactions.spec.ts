@@ -60,6 +60,8 @@ test('a window the DM closes expires for the player, and the stale answer is ref
   const campaign = COMBAT_CAMPAIGNS.expire;
   const player = await browser.newPage();
   const dm = await browser.newPage();
+  // The player's live connection is down (ADR 0033), so only the backend learns of the close.
+  await player.route(/\/api\/campaigns\/[^/]+\/live\?/, (route) => route.abort('failed'));
   await enterCombat(player, campaign);
   await expect(prompt(player)).toBeVisible();
   const before = total(await expendedSlots(player, campaign));

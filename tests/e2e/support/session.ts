@@ -42,6 +42,14 @@ export async function expectPlayerBoundary(page: Page): Promise<void> {
   }
 }
 
+/**
+ * The live signal (ADR 0033) is an open event stream whose body never ends while the page
+ * lives, and it carries only fixed protocol frames, never world content; the server tests
+ * hold every frame to that grammar. Body collectors skip it.
+ */
+export const isLiveStream = (response: Response): boolean =>
+  /^\/api\/campaigns\/[^/]+\/live$/.test(new URL(response.url()).pathname);
+
 /** The browser network is also a boundary, including data not rendered by UI. */
 export function collectApiBodies(page: Page): {
   assertPlayerBoundary(
@@ -51,7 +59,7 @@ export function collectApiBodies(page: Page): {
 } {
   const received: Promise<string>[] = [];
   const collect = (response: Response) => {
-    if (new URL(response.url()).pathname.startsWith('/api/')) {
+    if (new URL(response.url()).pathname.startsWith('/api/') && !isLiveStream(response)) {
       // Aborted requests have no delivered response body.
       received.push(response.text().catch(() => ''));
     }
