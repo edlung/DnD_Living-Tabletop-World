@@ -19,8 +19,9 @@ import { ChroniclePanel } from '../chronicle/chronicle-panel.tsx';
 import { DmWorldControls } from '../dm/world-controls.tsx';
 import { CombatPanel } from '../combat/combat-panel.tsx';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
+import { standInReason, type StandIn } from '../combat/stand-in.ts';
 import { ActionNotice } from '../exploration/action-notice.tsx';
-import { useAction } from '../exploration/use-action.ts';
+import { useAction, type ExplorationIntent } from '../exploration/use-action.ts';
 import { TablePresence } from '../session/live-status.tsx';
 import { EntityDetails } from './entity-details.tsx';
 import { RecentEvents } from './recent-events.tsx';
@@ -36,11 +37,16 @@ export function World({
   campaignName,
   effectivePerspective,
   canAct,
+  standIn,
+  onActAs,
 }: {
   readonly api: WorldApi;
   readonly campaignName: string;
   readonly effectivePerspective: string;
   readonly canAct: boolean;
+  /** The DM acting as this perspective's character, after choosing to (ADR 0033 §6). */
+  readonly standIn: StandIn | null;
+  readonly onActAs: (standIn: StandIn) => void;
 }) {
   const t = useT();
   const [revision, setRevision] = useState(0);
@@ -72,8 +78,20 @@ export function World({
     }
     setRevision((value) => value + 1);
   }, []);
-  // Players act as their character; the DM alone runs the existing encounter operations.
-  const action = useAction(api, canAct || effectivePerspective === 'DM', onResolved);
+  // Players act as their character; the DM alone runs the existing encounter operations, and
+  // fights as a player's character only after choosing to, each command with its reason.
+  const action = useAction(
+    api,
+    canAct || standIn !== null || effectivePerspective === 'DM',
+    onResolved,
+  );
+  const run = (intent: ExplorationIntent) => {
+    action.run(
+      standIn && intent.kind === 'command'
+        ? { ...intent, standIn: standInReason(standIn) }
+        : intent,
+    );
+  };
   const choose = (entityId: string, kind: string) => {
     setSelected({ entityId, kind });
   };
@@ -187,10 +205,13 @@ export function World({
               directory={data.directory.entities}
               locked={action.locked}
               onRun={action.run}
+              onActAs={onActAs}
             />
           )}
           {effectivePerspective === 'DM' && (
             <DmWorldControls
+              api={api}
+              revision={revision}
               locationId={placeId}
               locationName={location?.name ?? 'this place'}
               locked={action.locked}
@@ -207,9 +228,9 @@ export function World({
               api={api}
               encounter={data.encounter.encounter}
               actorId={data.surroundings?.actingCharacterId ?? null}
-              canAct={canAct}
+              canAct={canAct || standIn !== null}
               locked={action.locked}
-              onRun={action.run}
+              onRun={run}
             />
           )}
           <div className="world-grid">

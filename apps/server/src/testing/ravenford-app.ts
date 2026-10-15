@@ -29,6 +29,8 @@ import questBook from '../../../../fixtures/ravenford/quests.json' with { type: 
 import { InMemoryAssetContentStore, type AssetContentStore } from '../assets/content-store.ts';
 import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
+import type { DmDependencies } from '../dm/dm-routes.ts';
+import { InMemorySubstitutionStore } from '../dm/substitution-store.ts';
 import type { AccountingDiagnostics } from '../http/routes/ai-routes.ts';
 import { loadDevPersonaAuthenticator } from '../http/auth.ts';
 import { buildLiveApp } from '../live/live-app.ts';
@@ -161,6 +163,12 @@ export function testAuthoring(): AuthoringDependencies & {
   };
 }
 
+/** The DM's table tools (ADR 0033 §6–7) with in-memory substitution reasons. */
+export function testDm(): DmDependencies & { readonly substitutions: InMemorySubstitutionStore } {
+  const clock = new SteppingClock();
+  return { substitutions: new InMemorySubstitutionStore(), clock: { now: () => clock.now() } };
+}
+
 /** Ravenford's quest definitions (`fixtures/ravenford/quests.json`), validated. */
 export const RAVENFORD_QUESTS = questBookSchema.parse(questBook).quests;
 
@@ -172,11 +180,13 @@ export async function ravenfordApp(
   ai: RelevanceDeps = testAiGateway(),
   authoring: AuthoringDependencies = testAuthoring(),
   contents: AssetContentStore = new InMemoryAssetContentStore(),
+  dm: DmDependencies = testDm(),
 ): Promise<FastifyInstance> {
   // The production composition, live session included (ADR 0033), as the browser tests use it.
   const { app } = buildLiveApp({
     ai,
     authoring,
+    dm,
     assets: { contents },
     quests: RAVENFORD_QUESTS,
     engine: engine ?? (await seededEngine()),

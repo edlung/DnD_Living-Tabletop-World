@@ -11,9 +11,11 @@ import {
 } from 'react';
 
 import { WorldApi, type Connection } from '../api/client.ts';
-import { LiveRefreshContext, LiveTargetContext } from '../api/live-context.ts';
+import { LiveActiveContext, LiveRefreshContext, LiveTargetContext } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
+import type { StandIn } from '../combat/stand-in.ts';
 import { World } from '../world/world.tsx';
+import { ActingBar } from './acting-bar.tsx';
 import { ConnectionBadge } from './live-status.tsx';
 import { Login } from './login.tsx';
 import { useLiveSession } from './use-live-session.ts';
@@ -123,7 +125,8 @@ function SessionGate({
 /**
  * The session screen owns the one live connection (docs/adr/0033-live-session.md §4): every
  * view below re-reads in the background on its signals, and the world screen tells it what is
- * selected and viewed.
+ * selected and viewed. It also holds the DM's choice to act as a player's character (§6): the
+ * DM then holds that character's perspective until stopping or choosing another one.
  */
 function SessionWorld({
   connection,
@@ -138,23 +141,37 @@ function SessionWorld({
     window.scrollTo(0, 0);
   }, []);
   const [perspective, setPerspective] = useState(identity.perspectives[0]?.value ?? 'PUBLIC');
+  const [standIn, setStandIn] = useState<StandIn | null>(null);
   const live = useLiveSession(connection, perspective);
+  const choose = (value: string, acting: StandIn | null = null) => {
+    live.report(null, null);
+    setStandIn(acting);
+    setPerspective(value);
+  };
   return (
-    <LiveRefreshContext.Provider value={live.refresh}>
-      <LiveTargetContext.Provider value={live.report}>
-        <SessionShell
-          connection={connection}
-          initial={identity}
-          perspective={perspective}
-          onPerspective={(value) => {
-            live.report(null, null);
-            setPerspective(value);
-          }}
-          status={live.status}
-          onLeave={onLeave}
-        />
-      </LiveTargetContext.Provider>
-    </LiveRefreshContext.Provider>
+    <LiveActiveContext.Provider value={true}>
+      <LiveRefreshContext.Provider value={live.refresh}>
+        <LiveTargetContext.Provider value={live.report}>
+          <SessionShell
+            connection={connection}
+            initial={identity}
+            perspective={perspective}
+            onPerspective={(value) => {
+              choose(value);
+            }}
+            standIn={standIn}
+            onActAs={(acting) => {
+              choose(`CHARACTER:${acting.characterId}`, acting);
+            }}
+            onStopActing={() => {
+              choose('DM');
+            }}
+            status={live.status}
+            onLeave={onLeave}
+          />
+        </LiveTargetContext.Provider>
+      </LiveRefreshContext.Provider>
+    </LiveActiveContext.Provider>
   );
 }
 
@@ -163,6 +180,9 @@ function SessionShell({
   initial,
   perspective,
   onPerspective,
+  standIn,
+  onActAs,
+  onStopActing,
   status,
   onLeave,
 }: {
@@ -170,6 +190,9 @@ function SessionShell({
   readonly initial: SessionResponse;
   readonly perspective: string;
   readonly onPerspective: (perspective: string) => void;
+  readonly standIn: StandIn | null;
+  readonly onActAs: (standIn: StandIn) => void;
+  readonly onStopActing: () => void;
   readonly status: ReturnType<typeof useLiveSession>['status'];
   readonly onLeave: () => void;
 }) {
@@ -199,6 +222,11 @@ function SessionShell({
     () => new WorldApi(connection, perspective, effective),
     [connection, perspective, effective, revision],
   );
+  // Only the DM, only in the perspective of the character the DM chose to act as.
+  const actingAs =
+    identity.role === 'DM' && standIn !== null && perspective === `CHARACTER:${standIn.characterId}`
+      ? standIn
+      : null;
   return (
     <>
       <a className="skip-link" href="#world-main">
@@ -236,6 +264,7 @@ function SessionShell({
           </button>
         </div>
       </header>
+      {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
       <World
         key={`${perspective}:${revision}`}
         api={api}
@@ -245,6 +274,8 @@ function SessionShell({
           identity.role === 'PLAYER' &&
           effective === `CHARACTER:${identity.character?.entityId ?? ''}`
         }
+        standIn={actingAs}
+        onActAs={onActAs}
       />
     </>
   );

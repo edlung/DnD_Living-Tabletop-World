@@ -38,6 +38,7 @@ export { facts, type FactKey } from './kernel/fact-keys.ts';
 export { footprintOf, type Footprint } from './kernel/facts.ts';
 export type { Rejection, ResolvedCommand } from './kernel/decision.ts';
 export type { UndoBlocker } from './kernel/decide/undo.ts';
+export { previewUndo, type UndoPreview } from './kernel/decide/undo-preview.ts';
 export { formatWorldTime, worldTimeAt } from './kernel/world-time.ts';
 
 export {

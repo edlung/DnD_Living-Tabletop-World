@@ -64,6 +64,8 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
       url: `${base}/chronicle/suggestions?from=-${String(MAX_ABS_WORLD_TIME)}`,
       optional: false,
     });
+    // The DM history's newest page, as the DM's authoring panel shows it (ADR 0033 §7).
+    views.push(scoped('dm/history'));
   }
   if (target.focus !== null) {
     const entity = `entities/${encodeURIComponent(target.focus)}`;

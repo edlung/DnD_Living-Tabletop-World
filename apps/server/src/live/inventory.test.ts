@@ -60,14 +60,28 @@ describe('the coverage inventory', () => {
     }
   });
 
-  it('adds memory suggestions for the DM and no character-only view', () => {
+  it('adds memory suggestions and the DM history for the DM and no character-only view', () => {
     const views = coverageInventory(target({ perspective: 'DM', kind: 'DM', focus: 'mira-vale' }));
     expect(paths(views)).toEqual([
       ...ALWAYS,
       '/campaigns/ravenford/chronicle/suggestions',
+      '/campaigns/ravenford/dm/history',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
     ]);
+    const history = views.find((view) => view.url.includes('/dm/history'));
+    expect(new URL(history?.url ?? '', 'http://test').searchParams.get('perspective')).toBe('DM');
+  });
+
+  it('never covers the DM history for a lower perspective, the DM’s included', () => {
+    for (const lower of [
+      target({}),
+      target({ perspective: 'PLAYER', kind: 'CHARACTER' }),
+      target({ perspective: 'CHARACTER:elowen-starwhisper', kind: 'CHARACTER', identity: false }),
+      target({ perspective: 'NPC:mira-vale', kind: 'NPC', identity: false }),
+    ]) {
+      expect(paths(coverageInventory(lower)).some((path) => path.includes('/dm/'))).toBe(false);
+    }
   });
 
   it("leaves out the DM's identity while the DM holds a lower perspective", () => {

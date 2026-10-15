@@ -10,7 +10,6 @@ import { useState } from 'react';
 
 import { describeCommand } from './command-text.ts';
 import { ProposalEditor } from './proposal-editor.tsx';
-import type { Blocker } from './use-authoring.ts';
 import { useT } from '@ltw/ui';
 
 const CHANGE_TEXT: Readonly<Record<string, string>> = {
@@ -55,26 +54,24 @@ function Options({
 /**
  * One proposal as the DM must judge it: what it would do, how risky it is, what
  * blocks it, what it warns about, and the single confirm. Everything shown is
- * the server's latest preview; a new revision clears every acknowledgement.
+ * the server's latest preview; a new revision clears every acknowledgement. A
+ * committed proposal is undone from the DM history (ADR 0033 §7), which survives
+ * a reload; this review is screen-local.
  */
 export function ProposalReview({
   data,
   directory,
   busy,
-  blockers,
   actions,
 }: {
   readonly data: AuthoringProposalResponse;
   readonly directory: readonly EntityRef[];
   readonly busy: boolean;
-  readonly blockers: readonly Blocker[];
   readonly actions: {
     readonly revise: (commands: readonly ProposableCommand[]) => void;
     readonly applyOption: (optionId: string) => void;
     readonly commit: (acknowledged: readonly string[]) => void;
     readonly cancel: () => void;
-    readonly undo: () => void;
-    readonly undoBlocker: (commandId: string) => void;
     readonly clear: () => void;
   };
 }) {
@@ -193,38 +190,13 @@ export function ProposalReview({
         </>
       )}
       {proposal.status === 'COMMITTED' && (
+        <p className="muted">{t('To undo it, use the history and undo list below.')}</p>
+      )}
+      {proposal.status !== 'DRAFT' && (
         <div className="action-row">
-          <button disabled={busy} onClick={actions.undo}>
-            {t('Undo this addition')}
-          </button>
           <button disabled={busy} onClick={actions.clear}>
             {t('Start another')}
           </button>
-        </div>
-      )}
-      {proposal.status === 'UNDONE' && (
-        <div className="action-row">
-          <button onClick={actions.clear}>{t('Start another')}</button>
-        </div>
-      )}
-      {blockers.length > 0 && (
-        <div role="alert" aria-label={t('Undo blockers')} className="issue-list">
-          <strong>{t('Undo is blocked by later steps that depend on this:')}</strong>
-          <ul>
-            {blockers.map((blocker) => (
-              <li key={blocker.commandId}>
-                {t(words(blocker.commandType))}
-                <button
-                  disabled={busy}
-                  onClick={() => {
-                    actions.undoBlocker(blocker.commandId);
-                  }}
-                >
-                  {t('Undo “{step}” first', { step: t(words(blocker.commandType)) })}
-                </button>
-              </li>
-            ))}
-          </ul>
         </div>
       )}
     </section>

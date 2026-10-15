@@ -12,10 +12,6 @@ export interface Notice {
   readonly kind: 'error' | 'info' | 'success';
   readonly text: string;
 }
-export interface Blocker {
-  readonly commandId: string;
-  readonly commandType: string;
-}
 
 const isProposal = (value: unknown): value is AuthoringProposalResponse =>
   typeof value === 'object' && value !== null && 'proposal' in value;
@@ -27,23 +23,22 @@ const REFUSALS: Readonly<Record<string, string>> = {
   AUTHORING_INVALID: 'The world no longer allows this proposal. Nothing was added.',
   AUTHORING_UNSUPPORTED:
     'This kind of change cannot be added through authoring. Nothing was added.',
-  UNDO_UNSAFE: 'Other parts of the story now depend on this. Undo them first, newest first.',
   COMMAND_ID_CONFLICT: 'This proposal was already decided differently. It was reloaded.',
   FORBIDDEN: 'Only the DM can change the world this way.',
 };
 
 /**
- * The DM's authoring session: words → proposal → preview → edit/confirm/cancel
- * → undo. Every step is a call to an existing route; the client keeps no
- * authority. Whatever the server says about the proposal replaces what the
- * screen holds, and a stale or refused submission never looks committed.
- * State lives only in this component, so it disappears with the DM view.
+ * The DM's authoring session: words → proposal → preview → edit/confirm/cancel.
+ * Undo is the DM history's (`dm/dm-history.tsx`, ADR 0033 §7). Every step is a
+ * call to an existing route; the client keeps no authority. Whatever the server
+ * says about the proposal replaces what the screen holds, and a stale or refused
+ * submission never looks committed. State lives only in this component, so it
+ * disappears with the DM view.
  */
 export function useAuthoring(api: WorldApi, onWorldChanged: () => void) {
   const [proposal, setProposal] = useState<AuthoringProposalResponse | null>(null);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState<Notice | null>(null);
-  const [blockers, setBlockers] = useState<readonly Blocker[]>([]);
   const inFlight = useRef(false);
   const live = useRef(true);
   const isLive = () => live.current;
@@ -87,18 +82,12 @@ export function useAuthoring(api: WorldApi, onWorldChanged: () => void) {
   }
 
   /** A submission the server refused: say why, and show its real latest state. */
-  async function refused(
-    signal: AbortSignal,
-    id: string,
-    result: Pick<CommandRejected, 'details'> & { readonly code?: string },
-  ) {
+  async function refused(signal: AbortSignal, id: string, result: { readonly code?: string }) {
     const code = result.code ?? '';
     setNotice({
       kind: 'error',
       text: REFUSALS[code] ?? 'The world could not accept this. Nothing was added.',
     });
-    const listed = result.details?.['blockers'];
-    if (Array.isArray(listed)) setBlockers(listed as readonly Blocker[]);
     await reload(signal, id);
   }
 
@@ -133,10 +122,8 @@ export function useAuthoring(api: WorldApi, onWorldChanged: () => void) {
     proposal,
     busy,
     notice,
-    blockers,
     propose: (text: string) =>
       step(async (signal) => {
-        setBlockers([]);
         const intent = await api.post<DmIntentResponse>('ai/intents', { text }, signal);
         if (!isLive()) return;
         // Authoring needs a persisted PROPOSED trace: a null trace ID (no durable request start,
@@ -212,59 +199,16 @@ export function useAuthoring(api: WorldApi, onWorldChanged: () => void) {
           throw error;
         }
       }),
-    undo: () =>
-      step(async (signal) => {
-        if (!proposal) return;
-        const id = proposal.proposal.proposalId;
-        setBlockers([]);
-        const result = await api.post<{ status: string; code?: string }>(
-          `authoring/proposals/${id}/undo`,
-          {},
-          signal,
-        );
-        if (!isLive()) return;
-        if (result.status === 'accepted' || result.status === 'duplicate') {
-          await reload(signal, id);
-          setNotice({ kind: 'success', text: 'Undone. The world no longer holds this.' });
-          onWorldChanged();
-        } else {
-          await refused(signal, id, result);
-        }
-      }),
-    undoBlocker: (commandId: string) =>
-      step(async (signal) => {
-        const result = await api.post<{ status: string; code?: string }>(
-          'commands',
-          {
-            commandId: `undo-${crypto.randomUUID()}`,
-            command: { type: 'UndoCommand', targetCommandId: commandId },
-          },
-          signal,
-        );
-        if (!isLive()) return;
-        if (result.status === 'accepted') {
-          setBlockers((current) => current.filter((entry) => entry.commandId !== commandId));
-          setNotice({ kind: 'info', text: 'That step was undone. You can try the undo again.' });
-          onWorldChanged();
-        } else {
-          setNotice({
-            kind: 'error',
-            text: 'That step cannot be undone yet. Undo newer ones first.',
-          });
-        }
-      }),
     reload: () =>
       step(async (signal) => {
         if (proposal) await reload(signal, proposal.proposal.proposalId);
       }),
     cancel: () => {
       setProposal(null);
-      setBlockers([]);
       setNotice({ kind: 'info', text: 'Proposal discarded. Nothing was added to the world.' });
     },
     clear: () => {
       setProposal(null);
-      setBlockers([]);
       setNotice(null);
     },
   };

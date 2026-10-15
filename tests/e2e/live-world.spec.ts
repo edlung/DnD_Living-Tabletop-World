@@ -69,6 +69,9 @@ test('a cut stream reconnects and the player catches up on what changed meanwhil
   const conditions = player.getByLabel('Scene conditions');
   await expect(conditions).toContainText('Day 1 · 10:00');
   await expectLive(player);
+  // Let the trailing re-read that follows the first load pass (TRAILING_REREAD_MS, 1.5 s), so a
+  // change made while the stream is cut can only arrive through the reconnect.
+  await player.waitForTimeout(2_000);
 
   // The connection drops, and every reconnect fails for a while.
   await player.route(LIVE_URL, (route) => route.abort('failed'));

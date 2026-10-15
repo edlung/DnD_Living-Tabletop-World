@@ -1,0 +1,75 @@
+/* The DM's table tools (ADR 0033 §6–8): acting for a player, the history and its undo. */
+.dm-history {
+  margin-bottom: 1rem;
+}
+.dm-history-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0 0 0.8rem;
+  padding: 0;
+  list-style: none;
+}
+.dm-history-entry {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow-wrap: anywhere;
+}
+.dm-history-entry .section-heading {
+  gap: 0.6rem;
+}
+.dm-history-entry p {
+  margin: 0.35rem 0 0;
+}
+.dm-history-entry .action-row {
+  margin-bottom: 0;
+}
+.stand-in {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--line);
+}
+.stand-in-choice p {
+  margin: 0.4rem 0 0;
+  overflow-wrap: anywhere;
+}
+.stand-in-reason fieldset {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.4rem 0 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.stand-in-reason fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.stand-in-reason input[type='radio'] {
+  width: auto;
+  min-height: 0;
+  margin: 0;
+}
+.stand-in-reason input:not([type='radio']) {
+  display: block;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0.25rem 0 0.5rem;
+  padding: 0.5rem;
+}
+.acting-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin: 0 auto;
+  padding: 0.7rem 1rem;
+  border-bottom: 2px solid var(--accent);
+  background: #fbf3df;
+  overflow-wrap: anywhere;
+}
+.acting-bar p {
+  margin: 0.15rem 0;
+}

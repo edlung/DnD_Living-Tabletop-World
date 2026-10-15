@@ -17,6 +17,7 @@ import {
   RAVENFORD_QUESTS,
   testAssets,
   testAuthoring,
+  testDm,
   withoutRequestId,
 } from '../testing/ravenford-app.ts';
 import { buildApp } from './app.ts';
@@ -239,6 +240,7 @@ describe('traces', () => {
       engine,
       ai,
       authoring: testAuthoring(),
+      dm: testDm(),
       assets: testAssets(),
       quests: RAVENFORD_QUESTS,
       authenticator: await loadDevPersonaAuthenticator(DEFAULT_PERSONAS_FILE),

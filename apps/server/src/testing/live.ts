@@ -2,6 +2,7 @@ import type { LiveMessage } from '@ltw/contracts';
 import type { Actor, WorldEngine } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 
+import type { DmDependencies } from '../dm/dm-routes.ts';
 import { loadDevPersonaAuthenticator, type Authenticator } from '../http/auth.ts';
 import type { LiveLimits, LiveTimers } from '../live/hub.ts';
 import { buildLiveApp } from '../live/live-app.ts';
@@ -13,6 +14,7 @@ import {
   testAiGateway,
   testAssets,
   testAuthoring,
+  testDm,
 } from './ravenford-app.ts';
 
 /** Test support (docs/adr/0033-live-session.md): the live app over Ravenford, on a manual clock. */
@@ -82,6 +84,7 @@ export async function liveRavenford(
     readonly authenticator?: Authenticator;
     readonly limits?: Partial<LiveLimits>;
     readonly logger?: Logger;
+    readonly dm?: DmDependencies;
   } = {},
 ): Promise<LiveRavenford> {
   const timers = new ManualTimers();
@@ -90,6 +93,7 @@ export async function liveRavenford(
     {
       ai: testAiGateway(),
       authoring: testAuthoring(),
+      dm: options.dm ?? testDm(),
       assets: testAssets(),
       quests: RAVENFORD_QUESTS,
       engine,

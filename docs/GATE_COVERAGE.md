@@ -237,3 +237,47 @@ Stage 310 part A introduction evidence (ADR 0033; `docs/STAGE_310_DESIGN.md` §A
   answered without refresh, private authoring silent until published, reconnect).
 - No reviewed projection, mutation path or authorization rule changed. The design promises
   protocol non-disclosure, not constant-time execution: fingerprint cost varies with load.
+
+Stage 310 parts B and C introduction evidence (ADR 0033 §6–8; `docs/STAGE_310_DESIGN.md` §B–C;
+baseline `13cfaef`; acceptance pending): **new surfaces for Gate 06**, row 310 of the alpha-phase
+table ("the DM's action for an absent player is an authorized, audited, undoable command").
+- **`POST /campaigns/:campaignId/dm/substitutions`** (`apps/server/src/dm/`): the DM's reason
+  (`absent`/`asked`/`other`, optional note of at most 200 characters) recorded before the DM
+  submits the command with the same client command ID. ADR 0009 order: 401, 400 (strict body),
+  then the 404 of a missing campaign for anyone who is not the campaign's DM, players included;
+  422 for a character without a player, 409 for a different reason under the same ID or for a
+  command already stored under it. Answers `{status: recorded|duplicate}` only; logs the reason
+  code only. Append-only table `ltw_dm_substitutions` (migration 0009): descriptive, never
+  canonical; the stored command with the DM as issuer is the record.
+- **`GET /campaigns/:campaignId/dm/history?perspective=DM[&before=<sequence>]`**: 404 for anyone
+  but the DM, 403 for every lower perspective including the DM's own (decided without looking at
+  what it names). Newest first, 20 per page: authoring commits with their summary, and player
+  commands the DM issued for a character that had a player when they were decided (the command
+  without its recorded draws; the reason only when recorded for the same character). Status from
+  stored commands and `CommandUndone`; undo availability from `previewUndo`
+  (`packages/domain/src/kernel/decide/undo-preview.ts`): the World Engine's own authorization and
+  `UndoCommand` decision against the snapshot, never committed. Covered by the DM perspective's
+  live inventory only.
+- **No new authority**: `authorize` is unchanged; acting for a player uses the DM's existing
+  authority (ADR 0013), records no controller premise, and every command still goes through
+  `POST …/commands`; undo uses the existing routes.
+- **Boundary decisions to review**: the two `dm/*` routes answer a non-DM member 404 (design §C),
+  where older DM-only views answer 403; the DM history returns the DM's own submitted command
+  bodies and authoring summaries; the client's acting mode is the DM holding the character's
+  perspective, enabled only after the DM's explicit choice; presence never gates anything.
+- **Deterministic evidence**: `apps/server/src/dm/substitution-routes.test.ts` (check order,
+  identical 404 bodies for a player and a missing campaign, validation, idempotency and conflict,
+  roster refusal, reason-before-command, no world content echoed, no player view changes, no note
+  in logs), `history-routes.test.ts` (check order with 403 for every lower perspective,
+  cross-campaign 404 both ways, listing rules, blockers identical to the undo route's refusal,
+  status after undo, paging without gaps, a fresh application over the same stores),
+  `stand-in.test.ts` (a player cannot act for another character or a creature; the DM's End turn
+  for a player's character is `REACTION_PENDING` while a window waits; issuer and premises),
+  `dm-live.test.ts` (recording a reason signals nobody; its command signals the DM and the
+  character's readers), `dm.integration.test.ts` (append-only rows, racing records, restart),
+  `packages/domain/src/kernel/decide/undo-preview.test.ts` (equal to submitting the undo over
+  randomized histories; commits nothing), `apps/server/src/live/inventory.test.ts`; browser
+  journeys `tests/e2e/live-stand-in.spec.ts`, `dm-history.spec.ts`, `authoring-undo.spec.ts`.
+- **Changed client consumer** (alpha row 200–240): ADR 0029 §8's screen-local authoring undo is
+  replaced by the DM history list; no reviewed projection, mutation path, undo rule or
+  authorization rule changed.

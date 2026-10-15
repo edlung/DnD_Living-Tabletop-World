@@ -2,5 +2,10 @@
   "turn": "ui-live-turn",
   "counterspell": "ui-live-counterspell",
   "authoring": "ui-live-authoring",
-  "reconnect": "ui-live-reconnect"
+  "reconnect": "ui-live-reconnect",
+  "skip": "ui-live-skip",
+  "actAs": "ui-live-act-as",
+  "history": "ui-live-history",
+  "historyView": "ui-live-history-view",
+  "skipWindow": "ui-live-skip-window"
 }

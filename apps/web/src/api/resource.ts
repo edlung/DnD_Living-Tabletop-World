@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { ApiError } from './client.ts';
-import { useLiveRefresh } from './live-context.ts';
+import { TRAILING_REREAD_MS, useLiveActive, useLiveRefresh } from './live-context.ts';
 
 export type Resource<T> =
   | { readonly status: 'loading' }
@@ -47,13 +47,18 @@ const messageOf = (error: unknown) =>
  * (docs/adr/0033-live-session.md §4): the shown value stays until the new one arrives, a
  * failed background read keeps it, and at most one background read runs at a time (a signal
  * meanwhile reads once more afterwards). Nothing is remounted, so drafts and selections stay.
+ * A read no signal caused (the generation's first read, an explicit `reread`) is followed by one
+ * trailing background read after `TRAILING_REREAD_MS`, so a change undone within one comparison
+ * cycle cannot leave the screen on the state in between.
  */
 export function useResource<T>(key: string, load: (signal: AbortSignal) => Promise<T>) {
   const refresh = useLiveRefresh();
+  const active = useLiveActive();
   const [attempt, setAttempt] = useState(0);
   const generation = `${key}:${attempt}`;
   const [stored, setStored] = useState<{ key: string; resource: Resource<T> } | null>(null);
   const background = useRef<(() => void) | null>(null);
+  const unsignalled = useRef<(() => void) | null>(null);
   const seen = useRef(refresh);
   useEffect(() => {
     const controllers = new Set<AbortController>();
@@ -92,17 +97,33 @@ export function useResource<T>(key: string, load: (signal: AbortSignal) => Promi
         }
       });
     };
+    let trailing: ReturnType<typeof setTimeout> | undefined;
+    // A read the server did not signal: one more after a comparison cycle surely passed.
+    const trail = () => {
+      if (!active) return;
+      clearTimeout(trailing);
+      trailing = setTimeout(() => {
+        if (live) reread();
+      }, TRAILING_REREAD_MS);
+    };
     // A signal that came with this generation is covered by its foreground read.
     seen.current = refresh;
     background.current = reread;
+    unsignalled.current = () => {
+      reread();
+      trail();
+    };
     void read(false);
+    trail();
     return () => {
       live = false;
+      clearTimeout(trailing);
       background.current = null;
+      unsignalled.current = null;
       for (const controller of controllers) controller.abort();
     };
     // `refresh` is read once per generation, deliberately not a dependency.
-  }, [generation, load]);
+  }, [generation, load, active]);
   useEffect(() => {
     if (seen.current === refresh) return;
     seen.current = refresh;
@@ -112,6 +133,13 @@ export function useResource<T>(key: string, load: (signal: AbortSignal) => Promi
     resource: stored?.key === generation ? stored.resource : ({ status: 'loading' } as Resource<T>),
     retry: () => {
       setAttempt((current) => current + 1);
+    },
+    /**
+     * A background re-read now (after the viewer's own action): what is shown stays meanwhile,
+     * and a trailing read follows as for any read no signal caused.
+     */
+    reread: () => {
+      unsignalled.current?.();
     },
   };
 }

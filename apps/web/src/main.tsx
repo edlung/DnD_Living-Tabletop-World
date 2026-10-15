@@ -13,6 +13,7 @@ import './styles/actions.css';
 import './styles/combat.css';
 import './styles/authoring.css';
 import './styles/live.css';
+import './styles/dm.css';
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing application root');

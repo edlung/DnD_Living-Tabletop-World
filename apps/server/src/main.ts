@@ -15,6 +15,7 @@ import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
+import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
 import { disabledAuthenticator, loadDevPersonaAuthenticator } from './http/auth.ts';
 import { buildLiveApp } from './live/live-app.ts';
 import { describeDatabaseUrl, loadConfig, obsoleteVariables } from './platform/config/config.ts';
@@ -69,6 +70,8 @@ async function main(): Promise<void> {
     logger,
     ai,
     authoring,
+    // The DM's reasons for acting for a player (ADR 0033 §6; migration 0009).
+    dm: { substitutions: new PostgresSubstitutionStore(pool), clock: systemClock },
     assets: { contents },
     quests,
   });
