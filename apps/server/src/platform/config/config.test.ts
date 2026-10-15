@@ -19,7 +19,7 @@ describe('loadConfig', () => {
     expect(config).toEqual({
       nodeEnv: 'development',
       logLevel: 'debug',
-      http: { host: '127.0.0.1', port: 3000 },
+      http: { host: '127.0.0.1', port: 3000, trustProxy: false },
       databaseUrl: DEV_DATABASE_URL,
       auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
       ai: {
@@ -65,7 +65,7 @@ describe('loadConfig', () => {
 
     expect(config.nodeEnv).toBe('production');
     expect(config.logLevel).toBe('warn');
-    expect(config.http).toEqual({ host: '0.0.0.0', port: 8080 });
+    expect(config.http).toEqual({ host: '0.0.0.0', port: 8080, trustProxy: false });
     expect(config.databaseUrl).toBe('postgresql://app:secret@db.internal:5432/ltw');
   });
 
@@ -81,6 +81,42 @@ describe('loadConfig', () => {
     );
     expect(loadConfig({ AUTH_MODE: 'disabled' }).auth.personasFile).toBeNull();
     expect(loadConfig({ DEV_PERSONAS_FILE: '/tmp/p.json' }).auth.personasFile).toBe('/tmp/p.json');
+  });
+
+  it('trusts no proxy unless told which peers may name the client (ADR 0037)', () => {
+    expect(loadConfig({ LTW_TRUST_PROXY: '' }).http.trustProxy).toBe(false);
+    expect(loadConfig({ LTW_TRUST_PROXY: '10.231.250.0/24' }).http.trustProxy).toEqual([
+      '10.231.250.0/24',
+    ]);
+    expect(loadConfig({ LTW_TRUST_PROXY: '10.0.0.7, fd00:abcd::/64' }).http.trustProxy).toEqual([
+      '10.0.0.7',
+      'fd00:abcd::/64',
+    ]);
+    expect(loadConfig({ LTW_TRUST_PROXY: '1' }).http.trustProxy).toBe(1);
+  });
+
+  it.each([
+    'true',
+    '0',
+    '6',
+    '0.0.0.0/0',
+    '10.0.0.0/7',
+    '10.0.0.0/33',
+    'fd00::/8',
+    'proxy',
+    '10.0.0.1,',
+  ])('refuses LTW_TRUST_PROXY=%s with a fixed message', (value) => {
+    try {
+      loadConfig({ LTW_TRUST_PROXY: value });
+      expect.unreachable();
+    } catch (error) {
+      expect(error).toBeInstanceOf(ConfigError);
+      // The same text for every value: nothing of the input is echoed.
+      expect((error as ConfigError).issues).toEqual([
+        'LTW_TRUST_PROXY: expected a hop count 1-5 or the proxy addresses and CIDR ranges ' +
+          '(at most /8 for IPv4, /16 for IPv6)',
+      ]);
+    }
   });
 
   it('requires DATABASE_URL in production', () => {

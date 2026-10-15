@@ -31,7 +31,7 @@ Every handoff/review records due surfaces, actual evidence, required-but-unavail
 | 330 | Real images: no image reaches a player before DM approval; requests and metadata respect scope; refusals and failures leave the neutral fallback | Gate 06 |
 | 340 | Production sign-in: forged, expired, revoked, replayed, and cross-campaign credentials fail closed; the check order of ADR 0009 is unchanged; no credential in logs, traces, or URLs | Gate 06 |
 | 350 | Deployed build: TLS, server reachable only through the proxy, secrets from the environment, a restore drill that replays to the same world | Gate 06 / Stage 355 |
-| 350 (proxy) | Only the proxy publishes ports (80/443); the server, database and backups are unreachable from outside; HTTP redirects to HTTPS; TLS 1.2+ only; `/api` reaches the server without its prefix; the live stream passes unbuffered and uncompressed | Gate 06 / Stage 355 |
+| 350 (proxy) | Only the proxy publishes ports (80/443); the server, database and backups are unreachable from outside; HTTP redirects to HTTPS; TLS 1.2+ only; `/api` reaches the server without its prefix, with `Origin`, `Sec-Fetch-*` and credentials unchanged; the server takes the client's address from `X-Forwarded-For` only from the proxy network, so a forged header changes no per-address limit; the live stream passes unbuffered and uncompressed | Gate 06 / Stage 355 |
 | 350 (headers) | Every response carries CSP (`frame-ancestors 'none'`, `base-uri 'none'`), `Referrer-Policy: no-referrer`, `nosniff`, `X-Frame-Options: DENY`; a policy the server set (asset content) is kept, never weakened; HSTS only with a public certificate; no `Server`/`Via` | Gate 06 / Stage 355 |
 | 350 (readiness) | `/readyz` reports ready only when the database answers, no migration of the build is pending and the build can read the whole event store; it never reveals why; health checks gate the proxy's start | Gate 06 / Stage 355 |
 | 350 (backup/restore) | Dumps are checksummed and verified before use; the restore drill replays every campaign stream of a restored dump through the World Engine and matches the live state digests at the same versions, failing on any difference; a rollback can never start an image on history it cannot read | Gate 06 / Stage 355 |
@@ -295,10 +295,15 @@ deployment) follows Stage 340.
   `postgres`, `backup` and the drill database only `data`; containers run non-root with read-only
   root filesystems, no capabilities and `no-new-privileges` (PostgreSQL keeps its entrypoint's
   privileges). `/api/*` is proxied with the prefix stripped and `flush_interval -1`, without
-  compression. Evidence: `deploy/verify/smoke.sh` (39 checks), `deploy/verify/live-stream.sh`.
+  compression; `Host`, `Origin`, `Sec-Fetch-*`, `Cookie` and `Authorization` pass unchanged and
+  a client's `X-Forwarded-For` is replaced. The server trusts `X-Forwarded-For` only from the
+  proxy network (`LTW_TRUST_PROXY` = `LTW_EDGE_SUBNET`, default `10.231.250.0/24`). Evidence:
+  `deploy/verify/smoke.sh`, `deploy/verify/proxy-contract.sh`, `deploy/verify/live-stream.sh`;
+  `apps/server/src/http/trust-proxy.test.ts` (a forged header from an untrusted peer is ignored)
+  and `apps/server/src/platform/config/config.test.ts` (`LTW_TRUST_PROXY` parsing).
 - **Headers**: CSP `default-src 'self'; img-src 'self' blob: data:; connect-src 'self';
   object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'` added only
-  where the server set none (`deploy/verify/csp-precedence.sh`: the asset content route's
+  where the server set none (`deploy/verify/proxy-contract.sh`: the asset content route's
   sandboxed policy survives), `Referrer-Policy`, `X-Content-Type-Options`, `X-Frame-Options`,
   `Cross-Origin-Opener-Policy`, `Permissions-Policy`; HSTS only with `TLS_MODE=acme`.
 - **Readiness** (`GET /readyz`, unauthenticated like `/healthz`): fixed bodies
@@ -320,6 +325,6 @@ deployment) follows Stage 340.
 - **Local-only verification aids** (never on a server; deleted by part B):
   `deploy/verify/dev-personas.yaml` (public development tokens, pinned to `localhost`) and
   `deploy/verify/pre-340.yaml`.
-- **Integration duty for Stage 340 / part B**: behind the proxy every request comes from the
-  proxy's address; per-IP limits must read the client address from `X-Forwarded-For` as Caddy
-  sets it (one trusted hop), or they become global.
+- **For part B (after Stage 340)**: invitation mode with `PUBLIC_ORIGIN` set by compose; the
+  live stream through the proxy carries the session cookie and `Origin` or
+  `Sec-Fetch-Site: same-origin`, which the proxy forwards unchanged (`proxy-contract.sh`).

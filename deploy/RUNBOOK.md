@@ -82,6 +82,20 @@ the domain; until then the stack is verified locally (section 11).
    `BACKUP_DIR=/var/backups/ltw`; ключи ИИ пустые, пока владелец не утвердил расходы / AI keys
    stay empty until the owner authorizes spending (ADR 0032).
 
+   RU: `PUBLIC_ORIGIN` обязателен: вход по приглашениям строит из него ссылки, cookie и проверку
+   `Origin`; ровно `https://<домен>` без косой черты (с `:<порт>`, если HTTPS не на 443). Адрес
+   клиента: сервер верит `X-Forwarded-For` только из сети прокси (`LTW_EDGE_SUBNET`, по умолчанию
+   `10.231.250.0/24`; compose передаёт её как `LTW_TRUST_PROXY`), а Caddy заменяет заголовок,
+   присланный клиентом, — поэтому ограничения по адресу (Stage 340) видят настоящих клиентов. Меняйте
+   диапазон, только если он пересекается с сетью сервера; никогда не публикуйте порт `server`.
+   EN: `PUBLIC_ORIGIN` is required: invitation sign-in builds links, the cookie and the `Origin`
+   check from it; exactly `https://<domain>` without a trailing slash (with `:<port>` when HTTPS is
+   not on 443). The client's address: the server trusts `X-Forwarded-For` only from the proxy
+   network (`LTW_EDGE_SUBNET`, default `10.231.250.0/24`, passed by compose as `LTW_TRUST_PROXY`),
+   and Caddy replaces any such header a client sends, so per-address limits (Stage 340) see real
+   clients. Change the range only if it collides with a network of the server; never publish the
+   `server` port.
+
 6. **Сборка и запуск / Build and start.** RU: сборка из закоммиченной ревизии печатает тег; запуск
    ждёт, пока все сервисы станут здоровыми; сертификат выпускается автоматически. EN: the build
    from a committed revision prints the tag; the start waits until every service is healthy; the
@@ -97,12 +111,20 @@ the domain; until then the stack is verified locally (section 11).
    `docker save ltw-server:<t> ltw-proxy:<t> | ssh <vps> docker load`. EN: building elsewhere:
    the same with `--platform linux/amd64`, then `docker save … | ssh <vps> docker load`.
 
-7. **Кампания и вход / Campaign and sign-in.** RU: кампания заводится через World Engine
-   (`dc exec -T server node apps/server/dist/world-engine/seed-ravenford-cli.js`); приглашение DM
-   выдаёт CLI оператора Stage 340 (`auth:operator dm-invite`); часть B Stage 350 описывает это для
-   русской кампании проверки. EN: campaigns are created through the World Engine (the seed CLI
-   above); the DM's invitation comes from Stage 340's operator CLI (`auth:operator dm-invite`);
-   part B of Stage 350 documents it for the Russian review campaign.
+7. **Кампания и вход / Campaign and sign-in.** RU: кампания заводится через World Engine; ссылку-
+   приглашение DM печатает CLI оператора (Stage 340) — один раз: это секрет, передайте её DM
+   личным каналом и не сохраняйте в журналах; DM приглашает игроков сам. Часть B Stage 350
+   описывает русскую кампанию проверки. EN: campaigns are created through the World Engine; the
+   operator CLI (Stage 340) prints the DM's invitation link once: it is a secret, hand it to the
+   DM over a private channel and keep it out of logs; the DM invites the players. Part B of Stage
+   350 documents the Russian review campaign.
+
+   ```bash
+   dc exec -T server node apps/server/dist/world-engine/seed-ravenford-cli.js
+   dc exec -T server node apps/server/dist/auth/operator-cli.js dm-invite \
+     --campaign <campaign-id> --expires-hours 72
+   ```
+
 8. **Наблюдение / Monitoring.** RU: включите `watch.sh` (раздел 9) и еженедельную тренировку
    восстановления (раздел 5). EN: enable `watch.sh` (section 9) and the weekly restore drill
    (section 5).
@@ -306,10 +328,10 @@ target exists:
 `reports/evidence/stage-350/`): `deploy/.env` с `PUBLIC_HOST=localhost`, `TLS_MODE=internal`,
 портами на `127.0.0.1`; `deploy/verify/smoke.sh` (TLS, заголовки, клиент, готовность, топология),
 `live-stream.sh` (живой поток без буферизации; только с `verify/dev-personas.yaml`),
-`retention-check.sh`, `csp-precedence.sh <tag>`; `deploy/verify/ci.sh` делает всё это на чистой
+`retention-check.sh`, `proxy-contract.sh <tag>`; `deploy/verify/ci.sh` делает всё это на чистой
 копии (так же работает CI). **EN.** How Stage 350 was verified on a development machine (evidence:
 `reports/evidence/stage-350/`): `deploy/.env` with `PUBLIC_HOST=localhost`, `TLS_MODE=internal`
 and ports on `127.0.0.1`; `deploy/verify/smoke.sh` (TLS, headers, client, readiness, topology),
 `live-stream.sh` (the live stream unbuffered; only with `verify/dev-personas.yaml`),
-`retention-check.sh`, `csp-precedence.sh <tag>`; `deploy/verify/ci.sh` runs all of it on a clean
+`retention-check.sh`, `proxy-contract.sh <tag>`; `deploy/verify/ci.sh` runs all of it on a clean
 checkout (as CI does).

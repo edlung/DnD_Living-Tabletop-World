@@ -13,7 +13,7 @@ from a committed revision, verified locally in Docker. Operations for people: `R
 | `backup/backup.sh`                      | The backup service: custom-format dumps every 6 h and on demand, retention (all < 24 h, newest of 14 days and 8 ISO weeks), `SHA256SUMS`, `verify`, `health`                           |
 | `.env.example`                          | Names of every setting; `deploy/.env` holds the values (git-ignored, mode 600) and is passed whole to the server container                                                             |
 | `scripts/`                              | `build.sh` (images from `git archive`), `deploy.sh` (backup, switch tag, wait healthy; `--rollback`), `backup-now.sh`, `restore-drill.sh`, `watch.sh`, `spend.sh`, `logs.sh`, `lib.sh` |
-| `verify/`                               | Local verification only: `smoke.sh`, `live-stream.sh`, `retention-check.sh`, `csp-precedence.sh`, `ci.sh`; overrides `pre-340.yaml` and `dev-personas.yaml`                            |
+| `verify/`                               | Local verification only: `smoke.sh`, `live-stream.sh`, `retention-check.sh`, `proxy-contract.sh`, `ci.sh`; overrides `pre-340.yaml` and `dev-personas.yaml`                            |
 
 - Secrets come only from `deploy/.env`; never print it, never commit it, never pass a secret as a
   command-line argument (scripts expand `POSTGRES_PASSWORD` inside the containers). Evidence
@@ -28,12 +28,17 @@ from a committed revision, verified locally in Docker. Operations for people: `R
   migrated, and `/readyz` refuses history that image cannot read). Anything else needs a restore.
 - The live stream must never be buffered or compressed by the proxy (ADR 0033): `/api` has no
   `encode`, and `flush_interval -1`. `verify/live-stream.sh` proves it.
-- The proxy keeps a `Content-Security-Policy` the server set (asset content is stricter) and adds
-  its own elsewhere (`verify/csp-precedence.sh`).
+- The proxy forwards `Host`, `Origin`, `Sec-Fetch-*`, `Cookie` and `Authorization` unchanged (the
+  origin check and sign-in of ADR 0036 need them), replaces any `X-Forwarded-For` a client sends,
+  keeps a `Content-Security-Policy` the server set (asset content is stricter) and adds its own
+  elsewhere (`verify/proxy-contract.sh`).
 - `verify/dev-personas.yaml` signs anyone in with public tokens: local verification only, never on
   a server. `verify/pre-340.yaml` exists only until Stage 340 is merged (no `invitations` mode
   before it); part B of Stage 350 deletes both.
-- Behind the proxy every request comes from the proxy's address: per-IP limits (Stage 340) must
-  take the client address from `X-Forwarded-For` as Caddy sets it, one trusted hop.
+- The server trusts `X-Forwarded-For` only from the proxy network (`LTW_EDGE_SUBNET`, passed as
+  `LTW_TRUST_PROXY`; `apps/server/src/http/trust-proxy.test.ts`), so per-address limits (Stage 340)
+  see real clients. Never publish the server's port or put anything else on `edge`.
+- `PUBLIC_ORIGIN` is required (invitation sign-in, ADR 0036): exactly `https://<PUBLIC_HOST>`, with
+  `:<port>` when the published HTTPS port is not 443.
 - Shell scripts are bash (host) or POSIX `sh` (inside the Alpine images); keep them under the
   context budget (500 lines) and quote every expansion.

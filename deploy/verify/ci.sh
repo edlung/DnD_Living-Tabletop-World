@@ -2,8 +2,9 @@
 # ci.sh: the deployment check of hosted CI (and of any clean checkout with Docker): builds the
 # images of HEAD, writes a throwaway deploy/.env (random password, localhost, internal TLS,
 # backups in a temporary directory), starts the stack, seeds Ravenford, and runs the smoke checks,
-# a backup and the restore drill, the retention and CSP checks and, with the development personas,
-# the live stream check. Removes every container, volume and file it created, whatever happens.
+# a backup and the restore drill, the retention and proxy contract checks and, with the
+# development personas, the live stream check. Removes every container, volume and file it
+# created, whatever happens.
 # Refuses to run when deploy/.env exists. Ports: LTW_CI_HTTP_PORT and LTW_CI_HTTPS_PORT
 # (default 80 and 443, bound to 127.0.0.1).
 source "$(dirname "$0")/../scripts/lib.sh"
@@ -44,7 +45,7 @@ compose exec -T server node "$SERVER_DIST/world-engine/seed-ravenford-cli.js"
 "$DEPLOY_DIR/scripts/backup-now.sh"
 "$DEPLOY_DIR/scripts/restore-drill.sh"
 "$DEPLOY_DIR/verify/retention-check.sh"
-"$DEPLOY_DIR/verify/csp-precedence.sh" "$tag"
+"$DEPLOY_DIR/verify/proxy-contract.sh" "$tag"
 
 say 'live stream through the proxy (development personas, local only)'
 set_env_value COMPOSE_FILE compose.yaml:verify/dev-personas.yaml

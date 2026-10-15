@@ -65,9 +65,13 @@ services:
         required: true
     environment:
       NODE_ENV: production
+      # Invitation sign-in (ADR 0036) needs the browser's origin.
       AUTH_MODE: invitations
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?set PUBLIC_ORIGIN in deploy/.env}
       HTTP_HOST: 0.0.0.0
       HTTP_PORT: '3000'
+      # Only the proxy's network may name the client in X-Forwarded-For (per-address limits).
+      LTW_TRUST_PROXY: ${LTW_EDGE_SUBNET:-10.231.250.0/24}
       DATABASE_URL: postgres://ltw:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}@postgres:5432/ltw
       DEV_PERSONAS_FILE: ''
       LTW_ALLOW_NEWER_SCHEMA: ${LTW_ALLOW_NEWER_SCHEMA:-false}
@@ -171,8 +175,12 @@ services:
     logging: *logging
 
 networks:
-  # Proxy and server; outbound traffic for certificates and AI providers.
-  edge: {}
+  # Proxy and server; outbound traffic for certificates and AI providers. A fixed range: the
+  # server trusts X-Forwarded-For from it alone (LTW_TRUST_PROXY).
+  edge:
+    ipam:
+      config:
+        - subnet: ${LTW_EDGE_SUBNET:-10.231.250.0/24}
   # Server, database and backups; no outbound traffic, nothing published.
   data:
     internal: true

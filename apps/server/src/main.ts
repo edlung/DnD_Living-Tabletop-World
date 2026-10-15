@@ -79,6 +79,8 @@ async function main(): Promise<void> {
     assets: { contents },
     quests,
     readiness,
+    // Behind the deployment's proxy only its network may name the client (ADR 0037).
+    trustProxy: config.http.trustProxy,
   });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(

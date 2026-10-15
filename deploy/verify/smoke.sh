@@ -106,7 +106,14 @@ fetch readyz /api/readyz
 check '/api/readyz 200' status_is readyz 200
 check '/api/readyz ready' body_has readyz '{"status":"ready"}'
 check 'API answers are never cached' header_is readyz cache-control no-store
-check 'API answers carry the CSP' header_is readyz content-security-policy "$CSP"
+# The server's own policy (Stage 340 sets one) or else the proxy's: either way these hold.
+api_csp() {
+  case $(header readyz content-security-policy) in
+    *"default-src 'self'"*"frame-ancestors 'none'"*"base-uri 'none'"*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+check 'API answers carry a CSP' api_csp
 check 'API answers carry no Server or Via' sh -c "! grep -qiE '^(server|via):' '$work/readyz.headers'"
 fetch knowledge '/api/campaigns/ravenford/knowledge?perspective=PUBLIC'
 check 'campaign routes need a credential (401)' status_is knowledge 401

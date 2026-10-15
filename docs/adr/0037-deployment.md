@@ -69,10 +69,17 @@ Implemented as designed; these points make the decisions concrete. Files: `deplo
   digests every stream (or given versions) and compares a restored database's digests with the
   live database replayed at the same versions; integrity violations never count as a match.
 - **Proxy.** HTTP/3 is off (TCP 80/443 only); the client is `apps/web/build` (the design's
-  `dist` was a slip); `/api` is never compressed; the proxy adds its CSP only where the server set
+  `dist` was a slip); `/api` is never compressed; `Host`, `Origin`, `Sec-Fetch-*`, `Cookie` and
+  `Authorization` pass unchanged (ADR 0036's origin check and sign-in need them) and a client's
+  `X-Forwarded-For` is replaced by the real peer; the proxy adds its CSP only where the server set
   none (asset content keeps its sandboxed policy); `Server` and `Via` are removed. The proxy and
   the server run non-root with every capability dropped (the proxy binds 80/443 through the
   unprivileged-port sysctl); base images are pinned by digest.
+- **Client address.** Per-address limits (ADR 0036 §6) read `request.ip`. The server trusts
+  `X-Forwarded-For` only from the peers in `LTW_TRUST_PROXY` (unset: none; addresses or CIDR
+  ranges, or a hop count 1-5; wider than /8 or /16 refused); compose fixes the proxy network's
+  range (`LTW_EDGE_SUBNET`, default `10.231.250.0/24`) and passes it, so a forged header from
+  anyone else changes nothing. `PUBLIC_ORIGIN` is required by compose (invitation mode).
 - **Spending counters.** `ai:operator spend` (read-only, operator only) reports effective spend
   per billing account (today and in total, open holds) and per approval against its stage
   ceiling, with `spend.ts`'s definition; startup logs still carry counts only.
