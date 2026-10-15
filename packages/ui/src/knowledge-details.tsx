@@ -1,4 +1,5 @@
-import type { KnowledgeScope, KnowledgeView } from '@ltw/contracts';
+import type { KnowledgeScope, KnowledgeType, KnowledgeView } from '@ltw/contracts';
+import type { ReactNode } from 'react';
 
 import { readableLabel } from './labels.ts';
 import { StatusPanel } from './status-panel.tsx';
@@ -6,6 +7,8 @@ import { useT, type Translate } from './i18n.tsx';
 
 export interface KnowledgeDetailsProps {
   readonly knowledge: readonly KnowledgeView[];
+  /** A decorative mark shown before each type's word (the client's glyph); never the type itself. */
+  readonly typeMark?: (type: KnowledgeType) => ReactNode;
 }
 
 function scopeLabel(t: Translate, scope: KnowledgeScope): string {
@@ -14,8 +17,12 @@ function scopeLabel(t: Translate, scope: KnowledgeScope): string {
   return readableLabel(scope.kind, t);
 }
 
-/** Display the projection's epistemic types verbatim, including conflicting statements. */
-export function KnowledgeDetails({ knowledge }: KnowledgeDetailsProps) {
+/**
+ * Display the projection's epistemic types verbatim, including conflicting statements. Each
+ * record is a card: the type's word (with the client's mark), the statement, its attribution,
+ * and its details and provenance on demand.
+ */
+export function KnowledgeDetails({ knowledge, typeMark }: KnowledgeDetailsProps) {
   const t = useT();
   if (knowledge.length === 0) {
     return (
@@ -26,13 +33,18 @@ export function KnowledgeDetails({ knowledge }: KnowledgeDetailsProps) {
     <ul className="record-list knowledge-list">
       {knowledge.map((record) => (
         <li key={record.knowledgeId}>
-          <article className="knowledge-record">
+          <article
+            className={`knowledge-record knowledge-record--${record.knowledgeType.toLowerCase()}`}
+          >
             <span className={`badge badge--${record.knowledgeType.toLowerCase()}`}>
+              {typeMark?.(record.knowledgeType)}
               {t(record.knowledgeType)}
             </span>
-            <p>{record.statement}</p>
+            <p className="knowledge-statement">{record.statement}</p>
             {record.attributedTo ? (
-              <p>{t('Attributed to {name}', { name: record.attributedTo.name })}</p>
+              <p className="knowledge-attribution">
+                {t('Attributed to {name}', { name: record.attributedTo.name })}
+              </p>
             ) : null}
             <details className="disclosure">
               <summary>{t('Record details')}</summary>

@@ -12,26 +12,28 @@ type Actions = ReturnType<typeof useHistoryUndo>;
 
 /**
  * The DM history with its undo (docs/adr/0033-live-session.md §7; replaces the screen-local
- * undo of ADR 0029 §8). Read from the server in the DM perspective only, so it survives a
- * reload; the world screen remounts on a perspective change, which drops every row. Pages
- * follow the live signal in the background; each older page is read from the cursor of the
- * page above it, so nothing is skipped or repeated when new entries arrive, and is known by its
- * place, so a moved cursor neither empties it nor closes the pages opened below it
- * (`history-pages.ts`).
+ * undo of ADR 0029 §8), in the History sheet. Read from the server in the DM perspective only,
+ * and only while the sheet is open, so it survives a reload; the world screen remounts on a
+ * perspective change, which drops every row. Pages follow the live signal in the background;
+ * each older page is read from the cursor of the page above it, so nothing is skipped or
+ * repeated when new entries arrive, and is known by its place, so a moved cursor neither empties
+ * it nor closes the pages opened below it (`history-pages.ts`).
  */
 export function DmHistory({
   api,
+  open,
   directory,
   onWorldChanged,
   onAuthoringUndone,
 }: {
   readonly api: WorldApi;
+  /** The History sheet is open: the history is read, and followed, only meanwhile. */
+  readonly open: boolean;
   readonly directory: readonly EntityRef[];
   readonly onWorldChanged: () => void;
   readonly onAuthoringUndone: (proposalId: string) => void;
 }) {
   const t = useT();
-  const [open, setOpen] = useState(false);
   const [round, setRound] = useState(0);
   const actions = useHistoryUndo(api, (undone) => {
     setRound((value) => value + 1);
@@ -40,14 +42,7 @@ export function DmHistory({
   });
   const notice = actions.notice;
   return (
-    <details
-      className="disclosure dm-history"
-      open={open}
-      onToggle={(event) => {
-        setOpen(event.currentTarget.open);
-      }}
-    >
-      <summary>{t('History and undo (DM)')}</summary>
+    <div className="dm-history">
       {notice && (
         <p
           role={notice.kind === 'error' ? 'alert' : 'status'}
@@ -68,7 +63,7 @@ export function DmHistory({
           />
         </section>
       )}
-    </details>
+    </div>
   );
 }
 

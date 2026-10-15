@@ -8,6 +8,7 @@ import {
   playerScene,
   TOKENS,
 } from './support/session.ts';
+import { openSheet } from './support/shell.ts';
 
 test('player uses real authorized scene and knowledge without receiving DM secrets', async ({
   page,
@@ -30,7 +31,8 @@ test('player uses real authorized scene and knowledge without receiving DM secre
 test('DM data disappears before a delayed player preview completes', async ({ page }) => {
   await enterWorld(page, TOKENS.dm);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
-  await page.getByText('Known people & places', { exact: true }).click();
+  await openSheet(page, 'Journal');
+  await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /^Ashen Circle/ })).toBeVisible();
 
   const delayed = await holdResponse(
@@ -54,7 +56,8 @@ test('failed perspective downgrade stays empty and recovers without stale DM dat
 }) => {
   await enterWorld(page, TOKENS.dm);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
-  await page.getByText('Known people & places', { exact: true }).click();
+  await openSheet(page, 'Journal');
+  await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /^Ashen Circle/ })).toBeVisible();
   let fail = true;
   await page.route('**/api/**', async (route) => {
@@ -84,7 +87,8 @@ test('failed perspective downgrade stays empty and recovers without stale DM dat
 test('late DM response cannot overwrite an already loaded player preview', async ({ page }) => {
   await enterWorld(page, TOKENS.dm);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
-  await page.getByText('Known people & places', { exact: true }).click();
+  await openSheet(page, 'Journal');
+  await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /^Ashen Circle/ })).toBeVisible();
   const delayed = await holdResponse(
     page,

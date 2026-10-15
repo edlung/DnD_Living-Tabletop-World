@@ -26,10 +26,12 @@
     "validate:ci-local": "bash scripts/ci-local.sh",
     "dev:web": "pnpm --filter @ltw/web run dev",
     "test:e2e": "playwright test",
+    "evidence:screens": "playwright test -c playwright.evidence.config.ts",
     "eval:ai": "node --conditions=@ltw/source apps/server/src/testing/eval/eval-cli.ts",
     "ai:operator": "pnpm --filter @ltw/server run ai:operator"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.63.0",
     "@types/node": "^24.19.1",

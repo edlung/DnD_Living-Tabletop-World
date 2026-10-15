@@ -7,6 +7,7 @@ import {
   playerScene,
   TOKENS,
 } from './support/session.ts';
+import { chooseLocation } from './support/shell.ts';
 
 test('full authorized character sheet remains reachable from the selected character', async ({
   page,
@@ -38,7 +39,7 @@ test('full authorized character sheet remains reachable from the selected charac
 
 test('real empty scene and failed scene load can recover', async ({ page }) => {
   await playerScene(page);
-  await page.getByLabel('Location', { exact: true }).selectOption('golden-stag-inn');
+  await chooseLocation(page, 'golden-stag-inn');
   const scene = page.getByRole('region', { name: 'Scene', exact: true });
   await expect(scene).toContainText(/not observed|no entities are visible/i);
   let fail = true;
@@ -49,7 +50,7 @@ test('real empty scene and failed scene load can recover', async ({ page }) => {
       await route.continue();
     }
   });
-  await page.getByLabel('Location', { exact: true }).selectOption('market-square');
+  await chooseLocation(page, 'market-square');
   await expect(scene.getByRole('alert')).toBeVisible();
   fail = false;
   await page.getByRole('button', { name: 'Refresh world', exact: true }).click();

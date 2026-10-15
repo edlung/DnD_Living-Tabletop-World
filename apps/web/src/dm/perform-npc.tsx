@@ -103,7 +103,7 @@ export function PerformNpc({
   if (characters.length === 0) return null;
   return (
     <details className="disclosure perform-npc">
-      <summary>Perform {npcName} (DM)</summary>
+      <summary>{t('Perform {npc} (DM)', { npc: npcName })}</summary>
       <label htmlFor="perform-character">{t('Speaking with')}</label>
       <select
         id="perform-character"

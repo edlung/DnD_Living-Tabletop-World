@@ -1,5 +1,5 @@
 import type { SessionResponse } from '@ltw/contracts';
-import { LanguageProvider, StatusPanel, useT, type Language } from '@ltw/ui';
+import { LanguageProvider, StatusPanel, useLanguage, useT, type Language } from '@ltw/ui';
 import {
   Component,
   useCallback,
@@ -14,16 +14,41 @@ import { WorldApi, type Connection } from '../api/client.ts';
 import { LiveActiveContext, LiveRefreshContext, LiveTargetContext } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
 import type { StandIn } from '../combat/stand-in.ts';
+import { TopBar } from '../shell/top-bar.tsx';
+import { ornamentUrl } from '../visual/ui-kit.ts';
 import { World } from '../world/world.tsx';
 import { ActingBar } from './acting-bar.tsx';
-import { ConnectionBadge } from './live-status.tsx';
 import { Login } from './login.tsx';
 import { useLiveSession } from './use-live-session.ts';
+
+/** The page speaks the language of what it shows: the browser's, then the campaign's. */
+function DocumentLanguage() {
+  const language = useLanguage();
+  useEffect(() => {
+    const previous = document.documentElement.lang;
+    document.documentElement.lang = language;
+    return () => {
+      document.documentElement.lang = previous;
+    };
+  }, [language]);
+  return null;
+}
+
+function Emblem() {
+  const t = useT();
+  return (
+    <p className="connection-brand">
+      <img src={ornamentUrl('emblem')} alt="" />
+      <span>{t('Living Tabletop World')}</span>
+    </p>
+  );
+}
 
 function BoundaryFallback({ onLeave }: { readonly onLeave: () => void }) {
   const t = useT();
   return (
     <main className="connection-state">
+      <Emblem />
       <StatusPanel
         state="error"
         label={t('This world response could not be displayed. Reconnect to try again.')}
@@ -77,6 +102,7 @@ export function App() {
   // Before a session names the campaign's language, the browser's language speaks.
   return (
     <LanguageProvider language={browserLanguage()}>
+      <DocumentLanguage />
       {connection ? (
         <SessionBoundary onLeave={leave}>
           <SessionGate connection={connection} onLeave={leave} />
@@ -105,7 +131,7 @@ function SessionGate({
   if (resource.status !== 'ready')
     return (
       <main className="connection-state">
-        <p className="wordmark">{t('◈ Living Tabletop World')}</p>
+        <Emblem />
         <StatusPanel
           state={resource.status}
           label={resource.status === 'error' ? resource.message : t('Opening your session…')}
@@ -117,6 +143,7 @@ function SessionGate({
   // From here on the campaign's own language speaks, whatever the browser's is.
   return (
     <LanguageProvider language={resource.value.campaign.language}>
+      <DocumentLanguage />
       <SessionWorld connection={connection} identity={resource.value} onLeave={onLeave} />
     </LanguageProvider>
   );
@@ -198,6 +225,8 @@ function SessionShell({
 }) {
   const t = useT();
   const [revision, setRevision] = useState(0);
+  // The top bar's place for the open play session, written in by the world screen.
+  const [sessionSlot, setSessionSlot] = useState<HTMLSpanElement | null>(null);
   // The caller's identity is re-read in the background like every other view.
   const identityApi = useMemo(() => new WorldApi(connection, ''), [connection]);
   const loadIdentity = useCallback(
@@ -228,47 +257,27 @@ function SessionShell({
       ? standIn
       : null;
   return (
-    <>
+    <div className="session-shell">
       <a className="skip-link" href="#world-main">
         {t('Skip to world')}
       </a>
-      <header className="app-header">
-        <div className="wordmark">
-          <span aria-hidden="true">◈</span> {t('Living Tabletop World')}
-        </div>
-        <div className="session-controls">
-          <ConnectionBadge status={status} />
-          <label htmlFor="perspective">{t('Perspective')}</label>
-          <select
-            id="perspective"
-            value={perspective}
-            onChange={(event) => {
-              onPerspective(event.target.value);
-            }}
-          >
-            {perspectiveChoices.map((item) => (
-              <option key={item.value} value={item.value}>
-                {item.label}
-              </option>
-            ))}
-          </select>
-          <button
-            onClick={() => {
-              setRevision((value) => value + 1);
-            }}
-          >
-            {t('Refresh world')}
-          </button>
-          <button className="quiet-button" onClick={onLeave}>
-            {t('Leave session')}
-          </button>
-        </div>
-      </header>
+      <TopBar
+        campaignName={identity.campaign.name}
+        status={status}
+        perspective={perspective}
+        choices={perspectiveChoices}
+        dmView={effective === 'DM'}
+        onPerspective={onPerspective}
+        onRefresh={() => {
+          setRevision((value) => value + 1);
+        }}
+        onLeave={onLeave}
+        sessionSlot={setSessionSlot}
+      />
       {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
       <World
-        key={`${perspective}:${revision}`}
+        key={`${perspective}:${String(revision)}`}
         api={api}
-        campaignName={identity.campaign.name}
         effectivePerspective={effective}
         canAct={
           identity.role === 'PLAYER' &&
@@ -276,7 +285,8 @@ function SessionShell({
         }
         standIn={actingAs}
         onActAs={onActAs}
+        sessionSlot={sessionSlot}
       />
-    </>
+    </div>
   );
 }

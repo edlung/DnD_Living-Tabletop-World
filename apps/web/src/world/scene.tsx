@@ -1,88 +1,148 @@
-import type { EntityRef, ScenePresentationResponse } from '@ltw/contracts';
+import type { EntityKind, EntityRef, ScenePresentationResponse } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useCallback } from 'react';
+import type { ReactNode } from 'react';
 
-import type { WorldApi } from '../api/client.ts';
-import { useResource } from '../api/resource.ts';
+import type { Resource } from '../api/resource.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
-import { SceneImage } from './scene-image.tsx';
+import { Glyph } from '../visual/glyph.tsx';
+import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { SceneObjects } from './scene-objects.tsx';
 
-export function Scene({
-  api,
-  location,
-  directory,
-  selectedId,
+export interface NearbyPlace {
+  readonly entityId: string;
+  readonly kind: EntityKind;
+  readonly name: string | null;
+}
+
+function Exits({
+  nearby,
   onSelect,
 }: {
-  readonly api: WorldApi;
-  readonly location: EntityRef;
-  readonly directory: readonly EntityRef[];
-  readonly selectedId: string | null;
-  readonly onSelect: (entityId: string, kind: string) => void;
+  readonly nearby: readonly NearbyPlace[];
+  readonly onSelect: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
-  const load = useCallback(
-    (signal: AbortSignal) =>
-      api.get<ScenePresentationResponse>(
-        `locations/${encodeURIComponent(location.entityId)}/scene`,
-        signal,
-      ),
-    [api, location.entityId],
-  );
-  const { resource, retry } = useResource(location.entityId, load);
-  if (resource.status !== 'ready')
-    return (
-      <StatusPanel
-        state={resource.status}
-        label={resource.status === 'error' ? resource.message : t('Loading the scene…')}
-        onRetry={retry}
-      />
-    );
-  const scene = resource.value;
   return (
-    <div className="exploration-scene">
-      {scene.location.image ? (
-        <div className="exploration-art" aria-hidden="true">
-          <SceneImage api={api} image={scene.location.image} name={location.name} />
-        </div>
-      ) : null}
-      <header className="exploration-heading">
-        <div>
-          <p className="eyebrow">{t('World view')}</p>
-          <h2>{location.name}</h2>
-        </div>
-        <div className="exploration-meta" aria-label={t('Scene conditions')}>
-          <span>{t(scene.phase)}</span>
-          {scene.location.weather && <span>{t(scene.location.weather)}</span>}
-          <span>{formatWorldTime(scene.worldTime, t)}</span>
-        </div>
+    <section className="exits" aria-label={t('Nearby places')}>
+      <h3>{t('Beyond this place')}</h3>
+      <p className="exits-hint">
+        {t('Choose a place to look at it. To go there, use Enter in its details.')}
+      </p>
+      <ul>
+        {nearby.map((place) => {
+          const name = place.name ?? t('Unidentified location');
+          return (
+            <li key={place.entityId}>
+              <button
+                type="button"
+                className="exit-button"
+                aria-label={t('Explore {place}', { place: name })}
+                onClick={() => {
+                  onSelect(place.entityId, place.kind);
+                }}
+              >
+                <Glyph name="travel" />
+                <span className="exit-text">
+                  <span className="exit-verb">{t('Explore')}</span>
+                  <strong>{name}</strong>
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
+/**
+ * The scene (docs/STAGE_320_DESIGN.md §5.2): the place's cartouche with its conditions, who is
+ * present as medallions along the lower third, and the ways beyond this place. While the stage
+ * shows the battlefield only the cartouche stays; the rest is kept, hidden.
+ */
+export function Scene({
+  location,
+  scene,
+  onRetry,
+  directory,
+  nearby,
+  selectedId,
+  onSelect,
+  battlefield,
+  rail,
+  conversation,
+  anchorId,
+}: {
+  readonly location: EntityRef;
+  readonly scene: Resource<ScenePresentationResponse | null>;
+  readonly onRetry: () => void;
+  readonly directory: readonly EntityRef[];
+  readonly nearby: readonly NearbyPlace[];
+  readonly selectedId: string | null;
+  readonly onSelect: (entityId: string, kind: EntityKind) => void;
+  /** The stage shows the battlefield: the presence row steps aside. */
+  readonly battlefield: boolean;
+  /** Who is at the table, beside the place's cartouche. */
+  readonly rail: ReactNode;
+  /** The conversation with an NPC of this scene, when one is open. */
+  readonly conversation: ReactNode;
+  /** The medallion a result concerns: the selection, else whoever the player speaks with. */
+  readonly anchorId: string | null;
+}) {
+  const t = useT();
+  const view = scene.status === 'ready' ? scene.value : null;
+  return (
+    <section className="scene" aria-label={t('Scene')}>
+      <header className="cartouche">
+        <h2>{location.name}</h2>
+        {view && (
+          <div className="conditions" role="group" aria-label={t('Scene conditions')}>
+            <span>{formatWorldTime(view.worldTime, t)}</span>
+            <span>
+              <Glyph name={phaseGlyph(view.phase)} />
+              {t(view.phase)}
+            </span>
+            {view.location.weather && (
+              <span>
+                <Glyph name={weatherGlyph(view.location.weather)} />
+                {t(view.location.weather)}
+              </span>
+            )}
+          </div>
+        )}
       </header>
-      <div className="exploration-presence">
-        <div className="exploration-presence-heading">
-          <h3>{t('In this scene')}</h3>
-          <span>{t('{count} visible', { count: scene.present.length })}</span>
-        </div>
-        {!scene.location.observed ? (
+      {rail}
+      <div className="scene-presence" id="scene-presence" hidden={battlefield}>
+        <h3 className="visually-hidden">{t('In this scene')}</h3>
+        {scene.status !== 'ready' ? (
+          <StatusPanel
+            state={scene.status}
+            label={scene.status === 'error' ? scene.message : t('Loading the scene…')}
+            onRetry={onRetry}
+          />
+        ) : !view?.location.observed ? (
           <StatusPanel
             state="empty"
             label={t('This location is known, but it is not observed in this perspective.')}
           />
-        ) : scene.present.length === 0 ? (
+        ) : view.present.length === 0 ? (
           <StatusPanel state="empty" label={t('No entities are visible in this scene.')} />
         ) : (
           <SceneObjects
-            present={scene.present}
+            present={view.present}
             directory={directory}
             selectedId={selectedId}
+            anchorId={anchorId}
             onSelect={onSelect}
           />
         )}
+        <p className="scene-caption">
+          <span className="scene-hint">{t('Choose a person or object to look closer.')}</span>
+          <span>{t('Symbolic arrangement — no distances shown')}</span>
+        </p>
       </div>
-      <footer className="exploration-caption">
-        <p>{t('Choose a person or object to look closer.')}</p>
-        <span>{t('Symbolic arrangement · no distances shown')}</span>
-      </footer>
-    </div>
+      {conversation}
+      {nearby.length > 0 && !battlefield && <Exits nearby={nearby} onSelect={onSelect} />}
+    </section>
   );
 }

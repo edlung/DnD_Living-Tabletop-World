@@ -190,7 +190,7 @@ export function ProposalReview({
         </>
       )}
       {proposal.status === 'COMMITTED' && (
-        <p className="muted">{t('To undo it, use the history and undo list below.')}</p>
+        <p className="muted">{t('To undo it, use History in the DM tools.')}</p>
       )}
       {proposal.status !== 'DRAFT' && (
         <div className="action-row">

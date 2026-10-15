@@ -2,6 +2,7 @@ import { expect, type Page, type Response } from '@playwright/test';
 
 import boundary from '../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import hiddenCharacter from '../fixtures/hidden-character.json' with { type: 'json' };
+import { chooseLocation } from './shell.ts';
 
 export const HIDDEN_CHARACTER = hiddenCharacter;
 const playerForbidden = [
@@ -29,8 +30,7 @@ export async function enterWorld(
 
 export async function playerScene(page: Page): Promise<void> {
   await enterWorld(page);
-  await expect(page.getByLabel('Location', { exact: true })).toBeVisible();
-  await page.getByLabel('Location', { exact: true }).selectOption('market-square');
+  await chooseLocation(page, 'market-square');
   await expect(page.getByRole('button', { name: 'Mira Vale', exact: true })).toBeVisible();
 }
 

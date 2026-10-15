@@ -1,113 +1,327 @@
-@media (max-width: 1050px) {
-  .app-header {
-    flex-wrap: wrap;
-  }
-  .session-controls {
-    flex-wrap: wrap;
-  }
-  .world-grid {
-    grid-template-columns: minmax(0, 1.3fr) minmax(290px, 1fr);
+/*
+ * Widths (docs/STAGE_320_DESIGN.md §6): desktop ≥ 1200 px (the selection's panel is a column),
+ * tablet 768–1199 px (the panel is a drawer over the stage), phone < 768 px (art in the top
+ * 42 %, bottom sheets, the dock as a tab bar). No width scrolls the page sideways.
+ */
+@media (min-width: 1200px) {
+  .world-main.has-details {
+    grid-template-columns: minmax(0, 1fr) var(--panel-w);
   }
 }
-@media (max-width: 760px) {
-  .entry-layout {
-    grid-template-columns: 1fr;
+/* Narrower than a wide desktop: the perspective's label is read, not shown; the DM's note shows */
+@media (max-width: 1599px) {
+  .perspective-control label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
-  .entry-story {
-    padding: 1.5rem;
-    min-height: auto;
+}
+@media (min-width: 1600px) {
+  .perspective-note--dm {
+    display: inline;
   }
-  .entry-heading {
-    padding: 3rem 0 1rem;
-  }
-  .entry-heading h1 {
-    font-size: 3rem;
-  }
-  .entry-heading p:last-child {
-    font-size: 0.88rem;
-  }
-  .entry-footer {
+}
+
+/* Tablet and phone: the top bar keeps the emblem; refresh and leave become glyphs with tips */
+@media (max-width: 1199px) {
+  .topbar-wordmark,
+  .topbar-session {
     display: none;
   }
-  .entry-form {
-    max-width: none;
-    padding: 2rem 1.5rem;
+  .icon-button--labelled {
+    width: 40px;
+    padding: 0;
+    color: var(--text-muted);
   }
-  .entry-form h2 {
-    font-size: 2rem;
+  .icon-button--labelled > .icon-button-label {
+    display: none;
   }
-  .app-header {
-    padding: 1rem;
-    gap: 0.8rem;
-  }
-  .session-controls {
-    gap: 0.45rem;
-    width: 100%;
-  }
-  .session-controls select {
-    max-width: 13rem;
-    flex-grow: 1;
-  }
-  .session-controls button {
-    font-size: 0.73rem;
-  }
-  .world-main {
-    padding: 1.5rem 1rem;
-  }
-  .world-heading {
-    align-items: start;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  .world-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .location-control select {
-    width: 100%;
-    min-width: 0;
-  }
-  .world-grid,
-  .world-footer-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .scene-banner {
-    min-height: 260px;
-  }
-  .scene-title {
-    padding: 1.5rem;
-  }
-  .scene-title h2 {
-    font-size: 2rem;
-  }
-  .scene-contents {
-    padding: 1rem;
-  }
-  .entity-card {
-    padding: 1rem;
-    min-height: 180px;
-  }
-  .entity-card strong {
-    font-size: 1.1rem;
-  }
-  .selection-empty {
-    min-height: 220px;
-    padding: 1rem;
-  }
-  .selection-mark {
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
+  .icon-button--labelled:hover::after,
+  .icon-button--labelled:focus-visible::after {
+    display: block;
   }
   .detail-panel {
-    padding: 1.2rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    width: min(var(--panel-w), 92vw);
+  }
+  .combat-stage {
+    right: 16px;
+  }
+  .encounter-card {
+    top: auto;
+    bottom: calc(var(--dock-h) + 24px);
+    max-height: 30%;
   }
 }
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .exits {
+    width: 220px;
+  }
+}
+
+/* Phone: the stage scrolls as one column under its art */
+@media (max-width: 767px) {
+  :root {
+    --gutter: 12px;
+    --dock-h: 60px;
+  }
+  .topbar {
+    flex-wrap: wrap;
+    gap: 0.4rem 0.6rem;
+    padding: 0.4rem var(--gutter);
+  }
+  .topbar-emblem {
+    width: 30px;
+    height: 30px;
+  }
+  .topbar-title {
+    padding-left: 0.6rem;
+  }
+  .topbar-title h1 {
+    font-size: 1.2rem;
+  }
+  .topbar-session {
+    display: none;
+  }
+  .session-controls {
+    flex: 1 1 100%;
+    gap: 0.35rem;
+  }
+  .perspective-control {
+    flex: 1;
+    min-width: 0;
+  }
+  .perspective-control label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .perspective-control select {
+    flex: 1;
+    width: 100%;
+    max-width: none;
+  }
+  .live-badge {
+    padding-inline: 0.55rem;
+  }
+  /*
+   * The stage scrolls as one column; it is not their containing block, so the art, the sheets
+   * and the selection's panel stay put below the top bar while its content scrolls.
+   */
+  .stage {
+    position: static;
+    padding-bottom: calc(var(--dock-h) + 1rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    isolation: auto;
+  }
+  .stage-backdrop {
+    bottom: auto;
+    height: 42vh;
+  }
+  .backdrop-note {
+    top: auto;
+    bottom: 10px;
+  }
+  .stage-status {
+    position: relative;
+    min-height: 42vh;
+  }
+  .scene {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-rows: minmax(42vh, auto) auto auto auto;
+    gap: 0.75rem;
+    padding: 12px 12px 1rem;
+    pointer-events: auto;
+  }
+  .cartouche {
+    position: relative;
+    top: auto;
+    left: auto;
+    grid-row: 1;
+    grid-column: 1;
+    align-self: start;
+    max-width: 100%;
+    padding: 0.65rem 1rem;
+  }
+  .cartouche h2 {
+    font-size: 1.6rem;
+  }
+  .party-rail {
+    position: relative;
+    inset: auto;
+    grid-row: 1;
+    grid-column: 1;
+    align-self: end;
+    flex-direction: row;
+    align-items: stretch;
+    width: auto;
+    overflow-x: auto;
+  }
+  .party-rail ul {
+    display: flex;
+  }
+  .rail-member {
+    width: 84px;
+  }
+  .rail-dm {
+    width: 72px;
+    justify-content: center;
+  }
+  .scene-presence,
+  .stage--talking .scene-presence {
+    position: relative;
+    inset: auto;
+    grid-row: 2;
+  }
+  .world-objects {
+    gap: 0.75rem;
+  }
+  .object-button {
+    min-width: 88px;
+  }
+  .exits {
+    position: relative;
+    inset: auto;
+    grid-row: 4;
+    justify-items: stretch;
+    width: auto;
+    translate: none;
+  }
+  .exits ul {
+    justify-items: stretch;
+  }
+  .exits h3,
+  .exits-hint {
+    text-align: left;
+  }
+  .exit-button {
+    width: 100%;
+  }
+  .stage-switch,
+  .combat-stage,
+  .encounter-card {
+    position: relative;
+    inset: auto;
+    width: auto;
+    max-height: none;
+    margin: 0 12px 12px;
+    translate: none;
+  }
+  .dialogue-panel {
+    position: relative;
+    inset: auto;
+    grid-row: 3;
+    width: auto;
+    max-height: none;
+  }
+  .stage-switch {
+    width: fit-content;
+    margin-inline: auto;
+  }
+  .outcome,
+  .stage:has(.object-button[data-anchor]):not(.stage--battle) .outcome {
+    position: fixed;
+    right: 8px;
+    bottom: calc(var(--dock-h) + 8px);
+    left: 8px;
+    z-index: 35;
+    width: auto;
+    max-height: 40vh;
+    margin: 0;
+    translate: none;
+  }
+  .sheet,
+  .detail-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: var(--dock-h);
+    left: 0;
+    width: auto;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+  }
+  .sheet {
+    z-index: 40;
+  }
+  .detail-panel {
+    z-index: 41;
+  }
+  .dock {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 45;
+    justify-content: flex-start;
+    max-width: none;
+    min-height: var(--dock-h);
+    padding: 0.2rem 0.3rem;
+    overflow-x: auto;
+    border-width: 1px 0 0;
+    border-radius: 0;
+    translate: none;
+  }
+  .dock-items {
+    flex: none;
+  }
+  .dock-button {
+    min-width: 58px;
+    padding: 0.25rem 0.35rem;
+    font-size: 0.75rem;
+  }
+  .dock-label {
+    display: none;
+  }
+  .dock-short {
+    display: block;
+  }
+  .chronicle-dialog {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+  }
+  .chronicle-frame {
+    max-height: none;
+    height: 100%;
+  }
+  .sign-in {
+    display: block;
+    padding: 34vh 0.75rem 1rem;
+  }
+  .sign-in-art {
+    bottom: auto;
+    height: 48vh;
+    object-position: 62% 40%;
+  }
+  .sign-in-scrim {
+    background: linear-gradient(to bottom, transparent 18vh, var(--ink-950) 48vh);
+  }
+}
+
+/* Reduced motion: no transitions, pulses or rising sheets */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    scroll-behavior: auto !important;
     animation: none !important;
     transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

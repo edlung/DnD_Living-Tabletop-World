@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { enterWorld, TOKENS } from './support/session.ts';
+import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 
 /**
  * The Russian Ravenford in the browser (docs/adr/0031-play-language.md §10): a Russian
@@ -26,7 +27,7 @@ test('a Russian player finds Mira, asks about the caravan, and reads only Russia
   await enterWorld(page, TOKENS.player, CAMPAIGNS.player);
   await expect(page.getByRole('heading', { level: 1, name: 'Пропавший караван' })).toBeVisible();
   await expect(page.getByLabel('Вид', { exact: true })).toBeVisible();
-  await page.getByLabel('Место', { exact: true }).selectOption('market-square');
+  await chooseLocation(page, 'market-square', { sheet: 'Места', label: 'Место' });
   await page.getByRole('button', { name: 'Мира Вейл', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Что вы хотите сделать?' })).toBeVisible();
   await expectNoEnglish(page, 'Mira selected');
@@ -50,7 +51,8 @@ test('a Russian DM adds Tomas Reed from a Russian sentence, previews, edits, and
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, CAMPAIGNS.dm);
-  await page.getByText('Добавить в мир (мастер)').click();
+  await openSheet(page, 'Добавить в мир');
+  await expect(page.getByText('Добавить в мир (мастер)', { exact: true })).toBeVisible();
   await page
     .getByLabel('Опишите, что добавить')
     .fill('Добавь: молодой стражник у Северных ворот, который видел, как ушёл караван.');
@@ -97,7 +99,8 @@ test('a Russian DM moves time and weather, and writes a chapter that reads in Ru
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, 'ui-ru-time');
-  await page.getByText('Время и погода (мастер)', { exact: true }).click();
+  await openSheet(page, 'Время и погода');
+  await expect(page.getByText('Время и погода (мастер)', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Перейти к дню 2, 10:00' }).click();
   await expect(page.getByLabel('Условия сцены')).toContainText('День 2 · 10:00');
   await page.getByLabel('Погода: Рыночная площадь').selectOption('rain');
@@ -105,6 +108,7 @@ test('a Russian DM moves time and weather, and writes a chapter that reads in Ru
   await expect(page.getByLabel('Условия сцены')).toContainText('дождь');
   await expectNoEnglish(page, 'time and weather');
 
+  await openChronicle(page, 'Хроника');
   await page.getByText('Написать главу (мастер)', { exact: true }).click();
   await expect(page.getByLabel('Название')).toHaveValue('Глава I — Тени на Торговой дороге');
   await page.getByRole('button', { name: 'Написать главу', exact: true }).click();

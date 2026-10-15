@@ -1,6 +1,7 @@
 import { expect, test, type Page, type Route } from '@playwright/test';
 
 import { enterWorld, TOKENS } from './support/session.ts';
+import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
 
 /**
@@ -36,7 +37,7 @@ function holdDialogue(page: Page) {
 
 test('a player waits for a reply and is told honestly that no words came', async ({ page }) => {
   await enterWorld(page, TOKENS.player, campaigns.aiFeedback);
-  await page.getByLabel('Location', { exact: true }).selectOption('market-square');
+  await chooseLocation(page, 'market-square');
   await page.getByRole('button', { name: 'Mira Vale', exact: true }).click();
   const hold = holdDialogue(page);
   await hold.ready;
@@ -56,7 +57,7 @@ test('the DM sees the NPC replying, and a late reply never lands on another list
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, campaigns.aiFeedback);
-  await page.getByLabel('Location', { exact: true }).selectOption('market-square');
+  await chooseLocation(page, 'market-square');
   await page.getByRole('button', { name: 'Mira Vale', exact: true }).click();
   await page.getByText('Perform Mira Vale (DM)', { exact: true }).click();
   await page.getByLabel('What the character says (optional)').fill('Good morning.');
@@ -103,7 +104,7 @@ test('without a recorded request the DM gets no proposal source, and the chapter
     }
   });
   await enterWorld(page, TOKENS.dm, campaigns.aiNoStart);
-  await page.getByText('Add to the world (DM)', { exact: true }).click();
+  await openSheet(page, 'Add to the world');
   await page
     .getByLabel('Describe what to add', { exact: true })
     .fill('Add a young guard near North Gate who saw the caravan leave.');
@@ -126,6 +127,7 @@ test('without a recorded request the DM gets no proposal source, and the chapter
     0,
   );
 
+  await openChronicle(page);
   await page.getByText('Write a chapter (DM)', { exact: true }).click();
   const written = page.waitForResponse(
     (response) =>
@@ -147,7 +149,7 @@ test('without a recorded request a player still talks, with no reply and no prom
   page,
 }) => {
   await enterWorld(page, TOKENS.player, campaigns.aiNoStart);
-  await page.getByLabel('Location', { exact: true }).selectOption('market-square');
+  await chooseLocation(page, 'market-square');
   await page.getByRole('button', { name: 'Mira Vale', exact: true }).click();
   const answered = page.waitForResponse((response) => isDialogue(new URL(response.url())));
   await page.getByRole('button', { name: 'Talk', exact: true }).click();

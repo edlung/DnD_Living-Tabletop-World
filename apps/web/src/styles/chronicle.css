@@ -1,0 +1,74 @@
+/* The Chronicle in its dialog (part C turns it into the book of design §5.6). */
+.chronicle > h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+  font-size: 2.2rem;
+}
+.chronicle > h2 .glyph {
+  color: var(--gold);
+}
+.chronicle .disclosure {
+  max-width: 44rem;
+}
+.chronicle .disclosure input,
+.chronicle .disclosure select {
+  max-width: 30rem;
+  margin-bottom: 0.6rem;
+}
+.chronicle-chapter {
+  max-width: 48rem;
+  margin: 1.25rem 0 0;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 50%, transparent);
+}
+.chronicle-chapter h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.7rem;
+}
+.chronicle-paragraph > p {
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+.chronicle-cites {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0 0 1rem;
+  padding: 0 0 0 0.9rem;
+  border-left: 1px solid var(--gold-deep);
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.chronicle-cites li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+}
+.flashback-button {
+  min-height: 34px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.88rem;
+}
+.flashback-button .glyph {
+  color: var(--gold);
+}
+.flashback {
+  flex-basis: 100%;
+  margin-top: 0.4rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--gold-deep);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--gold-deep) 22%, transparent);
+  color: var(--text);
+}
+.flashback blockquote {
+  margin-top: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+}

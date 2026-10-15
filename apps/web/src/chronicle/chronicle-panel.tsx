@@ -11,6 +11,8 @@ import { useCallback, useState } from 'react';
 import { ApiError, type WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
+import { Glyph } from '../visual/glyph.tsx';
+import { KnowledgeBadge } from '../visual/knowledge-cards.tsx';
 import { chapterMessage } from './chapter-message.ts';
 
 /**
@@ -37,7 +39,10 @@ export function ChroniclePanel({
   const [open, setOpen] = useState<string | null>(null);
   return (
     <section className="chronicle" aria-label={t('Chronicle')}>
-      <h2>{t('Chronicle')}</h2>
+      <h2>
+        <Glyph name="chronicle" />
+        {t('Chronicle')}
+      </h2>
       {isDm && (
         <Generate
           api={api}
@@ -100,17 +105,17 @@ function Chapter({
                 <li key={key}>
                   {entry.text !== paragraph.text && <span>{entry.text} </span>}
                   {entry.knowledge.map((record) => (
-                    <span key={record.knowledgeId} className="badge">
-                      {t(record.knowledgeType)}
-                    </span>
+                    <KnowledgeBadge key={record.knowledgeId} type={record.knowledgeType} />
                   ))}
                   {entry.memoryId && (
                     <button
+                      className="flashback-button"
                       aria-expanded={open === entry.memoryId}
                       onClick={() => {
                         onOpen(open === entry.memoryId ? null : entry.memoryId);
                       }}
                     >
+                      <Glyph name="memory" />
                       {t('Open flashback')}
                     </button>
                   )}
@@ -162,7 +167,7 @@ function Flashback({ api, memoryId }: { readonly api: WorldApi; readonly memoryI
         {flashback.dialogue.speaker && <strong>{flashback.dialogue.speaker.name}: </strong>}
         {flashback.dialogue.text}
         {flashback.dialogue.knowledgeType && (
-          <span className="badge">{t(flashback.dialogue.knowledgeType)}</span>
+          <KnowledgeBadge type={flashback.dialogue.knowledgeType} />
         )}
       </blockquote>
     </section>

@@ -32,6 +32,8 @@ export interface ActionNotice {
   readonly message: string;
   readonly outcome?: PlayerOutcome;
   readonly speech?: string;
+  /** Who spoke `speech`: the NPC the conversation is with. */
+  readonly speakerId?: string;
 }
 type Attempt = { readonly intent: ExplorationIntent; readonly commandId: string };
 
@@ -86,7 +88,11 @@ export function useAction(
         notice = result.refused
           ? { message: t('The conversation is not available now. Your view has been refreshed.') }
           : result.reply?.text
-            ? { message: t('Spoken reply · not a fact'), speech: result.reply.text }
+            ? {
+                message: t('Spoken reply · not a fact'),
+                speech: result.reply.text,
+                speakerId: intent.npcId,
+              }
             : { message: t('No spoken reply is available. You can still ask about a subject.') };
       } else {
         const { command, standIn } = attempt.intent;

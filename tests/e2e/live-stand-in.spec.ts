@@ -11,6 +11,7 @@ import {
 import { dmHistory, historyEntry, openHistory } from './support/dm.ts';
 import { expectLive, LIVE_CAMPAIGNS, turnBanner } from './support/live.ts';
 import { collectApiBodies, TOKENS } from './support/session.ts';
+import { dockButton, openSheet } from './support/shell.ts';
 
 /**
  * The DM acting for an absent player (docs/adr/0033-live-session.md §6): skip the turn, or act
@@ -19,6 +20,9 @@ import { collectApiBodies, TOKENS } from './support/session.ts';
  * it. Each journey owns its campaign (`apps/server/src/testing/ui-live-campaigns.ts`).
  */
 const standIn = (page: Page) => page.getByRole('region', { name: 'Act for a player', exact: true });
+
+/** The DM's encounter controls, in the Encounter sheet. */
+const encounterTools = (page: Page) => openSheet(page, 'Encounter');
 
 /** The order of the DM's writes: the reason must reach the server before its command. */
 function writes(page: Page): string[] {
@@ -45,6 +49,7 @@ test('the DM skips an absent player’s turn, and the player’s screen follows 
   await expect(anchor(player).getByRole('button', { name: 'End turn' })).toBeVisible();
 
   // Her page is open, yet the DM may still judge her away: presence decides nothing.
+  await encounterTools(dm);
   await expect(standIn(dm)).toContainText('Elowen Starwhisper · Player connected');
   await standIn(dm).getByRole('button', { name: 'Skip the turn', exact: true }).click();
   const skip = standIn(dm).getByRole('button', { name: 'Skip the turn of Elowen Starwhisper' });
@@ -89,6 +94,7 @@ test('the DM acts as the character with a reason; her screen follows, and the hi
   await expectLive(dm);
   await expect(square(player, 2, 6)).toHaveAccessibleName(/Elowen Starwhisper \(you\)/);
   // She asked the DM to play her turn while she stays at the table.
+  await encounterTools(dm);
   await expect(standIn(dm)).toContainText('Elowen Starwhisper · Player connected');
   await standIn(dm).getByRole('button', { name: 'Act as Elowen Starwhisper' }).click();
   await standIn(dm).getByLabel('The player asked the DM').check();
@@ -103,6 +109,7 @@ test('the DM acts as the character with a reason; her screen follows, and the hi
     'CHARACTER:elowen-starwhisper',
   );
   await expect(dm.getByText('Add to the world (DM)', { exact: true })).toHaveCount(0);
+  await expect(dockButton(dm, 'Add to the world')).toHaveCount(0);
   await expect(turnBanner(dm)).toHaveText('Your turn');
 
   // Her own combat actions: a step, then a longbow shot. Her player's screen follows.
@@ -171,10 +178,12 @@ test('the DM’s skip waits for an open reaction window, and the DM answers it f
       options.getByRole('button', { name: 'Cast Hunter’s Mark on goblin-raider-1' }),
     ),
   );
+  await encounterTools(dm);
   await expect(dm.getByRole('button', { name: 'Close reaction window' })).toBeVisible();
 
   // Skipping Elowen's turn now is refused by the kernel, and the DM is told why.
   const skipElowen = async () => {
+    await encounterTools(dm);
     await standIn(dm).getByRole('button', { name: 'Skip the turn', exact: true }).click();
     await standIn(dm).getByLabel('The player is absent').check();
     return submit(

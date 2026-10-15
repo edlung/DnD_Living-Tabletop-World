@@ -1,174 +1,398 @@
-.disclosure {
-  border-top: 1px solid var(--line);
-  padding: 1rem 0;
-  min-width: 0;
-}
-.disclosure > summary {
-  font-size: 0.83rem;
-  font-weight: 600;
-}
-.disclosure[open] > summary {
+/* The selection's panel and shared record presentation (docs/STAGE_320_DESIGN.md §5.3–5.4). */
+.details-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
   margin-bottom: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
 }
-.detail-stack {
-  margin-top: 1.2rem;
+.details-title .eyebrow {
+  margin-bottom: 0.15rem;
 }
-.detail-stack h3 {
-  font-family: Georgia, serif;
-  font-size: 1.2rem;
+.details-title h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 1.75rem;
+}
+.entity-kind {
+  margin: 0.1rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.details-close {
+  align-self: start;
+}
+.details-facts {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+.details-facts li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.details-facts .glyph {
+  color: var(--gold);
+}
+.details-facts .is-present .glyph {
+  color: var(--hp);
+}
+
+/* Server-listed actions as a glyph list */
+.exploration-actions > h3,
+.related-leads > h3 {
+  margin: 0 0 0.6rem;
+  color: var(--gold-bright);
+  font-size: 1.15rem;
+}
+.context-buttons {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0 0 0.75rem;
+}
+.context-option {
+  display: grid;
+  gap: 0.15rem;
+}
+.context-option button {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 42px;
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.context-option button > .glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--teal);
+}
+.context-option button:disabled > .glyph {
+  color: var(--text-muted);
+}
+.context-option small {
+  padding-left: 2.3rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+.context-actions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.context-actions li {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+.context-actions strong {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+}
+.context-actions small {
+  color: var(--text-muted);
+}
+.exploration-actions label,
+.context-recall label {
+  margin-top: 0.6rem;
+}
+.exploration-actions select,
+.context-recall input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.hypothesis-form form,
+.evidence-picker,
+.context-recall form {
+  display: grid;
+  gap: 0.4rem;
+}
+.context-recall {
+  margin: 0.75rem 0;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 40%, transparent);
+}
+.context-recall > h3 {
+  font-size: 1.1rem;
+}
+.related-leads {
+  margin-top: 1rem;
+}
+.lead-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.contradiction-highlight {
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--k-contradiction) 45%, transparent);
+  border-left: 3px solid var(--k-contradiction);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.contradiction-highlight p {
+  margin: 0.45rem 0 0;
 }
 .sheet-access {
   margin-top: 1rem;
 }
 .sheet-access > .primary-button {
   width: 100%;
+  justify-content: center;
 }
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
-  gap: 0.65rem;
+
+/* Disclosures, fields, stats, tables */
+.disclosure {
+  min-width: 0;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--line);
 }
-.stat-grid > div {
-  background: #edf0e4;
-  padding: 0.8rem 0.6rem;
-  border-radius: 5px;
+.disclosure > summary {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
 }
-.stat-grid dt {
-  font-size: 0.66rem;
-  color: var(--muted);
-  margin-bottom: 0.35rem;
+.disclosure > summary::marker {
+  color: var(--gold);
 }
-.stat-grid dd {
-  margin: 0;
-  font-size: 1.05rem;
+.disclosure[open] > summary {
+  margin-bottom: 0.75rem;
 }
 .field-list {
-  font-size: 0.79rem;
-  line-height: 1.65;
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 .field-list dt {
-  color: var(--muted);
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
+  color: var(--text-muted);
 }
 .field-list dd {
   margin: 0;
   overflow-wrap: anywhere;
 }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+}
+.stat-grid > div {
+  padding: 0.55rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.stat-grid dt {
+  margin-bottom: 0.15rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.stat-grid dd {
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.detail-stack h3 {
+  font-size: 1.3rem;
+}
 .data-table {
-  border-collapse: collapse;
   width: 100%;
-  font-size: 0.76rem;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
 }
 .data-table caption {
+  padding: 0.4rem 0;
+  color: var(--text-muted);
   text-align: left;
-  color: var(--muted);
-  padding: 0.5rem 0;
 }
 .data-table th,
 .data-table td {
-  text-align: left;
-  padding: 0.6rem 0.35rem;
+  padding: 0.4rem 0.3rem;
   border-bottom: 1px solid var(--line);
+  text-align: left;
 }
-.data-table th {
-  font-weight: 600;
-}
+
+/* Records: typed knowledge as cards with glyph, word and hue (never merged with speech) */
 .record-list {
-  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
   padding: 0;
+  list-style: none;
 }
 .record-list > li {
-  border: 1px solid var(--line);
-  padding: 0.9rem;
-  border-radius: 6px;
-  margin: 0.75rem 0;
+  min-width: 0;
   overflow-wrap: anywhere;
 }
-.record-list p,
-.record-list li {
-  font-size: 0.8rem;
+.knowledge-record {
+  --hue: var(--k-unknown);
+  padding: 0.7rem 0.85rem 0.6rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--hue);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 55%, transparent);
 }
-.record-list p {
-  margin: 0.7rem 0;
+.knowledge-record .disclosure {
+  padding: 0.4rem 0 0;
+  border-top: 0;
 }
-.record-list summary {
-  font-size: 0.7rem;
-  color: var(--muted);
-}
-.badge {
-  display: inline-block;
-  border: 1px solid #d6ded0;
-  background: #e7eee0;
-  color: #4c6545;
-  padding: 0.22rem 0.4rem;
-  border-radius: 4px;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-}
-.badge--secret,
-.badge--world_truth {
-  color: #915431;
-  border-color: #e6cfb6;
-  background: #f7e9d7;
-}
-.badge--testimony,
-.badge--rumor {
-  color: #765b83;
-  border-color: #e1d5e5;
-  background: #f0e8f3;
-}
-.badge--hypothesis,
-.badge--inference {
-  color: #856c26;
-  border-color: #dfd4ae;
-  background: #f3eecf;
-}
-.badge--contradiction {
-  color: #95534a;
-  background: #f5e4de;
-  border-color: #e2c8be;
-}
-.context-actions {
-  list-style: none;
-  padding: 0;
-}
-.context-actions li {
-  border-bottom: 1px solid var(--line);
-  padding: 0.75rem 0;
-  display: grid;
-  gap: 0.35rem;
-  font-size: 0.75rem;
-}
-.context-actions strong {
-  text-transform: capitalize;
+.knowledge-record .disclosure > summary {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
   font-weight: 500;
 }
-.context-actions small {
-  color: var(--muted);
-}
-.legal {
-  color: #3b703f;
-  font-size: 0.7rem;
-}
-.encounter-summary > p {
-  color: var(--muted);
-  font-size: 0.83rem;
-}
-.encounter-summary ul {
-  padding-left: 1.2rem;
-}
-.encounter-summary li {
-  font-size: 0.8rem;
-  line-height: 1.8;
-}
-.reaction-summary {
-  background: #f1e7ce;
-  border-left: 3px solid #bb954d;
-  padding: 1rem;
-  font-size: 0.8rem;
-  margin-top: 1rem;
-}
-.reaction-summary h3 {
+.knowledge-statement {
+  margin: 0.4rem 0 0.25rem;
   font-size: 1rem;
+}
+.knowledge-attribution {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-style: italic;
+}
+.badge {
+  --hue: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--hue);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.badge > .glyph {
+  width: 18px;
+  height: 18px;
+}
+.knowledge-record--fact,
+.badge--fact {
+  --hue: var(--k-fact);
+}
+.knowledge-record--evidence,
+.badge--evidence {
+  --hue: var(--k-evidence);
+}
+.knowledge-record--testimony,
+.badge--testimony {
+  --hue: var(--k-testimony);
+}
+.knowledge-record--rumor,
+.badge--rumor {
+  --hue: var(--k-rumor);
+}
+.knowledge-record--inference,
+.badge--inference {
+  --hue: var(--k-inference);
+}
+.knowledge-record--hypothesis,
+.badge--hypothesis {
+  --hue: var(--k-hypothesis);
+}
+.knowledge-record--contradiction,
+.badge--contradiction {
+  --hue: var(--k-contradiction);
+}
+.knowledge-record--unknown,
+.badge--unknown {
+  --hue: var(--k-unknown);
+}
+.knowledge-record--secret,
+.badge--secret {
+  --hue: var(--k-secret);
+}
+.status-pill {
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+.section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.section-heading > h3 {
+  margin: 0;
+}
+
+/* Remembered events */
+.memory-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.memory-list > li {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+  overflow-wrap: anywhere;
+}
+.memory-list p {
+  margin: 0.25rem 0;
+}
+.memory-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--gold);
+  font-size: 0.82rem;
+}
+.memory-list summary {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* The DM performing an NPC: words, not facts */
+.perform-npc blockquote {
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.8rem;
+  border-left: 2px solid var(--gold);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: italic;
+}
+.perform-npc blockquote small {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-style: normal;
+}
+.perform-npc textarea {
+  min-height: 4rem;
 }

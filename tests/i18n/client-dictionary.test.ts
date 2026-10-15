@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 
 import '../../apps/web/src/i18n/ru.ts';
 import '../../apps/web/src/i18n/ru-play.ts';
+import '../../apps/web/src/i18n/ru-visual.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the
@@ -29,7 +30,7 @@ function sources(dir: URL): string[] {
     if (statSync(full).isDirectory()) return sources(new URL(`${name}/`, dir));
     return /\.(ts|tsx)$/.test(name) &&
       !/\.test\.|\.d\.ts$|\/ru\.ts$/.test(full) &&
-      !/^ru(-play)?\.ts$/.test(name) &&
+      !/^ru(-[a-z]+)?\.ts$/.test(name) &&
       name !== 'i18n.tsx'
       ? [full]
       : [];

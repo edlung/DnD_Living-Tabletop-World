@@ -163,7 +163,7 @@ export function CombatPanel({
             })()}
           </p>
           <p className="muted">
-            {t('The DM acts for creatures with the encounter controls above (suggested turn).')}
+            {t('The DM acts for creatures with the Encounter tools (suggested turn).')}
           </p>
         </section>
       )}

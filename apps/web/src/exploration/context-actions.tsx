@@ -7,6 +7,8 @@ import type {
 import { useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { Glyph } from '../visual/glyph.tsx';
+import { actionGlyph } from '../visual/glyph-map.ts';
 import { commandFor } from './action-bindings.ts';
 import { ConversationOptions } from './conversation-options.tsx';
 import { Hypothesis } from './hypothesis.tsx';
@@ -14,7 +16,7 @@ import { Recall } from './recall.tsx';
 import type { ExplorationIntent } from './use-action.ts';
 import { useT, type Translate } from '@ltw/ui';
 
-const executable = new Set([
+export const executable: ReadonlySet<string> = new Set([
   'talk',
   'ask_about',
   'show_evidence',
@@ -76,7 +78,8 @@ export function ContextActions({
                     else if (command) onRun({ kind: 'command', command });
                   }}
                 >
-                  {label(t, action, name, knowledge)}
+                  <Glyph name={actionGlyph(action.id)} />
+                  <span>{actionLabel(t, action, name, knowledge)}</span>
                 </button>
                 {!action.legal && (
                   <small>
@@ -113,7 +116,10 @@ export function ContextActions({
         <ul className="context-actions">
           {actions.map((action, index) => (
             <li key={`${action.id}:${index}`}>
-              <strong>{label(t, action, name, knowledge)}</strong>
+              <strong>
+                <Glyph name={actionGlyph(action.id)} />
+                {actionLabel(t, action, name, knowledge)}
+              </strong>
               <span>
                 {action.legal
                   ? t('Available in the world')
@@ -145,7 +151,8 @@ export function ContextActions({
   );
 }
 
-function label(
+/** The words of a server-listed action, as its button says them. */
+export function actionLabel(
   t: Translate,
   action: ContextAction,
   target: string,

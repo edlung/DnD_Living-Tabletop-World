@@ -11,6 +11,7 @@ import {
   tablePresence,
 } from './support/live.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
+import { openSheet } from './support/shell.ts';
 
 /**
  * The world shared live (docs/adr/0033-live-session.md): what the DM keeps private reaches no
@@ -85,7 +86,8 @@ test('a cut stream reconnects and the player catches up on what changed meanwhil
 
   const dm = await browser.newPage();
   await enterWorld(dm, TOKENS.dm, campaign);
-  await dm.getByText('Time and weather (DM)', { exact: true }).click();
+  await openSheet(dm, 'Time and weather');
+  await expect(dm.getByText('Time and weather (DM)', { exact: true })).toBeVisible();
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Advance to Day 2, 10:00' })));
   await expect(dm.getByLabel('Scene conditions')).toContainText('Day 2 · 10:00');
   await player.waitForTimeout(1_500);

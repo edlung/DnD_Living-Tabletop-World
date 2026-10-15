@@ -5,6 +5,9 @@
   "description": "Player/DM client application. Talks to the server API only.",
   "type": "module",
   "dependencies": {
+    "@fontsource/alegreya": "5.3.0",
+    "@fontsource/bad-script": "5.3.0",
+    "@fontsource/cormorant-garamond": "5.3.0",
     "@ltw/contracts": "workspace:*",
     "@ltw/ui": "workspace:*",
     "react": "^19.3.0",

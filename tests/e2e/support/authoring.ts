@@ -2,13 +2,17 @@ import { expect, type Page } from '@playwright/test';
 
 import campaigns from '../fixtures/authoring-campaigns.json' with { type: 'json' };
 import { enterWorld, TOKENS } from './session.ts';
+import { dockButton, openSheet } from './shell.ts';
 
 export const AUTHORING_CAMPAIGNS = campaigns;
 export const TOMAS_REQUEST = 'Add a young guard near North Gate who saw the caravan leave.';
 
+/** The DM's authoring tool: the dock's "Add to the world" opens its sheet. */
+export const ADD_TO_THE_WORLD = 'Add to the world';
+
 export async function enterAsDm(page: Page, campaign: string): Promise<void> {
   await enterWorld(page, TOKENS.dm, campaign);
-  await expect(page.getByText('Add to the world (DM)', { exact: true })).toBeVisible();
+  await expect(dockButton(page, ADD_TO_THE_WORLD)).toBeVisible();
 }
 
 export const review = (page: Page) =>
@@ -19,7 +23,8 @@ export async function propose(
   page: Page,
   text = TOMAS_REQUEST,
 ): Promise<{ proposalId: string; commands: Record<string, unknown>[] }> {
-  await page.getByText('Add to the world (DM)', { exact: true }).click();
+  await openSheet(page, ADD_TO_THE_WORLD);
+  await expect(page.getByText('Add to the world (DM)', { exact: true })).toBeVisible();
   await page.getByLabel('Describe what to add', { exact: true }).fill(text);
   const created = page.waitForResponse(
     (response) =>

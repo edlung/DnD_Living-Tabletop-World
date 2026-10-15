@@ -53,6 +53,21 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   older page's cursor) own campaigns of
   `fixtures/live-campaigns.json`. `authoring-undo.spec.ts` undoes from the history list that
   replaced the review's screen-local undo, with the same assertions. Helpers: `support/dm.ts`.
+- Shell (Stage 320, `docs/STAGE_320_DESIGN.md` §5.1): controls live in the dock's sheets, one
+  open at a time, and a closed sheet stays mounted but `hidden`. Open the sheet that holds a
+  control first (`support/shell.ts`: `openSheet`, `closeSheet`, `chooseLocation` for the Places
+  sheet's location choice, `openChronicle` for the Chronicle dialog; dock words in the campaign's
+  language). Role queries skip hidden sheets, label and text queries do not: a hidden draft keeps
+  its value, but assert visibility only on an open sheet. An open sheet covers the lower stage, so
+  close it before clicking a medallion. Keep journeys' assertions when a control moves.
+- `accessibility.spec.ts`: axe scans (`@axe-core/playwright`) of sign-in, the scene with a
+  selection, a conversation and a DM sheet at 390 × 844, 820 × 1180 and 1440 × 900, plus the
+  Russian scene on a phone; serious or critical violations (colour contrast included) and any
+  sideways page scroll fail. Read-only (talking records nothing).
+- Evidence tour (`pnpm evidence:screens`): `playwright.evidence.config.ts` runs
+  `tests/evidence/*.evidence.ts` against the same servers and writes JPEGs (≤ 250 KB) to
+  `reports/evidence/stage-320/`. It is not part of `pnpm test:e2e`, `pnpm validate` or CI; hold the
+  shared lock like any Playwright run. Look at the images, never load the folder wholesale.
 - Specs that import server test support (`support/investigation.ts` → `scenario/secrets.ts`)
   load workspace packages from their builds: run `pnpm build` before `pnpm test:e2e` after a
   contract change (`pnpm validate` does).

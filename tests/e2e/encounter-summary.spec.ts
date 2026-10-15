@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { collectApiBodies, enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
+import { openSheet } from './support/shell.ts';
 
 const COMBAT_CAMPAIGN = 'ui-combat';
 
@@ -80,6 +81,7 @@ test('DM summary exposes authorized spell and stats, then clears them for charac
   await expectPlayerBoundary(page);
   await expect(encounter).not.toContainText('21 / 21');
   await page.getByLabel('Perspective', { exact: true }).selectOption('PUBLIC');
+  await openSheet(page, 'Journal');
   await expect(
     page.getByText('No active encounter is visible in this perspective.', { exact: true }),
   ).toBeVisible();

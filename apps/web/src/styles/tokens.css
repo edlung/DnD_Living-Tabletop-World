@@ -1,0 +1,85 @@
+/*
+ * Visual language tokens (docs/STAGE_320_DESIGN.md §3, ADR 0034). Components use only these.
+ * Dark is the only theme; the Chronicle's pages are the one light surface.
+ */
+:root {
+  color-scheme: dark;
+
+  /* Ground, glass, lines */
+  --ink-950: #05090e;
+  --ink-900: #0a1119;
+  --ink-850: #0e1620;
+  --glass: rgb(11 16 23 / 0.88);
+  --glass-raised: rgb(18 25 34 / 0.94);
+  --glass-soft: rgb(11 16 23 / 0.72);
+  --umbra: #000;
+  --line: rgb(220 228 236 / 0.16);
+  --line-strong: rgb(220 228 236 / 0.3);
+
+  /* Text: muted text is at least 4.5:1 on --glass */
+  --text: #ece6da;
+  --text-muted: #a9a294;
+
+  /* Gold: numerals, emblems, small ornaments, headings' rules */
+  --gold: #c9a45c;
+  --gold-bright: #e6c784;
+  --gold-deep: #8a6a33;
+
+  /* Teal: focus, selection, primary action, active tab */
+  --teal: #46c0dc;
+  --teal-fill: #123f56;
+  --teal-glow: rgb(70 192 220 / 0.45);
+
+  /* Sides, health, danger, magic */
+  --side-party: #4fd6e6;
+  --side-hostile: #e5483b;
+  --side-neutral: #d8b44a;
+  --hp: #3dbb7a;
+  --hp-low: #d9822b;
+  --danger: #e25b45;
+  --magic: #a07cff;
+  --fire: #ff8a3d;
+
+  /* Chronicle pages */
+  --page: #ebdfc6;
+  --page-ink: #2b2015;
+  --page-ink-muted: #5e4b37;
+  --rubric: #8c2716;
+
+  /*
+   * Epistemic types: a glyph, a word and a hue (hue never carries meaning alone).
+   * Each hue reads at 6:1 or better on --glass.
+   */
+  --k-fact: #d9b46a;
+  --k-evidence: #5fcfe6;
+  --k-testimony: #e9e1cf;
+  --k-rumor: #b9a2ff;
+  --k-inference: #8ec9ff;
+  --k-hypothesis: #f0b44c;
+  --k-contradiction: #ff7466;
+  --k-unknown: #a7adb4;
+  --k-secret: #e8695e;
+
+  /* Type: self-hosted OFL faces with Cyrillic (fonts.css) */
+  --font-display: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --font-body: 'Alegreya', Georgia, 'Times New Roman', serif;
+  --font-hand: 'Bad Script', 'Segoe Script', cursive;
+  --tracking-caps: 0.12em;
+
+  /* Shape, light, motion */
+  --radius-panel: 10px;
+  --radius-control: 8px;
+  --radius-pill: 999px;
+  --shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+  --shadow-soft: 0 6px 18px rgb(0 0 0 / 0.35);
+  --blur: blur(14px);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 160ms;
+  --t-panel: 240ms;
+
+  /* Shell metrics */
+  --topbar-h: 56px;
+  --dock-h: 64px;
+  --panel-w: 400px;
+  --gutter: 16px;
+}

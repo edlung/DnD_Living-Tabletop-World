@@ -3,6 +3,7 @@ import { expect, type Page, type Response } from '@playwright/test';
 import { NEVER_FOR_PLAYERS } from '../../../apps/server/src/testing/scenario/secrets.ts';
 import campaigns from '../fixtures/investigation-campaigns.json' with { type: 'json' };
 import { enterWorld, isLiveStream, TOKENS } from './session.ts';
+import { openSheet } from './shell.ts';
 
 export const INVESTIGATION_CAMPAIGNS = campaigns;
 export const ELOWEN = 'elowen-starwhisper';
@@ -33,9 +34,11 @@ export async function commandAction(page: Page, label: string): Promise<void> {
 
 export async function travelTo(page: Page, name: string): Promise<void> {
   const explore = page.getByRole('button', { name: `Explore ${name}`, exact: true }).first();
-  // Places not adjacent to the current one are listed under known destinations.
+  // Places not adjacent to the current one are listed under known destinations, in the
+  // Places sheet; choosing one there closes the sheet and opens its details.
   if (!(await explore.isVisible())) {
-    await page.getByText('Known destinations', { exact: true }).click();
+    await openSheet(page, 'Places');
+    await expect(page.getByText('Known destinations', { exact: true })).toBeVisible();
   }
   await explore.click();
   await commandAction(page, `Enter ${name}`);

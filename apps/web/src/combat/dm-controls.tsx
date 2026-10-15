@@ -32,11 +32,10 @@ export function openGroundStart(
 }
 
 /**
- * The DM's existing combat operations, offered only where they apply: start an
- * encounter from the scene, end it, close an open reaction window, run the
- * suggested monster turn (the exact command the server proposes), and skip a
- * player's turn or act as that character (ADR 0033 §6). Nothing here acts by
- * itself and no panel of actions stays on screen otherwise.
+ * The DM's existing combat operations, in the Encounter sheet (docs/STAGE_320_DESIGN.md §5.5),
+ * offered only where they apply: start an encounter from the scene, end it, close an open
+ * reaction window, run the suggested monster turn (the exact command the server proposes), and
+ * skip a player's turn or act as that character (ADR 0033 §6). Nothing here acts by itself.
  */
 export function DmCombatControls({
   api,
@@ -57,8 +56,10 @@ export function DmCombatControls({
 }) {
   const t = useT();
   return (
-    <details className="disclosure dm-combat" open={encounter !== null}>
-      <summary>{encounter ? t('Encounter controls (DM)') : t('Start an encounter (DM)')}</summary>
+    <section className="dm-combat" aria-labelledby="dm-combat-title">
+      <h3 id="dm-combat-title">
+        {encounter ? t('Encounter controls (DM)') : t('Start an encounter (DM)')}
+      </h3>
       {encounter ? (
         <>
           <RunningControls api={api} encounter={encounter} locked={locked} onRun={onRun} />
@@ -79,7 +80,7 @@ export function DmCombatControls({
           onRun={onRun}
         />
       )}
-    </details>
+    </section>
   );
 }
 
@@ -148,7 +149,7 @@ function StartControls({
                   });
                 }}
               />{' '}
-              {nameOf(entity.entityId)} ({entity.kind === 'character' ? 'party' : 'hostile'})
+              {nameOf(entity.entityId)} ({t(entity.kind === 'character' ? 'party' : 'hostile')})
             </label>
           </li>
         ))}

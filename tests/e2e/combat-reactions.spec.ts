@@ -11,6 +11,7 @@ import {
   submit,
 } from './support/combat.ts';
 import { TOKENS } from './support/session.ts';
+import { openSheet } from './support/shell.ts';
 
 const prompt = (page: Page) => page.getByRole('alertdialog', { name: 'Reaction' });
 const total = (slots: readonly number[]) => slots.reduce((a, b) => a + b, 0);
@@ -67,6 +68,7 @@ test('a window the DM closes expires for the player, and the stale answer is ref
   const before = total(await expendedSlots(player, campaign));
 
   await enterCombat(dm, campaign, TOKENS.dm);
+  await openSheet(dm, 'Encounter');
   await expect(dm.getByText('Encounter controls (DM)', { exact: true })).toBeVisible();
   const closed = await submit(dm, dm.getByRole('button', { name: 'Close reaction window' }));
   expectAccepted(closed);

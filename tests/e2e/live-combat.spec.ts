@@ -11,6 +11,7 @@ import {
 } from './support/combat.ts';
 import { expectLive, LIVE_CAMPAIGNS, tablePresence, turnBanner } from './support/live.ts';
 import { TOKENS } from './support/session.ts';
+import { openSheet } from './support/shell.ts';
 
 /**
  * A combat shared live (docs/adr/0033-live-session.md): two browsers on one campaign, and
@@ -37,8 +38,8 @@ test('the turn passes from the player to the DM and back without a refresh', asy
   await expect(tablePresence(player)).toContainText('DM connected');
   await expect(tablePresence(dm)).toContainText('Elowen Starwhisper · connected');
 
-  // An unsubmitted DM intent, which no refresh may replace.
-  await dm.getByText('Add to the world (DM)', { exact: true }).click();
+  // An unsubmitted DM intent, which no refresh may replace, nor closing its sheet.
+  await openSheet(dm, 'Add to the world');
   const intent = dm.getByLabel('Describe what to add', { exact: true });
   await intent.fill('A lantern burns on the wagon.');
 
@@ -50,6 +51,7 @@ test('the turn passes from the player to the DM and back without a refresh', asy
   await square(player, 0, 0).click();
   const options = battlefield(player).getByRole('region', { name: 'Move options' });
   await expect(options).toContainText('You can move on your own turn.');
+  await openSheet(dm, 'Encounter');
   for (const tactic of ['attack', 'move', 'end turn']) {
     expectAccepted(await submit(dm, dm.getByRole('button', { name: `Run suggested ${tactic}` })));
   }
@@ -77,6 +79,7 @@ test('the DM opens a Counterspell window and the player answers it without a ref
   await expect(prompt(player)).toHaveCount(0);
   const before = total(await expendedSlots(player, campaign));
 
+  await openSheet(dm, 'Encounter');
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Run suggested spell' })));
   await expect(dm.getByRole('button', { name: 'Close reaction window' })).toBeVisible();
   // The question reaches its player through the signal alone, and says so.
