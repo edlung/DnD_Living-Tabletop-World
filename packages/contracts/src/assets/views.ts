@@ -2,6 +2,7 @@ import type {
   AssetAudience,
   AssetFailure,
   AssetMediaType,
+  AssetPurpose,
   AssetRequestStatus,
   AssetStatus,
   AssetVariant,
@@ -15,6 +16,8 @@ import type {
  */
 export interface PlayerAssetView {
   readonly variant: AssetVariant;
+  /** What the image is for (docs/adr/0035-images.md §4); never names its entity. */
+  readonly purpose: AssetPurpose;
   readonly version: number;
   readonly contentHash: string;
   readonly mediaType: AssetMediaType;
@@ -30,6 +33,7 @@ export interface AssetRequestView {
   readonly requestId: string;
   readonly entityId: string;
   readonly variant: AssetVariant;
+  readonly purpose: AssetPurpose;
   readonly label: string | null;
   readonly audience: AssetAudience;
   readonly note: string | null;
@@ -47,6 +51,7 @@ export interface AssetView {
   readonly requestId: string;
   readonly entityId: string;
   readonly variant: AssetVariant;
+  readonly purpose: AssetPurpose;
   readonly label: string | null;
   readonly audience: AssetAudience;
   readonly version: number;

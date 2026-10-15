@@ -14,9 +14,9 @@ import { SHOWN_ASSET, type AssetRecord } from './records.ts';
 /**
  * Who sees which assets (docs/adr/0022-asset-identity.md §5, owner decision).
  * A non-DM perspective sees approved player assets of the entities it knows
- * or perceives, as variant, version, and content hash only; anything else
- * is indistinguishable from an entity that does not exist. The DM sees every
- * approved asset, and the whole lineage separately.
+ * or perceives, as variant, purpose (ADR 0035 §4), version, and content hash
+ * only; anything else is indistinguishable from an entity that does not
+ * exist. The DM sees every approved asset, and the whole lineage separately.
  */
 
 /** The entities a perspective may see assets of; `ALL` for the DM. */
@@ -39,13 +39,22 @@ export function assetVisibleEntityIds(
   return visible;
 }
 
-function shownTo(perspective: ResolvedPerspective, asset: AssetRecord): boolean {
+export function shownTo(perspective: ResolvedPerspective, asset: AssetRecord): boolean {
   return (
     SHOWN_ASSET.has(asset.status) && (perspective.scopes === 'ALL' || asset.audience === 'players')
   );
 }
 
 const ORDER = { reference: 0, derived: 1 } as const;
+
+/** The only fields of an asset a player sees: never IDs, labels, notes, generator, or lineage. */
+export const playerAssetView = ({
+  variant,
+  purpose,
+  version,
+  contentHash,
+  mediaType,
+}: AssetRecord): PlayerAssetView => ({ variant, purpose, version, contentHash, mediaType });
 
 /** An entity's assets as the perspective may see them; null when the entity is not visible. */
 export function entityAssetsFor(
@@ -58,12 +67,7 @@ export function entityAssetsFor(
   return [...state.assets.assets.values()]
     .filter((asset) => asset.entityId === entityId && shownTo(perspective, asset))
     .sort((a, b) => ORDER[a.variant] - ORDER[b.variant] || a.version - b.version)
-    .map(({ variant, version, contentHash, mediaType }) => ({
-      variant,
-      version,
-      contentHash,
-      mediaType,
-    }));
+    .map(playerAssetView);
 }
 
 /**

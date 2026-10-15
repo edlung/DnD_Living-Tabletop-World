@@ -289,6 +289,16 @@ describe('the operator CLI path and startup status', () => {
       incompleteRequests: 0,
       disabledAccounts: 1,
       disabledApprovals: 0,
+      // The image ledger's own counters (ADR 0035 §2): no ceiling stored yet.
+      images: {
+        revision: null,
+        ceilingMicros: null,
+        spentMicros: '0',
+        heldMicros: '0',
+        remainingMicros: null,
+        charges: 0,
+        unsettled: 0,
+      },
     });
     await seedApproval(db, { approvalId: 'a1', createAccount: false });
     await startedRequest(db.pool, 'a1');

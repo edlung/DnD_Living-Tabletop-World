@@ -2,6 +2,7 @@ import {
   ASSET_AUDIENCES,
   ASSET_FAILURES,
   ASSET_MEDIA_TYPES,
+  ASSET_PURPOSES,
   ASSET_STATUSES,
   ASSET_VARIANTS,
   assetIdSchema,
@@ -14,6 +15,11 @@ import { z } from 'zod';
 
 /** Asset events and undo restores (docs/adr/0022-asset-identity.md). */
 const variant = z.enum(ASSET_VARIANTS);
+/**
+ * Absent means `image` (ADR 0035 §4): the payloads before purposes existed, and every image
+ * written since (`purposeField`), so adding purposes kept every type's version.
+ */
+const purpose = z.enum(ASSET_PURPOSES).optional();
 const audience = z.enum(ASSET_AUDIENCES);
 const label = assetLabelSchema.nullable();
 const source = z.discriminatedUnion('kind', [
@@ -30,6 +36,7 @@ export const assetRequestedPayloadSchema = z
     requestId: assetRequestIdSchema,
     entityId: entityIdSchema,
     variant,
+    purpose,
     label,
     audience,
     note,
@@ -44,6 +51,7 @@ export const assetJobStartedPayloadSchema = z
     requestId: assetRequestIdSchema,
     entityId: entityIdSchema,
     variant,
+    purpose,
     label,
     audience,
     note,
@@ -59,6 +67,7 @@ export const assetGeneratedPayloadSchema = z
     requestId: assetRequestIdSchema,
     entityId: entityIdSchema,
     variant,
+    purpose,
     label,
     audience,
     version: z.number().int().min(1),
@@ -99,6 +108,7 @@ const assetRecordSchema = z
     requestId: assetRequestIdSchema,
     entityId: entityIdSchema,
     variant,
+    purpose,
     label,
     audience,
     version: z.number().int().min(1),

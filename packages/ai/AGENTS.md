@@ -21,7 +21,7 @@ ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the 
 | `src/local-provider.ts`     | Deterministic offline interpreter (tests, development, fallback); identity `isLocalProvider`                                   |
 | `src/intent.ts`             | DM intent use case: role check, PUBLIC context, fallback, trace                                                                |
 | `src/traces.ts`             | Request journal/trace port (`start`, `finalize`, `get`) and the in-memory store (tests, development)                           |
-| `src/images.ts`             | Image port (ADR 0022 §3): `ImageGenerator`, `ImageBrief`, failure codes                                                        |
+| `src/images.ts`             | Image port (ADR 0022 §3, ADR 0035): `ImageGenerator`, `ImageBrief` (purpose, reference bytes), `ImageJob`, failure codes       |
 | `src/placeholder-images.ts` | Deterministic local SVG placeholder: no text, never reads names, descriptions, or notes                                        |
 | `src/chronicle.ts`          | Chronicle prose (ADR 0024 §3): `narrative` rendering, validation with the World Engine's prose rules, template fallback, trace |
 | `src/chronicle-prompt.ts`   | Renderer request: a chapter's entries under keys, names and times, labelled accounts, no IDs                                   |
@@ -33,7 +33,7 @@ ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the 
 - NPC replies (ADR 0020 §3) speak only from the context `@ltw/domain` builds (`npcDialogueContext`). Never add an item here that the domain did not give, never put an entity, record, or memory ID into a request, and keep the player's words quoted (`quoted`). `dialogue-isolation.test.ts` checks the exact requests against the planted secrets of `fixtures/ravenford/npc-boundary.json`.
 - A reply is never canonical and never a proposal: an `npc-dialogue` trace cannot seed authoring.
 - Relevance (ADR 0021) may change only the `relevance` and order of legal actions (`applyRanking`). Offer only legal actions, under opaque keys; never an ID; only the acting perspective's own visible records and memories. Every failure, invalid output, or exceeded budget returns the deterministic actions as given. `relevance.test.ts` guards each rule.
-- Images (ADR 0022 §3): a brief is DM data, never stored or traced. The placeholder draws a pattern from the seed only; it must never render text or anything from the subject (`placeholder-images.test.ts`). A real image provider is an owner decision; its adapter would live in the server.
+- Images (ADR 0022 §3, ADR 0035): a brief is DM data, never stored or traced. The placeholder draws a pattern from the seed only; it must never render text or anything from the subject (`placeholder-images.test.ts`). The generators with I/O (OpenAI through OpenRouter, the curated set) and the image ledger live in the server (`apps/server/src/images/AGENTS.md`); `ImageJob` names the job only for spending records, never for a provider.
 - Provider adapters with I/O (Anthropic and OpenAI-compatible DeepSeek), the admission wrapper,
   the pricing catalog, capability composition, the durable accounting store (`accounting/`) and the
   PostgreSQL request journal live in `apps/server/src/ai/`. Stage 300 remediation is in progress;

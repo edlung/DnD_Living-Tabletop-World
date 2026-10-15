@@ -155,3 +155,7 @@ application on 4313.
 - Specs that import server test support (`support/investigation.ts` → `scenario/secrets.ts`)
   load workspace packages from their builds: run `pnpm build` before `pnpm test:e2e` after a
   contract change (`pnpm validate` does).
+- Images (ADR 0035): at start the UI server imports the curated Ravenford pictures, through real
+  commands approved by the DM, into the campaigns of `apps/server/src/testing/ui-image-campaigns.ts`
+  (`ravenford`, `ui-combat` and every Russian campaign); every other campaign has no images, so
+  the neutral fallback stays covered. The server runs no asset worker and no image provider.

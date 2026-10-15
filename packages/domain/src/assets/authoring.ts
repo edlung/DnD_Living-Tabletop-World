@@ -22,6 +22,7 @@ export function authoringAssetRequests(
     const made = assetRequest(state, commandId, requests.length, {
       entityId: draft.payload.entityId,
       variant: 'reference',
+      purpose: 'image',
       label: null,
       audience: 'players',
       note: null,

@@ -1,8 +1,16 @@
+import type { AssetPurpose } from '@ltw/contracts';
+
 import type { KernelEvent } from '../kernel/events.ts';
 import { findEntity } from '../kernel/decide/lookups.ts';
 import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
 import type { WorldState } from '../kernel/state.ts';
-import { assetIdFor, requestIdFor, type AssetSource } from './records.ts';
+import {
+  assetIdFor,
+  purposeField,
+  PURPOSE_KINDS,
+  requestIdFor,
+  type AssetSource,
+} from './records.ts';
 
 /**
  * Asset commands (docs/adr/0022-asset-identity.md). The DM requests,
@@ -20,6 +28,7 @@ export function assetRequest(
   request: {
     readonly entityId: string;
     readonly variant: 'reference' | 'derived';
+    readonly purpose: AssetPurpose;
     readonly label: string | null;
     readonly audience: 'players' | 'dm';
     readonly note: string | null;
@@ -34,13 +43,29 @@ export function assetRequest(
   } else if (request.label !== null) {
     return invalid('A reference has no label');
   }
+  // A figure or a battle map is a derived variant of the canonical reference (ADR 0035 §4).
+  if (request.purpose !== 'image') {
+    if (request.variant !== 'derived') {
+      return invalid('A figure or a battle map is a derived variant');
+    }
+    const kind = state.entities.get(request.entityId)?.kind;
+    if (kind === undefined || !PURPOSE_KINDS[request.purpose].has(kind)) {
+      return invalid(
+        request.purpose === 'figure'
+          ? 'Only a character, an NPC or a creature has a figure'
+          : 'Only a location has a battle map',
+      );
+    }
+  }
+  const { purpose, ...fields } = request;
   return {
     ok: true,
     event: {
       type: 'AssetRequested',
       payload: {
         requestId: requestIdFor(commandId, index),
-        ...request,
+        ...fields,
+        ...purposeField(purpose),
         derivedFrom: request.variant === 'derived' ? derivedFrom : null,
       },
     },
@@ -57,6 +82,7 @@ export function decideRequestAsset(
   const made = assetRequest(state, commandId, 0, {
     entityId: command.entityId,
     variant: command.variant,
+    purpose: command.purpose ?? 'image',
     label: command.label ?? null,
     audience: command.audience ?? 'players',
     note: command.note ?? null,
@@ -73,9 +99,12 @@ export function decideStartAssetJob(
   if (!request || state.assets.jobs.has(command.requestId)) {
     return invalid('No queued request with this ID');
   }
-  const { cancelled, ...copied } = request;
+  const { cancelled, purpose, ...copied } = request;
   if (cancelled) return invalid('No queued request with this ID');
-  return accept({ type: 'AssetJobStarted', payload: { ...copied, source: { ...copied.source } } });
+  return accept({
+    type: 'AssetJobStarted',
+    payload: { ...copied, ...purposeField(purpose), source: { ...copied.source } },
+  });
 }
 
 export function decideCompleteAssetJob(
@@ -88,9 +117,14 @@ export function decideCompleteAssetJob(
   }
   const assetId = assetIdFor(run.requestId);
   if (state.assets.assets.has(assetId)) return invalid('This job already produced its asset');
+  // Versions count per purpose too (ADR 0035 §4): a `wounded` figure is not the next `wounded`
+  // image. Completions are folded as recorded, and histories before purposes hold only images.
   const earlier = [...state.assets.assets.values()].filter(
     (asset) =>
-      asset.entityId === run.entityId && asset.variant === run.variant && asset.label === run.label,
+      asset.entityId === run.entityId &&
+      asset.variant === run.variant &&
+      asset.label === run.label &&
+      asset.purpose === run.purpose,
   );
   return accept({
     type: 'AssetGenerated',
@@ -99,6 +133,7 @@ export function decideCompleteAssetJob(
       requestId: run.requestId,
       entityId: run.entityId,
       variant: run.variant,
+      ...purposeField(run.purpose),
       label: run.label,
       audience: run.audience,
       version: earlier.length + 1,

@@ -122,6 +122,7 @@ export {
   type GeneratedImage,
   type ImageBrief,
   type ImageGenerator,
+  type ImageJob,
 } from './images.ts';
 export {
   PLACEHOLDER_MODEL,
