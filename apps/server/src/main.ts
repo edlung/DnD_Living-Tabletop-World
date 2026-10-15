@@ -1,4 +1,4 @@
-import pg from 'pg';
+import type pg from 'pg';
 
 import { createPlaceholderImageGenerator } from '@ltw/ai';
 
@@ -21,6 +21,7 @@ import { buildLiveApp } from './live/live-app.ts';
 import { describeDatabaseUrl, loadConfig, obsoleteVariables } from './platform/config/config.ts';
 import { loadMigrations } from './platform/db/migration-source.ts';
 import { MIGRATIONS_DIR } from './platform/db/migrations-dir.ts';
+import { createPool } from './platform/db/pool.ts';
 import { createLogger, type Logger } from './platform/logging/logger.ts';
 import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
 import { storeReadiness } from './world-engine/store-readiness.ts';
@@ -32,9 +33,10 @@ import { storeReadiness } from './world-engine/store-readiness.ts';
 async function main(): Promise<void> {
   const config = loadConfig();
   const logger = createLogger({ service: 'ltw-server', level: config.logLevel });
-  const pool = new pg.Pool({ connectionString: config.databaseUrl });
+  // Pools survive the database closing idle connections (a restart): see `createPool`.
+  const pool = createPool(config.databaseUrl, logger);
   // Proposal locks wait for the event store while held, so they get connections of their own.
-  const proposalLocks = new pg.Pool({ connectionString: config.databaseUrl, max: 4 });
+  const proposalLocks = createPool(config.databaseUrl, logger, { max: 4 });
 
   const authenticator =
     config.auth.personasFile === null
