@@ -20,6 +20,7 @@ const assets = new URL('../../apps/web/src/assets/', import.meta.url).pathname;
 const kit = join(assets, 'ui-kit');
 
 interface Entry {
+  readonly source: string;
   readonly prompt: string;
   readonly channel: string;
   readonly originalSha256: string;
@@ -70,7 +71,13 @@ describe('the UI kit manifest', () => {
     const root = new URL('../../', import.meta.url).pathname;
     for (const [path, entry] of Object.entries(manifest.assets)) {
       for (const reference of entry.references) {
-        expect(existsSync(join(root, reference)), `${path} cites ${reference}`).toBe(true);
+        // A later glyph sheet may cite an earlier sheet of the kit as its style reference.
+        const sheet = /^ui-kit:(.+)$/.exec(reference)?.[1];
+        const cited =
+          sheet === undefined
+            ? existsSync(join(root, reference))
+            : Object.values(manifest.assets).some((other) => other.source === sheet);
+        expect(cited, `${path} cites ${reference}`).toBe(true);
       }
     }
   });

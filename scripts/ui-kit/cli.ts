@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 
 import { floodOut, glyphCells, glyphMask, load, seamless, toSharp, unscreen } from './pixels.ts';
 import { CHANNEL, CONCEPTS, RECIPES, type Recipe } from './recipes.ts';
@@ -115,7 +115,9 @@ for (const name of names) {
     manifest[file] = {
       source: name,
       prompt: record.prompt,
-      references: record.refs.map((ref) => CONCEPTS[ref] ?? ref),
+      references: record.refs.map(
+        (ref) => CONCEPTS[ref] ?? `ui-kit:${basename(ref).replace(/\.png$/, '')}`,
+      ),
       channel: CHANNEL,
       generated,
       originalSha256: createHash('sha256').update(original).digest('hex'),
