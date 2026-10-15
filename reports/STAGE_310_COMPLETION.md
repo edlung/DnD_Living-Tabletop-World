@@ -186,17 +186,23 @@ one row. Presence never gates the controls (the DM skips while the player is con
 - **Owner play acceptance pending** (deferred by the owner); **no independent review** of any part.
   Hosted CI was not run on this branch; results above are local. `docs/PROJECT_WORKFLOW.md` was
   not updated.
-- **Part A signal ABA window (found while verifying B/C) — fixed by the session.** A view change
-  undone within one 1 s comparison cycle never reaches the fingerprint, so a screen that had read
-  the state in between for its own reasons (its first load, a reload after the viewer's own
-  action, an explicit re-read) could keep it. Fix (client only, no protocol change): every read the
-  server did not signal is followed by one trailing background re-read after
-  `TRAILING_REREAD_MS` (1.5 s, longer than a cycle), in `apps/web/src/api/resource.ts` and
-  `api/live-context.ts`. The act-as journey's one-cycle wait was removed; the seven live journeys
-  then passed 6 of 6 runs on fresh servers. The reconnect journey now lets that trailing read pass
-  before cutting the stream, so its stale-while-cut assertion still proves the reconnect path.
-  Residual: two transient changes inside one trailing window can still leave a screen behind until
-  the next signal or **Refresh world**.
+- **Part A signal ABA window (found while verifying B/C) — fixed by the session, corrected after
+  review.** A view change undone within one 1 s comparison cycle never reaches the fingerprint, so
+  a screen that read the state in between could keep it, whatever caused that read. The first fix
+  trailed only reads no signal caused and timed the trailing read from the read's start; a review
+  of `6d3182f` showed that a read a signal caused can catch such a change just as well. Fix
+  (client only, no protocol change): in a live session every read of a view (its first load, a
+  read a signal caused, a re-read after the viewer's own action) is followed by one trailing
+  background re-read `TRAILING_REREAD_MS` (1.5 s, longer than a cycle) after that read
+  completed. The trailing read schedules none, a newer read replaces a pending one (its own
+  completion schedules the next), and unmounting or re-keying the view cancels it; shown views
+  are never remounted, cleared or flashed (`GenerationReads` in `apps/web/src/api/resource.ts`,
+  unit-tested with fake timers; `api/live-context.ts`). The act-as journey's one-cycle wait stays
+  removed. The authoring and reconnect journeys wait 3 s (was 1.5 s and 2 s) for the trailing
+  reads before counting reads or cutting the stream (measured: they end about 1.8 s after the
+  stream is live), so the stale-while-cut assertion still proves the reconnect path. Residual:
+  back-to-back transient changes, the second caught by the trailing read itself within its
+  window, can still leave a screen behind until the next signal or **Refresh world**.
 - Act as is offered for any character combatant; for a character without a player the server
   refuses the reason (422) and nothing is done, shown as a message: the client cannot tell
   playerless characters apart because presence and identity deliberately do not reveal control.

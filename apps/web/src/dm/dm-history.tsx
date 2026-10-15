@@ -1,9 +1,10 @@
-import type { DmHistoryEntry, DmHistoryResponse, EntityRef } from '@ltw/contracts';
+import type { DmHistoryEntry, EntityRef } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { historyPageKey, historyPageLoader, PageCursor } from './history-pages.ts';
 import { entryDetails, entryStatus, entryTitle, STEP_TEXT } from './history-text.ts';
 import { useHistoryUndo } from './use-history-undo.ts';
 
@@ -14,7 +15,9 @@ type Actions = ReturnType<typeof useHistoryUndo>;
  * undo of ADR 0029 §8). Read from the server in the DM perspective only, so it survives a
  * reload; the world screen remounts on a perspective change, which drops every row. Pages
  * follow the live signal in the background; each older page is read from the cursor of the
- * page above it, so nothing is skipped or repeated when new entries arrive.
+ * page above it, so nothing is skipped or repeated when new entries arrive, and is known by its
+ * place, so a moved cursor neither empties it nor closes the pages opened below it
+ * (`history-pages.ts`).
  */
 export function DmHistory({
   api,
@@ -57,6 +60,7 @@ export function DmHistory({
         <section aria-label={t('DM history')}>
           <HistoryPage
             api={api}
+            index={0}
             before={null}
             round={round}
             directory={directory}
@@ -70,12 +74,14 @@ export function DmHistory({
 
 function HistoryPage({
   api,
+  index,
   before,
   round,
   directory,
   actions,
 }: {
   readonly api: WorldApi;
+  readonly index: number;
   readonly before: number | null;
   readonly round: number;
   readonly directory: readonly EntityRef[];
@@ -83,19 +89,15 @@ function HistoryPage({
 }) {
   const t = useT();
   const [older, setOlder] = useState(false);
-  const load = useCallback(
-    (signal: AbortSignal) =>
-      api.get<DmHistoryResponse>(
-        'dm/history',
-        signal,
-        true,
-        before === null ? undefined : { before: String(before) },
-      ),
-    [api, before],
-  );
-  const { resource, retry, reread } = useResource(`dm-history:${String(before)}`, load);
-  // After an undo every shown page is read again, keeping its rows meanwhile. `reread`
-  // reaches the current generation through a ref, so only `round` asks for it.
+  const [cursor] = useState(() => new PageCursor(before));
+  const load = useMemo(() => historyPageLoader(api, cursor), [api, cursor]);
+  const { resource, retry, reread } = useResource(historyPageKey(index), load);
+  // A new entry above moves the cursor, and an undo changes what every shown page says: either
+  // way the page is read again in the background, keeping its rows meanwhile. `reread` reaches
+  // the current generation through a ref, so only `before` and `round` ask for it.
+  useEffect(() => {
+    if (cursor.follow(before)) reread();
+  }, [before]);
   useEffect(() => {
     if (round > 0) reread();
   }, [round]);
@@ -130,6 +132,7 @@ function HistoryPage({
         (older ? (
           <HistoryPage
             api={api}
+            index={index + 1}
             before={nextBefore}
             round={round}
             directory={directory}

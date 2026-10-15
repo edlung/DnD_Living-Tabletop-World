@@ -34,7 +34,9 @@ test('private authoring reaches the player only once published, without a refres
   await expectLive(dm);
   await expectLive(player);
   await expect(tablePresence(player)).toContainText('DM connected');
-  await player.waitForTimeout(1_500);
+  // The DM's arrival was a signal: let the trailing re-reads that follow its reads pass
+  // (TRAILING_REREAD_MS, 1.5 s after each read completed) before counting.
+  await player.waitForTimeout(3_000);
 
   // While the DM drafts, the player is never signalled: nothing is re-read or shown.
   const reads = countWorldReads(player);
@@ -69,9 +71,10 @@ test('a cut stream reconnects and the player catches up on what changed meanwhil
   const conditions = player.getByLabel('Scene conditions');
   await expect(conditions).toContainText('Day 1 · 10:00');
   await expectLive(player);
-  // Let the trailing re-read that follows the first load pass (TRAILING_REREAD_MS, 1.5 s), so a
-  // change made while the stream is cut can only arrive through the reconnect.
-  await player.waitForTimeout(2_000);
+  // Let the trailing re-reads pass (TRAILING_REREAD_MS: 1.5 s after each read completed, the
+  // reload on ready included), so a change made while the stream is cut can only arrive through
+  // the reconnect.
+  await player.waitForTimeout(3_000);
 
   // The connection drops, and every reconnect fails for a while.
   await player.route(LIVE_URL, (route) => route.abort('failed'));

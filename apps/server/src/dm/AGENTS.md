@@ -18,11 +18,17 @@ a player or a lower perspective, and nothing here adds authority.
   against the snapshot, never by committing. Undo itself uses the existing routes.
 - Both history computations are memoized per campaign history (the snapshot's frozen event
   list), because the live signal compares the DM's `dm/history` view every second.
+- One entry never fails the page: a dry decision that throws answers that entry
+  `UNDO_NOT_SUPPORTED` with no blockers and is logged (`dm history undo not decided`) by command
+  ID, type and error name, never the error's message. A 500 here would also close the DM's live
+  stream (`gone`), since the DM perspective fingerprints this page.
 - Never log a note or a character; log the reason code and the outcome only.
 - Tests: `substitution-routes.test.ts` (check order, 404 for non-DMs, validation, idempotency,
   roster, before-the-command, no echo, nothing changes for any perspective, logs),
   `history-routes.test.ts` (check order, cross-campaign 404, listing, blockers equal to the undo
-  route's, status after undo, paging, a fresh app over the same stores), `stand-in.test.ts` (no new
+  route's, status after undo, paging, a fresh app over the same stores), `history-preview.test.ts`
+  (an NPC created and edited by one commit is undoable while the DM's stream follows; a throwing
+  dry decision is one entry's, logged without world content), `stand-in.test.ts` (no new
   authority: a player cannot act for another character; the DM's End turn cannot pass an open
   reaction window; the DM's commands are the DM's), `dm-live.test.ts` (a reason signals nobody,
   its command signals its readers), `dm.integration.test.ts` (PostgreSQL rows and a restart).

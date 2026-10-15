@@ -64,6 +64,36 @@ describe('safe undo restores the exact prior world', () => {
       { type: 'EndScene', sceneId: 's1' },
     ],
     ['AdvanceWorldTime', [], { type: 'AdvanceWorldTime', by: 7200 }],
+    [
+      // One command creates an entity and then edits it: removing it restores every facet.
+      'ApplyAuthoring that creates an NPC, then moves and edits him',
+      [],
+      {
+        type: 'ApplyAuthoring',
+        proposalId: '00000000-0000-4000-8000-000000000001',
+        revision: 1,
+        summary: 'Tomas, moved and renamed at once.',
+        source: { kind: 'dm' },
+        commands: [
+          {
+            type: 'CreateEntity',
+            entityId: 'tomas',
+            kind: 'npc',
+            name: 'Tomas',
+            existsSince: null,
+            placement: { locationId: 'square', since: null },
+          },
+          { type: 'PlaceEntity', entityId: 'tomas', locationId: 'inn' },
+          {
+            type: 'UpdateEntityProfile',
+            entityId: 'tomas',
+            name: 'Tomas Reed',
+            description: 'A guard',
+          },
+        ],
+        confirmation: { riskLevel: 'L2', acknowledgedWarnings: [] },
+      },
+    ],
   ])('%s', async (_label, setup, command) => {
     for (const [index, step] of setup.entries()) await run(`setup-${index}`, step);
     const before = await harness.snapshot();

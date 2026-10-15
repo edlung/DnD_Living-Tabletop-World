@@ -39,6 +39,43 @@ function submitted(result: CommandResult): UndoPreview {
   };
 }
 
+/** An answer, or what was thrown instead: a throw is never an answer to agree with. */
+async function settled<T>(work: () => Promise<T>): Promise<{ value: T } | { threw: unknown }> {
+  try {
+    return { value: await work() };
+  } catch (error) {
+    return { threw: error };
+  }
+}
+
+/** One authoring commit that creates an NPC and then edits him (ADR 0018), under new names. */
+const authoredNpc = (step: number) => {
+  const entityId = `npc${String(step)}`;
+  return {
+    type: 'ApplyAuthoring',
+    proposalId: `00000000-0000-4000-8000-${String(step).padStart(12, '0')}`,
+    revision: 1,
+    summary: 'A guard, renamed at once.',
+    source: { kind: 'dm' },
+    commands: [
+      {
+        type: 'CreateEntity',
+        entityId,
+        kind: 'npc',
+        name: `Guard ${String(step)}`,
+        existsSince: null,
+      },
+      {
+        type: 'UpdateEntityProfile',
+        entityId,
+        name: `Tomas ${String(step)}`,
+        description: 'A guard',
+      },
+    ],
+    confirmation: { riskLevel: 'L2', acknowledgedWarnings: [] },
+  };
+};
+
 describe('previewUndo', () => {
   it('says a standing command with nothing depending on it can be undone', async () => {
     expectAccepted(
@@ -150,32 +187,63 @@ describe('previewUndo', () => {
       const rng = mulberry32(seed);
       const accepted: string[] = [];
       let compared = 0;
+      let authoredUndone = 0;
+      // The authoring commit of the step before, while nothing can rest on it yet.
+      let authored: string | null = null;
       for (let step = 0; step < 160; step += 1) {
         const state = await harness.state();
         const commandId = `p${String(seed)}-${String(step)}`;
         const generated = randomCommand(rng, state, accepted, step);
+        const fresh = authored;
+        authored = null;
         // Every eighth step also tries to undo an earlier command, often one others rest on.
-        const command =
-          step % 8 === 7 && accepted.length > 0
-            ? {
-                type: 'UndoCommand',
-                targetCommandId: accepted[Math.floor(rng() * accepted.length)],
-              }
-            : generated;
-        if (command['type'] === 'UndoCommand') {
-          const target = String(command['targetCommandId']);
-          const expected = await preview(target);
+        // Every eighth from the fourth, an authoring commit creates an NPC and edits him, so
+        // undo meets facets of an entity its own command created; every other one is undone
+        // at once, which must succeed.
+        const target =
+          fresh !== null && step % 16 === 4
+            ? fresh
+            : step % 8 === 7 && accepted.length > 0
+              ? accepted[Math.floor(rng() * accepted.length)]
+              : undefined;
+        if (target !== undefined) {
+          const at = `${target} at step ${String(step)}`;
           const version = (await harness.state()).version;
-          const result = await harness.submit(command, { commandId });
-          if (result.status === 'rejected') expect((await harness.state()).version).toBe(version);
-          expect(submitted(result), `${target} at step ${String(step)}`).toEqual(expected);
+          const expected = await settled(() => preview(target));
+          const result = await settled(() =>
+            harness.submit({ type: 'UndoCommand', targetCommandId: target }, { commandId }),
+          );
+          // Only answers can agree: a decision that throws fails here, on one side or both.
+          if ('threw' in expected || 'threw' in result) {
+            const sides = [
+              ...('threw' in expected ? ['the preview'] : []),
+              ...('threw' in result ? ['the undo'] : []),
+            ];
+            throw new Error(`${at}: ${sides.join(' and ')} threw instead of answering`, {
+              cause: 'threw' in expected ? expected.threw : 'threw' in result ? result.threw : null,
+            });
+          }
+          if (result.value.status === 'rejected') {
+            expect((await harness.state()).version).toBe(version);
+          }
+          expect(submitted(result.value), at).toEqual(expected.value);
+          if (target === fresh) {
+            expect(expected.value, `${at}: nothing rests on it`).toEqual({ undoable: true });
+            authoredUndone += 1;
+          }
           compared += 1;
-          if (result.status !== 'rejected') accepted.push(commandId);
-        } else if ((await harness.submit(command, { commandId })).status !== 'rejected') {
+          if (result.value.status !== 'rejected') accepted.push(commandId);
+          continue;
+        }
+        const authoring = step % 8 === 3;
+        const command = authoring ? authoredNpc(step) : generated;
+        if ((await harness.submit(command, { commandId })).status !== 'rejected') {
           accepted.push(commandId);
+          if (authoring) authored = commandId;
         }
       }
       expect(compared).toBeGreaterThan(20);
+      expect(authoredUndone).toBeGreaterThan(0);
     },
   );
 });

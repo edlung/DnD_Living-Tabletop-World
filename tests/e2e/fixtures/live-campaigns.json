@@ -7,5 +7,6 @@
   "actAs": "ui-live-act-as",
   "history": "ui-live-history",
   "historyView": "ui-live-history-view",
+  "historyPages": "ui-live-history-pages",
   "skipWindow": "ui-live-skip-window"
 }

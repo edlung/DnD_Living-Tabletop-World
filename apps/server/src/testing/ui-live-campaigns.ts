@@ -39,6 +39,7 @@ export async function seedUiLiveCampaigns(engine: WorldEngine): Promise<void> {
     campaigns.reconnect,
     campaigns.history,
     campaigns.historyView,
+    campaigns.historyPages,
   ]) {
     for (const input of seed.submissions) {
       const submission = commandSubmissionSchema.parse(input);

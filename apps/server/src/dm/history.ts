@@ -17,6 +17,7 @@ import {
   type UndoPreview,
   type WorldEngine,
 } from '@ltw/domain';
+import type { FastifyBaseLogger } from 'fastify';
 
 import type { SubstitutionRecord, SubstitutionStore } from './substitution-store.ts';
 
@@ -31,6 +32,11 @@ import type { SubstitutionRecord, SubstitutionStore } from './substitution-store
  * Both are memoized per campaign history (the snapshot's frozen event list, which every append
  * replaces), so the live signal's once-a-second comparison of the DM's view recomputes nothing
  * until something happened.
+ *
+ * A dry decision that throws is that entry's alone: the entry is answered as not possible
+ * (`UNDO_NOT_SUPPORTED`, as the engine could not undo it either) and logged by command ID, type
+ * and error name, never the message, which may name world content. It never fails the page
+ * (a 500) or the DM's live stream, which fingerprints this page (`gone`).
  */
 type Listed =
   | {
@@ -41,9 +47,17 @@ type Listed =
     }
   | { readonly kind: 'substitution'; readonly stored: StoredCommand; readonly characterId: string };
 
+/** A dry decision that threw: the error's name only. */
+interface Undecided {
+  readonly threw: string;
+}
+
+/** Where a page reports an entry whose undo could not be decided. */
+export type HistoryLog = Pick<FastifyBaseLogger, 'warn'>;
+
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
 const listedMemo = new WeakMap<readonly RecordedEvent[], Promise<readonly Listed[]>>();
-const previewMemo = new WeakMap<readonly RecordedEvent[], Map<string, UndoPreview>>();
+const previewMemo = new WeakMap<readonly RecordedEvent[], Map<string, UndoPreview | Undecided>>();
 
 export async function dmHistoryPage(
   engine: WorldEngine,
@@ -52,6 +66,7 @@ export async function dmHistoryPage(
   actor: Actor,
   campaignId: string,
   before: number | undefined,
+  log: HistoryLog,
 ): Promise<DmHistoryResponse> {
   const listed = await listedCommands(engine, snapshot, campaignId);
   const older =
@@ -63,7 +78,7 @@ export async function dmHistoryPage(
   );
   return {
     perspective: 'DM',
-    entries: page.map((item) => entryOf(item, snapshot, actor, campaignId, reasons)),
+    entries: page.map((item) => entryOf(item, snapshot, actor, campaignId, reasons, log)),
     nextBefore: older.length > page.length ? (page.at(-1)?.stored.firstSequence ?? null) : null,
   };
 }
@@ -146,6 +161,7 @@ function entryOf(
   actor: Actor,
   campaignId: string,
   reasons: ReadonlyMap<string, SubstitutionRecord>,
+  log: HistoryLog,
 ): DmHistoryEntry {
   const { stored } = item;
   const undoneBy = snapshot.state.commands.get(stored.commandId)?.undoneBy ?? null;
@@ -155,7 +171,7 @@ function entryOf(
     worldTime: snapshot.history[stored.firstSequence - 1]?.worldTime ?? snapshot.state.clock,
     recordedAt: stored.recordedAt,
     status: undoneBy === null ? ('COMMITTED' as const) : ('UNDONE' as const),
-    undo: undoneBy === null ? availability(snapshot, actor, campaignId, stored.commandId) : null,
+    undo: undoneBy === null ? availability(snapshot, actor, campaignId, stored, log) : null,
   };
   if (item.kind === 'authoring') {
     return { ...common, kind: 'authoring', proposalId: item.proposalId, summary: item.summary };
@@ -179,13 +195,22 @@ function availability(
   snapshot: CampaignSnapshot,
   actor: Actor,
   campaignId: string,
-  commandId: string,
+  stored: StoredCommand,
+  log: HistoryLog,
 ): DmUndoAvailability {
-  const memo = previewMemo.get(snapshot.history) ?? new Map<string, UndoPreview>();
+  const memo = previewMemo.get(snapshot.history) ?? new Map<string, UndoPreview | Undecided>();
   previewMemo.set(snapshot.history, memo);
-  const key = `${actor.actorId}\u0000${commandId}`;
-  const preview = memo.get(key) ?? previewUndo(snapshot, actor, campaignId, commandId);
+  const key = `${actor.actorId}\u0000${stored.commandId}`;
+  const preview = memo.get(key) ?? decided(snapshot, actor, campaignId, stored.commandId);
   memo.set(key, preview);
+  if ('threw' in preview) {
+    // Logged on every page served: the silent fingerprint twin may have decided it first.
+    log.warn(
+      { err: preview.threw, commandId: stored.commandId, commandType: stored.commandType },
+      'dm history undo not decided',
+    );
+    return { possible: false, code: 'UNDO_NOT_SUPPORTED', blockers: [] };
+  }
   return preview.undoable
     ? { possible: true }
     : {
@@ -197,6 +222,20 @@ function availability(
           sequence,
         })),
       };
+}
+
+/** The engine's dry decision of the undo; one that throws is recorded, never rethrown. */
+function decided(
+  snapshot: CampaignSnapshot,
+  actor: Actor,
+  campaignId: string,
+  commandId: string,
+): UndoPreview | Undecided {
+  try {
+    return previewUndo(snapshot, actor, campaignId, commandId);
+  } catch (error) {
+    return { threw: error instanceof Error ? error.name : 'unknown' };
+  }
 }
 
 function characterRef(snapshot: CampaignSnapshot, characterId: string): EntityRef {

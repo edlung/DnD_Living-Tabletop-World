@@ -15,10 +15,11 @@ export const LiveActiveContext = createContext(false);
 export const useLiveActive = (): boolean => useContext(LiveActiveContext);
 
 /**
- * After a read the server did not signal (a first load, a reload after the viewer's own action,
- * an explicit re-read), one more background read follows once a comparison cycle (1 s) has
- * surely passed. A change undone within one cycle never reaches the fingerprint, so without this
- * a screen that read the state in between could keep it (Stage 310 part A limitation).
+ * After every read in a live session (a first load, a read a signal caused, a re-read after the
+ * viewer's own action), one more background read follows once a comparison cycle (1 s) has
+ * surely passed since that read completed; that trailing read is followed by none. A change
+ * undone within one cycle never reaches the fingerprint, so without this a screen that read the
+ * state in between could keep it (Stage 310 part A limitation).
  */
 export const TRAILING_REREAD_MS = 1_500;
 

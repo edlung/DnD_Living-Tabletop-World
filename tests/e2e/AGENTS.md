@@ -48,7 +48,9 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
 - DM table tools (ADR 0033 §6–8): `live-stand-in.spec.ts` (the DM skips an absent player's turn
   while her screen follows; the DM acts as Elowen with a reason, the history lists the attack
   and undoes it) and `dm-history.spec.ts` (an authoring commit listed after a reload with a
-  working undo; no history for a player or in a lower perspective) own campaigns of
+  working undo; no history for a player or in a lower perspective; four open pages keep their
+  rows and stay open, never showing "Reading the history…" again, when a new entry moves every
+  older page's cursor) own campaigns of
   `fixtures/live-campaigns.json`. `authoring-undo.spec.ts` undoes from the history list that
   replaced the review's screen-local undo, with the same assertions. Helpers: `support/dm.ts`.
 - Specs that import server test support (`support/investigation.ts` → `scenario/secrets.ts`)

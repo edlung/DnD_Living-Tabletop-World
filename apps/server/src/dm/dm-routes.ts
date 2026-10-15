@@ -142,6 +142,7 @@ export function registerDmRoutes(app: FastifyInstance, deps: DmRouteDependencies
       actor,
       campaignId,
       input.before,
+      request.log,
     );
     return reply.send(page);
   });
