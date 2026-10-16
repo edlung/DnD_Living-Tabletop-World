@@ -529,8 +529,8 @@ dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js image-rese
 ```
 
 RU: картины лежат в базе (`ltw_asset_contents`, до 2 МБ каждая) и входят в каждую копию: набор
-кураторов добавляет около 12 МБ. EN: pictures live in the database (`ltw_asset_contents`, up to
-2 MB each) and are in every dump: the curated set adds about 12 MB.
+кураторов добавляет около 15 МБ. EN: pictures live in the database (`ltw_asset_contents`, up to
+2 MB each) and are in every dump: the curated set adds about 15 MB.
 
 ## 9. Журналы и тревоги · Logs and alarms
 
