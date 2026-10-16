@@ -2,6 +2,7 @@ import { useT } from '@ltw/ui';
 
 import type { StandIn } from '../combat/stand-in.ts';
 import { REASON_TEXT } from '../dm/history-text.ts';
+import { Glyph } from '../visual/glyph.tsx';
 
 /**
  * While the DM acts as a player's character (docs/adr/0033-live-session.md §6): who, why, and a
@@ -19,7 +20,8 @@ export function ActingBar({
   const reason = t(REASON_TEXT[standIn.reason]);
   return (
     <section className="acting-bar" aria-label={t('Acting for a player')}>
-      <div>
+      <Glyph name="perform" className="acting-glyph" />
+      <div className="acting-text">
         <p>
           <strong>{t('Acting as {name}', { name: standIn.name })}</strong> ·{' '}
           {standIn.note === null ? reason : t('{reason}: “{note}”', { reason, note: standIn.note })}
@@ -30,7 +32,10 @@ export function ActingBar({
           })}
         </p>
       </div>
-      <button onClick={onStop}>{t('Stop acting')}</button>
+      <button className="acting-stop" onClick={onStop}>
+        <Glyph name="game-master" />
+        {t('Stop acting')}
+      </button>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import { commandSubmissionSchema, submissionsFromScript, type WorldEngine } from '@ltw/domain';
 
 import ambush from '../../../../fixtures/ravenford/road-ambush.json' with { type: 'json' };
+import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import campaigns from '../../../../tests/e2e/fixtures/combat-campaigns.json' with { type: 'json' };
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
 
@@ -68,11 +69,34 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   lifecycle: 'placed',
   sessionTurn: 'started',
   sessionWindow: 'window',
+  // Started below, once Elowen lies prone.
+  board: 'placed',
+  narrow: 'started',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
   for (const [name, campaignId] of Object.entries(campaigns)) {
     await seedCombatCampaign(engine, campaignId, STAGES[name as keyof typeof campaigns]);
+  }
+  await seedProneStart(engine, campaigns.board);
+}
+
+/**
+ * The pointer journey's fight (`combat-board-pointer.spec.ts`): Elowen starts it prone, through
+ * a real DM sheet command, so her figure carries a condition pip to point at.
+ */
+async function seedProneStart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const sheet = rulesSeed.commands.find(
+    (command) => command.type === 'SetCharacterSheet' && command.entityId === 'elowen-starwhisper',
+  );
+  if (!sheet || !('sheet' in sheet)) throw new Error('UI combat: Elowen has no sheet to seed');
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.prone`,
+    commands: [{ ...sheet, sheet: { ...sheet.sheet, conditions: ['prone'] } }, ambush.startCombat],
+  })) {
+    await accept(engine, submission);
   }
 }
 

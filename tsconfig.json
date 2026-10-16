@@ -18,7 +18,8 @@
     "tests/**/*.ts",
     "scripts/**/*.ts",
     "vitest.config.ts",
-    "playwright.config.ts"
+    "playwright.config.ts",
+    "playwright.evidence.config.ts"
   ],
   "exclude": ["**/node_modules", "**/dist"]
 }

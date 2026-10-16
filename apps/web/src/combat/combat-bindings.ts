@@ -78,7 +78,3 @@ export function combatCommandFor(
 export function ignoreReaction(actorId: string, windowId: string): CombatUiCommand {
   return { type: 'DeclineReaction', combatantId: actorId, windowId };
 }
-
-export function squareLabel(square: Square): string {
-  return `${String(square.x)}, ${String(square.y)}`;
-}

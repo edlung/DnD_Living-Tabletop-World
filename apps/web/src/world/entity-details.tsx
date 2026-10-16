@@ -1,11 +1,12 @@
 import type {
   CharacterSheetResponse,
   EntityContextResponse,
+  EntityKind,
   EntityKnowledgeResponse,
   EntityRef,
   KnowledgeView,
 } from '@ltw/contracts';
-import { CharacterSheetDetails, KnowledgeDetails, StatusPanel, useT } from '@ltw/ui';
+import { CharacterSheetDetails, StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -13,10 +14,25 @@ import { useResource } from '../api/resource.ts';
 import { PerformNpc } from '../dm/perform-npc.tsx';
 import { ContextActions } from '../exploration/context-actions.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { Glyph } from '../visual/glyph.tsx';
+import { IconButton } from '../visual/icon-button.tsx';
+import { KnowledgeBadge, KnowledgeCards } from '../visual/knowledge-cards.tsx';
+import { Medallion } from '../visual/medallion.tsx';
+import { usePortrait } from './use-portrait.ts';
+import { useRereadOn } from './use-world-data.ts';
 
+/**
+ * The selection's panel (docs/STAGE_320_DESIGN.md §5.4): a portrait header (the approved image
+ * or the neutral silhouette or mist; the name, or "Unidentified …", and the kind), the actions
+ * the server lists with their glyphs, what this perspective knows as typed records, and the
+ * full sheet on demand. The DM perspective shows what its projection supplies, and "Perform".
+ * The last selection's panel stays mounted while closed, and after the viewer's own action it
+ * is read again in the background (`revision`), so drafts in it survive both.
+ */
 export function EntityDetails({
   api,
   entityId,
+  revision,
   name,
   kind,
   known,
@@ -25,27 +41,35 @@ export function EntityDetails({
   knowledge,
   canAct,
   locked,
+  conversing,
+  onShowConversation,
   onRun,
   onSelect,
   onClose,
 }: {
   readonly api: WorldApi;
   readonly entityId: string;
+  /** The world screen's count of the viewer's own actions. */
+  readonly revision: number;
   readonly name: string | null;
-  readonly kind: string;
+  readonly kind: EntityKind;
   readonly known: boolean;
   readonly effectivePerspective: string;
   readonly directory: readonly EntityRef[];
   readonly knowledge: readonly KnowledgeView[];
   readonly canAct: boolean;
   readonly locked: boolean;
+  /** The conversation with this NPC is shown on the stage: its options live there. */
+  readonly conversing: boolean;
+  readonly onShowConversation: () => void;
   readonly onRun: (intent: ExplorationIntent) => void;
-  readonly onSelect: (entityId: string, kind: string) => void;
+  readonly onSelect: (entityId: string, kind: EntityKind) => void;
   readonly onClose: () => void;
 }) {
   const t = useT();
   const acting = effectivePerspective.startsWith('CHARACTER:');
   const [sheetOpen, setSheetOpen] = useState(false);
+  const image = usePortrait(api, entityId);
   const load = useCallback(
     async (signal: AbortSignal) => {
       const path = `entities/${encodeURIComponent(entityId)}`;
@@ -59,20 +83,28 @@ export function EntityDetails({
     },
     [api, entityId, acting, known],
   );
-  const { resource, retry } = useResource(entityId, load);
+  const { resource, retry, reread } = useResource(entityId, load);
+  useRereadOn(revision, reread);
   const canReadSheet =
     (effectivePerspective === 'DM' && ['character', 'npc', 'creature'].includes(kind)) ||
     (kind === 'character' && effectivePerspective === `CHARACTER:${entityId}`);
+  const visible = resource.status === 'ready' ? resource.value.context?.context.visibleState : null;
   return (
     <>
-      <div className="section-heading">
-        <p className="eyebrow">{t('A closer look')}</p>
-        <button aria-label={t('Close details')} onClick={onClose}>
-          ×
-        </button>
-      </div>
-      <h2>{name ?? t('Unidentified {kind}', { kind: t(kind) })}</h2>
-      <p className="entity-kind">{t(kind)}</p>
+      <header className="details-header">
+        <Medallion image={image} kind={kind} size="xl" />
+        <div className="details-title">
+          <p className="eyebrow">{t('A closer look')}</p>
+          <h2>{name ?? t('Unidentified {kind}', { kind: t(kind) })}</h2>
+          <p className="entity-kind">{t(kind)}</p>
+        </div>
+        <IconButton
+          glyph="close"
+          className="details-close"
+          label={t('Close details')}
+          onClick={onClose}
+        />
+      </header>
       {resource.status !== 'ready' ? (
         <StatusPanel
           state={resource.status}
@@ -81,28 +113,29 @@ export function EntityDetails({
         />
       ) : (
         <>
-          {resource.value.context && (
+          {resource.value.context && visible && (
             <>
-              <p className="presence-label">
-                {resource.value.context.context.visibleState.present
-                  ? t('Present in your surroundings')
-                  : t('Known, but not here')}
-              </p>
-              {resource.value.context.context.visibleState.hitPoints && (
-                <p>
-                  {t('Hit points: {current} / {max}', {
-                    current: resource.value.context.context.visibleState.hitPoints.current,
-                    max: resource.value.context.context.visibleState.hitPoints.max,
-                  })}
-                </p>
-              )}
-              {resource.value.context.context.visibleState.distanceFt !== undefined && (
-                <p>
-                  {t('Distance: {feet} ft', {
-                    feet: resource.value.context.context.visibleState.distanceFt,
-                  })}
-                </p>
-              )}
+              <ul className="details-facts">
+                <li className={visible.present ? 'is-present' : ''}>
+                  <Glyph name={visible.present ? 'look' : 'hidden'} />
+                  {visible.present ? t('Present in your surroundings') : t('Known, but not here')}
+                </li>
+                {visible.hitPoints && (
+                  <li>
+                    <Glyph name="hit-points" />
+                    {t('Hit points: {current} / {max}', {
+                      current: visible.hitPoints.current,
+                      max: visible.hitPoints.max,
+                    })}
+                  </li>
+                )}
+                {visible.distanceFt !== undefined && (
+                  <li>
+                    <Glyph name="move" />
+                    {t('Distance: {feet} ft', { feet: visible.distanceFt })}
+                  </li>
+                )}
+              </ul>
               <ContextActions
                 api={api}
                 context={resource.value.context}
@@ -110,6 +143,8 @@ export function EntityDetails({
                 knowledge={knowledge}
                 canAct={canAct}
                 locked={locked}
+                conversing={conversing}
+                onShowConversation={onShowConversation}
                 onRun={onRun}
               />
             </>
@@ -117,23 +152,25 @@ export function EntityDetails({
           {resource.value.knowledge && (
             <section className="related-leads" aria-label={t('Related leads')}>
               <h3>{t('Follow a lead')}</h3>
-              {resource.value.knowledge.relatedEntities
-                .filter((entity) => entity.entityId !== entityId)
-                .map((entity) => (
-                  <button
-                    key={entity.entityId}
-                    onClick={() => {
-                      onSelect(entity.entityId, entity.kind);
-                    }}
-                  >
-                    {t('Explore {place}', { place: entity.name })}
-                  </button>
-                ))}
+              <div className="lead-buttons">
+                {resource.value.knowledge.relatedEntities
+                  .filter((entity) => entity.entityId !== entityId)
+                  .map((entity) => (
+                    <button
+                      key={entity.entityId}
+                      onClick={() => {
+                        onSelect(entity.entityId, entity.kind);
+                      }}
+                    >
+                      {t('Explore {place}', { place: entity.name })}
+                    </button>
+                  ))}
+              </div>
               {resource.value.knowledge.knowledge
                 .filter((record) => record.knowledgeType === 'CONTRADICTION')
                 .map((record) => (
                   <div className="contradiction-highlight" key={record.knowledgeId}>
-                    <span className="badge badge--contradiction">{t('CONTRADICTION')}</span>
+                    <KnowledgeBadge type="CONTRADICTION" />
                     <p>{record.statement}</p>
                   </div>
                 ))}
@@ -149,7 +186,7 @@ export function EntityDetails({
           )}
           <details className="disclosure">
             <summary>{t('Full knowledge')}</summary>
-            <KnowledgeDetails knowledge={resource.value.knowledge?.knowledge ?? []} />
+            <KnowledgeCards knowledge={resource.value.knowledge?.knowledge ?? []} />
           </details>
           {canReadSheet && (
             <div className="sheet-access">
@@ -173,7 +210,6 @@ export function EntityDetails({
 
 function Sheet({ api, entityId }: { readonly api: WorldApi; readonly entityId: string }) {
   const t = useT();
-
   const load = useCallback(
     (signal: AbortSignal) =>
       api.get<CharacterSheetResponse>(`entities/${encodeURIComponent(entityId)}/sheet`, signal),

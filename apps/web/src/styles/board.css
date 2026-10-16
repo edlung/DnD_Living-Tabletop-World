@@ -1,0 +1,489 @@
+/*
+ * The battlefield board (docs/STAGE_320_DESIGN.md §5.5, ADR 0034 §6–7): GPT ground and pieces,
+ * drawn markup for hairlines, path, area, rings, bars and plates. Tilted, the plane turns away
+ * (`--plane-transform`) and figures and pieces stand back upright (`--upright-transform`),
+ * both set by the board from `combat/board/geometry.ts`.
+ */
+.board {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+.board-viewport {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.board-stage {
+  position: relative;
+  flex: none;
+  margin: auto;
+}
+.board-plane {
+  position: absolute;
+  left: 0;
+  display: grid;
+  grid-auto-rows: var(--cell);
+  transform: var(--plane-transform);
+  transform-origin: 50% 100%;
+}
+.board--flat .board-plane {
+  isolation: isolate;
+}
+.board--tilted .board-plane,
+.board--tilted .board-square,
+.board--tilted .token,
+.board--tilted .cover-piece {
+  transform-style: preserve-3d;
+}
+/*
+ * Squares lie a hair above the ground: coplanar with the plane, the pointer would reach the
+ * plane instead of the square under it (3D hit testing breaks the tie toward the parent).
+ */
+.board--tilted .board-square {
+  transform: translateZ(1px);
+}
+
+/* The ground: the GPT texture, its frame, and shade toward the edges */
+.board-ground {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: url('../assets/ui-kit/board/ground.webp') 0 0 / calc(var(--cell) * 6) repeat;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--gold) 55%, transparent),
+    0 0 0 5px color-mix(in srgb, var(--ink-950) 80%, transparent),
+    0 0 0 6px color-mix(in srgb, var(--gold-deep) 70%, transparent),
+    0 28px 60px var(--board-shade);
+  pointer-events: none;
+}
+.board-ground::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 60% 55% at 45% 55%, var(--board-light), transparent 70%),
+    radial-gradient(ellipse 80% 75% at 50% 50%, transparent 30%, var(--board-shade) 100%),
+    linear-gradient(var(--board-dim), var(--board-dim));
+}
+
+/* Squares: one button each, hairlines on two sides, the difficult patch as their ground */
+.board-square {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: inset -1px -1px 0 var(--board-grid);
+  transition: none;
+}
+.board-square:hover:enabled,
+.board-square[aria-pressed='true'] {
+  border: 0;
+  background: transparent;
+}
+.board-square.is-difficult {
+  background: url('../assets/ui-kit/board/difficult.webp') calc(var(--x) * var(--cell) * -1)
+    calc(var(--y) * var(--cell) * -1) / calc(var(--cell) * 3) repeat;
+}
+.board-square::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.board-square:hover::before {
+  box-shadow: inset 0 0 0 1px var(--board-grid-strong);
+  background: color-mix(in srgb, var(--text) 8%, transparent);
+}
+.board-square:focus-visible {
+  z-index: 1;
+  outline-offset: -3px;
+}
+.board-square.on-path::before {
+  background: color-mix(in srgb, var(--side-party) 24%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--side-party) 65%, transparent);
+}
+.board-square.is-destination::before {
+  background: color-mix(in srgb, var(--side-party) 34%, transparent);
+  box-shadow:
+    inset 0 0 0 2px var(--side-party),
+    inset 0 0 14px var(--glow-party);
+}
+.board-square.in-area::before {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--fire) 70%, transparent),
+    color-mix(in srgb, var(--fire) 34%, transparent)
+  );
+  box-shadow:
+    inset 0 0 0 2px var(--fire),
+    0 0 22px 4px var(--glow-fire);
+}
+.token.in-area .token-ring {
+  background: radial-gradient(closest-side, var(--glow-fire), transparent);
+  box-shadow:
+    0 0 14px var(--glow-fire),
+    inset 0 0 10px var(--glow-fire);
+}
+.board-square.is-selected::before {
+  background: color-mix(in srgb, var(--teal-fill) 45%, transparent);
+  box-shadow:
+    inset 0 0 0 2px var(--teal),
+    inset 0 0 12px var(--teal-glow);
+}
+
+/* The advisory route: a dotted line through the path's squares */
+.board-path {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.board-path polyline {
+  fill: none;
+  stroke: var(--side-party);
+  stroke-width: calc(var(--cell) * 0.09);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 0 calc(var(--cell) * 0.22);
+  filter: drop-shadow(0 0 3px var(--glow-party));
+}
+
+/* Combatants: a ring of the side's light on the ground, the figure above it */
+.token {
+  --side: var(--side-neutral);
+  --side-glow: var(--glow-neutral);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/*
+ * A figure is part of its square (design §5.5: the same hit-testing in both views): what is
+ * drawn of it — the round portrait, the plate, the pips, the badge — takes the pointer for the
+ * square whose button holds it, so pointing at a figure chooses that figure and a pip shows its
+ * condition's name; the space around them and the ring stay transparent to the pointer. Tilted,
+ * the upright figure rises over the squares behind it, which the pointer would reach otherwise.
+ */
+.token-figure > .medallion,
+.token-plate,
+.token-pip,
+.token-cover {
+  pointer-events: auto;
+}
+.token-figure > .medallion {
+  border-radius: 50%;
+}
+.token--party {
+  --side: var(--side-party);
+  --side-glow: var(--glow-party);
+}
+.token--hostile {
+  --side: var(--side-hostile);
+  --side-glow: var(--glow-hostile);
+}
+.token-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--cell) * 0.9);
+  height: calc(var(--cell) * 0.9);
+  border: 2px solid var(--side);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--board-shade), transparent);
+  box-shadow:
+    0 0 10px var(--side-glow),
+    inset 0 0 8px var(--side-glow);
+  translate: -50% -50%;
+}
+.token.is-current .token-ring {
+  border-color: var(--gold-bright);
+  box-shadow:
+    0 0 0 2px var(--side),
+    0 0 22px 6px var(--side-glow),
+    inset 0 0 12px var(--side-glow);
+  animation: turn-glow 1.8s ease-in-out infinite alternate;
+}
+@keyframes turn-glow {
+  to {
+    box-shadow:
+      0 0 0 2px var(--side),
+      0 0 30px 10px var(--side-glow),
+      inset 0 0 16px var(--side-glow);
+  }
+}
+.token.is-selected .token-ring {
+  box-shadow:
+    0 0 0 3px var(--teal),
+    0 0 18px 4px var(--teal-glow);
+}
+.token.in-area .token-ring {
+  border-color: var(--fire);
+}
+.token.in-area.is-selected .token-ring {
+  box-shadow:
+    0 0 0 3px var(--teal),
+    0 0 18px 4px var(--glow-fire);
+}
+.token--down .token-ring,
+.token--dead .token-ring {
+  border-style: dashed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+.token-figure {
+  position: absolute;
+  top: calc(var(--cell) * 0.08);
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  translate: -50% 0;
+}
+.token .medallion {
+  --m: calc(var(--cell) * 0.84);
+}
+.token .medallion--party,
+.token .medallion--hostile,
+.token .medallion--neutral {
+  --ring: var(--side);
+}
+.token.is-current .medallion::after {
+  box-shadow:
+    0 0 0 2px var(--side),
+    0 0 16px 4px var(--side-glow);
+}
+.token-plate {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  max-width: calc(var(--cell) * 2.4);
+  margin-top: calc(var(--cell) * -0.08);
+  padding: 1px 6px 2px;
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--side);
+  border-radius: 6px;
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+}
+.token-name {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(10px, calc(var(--cell) * 0.27), 14px);
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.token-name.has-number {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25em;
+}
+.token-name .name-words {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.token-name .name-number {
+  flex: none;
+}
+.token-plate .hp-bar {
+  width: calc(var(--cell) * 0.9);
+  height: 3px;
+}
+.token-pips {
+  position: absolute;
+  top: calc(var(--cell) * -0.04);
+  right: calc(var(--cell) * -0.22);
+  display: flex;
+  gap: 2px;
+}
+.token-pip {
+  display: grid;
+  place-items: center;
+  width: clamp(14px, calc(var(--cell) * 0.34), 20px);
+  height: clamp(14px, calc(var(--cell) * 0.34), 20px);
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--glass-raised);
+  color: var(--hp-low);
+}
+.token-pip .glyph {
+  width: 70%;
+  height: 70%;
+}
+
+/* Tilted: figures stand on the plane, their base in the square's front half */
+.board--tilted .token-figure {
+  top: auto;
+  bottom: calc(var(--cell) * 0.42);
+  transform: var(--upright-transform);
+  transform-origin: 50% 100%;
+}
+.board--tilted .token .medallion {
+  --m: calc(var(--cell) * 1.18);
+}
+.board--tilted .token-ring {
+  top: 58%;
+}
+
+/*
+ * Cover pieces: the GPT crates, boulder and wall stand at their square's back edge, scaled by
+ * level so a wall reads as a wall; anyone in the same square stands in front, the piece rising
+ * behind and above the figure.
+ */
+.cover-piece {
+  --piece-w: 0.92;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cover-piece--three-quarters {
+  --piece-w: 1;
+}
+.cover-piece--total {
+  --piece-w: 1.04;
+}
+.cover-art {
+  position: absolute;
+  bottom: 22%;
+  left: 50%;
+  width: calc(var(--cell) * var(--piece-w));
+  height: auto;
+  filter: drop-shadow(0 3px 4px var(--board-shade));
+  translate: -50% 0;
+  user-select: none;
+}
+/* Flat, an occupied square's piece rises from its back edge, above the figure in front. */
+.board--flat .has-occupant .cover-art {
+  bottom: 62%;
+  width: calc(var(--cell) * var(--piece-w) * 0.9);
+}
+.cover-shadow {
+  display: none;
+}
+.board--tilted .cover-art {
+  bottom: 58%;
+  width: calc(var(--cell) * var(--piece-w) * 1.16);
+  transform: var(--upright-transform);
+  transform-origin: 50% 100%;
+}
+.board--tilted .has-occupant .cover-art {
+  bottom: 78%;
+  width: calc(var(--cell) * var(--piece-w) * 1.3);
+}
+.board--tilted .cover-shadow {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  display: block;
+  width: calc(var(--cell) * 1.1);
+  height: calc(var(--cell) * 0.6);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--board-shade), transparent);
+  translate: -50% 0;
+}
+.board--tilted .has-occupant .cover-shadow {
+  top: 2%;
+}
+
+/* A figure in cover carries a badge: the cover glyph and the level's fraction */
+.token-cover {
+  position: absolute;
+  top: calc(var(--cell) * -0.04);
+  left: calc(var(--cell) * -0.26);
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  height: clamp(16px, calc(var(--cell) * 0.36), 22px);
+  padding: 0 4px 0 2px;
+  border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+  color: var(--gold-bright);
+  font-family: var(--font-body);
+  font-size: clamp(10px, calc(var(--cell) * 0.26), 13px);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+.token-cover .glyph {
+  width: clamp(11px, calc(var(--cell) * 0.26), 15px);
+  height: clamp(11px, calc(var(--cell) * 0.26), 15px);
+}
+
+/* The terrain of the square looked at: cover and difficult ground, as the projection lists them */
+.terrain-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: grid;
+  gap: 0.15rem;
+  min-width: 9.5rem;
+  padding: 0.45rem 0.75rem 0.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+  font-size: 0.88rem;
+  pointer-events: none;
+}
+.terrain-card p {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+}
+.terrain-card .glyph {
+  width: 18px;
+  height: 18px;
+  color: var(--gold);
+}
+.terrain-square {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* How to look at the board: flat or tilted, and on a phone, zoom */
+.board-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  box-shadow: var(--shadow-soft);
+}
+.board-controls .icon-button {
+  min-height: 34px;
+  min-width: 34px;
+  border-radius: var(--radius-pill);
+}
+.board-controls .icon-button[aria-pressed='true'] {
+  border-color: var(--teal);
+  background: var(--teal-fill);
+  color: var(--text);
+}

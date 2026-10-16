@@ -2,6 +2,7 @@ import { expect, type Page, type Response } from '@playwright/test';
 
 import boundary from '../../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import hiddenCharacter from '../fixtures/hidden-character.json' with { type: 'json' };
+import { chooseLocation } from './shell.ts';
 
 export const HIDDEN_CHARACTER = hiddenCharacter;
 const playerForbidden = [
@@ -29,8 +30,7 @@ export async function enterWorld(
 
 export async function playerScene(page: Page): Promise<void> {
   await enterWorld(page);
-  await expect(page.getByLabel('Location', { exact: true })).toBeVisible();
-  await page.getByLabel('Location', { exact: true }).selectOption('market-square');
+  await chooseLocation(page, 'market-square');
   await expect(page.getByRole('button', { name: 'Mira Vale', exact: true })).toBeVisible();
 }
 
@@ -55,25 +55,43 @@ export function collectApiBodies(page: Page): {
   assertPlayerBoundary(
     extraMarkers?: readonly string[],
     perceived?: readonly string[],
+    ownViews?: readonly string[],
   ): Promise<void>;
 } {
-  const received: Promise<string>[] = [];
+  const received: Promise<{ readonly path: string; readonly body: string }>[] = [];
   const collect = (response: Response) => {
-    if (new URL(response.url()).pathname.startsWith('/api/') && !isLiveStream(response)) {
+    const path = new URL(response.url()).pathname;
+    if (path.startsWith('/api/') && !isLiveStream(response)) {
       // Aborted requests have no delivered response body.
-      received.push(response.text().catch(() => ''));
+      received.push(
+        response.text().then(
+          (body) => ({ path, body }),
+          () => ({ path, body: '' }),
+        ),
+      );
     }
   };
   page.on('response', collect);
   return {
     // `perceived` lists markers the acting character legitimately perceives at its
     // current location (ADR 0012), e.g. a child location's ID with a null name.
-    async assertPlayerBoundary(extraMarkers = [], perceived = []) {
-      const payloads = (await Promise.all(received)).join('\n');
+    // `ownViews` lists the paths of the viewer's own authorized views (its own character
+    // sheet): the extra markers, which name statistics no one else's may reveal, do not apply
+    // to them; the knowledge boundary's markers apply to every payload.
+    async assertPlayerBoundary(extraMarkers = [], perceived = [], ownViews = []) {
+      const bodies = await Promise.all(received);
+      const payloads = bodies.map((entry) => entry.body).join('\n');
       expect(payloads).not.toBe('');
       const forbidden = playerForbidden.filter((marker) => !perceived.includes(marker));
-      for (const marker of [...forbidden, ...extraMarkers]) {
+      for (const marker of forbidden) {
         expect(payloads, `player HTTP payload must not contain ${marker}`).not.toContain(marker);
+      }
+      const others = bodies
+        .filter((entry) => !ownViews.some((own) => entry.path.endsWith(own)))
+        .map((entry) => entry.body)
+        .join('\n');
+      for (const marker of extraMarkers) {
+        expect(others, `player HTTP payload must not contain ${marker}`).not.toContain(marker);
       }
     },
   };

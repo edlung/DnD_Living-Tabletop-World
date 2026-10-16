@@ -24,5 +24,11 @@ export default defineConfig({
       },
     },
   },
-  build: { outDir: 'build', emptyOutDir: true, sourcemap: false },
+  build: {
+    outDir: 'build',
+    emptyOutDir: true,
+    sourcemap: false,
+    // UI-kit pictures stay files (cached once, referenced by URL), never base64 in the bundle.
+    assetsInlineLimit: (file) => (file.includes('/assets/ui-kit/') ? false : undefined),
+  },
 });

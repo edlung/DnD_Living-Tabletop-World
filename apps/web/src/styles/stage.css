@@ -1,0 +1,416 @@
+/* On the stage: medallions, the party rail, results, conversation, the combat view. */
+
+/* Medallion: a portrait in the GPT gold ring; the side's light and selection are drawn markup */
+.medallion {
+  --m: 56px;
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: var(--m);
+  height: var(--m);
+}
+.medallion--xs {
+  --m: 32px;
+}
+.medallion--sm {
+  --m: 46px;
+}
+.medallion--lg {
+  --m: 86px;
+}
+.medallion--xl {
+  --m: 92px;
+}
+.medallion-face {
+  position: absolute;
+  inset: 8%;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ink-900);
+}
+.medallion-face img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.medallion-silhouette {
+  object-position: 50% 30%;
+  scale: 1.18;
+}
+.medallion-kind {
+  position: absolute;
+  inset: 0;
+  width: 46%;
+  height: 46%;
+  margin: auto;
+  color: var(--gold-bright);
+}
+.medallion-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 5px color-mix(in srgb, var(--umbra) 65%, transparent));
+}
+.medallion::after {
+  content: '';
+  position: absolute;
+  inset: 7%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--ring, transparent);
+  pointer-events: none;
+  transition: box-shadow var(--t-fast) var(--ease);
+}
+.medallion--party {
+  --ring: color-mix(in srgb, var(--side-party) 60%, transparent);
+}
+.medallion--hostile {
+  --ring: color-mix(in srgb, var(--side-hostile) 70%, transparent);
+}
+.medallion--neutral {
+  --ring: color-mix(in srgb, var(--side-neutral) 60%, transparent);
+}
+.medallion.is-selected::after {
+  box-shadow:
+    0 0 0 2px var(--teal),
+    0 0 20px 5px var(--teal-glow);
+}
+.medallion.is-dead .medallion-face,
+.medallion.is-unconscious .medallion-face {
+  filter: grayscale(1) brightness(0.6);
+}
+.medallion-condition {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+  width: 30%;
+  height: 30%;
+  color: var(--text);
+  filter: drop-shadow(0 0 2px var(--umbra)) drop-shadow(0 0 2px var(--umbra));
+}
+.medallion.is-wounded .medallion-condition {
+  color: var(--danger);
+}
+
+/* The party rail: who is at the table */
+.party-rail {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  bottom: calc(var(--dock-h) + 24px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 96px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.party-rail ul {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rail-dm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0.35rem 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--glass);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  text-align: center;
+}
+.rail-dm .glyph {
+  width: 22px;
+  height: 22px;
+}
+.rail-dm.present .glyph {
+  color: var(--gold-bright);
+}
+.rail-member {
+  position: relative;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  padding: 0.35rem 0.2rem 0.4rem;
+  border-color: var(--line);
+  background: var(--glass);
+  text-align: center;
+}
+.rail-member[aria-pressed='true'] {
+  border-color: var(--teal);
+  background: var(--glass);
+}
+.rail-text {
+  display: grid;
+  max-width: 100%;
+  line-height: 1.15;
+}
+.rail-name {
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.rail-hp {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+.presence-dot {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid color-mix(in srgb, var(--ink-950) 90%, transparent);
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+.rail-member.present .presence-dot {
+  background: var(--hp);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--hp) 80%, transparent);
+}
+.hp-bar {
+  display: block;
+  width: 80%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--text) 14%, transparent);
+}
+.hp-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--hp);
+}
+.hp-bar--low > span {
+  background: var(--hp-low);
+}
+
+/*
+ * The result of an action, where it happened: above the chosen medallion, or bottom centre of
+ * the stage. It sits above every sheet and panel (a sibling of the stage), so its words and its
+ * Retry are never covered by the tool that caused it.
+ */
+.outcome {
+  position: absolute;
+  bottom: calc(var(--dock-h) + 24px);
+  left: 50%;
+  z-index: 50;
+  display: grid;
+  gap: 0.5rem;
+  width: min(440px, calc(100% - 32px));
+  max-height: 46%;
+  overflow-y: auto;
+  translate: -50% 0;
+}
+/* Beside an open conversation the result keeps clear of the dialogue panel. */
+.world-main:has(.stage--talking) .outcome {
+  width: min(360px, calc(100% - 32px));
+}
+/* Above the medallion while it can be seen: no sheet over it, nor (on a tablet) the drawer. */
+@supports (position-area: top) {
+  @media (min-width: 1200px) {
+    .world-main:not(.has-battle):not(:has(.sheet:not([hidden]))):has(.object-button[data-anchor])
+      .outcome {
+      position-anchor: --result-anchor;
+      position-area: top;
+      bottom: auto;
+      left: auto;
+      margin-bottom: 0.4rem;
+      translate: none;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .world-main:not(.has-battle):not(.has-details):not(:has(.sheet:not([hidden]))):has(
+        .object-button[data-anchor]
+      )
+      .outcome {
+      position-anchor: --result-anchor;
+      position-area: top;
+      bottom: auto;
+      left: auto;
+      margin-bottom: 0.4rem;
+      translate: none;
+    }
+  }
+}
+/* While a sheet is open the result sits just above it, clear of the sheet's own controls. */
+.sheet {
+  anchor-name: --open-sheet;
+}
+@media (min-width: 768px) {
+  @supports (bottom: anchor(top)) {
+    .world-main:has(.sheet:not([hidden])) .outcome {
+      position-anchor: --open-sheet;
+      bottom: calc(anchor(top) + 10px);
+    }
+  }
+}
+.action-notice {
+  padding: 0.75rem 2.6rem 0.8rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--teal);
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow);
+  font-size: 0.98rem;
+}
+.action-notice[role='alert'] {
+  border-left-color: var(--hp-low);
+}
+.action-notice p {
+  margin: 0;
+}
+.action-notice p + p,
+.action-notice button {
+  margin-top: 0.45rem;
+}
+.notice-roll {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+}
+.action-notice blockquote {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+}
+.outcome-dismiss {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+.discovered-knowledge .knowledge-list {
+  margin: 0;
+}
+
+/* Conversation: speech in the scene, never a recorded fact */
+.dialogue-panel {
+  position: absolute;
+  bottom: calc(var(--dock-h) + 24px);
+  left: 120px;
+  z-index: 5;
+  width: min(420px, 38%);
+  max-height: calc(100% - var(--dock-h) - 150px);
+  overflow-y: auto;
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow);
+}
+.dialogue-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.dialogue-header > div {
+  flex: 1;
+  min-width: 0;
+}
+.dialogue-header .eyebrow {
+  margin: 0;
+}
+.dialogue-header h3 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+.dialogue-line {
+  margin: 0.75rem 0 0.2rem;
+  padding: 0.2rem 0 0.2rem 0.9rem;
+  border-left: 2px solid var(--gold);
+}
+.dialogue-line p {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.dialogue-line footer {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+.dialogue-options {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.dialogue-options button {
+  justify-content: flex-start;
+  width: 100%;
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.option-number {
+  min-width: 1.4rem;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.dialogue-options .glyph {
+  color: var(--teal);
+}
+.dialogue-options li {
+  display: grid;
+  gap: 0.15rem;
+}
+.option-reason {
+  padding-left: 2.4rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+.dialogue-panel:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* While an encounter runs: the scene or the battlefield (battle-layout.css places its parts) */
+.stage-switch {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  z-index: 4;
+  display: flex;
+  padding: 0.2rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  translate: -50% 0;
+}
+.stage-switch button {
+  min-height: 34px;
+  padding: 0.2rem 0.9rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+}
+.stage-switch button[aria-selected='true'] {
+  background: var(--teal-fill);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+.stage--battle .backdrop-note {
+  display: none;
+}

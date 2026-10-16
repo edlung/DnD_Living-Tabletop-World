@@ -1,6 +1,14 @@
 import { expect, test, type Page } from '@playwright/test';
 
-import { AUTHORING_CAMPAIGNS, dmRequest, enterAsDm, propose, review } from './support/authoring.ts';
+import {
+  ADD_TO_THE_WORLD,
+  AUTHORING_CAMPAIGNS,
+  dmRequest,
+  enterAsDm,
+  propose,
+  review,
+} from './support/authoring.ts';
+import { chooseLocation, openSheet } from './support/shell.ts';
 
 const tomas = (page: Page) => page.getByRole('button', { name: 'Tomas Reed', exact: true });
 const confirm = (page: Page) =>
@@ -10,7 +18,7 @@ test('a stale confirmation is refused, reloaded, and never looks committed', asy
   const campaign = AUTHORING_CAMPAIGNS.stale;
   await enterAsDm(page, campaign);
   const stored = await propose(page);
-  await page.getByLabel('Location', { exact: true }).selectOption('north-gate');
+  await chooseLocation(page, 'north-gate');
   // Another session edits the same proposal while this screen still shows revision 1.
   const edited = await dmRequest(
     page,
@@ -28,6 +36,7 @@ test('a stale confirmation is refused, reloaded, and never looks committed', asy
   );
   expect(edited.status).toBe(201);
 
+  await openSheet(page, ADD_TO_THE_WORLD);
   await confirm(page).click();
   await expect(
     page.getByRole('alert').filter({ hasText: 'This proposal changed since you opened it.' }),

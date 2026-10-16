@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { collectApiBodies, enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
+import { openSheet } from './support/shell.ts';
 
 const COMBAT_CAMPAIGN = 'ui-combat';
 
@@ -17,11 +18,18 @@ test('player reads a real paused encounter and their reaction choices without DM
   page,
 }) => {
   const traffic = collectApiBodies(page);
-  const encounterResponse = page.waitForResponse(
-    (response) =>
-      new URL(response.url()).pathname === `/api/campaigns/${COMBAT_CAMPAIGN}/encounter`,
-  );
+  // Read the body as soon as the first encounter response arrives: Chromium may drop a response
+  // body it has already delivered once later reads of the same view (live refreshes) follow.
+  const encounterPayload = page
+    .waitForResponse(
+      (response) =>
+        new URL(response.url()).pathname === `/api/campaigns/${COMBAT_CAMPAIGN}/encounter`,
+    )
+    .then(async (response) => (await response.json()) as EncounterPayload);
   await enterWorld(page, TOKENS.player, COMBAT_CAMPAIGN);
+  // The summary in words is the Journal's; the stage shows the battlefield.
+  await expect(page.getByRole('region', { name: 'Battlefield', exact: true })).toBeVisible();
+  await openSheet(page, 'Journal');
   const encounter = page.getByRole('region', { name: 'Encounter summary', exact: true });
   const reaction = encounter.getByRole('region', { name: 'Reaction window', exact: true });
   await expect(reaction.getByRole('status')).toHaveText(
@@ -32,12 +40,12 @@ test('player reads a real paused encounter and their reaction choices without DM
   await encounter.getByText('Combatants and turn order', { exact: true }).click();
   await expect(encounter).toContainText('78 / 78');
   const shaman = encounter.getByRole('listitem').filter({
-    has: page.getByRole('heading', { name: 'goblin-shaman', exact: true }),
+    has: page.getByRole('heading', { name: 'Unidentified creature 4', exact: true }),
   });
   await expect(shaman).toBeVisible();
   await expect(shaman).not.toContainText('Hit points');
   await expect(shaman).not.toContainText('Initiative');
-  const payload = (await (await encounterResponse).json()) as EncounterPayload;
+  const payload = await encounterPayload;
   expect(payload.encounter?.combatants).toHaveLength(5);
   expect(payload.encounter?.reactionWindow?.choices).toEqual(['counterspell', 'ignore']);
   expect(payload.encounter?.reactionWindow?.trigger).not.toHaveProperty('spellId');
@@ -61,6 +69,7 @@ test('DM summary exposes authorized spell and stats, then clears them for charac
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, COMBAT_CAMPAIGN);
+  await openSheet(page, 'Journal');
   const encounter = page.getByRole('region', { name: 'Encounter summary', exact: true });
   await expect(encounter.getByRole('region', { name: 'Reaction window' })).toContainText(
     'Ashen Bolt',
@@ -74,12 +83,14 @@ test('DM summary exposes authorized spell and stats, then clears them for charac
   await page
     .getByLabel('Perspective', { exact: true })
     .selectOption('CHARACTER:elowen-starwhisper');
+  await openSheet(page, 'Journal');
   await expect(encounter.getByRole('region', { name: 'Reaction window' })).toContainText(
     'Counterspell, Ignore',
   );
   await expectPlayerBoundary(page);
   await expect(encounter).not.toContainText('21 / 21');
   await page.getByLabel('Perspective', { exact: true }).selectOption('PUBLIC');
+  await openSheet(page, 'Journal');
   await expect(
     page.getByText('No active encounter is visible in this perspective.', { exact: true }),
   ).toBeVisible();

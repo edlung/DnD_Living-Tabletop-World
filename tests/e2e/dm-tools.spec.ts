@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import { expectAccepted, submit } from './support/combat.ts';
 import { dmRequest, playerCommand } from './support/authoring.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
+import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
 
 test('the DM moves time and weather and the player returns to a changed Ravenford', async ({
@@ -17,7 +18,8 @@ test('the DM moves time and weather and the player returns to a changed Ravenfor
 
   const dm = await browser.newPage();
   await enterWorld(dm, TOKENS.dm, campaign);
-  await dm.getByText('Time and weather (DM)', { exact: true }).click();
+  await openSheet(dm, 'Time and weather');
+  await expect(dm.getByText('Time and weather (DM)', { exact: true })).toBeVisible();
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Advance to Day 2, 10:00' })));
   await dm.getByLabel('Weather at Market Square').selectOption('rain');
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Set weather' })));
@@ -40,6 +42,7 @@ test('a written chapter opens for the player with cited entries and a flashback'
   const campaign = campaigns.chronicle;
   const dm = await browser.newPage();
   await enterWorld(dm, TOKENS.dm, campaign);
+  await openChronicle(dm);
   await dm.getByText('Write a chapter (DM)', { exact: true }).click();
   await dm.getByLabel('Told from', { exact: true }).selectOption('CHARACTER:elowen-starwhisper');
   await dm.getByRole('button', { name: 'Write chapter' }).click();
@@ -53,6 +56,7 @@ test('a written chapter opens for the player with cited entries and a flashback'
   const player = await browser.newPage();
   const traffic = collectApiBodies(player);
   await enterWorld(player, TOKENS.player, campaign);
+  await openChronicle(player);
   const chapter = player.getByRole('article', { name: 'Chapter I — Shadows on the Trade Road' });
   await expect(chapter).toBeVisible();
   await expect(chapter).toContainText('Mira told us the caravan left before dawn.');
@@ -104,17 +108,30 @@ test('the DM performs Tomas for Elowen and the words are not recorded as fact', 
   ).toMatchObject({ status: 'accepted' });
 
   await enterWorld(dm, TOKENS.dm, campaign);
-  await dm.getByLabel('Location', { exact: true }).selectOption('north-gate');
+  await chooseLocation(dm, 'north-gate');
   await dm.getByRole('button', { name: 'Tomas Reed', exact: true }).click();
   await dm.getByText('Perform Tomas Reed (DM)', { exact: true }).click();
   await dm.getByRole('button', { name: 'Speak as Tomas Reed' }).click();
-  const said = dm.getByRole('status', { name: 'Tomas Reed says' });
-  await expect(said).toContainText('Spoken, not a recorded fact.');
-  expect((await said.innerText()).length).toBeGreaterThan(40);
+  // This server has no voice for NPCs (ADR 0032, C): the panel says no words came, in its own
+  // voice — never "Tomas Reed says", never "Spoken, not a recorded fact." over a non-reply.
+  const message = dm.locator('.perform-said--message');
+  await expect(message).toHaveRole('status');
+  await expect(message).toHaveText(
+    'No words are available for Tomas Reed right now (the voice is unavailable). You can speak for Tomas Reed yourself.',
+  );
+  await expect(dm.getByRole('status', { name: 'Tomas Reed says' })).toHaveCount(0);
 
   await dm.getByLabel('Ask about', { exact: true }).selectOption('guild-caravan');
+  const asked = dm.waitForResponse((response) =>
+    new URL(response.url()).pathname.endsWith('/npcs/tomas-reed/dialogue'),
+  );
   await dm.getByRole('button', { name: 'Answer the question' }).click();
-  await expect(dm.getByRole('status', { name: 'Tomas Reed says' })).toContainText('Spoken');
+  expect((await (await asked).json()) as { reply: { status: string } | null }).toMatchObject({
+    reply: { status: 'AI_UNAVAILABLE' },
+  });
+  await expect(message).toHaveText(/^No words are available for Tomas Reed right now/);
+  await expect(dm.getByRole('status', { name: 'Tomas Reed says' })).toHaveCount(0);
+  await expect(dm.getByText('Spoken, not a recorded fact.')).toHaveCount(0);
   await dm.close();
 });
 
@@ -123,14 +140,20 @@ test('refusals and technical words are explained in plain language', async ({ br
   const dm = await browser.newPage();
   await enterWorld(dm, TOKENS.dm, campaign);
   // Elowen is at Market Square, so Captain Thorne at North Gate cannot hear her.
-  await dm.getByLabel('Location', { exact: true }).selectOption('north-gate');
+  await chooseLocation(dm, 'north-gate');
   await dm.getByRole('button', { name: 'Captain Thorne', exact: true }).click();
   await dm.getByText('Perform Captain Thorne (DM)', { exact: true }).click();
   await dm.getByRole('button', { name: 'Speak as Captain Thorne' }).click();
-  await expect(dm.getByRole('status', { name: 'Captain Thorne says' })).toContainText(
-    'is not in the same place as this character',
-  );
-  // Remembered events read as world time, not raw seconds.
+  // A refusal is the panel's own status, never framed as the NPC speaking.
+  const refusal = dm
+    .getByRole('status')
+    .filter({ hasText: 'is not in the same place as this character' });
+  await expect(refusal).toBeVisible();
+  await expect(refusal).not.toContainText('Spoken, not a recorded fact.');
+  await expect(dm.getByRole('status', { name: 'Captain Thorne says' })).toHaveCount(0);
+  // Remembered events, in the Journal, read as world time, not raw seconds.
+  await openSheet(dm, 'Journal');
+  await expect(dm.locator('.memory-list')).toBeVisible();
   await expect(dm.locator('.memory-list')).not.toContainText(/-?\d{6,}/);
   await dm.close();
 });

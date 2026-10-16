@@ -8,5 +8,7 @@
   "history": "ui-live-history",
   "historyView": "ui-live-history-view",
   "historyPages": "ui-live-history-pages",
-  "skipWindow": "ui-live-skip-window"
+  "skipWindow": "ui-live-skip-window",
+  "sceneWindow": "ui-live-scene-window",
+  "bookWindow": "ui-live-book-window"
 }

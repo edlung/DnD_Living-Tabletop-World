@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-15",
+  "source": "Owner messages in a Claude Code session (mid-turn, while Stage 310 was being finished)",
+  "supersedes": {
+    "OWNER_DECISIONS_9_2026-10-15.json#Q8visualDirection": "The session no longer makes and picks among its own prototypes; the owner's concepts set the direction"
+  },
+  "messages": [
+    "Делаю правку. Весь арт должен делать GPT. Я вижу что рыночную площадь и поле боя рисовал ты, а не модель от openai",
+    "в проекте были концепты. GPT должен был их делать",
+    "Вот по этим концептам нужно строить. GPT будет все нужное генерировать. Art, наборы assets, UI, equip, skins, models, etc."
+  ],
+  "decisions": {
+    "artByGpt": "Every picture in the product is made by an OpenAI image model (GPT): concepts, scenes, portraits, battle-map pieces, item and spell art, figures, textures, ornaments, icons. Claude never draws illustration (no hand-made SVG or CSS pictures). Code draws only exact game markup over GPT art: grid, selection and side rings, movement path, area preview, bars, text and controls.",
+    "Q8visualDirection": "The owner's seven concept images (docs/design/stage-320/owner-concepts/, made with GPT) are the visual direction for Stage 320 and the art style for Stage 330 (Q6). The session's three Claude-drawn prototypes are withdrawn: they are not art and are not kept in the product.",
+    "assetScope": "GPT generates all needed art, asset sets, UI graphics, equipment art, skins and figures ('Art, наборы assets, UI, equip, skins, models, etc.'). Curated and UI-kit pictures go through Codex CLI on the owner's ChatGPT subscription (owner decision Q6, 2026-10-15); in-play pictures go through the OpenRouter OpenAI image model within the $5 ceiling."
+  },
+  "conceptFiles": {
+    "01-overview.webp": "9e2844226dc35f028934a9f5d0389dc1beb8136e4b3c946866cfff1c1bbfee41",
+    "02-four-screens.webp": "c22db74872b5f4377a645cfa65144f00d77f1173de699f379ccefde8bd468bc0",
+    "03-equipment.webp": "7a3c42feb76c67fe21385c9ee8e01c128b65b54e364700dc3d16347c7ecf44cc",
+    "04-dm-creates-a-place.webp": "c093a371a58364c7edbf3bd0ad526429ea5611252ee3590fdb0b733e3a4140a4",
+    "05-combat-bridge.webp": "0fa1dd3b69fc86368bae66db56df6512ad9d0910f10b62090321bff28cb84ac9",
+    "06-combat-states.webp": "3333bd34f6231eb2bb74aff6374539f6c24f2a2da18f5d04367e00d63c8e0a4e",
+    "07-player-and-dm-view.webp": "9a7f24f14f2df38eb41809cd73c0f52e71c2e65346be1cf914a066cc3a609787"
+  },
+  "sessionNotes": [
+    "The concepts carry the placeholder brand 'D&D NEXT'. D&D is a third-party trademark; the product keeps its own name (Living Tabletop World / «Живой настольный мир») with a GPT-made emblem.",
+    "The concepts show features beyond the alpha (level-up, a 120-spell book, a world map of regions, a relationship graph, triggers, voice input). Stage 320 is presentation only; docs/STAGE_320_DESIGN.md maps each concept element to an existing surface or lists it as outside the alpha."
+  ]
+}

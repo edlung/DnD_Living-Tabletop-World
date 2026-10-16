@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { enterWorld, TOKENS } from './support/session.ts';
+import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 
 /**
  * The Russian Ravenford in the browser (docs/adr/0031-play-language.md §10): a Russian
@@ -26,7 +27,7 @@ test('a Russian player finds Mira, asks about the caravan, and reads only Russia
   await enterWorld(page, TOKENS.player, CAMPAIGNS.player);
   await expect(page.getByRole('heading', { level: 1, name: 'Пропавший караван' })).toBeVisible();
   await expect(page.getByLabel('Вид', { exact: true })).toBeVisible();
-  await page.getByLabel('Место', { exact: true }).selectOption('market-square');
+  await chooseLocation(page, 'market-square', { sheet: 'Места', label: 'Место' });
   await page.getByRole('button', { name: 'Мира Вейл', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Что вы хотите сделать?' })).toBeVisible();
   await expectNoEnglish(page, 'Mira selected');
@@ -50,7 +51,8 @@ test('a Russian DM adds Tomas Reed from a Russian sentence, previews, edits, and
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, CAMPAIGNS.dm);
-  await page.getByText('Добавить в мир (мастер)').click();
+  await openSheet(page, 'Добавить в мир');
+  await expect(page.getByText('Добавить в мир (мастер)', { exact: true })).toBeVisible();
   await page
     .getByLabel('Опишите, что добавить')
     .fill('Добавь: молодой стражник у Северных ворот, который видел, как ушёл караван.');
@@ -64,40 +66,60 @@ test('a Russian DM adds Tomas Reed from a Russian sentence, previews, edits, and
   await expectNoEnglish(page, 'committed');
 });
 
-/** Identifiers the page shows for what the player does not know by name (a creature's ID). */
-const asIdentifier = /^(?:[a-z]+(?:-[a-z0-9]+)+|[A-Z]{1,3}\d?)$/;
-
-async function expectNoEnglishExceptIds(page: Page, where: string): Promise<void> {
-  const text = await page.locator('body').innerText();
-  const words = (text.match(/[A-Za-z][A-Za-z0-9'’-]{2,}/g) ?? []).filter(
-    (word) => !asIdentifier.test(word),
-  );
-  expect(words, `${where}: English words on a Russian page`).toEqual([]);
-}
-
 test('a Russian player answers a Counterspell window, and the answer is in Russian', async ({
   page,
 }) => {
   await enterWorld(page, TOKENS.player, 'ui-ru-combat');
   const prompt = page.getByRole('alertdialog', { name: 'Реакция' });
-  await expect(prompt).toContainText('Заклинает: goblin-shaman');
+  await expect(prompt).toContainText('Заклинает: Неопознанное существо 4');
   await expect(prompt).toContainText('Компоненты: В, С');
   await expect(page.getByRole('group', { name: 'Поле боя' })).toBeVisible();
-  await expectNoEnglishExceptIds(page, 'reaction window');
+  await expectNoEnglish(page, 'reaction window');
   await prompt.getByRole('button', { name: 'Применить контрзаклинание' }).click();
   await expect(
     page
       .getByRole('status')
       .filter({ hasText: /Контрзаклинание остановило заклинание\.|Реакция использована\./ }),
   ).toBeVisible();
-  await expectNoEnglishExceptIds(page, 'after the answer');
+  await expectNoEnglish(page, 'after the answer');
+});
+
+test('a Russian player’s battlefield speaks Russian: the board, the turn, a target and its options', async ({
+  page,
+}) => {
+  await enterWorld(page, TOKENS.player, 'ui-ru-combat-turn');
+  const field = page.getByRole('region', { name: 'Поле боя', exact: true });
+  await expect(page.locator('.turn-banner')).toHaveText('Ваш ход');
+  const square = (x: number, y: number) =>
+    field.getByRole('button', { name: new RegExp(`^Клетка ${String(x)}, ${String(y)}(:|$)`) });
+  await expect(square(0, 9)).toHaveAccessibleName(/трудная местность/);
+  await expect(square(7, 4)).toHaveAccessibleName(/половинное укрытие/);
+  await expect(square(2, 6)).toHaveAccessibleName(/\(вы\), отряд/);
+  const tray = field.getByRole('region', { name: 'Действия хода', exact: true });
+  await expect(tray.getByRole('button', { name: 'Закончить ход' })).toBeVisible();
+  await expect(page.getByRole('status', { name: 'Сводка боя' })).toContainText('Раунд 1');
+  await expectNoEnglish(page, 'the battlefield');
+  await square(8, 4).click();
+  const options = field.getByRole('region', { name: 'Варианты действий: Неопознанное существо 1' });
+  await expect(options).toContainText('Атаковать из длинного лука: Неопознанное существо 1');
+  await expect(
+    tray.getByRole('button', { name: 'Атаковать из длинного лука: Неопознанное существо 1' }),
+  ).toBeEnabled();
+  await expectNoEnglish(page, 'a chosen target');
+  await page.getByRole('button', { name: 'Плоское поле', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Плоское поле', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(square(8, 4)).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('a Russian DM moves time and weather, and writes a chapter that reads in Russian', async ({
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, 'ui-ru-time');
-  await page.getByText('Время и погода (мастер)', { exact: true }).click();
+  await openSheet(page, 'Время и погода');
+  await expect(page.getByText('Время и погода (мастер)', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Перейти к дню 2, 10:00' }).click();
   await expect(page.getByLabel('Условия сцены')).toContainText('День 2 · 10:00');
   await page.getByLabel('Погода: Рыночная площадь').selectOption('rain');
@@ -105,6 +127,7 @@ test('a Russian DM moves time and weather, and writes a chapter that reads in Ru
   await expect(page.getByLabel('Условия сцены')).toContainText('дождь');
   await expectNoEnglish(page, 'time and weather');
 
+  await openChronicle(page, 'Хроника');
   await page.getByText('Написать главу (мастер)', { exact: true }).click();
   await expect(page.getByLabel('Название')).toHaveValue('Глава I — Тени на Торговой дороге');
   await page.getByRole('button', { name: 'Написать главу', exact: true }).click();

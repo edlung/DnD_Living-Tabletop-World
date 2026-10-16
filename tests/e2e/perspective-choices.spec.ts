@@ -7,6 +7,7 @@ import {
   holdResponse,
   TOKENS,
 } from './support/session.ts';
+import { sceneRegion } from './support/shell.ts';
 
 for (const transition of ['delayed', 'failed'] as const) {
   test(`hidden character choices disappear during ${transition} public preview and return only in DM`, async ({
@@ -56,7 +57,8 @@ for (const transition of ['delayed', 'failed'] as const) {
       fail = false;
       await page.getByRole('button', { name: 'Refresh world', exact: true }).click();
     }
-    await expect(page.getByLabel('Location', { exact: true })).toBeVisible();
+    // The public view has loaded: its scene is shown.
+    await expect(sceneRegion(page)).toBeVisible();
     await expectPlayerBoundary(page);
     expect(await page.content()).not.toContain('elowen-sigil-lore');
     await choices.selectOption('DM');

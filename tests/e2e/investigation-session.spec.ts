@@ -6,6 +6,7 @@ import {
   INVESTIGATION_CAMPAIGNS,
 } from './support/investigation.ts';
 import { holdResponse } from './support/session.ts';
+import { sceneRegion } from './support/shell.ts';
 
 test('an accepted private action completing after a perspective change cannot enter the public view', async ({
   page,
@@ -18,7 +19,8 @@ test('an accepted private action completing after a perspective change cannot en
     .click();
   await pending.requested;
   await page.getByLabel('Perspective', { exact: true }).selectOption('PUBLIC');
-  await expect(page.getByLabel('Location', { exact: true })).toBeVisible();
+  // The public view has loaded: its scene is shown.
+  await expect(sceneRegion(page)).toBeVisible();
   expect(await page.content()).not.toContain('before dawn');
   pending.release();
   await pending.completed;

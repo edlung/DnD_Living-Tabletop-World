@@ -11,6 +11,7 @@ import {
   submit,
 } from './support/combat.ts';
 import { TOKENS } from './support/session.ts';
+import { openSheet } from './support/shell.ts';
 
 const prompt = (page: Page) => page.getByRole('alertdialog', { name: 'Reaction' });
 const total = (slots: readonly number[]) => slots.reduce((a, b) => a + b, 0);
@@ -20,7 +21,7 @@ test('a valid Counterspell is answered by the domain, spends one slot, and close
 }) => {
   const campaign = COMBAT_CAMPAIGNS.counter;
   await enterCombat(page, campaign);
-  await expect(prompt(page)).toContainText('goblin-shaman is casting a spell');
+  await expect(prompt(page)).toContainText('Unidentified creature 4 is casting a spell');
   await expect(prompt(page)).toContainText('Components: V, S');
   // The spell itself is the caster's secret, not the reacting player's.
   expect(await page.content()).not.toContain('ashen-bolt');
@@ -40,11 +41,17 @@ test('a valid Counterspell is answered by the domain, spends one slot, and close
   if (countered.body.outcome?.countered) expect(await playerHp(page)).toBe(78);
 });
 
-test('Ignore lets the spell resolve without spending a slot', async ({ page }) => {
+test('Don’t interfere lets the spell resolve without spending a slot', async ({ page }) => {
   const campaign = COMBAT_CAMPAIGNS.ignore;
   await enterCombat(page, campaign);
+  // The question takes focus once and names the reaction it offers.
+  await expect(prompt(page)).toBeFocused();
+  await expect(prompt(page)).toHaveAccessibleName('Reaction: Counterspell');
   const before = total(await expendedSlots(page, campaign));
-  const ignored = await submit(page, prompt(page).getByRole('button', { name: 'Ignore' }));
+  const ignored = await submit(
+    page,
+    prompt(page).getByRole('button', { name: 'Don’t interfere', exact: true }),
+  );
   expectAccepted(ignored);
   expect(ignored.body.outcome?.kind).toBe('DeclineReaction');
   await expect(prompt(page)).toHaveCount(0);
@@ -62,11 +69,20 @@ test('a window the DM closes expires for the player, and the stale answer is ref
   const dm = await browser.newPage();
   // The player's live connection is down (ADR 0033), so only the backend learns of the close.
   await player.route(/\/api\/campaigns\/[^/]+\/live\?/, (route) => route.abort('failed'));
+  let encounterReads = 0;
+  player.on('response', (response) => {
+    const path = new URL(response.url()).pathname;
+    if (response.request().method() === 'GET' && path.endsWith('/encounter')) encounterReads += 1;
+  });
   await enterCombat(player, campaign);
   await expect(prompt(player)).toBeVisible();
+  // Its screen settles first: the read that follows every read (ADR 0033 §4) is done before
+  // the DM acts, and with no signal nothing reads again.
+  await expect.poll(() => encounterReads).toBeGreaterThanOrEqual(2);
   const before = total(await expendedSlots(player, campaign));
 
   await enterCombat(dm, campaign, TOKENS.dm);
+  await openSheet(dm, 'Encounter');
   await expect(dm.getByText('Encounter controls (DM)', { exact: true })).toBeVisible();
   const closed = await submit(dm, dm.getByRole('button', { name: 'Close reaction window' }));
   expectAccepted(closed);

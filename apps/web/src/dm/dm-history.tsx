@@ -1,9 +1,10 @@
 import type { DmHistoryEntry, EntityRef } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { Glyph } from '../visual/glyph.tsx';
 import { historyPageKey, historyPageLoader, PageCursor } from './history-pages.ts';
 import { entryDetails, entryStatus, entryTitle, STEP_TEXT } from './history-text.ts';
 import { useHistoryUndo } from './use-history-undo.ts';
@@ -12,26 +13,28 @@ type Actions = ReturnType<typeof useHistoryUndo>;
 
 /**
  * The DM history with its undo (docs/adr/0033-live-session.md §7; replaces the screen-local
- * undo of ADR 0029 §8). Read from the server in the DM perspective only, so it survives a
- * reload; the world screen remounts on a perspective change, which drops every row. Pages
- * follow the live signal in the background; each older page is read from the cursor of the
- * page above it, so nothing is skipped or repeated when new entries arrive, and is known by its
- * place, so a moved cursor neither empties it nor closes the pages opened below it
- * (`history-pages.ts`).
+ * undo of ADR 0029 §8), in the History sheet. Read from the server in the DM perspective only,
+ * and only while the sheet is open, so it survives a reload; the world screen remounts on a
+ * perspective change, which drops every row. Pages follow the live signal in the background;
+ * each older page is read from the cursor of the page above it, so nothing is skipped or
+ * repeated when new entries arrive, and is known by its place, so a moved cursor neither empties
+ * it nor closes the pages opened below it (`history-pages.ts`).
  */
 export function DmHistory({
   api,
+  open,
   directory,
   onWorldChanged,
   onAuthoringUndone,
 }: {
   readonly api: WorldApi;
+  /** The History sheet is open: the history is read, and followed, only meanwhile. */
+  readonly open: boolean;
   readonly directory: readonly EntityRef[];
   readonly onWorldChanged: () => void;
   readonly onAuthoringUndone: (proposalId: string) => void;
 }) {
   const t = useT();
-  const [open, setOpen] = useState(false);
   const [round, setRound] = useState(0);
   const actions = useHistoryUndo(api, (undone) => {
     setRound((value) => value + 1);
@@ -40,14 +43,7 @@ export function DmHistory({
   });
   const notice = actions.notice;
   return (
-    <details
-      className="disclosure dm-history"
-      open={open}
-      onToggle={(event) => {
-        setOpen(event.currentTarget.open);
-      }}
-    >
-      <summary>{t('History and undo (DM)')}</summary>
+    <div className="dm-history">
       {notice && (
         <p
           role={notice.kind === 'error' ? 'alert' : 'status'}
@@ -68,7 +64,7 @@ export function DmHistory({
           />
         </section>
       )}
-    </details>
+    </div>
   );
 }
 
@@ -162,50 +158,78 @@ function HistoryEntry({
   readonly actions: Actions;
 }) {
   const t = useT();
+  const ids = useId();
   const step = (type: keyof typeof STEP_TEXT) => t(STEP_TEXT[type]);
   const { undo } = entry;
+  // The preview says the world refuses this undo now: Undo stays, disabled, its reason said.
+  const blockers = undo && !undo.possible ? undo.blockers : [];
+  const reason =
+    undo && !undo.possible
+      ? [`${ids}-reason`, ...blockers.map((_, index) => `${ids}-step-${String(index)}`)].join(' ')
+      : undefined;
   return (
-    <li className="dm-history-entry">
-      <div className="section-heading">
-        <strong>{entryTitle(t, entry, directory)}</strong>
-        <span className="status-pill">{entryStatus(t, entry)}</span>
+    <li className={`dm-history-entry dm-history-entry--${entry.status.toLowerCase()}`}>
+      <Glyph
+        name={entry.kind === 'authoring' ? 'add-character' : 'perform'}
+        className="history-kind"
+      />
+      <div className="history-body">
+        <div className="section-heading">
+          <strong>{entryTitle(t, entry, directory)}</strong>
+          <span className="status-pill">{entryStatus(t, entry)}</span>
+        </div>
+        <p className="history-when">
+          <Glyph name="time" />
+          {entryDetails(t, entry)}
+        </p>
+        {undo?.possible && (
+          <p className="history-undo-preview">
+            <Glyph name="undo" />
+            {t('Undo is possible now: the world allows it.')}
+          </p>
+        )}
+        {undo && (
+          <div className="action-row">
+            <button
+              disabled={actions.busy || !undo.possible}
+              aria-describedby={reason}
+              onClick={() => {
+                void actions.undo(entry);
+              }}
+            >
+              <Glyph name="undo" />
+              {entry.kind === 'authoring' ? t('Undo this addition') : t('Undo this action')}
+            </button>
+          </div>
+        )}
+        {undo && !undo.possible && blockers.length === 0 && (
+          <p id={`${ids}-reason`} className="muted">
+            {t('This cannot be undone now.')}
+          </p>
+        )}
+        {undo && !undo.possible && blockers.length > 0 && (
+          <div role="group" aria-label={t('Undo blockers')} className="issue-list">
+            <strong id={`${ids}-reason`}>
+              {t('Undo is blocked by later steps that depend on this:')}
+            </strong>
+            <ul>
+              {blockers.map((blocker, index) => (
+                <li key={blocker.commandId}>
+                  <span id={`${ids}-step-${String(index)}`}>{step(blocker.commandType)}</span>{' '}
+                  <button
+                    disabled={actions.busy}
+                    onClick={() => {
+                      void actions.undoBlocker(blocker.commandId);
+                    }}
+                  >
+                    {t('Undo “{step}” first', { step: step(blocker.commandType) })}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
-      <p className="muted">{entryDetails(t, entry)}</p>
-      {undo && (
-        <div className="action-row">
-          <button
-            disabled={actions.busy}
-            onClick={() => {
-              void actions.undo(entry);
-            }}
-          >
-            {entry.kind === 'authoring' ? t('Undo this addition') : t('Undo this action')}
-          </button>
-        </div>
-      )}
-      {undo && !undo.possible && undo.blockers.length === 0 && (
-        <p className="muted">{t('This cannot be undone now.')}</p>
-      )}
-      {undo && !undo.possible && undo.blockers.length > 0 && (
-        <div role="group" aria-label={t('Undo blockers')} className="issue-list">
-          <strong>{t('Undo is blocked by later steps that depend on this:')}</strong>
-          <ul>
-            {undo.blockers.map((blocker) => (
-              <li key={blocker.commandId}>
-                {step(blocker.commandType)}{' '}
-                <button
-                  disabled={actions.busy}
-                  onClick={() => {
-                    void actions.undoBlocker(blocker.commandId);
-                  }}
-                >
-                  {t('Undo “{step}” first', { step: step(blocker.commandType) })}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </li>
   );
 }

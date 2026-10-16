@@ -1,82 +1,85 @@
 import type { EntityRef } from '@ltw/contracts';
+import { useT } from '@ltw/ui';
 import { useState } from 'react';
 
-import type { WorldApi } from '../api/client.ts';
-import { DmHistory } from '../dm/dm-history.tsx';
+import { Glyph } from '../visual/glyph.tsx';
 import { ProposalReview } from './proposal-review.tsx';
-import { useAuthoring } from './use-authoring.ts';
-import { useT } from '@ltw/ui';
+import type { useAuthoring } from './use-authoring.ts';
 
 /**
- * DM only. Natural-language intent → structured preview → edit, confirm, or
- * cancel → a native world entity; undo from the DM history beside it, read from
- * the server so it survives a reload (ADR 0033 §7). Rendered nowhere else, and
- * held in memory only, so a change of perspective discards every preview,
- * history row and private fact it showed.
+ * DM only, in the "Add to the world" sheet (docs/STAGE_320_DESIGN.md §5.7; concept 04: speak →
+ * the world takes shape → review and adjust → part of the world). The intent field with the
+ * quill; "Creating…" while the assistant turns the words into a proposal (a ring that turns,
+ * still under reduced motion); then the proposal card. Undo is the History sheet's (ADR 0033
+ * §7). The authoring session is held by the DM's sheets, in memory only, so a change of
+ * perspective discards every preview and private fact it showed; the sheet stays mounted while
+ * closed, so a draft survives closing it and every refresh.
  */
 export function AuthoringPanel({
-  api,
+  authoring,
   directory,
-  onWorldChanged,
 }: {
-  readonly api: WorldApi;
+  readonly authoring: ReturnType<typeof useAuthoring>;
   readonly directory: readonly EntityRef[];
-  readonly onWorldChanged: () => void;
 }) {
   const t = useT();
-  const authoring = useAuthoring(api, onWorldChanged);
   const [text, setText] = useState('');
   const draft = authoring.proposal?.proposal.status === 'DRAFT';
-  const shown = authoring.proposal?.proposal.proposalId;
+  const creating = authoring.busy && !authoring.proposal;
   return (
-    <>
-      <details className="disclosure authoring">
-        <summary>{t('Add to the world (DM)')}</summary>
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            if (text.trim() !== '') void authoring.propose(text.trim());
+    <div className="authoring">
+      <form
+        className="authoring-intent"
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (text.trim() !== '') void authoring.propose(text.trim());
+        }}
+      >
+        <label htmlFor="authoring-intent">
+          <Glyph name="chronicle" />
+          {t('Describe what to add')}
+        </label>
+        <textarea
+          id="authoring-intent"
+          value={text}
+          placeholder={t('Add a young guard near North Gate who saw the caravan leave.')}
+          onChange={(event) => {
+            setText(event.target.value);
           }}
-        >
-          <label htmlFor="authoring-intent">{t('Describe what to add')}</label>
-          <textarea
-            id="authoring-intent"
-            value={text}
-            placeholder={t('Add a young guard near North Gate who saw the caravan leave.')}
-            onChange={(event) => {
-              setText(event.target.value);
-            }}
-          />
-          <button type="submit" disabled={authoring.busy || draft || text.trim() === ''}>
+        />
+        <div className="authoring-intent-row">
+          <button
+            type="submit"
+            className="primary-button"
+            disabled={authoring.busy || draft || text.trim() === ''}
+          >
+            <Glyph name="ai-assistant" />
             {t('Propose')}
           </button>
-        </form>
-        {authoring.notice && (
-          <p
-            role={authoring.notice.kind === 'error' ? 'alert' : 'status'}
-            className={`authoring-notice ${authoring.notice.kind}`}
-          >
-            {t(authoring.notice.text)}
-          </p>
-        )}
-        {authoring.proposal && (
-          <ProposalReview
-            data={authoring.proposal}
-            directory={directory}
-            busy={authoring.busy}
-            actions={authoring}
-          />
-        )}
-      </details>
-      <DmHistory
-        api={api}
-        directory={directory}
-        onWorldChanged={onWorldChanged}
-        onAuthoringUndone={(proposalId) => {
-          // The review of that proposal shows it undone, as the server now holds it.
-          if (proposalId === shown) void authoring.reload();
-        }}
-      />
-    </>
+          {creating && (
+            <p role="status" className="authoring-creating">
+              <span className="creating-ring" aria-hidden="true" />
+              {t('Creating…')}
+            </p>
+          )}
+        </div>
+      </form>
+      {authoring.notice && (
+        <p
+          role={authoring.notice.kind === 'error' ? 'alert' : 'status'}
+          className={`authoring-notice ${authoring.notice.kind}`}
+        >
+          {t(authoring.notice.text)}
+        </p>
+      )}
+      {authoring.proposal && (
+        <ProposalReview
+          data={authoring.proposal}
+          directory={directory}
+          busy={authoring.busy}
+          actions={authoring}
+        />
+      )}
+    </div>
   );
 }

@@ -12,6 +12,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { REASON_TEXT } from '../dm/history-text.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { Glyph } from '../visual/glyph.tsx';
 import { standInChoices, standInReason, type StandIn, type StandInChoice } from './stand-in.ts';
 
 /**
@@ -76,6 +77,10 @@ export function StandInControls({
   };
   return (
     <section className="stand-in" aria-label={t('Act for a player')}>
+      <h4>
+        <Glyph name="perform" />
+        {t('Act for a player')}
+      </h4>
       <p className="muted">
         {t('Presence is shown for information only. Whether a player is away is your call.')}
       </p>
@@ -83,7 +88,8 @@ export function StandInControls({
         const present = connected(choice.characterId);
         return (
           <div key={choice.characterId} className="stand-in-choice">
-            <p>
+            <p className="stand-in-who">
+              <span className={`stand-in-dot${present ? ' is-present' : ''}`} aria-hidden="true" />
               <strong>{choice.name}</strong>
               {present !== undefined && (
                 <span className="muted">
@@ -100,6 +106,7 @@ export function StandInControls({
                     ask(choice, 'skip');
                   }}
                 >
+                  <Glyph name="end-turn" />
                   {t('Skip the turn')}
                 </button>
               )}
@@ -109,6 +116,7 @@ export function StandInControls({
                   ask(choice, 'act');
                 }}
               >
+                <Glyph name="perform" />
                 {t('Act as {name}', { name: choice.name })}
               </button>
             </div>
@@ -154,7 +162,7 @@ export function StandInControls({
             }}
           />
           <div className="action-row">
-            <button type="submit" disabled={locked || reason === null}>
+            <button type="submit" className="primary-button" disabled={locked || reason === null}>
               {pending.action === 'skip'
                 ? t('Skip the turn of {name}', { name: pending.name })
                 : t('Start acting as {name}', { name: pending.name })}

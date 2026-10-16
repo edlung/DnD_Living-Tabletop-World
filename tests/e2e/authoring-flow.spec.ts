@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import {
+  ADD_TO_THE_WORLD,
   AUTHORING_CAMPAIGNS,
   enterAsDm,
   playerCommand,
@@ -8,6 +9,7 @@ import {
   review,
 } from './support/authoring.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
+import { chooseLocation, dockButton, openSheet } from './support/shell.ts';
 
 const campaign = AUTHORING_CAMPAIGNS.flow;
 const SECRET = 'saw the caravan leave';
@@ -22,10 +24,11 @@ test('Tomas Reed goes from a sentence to a previewed, edited, confirmed, native 
   await expect(review(dm)).toContainText('Risk: L2');
   await expect(review(dm).getByText('revision 1')).toBeVisible();
   // Nothing exists yet: a preview is not the world.
-  await dm.getByLabel('Location', { exact: true }).selectOption('north-gate');
+  await chooseLocation(dm, 'north-gate');
   await expect(dm.getByRole('button', { name: 'Tomas Reed', exact: true })).toHaveCount(0);
 
   // Editing stores a new revision and recomputes the preview and its confirmation.
+  await openSheet(dm, ADD_TO_THE_WORLD);
   await review(dm).getByText('Edit proposal', { exact: true }).click();
   await dm
     .getByLabel('Description', { exact: true })
@@ -65,7 +68,13 @@ test('Tomas Reed goes from a sentence to a previewed, edited, confirmed, native 
   const content = await player.content();
   expect(content, 'player DOM must not contain the private account').not.toContain(SECRET);
   const shown = await player.locator('body').innerText();
-  for (const hidden of ['Confirm and add', 'Add to the world (DM)', 'authoring', 'AI-generated']) {
+  for (const hidden of [
+    'Confirm and add',
+    'Add to the world (DM)',
+    ADD_TO_THE_WORLD,
+    'authoring',
+    'AI-generated',
+  ]) {
     expect(shown, `player view must not show ${hidden}`).not.toContain(hidden);
   }
   await traffic.assertPlayerBoundary([SECRET, 'ApplyAuthoring', 'proposalId']);
@@ -74,12 +83,14 @@ test('Tomas Reed goes from a sentence to a previewed, edited, confirmed, native 
   // The DM previewing the Player View keeps no DM preview or private knowledge on screen.
   await dm.getByLabel('Perspective', { exact: true }).selectOption('CHARACTER:elowen-starwhisper');
   await expect(dm.getByText('Add to the world (DM)', { exact: true })).toHaveCount(0);
+  await expect(dockButton(dm, ADD_TO_THE_WORLD)).toHaveCount(0);
   const previewed = await dm.content();
   for (const hidden of [SECRET, 'Confirm and add', 'Edit proposal', 'Proposed from']) {
     expect(previewed, `Player View must not contain ${hidden}`).not.toContain(hidden);
   }
   await dm.getByLabel('Perspective', { exact: true }).selectOption('DM');
-  await dm.getByText('Add to the world (DM)', { exact: true }).click();
+  await openSheet(dm, ADD_TO_THE_WORLD);
+  await expect(dm.getByText('Add to the world (DM)', { exact: true })).toBeVisible();
   await expect(review(dm)).toHaveCount(0);
   await dm.close();
 });

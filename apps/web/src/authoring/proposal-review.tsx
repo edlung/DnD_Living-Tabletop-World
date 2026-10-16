@@ -6,11 +6,13 @@ import type {
   ProposableCommand,
   ResolutionOption,
 } from '@ltw/contracts';
-import { useState } from 'react';
+import { useT } from '@ltw/ui';
+import { useEffect, useId, useRef, useState } from 'react';
 
+import { Glyph } from '../visual/glyph.tsx';
 import { describeCommand } from './command-text.ts';
 import { ProposalEditor } from './proposal-editor.tsx';
-import { useT } from '@ltw/ui';
+import { whoWillSee } from './who-sees.ts';
 
 const CHANGE_TEXT: Readonly<Record<string, string>> = {
   EntityCreated: 'A new person or place is created',
@@ -52,11 +54,12 @@ function Options({
 }
 
 /**
- * One proposal as the DM must judge it: what it would do, how risky it is, what
- * blocks it, what it warns about, and the single confirm. Everything shown is
- * the server's latest preview; a new revision clears every acknowledgement. A
- * committed proposal is undone from the DM history (ADR 0033 §7), which survives
- * a reload; this review is screen-local.
+ * One proposal as the DM must judge it (docs/STAGE_320_DESIGN.md §5.7): a card listing what
+ * will be added (each with the check glyph), who will see it, how risky it is, what blocks it
+ * and what it warns about, then Edit, Confirm and Cancel; afterwards "Added to the world ·
+ * revision N". Everything shown is the server's latest preview; a new revision clears every
+ * acknowledgement. A committed proposal is undone from the DM history (ADR 0033 §7), which
+ * survives a reload; this review is screen-local.
  */
 export function ProposalReview({
   data,
@@ -76,8 +79,16 @@ export function ProposalReview({
   };
 }) {
   const t = useT();
+  const ids = useId();
   const { proposal, preview } = data;
-  const [accepted, setAccepted] = useState<readonly string[]>([]);
+  // Acknowledgements and the open editor belong to one revision: a new one starts with neither.
+  const [acknowledged, setAcknowledged] = useState<{
+    readonly revision: number;
+    readonly keys: readonly string[];
+  } | null>(null);
+  const accepted = acknowledged?.revision === proposal.revision ? acknowledged.keys : [];
+  const [editingRevision, setEditingRevision] = useState<number | null>(null);
+  const editing = editingRevision === proposal.revision;
   const names = new Map(
     proposal.commands.flatMap((command) =>
       command.type === 'CreateEntity' && command.entityId !== undefined
@@ -89,25 +100,58 @@ export function ProposalReview({
   const warnings: readonly AuthoringWarning[] = preview?.warnings ?? [];
   const allAccepted = warnings.every((warning) => accepted.includes(warning.key));
   const issues: readonly AuthoringIssue[] = preview?.issues ?? [];
+  const draft = proposal.status === 'DRAFT' && preview !== null;
+  // A new proposal, revision or outcome comes into view in its sheet (the sheet alone scrolls).
+  const card = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const element = card.current;
+    const body = element?.closest<HTMLElement>('.sheet-body');
+    if (!element || !body) return;
+    body.scrollTop += element.getBoundingClientRect().top - body.getBoundingClientRect().top - 8;
+  }, [proposal.proposalId, proposal.revision, proposal.status]);
   return (
     <section
-      className="proposal-review"
+      ref={card}
+      className={`proposal-review proposal-review--${proposal.status.toLowerCase()}`}
       aria-label={t('Authoring proposal')}
       key={`${proposal.proposalId}:${String(proposal.revision)}`}
     >
-      <div className="section-heading">
-        <h3>{proposal.summary}</h3>
+      <header className="proposal-head">
+        <Glyph name="add-character" className="proposal-glyph" />
+        <div className="proposal-title">
+          <p className="eyebrow">{t('Proposal')}</p>
+          <h3>{proposal.summary}</h3>
+        </div>
         <span className="status-pill">
           {t(STATUS_TEXT[proposal.status])} ·{' '}
           {t('revision {revision}', { revision: proposal.revision })}
         </span>
+      </header>
+      <div className="proposal-body">
+        <section className="proposal-part" aria-labelledby={`${ids}-adds`}>
+          <h4 id={`${ids}-adds`}>{t('What will be added')}</h4>
+          <ol className="proposal-commands" aria-label={t('Proposed changes')}>
+            {proposal.commands.map((command, index) => (
+              <li key={index}>
+                <Glyph name="confirm" />
+                <span>{describeCommand(t, command, directory, names)}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section className="proposal-part proposal-who" aria-labelledby={`${ids}-who`}>
+          <h4 id={`${ids}-who`}>
+            <Glyph name="who-sees" />
+            {t('Who will see')}
+          </h4>
+          <ul>
+            {whoWillSee(t, proposal.commands, directory, names).map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </section>
       </div>
-      <ol className="proposal-commands" aria-label={t('Proposed changes')}>
-        {proposal.commands.map((command, index) => (
-          <li key={index}>{describeCommand(t, command, directory, names)}</li>
-        ))}
-      </ol>
-      {proposal.status === 'DRAFT' && preview && (
+      {draft && (
         <>
           <p className="risk-line">
             {t('Risk:')} <strong>{preview.risk.level}</strong>
@@ -137,11 +181,12 @@ export function ProposalReview({
                       type="checkbox"
                       checked={accepted.includes(warning.key)}
                       onChange={(event) => {
-                        setAccepted((current) =>
-                          event.target.checked
-                            ? [...current, warning.key]
-                            : current.filter((key) => key !== warning.key),
-                        );
+                        setAcknowledged({
+                          revision: proposal.revision,
+                          keys: event.target.checked
+                            ? [...accepted, warning.key]
+                            : accepted.filter((key) => key !== warning.key),
+                        });
                       }}
                     />{' '}
                     {warning.message}
@@ -157,16 +202,6 @@ export function ProposalReview({
             </p>
           ))}
           <details className="disclosure">
-            <summary>{t('Edit proposal')}</summary>
-            <ProposalEditor
-              key={proposal.revision}
-              commands={proposal.commands}
-              locations={locations}
-              busy={busy}
-              onApply={actions.revise}
-            />
-          </details>
-          <details className="disclosure">
             <summary>{t('What will change in the world')}</summary>
             <ul>
               {preview.changes.map((change, index) => (
@@ -174,23 +209,50 @@ export function ProposalReview({
               ))}
             </ul>
           </details>
-          <div className="action-row">
+          <div className="action-row proposal-actions">
             <button
+              type="button"
+              className="primary-button"
               disabled={busy || !preview.committable || !allAccepted}
               onClick={() => {
                 actions.commit(accepted);
               }}
             >
+              <Glyph name="confirm" />
               {t('Confirm and add to the world')}
             </button>
-            <button disabled={busy} onClick={actions.cancel}>
+            <button
+              type="button"
+              aria-expanded={editing}
+              aria-controls={`${ids}-editor`}
+              onClick={() => {
+                setEditingRevision(editing ? null : proposal.revision);
+              }}
+            >
+              <Glyph name="perform" />
+              {t('Edit proposal')}
+            </button>
+            <button type="button" disabled={busy} onClick={actions.cancel}>
+              <Glyph name="cancel" />
               {t('Cancel proposal')}
             </button>
+          </div>
+          <div id={`${ids}-editor`} className="proposal-editing" hidden={!editing}>
+            <ProposalEditor
+              key={proposal.revision}
+              commands={proposal.commands}
+              locations={locations}
+              busy={busy}
+              onApply={actions.revise}
+            />
           </div>
         </>
       )}
       {proposal.status === 'COMMITTED' && (
-        <p className="muted">{t('To undo it, use the history and undo list below.')}</p>
+        <p className="proposal-done">
+          <Glyph name="approve" />
+          {t('To undo it, use History in the DM tools.')}
+        </p>
       )}
       {proposal.status !== 'DRAFT' && (
         <div className="action-row">

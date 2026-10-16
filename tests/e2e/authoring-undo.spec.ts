@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import {
+  ADD_TO_THE_WORLD,
   AUTHORING_CAMPAIGNS,
   TOMAS_REQUEST,
   enterAsDm,
@@ -9,11 +10,13 @@ import {
   review,
 } from './support/authoring.ts';
 import { historyEntry, openHistory } from './support/dm.ts';
+import { chooseLocation, openSheet } from './support/shell.ts';
 
 /**
  * Undo of an authoring commit, from the DM history that replaced the review's screen-local
  * undo (docs/adr/0033-live-session.md §7; ADR 0029 §7 behaviour kept: a refused undo names its
- * blockers, each undone explicitly first).
+ * blockers, each undone explicitly first). The history's preview is the world's own dry run:
+ * while it says the undo is refused, Undo is disabled and says why (review of Stage 320).
  */
 const tomas = (page: Page) => page.getByRole('button', { name: 'Tomas Reed', exact: true });
 const commit = (page: Page) => historyEntry(page, `Proposed from: ${TOMAS_REQUEST}`);
@@ -23,7 +26,7 @@ test('an untouched authoring commit is undone as one safe unit', async ({ page }
   await propose(page);
   await review(page).getByRole('button', { name: 'Confirm and add to the world' }).click();
   await expect(review(page)).toContainText('Added to the world');
-  await page.getByLabel('Location', { exact: true }).selectOption('north-gate');
+  await chooseLocation(page, 'north-gate');
   await expect(tomas(page)).toBeVisible();
 
   await openHistory(page);
@@ -33,7 +36,8 @@ test('an untouched authoring commit is undone as one safe unit', async ({ page }
   await expect(
     page.getByRole('status').filter({ hasText: 'Undone. The world no longer holds this.' }),
   ).toBeVisible();
-  // The review of that proposal, still open, now shows it undone as well.
+  // The review of that proposal, still open in its sheet, now shows it undone as well.
+  await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toContainText('Undone');
   await expect(tomas(page)).toHaveCount(0);
 });
@@ -72,22 +76,29 @@ test('undo is refused while the story depends on him, and works after the depend
   }
 
   await openHistory(page);
-  await commit(page).getByRole('button', { name: 'Undo this addition' }).click();
+  const undo = commit(page).getByRole('button', { name: 'Undo this addition' });
   const blockers = commit(page).getByRole('group', { name: 'Undo blockers' });
   await expect(blockers).toContainText('ask about');
-  await expect(
-    page.getByRole('alert').filter({ hasText: 'Other parts of the story now depend on this.' }),
-  ).toBeVisible();
+  // The preview says the world refuses the undo now: the button agrees, and says why.
+  await expect(undo).toBeDisabled();
+  await expect(undo).toHaveAccessibleDescription(
+    'Undo is blocked by later steps that depend on this: ask about',
+  );
   await expect(commit(page)).toContainText('Added to the world');
+  await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toContainText('Added to the world');
-  await page.getByLabel('Location', { exact: true }).selectOption('north-gate');
+  await chooseLocation(page, 'north-gate');
   await expect(tomas(page)).toBeVisible();
 
   // The DM resolves the dependency explicitly, then the same undo succeeds.
+  await openHistory(page);
   await blockers.getByRole('button', { name: 'Undo “ask about” first' }).click();
   await expect(blockers).toHaveCount(0);
-  await commit(page).getByRole('button', { name: 'Undo this addition' }).click();
+  await expect(undo).toBeEnabled();
+  await expect(undo).toHaveAccessibleDescription('');
+  await undo.click();
   await expect(commit(page)).toContainText('Undone');
+  await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toContainText('Undone');
   await expect(tomas(page)).toHaveCount(0);
 });

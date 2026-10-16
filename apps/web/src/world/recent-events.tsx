@@ -5,6 +5,7 @@ import { useCallback } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
+import { Glyph } from '../visual/glyph.tsx';
 
 /** Remembered events are the existing scoped projection, never raw world history. */
 export function RecentEvents({ api }: { readonly api: WorldApi }) {
@@ -15,8 +16,8 @@ export function RecentEvents({ api }: { readonly api: WorldApi }) {
   );
   const { resource, retry } = useResource('memories', load);
   return (
-    <section className="recent-events" aria-label={t('Remembered events')}>
-      <h2>{t('Remembered events')}</h2>
+    <section className="recent-events sheet-section" aria-label={t('Remembered events')}>
+      <h3>{t('Remembered events')}</h3>
       {resource.status !== 'ready' ? (
         <StatusPanel
           state={resource.status}
@@ -29,7 +30,8 @@ export function RecentEvents({ api }: { readonly api: WorldApi }) {
         <ul className="memory-list">
           {resource.value.memories.map(({ memory }) => (
             <li key={memory.memoryId}>
-              <span className="eyebrow">
+              <span className="memory-meta">
+                <Glyph name="memory" />
                 {t(memory.memoryKind.replaceAll('_', ' ').toLowerCase())} ·{' '}
                 {formatWorldTime(memory.occurredAt, t)}
               </span>

@@ -5,5 +5,13 @@
   "sessionPlayer": "ui-session-player",
   "sessionDm": "ui-session-dm",
   "aiFeedback": "ui-ai-feedback",
-  "aiNoStart": "ui-ai-no-start"
+  "aiNoStart": "ui-ai-no-start",
+  "outcome": "ui-dm-outcome",
+  "conversation": "ui-dm-conversation",
+  "drafts": "ui-dm-drafts",
+  "book": "ui-dm-book",
+  "a11y": "ui-dm-a11y",
+  "motion": "ui-dm-motion",
+  "pinned": "ui-dm-pinned",
+  "a11yBook": "ui-dm-a11y-book"
 }

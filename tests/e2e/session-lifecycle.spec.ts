@@ -1,13 +1,15 @@
 import { expect, test } from '@playwright/test';
 
 import { enterWorld, expectPlayerBoundary, playerScene, TOKENS } from './support/session.ts';
+import { openSheet } from './support/shell.ts';
 
 test('logout and account switch remove DM data and do not persist access tokens', async ({
   page,
 }) => {
   await enterWorld(page, TOKENS.dm);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
-  await page.getByText('Known people & places', { exact: true }).click();
+  await openSheet(page, 'Journal');
+  await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /^Ashen Circle/ })).toBeVisible();
   await page.getByRole('button', { name: 'Leave session', exact: true }).click();
   await expect(page.getByLabel('Access token', { exact: true })).toHaveValue('');
@@ -83,7 +85,8 @@ test('Back and Forward navigation require a fresh session without restoring priv
   page,
 }) => {
   await enterWorld(page, TOKENS.dm);
-  await page.getByText('Known people & places', { exact: true }).click();
+  await openSheet(page, 'Journal');
+  await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /^Ashen Circle/ })).toBeVisible();
   await page.goto('/another-local-page');
   await page.getByLabel('Access token', { exact: true }).fill(TOKENS.player);

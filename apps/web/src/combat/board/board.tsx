@@ -1,0 +1,250 @@
+import type { EncounterView, PlayerAssetView, Square } from '@ltw/contracts';
+import { useT } from '@ltw/ui';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+
+import { BoardControls } from './board-controls.tsx';
+import type { BoardView } from './board-view.ts';
+import {
+  boardLayout,
+  fitCell,
+  planeTransform,
+  projectPoint,
+  squareCenter,
+  TILT,
+  uprightTransform,
+  type Size,
+} from './geometry.ts';
+import { useCombatantLabels } from '../labels.ts';
+import { squareName } from './square-name.ts';
+import { TerrainCard } from './terrain-card.tsx';
+import { CoverPiece, Token } from './token.tsx';
+
+const key = (square: { readonly x: number; readonly y: number }) =>
+  `${String(square.x)},${String(square.y)}`;
+
+/** The space the board is given, as laid out by the stylesheet for this width. */
+function useSpace(): [React.RefObject<HTMLDivElement | null>, Size | null] {
+  const ref = useRef<HTMLDivElement>(null);
+  const [space, setSpace] = useState<Size | null>(null);
+  useLayoutEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    const measure = () => {
+      const width = element.clientWidth;
+      const height = element.clientHeight;
+      setSpace((known) =>
+        known?.width === width && known.height === height ? known : { width, height },
+      );
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+  return [ref, space];
+}
+
+type StageStyle = CSSProperties & {
+  readonly '--cell': string;
+  readonly '--plane-transform': string;
+  readonly '--upright-transform': string;
+};
+
+/**
+ * The battlefield as a painted table (docs/STAGE_320_DESIGN.md §5.5, ADR 0034 §6–7): the GPT
+ * ground, the difficult patch on difficult squares, hairlines, the movement path and the
+ * previewed area, cover pieces, then the combatants — every square, cover level, position and
+ * state from the encounter's projection, nothing inferred. Tilted, the plane turns away like a
+ * table seen at an angle while figures and pieces stand upright; flat, it is seen from above.
+ * Either way each square is the same button, in the same order, with the same name.
+ */
+export function Board({
+  encounter,
+  selfId,
+  selected,
+  path,
+  affected,
+  imageOf,
+  view,
+  onPick,
+}: {
+  readonly encounter: EncounterView;
+  readonly selfId: string | null;
+  readonly selected: Square | null;
+  /** The advisory route to the selected square, without the mover's own square. */
+  readonly path: readonly Square[];
+  /** Combatants a previewed area spell would affect, as the server listed them. */
+  readonly affected: ReadonlySet<string>;
+  readonly imageOf: (entityId: string) => PlayerAssetView | null;
+  readonly view: BoardView;
+  readonly onPick: (square: Square) => void;
+}) {
+  const t = useT();
+  const [area, space] = useSpace();
+  const viewport = useRef<HTMLDivElement>(null);
+  // The square the pointer is over and the one keyboard focus is on: the terrain card reads it.
+  const [pointed, setPointed] = useState<Square | null>(null);
+  const [focused, setFocused] = useState<Square | null>(null);
+  const { width, height, difficult, cover } = encounter.battlefield;
+  const grid = { width, height };
+  const tilt = view.mode === 'tilted' ? TILT : null;
+  const fitted = space ? fitCell(space, grid, tilt, { min: view.narrow ? 36 : 24, max: 72 }) : 40;
+  const cell = Math.round(fitted * view.zoom);
+  const layout = boardLayout(grid, cell, tilt);
+  const hard = new Set(difficult.map(key));
+  const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
+  const occupants = new Map(encounter.combatants.map((entry) => [key(entry.position), entry]));
+  const walk = new Set(path.map(key));
+  const destination = path.at(-1);
+  const mover = encounter.combatants.find((entry) => entry.entity.entityId === selfId);
+  const labelOf = useCombatantLabels(encounter);
+
+  // On a phone the board scrolls: bring the chosen square, else the viewer, else whoever acts
+  // into view when it first shows and whenever its scale or view changes. Only a new scale or
+  // view recentres (the effect reads that render's squares); a choice never moves the board
+  // under the pointer.
+  useEffect(() => {
+    const element = viewport.current;
+    const target =
+      selected ??
+      mover?.position ??
+      encounter.combatants.find((entry) => entry.entity.entityId === encounter.currentCombatantId)
+        ?.position;
+    if (!element || !target) return;
+    if (element.scrollWidth <= element.clientWidth && element.scrollHeight <= element.clientHeight)
+      return;
+    const point = projectPoint(layout, squareCenter(target, cell));
+    element.scrollLeft = point.x - element.clientWidth / 2;
+    element.scrollTop = point.y - element.clientHeight / 2;
+  }, [cell, view.mode]);
+
+  const stage: StageStyle = {
+    width: layout.box.width,
+    height: layout.box.height,
+    '--cell': `${String(cell)}px`,
+    '--plane-transform': planeTransform(tilt),
+    '--upright-transform': uprightTransform(tilt),
+    ...(layout.origin
+      ? {
+          perspective: `${String(TILT.perspective)}px`,
+          perspectiveOrigin: `${String(layout.origin.x)}px ${String(layout.origin.y)}px`,
+        }
+      : {}),
+  };
+  const squares: React.ReactNode[] = [];
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      const square = { x, y };
+      const id = key(square);
+      const occupant = occupants.get(id) ?? null;
+      const level = coverAt.get(id) ?? null;
+      const isSelected = selected !== null && key(selected) === id;
+      const inArea = occupant !== null && affected.has(occupant.entity.entityId);
+      const classes = [
+        'board-square',
+        hard.has(id) ? 'is-difficult' : '',
+        level ? 'has-cover' : '',
+        level && occupant ? 'has-occupant' : '',
+        walk.has(id) ? 'on-path' : '',
+        destination && key(destination) === id ? 'is-destination' : '',
+        inArea ? 'in-area' : '',
+        isSelected ? 'is-selected' : '',
+      ];
+      squares.push(
+        <button
+          key={id}
+          type="button"
+          className={classes.filter(Boolean).join(' ')}
+          style={{ '--x': x, '--y': y } as CSSProperties}
+          aria-label={squareName(t, square, {
+            occupant,
+            label: occupant ? labelOf(occupant.entity.entityId) : '',
+            you: occupant !== null && occupant.entity.entityId === selfId,
+            difficult: hard.has(id),
+            cover: level,
+            inArea,
+          })}
+          aria-pressed={isSelected}
+          onClick={() => {
+            onPick(square);
+          }}
+          onPointerEnter={() => {
+            setPointed(square);
+          }}
+          onPointerLeave={() => {
+            setPointed((known) => (known && key(known) === id ? null : known));
+          }}
+          onFocus={() => {
+            setFocused(square);
+          }}
+          onBlur={() => {
+            setFocused((known) => (known && key(known) === id ? null : known));
+          }}
+        >
+          {level && <CoverPiece level={level} />}
+          {occupant && (
+            <Token
+              combatant={occupant}
+              label={labelOf(occupant.entity.entityId)}
+              cover={level}
+              image={imageOf(occupant.entity.entityId)}
+              current={occupant.entity.entityId === encounter.currentCombatantId}
+              selected={isSelected}
+              inArea={inArea}
+            />
+          )}
+        </button>,
+      );
+    }
+  }
+  const route = mover && path.length > 0 ? [mover.position, ...path] : [];
+  const looked = pointed ?? focused ?? selected;
+  return (
+    <div className={`board board--${view.mode}`} ref={area}>
+      <BoardControls view={view} />
+      {looked && (
+        <TerrainCard
+          square={looked}
+          cover={coverAt.get(key(looked)) ?? null}
+          difficult={hard.has(key(looked))}
+        />
+      )}
+      <div className="board-viewport" ref={viewport}>
+        <div className="board-stage" style={stage}>
+          <div
+            className="board-plane"
+            role="group"
+            aria-label={t('Battlefield')}
+            style={{
+              top: layout.planeTop,
+              width: layout.plane.width,
+              height: layout.plane.height,
+              gridTemplateColumns: `repeat(${String(width)}, var(--cell))`,
+            }}
+          >
+            <span className="board-ground" aria-hidden="true" />
+            {squares}
+            {route.length > 1 && (
+              <svg
+                className="board-path"
+                aria-hidden="true"
+                viewBox={`0 0 ${String(layout.plane.width)} ${String(layout.plane.height)}`}
+              >
+                <polyline
+                  points={route
+                    .map((square) => {
+                      const point = squareCenter(square, cell);
+                      return `${String(point.x)},${String(point.y)}`;
+                    })
+                    .join(' ')}
+                />
+              </svg>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,7 +1,8 @@
 import type { EntityRef, NpcDialogueResponse } from '@ltw/contracts';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { Glyph } from '../visual/glyph.tsx';
 import { useT, type Translate } from '@ltw/ui';
 
 function refusal(t: Translate, code: string, npc: string): string {
@@ -19,6 +20,46 @@ function refusal(t: Translate, code: string, npc: string): string {
     npc,
     reason: t(code.replaceAll('_', ' ').toLowerCase()),
   });
+}
+
+/** What came back from performing an NPC: its words, or a message about why none came. */
+export interface PerformAnswerState {
+  readonly text: string;
+  readonly spoken: boolean;
+}
+
+/**
+ * The answer, honestly framed (ADR 0032, C): spoken words are the NPC's — "{npc} says", with
+ * the reminder that they are not a recorded fact; a refusal, "no words are available" or a
+ * failure is a plain status in the panel's own voice, never presented as the NPC speaking.
+ */
+export function PerformAnswer({
+  npcName,
+  said,
+}: {
+  readonly npcName: string;
+  readonly said: PerformAnswerState;
+}) {
+  const t = useT();
+  // Each answer comes into view where it appears (a phone's panel scrolls).
+  const shown = useCallback((element: HTMLElement | null) => {
+    element?.scrollIntoView({ block: 'nearest' });
+  }, []);
+  return said.spoken ? (
+    <blockquote
+      ref={shown}
+      className="perform-said"
+      role="status"
+      aria-label={t('{npc} says', { npc: npcName })}
+    >
+      {said.text}
+      <small>{t('Spoken, not a recorded fact.')}</small>
+    </blockquote>
+  ) : (
+    <p ref={shown} className="perform-said perform-said--message" role="status">
+      {said.text}
+    </p>
+  );
 }
 
 /**
@@ -46,7 +87,8 @@ export function PerformNpc({
   const [topicId, setTopicId] = useState('');
   const [line, setLine] = useState('');
   const [busy, setBusy] = useState(false);
-  const [said, setSaid] = useState<string | null>(null);
+  // What came back: the NPC's words, or a message about why none came (never shown as speech).
+  const [said, setSaid] = useState<PerformAnswerState | null>(null);
   // The one request whose answer may still be shown; replaced when the NPC or character changes.
   const pending = useRef<AbortController | null>(null);
   useEffect(() => {
@@ -76,23 +118,33 @@ export function PerformNpc({
         request.signal,
       );
       if (!current()) return;
+      const words = result.refused ? null : (result.reply?.text ?? null);
       setSaid(
-        result.refused
-          ? refusal(t, result.refused, npcName)
-          : (result.reply?.text ??
-              t(
-                'No words are available for {npc} right now ({reason}). You can speak for {npc} yourself.',
-                {
-                  npc: npcName,
-                  reason:
-                    result.reply?.status === 'AI_UNAVAILABLE'
-                      ? t('the voice is unavailable')
-                      : t('no reply was produced'),
-                },
-              )),
+        words !== null
+          ? { text: words, spoken: true }
+          : {
+              spoken: false,
+              text: result.refused
+                ? refusal(t, result.refused, npcName)
+                : t(
+                    'No words are available for {npc} right now ({reason}). You can speak for {npc} yourself.',
+                    {
+                      npc: npcName,
+                      reason:
+                        result.reply?.status === 'AI_UNAVAILABLE'
+                          ? t('the voice is unavailable')
+                          : t('no reply was produced'),
+                    },
+                  ),
+            },
       );
     } catch {
-      if (current()) setSaid(t('The conversation could not be performed. Please try again.'));
+      if (current()) {
+        setSaid({
+          text: t('The conversation could not be performed. Please try again.'),
+          spoken: false,
+        });
+      }
     } finally {
       if (current()) {
         pending.current = null;
@@ -103,72 +155,75 @@ export function PerformNpc({
   if (characters.length === 0) return null;
   return (
     <details className="disclosure perform-npc">
-      <summary>Perform {npcName} (DM)</summary>
-      <label htmlFor="perform-character">{t('Speaking with')}</label>
-      <select
-        id="perform-character"
-        value={characterId}
-        onChange={(event) => {
-          setCharacterId(event.target.value);
-        }}
-      >
-        {characters.map((entity) => (
-          <option key={entity.entityId} value={entity.entityId}>
-            {entity.name}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="perform-line">{t('What the character says (optional)')}</label>
-      <p className="muted">
-        {t('Given to the NPC as context for the reply; it never changes the world.')}
-      </p>
-      <textarea
-        id="perform-line"
-        value={line}
-        onChange={(event) => {
-          setLine(event.target.value);
-        }}
-      />
-      <div className="action-row">
-        <button
-          disabled={busy || characterId === ''}
-          onClick={() => void perform({ kind: 'talk' })}
+      <summary>
+        <Glyph name="perform" />
+        {t('Perform {npc} (DM)', { npc: npcName })}
+      </summary>
+      <div className="perform-body">
+        <label htmlFor="perform-character">{t('Speaking with')}</label>
+        <select
+          id="perform-character"
+          value={characterId}
+          onChange={(event) => {
+            setCharacterId(event.target.value);
+          }}
         >
-          {t('Speak as {npc}', { npc: npcName })}
-        </button>
-      </div>
-      <label htmlFor="perform-topic">{t('Ask about')}</label>
-      <select
-        id="perform-topic"
-        value={topicId}
-        onChange={(event) => {
-          setTopicId(event.target.value);
-        }}
-      >
-        <option value="">{t('Choose a subject')}</option>
-        {topics.map((entity) => (
-          <option key={entity.entityId} value={entity.entityId}>
-            {entity.name}
-          </option>
-        ))}
-      </select>
-      <button
-        disabled={busy || characterId === '' || topicId === ''}
-        onClick={() => void perform({ kind: 'ask', topicId })}
-      >
-        {t('Answer the question')}
-      </button>
-      {busy && (
-        <p role="status" className="muted">
-          {t('{npc} is replying…', { npc: npcName })}
+          {characters.map((entity) => (
+            <option key={entity.entityId} value={entity.entityId}>
+              {entity.name}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="perform-line">{t('What the character says (optional)')}</label>
+        <p className="muted">
+          {t('Given to the NPC as context for the reply; it never changes the world.')}
         </p>
-      )}
-      {said && (
-        <blockquote role="status" aria-label={t('{npc} says', { npc: npcName })}>
-          {said}
-          <small>{t('Spoken, not a recorded fact.')}</small>
-        </blockquote>
-      )}
+        <textarea
+          id="perform-line"
+          value={line}
+          onChange={(event) => {
+            setLine(event.target.value);
+          }}
+        />
+        <div className="action-row">
+          <button
+            className="primary-button"
+            disabled={busy || characterId === ''}
+            onClick={() => void perform({ kind: 'talk' })}
+          >
+            <Glyph name="talk" />
+            {t('Speak as {npc}', { npc: npcName })}
+          </button>
+        </div>
+        <label htmlFor="perform-topic">{t('Ask about')}</label>
+        <select
+          id="perform-topic"
+          value={topicId}
+          onChange={(event) => {
+            setTopicId(event.target.value);
+          }}
+        >
+          <option value="">{t('Choose a subject')}</option>
+          {topics.map((entity) => (
+            <option key={entity.entityId} value={entity.entityId}>
+              {entity.name}
+            </option>
+          ))}
+        </select>
+        <button
+          disabled={busy || characterId === '' || topicId === ''}
+          onClick={() => void perform({ kind: 'ask', topicId })}
+        >
+          <Glyph name="ask" />
+          {t('Answer the question')}
+        </button>
+        {busy && (
+          <p role="status" className="muted">
+            {t('{npc} is replying…', { npc: npcName })}
+          </p>
+        )}
+        {said && <PerformAnswer npcName={npcName} said={said} />}
+      </div>
     </details>
   );
 }

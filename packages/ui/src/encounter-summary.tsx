@@ -1,6 +1,6 @@
-import type { EncounterResponse, EncounterView, ReactionWindowView } from '@ltw/contracts';
+import type { EncounterResponse, ReactionWindowView } from '@ltw/contracts';
 
-import { readableLabel, readableList } from './labels.ts';
+import { combatantLabels, readableLabel, readableList } from './labels.ts';
 import { StatusPanel } from './status-panel.tsx';
 import { useT } from './i18n.tsx';
 
@@ -8,28 +8,23 @@ export interface EncounterSummaryProps {
   readonly encounter: EncounterResponse['encounter'];
 }
 
-function combatantName(encounter: EncounterView, entityId: string): string {
-  return (
-    encounter.combatants.find((combatant) => combatant.entity.entityId === entityId)?.entity.name ??
-    entityId
-  );
-}
-
 function ReactionSummary({
   window,
-  encounter,
+  labels,
 }: {
   readonly window: ReactionWindowView;
-  readonly encounter: EncounterView;
+  /** Every combatant's label: its name, or "Unidentified creature N", never an ID. */
+  readonly labels: ReadonlyMap<string, string>;
 }) {
   const t = useT();
+  const nameOf = (entityId: string) => labels.get(entityId) ?? t('Unidentified creature');
   return (
     <section className="reaction-summary" aria-label={t('Reaction window')}>
       <p role="status">{t('Spell resolution is waiting for reactions.')}</p>
       <dl className="field-list">
         <div>
           <dt>{t('Caster')}</dt>
-          <dd>{window.trigger.caster.name ?? window.trigger.caster.entityId}</dd>
+          <dd>{window.trigger.caster.name ?? nameOf(window.trigger.caster.entityId)}</dd>
         </div>
         <div>
           <dt>{t('Components')}</dt>
@@ -47,7 +42,7 @@ function ReactionSummary({
         {window.trigger.targetId ? (
           <div>
             <dt>{t('Target')}</dt>
-            <dd>{combatantName(encounter, window.trigger.targetId)}</dd>
+            <dd>{nameOf(window.trigger.targetId)}</dd>
           </div>
         ) : null}
         {window.trigger.point ? (
@@ -67,7 +62,7 @@ function ReactionSummary({
         <ul>
           {window.candidates.map((candidate) => (
             <li key={candidate.entityId}>
-              {combatantName(encounter, candidate.entityId)}: {readableLabel(candidate.response, t)}
+              {nameOf(candidate.entityId)}: {readableLabel(candidate.response, t)}
             </li>
           ))}
         </ul>
@@ -84,6 +79,8 @@ export function EncounterSummary({ encounter }: EncounterSummaryProps) {
       <StatusPanel state="empty" label={t('No active encounter is visible in this perspective.')} />
     );
   }
+  const labels = combatantLabels(encounter, t);
+  const nameOf = (entityId: string) => labels.get(entityId) ?? t('Unidentified creature');
   return (
     <section className="encounter-summary" aria-label={t('Encounter summary')}>
       <dl className="stat-grid">
@@ -93,7 +90,7 @@ export function EncounterSummary({ encounter }: EncounterSummaryProps) {
         </div>
         <div>
           <dt>{t('Current turn')}</dt>
-          <dd>{combatantName(encounter, encounter.currentCombatantId)}</dd>
+          <dd>{nameOf(encounter.currentCombatantId)}</dd>
         </div>
       </dl>
       <details className="disclosure">
@@ -103,18 +100,13 @@ export function EncounterSummary({ encounter }: EncounterSummaryProps) {
             const combatant = encounter.combatants.find(
               (entry) => entry.entity.entityId === entityId,
             );
-            if (!combatant)
-              return (
-                <li key={entityId}>
-                  <code>{entityId}</code>
-                </li>
-              );
+            if (!combatant) return <li key={entityId}>{nameOf(entityId)}</li>;
             return (
               <li
                 key={entityId}
                 aria-current={entityId === encounter.currentCombatantId ? 'step' : undefined}
               >
-                <h4>{combatant.entity.name ?? entityId}</h4>
+                <h4>{nameOf(entityId)}</h4>
                 <dl className="field-list">
                   <div>
                     <dt>{t('Side')}</dt>
@@ -158,7 +150,7 @@ export function EncounterSummary({ encounter }: EncounterSummaryProps) {
         </ol>
       </details>
       {encounter.reactionWindow ? (
-        <ReactionSummary window={encounter.reactionWindow} encounter={encounter} />
+        <ReactionSummary window={encounter.reactionWindow} labels={labels} />
       ) : null}
     </section>
   );

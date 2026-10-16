@@ -1,9 +1,16 @@
 import { expect, test, type Page } from '@playwright/test';
 
-import { dmRequest, propose, review, TOMAS_REQUEST } from './support/authoring.ts';
+import {
+  ADD_TO_THE_WORLD,
+  dmRequest,
+  propose,
+  review,
+  TOMAS_REQUEST,
+} from './support/authoring.ts';
 import { dmHistory, historyEntry, HISTORY_SUMMARY, openHistory } from './support/dm.ts';
 import { expectLive, LIVE_CAMPAIGNS } from './support/live.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
+import { chooseLocation, dockButton, openSheet } from './support/shell.ts';
 
 /**
  * The DM history (docs/adr/0033-live-session.md §7): read from the server, so an authoring
@@ -31,20 +38,22 @@ test('an authoring commit is listed after a reload, and its undo works from ther
   await propose(page);
   await review(page).getByRole('button', { name: 'Confirm and add to the world' }).click();
   await expect(review(page)).toContainText('Added to the world');
-  await expect(review(page)).toContainText('To undo it, use the history and undo list below.');
+  await expect(review(page)).toContainText('To undo it, use History in the DM tools.');
 
   // A reload forgets the screen and the credential; the history is the server's.
   await page.reload();
   await enterWorld(page, TOKENS.dm, campaign);
   await expectLive(page);
+  await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toHaveCount(0);
   await openHistory(page);
   const entry = historyEntry(page, SUMMARY);
   await expect(entry).toContainText('Added to the world');
   await expect(entry).toContainText('Authoring');
-  await page.getByLabel('Location', { exact: true }).selectOption('north-gate');
+  await chooseLocation(page, 'north-gate');
   await expect(tomas(page)).toBeVisible();
 
+  await openHistory(page);
   await entry.getByRole('button', { name: 'Undo this addition' }).click();
   await expect(
     page.getByRole('status').filter({ hasText: 'Undone. The world no longer holds this.' }),
@@ -70,6 +79,7 @@ test('the history never appears for a player or in a lower perspective', async (
     await expect(dm.getByLabel('Perspective', { exact: true })).toHaveValue(perspective);
     await expect(dm.getByRole('region', { name: 'Scene', exact: true })).toBeVisible();
     await expect(dm.getByText(HISTORY_SUMMARY, { exact: true })).toHaveCount(0);
+    await expect(dockButton(dm, 'History')).toHaveCount(0);
     await expect(dmHistory(dm)).toHaveCount(0);
     reads ??= historyReads(dm);
   }
@@ -97,6 +107,7 @@ test('the history never appears for a player or in a lower perspective', async (
   for (const perspective of ['PLAYER', 'PARTY', 'PUBLIC']) {
     await player.getByLabel('Perspective', { exact: true }).selectOption(perspective);
     await expect(player.getByText(HISTORY_SUMMARY, { exact: true })).toHaveCount(0);
+    await expect(dockButton(player, 'History')).toHaveCount(0);
   }
   await player.waitForTimeout(1_500);
   expect(playerReads.count()).toBe(0);

@@ -281,3 +281,36 @@ table ("the DM's action for an absent player is an authorized, audited, undoable
 - **Changed client consumer** (alpha row 200–240): ADR 0029 §8's screen-local authoring undo is
   replaced by the DM history list; no reviewed projection, mutation path, undo rule or
   authorization rule changed.
+
+Stage 320 introduction evidence (ADR 0034; `docs/STAGE_320_DESIGN.md`; parts A `6a18da1`, B
+`ee8c880`, C on `stage-320-visual`; baseline `a911d32`; owner play acceptance pending): **client
+surfaces changed; no boundary changed**. Alpha row 200–240 (client consumers of reviewed
+contracts).
+- **Unchanged**: every route, contract, projection, authorization rule, command and what any
+  perspective receives. The client still computes no legality, cost, range or area; visual state
+  (open sheets, the board's view, the chosen chapter, an open flashback) stays in memory.
+- **Client reads of existing routes, new in part C**: the Chronicle book reads the chapter's main
+  place through `GET …/entities/:entityId/presentation?perspective=…&at=<chapter end>` (the
+  perspective's own presentation, ADR 0023; a refusal or no approved image shows the neutral mist
+  and says so); the conversation panel and the selection's panel re-read their `…/context` and
+  `…/knowledge` views in the background after the viewer's own actions instead of remounting.
+- **Labels of unnamed combatants**: the client shows "Unidentified creature N" (numbered in turn
+  order, then position) instead of the entity ID in every visible label and accessible name. The
+  player's `EncounterView` still carries those entity IDs (`entity.entityId`, `order`,
+  `currentCombatantId`, the reaction window's caster) — **for Gate 06**: whether an unnamed
+  combatant's ID should leave the projection is a boundary question (ADR 0015 §6), not a
+  presentation one, and is not changed here.
+- **DOM retention within one perspective**: the last selection's details panel stays mounted
+  while closed (drafts survive closing and the viewer's own actions); a perspective change still
+  remounts the world screen, so nothing crosses perspectives. The Chronicle's margin notes show
+  each source's event type in words and, on demand, its event ID — exactly what ADR 0024 §5
+  supplies to that perspective (sequences and the trace ID for the DM only).
+- **"Who will see"** on the DM's proposal card is read from the proposed commands alone (scope of
+  each record, a willing disclosure, the proposal being DM data until confirmed); the server's
+  projections remain what decides visibility.
+- **Deterministic evidence**: unit tests `apps/web/src/combat/labels.test.ts`,
+  `chronicle/chapter-facts.test.ts`, `authoring/who-sees.test.ts`, `exploration/speech.test.ts`;
+  browser journeys (80, both languages where they existed) including `conversation.spec.ts`,
+  `drafts.spec.ts`, `phone-layout.spec.ts`, `chronicle-book.spec.ts`, the perspective-isolation
+  and boundary journeys unchanged in strength; axe scans at three widths
+  (`accessibility.spec.ts`); the screenshot set `reports/evidence/stage-320/index.md`.

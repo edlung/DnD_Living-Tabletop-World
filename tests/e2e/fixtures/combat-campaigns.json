@@ -8,5 +8,7 @@
   "lifecycle": "ui-combat-lifecycle",
   "preview": "ui-combat-preview",
   "sessionTurn": "ui-session-turn",
-  "sessionWindow": "ui-session-window"
+  "sessionWindow": "ui-session-window",
+  "board": "ui-combat-board",
+  "narrow": "ui-combat-narrow"
 }

@@ -36,7 +36,9 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
 - AI feedback (`ai-feedback.spec.ts`, ADR 0032 checkpoint C): `ui-ai-feedback` adds a second
   character (Bram Holt) for the stale-reply check, and `ui-ai-no-start` never gets a durable AI
   request start in `ui-server.ts`, so its intents, replies and chapters carry a null trace ID. Only
-  dialogue delays are intercepted; the answers are the real server's.
+  dialogue delays are intercepted; the answers are the real server's. With no NPC voice here, a
+  performed NPC's answer is the panel's plain status: journeys assert no "{npc} says" status and
+  no "Spoken, not a recorded fact." (`ai-feedback.spec.ts`, `dm-tools.spec.ts`).
 - Live session (`live-*.spec.ts`, ADR 0033): two browsers share each campaign of
   `fixtures/live-campaigns.json` (`ui-live-campaigns.ts`) and never press "Refresh world".
   The live stream never ends while a page lives, so response-body collectors skip it
@@ -52,7 +54,77 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   rows and stay open, never showing "Reading the history…" again, when a new entry moves every
   older page's cursor) own campaigns of
   `fixtures/live-campaigns.json`. `authoring-undo.spec.ts` undoes from the history list that
-  replaced the review's screen-local undo, with the same assertions. Helpers: `support/dm.ts`.
+  replaced the review's screen-local undo; while the history's preview says the world refuses an
+  undo, Undo is disabled and described by its reason (the blockers), as in the stand-in journey.
+  Helpers: `support/dm.ts`.
+- Shell (Stage 320, `docs/STAGE_320_DESIGN.md` §5.1): controls live in the dock's sheets, one
+  open at a time, and a closed sheet stays mounted but `hidden`. Open the sheet that holds a
+  control first (`support/shell.ts`: `openSheet`, `closeSheet`, `chooseLocation` for the Places
+  sheet's location choice, `openChronicle` for the Chronicle dialog; dock words in the campaign's
+  language). Role queries skip hidden sheets, label and text queries do not: a hidden draft keeps
+  its value, but assert visibility only on an open sheet. An open sheet covers the lower stage, so
+  close it before clicking a medallion. Keep journeys' assertions when a control moves.
+  `expectOnTop` asserts that nothing covers an element (`elementFromPoint` at its centre), for a
+  result, a prompt or a Retry that must stay reachable (`outcome-layer.spec.ts`; the DM tool
+  campaign `ui-dm-outcome`).
+- Battlefield (Stage 320 part B, design §5.5): the journeys' default 1280 × 720 viewport shows the
+  board tilted; squares keep their names (`square()`); a combatant the player does not know by
+  name is "Unidentified creature N" (numbered in turn order: the ambush's raiders are 1–3, the
+  shaman 4) and journeys assert that no ID shows (`not.toContainText('goblin')`); the options of a chosen combatant are
+  described in its region "Options for …" and carried out from the turn tray (`turnTray()`, only
+  while the viewer may act, with End turn), the anchor (`anchor()`) holds the round, whose turn
+  and the viewer's hit points, and the reaction prompt is "Reaction: Counterspell" with Cast
+  (named "Cast Counterspell") and "Don’t interfere". The Encounter summary in words lives in the
+  Journal sheet. `collectApiBodies(…).assertPlayerBoundary(extra, perceived, ownViews)` exempts
+  only the viewer's own views (its own sheet, read for the active card) from the extra markers.
+  `combat-scene-view.spec.ts` owns `ui-live-scene-window`: on the scene view the turn banner and
+  the reaction prompt stay shown, focused and answerable. The banner announces only whose turn it
+  is (`turnAnnounced()`, its live words) and shows "Your reaction is needed" while asked
+  (`bannerWords()`, what it shows); after an answer focus is on the banner (`turnBanner()`).
+  A figure is part of its square: `clickSquare(page, x, y)` points at the part of a square in view
+  where a plate or an upright figure covers its centre. Review of parts B and C:
+  `combat-board-pointer.spec.ts` (owns `ui-combat-board`, Elowen starts prone: at 1440 × 900
+  tilted, a portrait's visual centre chooses its own square, the terrain card reads it, a pip
+  takes the pointer), `combat-narrow.spec.ts` (owns `ui-combat-narrow`: at 390 × 844 and
+  820 × 1180 the tray shows Fireball's slot and the ally warning in view),
+  `combat-book-reaction.spec.ts` (owns `ui-live-book-window`: a reaction asked over the open
+  Chronicle closes the book, takes focus, is announced once and answered; the book reopens at
+  its chapter and place) and `chronicle-pinned.spec.ts` (owns `ui-dm-pinned`: a chapter written
+  while the player reads is marked "New" and replaces nothing). Each fails on the client of
+  `c7ebf76`.
+- `accessibility.spec.ts` (helper `support/axe.ts`: `expectAccessible`, `WIDTHS`): axe scans
+  (`@axe-core/playwright`) of sign-in, the scene with a selection, a conversation, every DM sheet
+  (Add to the world, Encounter, Time and weather, History) and the battlefield (the player's turn,
+  a chosen target with a previewed area, the reaction prompt, the DM's Encounter sheet) at
+  390 × 844, 820 × 1180 and 1440 × 900, plus the Russian scene on a phone; serious or critical
+  violations (colour contrast included, checked with the art set aside so text is checked on its
+  panel, the book's on the darkest parchment under its text `--page-floor`) and any sideways page
+  scroll fail. Read-only, except two tests that own campaigns of `dm-tool-campaigns.json`:
+  `ui-dm-a11y` (adds Tomas; the proposal card and the history with an entry) and `ui-dm-a11y-book`
+  (writes a chapter; the Chronicle book and a flashback), at the three widths. A state is reached
+  once and scanned at each width by resizing (`atEveryWidth`; the battlefield's player turn and
+  target, reaction prompt and Encounter sheet are one test each), and each scan runs every rule
+  once, in axe's legacy mode (one `axe.run` in the page — the screens have no frames, which the
+  helper asserts — without a blank page per scan); the file allows 120 s per test for a two-core
+  runner.
+- Stage 320 part C journeys (each a campaign of `dm-tool-campaigns.json` when it writes):
+  `chronicle-book.spec.ts` (the DM writes a chapter from the book's header; the player reads two
+  pages, margin notes, key moments, what was learned, people met; a flashback takes focus and
+  Escape or Return goes back to its button, then Escape closes the book to the dock; under
+  reduced motion the sheet and "Creating…" stand still), `conversation.spec.ts` (each
+  conversation control exists once; "Go to the conversation"; a talk the server refuses — the
+  live stream is cut so the stale option stays — closes the conversation), `drafts.spec.ts`
+  (Escape in a field with a draft closes nothing; the closed panel keeps a draft through the
+  DM's own action), `phone-layout.spec.ts` (the party rail is a compact strip; a result never
+  keeps a scene control under it). Each fails on the client before part C.
+- Evidence tour (`pnpm evidence:screens`): `playwright.evidence.config.ts` runs
+  `tests/evidence/*.evidence.ts` against the same servers and writes JPEGs (≤ 250 KB) to
+  `reports/evidence/stage-320/` (`part-a/`; `part-b/` for the battlefield: each state at the
+  three widths, tilted and flat; `part-c/` for the book, the flashback, the DM's tools with
+  content and a conversation; both languages; its own servers, so it may act), listed in
+  `reports/evidence/stage-320/index.md`. It is not part of `pnpm test:e2e`, `pnpm validate` or
+  CI; hold the shared lock like any Playwright run. Look at the images, never load the folder
+  wholesale.
 - Specs that import server test support (`support/investigation.ts` → `scenario/secrets.ts`)
   load workspace packages from their builds: run `pnpm build` before `pnpm test:e2e` after a
   contract change (`pnpm validate` does).

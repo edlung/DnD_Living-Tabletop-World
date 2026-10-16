@@ -1,0 +1,394 @@
+/*
+ * Where the battlefield's parts sit (docs/STAGE_320_DESIGN.md §5.5–6). Wide (≥ 1200 px): the
+ * board in the middle, the place, whose turn it is and the active combatant at the left, the
+ * anchor at the top, the side panel at the right, the turn tray above the dock, who is at the
+ * table at the bottom left. The battlefield covers the stage and lets the pointer through
+ * between its parts. Narrower, the stage becomes one column.
+ */
+.has-battle {
+  --hud-col: 272px;
+  --hud-left: calc(var(--hud-col) + 30px);
+  --side-w: 340px;
+  --hud-right: calc(var(--side-w) + 34px);
+  --hud-top: 138px;
+  --hud-bottom: calc(var(--dock-h) + 108px);
+}
+
+/* Over either view: whose turn it is under the switch, a reaction at the right */
+.turn-banner {
+  position: absolute;
+  top: 66px;
+  left: 50%;
+  z-index: 4;
+  max-width: calc(100% - 32px);
+  translate: -50% 0;
+}
+.stage .reaction-prompt {
+  position: absolute;
+  top: 70px;
+  right: 16px;
+  z-index: 9;
+  width: min(var(--side-w, 340px), calc(100% - 32px));
+  max-height: calc(100% - 94px - var(--dock-h));
+  overflow-y: auto;
+}
+
+/* The battle view */
+.combat-stage,
+.combat-panel {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.combat-stage {
+  z-index: 3;
+}
+.combat-panel > * {
+  pointer-events: auto;
+}
+.stage--battle .cartouche {
+  top: 16px;
+  left: 16px;
+  width: var(--hud-col);
+  padding: 0.5rem 0.9rem 0.55rem;
+}
+.stage--battle .cartouche h2 {
+  overflow: hidden;
+  font-size: 1.4rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.stage--battle .conditions {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.stage--battle .turn-banner {
+  top: 98px;
+  left: 16px;
+  width: var(--hud-col);
+  overflow: hidden;
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  translate: none;
+}
+.stage--battle .stage-switch {
+  left: auto;
+  right: 16px;
+  translate: none;
+}
+.stage--battle .party-rail {
+  top: auto;
+  bottom: 10px;
+  left: 12px;
+  flex-direction: row;
+  align-items: flex-end;
+  width: auto;
+  max-width: calc(50% - 200px);
+  overflow-x: auto;
+}
+.stage--battle .party-rail ul {
+  display: flex;
+}
+.stage--battle .rail-member {
+  width: 80px;
+}
+.stage--battle .rail-dm {
+  justify-content: center;
+  width: 70px;
+}
+.encounter-anchor {
+  position: absolute;
+  top: 14px;
+  right: var(--hud-right);
+  left: var(--hud-left);
+  z-index: 4;
+}
+.active-card {
+  position: absolute;
+  top: 150px;
+  left: 16px;
+  z-index: 4;
+  width: var(--hud-col);
+}
+.board {
+  position: absolute;
+  top: var(--hud-top);
+  right: var(--hud-right);
+  bottom: var(--hud-bottom);
+  left: var(--hud-left);
+  z-index: 3;
+}
+.combat-side {
+  position: absolute;
+  top: 70px;
+  right: 16px;
+  z-index: 4;
+  width: var(--side-w);
+  max-height: calc(100% - 94px - var(--dock-h));
+  overflow-y: auto;
+}
+.combat-panel.is-asked .combat-side {
+  display: none;
+}
+.turn-tray {
+  position: absolute;
+  right: var(--hud-right);
+  bottom: calc(var(--dock-h) + 22px);
+  left: var(--hud-left);
+  z-index: 5;
+  width: fit-content;
+  max-width: calc(100% - var(--hud-left) - var(--hud-right));
+  margin-inline: auto;
+}
+.world-main.has-battle .outcome {
+  bottom: calc(var(--dock-h) + 112px);
+  left: 16px;
+  width: var(--hud-col);
+  translate: none;
+}
+
+/* Narrower than a wide desktop: one column — the HUD above the board, details below it */
+@media (max-width: 1199px) {
+  /*
+   * The stage scrolls as one column and, as on a phone, is not the containing block of the
+   * art, the sheets and the dock, so they stay put while its content scrolls.
+   */
+  .stage--battle {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0 12px calc(var(--dock-h) + 1.5rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    isolation: auto;
+  }
+  /* Room under the content for the fixed tray (its height measured: `--tray-h`) */
+  .stage--battle:has(.turn-tray) {
+    padding-bottom: calc(var(--dock-h) + var(--tray-h, 96px) + 1.5rem);
+    scroll-padding-bottom: calc(var(--dock-h) + var(--tray-h, 96px) + 1rem);
+  }
+  .stage--battle > * {
+    flex-shrink: 0;
+  }
+  .combat-stage,
+  .combat-panel {
+    position: static;
+    inset: auto;
+    pointer-events: auto;
+  }
+  .combat-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .stage--battle .scene {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 12px 0 0;
+  }
+  .stage--battle .cartouche,
+  .stage--battle .party-rail {
+    position: relative;
+    inset: auto;
+  }
+  .stage--battle .cartouche {
+    width: auto;
+    max-width: 100%;
+  }
+  .stage--battle .party-rail {
+    max-width: 100%;
+  }
+  .stage--battle .stage-switch {
+    position: relative;
+    inset: auto;
+    align-self: center;
+    width: fit-content;
+  }
+  .stage--battle .turn-banner,
+  .stage--battle .reaction-prompt,
+  .encounter-anchor,
+  .active-card,
+  .combat-side,
+  .board {
+    position: relative;
+    inset: auto;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    translate: none;
+  }
+  .stage--battle .turn-banner {
+    align-self: stretch;
+    white-space: normal;
+    text-align: center;
+  }
+  .stage--battle .reaction-prompt {
+    width: auto;
+  }
+  .board {
+    flex: none;
+    height: min(66vh, 720px);
+  }
+  .board.board--tilted {
+    height: min(54vh, 620px);
+  }
+  .turn-tray {
+    position: fixed;
+    right: 12px;
+    bottom: calc(var(--dock-h) + 22px);
+    left: 12px;
+    z-index: 34;
+    width: fit-content;
+    max-width: calc(100% - 24px);
+    margin-inline: auto;
+  }
+  /* The board first, then whose turn it is and the details (no control changes its order) */
+  .stage--battle .active-card {
+    order: 2;
+  }
+  .stage--battle .combat-side {
+    order: 3;
+  }
+  .world-main.has-battle .outcome {
+    right: 12px;
+    bottom: calc(var(--dock-h) + 22px + var(--tray-h, 88px));
+    left: 12px;
+    width: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  /* The scene view during an encounter: the switch and whose turn it is under the place */
+  .stage:not(.stage--battle) .stage-switch {
+    top: 116px;
+    left: 120px;
+    translate: none;
+  }
+  .stage:not(.stage--battle) .turn-banner {
+    top: 168px;
+    left: 120px;
+    max-width: calc(100% - 136px);
+    translate: none;
+  }
+  .stage:not(.stage--battle) .reaction-prompt {
+    top: 226px;
+  }
+  .stage--battle .scene {
+    flex-wrap: nowrap;
+  }
+  .stage--battle .party-rail {
+    flex: none;
+  }
+  .active-card {
+    display: grid;
+    grid-template-columns: minmax(14rem, 1fr) minmax(0, 1.4fr);
+    gap: 0 1rem;
+  }
+  .active-card > .active-header {
+    grid-row: span 3;
+  }
+}
+@media (max-width: 767px) {
+  .stage--battle {
+    padding-inline: 8px;
+  }
+  /* The place above, who is at the table as the phone's compact strip beneath it */
+  .stage--battle .scene {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 8px 0 0;
+  }
+  .stage--battle .cartouche {
+    flex: 1 1 100%;
+    min-width: 0;
+    padding: 0.45rem 0.75rem;
+  }
+  .stage--battle .cartouche h2 {
+    font-size: 1.2rem;
+  }
+  .stage--battle .party-rail {
+    flex: 1 1 100%;
+  }
+  .stage--battle .rail-member,
+  .stage--battle .rail-dm {
+    width: auto;
+  }
+  .stage--battle .turn-banner {
+    padding-block: 0.3rem;
+    font-size: 1rem;
+  }
+  /* Over either view on a phone: whose turn it is under the place, a reaction above the dock */
+  .stage:not(.stage--battle) .turn-banner {
+    top: 104px;
+    right: 12px;
+    left: 12px;
+    max-width: none;
+    translate: none;
+    font-size: 1rem;
+    text-align: center;
+  }
+  .stage .reaction-prompt,
+  .stage--battle .reaction-prompt {
+    position: fixed;
+    top: auto;
+    right: 8px;
+    bottom: calc(var(--dock-h) + 8px);
+    left: 8px;
+    z-index: 38;
+    width: auto;
+    max-height: 62vh;
+    overflow-y: auto;
+  }
+  .tray-action,
+  .tray-end {
+    min-width: 4rem;
+    padding-inline: 0.3rem;
+  }
+  .tray-art {
+    width: 2rem;
+    height: 2rem;
+  }
+  .turn-tray {
+    right: 0;
+    bottom: var(--dock-h);
+    left: 0;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    border-width: 1px 0 0;
+    border-radius: 0;
+  }
+  .tray-row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+  .initiative .medallion {
+    --m: 32px;
+  }
+  .active-card .medallion {
+    --m: 56px;
+  }
+  .active-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .board,
+  .board.board--tilted {
+    height: min(50vh, 440px);
+  }
+  .world-main.has-battle .outcome {
+    right: 8px;
+    bottom: calc(var(--dock-h) + var(--tray-h, 88px) + 8px);
+    left: 8px;
+  }
+}

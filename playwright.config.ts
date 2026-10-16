@@ -7,6 +7,9 @@ export default defineConfig({
   forbidOnly: Boolean(process.env['CI']),
   retries: 0,
   workers: 2,
+  // Hosted CI runners are about four times slower than a workstation; multi-page live journeys
+  // (a DM and a player across several change cycles) take 28–32 s there. Same assertions.
+  timeout: process.env['CI'] ? 90_000 : 30_000,
   reporter: 'list',
   use: {
     baseURL: 'http://127.0.0.1:4310',
