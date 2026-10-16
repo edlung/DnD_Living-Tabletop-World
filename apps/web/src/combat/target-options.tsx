@@ -14,9 +14,9 @@ import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
-import { combatantLabel } from './board/square-name.ts';
 import { HpBar } from './board/token.tsx';
 import { catalogArtOf, COMBAT_ACTIONS, conditionGlyph, optionLabel } from './combat-art.ts';
+import type { LabelOf } from './labels.ts';
 
 const words = (t: Translate, text: string) => t(text.replaceAll('_', ' ').toLowerCase());
 
@@ -56,6 +56,7 @@ export function combatOptions(
  */
 export function TargetDetails({
   target,
+  labelOf,
   image,
   resource,
   retry,
@@ -65,6 +66,8 @@ export function TargetDetails({
   onClose,
 }: {
   readonly target: EncounterCombatantView;
+  /** Every combatant's label: its name, or "Unidentified creature N". */
+  readonly labelOf: LabelOf;
   readonly image: PlayerAssetView | null;
   readonly resource: Resource<EntityContextResponse | null>;
   readonly retry: () => void;
@@ -75,7 +78,7 @@ export function TargetDetails({
   readonly onClose: () => void;
 }) {
   const t = useT();
-  const name = combatantLabel(target);
+  const name = labelOf(target.entity.entityId);
   const actions = combatOptions(resource);
   const visible = resource.status === 'ready' ? resource.value?.context.visibleState : undefined;
   return (
@@ -142,6 +145,7 @@ export function TargetDetails({
                 id={detailId(index)}
                 action={action}
                 label={optionLabel(t, action.id, name)}
+                labelOf={labelOf}
               />
             ))}
           </ul>
@@ -155,10 +159,12 @@ function OptionEntry({
   id,
   action,
   label,
+  labelOf,
 }: {
   readonly id: string;
   readonly action: ContextAction;
   readonly label: string;
+  readonly labelOf: LabelOf;
 }) {
   const t = useT();
   const art = catalogArtOf(action.id);
@@ -191,7 +197,7 @@ function OptionEntry({
           <small>
             {t('Would affect: {names}', {
               names:
-                action.area.affected.map((ref) => ref.name ?? ref.entityId).join(', ') ||
+                action.area.affected.map((ref) => ref.name ?? labelOf(ref.entityId)).join(', ') ||
                 t('no one'),
             })}
           </small>

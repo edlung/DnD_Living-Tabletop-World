@@ -29,6 +29,7 @@ const raider: EncounterCombatantView = {
 };
 const empty: SquareFacts = {
   occupant: null,
+  label: '',
   you: false,
   difficult: false,
   cover: null,
@@ -41,7 +42,11 @@ describe('the name of a board square', () => {
   });
 
   it('says who stands there, terrain, cover and a previewed area, as the journeys read them', () => {
-    const you = squareName(english, { x: 2, y: 6 }, { ...empty, occupant: elowen, you: true });
+    const you = squareName(
+      english,
+      { x: 2, y: 6 },
+      { ...empty, occupant: elowen, label: 'Elowen Starwhisper', you: true },
+    );
     expect(you).toBe('Square 2, 6: Elowen Starwhisper (you), party, 78 / 78 HP');
     expect(you).toMatch(/^Square 2, 6(:|$)/);
     const raiderName = squareName(
@@ -50,13 +55,15 @@ describe('the name of a board square', () => {
       {
         ...empty,
         occupant: raider,
+        label: 'Unidentified creature 1',
         cover: 'half',
         inArea: true,
       },
     );
     expect(raiderName).toBe(
-      'Square 8, 4: goblin-raider-1, hostile, down, prone, unconscious; half cover; in the area',
+      'Square 8, 4: Unidentified creature 1, hostile, down, prone, unconscious; half cover; in the area',
     );
+    expect(raiderName).not.toContain('goblin-raider-1');
     expect(squareName(english, { x: 0, y: 9 }, { ...empty, difficult: true })).toBe(
       'Square 0, 9: difficult terrain',
     );
@@ -69,7 +76,7 @@ describe('the name of a board square', () => {
     expect(squareName(english, { x: 5, y: 5 }, { ...empty, inArea: true })).toBe('Square 5, 5');
   });
 
-  it('speaks Russian in a Russian campaign, names and IDs as published', () => {
+  it('speaks Russian in a Russian campaign, with the labels it is given', () => {
     expect(
       squareName(
         russian,
@@ -77,15 +84,20 @@ describe('the name of a board square', () => {
         {
           ...empty,
           occupant: raider,
+          label: 'Неопознанное существо 1',
           difficult: true,
           cover: 'three-quarters',
         },
       ),
     ).toBe(
-      'Клетка 8, 4: goblin-raider-1, враждебная, упал, сбит с ног, без сознания; трудная местность; укрытие на три четверти',
+      'Клетка 8, 4: Неопознанное существо 1, враждебная, упал, сбит с ног, без сознания; трудная местность; укрытие на три четверти',
     );
-    expect(squareName(russian, { x: 2, y: 6 }, { ...empty, occupant: elowen, you: true })).toBe(
-      'Клетка 2, 6: Elowen Starwhisper (вы), отряд, 78 / 78 ОЗ',
-    );
+    expect(
+      squareName(
+        russian,
+        { x: 2, y: 6 },
+        { ...empty, occupant: elowen, label: 'Elowen Starwhisper', you: true },
+      ),
+    ).toBe('Клетка 2, 6: Elowen Starwhisper (вы), отряд, 78 / 78 ОЗ');
   });
 });

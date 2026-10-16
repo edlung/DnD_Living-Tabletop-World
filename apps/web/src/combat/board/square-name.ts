@@ -1,10 +1,6 @@
 import type { CoverLevel, EncounterCombatantView, Square } from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
-/** A combatant's label: its name when this perspective knows it, else its ID as published. */
-export const combatantLabel = (combatant: EncounterCombatantView): string =>
-  combatant.entity.name ?? combatant.entity.entityId;
-
 const COVER: Readonly<Record<CoverLevel, string>> = {
   half: 'half cover',
   'three-quarters': 'three-quarters cover',
@@ -14,6 +10,8 @@ const COVER: Readonly<Record<CoverLevel, string>> = {
 /** What the projection says of one square; nothing here is inferred. */
 export interface SquareFacts {
   readonly occupant: EncounterCombatantView | null;
+  /** The occupant's label (`combat/labels.ts`): its name, or "Unidentified creature N". */
+  readonly label: string;
   readonly you: boolean;
   readonly difficult: boolean;
   readonly cover: CoverLevel | null;
@@ -31,7 +29,7 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
   const notes: string[] = [];
   if (occupant) {
     const parts = [
-      facts.you ? t('{name} (you)', { name: combatantLabel(occupant) }) : combatantLabel(occupant),
+      facts.you ? t('{name} (you)', { name: facts.label }) : facts.label,
       t(occupant.side),
       ...(occupant.state === 'up' ? [] : [t(occupant.state)]),
       ...occupant.conditions.map((condition) => t(condition)),

@@ -1,74 +1,302 @@
-/* The Chronicle in its dialog (part C turns it into the book of design §5.6). */
-.chronicle > h2 {
+/*
+ * The Chronicle as a book (docs/STAGE_320_DESIGN.md §5.6): the GPT book spread scaled to the
+ * screen, ribbon tabs for chapters, two pages that scroll inside themselves, sources as margin
+ * notes. Below a wide screen the spread gives way to one parchment page (GPT texture) with the
+ * same order. The pages are the one light surface: ink tokens, epistemic hues as inks.
+ */
+
+/* The dialog: the whole viewport, the world dimmed behind it */
+.chronicle-dialog {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+}
+.chronicle-dialog::backdrop {
+  background: color-mix(in srgb, var(--ink-950) 86%, transparent);
+  backdrop-filter: blur(3px);
+}
+.chronicle-frame {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 1rem;
-  font-size: 2.2rem;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px var(--gutter) 14px;
 }
-.chronicle > h2 .glyph {
-  color: var(--gold);
+.chronicle-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 6;
+  border-color: var(--line-strong);
+  background: var(--glass-raised);
 }
-.chronicle .disclosure {
-  max-width: 44rem;
+
+/* Header: the book's name and, for the DM, the chapter writer */
+.chronicle-book {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 0;
 }
-.chronicle .disclosure input,
-.chronicle .disclosure select {
-  max-width: 30rem;
-  margin-bottom: 0.6rem;
-}
-.chronicle-chapter {
-  max-width: 48rem;
-  margin: 1.25rem 0 0;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-panel);
-  background: color-mix(in srgb, var(--ink-950) 50%, transparent);
-}
-.chronicle-chapter h3 {
-  margin: 0 0 0.25rem;
-  font-size: 1.7rem;
-}
-.chronicle-paragraph > p {
-  font-size: 1.08rem;
-  line-height: 1.65;
-}
-.chronicle-cites {
-  display: grid;
-  gap: 0.4rem;
-  margin: 0 0 1rem;
-  padding: 0 0 0 0.9rem;
-  border-left: 1px solid var(--gold-deep);
-  list-style: none;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-.chronicle-cites li {
+.book-header {
+  position: relative;
+  z-index: 4;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem 0.6rem;
+  gap: 0.4rem 1.2rem;
+  min-height: 44px;
+  padding-right: 52px;
 }
-.flashback-button {
-  min-height: 34px;
-  padding: 0.2rem 0.7rem;
-  font-size: 0.88rem;
+.book-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  color: var(--gold-bright);
+  font-size: 1.7rem;
 }
-.flashback-button .glyph {
+.book-header h2 .glyph {
+  width: 28px;
+  height: 28px;
+}
+.book-writer {
+  position: relative;
+  margin: 0;
+}
+.book-writer > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 38px;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+  color: var(--text);
+  list-style: none;
+}
+.book-writer > summary::-webkit-details-marker {
+  display: none;
+}
+.book-writer > summary .glyph {
   color: var(--gold);
 }
-.flashback {
-  flex-basis: 100%;
-  margin-top: 0.4rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid var(--gold-deep);
-  border-radius: var(--radius-control);
-  background: color-mix(in srgb, var(--gold-deep) 22%, transparent);
-  color: var(--text);
+.book-writer[open] > summary {
+  border-color: var(--teal);
 }
-.flashback blockquote {
-  margin-top: 0.4rem;
+.book-writer-form {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 5;
+  display: grid;
+  gap: 0.35rem;
+  width: min(26rem, calc(100vw - 32px));
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow);
+}
+.book-writer-form button {
+  justify-self: start;
+  margin-top: 0.3rem;
+}
+.book-writer-form [role='status'] {
+  margin: 0.2rem 0 0;
+}
+
+/* Chapters as ribbon tabs */
+.book-ribbons {
+  min-width: 0;
+}
+.book-ribbon-list {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding: 2px 2px 4px;
+  scrollbar-width: thin;
+}
+.book-ribbon {
+  flex: none;
+  gap: 0.4rem;
+  max-width: 18rem;
+  min-height: 36px;
+  padding: 0.25rem 0.8rem 0.25rem 0.5rem;
+  border-color: var(--line);
+  border-radius: 6px 6px 2px 2px;
+  background: var(--glass);
+  color: var(--text-muted);
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.book-ribbon > span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.book-ribbon > .glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--gold-deep);
+}
+.book-ribbon[aria-pressed='true'] {
+  border-color: var(--gold);
+  background: var(--glass-raised);
+  color: var(--text);
+  box-shadow: inset 0 -2px 0 var(--gold);
+}
+.book-ribbon[aria-pressed='true'] > .glyph {
+  color: var(--gold-bright);
+}
+
+/* The spread: the GPT book scaled to the space, the pages placed over its paper */
+.book-stage {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  min-height: 0;
+  container-type: size;
+}
+.book-spread {
+  position: relative;
+  width: min(100cqw, 159.9cqh);
+  aspect-ratio: 1586 / 992;
+  background-color: var(--page-ground);
+  font-size: clamp(14px, min(2.05cqh, 1.28cqw), 17px);
+}
+.book-spread-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+.book-chapter-frame,
+.book-chapter {
+  position: absolute;
+  inset: 0;
+}
+.book-page {
+  --k-fact: var(--k-fact-ink);
+  --k-evidence: var(--k-evidence-ink);
+  --k-testimony: var(--k-testimony-ink);
+  --k-rumor: var(--k-rumor-ink);
+  --k-inference: var(--k-inference-ink);
+  --k-hypothesis: var(--k-hypothesis-ink);
+  --k-contradiction: var(--k-contradiction-ink);
+  --k-unknown: var(--k-unknown-ink);
+  --k-secret: var(--k-secret-ink);
+  position: absolute;
+  top: 8%;
+  bottom: 15.5%;
+  overflow-y: auto;
+  padding: 0 1.2% 0.5rem;
+  color: var(--page-ink);
+  container-type: inline-size;
+  scrollbar-color: color-mix(in srgb, var(--gold-deep) 70%, transparent) transparent;
+  scrollbar-width: thin;
+}
+.book-page--left {
+  left: 11.2%;
+  right: 52.6%;
+}
+.book-page--right {
+  left: 53.2%;
+  right: 11.4%;
+}
+.book-page--status {
+  display: grid;
+  align-content: center;
+}
+.book-page :focus-visible {
+  outline-color: var(--rubric);
+}
+.book-empty {
+  font-family: var(--font-display);
+  font-size: 1.5em;
   font-style: italic;
+  text-align: center;
+}
+.book-empty-hint {
+  color: var(--page-ink-muted);
+  text-align: center;
+}
+.book-page .status-panel {
+  border-color: color-mix(in srgb, var(--page-ink) 25%, transparent);
+  background: transparent;
+  color: var(--page-ink);
+}
+
+/* Narrower than a wide screen: one parchment page, the same order */
+@media (max-width: 1023px), (max-height: 599px) {
+  .chronicle-frame {
+    padding: 8px 8px 0;
+  }
+  .book-stage {
+    display: flex;
+    container-type: normal;
+  }
+  .book-spread {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 6px 6px 0 0;
+    background:
+      url('../assets/ui-kit/textures/parchment.webp') center / 512px,
+      var(--page-ground);
+    box-shadow: var(--shadow);
+    font-size: 16px;
+  }
+  .book-spread-art {
+    display: none;
+  }
+  .book-chapter-frame {
+    inset: 0;
+    overflow-y: auto;
+  }
+  .book-chapter {
+    position: static;
+    padding: 1.1rem var(--gutter) 2rem;
+  }
+  .book-page,
+  .book-page--left,
+  .book-page--right {
+    position: static;
+    overflow: visible;
+    padding: 0;
+  }
+  .book-page--status {
+    position: absolute;
+    inset: 0;
+    padding: 1.5rem var(--gutter);
+  }
+  .chapter-plate img {
+    max-height: min(38vh, 22rem);
+  }
+  .book-page--right {
+    margin-top: 1.2rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid color-mix(in srgb, var(--page-ink) 28%, transparent);
+  }
+  .book-header h2 {
+    font-size: 1.4rem;
+  }
+  .book-writer-form {
+    position: fixed;
+    top: 104px;
+    right: 8px;
+    left: 8px;
+    width: auto;
+  }
 }

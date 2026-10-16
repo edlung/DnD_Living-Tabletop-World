@@ -5,11 +5,11 @@ import { createPortal } from 'react-dom';
 
 import type { WorldApi } from '../api/client.ts';
 import { useLiveTarget } from '../api/live-context.ts';
-import { ChroniclePanel } from '../chronicle/chronicle-panel.tsx';
+import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
 import { standInReason, type StandIn } from '../combat/stand-in.ts';
 import { DmSheets } from '../dm/dm-sheets.tsx';
 import { ActionNotice } from '../exploration/action-notice.tsx';
-import { DialoguePanel } from '../exploration/dialogue-panel.tsx';
+import { CONVERSATION_PANEL_ID, DialoguePanel } from '../exploration/dialogue-panel.tsx';
 import {
   useAction,
   type ActionNotice as Notice,
@@ -19,6 +19,7 @@ import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
 import { Dock } from '../shell/dock.tsx';
 import { focusOn, useEscape, useShell } from '../shell/use-shell.ts';
 import { ApprovedImages, ApprovedImagesContext } from '../visual/approved-images.ts';
+import { WIDE } from '../combat/board/board-view.ts';
 import { Backdrop } from './backdrop.tsx';
 import { CombatStage } from './combat-stage.tsx';
 import { EntityDetails } from './entity-details.tsx';
@@ -67,6 +68,8 @@ export function World({
   const [dmWeather, setDmWeather] = useState<Weather>('rain');
   const [viewing, setViewing] = useState<string | null>(null);
   const [selected, setSelected] = useState<Selected | null>(null);
+  // The last selection: its panel stays mounted while closed, so drafts in it survive.
+  const [shown, setShown] = useState<Selected | null>(null);
   const [conversation, setConversation] = useState<Conversation | null>(null);
   const [sceneFor, setSceneFor] = useState<string | null>(null);
   const [dismissed, setDismissed] = useState<Notice | null>(null);
@@ -89,6 +92,7 @@ export function World({
       // Arrival keeps the place itself as the object in context, so it can be examined.
       setViewing(outcome.locationId);
       setSelected({ entityId: outcome.locationId, kind: 'location' });
+      setShown({ entityId: outcome.locationId, kind: 'location' });
       setConversation(null);
     }
     setRevision((value) => value + 1);
@@ -96,10 +100,14 @@ export function World({
   // Players act as their character; the DM alone runs the existing encounter operations, and
   // fights as a player's character only after choosing to, each command with its reason.
   const action = useAction(api, canAct || standIn !== null || isDm, onResolved);
-  // A spoken line belongs to the conversation with whoever spoke it.
+  // A spoken line belongs to the conversation with whoever spoke it; an NPC who would not
+  // talk now leaves no conversation open (no "Keep talking" after a refusal).
   useEffect(() => {
-    const speech = action.notice?.speech;
-    const speaker = action.notice?.speakerId;
+    const notice = action.notice;
+    const refused = notice?.talkRefusedBy;
+    if (refused) setConversation((current) => (current?.npcId === refused ? null : current));
+    const speech = notice?.speech;
+    const speaker = notice?.speakerId;
     if (!speech || !speaker) return;
     setConversation((current) =>
       current?.npcId === speaker ? { npcId: speaker, line: speech } : current,
@@ -123,6 +131,7 @@ export function World({
     }
     shell.detailsOpened();
     setSelected({ entityId, kind });
+    setShown({ entityId, kind });
   };
   // Opening the selection's panel takes focus there; closing it returns focus where it was.
   const panelOpen = selected !== null;
@@ -132,6 +141,14 @@ export function World({
   const closeDetails = () => {
     if (!focusOn(opener.current)) document.getElementById('world-main')?.focus();
     setSelected(null);
+  };
+  // The conversation holds what to say: on a screen where the selection's panel covers the
+  // stage it steps aside (staying mounted), and focus goes to the conversation.
+  const showConversation = () => {
+    if (!window.matchMedia(WIDE).matches) setSelected(null);
+    requestAnimationFrame(() => {
+      document.getElementById(CONVERSATION_PANEL_ID)?.focus();
+    });
   };
   useEscape(() => {
     if (selected && (shell.sheet === null || shell.topmost() === 'details')) {
@@ -172,7 +189,7 @@ export function World({
     (current?.entityId === placeId
       ? { ...current, name: current.name ?? t('Unidentified location') }
       : null);
-  const selectedKnown = directory.find((entity) => entity.entityId === selected?.entityId);
+  const shownKnown = directory.find((entity) => entity.entityId === shown?.entityId);
   const openSession = data?.sessions.sessions.find((session) => session.endedAt === null);
   const encounter = data?.encounter.encounter ?? null;
   const battlefield = encounter !== null && sceneFor !== encounter.encounterId;
@@ -182,6 +199,12 @@ export function World({
   const discovered = revealedIds(action.notice?.outcome);
   const notice = action.notice === dismissed ? null : action.notice;
   const speaking = conversation !== null && canAct && encounter === null;
+  // The line just spoken shows in the conversation in the same render as its result, so the
+  // words are announced once, there (the result leaves them out).
+  const spoken =
+    action.notice?.speech && action.notice.speakerId === conversation?.npcId
+      ? action.notice.speech
+      : null;
 
   return (
     <ApprovedImagesContext.Provider value={images}>
@@ -229,7 +252,8 @@ export function World({
                     key={conversation.npcId}
                     api={api}
                     npcId={conversation.npcId}
-                    line={conversation.line}
+                    revision={revision}
+                    line={spoken ?? conversation.line}
                     image={presentImage(conversation.npcId)}
                     directory={directory}
                     knowledge={data.knowledge.knowledge}
@@ -264,8 +288,8 @@ export function World({
               encounter={encounter}
               revision={revision}
               battlefield={battlefield}
-              onView={(shown) => {
-                setSceneFor(shown === 'scene' ? encounter.encounterId : null);
+              onView={(chosen) => {
+                setSceneFor(chosen === 'scene' ? encounter.encounterId : null);
               }}
               actorId={data.surroundings?.actingCharacterId ?? null}
               canAct={canAct || standIn !== null}
@@ -334,9 +358,7 @@ export function World({
               ? data.knowledge.knowledge.filter((record) => discovered.includes(record.knowledgeId))
               : []
           }
-          quoteElsewhere={
-            speaking && conversation.line !== null && notice?.speakerId === conversation.npcId
-          }
+          quoteElsewhere={speaking && notice?.speakerId === conversation.npcId}
           onRetry={action.retry}
           onDismiss={() => {
             setDismissed(action.notice);
@@ -349,19 +371,22 @@ export function World({
           tabIndex={-1}
           hidden={!selected}
         >
-          {selected && data && (
+          {shown && data && (
             <EntityDetails
-              key={`${selected.entityId}:${String(revision)}`}
+              key={shown.entityId}
               api={api}
-              entityId={selected.entityId}
-              name={selectedKnown?.name ?? null}
-              kind={selected.kind}
-              known={selectedKnown !== undefined}
+              entityId={shown.entityId}
+              revision={revision}
+              name={shownKnown?.name ?? null}
+              kind={shown.kind}
+              known={shownKnown !== undefined}
               effectivePerspective={effectivePerspective}
               directory={directory}
               knowledge={data.knowledge.knowledge}
               canAct={canAct && encounter === null}
               locked={action.locked}
+              conversing={speaking && conversation.npcId === shown.entityId}
+              onShowConversation={showConversation}
               onRun={explore}
               onSelect={select}
               onClose={closeDetails}
@@ -370,12 +395,7 @@ export function World({
         </aside>
         <ChronicleDialog open={shell.chronicle} onClose={shell.closeChronicle}>
           {data && (
-            <ChroniclePanel
-              key={`chronicle:${String(revision)}`}
-              api={api}
-              isDm={isDm}
-              characters={directory.filter((entity) => entity.kind === 'character')}
-            />
+            <ChronicleBook api={api} isDm={isDm} revision={revision} directory={directory} />
           )}
         </ChronicleDialog>
       </main>

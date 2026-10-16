@@ -61,7 +61,7 @@ test('the DM starts, runs, and ends an encounter and the player returns to explo
   // Exploration options work again now that no encounter holds the world.
   await player
     .getByRole('region', { name: 'Scene', exact: true })
-    .getByRole('button', { name: /goblin|Unidentified creature/i })
+    .getByRole('button', { name: /^Unidentified creature/ })
     .first()
     .click();
   await expect(

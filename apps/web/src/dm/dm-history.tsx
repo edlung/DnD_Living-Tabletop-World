@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { Glyph } from '../visual/glyph.tsx';
 import { historyPageKey, historyPageLoader, PageCursor } from './history-pages.ts';
 import { entryDetails, entryStatus, entryTitle, STEP_TEXT } from './history-text.ts';
 import { useHistoryUndo } from './use-history-undo.ts';
@@ -160,47 +161,63 @@ function HistoryEntry({
   const step = (type: keyof typeof STEP_TEXT) => t(STEP_TEXT[type]);
   const { undo } = entry;
   return (
-    <li className="dm-history-entry">
-      <div className="section-heading">
-        <strong>{entryTitle(t, entry, directory)}</strong>
-        <span className="status-pill">{entryStatus(t, entry)}</span>
+    <li className={`dm-history-entry dm-history-entry--${entry.status.toLowerCase()}`}>
+      <Glyph
+        name={entry.kind === 'authoring' ? 'add-character' : 'perform'}
+        className="history-kind"
+      />
+      <div className="history-body">
+        <div className="section-heading">
+          <strong>{entryTitle(t, entry, directory)}</strong>
+          <span className="status-pill">{entryStatus(t, entry)}</span>
+        </div>
+        <p className="history-when">
+          <Glyph name="time" />
+          {entryDetails(t, entry)}
+        </p>
+        {undo?.possible && (
+          <p className="history-undo-preview">
+            <Glyph name="undo" />
+            {t('Undo is possible now: the world allows it.')}
+          </p>
+        )}
+        {undo && (
+          <div className="action-row">
+            <button
+              disabled={actions.busy}
+              onClick={() => {
+                void actions.undo(entry);
+              }}
+            >
+              <Glyph name="undo" />
+              {entry.kind === 'authoring' ? t('Undo this addition') : t('Undo this action')}
+            </button>
+          </div>
+        )}
+        {undo && !undo.possible && undo.blockers.length === 0 && (
+          <p className="muted">{t('This cannot be undone now.')}</p>
+        )}
+        {undo && !undo.possible && undo.blockers.length > 0 && (
+          <div role="group" aria-label={t('Undo blockers')} className="issue-list">
+            <strong>{t('Undo is blocked by later steps that depend on this:')}</strong>
+            <ul>
+              {undo.blockers.map((blocker) => (
+                <li key={blocker.commandId}>
+                  {step(blocker.commandType)}{' '}
+                  <button
+                    disabled={actions.busy}
+                    onClick={() => {
+                      void actions.undoBlocker(blocker.commandId);
+                    }}
+                  >
+                    {t('Undo “{step}” first', { step: step(blocker.commandType) })}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
-      <p className="muted">{entryDetails(t, entry)}</p>
-      {undo && (
-        <div className="action-row">
-          <button
-            disabled={actions.busy}
-            onClick={() => {
-              void actions.undo(entry);
-            }}
-          >
-            {entry.kind === 'authoring' ? t('Undo this addition') : t('Undo this action')}
-          </button>
-        </div>
-      )}
-      {undo && !undo.possible && undo.blockers.length === 0 && (
-        <p className="muted">{t('This cannot be undone now.')}</p>
-      )}
-      {undo && !undo.possible && undo.blockers.length > 0 && (
-        <div role="group" aria-label={t('Undo blockers')} className="issue-list">
-          <strong>{t('Undo is blocked by later steps that depend on this:')}</strong>
-          <ul>
-            {undo.blockers.map((blocker) => (
-              <li key={blocker.commandId}>
-                {step(blocker.commandType)}{' '}
-                <button
-                  disabled={actions.busy}
-                  onClick={() => {
-                    void actions.undoBlocker(blocker.commandId);
-                  }}
-                >
-                  {t('Undo “{step}” first', { step: step(blocker.commandType) })}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </li>
   );
 }

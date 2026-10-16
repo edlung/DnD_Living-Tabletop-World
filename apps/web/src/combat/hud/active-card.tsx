@@ -6,9 +6,9 @@ import type { WorldApi } from '../../api/client.ts';
 import { useResource } from '../../api/resource.ts';
 import { Glyph } from '../../visual/glyph.tsx';
 import { Medallion } from '../../visual/medallion.tsx';
-import { combatantLabel } from '../board/square-name.ts';
 import { HpBar } from '../board/token.tsx';
 import { conditionGlyph } from '../combat-art.ts';
+import { useCombatantLabels } from '../labels.ts';
 
 /** The viewer's own sheet, read only while the active combatant is the viewer's character. */
 function useOwnSheet(api: WorldApi, characterId: string | null) {
@@ -49,6 +49,7 @@ export function ActiveCard({
   );
   const own = active !== undefined && actorId !== null && active.entity.entityId === actorId;
   const sheet = useOwnSheet(api, own ? actorId : null)?.sheet ?? null;
+  const labelOf = useCombatantLabels(encounter);
   if (!active) return null;
   return (
     <section
@@ -67,7 +68,7 @@ export function ActiveCard({
         />
         <div className="active-title">
           <p className="eyebrow">{t(readableLabel(active.side))}</p>
-          <h3>{combatantLabel(active)}</h3>
+          <h3>{labelOf(active.entity.entityId)}</h3>
           {active.state !== 'up' && (
             <p className="active-state">
               <Glyph name={active.state === 'dead' ? 'dead' : 'unconscious'} />

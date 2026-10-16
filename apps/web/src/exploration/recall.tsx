@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { formatWorldTime } from '../dm/world-time.ts';
 
 /** The selected object constrains the recall; neither scope nor NPC is broadened. */
 export function Recall({ api, entityId }: { readonly api: WorldApi; readonly entityId: string }) {
@@ -62,7 +63,7 @@ export function Recall({ api, entityId }: { readonly api: WorldApi; readonly ent
                 <li key={memory.memoryId}>
                   <span className="badge">{t(memory.memoryKind)}</span>
                   <p>{memory.summary}</p>
-                  <small>{t('World time {time}', { time: memory.occurredAt })}</small>
+                  <small>{formatWorldTime(memory.occurredAt, t)}</small>
                 </li>
               ))}
             </ul>

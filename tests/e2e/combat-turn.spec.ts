@@ -26,7 +26,19 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   await expect(square(page, 7, 4)).toHaveAccessibleName(/half cover/);
   await expect(square(page, 3, 2)).toHaveAccessibleName(/total cover/);
   await expect(square(page, 2, 6)).toHaveAccessibleName(/Elowen Starwhisper \(you\), party/);
-  await expect(square(page, 8, 4)).toHaveAccessibleName(/goblin-raider-1, hostile/);
+  await expect(square(page, 8, 4)).toHaveAccessibleName(/Unidentified creature 1, hostile/);
+  // Unnamed combatants are numbered in turn order, never shown by their IDs.
+  await expect(square(page, 12, 6)).toHaveAccessibleName(/Unidentified creature 4, hostile/);
+  await expect(battlefield(page)).not.toContainText('goblin');
+  // A figure in cover shows its piece behind it and the cover level beside it.
+  await expect(square(page, 8, 4).locator('.token-cover')).toHaveText('½');
+  await expect(square(page, 12, 6).locator('.token-cover')).toHaveText('¾');
+  await expect(square(page, 8, 4).locator('.cover-art')).toBeVisible();
+  await square(page, 3, 2).hover();
+  await expect(battlefield(page).locator('.terrain-card')).toContainText('Total cover');
+  await square(page, 0, 9).hover();
+  await expect(battlefield(page).locator('.terrain-card')).toContainText('Difficult terrain');
+  await page.mouse.move(1, 1);
   // Whose turn it is, with her own armour class and speed from her own sheet.
   const active = battlefield(page).getByRole('region', { name: 'Active combatant' });
   await expect(active).toContainText('Elowen Starwhisper');
@@ -47,15 +59,17 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   await expect(battlefield(page).getByRole('button', { name: 'Move here' })).toHaveCount(0);
 
   await square(page, 8, 4).click();
-  const options = battlefield(page).getByRole('region', { name: 'Options for goblin-raider-1' });
+  const options = battlefield(page).getByRole('region', {
+    name: 'Options for Unidentified creature 1',
+  });
   await expect(options).toContainText('Distance: 15 ft');
   await expect(options).toBeFocused();
   // The options are described beside the target and carried out from the turn tray.
-  await expect(options).toContainText('Attack goblin-raider-1 with longbow');
+  await expect(options).toContainText('Attack Unidentified creature 1 with longbow');
   const attack = turnTray(page).getByRole('button', {
-    name: 'Attack goblin-raider-1 with longbow',
+    name: 'Attack Unidentified creature 1 with longbow',
   });
-  await expect(attack).toHaveAccessibleDescription(/Attack goblin-raider-1 with longbow/);
+  await expect(attack).toHaveAccessibleDescription(/Attack Unidentified creature 1 with longbow/);
   const attacked = await submit(page, attack);
   expectAccepted(attacked);
   expect(attacked.body.outcome?.kind).toBe('Attack');
@@ -73,7 +87,7 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
 
   const ended = await submit(page, turnTray(page).getByRole('button', { name: 'End turn' }));
   expectAccepted(ended);
-  await expect(anchor(page)).toContainText('Turn: goblin-raider-1');
+  await expect(anchor(page)).toContainText('Turn: Unidentified creature 1');
   await expect(turnTray(page)).toHaveCount(0);
   await expect(battlefield(page).getByRole('button', { name: 'End turn' })).toHaveCount(0);
   await expect(anchor(page)).toContainText('the DM runs creature turns');

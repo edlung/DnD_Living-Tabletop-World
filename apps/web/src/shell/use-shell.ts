@@ -58,9 +58,35 @@ export function useShell() {
 
 export type Shell = ReturnType<typeof useShell>;
 
+/** Text-entry inputs: Escape in one that holds a draft never closes what holds it. */
+const TEXT_INPUTS: ReadonlySet<string> = new Set([
+  'text',
+  'search',
+  'email',
+  'url',
+  'tel',
+  'number',
+  'password',
+]);
+
+/**
+ * Whether Escape was pressed inside a text field that holds something: a draft is never closed
+ * away by the key that, in a field, people press to undo a suggestion or leave a menu.
+ */
+export function isDraftField(target: EventTarget | null): boolean {
+  if (target instanceof HTMLTextAreaElement) return target.value.trim() !== '';
+  if (target instanceof HTMLInputElement) {
+    return TEXT_INPUTS.has(target.type) && target.value.trim() !== '';
+  }
+  return target instanceof HTMLElement && target.isContentEditable
+    ? target.textContent.trim() !== ''
+    : false;
+}
+
 /**
  * Escape closes the topmost sheet or panel (design §7); `onEscape` says whether it closed one.
- * A modal dialog (the Chronicle) closes itself, and a reaction question is never dismissed.
+ * A modal dialog (the Chronicle) closes itself, a reaction question is never dismissed, and
+ * Escape inside a text field that holds a draft closes nothing.
  */
 export function useEscape(onEscape: () => boolean): void {
   const handler = useRef(onEscape);
@@ -72,6 +98,7 @@ export function useEscape(onEscape: () => boolean): void {
       if (event.key !== 'Escape' || event.defaultPrevented) return;
       if (document.querySelector('dialog[open]')) return;
       if (event.target instanceof Element && event.target.closest('[role="alertdialog"]')) return;
+      if (isDraftField(event.target)) return;
       if (handler.current()) event.preventDefault();
     };
     document.addEventListener('keydown', listener);

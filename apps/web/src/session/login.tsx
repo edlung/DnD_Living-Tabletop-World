@@ -78,7 +78,7 @@ export function Login({ onConnect }: { readonly onConnect: (connection: Connecti
               type="submit"
               disabled={!campaignId.trim() || !token.trim()}
             >
-              <Glyph name="travel" />
+              <Glyph name="sign-in" />
               {t('Enter world')}
             </button>
           </form>

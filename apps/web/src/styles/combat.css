@@ -102,6 +102,23 @@
   line-height: 1.3;
   text-align: center;
 }
+.initiative-number {
+  position: absolute;
+  bottom: -2px;
+  left: -4px;
+  min-width: 1.35rem;
+  padding: 0 0.25rem;
+  border: 1px solid color-mix(in srgb, var(--side-hostile) 70%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--ink-950);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+  text-align: center;
+}
 .initiative-name {
   display: -webkit-box;
   max-width: 100%;
@@ -110,7 +127,8 @@
   font-size: 0.74rem;
   line-height: 1.15;
   text-align: center;
-  overflow-wrap: anywhere;
+  hyphens: auto;
+  overflow-wrap: break-word;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }

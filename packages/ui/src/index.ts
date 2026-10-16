@@ -19,4 +19,4 @@ export {
   type Params,
   type Translate,
 } from './i18n.tsx';
-export { readableLabel, readableList } from './labels.ts';
+export { combatantLabels, readableLabel, readableList, type LabelledEncounter } from './labels.ts';

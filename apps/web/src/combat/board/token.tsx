@@ -5,7 +5,7 @@ import { Glyph } from '../../visual/glyph.tsx';
 import { Medallion } from '../../visual/medallion.tsx';
 import { boardUrl } from '../../visual/ui-kit.ts';
 import { conditionGlyph } from '../combat-art.ts';
-import { combatantLabel } from './square-name.ts';
+import { splitLabel } from '../labels.ts';
 
 type HitPoints = { readonly current: number; readonly max: number };
 
@@ -35,18 +35,26 @@ export function HpBar({ hitPoints }: { readonly hitPoints: HitPoints }) {
  */
 export function Token({
   combatant,
+  label,
+  cover,
   image,
   current,
   selected,
   inArea,
 }: {
   readonly combatant: EncounterCombatantView;
+  /** Its name, or "Unidentified creature N" (`combat/labels.ts`). */
+  readonly label: string;
+  /** The cover level of its square, from the projection: a badge beside the figure. */
+  readonly cover: CoverLevel | null;
   readonly image: PlayerAssetView | null;
   readonly current: boolean;
   readonly selected: boolean;
   readonly inArea: boolean;
 }) {
   const t = useT();
+  // On a narrow plate the words may shorten; the number that tells two figures apart never does.
+  const { words, number } = splitLabel(label);
   const classes = [
     'token',
     `token--${combatant.side}`,
@@ -77,14 +85,35 @@ export function Token({
             combatant.state === 'dead' ? 'dead' : combatant.state === 'down' ? 'unconscious' : null
           }
         />
+        {cover && (
+          <span className={`token-cover token-cover--${cover}`}>
+            <Glyph name="cover" />
+            <span>{cover === 'total' ? t('total') : COVER_MARK[cover]}</span>
+          </span>
+        )}
         <span className="token-plate">
-          <span className="token-name">{combatantLabel(combatant)}</span>
+          <span className={`token-name${number ? ' has-number' : ''}`}>
+            {number ? (
+              <>
+                <span className="name-words">{words}</span>{' '}
+                <span className="name-number">{number}</span>
+              </>
+            ) : (
+              label
+            )}
+          </span>
           {combatant.hitPoints && <HpBar hitPoints={combatant.hitPoints} />}
         </span>
       </span>
     </span>
   );
 }
+
+/** The cover badge's mark: the fraction of the rules' cover level (total in words). */
+const COVER_MARK: Readonly<Record<Exclude<CoverLevel, 'total'>, string>> = {
+  half: '½',
+  'three-quarters': '¾',
+};
 
 const PIECES: Readonly<Record<CoverLevel, 'cover-half' | 'cover-three-quarters' | 'cover-total'>> =
   {
@@ -95,8 +124,9 @@ const PIECES: Readonly<Record<CoverLevel, 'cover-half' | 'cover-three-quarters' 
 
 /**
  * The GPT cover piece of a cover square: low crates, a boulder or a wall for half,
- * three-quarters and total cover. It marks the rules' cover level, never what the object is,
- * and stands behind any combatant in the same square.
+ * three-quarters and total cover. It marks the rules' cover level, never what the object is.
+ * It stands at the square's back edge, scaled by level (a wall reads as a wall), so anyone in
+ * the same square stands in front of it with the piece rising behind and above.
  */
 export function CoverPiece({ level }: { readonly level: CoverLevel }) {
   return (

@@ -1,0 +1,135 @@
+/*
+ * A flashback played as a scene over the book (docs/STAGE_320_DESIGN.md §5.6): the remembered
+ * place in a framed, sepia-toned vignette (its approved image or the mist; the GPT corner
+ * ornament frames it), the remembered line large in italic serif, who said it, and Return.
+ * Code draws only the scrim, the tone and the hairlines over the art.
+ */
+.flashback-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  overflow-y: auto;
+  padding: 1rem clamp(1rem, 5%, 3.5rem) 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(
+      ellipse 80% 70% at 50% 38%,
+      color-mix(in srgb, var(--ink-850) 94%, transparent),
+      var(--ink-950) 92%
+    ),
+    var(--ink-950);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  animation: flashback-in var(--t-panel) var(--ease);
+}
+.flashback-scene:focus {
+  outline: none;
+}
+@keyframes flashback-in {
+  from {
+    opacity: 0;
+  }
+}
+.flashback-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+}
+.flashback-eyebrow .glyph {
+  color: var(--gold);
+}
+.flashback-vignette {
+  position: relative;
+  flex: none;
+  width: min(100%, 46rem, 112vh);
+  margin: 0;
+  padding: 10px;
+}
+.flashback-art {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid color-mix(in srgb, var(--gold-deep) 80%, transparent);
+  filter: sepia(0.75) saturate(0.85) contrast(1.06) brightness(0.9);
+  mask-image: radial-gradient(ellipse 78% 74% at 50% 50%, var(--umbra) 62%, transparent 100%);
+}
+.flashback-corner {
+  position: absolute;
+  width: clamp(36px, 7%, 60px);
+  height: auto;
+  pointer-events: none;
+}
+.flashback-corner--tl {
+  top: 0;
+  left: 0;
+}
+.flashback-corner--tr {
+  top: 0;
+  right: 0;
+  scale: -1 1;
+}
+.flashback-corner--bl {
+  bottom: 2.2rem;
+  left: 0;
+  scale: 1 -1;
+}
+.flashback-corner--br {
+  right: 0;
+  bottom: 2.2rem;
+  scale: -1 -1;
+}
+.flashback-vignette figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2rem 0.9rem;
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+.flashback-place {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.flashback-note {
+  font-style: italic;
+}
+.flashback-line {
+  max-width: 42rem;
+  margin: 0;
+  text-align: center;
+}
+.flashback-line p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.4vw, 2.25rem);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.22;
+}
+.flashback-line footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem 0.7rem;
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+.flashback-with {
+  margin: 0;
+  color: var(--text-muted);
+}
+.flashback-return {
+  margin-top: 0.3rem;
+}

@@ -5,9 +5,9 @@ import type { ExplorationIntent } from '../../exploration/use-action.ts';
 import { actionGlyph } from '../../visual/glyph-map.ts';
 import { Glyph } from '../../visual/glyph.tsx';
 import { catalogUrl } from '../../visual/ui-kit.ts';
-import { combatantLabel } from '../board/square-name.ts';
 import { catalogArtOf, optionLabel, shortLabelOf } from '../combat-art.ts';
 import { combatCommandFor } from '../combat-bindings.ts';
+import { useCombatantLabels } from '../labels.ts';
 import type { PlannedPath } from '../movement.ts';
 
 /** What the tray offers: the chosen square's move, or the chosen combatant's listed options. */
@@ -45,6 +45,7 @@ export function TurnTray({
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
+  const labelOf = useCombatantLabels(encounter);
   const hint =
     choice.kind === 'none'
       ? t('Choose a square to move, or a combatant to act.')
@@ -94,7 +95,7 @@ export function TurnTray({
               key={`${action.id}:${String(index)}`}
               type="button"
               className="tray-action"
-              aria-label={optionLabel(t, action.id, combatantLabel(target))}
+              aria-label={optionLabel(t, action.id, labelOf(target.entity.entityId))}
               aria-describedby={detailId(index)}
               disabled={locked || command === null}
               onClick={() => {

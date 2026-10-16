@@ -25,13 +25,19 @@ test('Fireball previews who it affects, warns about an ally, and still casts whe
   await expect(square(page, 6, 5)).toHaveAccessibleName(/Elowen Starwhisper \(you\)/);
 
   await square(page, 8, 4).click();
-  const options = battlefield(page).getByRole('region', { name: 'Options for goblin-raider-1' });
-  const fireball = turnTray(page).getByRole('button', { name: 'Cast Fireball at goblin-raider-1' });
+  const options = battlefield(page).getByRole('region', {
+    name: 'Options for Unidentified creature 1',
+  });
+  const fireball = turnTray(page).getByRole('button', {
+    name: 'Cast Fireball at Unidentified creature 1',
+  });
   await expect(fireball).toBeEnabled();
   await expect(fireball).toHaveAccessibleDescription(/Would affect:.*Elowen Starwhisper/);
   await expect(options).toContainText('Would affect:');
   await expect(options).toContainText('Elowen Starwhisper');
-  await expect(options).toContainText('goblin-raider-1');
+  await expect(options).toContainText('Unidentified creature 1');
+  // An unnamed combatant is never shown by its ID.
+  await expect(battlefield(page)).not.toContainText('goblin');
   await expect(options.getByRole('alert')).toContainText('includes a party member');
   // The same affected combatants are marked on the battlefield itself.
   await expect(square(page, 8, 4)).toHaveAccessibleName(/in the area/);
@@ -55,10 +61,12 @@ test('Fireball previews who it affects, warns about an ally, and still casts whe
 test('Fireball centered away from every ally shows no warning', async ({ page }) => {
   await enterCombat(page, COMBAT_CAMPAIGNS.preview);
   await square(page, 11, 5).click();
-  const options = battlefield(page).getByRole('region', { name: 'Options for goblin-raider-3' });
+  const options = battlefield(page).getByRole('region', {
+    name: 'Options for Unidentified creature 3',
+  });
   await expect(turnTray(page).getByRole('button', { name: /Cast Fireball/ })).toBeEnabled();
   await expect(square(page, 11, 5)).toHaveAccessibleName(/in the area/);
-  await expect(options).toContainText('goblin-raider-3');
+  await expect(options).toContainText('Unidentified creature 3');
   await expect(options.getByRole('alert')).toHaveCount(0);
   await expect(options).not.toContainText('Elowen Starwhisper');
 });

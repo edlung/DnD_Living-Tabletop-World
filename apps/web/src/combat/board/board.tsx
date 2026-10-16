@@ -14,7 +14,9 @@ import {
   uprightTransform,
   type Size,
 } from './geometry.ts';
+import { useCombatantLabels } from '../labels.ts';
 import { squareName } from './square-name.ts';
+import { TerrainCard } from './terrain-card.tsx';
 import { CoverPiece, Token } from './token.tsx';
 
 const key = (square: { readonly x: number; readonly y: number }) =>
@@ -82,6 +84,9 @@ export function Board({
   const t = useT();
   const [area, space] = useSpace();
   const viewport = useRef<HTMLDivElement>(null);
+  // The square the pointer is over and the one keyboard focus is on: the terrain card reads it.
+  const [pointed, setPointed] = useState<Square | null>(null);
+  const [focused, setFocused] = useState<Square | null>(null);
   const { width, height, difficult, cover } = encounter.battlefield;
   const grid = { width, height };
   const tilt = view.mode === 'tilted' ? TILT : null;
@@ -94,6 +99,7 @@ export function Board({
   const walk = new Set(path.map(key));
   const destination = path.at(-1);
   const mover = encounter.combatants.find((entry) => entry.entity.entityId === selfId);
+  const labelOf = useCombatantLabels(encounter);
 
   // On a phone the board scrolls: bring the chosen square, else the viewer, else whoever acts
   // into view when it first shows and whenever its scale or view changes. Only a new scale or
@@ -140,6 +146,7 @@ export function Board({
         'board-square',
         hard.has(id) ? 'is-difficult' : '',
         level ? 'has-cover' : '',
+        level && occupant ? 'has-occupant' : '',
         walk.has(id) ? 'on-path' : '',
         destination && key(destination) === id ? 'is-destination' : '',
         inArea ? 'in-area' : '',
@@ -153,6 +160,7 @@ export function Board({
           style={{ '--x': x, '--y': y } as CSSProperties}
           aria-label={squareName(t, square, {
             occupant,
+            label: occupant ? labelOf(occupant.entity.entityId) : '',
             you: occupant !== null && occupant.entity.entityId === selfId,
             difficult: hard.has(id),
             cover: level,
@@ -162,11 +170,25 @@ export function Board({
           onClick={() => {
             onPick(square);
           }}
+          onPointerEnter={() => {
+            setPointed(square);
+          }}
+          onPointerLeave={() => {
+            setPointed((known) => (known && key(known) === id ? null : known));
+          }}
+          onFocus={() => {
+            setFocused(square);
+          }}
+          onBlur={() => {
+            setFocused((known) => (known && key(known) === id ? null : known));
+          }}
         >
           {level && <CoverPiece level={level} />}
           {occupant && (
             <Token
               combatant={occupant}
+              label={labelOf(occupant.entity.entityId)}
+              cover={level}
               image={imageOf(occupant.entity.entityId)}
               current={occupant.entity.entityId === encounter.currentCombatantId}
               selected={isSelected}
@@ -178,9 +200,17 @@ export function Board({
     }
   }
   const route = mover && path.length > 0 ? [mover.position, ...path] : [];
+  const looked = pointed ?? focused ?? selected;
   return (
     <div className={`board board--${view.mode}`} ref={area}>
       <BoardControls view={view} />
+      {looked && (
+        <TerrainCard
+          square={looked}
+          cover={coverAt.get(key(looked)) ?? null}
+          difficult={hard.has(key(looked))}
+        />
+      )}
       <div className="board-viewport" ref={viewport}>
         <div className="board-stage" style={stage}>
           <div

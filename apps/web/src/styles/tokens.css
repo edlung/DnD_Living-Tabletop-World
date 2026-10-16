@@ -56,6 +56,18 @@
   --page-ink: #2b2015;
   --page-ink-muted: #5e4b37;
   --rubric: #8c2716;
+  /* The GPT pages' measured mean tone: the ground under them, and what contrast is checked on */
+  --page-ground: #e1cba7;
+  /* Epistemic hues as inks for the pages: each reads at 5:1 or better on --page-ground */
+  --k-fact-ink: #5e440f;
+  --k-evidence-ink: #0d5566;
+  --k-testimony-ink: #3d3326;
+  --k-rumor-ink: #55358f;
+  --k-inference-ink: #1d4f86;
+  --k-hypothesis-ink: #6a4400;
+  --k-contradiction-ink: #9b2418;
+  --k-unknown-ink: #4c5157;
+  --k-secret-ink: #8c2716;
 
   /*
    * Epistemic types: a glyph, a word and a hue (hue never carries meaning alone).

@@ -2,8 +2,8 @@ import type { EncounterView, PlayerAssetView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 
 import { Medallion } from '../../visual/medallion.tsx';
-import { combatantLabel } from '../board/square-name.ts';
 import { HpBar } from '../board/token.tsx';
+import { splitLabel, useCombatantLabels } from '../labels.ts';
 
 /**
  * The encounter's anchor (ADR 0028 §1, docs/STAGE_320_DESIGN.md §5.5): the turn order as
@@ -22,12 +22,10 @@ export function InitiativeStrip({
 }) {
   const t = useT();
   const self = encounter.combatants.find((entry) => entry.entity.entityId === actorId);
-  const current = encounter.combatants.find(
-    (entry) => entry.entity.entityId === encounter.currentCombatantId,
-  );
+  const labelOf = useCombatantLabels(encounter);
   const myTurn = self !== undefined && encounter.currentCombatantId === actorId;
   const window = encounter.reactionWindow;
-  const currentName = current ? combatantLabel(current) : encounter.currentCombatantId;
+  const currentName = labelOf(encounter.currentCombatantId);
   return (
     <div
       className="encounter-anchor"
@@ -44,6 +42,9 @@ export function InitiativeStrip({
             );
             const acting = entityId === encounter.currentCombatantId;
             if (!combatant) return null;
+            // An unnamed combatant's number rides on its portrait; the words wrap beneath.
+            const label = labelOf(entityId);
+            const { words, number } = splitLabel(label);
             return (
               <li
                 key={entityId}
@@ -70,8 +71,20 @@ export function InitiativeStrip({
                       {combatant.initiative.total}
                     </span>
                   )}
+                  {number && !combatant.initiative && (
+                    <span className="initiative-number" aria-hidden="true">
+                      {number}
+                    </span>
+                  )}
                 </span>
-                <span className="initiative-name">{combatantLabel(combatant)}</span>
+                {number ? (
+                  <span className="initiative-name">
+                    <span className="visually-hidden">{label}</span>
+                    <span aria-hidden="true">{words}</span>
+                  </span>
+                ) : (
+                  <span className="initiative-name">{label}</span>
+                )}
                 {combatant.hitPoints && <HpBar hitPoints={combatant.hitPoints} />}
               </li>
             );

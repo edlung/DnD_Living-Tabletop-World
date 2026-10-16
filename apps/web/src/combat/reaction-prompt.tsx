@@ -8,6 +8,7 @@ import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
 import { combatCommandFor, ignoreReaction } from './combat-bindings.ts';
+import { useCombatantLabels } from './labels.ts';
 
 /**
  * The reaction question (docs/STAGE_320_DESIGN.md §5.5, ADR 0028 §5), shown only to a
@@ -43,11 +44,12 @@ export function ReactionPrompt({
     [api, casterId],
   );
   const { resource, retry } = useResource(`${casterId}:${window?.windowId ?? ''}`, load);
+  const labelOf = useCombatantLabels(encounter);
   useEffect(() => {
     card.current?.focus({ preventScroll: true });
   }, []);
   if (!window || window.choices.length === 0) return null;
-  const caster = window.trigger.caster.name ?? window.trigger.caster.entityId;
+  const caster = window.trigger.caster.name ?? labelOf(casterId);
   const counter =
     resource.status === 'ready'
       ? resource.value.context.actions.find((action) => action.id === 'counterspell')

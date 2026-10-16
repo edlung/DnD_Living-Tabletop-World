@@ -36,7 +36,7 @@ test('player reads a real paused encounter and their reaction choices without DM
   await encounter.getByText('Combatants and turn order', { exact: true }).click();
   await expect(encounter).toContainText('78 / 78');
   const shaman = encounter.getByRole('listitem').filter({
-    has: page.getByRole('heading', { name: 'goblin-shaman', exact: true }),
+    has: page.getByRole('heading', { name: 'Unidentified creature 4', exact: true }),
   });
   await expect(shaman).toBeVisible();
   await expect(shaman).not.toContainText('Hit points');

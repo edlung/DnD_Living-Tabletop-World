@@ -32,6 +32,9 @@
     );
   pointer-events: none;
 }
+.cartouche-note {
+  display: none;
+}
 .backdrop-note {
   position: absolute;
   top: 16px;

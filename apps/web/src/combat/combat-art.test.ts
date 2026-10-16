@@ -57,9 +57,11 @@ describe('combat option pictures and words', () => {
     );
   });
 
-  it('marks every condition with a glyph of the kit, Unconscious with its own', () => {
-    for (const condition of CONDITIONS) expect(glyphs.has(conditionGlyph(condition))).toBe(true);
-    expect(conditionGlyph('unconscious')).toBe('unconscious');
+  it('marks every condition with its own glyph of the kit, never the general warning', () => {
+    for (const condition of CONDITIONS) {
+      expect(glyphs.has(conditionGlyph(condition))).toBe(true);
+      expect(conditionGlyph(condition)).toBe(condition);
+    }
   });
 
   it('knows every context action the contract lists', () => {

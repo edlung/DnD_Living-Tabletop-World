@@ -21,7 +21,7 @@ test('a valid Counterspell is answered by the domain, spends one slot, and close
 }) => {
   const campaign = COMBAT_CAMPAIGNS.counter;
   await enterCombat(page, campaign);
-  await expect(prompt(page)).toContainText('goblin-shaman is casting a spell');
+  await expect(prompt(page)).toContainText('Unidentified creature 4 is casting a spell');
   await expect(prompt(page)).toContainText('Components: V, S');
   // The spell itself is the caster's secret, not the reacting player's.
   expect(await page.content()).not.toContain('ashen-bolt');

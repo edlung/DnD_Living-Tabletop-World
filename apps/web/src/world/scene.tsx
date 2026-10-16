@@ -110,6 +110,10 @@ export function Scene({
             )}
           </div>
         )}
+        {/* On a phone the art does not scroll with the scene: the note rides in the cartouche. */}
+        {view && !view.location.image && (
+          <p className="cartouche-note">{t('No approved image yet')}</p>
+        )}
       </header>
       {rail}
       <div className="scene-presence" id="scene-presence" hidden={battlefield}>

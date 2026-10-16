@@ -57,8 +57,8 @@ test('the turn passes from the player to the DM and back without a refresh', asy
     expectAccepted(await submit(dm, dm.getByRole('button', { name: `Run suggested ${tactic}` })));
   }
   // The player's screen follows the DM's commands by itself, around what it was doing.
-  await expect(turnBanner(player)).toHaveText("goblin-raider-2's turn");
-  await expect(anchor(player)).toContainText('Turn: goblin-raider-2');
+  await expect(turnBanner(player)).toHaveText("Unidentified creature 2's turn");
+  await expect(anchor(player)).toContainText('Turn: Unidentified creature 2');
   await expect(turnTray(player)).toHaveCount(0);
   await expect(options).toContainText('Square 0, 0');
   await expect(intent).toHaveValue('A lantern burns on the wagon.');
@@ -76,7 +76,7 @@ test('the DM opens a Counterspell window and the player answers it without a ref
   await enterCombat(dm, campaign, TOKENS.dm);
   await expectLive(player);
   await expectLive(dm);
-  await expect(turnBanner(player)).toHaveText("goblin-shaman's turn");
+  await expect(turnBanner(player)).toHaveText("Unidentified creature 4's turn");
   await expect(prompt(player)).toHaveCount(0);
   const before = total(await expendedSlots(player, campaign));
 
@@ -84,7 +84,7 @@ test('the DM opens a Counterspell window and the player answers it without a ref
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Run suggested spell' })));
   await expect(dm.getByRole('button', { name: 'Close reaction window' })).toBeVisible();
   // The question reaches its player through the signal alone, and says so.
-  await expect(prompt(player)).toContainText('goblin-shaman is casting a spell');
+  await expect(prompt(player)).toContainText('Unidentified creature 4 is casting a spell');
   await expect(turnBanner(player)).toHaveText('Your reaction is needed');
   expect(await player.content()).not.toContain('ashen-bolt');
   const countered = await submit(

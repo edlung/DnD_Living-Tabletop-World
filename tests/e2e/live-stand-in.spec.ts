@@ -63,7 +63,7 @@ test('the DM skips an absent player’s turn, and the player’s screen follows 
   ]);
 
   // The player's screen follows by itself: the turn has passed.
-  await expect(turnBanner(player)).toHaveText("goblin-raider-1's turn");
+  await expect(turnBanner(player)).toHaveText("Unidentified creature 1's turn");
   await expect(turnTray(player)).toHaveCount(0);
   await expect(turnBanner(dm)).toHaveText("Goblin Raider's turn");
 
@@ -118,11 +118,11 @@ test('the DM acts as the character with a reason; her screen follows, and the hi
   await expect(square(player, 3, 6)).toHaveAccessibleName(/Elowen Starwhisper \(you\)/);
   await square(dm, 8, 4).click();
   await expect(
-    battlefield(dm).getByRole('region', { name: 'Options for goblin-raider-1' }),
-  ).toContainText('Attack goblin-raider-1 with longbow');
+    battlefield(dm).getByRole('region', { name: 'Options for Unidentified creature 1' }),
+  ).toContainText('Attack Unidentified creature 1 with longbow');
   const attacked = await submit(
     dm,
-    turnTray(dm).getByRole('button', { name: 'Attack goblin-raider-1 with longbow' }),
+    turnTray(dm).getByRole('button', { name: 'Attack Unidentified creature 1 with longbow' }),
   );
   expectAccepted(attacked);
   expect(attacked.body.outcome?.kind).toBe('Attack');
@@ -174,12 +174,14 @@ test('the DM’s skip waits for an open reaction window, and the DM answers it f
   // Elowen's own spell gives Seren, whose player is away, a chance to counter it.
   await square(player, 8, 4).click();
   await expect(
-    battlefield(player).getByRole('region', { name: 'Options for goblin-raider-1' }),
-  ).toContainText('Cast Hunter’s Mark on goblin-raider-1');
+    battlefield(player).getByRole('region', { name: 'Options for Unidentified creature 1' }),
+  ).toContainText('Cast Hunter’s Mark on Unidentified creature 1');
   expectAccepted(
     await submit(
       player,
-      turnTray(player).getByRole('button', { name: 'Cast Hunter’s Mark on goblin-raider-1' }),
+      turnTray(player).getByRole('button', {
+        name: 'Cast Hunter’s Mark on Unidentified creature 1',
+      }),
     ),
   );
   await encounterTools(dm);

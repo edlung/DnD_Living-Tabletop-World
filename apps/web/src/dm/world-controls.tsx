@@ -5,7 +5,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
-import { weatherGlyph } from '../visual/glyph-map.ts';
+import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { formatWorldTime, nextMorning } from './world-time.ts';
 import { useT } from '@ltw/ui';
 
@@ -13,10 +13,11 @@ export type DmWorldCommand = KernelCommandOf<'AdvanceWorldTime' | 'SetWeather'>;
 
 /**
  * The DM moves the clock and the weather with the existing commands, in the "Time and weather"
- * sheet (docs/STAGE_320_DESIGN.md §5.7). The world answers: players see a changed time and sky
- * the next time they look. The day control offers the next day's morning after the current
- * world time, read from the viewed place's scene, so it never offers a day already reached
- * (ADR 0033 §8).
+ * sheet (docs/STAGE_320_DESIGN.md §5.7): the day and hour with the phase's glyph, the next-day
+ * control, and the place's weather now with its glyph beside the choice. The world answers:
+ * players see a changed time and sky the next time they look. The day control offers the next
+ * day's morning after the current world time, read from the viewed place's scene, so it never
+ * offers a day already reached (ADR 0033 §8).
  */
 export function DmWorldControls({
   api,
@@ -53,7 +54,9 @@ export function DmWorldControls({
     [api, locationId],
   );
   const { resource: now } = useResource(`clock:${locationId}:${String(revision)}`, loadNow);
-  const next = now.status === 'ready' ? nextMorning(now.value.worldTime) : null;
+  const scene = now.status === 'ready' ? now.value : null;
+  const next = scene ? nextMorning(scene.worldTime) : null;
+  const sky = scene?.location.weather ?? null;
   return (
     <div className="dm-world">
       <section className="tool-group" aria-labelledby="dm-time-title">
@@ -61,8 +64,15 @@ export function DmWorldControls({
           <Glyph name="time" />
           {t('World time')}
         </h3>
-        {now.status === 'ready' && (
-          <p className="tool-now">{formatWorldTime(now.value.worldTime, t)}</p>
+        {scene && (
+          <p className="tool-now">
+            <Glyph name="day-counter" />
+            <span>{formatWorldTime(scene.worldTime, t)}</span>
+            <span className="tool-now-detail">
+              <Glyph name={phaseGlyph(scene.phase)} />
+              {t(scene.phase)}
+            </span>
+          </p>
         )}
         {next && (
           <div className="action-row">
@@ -73,6 +83,7 @@ export function DmWorldControls({
                 run({ type: 'AdvanceWorldTime', to: next.at });
               }}
             >
+              <Glyph name="next-day" />
               {t('Advance to Day {day}, 10:00', { day: next.day })}
             </button>
           </div>
@@ -101,11 +112,18 @@ export function DmWorldControls({
       </section>
       <section className="tool-group" aria-labelledby="dm-weather-title">
         <h3 id="dm-weather-title">
-          <Glyph name={weatherGlyph(weather)} />
+          <Glyph name="weather" />
           {t('Weather')}
         </h3>
+        {scene && (
+          <p className="tool-now">
+            {sky ? <Glyph name={weatherGlyph(sky)} /> : <Glyph name="unknown" />}
+            <span>{sky ? t('Now: {weather}', { weather: t(sky) }) : t('Now: not set')}</span>
+          </p>
+        )}
         <label htmlFor="weather-choice">{t('Weather at {place}', { place: locationName })}</label>
-        <div className="inline-field">
+        <div className="inline-field weather-field">
+          <Glyph name={weatherGlyph(weather)} className="weather-choice-glyph" />
           <select
             id="weather-choice"
             value={weather}

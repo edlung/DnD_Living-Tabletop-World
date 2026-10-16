@@ -11,6 +11,7 @@ import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
 import { planPath } from './movement.ts';
+import { useCombatantLabels } from './labels.ts';
 import { combatOptions, TargetDetails, useTargetContext } from './target-options.tsx';
 
 type Focus =
@@ -58,6 +59,7 @@ export function CombatPanel({
   const section = useRef<HTMLElement>(null);
   const panel = useRef<HTMLElement>(null);
   const ids = useId();
+  const labelOf = useCombatantLabels(encounter);
   const self = encounter.combatants.find((entry) => entry.entity.entityId === actorId);
   const myTurn = self !== undefined && encounter.currentCombatantId === actorId;
   const mayAct = actorId !== null && canAct && myTurn && encounter.reactionWindow === null;
@@ -125,6 +127,7 @@ export function CombatPanel({
       <TargetDetails
         key={picked.entity.entityId}
         target={picked}
+        labelOf={labelOf}
         image={imageOf(picked.entity.entityId)}
         resource={resource}
         retry={retry}
@@ -136,6 +139,7 @@ export function CombatPanel({
     ) : picked ? (
       <CombatantCard
         combatant={picked}
+        label={labelOf(picked.entity.entityId)}
         image={imageOf(picked.entity.entityId)}
         panel={panel}
         onClose={close}

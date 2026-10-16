@@ -28,7 +28,7 @@ test('on the scene view a player still hears whose turn it is and answers a reac
   const sceneTab = player.getByRole('tab', { name: 'Scene', exact: true });
   await sceneTab.click();
   await expect(battlefield(player)).toBeHidden();
-  await expect(turnBanner(player)).toHaveText("goblin-shaman's turn");
+  await expect(turnBanner(player)).toHaveText("Unidentified creature 4's turn");
   await expectOnTop(turnBanner(player));
 
   // The DM's shaman casts: the question reaches the scene view, takes focus and is answered.

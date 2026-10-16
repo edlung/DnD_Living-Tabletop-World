@@ -26,17 +26,19 @@ export function Hypothesis({
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          if (!locked && statement.trim())
-            onRun({
-              kind: 'command',
-              command: {
-                type: 'FormHypothesis',
-                characterId,
-                scope,
-                statement: statement.trim(),
-                subjects: [entityId],
-              },
-            });
+          if (locked || !statement.trim()) return;
+          onRun({
+            kind: 'command',
+            command: {
+              type: 'FormHypothesis',
+              characterId,
+              scope,
+              statement: statement.trim(),
+              subjects: [entityId],
+            },
+          });
+          // Sent: the attempt (and its Retry) holds the words now; the form is ready for the next.
+          setStatement('');
         }}
       >
         <label htmlFor="hypothesis">{t('Hypothesis')}</label>

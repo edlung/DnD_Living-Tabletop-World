@@ -66,33 +66,22 @@ test('a Russian DM adds Tomas Reed from a Russian sentence, previews, edits, and
   await expectNoEnglish(page, 'committed');
 });
 
-/** Identifiers the page shows for what the player does not know by name (a creature's ID). */
-const asIdentifier = /^(?:[a-z]+(?:-[a-z0-9]+)+|[A-Z]{1,3}\d?)$/;
-
-async function expectNoEnglishExceptIds(page: Page, where: string): Promise<void> {
-  const text = await page.locator('body').innerText();
-  const words = (text.match(/[A-Za-z][A-Za-z0-9'’-]{2,}/g) ?? []).filter(
-    (word) => !asIdentifier.test(word),
-  );
-  expect(words, `${where}: English words on a Russian page`).toEqual([]);
-}
-
 test('a Russian player answers a Counterspell window, and the answer is in Russian', async ({
   page,
 }) => {
   await enterWorld(page, TOKENS.player, 'ui-ru-combat');
   const prompt = page.getByRole('alertdialog', { name: 'Реакция' });
-  await expect(prompt).toContainText('Заклинает: goblin-shaman');
+  await expect(prompt).toContainText('Заклинает: Неопознанное существо 4');
   await expect(prompt).toContainText('Компоненты: В, С');
   await expect(page.getByRole('group', { name: 'Поле боя' })).toBeVisible();
-  await expectNoEnglishExceptIds(page, 'reaction window');
+  await expectNoEnglish(page, 'reaction window');
   await prompt.getByRole('button', { name: 'Применить контрзаклинание' }).click();
   await expect(
     page
       .getByRole('status')
       .filter({ hasText: /Контрзаклинание остановило заклинание\.|Реакция использована\./ }),
   ).toBeVisible();
-  await expectNoEnglishExceptIds(page, 'after the answer');
+  await expectNoEnglish(page, 'after the answer');
 });
 
 test('a Russian player’s battlefield speaks Russian: the board, the turn, a target and its options', async ({
@@ -109,14 +98,14 @@ test('a Russian player’s battlefield speaks Russian: the board, the turn, a ta
   const tray = field.getByRole('region', { name: 'Действия хода', exact: true });
   await expect(tray.getByRole('button', { name: 'Закончить ход' })).toBeVisible();
   await expect(page.getByRole('status', { name: 'Сводка боя' })).toContainText('Раунд 1');
-  await expectNoEnglishExceptIds(page, 'the battlefield');
+  await expectNoEnglish(page, 'the battlefield');
   await square(8, 4).click();
-  const options = field.getByRole('region', { name: 'Варианты действий: goblin-raider-1' });
-  await expect(options).toContainText('Атаковать из длинного лука: goblin-raider-1');
+  const options = field.getByRole('region', { name: 'Варианты действий: Неопознанное существо 1' });
+  await expect(options).toContainText('Атаковать из длинного лука: Неопознанное существо 1');
   await expect(
-    tray.getByRole('button', { name: 'Атаковать из длинного лука: goblin-raider-1' }),
+    tray.getByRole('button', { name: 'Атаковать из длинного лука: Неопознанное существо 1' }),
   ).toBeEnabled();
-  await expectNoEnglishExceptIds(page, 'a chosen target');
+  await expectNoEnglish(page, 'a chosen target');
   await page.getByRole('button', { name: 'Плоское поле', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Плоское поле', exact: true })).toHaveAttribute(
     'aria-pressed',

@@ -6,5 +6,10 @@
   "sessionDm": "ui-session-dm",
   "aiFeedback": "ui-ai-feedback",
   "aiNoStart": "ui-ai-no-start",
-  "outcome": "ui-dm-outcome"
+  "outcome": "ui-dm-outcome",
+  "conversation": "ui-dm-conversation",
+  "drafts": "ui-dm-drafts",
+  "book": "ui-dm-book",
+  "a11y": "ui-dm-a11y",
+  "motion": "ui-dm-motion"
 }

@@ -69,8 +69,8 @@
   left: 16px;
   width: var(--hud-col);
   overflow: hidden;
-  font-size: 1.02rem;
-  letter-spacing: 0.08em;
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
   white-space: nowrap;
   text-overflow: ellipsis;
   translate: none;
@@ -302,13 +302,15 @@
   .stage--battle {
     padding-inline: 8px;
   }
+  /* The place above, who is at the table as the phone's compact strip beneath it */
   .stage--battle .scene {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    gap: 0.4rem;
     padding: 8px 0 0;
   }
   .stage--battle .cartouche {
-    flex: 1 1 auto;
+    flex: 1 1 100%;
     min-width: 0;
     padding: 0.45rem 0.75rem;
   }
@@ -316,21 +318,11 @@
     font-size: 1.2rem;
   }
   .stage--battle .party-rail {
-    flex: none;
-    gap: 0.3rem;
+    flex: 1 1 100%;
   }
   .stage--battle .rail-member,
   .stage--battle .rail-dm {
-    width: 62px;
-    padding: 0.25rem 0.15rem;
-  }
-  .stage--battle .rail-member .medallion {
-    --m: 34px;
-  }
-  .stage--battle .rail-name {
-    font-size: 0.68rem;
-    overflow-wrap: normal;
-    hyphens: auto;
+    width: auto;
   }
   .stage--battle .turn-banner {
     padding-block: 0.3rem;

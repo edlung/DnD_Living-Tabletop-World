@@ -78,14 +78,13 @@ export const shortLabelOf = (action: ContextActionId): string =>
   SHORT[action] ?? action.replaceAll('_', ' ');
 
 /**
- * The glyph of a condition pip. The kit draws only Unconscious; the other slice conditions
- * show the general warning mark until the image model supplies their own, and the
- * condition's word always accompanies it (the square's name, the cards).
+ * The glyph of a condition pip: each slice condition has its own GPT glyph (commit `f5d869a`);
+ * the condition's word always accompanies it (the square's name, the cards).
  */
 const CONDITIONS: Readonly<Record<Condition, GlyphName>> = {
-  incapacitated: 'warning',
-  prone: 'warning',
-  slowed: 'warning',
+  incapacitated: 'incapacitated',
+  prone: 'prone',
+  slowed: 'slowed',
   unconscious: 'unconscious',
 };
 

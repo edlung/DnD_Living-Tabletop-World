@@ -17,7 +17,7 @@ import { useResource } from '../api/resource.ts';
  * not empty and flash after each step (ADR 0033 §4). A perspective change or "Refresh world"
  * still remounts the screen and reads afresh.
  */
-function useRereadOn(revision: number, reread: () => void): void {
+export function useRereadOn(revision: number, reread: () => void): void {
   const seen = useRef(revision);
   useEffect(() => {
     if (seen.current === revision) return;

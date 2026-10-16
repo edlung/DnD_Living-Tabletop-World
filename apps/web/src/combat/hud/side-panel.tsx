@@ -11,9 +11,9 @@ import { Glyph } from '../../visual/glyph.tsx';
 import { IconButton } from '../../visual/icon-button.tsx';
 import { Medallion } from '../../visual/medallion.tsx';
 import { boardUrl } from '../../visual/ui-kit.ts';
-import { combatantLabel } from '../board/square-name.ts';
 import { HpBar } from '../board/token.tsx';
 import { conditionGlyph } from '../combat-art.ts';
+import { useCombatantLabels } from '../labels.ts';
 import type { PlannedPath } from '../movement.ts';
 
 /**
@@ -30,10 +30,7 @@ export function BoardLegend({
 }) {
   const t = useT();
   const window = encounter.reactionWindow;
-  const nameOf = (entityId: string) => {
-    const combatant = encounter.combatants.find((entry) => entry.entity.entityId === entityId);
-    return combatant ? combatantLabel(combatant) : entityId;
-  };
+  const nameOf = useCombatantLabels(encounter);
   return (
     <section className="combat-side-card board-legend" aria-label={t('Reading the board')}>
       <p className="eyebrow">{t('Reading the board')}</p>
@@ -139,11 +136,14 @@ export function MoveDetails({
 /** The DM's look at one combatant: everything the DM projection carries for it. */
 export function CombatantCard({
   combatant,
+  label,
   image,
   panel,
   onClose,
 }: {
   readonly combatant: EncounterCombatantView;
+  /** Its name, or "Unidentified creature N" (`combat/labels.ts`). */
+  readonly label: string;
   readonly image: PlayerAssetView | null;
   readonly panel: Ref<HTMLElement>;
   readonly onClose: () => void;
@@ -160,7 +160,7 @@ export function CombatantCard({
         <Medallion image={image} kind={combatant.entity.kind} size="lg" tone={combatant.side} />
         <div className="side-title">
           <p className="eyebrow">{t(readableLabel(combatant.side))}</p>
-          <h3>{combatantLabel(combatant)}</h3>
+          <h3>{label}</h3>
           <p className="side-state">{t(readableLabel(combatant.state))}</p>
         </div>
         <IconButton glyph="close" label={t('Close options')} onClick={onClose} />

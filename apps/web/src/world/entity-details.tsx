@@ -19,16 +19,20 @@ import { IconButton } from '../visual/icon-button.tsx';
 import { KnowledgeBadge, KnowledgeCards } from '../visual/knowledge-cards.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { usePortrait } from './use-portrait.ts';
+import { useRereadOn } from './use-world-data.ts';
 
 /**
  * The selection's panel (docs/STAGE_320_DESIGN.md §5.4): a portrait header (the approved image
  * or the neutral silhouette or mist; the name, or "Unidentified …", and the kind), the actions
  * the server lists with their glyphs, what this perspective knows as typed records, and the
  * full sheet on demand. The DM perspective shows what its projection supplies, and "Perform".
+ * The last selection's panel stays mounted while closed, and after the viewer's own action it
+ * is read again in the background (`revision`), so drafts in it survive both.
  */
 export function EntityDetails({
   api,
   entityId,
+  revision,
   name,
   kind,
   known,
@@ -37,12 +41,16 @@ export function EntityDetails({
   knowledge,
   canAct,
   locked,
+  conversing,
+  onShowConversation,
   onRun,
   onSelect,
   onClose,
 }: {
   readonly api: WorldApi;
   readonly entityId: string;
+  /** The world screen's count of the viewer's own actions. */
+  readonly revision: number;
   readonly name: string | null;
   readonly kind: EntityKind;
   readonly known: boolean;
@@ -51,6 +59,9 @@ export function EntityDetails({
   readonly knowledge: readonly KnowledgeView[];
   readonly canAct: boolean;
   readonly locked: boolean;
+  /** The conversation with this NPC is shown on the stage: its options live there. */
+  readonly conversing: boolean;
+  readonly onShowConversation: () => void;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
   readonly onClose: () => void;
@@ -72,7 +83,8 @@ export function EntityDetails({
     },
     [api, entityId, acting, known],
   );
-  const { resource, retry } = useResource(entityId, load);
+  const { resource, retry, reread } = useResource(entityId, load);
+  useRereadOn(revision, reread);
   const canReadSheet =
     (effectivePerspective === 'DM' && ['character', 'npc', 'creature'].includes(kind)) ||
     (kind === 'character' && effectivePerspective === `CHARACTER:${entityId}`);
@@ -105,7 +117,7 @@ export function EntityDetails({
             <>
               <ul className="details-facts">
                 <li className={visible.present ? 'is-present' : ''}>
-                  <Glyph name={visible.present ? 'look' : 'unknown'} />
+                  <Glyph name={visible.present ? 'look' : 'hidden'} />
                   {visible.present ? t('Present in your surroundings') : t('Known, but not here')}
                 </li>
                 {visible.hitPoints && (
@@ -131,6 +143,8 @@ export function EntityDetails({
                 knowledge={knowledge}
                 canAct={canAct}
                 locked={locked}
+                conversing={conversing}
+                onShowConversation={onShowConversation}
                 onRun={onRun}
               />
             </>

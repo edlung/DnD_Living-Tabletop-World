@@ -3,8 +3,8 @@ import { useT } from '@ltw/ui';
 
 import type { WorldApi } from '../api/client.ts';
 import { useBoardView } from '../combat/board/board-view.ts';
-import { combatantLabel } from '../combat/board/square-name.ts';
 import { CombatPanel } from '../combat/combat-panel.tsx';
+import { useCombatantLabels } from '../combat/labels.ts';
 import { ReactionPrompt } from '../combat/reaction-prompt.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
@@ -50,16 +50,12 @@ export function CombatStage({
     actorId !== null &&
     encounter.currentCombatantId === actorId &&
     encounter.combatants.some((entry) => entry.entity.entityId === actorId);
-  const current = encounter.combatants.find(
-    (entry) => entry.entity.entityId === encounter.currentCombatantId,
-  );
+  const labelOf = useCombatantLabels(encounter);
   const turn = asked
     ? t('Your reaction is needed')
     : myTurn
       ? t('Your turn')
-      : t("{name}'s turn", {
-          name: current ? combatantLabel(current) : encounter.currentCombatantId,
-        });
+      : t("{name}'s turn", { name: labelOf(encounter.currentCombatantId) });
   return (
     <>
       <div className="stage-switch" role="tablist" aria-label={t('What the stage shows')}>

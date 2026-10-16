@@ -5,7 +5,9 @@ Read `src/index.ts` for public components, then only the component relevant to t
 `knowledge-details.tsx` preserves supplied epistemic types, attribution, and provenance; each
 record is a card with a per-type class, and the client may pass a decorative `typeMark` (its glyph)
 shown before the type's word, never in place of it.
-`encounter-summary.tsx` displays the supplied encounter and scoped reaction status.
+`encounter-summary.tsx` displays the supplied encounter and scoped reaction status; a combatant
+the projection does not name is labelled by `labels.ts` `combatantLabels` ("Unidentified creature
+N", numbered in turn order, then position), never by its ID, as on the client's battlefield.
 `status-panel.tsx` handles loading, empty, and error presentation.
 
 Consume `@ltw/contracts` types only. Authorization, fetching, session transitions, commands,

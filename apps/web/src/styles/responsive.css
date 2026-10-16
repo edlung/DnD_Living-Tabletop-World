@@ -132,8 +132,14 @@
     height: 42vh;
   }
   .backdrop-note {
-    top: auto;
-    bottom: 10px;
+    display: none;
+  }
+  .cartouche-note {
+    display: block;
+    margin: 0.2rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-style: italic;
   }
   .stage-status {
     position: relative;
@@ -161,6 +167,7 @@
   .cartouche h2 {
     font-size: 1.6rem;
   }
+  /* Who is at the table: one compact strip of pills at the foot of the art */
   .party-rail {
     position: relative;
     inset: auto;
@@ -168,19 +175,53 @@
     grid-column: 1;
     align-self: end;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
+    gap: 0.35rem;
     width: auto;
+    padding-bottom: 2px;
     overflow-x: auto;
   }
   .party-rail ul {
     display: flex;
+    gap: 0.35rem;
   }
+  .rail-dm,
   .rail-member {
-    width: 84px;
+    flex: none;
+    flex-direction: row;
+    gap: 0.35rem;
+    width: auto;
+    min-height: 36px;
+    padding: 0.15rem 0.6rem 0.15rem 0.3rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    white-space: nowrap;
   }
   .rail-dm {
-    width: 72px;
-    justify-content: center;
+    padding-left: 0.5rem;
+  }
+  .rail-dm .glyph {
+    width: 16px;
+    height: 16px;
+  }
+  .rail-member .medallion {
+    --m: 30px;
+  }
+  .rail-text {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+  .rail-name {
+    font-size: 0.85rem;
+    overflow-wrap: normal;
+  }
+  .rail-member .hp-bar {
+    display: none;
+  }
+  .presence-dot {
+    position: static;
+    flex: none;
   }
   .scene-presence,
   .stage--talking .scene-presence {
@@ -229,6 +270,10 @@
     width: fit-content;
     margin-inline: auto;
   }
+  /*
+   * The result sits just above the tab bar. Every scrolling surface keeps room for it below its
+   * content (--outcome-h, measured by the result itself), so no control stays under it.
+   */
   .world-main .outcome,
   .world-main:has(.stage--talking) .outcome {
     position: fixed;
@@ -237,9 +282,14 @@
     left: 8px;
     z-index: 50;
     width: auto;
-    max-height: 40vh;
+    max-height: 34vh;
     margin: 0;
     translate: none;
+  }
+  .world-main:has(.outcome) .stage {
+    padding-bottom: calc(var(--dock-h) + var(--outcome-h, 34vh) + 1.5rem);
+    /* Focus and "go to" scroll a control clear of the result, never under it */
+    scroll-padding-bottom: calc(var(--dock-h) + var(--outcome-h, 34vh) + 1rem);
   }
   .sheet,
   .detail-panel {
@@ -262,7 +312,8 @@
   /* A result over a full-height sheet or panel: their content scrolls clear of it. */
   .world-main:has(.outcome) .sheet-body,
   .world-main:has(.outcome) .detail-panel {
-    padding-bottom: calc(40vh + 16px);
+    padding-bottom: calc(var(--outcome-h, 34vh) + 16px);
+    scroll-padding-bottom: calc(var(--outcome-h, 34vh) + 16px);
   }
   .dock {
     position: fixed;
@@ -292,16 +343,6 @@
   }
   .dock-short {
     display: block;
-  }
-  .chronicle-dialog {
-    width: 100vw;
-    height: 100dvh;
-    max-height: none;
-    border-radius: 0;
-  }
-  .chronicle-frame {
-    max-height: none;
-    height: 100%;
   }
   .sign-in {
     display: block;
