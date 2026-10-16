@@ -65,6 +65,19 @@
 .token .miniature {
   --mini-h: calc(var(--cell) * 1.9);
 }
+/*
+ * A standing figure takes the pointer for its square like a portrait (`board.css`, design §5.5:
+ * the same hit-testing in both views): its body, a column over the picture's middle from the
+ * head to the base, where it rises over the squares behind; the clear space beside it is left to
+ * those squares.
+ */
+.token-figure > .miniature::after {
+  content: '';
+  position: absolute;
+  inset: 2% 20% 0;
+  border-radius: 50% 50% 16% 16% / 18% 18% 7% 7%;
+  pointer-events: auto;
+}
 .token .miniature-art {
   filter: drop-shadow(0 0 1px var(--side)) drop-shadow(0 0 7px var(--side-glow))
     drop-shadow(0 4px 6px color-mix(in srgb, var(--umbra) 70%, transparent));

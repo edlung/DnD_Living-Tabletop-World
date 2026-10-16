@@ -83,11 +83,16 @@ application on 4313.
   the reaction prompt stay shown, focused and answerable. The banner announces only whose turn it
   is (`turnAnnounced()`, its live words) and shows "Your reaction is needed" while asked
   (`bannerWords()`, what it shows); after an answer focus is on the banner (`turnBanner()`).
-  A figure is part of its square: `clickSquare(page, x, y)` points at the part of a square in view
-  where a plate or an upright figure covers its centre. Review of parts B and C:
+  A figure is part of its square: `clickSquare(page, x, y)` (or `clickWhereShown(page, locator)`
+  for a square found by other names) points at the part of a square in view where a plate or an
+  upright figure covers its centre — on the tilted board an occupied square's own name plate,
+  drawn in the plates' layer, always does (Stage 330 combined state: the plate takes the pointer
+  for its own square, outside the square's button). Review of parts B and C:
   `combat-board-pointer.spec.ts` (owns `ui-combat-board`, Elowen starts prone: at 1440 × 900
   tilted, a portrait's visual centre chooses its own square, the terrain card reads it, a pip
-  takes the pointer), `combat-narrow.spec.ts` (owns `ui-combat-narrow`: at 390 × 844 and
+  takes the pointer; on the image journeys' `battle`, read-only: a standing figure's body chooses
+  its own square, and tilted and flat a plate drawn over the figure of a combatant in front
+  chooses its own combatant), `combat-narrow.spec.ts` (owns `ui-combat-narrow`: at 390 × 844 and
   820 × 1180 the tray shows Fireball's slot and the ally warning in view),
   `combat-book-reaction.spec.ts` (owns `ui-live-book-window`: a reaction asked over the open
   Chronicle closes the book, takes focus, is announced once and answered; the book reopens at

@@ -157,3 +157,13 @@ approval; storage and backup must be decided for production.
     and cover piece, each where it lay in its token (which keeps its room) and scaled like the
     figure there, no wider than the room beside it in its row; tilted or flat, a figure in front
     never hides the plate, or the number, of a combatant behind it.
+- 2026-10-16 (Stage 330 on the final clients of Stages 320 and 340, before its pull request):
+  - **Plates and figures under the pointer.** Stage 320's hit-testing (design §5.5: what is drawn
+    of a figure takes the pointer for its square) and the plates' layer meet: a name plate takes
+    the pointer for its combatant's square — a press chooses it, the pointer lights it and the
+    terrain card reads it — even where it lies over the figure of a combatant in front; a standing
+    figure takes the pointer over its body like a portrait; the plate's room in the token stays
+    inert. On the tilted board an occupied square's own plate lies over its centre, so browser
+    tests point at a square where it shows.
+  - **The Chronicle's pictures** (UI kit, ADR 0034 amendment): the candle-lit desk under the
+    spread, the red ribbon as chapter tabs, the gold frame around the flashback's vignette.

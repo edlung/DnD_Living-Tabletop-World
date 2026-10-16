@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
 import { dmRequest, TOMAS_REQUEST } from './support/authoring.ts';
 import { expectAccessible, WIDTHS } from './support/axe.ts';
-import { battlefield, square, turnTray } from './support/combat.ts';
+import { battlefield, clickSquare, square, turnTray } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { closeSheet, dockButton, openSheet } from './support/shell.ts';
 
@@ -86,7 +86,7 @@ test('the battlefield passes axe: the player’s turn and a target with a previe
   await expect(turnTray(page).getByRole('button', { name: 'End turn' })).toBeVisible();
   await atEveryWidth(page, 'player turn');
 
-  await square(page, 11, 5).click();
+  await clickSquare(page, 11, 5);
   const options = battlefield(page).getByRole('region', {
     name: 'Options for Unidentified creature 3',
   });

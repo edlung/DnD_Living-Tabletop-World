@@ -15,6 +15,7 @@ import { pictureNote } from './picture-note.ts';
  */
 const APPROVED: PlayerAssetView = {
   variant: 'reference',
+  purpose: 'image',
   version: 1,
   contentHash: 'a'.repeat(64),
   mediaType: 'image/png',

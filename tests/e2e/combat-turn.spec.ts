@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import {
   anchor,
   battlefield,
+  clickSquare,
   COMBAT_CAMPAIGNS,
   enterCombat,
   expectAccepted,
@@ -58,7 +59,7 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   await expect(square(page, 2, 6)).not.toHaveAccessibleName(/Elowen/);
   await expect(battlefield(page).getByRole('button', { name: 'Move here' })).toHaveCount(0);
 
-  await square(page, 8, 4).click();
+  await clickSquare(page, 8, 4);
   const options = battlefield(page).getByRole('region', {
     name: 'Options for Unidentified creature 1',
   });
