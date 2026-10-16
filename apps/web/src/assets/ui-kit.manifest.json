@@ -1564,6 +1564,18 @@
       "originalSha256": "eb48faf7712b4a905ed2a9b4fb4be3a3e0b14430440b5fedd0fc5819900ebfb4",
       "recipe": "edge-connected black to alpha, 1 px soft edge; trimmed; 512 px WebP"
     },
+    "ornaments/flashback-frame.webp": {
+      "source": "flashback-frame",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Wide 3:2 on a pure flat black background (#000000). An ornate rectangular picture frame in burnished antique gold with fine engraved filigree, delicate and thin, with small flourishes at the corners and the middle of each side; the whole inside of the frame is empty pure black. Front view. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.",
+      "references": [
+        "docs/design/stage-320/owner-concepts/02-four-screens.webp",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-10-16",
+      "originalSha256": "05b7472aeb3c47c7e9d6735d494820c882b0b61beeca26c482e316fe5e630020",
+      "recipe": "black to alpha by brightness, colour un-premultiplied; trimmed; 1200 px WebP"
+    },
     "ornaments/portrait-ring.webp": {
       "source": "portrait-ring",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1 on a pure flat black background (#000000). An ornate circular portrait frame ring in burnished antique gold, thin and elegant with fine engraving and four tiny gem studs; the inside of the ring is empty pure black. Front view, centred, perfectly round. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.",
@@ -1575,6 +1587,15 @@
       "generated": "2026-10-15",
       "originalSha256": "43fcc612af784fc806d3651759343599256dc2d7e0aff027d8a8069019b06287",
       "recipe": "black to alpha by brightness, colour un-premultiplied; trimmed; 256 px WebP"
+    },
+    "ornaments/ribbon.webp": {
+      "source": "ribbon",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Tall 2:3 portrait on a pure flat black background (#000000). One deep red silk ribbon bookmark hanging straight down with a softly frayed, notched end and a subtle sheen, centred, nothing else. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.",
+      "references": ["docs/design/stage-320/owner-concepts/02-four-screens.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-10-16",
+      "originalSha256": "5b57f10c3bcee24c1fa46b9fa2a12caed28aae0e60ab8d5515210833c9f46109",
+      "recipe": "edge-connected black to alpha, 1 px soft edge; trimmed; 160 px WebP"
     },
     "textures/app-backdrop.webp": {
       "source": "app-backdrop",
@@ -1611,6 +1632,18 @@
       "generated": "2026-10-15",
       "originalSha256": "305feb1bca3ef4556fef81854a96a0e7bf5e9f70ef006d2b1f0cdf9f179fb2f9",
       "recipe": "resized to 1920 px wide; WebP q80"
+    },
+    "textures/chronicle-desk.webp": {
+      "source": "chronicle-desk",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Wide 16:9 landscape seen from above. A dark antique wooden writing desk lit by warm candle light: two candles in brass holders, an inkwell with a quill, a few rolled scrolls and loose parchment near the edges; the large centre of the desk is empty dark polished wood where a big open book will lie; deep vignette. No book, no text. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.",
+      "references": [
+        "docs/design/stage-320/owner-concepts/02-four-screens.webp",
+        "docs/design/stage-320/owner-concepts/01-overview.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-10-16",
+      "originalSha256": "6754d8d5ec80e8a10fa53c20f95b13fd8701015955c5dc41ebba600e9b495bea",
+      "recipe": "resized to 1920 px wide; WebP q78"
     },
     "textures/panel-grain.webp": {
       "source": "panel-texture",
