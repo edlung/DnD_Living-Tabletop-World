@@ -1,0 +1,25 @@
+$ node --conditions=@ltw/source apps/server/src/testing/image-smoke.ts --generator openrouter-openai --server http://127.0.0.1:3331
+images:smoke: openrouter-openai via http://127.0.0.1:3331; ledger and storage read from postgres://127.0.0.1:54329/ltw_smoke330
+[preflight] server http://127.0.0.1:3331: campaign ravenford (en), player character elowen-starwhisper
+[preflight] image ledger: ceiling $5.000000, spent $0.000000 (held $0.000000), remaining $5.000000, 0 reservations (0 unsettled)
+[preflight] the player moved elowen-starwhisper to the North Gate
+[author] play session "Session 1: Arrival in Ravenford" is open, so a DM intent could reach a paid text route: no AI request is sent; the DM writes the proposal the local interpreter makes of the sentence
+[author] the DM committed proposal b475da16-3066-401a-aeb7-daa87ae53821 (revision 2): Tomas Reed, a young guard at the North Gate
+[request] authoring.b475da16-3066-401a-aeb7-daa87ae53821#0: reference image for players, queued by the authoring commit
+[job] QUEUED after 0 s
+[job] STARTED after 4 s
+[job] COMPLETED after 125 s
+[job] COMPLETED in 125 s: authoring.b475da16-3066-401a-aeb7-daa87ae53821#0~asset by openrouter-openai/openai/gpt-5.4-image-2, sha256:538c7efa2c0eb3c417ecd3b092959c45b25aa81c554ceb17c000234e9450ed96, image/webp, 77776 bytes (served and stored alike)
+[ledger] reserved $0.500000 for openai/gpt-5.4-image-2 (b4a077dd-6051-4fdb-934c-c7291dca1517); settled generated at $0.240833 (cost reported by the provider, generation gen-1792110240-uveBxDRj3b6D2UYSH4nF)
+[ledger] now ceiling $5.000000, spent $0.240833 (held $0.000000), remaining $4.759167, 1 reservations (0 unsettled)
+[player] before approval: Tomas shows no picture; the portrait is not listed; its bytes are 404
+[approve] the DM approved authoring.b475da16-3066-401a-aeb7-daa87ae53821#0~asset: Tomas's canonical reference
+[player] after approval: Tomas and the North Gate scene show the portrait; its bytes are served and match
+image smoke PASSED: openrouter-openai, campaign ravenford
+  request    authoring.b475da16-3066-401a-aeb7-daa87ae53821#0 (authoring commit)
+  outcome    COMPLETED in 125 s by openrouter-openai/openai/gpt-5.4-image-2
+  picture    sha256:538c7efa2c0eb3c417ecd3b092959c45b25aa81c554ceb17c000234e9450ed96
+             image/webp, 77776 bytes, version 1
+  ledger     reserved $0.500000 for openai/gpt-5.4-image-2 (b4a077dd-6051-4fdb-934c-c7291dca1517); settled generated at $0.240833 (cost reported by the provider, generation gen-1792110240-uveBxDRj3b6D2UYSH4nF)
+  spending   $0.240833 during the smoke; ceiling $5.000000, spent $0.240833 (held $0.000000), remaining $4.759167, 1 reservations (0 unsettled)
+  player     nothing before approval; the portrait after it
