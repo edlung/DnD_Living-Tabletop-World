@@ -1,0 +1,25 @@
+Stage 350 part B: readiness through the proxy during a database outage
+
+### A 20 s database outage on 8b362b15ec68: /api/readyz through the proxy every few seconds; the server keeps running (2026-10-16T01:11:46Z)
+$ S=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b; cd deploy && docker compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt > "$S/ca.crt"; probe() { printf "%s " "$(date -u +%H:%M:%S)"; curl -sS --cacert "$S/ca.crt" -o "$S/ready.json" -w "%{http_code} " https://localhost/api/readyz; cat "$S/ready.json"; printf "  server: %s\n" "$(docker inspect "$(docker compose ps -q server)" --format "{{.State.Status}}, restarts {{.RestartCount}}, {{.State.Health.Status}}")"; }; probe; docker compose stop postgres 2>&1 | grep -v Stopping; for i in 1 2 3 4 5; do sleep 4; probe; done; docker compose start postgres 2>&1 | grep -v Starting; for i in 1 2 3 4 5 6 7 8; do sleep 3; probe; done; docker compose ps --format "{{.Service}} {{.Status}}"
+01:11:46 200 {"status":"ready"}  server: running, restarts 0, healthy
+ Container ltw-stage350b-postgres-1 Stopped 
+01:11:52 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+01:11:56 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+01:12:00 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+01:12:05 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+01:12:09 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+ Container ltw-stage350b-postgres-1 Started 
+01:12:13 200 {"status":"ready"}  server: running, restarts 0, healthy
+01:12:16 200 {"status":"ready"}  server: running, restarts 0, healthy
+01:12:19 200 {"status":"ready"}  server: running, restarts 0, healthy
+01:12:22 200 {"status":"ready"}  server: running, restarts 0, healthy
+01:12:26 200 {"status":"ready"}  server: running, restarts 0, healthy
+01:12:29 200 {"status":"ready"}  server: running, restarts 0, healthy
+01:12:32 200 {"status":"ready"}  server: running, restarts 0, healthy
+01:12:36 200 {"status":"ready"}  server: running, restarts 0, healthy
+backup Up 4 minutes (healthy)
+postgres Up 26 seconds (healthy)
+proxy Up 4 minutes (healthy)
+server Up 4 minutes (healthy)
+[exit 0]

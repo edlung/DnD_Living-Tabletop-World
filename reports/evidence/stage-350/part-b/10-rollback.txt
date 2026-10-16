@@ -1,0 +1,86 @@
+Stage 350 part B: rollback to the previous image on the same database, and forward again
+
+### Roll back to the previous tag (333a8791b1e8, part A on Stage 340) on the same database, with these deploy files (the networks are unchanged, so nothing is taken down) (2026-10-16T01:14:21Z)
+$ set -o pipefail; deploy/scripts/deploy.sh --rollback 333a8791b1e8 2>&1 | grep -vE "^ (Container|Network|Volume) .* (Creating|Starting|Waiting|Stopping|Removing)|^\{"
+==> backup before the change
+ltw-20261016T011422Z.dump
+==> starting ltw-server:333a8791b1e8 and ltw-proxy:333a8791b1e8 (previous: 8b362b15ec68)
+ Container ltw-stage350b-postgres-1 Running 
+ Container ltw-stage350b-backup-1 Running 
+ Container ltw-stage350b-server-1 Recreate 
+ Container ltw-stage350b-server-1 Recreated 
+ Container ltw-stage350b-proxy-1 Recreate 
+ Container ltw-stage350b-proxy-1 Recreated 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-server-1 Started 
+ Container ltw-stage350b-server-1 Healthy 
+ Container ltw-stage350b-proxy-1 Started 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-server-1 Healthy 
+ Container ltw-stage350b-backup-1 Healthy 
+ Container ltw-stage350b-proxy-1 Healthy 
+NAME                       IMAGE                                                                                        COMMAND                  SERVICE    CREATED         STATUS                   PORTS
+ltw-stage350b-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     6 minutes ago   Up 6 minutes (healthy)   5432/tcp
+ltw-stage350b-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   6 minutes ago   Up 2 minutes (healthy)   5432/tcp
+ltw-stage350b-proxy-1      ltw-proxy:333a8791b1e8                                                                       "caddy run --config …"   proxy      6 seconds ago   Up 2 seconds (healthy)   127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350b-server-1     ltw-server:333a8791b1e8                                                                      "/usr/local/bin/ltw-…"   server     7 seconds ago   Up 5 seconds (healthy)   3000/tcp
+==> deployed 333a8791b1e8
+[exit 0]
+
+### Rolled back: images, recorded tags, readiness through the proxy, the world (its stream, as the review campaign left it) (2026-10-16T01:14:30Z)
+$ S=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b; cd deploy && docker compose ps --format "{{.Service}} {{.Image}} {{.Status}}" && grep -E "^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA)=" .env && curl -sS --cacert "$S/ca.crt" https://localhost/api/readyz && echo && docker compose exec -T postgres psql -U ltw -d ltw -At -c "SELECT stream_id, version FROM ltw_event_streams"
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 6 minutes (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 2 minutes (healthy)
+proxy ltw-proxy:333a8791b1e8 Up 2 seconds (healthy)
+server ltw-server:333a8791b1e8 Up 5 seconds (healthy)
+LTW_IMAGE_TAG=333a8791b1e8
+LTW_PREVIOUS_IMAGE_TAG=8b362b15ec68
+LTW_ALLOW_NEWER_SCHEMA=true
+{"status":"ready"}
+ravenford|116
+[exit 0]
+
+### Forward again to 8b362b15ec68; the rollback flag is cleared (2026-10-16T01:14:41Z)
+$ set -o pipefail; deploy/scripts/deploy.sh 8b362b15ec68 2>&1 | grep -E "^==>|Recreated|Error"; grep -E "^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA)=" deploy/.env; cd deploy && docker compose ps --format "{{.Service}} {{.Image}} {{.Status}}"
+==> backup before the change
+==> starting ltw-server:8b362b15ec68 and ltw-proxy:8b362b15ec68 (previous: 333a8791b1e8)
+ Container ltw-stage350b-server-1 Recreated 
+ Container ltw-stage350b-proxy-1 Recreated 
+==> deployed 8b362b15ec68
+LTW_IMAGE_TAG=8b362b15ec68
+LTW_PREVIOUS_IMAGE_TAG=333a8791b1e8
+LTW_ALLOW_NEWER_SCHEMA=false
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 6 minutes (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 2 minutes (healthy)
+proxy ltw-proxy:8b362b15ec68 Up 2 seconds (healthy)
+server ltw-server:8b362b15ec68 Up 5 seconds (healthy)
+[exit 0]
+
+### A database a newer build migrated (simulated: one extra history row); the strict start refuses it (2026-10-16T01:14:49Z)
+$ cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -c "INSERT INTO ltw_schema_migrations (id, checksum) VALUES ('9999_from_a_newer_build', 'simulated')" && docker compose up --detach --force-recreate --no-deps server >/dev/null 2>&1; until [ "$(docker inspect "$(docker compose ps -aq server)" --format "{{.RestartCount}}")" -ge 1 ]; do sleep 1; done; docker compose logs --no-color server | grep -E "missing on disk" | head -2 | sed -E "s/^server-1 *\| //"
+INSERT 0 1
+MigrationIntegrityError: Applied migrations missing on disk: 9999_from_a_newer_build
+MigrationIntegrityError: Applied migrations missing on disk: 9999_from_a_newer_build
+[exit 0]
+
+### The explicit rollback step accepts that database: the previous image starts and applies nothing (2026-10-16T01:15:02Z)
+$ S=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b; deploy/scripts/deploy.sh --rollback 333a8791b1e8 >/dev/null 2>&1; echo "deploy exit status: $?"; cd deploy && docker compose ps --format "{{.Service}} {{.Image}} {{.Status}}" | grep -E "^(server|proxy) " && docker compose logs --no-color server | grep -E "newer build" | tail -1 | sed -E "s/^server-1 *\| //" && curl -sS --cacert "$S/ca.crt" https://localhost/api/readyz && echo
+deploy exit status: 0
+proxy ltw-proxy:333a8791b1e8 Up 2 seconds (healthy)
+server ltw-server:333a8791b1e8 Up 5 seconds (healthy)
+{"level":"warn","time":"2026-10-16T01:15:05.229Z","service":"ltw-migrate","newer":["9999_from_a_newer_build"],"msg":"database was migrated by a newer build; applying nothing (rollback)"}
+{"status":"ready"}
+[exit 0]
+
+### The simulated row removed; forward to 8b362b15ec68 with the strict start (2026-10-16T01:15:10Z)
+$ cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -c "DELETE FROM ltw_schema_migrations WHERE id = '9999_from_a_newer_build'" && cd .. && deploy/scripts/deploy.sh 8b362b15ec68 >/dev/null 2>&1; echo "deploy exit status: $?"; grep -E "^LTW_(IMAGE_TAG|ALLOW_NEWER_SCHEMA)=" deploy/.env; cd deploy && docker compose ps --format "{{.Service}} {{.Image}} {{.Status}}"
+DELETE 1
+deploy exit status: 0
+LTW_IMAGE_TAG=8b362b15ec68
+LTW_ALLOW_NEWER_SCHEMA=false
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 7 minutes (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 3 minutes (healthy)
+proxy ltw-proxy:8b362b15ec68 Up 3 seconds (healthy)
+server ltw-server:8b362b15ec68 Up 5 seconds (healthy)
+[exit 0]

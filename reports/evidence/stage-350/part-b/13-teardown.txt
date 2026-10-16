@@ -1,0 +1,10 @@
+Stage 350 part B: teardown of the local stack
+
+### Remove the local stack: containers, volumes and networks of project ltw-stage350b; the shared development database and other projects keep running (2026-10-16T01:16:25Z)
+$ cd deploy && docker compose --profile drill down --volumes --remove-orphans 2>&1 | grep -cE "Removed"; echo "containers left: $(docker ps -a --format "{{.Names}}" | grep -c "ltw-stage350b")"; echo "volumes left: $(docker volume ls --format "{{.Name}}" | grep -c "ltw-stage350b")"; echo "networks left: $(docker network ls --format "{{.Name}}" | grep -c "ltw-stage350b")"; docker ps --format "{{.Names}} {{.Status}}" | grep -x "living-tabletop-world-dev-pack-v12-postgres-1 Up.*"
+11
+containers left: 0
+volumes left: 0
+networks left: 0
+living-tabletop-world-dev-pack-v12-postgres-1 Up 8 hours (healthy)
+[exit 0]

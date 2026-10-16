@@ -38,10 +38,10 @@ alias dc='docker compose -f /opt/ltw/deploy/compose.yaml'
 needs about 2 GB), a domain and SSH access. Owner decision Q10: deploying waits for the server and
 the domain; until then the stack is verified locally (section 11).
 
-1. **DNS.** RU: запись `A` (и `AAAA`, если у сервера есть IPv6) для домена, например
-   `play.example.org`, на адрес сервера; дождитесь, пока она разрешается. EN: an `A` record (and
-   `AAAA` if the server has IPv6) for the domain, e.g. `play.example.org`, pointing at the server;
-   wait until it resolves.
+1. **DNS.** RU: запись `A` для домена, например `play.example.org`, на адрес сервера (`AAAA` —
+   только после включения IPv6 в сети `edge`, шаг 5); дождитесь, пока она разрешается. EN: an `A`
+   record for the domain, e.g. `play.example.org`, pointing at the server (`AAAA` only once IPv6 is
+   enabled on the `edge` network, step 5); wait until it resolves.
 2. **Docker.** RU: Docker Engine 29 и плагин Compose из репозитория Docker
    (`docker-ce`, `docker-compose-plugin`); пользователь развёртывания в группе `docker` (это права
    root — только для оператора). EN: Docker Engine 29 and the Compose plugin from Docker's
@@ -83,19 +83,33 @@ the domain; until then the stack is verified locally (section 11).
    stay empty until the owner authorizes spending (ADR 0032).
 
    RU: `PUBLIC_ORIGIN` обязателен: вход по приглашениям строит из него ссылки, cookie и проверку
-   `Origin`; ровно `https://<домен>` без косой черты (с `:<порт>`, если HTTPS не на 443). Адрес
-   клиента: сервер (Stage 340) верит `X-Forwarded-For` только из сети прокси — compose передаёт её
-   диапазон (`LTW_EDGE_SUBNET`, по умолчанию `10.231.250.0/24`) как `LTW_TRUST_PROXY`, — а Caddy
-   заменяет заголовок, присланный клиентом; поэтому ограничения по адресу видят настоящих клиентов.
-   Меняйте диапазон, только если он пересекается с другой сетью сервера; никогда не публикуйте порт
-   `server`.
+   `Origin`; ровно `https://<домен>` без косой черты (с `:<порт>`, если HTTPS не на 443).
    EN: `PUBLIC_ORIGIN` is required: invitation sign-in builds links, the cookie and the `Origin`
    check from it; exactly `https://<domain>` without a trailing slash (with `:<port>` when HTTPS is
-   not on 443). The client's address: the server (Stage 340) trusts `X-Forwarded-For` only from
-   the proxy's network, whose range compose passes as `LTW_TRUST_PROXY` (`LTW_EDGE_SUBNET`, default
-   `10.231.250.0/24`), and Caddy replaces any such header a client sends, so per-address limits
-   see real clients. Change the range only if it collides with another network of the server;
-   never publish the `server` port.
+   not on 443).
+
+   **Граница доверия / Trust boundary.** RU: сервер подключён только к внутренней сети `backend`
+   (общей лишь с Caddy; без адреса на хосте — режим `isolated`, нужен Docker Engine 28+), к
+   внутренней `data` (база, копии) и к `egress` (только его исходящие вызовы ИИ) и слушает лишь
+   свой адрес в `backend` (`<префикс>.10`). Адрес клиента он берёт из `X-Forwarded-For` только от
+   соседа из диапазона `backend` (`LTW_TRUST_PROXY` = `<префикс>.0/24`, задаёт compose), а Caddy
+   заменяет заголовок, присланный клиентом: ограничения по адресу видят настоящих клиентов, и никто,
+   кроме Caddy, не подставит чужой адрес. `LTW_BACKEND_PREFIX` (по умолчанию `10.231.251`) меняйте,
+   только если диапазон пересекается с сетью сервера; никогда не публикуйте порт `server`.
+   Проверка: `deploy/verify/trust-boundary.sh` (раздел 11; безопасна и на сервере). IPv6: без
+   IPv6 в сети `edge` Docker передаёт IPv6-клиентов через свой прокси от одного адреса шлюза, и все
+   они делят одно ограничение — публикуйте только запись `A`, пока IPv6 в `edge` не включён.
+   EN: the server joins only the internal `backend` network (shared with Caddy alone; no address
+   on the host: gateway mode `isolated`, Docker Engine 28 or later), the internal `data` network
+   (database, backups) and `egress` (its outbound AI calls only), and listens only at its backend
+   address (`<prefix>.10`). It takes the client's address from `X-Forwarded-For` only from a peer
+   in the backend range (`LTW_TRUST_PROXY` = `<prefix>.0/24`, set by compose), and Caddy replaces
+   any such header a client sends: per-address limits see real clients, and nothing but Caddy can
+   name another address. Change `LTW_BACKEND_PREFIX` (default `10.231.251`) only if the range
+   collides with a network of the server; never publish the `server` port. Check:
+   `deploy/verify/trust-boundary.sh` (section 11; safe on a server too). IPv6: without IPv6 on the
+   `edge` network Docker relays IPv6 clients through its own proxy from one gateway address, and
+   they all share one limit; publish only the `A` record until IPv6 is enabled on `edge`.
 
 6. **Сборка и запуск / Build and start.** RU: сборка из закоммиченной ревизии печатает тег; запуск
    ждёт, пока все сервисы станут здоровыми; сертификат выпускается автоматически. EN: the build
@@ -112,19 +126,33 @@ the domain; until then the stack is verified locally (section 11).
    `docker save ltw-server:<t> ltw-proxy:<t> | ssh <vps> docker load`. EN: building elsewhere:
    the same with `--platform linux/amd64`, then `docker save … | ssh <vps> docker load`.
 
-7. **Кампания и вход / Campaign and sign-in.** RU: кампания заводится через World Engine; ссылку-
-   приглашение DM печатает CLI оператора (Stage 340) — один раз: это секрет, передайте её DM
-   личным каналом и не сохраняйте в журналах; DM приглашает игроков сам. Часть B Stage 350
-   описывает русскую кампанию проверки. EN: campaigns are created through the World Engine; the
-   operator CLI (Stage 340) prints the DM's invitation link once: it is a secret, hand it to the
-   DM over a private channel and keep it out of logs; the DM invites the players. Part B of Stage
-   350 documents the Russian review campaign.
+7. **Кампания проверки и вход / Review campaign and sign-in.** RU: кампания проверки (Gate 06) —
+   русский Равенфорд («Пропавший караван», кампания `ravenford`), заведённый через World Engine;
+   место, которое фикстура отдала персоне разработки (Эловен), DM освобождает командой
+   `ReleaseCharacter`, так что игроков приглашает DM. Скрипт повторяем (кампания не дублируется,
+   занятые места не отбираются) и каждый раз печатает **новую** ссылку DM — один раз: это секрет,
+   передайте её DM личным каналом и не сохраняйте в журналах, тикетах и чатах с историей.
+   Изображения кураторов придут со Stage 330. Одна база — один Равенфорд: английский сид на ней
+   отказывает (`COMMAND_ID_CONFLICT`). EN: the review campaign (Gate 06) is the Russian Ravenford
+   ("Пропавший караван", campaign `ravenford`) created through the World Engine; the seat the
+   fixture gave a development persona (Elowen) is released by the DM's `ReleaseCharacter`, so the
+   DM invites the players. The script can be rerun (the campaign is never duplicated, taken seats
+   are never taken back) and prints a **new** DM link each time, once: it is a secret, hand it to
+   the DM over a private channel and keep it out of logs, tickets and chats that keep history.
+   Curated images arrive with Stage 330. One database holds one Ravenford: the English seed is
+   refused on it (`COMMAND_ID_CONFLICT`).
 
    ```bash
-   dc exec -T server node apps/server/dist/world-engine/seed-ravenford-cli.js
-   dc exec -T server node apps/server/dist/auth/operator-cli.js dm-invite \
-     --campaign <campaign-id> --expires-hours 72
+   deploy/scripts/review-campaign.sh --expires-hours 72   # the seed, then the DM link (JSON line)
    ```
+
+   RU: DM открывает ссылку, затем приглашает игроков: ссылка игрока на свободного персонажа (по
+   умолчанию 72 ч, до 7 суток), одноразовая. Экраны браузера для приглашений (вход по ссылке, лист
+   «Игроки») придут со Stage 340 часть B; до тех пор те же шаги по HTTP показывает
+   `deploy/verify/sign-in-journey.sh`. EN: the DM opens the link, then invites the players: a
+   single-use player link for a free character (72 h by default, 7 days at most). The browser
+   screens for invitations (the join page, the Players sheet) arrive with Stage 340 part B; until
+   then `deploy/verify/sign-in-journey.sh` shows the same steps over HTTP.
 
 8. **Наблюдение / Monitoring.** RU: включите `watch.sh` (раздел 9) и еженедельную тренировку
    восстановления (раздел 5). EN: enable `watch.sh` (section 9) and the weekly restore drill
@@ -134,9 +162,13 @@ the domain; until then the stack is verified locally (section 11).
 
 **RU.** `deploy.sh` делает резервную копию, запоминает текущий тег как предыдущий, запускает
 образы нового тега (миграции идут при старте под advisory lock) и ждёт здоровья всех сервисов.
+Если изменились сети `compose.yaml` (их дайджест `LTW_NETWORKS_DIGEST`), он сначала останавливает
+и удаляет контейнеры и сети (тома остаются): Compose сам не умеет перевести на них работающий стек.
 **EN.** `deploy.sh` takes a backup, records the current tag as the previous one, starts the new
 tag's images (migrations run at start under an advisory lock) and waits until every service is
-healthy.
+healthy. When the networks of `compose.yaml` changed (their digest `LTW_NETWORKS_DIGEST`), it
+first removes the containers and networks (volumes stay): Compose alone cannot move a running
+stack onto them.
 
 ```bash
 cd /opt/ltw && git fetch && git checkout <revision>
@@ -174,6 +206,13 @@ deploy/scripts/deploy.sh --rollback "$previous"
 git checkout <newer> && deploy/scripts/deploy.sh <newer-tag>
 ```
 
+RU: если `compose.yaml` той ревизии описывает другие сети (например, до части B Stage 350), её
+`deploy.sh` этого не замечает: сначала `dc down` (никогда не `-v`: тома и база остаются), затем
+`deploy.sh --rollback`. Вперёд `deploy.sh` справляется сам (`LTW_NETWORKS_DIGEST`). EN: when that
+revision's `compose.yaml` describes other networks (e.g. before Stage 350 part B), its `deploy.sh`
+does not notice: run `dc down` first (never `-v`: volumes and the database stay), then
+`deploy.sh --rollback`. Forward, `deploy.sh` handles it (`LTW_NETWORKS_DIGEST`).
+
 ## 4. Сменить ключи · Rotate keys
 
 - **Ключи ИИ и изображений / AI and image keys.** RU: создайте новый ключ у провайдера, замените в
@@ -197,10 +236,11 @@ git checkout <newer> && deploy/scripts/deploy.sh <newer-tag>
 
 - **TLS.** RU: сертификаты Let's Encrypt продлевает Caddy; `watch.sh` предупреждает за 14 дней.
   EN: Caddy renews the Let's Encrypt certificates; `watch.sh` warns 14 days ahead.
-- **Сессии игроков / Player sessions (Stage 340).** RU: ключа подписи нет — сессии случайные и
-  хранятся хешами; массовый отзыв даёт CLI оператора Stage 340 (часть B). EN: there is no signing
-  key (sessions are random and stored hashed); revoking all of them comes with Stage 340's
-  operator CLI (part B).
+- **Сессии / Sessions (Stage 340).** RU: ключа подписи нет — сессии и приглашения случайные и
+  хранятся только хешами, менять нечего; выйти везде за человека — раздел 6 (`revoke-actor`,
+  `revoke-dm`). EN: there is no signing key (sessions and invitations are random and stored only
+  as hashes), so nothing to rotate; to sign someone out everywhere see section 6 (`revoke-actor`,
+  `revoke-dm`).
 
 ## 5. Восстановить из копии · Restore from backup
 
@@ -258,6 +298,24 @@ RU: на новом сервере: шаги 1–5 раздела 1, затем 
 character is revoked and the character released (`ReleaseCharacter`); effective on the next request
 and the live stream's next cycle. To close access for everyone at once: `dc stop proxy` (the site is
 down, data intact); back with `dc up -d --wait proxy`.
+
+**Оператор / Operator (Stage 340).** RU: список живых сессий кампании (без токенов и хешей);
+выход DM из кампании (его сессии и неиспользованные ссылки DM; новый вход — новой ссылкой,
+раздел 1 шаг 7); выход одного актёра везде. Отзыв называет источник разрешения (кто и где
+попросил); он выводится в единственной строке JSON — сохраните её как запись оператора. Локальный
+пример: `reports/evidence/stage-350/part-b/`. EN: a campaign's live sessions (no token or hash);
+signing the DM out of a campaign (its sessions and unused DM links; back in with a new link,
+section 1 step 7); signing one actor out everywhere. A revocation names its authorization source
+(who asked, where); it is echoed in the one JSON output line: keep that line as the operator's
+record. A local example: `reports/evidence/stage-350/part-b/`.
+
+```bash
+dc exec -T server node apps/server/dist/auth/operator-cli.js sessions --campaign ravenford
+dc exec -T server node apps/server/dist/auth/operator-cli.js revoke-dm --campaign ravenford \
+  --authorization-source '<who asked, where>'
+dc exec -T server node apps/server/dist/auth/operator-cli.js revoke-actor --actor '<actorId>' \
+  --authorization-source '<who asked, where>'
+```
 
 ## 7. Остановить все расходы на ИИ · Stop all AI spending
 
@@ -326,13 +384,49 @@ target exists:
 ## 11. Локальная проверка · Local verification
 
 **RU.** Так Stage 350 проверен на машине разработчика (доказательства:
-`reports/evidence/stage-350/`): `deploy/.env` с `PUBLIC_HOST=localhost`, `TLS_MODE=internal`,
-портами на `127.0.0.1`; `deploy/verify/smoke.sh` (TLS, заголовки, клиент, готовность, топология),
-`live-stream.sh` (живой поток без буферизации; только с `verify/dev-personas.yaml`),
-`retention-check.sh`, `proxy-contract.sh <tag>`; `deploy/verify/ci.sh` делает всё это на чистой
-копии (так же работает CI). **EN.** How Stage 350 was verified on a development machine (evidence:
-`reports/evidence/stage-350/`): `deploy/.env` with `PUBLIC_HOST=localhost`, `TLS_MODE=internal`
-and ports on `127.0.0.1`; `deploy/verify/smoke.sh` (TLS, headers, client, readiness, topology),
-`live-stream.sh` (the live stream unbuffered; only with `verify/dev-personas.yaml`),
-`retention-check.sh`, `proxy-contract.sh <tag>`; `deploy/verify/ci.sh` runs all of it on a clean
-checkout (as CI does).
+`reports/evidence/stage-350/`, часть B — `part-b/`): `deploy/.env` с `PUBLIC_HOST=localhost`,
+`PUBLIC_ORIGIN=https://localhost`, `TLS_MODE=internal`, портами на `127.0.0.1`; стек ровно такой,
+как в эксплуатации (вход по приглашениям, один `compose.yaml`). Нужны `curl`, `jq`, `python3`,
+`openssl`. Скрипты `deploy/verify/`:
+
+- `smoke.sh` — TLS, заголовки, клиент, готовность, опубликованные порты, пользователи и корневые ФС;
+- `proxy-contract.sh <tag>` — что прокси пересылает (заглушка вместо сервера);
+- `sign-in-journey.sh` — вход по-русски по HTTP двумя «браузерами» (cookie): ссылка DM от
+  оператора, приглашение игрока, игра, отзыв (поток игрока закрывается сразу), использованные и
+  поддельные ссылки, 409, межсайтовые запросы, выход; ни одного токена в журналах;
+- `live-stream.sh` — живой поток через прокси без буферизации (сессия DM по приглашению);
+- `trust-boundary.sh` — сети, адрес и сокет сервера, недоступность API с хоста и из `edge`,
+  подделанный `X-Forwarded-For` не меняет клиента;
+- `retention-check.sh`; `ci.sh` делает всё это на чистой копии (так же работает CI).
+
+Ограничения: каждый из входов тратит запросы погашения этого хоста (10 в минуту, блокировка на
+15 минут после 20 отказов в час): `sign-in-journey.sh` — 7, `live-stream.sh` — 1,
+`trust-boundary.sh` — до 11 (запускайте последним); повтор — через минуту, после 20 отказов в час —
+перезапуск сервера (`dc restart server`; ограничения в памяти). **Docker Desktop** (macOS, Windows)
+доставляет все подключения к опубликованным портам от адреса шлюза сети `edge`: локально все
+браузеры — один клиент для ограничений по адресу. На Linux-сервере внешние клиенты сохраняют свои
+адреса (кроме запросов с самого хоста и IPv6 без IPv6 в `edge`, раздел 1 шаг 5).
+
+**EN.** How Stage 350 was verified on a development machine (evidence:
+`reports/evidence/stage-350/`, part B in `part-b/`): `deploy/.env` with `PUBLIC_HOST=localhost`,
+`PUBLIC_ORIGIN=https://localhost`, `TLS_MODE=internal` and ports on `127.0.0.1`; the stack exactly
+as production runs it (invitation sign-in, `compose.yaml` alone). Needs `curl`, `jq`, `python3`,
+`openssl`. Scripts in `deploy/verify/`:
+
+- `smoke.sh`: TLS, headers, client, readiness, published ports, users and root filesystems;
+- `proxy-contract.sh <tag>`: what the proxy forwards (a stand-in for the server);
+- `sign-in-journey.sh`: the Russian sign-in over HTTP with two "browsers" (cookie jars): the
+  operator's DM link, a player invitation, play, revocation (the player's stream closes at once),
+  used and forged links, 409, cross-site requests, sign-out; no token in any log;
+- `live-stream.sh`: the live stream through the proxy, unbuffered (a DM session by invitation);
+- `trust-boundary.sh`: the networks, the server's address and socket, the API unreachable from
+  the host and from `edge`, a forged `X-Forwarded-For` never changes the client;
+- `retention-check.sh`; `ci.sh` runs all of it on a clean checkout (as CI does).
+
+Limits: each sign-in spends this host's redeem attempts (10 a minute, a 15-minute lockout after
+20 refusals in an hour): `sign-in-journey.sh` 7, `live-stream.sh` 1, `trust-boundary.sh` up to 11
+(run it last); rerun after a minute, and after 20 refusals in an hour restart the server
+(`dc restart server`; the limits live in memory). **Docker Desktop** (macOS, Windows) delivers every
+connection to a published port from the `edge` network's gateway address: locally all browsers
+are one client to the per-address limits. On a Linux server outside clients keep their addresses
+(except requests from the host itself, and IPv6 without IPv6 on `edge`, section 1 step 5).

@@ -1,0 +1,14 @@
+Stage 350 part B: backup retention and the backup health check
+
+### Backup retention and manifest in the backup image (deploy/verify/retention-check.sh) (2026-10-16T01:15:53Z)
+$ deploy/verify/retention-check.sh
+{"time":"2026-10-16T01:15:55Z","service":"ltw-backup","level":"info","msg":"retention: kept 21, removed 459"}
+kept 21 of 480
+retention check passed
+[exit 0]
+
+### The backup service health check (newest dump younger than the interval plus an hour) (2026-10-16T01:15:55Z)
+$ cd deploy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh health && echo healthy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh latest
+healthy
+ltw-20261016T011511Z.dump
+[exit 0]

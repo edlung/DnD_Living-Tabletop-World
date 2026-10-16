@@ -1,0 +1,160 @@
+Stage 350 part B: backups and the restore drill (dump A is the seeded review campaign before any play)
+
+### Dump A: the seeded review campaign, version 101, before any sign-in or play (2026-10-16T01:08:31Z)
+$ set -o pipefail; deploy/scripts/backup-now.sh 2>&1 | grep -v "^{"
+ltw-20261016T010831Z.dump
+[exit 0]
+
+### Restore drill on dump A while the live world is ahead (sign-in journeys, play, the live check): compared at the dump version (2026-10-16T01:12:48Z)
+$ set -o pipefail; deploy/scripts/restore-drill.sh ltw-20261016T010831Z.dump 2>&1 | grep -vE "^ (Container|Network) .* (Creating|Starting|Waiting|Stopping|Removing)"
+==> dump: ltw-20261016T010831Z.dump
+{"time":"2026-10-16T01:12:48Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261016T010831Z.dump"}
+==> throwaway database
+ Container ltw-stage350b-drill-db-1 Created 
+ Container ltw-stage350b-drill-db-1 Started 
+ Container ltw-stage350b-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-16T01:12:55.824Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-16T01:12:55.916Z","service":"ltw-migrate","applied":[],"alreadyApplied":10,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_auth_attempts 0
+ltw_auth_invitations 2
+ltw_auth_sessions 0
+ltw_authoring_revisions 0
+ltw_commands 92
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 101
+ltw_schema_migrations 10
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":101,"digest":"sha256:05ac262eb4dbd924b7a68acf7d1f94b5a36c59bfc0e8a2199c500c33a9b0c4f8","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":101,"status":"match","expected":"sha256:05ac262eb4dbd924b7a68acf7d1f94b5a36c59bfc0e8a2199c500c33a9b0c4f8","actual":"sha256:05ac262eb4dbd924b7a68acf7d1f94b5a36c59bfc0e8a2199c500c33a9b0c4f8","head":116}]}
+==> restore drill passed
+[exit 0]
+
+### Dump B of the advanced world (2026-10-16T01:13:00Z)
+$ set -o pipefail; deploy/scripts/backup-now.sh 2>&1 | grep -v "^{"; cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -At -c "SELECT stream_id, version FROM ltw_event_streams"
+ltw-20261016T011301Z.dump
+ravenford|116
+[exit 0]
+
+### A real restore of dump A by the runbook (section 5; dump B above keeps the current state): play after dump A is discarded (2026-10-16T01:13:13Z)
+$ set -o pipefail; cd deploy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh verify ltw-20261016T010831Z.dump && docker compose stop proxy server 2>&1 | grep -v Stopping && docker compose exec -T postgres psql -U ltw -d postgres -c "DROP DATABASE ltw WITH (FORCE)" -c "CREATE DATABASE ltw OWNER ltw" && docker compose exec -T backup pg_restore --exit-on-error --single-transaction --no-owner --no-privileges --dbname ltw /backups/ltw-20261016T010831Z.dump && docker compose up -d --wait 2>&1 | grep -E "Healthy|Error" | sort -u && docker compose exec -T postgres psql -U ltw -d ltw -At -c "SELECT stream_id, version FROM ltw_event_streams"
+{"time":"2026-10-16T01:13:14Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261016T010831Z.dump"}
+ Container ltw-stage350b-proxy-1 Stopped 
+ Container ltw-stage350b-server-1 Stopped 
+DROP DATABASE
+CREATE DATABASE
+ Container ltw-stage350b-backup-1 Healthy 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-proxy-1 Healthy 
+ Container ltw-stage350b-server-1 Healthy 
+ravenford|101
+[exit 0]
+
+### Restore drill on dump A after the real restore: the live world equals the dump (2026-10-16T01:13:23Z)
+$ set -o pipefail; deploy/scripts/restore-drill.sh ltw-20261016T010831Z.dump 2>&1 | grep -E "^==>|\"compared\""
+==> dump: ltw-20261016T010831Z.dump
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":101,"status":"match","expected":"sha256:05ac262eb4dbd924b7a68acf7d1f94b5a36c59bfc0e8a2199c500c33a9b0c4f8","actual":"sha256:05ac262eb4dbd924b7a68acf7d1f94b5a36c59bfc0e8a2199c500c33a9b0c4f8","head":101}]}
+==> restore drill passed
+[exit 0]
+
+### The restored world takes a different turn: one item as the DM (signed in through the proxy by an operator invitation) (2026-10-16T01:13:37Z)
+$ /bin/bash /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/dm-item.sh other-turn-1 && cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -At -c "SELECT stream_id, version FROM ltw_event_streams"
+item other-turn-1: 200 {"status":"accepted","code":null}
+signed out: 204
+ravenford|102
+[exit 0]
+
+### Negative: restore drill on dump B now (the live stream is shorter than the dump): must fail (2026-10-16T01:13:38Z)
+$ deploy/scripts/restore-drill.sh ltw-20261016T011301Z.dump 2>&1 | grep -E "^==>|^restore-drill|\"compared\""; echo "drill exit status: ${PIPESTATUS[0]}"
+==> dump: ltw-20261016T011301Z.dump
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+{"compared":1,"matched":0,"streams":[{"campaignId":"ravenford","version":116,"status":"behind","expected":"sha256:4c01a236e2f0968c96e48c7d17bc4fad97b6998c0cf21f40dfd61d326bd8c8ca","actual":null,"head":102}]}
+restore-drill.sh: restore drill FAILED: the restored world differs from the live one
+drill exit status: 1
+[exit 0]
+
+### The live stream reaches the version of dump B with different content (14 more items) (2026-10-16T01:13:51Z)
+$ /bin/bash /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/dm-item.sh $(seq -f "other-turn-%g" 2 15) | tail -n 2 && cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -At -c "SELECT stream_id, version FROM ltw_event_streams"
+item other-turn-15: 200 {"status":"accepted","code":null}
+signed out: 204
+ravenford|116
+[exit 0]
+
+### Negative: restore drill on dump B at the same version, a different world: must fail (2026-10-16T01:13:52Z)
+$ deploy/scripts/restore-drill.sh ltw-20261016T011301Z.dump 2>&1 | grep -E "^==>|^restore-drill|\"compared\""; echo "drill exit status: ${PIPESTATUS[0]}"
+==> dump: ltw-20261016T011301Z.dump
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+{"compared":1,"matched":0,"streams":[{"campaignId":"ravenford","version":116,"status":"mismatch","expected":"sha256:4c01a236e2f0968c96e48c7d17bc4fad97b6998c0cf21f40dfd61d326bd8c8ca","actual":"sha256:62c6115a3a4da81ef1609cd16c6ece4ead5343987e7bcdda27f675687df42d7c","head":116}]}
+restore-drill.sh: restore drill FAILED: the restored world differs from the live one
+drill exit status: 1
+[exit 0]
+
+### Negative: a damaged dump (one byte appended on the host) is refused before any restore (2026-10-16T01:14:10Z)
+$ B=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/backups-run; printf x >> "$B/ltw-20261016T010831Z.dump" && deploy/scripts/restore-drill.sh ltw-20261016T010831Z.dump; echo "drill exit status: $?"
+==> dump: ltw-20261016T010831Z.dump
+{"time":"2026-10-16T01:14:10Z","service":"ltw-backup","level":"error","msg":"checksum mismatch: ltw-20261016T010831Z.dump"}
+drill exit status: 1
+[exit 0]
+
+### The byte removed again: the dump verifies; the backup directory and its manifest (2026-10-16T01:14:10Z)
+$ B=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/backups-run; python3 -I -c "import os,sys; p=sys.argv[1]; os.truncate(p, os.path.getsize(p) - 1)" "$B/ltw-20261016T010831Z.dump" && (cd deploy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh verify ltw-20261016T010831Z.dump) && ls -l "$B" | sed "s|$B|<backups>|" && cat "$B/SHA256SUMS"
+{"time":"2026-10-16T01:14:10Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261016T010831Z.dump"}
+total 904
+-rw-------  1 oleksandr  wheel     552 Oct 16 03:13 SHA256SUMS
+-rw-------  1 oleksandr  wheel     814 Oct 16 03:06 ltw-20261016T010643Z.dump
+-rw-------  1 oleksandr  wheel   80041 Oct 16 03:07 ltw-20261016T010702Z.dump
+-rw-------  1 oleksandr  wheel   80041 Oct 16 03:07 ltw-20261016T010749Z.dump
+-rw-------  1 oleksandr  wheel   80041 Oct 16 03:07 ltw-20261016T010758Z.dump
+-rw-------@ 1 oleksandr  wheel  100263 Oct 16 03:14 ltw-20261016T010831Z.dump
+-rw-------  1 oleksandr  wheel  104358 Oct 16 03:13 ltw-20261016T011301Z.dump
+3e9745cfbb05014fbbb14423e9b389a914c1208e4d8999b01d615030fb3c2a52  ltw-20261016T010643Z.dump
+5f7439760f0e56d6bac16ec3e41681caa8e64ad311dc946c3ac6633865a49e6d  ltw-20261016T010702Z.dump
+246d603d820960770491391709994ec9db77e022b2e1c378c125bd8e789823e6  ltw-20261016T010749Z.dump
+670d73054fbb27aa76f22fc287e507ed9a8848539fd21575e1a94505461c907d  ltw-20261016T010758Z.dump
+712f4e2874e120f665342fa5c223d9fb52654eb7c392967cc49c90f119678d58  ltw-20261016T010831Z.dump
+c53d46c5f0a42250b6c1c5c7b24968eaa848175f1af67478ddd3cb18b07c1c5e  ltw-20261016T011301Z.dump
+[exit 0]
+
+### Final drill on the final state: a fresh dump, then the restore drill (2026-10-16T01:15:56Z)
+$ set -o pipefail; deploy/scripts/backup-now.sh 2>&1 | grep -v "^{" && deploy/scripts/restore-drill.sh 2>&1 | grep -E "^==>|\"compared\""
+ltw-20261016T011556Z.dump
+==> dump: ltw-20261016T011556Z.dump
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":116,"status":"match","expected":"sha256:62c6115a3a4da81ef1609cd16c6ece4ead5343987e7bcdda27f675687df42d7c","actual":"sha256:62c6115a3a4da81ef1609cd16c6ece4ead5343987e7bcdda27f675687df42d7c","head":116}]}
+==> restore drill passed
+[exit 0]
