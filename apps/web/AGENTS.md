@@ -12,8 +12,8 @@ providers.
 | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Entry and build                                                       | `src/main.tsx` (fonts, dictionaries, stylesheets), `vite.config.ts`, `index.html`                                                                                                                                                                                            |
 | Authentication and perspective lifecycle                              | `src/session/app.tsx`, `src/session/login.tsx` (sign-in over the key art)                                                                                                                                                                                                    |
-| Shell: top bar, dock, sheets, Chronicle dialog, Escape and focus      | `src/shell/` (`top-bar.tsx`, `dock.tsx`, `sheet.tsx`, `chronicle-dialog.tsx`, `use-shell.ts` with `isDraftField`)                                                                                                                                                            |
-| The Chronicle as a book; the flashback as a scene                     | `src/chronicle/` (`chronicle-book.tsx`, `chapter-pages.tsx`, `chapter-facts.ts`, `flashback-scene.tsx`, `generate-chapter.tsx`, `chapter-message.ts`)                                                                                                                        |
+| Shell: top bar, dock, sheets, Chronicle dialog, Escape and focus      | `src/shell/` (`top-bar.tsx`, `dock.tsx`, `sheet.tsx`, `chronicle-dialog.tsx`, `use-shell.ts` with `isDraftField`, `reserved-height.ts`)                                                                                                                                      |
+| The Chronicle as a book; the flashback as a scene                     | `src/chronicle/` (`chronicle-book.tsx`, `chapter-pages.tsx`, `chapter-facts.ts`, `picture-note.ts`, `flashback-scene.tsx`, `generate-chapter.tsx`, `chapter-message.ts`)                                                                                                     |
 | GPT UI kit in the client: URL maps, glyphs, medallions, world images  | `src/visual/` (`ui-kit.ts`, `ui-kit-names.ts`, `glyph-map.ts`, `glyph.tsx`, `medallion.tsx`, `approved-images.ts`); `src/assets/AGENTS.md`                                                                                                                                   |
 | HTTP and asynchronous isolation                                       | `src/api/client.ts`, `src/api/resource.ts`, `src/api/client.test.ts`                                                                                                                                                                                                         |
 | Scene/selection orchestration                                         | `src/world/world.tsx`, `use-world-data.ts`                                                                                                                                                                                                                                   |
@@ -78,7 +78,11 @@ providers.
   only. The result of an action (`ActionNotice`) is a sibling of the stage above every sheet and
   panel (just above an open sheet on wider screens), so a refusal and its Retry are never
   covered; on a phone it sits above the tab bar and every scrolling surface keeps its measured
-  height (`--outcome-h`) as bottom padding and scroll padding, so no control stays under it.
+  height (`--outcome-h`, `shell/reserved-height.ts`) as bottom padding and scroll padding, so no
+  control stays under it. The Chronicle dialog opens and closes in a layout effect (before
+  anything that would take focus reacts) and gives each page back its scroll position when it
+  opens again. A reaction asked of the viewer closes an open book (its chapter and place kept)
+  so the question can take focus (`world/world.tsx`).
 - Conversation (design §5.3): while the conversation with the selected NPC shows, its options
   (talk, ask, show evidence) live in its panel only and the selection's panel collapses them to
   "Go to the conversation"; the panel re-reads the NPC's context after the viewer's own actions;
@@ -92,13 +96,23 @@ providers.
   as a margin note: entries, epistemic types, event types in words, references on demand), the
   right page (key moments, what was learned as typed records in page inks, people met); the DM
   writes a chapter from the header. A flashback plays as a scene over the book (sepia vignette,
-  the line, attribution and type, Return; Escape returns first, then closes the book). Which
-  prose a chapter holds is said honestly ("Told as the plain record" for the template).
+  the line, attribution and type, Return; Escape returns first, then closes the book); behind it
+  the pages stay laid out, unseen and `inert`, so they keep their place. Which prose a chapter
+  holds is said honestly ("Told as the plain record" for the template). The chapter first shown
+  stays shown: a chapter written meanwhile (live signal) never replaces the page being read, its
+  ribbon says "New" until opened. A place's picture says "no approved picture" only when its
+  presentation has no image; while an approved one loads or after its fetch failed, the mist
+  makes no claim (`picture-note.ts`). Text areas carry a "lighten" veil to `--page-floor`, so
+  every page ink reads at 4.5:1 or better on the darkest parchment
+  (`tests/ui-kit/parchment-contrast.test.ts` measures the GPT pictures).
 - DM tools (design §5.7): the proposal card lists what will be added (check glyphs) and who will
   see it (`who-sees.ts`, read from the proposed commands only), with Confirm, Edit and Cancel;
   acknowledgements and the open editor belong to one revision; a new card scrolls into view in
   its sheet. Time and weather shows the day counter, phase and weather glyphs and the next-day
-  control; History shows when, status, the undo preview and Undo.
+  control; History shows when, status, the undo preview and Undo (disabled, its reason as its
+  description, while the preview says the world refuses it). Performing an NPC frames only
+  spoken words as the NPC's ("{npc} says", "Spoken, not a recorded fact."); a refusal, "no words
+  are available" or a failure is a plain status in the panel's own voice.
 - Battlefield (design §5.5, ADR 0028, ADR 0034 §6–7): every square, cover level, difficult
   square, position, side, state, condition, hit point and initiative comes from the scoped
   `EncounterView`; a combatant the projection does not name is "Unidentified creature N"
@@ -110,13 +124,21 @@ providers.
   from `combat/board/geometry.ts` (tested): tilted on a wide screen (CSS `perspective` and
   `rotateX`, figures and pieces upright), flat below 1200 px, a Flat/Tilted control, zoom on a
   phone; each square is the same button, order and name (`square-name.ts`) in both views, and
-  figures sit inside their square's button. Pictures: the GPT ground, difficult patch, cover
+  figures sit inside their square's button: what is drawn of a figure (round portrait, plate,
+  pips, badge) takes the pointer for that square in both views, so an upright figure is chosen
+  where it stands and a pip shows its condition's name. Pictures: the GPT ground, difficult
+  patch, cover
   pieces, silhouette or approved portrait (the viewed place's `present[]`), catalog art keyed by
   the rules catalog ID; code draws only hairlines, rings, glows, path, area, bars, plates. The
   turn tray exists only while the viewer may act and holds the server-listed options of what is
-  chosen plus End turn; the side panel describes them. The turn banner (the one live
-  announcement of a turn) and the reaction prompt (focused once per window) live in
-  `world/combat-stage.tsx`, over the scene view too.
+  chosen plus End turn; the side panel describes them, and below 1200 px (panel out of view)
+  the tray also shows each option's cost, range note or reason and the ally warning, as visible
+  echoes of the panel (`optionNotes`, `warnsOfAlly`; its height kept as `--tray-h`). The turn
+  banner (the one live announcement of a turn) and the reaction prompt live in
+  `world/combat-stage.tsx`, over the scene view too: the banner's live words say only whose turn
+  it is (it shows "Your reaction is needed" outside them), the prompt announces itself by taking
+  focus once per window (after the Chronicle closes, if it was open), and when it goes away with
+  focus in it, focus returns to the banner.
 - After the viewer's own action the world screen's views re-read in the background
   (`use-world-data.ts`): nothing empties or flashes; perspective changes and "Refresh world"
   still remount and read afresh.

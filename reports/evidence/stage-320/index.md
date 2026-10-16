@@ -3,9 +3,12 @@
 JPEG (quality 70, each at most 250 KB) at 390 × 844 (phone), 820 × 1180 (tablet) and 1440 × 900
 (desktop), in English (`en-`) and Russian (`ru-`), taken by `pnpm evidence:screens`
 (`playwright.evidence.config.ts`, `tests/evidence/stage-320-part-{a,b,c}.evidence.ts`) against the
-seeded browser-test servers, all at the part C revision. The test server has no image, dialogue
-or narrator provider: places show the honest mist, NPCs speak no words and chapters are the plain
-record. Battlefield screens come tilted and flat (`-tilted`, `-flat`). File names:
+seeded browser-test servers, at the part C revision; 36 were taken again after the review of
+parts B and C (`reports/STAGE_320_COMPLETION.md`): `chronicle` (part A), `target` and `area` on a
+phone and a tablet (the tray's notes and ally warning), `book`, `book-dm` (the pages' floor and
+darker muted ink) and `dm-perform` (a plain message, not speech). The test server has no image,
+dialogue or narrator provider: places show the honest mist, NPCs speak no words and chapters are
+the plain record. Battlefield screens come tilted and flat (`-tilted`, `-flat`). File names:
 `<lang>-<screen>[-<view>]-<width>.jpg`.
 
 ## part-a

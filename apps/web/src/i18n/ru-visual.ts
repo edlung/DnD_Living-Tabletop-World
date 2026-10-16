@@ -135,6 +135,8 @@ registerRussian({
   'a move': 'перемещение',
   'someone new in the world': 'новое лицо в мире',
   'Key moments': 'Ключевые моменты',
+  // A chapter written since the reader opened the book (its ribbon tab)
+  New: 'Новая',
   'What was learned': 'Что узнали',
   'People met': 'Встреченные',
   '— {name}': '— {name}',

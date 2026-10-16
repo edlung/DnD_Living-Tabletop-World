@@ -112,13 +112,26 @@ test('the DM performs Tomas for Elowen and the words are not recorded as fact', 
   await dm.getByRole('button', { name: 'Tomas Reed', exact: true }).click();
   await dm.getByText('Perform Tomas Reed (DM)', { exact: true }).click();
   await dm.getByRole('button', { name: 'Speak as Tomas Reed' }).click();
-  const said = dm.getByRole('status', { name: 'Tomas Reed says' });
-  await expect(said).toContainText('Spoken, not a recorded fact.');
-  expect((await said.innerText()).length).toBeGreaterThan(40);
+  // This server has no voice for NPCs (ADR 0032, C): the panel says no words came, in its own
+  // voice — never "Tomas Reed says", never "Spoken, not a recorded fact." over a non-reply.
+  const message = dm.locator('.perform-said--message');
+  await expect(message).toHaveRole('status');
+  await expect(message).toHaveText(
+    'No words are available for Tomas Reed right now (the voice is unavailable). You can speak for Tomas Reed yourself.',
+  );
+  await expect(dm.getByRole('status', { name: 'Tomas Reed says' })).toHaveCount(0);
 
   await dm.getByLabel('Ask about', { exact: true }).selectOption('guild-caravan');
+  const asked = dm.waitForResponse((response) =>
+    new URL(response.url()).pathname.endsWith('/npcs/tomas-reed/dialogue'),
+  );
   await dm.getByRole('button', { name: 'Answer the question' }).click();
-  await expect(dm.getByRole('status', { name: 'Tomas Reed says' })).toContainText('Spoken');
+  expect((await (await asked).json()) as { reply: { status: string } | null }).toMatchObject({
+    reply: { status: 'AI_UNAVAILABLE' },
+  });
+  await expect(message).toHaveText(/^No words are available for Tomas Reed right now/);
+  await expect(dm.getByRole('status', { name: 'Tomas Reed says' })).toHaveCount(0);
+  await expect(dm.getByText('Spoken, not a recorded fact.')).toHaveCount(0);
   await dm.close();
 });
 
@@ -131,9 +144,13 @@ test('refusals and technical words are explained in plain language', async ({ br
   await dm.getByRole('button', { name: 'Captain Thorne', exact: true }).click();
   await dm.getByText('Perform Captain Thorne (DM)', { exact: true }).click();
   await dm.getByRole('button', { name: 'Speak as Captain Thorne' }).click();
-  await expect(dm.getByRole('status', { name: 'Captain Thorne says' })).toContainText(
-    'is not in the same place as this character',
-  );
+  // A refusal is the panel's own status, never framed as the NPC speaking.
+  const refusal = dm
+    .getByRole('status')
+    .filter({ hasText: 'is not in the same place as this character' });
+  await expect(refusal).toBeVisible();
+  await expect(refusal).not.toContainText('Spoken, not a recorded fact.');
+  await expect(dm.getByRole('status', { name: 'Captain Thorne says' })).toHaveCount(0);
   // Remembered events, in the Journal, read as world time, not raw seconds.
   await openSheet(dm, 'Journal');
   await expect(dm.locator('.memory-list')).toBeVisible();

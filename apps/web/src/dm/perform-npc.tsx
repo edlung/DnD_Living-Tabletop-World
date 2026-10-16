@@ -1,5 +1,5 @@
 import type { EntityRef, NpcDialogueResponse } from '@ltw/contracts';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { Glyph } from '../visual/glyph.tsx';
@@ -20,6 +20,46 @@ function refusal(t: Translate, code: string, npc: string): string {
     npc,
     reason: t(code.replaceAll('_', ' ').toLowerCase()),
   });
+}
+
+/** What came back from performing an NPC: its words, or a message about why none came. */
+export interface PerformAnswerState {
+  readonly text: string;
+  readonly spoken: boolean;
+}
+
+/**
+ * The answer, honestly framed (ADR 0032, C): spoken words are the NPC's — "{npc} says", with
+ * the reminder that they are not a recorded fact; a refusal, "no words are available" or a
+ * failure is a plain status in the panel's own voice, never presented as the NPC speaking.
+ */
+export function PerformAnswer({
+  npcName,
+  said,
+}: {
+  readonly npcName: string;
+  readonly said: PerformAnswerState;
+}) {
+  const t = useT();
+  // Each answer comes into view where it appears (a phone's panel scrolls).
+  const shown = useCallback((element: HTMLElement | null) => {
+    element?.scrollIntoView({ block: 'nearest' });
+  }, []);
+  return said.spoken ? (
+    <blockquote
+      ref={shown}
+      className="perform-said"
+      role="status"
+      aria-label={t('{npc} says', { npc: npcName })}
+    >
+      {said.text}
+      <small>{t('Spoken, not a recorded fact.')}</small>
+    </blockquote>
+  ) : (
+    <p ref={shown} className="perform-said perform-said--message" role="status">
+      {said.text}
+    </p>
+  );
 }
 
 /**
@@ -48,16 +88,9 @@ export function PerformNpc({
   const [line, setLine] = useState('');
   const [busy, setBusy] = useState(false);
   // What came back: the NPC's words, or a message about why none came (never shown as speech).
-  const [said, setSaid] = useState<{ readonly text: string; readonly spoken: boolean } | null>(
-    null,
-  );
+  const [said, setSaid] = useState<PerformAnswerState | null>(null);
   // The one request whose answer may still be shown; replaced when the NPC or character changes.
   const pending = useRef<AbortController | null>(null);
-  // The answer comes into view where it appears (a phone's panel scrolls).
-  const answer = useRef<HTMLQuoteElement>(null);
-  useEffect(() => {
-    if (said) answer.current?.scrollIntoView({ block: 'nearest' });
-  }, [said]);
   useEffect(() => {
     setSaid(null);
     setBusy(false);
@@ -189,17 +222,7 @@ export function PerformNpc({
             {t('{npc} is replying…', { npc: npcName })}
           </p>
         )}
-        {said && (
-          <blockquote
-            ref={answer}
-            className={`perform-said${said.spoken ? '' : ' perform-said--message'}`}
-            role="status"
-            aria-label={t('{npc} says', { npc: npcName })}
-          >
-            {said.text}
-            <small>{t('Spoken, not a recorded fact.')}</small>
-          </blockquote>
-        )}
+        {said && <PerformAnswer npcName={npcName} said={said} />}
       </div>
     </details>
   );

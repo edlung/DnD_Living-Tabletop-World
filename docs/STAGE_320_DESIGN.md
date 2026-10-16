@@ -69,7 +69,8 @@ Tokens live in `apps/web/src/styles/tokens.css` as custom properties; components
 | `--side-party` / `--side-hostile` / `--side-neutral`      | `#4fd6e6` / `#e5483b` / `#d8b44a`                     | token rings, initiative marks                       |
 | `--hp` / `--hp-low` / `--danger`                          | `#3dbb7a` / `#d9822b` / `#e25b45`                     | bars, warnings                                      |
 | `--magic` / `--fire`                                      | `#a07cff` / `#ff8a3d`                                 | spell accents, area preview                         |
-| `--page` / `--page-ink` / `--page-ink-muted` / `--rubric` | `#ebdfc6` / `#2b2015` / `#5e4b37` / `#8c2716`         | Chronicle pages                                     |
+| `--page` / `--page-ink` / `--page-ink-muted` / `--rubric` | `#ebdfc6` / `#2b2015` / `#54422f` / `#8c2716`         | Chronicle pages                                     |
+| `--page-floor`                                            | `#d6bc8f`                                             | darkest parchment under the pages' text (a veil)    |
 
 Epistemic types keep their words and gain a glyph and a hue: FACT gold, EVIDENCE teal, TESTIMONY
 ivory, RUMOR violet, INFERENCE sky, HYPOTHESIS amber, CONTRADICTION red, UNKNOWN grey, SECRET deep

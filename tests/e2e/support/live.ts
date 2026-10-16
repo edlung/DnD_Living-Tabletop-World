@@ -17,6 +17,13 @@ export async function expectLive(page: Page): Promise<void> {
 
 export const turnBanner = (page: Page) => page.locator('.turn-banner');
 
+/** What the turn banner shows: whose turn it is, or "Your reaction is needed" while asked. */
+export const bannerWords = (page: Page) =>
+  page.locator('.turn-banner > span:not(.visually-hidden)');
+
+/** What the turn banner announces: whose turn it is, only (a prompt announces itself). */
+export const turnAnnounced = (page: Page) => page.locator('.turn-banner [aria-live]');
+
 export const tablePresence = (page: Page) =>
   page.getByRole('region', { name: 'At the table', exact: true });
 

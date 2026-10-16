@@ -167,8 +167,10 @@
     overflow-y: auto;
     isolation: auto;
   }
+  /* Room under the content for the fixed tray (its height measured: `--tray-h`) */
   .stage--battle:has(.turn-tray) {
-    padding-bottom: calc(var(--dock-h) + 120px);
+    padding-bottom: calc(var(--dock-h) + var(--tray-h, 96px) + 1.5rem);
+    scroll-padding-bottom: calc(var(--dock-h) + var(--tray-h, 96px) + 1rem);
   }
   .stage--battle > * {
     flex-shrink: 0;
@@ -259,7 +261,7 @@
   }
   .world-main.has-battle .outcome {
     right: 12px;
-    bottom: calc(var(--dock-h) + 110px);
+    bottom: calc(var(--dock-h) + 22px + var(--tray-h, 88px));
     left: 12px;
     width: auto;
   }
@@ -293,9 +295,6 @@
   }
   .active-card > .active-header {
     grid-row: span 3;
-  }
-  .turn-tray {
-    justify-content: center;
   }
 }
 @media (max-width: 767px) {
@@ -363,14 +362,16 @@
     right: 0;
     bottom: var(--dock-h);
     left: 0;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     width: auto;
     max-width: none;
     margin: 0;
-    overflow-x: auto;
     border-width: 1px 0 0;
     border-radius: 0;
+  }
+  .tray-row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
   }
   .initiative .medallion {
     --m: 32px;
@@ -387,6 +388,7 @@
   }
   .world-main.has-battle .outcome {
     right: 8px;
+    bottom: calc(var(--dock-h) + var(--tray-h, 88px) + 8px);
     left: 8px;
   }
 }

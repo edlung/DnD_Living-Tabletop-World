@@ -15,7 +15,8 @@ import { chooseLocation, openSheet } from './support/shell.ts';
 /**
  * Undo of an authoring commit, from the DM history that replaced the review's screen-local
  * undo (docs/adr/0033-live-session.md §7; ADR 0029 §7 behaviour kept: a refused undo names its
- * blockers, each undone explicitly first).
+ * blockers, each undone explicitly first). The history's preview is the world's own dry run:
+ * while it says the undo is refused, Undo is disabled and says why (review of Stage 320).
  */
 const tomas = (page: Page) => page.getByRole('button', { name: 'Tomas Reed', exact: true });
 const commit = (page: Page) => historyEntry(page, `Proposed from: ${TOMAS_REQUEST}`);
@@ -75,12 +76,14 @@ test('undo is refused while the story depends on him, and works after the depend
   }
 
   await openHistory(page);
-  await commit(page).getByRole('button', { name: 'Undo this addition' }).click();
+  const undo = commit(page).getByRole('button', { name: 'Undo this addition' });
   const blockers = commit(page).getByRole('group', { name: 'Undo blockers' });
   await expect(blockers).toContainText('ask about');
-  await expect(
-    page.getByRole('alert').filter({ hasText: 'Other parts of the story now depend on this.' }),
-  ).toBeVisible();
+  // The preview says the world refuses the undo now: the button agrees, and says why.
+  await expect(undo).toBeDisabled();
+  await expect(undo).toHaveAccessibleDescription(
+    'Undo is blocked by later steps that depend on this: ask about',
+  );
   await expect(commit(page)).toContainText('Added to the world');
   await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toContainText('Added to the world');
@@ -91,7 +94,9 @@ test('undo is refused while the story depends on him, and works after the depend
   await openHistory(page);
   await blockers.getByRole('button', { name: 'Undo “ask about” first' }).click();
   await expect(blockers).toHaveCount(0);
-  await commit(page).getByRole('button', { name: 'Undo this addition' }).click();
+  await expect(undo).toBeEnabled();
+  await expect(undo).toHaveAccessibleDescription('');
+  await undo.click();
   await expect(commit(page)).toContainText('Undone');
   await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toContainText('Undone');

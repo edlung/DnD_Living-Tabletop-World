@@ -1,6 +1,6 @@
 import type { DmHistoryEntry, EntityRef } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -158,8 +158,15 @@ function HistoryEntry({
   readonly actions: Actions;
 }) {
   const t = useT();
+  const ids = useId();
   const step = (type: keyof typeof STEP_TEXT) => t(STEP_TEXT[type]);
   const { undo } = entry;
+  // The preview says the world refuses this undo now: Undo stays, disabled, its reason said.
+  const blockers = undo && !undo.possible ? undo.blockers : [];
+  const reason =
+    undo && !undo.possible
+      ? [`${ids}-reason`, ...blockers.map((_, index) => `${ids}-step-${String(index)}`)].join(' ')
+      : undefined;
   return (
     <li className={`dm-history-entry dm-history-entry--${entry.status.toLowerCase()}`}>
       <Glyph
@@ -184,7 +191,8 @@ function HistoryEntry({
         {undo && (
           <div className="action-row">
             <button
-              disabled={actions.busy}
+              disabled={actions.busy || !undo.possible}
+              aria-describedby={reason}
               onClick={() => {
                 void actions.undo(entry);
               }}
@@ -194,16 +202,20 @@ function HistoryEntry({
             </button>
           </div>
         )}
-        {undo && !undo.possible && undo.blockers.length === 0 && (
-          <p className="muted">{t('This cannot be undone now.')}</p>
+        {undo && !undo.possible && blockers.length === 0 && (
+          <p id={`${ids}-reason`} className="muted">
+            {t('This cannot be undone now.')}
+          </p>
         )}
-        {undo && !undo.possible && undo.blockers.length > 0 && (
+        {undo && !undo.possible && blockers.length > 0 && (
           <div role="group" aria-label={t('Undo blockers')} className="issue-list">
-            <strong>{t('Undo is blocked by later steps that depend on this:')}</strong>
+            <strong id={`${ids}-reason`}>
+              {t('Undo is blocked by later steps that depend on this:')}
+            </strong>
             <ul>
-              {undo.blockers.map((blocker) => (
+              {blockers.map((blocker, index) => (
                 <li key={blocker.commandId}>
-                  {step(blocker.commandType)}{' '}
+                  <span id={`${ids}-step-${String(index)}`}>{step(blocker.commandType)}</span>{' '}
                   <button
                     disabled={actions.busy}
                     onClick={() => {

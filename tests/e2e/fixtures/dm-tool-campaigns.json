@@ -11,5 +11,7 @@
   "drafts": "ui-dm-drafts",
   "book": "ui-dm-book",
   "a11y": "ui-dm-a11y",
-  "motion": "ui-dm-motion"
+  "motion": "ui-dm-motion",
+  "pinned": "ui-dm-pinned",
+  "a11yBook": "ui-dm-a11y-book"
 }

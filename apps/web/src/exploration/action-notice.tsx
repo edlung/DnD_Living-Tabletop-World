@@ -1,35 +1,11 @@
 import type { KnowledgeView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useLayoutEffect, useRef } from 'react';
 
+import { useReservedHeight } from '../shell/reserved-height.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
 import { KnowledgeCards } from '../visual/knowledge-cards.tsx';
 import type { ActionNotice as Notice } from './use-action.ts';
-
-/**
- * Keeps the result's height on the world screen (`--outcome-h`) while it shows, so a phone's
- * scrolling surfaces leave room for it below their content and no control stays under it.
- */
-function useReservedHeight(shown: boolean) {
-  const box = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
-    const element = box.current;
-    const host = element?.closest<HTMLElement>('.world-main');
-    if (!element || !host) return;
-    const measure = () => {
-      host.style.setProperty('--outcome-h', `${String(element.offsetHeight)}px`);
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(element);
-    return () => {
-      observer.disconnect();
-      host.style.removeProperty('--outcome-h');
-    };
-  }, [shown]);
-  return box;
-}
 
 /**
  * The result of an action, where it happened (docs/STAGE_320_DESIGN.md §5.2–5.3): the stage
@@ -56,7 +32,7 @@ export function ActionNotice({
   readonly onDismiss: () => void;
 }) {
   const t = useT();
-  const box = useReservedHeight(notice !== null);
+  const box = useReservedHeight<HTMLDivElement>('--outcome-h', notice !== null);
   if (!notice) return null;
   const roll = notice.outcome && 'roll' in notice.outcome ? notice.outcome.roll : null;
   const settled = status !== 'busy' && status !== 'uncertain';

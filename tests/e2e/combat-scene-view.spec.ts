@@ -1,7 +1,13 @@
 import { expect, test } from '@playwright/test';
 
 import { battlefield, enterCombat, expectAccepted, submit, turnTray } from './support/combat.ts';
-import { expectLive, LIVE_CAMPAIGNS, turnBanner } from './support/live.ts';
+import {
+  bannerWords,
+  expectLive,
+  LIVE_CAMPAIGNS,
+  turnAnnounced,
+  turnBanner,
+} from './support/live.ts';
 import { TOKENS } from './support/session.ts';
 import { expectOnTop, openSheet } from './support/shell.ts';
 
@@ -38,13 +44,18 @@ test('on the scene view a player still hears whose turn it is and answers a reac
   await expect(prompt).toBeVisible();
   await expect(prompt).toBeFocused();
   await expectOnTop(prompt);
-  await expect(turnBanner(player)).toHaveText('Your reaction is needed');
+  // Announced once: the prompt by taking focus; the banner shows the question but its live
+  // words still say only whose turn it is.
+  await expect(bannerWords(player)).toHaveText('Your reaction is needed');
+  await expect(turnAnnounced(player)).toHaveText("Unidentified creature 4's turn");
   await expectOnTop(turnBanner(player));
   await expect(sceneTab).toHaveAttribute('aria-selected', 'true');
   expectAccepted(
     await submit(player, prompt.getByRole('button', { name: 'Don’t interfere', exact: true })),
   );
   await expect(prompt).toHaveCount(0);
+  // Answered, focus comes back to whose turn it is, never to the page.
+  await expect(turnBanner(player)).toBeFocused();
 
   // The shaman's turn ends: round 2 opens with Elowen, and the scene view says so.
   const ended = await dm.request.post(`/api/campaigns/${campaign}/commands`, {

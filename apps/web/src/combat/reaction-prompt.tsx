@@ -10,13 +10,23 @@ import { catalogUrl } from '../visual/ui-kit.ts';
 import { combatCommandFor, ignoreReaction } from './combat-bindings.ts';
 import { useCombatantLabels } from './labels.ts';
 
+/** The open reaction window that asks this viewer's character, if one does. */
+export const askedWindowOf = (
+  encounter: EncounterView | null,
+  actorId: string | null,
+): string | null =>
+  actorId !== null && encounter?.reactionWindow && encounter.reactionWindow.choices.length > 0
+    ? encounter.reactionWindow.windowId
+    : null;
+
 /**
  * The reaction question (docs/STAGE_320_DESIGN.md §5.5, ADR 0028 §5), shown only to a
  * character the open window asks: a prominent card — "Reaction: Counterspell", who casts, the
- * components, Counterspell's catalog picture and slot — with Cast and Don't interfere. It
- * takes focus once when it opens (one prompt per window); the turn banner alone announces it.
- * The window's lifecycle belongs to the domain: a stale answer is refused there and the
- * prompt simply goes away.
+ * components, Counterspell's catalog picture and slot — with Cast and Don't interfere. It is
+ * announced once, by taking focus (an alert dialog reads its name and question), once per
+ * window; while a modal book covers the stage it waits, and takes focus when the book has
+ * closed. The window's lifecycle belongs to the domain: a stale answer is refused there and
+ * the prompt simply goes away.
  */
 export function ReactionPrompt({
   api,
@@ -24,6 +34,7 @@ export function ReactionPrompt({
   actorId,
   canAct,
   locked,
+  blocked,
   onRun,
 }: {
   readonly api: WorldApi;
@@ -31,6 +42,8 @@ export function ReactionPrompt({
   readonly actorId: string;
   readonly canAct: boolean;
   readonly locked: boolean;
+  /** A modal dialog (the Chronicle) is open: everything behind it is inert. */
+  readonly blocked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
@@ -45,9 +58,13 @@ export function ReactionPrompt({
   );
   const { resource, retry } = useResource(`${casterId}:${window?.windowId ?? ''}`, load);
   const labelOf = useCombatantLabels(encounter);
+  const focused = useRef(false);
   useEffect(() => {
-    card.current?.focus({ preventScroll: true });
-  }, []);
+    const element = card.current;
+    if (blocked || focused.current || !element) return;
+    element.focus({ preventScroll: true });
+    focused.current = document.activeElement === element;
+  }, [blocked]);
   if (!window || window.choices.length === 0) return null;
   const caster = window.trigger.caster.name ?? labelOf(casterId);
   const counter =

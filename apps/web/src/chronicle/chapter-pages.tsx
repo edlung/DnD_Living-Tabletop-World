@@ -16,6 +16,7 @@ import { KnowledgeBadge } from '../visual/knowledge-cards.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
 import { usePortrait } from '../world/use-portrait.ts';
+import { pictureNote } from './picture-note.ts';
 import {
   citedEntries,
   eventWords,
@@ -28,7 +29,8 @@ import {
 
 /**
  * The chapter's main place as the perspective saw it when the chapter ends (ADR 0023): its
- * approved image, or the neutral mist and a note saying none is approved — never a stand-in.
+ * approved image, or the neutral mist — never a stand-in — with a note only when the
+ * presentation says why (`pictureNote`).
  */
 function PlacePlate({
   api,
@@ -56,22 +58,20 @@ function PlacePlate({
   const { resource } = useResource(`plate:${placeId ?? ''}:${String(at)}`, load);
   const image = resource.status === 'ready' ? (resource.value?.presentation.image ?? null) : null;
   const url = useApprovedImage(image);
-  const settled = resource.status !== 'loading';
+  const note = pictureNote(
+    place !== null,
+    resource.status === 'loading'
+      ? 'loading'
+      : resource.status === 'error'
+        ? 'withheld'
+        : { image },
+  );
   return (
     <figure className={`chapter-plate${url ? '' : ' chapter-plate--mist'}`}>
       <img src={url ?? textureUrl('scene-fallback')} alt="" draggable={false} />
       <figcaption>
         {place && <span className="chapter-plate-place">{place.name}</span>}
-        {settled && !url && (
-          <span className="chapter-plate-note">
-            {!place
-              ? t('This chapter names no place')
-              : resource.status === 'error'
-                ? // The place as it was then is not this view's to show: no claim about its picture.
-                  t('No picture of this place to show')
-                : t('No approved picture of this place yet')}
-          </span>
-        )}
+        {note && <span className="chapter-plate-note">{t(note)}</span>}
       </figcaption>
     </figure>
   );

@@ -36,7 +36,9 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
 - AI feedback (`ai-feedback.spec.ts`, ADR 0032 checkpoint C): `ui-ai-feedback` adds a second
   character (Bram Holt) for the stale-reply check, and `ui-ai-no-start` never gets a durable AI
   request start in `ui-server.ts`, so its intents, replies and chapters carry a null trace ID. Only
-  dialogue delays are intercepted; the answers are the real server's.
+  dialogue delays are intercepted; the answers are the real server's. With no NPC voice here, a
+  performed NPC's answer is the panel's plain status: journeys assert no "{npc} says" status and
+  no "Spoken, not a recorded fact." (`ai-feedback.spec.ts`, `dm-tools.spec.ts`).
 - Live session (`live-*.spec.ts`, ADR 0033): two browsers share each campaign of
   `fixtures/live-campaigns.json` (`ui-live-campaigns.ts`) and never press "Refresh world".
   The live stream never ends while a page lives, so response-body collectors skip it
@@ -52,7 +54,9 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   rows and stay open, never showing "Reading the history…" again, when a new entry moves every
   older page's cursor) own campaigns of
   `fixtures/live-campaigns.json`. `authoring-undo.spec.ts` undoes from the history list that
-  replaced the review's screen-local undo, with the same assertions. Helpers: `support/dm.ts`.
+  replaced the review's screen-local undo; while the history's preview says the world refuses an
+  undo, Undo is disabled and described by its reason (the blockers), as in the stand-in journey.
+  Helpers: `support/dm.ts`.
 - Shell (Stage 320, `docs/STAGE_320_DESIGN.md` §5.1): controls live in the dock's sheets, one
   open at a time, and a closed sheet stays mounted but `hidden`. Open the sheet that holds a
   control first (`support/shell.ts`: `openSheet`, `closeSheet`, `chooseLocation` for the Places
@@ -74,17 +78,35 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   Journal sheet. `collectApiBodies(…).assertPlayerBoundary(extra, perceived, ownViews)` exempts
   only the viewer's own views (its own sheet, read for the active card) from the extra markers.
   `combat-scene-view.spec.ts` owns `ui-live-scene-window`: on the scene view the turn banner and
-  the reaction prompt stay shown, focused and answerable.
+  the reaction prompt stay shown, focused and answerable. The banner announces only whose turn it
+  is (`turnAnnounced()`, its live words) and shows "Your reaction is needed" while asked
+  (`bannerWords()`, what it shows); after an answer focus is on the banner (`turnBanner()`).
+  A figure is part of its square: `clickSquare(page, x, y)` points at the part of a square in view
+  where a plate or an upright figure covers its centre. Review of parts B and C:
+  `combat-board-pointer.spec.ts` (owns `ui-combat-board`, Elowen starts prone: at 1440 × 900
+  tilted, a portrait's visual centre chooses its own square, the terrain card reads it, a pip
+  takes the pointer), `combat-narrow.spec.ts` (owns `ui-combat-narrow`: at 390 × 844 and
+  820 × 1180 the tray shows Fireball's slot and the ally warning in view),
+  `combat-book-reaction.spec.ts` (owns `ui-live-book-window`: a reaction asked over the open
+  Chronicle closes the book, takes focus, is announced once and answered; the book reopens at
+  its chapter and place) and `chronicle-pinned.spec.ts` (owns `ui-dm-pinned`: a chapter written
+  while the player reads is marked "New" and replaces nothing). Each fails on the client of
+  `c7ebf76`.
 - `accessibility.spec.ts` (helper `support/axe.ts`: `expectAccessible`, `WIDTHS`): axe scans
   (`@axe-core/playwright`) of sign-in, the scene with a selection, a conversation, every DM sheet
   (Add to the world, Encounter, Time and weather, History) and the battlefield (the player's turn,
   a chosen target with a previewed area, the reaction prompt, the DM's Encounter sheet) at
   390 × 844, 820 × 1180 and 1440 × 900, plus the Russian scene on a phone; serious or critical
-  violations (colour contrast included, a second pass with the art set aside so text is checked
-  on its panel, the book's on the pages' measured tone `--page-ground`) and any sideways page
-  scroll fail. Read-only, except one test that owns `ui-dm-a11y` (`dm-tool-campaigns.json`): it
-  adds Tomas, writes a chapter, and scans the proposal card, the history with an entry, the
-  Chronicle book and a flashback at the three widths. Axe needs pages of `browser.newContext()`.
+  violations (colour contrast included, checked with the art set aside so text is checked on its
+  panel, the book's on the darkest parchment under its text `--page-floor`) and any sideways page
+  scroll fail. Read-only, except two tests that own campaigns of `dm-tool-campaigns.json`:
+  `ui-dm-a11y` (adds Tomas; the proposal card and the history with an entry) and `ui-dm-a11y-book`
+  (writes a chapter; the Chronicle book and a flashback), at the three widths. A state is reached
+  once and scanned at each width by resizing (`atEveryWidth`; the battlefield's player turn and
+  target, reaction prompt and Encounter sheet are one test each), and each scan runs every rule
+  once, in axe's legacy mode (one `axe.run` in the page — the screens have no frames, which the
+  helper asserts — without a blank page per scan); the file allows 120 s per test for a two-core
+  runner.
 - Stage 320 part C journeys (each a campaign of `dm-tool-campaigns.json` when it writes):
   `chronicle-book.spec.ts` (the DM writes a chapter from the book's header; the player reads two
   pages, margin notes, key moments, what was learned, people met; a flashback takes focus and

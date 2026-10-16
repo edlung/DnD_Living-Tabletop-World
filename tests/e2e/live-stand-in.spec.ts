@@ -2,6 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 import {
   battlefield,
+  clickSquare,
   enterCombat,
   expectAccepted,
   square,
@@ -112,8 +113,9 @@ test('the DM acts as the character with a reason; her screen follows, and the hi
   await expect(dockButton(dm, 'Add to the world')).toHaveCount(0);
   await expect(turnBanner(dm)).toHaveText('Your turn');
 
-  // Her own combat actions: a step, then a longbow shot. Her player's screen follows.
-  await square(dm, 3, 6).click();
+  // Her own combat actions: a step, then a longbow shot. Her player's screen follows. Her name
+  // plate stands over the middle of the next square: the DM points at the rest of it.
+  await clickSquare(dm, 3, 6);
   expectAccepted(await submit(dm, battlefield(dm).getByRole('button', { name: 'Move here' })));
   await expect(square(player, 3, 6)).toHaveAccessibleName(/Elowen Starwhisper \(you\)/);
   await square(dm, 8, 4).click();
@@ -137,8 +139,10 @@ test('the DM acts as the character with a reason; her screen follows, and the hi
     await expect(entry).toContainText('The player asked the DM: “Back in five”');
     await expect(entry).toContainText('In effect');
   }
-  // The step stands beneath the shot, which read where she stood: the kernel says so.
+  // The step stands beneath the shot, which read where she stood: the kernel says so, and the
+  // step's Undo waits, disabled, until the shot is undone.
   await expect(step.getByRole('group', { name: 'Undo blockers' })).toContainText('attack');
+  await expect(step.getByRole('button', { name: 'Undo this action' })).toBeDisabled();
 
   await shot.getByRole('button', { name: 'Undo this action' }).click();
   await expect(

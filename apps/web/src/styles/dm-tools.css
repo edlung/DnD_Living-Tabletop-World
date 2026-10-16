@@ -380,7 +380,9 @@
   font-size: 1.15rem;
   font-style: italic;
 }
+/* Not speech: the panel's own words, in its voice and without the quote's gold rule */
 .perform-said--message {
+  border-left-color: var(--line-strong);
   font-family: var(--font-body);
   font-size: 0.98rem;
   font-style: normal;

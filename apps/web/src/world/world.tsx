@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom';
 import type { WorldApi } from '../api/client.ts';
 import { useLiveTarget } from '../api/live-context.ts';
 import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
+import { askedWindowOf } from '../combat/reaction-prompt.tsx';
 import { standInReason, type StandIn } from '../combat/stand-in.ts';
 import { DmSheets } from '../dm/dm-sheets.tsx';
 import { ActionNotice } from '../exploration/action-notice.tsx';
@@ -192,6 +193,13 @@ export function World({
   const shownKnown = directory.find((entity) => entity.entityId === shown?.entityId);
   const openSession = data?.sessions.sessions.find((session) => session.endedAt === null);
   const encounter = data?.encounter.encounter ?? null;
+  const actorId = data?.surroundings?.actingCharacterId ?? null;
+  // A reaction asked of this viewer comes before reading: an open book closes, keeping its place,
+  // and the question takes focus once it has (each window once; the reader may open it again).
+  const askedWindow = askedWindowOf(encounter, actorId);
+  useEffect(() => {
+    if (askedWindow !== null) shell.closeChronicle();
+  }, [askedWindow]);
   const battlefield = encounter !== null && sceneFor !== encounter.encounterId;
   const view = scene.resource.status === 'ready' ? scene.resource.value : null;
   const presentImage = (entityId: string) =>
@@ -291,9 +299,10 @@ export function World({
               onView={(chosen) => {
                 setSceneFor(chosen === 'scene' ? encounter.encounterId : null);
               }}
-              actorId={data.surroundings?.actingCharacterId ?? null}
+              actorId={actorId}
               canAct={canAct || standIn !== null}
               locked={action.locked}
+              blocked={shell.chronicle}
               imageOf={presentImage}
               onRun={run}
             />
@@ -395,7 +404,13 @@ export function World({
         </aside>
         <ChronicleDialog open={shell.chronicle} onClose={shell.closeChronicle}>
           {data && (
-            <ChronicleBook api={api} isDm={isDm} revision={revision} directory={directory} />
+            <ChronicleBook
+              api={api}
+              isDm={isDm}
+              revision={revision}
+              directory={directory}
+              open={shell.chronicle}
+            />
           )}
         </ChronicleDialog>
       </main>

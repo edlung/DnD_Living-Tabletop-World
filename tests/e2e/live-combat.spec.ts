@@ -10,7 +10,14 @@ import {
   submit,
   turnTray,
 } from './support/combat.ts';
-import { expectLive, LIVE_CAMPAIGNS, tablePresence, turnBanner } from './support/live.ts';
+import {
+  bannerWords,
+  expectLive,
+  LIVE_CAMPAIGNS,
+  tablePresence,
+  turnAnnounced,
+  turnBanner,
+} from './support/live.ts';
 import { TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 
@@ -85,7 +92,8 @@ test('the DM opens a Counterspell window and the player answers it without a ref
   await expect(dm.getByRole('button', { name: 'Close reaction window' })).toBeVisible();
   // The question reaches its player through the signal alone, and says so.
   await expect(prompt(player)).toContainText('Unidentified creature 4 is casting a spell');
-  await expect(turnBanner(player)).toHaveText('Your reaction is needed');
+  await expect(bannerWords(player)).toHaveText('Your reaction is needed');
+  await expect(turnAnnounced(player)).toHaveText("Unidentified creature 4's turn");
   expect(await player.content()).not.toContain('ashen-bolt');
   const countered = await submit(
     player,

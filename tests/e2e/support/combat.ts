@@ -18,6 +18,30 @@ export const battlefield = (page: Page) =>
 export const square = (page: Page, x: number, y: number): Locator =>
   battlefield(page).getByRole('button', { name: new RegExp(`^Square ${x}, ${y}(:|$)`) });
 
+/**
+ * Points at a square where it shows and clicks it there. A figure is part of its own square
+ * (design §5.5), so a name plate or an upright figure in front may cover another square's
+ * centre; a player clicks the part of that square still in view, and so does this.
+ */
+export async function clickSquare(page: Page, x: number, y: number): Promise<void> {
+  const target = square(page, x, y);
+  await target.scrollIntoViewIfNeeded();
+  const point = await target.evaluate((button) => {
+    const box = button.getBoundingClientRect();
+    const steps = [0.5, 0.35, 0.65, 0.2, 0.8];
+    for (const fy of steps) {
+      for (const fx of steps) {
+        const at = { x: box.left + box.width * fx, y: box.top + box.height * fy };
+        const hit = document.elementFromPoint(at.x, at.y);
+        if (hit && button.contains(hit)) return at;
+      }
+    }
+    return null;
+  });
+  if (!point) throw new Error(`Square ${String(x)}, ${String(y)} shows nowhere to point at`);
+  await page.mouse.click(point.x, point.y);
+}
+
 export const anchor = (page: Page) => page.getByRole('status', { name: 'Encounter anchor' });
 
 /** The turn tray: the viewer's options and End turn, shown only while the viewer may act. */

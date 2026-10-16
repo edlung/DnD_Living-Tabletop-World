@@ -9,9 +9,13 @@ import { useApprovedImage } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { KnowledgeBadge } from '../visual/knowledge-cards.tsx';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
+import { pictureNote } from './picture-note.ts';
 
-/** The remembered place as the perspective saw it then: its approved image, or the mist. */
-function Vignette({
+/**
+ * The remembered place as the perspective saw it then: its approved image, or the mist with a
+ * note only when the presentation says why (`pictureNote`).
+ */
+export function Vignette({
   flashback,
   placeName,
 }: {
@@ -20,6 +24,7 @@ function Vignette({
 }) {
   const t = useT();
   const url = useApprovedImage(flashback.scene?.image ?? null);
+  const note = pictureNote(true, flashback.scene ?? 'withheld');
   const corner = ornamentUrl('corner');
   return (
     <figure className={`flashback-vignette${url ? '' : ' flashback-vignette--mist'}`}>
@@ -43,9 +48,7 @@ function Vignette({
         <span>
           {formatWorldTime(flashback.worldTime, t)} · {t(flashback.phase)}
         </span>
-        {!url && (
-          <span className="flashback-note">{t('No approved picture of this place yet')}</span>
-        )}
+        {note && <span className="flashback-note">{t(note)}</span>}
       </figcaption>
     </figure>
   );

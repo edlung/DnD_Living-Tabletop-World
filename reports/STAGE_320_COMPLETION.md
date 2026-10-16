@@ -9,9 +9,10 @@
   Decision record: `docs/adr/0034-visual-language.md`. Owner decisions: Q8 (the owner's seven
   GPT-made concepts set the direction; every picture is made by an OpenAI image model; code draws
   only game markup) — `reviews/OWNER_DECISIONS_10_2026-10-15.json`.
-- Revisions (on `a911d32`): design `aadf058`; GPT UI kit `c46e7d0`; part A `6a18da1`; glyphs
-  `16fefe1`; part B `ee8c880`; glyphs `f5d869a`; part C is the commit that adds this report
-  (parent `f5d869a`). No push was made.
+- Revisions (on `091aa13`): design `5498a60`; GPT UI kit `a12bd5c`; part A `b414104`; glyphs
+  `5001cfc`; part B `37978ad`; glyphs `bcf0cc6`; part C `eaff995`; project status `c7ebf76` (PR 5);
+  the review fixes of parts B and C are the commit that adds "Review of parts B and C" below
+  (parent `c7ebf76`). No push was made.
 
 ## What the stage does
 
@@ -130,6 +131,102 @@ NPC, history with an entry, time and weather, performing an NPC). Index:
 `reports/evidence/stage-320/index.md`. They were looked at and the layout fixed where it did not
 read like the concepts (plate height and margin notes on one page, numbers lost in truncated
 labels, the rail on a phone's battlefield, the reaction banner, notices over the conversation).
+
+## Review of parts B and C (2026-10-16)
+
+Findings of the review of `c7ebf76`, each fixed with a regression test that fails on the client of
+`c7ebf76` — its client changes stashed, the new tests, fixtures and test seeding kept — and passes
+after:
+
+1. **Tilted board clicks** (medium-high). Figures were transparent to the pointer, so the
+   visual centre of an upright portrait chose the square behind it. What is drawn of a figure —
+   the round portrait, plate, pips and cover badge — now takes the pointer for its own square in
+   both views (the space around them and the ring stay transparent); focus order and names are
+   unchanged and pip tooltips work. `combat-board-pointer.spec.ts` (own campaign; Elowen starts
+   prone): at 1440 × 900 tilted, pointing at a raider's portrait centre (over the row behind)
+   shows its square in the terrain card and opens its options; Elowen's own portrait opens her
+   options, never "Move here"; her pip takes the pointer. Before: no terrain card for 8, 4. A
+   plate wider than its square now covers its neighbours' centres, so journeys point at a
+   square's visible part (`clickSquare`, used once in `live-stand-in.spec.ts`).
+2. **Narrow screens hid the cast warning** (medium). Below 1200 px the turn tray shows each
+   option's cost, range note or reason under its button and the ally warning above them —
+   visible echoes of the side panel, whose alert stays the one announcement; its measured
+   height (`--tray-h`) keeps the stage's content and the result clear of it.
+   `combat-narrow.spec.ts` at 390 × 844 and 820 × 1180: the warning is in view and on top,
+   Fireball's button shows "Level 3 slot". Before: no warning in view.
+3. **False "no approved picture"** (low-medium). The plate and the flashback say "No approved
+   picture of this place yet" only when the presentation has no image; while an approved image
+   loads or after its fetch failed the mist makes no claim; a place the view may not see says
+   "No picture of this place to show" (`chronicle/picture-note.ts`; `picture-note.test.ts`
+   renders the vignette with an approved image not yet fetched).
+4. **A new chapter replaced the page** (low-medium). The chapter first shown stays chosen; a
+   chapter written meanwhile is marked "New" on its ribbon until opened; behind a flashback the
+   pages stay laid out (`inert`, unseen), so they keep their place and Return finds its button.
+   `chronicle-pinned.spec.ts`. Before: the book switched to the new chapter.
+5. **The reaction behind the open Chronicle** (low-medium). A reaction asked of the viewer closes
+   the book, keeping its chapter and each page's place (the dialog gives scroll positions back
+   when it reopens); the prompt waits while the modal is open and takes focus once it has closed
+   (the dialog opens and closes in a layout effect). `combat-book-reaction.spec.ts`: Chronicle
+   open → the DM casts → book closed, prompt focused and on top, answered, focus on the turn
+   banner; the book reopens at the same chapter and place. Before: the book stayed open.
+6. **Perform NPC framed non-speech as speech** (low). Refusals, "No words are available…" and
+   failures are a plain status, without "{npc} says" and without "Spoken, not a recorded fact."
+   (`perform-npc.test.ts`); `ai-feedback.spec.ts` and `dm-tools.spec.ts` (including the Tomas
+   journey, which had asserted the spoken caption over a non-reply) now assert the honest labels.
+7. **History Undo contradicted its preview** (low). Undo is disabled while the preview says the
+   world refuses it, described by the reason and its blockers (`authoring-undo.spec.ts`, which
+   no longer clicks it into the server's refusal; `live-stand-in.spec.ts`).
+8. **Accessibility** (minor). The turn banner's live words say only whose turn it is and show
+   "Your reaction is needed" outside them, so the reaction is announced once — by the alert
+   dialog taking focus; when the question goes away with focus in it, focus returns to the banner
+   (`combat-scene-view`, `live-combat`, `combat-book-reaction`). Parchment: on the GPT pictures
+   under the text areas the darkest parchment reached luminance 0.24 (darkest 5 % ≈ 0.50, the
+   muted ink 4.3:1; 4.07:1 on the part C screenshot, as the review measured). A "lighten" veil
+   lifts anything darker than `--page-floor` (`#d6bc8f`, the pages' 10th percentile) under the
+   text areas, feathered outside them; `--page-ink-muted` is darker (`#54422f`) and four
+   epistemic inks slightly so. Every page ink now reads at 4.5:1 or better on the darkest
+   parchment (the muted ink 5.2:1 by the pictures; 5.1:1 on the darkest rendered pixel; the
+   darkest 5 % on the new screenshot 5.14:1). `tests/ui-kit/parchment-contrast.test.ts` measures
+   the pictures (before: every ink under 4.5:1, the muted ink 2.29:1); axe checks the book's text
+   on `--page-floor`.
+
+**CI timeouts** (hosted run 38842954980: the battlefield scans took 34.5, 33.2 and 36.2 s and the
+DM tools, book and flashback scan 30.2 s against the 30 s timeout; nothing was violated). The
+scans keep every rule and every state at every width: 120 s per test in
+`accessibility.spec.ts`; axe in legacy mode (one `axe.run` in the page — the same violations,
+passes and incomplete results were measured on every state; the helper asserts the page has no
+frames); colour contrast once per state, on the pass with the art set aside (it reaches every text
+the pass with the art can); each battlefield state reached once and scanned at the three widths by
+resizing (three sign-ins instead of nine); the DM tools and the book scanned in two tests with
+campaigns of their own. Measured locally with `--workers=1` and nothing else running: the spec
+1.1 min → 39.7 s, its longest test 11.3 → 5.1 s; with the page's CPU throttled 4×, the three
+battlefield tests 17.3–17.7 s each → 12.5, 8.8 and 8.1 s, the DM tools and book 19.9 s → 8.4 and
+8.0 s.
+
+`pnpm validate` (exit 0, 210 s), holding the shared lock: Prettier "All matched files use
+Prettier code style!", ESLint no findings, `tsc` no errors;
+`context-budget: 862 active files checked, 0 over target, 0 over hard limit`; unit
+`Test Files  240 passed (240)`, `Tests  2533 passed (2533)`; build `✓ built in 178ms`;
+`db:migrate` `"applied":[],"alreadyApplied":9`; `seed:ravenford` `"accepted":0,"duplicate":91`;
+integration `Test Files  34 passed (34)`, `Tests  186 passed (186)`; browser journeys
+`85 passed (1.7m)` (80 before: four new journeys and the book's own axe test).
+
+Regressions proven: with the client of `c7ebf76` the three new unit test files failed (no
+`pictureNote`, no `PerformAnswer`, every ink under 4.5:1) and 11 journeys failed, each at the
+defect it pins — `combat-board-pointer` (terrain card), `combat-narrow` (warning not in view),
+`chronicle-pinned` (no "New"; the page switched), `combat-book-reaction` (book not hidden),
+`combat-scene-view` and `live-combat` (the banner announced the reaction), `ai-feedback` and
+`dm-tools` ×2 (the spoken caption over non-speech), `authoring-undo` and `live-stand-in` (Undo
+enabled) — and the book's axe scan (its text against `--page-floor`, which `c7ebf76` lacks).
+Restored, all pass.
+
+Screenshots: `pnpm evidence:screens` `6 passed (2.1m)`; 36 affected JPEG kept (each ≤ 250 KB),
+the rest left as they were (their differences were rendering noise or server data, not these
+fixes): `chronicle` (part A), `target` and `area` on a phone and a tablet, `book`, `book-dm` and
+`dm-perform` (`reports/evidence/stage-320/index.md`). They were looked at in both languages.
+
+Not changed: cover pieces stay transparent to the pointer (a wall rising over the square behind
+points at that square); the reaction prompt closes the book rather than opening over it.
 
 ## Concept elements outside the alpha (no surface invented)
 

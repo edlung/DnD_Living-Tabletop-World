@@ -70,9 +70,13 @@ test('the DM sees the NPC replying, and a late reply never lands on another list
     page.getByRole('status').filter({ hasText: 'Mira Vale is replying…' }),
   ).toBeVisible();
   first.release();
-  await expect(page.getByRole('status', { name: 'Mira Vale says' })).toContainText(
-    'No words are available for Mira Vale right now (the voice is unavailable).',
-  );
+  // No words came: the panel says so in its own voice, never framed as Mira speaking.
+  const noWords = page.getByRole('status').filter({
+    hasText: 'No words are available for Mira Vale right now (the voice is unavailable).',
+  });
+  await expect(noWords).toBeVisible();
+  await expect(noWords).not.toContainText('Spoken, not a recorded fact.');
+  await expect(page.getByRole('status', { name: 'Mira Vale says' })).toHaveCount(0);
   await expect(page.getByLabel('What the character says (optional)')).toHaveValue('Good morning.');
   await page.unroute(isDialogue);
 
@@ -91,6 +95,9 @@ test('the DM sees the NPC replying, and a late reply never lands on another list
   second.release();
   await page.waitForTimeout(500);
   await expect(page.getByRole('status', { name: 'Mira Vale says' })).toHaveCount(0);
+  await expect(page.getByRole('status').filter({ hasText: 'No words are available' })).toHaveCount(
+    0,
+  );
   await expect(page.getByRole('button', { name: 'Speak as Mira Vale' })).toBeEnabled();
 });
 

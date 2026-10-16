@@ -13,9 +13,13 @@ import { closeSheet, dockButton, openSheet } from './support/shell.ts';
  * player's turn, a chosen target with a previewed area, the reaction prompt, the DM's Encounter
  * sheet) fail on any serious or critical violation, colour contrast included, and no width may
  * scroll the page sideways. Read-only — talking records nothing, and the scans only look —
- * except the scan of the DM's tools with content, the Chronicle book and a flashback, which
- * adds Tomas and writes a chapter in a campaign of its own.
+ * except the scans of the DM's tools with content (which adds Tomas) and of the Chronicle book
+ * and a flashback (which writes a chapter), each in a campaign of its own.
  */
+
+// Several states at three widths, each read whole by axe: on a two-core CI runner, beside the
+// servers and a second worker, such a test takes several times its local 5–15 s.
+test.describe.configure({ timeout: 120_000 });
 for (const size of WIDTHS) {
   test(`sign-in, scene, conversation and every DM sheet pass axe at ${size.name} width`, async ({
     page,
@@ -57,52 +61,57 @@ for (const size of WIDTHS) {
   });
 }
 
-for (const size of WIDTHS) {
-  test(`the battlefield passes axe at ${size.name} width`, async ({ page }) => {
-    await page.setViewportSize({ width: size.width, height: size.height });
-    // Read-only: choosing squares and combatants only reads their options.
-    await enterWorld(page, TOKENS.player, 'ui-combat-preview');
-    await expect(turnTray(page).getByRole('button', { name: 'End turn' })).toBeVisible();
-    await expectAccessible(page, `${size.name} player turn`);
-
-    await square(page, 11, 5).click();
-    const options = battlefield(page).getByRole('region', {
-      name: 'Options for Unidentified creature 3',
-    });
-    await expect(options).toContainText('Would affect:');
-    await expect(square(page, 11, 5)).toHaveAccessibleName(/in the area/);
-    await expectAccessible(page, `${size.name} target with a previewed area`);
-
-    await page.getByRole('button', { name: 'Leave session', exact: true }).click();
-    await enterWorld(page, TOKENS.player, 'ui-combat');
-    await expect(page.getByRole('alertdialog', { name: 'Reaction: Counterspell' })).toBeVisible();
-    await expectAccessible(page, `${size.name} reaction prompt`);
-
-    await page.getByRole('button', { name: 'Leave session', exact: true }).click();
-    await enterWorld(page, TOKENS.dm, 'ui-combat');
-    await openSheet(page, 'Encounter');
-    await expect(page.getByRole('button', { name: 'Close reaction window' })).toBeVisible();
-    await expectAccessible(page, `${size.name} DM encounter sheet`);
-  });
-}
-
 /** Scans the page at each width, then returns to the default size. */
 async function atEveryWidth(page: Page, what: string): Promise<void> {
   for (const size of WIDTHS) {
     await page.setViewportSize({ width: size.width, height: size.height });
+    // Two frames at the new width: the board has fitted itself to its new space.
+    await page.evaluate(
+      () =>
+        new Promise((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        }),
+    );
     await expectAccessible(page, `${size.name} ${what}`);
   }
   await page.setViewportSize({ width: 1280, height: 720 });
 }
 
-test('the DM’s tools with content, the Chronicle book and a flashback pass axe', async ({
-  browser,
+// The battlefield, read-only (choosing squares and combatants only reads their options): each
+// state signed in once and scanned at the three widths, as the layout follows the width.
+test('the battlefield passes axe: the player’s turn and a target with a previewed area', async ({
+  page,
 }) => {
-  const campaign = campaigns.a11y;
-  // Axe reads pages of a context of their own.
-  const context = await browser.newContext();
-  const page = await context.newPage();
-  await enterWorld(page, TOKENS.dm, campaign);
+  await enterWorld(page, TOKENS.player, 'ui-combat-preview');
+  await expect(turnTray(page).getByRole('button', { name: 'End turn' })).toBeVisible();
+  await atEveryWidth(page, 'player turn');
+
+  await square(page, 11, 5).click();
+  const options = battlefield(page).getByRole('region', {
+    name: 'Options for Unidentified creature 3',
+  });
+  await expect(options).toContainText('Would affect:');
+  await expect(square(page, 11, 5)).toHaveAccessibleName(/in the area/);
+  await atEveryWidth(page, 'target with a previewed area');
+});
+
+test('the battlefield passes axe: the reaction prompt', async ({ page }) => {
+  await enterWorld(page, TOKENS.player, 'ui-combat');
+  await expect(page.getByRole('alertdialog', { name: 'Reaction: Counterspell' })).toBeVisible();
+  await atEveryWidth(page, 'reaction prompt');
+});
+
+test('the battlefield passes axe: the DM’s Encounter sheet', async ({ page }) => {
+  await enterWorld(page, TOKENS.dm, 'ui-combat');
+  await openSheet(page, 'Encounter');
+  await expect(page.getByRole('button', { name: 'Close reaction window' })).toBeVisible();
+  await atEveryWidth(page, 'DM encounter sheet');
+});
+
+test('the DM’s tools with content pass axe: a proposal card and the history with an entry', async ({
+  page,
+}) => {
+  await enterWorld(page, TOKENS.dm, campaigns.a11y);
   await openSheet(page, 'Add to the world');
   await page.getByLabel('Describe what to add', { exact: true }).fill(TOMAS_REQUEST);
   await page.getByRole('button', { name: 'Propose', exact: true }).click();
@@ -115,14 +124,16 @@ test('the DM’s tools with content, the Chronicle book and a flashback pass axe
   const history = page.getByRole('region', { name: 'DM history', exact: true });
   await expect(history.getByRole('button', { name: 'Undo this addition' })).toBeVisible();
   await atEveryWidth(page, 'history with an entry');
+});
 
+test('the Chronicle book and a flashback pass axe', async ({ page }) => {
+  const campaign = campaigns.a11yBook;
   const written = await dmRequest(page, campaign, 'post', 'chronicle', {
     title: 'Chapter I — Shadows on the Trade Road',
     perspective: 'CHARACTER:elowen-starwhisper',
     from: 0,
   });
   expect(written.body).toMatchObject({ result: { status: 'accepted' } });
-  await page.getByRole('button', { name: 'Leave session', exact: true }).click();
   await enterWorld(page, TOKENS.player, campaign);
   const book = page.getByRole('dialog', { name: 'Chronicle' });
   const open = book.getByRole('button', { name: 'Open flashback' }).first();
@@ -143,7 +154,6 @@ test('the DM’s tools with content, the Chronicle book and a flashback pass axe
     await page.keyboard.press('Escape');
     await expect(book).toBeHidden();
   }
-  await context.close();
 });
 
 test('the Russian scene with a selection passes axe at phone width', async ({ page }) => {

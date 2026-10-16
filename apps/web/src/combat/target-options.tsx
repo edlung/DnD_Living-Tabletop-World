@@ -38,6 +38,32 @@ export function useTargetContext(api: WorldApi, targetId: string | null) {
   return useResource(`target:${targetId ?? ''}`, load);
 }
 
+/**
+ * What the rules say of an option in short, as the server listed it: why it is unavailable,
+ * what it costs, how far to move first, long range. The side panel shows each beside the
+ * option; the turn tray shows them under its button where the panel is out of view.
+ */
+export function optionNotes(t: Translate, action: ContextAction): readonly string[] {
+  return [
+    ...(action.legal ? [] : [words(t, action.reason ?? 'unavailable')]),
+    ...(action.cost
+      ? [
+          action.cost.kind === 'free'
+            ? t('Free cast')
+            : t('Level {level} slot', { level: action.cost.slotLevel }),
+        ]
+      : []),
+    ...(action.resolution?.moveRequiredFt !== undefined
+      ? [t('Move {feet} ft closer first', { feet: action.resolution.moveRequiredFt })]
+      : []),
+    ...(action.hints?.includes('LONG_RANGE') ? [t('long range: disadvantage')] : []),
+  ];
+}
+
+/** The server's hint that a previewed area includes a party member: a warning, not a block. */
+export const warnsOfAlly = (action: ContextAction): boolean =>
+  action.hints?.includes('ALLY_IN_AREA') ?? false;
+
 /** The server-listed combat options for the chosen combatant, once they are known. */
 export function combatOptions(
   resource: Resource<EntityContextResponse | null>,
@@ -169,7 +195,6 @@ function OptionEntry({
   const t = useT();
   const art = catalogArtOf(action.id);
   const url = art ? catalogUrl(art.kind, art.id) : null;
-  const warning = action.hints?.includes('ALLY_IN_AREA') ?? false;
   return (
     <li className={`option-entry${action.legal ? '' : ' is-unavailable'}`}>
       {url ? (
@@ -179,20 +204,9 @@ function OptionEntry({
       )}
       <div className="option-text" id={id}>
         <strong>{label}</strong>
-        {!action.legal && <small>{words(t, action.reason ?? 'unavailable')}</small>}
-        {action.cost && (
-          <small>
-            {action.cost.kind === 'free'
-              ? t('Free cast')
-              : t('Level {level} slot', { level: action.cost.slotLevel })}
-          </small>
-        )}
-        {action.resolution?.moveRequiredFt !== undefined && (
-          <small>
-            {t('Move {feet} ft closer first', { feet: action.resolution.moveRequiredFt })}
-          </small>
-        )}
-        {action.hints?.includes('LONG_RANGE') && <small>{t('long range: disadvantage')}</small>}
+        {optionNotes(t, action).map((note) => (
+          <small key={note}>{note}</small>
+        ))}
         {action.area && (
           <small>
             {t('Would affect: {names}', {
@@ -202,7 +216,7 @@ function OptionEntry({
             })}
           </small>
         )}
-        {warning && (
+        {warnsOfAlly(action) && (
           <strong className="ally-warning" role="alert">
             <Glyph name="warning" />
             {t('Warning: this area includes a party member. You may still cast it.')}

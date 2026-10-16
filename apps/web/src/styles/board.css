@@ -169,6 +169,22 @@
   inset: 0;
   pointer-events: none;
 }
+/*
+ * A figure is part of its square (design §5.5: the same hit-testing in both views): what is
+ * drawn of it — the round portrait, the plate, the pips, the badge — takes the pointer for the
+ * square whose button holds it, so pointing at a figure chooses that figure and a pip shows its
+ * condition's name; the space around them and the ring stay transparent to the pointer. Tilted,
+ * the upright figure rises over the squares behind it, which the pointer would reach otherwise.
+ */
+.token-figure > .medallion,
+.token-plate,
+.token-pip,
+.token-cover {
+  pointer-events: auto;
+}
+.token-figure > .medallion {
+  border-radius: 50%;
+}
 .token--party {
   --side: var(--side-party);
   --side-glow: var(--glow-party);

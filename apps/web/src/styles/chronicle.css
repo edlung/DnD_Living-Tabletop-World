@@ -144,6 +144,19 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+/* A chapter written since the reader opened the book: marked, never opened over the page read */
+.book-ribbon-new {
+  flex: none;
+  padding: 0 0.4rem;
+  border: 1px solid var(--teal);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
 .book-ribbon > .glyph {
   width: 20px;
   height: 20px;
@@ -181,10 +194,52 @@
   height: 100%;
   user-select: none;
 }
+/*
+ * The pages' floor (design §7: text at 4.5:1 or better everywhere on the page): over each text
+ * area a veil lifts any parchment darker than --page-floor up to it — "lighten" leaves every
+ * lighter tone as painted — feathered beyond the text so no edge shows.
+ */
+.book-veil {
+  /* The fade lies outside the text areas, so the floor holds wherever text can be */
+  --feather: 2.5em;
+  position: absolute;
+  top: calc(8% - var(--feather));
+  bottom: calc(15.5% - var(--feather));
+  background: var(--page-floor);
+  mix-blend-mode: lighten;
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      var(--umbra) var(--feather),
+      var(--umbra) calc(100% - var(--feather)),
+      transparent
+    ),
+    linear-gradient(
+      transparent,
+      var(--umbra) var(--feather),
+      var(--umbra) calc(100% - var(--feather)),
+      transparent
+    );
+  mask-composite: intersect;
+  pointer-events: none;
+}
+.book-veil--left {
+  left: calc(11.2% - var(--feather));
+  right: calc(52.6% - var(--feather));
+}
+.book-veil--right {
+  left: calc(53.2% - var(--feather));
+  right: calc(11.4% - var(--feather));
+}
 .book-chapter-frame,
 .book-chapter {
   position: absolute;
   inset: 0;
+}
+/* Under a flashback: unseen and inert, but laid out, so each page keeps its place */
+.book-chapter-frame.is-behind {
+  visibility: hidden;
 }
 .book-page {
   --k-fact: var(--k-fact-ink);
@@ -252,13 +307,17 @@
     height: 100%;
     aspect-ratio: auto;
     border-radius: 6px 6px 0 0;
+    /* The parchment, lifted to the pages' floor where it is darker (as the spread's veil) */
     background:
+      linear-gradient(var(--page-floor), var(--page-floor)),
       url('../assets/ui-kit/textures/parchment.webp') center / 512px,
       var(--page-ground);
+    background-blend-mode: lighten, normal;
     box-shadow: var(--shadow);
     font-size: 16px;
   }
-  .book-spread-art {
+  .book-spread-art,
+  .book-veil {
     display: none;
   }
   .book-chapter-frame {
