@@ -1,5 +1,6 @@
 import type { z } from 'zod';
 
+import { assetApprovedPayloadSchema, assetApprovedV2PayloadSchema } from '../assets/events.ts';
 import { contradictionDetectedPayloadSchema } from '../contradiction/events.ts';
 import {
   premisesRecordedPayloadSchema,
@@ -82,6 +83,19 @@ const VERSIONING: Partial<Record<KernelEventType, Versioning>> = {
     current: 4,
     written: chronicleGeneratedPayloadSchema,
     earlier: { 2: chronicleGeneratedPayloadSchema, 3: chronicleGeneratedPayloadSchema },
+  },
+  /**
+   * 3 (Stage 330 part B review, ADR 0035 amendment): approving a picture supersedes the approved
+   * pictures of its kind, a derived one's listed in `supersedes`. Version 2 approvals (Stages 150
+   * to 330 part B) were decided when only a reference superseded anything: an earlier writer could
+   * leave two pictures of one kind approved. They are canon as recorded (the re-decision oracle
+   * folds them, never re-deciding them under the new rule) and rest on everything before them.
+   * The payload is read alike, with nothing else superseded.
+   */
+  AssetApproved: {
+    current: 3,
+    written: assetApprovedPayloadSchema,
+    earlier: { 2: assetApprovedV2PayloadSchema },
   },
 };
 

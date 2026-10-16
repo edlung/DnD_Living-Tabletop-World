@@ -22,6 +22,7 @@
   position: relative;
   flex: none;
   margin: auto;
+  isolation: isolate;
 }
 .board-plane {
   position: absolute;
@@ -265,47 +266,6 @@
   box-shadow:
     0 0 0 2px var(--side),
     0 0 16px 4px var(--side-glow);
-}
-.token-plate {
-  display: grid;
-  justify-items: center;
-  gap: 2px;
-  max-width: calc(var(--cell) * 2.4);
-  margin-top: calc(var(--cell) * -0.08);
-  padding: 1px 6px 2px;
-  border: 1px solid var(--line);
-  border-bottom: 2px solid var(--side);
-  border-radius: 6px;
-  background: var(--glass-raised);
-  box-shadow: var(--shadow-soft);
-}
-.token-name {
-  max-width: 100%;
-  overflow: hidden;
-  color: var(--text);
-  font-family: var(--font-display);
-  font-size: clamp(10px, calc(var(--cell) * 0.27), 14px);
-  font-weight: 700;
-  line-height: 1.15;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.token-name.has-number {
-  display: flex;
-  align-items: baseline;
-  gap: 0.25em;
-}
-.token-name .name-words {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.token-name .name-number {
-  flex: none;
-}
-.token-plate .hp-bar {
-  width: calc(var(--cell) * 0.9);
-  height: 3px;
 }
 .token-pips {
   position: absolute;

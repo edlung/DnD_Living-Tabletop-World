@@ -13,7 +13,7 @@ How entities and places looked at a world time, for a perspective. Authority: `d
 Rules:
 
 - Presentation is derived, never stored, and writes nothing. Images never add tags, equipment, or any fact (invariant 14; ADVERSARIAL_TESTS.md K.2).
-- The image is chosen among `image` assets only. `figure` (a character, NPC, or creature) and `battleMap` (a location) are the newest approved asset of that purpose, under the same visibility as images, and null for any other kind (`docs/adr/0035-images.md` §4; `figures.test.ts`).
+- The image is chosen among `image` assets only. `figure` (a character, NPC, or creature) and `battleMap` (a location) are the approved asset of that purpose, under the same visibility as images, and null for any other kind (`docs/adr/0035-images.md` §4; `figures.test.ts`). An approval supersedes its kind (ADR 0035 amendment), so each kind has one approved picture; of an earlier writer's several, the higher version of an image and the figure or battle map made last are shown — keep these tie-breaks, which read earlier histories as their writers showed them.
 - Read only effective events (`effectiveEvents`), by their world time. A new in-world fact that changes how something looks needs its own timeline entry here, by world time.
 - Visible at T = known now ∪ perceived at T; details (status, vitals, conditions, equipment, weather) only for what was perceived at T. A scene lists only occupants perceived there. Everything else is `null`, the same as nothing.
 - Day phases and the indoor rule are fixed in ADR 0023 §2; changing them changes every past view, so it needs an ADR amendment.

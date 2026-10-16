@@ -9,7 +9,9 @@ import { describe, expect, it } from 'vitest';
 
 import '../i18n/ru-images.ts';
 import '../i18n/ru-visual.ts';
+import { IDLE, answered, interrupted, sent } from './command-state.ts';
 import {
+  approvalStanding,
   choiceOfKind,
   choicesFor,
   entityImages,
@@ -19,7 +21,15 @@ import {
   requestCommand,
   STATES,
 } from './lineage.ts';
-import { FAILURE_WORDS, JOB_WORDS, kindWords, stateWords } from './words.ts';
+import {
+  approvalWords,
+  commandWords,
+  FAILURE_WORDS,
+  JOB_WORDS,
+  kindWords,
+  stateWords,
+  whenWords,
+} from './words.ts';
 
 const hash = (n: number) => `sha256:${n.toString(16).padStart(64, '0')}`;
 
@@ -316,5 +326,125 @@ describe('the words of the image controls', () => {
       expect(translate('ru', FAILURE_WORDS[failure]), failure).not.toBe(FAILURE_WORDS[failure]);
     }
     expect(Object.keys(JOB_WORDS).sort()).toEqual(['QUEUED', 'STARTED']);
+  });
+});
+
+describe('what an approval did, read from the lineage after it', () => {
+  it('says what players see of each kind, never more', () => {
+    const { lineage, ids } = northGate();
+    const say = (assetId: string) =>
+      approvalWords(english, approvalStanding(lineage, assetId), 'X', 'North Gate');
+    // The main picture, with state pictures that take its place in their states.
+    expect(say(`${ids.second}~asset`)).toBe(
+      'Approved: X. Players who can see North Gate now see this picture, except in a state with its own approved picture.',
+    );
+    expect(say(`${ids.map}~asset`)).toBe(
+      'Approved: X. Players who can see North Gate see this map under the grid of a fight there.',
+    );
+    // A state picture shows only in its state.
+    expect(say(`${ids.night2}~asset`)).toBe(
+      'Approved: X. Shown to players who can see North Gate at night.',
+    );
+    // An approval the list does not show as current (since superseded, or retracted).
+    expect(say(`${ids.night2.replace('#0', '#9')}~asset`)).toBe(
+      'Approved: X. It is not the picture players see now; the list shows the one they see.',
+    );
+  });
+
+  it('reads the main picture, a figure, a DM-only picture and other state pictures apart', () => {
+    const main = request('tomas-reed');
+    const figure = request('tomas-reed', {
+      variant: 'derived',
+      purpose: 'figure',
+      label: 'figure',
+    });
+    const secret = request('tomas-reed', { variant: 'derived', label: 'night', audience: 'dm' });
+    const night = request('tomas-reed', { variant: 'derived', label: 'night' });
+    const rain = request('tomas-reed', { variant: 'derived', label: 'rain' });
+    const old = request('tomas-reed', { variant: 'derived', label: 'rain' });
+    const lineage: AssetLineageResponse = {
+      requests: [main, figure, secret, night, rain],
+      assets: [
+        asset(main, { status: 'CANONICAL' }),
+        asset(figure),
+        asset(secret, { status: 'SUPERSEDED' }),
+        asset(night),
+        asset(old, { status: 'SUPERSEDED' }),
+        asset(rain, { version: 2 }),
+      ],
+      canonical: [],
+    };
+    const standing = (from: AssetRequestView) =>
+      approvalStanding(lineage, `${from.requestId}~asset`);
+    expect(standing(main)).toEqual({ kind: 'main', states: true });
+    expect(standing(figure)).toEqual({ kind: 'figure' });
+    expect(standing(secret)).toEqual({ kind: 'not-shown' });
+    expect(standing(night)).toEqual({ kind: 'state', label: 'night', others: true });
+    expect(standing(old)).toEqual({ kind: 'not-shown' });
+    const alone: AssetLineageResponse = {
+      ...lineage,
+      assets: [asset(main, { status: 'CANONICAL' }), asset(secret)],
+    };
+    expect(approvalStanding(alone, `${secret.requestId}~asset`)).toEqual({ kind: 'dm-only' });
+    expect(approvalStanding(alone, `${main.requestId}~asset`)).toEqual({
+      kind: 'main',
+      states: false,
+    });
+    expect(
+      approvalWords(english, { kind: 'state', label: 'night', others: true }, 'X', 'Tomas Reed'),
+    ).toBe(
+      'Approved: X. Shown to players who can see Tomas Reed at night, unless another approved state picture fits better.',
+    );
+    expect(approvalWords(english, { kind: 'figure' }, 'X', 'Tomas Reed')).toBe(
+      'Approved: X. Players who can see Tomas Reed now see this picture.',
+    );
+    expect(approvalWords(english, { kind: 'dm-only' }, 'X', 'Tomas Reed')).toBe(
+      'Approved: X. Only you see it: it was asked for the DM alone.',
+    );
+  });
+
+  it('has every state in words in both languages, and a label it does not know as itself', () => {
+    for (const label of new Set(Object.values(STATES).flat())) {
+      expect(whenWords(english, label), label).not.toContain('state is');
+      expect(whenWords(russian, label), label).not.toBe(whenWords(english, label));
+    }
+    expect(whenWords(english, 'poisoned')).toBe('when its state is “poisoned”');
+    expect(whenWords(russian, 'poisoned')).toBe('в состоянии «poisoned»');
+    expect(
+      approvalWords(
+        russian,
+        { kind: 'state', label: 'snow', others: false },
+        'В снегопад',
+        'Северные ворота',
+      ),
+    ).toBe(
+      'Одобрено: В снегопад. Показывается игрокам, которые видят «Северные ворота», в снегопад.',
+    );
+    expect(
+      approvalWords(russian, { kind: 'main', states: false }, 'Основное изображение', 'Томас Рид'),
+    ).toBe(
+      'Одобрено: Основное изображение. Теперь это изображение видят игроки, которые видят «Томас Рид».',
+    );
+  });
+});
+
+describe('the words of a pending command', () => {
+  it('names the command and where it stands, in both languages', () => {
+    const busy = sent(IDLE, {
+      place: 'sheet',
+      subject: 'Approve: At night of North Gate',
+      target: 'a',
+    });
+    expect(commandWords(english, busy)).toBe('Sending “Approve: At night of North Gate”…');
+    expect(commandWords(english, answered(busy, { refusal: null }, 0))).toBe(
+      'Reading the result of “Approve: At night of North Gate”…',
+    );
+    expect(commandWords(english, interrupted(busy))).toBe(
+      'The answer to “Approve: At night of North Gate” was interrupted. The change may have been made. Retry to check it.',
+    );
+    expect(commandWords(russian, interrupted(busy))).toBe(
+      'Ответ на «Approve: At night of North Gate» прервался. Изменение могло быть внесено. Повторите, чтобы проверить.',
+    );
+    expect(commandWords(english, IDLE)).toBe('');
   });
 });

@@ -4,14 +4,16 @@ import { describe, expect, it } from 'vitest';
 import { DM, confirm, tomas } from '../authoring/testing/world.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { mulberry32 } from '../kernel/testing/random-commands.ts';
-import { assetIdFor, SETTLED_ASSET } from './records.ts';
+import { assetIdFor, sameKind, SETTLED_ASSET, SHOWN_ASSET } from './records.ts';
 import { assetWorld, codeOf } from './testing/world.ts';
 
 /**
  * Random interleavings of authoring commits, asset requests, worker
  * reports, DM decisions, and undos. After every step the state is
  * consistent, and no running job or standing image depicts an entity an
- * undo removed (ADR 0006 §9). At the end, the re-decision oracle and replay
+ * undo removed (ADR 0006 §9), and each kind of picture has at most one
+ * approved: an approval supersedes its kind and its undo puts the superseded
+ * back (ADR 0035 amendment). At the end, the re-decision oracle and replay
  * from stored JSON agree with the canonical state.
  */
 const STEPS = 45;
@@ -143,6 +145,15 @@ describe('asset work under random undo', () => {
         for (const asset of after.assets.assets.values()) {
           if (!SETTLED_ASSET.has(asset.status))
             expect(after.entities.has(asset.entityId)).toBe(true);
+        }
+        const shown = [...after.assets.assets.values()].filter((asset) =>
+          SHOWN_ASSET.has(asset.status),
+        );
+        for (const asset of shown) {
+          expect(
+            shown.filter((other) => sameKind(other, asset)).map((other) => other.assetId),
+            `step ${String(step)}: one approved picture of a kind`,
+          ).toEqual([asset.assetId]);
         }
       }
       await world.verified();

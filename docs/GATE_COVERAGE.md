@@ -553,3 +553,42 @@ Stage 330 part B introduction evidence (ADR 0035, amendment of 2026-10-16 "part 
   body hold no candidate; the approved picture arrives through the live signal),
   `images-curated.spec.ts`, `images-accessibility.spec.ts` on the test server's image campaigns
   (`apps/server/src/testing/ui-image-journeys.ts`).
+Stage 330 part B review fixes (ADR 0035, amendment of 2026-10-16 "part B review"; ADR 0022
+amendment of the same date): a **changed reviewed boundary** (Gate 05, rows 150–160: approval,
+lineage, undo, re-decision of history) and new client surfaces for Gate 06, row 330.
+- **Approval supersedes its kind** (`packages/domain/src/assets/decide.ts`, `evolve.ts`,
+  `footprints.ts`, `records.ts` `sameKind`; `kernel/decide/undo.ts`): approving a derived picture
+  supersedes the approved pictures of its kind (same entity and purpose; an image also the same
+  label), listed in the payload's `supersedes`; their records are part of the approval's footprint
+  (a later approval of the kind blocks undo of the earlier one) and of its undo restores; the
+  undo hold and visibility rules are unchanged (a superseded picture holds its request as a
+  superseded reference did, and is never shown). No authorization rule changed.
+- **`AssetApproved` version 3** (`kernel/event-versions.ts`): version 2 is read alike and is an
+  earlier writer's — canon as recorded for the re-decision oracle (which would otherwise report an
+  earlier writer's second approval of a kind as deciding differently), resting on everything
+  before it for undo. History written by the revision before
+  (`fixtures/history/80d06df-approved-kinds.json`: two approved pictures of each kind, an undone
+  variant approval) loads, replays every prefix with integrity, shows as that writer showed it,
+  re-decides, verifies and continues: the next approval supersedes every approved picture of the
+  kind, and its undo restores them (`packages/combat/src/approval-history.test.ts`; on PostgreSQL
+  `apps/server/src/images/images.integration.test.ts`). The `5da1b05` lineage still verifies, its
+  approvals now earlier-version (`asset-history.test.ts`).
+- **Deterministic evidence**: `packages/domain/src/assets/supersede.test.ts` (an older picture
+  approved after a newer one is shown to every perspective; figures and battle maps of any label
+  are one kind; other kinds and the canonical reference untouched; undo order; retraction; a
+  DM-only picture), `assets.property.test.ts` and `purposes.property.test.ts` (at most one
+  approved picture of a kind after every step; after every approval the approved picture is the
+  one presentation shows for its kind), `event-versions.test.ts`,
+  `apps/server/src/http/image-approvals.test.ts` (over HTTP: the older figure and the older night
+  picture are what the player sees; the superseded figure's bytes are a 404 to the player).
+- **Client** (`apps/web/src/images/`): approval words from the lineage read after the approval
+  (`approvalStanding`, `approvalWords`); one command at a time until the lineage shows its result
+  (`command-state.ts`, `command-state.test.ts`); a lost answer shown with Retry in the Images
+  sheet and every panel (`images-result.tsx`); focus recovery once per command
+  (`focus-recovery.ts`); battlefield name plates above every figure (`combat/board/plates.tsx`,
+  `geometry.ts` `plateAnchor`, `plateRoom`). Journeys `tests/e2e/images-commands.spec.ts`
+  (supersession seen by the player and the DM's list; a dropped answer while approving, then
+  another entity's panel; a double press sends one `RequestAsset`; the keyboard in the sheet; a
+  panel's focus once per command), `battlefield-plates.spec.ts` (every plate the topmost thing at
+  its centre, ends and number at 1440 × 900 and 820 × 1180, tilted and flat), updated
+  `images-dm.spec.ts`; each fails on revision 80d06df.

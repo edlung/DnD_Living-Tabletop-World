@@ -76,12 +76,13 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
   await candidates.first().getByRole('button', { name: 'Discard: Main picture' }).click();
   await expect(result).toHaveText('Discarded: Main picture. No one will see this picture.');
   await expect(candidates).toHaveCount(1);
-  // The card the DM acted on is gone; focus is back on the section, never lost.
-  await expect(images).toBeFocused();
+  // The card the DM acted on is gone; focus is on the next card, never lost.
+  const approve = images.getByRole('button', { name: 'Approve: Main picture', exact: true });
+  await expect(approve).toBeFocused();
 
-  await images.getByRole('button', { name: 'Approve: Main picture', exact: true }).click();
+  await approve.click();
   await expect(result).toHaveText(
-    'Approved: Main picture. Players who can see it now see this picture.',
+    'Approved: Main picture. Players who can see Tomas Reed now see this picture.',
   );
   await expect(candidates).toHaveCount(0);
   await expect(images.locator('.image-card--approved')).toHaveCount(1);
@@ -164,8 +165,9 @@ test('a failed request says why and is tried again from the Images sheet', async
   await expect(page.locator('#sheet-images')).toBeHidden();
   const images = imagesRegion(page);
   await images.getByRole('button', { name: 'Approve: In snow', exact: true }).click();
+  // Shown only in snow; North Gate's other state pictures may fit at the same time.
   await expect(images.getByRole('status')).toHaveText(
-    'Approved: In snow. Players who can see it now see this picture.',
+    'Approved: In snow. Shown to players who can see North Gate in snow, unless another approved state picture fits better.',
   );
   await expect(images.locator('.image-card--approved')).toContainText(['In snow']);
   await openSheet(page, 'Images');
@@ -205,7 +207,7 @@ test('a Russian DM approves Tomas’s picture in Russian, and the player sees it
   expect((await playerPresentation(player, campaign, 'tomas-reed')).image).toBeNull();
   await images.getByRole('button', { name: 'Одобрить: Основное изображение', exact: true }).click();
   await expect(images.getByRole('status')).toHaveText(
-    'Одобрено: Основное изображение. Игроки, которым это видно, теперь видят это изображение.',
+    'Одобрено: Основное изображение. Теперь это изображение видят игроки, которые видят «Томас Рид».',
   );
   await expectNoEnglish(images, 'Russian image controls after approval');
   await expectServedPicture(seen.locator('.medallion-face img'));

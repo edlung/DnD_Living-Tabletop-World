@@ -118,7 +118,7 @@ export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldStat
       });
     }
     case 'AssetApproved': {
-      const { assetId, entityId, variant, previous } = event.payload;
+      const { assetId, entityId, variant, previous, supersedes = [] } = event.payload;
       const asset = assets.assets.get(assetId);
       if (asset?.status !== 'CANDIDATE')
         throw new CorruptHistoryError(`asset ${assetId} is no candidate`);
@@ -128,6 +128,12 @@ export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldStat
       });
       const before = previous === null ? undefined : records.get(previous);
       if (before) records = withEntry(records, before.assetId, { ...before, status: 'SUPERSEDED' });
+      // The approved pictures of its kind (version 3; ADR 0035 amendment).
+      for (const replaced of supersedes) {
+        const shown = records.get(replaced);
+        if (!shown) throw new CorruptHistoryError(`no asset ${replaced} to supersede`);
+        records = withEntry(records, replaced, { ...shown, status: 'SUPERSEDED' });
+      }
       return with_(state, {
         assets: records,
         canonical:

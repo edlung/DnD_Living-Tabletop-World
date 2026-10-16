@@ -71,7 +71,7 @@ describe('the lineage of one entity', () => {
     await world.verified();
   });
 
-  it('derives variants from the approved reference only, each label versioned on its own', async () => {
+  it('derives variants from the approved reference only, each label versioned on its own, each approval superseding its kind', async () => {
     const world = await assetWorld();
     expect(
       codeOf(
@@ -103,13 +103,19 @@ describe('the lineage of one entity', () => {
     const wounded = await world.approved(MIRA, 4, { variant: 'derived', label: 'wounded' });
 
     const state = await world.state();
+    // The second night picture's approval superseded the first (ADR 0035 amendment); another
+    // label is another kind.
     expect(state.assets.assets.get(night)).toMatchObject({
       derivedFrom: reference,
       version: 1,
-      status: 'APPROVED',
+      status: 'SUPERSEDED',
     });
     expect(state.assets.assets.get(night2)).toMatchObject({ version: 2, status: 'APPROVED' });
-    expect(state.assets.assets.get(wounded)).toMatchObject({ version: 1, label: 'wounded' });
+    expect(state.assets.assets.get(wounded)).toMatchObject({
+      version: 1,
+      label: 'wounded',
+      status: 'APPROVED',
+    });
     // Approving a variant never changes the canonical reference.
     expect(state.assets.canonical.get(MIRA)).toBe(reference);
     await world.verified();

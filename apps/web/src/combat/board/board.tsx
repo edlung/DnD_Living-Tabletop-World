@@ -16,6 +16,7 @@ import {
 } from './geometry.ts';
 import { useCombatantLabels } from '../labels.ts';
 import { BoardGround } from './board-ground.tsx';
+import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
 import { CoverPiece, Token } from './token.tsx';
@@ -57,10 +58,11 @@ type StageStyle = CSSProperties & {
  * The battlefield as a painted table (docs/STAGE_320_DESIGN.md §5.5, ADR 0034 §6–7): the place's
  * approved battle map or else the GPT ground, the difficult patch on difficult squares,
  * hairlines, the movement path and the previewed area, cover pieces, then the combatants as
- * their approved figures or medallions — every square, cover level, position and state from the
- * encounter's projection, nothing inferred. Tilted, the plane turns away like a table seen at an
- * angle while figures and pieces stand upright; flat, it is seen from above. Either way each
- * square is the same button, in the same order, with the same name.
+ * their approved figures or medallions, and above them all their name plates — every square,
+ * cover level, position and state from the encounter's projection, nothing inferred. Tilted, the
+ * plane turns away like a table seen at an angle while figures and pieces stand upright; flat, it
+ * is seen from above. Either way each square is the same button, in the same order, with the
+ * same name.
  */
 export function Board({
   encounter,
@@ -253,6 +255,7 @@ export function Board({
               </svg>
             )}
           </div>
+          <BoardPlates encounter={encounter} layout={layout} labelOf={labelOf} />
         </div>
       </div>
     </div>

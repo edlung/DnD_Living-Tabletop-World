@@ -379,8 +379,9 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         restores.push({ fact: 'assetRequest', requestId: event.payload.requestId, value: null });
         break;
       case 'AssetApproved': {
-        const { assetId, entityId, previous } = event.payload;
-        for (const id of previous === null ? [assetId] : [assetId, previous]) {
+        const { assetId, entityId, previous, supersedes = [] } = event.payload;
+        // The approved asset and every picture it superseded go back as they were.
+        for (const id of [assetId, ...(previous === null ? [] : [previous]), ...supersedes]) {
           const prior = before.assets.assets.get(id);
           if (!prior) throw new Error(`asset ${id} missing before the undone approval`);
           const { purpose, ...record } = structuredClone(prior);

@@ -1,5 +1,9 @@
 import { createCombatEngine } from '@ltw/combat';
-import type { AssetLineageResponse, EntityPresentationResponse } from '@ltw/contracts';
+import type {
+  AssetLineageResponse,
+  CommandResult,
+  EntityPresentationResponse,
+} from '@ltw/contracts';
 import {
   SequentialIds,
   SteppingClock,
@@ -19,6 +23,7 @@ import {
   MIDDLE_ENTROPY,
   TOKENS,
   get,
+  post,
   ravenfordApp,
   seededEngine,
   testAiGateway,
@@ -32,9 +37,12 @@ import { loadCuratedSet } from './curated-set.ts';
 
 /**
  * Images on PostgreSQL (docs/adr/0035-images.md): the asset lineage the revision before purposes
- * stored (fixtures/history/5da1b05-asset-lineage.json) is read by the current store as images,
- * and the curated set imports into a stored campaign through real commands, once, with its bytes
- * in `ltw_asset_contents`, so a fresh install shows it and a rerun changes nothing.
+ * stored (fixtures/history/5da1b05-asset-lineage.json) is read by the current store as images;
+ * the approvals the revision before an approval superseded its kind stored
+ * (fixtures/history/80d06df-approved-kinds.json) read as that writer approved them, and the next
+ * approval of a kind supersedes them all; and the curated set imports into a stored campaign
+ * through real commands, once, with its bytes in `ltw_asset_contents`, so a fresh install shows it
+ * and a rerun changes nothing.
  */
 let database: ThrowawayDatabase;
 let pool: pg.Pool;
@@ -88,6 +96,56 @@ describe('the lineage written before purposes, on PostgreSQL', () => {
     expect(
       lineage.requests.find((request) => request.requestId.includes('legacy-request-orin')),
     ).toMatchObject({ status: 'FAILED', failure: 'REFUSED' });
+
+    const snapshot = await engine.load('ravenford');
+    if (!snapshot) throw new Error('missing campaign');
+    expect(checkWorldIntegrity(snapshot.state)).toEqual([]);
+    expect(replay(snapshot.history)).toEqual(snapshot.state);
+    expect(
+      redecideEffective(
+        await engine.commandLog('ravenford'),
+        snapshot,
+        () => 0,
+        createCombatEngine(),
+      ),
+    ).toBeNull();
+  });
+});
+
+describe('the approvals written before an approval superseded its kind, on PostgreSQL', () => {
+  it('read as that writer approved them; the next approval of a kind supersedes them all', async () => {
+    const history = await loadHistoryRows('80d06df-approved-kinds');
+    await insertHistory(pool, history);
+    const engine = engineOnDatabase(64);
+    const app = await served(engine);
+    const asset = (name: string) => `${history.labels[name] ?? ''}#0~asset`;
+    const nights = [1, 2, 3].map((n) => asset(`request-mira-night-${String(n)}`));
+    const statuses = async () => {
+      const lineage = (
+        await get(app, '/campaigns/ravenford/assets', TOKENS.dm)
+      ).json<AssetLineageResponse>();
+      return nights.map((id) => lineage.assets.find((shown) => shown.assetId === id)?.status);
+    };
+    expect(await statuses()).toEqual(['APPROVED', 'APPROVED', 'CANDIDATE']);
+
+    const approved = await post(
+      app,
+      '/campaigns/ravenford/commands',
+      { commandId: 'kinds-it-approve', command: { type: 'ApproveAsset', assetId: nights[2] } },
+      TOKENS.dm,
+    );
+    expect(approved.json<CommandResult>()).toMatchObject({ status: 'accepted' });
+    expect(await statuses()).toEqual(['SUPERSEDED', 'SUPERSEDED', 'APPROVED']);
+    const stored = await pool.query<{ schema_version: number; payload: unknown }>(
+      `SELECT schema_version, payload FROM ltw_events
+        WHERE command_id = 'http:dm-ravenford:kinds-it-approve'`,
+    );
+    expect(stored.rows).toEqual([
+      {
+        schema_version: 3,
+        payload: expect.objectContaining({ supersedes: [nights[0], nights[1]] }) as unknown,
+      },
+    ]);
 
     const snapshot = await engine.load('ravenford');
     if (!snapshot) throw new Error('missing campaign');

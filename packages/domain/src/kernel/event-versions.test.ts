@@ -90,6 +90,41 @@ describe('event schema versions', () => {
     expect(() => parseRecordedEvent(created(3))).toThrow(/never written/);
   });
 
+  it('writes AssetApproved as version 3 and reads version 2 alike, superseding nothing else', () => {
+    // Stage 330 part B review (ADR 0035 amendment): an approval supersedes its kind.
+    expect(schemaVersionOf('AssetApproved')).toBe(3);
+    expect(writtenEarlier({ type: 'AssetApproved', schemaVersion: 2 })).toBe(true);
+    expect(writtenEarlier({ type: 'AssetApproved', schemaVersion: 3 })).toBe(false);
+    const approval = (schemaVersion: number, payload: Record<string, unknown>) => ({
+      ...stored(schemaVersion, []),
+      causation: {
+        commandId: 'http:dm-ravenford:kinds-approve-mira-night-1',
+        commandType: 'ApproveAsset',
+        actor: { actorId: 'dm-ravenford', kind: 'user' },
+      },
+      type: 'AssetApproved',
+      payload,
+    });
+    const v2 = {
+      assetId: 'http:dm-ravenford:kinds-request-mira-night-1#0~asset',
+      entityId: 'mira-vale',
+      variant: 'derived',
+      previous: null,
+    };
+    const supersedes = ['http:dm-ravenford:kinds-request-mira-night-2#0~asset'];
+    expect(parseRecordedEvent(approval(2, v2)).payload).toEqual(v2);
+    expect(parseRecordedEvent(approval(3, v2)).payload).toEqual(v2);
+    expect(parseRecordedEvent(approval(3, { ...v2, supersedes })).payload).toEqual({
+      ...v2,
+      supersedes,
+    });
+    // Version 2 never superseded a derived picture, and no version lists nothing.
+    expect(() => parseRecordedEvent(approval(2, { ...v2, supersedes }))).toThrow();
+    expect(() => parseRecordedEvent(approval(3, { ...v2, supersedes: [] }))).toThrow();
+    expect(() => parseRecordedEvent(approval(1, v2))).toThrow(/never written/);
+    expect(() => parseRecordedEvent(approval(4, v2))).toThrow(/never written/);
+  });
+
   it('never writes a premise only earlier writers recorded', async () => {
     expect(() => {
       assertWritable('PremisesRecorded', {

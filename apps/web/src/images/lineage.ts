@@ -13,9 +13,11 @@ import type {
  * The DM's view of an entity's pictures (docs/STAGE_330_DESIGN.md "DM controls"; ADR 0022, ADR
  * 0035 §4), read from the DM's lineage (`GET …/assets`) alone: what is approved now, what waits
  * for the DM's decision, what the image generator is working on, and what failed. Nothing here
- * decides who sees a picture — the server's presentation does; "approved now" only mirrors its
- * rule (the canonical picture, and the newest approved picture of each kind), so the DM is not
- * shown a superseded picture as current.
+ * decides who sees a picture — the server's presentation does. Approving a picture supersedes
+ * the approved one of its kind (ADR 0035 amendment), so each kind has one approved picture;
+ * "approved now" mirrors the presentation's rule for an earlier writer's history that left
+ * several (the canonical picture, and the newest approved picture of each kind), so the DM is
+ * never shown a superseded picture as current.
  */
 
 /** What a picture or a request is: its variant, its purpose and, for a derived image, its label. */
@@ -26,8 +28,9 @@ export interface ImageKind {
 }
 
 /**
- * Pictures of one kind replace each other: a derived image per label (the presentation chooses
- * it by its label's state tags), a figure or a battle map per purpose (the newest is shown).
+ * Pictures of one kind replace each other, as the server's `sameKind` has it: a derived image per
+ * label (the presentation chooses it by its label's state tags), a figure or a battle map per
+ * purpose whatever its label. Approving one supersedes the approved one of its kind.
  */
 export const kindKey = (kind: ImageKind): string =>
   kind.purpose === 'image' ? `${kind.variant}:${kind.label ?? ''}` : kind.purpose;
@@ -89,6 +92,40 @@ export function entityImages(lineage: AssetLineageResponse, entityId: string): E
     ),
     canonical: canonical !== null,
   };
+}
+
+/**
+ * What players see of a picture the DM just approved, read from the lineage after the approval
+ * (never assumed): not the picture shown for its kind (it changed meanwhile); the DM's alone; the
+ * main picture (and whether approved state pictures take its place in their states); the figure;
+ * the battle map; or a state picture (and whether other approved state pictures may fit too).
+ */
+export type ApprovalStanding =
+  | { readonly kind: 'not-shown' }
+  | { readonly kind: 'dm-only' }
+  | { readonly kind: 'main'; readonly states: boolean }
+  | { readonly kind: 'figure' }
+  | { readonly kind: 'battle-map' }
+  | { readonly kind: 'state'; readonly label: string; readonly others: boolean };
+
+export function approvalStanding(lineage: AssetLineageResponse, assetId: string): ApprovalStanding {
+  const asset = lineage.assets.find((shown) => shown.assetId === assetId);
+  if (!asset) return { kind: 'not-shown' };
+  const { approved } = entityImages(lineage, asset.entityId);
+  if (!approved.some(({ asset: shown }) => shown.assetId === assetId)) return { kind: 'not-shown' };
+  if (asset.audience === 'dm') return { kind: 'dm-only' };
+  if (asset.purpose === 'figure' || asset.purpose === 'battle-map') return { kind: asset.purpose };
+  const states = approved.filter(
+    ({ asset: shown }) =>
+      shown.purpose === 'image' && shown.variant === 'derived' && shown.audience === 'players',
+  );
+  return asset.variant === 'reference'
+    ? { kind: 'main', states: states.length > 0 }
+    : {
+        kind: 'state',
+        label: asset.label ?? '',
+        others: states.some(({ asset: shown }) => shown.assetId !== assetId),
+      };
 }
 
 export interface EntityWork {

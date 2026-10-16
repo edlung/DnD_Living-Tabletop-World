@@ -34,12 +34,17 @@ const silent = createLogger({ service: 'ui-image-journeys', level: 'silent' });
  *   placeholder generator;
  * - `review`: the curated set with two pictures made but not yet approved (candidates), one
  *   request waiting for the image generator, one being generated and one failed. No worker runs
- *   here, so these states stay as seeded.
+ *   here, so these states stay as seeded;
+ * - the review fixes' journeys (`tests/e2e/images-commands.spec.ts`): `supersede` as `tomas`, with
+ *   the worker; `pending`, `double` and `panel` as `review`; `keyboard` as `review` without the
+ *   request waiting for the generator, so Captain Thorne leaves the Images sheet once his
+ *   candidate is decided.
  */
 export const UI_IMAGE_WORKER_CAMPAIGNS: readonly string[] = [
   campaigns.tomas,
   campaigns.tomasRu,
   campaigns.retry,
+  campaigns.supersede,
 ];
 
 /** Curated pictures the review campaigns hold as candidates: made, never approved. */
@@ -112,6 +117,8 @@ async function seedReview(
   contents: AssetContentStore,
   set: CuratedSet,
   campaignId: string,
+  /** Whether Captain Thorne also has a request waiting for the image generator. */
+  waiting = true,
 ): Promise<void> {
   const made: string[] = [];
   for (const entry of set.entries.filter((candidate) => HELD.includes(candidate.file))) {
@@ -130,7 +137,7 @@ async function seedReview(
   // The set holds no snowy North Gate: that request fails as UNAVAILABLE, as without a budget.
   const snow = await requestVariant(engine, campaignId, 'north-gate', 'snow');
   await curatedRun(engine, contents, set, campaignId, [...made, snow]);
-  await requestVariant(engine, campaignId, 'captain-thorne', 'wounded');
+  if (waiting) await requestVariant(engine, campaignId, 'captain-thorne', 'wounded');
   const storm = await requestVariant(engine, campaignId, 'north-gate', 'storm');
   const started = await engine.execute({
     commandId: `${campaignId}.img.start-storm`,
@@ -167,6 +174,7 @@ export async function seedUiImageJourneys(
     [campaigns.tomas, false],
     [campaigns.tomasRu, true],
     [campaigns.retry, false],
+    [campaigns.supersede, false],
   ] as const) {
     await seedRavenford(engine, campaignId, ru);
     await dm(engine, campaignId, 'tomas', {
@@ -183,13 +191,21 @@ export async function seedUiImageJourneys(
       await requestVariant(engine, campaignId, 'north-gate', 'snow'),
     ]);
   }
-  for (const campaignId of [campaigns.review, campaigns.reviewRu]) {
+  const reviews = [
+    campaigns.review,
+    campaigns.reviewRu,
+    campaigns.pending,
+    campaigns.double,
+    campaigns.panel,
+    campaigns.keyboard,
+  ];
+  for (const campaignId of reviews) {
     await seedRavenford(engine, campaignId, campaignId === campaigns.reviewRu);
     await importInto(campaignId, {
       ...set,
       entries: set.entries.filter((entry) => !HELD.includes(entry.file)),
     });
-    await seedReview(engine, contents, set, campaignId);
+    await seedReview(engine, contents, set, campaignId, campaignId !== campaigns.keyboard);
   }
 }
 
