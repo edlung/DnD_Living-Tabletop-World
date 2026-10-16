@@ -188,16 +188,17 @@ check 'the player can no longer read (401)' is "$(get player "/campaigns/$CAMPAI
 check 'GET /api/auth/session: 401' is "$(get player /auth/session)" 401
 check '... and the cookie it presented is cleared' clearing_cookie
 
-say 'used, revoked and forged links fail alike'
+say 'used, revoked and forged links fail alike (the same error; only the request ID differs)'
 fixed=''
 for case_ in "used player link:$player_token" "used DM link:$dm_token" "forged token:$(forged_token)"; do
   status=$(redeem "stranger-$STAMP" "${case_#*:}")
   printf '     %s: %s %s\n' "${case_%%:*}" "$status" "$(body)"
   check "${case_%%:*}: 401, no cookie" refused_alike "$status"
-  [ -n "$fixed" ] || fixed=$(body)
-  check "${case_%%:*}: the fixed message" is "$(body)" "$fixed"
+  [ -n "$fixed" ] || fixed=$(field '.error | tojson')
+  check "${case_%%:*}: the fixed message" is "$(field '.error | tojson')" "$fixed"
 done
-check 'the fixed message is UNAUTHENTICATED' is "$(jq -r .error.code <<<"$fixed")" UNAUTHENTICATED
+check 'the fixed message is UNAUTHENTICATED' is "$fixed" \
+  '{"code":"UNAUTHENTICATED","message":"Authentication required"}'
 
 say 'the seat is free again; a signed-in browser must confirm before an invitation is spent'
 status=$(post dm "/campaigns/$CAMPAIGN/invitations" "{\"characterId\":\"$ELOWEN\",\"expiresHours\":1}")
@@ -214,7 +215,7 @@ check '... and the invitation stays pending' is \
 status=$(post dm "/campaigns/$CAMPAIGN/invitations/$again_id/revoke" '{}')
 check 'the DM revokes that invitation' is "$status $(body)" '200 {"status":"revoked"}'
 check 'a revoked link fails with the fixed message' is \
-  "$(redeem "stranger-$STAMP" "$again_token") $(body)" "401 $fixed"
+  "$(redeem "stranger-$STAMP" "$again_token") $(field '.error | tojson')" "401 $fixed"
 
 say 'cross-site requests are refused through the proxy'
 check 'GET /api/auth/session with a foreign Origin: 403' is \

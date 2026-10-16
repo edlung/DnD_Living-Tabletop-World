@@ -60,3 +60,16 @@ restore drill, roll back to the previous image and forward again, and run `pnpm 
 same revision; hosted CI is green on it. Nothing is announced, nobody is invited, nothing released.
 Deploying to the owner's VPS is a separate step once access and domain exist (runbook "first
 install").
+
+## Part B notes (2026-10-16)
+
+Implemented on Stage 340's server; details in ADR 0037, "Part B implementation notes".
+
+- The browser screens for invitations come with Stage 340 part B, so the Russian sign-in smoke
+  journeys run over HTTPS through the real proxy with cookie jars
+  (`deploy/verify/sign-in-journey.sh`); the Playwright journeys against `https://localhost` follow
+  once those screens exist.
+- The server's network trust boundary: an internal `backend` network shared with the proxy alone,
+  without a host address; `LTW_TRUST_PROXY` is its range (`deploy/verify/trust-boundary.sh`).
+- The review campaign: `deploy/scripts/review-campaign.sh` seeds the Russian Ravenford with every
+  seat open and prints the DM's link once; the DM issues the players' invitations.

@@ -81,7 +81,8 @@ Implemented as designed; these points make the decisions concrete. Files: `deplo
   `edge` network's range (`LTW_EDGE_SUBNET`, default `10.231.250.0/24`) and passes it, and Caddy
   replaces any `X-Forwarded-For` a client sends. The network's gateway lies in that range; with no
   server port published, only processes on the host could use it. `PUBLIC_ORIGIN` is required by
-  compose (invitation mode).
+  compose (invitation mode). _Superseded by the part B notes: the server trusts a backend network
+  that has no host address._
 - **Database restarts.** The local run showed that an idle pool connection closed by PostgreSQL
   ended the server process (pg-pool's `error` had no listener). Both server pools now come from
   `createPool` (`apps/server/src/platform/db/pool.ts`): the loss is logged by code, the pool
@@ -92,3 +93,51 @@ Implemented as designed; these points make the decisions concrete. Files: `deplo
 - **Verification before Stage 340.** This revision has no `AUTH_MODE=invitations`; the local run
   uses `deploy/verify/pre-340.yaml` (`disabled`) and, for the live stream only,
   `deploy/verify/dev-personas.yaml` (public persona tokens, local only). Part B deletes both.
+
+## 2026-10-16 — Part B implementation notes (technical)
+
+On Stage 340's server (invitation sign-in, `LTW_TRUST_PROXY`, its security fixes). Files:
+`deploy/compose.yaml`, `deploy/scripts/{deploy,review-campaign}.sh`, `deploy/verify/`
+(`sign-in-journey.sh`, `trust-boundary.sh`, `live-stream.sh`, `http.sh`),
+`apps/server/src/world-engine/review-campaign.ts`; evidence `reports/evidence/stage-350/part-b/`.
+
+- **One production path.** The overrides are gone; verification runs `compose.yaml` alone, as
+  production: `NODE_ENV=production`, `AUTH_MODE=invitations`, no development personas.
+- **Network trust boundary.** Four networks: `edge` (the proxy alone; the published ports and
+  ACME), `backend` (the proxy and the server only; internal), `data` (server, database, backups;
+  internal) and `egress` (the server alone: its outbound calls to AI providers). `backend` and
+  `data` use the bridge gateway mode `isolated` (Docker Engine 28 or later): the host gets no
+  address on them, so no host process reaches the server or the database there (an internal
+  network otherwise gives the host an address, which would sit inside the trusted range). The
+  server listens only at its pinned backend address (`<LTW_BACKEND_PREFIX>.10`, default
+  `10.231.251.10`; the proxy gets an address from `.128/25`), not on `data` or `egress`, where the
+  host does have an address. `LTW_TRUST_PROXY` is the backend range `<prefix>.0/24`: only the
+  proxy can name a client, and Caddy replaces the `X-Forwarded-For` a client sends.
+  `verify/trust-boundary.sh` checks the members and flags of every network, the listening
+  socket, that the API is unreachable from the host's network namespace and from `edge`, and that
+  redeems through the proxy with ever-different forged `X-Forwarded-For` values are one client
+  (429 by the eleventh) while the same header from the proxy's own address names a new client.
+- **Docker Desktop.** Connections to published ports arrive from the `edge` gateway address, so
+  locally every browser is one client to the per-address limits (runbook section 11); on a Linux
+  host outside IPv4 clients keep their addresses. Without IPv6 on `edge`, Docker relays IPv6
+  clients through its user-space proxy from one address: the runbook publishes only an `A` record
+  until IPv6 is enabled there.
+- **Network changes on deploy.** Compose recreates a network whose definition changed, but a
+  container it only restarts rejoins it without its service name (seen in the upgrade from part
+  A's layout: `postgres` no longer resolved). `deploy.sh` keeps a digest of the resolved networks
+  (`LTW_NETWORKS_DIGEST`) and recreates every container when it changes.
+- **Review campaign.** `review-campaign.ts` seeds the Russian Ravenford through the World Engine
+  under the fixture's own command IDs, then the DM releases each seat the fixture gave a
+  development persona (`ReleaseCharacter`, command ID `ravenford.review.release.<characterId>`):
+  the party's history (memories that need the seat held) stays as written, and every character
+  waits for the DM's invitation. Idempotent; a rerun never takes a seat back; a database holding
+  the English Ravenford refuses it. `deploy/scripts/review-campaign.sh` seeds and prints the
+  operator's DM link once. The server reads the Russian quest book by default
+  (`LTW_QUESTS_FILE`). Curated images arrive with Stage 330.
+- **Sign-in on the deployment.** Until the browser screens of Stage 340 part B,
+  `verify/sign-in-journey.sh` drives the flows over HTTPS through the proxy with cookie jars:
+  operator DM link, player invitation, play in Russian, revocation (the player's live stream
+  closes within one cycle), used, revoked and forged links (one fixed 401), the 409 of a
+  signed-in browser, cross-site refusals, sign-out, and no credential in any container log. The
+  live stream check signs in the same way (cookie and `Origin`; the journey uses `Sec-Fetch-Site:
+same-origin`).

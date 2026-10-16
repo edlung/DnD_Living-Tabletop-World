@@ -52,9 +52,11 @@ members() {
     xargs -r -n 1 docker inspect --format '{{index .Config.Labels "com.docker.compose.service"}}' |
     sort | tr '\n' ' ' | sed 's/ $//'
 }
-# internal, gateway mode, range and host address of a network.
+# internal, gateway mode, range and host address of a network (Docker prints a missing
+# address as "invalid IP": here `none`).
 facts() {
-  docker network inspect "$(net "$1")" --format '{{.Internal}} {{index .Options "com.docker.network.bridge.gateway_mode_ipv4"}} {{range .IPAM.Config}}{{.Subnet}} host={{.Gateway}}{{end}}'
+  docker network inspect "$(net "$1")" --format '{{.Internal}} {{index .Options "com.docker.network.bridge.gateway_mode_ipv4"}} {{range .IPAM.Config}}{{.Subnet}} host={{.Gateway}}{{end}}' |
+    sed 's/host=invalid IP$/host=none/'
 }
 address() { docker inspect "$1" --format "{{(index .NetworkSettings.Networks \"$(net "$2")\").IPAddress}}"; }
 # A setting of the server container; never prints any other.
@@ -79,7 +81,7 @@ probe() {
 }
 verdict() { sed -n "s/^$(printf '%s' "$2" | sed 's/[.]/[.]/g') //p" "$work/$1"; }
 closed() { [ "$(verdict "$1" "$2")" != open ] && [ -n "$(verdict "$1" "$2")" ]; }
-isolated_internal() { case $(facts "$1") in 'true isolated '*' host=') return 0 ;; *) return 1 ;; esac; }
+isolated_internal() { case $(facts "$1") in 'true isolated '*' host=none') return 0 ;; *) return 1 ;; esac; }
 limited() { case $codes in *429) return 0 ;; *) return 1 ;; esac; }
 new_client() { case $trusted in *401*) return 0 ;; *) return 1 ;; esac; }
 
@@ -88,7 +90,7 @@ for name in edge backend data egress; do
   printf '     %-8s %s | %s\n' "$name" "$(facts "$name")" "$(members "$name")"
 done
 check 'backend: internal, no host address (isolated), the pinned range' is "$(facts backend)" \
-  "true isolated $prefix.0/24 host="
+  "true isolated $prefix.0/24 host=none"
 check 'backend: the proxy and the server only' is "$(members backend)" 'proxy server'
 check 'data: internal, no host address (isolated)' isolated_internal data
 check 'data: the server, the database and the backups only' is "$(members data)" 'backup postgres server'
