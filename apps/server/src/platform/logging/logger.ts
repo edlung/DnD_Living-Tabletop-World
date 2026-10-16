@@ -1,4 +1,4 @@
-import { pino, type DestinationStream, type Logger as PinoLogger } from 'pino';
+import { pino, stdSerializers, type DestinationStream, type Logger as PinoLogger } from 'pino';
 
 import type { LogLevel } from '../config/config.ts';
 
@@ -35,12 +35,33 @@ const SENSITIVE_KEYS = [
   'connectionString',
 ] as const;
 
+/** Client addresses: never logged (ADR 0036, amendment 2026-10-16); redacted as a safety net. */
+const ADDRESS_KEYS = ['remoteAddress', 'remotePort', 'ip', 'ips'] as const;
+
 const REDACT_PATHS = [
   ...SENSITIVE_KEYS,
   ...SENSITIVE_KEYS.map((key) => `*.${key}`),
+  ...ADDRESS_KEYS,
+  ...ADDRESS_KEYS.map((key) => `*.${key}`),
   'req.headers.authorization',
   'req.headers.cookie',
+  'req.headers["x-forwarded-for"]',
 ];
+
+/**
+ * How a request, a response and an error appear in a log line. Fastify's own request lines use
+ * these instead of its defaults, which carry the client's address and port: a request is its
+ * method and URL, a response its status; never an address, a header, a cookie or a body.
+ */
+export const LOG_SERIALIZERS: {
+  readonly req: (request: { readonly method?: unknown; readonly url?: unknown }) => object;
+  readonly res: (reply: { readonly statusCode?: unknown }) => object;
+  readonly err: (error: Error) => object;
+} = {
+  req: (request) => ({ method: request.method, url: request.url }),
+  res: (reply) => ({ statusCode: reply.statusCode }),
+  err: (error) => stdSerializers.err(error),
+};
 
 export function createLogger(options: LoggerOptions): Logger {
   return pino(
@@ -52,6 +73,7 @@ export function createLogger(options: LoggerOptions): Logger {
         level: (label) => ({ level: label }),
       },
       redact: { paths: REDACT_PATHS, censor: REDACTED },
+      serializers: LOG_SERIALIZERS,
     },
     options.destination,
   );

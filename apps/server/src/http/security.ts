@@ -18,13 +18,20 @@ export const SECURITY_HEADERS: Readonly<Record<string, string>> = {
   'x-content-type-options': 'nosniff',
 };
 
-/** The live stream: a GET that carries the credential, so cross-site requests are refused too. */
-const LIVE_ROUTE = '/campaigns/:campaignId/live';
+/**
+ * GETs that do more than read, so cross-site requests are refused for them too: the live stream
+ * (opens a stream on the credential) and the session probe (its 401 may clear the cookie; a
+ * cross-site navigation must never sign the browser out; ADR 0036, amendment 2026-10-16).
+ */
+const ORIGIN_CHECKED_READS: ReadonlySet<string> = new Set([
+  '/campaigns/:campaignId/live',
+  '/auth/session',
+]);
 
 /**
  * Whether a request needing the origin check came from the public origin. Every non-GET
  * request must carry `Origin` equal to it (browsers send `Origin` on every non-GET fetch).
- * The live stream is a same-origin GET, for which browsers send no `Origin`: it must carry
+ * The checked GETs are same-origin fetches, for which browsers send no `Origin`: they must carry
  * either that `Origin` or, without one, `Sec-Fetch-Site: same-origin` (fetch metadata).
  */
 export function fromPublicOrigin(request: FastifyRequest, publicOrigin: string): boolean {
@@ -36,13 +43,14 @@ export function fromPublicOrigin(request: FastifyRequest, publicOrigin: string):
 
 export function needsOriginCheck(request: FastifyRequest): boolean {
   if (request.method !== 'GET' && request.method !== 'HEAD') return true;
-  return request.routeOptions.url === LIVE_ROUTE;
+  return ORIGIN_CHECKED_READS.has(request.routeOptions.url ?? '');
 }
 
 /**
  * Invitation mode's CSRF check (ADR 0036, "Cross-site request"): before anything else, a request
- * that changes something, or opens the live stream, from anywhere but the public origin is
- * refused with the fixed 403. It depends on the request alone, never on who or what it names.
+ * that changes something, opens the live stream or probes the session, from anywhere but the
+ * public origin, is refused with the fixed 403 (which never touches the cookie). It depends on
+ * the request alone, never on who or what it names.
  */
 export function registerOriginCheck(app: FastifyInstance, publicOrigin: string): void {
   app.addHook('onRequest', async (request, reply) => {

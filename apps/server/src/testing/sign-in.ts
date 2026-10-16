@@ -66,10 +66,18 @@ export interface SignInTable {
   ) => Promise<LightMyRequestResponse>;
   /** The operator's DM invitation for a campaign: its token. */
   readonly dmInvitation: (campaignId?: string, hours?: number) => Promise<string>;
-  /** `POST /auth/redeem`. */
-  readonly redeem: (token: string, caller?: Caller) => Promise<LightMyRequestResponse>;
+  /** `POST /auth/redeem`, with any further body fields (`replaceSession`). */
+  readonly redeem: (
+    token: string,
+    caller?: Caller,
+    extra?: Readonly<Record<string, unknown>>,
+  ) => Promise<LightMyRequestResponse>;
   /** Redeems a token that must work: the session cookie to send back. */
-  readonly signInWith: (token: string, caller?: Caller) => Promise<string>;
+  readonly signInWith: (
+    token: string,
+    caller?: Caller,
+    extra?: Readonly<Record<string, unknown>>,
+  ) => Promise<string>;
   /** The DM invites a player for a seat: the invitation and its token. */
   readonly invite: (
     dmCookie: string,
@@ -117,6 +125,12 @@ export class FlakyCredentialStore implements CredentialStore {
     this.#inner.revokeSession(...args);
   revokeActorSessions = (...args: Parameters<CredentialStore['revokeActorSessions']>) =>
     this.#inner.revokeActorSessions(...args);
+  revokeSessionsEverywhere = (...args: Parameters<CredentialStore['revokeSessionsEverywhere']>) =>
+    this.#inner.revokeSessionsEverywhere(...args);
+  revokeActorInvitations = (...args: Parameters<CredentialStore['revokeActorInvitations']>) =>
+    this.#inner.revokeActorInvitations(...args);
+  liveSessions = (...args: Parameters<CredentialStore['liveSessions']>) =>
+    this.#inner.liveSessions(...args);
   revokeCharacterInvitations = (
     ...args: Parameters<CredentialStore['revokeCharacterInvitations']>
   ) => this.#inner.revokeCharacterInvitations(...args);
@@ -148,6 +162,8 @@ export async function signInTable(
     readonly credentials?: CredentialStore;
     readonly engine?: WorldEngine;
     readonly ai?: ReturnType<typeof testAiGateway>;
+    /** `LTW_TRUST_PROXY`: the reverse proxy whose `X-Forwarded-For` names the client. */
+    readonly trustedProxies?: readonly string[];
   } = {},
 ): Promise<SignInTable> {
   const engine = options.engine ?? (await seededEngine());
@@ -174,6 +190,7 @@ export async function signInTable(
       authenticator: sessionAuthenticator(credentials, clock),
       logger: options.logger ?? createLogger({ service: 'sign-in-test', level: 'silent' }),
       signIn,
+      ...(options.trustedProxies === undefined ? {} : { trustedProxies: options.trustedProxies }),
     },
     { timers },
   );
@@ -191,10 +208,10 @@ export async function signInTable(
       },
       ...(body === undefined ? {} : { payload: body as Record<string, unknown> }),
     });
-  const redeem: SignInTable['redeem'] = (token, caller) =>
-    send('POST', '/auth/redeem', caller, { token });
-  const signInWith: SignInTable['signInWith'] = async (token, caller) => {
-    const response = await redeem(token, caller);
+  const redeem: SignInTable['redeem'] = (token, caller, extra) =>
+    send('POST', '/auth/redeem', caller, { token, ...extra });
+  const signInWith: SignInTable['signInWith'] = async (token, caller, extra) => {
+    const response = await redeem(token, caller, extra);
     const cookie = sessionCookieOf(response);
     if (response.statusCode !== 200 || cookie === null) {
       throw new Error(`sign-in refused: ${String(response.statusCode)}`);

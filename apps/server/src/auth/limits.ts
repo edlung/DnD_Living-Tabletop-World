@@ -1,23 +1,37 @@
+import { WindowCounter } from './window-counter.ts';
+
 /**
- * Request limits (docs/adr/0036-production-sign-in.md §6; docs/STAGE_340_DESIGN.md "Limits"):
- * in memory, per process (the alpha runs one instance), answered with 429 and a fixed body.
- * Keys are held only here: IP addresses and token prefixes never leave the process.
+ * Request limits (docs/adr/0036-production-sign-in.md §6 and its amendment 2026-10-16;
+ * docs/STAGE_340_DESIGN.md "Limits"): in memory, per process (the alpha runs one instance),
+ * answered with 429 and a fixed body. Every table is a bounded, time-bucketed counter
+ * (`window-counter.ts`): rotating addresses or token prefixes cannot grow memory or slow a call.
+ * Keys are held only here: client groups (`clientGroup`, an IPv4 address or an IPv6 /64) and
+ * token prefixes never leave the process.
  */
 export interface LimitSettings {
-  /** Redeem attempts per IP address per minute, successful or not. */
+  /** Redeem attempts per client per minute, successful or not. */
   readonly redeemPerMinute: number;
   /** Failed redeems of one token prefix within `prefixWindowMs` before that prefix is refused. */
   readonly prefixFailures: number;
   readonly prefixWindowMs: number;
-  /** Failed redeems per IP address per hour before the address is locked out. */
+  /** Failed redeems per client per hour before the client is locked out. */
   readonly failuresPerHour: number;
   readonly lockoutMs: number;
-  /** AI (intents, NPC dialogue, Chronicle) and image requests per actor per minute. */
+  /**
+   * Redeems refused, or still being decided, per minute across every client. Past it every
+   * redeem waits for the next minute, so scripted guessing from many addresses stays bounded.
+   */
+  readonly refusedRedeemsPerMinute: number;
+  /** Evidence rows of refused and limited redeems written per minute; the rest are not written. */
+  readonly evidencePerMinute: number;
+  /** AI (intents, NPC dialogue, Chronicle, AI ranking) and image requests per actor per minute. */
   readonly expensivePerMinute: number;
   /** Of those, at most this many in flight per actor. */
   readonly expensiveInFlight: number;
   /** Invitations a DM may create per hour. */
   readonly invitationsPerHour: number;
+  /** Keys each table tracks at most (clients, token prefixes, actors, DMs). */
+  readonly trackedKeys: number;
 }
 
 const MINUTE = 60_000;
@@ -29,135 +43,126 @@ export const SIGN_IN_LIMITS: LimitSettings = {
   prefixWindowMs: 15 * MINUTE,
   failuresPerHour: 20,
   lockoutMs: 15 * MINUTE,
+  refusedRedeemsPerMinute: 60,
+  evidencePerMinute: 30,
   expensivePerMinute: 20,
   expensiveInFlight: 2,
   invitationsPerHour: 20,
+  trackedKeys: 10_000,
 };
 
 /** Characters of a presented token that key its failures. */
 export const TOKEN_PREFIX_LENGTH = 8;
 
-/** Keys beyond which a window sweeps out every key whose events all expired. */
-const SWEEP_AT = 10_000;
-
-/** Events per key within a sliding window. */
-export class SlidingWindow {
-  readonly #limit: number;
-  readonly #windowMs: number;
-  readonly #events = new Map<string, number[]>();
-
-  constructor(limit: number, windowMs: number) {
-    this.#limit = limit;
-    this.#windowMs = windowMs;
-  }
-
-  /** Events of `key` still inside the window at `now`. */
-  count(key: string, now: number): number {
-    return this.#recent(key, now).length;
-  }
-
-  /** Records one event unless the window is full; whether it was recorded. */
-  take(key: string, now: number): boolean {
-    const recent = this.#recent(key, now);
-    if (recent.length >= this.#limit) return false;
-    this.#keep(key, [...recent, now], now);
-    return true;
-  }
-
-  /** Records one event whatever the count (failures), keeping at most the limit's worth. */
-  add(key: string, now: number): number {
-    const recent = [...this.#recent(key, now), now].slice(-this.#limit);
-    this.#keep(key, recent, now);
-    return recent.length;
-  }
-
-  #recent(key: string, now: number): number[] {
-    const events = this.#events.get(key) ?? [];
-    const recent = events.filter((at) => now - at < this.#windowMs);
-    if (recent.length === 0) this.#events.delete(key);
-    else if (recent.length !== events.length) this.#events.set(key, recent);
-    return recent;
-  }
-
-  #keep(key: string, events: number[], now: number): void {
-    this.#events.set(key, events);
-    if (this.#events.size <= SWEEP_AT) return;
-    for (const [other, at] of this.#events) {
-      if (at.every((time) => now - time >= this.#windowMs)) this.#events.delete(other);
-    }
-  }
-}
+/** The one key of the process-wide counters. */
+const EVERYONE = '*';
 
 /** One admitted expensive request; release it exactly when its work is over. */
 export interface Slot {
   release(): void;
 }
 
+/** Why a redeem was not admitted; for logs only, every refusal answers the same 429. */
+export type RedeemRefusal = 'locked' | 'too-fast' | 'busy' | 'untracked';
+
+/** One admitted redeem attempt: settle it once with its outcome. */
+export interface RedeemAdmission {
+  /** A failed redeem: counts toward the token prefix's refusal and the client's lockout. */
+  failed(prefix: string | null): void;
+  /** Not a refused guess (it signed in, or waits for the browser's confirmation). */
+  settled(): void;
+}
+
+export type EvidenceOutcome = 'redeemed' | 'refused' | 'limited';
+
 export class RequestLimits {
   readonly #settings: LimitSettings;
   readonly #now: () => number;
-  readonly #redeems: SlidingWindow;
-  readonly #prefixes: SlidingWindow;
-  readonly #failures: SlidingWindow;
-  readonly #lockedUntil = new Map<string, number>();
-  readonly #expensive: SlidingWindow;
+  readonly #attempts: WindowCounter;
+  readonly #prefixes: WindowCounter;
+  readonly #failures: WindowCounter;
+  readonly #refusals: WindowCounter;
+  readonly #evidence: WindowCounter;
+  readonly #limitedEvidence: WindowCounter;
+  readonly #expensive: WindowCounter;
   readonly #inFlight = new Map<string, number>();
-  readonly #invitations: SlidingWindow;
-  readonly #limitedEvidence = new SlidingWindow(1, MINUTE);
+  readonly #invitations: WindowCounter;
 
   constructor(settings: LimitSettings, now: () => number) {
     this.#settings = settings;
     this.#now = now;
-    this.#redeems = new SlidingWindow(settings.redeemPerMinute, MINUTE);
-    this.#prefixes = new SlidingWindow(settings.prefixFailures, settings.prefixWindowMs);
-    this.#failures = new SlidingWindow(settings.failuresPerHour, HOUR);
-    this.#expensive = new SlidingWindow(settings.expensivePerMinute, MINUTE);
-    this.#invitations = new SlidingWindow(settings.invitationsPerHour, HOUR);
+    const maxKeys = settings.trackedKeys;
+    const per = (limit: number, windowMs: number) =>
+      new WindowCounter({ limit, windowMs, maxKeys });
+    const everyone = (limit: number) => new WindowCounter({ limit, windowMs: MINUTE, maxKeys: 1 });
+    this.#attempts = per(settings.redeemPerMinute, MINUTE);
+    this.#prefixes = per(settings.prefixFailures, settings.prefixWindowMs);
+    this.#failures = per(settings.failuresPerHour, HOUR);
+    this.#refusals = everyone(settings.refusedRedeemsPerMinute);
+    this.#evidence = everyone(settings.evidencePerMinute);
+    this.#limitedEvidence = per(1, MINUTE);
+    this.#expensive = per(settings.expensivePerMinute, MINUTE);
+    this.#invitations = per(settings.invitationsPerHour, HOUR);
   }
 
-  /** Counts one redeem attempt from `ip`; false while the address is locked out or too fast. */
-  redeemAttempt(ip: string): boolean {
-    const now = this.#now();
-    const until = this.#lockedUntil.get(ip);
-    if (until !== undefined) {
-      if (now < until) return false;
-      this.#lockedUntil.delete(ip);
-    }
-    return this.#redeems.take(ip, now);
-  }
-
-  /** False once a token prefix failed too often recently. */
-  prefixAllowed(prefix: string): boolean {
-    return this.#prefixes.count(prefix, this.#now()) < this.#settings.prefixFailures;
-  }
-
-  /** A failed redeem: counts toward the prefix refusal and the address's lockout. */
-  redeemFailed(ip: string, prefix: string | null): void {
-    const now = this.#now();
-    if (prefix !== null) this.#prefixes.add(prefix, now);
-    if (this.#failures.add(ip, now) >= this.#settings.failuresPerHour) {
-      this.#lockedUntil.set(ip, now + this.#settings.lockoutMs);
-      if (this.#lockedUntil.size > SWEEP_AT) {
-        for (const [address, until] of this.#lockedUntil) {
-          if (until <= now) this.#lockedUntil.delete(address);
-        }
-      }
-    }
+  /** Keys tracked now across every table (memory is bounded by `trackedKeys` per table). */
+  tracked(): number {
+    return [
+      this.#attempts,
+      this.#prefixes,
+      this.#failures,
+      this.#limitedEvidence,
+      this.#expensive,
+      this.#invitations,
+    ].reduce((total, table) => total + table.size, 0);
   }
 
   /**
-   * Whether a refused attempt from `ip` may be written as evidence now: at most once a minute
-   * per address, so a flood of refusals never becomes a flood of database writes.
+   * Admits one redeem attempt from a client, or says why not: locked out, too fast, every
+   * client's refusals over budget this minute, or a client the full tables cannot follow (a
+   * redeem fails closed rather than go uncounted; everything else keeps working).
    */
-  limitedEvidence(ip: string): boolean {
-    return this.#limitedEvidence.take(ip, this.#now());
+  redeemAttempt(client: string): RedeemAdmission | RedeemRefusal {
+    const now = this.#now();
+    if (this.#lockedOut(client, now)) return 'locked';
+    if (this.#refusals.count(EVERYONE, now) >= this.#settings.refusedRedeemsPerMinute) {
+      return 'busy';
+    }
+    if (!this.#failures.accepts(client, now)) return 'untracked';
+    const taken = this.#attempts.take(client, now);
+    if (taken !== 'taken') return taken === 'limited' ? 'too-fast' : 'untracked';
+    // Counted as refused until it proves otherwise, so concurrent guesses share the budget too.
+    this.#refusals.add(EVERYONE, now);
+    return this.#admission(client, now);
+  }
+
+  /** False once a token prefix failed too often recently, or the full table cannot follow it. */
+  prefixAllowed(prefix: string): boolean {
+    const now = this.#now();
+    return (
+      this.#prefixes.accepts(prefix, now) &&
+      this.#prefixes.count(prefix, now) < this.#settings.prefixFailures
+    );
+  }
+
+  /**
+   * Whether a redeem's evidence row may be written now. Successful redeems always are (each
+   * spends an invitation); refused and limited ones share `evidencePerMinute`, and a limited
+   * client is written at most once a minute, so a flood of refusals never floods the database.
+   */
+  evidence(client: string, outcome: EvidenceOutcome): boolean {
+    if (outcome === 'redeemed') return true;
+    const now = this.#now();
+    if (this.#evidence.count(EVERYONE, now) >= this.#settings.evidencePerMinute) return false;
+    if (outcome === 'limited' && this.#limitedEvidence.take(client, now) !== 'taken') return false;
+    return this.#evidence.take(EVERYONE, now) === 'taken';
   }
 
   /** Admits one AI or image request of `actorKey`, or null over the rate or in-flight cap. */
   expensive(actorKey: string): Slot | null {
     const busy = this.#inFlight.get(actorKey) ?? 0;
     if (busy >= this.#settings.expensiveInFlight) return null;
-    if (!this.#expensive.take(actorKey, this.#now())) return null;
+    if (this.#expensive.take(actorKey, this.#now()) !== 'taken') return null;
     this.#inFlight.set(actorKey, busy + 1);
     let released = false;
     return {
@@ -173,6 +178,31 @@ export class RequestLimits {
 
   /** Counts one invitation of `dmKey`; false over the hourly limit. */
   invitation(dmKey: string): boolean {
-    return this.#invitations.take(dmKey, this.#now());
+    return this.#invitations.take(dmKey, this.#now()) === 'taken';
+  }
+
+  /** Locked out: `failuresPerHour` failures, the latest less than `lockoutMs` ago. */
+  #lockedOut(client: string, now: number): boolean {
+    if (this.#failures.count(client, now) < this.#settings.failuresPerHour) return false;
+    const latest = this.#failures.latest(client);
+    return latest !== null && now - latest < this.#settings.lockoutMs;
+  }
+
+  #admission(client: string, at: number): RedeemAdmission {
+    let open = true;
+    return {
+      failed: (prefix) => {
+        if (!open) return;
+        open = false;
+        const now = this.#now();
+        if (prefix !== null) this.#prefixes.add(prefix, now);
+        this.#failures.add(client, now);
+      },
+      settled: () => {
+        if (!open) return;
+        open = false;
+        this.#refusals.untake(EVERYONE, at);
+      },
+    };
   }
 }

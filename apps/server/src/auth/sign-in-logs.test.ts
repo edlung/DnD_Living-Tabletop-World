@@ -18,7 +18,18 @@ import { hashToken, newToken } from './tokens.ts';
  * "Log or trace reader"): a whole table's evening on a captured logger at its most verbose,
  * with refusals, limits, a live stream and a failing store, never shows a token, its hash or
  * a cookie anywhere but the one `Set-Cookie` and the one invitation link meant to carry it.
+ * Nor does any line carry a client's address or port, a cookie or an authorization header
+ * (amendment 2026-10-16): the players come direct and through the trusted proxy, over IPv4
+ * and IPv6.
  */
+const PROXY = '10.0.0.5';
+const ADDRESSES = {
+  dm: '198.51.100.23',
+  player: '2001:db8:dead:beef::17',
+  forwarded: '192.0.2.44',
+  fallback: '203.0.113.7',
+};
+
 describe('credentials never leak', () => {
   it('stay out of every log line, trace, evidence row and error body', async () => {
     const lines: string[] = [];
@@ -33,6 +44,7 @@ describe('credentials never leak', () => {
       logger,
       credentials: flaky,
       limits: { redeemPerMinute: 50 },
+      trustedProxies: [PROXY],
     });
     const responses: LightMyRequestResponse[] = [];
     const secrets: string[] = [];
@@ -42,7 +54,7 @@ describe('credentials never leak', () => {
     };
 
     const dmToken = await table.dmInvitation();
-    const dm = await table.signInWith(dmToken);
+    const dm = await table.signInWith(dmToken, { ip: ADDRESSES.dm });
     const invited = keep(
       await table.send(
         'POST',
@@ -53,11 +65,27 @@ describe('credentials never leak', () => {
     );
     const playerToken = tokenOfLink(invited.json<{ link: string }>().link);
     flaky.failures = 1;
-    keep(await table.redeem(playerToken));
-    const player = await table.signInWith(playerToken);
+    keep(await table.redeem(playerToken, { ip: ADDRESSES.player }));
+    const player = await table.signInWith(playerToken, { ip: ADDRESSES.player });
     const forged = newToken();
-    secrets.push(dmToken, playerToken, forged, dm, player);
+    secrets.push(dmToken, playerToken, forged, dm, player, 'dev-dm-ravenford');
 
+    keep(
+      await table.redeem(forged, {
+        ip: PROXY,
+        headers: { 'x-forwarded-for': ADDRESSES.forwarded },
+      }),
+    );
+    keep(
+      await table.send('GET', '/campaigns/ravenford/session', {
+        cookie: dm,
+        ip: PROXY,
+        headers: {
+          'x-forwarded-for': ADDRESSES.forwarded,
+          authorization: 'Bearer dev-dm-ravenford',
+        },
+      }),
+    );
     keep(await table.redeem(forged));
     keep(await table.redeem(playerToken));
     keep(await table.redeem(dmToken, { origin: 'https://evil.example' }));
@@ -113,6 +141,13 @@ describe('credentials never leak', () => {
     const traces = JSON.stringify([table.ai.traces.all(), table.ai.traces.starts()]);
     expect(lines.length).toBeGreaterThan(20);
     expect(lines.some((line) => line.includes('request failed'))).toBe(true);
+    expect(lines.some((line) => line.includes('incoming request'))).toBe(true);
+    for (const line of lines) {
+      for (const address of [...Object.values(ADDRESSES), PROXY, '2001:db8:dead:beef']) {
+        expect(line).not.toContain(address);
+      }
+      expect(line).not.toMatch(/remoteAddress|remotePort|"ips?"|x-forwarded-for|"host"/i);
+    }
     for (const { value, secret } of values) {
       for (const line of lines) expect(line).not.toContain(value);
       expect(evidence).not.toContain(value);

@@ -19,7 +19,7 @@ describe('loadConfig', () => {
     expect(config).toEqual({
       nodeEnv: 'development',
       logLevel: 'debug',
-      http: { host: '127.0.0.1', port: 3000 },
+      http: { host: '127.0.0.1', port: 3000, trustedProxies: [] },
       databaseUrl: DEV_DATABASE_URL,
       auth: { mode: 'dev-personas', personasFile: DEFAULT_PERSONAS_FILE },
       ai: {
@@ -65,7 +65,7 @@ describe('loadConfig', () => {
 
     expect(config.nodeEnv).toBe('production');
     expect(config.logLevel).toBe('warn');
-    expect(config.http).toEqual({ host: '0.0.0.0', port: 8080 });
+    expect(config.http).toEqual({ host: '0.0.0.0', port: 8080, trustedProxies: [] });
     expect(config.databaseUrl).toBe('postgresql://app:secret@db.internal:5432/ltw');
   });
 

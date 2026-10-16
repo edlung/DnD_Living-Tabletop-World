@@ -43,15 +43,17 @@ export const limitKey = (principal: Principal): string =>
   `${principal.campaignId ?? ''}\n${principal.actor.actorId}`;
 
 /**
- * Marks a route handler as expensive (AI or image work): its request is admitted against the
- * actor's limits when it authenticates, and its in-flight slot is released when the handler's
- * work is over, whether or not the client is still there.
+ * Marks a route handler as expensive (AI or image work), for every request or for those `when`
+ * picks from the raw request: such a request is admitted against the actor's limits when it
+ * authenticates, and its in-flight slot is released when the handler's work is over, whether or
+ * not the client is still there.
  */
 export function expensive(
   handler: (request: FastifyRequest, reply: FastifyReply) => Promise<FastifyReply>,
+  when: (request: FastifyRequest) => boolean = () => true,
 ): (request: FastifyRequest, reply: FastifyReply) => Promise<FastifyReply> {
   return async (request, reply) => {
-    EXPENSIVE.add(request);
+    if (when(request)) EXPENSIVE.add(request);
     try {
       return await handler(request, reply);
     } finally {

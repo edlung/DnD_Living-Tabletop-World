@@ -3,6 +3,7 @@ import type pg from 'pg';
 import type {
   CredentialStore,
   InvitationRecord,
+  LiveSession,
   NewInvitation,
   NewSession,
   RedeemAttempt,
@@ -204,6 +205,48 @@ export class PostgresCredentialStore implements CredentialStore {
       [campaignId, actorId, now],
     );
     return rowCount ?? 0;
+  }
+
+  async revokeSessionsEverywhere(actorId: string, now: string): Promise<number> {
+    const { rowCount } = await this.#pool.query(
+      `UPDATE ltw_auth_sessions SET revoked_at = $2 WHERE actor_id = $1 AND revoked_at IS NULL`,
+      [actorId, now],
+    );
+    return rowCount ?? 0;
+  }
+
+  async revokeActorInvitations(
+    actorId: string,
+    campaignId: string | null,
+    now: string,
+  ): Promise<number> {
+    const { rowCount } = await this.#pool.query(
+      `UPDATE ltw_auth_invitations SET revoked_at = $3
+        WHERE actor_id = $1 AND ($2::text IS NULL OR campaign_id = $2)
+          AND used_at IS NULL AND revoked_at IS NULL`,
+      [actorId, campaignId, now],
+    );
+    return rowCount ?? 0;
+  }
+
+  async liveSessions(campaignId: string, now: string): Promise<readonly LiveSession[]> {
+    // Selected without the token hash: it never leaves the database for a listing.
+    const { rows } = await this.#pool.query<Omit<SessionRow, 'token_hash' | 'revoked_at'>>(
+      `SELECT session_id, campaign_id, actor_id, invitation_id, created_at, expires_at, last_seen_at
+         FROM ltw_auth_sessions
+        WHERE campaign_id = $1 AND revoked_at IS NULL AND expires_at > $2
+        ORDER BY created_at, session_id`,
+      [campaignId, now],
+    );
+    return rows.map((row) => ({
+      sessionId: row.session_id,
+      campaignId: row.campaign_id,
+      actorId: row.actor_id,
+      invitationId: row.invitation_id,
+      createdAt: row.created_at.toISOString(),
+      expiresAt: row.expires_at.toISOString(),
+      lastSeenAt: row.last_seen_at.toISOString(),
+    }));
   }
 
   async revokeCharacterInvitations(

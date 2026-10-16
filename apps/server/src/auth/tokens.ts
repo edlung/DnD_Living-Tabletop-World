@@ -28,18 +28,31 @@ export function evidenceHasher(key: Buffer = randomBytes(32)): (value: string) =
   return (value) => createHmac('sha256', key).update(value, 'utf8').digest('hex');
 }
 
-/** The session token of a `Cookie` header, or null (absent, repeated or malformed). */
-export function sessionTokenFrom(cookie: string | undefined): string | null {
-  if (cookie === undefined) return null;
-  const values = cookie
+/** The values of every session cookie a `Cookie` header carries, in order. */
+function sessionCookieValues(cookie: string | undefined): string[] {
+  if (cookie === undefined) return [];
+  return cookie
     .split(';')
     .map((part) => part.trim())
     .filter((part) => part.startsWith(`${SESSION_COOKIE}=`))
     .map((part) => part.slice(SESSION_COOKIE.length + 1));
+}
+
+/** The session token of a `Cookie` header, or null (absent, repeated or malformed). */
+export function sessionTokenFrom(cookie: string | undefined): string | null {
+  const values = sessionCookieValues(cookie);
   // Two session cookies (a path or domain variant) are ambiguous: neither is trusted.
   const [only] = values;
   return values.length === 1 && only !== undefined && isToken(only) ? only : null;
 }
+
+/**
+ * How many session cookies a request presented, well formed or not. Only a request that
+ * presented exactly one may have it cleared: a cross-site navigation never carries the strict
+ * cookie, and clearing on its behalf would sign the browser out (ADR 0036, amendment 2026-10-16).
+ */
+export const presentedSessionCookies = (cookie: string | undefined): number =>
+  sessionCookieValues(cookie).length;
 
 /** Whether the cookie needs `Secure`: always, except for an `http://` loopback development origin. */
 export function secureCookies(publicOrigin: string): boolean {

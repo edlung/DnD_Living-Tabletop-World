@@ -5,11 +5,11 @@ import pg from 'pg';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { seededEngine } from '../testing/ravenford-app.ts';
-import { SEREN, signInTable } from '../testing/sign-in.ts';
+import { ORIGIN, OTHER_CAMPAIGN, SEREN, signInTable } from '../testing/sign-in.ts';
 import { createThrowawayDatabase, type ThrowawayDatabase } from '../testing/throwaway-database.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
 import { createWorldEngine } from '../world-engine/runtime.ts';
-import { issueDmInvitation } from './operator.ts';
+import { issueDmInvitation, parseAuthOperatorArgs, runAuthOperatorCommand } from './operator.ts';
 import { PostgresCredentialStore } from './postgres-credential-store.ts';
 import { hashToken, newToken } from './tokens.ts';
 
@@ -225,5 +225,64 @@ describe('sign-in on PostgreSQL', () => {
     });
     const rows = await pool.query('SELECT * FROM ltw_auth_invitations');
     expect(JSON.stringify(rows.rows)).not.toContain(token);
+  });
+});
+
+describe('the operator on PostgreSQL', () => {
+  it('lists live sessions without secrets, revokes the DM per campaign and an actor everywhere', async () => {
+    const engine = await seededEngine();
+    const credentials = new PostgresCredentialStore(pool);
+    const table = await signInTable({ engine, credentials });
+    const laptop = await table.signInWith(await table.dmInvitation());
+    const phone = await table.signInWith(await table.dmInvitation());
+    const elsewhere = await table.signInWith(await table.dmInvitation(OTHER_CAMPAIGN));
+    const player = await table.signInWith((await table.invite(laptop, SEREN)).token);
+    const spare = await table.dmInvitation();
+    const run = (argv: readonly string[]) =>
+      runAuthOperatorCommand(
+        engine,
+        { credentials, clock: table.clock, publicOrigin: ORIGIN },
+        parseAuthOperatorArgs(argv),
+      );
+    const status = async (cookie: string) =>
+      (await table.send('GET', '/auth/session', { cookie })).statusCode;
+    const source = ['--authorization-source', 'owner message 2026-10-16'];
+
+    const listed = (await run(['sessions', '--campaign', 'ravenford'])) as {
+      sessions: readonly { role: string; characterIds: readonly string[] }[];
+    };
+    expect(listed.sessions.map((session) => session.role).sort()).toEqual(['dm', 'dm', 'player']);
+    const text = JSON.stringify(listed);
+    for (const cookie of [laptop, phone, player]) {
+      const token = cookie.slice('ltw_session='.length);
+      expect(text).not.toContain(token);
+      expect(text).not.toContain(hashToken(token));
+    }
+    expect(text).not.toMatch(/token|hash/i);
+
+    expect(await run(['revoke-dm', '--campaign', 'ravenford', ...source])).toEqual({
+      campaignId: 'ravenford',
+      actorId: 'dm-ravenford',
+      sessionsRevoked: 2,
+      invitationsRevoked: 1,
+      authorizationSource: 'owner message 2026-10-16',
+    });
+    expect([await status(laptop), await status(phone), await status(elsewhere)]).toEqual([
+      401, 401, 200,
+    ]);
+    expect((await table.redeem(spare)).statusCode).toBe(401);
+    expect(await status(player)).toBe(200);
+
+    expect(await run(['revoke-actor', '--actor', 'dm-ravenford', ...source])).toMatchObject({
+      sessionsRevoked: 1,
+      invitationsRevoked: 0,
+    });
+    expect(await status(elsewhere)).toBe(401);
+    expect(await status(player)).toBe(200);
+    const revoked = await pool.query<{ count: string }>(
+      'SELECT count(*) FROM ltw_auth_sessions WHERE revoked_at IS NOT NULL',
+    );
+    expect(revoked.rows[0]?.count).toBe('3');
+    await table.app.close();
   });
 });

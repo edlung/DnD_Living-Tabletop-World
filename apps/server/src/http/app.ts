@@ -13,7 +13,7 @@ import type { AuthoringDependencies } from '../authoring/service.ts';
 import { registerDmRoutes, type DmDependencies } from '../dm/dm-routes.ts';
 import { registerPresenceRoutes } from '../live/presence.ts';
 import { NOBODY_CONNECTED, type PresenceSource } from '../live/registry.ts';
-import type { Logger } from '../platform/logging/logger.ts';
+import { LOG_SERIALIZERS, type Logger } from '../platform/logging/logger.ts';
 import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
 import { registerAiRoutes, type AiRouteDependencies } from './routes/ai-routes.ts';
@@ -63,6 +63,11 @@ export interface AppDependencies {
    * Absent with development personas, which behave as before.
    */
   readonly signIn?: SignInDependencies;
+  /**
+   * `LTW_TRUST_PROXY`: the reverse proxy's addresses or ranges (Fastify `trustProxy`), so
+   * `request.ip` is the client its `X-Forwarded-For` names; empty or absent trusts none.
+   */
+  readonly trustedProxies?: readonly string[];
 }
 
 /** The request header that carries the credential: responses vary on it. */
@@ -73,10 +78,13 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   // Request limits apply in invitation mode (ADR 0036 §6); routes read them from their deps.
   const deps = input.signIn ? { ...input, limits: input.signIn.limits } : input;
   const vary = credentialHeaderOf(deps);
-  // Typed as Fastify's base logger so routes share one instance type.
-  const loggerInstance: FastifyBaseLogger = deps.logger;
+  // Typed as Fastify's base logger so routes share one instance type. Request lines carry the
+  // method, URL and status only: never the client's address, a header or a cookie.
+  const loggerInstance: FastifyBaseLogger = deps.logger.child({}, { serializers: LOG_SERIALIZERS });
+  const proxies = deps.trustedProxies ?? [];
   const app = Fastify({
     loggerInstance,
+    trustProxy: proxies.length > 0 ? [...proxies] : false,
     genReqId: () => randomUUID(),
     requestIdHeader: false,
     logController: new LogController({ requestIdLogLabel: 'requestId' }),

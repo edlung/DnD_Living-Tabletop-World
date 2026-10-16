@@ -5,6 +5,7 @@ import {
 } from '../http/auth.ts';
 import type { AppConfig } from '../platform/config/config.ts';
 import type { Logger } from '../platform/logging/logger.ts';
+import { isLoopbackHost } from '../platform/net/addresses.ts';
 import type { CredentialStore } from './credential-store.ts';
 import { RequestLimits, SIGN_IN_LIMITS } from './limits.ts';
 import {
@@ -19,7 +20,8 @@ import { evidenceHasher } from './tokens.ts';
 /**
  * The server's authentication by mode (docs/adr/0036-production-sign-in.md §5):
  * `invitations` (session cookies, sign-in routes, limits), `dev-personas` (bearer personas,
- * refused under `NODE_ENV=production` here as well as by configuration) or `disabled`.
+ * refused under `NODE_ENV=production` or off a loopback `HTTP_HOST` here as well as by
+ * configuration) or `disabled`.
  */
 export interface Authentication {
   readonly authenticator: Authenticator;
@@ -27,7 +29,7 @@ export interface Authentication {
 }
 
 export async function composeAuthentication(
-  config: Pick<AppConfig, 'nodeEnv' | 'auth'>,
+  config: Pick<AppConfig, 'nodeEnv' | 'auth' | 'http'>,
   credentials: () => CredentialStore,
   clock: AuthClock = systemAuthClock,
 ): Promise<Authentication> {
@@ -48,8 +50,12 @@ export async function composeAuthentication(
       };
     }
     case 'dev-personas':
-      if (config.nodeEnv === 'production' || config.auth.personasFile === null) {
-        throw new Error('development personas are refused in production');
+      if (
+        config.nodeEnv === 'production' ||
+        !isLoopbackHost(config.http.host) ||
+        config.auth.personasFile === null
+      ) {
+        throw new Error('development personas are refused outside a loopback development server');
       }
       return { authenticator: await loadDevPersonaAuthenticator(config.auth.personasFile) };
     case 'disabled':

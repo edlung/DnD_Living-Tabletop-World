@@ -42,6 +42,9 @@ export interface SessionRecord {
 
 export type NewSession = Omit<SessionRecord, 'lastSeenAt' | 'revokedAt'>;
 
+/** A live session as the operator lists it: never its token or a hash of it. */
+export type LiveSession = Omit<SessionRecord, 'tokenHash' | 'revokedAt'>;
+
 export interface RedeemAttempt {
   readonly at: string;
   readonly outcome: 'redeemed' | 'refused' | 'limited';
@@ -76,6 +79,15 @@ export interface CredentialStore {
   revokeSession(tokenHash: string, now: string): Promise<boolean>;
   /** Revokes every unrevoked session of an actor in a campaign; how many. */
   revokeActorSessions(campaignId: string, actorId: string, now: string): Promise<number>;
+  /** Revokes every unrevoked session of an actor in every campaign ("sign out everywhere"). */
+  revokeSessionsEverywhere(actorId: string, now: string): Promise<number>;
+  /**
+   * Revokes every open (unused, unrevoked) invitation that signs in this actor, in one campaign
+   * or in all (`null`); how many. A DM invitation names its actor from the start.
+   */
+  revokeActorInvitations(actorId: string, campaignId: string | null, now: string): Promise<number>;
+  /** The campaign's live sessions (unrevoked, unexpired at `now`), oldest first. */
+  liveSessions(campaignId: string, now: string): Promise<readonly LiveSession[]>;
   /** Revokes every open (unused, unrevoked) invitation for a character; how many. */
   revokeCharacterInvitations(campaignId: string, characterId: string, now: string): Promise<number>;
   revokeInvitation(
@@ -188,6 +200,50 @@ export class InMemoryCredentialStore implements CredentialStore {
       }
     }
     return Promise.resolve(count);
+  }
+
+  revokeSessionsEverywhere(actorId: string, now: string): Promise<number> {
+    let count = 0;
+    for (const stored of this.#sessions.values()) {
+      if (stored.actorId === actorId && !stored.revokedAt) {
+        this.#sessions.set(stored.sessionId, { ...stored, revokedAt: now });
+        count += 1;
+      }
+    }
+    return Promise.resolve(count);
+  }
+
+  revokeActorInvitations(actorId: string, campaignId: string | null, now: string): Promise<number> {
+    let count = 0;
+    for (const stored of this.#invitations.values()) {
+      if (
+        stored.actorId === actorId &&
+        (campaignId === null || stored.campaignId === campaignId) &&
+        stored.usedAt === null &&
+        stored.revokedAt === null
+      ) {
+        this.#invitations.set(stored.invitationId, { ...stored, revokedAt: now });
+        count += 1;
+      }
+    }
+    return Promise.resolve(count);
+  }
+
+  liveSessions(campaignId: string, now: string): Promise<readonly LiveSession[]> {
+    return Promise.resolve(
+      [...this.#sessions.values()]
+        .filter((stored) => stored.campaignId === campaignId && live(stored, now))
+        .sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))
+        .map((stored) => ({
+          sessionId: stored.sessionId,
+          campaignId: stored.campaignId,
+          actorId: stored.actorId,
+          invitationId: stored.invitationId,
+          createdAt: stored.createdAt,
+          expiresAt: stored.expiresAt,
+          lastSeenAt: stored.lastSeenAt,
+        })),
+    );
   }
 
   revokeCharacterInvitations(

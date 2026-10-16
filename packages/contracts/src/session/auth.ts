@@ -22,9 +22,17 @@ export const SESSION_DAYS = 14;
 /** The session cookie (`HttpOnly; SameSite=Strict; Path=/api`, `Secure` outside localhost). */
 export const SESSION_COOKIE = 'ltw_session';
 
-/** `POST /auth/redeem`: the token from the link's fragment, in a JSON body. */
+/**
+ * `POST /auth/redeem`: the token from the link's fragment, in a JSON body. A browser that is
+ * already signed in (a live session whose actor is still a member) gets 409 `CONFLICT` and the
+ * invitation stays unused, unless `replaceSession: true` confirms replacing that session: the
+ * join page asks the person first, then sends the confirmation.
+ */
 export const redeemRequestSchema = z
-  .object({ token: z.string().regex(CREDENTIAL_TOKEN_PATTERN) })
+  .object({
+    token: z.string().regex(CREDENTIAL_TOKEN_PATTERN),
+    replaceSession: z.boolean().optional(),
+  })
   .strict();
 export type RedeemRequest = z.infer<typeof redeemRequestSchema>;
 

@@ -174,10 +174,18 @@ describe('sessions', () => {
     expect((await table.send('POST', '/auth/sign-out', { cookie: player })).statusCode).toBe(401);
   });
 
-  it('replace the browser’s earlier session when it signs in again', async () => {
+  it('replace the browser’s earlier session when it signs in again and confirms it', async () => {
     const table = await signInTable();
     const first = await table.signInWith(await table.dmInvitation());
-    const second = await table.signInWith(await table.dmInvitation(), { cookie: first });
+    // Without the confirmation: 409, nothing spent (sign-in-cookies.test.ts).
+    expect((await table.redeem(await table.dmInvitation(), { cookie: first })).statusCode).toBe(
+      409,
+    );
+    const second = await table.signInWith(
+      await table.dmInvitation(),
+      { cookie: first },
+      { replaceSession: true },
+    );
     expect((await table.send('GET', '/auth/session', { cookie: first })).statusCode).toBe(401);
     expect((await table.send('GET', '/auth/session', { cookie: second })).statusCode).toBe(200);
   });
