@@ -169,4 +169,82 @@ describe('operator CLI arguments', () => {
       ]),
     ).toThrow(OperatorUsageError);
   });
+
+  it('lists orphaned image reservations by explicit age, read-only', () => {
+    expect(parseOperatorArgs(['image-reservations', '--older-than-minutes', '30'])).toEqual({
+      kind: 'image-reservations',
+      olderThanMinutes: 30,
+    });
+    expect(parseOperatorArgs(['image-reservations', '--older-than-minutes', '0'])).toMatchObject({
+      olderThanMinutes: 0,
+    });
+    expect(() => parseOperatorArgs(['image-reservations'])).toThrow(
+      /--older-than-minutes is required/,
+    );
+    for (const age of ['-1', '1.5', '15m', '1e3', '1000000', '']) {
+      expect(() => parseOperatorArgs(['image-reservations', '--older-than-minutes', age])).toThrow(
+        OperatorUsageError,
+      );
+    }
+    // Listing authorizes nothing and records nothing: it takes no authorization.
+    expect(() =>
+      parseOperatorArgs(['image-reservations', '--older-than-minutes', '30', ...AUTH]),
+    ).toThrow(/does not take --owner/);
+  });
+
+  it('settles an orphaned image reservation whole, or at an explicit amount, with authorization', () => {
+    const charge = '0F3C9A2E-5B1D-4E8F-9B06-7C4D2E1A8F53';
+    expect(parseOperatorArgs(['image-reservation-settle', '--charge', charge, ...AUTH])).toEqual({
+      kind: 'image-reservation-settle',
+      chargeId: charge.toLowerCase(),
+      chargeMicros: null,
+      authorization: { ownerId: 'owner', authorizedOn: '2026-10-11', source: 'owner-message-1' },
+    });
+    expect(
+      parseOperatorArgs([
+        'image-reservation-settle',
+        '--charge',
+        charge,
+        '--charge-micros',
+        '0',
+        ...AUTH,
+      ]),
+    ).toMatchObject({ chargeMicros: 0n });
+    expect(
+      parseOperatorArgs([
+        'image-reservation-settle',
+        '--charge',
+        charge,
+        '--charge-micros',
+        '41200',
+        ...AUTH,
+      ]),
+    ).toMatchObject({ chargeMicros: 41_200n });
+    for (const amount of ['-5', '1.5', '$0.04', '5e6', '']) {
+      expect(() =>
+        parseOperatorArgs([
+          'image-reservation-settle',
+          '--charge',
+          charge,
+          '--charge-micros',
+          amount,
+          ...AUTH,
+        ]),
+      ).toThrow(OperatorUsageError);
+    }
+    for (const id of ['r#0', 'not-a-uuid', `${charge}0`, '']) {
+      expect(() =>
+        parseOperatorArgs(['image-reservation-settle', '--charge', id, ...AUTH]),
+      ).toThrow(OperatorUsageError);
+    }
+    expect(() => parseOperatorArgs(['image-reservation-settle', '--charge', charge])).toThrow(
+      /--owner is required|--authorized-on is required|--authorization-source is required/,
+    );
+    expect(() => parseOperatorArgs(['image-reservation-settle', ...AUTH])).toThrow(
+      /--charge is required/,
+    );
+    expect(() =>
+      parseOperatorArgs(['image-reservation-settle', '--charge', charge, '--micros', '5', ...AUTH]),
+    ).toThrow(/does not take --micros/);
+  });
 });

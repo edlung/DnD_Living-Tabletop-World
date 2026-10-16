@@ -1,6 +1,11 @@
 import type pg from 'pg';
 
 import { imageBudgetStatus, setImageCeiling } from '../../images/ledger.ts';
+import {
+  ORPHAN_AFTER_MINUTES,
+  openImageReservations,
+  settleOrphanedReservation,
+} from '../../images/ledger-operator.ts';
 import type { OperatorCommand } from './operator-args.ts';
 import { OperatorStore } from './operator-store.ts';
 import { accountingStatus } from './postgres-budget-store.ts';
@@ -17,6 +22,9 @@ import { explainStops } from './stop-diagnostics.ts';
  * account for the operator deciding on a clearance, and is never shown to a campaign (B2).
  * `image-budget-set` records the image ceiling (docs/adr/0035-images.md §2); `status` adds the
  * image ledger's counters, amounts included, for the operator only (startup logs keep counts).
+ * `image-reservations` (read-only) lists unsettled image reservations older than the given minutes;
+ * `image-reservation-settle` closes an orphaned one, whole unless an amount is given
+ * (`src/images/ledger-operator.ts`, ADR 0035 amendment 2026-10-16).
  */
 export async function runOperatorCommand(
   pool: pg.Pool,
@@ -70,5 +78,14 @@ export async function runOperatorCommand(
           command.authorization,
         ),
       };
+    case 'image-reservations':
+      return {
+        olderThanMinutes: command.olderThanMinutes,
+        // Only reservations at least this old can be settled: a younger one may be a running job's.
+        settleableAfterMinutes: ORPHAN_AFTER_MINUTES,
+        reservations: await openImageReservations(pool, command.olderThanMinutes),
+      };
+    case 'image-reservation-settle':
+      return { settled: await settleOrphanedReservation(pool, command) };
   }
 }

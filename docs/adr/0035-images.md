@@ -77,3 +77,21 @@ approval; storage and backup must be decided for production.
     that produced the committed picture (provider `curated`, the manifest's hash) and retries a
     failed job under the next derived ID (at most three); the server's asset worker leaves the
     import's requests (`<campaignId>.curated.…`) alone.
+- 2026-10-16 (Stage 330, the live smoke and orphaned reservations):
+  - **Orphaned reservations.** A job that stops between its reservation and its settlement (a
+    crash, a killed process; the restarted worker runs the job again under a new reservation)
+    leaves the reservation open, counted whole. Only the operator closes one, with the owner's
+    recorded authorization: `pnpm ai:operator image-reservations --older-than-minutes <n>` lists
+    unsettled reservations (read-only); `image-reservation-settle --charge <id>` settles one as the
+    outcome `orphaned`, at the whole reservation (treated as spent) unless `--charge-micros` gives
+    the amount the provider's own records show. A reservation younger than the longest generation
+    bound plus margin (15 minutes) is refused, so a running job's reported cost always wins.
+    Migration 0012 adds the outcome and the authorization table; each requires the other.
+  - **Live smoke.** `pnpm images:smoke --generator <the server's generator>` drives a running
+    local server over HTTP as the development DM and player: Tomas Reed is authored (or found),
+    the portrait request the authoring commit itself queues is followed (a second request would be
+    a second paid call), the job, picture and ledger record are read back, the player sees nothing
+    before the DM approves and the portrait after. It never causes a text call that could be paid:
+    while a play session is open no AI request is sent and the DM writes the proposal the local
+    interpreter makes of the sentence; without one, the server can only use its local provider,
+    and the trace must show that.

@@ -141,6 +141,11 @@ export const DEFAULT_DEEPSEEK_MODEL = 'deepseek-flash';
 export const DEFAULT_ASSET_TIMEOUT_MS = 60_000;
 /** An image model through OpenRouter can take minutes; its default bound is longer. */
 export const DEFAULT_REMOTE_IMAGE_TIMEOUT_MS = 180_000;
+/**
+ * The longest `LTW_ASSET_TIMEOUT_MS`. No image job outlives it, so an image reservation much older
+ * than this is orphaned (`src/images/ledger-operator.ts`).
+ */
+export const MAX_ASSET_TIMEOUT_MS = 600_000;
 
 export type Env = Readonly<Record<string, string | undefined>>;
 
@@ -233,7 +238,7 @@ const envSchema = z.object({
   ),
   LTW_ASSET_TIMEOUT_MS: z.preprocess(
     emptyAsUndefined,
-    z.coerce.number().int().min(1_000).max(600_000).optional(),
+    z.coerce.number().int().min(1_000).max(MAX_ASSET_TIMEOUT_MS).optional(),
   ),
   LTW_IMAGE_GENERATOR: z.preprocess(
     emptyAsUndefined,

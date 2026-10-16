@@ -15,8 +15,10 @@ worker and content stores stay in `src/assets/`. Gate 06 reviews these surfaces
 | Curated style references, downscaled once at startup                                | `style-references.ts`                           |
 | Re-encoding to WebP ≤ 1,536 px and ≤ 1.5 MB; figure to alpha, battle map to 4:3     | `reencode.ts`                                   |
 | Image ledger: ceiling revisions, reservations, settlements, operator status         | `ledger.ts` (migration `0011_image_budget.sql`) |
+| Orphaned reservations: listing, the operator's settlement, one request's charges    | `ledger-operator.ts` (migration `0012_…`)       |
 | The curated set: manifest schema, hash check, `curated` generator                   | `curated-set.ts`                                |
 | Importing the curated set through real commands, idempotently                       | `curated-import.ts`                             |
+| The live smoke (`pnpm images:smoke`): Tomas's portrait end to end over HTTP         | `../testing/image-smoke.ts`, `image-smoke/`     |
 
 Configuration (`src/platform/config/config.ts`, `.env.example`):
 
@@ -29,6 +31,15 @@ Configuration (`src/platform/config/config.ts`, `.env.example`):
 - The ceiling is never configuration: `pnpm ai:operator image-budget-set --micros <n> --owner …
 --authorized-on … --authorization-source …` (zero stops all calls); `pnpm ai:operator status`
   shows the counters (`images`). Without a stored ceiling every in-play call is denied.
+- Orphaned reservations (a job that stopped between its reservation and its settlement; the
+  restarted worker runs the job again under a new reservation): `pnpm ai:operator
+image-reservations --older-than-minutes <n>` lists the unsettled ones (read-only);
+  `pnpm ai:operator image-reservation-settle --charge <chargeId> [--charge-micros <n>] --owner …
+--authorized-on … --authorization-source …` closes one at the whole reservation (treated as spent)
+  or at the amount the provider's own records show. Only reservations older than
+  `ORPHAN_AFTER_MINUTES` (15: the longest generation bound plus margin) can be settled, so a
+  running job keeps its own reported cost. The settlement's outcome is `orphaned`, with the
+  owner's authorization beside it (migration 0012 enforces both ways).
 
 Rules:
 
@@ -54,12 +65,25 @@ Rules:
   retries a failed one under the next derived command ID (at most three attempts), so reruns stay
   idempotent. The server's asset worker leaves the import's requests (`isCuratedRequest`) alone;
   still run the seed while the server is stopped.
+- The live smoke (`pnpm images:smoke`, `../testing/image-smoke.ts`) drives an already running server
+  (`AUTH_MODE=dev-personas`) over HTTP as the development DM and player: the DM authors Tomas Reed
+  (or finds him), the server's worker generates his canonical portrait, the smoke reads the job,
+  the picture and the ledger record (read-only, from `DATABASE_URL`), checks that the player sees
+  nothing before the DM approves and the portrait after. It reads no key and no env file, sends no
+  AI request while a play session is open (a DM intent then could reach a paid text route; the DM
+  writes the proposal `interpretLocally` makes instead), and refuses before anything is requested
+  when the server is not local, other asset work is pending, or, for `openrouter-openai`, no
+  ceiling covers one call. With `openrouter-openai` it causes exactly one paid image call: run it
+  only with the owner's authorization. Exit 0 passed, 1 failed, 2 refused. Tests:
+  `image-smoke/run.test.ts`, `checks.test.ts` (the production app in memory, `harness.ts`).
 - Tests (provider stubbed at the HTTP boundary): `openrouter-generator.test.ts` (request shape,
   answers, failure mapping, the key), `openrouter-spending.test.ts` (reservation, settlement,
   release), `reencode.test.ts`, `in-play.test.ts` (through the asset worker: the stored canonical
   reference as the input image, a denied budget), `curated-import.test.ts` (idempotence,
   provenance, retries), `ledger.integration.test.ts` (ceiling, settle, append-only, the lock,
-  races, operator CLI), `images.integration.test.ts` (the lineage written before purposes, the
+  races, operator CLI), `ledger-operator.integration.test.ts` (orphaned reservations: listing,
+  settlement whole or at an amount, refusals, the authorization's constraints, the CLI),
+  `images.integration.test.ts` (the lineage written before purposes, the
   curated import on PostgreSQL); fixtures `../testing/image-provider.ts`. Purposes:
   `packages/domain/src/assets/purposes.test.ts`, `purposes.property.test.ts`,
   `packages/domain/src/visual/figures.test.ts`, `../http/image-purposes.test.ts`,
