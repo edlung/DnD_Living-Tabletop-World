@@ -1,0 +1,74 @@
+### deploy/scripts/watch.sh (disk limit 90 % on this machine: the development disk is fuller than a server s) (2026-10-16T09:48:26Z)
+$ WATCH_DISK_PERCENT=90 deploy/scripts/watch.sh; echo "watch exit status: $?"
+2026-10-16T09:48:27Z ltw-watch ok
+watch exit status: 0
+[exit 0]
+
+### deploy/scripts/logs.sh: errors in the last hour (2026-10-16T09:48:27Z)
+$ deploy/scripts/logs.sh --since 1h --errors | cut -c1-300 | tail -n 20; echo "logs exit status: ${PIPESTATUS[0]}"
+postgres-1  | 2026-10-16 09:46:07.388 UTC [264] FATAL:  terminating connection due to administrator command
+postgres-1  | 2026-10-16 09:46:07.388 UTC [265] FATAL:  terminating connection due to administrator command
+postgres-1  | 2026-10-16 09:46:07.388 UTC [249] FATAL:  terminating connection due to administrator command
+logs exit status: 0
+[exit 0]
+
+### The operator s session listing after the journeys (no token or hash) (2026-10-16T09:48:28Z)
+$ cd deploy && docker compose exec -T server node apps/server/dist/auth/operator-cli.js sessions --campaign ravenford
+{"campaignId":"ravenford","sessions":[]}
+[exit 0]
+
+### deploy/verify/retention-check.sh (2026-10-16T09:48:28Z)
+$ deploy/verify/retention-check.sh
+{"time":"2026-10-16T09:48:29Z","service":"ltw-backup","level":"info","msg":"retention: kept 29, removed 462"}
+kept 21 of 480 regular, 5 of 8 pre-deploy, 3 of 3 pre-restore
+retention check passed
+[exit 0]
+
+### deploy/verify/watch-check.sh (2026-10-16T09:48:30Z)
+$ deploy/verify/watch-check.sh
+==> no restore drill recorded
+     2026-10-16T09:48:30Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:48:30Z ltw-watch ALARM disk /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/backups at 85% (limit 0%)
+     2026-10-16T09:48:31Z ltw-watch ALARM no restore drill recorded (deploy/scripts/restore-drill.sh, weekly; /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.107agFz9an/drill.log)
+PASS  alarm: no restore drill recorded
+==> the last drill passed 9 days ago
+     2026-10-16T09:48:31Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:48:31Z ltw-watch ALARM disk /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/backups at 85% (limit 0%)
+     2026-10-16T09:48:31Z ltw-watch ALARM the last restore drill is 9 days old (2026-10-07T09:48:30Z; limit 8 days)
+PASS  alarm: the last restore drill is 9 days old
+==> the last drill failed now
+     2026-10-16T09:48:32Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:48:32Z ltw-watch ALARM disk /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/backups at 85% (limit 0%)
+     2026-10-16T09:48:32Z ltw-watch ALARM the last restore drill failed (2026-10-16T09:48:30Z, ltw-20261016T000000Z.dump)
+PASS  alarm: the last restore drill failed
+==> the last drill passed now
+     2026-10-16T09:48:32Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:48:32Z ltw-watch ALARM disk /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/backups at 85% (limit 0%)
+PASS  no restore drill alarm after a drill that passed now
+==> the webhook
+     curl calls: 15, of them alarms posted: 11; received: 11
+PASS  every alarm reached the webhook as JSON {"text": …}
+PASS  the webhook URL is in no curl call's arguments
+PASS  curl read the webhook URL from its standard input
+==> watch checks passed
+[exit 0]
+
+### deploy/verify/preflight-check.sh (2026-10-16T09:48:33Z)
+$ deploy/verify/preflight-check.sh
+==> Docker Engine 27 (a stub answers `docker version`; any other call fails and is recorded)
+PASS  deploy.sh refuses Docker Engine 27 before any other Docker call
+     deploy.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  ci.sh refuses Docker Engine 27 before any other Docker call
+     ci.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  this host runs Docker Engine 28 or later
+==> networks: a throwaway project ltwpreflight64397 whose backend gives the host an address
+     ltwpreflight64397_backend: true  [{"Subnet":"172.29.0.0/16","Gateway":"172.29.0.1"}]
+     ltwpreflight64397_data: true isolated [{"Subnet":"172.30.0.0/16"}]
+PASS  a backend network with a host address is refused
+     preflight-check.sh: network ltwpreflight64397_backend gives the host an address (true  [{"Subnet":"172.29.0.0/16","Gateway":"172.29.0.1"}]): the host could reach the server inside the range it trusts; Docker Engine 28+ with gateway mode isolated is required (deploy/RUNBOOK.md section 1)
+PASS  isolated internal backend and data networks pass
+==> this deployment (ltw-stage350f)
+PASS  this deployment's backend and data networks give the host no address
+==> preflight checks passed
+[exit 0]
+

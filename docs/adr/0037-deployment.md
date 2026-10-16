@@ -198,3 +198,62 @@ failed before it (evidence `reports/evidence/stage-350/review-fixes/`).
   standard input), `smoke.sh` (the server holds no other setting of `deploy/.env`, the backup
   service runs the checkout's script), `retention-check.sh` (protected dumps); `ci.sh` adds the
   drill on the empty first dump, a second deploy and both new checks.
+
+## 2026-10-16 — Full product notes (technical)
+
+Stages 320 (client), 340 (sign-in with its browser screens) and 330 (images) are underneath; the
+deployment runs the complete product as production runs it. Evidence
+`reports/evidence/stage-350/full-product/`.
+
+- **Image spending in the spend report.** `ai:operator spend` (and `deploy/scripts/spend.sh`) adds
+  `images`: the Stage 330 ledger's ceiling (null: none stored, so no call), spent (settled charges
+  as settled, open reservations whole), held, remaining (never below zero), the counts, and every
+  unsettled reservation with its age and `settleableAfterMinutes`, read in the same READ COMMITTED
+  transaction as the AI counters (`readImageBudgetStatus`, `readOpenImageReservations`).
+  Operator-only; startup logs keep counts.
+- **Curated pictures in the review campaign.** The seeder imports the curated set after the world
+  (`importCuratedSet`: the DM's requests and approvals, the `curated` generator over the committed
+  files, idempotent): 51 pictures from 45 files. A campaign seeded by an earlier image gets them
+  by running `review-campaign.sh` again; the running server's worker leaves the import's requests
+  alone (Stage 330), so the server need not stop.
+- **The image generator in compose.** `LTW_IMAGE_GENERATOR` (default `placeholder`) and
+  `LTW_IMAGE_MODEL` now reach the server (before, `openrouter-openai` could not be chosen on the
+  deployment); `smoke.sh` knows them. Enabling it is the operator's: the ceiling first
+  (`image-budget-set`), then the key and the generator (runbook section 8). Never enabled here;
+  what it loads at start (sharp, the style references) was run in the server image with no
+  network. The former runbook stop ("empty `OPENROUTER_API_KEY`") would keep a server configured
+  for `openrouter-openai` from starting (the configuration requires the key): the stop is the
+  placeholder generator with the empty key, and the record is a ceiling of 0.
+- **Caching of picture bytes.** Content is addressed by hash, but serving it is an authorization
+  decision per perspective (ADR 0022 §6; ADR 0026 §6: no persistent browser cache), so the
+  server's `Cache-Control: no-store`, `Vary: Cookie`, `nosniff` and sandbox policy stay and the
+  proxy adds no caching to `/api` (nor compression). The client keeps each picture's object URL for
+  the life of a world screen, so a screen fetches a picture once. A long-lived private cache would
+  let a shared browser keep a picture after sign-out or retraction; revisit only by ADR.
+- **Browser journeys against the deployment.** `playwright.deploy.config.ts` and `tests/deploy/`,
+  run by `deploy/verify/browser-journey.sh` and `ci.sh`, never by `pnpm test:e2e`. Chromium trusts
+  Caddy's local CA for the run alone: `openssl` verifies the intermediate against the root and the
+  served chain against the root, then Chromium gets `--ignore-certificate-errors-spki-list` with
+  the intermediate's SPKI (honoured with the profile directory Playwright passes) and
+  `--host-resolver-rules=MAP <PUBLIC_HOST> 127.0.0.1`; no trust store changes, no
+  `ignoreHTTPSErrors`. The operator's DM link comes from `auth:operator dm-invite` in the server
+  container. A picture is known by the Blob behind its object URL (read as the page makes it: a
+  `fetch` of a `blob:` URL is refused by `connect-src 'self'`). Tokens: yes/no assertions only, no
+  trace, screenshot or video, the output directory removed afterwards.
+- **Finding: an eval probe under the policy.** zod, in the client through `@ltw/contracts`, probes
+  `Function('')` when it builds its first object schema; the page's policy allows no eval, so every
+  page load reported a `script-src` violation (zod catches the refusal, the browser still reports
+  it). The client makes zod jitless before any schema is built (`apps/web/src/schema-config.ts`,
+  the first import of `main.tsx`; `zod` is now a direct dependency of `@ltw/web`, at the version
+  it already had). The browser journey fails on any violation.
+- **Order of the checks.** `ci.sh` runs the image checks and the browser journey (four redeems)
+  right after the smoke checks and, before the HTTP journeys spend their eight, waits until those
+  four left the limit's window (66 s: a minute and one slice); on a slow runner the drills, the
+  second deploy and the backup checks in between have taken that long already (found when a fast
+  machine's run met 429 within the window). The HTTP journey and the browser journey free
+  Elowen's seat when an earlier run left it taken, and the browser journey walks her back to the
+  market square when a run left her elsewhere.
+- **CI.** The deployment job installs the repository's dependencies and Playwright's Chromium
+  before `ci.sh`; its limit is 40 minutes (`ci.sh` took 2.5 minutes on the development machine
+  with a warm build cache; a hosted runner builds both images without one). The main job's limit
+  is 45 minutes (as on Stage 340's branch).

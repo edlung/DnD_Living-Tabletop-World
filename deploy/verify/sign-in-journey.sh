@@ -47,8 +47,10 @@ asked() { case $played in '200 accepted '* | *' rejected NO_EFFECT') return 0 ;;
 listing_clean() {
   ! grep -qE '"(link|token)"' "$WORK/response.body" && ! holds "$WORK/response.body" "$player_token"
 }
+# The journey's DM and player sessions are listed (other live sessions of the campaign, e.g. a run
+# that stopped half-way, may be listed too), without a token or a hash.
 sessions_clean() {
-  [ "$(jq -r '[.sessions[].role] | sort | join(" ")' "$WORK/sessions.json")" = 'dm player' ] &&
+  [ "$(jq -r '[.sessions[].role] | unique | join(" ")' "$WORK/sessions.json")" = 'dm player' ] &&
     ! holds "$WORK/sessions.json" "$dm_session" && ! holds "$WORK/sessions.json" "$player_session"
 }
 refused_alike() { [ "$1" = 401 ] && no_cookie_set; }
@@ -111,6 +113,11 @@ ready=$(arrival dm-stream '^event: ready' 1 15) && say "DM live stream ready aft
   check 'the DM live stream opens' false
 
 say 'the DM invites a player for Elowen'
+get dm "/campaigns/$CAMPAIGN/invitations" >/dev/null
+if [ "$(field "[.members[] | select(.characterId == \"$ELOWEN\")] | length")" != 0 ]; then
+  say 'a player holds Elowen from a run that stopped half-way: the DM revokes that access first'
+  post dm "/campaigns/$CAMPAIGN/members/$ELOWEN/revoke" '{}' >/dev/null
+fi
 status=$(post dm "/campaigns/$CAMPAIGN/invitations" "{\"characterId\":\"$ELOWEN\",\"expiresHours\":1}")
 printf '     %s %s\n' "$status" "$(redact <"$WORK/response.body")"
 check 'invitation created (201)' is "$status" 201

@@ -1,0 +1,15 @@
+### deploy/verify/proxy-contract.sh fb35fa6f7bbc (2026-10-16T09:46:05Z)
+$ deploy/verify/proxy-contract.sh fb35fa6f7bbc
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+[exit 0]
+

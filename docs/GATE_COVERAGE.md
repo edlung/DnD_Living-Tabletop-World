@@ -33,7 +33,8 @@ Every handoff/review records due surfaces, actual evidence, required-but-unavail
 | 350 | Deployed build: TLS, server reachable only through the proxy, secrets from the environment, a restore drill that replays to the same world | Gate 06 / Stage 355 |
 | 350 (proxy) | Only the proxy publishes ports (80/443); the server, database and backups are unreachable from outside; HTTP redirects to HTTPS; TLS 1.2+ only; `/api` reaches the server without its prefix, with `Origin`, `Sec-Fetch-*` and credentials unchanged; the live stream passes unbuffered and uncompressed | Gate 06 / Stage 355 |
 | 350 (trust boundary) | The server shares the internal `backend` network (no host address) with the proxy alone, listens only there, and is unreachable from the host and from the edge network; Caddy replaces a client's `X-Forwarded-For` and the server (Stage 340's `LTW_TRUST_PROXY` = the backend range) trusts it from that range alone, so a forged header changes no per-address limit | Gate 06 / Stage 355 |
-| 350 (sign-in on the deployment) | Through the real proxy: the operator's DM link, a DM's player invitation, Russian play, revocation that closes the player's live stream within one cycle, used/revoked/forged links failing with one fixed 401, the 409 of a signed-in browser, cross-site refusals, sign-out; no token or session cookie in any container log | Gate 06 / Stage 355 |
+| 350 (sign-in on the deployment) | Through the real proxy: the operator's DM link, a DM's player invitation, Russian play, revocation that closes the player's live stream within one cycle, used/revoked/forged links failing with one fixed 401, the 409 of a signed-in browser, cross-site refusals, sign-out; no token or session cookie in any container log; the same in Russian browsers (join page, Players sheet, "You are signed out" through the live stream) with no policy violation | Gate 06 / Stage 355 |
+| 350 (images on the deployment) | Through the real proxy a player gets exactly the approved pictures of what the character knows or perceives (authorized bytes: `no-store`, `nosniff`, the sandbox policy, `Vary: Cookie`, never cached or compressed by the proxy); an unapproved or unseen picture is the 404 of a hash nobody stored; the placeholder generator by default, no image call without the operator's ceiling; the operator's spend report shows the image ledger | Gate 06 / Stage 355 |
 | 350 (headers) | Every response carries CSP (`frame-ancestors 'none'`, `base-uri 'none'`), `Referrer-Policy: no-referrer`, `nosniff`, `X-Frame-Options: DENY`; a policy the server set (asset content) is kept, never weakened; HSTS only with a public certificate; no `Server`/`Via` | Gate 06 / Stage 355 |
 | 350 (readiness) | `/readyz` reports ready only when the database answers, no migration of the build is pending and the build can read the whole event store; it never reveals why; health checks gate the proxy's start | Gate 06 / Stage 355 |
 | 350 (backup/restore) | Dumps are checksummed and verified before use; the restore drill replays every campaign stream of a restored dump through the World Engine and matches the live state digests at the same versions, failing on any difference; a rollback can never start an image on history it cannot read | Gate 06 / Stage 355 |
@@ -674,3 +675,24 @@ deployment only, no server): rows 350 (trust boundary) and 350 (sign-in on the d
   (`LTW_NETWORKS_DIGEST`): Compose otherwise restarts an unchanged container on a recreated
   network without its service name.
 - Transcripts: `reports/evidence/stage-350/part-b/` (index `00-index.txt`).
+
+Stage 350 full product introduction evidence (ADR 0037, "Full product notes"; Stages 320, 340 and
+330 underneath; local deployment only, no server): rows 350 (sign-in on the deployment) and 350
+(images on the deployment).
+- **Pictures through the proxy** (`deploy/verify/images.sh`): the review campaign holds the 51
+  curated pictures approved for players (`review-campaign.ts` now imports them; test beside it);
+  every picture of what Elowen knows or perceives answers 200 with the server's headers kept by
+  Caddy and bytes matching the hash, every other curated picture 404, an unapproved candidate the
+  404 of an unknown hash (the DM gets it, sandboxed); the placeholder generator, no ceiling,
+  nothing spent. Changed operator surface: `ai:operator spend` adds the image ledger
+  (`spend-report.integration.test.ts`); compose passes `LTW_IMAGE_GENERATOR` (default
+  `placeholder`) and `LTW_IMAGE_MODEL`.
+- **Browser journeys against the deployment** (`tests/deploy/`, `playwright.deploy.config.ts`,
+  `deploy/verify/browser-journey.sh`): Chromium through Caddy over HTTPS with the local CA
+  trusted for the run only; the operator's DM link, "Take your seat", the Players sheet, the
+  player's market square with its curated picture and figures, one action, the revocation shown
+  through the live stream with no other request, sign-out; no policy violation, no token in a URL
+  or outside the redeem, no credential in the proxy's or the server's log.
+- **Client under the policy**: zod is jitless in the browser (`apps/web/src/schema-config.ts`), so
+  no page asks for eval; no route, projection or rule changed.
+- Transcripts: `reports/evidence/stage-350/full-product/` (index `00-index.txt`).

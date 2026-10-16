@@ -1,0 +1,183 @@
+### The dumps so far (the first regular one was taken when the backup service first started, before any campaign) (2026-10-16T09:46:32Z)
+$ cd deploy && docker compose exec -T backup ls -1 /backups && docker compose exec -T postgres psql -U ltw -d ltw -At -c 'SELECT stream_id, version FROM ltw_event_streams' -c 'SELECT count(*) AS pictures, pg_size_pretty(sum(octet_length(bytes))) FROM ltw_asset_contents'
+SHA256SUMS
+ltw-20261016T094425Z.dump
+ltw-20261016T094438Z.dump
+ltw-predeploy-20261016T094449Z.dump
+ravenford|315
+46|12 MB
+[exit 0]
+
+### Restore drill on the first dump (ltw-20261016T094425Z.dump: no campaign in it): must be refused as empty (2026-10-16T09:46:33Z)
+$ deploy/scripts/restore-drill.sh ltw-20261016T094425Z.dump 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Created|Starting|Started|Waiting|Healthy|Stopping|Stopped|Removing|Removed)'; echo "drill exit status: ${PIPESTATUS[0]}"
+==> dump: ltw-20261016T094425Z.dump (taken 2026-10-16T09:44:25Z)
+{"time":"2026-10-16T09:46:33Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261016T094425Z.dump"}
+==> throwaway database
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-16T09:46:37.774Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-16T09:46:37.808Z","service":"ltw-migrate","migration":"0001_world_event_store","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.817Z","service":"ltw-migrate","migration":"0002_ai_traces","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.821Z","service":"ltw-migrate","migration":"0003_authoring_proposals","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.824Z","service":"ltw-migrate","migration":"0004_asset_contents","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.828Z","service":"ltw-migrate","migration":"0005_ai_accounting","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.857Z","service":"ltw-migrate","migration":"0006_ai_outcome_window","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.858Z","service":"ltw-migrate","migration":"0007_ai_outcome_code","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.859Z","service":"ltw-migrate","migration":"0008_ai_attempt_responses","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.861Z","service":"ltw-migrate","migration":"0009_dm_substitutions","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.863Z","service":"ltw-migrate","migration":"0010_auth","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.870Z","service":"ltw-migrate","migration":"0011_image_budget","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.878Z","service":"ltw-migrate","migration":"0012_image_orphaned_settlements","msg":"applying migration"}
+{"level":"info","time":"2026-10-16T09:46:37.884Z","service":"ltw-migrate","applied":["0001_world_event_store","0002_ai_traces","0003_authoring_proposals","0004_asset_contents","0005_ai_accounting","0006_ai_outcome_window","0007_ai_outcome_code","0008_ai_attempt_responses","0009_dm_substitutions","0010_auth","0011_image_budget","0012_image_orphaned_settlements"],"alreadyApplied":0,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_auth_attempts 0
+ltw_auth_invitations 0
+ltw_auth_sessions 0
+ltw_authoring_revisions 0
+ltw_commands 0
+ltw_dm_substitutions 0
+ltw_event_streams 0
+ltw_events 0
+ltw_image_budget 0
+ltw_image_charges 0
+ltw_image_operator_settlements 0
+ltw_image_settlements 0
+ltw_schema_migrations 12
+==> replay of every restored campaign stream
+{"streams":[]}
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[],"failures":["empty"]}
+restore-drill.sh: restore drill FAILED: a restored campaign differs from the live one, the restore is empty, or it lacks a live campaign (see failures)
+drill exit status: 1
+[exit 0]
+
+### The same with --allow-empty (the operator says the database was empty then): passes, since the campaign was created after the dump (2026-10-16T09:46:39Z)
+$ deploy/scripts/restore-drill.sh --allow-empty ltw-20261016T094425Z.dump 2>&1 | grep -E '^==>|"verdict"|"compared"|passed|failed'; echo "drill exit status: ${PIPESTATUS[0]}"
+==> dump: ltw-20261016T094425Z.dump (taken 2026-10-16T09:44:25Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[],"failures":[]}
+==> restore drill passed
+drill exit status: 0
+[exit 0]
+
+### A fresh dump of the world with its pictures, then the restore drill on it (the newest): every stream replays to the same digest (2026-10-16T09:46:45Z)
+$ set -o pipefail; deploy/scripts/backup-now.sh 2>&1 | grep -v '^{' && deploy/scripts/restore-drill.sh 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Created|Starting|Started|Waiting|Healthy|Stopping|Stopped|Removing|Removed)'
+ltw-20261016T094645Z.dump
+==> dump: ltw-20261016T094645Z.dump (taken 2026-10-16T09:46:45Z)
+{"time":"2026-10-16T09:46:47Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261016T094645Z.dump"}
+==> throwaway database
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-16T09:46:51.335Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-16T09:46:51.356Z","service":"ltw-migrate","applied":[],"alreadyApplied":12,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 46
+ltw_auth_attempts 4
+ltw_auth_invitations 6
+ltw_auth_sessions 4
+ltw_authoring_revisions 0
+ltw_commands 305
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 315
+ltw_image_budget 0
+ltw_image_charges 0
+ltw_image_operator_settlements 0
+ltw_image_settlements 0
+ltw_schema_migrations 12
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":315,"digest":"sha256:f5916b39c235eebfeb11d6e02fa8685c06209b460a932c9491b827b6dfb0f8ea","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":315,"status":"match","expected":"sha256:f5916b39c235eebfeb11d6e02fa8685c06209b460a932c9491b827b6dfb0f8ea","actual":"sha256:f5916b39c235eebfeb11d6e02fa8685c06209b460a932c9491b827b6dfb0f8ea","head":315}],"unrestored":[],"failures":[]}
+==> restore drill passed
+[exit 0]
+
+### A real restore of that dump by the runbook (deploy/scripts/restore.sh ltw-20261016T094645Z.dump): the pictures come back with the world; the drill proves it (2026-10-16T09:46:52Z)
+$ set -o pipefail; cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -At -c 'SELECT count(*), sum(octet_length(bytes)) FROM ltw_asset_contents' && cd .. && deploy/scripts/restore.sh ltw-20261016T094645Z.dump 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Created|Starting|Started|Waiting|Healthy|Stopping|Stopped|Removing|Removed|Running|Recreate|Recreated)' && cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -At -c 'SELECT count(*), sum(octet_length(bytes)) FROM ltw_asset_contents' -c 'SELECT stream_id, version FROM ltw_event_streams'
+46|12915127
+==> dump: ltw-20261016T094645Z.dump
+{"time":"2026-10-16T09:46:54Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261016T094645Z.dump"}
+==> the current state, kept as a protected dump
+{"time":"2026-10-16T09:46:55Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-prerestore-20261016T094654Z.dump (14869417 bytes)"}
+{"time":"2026-10-16T09:46:56Z","service":"ltw-backup","level":"info","msg":"retention: kept 5, removed 0"}
+==> the state before the restore: ltw-prerestore-20261016T094654Z.dump
+==> stopping the backup service, the proxy and the server
+==> the database, empty
+==> restoring ltw-20261016T094645Z.dump (one transaction)
+==> starting every service (migrations bring an older dump forward)
+==> dump: ltw-20261016T094645Z.dump (taken 2026-10-16T09:46:45Z)
+{"time":"2026-10-16T09:47:09Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261016T094645Z.dump"}
+==> throwaway database
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-16T09:47:13.506Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-16T09:47:13.541Z","service":"ltw-migrate","applied":[],"alreadyApplied":12,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 46
+ltw_auth_attempts 4
+ltw_auth_invitations 6
+ltw_auth_sessions 4
+ltw_authoring_revisions 0
+ltw_commands 305
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 315
+ltw_image_budget 0
+ltw_image_charges 0
+ltw_image_operator_settlements 0
+ltw_image_settlements 0
+ltw_schema_migrations 12
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":315,"digest":"sha256:f5916b39c235eebfeb11d6e02fa8685c06209b460a932c9491b827b6dfb0f8ea","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":315,"status":"match","expected":"sha256:f5916b39c235eebfeb11d6e02fa8685c06209b460a932c9491b827b6dfb0f8ea","actual":"sha256:f5916b39c235eebfeb11d6e02fa8685c06209b460a932c9491b827b6dfb0f8ea","head":315}],"unrestored":[],"failures":[]}
+==> restore drill passed
+==> restored ltw-20261016T094645Z.dump; the state before it: ltw-prerestore-20261016T094654Z.dump
+46|12915127
+ravenford|315
+[exit 0]
+

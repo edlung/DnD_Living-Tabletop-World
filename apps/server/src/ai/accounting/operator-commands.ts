@@ -26,7 +26,8 @@ import { explainStops } from './stop-diagnostics.ts';
  * `image-reservations` (read-only) lists unsettled image reservations older than the given minutes;
  * `image-reservation-settle` closes an orphaned one, whole unless an amount is given
  * (`src/images/ledger-operator.ts`, ADR 0035 amendment 2026-10-16).
- * `spend` (read-only) prints the spending counters (`spend-report.ts`, docs/adr/0037-deployment.md).
+ * `spend` (read-only) prints the spending counters, the AI providers' and the image ledger's with
+ * its unsettled reservations (`spend-report.ts`, docs/adr/0037-deployment.md).
  */
 export async function runOperatorCommand(
   pool: pg.Pool,

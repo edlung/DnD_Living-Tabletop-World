@@ -158,30 +158,39 @@ the domain; until then the stack is verified locally (section 11).
 7. **Кампания проверки и вход / Review campaign and sign-in.** RU: кампания проверки (Gate 06) —
    русский Равенфорд («Пропавший караван», кампания `ravenford`), заведённый через World Engine;
    место, которое фикстура отдала персоне разработки (Эловен), DM освобождает командой
-   `ReleaseCharacter`, так что игроков приглашает DM. Скрипт повторяем (кампания не дублируется,
-   занятые места не отбираются) и каждый раз печатает **новую** ссылку DM — один раз: это секрет,
-   передайте её DM личным каналом и не сохраняйте в журналах, тикетах и чатах с историей.
-   Изображения кураторов придут со Stage 330. Одна база — один Равенфорд: английский сид на ней
-   отказывает (`COMMAND_ID_CONFLICT`). EN: the review campaign (Gate 06) is the Russian Ravenford
-   ("Пропавший караван", campaign `ravenford`) created through the World Engine; the seat the
-   fixture gave a development persona (Elowen) is released by the DM's `ReleaseCharacter`, so the
-   DM invites the players. The script can be rerun (the campaign is never duplicated, taken seats
-   are never taken back) and prints a **new** DM link each time, once: it is a secret, hand it to
-   the DM over a private channel and keep it out of logs, tickets and chats that keep history.
-   Curated images arrive with Stage 330. One database holds one Ravenford: the English seed is
-   refused on it (`COMMAND_ID_CONFLICT`).
+   `ReleaseCharacter`, так что игроков приглашает DM. Сид приносит и картины кураторов (ADR 0035):
+   51 картину (45 файлов `fixtures/ravenford-ru/assets/`) DM запрашивает и одобряет для игроков, а
+   делает их генератор `curated` из закоммиченных файлов — без вызова провайдера; работающий сервер
+   эти запросы не трогает. Скрипт повторяем (кампания и картины не дублируются, занятые места не
+   отбираются) и каждый раз печатает **новую** ссылку DM — один раз: это секрет, передайте её DM
+   личным каналом и не сохраняйте в журналах, тикетах и чатах с историей. Одна база — один
+   Равенфорд: английский сид на ней отказывает (`COMMAND_ID_CONFLICT`). EN: the review campaign
+   (Gate 06) is the Russian Ravenford ("Пропавший караван", campaign `ravenford`) created through
+   the World Engine; the seat the fixture gave a development persona (Elowen) is released by the
+   DM's `ReleaseCharacter`, so the DM invites the players. The seed brings the curated pictures
+   too (ADR 0035): 51 pictures (45 files of `fixtures/ravenford-ru/assets/`) the DM requests and
+   approves for players, made by the `curated` generator from the committed files, with no
+   provider call; the running server leaves those requests alone. The script can be rerun (the
+   campaign and its pictures are never duplicated, taken seats are never taken back) and prints a
+   **new** DM link each time, once: it is a secret, hand it to the DM over a private channel and
+   keep it out of logs, tickets and chats that keep history. One database holds one Ravenford: the
+   English seed is refused on it (`COMMAND_ID_CONFLICT`).
 
    ```bash
    deploy/scripts/review-campaign.sh --expires-hours 72   # the seed, then the DM link (JSON line)
    ```
 
-   RU: DM открывает ссылку, затем приглашает игроков: ссылка игрока на свободного персонажа (по
-   умолчанию 72 ч, до 7 суток), одноразовая. Экраны браузера для приглашений (вход по ссылке, лист
-   «Игроки») придут со Stage 340 часть B; до тех пор те же шаги по HTTP показывает
-   `deploy/verify/sign-in-journey.sh`. EN: the DM opens the link, then invites the players: a
-   single-use player link for a free character (72 h by default, 7 days at most). The browser
-   screens for invitations (the join page, the Players sheet) arrive with Stage 340 part B; until
-   then `deploy/verify/sign-in-journey.sh` shows the same steps over HTTP.
+   RU: DM открывает ссылку и нажимает «Занять место»; в листе «Игроки» выбирает свободного
+   персонажа и создаёт ссылку-приглашение (на 1, 3 или 7 дней, одноразовая; показывается один раз),
+   игрок открывает её и тоже нажимает «Занять место». Там же DM видит игроков за столом и отзывает
+   доступ («Отозвать доступ»): экран игрока сразу показывает «Вы вышли». Так это проверяет в
+   браузере `deploy/verify/browser-journey.sh`, по HTTP — `deploy/verify/sign-in-journey.sh`
+   (раздел 11). EN: the DM opens the link and presses "Take your seat"; in the Players sheet the DM
+   chooses a free character and creates an invitation link (1, 3 or 7 days, single-use; shown
+   once), and the player opens it and takes the seat too. There the DM sees the players at the
+   table and revokes access ("Revoke access"): the player's screen shows "You are signed out" at
+   once. `deploy/verify/browser-journey.sh` checks this in a browser, `deploy/verify/sign-in-journey.sh`
+   over HTTP (section 11).
 
 8. **Наблюдение / Monitoring.** RU: включите `watch.sh` (раздел 9) и еженедельную тренировку
    восстановления (раздел 5) и проведите первую тренировку сейчас: `watch.sh` тревожит, пока ни
@@ -428,17 +437,100 @@ dc up -d --force-recreate --wait server
 dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js account-revise \
   --account <id> --disable --owner <owner> --authorized-on <YYYY-MM-DD> \
   --authorization-source <reference>
-deploy/scripts/spend.sh               # disabledAccounts, openHolds, today's spend
+deploy/scripts/spend.sh               # status and spend (below): AI and images
 ```
 
-## 8. Остановить расходы на изображения · Stop image spending
+**Отчёт о расходах / The spend report** (`deploy/scripts/spend.sh`; read-only, operator only;
+integer microdollars as strings). RU: две строки JSON. `status` — счётчики: открытые удержания,
+действующие остановки, незавершённые запросы, отключённые счета и одобрения, и `images`. `spend` —
+по каждому счёту ИИ траты за сегодня (UTC-день базы) и всего, открытые удержания, потолок и
+переключатель; по каждому одобрению траты против потолка этапа; и `images` — журнал картин:
+`ceilingMicros` (null — потолка нет, вызовов нет), `spentMicros` (списанное как списано, открытые
+резервы целиком), `heldMicros` (открытые резервы), `remainingMicros` (что потолок ещё допускает,
+не меньше нуля), `charges`, `unsettled` и `unsettledReservations` — каждый открытый резерв с
+кампанией, моделью, суммой и возрастом (`ageMinutes`; старше `settleableAfterMinutes` — брошенный,
+раздел 8). EN: two JSON lines. `status` holds the counts: open holds, active stops, incomplete
+requests, disabled accounts and approvals, and `images`. `spend` gives each AI billing account's
+spend today (the database's UTC day) and in total, its open holds, ceiling and switch; each
+approval's spend against its stage ceiling; and `images`, the picture ledger: `ceilingMicros`
+(null: no ceiling, no call), `spentMicros` (settled charges as settled, open reservations whole),
+`heldMicros` (open reservations), `remainingMicros` (what the ceiling still admits, never below
+zero), `charges`, `unsettled` and `unsettledReservations`, each open reservation with its campaign,
+model, amount and age (`ageMinutes`; older than `settleableAfterMinutes` is orphaned, section 8).
 
-**RU.** Сразу: очистите `OPENROUTER_API_KEY` в `deploy/.env` и пересоздайте сервер (задания
-изображений падают с `UNAVAILABLE`, показывается нейтральная замена). Записью оператора (Stage
-330, после слияния): `operator-cli.js image-budget-set --micros 0 …` с источником разрешения
-владельца. **EN.** Immediately: empty `OPENROUTER_API_KEY` and recreate the server (image jobs fail
-as `UNAVAILABLE`, the neutral fallback shows). As an operator record (Stage 330, once merged):
-`operator-cli.js image-budget-set --micros 0 …` with the owner's authorization source.
+## 8. Изображения в игре: включить, ограничить, остановить · Images in play: enable, cap, stop
+
+**RU.** По умолчанию сервер работает с генератором `placeholder` (`LTW_IMAGE_GENERATOR` пуст или
+`placeholder`): картины кампании проверки приходят из набора кураторов (раздел 1, шаг 7), а
+запросы DM в игре дают нейтральные заготовки — провайдер не вызывается и ничего не тратится.
+Картины, которые DM заказывает в игре, рисует модель OpenAI через OpenRouter (решение владельца
+Q6), только в пределах потолка, который записывает оператор с разрешением владельца; ни одна
+настройка его не поднимает. Каждый вызов сначала резервирует худший случай модели ($0,50 для
+`openai/gpt-5.4-image-2`, $0,20 для `openai/gpt-5-image-mini`), затем списывает стоимость, которую
+сообщил провайдер (или весь резерв, если она неизвестна); без записанного потолка или с потолком 0
+вызовов нет. Игрок видит картину только после одобрения DM.
+
+**EN.** By default the server runs the `placeholder` generator (`LTW_IMAGE_GENERATOR` empty or
+`placeholder`): the review campaign's pictures come from the curated set (section 1, step 7), and
+the DM's requests in play make neutral placeholders: no provider is called and nothing is spent.
+Pictures the DM asks for in play are painted by an OpenAI model through OpenRouter (owner decision
+Q6), only within the ceiling the operator records with the owner's authorization; no setting can
+raise it. Each call first reserves its model's worst case ($0.50 for `openai/gpt-5.4-image-2`,
+$0.20 for `openai/gpt-5-image-mini`), then settles to the cost the provider reported (or the whole
+reservation when it is unknown); with no ceiling recorded, or a ceiling of 0, no call is made.
+Players see a picture only once the DM approved it.
+
+**Включить / Enable** (RU: сначала потолок, затем ключ и генератор в `deploy/.env` редактором,
+никогда не в командной строке; EN: the ceiling first, then the key and the generator in
+`deploy/.env` with an editor, never on a command line):
+
+```bash
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js image-budget-set \
+  --micros 5000000 --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>
+# deploy/.env: LTW_IMAGE_GENERATOR=openrouter-openai, OPENROUTER_API_KEY=<key>,
+#              LTW_IMAGE_MODEL= (empty: openai/gpt-5.4-image-2; or openai/gpt-5-image-mini)
+dc up -d --force-recreate --wait server
+dc logs --no-log-prefix server | grep '"msg":"image generator"'   # "generator":"openrouter-openai"
+deploy/scripts/spend.sh                                            # images: the ceiling, nothing spent yet
+```
+
+RU: если в журнале старта есть `no image ceiling stored`, потолка нет и каждый вызов отклоняется.
+EN: `no image ceiling stored` in the start log means no ceiling: every call is refused.
+
+**Остановить / Stop.** RU: сразу — `LTW_IMAGE_GENERATOR=placeholder` (или пусто) и пустой
+`OPENROUTER_API_KEY` в `deploy/.env`, затем `dc up -d --force-recreate --wait server` (только
+пустой ключ при `openrouter-openai` сервер не запустит: конфигурация требует ключ). Записью
+оператора, которая переживает перезапуски и замену ключа: потолок 0 — вызовов нет, задания
+падают с `UNAVAILABLE`, показывается нейтральная замена. EN: at once: `LTW_IMAGE_GENERATOR=placeholder`
+(or empty) and an empty `OPENROUTER_API_KEY` in `deploy/.env`, then `dc up -d --force-recreate --wait
+server` (an empty key alone with `openrouter-openai` stops the server from starting: the
+configuration requires the key). As an operator record that survives restarts and a new key: a
+ceiling of 0 — no call, jobs fail as `UNAVAILABLE`, the neutral fallback shows.
+
+```bash
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js image-budget-set \
+  --micros 0 --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>
+```
+
+**Брошенные резервы / Orphaned reservations.** RU: задание, остановленное между резервом и
+списанием (сбой, убитый процесс), оставляет резерв открытым — он считается потраченным целиком.
+`spend.sh` перечисляет все открытые резервы с возрастом; старше `settleableAfterMinutes` (15 минут)
+оператор закрывает их с разрешением владельца: целиком или суммой из записей провайдера. EN: a job
+stopped between its reservation and its settlement (a crash, a killed process) leaves the
+reservation open, counted as spent in full. `spend.sh` lists every open reservation with its age;
+once older than `settleableAfterMinutes` (15 minutes) the operator closes it with the owner's
+authorization: whole, or at the amount the provider's records show.
+
+```bash
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js image-reservations --older-than-minutes 15
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js image-reservation-settle \
+  --charge <chargeId> [--charge-micros <amount>] --owner <owner> --authorized-on <YYYY-MM-DD> \
+  --authorization-source <reference>
+```
+
+RU: картины лежат в базе (`ltw_asset_contents`, до 2 МБ каждая) и входят в каждую копию: набор
+кураторов добавляет около 15 МБ. EN: pictures live in the database (`ltw_asset_contents`, up to
+2 MB each) and are in every dump: the curated set adds about 15 MB.
 
 ## 9. Журналы и тревоги · Logs and alarms
 
@@ -496,13 +588,23 @@ operator's. A daily job once the target exists:
 ## 11. Локальная проверка · Local verification
 
 **RU.** Так Stage 350 проверен на машине разработчика (доказательства:
-`reports/evidence/stage-350/`, часть B — `part-b/`): `deploy/.env` с `PUBLIC_HOST=localhost`,
+`reports/evidence/stage-350/`, часть B — `part-b/`, полный продукт — `full-product/`): `deploy/.env` с `PUBLIC_HOST=localhost`,
 `PUBLIC_ORIGIN=https://localhost`, `TLS_MODE=internal`, портами на `127.0.0.1`; стек ровно такой,
 как в эксплуатации (вход по приглашениям, один `compose.yaml`). Нужны `curl`, `jq`, `python3`,
 `openssl`. Скрипты `deploy/verify/`:
 
 - `smoke.sh` — TLS, заголовки, клиент, готовность, опубликованные порты, пользователи и корневые ФС;
 - `proxy-contract.sh <tag>` — что прокси пересылает (заглушка вместо сервера);
+- `images.sh` — картины через прокси: генератор `placeholder`, потолка нет, ничего не потрачено
+  (`spend.sh`); все 51 картина набора одобрены для игроков; игрок получает каждую, которую видит
+  Эловен (200, `image/webp`, `nosniff`, `no-store`, политика `sandbox`, байты по хешу), и 404 на
+  остальные; неодобренная картина (заготовка DM) — 404, как несуществующий хеш; без ключей в журналах;
+- `browser-journey.sh` — тот же путь в браузере (Playwright, Chromium через Caddy, по-русски):
+  ссылка DM от оператора, «Занять место», лист «Игроки», игрок видит площадь с картиной и фигурами,
+  действует, DM отзывает — «Вы вышли» по живому потоку; ни одного нарушения политики, токена вне
+  погашения или в журналах. Локальному CA Caddy доверяет только этот запуск (ключ его
+  промежуточного сертификата), ничего не ставится в хранилища доверия. Нужны `pnpm install` и
+  `pnpm exec playwright install chromium`;
 - `sign-in-journey.sh` — вход по-русски по HTTP двумя «браузерами» (cookie): ссылка DM от
   оператора, приглашение игрока, игра, отзыв (поток игрока закрывается сразу), использованные и
   поддельные ссылки, 409, межсайтовые запросы, выход; ни одного токена в журналах;
@@ -514,24 +616,36 @@ operator's. A daily job once the target exists:
 - `watch-check.sh` — тревоги тренировки восстановления и адрес вебхука только на стандартном вводе
   `curl` (временный приёмник; запускать там, где вебхук не задан);
 - `retention-check.sh` (с защищёнными копиями); `ci.sh` делает всё это на чистой копии (так же
-  работает CI), включая тренировку на пустой первой копии и вторую выкатку.
+  работает CI), включая тренировку на пустой первой копии и вторую выкатку; без браузера —
+  `LTW_CI_BROWSER=skip` (он об этом скажет).
 
 Ограничения: каждый из входов тратит запросы погашения этого хоста (10 в минуту, блокировка на
-15 минут после 20 отказов в час): `sign-in-journey.sh` — 7, `live-stream.sh` — 1,
-`trust-boundary.sh` — до 11 (запускайте последним); повтор — через минуту, после 20 отказов в час —
+15 минут после 20 отказов в час): `images.sh` — 2, `browser-journey.sh` — 2, `sign-in-journey.sh` —
+7, `live-stream.sh` — 1, `trust-boundary.sh` — до 11 (запускайте последним); повтор — через минуту, после 20 отказов в час —
 перезапуск сервера (`dc restart server`; ограничения в памяти). **Docker Desktop** (macOS, Windows)
 доставляет все подключения к опубликованным портам от адреса шлюза сети `edge`: локально все
 браузеры — один клиент для ограничений по адресу. На Linux-сервере внешние клиенты сохраняют свои
 адреса (кроме запросов с самого хоста и IPv6 без IPv6 в `edge`, раздел 1 шаг 5).
 
 **EN.** How Stage 350 was verified on a development machine (evidence:
-`reports/evidence/stage-350/`, part B in `part-b/`): `deploy/.env` with `PUBLIC_HOST=localhost`,
+`reports/evidence/stage-350/`, part B in `part-b/`, the full product in `full-product/`): `deploy/.env` with `PUBLIC_HOST=localhost`,
 `PUBLIC_ORIGIN=https://localhost`, `TLS_MODE=internal` and ports on `127.0.0.1`; the stack exactly
 as production runs it (invitation sign-in, `compose.yaml` alone). Needs `curl`, `jq`, `python3`,
 `openssl`. Scripts in `deploy/verify/`:
 
 - `smoke.sh`: TLS, headers, client, readiness, published ports, users and root filesystems;
 - `proxy-contract.sh <tag>`: what the proxy forwards (a stand-in for the server);
+- `images.sh`: the pictures through the proxy: the `placeholder` generator, no ceiling, nothing
+  spent (`spend.sh`); all 51 curated pictures approved for players; the player gets every one
+  Elowen sees (200, `image/webp`, `nosniff`, `no-store`, the `sandbox` policy, bytes matching the
+  hash) and a 404 for the rest; an unapproved picture (the DM's placeholder) is a 404 like a hash
+  nobody stored; no credential in the logs;
+- `browser-journey.sh`: the same path in a browser (Playwright, Chromium through Caddy, in
+  Russian): the operator's DM link, "Take your seat", the Players sheet, the player sees the market
+  square with its picture and figures and acts, the DM revokes: "You are signed out" through the
+  live stream; no policy violation, no token outside the redeem or in the logs. Caddy's local CA is
+  trusted by this run alone (the key of its intermediate); nothing enters a trust store. Needs
+  `pnpm install` and `pnpm exec playwright install chromium`;
 - `sign-in-journey.sh`: the Russian sign-in over HTTP with two "browsers" (cookie jars): the
   operator's DM link, a player invitation, play, revocation (the player's stream closes at once),
   used and forged links, 409, cross-site requests, sign-out; no token in any log;
@@ -543,11 +657,12 @@ as production runs it (invitation sign-in, `compose.yaml` alone). Needs `curl`, 
 - `watch-check.sh`: the restore drill alarms, and the webhook URL only on `curl`'s standard input
   (a throwaway receiver; run it where no webhook is configured);
 - `retention-check.sh` (with protected dumps); `ci.sh` runs all of it on a clean checkout (as CI
-  does), including a drill on the empty first dump and a second deploy.
+  does), including a drill on the empty first dump and a second deploy; without a browser,
+  `LTW_CI_BROWSER=skip` (it says so).
 
 Limits: each sign-in spends this host's redeem attempts (10 a minute, a 15-minute lockout after
-20 refusals in an hour): `sign-in-journey.sh` 7, `live-stream.sh` 1, `trust-boundary.sh` up to 11
-(run it last); rerun after a minute, and after 20 refusals in an hour restart the server
+20 refusals in an hour): `images.sh` 2, `browser-journey.sh` 2, `sign-in-journey.sh` 7,
+`live-stream.sh` 1, `trust-boundary.sh` up to 11 (run it last); rerun after a minute, and after 20 refusals in an hour restart the server
 (`dc restart server`; the limits live in memory). **Docker Desktop** (macOS, Windows) delivers every
 connection to a published port from the `edge` network's gateway address: locally all browsers
 are one client to the per-address limits. On a Linux server outside clients keep their addresses

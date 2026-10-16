@@ -1,0 +1,494 @@
+Stage 350 full product: development findings (see 00-index.txt)
+
+The development stack before the final run (project ltw-stage350f, the same ports and settings):
+first install a0da82a7648c, upgrade to cb438f34da4d (first working commit), later f62f87ff27f1 (the
+client fix below). These are the transcripts of the image checks and the browser journey while
+they were being made to pass; each finding names what failed and what changed. The working
+commits cb438f3, f62f87f, aa301a5, fb35fa6 and 6ee2fda are kept in the local branch
+backup/stage-350-full-product-6ee2fda. Nothing in them is a secret: links and cookies never reach
+the output.
+
+======== deploy/verify/images.sh during development ========
+
+### deploy/verify/images.sh: the review campaign s pictures through Caddy (2026-10-16T09:10:50Z)
+$ deploy/verify/images.sh
+==> no image provider: the placeholder generator, no ceiling stored, nothing spent
+PASS  the server runs LTW_IMAGE_GENERATOR=placeholder
+     start: {"msg":"image generator","generator":"placeholder","model":null}
+PASS  the server's start named the placeholder
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  spend.sh: no image ceiling, nothing spent, held or reserved
+     ltw-server:cb438f34da4d, no network: sharp 0.34.4, libvips 8.17.2; style references (bytes): {"person":[71624,84172],"place":[139586,98800],"object":[130910,112660]}
+PASS  the in-play generator can start in this image (sharp, style references; not enabled)
+==> the DM signs in (the operator link) and invites a player for Elowen; the player joins
+     DM and player signed in (cookies; tokens never printed)
+==> the curated set in the campaign (the DM's lineage)
+     51 curated pictures approved for players (manifest: 51 for 45 files)
+PASS  every curated picture is approved for players
+PASS  their bytes are the manifest's files
+PASS  requested by the DM (none by authoring)
+==> the player reads what Elowen knows or perceives, through Caddy
+     visible to Elowen: 32 pictures; not: 13; the market square shows market-square.webp, Mira stands as mira-vale--figure.webp
+PASS  the market square's picture is a curated one Elowen sees
+PASS  Mira's figure is a curated one Elowen sees
+     sha256:03ea6bcad62f4877a16c03117031f8974e0315e265d646e004edb2a76e1232de:
+       HTTP/2 200 
+       cache-control: no-store
+       content-disposition: inline
+       content-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+       content-type: image/webp
+       cross-origin-opener-policy: same-origin
+       permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+       referrer-policy: no-referrer
+       vary: Cookie
+       x-content-type-options: nosniff
+       x-frame-options: DENY
+       content-length: 385508
+       
+     served as checked: 32 of 32; none other
+PASS  each: 200 image/webp, nosniff, no-store, sandbox policy, Vary Cookie, uncompressed, SHA-256 = hash
+     curated pictures of what Elowen neither knows nor perceives: 13 of 13 are 404; none other
+PASS  every other curated picture is a 404 for the player
+==> the page's policy lets the client show them (object URLs)
+     default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+PASS  the page's img-src allows 'self' and blob:
+==> an unapproved picture: the DM requests one, the placeholder worker makes it
+PASS  RequestAsset accepted
+     candidate: none within 60 s
+FAIL  a candidate by the placeholder, not approved
+     player: 400 {"code":"INVALID_REQUEST","message":"The request is invalid"}
+FAIL  the player gets 404 for the unapproved hash
+FAIL  ... the same as for a hash nobody stored
+     DM: 400 application/json; charset=utf-8, default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'
+FAIL  the DM reads it, under the sandbox policy
+FAIL  the DM discards it
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  the ledger is still empty (the placeholder spends nothing)
+==> the DM revokes the player and signs out
+PASS  the player is revoked
+PASS  the player's next picture request is 401
+PASS  the DM signs out (204)
+PASS  none of the 4 credentials in 395 log lines
+images.sh: 5 check(s) failed
+[exit 1]
+
+### Finding: the check looked the candidate up as <commandId>#0, but the command route keeps a DM s command ID under the actor (http:<actor>:<commandId>#0); the worker had made the candidate in 1.6 s ("asset worker run", started 1, completed 1). Fixed in images.sh; the DM discards the candidate that run left (2026-10-16T09:13:22Z)
+$ bash /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/retract-leftover.sh
+DM redeem 200
+discard http:dm-ravenford:images-check-1792141851#0~asset: 200 {"status":"accepted","code":null}
+sign-out 204
+[exit 0]
+
+### deploy/verify/images.sh again, with the lookup fixed (the images are unchanged: the script runs on the host) (2026-10-16T09:13:27Z)
+$ deploy/verify/images.sh
+==> no image provider: the placeholder generator, no ceiling stored, nothing spent
+PASS  the server runs LTW_IMAGE_GENERATOR=placeholder
+     start: {"msg":"image generator","generator":"placeholder","model":null}
+PASS  the server's start named the placeholder
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  spend.sh: no image ceiling, nothing spent, held or reserved
+     ltw-server:cb438f34da4d, no network: sharp 0.34.4, libvips 8.17.2; style references (bytes): {"person":[71624,84172],"place":[139586,98800],"object":[130910,112660]}
+PASS  the in-play generator can start in this image (sharp, style references; not enabled)
+==> the DM signs in (the operator link) and invites a player for Elowen; the player joins
+     DM and player signed in (cookies; tokens never printed)
+==> the curated set in the campaign (the DM's lineage)
+     51 curated pictures approved for players (manifest: 51 for 45 files)
+PASS  every curated picture is approved for players
+PASS  their bytes are the manifest's files
+PASS  requested by the DM (none by authoring)
+==> the player reads what Elowen knows or perceives, through Caddy
+     visible to Elowen: 32 pictures; not: 13; the market square shows market-square.webp, Mira stands as mira-vale--figure.webp
+PASS  the market square's picture is a curated one Elowen sees
+PASS  Mira's figure is a curated one Elowen sees
+     sha256:03ea6bcad62f4877a16c03117031f8974e0315e265d646e004edb2a76e1232de:
+       HTTP/2 200 
+       cache-control: no-store
+       content-disposition: inline
+       content-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+       content-type: image/webp
+       cross-origin-opener-policy: same-origin
+       permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+       referrer-policy: no-referrer
+       vary: Cookie
+       x-content-type-options: nosniff
+       x-frame-options: DENY
+       content-length: 385508
+       
+     served as checked: 32 of 32; none other
+PASS  each: 200 image/webp, nosniff, no-store, sandbox policy, Vary Cookie, uncompressed, SHA-256 = hash
+     curated pictures of what Elowen neither knows nor perceives: 13 of 13 are 404; none other
+PASS  every other curated picture is a 404 for the player
+==> the page's policy lets the client show them (object URLs)
+     default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+PASS  the page's img-src allows 'self' and blob:
+==> an unapproved picture: the DM requests one, the placeholder worker makes it
+PASS  RequestAsset accepted
+     candidate: http:dm-ravenford:images-check-1792142007#0~asset sha256:0dbf3af45a7d42cbd4318f88f927bc78c2c296dfbc4ed6c7f32ebf328c9ab153 CANDIDATE image/svg+xml local placeholder-svg-1
+PASS  a candidate, not approved, by the local placeholder
+     player: 404 {"code":"NOT_FOUND","message":"Not found"}
+PASS  the player gets 404 for the unapproved hash
+PASS  ... the same as for a hash nobody stored
+     DM: 404 application/json; charset=utf-8, default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'
+FAIL  the DM reads it, under the sandbox policy
+PASS  the DM discards it
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  the ledger is still empty (the placeholder spends nothing)
+==> the DM revokes the player and signs out
+PASS  the player is revoked
+PASS  the player's next picture request is 401
+PASS  the DM signs out (204)
+PASS  none of the 4 credentials in 677 log lines
+images.sh: 1 check(s) failed
+[exit 1]
+
+### Finding: the DM read the candidate in Elowen s perspective (a 404, as for the player); the DM reads it in the DM perspective. images.sh again (2026-10-16T09:13:44Z)
+$ deploy/verify/images.sh
+==> no image provider: the placeholder generator, no ceiling stored, nothing spent
+PASS  the server runs LTW_IMAGE_GENERATOR=placeholder
+     start: {"msg":"image generator","generator":"placeholder","model":null}
+PASS  the server's start named the placeholder
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  spend.sh: no image ceiling, nothing spent, held or reserved
+     ltw-server:cb438f34da4d, no network: sharp 0.34.4, libvips 8.17.2; style references (bytes): {"person":[71624,84172],"place":[139586,98800],"object":[130910,112660]}
+PASS  the in-play generator can start in this image (sharp, style references; not enabled)
+==> the DM signs in (the operator link) and invites a player for Elowen; the player joins
+     DM and player signed in (cookies; tokens never printed)
+==> the curated set in the campaign (the DM's lineage)
+     51 curated pictures approved for players (manifest: 51 for 45 files)
+PASS  every curated picture is approved for players
+PASS  their bytes are the manifest's files
+PASS  requested by the DM (none by authoring)
+==> the player reads what Elowen knows or perceives, through Caddy
+     visible to Elowen: 32 pictures; not: 13; the market square shows market-square.webp, Mira stands as mira-vale--figure.webp
+PASS  the market square's picture is a curated one Elowen sees
+PASS  Mira's figure is a curated one Elowen sees
+     sha256:03ea6bcad62f4877a16c03117031f8974e0315e265d646e004edb2a76e1232de:
+       HTTP/2 200 
+       cache-control: no-store
+       content-disposition: inline
+       content-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+       content-type: image/webp
+       cross-origin-opener-policy: same-origin
+       permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+       referrer-policy: no-referrer
+       vary: Cookie
+       x-content-type-options: nosniff
+       x-frame-options: DENY
+       content-length: 385508
+       
+     served as checked: 32 of 32; none other
+PASS  each: 200 image/webp, nosniff, no-store, sandbox policy, Vary Cookie, uncompressed, SHA-256 = hash
+     curated pictures of what Elowen neither knows nor perceives: 13 of 13 are 404; none other
+PASS  every other curated picture is a 404 for the player
+==> the page's policy lets the client show them (object URLs)
+     default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+PASS  the page's img-src allows 'self' and blob:
+==> an unapproved picture: the DM requests one, the placeholder worker makes it
+PASS  RequestAsset accepted
+     candidate: http:dm-ravenford:images-check-1792142025#0~asset sha256:2cbd0bdb24856bb9fa2d2950f20ac00b5bbe428924acf762545c3d3901e39969 CANDIDATE image/svg+xml local placeholder-svg-1
+PASS  a candidate, not approved, by the local placeholder
+     player: 404 {"code":"NOT_FOUND","message":"Not found"}
+PASS  the player gets 404 for the unapproved hash
+PASS  ... the same as for a hash nobody stored
+     DM: 200 image/svg+xml, default-src 'none'; style-src 'unsafe-inline'; sandbox
+PASS  the DM reads it, under the sandbox policy
+PASS  the DM discards it
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  the ledger is still empty (the placeholder spends nothing)
+==> the DM revokes the player and signs out
+PASS  the player is revoked
+PASS  the player's next picture request is 401
+PASS  the DM signs out (204)
+PASS  none of the 4 credentials in 928 log lines
+==> image checks passed
+[exit 0]
+
+
+======== deploy/verify/browser-journey.sh during development ========
+
+### deploy/verify/browser-journey.sh: the Russian browser journey through Caddy (Playwright Chromium; the local CA trusted for this run by its intermediate s key) (2026-10-16T09:14:00Z)
+$ time deploy/verify/browser-journey.sh
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.gxo9VLDxaZ/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/2dp41HrveBOFUe4y9KJhg7v1IyeGR2PNczsJMIOeCqs=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:09:22 2026 GMT
+==> the browser journeys against https://localhost:28443
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/deploy/review-campaign.deploy.ts:53:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его (1.9s)
+
+
+  1) [chromium] › tests/deploy/review-campaign.deploy.ts:53:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+    Error: locator.evaluate: TypeError: Failed to fetch
+        at eval (eval at evaluate (:311:30), <anonymous>:2:32)
+        at UtilityScript.evaluate (<anonymous>:313:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:311:30), <anonymous>:2:32)
+        at UtilityScript.evaluate (<anonymous>:313:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at shownPicture (/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/support.ts:206:16)
+        at /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/review-campaign.deploy.ts:117:20
+
+    Error Context: ../../../../../../../var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.gxo9VLDxaZ/results/review-campaign.deploy.ts--9c909-картинами-отзыв-выводит-его-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/deploy/review-campaign.deploy.ts:53:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+real	0m3.781s
+user	0m3.275s
+sys	0m0.850s
+[exit 1]
+
+### Finding: the journey read a picture s bytes back with fetch(blob:...), which the page s own connect-src self refuses (the product never does that). The journey now learns each object URL s bytes from its Blob as the page makes it. Again (2026-10-16T09:15:03Z)
+$ time deploy/verify/browser-journey.sh
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.IUE0PFulHz/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/2dp41HrveBOFUe4y9KJhg7v1IyeGR2PNczsJMIOeCqs=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:09:22 2026 GMT
+==> the browser journeys against https://localhost:28443
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/deploy/review-campaign.deploy.ts:53:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его (3.0m)
+
+
+  1) [chromium] › tests/deploy/review-campaign.deploy.ts:53:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+    Test timeout of 180000ms exceeded.
+
+    Error: locator.selectOption: Test ended.
+    Call log:
+      - waiting for locator('#sheet-players').getByLabel('Персонаж', { exact: true })
+
+
+      73 |   await openSheet(dm, ru.players);
+      74 |   const sheet = dm.locator('#sheet-players');
+    > 75 |   await sheet.getByLabel(ru.character, { exact: true }).selectOption({ label: ELOWEN });
+         |                                                         ^
+      76 |   await sheet.getByRole('button', { name: ru.create, exact: true }).click();
+      77 |   const field = sheet.getByLabel(ru.link, { exact: true });
+      78 |   await expect(field).toBeVisible();
+        at /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/review-campaign.deploy.ts:75:57
+
+    Error Context: ../../../../../../../var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.IUE0PFulHz/results/review-campaign.deploy.ts--9c909-картинами-отзыв-выводит-его-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/deploy/review-campaign.deploy.ts:53:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+real	3m1.709s
+user	0m3.642s
+sys	0m1.616s
+[exit 1]
+
+### Finding: the first run stopped after the player had joined, so Elowen s seat was still taken and the Players sheet offered no Elowen to invite (the run waited for that option until its timeout). The journey now has the DM free a seat an earlier run left taken, and actions time out after 30 s. Again (2026-10-16T09:19:02Z)
+$ time deploy/verify/browser-journey.sh
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.fS87G4XRz1/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/2dp41HrveBOFUe4y9KJhg7v1IyeGR2PNczsJMIOeCqs=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:09:22 2026 GMT
+==> the browser journeys against https://localhost:28443
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его (16.6s)
+
+
+  1) [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#sheet-players').getByLabel('Персонаж', { exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#sheet-players').getByLabel('Персонаж', { exact: true }) with timeout 15000ms
+      - waiting for locator('#sheet-players').getByLabel('Персонаж', { exact: true })
+
+
+      89 |   const sheet = dm.locator('#sheet-players');
+      90 |   const character = sheet.getByLabel(ru.character, { exact: true });
+    > 91 |   await expect(character).toBeVisible();
+         |                           ^
+      92 |   const members = sheet.getByRole('region', { name: ru.members });
+      93 |   const seat = members.getByRole('listitem').filter({ hasText: ELOWEN });
+      94 |   if ((await seat.count()) > 0) await revoke(dm);
+        at /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/review-campaign.deploy.ts:91:27
+
+    Error Context: ../../../../../../../var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.fS87G4XRz1/results/review-campaign.deploy.ts--9c909-картинами-отзыв-выводит-его-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+real	0m18.993s
+user	0m2.835s
+sys	0m1.136s
+[exit 1]
+
+### Finding: with every seat taken the sheet shows no character choice at all, so the journey waits for the players at the table (the listing read) instead. Again (2026-10-16T09:19:38Z)
+$ time deploy/verify/browser-journey.sh
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.giHOC97GMq/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/2dp41HrveBOFUe4y9KJhg7v1IyeGR2PNczsJMIOeCqs=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:09:22 2026 GMT
+==> the browser journeys against https://localhost:28443
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его (3.7s)
+
+
+  1) [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "sha256:8e6da589f998eb7bec4e4b2abac867fd81fcc2d4739a6c89f3065a3a293992cc"
+    Received: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+
+       at support.ts:256
+
+      254 |   expect(served?.headers['vary']).toMatch(/cookie/i);
+      255 |   expect(served?.headers['content-encoding']).toBeUndefined();
+    > 256 |   expect(served?.digest).toBe(hash);
+          |                          ^
+      257 | }
+      258 |
+        at expectServedAsContent (/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/support.ts:256:26)
+        at /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/review-campaign.deploy.ts:149:5
+
+    Error Context: ../../../../../../../var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.giHOC97GMq/results/review-campaign.deploy.ts--9c909-картинами-отзыв-выводит-его-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+real	0m5.290s
+user	0m4.617s
+sys	0m1.190s
+[exit 1]
+
+### Finding: the bytes recorded for a picture were empty: the journey kept the last answer per hash, here a fetch the page had aborted when the scene was replaced. It now keeps only answers whose bodies arrived whole (requestfinished). Again (2026-10-16T09:20:19Z)
+$ time deploy/verify/browser-journey.sh
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.PYJjIQEcOj/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/2dp41HrveBOFUe4y9KJhg7v1IyeGR2PNczsJMIOeCqs=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:09:22 2026 GMT
+==> the browser journeys against https://localhost:28443
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его (3.1s)
+
+
+  1) [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "sha256:8e6da589f998eb7bec4e4b2abac867fd81fcc2d4739a6c89f3065a3a293992cc"
+    Received: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+
+       at support.ts:262
+
+      260 |   expect(served?.headers['vary']).toMatch(/cookie/i);
+      261 |   expect(served?.headers['content-encoding']).toBeUndefined();
+    > 262 |   expect(served?.digest).toBe(hash);
+          |                          ^
+      263 | }
+      264 |
+        at expectServedAsContent (/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/support.ts:262:26)
+        at /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/review-campaign.deploy.ts:149:5
+
+    Error Context: ../../../../../../../var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.PYJjIQEcOj/results/review-campaign.deploy.ts--9c909-картинами-отзыв-выводит-его-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+real	0m4.810s
+user	0m4.315s
+sys	0m1.051s
+[exit 1]
+
+### Finding: Playwright gave empty bodies for these answers, so the bytes are checked where the page holds them (the Blob behind each object URL), and each answer s headers where the browser received it. Again (2026-10-16T09:21:35Z)
+$ time deploy/verify/browser-journey.sh
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.ePbwxKYq19/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/2dp41HrveBOFUe4y9KJhg7v1IyeGR2PNczsJMIOeCqs=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:09:22 2026 GMT
+==> the browser journeys against https://localhost:28443
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его (10.6s)
+
+
+  1) [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+    Error: policy violations on the DM pages
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+    - Array []
+    + Array [
+    +   "script-src eval",
+    +   "script-src eval",
+    + ]
+
+      185 |
+      186 |   // No policy violation; no token where it does not belong; no credential in any log.
+    > 187 |   expect(dmViolations, 'policy violations on the DM pages').toEqual([]);
+          |                                                             ^
+      188 |   expect(playerViolations, 'policy violations on the player pages').toEqual([]);
+      189 |   const tokens = [tokenOf(dmLink), tokenOf(playerLink)];
+      190 |   dmRequests.expectTokensOnlyInRedeems(tokens);
+        at /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350/tests/deploy/review-campaign.deploy.ts:187:61
+
+    Error Context: ../../../../../../../var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.ePbwxKYq19/results/review-campaign.deploy.ts--9c909-картинами-отзыв-выводит-его-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его 
+
+real	0m13.014s
+user	0m6.514s
+sys	0m1.796s
+[exit 1]
+
+### Finding: the DM s pages reported two policy violations (script-src eval): zod, which @ltw/contracts brings into the client, probes Function("") when it builds its first object schema (the minified bundle: try{return Function(``),!0}catch{return!1}); the policy allows no eval, so every page load reported one although zod catches it. Fix: the client makes zod jitless before any schema is built (apps/web/src/schema-config.ts, the first import of main.tsx). Deployed f62f87ff27f1 over cb438f34da4d (2026-10-16T09:27:14Z)
+$ deploy/scripts/deploy.sh f62f87ff27f1 2>&1 | grep -E "^==>"
+==> backup before the change (protected dump)
+==> the state before this deploy: ltw-predeploy-20261016T092716Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:f62f87ff27f1 and ltw-proxy:f62f87ff27f1 (previous: cb438f34da4d)
+==> deployed f62f87ff27f1
+[exit 0]
+
+### The browser journey on f62f87ff27f1 (2026-10-16T09:27:29Z)
+$ time deploy/verify/browser-journey.sh
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.XRDEtP8Ggb/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/2dp41HrveBOFUe4y9KJhg7v1IyeGR2PNczsJMIOeCqs=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:09:22 2026 GMT
+==> the browser journeys against https://localhost:28443
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › по-русски через Caddy: DM приглашает, игрок видит площадь с картинами, отзыв выводит его (7.3s)
+
+  1 passed (8.4s)
+==> browser journeys passed
+
+real	0m9.595s
+user	0m5.194s
+sys	0m1.689s
+[exit 0]
+

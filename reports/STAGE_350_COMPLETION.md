@@ -1,16 +1,19 @@
-# Stage 350 — Deployment (parts A and B done; verified locally)
+# Stage 350 — Deployment (parts A and B, review fixes, the full product; verified locally)
 
-- Date: 2026-10-16 (Europe/Oslo). Branch `stage-350-deploy` on Stage 340's server work
-  (`a7a0437`, security fixes `87c5bb7`): design `5c6430a`, part A `333a879` (rebased), part B (the
-  commit adding this section).
+- Date: 2026-10-16 (Europe/Oslo). Branch `stage-350-deploy`, rebased onto the complete product
+  (`77e731a`: Stage 320's client, Stage 340's sign-in with its browser screens, Stage 330's
+  images): design `6e84f71`, part A `c08823a`, part B `a51e9ac`, review fixes `a0da82a`, the full
+  product (the commit adding the section "Full product").
 - Status: **PARTS A AND B IMPLEMENTED AND VERIFIED LOCALLY IN DOCKER; THE SEVEN REVIEW FINDINGS
-  FIXED AND VERIFIED LOCALLY** (section "Review fixes"). Nothing was deployed to a server,
-  announced, released, or pushed; nobody was invited. Owner decision Q10: prepare the
+  FIXED; THE COMPLETE PRODUCT (IMAGES, IMAGE SPENDING, THE BROWSER SCREENS) VERIFIED ON THE LOCAL
+  DEPLOYMENT** (section "Full product"). Nothing was deployed to a server, announced, released, or
+  pushed; nobody was invited; no paid AI or image call was made. Owner decision Q10: prepare the
   deployment and verify it locally; a server waits for the owner's access, domain and backup
   target (see "What remains for the owner").
 - Work order: `work-orders/OPUS_STAGE_350.md`. Contract: `docs/STAGE_350_DESIGN.md` (adopted, part
-  B notes). Decisions: `docs/adr/0037-deployment.md` with its part A and part B implementation
-  notes; ADR 0003 gains one amendment (the rollback step of the migrator).
+  B and full product notes). Decisions: `docs/adr/0037-deployment.md` with its part A, part B,
+  review-fix and full-product notes; ADR 0003 gains one amendment (the rollback step of the
+  migrator).
 - Revisions of part A before the rebase (local branch `backup/stage-350-part-a-117453b`):
   `3e90904` (the deployment, readiness, restore-drill CLI, spend counters, runbook, CI job),
   `4a17f1c` (a server-side trust-proxy setting, since removed, and the proxy contract check),
@@ -269,6 +272,101 @@ schema was simulated in the database, not built; `--dumped-at` is the dump name'
 `pg_dump`'s snapshot, so a campaign whose first command was still committing at that second would
 be reported missing (milliseconds; not seen).
 
+## Full product (2026-10-16)
+
+With Stages 320, 340 and 330 underneath, the deployment runs the complete product as production
+runs it (transcripts `reports/evidence/stage-350/full-product/`, index `00-index.txt`; decisions ADR
+0037, "Full product notes"; runbook updated in Russian and English).
+
+**What it adds**
+
+1. **Image spending in the spend report.** `ai:operator spend` and `deploy/scripts/spend.sh` add
+   `images`, from the Stage 330 ledger in the same READ COMMITTED transaction as the AI counters:
+   the ceiling (null: none stored, no call), spent (settled charges as settled, open reservations
+   whole), held, remaining (never below zero), the counts, and every unsettled reservation with its
+   campaign, model, amount and age, and when it becomes settleable (15 minutes)
+   (`spend-report.ts`; `readImageBudgetStatus`, `readOpenImageReservations`). Test:
+   `spend-report.integration.test.ts` (no ceiling; settled, unsent, orphaned and running
+   reservations; a lower ceiling; a ceiling of 0 and the operator's settlement); it fails on
+   `a0da82a`'s report.
+2. **The curated pictures in the review campaign.** The seeder imports the curated set after the
+   world (`review-campaign.ts`, `seed-review-campaign-cli.ts`): the DM's requests and approvals,
+   the `curated` generator over the committed files, idempotent: 51 pictures from 45 files. A
+   campaign an earlier image seeded gets them by running `review-campaign.sh` again, with the
+   server running (its worker leaves those requests alone). Test beside it (fails on `a0da82a`).
+3. **The image generator in compose.** `LTW_IMAGE_GENERATOR` (default `placeholder`) and
+   `LTW_IMAGE_MODEL` now reach the server (before, `openrouter-openai` could not be chosen on the
+   deployment); `.env.example` and `smoke.sh` know them. Runbook section 8: enable (the ceiling by
+   `image-budget-set` first, then the key and the generator), stop (the placeholder generator and
+   an empty key at once; a ceiling of 0 as the record; the former "empty the key" alone would
+   keep a server configured for `openrouter-openai` from starting), orphaned reservations, dumps
+   now about 15 MB larger. Never enabled here.
+4. **Pictures through Caddy** (`deploy/verify/images.sh`, ADR 0037 "Caching of picture bytes"):
+   content-addressed but authorized bytes keep the server's `no-store`, `Vary: Cookie`, `nosniff`
+   and sandbox policy (ADR 0022 §6, ADR 0026 §6); the proxy neither caches nor compresses `/api`.
+5. **Browser journeys against the deployment** (`playwright.deploy.config.ts`, `tests/deploy/`,
+   `deploy/verify/browser-journey.sh`; not in `pnpm test:e2e`): Russian browsers through Caddy
+   over HTTPS; Chromium trusts Caddy's local CA for the run alone (`openssl` verifies the
+   intermediate and the served chain against the root; Chromium accepts chains with that
+   intermediate's key; nothing enters a trust store, no `ignoreHTTPSErrors`); the operator's DM
+   link from `auth:operator dm-invite` in the server container. No trace, screenshot or video;
+   yes/no assertions about tokens; the output directory removed.
+6. **Found and fixed: an eval probe under the policy.** zod, which `@ltw/contracts` brings into
+   the client, probes `Function('')` when it builds its first object schema; the page's policy
+   allows no eval, so every page load reported a `script-src` violation (caught by zod, logged by
+   the browser). The client makes zod jitless before any schema is built
+   (`apps/web/src/schema-config.ts`, the first import of `main.tsx`; `zod` 4.6.5 is now a direct
+   dependency of `@ltw/web`, three lockfile lines). The browser journey fails on any violation.
+7. **CI and the scripts.** `ci.sh` runs the image checks and the browser journey after the smoke
+   checks and waits until their four redeems left the window before the HTTP journeys (found when
+   this machine's fast run met 429); `LTW_CI_BROWSER=skip` leaves the browser out and says so. The
+   deploy job installs the dependencies and Chromium, limit 40 minutes; the main job's limit is 45
+   minutes, as on Stage 340's branch. `sign-in-journey.sh` and both new checks free Elowen's seat
+   when an earlier run left it taken; the session check accepts other live sessions.
+
+**Verification** (Docker Desktop, Engine 29.5.3, Compose v5.1.4; project `ltw-stage350f`,
+127.0.0.1:28080/28443; images `a0da82a7648c` and `fb35fa6f7bbc`, the CI run `6ee2fdaf123d`, whose
+images hold the same files):
+
+- First install of `a0da82a` with its own deploy files; its review campaign (92 commands, version
+  101, no pictures); the upgrade to `fb35fa6` (protected dump first, `placeholder` reaches the
+  server); `review-campaign.sh` again with the server running: 51 pictures imported, version 305,
+  then idempotent; the server's worker took none of them.
+- `smoke.sh` 42/42 (after the upgrade and at the end); `images.sh` 23/23: 32 pictures Elowen sees
+  served with the headers above and bytes matching their hashes, the other 13 and an unapproved
+  candidate a 404 like an unknown hash, the DM's candidate sandboxed; the page's `img-src 'self'
+blob:`; sharp 0.34.4 and the style references load in the image offline; nothing spent.
+- The browser journey, twice: on the fresh campaign and after the HTTP journeys left Elowen at the
+  caravan site (she walks back): the market square's curated picture and two standing curated
+  figures, one action, «Вы вышли» 0.93 s and 0.91 s after the revocation began with no request
+  of the player's own, no policy violation, no token outside the redeem or in the logs.
+- `spend.sh` before (no image section) and after; `sign-in-journey.sh` 50/50 (the player's stream
+  closed 0.48 s after the revocation); `live-stream.sh` (ready 0.10 s, changed 1.01 s, heartbeat
+  15.11 s, closed 1.04 s); `proxy-contract.sh` 10/10; a 20 s database outage (503 naming database,
+  migrations and event store, 200 four seconds after, no restart).
+- Backups: the drill refuses the first, empty dump (exit 1) and passes it with `--allow-empty`; a
+  fresh dump with the pictures (46 contents, 12 MB) matches at version 315; a real restore of it
+  by `restore.sh` brings the pictures and the world back and its drill matches.
+- Rollback `fb35fa6f7bbc` → `a0da82a7648c` (its deploy files; every stored event parsed before
+  ready; 330 events, 46 pictures) → `fb35fa6f7bbc`. `watch.sh` ok, `logs.sh`, the operator's
+  sessions (none left), `retention-check.sh`, `watch-check.sh` 7/7, `preflight-check.sh` 6/6,
+  `trust-boundary.sh` 23/23; teardown left nothing; the shared development database kept running.
+- `ci.sh` on this clean worktree: the first run failed (the redeem window, fixed); the second
+  passed end to end in 2 min 24 s: 160 checks, the browser journey, the drills, retention, the live
+  stream; everything it created removed.
+- `pnpm validate` (own database `ltw_stage350`, migrations 0001–0012, shared lock): **passed** —
+  format, lint, typecheck, context budget (1042 files, none over 500 lines), 2,879 unit tests (284
+  files), build, migrate and seed, 229 integration tests (41 files), 118 browser journeys. After it
+  one runbook line, `deploy/verify/ci.sh`, the CI comment and Markdown under `docs/` and
+  `reports/` changed; format and context budget pass on the final tree.
+
+**Findings fixed during this work** (`19-development-findings.txt`, `17-ci-script.txt`): the
+client's eval probe (above); in the new checks: a DM's request ID is kept under the actor, the DM
+reads a candidate in the DM perspective, a `blob:` URL cannot be fetched under `connect-src
+'self'` (the journey reads the Blob instead), a run that stopped half-way leaves Elowen's seat
+taken, a full table shows no character choice, Playwright returns no body for these answers, and
+the redeem window in `ci.sh`.
+
 ## For Gate 06 (alpha rows 350 of `docs/GATE_COVERAGE.md`)
 
 Rows: 350 (proxy), (trust boundary), (sign-in on the deployment), (headers), (readiness),
@@ -276,20 +374,31 @@ Rows: 350 (proxy), (trust boundary), (sign-in on the deployment), (headers), (re
 and the restore drill, the read-only `ai:operator spend`; in part B: the backend trust boundary,
 the review campaign seeder (World Engine commands only), the sign-in journeys through the proxy.
 Changed reviewed boundary: the migrator's explicit rollback step (ADR 0003 amendment, part A).
-No canonical state, projection, mutation path or authorization rule changed in either part.
+No canonical state, projection, mutation path or authorization rule changed in either part. The
+full product adds row 350 (images on the deployment) and the browser journeys to row 350 (sign-in
+on the deployment); new or changed surfaces: the image section of the operator's spend report, the
+review campaign's curated import (DM commands through the World Engine), `LTW_IMAGE_GENERATOR`
+and `LTW_IMAGE_MODEL` in compose, and the client's jitless zod. No route, projection, rule or
+authorization changed.
 
 ## What remains for the owner
 
-- **A server**: a VPS (Ubuntu 24.04, 2 vCPU, 4 GB, 40 GB) with SSH access and Docker Engine 29
-  (28+ for the isolated gateway mode), then runbook section 1.
+- **A server**: a VPS (Ubuntu 24.04, 2 vCPU, 4 GB, 40 GB) with SSH access and Docker Engine 28 or
+  later (29 recommended; the isolated gateway mode needs 28), then runbook section 1.
 - **A domain and DNS**: an `A` record for it (no `AAAA` until IPv6 is enabled on `edge`).
 - **ACME**: `TLS_MODE=acme` with the real domain; issuance, renewal, HSTS and `watch.sh`'s
   certificate check have run only in their local form (`tls internal`).
-- **Off-host backups**: a target (and encryption key) for the runbook's `rclone`/`restic` step.
-- **Hosted CI** on the pushed branch (the `deploy` job runs `ci.sh`; it passed locally only).
-- **Then**: the review campaign by `review-campaign.sh` on the server, the DM link handed over
-  privately, and Stage 340 part B's browser screens for the Playwright journeys against the
-  deployment (until then the HTTP journeys above stand in).
+- **Off-host backups**: a target (and encryption key) for the runbook's `rclone`/`restic` step
+  (section 10); the dumps hold every campaign secret and, with the pictures, about 15 MB more each.
+- **Paid AI and images, each with its ceiling**, only when the owner authorizes them: the AI
+  billing account and approval (ADR 0032) with the keys and routes, and for pictures in play the
+  image ceiling by `ai:operator image-budget-set` before `LTW_IMAGE_GENERATOR=openrouter-openai`
+  with `OPENROUTER_API_KEY` (runbook sections 7 and 8; `spend.sh` shows both). Until then
+  everything stays local and nothing is spent.
+- **Hosted CI** on the pushed branch: both jobs passed only locally here (`ci.sh` and `pnpm
+validate`); the hosted runner's Docker Engine must be 28 or later.
+- **Then**: the review campaign by `review-campaign.sh` on the server (it brings the curated
+  pictures), the DM link handed over privately; the DM invites the players from the Players sheet.
 
 ## Risks and limits
 
@@ -297,7 +406,14 @@ No canonical state, projection, mutation path or authorization rule changed in e
   server exists. amd64 images were not built locally (the CI job builds them).
 - Locally every browser is one client to the per-address limits (Docker Desktop); on Linux,
   outside IPv4 clients keep their addresses (Docker's documented NAT; not observable here).
-- The journeys exercise the HTTP flows, not the browser screens (Stage 340 part B).
+- The browser journey is one Russian path (join, invite, play once, revoke, sign out) in Chromium;
+  the screens' other cases are Stage 340's journeys on the development servers. Its local CA
+  trust is Chromium's SPKI exception for Caddy's intermediate (valid 7 days, renewed by Caddy):
+  a run spanning a renewal would fail and is rerun.
+- Picture bytes are `no-store` by design (ADR 0022 §6): a reload fetches them again; with many
+  players or larger pictures this costs bandwidth (revisit only by ADR).
+- The OpenRouter generator never ran on the deployment (only its start, offline); its one live
+  smoke was Stage 330's, on a development server.
 - Backups stay on the same host until the owner names an off-host target (runbook section 10).
 - Rollback is safe only across additive migrations and when no event type unknown to the earlier
   image was written; a rollback across a network change needs `dc down` first (runbook
