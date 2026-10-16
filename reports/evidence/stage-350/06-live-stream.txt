@@ -1,0 +1,44 @@
+
+### Switch the local stack to development personas (local verification only; same images 73ce95bad8a0) (2026-10-15T23:35:58Z)
+$ cd deploy && sed -i "" "s|^COMPOSE_FILE=.*|COMPOSE_FILE=compose.yaml:verify/dev-personas.yaml|" .env && grep "^COMPOSE_FILE=" .env && docker compose up --detach --wait --wait-timeout 300 2>&1 | grep -E "Recreated|Healthy" | sort -u; docker compose logs --no-color --since 1m server | grep -E "persona|server ready" | sed -E "s/^server-1 *\| //"
+COMPOSE_FILE=compose.yaml:verify/dev-personas.yaml
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-server-1 Recreated 
+{"level":"warn","time":"2026-10-15T23:36:00.180Z","service":"ltw-server","msg":"development persona authentication is enabled (never use in production)"}
+{"level":"info","time":"2026-10-15T23:36:00.254Z","service":"ltw-server","nodeEnv":"development","authMode":"dev-personas","database":"postgres://postgres:5432/ltw","msg":"server ready"}
+[exit 0]
+
+### The live stream through the proxy: headers, ready, changed after a DM command, heartbeat (2026-10-15T23:36:02Z)
+$ deploy/verify/live-stream.sh
+==> opening the live stream through the proxy (HTTP/2)
+==> ready after 0.252 s
+HTTP/2 200 
+cache-control: no-store
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+content-type: text/event-stream; charset=utf-8
+cross-origin-opener-policy: same-origin
+date: Thu, 15 Oct 2026 23:36:03 GMT
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Authorization
+x-accel-buffering: no
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-request-id: 3f09ca33-06bc-444c-8624-22230707e0e5
+
+==> one DM command through the proxy (a new item: the DM perspective can read it)
+{"status":"accepted","commandId":"http:dm-ravenford:live-check-1792107365","campaignId":"ravenford","events":[{"sequence":101,"eventId":"2d86d2b0-c900-4fba-82a4-62f30db7fef7","type":"EntityCreated"}]}
+==> changed 0.827 s after the command, stream open
+==> waiting for the next heartbeat
+==> heartbeat 15.159 s after opening, stream open
+==> frames received (raw):
+event: ready
+data: {}
+event: changed
+data: {"seq":1}
+: heartbeat
+==> live stream passes the proxy unbuffered
+[exit 0]

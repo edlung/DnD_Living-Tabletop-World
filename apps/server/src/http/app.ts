@@ -13,6 +13,7 @@ import type { AuthoringDependencies } from '../authoring/service.ts';
 import { registerDmRoutes, type DmDependencies } from '../dm/dm-routes.ts';
 import { registerPresenceRoutes } from '../live/presence.ts';
 import { NOBODY_CONNECTED, type PresenceSource } from '../live/registry.ts';
+import { processReadiness, type ReadinessProbe } from '../platform/health/readiness.ts';
 import { LOG_SERIALIZERS, type Logger } from '../platform/logging/logger.ts';
 import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
@@ -28,6 +29,7 @@ import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
 import { registerNpcRoutes } from './routes/npc-routes.ts';
 import { registerQuestRoutes } from './routes/quest-routes.ts';
+import { registerReadinessRoute } from './routes/readiness-routes.ts';
 import { registerSessionRoutes } from './routes/session-routes.ts';
 import { registerSurroundingsRoutes } from './routes/surroundings-routes.ts';
 import { registerVisualRoutes } from './routes/visual-routes.ts';
@@ -68,6 +70,11 @@ export interface AppDependencies {
    * `request.ip` is the client its `X-Forwarded-For` names; empty or absent trusts none.
    */
   readonly trustedProxies?: readonly string[];
+  /**
+   * Readiness of the stores (docs/adr/0037-deployment.md §3), served as `/readyz`. Compositions
+   * without external stores (tests, in-memory journeys) are ready while the process runs.
+   */
+  readonly readiness?: ReadinessProbe;
 }
 
 /** The request header that carries the credential: responses vary on it. */
@@ -113,7 +120,9 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     return sendError(reply, request, 'INTERNAL');
   });
 
-  app.get('/healthz', (_request, reply) => reply.send({ status: 'ok' }));
+  // Health checks poll every few seconds: their requests log only warnings and errors.
+  app.get('/healthz', { logLevel: 'warn' }, (_request, reply) => reply.send({ status: 'ok' }));
+  registerReadinessRoute(app, deps.readiness ?? processReadiness);
   registerKnowledgeRoutes(app, deps);
   registerSessionRoutes(app, deps);
   registerCharacterRoutes(app, deps);

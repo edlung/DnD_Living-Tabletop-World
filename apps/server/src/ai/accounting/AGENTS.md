@@ -28,6 +28,7 @@ by `ai/admitted-provider.ts`. Stop scope follows the approved B2 delta
 | `operator-store.ts`                                           | Accounts, approvals, revisions, runs, clearances, reconciliation, batches                      |
 | `operator-args.ts`, `operator-commands.ts`, `operator-cli.ts` | `pnpm ai:operator` parsing, dispatch, entry; image ceiling, orphaned reservations (ADR 0035)   |
 | `postgres-budget-store.ts`                                    | `PostgresBudgetStore` (with the catalog's identity resolver), startup status, `approvalExists` |
+| `spend-report.ts`                                             | `ai:operator spend` (read-only): effective spend per account and approval, open holds          |
 
 - PostgreSQL is the only spending authority. Never add an in-memory or environment cap to production.
 - One READ COMMITTED transaction per operation on one checked-out client; shared policy lock for

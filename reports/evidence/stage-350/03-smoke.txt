@@ -1,0 +1,214 @@
+
+### Smoke checks from the host (TLS, client, headers, API through the proxy, topology, containers) (2026-10-15T23:21:36Z)
+$ deploy/verify/smoke.sh
+==> HTTPS at https://localhost (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> smoke checks passed
+[exit 0]
+
+### Raw headers through the proxy: the client page, an API answer, the HTTP redirect (2026-10-15T23:21:49Z)
+$ cd deploy && docker compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt > /tmp/ltw350-root.crt && curl -sS --cacert /tmp/ltw350-root.crt -D - -o /dev/null https://localhost/ && curl -sS --cacert /tmp/ltw350-root.crt -D - https://localhost/api/readyz && echo && curl -sS -D - -o /dev/null http://localhost/some/path; rm -f /tmp/ltw350-root.crt
+HTTP/2 200 
+accept-ranges: bytes
+cache-control: no-cache
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+content-type: text/html; charset=utf-8
+cross-origin-opener-policy: same-origin
+etag: "dm5sp06opb0ge1"
+last-modified: Thu, 15 Oct 2026 23:19:46 GMT
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Accept-Encoding
+x-content-type-options: nosniff
+x-frame-options: DENY
+content-length: 505
+date: Thu, 15 Oct 2026 23:21:49 GMT
+
+HTTP/2 200 
+cache-control: no-store
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+content-type: application/json; charset=utf-8
+cross-origin-opener-policy: same-origin
+date: Thu, 15 Oct 2026 23:21:49 GMT
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Authorization
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-request-id: 7b76b1ba-4012-4d44-bc3c-ef2fc6911bad
+content-length: 18
+
+{"status":"ready"}
+HTTP/1.1 308 Permanent Redirect
+Connection: close
+Location: https://localhost/some/path
+Server: Caddy
+Date: Thu, 15 Oct 2026 23:21:49 GMT
+Content-Length: 0
+
+[exit 0]
+
+### Networks: edge (fixed range, outbound allowed) and data (internal: no outbound, nothing published) (2026-10-15T23:21:49Z)
+$ for n in ltw-stage350_edge ltw-stage350_data; do docker network inspect "$n" --format "{{.Name}} internal={{.Internal}} subnet={{range .IPAM.Config}}{{.Subnet}}{{end}} members={{range .Containers}}{{.Name}} {{end}}"; done
+ltw-stage350_edge internal=false subnet=10.231.250.0/24 members=ltw-stage350-server-1 ltw-stage350-proxy-1 
+ltw-stage350_data internal=true subnet=172.26.0.0/16 members=ltw-stage350-server-1 ltw-stage350-backup-1 ltw-stage350-postgres-1 
+[exit 0]
+
+### Container hardening as Docker runs it (2026-10-15T23:21:49Z)
+$ cd deploy && for s in proxy server postgres backup; do id=$(docker compose ps -q $s); docker inspect "$id" --format "$s user={{.Config.User}} readOnly={{.HostConfig.ReadonlyRootfs}} capDrop={{.HostConfig.CapDrop}} securityOpt={{.HostConfig.SecurityOpt}} sysctls={{.HostConfig.Sysctls}} memory={{.HostConfig.Memory}} ports={{json .HostConfig.PortBindings}} log={{.HostConfig.LogConfig.Type}}{{.HostConfig.LogConfig.Config}}"; done
+proxy user=caddy readOnly=true capDrop=[ALL] securityOpt=[no-new-privileges:true] sysctls=map[net.ipv4.ip_unprivileged_port_start:0] memory=268435456 ports={"443/tcp":[{"HostIp":"127.0.0.1","HostPort":"443"}],"80/tcp":[{"HostIp":"127.0.0.1","HostPort":"80"}]} log=localmap[max-file:5 max-size:100m]
+server user=node readOnly=true capDrop=[ALL] securityOpt=[no-new-privileges:true] sysctls=map[] memory=1073741824 ports={} log=localmap[max-file:5 max-size:100m]
+postgres user= readOnly=false capDrop=[] securityOpt=[no-new-privileges:true] sysctls=map[] memory=1073741824 ports={} log=localmap[max-file:5 max-size:100m]
+backup user=70:70 readOnly=true capDrop=[ALL] securityOpt=[no-new-privileges:true] sysctls=map[] memory=536870912 ports={} log=localmap[max-file:5 max-size:100m]
+[exit 0]
+
+### Smoke checks again on the fourth revision 049db3031faa (2026-10-15T23:30:57Z)
+$ deploy/verify/smoke.sh
+==> HTTPS at https://localhost (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+FAIL  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+smoke.sh: 1 check(s) failed
+[exit 1]
+
+### Observation (2026-10-15T23:32Z): the failed redirect check above
+With the proxy pinned to a fixed address (revision 049db30), Docker Desktop's host port forwarding
+reset connections on one of the two published ports after each re-creation of the proxy (first
+80, after a forced re-creation 443), while the same port answered inside the container. Revision
+73ce95b no longer pins the address (Stage 340 owns the trust setting; compose passes the network
+range), and both ports answer consistently again (five probes each after the upgrade: https 200,
+http 308). The checks below run on 73ce95bad8a0, the final code.
+
+### Smoke checks on the fifth (final code) revision 73ce95bad8a0 (2026-10-15T23:35:11Z)
+$ deploy/verify/smoke.sh
+==> HTTPS at https://localhost (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> smoke checks passed
+[exit 0]

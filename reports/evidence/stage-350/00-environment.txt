@@ -1,0 +1,44 @@
+
+### Revision, tools and host ports (2026-10-15T23:17:30Z)
+$ git log --oneline -3 && docker version --format "Docker client {{.Client.Version}}, server {{.Server.Version}}" && docker compose version && uname -sm && for p in 80 443; do if nc -z -w 1 127.0.0.1 $p; then echo "port $p in use"; else echo "port $p free"; fi; done
+4a17f1c Stage 350 part A: trust X-Forwarded-For from the proxy network only; proxy contract check
+3e90904 Stage 350 part A: Compose deployment behind Caddy, readiness, backups, restore drill, runbook
+bd7cd77 Stage 350 design and ADR 0037: deployment behind Caddy, verified locally
+Docker client 29.5.3, server 29.5.3
+Docker Compose version v5.1.4
+Darwin arm64
+port 80 free
+port 443 free
+[exit 0]
+
+### Local deploy/.env (secret values redacted) (2026-10-15T23:17:36Z)
+$ sed -E "s/^(POSTGRES_PASSWORD|ANTHROPIC_API_KEY|OPENROUTER_API_KEY|ALARM_WEBHOOK_URL)=.+/\1=<redacted>/" deploy/.env && ls -l deploy/.env | cut -c1-10
+COMPOSE_PROJECT_NAME=ltw-stage350
+COMPOSE_FILE=compose.yaml:verify/pre-340.yaml
+LTW_IMAGE_TAG=
+LTW_PREVIOUS_IMAGE_TAG=
+LTW_ALLOW_NEWER_SCHEMA=false
+PUBLIC_HOST=localhost
+PUBLIC_ORIGIN=https://localhost
+TLS_MODE=internal
+PROXY_HTTP_PUBLISH=127.0.0.1:80
+PROXY_HTTPS_PUBLISH=127.0.0.1:443
+POSTGRES_PASSWORD=<redacted>
+BACKUP_DIR=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/backups-run
+BACKUP_INTERVAL_SECONDS=
+BACKUP_KEEP_DAILY=
+BACKUP_KEEP_WEEKLY=
+ANTHROPIC_API_KEY=
+LTW_AI_ROUTES=
+LTW_AI_APPROVAL_ID=
+OPENROUTER_API_KEY=
+ALARM_WEBHOOK_URL=
+-rw-------
+[exit 0]
+
+### Pinned base images present locally (multi-platform index digests) (2026-10-15T23:17:36Z)
+$ for i in node:24.21.0-alpine3.24 caddy:2.10.2-alpine postgres:18-alpine; do docker image inspect "$i" --format "{{index .RepoTags 0}} {{.Descriptor.MediaType}} {{.Descriptor.Digest}}"; done
+node:24.21.0-alpine3.24 application/vnd.oci.image.index.v1+json sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+caddy:2.10.2-alpine application/vnd.oci.image.index.v1+json sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+postgres:18-alpine application/vnd.oci.image.index.v1+json sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873
+[exit 0]

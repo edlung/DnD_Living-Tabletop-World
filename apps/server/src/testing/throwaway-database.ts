@@ -32,10 +32,18 @@ async function withAdmin<T>(work: (admin: pg.Client) => Promise<T>): Promise<T> 
 }
 
 export async function createThrowawayDatabase(
-  options: { readonly migrate?: boolean } = {},
+  options: {
+    readonly migrate?: boolean;
+    /**
+     * A throwaway database to copy (`CREATE DATABASE … TEMPLATE`), as a restore would; nothing
+     * may be connected to it meanwhile.
+     */
+    readonly copyOf?: ThrowawayDatabase;
+  } = {},
 ): Promise<ThrowawayDatabase> {
   const name = `ltw_it_${randomUUID().replaceAll('-', '')}`;
-  await withAdmin((admin) => admin.query(`CREATE DATABASE ${name}`));
+  const template = options.copyOf === undefined ? '' : ` TEMPLATE ${options.copyOf.name}`;
+  await withAdmin((admin) => admin.query(`CREATE DATABASE ${name}${template}`));
   const url = new URL(adminUrl());
   url.pathname = `/${name}`;
 

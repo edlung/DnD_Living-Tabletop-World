@@ -7,9 +7,10 @@ import type { Tx } from './pg-transaction.ts';
  * Effective spending and stops, read under the policy lock and the sorted bucket locks
  * (docs/adr/0032-live-ai.md, amendment 2026-10-11). An attempt with a terminal row counts the
  * maximum of its absolute charge rows; an open one counts the maximum of its reservation and any
- * absolute evidence. Nothing is summed as a delta and no hold is subtracted twice.
+ * absolute evidence. Nothing is summed as a delta and no hold is subtracted twice. The operator's
+ * spend report (`spend-report.ts`) reads the same definition.
  */
-const EFFECTIVE = `
+export const EFFECTIVE = `
   SELECT a.*,
     CASE WHEN COALESCE(e.terminal, false) THEN e.charged
          ELSE GREATEST(a.reserved_micros, COALESCE(e.charged, 0)) END AS effective

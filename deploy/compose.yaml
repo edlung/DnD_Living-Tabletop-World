@@ -1,0 +1,192 @@
+# Living Tabletop World deployment (docs/adr/0037-deployment.md; operations in deploy/RUNBOOK.md).
+# One Compose project: `proxy` (Caddy: the client and /api over TLS, the only published ports),
+# `server` (migrations at start, then the API; never published), `postgres` (named volume,
+# internal network only), `backup` (pg_dump every 6 h and on demand, retention, SHA-256 manifest)
+# and, for the restore drill only, `drill-db` (profile `drill`, data on tmpfs). Settings and
+# secrets come from deploy/.env (git-ignored; deploy/.env.example lists the names). Images are
+# local, built by deploy/scripts/build.sh and tagged by git revision.
+name: ltw
+
+x-logging: &logging
+  driver: local
+  options:
+    max-size: 100m
+    max-file: '5'
+
+x-postgres-image: &postgres-image postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873
+
+services:
+  proxy:
+    image: ltw-proxy:${LTW_IMAGE_TAG:?set LTW_IMAGE_TAG in deploy/.env}
+    pull_policy: never
+    restart: unless-stopped
+    depends_on:
+      server:
+        condition: service_healthy
+    environment:
+      PUBLIC_HOST: ${PUBLIC_HOST:?set PUBLIC_HOST in deploy/.env}
+      TLS_MODE: ${TLS_MODE:?set TLS_MODE (acme or internal) in deploy/.env}
+    ports:
+      - '${PROXY_HTTP_PUBLISH:-80}:80'
+      - '${PROXY_HTTPS_PUBLISH:-443}:443'
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+    networks: [edge]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    # The non-root proxy binds 80 and 443 without capabilities.
+    sysctls:
+      net.ipv4.ip_unprivileged_port_start: 0
+    mem_limit: ${PROXY_MEMORY:-256m}
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1:2020/healthz']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+      start_interval: 2s
+    logging: *logging
+
+  server:
+    image: ltw-server:${LTW_IMAGE_TAG:?set LTW_IMAGE_TAG in deploy/.env}
+    pull_policy: never
+    restart: unless-stopped
+    init: true
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Every setting in deploy/.env (AI keys, routes, PUBLIC_ORIGIN, later stages' settings);
+    # the platform below is fixed and wins over the file.
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      NODE_ENV: production
+      # Invitation sign-in (ADR 0036) needs the browser's origin.
+      AUTH_MODE: invitations
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?set PUBLIC_ORIGIN in deploy/.env}
+      HTTP_HOST: 0.0.0.0
+      HTTP_PORT: '3000'
+      # Stage 340's server takes the client's address from X-Forwarded-For only from these peers
+      # (per-address limits); the proxy's network, pinned below. Caddy sets the header itself.
+      LTW_TRUST_PROXY: ${LTW_EDGE_SUBNET:-10.231.250.0/24}
+      DATABASE_URL: postgres://ltw:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}@postgres:5432/ltw
+      DEV_PERSONAS_FILE: ''
+      LTW_ALLOW_NEWER_SCHEMA: ${LTW_ALLOW_NEWER_SCHEMA:-false}
+    networks: [edge, data]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    mem_limit: ${SERVER_MEMORY:-1g}
+    stop_grace_period: 30s
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/readyz').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+      start_interval: 2s
+    logging: *logging
+
+  postgres:
+    image: *postgres-image
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ltw
+      POSTGRES_DB: ltw
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+    volumes:
+      - pgdata:/var/lib/postgresql
+    networks: [data]
+    shm_size: 256m
+    security_opt: ['no-new-privileges:true']
+    mem_limit: ${POSTGRES_MEMORY:-1g}
+    stop_grace_period: 60s
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ltw -d ltw']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    logging: *logging
+
+  backup:
+    image: *postgres-image
+    restart: unless-stopped
+    init: true
+    user: '70:70'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '/opt/ltw/backup.sh']
+    command: ['loop']
+    environment:
+      PGHOST: postgres
+      PGUSER: ltw
+      PGDATABASE: ltw
+      PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-21600}
+      BACKUP_KEEP_DAILY: ${BACKUP_KEEP_DAILY:-14}
+      BACKUP_KEEP_WEEKLY: ${BACKUP_KEEP_WEEKLY:-8}
+    volumes:
+      - ./backup/backup.sh:/opt/ltw/backup.sh:ro
+      - ${BACKUP_DIR:?set BACKUP_DIR in deploy/.env}:/backups
+    networks: [data]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    mem_limit: ${BACKUP_MEMORY:-512m}
+    healthcheck:
+      test: ['CMD', '/bin/sh', '/opt/ltw/backup.sh', 'health']
+      interval: 5m
+      timeout: 30s
+      retries: 1
+      start_period: 15m
+      start_interval: 10s
+    logging: *logging
+
+  # The restore drill's throwaway database (deploy/scripts/restore-drill.sh): started, filled from
+  # a dump, compared and removed by the drill; nothing persists.
+  drill-db:
+    profiles: [drill]
+    image: *postgres-image
+    environment:
+      POSTGRES_USER: ltw
+      POSTGRES_DB: ltw_restore_drill
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+    tmpfs: [/var/lib/postgresql]
+    volumes:
+      - ${BACKUP_DIR:?set BACKUP_DIR in deploy/.env}:/backups:ro
+    networks: [data]
+    shm_size: 256m
+    security_opt: ['no-new-privileges:true']
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ltw -d ltw_restore_drill']
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    logging: *logging
+
+networks:
+  # Proxy and server; outbound traffic for certificates and AI providers. A fixed range: the
+  # server trusts X-Forwarded-For from it (LTW_TRUST_PROXY).
+  edge:
+    ipam:
+      config:
+        - subnet: ${LTW_EDGE_SUBNET:-10.231.250.0/24}
+  # Server, database and backups; no outbound traffic, nothing published.
+  data:
+    internal: true
+
+volumes:
+  pgdata: {}
+  caddy-data: {}
+  caddy-config: {}

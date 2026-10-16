@@ -1,0 +1,297 @@
+
+### Dump A, verified against the manifest (development personas still on, to add events through the API below) (2026-10-15T23:36:40Z)
+$ deploy/scripts/backup-now.sh
+{"time":"2026-10-15T23:36:40Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T233640Z.dump (86334 bytes)"}
+{"time":"2026-10-15T23:36:40Z","service":"ltw-backup","level":"info","msg":"retention: kept 6, removed 0"}
+{"time":"2026-10-15T23:36:40Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233640Z.dump"}
+ltw-20261015T233640Z.dump
+[exit 0]
+
+### The live world goes on after dump A: two items as the DM (development persona) (2026-10-15T23:36:47Z)
+$ /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/dm-item.sh after-A-1 && /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/dm-item.sh after-A-2
+{"status":"accepted","commandId":"http:dm-ravenford:drill-after-A-1","campaignId":"ravenford","events":[{"sequence":102,"eventId":"088715dc-6a1c-4033-802f-b20dc51f01e2","type":"EntityCreated"}]}
+{"status":"accepted","commandId":"http:dm-ravenford:drill-after-A-2","campaignId":"ravenford","events":[{"sequence":103,"eventId":"b0d9735d-434a-47cf-af03-fb14c6aa5d1b","type":"EntityCreated"}]}
+[exit 0]
+
+### Restore drill on dump A while the live database is ahead: compared at the dump version (2026-10-15T23:36:48Z)
+$ deploy/scripts/restore-drill.sh ltw-20261015T233640Z.dump
+==> dump: ltw-20261015T233640Z.dump
+{"time":"2026-10-15T23:36:48Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233640Z.dump"}
+==> throwaway database
+ Container ltw-stage350-drill-db-1 Creating 
+ Container ltw-stage350-drill-db-1 Created 
+ Container ltw-stage350-drill-db-1 Starting 
+ Container ltw-stage350-drill-db-1 Started 
+ Container ltw-stage350-drill-db-1 Waiting 
+ Container ltw-stage350-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-15T23:36:52.317Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-15T23:36:52.340Z","service":"ltw-migrate","applied":[],"alreadyApplied":9,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_authoring_revisions 0
+ltw_commands 92
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 101
+ltw_schema_migrations 9
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":101,"digest":"sha256:7b529aa5170f8421d19057850340c86e281e360edabda22b29b46d633d7aa8ad","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":101,"status":"match","expected":"sha256:7b529aa5170f8421d19057850340c86e281e360edabda22b29b46d633d7aa8ad","actual":"sha256:7b529aa5170f8421d19057850340c86e281e360edabda22b29b46d633d7aa8ad","head":103}]}
+==> restore drill passed
+[exit 0]
+
+### Dump B of the advanced world (2026-10-15T23:37:04Z)
+$ deploy/scripts/backup-now.sh
+{"time":"2026-10-15T23:37:05Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T233704Z.dump (86614 bytes)"}
+{"time":"2026-10-15T23:37:05Z","service":"ltw-backup","level":"info","msg":"retention: kept 7, removed 0"}
+{"time":"2026-10-15T23:37:05Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233704Z.dump"}
+ltw-20261015T233704Z.dump
+[exit 0]
+
+### A real restore of dump A, by the runbook (section 5): play after dump A is discarded (2026-10-15T23:37:05Z)
+$ cd deploy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh verify ltw-20261015T233640Z.dump && docker compose stop proxy server && docker compose exec -T postgres psql -U ltw -d postgres -c 'DROP DATABASE ltw WITH (FORCE)' -c 'CREATE DATABASE ltw OWNER ltw' && docker compose exec -T backup pg_restore --exit-on-error --single-transaction --no-owner --no-privileges --dbname ltw /backups/ltw-20261015T233640Z.dump && docker compose up --detach --wait 2>&1 | grep -E 'Started|Healthy' | sort -u && docker compose exec -T postgres psql -U ltw -d ltw -At -c 'SELECT stream_id, version FROM ltw_event_streams'
+{"time":"2026-10-15T23:37:05Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233640Z.dump"}
+ Container ltw-stage350-proxy-1 Stopping 
+ Container ltw-stage350-proxy-1 Stopped 
+ Container ltw-stage350-server-1 Stopping 
+ Container ltw-stage350-server-1 Stopped 
+DROP DATABASE
+CREATE DATABASE
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+ Container ltw-stage350-proxy-1 Started 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-server-1 Started 
+ravenford|101
+[exit 0]
+
+### Restore drill on dump A after the real restore: the live world equals the dump (2026-10-15T23:37:21Z)
+$ deploy/scripts/restore-drill.sh ltw-20261015T233640Z.dump
+==> dump: ltw-20261015T233640Z.dump
+{"time":"2026-10-15T23:37:21Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233640Z.dump"}
+==> throwaway database
+ Container ltw-stage350-drill-db-1 Creating 
+ Container ltw-stage350-drill-db-1 Created 
+ Container ltw-stage350-drill-db-1 Starting 
+ Container ltw-stage350-drill-db-1 Started 
+ Container ltw-stage350-drill-db-1 Waiting 
+ Container ltw-stage350-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-15T23:37:25.332Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-15T23:37:25.361Z","service":"ltw-migrate","applied":[],"alreadyApplied":9,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_authoring_revisions 0
+ltw_commands 92
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 101
+ltw_schema_migrations 9
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":101,"digest":"sha256:7b529aa5170f8421d19057850340c86e281e360edabda22b29b46d633d7aa8ad","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":101,"status":"match","expected":"sha256:7b529aa5170f8421d19057850340c86e281e360edabda22b29b46d633d7aa8ad","actual":"sha256:7b529aa5170f8421d19057850340c86e281e360edabda22b29b46d633d7aa8ad","head":101}]}
+==> restore drill passed
+[exit 0]
+
+### The restored world takes a different turn: another item where dump B has after-A-1 (2026-10-15T23:37:26Z)
+$ /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/dm-item.sh other-turn-1
+{"status":"accepted","commandId":"http:dm-ravenford:drill-other-turn-1","campaignId":"ravenford","events":[{"sequence":102,"eventId":"95ec1e85-acd4-498c-a831-4870e3bae44c","type":"EntityCreated"}]}
+[exit 0]
+
+### Negative: restore drill on dump B now (the live stream is shorter than the dump): must fail (2026-10-15T23:37:26Z)
+$ deploy/scripts/restore-drill.sh ltw-20261015T233704Z.dump
+==> dump: ltw-20261015T233704Z.dump
+{"time":"2026-10-15T23:37:26Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233704Z.dump"}
+==> throwaway database
+ Container ltw-stage350-drill-db-1 Creating 
+ Container ltw-stage350-drill-db-1 Created 
+ Container ltw-stage350-drill-db-1 Starting 
+ Container ltw-stage350-drill-db-1 Started 
+ Container ltw-stage350-drill-db-1 Waiting 
+ Container ltw-stage350-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-15T23:37:30.605Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-15T23:37:30.628Z","service":"ltw-migrate","applied":[],"alreadyApplied":9,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_authoring_revisions 0
+ltw_commands 94
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 103
+ltw_schema_migrations 9
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":103,"digest":"sha256:365f8729e6d3044fb258c4442dc7d492994e4566dd0fbcced7b3891a51ee99c6","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":0,"streams":[{"campaignId":"ravenford","version":103,"status":"behind","expected":"sha256:365f8729e6d3044fb258c4442dc7d492994e4566dd0fbcced7b3891a51ee99c6","actual":null,"head":102}]}
+restore-drill.sh: restore drill FAILED: the restored world differs from the live one
+[exit 1]
+
+### The live stream reaches the version of dump B with different content (2026-10-15T23:37:32Z)
+$ /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/dm-item.sh other-turn-2
+{"status":"accepted","commandId":"http:dm-ravenford:drill-other-turn-2","campaignId":"ravenford","events":[{"sequence":103,"eventId":"46cca87e-2799-4ba3-8afe-d467cb70abe6","type":"EntityCreated"}]}
+[exit 0]
+
+### Negative: restore drill on dump B at the same version, different world: must fail (2026-10-15T23:37:32Z)
+$ deploy/scripts/restore-drill.sh ltw-20261015T233704Z.dump
+==> dump: ltw-20261015T233704Z.dump
+{"time":"2026-10-15T23:37:32Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233704Z.dump"}
+==> throwaway database
+ Container ltw-stage350-drill-db-1 Creating 
+ Container ltw-stage350-drill-db-1 Created 
+ Container ltw-stage350-drill-db-1 Starting 
+ Container ltw-stage350-drill-db-1 Started 
+ Container ltw-stage350-drill-db-1 Waiting 
+ Container ltw-stage350-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-15T23:37:35.938Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-15T23:37:35.974Z","service":"ltw-migrate","applied":[],"alreadyApplied":9,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_authoring_revisions 0
+ltw_commands 94
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 103
+ltw_schema_migrations 9
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":103,"digest":"sha256:365f8729e6d3044fb258c4442dc7d492994e4566dd0fbcced7b3891a51ee99c6","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":0,"streams":[{"campaignId":"ravenford","version":103,"status":"mismatch","expected":"sha256:365f8729e6d3044fb258c4442dc7d492994e4566dd0fbcced7b3891a51ee99c6","actual":"sha256:05e7cf6f74d17dea4910a174940ed943cbc10d6cf912655122d17e82f0445fd8","head":103}]}
+restore-drill.sh: restore drill FAILED: the restored world differs from the live one
+[exit 1]
+
+### Negative: a damaged dump (one byte appended on the host) is refused before any restore (2026-10-15T23:37:46Z)
+$ printf x >> /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/backups-run/ltw-20261015T233640Z.dump && deploy/scripts/restore-drill.sh ltw-20261015T233640Z.dump; echo "drill exit status: $?"
+==> dump: ltw-20261015T233640Z.dump
+{"time":"2026-10-15T23:37:46Z","service":"ltw-backup","level":"error","msg":"checksum mismatch: ltw-20261015T233640Z.dump"}
+drill exit status: 1
+[exit 0]
+
+### The byte removed again: the dump verifies (2026-10-15T23:37:46Z)
+$ python3 -c 'import os,sys; p=sys.argv[1]; os.truncate(p, os.path.getsize(p) - 1)' /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/backups-run/ltw-20261015T233640Z.dump && cd deploy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh verify ltw-20261015T233640Z.dump
+{"time":"2026-10-15T23:37:46Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233640Z.dump"}
+[exit 0]
+
+### The backup directory and its manifest (mode 600, owner as Docker Desktop maps uid 70) (2026-10-15T23:37:46Z)
+$ ls -l /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/backups-run && cat /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw-stage350/backups-run/SHA256SUMS
+total 1072
+-rw-------  1 oleksandr  wheel    644 Oct 16 01:37 SHA256SUMS
+-rw-------  1 oleksandr  wheel    814 Oct 16 01:21 ltw-20261015T232101Z.dump
+-rw-------  1 oleksandr  wheel  86113 Oct 16 01:21 ltw-20261015T232121Z.dump
+-rw-------  1 oleksandr  wheel  86113 Oct 16 01:26 ltw-20261015T232637Z.dump
+-rw-------  1 oleksandr  wheel  86113 Oct 16 01:30 ltw-20261015T233035Z.dump
+-rw-------  1 oleksandr  wheel  86113 Oct 16 01:34 ltw-20261015T233454Z.dump
+-rw-------@ 1 oleksandr  wheel  86334 Oct 16 01:37 ltw-20261015T233640Z.dump
+-rw-------  1 oleksandr  wheel  86614 Oct 16 01:37 ltw-20261015T233704Z.dump
+a355cef40584adeab7da826fa8ee5f482903fe10824112882a83eab2089483a7  ltw-20261015T232101Z.dump
+12088c5ba01c5bdc2812814d6cf554b148f1f1ce30350ee0f38a23502befbde4  ltw-20261015T232121Z.dump
+87959a147ad57ddfb2af5d5ddaa00b495d6f64ca71e6f8128b0c757642566521  ltw-20261015T232637Z.dump
+1660289d63b46e3a544a032c1578ea4dcf0a9d39becb4686ad3a897769a43a4e  ltw-20261015T233035Z.dump
+787d89b7a5a7731ab059187f5bfded807ec85101173edc2af449f9864c0c10e2  ltw-20261015T233454Z.dump
+9f772b5906da522f51e98adbfce8ae8ac12d2c78a27c84a19648d72b29265b43  ltw-20261015T233640Z.dump
+f62fb10f1c95ac4b2fc7e6124e2b468ad215583ae4badbe8d2cb0a20d2546db0  ltw-20261015T233704Z.dump
+[exit 0]
+
+### Final drill in production mode on the final revision: a fresh dump, then the restore drill (2026-10-15T23:40:18Z)
+$ deploy/scripts/backup-now.sh >/dev/null 2>&1 && deploy/scripts/restore-drill.sh
+==> dump: ltw-20261015T234018Z.dump
+{"time":"2026-10-15T23:40:19Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T234018Z.dump"}
+==> throwaway database
+ Container ltw-stage350-drill-db-1 Creating 
+ Container ltw-stage350-drill-db-1 Created 
+ Container ltw-stage350-drill-db-1 Starting 
+ Container ltw-stage350-drill-db-1 Started 
+ Container ltw-stage350-drill-db-1 Waiting 
+ Container ltw-stage350-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-15T23:40:22.491Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-15T23:40:22.510Z","service":"ltw-migrate","applied":[],"alreadyApplied":9,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_authoring_revisions 0
+ltw_commands 94
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 103
+ltw_schema_migrations 9
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":103,"digest":"sha256:05e7cf6f74d17dea4910a174940ed943cbc10d6cf912655122d17e82f0445fd8","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":103,"status":"match","expected":"sha256:05e7cf6f74d17dea4910a174940ed943cbc10d6cf912655122d17e82f0445fd8","actual":"sha256:05e7cf6f74d17dea4910a174940ed943cbc10d6cf912655122d17e82f0445fd8","head":103}]}
+==> restore drill passed
+[exit 0]

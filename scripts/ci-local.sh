@@ -23,5 +23,9 @@ step 'Seed again (idempotent)';    pnpm run seed:ravenford
 step 'Integration tests';          pnpm run test:integration
 step 'Chromium for UI journeys';  pnpm exec playwright install chromium
 step 'UI and API journeys';       pnpm run test:e2e
+# The CI workflow's second job (Docker, free ports 80/443); LTW_SKIP_DEPLOY_CHECK=1 skips it.
+if [ "${LTW_SKIP_DEPLOY_CHECK:-}" != 1 ]; then
+  step 'Deployment check';         bash deploy/verify/ci.sh
+fi
 
 printf '\nCI-equivalent validation passed.\n'
