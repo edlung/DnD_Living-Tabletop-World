@@ -1,0 +1,205 @@
+Stage 350 review fixes: restore drills and a real restore on dee48d337459. <S>/advance.sh is a local helper: the DM advances the clock through the World Engine inside the server container (one accepted command per ID; one ran before this file, fix350-play-1)
+
+### Play after the upgrade (2026-10-16T02:29:05Z)
+$ /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/advance.sh fix350-play-2 fix350-play-3
+fix350-play-2: accepted
+fix350-play-3: accepted
+ravenford at 104
+[exit 0]
+
+### Finding 2, after: the restore drill on the first dump (taken before any campaign existed): refused as empty (2026-10-16T02:29:05Z)
+$ deploy/scripts/restore-drill.sh ltw-20261016T022334Z.dump 2>&1 | grep -E '^==>|^restore-drill|"compared"|"streams"'; echo "drill exit status: ${PIPESTATUS[0]}"; tail -n 1 deploy/restore-drill.log
+==> dump: ltw-20261016T022334Z.dump (taken 2026-10-16T02:23:34Z)
+==> throwaway database
+==> migrations of this image on the restored database
+drill exit status: 1
+1792117809 2026-10-16T02:30:09Z failed ltw-20261016T022334Z.dump
+[exit 0]
+
+### The same dump with --allow-empty (the operator says the database was legitimately empty then): passes, since the live campaign was created after the dump (2026-10-16T02:30:09Z)
+$ deploy/scripts/restore-drill.sh --allow-empty ltw-20261016T022334Z.dump 2>&1 | grep -E '^==>|^restore-drill|"compared"'; echo "drill exit status: ${PIPESTATUS[0]}"; tail -n 1 deploy/restore-drill.log
+==> dump: ltw-20261016T022334Z.dump (taken 2026-10-16T02:23:34Z)
+==> throwaway database
+==> migrations of this image on the restored database
+drill exit status: 1
+1792117873 2026-10-16T02:31:13Z failed ltw-20261016T022334Z.dump
+[exit 0]
+
+### Finding during this verification: both drills stopped at "migrations of this image on the restored database" (2026-10-16T02:31:21Z)
+Run by hand, the migrator in the server container failed with "SASL: SCRAM-SERVER-FIRST-MESSAGE:
+client password must be a string": restore-drill.sh built the throwaway database's URL from
+POSTGRES_PASSWORD inside the server container, which existed there only because env_file passed
+the whole deploy/.env (finding 6). The server now holds only its own DATABASE_URL, so the drill
+derives the throwaway URL from it inside the container (host and database replaced; refused,
+exit 97, unless the result names drill-db, so nothing can run against the live database). A host
+script only: no image input changed. The two failed verdicts stay in deploy/restore-drill.log.
+
+### Finding 2, after (rerun with the fixed drill): the restore drill on the first dump (taken before any campaign existed) is refused as empty (2026-10-16T02:33:13Z)
+$ deploy/scripts/restore-drill.sh ltw-20261016T022334Z.dump 2>&1 | grep -E '^==>|^restore-drill|"compared"|"streams"|^ltw_event'; echo "drill exit status: ${PIPESTATUS[0]}"; tail -n 1 deploy/restore-drill.log
+==> dump: ltw-20261016T022334Z.dump (taken 2026-10-16T02:23:34Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+ltw_event_streams 0
+ltw_events 0
+==> replay of every restored campaign stream
+{"streams":[]}
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[],"failures":["empty"]}
+restore-drill.sh: restore drill FAILED: a restored campaign differs from the live one, the restore is empty, or it lacks a live campaign (see failures)
+drill exit status: 1
+1792117997 2026-10-16T02:33:17Z failed ltw-20261016T022334Z.dump
+[exit 0]
+
+### The same dump with --allow-empty (the operator says the database was legitimately empty then): passes, since the live campaign was created after the dump (2026-10-16T02:33:17Z)
+$ deploy/scripts/restore-drill.sh --allow-empty ltw-20261016T022334Z.dump 2>&1 | grep -E '^==>|^restore-drill|"compared"'; echo "drill exit status: ${PIPESTATUS[0]}"; tail -n 1 deploy/restore-drill.log
+==> dump: ltw-20261016T022334Z.dump (taken 2026-10-16T02:23:34Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[],"failures":[]}
+==> restore drill passed
+drill exit status: 0
+1792118001 2026-10-16T02:33:21Z passed ltw-20261016T022334Z.dump
+[exit 0]
+
+### Simulated: an empty dump taken after the campaign existed (what a dump of a dropped or half-restored database is): the first dump copied under the current time and added to the manifest; it is now the newest regular dump (2026-10-16T02:33:36Z)
+$ cd deploy && docker compose exec -T backup sh -c 'cp /backups/ltw-20261016T022334Z.dump /backups/ltw-$(date -u +%Y%m%dT%H%M%SZ).dump && /bin/sh /opt/ltw/backup.sh prune 2>/dev/null && /bin/sh /opt/ltw/backup.sh latest'
+ltw-20261016T023336Z.dump
+[exit 0]
+
+### The drill on the newest dump (the simulated one): empty, and the live campaign created before it is missing (2026-10-16T02:33:36Z)
+$ deploy/scripts/restore-drill.sh 2>&1 | grep -E '^==> (dump|live)|^restore-drill|"compared"'; echo "drill exit status: ${PIPESTATUS[0]}"
+==> dump: ltw-20261016T023336Z.dump (taken 2026-10-16T02:33:36Z)
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[{"campaignId":"ravenford","version":104,"createdAt":"2026-10-16T02:23:53.333Z"}],"failures":["empty","unrestored"]}
+restore-drill.sh: restore drill FAILED: a restored campaign differs from the live one, the restore is empty, or it lacks a live campaign (see failures)
+drill exit status: 1
+[exit 0]
+
+### Even with --allow-empty it fails: a campaign created before the dump is not in it (2026-10-16T02:33:40Z)
+$ deploy/scripts/restore-drill.sh --allow-empty ltw-20261016T023336Z.dump 2>&1 | grep -E '^==> (dump|live)|^restore-drill|"compared"'; echo "drill exit status: ${PIPESTATUS[0]}"
+==> dump: ltw-20261016T023336Z.dump (taken 2026-10-16T02:33:36Z)
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[{"campaignId":"ravenford","version":104,"createdAt":"2026-10-16T02:23:53.333Z"}],"failures":["unrestored"]}
+restore-drill.sh: restore drill FAILED: a restored campaign differs from the live one, the restore is empty, or it lacks a live campaign (see failures)
+drill exit status: 1
+[exit 0]
+
+### The simulated dump removed (manifest rewritten); the newest regular dump is a real one again (2026-10-16T02:33:44Z)
+$ cd deploy && docker compose exec -T backup sh -c 'rm /backups/ltw-20261016T023336Z.dump && /bin/sh /opt/ltw/backup.sh prune 2>/dev/null && /bin/sh /opt/ltw/backup.sh latest && grep -c . /backups/SHA256SUMS'
+ltw-20261016T022701Z.dump
+5
+[exit 0]
+
+### A fresh dump and the drill on it (the newest regular dump): passes (2026-10-16T02:33:51Z)
+$ set -o pipefail; deploy/scripts/backup-now.sh 2>&1 | grep -v '^{'; deploy/scripts/restore-drill.sh 2>&1 | grep -E '^==> (dump|live)|^restore-drill|"compared"'; echo "drill exit status: ${PIPESTATUS[0]}"; tail -n 1 deploy/restore-drill.log
+ltw-20261016T023351Z.dump
+==> dump: ltw-20261016T023351Z.dump (taken 2026-10-16T02:33:51Z)
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":104,"status":"match","expected":"sha256:2b159fe8b65f9f129d3c8b8bb0d7df8d2cad49dc410887ab250c1fb18f4cfd32","actual":"sha256:2b159fe8b65f9f129d3c8b8bb0d7df8d2cad49dc410887ab250c1fb18f4cfd32","head":104}],"unrestored":[],"failures":[]}
+drill exit status: 0
+1792118035 2026-10-16T02:33:55Z passed ltw-20261016T023351Z.dump
+[exit 0]
+
+### A real restore by deploy/scripts/restore.sh of the protected pre-deploy dump (LTW_PREDEPLOY_DUMP, Ravenford at 101; the live world is at 104): the dump checked, the current state kept as a protected pre-restore dump, the backup service stopped with the proxy and the server before the database is dropped, the restore in one transaction, every service started, the drill (2026-10-16T02:34:02Z)
+$ set -o pipefail; deploy/scripts/restore.sh "$(sed -n 's/^LTW_PREDEPLOY_DUMP=//p' deploy/.env)" 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Starting|Waiting|Running|Removing)|^\{"(level|time)"|^ltw_(ai|asset|auth|authoring|dm|commands|schema)'
+ Container ltw-fix350-postgres-1 Healthy 
+==> dump: ltw-predeploy-20261016T022712Z.dump
+==> the current state, kept as a protected dump
+==> the state before the restore: ltw-prerestore-20261016T023403Z.dump
+==> stopping the backup service, the proxy and the server
+ Container ltw-fix350-backup-1 Stopping 
+ Container ltw-fix350-proxy-1 Stopping 
+ Container ltw-fix350-backup-1 Stopped 
+ Container ltw-fix350-proxy-1 Stopped 
+ Container ltw-fix350-server-1 Stopping 
+ Container ltw-fix350-server-1 Stopped 
+==> the database, empty
+==> restoring ltw-predeploy-20261016T022712Z.dump (one transaction)
+ Container ltw-fix350-backup-run-4d0f87ffd5ca Created 
+==> starting every service (migrations bring an older dump forward)
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-backup-1 Started 
+ Container ltw-fix350-server-1 Started 
+ Container ltw-fix350-server-1 Healthy 
+ Container ltw-fix350-proxy-1 Started 
+ Container ltw-fix350-server-1 Healthy 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-proxy-1 Healthy 
+ Container ltw-fix350-backup-1 Healthy 
+==> dump: ltw-predeploy-20261016T022712Z.dump (taken 2026-10-16T02:27:12Z)
+==> throwaway database
+ Container ltw-fix350-drill-db-1 Created 
+ Container ltw-fix350-drill-db-1 Started 
+ Container ltw-fix350-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+ltw_event_streams 1
+ltw_events 101
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":101,"digest":"sha256:6f572070aedf66fbcf518eeb6b4fab2d1b69050856bab11eecc7bedf4b3aa652","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":101,"status":"match","expected":"sha256:6f572070aedf66fbcf518eeb6b4fab2d1b69050856bab11eecc7bedf4b3aa652","actual":"sha256:6f572070aedf66fbcf518eeb6b4fab2d1b69050856bab11eecc7bedf4b3aa652","head":101}],"unrestored":[],"failures":[]}
+==> restore drill passed
+==> restored ltw-predeploy-20261016T022712Z.dump; the state before it: ltw-prerestore-20261016T023403Z.dump
+[exit 0]
+
+### After the restore: the backup service's log around it (stopped before the drop, its first dump after the restart is of the restored world), the dumps, the protected pre-restore dump verified, the world back at 101 (2026-10-16T02:34:28Z)
+$ cd deploy && docker compose logs --no-color --since 3m backup | sed -E 's/^backup-1 *\| //' | grep -E 'stopping|backup written|backups every' ; docker compose exec -T backup ls -1 /backups | grep dump; docker compose exec -T backup /bin/sh /opt/ltw/backup.sh verify ltw-prerestore-20261016T023403Z.dump; docker compose exec -T postgres psql -U ltw -d ltw -At -c 'SELECT stream_id, version FROM ltw_event_streams'
+{"time":"2026-10-16T02:34:04Z","service":"ltw-backup","level":"info","msg":"stopping"}
+{"time":"2026-10-16T02:34:06Z","service":"ltw-backup","level":"info","msg":"backups every 21600 s; keeping 14 daily and 8 weekly"}
+{"time":"2026-10-16T02:34:06Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261016T023406Z.dump (100040 bytes)"}
+ltw-20261016T022334Z.dump
+ltw-20261016T022448Z.dump
+ltw-20261016T022500Z.dump
+ltw-20261016T022701Z.dump
+ltw-20261016T023351Z.dump
+ltw-20261016T023406Z.dump
+ltw-predeploy-20261016T022712Z.dump
+ltw-prerestore-20261016T023403Z.dump
+{"time":"2026-10-16T02:34:29Z","service":"ltw-backup","level":"info","msg":"verified: ltw-prerestore-20261016T023403Z.dump"}
+ravenford|101
+[exit 0]
+
+### Finding 4, after: the backup service stopped, then a deploy (same tag): deploy.sh starts PostgreSQL and the backup service and takes the protected dump before anything changes (2026-10-16T02:34:43Z)
+$ set -o pipefail; cd deploy && docker compose stop backup 2>&1 | grep -v Stopping && cd .. && deploy/scripts/deploy.sh dee48d337459 2>&1 | grep -E '^==>|backup-1 (Started|Healthy|Recreated)' && grep -E '^LTW_PREDEPLOY_DUMP=' deploy/.env
+ Container ltw-fix350-backup-1 Stopped 
+==> backup before the change (protected dump)
+ Container ltw-fix350-backup-1 Started 
+ Container ltw-fix350-backup-1 Healthy 
+==> the state before this deploy: ltw-predeploy-20261016T023455Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:dee48d337459 and ltw-proxy:dee48d337459 (previous: dee48d337459)
+ Container ltw-fix350-backup-1 Healthy 
+==> deployed dee48d337459
+LTW_PREDEPLOY_DUMP=ltw-predeploy-20261016T023455Z.dump
+[exit 0]
+
+### Finding 3, after: a checkout changes deploy/backup/backup.sh (a new file renamed over it, as git writes files): the running service reads the new file at once (directory mount), and the next deploy recreates the service (its label is the directory's digest), so its loop runs it too (2026-10-16T02:34:57Z)
+$ cd deploy && host() { openssl dgst -sha256 -r backup/backup.sh | cut -c1-16; }; inside() { docker compose exec -T backup sha256sum /opt/ltw/backup.sh | cut -c1-16; }; label() { docker inspect "$(docker compose ps -q backup)" --format '{{index .Config.Labels "ltw.backup-script"}}' | cut -c1-16; }; echo "before: host $(host), backup service $(inside), label $(label)"; cp backup/backup.sh backup/.next && printf '# a newer revision of this file\n' >>backup/.next && mv backup/.next backup/backup.sh; echo "after the checkout: host $(host), backup service $(inside), label $(label)"; cd .. && deploy/scripts/deploy.sh dee48d337459 2>&1 | grep -E '^==> (the state|deployed)|backup-1 Recreated'; cd deploy && echo "after the deploy: host $(host), backup service $(inside), label $(label), its loop started $(docker inspect "$(docker compose ps -q backup)" --format '{{.State.StartedAt}}' | cut -c1-19)"
+before: host 282cb02e3fda2505, backup service 282cb02e3fda2505, label 6c8c0ce1c5f68801
+after the checkout: host f01e6c655c29c7a7, backup service f01e6c655c29c7a7, label 6c8c0ce1c5f68801
+ Container ltw-fix350-backup-1 Recreated 
+==> the state before this deploy: ltw-predeploy-20261016T023510Z.dump (LTW_PREDEPLOY_DUMP)
+==> deployed dee48d337459
+after the deploy: host f01e6c655c29c7a7, backup service f01e6c655c29c7a7, label 90457eef286961a8, its loop started 2026-10-16T02:34:59
+[exit 0]
+
+### The committed backup.sh back (git checkout), deployed again: recreated once more; the smoke checks of the settings and the script (2026-10-16T02:35:20Z)
+$ git checkout -- deploy/backup/backup.sh && git status --short deploy && deploy/scripts/deploy.sh dee48d337459 2>&1 | grep -E '^==> (the state|deployed)|backup-1 Recreated'; deploy/verify/smoke.sh 2>&1 | sed -n '/settings and scripts/,$p'
+ M deploy/scripts/restore-drill.sh
+ M deploy/verify/watch-check.sh
+ Container ltw-fix350-backup-1 Recreated 
+==> the state before this deploy: ltw-predeploy-20261016T023532Z.dump (LTW_PREDEPLOY_DUMP)
+==> deployed dee48d337459
+==> settings and scripts
+     deploy/.env settings in the server beyond its own: none
+PASS  the server receives no other setting of deploy/.env
+PASS  the backup service was created for this checkout's deploy/backup/ (label)
+PASS  the backup service reads this checkout's backup.sh
+==> smoke checks passed
+[exit 0]
+

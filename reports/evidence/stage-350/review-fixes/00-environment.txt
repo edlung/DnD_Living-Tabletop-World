@@ -1,0 +1,55 @@
+Stage 350 review fixes: local verification transcripts (see 00-index.txt)
+
+### Revision, tools and host ports (2026-10-16T02:23:20Z)
+$ git log --oneline -3 && git status --short | head; docker version --format "Docker client {{.Client.Version}}, server {{.Server.Version}} ({{.Server.Os}}/{{.Server.Arch}})" && docker compose version && uname -sm && /bin/bash --version | head -1 && for t in curl jq python3 openssl; do printf "%s: " "$t"; command -v "$t"; done; for p in 18080 18443; do if nc -z -w 1 127.0.0.1 $p; then echo "port $p in use"; else echo "port $p free"; fi; done; docker network ls --format "{{.Name}}" | xargs docker network inspect --format "{{.Name}} {{range .IPAM.Config}}{{.Subnet}}{{end}}" | grep -c "10.231.237." | sed "s/^/networks already using 10.231.237.0\/24: /"
+dee48d3 Stage 350: fix review findings (readiness after rollback, empty-dump drill, backup script mount, protected pre-deploy dumps, runbook cron and off-host, secrets out of argv and the server env, Docker 28 check)
+b1618cb Stage 350 part B: invitation sign-in on the deployment, backend network trust boundary, review campaign, full local verification
+333a879 Stage 350 part A: Compose deployment behind Caddy, readiness, backups, restore drill, runbook — verified locally
+Docker client 29.5.3, server 29.5.3 (linux/arm64)
+Docker Compose version v5.1.4
+Darwin arm64
+GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)
+curl: /usr/bin/curl
+jq: /usr/bin/jq
+python3: /opt/homebrew/bin/python3
+openssl: /opt/homebrew/bin/openssl
+port 18080 free
+port 18443 free
+networks already using 10.231.237.0/24: 0
+[exit 0]
+
+### The deploy/.env of this run (secret values redacted); the b1618cb deploy files are git archive b1618cb deploy, extracted under the scratchpad (<S>/old) with this file (2026-10-16T02:23:20Z)
+$ S=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350; sed -E "s/^(POSTGRES_PASSWORD|ANTHROPIC_API_KEY|OPENROUTER_API_KEY|ALARM_WEBHOOK_URL)=.+/\1=<redacted>/; s|$S|<S>|" "$S/old/deploy/.env" && ls -l "$S/old/deploy/.env" | cut -c1-10
+COMPOSE_PROJECT_NAME=ltw-fix350
+LTW_IMAGE_TAG=
+LTW_PREVIOUS_IMAGE_TAG=
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_NETWORKS_DIGEST=
+PUBLIC_HOST=localhost
+PUBLIC_ORIGIN=https://localhost:18443
+TLS_MODE=internal
+PROXY_HTTP_PUBLISH=127.0.0.1:18080
+PROXY_HTTPS_PUBLISH=127.0.0.1:18443
+LTW_BACKEND_PREFIX=10.231.237
+POSTGRES_PASSWORD=<redacted>
+BACKUP_DIR=<S>/backups
+BACKUP_INTERVAL_SECONDS=
+BACKUP_KEEP_DAILY=
+BACKUP_KEEP_WEEKLY=
+ANTHROPIC_API_KEY=
+LTW_AI_ROUTES=
+LTW_AI_APPROVAL_ID=
+OPENROUTER_API_KEY=
+LTW_QUESTS_FILE=
+ALARM_WEBHOOK_URL=
+-rw-------
+[exit 0]
+
+### Images: b1618cb04a50 (part B, the previous tag) and dee48d337459 (these fixes; built by deploy/scripts/build.sh from git archive, so committed files only) (2026-10-16T02:23:20Z)
+$ for t in b1618cb04a50 dee48d337459; do for i in server proxy; do docker image inspect "ltw-$i:$t" --format "ltw-$i:$t {{.Id}} revision={{index .Config.Labels \"org.opencontainers.image.revision\"}} user={{.Config.User}}"; done; done
+ltw-server:b1618cb04a50 sha256:e2e584d72bfd98d3f32742ed8859aab311b9defbfc746d4ceca51155220aa38f revision=b1618cb04a50228b0c5d903d051f7d9366e4d3e5 user=node
+ltw-proxy:b1618cb04a50 sha256:21a5a26404ad8ef8d948c58927942a253caf447e5d9095ed3d8afcf846cf3a75 revision=b1618cb04a50228b0c5d903d051f7d9366e4d3e5 user=caddy
+ltw-server:dee48d337459 sha256:81a3536902b46bc578bbbeafcda326adff187e050d8e67a9d6170cfb6d9d9329 revision=dee48d3374594ba008e571e47b2553a77c4c3d36 user=node
+ltw-proxy:dee48d337459 sha256:6a528fe8dbbc556ddc9067d7b311c929ece373558b05fefc55d309ef3f16e84a revision=dee48d3374594ba008e571e47b2553a77c4c3d36 user=caddy
+[exit 0]
+

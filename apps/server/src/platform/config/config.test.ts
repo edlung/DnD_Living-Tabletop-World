@@ -31,6 +31,7 @@ describe('loadConfig', () => {
         routes: null,
       },
       questsFile: DEFAULT_QUESTS_FILE,
+      allowNewerSchema: false,
       assets: {
         workerIntervalMs: 5_000,
         generationTimeoutMs: 60_000,
@@ -103,6 +104,13 @@ describe('loadConfig', () => {
         expect(String(error)).not.toContain('SECRETMODEL');
       }
     }
+  });
+
+  it('reads the rollback step (LTW_ALLOW_NEWER_SCHEMA): true or false only, false by default', () => {
+    expect(loadConfig({ LTW_ALLOW_NEWER_SCHEMA: 'true' }).allowNewerSchema).toBe(true);
+    expect(loadConfig({ LTW_ALLOW_NEWER_SCHEMA: 'false' }).allowNewerSchema).toBe(false);
+    expect(loadConfig({ LTW_ALLOW_NEWER_SCHEMA: '' }).allowNewerSchema).toBe(false);
+    expect(() => loadConfig({ LTW_ALLOW_NEWER_SCHEMA: 'yes' })).toThrow(/LTW_ALLOW_NEWER_SCHEMA/);
   });
 
   it('silences logs by default in test', () => {

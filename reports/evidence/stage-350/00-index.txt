@@ -1,7 +1,8 @@
 Stage 350 part A: local verification transcripts (2026-10-15/16, Europe/Oslo; times in UTC)
 
-Part B (on Stage 340, 2026-10-16): part-b/ (index part-b/00-index.txt). The transcripts below are
-part A's, on its revisions before the rebase (local branch backup/stage-350-part-a-117453b).
+Part B (on Stage 340, 2026-10-16): part-b/ (index part-b/00-index.txt). The review fixes
+(2026-10-16): review-fixes/ (index review-fixes/00-index.txt). The transcripts below are part A's,
+on its revisions before the rebase (local branch backup/stage-350-part-a-117453b).
 
 Machine: Apple Silicon (Darwin arm64), Docker Desktop with Engine 29.5.3, Compose v5.1.4. Every
 entry is "### title (time)", "$ command" as run from the worktree root, its combined output and

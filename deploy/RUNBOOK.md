@@ -7,14 +7,20 @@ Russian and English side by side: each procedure in Russian, then in English; th
 shared. Decisions: `docs/adr/0037-deployment.md`; files: `deploy/AGENTS.md`.
 
 Все команды выполняются из корня рабочей копии репозитория на сервере (ниже `/opt/ltw`), от
-пользователя из группы `docker`; `dc` — это Compose развёртывания (никогда не запускайте голый
-`docker compose` в корне: там `docker-compose.yml` разработки). Секреты живут только в
-`deploy/.env`; никогда не печатайте его и не вставляйте значения в команды.
+пользователя из группы `docker` (оператора); `dc` — это Compose развёртывания (никогда не
+запускайте голый `docker compose` в корне: там `docker-compose.yml` разработки). Секреты живут
+только в `deploy/.env`; никогда не печатайте его и не вставляйте значения в команды. Каждый
+сервис получает из `deploy/.env` только то, что `compose.yaml` ему называет: сервер — свои
+настройки (ключи ИИ, `PUBLIC_ORIGIN`, …), но не пароль базы отдельно, не настройки копий и не
+адрес тревог. Журналы задач cron пишутся в `/var/log/ltw` (раздел 1, шаг 4).
 
 Every command runs from the root of the repository checkout on the server (`/opt/ltw` below), as
-a user in the `docker` group; `dc` is the deployment's Compose (never run a bare `docker compose`
-in the root: the development `docker-compose.yml` lives there). Secrets live only in
-`deploy/.env`; never print it and never put a value into a command line.
+a user in the `docker` group (the operator); `dc` is the deployment's Compose (never run a bare
+`docker compose` in the root: the development `docker-compose.yml` lives there). Secrets live
+only in `deploy/.env`; never print it and never put a value into a command line. Each service
+receives from `deploy/.env` only what `compose.yaml` names for it: the server its own settings (AI
+keys, `PUBLIC_ORIGIN`, …), not the database password on its own, the backup settings or the alarm
+webhook. Cron jobs log to `/var/log/ltw` (section 1, step 4).
 
 ```bash
 alias dc='docker compose -f /opt/ltw/deploy/compose.yaml'
@@ -42,11 +48,28 @@ the domain; until then the stack is verified locally (section 11).
    только после включения IPv6 в сети `edge`, шаг 5); дождитесь, пока она разрешается. EN: an `A`
    record for the domain, e.g. `play.example.org`, pointing at the server (`AAAA` only once IPv6 is
    enabled on the `edge` network, step 5); wait until it resolves.
-2. **Docker.** RU: Docker Engine 29 и плагин Compose из репозитория Docker
-   (`docker-ce`, `docker-compose-plugin`); пользователь развёртывания в группе `docker` (это права
-   root — только для оператора). EN: Docker Engine 29 and the Compose plugin from Docker's
-   repository (`docker-ce`, `docker-compose-plugin`); the deploying user in the `docker` group
-   (root-equivalent: the operator only).
+2. **Docker.** RU: Docker Engine 28 или новее (рекомендуется 29) и плагин Compose из репозитория
+   Docker (`docker-ce`, `docker-compose-plugin`); пользователь развёртывания в группе `docker` (это
+   права root — только для оператора). Внутренние сети `backend` и `data` используют режим шлюза
+   `isolated` (с Engine 28): у хоста нет адреса в них. Старый Engine молча игнорирует этот режим и
+   даёт хосту адрес внутри диапазона, которому сервер доверяет `X-Forwarded-For`. Поэтому
+   `deploy.sh`, `restore.sh` и `ci.sh` отказываются работать с Engine старше 28, а `deploy.sh` и
+   `restore.sh` после создания сетей проверяют `docker network inspect` (внутренняя сеть, режим
+   `isolated`, без шлюза), прежде чем запустить сервер. Проверка вручную:
+   `deploy/verify/preflight-check.sh`. EN: Docker Engine 28 or later (29 recommended) and the
+   Compose plugin from Docker's repository (`docker-ce`, `docker-compose-plugin`); the deploying
+   user in the `docker` group (root-equivalent: the operator only). The internal networks
+   `backend` and `data` use the bridge gateway mode `isolated` (Engine 28+): the host has no
+   address on them. An older Engine silently ignores the mode and gives the host an address inside
+   the range whose `X-Forwarded-For` the server trusts. So `deploy.sh`, `restore.sh` and `ci.sh`
+   refuse an Engine before 28, and `deploy.sh` and `restore.sh` check `docker network inspect`
+   after creating the networks (internal, mode `isolated`, no gateway) before the server starts.
+   By hand: `deploy/verify/preflight-check.sh`.
+
+   ```bash
+   docker version --format '{{.Server.Version}}'   # 28.x or later
+   ```
+
 3. **Брандмауэр / Firewall.** RU: снаружи открыты только 22 (лучше с ограничением по адресу), 80 и
    443/tcp. Docker публикует порты в обход `ufw`, поэтому никогда не публикуйте других портов:
    `compose.yaml` публикует только 80 и 443 прокси. EN: only 22 (preferably restricted by
@@ -67,7 +90,13 @@ the domain; until then the stack is verified locally (section 11).
    git clone git@github.com:edlung/DnD_Living-Tabletop-World.git /opt/ltw
    cd /opt/ltw && git checkout <revision>
    sudo install -d -m 700 -o 70 -g 70 /var/backups/ltw   # uid 70 = postgres in the images
+   sudo install -d -m 750 -o "$USER" -g "$USER" /var/log/ltw   # the cron jobs' logs (section 9)
    ```
+
+   RU: каталог копий читает только uid 70 (и root): оператор видит копии через сервис `backup`
+   (`dc exec -T backup ls -1 /backups`), копию вне сервера делает root (раздел 10). EN: only uid 70
+   (and root) can read the backup directory: the operator lists dumps through the `backup` service
+   (`dc exec -T backup ls -1 /backups`), and root makes the off-host copy (section 10).
 
 5. **`deploy/.env`.** RU: скопируйте пример, задайте права 600 и заполните; пароль базы только из
    шестнадцатеричных символов. EN: copy the example, set mode 600 and fill it in; the database
@@ -155,20 +184,41 @@ the domain; until then the stack is verified locally (section 11).
    then `deploy/verify/sign-in-journey.sh` shows the same steps over HTTP.
 
 8. **Наблюдение / Monitoring.** RU: включите `watch.sh` (раздел 9) и еженедельную тренировку
-   восстановления (раздел 5). EN: enable `watch.sh` (section 9) and the weekly restore drill
-   (section 5).
+   восстановления (раздел 5) и проведите первую тренировку сейчас: `watch.sh` тревожит, пока ни
+   одна не прошла. EN: enable `watch.sh` (section 9) and the weekly restore drill (section 5),
+   and run the first drill now: `watch.sh` alarms until one has passed.
+
+   ```bash
+   deploy/scripts/backup-now.sh && deploy/scripts/restore-drill.sh
+   ```
 
 ## 2. Выкатить тег · Deploy a tag
 
-**RU.** `deploy.sh` делает резервную копию, запоминает текущий тег как предыдущий, запускает
-образы нового тега (миграции идут при старте под advisory lock) и ждёт здоровья всех сервисов.
-Если изменились сети `compose.yaml` (их дайджест `LTW_NETWORKS_DIGEST`), он сначала останавливает
-и удаляет контейнеры и сети (тома остаются): Compose сам не умеет перевести на них работающий стек.
-**EN.** `deploy.sh` takes a backup, records the current tag as the previous one, starts the new
-tag's images (migrations run at start under an advisory lock) and waits until every service is
-healthy. When the networks of `compose.yaml` changed (their digest `LTW_NETWORKS_DIGEST`), it
-first removes the containers and networks (volumes stay): Compose alone cannot move a running
-stack onto them.
+**RU.** `deploy.sh` по порядку: проверяет Docker Engine (28+) и образы; отказывается от тега, в
+котором нет работающей ревизии, без `--rollback` (это откат, раздел 3); если изменились сети
+`compose.yaml` (их дайджест `LTW_NETWORKS_DIGEST`), удаляет контейнеры и сети (тома остаются):
+Compose сам не умеет перевести на них работающий стек. Если база существует, он делает
+**защищённую копию** до любых изменений (`ltw-predeploy-…`; при необходимости сам запускает
+PostgreSQL и сервис `backup`) и записывает её имя в `deploy/.env` как `LTW_PREDEPLOY_DUMP` (при
+откате — `LTW_ROLLBACK_DUMP`). Обычное хранение такие копии не удаляет: хранятся 5 новейших каждого
+вида (`BACKUP_KEEP_PROTECTED`). Сервис `backup` пересоздаётся, если изменился каталог
+`deploy/backup/` (метка `ltw.backup-script` = `LTW_BACKUP_SCRIPT_DIGEST`): его цикл всегда
+выполняет скрипт этой рабочей копии. Затем текущий тег запоминается как предыдущий, контейнеры
+создаются, сети `backend` и `data` проверяются на отсутствие адреса хоста, и только потом всё
+запускается (миграции — при старте под advisory lock); `deploy.sh` ждёт здоровья всех сервисов.
+**EN.** `deploy.sh`, in order: checks the Docker Engine (28+) and the images; refuses a tag that
+does not contain the running revision unless `--rollback` is given (that is a rollback, section
+3); when the networks of `compose.yaml` changed (their digest `LTW_NETWORKS_DIGEST`), removes the
+containers and networks (volumes stay): Compose alone cannot move a running stack onto them. When
+the database exists, it takes a **protected dump** before anything changes (`ltw-predeploy-…`;
+starting PostgreSQL and the `backup` service itself when needed) and records its name in
+`deploy/.env` as `LTW_PREDEPLOY_DUMP` (`LTW_ROLLBACK_DUMP` for a rollback). The regular retention
+never removes such dumps: the newest 5 of each kind are kept (`BACKUP_KEEP_PROTECTED`). The
+`backup` service is recreated whenever `deploy/backup/` changed (label `ltw.backup-script` =
+`LTW_BACKUP_SCRIPT_DIGEST`), so its loop always runs this checkout's script. Then the current tag
+is recorded as the previous one, the containers are created, the `backend` and `data` networks are
+checked for a host address, and only then does everything start (migrations at start under an
+advisory lock); `deploy.sh` waits until every service is healthy.
 
 ```bash
 cd /opt/ltw && git fetch && git checkout <revision>
@@ -186,25 +236,45 @@ describes.
 
 **RU.** Откат запускает предыдущие образы на той же базе. Миграции только добавляют, поэтому
 прежний образ может работать на базе, которую мигрировал новый, — но только с явным флагом
-`--rollback` (иначе мигратор откажет). Если новый образ записал события, которых прежний не умеет
-читать, прежний не станет готовым (`/api/readyz` → `eventStore`): тогда восстановите копию, которую
-`deploy.sh` сделал перед выкаткой (раздел 5, игра после неё теряется), или исправьте и выкатите
-вперёд.
+`--rollback` (иначе откажут мигратор и `deploy.sh`: тег без работающей ревизии — это откат). С
+`--rollback` (`LTW_ALLOW_NEWER_SCHEMA=true`) готовность прежнего образа разбирает **каждое**
+сохранённое событие, прежде чем ответить «готов»: новый образ мог ослабить схему события без новой
+версии (ADR 0007 это разрешает) и записать то, что строгие схемы прежнего отвергают где угодно в
+потоке. На большой истории это занимает время; сервер до тех пор не готов. Если прежний образ не
+стал готовым (`deploy.sh` падает, дождавшись нездорового `server`; в журнале `not ready` с
+`eventStore` и `this build cannot read event <кампания>#<номер>`), восстановите защищённую копию,
+которую `deploy.sh` сделал перед выкаткой, от которой вы откатываетесь (`LTW_PREDEPLOY_DUMP`; игра
+после неё теряется, состояние, которое вы покидаете, хранит `LTW_ROLLBACK_DUMP`), или исправьте и
+выкатите вперёд.
 
 **EN.** A rollback runs the previous images on the same database. Migrations only add, so the
 earlier image can run on a database the newer one migrated, but only with the explicit
-`--rollback` (otherwise the migrator refuses). If the newer image wrote events the earlier one
-cannot read, the earlier one never becomes ready (`/api/readyz` → `eventStore`): then restore the
-backup `deploy.sh` took before the deploy (section 5; play since then is lost), or fix and roll
-forward.
+`--rollback` (otherwise the migrator and `deploy.sh` refuse: a tag without the running revision is
+a rollback). With `--rollback` (`LTW_ALLOW_NEWER_SCHEMA=true`) the earlier image's readiness
+parses **every** stored event before it reports ready: the newer image may have loosened an
+event's payload schema without a new version (ADR 0007 allows it) and written what the earlier
+image's strict schemas refuse anywhere in a stream. On a long history that takes a while; the
+server is not ready meanwhile. If the earlier image does not become ready (`deploy.sh` fails after
+waiting for an unhealthy `server`; the log shows `not ready` with `eventStore` and
+`this build cannot read event <campaign>#<sequence>`), restore the protected dump `deploy.sh` took
+before the deploy you are rolling back (`LTW_PREDEPLOY_DUMP`; play since then is lost, and
+`LTW_ROLLBACK_DUMP` keeps the state you leave), or fix and roll forward.
 
 ```bash
 previous=$(sed -n 's/^LTW_PREVIOUS_IMAGE_TAG=//p' deploy/.env)
 git checkout "$previous"          # the deploy files of that revision
 deploy/scripts/deploy.sh --rollback "$previous"
+# not ready? / не готов?
+deploy/scripts/logs.sh --since 15m server | grep '"not ready"'
+deploy/scripts/restore.sh "$(sed -n 's/^LTW_PREDEPLOY_DUMP=//p' deploy/.env)"   # section 5
 # forward again later / позже снова вперёд:
 git checkout <newer> && deploy/scripts/deploy.sh <newer-tag>
 ```
+
+RU: ревизии до 2026-10-16 (b1618cb и раньше) не знают защищённых копий, `restore.sh` и проверки
+всех событий: откат на них — только по их собственному регламенту. EN: revisions before
+2026-10-16 (b1618cb and earlier) have no protected dumps, `restore.sh` or readiness over every
+event: roll back to them only by their own runbook.
 
 RU: если `compose.yaml` той ревизии описывает другие сети (например, до части B Stage 350), её
 `deploy.sh` этого не замечает: сначала `dc down` (никогда не `-v`: тома и база остаются), затем
@@ -245,45 +315,69 @@ does not notice: run `dc down` first (never `-v`: volumes and the database stay)
 ## 5. Восстановить из копии · Restore from backup
 
 **RU.** Копии: каждые 6 часов и по запросу, хранится всё младше суток, новейшая за каждый из 14
-дней и за каждую из 8 недель; `SHA256SUMS` перечисляет их. Журнал событий — канон: восстановление
-проверяется повторным проигрыванием каждой кампании.
+дней и за каждую из 8 недель. Защищённые копии — перед каждой выкаткой и откатом
+(`ltw-predeploy-…`, раздел 2) и перед восстановлением (`ltw-prerestore-…`) — обычное хранение не
+трогает: хранятся 5 новейших каждого вида (`BACKUP_KEEP_PROTECTED`). `SHA256SUMS` перечисляет все.
+Журнал событий — канон: восстановление проверяется повторным проигрыванием каждой кампании.
+Список копий: `dc exec -T backup ls -1 /backups`.
 
 **EN.** Backups: every 6 hours and on demand; everything younger than a day, the newest of each of
-14 days and of each of 8 weeks are kept; `SHA256SUMS` lists them. The event store is canonical: a
-restore is proven by replaying every campaign.
+14 days and of each of 8 weeks are kept. Protected dumps, taken before every deploy and rollback
+(`ltw-predeploy-…`, section 2) and before a restore (`ltw-prerestore-…`), are outside that
+retention: the newest 5 of each kind are kept (`BACKUP_KEEP_PROTECTED`). `SHA256SUMS` lists them
+all. The event store is canonical: a restore is proven by replaying every campaign. List the
+dumps: `dc exec -T backup ls -1 /backups`.
 
 **Тренировка (еженедельно и после выкатки) / Drill (weekly and after every deploy).** RU: новейшая
-копия восстанавливается во временную базу, каждая кампания проигрывается через World Engine и
-сравнивается с живой базой на той же версии; код выхода 0 только при полном совпадении. EN: the
-newest dump is restored into a throwaway database, every campaign is replayed through the World
-Engine and compared with the live database at the same version; exit status 0 only when all match.
+обычная копия (или названная) восстанавливается во временную базу, каждая кампания проигрывается
+через World Engine и сравнивается с живой базой на той же версии. Тренировка проходит, только если
+всё совпало, копия не пуста (копия пустой или наполовину восстановленной базы проваливается; флаг
+`--allow-empty` — только если база тогда законно была пустой) и в ней есть каждая живая кампания,
+созданная до времени копии (из её имени). Итог каждой тренировки дописывается в
+`deploy/restore-drill.log`; `watch.sh` тревожит, если последняя провалилась, старше 8 дней или её
+нет. EN: the newest regular dump (or the one named) is restored into a throwaway database, every
+campaign is replayed through the World Engine and compared with the live database at the same
+version. The drill passes only when everything matches, the restore is not empty (a dump of an
+empty or half-restored database fails; `--allow-empty` only when the database legitimately was
+empty then), and it holds every live campaign created before the dump's time (from its name).
+Each drill appends its verdict to `deploy/restore-drill.log`; `watch.sh` alarms when the last one
+failed, is older than 8 days, or there is none.
 
 ```bash
 deploy/scripts/backup-now.sh          # optional: a fresh dump first / сначала свежая копия
 deploy/scripts/restore-drill.sh       # or / или: restore-drill.sh ltw-20261016T120000Z.dump
-# cron: 0 4 * * 1  cd /opt/ltw && deploy/scripts/restore-drill.sh >>/var/log/ltw-drill.log 2>&1
+# cron (the operator's crontab): 0 4 * * 1  cd /opt/ltw && deploy/scripts/restore-drill.sh >>/var/log/ltw/drill.log 2>&1
 ```
 
 **Настоящее восстановление / A real restore** (игра после копии теряется / play after the dump
-is lost):
+is lost). RU: `restore.sh` проверяет копию, сохраняет текущее состояние защищённой копией
+(`ltw-prerestore-…`, имя печатается), **останавливает сервис `backup`** вместе с прокси и сервером
+(ни одна копия пустой или наполовину восстановленной базы не пишется и не становится новейшей),
+пересоздаёт базу, восстанавливает копию одной транзакцией одноразовым контейнером сервиса
+`backup`, запускает всё (миграции поднимают старую копию; первая копия цикла — уже
+восстановленного мира) и проводит тренировку. Если восстановление не удалось, база может быть
+пустой, а `backup`, прокси и сервер остаются остановленными: верните прежнее состояние той же
+командой с напечатанной копией `ltw-prerestore-…`. EN: `restore.sh` checks the dump, keeps the
+current state as a protected dump (`ltw-prerestore-…`, its name printed), **stops the `backup`
+service** with the proxy and the server (no dump of an empty or half-restored database is written
+or becomes the newest), recreates the database, restores the dump in one transaction from a
+one-off container of the `backup` service, starts everything (migrations bring an older dump
+forward; the loop's first dump is of the restored world) and runs the drill. If the restore
+fails, the database may be empty and `backup`, the proxy and the server stay stopped: go back with
+the same command and the printed `ltw-prerestore-…` dump.
 
 ```bash
-deploy/scripts/backup-now.sh                            # keep the current state too
-dc exec -T backup /bin/sh /opt/ltw/backup.sh verify <dump>
-dc stop proxy server
-dc exec -T postgres psql -U ltw -d postgres \
-  -c 'DROP DATABASE ltw WITH (FORCE)' -c 'CREATE DATABASE ltw OWNER ltw'
-dc exec -T backup pg_restore --exit-on-error --single-transaction --no-owner \
-  --no-privileges --dbname ltw /backups/<dump>
-dc up -d --wait                                         # migrations bring an older dump forward
-deploy/scripts/restore-drill.sh <dump>                  # the restored world equals the dump
+deploy/scripts/restore.sh <dump>       # e.g. the LTW_PREDEPLOY_DUMP of deploy/.env (section 3)
 ```
 
-RU: на новом сервере: шаги 1–5 раздела 1, затем скопируйте копии в `BACKUP_DIR`, соберите образы
-(шаг 6, без `deploy.sh`), впишите тег в `LTW_IMAGE_TAG`, запустите `dc up -d --wait postgres backup`
-и выполните восстановление выше. EN: on a new server: steps 1–5 of section 1, copy the dumps into
-`BACKUP_DIR`, build the images (step 6 without `deploy.sh`), set `LTW_IMAGE_TAG`, start
-`dc up -d --wait postgres backup` and restore as above.
+RU: на новом сервере: шаги 1–5 раздела 1; скопируйте копии и `SHA256SUMS` в `BACKUP_DIR` от root
+с владельцем 70 (`sudo install -o 70 -g 70 -m 600 <файлы> /var/backups/ltw/`); соберите образы
+(шаг 6, без `deploy.sh`), впишите тег в `LTW_IMAGE_TAG` и выполните `restore.sh <копия>`: он
+запускает только PostgreSQL, так что копии пустой базы не появляется. EN: on a new server: steps
+1–5 of section 1; copy the dumps and `SHA256SUMS` into `BACKUP_DIR` as root with owner 70
+(`sudo install -o 70 -g 70 -m 600 <files> /var/backups/ltw/`); build the images (step 6 without
+`deploy.sh`), set `LTW_IMAGE_TAG` and run `restore.sh <dump>`: it starts PostgreSQL alone, so no
+dump of the empty database appears.
 
 ## 6. Отозвать пользователя · Revoke a user (Stage 340)
 
@@ -350,35 +444,53 @@ as `UNAVAILABLE`, the neutral fallback shows). As an operator record (Stage 330,
 
 **RU.** Журналы — JSON в stdout каждого контейнера, Docker хранит 5 × 100 МБ на сервис.
 `watch.sh` проверяет диск (> 80 %), память (> 85 %), здоровье каждого сервиса (копия старше 7 часов
-делает `backup` нездоровым), строки ошибок и ответы 5xx за 15 минут (> 20), готовность через прокси
-и срок сертификата (< 14 дней); каждая тревога — строка в `deploy/alarms.log` и, если задан
-`ALARM_WEBHOOK_URL`, JSON `{"text": …}` на этот адрес (формат Slack).
+делает `backup` нездоровым), строки ошибок и ответы 5xx за 15 минут (> 20), готовность через прокси,
+срок сертификата (< 14 дней) и тренировку восстановления (последняя провалилась, старше 8 дней или
+её нет; `deploy/restore-drill.log`); каждая тревога — строка в `deploy/alarms.log` и, если задан
+`ALARM_WEBHOOK_URL`, JSON `{"text": …}` на этот адрес (формат Slack). Адрес — секрет: `curl`
+получает его на стандартный ввод (`--config -`), а не в аргументах, которые видит любой
+пользователь хоста (`ps`). Задачи cron — в crontab оператора (`crontab -e`), их журналы — в
+`/var/log/ltw` (раздел 1, шаг 4) с ротацией ниже.
 
 **EN.** Logs are JSON on each container's stdout; Docker keeps 5 × 100 MB per service. `watch.sh`
 checks disk (> 80 %), memory (> 85 %), every service's health (a dump older than 7 hours makes
-`backup` unhealthy), error lines and 5xx answers in 15 minutes (> 20), readiness through the proxy
-and certificate expiry (< 14 days); each alarm is a line in `deploy/alarms.log` and, with
-`ALARM_WEBHOOK_URL` set, JSON `{"text": …}` posted there (Slack format).
+`backup` unhealthy), error lines and 5xx answers in 15 minutes (> 20), readiness through the
+proxy, certificate expiry (< 14 days) and the restore drill (the last one failed, is older than 8
+days, or there is none; `deploy/restore-drill.log`); each alarm is a line in `deploy/alarms.log`
+and, with `ALARM_WEBHOOK_URL` set, JSON `{"text": …}` posted there (Slack format). The URL is a
+secret: `curl` reads it on standard input (`--config -`), never from its arguments, which any user
+on the host can list (`ps`). Cron jobs go in the operator's crontab (`crontab -e`) and log to
+`/var/log/ltw` (section 1, step 4), rotated as below.
 
 ```bash
 deploy/scripts/logs.sh --since 1h --errors        # errors only / только ошибки
 deploy/scripts/logs.sh --since 30m server         # one service / один сервис
 deploy/scripts/watch.sh                           # exit 1 when an alarm was raised
-# cron: */5 * * * *  cd /opt/ltw && deploy/scripts/watch.sh >>/var/log/ltw-watch.log 2>&1
+# cron (the operator's crontab): */5 * * * *  cd /opt/ltw && deploy/scripts/watch.sh >>/var/log/ltw/watch.log 2>&1
 dc ps                                             # health of every service
+```
+
+```bash
+# /etc/logrotate.d/ltw (as root) / ротация журналов cron:
+printf '%s\n' '/var/log/ltw/*.log {' '  weekly' '  rotate 8' '  compress' '  missingok' \
+  '  notifempty' '  copytruncate' '}' | sudo tee /etc/logrotate.d/ltw >/dev/null
 ```
 
 ## 10. Копия вне сервера · Off-host backup copy
 
 **RU.** Ожидает решения владельца о месте хранения (Q10). Копии содержат все секреты кампаний:
 вне сервера храните их только зашифрованными (например, `restic` или `rclone crypt`) и без
-удаления старых. Пример ежедневной задачи после выбора места: **EN.** Pending the owner's choice of
-location (Q10). The dumps hold every campaign secret: off the server, keep them only encrypted
-(e.g. `restic` or `rclone crypt`) and never delete older copies in sync. A daily job once the
-target exists:
+удаления старых. Каталог копий (700, владелец uid 70) читает только root, поэтому копирование —
+задача **root** (`sudo crontab -e`; настройка `rclone` в `/root/.config/rclone/rclone.conf`, права
+600), а не оператора. Пример ежедневной задачи после выбора места: **EN.** Pending the owner's
+choice of location (Q10). The dumps hold every campaign secret: off the server, keep them only
+encrypted (e.g. `restic` or `rclone crypt`) and never delete older copies in sync. Only root can
+read the backup directory (mode 700, owner uid 70), so the copy is a **root** job (`sudo crontab
+-e`; the `rclone` configuration in `/root/.config/rclone/rclone.conf`, mode 600), not the
+operator's. A daily job once the target exists:
 
 ```bash
-# 30 5 * * *  rclone copy /var/backups/ltw ltw-offsite:backups --include 'ltw-*.dump' --include SHA256SUMS
+# root's crontab: 30 5 * * *  rclone copy /var/backups/ltw ltw-offsite:backups --include 'ltw-*.dump' --include SHA256SUMS >>/var/log/ltw/offsite.log 2>&1
 ```
 
 ## 11. Локальная проверка · Local verification
@@ -397,7 +509,12 @@ target exists:
 - `live-stream.sh` — живой поток через прокси без буферизации (сессия DM по приглашению);
 - `trust-boundary.sh` — сети, адрес и сокет сервера, недоступность API с хоста и из `edge`,
   подделанный `X-Forwarded-For` не меняет клиента;
-- `retention-check.sh`; `ci.sh` делает всё это на чистой копии (так же работает CI).
+- `preflight-check.sh` — `deploy.sh` и `ci.sh` отказывают на Engine 27 (заглушка `docker`), сеть с
+  адресом хоста отвергается (временные сети);
+- `watch-check.sh` — тревоги тренировки восстановления и адрес вебхука только на стандартном вводе
+  `curl` (временный приёмник; запускать там, где вебхук не задан);
+- `retention-check.sh` (с защищёнными копиями); `ci.sh` делает всё это на чистой копии (так же
+  работает CI), включая тренировку на пустой первой копии и вторую выкатку.
 
 Ограничения: каждый из входов тратит запросы погашения этого хоста (10 в минуту, блокировка на
 15 минут после 20 отказов в час): `sign-in-journey.sh` — 7, `live-stream.sh` — 1,
@@ -421,7 +538,12 @@ as production runs it (invitation sign-in, `compose.yaml` alone). Needs `curl`, 
 - `live-stream.sh`: the live stream through the proxy, unbuffered (a DM session by invitation);
 - `trust-boundary.sh`: the networks, the server's address and socket, the API unreachable from
   the host and from `edge`, a forged `X-Forwarded-For` never changes the client;
-- `retention-check.sh`; `ci.sh` runs all of it on a clean checkout (as CI does).
+- `preflight-check.sh`: `deploy.sh` and `ci.sh` refuse Engine 27 (a stub `docker`), a network
+  with a host address is refused (throwaway networks);
+- `watch-check.sh`: the restore drill alarms, and the webhook URL only on `curl`'s standard input
+  (a throwaway receiver; run it where no webhook is configured);
+- `retention-check.sh` (with protected dumps); `ci.sh` runs all of it on a clean checkout (as CI
+  does), including a drill on the empty first dump and a second deploy.
 
 Limits: each sign-in spends this host's redeem attempts (10 a minute, a 15-minute lockout after
 20 refusals in an hour): `sign-in-journey.sh` 7, `live-stream.sh` 1, `trust-boundary.sh` up to 11

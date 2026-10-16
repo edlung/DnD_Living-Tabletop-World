@@ -1,0 +1,119 @@
+Stage 350 review fixes: the new tests before and after the fixes (2026-10-16, UTC)
+
+Before: this revision's new and changed tests run against the sources of b1618cb (the changed
+source files restored from b1618cb in this worktree for the run, then put back). Findings 1 and 2.
+Own database ltw_stage350 on the shared development server (integration tests).
+
+### Finding 1, before (finished 2026-10-16T02:07:11Z): store-readiness.integration.test.ts, postgres-event-store.test.ts, config.test.ts on b1618cb's postgres-event-store.ts, store-readiness.ts, config.ts, main.ts
+     × after a rollback, is not ready over an event this build cannot read in the middle of a stream 829ms
+     × after a rollback, reads every event page by page, names one it cannot read, and is ready once all parse 691ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > after a rollback, is not ready over an event this build cannot read in the middle of a stream
+AssertionError: expected { ready: true, failed: [] } to deeply equal { ready: false, …(1) }
+ FAIL  |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > after a rollback, reads every event page by page, names one it cannot read, and is ready once all parse
+AssertionError: promise resolved "undefined" instead of rejecting
+      Tests  2 failed | 6 passed (8)
+     × applies safe development defaults when nothing is set 8ms
+     × reads the rollback step (LTW_ALLOW_NEWER_SCHEMA): true or false only, false by default 1ms
+     × shares one read of every event among concurrent calls and keeps it once it succeeded 6ms
+     × reads again after a failed read, and reads every event when only the cheap check ran 3ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |unit| apps/server/src/world-engine/postgres-event-store.test.ts > PostgresEventStore.assertReadable > shares one read of every event among concurrent calls and keeps it once it succeeded
+AssertionError: expected [ 'shapes', 'shapes' ] to deeply equal [ 'events' ]
+ FAIL  |unit| apps/server/src/world-engine/postgres-event-store.test.ts > PostgresEventStore.assertReadable > reads again after a failed read, and reads every event when only the cheap check ran
+AssertionError: expected [ 'shapes', 'shapes' ] to deeply equal [ 'events', 'shapes', 'events' ]
+ FAIL  |unit| apps/server/src/platform/config/config.test.ts > loadConfig > applies safe development defaults when nothing is set
+AssertionError: expected { nodeEnv: 'development', …(7) } to deeply equal { nodeEnv: 'development', …(8) }
+ FAIL  |unit| apps/server/src/platform/config/config.test.ts > loadConfig > reads the rollback step (LTW_ALLOW_NEWER_SCHEMA): true or false only, false by default
+AssertionError: expected undefined to be true // Object.is equality
+      Tests  4 failed | 25 passed (29)
+
+### Finding 2, before (finished 2026-10-16T02:09:30Z): replay-digest.integration.test.ts and replay-digest.test.ts on b1618cb's replay-digest.ts and replay-digest-cli.ts (the CLI did not know --dumped-at: exit 2 where the tests expect 0 or 1)
+     × replays a restored copy to the digests the live database has at the same version 3052ms
+     × fails on a different digest, a missing stream, and a stream the database does not reach 2046ms
+     × fails on an empty restore unless the operator allows it, and on a live stream the dump lost 1759ms
+     × refuses malformed requests 2571ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |integration| apps/server/src/world-engine/replay-digest.integration.test.ts > replay-digest CLI > replays a restored copy to the digests the live database has at the same version
+AssertionError: expected 2 to be +0 // Object.is equality
+ FAIL  |integration| apps/server/src/world-engine/replay-digest.integration.test.ts > replay-digest CLI > fails on a different digest, a missing stream, and a stream the database does not reach
+AssertionError: expected 2 to be 1 // Object.is equality
+ FAIL  |integration| apps/server/src/world-engine/replay-digest.integration.test.ts > replay-digest CLI > fails on an empty restore unless the operator allows it, and on a live stream the dump lost
+ FAIL  |integration| apps/server/src/world-engine/replay-digest.integration.test.ts > replay-digest CLI > refuses malformed requests
+AssertionError: expected 1 to be 2 // Object.is equality
+      Tests  4 failed (4)
+     × passes when every restored stream matches and every earlier live stream is restored 3ms
+     × fails an empty restore unless the operator allows it 0ms
+     × fails when a live stream created before the dump is not in it, even with an empty restore allowed 0ms
+     × fails on any stream that does not match 0ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |unit| apps/server/src/world-engine/replay-digest.test.ts > drillVerdict > passes when every restored stream matches and every earlier live stream is restored
+ FAIL  |unit| apps/server/src/world-engine/replay-digest.test.ts > drillVerdict > fails an empty restore unless the operator allows it
+ FAIL  |unit| apps/server/src/world-engine/replay-digest.test.ts > drillVerdict > fails when a live stream created before the dump is not in it, even with an empty restore allowed
+ FAIL  |unit| apps/server/src/world-engine/replay-digest.test.ts > drillVerdict > fails on any stream that does not match
+      Tests  4 failed | 5 passed (9)
+
+### After: the same tests on this revision (verbose; integration tests against the own database) (2026-10-16T02:46:16Z)
+$ DATABASE_URL=postgres://ltw:ltw_dev_password@127.0.0.1:54329/ltw_stage350 pnpm exec vitest run --project integration --reporter=verbose apps/server/src/world-engine/store-readiness.integration.test.ts apps/server/src/world-engine/replay-digest.integration.test.ts apps/server/src/world-engine/postgres-event-store.integration.test.ts 2>&1 | grep -E '^ +(✓|×)|Test Files|Tests +[0-9]'; pnpm exec vitest run --project unit --reporter=verbose apps/server/src/world-engine/postgres-event-store.test.ts apps/server/src/world-engine/replay-digest.test.ts apps/server/src/platform/config/config.test.ts 2>&1 | grep -E '^ +(✓|×)|Test Files|Tests +[0-9]'
+ ✓ |integration| apps/server/src/world-engine/postgres-event-store.integration.test.ts > PostgresEventStore > stores and loads events and commands exactly as the in-memory store does 947ms
+ ✓ |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > is ready on a migrated database, empty or seeded 875ms
+ ✓ |integration| apps/server/src/world-engine/postgres-event-store.integration.test.ts > PostgresEventStore > append > creates a stream once and then requires the current version 399ms
+ ✓ |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > is not ready while a migration this build carries is pending 452ms
+ ✓ |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > stays ready on a database a newer build migrated (the rollback step accepted it) 198ms
+ ✓ |integration| apps/server/src/world-engine/postgres-event-store.integration.test.ts > PostgresEventStore > append > rejects a command ID that is already recorded 252ms
+ ✓ |integration| apps/server/src/world-engine/postgres-event-store.integration.test.ts > PostgresEventStore > append > writes nothing when any part of a batch fails 270ms
+ ✓ |integration| apps/server/src/world-engine/replay-digest.integration.test.ts > replay-digest CLI > replays a restored copy to the digests the live database has at the same version 1808ms
+ ✓ |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > is not ready when the store holds an event type this build cannot read, even beneath a readable head 786ms
+ ✓ |integration| apps/server/src/world-engine/postgres-event-store.integration.test.ts > PostgresEventStore > enforces append-only history in the database itself 744ms
+ ✓ |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > after a rollback, is not ready over an event this build cannot read in the middle of a stream 685ms
+ ✓ |integration| apps/server/src/world-engine/postgres-event-store.integration.test.ts > PostgresEventStore > refuses to load rows that do not match the event schema 648ms
+ ✓ |integration| apps/server/src/world-engine/replay-digest.integration.test.ts > replay-digest CLI > fails on a different digest, a missing stream, and a stream the database does not reach 1360ms
+ ✓ |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > after a rollback, reads every event page by page, names one it cannot read, and is ready once all parse 658ms
+ ✓ |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > is not ready when a stream head has no event 137ms
+ ✓ |integration| apps/server/src/world-engine/store-readiness.integration.test.ts > storeReadiness > is not ready, within its bound, when the database cannot be reached 111ms
+ ✓ |integration| apps/server/src/world-engine/replay-digest.integration.test.ts > replay-digest CLI > fails on an empty restore unless the operator allows it, and on a live stream the dump lost 1928ms
+ ✓ |integration| apps/server/src/world-engine/replay-digest.integration.test.ts > replay-digest CLI > refuses malformed requests 2651ms
+ Test Files  3 passed (3)
+      Tests  18 passed (18)
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > applies safe development defaults when nothing is set 3ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > reads the asset worker settings, where 0 disables the worker 1ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > reads the rollback step (LTW_ALLOW_NEWER_SCHEMA): true or false only, false by default 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > silences logs by default in test 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > reads explicit values and coerces the port 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > treats empty strings as unset 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > disables development personas in production and refuses to enable them 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > requires DATABASE_URL in production 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > rejects development credentials in production 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > rejects invalid input { NODE_ENV: 'staging' } 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > rejects invalid input { LOG_LEVEL: 'verbose' } 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > rejects invalid input { HTTP_PORT: '70000' } 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > rejects invalid input { HTTP_PORT: 'abc' } 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > rejects invalid input { DATABASE_URL: 'mysql://user:pw@host/db' } 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > rejects invalid input { DATABASE_URL: 'not a url' } 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > loadConfig > never echoes the offending value in error messages 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > drops credentials 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > enables the Anthropic adapter only when a key is set 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > reads the model and timeout 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > reads the relevance budget, with or without a key (ADR 0021) 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > reads the whole-request deadline (1,000–300,000 ms) and the selected approval (B2) 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > never renders the key in JSON, strings, or inspection 1ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > rejects an invalid LTW_AI_TIMEOUT_MS without echoing it 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > rejects an invalid LTW_AI_MODEL without echoing it 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > rejects an invalid LTW_AI_RELEVANCE_BUDGET_MS without echoing it 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > rejects an invalid LTW_AI_REQUEST_TIMEOUT_MS without echoing it 0ms
+ ✓ |unit| apps/server/src/platform/config/config.test.ts > describeDatabaseUrl > AI provider (ADR 0017 §2) > rejects an invalid LTW_AI_APPROVAL_ID without echoing it 0ms
+ ✓ |unit| apps/server/src/world-engine/postgres-event-store.test.ts > PostgresEventStore.assertReadable > shares one read of every event among concurrent calls and keeps it once it succeeded 1ms
+ ✓ |unit| apps/server/src/world-engine/postgres-event-store.test.ts > PostgresEventStore.assertReadable > reads again after a failed read, and reads every event when only the cheap check ran 1ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > digestStream > replays a stream through the World Engine and digests it at its head or an earlier version 25ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > digestStream > has no digest beyond the head or for a stream that does not exist 7ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > compareStreams > matches a database that went on after the backup, at the backup’s version 7ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > compareStreams > reports a different world at the same version, a missing stream and a shorter one 16ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > compareStreams > never calls an inconsistent replay a match 5ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > drillVerdict > passes when every restored stream matches and every earlier live stream is restored 0ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > drillVerdict > fails an empty restore unless the operator allows it 0ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > drillVerdict > fails when a live stream created before the dump is not in it, even with an empty restore allowed 0ms
+ ✓ |unit| apps/server/src/world-engine/replay-digest.test.ts > drillVerdict > fails on any stream that does not match 0ms
+ Test Files  3 passed (3)
+      Tests  38 passed (38)
+[exit 0]
+

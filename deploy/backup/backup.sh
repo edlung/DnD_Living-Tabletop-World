@@ -5,14 +5,22 @@
 #
 #   backup.sh loop            the service: a dump now, then one every BACKUP_INTERVAL_SECONDS
 #   backup.sh once            a dump now (deploy/scripts/backup-now.sh)
-#   backup.sh latest          the newest dump's file name
-#   backup.sh verify [<name>] a dump (default: the newest) against the manifest, and its contents
-#   backup.sh health          the service's health check: the newest dump is recent enough
+#   backup.sh pre-deploy      a protected dump before a deploy or rollback (deploy/scripts/deploy.sh);
+#                             prints its file name
+#   backup.sh pre-restore     a protected dump of the state a restore replaces
+#                             (deploy/scripts/restore.sh); prints its file name
+#   backup.sh latest          the newest regular dump's file name
+#   backup.sh verify [<name>] a dump (default: the newest regular one) against the manifest, and
+#                             its contents
+#   backup.sh health          the service's health check: the newest regular dump is recent enough
 #   backup.sh prune           apply the retention and rewrite the manifest (also after every dump)
 #
 # Dumps are `pg_dump --format=custom` files named ltw-YYYYMMDDTHHMMSSZ.dump (UTC). Retention keeps
 # every dump younger than a day, the newest dump of each of the BACKUP_KEEP_DAILY most recent days
-# and of each of the BACKUP_KEEP_WEEKLY most recent ISO weeks; SHA256SUMS lists what is kept.
+# and of each of the BACKUP_KEEP_WEEKLY most recent ISO weeks. Protected dumps,
+# ltw-predeploy-YYYYMMDDTHHMMSSZ.dump and ltw-prerestore-YYYYMMDDTHHMMSSZ.dump, are never part of
+# that retention: the newest BACKUP_KEEP_PROTECTED (default 5) of each kind are kept. SHA256SUMS
+# lists every dump kept.
 set -eu
 umask 077
 
@@ -20,8 +28,12 @@ DIR=${BACKUP_TARGET:-/backups}
 INTERVAL=${BACKUP_INTERVAL_SECONDS:-21600}
 KEEP_DAILY=${BACKUP_KEEP_DAILY:-14}
 KEEP_WEEKLY=${BACKUP_KEEP_WEEKLY:-8}
+KEEP_PROTECTED=${BACKUP_KEEP_PROTECTED:-5}
 MANIFEST="$DIR/SHA256SUMS"
-PATTERN='^ltw-[0-9]{8}T[0-9]{6}Z\.dump$'
+STAMP='[0-9]{8}T[0-9]{6}Z'
+# Regular dumps (the retention above) and every dump (regular or protected).
+PATTERN="^ltw-${STAMP}\\.dump\$"
+ANY_DUMP="^ltw-((predeploy|prerestore)-)?${STAMP}\\.dump\$"
 
 # JSON log lines on stderr (stdout carries only answers such as `latest`).
 log() {
@@ -29,14 +41,15 @@ log() {
     "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$1" "$2" >&2
 }
 
+# Regular dumps, or those matching the pattern given, newest first (the names sort by time).
 dumps_newest_first() {
-  ls -1 "$DIR" | grep -E "$PATTERN" | sort -r || true
+  ls -1 "$DIR" | grep -E "${1:-$PATTERN}" | sort -r || true
 }
 
 # Epoch seconds of a dump's name: ltw-20261016T120000Z.dump -> 1792152000 (busybox date).
 epoch_of() {
   date -u -d "$(echo "$1" | sed -E \
-    's/^ltw-([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2})([0-9]{2})([0-9]{2})Z\.dump$/\1-\2-\3 \4:\5:\6/')" +%s
+    's/^ltw-([a-z]+-)?([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2})([0-9]{2})([0-9]{2})Z\.dump$/\2-\3-\4 \5:\6:\7/')" +%s
 }
 
 # One backup action at a time across the loop and on-demand runs (busybox flock has no timeout).
@@ -90,6 +103,18 @@ prune() {
       removed=$((removed + 1))
     fi
   done
+  for protected in predeploy prerestore; do
+    count=0
+    for name in $(dumps_newest_first "^ltw-$protected-${STAMP}\\.dump\$"); do
+      count=$((count + 1))
+      if [ "$count" -le "$KEEP_PROTECTED" ]; then
+        kept=$((kept + 1))
+      else
+        rm -f "$DIR/$name"
+        removed=$((removed + 1))
+      fi
+    done
+  done
   write_manifest
   log info "retention: kept $kept, removed $removed"
 }
@@ -98,7 +123,7 @@ prune() {
 write_manifest() {
   next="$DIR/.SHA256SUMS.next"
   : >"$next"
-  for name in $(dumps_newest_first | sort); do
+  for name in $(dumps_newest_first "$ANY_DUMP" | sort); do
     line=$(grep -E "^[0-9a-f]{64}  $name\$" "$MANIFEST" 2>/dev/null || true)
     if [ -n "$line" ]; then
       echo "$line" >>"$next"
@@ -109,12 +134,15 @@ write_manifest() {
   mv "$next" "$MANIFEST"
 }
 
+# A dump now: regular, or protected when a kind (predeploy, prerestore) is given, whose name it
+# then prints on stdout. (POSIX sh has no local variables: `prune` reuses `name`.)
 dump_once() {
+  kind=${1:-}
   lock
-  name="ltw-$(date -u +%Y%m%dT%H%M%SZ).dump"
+  name="ltw-${kind:+$kind-}$(date -u +%Y%m%dT%H%M%SZ).dump"
   while [ -e "$DIR/$name" ]; do
     sleep 1
-    name="ltw-$(date -u +%Y%m%dT%H%M%SZ).dump"
+    name="ltw-${kind:+$kind-}$(date -u +%Y%m%dT%H%M%SZ).dump"
   done
   partial="$DIR/.partial-$name"
   rm -f "$DIR"/.partial-*
@@ -126,8 +154,12 @@ dump_once() {
   # The archive's table of contents must be readable before it counts as a backup.
   pg_restore --list "$partial" >/dev/null
   mv "$partial" "$DIR/$name"
-  log info "backup written: $name ($(wc -c <"$DIR/$name" | tr -d ' ') bytes)"
+  written=$name
+  log info "backup written: $written ($(wc -c <"$DIR/$written" | tr -d ' ') bytes)"
   prune
+  if [ -n "$kind" ]; then
+    echo "$written"
+  fi
 }
 
 latest() {
@@ -141,7 +173,7 @@ latest() {
 
 verify() {
   name=${1:-$(latest)}
-  echo "$name" | grep -Eq "$PATTERN" || {
+  echo "$name" | grep -Eq "$ANY_DUMP" || {
     log error 'not a backup file name'
     return 1
   }
@@ -181,12 +213,14 @@ loop() {
 case "${1:-}" in
   loop) loop ;;
   once) dump_once ;;
+  pre-deploy) dump_once predeploy ;;
+  pre-restore) dump_once prerestore ;;
   latest) latest ;;
   verify) verify "${2:-}" ;;
   health) health ;;
   prune) lock && prune ;;
   *)
-    echo 'usage: backup.sh loop|once|latest|verify [<name>]|health|prune' >&2
+    echo 'usage: backup.sh loop|once|pre-deploy|pre-restore|latest|verify [<name>]|health|prune' >&2
     exit 2
     ;;
 esac

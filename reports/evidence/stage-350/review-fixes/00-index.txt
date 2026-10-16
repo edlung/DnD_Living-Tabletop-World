@@ -1,0 +1,82 @@
+Stage 350 review fixes: local verification transcripts (2026-10-16, Europe/Oslo; times in UTC)
+
+Machine: Apple Silicon (Darwin arm64), Docker Desktop with Engine 29.5.3, Compose v5.1.4, bash
+3.2. Every entry is "### title (time)", "$ command" as run from the worktree root, its combined
+output and "[exit N]" ("### Finding" entries have no command; some commands drop Compose's
+progress lines). <S> is this session's scratchpad directory (fix350/), <worktree> this worktree.
+Secret values never appear: deploy/.env is shown redacted, invitation links and cookies as
+<token> and <session>, POSTGRES_PASSWORD is expanded only inside the containers, and the throwaway
+webhook URL of watch-check.sh is never printed. The stack ran as Compose project ltw-fix350 on
+127.0.0.1:18080/18443 (PUBLIC_ORIGIN=https://localhost:18443, LTW_BACKEND_PREFIX=10.231.237,
+TLS_MODE=internal; production mode: NODE_ENV=production, AUTH_MODE=invitations, compose.yaml
+alone) and was removed at the end (08); ci.sh ran its own project afterwards (09).
+
+Revisions (tags = 12-character commits; images built by deploy/scripts/build.sh from git archive):
+  b1618cb04a50  part B as it shipped: the previous tag; its own deploy files (git archive b1618cb
+                deploy, under <S>/old) for the first install and the "before" runs of 02
+  dee48d337459  these fixes: every "after" check (03-09)
+dee48d3 is this change's working commit; the final commit amends it with fixes to two host
+scripts and compose.yaml found during this verification (restore-drill.sh in 05, watch-check.sh
+in 02, the backup service's tmpfs in 08), the documentation and these transcripts. Of what
+deploy/Dockerfile copies (apps/, packages/, fixtures/ravenford*, deploy/server/start.sh,
+deploy/proxy/Caddyfile) only apps/server/AGENTS.md changed after dee48d3, a document the build
+stage copies but neither image contains, so the images of the final commit hold the same files.
+The checks after each fix ran with the fixed script; 09 ran with the final host scripts and
+compose.yaml.
+watch-check.sh's first two "before" runs in 02 were discarded and rerun: the first stopped on a
+grep without a match under pipefail, the second raised no alarm to post (the check now forces
+disk alarms, so every run posts).
+
+Findings and where they are shown (before -> after)
+  1 readiness after rollback  01 (tests), 06 (b1618cb in rollback mode ready over an event it
+                              cannot read; dee48d337459 in rollback mode not ready, naming it)
+  2 empty-dump drill          01 (tests), 02 (b1618cb's drill passes an empty dump) -> 05, 09
+  3 backup script mount       02 (the replaced file is gone in the container) -> 03, 05
+  4 pre-deploy backup         02 (silently skipped), 07 (retention) -> 03, 05, 06, 07, 09
+  5 runbook cron, off-host,   02 (no drill alarm) -> 07, 09; the runbook text itself is not
+    drill alarm               executable here (deploy/RUNBOOK.md sections 1, 5, 9, 10)
+  6 secrets                   02 (server holds POSTGRES_PASSWORD, ALARM_WEBHOOK_URL, ...; the URL
+                              in curl's arguments) -> 04, 07, 09
+  7 Docker Engine 28          02 (no guard) -> 04, 09
+
+Files
+  00-environment.txt       revision, Docker and tool versions, free ports, redacted deploy/.env,
+                           the images run
+  01-tests-before-after.txt  the new and changed server tests on b1618cb's sources (fail) and on
+                           this revision (pass): readiness after rollback, the event store's
+                           shared and retried read, the config setting, the drill verdict and CLI
+  02-install-and-before.txt  first install of b1618cb with its files, the review campaign seeded;
+                           before: its drill passes an empty dump; its single-file mount loses a
+                           replaced backup.sh (on Docker Desktop the file vanishes inside the
+                           container); its deploy.sh skips the backup when the backup service is
+                           stopped; this revision's smoke, watch and preflight checks fail there
+  03-upgrade.txt           the upgrade to dee48d337459: the backup service recreated (directory
+                           mount, script label), a protected pre-deploy dump, networks checked;
+                           settings, dumps, mounts and the server's startup line after it
+  04-smoke-trust-preflight.txt  smoke.sh 42/42 (3 new checks), preflight-check.sh 6/6,
+                           trust-boundary.sh 23/23
+  05-backup-restore.txt    the empty first dump refused, allowed with --allow-empty; a finding (the
+                           drill took the password from the server's environment) and the rerun;
+                           a simulated empty dump taken after the campaign existed: refused (empty,
+                           unrestored), with --allow-empty still (unrestored); a fresh dump's drill;
+                           a real restore by restore.sh (backup service stopped before the drop,
+                           pre-restore dump, drill); a deploy with the backup service stopped; a
+                           backup.sh change: read at once, the service recreated by the next deploy
+  06-rollback-readiness.txt  the rollback guard; rollback to b1618cb04a50 and forward
+                           (LTW_ROLLBACK_DUMP, LTW_PREDEPLOY_DUMP); a planted event in the middle
+                           of a stream: the normal check ready by design, b1618cb in rollback mode
+                           ready (before), dee48d337459 in rollback mode not ready naming
+                           rollback-probe#50, deploy failed (after); the runbook's way out (restore
+                           LTW_PREDEPLOY_DUMP): ready; forward in normal mode
+  07-operations.txt        watch-check.sh 7/7, watch.sh ok, protected dumps after nine deploys and
+                           rollbacks and two restores (5 newest pre-deploy, both pre-restore, every
+                           dump in the manifest), retention-check.sh (after; then before: b1618cb's
+                           backup.sh fails it)
+  08-teardown.txt          the stack removed; this run's drill verdicts; a finding (an anonymous
+                           volume outlived the stack) and its fix; the run's files removed
+  09-ci-script.txt         deploy/verify/ci.sh on this worktree: 137 checks (smoke 42, preflight 5,
+                           watch 7, proxy contract 10, sign-in journeys 50, trust boundary 23), the
+                           empty first dump refused then allowed, a second deploy with its protected
+                           dump, backup and drill, retention, live stream; nothing of it left, no
+                           new dangling volume
+  10-validate.txt          pnpm validate on the final tree (own database, shared lock)

@@ -2,7 +2,14 @@ import { replay, type WorldEngine } from '@ltw/domain';
 import { describe, expect, it } from 'vitest';
 
 import { seededEngine } from '../testing/ravenford-app.ts';
-import { compareStreams, digestStream, type StreamDigest } from './replay-digest.ts';
+import {
+  compareStreams,
+  digestStream,
+  drillVerdict,
+  type LiveStream,
+  type StreamComparison,
+  type StreamDigest,
+} from './replay-digest.ts';
 import { stateDigest } from './state-digest.ts';
 
 /** The restore drill's replay and comparison over in-memory stores (docs/adr/0037-deployment.md §4). */
@@ -109,5 +116,71 @@ describe('compareStreams', () => {
     expect((await compareStreams(live, [{ ...expected, violations: 1 }]))[0]?.status).toBe(
       'inconsistent',
     );
+  });
+});
+
+describe('drillVerdict', () => {
+  const DIGEST = `sha256:${'a'.repeat(64)}`;
+  const match = (campaignId: string): StreamComparison => ({
+    campaignId,
+    version: 12,
+    status: 'match',
+    expected: DIGEST,
+    actual: DIGEST,
+    head: 14,
+  });
+  const live = (campaignId: string, createdAt: string): LiveStream => ({
+    campaignId,
+    version: 14,
+    createdAt,
+  });
+  const dumpedAt = new Date('2026-10-16T12:00:00Z');
+
+  it('passes when every restored stream matches and every earlier live stream is restored', () => {
+    expect(
+      drillVerdict(
+        [match('ravenford')],
+        [live('ravenford', '2026-10-01T09:00:00.000Z'), live('later', '2026-10-16T12:00:01.000Z')],
+        { dumpedAt, allowEmpty: false },
+      ),
+    ).toEqual({
+      compared: 1,
+      matched: 1,
+      streams: [match('ravenford')],
+      unrestored: [],
+      failures: [],
+    });
+  });
+
+  it('fails an empty restore unless the operator allows it', () => {
+    expect(drillVerdict([], [], { dumpedAt, allowEmpty: false }).failures).toEqual(['empty']);
+    expect(drillVerdict([], [], { dumpedAt, allowEmpty: true }).failures).toEqual([]);
+  });
+
+  it('fails when a live stream created before the dump is not in it, even with an empty restore allowed', () => {
+    const lost = live('lost', '2026-10-16T11:59:59.999Z');
+    expect(drillVerdict([], [lost], { dumpedAt, allowEmpty: true })).toMatchObject({
+      unrestored: [lost],
+      failures: ['unrestored'],
+    });
+    expect(
+      drillVerdict([match('ravenford')], [live('ravenford', '2026-10-01T09:00:00.000Z'), lost], {
+        dumpedAt,
+        allowEmpty: false,
+      }).failures,
+    ).toEqual(['unrestored']);
+  });
+
+  it('fails on any stream that does not match', () => {
+    expect(
+      drillVerdict(
+        [match('ravenford'), { ...match('other'), status: 'behind', actual: null }],
+        [],
+        {
+          dumpedAt,
+          allowEmpty: false,
+        },
+      ),
+    ).toMatchObject({ compared: 2, matched: 1, failures: ['different'] });
   });
 });

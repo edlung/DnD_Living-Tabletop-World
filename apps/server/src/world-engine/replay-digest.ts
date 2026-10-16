@@ -46,14 +46,24 @@ export interface StreamComparison {
   readonly head: number | null;
 }
 
-/** Every campaign stream with its head version, in ID order. */
-export async function listStreams(
-  pool: pg.Pool,
-): Promise<{ readonly campaignId: string; readonly version: number }[]> {
-  const { rows } = await pool.query<{ stream_id: string; version: string }>(
-    'SELECT stream_id, version FROM ltw_event_streams ORDER BY stream_id',
+/** A campaign stream of a database: its head version and when it was created. */
+export interface LiveStream {
+  readonly campaignId: string;
+  readonly version: number;
+  /** When its first append began (`ltw_event_streams.created_at`, the database's clock), ISO 8601. */
+  readonly createdAt: string;
+}
+
+/** Every campaign stream with its head version and creation time, in ID order. */
+export async function listStreams(pool: pg.Pool): Promise<LiveStream[]> {
+  const { rows } = await pool.query<{ stream_id: string; version: string; created_at: Date }>(
+    'SELECT stream_id, version, created_at FROM ltw_event_streams ORDER BY stream_id',
   );
-  return rows.map((row) => ({ campaignId: row.stream_id, version: Number(row.version) }));
+  return rows.map((row) => ({
+    campaignId: row.stream_id,
+    version: Number(row.version),
+    createdAt: row.created_at.toISOString(),
+  }));
 }
 
 /**
@@ -133,4 +143,48 @@ export async function compareStreams(
     });
   }
   return results;
+}
+
+/** Why a restore drill failed. */
+export type DrillFailure =
+  /** The restore holds no campaign stream (allowed only when the operator says so). */
+  | 'empty'
+  /** A live stream created before the dump was taken is missing from the restore. */
+  | 'unrestored'
+  /** A restored stream does not match the live one at its version (see `streams`). */
+  | 'different';
+
+export interface DrillVerdict {
+  readonly compared: number;
+  readonly matched: number;
+  readonly streams: readonly StreamComparison[];
+  /** Live streams created before the dump was taken that the restore lacks. */
+  readonly unrestored: readonly LiveStream[];
+  /** Empty when the drill passed. */
+  readonly failures: readonly DrillFailure[];
+}
+
+/**
+ * The restore drill's verdict (docs/adr/0037-deployment.md §4): every restored stream matches the
+ * live one at its version; the restore holds at least one stream unless the operator says the
+ * database is legitimately empty (`allowEmpty`), since a dump of an empty or half-restored
+ * database would otherwise pass; and every live stream created before `dumpedAt` (when the dump
+ * was taken) is in it, so a dump that lost a campaign fails even when what it holds matches.
+ */
+export function drillVerdict(
+  streams: readonly StreamComparison[],
+  live: readonly LiveStream[],
+  options: { readonly dumpedAt: Date; readonly allowEmpty: boolean },
+): DrillVerdict {
+  const restored = new Set(streams.map((stream) => stream.campaignId));
+  const unrestored = live.filter(
+    (stream) =>
+      Date.parse(stream.createdAt) < options.dumpedAt.getTime() && !restored.has(stream.campaignId),
+  );
+  const matched = streams.filter((stream) => stream.status === 'match').length;
+  const failures: DrillFailure[] = [];
+  if (streams.length === 0 && !options.allowEmpty) failures.push('empty');
+  if (unrestored.length > 0) failures.push('unrestored');
+  if (matched !== streams.length) failures.push('different');
+  return { compared: streams.length, matched, streams, unrestored, failures };
 }

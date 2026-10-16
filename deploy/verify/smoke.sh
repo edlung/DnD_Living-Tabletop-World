@@ -2,8 +2,10 @@
 # smoke.sh: checks a running local deployment (TLS_MODE=internal) from the host, trusting Caddy's
 # local CA for the run (docs/adr/0037-deployment.md, "Local verification"): HTTPS and the HTTP
 # redirect, the static client and its caching, security headers, /api/healthz and /api/readyz
-# through the proxy, that nothing but the proxy is published, and the containers' users and
-# read-only filesystems. Prints one line per check; exit status 1 if any failed.
+# through the proxy, that nothing but the proxy is published, the containers' users and
+# read-only filesystems, that the server receives no setting of deploy/.env beyond its own, and
+# that the backup service runs this checkout's script. Prints one line per check; exit status 1
+# if any failed.
 source "$(dirname "$0")/../scripts/lib.sh"
 require_env_file
 
@@ -134,6 +136,44 @@ for service in server proxy backup; do
     "[ \"\$(docker inspect --format '{{.HostConfig.ReadonlyRootfs}}' '$id')\" = true ]"
   check "$service runs as a non-root user" sh -c "[ \"\$(docker exec '$id' id -u)\" != 0 ]"
 done
+
+say 'settings and scripts'
+# The names the server reads (compose.yaml, `server.environment`); any other name of deploy/.env in
+# its environment leaked (the host's settings, the database password, the alarm webhook). Names
+# only: no value is printed or passed on a command line.
+SERVER_SETTINGS=(PUBLIC_ORIGIN LTW_QUESTS_FILE LTW_ALLOW_NEWER_SCHEMA LOG_LEVEL ANTHROPIC_API_KEY
+  LTW_AI_MODEL LTW_AI_TIMEOUT_MS DEEPSEEK_API_KEY LTW_DEEPSEEK_MODEL LTW_AI_ROUTES
+  LTW_AI_REQUEST_TIMEOUT_MS LTW_AI_APPROVAL_ID LTW_AI_RELEVANCE_BUDGET_MS OPENROUTER_API_KEY
+  LTW_ASSET_WORKER_INTERVAL_MS LTW_ASSET_TIMEOUT_MS)
+server_setting() {
+  local known
+  for known in "${SERVER_SETTINGS[@]}"; do
+    [ "$known" != "$1" ] || return 0
+  done
+  return 1
+}
+server_id=$(compose ps --quiet server)
+docker inspect "$server_id" --format '{{range .Config.Env}}{{println .}}{{end}}' |
+  sed -n 's/^\([A-Za-z_][A-Za-z0-9_]*\)=.*/\1/p' | sort -u >"$work/server.names"
+leaked=''
+for name in $(sed -n 's/^\([A-Za-z_][A-Za-z0-9_]*\)=.*/\1/p' "$ENV_FILE" | sort -u); do
+  if ! server_setting "$name" && grep -qx "$name" "$work/server.names"; then
+    leaked="$leaked $name"
+  fi
+done
+printf '     deploy/.env settings in the server beyond its own:%s\n' "${leaked:- none}"
+check 'the server receives no other setting of deploy/.env' test -z "$leaked"
+backup_id=$(compose ps --quiet backup)
+labelled_for_checkout() {
+  [ "$(docker inspect "$backup_id" --format '{{index .Config.Labels "ltw.backup-script"}}')" = \
+    "$(backup_script_digest)" ]
+}
+sees_checkout_script() {
+  [ "$(docker exec "$backup_id" sha256sum /opt/ltw/backup.sh | cut -d' ' -f1)" = \
+    "$(openssl dgst -sha256 -r "$DEPLOY_DIR/backup/backup.sh" | cut -d' ' -f1)" ]
+}
+check "the backup service was created for this checkout's deploy/backup/ (label)" labelled_for_checkout
+check "the backup service reads this checkout's backup.sh" sees_checkout_script
 
 [ "$failures" -eq 0 ] || die "$failures check(s) failed"
 say 'smoke checks passed'

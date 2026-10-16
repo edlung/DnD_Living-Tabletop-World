@@ -4,20 +4,24 @@ Stage 350 (ADR 0037; contract `docs/STAGE_350_DESIGN.md`): one Compose project b
 from a committed revision, verified locally in Docker. Operations for people: `RUNBOOK.md`
 (Russian and English). A security boundary for Gate 06 (alpha row 350 of `docs/GATE_COVERAGE.md`).
 
-| File                                    | Role                                                                                                                                                                                                                                                                                                                                           |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `compose.yaml`                          | `proxy` (the only published ports, 80/443), `server` (never published; listens only on `backend`), `postgres` (named volume), `backup`, `drill-db` (profile `drill`); networks `edge`, `backend`, `data`, `egress`                                                                                                                             |
-| `Dockerfile`, `Dockerfile.dockerignore` | Targets `server` (non-root, read-only root, migrations then server) and `proxy` (Caddy, non-root, the built client); base images pinned by digest                                                                                                                                                                                              |
-| `server/start.sh`                       | Container start: `migrate-cli.js` (`--allow-newer-database` only when `LTW_ALLOW_NEWER_SCHEMA=true`), then `main.js`                                                                                                                                                                                                                           |
-| `proxy/Caddyfile`                       | TLS (`TLS_MODE=acme` or `internal`), security headers, `/api` reverse proxy with `flush_interval -1`, the single-page client, an internal health listener                                                                                                                                                                                      |
-| `backup/backup.sh`                      | The backup service: custom-format dumps every 6 h and on demand, retention (all < 24 h, newest of 14 days and 8 ISO weeks), `SHA256SUMS`, `verify`, `health`                                                                                                                                                                                   |
-| `.env.example`                          | Names of every setting; `deploy/.env` holds the values (git-ignored, mode 600) and is passed whole to the server container                                                                                                                                                                                                                     |
-| `scripts/`                              | `build.sh` (images from `git archive`), `deploy.sh` (backup, switch tag, wait healthy; `--rollback`; takes the stack down first when the networks changed, `LTW_NETWORKS_DIGEST`), `review-campaign.sh` (the Russian review campaign, then the DM link once), `backup-now.sh`, `restore-drill.sh`, `watch.sh`, `spend.sh`, `logs.sh`, `lib.sh` |
-| `verify/`                               | Local verification (`TLS_MODE=internal`): `smoke.sh`, `proxy-contract.sh`, `sign-in-journey.sh`, `live-stream.sh`, `trust-boundary.sh` (also safe on a server), `retention-check.sh`, `ci.sh`; `http.sh` (sourced: HTTPS as a browser, cookie jars, redaction)                                                                                 |
+| File                                    | Role                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `compose.yaml`                          | `proxy` (the only published ports, 80/443), `server` (never published; listens only on `backend`), `postgres` (named volume), `backup`, `drill-db` (profile `drill`); networks `edge`, `backend`, `data`, `egress`                                                                                                                        |
+| `Dockerfile`, `Dockerfile.dockerignore` | Targets `server` (non-root, read-only root, migrations then server) and `proxy` (Caddy, non-root, the built client); base images pinned by digest                                                                                                                                                                                         |
+| `server/start.sh`                       | Container start: `migrate-cli.js` (`--allow-newer-database` only when `LTW_ALLOW_NEWER_SCHEMA=true`), then `main.js`                                                                                                                                                                                                                      |
+| `proxy/Caddyfile`                       | TLS (`TLS_MODE=acme` or `internal`), security headers, `/api` reverse proxy with `flush_interval -1`, the single-page client, an internal health listener                                                                                                                                                                                 |
+| `backup/backup.sh`                      | The backup service (the directory is mounted, read-only): custom-format dumps every 6 h and on demand, retention (all < 24 h, newest of 14 days and 8 ISO weeks), protected `pre-deploy` and `pre-restore` dumps (newest `BACKUP_KEEP_PROTECTED` of each), `SHA256SUMS`, `verify`, `health`                                               |
+| `.env.example`                          | Names of every setting; `deploy/.env` holds the values (git-ignored, mode 600); each service receives only what `compose.yaml` names for it                                                                                                                                                                                               |
+| `scripts/`                              | `build.sh` (images from `git archive`), `deploy.sh` (Engine 28+, rollback guard, protected dump, switch tag, networks checked, wait healthy; `--rollback`; `down` first when the networks changed), `restore.sh` (a real restore), `review-campaign.sh`, `backup-now.sh`, `restore-drill.sh`, `watch.sh`, `spend.sh`, `logs.sh`, `lib.sh` |
+| `verify/`                               | Local verification (`TLS_MODE=internal`): `smoke.sh`, `proxy-contract.sh`, `sign-in-journey.sh`, `live-stream.sh`, `trust-boundary.sh` and `preflight-check.sh` (also safe on a server), `watch-check.sh`, `retention-check.sh`, `ci.sh`; `http.sh` (sourced: HTTPS as a browser, cookie jars, redaction)                                 |
 
 - Secrets come only from `deploy/.env`; never print it, never commit it, never pass a secret as a
-  command-line argument (scripts expand `POSTGRES_PASSWORD` inside the containers). Evidence
-  shows names, never values.
+  command-line argument (scripts expand secrets inside the containers or pass them on standard
+  input, as `watch.sh` does the webhook URL). Evidence shows names, never values.
+- No `env_file`: each service names the settings it receives. The server gets only what
+  `apps/server/src/platform/config/config.ts` reads (a new setting is added to `server.environment`
+  and to `SERVER_SETTINGS` in `verify/smoke.sh`); the host's settings, `POSTGRES_PASSWORD` (apart
+  from its `DATABASE_URL`) and `ALARM_WEBHOOK_URL` never reach it.
 - Images are local and tagged by the 12-character commit (`pull_policy: never`); build them with
   `scripts/build.sh` from a committed revision only, so the same revision builds the same files.
 - Compose fixes `NODE_ENV=production`, `AUTH_MODE=invitations`, the listen address and the
@@ -25,7 +29,15 @@ from a committed revision, verified locally in Docker. Operations for people: `R
   PostgreSQL and the backups only on the internal `data` network. Keep it that way.
 - Migrations stay forward-only and additive (ADR 0003): a rollback runs the earlier image on the
   same database through `deploy.sh --rollback` (the migrator then accepts a database a newer build
-  migrated, and `/readyz` refuses history that image cannot read). Anything else needs a restore.
+  migrated, and `/readyz` parses every stored event before it reports ready). `deploy.sh` refuses
+  a tag without the running revision unless `--rollback` is given. Anything else needs a restore:
+  `scripts/restore.sh`, which stops the backup service before the database is dropped.
+- Every deploy and rollback takes a protected dump first (`backup.sh pre-deploy`, recorded as
+  `LTW_PREDEPLOY_DUMP` or `LTW_ROLLBACK_DUMP`); never let a deploy go on without one. The restore
+  drill fails on an empty restore unless `--allow-empty`, and on a live campaign the dump lacks;
+  `watch.sh` alarms on its verdicts (`restore-drill.log`).
+- Docker Engine 28 or later: `backend` and `data` use the gateway mode `isolated`; `deploy.sh`
+  checks the Engine and, before anything starts, the networks (`lib.sh`).
 - The live stream must never be buffered or compressed by the proxy (ADR 0033): `/api` has no
   `encode`, and `flush_interval -1`. `verify/live-stream.sh` proves it.
 - The proxy forwards `Host`, `Origin`, `Sec-Fetch-*`, `Cookie` and `Authorization` unchanged (the
