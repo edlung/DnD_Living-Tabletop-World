@@ -11,6 +11,7 @@ import { OperatorStore } from './operator-store.ts';
 import { accountingStatus } from './postgres-budget-store.ts';
 import { identityResolver, VERIFIED_CATALOG } from '../catalog.ts';
 import { recoverIncomplete } from './recovery.ts';
+import { spendReport } from './spend-report.ts';
 import { explainStops } from './stop-diagnostics.ts';
 
 /**
@@ -25,6 +26,7 @@ import { explainStops } from './stop-diagnostics.ts';
  * `image-reservations` (read-only) lists unsettled image reservations older than the given minutes;
  * `image-reservation-settle` closes an orphaned one, whole unless an amount is given
  * (`src/images/ledger-operator.ts`, ADR 0035 amendment 2026-10-16).
+ * `spend` (read-only) prints the spending counters (`spend-report.ts`, docs/adr/0037-deployment.md).
  */
 export async function runOperatorCommand(
   pool: pg.Pool,
@@ -87,5 +89,7 @@ export async function runOperatorCommand(
       };
     case 'image-reservation-settle':
       return { settled: await settleOrphanedReservation(pool, command) };
+    case 'spend':
+      return spendReport(pool);
   }
 }

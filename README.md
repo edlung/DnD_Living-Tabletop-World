@@ -100,8 +100,10 @@ requires no database or external AI.
 | `pnpm dev:server` / `pnpm --filter @ltw/server start` | Run the server from source (watch) / from `dist` |
 | `pnpm validate` | All checks in CI order, against a running database |
 | `pnpm validate:ci-local` | CI-equivalent run: frozen install, start database, clean build, every check (`scripts/ci-local.sh`) |
+| `deploy/scripts/build.sh` / `deploy/scripts/deploy.sh` | Build the server and proxy images from a committed revision / run them behind Caddy with TLS, backups and health checks (`deploy/RUNBOOK.md`, Russian and English; ADR 0037) |
+| `deploy/verify/ci.sh` | The deployment check of CI: images of HEAD, a local stack with internal TLS, smoke checks, backup and restore drill, live stream (needs Docker and free ports 80/443) |
 
-CI (`.github/workflows/ci.yml`) runs the same steps on Node 24 with a PostgreSQL 18 service container.
+CI (`.github/workflows/ci.yml`) runs the same steps on Node 24 with a PostgreSQL 18 service container, and a second job runs `deploy/verify/ci.sh`.
 
 ## Knowledge API (development)
 
@@ -149,6 +151,7 @@ packages/ui/         shared character, knowledge, encounter, and status componen
 fixtures/ravenford/  Ravenford test fixtures and seeds (see its AGENTS.md)
 tests/               repository-level architecture tests and browser journeys
 scripts/             tooling (context budget, local CI)
+deploy/              production deployment: images, Compose behind Caddy, backups, restore drill, runbook (ADR 0037)
 docs/adr/            architecture decision records
 reports/             stage completion reports
 work-orders/         stage work orders (one authorized at a time)

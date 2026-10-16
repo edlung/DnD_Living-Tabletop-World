@@ -1,0 +1,87 @@
+
+### Readiness through the proxy while the database is stopped, and after it returns (2026-10-15T23:22:03Z)
+$ cd deploy && docker compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt > /tmp/ltw350-root.crt; probe() { curl -sS --cacert /tmp/ltw350-root.crt -o /tmp/ltw350-ready.json -w "%{http_code} %{time_total}s " https://localhost/api/readyz; cat /tmp/ltw350-ready.json; echo; }; probe; docker compose stop postgres; probe; probe; docker compose start postgres; docker compose up --detach --wait postgres >/dev/null 2>&1; sleep 1; probe; docker compose logs --no-color --since 2m server | grep -E "\"module\":\"readiness\"" | sed -E "s/\"stack\":\"[^\"]*\"/\"stack\":\"…\"/"; rm -f /tmp/ltw350-root.crt /tmp/ltw350-ready.json
+200 0.007962s {"status":"ready"}
+ Container ltw-stage350-postgres-1 Stopping 
+ Container ltw-stage350-postgres-1 Stopped 
+502 0.023019s 
+502 0.009445s 
+ Container ltw-stage350-postgres-1 Starting 
+ Container ltw-stage350-postgres-1 Started 
+200 0.010039s {"status":"ready"}
+server-1  | {"level":"info","time":"2026-10-15T23:21:25.057Z","service":"ltw-server","module":"readiness","msg":"ready"}
+server-1  | {"level":"info","time":"2026-10-15T23:22:04.534Z","service":"ltw-server","module":"readiness","msg":"ready"}
+[exit 0]
+
+### Finding (2026-10-15T23:22Z): the 502s above are a crash, fixed in 56ec5d8
+The server container of 4a17f1c6c79a had restarted (RestartCount 1). Its log at the stop, quoted
+from that run (the container was later recreated, so the lines are no longer in Docker's log):
+    node:events:505
+        throw er; // Unhandled 'error' event
+    error: terminating connection due to administrator command
+    Emitted 'error' event on BoundPool instance at:
+        at Client.idleListener (/app/node_modules/.pnpm/pg-pool@3.14.0_pg@8.23.1/node_modules/pg-pool/index.js:62:10)
+    code: '57P01'
+An idle pool connection closed by the database ended the process. The dump printed no password
+(checked: the configured password occurs 0 times in the container log). Commit 56ec5d8 gives both
+server pools an error listener (apps/server/src/platform/db/pool.ts, with a test); the run below
+repeats the outage on its images.
+
+### Readiness through the proxy during a 30 s database outage, on 56ec5d8b14fa (2026-10-15T23:27:11Z)
+$ cd deploy && docker compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt > /tmp/ltw350-root.crt; probe() { printf "%s " "$(date -u +%H:%M:%S)"; curl -sS --cacert /tmp/ltw350-root.crt -o /tmp/ltw350-ready.json -w "%{http_code} %{time_total}s " https://localhost/api/readyz; cat /tmp/ltw350-ready.json; echo; }; probe; docker compose stop postgres; for i in 1 2 3 4 5 6; do probe; sleep 5; done; docker compose start postgres; sleep 4; probe; docker inspect "$(docker compose ps -q server)" --format "server restarts={{.RestartCount}} health={{.State.Health.Status}}"; docker compose logs --no-color --since 2m server | grep -E "\"module\":\"readiness\"|connection lost" | sed -E "s/,\"stack\":\"[^\"]*\"//"; rm -f /tmp/ltw350-root.crt /tmp/ltw350-ready.json
+23:27:11 200 0.009750s {"status":"ready"}
+ Container ltw-stage350-postgres-1 Stopping 
+ Container ltw-stage350-postgres-1 Stopped 
+23:27:11 503 0.018442s {"status":"not_ready","failed":["database","migrations","eventStore"]}
+23:27:16 503 0.014684s {"status":"not_ready","failed":["database","migrations","eventStore"]}
+23:27:21 503 0.030027s {"status":"not_ready","failed":["database","migrations","eventStore"]}
+23:27:26 503 0.035656s {"status":"not_ready","failed":["database","migrations","eventStore"]}
+23:27:32 503 0.034450s {"status":"not_ready","failed":["database","migrations","eventStore"]}
+23:27:37 503 0.172433s {"status":"not_ready","failed":["database","migrations","eventStore"]}
+ Container ltw-stage350-postgres-1 Starting 
+ Container ltw-stage350-postgres-1 Started 
+23:27:47 200 0.245069s {"status":"ready"}
+server restarts=0 health=unhealthy
+server-1  | {"level":"info","time":"2026-10-15T23:26:40.260Z","service":"ltw-server","module":"readiness","msg":"ready"}
+server-1  | {"level":"warn","time":"2026-10-15T23:27:11.724Z","service":"ltw-server","code":"57P01","reason":"terminating connection due to administrator command","msg":"database connection lost; the pool reconnects on demand"}
+server-1  | {"level":"warn","time":"2026-10-15T23:27:11.725Z","service":"ltw-server","code":"57P01","reason":"terminating connection due to administrator command","msg":"database connection lost; the pool reconnects on demand"}
+server-1  | {"level":"warn","time":"2026-10-15T23:27:11.725Z","service":"ltw-server","code":"57P01","reason":"terminating connection due to administrator command","msg":"database connection lost; the pool reconnects on demand"}
+server-1  | {"level":"warn","time":"2026-10-15T23:27:11.886Z","service":"ltw-server","module":"readiness","check":"database","err":{"type":"Error","message":"getaddrinfo ENOTFOUND postgres","errno":-3008,"code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"postgres"},"msg":"not ready"}
+server-1  | {"level":"warn","time":"2026-10-15T23:27:11.886Z","service":"ltw-server","module":"readiness","check":"migrations","err":{"type":"Error","message":"getaddrinfo ENOTFOUND postgres","errno":-3008,"code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"postgres"},"msg":"not ready"}
+server-1  | {"level":"warn","time":"2026-10-15T23:27:11.886Z","service":"ltw-server","module":"readiness","check":"eventStore","err":{"type":"Error","message":"getaddrinfo ENOTFOUND postgres","errno":-3008,"code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"postgres"},"msg":"not ready"}
+server-1  | {"level":"info","time":"2026-10-15T23:27:47.464Z","service":"ltw-server","module":"readiness","msg":"ready"}
+[exit 0]
+
+### Docker health follows readiness back after the outage (2026-10-15T23:28:00Z)
+$ cd deploy && docker compose ps --format "{{.Service}} {{.Status}}"
+backup Up 6 minutes (healthy)
+postgres Up 18 seconds (healthy)
+proxy Up About a minute (healthy)
+server Up About a minute (healthy)
+[exit 0]
+
+### The outage again on the fifth (final code) revision 73ce95bad8a0: 20 s without the database (2026-10-15T23:35:24Z)
+$ cd deploy && docker compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt > /tmp/ltw350-root.crt; probe() { printf "%s " "$(date -u +%H:%M:%S)"; curl -sS --cacert /tmp/ltw350-root.crt -o /tmp/ltw350-ready.json -w "%{http_code} " https://localhost/api/readyz; cat /tmp/ltw350-ready.json; echo; }; probe; docker compose stop postgres; for i in 1 2 3 4; do probe; sleep 5; done; docker compose start postgres; sleep 4; probe; docker inspect "$(docker compose ps -q server)" --format "server restarts={{.RestartCount}}"; rm -f /tmp/ltw350-root.crt /tmp/ltw350-ready.json
+23:35:24 200 {"status":"ready"}
+ Container ltw-stage350-postgres-1 Stopping 
+ Container ltw-stage350-postgres-1 Stopped 
+23:35:25 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}
+23:35:30 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}
+23:35:35 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}
+23:35:40 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}
+ Container ltw-stage350-postgres-1 Starting 
+ Container ltw-stage350-postgres-1 Started 
+23:35:49 200 {"status":"ready"}
+server restarts=0
+[exit 0]
+
+### History this build cannot read (simulated: an event type no build knows, written beside the campaign); a fresh server process stays not ready on eventStore. Last step before the teardown: the event store is append-only (2026-10-15T23:40:34Z)
+$ cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -v ON_ERROR_STOP=1 -c "BEGIN; INSERT INTO ltw_event_streams (stream_id, version) VALUES ('probe-unreadable', 1); INSERT INTO ltw_commands (command_id, stream_id, command_type, actor, fingerprint, command, reason, first_sequence, last_sequence, recorded_at) VALUES ('probe-unreadable.1', 'probe-unreadable', 'CreateCampaign', '{\"actorId\":\"dm-probe\",\"kind\":\"user\"}', 'probe', '{}', NULL, 1, 1, now()); INSERT INTO ltw_events (stream_id, sequence, event_id, event_type, schema_version, payload, world_time, recorded_at, command_id, command_type, actor) VALUES ('probe-unreadable', 1, gen_random_uuid(), 'EventFromANewerBuild', 1, '{}', 0, now(), 'probe-unreadable.1', 'CreateCampaign', '{\"actorId\":\"dm-probe\",\"kind\":\"user\"}'); COMMIT;" && docker compose restart server >/dev/null 2>&1; sleep 3; docker compose exec -T server node -e 'fetch("http://127.0.0.1:3000/readyz").then(async (r) => console.log(r.status, await r.text()))'; docker compose logs --no-color --since 30s server | grep '"check":"eventStore"' | tail -1 | sed -E 's/^server-1 *\| //; s/,"stack":"[^"]*"//' | cut -c1-400
+BEGIN
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+503 {"status":"not_ready","failed":["eventStore"]}
+{"level":"warn","time":"2026-10-15T23:40:35.812Z","service":"ltw-server","module":"readiness","check":"eventStore","err":{"type":"ZodError","message":"[\n  {\n    \"code\": \"invalid_union\",\n    \"errors\": [],\n    \"note\": \"No matching discriminator\",\n    \"discriminator\": \"type\",\n    \"options\": [\n      \"CampaignCreated\",\n      \"EntityCreated\",\n      \"EntityPlaced\",\n      \
+[exit 0]

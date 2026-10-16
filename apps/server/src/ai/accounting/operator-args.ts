@@ -91,7 +91,8 @@ export type OperatorCommand =
       chargeId: string;
       chargeMicros: bigint | null;
       authorization: Authorization;
-    };
+    }
+  | { kind: 'spend' };
 
 export class OperatorUsageError extends Error {
   constructor(message: string) {
@@ -142,6 +143,7 @@ const FLAGS: Record<OperatorCommand['kind'], readonly string[]> = {
   'image-budget-set': ['micros', ...AUTH],
   'image-reservations': ['older-than-minutes'],
   'image-reservation-settle': ['charge', 'charge-micros', ...AUTH],
+  spend: [],
 };
 const SWITCHES = new Set(['enable', 'disable']);
 const REPEATABLE = new Set(['campaign', 'allocation']);
@@ -364,6 +366,7 @@ export function parseOperatorArgs(argv: readonly string[]): OperatorCommand {
     }
     case 'recover-incomplete':
     case 'status':
+    case 'spend':
       return { kind: command };
   }
 }

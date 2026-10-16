@@ -1,0 +1,99 @@
+
+### Images built from the two part A revisions (tags = 12-character commits) (2026-10-15T23:20:43Z)
+$ docker image ls --format "{{.Repository}}:{{.Tag}} {{.ID}} {{.Size}}" | grep -E "^ltw-(server|proxy):(3e9090467a4b|4a17f1c6c79a)" | sort; for i in ltw-server:3e9090467a4b ltw-server:4a17f1c6c79a ltw-proxy:3e9090467a4b ltw-proxy:4a17f1c6c79a; do docker image inspect "$i" --format "$i revision={{index .Config.Labels \"org.opencontainers.image.revision\"}} user={{.Config.User}} entrypoint={{json .Config.Entrypoint}} cmd={{json .Config.Cmd}}"; done
+ltw-proxy:3e9090467a4b be2b49f9e509 137MB
+ltw-proxy:4a17f1c6c79a 64c2ede30c59 137MB
+ltw-server:3e9090467a4b 3301db2da5be 270MB
+ltw-server:4a17f1c6c79a 7558bebd8a94 270MB
+ltw-server:3e9090467a4b revision=3e9090467a4b343a39ce5cf917c17002ba32c5e7 user=node entrypoint=["/usr/local/bin/ltw-server-start"] cmd=null
+ltw-server:4a17f1c6c79a revision=4a17f1c6c79a82222219278632092cadb470dbce user=node entrypoint=["/usr/local/bin/ltw-server-start"] cmd=null
+ltw-proxy:3e9090467a4b revision=3e9090467a4b343a39ce5cf917c17002ba32c5e7 user=caddy entrypoint=null cmd=["caddy","run","--config","/etc/caddy/Caddyfile","--adapter","caddyfile"]
+ltw-proxy:4a17f1c6c79a revision=4a17f1c6c79a82222219278632092cadb470dbce user=caddy entrypoint=null cmd=["caddy","run","--config","/etc/caddy/Caddyfile","--adapter","caddyfile"]
+[exit 0]
+
+### Server image contents: compiled packages, migrations, runtime fixtures; no sources, tests or environment files (2026-10-15T23:20:44Z)
+$ docker run --rm --network none --entrypoint /bin/sh ltw-server:4a17f1c6c79a -c "id; ls /app /app/apps/server /app/fixtures; ls /app/apps/server/migrations; echo test-files: \$(find /app/apps /app/packages -name \"*.test.*\" -not -path \"*/node_modules/*\" | wc -l); echo sources: \$(find /app/apps /app/packages -name \"*.ts\" -not -path \"*/node_modules/*\" | wc -l); echo env-files: \$(find / -xdev -name \".env*\" 2>/dev/null | wc -l); node --version"
+uid=1000(node) gid=1000(node) groups=1000(node),1000(node)
+/app:
+apps
+fixtures
+node_modules
+package.json
+packages
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
+/app/apps/server:
+dist
+migrations
+node_modules
+package.json
+
+/app/fixtures:
+ravenford
+ravenford-ru
+0001_world_event_store.sql
+0002_ai_traces.sql
+0003_authoring_proposals.sql
+0004_asset_contents.sql
+0005_ai_accounting.sql
+0006_ai_outcome_window.sql
+0007_ai_outcome_code.sql
+0008_ai_attempt_responses.sql
+0009_dm_substitutions.sql
+AGENTS.md
+test-files: 0
+sources: 0
+env-files: 0
+v24.21.0
+[exit 0]
+
+### Proxy image: non-root Caddy without file capabilities, the built client (2026-10-15T23:20:45Z)
+$ docker run --rm --network none --entrypoint /bin/sh ltw-proxy:4a17f1c6c79a -c "id; caddy version; getcap /usr/bin/caddy; echo caps: none-left; ls /srv /srv/assets; ls -ld /data /config"
+uid=1000(caddy) gid=1000(caddy) groups=1000(caddy),1000(caddy)
+v2.10.2 h1:g/gTYjGMD0dec+UgMw8SnfmJ3I9+M2TdvoRL/Ovu6U8=
+caps: none-left
+/srv:
+assets
+index.html
+
+/srv/assets:
+index-CSeyxMGq.css
+index-z9Od83Hl.js
+drwxr-xr-x    1 caddy    caddy         4096 Oct 15 23:20 /config
+drwxr-xr-x    1 caddy    caddy         4096 Oct 15 23:20 /data
+[exit 0]
+
+### Third revision images (2026-10-15T23:26:23Z)
+$ for i in ltw-server:56ec5d8f9b6a ltw-proxy:56ec5d8f9b6a; do docker image inspect "$i" --format "$i {{.Id}} revision={{index .Config.Labels \"org.opencontainers.image.revision\"}} user={{.Config.User}}"; done
+
+Error response from daemon: No such image: ltw-server:56ec5d8f9b6a
+
+Error response from daemon: No such image: ltw-proxy:56ec5d8f9b6a
+[exit 1]
+
+### Third revision images (the tag build.sh printed; the entry above used a mistyped tag) (2026-10-15T23:26:36Z)
+$ for i in ltw-server:56ec5d8b14fa ltw-proxy:56ec5d8b14fa; do docker image inspect "$i" --format "$i {{.Id}} revision={{index .Config.Labels \"org.opencontainers.image.revision\"}} user={{.Config.User}}"; done; docker image inspect ltw-proxy:4a17f1c6c79a ltw-proxy:56ec5d8b14fa --format "{{index .RepoTags 0}} layers={{json .RootFS.Layers}}" | sed -E "s/layers=.*/& /" | awk "{print \$1, length(\$2)}"; [ "$(docker image inspect ltw-proxy:4a17f1c6c79a --format "{{json .RootFS.Layers}}")" = "$(docker image inspect ltw-proxy:56ec5d8b14fa --format "{{json .RootFS.Layers}}")" ] && echo "proxy filesystem layers identical between 4a17f1c6c79a and 56ec5d8b14fa (only the server changed)"
+ltw-server:56ec5d8b14fa sha256:69761f18ee462e5744de99e5762774bb46062284d39016f64af572f1ace35190 revision=56ec5d8b14fa5e998423189aa70c7c0c5dee72cd user=node
+ltw-proxy:56ec5d8b14fa sha256:5900720a16073918a4df45e52158ac2596e75152a00813702226174487a153e5 revision=56ec5d8b14fa5e998423189aa70c7c0c5dee72cd user=caddy
+ltw-proxy:4a17f1c6c79a 674
+ltw-proxy:56ec5d8b14fa 674
+[exit 1]
+
+### The entry above compared layer digests, which differ by file times when the client is rebuilt; the client files themselves are identical (2026-10-15T23:26:54Z)
+$ for t in 4a17f1c6c79a 56ec5d8b14fa; do docker run --rm --network none --entrypoint /bin/sh ltw-proxy:$t -c "cd /srv && find . -type f -exec sha256sum {} + | sort | sha256sum" | sed "s/^/ltw-proxy:$t client files: /"; done
+ltw-proxy:4a17f1c6c79a client files: 1c9c919b5df49daff643b92aebcbbaa527c5d70eaf207d5112ee2426c20c288a  -
+ltw-proxy:56ec5d8b14fa client files: 1c9c919b5df49daff643b92aebcbbaa527c5d70eaf207d5112ee2426c20c288a  -
+[exit 0]
+
+### Fourth revision images (2026-10-15T23:30:25Z)
+$ for i in ltw-server:049db3031faa ltw-proxy:049db3031faa; do docker image inspect "$i" --format "$i {{.Id}} revision={{index .Config.Labels \"org.opencontainers.image.revision\"}} user={{.Config.User}}"; done
+ltw-server:049db3031faa sha256:901729a8d6109d242ea038b30db0584ac6a98d790fb5da33df3710ab3ce569a4 revision=049db3031faa9f37f20174c9642e81e329247809 user=node
+ltw-proxy:049db3031faa sha256:bae81c25ed7c9b559efcf887e85704752fe3330ab3f01032dcf3c2a389f1a632 revision=049db3031faa9f37f20174c9642e81e329247809 user=caddy
+[exit 0]
+
+### Fifth (final code) revision images (2026-10-15T23:34:47Z)
+$ for i in ltw-server:73ce95bad8a0 ltw-proxy:73ce95bad8a0; do docker image inspect "$i" --format "$i {{.Id}} revision={{index .Config.Labels \"org.opencontainers.image.revision\"}} user={{.Config.User}} env-NODE_ENV={{range .Config.Env}}{{if eq (slice . 0 9) \"NODE_ENV=\"}}{{.}}{{end}}{{end}}"; done
+ltw-server:73ce95bad8a0 sha256:c22d55ff9fb66a93f95a56afff6b6e4e5f54dd53fa083fe38597a819a82bfb21 revision=73ce95bad8a0e6dc41755a60c6d98646316a236a user=node env-NODE_ENV=NODE_ENV=production
+ltw-proxy:73ce95bad8a0 sha256:c6e1ef297c87d6eb9b61b472c472ddfafcee417519bd677c1d8880cd0f7520c2 revision=73ce95bad8a0e6dc41755a60c6d98646316a236a user=caddy env-NODE_ENV=
+[exit 0]
