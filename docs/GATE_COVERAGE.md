@@ -480,6 +480,20 @@ scope; refusals and failures leave the neutral fallback").
   ceiling or zero denies every call; each call reserves its model's worst case under one exclusive
   advisory lock before it is sent, then settles to the reported cost (the whole reservation when
   none is reported; nothing only when provably never sent). Counters in `ai:operator status`.
+- **Orphaned reservations** (migration `0012_image_orphaned_settlements.sql`, append-only): a job
+  that stopped between its reservation and its settlement leaves the reservation counted whole.
+  `pnpm ai:operator image-reservations --older-than-minutes <n>` lists unsettled ones (read-only);
+  `image-reservation-settle --charge <id> [--charge-micros <n>]` with the owner's authorization
+  closes one at the whole reservation or the given amount, as outcome `orphaned`, only when it is
+  older than the longest generation bound plus margin (15 minutes), so a running job's reported
+  cost is never pre-empted. The database requires the authorization beside every orphaned
+  settlement (deferred constraint trigger) and lets an authorization name nothing else.
+- **Live smoke tool** (`pnpm images:smoke`, `apps/server/src/testing/image-smoke.ts`; test
+  support, not in builds): drives a running loopback server over HTTP with the development
+  personas only, reads the ledger, the stored picture and the event store read-only from
+  `DATABASE_URL`, reads no key or env file, and sends no AI request while a play session is open
+  (the DM writes the proposal the local interpreter makes instead). It follows the portrait request
+  the authoring commit itself queues, so one smoke is one paid image call.
 - **Curated set import** (`seed:ravenford`, the browser-test server): every manifest entry through
   `RequestAsset` (DM) → `StartAssetJob`/`CompleteAssetJob` (worker, `curated` generator) →
   `ApproveAsset` (DM, players), idempotent by derived command IDs (a failed job is retried under
@@ -503,6 +517,10 @@ scope; refusals and failures leave the neutral fallback").
   `in-play.test.ts` (through the asset worker: the stored canonical reference reaches the
   provider), `reencode.test.ts`, `curated-import.test.ts` (idempotence, provenance, retries),
   `ledger.integration.test.ts` (ceiling, settle, append-only, the lock, races, operator CLI),
+  `ledger-operator.integration.test.ts` (orphaned reservations: listing, settlement, refusals,
+  the authorization constraints, the CLI), `apps/server/src/testing/image-smoke/run.test.ts` and
+  `checks.test.ts` (the smoke against the production app: both authoring paths, a paid generator's
+  ledger record, refusals, failures, visibility judgements),
   `images.integration.test.ts`, `apps/server/src/assets/worker.test.ts`,
   `apps/server/src/platform/config/config.test.ts`.
 - **Changed reviewed boundary (Gate 05, rows 150–160)**: asset event payloads gained an optional

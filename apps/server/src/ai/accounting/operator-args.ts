@@ -4,9 +4,10 @@ import type { Authorization } from './types.ts';
 
 /**
  * Operator CLI arguments (docs/adr/0032-live-ai.md, amendment 2026-10-11). Every amount is an
- * explicit integer of microdollars; nothing has a default. Every mutation needs the owner's
- * recorded authorization. A flag a command does not take is an error, so a global daily ceiling
- * offered to an approval command is refused rather than ignored.
+ * explicit integer of microdollars; nothing has a default, except that an orphaned image
+ * reservation is settled whole (the most it can have cost) unless an amount is given. Every
+ * mutation needs the owner's recorded authorization. A flag a command does not take is an error, so
+ * a global daily ceiling offered to an approval command is refused rather than ignored.
  */
 export type OperatorCommand =
   | {
@@ -81,7 +82,16 @@ export type OperatorCommand =
    * The image ceiling (docs/adr/0035-images.md §2): a new revision, zero to stop image calls.
    * Its own ledger, apart from the text-provider accounts and approvals above.
    */
-  | { kind: 'image-budget-set'; ceilingMicros: bigint; authorization: Authorization };
+  | { kind: 'image-budget-set'; ceilingMicros: bigint; authorization: Authorization }
+  /** Unsettled image reservations older than the given minutes (read-only; ADR 0035, 2026-10-16). */
+  | { kind: 'image-reservations'; olderThanMinutes: number }
+  /** Closes an orphaned image reservation: at `chargeMicros`, or whole when it is null. */
+  | {
+      kind: 'image-reservation-settle';
+      chargeId: string;
+      chargeMicros: bigint | null;
+      authorization: Authorization;
+    };
 
 export class OperatorUsageError extends Error {
   constructor(message: string) {
@@ -130,6 +140,8 @@ const FLAGS: Record<OperatorCommand['kind'], readonly string[]> = {
   stops: ['account'],
   status: [],
   'image-budget-set': ['micros', ...AUTH],
+  'image-reservations': ['older-than-minutes'],
+  'image-reservation-settle': ['charge', 'charge-micros', ...AUTH],
 };
 const SWITCHES = new Set(['enable', 'disable']);
 const REPEATABLE = new Set(['campaign', 'allocation']);
@@ -198,6 +210,21 @@ const micros = (text: string): bigint => {
   } catch {
     throw new OperatorUsageError('expected positive integer microdollars');
   }
+};
+
+const minutes = (text: string): number => {
+  if (!/^(0|[1-9][0-9]{0,5})$/.test(text)) {
+    throw new OperatorUsageError('--older-than-minutes expects whole minutes (0-999999)');
+  }
+  return Number(text);
+};
+
+/** An image reservation's ID, as `image-reservations` lists it. */
+const chargeId = (text: string): string => {
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(text)) {
+    throw new OperatorUsageError('--charge expects a reservation ID (UUID)');
+  }
+  return text.toLowerCase();
 };
 const optionalMicros = (text: string | undefined) =>
   text === undefined ? undefined : micros(text);
@@ -323,6 +350,18 @@ export function parseOperatorArgs(argv: readonly string[]): OperatorCommand {
         ceilingMicros: nonNegativeMicros(flags.one('micros')),
         authorization: authorization(flags),
       };
+    case 'image-reservations':
+      return { kind: command, olderThanMinutes: minutes(flags.one('older-than-minutes')) };
+    case 'image-reservation-settle': {
+      const amount = flags.maybe('charge-micros');
+      return {
+        kind: command,
+        chargeId: chargeId(flags.one('charge')),
+        // Without an amount the whole reservation is treated as spent.
+        chargeMicros: amount === undefined ? null : nonNegativeMicros(amount),
+        authorization: authorization(flags),
+      };
+    }
     case 'recover-incomplete':
     case 'status':
       return { kind: command };
