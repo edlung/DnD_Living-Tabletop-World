@@ -120,6 +120,8 @@
 - 2026-10-04 (Stage 160, ADR 0023 §4):
   - **Presentation picks the image.** A presentation chooses among an entity's current approved images by state tags.
   - **Content for a past view.** The content route accepts `at`, serving the bytes of what the perspective could see at that world time.
+- 2026-10-16 (Stage 330 part B review, ADR 0035 amendment "an approval supersedes its kind"):
+  - **An approved variant supersedes its kind.** Approving a derived picture makes the approved pictures of its kind (§1 statuses: the same entity and purpose, and for an image the same label) `SUPERSEDED`, as approving a reference always did to the canonical reference; the canonical reference is still unchanged. `AssetApproved` is version 3; version 2 approvals are canon as recorded.
 
 ## Invariants affected
 

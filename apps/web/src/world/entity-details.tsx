@@ -197,7 +197,11 @@ export function EntityDetails({
               directory={directory}
             />
           )}
-          <EntityImages entityId={entityId} kind={kind} />
+          <EntityImages
+            entityId={entityId}
+            kind={kind}
+            name={name ?? t('Unidentified {kind}', { kind: t(kind) })}
+          />
           <details className="disclosure">
             <summary>{t('Full knowledge')}</summary>
             <KnowledgeCards knowledge={resource.value.knowledge?.knowledge ?? []} />

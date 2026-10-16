@@ -84,6 +84,18 @@ New entities the DM authors in play (Томас) get a request through the exist
 the in-play generator. Players see only approved images (existing rules); an image request is built
 from the entity's description; DM-only notes enter only when the DM types them in the request.
 
+The supersession is the domain's (part B review, ADR 0035 amendment): approving a picture
+supersedes the approved pictures of its kind — the same entity and purpose, and for an image the
+same label; any two figures, or battle maps, of an entity are one kind — so the picture approved
+last is the one players see and the DM's list approves, made before or after the one it replaces
+(`AssetApproved` version 3; earlier approvals stay as recorded). The client says what an approval
+did from the lineage read after it: the main picture, a figure, a battle map is what players who
+can see the entity now see; a state picture shows only in its state. One command at a time: its
+controls come back only when the lineage shows what it did; a command whose answer was lost holds
+them and shows, with Retry, in the Images sheet and whichever panel is open; focus never falls to
+the page when a command takes away its card. On the battlefield the name plates lie above every
+figure, so no figure hides the plate of a combatant behind it.
+
 ## Storage (ADR)
 
 Image bytes stay in PostgreSQL (`ltw_asset_contents`, ≤ 2 MB each) for the alpha: one store, one

@@ -7,5 +7,10 @@
   "reviewRu": "ui-img-review-ru",
   "tomas": "ui-img-tomas",
   "tomasRu": "ui-img-tomas-ru",
-  "retry": "ui-img-retry"
+  "retry": "ui-img-retry",
+  "supersede": "ui-img-supersede",
+  "pending": "ui-img-pending",
+  "double": "ui-img-double",
+  "keyboard": "ui-img-keyboard",
+  "panel": "ui-img-panel"
 }

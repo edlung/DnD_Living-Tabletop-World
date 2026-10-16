@@ -175,3 +175,16 @@ application on 4313.
   `images-accessibility.spec.ts` (axe of the Images sheet and an entity's images at the three
   widths and the Russian phone and tablet; the keyboard order; Escape). Helpers `support/images.ts`: a
   picture is served when its `src` is a `blob:` URL of decoded bytes (`expectServedPicture`).
+- Stage 330 part B review journeys (English only), each owning a campaign of the same file:
+  `images-commands.spec.ts` — `supersede` (as `tomas`, with the worker: the older of two figures
+  approved last is what the player sees and the DM's list approves; a state picture's words),
+  `pending` (as `review`: an approval's answer dropped with `route.fetch()` then `abort`; the
+  pending command with Retry in the panel, the Images sheet and another entity's panel; Retry
+  answers `duplicate` there), `double` (as `review`: lineage reads delayed by a route so the
+  pressed card stays; a double press and a forced third press send one `RequestAsset`), `keyboard`
+  (as `review` without Thorne's waiting request: focus to the next card, the entity's heading,
+  the sheet) and `panel` (as `review`: focus once per command, not on a later lineage read caused
+  by a command sent through `page.request`); `battlefield-plates.spec.ts` reads `battle` only (each
+  plate the topmost thing at its centre, ends and number while every element of the board lets
+  pointers through, at 1440 × 900 and 820 × 1180, tilted and flat). A journey that changes its
+  campaign cannot be repeated against the same server (`--repeat-each` needs fresh servers).

@@ -20,8 +20,14 @@ import { INDOOR_LOCATION_TYPES, type VisualTimeline } from './timeline.ts';
  *   chosen when every part of its label is among the tags the perspective
  *   may see; otherwise the canonical reference.
  * - **Figure and battle map** (docs/adr/0035-images.md §4): a character's,
- *   NPC's or creature's newest approved figure, and a location's newest
- *   approved battle map, under the same visibility as its images.
+ *   NPC's or creature's approved figure, and a location's approved battle
+ *   map, under the same visibility as its images.
+ *
+ * Approving a picture supersedes the approved pictures of its kind (ADR 0035
+ * amendment, `sameKind`), so each kind has one approved picture and the last
+ * approved is the one shown. Only an earlier writer's history can hold two of
+ * a kind: of those, the higher version (an image) or the one made last (a
+ * figure, a battle map) is shown, as that writer showed them.
  */
 export interface PresentationScope {
   readonly perspective: ResolvedPerspective;
@@ -109,8 +115,9 @@ export function imageFor(
 }
 
 /**
- * The newest approved figure or battle map of an entity whose kind has one (ADR 0035 §4): the one
- * generated last, as the lineage records them in order. Null for any other kind.
+ * The approved figure or battle map of an entity whose kind has one (ADR 0035 §4): the one
+ * approved picture of its kind, or of an earlier writer's several the one generated last, as the
+ * lineage records them in order. Null for any other kind.
  */
 export function purposeImageFor(
   timeline: VisualTimeline,

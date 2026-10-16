@@ -32,9 +32,10 @@ export function HpBar({ hitPoints }: { readonly hitPoints: HitPoints }) {
  * its approved tabletop figure — standing upright on the tilted table, inside the GPT medallion
  * on the flat one — or else the medallion with its approved portrait or the neutral silhouette;
  * a ring of its side's light on the ground, the turn's glow, the teal ring of the selection, a
- * down or dead figure dimmed with its glyph, condition pips, hit points only when the
- * projection carries them, and its name plate. Decorative: the square it stands on carries all
- * of this in its name. Tilted, the figure stands upright on the plane while the ring lies on it.
+ * down or dead figure dimmed with its glyph, condition pips, and the room of its name plate —
+ * the plate itself is drawn in the plates' layer above every figure (`plates.tsx`), so a figure
+ * in front never hides it. Decorative: the square it stands on carries all of this in its name.
+ * Tilted, the figure stands upright on the plane while the ring lies on it.
  */
 export function Token({
   combatant,
@@ -64,8 +65,6 @@ export function Token({
   const t = useT();
   const standing = useHeldImage(figure);
   const upright = tilted && standing.held;
-  // On a narrow plate the words may shorten; the number that tells two figures apart never does.
-  const { words, number } = splitLabel(label);
   const condition =
     combatant.state === 'dead' ? 'dead' : combatant.state === 'down' ? 'unconscious' : null;
   const classes = [
@@ -108,20 +107,40 @@ export function Token({
             <span>{cover === 'total' ? t('total') : COVER_MARK[cover]}</span>
           </span>
         )}
-        <span className="token-plate">
-          <span className={`token-name${number ? ' has-number' : ''}`}>
-            {number ? (
-              <>
-                <span className="name-words">{words}</span>{' '}
-                <span className="name-number">{number}</span>
-              </>
-            ) : (
-              label
-            )}
-          </span>
-          {combatant.hitPoints && <HpBar hitPoints={combatant.hitPoints} />}
-        </span>
+        <TokenPlate label={label} hitPoints={combatant.hitPoints} room />
       </span>
+    </span>
+  );
+}
+
+/**
+ * A combatant's name plate: its label, the number that tells two figures apart kept when the
+ * words shorten, and its hit points when the projection carries them. In the token it only keeps
+ * its room (`room`: laid out, never painted), so the figure stands where it always stood.
+ */
+export function TokenPlate({
+  label,
+  hitPoints,
+  room = false,
+}: {
+  readonly label: string;
+  readonly hitPoints: HitPoints | undefined;
+  readonly room?: boolean;
+}) {
+  const { words, number } = splitLabel(label);
+  return (
+    <span className={`token-plate${room ? ' token-plate--room' : ''}`}>
+      <span className={`token-name${number ? ' has-number' : ''}`}>
+        {number ? (
+          <>
+            <span className="name-words">{words}</span>{' '}
+            <span className="name-number">{number}</span>
+          </>
+        ) : (
+          label
+        )}
+      </span>
+      {hitPoints && <HpBar hitPoints={hitPoints} />}
     </span>
   );
 }

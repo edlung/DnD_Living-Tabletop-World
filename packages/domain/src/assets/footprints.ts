@@ -52,11 +52,14 @@ export function assetFootprint(event: Extract<KernelEvent, { type: AssetEventTyp
       };
     }
     case 'AssetApproved': {
-      const { assetId, entityId, previous } = event.payload;
+      // What it approved, and each picture it superseded: the canonical reference before it, or
+      // the approved pictures of its kind (ADR 0035 amendment).
+      const { assetId, entityId, previous, supersedes = [] } = event.payload;
       const written = [
         facts.asset(assetId),
         facts.assetCanonical(entityId),
         ...(previous === null ? [] : [facts.asset(previous)]),
+        ...supersedes.map((replaced) => facts.asset(replaced)),
       ];
       return { reads: written, writes: written };
     }

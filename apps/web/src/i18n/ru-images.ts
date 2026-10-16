@@ -55,8 +55,35 @@ registerRussian({
     'Одобрение заменит основное изображение; новые варианты будут сохранять его облик.',
   Approve: 'Одобрить',
   'Approve: {subject}': 'Одобрить: {subject}',
-  'Approved: {subject}. Players who can see it now see this picture.':
-    'Одобрено: {subject}. Игроки, которым это видно, теперь видят это изображение.',
+  // What an approval did, read from the lineage after it
+  'Approved: {subject}. Players who can see {name} now see this picture.':
+    'Одобрено: {subject}. Теперь это изображение видят игроки, которые видят «{name}».',
+  'Approved: {subject}. Players who can see {name} now see this picture, except in a state with its own approved picture.':
+    'Одобрено: {subject}. Теперь это изображение видят игроки, которые видят «{name}», кроме состояний со своим одобренным изображением.',
+  'Approved: {subject}. Players who can see {name} see this map under the grid of a fight there.':
+    'Одобрено: {subject}. Игроки, которые видят «{name}», видят эту карту под сеткой боя в этом месте.',
+  'Approved: {subject}. Shown to players who can see {name} {when}.':
+    'Одобрено: {subject}. Показывается игрокам, которые видят «{name}», {when}.',
+  'Approved: {subject}. Shown to players who can see {name} {when}, unless another approved state picture fits better.':
+    'Одобрено: {subject}. Показывается игрокам, которые видят «{name}», {when}, если лучше не подходит другое одобренное изображение состояния.',
+  'Approved: {subject}. It is not the picture players see now; the list shows the one they see.':
+    'Одобрено: {subject}. Сейчас игроки видят не его; список показывает то, что они видят.',
+  'Approved: {subject}. Only you see it: it was asked for the DM alone.':
+    'Одобрено: {subject}. Его видите только вы: оно запрошено только для мастера.',
+  'at night': 'ночью',
+  'at dawn': 'на рассвете',
+  'at dusk': 'в сумерках',
+  'in the rain': 'в дождь',
+  'in a storm': 'в грозу',
+  'in fog': 'в тумане',
+  'in snow': 'в снегопад',
+  'under an overcast sky': 'под пасмурным небом',
+  'at night in the rain': 'ночью под дождём',
+  'while wounded': 'при ранении',
+  'while unconscious': 'без сознания',
+  'once dead': 'после гибели',
+  'once destroyed': 'после разрушения',
+  'when its state is “{label}”': 'в состоянии «{label}»',
   Discard: 'Отклонить',
   'Discard: {subject}': 'Отклонить: {subject}',
   'Discarded: {subject}. No one will see this picture.':
@@ -102,12 +129,17 @@ registerRussian({
   'Request picture': 'Запросить изображение',
   'Requested: {what}. The candidate will appear here for your approval.':
     'Запрошено: {what}. Кандидат появится здесь для вашего одобрения.',
+  'Requested: {what}. The candidate will appear for your approval.':
+    'Запрошено: {what}. Кандидат появится для вашего одобрения.',
 
-  // The result of a command
-  'Sending…': 'Отправляем…',
+  // The command and its result, where it was given and wherever it holds the controls
+  'Request: {subject}': 'Запрос: {subject}',
+  'Sending “{subject}”…': 'Отправляем «{subject}»…',
+  'Reading the result of “{subject}”…': 'Читаем результат «{subject}»…',
   'This picture changed meanwhile; the list now shows it as it is.':
     'Это изображение тем временем изменилось; список показывает его текущее состояние.',
-  'The answer was interrupted. The change may have been made. Retry to check it.':
-    'Ответ прервался. Изменение могло быть внесено. Повторите, чтобы проверить.',
+  'The answer to “{subject}” was interrupted. The change may have been made. Retry to check it.':
+    'Ответ на «{subject}» прервался. Изменение могло быть внесено. Повторите, чтобы проверить.',
   'Retry the change': 'Повторить изменение',
+  'Retry the change: {subject}': 'Повторить изменение: {subject}',
 });

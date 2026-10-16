@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, type SubmitEvent } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
 import { useDmImages } from './dm-images.ts';
+import type { Context } from './image-cards.tsx';
 import { choicesFor, kindOfChoice, requestCommand, STATES, type RequestChoice } from './lineage.ts';
 import { CHOICE_WORDS, kindWords, stateWords } from './words.ts';
 
@@ -22,20 +23,21 @@ export interface ReplacePreset {
  * or creature) or a battle map (a place) — the last three derive from an approved main picture.
  * The request is built from what the world records about the entity; the DM's note is the one
  * thing the DM adds, and the form says plainly that it reaches the image model. Nothing is
- * requested until the DM presses the button: each request may be a paid generation.
+ * requested until the DM presses the button: each request may be a paid generation, so the button
+ * waits (`aria-disabled`) from the press until the list shows the request.
  */
 export function RequestForm({
   entityId,
   kind,
   canonical,
-  place,
+  context,
   preset,
 }: {
   readonly entityId: string;
   readonly kind: EntityKind;
   /** A main picture is approved: variants, figures and battle maps can derive from it. */
   readonly canonical: boolean;
-  readonly place: string;
+  readonly context: Context;
   readonly preset: ReplacePreset | null;
 }) {
   const t = useT();
@@ -49,6 +51,7 @@ export function RequestForm({
   const first = useRef<HTMLSelectElement>(null);
   // The note is a draft: it clears only once the world accepted the request it went with.
   const sent = useRef(false);
+  const place = context.place;
   const answer = images?.command;
   useEffect(() => {
     if (!sent.current || answer?.place !== place || answer.status !== 'done') return;
@@ -69,17 +72,24 @@ export function RequestForm({
   }, [nonce]);
   const derived = choice !== 'reference';
   const blocked = derived && !canonical;
+  const waiting = images === null || images.busy;
   const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!images || images.busy || blocked) return;
+    if (!images || waiting || blocked) return;
     const asked = kindOfChoice(choice, state);
-    images.run(
+    const what = kindWords(t, asked);
+    images.run({
       place,
-      requestCommand(entityId, asked, 'players', note),
-      t('Requested: {what}. The candidate will appear here for your approval.', {
-        what: kindWords(t, asked),
-      }),
-    );
+      command: requestCommand(entityId, asked, 'players', note),
+      subject: t('Request: {subject}', { subject: context.full(what) }),
+      target: 'form',
+      success: (_now, elsewhere) =>
+        elsewhere
+          ? t('Requested: {what}. The candidate will appear for your approval.', {
+              what: context.full(what),
+            })
+          : t('Requested: {what}. The candidate will appear here for your approval.', { what }),
+    });
     sent.current = true;
   };
   return (
@@ -158,7 +168,8 @@ export function RequestForm({
         <button
           type="submit"
           className="primary-button"
-          disabled={images === null || images.busy || blocked}
+          disabled={images === null || blocked}
+          aria-disabled={waiting || undefined}
         >
           <Glyph name="generate" />
           {t('Request picture')}

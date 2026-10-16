@@ -298,3 +298,43 @@
 .images-entity-show {
   margin-left: auto;
 }
+
+/* A command given elsewhere that still holds every image control: what it is, Retry if lost */
+.images-pending {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 60%, transparent);
+}
+.images-pending > .glyph {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+.images-pending p {
+  flex: 1;
+  min-width: 12rem;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* A control waiting for the command in progress: dimmed, keeping focus (aria-disabled) */
+:is(.dm-images, .images-sheet) button[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+:is(.dm-images, .images-sheet) button[aria-disabled='true']:hover {
+  border-color: var(--line-strong);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+  box-shadow: none;
+}
+:is(.dm-images, .images-sheet) .primary-button[aria-disabled='true']:hover {
+  border-color: var(--teal);
+  background: var(--teal-fill);
+}

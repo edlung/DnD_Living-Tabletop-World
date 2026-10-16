@@ -92,7 +92,12 @@ export const assetRetractedPayloadSchema = z
   .object({ assetId: assetIdSchema, entityId: entityIdSchema, wasCanonical: z.boolean() })
   .strict();
 
-export const assetApprovedPayloadSchema = z
+/**
+ * An approval as version 2 wrote it (Stages 150 to 330 part B): only a reference superseded
+ * anything, the canonical reference it replaced (`previous`). Read alike, with nothing else
+ * superseded (`event-versions.ts`).
+ */
+export const assetApprovedV2PayloadSchema = z
   .object({
     assetId: assetIdSchema,
     entityId: entityIdSchema,
@@ -100,6 +105,15 @@ export const assetApprovedPayloadSchema = z
     /** The canonical reference this one replaces. */
     previous: assetIdSchema.nullable(),
   })
+  .strict();
+
+/**
+ * Version 3 (ADR 0035, amendment "an approval supersedes its kind"): a derived picture also
+ * supersedes the approved pictures of its kind (`supersedes`, absent when there are none): the
+ * same entity and purpose, and for an image the same label (`sameKind`).
+ */
+export const assetApprovedPayloadSchema = assetApprovedV2PayloadSchema
+  .extend({ supersedes: z.array(assetIdSchema).min(1).optional() })
   .strict();
 
 const assetRecordSchema = z

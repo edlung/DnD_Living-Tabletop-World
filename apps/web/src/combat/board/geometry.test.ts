@@ -2,9 +2,14 @@ import { describe, expect, it } from 'vitest';
 
 import {
   boardLayout,
+  FIGURE_BASE,
   fitCell,
   FOOT_ROOM,
+  MEDALLION_FOOT,
   planeTransform,
+  plateAnchor,
+  plateRoom,
+  PLATE_SQUARES,
   projectPoint,
   squareAt,
   squareCenter,
@@ -118,5 +123,48 @@ describe('squares and pixels', () => {
     expect(squareAt({ x: -1, y: 10 }, 40, grid)).toBeNull();
     expect(squareAt({ x: 10, y: 480 }, 40, grid)).toBeNull();
     expect(squareAt({ x: 640, y: 10 }, 40, grid)).toBeNull();
+  });
+});
+
+describe('name plates', () => {
+  it('lie under the medallion when flat, on the figure’s base line scaled with it when tilted', () => {
+    const flat = boardLayout(grid, 40, null);
+    expect(plateAnchor(flat, { x: 2, y: 6 })).toEqual({
+      x: 100,
+      y: (6 + MEDALLION_FOOT) * 40,
+      scale: 1,
+      edge: 'top',
+    });
+    const tilted = boardLayout(grid, 48, TILT);
+    const anchor = plateAnchor(tilted, { x: 2, y: 6 });
+    const base = projectPoint(tilted, { x: 2.5 * 48, y: (6 + FIGURE_BASE) * 48 });
+    expect(anchor).toEqual({ x: base.x, y: base.y, scale: base.scale, edge: 'bottom' });
+    // A plate further back is drawn higher and smaller, like the figure standing there.
+    const behind = plateAnchor(tilted, { x: 2, y: 5 });
+    expect(behind.y).toBeLessThan(anchor.y);
+    expect(behind.scale).toBeLessThan(anchor.scale);
+  });
+
+  it('are never wider than the room beside them in their row', () => {
+    const ambush = [
+      { x: 2, y: 6 },
+      { x: 8, y: 4 },
+      { x: 10, y: 7 },
+      { x: 11, y: 5 },
+      { x: 12, y: 6 },
+    ];
+    for (const square of ambush) expect(plateRoom(square, ambush)).toBe(PLATE_SQUARES);
+    const crowded = [
+      { x: 3, y: 2 },
+      { x: 4, y: 2 },
+      { x: 6, y: 2 },
+      { x: 4, y: 3 },
+    ];
+    expect(crowded.map((square) => plateRoom(square, crowded))).toEqual([
+      0.9,
+      0.9,
+      1.9,
+      PLATE_SQUARES,
+    ]);
   });
 });

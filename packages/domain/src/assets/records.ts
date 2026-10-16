@@ -96,6 +96,22 @@ export const SHOWN_ASSET: ReadonlySet<AssetStatus> = new Set(['CANONICAL', 'APPR
 export const purposeField = (purpose: AssetPurpose): { readonly purpose?: AssetPurpose } =>
   purpose === 'image' ? {} : { purpose };
 
+/**
+ * Whether two pictures of one entity are of the same kind, the kind presentation shows one of
+ * (ADR 0035, amendment "an approval supersedes its kind"): the reference; a derived image per
+ * label (chosen by its label's state tags, ADR 0023 §4); a figure; a battle map. A figure's or a
+ * battle map's label chooses nothing, so any two figures of an entity are of one kind. Approving
+ * a picture supersedes the approved pictures of its kind.
+ */
+export const sameKind = (
+  a: Pick<AssetRecord, 'entityId' | 'variant' | 'purpose' | 'label'>,
+  b: Pick<AssetRecord, 'entityId' | 'variant' | 'purpose' | 'label'>,
+): boolean =>
+  a.entityId === b.entityId &&
+  a.variant === b.variant &&
+  a.purpose === b.purpose &&
+  (a.purpose !== 'image' || a.label === b.label);
+
 /** Which entity kinds each non-image purpose depicts (ADR 0035 §4). */
 export const PURPOSE_KINDS: Readonly<Record<Exclude<AssetPurpose, 'image'>, ReadonlySet<string>>> =
   {

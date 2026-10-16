@@ -29,6 +29,7 @@ import './styles/players.css';
 import './styles/responsive.css';
 import './styles/battle-layout.css';
 import './styles/figures.css';
+import './styles/board-plates.css';
 import './styles/images.css';
 
 // An invitation link's token leaves the address before anything is requested or rendered

@@ -115,3 +115,45 @@ approval; storage and backup must be decided for production.
     for the DM journeys' campaigns only (`apps/server/src/testing/ui-image-journeys.ts`); its
     review campaigns hold curated pictures as candidates not yet approved, so the evidence
     screenshots show GPT pictures only.
+- 2026-10-16 (Stage 330 part B review: the design's rule for Replace, the client's honesty):
+  - **An approval supersedes its kind.** Approving a candidate makes it the approved picture of
+    its kind and supersedes the approved pictures of that kind — the same entity and purpose, and
+    for an image the same label (the domain's `sameKind`; a figure's or a battle map's label
+    chooses nothing, so any two figures of an entity are one kind). A reference still supersedes
+    the canonical reference (`previous`); a derived picture lists what it superseded
+    (`supersedes`). So the picture approved last is the one players see, even when it was made
+    before the one it replaces, and the DM's list approves it alone. Undo restores every
+    superseded picture; while a later approval of the kind stands, the earlier approval cannot be
+    undone beneath it; a superseded picture keeps its request's undo hold, as a superseded
+    reference always did; retracting the approved picture leaves its kind without one. A DM-only
+    picture supersedes the players' one of its kind, as a DM-only reference does.
+  - **`AssetApproved` version 3.** The decision changed, so the type has its next version (read
+    alike). Version 2 approvals (Stages 150 to 330 part B) were decided when only a reference
+    superseded anything, and an earlier writer could leave two pictures of a kind approved: they
+    are canon as recorded — the re-decision oracle folds them instead of re-deciding them, and
+    they rest on everything before them (ADR 0006 retest 3 amendment), so undo comes off such a
+    history from its end backwards. The current writer's next approval of the kind supersedes
+    all of them. Presentation is unchanged: of an earlier writer's several, the higher version (an
+    image) or the one made last (a figure, a battle map) shows. The lineage revision 80d06df
+    wrote (`fixtures/history/80d06df-approved-kinds.json`) loads, replays, re-decides and
+    continues (`packages/combat/src/approval-history.test.ts`, `images.integration.test.ts`).
+  - **What an approval says.** The client words an approval from the lineage read after it,
+    never assumed: the main picture, a figure or a battle map is what players who can see the
+    entity now see (a battle map under a fight there; approved state pictures keep their states);
+    a state picture is "shown to players who can see <entity> <in its state>", with the caveat
+    when another approved state picture may fit too; a DM-only picture, or one that is no longer
+    the shown one of its kind, says so.
+  - **One command at a time, visibly.** The controls come back only once a lineage read that
+    started after the world's answer arrives, so the card the DM pressed is gone before anything
+    can be pressed again (a second press would be a second, perhaps paid, request); while a read
+    fails, the lineage is read again every 2 s. A command whose answer was lost holds every image
+    control and shows its subject, its state and Retry in the Images sheet and in whichever
+    entity's panel is open; Retry sends the same command ID, and its result shows where it was
+    pressed. Controls that wait are `aria-disabled`, so focus stays on them.
+  - **Focus.** When a command's result shows and focus went with the card it was pressed on,
+    focus moves once — to the card that followed it, else the entity's heading in the sheet, else
+    the panel's images or the sheet; a lost answer whose card went meanwhile moves focus to Retry.
+  - **Name plates.** The battlefield's name plates lie in a layer of their own above every figure
+    and cover piece, each where it lay in its token (which keeps its room) and scaled like the
+    figure there, no wider than the room beside it in its row; tilted or flat, a figure in front
+    never hides the plate, or the number, of a combatant behind it.

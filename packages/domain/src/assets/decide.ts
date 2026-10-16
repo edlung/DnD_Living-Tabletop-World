@@ -9,6 +9,7 @@ import {
   purposeField,
   PURPOSE_KINDS,
   requestIdFor,
+  sameKind,
   type AssetSource,
 } from './records.ts';
 
@@ -193,12 +194,24 @@ export function decideRetractAsset(
   });
 }
 
+/**
+ * Approving a candidate makes it the picture of its kind (docs/STAGE_330_DESIGN.md "DM controls":
+ * a new request's approval supersedes the approved one; ADR 0035 amendment): a reference becomes
+ * the canonical reference and supersedes the one before (`previous`); a derived picture supersedes
+ * the approved pictures of its kind (`supersedes`: an earlier writer may have left several).
+ */
 export function decideApproveAsset(
   state: WorldState,
   command: ResolvedCommandOf<'ApproveAsset'>,
 ): Decision {
   const asset = state.assets.assets.get(command.assetId);
   if (asset?.status !== 'CANDIDATE') return invalid('Only a candidate asset can be approved');
+  const supersedes =
+    asset.variant === 'derived'
+      ? [...state.assets.assets.values()]
+          .filter((other) => other.status === 'APPROVED' && sameKind(other, asset))
+          .map((other) => other.assetId)
+      : [];
   return accept({
     type: 'AssetApproved',
     payload: {
@@ -207,6 +220,7 @@ export function decideApproveAsset(
       variant: asset.variant,
       previous:
         asset.variant === 'reference' ? (state.assets.canonical.get(asset.entityId) ?? null) : null,
+      ...(supersedes.length > 0 ? { supersedes } : {}),
     },
   });
 }

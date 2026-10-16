@@ -5,23 +5,39 @@ import { CAMPAIGN, DM } from '../authoring/testing/world.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { mulberry32 } from '../kernel/testing/random-commands.ts';
 import { holderPerspective } from '../knowledge/perspective.ts';
+import { imageFor, presentationScopeAt } from '../visual/presentation.ts';
 import { DM_VIEW } from '../visual/testing/world.ts';
-import { entityPresentationAt } from '../visual/views.ts';
-import { SETTLED_ASSET, SHOWN_ASSET, assetIdFor } from './records.ts';
+import { visualTimelineAt } from '../visual/timeline.ts';
+import { entityPresentationAt, type Snapshot } from '../visual/views.ts';
+import { SETTLED_ASSET, SHOWN_ASSET, assetIdFor, sameKind, type AssetRecord } from './records.ts';
 import { assetWorld } from './testing/world.ts';
 
 /**
  * Purposes under random work (docs/adr/0035-images.md §4). From approved references of two NPCs,
  * Elowen and the Old Trade Road, random requests of variants (images, figures, battle maps, some
  * of the wrong kind), worker reports, approvals, retractions, cancellations and undos. After every
- * step the lineage is consistent and presentation shows, for each perspective, only approved
- * assets of the right purpose and audience; at the end the re-decision oracle and replay agree.
+ * step the lineage is consistent, each kind of picture has at most one approved (an approval
+ * supersedes its kind, ADR 0035 amendment), and presentation shows, for each perspective, only
+ * approved assets of the right purpose and audience; after every approval the approved picture is
+ * the one shown for its kind; at the end the re-decision oracle and replay agree.
  */
 const STEPS = 60;
 const ENTITIES = ['mira-vale', 'orin-stonebeard', 'elowen-starwhisper', 'old-trade-road'];
 const LABELS = ['night', 'rain', 'wounded', 'figure', 'map'] as const;
 const PURPOSE = { figure: 'figure', map: 'battle-map' } as const;
-const totals = { figures: 0, battleMaps: 0, approved: 0, refused: 0, undone: 0 };
+const totals = { figures: 0, battleMaps: 0, approved: 0, superseded: 0, refused: 0, undone: 0 };
+
+/** What the DM is shown of the approved asset's kind now: it must be the asset itself. */
+function shownOfKind(snapshot: Snapshot, asset: AssetRecord): string | null {
+  const presentation = entityPresentationAt(snapshot, DM_VIEW, asset.entityId, null)?.presentation;
+  if (asset.purpose === 'figure') return presentation?.figure?.contentHash ?? null;
+  if (asset.purpose === 'battle-map') return presentation?.battleMap?.contentHash ?? null;
+  // An image is chosen by its label's state tags (ADR 0023 §4); the reference by none.
+  const timeline = visualTimelineAt(snapshot.history, snapshot.state.clock, snapshot.state);
+  const tags = asset.label === null ? [] : asset.label.split('-');
+  const scope = presentationScopeAt(timeline, DM_VIEW);
+  return imageFor(timeline, scope, asset.entityId, tags)?.contentHash ?? null;
+}
 
 describe('purposes under random work', () => {
   it.each([3, 11, 29, 47, 83, 131])(
@@ -74,6 +90,20 @@ describe('purposes under random work', () => {
           const target = pick([...assets.values()].filter((asset) => asset.status === 'CANDIDATE'));
           if (target && track(await world.approve(target.assetId)).status === 'accepted') {
             totals.approved += 1;
+            const after = await world.engine.load(CAMPAIGN);
+            if (!after) throw new Error('missing campaign');
+            // The picture approved last is the one shown for its kind, made before or after.
+            expect(shownOfKind(after, target), `approved ${target.assetId}`).toBe(
+              target.contentHash,
+            );
+            const replaced = [...assets.values()].filter(
+              (asset) =>
+                asset.status === 'APPROVED' &&
+                asset.variant === 'derived' &&
+                sameKind(asset, target) &&
+                after.state.assets.assets.get(asset.assetId)?.status === 'SUPERSEDED',
+            );
+            totals.superseded += replaced.length;
           }
         } else if (roll < 0.88) {
           const target = pick([...assets.values()].filter((a) => !SETTLED_ASSET.has(a.status)));
@@ -90,6 +120,15 @@ describe('purposes under random work', () => {
         if (!snapshot) throw new Error('missing campaign');
         const { state } = snapshot;
         expect(checkWorldIntegrity(state), `step ${String(step)}`).toEqual([]);
+        const shown = [...state.assets.assets.values()].filter((asset) =>
+          SHOWN_ASSET.has(asset.status),
+        );
+        for (const asset of shown) {
+          expect(
+            shown.filter((other) => sameKind(other, asset)).map((other) => other.assetId),
+            `step ${String(step)}: one approved picture of a kind`,
+          ).toEqual([asset.assetId]);
+        }
         const elowen = holderPerspective(state, {
           kind: 'CHARACTER',
           characterId: 'elowen-starwhisper',
@@ -127,7 +166,7 @@ describe('purposes under random work', () => {
     60_000,
   );
 
-  it('exercised figures, battle maps, approvals, refusals of the wrong kind, and undos', () => {
+  it('exercised figures, battle maps, approvals, supersessions, refusals of the wrong kind, and undos', () => {
     for (const [path, count] of Object.entries(totals)) expect(count, path).toBeGreaterThan(0);
   });
 });

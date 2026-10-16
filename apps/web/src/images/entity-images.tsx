@@ -1,10 +1,12 @@
 import type { EntityKind } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
 import { useDmImages } from './dm-images.ts';
-import { ApprovedCard, CandidateCard, ImagesResult, RequestRow } from './image-cards.tsx';
+import { useFocusRecovery } from './focus-recovery.ts';
+import { ApprovedCard, CandidateCard, RequestRow, type Context } from './image-cards.tsx';
+import { ImagesResult } from './images-result.tsx';
 import { choiceOfKind, entityImages } from './lineage.ts';
 import { RequestForm, type ReplacePreset } from './request-form.tsx';
 import { kindWords } from './words.ts';
@@ -13,15 +15,19 @@ import { kindWords } from './words.ts';
  * The DM's images of the selected entity, in its panel (docs/STAGE_330_DESIGN.md "DM controls"):
  * what is approved now (with Replace), the candidates waiting for the DM (Approve, Discard,
  * Generate again), requests the image generator is working on or that failed (with the fixed
- * reason and Try again), and a new request. Only in the DM perspective: a lower perspective
- * has no context for it and renders nothing. Candidates and requests are the DM's alone.
+ * reason and Try again), and a new request; a command given elsewhere that still holds the
+ * controls shows here with its Retry. Only in the DM perspective: a lower perspective has no
+ * context for it and renders nothing. Candidates and requests are the DM's alone.
  */
 export function EntityImages({
   entityId,
   kind,
+  name,
 }: {
   readonly entityId: string;
   readonly kind: EntityKind;
+  /** The entity's name as the DM knows it. */
+  readonly name: string;
 }) {
   const t = useT();
   const images = useDmImages();
@@ -29,20 +35,25 @@ export function EntityImages({
   const [preset, setPreset] = useState<ReplacePreset | null>(null);
   const section = useRef<HTMLElement>(null);
   const place = `details:${entityId}`;
-  const lineage = images?.lineage.status === 'ready' ? images.lineage.value : null;
-  const settled = images?.command.place === place && images.command.status === 'done';
-  // A card the DM acted on leaves the list: focus returns to the section, never to the page.
-  useEffect(() => {
-    const active = document.activeElement;
-    if (settled && (active === null || active === document.body || !active.isConnected)) {
-      section.current?.focus({ preventScroll: true });
-    }
-  }, [settled, lineage]);
+  // A card the DM acted on leaves the list: focus goes to the next card, else the section.
+  useFocusRecovery(section, place);
   if (!images) return null;
+  const lineage = images.lineage.status === 'ready' ? images.lineage.value : null;
   const mine = lineage ? entityImages(lineage, entityId) : null;
-  const context = { place, subject: (what: string) => what };
+  const context: Context = {
+    place,
+    name,
+    subject: (what) => what,
+    full: (what) => t('{what} of {name}', { what, name }),
+  };
   return (
-    <section ref={section} className="dm-images" aria-labelledby={`${ids}-title`} tabIndex={-1}>
+    <section
+      ref={section}
+      className="dm-images"
+      aria-labelledby={`${ids}-title`}
+      tabIndex={-1}
+      data-image-entity={entityId}
+    >
       <h3 id={`${ids}-title`}>
         <Glyph name="picture" />
         {t('Images (DM)')}
@@ -111,7 +122,7 @@ export function EntityImages({
             entityId={entityId}
             kind={kind}
             canonical={mine.canonical}
-            place={place}
+            context={context}
             preset={preset}
           />
         </>

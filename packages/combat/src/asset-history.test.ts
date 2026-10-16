@@ -32,7 +32,7 @@ const WORKER = { actorId: 'asset-worker', kind: 'system' } as const;
 const request = (name: string) => `${step(name)}#0`;
 
 describe('the asset lineage written before purposes', () => {
-  it('parses and replays every prefix as the current writer’s version, every picture an image', () => {
+  it('parses and replays every prefix, every picture an image, only its approvals an earlier version', () => {
     const events = fixture.events.map(eventFromRow);
     expect(events).toHaveLength(fixture.stream.version);
     const assetEvents = events.filter((event) => event.type.startsWith('Asset'));
@@ -47,7 +47,11 @@ describe('the asset lineage written before purposes', () => {
         'AssetApproved',
       ]),
     );
-    expect(events.some(writtenEarlier)).toBe(false);
+    // Purposes kept every type's version; approvals since supersede their kind (version 3, ADR 0035
+    // amendment), so this writer's approvals are an earlier writer's, canon as recorded.
+    expect(new Set(events.filter(writtenEarlier).map((event) => event.type))).toEqual(
+      new Set(['AssetApproved']),
+    );
     for (const event of assetEvents) expect(event.payload).not.toHaveProperty('purpose');
     for (const row of fixture.commands) {
       expect(checkWorldIntegrity(replay(events.slice(0, row.last_sequence)))).toEqual([]);

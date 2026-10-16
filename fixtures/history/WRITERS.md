@@ -998,3 +998,138 @@ try {
   await database.drop();
 }
 ```
+
+## `80d06df-approved-kinds.json`
+
+Written on 2026-10-16 by revision `80d06dfdc1c52a8e4798de5eabdd23ae33358f53` (Stage 330 part B, before an approval superseded the approved picture of its kind) through its own HTTP app, asset worker (local placeholder generator, in-memory contents) and `PostgresEventStore`, into a throwaway database it migrated, seeded, and dropped. Recorded before `AssetApproved` version 3 (`docs/adr/0035-images.md`, amendment "part B review").
+
+Steps:
+
+1. In a checkout of that revision (the Stage 330 worktree before the review fixes), save the script below in the root as `history-writer.mts`, with PostgreSQL running and `DATABASE_URL` naming a database the throwaway one can be created beside.
+2. Run `LTW_HISTORY_OUT=<output.json> NODE_ENV=test node --conditions=@ltw/source history-writer.mts` from that root. It prints `{"scenario":"approved-kinds","version":147,"events":147,"commands":138}`.
+3. The JSON it writes was laid out one row per line, with a `$comment` and the revision added to `writer`; the rows themselves are unchanged (checked equal after the layout).
+
+```ts
+// Runs inside a checkout of revision 80d06df (Stage 330 part B, before an approval superseded the
+// approved picture of its kind): drives that revision's own HTTP app, asset worker (local
+// placeholder generator) and PostgreSQL store. A world command first; then Mira's and the Old
+// Trade Road's references; three `night` images and three figures of Mira and three battle maps
+// of the road, of which this writer approves the second and then the first (an older picture
+// approved after a newer one: both stay approved) and leaves the third a candidate; and an
+// undone approval of Mira's `rain` image. Then it dumps the stored rows. LTW_HISTORY_OUT: output.
+import { writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+
+import { createPlaceholderImageGenerator } from './packages/ai/src/index.ts';
+
+import { InMemoryAssetContentStore } from './apps/server/src/assets/content-store.ts';
+import { AssetWorker } from './apps/server/src/assets/worker.ts';
+import { createLogger } from './apps/server/src/platform/logging/logger.ts';
+import { post as command } from './apps/server/src/testing/gate02-scenarios.ts';
+import { TOKENS, ravenfordApp, seededEngine } from './apps/server/src/testing/ravenford-app.ts';
+import { createThrowawayDatabase } from './apps/server/src/testing/throwaway-database.ts';
+import { PostgresEventStore } from './apps/server/src/world-engine/postgres-event-store.ts';
+
+const require = createRequire(new URL('./apps/server/package.json', `file://${process.cwd()}/`));
+const { Pool } = require('pg');
+const OUT = process.env.LTW_HISTORY_OUT;
+if (!OUT) throw new Error('LTW_HISTORY_OUT is required');
+
+const database = await createThrowawayDatabase({ migrate: true });
+const pool = new Pool({ connectionString: database.url });
+let app: Awaited<ReturnType<typeof ravenfordApp>> | undefined;
+const labels: Record<string, string> = {};
+try {
+  const engine = await seededEngine(new PostgresEventStore(pool));
+  app = await ravenfordApp(engine);
+  const live = app;
+  const contents = new InMemoryAssetContentStore();
+  const logger = createLogger({ service: 'history-writer', level: 'silent' });
+  const generator = createPlaceholderImageGenerator();
+  const run = () =>
+    new AssetWorker({ engine, contents, generator, timeoutMs: 5_000, logger }).runOnce('ravenford');
+  const dm = async (label: string, body: Record<string, unknown>) => {
+    const { status, body: result } = await command(live, TOKENS.dm, `kinds-${label}`, body);
+    if (status !== 200 || result.status !== 'accepted') {
+      throw new Error(`${label}: ${String(status)} ${JSON.stringify(result)}`);
+    }
+    labels[label] = result.commandId;
+    return result.commandId;
+  };
+  const request = async (label: string, body: Record<string, unknown>) =>
+    `${await dm(label, { type: 'RequestAsset', ...body })}#0`;
+  const asset = (requestId: string) => `${requestId}~asset`;
+
+  // A world command before every approval.
+  await dm('rain-on-square', { type: 'SetWeather', locationId: 'market-square', weather: 'rain' });
+
+  const mira = await request('request-mira', { entityId: 'mira-vale', variant: 'reference' });
+  const road = await request('request-road', { entityId: 'old-trade-road', variant: 'reference' });
+  await run();
+  await dm('approve-mira', { type: 'ApproveAsset', assetId: asset(mira) });
+  await dm('approve-road', { type: 'ApproveAsset', assetId: asset(road) });
+
+  const kinds: readonly (readonly [string, Record<string, unknown>])[] = [
+    ['mira-night', { entityId: 'mira-vale', variant: 'derived', label: 'night' }],
+    [
+      'mira-figure',
+      { entityId: 'mira-vale', variant: 'derived', label: 'figure', purpose: 'figure' },
+    ],
+    [
+      'road-map',
+      { entityId: 'old-trade-road', variant: 'derived', label: 'map', purpose: 'battle-map' },
+    ],
+  ];
+  for (const [name, body] of kinds) {
+    const first = await request(`request-${name}-1`, body);
+    const second = await request(`request-${name}-2`, body);
+    await request(`request-${name}-3`, body);
+    await run();
+    // The newer picture first, then the older one: this writer leaves both approved.
+    await dm(`approve-${name}-2`, { type: 'ApproveAsset', assetId: asset(second) });
+    await dm(`approve-${name}-1`, { type: 'ApproveAsset', assetId: asset(first) });
+  }
+
+  const rain = await request('request-mira-rain', {
+    entityId: 'mira-vale',
+    variant: 'derived',
+    label: 'rain',
+  });
+  await run();
+  await dm('approve-mira-rain', { type: 'ApproveAsset', assetId: asset(rain) });
+  await dm('undo-approve-mira-rain', {
+    type: 'UndoCommand',
+    targetCommandId: labels['approve-mira-rain'],
+  });
+
+  const rows = async (sql: string) =>
+    (await pool.query(sql, ['ravenford'])).rows.map((row: { row: unknown }) => row.row);
+  const dumped = {
+    campaignId: 'ravenford',
+    scenario: 'approved-kinds',
+    labels,
+    stream: (
+      await rows('SELECT row_to_json(s) AS row FROM ltw_event_streams s WHERE stream_id = $1')
+    )[0],
+    commands: await rows(
+      'SELECT row_to_json(c) AS row FROM ltw_commands c WHERE stream_id = $1 ORDER BY first_sequence',
+    ),
+    events: await rows(
+      'SELECT row_to_json(e) AS row FROM ltw_events e WHERE stream_id = $1 ORDER BY sequence',
+    ),
+  };
+  await writeFile(OUT, `${JSON.stringify(dumped)}\n`);
+  console.log(
+    JSON.stringify({
+      scenario: dumped.scenario,
+      version: (dumped.stream as { version: number }).version,
+      events: dumped.events.length,
+      commands: dumped.commands.length,
+    }),
+  );
+} finally {
+  if (app) await app.close();
+  await pool.end();
+  await database.drop();
+}
+```
