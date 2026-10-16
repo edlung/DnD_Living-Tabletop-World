@@ -10,6 +10,8 @@ import { askedWindowOf } from '../combat/reaction-prompt.tsx';
 import { standInReason, type StandIn } from '../combat/stand-in.ts';
 import { DmSheets } from '../dm/dm-sheets.tsx';
 import { ActionNotice } from '../exploration/action-notice.tsx';
+import { useDmImagesState } from '../images/dm-images.ts';
+import { WorldPictures } from '../images/world-pictures.tsx';
 import { CONVERSATION_PANEL_ID, DialoguePanel } from '../exploration/dialogue-panel.tsx';
 import {
   useAction,
@@ -19,7 +21,7 @@ import {
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
 import { Dock } from '../shell/dock.tsx';
 import { focusOn, useEscape, useShell } from '../shell/use-shell.ts';
-import { ApprovedImages, ApprovedImagesContext } from '../visual/approved-images.ts';
+import { ApprovedImages } from '../visual/approved-images.ts';
 import { WIDE } from '../combat/board/board-view.ts';
 import { Backdrop } from './backdrop.tsx';
 import { CombatStage } from './combat-stage.tsx';
@@ -88,6 +90,10 @@ export function World({
     },
     [images],
   );
+  // The DM's image controls (Stage 330): the lineage, read in the DM perspective only.
+  const dmImages = useDmImagesState(api, isDm, revision, () => {
+    setRevision((value) => value + 1);
+  });
   const onResolved = useCallback((outcome?: PlayerOutcome) => {
     if (outcome?.kind === 'EnterLocation') {
       // Arrival keeps the place itself as the object in context, so it can be examined.
@@ -204,6 +210,17 @@ export function World({
   const view = scene.resource.status === 'ready' ? scene.resource.value : null;
   const presentImage = (entityId: string) =>
     view?.present.find((entity) => entity.entityId === entityId)?.image ?? null;
+  const presentFigure = (entityId: string) =>
+    view?.present.find((entity) => entity.entityId === entityId)?.figure ?? null;
+  // The battle map is the encounter's place's (ADR 0035 §4): shown while the viewed place is
+  // where the fight is — its own presentation lists the combatants standing there.
+  const fought =
+    encounter !== null &&
+    view !== null &&
+    view.present.some((entity) =>
+      encounter.combatants.some((entry) => entry.entity.entityId === entity.entityId),
+    );
+  const battleMap = fought ? view.location.battleMap : null;
   const discovered = revealedIds(action.notice?.outcome);
   const notice = action.notice === dismissed ? null : action.notice;
   const speaking = conversation !== null && canAct && encounter === null;
@@ -215,7 +232,7 @@ export function World({
       : null;
 
   return (
-    <ApprovedImagesContext.Provider value={images}>
+    <WorldPictures images={images} dm={isDm ? dmImages : null}>
       <main
         id="world-main"
         className={`world-main${selected ? ' has-details' : ''}${battlefield ? ' has-battle' : ''}`}
@@ -304,6 +321,8 @@ export function World({
               locked={action.locked}
               blocked={shell.chronicle}
               imageOf={presentImage}
+              figureOf={presentFigure}
+              battleMap={battleMap}
               onRun={run}
             />
           )}
@@ -352,6 +371,10 @@ export function World({
               onActAs={onActAs}
               onWorldChanged={() => {
                 setRevision((value) => value + 1);
+              }}
+              onShowEntity={(entityId, kind) => {
+                shell.dismissSheet();
+                select(entityId, kind);
               }}
             />
           )}
@@ -414,7 +437,7 @@ export function World({
           )}
         </ChronicleDialog>
       </main>
-    </ApprovedImagesContext.Provider>
+    </WorldPictures>
   );
 }
 

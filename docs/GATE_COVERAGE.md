@@ -529,3 +529,27 @@ scope; refusals and failures leave the neutral fallback").
   pictures and continues (`packages/combat/src/asset-history.test.ts`,
   `apps/server/src/images/images.integration.test.ts`). Presentation chooses its image among
   `image` assets only. No authorization rule, mutation path or undo rule changed.
+
+Stage 330 part B introduction evidence (ADR 0035, amendment of 2026-10-16 "part B"; the client):
+**new surfaces for Gate 06**, row 330.
+- **The DM's image controls** (`apps/web/src/images/`): the selection's panel and the Images sheet
+  exist only in the DM perspective (a React context the world screen provides there alone); they
+  read the DM-only lineage route and send `RequestAsset`, `ApproveAsset` and `RetractAsset`
+  through the existing command route, one at a time, with a client command ID kept across an
+  uncertain answer. Candidates are fetched by the DM through the existing content route (the DM
+  may fetch any asset's bytes); no candidate, request, note, label or generator reaches a lower
+  perspective's page or requests.
+- **Live coverage** (`apps/server/src/live/inventory.ts`): the DM perspective's fingerprint now
+  covers `GET …/assets`, so the DM's controls follow the asset worker; no lower perspective
+  covers it, the DM's own included.
+- **Pictures for everyone**: approved figures and battle maps (`EntityPresentation.figure`,
+  `battleMap`, unchanged server rules) on the battlefield and in the scene; an object's approved
+  image in its panel. Nothing is shown before approval; an unreadable picture falls back to the
+  medallion, the silhouette or the UI kit's ground.
+- **Deterministic evidence**: `apps/server/src/live/asset-live.test.ts` (the DM is signalled at
+  each step of a job; a player only when a picture it sees is approved; no hash in its stream),
+  `inventory.test.ts`, `apps/web/src/images/lineage.test.ts`; browser journeys
+  `tests/e2e/images-dm.spec.ts` (the player's page, presentation, bytes by hash and every API
+  body hold no candidate; the approved picture arrives through the live signal),
+  `images-curated.spec.ts`, `images-accessibility.spec.ts` on the test server's image campaigns
+  (`apps/server/src/testing/ui-image-journeys.ts`).

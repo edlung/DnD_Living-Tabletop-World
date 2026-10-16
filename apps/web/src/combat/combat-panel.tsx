@@ -41,6 +41,8 @@ export function CombatPanel({
   asked,
   view,
   imageOf,
+  figureOf,
+  battleMap,
   onRun,
 }: {
   readonly api: WorldApi;
@@ -52,6 +54,8 @@ export function CombatPanel({
   readonly asked: boolean;
   readonly view: BoardView;
   readonly imageOf: (entityId: string) => PlayerAssetView | null;
+  readonly figureOf: (entityId: string) => PlayerAssetView | null;
+  readonly battleMap: PlayerAssetView | null;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
@@ -163,6 +167,8 @@ export function CombatPanel({
         path={plan?.path ?? []}
         affected={affected}
         imageOf={imageOf}
+        figureOf={figureOf}
+        battleMap={battleMap}
         view={view}
         onPick={pick}
       />

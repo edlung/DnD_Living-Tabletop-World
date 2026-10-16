@@ -14,8 +14,10 @@ export type MedallionCondition = 'wounded' | 'unconscious' | 'dead';
  * A round portrait in the GPT gold ring (design §1.4, §5.2). The face is the approved image
  * when the projection carries one; otherwise a person or creature shows the neutral
  * silhouette and anything else the neutral mist with its kind's glyph, never a stand-in that
- * claims what the subject looks like. Selection lights the ring teal. Decorative: the control
- * around it carries the name.
+ * claims what the subject looks like. Given an approved figure (the flat battlefield, ADR 0035
+ * §4), the figure stands inside the ring instead, seen to the knees, and the portrait remains
+ * its fallback.
+ * Selection lights the ring teal. Decorative: the control around it carries the name.
  */
 export function Medallion({
   image,
@@ -24,6 +26,7 @@ export function Medallion({
   tone = 'gold',
   selected = false,
   condition = null,
+  figure = null,
 }: {
   readonly image: PlayerAssetView | null;
   readonly kind: EntityKind;
@@ -32,8 +35,11 @@ export function Medallion({
   readonly selected?: boolean;
   /** Down or dead figures are dimmed and marked with their state's glyph. */
   readonly condition?: MedallionCondition | null;
+  /** The approved tabletop figure, shown inside the ring when it is available. */
+  readonly figure?: PlayerAssetView | null;
 }) {
   const url = useApprovedImage(image);
+  const standing = useApprovedImage(figure);
   const classes = [
     'medallion',
     `medallion--${size}`,
@@ -44,7 +50,9 @@ export function Medallion({
   return (
     <span className={classes.filter(Boolean).join(' ')} aria-hidden="true">
       <span className="medallion-face">
-        {url ? (
+        {standing ? (
+          <img className="medallion-figure" src={standing} alt="" draggable={false} />
+        ) : url ? (
           <img src={url} alt="" />
         ) : isFigure(kind) ? (
           <img className="medallion-silhouette" src={boardUrl('figure-silhouette')} alt="" />

@@ -66,6 +66,9 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     });
     // The DM history's newest page, as the DM's authoring panel shows it (ADR 0033 §7).
     views.push(scoped('dm/history'));
+    // The asset lineage (DM only; no perspective): the DM's image controls follow each job from
+    // queued to a candidate as the asset worker reports it (Stage 330 part B).
+    views.push({ url: `${base}/assets`, optional: false });
   }
   if (target.focus !== null) {
     const entity = `entities/${encodeURIComponent(target.focus)}`;

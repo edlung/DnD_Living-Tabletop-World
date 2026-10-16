@@ -5,12 +5,14 @@ import dmTools from '../../../../tests/e2e/fixtures/dm-tool-campaigns.json' with
 import { InMemoryAssetContentStore } from '../assets/content-store.ts';
 import { ravenfordApp, testAuthoring } from './ravenford-app.ts';
 import { uiCampaigns } from './ui-campaigns.ts';
+import { startUiImageWorker } from './ui-image-journeys.ts';
 
 /**
  * Browser-test composition: real authorization, queries, and World Engine;
- * ephemeral deterministic storage, with no configured AI provider or worker.
- * The curated pictures of some campaigns are imported at start (`ui-image-campaigns.ts`).
- * Localhost only; never used by the production server entry point.
+ * ephemeral deterministic storage, with no configured AI provider. The curated pictures of some
+ * campaigns are imported at start (`ui-image-campaigns.ts`); the asset worker runs, with the
+ * placeholder generator, only for the image journeys that request pictures
+ * (`ui-image-journeys.ts`). Localhost only; never used by the production server entry point.
  */
 const clock = new SteppingClock();
 let elapsed = 0;
@@ -45,9 +47,12 @@ const app = await ravenfordApp(
 );
 
 await app.listen({ host: '127.0.0.1', port: 4311 });
+const stopImages = startUiImageWorker(engine, contents);
 
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.once(signal, () => {
-    void app.close().then(() => process.exit(0));
+    void stopImages()
+      .then(() => app.close())
+      .then(() => process.exit(0));
   });
 }

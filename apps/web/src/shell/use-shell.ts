@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * The dock's sheets (docs/STAGE_320_DESIGN.md §5.1); DM sheets only in the DM perspective, and
- * Players only with production sign-in (docs/adr/0036-production-sign-in.md §4).
+ * The dock's sheets (docs/STAGE_320_DESIGN.md §5.1); DM sheets only in the DM perspective (the
+ * DM's Images, docs/STAGE_330_DESIGN.md "DM controls"), and Players only with production sign-in
+ * (docs/adr/0036-production-sign-in.md §4).
  */
-export type SheetId = 'places' | 'journal' | 'add' | 'encounter' | 'time' | 'history' | 'players';
+export type SheetId =
+  'places' | 'journal' | 'add' | 'encounter' | 'time' | 'history' | 'images' | 'players';
 
 export const sheetElementId = (id: SheetId) => `sheet-${id}`;
 export const dockButtonId = (id: SheetId | 'scene' | 'chronicle') => `dock-${id}`;

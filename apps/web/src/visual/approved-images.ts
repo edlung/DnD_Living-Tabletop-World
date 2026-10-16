@@ -8,7 +8,8 @@ import type { WorldApi } from '../api/client.ts';
  * shown through object URLs, revoked when the world screen goes away (a perspective change, a
  * refresh, leaving). Held per world screen, so the re-render after an action neither fetches
  * again nor flashes the neutral fallback. A failed fetch leaves the neutral fallback; nothing is
- * ever invented in an image's place.
+ * ever invented in an image's place. The DM may fetch any asset's bytes, so the DM's image
+ * controls show candidates through the same cache (docs/STAGE_330_DESIGN.md "DM controls").
  */
 export class ApprovedImages {
   readonly #api: WorldApi;
@@ -62,10 +63,16 @@ export class ApprovedImages {
 
 export const ApprovedImagesContext = createContext<ApprovedImages | null>(null);
 
-/** The object URL of an approved image, or null while none is available (show the fallback). */
-export function useApprovedImage(image: PlayerAssetView | null): string | null {
+/**
+ * An image by content hash: its object URL once fetched, and whether that is settled — fetched,
+ * failed, or nothing to fetch. While unsettled a caller may hold the picture's place; once
+ * settled without a URL it shows the neutral fallback.
+ */
+export function useContentImage(hash: string | null): {
+  readonly url: string | null;
+  readonly settled: boolean;
+} {
   const images = useContext(ApprovedImagesContext);
-  const hash = image?.contentHash ?? null;
   const [loaded, setLoaded] = useState<{
     readonly hash: string;
     readonly url: string | null;
@@ -80,6 +87,25 @@ export function useApprovedImage(image: PlayerAssetView | null): string | null {
       current = false;
     };
   }, [images, hash]);
-  if (!images || hash === null) return null;
-  return images.peek(hash) ?? (loaded?.hash === hash ? loaded.url : null);
+  if (!images || hash === null) return { url: null, settled: true };
+  const known = images.peek(hash);
+  if (known) return { url: known, settled: true };
+  return loaded?.hash === hash ? { url: loaded.url, settled: true } : { url: null, settled: false };
+}
+
+/** The object URL of an approved image, or null while none is available (show the fallback). */
+export function useApprovedImage(image: PlayerAssetView | null): string | null {
+  return useContentImage(image?.contentHash ?? null).url;
+}
+
+/**
+ * Whether a picture should hold its place: there is one to show, and it is shown or still
+ * loading. False once it is known to be missing or unreadable, so the caller falls back.
+ */
+export function useHeldImage(image: PlayerAssetView | null): {
+  readonly url: string | null;
+  readonly held: boolean;
+} {
+  const { url, settled } = useContentImage(image?.contentHash ?? null);
+  return { url, held: image !== null && (url !== null || !settled) };
 }

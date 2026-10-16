@@ -60,7 +60,9 @@ Rules:
   a placeholder SVG) is `UNAVAILABLE`. Each leaves the neutral fallback: no image reaches anyone
   before the DM approves one.
 - Never edit the curated pictures (`fixtures/ravenford-ru/assets/AGENTS.md`). The import runs in
-  `seed:ravenford` and the browser-test server (`../testing/ui-image-campaigns.ts`). It approves
+  `seed:ravenford` and the browser-test server (`../testing/ui-image-campaigns.ts`; the Stage 330
+  part B journeys' campaigns `../testing/ui-image-journeys.ts`, where the test server's asset
+  worker runs with the placeholder generator for the DM journeys' campaigns only). It approves
   only a job that produced the committed picture (provider `curated`, the manifest's hash), and
   retries a failed one under the next derived command ID (at most three attempts), so reruns stay
   idempotent. The server's asset worker leaves the import's requests (`isCuratedRequest`) alone;
