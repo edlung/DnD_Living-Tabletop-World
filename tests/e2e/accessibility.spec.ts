@@ -1,14 +1,16 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
+import { battlefield, square, turnTray } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { dockButton, openSheet } from './support/shell.ts';
 
 /**
  * Accessibility at the three widths (docs/STAGE_320_DESIGN.md §6–7): automated axe scans of
- * sign-in, the scene with a selection, a conversation and a DM sheet fail on any serious or
- * critical violation, colour contrast included, and no width may scroll the page sideways.
- * Read-only: talking records nothing, and the scans only look.
+ * sign-in, the scene with a selection, a conversation, a DM sheet, and the battlefield (the
+ * player's turn, a chosen target with a previewed area, the reaction prompt, the DM's Encounter
+ * sheet) fail on any serious or critical violation, colour contrast included, and no width may
+ * scroll the page sideways. Read-only: talking records nothing, and the scans only look.
  */
 const WIDTHS = [
   { name: 'phone', width: 390, height: 844 },
@@ -78,6 +80,33 @@ for (const size of WIDTHS) {
     await openSheet(page, 'Time and weather');
     await expect(page.getByRole('button', { name: 'Set weather' })).toBeVisible();
     await expectAccessible(page, `${size.name} DM sheet`);
+  });
+}
+
+for (const size of WIDTHS) {
+  test(`the battlefield passes axe at ${size.name} width`, async ({ page }) => {
+    await page.setViewportSize({ width: size.width, height: size.height });
+    // Read-only: choosing squares and combatants only reads their options.
+    await enterWorld(page, TOKENS.player, 'ui-combat-preview');
+    await expect(turnTray(page).getByRole('button', { name: 'End turn' })).toBeVisible();
+    await expectAccessible(page, `${size.name} player turn`);
+
+    await square(page, 11, 5).click();
+    const options = battlefield(page).getByRole('region', { name: 'Options for goblin-raider-3' });
+    await expect(options).toContainText('Would affect:');
+    await expect(square(page, 11, 5)).toHaveAccessibleName(/in the area/);
+    await expectAccessible(page, `${size.name} target with a previewed area`);
+
+    await page.getByRole('button', { name: 'Leave session', exact: true }).click();
+    await enterWorld(page, TOKENS.player, 'ui-combat');
+    await expect(page.getByRole('alertdialog', { name: 'Reaction: Counterspell' })).toBeVisible();
+    await expectAccessible(page, `${size.name} reaction prompt`);
+
+    await page.getByRole('button', { name: 'Leave session', exact: true }).click();
+    await enterWorld(page, TOKENS.dm, 'ui-combat');
+    await openSheet(page, 'Encounter');
+    await expect(page.getByRole('button', { name: 'Close reaction window' })).toBeVisible();
+    await expectAccessible(page, `${size.name} DM encounter sheet`);
   });
 }
 

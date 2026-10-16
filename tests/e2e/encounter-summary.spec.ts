@@ -23,6 +23,9 @@ test('player reads a real paused encounter and their reaction choices without DM
       new URL(response.url()).pathname === `/api/campaigns/${COMBAT_CAMPAIGN}/encounter`,
   );
   await enterWorld(page, TOKENS.player, COMBAT_CAMPAIGN);
+  // The summary in words is the Journal's; the stage shows the battlefield.
+  await expect(page.getByRole('region', { name: 'Battlefield', exact: true })).toBeVisible();
+  await openSheet(page, 'Journal');
   const encounter = page.getByRole('region', { name: 'Encounter summary', exact: true });
   const reaction = encounter.getByRole('region', { name: 'Reaction window', exact: true });
   await expect(reaction.getByRole('status')).toHaveText(
@@ -62,6 +65,7 @@ test('DM summary exposes authorized spell and stats, then clears them for charac
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, COMBAT_CAMPAIGN);
+  await openSheet(page, 'Journal');
   const encounter = page.getByRole('region', { name: 'Encounter summary', exact: true });
   await expect(encounter.getByRole('region', { name: 'Reaction window' })).toContainText(
     'Ashen Bolt',
@@ -75,6 +79,7 @@ test('DM summary exposes authorized spell and stats, then clears them for charac
   await page
     .getByLabel('Perspective', { exact: true })
     .selectOption('CHARACTER:elowen-starwhisper');
+  await openSheet(page, 'Journal');
   await expect(encounter.getByRole('region', { name: 'Reaction window' })).toContainText(
     'Counterspell, Ignore',
   );

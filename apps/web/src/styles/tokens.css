@@ -40,6 +40,17 @@
   --magic: #a07cff;
   --fire: #ff8a3d;
 
+  /* The battlefield: hairlines over the GPT ground, the side lights' glow, shade at the edges */
+  --board-grid: rgb(236 230 218 / 0.2);
+  --board-grid-strong: rgb(236 230 218 / 0.42);
+  --board-shade: rgb(5 9 14 / 0.62);
+  --board-dim: rgb(5 9 14 / 0.16);
+  --board-light: rgb(255 196 120 / 0.1);
+  --glow-party: rgb(79 214 230 / 0.6);
+  --glow-hostile: rgb(229 72 59 / 0.6);
+  --glow-neutral: rgb(216 180 74 / 0.55);
+  --glow-fire: rgb(255 138 61 / 0.62);
+
   /* Chronicle pages */
   --page: #ebdfc6;
   --page-ink: #2b2015;

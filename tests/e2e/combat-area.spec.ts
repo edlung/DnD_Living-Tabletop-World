@@ -10,6 +10,7 @@ import {
   playerHp,
   square,
   submit,
+  turnTray,
 } from './support/combat.ts';
 
 const campaign = COMBAT_CAMPAIGNS.area;
@@ -25,8 +26,9 @@ test('Fireball previews who it affects, warns about an ally, and still casts whe
 
   await square(page, 8, 4).click();
   const options = battlefield(page).getByRole('region', { name: 'Options for goblin-raider-1' });
-  const fireball = options.getByRole('button', { name: 'Cast Fireball at goblin-raider-1' });
+  const fireball = turnTray(page).getByRole('button', { name: 'Cast Fireball at goblin-raider-1' });
   await expect(fireball).toBeEnabled();
+  await expect(fireball).toHaveAccessibleDescription(/Would affect:.*Elowen Starwhisper/);
   await expect(options).toContainText('Would affect:');
   await expect(options).toContainText('Elowen Starwhisper');
   await expect(options).toContainText('goblin-raider-1');
@@ -54,7 +56,8 @@ test('Fireball centered away from every ally shows no warning', async ({ page })
   await enterCombat(page, COMBAT_CAMPAIGNS.preview);
   await square(page, 11, 5).click();
   const options = battlefield(page).getByRole('region', { name: 'Options for goblin-raider-3' });
-  await expect(options.getByRole('button', { name: /Cast Fireball/ })).toBeEnabled();
+  await expect(turnTray(page).getByRole('button', { name: /Cast Fireball/ })).toBeEnabled();
+  await expect(square(page, 11, 5)).toHaveAccessibleName(/in the area/);
   await expect(options).toContainText('goblin-raider-3');
   await expect(options.getByRole('alert')).toHaveCount(0);
   await expect(options).not.toContainText('Elowen Starwhisper');

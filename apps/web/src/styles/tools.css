@@ -162,25 +162,130 @@
 }
 
 /* The encounter: start, run, end, act for a player */
-.dm-combat > h3 {
+.dm-combat > h3,
+.stand-in > h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--gold-bright);
   font-size: 1.15rem;
 }
-.combat-options {
+.stand-in > h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+.dm-combat .glyph {
+  width: 20px;
+  height: 20px;
+}
+.fighter-list {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
   gap: 0.4rem;
-  margin: 0.5rem 0 0.75rem;
+  margin: 0.5rem 0 0.8rem;
   padding: 0;
   list-style: none;
 }
-.combat-options label {
+.fighter {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
   color: var(--text);
 }
+.fighter-name {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.side-chip {
+  padding: 0 0.5rem;
+  border: 1px solid var(--side-neutral);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.side-chip--party {
+  border-color: var(--side-party);
+}
+.side-chip--hostile {
+  border-color: var(--side-hostile);
+}
+.encounter-tools {
+  display: grid;
+  gap: 0.6rem;
+}
+.tool-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.tool-card p {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+}
+.tool-card--reaction {
+  border-color: color-mix(in srgb, var(--magic) 60%, transparent);
+}
+.tool-card--reaction p .glyph {
+  color: var(--magic);
+}
 .monster-suggestion {
-  flex-basis: 100%;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+.suggestion-art {
+  width: 3.2rem;
+  height: 3.2rem;
+  flex: none;
+  border: 1px solid var(--gold-deep);
+  border-radius: 6px;
+  object-fit: cover;
+}
+.suggestion-glyph {
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--gold);
+}
+.suggestion-text {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+.suggestion-text p {
+  display: block;
+}
+.end-encounter {
+  margin: 0;
+}
+.stand-in-who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.3rem;
+}
+.stand-in-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+.stand-in-dot.is-present {
+  background: var(--hp);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--hp) 80%, transparent);
 }
 .stand-in {
   margin-top: 0.75rem;

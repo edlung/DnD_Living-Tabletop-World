@@ -7,6 +7,7 @@ import {
   enterCombat,
   expectAccepted,
   submit,
+  turnTray,
 } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, closeSheet, openSheet } from './support/shell.ts';
@@ -32,7 +33,7 @@ test('the DM starts, runs, and ends an encounter and the player returns to explo
 
   // The player sees the encounter that now runs and can end their own turn.
   await enterCombat(player, campaign);
-  expectAccepted(await submit(player, anchor(player).getByRole('button', { name: 'End turn' })));
+  expectAccepted(await submit(player, turnTray(player).getByRole('button', { name: 'End turn' })));
 
   // The DM runs exactly the command the server suggests for the creature's turn.
   await dm.getByRole('button', { name: 'Refresh world' }).click();

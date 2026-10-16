@@ -185,7 +185,11 @@ export function World({
 
   return (
     <ApprovedImagesContext.Provider value={images}>
-      <main id="world-main" className={`world-main${selected ? ' has-details' : ''}`} tabIndex={-1}>
+      <main
+        id="world-main"
+        className={`world-main${selected ? ' has-details' : ''}${battlefield ? ' has-battle' : ''}`}
+        tabIndex={-1}
+      >
         {sessionSlot &&
           data &&
           createPortal(<span>{openSession?.title ?? t('No open play session')}</span>, sessionSlot)}
@@ -266,27 +270,10 @@ export function World({
               actorId={data.surroundings?.actingCharacterId ?? null}
               canAct={canAct || standIn !== null}
               locked={action.locked}
+              imageOf={presentImage}
               onRun={run}
             />
           )}
-          <ActionNotice
-            notice={notice}
-            status={action.status}
-            discovered={
-              data
-                ? data.knowledge.knowledge.filter((record) =>
-                    discovered.includes(record.knowledgeId),
-                  )
-                : []
-            }
-            quoteElsewhere={
-              speaking && conversation.line !== null && notice?.speakerId === conversation.npcId
-            }
-            onRetry={action.retry}
-            onDismiss={() => {
-              setDismissed(action.notice);
-            }}
-          />
           <PlacesSheet
             shell={shell}
             placeId={placeId}
@@ -337,6 +324,24 @@ export function World({
           )}
           <Dock isDm={isDm} shell={shell} />
         </div>
+        {/* The result of an action sits above every sheet and panel, so its words and its Retry
+            are never covered by the tool that caused it. */}
+        <ActionNotice
+          notice={notice}
+          status={action.status}
+          discovered={
+            data
+              ? data.knowledge.knowledge.filter((record) => discovered.includes(record.knowledgeId))
+              : []
+          }
+          quoteElsewhere={
+            speaking && conversation.line !== null && notice?.speakerId === conversation.npcId
+          }
+          onRetry={action.retry}
+          onDismiss={() => {
+            setDismissed(action.notice);
+          }}
+        />
         <aside
           ref={details}
           className="detail-panel"

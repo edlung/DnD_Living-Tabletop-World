@@ -8,6 +8,7 @@ import {
   expendedSlots,
   square,
   submit,
+  turnTray,
 } from './support/combat.ts';
 import { expectLive, LIVE_CAMPAIGNS, tablePresence, turnBanner } from './support/live.ts';
 import { TOKENS } from './support/session.ts';
@@ -43,7 +44,7 @@ test('the turn passes from the player to the DM and back without a refresh', asy
   const intent = dm.getByLabel('Describe what to add', { exact: true });
   await intent.fill('A lantern burns on the wagon.');
 
-  expectAccepted(await submit(player, anchor(player).getByRole('button', { name: 'End turn' })));
+  expectAccepted(await submit(player, turnTray(player).getByRole('button', { name: 'End turn' })));
   // The DM's screen follows by itself, offers the creature's suggested turn, keeps the draft.
   await expect(turnBanner(dm)).toHaveText("Goblin Raider's turn");
   await expect(intent).toHaveValue('A lantern burns on the wagon.');
@@ -58,7 +59,7 @@ test('the turn passes from the player to the DM and back without a refresh', asy
   // The player's screen follows the DM's commands by itself, around what it was doing.
   await expect(turnBanner(player)).toHaveText("goblin-raider-2's turn");
   await expect(anchor(player)).toContainText('Turn: goblin-raider-2');
-  await expect(anchor(player).getByRole('button', { name: 'End turn' })).toHaveCount(0);
+  await expect(turnTray(player)).toHaveCount(0);
   await expect(options).toContainText('Square 0, 0');
   await expect(intent).toHaveValue('A lantern burns on the wagon.');
   await player.close();

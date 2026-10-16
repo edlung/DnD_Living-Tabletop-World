@@ -14,9 +14,12 @@ import './styles/stage.css';
 import './styles/details.css';
 import './styles/tools.css';
 import './styles/combat.css';
+import './styles/combat-panels.css';
+import './styles/board.css';
 import './styles/chronicle.css';
 import './styles/sign-in.css';
 import './styles/responsive.css';
+import './styles/battle-layout.css';
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing application root');

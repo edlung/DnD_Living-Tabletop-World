@@ -5,8 +5,8 @@ import type { GlyphName } from './ui-kit-names.ts';
 /**
  * Which GPT glyph sits beside which word (docs/STAGE_320_DESIGN.md §1.4, §3). A glyph is
  * decorative: the word beside it always carries the meaning, so a mapping never decides or
- * hides anything. Where the kit has no picture of its own for a state (each day phase, most
- * weathers), the nearest general glyph stands in until the image model supplies one.
+ * hides anything. Where the kit has no picture of its own for a state, the nearest general
+ * glyph stands in until the image model supplies one.
  */
 const ACTIONS: Readonly<Record<ContextActionId, GlyphName>> = {
   talk: 'talk',
@@ -49,24 +49,24 @@ export const knowledgeGlyph = (type: KnowledgeType): GlyphName => KNOWLEDGE[type
 export const knowledgeTone = (type: KnowledgeType): Lowercase<KnowledgeType> =>
   type.toLowerCase() as Lowercase<KnowledgeType>;
 
-/** The kit has one time-of-day glyph (sun and crescent moon) for every phase. */
+/** Each day phase has its own glyph: the rising sun, the sun, the setting sun, the moon. */
 const PHASES: Readonly<Record<DayPhase, GlyphName>> = {
-  night: 'time',
-  dawn: 'time',
-  day: 'time',
-  dusk: 'time',
+  night: 'night',
+  dawn: 'dawn',
+  day: 'day',
+  dusk: 'dusk',
 };
 
 export const phaseGlyph = (phase: DayPhase): GlyphName => PHASES[phase];
 
-/** A clear sky shows the radiant sun; every other weather the rain cloud. */
+/** Each weather has its own glyph. */
 const WEATHER: Readonly<Record<Weather, GlyphName>> = {
-  clear: 'blessing',
-  overcast: 'weather',
-  rain: 'weather',
-  storm: 'weather',
-  fog: 'weather',
-  snow: 'weather',
+  clear: 'clear',
+  overcast: 'overcast',
+  rain: 'rain',
+  storm: 'storm',
+  fog: 'fog',
+  snow: 'snow',
 };
 
 export const weatherGlyph = (weather: Weather): GlyphName => WEATHER[weather];

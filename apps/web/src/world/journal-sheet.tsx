@@ -18,7 +18,8 @@ export interface JournalData {
 /**
  * The Journal sheet (docs/STAGE_320_DESIGN.md §5.4): who and what this perspective knows, its
  * hypotheses, and the events it remembers, each reachable in full (invariant 19). Presence is
- * the scene's to show. While no encounter runs it says so here; a running one is on the stage.
+ * the scene's to show. The encounter's summary, in words, is here too: whether one runs, its
+ * turn order and an open reaction window, as this perspective may see them.
  */
 export function JournalSheet({
   api,
@@ -83,7 +84,7 @@ export function JournalSheet({
             )}
           </section>
           <RecentEvents key={revision} api={api} />
-          {journal.encounter === null && <EncounterSummary encounter={null} />}
+          <EncounterSummary encounter={journal.encounter} />
         </div>
       )}
     </Sheet>

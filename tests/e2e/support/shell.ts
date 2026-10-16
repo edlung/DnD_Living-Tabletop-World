@@ -47,3 +47,20 @@ export async function openChronicle(page: Page, name = 'Chronicle'): Promise<voi
 /** The scene region: the world has loaded for this perspective. */
 export const sceneRegion = (page: Page, name = 'Scene'): Locator =>
   page.getByRole('region', { name, exact: true });
+
+/**
+ * Nothing covers the element: a pointer at its centre reaches it (or something inside it). A
+ * result, a prompt or a Retry hidden under a sheet or panel fails here even when "visible".
+ */
+export async function expectOnTop(locator: Locator): Promise<void> {
+  await expect(locator).toBeVisible();
+  await expect
+    .poll(() =>
+      locator.evaluate((element) => {
+        const box = element.getBoundingClientRect();
+        const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+        return hit !== null && element.contains(hit);
+      }),
+    )
+    .toBe(true);
+}

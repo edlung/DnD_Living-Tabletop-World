@@ -50,11 +50,15 @@ describe('glyph mappings', () => {
     ]);
   });
 
-  it('marks phases and weather with the kit’s time and sky glyphs', () => {
-    for (const phase of DAY_PHASES) expect(phaseGlyph(phase)).toBe('time');
-    for (const weather of WEATHERS) expect(known.has(weatherGlyph(weather)), weather).toBe(true);
-    expect(weatherGlyph('clear')).toBe('blessing');
-    expect(weatherGlyph('rain')).toBe('weather');
+  it('marks each day phase and each weather with a glyph of its own', () => {
+    const phases = DAY_PHASES.map((phase) => phaseGlyph(phase));
+    for (const glyph of phases) expect(known.has(glyph), glyph).toBe(true);
+    expect(new Set(phases).size).toBe(DAY_PHASES.length);
+    expect(phases).toEqual([...DAY_PHASES]);
+    const weathers = WEATHERS.map((weather) => weatherGlyph(weather));
+    for (const glyph of weathers) expect(known.has(glyph), glyph).toBe(true);
+    expect(new Set(weathers).size).toBe(WEATHERS.length);
+    expect(weathers).toEqual([...WEATHERS]);
   });
 
   it('gives every entity kind a glyph and shows only people and creatures as figures', () => {

@@ -20,6 +20,10 @@ export const square = (page: Page, x: number, y: number): Locator =>
 
 export const anchor = (page: Page) => page.getByRole('status', { name: 'Encounter anchor' });
 
+/** The turn tray: the viewer's options and End turn, shown only while the viewer may act. */
+export const turnTray = (page: Page) =>
+  battlefield(page).getByRole('region', { name: 'Turn actions', exact: true });
+
 export interface Submitted {
   readonly response: Response;
   readonly body: { status: string; code?: string; outcome?: { kind: string; countered?: boolean } };

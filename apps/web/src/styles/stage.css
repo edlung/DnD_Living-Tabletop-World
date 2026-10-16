@@ -198,12 +198,16 @@
   background: var(--hp-low);
 }
 
-/* The result of an action, where it happened: above the chosen medallion, or bottom centre */
+/*
+ * The result of an action, where it happened: above the chosen medallion, or bottom centre of
+ * the stage. It sits above every sheet and panel (a sibling of the stage), so its words and its
+ * Retry are never covered by the tool that caused it.
+ */
 .outcome {
   position: absolute;
   bottom: calc(var(--dock-h) + 24px);
   left: 50%;
-  z-index: 6;
+  z-index: 50;
   display: grid;
   gap: 0.5rem;
   width: min(440px, calc(100% - 32px));
@@ -212,17 +216,46 @@
   translate: -50% 0;
 }
 /* Beside an open conversation the result keeps clear of the dialogue panel. */
-.stage--talking .outcome {
+.world-main:has(.stage--talking) .outcome {
   width: min(360px, calc(100% - 32px));
 }
+/* Above the medallion while it can be seen: no sheet over it, nor (on a tablet) the drawer. */
 @supports (position-area: top) {
-  .stage:has(.object-button[data-anchor]):not(.stage--battle) .outcome {
-    position-anchor: --result-anchor;
-    position-area: top;
-    bottom: auto;
-    left: auto;
-    margin-bottom: 0.4rem;
-    translate: none;
+  @media (min-width: 1200px) {
+    .world-main:not(.has-battle):not(:has(.sheet:not([hidden]))):has(.object-button[data-anchor])
+      .outcome {
+      position-anchor: --result-anchor;
+      position-area: top;
+      bottom: auto;
+      left: auto;
+      margin-bottom: 0.4rem;
+      translate: none;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .world-main:not(.has-battle):not(.has-details):not(:has(.sheet:not([hidden]))):has(
+        .object-button[data-anchor]
+      )
+      .outcome {
+      position-anchor: --result-anchor;
+      position-area: top;
+      bottom: auto;
+      left: auto;
+      margin-bottom: 0.4rem;
+      translate: none;
+    }
+  }
+}
+/* While a sheet is open the result sits just above it, clear of the sheet's own controls. */
+.sheet {
+  anchor-name: --open-sheet;
+}
+@media (min-width: 768px) {
+  @supports (bottom: anchor(top)) {
+    .world-main:has(.sheet:not([hidden])) .outcome {
+      position-anchor: --open-sheet;
+      bottom: calc(anchor(top) + 10px);
+    }
   }
 }
 .action-notice {
@@ -339,7 +372,7 @@
   color: var(--teal);
 }
 
-/* While an encounter runs: the scene or the battlefield, and the summary beside them */
+/* While an encounter runs: the scene or the battlefield (battle-layout.css places its parts) */
 .stage-switch {
   position: absolute;
   top: 16px;
@@ -364,34 +397,6 @@
   background: var(--teal-fill);
   color: var(--text);
   box-shadow: inset 0 0 0 1px var(--teal);
-}
-.combat-stage {
-  position: absolute;
-  top: 136px;
-  right: 340px;
-  bottom: calc(var(--dock-h) + 24px);
-  left: 120px;
-  z-index: 3;
-  overflow: auto;
-  padding: 0.9rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-panel);
-  background: var(--glass);
-  box-shadow: var(--shadow);
-}
-.encounter-card {
-  position: absolute;
-  top: 64px;
-  right: 16px;
-  z-index: 3;
-  width: 310px;
-  max-height: calc(100% - var(--dock-h) - 100px);
-  overflow-y: auto;
-  padding: 0.8rem 0.9rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-panel);
-  background: var(--glass);
-  box-shadow: var(--shadow);
 }
 .stage--battle .backdrop-note {
   display: none;

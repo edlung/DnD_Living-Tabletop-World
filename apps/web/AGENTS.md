@@ -6,27 +6,27 @@ Stage 320 gives it the owner's visual language (ADR 0034, `docs/STAGE_320_DESIGN
 the scene, conversation and details over GPT-made art. Browser code imports only `@ltw/contracts`
 and presentation components from `@ltw/ui`; never domain, rules, or providers.
 
-| Concern                                                               | Read first                                                                                                                                                                            |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Entry and build                                                       | `src/main.tsx` (fonts, dictionaries, stylesheets), `vite.config.ts`, `index.html`                                                                                                     |
-| Authentication and perspective lifecycle                              | `src/session/app.tsx`, `src/session/login.tsx` (sign-in over the key art)                                                                                                             |
-| Shell: top bar, dock, sheets, Chronicle dialog, Escape and focus      | `src/shell/` (`top-bar.tsx`, `dock.tsx`, `sheet.tsx`, `chronicle-dialog.tsx`, `use-shell.ts`)                                                                                         |
-| GPT UI kit in the client: URL maps, glyphs, medallions, world images  | `src/visual/` (`ui-kit.ts`, `ui-kit-names.ts`, `glyph-map.ts`, `glyph.tsx`, `medallion.tsx`, `approved-images.ts`); `src/assets/AGENTS.md`                                            |
-| HTTP and asynchronous isolation                                       | `src/api/client.ts`, `src/api/resource.ts`, `src/api/client.test.ts`                                                                                                                  |
-| Scene/selection orchestration                                         | `src/world/world.tsx`, `use-world-data.ts`                                                                                                                                            |
-| Scene: approved image or mist, cartouche, party rail, medallions      | `src/world/scene.tsx`, `backdrop.tsx`, `scene-objects.tsx`, `party-rail.tsx`, `use-portrait.ts`, `combat-stage.tsx`                                                                   |
-| Places and Journal sheets                                             | `src/world/places-sheet.tsx`, `journal-sheet.tsx`, `recent-events.tsx`                                                                                                                |
-| Entity context and on-demand full sheet                               | `src/world/entity-details.tsx`                                                                                                                                                        |
-| Contextual actions, conversation, results, hypotheses, recall         | `src/exploration/` (`context-actions.tsx`, `dialogue-panel.tsx`, `action-notice.tsx`, `action-bindings.ts`, `use-action.ts`)                                                          |
-| Typed records with glyph, word and hue                                | `src/visual/knowledge-cards.tsx` over `@ltw/ui` `KnowledgeDetails`                                                                                                                    |
-| Battlefield, movement, area preview, reactions, DM encounter controls | `src/combat/` (`combat-panel.tsx`, `target-options.tsx`, `reaction-prompt.tsx`, `dm-controls.tsx`, `movement.ts`)                                                                     |
-| DM tools as sheets                                                    | `src/dm/dm-sheets.tsx`                                                                                                                                                                |
-| DM authoring: intent, preview, edit, confirm, undo                    | `src/authoring/` (`authoring-panel.tsx`, `use-authoring.ts`, `proposal-review.tsx`, `proposal-editor.tsx`)                                                                            |
-| Live session: signal, background refresh, badge, presence, whose turn | `src/api/live.ts`, `live-protocol.ts`, `live-context.ts`, `src/session/use-live-session.ts`, `live-status.tsx`, `world/party-rail.tsx`                                                |
-| DM acting for a player: skip the turn, act as, the acting bar         | `src/combat/stand-in-controls.tsx`, `stand-in.ts`, `src/session/acting-bar.tsx`, `src/exploration/use-action.ts`                                                                      |
-| DM history and its undo; the day control                              | `src/dm/dm-history.tsx`, `history-pages.ts`, `use-history-undo.ts`, `history-text.ts`; `src/dm/world-controls.tsx`, `world-time.ts`                                                   |
-| Visual design                                                         | `src/styles/tokens.css` (design §3), `fonts.css`, then the one stylesheet of the area (`shell`, `scene`, `stage`, `details`, `tools`, `combat`, `chronicle`, `sign-in`, `responsive`) |
-| Browser journeys                                                      | `../../tests/e2e/AGENTS.md`                                                                                                                                                           |
+| Concern                                                               | Read first                                                                                                                                                                                                                       |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Entry and build                                                       | `src/main.tsx` (fonts, dictionaries, stylesheets), `vite.config.ts`, `index.html`                                                                                                                                                |
+| Authentication and perspective lifecycle                              | `src/session/app.tsx`, `src/session/login.tsx` (sign-in over the key art)                                                                                                                                                        |
+| Shell: top bar, dock, sheets, Chronicle dialog, Escape and focus      | `src/shell/` (`top-bar.tsx`, `dock.tsx`, `sheet.tsx`, `chronicle-dialog.tsx`, `use-shell.ts`)                                                                                                                                    |
+| GPT UI kit in the client: URL maps, glyphs, medallions, world images  | `src/visual/` (`ui-kit.ts`, `ui-kit-names.ts`, `glyph-map.ts`, `glyph.tsx`, `medallion.tsx`, `approved-images.ts`); `src/assets/AGENTS.md`                                                                                       |
+| HTTP and asynchronous isolation                                       | `src/api/client.ts`, `src/api/resource.ts`, `src/api/client.test.ts`                                                                                                                                                             |
+| Scene/selection orchestration                                         | `src/world/world.tsx`, `use-world-data.ts`                                                                                                                                                                                       |
+| Scene: approved image or mist, cartouche, party rail, medallions      | `src/world/scene.tsx`, `backdrop.tsx`, `scene-objects.tsx`, `party-rail.tsx`, `use-portrait.ts`, `combat-stage.tsx`                                                                                                              |
+| Places and Journal sheets                                             | `src/world/places-sheet.tsx`, `journal-sheet.tsx`, `recent-events.tsx`                                                                                                                                                           |
+| Entity context and on-demand full sheet                               | `src/world/entity-details.tsx`                                                                                                                                                                                                   |
+| Contextual actions, conversation, results, hypotheses, recall         | `src/exploration/` (`context-actions.tsx`, `dialogue-panel.tsx`, `action-notice.tsx`, `action-bindings.ts`, `use-action.ts`)                                                                                                     |
+| Typed records with glyph, word and hue                                | `src/visual/knowledge-cards.tsx` over `@ltw/ui` `KnowledgeDetails`                                                                                                                                                               |
+| Battlefield, movement, area preview, reactions, DM encounter controls | `src/combat/` (`combat-panel.tsx`, `board/` with `geometry.ts`, `hud/`, `target-options.tsx`, `reaction-prompt.tsx`, `combat-art.ts`, `dm-controls.tsx`, `movement.ts`); `src/world/combat-stage.tsx`                            |
+| DM tools as sheets                                                    | `src/dm/dm-sheets.tsx`                                                                                                                                                                                                           |
+| DM authoring: intent, preview, edit, confirm, undo                    | `src/authoring/` (`authoring-panel.tsx`, `use-authoring.ts`, `proposal-review.tsx`, `proposal-editor.tsx`)                                                                                                                       |
+| Live session: signal, background refresh, badge, presence, whose turn | `src/api/live.ts`, `live-protocol.ts`, `live-context.ts`, `src/session/use-live-session.ts`, `live-status.tsx`, `world/party-rail.tsx`                                                                                           |
+| DM acting for a player: skip the turn, act as, the acting bar         | `src/combat/stand-in-controls.tsx`, `stand-in.ts`, `src/session/acting-bar.tsx`, `src/exploration/use-action.ts`                                                                                                                 |
+| DM history and its undo; the day control                              | `src/dm/dm-history.tsx`, `history-pages.ts`, `use-history-undo.ts`, `history-text.ts`; `src/dm/world-controls.tsx`, `world-time.ts`                                                                                              |
+| Visual design                                                         | `src/styles/tokens.css` (design §3), `fonts.css`, then the one stylesheet of the area (`shell`, `scene`, `stage`, `details`, `tools`, `combat`, `combat-panels`, `board`, `battle-layout`, `chronicle`, `sign-in`, `responsive`) |
+| Browser journeys                                                      | `../../tests/e2e/AGENTS.md`                                                                                                                                                                                                      |
 
 - Credentials live only in memory. No tokens or world projections in URLs,
   browser storage, logs, or a service worker.
@@ -69,7 +69,22 @@ and presentation components from `@ltw/ui`; never domain, rules, or providers.
 - Shell (design §5.1, §7): one sheet at a time; a closed sheet, the details panel's data and the
   Chronicle stay mounted, `hidden`, so drafts and unsubmitted intent survive closing and every
   refresh. Escape closes the topmost sheet or panel and returns focus; the Chronicle is a native
-  modal dialog. Open sheets and the stage's view are in-memory visual state only.
+  modal dialog. Open sheets and the stage's view are in-memory visual state only. The result of
+  an action (`ActionNotice`) is a sibling of the stage above every sheet and panel (just above an
+  open sheet on wider screens), so a refusal and its Retry are never covered.
+- Battlefield (design §5.5, ADR 0028, ADR 0034 §6–7): every square, cover level, difficult
+  square, position, side, state, condition, hit point and initiative comes from the scoped
+  `EncounterView`; unnamed combatants keep the label the projection gives. The board is drawn
+  from `combat/board/geometry.ts` (tested): tilted on a wide screen (CSS `perspective` and
+  `rotateX`, figures and pieces upright), flat below 1200 px, a Flat/Tilted control, zoom on a
+  phone; each square is the same button, order and name (`square-name.ts`) in both views, and
+  figures sit inside their square's button. Pictures: the GPT ground, difficult patch, cover
+  pieces, silhouette or approved portrait (the viewed place's `present[]`), catalog art keyed by
+  the rules catalog ID; code draws only hairlines, rings, glows, path, area, bars, plates. The
+  turn tray exists only while the viewer may act and holds the server-listed options of what is
+  chosen plus End turn; the side panel describes them. The turn banner (the one live
+  announcement of a turn) and the reaction prompt (focused once per window) live in
+  `world/combat-stage.tsx`, over the scene view too.
 - After the viewer's own action the world screen's views re-read in the background
   (`use-world-data.ts`): nothing empties or flashes; perspective changes and "Refresh world"
   still remount and read afresh.

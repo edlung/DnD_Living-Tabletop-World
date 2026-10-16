@@ -14,24 +14,27 @@ const PLAYER = { actorId: 'player-elowen', kind: 'user' } as const;
  * `dm-history.spec.ts`) each own a campaign cloned from the authorized Ravenford script and
  * advanced only through real commands: the encounter on Elowen's turn (the turn hand-off, the
  * DM skipping her turn, the DM acting as her), the encounter on the Goblin Shaman's turn
- * (before the DM casts), Elowen at North Gate before any authoring, and untouched Ravenfords
+ * (before the DM casts: the Counterspell window, and the same window reaching a player who
+ * looks at the scene), Elowen at North Gate before any authoring, and untouched Ravenfords
  * (reconnect, the DM history).
  */
 export async function seedUiLiveCampaigns(engine: WorldEngine): Promise<void> {
   for (const campaignId of [campaigns.turn, campaigns.skip, campaigns.actAs]) {
     await seedCombatCampaign(engine, campaignId, 'started');
   }
-  await seedCombatCampaign(engine, campaigns.counterspell, 'started');
-  for (const combatantId of [
-    'elowen-starwhisper',
-    'goblin-raider-1',
-    'goblin-raider-2',
-    'goblin-raider-3',
-  ]) {
-    await accept(engine, campaigns.counterspell, DM, `end-${combatantId}`, {
-      type: 'EndTurn',
-      combatantId,
-    });
+  for (const campaignId of [campaigns.counterspell, campaigns.sceneWindow]) {
+    await seedCombatCampaign(engine, campaignId, 'started');
+    for (const combatantId of [
+      'elowen-starwhisper',
+      'goblin-raider-1',
+      'goblin-raider-2',
+      'goblin-raider-3',
+    ]) {
+      await accept(engine, campaignId, DM, `end-${combatantId}`, {
+        type: 'EndTurn',
+        combatantId,
+      });
+    }
   }
   const seed = await loadRavenfordSeed();
   for (const campaignId of [

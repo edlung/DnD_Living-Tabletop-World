@@ -1,17 +1,17 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import {
-  anchor,
   battlefield,
   enterCombat,
   expectAccepted,
   square,
   submit,
+  turnTray,
 } from './support/combat.ts';
 import { dmHistory, historyEntry, openHistory } from './support/dm.ts';
 import { expectLive, LIVE_CAMPAIGNS, turnBanner } from './support/live.ts';
 import { collectApiBodies, TOKENS } from './support/session.ts';
-import { dockButton, openSheet } from './support/shell.ts';
+import { dockButton, expectOnTop, openSheet } from './support/shell.ts';
 
 /**
  * The DM acting for an absent player (docs/adr/0033-live-session.md §6): skip the turn, or act
@@ -46,7 +46,7 @@ test('the DM skips an absent player’s turn, and the player’s screen follows 
   await expectLive(player);
   await expectLive(dm);
   await expect(turnBanner(player)).toHaveText('Your turn');
-  await expect(anchor(player).getByRole('button', { name: 'End turn' })).toBeVisible();
+  await expect(turnTray(player).getByRole('button', { name: 'End turn' })).toBeVisible();
 
   // Her page is open, yet the DM may still judge her away: presence decides nothing.
   await encounterTools(dm);
@@ -64,7 +64,7 @@ test('the DM skips an absent player’s turn, and the player’s screen follows 
 
   // The player's screen follows by itself: the turn has passed.
   await expect(turnBanner(player)).toHaveText("goblin-raider-1's turn");
-  await expect(anchor(player).getByRole('button', { name: 'End turn' })).toHaveCount(0);
+  await expect(turnTray(player)).toHaveCount(0);
   await expect(turnBanner(dm)).toHaveText("Goblin Raider's turn");
 
   await openHistory(dm);
@@ -117,10 +117,12 @@ test('the DM acts as the character with a reason; her screen follows, and the hi
   expectAccepted(await submit(dm, battlefield(dm).getByRole('button', { name: 'Move here' })));
   await expect(square(player, 3, 6)).toHaveAccessibleName(/Elowen Starwhisper \(you\)/);
   await square(dm, 8, 4).click();
-  const options = battlefield(dm).getByRole('region', { name: 'Options for goblin-raider-1' });
+  await expect(
+    battlefield(dm).getByRole('region', { name: 'Options for goblin-raider-1' }),
+  ).toContainText('Attack goblin-raider-1 with longbow');
   const attacked = await submit(
     dm,
-    options.getByRole('button', { name: 'Attack goblin-raider-1 with longbow' }),
+    turnTray(dm).getByRole('button', { name: 'Attack goblin-raider-1 with longbow' }),
   );
   expectAccepted(attacked);
   expect(attacked.body.outcome?.kind).toBe('Attack');
@@ -171,11 +173,13 @@ test('the DM’s skip waits for an open reaction window, and the DM answers it f
 
   // Elowen's own spell gives Seren, whose player is away, a chance to counter it.
   await square(player, 8, 4).click();
-  const options = battlefield(player).getByRole('region', { name: 'Options for goblin-raider-1' });
+  await expect(
+    battlefield(player).getByRole('region', { name: 'Options for goblin-raider-1' }),
+  ).toContainText('Cast Hunter’s Mark on goblin-raider-1');
   expectAccepted(
     await submit(
       player,
-      options.getByRole('button', { name: 'Cast Hunter’s Mark on goblin-raider-1' }),
+      turnTray(player).getByRole('button', { name: 'Cast Hunter’s Mark on goblin-raider-1' }),
     ),
   );
   await encounterTools(dm);
@@ -194,9 +198,10 @@ test('the DM’s skip waits for an open reaction window, and the DM answers it f
   const refused = await skipElowen();
   expect(refused.response.status()).toBe(422);
   expect(refused.body).toMatchObject({ status: 'rejected', code: 'REACTION_PENDING' });
-  await expect(
+  // The refusal shows over the Encounter sheet that caused it, never beneath it.
+  await expectOnTop(
     dm.getByRole('status').filter({ hasText: 'The turn cannot end while a reaction is pending.' }),
-  ).toBeVisible();
+  );
   await expect(turnBanner(player)).toHaveText('Your turn');
 
   // The DM answers for Seren, as Seren, then skips Elowen's turn.
@@ -204,7 +209,9 @@ test('the DM’s skip waits for an open reaction window, and the DM answers it f
   await standIn(dm).getByLabel('The player is absent').check();
   await standIn(dm).getByRole('button', { name: 'Start acting as Seren Ashgrove' }).click();
   const prompt = dm.getByRole('alertdialog', { name: 'Reaction' });
-  expectAccepted(await submit(dm, prompt.getByRole('button', { name: 'Ignore' })));
+  expectAccepted(
+    await submit(dm, prompt.getByRole('button', { name: 'Don’t interfere', exact: true })),
+  );
   await dm.getByRole('button', { name: 'Stop acting' }).click();
   expectAccepted(await skipElowen());
   await expect(turnBanner(player)).not.toHaveText('Your turn');

@@ -95,6 +95,36 @@ test('a Russian player answers a Counterspell window, and the answer is in Russi
   await expectNoEnglishExceptIds(page, 'after the answer');
 });
 
+test('a Russian player’s battlefield speaks Russian: the board, the turn, a target and its options', async ({
+  page,
+}) => {
+  await enterWorld(page, TOKENS.player, 'ui-ru-combat-turn');
+  const field = page.getByRole('region', { name: 'Поле боя', exact: true });
+  await expect(page.locator('.turn-banner')).toHaveText('Ваш ход');
+  const square = (x: number, y: number) =>
+    field.getByRole('button', { name: new RegExp(`^Клетка ${String(x)}, ${String(y)}(:|$)`) });
+  await expect(square(0, 9)).toHaveAccessibleName(/трудная местность/);
+  await expect(square(7, 4)).toHaveAccessibleName(/половинное укрытие/);
+  await expect(square(2, 6)).toHaveAccessibleName(/\(вы\), отряд/);
+  const tray = field.getByRole('region', { name: 'Действия хода', exact: true });
+  await expect(tray.getByRole('button', { name: 'Закончить ход' })).toBeVisible();
+  await expect(page.getByRole('status', { name: 'Сводка боя' })).toContainText('Раунд 1');
+  await expectNoEnglishExceptIds(page, 'the battlefield');
+  await square(8, 4).click();
+  const options = field.getByRole('region', { name: 'Варианты действий: goblin-raider-1' });
+  await expect(options).toContainText('Атаковать из длинного лука: goblin-raider-1');
+  await expect(
+    tray.getByRole('button', { name: 'Атаковать из длинного лука: goblin-raider-1' }),
+  ).toBeEnabled();
+  await expectNoEnglishExceptIds(page, 'a chosen target');
+  await page.getByRole('button', { name: 'Плоское поле', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Плоское поле', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(square(8, 4)).toHaveAttribute('aria-pressed', 'true');
+});
+
 test('a Russian DM moves time and weather, and writes a chapter that reads in Russian', async ({
   page,
 }) => {

@@ -7,6 +7,10 @@
   .world-main.has-details {
     grid-template-columns: minmax(0, 1fr) var(--panel-w);
   }
+  /* The result stays centred on the stage, beside the selection's column. */
+  .world-main.has-details .outcome {
+    left: calc((100% - var(--panel-w)) / 2);
+  }
 }
 /* Narrower than a wide desktop: the perspective's label is read, not shown; the DM's note shows */
 @media (max-width: 1599px) {
@@ -51,19 +55,16 @@
     z-index: 20;
     width: min(var(--panel-w), 92vw);
   }
-  .combat-stage {
-    right: 16px;
-  }
-  .encounter-card {
-    top: auto;
-    bottom: calc(var(--dock-h) + 24px);
-    max-height: 30%;
-  }
 }
 
 @media (max-width: 1199px) and (min-width: 768px) {
   .exits {
     width: 220px;
+  }
+  /* With the selection's drawer open the result centres on the stage left of it. */
+  .world-main.has-details .outcome {
+    left: calc((100% - min(var(--panel-w), 92vw)) / 2);
+    width: min(360px, calc(100% - min(var(--panel-w), 92vw) - 32px));
   }
 }
 
@@ -211,13 +212,9 @@
   .exit-button {
     width: 100%;
   }
-  .stage-switch,
-  .combat-stage,
-  .encounter-card {
+  .stage-switch {
     position: relative;
     inset: auto;
-    width: auto;
-    max-height: none;
     margin: 0 12px 12px;
     translate: none;
   }
@@ -232,13 +229,13 @@
     width: fit-content;
     margin-inline: auto;
   }
-  .outcome,
-  .stage:has(.object-button[data-anchor]):not(.stage--battle) .outcome {
+  .world-main .outcome,
+  .world-main:has(.stage--talking) .outcome {
     position: fixed;
     right: 8px;
     bottom: calc(var(--dock-h) + 8px);
     left: 8px;
-    z-index: 35;
+    z-index: 50;
     width: auto;
     max-height: 40vh;
     margin: 0;
@@ -261,6 +258,11 @@
   }
   .detail-panel {
     z-index: 41;
+  }
+  /* A result over a full-height sheet or panel: their content scrolls clear of it. */
+  .world-main:has(.outcome) .sheet-body,
+  .world-main:has(.outcome) .detail-panel {
+    padding-bottom: calc(40vh + 16px);
   }
   .dock {
     position: fixed;

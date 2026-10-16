@@ -60,14 +60,31 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   language). Role queries skip hidden sheets, label and text queries do not: a hidden draft keeps
   its value, but assert visibility only on an open sheet. An open sheet covers the lower stage, so
   close it before clicking a medallion. Keep journeys' assertions when a control moves.
+  `expectOnTop` asserts that nothing covers an element (`elementFromPoint` at its centre), for a
+  result, a prompt or a Retry that must stay reachable (`outcome-layer.spec.ts`; the DM tool
+  campaign `ui-dm-outcome`).
+- Battlefield (Stage 320 part B, design §5.5): the journeys' default 1280 × 720 viewport shows the
+  board tilted; squares keep their names (`square()`), the options of a chosen combatant are
+  described in its region "Options for …" and carried out from the turn tray (`turnTray()`, only
+  while the viewer may act, with End turn), the anchor (`anchor()`) holds the round, whose turn
+  and the viewer's hit points, and the reaction prompt is "Reaction: Counterspell" with Cast
+  (named "Cast Counterspell") and "Don’t interfere". The Encounter summary in words lives in the
+  Journal sheet. `collectApiBodies(…).assertPlayerBoundary(extra, perceived, ownViews)` exempts
+  only the viewer's own views (its own sheet, read for the active card) from the extra markers.
+  `combat-scene-view.spec.ts` owns `ui-live-scene-window`: on the scene view the turn banner and
+  the reaction prompt stay shown, focused and answerable.
 - `accessibility.spec.ts`: axe scans (`@axe-core/playwright`) of sign-in, the scene with a
-  selection, a conversation and a DM sheet at 390 × 844, 820 × 1180 and 1440 × 900, plus the
-  Russian scene on a phone; serious or critical violations (colour contrast included) and any
-  sideways page scroll fail. Read-only (talking records nothing).
+  selection, a conversation, a DM sheet and the battlefield (the player's turn, a chosen target
+  with a previewed area, the reaction prompt, the DM's Encounter sheet) at 390 × 844,
+  820 × 1180 and 1440 × 900, plus the Russian scene on a phone; serious or critical violations
+  (colour contrast included) and any sideways page scroll fail. Read-only (talking records
+  nothing; choosing a combatant only reads its options).
 - Evidence tour (`pnpm evidence:screens`): `playwright.evidence.config.ts` runs
   `tests/evidence/*.evidence.ts` against the same servers and writes JPEGs (≤ 250 KB) to
-  `reports/evidence/stage-320/`. It is not part of `pnpm test:e2e`, `pnpm validate` or CI; hold the
-  shared lock like any Playwright run. Look at the images, never load the folder wholesale.
+  `reports/evidence/stage-320/` (`part-a/`, and `part-b/` for the battlefield: each state at the
+  three widths, tilted and flat, in both languages; its own servers, so it may act). It is not
+  part of `pnpm test:e2e`, `pnpm validate` or CI; hold the shared lock like any Playwright run.
+  Look at the images, never load the folder wholesale.
 - Specs that import server test support (`support/investigation.ts` → `scenario/secrets.ts`)
   load workspace packages from their builds: run `pnpm build` before `pnpm test:e2e` after a
   contract change (`pnpm validate` does).

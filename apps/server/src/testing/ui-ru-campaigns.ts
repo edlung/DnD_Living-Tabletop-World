@@ -13,10 +13,13 @@ export const UI_RU_CAMPAIGNS = {
 
 /** The Russian campaign that waits at an open Counterspell window. */
 export const UI_RU_COMBAT = 'ui-ru-combat';
+/** The Russian ambush on Elowen's turn (the battlefield's journeys and screens). */
+export const UI_RU_COMBAT_TURN = 'ui-ru-combat-turn';
 
 /** The Russian Ravenford under fresh campaign IDs, seeded through real commands. */
 export async function seedUiRussianCampaigns(engine: WorldEngine): Promise<void> {
   await seedCombatCampaign(engine, UI_RU_COMBAT, 'window', RAVENFORD_RU_FIXTURES_DIR);
+  await seedCombatCampaign(engine, UI_RU_COMBAT_TURN, 'started', RAVENFORD_RU_FIXTURES_DIR);
 
   const seed = await loadRavenfordSeed(RAVENFORD_RU_FIXTURES_DIR);
   for (const campaignId of Object.values(UI_RU_CAMPAIGNS)) {

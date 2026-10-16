@@ -10,6 +10,10 @@ import { useCallback, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { Glyph } from '../visual/glyph.tsx';
+import { Medallion } from '../visual/medallion.tsx';
+import { catalogUrl } from '../visual/ui-kit.ts';
+import { suggestionArt } from './combat-art.ts';
 import type { CombatUiCommand } from './combat-bindings.ts';
 import type { StandIn } from './stand-in.ts';
 import { StandInControls } from './stand-in-controls.tsx';
@@ -58,6 +62,7 @@ export function DmCombatControls({
   return (
     <section className="dm-combat" aria-labelledby="dm-combat-title">
       <h3 id="dm-combat-title">
+        <Glyph name="encounter" />
         {encounter ? t('Encounter controls (DM)') : t('Start an encounter (DM)')}
       </h3>
       {encounter ? (
@@ -127,34 +132,40 @@ function StartControls({
     }));
   const nameOf = (id: string) => directory.find((entity) => entity.entityId === id)?.name ?? id;
   return (
-    <div>
+    <div className="encounter-start">
       <p className="muted">
         {t(
           'Characters join the party and creatures are hostile, on open ground. Initiative is rolled by the rules.',
         )}
       </p>
-      <ul className="combat-options">
-        {fighters.map((entity) => (
-          <li key={entity.entityId}>
-            <label>
-              <input
-                type="checkbox"
-                checked={!skipped.has(entity.entityId)}
-                onChange={(event) => {
-                  setSkipped((current) => {
-                    const next = new Set(current);
-                    if (event.target.checked) next.delete(entity.entityId);
-                    else next.add(entity.entityId);
-                    return next;
-                  });
-                }}
-              />{' '}
-              {nameOf(entity.entityId)} ({t(entity.kind === 'character' ? 'party' : 'hostile')})
-            </label>
-          </li>
-        ))}
+      <ul className="fighter-list">
+        {fighters.map((entity) => {
+          const side = entity.kind === 'character' ? 'party' : 'hostile';
+          return (
+            <li key={entity.entityId}>
+              <label className="fighter">
+                <input
+                  type="checkbox"
+                  checked={!skipped.has(entity.entityId)}
+                  onChange={(event) => {
+                    setSkipped((current) => {
+                      const next = new Set(current);
+                      if (event.target.checked) next.delete(entity.entityId);
+                      else next.add(entity.entityId);
+                      return next;
+                    });
+                  }}
+                />
+                <Medallion image={entity.image} kind={entity.kind} size="xs" tone={side} />
+                <span className="fighter-name">{nameOf(entity.entityId)}</span>
+                <span className={`side-chip side-chip--${side}`}>{t(side)}</span>
+              </label>
+            </li>
+          );
+        })}
       </ul>
       <button
+        className="primary-button"
         disabled={locked || chosen.length < 2}
         onClick={() => {
           onRun({
@@ -168,6 +179,7 @@ function StartControls({
           });
         }}
       >
+        <Glyph name="encounter" />
         {t('Start encounter')}
       </button>
     </div>
@@ -198,68 +210,88 @@ function RunningControls({
     load,
   );
   const suggestion = resource.status === 'ready' ? resource.value.suggestion : null;
+  const art = suggestion ? suggestionArt(suggestion.command) : null;
+  const artUrl = art ? catalogUrl(art.kind, art.id) : null;
   return (
-    <div className="action-row">
+    <div className="encounter-tools">
       {window && (
-        <button
-          disabled={locked}
-          onClick={() => {
-            onRun({
-              kind: 'command',
-              command: { type: 'CloseReactionWindow', windowId: window.windowId },
-            });
-          }}
-        >
-          {t('Close reaction window')}
-        </button>
-      )}
-      {suggestion && !window && (
-        <div className="monster-suggestion">
+        <div className="tool-card tool-card--reaction">
           <p>
-            <strong>{t('Suggested turn:')}</strong> {suggestion.explanation}
+            <Glyph name="reaction" />
+            {t('Spell resolution is waiting for reactions.')}
           </p>
-          <button
-            disabled={locked}
-            onClick={() => {
-              onRun({ kind: 'command', command: suggestion.command });
-            }}
-          >
-            {t('Run suggested {tactic}', { tactic: t(suggestion.tactic.replace('-', ' ')) })}
-          </button>
-        </div>
-      )}
-      {confirmingEnd ? (
-        <>
-          <span>{t('End the encounter for everyone?')}</span>
           <button
             disabled={locked}
             onClick={() => {
               onRun({
                 kind: 'command',
-                command: { type: 'EndCombat', encounterId: encounter.encounterId },
+                command: { type: 'CloseReactionWindow', windowId: window.windowId },
               });
             }}
           >
-            {t('Yes, end encounter')}
+            <Glyph name="close" />
+            {t('Close reaction window')}
           </button>
+        </div>
+      )}
+      {suggestion && !window && (
+        <div className="tool-card monster-suggestion">
+          {artUrl ? (
+            <img className="suggestion-art" src={artUrl} alt="" draggable={false} />
+          ) : (
+            <Glyph name="thought" className="suggestion-glyph" />
+          )}
+          <div className="suggestion-text">
+            <p>
+              <strong>{t('Suggested turn:')}</strong> {suggestion.explanation}
+            </p>
+            <button
+              className="primary-button"
+              disabled={locked}
+              onClick={() => {
+                onRun({ kind: 'command', command: suggestion.command });
+              }}
+            >
+              {t('Run suggested {tactic}', { tactic: t(suggestion.tactic.replace('-', ' ')) })}
+            </button>
+          </div>
+        </div>
+      )}
+      <div className="action-row end-encounter">
+        {confirmingEnd ? (
+          <>
+            <span>{t('End the encounter for everyone?')}</span>
+            <button
+              disabled={locked}
+              onClick={() => {
+                onRun({
+                  kind: 'command',
+                  command: { type: 'EndCombat', encounterId: encounter.encounterId },
+                });
+              }}
+            >
+              {t('Yes, end encounter')}
+            </button>
+            <button
+              onClick={() => {
+                setConfirmingEnd(false);
+              }}
+            >
+              {t('Keep fighting')}
+            </button>
+          </>
+        ) : (
           <button
+            disabled={locked}
             onClick={() => {
-              setConfirmingEnd(false);
+              setConfirmingEnd(true);
             }}
           >
-            {t('Keep fighting')}
+            <Glyph name="cancel" />
+            {t('End encounter')}
           </button>
-        </>
-      ) : (
-        <button
-          disabled={locked}
-          onClick={() => {
-            setConfirmingEnd(true);
-          }}
-        >
-          {t('End encounter')}
-        </button>
-      )}
+        )}
+      </div>
     </div>
   );
 }
