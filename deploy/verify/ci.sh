@@ -57,14 +57,15 @@ first=$(compose exec -T backup sh -c 'ls -1 /backups | grep -E "^ltw-[0-9]{8}T[0
 say 'seeding the review campaign and its curated pictures through the World Engine (no DM link in this log)'
 server_node "$SERVER_DIST/world-engine/seed-review-campaign-cli.js" | grep -v '^{'
 "$DEPLOY_DIR/verify/smoke.sh"
-# The pictures and the browser journeys come first: they spend four of this host's ten redeems
-# a minute, and the drills below outlast that minute before the HTTP journeys spend theirs.
+# The pictures and the browser journeys come first; they spend four of this host's ten redeems a
+# minute (locally every client is the edge gateway), and the HTTP journeys below spend eight.
 "$DEPLOY_DIR/verify/images.sh"
 if [ "${LTW_CI_BROWSER:-run}" = skip ]; then
   say 'browser journeys SKIPPED (LTW_CI_BROWSER=skip)'
 else
   "$DEPLOY_DIR/verify/browser-journey.sh"
 fi
+spent=$(date +%s)
 say "restore drill on the first dump ($first, empty): must fail"
 if "$DEPLOY_DIR/scripts/restore-drill.sh" "$first"; then
   die 'the restore drill passed an empty dump'
@@ -79,6 +80,13 @@ compose exec -T backup /bin/sh /opt/ltw/backup.sh verify "$(env_value LTW_PREDEP
 "$DEPLOY_DIR/verify/retention-check.sh"
 "$DEPLOY_DIR/verify/watch-check.sh"
 "$DEPLOY_DIR/verify/proxy-contract.sh" "$tag"
+# Those four redeems leave the window (a minute and one five-second slice) before the HTTP
+# journeys spend theirs; on a slow runner the checks above have taken longer already.
+left=$((spent + 66 - $(date +%s)))
+if [ "$left" -gt 0 ]; then
+  say "waiting ${left} s until this host's redeems of the checks above leave the limit's window"
+  sleep "$left"
+fi
 "$DEPLOY_DIR/verify/sign-in-journey.sh"
 "$DEPLOY_DIR/verify/live-stream.sh"
 "$DEPLOY_DIR/verify/trust-boundary.sh"
