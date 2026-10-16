@@ -1,16 +1,18 @@
 import { LIVE_FINAL_REASONS, type LiveCloseReason, type LiveMessage } from '@ltw/contracts';
 
-import type { Connection } from './client.ts';
+import { credentialOptions, type Connection } from './client.ts';
 import { backoffDelay, EventStreamParser, liveMessage } from './live-protocol.ts';
 
 /**
  * The browser end of the live signal (docs/adr/0033-live-session.md §1, §3, §4). The stream
- * is read with `fetch`, never `EventSource`, so the credential stays in the `Authorization`
- * header and out of every URL. Each `ready` (first connection, reconnection, or a new focus
- * or place) and each new `changed` asks for one background refresh, coalesced per 150 ms.
- * A new subscription replaces the old one only once it is ready. Messages of a replaced or
- * abandoned stream are ignored. `unauthenticated` and `forbidden` stop it for good; anything
- * else reconnects after 1 s doubling to 30 s, ±20 %.
+ * is read with `fetch`, never `EventSource`, so the credential stays out of every URL: a
+ * development persona's in the `Authorization` header, a signed-in session's in its cookie
+ * (same origin only; docs/adr/0036-production-sign-in.md §7). Each `ready` (first connection,
+ * reconnection, or a new focus or place) and each new `changed` asks for one background
+ * refresh, coalesced per 150 ms. A new subscription replaces the old one only once it is ready.
+ * Messages of a replaced or abandoned stream are ignored. `unauthenticated` and `forbidden`
+ * stop it for good; anything else reconnects after 1 s doubling to 30 s, ±20 %. A session whose
+ * stream is refused with 401 or closed as `unauthenticated` has ended: the screen is told.
  */
 export type LiveStatus = 'connecting' | 'live' | 'reconnecting' | 'offline';
 
@@ -50,6 +52,8 @@ interface Stream {
   ready: boolean;
   lastSeq: number;
   closed: LiveCloseReason | null;
+  /** The status the server refused the stream with (400, 401 or 403), if it did. */
+  refused: number | null;
   watchdog: ReturnType<typeof setTimeout> | null;
 }
 
@@ -125,6 +129,7 @@ export class LiveClient {
       ready: false,
       lastSeq: 0,
       closed: null,
+      refused: null,
       watchdog: null,
     };
     this.#pending = stream;
@@ -133,7 +138,6 @@ export class LiveClient {
   }
 
   async #read(stream: Stream): Promise<void> {
-    let refused = false;
     try {
       this.#watch(stream, this.#timing.connectMs);
       const { connection } = this.#options;
@@ -141,19 +145,20 @@ export class LiveClient {
       if (stream.params.focus !== null) search.set('focus', stream.params.focus);
       if (stream.params.place !== null) search.set('place', stream.params.place);
       const transport = this.#options.transport ?? fetch;
+      const credential = credentialOptions(connection);
       const response = await transport(
         `/api/campaigns/${encodeURIComponent(connection.campaignId)}/live?${search.toString()}`,
         {
           signal: stream.controller.signal,
-          headers: { Authorization: `Bearer ${connection.token}`, Accept: 'text/event-stream' },
+          headers: { ...credential.headers, Accept: 'text/event-stream' },
           cache: 'no-store',
-          credentials: 'omit',
+          credentials: credential.credentials,
           redirect: 'error',
         },
       );
       // A refused credential, perspective or request will not be accepted on a retry.
       if ([400, 401, 403].includes(response.status)) {
-        refused = true;
+        stream.refused = response.status;
         return;
       }
       const type = response.headers.get('content-type') ?? '';
@@ -176,7 +181,7 @@ export class LiveClient {
     } catch {
       // A transport failure or our own abort; `#ended` tells them apart.
     } finally {
-      this.#ended(stream, refused);
+      this.#ended(stream);
     }
   }
 
@@ -210,14 +215,25 @@ export class LiveClient {
     }
   }
 
-  #ended(stream: Stream, refused: boolean): void {
+  #ended(stream: Stream): void {
     if (stream.watchdog !== null) clearTimeout(stream.watchdog);
     if (stream === this.#active) this.#active = null;
     else if (stream === this.#pending) this.#pending = null;
     else return;
-    if (refused || (stream.closed !== null && LIVE_FINAL_REASONS.includes(stream.closed))) {
+    if (
+      stream.refused !== null ||
+      (stream.closed !== null && LIVE_FINAL_REASONS.includes(stream.closed))
+    ) {
       this.close();
       this.#report('offline');
+      // Sign-out, expiry or revocation: the session is over, not merely offline.
+      const { connection } = this.#options;
+      if (
+        connection.kind === 'session' &&
+        (stream.refused === 401 || stream.closed === 'unauthenticated')
+      ) {
+        connection.onSignedOut();
+      }
       return;
     }
     // A newer subscription is already on its way; the old one keeps serving meanwhile.

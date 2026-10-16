@@ -1,7 +1,11 @@
 import { defineConfig } from 'vite';
 
 // Only the local API is proxied. Bearer tokens never enter URLs or static assets.
+// LTW_VITE_CACHE_DIR gives a second dev server of the same client (the browser tests' sign-in
+// server, playwright.config.ts) its own dependency cache, so two servers never race on one.
+const cacheDir = process.env['LTW_VITE_CACHE_DIR'];
 export default defineConfig({
+  ...(cacheDir === undefined ? {} : { cacheDir }),
   resolve: { conditions: ['@ltw/source', 'browser', 'development|production'] },
   server: {
     host: '127.0.0.1',

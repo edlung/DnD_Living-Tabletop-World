@@ -101,3 +101,76 @@
   font-size: 1rem;
   font-style: italic;
 }
+
+/*
+ * Production sign-in (docs/adr/0036-production-sign-in.md §7): joining by invitation, the
+ * question before an invitation replaces a sign-in, the one failure, signed out — in the panel.
+ */
+.sign-in-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.sign-in-eyebrow .glyph {
+  width: 18px;
+  height: 18px;
+}
+/* The title takes focus when the state appears, to be read out; it is no control to point at. */
+.sign-in-state h2:focus {
+  outline: none;
+  box-shadow: none;
+}
+.sign-in-state > p {
+  margin: 0 0 0.6rem;
+}
+.sign-in-state .status-panel {
+  margin: 0.6rem 0 0.4rem;
+}
+.sign-in-state .action-row {
+  margin: 0.8rem 0 0.2rem;
+}
+.sign-in-state .action-row .glyph {
+  width: 20px;
+  height: 20px;
+}
+
+/* Signing out: a small modal question over the world */
+.sign-out-dialog {
+  width: min(28rem, calc(100vw - 2 * var(--gutter)));
+  padding: 1.2rem 1.3rem 1.1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-panel);
+  background:
+    linear-gradient(var(--glass-raised), var(--glass-raised)),
+    url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+.sign-out-dialog::backdrop {
+  background: color-mix(in srgb, var(--ink-950) 72%, transparent);
+}
+.sign-out-dialog h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+}
+.sign-out-dialog h2 .glyph {
+  width: 24px;
+  height: 24px;
+  color: var(--gold);
+}
+.sign-out-dialog p {
+  margin: 0 0 0.6rem;
+}
+.sign-out-failed {
+  color: var(--danger);
+}
+.sign-out-dialog .action-row {
+  margin: 0.9rem 0 0;
+}
+.sign-out-dialog .action-row .glyph {
+  width: 18px;
+  height: 18px;
+}

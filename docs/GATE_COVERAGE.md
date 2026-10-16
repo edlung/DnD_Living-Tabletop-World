@@ -402,3 +402,36 @@ behave as before and stay refused in production. Revised by the part A security 
   order changed. The roster gained a removal path going forward (`ReleaseCharacter`), so Gate 06
   should review party-scoped projections after a release (a released character leaves the party
   view from then on, as after an undone assignment).
+
+Stage 340 part B introduction evidence (ADR 0036, "Implementation (Stage 340 part B, browser)";
+`docs/STAGE_340_DESIGN.md`, "Implementation notes (part B, browser)"; acceptance pending): the
+browser end of row 340, **for Gate 06**. No route, projection or authorization changed.
+- **Which sign-in**: the client asks `GET /auth/session`; a 404 (no sign-in routes) shows the
+  development personas' token form, so a production build in `disabled` mode shows that form too,
+  harmlessly (no persona is accepted there). Review that no other answer reaches the form.
+- **The token's path** (`apps/web/src/session/invitation-link.ts`, `sign-in-flow.ts`,
+  `apps/web/src/main.tsx`): the fragment of `/join#<token>` is read once and the address and
+  history entry replaced (`/`) before the first request; the redeem is sent once (not from a
+  React effect) with the token in its JSON body only; a 409 keeps it in memory for the question,
+  and keeping the current sign-in or any failure drops it. The journeys assert from captured
+  traffic that no request URL carried a token and no body outside a redeem did, and that the
+  address, storage, script-visible cookies and IndexedDB keep none.
+- **The session in the browser** (`apps/web/src/api/client.ts`, `live.ts`): no `Authorization`
+  header, `credentials: 'same-origin'` for every request and the live stream; any 401 of a session
+  (the stream's `unauthenticated` included) shows "You are signed out"; only the session on screen
+  can be signed out by an answer. Sign-out is `POST /auth/sign-out` after a question; the screen
+  changes only on 204 or 401.
+- **Fixed failures**: every refused, limited, malformed or unanswered redeem shows the same words;
+  a signed-in browser is asked before any well-formed link (the server answers 409 before it reads
+  the token), and the current sign-in survives a failed replacement.
+- **The DM's Players sheet** (`apps/web/src/dm/players-sheet.tsx`, `players-lists.tsx`,
+  `use-players.ts`): only in the DM perspective of a session; lists what `GET …/invitations`
+  answers (never a token, hash or actor ID; character names from the DM's own directory); the new
+  link lives in the DM's memory and DOM only until hidden, used, revoked or replaced.
+- **Deterministic evidence**: unit tests `apps/web/src/session/sign-in-flow.test.ts` (the
+  fragment, the probe, the redeem and its fixed failure, sign-out, naming the current sign-in, no
+  `Authorization`, same-origin only), `apps/web/src/api/client.test.ts` and `live.test.ts` (the
+  session connection, 401 and `unauthenticated` sign the screen out, nothing else does),
+  `apps/web/src/dm/players.test.ts`; browser journeys `tests/e2e/sign-in.spec.ts`,
+  `sign-in-ru.spec.ts`, `sign-in-accessibility.spec.ts` on the invitation-mode test server
+  (`apps/server/src/testing/ui-sign-in-server.ts`); every development-persona journey unchanged.

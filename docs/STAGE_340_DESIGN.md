@@ -175,3 +175,55 @@ What part B and Stage 350 build on:
 - **Development personas.** Refused (startup error naming `AUTH_MODE`) under `NODE_ENV=production`,
   with `PUBLIC_ORIGIN` set, or with a non-loopback `HTTP_HOST`, whether `AUTH_MODE` was chosen or
   defaulted; the composition refuses them again off loopback.
+
+## Implementation notes (part B, browser)
+
+The browser screens on the Stage 320 shell (2026-10-16). Where they refine the text above:
+
+- **Which sign-in, by asking the server.** One client build serves every mode: the page asks
+  `GET /auth/session` (same origin). 200 enters that campaign, 401 shows "Join with an
+  invitation", 404 (a server without the sign-in routes: development personas, or `disabled`)
+  shows the personas' token form as before, anything else "The table could not be reached" with
+  Try again. Stage 350's proxy serves the plain `pnpm build`.
+- **Join page.** `main.tsx` takes the fragment of `/join#<token>` and replaces the history entry
+  with `/` (`history.replaceState`) before the first request, then sends that request exactly
+  once (React's development double effects never resend a token): the redeem, or the probe. A
+  fragment that is no token fails without a request. 200 enters the campaign. 409 asks first,
+  naming the current sign-in (its campaign, and "the DM" or the character, read from
+  `/auth/session` and that campaign's `session` view): "Replace with this invitation" posts
+  `{token, replaceSession: true}`; "Keep my current sign-in" forgets the token (the invitation
+  stays unused) and re-reads the session. Every other answer — 401, 400, 403, 404, 429, 5xx, no
+  answer — is one fixed failure, "This invitation cannot be used", with "Back to the start". The
+  server answers 409 before it looks at the token, so a signed-in browser is asked about a used or
+  forged link too; the failure follows the confirmation, and the current sign-in survives it.
+- **The cookie session.** A connection is a development persona's (bearer token,
+  `credentials: 'omit'`) or a session's (no `Authorization`, `credentials: 'same-origin'`; the live
+  stream likewise). Any 401 — a view, a command, the stream refused with 401 or closed as
+  `unauthenticated` — tells the screen, which shows "You are signed out"; only the session on
+  screen can be signed out by an answer, never a later one by an earlier session's late answer.
+  The signed-out screen keeps the language of the campaign that ended. Back/Forward restoration
+  asks the server again instead of showing a world from memory.
+- **Signing out** is the top bar's leave control ("Sign out") and asks first, in a native modal
+  dialog (focus on "Stay signed in"; Escape stays): it is final, coming back takes a new
+  invitation. The screen changes only on the server's 204 or 401; otherwise the dialog says the
+  person is still signed in.
+- **Players sheet** (dock item "Players", glyph `party`; the DM perspective with production
+  sign-in only, where its routes exist): invite a player for a character nobody plays (the link
+  lasts 1, 3 or 7 days, 3 by default), the link shown once with its warning, Copy (where the
+  clipboard is unavailable the field is selected to copy by hand) and Hide; the link is dropped
+  once its invitation is used, revoked or replaced. A lost answer says an invitation may exist
+  without a link, to be revoked. The players at the table (signed in now or not, open sessions,
+  coarse last seen) with "Revoke access", asked first; the invitations waiting to be used with
+  "Revoke the invitation"; used, revoked and expired ones folded away. The listing is read while
+  the sheet is open and follows the live signal (a player who joins shows up without a refresh).
+  Never a token or a player's actor ID.
+- **Browser tests.** Playwright also starts `apps/server/src/testing/ui-sign-in-server.ts`
+  (invitation mode over in-memory credentials, port 4313) behind a second Vite server (4312, its
+  own dependency cache), whose origin is that server's `PUBLIC_ORIGIN`. The operator's DM
+  invitations are seeded with tokens derived from `LTW_UI_SIGN_IN_SEED`, a random value
+  `playwright.config.ts` makes per run; redeem limits are raised there (every journey is the one
+  loopback client; the limits have their server tests). Every development-persona journey runs
+  as before.
+- **Pictures.** Only existing GPT pictures: the key art, emblem and divider, and UI-kit glyphs
+  (`party`, `invitation`, `link`, `copy`, `revoke`, `member`, `character`, `key`, `replace`,
+  `leave`, `hidden`, `offline`, `refresh`). Nothing new was needed.

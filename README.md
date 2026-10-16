@@ -52,7 +52,13 @@ Configuration is optional in development: safe defaults point at the docker-comp
 Open the web client, keep campaign `ravenford`, and enter the development persona token
 `dev-player-elowen` or `dev-dm-ravenford` from `fixtures/ravenford/personas.json`.
 Tokens are entered explicitly and live only in memory. These personas are for local
-development; production authentication is not implemented.
+development; the client shows their form only when the server has no production sign-in.
+
+With production sign-in (`AUTH_MODE=invitations`, `PUBLIC_ORIGIN` set to the address the
+browser opens, `LTW_TRUST_PROXY`; ADR 0036) nobody types a token: the DM opens the link that
+`pnpm auth:operator dm-invite` prints, and invites players from the **Players** sheet of the
+DM view (each link is shown once and works once); a player opens the link and is at the table.
+**Sign out** asks first: coming back takes a new invitation.
 
 Pick a location, then select people and objects in the scene: contextual options are
 the server's, and the client submits only the commands it lists. Players explore,
@@ -68,8 +74,9 @@ No AI provider is needed. The client bundle is in `apps/web/build`; this is a bu
 artifact, not a production deployment.
 
 Install the browser once with `pnpm exec playwright install chromium`, then run
-`pnpm test:e2e`. The test suite owns isolated API/Vite servers on ports 4311/4310 and
-uses a real seeded in-memory World Engine. It requires no database or external AI.
+`pnpm test:e2e`. The test suite owns isolated API/Vite servers on ports 4311/4310 (development
+personas) and 4313/4312 (production sign-in) and uses a real seeded in-memory World Engine. It
+requires no database or external AI.
 
 ## Commands
 

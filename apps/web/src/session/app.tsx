@@ -18,8 +18,11 @@ import { TopBar } from '../shell/top-bar.tsx';
 import { ornamentUrl } from '../visual/ui-kit.ts';
 import { World } from '../world/world.tsx';
 import { ActingBar } from './acting-bar.tsx';
-import { Login } from './login.tsx';
+import { SignInKindContext, useSignInKind } from './sign-in-kind.ts';
+import { SignInScreens } from './sign-in-screens.tsx';
+import { SignOutDialog } from './sign-out-dialog.tsx';
 import { useLiveSession } from './use-live-session.ts';
+import { useSignIn, type PageStart } from './use-sign-in.ts';
 
 /** The page speaks the language of what it shows: the browser's, then the campaign's. */
 function DocumentLanguage() {
@@ -44,6 +47,16 @@ function Emblem() {
   );
 }
 
+/** Leaving: a development persona leaves the session; a signed-in browser signs out. */
+function LeaveButton({ onLeave }: { readonly onLeave: () => void }) {
+  const t = useT();
+  return (
+    <button onClick={onLeave}>
+      {useSignInKind() === 'session' ? t('Sign out') : t('Leave session')}
+    </button>
+  );
+}
+
 function BoundaryFallback({ onLeave }: { readonly onLeave: () => void }) {
   const t = useT();
   return (
@@ -53,7 +66,7 @@ function BoundaryFallback({ onLeave }: { readonly onLeave: () => void }) {
         state="error"
         label={t('This world response could not be displayed. Reconnect to try again.')}
       />
-      <button onClick={onLeave}>{t('Leave session')}</button>
+      <LeaveButton onLeave={onLeave} />
     </main>
   );
 }
@@ -82,34 +95,53 @@ function browserLanguage(): Language {
     : 'en';
 }
 
-export function App() {
-  const [connection, setConnection] = useState<Connection | null>(null);
-  const leave = useCallback(() => {
-    setConnection(null);
-  }, []);
-  // bfcache must not resurrect a privileged view on Back/Forward restoration.
-  useEffect(() => {
-    const clear = () => {
-      setConnection(null);
-    };
-    window.addEventListener('pagehide', clear);
-    window.addEventListener('pageshow', clear);
-    return () => {
-      window.removeEventListener('pagehide', clear);
-      window.removeEventListener('pageshow', clear);
-    };
-  }, []);
-  // Before a session names the campaign's language, the browser's language speaks.
+/**
+ * The page (docs/adr/0036-production-sign-in.md §7): sign-in, then a world. With production
+ * sign-in the browser holds an HttpOnly session cookie and the screens below never see a
+ * credential; development personas type a token, kept in memory. Before a session names the
+ * campaign's language the browser's speaks, and a session that ended keeps its campaign's.
+ */
+export function App({ start }: { readonly start: PageStart }) {
+  const flow = useSignIn(start);
+  const [campaignLanguage, setCampaignLanguage] = useState<Language | null>(null);
+  const { screen } = flow;
+  const browser = browserLanguage();
+  if (screen.kind !== 'session') {
+    const ended = screen.kind === 'signed-out' && screen.reason !== 'none';
+    return (
+      <LanguageProvider language={ended ? (campaignLanguage ?? browser) : browser}>
+        <DocumentLanguage />
+        <SignInScreens
+          screen={screen}
+          onProbe={flow.probe}
+          onReplace={flow.replace}
+          onConnect={flow.connectPersona}
+        />
+      </LanguageProvider>
+    );
+  }
+  const { connection } = screen;
   return (
-    <LanguageProvider language={browserLanguage()}>
+    <LanguageProvider language={browser}>
       <DocumentLanguage />
-      {connection ? (
-        <SessionBoundary onLeave={leave}>
-          <SessionGate connection={connection} onLeave={leave} />
+      <SignInKindContext.Provider value={connection.kind}>
+        <SessionBoundary key={screen.key} onLeave={flow.leave}>
+          <SessionGate
+            connection={connection}
+            onLeave={flow.leave}
+            onLanguage={setCampaignLanguage}
+          />
         </SessionBoundary>
-      ) : (
-        <Login onConnect={setConnection} />
-      )}
+        {connection.kind === 'session' && (
+          <LanguageProvider language={campaignLanguage ?? browser}>
+            <SignOutDialog
+              open={flow.askingSignOut}
+              onCancel={flow.cancelSignOut}
+              onSignedOut={flow.signedOut}
+            />
+          </LanguageProvider>
+        )}
+      </SignInKindContext.Provider>
     </LanguageProvider>
   );
 }
@@ -117,9 +149,12 @@ export function App() {
 function SessionGate({
   connection,
   onLeave,
+  onLanguage,
 }: {
   readonly connection: Connection;
   readonly onLeave: () => void;
+  /** The campaign's language, once its identity is read. */
+  readonly onLanguage: (language: Language) => void;
 }) {
   const t = useT();
   const api = useMemo(() => new WorldApi(connection, ''), [connection]);
@@ -128,6 +163,10 @@ function SessionGate({
     [api],
   );
   const { resource, retry } = useResource('identity', load);
+  const language = resource.status === 'ready' ? resource.value.campaign.language : null;
+  useEffect(() => {
+    if (language !== null) onLanguage(language);
+  }, [language, onLanguage]);
   if (resource.status !== 'ready')
     return (
       <main className="connection-state">
@@ -137,7 +176,7 @@ function SessionGate({
           label={resource.status === 'error' ? resource.message : t('Opening your session…')}
           onRetry={retry}
         />
-        <button onClick={onLeave}>{t('Leave session')}</button>
+        <LeaveButton onLeave={onLeave} />
       </main>
     );
   // From here on the campaign's own language speaks, whatever the browser's is.

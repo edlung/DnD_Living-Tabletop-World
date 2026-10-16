@@ -1,8 +1,10 @@
 # Browser journeys
 
 Start with `playwright.config.ts` and `support/session.ts`, then the one journey.
-Run `pnpm test:e2e` after installing Playwright Chromium. Both servers are owned
-by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
+Run `pnpm test:e2e` after installing Playwright Chromium. Every server is owned
+by Playwright: Vite on 4310 and the real seeded HTTP application on 4311 (development
+personas), and for production sign-in a second Vite on 4312 in front of the invitation-mode
+application on 4313.
 
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
@@ -117,6 +119,21 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311.
   (Escape in a field with a draft closes nothing; the closed panel keeps a draft through the
   DM's own action), `phone-layout.spec.ts` (the party rail is a compact strip; a result never
   keeps a scene control under it). Each fails on the client before part C.
+- Production sign-in (Stage 340 part B, ADR 0036 §7): `sign-in.spec.ts` (the DM invites, the
+  player joins through the link, plays and is signed out at once when the DM revokes — through
+  the live stream: the player sends no other request meanwhile; a used, forged or malformed link
+  shows one fixed failure; a signed-in browser is asked before an invitation replaces its
+  sign-in; signing out asks first and is final; the keyboard), `sign-in-ru.spec.ts` (Russian; an
+  English browser keeps the ended campaign's language) and `sign-in-accessibility.spec.ts` (axe
+  at the three widths and the Russian phone) run on `apps/server/src/testing/ui-sign-in-server.ts`
+  behind the second Vite server, whose origin is its `PUBLIC_ORIGIN`; their pages use
+  `test.use({ baseURL: SIGN_IN_ORIGIN })`. Each owns a campaign of
+  `fixtures/sign-in-campaigns.json` (`ui-sign-in-campaigns.ts`: Elowen's seat released; the
+  scans' campaigns keep her seated and add Seren's empty seat). The operator's DM links come from
+  `support/sign-in.ts` (`dmToken`, three per campaign, each works once), derived from the per-run
+  `LTW_UI_SIGN_IN_SEED` of `playwright.config.ts`. A token is never printed: assertions about one
+  are yes/no (`holdsAny`, `captureRequests`, `expectNothingKept`), and these specs keep no trace
+  or screenshot (a failing one's `error-context.md` may still show a throwaway test link).
 - Evidence tour (`pnpm evidence:screens`): `playwright.evidence.config.ts` runs
   `tests/evidence/*.evidence.ts` against the same servers and writes JPEGs (≤ 250 KB) to
   `reports/evidence/stage-320/` (`part-a/`; `part-b/` for the battlefield: each state at the

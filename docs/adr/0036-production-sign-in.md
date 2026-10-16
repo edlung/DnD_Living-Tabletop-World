@@ -71,6 +71,17 @@ Out of scope for the alpha: a compromised host or database, distributed denial o
 - `AUTH_MODE=disabled` stays the production default; invitation mode requires `PUBLIC_ORIGIN`.
   Details: `docs/STAGE_340_DESIGN.md`, "Implementation notes (part A, server)".
 
+## Implementation (Stage 340 part B, browser, 2026-10-16)
+
+- The client learns the mode from the server: `GET /auth/session` answers 200 or 401 with
+  production sign-in and 404 without it (the personas' token form then shows, as before), so
+  one build serves every deployment.
+- The join page takes the token out of the address and this history entry before its first
+  request, sends the redeem once, asks before replacing a live sign-in (409) and shows one fixed
+  failure otherwise; any 401, the live stream's `unauthenticated` included, shows "You are signed
+  out"; signing out asks first. The DM's Players sheet invites, lists and revokes through the
+  DM-only routes. Details: `docs/STAGE_340_DESIGN.md`, "Implementation notes (part B, browser)".
+
 ## Amendments
 
 - 2026-10-16 (Stage 340 part A, security review): seven findings fixed; the contract is in

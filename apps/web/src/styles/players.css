@@ -1,0 +1,195 @@
+/*
+ * The DM's Players sheet (docs/adr/0036-production-sign-in.md §4; docs/STAGE_340_DESIGN.md
+ * "Browser"): invite a player (the new link shown once), the players at the table and the
+ * invitations, each with its revocation. Glyphs are GPT masks; code draws only lines and text.
+ */
+.players {
+  display: grid;
+  gap: 0.9rem;
+}
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.players-grid .tool-group h3 .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.players-form {
+  display: grid;
+  gap: 0.2rem;
+}
+.players-form .field {
+  margin-bottom: 0.6rem;
+}
+.players-form .field select {
+  width: 100%;
+}
+.players-form .primary-button {
+  justify-self: start;
+}
+.players-form .primary-button .glyph {
+  width: 20px;
+  height: 20px;
+}
+
+/* The new link, shown once */
+.players-link {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.85rem 1rem 0.95rem;
+  border: 1px solid var(--line-strong);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 50%, transparent);
+}
+.players-link h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--gold-bright);
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+.players-link h3 .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.players-once {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--hp-low) 60%, transparent);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--hp-low) 10%, transparent);
+}
+.players-once .glyph {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.15rem;
+  color: var(--hp-low);
+}
+.players-link label {
+  margin: 0.2rem 0 0;
+}
+.players-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.players-link-row input {
+  flex: 1 1 16rem;
+  width: auto;
+  min-width: 0;
+  font-size: 0.9rem;
+}
+.players-link-row .glyph {
+  width: 18px;
+  height: 18px;
+}
+.players-copied {
+  min-height: 1.4em;
+  margin: 0;
+  color: var(--hp);
+  font-size: 0.9rem;
+}
+.players-link .muted {
+  margin: 0;
+}
+.players-link .quiet-button {
+  justify-self: start;
+}
+
+/* Rows: the players at the table and the invitations */
+.players-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.players-row {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+  overflow-wrap: anywhere;
+}
+.players-row--used,
+.players-row--revoked,
+.players-row--expired {
+  border-style: dashed;
+}
+.players-row-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+}
+.players-row-head strong {
+  flex: 1;
+  min-width: 8rem;
+}
+.players-row-glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+.players-pill--on {
+  border-color: color-mix(in srgb, var(--hp) 55%, transparent);
+  color: var(--text);
+}
+.players-when {
+  margin: 0.3rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.players-row .action-row {
+  margin: 0.45rem 0 0;
+}
+.players-row .action-row .glyph {
+  width: 18px;
+  height: 18px;
+}
+.players-confirm {
+  margin-top: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--danger) 55%, transparent);
+  border-left: 3px solid var(--danger);
+  border-radius: var(--radius-control);
+}
+.players-confirm p {
+  margin: 0;
+}
+/* The question takes focus when it opens, to be read out; it is no control to point at. */
+.players-confirm p:focus {
+  outline: none;
+  box-shadow: none;
+}
+.danger-button {
+  border-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 22%, transparent);
+  color: var(--text);
+  font-weight: 700;
+}
+.danger-button:hover:enabled {
+  border-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 34%, transparent);
+}
+.players-earlier {
+  margin-top: 0.6rem;
+}
+.players-earlier > summary {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+.players-earlier > .players-list {
+  margin-top: 0.5rem;
+}

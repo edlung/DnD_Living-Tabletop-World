@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-/** The dock's sheets (docs/STAGE_320_DESIGN.md §5.1); DM sheets only in the DM perspective. */
-export type SheetId = 'places' | 'journal' | 'add' | 'encounter' | 'time' | 'history';
+/**
+ * The dock's sheets (docs/STAGE_320_DESIGN.md §5.1); DM sheets only in the DM perspective, and
+ * Players only with production sign-in (docs/adr/0036-production-sign-in.md §4).
+ */
+export type SheetId = 'places' | 'journal' | 'add' | 'encounter' | 'time' | 'history' | 'players';
 
 export const sheetElementId = (id: SheetId) => `sheet-${id}`;
 export const dockButtonId = (id: SheetId | 'scene' | 'chronicle') => `dock-${id}`;
@@ -76,7 +79,8 @@ const TEXT_INPUTS: ReadonlySet<string> = new Set([
 export function isDraftField(target: EventTarget | null): boolean {
   if (target instanceof HTMLTextAreaElement) return target.value.trim() !== '';
   if (target instanceof HTMLInputElement) {
-    return TEXT_INPUTS.has(target.type) && target.value.trim() !== '';
+    // A read-only field (a link shown to copy) holds no draft of the person's.
+    return TEXT_INPUTS.has(target.type) && !target.readOnly && target.value.trim() !== '';
   }
   return target instanceof HTMLElement && target.isContentEditable
     ? target.textContent.trim() !== ''

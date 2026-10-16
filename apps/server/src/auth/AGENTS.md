@@ -46,4 +46,6 @@ other case, and never appears in a log, trace, error, URL or listing.
   (captured logger, traces, evidence, bodies, no addresses), `modes.test.ts` (configuration
   combinations, composition, cookie), `operator.test.ts` (arguments, DM revocation, sign-out
   everywhere, listing), `credentials.integration.test.ts` (PostgreSQL constraints, one-way
-  triggers, races, pruning, restart, operator). Support: `testing/sign-in.ts`.
+  triggers, races, pruning, restart, operator). Support: `testing/sign-in.ts`. The browser
+  journeys (`tests/e2e/sign-in*.spec.ts`, part B) run on `testing/ui-sign-in-server.ts`: this
+  composition over in-memory credentials, behind its own Vite origin.

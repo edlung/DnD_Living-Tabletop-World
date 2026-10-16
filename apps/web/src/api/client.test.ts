@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { ApiError, WorldApi } from './client.ts';
+import { ApiError, WorldApi, type Connection } from './client.ts';
 
-const connection = { campaignId: 'my world', token: 'private-token' };
+const connection: Connection = { kind: 'persona', campaignId: 'my world', token: 'private-token' };
 const signal = new AbortController().signal;
 
 describe('the browser API boundary', () => {
@@ -57,5 +57,56 @@ describe('the browser API boundary', () => {
         'The world could not be reached. Please try again.',
       );
     }
+  });
+});
+
+/**
+ * Production sign-in in the browser (docs/adr/0036-production-sign-in.md §7): the session cookie
+ * is the credential, so no `Authorization` header is ever sent and requests carry the cookie only
+ * to their own origin; a 401 means the session ended, and the screen hears of it.
+ */
+describe('a session signed in by invitation', () => {
+  const session = (onSignedOut = vi.fn()) =>
+    ({ kind: 'session', campaignId: 'ravenford', onSignedOut }) as const;
+
+  it('sends no Authorization header and only same-origin credentials, reads and writes', async () => {
+    const calls: RequestInit[] = [];
+    const transport = vi.fn((_input: unknown, init?: RequestInit) => {
+      calls.push(init ?? {});
+      return Promise.resolve(Response.json({ perspective: 'DM', status: 'accepted' }));
+    });
+    const api = new WorldApi(session(), 'DM', 'DM', transport);
+    await api.get('entities', signal);
+    await api.post('commands', { commandId: 'c-1' }, signal);
+    expect(calls).toHaveLength(2);
+    for (const init of calls) {
+      expect(init).toMatchObject({ credentials: 'same-origin', cache: 'no-store' });
+      expect(JSON.stringify(init.headers)).not.toMatch(/authorization/i);
+    }
+    expect(calls[1]).toMatchObject({
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  });
+
+  it('tells the screen it is signed out on a 401, from reads and writes alike', async () => {
+    const onSignedOut = vi.fn();
+    const refused = () =>
+      Promise.resolve(Response.json({ error: { code: 'UNAUTHENTICATED' } }, { status: 401 }));
+    const api = new WorldApi(session(onSignedOut), 'DM', 'DM', refused);
+    await expect(api.get('entities', signal)).rejects.toThrow('You are signed out.');
+    await expect(api.post('commands', {}, signal)).rejects.toMatchObject({ status: 401 });
+    expect(onSignedOut).toHaveBeenCalledTimes(2);
+  });
+
+  it('is not signed out by a refusal that is not a 401', async () => {
+    const onSignedOut = vi.fn();
+    for (const status of [403, 404, 409, 429, 500]) {
+      const api = new WorldApi(session(onSignedOut), 'DM', 'DM', () =>
+        Promise.resolve(Response.json({ error: { code: 'X' } }, { status })),
+      );
+      await expect(api.post('invitations', {}, signal)).rejects.toMatchObject({ status });
+    }
+    expect(onSignedOut).not.toHaveBeenCalled();
   });
 });
