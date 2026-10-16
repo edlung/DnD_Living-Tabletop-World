@@ -1,7 +1,7 @@
 import type pg from 'pg';
 
 import { fixedStep } from '../ai/accounting/deadline.ts';
-import { readCommitted } from '../ai/accounting/pg-transaction.ts';
+import { readCommitted, type Tx } from '../ai/accounting/pg-transaction.ts';
 import { AccountingRejection, type Authorization } from '../ai/accounting/types.ts';
 import { MAX_ASSET_TIMEOUT_MS } from '../platform/config/config.ts';
 import { IMAGE_LEDGER_LOCK_KEY, type ImageChargeOutcome } from './ledger.ts';
@@ -47,22 +47,32 @@ interface OpenRow {
   readonly age_minutes: number;
 }
 
+const OPEN_RESERVATIONS = `SELECT c.charge_id::text AS charge_id, c.campaign_id, c.request_id,
+    c.provider, c.model, c.reserved_micros::text AS reserved, c.created_at,
+    floor(extract(epoch FROM clock_timestamp() - c.created_at) / 60)::int AS age_minutes
+  FROM ltw_image_charges c LEFT JOIN ltw_image_settlements s USING (charge_id)
+  WHERE s.charge_id IS NULL
+    AND c.created_at <= clock_timestamp() - make_interval(mins => $1::int)
+  ORDER BY c.created_at, c.charge_id`;
+
 /** Unsettled reservations made more than `olderThanMinutes` ago, oldest first. */
 export async function openImageReservations(
   pool: pg.Pool,
   olderThanMinutes: number,
 ): Promise<OpenImageReservation[]> {
-  const rows = await pool.query<OpenRow>(
-    `SELECT c.charge_id::text AS charge_id, c.campaign_id, c.request_id, c.provider, c.model,
-            c.reserved_micros::text AS reserved, c.created_at,
-            floor(extract(epoch FROM clock_timestamp() - c.created_at) / 60)::int AS age_minutes
-     FROM ltw_image_charges c LEFT JOIN ltw_image_settlements s USING (charge_id)
-     WHERE s.charge_id IS NULL
-       AND c.created_at <= clock_timestamp() - make_interval(mins => $1::int)
-     ORDER BY c.created_at, c.charge_id`,
-    [olderThanMinutes],
-  );
-  return rows.rows.map((row) => ({
+  return (await pool.query<OpenRow>(OPEN_RESERVATIONS, [olderThanMinutes])).rows.map(toOpen);
+}
+
+/** The same within the caller's transaction (`ai:operator spend`, `spend-report.ts`). */
+export async function readOpenImageReservations(
+  tx: Pick<Tx, 'query'>,
+  olderThanMinutes: number,
+): Promise<OpenImageReservation[]> {
+  return (await tx.query<OpenRow>(OPEN_RESERVATIONS, [olderThanMinutes])).rows.map(toOpen);
+}
+
+function toOpen(row: OpenRow): OpenImageReservation {
+  return {
     chargeId: row.charge_id,
     campaignId: row.campaign_id,
     requestId: row.request_id,
@@ -71,7 +81,7 @@ export async function openImageReservations(
     reservedMicros: row.reserved,
     createdAt: row.created_at.toISOString(),
     ageMinutes: row.age_minutes,
-  }));
+  };
 }
 
 export type ImageSettlementOutcome = ImageChargeOutcome | 'orphaned';

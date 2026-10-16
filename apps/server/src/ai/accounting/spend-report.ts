@@ -1,5 +1,11 @@
 import type pg from 'pg';
 
+import { readImageBudgetStatus, type ImageBudgetStatus } from '../../images/ledger.ts';
+import {
+  ORPHAN_AFTER_MINUTES,
+  readOpenImageReservations,
+  type OpenImageReservation,
+} from '../../images/ledger-operator.ts';
 import { fixedStep } from './deadline.ts';
 import { readCommitted } from './pg-transaction.ts';
 import { EFFECTIVE } from './spend.ts';
@@ -10,8 +16,10 @@ import { EFFECTIVE } from './spend.ts';
  * day and in total, what open holds still reserve, and the latest ceiling and switch; per
  * approval: effective spend against its latest stage ceiling. Effective spend is `spend.ts`'s
  * definition (a terminal attempt counts its largest absolute charge, an open one its hold or
- * larger evidence). Read-only; integer microdollars as strings. Never logged at startup and never
- * shown to a campaign: amounts stay with the operator.
+ * larger evidence). Beside them, the image ledger (docs/adr/0035-images.md §2): its ceiling,
+ * spent (settled charges as settled, open reservations whole), held, remaining, and every
+ * unsettled reservation. Read-only, one transaction; integer microdollars as strings. Never logged
+ * at startup and never shown to a campaign: amounts stay with the operator.
  */
 export interface AccountSpend {
   readonly accountId: string;
@@ -31,11 +39,23 @@ export interface ApprovalSpend {
   readonly spentMicros: string;
 }
 
+/** The image ledger's counters (`ledger.ts`) and its unsettled reservations, oldest first. */
+export interface ImageSpend extends ImageBudgetStatus {
+  /**
+   * Each still counts whole in `spentMicros` and `heldMicros` until its job settles it; one older
+   * than `settleableAfterMinutes` is orphaned, and only the operator closes it
+   * (`image-reservation-settle`, docs/adr/0035-images.md, amendment 2026-10-16).
+   */
+  readonly unsettledReservations: readonly OpenImageReservation[];
+  readonly settleableAfterMinutes: number;
+}
+
 export interface SpendReport {
   /** The database's UTC day, `YYYY-MM-DD`: the day `todayMicros` counts. */
   readonly day: string;
   readonly accounts: readonly AccountSpend[];
   readonly approvals: readonly ApprovalSpend[];
+  readonly images: ImageSpend;
 }
 
 const OPEN = `NOT EXISTS (SELECT 1 FROM ltw_ai_accounting c
@@ -80,6 +100,11 @@ export function spendReport(pool: pg.Pool): Promise<SpendReport> {
        GROUP BY p.approval_id, p.account_id, p.stage, latest.enabled, latest.stage_ceiling_micros
        ORDER BY p.approval_id`,
     );
-    return { day: today, accounts: accounts.rows, approvals: approvals.rows };
+    const images: ImageSpend = {
+      ...(await readImageBudgetStatus(tx)),
+      unsettledReservations: await readOpenImageReservations(tx, 0),
+      settleableAfterMinutes: ORPHAN_AFTER_MINUTES,
+    };
+    return { day: today, accounts: accounts.rows, approvals: approvals.rows, images };
   });
 }

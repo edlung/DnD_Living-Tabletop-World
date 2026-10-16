@@ -5,10 +5,15 @@ import {
   SteppingClock,
   WorldEngine,
   commandSubmissionSchema,
+  entityPresentationAt,
+  holderPerspective,
 } from '@ltw/domain';
 import { scriptedDice, skillCheckPort } from '@ltw/rules';
 import { describe, expect, it } from 'vitest';
 
+import { InMemoryAssetContentStore, contentHashOf } from '../assets/content-store.ts';
+import { loadCuratedSet } from '../images/curated-set.ts';
+import { createLogger } from '../platform/logging/logger.ts';
 import { MIDDLE_ENTROPY, seededEngine } from '../testing/ravenford-app.ts';
 import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from './ravenford-seed.ts';
 import {
@@ -31,7 +36,10 @@ const emptyEngine = () =>
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
 const PLAYER = { actorId: 'player:review-test', kind: 'user' } as const;
 
-describe('review campaign', () => {
+/** With the curated pictures a seed issues four commands for each of the 51 (45 files). */
+const SLOW_MS = 60_000;
+
+describe('review campaign', { timeout: SLOW_MS }, () => {
   it('seeds the Russian Ravenford through the World Engine with every seat open', async () => {
     const engine = emptyEngine();
     const summary = await seedReviewCampaign(engine);
@@ -52,6 +60,53 @@ describe('review campaign', () => {
     expect(summary.version).toBe(state?.version);
     expect(summary.entities).toBe(state?.entities.size);
     expect(summary.accepted).toBe((await loadReviewCampaignSeed()).submissions.length);
+    expect(summary.pictures).toBeNull();
+  });
+
+  it('brings the curated pictures, approved for players by the DM; a rerun finds them', async () => {
+    const engine = emptyEngine();
+    const set = await loadCuratedSet();
+    const contents = new InMemoryAssetContentStore();
+    const pictures = { contents, set, logger: createLogger({ service: 'test', level: 'silent' }) };
+    const total = set.entries.reduce((sum, entry) => sum + entry.entityIds.length, 0);
+
+    const first = await seedReviewCampaign(engine, { pictures });
+
+    expect(first.pictures).toEqual({ imported: total, present: 0, skipped: 0 });
+    const snapshot = await engine.load('ravenford');
+    if (!snapshot) throw new Error('missing campaign');
+    const assets = [...snapshot.state.assets.assets.values()];
+    expect(assets).toHaveLength(total);
+    for (const asset of assets) {
+      expect(asset).toMatchObject({
+        status: asset.variant === 'reference' ? 'CANONICAL' : 'APPROVED',
+        audience: 'players',
+        generator: { provider: 'curated', model: set.model },
+      });
+      const stored = await contents.get('ravenford', asset.contentHash);
+      expect(stored && contentHashOf(stored.bytes)).toBe(asset.contentHash);
+    }
+    // The seat is open and the pictures wait for whoever takes it: Elowen's player, once invited,
+    // sees the market square's picture and Mira's figure; nothing of the caravan site yet.
+    expect(first.openSeats).toEqual(['elowen-starwhisper']);
+    const elowen = holderPerspective(snapshot.state, {
+      kind: 'CHARACTER',
+      characterId: 'elowen-starwhisper',
+    });
+    const shown = (id: string) => entityPresentationAt(snapshot, elowen, id, null)?.presentation;
+    const hash = (file: string) =>
+      `sha256:${set.entries.find((entry) => entry.file === file)?.sha256 ?? ''}`;
+    expect(shown('market-square')?.image?.contentHash).toBe(hash('market-square.webp'));
+    expect(shown('mira-vale')?.figure?.contentHash).toBe(hash('mira-vale--figure.webp'));
+    expect(shown('abandoned-caravan-site')).toBeUndefined();
+
+    const rerun = await seedReviewCampaign(engine, { pictures });
+    expect(rerun).toEqual({
+      ...first,
+      accepted: 0,
+      duplicate: first.accepted,
+      pictures: { imported: 0, present: total, skipped: 0 },
+    });
   });
 
   it('keeps every fixture command and its ID, then the DM releases the persona seat', async () => {
