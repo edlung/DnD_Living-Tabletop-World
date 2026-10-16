@@ -24,12 +24,13 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   the owner's human playtests.
 - Stage 300: merged (PR 3). Stage 310: merged (PR 4, `091aa13`); one independent review of B/C
   with all findings fixed; report `reports/STAGE_310_COMPLETION.md`.
-- Stage 320: implemented (parts A–C) in the owner's concept style with GPT-made art only
-  (`reviews/OWNER_DECISIONS_10_2026-10-15.json`, ADR 0034, `docs/STAGE_320_DESIGN.md`); an
-  independent review of part A with all findings fixed; report `reports/STAGE_320_COMPLETION.md`.
-- Built in parallel worktrees, merged in order after Stage 320: Stage 340 (server, security review
-  fixed; browser part next), Stage 330 (server, curated GPT set, one authorized live OpenRouter
-  smoke at $0.24 of $5), Stage 350 (deployment verified locally, review fixed).
+- Stage 320: merged (PR 5, `4a4218f`); independent reviews of parts A and B/C with all findings
+  fixed; report `reports/STAGE_320_COMPLETION.md`.
+- Stage 340: implemented (server, browser); independent security reviews of both parts with all
+  findings fixed; report `reports/STAGE_340_COMPLETION.md`.
+- Built in parallel worktrees, merged in order after Stage 340: Stage 330 (server and client,
+  curated GPT set, one authorized live OpenRouter smoke at $0.24 of $5), Stage 350 (deployment
+  verified locally, review fixed).
 - Spending: paid runtime calls only within the stored operator ceilings (ADR 0032); in-play images
   through OpenRouter within $5 (Stage 330); never read `.env.local`.
 
