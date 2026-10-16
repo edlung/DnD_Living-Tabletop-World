@@ -25,6 +25,7 @@ export default defineConfig({
   expect: { timeout: 15_000 },
   reporter: 'list',
   use: {
+    actionTimeout: 30_000,
     trace: 'off',
     screenshot: 'off',
     video: 'off',

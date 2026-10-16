@@ -1,5 +1,4 @@
 import { execFile } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { promisify } from 'node:util';
 
 import { expect, type BrowserContext, type Locator, type Page } from '@playwright/test';
@@ -130,19 +129,43 @@ export function captureRequests(context: BrowserContext) {
 }
 
 /**
- * Content Security Policy violations of every page of the context: the `securitypolicyviolation`
- * events, reported as they happen (a page replaced by a fresh start page loses nothing), and
- * Chromium's console reports.
+ * Instruments every page of a browser context, before any of its scripts runs:
+ * - Content Security Policy violations: the `securitypolicyviolation` events, reported as they
+ *   happen (a page replaced by a fresh start page loses nothing), and Chromium's console reports;
+ * - the object URLs the page makes: each one's SHA-256, read from its Blob as it is made, so a
+ *   picture on screen is known by the bytes behind it (a `fetch` of a `blob:` URL would itself be
+ *   refused by the page's `connect-src 'self'`). The page's own calls are passed on unchanged.
+ * Returns the violations seen so far.
  */
-export async function watchPolicy(context: BrowserContext): Promise<string[]> {
+export async function instrument(context: BrowserContext): Promise<string[]> {
   const violations: string[] = [];
   await context.exposeFunction('ltwPolicyViolation', (text: string) => violations.push(text));
   await context.addInitScript(() => {
+    const page = window as unknown as {
+      ltwPolicyViolation?: (text: string) => void;
+      ltwObjectDigests?: Record<string, string>;
+    };
     document.addEventListener('securitypolicyviolation', (event) => {
-      const report = (window as unknown as { ltwPolicyViolation?: (text: string) => void })
-        .ltwPolicyViolation;
-      report?.(`${event.effectiveDirective} ${event.blockedURI.slice(0, 80)}`);
+      page.ltwPolicyViolation?.(`${event.effectiveDirective} ${event.blockedURI.slice(0, 80)}`);
     });
+    const digests: Record<string, string> = {};
+    page.ltwObjectDigests = digests;
+    const create = URL.createObjectURL.bind(URL);
+    URL.createObjectURL = (object: Blob | MediaSource): string => {
+      const url = create(object);
+      if (object instanceof Blob) {
+        void object
+          .arrayBuffer()
+          .then((bytes) => crypto.subtle.digest('SHA-256', bytes))
+          .then((digest) => {
+            const hex = [...new Uint8Array(digest)].map((byte) =>
+              byte.toString(16).padStart(2, '0'),
+            );
+            digests[url] = `sha256:${hex.join('')}`;
+          });
+      }
+      return url;
+    };
   });
   context.on('console', (message) => {
     if (/Content Security Policy/i.test(message.text())) violations.push(message.text());
@@ -154,26 +177,25 @@ export async function watchPolicy(context: BrowserContext): Promise<string[]> {
 export interface Served {
   readonly status: number;
   readonly headers: Readonly<Record<string, string>>;
-  /** `sha256:<hex>` of the bytes the browser got. */
-  readonly digest: string;
 }
 
-/** Every picture a page fetched from the content route, by content hash. */
+/**
+ * Every picture a page fetched from the content route, by content hash: the answers that arrived
+ * whole (`requestfinished`; a fetch the page aborted, when a view is replaced, is left out). The
+ * bytes are checked where the page holds them (`shownPicture`).
+ */
 export function watchPictures(page: Page): Map<string, Promise<Served>> {
   const seen = new Map<string, Promise<Served>>();
-  page.on('response', (response) => {
-    const path = new URL(response.url()).pathname;
+  page.on('requestfinished', (request) => {
+    const path = new URL(request.url()).pathname;
     const match = /^\/api\/campaigns\/[^/]+\/assets\/content\/([^/]+)$/.exec(path);
     if (!match?.[1]) return;
     seen.set(
       decodeURIComponent(match[1]),
-      (async () => ({
-        status: response.status(),
-        headers: await response.allHeaders(),
-        digest: `sha256:${createHash('sha256')
-          .update(await response.body())
-          .digest('hex')}`,
-      }))(),
+      (async () => {
+        const response = await request.response();
+        return { status: response?.status() ?? 0, headers: (await response?.allHeaders()) ?? {} };
+      })(),
     );
   });
   return seen;
@@ -183,15 +205,18 @@ export function watchPictures(page: Page): Map<string, Promise<Served>> {
 export const curatedHash = (file: string): string =>
   `sha256:${manifest.assets.find((entry) => entry.file === file)?.sha256 ?? 'missing'}`;
 
-/** Every curated picture of an entity with a purpose. */
-export const curatedHashes = (entityId: string, purpose: string): string[] =>
+/** Every curated picture with a purpose, of one entity or (null) of any. */
+export const curatedHashes = (entityId: string | null, purpose: string): string[] =>
   manifest.assets
-    .filter((entry) => entry.entityIds.includes(entityId) && entry.purpose === purpose)
+    .filter(
+      (entry) =>
+        (entityId === null || entry.entityIds.includes(entityId)) && entry.purpose === purpose,
+    )
     .map((entry) => `sha256:${entry.sha256}`);
 
 /**
  * The picture an element shows: an object URL of decoded bytes the page fetched with its own
- * session (ADR 0026 §6), and the SHA-256 of those bytes, read back in the page.
+ * session (ADR 0026 §6); returns the SHA-256 of the Blob behind that URL (`instrument`).
  */
 export async function shownPicture(image: Locator): Promise<string> {
   await expect(image).toHaveAttribute('src', /^blob:/);
@@ -203,19 +228,23 @@ export async function shownPicture(image: Locator): Promise<string> {
       ),
     )
     .toBe(true);
-  return image.evaluate(async (element) => {
-    const bytes = await (await fetch((element as HTMLImageElement).src)).arrayBuffer();
-    const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
-    return `sha256:${[...digest].map((byte) => byte.toString(16).padStart(2, '0')).join('')}`;
-  });
+  const digest = () =>
+    image.evaluate(
+      (element) =>
+        (window as unknown as { ltwObjectDigests?: Record<string, string> }).ltwObjectDigests?.[
+          (element as HTMLImageElement).src
+        ] ?? '',
+    );
+  await expect.poll(digest).toMatch(/^sha256:[0-9a-f]{64}$/);
+  return digest();
 }
 
 /**
- * How the deployment serves an authorized picture (ADR 0022 §6, kept by the proxy): its media
+ * How the deployment served an authorized picture (ADR 0022 §6, kept by the proxy): its media
  * type, `nosniff`, `no-store` (never kept by a browser or a shared cache), the server's sandbox
- * policy, varying on the cookie, uncompressed, and the bytes the hash names.
+ * policy, varying on the cookie, uncompressed.
  */
-export function expectServedAsContent(served: Served | undefined, hash: string): void {
+export function expectServedAsContent(served: Served | undefined): void {
   expect(served?.status).toBe(200);
   expect(served?.headers['content-type']).toBe('image/webp');
   expect(served?.headers['x-content-type-options']).toBe('nosniff');
@@ -225,5 +254,4 @@ export function expectServedAsContent(served: Served | undefined, hash: string):
   );
   expect(served?.headers['vary']).toMatch(/cookie/i);
   expect(served?.headers['content-encoding']).toBeUndefined();
-  expect(served?.digest).toBe(hash);
 }

@@ -10,6 +10,7 @@ import {
   deploymentLogs,
   expectServedAsContent,
   holdsAny,
+  instrument,
   isInvitationLink,
   openLink,
   operatorDmLink,
@@ -17,7 +18,6 @@ import {
   shownPicture,
   tokenOf,
   watchPictures,
-  watchPolicy,
 } from './support.ts';
 
 /**
@@ -36,6 +36,20 @@ test.use({ trace: 'off', screenshot: 'off', video: 'off' });
 const ru = WORDS.ru;
 const ELOWEN = 'Эловен Старвиспер';
 const SQUARE = 'Рыночная площадь';
+
+/** The DM revokes Elowen's player in the open Players sheet, asked first. */
+async function revoke(dm: Page): Promise<void> {
+  const sheet = dm.locator('#sheet-players');
+  const seat = sheet
+    .getByRole('region', { name: ru.members })
+    .getByRole('listitem')
+    .filter({ hasText: ELOWEN });
+  await seat.getByRole('button', { name: ru.revoke(ELOWEN) }).click();
+  await seat.getByRole('button', { name: ru.revokeYes }).click();
+  await expect(sheet).toContainText(
+    `${ELOWEN}: доступ игрока отозван, персонажа можно пригласить снова.`,
+  );
+}
 
 /** The command a press sends, and the World Engine's answer to it. */
 async function acted(page: Page, press: () => Promise<void>): Promise<void> {
@@ -57,7 +71,7 @@ test('по-русски через Caddy: DM приглашает, игрок в
   const dmLink = await operatorDmLink();
   const dmContext = await browser.newContext({ locale: 'ru-RU' });
   const dmRequests = captureRequests(dmContext);
-  const dmViolations = await watchPolicy(dmContext);
+  const dmViolations = await instrument(dmContext);
   const dm = await dmContext.newPage();
   const pagePolicy = await openLink(dm, dmLink);
   // The page's policy lets the client show pictures from object URLs.
@@ -69,9 +83,15 @@ test('по-русски через Caddy: DM приглашает, игрок в
   await expect(dockButton(dm, ru.players)).toBeVisible();
   expect(dm.url() === START, 'the DM page keeps the start page as its address').toBe(true);
 
-  // The DM invites a player for Elowen; the link is shown once.
+  // The DM invites a player for Elowen; the link is shown once. (A run that stopped half-way
+  // may have left a player in Elowen's seat: the DM frees it first.)
   await openSheet(dm, ru.players);
   const sheet = dm.locator('#sheet-players');
+  // The listing has been read once the players at the table show.
+  const members = sheet.getByRole('region', { name: ru.members });
+  await expect(members).toBeVisible();
+  const seat = members.getByRole('listitem').filter({ hasText: ELOWEN });
+  if ((await seat.count()) > 0) await revoke(dm);
   await sheet.getByLabel(ru.character, { exact: true }).selectOption({ label: ELOWEN });
   await sheet.getByRole('button', { name: ru.create, exact: true }).click();
   const field = sheet.getByLabel(ru.link, { exact: true });
@@ -83,7 +103,7 @@ test('по-русски через Caddy: DM приглашает, игрок в
   // The player takes the seat in another browser.
   const playerContext = await browser.newContext({ locale: 'ru-RU' });
   const playerRequests = captureRequests(playerContext);
-  const playerViolations = await watchPolicy(playerContext);
+  const playerViolations = await instrument(playerContext);
   const player = await playerContext.newPage();
   const pictures = watchPictures(player);
   await openLink(player, playerLink);
@@ -120,15 +140,15 @@ test('по-русски через Caddy: DM приглашает, игрок в
   expect(await shownPicture(mira.locator('.miniature-art'))).toBe(
     curatedHash('mira-vale--figure.webp'),
   );
-  const standing = scene.locator('.miniature-art');
-  const figures = await standing.count();
-  expect(figures).toBeGreaterThanOrEqual(1);
-  for (const figure of await standing.all()) {
+  // Everyone standing in the scene is a curated figure (Mira, and Elowen herself).
+  const standing = await scene.locator('.miniature-art').all();
+  expect(standing.length).toBeGreaterThanOrEqual(2);
+  for (const figure of standing) {
     const hash = await shownPicture(figure);
-    expect(hash.startsWith('sha256:'), 'a standing figure shows a picture').toBe(true);
-    expectServedAsContent(await pictures.get(hash), hash);
+    expect(curatedHashes(null, 'figure')).toContain(hash);
+    expectServedAsContent(await pictures.get(hash));
   }
-  expectServedAsContent(await pictures.get(backdrop), backdrop);
+  expectServedAsContent(await pictures.get(backdrop));
   await expect(player.getByText('Изображения пока нет', { exact: true })).toHaveCount(0);
 
   // The player acts once: Elowen looks Mira over.
@@ -140,8 +160,6 @@ test('по-русски через Caddy: DM приглашает, игрок в
   );
 
   // The DM sees the player at the table and revokes the access.
-  const members = sheet.getByRole('region', { name: ru.members });
-  const seat = members.getByRole('listitem').filter({ hasText: ELOWEN });
   await expect(seat).toContainText('Вход выполнен');
   // Quiet: the player's reads after acting are over; from now on only the live stream may
   // tell the player's screen anything.
@@ -151,11 +169,7 @@ test('по-русски через Caddy: DM приглашает, игрок в
     const path = new URL(request.url()).pathname;
     if (path.startsWith('/api/') && !path.endsWith('/live')) reads += 1;
   });
-  await seat.getByRole('button', { name: ru.revoke(ELOWEN) }).click();
-  await seat.getByRole('button', { name: ru.revokeYes }).click();
-  await expect(sheet).toContainText(
-    `${ELOWEN}: доступ игрока отозван, персонажа можно пригласить снова.`,
-  );
+  await revoke(dm);
   await expect(accessState(player, ru.signedOut)).toContainText(
     'Чтобы вернуться за стол, откройте новую ссылку-приглашение.',
     { timeout: 10_000 },

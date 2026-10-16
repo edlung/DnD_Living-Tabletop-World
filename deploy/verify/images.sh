@@ -54,8 +54,9 @@ served() {
     [ "$(header content-security-policy)" = "$CONTENT_CSP" ] &&
     [ -z "$(header content-encoding)" ] && header vary | grep -qi cookie
 }
-# content <jar> <hash>: the bytes of a picture, as that browser; prints the status.
-content() { get "$1" "/campaigns/$CAMPAIGN/assets/content/${2/:/%3A}?$AS_ELOWEN"; }
+# content <jar> <hash> [perspective]: the bytes of a picture, as that browser in that
+# perspective (Elowen's by default); prints the status.
+content() { get "$1" "/campaigns/$CAMPAIGN/assets/content/${2/:/%3A}?${3:-$AS_ELOWEN}"; }
 # The ledger's counters, as deploy/scripts/spend.sh prints them.
 spend_images() {
   "$DEPLOY_DIR/scripts/spend.sh" >"$WORK/spend.out" 2>&1 || return 1
@@ -69,7 +70,7 @@ ledger_empty() {
 say 'no image provider: the placeholder generator, no ceiling stored, nothing spent'
 check 'the server runs LTW_IMAGE_GENERATOR=placeholder' is \
   "$(compose exec -T server printenv LTW_IMAGE_GENERATOR)" placeholder
-compose logs --no-color server 2>/dev/null | grep '"msg":"image generator"' | tail -n 1 |
+compose logs --no-color --no-log-prefix server 2>/dev/null | grep '"msg":"image generator"' | tail -n 1 |
   jq -c '{msg, generator, model}' >"$WORK/generator.txt" || true
 printf '     start: %s\n' "$(cat "$WORK/generator.txt")"
 check "the server's start named the placeholder" grep -q '"generator":"placeholder"' "$WORK/generator.txt"
@@ -187,16 +188,20 @@ command="images-check-$STAMP"
 status=$(post dm "/campaigns/$CAMPAIGN/commands" "{\"commandId\":\"$command\",\"command\":{
   \"type\":\"RequestAsset\",\"entityId\":\"mira-vale\",\"variant\":\"reference\",\"audience\":\"players\"}}")
 check 'RequestAsset accepted' is "$status $(field .status)" '200 accepted'
+# The command route keeps a DM's command ID under the actor (`http:<actor>:<commandId>`); the
+# request is its first (`#0`).
 candidate=''
 for _ in $(seq 60); do
   get dm "/campaigns/$CAMPAIGN/assets" >/dev/null
-  candidate=$(field ".assets[] | select(.requestId == \"$command#0\") | [.assetId, .contentHash, .status, .mediaType, .generator.provider] | join(\" \")")
+  candidate=$(field ".assets[] | select(.requestId | endswith(\":$command#0\")) |
+    [.assetId, .contentHash, .status, .mediaType, .generator.provider, .generator.model] | join(\" \")")
   [ -z "$candidate" ] || break
   sleep 1
 done
 printf '     candidate: %s\n' "${candidate:-none within 60 s}"
-read -r asset hash state media provider <<<"$candidate"
-check 'a candidate by the placeholder, not approved' is "${state:-} ${provider:-}" 'CANDIDATE placeholder'
+read -r asset hash state media provider model <<<"$candidate"
+check 'a candidate, not approved, by the local placeholder' is \
+  "${state:-} ${provider:-} ${model:-}" 'CANDIDATE local placeholder-svg-1'
 status=$(content player "${hash:-sha256:none}")
 printf '     player: %s %s\n' "$status" "$(jq -c .error "$WORK/response.body" 2>/dev/null)"
 candidate_error=$(field '.error | tojson')
@@ -205,7 +210,7 @@ unknown="sha256:$(openssl rand -hex 32)"
 status=$(content player "$unknown")
 check '... the same as for a hash nobody stored' is "$status $(field '.error | tojson')" \
   "404 $candidate_error"
-status=$(content dm "${hash:-sha256:none}")
+status=$(content dm "${hash:-sha256:none}" perspective=DM)
 printf '     DM: %s %s, %s\n' "$status" "$(header content-type)" "$(header content-security-policy)"
 check 'the DM reads it, under the sandbox policy' served "$status" "${media:-none}"
 status=$(post dm "/campaigns/$CAMPAIGN/commands" "{\"commandId\":\"$command.discard\",
