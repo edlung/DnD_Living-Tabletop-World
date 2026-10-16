@@ -23,7 +23,8 @@ export default defineConfig({
   // Hosted runners are several times slower than a workstation.
   timeout: 180_000,
   expect: { timeout: 15_000 },
-  reporter: 'list',
+  // Each step of the journey is printed with its time: the transcript of a run.
+  reporter: [['list', { printSteps: true }]],
   use: {
     actionTimeout: 30_000,
     trace: 'off',

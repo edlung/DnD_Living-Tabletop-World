@@ -80,3 +80,12 @@ A review of parts A and B found seven gaps (readiness after a rollback, a drill 
 dump, the backup script's single-file mount, unprotected pre-deploy dumps, the runbook's cron and
 off-host steps, secrets in `curl`'s arguments and the server's environment, the Docker Engine
 requirement). The fixes keep this design; details in ADR 0037, "Review fixes", and the runbook.
+
+## Full product notes (2026-10-16)
+
+With Stages 320, 340 and 330 underneath, the deployment carries the complete product. The review
+campaign brings the curated pictures (served through the proxy as authorized content,
+`verify/images.sh`); the spend report shows the image ledger beside the AI counters; compose runs
+the placeholder image generator until the operator records a ceiling and chooses
+`openrouter-openai`; Russian browser journeys run against the deployment through Caddy
+(`verify/browser-journey.sh`). Details in ADR 0037, "Full product notes", and the runbook.
