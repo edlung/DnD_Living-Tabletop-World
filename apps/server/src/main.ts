@@ -78,12 +78,15 @@ async function main(): Promise<void> {
     assets: { contents },
     quests,
     ...(signIn ? { signIn } : {}),
+    // Request limits key on the client behind this reverse proxy (ADR 0036, 2026-10-16).
+    trustedProxies: config.http.trustedProxies,
   });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
     {
       nodeEnv: config.nodeEnv,
       authMode: config.auth.mode,
+      trustedProxies: config.http.trustedProxies.length,
       database: describeDatabaseUrl(config.databaseUrl),
     },
     'server ready',

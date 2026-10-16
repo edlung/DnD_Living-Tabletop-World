@@ -70,3 +70,47 @@ Out of scope for the alpha: a compromised host or database, distributed denial o
   generic command route refuses it, so a release always revokes the player's sessions first.
 - `AUTH_MODE=disabled` stays the production default; invitation mode requires `PUBLIC_ORIGIN`.
   Details: `docs/STAGE_340_DESIGN.md`, "Implementation notes (part A, server)".
+
+## Amendments
+
+- 2026-10-16 (Stage 340 part A, security review): seven findings fixed; the contract is in
+  `docs/STAGE_340_DESIGN.md` ("Security review fixes").
+  1. **No cross-site sign-out.** `GET`/`HEAD /auth/session` joins the live stream under the origin
+     check (`Origin` = `PUBLIC_ORIGIN`, or without one `Sec-Fetch-Site: same-origin`; otherwise the
+     fixed 403, which never touches the cookie). A 401 of `/auth/session` or `/auth/sign-out`
+     clears the cookie only when the request presented exactly one `ltw_session` cookie and it
+     opened nothing: a request without one (a cross-site navigation never carries the strict
+     cookie) or with two (ambiguous) gets no `Set-Cookie`. The only response that sets the cookie
+     is a successful redeem, a POST under the origin check.
+  2. **Limits key on the client, in bounded memory.** `LTW_TRUST_PROXY` (`none`, or the reverse
+     proxy's addresses or CIDR ranges, never `/0`) is Fastify's `trustProxy`; invitation mode
+     refuses to start without it. Redeem limits key on the client group: an IPv4 address
+     (IPv4-mapped IPv6 included) or an IPv6 /64; anything else is one shared group. Every limit is
+     a time-bucketed counter: twelve slices per window, an event counted for at least the window
+     and at most one slice longer (never more permissive than the limit), at most 10,000 keys per
+     table, O(slices) per call with amortized O(1) eviction from the oldest end, never a sweep. A
+     new client the full tables cannot follow is refused a redeem (fail closed); known clients,
+     signed-in requests and per-actor limits carry on. A process-wide budget of 60 refused (or
+     still undecided) redeems per minute holds every redeem for the rest of the minute. Evidence
+     rows of refused and limited redeems are written at most 30 a minute (a limited client at most
+     once a minute); successful redeems always.
+  3. **The DM's sessions can be revoked.** Three commands of `pnpm auth:operator`: `revoke-dm`
+     (`--campaign`, `--authorization-source`) revokes the DM's sessions in that campaign and its
+     open DM invitations; `revoke-actor` (`--actor`, `--authorization-source`) signs one actor
+     out everywhere (sessions and open invitations in every campaign); `sessions` (`--campaign`)
+     lists live sessions (session ID, actor, role, characters, times; never a token or hash). A
+     revocation's authorization source is echoed in its one JSON output line, the operator's
+     record (not stored: no schema change).
+  4. **A redeem never silently replaces a session.** A browser holding a live session whose actor
+     is still a member gets 409 `CONFLICT` (fixed body), the invitation unused, unless the body
+     confirms with `replaceSession: true`; the join page (part B) asks the person first. A 409
+     is neither a failure nor a refused guess.
+  5. **AI ranking is limited.** A context request naming `ranking` takes the actor's
+     expensive-request slot right after authentication, like every other AI route.
+  6. **No client address in logs.** Log serializers (Fastify's request lines included) write a
+     request as its method and URL, a response as its status: never the client's address or port,
+     a header or a cookie; address fields are redacted as a safety net.
+  7. **Development personas on loopback only.** `dev-personas` is refused, by the configuration
+     and again by the composition, under `NODE_ENV=production`, with `PUBLIC_ORIGIN` set, or when
+     `HTTP_HOST` is not loopback (`localhost`, 127.0.0.0/8, `::1`), chosen or defaulted: a
+     forgotten `NODE_ENV` on a public host fails closed.

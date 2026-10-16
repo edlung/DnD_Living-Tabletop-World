@@ -1,11 +1,11 @@
 import { rankContextActions, type RelevanceDeps } from '@ltw/ai';
 import { campaignIdSchema, entityIdSchema, type EntityContextResponse } from '@ltw/contracts';
 import { entityContext } from '@ltw/context';
-import type { FastifyInstance } from 'fastify';
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
 import { sendError } from '../errors.ts';
-import { withPerspective, type RouteDependencies } from '../request-context.ts';
+import { expensive, withPerspective, type RouteDependencies } from '../request-context.ts';
 
 /**
  * Entity context for an acting character (docs/adr/0012-context-engine.md,
@@ -17,7 +17,10 @@ import { withPerspective, type RouteDependencies } from '../request-context.ts';
  * `ranking=ai` asks the relevance ranker to re-rate the legal actions within
  * a time budget (docs/adr/0021-ai-relevance.md); without it, or on any
  * failure, the deterministic context is returned unchanged. Logs carry the
- * ranking's status and trace ID only.
+ * ranking's status and trace ID only. A request that names a ranking is AI
+ * work: in invitation mode it takes the actor's expensive-request slot right
+ * after authentication, like every AI route (docs/adr/0036-production-sign-in.md,
+ * amendment 2026-10-16).
  */
 export interface ContextRouteDependencies extends RouteDependencies {
   readonly ai: RelevanceDeps;
@@ -28,8 +31,12 @@ const contextQuery = z
   .object({ perspective: z.string(), ranking: z.literal('ai').optional() })
   .strict();
 
+/** Any `ranking` in the raw query may reach the ranker (only `ai` is valid; the rest are 400). */
+const namesRanking = (request: FastifyRequest): boolean =>
+  (request.query as Record<string, unknown> | null)?.['ranking'] !== undefined;
+
 export function registerContextRoutes(app: FastifyInstance, deps: ContextRouteDependencies): void {
-  app.get('/campaigns/:campaignId/entities/:entityId/context', async (request, reply) => {
+  const answer = async (request: FastifyRequest, reply: FastifyReply) => {
     const ready = await withPerspective(request, reply, deps, {
       params: entityParams,
       query: contextQuery,
@@ -69,5 +76,6 @@ export function registerContextRoutes(app: FastifyInstance, deps: ContextRouteDe
       },
     };
     return reply.send(body);
-  });
+  };
+  app.get('/campaigns/:campaignId/entities/:entityId/context', expensive(answer, namesRanking));
 }

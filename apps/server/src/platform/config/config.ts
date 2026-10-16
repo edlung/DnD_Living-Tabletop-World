@@ -2,6 +2,7 @@ import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
 
+import { isLoopbackHost, parseTrustedProxies } from '../net/addresses.ts';
 import { parseRoutes, routeIssues, type RouteProvider } from './ai-routes.ts';
 
 /**
@@ -16,7 +17,8 @@ export type LogLevel = 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace' |
 
 /**
  * `invitations`: production sign-in, session cookies only (docs/adr/0036-production-sign-in.md);
- * `dev-personas`: bearer persona tokens (development and test, refused in production);
+ * `dev-personas`: bearer persona tokens (development and test on a loopback `HTTP_HOST` without
+ * `PUBLIC_ORIGIN`; refused otherwise and in production);
  * `disabled`: nobody signs in (the production default until a mode is chosen).
  */
 export type AuthMode = 'invitations' | 'dev-personas' | 'disabled';
@@ -27,6 +29,12 @@ export interface AppConfig {
   readonly http: {
     readonly host: string;
     readonly port: number;
+    /**
+     * `LTW_TRUST_PROXY`: the reverse proxy's addresses or ranges, whose `X-Forwarded-For` names
+     * the client (Fastify `trustProxy`); empty trusts none. Required in invitations mode, where
+     * request limits key on the client (docs/adr/0036-production-sign-in.md, amendment 2026-10-16).
+     */
+    readonly trustedProxies: readonly string[];
   };
   readonly databaseUrl: string;
   /** docs/adr/0009-http-api-and-dev-authentication.md, docs/adr/0036-production-sign-in.md */
@@ -159,6 +167,7 @@ const envSchema = z.object({
     z.enum(['invitations', 'dev-personas', 'disabled']).optional(),
   ),
   PUBLIC_ORIGIN: z.preprocess(emptyAsUndefined, z.string().max(200).optional()),
+  LTW_TRUST_PROXY: z.preprocess(emptyAsUndefined, z.string().max(1_000).optional()),
   DEV_PERSONAS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
   LTW_QUESTS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
   ANTHROPIC_API_KEY: z.preprocess(emptyAsUndefined, z.string().trim().min(1).optional()),
@@ -259,8 +268,9 @@ export function loadConfig(env: Env = process.env): AppConfig {
 
   const authMode: AuthMode =
     values.AUTH_MODE ?? (values.NODE_ENV === 'production' ? 'disabled' : 'dev-personas');
-  if (values.NODE_ENV === 'production' && authMode === 'dev-personas') {
-    issues.push('AUTH_MODE: dev-personas is not allowed in production');
+  if (authMode === 'dev-personas') {
+    const issue = personasIssue(values);
+    if (issue !== null) issues.push(`AUTH_MODE: ${issue}`);
   }
   const publicOrigin = values.PUBLIC_ORIGIN;
   if (publicOrigin !== undefined) {
@@ -268,6 +278,21 @@ export function loadConfig(env: Env = process.env): AppConfig {
     if (issue !== null) issues.push(`PUBLIC_ORIGIN: ${issue}`);
   } else if (authMode === 'invitations') {
     issues.push('PUBLIC_ORIGIN: required in invitations mode');
+  }
+
+  let trustedProxies: readonly string[] = [];
+  if (values.LTW_TRUST_PROXY !== undefined) {
+    const parsed = parseTrustedProxies(values.LTW_TRUST_PROXY);
+    if (parsed === null) {
+      issues.push(
+        'LTW_TRUST_PROXY: must be none, or proxy addresses or CIDR ranges separated by commas (no /0)',
+      );
+    } else {
+      trustedProxies = parsed;
+    }
+  } else if (authMode === 'invitations') {
+    // Limits key on the client: an unset value must not silently count the proxy for everyone.
+    issues.push('LTW_TRUST_PROXY: required in invitations mode (none, or the reverse proxy)');
   }
 
   const routes = parseRoutes(values.LTW_AI_ROUTES, issues);
@@ -285,7 +310,11 @@ export function loadConfig(env: Env = process.env): AppConfig {
   return Object.freeze({
     nodeEnv: values.NODE_ENV,
     logLevel: values.LOG_LEVEL ?? DEFAULT_LOG_LEVEL[values.NODE_ENV],
-    http: Object.freeze({ host: values.HTTP_HOST, port: values.HTTP_PORT }),
+    http: Object.freeze({
+      host: values.HTTP_HOST,
+      port: values.HTTP_PORT,
+      trustedProxies: Object.freeze([...trustedProxies]),
+    }),
     databaseUrl,
     auth: Object.freeze({
       mode: authMode,
@@ -321,6 +350,26 @@ export function loadConfig(env: Env = process.env): AppConfig {
       generationTimeoutMs: values.LTW_ASSET_TIMEOUT_MS,
     }),
   });
+}
+
+/**
+ * Why development personas cannot run with these settings, or null. Personas sign anyone in as
+ * anyone, so they run only on a development server that listens on loopback and has no public
+ * origin: a forgotten `NODE_ENV` on a public host fails closed (ADR 0036, amendment 2026-10-16).
+ */
+function personasIssue(values: {
+  readonly NODE_ENV: NodeEnv;
+  readonly PUBLIC_ORIGIN?: string | undefined;
+  readonly HTTP_HOST: string;
+}): string | null {
+  if (values.NODE_ENV === 'production') return 'dev-personas is not allowed in production';
+  if (values.PUBLIC_ORIGIN !== undefined) {
+    return 'dev-personas is refused with PUBLIC_ORIGIN (choose invitations or disabled)';
+  }
+  if (!isLoopbackHost(values.HTTP_HOST)) {
+    return 'dev-personas is refused unless HTTP_HOST is loopback only (choose invitations or disabled)';
+  }
+  return null;
 }
 
 const LOOPBACK = new Set(['localhost', '127.0.0.1', '[::1]']);

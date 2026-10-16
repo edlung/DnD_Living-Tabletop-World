@@ -318,20 +318,26 @@ contracts).
 Stage 340 part A introduction evidence (ADR 0036; `docs/STAGE_340_DESIGN.md` with its part A
 implementation notes; baseline `e2c4bca`; acceptance pending): **new surfaces for Gate 06**, row
 340 of the alpha-phase table. Invitation mode only (`AUTH_MODE=invitations`); development personas
-behave as before and stay refused in production.
-- **`POST /auth/redeem`** (`apps/server/src/auth/auth-routes.ts`): `{token}` from a link's
-  fragment; limits first (10/min per address, 5 failures per token prefix, 15 min lockout after 20
-  failures/hour; fixed 429), then 400 for a malformed body, then one fixed 401 for every
-  well-formed failure (unknown, used, revoked, expired, the seat no longer free). A player's seat
+behave as before and stay refused in production. Revised by the part A security review
+(2026-10-16; ADR 0036 amendment, `docs/STAGE_340_DESIGN.md` "Security review fixes").
+- **`POST /auth/redeem`** (`apps/server/src/auth/auth-routes.ts`): `{token, replaceSession?}` from a
+  link's fragment; limits first (10/min per client, 5 failures per token prefix, 15 min lockout
+  after 20 failures/hour, 60 refused redeems/min across all clients, a new client refused when the
+  tables are full; fixed 429), then 400 for a malformed body, then 409 (fixed body, invitation
+  unused) for a browser whose session is live and still a member unless `replaceSession: true`,
+  then one fixed 401 for every well-formed failure (unknown, used, revoked, expired, the seat no
+  longer free). A player's seat
   is `AssignCharacter` by the system actor `sign-in` under `invite:<invitationId>` (actor stored
   first, so a retry converges); marking the invitation used, creating the session and revoking
   the seat's other open invitations are one transaction; a redeem whose invitation is revoked or
   expires while it takes the seat undoes that assignment. Answers `{campaignId}` and sets
   `ltw_session` (`Path=/api; HttpOnly; SameSite=Strict; Max-Age=1209600`, `Secure` except http
-  loopback); a session the browser held before is revoked.
-- **`GET /auth/session`**: `{campaignId}` only while the session is live and its actor still a
-  member, else 401 with the cookie cleared. **`POST /auth/sign-out`**: revokes the session, clears
-  the cookie (204), 401 without a live session.
+  loopback); a session the browser held before (confirmed away, or dead) is revoked.
+- **`GET`/`HEAD /auth/session`** (origin-checked like the live stream): `{campaignId}` only while
+  the session is live and its actor still a member, else 401. **`POST /auth/sign-out`**: revokes
+  the session, clears the cookie (204), 401 without a live session. A 401 clears the cookie only
+  when the request presented exactly one `ltw_session` cookie that opened nothing: no request
+  another site can cause signs a browser out.
 - **DM only, ADR 0009 order (401, 400, then the 404 of a missing campaign for anyone but this
   campaign's DM):** `POST /campaigns/:campaignId/invitations {characterId, expiresHours?}` (404
   for a non-character, 409 for a taken seat, 20/hour per DM; the link is shown once), `GET
@@ -346,12 +352,26 @@ behave as before and stay refused in production.
   non-member 404 — even where the same actor is the DM. Unknown, non-member and released
   campaigns answer identically; revoked, expired and forged sessions answer the 401 of no cookie.
 - **Origin and headers** (`apps/server/src/http/security.ts`): before anything else, a non-GET
-  request needs `Origin` = `PUBLIC_ORIGIN`, the live stream that `Origin` or, without one,
-  `Sec-Fetch-Site: same-origin`; fixed 403 otherwise. Every response (and the stream) carries the
+  request needs `Origin` = `PUBLIC_ORIGIN`, the live stream and `/auth/session` that `Origin` or,
+  without one, `Sec-Fetch-Site: same-origin`; fixed 403 otherwise. Every response (and the stream) carries the
   design's CSP, `Referrer-Policy: no-referrer`, `nosniff`; `Vary: Cookie`. JSON bodies only.
-- **Limits on expensive routes**: DM intents, NPC dialogue, Chronicle generation and
-  `RequestAsset` commands, 20/min per actor with 2 in flight (released when the work ends),
-  answered 429 right after authentication; the refused request starts no AI request.
+- **Limits on expensive routes**: DM intents, NPC dialogue, Chronicle generation, context requests
+  naming `ranking` (AI ranking) and `RequestAsset` commands, 20/min per actor with 2 in flight
+  (released when the work ends), answered 429 right after authentication; the refused request
+  starts no AI request.
+- **Limit mechanics** (`apps/server/src/auth/limits.ts`, `window-counter.ts`,
+  `apps/server/src/platform/net/addresses.ts`): clients are the address behind the trusted proxy
+  (`LTW_TRUST_PROXY`, required in invitation mode; Fastify `trustProxy`), grouped as an IPv4
+  address or an IPv6 /64; every table is a bounded time-bucketed counter (never more permissive
+  than its limit, at most 10,000 keys, no sweep); refused and limited redeems are written as
+  evidence at most 30 a minute.
+- **Operator CLI** (`apps/server/src/auth/operator.ts`): `revoke-dm` (the DM's sessions in a
+  campaign and its open DM invitations), `revoke-actor` (one actor's sessions and open invitations
+  everywhere), both with `--authorization-source` echoed in the output; `sessions` (live sessions
+  without token or hash); `dm-invite` as before.
+- **Configuration and logs**: development personas refused in production, with `PUBLIC_ORIGIN`, or
+  off a loopback `HTTP_HOST` (`apps/server/src/platform/config/config.ts`, `auth/composition.ts`);
+  log lines never carry a client address or port, a header or a cookie (`LOG_SERIALIZERS`).
 - **Live stream**: injected views carry the subscriber's cookie; sign-out, revocation and expiry
   close it (`unauthenticated`) within one cycle; a seat released behind a live session closes it
   (`gone`).
@@ -365,10 +385,15 @@ behave as before and stay refused in production.
 - **Table** `0010_auth.sql`: hashes only, format checks, one-way update triggers, invitations never
   deleted; redeem evidence keyed by an HMAC under a process-local key, pruned after 7 days.
 - **Deterministic evidence**: `apps/server/src/auth/sign-in.test.ts`, `member-routes.test.ts`,
-  `sign-in-limits.test.ts`, `limits.test.ts`, `browser-checks.test.ts`, `sign-in-live.test.ts`,
-  `sign-in-logs.test.ts` (captured logger at trace level, AI traces, evidence rows, live frames and
-  response bodies hold no token, hash or cookie), `modes.test.ts`,
-  `credentials.integration.test.ts`; `packages/domain/src/knowledge/release.test.ts` (decide,
+  `sign-in-limits.test.ts` (proxy, /64 grouping, refusal budget, evidence cap, full tables, AI
+  ranking), `limits.test.ts` (rotating addresses: bounded tables and cheap calls),
+  `window-counter.test.ts` (never more permissive than its limit), `sign-in-cookies.test.ts`
+  (no cross-site sign-out, clearing rule, redeem confirmation), `browser-checks.test.ts`,
+  `sign-in-live.test.ts`, `sign-in-logs.test.ts` (captured logger at trace level, AI traces,
+  evidence rows, live frames and response bodies hold no token, hash or cookie; no line holds a
+  client address, direct or forwarded, IPv4 or IPv6), `modes.test.ts` (configuration
+  combinations), `operator.test.ts`, `apps/server/src/platform/net/addresses.test.ts`,
+  `credentials.integration.test.ts` (operator commands on PostgreSQL); `packages/domain/src/knowledge/release.test.ts` (decide,
   fold, replay from stored rows, undo order, strictly reverse undo, randomized seats with party
   memories under the re-decision oracle), `kernel/replay.test.ts` and `undo-preview.test.ts` with
   releases in the random command generator. Every reviewed suite passes unchanged except

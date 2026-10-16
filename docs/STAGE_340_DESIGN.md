@@ -31,7 +31,8 @@ alpha: a compromised server host or database; denial of service beyond per-proce
 
 - **Operator bootstrap**: `pnpm auth:operator dm-invite --campaign <id> --expires-hours <n>` prints
   one DM invitation link for the campaign's `dmActorId` (operator action; the only way to obtain
-  DM access in production).
+  DM access in production). The operator also revokes the DM (`revoke-dm`), signs one actor out
+  everywhere (`revoke-actor`) and lists live sessions (`sessions`); see "Security review fixes".
 - **DM invites a player**: DM-only `POST /campaigns/:id/invitations {characterId, expiresHours}`
   for an unassigned character → link shown once. `GET /campaigns/:id/invitations` lists pending
   and used invitations and members (no tokens). `POST …/invitations/:invitationId/revoke`.
@@ -41,9 +42,11 @@ alpha: a compromised server host or database; denial of service beyond per-proce
   `invite:<invitationId>` (membership changes only through World Engine commands); marks used and
   creates the session in the same database transaction as far as the stores allow (the World
   Engine command is idempotent by command ID, so a retried redeem converges). Responds with the
-  campaign ID; sets the cookie.
-- **Session**: `GET /auth/session` returns `{campaignId}` or 401; `POST /auth/sign-out` revokes
-  the session and clears the cookie.
+  campaign ID; sets the cookie. A browser already signed in gets 409 until it confirms with
+  `{token, replaceSession: true}` (the join page asks the person first).
+- **Session**: `GET /auth/session` (same-origin only) returns `{campaignId}` or 401;
+  `POST /auth/sign-out` revokes the session and clears the cookie. A 401 clears the cookie only
+  when the request presented one that opened nothing.
 - **Revocation**: DM-only `POST /campaigns/:id/members/:characterId/revoke` revokes every session
   of the actor controlling that character and every open invitation for it, and submits the new
   kernel command `ReleaseCharacter {characterId}` (DM only; event `CharacterReleased` removes the
@@ -57,17 +60,21 @@ alpha: a compromised server host or database; denial of service beyond per-proce
 `AUTH_MODE=invitations` (production) accepts only the session cookie; `dev-personas` keeps bearer
 personas for development and tests and stays refused in production. The ADR 0009 order is
 unchanged (401 → 400 → 404 → 403). CSRF: `SameSite=Strict`, JSON-only bodies, and for every
-non-GET request and the live stream the `Origin` header must equal the configured public origin
-(`PUBLIC_ORIGIN`). The live stream's fingerprint injections forward the subscriber's cookie.
+non-GET request, the live stream and `GET /auth/session` the `Origin` header must equal the
+configured public origin (`PUBLIC_ORIGIN`). The live stream's fingerprint injections forward the
+subscriber's cookie. Development personas run only on a loopback `HTTP_HOST` without
+`PUBLIC_ORIGIN`, never in production.
 
 ## Limits
 
-In-memory per process (single instance in the alpha): redeem 10/min per IP and 5 failures per
-token prefix, lockout 15 min after 20 failures per IP per hour; AI routes (intents, NPC dialogue,
-Chronicle generation) and image requests 20/min per actor with at most 2 in flight; invitations
-20/hour per DM; body 64 KiB (unchanged); live subscriptions as Stage 310. Responses for limits are
-429 with a fixed body. Campaigns and members cannot be enumerated: unknown campaign, non-member and
-revoked look identical (404 after authentication, 401 before).
+In-memory per process (single instance in the alpha), in bounded time-bucketed counters: redeem
+10/min per client (the address the trusted proxy names; an IPv6 /64 is one client) and 5 failures
+per token prefix, lockout 15 min after 20 failures per client per hour, 60 refused redeems per
+minute across every client; AI routes (intents, NPC dialogue, Chronicle generation, AI ranking of
+a context) and image requests 20/min per actor with at most 2 in flight; invitations 20/hour per
+DM; body 64 KiB (unchanged); live subscriptions as Stage 310. Responses for limits are 429 with a
+fixed body. Campaigns and members cannot be enumerated: unknown campaign, non-member and revoked
+look identical (404 after authentication, 401 before).
 
 ## Browser
 
@@ -75,16 +82,18 @@ The client stops sending `Authorization` in invitation mode and uses `credential
 A strict Content-Security-Policy (`default-src 'self'; img-src 'self' blob: data:;
 connect-src 'self'; frame-ancestors 'none'; base-uri 'none'`) and `Referrer-Policy: no-referrer`
 come from the server (and the proxy in Stage 350). The join page reads the fragment, posts it,
-replaces the history entry, and shows a fixed message on failure. A signed-out or revoked session
-returns to a "you are signed out" screen.
+replaces the history entry, and shows a fixed message on failure; on 409 it asks the person
+whether to replace the sign-in this browser holds and posts again with `replaceSession: true`
+only after a yes. A signed-out or revoked session returns to a "you are signed out" screen.
 
 ## Evidence
 
 `pnpm validate`. HTTP tests: forged, expired, revoked, used, replayed and cross-campaign
 invitations and sessions fail closed; the live stream closes within one cycle after sign-out or
 revocation; unknown/non-member/revoked campaigns are indistinguishable; limits return 429; no
-token in logs (captured logger), traces or error bodies; CSRF: missing or foreign `Origin` refused;
-dev personas refused when `NODE_ENV=production`. Kernel: `ReleaseCharacter` decide/evolve/undo/
+token, cookie or client address in logs (captured logger), traces or error bodies; CSRF: missing
+or foreign `Origin` refused, no cross-site sign-out; dev personas refused in production, with a
+public origin or off loopback; limits bounded under rotating addresses. Kernel: `ReleaseCharacter` decide/evolve/undo/
 replay tests. Browser: DM invites, player joins through the link, plays, DM revokes, player is
 signed out live. The completion report lists every new route for Gate 06.
 
@@ -103,20 +112,66 @@ Where the server refines or departs from the text above, and why (recorded for p
   precedes the non-member 404 (ADR 0009 order); this holds even where its actor is that
   campaign's DM too.
 - **Redeem.** A malformed body is 400 (ADR 0009); every well-formed failure is the same 401.
-  Redeeming in a browser that holds a session revokes that session. Taking a seat revokes the
+  Redeeming in a browser that holds a session revokes that session once the browser confirmed
+  the replacement (or the session no longer worked). Taking a seat revokes the
   character's other open invitations in the same transaction; a redeem whose invitation is revoked
   or expires while it takes the seat undoes that assignment (fail closed). Inviting for a taken
   seat is 409, for anything but a character 404.
-- **`GET /auth/session`** answers 401 (and clears the cookie) when the session's actor is no longer
-  a member, so a client never treats a seatless session as signed in.
+- **`GET /auth/session`** answers 401 (and clears the cookie it was given) when the session's actor
+  is no longer a member, so a client never treats a seatless session as signed in.
 - **Revocation.** The generic command route refuses `ReleaseCharacter`: a release always goes
   through `POST …/members/:characterId/revoke`, which revokes sessions first. Undoing a release is
   allowed only while no later command stands (later decisions may rest on the empty seat, which no
   footprint records) and restores the roster in assignment order.
 - **Limits** answer right after authentication on AI routes and after the DM check on invitations;
-  the per-address limits read `request.ip`, so Stage 350 must make the proxy pass the client
-  address (Fastify `trustProxy` for the proxy only) or they count the proxy.
+  the per-client limits read `request.ip` behind the proxy `LTW_TRUST_PROXY` names (below).
 - **Evidence.** `ltw_auth_attempts` keys addresses and token prefixes by an HMAC whose key lives in
   the process only; rows are pruned after 7 days, dead sessions 30 days after expiry.
 - **Headers.** `Vary: Cookie` in invitation mode (`Authorization` with personas); a route's
   stricter CSP (asset content) is kept.
+
+## Security review fixes (part A, 2026-10-16)
+
+The review of part A found seven issues; ADR 0036's amendment of 2026-10-16 records the decisions.
+What part B and Stage 350 build on:
+
+- **Cookie hygiene.** `GET`/`HEAD /auth/session` needs `Origin` = `PUBLIC_ORIGIN` or
+  `Sec-Fetch-Site: same-origin` (a plain same-origin `fetch` sends the latter); anything else is the
+  fixed 403 without `Set-Cookie`. A 401 of `/auth/session` or `/auth/sign-out` carries a clearing
+  `Set-Cookie` only when the request presented exactly one `ltw_session` cookie and it opened
+  nothing, so no other site can sign a browser out.
+- **Redeem confirmation (part B).** `POST /auth/redeem {token}` from a browser whose session is
+  live and still a member answers 409 `{"error":{"code":"CONFLICT","message":"Conflict"}}`; the
+  invitation stays unused and the session untouched. The join page then shows the campaign of
+  `GET /auth/session`, asks whether to replace that sign-in, and only after a yes posts
+  `{token, replaceSession: true}`; the old session is revoked when the new one is created.
+  `replaceSession` must be a boolean (400 otherwise); `false` is no confirmation.
+- **Trusted proxy (Stage 350).** `LTW_TRUST_PROXY` is required in invitation mode: `none` when the
+  server faces clients directly, or the reverse proxy's addresses or CIDR ranges (comma-separated;
+  `/0` refused). Only a request whose peer is one of them has its `X-Forwarded-For` read; the proxy
+  must append the client address (Caddy does) and the server must be reachable only through it.
+  Without it every client behind the proxy shares one limit.
+- **Limits.** Clients are grouped (an IPv4 address, IPv4-mapped included; an IPv6 /64; anything
+  else is the one group `unknown`). Every table is a `WindowCounter` (`src/auth/window-counter.ts`):
+  twelve slices per window, never more permissive than its limit, released at most one slice
+  (a twelfth of the window) after the window, at most 10,000 keys, no sweeps. At the cap a new
+  client's redeem is refused (429); tracked clients, signed-in requests and per-actor limits are
+  unaffected. 60 refused or undecided redeems a minute across every client hold all redeems until
+  the minute passes. Evidence rows: successful redeems always, refused and limited ones at most 30
+  a minute (a limited client once a minute).
+- **Operator (Stage 350 runbook "revoke a user").** Three commands of `pnpm auth:operator`:
+  `revoke-dm` (`--campaign <id>`, `--authorization-source <reference>`) revokes the DM's sessions
+  in that campaign and its open DM invitations, so the DM's new `dm-invite` comes after it;
+  `revoke-actor` (`--actor <actorId>`, `--authorization-source <reference>`) revokes that actor's
+  sessions and open invitations in every campaign; `sessions` (`--campaign <id>`) lists live
+  sessions (session ID, actor, role, characters, created, expires, last seen; never a token or
+  hash). The authorization source (who asked, where; 1-200 printable characters) is echoed in the
+  one JSON output line. A player is still revoked by the DM's member route, which also frees the
+  seat.
+- **AI ranking.** `GET …/entities/:entityId/context` with any `ranking` parameter takes the actor's
+  AI slot (20/min, 2 in flight) right after authentication; without one it is not limited.
+- **Logs.** Request lines carry method, URL, status and request ID; never an address, port,
+  header or cookie (`LOG_SERIALIZERS` in `src/platform/logging/logger.ts`).
+- **Development personas.** Refused (startup error naming `AUTH_MODE`) under `NODE_ENV=production`,
+  with `PUBLIC_ORIGIN` set, or with a non-loopback `HTTP_HOST`, whether `AUTH_MODE` was chosen or
+  defaulted; the composition refuses them again off loopback.
