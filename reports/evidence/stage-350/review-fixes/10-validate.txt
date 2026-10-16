@@ -1,0 +1,126 @@
+### pnpm validate on the final tree (the review fixes), under the shared lock, on an own database (2026-10-16T02:47:10Z-2026-10-16T02:50:01Z)
+$ until mkdir <scratchpad>/validate.lock 2>/dev/null; do sleep 30; done; (cd <worktree> && DATABASE_URL=postgres://ltw:<development default>@127.0.0.1:54329/ltw_stage350 pnpm validate); rc=$?; rmdir <scratchpad>/validate.lock; exit $rc
+$ pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run context-budget && pnpm run test && pnpm run build && pnpm run db:migrate && pnpm run seed:ravenford && pnpm run test:integration && pnpm run test:e2e
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ node --max-old-space-size=4096 node_modules/eslint/bin/eslint.js . --max-warnings=0
+$ tsc -p tsconfig.json
+$ node scripts/context-budget/cli.ts
+context-budget: 853 active files checked, 0 over target, 0 over hard limit
+$ vitest run --project unit
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350
+
+
+ Test Files  248 passed (248)
+      Tests  2634 passed (2634)
+   Start at  04:48:14
+   Duration  17.87s (transform 10.44s, setup 2.41s, import 76.38s, tests 71.09s, environment 22ms)
+
+$ tsc -b tsconfig.build.json && pnpm --filter @ltw/web run build
+$ vite build
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 207 modules transformed.
+rendering chunks...
+computing gzip size...
+build/index.html                   0.50 kB │ gzip:   0.30 kB
+build/assets/index-CSeyxMGq.css   24.82 kB │ gzip:   6.44 kB
+build/assets/index-D6Oo2qlz.js   475.19 kB │ gzip: 143.07 kB
+
+✓ built in 113ms
+$ pnpm --filter @ltw/server run db:migrate
+$ node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/platform/db/migrate-cli.js
+../../.env not found. Continuing without it.
+../../.env.local not found. Continuing without it.
+{"level":"info","time":"2026-10-16T02:48:35.223Z","service":"ltw-migrate","database":"postgres://127.0.0.1:54329/ltw_stage350","msg":"connecting"}
+{"level":"info","time":"2026-10-16T02:48:35.262Z","service":"ltw-migrate","applied":[],"alreadyApplied":10,"msg":"migrations complete"}
+$ pnpm --filter @ltw/server run seed:ravenford
+$ node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/world-engine/seed-ravenford-cli.js
+../../.env not found. Continuing without it.
+../../.env.local not found. Continuing without it.
+{"level":"info","time":"2026-10-16T02:48:36.040Z","service":"ltw-seed","database":"postgres://127.0.0.1:54329/ltw_stage350","msg":"seeding Ravenford"}
+{"level":"info","time":"2026-10-16T02:48:36.353Z","service":"ltw-seed","campaignId":"ravenford","accepted":0,"duplicate":91,"version":100,"entities":25,"worldTime":"Day 1 10:00:00","msg":"Ravenford seeded"}
+ravenford: 0 accepted, 91 already present; version 100, 25 entities
+$ vitest run --project integration
+
+ RUN  v4.1.11 /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-350
+
+
+ Test Files  38 passed (38)
+      Tests  210 passed (210)
+   Start at  04:48:36
+   Duration  34.76s (transform 5.54s, setup 385ms, import 14.59s, tests 248.20s, environment 3ms)
+
+$ playwright test
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+
+Running 59 tests using 2 workers
+
+  ✓   2 [chromium] › tests/e2e/ai-feedback.spec.ts:37:1 › a player waits for a reply and is told honestly that no words came (1.2s)
+  ✓   1 [chromium] › tests/e2e/ai-feedback.spec.ts:55:1 › the DM sees the NPC replying, and a late reply never lands on another listener (1.8s)
+  ✓   3 [chromium] › tests/e2e/ai-feedback.spec.ts:96:1 › without a recorded request the DM gets no proposal source, and the chapter is the plain record (614ms)
+  ✓   4 [chromium] › tests/e2e/ai-feedback.spec.ts:146:1 › without a recorded request a player still talks, with no reply and no promise (661ms)
+  ✓   6 [chromium] › tests/e2e/authoring-rejections.spec.ts:9:1 › a stale confirmation is refused, reloaded, and never looks committed (833ms)
+  ✓   5 [chromium] › tests/e2e/authoring-flow.spec.ts:15:1 › Tomas Reed goes from a sentence to a previewed, edited, confirmed, native NPC (1.8s)
+  ✓   7 [chromium] › tests/e2e/authoring-rejections.spec.ts:46:1 › an invalid proposal cannot be confirmed, forced, or mistaken for a world entity (708ms)
+  ✓   8 [chromium] › tests/e2e/authoring-rejections.spec.ts:74:1 › a continuity warning must be accepted before the proposal can be confirmed (954ms)
+  ✓   9 [chromium] › tests/e2e/authoring-undo.spec.ts:21:1 › an untouched authoring commit is undone as one safe unit (933ms)
+  ✓  10 [chromium] › tests/e2e/authoring-undo.spec.ts:41:1 › undo is refused while the story depends on him, and works after the dependents are undone (1.2s)
+  ✓  11 [chromium] › tests/e2e/combat-area.spec.ts:17:1 › Fireball previews who it affects, warns about an ally, and still casts when chosen (881ms)
+  ✓  12 [chromium] › tests/e2e/combat-area.spec.ts:53:1 › Fireball centered away from every ally shows no warning (612ms)
+  ✓  14 [chromium] › tests/e2e/combat-reactions.spec.ts:18:1 › a valid Counterspell is answered by the domain, spends one slot, and closes the window (648ms)
+  ✓  15 [chromium] › tests/e2e/combat-reactions.spec.ts:43:1 › Ignore lets the spell resolve without spending a slot (606ms)
+  ✓  13 [chromium] › tests/e2e/combat-lifecycle.spec.ts:15:1 › the DM starts, runs, and ends an encounter and the player returns to exploration (1.9s)
+  ✓  17 [chromium] › tests/e2e/combat-reactions.spec.ts:94:1 › a duplicate or repeated answer never spends a second slot (569ms)
+  ✓  16 [chromium] › tests/e2e/combat-reactions.spec.ts:57:1 › a window the DM closes expires for the player, and the stale answer is refused (1.3s)
+  ✓  18 [chromium] › tests/e2e/combat-turn.spec.ts:16:1 › the battlefield shows terrain, cover, and tokens, and a turn moves, attacks, and ends (1.1s)
+  ✓  19 [chromium] › tests/e2e/details-and-scenes.spec.ts:11:1 › full authorized character sheet remains reachable from the selected character (831ms)
+  ✓  20 [chromium] › tests/e2e/details-and-scenes.spec.ts:39:1 › real empty scene and failed scene load can recover (695ms)
+  ✓  21 [chromium] › tests/e2e/details-and-scenes.spec.ts:60:1 › late detail response cannot replace the newer selection (700ms)
+  ✓  22 [chromium] › tests/e2e/details-and-scenes.spec.ts:83:1 › DM can read an NPC sheet while the player cannot request it through the detail flow (997ms)
+  ✓  23 [chromium] › tests/e2e/dm-history.spec.ts:27:1 › an authoring commit is listed after a reload, and its undo works from there (1.4s)
+  ✓  24 [chromium] › tests/e2e/dm-history.spec.ts:57:1 › the history never appears for a player or in a lower perspective (4.5s)
+  ✓  26 [chromium] › tests/e2e/dm-tools.spec.ts:8:1 › the DM moves time and weather and the player returns to a changed Ravenford (1.4s)
+  ✓  25 [chromium] › tests/e2e/dm-history.spec.ts:114:1 › older pages stay open with their rows while new entries arrive (5.1s)
+  ✓  28 [chromium] › tests/e2e/dm-tools.spec.ts:73:1 › the DM performs Tomas for Elowen and the words are not recorded as fact (908ms)
+  ✓  27 [chromium] › tests/e2e/dm-tools.spec.ts:37:1 › a written chapter opens for the player with cited entries and a flashback (1.3s)
+  ✓  29 [chromium] › tests/e2e/dm-tools.spec.ts:121:1 › refusals and technical words are explained in plain language (773ms)
+  ✓  30 [chromium] › tests/e2e/encounter-summary.spec.ts:16:1 › player reads a real paused encounter and their reaction choices without DM spell or monster stats (661ms)
+  ✓  31 [chromium] › tests/e2e/encounter-summary.spec.ts:60:1 › DM summary exposes authorized spell and stats, then clears them for character and public previews (879ms)
+  ✓  33 [chromium] › tests/e2e/investigation-journey.spec.ts:96:1 › Mira caravan action appears only after the player learns the concept through an authorized subject (877ms)
+  ✓  34 [chromium] › tests/e2e/investigation-recovery.spec.ts:12:1 › an uncertain completed action retries the same command and records only one hypothesis (887ms)
+  ✓  32 [chromium] › tests/e2e/investigation-journey.spec.ts:13:1 › objects lead from Mira to evidence, a hypothesis, contradictory testimony, and Orin recall (2.7s)
+  ✓  35 [chromium] › tests/e2e/investigation-recovery.spec.ts:60:1 › a late accepted action cannot restore a previously selected object (808ms)
+  ✓  36 [chromium] › tests/e2e/investigation-recovery.spec.ts:84:1 › late recalled memories cannot replace the current object context (830ms)
+  ✓  37 [chromium] › tests/e2e/investigation-session.spec.ts:10:1 › an accepted private action completing after a perspective change cannot enter the public view (933ms)
+  ✓  38 [chromium] › tests/e2e/investigation-session.spec.ts:32:1 › an action accepted before logout cannot restore its session or private result (809ms)
+  ✓  39 [chromium] › tests/e2e/language-ru.spec.ts:23:1 › a Russian player finds Mira, asks about the caravan, and reads only Russian (789ms)
+  ✓  40 [chromium] › tests/e2e/language-ru.spec.ts:49:1 › a Russian DM adds Tomas Reed from a Russian sentence, previews, edits, and confirms (733ms)
+  ✓  41 [chromium] › tests/e2e/language-ru.spec.ts:78:1 › a Russian player answers a Counterspell window, and the answer is in Russian (655ms)
+  ✓  42 [chromium] › tests/e2e/language-ru.spec.ts:96:1 › a Russian DM moves time and weather, and writes a chapter that reads in Russian (981ms)
+  ✓  44 [chromium] › tests/e2e/live-combat.spec.ts:66:1 › the DM opens a Counterspell window and the player answers it without a refresh (1.9s)
+  ✓  45 [chromium] › tests/e2e/live-stand-in.spec.ts:32:1 › the DM skips an absent player’s turn, and the player’s screen follows without a refresh (1.8s)
+  ✓  43 [chromium] › tests/e2e/live-combat.spec.ts:24:1 › the turn passes from the player to the DM and back without a refresh (4.6s)
+  ✓  46 [chromium] › tests/e2e/live-stand-in.spec.ts:80:1 › the DM acts as the character with a reason; her screen follows, and the history undoes it (2.9s)
+  ✓  47 [chromium] › tests/e2e/live-stand-in.spec.ts:153:1 › the DM’s skip waits for an open reaction window, and the DM answers it for an absent player (2.8s)
+  ✓  49 [chromium] › tests/e2e/live-world.spec.ts:65:1 › a cut stream reconnects and the player catches up on what changed meanwhile (7.1s)
+  ✓  50 [chromium] › tests/e2e/perspective-choices.spec.ts:12:3 › hidden character choices disappear during delayed public preview and return only in DM (574ms)
+  ✓  51 [chromium] › tests/e2e/perspective-choices.spec.ts:12:3 › hidden character choices disappear during failed public preview and return only in DM (617ms)
+  ✓  52 [chromium] › tests/e2e/perspectives.spec.ts:12:1 › player uses real authorized scene and knowledge without receiving DM secrets (641ms)
+  ✓  48 [chromium] › tests/e2e/live-world.spec.ts:22:1 › private authoring reaches the player only once published, without a refresh (9.1s)
+  ✓  53 [chromium] › tests/e2e/perspectives.spec.ts:30:1 › DM data disappears before a delayed player preview completes (698ms)
+  ✓  54 [chromium] › tests/e2e/perspectives.spec.ts:52:1 › failed perspective downgrade stays empty and recovers without stale DM data (709ms)
+  ✓  55 [chromium] › tests/e2e/perspectives.spec.ts:84:1 › late DM response cannot overwrite an already loaded player preview (680ms)
+  ✓  56 [chromium] › tests/e2e/session-lifecycle.spec.ts:5:1 › logout and account switch remove DM data and do not persist access tokens (986ms)
+  ✓  58 [chromium] › tests/e2e/session-lifecycle.spec.ts:52:1 › narrow viewport supports keyboard entry, selection, and disclosure (713ms)
+  ✓  57 [chromium] › tests/e2e/session-lifecycle.spec.ts:29:1 › unknown campaign and unauthorized account show errors without previous campaign data (1.1s)
+  ✓  59 [chromium] › tests/e2e/session-lifecycle.spec.ts:82:1 › Back and Forward navigation require a fresh session without restoring privileged content (1.2s)
+
+  59 passed (48.9s)
+[exit 0]
+
+After this run only text under reports/ changed: this transcript, the evidence index and the
+completion report (its new section checked with prettier --check afterwards).

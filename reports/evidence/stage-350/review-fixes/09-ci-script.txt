@@ -1,0 +1,394 @@
+Stage 350 review fixes: deploy/verify/ci.sh (the CI job) on this worktree without deploy/.env; images of HEAD (dee48d3; the host scripts and compose.yaml are this tree's); ports 18080/18443 on 127.0.0.1
+
+### Dangling volumes on this machine before the run (not this run's; for the comparison after it) (2026-10-16T02:41:52Z)
+$ docker volume ls -q --filter dangling=true | wc -l | tr -d ' '
+43
+[exit 0]
+
+### deploy/verify/ci.sh (2026-10-16T02:41:52Z)
+$ LTW_CI_HTTP_PORT=18080 LTW_CI_HTTPS_PORT=18443 deploy/verify/ci.sh 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Created|Starting|Started|Waiting|Healthy|Stopping|Stopped|Removing|Removed|Running|Recreate|Recreated)|^\{|^#[0-9]+ |^ltw_(ai|asset|auth|authoring|dm|commands|schema)'; echo "ci.sh exit status: ${PIPESTATUS[0]}"
+==> Docker Engine 27 (a stub answers `docker version`; any other call fails and is recorded)
+PASS  deploy.sh refuses Docker Engine 27 before any other Docker call
+     deploy.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  ci.sh refuses Docker Engine 27 before any other Docker call
+     ci.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  this host runs Docker Engine 28 or later
+==> networks: a throwaway project ltwpreflight67408 whose backend gives the host an address
+     ltwpreflight67408_backend: true  [{"Subnet":"172.26.0.0/16","Gateway":"172.26.0.1"}]
+     ltwpreflight67408_data: true isolated [{"Subnet":"172.27.0.0/16"}]
+PASS  a backend network with a host address is refused
+     preflight-check.sh: network ltwpreflight67408_backend gives the host an address (true  [{"Subnet":"172.26.0.0/16","Gateway":"172.26.0.1"}]): the host could reach the server inside the range it trusts; Docker Engine 28+ with gateway mode isolated is required (deploy/RUNBOOK.md section 1)
+PASS  isolated internal backend and data networks pass
+==> preflight checks passed
+==> images of HEAD
+==> building ltw-server:dee48d337459 from dee48d3374594ba008e571e47b2553a77c4c3d36
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/7j8x7m5zoqeht1l63cziv2h0e
+==> building ltw-proxy:dee48d337459 from dee48d3374594ba008e571e47b2553a77c4c3d36
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/tpt6xum7n8t4926b90r7uj2zz
+==> no database yet: nothing to back up
+==> starting ltw-server:dee48d337459 and ltw-proxy:dee48d337459 (previous: none)
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-ci-67393-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     17 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-ci-67393-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   17 seconds ago   Up 16 seconds (healthy)   5432/tcp
+ltw-ci-67393-proxy-1      ltw-proxy:dee48d337459                                                                       "caddy run --config …"   proxy      17 seconds ago   Up 7 seconds (healthy)    127.0.0.1:18080->80/tcp, 127.0.0.1:18443->443/tcp
+ltw-ci-67393-server-1     ltw-server:dee48d337459                                                                      "/usr/local/bin/ltw-…"   server     17 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed dee48d337459
+==> seeding the review campaign through the World Engine (no DM link in this log)
+review campaign ravenford («Пропавший караван», ru): 92 accepted, 0 already present; version 101, 25 entities; open seats: elowen-starwhisper
+==> HTTPS at https://localhost:18443 (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> settings and scripts
+     deploy/.env settings in the server beyond its own: none
+PASS  the server receives no other setting of deploy/.env
+PASS  the backup service was created for this checkout's deploy/backup/ (label)
+PASS  the backup service reads this checkout's backup.sh
+==> smoke checks passed
+==> restore drill on the first dump (ltw-20261016T024202Z.dump, empty): must fail
+==> dump: ltw-20261016T024202Z.dump (taken 2026-10-16T02:42:02Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+ltw_event_streams 0
+ltw_events 0
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+restore-drill.sh: restore drill FAILED: a restored campaign differs from the live one, the restore is empty, or it lacks a live campaign (see failures)
+==> the same with --allow-empty: passes, since the campaign came after the dump
+==> dump: ltw-20261016T024202Z.dump (taken 2026-10-16T02:42:02Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+ltw_event_streams 0
+ltw_events 0
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+==> restore drill passed
+==> a second deploy of the same images: a protected pre-deploy dump first
+==> backup before the change (protected dump)
+==> the state before this deploy: ltw-predeploy-20261016T024226Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:dee48d337459 and ltw-proxy:dee48d337459 (previous: dee48d337459)
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-ci-67393-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     32 seconds ago   Up 25 seconds (healthy)   5432/tcp
+ltw-ci-67393-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   32 seconds ago   Up 31 seconds (healthy)   5432/tcp
+ltw-ci-67393-proxy-1      ltw-proxy:dee48d337459                                                                       "caddy run --config …"   proxy      32 seconds ago   Up 22 seconds (healthy)   127.0.0.1:18080->80/tcp, 127.0.0.1:18443->443/tcp
+ltw-ci-67393-server-1     ltw-server:dee48d337459                                                                      "/usr/local/bin/ltw-…"   server     32 seconds ago   Up 25 seconds (healthy)   3000/tcp
+==> deployed dee48d337459
+ltw-20261016T024228Z.dump
+==> dump: ltw-20261016T024228Z.dump (taken 2026-10-16T02:42:28Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+ltw_event_streams 1
+ltw_events 101
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+==> restore drill passed
+kept 21 of 480 regular, 5 of 8 pre-deploy, 3 of 3 pre-restore
+retention check passed
+==> no restore drill recorded
+     2026-10-16T02:42:35Z ltw-watch ALARM disk / at 7% (limit 0%)
+     2026-10-16T02:42:36Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.Hy6xlKWpvi at 82% (limit 0%)
+     2026-10-16T02:42:36Z ltw-watch ALARM no restore drill recorded (deploy/scripts/restore-drill.sh, weekly; /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.a1jVcihC84/drill.log)
+PASS  alarm: no restore drill recorded
+==> the last drill passed 9 days ago
+     2026-10-16T02:42:36Z ltw-watch ALARM disk / at 7% (limit 0%)
+     2026-10-16T02:42:36Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.Hy6xlKWpvi at 82% (limit 0%)
+     2026-10-16T02:42:37Z ltw-watch ALARM the last restore drill is 9 days old (2026-10-07T02:42:35Z; limit 8 days)
+PASS  alarm: the last restore drill is 9 days old
+==> the last drill failed now
+     2026-10-16T02:42:37Z ltw-watch ALARM disk / at 7% (limit 0%)
+     2026-10-16T02:42:37Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.Hy6xlKWpvi at 82% (limit 0%)
+     2026-10-16T02:42:37Z ltw-watch ALARM the last restore drill failed (2026-10-16T02:42:35Z, ltw-20261016T000000Z.dump)
+PASS  alarm: the last restore drill failed
+==> the last drill passed now
+     2026-10-16T02:42:38Z ltw-watch ALARM disk / at 7% (limit 0%)
+     2026-10-16T02:42:38Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.Hy6xlKWpvi at 82% (limit 0%)
+PASS  no restore drill alarm after a drill that passed now
+==> the webhook
+     curl calls: 15, of them alarms posted: 11; received: 11
+PASS  every alarm reached the webhook as JSON {"text": …}
+PASS  the webhook URL is in no curl call's arguments
+PASS  curl read the webhook URL from its standard input
+==> watch checks passed
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+==> the operator: review campaign and the DM link (deploy/scripts/review-campaign.sh)
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; version 101, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+PASS  the DM link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the DM joins through the link
+     answer {"campaignId":"ravenford"}; Set-Cookie: ltw_session=<session>; Path=/api; HttpOnly; SameSite=Strict; Max-Age=1209600; Secure
+PASS  redeem answers the campaign
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+PASS  GET /api/auth/session (same-origin): the campaign
+     {"role":"DM","campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the DM sees the Russian campaign
+==> DM live stream ready after 0.16 s
+==> the DM invites a player for Elowen
+     201 {"invitationId":"15caadb5-e1b1-422f-8dab-5894cf29113d","expiresAt":"2026-10-16T03:42:41.855Z","link":"https://localhost:18443/join#<token>","characterId":"elowen-starwhisper"}
+PASS  invitation created (201)
+PASS  the player link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the player joins in another browser
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+     {"role":"PLAYER","character":{"entityId":"elowen-starwhisper","kind":"character","name":"Эловен Старвиспер"},"campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the player holds Elowen in Russian
+==> player live stream ready after 0.09 s
+PASS  the player cannot list invitations (404)
+PASS  the player cannot read as the DM (403)
+==> the player explores (the Russian investigation)
+     ask: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"AskAbout","shared":["fc4b91e2-02c4-43c0-a626-5b6ca1810845"]}}
+PASS  ask Mira about the guild caravan (or nothing new on a rerun)
+     road: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"old-trade-road"}}
+PASS  take the Old Trade Road
+     site: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"abandoned-caravan-site"}}
+PASS  enter the place off the road
+     inspect: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"ExamineEntity","roll":null,"discovered":["6032165c-bcc9-4ac5-b7dc-911b5988598e"]}}
+PASS  inspect it
+     now at: {"entityId":"abandoned-caravan-site","kind":"location","name":"Заброшенная стоянка каравана"}
+PASS  the place is identified in Russian
+PASS  the player reads the discovery in Russian
+PASS  the DM's stream signalled the changes
+==> the DM sees the members and invitations (never a token)
+     {"members":[{"characterId":"elowen-starwhisper","activeSessions":1,"lastSeenAt":"2026-10-16T02:42:41.906Z"}],"invitations":[{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"}]}
+PASS  Elowen is a member with one live session
+PASS  no link or token in the listing
+     operator sessions: [{"role":"dm","characterIds":[]},{"role":"player","characterIds":["elowen-starwhisper"]}]
+PASS  the operator lists both sessions without a secret
+==> the DM revokes the player: the player's screen is signed out at once
+     200 {"released":true,"sessionsRevoked":1,"invitationsRevoked":0}
+PASS  revoked: released, one session
+==> player stream: closed (unauthenticated) 0.56 s after the revocation
+PASS  the player's stream ended
+PASS  the DM's stream stays open
+PASS  the player can no longer act (401)
+PASS  the player can no longer read (401)
+PASS  GET /api/auth/session: 401
+PASS  ... and the cookie it presented is cleared
+==> used, revoked and forged links fail alike (the same error; only the request ID differs)
+     used player link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"1a189f8e-1f62-4135-8211-98ed4a520083"}
+PASS  used player link: 401, no cookie
+PASS  used player link: the fixed message
+     used DM link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"872b8d85-e2e3-47c9-83bf-ff58134f68b4"}
+PASS  used DM link: 401, no cookie
+PASS  used DM link: the fixed message
+     forged token: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"3e2ca5e1-08bb-47be-8247-d5ee6d6d4729"}
+PASS  forged token: 401, no cookie
+PASS  forged token: the fixed message
+PASS  the fixed message is UNAUTHENTICATED
+==> the seat is free again; a signed-in browser must confirm before an invitation is spent
+PASS  Elowen can be invited again (201)
+     the DM browser redeems it: 409 {"error":{"code":"CONFLICT","message":"Conflict"},"requestId":"9b741bd1-6789-4051-9e22-d649790caa17"}
+PASS  a signed-in browser gets 409 (CONFLICT)
+PASS  ... and the invitation stays pending
+PASS  the DM revokes that invitation
+PASS  a revoked link fails with the fixed message
+==> cross-site requests are refused through the proxy
+PASS  GET /api/auth/session with a foreign Origin: 403
+PASS  ... without touching the cookie
+PASS  the live stream with Sec-Fetch-Site: cross-site: 403
+PASS  sign-out without Origin: 403
+PASS  the DM is still signed in
+==> the DM signs out
+PASS  POST /api/auth/sign-out: 204
+PASS  ... and the cookie is cleared
+==> DM stream: closed (unauthenticated) 0.45 s after signing out
+PASS  the DM's stream ended
+PASS  GET /api/auth/session: 401
+==> no credential in any log of the proxy or the server
+PASS  none of the 5 credentials in 156 log lines
+==> sign-in journeys passed
+==> the DM signs in with an invitation from the operator (the link is never printed)
+==> opening the live stream through the proxy (HTTP/2, cookie and Origin)
+==> ready after 0.09 s
+HTTP/2 200 
+cache-control: no-store
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'
+content-type: text/event-stream; charset=utf-8
+cross-origin-opener-policy: same-origin
+date: Fri, 16 Oct 2026 02:42:45 GMT
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Cookie
+x-accel-buffering: no
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-request-id: 77aa28d2-3269-4f5c-857b-39f598099603
+
+==> one DM command through the proxy (a new item: the DM perspective can read it)
+==> changed 0.94 s after the command, stream open
+==> waiting for the next heartbeat
+==> heartbeat 15.09 s after opening, stream open
+==> the DM signs out: the stream closes within one cycle
+==> closed 1.00 s after signing out; connection ended at 1.02 s
+==> frames received (raw):
+event: ready
+data: {}
+event: changed
+data: {"seq":1}
+: heartbeat
+event: closed
+data: {"reason":"unauthenticated"}
+==> live stream passes the proxy unbuffered
+==> topology of project ltw-ci-67393
+     edge     false  172.27.0.0/16 host=172.27.0.1 | proxy
+     backend  true isolated 10.231.251.0/24 host=none | proxy server
+     data     true isolated 172.28.0.0/16 host=none | backup postgres server
+     egress   false  172.26.0.0/16 host=172.26.0.1 | server
+PASS  backend: internal, no host address (isolated), the pinned range
+PASS  backend: the proxy and the server only
+PASS  data: internal, no host address (isolated)
+PASS  data: the server, the database and the backups only
+PASS  edge: the proxy only
+PASS  egress: the server only
+PASS  the server's backend address is 10.231.251.10
+PASS  HTTP_HOST is that address
+PASS  LTW_TRUST_PROXY is the backend range
+     listening on port 3000: 10.231.251.10:3000
+PASS  the API listens only at the backend address
+==> reachable: nothing but the proxy reaches the API
+     host namespace: 10.231.251.10:3000 timeout
+     host namespace: 172.28.0.3:3000 timeout
+     host namespace: 172.26.0.2:3000 refused
+     host namespace: 172.27.0.2:443 open
+PASS  from the host: the backend address
+PASS  from the host: the data address
+PASS  from the host: the egress address
+PASS  control: the host reaches the proxy
+     edge network:   server:3000 no-such-name
+     edge network:   10.231.251.10:3000 timeout
+     edge network:   172.28.0.3:3000 timeout
+     edge network:   172.26.0.2:3000 timeout
+     edge network:   proxy:443 open
+PASS  from the edge network: the service name
+PASS  from the edge network: the backend address
+PASS  from the edge network: the data address
+PASS  from the edge network: the egress address
+PASS  control: the edge network reaches the proxy
+     egress network: server:3000 refused
+     egress network: 172.26.0.2:3000 refused
+PASS  from the egress network: the server's port is closed
+PASS  control: the proxy reaches the server
+==> forwarded: a client cannot choose the address it is limited as
+     through the proxy, X-Forwarded-For 203.0.113.1, .2, …: 401 401 429
+PASS  one client to the limits: 429 by the eleventh redeem
+     from the proxy (trusted peer), a forged X-Forwarded-For: wget: server returned error: HTTP/1.1 401 Unauthorized
+PASS  control: from a trusted peer the header names a new client (401, not 429)
+==> trust boundary checks passed
+==> deployment check passed for dee48d337459
+ci.sh exit status: 0
+[exit 0]
+
+### After the run: nothing of its project left, no new dangling volume (the backup service's tmpfs), no deploy/.env or drill log (2026-10-16T02:43:30Z)
+$ printf 'containers %s, networks %s, volumes %s of ltw-ci-*; dangling volumes on this machine %s (43 before); deploy/.env or drill log: %s\n' "$(docker ps -a --format '{{.Names}}' | grep -c '^ltw-ci-')" "$(docker network ls --format '{{.Name}}' | grep -c '^ltw-ci-')" "$(docker volume ls --format '{{.Name}}' | grep -c '^ltw-ci-')" "$(docker volume ls -q --filter dangling=true | wc -l | tr -d ' ')" "$(ls -a deploy | grep -cE '^\.env$|restore-drill.log')"
+containers 0, networks 0, volumes 0 of ltw-ci-*; dangling volumes on this machine 43 (43 before); deploy/.env or drill log: 0
+[exit 0]
+

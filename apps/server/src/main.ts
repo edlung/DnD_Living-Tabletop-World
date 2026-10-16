@@ -89,7 +89,11 @@ async function main(): Promise<void> {
     throw error;
   }
   const quests = await loadQuestBook(config.questsFile);
-  const readiness = storeReadiness(pool, await loadMigrations(MIGRATIONS_DIR), logger);
+  // After a rollback (LTW_ALLOW_NEWER_SCHEMA) readiness parses every stored event first: a newer
+  // build may have written events this one cannot read anywhere in a stream (ADR 0037).
+  const readiness = storeReadiness(pool, await loadMigrations(MIGRATIONS_DIR), logger, {
+    readEveryEvent: config.allowNewerSchema,
+  });
   // The live session (ADR 0033) closes its streams with `shutdown` when the app closes.
   const { app } = buildLiveApp({
     engine,
@@ -113,6 +117,7 @@ async function main(): Promise<void> {
       authMode: config.auth.mode,
       trustedProxies: config.http.trustedProxies.length,
       database: describeDatabaseUrl(config.databaseUrl),
+      allowNewerSchema: config.allowNewerSchema,
     },
     'server ready',
   );

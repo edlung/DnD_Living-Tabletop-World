@@ -3,8 +3,9 @@
 # `server` (migrations at start, then the API; never published), `postgres` (named volume,
 # internal network only), `backup` (pg_dump every 6 h and on demand, retention, SHA-256 manifest)
 # and, for the restore drill only, `drill-db` (profile `drill`, data on tmpfs). Settings and
-# secrets come from deploy/.env (git-ignored; deploy/.env.example lists the names). Images are
-# local, built by deploy/scripts/build.sh and tagged by git revision.
+# secrets come from deploy/.env (git-ignored; deploy/.env.example lists the names), and each
+# service receives only the ones it names below. Images are local, built by
+# deploy/scripts/build.sh and tagged by git revision.
 # Networks (the trust boundary, deploy/verify/trust-boundary.sh): `edge` (the proxy alone; the
 # published ports), `backend` (the proxy and the server; internal, no host address), `data`
 # (server, database, backups; internal, no host address), `egress` (the server alone; its
@@ -62,11 +63,10 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    # Every setting in deploy/.env (AI keys, routes, PUBLIC_ORIGIN, later stages' settings);
-    # the platform below is fixed and wins over the file.
-    env_file:
-      - path: .env
-        required: true
+    # Only what the server reads (apps/server/src/platform/config/config.ts), never deploy/.env
+    # whole: the internet-facing process must not hold the host's settings, the database password
+    # apart from its own connection, or the alarm webhook. A setting a later stage adds is named
+    # here (deploy/AGENTS.md); verify/smoke.sh checks that nothing else from deploy/.env arrives.
     environment:
       NODE_ENV: production
       # Invitation sign-in (ADR 0036) needs the browser's origin.
@@ -83,7 +83,23 @@ services:
       DEV_PERSONAS_FILE: ''
       # The review campaign is the Russian Ravenford: its quest summaries (ADR 0031).
       LTW_QUESTS_FILE: ${LTW_QUESTS_FILE:-/app/fixtures/ravenford-ru/quests.json}
+      # The rollback step (deploy.sh --rollback): the migrator accepts a database a newer image
+      # migrated, and readiness parses every stored event before it reports ready.
       LTW_ALLOW_NEWER_SCHEMA: ${LTW_ALLOW_NEWER_SCHEMA:-false}
+      LOG_LEVEL: ${LOG_LEVEL:-}
+      # Live AI (ADR 0032) and images in play (Stage 330): empty keeps every capability local.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      LTW_AI_MODEL: ${LTW_AI_MODEL:-}
+      LTW_AI_TIMEOUT_MS: ${LTW_AI_TIMEOUT_MS:-}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      LTW_DEEPSEEK_MODEL: ${LTW_DEEPSEEK_MODEL:-}
+      LTW_AI_ROUTES: ${LTW_AI_ROUTES:-}
+      LTW_AI_REQUEST_TIMEOUT_MS: ${LTW_AI_REQUEST_TIMEOUT_MS:-}
+      LTW_AI_APPROVAL_ID: ${LTW_AI_APPROVAL_ID:-}
+      LTW_AI_RELEVANCE_BUDGET_MS: ${LTW_AI_RELEVANCE_BUDGET_MS:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      LTW_ASSET_WORKER_INTERVAL_MS: ${LTW_ASSET_WORKER_INTERVAL_MS:-}
+      LTW_ASSET_TIMEOUT_MS: ${LTW_ASSET_TIMEOUT_MS:-}
     networks:
       backend:
         ipv4_address: ${LTW_BACKEND_PREFIX:-10.231.251}.10
@@ -139,6 +155,10 @@ services:
         condition: service_healthy
     entrypoint: ['/bin/sh', '/opt/ltw/backup.sh']
     command: ['loop']
+    # The digest of deploy/backup/ (deploy.sh writes it): a changed script changes this label, so
+    # the deploy recreates the service and the loop runs the checkout's script.
+    labels:
+      ltw.backup-script: ${LTW_BACKUP_SCRIPT_DIGEST:-unset}
     environment:
       PGHOST: postgres
       PGUSER: ltw
@@ -147,12 +167,16 @@ services:
       BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-21600}
       BACKUP_KEEP_DAILY: ${BACKUP_KEEP_DAILY:-14}
       BACKUP_KEEP_WEEKLY: ${BACKUP_KEEP_WEEKLY:-8}
+      BACKUP_KEEP_PROTECTED: ${BACKUP_KEEP_PROTECTED:-5}
     volumes:
-      - ./backup/backup.sh:/opt/ltw/backup.sh:ro
+      # The directory, not the file: a single-file mount keeps the file a checkout replaced.
+      - ./backup:/opt/ltw:ro
       - ${BACKUP_DIR:?set BACKUP_DIR in deploy/.env}:/backups
     networks: [data]
     read_only: true
-    tmpfs: [/tmp]
+    # /var/lib/postgresql: the image declares a volume there, which the backups never use; a
+    # tmpfs keeps Docker from leaving an anonymous volume behind every backup container.
+    tmpfs: [/tmp, /var/lib/postgresql]
     cap_drop: [ALL]
     security_opt: ['no-new-privileges:true']
     mem_limit: ${BACKUP_MEMORY:-512m}

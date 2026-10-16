@@ -1,0 +1,46 @@
+Stage 350 review fixes: teardown of the local stack
+
+### The project's containers, volumes and networks removed (volumes too: this was a verification run) (2026-10-16T02:40:19Z)
+$ set -o pipefail; cd deploy && docker compose --profile drill down --volumes --remove-orphans 2>&1 | grep -E 'Removed|Error' | sed -E 's/ +$//' | sort | uniq -c | awk '{$1=$1; print}'; echo '--- left of the project:'; docker ps -a --filter label=com.docker.compose.project=ltw-fix350 --format '{{.Names}}'; docker volume ls --filter label=com.docker.compose.project=ltw-fix350 --format '{{.Name}}'; docker network ls --filter label=com.docker.compose.project=ltw-fix350 --format '{{.Name}}'; echo '(nothing)'; echo '--- the shared development database:'; docker ps --filter name=living-tabletop-world-dev-pack-v12-postgres-1 --format '{{.Names}} {{.Status}}'
+1 Container ltw-fix350-backup-1 Removed
+1 Container ltw-fix350-postgres-1 Removed
+1 Container ltw-fix350-proxy-1 Removed
+1 Container ltw-fix350-server-1 Removed
+1 Network ltw-fix350_backend Removed
+1 Network ltw-fix350_data Removed
+1 Network ltw-fix350_edge Removed
+1 Network ltw-fix350_egress Removed
+1 Volume ltw-fix350_caddy-config Removed
+1 Volume ltw-fix350_caddy-data Removed
+1 Volume ltw-fix350_pgdata Removed
+--- left of the project:
+(nothing)
+--- the shared development database:
+living-tabletop-world-dev-pack-v12-postgres-1 Up 9 hours (healthy)
+[exit 0]
+
+### Finding during teardown: an anonymous volume outlived the stack (2026-10-16T02:41:26Z)
+`down --volumes` left one dangling anonymous volume created at 02:23:29Z: the backup service runs
+the PostgreSQL image, which declares a volume at /var/lib/postgresql, and Compose carried that
+volume over each time it recreated the backup container, so removing the last container did not
+remove it (the same happens on every local ci.sh run; earlier runs' leftovers of 00:58Z and
+01:06Z today, before this session, are not this run's and were left alone). Removed by ID (with
+two from this session's earlier Compose probes of the same image, 02:00:15Z and 02:01:52Z).
+compose.yaml now gives the backup service a tmpfs there, so no anonymous volume is created; the
+ci.sh run (09-ci-script.txt) checks that no dangling volume is left behind.
+
+### This run's restore drill verdicts (deploy/restore-drill.log, what watch.sh reads), kept here; then the run's files removed: deploy/.env (it held the throwaway password), the drill log, <S>/old/deploy/.env and the backups (2026-10-16T02:41:39Z)
+$ cat deploy/restore-drill.log; rm -f deploy/.env deploy/restore-drill.log /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy/.env /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/alarms.log && rm -rf /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/backups && ls -a deploy | grep -E '^\.env$|restore-drill.log' || echo '(removed)'
+1792117809 2026-10-16T02:30:09Z failed ltw-20261016T022334Z.dump
+1792117873 2026-10-16T02:31:13Z failed ltw-20261016T022334Z.dump
+1792117945 2026-10-16T02:32:25Z failed ltw-20261016T022334Z.dump
+1792117997 2026-10-16T02:33:17Z failed ltw-20261016T022334Z.dump
+1792118001 2026-10-16T02:33:21Z passed ltw-20261016T022334Z.dump
+1792118020 2026-10-16T02:33:40Z failed ltw-20261016T023336Z.dump
+1792118024 2026-10-16T02:33:44Z failed ltw-20261016T023336Z.dump
+1792118035 2026-10-16T02:33:55Z passed ltw-20261016T023351Z.dump
+1792118060 2026-10-16T02:34:20Z passed ltw-predeploy-20261016T022712Z.dump
+1792118366 2026-10-16T02:39:26Z passed ltw-predeploy-20261016T023626Z.dump
+(removed)
+[exit 0]
+

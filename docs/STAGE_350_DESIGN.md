@@ -73,3 +73,10 @@ Implemented on Stage 340's server; details in ADR 0037, "Part B implementation n
   without a host address; `LTW_TRUST_PROXY` is its range (`deploy/verify/trust-boundary.sh`).
 - The review campaign: `deploy/scripts/review-campaign.sh` seeds the Russian Ravenford with every
   seat open and prints the DM's link once; the DM issues the players' invitations.
+
+## Review fixes (2026-10-16)
+
+A review of parts A and B found seven gaps (readiness after a rollback, a drill passing an empty
+dump, the backup script's single-file mount, unprotected pre-deploy dumps, the runbook's cron and
+off-host steps, secrets in `curl`'s arguments and the server's environment, the Docker Engine
+requirement). The fixes keep this design; details in ADR 0037, "Review fixes", and the runbook.

@@ -4,11 +4,14 @@
 # root filesystem, Docker's data directory, the backup directory), memory use above 85 %, a
 # service that is not running and healthy (the backup service turns unhealthy when its newest dump
 # is older than the interval plus an hour), more than 20 error lines or 5xx answers in the last
-# 15 minutes of the logs, readiness through the proxy failing, and a certificate expiring within
-# 14 days. Each alarm is one line appended to the alarm log (default deploy/alarms.log) and, when
-# ALARM_WEBHOOK_URL is set in deploy/.env, posted there as JSON `{"text": …}`. Exit status 1 when
-# any alarm was raised. Limits: WATCH_DISK_PERCENT, WATCH_MEMORY_PERCENT, WATCH_ERROR_LINES,
-# WATCH_WINDOW, WATCH_ALARM_LOG.
+# 15 minutes of the logs, readiness through the proxy failing, a certificate expiring within
+# 14 days, and a restore drill that failed last, is older than 8 days or never ran (its verdicts:
+# deploy/restore-drill.log, written by restore-drill.sh). Each alarm is one line appended to the
+# alarm log (default deploy/alarms.log) and, when ALARM_WEBHOOK_URL is set in deploy/.env, posted
+# there as JSON `{"text": …}`; curl reads that URL from its standard input, never from its
+# arguments (which every user on the host can list). Exit status 1 when any alarm was raised.
+# Limits: WATCH_DISK_PERCENT, WATCH_MEMORY_PERCENT, WATCH_ERROR_LINES, WATCH_WINDOW,
+# WATCH_DRILL_DAYS, WATCH_ALARM_LOG.
 source "$(dirname "$0")/lib.sh"
 require_env_file
 
@@ -16,6 +19,7 @@ DISK_LIMIT=${WATCH_DISK_PERCENT:-80}
 MEMORY_LIMIT=${WATCH_MEMORY_PERCENT:-85}
 ERROR_LIMIT=${WATCH_ERROR_LINES:-20}
 WINDOW=${WATCH_WINDOW:-15m}
+DRILL_DAYS=${WATCH_DRILL_DAYS:-8}
 ALARM_LOG=${WATCH_ALARM_LOG:-$DEPLOY_DIR/alarms.log}
 SERVICES='proxy server postgres backup'
 PROBLEMS='"level":"(error|fatal)"|"statusCode":5[0-9]{2}|(ERROR|FATAL|PANIC):'
@@ -29,10 +33,18 @@ alarm() {
   alarms=$((alarms + 1))
   url=$(env_value ALARM_WEBHOOK_URL)
   if [ -n "$url" ]; then
-    text=$(printf '%s' "$line" | sed 's/\\/\\\\/g; s/"/\\"/g')
-    curl --silent --show-error --fail --max-time 10 --header 'Content-Type: application/json' \
-      --data "{\"text\":\"$text\"}" "$url" >/dev/null || printf 'ltw-watch: webhook failed\n' >&2
+    text=$(printf '%s' "$line" | json_escaped)
+    # The URL is a secret: a curl config on standard input carries it (printf is a builtin).
+    printf 'url = "%s"\n' "$(printf '%s' "$url" | json_escaped)" |
+      curl --silent --show-error --fail --max-time 10 --config - \
+        --header 'Content-Type: application/json' --data "{\"text\":\"$text\"}" >/dev/null ||
+      printf 'ltw-watch: webhook failed\n' >&2
   fi
+}
+
+# Backslashes and double quotes escaped (JSON strings and curl config values alike).
+json_escaped() {
+  sed 's/\\/\\\\/g; s/"/\\"/g'
 }
 
 check_disk() {
@@ -99,11 +111,33 @@ check_edge() {
   [ "$days" -ge 14 ] || alarm "certificate for $host expires in $days days"
 }
 
+# The last restore drill (deploy/restore-drill.log): it passed, within WATCH_DRILL_DAYS.
+check_drill() {
+  local last epoch time verdict dump age
+  last=$(tail -n 1 "$DRILL_LOG" 2>/dev/null || true)
+  if [ -z "$last" ]; then
+    alarm "no restore drill recorded (deploy/scripts/restore-drill.sh, weekly; $DRILL_LOG)"
+    return 0
+  fi
+  read -r epoch time verdict dump <<<"$last"
+  case $epoch in
+    '' | *[!0-9]*)
+      alarm "unreadable restore drill record in $DRILL_LOG"
+      return 0
+      ;;
+  esac
+  [ "$verdict" = passed ] || alarm "the last restore drill failed ($time, ${dump:--})"
+  age=$(($(date -u +%s) - epoch))
+  [ "$age" -le $((DRILL_DAYS * 86400)) ] ||
+    alarm "the last restore drill is $((age / 86400)) days old ($time; limit $DRILL_DAYS days)"
+}
+
 check_disk
 check_memory
 check_services
 check_errors
 check_edge
+check_drill
 if [ "$alarms" -gt 0 ]; then
   exit 1
 fi

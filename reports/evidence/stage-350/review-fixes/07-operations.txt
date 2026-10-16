@@ -1,0 +1,69 @@
+Stage 350 review fixes: operations checks on dee48d337459
+
+### Findings 5 and 6, after: deploy/verify/watch-check.sh (the throwaway receiver and drill records; deploy/.env's webhook emptied again afterwards) (2026-10-16T02:39:58Z)
+$ deploy/verify/watch-check.sh 2>&1 | grep -v '     .* ltw-watch ALARM disk'; grep -c '^ALARM_WEBHOOK_URL=$' deploy/.env
+==> no restore drill recorded
+     2026-10-16T02:40:00Z ltw-watch ALARM no restore drill recorded (deploy/scripts/restore-drill.sh, weekly; /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.6yF3tIsTJA/drill.log)
+PASS  alarm: no restore drill recorded
+==> the last drill passed 9 days ago
+     2026-10-16T02:40:00Z ltw-watch ALARM the last restore drill is 9 days old (2026-10-07T02:39:59Z; limit 8 days)
+PASS  alarm: the last restore drill is 9 days old
+==> the last drill failed now
+     2026-10-16T02:40:01Z ltw-watch ALARM the last restore drill failed (2026-10-16T02:39:59Z, ltw-20261016T000000Z.dump)
+PASS  alarm: the last restore drill failed
+==> the last drill passed now
+PASS  no restore drill alarm after a drill that passed now
+==> the webhook
+     curl calls: 15, of them alarms posted: 11; received: 11
+PASS  every alarm reached the webhook as JSON {"text": …}
+PASS  the webhook URL is in no curl call's arguments
+PASS  curl read the webhook URL from its standard input
+==> watch checks passed
+1
+[exit 0]
+
+### watch.sh as cron runs it, with this run's drill verdicts (deploy/restore-drill.log; the last one passed) and the disk limit raised to 90 % (this machine's disk is above 80 %) (2026-10-16T02:40:02Z)
+$ tail -n 3 deploy/restore-drill.log; WATCH_DISK_PERCENT=90 WATCH_ALARM_LOG=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/alarms.log deploy/scripts/watch.sh; echo "watch exit status: $?"
+1792118035 2026-10-16T02:33:55Z passed ltw-20261016T023351Z.dump
+1792118060 2026-10-16T02:34:20Z passed ltw-predeploy-20261016T022712Z.dump
+1792118366 2026-10-16T02:39:26Z passed ltw-predeploy-20261016T023626Z.dump
+2026-10-16T02:40:02Z ltw-watch ok
+watch exit status: 0
+[exit 0]
+
+### Finding 4, after: protected dumps in the live backup directory after nine deploys, rollbacks and two restores: the newest 5 pre-deploy dumps (BACKUP_KEEP_PROTECTED) and both pre-restore dumps kept, every dump in the manifest (2026-10-16T02:40:02Z)
+$ cd deploy && docker compose exec -T backup ls -1 /backups | grep dump && docker compose exec -T backup sh -c 'cd /backups && sha256sum -c -s SHA256SUMS && echo "manifest: $(grep -c . SHA256SUMS) dumps, all verify"'
+ltw-20261016T022334Z.dump
+ltw-20261016T022448Z.dump
+ltw-20261016T022500Z.dump
+ltw-20261016T022701Z.dump
+ltw-20261016T023351Z.dump
+ltw-20261016T023406Z.dump
+ltw-20261016T023445Z.dump
+ltw-20261016T023459Z.dump
+ltw-20261016T023522Z.dump
+ltw-20261016T023912Z.dump
+ltw-predeploy-20261016T023616Z.dump
+ltw-predeploy-20261016T023626Z.dump
+ltw-predeploy-20261016T023722Z.dump
+ltw-predeploy-20261016T023732Z.dump
+ltw-predeploy-20261016T023929Z.dump
+ltw-prerestore-20261016T023403Z.dump
+ltw-prerestore-20261016T023908Z.dump
+manifest: 17 dumps, all verify
+[exit 0]
+
+### deploy/verify/retention-check.sh (regular retention unchanged; protected dumps: the newest 5 of each kind, however old) (2026-10-16T02:40:02Z)
+$ deploy/verify/retention-check.sh 2>&1
+{"time":"2026-10-16T02:40:03Z","service":"ltw-backup","level":"info","msg":"retention: kept 29, removed 462"}
+kept 21 of 480 regular, 5 of 8 pre-deploy, 3 of 3 pre-restore
+retention check passed
+[exit 0]
+
+### Finding 4, before: the same retention check with b1618cb's backup.sh (<S>/old-deploy holds this compose.yaml, b1618cb's backup.sh and this retention-check.sh): protected names are neither pruned nor listed in the manifest, and the pre-deploy dump b1618cb took was an ordinary dump, which the regular retention removes after a day unless it is the newest of its day (ltw-20261015T120000Z above) (2026-10-16T02:46:50Z)
+$ /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old-deploy/deploy/verify/retention-check.sh 2>&1
+{"time":"2026-10-16T02:46:52Z","service":"ltw-backup","level":"info","msg":"retention: kept 21, removed 459"}
+kept 21 of 480 regular, 8 of 8 pre-deploy, 3 of 3 pre-restore
+should be gone: ltw-predeploy-20260802T110000Z.dump
+[exit 1]
+

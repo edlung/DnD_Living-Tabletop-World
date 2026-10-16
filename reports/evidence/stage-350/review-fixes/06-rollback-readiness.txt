@@ -1,0 +1,164 @@
+Stage 350 review fixes: the rollback round trip, the rollback guard, and readiness after a rollback over an event an image cannot read. Local helpers: <S>/readyz.sh (/api/readyz through the proxy with Caddy's local CA, or /readyz inside the server container when the proxy does not run) and <S>/load.sh <campaign> (loads a campaign through the running image's World Engine, parsing every stored event)
+
+### The rollback guard: b1618cb04a50 does not contain the running dee48d337459, so deploy.sh refuses it without --rollback (nothing changed: no dump, same containers) (2026-10-16T02:36:14Z)
+$ deploy/scripts/deploy.sh b1618cb04a50; echo "deploy exit status: $?"; grep -E '^LTW_(IMAGE_TAG|ALLOW_NEWER_SCHEMA)=' deploy/.env
+deploy.sh: b1618cb04a50 does not contain the running dee48d337459: that is a rollback (deploy.sh --rollback b1618cb04a50; deploy/RUNBOOK.md section 3)
+deploy exit status: 1
+LTW_IMAGE_TAG=dee48d337459
+LTW_ALLOW_NEWER_SCHEMA=false
+[exit 0]
+
+### Roll back to b1618cb04a50 (--rollback): a protected dump of the state left behind (LTW_ROLLBACK_DUMP; LTW_PREDEPLOY_DUMP stays the dump taken before the last deploy), the earlier image starts and is ready (2026-10-16T02:36:14Z)
+$ set -o pipefail; deploy/scripts/deploy.sh --rollback b1618cb04a50 2>&1 | grep -E '^==>|Recreated'; grep -E '^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|PREDEPLOY_DUMP|ROLLBACK_DUMP)=' deploy/.env; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/readyz.sh
+==> backup before the change (protected dump)
+==> the state before the rollback: ltw-predeploy-20261016T023616Z.dump (LTW_ROLLBACK_DUMP)
+==> starting ltw-server:b1618cb04a50 and ltw-proxy:b1618cb04a50 (previous: dee48d337459)
+ Container ltw-fix350-server-1 Recreated 
+ Container ltw-fix350-proxy-1 Recreated 
+==> deployed b1618cb04a50
+LTW_IMAGE_TAG=b1618cb04a50
+LTW_PREVIOUS_IMAGE_TAG=dee48d337459
+LTW_ALLOW_NEWER_SCHEMA=true
+LTW_PREDEPLOY_DUMP=ltw-predeploy-20261016T023532Z.dump
+LTW_ROLLBACK_DUMP=ltw-predeploy-20261016T023616Z.dump
+through the proxy: {"status":"ready"} (HTTP 200)
+[exit 0]
+
+### Forward again to dee48d337459 (2026-10-16T02:36:24Z)
+$ set -o pipefail; deploy/scripts/deploy.sh dee48d337459 2>&1 | grep -E '^==>|Recreated'; grep -E '^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|PREDEPLOY_DUMP|ROLLBACK_DUMP)=' deploy/.env; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/readyz.sh
+==> backup before the change (protected dump)
+==> the state before this deploy: ltw-predeploy-20261016T023626Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:dee48d337459 and ltw-proxy:dee48d337459 (previous: b1618cb04a50)
+ Container ltw-fix350-server-1 Recreated 
+ Container ltw-fix350-proxy-1 Recreated 
+==> deployed dee48d337459
+LTW_IMAGE_TAG=dee48d337459
+LTW_PREVIOUS_IMAGE_TAG=b1618cb04a50
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_PREDEPLOY_DUMP=ltw-predeploy-20261016T023626Z.dump
+LTW_ROLLBACK_DUMP=ltw-predeploy-20261016T023616Z.dump
+through the proxy: {"status":"ready"} (HTTP 200)
+[exit 0]
+
+### Plant the simulated history (<S>/plant.sql, shown first) in the live database (2026-10-16T02:36:51Z)
+$ cat /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/plant.sql; cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -v ON_ERROR_STOP=1 -At < /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/plant.sql
+-- Simulated: a newer build loosened a payload schema without a new version (ADR 0007 allows it)
+-- and wrote with it. A copy of Ravenford as campaign rollback-probe whose event 50 carries a
+-- field the strict schemas of these images refuse; its other events and its head are readable.
+BEGIN;
+INSERT INTO ltw_event_streams (stream_id, version)
+  SELECT 'rollback-probe', version FROM ltw_event_streams WHERE stream_id = 'ravenford';
+INSERT INTO ltw_commands (command_id, stream_id, command_type, actor, fingerprint, command, reason,
+    first_sequence, last_sequence, recorded_at)
+  SELECT 'rollback-probe.' || command_id, 'rollback-probe', command_type, actor, fingerprint,
+    command, reason, first_sequence, last_sequence, recorded_at
+  FROM ltw_commands WHERE stream_id = 'ravenford';
+INSERT INTO ltw_events (stream_id, sequence, event_id, event_type, schema_version, payload,
+    world_time, recorded_at, command_id, command_type, actor)
+  SELECT 'rollback-probe', sequence, gen_random_uuid(), event_type, schema_version,
+    CASE WHEN sequence = 50 THEN payload || '{"addedByANewerBuild": true}'::jsonb ELSE payload END,
+    world_time, recorded_at, 'rollback-probe.' || command_id, command_type, actor
+  FROM ltw_events WHERE stream_id = 'ravenford';
+COMMIT;
+SELECT stream_id, version FROM ltw_event_streams ORDER BY stream_id;
+SELECT stream_id, sequence, event_type, schema_version FROM ltw_events
+  WHERE stream_id = 'rollback-probe' AND sequence = 50;
+BEGIN
+INSERT 0 1
+INSERT 0 92
+INSERT 0 101
+COMMIT
+ravenford|101
+rollback-probe|101
+rollback-probe|50|KnowledgeAssigned|2
+[exit 0]
+
+### dee48d337459 in normal mode, restarted: ready (the normal check reads one event of every type and version and the heads, cheaply; it is not meant to find this), though the campaign holding the event cannot be loaded (2026-10-16T02:37:06Z)
+$ cd deploy && docker compose restart server 2>&1 | grep -v Restarting; until docker compose ps server --format '{{.Health}}' | grep -q healthy; do sleep 2; done; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/readyz.sh; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/load.sh rollback-probe; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/load.sh ravenford
+ Container ltw-fix350-server-1 Started 
+through the proxy: {"status":"ready"} (HTTP 200)
+rollback-probe: cannot be loaded (ZodError: {"code":"unrecognized_keys","keys":["addedByANewerBuild"],"path":["payload"],"message":"Unrecognized key: \"addedByANewerBuild\""})
+ravenford: loaded at version 101
+[exit 0]
+
+### Finding 1, before: a rollback to b1618cb04a50 (readiness without the fix) reports ready over that history, which it cannot read (2026-10-16T02:37:20Z)
+$ set -o pipefail; deploy/scripts/deploy.sh --rollback b1618cb04a50 2>&1 | grep -E '^==>'; grep -E '^LTW_(IMAGE_TAG|ALLOW_NEWER_SCHEMA)=' deploy/.env; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/readyz.sh; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/load.sh rollback-probe
+==> backup before the change (protected dump)
+==> the state before the rollback: ltw-predeploy-20261016T023722Z.dump (LTW_ROLLBACK_DUMP)
+==> starting ltw-server:b1618cb04a50 and ltw-proxy:b1618cb04a50 (previous: dee48d337459)
+==> deployed b1618cb04a50
+LTW_IMAGE_TAG=b1618cb04a50
+LTW_ALLOW_NEWER_SCHEMA=true
+through the proxy: {"status":"ready"} (HTTP 200)
+rollback-probe: cannot be loaded (ZodError: {"code":"unrecognized_keys","keys":["addedByANewerBuild"],"path":["payload"],"message":"Unrecognized key: \"addedByANewerBuild\""})
+[exit 1]
+
+### Finding 1, after: the same rollback with an image that has the fix (dee48d337459, run in rollback mode, as an earlier image is from now on): readiness parses every stored event, is not ready, and the deploy fails waiting for health (2026-10-16T02:37:30Z)
+$ deploy/scripts/deploy.sh --rollback dee48d337459 2>&1 | grep -E '^==>|^deploy.sh|rror|unhealthy'; echo "deploy exit status: ${PIPESTATUS[0]}"; grep -E '^LTW_(IMAGE_TAG|ALLOW_NEWER_SCHEMA|PREDEPLOY_DUMP|ROLLBACK_DUMP)=' deploy/.env; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/readyz.sh; cd deploy && docker compose ps --format '{{.Service}} {{.Image}} {{.Status}}' && docker compose logs --no-color server | sed -E 's/^server-1 *\| //' | grep -E '"server ready"|"not ready"' | tail -2 | cut -c1-600
+==> backup before the change (protected dump)
+==> the state before the rollback: ltw-predeploy-20261016T023732Z.dump (LTW_ROLLBACK_DUMP)
+==> starting ltw-server:dee48d337459 and ltw-proxy:dee48d337459 (previous: b1618cb04a50)
+ Container ltw-fix350-server-1 Error dependency server failed to start
+dependency failed to start: container ltw-fix350-server-1 is unhealthy
+deploy exit status: 1
+LTW_IMAGE_TAG=dee48d337459
+LTW_ALLOW_NEWER_SCHEMA=true
+LTW_PREDEPLOY_DUMP=ltw-predeploy-20261016T023626Z.dump
+LTW_ROLLBACK_DUMP=ltw-predeploy-20261016T023732Z.dump
+inside the server container (the proxy is not running): {"status":"not_ready","failed":["eventStore"]} (HTTP 503)
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 3 minutes (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 15 minutes (healthy)
+server ltw-server:dee48d337459 Up About a minute (unhealthy)
+{"level":"info","time":"2026-10-16T02:37:35.705Z","service":"ltw-server","nodeEnv":"production","authMode":"invitations","trustedProxies":1,"database":"postgres://postgres:5432/ltw","allowNewerSchema":true,"msg":"server ready"}
+{"level":"warn","time":"2026-10-16T02:37:35.794Z","service":"ltw-server","module":"readiness","check":"eventStore","err":{"type":"Error","message":"this build cannot read event rollback-probe#50 (KnowledgeAssigned v2): [\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"addedByANewerBuild\"\n    ],\n    \"path\": [\n      \"payload\"\n    ],\n    \"message\": \"Unrecognized key: \\\"addedByANewerBuild\\\"\"\n  }\n]","stack":"Error: this build cannot read event rollback-probe#50 (KnowledgeAssigned v2)\n    at readableEvent (file:///app/apps/server/dist/world-engine/postgres-e
+[exit 0]
+
+### The runbook's way out (section 3): restore the dump taken before the last deploy (LTW_PREDEPLOY_DUMP, before the simulated history) with restore.sh; the image in rollback mode then reads every event and is ready (2026-10-16T02:39:06Z)
+$ set -o pipefail; deploy/scripts/restore.sh "$(sed -n 's/^LTW_PREDEPLOY_DUMP=//p' deploy/.env)" 2>&1 | grep -E '^==>|^restore|"compared"'; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/readyz.sh; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/load.sh rollback-probe; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/load.sh ravenford; cd deploy && docker compose logs --no-color server | sed -E 's/^server-1 *\| //' | grep -E '"msg":"ready"' | tail -1
+==> dump: ltw-predeploy-20261016T023626Z.dump
+==> the current state, kept as a protected dump
+==> the state before the restore: ltw-prerestore-20261016T023908Z.dump
+==> stopping the backup service, the proxy and the server
+==> the database, empty
+==> restoring ltw-predeploy-20261016T023626Z.dump (one transaction)
+==> starting every service (migrations bring an older dump forward)
+==> dump: ltw-predeploy-20261016T023626Z.dump (taken 2026-10-16T02:36:26Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":101,"status":"match","expected":"sha256:6f572070aedf66fbcf518eeb6b4fab2d1b69050856bab11eecc7bedf4b3aa652","actual":"sha256:6f572070aedf66fbcf518eeb6b4fab2d1b69050856bab11eecc7bedf4b3aa652","head":101}],"unrestored":[],"failures":[]}
+==> restore drill passed
+==> restored ltw-predeploy-20261016T023626Z.dump; the state before it: ltw-prerestore-20261016T023908Z.dump
+through the proxy: {"status":"ready"} (HTTP 200)
+rollback-probe: loaded at version undefined
+ravenford: loaded at version 101
+{"level":"info","time":"2026-10-16T02:39:13.592Z","service":"ltw-server","module":"readiness","msg":"ready"}
+[exit 0]
+
+### Forward to dee48d337459 in normal mode (the rollback flag cleared) (2026-10-16T02:39:27Z)
+$ set -o pipefail; deploy/scripts/deploy.sh dee48d337459 2>&1 | grep -E '^==>'; grep -E '^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|PREDEPLOY_DUMP|ROLLBACK_DUMP)=' deploy/.env; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/readyz.sh; cd deploy && docker compose ps --format '{{.Service}} {{.Image}} {{.Status}}'
+==> backup before the change (protected dump)
+==> the state before this deploy: ltw-predeploy-20261016T023929Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:dee48d337459 and ltw-proxy:dee48d337459 (previous: dee48d337459)
+==> deployed dee48d337459
+LTW_IMAGE_TAG=dee48d337459
+LTW_PREVIOUS_IMAGE_TAG=b1618cb04a50
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_PREDEPLOY_DUMP=ltw-predeploy-20261016T023929Z.dump
+LTW_ROLLBACK_DUMP=ltw-predeploy-20261016T023732Z.dump
+through the proxy: {"status":"ready"} (HTTP 200)
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 22 seconds (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 16 minutes (healthy)
+proxy ltw-proxy:dee48d337459 Up 19 seconds (healthy)
+server ltw-server:dee48d337459 Up 3 seconds (healthy)
+[exit 0]
+
+### (The load helper printed 'version undefined' above for a campaign that does not exist; fixed to say so.) The world after the restore and the forward deploy: the simulated campaign is gone with the dump's state (2026-10-16T02:39:44Z)
+$ /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/load.sh rollback-probe; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/load.sh ravenford; cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -At -c 'SELECT stream_id, version FROM ltw_event_streams ORDER BY stream_id'
+rollback-probe: no such campaign
+ravenford: loaded at version 101
+ravenford|101
+[exit 0]
+

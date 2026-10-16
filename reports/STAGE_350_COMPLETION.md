@@ -3,8 +3,9 @@
 - Date: 2026-10-16 (Europe/Oslo). Branch `stage-350-deploy` on Stage 340's server work
   (`a7a0437`, security fixes `87c5bb7`): design `5c6430a`, part A `333a879` (rebased), part B (the
   commit adding this section).
-- Status: **PARTS A AND B IMPLEMENTED AND VERIFIED LOCALLY IN DOCKER.** Nothing was deployed to a
-  server, announced, released, or pushed; nobody was invited. Owner decision Q10: prepare the
+- Status: **PARTS A AND B IMPLEMENTED AND VERIFIED LOCALLY IN DOCKER; THE SEVEN REVIEW FINDINGS
+  FIXED AND VERIFIED LOCALLY** (section "Review fixes"). Nothing was deployed to a server,
+  announced, released, or pushed; nobody was invited. Owner decision Q10: prepare the
   deployment and verify it locally; a server waits for the owner's access, domain and backup
   target (see "What remains for the owner").
 - Work order: `work-orders/OPUS_STAGE_350.md`. Contract: `docs/STAGE_350_DESIGN.md` (adopted, part
@@ -193,6 +194,80 @@ postgres`); with `--force-recreate` it tried to remove a network the running ser
 `deploy.sh` now takes the stack down first when the networks changed. (2) Docker Desktop delivers
 every published-port connection from the `edge` gateway (`172.28.0.1` here, observed in Caddy's
 TCP table): locally all browsers are one client to the per-address limits (runbook section 11).
+
+## Review fixes (2026-10-16)
+
+A review of parts A and B found seven gaps. Every fix has a test or a verification check that
+failed before it and passes now (transcripts `reports/evidence/stage-350/review-fixes/`, index
+`00-index.txt`; decisions ADR 0037, "Review fixes"; runbook updated in Russian and English).
+
+1. **Readiness after a rollback (medium).** The server reads `LTW_ALLOW_NEWER_SCHEMA` (`true` or
+   `false`); with it, `/readyz`'s `eventStore` check parses every stored event (500 per query, key
+   order) before it first reports ready, in one read shared by concurrent probes that goes on past
+   a probe's bound, is retried after a failure and names the event it cannot read. The normal path
+   is unchanged. `deploy.sh` refuses a tag that does not contain the running revision without
+   `--rollback`. Proof: 4 new tests (readiness over a mid-stream event, paging, shared and retried
+   reads) and the config test fail on b1618cb's sources; live, b1618cb in rollback mode reported
+   ready over `rollback-probe#50`, which it cannot load, while dee48d337459 in rollback mode was not
+   ready, naming that event, and the runbook's way out (restore `LTW_PREDEPLOY_DUMP`) made it ready.
+2. **Restore drill on an empty dump (medium).** `replay-digest compare` requires `--dumped-at` and
+   fails on an empty restore (unless `--allow-empty`), on a live stream created before the dump but
+   missing from it, and on any difference (`failures`). A real restore is `scripts/restore.sh`:
+   it keeps the current state as a protected dump and stops the backup service (with the proxy and
+   the server) before the database is dropped. Proof: CLI and verdict tests fail on b1618cb's
+   sources; live, b1618cb's drill passed the empty first dump; now it is refused, passes with
+   `--allow-empty`, and a simulated empty dump taken after the campaign existed fails even with
+   it; `restore.sh` restored a protected dump and its drill matched.
+3. **Backup script mount (medium-low).** `deploy/backup/` is mounted read-only as a directory; the
+   service's label `ltw.backup-script` carries the directory's digest, so a deploy recreates it when
+   the script changed. Proof: live, with the single-file mount a replaced `backup.sh` vanished
+   inside the container (Docker Desktop); now it is read at once and the next deploy recreated the
+   service; smoke's two new checks failed on the b1618cb stack and pass.
+4. **Pre-deploy backup (low-medium).** When the database exists, `deploy.sh` starts PostgreSQL and
+   the backup service if needed and always takes a protected `ltw-predeploy-…` dump first,
+   recorded as `LTW_PREDEPLOY_DUMP` (or `LTW_ROLLBACK_DUMP`); protected dumps (also
+   `ltw-prerestore-…`) are outside the regular retention, the newest 5 of each kind kept
+   (`BACKUP_KEEP_PROTECTED`). Proof: b1618cb's `deploy.sh` skipped the backup silently with the
+   service stopped, this one took the dump; `retention-check.sh` fails with b1618cb's `backup.sh`
+   and passes; the live directory kept the 5 newest of 9 pre-deploy dumps.
+5. **Runbook cron and off-host copy (low-medium).** Cron jobs log to `/var/log/ltw` (created for
+   the operator at first install, rotated weekly); the off-host copy runs from root's crontab;
+   `watch.sh` alarms when the last restore drill failed, is older than 8 days or never ran
+   (`deploy/restore-drill.log`). Proof: `watch-check.sh`'s three drill alarms are missing with
+   b1618cb's `watch.sh` and present now. The runbook text itself was not executed here.
+6. **Secrets (low).** `watch.sh` hands the webhook URL to `curl` as a config on standard input;
+   the server's environment is an explicit list in `compose.yaml` (no `env_file`). Proof:
+   `watch-check.sh` (the URL in curl's arguments before, only on its input now); smoke (the server
+   held `POSTGRES_PASSWORD`, `ALARM_WEBHOOK_URL`, the backup and host settings before; none now).
+7. **Docker Engine 28 (low).** `deploy.sh`, `ci.sh` and `restore.sh` refuse an older Engine;
+   `deploy.sh` creates the containers first and checks with `docker network inspect` that
+   `backend` and `data` are internal, isolated and without a gateway before anything starts;
+   runbook section 1. Proof: `preflight-check.sh` (a stub Engine 27, a throwaway network with a
+   host address) fails on b1618cb's scripts and passes.
+
+**Found during this verification and fixed:** the drill took the throwaway database's password
+from the server's environment, which only `env_file` had put there (it now derives the URL from
+the server's own `DATABASE_URL` inside the container); an anonymous volume (the PostgreSQL image's
+`VOLUME`) outlived every stack (the backup service now has a tmpfs there).
+
+**Verification** (Docker Desktop, Engine 29.5.3, Compose v5.1.4; project `ltw-fix350`,
+127.0.0.1:18080/18443): first install of b1618cb with its own files and the "before" runs, upgrade
+to dee48d337459, `smoke.sh` 42/42, `trust-boundary.sh` 23/23, `preflight-check.sh` 6/6,
+`watch-check.sh` 7/7, retention, drills, a real restore, rollback round trips and the readiness
+scenario; then `ci.sh` on this worktree: 137/137 checks plus drills and the live stream, nothing
+left behind. `pnpm validate` on the final tree (own database `ltw_stage350`, shared lock): **passed** —
+format, lint, typecheck, context budget (853 files, none over 500 lines), 2,634 unit tests (248
+files), build, migrate and seed, 210 integration tests (38 files), 59 browser journeys
+(`review-fixes/10-validate.txt`). After it only text under `reports/` changed.
+
+**Risks and limits of the fixes:** the full read after a rollback grows with the history (measured
+only at Ravenford's size, about 200 events; a very long history keeps the server not ready for
+longer, and `deploy.sh` waits 300 s); the protection rests on `--rollback`, which `deploy.sh` now
+demands when both revisions are in the checkout (otherwise it only warns); revisions before these
+fixes have no `restore.sh` or protected dumps (runbook section 3); a newer build's loosened
+schema was simulated in the database, not built; `--dumped-at` is the dump name's second, before
+`pg_dump`'s snapshot, so a campaign whose first command was still committing at that second would
+be reported missing (milliseconds; not seen).
 
 ## For Gate 06 (alpha rows 350 of `docs/GATE_COVERAGE.md`)
 

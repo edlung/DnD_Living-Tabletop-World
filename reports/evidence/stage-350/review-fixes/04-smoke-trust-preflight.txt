@@ -1,0 +1,125 @@
+Stage 350 review fixes: smoke, trust boundary and preflight checks on dee48d337459
+
+### deploy/verify/smoke.sh (with the new checks: the server's settings, the backup service's script) (2026-10-16T02:27:37Z)
+$ deploy/verify/smoke.sh 2>&1
+==> HTTPS at https://localhost:18443 (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> settings and scripts
+     deploy/.env settings in the server beyond its own: none
+PASS  the server receives no other setting of deploy/.env
+PASS  the backup service was created for this checkout's deploy/backup/ (label)
+PASS  the backup service reads this checkout's backup.sh
+==> smoke checks passed
+[exit 0]
+
+### deploy/verify/preflight-check.sh (with this deployment running) (2026-10-16T02:27:38Z)
+$ deploy/verify/preflight-check.sh 2>&1
+==> Docker Engine 27 (a stub answers `docker version`; any other call fails and is recorded)
+PASS  deploy.sh refuses Docker Engine 27 before any other Docker call
+     deploy.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  ci.sh refuses Docker Engine 27 before any other Docker call
+     ci.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  this host runs Docker Engine 28 or later
+==> networks: a throwaway project ltwpreflight59508 whose backend gives the host an address
+     ltwpreflight59508_backend: true  [{"Subnet":"172.29.0.0/16","Gateway":"172.29.0.1"}]
+     ltwpreflight59508_data: true isolated [{"Subnet":"172.30.0.0/16"}]
+PASS  a backend network with a host address is refused
+     preflight-check.sh: network ltwpreflight59508_backend gives the host an address (true  [{"Subnet":"172.29.0.0/16","Gateway":"172.29.0.1"}]): the host could reach the server inside the range it trusts; Docker Engine 28+ with gateway mode isolated is required (deploy/RUNBOOK.md section 1)
+PASS  isolated internal backend and data networks pass
+==> this deployment (ltw-fix350)
+PASS  this deployment's backend and data networks give the host no address
+==> preflight checks passed
+[exit 0]
+
+### deploy/verify/trust-boundary.sh (2026-10-16T02:27:39Z)
+$ deploy/verify/trust-boundary.sh 2>&1
+==> topology of project ltw-fix350
+     edge     false  172.27.0.0/16 host=172.27.0.1 | proxy
+     backend  true isolated 10.231.237.0/24 host=none | proxy server
+     data     true isolated 172.26.0.0/16 host=none | backup postgres server
+     egress   false  172.28.0.0/16 host=172.28.0.1 | server
+PASS  backend: internal, no host address (isolated), the pinned range
+PASS  backend: the proxy and the server only
+PASS  data: internal, no host address (isolated)
+PASS  data: the server, the database and the backups only
+PASS  edge: the proxy only
+PASS  egress: the server only
+PASS  the server's backend address is 10.231.237.10
+PASS  HTTP_HOST is that address
+PASS  LTW_TRUST_PROXY is the backend range
+     listening on port 3000: 10.231.237.10:3000
+PASS  the API listens only at the backend address
+==> reachable: nothing but the proxy reaches the API
+     host namespace: 10.231.237.10:3000 timeout
+     host namespace: 172.26.0.3:3000 timeout
+     host namespace: 172.28.0.2:3000 refused
+     host namespace: 172.27.0.2:443 open
+PASS  from the host: the backend address
+PASS  from the host: the data address
+PASS  from the host: the egress address
+PASS  control: the host reaches the proxy
+     edge network:   server:3000 no-such-name
+     edge network:   10.231.237.10:3000 timeout
+     edge network:   172.26.0.3:3000 timeout
+     edge network:   172.28.0.2:3000 timeout
+     edge network:   proxy:443 open
+PASS  from the edge network: the service name
+PASS  from the edge network: the backend address
+PASS  from the edge network: the data address
+PASS  from the edge network: the egress address
+PASS  control: the edge network reaches the proxy
+     egress network: server:3000 refused
+     egress network: 172.28.0.2:3000 refused
+PASS  from the egress network: the server's port is closed
+PASS  control: the proxy reaches the server
+==> forwarded: a client cannot choose the address it is limited as
+     through the proxy, X-Forwarded-For 203.0.113.1, .2, …: 401 401 401 401 401 401 401 401 401 401 429
+PASS  one client to the limits: 429 by the eleventh redeem
+     from the proxy (trusted peer), a forged X-Forwarded-For: wget: server returned error: HTTP/1.1 401 Unauthorized
+PASS  control: from a trusted peer the header names a new client (401, not 429)
+==> trust boundary checks passed
+[exit 0]
+

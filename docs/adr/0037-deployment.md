@@ -63,7 +63,9 @@ Implemented as designed; these points make the decisions concrete. Files: `deplo
   succeeds, one stored event of every type and schema version is parsed too, so an earlier image
   never reports ready over history it cannot read). Each check is bounded (3 s), concurrent probes
   share one run, the body names failed checks only, and transitions are logged. Health requests
-  log only warnings.
+  log only warnings. _Corrected by the review fixes: one event of every type and version does not
+  cover a payload a newer build loosened without a new version; after a rollback every event is
+  parsed._
 - **Restore drill.** The digest is SHA-256 over a canonical encoding of the World Engine state
   (`state-digest.ts`: maps and sets sorted, so fill order never matters). `replay-digest-cli.js`
   digests every stream (or given versions) and compares a restored database's digests with the
@@ -141,3 +143,58 @@ On Stage 340's server (invitation sign-in, `LTW_TRUST_PROXY`, its security fixes
   signed-in browser, cross-site refusals, sign-out, and no credential in any container log. The
   live stream check signs in the same way (cookie and `Origin`; the journey uses `Sec-Fetch-Site:
 same-origin`).
+
+## 2026-10-16 — Review fixes (technical)
+
+A review of parts A and B found seven gaps; each fix has a test or a verification check that
+failed before it (evidence `reports/evidence/stage-350/review-fixes/`).
+
+- **Readiness after a rollback.** ADR 0007 lets a build loosen a payload schema without a new
+  version, and payload schemas are strict, so an earlier image can meet events it cannot parse
+  anywhere in a stream; one event of every type and version plus the stream heads did not see them.
+  The server now reads `LTW_ALLOW_NEWER_SCHEMA` (`true` or `false`, the rollback step's setting,
+  `allowNewerSchema`), and with it `/readyz`'s `eventStore` check parses every stored event, 500
+  per query in key order, before it first reports ready; the normal path stays as cheap as before.
+  Concurrent probes share that read, which continues when a probe's 3 s bound expires, a failed read
+  is retried, and the failure names the event (`<campaign>#<sequence> (<type> v<version>)`). Since
+  the protection depends on the flag, `deploy.sh` refuses a tag that does not contain the running
+  revision unless `--rollback` is given (it warns when either commit is unknown to the checkout).
+- **The restore drill.** `replay-digest compare` needs `--dumped-at <time>` (the dump's name) and
+  fails when the restored set is empty (`empty`, unless `--allow-empty`: the operator says the
+  database legitimately was empty) and when a live stream created before that time
+  (`ltw_event_streams.created_at`) is missing from it (`unrestored`), besides any difference
+  (`different`); the verdict names them in `failures`. `restore-drill.sh [--allow-empty]` passes
+  the dump's time and appends each verdict to `deploy/restore-drill.log`.
+- **A real restore** is `deploy/scripts/restore.sh`: it keeps the current state as a protected dump,
+  stops the backup service with the proxy and the server before the database is dropped (no dump
+  of an empty or half-restored database becomes the newest), restores from a one-off container of
+  the backup service, starts everything and runs the drill.
+- **Backups.** The backup service mounts `deploy/backup/` read-only as a directory (a single-file
+  mount kept the file a checkout replaced; on Docker Desktop the file even vanished from the
+  container), carries the directory's digest as the label `ltw.backup-script`
+  (`LTW_BACKUP_SCRIPT_DIGEST`), so a deploy recreates it when the script changed, and gets a tmpfs
+  at `/var/lib/postgresql`, where its image declares a volume (an anonymous volume outlived every
+  stack before). Protected dumps, `ltw-predeploy-…` (before every deploy and rollback) and
+  `ltw-prerestore-…` (before a restore), are outside the regular retention; the newest
+  `BACKUP_KEEP_PROTECTED` (default 5) of each kind are kept and listed in `SHA256SUMS`.
+- **`deploy.sh`.** When the database exists it starts PostgreSQL and the backup service if needed
+  and takes the protected dump before anything changes (no silent skip), recording it as
+  `LTW_PREDEPLOY_DUMP` (deploy) or `LTW_ROLLBACK_DUMP` (rollback): the runbook's rollback restores
+  `LTW_PREDEPLOY_DUMP`. It refuses Docker Engine before 28 (as do `ci.sh` and `restore.sh`), creates
+  the containers first (`up --no-start`) and checks with `docker network inspect` that `backend`
+  and `data` are internal with gateway mode `isolated` and no gateway before anything starts.
+- **Secrets.** The server no longer receives `deploy/.env` whole (`env_file`): `compose.yaml` names
+  the settings it reads, so the host's settings, `POSTGRES_PASSWORD` (apart from its own
+  `DATABASE_URL`) and `ALARM_WEBHOOK_URL` stay out of the internet-facing process; a setting a
+  later stage adds is named there. The drill therefore derives the throwaway database's URL from
+  the server's `DATABASE_URL` inside the container (found during the verification). `watch.sh`
+  passes the webhook URL to `curl` as a config on standard input, never as an argument.
+- **Operations.** `watch.sh` alarms when the last restore drill failed, is older than
+  `WATCH_DRILL_DAYS` (8) or never ran. The runbook's cron jobs log to `/var/log/ltw` (created for
+  the operator at first install, rotated weekly); the off-host copy runs from root's crontab, since
+  only root and uid 70 can read the backup directory.
+- **Verification.** New checks: `verify/preflight-check.sh` (Engine 27 refused by a stub, a network
+  with a host address refused), `verify/watch-check.sh` (drill alarms, the webhook URL only on
+  standard input), `smoke.sh` (the server holds no other setting of `deploy/.env`, the backup
+  service runs the checkout's script), `retention-check.sh` (protected dumps); `ci.sh` adds the
+  drill on the empty first dump, a second deploy and both new checks.
