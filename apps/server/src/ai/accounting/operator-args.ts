@@ -76,7 +76,8 @@ export type OperatorCommand =
     }
   | { kind: 'recover-incomplete' }
   | { kind: 'stops'; accountId: string }
-  | { kind: 'status' };
+  | { kind: 'status' }
+  | { kind: 'spend' };
 
 export class OperatorUsageError extends Error {
   constructor(message: string) {
@@ -124,6 +125,7 @@ const FLAGS: Record<OperatorCommand['kind'], readonly string[]> = {
   'recover-incomplete': [],
   stops: ['account'],
   status: [],
+  spend: [],
 };
 const SWITCHES = new Set(['enable', 'disable']);
 const REPEATABLE = new Set(['campaign', 'allocation']);
@@ -313,6 +315,7 @@ export function parseOperatorArgs(argv: readonly string[]): OperatorCommand {
       return { kind: command, accountId: flags.one('account') };
     case 'recover-incomplete':
     case 'status':
+    case 'spend':
       return { kind: command };
   }
 }

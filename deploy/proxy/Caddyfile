@@ -1,0 +1,73 @@
+# Living Tabletop World proxy (docs/adr/0037-deployment.md): the built client and the API under
+# /api for {$PUBLIC_HOST}, over TLS only. TLS_MODE=acme for a public domain (automatic
+# certificates, HSTS); TLS_MODE=internal for local verification (Caddy's own CA, no HSTS).
+# The server is reachable only through this proxy; compose publishes nothing else.
+{
+	# The configuration changes only with a new image.
+	admin off
+	skip_install_trust
+	servers {
+		# TCP only: compose publishes 80/tcp and 443/tcp.
+		protocols h1 h2
+	}
+	log {
+		output stdout
+		format json
+	}
+}
+
+(tls-acme) {
+	header Strict-Transport-Security "max-age=31536000"
+}
+
+(tls-internal) {
+	tls internal
+}
+
+{$PUBLIC_HOST} {
+	import tls-{$TLS_MODE}
+
+	header {
+		# Applied as the response is written; where the server set its own policy
+		# (asset content is stricter), the server's stays.
+		defer
+		?Content-Security-Policy "default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+		Referrer-Policy no-referrer
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Cross-Origin-Opener-Policy same-origin
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+		-Server
+		-Via
+	}
+
+	# The API without its /api prefix. The live stream (ADR 0033) passes every frame on at once.
+	handle_path /api/* {
+		reverse_proxy server:3000 {
+			flush_interval -1
+		}
+	}
+
+	# Hashed bundles never change; a missing one is a 404, never the page.
+	handle /assets/* {
+		root * /srv
+		encode zstd gzip
+		header Cache-Control "public, max-age=31536000, immutable"
+		file_server
+	}
+
+	# Everything else is the single-page client.
+	handle {
+		root * /srv
+		encode zstd gzip
+		header Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
+}
+
+# The container's health check (not published).
+http://:2020 {
+	bind 127.0.0.1
+	respond /healthz "ok" 200
+}

@@ -51,9 +51,38 @@ const COMMAND_COLUMNS = `command_id, stream_id, command_type, actor, fingerprint
 
 export class PostgresEventStore implements EventStore {
   readonly #pool: pg.Pool;
+  #everyShapeRead = false;
 
   constructor(pool: pg.Pool) {
     this.#pool = pool;
+  }
+
+  /**
+   * Readiness (docs/adr/0037-deployment.md §3): can this build read the store? Until one call
+   * succeeds, one stored event of every (type, schema version) is parsed with this build's
+   * schemas (an earlier image after a rollback must not serve history it cannot read); every
+   * call parses the newest event of every stream, which each stream head must have. Throws when
+   * anything cannot be read.
+   */
+  async assertReadable(): Promise<void> {
+    if (!this.#everyShapeRead) {
+      const { rows } = await this.#pool.query<EventRow>(
+        `SELECT DISTINCT ON (event_type, schema_version) ${EVENT_COLUMNS} FROM ltw_events
+          ORDER BY event_type, schema_version, stream_id, sequence`,
+      );
+      rows.forEach(toRecordedEvent);
+      this.#everyShapeRead = true;
+    }
+    // One statement, one snapshot: every head with its event, if it has one.
+    const { rows } = await this.#pool.query<EventRow & { found: boolean }>(
+      `SELECT e.*, e.event_id IS NOT NULL AS found
+         FROM ltw_event_streams h
+         LEFT JOIN ltw_events e ON e.stream_id = h.stream_id AND e.sequence = h.version`,
+    );
+    for (const row of rows) {
+      if (!row.found) throw new Error('a stream head has no event');
+      toRecordedEvent(row);
+    }
   }
 
   async loadStream(campaignId: string, afterSequence = 0): Promise<StreamSlice | null> {

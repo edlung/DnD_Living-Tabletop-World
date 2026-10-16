@@ -118,6 +118,53 @@ describe('runMigrations against PostgreSQL', () => {
     ).rejects.toThrow(/modified after it was applied/);
   });
 
+  it('refuses a database a newer build migrated unless the rollback step allows it', async () => {
+    const client = await connect();
+    const earlier = [{ name: '0001_create_probe.sql', sql: 'CREATE TABLE probe (id integer);' }];
+    const newer = [
+      ...earlier,
+      { name: '0002_add_label.sql', sql: 'ALTER TABLE probe ADD COLUMN label text;' },
+    ];
+    await runMigrations({ client, migrations: parseMigrations(newer), logger });
+
+    await expect(
+      runMigrations({ client, migrations: parseMigrations(earlier), logger }),
+    ).rejects.toThrow(/missing on disk: 0002_add_label/);
+    const rollback = await runMigrations({
+      client,
+      migrations: parseMigrations(earlier),
+      logger,
+      allowNewerDatabase: true,
+    });
+
+    expect(rollback).toEqual({ applied: [], alreadyApplied: 2, newer: ['0002_add_label'] });
+    expect(await history(client)).toEqual(['0001_create_probe', '0002_add_label']);
+    // Forward again: the newer build finds nothing to apply.
+    expect(await runMigrations({ client, migrations: parseMigrations(newer), logger })).toEqual({
+      applied: [],
+      alreadyApplied: 2,
+    });
+  });
+
+  it('refuses drift even when the rollback step allows a newer database', async () => {
+    const client = await connect();
+    await runMigrations({
+      client,
+      migrations: parseMigrations([
+        { name: '0001_create_probe.sql', sql: 'CREATE TABLE probe (id integer);' },
+        { name: '0002_create_other.sql', sql: 'CREATE TABLE other (id integer);' },
+      ]),
+      logger,
+    });
+    const edited = parseMigrations([
+      { name: '0001_create_probe.sql', sql: 'CREATE TABLE probe (id bigint);' },
+    ]);
+
+    await expect(
+      runMigrations({ client, migrations: edited, logger, allowNewerDatabase: true }),
+    ).rejects.toThrow(/modified after it was applied/);
+  });
+
   it('serializes concurrent runners so each migration applies exactly once', async () => {
     const [a, b] = await Promise.all([connect(), connect()]);
     const migrations = parseMigrations([

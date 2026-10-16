@@ -1,4 +1,4 @@
-import pg from 'pg';
+import type pg from 'pg';
 
 import { createPlaceholderImageGenerator } from '@ltw/ai';
 
@@ -20,8 +20,12 @@ import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
 import { buildLiveApp } from './live/live-app.ts';
 import { describeDatabaseUrl, loadConfig, obsoleteVariables } from './platform/config/config.ts';
+import { loadMigrations } from './platform/db/migration-source.ts';
+import { MIGRATIONS_DIR } from './platform/db/migrations-dir.ts';
+import { createPool } from './platform/db/pool.ts';
 import { createLogger, type Logger } from './platform/logging/logger.ts';
 import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
+import { storeReadiness } from './world-engine/store-readiness.ts';
 
 /**
  * Server composition root. Wires platform services, the World Engine, and
@@ -30,9 +34,10 @@ import { createWorldEngine, randomIds, systemClock } from './world-engine/runtim
 async function main(): Promise<void> {
   const config = loadConfig();
   const logger = createLogger({ service: 'ltw-server', level: config.logLevel });
-  const pool = new pg.Pool({ connectionString: config.databaseUrl });
+  // Pools survive the database closing idle connections (a restart): see `createPool`.
+  const pool = createPool(config.databaseUrl, logger);
   // Proposal locks wait for the event store while held, so they get connections of their own.
-  const proposalLocks = new pg.Pool({ connectionString: config.databaseUrl, max: 4 });
+  const proposalLocks = createPool(config.databaseUrl, logger, { max: 4 });
 
   // Sign-in by mode (docs/adr/0036-production-sign-in.md §5): session cookies from DM
   // invitations in production; development personas are refused under NODE_ENV=production.
@@ -66,6 +71,7 @@ async function main(): Promise<void> {
   const engine = createWorldEngine(pool);
   const contents = new PostgresAssetContentStore(pool);
   const quests = await loadQuestBook(config.questsFile);
+  const readiness = storeReadiness(pool, await loadMigrations(MIGRATIONS_DIR), logger);
   // The live session (ADR 0033) closes its streams with `shutdown` when the app closes.
   const { app } = buildLiveApp({
     engine,
@@ -80,6 +86,7 @@ async function main(): Promise<void> {
     ...(signIn ? { signIn } : {}),
     // Request limits key on the client behind this reverse proxy (ADR 0036, 2026-10-16).
     trustedProxies: config.http.trustedProxies,
+    readiness,
   });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
@@ -92,6 +99,8 @@ async function main(): Promise<void> {
     'server ready',
   );
   reportAiSpending(logger, pool, ai);
+  // The first verdict is logged now; later probes log only changes.
+  void readiness();
 
   const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
   const stopAssets = startAssetWorkerLoop({
