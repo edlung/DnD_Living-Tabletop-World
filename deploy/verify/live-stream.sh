@@ -1,83 +1,60 @@
 #!/usr/bin/env bash
-# live-stream.sh: the live stream (ADR 0033) passes the proxy unbuffered. LOCAL VERIFICATION ONLY:
-# it signs in with the public development DM persona, so the stack must run with
-# deploy/verify/dev-personas.yaml and a seeded Ravenford. Opens GET /api/campaigns/ravenford/live
-# through Caddy over HTTP/2 with curl writing every byte as it arrives, watches the output every
-# 50 ms, creates one item as the DM through the proxy (a change the DM perspective reads), and
-# requires: event-stream headers without compression, `ready` promptly, `changed` within 3 s of
-# the command while the stream stays open, and a heartbeat (a 13-byte frame, every 15 s per
-# process) within 20 s. Prints the timeline; exit status 1 on any failure.
+# live-stream.sh: the live stream (ADR 0033) passes the proxy unbuffered, for an invitation
+# session (ADR 0036). LOCAL VERIFICATION (TLS_MODE=internal) of a stack whose review campaign is
+# seeded (deploy/scripts/review-campaign.sh). The operator issues a DM invitation (never printed);
+# a browser (cookie jar) redeems it through the proxy and opens GET /api/campaigns/ravenford/live
+# over HTTP/2 with its cookie and `Origin` (the other accepted form, `Sec-Fetch-Site:
+# same-origin`, is sign-in-journey.sh's); the output is watched every 50 ms. One DM command
+# through the proxy follows (a new item: the DM perspective reads it). Requires: event-stream
+# headers without compression, `ready` promptly, `changed` within 3 s of the command while the
+# stream stays open, a heartbeat (13 bytes, every 15 s per process) within 20 s, and after the
+# DM signs out, `closed` (unauthenticated) and the end of the stream within 3 s. Prints the
+# timeline; exit status 1 on any failure.
 source "$(dirname "$0")/../scripts/lib.sh"
-require_env_file
-command -v python3 >/dev/null || die 'python3 is needed for sub-second times'
+source "$(dirname "$0")/http.sh"
 
-TOKEN=dev-dm-ravenford
-host=localhost
-port=$(published_port PROXY_HTTPS_PUBLISH 443)
-origin="https://$host:$port"
-work=$(mktemp -d)
-stream_pid=
-cleanup() {
-  [ -z "$stream_pid" ] || kill "$stream_pid" 2>/dev/null || true
-  rm -rf "$work"
-}
-trap cleanup EXIT
+say 'the DM signs in with an invitation from the operator (the link is never printed)'
+status=$(redeem dm "$(token_of "$(dm_link 1)")")
+[ "$status" = 200 ] || die "the DM invitation was refused ($status)"
+body
+echo
 
-now() { python3 -c 'import time; print(f"{time.time():.3f}")'; }
-since() { python3 -c "import sys; print(f'{float(sys.argv[1]) - float(sys.argv[2]):.3f}')" "$1" "$2"; }
-compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt >"$work/ca.crt"
-api() {
-  curl --silent --show-error --cacert "$work/ca.crt" --resolve "$host:$port:127.0.0.1" \
-    --header "Authorization: Bearer $TOKEN" "$@"
-}
-# Waits until the stream holds `count` lines matching `pattern`; prints the time it saw them.
-arrival() {
-  local pattern=$1 count=$2 seconds=$3
-  for _ in $(seq $((seconds * 20))); do
-    if [ "$(grep -c "$pattern" "$work/stream.raw" || true)" -ge "$count" ]; then
-      now
-      return 0
-    fi
-    kill -0 "$stream_pid" 2>/dev/null || return 1
-    sleep 0.05
-  done
-  return 1
-}
-
-say 'opening the live stream through the proxy (HTTP/2)'
-: >"$work/stream.raw"
+say 'opening the live stream through the proxy (HTTP/2, cookie and Origin)'
 opened=$(now)
-# The subshell becomes curl (exec), so $! is curl itself; disowned, its end is not reported.
-(exec curl --silent --show-error --cacert "$work/ca.crt" --resolve "$host:$port:127.0.0.1" \
-  --header "Authorization: Bearer $TOKEN" --no-buffer --http2 \
-  --dump-header "$work/stream.headers" "$origin/api/campaigns/ravenford/live?perspective=DM" \
-  >"$work/stream.raw" 2>"$work/curl.err") &
-stream_pid=$!
-disown "$stream_pid"
-
-ready=$(arrival '^event: ready' 1 15) || die 'no ready frame within 15 s'
+stream_open dm dm DM --header "Origin: $ORIGIN"
+ready=$(arrival dm '^event: ready' 1 15) || die 'no ready frame within 15 s'
 say "ready after $(since "$ready" "$opened") s"
-sed 's/\r$//' "$work/stream.headers"
-grep -qi '^content-type: text/event-stream' "$work/stream.headers" || die 'not an event stream'
-grep -qi '^x-accel-buffering: no' "$work/stream.headers" || die 'no x-accel-buffering: no'
-! grep -qi '^content-encoding:' "$work/stream.headers" || die 'the stream is compressed'
-heartbeats=$(grep -c '^: heartbeat' "$work/stream.raw" || true)
+sed 's/\r$//' "$WORK/dm.headers"
+grep -qi '^content-type: text/event-stream' "$WORK/dm.headers" || die 'not an event stream'
+grep -qi '^x-accel-buffering: no' "$WORK/dm.headers" || die 'no x-accel-buffering: no'
+! grep -qi '^content-encoding:' "$WORK/dm.headers" || die 'the stream is compressed'
+heartbeats=$(grep -c '^: heartbeat' "$WORK/dm.raw" || true)
 
 sleep 2
 say 'one DM command through the proxy (a new item: the DM perspective can read it)'
 stamp=$(date +%s)
 sent=$(now)
-api --header 'Content-Type: application/json' --data "{\"commandId\":\"live-check-$stamp\",
-  \"command\":{\"type\":\"CreateEntity\",\"kind\":\"item\",\"name\":\"Live check $stamp\",
-  \"existsSince\":null}}" "$origin/api/campaigns/ravenford/commands"
-echo
-changed=$(arrival '^event: changed' 1 3) || die 'no changed frame within 3 s of the command'
+status=$(post dm "/campaigns/$CAMPAIGN/commands" "{\"commandId\":\"live-check-$stamp\",
+  \"command\":{\"type\":\"CreateEntity\",\"kind\":\"item\",\"name\":\"Проверка потока $stamp\",
+  \"existsSince\":null}}")
+[ "$status" = 200 ] || die "the command was refused ($status)"
+jq -c '{status, commandId}' "$WORK/response.body"
+changed=$(arrival dm '^event: changed' 1 3) || die 'no changed frame within 3 s of the command'
 say "changed $(since "$changed" "$sent") s after the command, stream open"
 
 say 'waiting for the next heartbeat'
-beat=$(arrival '^: heartbeat' $((heartbeats + 1)) 20) || die 'no heartbeat within 20 s'
-kill -0 "$stream_pid" 2>/dev/null || die 'the stream closed'
+beat=$(arrival dm '^: heartbeat' $((heartbeats + 1)) 20) || die 'no heartbeat within 20 s'
+[ ! -s "$WORK/dm.exit" ] || die 'the stream closed'
 say "heartbeat $(since "$beat" "$opened") s after opening, stream open"
+
+say 'the DM signs out: the stream closes within one cycle'
+left=$(now)
+status=$(post dm /auth/sign-out '{}')
+[ "$status" = 204 ] || die "sign-out answered $status"
+closed=$(arrival dm '^data: {"reason":"unauthenticated"}' 1 3) ||
+  die 'no closed (unauthenticated) frame within 3 s of signing out'
+end=$(ended dm 3) || die 'the stream stayed open after closed'
+say "closed $(since "$closed" "$left") s after signing out; connection ended at $(since "$end" "$left") s"
 say 'frames received (raw):'
-sed 's/\r$//' "$work/stream.raw" | grep -v '^$'
+sed 's/\r$//' "$WORK/dm.raw" | grep -v '^$'
 say 'live stream passes the proxy unbuffered'
