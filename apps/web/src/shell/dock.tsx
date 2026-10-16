@@ -62,9 +62,10 @@ function DockButton({ item, shell }: { readonly item: Item; readonly shell: Shel
 
 /**
  * The dock (docs/STAGE_320_DESIGN.md §5.1): Scene, Places, Journal and the Chronicle for
- * everyone; the DM's tools beside them, only in the DM perspective, with Players where the
- * table signs in by invitation (docs/adr/0036-production-sign-in.md §4). A phone shows it as a
- * tab bar with short words.
+ * everyone; the DM's tools beside them, only in the DM perspective — Images among them
+ * (docs/STAGE_330_DESIGN.md "DM controls") — with Players where the table signs in by
+ * invitation (docs/adr/0036-production-sign-in.md §4). A phone shows it as a tab bar with short
+ * words.
  */
 export function Dock({ isDm, shell }: { readonly isDm: boolean; readonly shell: Shell }) {
   const t = useT();
@@ -80,6 +81,7 @@ export function Dock({ isDm, shell }: { readonly isDm: boolean; readonly shell: 
     { id: 'encounter', label: t('Encounter'), short: t('Encounter'), glyph: 'encounter' },
     { id: 'time', label: t('Time and weather'), short: t('Time'), glyph: 'time' },
     { id: 'history', label: t('History'), short: t('History'), glyph: 'history' },
+    { id: 'images', label: t('Images'), short: t('Images'), glyph: 'picture' },
     ...(invitations
       ? [{ id: 'players', label: t('Players'), short: t('Players'), glyph: 'party' } as const]
       : []),

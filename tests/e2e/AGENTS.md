@@ -149,7 +149,9 @@ application on 4313.
   `reports/evidence/stage-320/` (`part-a/`; `part-b/` for the battlefield: each state at the
   three widths, tilted and flat; `part-c/` for the book, the flashback, the DM's tools with
   content and a conversation; both languages; its own servers, so it may act), listed in
-  `reports/evidence/stage-320/index.md`. It is not part of `pnpm test:e2e`, `pnpm validate` or
+  `reports/evidence/stage-320/index.md`, and to `reports/evidence/stage-330/part-b/` (the curated
+  pictures in the client and the DM's image controls; `stage-330-part-b.evidence.ts`, listed in
+  its `index.md`). It is not part of `pnpm test:e2e`, `pnpm validate` or
   CI; hold the shared lock like any Playwright run. Look at the images, never load the folder
   wholesale.
 - Specs that import server test support (`support/investigation.ts` → `scenario/secrets.ts`)
@@ -158,4 +160,18 @@ application on 4313.
 - Images (ADR 0035): at start the UI server imports the curated Ravenford pictures, through real
   commands approved by the DM, into the campaigns of `apps/server/src/testing/ui-image-campaigns.ts`
   (`ravenford`, `ui-combat` and every Russian campaign); every other campaign has no images, so
-  the neutral fallback stays covered. The server runs no asset worker and no image provider.
+  the neutral fallback stays covered. No external image provider runs.
+- Stage 330 part B journeys own the campaigns of `fixtures/image-campaigns.json`, prepared by
+  `apps/server/src/testing/ui-image-journeys.ts` (each in English and Russian): `site` (Elowen at
+  the Abandoned Caravan Site among the objects), `battle` (the ambush on Elowen's turn), `review`
+  (curated candidates not yet approved, a request waiting, one being generated, one failed; no
+  worker, so these stay; read-only) and `tomas`/`retry` (Tomas Reed with no picture at Market
+  Square, a failed request). The UI server's asset worker runs with the placeholder generator for
+  `tomas`, `tomasRu` and `retry` only. `images-curated.spec.ts` (the curated scene, figures
+  standing and inside medallions, the battle map, an object's plate; read-only),
+  `images-dm.spec.ts` (request with a note, generate again, discard, approve, replace, a figure;
+  the player sees nothing of a candidate — page, presentation, bytes by hash, every API body —
+  and the approved picture through the live signal; try again from the Images sheet; Russian),
+  `images-accessibility.spec.ts` (axe of the Images sheet and an entity's images at the three
+  widths and the Russian phone and tablet; the keyboard order; Escape). Helpers `support/images.ts`: a
+  picture is served when its `src` is a `blob:` URL of decoded bytes (`expectServedPicture`).

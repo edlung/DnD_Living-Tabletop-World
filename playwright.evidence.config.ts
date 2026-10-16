@@ -3,9 +3,9 @@ import { defineConfig } from '@playwright/test';
 import base from './playwright.config.ts';
 
 /**
- * The Stage 320 screenshot tour (`pnpm evidence:screens`; tests/e2e/AGENTS.md): the same
- * seeded servers as the journeys, one worker, JPEGs written to reports/evidence/stage-320/.
- * Not part of `pnpm test:e2e`, `pnpm validate` or CI.
+ * The screenshot tours (`pnpm evidence:screens`; tests/e2e/AGENTS.md): the same seeded servers
+ * as the journeys, one worker, JPEGs written to reports/evidence/stage-320/ and (Stage 330 part B)
+ * reports/evidence/stage-330/part-b/. Not part of `pnpm test:e2e`, `pnpm validate` or CI.
  */
 export default defineConfig({
   ...base,

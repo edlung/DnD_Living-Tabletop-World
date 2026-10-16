@@ -95,3 +95,23 @@ approval; storage and backup must be decided for production.
     while a play session is open no AI request is sent and the DM writes the proposal the local
     interpreter makes of the sentence; without one, the server can only use its local provider,
     and the trace must show that.
+- 2026-10-16 (Stage 330 part B, the client):
+  - **DM controls.** The selection's panel (DM perspective only) and the DM's Images sheet read
+    the lineage (`GET …/assets`) and send `RequestAsset`, `ApproveAsset` and `RetractAsset`
+    through the command route; Discard is the retraction of a candidate. Replace asks for another
+    picture of the same kind, and the current one stays for players until the DM approves the new
+    one; Generate again and Try again repeat a request with its own note. A job shows its lineage
+    status and its fixed failure reason, never progress. The note field says it reaches the image
+    model; a variant, figure or battle map is offered only with an approved main picture.
+  - **Live coverage.** The DM perspective's live coverage includes the lineage, so the controls
+    follow the asset worker from the request to the candidate without polling; no lower
+    perspective covers it (`apps/server/src/live/inventory.ts`).
+  - **Figures and battle maps.** A figure stands upright on the tilted board, inside the medallion
+    on the flat one and in the medallion's place in the scene; people keep their portraits in the
+    panel, the HUD, the party rail and the conversation. The battle map replaces the UI kit's
+    ground while the viewed place's presentation lists the encounter's combatants (the encounter
+    view names no place). A thing's or a place's approved image is a plate in its panel.
+  - **Test server.** The browser-test server runs the asset worker with the placeholder generator
+    for the DM journeys' campaigns only (`apps/server/src/testing/ui-image-journeys.ts`); its
+    review campaigns hold curated pictures as candidates not yet approved, so the evidence
+    screenshots show GPT pictures only.

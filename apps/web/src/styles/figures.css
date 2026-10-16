@@ -1,0 +1,164 @@
+/*
+ * Approved world pictures beyond the portrait (docs/STAGE_330_DESIGN.md "Purposes", ADR 0035 §4):
+ * a character's tabletop figure standing on the tilted battlefield and in the scene, inside the
+ * medallion on the flat board; a place's battle map as the board's ground; a thing's or a
+ * place's picture as a plate in its panel. The pictures are the GPT ones the DM approved; code
+ * draws only the light under a figure's base, rings, frames and shade.
+ */
+
+/* A figure, standing: the miniature on its base, the light it stands in */
+.miniature {
+  --mini-h: 120px;
+  position: relative;
+  display: block;
+  flex: none;
+  width: calc(var(--mini-h) * 0.64);
+  height: var(--mini-h);
+}
+.miniature-light {
+  position: absolute;
+  bottom: -2%;
+  left: 50%;
+  width: 110%;
+  height: 18%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--board-shade), transparent);
+  translate: -50% 0;
+}
+.miniature-art {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px color-mix(in srgb, var(--umbra) 70%, transparent));
+  translate: -50% 0;
+  user-select: none;
+}
+.miniature.is-dead .miniature-art,
+.miniature.is-unconscious .miniature-art {
+  filter: grayscale(1) brightness(0.6);
+}
+.miniature-condition {
+  position: absolute;
+  right: -4%;
+  bottom: 6%;
+  width: 34%;
+  height: auto;
+  aspect-ratio: 1;
+  color: var(--text);
+  filter: drop-shadow(0 0 2px var(--umbra)) drop-shadow(0 0 2px var(--umbra));
+}
+.miniature.is-wounded .miniature-condition {
+  color: var(--danger);
+}
+
+/* The flat board: the figure inside the medallion's ring, seen to the knees */
+.medallion-face .medallion-figure {
+  object-fit: cover;
+  object-position: 50% 12%;
+}
+
+/* The tilted board: the figure stands on its square, its base on the ring */
+.token .miniature {
+  --mini-h: calc(var(--cell) * 1.9);
+}
+.token .miniature-art {
+  filter: drop-shadow(0 0 1px var(--side)) drop-shadow(0 0 7px var(--side-glow))
+    drop-shadow(0 4px 6px color-mix(in srgb, var(--umbra) 70%, transparent));
+}
+.board--tilted .token.has-miniature .token-plate {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--cell) * -0.2);
+}
+.token.has-miniature.is-current .miniature-light {
+  background: radial-gradient(closest-side, var(--side-glow), transparent);
+}
+.token.has-miniature.is-selected .miniature-light {
+  background: radial-gradient(closest-side, var(--teal-glow), transparent);
+}
+.token.has-miniature .token-pips {
+  top: 0;
+  right: calc(var(--cell) * -0.3);
+}
+.token.has-miniature .token-cover {
+  top: calc(var(--cell) * 0.1);
+  left: calc(var(--cell) * -0.34);
+}
+
+/* The battle map: the place's approved top-down picture under the grid */
+.board-ground--map {
+  background: var(--ink-900);
+}
+.board-map {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  user-select: none;
+}
+
+/* The scene: who has a figure stands in the lower third above the name plate */
+.object-button--figure .miniature {
+  --mini-h: clamp(104px, 17vh, 172px);
+  margin-bottom: -0.55rem;
+}
+.object-button--figure .name-plate {
+  position: relative;
+  z-index: 1;
+}
+.object-button--figure:hover:enabled .miniature-light {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--gold-bright) 45%, transparent),
+    transparent
+  );
+}
+.object-button--figure[aria-pressed='true'] .miniature-light {
+  background: radial-gradient(closest-side, var(--teal-glow), transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--teal) 70%, transparent);
+}
+
+/* A thing's or a place's picture in its panel: a plate above the name */
+.details-header--plate {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.details-plate {
+  display: block;
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  border-radius: var(--radius-panel);
+  background: var(--ink-900);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--ink-950) 80%, transparent),
+    var(--shadow-soft);
+}
+.details-plate img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* A crowded scene stays low: with five or more present, figures and medallions shrink a step */
+.world-objects:has(> li:nth-child(5)) .object-button--figure .miniature {
+  --mini-h: clamp(96px, 13vh, 132px);
+}
+.world-objects:has(> li:nth-child(5)) .object-button .medallion--lg {
+  --m: 72px;
+}
+
+@media (max-width: 767px) {
+  .object-button--figure .miniature,
+  .world-objects:has(> li:nth-child(5)) .object-button--figure .miniature {
+    --mini-h: 104px;
+  }
+}

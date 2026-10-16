@@ -1,4 +1,4 @@
-import type { EncounterView, EntityRef, Weather } from '@ltw/contracts';
+import type { EncounterView, EntityKind, EntityRef, Weather } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 
 import type { WorldApi } from '../api/client.ts';
@@ -7,6 +7,7 @@ import { useAuthoring } from '../authoring/use-authoring.ts';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
 import type { StandIn } from '../combat/stand-in.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { ImagesSheet } from '../images/images-sheet.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
@@ -23,8 +24,9 @@ export interface DmPlace {
 
 /**
  * The DM's tools as sheets (docs/STAGE_320_DESIGN.md §5.7), in the DM perspective only: add to
- * the world, the encounter, time and weather, the history with its undo, and — where the table
- * signs in by invitation — the players (docs/adr/0036-production-sign-in.md §4). Every sheet
+ * the world, the encounter, time and weather, the history with its undo, the images waiting for
+ * the DM (docs/STAGE_330_DESIGN.md "DM controls"), and — where the table signs in by invitation
+ * — the players (docs/adr/0036-production-sign-in.md §4). Every sheet
  * stays mounted while closed, so a draft, a proposal under review or a pending reason survives
  * closing it and each refresh; the authoring session sits outside the world's loading state, so
  * a commit never discards the screen that made it (ADR 0029 §8).
@@ -41,6 +43,7 @@ export function DmSheets({
   onRun,
   onActAs,
   onWorldChanged,
+  onShowEntity,
 }: {
   readonly api: WorldApi;
   readonly shell: Shell;
@@ -54,6 +57,8 @@ export function DmSheets({
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onActAs: (standIn: StandIn) => void;
   readonly onWorldChanged: () => void;
+  /** Opens an entity's panel (from the Images sheet). */
+  readonly onShowEntity: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
   const authoring = useAuthoring(api, onWorldChanged);
@@ -127,6 +132,15 @@ export function DmSheets({
             if (proposalId === shown) void authoring.reload();
           }}
         />
+      </Sheet>
+      <Sheet
+        id="images"
+        title={t('Images (DM)')}
+        glyph="picture"
+        open={shell.sheet === 'images'}
+        onClose={shell.closeSheet}
+      >
+        <ImagesSheet directory={directory} onShow={onShowEntity} />
       </Sheet>
       {invitations && (
         <Sheet
