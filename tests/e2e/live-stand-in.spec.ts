@@ -118,7 +118,7 @@ test('the DM acts as the character with a reason; her screen follows, and the hi
   await clickSquare(dm, 3, 6);
   expectAccepted(await submit(dm, battlefield(dm).getByRole('button', { name: 'Move here' })));
   await expect(square(player, 3, 6)).toHaveAccessibleName(/Elowen Starwhisper \(you\)/);
-  await square(dm, 8, 4).click();
+  await clickSquare(dm, 8, 4);
   await expect(
     battlefield(dm).getByRole('region', { name: 'Options for Unidentified creature 1' }),
   ).toContainText('Attack Unidentified creature 1 with longbow');
@@ -176,7 +176,7 @@ test('the DM’s skip waits for an open reaction window, and the DM answers it f
   await expect(turnBanner(player)).toHaveText('Your turn');
 
   // Elowen's own spell gives Seren, whose player is away, a chance to counter it.
-  await square(player, 8, 4).click();
+  await clickSquare(player, 8, 4);
   await expect(
     battlefield(player).getByRole('region', { name: 'Options for Unidentified creature 1' }),
   ).toContainText('Cast Hunter’s Mark on Unidentified creature 1');

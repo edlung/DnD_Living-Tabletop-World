@@ -1,4 +1,4 @@
-import type { EncounterView } from '@ltw/contracts';
+import type { EncounterView, Square } from '@ltw/contracts';
 import type { CSSProperties } from 'react';
 
 import type { LabelOf } from '../labels.ts';
@@ -15,17 +15,27 @@ type PlateStyle = CSSProperties & {
  * (design §5.5; the Stage 330 part B review): a figure standing nearly two squares tall in front
  * never hides the plate — or the number — of the combatant behind it, tilted or flat. Each plate
  * lies where it lay inside its token (`plateAnchor`), scaled like the figure standing there, and
- * no wider than the room beside it (`plateRoom`). Decorative: every square's name carries the
- * label, and the layer lets every press through to the squares.
+ * no wider than the room beside it (`plateRoom`). A plate is part of its figure (design §5.5:
+ * the same hit-testing in both views): pointing at it is pointing at its combatant's square — a
+ * press chooses that square, as a press on the figure does, and the terrain card reads it —
+ * never at the figure or square it is drawn over. Elsewhere the layer lets every press through.
+ * Decorative for assistive technology: every square's name carries the label, and the squares
+ * are the controls.
  */
 export function BoardPlates({
   encounter,
   layout,
   labelOf,
+  onPick,
+  onPoint,
 }: {
   readonly encounter: EncounterView;
   readonly layout: BoardLayout;
   readonly labelOf: LabelOf;
+  /** A press on a combatant's plate: its square is chosen. */
+  readonly onPick: (square: Square) => void;
+  /** The pointer came over (`true`) or left (`false`) the plate of the combatant on a square. */
+  readonly onPoint: (square: Square, over: boolean) => void;
 }) {
   const occupied = encounter.combatants.map((entry) => entry.position);
   return (
@@ -43,6 +53,15 @@ export function BoardPlates({
             key={combatant.entity.entityId}
             className={`board-plate board-plate--${anchor.edge} token--${combatant.side}`}
             style={style}
+            onClick={() => {
+              onPick(combatant.position);
+            }}
+            onPointerEnter={() => {
+              onPoint(combatant.position, true);
+            }}
+            onPointerLeave={() => {
+              onPoint(combatant.position, false);
+            }}
           >
             <TokenPlate
               label={labelOf(combatant.entity.entityId)}

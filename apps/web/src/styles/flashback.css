@@ -1,8 +1,8 @@
 /*
  * A flashback played as a scene over the book (docs/STAGE_320_DESIGN.md §5.6): the remembered
- * place in a framed, sepia-toned vignette (its approved image or the mist; the GPT corner
- * ornament frames it), the remembered line large in italic serif, who said it, and Return.
- * Code draws only the scrim, the tone and the hairlines over the art.
+ * place in a sepia-toned vignette inside the GPT gold flashback frame (its approved image or the
+ * mist), the remembered line large in italic serif, who said it, and Return. Code draws only the
+ * scrim and the tone over the art.
  */
 .flashback-scene {
   position: absolute;
@@ -44,46 +44,40 @@
 .flashback-eyebrow .glyph {
   color: var(--gold);
 }
+/* As wide as the scene allows while the line, its speaker and Return stay in view below it */
 .flashback-vignette {
-  position: relative;
   flex: none;
-  width: min(100%, 46rem, 112vh);
+  width: min(100%, 46rem, max(14rem, calc((100cqh - 20rem) * 1.6)));
   margin: 0;
-  padding: 10px;
+}
+/*
+ * The frame (1200 × 741, its opening about 16:9: 4.3 % in at the sides, 8 % at the top and the
+ * bottom) over the picture, which reaches a little under the frame's inner edge.
+ */
+.flashback-picture {
+  position: relative;
+  display: block;
+  aspect-ratio: 1200 / 741;
 }
 .flashback-art {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border: 1px solid color-mix(in srgb, var(--gold-deep) 80%, transparent);
-  filter: sepia(0.75) saturate(0.85) contrast(1.06) brightness(0.9);
-  mask-image: radial-gradient(ellipse 78% 74% at 50% 50%, var(--umbra) 62%, transparent 100%);
-}
-.flashback-corner {
   position: absolute;
-  width: clamp(36px, 7%, 60px);
-  height: auto;
+  top: 7.4%;
+  left: 3.8%;
+  display: block;
+  width: 92.4%;
+  height: 85.2%;
+  object-fit: cover;
+  filter: sepia(0.75) saturate(0.85) contrast(1.06) brightness(0.9);
+  mask-image: radial-gradient(ellipse 80% 78% at 50% 50%, var(--umbra) 64%, transparent 100%);
+}
+.flashback-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 10px color-mix(in srgb, var(--umbra) 70%, transparent));
   pointer-events: none;
-}
-.flashback-corner--tl {
-  top: 0;
-  left: 0;
-}
-.flashback-corner--tr {
-  top: 0;
-  right: 0;
-  scale: -1 1;
-}
-.flashback-corner--bl {
-  bottom: 2.2rem;
-  left: 0;
-  scale: 1 -1;
-}
-.flashback-corner--br {
-  right: 0;
-  bottom: 2.2rem;
-  scale: -1 -1;
+  user-select: none;
 }
 .flashback-vignette figcaption {
   display: flex;

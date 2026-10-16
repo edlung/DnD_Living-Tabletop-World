@@ -1,8 +1,9 @@
 /*
- * The Chronicle as a book (docs/STAGE_320_DESIGN.md §5.6): the GPT book spread scaled to the
- * screen, ribbon tabs for chapters, two pages that scroll inside themselves, sources as margin
- * notes. Below a wide screen the spread gives way to one parchment page (GPT texture) with the
- * same order. The pages are the one light surface: ink tokens, epistemic hues as inks.
+ * The Chronicle as a book (docs/STAGE_320_DESIGN.md §1.6, §5.6): the GPT book spread scaled to
+ * the screen and lying on the GPT candle-lit desk, chapters as tabs of the GPT red ribbon, two
+ * pages that scroll inside themselves, sources as margin notes. Below a wide screen the spread
+ * gives way to one parchment page (GPT texture) with the same order. The pages are the one light
+ * surface: ink tokens, epistemic hues as inks. Code draws only shades over the pictures.
  */
 
 /* The dialog: the whole viewport, the world dimmed behind it */
@@ -21,12 +22,21 @@
   background: color-mix(in srgb, var(--ink-950) 86%, transparent);
   backdrop-filter: blur(3px);
 }
+/*
+ * The desk the book lies on: the GPT writing desk by candle light fills the view, shaded at its
+ * top edge, where the title sits on it (tests/ui-kit/chronicle-art-contrast.test.ts holds any
+ * picture there to the title's contrast).
+ */
 .chronicle-frame {
   position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
   padding: 10px var(--gutter) 14px;
+  background:
+    linear-gradient(color-mix(in srgb, var(--ink-950) 78%, transparent) 4.5rem, transparent 10rem),
+    url('../assets/ui-kit/textures/chronicle-desk.webp') center / cover no-repeat,
+    var(--ink-950);
 }
 .chronicle-close {
   position: absolute;
@@ -114,7 +124,13 @@
   margin: 0.2rem 0 0;
 }
 
-/* Chapters as ribbon tabs */
+/*
+ * Chapters as ribbon tabs: the GPT red silk ribbon laid across each tab, its swallowtail at the
+ * tab's end (the picture is 160 × 984, hanging; turned, its points meet the tab's right edge),
+ * with the bookmark glyph and the title on it. Code adds only black over the ribbon, deepest
+ * across its middle where the words lie (tests/ui-kit/chronicle-art-contrast.test.ts holds the
+ * words at 4.5:1 on every pixel there, at the lightest shade a tab takes).
+ */
 .book-ribbons {
   min-width: 0;
 }
@@ -126,18 +142,56 @@
   scrollbar-width: thin;
 }
 .book-ribbon {
+  /* The ribbon's breadth is the tab's height; its length follows the picture */
+  --ribbon-b: 2.6rem;
+  --ribbon-l: calc(var(--ribbon-b) * 984 / 160);
+  /* Black over the ribbon: across its middle (24–76 %), under the words, and at its edges */
+  --ribbon-shade: 0.5;
+  --ribbon-edge: 0.24;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   flex: none;
   gap: 0.4rem;
-  max-width: 18rem;
-  min-height: 36px;
-  padding: 0.25rem 0.8rem 0.25rem 0.5rem;
-  border-color: var(--line);
-  border-radius: 6px 6px 2px 2px;
-  background: var(--glass);
-  color: var(--text-muted);
+  /* No longer than the ribbon from its points back */
+  max-width: 15rem;
+  height: var(--ribbon-b);
+  min-height: 0;
+  padding: 0 1.75rem 0 0.75rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
+  line-height: 1.25;
+  text-shadow: 0 1px 2px var(--umbra);
+}
+.book-ribbon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: -1;
+  width: var(--ribbon-b);
+  height: var(--ribbon-l);
+  background:
+    linear-gradient(
+      to right,
+      rgb(0 0 0 / var(--ribbon-edge)),
+      rgb(0 0 0 / var(--ribbon-shade)) 24% 76%,
+      rgb(0 0 0 / var(--ribbon-edge))
+    ),
+    url('../assets/ui-kit/ornaments/ribbon.webp') center / 100% 100% no-repeat;
+  mask: url('../assets/ui-kit/ornaments/ribbon.webp') center / 100% 100% no-repeat;
+  /* Turned to lie across the tab, the points (96.3 % down the picture) at its right edge */
+  rotate: -90deg;
+  translate: calc(var(--ribbon-b) / 2 - var(--ribbon-l) * 0.463) -50%;
+}
+.book-ribbon:hover:enabled {
+  --ribbon-edge: 0.1;
+  background: transparent;
 }
 .book-ribbon > span {
   overflow: hidden;
@@ -158,21 +212,27 @@
   line-height: 1.5;
 }
 .book-ribbon > .glyph {
+  flex: none;
   width: 20px;
   height: 20px;
-  color: var(--gold-deep);
+  color: var(--gold);
 }
+/* The chapter shown: its ribbon in full colour, a gold rule under it, the glyph bright */
 .book-ribbon[aria-pressed='true'] {
-  border-color: var(--gold);
-  background: var(--glass-raised);
-  color: var(--text);
-  box-shadow: inset 0 -2px 0 var(--gold);
+  --ribbon-shade: 0.42;
+  --ribbon-edge: 0;
+  background: transparent;
+  box-shadow: 0 2px 0 var(--gold-bright);
 }
 .book-ribbon[aria-pressed='true'] > .glyph {
   color: var(--gold-bright);
 }
 
-/* The spread: the GPT book scaled to the space, the pages placed over its paper */
+/*
+ * The spread: the GPT book scaled to the space and lying on the desk, its picture's edges fading
+ * into the wood; the pages placed over its paper. Until the picture arrives the veils below are
+ * the pages' ground.
+ */
 .book-stage {
   display: grid;
   flex: 1;
@@ -184,7 +244,6 @@
   position: relative;
   width: min(100cqw, 159.9cqh);
   aspect-ratio: 1586 / 992;
-  background-color: var(--page-ground);
   font-size: clamp(14px, min(2.05cqh, 1.28cqw), 17px);
 }
 .book-spread-art {
@@ -192,6 +251,10 @@
   inset: 0;
   width: 100%;
   height: 100%;
+  mask-image:
+    linear-gradient(to right, transparent, var(--umbra) 3%, var(--umbra) 97%, transparent),
+    linear-gradient(transparent, var(--umbra) 3%, var(--umbra) 97%, transparent);
+  mask-composite: intersect;
   user-select: none;
 }
 /*
@@ -292,10 +355,11 @@
   color: var(--page-ink);
 }
 
-/* Narrower than a wide screen: one parchment page, the same order */
+/* Narrower than a wide screen: one parchment page, the same order; no desk around it */
 @media (max-width: 1023px), (max-height: 599px) {
   .chronicle-frame {
     padding: 8px 8px 0;
+    background: none;
   }
   .book-stage {
     display: flex;

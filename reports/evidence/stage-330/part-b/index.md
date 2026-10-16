@@ -9,6 +9,13 @@ against the seeded browser-test servers (the image journeys' campaigns of
 campaigns hold unapproved, so no placeholder picture appears. Battlefield screens come tilted and
 flat (`-tilted`, `-flat`). File names: `<lang>-<screen>[-<view>]-<width>.jpg`.
 
+All 48 were taken again on the combined state — rebased onto Stage 340's final head, with Stage
+320's hit-testing and narrow-screen fixes and the plates taking the pointer for their own squares
+(`reports/STAGE_330_COMPLETION.md`): 37 came out byte-identical, the other 11 differ only by JPEG
+noise and, in three DM screens, Elowen's presence dot in the party rail (whether her player was
+still connected at that moment). Pointer behaviour does not show in a still picture; it is proven
+by `tests/e2e/combat-board-pointer.spec.ts`.
+
 | Screen             | What it shows                                                                                                                                                                                                                                                            |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `scene`            | The player's scene: Market Square's approved picture behind everything; Elowen and Mira standing as their approved figures with name plates; the party rail portrait.                                                                                                    |

@@ -2,6 +2,7 @@ import { mkdirSync, statSync } from 'node:fs';
 
 import { expect, test, type Page } from '@playwright/test';
 
+import { clickWhereShown } from '../e2e/support/combat.ts';
 import { TOKENS } from '../e2e/support/session.ts';
 import { openSheet } from '../e2e/support/shell.ts';
 
@@ -134,9 +135,10 @@ for (const [lang, words] of Object.entries(LANGUAGES)) {
     await shoot(page, words, lang, 'turn');
 
     // A chosen target: its card and options at the side, its buttons in the tray.
-    await board(page, words)
-      .getByRole('button', { name: words.square(8, 4) })
-      .click();
+    await clickWhereShown(
+      page,
+      board(page, words).getByRole('button', { name: words.square(8, 4) }),
+    );
     await expect(page.locator('.target-card .option-entry').first()).toBeVisible();
     await shoot(page, words, lang, 'target');
 
@@ -157,9 +159,10 @@ for (const [lang, words] of Object.entries(LANGUAGES)) {
     await expect(
       board(page, words).getByRole('button', { name: words.square(6, 5) }),
     ).toHaveAttribute('aria-label', /Elowen|Эловен/);
-    await board(page, words)
-      .getByRole('button', { name: words.square(8, 4) })
-      .click();
+    await clickWhereShown(
+      page,
+      board(page, words).getByRole('button', { name: words.square(8, 4) }),
+    );
     await expect(page.locator('.board-square.in-area').first()).toBeVisible();
     await shoot(page, words, lang, 'area');
 

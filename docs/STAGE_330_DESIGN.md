@@ -94,7 +94,8 @@ can see the entity now see; a state picture shows only in its state. One command
 controls come back only when the lineage shows what it did; a command whose answer was lost holds
 them and shows, with Retry, in the Images sheet and whichever panel is open; focus never falls to
 the page when a command takes away its card. On the battlefield the name plates lie above every
-figure, so no figure hides the plate of a combatant behind it.
+figure, so no figure hides the plate of a combatant behind it; a plate, like a standing figure,
+takes the pointer for its combatant's square (Stage 320's hit-testing, design §5.5).
 
 ## Storage (ADR)
 

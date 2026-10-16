@@ -110,6 +110,11 @@ export function Board({
   const destination = path.at(-1);
   const mover = encounter.combatants.find((entry) => entry.entity.entityId === selfId);
   const labelOf = useCombatantLabels(encounter);
+  // The pointer over a square, or over the plate of the combatant standing on it (`plates.tsx`).
+  const point = (square: Square, over: boolean) => {
+    if (over) setPointed(square);
+    else setPointed((known) => (known && key(known) === key(square) ? null : known));
+  };
 
   // On a phone the board scrolls: bring the chosen square, else the viewer, else whoever acts
   // into view when it first shows and whenever its scale or view changes. Only a new scale or
@@ -161,6 +166,8 @@ export function Board({
         destination && key(destination) === id ? 'is-destination' : '',
         inArea ? 'in-area' : '',
         isSelected ? 'is-selected' : '',
+        // Lit as under the pointer while the pointer is on its combatant's plate, too.
+        pointed !== null && key(pointed) === id ? 'is-pointed' : '',
       ];
       squares.push(
         <button
@@ -181,10 +188,10 @@ export function Board({
             onPick(square);
           }}
           onPointerEnter={() => {
-            setPointed(square);
+            point(square, true);
           }}
           onPointerLeave={() => {
-            setPointed((known) => (known && key(known) === id ? null : known));
+            point(square, false);
           }}
           onFocus={() => {
             setFocused(square);
@@ -255,7 +262,13 @@ export function Board({
               </svg>
             )}
           </div>
-          <BoardPlates encounter={encounter} layout={layout} labelOf={labelOf} />
+          <BoardPlates
+            encounter={encounter}
+            layout={layout}
+            labelOf={labelOf}
+            onPick={onPick}
+            onPoint={point}
+          />
         </div>
       </div>
     </div>

@@ -592,3 +592,12 @@ lineage, undo, re-decision of history) and new client surfaces for Gate 06, row 
   panel's focus once per command), `battlefield-plates.spec.ts` (every plate the topmost thing at
   its centre, ends and number at 1440 × 900 and 820 × 1180, tilted and flat), updated
   `images-dm.spec.ts`; each fails on revision 80d06df.
+
+Stage 330 before its pull request (rebased onto Stage 340's final head;
+`reports/STAGE_330_COMPLETION.md`): presentation only, no reviewed boundary changed. Stage 320's
+hit-testing and the plates' layer are combined (a name plate and a standing figure take the pointer
+for their own combatant's square; `tests/e2e/combat-board-pointer.spec.ts`); the Chronicle shows
+three UI-kit pictures (the desk, the ribbon tabs, the flashback frame), which state nothing about
+the world (ADR 0034 amendment); text over them keeps 4.5:1
+(`tests/ui-kit/chronicle-art-contrast.test.ts`). No route, projection, rule, command or
+authorization changed.

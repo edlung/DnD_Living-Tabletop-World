@@ -2,6 +2,7 @@ import { mkdirSync, statSync } from 'node:fs';
 
 import { expect, test, type Page } from '@playwright/test';
 
+import { dmRequest } from '../e2e/support/authoring.ts';
 import { TOKENS } from '../e2e/support/session.ts';
 import { closeSheet, openSheet } from '../e2e/support/shell.ts';
 
@@ -10,7 +11,9 @@ import { closeSheet, openSheet } from '../e2e/support/shell.ts';
  * and a flashback as a scene (the DM writes the chapter, the player reads it), the DM's tools
  * with something in them — a proposal card, the added NPC, the history with its undo preview,
  * time and weather, performing an NPC — and a conversation whose options live in one place,
- * at the three widths in English and Russian, as JPEGs under reports/evidence/stage-320/part-c/.
+ * at the three widths in English and Russian, as JPEGs under reports/evidence/stage-320/part-c/;
+ * the book and the flashback also on a tablet turned on its side, where the book opens as a
+ * spread on the desk (Stage 330: the GPT desk, ribbon and flashback frame).
  * A tour, not a journey: it asserts only that each screen is showing. Its servers are its own,
  * so it may act; the test server has no image, dialogue or narrator provider, so places show
  * the honest mist, NPCs no words and chapters the plain record.
@@ -23,6 +26,8 @@ const WIDTHS = [
   { name: 'desktop', width: 1440, height: 900 },
 ] as const;
 type Width = (typeof WIDTHS)[number]['name'];
+/** A tablet turned on its side: 1024 px and wider, the book opens as a spread on the desk. */
+const LANDSCAPE = { name: 'tablet-landscape', width: 1180, height: 820 } as const;
 
 const LANGUAGES = {
   en: {
@@ -35,6 +40,7 @@ const LANGUAGES = {
     enter: 'Enter world',
     leave: 'Leave session',
     chronicle: 'Chronicle',
+    nextChapter: 'Chapter II — The Gate at Dusk',
     write: 'Write a chapter (DM)',
     toldFrom: 'Told from',
     writeChapter: 'Write chapter',
@@ -64,6 +70,7 @@ const LANGUAGES = {
     enter: 'Войти в мир',
     leave: 'Выйти из сессии',
     chronicle: 'Хроника',
+    nextChapter: 'Глава II — Ворота в сумерках',
     write: 'Написать главу (мастер)',
     toldFrom: 'С чьей стороны',
     writeChapter: 'Написать главу',
@@ -86,6 +93,22 @@ const LANGUAGES = {
 } as const;
 type Words = (typeof LANGUAGES)[keyof typeof LANGUAGES];
 
+/** One screen at one size: `<lang>-<screen>-<size>.jpg`. */
+async function shootAt(
+  page: Page,
+  lang: string,
+  screen: string,
+  size: { readonly name: string; readonly width: number; readonly height: number },
+): Promise<void> {
+  await page.setViewportSize({ width: size.width, height: size.height });
+  await page.mouse.move(1, 1);
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForTimeout(350);
+  const path = `${OUT}${lang}-${screen}-${size.name}.jpg`;
+  await page.screenshot({ path, type: 'jpeg', quality: 70, animations: 'disabled' });
+  expect(statSync(path).size, `${path} is at most 250 KB`).toBeLessThanOrEqual(MAX_BYTES);
+}
+
 /** One screen at each width (or the given ones), then back to the desktop size. */
 async function shoot(
   page: Page,
@@ -94,13 +117,7 @@ async function shoot(
   only: readonly Width[] = ['phone', 'tablet', 'desktop'],
 ): Promise<void> {
   for (const size of WIDTHS.filter((entry) => only.includes(entry.name))) {
-    await page.setViewportSize({ width: size.width, height: size.height });
-    await page.mouse.move(1, 1);
-    await page.evaluate(() => document.fonts.ready);
-    await page.waitForTimeout(350);
-    const path = `${OUT}${lang}-${screen}-${size.name}.jpg`;
-    await page.screenshot({ path, type: 'jpeg', quality: 70, animations: 'disabled' });
-    expect(statSync(path).size, `${path} is at most 250 KB`).toBeLessThanOrEqual(MAX_BYTES);
+    await shootAt(page, lang, screen, size);
   }
   await page.setViewportSize({ width: 1440, height: 900 });
 }
@@ -135,6 +152,13 @@ for (const [lang, words] of Object.entries(LANGUAGES)) {
     await book(page).getByRole('button', { name: words.writeChapter, exact: true }).click();
     await expect(book(page).locator('.book-chapter')).toBeVisible();
     await shoot(page, lang, 'book-dm', ['desktop']);
+    // A second chapter, so the player's book has a ribbon for each: the one shown and another.
+    const next = await dmRequest(page, words.book, 'post', 'chronicle', {
+      title: words.nextChapter,
+      perspective: 'CHARACTER:elowen-starwhisper',
+      from: 0,
+    });
+    expect(next.body).toMatchObject({ result: { status: 'accepted' } });
 
     // The player reads it: the book, then a memory's flashback.
     await page.keyboard.press('Escape');
@@ -142,7 +166,13 @@ for (const [lang, words] of Object.entries(LANGUAGES)) {
     await signIn(page, words, TOKENS.player, words.book);
     await page.locator('#dock-chronicle').click();
     await expect(book(page).locator('.book-chapter')).toBeVisible();
+    await expect(book(page).getByRole('button', { name: words.nextChapter })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
     await shoot(page, lang, 'book');
+    await shootAt(page, lang, 'book', LANDSCAPE);
+    await page.setViewportSize({ width: 1440, height: 900 });
     await book(page)
       .locator('.key-moments')
       .getByRole('button', { name: words.openFlashback })
@@ -150,6 +180,8 @@ for (const [lang, words] of Object.entries(LANGUAGES)) {
       .click();
     await expect(book(page).locator('.flashback-scene .flashback-line')).toBeVisible();
     await shoot(page, lang, 'flashback');
+    await shootAt(page, lang, 'flashback', LANDSCAPE);
+    await page.setViewportSize({ width: 1440, height: 900 });
     await page.keyboard.press('Escape');
     await page.keyboard.press('Escape');
 

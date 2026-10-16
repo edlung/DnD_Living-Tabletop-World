@@ -116,7 +116,8 @@ export function Token({
 /**
  * A combatant's name plate: its label, the number that tells two figures apart kept when the
  * words shorten, and its hit points when the projection carries them. In the token it only keeps
- * its room (`room`: laid out, never painted), so the figure stands where it always stood.
+ * its room (`room`: laid out, never painted nor pointed at), so the figure stands where it always
+ * stood; the plate drawn in the plates' layer takes the pointer for the square (`plates.tsx`).
  */
 export function TokenPlate({
   label,

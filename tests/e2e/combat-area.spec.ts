@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import {
   anchor,
   battlefield,
+  clickSquare,
   COMBAT_CAMPAIGNS,
   enterCombat,
   expectAccepted,
@@ -24,7 +25,7 @@ test('Fireball previews who it affects, warns about an ally, and still casts whe
   expectAccepted(await submit(page, battlefield(page).getByRole('button', { name: 'Move here' })));
   await expect(square(page, 6, 5)).toHaveAccessibleName(/Elowen Starwhisper \(you\)/);
 
-  await square(page, 8, 4).click();
+  await clickSquare(page, 8, 4);
   const options = battlefield(page).getByRole('region', {
     name: 'Options for Unidentified creature 1',
   });
@@ -60,7 +61,7 @@ test('Fireball previews who it affects, warns about an ally, and still casts whe
 
 test('Fireball centered away from every ally shows no warning', async ({ page }) => {
   await enterCombat(page, COMBAT_CAMPAIGNS.preview);
-  await square(page, 11, 5).click();
+  await clickSquare(page, 11, 5);
   const options = battlefield(page).getByRole('region', {
     name: 'Options for Unidentified creature 3',
   });

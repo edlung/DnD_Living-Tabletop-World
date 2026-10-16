@@ -117,22 +117,24 @@ domain, rules, or providers.
   an unavailable option shows the server's reason; a refused talk closes the conversation. The
   spoken line is in the panel's polite live region (it exists before anything is said) and the
   result leaves it out, so it is announced once.
-- Chronicle (design §5.6, ADR 0024): `chronicle/chronicle-book.tsx` — the GPT book spread scaled
-  to the viewport (one parchment page below 1024 px wide or 600 px high), chapters as ribbon
-  tabs (`bookmark` glyph), the left page (title, the main place's approved image as it was at
-  the chapter's end or the mist and its note, prose exactly as written, each passage's sources
-  as a margin note: entries, epistemic types, event types in words, references on demand), the
-  right page (key moments, what was learned as typed records in page inks, people met); the DM
-  writes a chapter from the header. A flashback plays as a scene over the book (sepia vignette,
-  the line, attribution and type, Return; Escape returns first, then closes the book); behind it
-  the pages stay laid out, unseen and `inert`, so they keep their place. Which prose a chapter
-  holds is said honestly ("Told as the plain record" for the template). The chapter first shown
-  stays shown: a chapter written meanwhile (live signal) never replaces the page being read, its
-  ribbon says "New" until opened. A place's picture says "no approved picture" only when its
-  presentation has no image; while an approved one loads or after its fetch failed, the mist
-  makes no claim (`picture-note.ts`). Text areas carry a "lighten" veil to `--page-floor`, so
-  every page ink reads at 4.5:1 or better on the darkest parchment
-  (`tests/ui-kit/parchment-contrast.test.ts` measures the GPT pictures).
+- Chronicle (design §5.6, ADR 0024): `chronicle/chronicle-book.tsx` — the GPT book spread scaled to
+  the viewport and lying on the GPT candle-lit desk (`chronicle-desk`; one parchment page, no desk,
+  below 1024 px wide or 600 px high), chapters as tabs of the GPT red ribbon (`ribbon`, turned
+  across each tab, shaded across its middle; `bookmark` glyph), the left page (title, the main
+  place's approved image as it was at the chapter's end or the mist and its note, prose exactly as
+  written, each passage's sources as a margin note: entries, epistemic types, event types in words,
+  references on demand), the right page (key moments, what was learned as typed records in page
+  inks, people met); the DM writes a chapter from the header. A flashback plays as a scene over the
+  book (sepia vignette in the GPT gold `flashback-frame`, the line, attribution and type, Return;
+  Escape returns first, then closes the book); behind it the pages stay laid out, unseen and
+  `inert`, so they keep their place. Which prose a chapter holds is said honestly ("Told as the
+  plain record" for the template). The chapter first shown stays shown: a chapter written meanwhile
+  (live signal) never replaces the page being read, its ribbon says "New" until opened. A place's
+  picture says "no approved picture" only when its presentation has no image; while an approved one
+  loads or after its fetch failed, the mist makes no claim (`picture-note.ts`). Text areas carry a
+  "lighten" veil to `--page-floor`, so every page ink reads at 4.5:1 or better on the darkest
+  parchment (`tests/ui-kit/parchment-contrast.test.ts` measures the GPT pictures); the ribbon tabs'
+  words and the title on the desk keep 4.5:1 too (`tests/ui-kit/chronicle-art-contrast.test.ts`).
 - DM tools (design §5.7): the proposal card lists what will be added (check glyphs) and who will
   see it (`who-sees.ts`, read from the proposed commands only), with Confirm, Edit and Cancel;
   acknowledgements and the open editor belong to one revision; a new card scrolls into view in
@@ -141,34 +143,37 @@ domain, rules, or providers.
   description, while the preview says the world refuses it). Performing an NPC frames only
   spoken words as the NPC's ("{npc} says", "Spoken, not a recorded fact."); a refusal, "no words
   are available" or a failure is a plain status in the panel's own voice.
-- Battlefield (design §5.5, ADR 0028, ADR 0034 §6–7): every square, cover level, difficult
-  square, position, side, state, condition, hit point and initiative comes from the scoped
-  `EncounterView`; a combatant the projection does not name is "Unidentified creature N"
-  (`combat/labels.ts` over `@ltw/ui` `combatantLabels`: numbered in turn order, then position),
-  never its ID, in tokens, the turn order, cards, options, the banner and square names; plates
-  keep the number when the words shorten, and lie in a layer of their own above every figure
-  and cover piece (`combat/board/plates.tsx`; `geometry.ts` `plateAnchor`, `plateRoom`), each
-  where it lay in its token (which keeps its room), so a figure in front never hides the plate
-  of a combatant behind it (`tests/e2e/battlefield-plates.spec.ts`). A cover piece stands at its square's back edge, behind
+- Battlefield (design §5.5, ADR 0028, ADR 0034 §6–7): every square, cover level, difficult square,
+  position, side, state, condition, hit point and initiative comes from the scoped `EncounterView`;
+  a combatant the projection does not name is "Unidentified creature N" (`combat/labels.ts` over
+  `@ltw/ui` `combatantLabels`: numbered in turn order, then position), never its ID, in tokens, the
+  turn order, cards, options, the banner and square names; plates keep the number when the words
+  shorten, and lie in a layer of their own above every figure and cover piece
+  (`combat/board/plates.tsx`; `geometry.ts` `plateAnchor`, `plateRoom`), each where it lay in its
+  token (which keeps its room), so a figure in front never hides the plate of a combatant behind it
+  (`tests/e2e/battlefield-plates.spec.ts`). A cover piece stands at its square's back edge, behind
   and above anyone there, with a cover badge on the figure; the terrain card shows the looked-at
-  square's cover and difficult ground; each condition has its own glyph. The board is drawn
-  from `combat/board/geometry.ts` (tested): tilted on a wide screen (CSS `perspective` and
-  `rotateX`, figures and pieces upright), flat below 1200 px, a Flat/Tilted control, zoom on a
-  phone; each square is the same button, order and name (`square-name.ts`) in both views, and
-  figures sit inside their square's button: what is drawn of a figure (round portrait, plate,
-  pips, badge) takes the pointer for that square in both views, so an upright figure is chosen
-  where it stands and a pip shows its condition's name. Pictures: the place's approved battle map or the GPT ground, difficult patch, cover pieces, the
-  approved figure, else the approved portrait or the silhouette (the viewed place's `present[]`), catalog art keyed by
-  the rules catalog ID; code draws only hairlines, rings, glows, path, area, bars, plates. The
-  turn tray exists only while the viewer may act and holds the server-listed options of what is
-  chosen plus End turn; the side panel describes them, and below 1200 px (panel out of view)
-  the tray also shows each option's cost, range note or reason and the ally warning, as visible
-  echoes of the panel (`optionNotes`, `warnsOfAlly`; its height kept as `--tray-h`). The turn
-  banner (the one live announcement of a turn) and the reaction prompt live in
-  `world/combat-stage.tsx`, over the scene view too: the banner's live words say only whose turn
-  it is (it shows "Your reaction is needed" outside them), the prompt announces itself by taking
-  focus once per window (after the Chronicle closes, if it was open), and when it goes away with
-  focus in it, focus returns to the banner.
+  square's cover and difficult ground; each condition has its own glyph. The board is drawn from
+  `combat/board/geometry.ts` (tested): tilted on a wide screen (CSS `perspective` and `rotateX`,
+  figures and pieces upright), flat below 1200 px, a Flat/Tilted control, zoom on a phone; each
+  square is the same button, order and name (`square-name.ts`) in both views, and figures sit
+  inside their square's button: what is drawn of a figure (round portrait, the standing figure's
+  body, pips, badge) takes the pointer for that square in both views, so an upright figure is
+  chosen where it stands and a pip shows its condition's name; its name plate, drawn in the plates'
+  layer, takes the pointer for the same square (a press chooses it, the pointer lights it). On the
+  tilted board an occupied square's own plate lies over its centre: browser tests point at a square
+  where it shows (`clickSquare`, `clickWhereShown`). Pictures: the place's approved battle map or
+  the GPT ground, difficult patch, cover pieces, the approved figure, else the approved portrait or
+  the silhouette (the viewed place's `present[]`), catalog art keyed by the rules catalog ID; code
+  draws only hairlines, rings, glows, path, area, bars, plates. The turn tray exists only while the
+  viewer may act and holds the server-listed options of what is chosen plus End turn; the side
+  panel describes them, and below 1200 px (panel out of view) the tray also shows each option's
+  cost, range note or reason and the ally warning, as visible echoes of the panel (`optionNotes`,
+  `warnsOfAlly`; its height kept as `--tray-h`). The turn banner (the one live announcement of a
+  turn) and the reaction prompt live in `world/combat-stage.tsx`, over the scene view too: the
+  banner's live words say only whose turn it is (it shows "Your reaction is needed" outside them),
+  the prompt announces itself by taking focus once per window (after the Chronicle closes, if it
+  was open), and when it goes away with focus in it, focus returns to the banner.
 - World pictures beyond the portrait (Stage 330 part B, ADR 0035 §4): a person or creature with
   an approved `figure` stands as it in the scene (`visual/miniature.tsx`, `world/scene-objects.tsx`)
   and on the battlefield — upright when tilted, inside the medallion when flat

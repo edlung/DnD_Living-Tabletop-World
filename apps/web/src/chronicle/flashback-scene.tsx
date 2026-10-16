@@ -12,8 +12,8 @@ import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { pictureNote } from './picture-note.ts';
 
 /**
- * The remembered place as the perspective saw it then: its approved image, or the mist with a
- * note only when the presentation says why (`pictureNote`).
+ * The remembered place as the perspective saw it then, in the GPT gold frame: its approved
+ * image, or the mist with a note only when the presentation says why (`pictureNote`).
  */
 export function Vignette({
   flashback,
@@ -25,24 +25,23 @@ export function Vignette({
   const t = useT();
   const url = useApprovedImage(flashback.scene?.image ?? null);
   const note = pictureNote(true, flashback.scene ?? 'withheld');
-  const corner = ornamentUrl('corner');
   return (
     <figure className={`flashback-vignette${url ? '' : ' flashback-vignette--mist'}`}>
-      <img
-        className="flashback-art"
-        src={url ?? textureUrl('scene-fallback')}
-        alt=""
-        draggable={false}
-      />
-      {['tl', 'tr', 'bl', 'br'].map((at) => (
+      <span className="flashback-picture">
         <img
-          key={at}
-          className={`flashback-corner flashback-corner--${at}`}
-          src={corner}
+          className="flashback-art"
+          src={url ?? textureUrl('scene-fallback')}
+          alt=""
+          draggable={false}
+        />
+        <img
+          className="flashback-frame"
+          src={ornamentUrl('flashback-frame')}
           alt=""
           aria-hidden="true"
+          draggable={false}
         />
-      ))}
+      </span>
       <figcaption>
         <span className="flashback-place">{placeName ?? t('A place you recall')}</span>
         <span>
@@ -55,9 +54,9 @@ export function Vignette({
 }
 
 /**
- * A flashback played as a scene (docs/STAGE_320_DESIGN.md §5.6, ADR 0024 §7): a framed,
- * sepia-toned vignette of the remembered place (its approved image, or the neutral mist and a
- * note), the remembered line large in italic serif with its attribution and epistemic type —
+ * A flashback played as a scene (docs/STAGE_320_DESIGN.md §5.6, ADR 0024 §7): a sepia-toned
+ * vignette of the remembered place in the GPT gold frame (its approved image, or the neutral mist
+ * and a note), the remembered line large in italic serif with its attribution and epistemic type —
  * or the memory's own summary when no account is quoted — who was there, and "Return". It
  * takes focus when it opens; Return (or Escape) goes back to the page that opened it.
  */

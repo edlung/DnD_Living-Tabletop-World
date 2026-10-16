@@ -59,3 +59,17 @@ concepts (`docs/design/stage-320/owner-concepts/`).
 - Concept elements outside the alpha (level-up, full spellbook, inventory equip grid, world map,
   relationship graph, triggers, voice input) get no surface (design §2).
 - The earlier curated set in the engraving style is superseded and regenerated in Stage 330.
+
+## Amendments
+
+- 2026-10-16 (Stage 330, the Chronicle's pictures): three GPT pictures of the kit
+  (`textures/chronicle-desk`, `ornaments/ribbon`, `ornaments/flashback-frame`; provenance in the
+  manifest) complete the Chronicle of principle 6. Wherever the book opens as a spread (at least
+  1024 × 600) it lies on the candle-lit desk, the spread's edges fading into the wood and the
+  desk shaded under the title; chapter tabs are the red ribbon turned across each tab, shaded
+  across its middle so the words keep 4.5:1 on every pixel
+  (`tests/ui-kit/chronicle-art-contrast.test.ts`; accessible names unchanged); the flashback's
+  vignette sits in the gold frame instead of the corner ornament. Code draws only shades.
+- 2026-10-16 (Stage 330 on the final Stage 320 client): decision 7's hit-testing holds with Stage
+  330's standing figures and name-plate layer: a standing figure takes the pointer for its square
+  like a portrait, and a name plate, drawn above every figure, for its combatant's square.

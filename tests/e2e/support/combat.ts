@@ -24,7 +24,16 @@ export const square = (page: Page, x: number, y: number): Locator =>
  * centre; a player clicks the part of that square still in view, and so does this.
  */
 export async function clickSquare(page: Page, x: number, y: number): Promise<void> {
-  const target = square(page, x, y);
+  await clickWhereShown(page, square(page, x, y));
+}
+
+/**
+ * `clickSquare` for a square found any other way (another language's names). On the tilted
+ * board an occupied square's own name plate, drawn in the plates' layer above every figure
+ * (`combat/board/plates.tsx`), lies over its centre: the press lands on the square's figure or
+ * ground beside it, never on another square.
+ */
+export async function clickWhereShown(page: Page, target: Locator): Promise<void> {
   await target.scrollIntoViewIfNeeded();
   const point = await target.evaluate((button) => {
     const box = button.getBoundingClientRect();
@@ -38,7 +47,10 @@ export async function clickSquare(page: Page, x: number, y: number): Promise<voi
     }
     return null;
   });
-  if (!point) throw new Error(`Square ${String(x)}, ${String(y)} shows nowhere to point at`);
+  if (!point) {
+    const name = (await target.getAttribute('aria-label')) ?? 'The square';
+    throw new Error(`${name} shows nowhere to point at`);
+  }
   await page.mouse.click(point.x, point.y);
 }
 
