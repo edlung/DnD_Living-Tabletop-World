@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import type { LiveCloseReason } from '@ltw/contracts';
 import type { FastifyInstance } from 'fastify';
 
-import type { Authenticator } from '../http/auth.ts';
+import { actorFor, type Authenticator, type Credentials } from '../http/auth.ts';
 import { coverageInventory, type LiveTarget, type ViewRequest } from './inventory.ts';
 
 /**
@@ -24,9 +24,23 @@ export type Injector = Pick<FastifyInstance, 'inject'>;
 
 export interface SubscriptionKey {
   readonly target: LiveTarget;
-  /** The subscriber's `Authorization` header: held in memory, never logged or hashed. */
-  readonly authorization: string;
+  /**
+   * The subscriber's credential headers (`Authorization` for development personas, the session
+   * cookie in invitation mode; docs/adr/0036-production-sign-in.md): held in memory, forwarded
+   * only to the twin's injected views, never logged or hashed.
+   */
+  readonly credentials: Credentials;
   readonly actorId: string;
+}
+
+/** The headers an injected view request carries: exactly the subscriber's credentials. */
+export function credentialHeaders(credentials: Credentials): Record<string, string> {
+  return {
+    ...(credentials.authorization === undefined
+      ? {}
+      : { authorization: credentials.authorization }),
+    ...(credentials.cookie === undefined ? {} : { cookie: credentials.cookie }),
+  };
 }
 
 const close = (reason: Extract<Verdict, { kind: 'close' }>['reason']): Verdict => ({
@@ -41,13 +55,12 @@ const close = (reason: Extract<Verdict, { kind: 'close' }>['reason']): Verdict =
  */
 export async function fingerprintViews(
   mirror: Injector,
-  authorization: string,
+  credentials: Credentials,
   views: readonly ViewRequest[],
 ): Promise<Verdict> {
+  const headers = credentialHeaders(credentials);
   const responses = await Promise.all(
-    views.map((view) =>
-      mirror.inject({ method: 'GET', url: view.url, headers: { authorization } }),
-    ),
+    views.map((view) => mirror.inject({ method: 'GET', url: view.url, headers })),
   );
   const statuses = responses.map((response) => response.statusCode);
   if (statuses.includes(401)) return close('unauthenticated');
@@ -77,7 +90,8 @@ export async function fingerprintViews(
 
 /**
  * The full recheck of one subscription. Beyond the views, the credential must still identify
- * the subscriber it was opened for (presence and caps count that actor).
+ * the subscriber it was opened for, in the subscription's campaign (presence and caps count
+ * that actor). A revoked or expired session answers 401 to the views first.
  */
 export async function fingerprintSubscription(
   mirror: Injector,
@@ -86,10 +100,11 @@ export async function fingerprintSubscription(
 ): Promise<Verdict> {
   const verdict = await fingerprintViews(
     mirror,
-    subscription.authorization,
+    subscription.credentials,
     coverageInventory(subscription.target),
   );
   if (verdict.kind === 'close') return verdict;
-  const actor = authenticator.authenticate(subscription.authorization);
+  const principal = await authenticator.authenticate(subscription.credentials);
+  const actor = principal && actorFor(principal, subscription.target.campaignId);
   return actor?.actorId === subscription.actorId ? verdict : close('unauthenticated');
 }

@@ -7,9 +7,11 @@ import { useAuthoring } from '../authoring/use-authoring.ts';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
 import type { StandIn } from '../combat/stand-in.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { DmHistory } from './dm-history.tsx';
+import { PlayersSheet } from './players-sheet.tsx';
 import { DmWorldControls } from './world-controls.tsx';
 
 /** What the DM's encounter and clock tools need from the loaded world. */
@@ -21,8 +23,9 @@ export interface DmPlace {
 
 /**
  * The DM's tools as sheets (docs/STAGE_320_DESIGN.md §5.7), in the DM perspective only: add to
- * the world, the encounter, time and weather, and the history with its undo. Every sheet stays
- * mounted while closed, so a draft, a proposal under review or a pending reason survives
+ * the world, the encounter, time and weather, the history with its undo, and — where the table
+ * signs in by invitation — the players (docs/adr/0036-production-sign-in.md §4). Every sheet
+ * stays mounted while closed, so a draft, a proposal under review or a pending reason survives
  * closing it and each refresh; the authoring session sits outside the world's loading state, so
  * a commit never discards the screen that made it (ADR 0029 §8).
  */
@@ -55,6 +58,7 @@ export function DmSheets({
   const t = useT();
   const authoring = useAuthoring(api, onWorldChanged);
   const shown = authoring.proposal?.proposal.proposalId;
+  const invitations = useSignInKind() === 'session';
   return (
     <>
       <Sheet
@@ -124,6 +128,22 @@ export function DmSheets({
           }}
         />
       </Sheet>
+      {invitations && (
+        <Sheet
+          id="players"
+          title={t('Players (DM)')}
+          glyph="party"
+          open={shell.sheet === 'players'}
+          onClose={shell.closeSheet}
+        >
+          <PlayersSheet
+            api={api}
+            open={shell.sheet === 'players'}
+            directory={directory}
+            onWorldChanged={onWorldChanged}
+          />
+        </Sheet>
+      )}
     </>
   );
 }

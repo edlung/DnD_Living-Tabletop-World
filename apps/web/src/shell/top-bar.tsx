@@ -3,13 +3,15 @@ import type { Ref } from 'react';
 
 import type { LiveStatus } from '../api/live.ts';
 import { ConnectionBadge } from '../session/live-status.tsx';
+import { useSignInKind } from '../session/sign-in-kind.ts';
 import { IconButton } from '../visual/icon-button.tsx';
 import { ornamentUrl } from '../visual/ui-kit.ts';
 
 /**
  * The top bar (docs/STAGE_320_DESIGN.md §5.1): the emblem and wordmark, the campaign and the
  * open play session (written in by the world screen, which owns that view), whether this view
- * follows the world live, the perspective, refresh and leave.
+ * follows the world live, the perspective, refresh and leave — signing out, for a browser
+ * signed in by invitation (docs/adr/0036-production-sign-in.md §7).
  */
 export function TopBar({
   campaignName,
@@ -33,6 +35,7 @@ export function TopBar({
   readonly sessionSlot: Ref<HTMLSpanElement>;
 }) {
   const t = useT();
+  const signedIn = useSignInKind() === 'session';
   return (
     <header className="topbar">
       <div className="topbar-brand">
@@ -65,7 +68,13 @@ export function TopBar({
           </span>
         </div>
         <IconButton glyph="refresh" label={t('Refresh world')} labelled onClick={onRefresh} />
-        <IconButton glyph="leave" label={t('Leave session')} labelled onClick={onLeave} />
+        <IconButton
+          glyph="leave"
+          label={signedIn ? t('Sign out') : t('Leave session')}
+          labelled
+          aria-haspopup={signedIn ? 'dialog' : undefined}
+          onClick={onLeave}
+        />
       </div>
     </header>
   );

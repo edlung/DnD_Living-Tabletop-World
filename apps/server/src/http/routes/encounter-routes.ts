@@ -39,7 +39,7 @@ export function registerEncounterRoutes(app: FastifyInstance, deps: RouteDepende
   });
 
   app.get('/campaigns/:campaignId/encounter/suggestion', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const path = parseInput(params, request.params, request, reply);
     if (!path) return reply;

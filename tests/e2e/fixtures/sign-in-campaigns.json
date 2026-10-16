@@ -1,0 +1,12 @@
+{
+  "journey": "ui-signin-journey",
+  "failures": "ui-signin-failures",
+  "replace": "ui-signin-replace",
+  "signOut": "ui-signin-sign-out",
+  "russian": "ui-signin-ru",
+  "a11y": "ui-signin-a11y",
+  "a11yRu": "ui-signin-a11y-ru",
+  "keyboard": "ui-signin-keyboard",
+  "onClick": "ui-signin-on-click",
+  "tabs": "ui-signin-tabs"
+}

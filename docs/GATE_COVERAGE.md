@@ -314,3 +314,141 @@ contracts).
   `drafts.spec.ts`, `phone-layout.spec.ts`, `chronicle-book.spec.ts`, the perspective-isolation
   and boundary journeys unchanged in strength; axe scans at three widths
   (`accessibility.spec.ts`); the screenshot set `reports/evidence/stage-320/index.md`.
+
+Stage 340 part A introduction evidence (ADR 0036; `docs/STAGE_340_DESIGN.md` with its part A
+implementation notes; baseline `e2c4bca`; acceptance pending): **new surfaces for Gate 06**, row
+340 of the alpha-phase table. Invitation mode only (`AUTH_MODE=invitations`); development personas
+behave as before and stay refused in production. Revised by the part A security review
+(2026-10-16; ADR 0036 amendment, `docs/STAGE_340_DESIGN.md` "Security review fixes").
+- **`POST /auth/redeem`** (`apps/server/src/auth/auth-routes.ts`): `{token, replaceSession?}` from a
+  link's fragment; limits first (10/min per client, 5 failures per token prefix, 15 min lockout
+  after 20 failures/hour, 60 refused redeems/min across all clients, a new client refused when the
+  tables are full; fixed 429), then 400 for a malformed body, then 409 (fixed body, invitation
+  unused) for a browser whose session is live and still a member unless `replaceSession: true`,
+  then one fixed 401 for every well-formed failure (unknown, used, revoked, expired, the seat no
+  longer free). A player's seat
+  is `AssignCharacter` by the system actor `sign-in` under `invite:<invitationId>` (actor stored
+  first, so a retry converges); marking the invitation used, creating the session and revoking
+  the seat's other open invitations are one transaction; a redeem whose invitation is revoked or
+  expires while it takes the seat undoes that assignment. Answers `{campaignId}` and sets
+  `ltw_session` (`Path=/api; HttpOnly; SameSite=Strict; Max-Age=1209600`, `Secure` except http
+  loopback); a session the browser held before (confirmed away, or dead) is revoked.
+- **`GET`/`HEAD /auth/session`** (origin-checked like the live stream): `{campaignId}` only while
+  the session is live and its actor still a member, else 401. **`POST /auth/sign-out`**: revokes
+  the session, clears the cookie (204), 401 without a live session. A 401 clears the cookie only
+  when the request presented exactly one `ltw_session` cookie that opened nothing: no request
+  another site can cause signs a browser out.
+- **DM only, ADR 0009 order (401, 400, then the 404 of a missing campaign for anyone but this
+  campaign's DM):** `POST /campaigns/:campaignId/invitations {characterId, expiresHours?}` (404
+  for a non-character, 409 for a taken seat, 20/hour per DM; the link is shown once), `GET
+  …/invitations` (newest 100 invitations with status and times, members as character, live
+  session count and coarse last-seen; never a token, hash or actor ID), `POST
+  …/invitations/:invitationId/revoke` (404 for another campaign's, 409 once used), `POST
+  …/members/:characterId/revoke` (the player's sessions and the character's open invitations
+  revoked first, then `ReleaseCharacter` as the DM; a World Engine refusal is answered as the
+  command route would).
+- **Credential binding**: a session opens only its campaign; elsewhere its actor is one no
+  campaign has (`apps/server/src/http/auth.ts`, `actorFor`), so after input validation it gets the
+  non-member 404 — even where the same actor is the DM. Unknown, non-member and released
+  campaigns answer identically; revoked, expired and forged sessions answer the 401 of no cookie.
+- **Origin and headers** (`apps/server/src/http/security.ts`): before anything else, a non-GET
+  request needs `Origin` = `PUBLIC_ORIGIN`, the live stream and `/auth/session` that `Origin` or,
+  without one, `Sec-Fetch-Site: same-origin`; fixed 403 otherwise. Every response (and the stream) carries the
+  design's CSP, `Referrer-Policy: no-referrer`, `nosniff`; `Vary: Cookie`. JSON bodies only.
+- **Limits on expensive routes**: DM intents, NPC dialogue, Chronicle generation, context requests
+  naming `ranking` (AI ranking) and `RequestAsset` commands, 20/min per actor with 2 in flight
+  (released when the work ends), answered 429 right after authentication; the refused request
+  starts no AI request.
+- **Limit mechanics** (`apps/server/src/auth/limits.ts`, `window-counter.ts`,
+  `apps/server/src/platform/net/addresses.ts`): clients are the address behind the trusted proxy
+  (`LTW_TRUST_PROXY`, required in invitation mode; Fastify `trustProxy`), grouped as an IPv4
+  address or an IPv6 /64; every table is a bounded time-bucketed counter (never more permissive
+  than its limit, at most 10,000 keys, no sweep); refused and limited redeems are written as
+  evidence at most 30 a minute.
+- **Operator CLI** (`apps/server/src/auth/operator.ts`): `revoke-dm` (the DM's sessions in a
+  campaign and its open DM invitations), `revoke-actor` (one actor's sessions and open invitations
+  everywhere), both with `--authorization-source` echoed in the output; `sessions` (live sessions
+  without token or hash); `dm-invite` as before.
+- **Configuration and logs**: development personas refused in production, with `PUBLIC_ORIGIN`, or
+  off a loopback `HTTP_HOST` (`apps/server/src/platform/config/config.ts`, `auth/composition.ts`);
+  log lines never carry a client address or port, a header or a cookie (`LOG_SERIALIZERS`).
+- **Live stream**: injected views carry the subscriber's cookie; sign-out, revocation and expiry
+  close it (`unauthenticated`) within one cycle; a seat released behind a live session closes it
+  (`gone`).
+- **Kernel: `ReleaseCharacter {characterId}`** (DM only; `CharacterReleased {characterId,
+  playerActorId}`, introduced at the dependency contract). Footprint reads the clock, the
+  character and its roster entry, writes the roster entry and the player's. Undo restores the
+  seat in assignment order (`rosterAssignedAt`) and is refused while any later command stands,
+  since later decisions may rest on the empty seat; the release protects the assignment it ended.
+  The generic command route refuses `ReleaseCharacter`. Earlier commands of the released player
+  stay valid history (re-decision oracle).
+- **Table** `0010_auth.sql`: hashes only, format checks, one-way update triggers, invitations never
+  deleted; redeem evidence keyed by an HMAC under a process-local key, pruned after 7 days.
+- **Deterministic evidence**: `apps/server/src/auth/sign-in.test.ts`, `member-routes.test.ts`,
+  `sign-in-limits.test.ts` (proxy, /64 grouping, refusal budget, evidence cap, full tables, AI
+  ranking), `limits.test.ts` (rotating addresses: bounded tables and cheap calls),
+  `window-counter.test.ts` (never more permissive than its limit), `sign-in-cookies.test.ts`
+  (no cross-site sign-out, clearing rule, redeem confirmation), `browser-checks.test.ts`,
+  `sign-in-live.test.ts`, `sign-in-logs.test.ts` (captured logger at trace level, AI traces,
+  evidence rows, live frames and response bodies hold no token, hash or cookie; no line holds a
+  client address, direct or forwarded, IPv4 or IPv6), `modes.test.ts` (configuration
+  combinations), `operator.test.ts`, `apps/server/src/platform/net/addresses.test.ts`,
+  `credentials.integration.test.ts` (operator commands on PostgreSQL); `packages/domain/src/knowledge/release.test.ts` (decide,
+  fold, replay from stored rows, undo order, strictly reverse undo, randomized seats with party
+  memories under the re-decision oracle), `kernel/replay.test.ts` and `undo-preview.test.ts` with
+  releases in the random command generator. Every reviewed suite passes unchanged except
+  mechanical updates for the asynchronous `Authenticator` port.
+- **Changed reviewed boundary**: none of the projections, the perspective rules or the ADR 0009
+  order changed. The roster gained a removal path going forward (`ReleaseCharacter`), so Gate 06
+  should review party-scoped projections after a release (a released character leaves the party
+  view from then on, as after an undone assignment).
+
+Stage 340 part B introduction evidence (ADR 0036, "Implementation (Stage 340 part B, browser)";
+`docs/STAGE_340_DESIGN.md`, "Implementation notes (part B, browser)"; acceptance pending): the
+browser end of row 340, **for Gate 06**. No route, projection or authorization changed.
+- **Which sign-in**: the client asks `GET /auth/session`; a 404 (no sign-in routes) shows the
+  development personas' token form, so a production build in `disabled` mode shows that form too,
+  harmlessly (no persona is accepted there). Review that no other answer reaches the form.
+- **The token's path** (`apps/web/src/session/invitation-link.ts`, `sign-in-flow.ts`,
+  `apps/web/src/main.tsx`; amended by the part B review, `docs/STAGE_340_DESIGN.md` "Part B
+  review fixes"): the fragment of `/join#<token>` is read once and the address and history entry
+  replaced (`/`) before anything is requested; the token waits in a one-shot holder (a closure,
+  never React state or props) and the redeem is sent once, only when the person presses "Take
+  your seat", with the token in its JSON body only; a 409 hands it to a second one-shot holder for
+  the question, and keeping the current sign-in, replacing it, success or any failure drops it;
+  once the seat is taken, the sign-in kept or the person goes back to the start, the join page is
+  replaced by a fresh start page (the browser's navigation timing entry keeps the address it
+  opened with). The journeys assert from captured traffic that a link opened and left sends no request, that
+  no request URL carried a token and no body outside a redeem did, that the address, history
+  entry, timing entries, storage, script-visible cookies, IndexedDB, Cache Storage, service
+  workers and the document keep none, and from heap snapshots that the page's JavaScript heap holds none after a
+  join, a failure and keeping the sign-in.
+- **The session in the browser** (`apps/web/src/api/client.ts`, `live.ts`,
+  `apps/web/src/session/sign-in-watch.ts`): no `Authorization` header, `credentials:
+  'same-origin'` for every request and the live stream; any 401 of a session (the stream's
+  `unauthenticated` included) shows "You are signed out"; only the session on screen can be signed
+  out by an answer. The cookie is the browser's: a 403 or 404, a live refusal or a close as
+  `gone`/`forbidden`, `online` and the tab shown again make the tab ask `GET /auth/session` and
+  its identity, and a 401 or another campaign, actor, role or character than it shows signs it
+  out too (review: a tab must never keep another sign-in's world or send its actions under the
+  new cookie). Sign-out is `POST /auth/sign-out` after a question; the screen changes only on 204
+  or 401.
+- **Fixed failures**: every refused, limited, malformed or unanswered redeem shows the same words;
+  a signed-in browser is asked before any well-formed link (the server answers 409 before it reads
+  the token), keeping is the first and focused choice and replacing waits for a visible, focused
+  page and a pointer or key, and the current sign-in survives a failed replacement.
+- **The DM's Players sheet** (`apps/web/src/dm/players-sheet.tsx`, `players-lists.tsx`,
+  `use-players.ts`): only in the DM perspective of a session; lists what `GET …/invitations`
+  answers (never a token, hash or actor ID; character names from the DM's own directory); the new
+  link lives in the DM's memory and DOM only until hidden, used, revoked or replaced.
+- **Deterministic evidence**: unit tests `apps/web/src/session/sign-in-flow.test.ts` (the
+  fragment, the one-shot holders, the probe, the redeem on the click and its fixed failure,
+  sign-out, naming the current sign-in, no `Authorization`, same-origin only),
+  `invitation-token.test.ts` (no string of a V8 heap snapshot holds the token after keeping the
+  sign-in or a failure), `sign-in-watch.test.ts`, `deliberate-choice.test.ts`,
+  `apps/web/src/api/client.test.ts` and `live.test.ts` (the session connection: 401 and
+  `unauthenticated` sign the screen out; 403, 404, other live refusals, `gone` and `forbidden`
+  raise a doubt), `apps/web/src/dm/players.test.ts`; browser journeys `tests/e2e/sign-in.spec.ts`,
+  `sign-in-tabs.spec.ts`, `sign-in-ru.spec.ts`, `sign-in-accessibility.spec.ts` on the
+  invitation-mode test server (`apps/server/src/testing/ui-sign-in-server.ts`); every
+  development-persona journey unchanged.

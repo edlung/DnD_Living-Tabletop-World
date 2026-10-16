@@ -13,7 +13,11 @@ import { languageSchema } from '../language/language.ts';
 import { setWeatherCommandSchema } from '../visual/commands.ts';
 import { generateChronicleCommandSchema } from '../chronicle/commands.ts';
 import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
-import { addKnowledgeCommandSchema, assignCharacterCommandSchema } from '../knowledge/commands.ts';
+import {
+  addKnowledgeCommandSchema,
+  assignCharacterCommandSchema,
+  releaseCharacterCommandSchema,
+} from '../knowledge/commands.ts';
 import {
   endSessionCommandSchema,
   recordMemoryCommandSchema,
@@ -121,6 +125,7 @@ export const kernelCommandSchema = z
     startSessionCommandSchema,
     endSessionCommandSchema,
     assignCharacterCommandSchema,
+    releaseCharacterCommandSchema,
     setCharacterSheetCommandSchema,
     enterLocationCommandSchema,
     askAboutCommandSchema,
@@ -174,6 +179,7 @@ export const KERNEL_COMMAND_TYPES = [
   'UndoCommand',
   'AddKnowledge',
   'AssignCharacter',
+  'ReleaseCharacter',
   'RecordMemory',
   'StartSession',
   'EndSession',

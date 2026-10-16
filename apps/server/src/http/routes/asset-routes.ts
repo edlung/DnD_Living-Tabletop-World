@@ -48,7 +48,7 @@ const perspectiveQuery = z.object({ perspective: z.string() }).strict();
 
 export function registerAssetRoutes(app: FastifyInstance, deps: AssetRouteDependencies): void {
   app.get('/campaigns/:campaignId/assets', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(campaignParams, request.params, request, reply);
     if (!params) return reply;

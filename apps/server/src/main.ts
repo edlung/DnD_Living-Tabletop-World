@@ -13,10 +13,11 @@ import { createAiGateway, type AiGateway } from './ai/gateway.ts';
 import { PostgresAiJournal } from './ai/journal.ts';
 import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
+import { composeAuthentication, startCredentialPruning } from './auth/composition.ts';
+import { PostgresCredentialStore } from './auth/postgres-credential-store.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
-import { disabledAuthenticator, loadDevPersonaAuthenticator } from './http/auth.ts';
 import { buildLiveApp } from './live/live-app.ts';
 import { describeDatabaseUrl, loadConfig, obsoleteVariables } from './platform/config/config.ts';
 import { createLogger, type Logger } from './platform/logging/logger.ts';
@@ -33,10 +34,12 @@ async function main(): Promise<void> {
   // Proposal locks wait for the event store while held, so they get connections of their own.
   const proposalLocks = new pg.Pool({ connectionString: config.databaseUrl, max: 4 });
 
-  const authenticator =
-    config.auth.personasFile === null
-      ? disabledAuthenticator
-      : await loadDevPersonaAuthenticator(config.auth.personasFile);
+  // Sign-in by mode (docs/adr/0036-production-sign-in.md §5): session cookies from DM
+  // invitations in production; development personas are refused under NODE_ENV=production.
+  const { authenticator, signIn } = await composeAuthentication(
+    config,
+    () => new PostgresCredentialStore(pool),
+  );
   if (config.auth.mode === 'dev-personas') {
     logger.warn('development persona authentication is enabled (never use in production)');
   }
@@ -74,18 +77,23 @@ async function main(): Promise<void> {
     dm: { substitutions: new PostgresSubstitutionStore(pool), clock: systemClock },
     assets: { contents },
     quests,
+    ...(signIn ? { signIn } : {}),
+    // Request limits key on the client behind this reverse proxy (ADR 0036, 2026-10-16).
+    trustedProxies: config.http.trustedProxies,
   });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
     {
       nodeEnv: config.nodeEnv,
       authMode: config.auth.mode,
+      trustedProxies: config.http.trustedProxies.length,
       database: describeDatabaseUrl(config.databaseUrl),
     },
     'server ready',
   );
   reportAiSpending(logger, pool, ai);
 
+  const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
   const stopAssets = startAssetWorkerLoop({
     engine,
     contents,
@@ -98,6 +106,7 @@ async function main(): Promise<void> {
 
   const shutdown = (signal: NodeJS.Signals): void => {
     logger.info({ signal }, 'shutting down');
+    stopPruning();
     stopAssets()
       .then(() => app.close())
       // Settlement retries stop; any unsettled hold stays for the operator.

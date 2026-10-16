@@ -52,7 +52,13 @@ Configuration is optional in development: safe defaults point at the docker-comp
 Open the web client, keep campaign `ravenford`, and enter the development persona token
 `dev-player-elowen` or `dev-dm-ravenford` from `fixtures/ravenford/personas.json`.
 Tokens are entered explicitly and live only in memory. These personas are for local
-development; production authentication is not implemented.
+development; the client shows their form only when the server has no production sign-in.
+
+With production sign-in (`AUTH_MODE=invitations`, `PUBLIC_ORIGIN` set to the address the
+browser opens, `LTW_TRUST_PROXY`; ADR 0036) nobody types a token: the DM opens the link that
+`pnpm auth:operator dm-invite` prints, and invites players from the **Players** sheet of the
+DM view (each link is shown once and works once); a player opens the link and is at the table.
+**Sign out** asks first: coming back takes a new invitation.
 
 Pick a location, then select people and objects in the scene: contextual options are
 the server's, and the client submits only the commands it lists. Players explore,
@@ -68,8 +74,9 @@ No AI provider is needed. The client bundle is in `apps/web/build`; this is a bu
 artifact, not a production deployment.
 
 Install the browser once with `pnpm exec playwright install chromium`, then run
-`pnpm test:e2e`. The test suite owns isolated API/Vite servers on ports 4311/4310 and
-uses a real seeded in-memory World Engine. It requires no database or external AI.
+`pnpm test:e2e`. The test suite owns isolated API/Vite servers on ports 4311/4310 (development
+personas) and 4313/4312 (production sign-in) and uses a real seeded in-memory World Engine. It
+requires no database or external AI.
 
 ## Commands
 
@@ -84,6 +91,7 @@ uses a real seeded in-memory World Engine. It requires no database or external A
 | `pnpm test:integration` | Integration tests; needs PostgreSQL (`pnpm db:up`) |
 | `pnpm test:e2e` | Browser/API journeys; install Playwright Chromium first |
 | `pnpm eval:ai` | Explicit live-provider evaluation; excluded from validation/CI. Do not run until text-provider spending ceilings are approved; Stage 300 accounting/evaluation remediation is pending. See `docs/PROJECT_WORKFLOW.md`. |
+| `pnpm auth:operator dm-invite --campaign <id> --expires-hours <n>` | Prints the DM's single-use sign-in link for a campaign (`AUTH_MODE=invitations`, `PUBLIC_ORIGIN`; ADR 0036); the only way to DM access in production |
 | `pnpm dev:web` | Local Player/DM web client and API proxy |
 | `pnpm build` / `pnpm clean` | Compile all projects and bundle the web app / remove TypeScript outputs |
 | `pnpm db:up` / `pnpm db:down` | Start / stop local PostgreSQL |
@@ -121,6 +129,8 @@ Routes under `/campaigns/:campaignId/`:
 - `POST ai/intents` with `{ "text": … }` (DM only; returns a proposal, never committed; ADR 0017)
 - `GET ai/traces/:traceId` (DM only)
 - `POST authoring/proposals` with `{ traceId }` or `{ summary, commands }`; `GET authoring/proposals/:proposalId`; `POST …/revisions`, `…/commit`, `…/undo` (DM only; ADR 0018)
+
+With `AUTH_MODE=invitations` (production, ADR 0036) there are no persona tokens: `POST /auth/redeem` turns a DM invitation link's token into an `ltw_session` cookie, `GET /auth/session` and `POST /auth/sign-out` follow, and the DM manages `GET|POST invitations`, `POST invitations/:invitationId/revoke` and `POST members/:characterId/revoke`. Every non-GET request needs the `Origin` of `PUBLIC_ORIGIN`.
 
 Every knowledge GET requires `perspective=DM|PUBLIC|PARTY|PLAYER|CHARACTER:<id>|NPC:<id>`. Persona tokens are in `fixtures/ravenford/personas.json` (development and test only; production refuses them). Who sees what: ADR 0008 (knowledge) and ADR 0010 (memories); HTTP behavior: ADR 0009.
 

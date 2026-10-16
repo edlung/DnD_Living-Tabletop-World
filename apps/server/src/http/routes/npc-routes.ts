@@ -16,11 +16,11 @@ import {
   npcDialogueContext,
   sharedSources,
 } from '@ltw/domain';
-import type { FastifyInstance } from 'fastify';
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
 import { sendError } from '../errors.ts';
-import { authenticate, parseInput, type RouteDependencies } from '../request-context.ts';
+import { authenticate, expensive, parseInput, type RouteDependencies } from '../request-context.ts';
 import { forPlayer } from './command-routes.ts';
 
 /**
@@ -53,8 +53,8 @@ function commandOf(characterId: string, npcId: string, intent: DialogueIntent) {
 }
 
 export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependencies): void {
-  app.post('/campaigns/:campaignId/npcs/:npcId/dialogue', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+  const dialogue = async (request: FastifyRequest, reply: FastifyReply) => {
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const path = parseInput(params, request.params, request, reply);
     if (!path) return reply;
@@ -125,5 +125,7 @@ export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependenci
     );
     const response: NpcDialogueResponse = { command: seen, refused: null, reply: npcReply };
     return reply.send(response);
-  });
+  };
+  // AI work: limited per actor in invitation mode (docs/adr/0036-production-sign-in.md §6).
+  app.post('/campaigns/:campaignId/npcs/:npcId/dialogue', expensive(dialogue));
 }

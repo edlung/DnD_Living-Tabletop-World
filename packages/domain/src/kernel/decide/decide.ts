@@ -26,7 +26,11 @@ import {
   decideEnterLocation,
   decideFormHypothesis,
 } from '../../investigation/movement-and-hypotheses.ts';
-import { decideAddKnowledge, decideAssignCharacter } from '../../knowledge/decide.ts';
+import {
+  decideAddKnowledge,
+  decideAssignCharacter,
+  decideReleaseCharacter,
+} from '../../knowledge/decide.ts';
 import { decideEndSession, decideRecordMemory, decideStartSession } from '../../memory/decide.ts';
 import { decideSetRelationship } from '../../relationships/decide.ts';
 import { accept, type Decision, type DecisionContext, type ResolvedCommand } from '../decision.ts';
@@ -122,6 +126,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideAddKnowledge(state, command);
     case 'AssignCharacter':
       return decideAssignCharacter(state, command);
+    case 'ReleaseCharacter':
+      return decideReleaseCharacter(state, command);
     case 'RecordMemory':
       return decideRecordMemory(context, command);
     case 'StartSession':

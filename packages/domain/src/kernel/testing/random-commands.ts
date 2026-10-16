@@ -78,11 +78,22 @@ export function randomCommand(
   if (roll < 0.77) return randomKnowledge(rng, pick, state, entities, step);
   if (roll < 0.82) return randomMemory(rng, pick, state, entities, step);
   if (roll < 0.915) return randomInvestigation(rng, pick, state, entities, step);
-  if (roll < 0.925) {
+  if (roll < 0.93) {
+    // Mostly a character, so that seats are taken, given up (below) and taken again.
+    const characters = [...state.entities.values()].filter((e) => e.kind === 'character');
     return {
       type: 'AssignCharacter',
-      characterId: pick(entities),
-      playerActorId: pick(['player-a', 'player-b', 'dm-1']),
+      characterId:
+        characters.length > 0 && rng() < 0.7 ? pick(characters).entityId : pick(entities),
+      playerActorId: pick(['player-a', 'player-b', 'player-c', 'dm-1']),
+    };
+  }
+  if (roll < 0.94) {
+    // ADR 0036 §4: mostly a character that has a player, sometimes anything.
+    const seated = [...state.roster.keys()];
+    return {
+      type: 'ReleaseCharacter',
+      characterId: seated.length > 0 && rng() < 0.8 ? pick(seated) : pick(entities),
     };
   }
   return { type: 'UndoCommand', targetCommandId: pick([...acceptedCommandIds, 'none']) };

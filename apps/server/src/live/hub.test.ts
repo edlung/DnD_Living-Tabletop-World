@@ -91,7 +91,7 @@ const key = (actorId = 'player-elowen', campaignId = 'ravenford') => ({
     place: null,
     identity: true,
   },
-  authorization: 'Bearer test',
+  credentials: { authorization: 'Bearer test' },
   actorId,
 });
 

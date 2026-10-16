@@ -1,5 +1,6 @@
 import { useT } from '@ltw/ui';
 
+import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { dockButtonId, sheetElementId, type SheetId, type Shell } from './use-shell.ts';
@@ -61,11 +62,13 @@ function DockButton({ item, shell }: { readonly item: Item; readonly shell: Shel
 
 /**
  * The dock (docs/STAGE_320_DESIGN.md §5.1): Scene, Places, Journal and the Chronicle for
- * everyone; the DM's tools beside them, only in the DM perspective. A phone shows it as a tab
- * bar with short words.
+ * everyone; the DM's tools beside them, only in the DM perspective, with Players where the
+ * table signs in by invitation (docs/adr/0036-production-sign-in.md §4). A phone shows it as a
+ * tab bar with short words.
  */
 export function Dock({ isDm, shell }: { readonly isDm: boolean; readonly shell: Shell }) {
   const t = useT();
+  const invitations = useSignInKind() === 'session';
   const world: readonly Item[] = [
     { id: 'scene', label: t('Scene'), short: t('Scene'), glyph: 'look' },
     { id: 'places', label: t('Places'), short: t('Places'), glyph: 'map' },
@@ -77,6 +80,9 @@ export function Dock({ isDm, shell }: { readonly isDm: boolean; readonly shell: 
     { id: 'encounter', label: t('Encounter'), short: t('Encounter'), glyph: 'encounter' },
     { id: 'time', label: t('Time and weather'), short: t('Time'), glyph: 'time' },
     { id: 'history', label: t('History'), short: t('History'), glyph: 'history' },
+    ...(invitations
+      ? [{ id: 'players', label: t('Players'), short: t('Players'), glyph: 'party' } as const]
+      : []),
   ];
   return (
     <nav className="dock" aria-label={t('World tools')}>

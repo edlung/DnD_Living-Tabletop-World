@@ -26,7 +26,12 @@ function server() {
       });
     });
   };
-  const api = new WorldApi({ campaignId: 'ravenford', token: 'dm' }, 'DM', 'DM', transport);
+  const api = new WorldApi(
+    { kind: 'persona', campaignId: 'ravenford', token: 'dm' },
+    'DM',
+    'DM',
+    transport,
+  );
   return { api, requested, answers };
 }
 

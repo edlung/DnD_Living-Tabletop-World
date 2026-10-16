@@ -2,6 +2,8 @@ import type { ServerResponse } from 'node:http';
 
 import type { LiveMessage } from '@ltw/contracts';
 
+import { SECURITY_HEADERS } from '../http/security.ts';
+
 /**
  * Event-stream framing of the live signal (docs/STAGE_310_DESIGN.md §A): the fixed messages
  * and a comment heartbeat, nothing else. A sink is one subscriber's connection.
@@ -20,14 +22,18 @@ export function frame(message: LiveMessage): string {
 export const HEARTBEAT = ': heartbeat\n\n';
 
 /** Response headers of an open stream (the app's `onSend` hook does not run for it). */
-export const STREAM_HEADERS: Readonly<Record<string, string>> = {
-  'content-type': 'text/event-stream; charset=utf-8',
-  'cache-control': 'no-store',
-  vary: 'Authorization',
-  'x-content-type-options': 'nosniff',
-  // Proxies must pass each frame on as it is written.
-  'x-accel-buffering': 'no',
-};
+export function streamHeaders(
+  credentialHeader: 'Authorization' | 'Cookie',
+): Readonly<Record<string, string>> {
+  return {
+    ...SECURITY_HEADERS,
+    'content-type': 'text/event-stream; charset=utf-8',
+    'cache-control': 'no-store',
+    vary: credentialHeader,
+    // Proxies must pass each frame on as it is written.
+    'x-accel-buffering': 'no',
+  };
+}
 
 export interface LiveSink {
   write(text: string): void;

@@ -5,11 +5,11 @@ import {
   type AiAccountingDiagnosticView,
 } from '@ltw/contracts';
 import { campaignRole } from '@ltw/domain';
-import type { FastifyInstance } from 'fastify';
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
 import { sendError } from '../errors.ts';
-import { authenticate, parseInput, type RouteDependencies } from '../request-context.ts';
+import { authenticate, expensive, parseInput, type RouteDependencies } from '../request-context.ts';
 
 /**
  * The AI gateway over HTTP (docs/adr/0017-ai-gateway.md §6), DM only, with
@@ -39,8 +39,8 @@ const traceParams = z
   .strict();
 
 export function registerAiRoutes(app: FastifyInstance, deps: AiRouteDependencies): void {
-  app.post('/campaigns/:campaignId/ai/intents', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+  const intent = async (request: FastifyRequest, reply: FastifyReply) => {
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(campaignParams, request.params, request, reply);
     if (!params) return reply;
@@ -64,10 +64,12 @@ export function registerAiRoutes(app: FastifyInstance, deps: AiRouteDependencies
       'ai intent',
     );
     return reply.send(outcome.response);
-  });
+  };
+  // AI work: limited per actor in invitation mode (docs/adr/0036-production-sign-in.md §6).
+  app.post('/campaigns/:campaignId/ai/intents', expensive(intent));
 
   app.get('/campaigns/:campaignId/ai/traces/:traceId', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(traceParams, request.params, request, reply);
     if (!params) return reply;
@@ -82,7 +84,7 @@ export function registerAiRoutes(app: FastifyInstance, deps: AiRouteDependencies
   });
 
   app.get('/campaigns/:campaignId/ai/accounting/:traceId', async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(traceParams, request.params, request, reply);
     if (!params) return reply;

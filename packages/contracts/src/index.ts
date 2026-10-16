@@ -115,6 +115,28 @@ export {
   type RecordSubstitutionResponse,
   type SubstitutionReason,
 } from './session/dm.ts';
+export {
+  CREDENTIAL_TOKEN_PATTERN,
+  DEFAULT_INVITATION_HOURS,
+  INVITATION_STATUSES,
+  MAX_INVITATION_HOURS,
+  SESSION_COOKIE,
+  SESSION_DAYS,
+  createInvitationRequestSchema,
+  invitationIdSchema,
+  redeemRequestSchema,
+  type AuthSessionResponse,
+  type CreateInvitationRequest,
+  type CreatedInvitationResponse,
+  type InvitationStatus,
+  type InvitationView,
+  type MemberView,
+  type MembershipResponse,
+  type RedeemRequest,
+  type RedeemResponse,
+  type RevokeInvitationResponse,
+  type RevokeMemberResponse,
+} from './session/auth.ts';
 export { DEFAULT_LANGUAGE, LANGUAGES, languageSchema, type Language } from './language/language.ts';
 export type { CharacterSheetResponse } from './rules/character-view.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';

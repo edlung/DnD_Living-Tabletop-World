@@ -14,6 +14,7 @@ const STATUS: Record<ApiErrorCode, number> = {
   CONFLICT: 409,
   UNPROCESSABLE: 422,
   INTERNAL: 500,
+  RATE_LIMITED: 429,
 };
 
 const MESSAGE: Record<ApiErrorCode, string> = {
@@ -24,6 +25,7 @@ const MESSAGE: Record<ApiErrorCode, string> = {
   CONFLICT: 'Conflict',
   UNPROCESSABLE: 'The command was rejected',
   INTERNAL: 'Internal error',
+  RATE_LIMITED: 'Too many requests',
 };
 
 export function errorBody(code: ApiErrorCode, requestId: string): ApiErrorResponse {

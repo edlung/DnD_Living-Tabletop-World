@@ -57,10 +57,11 @@ export class ManualTimers implements LiveTimers {
 export function flippableAuthenticator(initial: Readonly<Record<string, string | null>>) {
   const actors = new Map(Object.entries(initial));
   const authenticator: Authenticator = {
-    authenticate(authorization) {
+    authenticate({ authorization }) {
       const token = /^Bearer (.+)$/.exec(authorization ?? '')?.[1];
       const actorId = token === undefined ? null : (actors.get(token) ?? null);
-      return actorId === null ? null : ({ actorId, kind: 'user' } satisfies Actor);
+      const actor = { actorId: actorId ?? '', kind: 'user' } satisfies Actor;
+      return Promise.resolve(actorId === null ? null : { actor, campaignId: null });
     },
   };
   return {
@@ -130,16 +131,20 @@ function parse(frame: string): LiveMessage | null {
   return { type: event, ...(JSON.parse(data) as object) } as LiveMessage;
 }
 
-/** Opens `url` like the browser does: a GET with the bearer token, read as a stream. */
+/**
+ * Opens `url` like the browser does: a GET with the bearer token (or, in invitation mode, the
+ * session cookie and the browser's origin headers), read as a stream.
+ */
 export async function openLive(
   app: FastifyInstance,
   url: string,
   token?: string,
+  headers: Readonly<Record<string, string>> = {},
 ): Promise<LiveStream> {
   const response = await app.inject({
     method: 'GET',
     url,
-    headers: token === undefined ? {} : { authorization: `Bearer ${token}` },
+    headers: { ...(token === undefined ? {} : { authorization: `Bearer ${token}` }), ...headers },
     payloadAsStream: true,
   });
   const stream = response.stream();

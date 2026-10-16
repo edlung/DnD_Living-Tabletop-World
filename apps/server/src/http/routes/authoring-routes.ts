@@ -43,7 +43,7 @@ export function registerAuthoringRoutes(
   const base = '/campaigns/:campaignId/authoring/proposals';
 
   app.post(base, async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(campaignParams, request.params, request, reply);
     if (!params) return reply;
@@ -56,7 +56,7 @@ export function registerAuthoringRoutes(
   });
 
   app.get(`${base}/:proposalId`, async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(proposalParams, request.params, request, reply);
     if (!params) return reply;
@@ -64,7 +64,7 @@ export function registerAuthoringRoutes(
   });
 
   app.post(`${base}/:proposalId/revisions`, async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(proposalParams, request.params, request, reply);
     if (!params) return reply;
@@ -77,7 +77,7 @@ export function registerAuthoringRoutes(
   });
 
   app.post(`${base}/:proposalId/commit`, async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(proposalParams, request.params, request, reply);
     if (!params) return reply;
@@ -92,7 +92,7 @@ export function registerAuthoringRoutes(
   });
 
   app.post(`${base}/:proposalId/undo`, async (request, reply) => {
-    const actor = authenticate(request, reply, deps);
+    const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
     const params = parseInput(proposalParams, request.params, request, reply);
     if (!params) return reply;
