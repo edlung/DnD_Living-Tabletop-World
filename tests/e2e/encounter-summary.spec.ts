@@ -18,10 +18,14 @@ test('player reads a real paused encounter and their reaction choices without DM
   page,
 }) => {
   const traffic = collectApiBodies(page);
-  const encounterResponse = page.waitForResponse(
-    (response) =>
-      new URL(response.url()).pathname === `/api/campaigns/${COMBAT_CAMPAIGN}/encounter`,
-  );
+  // Read the body as soon as the first encounter response arrives: Chromium may drop a response
+  // body it has already delivered once later reads of the same view (live refreshes) follow.
+  const encounterPayload = page
+    .waitForResponse(
+      (response) =>
+        new URL(response.url()).pathname === `/api/campaigns/${COMBAT_CAMPAIGN}/encounter`,
+    )
+    .then(async (response) => (await response.json()) as EncounterPayload);
   await enterWorld(page, TOKENS.player, COMBAT_CAMPAIGN);
   // The summary in words is the Journal's; the stage shows the battlefield.
   await expect(page.getByRole('region', { name: 'Battlefield', exact: true })).toBeVisible();
@@ -41,7 +45,7 @@ test('player reads a real paused encounter and their reaction choices without DM
   await expect(shaman).toBeVisible();
   await expect(shaman).not.toContainText('Hit points');
   await expect(shaman).not.toContainText('Initiative');
-  const payload = (await (await encounterResponse).json()) as EncounterPayload;
+  const payload = await encounterPayload;
   expect(payload.encounter?.combatants).toHaveLength(5);
   expect(payload.encounter?.reactionWindow?.choices).toEqual(['counterspell', 'ignore']);
   expect(payload.encounter?.reactionWindow?.trigger).not.toHaveProperty('spellId');
