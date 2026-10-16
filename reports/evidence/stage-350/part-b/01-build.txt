@@ -1,0 +1,23 @@
+Stage 350 part B: images built from git archive of committed revisions (deploy/scripts/build.sh)
+
+### Build part A (333a879) and part B (8b362b1) again: every layer from the cache, the tag printed on stdout (2026-10-16T01:06:24Z)
+$ for r in 333a879 8b362b1; do tag=$(deploy/scripts/build.sh "$r" 2>build.err) ; echo "$r -> tag $tag (exit $?), $(grep -c CACHED build.err) cached steps, $(grep -cE "^#[0-9]+ DONE" build.err) steps done"; done; rm -f build.err
+333a879 -> tag 333a8791b1e8 (exit 0), 44 cached steps, 10 steps done
+8b362b1 -> tag 8b362b15ec68 (exit 0), 44 cached steps, 10 steps done
+[exit 0]
+
+### Server image contents: the review campaign CLI only in part B, the Russian fixtures in both, no TypeScript sources, tests or .env files (2026-10-16T01:06:26Z)
+$ for t in 333a8791b1e8 8b362b15ec68; do echo "ltw-server:$t"; docker run --rm --entrypoint sh "ltw-server:$t" -c "cd /app && ls apps/server/dist/world-engine | grep -E \"^(seed|review).*\\.js\$\"; ls fixtures; echo \"sources/tests/env files outside node_modules: \$(find . -path ./node_modules -prune -o \\( -name \"*.ts\" ! -name \"*.d.ts\" -o -name \"*.test.*\" -o -name \".env*\" \\) -type f -print | wc -l)\""; done
+ltw-server:333a8791b1e8
+seed-ravenford-cli.js
+ravenford
+ravenford-ru
+sources/tests/env files outside node_modules: 0
+ltw-server:8b362b15ec68
+review-campaign.js
+seed-ravenford-cli.js
+seed-review-campaign-cli.js
+ravenford
+ravenford-ru
+sources/tests/env files outside node_modules: 0
+[exit 0]

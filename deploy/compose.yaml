@@ -5,6 +5,10 @@
 # and, for the restore drill only, `drill-db` (profile `drill`, data on tmpfs). Settings and
 # secrets come from deploy/.env (git-ignored; deploy/.env.example lists the names). Images are
 # local, built by deploy/scripts/build.sh and tagged by git revision.
+# Networks (the trust boundary, deploy/verify/trust-boundary.sh): `edge` (the proxy alone; the
+# published ports), `backend` (the proxy and the server; internal, no host address), `data`
+# (server, database, backups; internal, no host address), `egress` (the server alone; its
+# outbound calls to AI providers; nothing listens there).
 name: ltw
 
 x-logging: &logging
@@ -32,7 +36,7 @@ services:
     volumes:
       - caddy-data:/data
       - caddy-config:/config
-    networks: [edge]
+    networks: [edge, backend]
     read_only: true
     tmpfs: [/tmp]
     cap_drop: [ALL]
@@ -68,15 +72,23 @@ services:
       # Invitation sign-in (ADR 0036) needs the browser's origin.
       AUTH_MODE: invitations
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?set PUBLIC_ORIGIN in deploy/.env}
-      HTTP_HOST: 0.0.0.0
+      # The API listens only at the server's backend address: not on `data`, not on `egress`.
+      HTTP_HOST: ${LTW_BACKEND_PREFIX:-10.231.251}.10
       HTTP_PORT: '3000'
-      # Stage 340's server takes the client's address from X-Forwarded-For only from these peers
-      # (per-address limits); the proxy's network, pinned below. Caddy sets the header itself.
-      LTW_TRUST_PROXY: ${LTW_EDGE_SUBNET:-10.231.250.0/24}
+      # The client's address comes from X-Forwarded-For only when the peer is on `backend`, where
+      # the proxy is the only other member and replaces any such header a client sends (ADR 0036
+      # amendment; per-client limits).
+      LTW_TRUST_PROXY: ${LTW_BACKEND_PREFIX:-10.231.251}.0/24
       DATABASE_URL: postgres://ltw:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}@postgres:5432/ltw
       DEV_PERSONAS_FILE: ''
+      # The review campaign is the Russian Ravenford: its quest summaries (ADR 0031).
+      LTW_QUESTS_FILE: ${LTW_QUESTS_FILE:-/app/fixtures/ravenford-ru/quests.json}
       LTW_ALLOW_NEWER_SCHEMA: ${LTW_ALLOW_NEWER_SCHEMA:-false}
-    networks: [edge, data]
+    networks:
+      backend:
+        ipv4_address: ${LTW_BACKEND_PREFIX:-10.231.251}.10
+      data: {}
+      egress: {}
     read_only: true
     tmpfs: [/tmp]
     cap_drop: [ALL]
@@ -88,7 +100,7 @@ services:
         - CMD
         - node
         - -e
-        - "fetch('http://127.0.0.1:3000/readyz').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+        - "fetch('http://' + process.env.HTTP_HOST + ':3000/readyz').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
       interval: 10s
       timeout: 5s
       retries: 3
@@ -176,15 +188,27 @@ services:
     logging: *logging
 
 networks:
-  # Proxy and server; outbound traffic for certificates and AI providers. A fixed range: the
-  # server trusts X-Forwarded-For from it (LTW_TRUST_PROXY).
-  edge:
+  # The proxy alone: the published ports, outbound traffic for certificates (ACME).
+  edge: {}
+  # The proxy and the server, nothing else. Internal, and without an address on the host
+  # (gateway mode `isolated`, Docker Engine 28 or later): no host process and no other network
+  # reaches the server. A fixed range: the server trusts X-Forwarded-For from it alone; the
+  # server's address lies outside the range other members get.
+  backend:
+    internal: true
+    driver_opts:
+      com.docker.network.bridge.gateway_mode_ipv4: isolated
     ipam:
       config:
-        - subnet: ${LTW_EDGE_SUBNET:-10.231.250.0/24}
-  # Server, database and backups; no outbound traffic, nothing published.
+        - subnet: ${LTW_BACKEND_PREFIX:-10.231.251}.0/24
+          ip_range: ${LTW_BACKEND_PREFIX:-10.231.251}.128/25
+  # Server, database and backups; internal, no address on the host, nothing published.
   data:
     internal: true
+    driver_opts:
+      com.docker.network.bridge.gateway_mode_ipv4: isolated
+  # The server alone: outbound calls to AI providers. The server does not listen on it.
+  egress: {}
 
 volumes:
   pgdata: {}

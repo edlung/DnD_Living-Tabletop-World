@@ -96,8 +96,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Images of this revision, a local stack behind Caddy with internal TLS, smoke checks,
-      # backup and restore drill, retention and CSP checks, the live stream through the proxy
-      # (docs/adr/0037-deployment.md). The script removes everything it created.
+      # Images of this revision, the production stack (invitation sign-in) behind Caddy with
+      # internal TLS, the review campaign, smoke checks, backup and restore drill, retention and
+      # proxy contract checks, the Russian sign-in journeys and the live stream through the proxy,
+      # the network trust boundary (docs/adr/0037-deployment.md). The script removes everything
+      # it created.
       - name: Build, run and check the deployment
         run: bash deploy/verify/ci.sh

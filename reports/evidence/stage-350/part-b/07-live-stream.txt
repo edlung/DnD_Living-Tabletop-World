@@ -1,0 +1,39 @@
+Stage 350 part B: the live stream through the proxy with an invitation session (deploy/verify/live-stream.sh)
+
+### Live stream on 8b362b15ec68: a DM signed in by an operator invitation, cookie and Origin, HTTP/2 (2026-10-16T01:10:01Z)
+$ deploy/verify/live-stream.sh
+==> the DM signs in with an invitation from the operator (the link is never printed)
+{"campaignId":"ravenford"}
+==> opening the live stream through the proxy (HTTP/2, cookie and Origin)
+==> ready after 0.11 s
+HTTP/2 200 
+cache-control: no-store
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'
+content-type: text/event-stream; charset=utf-8
+cross-origin-opener-policy: same-origin
+date: Fri, 16 Oct 2026 01:10:01 GMT
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Cookie
+x-accel-buffering: no
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-request-id: d6c002d7-9553-4882-8bdb-39ca21816b70
+
+==> one DM command through the proxy (a new item: the DM perspective can read it)
+{"status":"accepted","commandId":"http:dm-ravenford:live-check-1792113003"}
+==> changed 0.96 s after the command, stream open
+==> waiting for the next heartbeat
+==> heartbeat 15.16 s after opening, stream open
+==> the DM signs out: the stream closes within one cycle
+==> closed 0.99 s after signing out; connection ended at 1.01 s
+==> frames received (raw):
+event: ready
+data: {}
+event: changed
+data: {"seq":1}
+: heartbeat
+event: closed
+data: {"reason":"unauthenticated"}
+==> live stream passes the proxy unbuffered
+[exit 0]

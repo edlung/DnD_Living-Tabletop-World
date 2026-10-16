@@ -1,0 +1,55 @@
+Stage 350 part B: local verification transcripts (see 00-index.txt)
+
+### Revision, tools and host ports (2026-10-16T01:06:11Z)
+$ git log --oneline -5 && git status --short | grep -v "^?? reports/" | head; docker version --format "Docker client {{.Client.Version}}, server {{.Server.Version}} ({{.Server.Os}}/{{.Server.Arch}})" && docker compose version && uname -sm && bash --version | head -1 && for t in curl jq python3 openssl; do printf "%s: " "$t"; command -v "$t"; done; for p in 80 443; do if nc -z -w 1 127.0.0.1 $p; then echo "port $p in use"; else echo "port $p free"; fi; done
+8b362b1 WIP Stage 350 part B: deploy recreates on network changes; docs
+f5c6e51 WIP Stage 350 part B: backend network, review campaign, sign-in journeys
+333a879 Stage 350 part A: Compose deployment behind Caddy, readiness, backups, restore drill, runbook — verified locally
+5c6430a Stage 350 design and ADR 0037: deployment behind Caddy, verified locally
+87c5bb7 Stage 340: fix security review findings (cross-site logout, proxy-aware bounded limits, DM session revocation, redeem replacement, AI ranking limit, no addresses in logs, dev personas only on loopback)
+Docker client 29.5.3, server 29.5.3 (linux/arm64)
+Docker Compose version v5.1.4
+Darwin arm64
+GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)
+curl: /usr/bin/curl
+jq: /usr/bin/jq
+python3: /opt/homebrew/bin/python3
+openssl: /opt/homebrew/bin/openssl
+port 80 free
+port 443 free
+[exit 0]
+
+### Local deploy/.env (secret values redacted); the part A deploy files are git archive 333a879 deploy, extracted under the scratchpad with a copy of this file (2026-10-16T01:06:12Z)
+$ sed -E "s/^(POSTGRES_PASSWORD|ANTHROPIC_API_KEY|OPENROUTER_API_KEY|ALARM_WEBHOOK_URL)=.+/\1=<redacted>/; s|^(BACKUP_DIR=).*/scratchpad/|\1<scratchpad>/|" deploy/.env && ls -l deploy/.env | cut -c1-10
+COMPOSE_PROJECT_NAME=ltw-stage350b
+LTW_IMAGE_TAG=
+LTW_PREVIOUS_IMAGE_TAG=
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_NETWORKS_DIGEST=
+PUBLIC_HOST=localhost
+PUBLIC_ORIGIN=https://localhost
+TLS_MODE=internal
+PROXY_HTTP_PUBLISH=127.0.0.1:80
+PROXY_HTTPS_PUBLISH=127.0.0.1:443
+LTW_BACKEND_PREFIX=
+POSTGRES_PASSWORD=<redacted>
+BACKUP_DIR=<scratchpad>/ltw350b/backups-run
+BACKUP_INTERVAL_SECONDS=
+BACKUP_KEEP_DAILY=
+BACKUP_KEEP_WEEKLY=
+ANTHROPIC_API_KEY=
+LTW_AI_ROUTES=
+LTW_AI_APPROVAL_ID=
+OPENROUTER_API_KEY=
+LTW_QUESTS_FILE=
+ALARM_WEBHOOK_URL=
+-rw-------
+[exit 0]
+
+### Images to run: part A (333a879, rebased onto Stage 340) and part B (8b362b1) (2026-10-16T01:06:12Z)
+$ for t in 333a8791b1e8 8b362b15ec68; do for i in server proxy; do docker image inspect "ltw-$i:$t" --format "ltw-$i:$t {{.Id}} revision={{index .Config.Labels \"org.opencontainers.image.revision\"}} user={{.Config.User}} {{.Size}} bytes"; done; done
+ltw-server:333a8791b1e8 sha256:3c5753737de2c5b8e4bd4abc4a54b008d82bb72f4a498056784e78968ff6948b revision=333a8791b1e826ebc2022bd187ab9576ea84ed9d user=node 65395216 bytes
+ltw-proxy:333a8791b1e8 sha256:49909bfd7bcb99232ab8d8086c0b031113f2acaf20dabdaeb9e91128c90875df revision=333a8791b1e826ebc2022bd187ab9576ea84ed9d user=caddy 36119721 bytes
+ltw-server:8b362b15ec68 sha256:b5ac6f8b78defeeb5753e4a3b6a712f2d8826fd242cd501739401d04e42bdde8 revision=8b362b15ec68e680704ce8b4fd8576bc46cf5559 user=node 65397060 bytes
+ltw-proxy:8b362b15ec68 sha256:084265c77b90682c3c2e50f415ee8c6a4ed78828ee757242e87aaffd00abbcc9 revision=8b362b15ec68e680704ce8b4fd8576bc46cf5559 user=caddy 36119709 bytes
+[exit 0]

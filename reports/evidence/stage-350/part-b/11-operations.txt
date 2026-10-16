@@ -1,0 +1,28 @@
+Stage 350 part B: operations on the running stack (watch, spend, logs, the operator sign-in commands)
+
+### watch.sh with the disk limit raised to 90 % for this development machine (its data volume is fuller than a server's should be) (2026-10-16T01:15:34Z)
+$ WATCH_DISK_PERCENT=90 WATCH_ALARM_LOG=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/alarms.log deploy/scripts/watch.sh; echo "watch exit status: $?"
+2026-10-16T01:15:35Z ltw-watch ok
+watch exit status: 0
+[exit 0]
+
+### Spending counters through the operator CLI in the server container (no operator records in this local database) (2026-10-16T01:15:35Z)
+$ deploy/scripts/spend.sh
+==> AI and image accounting status (counts)
+{"openHolds":0,"activeStops":0,"incompleteRequests":0,"disabledAccounts":0,"disabledApprovals":0}
+==> AI spending (microdollars)
+{"day":"2026-10-16","accounts":[],"approvals":[]}
+[exit 0]
+
+### Error lines of the last hour, counted: the database outage of 08 (the refused server of 10 was recreated since; its lines left with its container) (2026-10-16T01:15:36Z)
+$ set -o pipefail; deploy/scripts/logs.sh --since 1h --errors | cut -c1-160 | sed -E "s/\"time\":\"[^\"]*\"/\"time\":…/; s/[0-9a-f]{8}-[0-9a-f-]{27}/<id>/g" | sort | uniq -c | sort -rn | head -8
+   1 postgres-1  | 2026-10-16 01:11:47.500 UTC [430] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-16 01:11:47.500 UTC [429] FATAL:  terminating connection due to administrator command
+   1 postgres-1  | 2026-10-16 01:11:47.500 UTC [414] FATAL:  terminating connection due to administrator command
+[exit 0]
+
+### The operator: live sessions of the review campaign (none: everyone signed out or was revoked), then the DM signed out of it with the unused DM links revoked (deploy/RUNBOOK.md section 6) (2026-10-16T01:15:37Z)
+$ cd deploy && docker compose exec -T server node apps/server/dist/auth/operator-cli.js sessions --campaign ravenford && docker compose exec -T server node apps/server/dist/auth/operator-cli.js revoke-dm --campaign ravenford --authorization-source "Stage 350 part B local verification, 2026-10-16"
+{"campaignId":"ravenford","sessions":[]}
+{"campaignId":"ravenford","actorId":"dm-ravenford","sessionsRevoked":0,"invitationsRevoked":2,"authorizationSource":"Stage 350 part B local verification, 2026-10-16"}
+[exit 0]

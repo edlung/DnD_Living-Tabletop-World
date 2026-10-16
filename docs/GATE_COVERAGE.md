@@ -31,7 +31,9 @@ Every handoff/review records due surfaces, actual evidence, required-but-unavail
 | 330 | Real images: no image reaches a player before DM approval; requests and metadata respect scope; refusals and failures leave the neutral fallback | Gate 06 |
 | 340 | Production sign-in: forged, expired, revoked, replayed, and cross-campaign credentials fail closed; the check order of ADR 0009 is unchanged; no credential in logs, traces, or URLs | Gate 06 |
 | 350 | Deployed build: TLS, server reachable only through the proxy, secrets from the environment, a restore drill that replays to the same world | Gate 06 / Stage 355 |
-| 350 (proxy) | Only the proxy publishes ports (80/443); the server, database and backups are unreachable from outside; HTTP redirects to HTTPS; TLS 1.2+ only; `/api` reaches the server without its prefix, with `Origin`, `Sec-Fetch-*` and credentials unchanged; Caddy replaces a client's `X-Forwarded-For` and the server (Stage 340's `LTW_TRUST_PROXY`, set by compose to the proxy network) trusts it from that network alone, so a forged header changes no per-address limit; the live stream passes unbuffered and uncompressed | Gate 06 / Stage 355 |
+| 350 (proxy) | Only the proxy publishes ports (80/443); the server, database and backups are unreachable from outside; HTTP redirects to HTTPS; TLS 1.2+ only; `/api` reaches the server without its prefix, with `Origin`, `Sec-Fetch-*` and credentials unchanged; the live stream passes unbuffered and uncompressed | Gate 06 / Stage 355 |
+| 350 (trust boundary) | The server shares the internal `backend` network (no host address) with the proxy alone, listens only there, and is unreachable from the host and from the edge network; Caddy replaces a client's `X-Forwarded-For` and the server (Stage 340's `LTW_TRUST_PROXY` = the backend range) trusts it from that range alone, so a forged header changes no per-address limit | Gate 06 / Stage 355 |
+| 350 (sign-in on the deployment) | Through the real proxy: the operator's DM link, a DM's player invitation, Russian play, revocation that closes the player's live stream within one cycle, used/revoked/forged links failing with one fixed 401, the 409 of a signed-in browser, cross-site refusals, sign-out; no token or session cookie in any container log | Gate 06 / Stage 355 |
 | 350 (headers) | Every response carries CSP (`frame-ancestors 'none'`, `base-uri 'none'`), `Referrer-Policy: no-referrer`, `nosniff`, `X-Frame-Options: DENY`; a policy the server set (asset content) is kept, never weakened; HSTS only with a public certificate; no `Server`/`Via` | Gate 06 / Stage 355 |
 | 350 (readiness) | `/readyz` reports ready only when the database answers, no migration of the build is pending and the build can read the whole event store; it never reveals why; health checks gate the proxy's start | Gate 06 / Stage 355 |
 | 350 (backup/restore) | Dumps are checksummed and verified before use; the restore drill replays every campaign stream of a restored dump through the World Engine and matches the live state digests at the same versions, failing on any difference; a rollback can never start an image on history it cannot read | Gate 06 / Stage 355 |
@@ -608,16 +610,16 @@ authorization changed.
 
 Stage 350 part A introduction evidence (ADR 0037 with its 2026-10-16 implementation notes;
 `docs/STAGE_350_DESIGN.md`; acceptance pending; local deployment only, no server): **new surfaces
-for Gate 06**, rows 350 of the alpha-phase table. Part B (sign-in smoke journeys on the local
-deployment) follows Stage 340.
+for Gate 06**, rows 350 of the alpha-phase table. Part B (below) added the trust boundary and the
+sign-in journeys on the local deployment.
 - **Proxy and topology** (`deploy/compose.yaml`, `deploy/proxy/Caddyfile`): Caddy publishes 80
   and 443/tcp only (HTTP/3 off); `server` joins `edge` and the internal `data` network,
   `postgres`, `backup` and the drill database only `data`; containers run non-root with read-only
   root filesystems, no capabilities and `no-new-privileges` (PostgreSQL keeps its entrypoint's
   privileges). `/api/*` is proxied with the prefix stripped and `flush_interval -1`, without
   compression; `Host`, `Origin`, `Sec-Fetch-*`, `Cookie` and `Authorization` pass unchanged and
-  a client's `X-Forwarded-For` is replaced. Compose passes `LTW_TRUST_PROXY` (Stage 340's server
-  setting) as the pinned proxy network `10.231.250.0/24`. Evidence:
+  a client's `X-Forwarded-For` is replaced. (Part A passed `LTW_TRUST_PROXY` as the proxy
+  network `10.231.250.0/24`; part B replaced it with the backend network, below.) Evidence:
   `deploy/verify/smoke.sh`, `deploy/verify/proxy-contract.sh`, `deploy/verify/live-stream.sh`;
   the server's own handling of the header is Stage 340's (its tests). Transcripts:
   `reports/evidence/stage-350/` (index `00-index.txt`).
@@ -643,9 +645,32 @@ deployment) follows Stage 340.
   including the real CLI against a copied database) and `deploy/scripts/restore-drill.sh`.
 - **Operator surface**: `ai:operator spend` (read-only spend counters,
   `spend-report.integration.test.ts`); never over HTTP, never in startup logs.
-- **Local-only verification aids** (never on a server; deleted by part B):
-  `deploy/verify/dev-personas.yaml` (public development tokens, pinned to `localhost`) and
-  `deploy/verify/pre-340.yaml`.
-- **For part B (after Stage 340)**: invitation mode with `PUBLIC_ORIGIN` set by compose; the
-  live stream through the proxy carries the session cookie and `Origin` or
-  `Sec-Fetch-Site: same-origin`, which the proxy forwards unchanged (`proxy-contract.sh`).
+- **Local-only verification aids** of part A (`deploy/verify/dev-personas.yaml`,
+  `deploy/verify/pre-340.yaml`) were deleted by part B.
+
+Stage 350 part B introduction evidence (ADR 0037, part B notes; on Stage 340's server; local
+deployment only, no server): rows 350 (trust boundary) and 350 (sign-in on the deployment).
+- **Trust boundary** (`deploy/compose.yaml`): networks `edge` (proxy; published ports),
+  `backend` (proxy and server; internal; gateway mode `isolated`, so the host has no address on
+  it), `data` (server, database, backups; internal, isolated), `egress` (server; outbound AI
+  calls; nothing listens there). The server listens only at `<LTW_BACKEND_PREFIX>.10`;
+  `LTW_TRUST_PROXY` is `<prefix>.0/24`. Evidence: `deploy/verify/trust-boundary.sh` (members and
+  flags of every network, the listening socket, TCP probes from the host's network namespace and
+  from `edge` that never reach the API, from `egress` a refused port; forged `X-Forwarded-For`
+  through the proxy is one client, 429 by the eleventh redeem; the same header from the proxy's
+  address names a new client). Docker Desktop delivers all published-port traffic from the edge
+  gateway, so locally every browser is one client (runbook section 11).
+- **Sign-in on the deployment** (`deploy/verify/sign-in-journey.sh`, HTTPS through the proxy,
+  cookie jars until Stage 340 part B's browser screens): the checks of row 350 (sign-in on the
+  deployment), including the session cookie's attributes as the browser receives them and the
+  operator's `sessions` listing without secrets. `deploy/verify/live-stream.sh` signs in by
+  invitation (cookie and `Origin`) and adds the closing of the stream on sign-out.
+- **Review campaign** (`apps/server/src/world-engine/review-campaign.ts`, test beside it): the
+  Russian Ravenford through the World Engine under the fixture's command IDs, then the DM's
+  `ReleaseCharacter` for the seat the fixture gave a development persona; idempotent, never takes
+  a seat back, refused on a database holding the English Ravenford. No new kernel command, event,
+  projection or authorization rule.
+- **Deploy**: `deploy.sh` recreates every container when the resolved networks change
+  (`LTW_NETWORKS_DIGEST`): Compose otherwise restarts an unchanged container on a recreated
+  network without its service name.
+- Transcripts: `reports/evidence/stage-350/part-b/` (index `00-index.txt`).

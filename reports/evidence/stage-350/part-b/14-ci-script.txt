@@ -1,0 +1,302 @@
+Stage 350 part B: the CI job script (deploy/verify/ci.sh) end to end on this clean worktree
+
+### The CI job script on this clean worktree (no deploy/.env): build HEAD, run in production mode, seed, check everything, remove everything (2026-10-16T01:16:52Z)
+$ set -o pipefail; deploy/verify/ci.sh 2>&1 | grep -vE "^#[0-9]+ |^ (Container|Network|Volume) .* (Creating|Starting|Waiting|Stopping|Removing)|^\{\"(level|time)\"|^View build details|^$"; echo "ci.sh exit status: ${PIPESTATUS[0]}"
+==> images of HEAD
+==> building ltw-server:73306363dc89 from 73306363dc89b7797ff17d195b810d26ac2e4396
+==> building ltw-proxy:73306363dc89 from 73306363dc89b7797ff17d195b810d26ac2e4396
+==> starting ltw-server:73306363dc89 and ltw-proxy:73306363dc89 (previous: none)
+ Network ltw-ci-27795_egress Created 
+ Network ltw-ci-27795_backend Created 
+ Network ltw-ci-27795_edge Created 
+ Network ltw-ci-27795_data Created 
+ Volume ltw-ci-27795_caddy-config Created 
+ Volume ltw-ci-27795_pgdata Created 
+ Volume ltw-ci-27795_caddy-data Created 
+ Container ltw-ci-27795-postgres-1 Created 
+ Container ltw-ci-27795-server-1 Created 
+ Container ltw-ci-27795-backup-1 Created 
+ Container ltw-ci-27795-proxy-1 Created 
+ Container ltw-ci-27795-postgres-1 Started 
+ Container ltw-ci-27795-postgres-1 Healthy 
+ Container ltw-ci-27795-postgres-1 Healthy 
+ Container ltw-ci-27795-backup-1 Started 
+ Container ltw-ci-27795-server-1 Started 
+ Container ltw-ci-27795-server-1 Healthy 
+ Container ltw-ci-27795-proxy-1 Started 
+ Container ltw-ci-27795-postgres-1 Healthy 
+ Container ltw-ci-27795-server-1 Healthy 
+ Container ltw-ci-27795-proxy-1 Healthy 
+ Container ltw-ci-27795-backup-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-ci-27795-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     17 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-ci-27795-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   17 seconds ago   Up 16 seconds (healthy)   5432/tcp
+ltw-ci-27795-proxy-1      ltw-proxy:73306363dc89                                                                       "caddy run --config …"   proxy      17 seconds ago   Up 7 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-ci-27795-server-1     ltw-server:73306363dc89                                                                      "/usr/local/bin/ltw-…"   server     17 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed 73306363dc89
+==> seeding the review campaign through the World Engine (no DM link in this log)
+review campaign ravenford («Пропавший караван», ru): 92 accepted, 0 already present; version 101, 25 entities; open seats: elowen-starwhisper
+==> HTTPS at https://localhost (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> smoke checks passed
+ltw-20261016T011718Z.dump
+==> dump: ltw-20261016T011718Z.dump
+==> throwaway database
+ Container ltw-ci-27795-drill-db-1 Created 
+ Container ltw-ci-27795-drill-db-1 Started 
+ Container ltw-ci-27795-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_auth_attempts 0
+ltw_auth_invitations 0
+ltw_auth_sessions 0
+ltw_authoring_revisions 0
+ltw_commands 92
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 101
+ltw_schema_migrations 10
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":101,"digest":"sha256:03e974cb55b050ae2352754825162997a239a3ddb6f7394873bb9e4df4d91e09","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":101,"status":"match","expected":"sha256:03e974cb55b050ae2352754825162997a239a3ddb6f7394873bb9e4df4d91e09","actual":"sha256:03e974cb55b050ae2352754825162997a239a3ddb6f7394873bb9e4df4d91e09","head":101}]}
+==> restore drill passed
+kept 21 of 480
+retention check passed
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+==> the operator: review campaign and the DM link (deploy/scripts/review-campaign.sh)
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; version 101, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+{"invitationId":"39c652bb-d737-4581-8dab-309bd9c04587","expiresAt":"2026-10-16T02:17:27.692Z","link":"https://localhost/join#<token>","campaignId":"ravenford"}
+PASS  the DM link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the DM joins through the link
+     answer {"campaignId":"ravenford"}; Set-Cookie: ltw_session=<session>; Path=/api; HttpOnly; SameSite=Strict; Max-Age=1209600; Secure
+PASS  redeem answers the campaign
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+PASS  GET /api/auth/session (same-origin): the campaign
+     {"role":"DM","campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the DM sees the Russian campaign
+==> DM live stream ready after 0.16 s
+==> the DM invites a player for Elowen
+     201 {"invitationId":"3277a6ac-5725-46b7-9b5f-8a60eaa56c0f","expiresAt":"2026-10-16T02:17:28.138Z","link":"https://localhost/join#<token>","characterId":"elowen-starwhisper"}
+PASS  invitation created (201)
+PASS  the player link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the player joins in another browser
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+     {"role":"PLAYER","character":{"entityId":"elowen-starwhisper","kind":"character","name":"Эловен Старвиспер"},"campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the player holds Elowen in Russian
+==> player live stream ready after 0.09 s
+PASS  the player cannot list invitations (404)
+PASS  the player cannot read as the DM (403)
+==> the player explores (the Russian investigation)
+     ask: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"AskAbout","shared":["141d9088-d3b4-4450-951e-2bda8341adec"]}}
+PASS  ask Mira about the guild caravan (or nothing new on a rerun)
+     road: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"old-trade-road"}}
+PASS  take the Old Trade Road
+     site: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"abandoned-caravan-site"}}
+PASS  enter the place off the road
+     inspect: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"ExamineEntity","roll":null,"discovered":["ad0adc3b-fe2b-4c9d-81af-ffb9827c13ae"]}}
+PASS  inspect it
+     now at: {"entityId":"abandoned-caravan-site","kind":"location","name":"Заброшенная стоянка каравана"}
+PASS  the place is identified in Russian
+PASS  the player reads the discovery in Russian
+PASS  the DM's stream signalled the changes
+==> the DM sees the members and invitations (never a token)
+     {"members":[{"characterId":"elowen-starwhisper","activeSessions":1,"lastSeenAt":"2026-10-16T01:17:28.181Z"}],"invitations":[{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"}]}
+PASS  Elowen is a member with one live session
+PASS  no link or token in the listing
+     operator sessions: [{"role":"dm","characterIds":[]},{"role":"player","characterIds":["elowen-starwhisper"]}]
+PASS  the operator lists both sessions without a secret
+==> the DM revokes the player: the player's screen is signed out at once
+     200 {"released":true,"sessionsRevoked":1,"invitationsRevoked":0}
+PASS  revoked: released, one session
+==> player stream: closed (unauthenticated) 0.45 s after the revocation
+PASS  the player's stream ended
+PASS  the DM's stream stays open
+PASS  the player can no longer act (401)
+PASS  the player can no longer read (401)
+PASS  GET /api/auth/session: 401
+PASS  ... and the cookie it presented is cleared
+==> used, revoked and forged links fail alike (the same error; only the request ID differs)
+     used player link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"d11692d5-7b22-4373-b9a3-acb5d5b27809"}
+PASS  used player link: 401, no cookie
+PASS  used player link: the fixed message
+     used DM link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"6cea18ec-5592-4059-8917-3b68dda11083"}
+PASS  used DM link: 401, no cookie
+PASS  used DM link: the fixed message
+     forged token: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"ecf9d817-153a-41fe-b702-40da089530ec"}
+PASS  forged token: 401, no cookie
+PASS  forged token: the fixed message
+PASS  the fixed message is UNAUTHENTICATED
+==> the seat is free again; a signed-in browser must confirm before an invitation is spent
+PASS  Elowen can be invited again (201)
+     the DM browser redeems it: 409 {"error":{"code":"CONFLICT","message":"Conflict"},"requestId":"5ce490ce-7edb-4719-a26f-5ac29afa5479"}
+PASS  a signed-in browser gets 409 (CONFLICT)
+PASS  ... and the invitation stays pending
+PASS  the DM revokes that invitation
+PASS  a revoked link fails with the fixed message
+==> cross-site requests are refused through the proxy
+PASS  GET /api/auth/session with a foreign Origin: 403
+PASS  ... without touching the cookie
+PASS  the live stream with Sec-Fetch-Site: cross-site: 403
+PASS  sign-out without Origin: 403
+PASS  the DM is still signed in
+==> the DM signs out
+PASS  POST /api/auth/sign-out: 204
+PASS  ... and the cookie is cleared
+==> DM stream: closed (unauthenticated) 0.45 s after signing out
+PASS  the DM's stream ended
+PASS  GET /api/auth/session: 401
+==> no credential in any log of the proxy or the server
+PASS  none of the 5 credentials in 156 log lines
+==> sign-in journeys passed
+==> the DM signs in with an invitation from the operator (the link is never printed)
+{"campaignId":"ravenford"}
+==> opening the live stream through the proxy (HTTP/2, cookie and Origin)
+==> ready after 0.09 s
+HTTP/2 200 
+cache-control: no-store
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'
+content-type: text/event-stream; charset=utf-8
+cross-origin-opener-policy: same-origin
+date: Fri, 16 Oct 2026 01:17:31 GMT
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Cookie
+x-accel-buffering: no
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-request-id: 0d9eb7ac-32e5-49d3-971e-8724f18f2443
+==> one DM command through the proxy (a new item: the DM perspective can read it)
+{"status":"accepted","commandId":"http:dm-ravenford:live-check-1792113453"}
+==> changed 0.99 s after the command, stream open
+==> waiting for the next heartbeat
+==> heartbeat 15.09 s after opening, stream open
+==> the DM signs out: the stream closes within one cycle
+==> closed 1.02 s after signing out; connection ended at 1.10 s
+==> frames received (raw):
+event: ready
+data: {}
+event: changed
+data: {"seq":1}
+: heartbeat
+event: closed
+data: {"reason":"unauthenticated"}
+==> live stream passes the proxy unbuffered
+==> topology of project ltw-ci-27795
+     edge     false  172.27.0.0/16 host=172.27.0.1 | proxy
+     backend  true isolated 10.231.251.0/24 host=none | proxy server
+     data     true isolated 172.28.0.0/16 host=none | backup postgres server
+     egress   false  172.26.0.0/16 host=172.26.0.1 | server
+PASS  backend: internal, no host address (isolated), the pinned range
+PASS  backend: the proxy and the server only
+PASS  data: internal, no host address (isolated)
+PASS  data: the server, the database and the backups only
+PASS  edge: the proxy only
+PASS  egress: the server only
+PASS  the server's backend address is 10.231.251.10
+PASS  HTTP_HOST is that address
+PASS  LTW_TRUST_PROXY is the backend range
+     listening on port 3000: 10.231.251.10:3000
+PASS  the API listens only at the backend address
+==> reachable: nothing but the proxy reaches the API
+     host namespace: 10.231.251.10:3000 timeout
+     host namespace: 172.28.0.3:3000 timeout
+     host namespace: 172.26.0.2:3000 refused
+     host namespace: 172.27.0.2:443 open
+PASS  from the host: the backend address
+PASS  from the host: the data address
+PASS  from the host: the egress address
+PASS  control: the host reaches the proxy
+     edge network:   server:3000 no-such-name
+     edge network:   10.231.251.10:3000 timeout
+     edge network:   172.28.0.3:3000 timeout
+     edge network:   172.26.0.2:3000 timeout
+     edge network:   proxy:443 open
+PASS  from the edge network: the service name
+PASS  from the edge network: the backend address
+PASS  from the edge network: the data address
+PASS  from the edge network: the egress address
+PASS  control: the edge network reaches the proxy
+     egress network: server:3000 refused
+     egress network: 172.26.0.2:3000 refused
+PASS  from the egress network: the server's port is closed
+PASS  control: the proxy reaches the server
+==> forwarded: a client cannot choose the address it is limited as
+     through the proxy, X-Forwarded-For 203.0.113.1, .2, …: 401 401 429
+PASS  one client to the limits: 429 by the eleventh redeem
+     from the proxy (trusted peer), a forged X-Forwarded-For: wget: server returned error: HTTP/1.1 401 Unauthorized
+PASS  control: from a trusted peer the header names a new client (401, not 429)
+==> trust boundary checks passed
+==> deployment check passed for 73306363dc89
+ci.sh exit status: 0
+[exit 0]

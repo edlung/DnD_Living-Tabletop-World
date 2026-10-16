@@ -1,0 +1,59 @@
+Stage 350 part B: smoke checks of the running stack (deploy/verify/smoke.sh)
+
+### Smoke checks on 8b362b15ec68 (production mode, invitation sign-in) (2026-10-16T01:08:31Z)
+$ deploy/verify/smoke.sh
+==> HTTPS at https://localhost (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> smoke checks passed
+[exit 0]
+
+
+### Smoke checks again at the end, after the real restore, two rollbacks and two forward deploys (the proxy recreated each time): counts (2026-10-16T01:16:13Z)
+$ set -o pipefail; deploy/verify/smoke.sh > ../ltw350b/smoke-final.out; echo "smoke exit status: $?"; echo "PASS $(grep -c "^PASS" ../ltw350b/smoke-final.out), FAIL $(grep -c "^FAIL" ../ltw350b/smoke-final.out || true)"; tail -n 1 ../ltw350b/smoke-final.out
+smoke exit status: 0
+PASS 39, FAIL 0
+==> smoke checks passed
+[exit 0]
