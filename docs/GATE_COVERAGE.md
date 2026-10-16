@@ -410,28 +410,45 @@ browser end of row 340, **for Gate 06**. No route, projection or authorization c
   development personas' token form, so a production build in `disabled` mode shows that form too,
   harmlessly (no persona is accepted there). Review that no other answer reaches the form.
 - **The token's path** (`apps/web/src/session/invitation-link.ts`, `sign-in-flow.ts`,
-  `apps/web/src/main.tsx`): the fragment of `/join#<token>` is read once and the address and
-  history entry replaced (`/`) before the first request; the redeem is sent once (not from a
-  React effect) with the token in its JSON body only; a 409 keeps it in memory for the question,
-  and keeping the current sign-in or any failure drops it. The journeys assert from captured
-  traffic that no request URL carried a token and no body outside a redeem did, and that the
-  address, storage, script-visible cookies and IndexedDB keep none.
-- **The session in the browser** (`apps/web/src/api/client.ts`, `live.ts`): no `Authorization`
-  header, `credentials: 'same-origin'` for every request and the live stream; any 401 of a session
-  (the stream's `unauthenticated` included) shows "You are signed out"; only the session on screen
-  can be signed out by an answer. Sign-out is `POST /auth/sign-out` after a question; the screen
-  changes only on 204 or 401.
+  `apps/web/src/main.tsx`; amended by the part B review, `docs/STAGE_340_DESIGN.md` "Part B
+  review fixes"): the fragment of `/join#<token>` is read once and the address and history entry
+  replaced (`/`) before anything is requested; the token waits in a one-shot holder (a closure,
+  never React state or props) and the redeem is sent once, only when the person presses "Take
+  your seat", with the token in its JSON body only; a 409 hands it to a second one-shot holder for
+  the question, and keeping the current sign-in, replacing it, success or any failure drops it;
+  once the seat is taken, the sign-in kept or the person goes back to the start, the join page is
+  replaced by a fresh start page (the browser's navigation timing entry keeps the address it
+  opened with). The journeys assert from captured traffic that a link opened and left sends no request, that
+  no request URL carried a token and no body outside a redeem did, that the address, history
+  entry, timing entries, storage, script-visible cookies, IndexedDB, Cache Storage, service
+  workers and the document keep none, and from heap snapshots that the page's JavaScript heap holds none after a
+  join, a failure and keeping the sign-in.
+- **The session in the browser** (`apps/web/src/api/client.ts`, `live.ts`,
+  `apps/web/src/session/sign-in-watch.ts`): no `Authorization` header, `credentials:
+  'same-origin'` for every request and the live stream; any 401 of a session (the stream's
+  `unauthenticated` included) shows "You are signed out"; only the session on screen can be signed
+  out by an answer. The cookie is the browser's: a 403 or 404, a live refusal or a close as
+  `gone`/`forbidden`, `online` and the tab shown again make the tab ask `GET /auth/session` and
+  its identity, and a 401 or another campaign, actor, role or character than it shows signs it
+  out too (review: a tab must never keep another sign-in's world or send its actions under the
+  new cookie). Sign-out is `POST /auth/sign-out` after a question; the screen changes only on 204
+  or 401.
 - **Fixed failures**: every refused, limited, malformed or unanswered redeem shows the same words;
   a signed-in browser is asked before any well-formed link (the server answers 409 before it reads
-  the token), and the current sign-in survives a failed replacement.
+  the token), keeping is the first and focused choice and replacing waits for a visible, focused
+  page and a pointer or key, and the current sign-in survives a failed replacement.
 - **The DM's Players sheet** (`apps/web/src/dm/players-sheet.tsx`, `players-lists.tsx`,
   `use-players.ts`): only in the DM perspective of a session; lists what `GET …/invitations`
   answers (never a token, hash or actor ID; character names from the DM's own directory); the new
   link lives in the DM's memory and DOM only until hidden, used, revoked or replaced.
 - **Deterministic evidence**: unit tests `apps/web/src/session/sign-in-flow.test.ts` (the
-  fragment, the probe, the redeem and its fixed failure, sign-out, naming the current sign-in, no
-  `Authorization`, same-origin only), `apps/web/src/api/client.test.ts` and `live.test.ts` (the
-  session connection, 401 and `unauthenticated` sign the screen out, nothing else does),
-  `apps/web/src/dm/players.test.ts`; browser journeys `tests/e2e/sign-in.spec.ts`,
-  `sign-in-ru.spec.ts`, `sign-in-accessibility.spec.ts` on the invitation-mode test server
-  (`apps/server/src/testing/ui-sign-in-server.ts`); every development-persona journey unchanged.
+  fragment, the one-shot holders, the probe, the redeem on the click and its fixed failure,
+  sign-out, naming the current sign-in, no `Authorization`, same-origin only),
+  `invitation-token.test.ts` (no string of a V8 heap snapshot holds the token after keeping the
+  sign-in or a failure), `sign-in-watch.test.ts`, `deliberate-choice.test.ts`,
+  `apps/web/src/api/client.test.ts` and `live.test.ts` (the session connection: 401 and
+  `unauthenticated` sign the screen out; 403, 404, other live refusals, `gone` and `forbidden`
+  raise a doubt), `apps/web/src/dm/players.test.ts`; browser journeys `tests/e2e/sign-in.spec.ts`,
+  `sign-in-tabs.spec.ts`, `sign-in-ru.spec.ts`, `sign-in-accessibility.spec.ts` on the
+  invitation-mode test server (`apps/server/src/testing/ui-sign-in-server.ts`); every
+  development-persona journey unchanged.

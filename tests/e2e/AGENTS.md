@@ -121,9 +121,14 @@ application on 4313.
   keeps a scene control under it). Each fails on the client before part C.
 - Production sign-in (Stage 340 part B, ADR 0036 §7): `sign-in.spec.ts` (the DM invites, the
   player joins through the link, plays and is signed out at once when the DM revokes — through
-  the live stream: the player sends no other request meanwhile; a used, forged or malformed link
-  shows one fixed failure; a signed-in browser is asked before an invitation replaces its
-  sign-in; signing out asks first and is final; the keyboard), `sign-in-ru.spec.ts` (Russian; an
+  the live stream: the player sends no other request meanwhile; a link opened and left sends no
+  request at all and stays unused, and one redeem follows "Take your seat"; a used, forged or
+  malformed link shows one fixed failure; a signed-in browser is asked before an invitation
+  replaces its sign-in — keeping first and focused, replacing unavailable until a moment passed
+  and a key or pointer was used; signing out asks first and is final; the keyboard),
+  `sign-in-tabs.spec.ts` (three tabs showing the DM's world, their live stream held down through
+  `LIVE_URL`, drop to signed out when shown again, at a refused refresh and back online, once
+  another tab replaced the sign-in with a player's link), `sign-in-ru.spec.ts` (Russian; an
   English browser keeps the ended campaign's language) and `sign-in-accessibility.spec.ts` (axe
   at the three widths and the Russian phone) run on `apps/server/src/testing/ui-sign-in-server.ts`
   behind the second Vite server, whose origin is its `PUBLIC_ORIGIN`; their pages use
@@ -131,9 +136,14 @@ application on 4313.
   `fixtures/sign-in-campaigns.json` (`ui-sign-in-campaigns.ts`: Elowen's seat released; the
   scans' campaigns keep her seated and add Seren's empty seat). The operator's DM links come from
   `support/sign-in.ts` (`dmToken`, three per campaign, each works once), derived from the per-run
-  `LTW_UI_SIGN_IN_SEED` of `playwright.config.ts`. A token is never printed: assertions about one
-  are yes/no (`holdsAny`, `captureRequests`, `expectNothingKept`), and these specs keep no trace
-  or screenshot (a failing one's `error-context.md` may still show a throwaway test link).
+  `LTW_UI_SIGN_IN_SEED` of `playwright.config.ts`; `openInvitation` opens a link and takes the
+  seat (nothing is sent before). A token is never printed: assertions about one are yes/no
+  (`holdsAny`, `captureRequests`, `expectNothingKept` — the address, the history entry, timing
+  entries, storage, cookies, IndexedDB, Cache Storage, service workers, the document — and
+  `expectUnreachable`, a heap snapshot of the page through the DevTools protocol, taken before
+  anything else reads the page; a finished join page is replaced by a fresh start page, so these
+  read the new one), and these specs keep no trace or screenshot (a failing one's `error-context.md` may still
+  show a throwaway test link).
 - Evidence tour (`pnpm evidence:screens`): `playwright.evidence.config.ts` runs
   `tests/evidence/*.evidence.ts` against the same servers and writes JPEGs (≤ 250 KB) to
   `reports/evidence/stage-320/` (`part-a/`; `part-b/` for the battlefield: each state at the

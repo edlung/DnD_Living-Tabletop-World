@@ -5,6 +5,7 @@ import { useEffect, useRef, type ReactNode } from 'react';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
+import { useDeliberateChoice } from './deliberate-choice.ts';
 import { PersonaForm } from './login.tsx';
 import type { CurrentSignIn } from './sign-in-flow.ts';
 import type { SignInScreen } from './use-sign-in.ts';
@@ -95,20 +96,86 @@ function CurrentSignInText({ current }: { readonly current: CurrentSignIn | null
 }
 
 /**
+ * The question before an invitation replaces this browser's sign-in (docs/STAGE_340_DESIGN.md
+ * "Part B review fixes"). Keeping it is the first, primary and focused choice; replacing is
+ * final — coming back takes a new invitation (the DM's from the operator) — so it is taken only
+ * deliberately (`useDeliberateChoice`): until then it shows itself unavailable and ignores presses.
+ */
+function ReplaceQuestion({
+  current,
+  onKeep,
+  onReplace,
+}: {
+  readonly current: CurrentSignIn | null;
+  readonly onKeep: () => void;
+  readonly onReplace: () => void;
+}) {
+  const t = useT();
+  const keep = useRef<HTMLButtonElement>(null);
+  const { armed, ready } = useDeliberateChoice(true);
+  // The choice is brought into view with the focus: the question must be answered.
+  useEffect(() => {
+    keep.current?.focus();
+  }, []);
+  return (
+    <>
+      <CurrentSignInText current={current} />
+      <p>{t('Replace that sign-in with this invitation?')}</p>
+      <p className="fine-print">
+        {t(
+          'Replacing signs this browser out of that table. Keeping it leaves the invitation unused: it still works once, in another browser.',
+        )}
+      </p>
+      <p className="fine-print">
+        {current === null
+          ? t('To come back to that table, you will need a new invitation link.')
+          : current.role === 'DM'
+            ? t(
+                'To come back to that table as the DM, you will need a new invitation link from the operator.',
+              )
+            : t('To come back to that table, you will need a new invitation link from the DM.')}
+      </p>
+      <div className="action-row sign-in-actions">
+        <button ref={keep} className="primary-button" onClick={onKeep}>
+          <Glyph name="key" />
+          {t('Keep my current sign-in')}
+        </button>
+        <button
+          aria-disabled={!armed}
+          onClick={() => {
+            if (ready()) onReplace();
+          }}
+        >
+          <Glyph name="replace" />
+          {t('Replace with this invitation')}
+        </button>
+      </div>
+    </>
+  );
+}
+
+/**
  * Everything before a world (docs/adr/0036-production-sign-in.md §7): checking the sign-in, the
- * development personas' form, joining by invitation, the question before an invitation replaces
- * this browser's sign-in, the one fixed message for any invitation that cannot be used, and
- * signed out. Nothing here says why an invitation failed.
+ * development personas' form, an invitation waiting for the person to take their seat, joining,
+ * the question before an invitation replaces this browser's sign-in, the one fixed message for
+ * any invitation that cannot be used, and signed out. Nothing here says why an invitation failed,
+ * and nothing here holds a token.
  */
 export function SignInScreens({
   screen,
   onProbe,
+  onBackToStart,
+  onTakeSeat,
+  onKeep,
   onReplace,
   onConnect,
 }: {
   readonly screen: Exclude<SignInScreen, { readonly kind: 'session' }>;
-  /** Ask the server again: try again, back to the start, keep the current sign-in. */
+  /** Ask the server again: try again. */
   readonly onProbe: () => void;
+  readonly onBackToStart: () => void;
+  readonly onTakeSeat: () => void;
+  readonly onKeep: () => void;
   readonly onReplace: () => void;
   readonly onConnect: (campaignId: string, token: string) => void;
 }) {
@@ -124,6 +191,28 @@ export function SignInScreens({
           <div className="sign-in-form sign-in-state">
             <StatusPanel state="loading" label={t('Checking your sign-in…')} />
           </div>
+        );
+      case 'invited':
+        return (
+          <AccessState
+            glyph="invitation"
+            eyebrow={t('An invitation')}
+            title={t('You are invited to a table')}
+            focus={false}
+          >
+            <p>{t('This invitation link seats you at a table in this browser. It works once.')}</p>
+            <p className="fine-print">
+              {t(
+                'Nothing is used until you take your seat. Take it only if you expected this invitation.',
+              )}
+            </p>
+            <div className="action-row">
+              <button className="primary-button" onClick={onTakeSeat}>
+                <Glyph name="sign-in" />
+                {t('Take your seat')}
+              </button>
+            </div>
+          </AccessState>
         );
       case 'joining':
         return (
@@ -164,25 +253,7 @@ export function SignInScreens({
             {screen.current === undefined ? (
               <StatusPanel state="loading" label={t('Reading your current sign-in…')} />
             ) : (
-              <>
-                <CurrentSignInText current={screen.current} />
-                <p>{t('Replace that sign-in with this invitation?')}</p>
-                <p className="fine-print">
-                  {t(
-                    'Replacing signs this browser out of that table. Keeping it leaves the invitation unused: it still works once, in another browser.',
-                  )}
-                </p>
-                <div className="action-row sign-in-actions">
-                  <button className="primary-button" onClick={onReplace}>
-                    <Glyph name="replace" />
-                    {t('Replace with this invitation')}
-                  </button>
-                  <button onClick={onProbe}>
-                    <Glyph name="key" />
-                    {t('Keep my current sign-in')}
-                  </button>
-                </div>
-              </>
+              <ReplaceQuestion current={screen.current} onKeep={onKeep} onReplace={onReplace} />
             )}
           </AccessState>
         );
@@ -196,7 +267,7 @@ export function SignInScreens({
           >
             <p>{t('Invitation links work once and expire after a while. Ask for a new one.')}</p>
             <div className="action-row">
-              <button onClick={onProbe}>{t('Back to the start')}</button>
+              <button onClick={onBackToStart}>{t('Back to the start')}</button>
             </div>
           </AccessState>
         );

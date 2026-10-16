@@ -18,11 +18,12 @@ import { TopBar } from '../shell/top-bar.tsx';
 import { ornamentUrl } from '../visual/ui-kit.ts';
 import { World } from '../world/world.tsx';
 import { ActingBar } from './acting-bar.tsx';
+import type { PageStart } from './sign-in-flow.ts';
 import { SignInKindContext, useSignInKind } from './sign-in-kind.ts';
 import { SignInScreens } from './sign-in-screens.tsx';
 import { SignOutDialog } from './sign-out-dialog.tsx';
 import { useLiveSession } from './use-live-session.ts';
-import { useSignIn, type PageStart } from './use-sign-in.ts';
+import { useSignIn } from './use-sign-in.ts';
 
 /** The page speaks the language of what it shows: the browser's, then the campaign's. */
 function DocumentLanguage() {
@@ -100,6 +101,8 @@ function browserLanguage(): Language {
  * sign-in the browser holds an HttpOnly session cookie and the screens below never see a
  * credential; development personas type a token, kept in memory. Before a session names the
  * campaign's language the browser's speaks, and a session that ended keeps its campaign's.
+ * Every identity a session's screens read is told to its connection: the first is what this tab
+ * shows, and another one later signs the tab out (`sign-in-watch.ts`).
  */
 export function App({ start }: { readonly start: PageStart }) {
   const flow = useSignIn(start);
@@ -114,6 +117,9 @@ export function App({ start }: { readonly start: PageStart }) {
         <SignInScreens
           screen={screen}
           onProbe={flow.probe}
+          onBackToStart={flow.backToStart}
+          onTakeSeat={flow.takeSeat}
+          onKeep={flow.keep}
           onReplace={flow.replace}
           onConnect={flow.connectPersona}
         />
@@ -146,6 +152,13 @@ export function App({ start }: { readonly start: PageStart }) {
   );
 }
 
+/** Tells a signed-in session's connection each identity read for it. */
+function useIdentityReport(connection: Connection, identity: SessionResponse | null): void {
+  useEffect(() => {
+    if (identity !== null && connection.kind === 'session') connection.onIdentity(identity);
+  }, [connection, identity]);
+}
+
 function SessionGate({
   connection,
   onLeave,
@@ -163,7 +176,9 @@ function SessionGate({
     [api],
   );
   const { resource, retry } = useResource('identity', load);
-  const language = resource.status === 'ready' ? resource.value.campaign.language : null;
+  const identity = resource.status === 'ready' ? resource.value : null;
+  useIdentityReport(connection, identity);
+  const language = identity?.campaign.language ?? null;
   useEffect(() => {
     if (language !== null) onLanguage(language);
   }, [language, onLanguage]);
@@ -273,6 +288,7 @@ function SessionShell({
     [identityApi],
   );
   const { resource } = useResource('identity', loadIdentity);
+  useIdentityReport(connection, resource.status === 'ready' ? resource.value : null);
   const identity = resource.status === 'ready' ? resource.value : initial;
   const effective =
     perspective === 'PLAYER' ? `CHARACTER:${identity.character?.entityId ?? ''}` : perspective;

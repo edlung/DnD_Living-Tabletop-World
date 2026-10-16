@@ -14,7 +14,7 @@ registerRussian({
     'Войдите в общий мир. Узнайте, что известно вашему персонажу, изучайте подробности и храните свою историю рядом.',
   'Your character. Your perspective. One living world.':
     'Ваш персонаж. Ваш взгляд. Один живой мир.',
-  'Take your seat': 'Займите своё место',
+  'Take your seat': 'Занять место',
   'Enter your world': 'Войти в мир',
   'Connect to your local campaign with the access token supplied by your host.':
     'Подключитесь к своей кампании с помощью токена доступа, который выдал ведущий.',

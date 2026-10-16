@@ -133,6 +133,22 @@
   width: 20px;
   height: 20px;
 }
+.sign-in-state .fine-print + .fine-print {
+  margin-top: 0.4rem;
+}
+/* The question before a sign-in is replaced: keeping it first; replacing waits a moment. */
+.sign-in-state .sign-in-actions button {
+  min-height: 46px;
+  margin-top: 0;
+}
+.sign-in-state .sign-in-actions button[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.sign-in-state .sign-in-actions button[aria-disabled='true']:hover {
+  border-color: var(--line-strong);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+}
 
 /* Signing out: a small modal question over the world */
 .sign-out-dialog {

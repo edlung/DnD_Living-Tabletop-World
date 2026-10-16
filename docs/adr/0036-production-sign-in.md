@@ -77,9 +77,10 @@ Out of scope for the alpha: a compromised host or database, distributed denial o
   production sign-in and 404 without it (the personas' token form then shows, as before), so
   one build serves every deployment.
 - The join page takes the token out of the address and this history entry before its first
-  request, sends the redeem once, asks before replacing a live sign-in (409) and shows one fixed
-  failure otherwise; any 401, the live stream's `unauthenticated` included, shows "You are signed
-  out"; signing out asks first. The DM's Players sheet invites, lists and revokes through the
+  request, sends the redeem once (since the part B amendment below, only when the person takes
+  their seat), asks before replacing a live sign-in (409) and shows one fixed failure otherwise;
+  any 401, the live stream's `unauthenticated` included, shows "You are signed out"; signing out
+  asks first. The DM's Players sheet invites, lists and revokes through the
   DM-only routes. Details: `docs/STAGE_340_DESIGN.md`, "Implementation notes (part B, browser)".
 
 ## Amendments
@@ -125,3 +126,24 @@ Out of scope for the alpha: a compromised host or database, distributed denial o
      and again by the composition, under `NODE_ENV=production`, with `PUBLIC_ORIGIN` set, or when
      `HTTP_HOST` is not loopback (`localhost`, 127.0.0.0/8, `::1`), chosen or defaulted: a
      forgotten `NODE_ENV` on a public host fails closed.
+- 2026-10-16 (Stage 340 part B, security review): four findings fixed in the browser; the contract
+  is in `docs/STAGE_340_DESIGN.md` ("Part B review fixes"). No route or server behaviour changed.
+  1. **Redeem only on a click (§7).** Opening `/join#<token>` takes the token out of the address
+     and this history entry and sends nothing; the invitation is redeemed when the person presses
+     "Take your seat". Link scanners, history suggestions and other sites opening the link (login
+     CSRF) neither spend it nor sign the browser in.
+  2. **A tab checks the browser's sign-in again.** The cookie is the browser's, not the tab's: a
+     403 or 404, the live stream refused or closed as `gone` or `forbidden`, the browser coming
+     back online and the tab being shown again make a tab ask `GET /auth/session` and the
+     campaign's `session` view, and a 401 or another campaign, actor, role or character than the
+     tab shows signs it out (the world unmounts) — it never keeps the previous sign-in's world or
+     sends that world's actions under the new sign-in.
+  3. **One-shot token holders.** The token lives only in closures that hand it out once: cleared on
+     keeping the sign-in, replacing it, success and failure; never React state, props or a
+     promise's result. Since the browser keeps the address a page opened with (fragment included)
+     in its navigation timing entry, the join page gives way to a fresh start page once the seat
+     is taken, the sign-in kept, or the person goes back to the start after a failure.
+  4. **Keeping is the default.** The replace question puts "Keep my current sign-in" first,
+     primary and focused; replacing is available only after the page has been visible and focused
+     for 0.5 s and a pointer or key was used since the question appeared; the question says that
+     coming back takes a new invitation (the DM's from the operator).

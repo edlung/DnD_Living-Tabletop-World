@@ -1,14 +1,15 @@
 import { OBJECT_ID_PATTERN } from '@ltw/contracts';
 
-import type { Invitation } from './invitation-link.ts';
+import { holdInvitation, type InvitationHolder } from './invitation-link.ts';
 
 /**
  * Production sign-in from the browser (docs/adr/0036-production-sign-in.md §2–3, §7;
- * docs/STAGE_340_DESIGN.md "Browser", "Security review fixes"). Every request goes to this
- * origin with `credentials: 'same-origin'` and no `Authorization` header: the session is the
- * HttpOnly cookie the server sets, which script never reads. A token travels only in the body
- * of `POST /auth/redeem`, never in a URL. Answers are reduced to what the screens need; a
- * refusal's reason is never shown (every failed invitation reads the same).
+ * docs/STAGE_340_DESIGN.md "Browser", "Security review fixes", "Part B review fixes"). Every
+ * request goes to this origin with `credentials: 'same-origin'` and no `Authorization` header:
+ * the session is the HttpOnly cookie the server sets, which script never reads. A token travels
+ * only in the body of `POST /auth/redeem`, sent only when the person takes their seat, never in a
+ * URL. Answers are reduced to what the screens need; a refusal's reason is never shown (every
+ * failed invitation reads the same).
  */
 type Transport = typeof fetch;
 
@@ -38,23 +39,24 @@ async function send(
   }
 }
 
-/** The campaign of a sign-in answer (`{campaignId}`), or null when the answer is not one. */
-async function campaignOf(response: Response): Promise<string | null> {
+/** An answer's JSON, or undefined when it is none. */
+async function bodyOf(response: Response): Promise<unknown> {
   try {
-    const data: unknown = await response.json();
-    if (
-      typeof data === 'object' &&
-      data !== null &&
-      'campaignId' in data &&
-      typeof data.campaignId === 'string' &&
-      OBJECT_ID_PATTERN.test(data.campaignId)
-    ) {
-      return data.campaignId;
-    }
+    return (await response.json()) as unknown;
   } catch {
-    // Not JSON: not a sign-in answer.
+    return undefined;
   }
-  return null;
+}
+
+/** The campaign of a sign-in answer (`{campaignId}`), or null when the answer is not one. */
+function campaignOf(data: unknown): string | null {
+  return typeof data === 'object' &&
+    data !== null &&
+    'campaignId' in data &&
+    typeof data.campaignId === 'string' &&
+    OBJECT_ID_PATTERN.test(data.campaignId)
+    ? data.campaignId
+    : null;
 }
 
 /**
@@ -82,7 +84,7 @@ export async function probeSession(
   if (response.status === 401) return { kind: 'signed-out' };
   if (response.status === 404) return { kind: 'personas' };
   if (!response.ok) return { kind: 'unreachable' };
-  const campaignId = await campaignOf(response);
+  const campaignId = campaignOf(await bodyOf(response));
   return campaignId === null ? { kind: 'unreachable' } : { kind: 'signed-in', campaignId };
 }
 
@@ -109,7 +111,7 @@ export async function redeemInvitation(
   if (response === null) return { kind: 'failed' };
   if (response.status === 409 && !replaceSession) return { kind: 'needs-confirmation' };
   if (!response.ok) return { kind: 'failed' };
-  const campaignId = await campaignOf(response);
+  const campaignId = campaignOf(await bodyOf(response));
   return campaignId === null ? { kind: 'failed' } : { kind: 'joined', campaignId };
 }
 
@@ -124,6 +126,14 @@ export async function signOut(transport: Transport): Promise<'signed-out' | 'fai
   return response !== null && (response.ok || response.status === 401) ? 'signed-out' : 'failed';
 }
 
+/** Whose world a sign-in opens: the campaign, the actor, the role and the character. */
+export interface SignInIdentity {
+  readonly campaignId: string;
+  readonly actorId: string;
+  readonly role: 'DM' | 'PLAYER';
+  readonly characterId: string | null;
+}
+
 /** The sign-in this browser holds, as the person knows it: the campaign and who they are there. */
 export interface CurrentSignIn {
   readonly campaignName: string;
@@ -131,69 +141,140 @@ export interface CurrentSignIn {
   readonly characterName: string | null;
 }
 
+/** A campaign's `session` view, reduced to who it names; null when it is not one. */
+function identityOf(data: unknown, campaignId: string): (SignInIdentity & CurrentSignIn) | null {
+  if (typeof data !== 'object' || data === null) return null;
+  const view = data as {
+    readonly actorId?: unknown;
+    readonly role?: unknown;
+    readonly campaign?: { readonly campaignId?: unknown; readonly name?: unknown } | null;
+    readonly character?: { readonly entityId?: unknown; readonly name?: unknown } | null;
+  };
+  const { actorId, role } = view;
+  const name = view.campaign?.campaignId === campaignId ? view.campaign.name : undefined;
+  const character = view.character ?? null;
+  const characterId = character === null ? null : character.entityId;
+  if (
+    typeof actorId !== 'string' ||
+    (role !== 'DM' && role !== 'PLAYER') ||
+    typeof name !== 'string' ||
+    (characterId !== null && typeof characterId !== 'string')
+  ) {
+    return null;
+  }
+  return {
+    campaignId,
+    campaignName: name,
+    actorId,
+    role,
+    characterId,
+    characterName: typeof character?.name === 'string' ? character.name : null,
+  };
+}
+
+/** Who the server says this browser is signed in as now, or that it is not, or no answer. */
+export type SignInReading =
+  | { readonly kind: 'signed-in'; readonly identity: SignInIdentity & CurrentSignIn }
+  | { readonly kind: 'signed-out' }
+  | { readonly kind: 'unknown' };
+
+const UNKNOWN: SignInReading = { kind: 'unknown' };
+
+/** A campaign's `session` view: who this browser is signed in as there. */
+export async function readIdentity(
+  transport: Transport,
+  campaignId: string,
+  signal?: AbortSignal,
+): Promise<SignInReading> {
+  const response = await send(
+    transport,
+    `/api/campaigns/${encodeURIComponent(campaignId)}/session`,
+    { headers: { Accept: JSON_TYPE } },
+    signal,
+  );
+  if (response === null) return UNKNOWN;
+  // Signed out, or no longer at that table.
+  if (response.status === 401 || response.status === 404) return { kind: 'signed-out' };
+  if (!response.ok) return UNKNOWN;
+  const identity = identityOf(await bodyOf(response), campaignId);
+  return identity === null ? UNKNOWN : { kind: 'signed-in', identity };
+}
+
+/** `GET /auth/session`, then that campaign's `session` view: who this browser is signed in as. */
+export async function readSignIn(
+  transport: Transport,
+  signal?: AbortSignal,
+): Promise<SignInReading> {
+  const probe = await probeSession(transport, signal);
+  if (probe.kind === 'signed-out') return { kind: 'signed-out' };
+  if (probe.kind !== 'signed-in') return UNKNOWN;
+  return readIdentity(transport, probe.campaignId, signal);
+}
+
 /** Names the browser's current sign-in, or null when there is none (or it cannot be read). */
 export async function describeSignIn(
   transport: Transport,
   signal?: AbortSignal,
 ): Promise<CurrentSignIn | null> {
-  const probe = await probeSession(transport, signal);
-  if (probe.kind !== 'signed-in') return null;
-  const response = await send(
-    transport,
-    `/api/campaigns/${encodeURIComponent(probe.campaignId)}/session`,
-    { headers: { Accept: JSON_TYPE } },
-    signal,
-  );
-  if (response === null || !response.ok) return null;
-  try {
-    const data: unknown = await response.json();
-    if (typeof data !== 'object' || data === null) return null;
-    const identity = data as {
-      readonly role?: unknown;
-      readonly campaign?: { readonly name?: unknown };
-      readonly character?: { readonly name?: unknown } | null;
-    };
-    const name = identity.campaign?.name;
-    const role = identity.role;
-    if (typeof name !== 'string' || (role !== 'DM' && role !== 'PLAYER')) return null;
-    const character = identity.character?.name;
-    return {
-      campaignName: name,
-      role,
-      characterName: typeof character === 'string' ? character : null,
-    };
-  } catch {
-    return null;
-  }
+  const reading = await readSignIn(transport, signal);
+  if (reading.kind !== 'signed-in') return null;
+  const { campaignName, role, characterName } = reading.identity;
+  return { campaignName, role, characterName };
 }
 
-/** Where the page starts: a session probe's answer or an invitation's. */
-export type FirstStep =
-  | SessionProbe
+/**
+ * How the page begins (`main.tsx`). Without an invitation its first request — whether this
+ * browser is signed in — was sent once when the page loaded, and the screen only awaits the
+ * answer, so React's repeated development effects never send it twice. A join link sends
+ * nothing: its invitation waits in a one-shot holder until the person takes their seat, and a
+ * fragment that is no token fails without a request.
+ */
+export type PageStart =
+  | { readonly kind: 'probe'; readonly first: Promise<SessionProbe> }
+  | { readonly kind: 'invited'; readonly invitation: InvitationHolder }
+  | { readonly kind: 'malformed' };
+
+export function pageStart(
+  invitation: InvitationHolder | 'malformed' | null,
+  transport: Transport,
+): PageStart {
+  if (invitation === null) return { kind: 'probe', first: probeSession(transport) };
+  return invitation === 'malformed' ? { kind: 'malformed' } : { kind: 'invited', invitation };
+}
+
+/** What taking the seat came to. */
+export type SeatOutcome =
   | { readonly kind: 'joined'; readonly campaignId: string }
-  | { readonly kind: 'join-failed' }
-  /** This browser is signed in already: the person is asked before `token` replaces that. */
-  | { readonly kind: 'confirm'; readonly token: string };
+  /**
+   * This browser is signed in already: the person is asked first, and `replacement` holds the
+   * token for that question alone (one-shot: kept or replaced, it is gone).
+   */
+  | { readonly kind: 'needs-confirmation'; readonly replacement: InvitationHolder }
+  | { readonly kind: 'failed' };
 
 /**
- * What the page does first, exactly once per load (`main.tsx`): redeem the invitation the
- * address held, or find out whether this browser is signed in. The screen only awaits the
- * answer, so React's repeated development effects never send an invitation twice. A join link
- * whose fragment is no token fails without a request.
+ * "Take your seat": the one redeem of the held invitation, sent only on the person's click. The
+ * holder is spent by it, so a second press sends nothing (null).
  */
-export async function firstStep(
-  invitation: Invitation | null,
+export async function takeSeat(
+  invitation: InvitationHolder,
   transport: Transport,
-): Promise<FirstStep> {
-  if (invitation === null) return probeSession(transport);
-  if (invitation.kind === 'malformed') return { kind: 'join-failed' };
-  const outcome = await redeemInvitation(transport, invitation.token, false);
-  switch (outcome.kind) {
-    case 'joined':
-      return outcome;
-    case 'needs-confirmation':
-      return { kind: 'confirm', token: invitation.token };
-    case 'failed':
-      return { kind: 'join-failed' };
-  }
+): Promise<SeatOutcome | null> {
+  const token = invitation.take();
+  if (token === null) return null;
+  const outcome = await redeemInvitation(transport, token, false);
+  return outcome.kind === 'needs-confirmation'
+    ? { kind: 'needs-confirmation', replacement: holdInvitation(token) }
+    : outcome;
+}
+
+/** "Replace with this invitation", confirmed: the token's last use; null once it is gone. */
+export async function replaceSignIn(
+  replacement: InvitationHolder,
+  transport: Transport,
+): Promise<Exclude<SeatOutcome, { readonly kind: 'needs-confirmation' }> | null> {
+  const token = replacement.take();
+  if (token === null) return null;
+  const outcome = await redeemInvitation(transport, token, true);
+  return outcome.kind === 'joined' ? outcome : { kind: 'failed' };
 }

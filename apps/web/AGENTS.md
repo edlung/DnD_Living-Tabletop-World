@@ -14,7 +14,7 @@ DM's Players sheet. Browser code imports only `@ltw/contracts` and presentation 
 | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Entry and build                                                        | `src/main.tsx` (fonts, dictionaries, stylesheets), `vite.config.ts`, `index.html`                                                                                                                                                                                                       |
 | Authentication and perspective lifecycle                               | `src/session/app.tsx`, `src/session/use-sign-in.ts` (what the page shows before a world), `src/session/login.tsx` (the personas' form)                                                                                                                                                  |
-| Production sign-in: join page, cookie session, signed out, signing out | `src/session/sign-in-flow.ts` (probe, redeem, sign-out), `invitation-link.ts` (the fragment leaves the address first), `sign-in-screens.tsx`, `sign-out-dialog.tsx`, `sign-in-kind.ts`; `src/api/client.ts` (`Connection`), `src/api/live.ts`; `src/main.tsx` (the first request, once) |
+| Production sign-in: join page, cookie session, signed out, signing out | `src/session/sign-in-flow.ts`, `invitation-link.ts` (one-shot token holder), `sign-in-watch.ts` (a tab re-checks), `deliberate-choice.ts`, `sign-in-screens.tsx`, `sign-out-dialog.tsx`, `sign-in-kind.ts`; `src/api/client.ts` (`Connection`), `src/api/live.ts`; `src/main.tsx`       |
 | Shell: top bar, dock, sheets, Chronicle dialog, Escape and focus       | `src/shell/` (`top-bar.tsx`, `dock.tsx`, `sheet.tsx`, `chronicle-dialog.tsx`, `use-shell.ts` with `isDraftField`, `reserved-height.ts`)                                                                                                                                                 |
 | The Chronicle as a book; the flashback as a scene                      | `src/chronicle/` (`chronicle-book.tsx`, `chapter-pages.tsx`, `chapter-facts.ts`, `picture-note.ts`, `flashback-scene.tsx`, `generate-chapter.tsx`, `chapter-message.ts`)                                                                                                                |
 | GPT UI kit in the client: URL maps, glyphs, medallions, world images   | `src/visual/` (`ui-kit.ts`, `ui-kit-names.ts`, `glyph-map.ts`, `glyph.tsx`, `medallion.tsx`, `approved-images.ts`); `src/assets/AGENTS.md`                                                                                                                                              |
@@ -39,15 +39,25 @@ DM's Players sheet. Browser code imports only `@ltw/contracts` and presentation 
   browser storage, logs, or a service worker. A development persona's token is typed in and
   sent as `Authorization` (`credentials: 'omit'`); production sign-in's session is an HttpOnly
   cookie script never reads: requests send no `Authorization` and `credentials: 'same-origin'`.
-- Production sign-in (ADR 0036 §7, `docs/STAGE_340_DESIGN.md` part B notes): which sign-in the
-  server has is learned from `GET /auth/session` (404: the personas' form). An invitation's token
-  leaves the address and this history entry (`history.replaceState`) before the page's first
-  request, which is sent once from `main.tsx`, never from an effect; it travels only in the body
-  of `POST /auth/redeem`. A signed-in browser is asked before an invitation replaces its sign-in
-  (409); every other failure is one fixed message, never a reason. Any 401 of a session — the
-  live stream's `unauthenticated` included — shows "You are signed out"; signing out asks first.
-  The Players sheet exists only in the DM perspective with production sign-in; its new link is
-  shown once and held in memory only.
+- Production sign-in (ADR 0036 §7 and its part B amendment, `docs/STAGE_340_DESIGN.md` part B
+  notes and "Part B review fixes"): which sign-in the server has is learned from
+  `GET /auth/session` (404: the personas' form), sent once from `main.tsx`, never from an effect.
+  An invitation's token leaves the address and this history entry (`history.replaceState`) before
+  anything is requested and waits in a one-shot holder (`invitation-link.ts`) — never React
+  state, props, a promise's result or a module binding; it is sent only when the person presses
+  "Take your seat", in the body of `POST /auth/redeem`. A signed-in browser is asked before an
+  invitation replaces its sign-in (409): keeping is first, primary and focused, replacing waits
+  for a deliberate moment (`deliberate-choice.ts`), and the question's own holder is cleared on
+  keep, replace, success and failure. Once the seat is taken, the sign-in kept, or the person goes
+  back to the start, the join page gives way to a fresh start page (`location.replace('/')`): the
+  browser's navigation timing entry keeps the address it opened with. Every other failure is one
+  fixed message, never a reason.
+  Any 401 of a session — the live stream's `unauthenticated` included — shows "You are signed
+  out"; so does a sign-in changed in another tab, which the tab finds by asking the server again
+  (`sign-in-watch.ts`) on any 403 or 404, a live refusal or `gone`/`forbidden` close, `online`
+  and the tab shown again, or when a later identity read names someone else. Signing out asks
+  first. The Players sheet exists only in the DM perspective with production sign-in; its new
+  link is shown once and held in memory only.
 - Perspective, refresh, location, and selection changes replace their request
   subtree. Clear old data synchronously; abort alone is not a race guard.
 - A restricted view must not retain unselected DM character identities in

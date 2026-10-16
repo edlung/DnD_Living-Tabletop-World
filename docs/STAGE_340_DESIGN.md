@@ -81,10 +81,12 @@ look identical (404 after authentication, 401 before).
 The client stops sending `Authorization` in invitation mode and uses `credentials: 'same-origin'`.
 A strict Content-Security-Policy (`default-src 'self'; img-src 'self' blob: data:;
 connect-src 'self'; frame-ancestors 'none'; base-uri 'none'`) and `Referrer-Policy: no-referrer`
-come from the server (and the proxy in Stage 350). The join page reads the fragment, posts it,
-replaces the history entry, and shows a fixed message on failure; on 409 it asks the person
-whether to replace the sign-in this browser holds and posts again with `replaceSession: true`
-only after a yes. A signed-out or revoked session returns to a "you are signed out" screen.
+come from the server (and the proxy in Stage 350). The join page reads the fragment and
+replaces the history entry, posts it only when the person takes their seat, and shows a fixed
+message on failure; on 409 it asks the person whether to replace the sign-in this browser holds
+(keeping it first) and posts again with `replaceSession: true` only after a deliberate yes. A
+signed-out or revoked session, or a tab whose browser was signed in differently elsewhere,
+returns to a "you are signed out" screen ("Part B review fixes").
 
 ## Evidence
 
@@ -186,13 +188,14 @@ The browser screens on the Stage 320 shell (2026-10-16). Where they refine the t
   shows the personas' token form as before, anything else "The table could not be reached" with
   Try again. Stage 350's proxy serves the plain `pnpm build`.
 - **Join page.** `main.tsx` takes the fragment of `/join#<token>` and replaces the history entry
-  with `/` (`history.replaceState`) before the first request, then sends that request exactly
-  once (React's development double effects never resend a token): the redeem, or the probe. A
-  fragment that is no token fails without a request. 200 enters the campaign. 409 asks first,
-  naming the current sign-in (its campaign, and "the DM" or the character, read from
-  `/auth/session` and that campaign's `session` view): "Replace with this invitation" posts
-  `{token, replaceSession: true}`; "Keep my current sign-in" forgets the token (the invitation
-  stays unused) and re-reads the session. Every other answer — 401, 400, 403, 404, 429, 5xx, no
+  with `/` (`history.replaceState`) before anything is requested or rendered. Without an
+  invitation the page's first request, the probe, is sent exactly once (React's development double
+  effects never resend it); with one, nothing is sent until the person takes their seat ("Part B
+  review fixes"). A fragment that is no token fails without a request. 200 opens the campaign
+  (since the review fixes, on a fresh start page). 409 asks first, naming the current sign-in (its campaign, and "the DM" or the character, read
+  from `/auth/session` and that campaign's `session` view): "Keep my current sign-in" forgets the
+  token (the invitation stays unused) and re-reads the session; "Replace with this invitation"
+  posts `{token, replaceSession: true}`. Every other answer — 401, 400, 403, 404, 429, 5xx, no
   answer — is one fixed failure, "This invitation cannot be used", with "Back to the start". The
   server answers 409 before it looks at the token, so a signed-in browser is asked about a used or
   forged link too; the failure follows the confirmation, and the current sign-in survives it.
@@ -202,7 +205,8 @@ The browser screens on the Stage 320 shell (2026-10-16). Where they refine the t
   `unauthenticated` — tells the screen, which shows "You are signed out"; only the session on
   screen can be signed out by an answer, never a later one by an earlier session's late answer.
   The signed-out screen keeps the language of the campaign that ended. Back/Forward restoration
-  asks the server again instead of showing a world from memory.
+  asks the server again instead of showing a world from memory. A sign-in changed in another tab
+  is found by the tab's own checks ("Part B review fixes").
 - **Signing out** is the top bar's leave control ("Sign out") and asks first, in a native modal
   dialog (focus on "Stay signed in"; Escape stays): it is final, coming back takes a new
   invitation. The screen changes only on the server's 204 or 401; otherwise the dialog says the
@@ -227,3 +231,61 @@ The browser screens on the Stage 320 shell (2026-10-16). Where they refine the t
 - **Pictures.** Only existing GPT pictures: the key art, emblem and divider, and UI-kit glyphs
   (`party`, `invitation`, `link`, `copy`, `revoke`, `member`, `character`, `key`, `replace`,
   `leave`, `hidden`, `offline`, `refresh`). Nothing new was needed.
+
+## Part B review fixes (2026-10-16)
+
+An independent review of part B found four issues, none of high severity; ADR 0036's amendment of
+2026-10-16 (part B) records the decisions. What the browser does now:
+
+- **Redeem only on a click.** Opening `/join#<token>` still takes the token out of the address and
+  this history entry before anything is requested or rendered, and then sends nothing: the page
+  says "You are invited to a table" and redeems the invitation only when the person presses "Take
+  your seat" («Занять место»). A mail link scanner, a history suggestion opened in a signed-out
+  browser or another site opening the link (login CSRF) neither spends the single-use invitation
+  nor signs the browser in; a reload shows the start page with the invitation unused. A malformed
+  fragment still fails at once, without a request.
+- **The token in one-shot closures only.** `takeInvitation` (`invitation-link.ts`) puts the token
+  straight into a holder whose `take` hands it out once and forgets it — never React state, props,
+  a resolved promise or a module binding — and "Take your seat" spends it. A 409 hands it to a
+  second one-shot holder for the question alone (a ref of `useSignIn`), forgotten on keep, taken
+  before the confirmed request is sent, and forgotten on every other screen change, a failure or
+  leaving the page. No screen or outcome holds a token. The legacy `RegExp.input` its format check
+  fills is cleared. And the browser itself keeps the address a page opened with, fragment and all,
+  in its navigation timing entry, which no script can clear: so once the seat is taken, the
+  current sign-in kept, or the person goes back to the start after a failure, the join page gives
+  way to a fresh start page (`location.replace('/')`), and nothing of it — memory or timing entry
+  — outlives the invitation.
+- **A tab checks the browser's sign-in again.** The session cookie belongs to the browser, so
+  another tab can sign out or replace the sign-in while this one still shows the previous world
+  (and would send its actions under the new one). Each session screen has a `SignInWatch`
+  (`sign-in-watch.ts`): the first identity it reads (`GET /campaigns/:id/session`: campaign,
+  actor, role, character) is what the tab shows, and a later read naming anyone else signs the tab
+  out at once. Doubts — a 403 or 404 of any request, the live stream refused (any 4xx; 401 still
+  signs out directly) or closed as `gone` or `forbidden`, the browser's `online` event, the tab
+  becoming visible — make it ask `GET /auth/session` and then the identity, one question at a time
+  (doubts meanwhile ask once more afterwards). A 401, a seat gone (404), another campaign, actor,
+  role or character shows "You are signed out" and unmounts the world; no answer changes nothing.
+  A seat freed by a raw undo, whose session `/auth/session` refuses, now ends the same way at the
+  player's next refusal.
+- **A safe replace question.** "Keep my current sign-in" is the first, primary choice and takes
+  focus when the question appears. "Replace with this invitation" shows itself unavailable
+  (`aria-disabled`, still reachable by Tab) and ignores presses until the page has been visible
+  and focused for 0.5 s without a break and the person has used a pointer or a key since the
+  question appeared (`deliberate-choice.ts`); hiding the page or losing focus starts over. So the
+  rest of a double click, a held key or a click meant for "Take your seat" never replaces a
+  sign-in. The question adds that coming back takes a new invitation link — for the DM, from the
+  operator.
+- **Evidence.** Unit: `invitation-token.test.ts` (a V8 heap snapshot holds the token while it
+  waits, and no string of the heap contains it after keeping the sign-in or after a failure),
+  `sign-in-flow.test.ts` (the holder, the click, the question's holder), `sign-in-watch.test.ts`,
+  `deliberate-choice.test.ts`, `client.test.ts` and `live.test.ts` (doubts). Journeys:
+  `sign-in.spec.ts` (a link opened and left sends no request at all and the same link then works;
+  one redeem only after the click; the question's order, focus and delayed enable; no token kept —
+  timing entries, Cache Storage, service workers, the document and the history entry included —
+  and, from heap snapshots, the token in the waiting page's heap and none after a join, a failure
+  and keeping the sign-in),
+  `sign-in-tabs.spec.ts` (with the live stream held down, three tabs showing the DM's world drop to
+  "You are signed out" when shown again, at a refused refresh and when the browser comes back
+  online, once another tab replaced the sign-in with a player's link; the player's tab keeps its
+  world), and the Russian and accessibility journeys (the invitation before the seat is taken; the
+  question with replacing unavailable, then available).

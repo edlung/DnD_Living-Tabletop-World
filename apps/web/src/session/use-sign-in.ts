@@ -1,29 +1,34 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { Connection } from '../api/client.ts';
+import type { InvitationHolder } from './invitation-link.ts';
 import {
   describeSignIn,
   probeSession,
-  redeemInvitation,
+  replaceSignIn,
+  takeSeat,
   type CurrentSignIn,
-  type FirstStep,
+  type PageStart,
+  type SeatOutcome,
+  type SessionProbe,
 } from './sign-in-flow.ts';
+import { SignInWatch, watchReturns } from './sign-in-watch.ts';
 
 /**
  * What the page shows before and around a world (docs/adr/0036-production-sign-in.md §7;
- * docs/STAGE_340_DESIGN.md "Browser"): finding out whether this browser is signed in, the
- * development personas' form, joining by invitation (and, for a browser signed in already,
- * the question whether to replace that sign-in), the fixed failure of an invitation, signed
- * out, or a world.
+ * docs/STAGE_340_DESIGN.md "Browser", "Part B review fixes"): finding out whether this browser is
+ * signed in, the development personas' form, an invitation waiting for the person to take their
+ * seat, joining (and, for a browser signed in already, the question whether to replace that
+ * sign-in), the fixed failure of an invitation, signed out, or a world. No screen holds a token.
  */
 export type SignInScreen =
   | { readonly kind: 'checking' }
   | { readonly kind: 'unreachable' }
   | { readonly kind: 'personas' }
+  | { readonly kind: 'invited' }
   | { readonly kind: 'joining' }
   | {
       readonly kind: 'confirm';
-      readonly token: string;
       /** Who this browser is signed in as: undefined while it is read, null if unknown. */
       readonly current: CurrentSignIn | null | undefined;
     }
@@ -32,74 +37,112 @@ export type SignInScreen =
   | { readonly kind: 'signed-out'; readonly reason: 'none' | 'ended' | 'left' }
   | { readonly kind: 'session'; readonly connection: Connection; readonly key: number };
 
-/** How the page began (`main.tsx`): with an invitation or not, and the first step's answer. */
-export interface PageStart {
-  readonly joining: boolean;
-  readonly first: Promise<FirstStep>;
-}
+const firstScreen = (start: PageStart): SignInScreen =>
+  start.kind === 'invited'
+    ? { kind: 'invited' }
+    : start.kind === 'malformed'
+      ? { kind: 'join-failed' }
+      : { kind: 'checking' };
+
+/** A fresh start page in place of this one (this history entry is replaced). */
+const startAfresh = () => {
+  window.location.replace('/');
+};
 
 /**
  * The page's sign-in state. Every step is a generation: an answer to an older step never
- * replaces what a newer one shows, and only the session on screen can be signed out by a 401.
- * The invitation's token lives only in the confirmation's state; keeping the current sign-in,
- * a failure or leaving the page forgets it. Back/Forward restoration never shows a world again
- * from memory: with production sign-in the server is asked anew, with personas the form shows.
+ * replaces what a newer one shows, and only the session on screen can be signed out. An
+ * invitation's token lives only in one-shot holders (`invitation-link.ts`), never in state or
+ * props: the page's, spent by "Take your seat", and the question's, kept or spent by the
+ * person's answer; leaving the page forgets both. Once the seat is taken, the current sign-in
+ * kept, or the person goes back to the start after a failure, the join page gives way to a
+ * fresh start page (`restart`), so nothing of it outlives the invitation — not its memory, nor
+ * the navigation timing entry in which the browser keeps the address it opened with. A session
+ * screen is watched (`SignInWatch`): a 401, or a doubt the server answers with another sign-in,
+ * shows "You are signed out". Back/Forward restoration never shows a world again from memory:
+ * with production sign-in the server is asked anew, with personas the form shows.
  */
-export function useSignIn(start: PageStart, transport: typeof fetch = fetch) {
-  const [screen, setScreen] = useState<SignInScreen>(() =>
-    start.joining ? { kind: 'joining' } : { kind: 'checking' },
-  );
+export function useSignIn(
+  start: PageStart,
+  transport: typeof fetch = fetch,
+  restart: () => void = startAfresh,
+) {
+  const [screen, setScreen] = useState<SignInScreen>(() => firstScreen(start));
   const [askingSignOut, setAskingSignOut] = useState(false);
   const step = useRef(0);
   const sessions = useRef(0);
   const active = useRef<Connection | null>(null);
+  const watch = useRef<SignInWatch | null>(null);
   const mode = useRef<'unknown' | 'personas' | 'invitations'>('unknown');
-  // The question a replacement was confirmed for: a second press never sends the token again.
-  const confirmed = useRef<SignInScreen | null>(null);
+  // The question's token: held only while the person is asked whether to replace a sign-in.
+  const replacement = useRef<InvitationHolder | null>(null);
 
-  /** Starts a new generation: whatever an older step still answers is ignored. */
+  /**
+   * Starts a new generation: whatever an older step still answers is ignored, the shown session's
+   * watch ends, and the question's token is forgotten (keeping the sign-in, a failure, leaving).
+   */
   const next = useCallback((shown: SignInScreen) => {
     step.current += 1;
     active.current = null;
+    watch.current?.close();
+    watch.current = null;
+    replacement.current?.forget();
+    replacement.current = null;
     setAskingSignOut(false);
     setScreen(shown);
     return step.current;
   }, []);
 
   const enter = useCallback(
-    (connection: Connection) => {
+    (connection: Connection, watching: SignInWatch | null = null) => {
       next({ kind: 'session', connection, key: (sessions.current += 1) });
       active.current = connection;
+      watch.current = watching;
     },
     [next],
   );
 
-  /** A production session for a campaign; a 401 anywhere in it signs the screen out. */
+  /** A production session for a campaign, watched: a 401, or another sign-in, signs it out. */
   const enterSession = useCallback(
     (campaignId: string) => {
+      const ended = () => {
+        if (active.current === connection) next({ kind: 'signed-out', reason: 'ended' });
+      };
+      const watching = new SignInWatch({ transport, campaignId, onChanged: ended });
       const connection: Connection = {
         kind: 'session',
         campaignId,
-        onSignedOut: () => {
-          if (active.current === connection) next({ kind: 'signed-out', reason: 'ended' });
+        onSignedOut: ended,
+        onDoubt: () => {
+          if (active.current === connection) watching.doubt();
+        },
+        onIdentity: (identity) => {
+          if (active.current === connection) watching.observe(identity);
         },
       };
-      enter(connection);
+      enter(connection, watching);
     },
-    [enter, next],
+    [enter, next, transport],
   );
 
   const apply = useCallback(
-    (outcome: FirstStep, generation: number) => {
-      if (generation !== step.current) return;
+    (outcome: SessionProbe | SeatOutcome, generation: number) => {
+      if (generation !== step.current) {
+        // A question nobody will be asked any more: its token goes.
+        if (outcome.kind === 'needs-confirmation') outcome.replacement.forget();
+        return;
+      }
       if (outcome.kind === 'personas') mode.current = 'personas';
-      else if (outcome.kind !== 'unreachable' && outcome.kind !== 'join-failed') {
+      else if (outcome.kind !== 'unreachable' && outcome.kind !== 'failed') {
         mode.current = 'invitations';
       }
       switch (outcome.kind) {
         case 'signed-in':
-        case 'joined':
           enterSession(outcome.campaignId);
+          return;
+        case 'joined':
+          // Seated (the cookie is set): the world opens on a fresh start page.
+          restart();
           return;
         case 'signed-out':
           next({ kind: 'signed-out', reason: 'none' });
@@ -110,19 +153,22 @@ export function useSignIn(start: PageStart, transport: typeof fetch = fetch) {
         case 'unreachable':
           next({ kind: 'unreachable' });
           return;
-        case 'join-failed':
+        case 'failed':
           next({ kind: 'join-failed' });
           return;
-        case 'confirm':
-          next({ kind: 'confirm', token: outcome.token, current: undefined });
+        case 'needs-confirmation':
+          next({ kind: 'confirm', current: undefined });
+          // Held for the question alone, outside React state.
+          replacement.current = outcome.replacement;
           return;
       }
     },
-    [enterSession, next],
+    [enterSession, next, restart],
   );
 
-  // The first step was sent once, when the page loaded; this only waits for its answer.
+  // Without an invitation the first request was sent once, when the page loaded: await it.
   useEffect(() => {
+    if (start.kind !== 'probe') return;
     const generation = step.current;
     let waiting = true;
     void start.first.then((outcome) => {
@@ -160,9 +206,18 @@ export function useSignIn(start: PageStart, transport: typeof fetch = fetch) {
     };
   }, [confirming, transport]);
 
-  // Back/Forward restoration (bfcache) must never show a world from memory.
+  // A signed-in tab asks again when the browser comes back online or the tab is shown again.
+  const shownConnection = screen.kind === 'session' ? screen.connection : null;
+  useEffect(() => {
+    if (shownConnection?.kind !== 'session') return;
+    return watchReturns(window, document, shownConnection.onDoubt);
+  }, [shownConnection]);
+
+  // Back/Forward restoration (bfcache) must never show a world from memory; leaving the page
+  // forgets the invitation.
   useEffect(() => {
     const hide = () => {
+      if (start.kind === 'invited') start.invitation.forget();
       next(mode.current === 'personas' ? { kind: 'personas' } : { kind: 'checking' });
     };
     const show = (event: PageTransitionEvent) => {
@@ -174,24 +229,43 @@ export function useSignIn(start: PageStart, transport: typeof fetch = fetch) {
       window.removeEventListener('pagehide', hide);
       window.removeEventListener('pageshow', show);
     };
-  }, [next, probe]);
+  }, [start, next, probe]);
 
   return {
     screen,
     /** The sign-out question is open over the world. */
     askingSignOut,
-    /** Ask again: after no answer, a failed invitation, or keeping the current sign-in. */
+    /** Ask again, after no answer. */
     probe,
+    /** After a failed invitation: a fresh start page, which asks whether this browser is signed in. */
+    backToStart: () => {
+      next({ kind: 'checking' });
+      restart();
+    },
+    /** "Take your seat": the invitation is redeemed now, once. */
+    takeSeat: () => {
+      if (screen.kind !== 'invited' || start.kind !== 'invited') return;
+      const { invitation } = start;
+      if (!invitation.holds()) return;
+      const generation = next({ kind: 'joining' });
+      void takeSeat(invitation, transport).then((outcome) => {
+        if (outcome !== null) apply(outcome, generation);
+      });
+    },
+    /** The person keeps this browser's sign-in: the invitation is forgotten, unused. */
+    keep: () => {
+      if (screen.kind !== 'confirm') return;
+      next({ kind: 'checking' });
+      restart();
+    },
     /** The person confirmed: the invitation replaces this browser's sign-in. */
     replace: () => {
-      if (screen.kind !== 'confirm' || confirmed.current === screen) return;
-      confirmed.current = screen;
-      const { token } = screen;
+      const held = replacement.current;
+      if (screen.kind !== 'confirm' || held === null) return;
+      replacement.current = null;
       const generation = next({ kind: 'joining' });
-      void redeemInvitation(transport, token, true).then((outcome) => {
-        if (generation !== step.current) return;
-        if (outcome.kind === 'joined') enterSession(outcome.campaignId);
-        else next({ kind: 'join-failed' });
+      void replaceSignIn(held, transport).then((outcome) => {
+        if (outcome !== null) apply(outcome, generation);
       });
     },
     /** The development personas' form: a token typed in, kept in memory only. */

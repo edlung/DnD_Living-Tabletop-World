@@ -9,6 +9,7 @@ import {
   invite,
   joinAsDm,
   joinPath,
+  openInvitation,
 } from './support/sign-in.ts';
 
 /**
@@ -38,7 +39,8 @@ test('in Russian, the DM invites, an English browser joins, and is signed out in
   // The player's browser speaks English; the campaign it joins speaks Russian.
   const playerContext = await browser.newContext({ locale: 'en-US' });
   const player = await playerContext.newPage();
-  await player.goto(link);
+  // Before a session the English browser speaks English: "Take your seat".
+  await openInvitation(player, link);
   await expect(player.getByRole('button', { name: 'Мира Вейл', exact: true })).toBeVisible();
 
   const members = dm.locator('#sheet-players').getByRole('region', { name: ru.members });
@@ -54,9 +56,13 @@ test('in Russian, the DM invites, an English browser joins, and is signed out in
     { timeout: 10_000 },
   );
 
-  // The one failure, in a Russian browser.
+  // The invitation and the one failure, in a Russian browser.
   const forged = await browser.newPage({ locale: 'ru-RU' });
   await forged.goto(joinPath(forgedToken()));
+  await expect(accessState(forged, ru.invited)).toContainText(
+    'Пока вы не займёте место, приглашение не используется.',
+  );
+  await accessState(forged, ru.invited).getByRole('button', { name: ru.takeSeat }).click();
   await expect(accessState(forged, ru.failed)).toContainText('Попросите новую.');
 
   // Signing out, asked in Russian.

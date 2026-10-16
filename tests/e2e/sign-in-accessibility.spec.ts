@@ -11,13 +11,16 @@ import {
   invite,
   joinAsDm,
   joinPath,
+  openInvitation,
+  takeSeat,
   type Words,
 } from './support/sign-in.ts';
 
 /**
  * Accessibility of production sign-in (docs/STAGE_320_DESIGN.md §6–7; docs/adr/0036-production-
- * sign-in.md §7): axe scans of the join page (not signed in, the failed invitation, the question
- * before a sign-in is replaced), the sign-out question, the signed-out screen and the DM's
+ * sign-in.md §7): axe scans of the join page (not signed in, an invitation before the seat is
+ * taken, the failed invitation, the question before a sign-in is replaced, with replacing still
+ * unavailable and then available), the sign-out question, the signed-out screen and the DM's
  * Players sheet (players and invitations, a new link, the question before revoking a player) at
  * 390 × 844, 820 × 1180 and 1440 × 900, and the Russian ones on a phone. Each width signs in with
  * its own DM link of the scans' campaign, whose Elowen is seated and Seren's seat empty; the
@@ -43,6 +46,9 @@ async function scan(
   await expect(accessState(page, words.none)).toBeVisible();
   await expectAccessible(page, `${where} not signed in`);
   await page.goto(joinPath(forgedToken()));
+  await expect(accessState(page, words.invited)).toBeVisible();
+  await expectAccessible(page, `${where} an invitation before the seat is taken`);
+  await takeSeat(page, words);
   await expect(accessState(page, words.failed)).toBeVisible();
   await expectAccessible(page, `${where} failed invitation`);
   await fresh.close();
@@ -73,10 +79,14 @@ async function scan(
   await sheet.getByRole('button', { name: words.revoke(elowen) }).click();
 
   // The invitation, opened where the DM is signed in: asked, then kept (the link stays unused).
-  await dm.goto(link);
+  await openInvitation(dm, link, words);
   const question = accessState(dm, words.replaceQuestion);
-  await expect(question.getByRole('button', { name: words.keep })).toBeVisible();
+  await expect(question.getByRole('button', { name: words.keep })).toBeFocused();
+  await expect(question.getByRole('button', { name: words.replace })).toBeDisabled();
   await expectAccessible(dm, `${where} the question before a sign-in is replaced`);
+  await dm.keyboard.press('Tab');
+  await expect(question.getByRole('button', { name: words.replace })).toBeEnabled();
+  await expectAccessible(dm, `${where} the question with replacing available`);
   await question.getByRole('button', { name: words.keep }).click();
   await expect(dockButton(dm, words.players)).toBeVisible();
 

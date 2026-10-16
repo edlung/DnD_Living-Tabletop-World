@@ -12,6 +12,11 @@ registerRussian({
   'Sign out': 'Выйти',
   'Checking your sign-in…': 'Проверяем вход…',
   'An invitation': 'Приглашение',
+  'You are invited to a table': 'Вас пригласили за стол',
+  'This invitation link seats you at a table in this browser. It works once.':
+    'По этой ссылке-приглашению вы займёте место за столом в этом браузере. Она срабатывает один раз.',
+  'Nothing is used until you take your seat. Take it only if you expected this invitation.':
+    'Пока вы не займёте место, приглашение не используется. Занимайте место, только если ждали этого приглашения.',
   'Joining the table': 'Присоединяемся к столу',
   'Checking your invitation…': 'Проверяем приглашение…',
   'The table could not be reached': 'Не удалось связаться со столом',
@@ -26,6 +31,12 @@ registerRussian({
   'Replace that sign-in with this invitation?': 'Заменить этот вход приглашением?',
   'Replacing signs this browser out of that table. Keeping it leaves the invitation unused: it still works once, in another browser.':
     'При замене этот браузер выйдет из-за того стола. Если оставить текущий вход, приглашение останется неиспользованным и сработает один раз в другом браузере.',
+  'To come back to that table, you will need a new invitation link.':
+    'Чтобы вернуться за тот стол, понадобится новая ссылка-приглашение.',
+  'To come back to that table as the DM, you will need a new invitation link from the operator.':
+    'Чтобы вернуться за тот стол мастером, понадобится новая ссылка-приглашение от оператора.',
+  'To come back to that table, you will need a new invitation link from the DM.':
+    'Чтобы вернуться за тот стол, понадобится новая ссылка-приглашение от мастера.',
   'Replace with this invitation': 'Заменить приглашением',
   'Keep my current sign-in': 'Оставить текущий вход',
   'This invitation cannot be used': 'Это приглашение нельзя использовать',

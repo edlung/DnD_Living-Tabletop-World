@@ -14,7 +14,9 @@ import { dockButton, openSheet } from './shell.ts';
  * Production sign-in in the browser (docs/adr/0036-production-sign-in.md §7; tests/e2e/AGENTS.md):
  * journeys against the invitation-mode servers (`ui-sign-in-server.ts` behind the second Vite
  * server, `SIGN_IN_ORIGIN`). Each journey owns a campaign of `sign-in-campaigns.json`. No token is
- * ever printed: assertions about tokens are yes/no, and the specs keep no trace or screenshot.
+ * ever printed: assertions about tokens are yes/no, and the specs keep no trace or screenshot. An
+ * invitation is sent only when the person takes their seat (docs/STAGE_340_DESIGN.md "Part B
+ * review fixes"): `openInvitation` opens a link and does so.
  */
 export const SIGN_IN_CAMPAIGNS = campaigns;
 export { SIGN_IN_ORIGIN };
@@ -49,6 +51,8 @@ export const WORDS = {
     signedOut: 'You are signed out',
     none: 'Join with an invitation',
     failed: 'This invitation cannot be used',
+    invited: 'You are invited to a table',
+    takeSeat: 'Take your seat',
     replaceQuestion: 'Replace your sign-in?',
     replace: 'Replace with this invitation',
     keep: 'Keep my current sign-in',
@@ -68,6 +72,8 @@ export const WORDS = {
     signedOut: 'Вы вышли',
     none: 'Вход по приглашению',
     failed: 'Это приглашение нельзя использовать',
+    invited: 'Вас пригласили за стол',
+    takeSeat: 'Занять место',
     replaceQuestion: 'Заменить вход?',
     replace: 'Заменить приглашением',
     keep: 'Оставить текущий вход',
@@ -82,6 +88,23 @@ export type Words = (typeof WORDS)[keyof typeof WORDS];
 export const accessState = (page: Page, title: string) =>
   page.getByRole('group', { name: title, exact: true });
 
+/** "Take your seat" on the join page: the one moment the invitation is sent. */
+export async function takeSeat(page: Page, words: Words = WORDS.en): Promise<void> {
+  await accessState(page, words.invited)
+    .getByRole('button', { name: words.takeSeat, exact: true })
+    .click();
+}
+
+/** Opens an invitation link (`path` or a whole link) and takes the seat. */
+export async function openInvitation(
+  page: Page,
+  path: string,
+  words: Words = WORDS.en,
+): Promise<void> {
+  await page.goto(path);
+  await takeSeat(page, words);
+}
+
 /** The DM signs in with the operator's link and reaches the world, the Players sheet beside it. */
 export async function joinAsDm(
   page: Page,
@@ -89,7 +112,7 @@ export async function joinAsDm(
   index = 0,
   words: Words = WORDS.en,
 ): Promise<void> {
-  await page.goto(joinPath(dmToken(campaignId, index)));
+  await openInvitation(page, joinPath(dmToken(campaignId, index)), words);
   await expect(dockButton(page, words.players)).toBeVisible();
 }
 
@@ -134,20 +157,75 @@ export function captureRequests(context: BrowserContext) {
 }
 
 /**
- * Nothing of a token stays where the page could keep it: the address, browser storage, the
- * cookies script can read (the session cookie is HttpOnly), IndexedDB.
+ * Nothing of a token stays where the page could keep it: the address and this history entry's
+ * state, the navigation and resource timing entries (the browser keeps the address a page opened
+ * with, fragment included: a join page gives way to a fresh start page once it is done), browser
+ * storage, the cookies script can read (the session cookie is HttpOnly), IndexedDB, Cache
+ * Storage, a service worker, the document.
  */
 export async function expectNothingKept(page: Page, tokens: readonly string[]): Promise<void> {
   expect(page.url()).toBe(START);
-  const kept = await page.evaluate(async () => ({
-    href: location.href,
-    storage: JSON.stringify(localStorage) + JSON.stringify(sessionStorage),
-    cookie: document.cookie,
-    databases: (await indexedDB.databases()).length,
-  }));
+  const kept = await page.evaluate(async () => {
+    const cached = await Promise.all(
+      (await caches.keys()).map(async (name) =>
+        (await (await caches.open(name)).keys()).map((request) => request.url),
+      ),
+    );
+    return {
+      href: location.href,
+      state: JSON.stringify(history.state),
+      timing: performance
+        .getEntries()
+        .map((entry) => entry.name)
+        .join('\n'),
+      storage: JSON.stringify(localStorage) + JSON.stringify(sessionStorage),
+      cookie: document.cookie,
+      databases: (await indexedDB.databases()).length,
+      caches: cached.length,
+      cached: cached.flat().join('\n'),
+      workers: (await navigator.serviceWorker.getRegistrations()).length,
+      document: document.documentElement.outerHTML,
+    };
+  });
   expect(holdsAny(kept.href, tokens), 'the address keeps a token').toBe(false);
+  expect(holdsAny(kept.state, tokens), 'the history entry keeps a token').toBe(false);
+  expect(holdsAny(kept.timing, tokens), 'a timing entry keeps a token').toBe(false);
   expect(holdsAny(kept.storage, tokens), 'browser storage keeps a token').toBe(false);
   expect(holdsAny(kept.cookie, tokens), 'a script-visible cookie keeps a token').toBe(false);
   expect(kept.cookie, 'the session cookie is HttpOnly').not.toContain('ltw_session');
   expect(kept.databases, 'IndexedDB databases').toBe(0);
+  expect(kept.caches, 'Cache Storage caches').toBe(0);
+  expect(holdsAny(kept.cached, tokens), 'Cache Storage keeps a token').toBe(false);
+  expect(kept.workers, 'service workers').toBe(0);
+  expect(holdsAny(kept.document, tokens), 'the document keeps a token').toBe(false);
+}
+
+/**
+ * The page cannot reach the tokens any more: its JavaScript heap holds none (a heap snapshot after
+ * a full garbage collection, through Chromium's DevTools protocol). Run it before anything reads
+ * the page, so no answer of the check itself is in the heap.
+ */
+export async function expectUnreachable(page: Page, tokens: readonly string[]): Promise<void> {
+  expect(await heapHoldsAny(page, tokens), 'the JavaScript heap keeps a token').toBe(false);
+}
+
+/** Whether the page's JavaScript heap holds any of the tokens (a heap snapshot, chunk by chunk). */
+export async function heapHoldsAny(page: Page, tokens: readonly string[]): Promise<boolean> {
+  const longest = Math.max(...tokens.map((token) => token.length));
+  const session = await page.context().newCDPSession(page);
+  let carried = '';
+  let found = false;
+  session.on('HeapProfiler.addHeapSnapshotChunk', ({ chunk }) => {
+    const text = carried + chunk;
+    if (holdsAny(text, tokens)) found = true;
+    carried = text.slice(-longest);
+  });
+  try {
+    await session.send('HeapProfiler.enable');
+    await session.send('HeapProfiler.collectGarbage');
+    await session.send('HeapProfiler.takeHeapSnapshot', { reportProgress: false });
+  } finally {
+    await session.detach();
+  }
+  return found;
 }

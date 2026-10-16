@@ -1,20 +1,25 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { takeInvitation } from './invitation-link.ts';
+import { holdInvitation, takeInvitation, type InvitationHolder } from './invitation-link.ts';
 import {
   describeSignIn,
-  firstStep,
+  pageStart,
   probeSession,
+  readSignIn,
   redeemInvitation,
+  replaceSignIn,
   signOut,
+  takeSeat,
 } from './sign-in-flow.ts';
 
 /**
- * Production sign-in from the browser (docs/adr/0036-production-sign-in.md §7), over a fake
- * transport: the token leaves the address before any request and travels only in a body;
- * requests carry the session cookie to their own origin and never an `Authorization` header;
- * every failed invitation reads the same; a signed-in browser is asked before its sign-in is
- * replaced.
+ * Production sign-in from the browser (docs/adr/0036-production-sign-in.md §7;
+ * docs/STAGE_340_DESIGN.md "Part B review fixes"), over a fake transport: the token leaves the
+ * address before any request, waits in a one-shot holder and travels only in a body, sent only
+ * when the person takes their seat; requests carry the session cookie to their own origin and
+ * never an `Authorization` header; every failed invitation reads the same; a signed-in browser
+ * is asked before its sign-in is replaced. (`invitation-token.test.ts` proves the token
+ * unreachable once kept or failed.)
  */
 const TOKEN = 'A'.repeat(21) + '_-' + 'z9'.repeat(10);
 const json = (body: unknown, status = 200) => Response.json(body, { status });
@@ -52,24 +57,28 @@ const expectSameOrigin = (sent: readonly Sent[]) => {
   }
 };
 
-describe('the invitation in the address', () => {
-  const history = () => ({ replaceState: vi.fn() });
+const history = () => ({ replaceState: vi.fn() });
 
-  it('is taken from the join link and removed from the address and history at once', () => {
+/** The invitation a join link leaves in its holder. */
+function held(): InvitationHolder {
+  const invitation = takeInvitation({ pathname: '/join', hash: `#${TOKEN}` }, history());
+  if (invitation === null || invitation === 'malformed') throw new Error('no invitation');
+  return invitation;
+}
+
+describe('the invitation in the address', () => {
+  it('is taken from the join link into its holder and removed from the address at once', () => {
     const replaced = history();
-    expect(takeInvitation({ pathname: '/join', hash: `#${TOKEN}` }, replaced)).toEqual({
-      kind: 'token',
-      token: TOKEN,
-    });
+    const invitation = takeInvitation({ pathname: '/join', hash: `#${TOKEN}` }, replaced);
     expect(replaced.replaceState).toHaveBeenCalledWith(null, '', '/');
+    if (invitation === null || invitation === 'malformed') throw new Error('no invitation');
+    expect(invitation.take()).toBe(TOKEN);
   });
 
   it('reads a join link without a well-formed token as malformed, and removes it too', () => {
     for (const hash of ['', '#', '#short', `#${TOKEN}x`, `#${TOKEN.slice(1)}!`, `#${TOKEN} `]) {
       const replaced = history();
-      expect(takeInvitation({ pathname: '/join/', hash }, replaced)).toEqual({
-        kind: 'malformed',
-      });
+      expect(takeInvitation({ pathname: '/join/', hash }, replaced)).toBe('malformed');
       expect(replaced.replaceState).toHaveBeenCalledTimes(1);
     }
   });
@@ -80,6 +89,28 @@ describe('the invitation in the address', () => {
       expect(takeInvitation({ pathname, hash: `#${TOKEN}` }, replaced)).toBeNull();
       expect(replaced.replaceState).not.toHaveBeenCalled();
     }
+  });
+
+  it('leaves no token in the legacy RegExp statics its check fills', () => {
+    held();
+    const statics = RegExp as unknown as Readonly<Record<string, unknown>>;
+    for (const name of ['input', 'lastMatch', '$_', 'leftContext', 'rightContext']) {
+      expect(String(statics[name]).includes(TOKEN), name).toBe(false);
+    }
+  });
+});
+
+describe('the one-shot invitation holder', () => {
+  it('gives its token once; once taken or forgotten it gives nothing', () => {
+    const taken = holdInvitation(TOKEN);
+    expect(taken.holds()).toBe(true);
+    expect(taken.take()).toBe(TOKEN);
+    expect([taken.holds(), taken.take()]).toEqual([false, null]);
+    const forgotten = holdInvitation(TOKEN);
+    forgotten.forget();
+    expect([forgotten.holds(), forgotten.take()]).toEqual([false, null]);
+    // The holder shows nothing of what it holds.
+    expect(JSON.stringify(holdInvitation(TOKEN))).not.toContain(TOKEN);
   });
 });
 
@@ -173,41 +204,102 @@ describe('redeeming an invitation', () => {
   });
 });
 
-describe('the first step of a page', () => {
-  it('redeems the invitation once, or probes the session without one', async () => {
-    const joining = transport(json({ campaignId: 'ui-signin' }));
-    await expect(firstStep({ kind: 'token', token: TOKEN }, joining.fake)).resolves.toEqual({
+describe('the start of a page', () => {
+  it('asks once whether this browser is signed in when no invitation came with it', async () => {
+    const { fake, sent } = transport(json({}, 401));
+    const start = pageStart(null, fake);
+    if (start.kind !== 'probe') throw new Error('no probe');
+    await expect(start.first).resolves.toEqual({ kind: 'signed-out' });
+    expect(sent.map((call) => call.url)).toEqual(['/api/auth/session']);
+  });
+
+  it('sends nothing for a join link: the invitation waits for the person', () => {
+    const { fake, sent } = transport();
+    const invitation = held();
+    expect(pageStart(invitation, fake)).toEqual({ kind: 'invited', invitation });
+    expect(pageStart('malformed', fake)).toEqual({ kind: 'malformed' });
+    expect(sent).toEqual([]);
+    expect(invitation.holds()).toBe(true);
+  });
+});
+
+describe('taking the seat', () => {
+  it('redeems the held invitation once, on the person’s click; a second press sends nothing', async () => {
+    const invitation = held();
+    const { fake, sent } = transport(json({ campaignId: 'ui-signin' }));
+    await expect(takeSeat(invitation, fake)).resolves.toEqual({
       kind: 'joined',
       campaignId: 'ui-signin',
     });
-    expect(joining.sent.map((call) => call.url)).toEqual(['/api/auth/redeem']);
-    const probing = transport(json({}, 401));
-    await expect(firstStep(null, probing.fake)).resolves.toEqual({ kind: 'signed-out' });
-    expect(probing.sent.map((call) => call.url)).toEqual(['/api/auth/session']);
+    expect(invitation.holds()).toBe(false);
+    await expect(takeSeat(invitation, fake)).resolves.toBeNull();
+    expect(sent.map((call) => [call.url, bodyOf(call)])).toEqual([
+      ['/api/auth/redeem', { token: TOKEN }],
+    ]);
+    expectSameOrigin(sent);
   });
 
-  it('keeps the token in memory only to ask about replacing a sign-in', async () => {
-    const { fake } = transport(json({ error: { code: 'CONFLICT' } }, 409));
-    await expect(firstStep({ kind: 'token', token: TOKEN }, fake)).resolves.toEqual({
-      kind: 'confirm',
-      token: TOKEN,
-    });
+  it('is spent the moment it is sent, so a double press redeems once', async () => {
+    const invitation = held();
+    const { fake, sent } = transport(json({ campaignId: 'ui-signin' }));
+    const first = takeSeat(invitation, fake);
+    const second = takeSeat(invitation, fake);
+    expect(invitation.holds()).toBe(false);
+    await expect(second).resolves.toBeNull();
+    await expect(first).resolves.toMatchObject({ kind: 'joined' });
+    expect(sent).toHaveLength(1);
   });
 
-  it('fails a malformed link without a request, and a refused one the same way', async () => {
-    const silent = transport();
-    await expect(firstStep({ kind: 'malformed' }, silent.fake)).resolves.toEqual({
-      kind: 'join-failed',
+  it('forgets the token on any failure: the outcome holds none', async () => {
+    for (const answer of [json({}, 401), json({}, 429), new Error('lost')]) {
+      const invitation = held();
+      const outcome = await takeSeat(invitation, transport(answer).fake);
+      expect(outcome).toEqual({ kind: 'failed' });
+      expect(invitation.holds()).toBe(false);
+    }
+  });
+
+  it('gives a signed-in browser’s question its own one-shot holder; keeping forgets it', async () => {
+    const invitation = held();
+    const { fake, sent } = transport(json({ error: { code: 'CONFLICT' } }, 409));
+    const outcome = await takeSeat(invitation, fake);
+    if (outcome?.kind !== 'needs-confirmation') throw new Error('not asked');
+    expect(JSON.stringify(outcome)).not.toContain(TOKEN);
+    expect([invitation.holds(), outcome.replacement.holds()]).toEqual([false, true]);
+    // "Keep my current sign-in".
+    outcome.replacement.forget();
+    await expect(replaceSignIn(outcome.replacement, fake)).resolves.toBeNull();
+    expect(sent).toHaveLength(1);
+  });
+
+  it('replacing spends the question’s token once, before the answer comes', async () => {
+    const asked = await takeSeat(held(), transport(json({}, 409)).fake);
+    if (asked?.kind !== 'needs-confirmation') throw new Error('not asked');
+    const { fake, sent } = transport(json({ campaignId: 'ui-signin' }));
+    const replaced = replaceSignIn(asked.replacement, fake);
+    expect(asked.replacement.holds()).toBe(false);
+    await expect(replaced).resolves.toEqual({ kind: 'joined', campaignId: 'ui-signin' });
+    await expect(replaceSignIn(asked.replacement, fake)).resolves.toBeNull();
+    expect(sent.map(bodyOf)).toEqual([{ token: TOKEN, replaceSession: true }]);
+    // A refused replacement is the one failure (a second 409 is never asked again).
+    const again = await takeSeat(held(), transport(json({}, 409)).fake);
+    if (again?.kind !== 'needs-confirmation') throw new Error('not asked');
+    await expect(replaceSignIn(again.replacement, transport(json({}, 409)).fake)).resolves.toEqual({
+      kind: 'failed',
     });
-    expect(silent.sent).toEqual([]);
-    const refused = transport(json({ error: { code: 'UNAUTHENTICATED' } }, 401));
-    await expect(firstStep({ kind: 'token', token: TOKEN }, refused.fake)).resolves.toEqual({
-      kind: 'join-failed',
-    });
+    expect(again.replacement.holds()).toBe(false);
   });
 });
 
 describe('signing out and naming the current sign-in', () => {
+  const ELOWEN_SESSION = {
+    actorId: 'player:7f1c',
+    role: 'PLAYER',
+    campaign: { campaignId: 'ravenford', name: 'The Missing Caravan', language: 'en' },
+    character: { entityId: 'elowen-starwhisper', kind: 'character', name: 'Elowen' },
+    perspectives: [],
+  };
+
   it('signs out by a same-origin POST; no session left is signed out too', async () => {
     for (const status of [204, 401]) {
       const { fake, sent } = transport(new Response(null, { status }));
@@ -220,25 +312,70 @@ describe('signing out and naming the current sign-in', () => {
     }
   });
 
-  it('names the campaign and the role of the sign-in the browser holds', async () => {
-    const { fake, sent } = transport(
-      json({ campaignId: 'ravenford' }),
-      json({
+  it('reads who the browser is signed in as: campaign, actor, role and character', async () => {
+    const { fake, sent } = transport(json({ campaignId: 'ravenford' }), json(ELOWEN_SESSION));
+    await expect(readSignIn(fake)).resolves.toEqual({
+      kind: 'signed-in',
+      identity: {
+        campaignId: 'ravenford',
+        campaignName: 'The Missing Caravan',
+        actorId: 'player:7f1c',
         role: 'PLAYER',
-        campaign: { campaignId: 'ravenford', name: 'The Missing Caravan', language: 'en' },
-        character: { entityId: 'elowen-starwhisper', kind: 'character', name: 'Elowen' },
-      }),
-    );
-    await expect(describeSignIn(fake)).resolves.toEqual({
-      campaignName: 'The Missing Caravan',
-      role: 'PLAYER',
-      characterName: 'Elowen',
+        characterId: 'elowen-starwhisper',
+        characterName: 'Elowen',
+      },
     });
     expect(sent.map((call) => call.url)).toEqual([
       '/api/auth/session',
       '/api/campaigns/ravenford/session',
     ]);
     expectSameOrigin(sent);
+  });
+
+  it('reads signed out from a 401, or a seat gone between the two answers', async () => {
+    await expect(readSignIn(transport(json({}, 401)).fake)).resolves.toEqual({
+      kind: 'signed-out',
+    });
+    for (const status of [401, 404]) {
+      await expect(
+        readSignIn(transport(json({ campaignId: 'ravenford' }), json({}, status)).fake),
+      ).resolves.toEqual({ kind: 'signed-out' });
+    }
+  });
+
+  it('knows nothing from no answer, a server error, or a view that is not one', async () => {
+    for (const answers of [
+      [new Error('offline')],
+      [json({}, 500)],
+      [json({ campaignId: 'ravenford' }), new Error('offline')],
+      [json({ campaignId: 'ravenford' }), json({}, 500)],
+      [json({ campaignId: 'ravenford' }), json({ ...ELOWEN_SESSION, role: 'X' })],
+      [json({ campaignId: 'ravenford' }), json({ ...ELOWEN_SESSION, actorId: 7 })],
+      [
+        json({ campaignId: 'ravenford' }),
+        json({ ...ELOWEN_SESSION, campaign: { ...ELOWEN_SESSION.campaign, campaignId: 'x' } }),
+      ],
+    ]) {
+      await expect(readSignIn(transport(...answers).fake)).resolves.toEqual({ kind: 'unknown' });
+    }
+  });
+
+  it('names the campaign and the role of the sign-in the browser holds', async () => {
+    const { fake } = transport(json({ campaignId: 'ravenford' }), json(ELOWEN_SESSION));
+    await expect(describeSignIn(fake)).resolves.toEqual({
+      campaignName: 'The Missing Caravan',
+      role: 'PLAYER',
+      characterName: 'Elowen',
+    });
+    const dm = transport(
+      json({ campaignId: 'ravenford' }),
+      json({ ...ELOWEN_SESSION, actorId: 'dm-ravenford', role: 'DM', character: null }),
+    );
+    await expect(describeSignIn(dm.fake)).resolves.toEqual({
+      campaignName: 'The Missing Caravan',
+      role: 'DM',
+      characterName: null,
+    });
   });
 
   it('names nothing when no sign-in is left or it cannot be read', async () => {

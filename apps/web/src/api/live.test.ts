@@ -284,7 +284,9 @@ describe('the live client', () => {
 /**
  * A session signed in by invitation (docs/adr/0036-production-sign-in.md §7): the stream carries
  * the session cookie to its own origin only, and a sign-out, an expiry or the DM's revocation
- * reaches the screen through the stream as well as through any request.
+ * reaches the screen through the stream as well as through any request. Any other refusal, or a
+ * close as `gone` or `forbidden`, may mean another tab changed the browser's sign-in: the screen
+ * hears a doubt (docs/STAGE_340_DESIGN.md "Part B review fixes").
  */
 describe('the live client of a signed-in session', () => {
   beforeEach(() => {
@@ -295,8 +297,15 @@ describe('the live client of a signed-in session', () => {
   });
   const session = () => {
     const onSignedOut = vi.fn();
-    const connection: Connection = { kind: 'session', campaignId: 'ravenford', onSignedOut };
-    return { connection, onSignedOut };
+    const onDoubt = vi.fn();
+    const connection: Connection = {
+      kind: 'session',
+      campaignId: 'ravenford',
+      onSignedOut,
+      onDoubt,
+      onIdentity: vi.fn(),
+    };
+    return { connection, onSignedOut, onDoubt };
   };
 
   it('streams with the session cookie only, never an Authorization header', async () => {
@@ -315,7 +324,7 @@ describe('the live client of a signed-in session', () => {
   });
 
   it('tells the screen the session ended when the stream closes as unauthenticated', async () => {
-    const { connection, onSignedOut } = session();
+    const { connection, onSignedOut, onDoubt } = session();
     const { live, calls, statuses } = client(undefined, connection);
     live.subscribe(PLAYER);
     await tick();
@@ -325,21 +334,78 @@ describe('the live client of a signed-in session', () => {
     calls[0]?.send(closed('unauthenticated'));
     await tick();
     expect(onSignedOut).toHaveBeenCalledTimes(1);
+    expect(onDoubt).not.toHaveBeenCalled();
     expect(statuses.at(-1)).toBe('offline');
     await tick(60_000);
     expect(calls).toHaveLength(1);
   });
 
   it('tells the screen the session ended when the stream is refused with 401', async () => {
-    const { connection, onSignedOut } = session();
+    const { connection, onSignedOut, onDoubt } = session();
     const { live } = client(() => 401, connection);
     live.subscribe(PLAYER);
     await tick();
     expect(onSignedOut).toHaveBeenCalledTimes(1);
+    expect(onDoubt).not.toHaveBeenCalled();
+  });
+
+  it('doubts the sign-in when the stream is refused: 403 and 400 stop it, 404 retries', async () => {
+    for (const [status, retries] of [
+      [403, false],
+      [400, false],
+      [404, true],
+      [429, true],
+    ] as const) {
+      const { connection, onSignedOut, onDoubt } = session();
+      const { live, calls } = client(() => status, connection);
+      live.subscribe(PLAYER);
+      await tick();
+      expect(onDoubt, String(status)).toHaveBeenCalledTimes(1);
+      await tick(1_500);
+      expect(calls.length > 1, String(status)).toBe(retries);
+      expect(onSignedOut).not.toHaveBeenCalled();
+      live.close();
+    }
+  });
+
+  it('doubts the sign-in when the stream closes as gone (and reconnects) or forbidden', async () => {
+    const { connection, onSignedOut, onDoubt } = session();
+    const { live, calls } = client(undefined, connection);
+    live.subscribe(PLAYER);
+    await tick();
+    calls[0]?.send(READY + closed('gone'));
+    await tick();
+    expect(onDoubt).toHaveBeenCalledTimes(1);
+    await tick(1_000);
+    expect(calls).toHaveLength(2);
+    calls[1]?.send(READY + closed('forbidden'));
+    await tick();
+    expect(onDoubt).toHaveBeenCalledTimes(2);
+    await tick(60_000);
+    expect(calls).toHaveLength(2);
+    expect(onSignedOut).not.toHaveBeenCalled();
+  });
+
+  it('does not doubt the sign-in when a stream is lost on the way or a server fails', async () => {
+    const { connection, onDoubt } = session();
+    const failing = client(() => 503, connection);
+    failing.live.subscribe(PLAYER);
+    await tick();
+    failing.live.close();
+    const { live, calls } = client(undefined, connection);
+    live.subscribe(PLAYER);
+    await tick();
+    calls[0]?.send(READY);
+    await tick(150);
+    calls[0]?.end();
+    await tick(1_000);
+    expect(calls).toHaveLength(2);
+    expect(onDoubt).not.toHaveBeenCalled();
+    live.close();
   });
 
   it('is not signed out by a refused perspective, a reconnect, or a stale stream', async () => {
-    const { connection, onSignedOut } = session();
+    const { connection, onSignedOut, onDoubt } = session();
     const forbidden = client(() => 403, connection);
     forbidden.live.subscribe(PLAYER);
     await tick();
@@ -360,6 +426,8 @@ describe('the live client of a signed-in session', () => {
     calls[1]?.send(closed('forbidden'));
     await tick();
     expect(onSignedOut).not.toHaveBeenCalled();
+    // The refused perspective, the close as gone and the close as forbidden: never the stale one.
+    expect(onDoubt).toHaveBeenCalledTimes(3);
     live.close();
   });
 
