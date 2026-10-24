@@ -55,6 +55,8 @@ networks_digest() {
     openssl dgst -sha256 -r | cut -d' ' -f1
 }
 
+# Before anything is written: a deploy that cannot tell its project stops here.
+project=$(project_name)
 set_env_value LTW_BACKUP_SCRIPT_DIGEST "$(backup_script_digest)"
 if [ -n "$(compose ps --all --quiet 2>/dev/null)" ] &&
   [ "$(networks_digest)" != "$(env_value LTW_NETWORKS_DIGEST)" ]; then
@@ -62,7 +64,7 @@ if [ -n "$(compose ps --all --quiet 2>/dev/null)" ] &&
   compose down --remove-orphans
 fi
 
-if database_exists; then
+if database_exists "$project"; then
   say 'backup before the change (protected dump)'
   compose up --detach --wait --wait-timeout 180 postgres backup
   dump=$(compose exec -T backup /bin/sh /opt/ltw/backup.sh pre-deploy)
@@ -86,7 +88,7 @@ set_env_value LTW_ALLOW_NEWER_SCHEMA "$rollback"
 
 say "starting ltw-server:$tag and ltw-proxy:$tag (previous: ${current:-none})"
 compose up --no-start --remove-orphans
-require_isolated_networks "$(project_name)"
+require_isolated_networks "$project"
 compose up --detach --wait --wait-timeout 300 --remove-orphans
 set_env_value LTW_NETWORKS_DIGEST "$(networks_digest)"
 compose ps

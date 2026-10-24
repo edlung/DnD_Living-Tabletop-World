@@ -370,6 +370,16 @@ reads a candidate in the DM perspective, a `blob:` URL cannot be fetched under `
 taken, a full table shows no character choice, Playwright returns no body for these answers, and
 the redeem window in `ci.sh`.
 
+## Hosted CI (2026-10-24)
+
+The deployment job's first hosted run (PR 8) failed before anything started: the runner's
+Compose rejects `docker compose config --no-interpolate` on `compose.yaml`, so `deploy.sh` could
+not tell its project, and a condition hid that failure — it reported "no database yet: nothing to
+back up" (a silent skip of the protected pre-deploy dump on a host with a database) before the
+network check stopped it. Fixed in `deploy/scripts/lib.sh`, `deploy.sh`, `restore.sh`; regression
+checks in `deploy/verify/preflight-check.sh` (a stub of the older Compose; they fail on the
+scripts before the fix); ADR 0037 "Hosted CI notes". The hosted job's result is recorded on the PR.
+
 ## For Gate 06 (alpha rows 350 of `docs/GATE_COVERAGE.md`)
 
 Rows: 350 (proxy), (trust boundary), (sign-in on the deployment), (headers), (readiness),

@@ -29,6 +29,7 @@ case $name in
   ltw-*.dump) ;;
   *) die "not a dump file name: $name" ;;
 esac
+project=$(project_name)
 
 # A backup.sh action in the running backup service, or in a one-off container of it.
 backup_sh() {
@@ -66,7 +67,7 @@ restored=true
 
 say 'starting every service (migrations bring an older dump forward)'
 compose up --no-start
-require_isolated_networks "$(project_name)"
+require_isolated_networks "$project"
 compose up --detach --wait --wait-timeout 300
 "$DEPLOY_DIR/scripts/restore-drill.sh" ${allow_empty[@]+"${allow_empty[@]}"} "$name"
 say "restored $name; the state before it: $kept"

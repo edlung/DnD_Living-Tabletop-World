@@ -257,3 +257,21 @@ deployment runs the complete product as production runs it. Evidence
   before `ci.sh`; its limit is 40 minutes (`ci.sh` took 2.5 minutes on the development machine
   with a warm build cache; a hosted runner builds both images without one). The main job's limit
   is 45 minutes (as on Stage 340's branch).
+
+## 2026-10-24 — Hosted CI notes (technical)
+
+- **The first hosted run of the deployment job failed** (PR 8): the runner's Compose rejects
+  `docker compose config --no-interpolate` on `compose.yaml` ("invalid spec:
+  `${BACKUP_DIR:?…}:/backups:ro`: too many colons"), which Compose v5.1 on the development machine
+  accepts. `project_name` (`deploy/scripts/lib.sh`) now reads the resolved configuration when the
+  uninterpolated one is refused; only the project's name leaves the function, as before.
+- **Found with it: a silent skip of the pre-deploy backup.** `database_exists` read the project
+  inside a condition, where a failure does not stop the script: `deploy.sh` reported "no
+  database yet: nothing to back up", wrote `deploy/.env` and went on to create the containers.
+  `deploy.sh` and `restore.sh` now take the project in a plain assignment before they write or
+  change anything (a failure stops them there), `database_exists` takes the project as an
+  argument and stops the script when Docker cannot list the volumes. `preflight-check.sh` proves
+  both with a stub of the older Compose: the project is read from the resolved configuration, and
+  with neither readable `deploy.sh` stops naming the project, before any `compose up`, `down`,
+  `exec` or volume call and with `deploy/.env` unchanged (each check failed on the scripts before
+  this note).

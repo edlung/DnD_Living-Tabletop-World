@@ -66,21 +66,27 @@ service_running() {
   compose ps --status running --services 2>/dev/null | grep -qx "$1"
 }
 
-# The Compose project of this deployment (COMPOSE_PROJECT_NAME, else compose.yaml's `name`);
-# without interpolation, so it needs no setting and prints no value.
+# The Compose project of this deployment (COMPOSE_PROJECT_NAME, else compose.yaml's `name`), as
+# Compose resolves it: without interpolation first, so it needs no setting; an older Compose (the
+# hosted CI runner's) rejects the uninterpolated `${BACKUP_DIR:?…}` mounts ("too many colons"),
+# and then the resolved configuration is read. Only the name leaves; no value is printed. Callers
+# take it in a plain assignment (`project=$(project_name)`), which stops the script when it fails.
 project_name() {
   local name
-  name=$(compose config --no-interpolate --format json | sed -n '2s/^  "name": "\([^"]*\)",$/\1/p')
+  name=$({ compose config --no-interpolate --format json 2>/dev/null ||
+    compose config --format json; } | sed -n 's/^  "name": "\([^"]*\)",$/\1/p' | head -n 1)
   [ -n "$name" ] || die 'cannot tell the Compose project (docker compose config)'
   echo "$name"
 }
 
-# Whether this deployment's database volume exists.
+# database_exists <project>: whether that project's database volume exists. A failure to list the
+# volumes stops the script: it never reads as "no database", which would skip the backup first.
 database_exists() {
-  local project
-  project=$(project_name)
-  [ -n "$(docker volume ls --quiet --filter "label=com.docker.compose.project=$project" \
-    --filter label=com.docker.compose.volume=pgdata)" ]
+  local volumes
+  [ -n "${1:-}" ] || die 'database_exists: no Compose project'
+  volumes=$(docker volume ls --quiet --filter "label=com.docker.compose.project=$1" \
+    --filter label=com.docker.compose.volume=pgdata) || die 'cannot list the Docker volumes'
+  [ -n "$volumes" ]
 }
 
 # The digest of deploy/backup/ (names and contents), which compose.yaml puts on the backup

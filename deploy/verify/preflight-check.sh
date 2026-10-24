@@ -56,6 +56,48 @@ check 'ci.sh refuses Docker Engine 27 before any other Docker call' \
 sed 's/^/     /' "$work/out"
 check 'this host runs Docker Engine 28 or later' require_docker_engine
 
+say 'a Compose that cannot read compose.yaml uninterpolated (a stub, as older Compose answers)'
+mkdir "$work/old-compose"
+cat >"$work/old-compose/docker" <<STUB
+#!/usr/bin/env bash
+printf '%s\n' "\$*" >>"$work/docker-calls"
+case "\$*" in
+  version*) echo 29.0.0 ;;
+  'image inspect '*) echo '[]' ;;
+  'compose config --no-interpolate --format json')
+    echo 'invalid spec: \${BACKUP_DIR:?set BACKUP_DIR in deploy/.env}:/backups:ro: too many colons' >&2
+    exit 15 ;;
+  'compose config --format json')
+    if [ "\${STUB_RESOLVED:-}" = yes ]; then printf '{\n  "name": "ltw-stub",\n  "services": {}\n}\n'; exit 0; fi
+    echo 'stub docker: unresolved' >&2; exit 15 ;;
+  *) echo "stub docker: \$* refused" >&2; exit 99 ;;
+esac
+STUB
+chmod +x "$work/old-compose/docker"
+reads_resolved_project() {
+  [ "$(STUB_RESOLVED=yes PATH="$work/old-compose:$PATH" project_name 2>/dev/null)" = ltw-stub ]
+}
+check 'the project is read from the resolved configuration when Compose rejects the uninterpolated one' \
+  reads_resolved_project
+# deploy.sh needs its settings file; where there is one (CI, a server) it must stop before it
+# writes or changes anything, never reading "no database" and skipping the backup.
+stops_without_project() {
+  : >"$work/docker-calls"
+  if STUB_RESOLVED=no PATH="$work/old-compose:$PATH" "$DEPLOY_DIR/scripts/deploy.sh" 000000000000 \
+    >"$work/out" 2>&1; then
+    return 1
+  fi
+  grep -q 'cannot tell the Compose project' "$work/out" && ! grep -q 'no database yet' "$work/out" &&
+    ! grep -Eq '^compose (up|down|create|exec|run|stop|ps)|^volume' "$work/docker-calls"
+}
+if [ -f "$ENV_FILE" ]; then
+  digest_before=$(openssl dgst -sha256 -r "$ENV_FILE")
+  check 'deploy.sh stops before any change when it cannot tell its Compose project' stops_without_project
+  sed 's/^/     /' "$work/out"
+  unchanged_env() { [ "$(openssl dgst -sha256 -r "$ENV_FILE")" = "$digest_before" ]; }
+  check 'and leaves deploy/.env as it was' unchanged_env
+fi
+
 say "networks: a throwaway project $probe whose backend gives the host an address"
 docker network create --internal "${probe}_backend" >/dev/null
 docker network create --internal --opt com.docker.network.bridge.gateway_mode_ipv4=isolated \
