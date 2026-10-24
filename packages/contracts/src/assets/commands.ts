@@ -35,8 +35,21 @@ export const ASSET_STATUSES = [
 ] as const;
 export type AssetStatus = (typeof ASSET_STATUSES)[number];
 
-export const ASSET_FAILURES = ['PROVIDER_ERROR', 'REFUSED', 'TIMEOUT'] as const;
+/**
+ * Why a job produced no image. `UNAVAILABLE` (docs/adr/0035-images.md): no provider call was made,
+ * because no image budget is stored, the ceiling is reached, or the generator holds no such image.
+ */
+export const ASSET_FAILURES = ['PROVIDER_ERROR', 'REFUSED', 'TIMEOUT', 'UNAVAILABLE'] as const;
 export type AssetFailure = (typeof ASSET_FAILURES)[number];
+
+/**
+ * What an image is for (docs/adr/0035-images.md §4): `image` (an entity's picture, chosen by state
+ * tags, ADR 0023), `figure` (a character's tabletop figure) or `battle-map` (a place's top-down map
+ * under the encounter grid). A figure and a battle map are derived variants of the canonical
+ * reference. Requests and events written before purposes existed are `image`.
+ */
+export const ASSET_PURPOSES = ['image', 'figure', 'battle-map'] as const;
+export type AssetPurpose = (typeof ASSET_PURPOSES)[number];
 
 export const ASSET_MEDIA_TYPES = ['image/svg+xml', 'image/png', 'image/webp'] as const;
 export type AssetMediaType = (typeof ASSET_MEDIA_TYPES)[number];
@@ -63,6 +76,8 @@ export const requestAssetCommandSchema = z
     audience: z.enum(ASSET_AUDIENCES).optional(),
     /** DM-only direction for the generator. */
     note: z.string().trim().min(1).max(300).optional(),
+    /** `image` by default; a `figure` or `battle-map` is a derived variant (ADR 0035 §4). */
+    purpose: z.enum(ASSET_PURPOSES).optional(),
   })
   .strict();
 

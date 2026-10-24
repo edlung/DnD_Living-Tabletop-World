@@ -25,7 +25,19 @@ export interface EntityPresentation {
   readonly weather: Weather | null;
   /** The state tags its image was chosen by: the day phase, then what was observed. */
   readonly tags: readonly string[];
+  /** Its current approved `image` that fits the tags best (ADR 0023 §4). */
   readonly image: PlayerAssetView | null;
+  /**
+   * A character, NPC or creature: its approved `figure` (the one approved last: an approval
+   * supersedes the one before), the tabletop figure on the battlefield and in the scene
+   * (docs/adr/0035-images.md §4 and amendments). Null for anything else.
+   */
+  readonly figure: PlayerAssetView | null;
+  /**
+   * A location: its approved top-down `battle-map` (the one approved last), the ground under
+   * the encounter grid (docs/adr/0035-images.md §4 and amendments). Null for anything else.
+   */
+  readonly battleMap: PlayerAssetView | null;
 }
 
 /** `GET /campaigns/:campaignId/entities/:entityId/presentation?perspective=…&at=…` */

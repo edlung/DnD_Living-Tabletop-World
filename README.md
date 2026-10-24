@@ -96,7 +96,7 @@ requires no database or external AI.
 | `pnpm build` / `pnpm clean` | Compile all projects and bundle the web app / remove TypeScript outputs |
 | `pnpm db:up` / `pnpm db:down` | Start / stop local PostgreSQL |
 | `pnpm db:migrate` | Apply pending SQL migrations (run `pnpm build` first) |
-| `pnpm seed:ravenford` | Seed the Ravenford kernel and knowledge fixtures through the World Engine; rerunning reports duplicates only |
+| `pnpm seed:ravenford` | Seed the Ravenford kernel and knowledge fixtures through the World Engine, and import the curated Ravenford pictures as DM-approved assets (ADR 0035); rerunning reports duplicates only. Run it with the server stopped |
 | `pnpm dev:server` / `pnpm --filter @ltw/server start` | Run the server from source (watch) / from `dist` |
 | `pnpm validate` | All checks in CI order, against a running database |
 | `pnpm validate:ci-local` | CI-equivalent run: frozen install, start database, clean build, every check (`scripts/ci-local.sh`) |

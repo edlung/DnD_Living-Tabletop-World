@@ -1,0 +1,89 @@
+/*
+ * Name plates on the battlefield (docs/STAGE_320_DESIGN.md §5.5; the Stage 330 part B review):
+ * drawn markup — a glass plate with the side's edge, the label (its number kept when the words
+ * shorten) and the hit points when known. The plates lie in a layer of their own above every
+ * figure and cover piece (`combat/board/plates.tsx`), each where it lay inside its token, scaled
+ * like the figure standing there, so no figure ever hides the plate of a combatant behind it. In
+ * the token a plate only keeps its room, so the figure stands where it always stood.
+ */
+.token-plate {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  max-width: calc(var(--cell) * 2.4);
+  margin-top: calc(var(--cell) * -0.08);
+  padding: 1px 6px 2px;
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--side);
+  border-radius: 6px;
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+}
+.token-name {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(10px, calc(var(--cell) * 0.27), 14px);
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.token-name.has-number {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25em;
+}
+.token-name .name-words {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.token-name .name-number {
+  flex: none;
+}
+.token-plate .hp-bar {
+  width: calc(var(--cell) * 0.9);
+  max-width: 100%;
+  height: 3px;
+}
+
+/* In the token: the plate's room only, laid out and never painted (nor pointed at) */
+.token-plate--room {
+  visibility: hidden;
+}
+
+/*
+ * The plates' layer: above the plane. A plate is part of its figure (design §5.5) and takes the
+ * pointer for its combatant's square (`plates.tsx`); around the plates every press goes through
+ * to the squares and figures below.
+ */
+.board-plates {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.board-plate {
+  position: absolute;
+  display: block;
+  width: max-content;
+  scale: var(--plate-scale);
+}
+.board-plate .token-plate {
+  cursor: pointer;
+  pointer-events: auto;
+}
+.board-plate--bottom {
+  transform-origin: 50% 100%;
+  translate: -50% -100%;
+}
+.board-plate--top {
+  transform-origin: 50% 0;
+  translate: -50% 0;
+}
+.board-plate .token-plate {
+  max-width: calc(var(--cell) * var(--plate-room));
+  margin: 0;
+}

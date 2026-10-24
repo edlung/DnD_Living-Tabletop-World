@@ -189,6 +189,9 @@
   box-shadow: 0 0 14px var(--teal-glow);
 }
 .object-state {
+  padding: 0 0.45rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--ink-950) 60%, transparent);
   color: var(--text-muted);
   font-size: 0.78rem;
 }
@@ -208,16 +211,22 @@
   font-style: italic;
 }
 
-/* Beyond this place: exits as cartouche buttons at the stage's right */
+/* Beyond this place: exits as cartouche buttons at the stage's right, above who is present */
 .exits {
   position: absolute;
-  top: 36%;
+  top: 30%;
   right: 16px;
   display: grid;
   justify-items: end;
   gap: 0.4rem;
   width: 250px;
   translate: 0 -50%;
+}
+.exits h3,
+.exits-hint {
+  padding: 0.1rem 0.6rem;
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 62%, transparent);
 }
 .exits h3 {
   margin: 0;

@@ -60,27 +60,33 @@ describe('the coverage inventory', () => {
     }
   });
 
-  it('adds memory suggestions and the DM history for the DM and no character-only view', () => {
+  it('adds memory suggestions, the DM history and the asset lineage for the DM and no character-only view', () => {
     const views = coverageInventory(target({ perspective: 'DM', kind: 'DM', focus: 'mira-vale' }));
     expect(paths(views)).toEqual([
       ...ALWAYS,
       '/campaigns/ravenford/chronicle/suggestions',
       '/campaigns/ravenford/dm/history',
+      '/campaigns/ravenford/assets',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
     ]);
     const history = views.find((view) => view.url.includes('/dm/history'));
     expect(new URL(history?.url ?? '', 'http://test').searchParams.get('perspective')).toBe('DM');
+    // The lineage route takes no perspective: it answers the campaign's DM only.
+    const lineage = views.find((view) => view.url.endsWith('/assets'));
+    expect(lineage?.url).toBe('/campaigns/ravenford/assets');
   });
 
-  it('never covers the DM history for a lower perspective, the DM’s included', () => {
+  it('never covers the DM history or the asset lineage for a lower perspective, the DM’s included', () => {
     for (const lower of [
       target({}),
       target({ perspective: 'PLAYER', kind: 'CHARACTER' }),
       target({ perspective: 'CHARACTER:elowen-starwhisper', kind: 'CHARACTER', identity: false }),
       target({ perspective: 'NPC:mira-vale', kind: 'NPC', identity: false }),
     ]) {
-      expect(paths(coverageInventory(lower)).some((path) => path.includes('/dm/'))).toBe(false);
+      const covered = paths(coverageInventory(lower));
+      expect(covered.some((path) => path.includes('/dm/'))).toBe(false);
+      expect(covered.some((path) => path.endsWith('/assets'))).toBe(false);
     }
   });
 

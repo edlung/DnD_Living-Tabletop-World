@@ -48,6 +48,7 @@ export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldStat
       return with_(state, {
         requests: withEntry(assets.requests, p.requestId, {
           ...p,
+          purpose: p.purpose ?? 'image',
           requestedAt: event.worldTime,
           cancelled: false,
         }),
@@ -59,7 +60,12 @@ export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldStat
         throw new CorruptHistoryError(`asset job ${p.requestId} already started`);
       }
       return with_(state, {
-        jobs: withEntry(assets.jobs, p.requestId, { ...p, status: 'STARTED', failure: null }),
+        jobs: withEntry(assets.jobs, p.requestId, {
+          ...p,
+          purpose: p.purpose ?? 'image',
+          status: 'STARTED',
+          failure: null,
+        }),
       });
     }
     case 'AssetGenerated': {
@@ -69,7 +75,7 @@ export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldStat
         throw new CorruptHistoryError(`asset ${p.assetId} already exists`);
       }
       return with_(state, {
-        assets: withEntry(assets.assets, p.assetId, p),
+        assets: withEntry(assets.assets, p.assetId, { ...p, purpose: p.purpose ?? 'image' }),
         jobs: withEntry(assets.jobs, p.requestId, {
           ...run,
           status: run.status === 'CANCELLED' ? 'CANCELLED' : 'COMPLETED',
@@ -112,7 +118,7 @@ export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldStat
       });
     }
     case 'AssetApproved': {
-      const { assetId, entityId, variant, previous } = event.payload;
+      const { assetId, entityId, variant, previous, supersedes = [] } = event.payload;
       const asset = assets.assets.get(assetId);
       if (asset?.status !== 'CANDIDATE')
         throw new CorruptHistoryError(`asset ${assetId} is no candidate`);
@@ -122,6 +128,12 @@ export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldStat
       });
       const before = previous === null ? undefined : records.get(previous);
       if (before) records = withEntry(records, before.assetId, { ...before, status: 'SUPERSEDED' });
+      // The approved pictures of its kind (version 3; ADR 0035 amendment).
+      for (const replaced of supersedes) {
+        const shown = records.get(replaced);
+        if (!shown) throw new CorruptHistoryError(`no asset ${replaced} to supersede`);
+        records = withEntry(records, replaced, { ...shown, status: 'SUPERSEDED' });
+      }
       return with_(state, {
         assets: records,
         canonical:
@@ -142,7 +154,12 @@ export function applyAssetRestore(
     case 'assetRequest':
       return with_(state, { requests: withoutEntry(assets.requests, restore.requestId) });
     case 'asset':
-      return with_(state, { assets: withEntry(assets.assets, restore.assetId, restore.value) });
+      return with_(state, {
+        assets: withEntry(assets.assets, restore.assetId, {
+          ...restore.value,
+          purpose: restore.value.purpose ?? 'image',
+        }),
+      });
     case 'assetCanonical':
       return with_(state, {
         canonical:

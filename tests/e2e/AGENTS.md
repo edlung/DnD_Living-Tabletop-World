@@ -83,11 +83,16 @@ application on 4313.
   the reaction prompt stay shown, focused and answerable. The banner announces only whose turn it
   is (`turnAnnounced()`, its live words) and shows "Your reaction is needed" while asked
   (`bannerWords()`, what it shows); after an answer focus is on the banner (`turnBanner()`).
-  A figure is part of its square: `clickSquare(page, x, y)` points at the part of a square in view
-  where a plate or an upright figure covers its centre. Review of parts B and C:
+  A figure is part of its square: `clickSquare(page, x, y)` (or `clickWhereShown(page, locator)`
+  for a square found by other names) points at the part of a square in view where a plate or an
+  upright figure covers its centre — on the tilted board an occupied square's own name plate,
+  drawn in the plates' layer, always does (Stage 330 combined state: the plate takes the pointer
+  for its own square, outside the square's button). Review of parts B and C:
   `combat-board-pointer.spec.ts` (owns `ui-combat-board`, Elowen starts prone: at 1440 × 900
   tilted, a portrait's visual centre chooses its own square, the terrain card reads it, a pip
-  takes the pointer), `combat-narrow.spec.ts` (owns `ui-combat-narrow`: at 390 × 844 and
+  takes the pointer; on the image journeys' `battle`, read-only: a standing figure's body chooses
+  its own square, and tilted and flat a plate drawn over the figure of a combatant in front
+  chooses its own combatant), `combat-narrow.spec.ts` (owns `ui-combat-narrow`: at 390 × 844 and
   820 × 1180 the tray shows Fireball's slot and the ally warning in view),
   `combat-book-reaction.spec.ts` (owns `ui-live-book-window`: a reaction asked over the open
   Chronicle closes the book, takes focus, is announced once and answered; the book reopens at
@@ -149,9 +154,42 @@ application on 4313.
   `reports/evidence/stage-320/` (`part-a/`; `part-b/` for the battlefield: each state at the
   three widths, tilted and flat; `part-c/` for the book, the flashback, the DM's tools with
   content and a conversation; both languages; its own servers, so it may act), listed in
-  `reports/evidence/stage-320/index.md`. It is not part of `pnpm test:e2e`, `pnpm validate` or
+  `reports/evidence/stage-320/index.md`, and to `reports/evidence/stage-330/part-b/` (the curated
+  pictures in the client and the DM's image controls; `stage-330-part-b.evidence.ts`, listed in
+  its `index.md`). It is not part of `pnpm test:e2e`, `pnpm validate` or
   CI; hold the shared lock like any Playwright run. Look at the images, never load the folder
   wholesale.
 - Specs that import server test support (`support/investigation.ts` → `scenario/secrets.ts`)
   load workspace packages from their builds: run `pnpm build` before `pnpm test:e2e` after a
   contract change (`pnpm validate` does).
+- Images (ADR 0035): at start the UI server imports the curated Ravenford pictures, through real
+  commands approved by the DM, into the campaigns of `apps/server/src/testing/ui-image-campaigns.ts`
+  (`ravenford`, `ui-combat` and every Russian campaign); every other campaign has no images, so
+  the neutral fallback stays covered. No external image provider runs.
+- Stage 330 part B journeys own the campaigns of `fixtures/image-campaigns.json`, prepared by
+  `apps/server/src/testing/ui-image-journeys.ts` (each in English and Russian): `site` (Elowen at
+  the Abandoned Caravan Site among the objects), `battle` (the ambush on Elowen's turn), `review`
+  (curated candidates not yet approved, a request waiting, one being generated, one failed; no
+  worker, so these stay; read-only) and `tomas`/`retry` (Tomas Reed with no picture at Market
+  Square, a failed request). The UI server's asset worker runs with the placeholder generator for
+  `tomas`, `tomasRu` and `retry` only. `images-curated.spec.ts` (the curated scene, figures
+  standing and inside medallions, the battle map, an object's plate; read-only),
+  `images-dm.spec.ts` (request with a note, generate again, discard, approve, replace, a figure;
+  the player sees nothing of a candidate — page, presentation, bytes by hash, every API body —
+  and the approved picture through the live signal; try again from the Images sheet; Russian),
+  `images-accessibility.spec.ts` (axe of the Images sheet and an entity's images at the three
+  widths and the Russian phone and tablet; the keyboard order; Escape). Helpers `support/images.ts`: a
+  picture is served when its `src` is a `blob:` URL of decoded bytes (`expectServedPicture`).
+- Stage 330 part B review journeys (English only), each owning a campaign of the same file:
+  `images-commands.spec.ts` — `supersede` (as `tomas`, with the worker: the older of two figures
+  approved last is what the player sees and the DM's list approves; a state picture's words),
+  `pending` (as `review`: an approval's answer dropped with `route.fetch()` then `abort`; the
+  pending command with Retry in the panel, the Images sheet and another entity's panel; Retry
+  answers `duplicate` there), `double` (as `review`: lineage reads delayed by a route so the
+  pressed card stays; a double press and a forced third press send one `RequestAsset`), `keyboard`
+  (as `review` without Thorne's waiting request: focus to the next card, the entity's heading,
+  the sheet) and `panel` (as `review`: focus once per command, not on a later lineage read caused
+  by a command sent through `page.request`); `battlefield-plates.spec.ts` reads `battle` only (each
+  plate the topmost thing at its centre, ends and number while every element of the board lets
+  pointers through, at 1440 × 900 and 820 × 1180, tilted and flat). A journey that changes its
+  campaign cannot be repeated against the same server (`--repeat-each` needs fresh servers).

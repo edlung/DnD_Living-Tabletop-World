@@ -123,6 +123,7 @@ export const TEXTURE_NAMES = [
   'app-backdrop',
   'book-spread',
   'brand-keyart',
+  'chronicle-desk',
   'panel-grain',
   'parchment',
   'scene-fallback',
@@ -135,7 +136,9 @@ export const ORNAMENT_NAMES = [
   'd20',
   'divider',
   'emblem',
+  'flashback-frame',
   'portrait-ring',
+  'ribbon',
 ] as const;
 export type OrnamentName = (typeof ORNAMENT_NAMES)[number];
 

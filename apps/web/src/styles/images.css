@@ -1,0 +1,340 @@
+/*
+ * The DM's image controls (docs/STAGE_330_DESIGN.md "DM controls"): in the selection's panel and
+ * the Images sheet — approved pictures with Replace, candidates with Approve, Discard and
+ * Generate again, requests in progress or failed, and a new request. Pictures are shown whole
+ * (contained), as the generator made them, so the DM judges what players would see.
+ */
+.dm-images {
+  display: grid;
+  gap: 0.35rem;
+  margin: 1rem 0;
+  padding: 0.8rem 0.85rem 0.9rem;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--gold-deep);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.dm-images:focus {
+  outline: none;
+}
+.dm-images > h3,
+.image-request > h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.2rem;
+  color: var(--gold-bright);
+}
+.dm-images > h3 .glyph,
+.image-request > h4 .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.dm-images-part {
+  margin: 0.5rem 0 0.15rem;
+  color: var(--gold);
+  font-size: 0.82rem;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.dm-images > .muted {
+  margin: 0 0 0.3rem;
+}
+
+/* Cards: the picture, what it is, its controls */
+.image-cards {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+.image-cards--approved {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+}
+/* In the sheet a card lies on its side: the picture, then what it is and its controls */
+.images-work .image-cards {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  margin: 0;
+}
+.images-work .image-card {
+  grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr);
+  align-items: start;
+}
+.image-card {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 55%, transparent);
+}
+.image-card--candidate {
+  border-color: color-mix(in srgb, var(--teal) 50%, transparent);
+  box-shadow: inset 0 2px 0 color-mix(in srgb, var(--teal) 60%, transparent);
+}
+.image-picture {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  border-radius: 6px;
+  background: var(--ink-900);
+}
+.image-picture img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.image-picture-missing {
+  padding: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+.image-card-body {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.image-card-body p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.image-card-kind {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.image-card-kind .glyph {
+  width: 18px;
+  height: 18px;
+  color: var(--gold);
+}
+.image-card--candidate .image-card-kind .glyph {
+  color: var(--teal);
+}
+.image-card-meta,
+.image-card-note,
+.image-card-hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.image-card-note {
+  font-style: italic;
+}
+.image-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+.image-card-actions button {
+  min-height: 38px;
+  padding: 0.35rem 0.7rem;
+}
+.image-card-actions .glyph,
+.image-request-row button .glyph,
+.image-request .action-row .glyph,
+.images-entity-show .glyph {
+  width: 18px;
+  height: 18px;
+}
+
+/* Requests without a picture yet: waiting, being generated, failed */
+.image-requests {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+.image-request-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-control);
+}
+.image-request-row.is-failed {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--danger) 55%, transparent);
+}
+.image-request-glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+.image-request-row.is-failed .image-request-glyph {
+  color: var(--danger);
+}
+.image-request-text {
+  flex: 1;
+  min-width: 12rem;
+}
+.image-request-text p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* A new request */
+.image-request {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+.image-request label {
+  margin: 0.3rem 0 0;
+}
+.image-request select {
+  width: 100%;
+}
+.image-request textarea {
+  min-height: 4.5rem;
+}
+.image-request .field-hint {
+  margin: 0 0 0.15rem;
+}
+.image-request-note-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.image-request-note-label .glyph {
+  width: 18px;
+  height: 18px;
+  color: var(--magic);
+}
+.image-request-replacing {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--teal-fill) 35%, transparent);
+}
+.image-request-replacing .glyph {
+  width: 18px;
+  height: 18px;
+  color: var(--teal);
+}
+.image-request .action-row {
+  margin: 0.35rem 0 0;
+}
+
+/* The result of the DM's last command, where it was given */
+.images-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.75rem;
+}
+.images-result-text {
+  margin: 0;
+  color: var(--text);
+}
+.images-result-text:empty {
+  margin: 0;
+}
+
+/* The Images sheet: every entity with something waiting */
+.images-sheet-intro {
+  margin: 0 0 0.6rem;
+}
+.images-work {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.images-entity {
+  display: grid;
+  gap: 0.5rem 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--line);
+}
+.images-entity .image-requests {
+  margin: 0;
+}
+/* Wide: the candidates beside the requests in progress or failed */
+@media (min-width: 900px) {
+  .images-entity {
+    grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr);
+    align-items: start;
+  }
+  .images-entity-head {
+    grid-column: 1 / -1;
+  }
+}
+.images-entity-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+}
+.images-entity-head h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.images-entity-show {
+  margin-left: auto;
+}
+
+/* A command given elsewhere that still holds every image control: what it is, Retry if lost */
+.images-pending {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 60%, transparent);
+}
+.images-pending > .glyph {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+.images-pending p {
+  flex: 1;
+  min-width: 12rem;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* A control waiting for the command in progress: dimmed, keeping focus (aria-disabled) */
+:is(.dm-images, .images-sheet) button[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+:is(.dm-images, .images-sheet) button[aria-disabled='true']:hover {
+  border-color: var(--line-strong);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+  box-shadow: none;
+}
+:is(.dm-images, .images-sheet) .primary-button[aria-disabled='true']:hover {
+  border-color: var(--teal);
+  background: var(--teal-fill);
+}

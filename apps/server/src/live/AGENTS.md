@@ -19,12 +19,15 @@ change the perspective cannot read.
   route refuses for a perspective (403) must not be in its inventory, or the stream closes.
 - The DM's identity view lists hidden characters: it is not covered while the DM holds a lower
   perspective (`LiveTarget.identity`).
-- The DM perspective also covers `dm/history?perspective=DM` (Stage 310 part C, `src/dm/`); no
-  lower perspective does, the DM's own included (the route answers them 403).
+- The DM perspective also covers `dm/history?perspective=DM` (Stage 310 part C, `src/dm/`) and
+  the asset lineage `assets` (Stage 330 part B: the DM's image controls follow the asset worker;
+  the route takes no perspective and answers the campaign's DM only); no lower perspective covers
+  either, the DM's own included.
 - Messages are the fixed `ready`/`changed`/`closed` frames and a comment heartbeat
   (`stream.ts`); never put world content, a credential, an event position or a version in them.
 - Tests: `live-isolation.test.ts` (every non-DM perspective and the hidden sentinel stay silent on
-  DM-only commits), `live-stream.test.ts` (check order, recheck, disconnect, shutdown, caps),
+  DM-only commits), `asset-live.test.ts` (an image job signals the DM at each step and a player
+  only when a picture it sees is approved, with no hash in its stream), `live-stream.test.ts` (check order, recheck, disconnect, shutdown, caps),
   `live-socket.test.ts` (a real local connection: unbuffered frames, a client that leaves),
   `hub.test.ts` (loop and bounds with fakes), `fingerprint.test.ts` (answers to verdicts),
   `presence.test.ts`, `inventory.test.ts`. Support:

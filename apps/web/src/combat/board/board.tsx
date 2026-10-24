@@ -15,6 +15,8 @@ import {
   type Size,
 } from './geometry.ts';
 import { useCombatantLabels } from '../labels.ts';
+import { BoardGround } from './board-ground.tsx';
+import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
 import { CoverPiece, Token } from './token.tsx';
@@ -53,12 +55,14 @@ type StageStyle = CSSProperties & {
 };
 
 /**
- * The battlefield as a painted table (docs/STAGE_320_DESIGN.md §5.5, ADR 0034 §6–7): the GPT
- * ground, the difficult patch on difficult squares, hairlines, the movement path and the
- * previewed area, cover pieces, then the combatants — every square, cover level, position and
- * state from the encounter's projection, nothing inferred. Tilted, the plane turns away like a
- * table seen at an angle while figures and pieces stand upright; flat, it is seen from above.
- * Either way each square is the same button, in the same order, with the same name.
+ * The battlefield as a painted table (docs/STAGE_320_DESIGN.md §5.5, ADR 0034 §6–7): the place's
+ * approved battle map or else the GPT ground, the difficult patch on difficult squares,
+ * hairlines, the movement path and the previewed area, cover pieces, then the combatants as
+ * their approved figures or medallions, and above them all their name plates — every square,
+ * cover level, position and state from the encounter's projection, nothing inferred. Tilted, the
+ * plane turns away like a table seen at an angle while figures and pieces stand upright; flat, it
+ * is seen from above. Either way each square is the same button, in the same order, with the
+ * same name.
  */
 export function Board({
   encounter,
@@ -67,6 +71,8 @@ export function Board({
   path,
   affected,
   imageOf,
+  figureOf,
+  battleMap,
   view,
   onPick,
 }: {
@@ -78,6 +84,10 @@ export function Board({
   /** Combatants a previewed area spell would affect, as the server listed them. */
   readonly affected: ReadonlySet<string>;
   readonly imageOf: (entityId: string) => PlayerAssetView | null;
+  /** A combatant's approved tabletop figure (ADR 0035 §4), when the place's presentation has it. */
+  readonly figureOf: (entityId: string) => PlayerAssetView | null;
+  /** The encounter's place's approved battle map: the ground under the grid when there is one. */
+  readonly battleMap: PlayerAssetView | null;
   readonly view: BoardView;
   readonly onPick: (square: Square) => void;
 }) {
@@ -100,6 +110,11 @@ export function Board({
   const destination = path.at(-1);
   const mover = encounter.combatants.find((entry) => entry.entity.entityId === selfId);
   const labelOf = useCombatantLabels(encounter);
+  // The pointer over a square, or over the plate of the combatant standing on it (`plates.tsx`).
+  const point = (square: Square, over: boolean) => {
+    if (over) setPointed(square);
+    else setPointed((known) => (known && key(known) === key(square) ? null : known));
+  };
 
   // On a phone the board scrolls: bring the chosen square, else the viewer, else whoever acts
   // into view when it first shows and whenever its scale or view changes. Only a new scale or
@@ -151,6 +166,8 @@ export function Board({
         destination && key(destination) === id ? 'is-destination' : '',
         inArea ? 'in-area' : '',
         isSelected ? 'is-selected' : '',
+        // Lit as under the pointer while the pointer is on its combatant's plate, too.
+        pointed !== null && key(pointed) === id ? 'is-pointed' : '',
       ];
       squares.push(
         <button
@@ -171,10 +188,10 @@ export function Board({
             onPick(square);
           }}
           onPointerEnter={() => {
-            setPointed(square);
+            point(square, true);
           }}
           onPointerLeave={() => {
-            setPointed((known) => (known && key(known) === id ? null : known));
+            point(square, false);
           }}
           onFocus={() => {
             setFocused(square);
@@ -190,6 +207,8 @@ export function Board({
               label={labelOf(occupant.entity.entityId)}
               cover={level}
               image={imageOf(occupant.entity.entityId)}
+              figure={figureOf(occupant.entity.entityId)}
+              tilted={tilt !== null}
               current={occupant.entity.entityId === encounter.currentCombatantId}
               selected={isSelected}
               inArea={inArea}
@@ -224,7 +243,7 @@ export function Board({
               gridTemplateColumns: `repeat(${String(width)}, var(--cell))`,
             }}
           >
-            <span className="board-ground" aria-hidden="true" />
+            <BoardGround map={battleMap} />
             {squares}
             {route.length > 1 && (
               <svg
@@ -243,6 +262,13 @@ export function Board({
               </svg>
             )}
           </div>
+          <BoardPlates
+            encounter={encounter}
+            layout={layout}
+            labelOf={labelOf}
+            onPick={onPick}
+            onPoint={point}
+          />
         </div>
       </div>
     </div>

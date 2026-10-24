@@ -1,11 +1,14 @@
 import { submissionsFromScript, type WorldEngine } from '@ltw/domain';
 import { scriptedDice } from '@ltw/rules';
 
+import type { AssetContentStore } from '../assets/content-store.ts';
 import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import hiddenCharacter from '../../../../tests/e2e/fixtures/hidden-character.json' with { type: 'json' };
 import { seededEngine } from './ravenford-app.ts';
 import { seedCombatCampaign, seedUiCombatCampaigns } from './ui-combat-campaigns.ts';
 import { seedUiAuthoringCampaigns } from './ui-authoring-campaigns.ts';
+import { seedUiCuratedImages } from './ui-image-campaigns.ts';
+import { seedUiImageJourneys } from './ui-image-journeys.ts';
 import { seedUiInvestigationCampaigns } from './ui-investigation-campaigns.ts';
 import { seedUiLiveCampaigns } from './ui-live-campaigns.ts';
 import { seedUiRussianCampaigns } from './ui-ru-campaigns.ts';
@@ -13,8 +16,12 @@ import { seedUiRussianCampaigns } from './ui-ru-campaigns.ts';
 const COMBAT_CAMPAIGN = 'ui-combat';
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
 
-/** Read-only baseline worlds plus independent Stage 210 investigation worlds. */
-export async function uiCampaigns(): Promise<WorldEngine> {
+/**
+ * Read-only baseline worlds plus independent Stage 210 investigation worlds; the campaigns of
+ * `ui-image-campaigns.ts` get the curated pictures, their bytes in `contents`, and the image
+ * journeys of Stage 330 part B their own campaigns (`ui-image-journeys.ts`).
+ */
+export async function uiCampaigns(contents: AssetContentStore): Promise<WorldEngine> {
   // All scripted checks get the same result, independent of parallel campaigns.
   const engine = await seededEngine(undefined, scriptedDice(Array<number>(512).fill(15)));
   const referenceSheet = rulesSeed.commands.find((command) => command.type === 'SetCharacterSheet');
@@ -35,6 +42,8 @@ export async function uiCampaigns(): Promise<WorldEngine> {
   await seedUiAuthoringCampaigns(engine);
   await seedUiRussianCampaigns(engine);
   await seedUiLiveCampaigns(engine);
+  await seedUiCuratedImages(engine, contents);
+  await seedUiImageJourneys(engine, contents);
   return engine;
 }
 

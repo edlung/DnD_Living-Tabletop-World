@@ -32,6 +32,8 @@ export function CombatStage({
   locked,
   blocked,
   imageOf,
+  figureOf,
+  battleMap,
   onRun,
 }: {
   readonly api: WorldApi;
@@ -47,6 +49,10 @@ export function CombatStage({
   readonly blocked: boolean;
   /** An approved portrait from the viewed place's presentation, when observed. */
   readonly imageOf: (entityId: string) => PlayerAssetView | null;
+  /** An approved tabletop figure from the same presentation (ADR 0035 §4). */
+  readonly figureOf: (entityId: string) => PlayerAssetView | null;
+  /** The encounter place's approved battle map, when the viewed place is where it is fought. */
+  readonly battleMap: PlayerAssetView | null;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
@@ -134,6 +140,8 @@ export function CombatStage({
           asked={asked}
           view={view}
           imageOf={imageOf}
+          figureOf={figureOf}
+          battleMap={battleMap}
           onRun={onRun}
         />
       </div>

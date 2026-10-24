@@ -3,6 +3,13 @@ import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 
 import { isLoopbackHost, parseTrustedProxies } from '../net/addresses.ts';
+import {
+  DEFAULT_IMAGE_MODEL,
+  IMAGE_GENERATORS,
+  IMAGE_MODELS,
+  isImageModel,
+  type ImageModel,
+} from '../../images/models.ts';
 import { parseRoutes, routeIssues, type RouteProvider } from './ai-routes.ts';
 
 /**
@@ -84,11 +91,19 @@ export interface AppConfig {
   };
   /** Quest definitions (docs/adr/0025-ravenford-integration.md §2). */
   readonly questsFile: string;
-  /** The asset worker (docs/adr/0022-asset-identity.md §4); the local placeholder generator only. */
+  /** The asset worker (docs/adr/0022-asset-identity.md §4) and its image generator (ADR 0035). */
   readonly assets: {
     /** Pause between worker runs; 0 disables the worker. */
     readonly workerIntervalMs: number;
     readonly generationTimeoutMs: number;
+    /**
+     * `LTW_IMAGE_GENERATOR`: the local placeholder (default), or an OpenAI image model through
+     * OpenRouter with the key from `OPENROUTER_API_KEY`. Its spending ceiling is an operator
+     * record (`pnpm ai:operator image-budget-set`), never configuration.
+     */
+    readonly generator:
+      | { readonly kind: 'placeholder' }
+      | { readonly kind: 'openrouter-openai'; readonly apiKey: Secret; readonly model: ImageModel };
   };
 }
 
@@ -124,6 +139,13 @@ export const DEFAULT_REQUEST_TIMEOUT_MS = 60_000;
 export const DEFAULT_ASSET_WORKER_INTERVAL_MS = 5_000;
 export const DEFAULT_DEEPSEEK_MODEL = 'deepseek-flash';
 export const DEFAULT_ASSET_TIMEOUT_MS = 60_000;
+/** An image model through OpenRouter can take minutes; its default bound is longer. */
+export const DEFAULT_REMOTE_IMAGE_TIMEOUT_MS = 180_000;
+/**
+ * The longest `LTW_ASSET_TIMEOUT_MS`. No image job outlives it, so an image reservation much older
+ * than this is orphaned (`src/images/ledger-operator.ts`).
+ */
+export const MAX_ASSET_TIMEOUT_MS = 600_000;
 
 export type Env = Readonly<Record<string, string | undefined>>;
 
@@ -216,8 +238,20 @@ const envSchema = z.object({
   ),
   LTW_ASSET_TIMEOUT_MS: z.preprocess(
     emptyAsUndefined,
-    z.coerce.number().int().min(1_000).max(600_000).default(DEFAULT_ASSET_TIMEOUT_MS),
+    z.coerce.number().int().min(1_000).max(MAX_ASSET_TIMEOUT_MS).optional(),
   ),
+  LTW_IMAGE_GENERATOR: z.preprocess(
+    emptyAsUndefined,
+    z.enum(IMAGE_GENERATORS).default('placeholder'),
+  ),
+  LTW_IMAGE_MODEL: z.preprocess(
+    emptyAsUndefined,
+    z
+      .string()
+      .refine(isImageModel, `must be one of ${Object.keys(IMAGE_MODELS).join(', ')}`)
+      .default(DEFAULT_IMAGE_MODEL),
+  ),
+  OPENROUTER_API_KEY: z.preprocess(emptyAsUndefined, z.string().trim().min(1).optional()),
 });
 
 /**
@@ -303,6 +337,10 @@ export function loadConfig(env: Env = process.env): AppConfig {
     ]);
     issues.push(...routeIssues(routes, 'runtime', keyed));
   }
+  const openRouterKey = values.OPENROUTER_API_KEY;
+  if (values.LTW_IMAGE_GENERATOR === 'openrouter-openai' && openRouterKey === undefined) {
+    issues.push('OPENROUTER_API_KEY: required for LTW_IMAGE_GENERATOR=openrouter-openai');
+  }
   if (issues.length > 0 || databaseUrl === undefined) {
     throw new ConfigError(issues);
   }
@@ -347,7 +385,20 @@ export function loadConfig(env: Env = process.env): AppConfig {
     questsFile: values.LTW_QUESTS_FILE ?? DEFAULT_QUESTS_FILE,
     assets: Object.freeze({
       workerIntervalMs: values.LTW_ASSET_WORKER_INTERVAL_MS,
-      generationTimeoutMs: values.LTW_ASSET_TIMEOUT_MS,
+      generationTimeoutMs:
+        values.LTW_ASSET_TIMEOUT_MS ??
+        (values.LTW_IMAGE_GENERATOR === 'openrouter-openai'
+          ? DEFAULT_REMOTE_IMAGE_TIMEOUT_MS
+          : DEFAULT_ASSET_TIMEOUT_MS),
+      generator: Object.freeze(
+        values.LTW_IMAGE_GENERATOR === 'openrouter-openai' && openRouterKey !== undefined
+          ? {
+              kind: 'openrouter-openai' as const,
+              apiKey: new Secret(openRouterKey),
+              model: values.LTW_IMAGE_MODEL,
+            }
+          : { kind: 'placeholder' as const },
+      ),
     }),
   });
 }

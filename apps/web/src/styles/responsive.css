@@ -58,14 +58,15 @@
 }
 
 /*
- * A narrow tablet's dock holding every DM tool, Players included, shows the short words
- * ("Add", "Time"), so every item stays on screen; each keeps its full name.
+ * A tablet's dock holding every DM tool — Images included, and Players with production sign-in
+ * — shows the short words ("Add", "Time"), so every item stays on screen; each keeps its full
+ * name.
  */
-@media (max-width: 1023px) and (min-width: 768px) {
-  .dock:has(#dock-players) .dock-label {
+@media (max-width: 1199px) and (min-width: 768px) {
+  .dock:has(#dock-images) .dock-label {
     display: none;
   }
-  .dock:has(#dock-players) .dock-short {
+  .dock:has(#dock-images) .dock-short {
     display: block;
   }
 }

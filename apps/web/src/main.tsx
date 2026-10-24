@@ -5,6 +5,7 @@ import './i18n/ru.ts';
 import './i18n/ru-play.ts';
 import './i18n/ru-visual.ts';
 import './i18n/ru-access.ts';
+import './i18n/ru-images.ts';
 import { App } from './session/app.tsx';
 import { takeInvitation } from './session/invitation-link.ts';
 import { pageStart } from './session/sign-in-flow.ts';
@@ -27,6 +28,9 @@ import './styles/sign-in.css';
 import './styles/players.css';
 import './styles/responsive.css';
 import './styles/battle-layout.css';
+import './styles/figures.css';
+import './styles/board-plates.css';
+import './styles/images.css';
 
 // An invitation link's token leaves the address before anything is requested or rendered
 // (docs/adr/0036-production-sign-in.md §7) and waits in a one-shot holder, never bound here,

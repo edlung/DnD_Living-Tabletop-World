@@ -10,6 +10,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { createLogger } from '../platform/logging/logger.ts';
 import { seededEngine } from '../testing/ravenford-app.ts';
 import { InMemoryAssetContentStore, contentHashOf } from './content-store.ts';
+import { isCuratedRequest } from '../images/curated-import.ts';
 import { AssetWorker, workerCommandId } from './worker.ts';
 
 /**
@@ -35,16 +36,30 @@ const logger = () =>
 const workerWith = (generator: ImageGenerator, timeoutMs = 1_000) =>
   new AssetWorker({ engine, contents, generator, timeoutMs, logger: logger() });
 
-async function request(entityId = MIRA): Promise<string> {
+async function request(
+  entityId = MIRA,
+  options: Record<string, unknown> = { variant: 'reference' },
+): Promise<string> {
   counter += 1;
   const result = await engine.execute({
     commandId: `worker-test.${String(counter)}`,
     campaignId: 'ravenford',
     actor: DM,
-    command: { type: 'RequestAsset', entityId, variant: 'reference' },
+    command: { type: 'RequestAsset', entityId, ...options },
   });
   if (result.status !== 'accepted') throw new Error('request rejected');
   return `${result.commandId}#0`;
+}
+
+async function approve(requestId: string): Promise<void> {
+  counter += 1;
+  const result = await engine.execute({
+    commandId: `worker-test.${String(counter)}`,
+    campaignId: 'ravenford',
+    actor: DM,
+    command: { type: 'ApproveAsset', assetId: assetIdFor(requestId) },
+  });
+  if (result.status !== 'accepted') throw new Error('approval rejected');
 }
 
 const assets = async () => (await engine.load('ravenford'))?.state.assets;
@@ -171,9 +186,77 @@ describe('the asset worker', () => {
     }).runOnce('ravenford');
     expect(briefs).toHaveLength(1);
     expect(briefs[0]).toMatchObject({
-      subject: { kind: 'npc', name: 'Mira Vale' },
+      subject: { entityId: MIRA, kind: 'npc', name: 'Mira Vale' },
       variant: 'reference',
+      purpose: 'image',
       basedOn: null,
+      reference: null,
     });
+  });
+
+  it('gives a derived variant the canonical reference’s bytes, its purpose, and the job', async () => {
+    const reference = await request();
+    await workerWith(createPlaceholderImageGenerator()).runOnce('ravenford');
+    await approve(reference);
+    const canonical = (await assets())?.assets.get(assetIdFor(reference));
+    const figure = await request(MIRA, { variant: 'derived', label: 'figure', purpose: 'figure' });
+    const seen: { brief: ImageBrief; job: unknown }[] = [];
+    await workerWith({
+      id: 'local',
+      generate: (brief, _signal, job) => {
+        seen.push({ brief, job });
+        return createPlaceholderImageGenerator().generate(brief);
+      },
+    }).runOnce('ravenford');
+    expect(seen).toHaveLength(1);
+    const [{ brief, job } = { brief: undefined, job: undefined }] = seen;
+    expect(job).toEqual({ campaignId: 'ravenford', requestId: figure });
+    expect(brief).toMatchObject({
+      variant: 'derived',
+      purpose: 'figure',
+      label: 'figure',
+      basedOn: canonical?.contentHash,
+    });
+    const stored = await contents.get('ravenford', canonical?.contentHash ?? '');
+    expect(brief?.reference?.mediaType).toBe('image/svg+xml');
+    expect(brief?.reference?.bytes).toEqual(stored?.bytes);
+    expect((await assets())?.assets.get(assetIdFor(figure))?.purpose).toBe('figure');
+  });
+
+  it('leaves the requests it is told to skip, such as the curated import’s, to their owner', async () => {
+    const curated = await engine.execute({
+      commandId: 'ravenford.curated.mira-vale.mira-vale',
+      campaignId: 'ravenford',
+      actor: DM,
+      command: { type: 'RequestAsset', entityId: MIRA, variant: 'reference' },
+    });
+    expect(curated.status).toBe('accepted');
+    const other = await request('orin-stonebeard');
+    const worker = new AssetWorker({
+      engine,
+      contents,
+      generator: createPlaceholderImageGenerator(),
+      timeoutMs: 1_000,
+      logger: logger(),
+      skip: isCuratedRequest,
+    });
+    expect(await worker.runOnce('ravenford')).toEqual({ started: 1, completed: 1, failed: 0 });
+    const state = await assets();
+    expect(state?.jobs.has('ravenford.curated.mira-vale.mira-vale#0')).toBe(false);
+    expect(state?.jobs.get(other)?.status).toBe('COMPLETED');
+    expect(isCuratedRequest('http:dm-ravenford:ravenford.curated.x#0', 'ravenford')).toBe(false);
+  });
+
+  it('runs only the requests it is given, and leaves the others queued', async () => {
+    const mine = await request();
+    const other = await request('orin-stonebeard');
+    const summary = await workerWith(createPlaceholderImageGenerator()).runOnce(
+      'ravenford',
+      new Set([mine]),
+    );
+    expect(summary).toEqual({ started: 1, completed: 1, failed: 0 });
+    const state = await assets();
+    expect(state?.jobs.get(mine)?.status).toBe('COMPLETED');
+    expect(state?.jobs.has(other)).toBe(false);
   });
 });

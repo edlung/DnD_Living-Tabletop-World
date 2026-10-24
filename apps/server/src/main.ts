@@ -1,6 +1,6 @@
 import pg from 'pg';
 
-import { createPlaceholderImageGenerator } from '@ltw/ai';
+import { createPlaceholderImageGenerator, type ImageGenerator } from '@ltw/ai';
 
 import { AccountingTasks } from './ai/accounting-tasks.ts';
 import {
@@ -15,11 +15,19 @@ import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
 import { composeAuthentication, startCredentialPruning } from './auth/composition.ts';
 import { PostgresCredentialStore } from './auth/postgres-credential-store.ts';
+import { isCuratedRequest } from './images/curated-import.ts';
+import { loadCuratedSet } from './images/curated-set.ts';
+import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
 import { buildLiveApp } from './live/live-app.ts';
-import { describeDatabaseUrl, loadConfig, obsoleteVariables } from './platform/config/config.ts';
+import {
+  describeDatabaseUrl,
+  loadConfig,
+  obsoleteVariables,
+  type AppConfig,
+} from './platform/config/config.ts';
 import { createLogger, type Logger } from './platform/logging/logger.ts';
 import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
 
@@ -65,6 +73,16 @@ async function main(): Promise<void> {
   };
   const engine = createWorldEngine(pool);
   const contents = new PostgresAssetContentStore(pool);
+  // Before the server listens: a generator that cannot be built stops the start (ADR 0035 §1).
+  let generator: ImageGenerator;
+  try {
+    generator = await imageGenerator(config, pool, logger);
+  } catch (error) {
+    logger.error('image generator unavailable; not starting');
+    await ai.accounting.shutdown();
+    await Promise.all([pool.end(), proposalLocks.end()]);
+    throw error;
+  }
   const quests = await loadQuestBook(config.questsFile);
   // The live session (ADR 0033) closes its streams with `shutdown` when the app closes.
   const { app } = buildLiveApp({
@@ -97,10 +115,12 @@ async function main(): Promise<void> {
   const stopAssets = startAssetWorkerLoop({
     engine,
     contents,
-    generator: createPlaceholderImageGenerator(),
+    generator,
     timeoutMs: config.assets.generationTimeoutMs,
     intervalMs: config.assets.workerIntervalMs,
     campaigns: () => PostgresAssetContentStore.campaignsWithAssetWork(pool),
+    // The curated import's requests are its own (ADR 0035 §3): never generated or paid for here.
+    skip: isCuratedRequest,
     logger,
   });
 
@@ -119,6 +139,48 @@ async function main(): Promise<void> {
   };
   process.once('SIGINT', shutdown);
   process.once('SIGTERM', shutdown);
+}
+
+/**
+ * The asset worker's image generator (docs/adr/0035-images.md §1): the local placeholder, or an
+ * OpenAI image model through OpenRouter that spends only within the stored image ceiling. Startup
+ * names the generator and model and whether a ceiling is stored; never the key or an amount.
+ */
+async function imageGenerator(
+  config: AppConfig,
+  pool: pg.Pool,
+  logger: Logger,
+): Promise<ImageGenerator> {
+  const chosen = config.assets.generator;
+  if (chosen.kind === 'placeholder') {
+    logger.info({ generator: 'placeholder' }, 'image generator');
+    return createPlaceholderImageGenerator();
+  }
+  // Loaded only when configured: sharp's native image library is needed by this generator alone.
+  const { createOpenRouterImageGenerator } = await import('./images/openrouter-generator.ts');
+  const { loadStyleReferences } = await import('./images/style-references.ts');
+  const generator = createOpenRouterImageGenerator({
+    apiKey: chosen.apiKey,
+    model: chosen.model,
+    ledger: new PostgresImageLedger(pool),
+    styleReferences: await loadStyleReferences(await loadCuratedSet()),
+    timeoutMs: config.assets.generationTimeoutMs,
+    logger,
+  });
+  logger.info({ generator: generator.id, model: chosen.model }, 'image generator');
+  imageBudgetStatus(pool).then(
+    (status) => {
+      if (status.ceilingMicros === null) {
+        logger.warn(
+          'no image ceiling stored: every image call is denied until the operator sets one',
+        );
+      }
+    },
+    () => {
+      logger.warn('image ledger status unavailable');
+    },
+  );
+  return generator;
 }
 
 /**

@@ -1,6 +1,7 @@
 import { ASSET_SETTLING_COMMAND_TYPES, type KernelCommandType } from '@ltw/contracts';
 
 import { assetHoldBlockers } from '../../assets/hold.ts';
+import { purposeField } from '../../assets/records.ts';
 
 import {
   accept,
@@ -378,11 +379,17 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         restores.push({ fact: 'assetRequest', requestId: event.payload.requestId, value: null });
         break;
       case 'AssetApproved': {
-        const { assetId, entityId, previous } = event.payload;
-        for (const id of previous === null ? [assetId] : [assetId, previous]) {
+        const { assetId, entityId, previous, supersedes = [] } = event.payload;
+        // The approved asset and every picture it superseded go back as they were.
+        for (const id of [assetId, ...(previous === null ? [] : [previous]), ...supersedes]) {
           const prior = before.assets.assets.get(id);
           if (!prior) throw new Error(`asset ${id} missing before the undone approval`);
-          restores.push({ fact: 'asset', assetId: id, value: structuredClone(prior) });
+          const { purpose, ...record } = structuredClone(prior);
+          restores.push({
+            fact: 'asset',
+            assetId: id,
+            value: { ...record, ...purposeField(purpose) },
+          });
         }
         restores.push({
           fact: 'assetCanonical',

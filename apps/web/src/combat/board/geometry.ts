@@ -144,6 +144,54 @@ export function squareAt(point: Point, cell: number, grid: Grid): Square | null 
   return x >= 0 && y >= 0 && x < grid.width && y < grid.height ? { x, y } : null;
 }
 
+/**
+ * Where a combatant's name plate is drawn (design §5.5; the Stage 330 part B review): in the
+ * plates' layer above every figure, so a figure standing in front never hides the plate of one
+ * behind it. Tilted, the plate's bottom edge lies on the figure's base line (`FIGURE_BASE` of the
+ * square, `board.css` `.board--tilted .token-figure`), scaled like the figure standing there;
+ * flat, its top edge lies under the medallion (`MEDALLION_FOOT`). The same place the plate had
+ * inside the token, which keeps its room there so the figure stands where it stood.
+ */
+export const FIGURE_BASE = 0.58;
+export const MEDALLION_FOOT = 0.84;
+
+export interface PlateAnchor extends Point {
+  readonly scale: number;
+  /** Which edge of the plate lies on the point. */
+  readonly edge: 'bottom' | 'top';
+}
+
+export function plateAnchor(layout: BoardLayout, square: Square): PlateAnchor {
+  const x = (square.x + 0.5) * layout.cell;
+  if (!layout.tilt) {
+    return {
+      x,
+      y: layout.planeTop + (square.y + MEDALLION_FOOT) * layout.cell,
+      scale: 1,
+      edge: 'top',
+    };
+  }
+  const base = projectPoint(layout, { x, y: (square.y + FIGURE_BASE) * layout.cell });
+  return { x: base.x, y: base.y, scale: base.scale, edge: 'bottom' };
+}
+
+/** The widest a plate is drawn, in squares; its words shorten first, never its number. */
+export const PLATE_SQUARES = 2.4;
+
+/**
+ * How wide a combatant's plate may be, in squares: at most `PLATE_SQUARES`, and no wider than the
+ * distance to the nearest combatant in the same row (less a hairline), so plates side by side
+ * never cover each other. Rows are a whole square apart flat, and as far as their figures tilted.
+ */
+export function plateRoom(square: Square, occupied: readonly Square[]): number {
+  let room = PLATE_SQUARES;
+  for (const other of occupied) {
+    const apart = Math.abs(other.x - square.x);
+    if (other.y === square.y && apart > 0) room = Math.min(room, apart - 0.1);
+  }
+  return room;
+}
+
 /** The plane's CSS transform: turned about its near edge when tilted. */
 export const planeTransform = (tilt: Tilt | null): string =>
   tilt ? `rotateX(${String(tilt.angle)}deg)` : 'none';

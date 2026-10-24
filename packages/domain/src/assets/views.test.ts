@@ -63,18 +63,23 @@ describe('which entities a perspective sees assets of', () => {
     expect(perceivedEntityIds(state, ELOWEN).has(ASHEN_CIRCLE)).toBe(false);
   });
 
-  it('shows a player only approved player assets, as variant, version, and content hash', async () => {
+  it('shows a player only approved player assets, as variant, purpose, version, and content hash', async () => {
     const world = await populated();
     const state = await world.state();
+    const view = (variant: string, n: number) => ({
+      variant,
+      purpose: 'image',
+      version: 1,
+      contentHash: hash(n),
+      mediaType: 'image/svg+xml',
+    });
     for (const perspective of [elowen(state), party(state)]) {
       expect(entityAssetsFor(state, perspective, MIRA)).toEqual([
-        { variant: 'reference', version: 1, contentHash: hash(1), mediaType: 'image/svg+xml' },
-        { variant: 'derived', version: 1, contentHash: hash(2), mediaType: 'image/svg+xml' },
+        view('reference', 1),
+        view('derived', 2),
       ]);
       // Perceived but unknown: the image, and nothing that names it.
-      expect(entityAssetsFor(state, perspective, WATCHER)).toEqual([
-        { variant: 'reference', version: 1, contentHash: hash(4), mediaType: 'image/svg+xml' },
-      ]);
+      expect(entityAssetsFor(state, perspective, WATCHER)).toEqual([view('reference', 4)]);
       // Neither known nor perceived: exactly as if it did not exist.
       expect(entityAssetsFor(state, perspective, ASHEN_CIRCLE)).toBeNull();
       expect(entityAssetsFor(state, perspective, 'no-such-entity')).toBeNull();

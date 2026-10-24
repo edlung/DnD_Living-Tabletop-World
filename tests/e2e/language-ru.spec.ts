@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
+import { clickWhereShown } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 
@@ -99,7 +100,7 @@ test('a Russian player’s battlefield speaks Russian: the board, the turn, a ta
   await expect(tray.getByRole('button', { name: 'Закончить ход' })).toBeVisible();
   await expect(page.getByRole('status', { name: 'Сводка боя' })).toContainText('Раунд 1');
   await expectNoEnglish(page, 'the battlefield');
-  await square(8, 4).click();
+  await clickWhereShown(page, square(8, 4));
   const options = field.getByRole('region', { name: 'Варианты действий: Неопознанное существо 1' });
   await expect(options).toContainText('Атаковать из длинного лука: Неопознанное существо 1');
   await expect(

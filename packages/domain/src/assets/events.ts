@@ -2,6 +2,7 @@ import {
   ASSET_AUDIENCES,
   ASSET_FAILURES,
   ASSET_MEDIA_TYPES,
+  ASSET_PURPOSES,
   ASSET_STATUSES,
   ASSET_VARIANTS,
   assetIdSchema,
@@ -14,6 +15,11 @@ import { z } from 'zod';
 
 /** Asset events and undo restores (docs/adr/0022-asset-identity.md). */
 const variant = z.enum(ASSET_VARIANTS);
+/**
+ * Absent means `image` (ADR 0035 §4): the payloads before purposes existed, and every image
+ * written since (`purposeField`), so adding purposes kept every type's version.
+ */
+const purpose = z.enum(ASSET_PURPOSES).optional();
 const audience = z.enum(ASSET_AUDIENCES);
 const label = assetLabelSchema.nullable();
 const source = z.discriminatedUnion('kind', [
@@ -30,6 +36,7 @@ export const assetRequestedPayloadSchema = z
     requestId: assetRequestIdSchema,
     entityId: entityIdSchema,
     variant,
+    purpose,
     label,
     audience,
     note,
@@ -44,6 +51,7 @@ export const assetJobStartedPayloadSchema = z
     requestId: assetRequestIdSchema,
     entityId: entityIdSchema,
     variant,
+    purpose,
     label,
     audience,
     note,
@@ -59,6 +67,7 @@ export const assetGeneratedPayloadSchema = z
     requestId: assetRequestIdSchema,
     entityId: entityIdSchema,
     variant,
+    purpose,
     label,
     audience,
     version: z.number().int().min(1),
@@ -83,7 +92,12 @@ export const assetRetractedPayloadSchema = z
   .object({ assetId: assetIdSchema, entityId: entityIdSchema, wasCanonical: z.boolean() })
   .strict();
 
-export const assetApprovedPayloadSchema = z
+/**
+ * An approval as version 2 wrote it (Stages 150 to 330 part B): only a reference superseded
+ * anything, the canonical reference it replaced (`previous`). Read alike, with nothing else
+ * superseded (`event-versions.ts`).
+ */
+export const assetApprovedV2PayloadSchema = z
   .object({
     assetId: assetIdSchema,
     entityId: entityIdSchema,
@@ -93,12 +107,22 @@ export const assetApprovedPayloadSchema = z
   })
   .strict();
 
+/**
+ * Version 3 (ADR 0035, amendment "an approval supersedes its kind"): a derived picture also
+ * supersedes the approved pictures of its kind (`supersedes`, absent when there are none): the
+ * same entity and purpose, and for an image the same label (`sameKind`).
+ */
+export const assetApprovedPayloadSchema = assetApprovedV2PayloadSchema
+  .extend({ supersedes: z.array(assetIdSchema).min(1).optional() })
+  .strict();
+
 const assetRecordSchema = z
   .object({
     assetId: assetIdSchema,
     requestId: assetRequestIdSchema,
     entityId: entityIdSchema,
     variant,
+    purpose,
     label,
     audience,
     version: z.number().int().min(1),

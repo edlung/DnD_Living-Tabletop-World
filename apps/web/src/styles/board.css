@@ -22,6 +22,7 @@
   position: relative;
   flex: none;
   margin: auto;
+  isolation: isolate;
 }
 .board-plane {
   position: absolute;
@@ -100,7 +101,8 @@
   inset: 0;
   pointer-events: none;
 }
-.board-square:hover::before {
+.board-square:hover::before,
+.board-square.is-pointed::before {
   box-shadow: inset 0 0 0 1px var(--board-grid-strong);
   background: color-mix(in srgb, var(--text) 8%, transparent);
 }
@@ -171,13 +173,15 @@
 }
 /*
  * A figure is part of its square (design §5.5: the same hit-testing in both views): what is
- * drawn of it — the round portrait, the plate, the pips, the badge — takes the pointer for the
- * square whose button holds it, so pointing at a figure chooses that figure and a pip shows its
- * condition's name; the space around them and the ring stay transparent to the pointer. Tilted,
- * the upright figure rises over the squares behind it, which the pointer would reach otherwise.
+ * drawn of it — the round portrait or the standing figure (`figures.css`), the pips, the badge
+ * — takes the pointer for the square whose button holds it, so pointing at a figure chooses that
+ * figure and a pip shows its condition's name; the space around them and the ring stay
+ * transparent to the pointer. Tilted, the upright figure rises over the squares behind it, which
+ * the pointer would reach otherwise. Its name plate is drawn in the plates' layer above every
+ * figure and takes the pointer there for the same square (`plates.tsx`, `board-plates.css`); the
+ * plate's room in the token is laid out only, never painted or pointed at.
  */
 .token-figure > .medallion,
-.token-plate,
 .token-pip,
 .token-cover {
   pointer-events: auto;
@@ -265,47 +269,6 @@
   box-shadow:
     0 0 0 2px var(--side),
     0 0 16px 4px var(--side-glow);
-}
-.token-plate {
-  display: grid;
-  justify-items: center;
-  gap: 2px;
-  max-width: calc(var(--cell) * 2.4);
-  margin-top: calc(var(--cell) * -0.08);
-  padding: 1px 6px 2px;
-  border: 1px solid var(--line);
-  border-bottom: 2px solid var(--side);
-  border-radius: 6px;
-  background: var(--glass-raised);
-  box-shadow: var(--shadow-soft);
-}
-.token-name {
-  max-width: 100%;
-  overflow: hidden;
-  color: var(--text);
-  font-family: var(--font-display);
-  font-size: clamp(10px, calc(var(--cell) * 0.27), 14px);
-  font-weight: 700;
-  line-height: 1.15;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.token-name.has-number {
-  display: flex;
-  align-items: baseline;
-  gap: 0.25em;
-}
-.token-name .name-words {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.token-name .name-number {
-  flex: none;
-}
-.token-plate .hp-bar {
-  width: calc(var(--cell) * 0.9);
-  height: 3px;
 }
 .token-pips {
   position: absolute;

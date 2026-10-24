@@ -1,6 +1,7 @@
-import type { EntityPresentation, PlayerAssetView } from '@ltw/contracts';
+import type { AssetPurpose, EntityPresentation, PlayerAssetView } from '@ltw/contracts';
 
-import { SHOWN_ASSET, type AssetRecord } from '../assets/records.ts';
+import { PURPOSE_KINDS, type AssetRecord } from '../assets/records.ts';
+import { playerAssetView, shownTo } from '../assets/views.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
 import { knownEntityIds } from '../knowledge/projection.ts';
 import { INDOOR_LOCATION_TYPES, type VisualTimeline } from './timeline.ts';
@@ -18,6 +19,15 @@ import { INDOOR_LOCATION_TYPES, type VisualTimeline } from './timeline.ts';
  * - **Image:** the entity's current approved images. A derived variant is
  *   chosen when every part of its label is among the tags the perspective
  *   may see; otherwise the canonical reference.
+ * - **Figure and battle map** (docs/adr/0035-images.md §4): a character's,
+ *   NPC's or creature's approved figure, and a location's approved battle
+ *   map, under the same visibility as its images.
+ *
+ * Approving a picture supersedes the approved pictures of its kind (ADR 0035
+ * amendment, `sameKind`), so each kind has one approved picture and the last
+ * approved is the one shown. Only an earlier writer's history can hold two of
+ * a kind: of those, the higher version (an image) or the one made last (a
+ * figure, a battle map) is shown, as that writer showed them.
  */
 export interface PresentationScope {
   readonly perspective: ResolvedPerspective;
@@ -70,12 +80,17 @@ export function presentationScopeAt(
 
 const has = (set: ReadonlySet<string> | 'ALL', id: string) => set === 'ALL' || set.has(id);
 
-const assetView = ({ variant, version, contentHash, mediaType }: AssetRecord): PlayerAssetView => ({
-  variant,
-  version,
-  contentHash,
-  mediaType,
-});
+/** The entity's current approved assets of one purpose the perspective may see, oldest first. */
+const shownOf = (
+  timeline: VisualTimeline,
+  scope: PresentationScope,
+  entityId: string,
+  purpose: AssetPurpose,
+): AssetRecord[] =>
+  [...timeline.current.assets.assets.values()].filter(
+    (asset) =>
+      asset.entityId === entityId && asset.purpose === purpose && shownTo(scope.perspective, asset),
+  );
 
 /** The current approved image that fits the tags best: a matching variant, else the reference. */
 export function imageFor(
@@ -84,12 +99,7 @@ export function imageFor(
   entityId: string,
   tags: readonly string[],
 ): PlayerAssetView | null {
-  const shown = [...timeline.current.assets.assets.values()].filter(
-    (asset) =>
-      asset.entityId === entityId &&
-      SHOWN_ASSET.has(asset.status) &&
-      (scope.perspective.scopes === 'ALL' || asset.audience === 'players'),
-  );
+  const shown = shownOf(timeline, scope, entityId, 'image');
   const fitting = shown
     .filter((asset) => asset.variant === 'derived' && asset.label !== null)
     .map((asset) => ({ asset, parts: (asset.label ?? '').split('-') }))
@@ -101,7 +111,25 @@ export function imageFor(
         (a.asset.label ?? '').localeCompare(b.asset.label ?? ''),
     );
   const chosen = fitting[0]?.asset ?? shown.find((asset) => asset.status === 'CANONICAL');
-  return chosen ? assetView(chosen) : null;
+  return chosen ? playerAssetView(chosen) : null;
+}
+
+/**
+ * The approved figure or battle map of an entity whose kind has one (ADR 0035 §4): the one
+ * approved picture of its kind, or of an earlier writer's several the one generated last, as the
+ * lineage records them in order. Null for any other kind.
+ */
+export function purposeImageFor(
+  timeline: VisualTimeline,
+  scope: PresentationScope,
+  entityId: string,
+  /** Its kind as the view at T has it. */
+  kind: string,
+  purpose: Exclude<AssetPurpose, 'image'>,
+): PlayerAssetView | null {
+  if (!PURPOSE_KINDS[purpose].has(kind)) return null;
+  const newest = shownOf(timeline, scope, entityId, purpose).at(-1);
+  return newest ? playerAssetView(newest) : null;
 }
 
 export function presentEntity(
@@ -152,6 +180,8 @@ export function presentEntity(
     weather,
     tags,
     image: imageFor(timeline, scope, entityId, tags),
+    figure: purposeImageFor(timeline, scope, entityId, at.kind, 'figure'),
+    battleMap: purposeImageFor(timeline, scope, entityId, at.kind, 'battle-map'),
   };
 }
 

@@ -452,3 +452,152 @@ browser end of row 340, **for Gate 06**. No route, projection or authorization c
   `sign-in-tabs.spec.ts`, `sign-in-ru.spec.ts`, `sign-in-accessibility.spec.ts` on the
   invitation-mode test server (`apps/server/src/testing/ui-sign-in-server.ts`); every
   development-persona journey unchanged.
+
+Stage 330 part A introduction evidence (ADR 0035; `docs/STAGE_330_DESIGN.md`; baseline `5da1b05`;
+part B, the live smoke and acceptance pending): **new surfaces for Gate 06**, row 330 of the
+alpha-phase table ("no image reaches a player before DM approval; requests and metadata respect
+scope; refusals and failures leave the neutral fallback").
+- **Image routes** (ADR 0022 §5–6, ADR 0023; check order and visibility unchanged):
+  `GET …/entities/:entityId/assets`, `GET …/assets/content/:contentHash`,
+  `GET …/entities/:entityId/presentation`, `GET …/locations/:locationId/scene` and the DM's
+  `GET …/assets`. Additive fields: `PlayerAssetView.purpose`, `EntityPresentation.figure` (a
+  character, NPC or creature) and `battleMap` (a location), each the newest approved asset of that
+  purpose under the images' rule (approved, players' audience, of an entity the perspective may
+  see); `purpose` on the DM's requests and assets. `RequestAsset` (DM or system only, unchanged)
+  takes an optional `purpose`; a `figure` or `battle-map` is a derived variant of the right kind.
+  A job that made no provider call fails with the new asset failure `UNAVAILABLE`.
+- **`openrouter-openai` generator** (`apps/server/src/images/`, `LTW_IMAGE_GENERATOR`; placeholder
+  by default): `POST https://openrouter.ai/api/v1/chat/completions`, allowlisted OpenAI models, a
+  fixed style system prompt, a task built from the entity's kind and recorded description, the
+  variant, the purpose and the DM's typed note (never its name or ID); a derived variant sends its
+  canonical reference as the input image, a new reference two curated style references.
+  `redirect: 'error'`, a bounded time and answer size, only an inline PNG/JPEG/WebP data URL (no
+  URL is ever fetched), re-encoded to WebP ≤ 1,536 px and ≤ 1.5 MB without metadata. The key comes
+  only from `OPENROUTER_API_KEY`, is revealed only for the header, and reaches no log, error or
+  record. Refusals, timeouts and provider errors map to `REFUSED`, `TIMEOUT`, `PROVIDER_ERROR`.
+- **Image ledger** (migration `0011_image_budget.sql`, append-only): the ceiling exists only as an
+  operator revision with the owner's authorization (`pnpm ai:operator image-budget-set`); no stored
+  ceiling or zero denies every call; each call reserves its model's worst case under one exclusive
+  advisory lock before it is sent, then settles to the reported cost (the whole reservation when
+  none is reported; nothing only when provably never sent). Counters in `ai:operator status`.
+- **Orphaned reservations** (migration `0012_image_orphaned_settlements.sql`, append-only): a job
+  that stopped between its reservation and its settlement leaves the reservation counted whole.
+  `pnpm ai:operator image-reservations --older-than-minutes <n>` lists unsettled ones (read-only);
+  `image-reservation-settle --charge <id> [--charge-micros <n>]` with the owner's authorization
+  closes one at the whole reservation or the given amount, as outcome `orphaned`, only when it is
+  older than the longest generation bound plus margin (15 minutes), so a running job's reported
+  cost is never pre-empted. The database requires the authorization beside every orphaned
+  settlement (deferred constraint trigger) and lets an authorization name nothing else.
+- **Live smoke tool** (`pnpm images:smoke`, `apps/server/src/testing/image-smoke.ts`; test
+  support, not in builds): drives a running loopback server over HTTP with the development
+  personas only, reads the ledger, the stored picture and the event store read-only from
+  `DATABASE_URL`, reads no key or env file, and sends no AI request while a play session is open
+  (the DM writes the proposal the local interpreter makes instead). It follows the portrait request
+  the authoring commit itself queues, so one smoke is one paid image call.
+- **Curated set import** (`seed:ravenford`, the browser-test server): every manifest entry through
+  `RequestAsset` (DM) → `StartAssetJob`/`CompleteAssetJob` (worker, `curated` generator) →
+  `ApproveAsset` (DM, players), idempotent by derived command IDs (a failed job is retried under
+  the next derived ID, at most three); files are hash-checked first, and only a job that produced
+  the committed picture (provider `curated`, the manifest's hash) is approved. The server's asset
+  worker never runs the import's requests.
+- **Boundary decisions to review**: the provider receives the entity's canonical description as
+  the DM knows it (ADR 0035 §6), quoted as a description but not filtered for injected
+  instructions (the output is an image the DM must approve); a 400 answer is read (at most 64 KiB,
+  never logged) only to tell a refusal; an unsettled or unpriced call keeps its reservation; the
+  curated import approves as the DM by the owner's decision (Q6), only pictures whose provenance
+  it checked.
+- **Deterministic evidence**: `packages/domain/src/assets/purposes.test.ts` (lineage, refusals,
+  payloads, versions, undo hold, player view), `purposes.property.test.ts` (random figures and
+  battle maps, presentation per perspective after every step),
+  `packages/domain/src/visual/figures.test.ts` (figure/battle map per kind and perspective, never
+  a candidate, DM-only to the DM, never chosen as the image),
+  `apps/server/src/http/image-purposes.test.ts` (over HTTP; `UNAVAILABLE` leaves the fallback),
+  `apps/server/src/images/openrouter-generator.test.ts` (request shape, answers, failure mapping,
+  the key on every path), `openrouter-spending.test.ts` (reservation, settlement, release),
+  `in-play.test.ts` (through the asset worker: the stored canonical reference reaches the
+  provider), `reencode.test.ts`, `curated-import.test.ts` (idempotence, provenance, retries),
+  `ledger.integration.test.ts` (ceiling, settle, append-only, the lock, races, operator CLI),
+  `ledger-operator.integration.test.ts` (orphaned reservations: listing, settlement, refusals,
+  the authorization constraints, the CLI), `apps/server/src/testing/image-smoke/run.test.ts` and
+  `checks.test.ts` (the smoke against the production app: both authoring paths, a paid generator's
+  ledger record, refusals, failures, visibility judgements),
+  `images.integration.test.ts`, `apps/server/src/assets/worker.test.ts`,
+  `apps/server/src/platform/config/config.test.ts`.
+- **Changed reviewed boundary (Gate 05, rows 150–160)**: asset event payloads gained an optional
+  `purpose`, absent for an image, so every type kept its version; the lineage the revision before
+  wrote (`fixtures/history/5da1b05-asset-lineage.json`) loads, replays, re-decides, shows the same
+  pictures and continues (`packages/combat/src/asset-history.test.ts`,
+  `apps/server/src/images/images.integration.test.ts`). Presentation chooses its image among
+  `image` assets only. No authorization rule, mutation path or undo rule changed.
+
+Stage 330 part B introduction evidence (ADR 0035, amendment of 2026-10-16 "part B"; the client):
+**new surfaces for Gate 06**, row 330.
+- **The DM's image controls** (`apps/web/src/images/`): the selection's panel and the Images sheet
+  exist only in the DM perspective (a React context the world screen provides there alone); they
+  read the DM-only lineage route and send `RequestAsset`, `ApproveAsset` and `RetractAsset`
+  through the existing command route, one at a time, with a client command ID kept across an
+  uncertain answer. Candidates are fetched by the DM through the existing content route (the DM
+  may fetch any asset's bytes); no candidate, request, note, label or generator reaches a lower
+  perspective's page or requests.
+- **Live coverage** (`apps/server/src/live/inventory.ts`): the DM perspective's fingerprint now
+  covers `GET …/assets`, so the DM's controls follow the asset worker; no lower perspective
+  covers it, the DM's own included.
+- **Pictures for everyone**: approved figures and battle maps (`EntityPresentation.figure`,
+  `battleMap`, unchanged server rules) on the battlefield and in the scene; an object's approved
+  image in its panel. Nothing is shown before approval; an unreadable picture falls back to the
+  medallion, the silhouette or the UI kit's ground.
+- **Deterministic evidence**: `apps/server/src/live/asset-live.test.ts` (the DM is signalled at
+  each step of a job; a player only when a picture it sees is approved; no hash in its stream),
+  `inventory.test.ts`, `apps/web/src/images/lineage.test.ts`; browser journeys
+  `tests/e2e/images-dm.spec.ts` (the player's page, presentation, bytes by hash and every API
+  body hold no candidate; the approved picture arrives through the live signal),
+  `images-curated.spec.ts`, `images-accessibility.spec.ts` on the test server's image campaigns
+  (`apps/server/src/testing/ui-image-journeys.ts`).
+Stage 330 part B review fixes (ADR 0035, amendment of 2026-10-16 "part B review"; ADR 0022
+amendment of the same date): a **changed reviewed boundary** (Gate 05, rows 150–160: approval,
+lineage, undo, re-decision of history) and new client surfaces for Gate 06, row 330.
+- **Approval supersedes its kind** (`packages/domain/src/assets/decide.ts`, `evolve.ts`,
+  `footprints.ts`, `records.ts` `sameKind`; `kernel/decide/undo.ts`): approving a derived picture
+  supersedes the approved pictures of its kind (same entity and purpose; an image also the same
+  label), listed in the payload's `supersedes`; their records are part of the approval's footprint
+  (a later approval of the kind blocks undo of the earlier one) and of its undo restores; the
+  undo hold and visibility rules are unchanged (a superseded picture holds its request as a
+  superseded reference did, and is never shown). No authorization rule changed.
+- **`AssetApproved` version 3** (`kernel/event-versions.ts`): version 2 is read alike and is an
+  earlier writer's — canon as recorded for the re-decision oracle (which would otherwise report an
+  earlier writer's second approval of a kind as deciding differently), resting on everything
+  before it for undo. History written by the revision before
+  (`fixtures/history/80d06df-approved-kinds.json`: two approved pictures of each kind, an undone
+  variant approval) loads, replays every prefix with integrity, shows as that writer showed it,
+  re-decides, verifies and continues: the next approval supersedes every approved picture of the
+  kind, and its undo restores them (`packages/combat/src/approval-history.test.ts`; on PostgreSQL
+  `apps/server/src/images/images.integration.test.ts`). The `5da1b05` lineage still verifies, its
+  approvals now earlier-version (`asset-history.test.ts`).
+- **Deterministic evidence**: `packages/domain/src/assets/supersede.test.ts` (an older picture
+  approved after a newer one is shown to every perspective; figures and battle maps of any label
+  are one kind; other kinds and the canonical reference untouched; undo order; retraction; a
+  DM-only picture), `assets.property.test.ts` and `purposes.property.test.ts` (at most one
+  approved picture of a kind after every step; after every approval the approved picture is the
+  one presentation shows for its kind), `event-versions.test.ts`,
+  `apps/server/src/http/image-approvals.test.ts` (over HTTP: the older figure and the older night
+  picture are what the player sees; the superseded figure's bytes are a 404 to the player).
+- **Client** (`apps/web/src/images/`): approval words from the lineage read after the approval
+  (`approvalStanding`, `approvalWords`); one command at a time until the lineage shows its result
+  (`command-state.ts`, `command-state.test.ts`); a lost answer shown with Retry in the Images
+  sheet and every panel (`images-result.tsx`); focus recovery once per command
+  (`focus-recovery.ts`); battlefield name plates above every figure (`combat/board/plates.tsx`,
+  `geometry.ts` `plateAnchor`, `plateRoom`). Journeys `tests/e2e/images-commands.spec.ts`
+  (supersession seen by the player and the DM's list; a dropped answer while approving, then
+  another entity's panel; a double press sends one `RequestAsset`; the keyboard in the sheet; a
+  panel's focus once per command), `battlefield-plates.spec.ts` (every plate the topmost thing at
+  its centre, ends and number at 1440 × 900 and 820 × 1180, tilted and flat), updated
+  `images-dm.spec.ts`; each fails on revision 80d06df.
+
+Stage 330 before its pull request (rebased onto Stage 340's final head;
+`reports/STAGE_330_COMPLETION.md`): presentation only, no reviewed boundary changed. Stage 320's
+hit-testing and the plates' layer are combined (a name plate and a standing figure take the pointer
+for their own combatant's square; `tests/e2e/combat-board-pointer.spec.ts`); the Chronicle shows
+three UI-kit pictures (the desk, the ribbon tabs, the flashback frame), which state nothing about
+the world (ADR 0034 amendment); text over them keeps 4.5:1
+(`tests/ui-kit/chronicle-art-contrast.test.ts`). No route, projection, rule, command or
+authorization changed.

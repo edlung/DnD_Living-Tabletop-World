@@ -14,7 +14,10 @@ import { useResource } from '../api/resource.ts';
 import { PerformNpc } from '../dm/perform-npc.tsx';
 import { ContextActions } from '../exploration/context-actions.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { EntityImages } from '../images/entity-images.tsx';
+import { useHeldImage } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { isFigure } from '../visual/glyph-map.ts';
 import { IconButton } from '../visual/icon-button.tsx';
 import { KnowledgeBadge, KnowledgeCards } from '../visual/knowledge-cards.tsx';
 import { Medallion } from '../visual/medallion.tsx';
@@ -23,11 +26,13 @@ import { useRereadOn } from './use-world-data.ts';
 
 /**
  * The selection's panel (docs/STAGE_320_DESIGN.md §5.4): a portrait header (the approved image
- * or the neutral silhouette or mist; the name, or "Unidentified …", and the kind), the actions
- * the server lists with their glyphs, what this perspective knows as typed records, and the
- * full sheet on demand. The DM perspective shows what its projection supplies, and "Perform".
- * The last selection's panel stays mounted while closed, and after the viewer's own action it
- * is read again in the background (`revision`), so drafts in it survive both.
+ * or the neutral silhouette or mist; the name, or "Unidentified …", and the kind) — a thing or a
+ * place with an approved image shows it as a plate (docs/STAGE_330_DESIGN.md: investigation
+ * objects show their approved images in details) — the actions the server lists with their
+ * glyphs, what this perspective knows as typed records, and the full sheet on demand. The DM
+ * perspective shows what its projection supplies, "Perform", and the entity's images with the
+ * DM's controls. The last selection's panel stays mounted while closed, and after the viewer's
+ * own action it is read again in the background (`revision`), so drafts in it survive both.
  */
 export function EntityDetails({
   api,
@@ -70,6 +75,8 @@ export function EntityDetails({
   const acting = effectivePerspective.startsWith('CHARACTER:');
   const [sheetOpen, setSheetOpen] = useState(false);
   const image = usePortrait(api, entityId);
+  // People keep their round portrait; a thing or a place shows its approved image as a plate.
+  const plate = useHeldImage(isFigure(kind) ? null : image);
   const load = useCallback(
     async (signal: AbortSignal) => {
       const path = `entities/${encodeURIComponent(entityId)}`;
@@ -91,8 +98,14 @@ export function EntityDetails({
   const visible = resource.status === 'ready' ? resource.value.context?.context.visibleState : null;
   return (
     <>
-      <header className="details-header">
-        <Medallion image={image} kind={kind} size="xl" />
+      <header className={`details-header${plate.held ? ' details-header--plate' : ''}`}>
+        {plate.held ? (
+          <span className="details-plate" aria-hidden="true">
+            {plate.url && <img src={plate.url} alt="" draggable={false} />}
+          </span>
+        ) : (
+          <Medallion image={image} kind={kind} size="xl" />
+        )}
         <div className="details-title">
           <p className="eyebrow">{t('A closer look')}</p>
           <h2>{name ?? t('Unidentified {kind}', { kind: t(kind) })}</h2>
@@ -184,6 +197,11 @@ export function EntityDetails({
               directory={directory}
             />
           )}
+          <EntityImages
+            entityId={entityId}
+            kind={kind}
+            name={name ?? t('Unidentified {kind}', { kind: t(kind) })}
+          />
           <details className="disclosure">
             <summary>{t('Full knowledge')}</summary>
             <KnowledgeCards knowledge={resource.value.knowledge?.knowledge ?? []} />

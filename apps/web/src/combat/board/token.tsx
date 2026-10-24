@@ -1,8 +1,10 @@
 import type { CoverLevel, EncounterCombatantView, PlayerAssetView } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
 
+import { useHeldImage } from '../../visual/approved-images.ts';
 import { Glyph } from '../../visual/glyph.tsx';
 import { Medallion } from '../../visual/medallion.tsx';
+import { Miniature } from '../../visual/miniature.tsx';
 import { boardUrl } from '../../visual/ui-kit.ts';
 import { conditionGlyph } from '../combat-art.ts';
 import { splitLabel } from '../labels.ts';
@@ -26,18 +28,22 @@ export function HpBar({ hitPoints }: { readonly hitPoints: HitPoints }) {
 }
 
 /**
- * A combatant on the board (docs/STAGE_320_DESIGN.md §5.5): the GPT medallion with its approved
- * portrait or the neutral silhouette, a ring of its side's light on the ground, the turn's glow,
- * the teal ring of the selection, a down or dead figure dimmed with its glyph, condition pips,
- * hit points only when the projection carries them, and its name plate. Decorative: the
- * square it stands on carries all of this in its name. Tilted, the figure stands upright on
- * the plane while the ring lies on it.
+ * A combatant on the board (docs/STAGE_320_DESIGN.md §5.5; docs/STAGE_330_DESIGN.md "Purposes"):
+ * its approved tabletop figure — standing upright on the tilted table, inside the GPT medallion
+ * on the flat one — or else the medallion with its approved portrait or the neutral silhouette;
+ * a ring of its side's light on the ground, the turn's glow, the teal ring of the selection, a
+ * down or dead figure dimmed with its glyph, condition pips, and the room of its name plate —
+ * the plate itself is drawn in the plates' layer above every figure (`plates.tsx`), so a figure
+ * in front never hides it. Decorative: the square it stands on carries all of this in its name.
+ * Tilted, the figure stands upright on the plane while the ring lies on it.
  */
 export function Token({
   combatant,
   label,
   cover,
   image,
+  figure,
+  tilted,
   current,
   selected,
   inArea,
@@ -48,17 +54,24 @@ export function Token({
   /** The cover level of its square, from the projection: a badge beside the figure. */
   readonly cover: CoverLevel | null;
   readonly image: PlayerAssetView | null;
+  /** Its approved tabletop figure, when the viewed place's presentation carries one. */
+  readonly figure: PlayerAssetView | null;
+  /** The table is seen at an angle: a figure stands up on it. */
+  readonly tilted: boolean;
   readonly current: boolean;
   readonly selected: boolean;
   readonly inArea: boolean;
 }) {
   const t = useT();
-  // On a narrow plate the words may shorten; the number that tells two figures apart never does.
-  const { words, number } = splitLabel(label);
+  const standing = useHeldImage(figure);
+  const upright = tilted && standing.held;
+  const condition =
+    combatant.state === 'dead' ? 'dead' : combatant.state === 'down' ? 'unconscious' : null;
   const classes = [
     'token',
     `token--${combatant.side}`,
     `token--${combatant.state}`,
+    upright ? 'has-miniature' : '',
     current ? 'is-current' : '',
     selected ? 'is-selected' : '',
     inArea ? 'in-area' : '',
@@ -76,35 +89,59 @@ export function Token({
             ))}
           </span>
         )}
-        <Medallion
-          image={image}
-          kind={combatant.entity.kind}
-          tone={combatant.side}
-          selected={selected}
-          condition={
-            combatant.state === 'dead' ? 'dead' : combatant.state === 'down' ? 'unconscious' : null
-          }
-        />
+        {upright ? (
+          <Miniature url={standing.url} condition={condition} />
+        ) : (
+          <Medallion
+            image={image}
+            figure={tilted ? null : figure}
+            kind={combatant.entity.kind}
+            tone={combatant.side}
+            selected={selected}
+            condition={condition}
+          />
+        )}
         {cover && (
           <span className={`token-cover token-cover--${cover}`}>
             <Glyph name="cover" />
             <span>{cover === 'total' ? t('total') : COVER_MARK[cover]}</span>
           </span>
         )}
-        <span className="token-plate">
-          <span className={`token-name${number ? ' has-number' : ''}`}>
-            {number ? (
-              <>
-                <span className="name-words">{words}</span>{' '}
-                <span className="name-number">{number}</span>
-              </>
-            ) : (
-              label
-            )}
-          </span>
-          {combatant.hitPoints && <HpBar hitPoints={combatant.hitPoints} />}
-        </span>
+        <TokenPlate label={label} hitPoints={combatant.hitPoints} room />
       </span>
+    </span>
+  );
+}
+
+/**
+ * A combatant's name plate: its label, the number that tells two figures apart kept when the
+ * words shorten, and its hit points when the projection carries them. In the token it only keeps
+ * its room (`room`: laid out, never painted nor pointed at), so the figure stands where it always
+ * stood; the plate drawn in the plates' layer takes the pointer for the square (`plates.tsx`).
+ */
+export function TokenPlate({
+  label,
+  hitPoints,
+  room = false,
+}: {
+  readonly label: string;
+  readonly hitPoints: HitPoints | undefined;
+  readonly room?: boolean;
+}) {
+  const { words, number } = splitLabel(label);
+  return (
+    <span className={`token-plate${room ? ' token-plate--room' : ''}`}>
+      <span className={`token-name${number ? ' has-number' : ''}`}>
+        {number ? (
+          <>
+            <span className="name-words">{words}</span>{' '}
+            <span className="name-number">{number}</span>
+          </>
+        ) : (
+          label
+        )}
+      </span>
+      {hitPoints && <HpBar hitPoints={hitPoints} />}
     </span>
   );
 }

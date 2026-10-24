@@ -1,0 +1,92 @@
+# Images (`src/images/`)
+
+Image generators behind the port of `@ltw/ai` (`packages/ai/src/images.ts`), their spending and
+the curated Ravenford set. Authority: `docs/adr/0035-images.md` and `docs/STAGE_330_DESIGN.md`
+(Stage 330), ADR 0022 (lineage, approval, visibility, worker), ADR 0034 (art direction). The asset
+worker and content stores stay in `src/assets/`. Gate 06 reviews these surfaces
+(`docs/GATE_COVERAGE.md`, row 330).
+
+| Concern                                                                             | File                                            |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Model allowlist with each model's reservation, endpoint, generator names            | `models.ts`                                     |
+| `openrouter-openai`: request, reservation, call, validation, settlement, failures   | `openrouter-generator.ts`                       |
+| Reading OpenRouter's answer: data URL, refusal, reported cost, model, generation ID | `openrouter-response.ts`                        |
+| Fixed style prompt (ADR 0034) and the task text built from the brief                | `style.ts`                                      |
+| Curated style references, downscaled once at startup                                | `style-references.ts`                           |
+| Re-encoding to WebP ≤ 1,536 px and ≤ 1.5 MB; figure to alpha, battle map to 4:3     | `reencode.ts`                                   |
+| Image ledger: ceiling revisions, reservations, settlements, operator status         | `ledger.ts` (migration `0011_image_budget.sql`) |
+| Orphaned reservations: listing, the operator's settlement, one request's charges    | `ledger-operator.ts` (migration `0012_…`)       |
+| The curated set: manifest schema, hash check, `curated` generator                   | `curated-set.ts`                                |
+| Importing the curated set through real commands, idempotently                       | `curated-import.ts`                             |
+| The live smoke (`pnpm images:smoke`): Tomas's portrait end to end over HTTP         | `../testing/image-smoke.ts`, `image-smoke/`     |
+
+Configuration (`src/platform/config/config.ts`, `.env.example`):
+
+- `LTW_IMAGE_GENERATOR`: `placeholder` (default; tests and offline use) or `openrouter-openai`.
+- `LTW_IMAGE_MODEL`: one of `models.ts` (default `openai/gpt-5.4-image-2`; `openai/gpt-5-image-mini`
+  is the cheaper alternative). Anything else is a startup error.
+- `OPENROUTER_API_KEY`: required for `openrouter-openai`, read only from the environment
+  (`.env.local`), held as a `Secret`, revealed only for the request header.
+- `LTW_ASSET_TIMEOUT_MS`: one generation's bound; 180 s by default with `openrouter-openai`.
+- The ceiling is never configuration: `pnpm ai:operator image-budget-set --micros <n> --owner …
+--authorized-on … --authorization-source …` (zero stops all calls); `pnpm ai:operator status`
+  shows the counters (`images`). Without a stored ceiling every in-play call is denied.
+- Orphaned reservations (a job that stopped between its reservation and its settlement; the
+  restarted worker runs the job again under a new reservation): `pnpm ai:operator
+image-reservations --older-than-minutes <n>` lists the unsettled ones (read-only);
+  `pnpm ai:operator image-reservation-settle --charge <chargeId> [--charge-micros <n>] --owner …
+--authorized-on … --authorization-source …` closes one at the whole reservation (treated as spent)
+  or at the amount the provider's own records show. Only reservations older than
+  `ORPHAN_AFTER_MINUTES` (15: the longest generation bound plus margin) can be settled, so a
+  running job keeps its own reported cost. The settlement's outcome is `orphaned`, with the
+  owner's authorization beside it (migration 0012 enforces both ways).
+
+Rules:
+
+- Make no live provider call in tests: inject `fetch` (`../testing/fake-fetch.ts`); the global
+  `fetch` is a trap (`tests/setup/no-network.ts`). Unit tests use `RecordingImageLedger`
+  (`../testing/fake-image-ledger.ts`); only `PostgresImageLedger` is a spending authority.
+- Reserve before every call, settle after it; keep a reservation whole when the cost is unknown;
+  release only what was provably never sent (`not-sent`). Ledger writes take the one exclusive
+  advisory lock (`IMAGE_LEDGER_LOCK_KEY`) in a READ COMMITTED transaction; never update or delete.
+- A request is built from the brief only: the entity's kind and recorded description, the
+  variant, the purpose, the DM's typed note. Never the entity's name or ID, never other campaign
+  data. A derived variant sends its canonical reference as the input image; a new reference two
+  curated style references.
+- Logs carry fixed messages, HTTP statuses and failure codes only: never the key, request,
+  answer, entity or an amount. Errors carry no `cause`.
+- Failures map to the existing codes: `REFUSED`, `TIMEOUT`, `PROVIDER_ERROR`; no call made
+  (no budget, ledger down, no job, a canonical reference not stored or no raster picture, such as
+  a placeholder SVG) is `UNAVAILABLE`. Each leaves the neutral fallback: no image reaches anyone
+  before the DM approves one.
+- Never edit the curated pictures (`fixtures/ravenford-ru/assets/AGENTS.md`). The import runs in
+  `seed:ravenford` and the browser-test server (`../testing/ui-image-campaigns.ts`; the Stage 330
+  part B journeys' campaigns `../testing/ui-image-journeys.ts`, where the test server's asset
+  worker runs with the placeholder generator for the DM journeys' campaigns only). It approves
+  only a job that produced the committed picture (provider `curated`, the manifest's hash), and
+  retries a failed one under the next derived command ID (at most three attempts), so reruns stay
+  idempotent. The server's asset worker leaves the import's requests (`isCuratedRequest`) alone;
+  still run the seed while the server is stopped.
+- The live smoke (`pnpm images:smoke`, `../testing/image-smoke.ts`) drives an already running server
+  (`AUTH_MODE=dev-personas`) over HTTP as the development DM and player: the DM authors Tomas Reed
+  (or finds him), the server's worker generates his canonical portrait, the smoke reads the job,
+  the picture and the ledger record (read-only, from `DATABASE_URL`), checks that the player sees
+  nothing before the DM approves and the portrait after. It reads no key and no env file, sends no
+  AI request while a play session is open (a DM intent then could reach a paid text route; the DM
+  writes the proposal `interpretLocally` makes instead), and refuses before anything is requested
+  when the server is not local, other asset work is pending, or, for `openrouter-openai`, no
+  ceiling covers one call. With `openrouter-openai` it causes exactly one paid image call: run it
+  only with the owner's authorization. Exit 0 passed, 1 failed, 2 refused. Tests:
+  `image-smoke/run.test.ts`, `checks.test.ts` (the production app in memory, `harness.ts`).
+- Tests (provider stubbed at the HTTP boundary): `openrouter-generator.test.ts` (request shape,
+  answers, failure mapping, the key), `openrouter-spending.test.ts` (reservation, settlement,
+  release), `reencode.test.ts`, `in-play.test.ts` (through the asset worker: the stored canonical
+  reference as the input image, a denied budget), `curated-import.test.ts` (idempotence,
+  provenance, retries), `ledger.integration.test.ts` (ceiling, settle, append-only, the lock,
+  races, operator CLI), `ledger-operator.integration.test.ts` (orphaned reservations: listing,
+  settlement whole or at an amount, refusals, the authorization's constraints, the CLI),
+  `images.integration.test.ts` (the lineage written before purposes, the
+  curated import on PostgreSQL); fixtures `../testing/image-provider.ts`. Purposes:
+  `packages/domain/src/assets/purposes.test.ts`, `purposes.property.test.ts`,
+  `packages/domain/src/visual/figures.test.ts`, `../http/image-purposes.test.ts`,
+  `packages/combat/src/asset-history.test.ts`.

@@ -8,6 +8,7 @@ import '../../apps/web/src/i18n/ru.ts';
 import '../../apps/web/src/i18n/ru-play.ts';
 import '../../apps/web/src/i18n/ru-visual.ts';
 import '../../apps/web/src/i18n/ru-access.ts';
+import '../../apps/web/src/i18n/ru-images.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the

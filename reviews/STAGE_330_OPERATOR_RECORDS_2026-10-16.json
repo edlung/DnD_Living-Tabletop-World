@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-16",
+  "createdBy": "The session (Claude Code, claude-opus-5-5) through the operator CLI (`ai:operator`)",
+  "authorization": [
+    "reviews/OWNER_DECISIONS_9_2026-10-15.json#Q6images: in-play images through OpenRouter within a $5 ceiling",
+    "reviews/OWNER_DECISIONS_9_2026-10-15.json#authorization: one authorized live smoke for Stage 330"
+  ],
+  "database": "Throwaway local database 127.0.0.1:54329/ltw_smoke330 (dropped after the run). Records are database state; a production deployment sets its own ceiling with the operator CLI.",
+  "imageBudget": {
+    "command": "ai:operator image-budget-set --micros 5000000 --owner \"Oleksandr Kliuiev\" --authorized-on 2026-10-15 --authorization-source <Q6 reference>",
+    "revision": 1,
+    "ceilingMicros": 5000000
+  },
+  "liveSmoke": {
+    "command": "pnpm images:smoke --generator openrouter-openai --server http://127.0.0.1:3331",
+    "server": "NODE_ENV=development AUTH_MODE=dev-personas LTW_IMAGE_GENERATOR=openrouter-openai; only OPENROUTER_API_KEY passed to the process (no text-provider key)",
+    "model": "openai/gpt-5.4-image-2",
+    "providerGeneration": "gen-1792110240-uveBxDRj3b6D2UYSH4nF",
+    "reservedMicros": 500000,
+    "settledMicros": 240833,
+    "settlement": "generated (cost reported by the provider)",
+    "durationSeconds": 125,
+    "picture": "sha256:538c7efa2c0eb3c417ecd3b092959c45b25aa81c554ceb17c000234e9450ed96, image/webp, 77776 bytes, 1024x1024 (reports/evidence/stage-330/tomas-reed-live-2026-10-16.webp)",
+    "result": "PASSED: Tomas authored without any paid text call; portrait generated; invisible to the player before the DM's approval and visible after it",
+    "transcript": "reports/evidence/stage-330/live-smoke-2026-10-16.txt"
+  },
+  "spending": {
+    "imagesThisStage": "$0.240833 of the $5 in-play ceiling",
+    "remainingForProduction": "$4.759167 (the production database's ceiling is set by the operator at deployment)"
+  }
+}
