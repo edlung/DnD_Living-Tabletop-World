@@ -15,7 +15,7 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - Everything below this section up to "Current continuation" and the older sections is **historical
   record** of the 2026-10-11/12 role-based process; preserve it, do not follow its role rules.
 
-## Current status — 2026-10-15
+## Current status — 2026-10-24
 
 - Authorized by the owner (`reviews/OWNER_DECISIONS_9_2026-10-15.json`): Stages 310, 320, 330, 340,
   350, the Gate 06 red-team pass (355) and the non-human parts of 360; the session adopts each
@@ -28,12 +28,13 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   fixed; report `reports/STAGE_320_COMPLETION.md`.
 - Stage 340: merged (PR 6, `28a49b6`); independent security reviews of both parts with all
   findings fixed; report `reports/STAGE_340_COMPLETION.md`.
-- Stage 330: implemented (server, curated GPT set of 45 pictures, DM controls, figures, battle map,
-  Chronicle art); one authorized live OpenRouter smoke ($0.240833 of $5); independent review of the
-  client with all findings fixed; reports `reports/STAGE_330_COMPLETION.md`,
-  `reports/STAGE_330_IDENTITY.md`.
-- Stage 350: built in a parallel worktree on top of 330 (deployment verified locally with the full
-  product; reviews fixed); merged after Stage 330.
+- Stage 330: merged (PR 7, `0b4bdcf`, 2026-10-24); server, curated GPT set of 45 pictures, DM
+  controls, figures, battle map, Chronicle art; one authorized live OpenRouter smoke ($0.240833 of
+  $5); independent review of the client with all findings fixed; reports
+  `reports/STAGE_330_COMPLETION.md`, `reports/STAGE_330_IDENTITY.md`.
+- Stage 350: rebased onto `main` with Stage 330 (tree identical to the revision verified locally
+  with the full product; reviews fixed); its PR is next, then the Gate 06 red-team pass (355).
+  The owner confirmed on 2026-10-24 that stage PRs are merged on green CI.
 - Spending: paid runtime calls only within the stored operator ceilings (ADR 0032); in-play images
   through OpenRouter within $5 (Stage 330); never read `.env.local`.
 

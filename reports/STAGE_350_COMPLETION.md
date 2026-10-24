@@ -3,7 +3,10 @@
 - Date: 2026-10-16 (Europe/Oslo). Branch `stage-350-deploy`, rebased onto the complete product
   (`77e731a`: Stage 320's client, Stage 340's sign-in with its browser screens, Stage 330's
   images): design `6e84f71`, part A `c08823a`, part B `a51e9ac`, review fixes `a0da82a`, the full
-  product (the commit adding the section "Full product").
+  product (the commit adding the section "Full product"). On 2026-10-24 the branch was rebased
+  onto `main` after Stage 330's merge (`0b4bdcf`, the same tree as Stage 330's final head), with
+  no change to any file: design `77897e3`, part A `152b774`, part B `7837f7f`, review fixes
+  `dfd9b26`, the full product `0d397c9` (tree `1640894a`, identical to the verified revision).
 - Status: **PARTS A AND B IMPLEMENTED AND VERIFIED LOCALLY IN DOCKER; THE SEVEN REVIEW FINDINGS
   FIXED; THE COMPLETE PRODUCT (IMAGES, IMAGE SPENDING, THE BROWSER SCREENS) VERIFIED ON THE LOCAL
   DEPLOYMENT** (section "Full product"). Nothing was deployed to a server, announced, released, or
