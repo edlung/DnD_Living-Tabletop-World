@@ -458,6 +458,51 @@ approval's spend against its stage ceiling; and `images`, the picture ledger: `c
 zero), `charges`, `unsettled` and `unsettledReservations`, each open reservation with its campaign,
 model, amount and age (`ageMinutes`; older than `settleableAfterMinutes` is orphaned, section 8).
 
+## 7a. Включить живой ИИ · Enable live AI
+
+**RU.** Без этого раздела все возможности локальные: NPC отвечают заготовками, намерения DM разбирает
+офлайн-интерпретатор. Живой ИИ включается только записями оператора в пределах решения владельца
+(потолки — записи в базе, не настройки; ADR 0032). Порядок: (1) счёт с дневным потолком;
+(2) одобрение на кампанию с потолками этапа, дня кампании, игровой сессии и прогона оценки;
+(3) в `deploy/.env` — маршруты, одобрение и ключ (права 600; ключ никогда не в чате, журнале или
+команде); (4) пересоздать сервер; (5) `spend.sh` — счёт и одобрение включены, 0 открытых удержаний.
+Маршрут каждой возможности заканчивается на `local`: отказ провайдера или исчерпанный потолок
+возвращают локальный ответ, а не ошибку. Проверено Gate 06 (команда ai, 2026-10-27): 35 живых
+вызовов Sonnet 5.5 на русской кампании — $0.088; удержание резервирует худший случай (~$2.54) и
+освобождается после расчёта. Остановить — раздел 7.
+
+**EN.** Without this section every capability is local: NPCs answer from templates and the offline
+interpreter reads DM intents. Live AI is enabled only through operator records within the owner's
+decision (ceilings are database records, never settings; ADR 0032). In order: (1) a billing account
+with its daily ceiling; (2) an approval for the campaign with stage, campaign-day, play-session and
+evaluation-run ceilings; (3) in `deploy/.env` the routes, the approval and the key (mode 600; the key
+never in a chat, log or command line); (4) recreate the server; (5) `spend.sh`: the account and
+approval enabled, 0 open holds. Every capability's route ends in `local`: a provider failure or a
+spent ceiling answers locally, not with an error. Verified by Gate 06 (team ai, 2026-10-27): 35 live
+Sonnet 5.5 calls on the Russian campaign, $0.088; a hold reserves the worst case (~$2.54) and is
+released when the call settles. To stop: section 7.
+
+```bash
+# (1)-(2): integer microdollars ($10 = 10000000); --authorization-source names the owner's decision.
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js account-create \
+  --account anthropic-owner --provider-account-ref '<console account, not the key>' \
+  --global-daily-ceiling-micros 15000000 \
+  --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js approval-create \
+  --approval playtest-sonnet --account anthropic-owner --stage stage-360 \
+  --grant-reference <reference> --campaign ravenford \
+  --stage-ceiling-micros 30000000 --campaign-daily-ceiling-micros 15000000 \
+  --play-session-ceiling-micros 10000000 --evaluation-run-ceiling-micros 10000000 \
+  --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>
+# (3) deploy/.env (the key is pasted into the file by an editor, never echoed):
+#   ANTHROPIC_API_KEY=…
+#   LTW_AI_ROUTES=reasoning=anthropic:claude-sonnet-5-5,local;npc-dialogue=anthropic:claude-sonnet-5-5,local;narrative=anthropic:claude-sonnet-5-5,local
+#   LTW_AI_APPROVAL_ID=playtest-sonnet
+# (4)-(5)
+dc up -d --force-recreate --wait server
+deploy/scripts/spend.sh
+```
+
 ## 8. Изображения в игре: включить, ограничить, остановить · Images in play: enable, cap, stop
 
 **RU.** По умолчанию сервер работает с генератором `placeholder` (`LTW_IMAGE_GENERATOR` пуст или
