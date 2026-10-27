@@ -199,8 +199,8 @@
 }
 
 /*
- * The result of an action, where it happened: above the chosen medallion, or bottom centre of
- * the stage. It sits above every sheet and panel (a sibling of the stage), so its words and its
+ * The result of an action: bottom centre of the stage on a phone, its bottom-right corner from
+ * a tablet up (below). It sits above every sheet and panel (a sibling of the stage), so its words and its
  * Retry are never covered by the tool that caused it.
  */
 .outcome {
@@ -219,43 +219,10 @@
 .world-main:has(.stage--talking) .outcome {
   width: min(360px, calc(100% - 32px));
 }
-/* Above the medallion while it can be seen: no sheet over it, nor (on a tablet) the drawer. */
-@supports (position-area: top) {
-  @media (min-width: 1200px) {
-    .world-main:not(.has-battle):not(:has(.sheet:not([hidden]))):has(.object-button[data-anchor])
-      .outcome {
-      position-anchor: --result-anchor;
-      position-area: top;
-      right: auto;
-      bottom: auto;
-      left: auto;
-      width: min(440px, calc(100% - 32px));
-      margin-bottom: 0.4rem;
-      translate: none;
-    }
-  }
-  @media (min-width: 768px) and (max-width: 1199px) {
-    .world-main:not(.has-battle):not(.has-details):not(:has(.sheet:not([hidden]))):has(
-        .object-button[data-anchor]
-      )
-      .outcome {
-      position-anchor: --result-anchor;
-      position-area: top;
-      right: auto;
-      bottom: auto;
-      left: auto;
-      width: min(440px, calc(100% - 32px));
-      margin-bottom: 0.4rem;
-      translate: none;
-    }
-  }
-}
 /*
- * A result with nothing to anchor it to (the place itself, a tablet with the drawer open, no
- * anchor positioning) would lie over the people and things in the scene, which sit at the same
- * height, bottom centre. It takes the stage's bottom-right corner instead, below the exits, and
- * the row of people and things keeps clear of it on its left. Anchored above a medallion, the
- * result is already clear of the row (the rules after this one restore both).
+ * Gate 06: the result has one place, the stage's bottom-right corner below the exits, and the
+ * people and things in the scene keep clear of it on its left. Centred, or anchored above the
+ * medallion it concerns, it lay over the row (or the row above) and swallowed their clicks.
  */
 @media (min-width: 768px) {
   .world-main:not(.has-battle):has(.outcome) {
@@ -281,22 +248,6 @@
   .world-main.has-details:not(.has-battle) .outcome {
     right: calc(min(var(--panel-w), 92vw) + 16px);
     left: auto;
-  }
-}
-@supports (position-area: top) {
-  @media (min-width: 1200px) {
-    .world-main:not(.has-battle):not(:has(.sheet:not([hidden]))):has(.object-button[data-anchor])
-      .scene-presence {
-      right: 16px;
-    }
-  }
-  @media (min-width: 768px) and (max-width: 1199px) {
-    .world-main:not(.has-battle):not(.has-details):not(:has(.sheet:not([hidden]))):has(
-        .object-button[data-anchor]
-      )
-      .scene-presence {
-      right: 16px;
-    }
   }
 }
 /* While a sheet is open the result sits just above it, clear of the sheet's own controls. */

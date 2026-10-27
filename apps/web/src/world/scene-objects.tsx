@@ -17,14 +17,11 @@ function SceneObject({
   entity,
   name,
   selected,
-  anchor,
   onSelect,
 }: {
   readonly entity: EntityPresentation;
   readonly name: string;
   readonly selected: boolean;
-  /** The result of an action concerns this one: the stage shows it above (CSS anchor). */
-  readonly anchor: boolean;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
@@ -40,7 +37,6 @@ function SceneObject({
       aria-label={name}
       aria-describedby={stateId}
       aria-pressed={selected}
-      data-anchor={anchor ? '' : undefined}
       onClick={() => {
         onSelect(entity.entityId, entity.kind);
       }}
@@ -80,13 +76,11 @@ export function SceneObjects({
   present,
   directory,
   selectedId,
-  anchorId,
   onSelect,
 }: {
   readonly present: readonly EntityPresentation[];
   readonly directory: readonly EntityRef[];
   readonly selectedId: string | null;
-  readonly anchorId: string | null;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
@@ -101,7 +95,6 @@ export function SceneObjects({
               t('Unidentified {kind}', { kind: t(entity.kind) })
             }
             selected={selectedId === entity.entityId}
-            anchor={anchorId === entity.entityId}
             onSelect={onSelect}
           />
         </li>

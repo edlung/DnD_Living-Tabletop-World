@@ -155,9 +155,6 @@
   border: 0;
   background: transparent;
 }
-.object-button[data-anchor] {
-  anchor-name: --result-anchor;
-}
 .object-button:hover:enabled .medallion-ring {
   filter: drop-shadow(0 0 8px color-mix(in srgb, var(--gold-bright) 60%, transparent));
 }

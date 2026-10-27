@@ -9,7 +9,8 @@ import {
 
 /**
  * Gate 06: a result with nothing to anchor it to (inspecting the place itself) sat bottom
- * centre, over the row of people and things, and swallowed their clicks. Every one of them
+ * centre, over the row of people and things, and swallowed their clicks; anchored above the
+ * medallion it concerned, it lay over the row above. Every one of them
  * stays reachable while the result shows: on a desktop with the selection's column, and on a
  * tablet once its drawer is closed (docs/STAGE_320_DESIGN.md §5.2–5.3; stage.css).
  */
@@ -34,6 +35,15 @@ test('the people and things in the scene stay reachable while a result shows', a
   const result = page.locator('.outcome');
   await expect(result).toContainText('Evidence discovered.');
   await expect(page.locator('.object-button')).toHaveCount(6);
+  expect(await unreachable(page)).toEqual([]);
+  // A result about one of them (it once sat above that medallion, over the row above it).
+  await page
+    .getByRole('region', { name: 'Scene', exact: true })
+    .getByRole('button', { name: 'Unidentified item', exact: true })
+    .last()
+    .click();
+  await commandAction(page, 'Inspect');
+  await expect(result).toBeVisible();
   expect(await unreachable(page)).toEqual([]);
 
   await page.setViewportSize({ width: 768, height: 1024 });
