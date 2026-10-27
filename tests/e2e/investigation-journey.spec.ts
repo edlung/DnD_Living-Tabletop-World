@@ -31,11 +31,8 @@ test('objects lead from Mira to evidence, a hypothesis, contradictory testimony,
 
   const scene = page.getByRole('region', { name: 'Scene', exact: true });
   // The scene lists what it holds by ID; the IDs are opaque (ADR 0008, Gate 06), so the wheel is
-  // simply the last of the three unidentified items. The player first puts the site's result away:
-  // it lies over the scene.
-  const dismiss = () =>
-    page.getByRole('button', { name: 'Dismiss the result', exact: true }).click();
-  await dismiss();
+  // simply the last of the three unidentified items. The site's result stays clear of the row
+  // (scene-result-layout.spec.ts): the player clicks with it still showing.
   await scene.getByRole('button', { name: 'Unidentified item', exact: true }).last().click();
   await commandAction(page, 'Inspect');
   await expect(
@@ -59,7 +56,6 @@ test('objects lead from Mira to evidence, a hypothesis, contradictory testimony,
   expect(recorded).toHaveLength(1);
   expect(recorded[0]?.knowledgeType).toBe('HYPOTHESIS');
 
-  await dismiss();
   await scene.getByRole('button', { name: 'Unidentified feature', exact: true }).first().click();
   await commandAction(page, 'Inspect');
   await expect(
