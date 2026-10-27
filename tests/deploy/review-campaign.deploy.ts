@@ -139,7 +139,7 @@ test('the review campaign in Russian browsers, through Caddy', async ({ browser 
   const start = (await place.textContent()) ?? '';
   if (start !== SQUARE) {
     await step(`Elowen is at «${start}»: she walks back to the market square`, async () => {
-      const explore = player.getByRole('button', { name: `Осмотреть: ${SQUARE}`, exact: true });
+      const explore = player.getByRole('button', { name: `Взглянуть: ${SQUARE}`, exact: true });
       if (!(await explore.first().isVisible())) await openSheet(player, 'Места');
       await explore.first().click();
       const details = player.getByRole('complementary', { name: 'Подробности', exact: true });

@@ -192,5 +192,10 @@ function refusal(t: Translate, intent: ExplorationIntent, code: string, message:
       'The turn cannot end while a reaction is pending. Close the reaction window first, or wait for the answer.',
     );
   }
-  return rejectionMessage(t, code, message);
+  return rejectionMessage(
+    t,
+    code,
+    message,
+    intent.kind === 'command' ? intent.command.type : undefined,
+  );
 }

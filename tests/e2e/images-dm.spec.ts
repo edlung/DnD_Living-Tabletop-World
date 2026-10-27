@@ -37,7 +37,7 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
     if (request.url().includes('/assets/content/')) pictureFetches.push(request.url());
   });
   await enterWorld(player, TOKENS.player, campaign);
-  const seen = player.getByRole('button', { name: 'Unidentified npc', exact: true });
+  const seen = player.getByRole('button', { name: 'Stranger', exact: true });
   await expect(seen).toBeVisible();
   await expect(seen.locator('img[src^="blob:"]')).toHaveCount(0);
 
@@ -203,7 +203,7 @@ test('a Russian DM approves Tomas’s picture in Russian, and the player sees it
   const dm = await (await browser.newContext()).newPage();
   const player = await (await browser.newContext()).newPage();
   await enterWorld(player, TOKENS.player, campaign);
-  const seen = player.getByRole('button', { name: 'Неопознанный объект (НПС)', exact: true });
+  const seen = player.getByRole('button', { name: 'Незнакомец', exact: true });
   await expect(seen).toBeVisible();
 
   await enterWorld(dm, TOKENS.dm, campaign);

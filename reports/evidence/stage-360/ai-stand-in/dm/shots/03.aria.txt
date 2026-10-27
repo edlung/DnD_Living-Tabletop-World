@@ -1,0 +1,56 @@
+- link "Перейти к миру":
+  - /url: "#world-main"
+- banner:
+  - text: Живой настольный мир
+  - heading "Пропавший караван" [level=1]
+  - text: "Сессия 1: Прибытие в Равенфорд Обновления: На связи Вид"
+  - combobox "Вид":
+    - option "Мастер" [selected]
+    - option "Отряд"
+    - option "Публичный вид"
+    - option "Эловен Старвиспер"
+  - button "Обновить мир"
+  - button "Выйти"
+- main:
+  - region "Сцена":
+    - heading "Рыночная площадь" [level=2]
+    - group "Условия сцены": День 1 · 10:00 день
+    - region "За столом":
+      - paragraph: Мастер на связи
+      - list:
+        - listitem:
+          - button "Эловен Старвиспер · нет на связи"
+    - heading "В этой сцене" [level=3]
+    - list "Видимые объекты мира":
+      - listitem:
+        - button "Эловен Старвиспер":
+          - strong: Эловен Старвиспер
+          - text: персонаж жив
+      - listitem:
+        - button "Мира Вейл":
+          - strong: Мира Вейл
+          - text: НПС жив
+    - paragraph: Выберите человека или предмет, чтобы рассмотреть ближе. Условная расстановка — расстояния не показаны
+  - navigation "Инструменты мира":
+    - list:
+      - listitem:
+        - button "Сцена" [pressed]
+      - listitem:
+        - button "Места"
+      - listitem:
+        - button "Журнал"
+      - listitem:
+        - button "Хроника"
+    - list "Инструменты мастера":
+      - listitem:
+        - button "Добавить в мир"
+      - listitem:
+        - button "Схватка"
+      - listitem:
+        - button "Время и погода"
+      - listitem:
+        - button "История"
+      - listitem:
+        - button "Изображения"
+      - listitem:
+        - button "Игроки"

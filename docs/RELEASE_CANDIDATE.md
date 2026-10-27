@@ -1,116 +1,91 @@
-# Ravenford Vertical Slice v0.1 — release candidate
+# Ravenford Alpha v0.1 — release candidate
 
-**Status: release candidate prepared. Not released — release to a VPS is deferred by the
-owner.** Usability evidence is an AI stand-in pass accepted by the owner, not a human session
-(`reports/STAGE_240_USABILITY.md`). The visual design is not finished.
+**Status: prepared, not released.** Everything a release needs is in place and verified on this
+machine; the tag waits for the owner's human playtests (Stage 360,
+`reviews/OWNER_DECISIONS_9_2026-10-15.json`). No server has been deployed, nothing announced.
 
 ## What it is
 
-A local, single-machine vertical slice: the Ravenford world on the World Engine and
-PostgreSQL, a Player/DM web client, and deterministic offline AI behaviour. It is **not** a
-production deployment: authentication uses development persona tokens (ADR 0009), the web
-bundle is a build artifact with no hosting, and no live AI provider has been exercised.
+A closed alpha of the Living Tabletop World: the Russian Ravenford campaign «Пропавший караван»
+on the World Engine and PostgreSQL, played in a browser by a DM and a player, deployed with
+Docker Compose behind Caddy (HTTPS), signed in with single-use invitation links. NPC speech, DM
+intents and Chronicle prose can run on Claude Sonnet 5.5 within stored spending ceilings, with a
+deterministic local fallback; pictures come from a curated GPT-made set, and in play from an
+OpenAI model through OpenRouter within a $5 ceiling (placeholders when none is stored).
 
 ## Identification
 
-- Code revision under validation: `83b1344` (validated in a fresh clone). Later commits on
-  the branch change documentation and reports only.
-- Tag `v0.1.0-rc.1` (owner-approved on 2026-10-05) marks `7d7e8b3`: the candidate together
-  with its documentation, with code identical to `83b1344`. The release identifier itself is
-  assigned when the release happens (Stage 360).
-- Web bundle from that clone: `assets/index-L2jN_3Bl.js` SHA-256
-  `d39e0aae9cc7e9c0d2daf5ee319ea1349378b8c5c51589646e43770cd0bfc32e`;
-  `assets/index-Q_19hvXj.css` SHA-256
-  `e9b2015aefd3492f73f9fe6e48fcb0899ff2222ec81f77631fd4cde1ff633c41`.
+- Candidate revision: `main` at `145af62` (Gate 06 remediation merged) plus the Stage 360 changes
+  recorded in `reports/STAGE_360_PLAYTESTS.md`; the final revision is the one the release
+  records.
+- Images: `deploy/scripts/build.sh <revision>` builds `ltw-server:<tag>` and `ltw-proxy:<tag>`
+  from `git archive` of that revision (tag = its 12-character commit ID); the same revision
+  always builds the same files.
+- Earlier tag `v0.1.0-rc.1` marks the Stage 250 vertical slice (`7d7e8b3`); it is history.
 
-## Install, start, validate (reproducible)
+## Install
 
-Prerequisites: Node 24+, pnpm 11, Docker, Playwright Chromium
-(`pnpm exec playwright install chromium`).
-
-```bash
-pnpm install --frozen-lockfile
-pnpm db:up
-pnpm build
-pnpm db:migrate         # applies 0001–0004
-pnpm seed:ravenford     # 91 submissions, idempotent
-pnpm dev:server         # http://127.0.0.1:3000
-pnpm dev:web            # http://127.0.0.1:5173 (proxies /api)
-pnpm validate           # format, lint, typecheck, context-budget, unit, build, migrate, seed, integration, E2E
-```
-
-Sign in with campaign `ravenford` and a token from `fixtures/ravenford/personas.json`
-(`dev-player-elowen`, `dev-dm-ravenford`). `pnpm validate:ci-local` reproduces CI from a
-frozen install.
-
-## Configuration and fixtures
-
-`.env.example` lists every variable; all are optional in development. `DATABASE_URL`
-defaults to the docker-compose PostgreSQL (port 54329). Without `ANTHROPIC_API_KEY` only the
-deterministic local provider runs; images are placeholders. Fixtures live in
-`fixtures/ravenford/`; the browser tests build their own in-memory worlds and need no
-database or provider.
+- On a VPS: `deploy/RUNBOOK.md` section 1 (first install), section 2 (deploy a tag), section 7a
+  (enable live AI), section 8 (images in play), section 12 (reset a review campaign database).
+- On this machine (local CA, `https://localhost`): `deploy/RUNBOOK.md` section 11;
+  `deploy/verify/ci.sh` does the whole check on a clean checkout, as CI does.
+- Development (no Docker stack): `pnpm install --frozen-lockfile`, `pnpm db:up`, `pnpm build`,
+  `pnpm db:migrate`, `pnpm seed:ravenford`, `pnpm dev:server`, `pnpm dev:web`; `pnpm validate`
+  runs format, lint, typecheck, context budget, unit, build, migrate, seed, integration and E2E.
 
 ## Scope
 
-Player: find Mira and the caravan through the world, investigate objects, contradictions,
-Orin, memory recall; battlefield combat with Fireball preview and Counterspell/Ignore;
-return to a changed Day 2; Chronicle with flashbacks. DM: add an NPC in natural language
-with preview/edit/confirm/cancel and safe undo; Player View; perform an NPC; run encounters;
-move time and weather; write Chronicle chapters.
+Player: the Russian Ravenford — find Mira and the caravan through the world, investigate objects,
+hypotheses and contradictions, talk with NPCs (live model or templates), Orin's recall, combat on
+a battle map with reactions, Day 2, the Chronicle with flashbacks, pictures of places and people.
+DM: invite players, add NPCs in words with a preview of who learns what, perform an NPC, act for
+an absent player, run encounters, move time and weather, write Chronicle chapters, request,
+approve and replace pictures, undo safely; a live session (both screens follow the world).
+
+## Verification on the candidate
+
+| What                                             | Result                                                                                                                              |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm validate` on `d41a3d7` (code of `145af62`) | unit 2904, integration 230, E2E 119 — pass                                                                                          |
+| `deploy/verify/ci.sh` on `d41a3d7`               | deployment check passed (TLS, headers, trust boundary, sign-in, images, browser journeys in Russian, backup, restore drill, alarms) |
+| Hosted CI on pull request 9                      | Validate and Deployment check — pass                                                                                                |
+| Gate 06 full-stack red team                      | PASS after remediation and retest (`reviews/ASTRA_GATE_06_REPORT.md`)                                                               |
+| AI stand-in pass on the deployed build           | done, a filter only (`reports/STAGE_360_PLAYTESTS.md`)                                                                              |
+| Human playtests                                  | **pending — the owner's**                                                                                                           |
 
 ## Known limitations
 
-- **Usability:** no human uncoached session (AI stand-in pass accepted by the owner); the
-  visual design is unfinished and unreviewed. Deferred findings: the authoring undo control
-  is lost on perspective change or reload (no history of past additions); the DM cannot skip
-  an absent player's turn; the "Advance to Day 2" label does not change after the day passes.
-- Development personas only; production authentication is undecided (prerequisites Q4).
-- No live AI runs; the offline interpreter understands few phrasings; scripted d20 in tests.
-- No live event subscription (explicit refresh); creature turns are DM-run; no opportunity
-  attacks or timed reaction expiry; single-process asset worker; placeholder images.
-- Authoring: NPC proposals only are editable in the form; an unfinished draft and the undo
-  control are lost on perspective change or reload.
-- Carried backend limits from the stage reports: no seasons; lexical Chronicle hedging;
-  heuristic memory suggestions; full replay per view.
-- Hosted CI runs on GitHub Actions since 2026-10-05. The first run failed at lint, out of
-  memory at the runner's 2 GB default heap; the lint script now sets a 4 GB heap, and the run
-  on `894ae25` passed every step, the 41 browser journeys included. The web bundle has no
-  production hosting.
+- Usability is not yet shown by people: the AI stand-in pass found friction (see its report);
+  the human sessions decide.
+- One player character in the campaign (Elowen): a session is a DM and one player.
+- Live AI needs the owner's key and stored ceilings; without them NPCs answer from templates.
+- Docker Desktop delivers every client from one address, so per-address limits are shared there;
+  on a Linux server clients keep their own addresses (RUNBOOK section 1).
+- A database seeded before Gate 06 must be reset to take the opaque IDs (RUNBOOK section 12).
+- Off-host backup copies are prepared but not configured (RUNBOOK section 10, owner's choice).
 
 ## Recovery
 
-- Reset the local database: `pnpm db:down`, remove the compose volume, `pnpm db:up`,
-  `pnpm db:migrate`, `pnpm seed:ravenford`. Migrations are append-only; seeds are idempotent.
-- A DM mistake: authoring commits undo as a unit when safe (named blockers otherwise);
-  `UndoCommand` reverses a player command. Canonical history is never edited in place.
-- A stuck encounter: the DM runs the suggested turn, closes the reaction window, or ends the
-  encounter. Stale browser state: **Refresh world** or **Leave session**.
+`deploy/RUNBOOK.md`: roll back (section 3), restore from a backup (section 5), revoke a user
+(section 6), stop all AI spending (section 7), stop image spending (section 8), logs and alarms
+(section 9). The event store is canonical; migrations are additive; a restore drill replays every
+campaign to the same digest.
 
-## Evidence and review mapping
+## Review mapping
 
-| Boundary                     | Independent review                               | Release-candidate relation                                                                              |
-| ---------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| Knowledge / memory / context | Gate 01 PASS; Gate 02 Retest 2 PASS (`reviews/`) | Reviewed code unchanged; new reads are additive with boundary tests                                     |
-| Reactions                    | Gate 03 Retest 4 PASS                            | Unchanged; UI consumes the existing window lifecycle (E2E stale/duplicate)                              |
-| AI authoring / NPC           | Gate 04 Retest 1 PASS                            | Unchanged; UI uses the same routes (E2E preview, stale, undo)                                           |
-| Full Ravenford red team      | Gate 05 Retest 2 PASS at reviewed `a85b6f8`      | Backend diff since is additive (session, sheet, surroundings reads); client not certified by Astra      |
-| Deterministic validation     | `pnpm validate`                                  | Exit 0 in a fresh clone; see the Stage 250 report                                                       |
-| Usability                    | none (no human session)                          | AI stand-in pass accepted by the owner (`reports/STAGE_240_USABILITY.md`); human sessions are Stage 360 |
-| Architecture decisions       | ADRs 0001–0030 (`docs/adr/README.md`)            | Stages 200–240: ADRs 0026–0030                                                                          |
+| Boundary                                                   | Review                                      |
+| ---------------------------------------------------------- | ------------------------------------------- |
+| Knowledge, memory, context                                 | Gates 01–02                                 |
+| Reactions                                                  | Gate 03                                     |
+| NPC isolation, AI authoring                                | Gate 04                                     |
+| Integrated backend                                         | Gate 05                                     |
+| Client, live session, live AI, images, sign-in, deployment | Gate 06 (`reviews/ASTRA_GATE_06_REPORT.md`) |
+| Architecture decisions                                     | ADRs 0001–0037 (`docs/adr/README.md`)       |
 
-## Before a VPS release (not done; deferred)
+## To release (after the owner's playtests)
 
-These items are now stages of the alpha phase in `EXECUTION_PLAN.md`: production
-authentication is Stage 340 and deployment is Stage 350, followed by Astra Gate 06 and the
-human playtests of Stage 360.
-
-- **Production authentication does not exist.** The server refuses `AUTH_MODE=dev-personas`
-  in production, so a VPS deployment cannot sign anyone in until the owner decides and builds
-  it (prerequisites Q4; ADR 0009).
-- Set `NODE_ENV=production`, `DATABASE_URL`, `HTTP_HOST`/`HTTP_PORT`; keep any AI key in the
-  environment only.
-- Serve `apps/web/build` as static files and reverse-proxy `/api` to the server over TLS.
-- Back up PostgreSQL (the event store is canonical); run `pnpm db:migrate` on upgrade.
-- Re-run the full validation on the final revision and record the release in
-  `reports/STAGE_250_RELEASE.md`.
+1. The owner's disposition of every playtest finding; bounded fixes with regression tests and
+   another session after a blocking fix (`work-orders/OPUS_STAGE_360.md`).
+2. Full validation on the final revision (`pnpm validate`, `deploy/verify/ci.sh`, hosted CI).
+3. The release identifier and tag (`v0.1.0`), the destination, and the record in
+   `reports/STAGE_250_RELEASE.md`.

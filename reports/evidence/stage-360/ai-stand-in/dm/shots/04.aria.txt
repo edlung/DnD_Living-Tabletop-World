@@ -1,0 +1,78 @@
+- link "Перейти к миру":
+  - /url: "#world-main"
+- banner:
+  - text: Живой настольный мир
+  - heading "Пропавший караван" [level=1]
+  - text: "Сессия 1: Прибытие в Равенфорд Обновления: На связи Вид"
+  - combobox "Вид":
+    - option "Мастер" [selected]
+    - option "Отряд"
+    - option "Публичный вид"
+    - option "Эловен Старвиспер"
+  - button "Обновить мир"
+  - button "Выйти"
+- main:
+  - region "Сцена":
+    - heading "Рыночная площадь" [level=2]
+    - group "Условия сцены": День 1 · 10:00 день
+    - region "За столом":
+      - paragraph: Мастер на связи
+      - list:
+        - listitem:
+          - button "Эловен Старвиспер · нет на связи"
+    - heading "В этой сцене" [level=3]
+    - list "Видимые объекты мира":
+      - listitem:
+        - button "Эловен Старвиспер":
+          - strong: Эловен Старвиспер
+          - text: персонаж жив
+      - listitem:
+        - button "Мира Вейл":
+          - strong: Мира Вейл
+          - text: НПС жив
+    - paragraph: Выберите человека или предмет, чтобы рассмотреть ближе. Условная расстановка — расстояния не показаны
+  - region "Игроки (мастер)":
+    - heading "Игроки (мастер)" [level=2]
+    - 'button "Закрыть: Игроки (мастер)"'
+    - region "Пригласить игрока":
+      - heading "Пригласить игрока" [level=3]
+      - paragraph: Ссылка-приглашение сажает одного игрока за свободного персонажа. Она срабатывает один раз.
+      - text: Персонаж
+      - combobox "Персонаж":
+        - option "Эловен Старвиспер" [selected]
+      - text: Ссылка истекает через
+      - combobox "Ссылка истекает через":
+        - option "1 день"
+        - option "3 дня" [selected]
+        - option "7 дней"
+      - button "Создать ссылку-приглашение"
+    - region "Игроки за столом":
+      - heading "Игроки за столом" [level=3]
+      - paragraph: Пока никто не присоединился.
+    - region "Открытые приглашения":
+      - heading "Открытые приглашения" [level=3]
+      - paragraph: Нет приглашений, ожидающих использования.
+      - group: "Использованные, отозванные и истёкшие: 1"
+  - navigation "Инструменты мира":
+    - list:
+      - listitem:
+        - button "Сцена"
+      - listitem:
+        - button "Места"
+      - listitem:
+        - button "Журнал"
+      - listitem:
+        - button "Хроника"
+    - list "Инструменты мастера":
+      - listitem:
+        - button "Добавить в мир"
+      - listitem:
+        - button "Схватка"
+      - listitem:
+        - button "Время и погода"
+      - listitem:
+        - button "История"
+      - listitem:
+        - button "Изображения"
+      - listitem:
+        - button "Игроки" [expanded]
