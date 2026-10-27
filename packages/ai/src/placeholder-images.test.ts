@@ -72,6 +72,23 @@ describe('the placeholder image generator', () => {
     ).toBe(svg);
   });
 
+  it('draws nothing of the label, so its bytes never tell a player the state (Gate 06)', () => {
+    // G06-images-02: the frame was hued from the label, and a player brute-forced `dead` from it.
+    const variant = (label: string) =>
+      placeholderSvg(brief({ variant: 'derived', label, basedOn: 'sha256:00' }));
+    const dead = variant('dead');
+    for (const label of ['night', 'unconscious', 'wounded', 'rain-night', 'SECRETLABEL']) {
+      expect(variant(label)).toBe(dead);
+    }
+    expect(dead).not.toContain('dead');
+    // The frame still differs between requests: it follows the seed.
+    expect(
+      placeholderSvg(
+        brief({ seed: 'authoring.p1#1', variant: 'derived', label: 'dead', basedOn: 'sha256:00' }),
+      ).match(/stroke="[^"]+"/)?.[0],
+    ).not.toBe(dead.match(/stroke="[^"]+"/)?.[0]);
+  });
+
   it('reports failures by code', () => {
     expect(imageFailureCode(new ImageGenerationError('REFUSED', 'no'))).toBe('REFUSED');
     expect(imageFailureCode(new Error('boom'))).toBe('PROVIDER_ERROR');

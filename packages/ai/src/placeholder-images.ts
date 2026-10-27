@@ -2,9 +2,11 @@ import type { GeneratedImage, ImageBrief, ImageGenerator } from './images.ts';
 
 /**
  * The local placeholder generator (owner decision, ADR 0022 §3): a
- * deterministic SVG pattern from the brief's seed, label, and base, with no
- * external call. It draws no text and reads no name or description, so an
- * image can never tell a player what its entity is called.
+ * deterministic SVG pattern from the brief's seed (the request ID) and base
+ * (the reference's content hash), with no external call. It draws no text and
+ * reads no name, description, note, or label, so an image can never tell a
+ * player what its entity is called or which state it shows (Gate 06,
+ * G06-images-02: a frame hued from the label let a player recover it).
  */
 export const PLACEHOLDER_MODEL = 'placeholder-svg-1';
 
@@ -25,7 +27,8 @@ function words(text: string, count: number): number[] {
 }
 
 export function placeholderSvg(brief: ImageBrief): string {
-  const [hue = 0, accent = 0, ...bits] = words(`${brief.seed}|${brief.basedOn ?? ''}`, 2 + SIZE);
+  const pattern = `${brief.seed}|${brief.basedOn ?? ''}`;
+  const [hue = 0, accent = 0, ...bits] = words(pattern, 2 + SIZE);
   const base = hue % 360;
   const cells: string[] = [];
   // A left-right mirrored grid, like an identicon.
@@ -42,8 +45,8 @@ export function placeholderSvg(brief: ImageBrief): string {
       }
     }
   }
-  const frameHue = (words(brief.label ?? '', 1)[0] ?? 0) % 360;
-  // A derived variant is framed in a hue of its label.
+  const frameHue = (words(`frame|${pattern}`, 1)[0] ?? 0) % 360;
+  // A derived variant is framed, in a hue of its seed: never of its label (Gate 06).
   const frame =
     brief.variant === 'derived'
       ? `<rect x="6" y="6" width="244" height="244" fill="none" stroke="hsl(${String(frameHue)} 70% 50%)" stroke-width="12"/>`
