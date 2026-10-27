@@ -53,7 +53,12 @@ tls() {
   openssl s_client "$@" -connect "127.0.0.1:$https_port" -servername "$host" \
     -CAfile "$work/ca.crt" </dev/null 2>&1 || true
 }
-tls13() { tls -tls1_3 | grep -q 'Protocol: TLSv1.3'; }
+# OpenSSL 3.0 (the hosted runner's) prints `Protocol  : TLSv1.3`; 3.2 and later `Protocol: TLSv1.3`;
+# every version names the protocol on its `New, TLSv1.3, Cipher is …` line.
+tls13() {
+  tls -tls1_3 >"$work/tls13.txt"
+  grep -Eq '^(New, TLSv1\.3, Cipher is |Protocol *: TLSv1\.3$)' "$work/tls13.txt"
+}
 redirects() {
   curl_local --output /dev/null --write-out '%{http_code} %{redirect_url}' \
     "http://$host:$http_port/" | grep -q "^308 https://$host/"
@@ -62,6 +67,8 @@ redirects() {
 say "HTTPS at $origin (Caddy's local CA)"
 check 'TLS verifies against the local CA' fetch page /
 check 'TLS 1.3 negotiated' tls13
+tls13 2>/dev/null ||
+  { grep -E 'Protocol|^New,|error|alert|errno' "$work/tls13.txt" || true; } | sed 's/^/      /' >&2
 # The client offers TLS 1.1 (its own security level lowered); the server must refuse it.
 old_tls=$(tls -tls1_1 -cipher 'DEFAULT:@SECLEVEL=0')
 refuses_old_tls() { grep -q 'alert protocol version' <<<"$old_tls"; }
