@@ -85,6 +85,14 @@
     border-bottom: 1px solid var(--line);
     border-bottom-left-radius: var(--radius-panel);
   }
+  /*
+   * Stage 360: a conversation beside the open drawer keeps to the stage's free width (it ran under
+   * the drawer, which hid its choices and its close button).
+   */
+  .world-main.has-details .dialogue-panel {
+    left: 16px;
+    width: calc(100% - min(var(--panel-w), 92vw) - 32px);
+  }
   /* With the selection's drawer open the result centres on the stage left of it. */
   .world-main.has-details .outcome {
     left: calc((100% - min(var(--panel-w), 92vw)) / 2);

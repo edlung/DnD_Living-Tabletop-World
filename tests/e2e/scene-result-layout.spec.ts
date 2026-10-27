@@ -159,3 +159,31 @@ for (const width of [768, 1024]) {
     expect((outcome?.y ?? 0) + (outcome?.height ?? 0)).toBeLessThanOrEqual(dock?.y ?? 0);
   });
 }
+
+for (const width of [768, 1024]) {
+  test(`a conversation beside the open drawer keeps every choice reachable at ${String(width)} px (Stage 360)`, async ({
+    browser,
+  }) => {
+    // The conversation once ran under the tablet drawer: its choices and close button were hidden.
+    const page = await browser.newPage({ viewport: { width, height: 1024 } });
+    await enterWorld(page);
+    await page.getByRole('button', { name: 'Mira Vale', exact: true }).click();
+    await page
+      .getByRole('complementary', { name: 'Entity details' })
+      .getByRole('button', { name: 'Talk', exact: true })
+      .click();
+    const conversation = page.getByRole('region', { name: 'Conversation with Mira Vale' });
+    await expect(conversation).toBeVisible();
+    await expect(page.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
+    const hidden = await conversation.locator('button').evaluateAll((buttons) =>
+      buttons
+        .filter((button) => {
+          const box = button.getBoundingClientRect();
+          const hit = document.elementFromPoint(box.right - 6, box.y + box.height / 2);
+          return !button.contains(hit);
+        })
+        .map((button) => button.getAttribute('aria-label') ?? button.textContent.trim()),
+    );
+    expect(hidden).toEqual([]);
+  });
+}
