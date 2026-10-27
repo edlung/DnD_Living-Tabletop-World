@@ -95,7 +95,7 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   // No creature's initiative or armour class reached her; only her own sheet carries hers.
   await traffic.assertPlayerBoundary(
     ['"initiative"', '"armorClass"'],
-    ['"abandoned-caravan-site"'],
+    ['"location-f3b82c8b"'],
     ['/entities/elowen-starwhisper/sheet'],
   );
 });

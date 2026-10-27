@@ -56,7 +56,7 @@ const SCENARIOS: readonly Scenario[] = [
 ];
 const INTENTS: readonly DialogueIntent[] = [
   { kind: 'talk' },
-  { kind: 'ask', topicId: 'strange-symbol' },
+  { kind: 'ask', topicId: 'feature-19c7c7f7' },
   { kind: 'ask', topicId: 'guild-caravan' },
   { kind: 'show', knowledgeId: 'nb-iso-symbol' },
   { kind: 'insight', topicId: 'old-trade-road' },
@@ -91,7 +91,7 @@ async function run(npcId: Npc, scenario: Scenario) {
       scope: { kind: 'PARTY' },
       knowledgeType: 'EVIDENCE',
       statement: 'A strange symbol is burned into a wagon plank.',
-      subjects: ['strange-symbol'],
+      subjects: ['feature-19c7c7f7'],
       knownSince: null,
     },
     DM,

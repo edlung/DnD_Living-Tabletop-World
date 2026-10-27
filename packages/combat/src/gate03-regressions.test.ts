@@ -202,7 +202,7 @@ describe('G03-H02 missed_attack_blocks_undo_of_target_defense', () => {
     const death = await world.dm({ type: 'ChangeEntityStatus', entityId: SHAMAN, status: 'dead' });
     const ended = await world.submit({ type: 'EndTurn', combatantId: ELOWEN });
     expect(ended.status === 'accepted' && ended.outcome).toMatchObject({
-      nextCombatantId: 'goblin-raider-1',
+      nextCombatantId: 'creature-10fb59d4',
     });
     await expectUnsafe(world, death, ended);
     await verifyHistory(world);

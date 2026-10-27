@@ -9,6 +9,7 @@ import {
   imagesRegion,
   playerFetch,
   playerPresentation,
+  TOMAS,
 } from './support/images.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
@@ -64,11 +65,11 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
     .getByRole('button', { name: 'Generate again: Main picture', exact: true })
     .click();
   await expect(candidates).toHaveCount(2);
-  const [first, second] = await assetsOf(dm, campaign, 'tomas-reed', 'CANDIDATE');
+  const [first, second] = await assetsOf(dm, campaign, TOMAS, 'CANDIDATE');
   if (!first || !second) throw new Error('two candidates expected');
   await expect(candidates.nth(1)).toContainText('Your note to the image model');
   // The player sees no candidate: not in the presentation, not even its bytes by hash.
-  expect((await playerPresentation(player, campaign, 'tomas-reed')).image).toBeNull();
+  expect((await playerPresentation(player, campaign, TOMAS)).image).toBeNull();
   expect(await playerFetch(player, campaign, first.contentHash)).toBe(404);
   expect(await playerFetch(player, campaign, second.contentHash)).toBe(404);
   await expect(seen.locator('img[src^="blob:"]')).toHaveCount(0);
@@ -88,7 +89,7 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
   await expect(images.locator('.image-card--approved')).toHaveCount(1);
   // The player's screen follows at once and shows exactly the approved picture.
   await expectServedPicture(seen.locator('.medallion-face img'));
-  expect((await playerPresentation(player, campaign, 'tomas-reed')).image?.contentHash).toBe(
+  expect((await playerPresentation(player, campaign, TOMAS)).image?.contentHash).toBe(
     second.contentHash,
   );
   expect(await playerFetch(player, campaign, second.contentHash)).toBe(200);
@@ -105,9 +106,9 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
   await expect(images.getByLabel('What to make', { exact: true })).toBeFocused();
   await images.getByRole('button', { name: 'Request picture', exact: true }).click();
   await expect(candidates).toHaveCount(1);
-  const [third] = await assetsOf(dm, campaign, 'tomas-reed', 'CANDIDATE');
+  const [third] = await assetsOf(dm, campaign, TOMAS, 'CANDIDATE');
   if (!third) throw new Error('a replacement candidate expected');
-  expect((await playerPresentation(player, campaign, 'tomas-reed')).image?.contentHash).toBe(
+  expect((await playerPresentation(player, campaign, TOMAS)).image?.contentHash).toBe(
     second.contentHash,
   );
   await expect(candidates.first()).toContainText(
@@ -116,13 +117,13 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
   await images.getByRole('button', { name: 'Approve: Main picture', exact: true }).click();
   await expect(images.locator('.image-card--approved')).toHaveCount(1);
   await expect
-    .poll(async () => (await playerPresentation(player, campaign, 'tomas-reed')).image?.contentHash)
+    .poll(async () => (await playerPresentation(player, campaign, TOMAS)).image?.contentHash)
     .toBe(third.contentHash);
   await expect(seen.locator('.medallion-face img')).not.toHaveAttribute('src', shownBefore ?? '');
   await expectServedPicture(seen.locator('.medallion-face img'));
-  expect(
-    (await assetsOf(dm, campaign, 'tomas-reed', 'SUPERSEDED')).map((asset) => asset.assetId),
-  ).toEqual([second.assetId]);
+  expect((await assetsOf(dm, campaign, TOMAS, 'SUPERSEDED')).map((asset) => asset.assetId)).toEqual(
+    [second.assetId],
+  );
 
   // With a main picture approved, a figure can be asked for; approved, Tomas stands in the scene.
   await images.getByLabel('What to make', { exact: true }).selectOption('figure');
@@ -134,10 +135,10 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
     .getByRole('button', { name: 'Approve: Figure for the battlefield', exact: true })
     .click();
   await expectServedPicture(seen.locator('.miniature-art'));
-  expect((await playerPresentation(player, campaign, 'tomas-reed')).figure?.purpose).toBe('figure');
+  expect((await playerPresentation(player, campaign, TOMAS)).figure?.purpose).toBe('figure');
 
   // Nothing the player received over the network ever named the discarded candidate.
-  await received.assertPlayerBoundary([first.contentHash, first.assetId, 'tomas-reed#']);
+  await received.assertPlayerBoundary([first.contentHash, first.assetId, `${TOMAS}#`]);
   await expect(player.locator('nav.dock').getByRole('button', { name: 'Images' })).toHaveCount(0);
 });
 
@@ -204,7 +205,7 @@ test('a Russian DM approves Tomas’s picture in Russian, and the player sees it
     'Генератор-заглушка (для тестов и работы без сети)',
   );
   await expectNoEnglish(images, 'Russian image controls with a candidate');
-  expect((await playerPresentation(player, campaign, 'tomas-reed')).image).toBeNull();
+  expect((await playerPresentation(player, campaign, TOMAS)).image).toBeNull();
   await images.getByRole('button', { name: 'Одобрить: Основное изображение', exact: true }).click();
   await expect(images.getByRole('status')).toHaveText(
     'Одобрено: Основное изображение. Теперь это изображение видят игроки, которые видят «Томас Рид».',

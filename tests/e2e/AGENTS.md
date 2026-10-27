@@ -166,7 +166,8 @@ application on 4313.
   commands approved by the DM, into the campaigns of `apps/server/src/testing/ui-image-campaigns.ts`
   (`ravenford`, `ui-combat` and every Russian campaign); every other campaign has no images, so
   the neutral fallback stays covered. No external image provider runs.
-- Stage 330 part B journeys own the campaigns of `fixtures/image-campaigns.json`, prepared by
+- Stage 330 part B journeys own the campaigns of `fixtures/image-campaigns.json` (Tomas, whom the
+  player meets unnamed, has the opaque ID of `fixtures/image-entities.json`; ADR 0008), prepared by
   `apps/server/src/testing/ui-image-journeys.ts` (each in English and Russian): `site` (Elowen at
   the Abandoned Caravan Site among the objects), `battle` (the ambush on Elowen's turn), `review`
   (curated candidates not yet approved, a request waiting, one being generated, one failed; no

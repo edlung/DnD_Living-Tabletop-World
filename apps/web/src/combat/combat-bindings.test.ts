@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { combatCommandFor, ignoreReaction } from './combat-bindings.ts';
 
 const actor = 'elowen-starwhisper';
-const target = { entityId: 'goblin-raider-1', position: { x: 8, y: 4 } };
+const target = { entityId: 'creature-10fb59d4', position: { x: 8, y: 4 } };
 const action = (id: ContextAction['id'], extra: Partial<ContextAction> = {}): ContextAction => ({
   id,
   legal: true,
@@ -23,7 +23,7 @@ const encounter = (window: boolean): EncounterView => ({
         windowId: 'w1',
         trigger: {
           kind: 'spell',
-          caster: { entityId: 'goblin-raider-1', kind: 'creature', name: null },
+          caster: { entityId: 'creature-10fb59d4', kind: 'creature', name: null },
           components: ['V', 'S'],
         },
         candidates: [{ entityId: actor, response: 'pending' }],
@@ -39,7 +39,7 @@ describe('combat option bindings', () => {
       type: 'Attack',
       combatantId: actor,
       attackId: 'longbow',
-      targetId: 'goblin-raider-1',
+      targetId: 'creature-10fb59d4',
     });
     expect(kernelCommandSchema.safeParse(command).success).toBe(true);
   });

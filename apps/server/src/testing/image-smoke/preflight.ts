@@ -1,5 +1,6 @@
 import type {
   AssetLineageResponse,
+  KnownEntitiesResponse,
   Language,
   ScenePresentationResponse,
   SessionResponse,
@@ -18,13 +19,27 @@ import { SmokeRefusal, campaignPath, codeOf, expectStatus, type SmokeContext } f
  * stands at the North Gate, where Tomas Reed is, so the player can see him at all. A precondition
  * that does not hold is a refusal before anything that could cost money.
  */
-export const TOMAS = 'tomas-reed';
 export const NORTH_GATE = 'north-gate';
+/** Tomas Reed's names; his ID is whatever the server gave him (ADR 0008, Gate 06 remediation). */
+export const TOMAS_NAMES: ReadonlySet<string> = new Set(['Tomas Reed', 'Томас Рид']);
+
+/** Tomas Reed's ID in the campaign, by his name in the DM's directory; null when he is not there. */
+export async function findTomas(context: SmokeContext): Promise<string | null> {
+  const { entities } = await expectStatus<KnownEntitiesResponse>(
+    context.client.get('dm', campaignPath(context, '/entities?perspective=DM')),
+    200,
+    "DM's directory",
+  );
+  const found = entities.filter((entity) => entity.kind === 'npc' && TOMAS_NAMES.has(entity.name));
+  if (found.length > 1) throw new SmokeRefusal('the campaign has more than one Tomas Reed');
+  return found[0]?.entityId ?? null;
+}
 
 export interface Preflight {
   readonly language: Language;
   readonly characterId: string;
-  readonly tomasExists: boolean;
+  /** Tomas's ID when he exists; null: the smoke authors him. */
+  readonly tomasId: string | null;
   readonly budgetBefore: ImageBudgetStatus;
 }
 
@@ -112,25 +127,25 @@ export async function preflight(context: SmokeContext): Promise<Preflight> {
     }
   }
 
-  const tomas = await client.get(
-    'dm',
-    campaignPath(context, `/entities/${TOMAS}/presentation?perspective=DM`),
-  );
-  // 404: no Tomas yet, the smoke authors him; anything else but 200 is a broken server.
-  const tomasExists = tomas.status !== 404;
-  if (tomasExists) {
-    await expectStatus(tomas, 200, 'DM presentation of Tomas');
+  // No Tomas yet: the smoke authors him.
+  const tomasId = await findTomas(context);
+  if (tomasId !== null) {
+    await expectStatus(
+      client.get('dm', campaignPath(context, `/entities/${tomasId}/presentation?perspective=DM`)),
+      200,
+      'DM presentation of Tomas',
+    );
     const gate = await expectStatus<ScenePresentationResponse>(
       client.get('dm', campaignPath(context, `/locations/${NORTH_GATE}/scene?perspective=DM`)),
       200,
       'DM scene of the North Gate',
     );
-    if (!gate.present.some((entity) => entity.entityId === TOMAS)) {
+    if (!gate.present.some((entity) => entity.entityId === tomasId)) {
       throw new SmokeRefusal('Tomas Reed exists but is not at the North Gate');
     }
   }
   await bringCharacterToNorthGate(context, playerSession.character.entityId);
-  return { language, characterId: playerSession.character.entityId, tomasExists, budgetBefore };
+  return { language, characterId: playerSession.character.entityId, tomasId, budgetBefore };
 }
 
 /** The player moves their character to the North Gate unless it already stands there. */

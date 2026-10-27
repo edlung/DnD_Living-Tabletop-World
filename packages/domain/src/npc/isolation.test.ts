@@ -30,9 +30,12 @@ import {
  * allows it. Each line comes from the NPC's own records or memories, or
  * PUBLIC ones. Sayable markers prove the check is not vacuous.
  */
-const EVIDENCE = { 'strange-symbol': 'nb-show-symbol', 'old-trade-road': 'nb-show-road' } as const;
-const SHOWN = [null, 'strange-symbol', 'old-trade-road'] as const;
-const TOPICS = [null, 'strange-symbol', 'guild-caravan', 'old-trade-road', 'captain-thorne'];
+const EVIDENCE = {
+  'feature-19c7c7f7': 'nb-show-symbol',
+  'old-trade-road': 'nb-show-road',
+} as const;
+const SHOWN = [null, 'feature-19c7c7f7', 'old-trade-road'] as const;
+const TOPICS = [null, 'feature-19c7c7f7', 'guild-caravan', 'old-trade-road', 'captain-thorne'];
 
 async function scene(npcId: BoundaryNpc, attitude: string, shown: (typeof SHOWN)[number]) {
   const world = await boundaryWorld();

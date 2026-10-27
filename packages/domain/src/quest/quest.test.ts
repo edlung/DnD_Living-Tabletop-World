@@ -59,12 +59,12 @@ describe('the Missing Caravan', () => {
     const entered = await world.as(PLAYER, {
       type: 'EnterLocation',
       characterId: ELOWEN,
-      locationId: 'abandoned-caravan-site',
+      locationId: 'location-f3b82c8b',
     });
     await world.as(PLAYER, {
       type: 'ExamineEntity',
       characterId: ELOWEN,
-      entityId: 'strange-symbol',
+      entityId: 'feature-19c7c7f7',
       method: 'inspect',
     });
     expect(stages(await questOf(world))).toEqual([

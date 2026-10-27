@@ -17,6 +17,7 @@ import {
   ravenfordApp,
   seededEngine,
 } from '../testing/ravenford-app.ts';
+import { createdEntityId } from '../testing/scenario/play-day-one.ts';
 
 /**
  * The DM acceptance flow of RAVENFORD_SPEC.md over HTTP (docs/adr/0018-ai-authoring.md):
@@ -70,6 +71,11 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
   it('goes from words to a confirmed, auditable commit, and back by undo', async () => {
     const first = await proposeTomas();
     expect(first.proposal).toMatchObject({ revision: 1, status: 'DRAFT', source: { kind: 'ai' } });
+    // The model called him "tomas-reed"; the server's opaque ID replaced it in every command
+    // (ADR 0008, Gate 06 remediation).
+    const tomas = createdEntityId(first.proposal.commands);
+    expect(tomas).not.toMatch(/tomas|reed/);
+    expect(JSON.stringify(first.proposal.commands)).not.toContain('tomas-reed');
     expect(first.preview).toMatchObject({
       committable: true,
       issues: [],
@@ -105,7 +111,7 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
     expect(await version()).toBe(before);
 
     // Nothing reaches players before the commit.
-    expect(JSON.stringify(await partyKnowledge())).not.toContain('tomas-reed');
+    expect(JSON.stringify(await partyKnowledge())).not.toContain(tomas);
 
     const committed = await post(app, `${at}/commit`, { revision: 2, confirmation }, TOKENS.dm);
     expect(committed.statusCode).toBe(200);
@@ -127,7 +133,7 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
     ]);
 
     // Tomas is native to the world; players learn his account only by asking him.
-    expect(JSON.stringify(await partyKnowledge())).not.toContain('tomas-reed');
+    expect(JSON.stringify(await partyKnowledge())).not.toContain(tomas);
     const enter = {
       type: 'EnterLocation',
       characterId: 'elowen-starwhisper',
@@ -136,7 +142,7 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
     const ask = {
       type: 'AskAbout',
       characterId: 'elowen-starwhisper',
-      npcId: 'tomas-reed',
+      npcId: tomas,
       topicId: 'guild-caravan',
     };
     for (const [commandId, command] of [
@@ -151,9 +157,7 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
       );
       expect(result.statusCode).toBe(200);
     }
-    const told = (await partyKnowledge()).filter(
-      (view) => view.attributedTo?.entityId === 'tomas-reed',
-    );
+    const told = (await partyKnowledge()).filter((view) => view.attributedTo?.entityId === tomas);
     expect(told).toEqual([
       expect.objectContaining({
         knowledgeType: 'TESTIMONY',
@@ -185,9 +189,9 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
       status: 'UNDONE',
       commit: { undoneBy: `authoring.${proposalId}.undo` },
     });
-    expect(
-      (await partyKnowledge()).some((view) => view.attributedTo?.entityId === 'tomas-reed'),
-    ).toBe(false);
+    expect((await partyKnowledge()).some((view) => view.attributedTo?.entityId === tomas)).toBe(
+      false,
+    );
   });
 
   it('never shows players a secret through the preview or the proposal', async () => {

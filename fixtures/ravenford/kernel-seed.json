@@ -68,7 +68,7 @@
     },
     {
       "type": "CreateEntity",
-      "entityId": "abandoned-caravan-site",
+      "entityId": "location-f3b82c8b",
       "kind": "location",
       "name": "Abandoned Caravan Site",
       "existsSince": null,

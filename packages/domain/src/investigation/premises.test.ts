@@ -241,13 +241,13 @@ describe('every player command records what made it legal', () => {
           scope: { kind: 'PARTY' },
           knowledgeType: 'RUMOR',
           statement: 'A clearing by the road.',
-          subjects: ['abandoned-caravan-site'],
+          subjects: ['location-f3b82c8b'],
           knownSince: null,
         },
         DM,
       ),
     );
-    accepted(await world.submit(enter('abandoned-caravan-site')));
+    accepted(await world.submit(enter('location-f3b82c8b')));
     expect(codeOf(await world.submit(undo(extra), DM))).toBe('accepted');
   });
 });

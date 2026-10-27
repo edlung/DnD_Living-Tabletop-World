@@ -14,14 +14,14 @@ const commandIdOf = (result: CommandResult) => {
 
 async function examinedWeapon() {
   const world = await investigationWorld();
-  for (const locationId of ['old-trade-road', 'abandoned-caravan-site']) {
+  for (const locationId of ['old-trade-road', 'location-f3b82c8b']) {
     await world.submit({ type: 'EnterLocation', characterId: ELOWEN, locationId });
   }
   world.roll(12);
   const examined = await world.submit({
     type: 'ExamineEntity',
     characterId: ELOWEN,
-    entityId: 'goblin-weapon',
+    entityId: 'item-0869f47a',
     method: 'investigation',
   });
   return { world, examinedId: commandIdOf(examined) };
@@ -126,7 +126,7 @@ describe('replay', () => {
       command: {
         type: 'ExamineEntity',
         characterId: ELOWEN,
-        entityId: 'goblin-weapon',
+        entityId: 'item-0869f47a',
         method: 'investigation',
       },
     });

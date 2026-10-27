@@ -25,7 +25,7 @@ import { BASE, ELOWEN, type RavenfordSession } from './session.ts';
  * the order is Elowen, the Raiders, then the Shaman.
  */
 export const CHAPTER_TITLE = EN_SCRIPT.chapterTitle;
-const RAIDERS = ['goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3'];
+const RAIDERS = ['creature-10fb59d4', 'creature-589f6668', 'creature-6513bec0'];
 
 export interface Road {
   readonly raiderContext: EntityContextResponse;
@@ -70,21 +70,21 @@ export async function ambushUntilTheHex(session: RavenfordSession): Promise<{
   for (const place of ambush.place) await session.dm(place);
   await session.dm(ambush.startCombat);
   ok(await session.get('player', `${BASE}/encounter?perspective=PLAYER`));
-  const raiderContext = await contextOf(session, 'goblin-raider-1');
+  const raiderContext = await contextOf(session, 'creature-10fb59d4');
 
   // Round 1: a Longbow shot at the Shaman (cover, damage, Slowed); the Raiders wait.
   const attack = await session.command('player', {
     type: 'Attack',
     combatantId: ELOWEN,
     attackId: 'longbow',
-    targetId: 'goblin-shaman',
+    targetId: 'creature-ae08be99',
   });
   await session.command('player', { type: 'EndTurn', combatantId: ELOWEN });
   for (const raider of RAIDERS) await session.dm({ type: 'EndTurn', combatantId: raider });
   // The Shaman casts at Elowen, which opens a Counterspell window for her.
   await session.dm({
     type: 'CastSpell',
-    combatantId: 'goblin-shaman',
+    combatantId: 'creature-ae08be99',
     spellId: 'binding-hex',
     targetId: ELOWEN,
   });
@@ -107,7 +107,7 @@ export async function playRoad(session: RavenfordSession): Promise<Road> {
     { type: 'UseReaction', combatantId: ELOWEN, windowId, reaction: 'counterspell' },
     422,
   );
-  await session.dm({ type: 'EndTurn', combatantId: 'goblin-shaman' });
+  await session.dm({ type: 'EndTurn', combatantId: 'creature-ae08be99' });
 
   // Round 2: Fireball on the ambushers ends the fight.
   const fireball = await session.command('player', {

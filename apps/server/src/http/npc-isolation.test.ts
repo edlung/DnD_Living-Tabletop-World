@@ -36,7 +36,7 @@ const LINES = [
 ];
 const INTENTS = [
   { kind: 'talk' },
-  { kind: 'ask', topicId: 'strange-symbol' },
+  { kind: 'ask', topicId: 'feature-19c7c7f7' },
   { kind: 'ask', topicId: 'guild-caravan' },
   { kind: 'insight', topicId: 'old-trade-road' },
   { kind: 'show', knowledgeId: 'party-symbol-evidence' },
@@ -62,7 +62,7 @@ describe('a player cannot make an NPC reveal what it was never given', () => {
             scope: { kind: 'PARTY' },
             knowledgeType: 'EVIDENCE',
             statement: 'A strange symbol is burned into a wagon plank.',
-            subjects: ['strange-symbol'],
+            subjects: ['feature-19c7c7f7'],
             knownSince: null,
           },
           { type: 'EnterLocation', characterId: ELOWEN, locationId: PLACES[npcId] },

@@ -22,6 +22,7 @@ import {
   type WorldEngine,
 } from '@ltw/domain';
 
+import { withOpaqueEntityIds } from './opaque-ids.ts';
 import {
   ProposalConflictError,
   type ProposalRevision,
@@ -94,7 +95,8 @@ export class AuthoringService {
       content = {
         summary: trace.proposal.summary,
         source: { kind: 'ai', traceId: trace.traceId },
-        commands: trace.proposal.commands,
+        // What the proposal creates gets server IDs, never the model's (ADR 0008, Gate 06).
+        commands: withOpaqueEntityIds(trace.proposal.commands, () => this.#deps.ids.next()),
       };
     } else {
       content = { summary: request.summary, source: { kind: 'dm' }, commands: request.commands };

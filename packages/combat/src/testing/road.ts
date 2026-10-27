@@ -33,10 +33,10 @@ export const CAMPAIGN = 'ravenford';
 export const DM: Actor = { actorId: 'dm-ravenford', kind: 'user' };
 export const PLAYER: Actor = { actorId: 'player-elowen', kind: 'user' };
 export const ELOWEN = 'elowen-starwhisper';
-export const RAIDER_1 = 'goblin-raider-1';
-export const RAIDER_2 = 'goblin-raider-2';
-export const RAIDER_3 = 'goblin-raider-3';
-export const SHAMAN = 'goblin-shaman';
+export const RAIDER_1 = 'creature-10fb59d4';
+export const RAIDER_2 = 'creature-589f6668';
+export const RAIDER_3 = 'creature-6513bec0';
+export const SHAMAN = 'creature-ae08be99';
 export const AMBUSH = ambush;
 
 const MIDDLE = 2 ** 31;

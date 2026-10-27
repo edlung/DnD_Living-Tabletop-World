@@ -72,7 +72,7 @@ describe('what cannot be learned by asking', () => {
   it('refuses topics the character does not know exactly like nonexistent ones', async () => {
     const world = await investigationWorld();
     const results = [
-      await world.submit(ask('mira-vale', 'strange-symbol')),
+      await world.submit(ask('mira-vale', 'feature-19c7c7f7')),
       await world.submit(ask('mira-vale', '3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53')),
       await world.submit(ask('mira-vale', 'no-such-entity')),
       await world.submit(ask('no-such-npc', 'guild-caravan')),
@@ -104,11 +104,13 @@ describe('what cannot be learned by asking', () => {
         scope: { kind: 'PARTY' },
         knowledgeType: 'RUMOR',
         statement: 'A symbol was seen.',
-        subjects: ['strange-symbol'],
+        subjects: ['feature-19c7c7f7'],
         knownSince: null,
       },
       DM,
     );
-    expect(codeOf(await world.submit(ask('orin-stonebeard', 'strange-symbol')))).toBe('NO_EFFECT');
+    expect(codeOf(await world.submit(ask('orin-stonebeard', 'feature-19c7c7f7')))).toBe(
+      'NO_EFFECT',
+    );
   });
 });

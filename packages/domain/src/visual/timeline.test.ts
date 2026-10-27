@@ -38,7 +38,7 @@ describe('weather at a world time', () => {
     expect(day2.weatherOf('north-gate')).toBe('fog');
     expect(day1.weatherOf('north-gate')).toBe('clear');
     // The Old Trade Road lies outside Ravenford: nobody set its weather.
-    expect(day2.weatherOf('abandoned-caravan-site')).toBeNull();
+    expect(day2.weatherOf('location-f3b82c8b')).toBeNull();
   });
 
   it('forgets undone weather', async () => {

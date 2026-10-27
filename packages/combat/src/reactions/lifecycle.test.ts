@@ -60,8 +60,8 @@ describe('opening a window', () => {
     // Traceability: why every other combatant could not react.
     expect(window(state, windowId)?.ineligible).toEqual([
       { entityId: RAIDER_1, reason: 'NOT_KNOWN' },
-      { entityId: 'goblin-raider-2', reason: 'NOT_KNOWN' },
-      { entityId: 'goblin-raider-3', reason: 'NOT_KNOWN' },
+      { entityId: 'creature-589f6668', reason: 'NOT_KNOWN' },
+      { entityId: 'creature-6513bec0', reason: 'NOT_KNOWN' },
     ]);
     expect(state.characterSheets.get(ELOWEN)).toEqual(before.characterSheets.get(ELOWEN));
     expect(state.encounter?.combatants.find((c) => c.entityId === SHAMAN)?.turn.actionUsed).toBe(

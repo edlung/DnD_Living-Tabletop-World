@@ -153,7 +153,7 @@ describe('the DM authors Tomas Reed', () => {
     const lineage = (await session.get('dm', `${BASE}/assets`)).json<{
       canonical: { entityId: string }[];
     }>();
-    expect(lineage.canonical.map((c) => c.entityId)).toContain('tomas-reed');
+    expect(lineage.canonical.map((c) => c.entityId)).toContain(one.tomasId);
   });
 
   it('puts Tomas in the world as a native NPC the player meets and hears', () => {
@@ -167,6 +167,11 @@ describe('the DM authors Tomas Reed', () => {
     const seen = session.exchanges.filter((e) => e.persona === 'player' && e.phase === 'authoring');
     for (const exchange of seen)
       expect(exchange.body).not.toMatch(/authoring|proposal|AI-generated/i);
+    // The server named him, not the model (ADR 0008, Gate 06 remediation): no player body
+    // carries the model's ID.
+    expect(one.tomasId).not.toMatch(/tomas/i);
+    for (const exchange of session.exchanges.filter((e) => e.persona === 'player'))
+      expect(exchange.body).not.toContain('tomas-reed');
   });
 
   it('lets the DM perform Tomas from his own scoped context, traced for the DM alone', async () => {
@@ -178,7 +183,7 @@ describe('the DM authors Tomas Reed', () => {
       'dm',
       `${BASE}/ai/traces/${one.performed.reply?.traceId ?? ''}`,
     );
-    expect(trace.json<{ scope: string }>().scope).toBe('NPC:tomas-reed');
+    expect(trace.json<{ scope: string }>().scope).toBe(`NPC:${one.tomasId}`);
     expect(
       (await session.get('player', `${BASE}/ai/traces/${one.performed.reply?.traceId ?? ''}`))
         .status,
@@ -203,7 +208,7 @@ describe('the Old Trade Road ambush', () => {
     });
     expect(
       (await eventsOf('ConditionApplied')).map((e) => [e.payload.targetId, e.payload.condition]),
-    ).toContainEqual(['goblin-shaman', 'slowed']);
+    ).toContainEqual(['creature-ae08be99', 'slowed']);
     expect(road.windowView.encounter?.reactionWindow?.choices).toEqual(['counterspell', 'ignore']);
     expect(road.counterspell).toMatchObject({
       status: 'accepted',
@@ -221,10 +226,10 @@ describe('the Old Trade Road ambush', () => {
       .filter((e) => e.payload.to === 'dead')
       .map((e) => e.payload.entityId);
     expect(dead.sort()).toEqual([
-      'goblin-raider-1',
-      'goblin-raider-2',
-      'goblin-raider-3',
-      'goblin-shaman',
+      'creature-10fb59d4',
+      'creature-589f6668',
+      'creature-6513bec0',
+      'creature-ae08be99',
     ]);
     expect(await eventsOf('CombatEnded')).toHaveLength(1);
   });
@@ -280,7 +285,7 @@ describe('the Chronicle and the quest log', () => {
       scene: { entityId: 'market-square' },
     });
     expect(road.battleFlashback.participants.map((p) => p.entity.entityId)).toContain(
-      'goblin-shaman',
+      'creature-ae08be99',
     );
     expect(road.battleFlashback.scene?.entityId).toBe('old-trade-road');
   });

@@ -3,7 +3,7 @@
   "commands": [
     {
       "type": "CreateEntity",
-      "entityId": "nb-hooded-watcher",
+      "entityId": "npc-2c4cf6cd",
       "kind": "npc",
       "name": "Sable NBXHIDDENNAME",
       "existsSince": null,
@@ -34,7 +34,7 @@
       "scope": { "kind": "NPC", "npcId": "orin-stonebeard" },
       "knowledgeType": "SECRET",
       "statement": "NBXORINSECRET: Orin sold the reagents himself.",
-      "subjects": ["strange-symbol"],
+      "subjects": ["feature-19c7c7f7"],
       "knownSince": null
     },
     {
@@ -87,7 +87,7 @@
     {
       "type": "AddClue",
       "clueId": "nb-clue",
-      "entityId": "burned-cargo",
+      "entityId": "item-08851105",
       "method": "inspect",
       "statement": "NBXCLUE: the soot forms a hidden sign.",
       "subjects": []

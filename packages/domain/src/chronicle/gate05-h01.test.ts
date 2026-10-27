@@ -73,11 +73,11 @@ describe('chronicle_protects_generated_name_dependencies', () => {
   it('protects the names of other told events: examinations, new NPCs, deaths, answers', async () => {
     const world = await chronicleWorld();
     await world.enter('old-trade-road');
-    await world.enter('abandoned-caravan-site');
+    await world.enter('location-f3b82c8b');
     await world.as(PLAYER, {
       type: 'ExamineEntity',
       characterId: ELOWEN,
-      entityId: 'strange-symbol',
+      entityId: 'feature-19c7c7f7',
       method: 'inspect',
     });
     await world.dm({
@@ -98,7 +98,7 @@ describe('chronicle_protects_generated_name_dependencies', () => {
       topicId: 'guild-caravan',
     });
     const named: [string, string][] = [
-      ['strange-symbol', 'Examined'],
+      ['feature-19c7c7f7', 'Examined'],
       ['g05-witness', 'Created'],
       ['orin-stonebeard', 'Dead'],
       ['mira-vale', 'Answering'],

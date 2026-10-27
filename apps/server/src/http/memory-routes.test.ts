@@ -19,7 +19,7 @@ const ENTITY_IDS = [
   'orin-stonebeard',
   'captain-thorne',
   'elowen-starwhisper',
-  'strange-symbol',
+  'feature-19c7c7f7',
   'guild-caravan',
   'market-square',
   'north-gate',

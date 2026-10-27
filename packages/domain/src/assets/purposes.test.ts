@@ -16,7 +16,7 @@ import { assetLineage, entityAssetsFor } from './views.ts';
 const MIRA = 'mira-vale';
 const ELOWEN = 'elowen-starwhisper';
 const ROAD = 'old-trade-road';
-const WHEEL = 'broken-wagon-wheel';
+const WHEEL = 'item-f44e7183';
 
 const figure = { variant: 'derived', label: 'figure', purpose: 'figure' } as const;
 const figure_ = (label: string) => ({ variant: 'derived', label, purpose: 'figure' }) as const;

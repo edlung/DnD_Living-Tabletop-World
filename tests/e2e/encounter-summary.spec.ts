@@ -70,7 +70,7 @@ test('player reads a real paused encounter and their reaction choices without DM
   // On the Old Trade Road the player perceives its child site by ID alone (name null).
   await traffic.assertPlayerBoundary(
     ['ashen-bolt', '"spellId"', '"initiative"', '"armorClass"'],
-    ['"abandoned-caravan-site"'],
+    ['"location-f3b82c8b"'],
   );
 });
 

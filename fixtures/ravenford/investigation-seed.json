@@ -26,7 +26,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-site-overview",
-      "entityId": "abandoned-caravan-site",
+      "entityId": "location-f3b82c8b",
       "method": "inspect",
       "statement": "Broken wagons and scattered crates fill this roadside clearing; it is where the guild caravan was attacked.",
       "subjects": ["guild-caravan", "old-trade-road"]
@@ -34,7 +34,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-wheel-broken",
-      "entityId": "broken-wagon-wheel",
+      "entityId": "item-f44e7183",
       "method": "inspect",
       "statement": "A wagon wheel lies broken beside the road.",
       "subjects": []
@@ -42,7 +42,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-wheel-sawn",
-      "entityId": "broken-wagon-wheel",
+      "entityId": "item-f44e7183",
       "method": "investigation",
       "dc": 13,
       "statement": "The spokes were sawn through cleanly, not smashed.",
@@ -51,7 +51,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-blade-found",
-      "entityId": "goblin-weapon",
+      "entityId": "item-0869f47a",
       "method": "inspect",
       "statement": "A crude goblin blade lies in the grass.",
       "subjects": []
@@ -59,7 +59,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-blade-unused",
-      "entityId": "goblin-weapon",
+      "entityId": "item-0869f47a",
       "method": "investigation",
       "dc": 15,
       "statement": "The blade has never been used: no nicks, no blood.",
@@ -68,7 +68,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-symbol-seen",
-      "entityId": "strange-symbol",
+      "entityId": "feature-19c7c7f7",
       "method": "inspect",
       "statement": "A strange symbol is burned into a wagon plank.",
       "subjects": []
@@ -76,7 +76,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-symbol-careful",
-      "entityId": "strange-symbol",
+      "entityId": "feature-19c7c7f7",
       "method": "investigation",
       "dc": 14,
       "statement": "The symbol was drawn with care by a practiced hand.",
@@ -85,7 +85,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-tracks-boots",
-      "entityId": "wagon-tracks",
+      "entityId": "feature-ccec7e50",
       "method": "perception",
       "dc": 12,
       "statement": "Heavy boot prints, too large for goblins, lead north off the road.",
@@ -94,7 +94,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-cargo-burned",
-      "entityId": "burned-cargo",
+      "entityId": "item-08851105",
       "method": "inspect",
       "statement": "Some cargo was burned where it stood.",
       "subjects": []
@@ -102,7 +102,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-cargo-missing",
-      "entityId": "burned-cargo",
+      "entityId": "item-08851105",
       "method": "investigation",
       "dc": 12,
       "statement": "Only a few crates were burned; most of the cargo is gone.",

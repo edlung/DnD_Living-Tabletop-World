@@ -25,7 +25,7 @@ export async function runImageSmoke(context: SmokeContext): Promise<number> {
   let ledgerShown = false;
   try {
     const before = await preflight(context);
-    const portrait = await requestPortrait(context, before.tomasExists, before.language);
+    const portrait = await requestPortrait(context, before.tomasId, before.language);
     const { request } = portrait;
     requested = request.requestId;
     log(
@@ -70,14 +70,14 @@ export async function runImageSmoke(context: SmokeContext): Promise<number> {
     summary.push(`spending   ${formatDollars(delta)} during the smoke; ${budgetLine(budgetAfter)}`);
 
     const hidden = assertHidden(
-      await playerView(context, picture.contentHash),
+      await playerView(context, portrait.tomasId, picture.contentHash),
       picture.contentHash,
     );
     log(`[player] before approval: ${hidden}`);
-    const variants = await approve(context, asset.assetId);
+    const variants = await approve(context, portrait.tomasId, asset.assetId);
     log(`[approve] the DM approved ${asset.assetId}: Tomas's canonical reference`);
     const shown = assertShown(
-      await playerView(context, picture.contentHash),
+      await playerView(context, portrait.tomasId, picture.contentHash),
       picture.contentHash,
       variants,
     );

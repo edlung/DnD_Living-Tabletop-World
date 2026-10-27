@@ -37,56 +37,56 @@
     },
     {
       "type": "CreateEntity",
-      "entityId": "broken-wagon-wheel",
+      "entityId": "item-f44e7183",
       "kind": "item",
       "name": "Сломанное колесо повозки",
       "existsSince": null,
       "placement": {
-        "locationId": "abandoned-caravan-site",
+        "locationId": "location-f3b82c8b",
         "since": -100800
       }
     },
     {
       "type": "CreateEntity",
-      "entityId": "goblin-weapon",
+      "entityId": "item-0869f47a",
       "kind": "item",
       "name": "Оружие гоблина",
       "existsSince": null,
       "placement": {
-        "locationId": "abandoned-caravan-site",
+        "locationId": "location-f3b82c8b",
         "since": -100800
       }
     },
     {
       "type": "CreateEntity",
-      "entityId": "strange-symbol",
+      "entityId": "feature-19c7c7f7",
       "kind": "feature",
       "name": "Странный знак",
       "existsSince": null,
       "placement": {
-        "locationId": "abandoned-caravan-site",
+        "locationId": "location-f3b82c8b",
         "since": -100800
       }
     },
     {
       "type": "CreateEntity",
-      "entityId": "wagon-tracks",
+      "entityId": "feature-ccec7e50",
       "kind": "feature",
       "name": "Следы",
       "existsSince": null,
       "placement": {
-        "locationId": "abandoned-caravan-site",
+        "locationId": "location-f3b82c8b",
         "since": -100800
       }
     },
     {
       "type": "CreateEntity",
-      "entityId": "burned-cargo",
+      "entityId": "item-08851105",
       "kind": "item",
       "name": "Сожжённый груз",
       "existsSince": null,
       "placement": {
-        "locationId": "abandoned-caravan-site",
+        "locationId": "location-f3b82c8b",
         "since": -100800
       }
     },
@@ -233,7 +233,7 @@
       },
       "knowledgeType": "SECRET",
       "statement": "Орин уже видел странный знак на необычных заказах реагентов.",
-      "subjects": ["strange-symbol"],
+      "subjects": ["feature-19c7c7f7"],
       "knownSince": null
     },
     {
@@ -257,7 +257,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Орин узнал тот же знак после того, как прошлой весной пропал караван.",
-      "subjects": ["strange-symbol", "old-trade-road"],
+      "subjects": ["feature-19c7c7f7", "old-trade-road"],
       "knownSince": null
     },
     {
@@ -385,7 +385,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Место нападения подделали после нападения.",
-      "subjects": ["abandoned-caravan-site"],
+      "subjects": ["location-f3b82c8b"],
       "knownSince": null
     },
     {
@@ -396,7 +396,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Улики на месте были расставлены так, чтобы указывать на нападение гоблинов.",
-      "subjects": ["abandoned-caravan-site", "goblin-weapon", "wagon-tracks"],
+      "subjects": ["location-f3b82c8b", "item-0869f47a", "feature-ccec7e50"],
       "knownSince": null
     },
     {
@@ -441,7 +441,7 @@
       },
       "knowledgeType": "FACT",
       "statement": "Странный знак — метка Пепельного круга.",
-      "subjects": ["strange-symbol", "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53"],
+      "subjects": ["feature-19c7c7f7", "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53"],
       "knownSince": null,
       "relations": [
         {
@@ -458,7 +458,7 @@
       },
       "knowledgeType": "SECRET",
       "statement": "Раскрывать связь знака с Пепельным кругом лишь после того, как отряд покажет его Орину.",
-      "subjects": ["strange-symbol", "orin-stonebeard"],
+      "subjects": ["feature-19c7c7f7", "orin-stonebeard"],
       "knownSince": null,
       "relations": [
         {
