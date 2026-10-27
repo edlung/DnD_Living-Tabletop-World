@@ -100,3 +100,19 @@ test('DM can read an NPC sheet while the player cannot request it through the de
   );
   await expectPlayerBoundary(page);
 });
+
+test('a person with no sheet says so to the DM, not that the view hides it (Stage 360)', async ({
+  page,
+}) => {
+  // Captain Thorne, like an NPC the DM adds in words, has no character sheet.
+  await enterWorld(page, TOKENS.dm);
+  await chooseLocation(page, 'north-gate');
+  await page.getByRole('button', { name: 'Captain Thorne', exact: true }).click();
+  await page.getByRole('button', { name: 'Full character sheet', exact: true }).click();
+  const details = page.getByRole('complementary', { name: 'Entity details' });
+  await expect(
+    details.getByRole('status').filter({ hasText: 'No character sheet is recorded here.' }),
+  ).toBeVisible();
+  await expect(details.getByRole('alert')).toHaveCount(0);
+  await expect(details.getByRole('button', { name: 'Try again' })).toHaveCount(0);
+});

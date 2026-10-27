@@ -16,6 +16,7 @@ import { IconButton } from '../visual/icon-button.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { commandFor } from './action-bindings.ts';
+import { distinctNames, unidentifiedName } from '../world/entity-words.ts';
 import { actionLabel, CONVERSATION, reasonWords } from './context-actions.tsx';
 import type { ExplorationIntent } from './use-action.ts';
 
@@ -66,8 +67,7 @@ export function DialoguePanel({
   const { resource, reread } = useResource(`dialogue:${npcId}`, load);
   useRereadOn(revision, reread);
   const name =
-    directory.find((entity) => entity.entityId === npcId)?.name ??
-    t('Unidentified {kind}', { kind: t('npc') });
+    directory.find((entity) => entity.entityId === npcId)?.name ?? unidentifiedName(t, 'npc');
   return (
     <DialogueView
       name={name}
@@ -80,6 +80,7 @@ export function DialoguePanel({
           : []
       }
       knowledge={knowledge}
+      names={distinctNames(t, directory)}
       actorId={actorId}
       canAct={canAct}
       locked={locked}
@@ -102,6 +103,7 @@ export function DialogueView({
   image,
   options,
   knowledge,
+  names,
   actorId,
   canAct,
   locked,
@@ -115,6 +117,8 @@ export function DialogueView({
   /** The server-listed conversation actions for this NPC now. */
   readonly options: readonly ContextAction[];
   readonly knowledge: readonly KnowledgeView[];
+  /** Topic names told apart (`distinctNames`); the server's name where absent. */
+  readonly names?: ReadonlyMap<string, string>;
   readonly actorId: string;
   readonly canAct: boolean;
   readonly locked: boolean;
@@ -176,7 +180,7 @@ export function DialogueView({
                   <span>
                     {action.id === 'talk'
                       ? t('Keep talking')
-                      : actionLabel(t, action, name, knowledge)}
+                      : actionLabel(t, action, name, knowledge, names)}
                   </span>
                 </button>
                 {!action.legal && (

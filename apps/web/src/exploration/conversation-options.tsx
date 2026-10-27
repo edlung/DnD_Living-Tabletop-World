@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { distinctNames } from '../world/entity-words.ts';
 import type { ExplorationIntent } from './use-action.ts';
 
 /** Recommendation caps never prevent a deliberate choice of another known subject. */
@@ -23,6 +24,7 @@ export function ConversationOptions({
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
+  const names = distinctNames(t, directory);
   const [topic, setTopic] = useState('');
   const [evidence, setEvidence] = useState('');
   const [showEvidence, setShowEvidence] = useState(false);
@@ -48,7 +50,7 @@ export function ConversationOptions({
           .filter((entity) => entity.entityId !== npcId && entity.entityId !== characterId)
           .map((entity) => (
             <option key={entity.entityId} value={entity.entityId}>
-              {entity.name}
+              {names.get(entity.entityId) ?? entity.name}
             </option>
           ))}
       </select>

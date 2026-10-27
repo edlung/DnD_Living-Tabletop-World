@@ -9,7 +9,7 @@ import type {
 import { CharacterSheetDetails, StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useState } from 'react';
 
-import type { WorldApi } from '../api/client.ts';
+import { ApiError, type WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { PerformNpc } from '../dm/perform-npc.tsx';
 import { ContextActions } from '../exploration/context-actions.tsx';
@@ -23,7 +23,7 @@ import { KnowledgeBadge, KnowledgeCards } from '../visual/knowledge-cards.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { usePortrait } from './use-portrait.ts';
 import { useRereadOn } from './use-world-data.ts';
-import { unidentifiedName } from './entity-words.ts';
+import { distinctNames, unidentifiedName } from './entity-words.ts';
 
 /**
  * The selection's panel (docs/STAGE_320_DESIGN.md §5.4): a portrait header (the approved image
@@ -97,6 +97,7 @@ export function EntityDetails({
     (effectivePerspective === 'DM' && ['character', 'npc', 'creature'].includes(kind)) ||
     (kind === 'character' && effectivePerspective === `CHARACTER:${entityId}`);
   const visible = resource.status === 'ready' ? resource.value.context?.context.visibleState : null;
+  const names = distinctNames(t, directory);
   return (
     <>
       <header className={`details-header${plate.held ? ' details-header--plate' : ''}`}>
@@ -176,7 +177,7 @@ export function EntityDetails({
                         onSelect(entity.entityId, entity.kind);
                       }}
                     >
-                      {t('Explore {place}', { place: entity.name })}
+                      {t('Explore {place}', { place: names.get(entity.entityId) ?? entity.name })}
                     </button>
                   ))}
               </div>
@@ -198,11 +199,7 @@ export function EntityDetails({
               directory={directory}
             />
           )}
-          <EntityImages
-            entityId={entityId}
-            kind={kind}
-            name={name ?? t('Unidentified {kind}', { kind: t(kind) })}
-          />
+          <EntityImages entityId={entityId} kind={kind} name={name ?? unidentifiedName(t, kind)} />
           <details className="disclosure">
             <summary>{t('Full knowledge')}</summary>
             <KnowledgeCards knowledge={resource.value.knowledge?.knowledge ?? []} />
@@ -227,17 +224,31 @@ export function EntityDetails({
   );
 }
 
+/**
+ * The full sheet on demand. A person the DM added in words has no sheet until one is set: the
+ * server's 404 then says so plainly instead of a failure with Retry (Stage 360).
+ */
 function Sheet({ api, entityId }: { readonly api: WorldApi; readonly entityId: string }) {
   const t = useT();
   const load = useCallback(
     (signal: AbortSignal) =>
-      api.get<CharacterSheetResponse>(`entities/${encodeURIComponent(entityId)}/sheet`, signal),
+      api
+        .get<CharacterSheetResponse>(`entities/${encodeURIComponent(entityId)}/sheet`, signal)
+        .catch((error: unknown) => {
+          if (error instanceof ApiError && error.status === 404) return null;
+          throw error;
+        }),
     [api, entityId],
   );
   const { resource, retry } = useResource(entityId, load);
-  return resource.status === 'ready' ? (
-    <CharacterSheetDetails name={resource.value.entity.name} sheet={resource.value.sheet} />
-  ) : (
+  if (resource.status === 'ready') {
+    return resource.value ? (
+      <CharacterSheetDetails name={resource.value.entity.name} sheet={resource.value.sheet} />
+    ) : (
+      <StatusPanel state="empty" label={t('No character sheet is recorded here.')} />
+    );
+  }
+  return (
     <StatusPanel
       state={resource.status}
       label={

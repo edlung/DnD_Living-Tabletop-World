@@ -63,7 +63,7 @@ test('Tomas Reed goes from a sentence to a previewed, edited, confirmed, native 
     }),
   ).toBeVisible();
   const scene = player.getByRole('region', { name: 'Scene', exact: true });
-  await expect(scene.getByRole('button', { name: /Unidentified npc|Tomas Reed/ })).toBeVisible();
+  await expect(scene.getByRole('button', { name: /Stranger|Tomas Reed/ })).toBeVisible();
   // Stylesheets are tooling; the rendered page is what the player is shown.
   const content = await player.content();
   expect(content, 'player DOM must not contain the private account').not.toContain(SECRET);

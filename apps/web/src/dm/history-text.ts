@@ -1,9 +1,10 @@
-import type {
-  DmHistoryEntry,
-  DmSubstitutionEntry,
-  EntityRef,
-  KernelCommandType,
-  SubstitutionReason,
+import {
+  ASSET_WORKER_COMMAND_TYPES,
+  type DmHistoryEntry,
+  type DmSubstitutionEntry,
+  type EntityRef,
+  type KernelCommandType,
+  type SubstitutionReason,
 } from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
@@ -116,6 +117,20 @@ export function describeSubstitution(
       return t('Formed a hypothesis');
   }
 }
+
+/**
+ * Blockers that are a picture's hold on the step (ADR 0006 §9, `assetHoldBlockers`): the image
+ * work the world finished or approved for it. The work itself is never undone (undoing an
+ * approval still leaves the candidate holding), so "Undo … first" would only be refused; the
+ * hold goes when the DM discards the picture (Stage 360).
+ */
+const PICTURE_HOLDS: ReadonlySet<KernelCommandType> = new Set([
+  ...ASSET_WORKER_COMMAND_TYPES,
+  'ApproveAsset',
+]);
+
+export const isPictureHold = (commandType: KernelCommandType): boolean =>
+  PICTURE_HOLDS.has(commandType);
 
 /** The entry's heading: an authoring summary, or who the DM acted as and what was done. */
 export function entryTitle(

@@ -28,7 +28,17 @@ const REJECTIONS: Readonly<Record<string, string>> = {
 const readableReason = (reason: string) =>
   /^[A-Z_]+$/.test(reason) ? reason.replaceAll('_', ' ').toLowerCase() : null;
 
-export function rejectionMessage(t: Translate, code: string, message?: string): string {
+export function rejectionMessage(
+  t: Translate,
+  code: string,
+  message?: string,
+  commandType?: string,
+): string {
+  // Asking someone who has nothing (more) to tell is an answer, not a failure (Stage 360): the
+  // server lists the question whether or not they know anything, so as not to give that away.
+  if (commandType === 'AskAbout' && code === 'NO_EFFECT') {
+    return t('They have nothing new to tell you about this.');
+  }
   const base = t(REJECTIONS[code] ?? 'The world could not accept this action.');
   const reason = code === 'ILLEGAL_ACTION' && message ? readableReason(message) : null;
   return `${reason ? `${base} (${t(reason)})` : base} ${t('Your view has been refreshed.')}`;
@@ -48,7 +58,7 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
         ? t('Evidence discovered.')
         : t('No new evidence was discovered.');
     case 'ShowEvidence':
-      return t('You showed the evidence. The conversation may have new leads.');
+      return t('You showed the evidence. Talk or ask again to hear what they make of it.');
     case 'InsightCheck':
       return outcome.inferred.length
         ? t('An inference was recorded.')
