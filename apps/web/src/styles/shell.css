@@ -322,6 +322,8 @@
 }
 .sheet-body {
   min-height: 0;
+  /* Below the header's divider ornament, which hangs 5 px over this edge (Stage 360). */
+  margin-top: 5px;
   overflow-y: auto;
   padding: 1rem 1.1rem 1.25rem;
 }

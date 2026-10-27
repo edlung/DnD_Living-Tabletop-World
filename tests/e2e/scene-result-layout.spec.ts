@@ -6,6 +6,7 @@ import {
   INVESTIGATION_CAMPAIGNS,
   travelTo,
 } from './support/investigation.ts';
+import { enterWorld } from './support/session.ts';
 
 /**
  * Gate 06: a result with nothing to anchor it to (inspecting the place itself) sat bottom
@@ -60,4 +61,57 @@ test('the people and things in the scene stay reachable while a result shows', a
     .click();
   await expect(result).toBeVisible();
   expect(await unreachable(page)).toEqual([]);
+});
+
+/** Words split across lines in the elements' text: a name or hint broken mid-word. */
+async function brokenWords(page: Page, selector: string): Promise<string[]> {
+  return page.locator(selector).evaluateAll((elements) =>
+    elements.flatMap((element) => {
+      const broken: string[] = [];
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        const text = node.textContent ?? '';
+        for (const match of text.matchAll(/\S+/g)) {
+          const range = document.createRange();
+          range.setStart(node, match.index);
+          range.setEnd(node, match.index + match[0].length);
+          const lines = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)));
+          if (lines.size > 1) broken.push(match[0]);
+        }
+      }
+      return broken;
+    }),
+  );
+}
+
+test('beside an open conversation and a result the scene keeps room for its names (Stage 360)', async ({
+  page,
+}) => {
+  // Read-only: talking with no dialogue provider records nothing. The stand-in pass saw
+  // "Elowen Starwhispe r" and the hint one word a line, squeezed between the two.
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await enterWorld(page);
+  await page.getByRole('button', { name: 'Mira Vale', exact: true }).click();
+  await page
+    .getByRole('complementary', { name: 'Entity details' })
+    .getByRole('button', { name: 'Talk', exact: true })
+    .click();
+  await expect(page.getByRole('region', { name: 'Conversation with Mira Vale' })).toBeVisible();
+  await expect(page.locator('.outcome')).toBeVisible();
+  expect(await brokenWords(page, '.scene-presence .name-plate strong, .scene-caption')).toEqual([]);
+  expect(await unreachable(page)).toEqual([]);
+  const overlaps = await page.locator('.scene-presence').evaluate((row) => {
+    const box = row.getBoundingClientRect();
+    return ['.outcome', '.dialogue-panel', '.exits'].filter((selector) => {
+      const other = document.querySelector(selector)?.getBoundingClientRect();
+      return (
+        other &&
+        box.left < other.right &&
+        other.left < box.right &&
+        box.top < other.bottom &&
+        other.top < box.bottom
+      );
+    });
+  });
+  expect(overlaps).toEqual([]);
 });
