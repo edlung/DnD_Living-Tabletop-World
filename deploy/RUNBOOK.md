@@ -163,7 +163,9 @@ the domain; until then the stack is verified locally (section 11).
    делает их генератор `curated` из закоммиченных файлов — без вызова провайдера; работающий сервер
    эти запросы не трогает. Скрипт повторяем (кампания и картины не дублируются, занятые места не
    отбираются) и каждый раз печатает **новую** ссылку DM — один раз: это секрет, передайте её DM
-   личным каналом и не сохраняйте в журналах, тикетах и чатах с историей. Одна база — один
+   личным каналом и не сохраняйте в журналах, тикетах и чатах с историей. Повтор возможен, пока
+   фикстуры сида те же: если база заведена более старой ревизией фикстур, сид отказывает
+   («seeded by an older fixture revision») — тогда нужен сброс (раздел 12). Одна база — один
    Равенфорд: английский сид на ней отказывает (`COMMAND_ID_CONFLICT`). EN: the review campaign
    (Gate 06) is the Russian Ravenford ("Пропавший караван", campaign `ravenford`) created through
    the World Engine; the seat the fixture gave a development persona (Elowen) is released by the
@@ -173,8 +175,10 @@ the domain; until then the stack is verified locally (section 11).
    provider call; the running server leaves those requests alone. The script can be rerun (the
    campaign and its pictures are never duplicated, taken seats are never taken back) and prints a
    **new** DM link each time, once: it is a secret, hand it to the DM over a private channel and
-   keep it out of logs, tickets and chats that keep history. One database holds one Ravenford: the
-   English seed is refused on it (`COMMAND_ID_CONFLICT`).
+   keep it out of logs, tickets and chats that keep history. A rerun works while the seed's fixtures
+   are unchanged: on a database an older fixture revision seeded, the seed is refused ("seeded by
+   an older fixture revision") and a reset is needed (section 12). One database holds one
+   Ravenford: the English seed is refused on it (`COMMAND_ID_CONFLICT`).
 
    ```bash
    deploy/scripts/review-campaign.sh --expires-hours 72   # the seed, then the DM link (JSON line)
@@ -712,3 +716,36 @@ Limits: each sign-in spends this host's redeem attempts (10 a minute, a 15-minut
 connection to a published port from the `edge` network's gateway address: locally all browsers
 are one client to the per-address limits. On a Linux server outside clients keep their addresses
 (except requests from the host itself, and IPv6 without IPv6 on `edge`, section 1 step 5).
+
+## 12. Сбросить базу кампании проверки · Reset a review campaign database
+
+**RU.** Только для базы проверки или пробной игры: всё в ней пропадает — игра, сеансы и
+приглашения, записи расходов ИИ и изображений, сохранённые потолки. Нужен, когда сид отказывает
+сообщением «this database was seeded by an older fixture revision … Reset required»: ID команд
+сида позиционные (`ravenford.seed.0001`, …), и после изменения фикстур (Gate 06 дал секретным
+существам непрозрачные ID) те же ID в базе хранят другие команды — повтор этого не исправит.
+Порядок: свежая копия (её имя печатается — сохраните его), остановка `backup`, прокси и сервера,
+новая пустая база, запуск всего (миграции создают таблицы), сид и новая ссылка DM, затем копия и
+тренировка уже нового мира. Потолки ИИ и изображений (разделы 7–8) задайте заново, игроков
+пригласите заново. Вернуться к прежнему миру: `deploy/scripts/restore.sh <копия из шага 1>`.
+
+**EN.** For a review or playtest database only: everything in it is lost — play, sessions and
+invitations, AI and image spending records, stored ceilings. Needed when the seed is refused with
+"this database was seeded by an older fixture revision … Reset required": seed command IDs are
+positional (`ravenford.seed.0001`, …), so after the fixtures change (Gate 06 gave secret entities
+opaque IDs) the same IDs in the database hold other commands, and no rerun can fix that. In
+order: a fresh dump (its name is printed — keep it), stop `backup`, the proxy and the server, a
+new empty database, start everything (migrations create the tables), the seed and a new DM link,
+then a dump and a drill of the new world. Set the AI and image ceilings again (sections 7–8) and
+invite the players again. Back to the previous world: `deploy/scripts/restore.sh <the dump of
+step 1>`.
+
+```bash
+deploy/scripts/backup-now.sh                      # 1. keep the printed name / сохраните имя
+dc stop backup proxy server                       # 2.
+dc exec -T postgres psql --username ltw --dbname postgres --quiet --set ON_ERROR_STOP=1 \
+  --command 'DROP DATABASE ltw WITH (FORCE)' --command 'CREATE DATABASE ltw OWNER ltw'  # 3.
+dc up --detach --wait --wait-timeout 300          # 4. migrations run as the server starts
+deploy/scripts/review-campaign.sh --expires-hours 72   # 5. the seed, then the DM link (secret)
+deploy/scripts/backup-now.sh && deploy/scripts/restore-drill.sh   # 6.
+```

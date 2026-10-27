@@ -6,7 +6,7 @@ import { loadCuratedSet } from '../images/curated-set.ts';
 import { PostgresAssetContentStore } from '../assets/postgres-content-store.ts';
 import { describeDatabaseUrl, loadConfig } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
-import { loadRavenfordSeed } from './ravenford-seed.ts';
+import { loadRavenfordSeed, seedRefusal } from './ravenford-seed.ts';
 import { createWorldEngine } from './runtime.ts';
 
 /**
@@ -28,9 +28,8 @@ async function main(): Promise<void> {
     for (const submission of seed.submissions) {
       const result = await engine.execute(submission);
       if (result.status === 'rejected') {
-        throw new Error(
-          `Seed command ${String(result.commandId)} rejected: ${result.code} (${result.message})`,
-        );
+        const commandId = String(result.commandId);
+        throw new Error(await seedRefusal(engine, seed.campaignId, 'en', commandId, result));
       }
       counts[result.status] += 1;
     }

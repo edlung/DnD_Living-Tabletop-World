@@ -194,6 +194,38 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
     );
   });
 
+  it('creates the same IDs from the same trace, so a second proposal of it cannot commit again', async () => {
+    const intent = (
+      await post(app, '/campaigns/ravenford/ai/intents', { text: REQUEST }, TOKENS.dm)
+    ).json<DmIntentResponse>();
+    // A retry or a double click: the same trace proposed twice.
+    const [first, second] = await Promise.all(
+      [1, 2].map(async () =>
+        (
+          await post(app, PROPOSALS, { traceId: intent.traceId }, TOKENS.dm)
+        ).json<AuthoringProposalResponse>(),
+      ),
+    );
+    if (!first || !second) throw new Error('no proposals');
+    const created = (response: AuthoringProposalResponse) =>
+      response.proposal.commands.filter((command) => command.type === 'CreateEntity');
+    expect(created(second)).toEqual(created(first));
+    expect(createdEntityId(first.proposal.commands)).toMatch(/^npc-[0-9a-f]{8}$/);
+
+    const commit = (response: AuthoringProposalResponse) =>
+      post(
+        app,
+        `${PROPOSALS}/${response.proposal.proposalId}/commit`,
+        { revision: 1, confirmation: response.preview?.confirmation },
+        TOKENS.dm,
+      );
+    expect((await commit(first)).statusCode).toBe(200);
+    const again = await commit(second);
+    expect(again.statusCode).toBe(422);
+    expect(again.json<CommandResult>()).toMatchObject({ status: 'rejected' });
+    expect(again.body).toContain('ID_ALREADY_USED');
+  });
+
   it('never shows players a secret through the preview or the proposal', async () => {
     const { proposal } = await proposeTomas();
     const asPlayer = await get(app, `${PROPOSALS}/${proposal.proposalId}`, TOKENS.player);
