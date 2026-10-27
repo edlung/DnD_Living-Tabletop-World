@@ -6,6 +6,7 @@ import {
   IMAGE_CAMPAIGNS,
   imagesRegion,
   playerPresentation,
+  TOMAS,
 } from './support/images.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { dockButton, openSheet } from './support/shell.ts';
@@ -72,13 +73,11 @@ test('approving the older of two figures makes it the one players see and the DM
     images
       .locator(`[data-image-key="${assetId}"]`)
       .getByRole('button', { name: 'Approve: Figure for the battlefield', exact: true });
-  await expect
-    .poll(async () => (await assetsOf(dm, campaign, 'tomas-reed', 'CANDIDATE')).length)
-    .toBe(2);
-  const [older, newer] = await assetsOf(dm, campaign, 'tomas-reed', 'CANDIDATE');
+  await expect.poll(async () => (await assetsOf(dm, campaign, TOMAS, 'CANDIDATE')).length).toBe(2);
+  const [older, newer] = await assetsOf(dm, campaign, TOMAS, 'CANDIDATE');
   if (!older || !newer) throw new Error('two figures expected');
   const figureShown = async () =>
-    (await playerPresentation(player, campaign, 'tomas-reed')).figure?.contentHash;
+    (await playerPresentation(player, campaign, TOMAS)).figure?.contentHash;
   const approved =
     'Approved: Figure for the battlefield. Players who can see Tomas Reed now see this picture.';
 
@@ -96,7 +95,7 @@ test('approving the older of two figures makes it the one players see and the DM
     .filter({ hasText: 'Figure for the battlefield' });
   await expect(figures).toHaveCount(1);
   await expect(figures).toHaveAttribute('data-image-key', older.assetId);
-  expect((await assetsOf(dm, campaign, 'tomas-reed', 'SUPERSEDED')).map((a) => a.assetId)).toEqual([
+  expect((await assetsOf(dm, campaign, TOMAS, 'SUPERSEDED')).map((a) => a.assetId)).toEqual([
     newer.assetId,
   ]);
 

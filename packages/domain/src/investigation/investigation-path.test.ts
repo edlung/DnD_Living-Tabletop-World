@@ -46,7 +46,7 @@ describe('investigation path', () => {
 
     // Travel to the site, perceived only once on the road.
     await act({ type: 'EnterLocation', locationId: 'old-trade-road' });
-    await act({ type: 'EnterLocation', locationId: 'abandoned-caravan-site' });
+    await act({ type: 'EnterLocation', locationId: 'location-f3b82c8b' });
 
     // Investigate: inspect everything, then roll checks (d20 queued; modifiers +8 / +12).
     const evidence: string[] = [];
@@ -55,20 +55,20 @@ describe('investigation path', () => {
       if (result.outcome?.kind === 'ExamineEntity') evidence.push(...result.outcome.discovered);
     };
     for (const entityId of [
-      'abandoned-caravan-site',
-      'broken-wagon-wheel',
-      'goblin-weapon',
-      'strange-symbol',
-      'burned-cargo',
+      'location-f3b82c8b',
+      'item-f44e7183',
+      'item-0869f47a',
+      'feature-19c7c7f7',
+      'item-08851105',
     ]) {
       await examine(entityId, 'inspect');
     }
     world.roll(9, 3, 11, 4, 2); // wheel 17 ✓, blade 11 ✗, symbol 19 ✓, cargo 12 ✓, tracks 14 ✓
-    await examine('broken-wagon-wheel', 'investigation');
-    await examine('goblin-weapon', 'investigation');
-    await examine('strange-symbol', 'investigation');
-    await examine('burned-cargo', 'investigation');
-    await examine('wagon-tracks', 'perception');
+    await examine('item-f44e7183', 'investigation');
+    await examine('item-0869f47a', 'investigation');
+    await examine('feature-19c7c7f7', 'investigation');
+    await examine('item-08851105', 'investigation');
+    await examine('feature-ccec7e50', 'perception');
     expect(evidence).toHaveLength(9);
 
     // The party forms a competing hypothesis from what it found.

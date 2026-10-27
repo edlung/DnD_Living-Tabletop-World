@@ -13,12 +13,12 @@ import { ELOWEN, elowenView, seedRavenford, type SeededWorld } from './testing/r
 async function shamanCasting(): Promise<{ world: SeededWorld; windowId: string }> {
   const world = await seedRavenford();
   await world.apply(...ambush.place, ambush.startCombat);
-  for (const id of [ELOWEN, 'goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3']) {
+  for (const id of [ELOWEN, 'creature-10fb59d4', 'creature-589f6668', 'creature-6513bec0']) {
     await world.apply({ type: 'EndTurn', combatantId: id });
   }
   await world.apply({
     type: 'CastSpell',
-    combatantId: 'goblin-shaman',
+    combatantId: 'creature-ae08be99',
     spellId: 'ashen-bolt',
     targetId: ELOWEN,
   });
@@ -39,7 +39,7 @@ const action = (context: EntityContextView, id: ContextAction['id']) =>
 describe('context while a reaction window is open', () => {
   it('offers Counterspell on the caster to a pending candidate, first and legal', async () => {
     const { world } = await shamanCasting();
-    const shaman = await contextOf(world, 'goblin-shaman');
+    const shaman = await contextOf(world, 'creature-ae08be99');
     expect(shaman.actions[0]).toEqual({
       id: 'counterspell',
       legal: true,
@@ -53,13 +53,13 @@ describe('context while a reaction window is open', () => {
     expect(action(shaman, 'fireball')).toMatchObject({ legal: false, reason: 'REACTION_PENDING' });
     expect(action(shaman, 'fireball')?.area?.affected.length).toBeGreaterThan(0);
     // Only the caster can be countered, and nothing names the spell.
-    expect(action(await contextOf(world, 'goblin-raider-1'), 'counterspell')).toBeUndefined();
+    expect(action(await contextOf(world, 'creature-10fb59d4'), 'counterspell')).toBeUndefined();
     expect(JSON.stringify(shaman)).not.toMatch(/ashen|Ashen|bolt/);
   });
 
   it('agrees with the World Engine, and stops offering once Elowen answered', async () => {
     const { world, windowId } = await shamanCasting();
-    expect(action(await contextOf(world, 'goblin-shaman'), 'counterspell')?.legal).toBe(true);
+    expect(action(await contextOf(world, 'creature-ae08be99'), 'counterspell')?.legal).toBe(true);
     const used = await world.submit({
       type: 'UseReaction',
       combatantId: ELOWEN,
@@ -67,7 +67,7 @@ describe('context while a reaction window is open', () => {
       reaction: 'counterspell',
     });
     expect(used.status).toBe('accepted');
-    const after = await contextOf(world, 'goblin-shaman');
+    const after = await contextOf(world, 'creature-ae08be99');
     expect(action(after, 'counterspell')).toBeUndefined();
     expect(action(after, 'longbow_attack')).toMatchObject({
       legal: false,

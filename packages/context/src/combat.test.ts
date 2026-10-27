@@ -35,7 +35,7 @@ const ids = (a: ContextAction) => a.area?.affected.map((ref) => ref.entityId);
 describe('context in combat', () => {
   it('shows distance but never a goblin’s hit points', async () => {
     const world = await inCombat();
-    const raider = await contextOf(world, 'goblin-raider-1');
+    const raider = await contextOf(world, 'creature-10fb59d4');
     expect(raider.visibleState).toEqual({ present: true, status: 'active', distanceFt: 30 });
     expect(JSON.stringify(raider)).not.toContain('hitPoints');
     expect((await contextOf(world, ELOWEN)).visibleState).toMatchObject({
@@ -46,17 +46,17 @@ describe('context in combat', () => {
 
   it('offers Fireball centered on a goblin with the combatants it would hit', async () => {
     const world = await inCombat();
-    const fireball = action(await contextOf(world, 'goblin-raider-1'), 'fireball');
+    const fireball = action(await contextOf(world, 'creature-10fb59d4'), 'fireball');
     expect(fireball).toMatchObject({ legal: true, cost: { kind: 'slot', slotLevel: 3 } });
     // Initiative order; all tie at 13, so Dexterity puts the Raiders first.
     expect(ids(fireball)).toEqual([
-      'goblin-raider-1',
-      'goblin-raider-2',
-      'goblin-raider-3',
-      'goblin-shaman',
+      'creature-10fb59d4',
+      'creature-589f6668',
+      'creature-6513bec0',
+      'creature-ae08be99',
     ]);
     expect(fireball.hints).toBeUndefined();
-    expect(action(await contextOf(world, 'goblin-raider-1'), 'longbow_attack')).toMatchObject({
+    expect(action(await contextOf(world, 'creature-10fb59d4'), 'longbow_attack')).toMatchObject({
       legal: true,
     });
   });
@@ -65,10 +65,10 @@ describe('context in combat', () => {
     const world = await inCombat((command) => ({
       ...command,
       combatants: command.combatants.map((c) =>
-        c.entityId === 'goblin-raider-1' ? { ...c, position: { x: 3, y: 6 } } : c,
+        c.entityId === 'creature-10fb59d4' ? { ...c, position: { x: 3, y: 6 } } : c,
       ),
     }));
-    const fireball = action(await contextOf(world, 'goblin-raider-1'), 'fireball');
+    const fireball = action(await contextOf(world, 'creature-10fb59d4'), 'fireball');
     expect(fireball).toMatchObject({ legal: true, hints: ['ALLY_IN_AREA'] });
     expect(ids(fireball)).toContain(ELOWEN);
   });
@@ -78,10 +78,10 @@ describe('context in combat', () => {
       ...command,
       battlefield: { ...command.battlefield, width: 40 },
       combatants: command.combatants.map((c) =>
-        c.entityId === 'goblin-raider-3' ? { ...c, position: { x: 39, y: 6 } } : c,
+        c.entityId === 'creature-6513bec0' ? { ...c, position: { x: 39, y: 6 } } : c,
       ),
     }));
-    const far = await contextOf(world, 'goblin-raider-3');
+    const far = await contextOf(world, 'creature-6513bec0');
     expect(far.visibleState.distanceFt).toBe(185);
     expect(action(far, 'fireball')).toMatchObject({
       legal: false,
@@ -97,24 +97,24 @@ describe('context in combat', () => {
       type: 'Attack',
       combatantId: ELOWEN,
       attackId: 'longbow',
-      targetId: 'goblin-raider-2',
+      targetId: 'creature-589f6668',
     };
     await world.submit(shot);
     await world.submit(shot);
-    const spent = await contextOf(world, 'goblin-raider-1');
+    const spent = await contextOf(world, 'creature-10fb59d4');
     expect(action(spent, 'longbow_attack')).toMatchObject({ legal: false, reason: 'NO_ACTION' });
     expect(action(spent, 'fireball')).toMatchObject({ legal: false, reason: 'NO_ACTION' });
     // Two hits killed Raider 2: the dead are outside the area.
-    expect(ids(action(spent, 'fireball'))).not.toContain('goblin-raider-2');
+    expect(ids(action(spent, 'fireball'))).not.toContain('creature-589f6668');
     expect(action(spent, 'hunters_mark')).toMatchObject({ legal: true, cost: { kind: 'free' } });
     await world.submit({ type: 'EndTurn', combatantId: ELOWEN });
-    const waiting = await contextOf(world, 'goblin-raider-1');
+    const waiting = await contextOf(world, 'creature-10fb59d4');
     expect(action(waiting, 'hunters_mark')).toMatchObject({ reason: 'NOT_YOUR_TURN' });
   });
 
   it('keeps legal actions aligned with the World Engine', async () => {
     const world = await inCombat();
-    const context = await contextOf(world, 'goblin-raider-1');
+    const context = await contextOf(world, 'creature-10fb59d4');
     expect(action(context, 'fireball').legal).toBe(true);
     const cast = await world.submit({
       type: 'CastSpell',
@@ -123,12 +123,12 @@ describe('context in combat', () => {
       point: { x: 8, y: 4 },
     });
     expect(cast.status).toBe('accepted');
-    const after = await contextOf(world, 'goblin-shaman');
+    const after = await contextOf(world, 'creature-ae08be99');
     const result = await world.submit({
       type: 'Attack',
       combatantId: ELOWEN,
       attackId: 'longbow',
-      targetId: 'goblin-shaman',
+      targetId: 'creature-ae08be99',
     });
     expect(result.status === 'rejected' ? result.message : 'accepted').toBe(
       action(after, 'longbow_attack').reason ?? 'accepted',

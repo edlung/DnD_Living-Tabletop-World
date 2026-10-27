@@ -38,7 +38,7 @@ describe('investigation on PostgreSQL', () => {
     const engine = await seededEngine(new PostgresEventStore(pool), scriptedDice([7]));
     for (const [id, locationId] of [
       ['p1', 'old-trade-road'],
-      ['p2', 'abandoned-caravan-site'],
+      ['p2', 'location-f3b82c8b'],
     ] as const) {
       expect(
         (await engine.execute(submission(id, { type: 'EnterLocation', locationId }))).status,
@@ -46,7 +46,7 @@ describe('investigation on PostgreSQL', () => {
     }
     const check = submission('p3', {
       type: 'ExamineEntity',
-      entityId: 'broken-wagon-wheel',
+      entityId: 'item-f44e7183',
       method: 'investigation',
     });
     const first = await engine.execute(check);

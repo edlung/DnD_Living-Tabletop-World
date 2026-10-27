@@ -54,11 +54,18 @@ async function windowOpen(engine: WorldEngine): Promise<{ windowId: string; trig
   const steps: Record<string, unknown>[] = [
     ...ambush.place,
     ambush.startCombat,
-    ...[ELOWEN, 'goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3'].map((combatantId) => ({
-      type: 'EndTurn',
-      combatantId,
-    })),
-    { type: 'CastSpell', combatantId: 'goblin-shaman', spellId: 'ashen-bolt', targetId: ELOWEN },
+    ...[ELOWEN, 'creature-10fb59d4', 'creature-589f6668', 'creature-6513bec0'].map(
+      (combatantId) => ({
+        type: 'EndTurn',
+        combatantId,
+      }),
+    ),
+    {
+      type: 'CastSpell',
+      combatantId: 'creature-ae08be99',
+      spellId: 'ashen-bolt',
+      targetId: ELOWEN,
+    },
   ];
   for (const [index, command] of steps.entries()) {
     const result = await engine.execute(submission(`setup-${String(index)}`, DM, command));

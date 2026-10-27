@@ -48,19 +48,19 @@ describe('investigation path over HTTP', () => {
     expect(asked.body).toMatchObject({ status: 'accepted', outcome: { kind: 'AskAbout' } });
     expect(asked.raw).not.toContain('mira-cargo-logistics');
 
-    for (const locationId of ['old-trade-road', 'abandoned-caravan-site']) {
+    for (const locationId of ['old-trade-road', 'location-f3b82c8b']) {
       expect((await post(as({ type: 'EnterLocation', locationId }))).status).toBe(200);
     }
-    expect((await contextOf('strange-symbol')).context.entity.name).toBeNull();
+    expect((await contextOf('feature-19c7c7f7')).context.entity.name).toBeNull();
 
     const inspected = await post(
-      as({ type: 'ExamineEntity', entityId: 'strange-symbol', method: 'inspect' }),
+      as({ type: 'ExamineEntity', entityId: 'feature-19c7c7f7', method: 'inspect' }),
     );
     expect(inspected.body).toMatchObject({ outcome: { kind: 'ExamineEntity', roll: null } });
-    expect((await contextOf('strange-symbol')).context.entity.name).toBe('Strange Symbol');
+    expect((await contextOf('feature-19c7c7f7')).context.entity.name).toBe('Strange Symbol');
 
     const checked = await post(
-      as({ type: 'ExamineEntity', entityId: 'strange-symbol', method: 'investigation' }),
+      as({ type: 'ExamineEntity', entityId: 'feature-19c7c7f7', method: 'investigation' }),
     );
     expect(checked.body).toMatchObject({
       outcome: { kind: 'ExamineEntity', roll: { d20: 11, modifier: 8, total: 19 } },
@@ -69,7 +69,7 @@ describe('investigation path over HTTP', () => {
       expect(checked.raw).not.toContain(secret);
     }
     const again = await post(
-      as({ type: 'ExamineEntity', entityId: 'strange-symbol', method: 'investigation' }),
+      as({ type: 'ExamineEntity', entityId: 'feature-19c7c7f7', method: 'investigation' }),
     );
     expect(again.body).toMatchObject({ status: 'rejected', code: 'ALREADY_ATTEMPTED' });
 
@@ -110,7 +110,7 @@ describe('investigation path over HTTP', () => {
 describe('player command boundaries over HTTP', () => {
   it('keeps authoring DM-only and characters private, with a uniform 403', async () => {
     const bodies = await Promise.all([
-      post({ type: 'AddClue', entityId: 'goblin-weapon', method: 'inspect', statement: 'x' }),
+      post({ type: 'AddClue', entityId: 'item-0869f47a', method: 'inspect', statement: 'x' }),
       post({ type: 'SetDisclosure', knowledgeId: 'orin-knows-thorne', disclosure: 'WILLING' }),
       post({ type: 'EnterLocation', characterId: 'mira-vale', locationId: 'ravenford' }),
       post({ type: 'EnterLocation', characterId: 'no-such-character', locationId: 'ravenford' }),

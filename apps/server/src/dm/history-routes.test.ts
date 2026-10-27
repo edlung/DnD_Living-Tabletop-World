@@ -204,7 +204,7 @@ describe('the entries', () => {
       type: 'Attack',
       combatantId: ELOWEN,
       attackId: 'longbow',
-      targetId: 'goblin-raider-1',
+      targetId: 'creature-10fb59d4',
     };
     expect((await standIn('shot', attack, { reason: 'other' })).status).toBe(200);
     expect((await page()).entries).toEqual([
@@ -219,7 +219,7 @@ describe('the entries', () => {
     expect((await command({ type: 'EndTurn', combatantId: ELOWEN }, TOKENS.player)).status).toBe(
       200,
     );
-    const goblin = { type: 'EndTurn', combatantId: 'goblin-raider-1' };
+    const goblin = { type: 'EndTurn', combatantId: 'creature-10fb59d4' };
     expect((await command(goblin, TOKENS.dm)).status).toBe(200);
     const [shot, ...rest] = (await page()).entries;
     expect(rest).toEqual([]);

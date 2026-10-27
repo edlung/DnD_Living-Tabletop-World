@@ -98,7 +98,7 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
       `sha256:${set.entries.find((entry) => entry.file === file)?.sha256 ?? ''}`;
     expect(shown('market-square')?.image?.contentHash).toBe(hash('market-square.webp'));
     expect(shown('mira-vale')?.figure?.contentHash).toBe(hash('mira-vale--figure.webp'));
-    expect(shown('abandoned-caravan-site')).toBeUndefined();
+    expect(shown('location-f3b82c8b')).toBeUndefined();
 
     const rerun = await seedReviewCampaign(engine, { pictures });
     expect(rerun).toEqual({
@@ -191,12 +191,12 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
       await run('review-test.site', PLAYER, {
         type: 'EnterLocation',
         characterId: elowen,
-        locationId: 'abandoned-caravan-site',
+        locationId: 'location-f3b82c8b',
       }),
       await run('review-test.inspect', PLAYER, {
         type: 'ExamineEntity',
         characterId: elowen,
-        entityId: 'abandoned-caravan-site',
+        entityId: 'location-f3b82c8b',
         method: 'inspect',
       }),
     ];

@@ -26,9 +26,9 @@ export async function seedUiLiveCampaigns(engine: WorldEngine): Promise<void> {
     await seedCombatCampaign(engine, campaignId, 'started');
     for (const combatantId of [
       'elowen-starwhisper',
-      'goblin-raider-1',
-      'goblin-raider-2',
-      'goblin-raider-3',
+      'creature-10fb59d4',
+      'creature-589f6668',
+      'creature-6513bec0',
     ]) {
       await accept(engine, campaignId, DM, `end-${combatantId}`, {
         type: 'EndTurn',

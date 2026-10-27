@@ -63,7 +63,7 @@ describe('GET /campaigns/:campaignId/encounter', () => {
     await startAmbush();
     const { encounter } = (await encounterFor('DM', TOKENS.dm)).body;
     expect(encounter).toMatchObject({ round: 1, currentCombatantId: 'elowen-starwhisper' });
-    const shaman = encounter?.combatants.find((c) => c.entity.entityId === 'goblin-shaman');
+    const shaman = encounter?.combatants.find((c) => c.entity.entityId === 'creature-ae08be99');
     expect(shaman).toMatchObject({
       entity: { name: 'Goblin Shaman' },
       hitPoints: { current: 21, max: 21 },
@@ -106,7 +106,7 @@ describe('player combat commands', () => {
         type: 'Attack',
         combatantId: 'elowen-starwhisper',
         attackId: 'longbow',
-        targetId: 'goblin-raider-2',
+        targetId: 'creature-589f6668',
       },
       TOKENS.player,
     );
@@ -116,7 +116,10 @@ describe('player combat commands', () => {
       events: [],
       outcome: { kind: 'Attack', d20: [11], attackTotal: 22, hit: true, damage: 9 },
     });
-    const goblin = await command({ type: 'EndTurn', combatantId: 'goblin-shaman' }, TOKENS.player);
+    const goblin = await command(
+      { type: 'EndTurn', combatantId: 'creature-ae08be99' },
+      TOKENS.player,
+    );
     expect(goblin.status).toBe(403);
     const fireball = await command(
       {

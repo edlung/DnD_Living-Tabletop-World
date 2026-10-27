@@ -44,10 +44,15 @@ async function shamanCasting(spellId = 'ashen-bolt') {
   for (const step of [
     ...ambush.place,
     ambush.startCombat,
-    ...['elowen-starwhisper', 'goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3'].map(
+    ...['elowen-starwhisper', 'creature-10fb59d4', 'creature-589f6668', 'creature-6513bec0'].map(
       (combatantId) => ({ type: 'EndTurn', combatantId }),
     ),
-    { type: 'CastSpell', combatantId: 'goblin-shaman', spellId, targetId: 'elowen-starwhisper' },
+    {
+      type: 'CastSpell',
+      combatantId: 'creature-ae08be99',
+      spellId,
+      targetId: 'elowen-starwhisper',
+    },
   ]) {
     expect((await command(step, TOKENS.dm)).status).toBe(200);
   }
@@ -69,7 +74,7 @@ describe('the open window in the encounter view', () => {
       windowId,
       trigger: {
         kind: 'spell',
-        caster: { entityId: 'goblin-shaman', kind: 'creature', name: null },
+        caster: { entityId: 'creature-ae08be99', kind: 'creature', name: null },
         components: ['V', 'S'],
       },
       candidates: [{ entityId: 'elowen-starwhisper', response: 'pending' }],

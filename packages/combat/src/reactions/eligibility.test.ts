@@ -135,7 +135,13 @@ describe('who can counter', () => {
     await world.dm({ type: 'EndTurn', combatantId: SHAMAN });
     const second = await world.dm(cast('goblin-shaman-2', 'ashen-bolt', { targetId: ELOWEN }));
     expect(await opens(world, second)).toBe(false);
-    for (const id of ['goblin-shaman-2', RAIDER_1, 'goblin-raider-2', 'goblin-raider-3', ELOWEN]) {
+    for (const id of [
+      'goblin-shaman-2',
+      RAIDER_1,
+      'creature-589f6668',
+      'creature-6513bec0',
+      ELOWEN,
+    ]) {
       expect(codeOf(await world.dm({ type: 'EndTurn', combatantId: id }))).toBe('accepted');
     }
     expect(await opens(world, await world.dm(boltAtElowen))).toBe(true);

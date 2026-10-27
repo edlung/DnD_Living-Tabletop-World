@@ -39,6 +39,18 @@ export async function propose(
   return body.proposal;
 }
 
+/**
+ * The ID of the entity a stored proposal creates: the server's, never the one the AI wrote
+ * (ADR 0008, Gate 06 remediation).
+ */
+export function createdEntityId(proposal: { commands: Record<string, unknown>[] }): string {
+  const created = proposal.commands.find((command) => command['type'] === 'CreateEntity');
+  const entityId = created?.['entityId'];
+  if (typeof entityId !== 'string') throw new Error('the proposal creates no entity');
+  expect(entityId).not.toMatch(/tomas|reed/);
+  return entityId;
+}
+
 /** The DM's own bearer requests: the same routes the browser uses. */
 export async function dmRequest(
   page: Page,

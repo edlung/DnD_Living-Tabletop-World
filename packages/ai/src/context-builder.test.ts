@@ -52,13 +52,7 @@ describe('buildContext', () => {
       'ravenford-guard',
     ]);
     const text = JSON.stringify(context);
-    for (const marker of [
-      ASHEN_CIRCLE_ID,
-      'Ashen',
-      'abandoned-caravan-site',
-      'elowen',
-      'before dawn',
-    ]) {
+    for (const marker of [ASHEN_CIRCLE_ID, 'Ashen', 'location-f3b82c8b', 'elowen', 'before dawn']) {
       expect(text).not.toContain(marker);
     }
   });

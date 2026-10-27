@@ -286,7 +286,10 @@ export const RAVENFORD_LEDGER: readonly LedgerEntry[] = [
     kind: 'event',
     equivalent: 'EntityPlaced',
     adr: '0007',
-    check: recorded((x) => x.type === 'EntityPlaced' && x.payload.entityId === 'tomas-reed'),
+    check: recorded(
+      // Tomas, placed by the authoring commit that created him (his ID is the server's).
+      (x) => x.type === 'EntityPlaced' && x.causation.commandType === 'ApplyAuthoring',
+    ),
   },
   {
     name: 'ASSET_GENERATION_REQUESTED',

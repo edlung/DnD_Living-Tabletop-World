@@ -6,10 +6,17 @@ import type {
   EntityPresentationResponse,
 } from '../../../packages/contracts/src/index.ts';
 import campaigns from '../fixtures/image-campaigns.json' with { type: 'json' };
+import entities from '../fixtures/image-entities.json' with { type: 'json' };
 import { TOKENS } from './session.ts';
 
 /** The image journeys' campaigns (`apps/server/src/testing/ui-image-journeys.ts`). */
 export const IMAGE_CAMPAIGNS = campaigns;
+
+/**
+ * Tomas Reed as the image journeys' campaigns seed him: players meet him unnamed, so his ID is
+ * opaque (ADR 0008, Gate 06 remediation).
+ */
+export const TOMAS = entities.tomas;
 
 /**
  * A picture the page shows from the asset API: an object URL of bytes the viewer fetched with

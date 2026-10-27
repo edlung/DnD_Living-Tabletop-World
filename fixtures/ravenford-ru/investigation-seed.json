@@ -26,7 +26,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-site-overview",
-      "entityId": "abandoned-caravan-site",
+      "entityId": "location-f3b82c8b",
       "method": "inspect",
       "statement": "Сломанные повозки и разбросанные ящики заполняют придорожную поляну: здесь напали на гильдейский караван.",
       "subjects": ["guild-caravan", "old-trade-road"]
@@ -34,7 +34,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-wheel-broken",
-      "entityId": "broken-wagon-wheel",
+      "entityId": "item-f44e7183",
       "method": "inspect",
       "statement": "У дороги лежит сломанное колесо повозки.",
       "subjects": []
@@ -42,7 +42,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-wheel-sawn",
-      "entityId": "broken-wagon-wheel",
+      "entityId": "item-f44e7183",
       "method": "investigation",
       "dc": 13,
       "statement": "Спицы аккуратно пропилены, а не разбиты.",
@@ -51,7 +51,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-blade-found",
-      "entityId": "goblin-weapon",
+      "entityId": "item-0869f47a",
       "method": "inspect",
       "statement": "В траве лежит грубый гоблинский клинок.",
       "subjects": []
@@ -59,7 +59,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-blade-unused",
-      "entityId": "goblin-weapon",
+      "entityId": "item-0869f47a",
       "method": "investigation",
       "dc": 15,
       "statement": "Клинком никогда не пользовались: ни зазубрин, ни крови.",
@@ -68,7 +68,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-symbol-seen",
-      "entityId": "strange-symbol",
+      "entityId": "feature-19c7c7f7",
       "method": "inspect",
       "statement": "На доске повозки выжжен странный знак.",
       "subjects": []
@@ -76,7 +76,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-symbol-careful",
-      "entityId": "strange-symbol",
+      "entityId": "feature-19c7c7f7",
       "method": "investigation",
       "dc": 14,
       "statement": "Знак нарисован с тщанием, умелой рукой.",
@@ -85,7 +85,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-tracks-boots",
-      "entityId": "wagon-tracks",
+      "entityId": "feature-ccec7e50",
       "method": "perception",
       "dc": 12,
       "statement": "Тяжёлые следы сапог, слишком большие для гоблинов, ведут на север от дороги.",
@@ -94,7 +94,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-cargo-burned",
-      "entityId": "burned-cargo",
+      "entityId": "item-08851105",
       "method": "inspect",
       "statement": "Часть груза сожгли на месте.",
       "subjects": []
@@ -102,7 +102,7 @@
     {
       "type": "AddClue",
       "clueId": "clue-cargo-missing",
-      "entityId": "burned-cargo",
+      "entityId": "item-08851105",
       "method": "investigation",
       "dc": 12,
       "statement": "Сожжено лишь несколько ящиков; большая часть груза исчезла.",

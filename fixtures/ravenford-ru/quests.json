@@ -12,13 +12,13 @@
         {
           "stage": "site-reached",
           "kind": "reached",
-          "locationId": "abandoned-caravan-site",
+          "locationId": "location-f3b82c8b",
           "summary": "Мы нашли место, где пропал караван."
         },
         {
           "stage": "evidence-examined",
           "kind": "examined-at",
-          "locationId": "abandoned-caravan-site",
+          "locationId": "location-f3b82c8b",
           "summary": "Мы осмотрели то, что осталось."
         },
         {
@@ -37,7 +37,7 @@
           "stage": "symbol-recognized",
           "kind": "told-by",
           "informant": "orin-stonebeard",
-          "subject": "strange-symbol",
+          "subject": "feature-19c7c7f7",
           "summary": "Орин рассказал нам, что знает о странном знаке."
         },
         {

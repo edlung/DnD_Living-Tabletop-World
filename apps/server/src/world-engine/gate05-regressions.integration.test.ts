@@ -147,16 +147,17 @@ describe('G05-M01: a later move never rewrites an earlier examination', () => {
         command({ characterId: 'elowen-starwhisper', ...body }, TOKENS.player);
       if (wasAtSite) {
         await act({ type: 'EnterLocation', locationId: 'old-trade-road' });
-        await act({ type: 'EnterLocation', locationId: 'abandoned-caravan-site' });
+        await act({ type: 'EnterLocation', locationId: 'location-f3b82c8b' });
       } else {
         await command({
           type: 'PlaceEntity',
-          entityId: 'strange-symbol',
+          entityId: 'feature-19c7c7f7',
           locationId: 'market-square',
         });
       }
       expect(
-        (await act({ type: 'ExamineEntity', entityId: 'strange-symbol', method: 'inspect' })).http,
+        (await act({ type: 'ExamineEntity', entityId: 'feature-19c7c7f7', method: 'inspect' }))
+          .http,
       ).toBe(200);
       const quest = async () =>
         (
@@ -170,8 +171,8 @@ describe('G05-M01: a later move never rewrites an earlier examination', () => {
       await command({ type: 'AdvanceWorldTime', by: 3_600 });
       const moved = await command({
         type: 'PlaceEntity',
-        entityId: 'strange-symbol',
-        locationId: wasAtSite ? 'north-gate' : 'abandoned-caravan-site',
+        entityId: 'feature-19c7c7f7',
+        locationId: wasAtSite ? 'north-gate' : 'location-f3b82c8b',
       });
       expect(moved.http).toBe(200);
       expect(await quest()).toEqual(before);
@@ -212,8 +213,8 @@ describe('G05-H02: a chapter protects the examinations it tells, whatever they c
   /** Elowen at the caravan site, then an inspection that rolls nothing and finds nothing. */
   async function emptyExamination(mode: string) {
     await act({ type: 'EnterLocation', locationId: 'old-trade-road' });
-    await act({ type: 'EnterLocation', locationId: 'abandoned-caravan-site' });
-    let entityId = 'strange-symbol';
+    await act({ type: 'EnterLocation', locationId: 'location-f3b82c8b' });
+    let entityId = 'feature-19c7c7f7';
     if (mode === 'repeated inspection') {
       await act({ type: 'ExamineEntity', entityId, method: 'inspect' });
     } else {
@@ -224,7 +225,7 @@ describe('G05-H02: a chapter protects the examinations it tells, whatever they c
         kind: 'item',
         name: 'Plain Token',
         existsSince: null,
-        placement: { locationId: 'abandoned-caravan-site', since: null },
+        placement: { locationId: 'location-f3b82c8b', since: null },
       });
     }
     const examined = await act({ type: 'ExamineEntity', entityId, method: 'inspect' });

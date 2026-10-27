@@ -89,7 +89,7 @@ describe('the curated set', { timeout: SLOW_MS }, () => {
     expect(mira.model).toBe('codex-cli/imagegen');
     expect(mira.bytes).toEqual(set.bytesOf('mira-vale.webp'));
     const figure = await generator.generate(
-      brief('goblin-raider-2', { variant: 'derived', label: 'figure', purpose: 'figure' }),
+      brief('creature-589f6668', { variant: 'derived', label: 'figure', purpose: 'figure' }),
     );
     expect(figure.bytes).toEqual(set.bytesOf('goblin-raider--figure.webp'));
     const map = await generator.generate(
@@ -175,7 +175,7 @@ describe('importing the curated set', { timeout: SLOW_MS }, () => {
       battleMap: { purpose: 'battle-map' },
     });
     // The caravan site is unknown to her: nothing of it, its pictures included.
-    expect(present('abandoned-caravan-site')).toBeNull();
+    expect(present('location-f3b82c8b')).toBeNull();
   });
 
   it('skips the entities a campaign lacks, and stops on a job that produced no image', async () => {

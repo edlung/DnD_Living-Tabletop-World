@@ -119,17 +119,17 @@ describe('context legality matches command acceptance', () => {
     await world.submit({
       type: 'EnterLocation',
       characterId: ELOWEN,
-      locationId: 'abandoned-caravan-site',
+      locationId: 'location-f3b82c8b',
     });
     world.roll(15);
     await world.submit({
       type: 'ExamineEntity',
       characterId: ELOWEN,
-      entityId: 'goblin-weapon',
+      entityId: 'item-0869f47a',
       method: 'investigation',
     });
     const state = await world.current();
-    const blade = entityContext(state, elowenView(state), 'goblin-weapon');
+    const blade = entityContext(state, elowenView(state), 'item-0869f47a');
     expect(
       blade.ok && blade.context.actions.find((a) => a.id === 'investigation_check'),
     ).toMatchObject({
@@ -147,7 +147,7 @@ describe('context legality matches command acceptance', () => {
       scope: { kind: 'PARTY' },
       knowledgeType: 'EVIDENCE',
       statement: 'A strange symbol is burned into a wagon plank.',
-      subjects: ['strange-symbol'],
+      subjects: ['feature-19c7c7f7'],
       knownSince: null,
     });
     // Evidence everyone knows is no one's to show.
@@ -157,7 +157,7 @@ describe('context legality matches command acceptance', () => {
       scope: { kind: 'PUBLIC' },
       knowledgeType: 'EVIDENCE',
       statement: 'Everyone has seen the symbol on the notice board.',
-      subjects: ['strange-symbol'],
+      subjects: ['feature-19c7c7f7'],
       knownSince: null,
     });
     await world.submit({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'orins-alchemy' });
@@ -194,7 +194,7 @@ describe('context legality matches command acceptance', () => {
         ? shown.context.actions.find((a) => a.id === id && (!topic || a.topic?.entityId === topic))
         : undefined;
     // Shown the symbol, "ask about the symbol" surfaces (RAVENFORD_SPEC, the Orin scene).
-    expect(byId('ask_about', 'strange-symbol')).toMatchObject({ legal: true, relevance: 'high' });
+    expect(byId('ask_about', 'feature-19c7c7f7')).toMatchObject({ legal: true, relevance: 'high' });
     expect(byId('insight_check')).toMatchObject({ legal: false, reason: 'ALREADY_ATTEMPTED' });
     expect(byId('show_evidence')).toMatchObject({ legal: true, relevance: 'low' });
     expect(byId('trade')).toMatchObject({ legal: false, reason: 'NOT_AVAILABLE' });

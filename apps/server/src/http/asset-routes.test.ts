@@ -28,7 +28,7 @@ import {
  * ever learn: its image is shown once Elowen sees it, and nothing else.
  */
 const BASE = '/campaigns/ravenford';
-const WATCHER = 'nb-hooded-watcher';
+const WATCHER = 'npc-2c4cf6cd';
 const MIRA = 'mira-vale';
 
 let engine: WorldEngine;

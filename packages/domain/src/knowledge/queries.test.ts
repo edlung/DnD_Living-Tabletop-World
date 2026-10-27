@@ -80,7 +80,7 @@ describe.each(Object.keys(EXPECTED_VISIBLE))('perspective %s', (label) => {
       expect(relatedKnowledge(state, p, id, 3)).toBeNull();
     }
     expect(entityKnowledge(state, p, ASHEN_CIRCLE_ID)).toBeNull();
-    expect(entityKnowledge(state, p, 'goblin-weapon')).toBeNull();
+    expect(entityKnowledge(state, p, 'item-0869f47a')).toBeNull();
     expect(entityKnowledge(state, p, 'nobody')).toBeNull();
   });
 
@@ -165,12 +165,12 @@ describe('entities through knowledge', () => {
       ].sort(),
     );
     expect(entityIds(as('NPC:mira-vale'))).not.toContain('elowen-starwhisper');
-    expect(entityIds(as('NPC:orin-stonebeard'))).toContain('strange-symbol');
+    expect(entityIds(as('NPC:orin-stonebeard'))).toContain('feature-19c7c7f7');
     expect(entityIds(as('DM'))).toContain(ASHEN_CIRCLE_ID);
   });
 
   it('answers what a perspective knows about an entity and its related entities', () => {
-    const about = entityKnowledge(state, as('NPC:orin-stonebeard'), 'strange-symbol');
+    const about = entityKnowledge(state, as('NPC:orin-stonebeard'), 'feature-19c7c7f7');
     expect(about && ids(about.knowledge)).toEqual(['orin-symbol-secret', 'orin-prior-incident']);
     expect(about?.relatedEntities.map((ref) => ref.entityId)).toEqual(['old-trade-road']);
 

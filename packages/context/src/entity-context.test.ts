@@ -151,7 +151,7 @@ describe('who may request a context', () => {
 
 describe('selectable entities', () => {
   it('treats unknown, unperceived and nonexistent entities identically', () => {
-    for (const entityId of ['strange-symbol', 'abandoned-caravan-site', 'no-such-entity']) {
+    for (const entityId of ['feature-19c7c7f7', 'location-f3b82c8b', 'no-such-entity']) {
       expect(entityContext(state, elowen, entityId)).toEqual({ ok: false, reason: 'NOT_FOUND' });
     }
   });

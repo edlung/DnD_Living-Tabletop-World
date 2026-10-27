@@ -31,7 +31,7 @@ import {
  * Alchemy, where Gate 04's hooded watcher stands, and returns at noon.
  */
 const BASE = '/campaigns/ravenford';
-const WATCHER = 'nb-hooded-watcher';
+const WATCHER = 'npc-2c4cf6cd';
 const DAY1 = worldTimeAt(1, 10);
 const NOON = worldTimeAt(2, 12);
 const INSIDE = worldTimeAt(2, 11);

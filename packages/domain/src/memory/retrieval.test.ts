@@ -205,9 +205,9 @@ describe('memory views', () => {
 
   it('makes entities named by visible memories known, and no others', () => {
     const orin = knownEntities(state, as('NPC:orin-stonebeard')).map((ref) => ref.entityId);
-    expect(orin).toContain('strange-symbol');
+    expect(orin).toContain('feature-19c7c7f7');
     const party = knownEntities(state, as('PARTY')).map((ref) => ref.entityId);
-    expect(party).not.toContain('strange-symbol');
+    expect(party).not.toContain('feature-19c7c7f7');
   });
 
   it('lists sessions as out-of-world metadata', () => {

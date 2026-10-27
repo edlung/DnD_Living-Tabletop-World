@@ -57,22 +57,22 @@ describe('current surroundings over HTTP', () => {
     await enter('old-trade-road', 'surroundings-road');
     const road = await get(app, `${URL}?perspective=PLAYER`, TOKENS.player);
     expect(road.json<SurroundingsResponse>().nearby).toEqual([
-      { entityId: 'abandoned-caravan-site', kind: 'location', name: null },
+      { entityId: 'location-f3b82c8b', kind: 'location', name: null },
     ]);
     expect(road.body).not.toContain('Abandoned Caravan Site');
     const selected = await get(
       app,
-      `${BASE}/entities/abandoned-caravan-site/context?perspective=PLAYER`,
+      `${BASE}/entities/location-f3b82c8b/context?perspective=PLAYER`,
       TOKENS.player,
     );
     expect(selected.statusCode).toBe(200);
     expect(selected.json<EntityContextResponse>().context.actions).toContainEqual(
       expect.objectContaining({ id: 'enter_location', legal: true }),
     );
-    await enter('abandoned-caravan-site', 'surroundings-site');
+    await enter('location-f3b82c8b', 'surroundings-site');
     const before = await get(app, `${URL}?perspective=PLAYER`, TOKENS.player);
     expect(before.json<SurroundingsResponse>().location).toEqual({
-      entityId: 'abandoned-caravan-site',
+      entityId: 'location-f3b82c8b',
       kind: 'location',
       name: null,
     });

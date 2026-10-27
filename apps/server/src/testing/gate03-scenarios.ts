@@ -14,8 +14,8 @@ import { TOKENS, get } from './ravenford-app.ts';
  * Counterspell counters (the Shaman's save: 11 + 1 against DC 16).
  */
 export { ELOWEN };
-export const SHAMAN = 'goblin-shaman';
-export const RAIDER_1 = 'goblin-raider-1';
+export const SHAMAN = 'creature-ae08be99';
+export const RAIDER_1 = 'creature-10fb59d4';
 /** A second party character, from the DM only: there is no persona token for her player. */
 export const SEREN = 'seren-ashgrove';
 

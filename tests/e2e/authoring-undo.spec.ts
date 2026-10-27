@@ -4,6 +4,7 @@ import {
   ADD_TO_THE_WORLD,
   AUTHORING_CAMPAIGNS,
   TOMAS_REQUEST,
+  createdEntityId,
   enterAsDm,
   playerCommand,
   propose,
@@ -47,7 +48,7 @@ test('undo is refused while the story depends on him, and works after the depend
 }) => {
   const campaign = AUTHORING_CAMPAIGNS.unsafe;
   await enterAsDm(page, campaign);
-  await propose(page);
+  const tomasId = createdEntityId(await propose(page));
   await review(page).getByText('Edit proposal', { exact: true }).click();
   await page.getByLabel('Willing to tell this when asked').check();
   await review(page).getByRole('button', { name: 'Apply changes' }).click();
@@ -66,7 +67,7 @@ test('undo is refused while the story depends on him, and works after the depend
       {
         type: 'AskAbout',
         characterId: 'elowen-starwhisper',
-        npcId: 'tomas-reed',
+        npcId: tomasId,
         topicId: 'guild-caravan',
       },
     ],

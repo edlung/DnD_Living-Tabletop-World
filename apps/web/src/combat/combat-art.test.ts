@@ -48,7 +48,7 @@ describe('combat option pictures and words', () => {
       const t = (key: string, params?: Readonly<Record<string, string | number>>) =>
         translate(language, key, params);
       for (const action of COMBAT_ACTIONS) {
-        const full = optionLabel(t, action, 'goblin-raider-1').toLowerCase();
+        const full = optionLabel(t, action, 'creature-10fb59d4').toLowerCase();
         expect(full, `${language} ${action}`).toContain(t(shortLabelOf(action)).toLowerCase());
       }
     }

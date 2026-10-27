@@ -17,7 +17,7 @@ import { CAMPAIGN, DM, ELOWEN, MODIFIERS, codeOf, investigationWorld } from './t
  */
 const NPCS = ['mira-vale', 'orin-stonebeard', 'captain-thorne'];
 const PLACES = ['market-square', 'orins-alchemy', 'north-gate'];
-const TOPICS = ['guild-caravan', 'strange-symbol', 'old-trade-road', 'captain-thorne'];
+const TOPICS = ['guild-caravan', 'feature-19c7c7f7', 'old-trade-road', 'captain-thorne'];
 const EVIDENCE = ['party-symbol-evidence', 'party-road-evidence'];
 const ATTITUDES = ['HOSTILE', 'WARY', 'NEUTRAL', 'FRIENDLY', 'TRUSTED'];
 /** Who stands where in the seed. */
@@ -35,7 +35,7 @@ describe('NPC interactions under random undo', () => {
       const pick = <T>(items: readonly T[]): T => items[Math.floor(rng() * items.length)] as T;
       const world = await investigationWorld();
       for (const [knowledgeId, subject] of [
-        ['party-symbol-evidence', 'strange-symbol'],
+        ['party-symbol-evidence', 'feature-19c7c7f7'],
         ['party-road-evidence', 'old-trade-road'],
       ] as const) {
         await world.submit(

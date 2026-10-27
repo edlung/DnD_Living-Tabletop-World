@@ -76,7 +76,7 @@ export function lexicalLeaks(text: string, forbidden: readonly string[]): string
 
 /** The planted record and entity IDs of the Gate 04 boundary, which no NPC request may carry. */
 export const BOUNDARY_IDS: readonly string[] = [
-  'nb-hooded-watcher',
+  'npc-2c4cf6cd',
   'nb-truth',
   'nb-dm-note',
   'nb-orin-secret',
