@@ -265,6 +265,7 @@
 @media (min-width: 768px) and (max-width: 1199px) {
   .world-main.has-details:not(.has-battle) .outcome {
     right: 16px;
+    bottom: calc(var(--dock-h) + 36px);
     left: auto;
     width: calc(min(var(--panel-w), 92vw) - 32px);
   }

@@ -6,7 +6,7 @@ import {
   INVESTIGATION_CAMPAIGNS,
   travelTo,
 } from './support/investigation.ts';
-import { enterWorld } from './support/session.ts';
+import { enterWorld, TOKENS } from './support/session.ts';
 
 /**
  * Gate 06: a result with nothing to anchor it to (inspecting the place itself) sat bottom
@@ -115,3 +115,47 @@ test('beside an open conversation and a result the scene keeps room for its name
   });
   expect(overlaps).toEqual([]);
 });
+
+/** Dock buttons a pointer at their centre does not reach (something lies over them). */
+async function coveredDockButtons(page: Page): Promise<string[]> {
+  return page.locator('nav.dock button').evaluateAll((buttons) =>
+    buttons
+      .filter((button) => {
+        const box = button.getBoundingClientRect();
+        const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+        return !button.contains(hit);
+      })
+      .map((button) => button.getAttribute('aria-label') ?? ''),
+  );
+}
+
+for (const width of [768, 1024]) {
+  test(`with the selection's drawer open every dock item stays reachable at ${String(width)} px (Stage 360)`, async ({
+    browser,
+  }) => {
+    // The DM's dock holds every tool; the drawer once covered its right half.
+    const dm = await browser.newPage({ viewport: { width, height: 1024 } });
+    await enterWorld(dm, TOKENS.dm);
+    await dm.getByRole('button', { name: 'Mira Vale', exact: true }).click();
+    await expect(dm.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
+    await expect(dm.locator('nav.dock button')).toHaveCount(9);
+    expect(await coveredDockButtons(dm)).toEqual([]);
+
+    // A player's result at the drawer's foot keeps clear of the dock too (read-only: talking with
+    // no dialogue provider records nothing).
+    const player = await browser.newPage({ viewport: { width, height: 1024 } });
+    await enterWorld(player);
+    await player.getByRole('button', { name: 'Mira Vale', exact: true }).click();
+    await player
+      .getByRole('complementary', { name: 'Entity details' })
+      .getByRole('button', { name: 'Talk', exact: true })
+      .click();
+    await expect(player.locator('.outcome')).toBeVisible();
+    expect(await coveredDockButtons(player)).toEqual([]);
+    const [outcome, dock] = await Promise.all([
+      player.locator('.outcome').boundingBox(),
+      player.locator('nav.dock').boundingBox(),
+    ]);
+    expect((outcome?.y ?? 0) + (outcome?.height ?? 0)).toBeLessThanOrEqual(dock?.y ?? 0);
+  });
+}

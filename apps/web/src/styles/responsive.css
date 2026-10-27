@@ -75,6 +75,16 @@
   .exits {
     width: 220px;
   }
+  /*
+   * Stage 360: the selection's drawer ends above the dock, so every dock item (Journal,
+   * Chronicle, the DM's tools) stays reachable while it is open; the result keeps its place at
+   * the drawer's foot (stage.css).
+   */
+  .detail-panel {
+    bottom: calc(var(--dock-h) + 20px);
+    border-bottom: 1px solid var(--line);
+    border-bottom-left-radius: var(--radius-panel);
+  }
   /* With the selection's drawer open the result centres on the stage left of it. */
   .world-main.has-details .outcome {
     left: calc((100% - min(var(--panel-w), 92vw)) / 2);
