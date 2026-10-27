@@ -69,12 +69,13 @@ service_running() {
 # The Compose project of this deployment (COMPOSE_PROJECT_NAME, else compose.yaml's `name`), as
 # Compose resolves it: without interpolation first, so it needs no setting; an older Compose (the
 # hosted CI runner's) rejects the uninterpolated `${BACKUP_DIR:?…}` mounts ("too many colons"),
-# and then the resolved configuration is read. Only the name leaves; no value is printed. Callers
+# and then the resolved configuration is read, with a stand-in image tag when none is set yet
+# (a first install writes LTW_IMAGE_TAG only after this). Only the name leaves; no value is printed. Callers
 # take it in a plain assignment (`project=$(project_name)`), which stops the script when it fails.
 project_name() {
   local name
   name=$({ compose config --no-interpolate --format json 2>/dev/null ||
-    compose config --format json; } | sed -n 's/^  "name": "\([^"]*\)",$/\1/p' | head -n 1)
+    LTW_IMAGE_TAG="${LTW_IMAGE_TAG:-unset}" compose config --format json; } | sed -n 's/^  "name": "\([^"]*\)",$/\1/p' | head -n 1)
   [ -n "$name" ] || die 'cannot tell the Compose project (docker compose config)'
   echo "$name"
 }
