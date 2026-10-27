@@ -1,5 +1,5 @@
 import { createPlaceholderImageGenerator } from '@ltw/ai';
-import type { CommandResult } from '@ltw/contracts';
+import type { CommandResult, EntityAssetsResponse } from '@ltw/contracts';
 import { assetIdFor, checkWorldIntegrity, replay, type WorldEngine } from '@ltw/domain';
 import pg from 'pg';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -9,9 +9,11 @@ import {
   ASHEN_CIRCLE_ID,
   TOKENS,
   get,
+  post,
   ravenfordApp,
   testAiGateway,
   testAuthoring,
+  withoutRequestId,
 } from '../testing/ravenford-app.ts';
 import { createThrowawayDatabase, type ThrowawayDatabase } from '../testing/throwaway-database.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
@@ -23,8 +25,9 @@ import { AssetWorker } from './worker.ts';
 /**
  * Asset identity on PostgreSQL (migration 0004, ADR 0022 §6): contents are
  * append-only and per campaign; the worker runs requests against the
- * PostgreSQL World Engine; an undo is refused while a job runs; and the
- * lineage replays from the stored events.
+ * PostgreSQL World Engine; an undo is refused while a job runs; the
+ * lineage replays from the stored events; and a player is served only what
+ * presentation could choose for it (Gate 06, G06-images-01).
  */
 let database: ThrowawayDatabase;
 let pool: pg.Pool;
@@ -181,6 +184,81 @@ describe('the asset worker on PostgreSQL', () => {
       expect(forDm.body.startsWith('<svg')).toBe(true);
       // Elowen knows nothing of the Ashen Circle, and cannot see it.
       expect((await get(app, `${url}?perspective=PLAYER`, TOKENS.player)).statusCode).toBe(404);
+    } finally {
+      await app.close();
+    }
+  });
+
+  it('serves a state picture of an entity Elowen does not observe to the DM alone (Gate 06)', async () => {
+    const engine = await seeded();
+    const contents = new PostgresAssetContentStore(pool);
+    const execute = async (commandId: string, command: Record<string, unknown>) => {
+      const result = await engine.execute({
+        commandId,
+        campaignId: 'ravenford',
+        actor: DM,
+        command,
+      });
+      if (result.status !== 'accepted') throw new Error(`${commandId} rejected`);
+    };
+    const worker = new AssetWorker({
+      engine,
+      contents,
+      generator: createPlaceholderImageGenerator(),
+      timeoutMs: 5_000,
+      logger: createLogger({ service: 'pg-asset-test', level: 'silent' }),
+    });
+    await execute('pg-g06.ref', {
+      type: 'RequestAsset',
+      entityId: 'mira-vale',
+      variant: 'reference',
+    });
+    await worker.runOnce('ravenford');
+    await execute('pg-g06.ref-ok', { type: 'ApproveAsset', assetId: 'pg-g06.ref#0~asset' });
+    await execute('pg-g06.dead', {
+      type: 'RequestAsset',
+      entityId: 'mira-vale',
+      variant: 'derived',
+      label: 'dead',
+    });
+    await worker.runOnce('ravenford');
+    await execute('pg-g06.dead-ok', { type: 'ApproveAsset', assetId: 'pg-g06.dead#0~asset' });
+    const assets = (await engine.load('ravenford'))?.state.assets.assets;
+    const hashOf = (assetId: string) => assets?.get(assetId)?.contentHash ?? '';
+
+    const app = await ravenfordApp(engine, testAiGateway(), testAuthoring(), contents);
+    try {
+      // Elowen leaves the market square: she knows Mira Vale, and no longer observes her.
+      const left = await post(
+        app,
+        '/campaigns/ravenford/commands',
+        {
+          commandId: 'pg-g06.leave',
+          command: {
+            type: 'EnterLocation',
+            characterId: 'elowen-starwhisper',
+            locationId: 'orins-alchemy',
+          },
+        },
+        TOKENS.player,
+      );
+      expect(left.json<CommandResult>().status).toBe('accepted');
+      const list = await get(
+        app,
+        '/campaigns/ravenford/entities/mira-vale/assets?perspective=PLAYER',
+        TOKENS.player,
+      );
+      expect(list.json<EntityAssetsResponse>().assets.map((asset) => asset.contentHash)).toEqual([
+        hashOf('pg-g06.ref#0~asset'),
+      ]);
+      const content = (hash: string, perspective: string, token: string) =>
+        get(app, `/campaigns/ravenford/assets/content/${hash}?perspective=${perspective}`, token);
+      const dead = hashOf('pg-g06.dead#0~asset');
+      const missing = await content(`sha256:${'0'.repeat(64)}`, 'PLAYER', TOKENS.player);
+      expect(withoutRequestId(await content(dead, 'PLAYER', TOKENS.player))).toEqual(
+        withoutRequestId(missing),
+      );
+      expect((await content(dead, 'DM', TOKENS.dm)).statusCode).toBe(200);
     } finally {
       await app.close();
     }

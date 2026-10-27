@@ -18,7 +18,10 @@ export interface PlayerAssetView {
   readonly variant: AssetVariant;
   /** What the image is for (docs/adr/0035-images.md §4); never names its entity. */
   readonly purpose: AssetPurpose;
-  readonly version: number;
+  /**
+   * No version: it counts the DM's hidden pictures of the kind too (Gate 06, G06-images-03). The
+   * DM reads versions in the lineage.
+   */
   readonly contentHash: string;
   readonly mediaType: AssetMediaType;
 }
@@ -67,4 +70,10 @@ export interface AssetLineageResponse {
   readonly requests: readonly AssetRequestView[];
   readonly assets: readonly AssetView[];
   readonly canonical: readonly { readonly entityId: string; readonly assetId: string }[];
+  /**
+   * What the image model reads of each entity besides its kind (ADR 0035 §6, amendment "Gate 06
+   * remediation"): its recorded description, which players may never have learned. The DM's
+   * request form shows it, so an approval for players is informed. Entities with none are absent.
+   */
+  readonly descriptions: readonly { readonly entityId: string; readonly description: string }[];
 }

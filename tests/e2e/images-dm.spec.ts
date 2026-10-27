@@ -42,6 +42,16 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
   );
   // A figure derives from an approved main picture: not before there is one.
   await expect(images.getByRole('option', { name: 'A figure for the battlefield' })).toBeDisabled();
+  // Gate 06: the form shows, word for word, the recorded description the image model reads.
+  const brief = images.getByRole('group', {
+    name: 'The image model reads its recorded description:',
+  });
+  await expect(brief.locator('blockquote')).toHaveText(
+    'A young guard of the Ravenford Guard, 22 years old.',
+  );
+  await expect(brief).toContainText(
+    'Players may not know this. A picture you approve for players can show it.',
+  );
   await images
     .getByLabel('Note to the image model (optional)', { exact: true })
     .fill('Short dark hair under a steel cap');

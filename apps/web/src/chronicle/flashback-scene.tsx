@@ -23,7 +23,8 @@ export function Vignette({
   readonly placeName: string | null;
 }) {
   const t = useT();
-  const url = useApprovedImage(flashback.scene?.image ?? null);
+  // Chosen for the remembered time: fetched for that time, as only then may it be shown.
+  const url = useApprovedImage(flashback.scene?.image ?? null, flashback.worldTime);
   const note = pictureNote(true, flashback.scene ?? 'withheld');
   return (
     <figure className={`flashback-vignette${url ? '' : ' flashback-vignette--mist'}`}>

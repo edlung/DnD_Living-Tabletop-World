@@ -122,6 +122,10 @@ export function EntityImages({
             entityId={entityId}
             kind={kind}
             canonical={mine.canonical}
+            description={
+              lineage?.descriptions.find((entry) => entry.entityId === entityId)?.description ??
+              null
+            }
             context={context}
             preset={preset}
           />

@@ -57,7 +57,8 @@ function PlacePlate({
   );
   const { resource } = useResource(`plate:${placeId ?? ''}:${String(at)}`, load);
   const image = resource.status === 'ready' ? (resource.value?.presentation.image ?? null) : null;
-  const url = useApprovedImage(image);
+  // Chosen for the chapter's end: fetched for that time, as only then may it be shown.
+  const url = useApprovedImage(image, at);
   const note = pictureNote(
     place !== null,
     resource.status === 'loading'

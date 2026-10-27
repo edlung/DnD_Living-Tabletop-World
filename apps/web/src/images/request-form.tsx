@@ -21,15 +21,18 @@ export interface ReplacePreset {
  * Requesting a picture (docs/STAGE_330_DESIGN.md "DM controls"; ADR 0035 §4, §6): the main
  * picture, a variant for a state the presentation can choose it by, a figure (a character, NPC
  * or creature) or a battle map (a place) — the last three derive from an approved main picture.
- * The request is built from what the world records about the entity; the DM's note is the one
- * thing the DM adds, and the form says plainly that it reaches the image model. Nothing is
- * requested until the DM presses the button: each request may be a paid generation, so the button
- * waits (`aria-disabled`) from the press until the list shows the request.
+ * The request is built from what the world records about the entity: the form shows the recorded
+ * description the image model reads, word for word, and that players may not know it (ADR 0035
+ * §6, amendment "Gate 06 remediation"), so the DM's later approval for players is informed. The
+ * DM's note is the one thing the DM adds, and the form says plainly that it reaches the image
+ * model. Nothing is requested until the DM presses the button: each request may be a paid
+ * generation, so the button waits (`aria-disabled`) from the press until the list shows it.
  */
 export function RequestForm({
   entityId,
   kind,
   canonical,
+  description,
   context,
   preset,
 }: {
@@ -37,6 +40,8 @@ export function RequestForm({
   readonly kind: EntityKind;
   /** A main picture is approved: variants, figures and battle maps can derive from it. */
   readonly canonical: boolean;
+  /** The recorded description the image model reads (from the lineage); null when none. */
+  readonly description: string | null;
   readonly context: Context;
   readonly preset: ReplacePreset | null;
 }) {
@@ -146,13 +151,31 @@ export function RequestForm({
           </select>
         </>
       )}
+      <div className="image-request-brief" aria-labelledby={`${ids}-brief`} role="group">
+        <p id={`${ids}-brief`} className="image-request-brief-title">
+          <Glyph name="ai-assistant" />
+          {description === null
+            ? t(
+                'Nothing is recorded about it: the image model is told only what kind of thing it is.',
+              )
+            : t('The image model reads its recorded description:')}
+        </p>
+        {description !== null && (
+          <>
+            <blockquote className="image-request-description">{description}</blockquote>
+            <p className="field-hint">
+              {t('Players may not know this. A picture you approve for players can show it.')}
+            </p>
+          </>
+        )}
+      </div>
       <label htmlFor={`${ids}-note`} className="image-request-note-label">
         <Glyph name="ai-assistant" />
         {t('Note to the image model (optional)')}
       </label>
       <p className="field-hint" id={`${ids}-note-hint`}>
         {t(
-          'Sent to the image model with what the world records about it. Players never see it; leave out what the model should not read.',
+          'Sent to the image model with the description above. Players never see it; leave out what the model should not read.',
         )}
       </p>
       <textarea

@@ -4,11 +4,16 @@ import { describe, expect, it } from 'vitest';
 import { CAMPAIGN, DM } from '../authoring/testing/world.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { mulberry32 } from '../kernel/testing/random-commands.ts';
-import { holderPerspective } from '../knowledge/perspective.ts';
+import { holderPerspective, type ResolvedPerspective } from '../knowledge/perspective.ts';
 import { imageFor, presentationScopeAt } from '../visual/presentation.ts';
 import { DM_VIEW } from '../visual/testing/world.ts';
 import { visualTimelineAt } from '../visual/timeline.ts';
-import { entityPresentationAt, type Snapshot } from '../visual/views.ts';
+import {
+  assetContentAt,
+  entityAssetsAt,
+  entityPresentationAt,
+  type Snapshot,
+} from '../visual/views.ts';
 import { SETTLED_ASSET, SHOWN_ASSET, assetIdFor, sameKind, type AssetRecord } from './records.ts';
 import { assetWorld } from './testing/world.ts';
 
@@ -18,8 +23,9 @@ import { assetWorld } from './testing/world.ts';
  * of the wrong kind), worker reports, approvals, retractions, cancellations and undos. After every
  * step the lineage is consistent, each kind of picture has at most one approved (an approval
  * supersedes its kind, ADR 0035 amendment), and presentation shows, for each perspective, only
- * approved assets of the right purpose and audience; after every approval the approved picture is
- * the one shown for its kind; at the end the re-decision oracle and replay agree.
+ * approved assets of the right purpose and audience, and a player is listed and served exactly what
+ * presentation could choose for it (Gate 06); after every approval the approved picture is the one
+ * shown for its kind; at the end the re-decision oracle and replay agree.
  */
 const STEPS = 60;
 const ENTITIES = ['mira-vale', 'orin-stonebeard', 'elowen-starwhisper', 'old-trade-road'];
@@ -37,6 +43,37 @@ function shownOfKind(snapshot: Snapshot, asset: AssetRecord): string | null {
   const tags = asset.label === null ? [] : asset.label.split('-');
   const scope = presentationScopeAt(timeline, DM_VIEW);
   return imageFor(timeline, scope, asset.entityId, tags)?.contentHash ?? null;
+}
+
+/**
+ * Gate 06 (G06-images-01): a player is listed and served only what presentation could choose for
+ * it now. Presentation's picks are listed; every listed picture's bytes are served; a listed state
+ * picture's label parts are all among the tags it sees; any other shown picture is a 404.
+ */
+function exposedAsPresented(
+  snapshot: Snapshot,
+  perspective: ResolvedPerspective,
+  entityId: string,
+  where: string,
+) {
+  const presented = entityPresentationAt(snapshot, perspective, entityId, null)?.presentation;
+  const listed = entityAssetsAt(snapshot, perspective, entityId);
+  expect(listed === null, where).toBe(presented === undefined);
+  const hashes = new Set((listed ?? []).map((view) => view.contentHash));
+  for (const view of [presented?.image, presented?.figure, presented?.battleMap]) {
+    if (view) expect(hashes.has(view.contentHash), `${where}: presented is listed`).toBe(true);
+  }
+  for (const asset of snapshot.state.assets.assets.values()) {
+    if (asset.entityId !== entityId || !SHOWN_ASSET.has(asset.status)) continue;
+    const served = assetContentAt(snapshot, perspective, asset.contentHash, null) !== null;
+    expect(served, `${where}: ${asset.assetId} served as listed`).toBe(
+      hashes.has(asset.contentHash),
+    );
+    if (!hashes.has(asset.contentHash) || asset.purpose !== 'image' || asset.label === null) {
+      continue;
+    }
+    for (const part of asset.label.split('-')) expect(presented?.tags, where).toContain(part);
+  }
 }
 
 describe('purposes under random work', () => {
@@ -155,6 +192,7 @@ describe('purposes under random work', () => {
             if (kind === 'location') expect(shown?.figure ?? null).toBeNull();
             else expect(shown?.battleMap ?? null).toBeNull();
           }
+          exposedAsPresented(snapshot, elowen, entityId, `step ${String(step)} ${entityId}`);
         }
       }
       await world.verified();

@@ -144,7 +144,6 @@ describe('player metadata isolation', () => {
         {
           variant: 'reference',
           purpose: 'image',
-          version: 1,
           contentHash: expect.stringMatching(/^sha256:[0-9a-f]{64}$/) as string,
           mediaType: 'image/svg+xml',
         },

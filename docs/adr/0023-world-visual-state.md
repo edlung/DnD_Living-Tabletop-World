@@ -84,6 +84,10 @@ There is no calendar, so there are no seasons; a season would need its own decis
 - **Gate 05** reviews this surface (`docs/GATE_COVERAGE.md`, row 150–160).
 - **Cost.** Each view replays the campaign's history; caching is a later concern.
 
+## Amendments
+
+- 2026-10-27 (Gate 06 remediation, G06-images-01): **the image rule bounds the asset routes too** (§3–§4; ADR 0022 amendment). A perspective other than the DM is listed and served (`…/assets`, `…/assets/content/:hash`, with or without `at`) only what presentation could choose for it then: the canonical reference, derived images whose label parts are all among the tags it sees, the figure and the battle map, by the same code (`presentableAssets`). A state picture of an entity not observed in that state is a 404 like nothing. Without `at`, content is what presentation could choose now (no longer "what it may see now"); the client passes `at` for a picture it was given for a past time. Every picture an entity or scene presentation returns at T is served at T.
+
 ## Invariants affected
 
 Implements:

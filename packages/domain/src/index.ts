@@ -177,6 +177,7 @@ export {
 } from './assets/records.ts';
 export {
   assetContentAt,
+  entityAssetsAt,
   entityPresentationAt,
   scenePresentationAt,
   type Snapshot as VisualSnapshot,

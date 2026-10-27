@@ -215,14 +215,12 @@ describe('a figure and a battle map', () => {
       {
         variant: 'reference',
         purpose: 'image',
-        version: 1,
         contentHash: hash(1),
         mediaType: 'image/svg+xml',
       },
       {
         variant: 'derived',
         purpose: 'figure',
-        version: 1,
         contentHash: hash(2),
         mediaType: 'image/svg+xml',
       },

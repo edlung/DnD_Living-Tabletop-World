@@ -14,8 +14,9 @@ import { SHOWN_ASSET, type AssetRecord } from './records.ts';
 /**
  * Who sees which assets (docs/adr/0022-asset-identity.md §5, owner decision).
  * A non-DM perspective sees approved player assets of the entities it knows
- * or perceives, as variant, purpose (ADR 0035 §4), version, and content hash
- * only; anything else is indistinguishable from an entity that does not
+ * or perceives, as variant, purpose (ADR 0035 §4), and content hash only
+ * (no version since Gate 06), and only what presentation could choose for it
+ * (`../visual/views.ts`); anything else is indistinguishable from an entity that does not
  * exist. The DM sees every approved asset, and the whole lineage separately.
  */
 
@@ -47,16 +48,29 @@ export function shownTo(perspective: ResolvedPerspective, asset: AssetRecord): b
 
 const ORDER = { reference: 0, derived: 1 } as const;
 
-/** The only fields of an asset a player sees: never IDs, labels, notes, generator, or lineage. */
+/**
+ * The only fields of an asset a player sees: never IDs, labels, notes, generator, lineage, or the
+ * version, which counts the DM-only, candidate and retracted pictures of its kind as well (Gate
+ * 06, G06-images-03); the DM reads versions in the lineage.
+ */
 export const playerAssetView = ({
   variant,
   purpose,
-  version,
   contentHash,
   mediaType,
-}: AssetRecord): PlayerAssetView => ({ variant, purpose, version, contentHash, mediaType });
+}: AssetRecord): PlayerAssetView => ({ variant, purpose, contentHash, mediaType });
 
-/** An entity's assets as the perspective may see them; null when the entity is not visible. */
+/** Reference first, then derived pictures in the order they were made. */
+export const sortedViews = (assets: readonly AssetRecord[]): PlayerAssetView[] =>
+  [...assets]
+    .sort((a, b) => ORDER[a.variant] - ORDER[b.variant] || a.version - b.version)
+    .map(playerAssetView);
+
+/**
+ * An entity's approved assets the perspective's audience and visibility allow; null when the
+ * entity is not visible. The route lists these for the DM only: anyone else is given only what
+ * presentation could choose for it (`entityAssetsAt` in `../visual/views.ts`, Gate 06).
+ */
 export function entityAssetsFor(
   state: WorldState,
   perspective: ResolvedPerspective,
@@ -64,17 +78,19 @@ export function entityAssetsFor(
 ): PlayerAssetView[] | null {
   const visible = assetVisibleEntityIds(state, perspective);
   if (!state.entities.has(entityId) || (visible !== 'ALL' && !visible.has(entityId))) return null;
-  return [...state.assets.assets.values()]
-    .filter((asset) => asset.entityId === entityId && shownTo(perspective, asset))
-    .sort((a, b) => ORDER[a.variant] - ORDER[b.variant] || a.version - b.version)
-    .map(playerAssetView);
+  return sortedViews(
+    [...state.assets.assets.values()].filter(
+      (asset) => asset.entityId === entityId && shownTo(perspective, asset),
+    ),
+  );
 }
 
 /**
  * Whether the perspective may fetch these bytes: some asset with this
  * content it may see, of an entity it may see. Null otherwise, exactly as
  * for content that does not exist. The DM may fetch any asset's bytes, so
- * it can look at a candidate before approving it.
+ * it can look at a candidate before approving it. The route serves anyone
+ * else only what presentation could choose (`assetContentAt`, Gate 06).
  */
 export function assetContentFor(
   state: WorldState,
@@ -93,7 +109,10 @@ export function assetContentFor(
   return null;
 }
 
-/** The DM's full lineage: requests (with the jobs that ran them), assets, canonical references. */
+/**
+ * The DM's full lineage: requests (with the jobs that ran them), assets, canonical references, and
+ * the recorded descriptions an image request sends the image model (Gate 06, G06-images-04).
+ */
 export function assetLineage(state: WorldState): AssetLineageResponse {
   const { requests, jobs, assets, canonical } = state.assets;
   const views: AssetRequestView[] = [];
@@ -116,5 +135,9 @@ export function assetLineage(state: WorldState): AssetLineageResponse {
     requests: views.sort((a, b) => a.requestedAt - b.requestedAt),
     assets: [...assets.values()],
     canonical: [...canonical].map(([entityId, assetId]) => ({ entityId, assetId })),
+    // As the image prompt reads it (`taskText`): trimmed, and nothing when empty.
+    descriptions: [...state.entities.values()].flatMap(({ entityId, description }) =>
+      description.trim() === '' ? [] : [{ entityId, description: description.trim() }],
+    ),
   };
 }

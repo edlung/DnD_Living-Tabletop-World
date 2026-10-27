@@ -67,7 +67,7 @@ describe('approving a picture supersedes the approved picture of its kind', () =
     for (const perspective of [DM_VIEW, await world.elowen(), await world.party()]) {
       const mira = entityPresentationAt(snapshot, perspective, MIRA, null)?.presentation;
       expect(mira?.tags).toContain('night');
-      expect(mira?.image).toMatchObject({ variant: 'derived', contentHash: hash(2), version: 1 });
+      expect(mira?.image).toMatchObject({ variant: 'derived', contentHash: hash(2) });
     }
     await world.verified();
   });

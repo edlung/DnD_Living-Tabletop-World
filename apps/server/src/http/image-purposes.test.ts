@@ -121,7 +121,7 @@ describe('a figure and a battle map over HTTP', { timeout: SLOW_MS }, () => {
       ['derived', 'figure'],
     ]);
     const shown = (await presentation(ELOWEN)).figure;
-    expect(shown).toMatchObject({ variant: 'derived', purpose: 'figure', version: 1 });
+    expect(shown).toMatchObject({ variant: 'derived', purpose: 'figure' });
     const bytes = await get(
       app,
       `${BASE}/assets/content/${shown?.contentHash ?? ''}?perspective=PLAYER`,

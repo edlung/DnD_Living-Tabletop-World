@@ -12,7 +12,7 @@ import { assetContentFor, assetLineage, entityAssetsFor } from './views.ts';
 /**
  * Player metadata isolation (owner decision, ADR 0022 §5): players see
  * assets only of entities their character knows or perceives, and only the
- * variant, version, and content hash; never prompts, labels, notes,
+ * variant, purpose, and content hash; never prompts, labels, notes,
  * lineage, DM-only assets, or anything naming an entity they do not know.
  * The DM sees everything.
  */
@@ -63,13 +63,12 @@ describe('which entities a perspective sees assets of', () => {
     expect(perceivedEntityIds(state, ELOWEN).has(ASHEN_CIRCLE)).toBe(false);
   });
 
-  it('shows a player only approved player assets, as variant, purpose, version, and content hash', async () => {
+  it('shows a player only approved player assets, as variant, purpose, and content hash', async () => {
     const world = await populated();
     const state = await world.state();
     const view = (variant: string, n: number) => ({
       variant,
       purpose: 'image',
-      version: 1,
       contentHash: hash(n),
       mediaType: 'image/svg+xml',
     });
@@ -154,5 +153,11 @@ describe('which entities a perspective sees assets of', () => {
     expect(lineage.canonical).toEqual(
       expect.arrayContaining([{ entityId: MIRA, assetId: world.ids['mira'] }]),
     );
+    // Gate 06 (G06-images-04): the description the image model reads, for the DM's request form.
+    expect(lineage.descriptions).toContainEqual({
+      entityId: MIRA,
+      description: state.entities.get(MIRA)?.description,
+    });
+    expect(lineage.descriptions.every(({ description }) => description.trim() !== '')).toBe(true);
   });
 });
