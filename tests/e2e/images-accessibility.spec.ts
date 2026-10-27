@@ -54,6 +54,9 @@ test('the keyboard reaches every image control in order, and Escape closes the s
   await page.keyboard.press('Enter');
   const sheet = page.locator('#sheet-images');
   await expect(sheet).toBeVisible();
+  // The DM reads the sheet before moving through it: until the lineage is read it shows "Reading
+  // the pictures…" and holds no control but Close, so a Tab then leaves the sheet by design.
+  await expect(sheet.getByRole('button', { name: /^Approve: / })).toHaveCount(2);
   const order: string[] = [];
   for (let step = 0; step < 14; step += 1) {
     await page.keyboard.press('Tab');
