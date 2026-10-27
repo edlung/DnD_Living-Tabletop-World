@@ -122,6 +122,10 @@
   - **Content for a past view.** The content route accepts `at`, serving the bytes of what the perspective could see at that world time.
 - 2026-10-16 (Stage 330 part B review, ADR 0035 amendment "an approval supersedes its kind"):
   - **An approved variant supersedes its kind.** Approving a derived picture makes the approved pictures of its kind (§1 statuses: the same entity and purpose, and for an image the same label) `SUPERSEDED`, as approving a reference always did to the canonical reference; the canonical reference is still unchanged. `AssetApproved` is version 3; version 2 approvals are canon as recorded.
+- 2026-10-27 (Gate 06 remediation, G06-images-01, -02, -03):
+  - **Players get only what presentation could choose (§5, §6; ADR 0023 §4).** A non-DM perspective's asset list and its content-by-hash check expose only the pictures presentation could choose for it (now, or at `at` for content): the canonical reference, each approved derived image whose every label part is among the tags it sees of the entity, the figure and the battle map (`presentableAssets`, `../visual/presentation.ts`, the one rule presentation uses). An approved `dead` or `unconscious` picture of an entity the player knows but does not observe in that state is a 404 like a nonexistent hash, and absent from the list. The DM is unchanged. The list keeps no `at`; the client fetches a picture chosen for a past time (a Chronicle page, a flashback) with that time.
+  - **No version for players (§5).** The player's view is variant, purpose, content hash and media type: the version counted the DM-only, candidate and retracted pictures of its kind, so a player could see that hidden ones existed. The DM's lineage keeps versions; presentation still orders by them.
+  - **The placeholder draws nothing of the label (§3).** A derived variant's frame is hued from the request's seed and base, never from its label, which a player could recover from the bytes.
 
 ## Invariants affected
 

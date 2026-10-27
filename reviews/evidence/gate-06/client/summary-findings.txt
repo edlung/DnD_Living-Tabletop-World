@@ -1,0 +1,38 @@
+G06-client evidence summary (deployment ltw-g06-client, https://localhost:18444, rev 0cc8d8d)
+
+[G06-client-01] Semantic entity IDs of unidentified combatants leak to the player.
+ - DM placed goblin-raider-1/2 and goblin-shaman at old-trade-road and StartCombat with Elowen.
+ - Player (CHARACTER:elowen-starwhisper) GET /campaigns/ravenford/encounter and /locations/old-trade-road/scene
+   return combatants with entity.name=null (correctly unidentified) BUT entity.entityId="goblin-shaman",
+   "goblin-raider-1","goblin-raider-2" in combatants[], order[], currentCombatantId.
+ - Confirmed the player's OWN BROWSER JS receives them: in-page fetch(encounter) -> 200, body includes "goblin-shaman".
+ - Client UI hides them: rendered DOM contains no goblin-raider/goblin-shaman in text/attributes/aria (only the
+   legitimate party knowledge id "goblin-hypothesis"). So the leak is the network projection, reachable via devtools.
+ - Evidence: net/player-encounter-leaks-goblin-ids.json, net/player-scene-leaks-goblin-ids-and-equipment.json,
+   browser-dom.html, and in-browser fetch log (this file).
+ - Violated: ADR 0008 §50 (secret-identity entity must get an OPAQUE id, not referenced by non-DM records);
+   apps/web/AGENTS.md:147-150 ("never its ID"); ADR 0027 (unidentified stays unidentified).
+
+[G06-client-02] (Low/uncertain) scene projection distinguishes unidentified creatures by equipment + image hash:
+   goblin-shaman equipment=["dagger"], raiders=["scimitar","shortbow"]; distinct reference image contentHash.
+   Lets a player single out the caster before identification. May be intended as observable; noted for review.
+
+CHECKED SOUND (player persona unless noted):
+ - CSP: app shell "/" => default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none';
+   frame-ancestors 'none'; base-uri 'none'; form-action 'self'. API JSON responses carry frame-ancestors 'none';
+   base-uri 'none' (documented server policy). No CSP violation events in browser. Plus referrer-policy no-referrer,
+   x-content-type-options nosniff, x-frame-options DENY, COOP same-origin, permissions-policy locked down.
+ - XSS: DM renamed guild-caravan to "<img src=x onerror=window.__xss=1>Караван". Delivered verbatim to player in
+   entities.json/knowledge.json, BUT React escaped it: window.__xss=0, zero img[onerror], no img[src=x], no CSP hit.
+   DM-authored DESCRIPTION did not reach the player at all (entity context omits description).
+ - Cross-perspective reads as player: knowledge?perspective=DM/NPC:*/CHARACTER:<other>/CHARACTER:goblin-shaman => 403;
+   PUBLIC/PARTY => 200 (legitimate). Other characters' /sheet => 404; own => 200.
+ - Uniform absence: hidden item goblin-weapon and nonexistent id both => 404 (context+sheet).
+ - DM-only routes as player: /invitations 404, /authoring/proposals 404, /ai/intents 404 (GET), /encounter/suggestion 403.
+ - /sessions as player => 200 but only narrative session metadata (title/time), no roster/roles/tokens.
+ - Live fingerprint side channel: DM secret-only CreateEntity(hidden,unplaced) -> DM stream 'changed', player stream
+   NO 'changed'; control MoveCombatant(visible) -> player 'changed'. Invariant "secret commit can't move the player
+   fingerprint" holds. Evidence: net/fingerprint3-timeline.txt, net/player.raw, net/dm.raw.
+ - Client storage: localStorage/sessionStorage empty, no IndexedDB, session token not in storage or DOM (ADR 0026).
+
+in-browser encounter fetch result: status 200, hasShaman=true, ids=[goblin-raider-2,goblin-shaman,goblin-raider-1,...]

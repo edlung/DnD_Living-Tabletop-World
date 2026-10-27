@@ -143,6 +143,16 @@ for service in server proxy backup; do
     "[ \"\$(docker inspect --format '{{.HostConfig.ReadonlyRootfs}}' '$id')\" = true ]"
   check "$service runs as a non-root user" sh -c "[ \"\$(docker exec '$id' id -u)\" != 0 ]"
 done
+# PostgreSQL's entrypoint needs root to own its data directory: every capability but the five it
+# uses dropped. Every service has a process limit.
+postgres_id=$(compose ps --quiet postgres)
+check 'postgres keeps only CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID' sh -c \
+  "[ \"\$(docker inspect --format '{{.HostConfig.CapDrop}} {{.HostConfig.CapAdd}}' '$postgres_id' | sed 's/CAP_//g')\" = '[ALL] [CHOWN DAC_OVERRIDE FOWNER SETGID SETUID]' ]"
+for service in proxy server postgres backup; do
+  id=$(compose ps --quiet "$service")
+  check "$service has a process limit" sh -c \
+    "[ \"\$(docker inspect --format '{{.HostConfig.PidsLimit}}' '$id')\" -gt 0 ]"
+done
 
 say 'settings and scripts'
 # The names the server reads (compose.yaml, `server.environment`); any other name of deploy/.env in

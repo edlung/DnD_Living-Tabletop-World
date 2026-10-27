@@ -1,0 +1,10 @@
+1793111639.00 ACTION idle-5s
+1793111644.04 ACTION SECRET CreateEntity(hidden,unplaced)
+1793111644.13 DMCMD create -> 200 accepted 
+1793111648.17 ACTION SECRET PlaceEntity@north-gate
+1793111648.24 DMCMD place -> 200 accepted 
+1793111652.31 ACTION SECRET RecordMemory(mira)
+1793111652.41 DMCMD memory -> 400 rejected INVALID_COMMAND
+1793111656.46 ACTION CONTROL MoveCombatant(goblin-shaman) in player view
+1793111656.52 DMCMD move -> 422 rejected NOT_YOUR_TURN
+1793111660.55 ACTION done

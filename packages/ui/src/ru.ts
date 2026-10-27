@@ -120,6 +120,7 @@ registerRussian({
   Feature: 'Особенность',
   Faction: 'Фракция',
   active: 'жив',
+  'in place': 'на месте',
   dead: 'мёртв',
   destroyed: 'уничтожен',
 

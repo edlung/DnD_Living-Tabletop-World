@@ -14,10 +14,22 @@ import { EXIT, runImageSmoke } from './run.ts';
 const lineage = async (harness: SmokeHarness) =>
   (await harness.engine.load('ravenford'))?.state.assets ?? null;
 
-const tomasRequests = async (harness: SmokeHarness) =>
-  [...((await lineage(harness))?.requests.values() ?? [])].filter(
-    (request) => request.entityId === 'tomas-reed',
+/** Tomas's ID: the server's or the smoke's opaque one, never "tomas-reed" (ADR 0008, Gate 06). */
+const tomasId = async (harness: SmokeHarness) => {
+  const entities = [...((await harness.engine.load('ravenford'))?.state.entities.values() ?? [])];
+  const id =
+    entities.find((entity) => entity.name === 'Tomas Reed' || entity.name === 'Томас Рид')
+      ?.entityId ?? '';
+  expect(id).not.toMatch(/tomas|reed/);
+  return id;
+};
+
+const tomasRequests = async (harness: SmokeHarness) => {
+  const id = await tomasId(harness);
+  return [...((await lineage(harness))?.requests.values() ?? [])].filter(
+    (request) => request.entityId === id,
   );
+};
 
 const output = (harness: SmokeHarness) => harness.lines.join('\n');
 
@@ -103,13 +115,14 @@ describe('the image smoke', () => {
       source: { kind: 'authoring' },
     });
     const state = await harness.engine.load('ravenford');
-    expect(state?.state.entities.get('tomas-reed')).toMatchObject({
+    const tomas = await tomasId(harness);
+    expect(state?.state.entities.get(tomas)).toMatchObject({
       kind: 'npc',
       name: 'Tomas Reed',
       description: 'A young guard of the Ravenford Guard, 22 years old.',
     });
     const assets = state?.state.assets;
-    const canonical = assets?.canonical.get('tomas-reed');
+    const canonical = assets?.canonical.get(tomas);
     expect(canonical && assets?.assets.get(canonical)?.status).toBe('CANONICAL');
   });
 
@@ -140,8 +153,9 @@ describe('the image smoke', () => {
     expect(text).not.toContain('[author]');
     const requests = await tomasRequests(harness);
     expect(requests.map((request) => request.source.kind)).toEqual(['authoring', 'dm']);
+    const tomas = await tomasId(harness);
     const statuses = [...((await lineage(harness))?.assets.values() ?? [])]
-      .filter((asset) => asset.entityId === 'tomas-reed')
+      .filter((asset) => asset.entityId === tomas)
       .map((asset) => asset.status);
     expect(statuses).toEqual(['SUPERSEDED', 'CANONICAL']);
   });
@@ -150,9 +164,8 @@ describe('the image smoke', () => {
     const harness = await smokeHarness({ fixturesDir: RAVENFORD_RU_FIXTURES_DIR });
     expect(await runImageSmoke(harness.context())).toBe(EXIT.passed);
     expect(output(harness)).toContain('campaign ravenford (ru)');
-    expect(
-      (await harness.engine.load('ravenford'))?.state.entities.get('tomas-reed'),
-    ).toMatchObject({
+    const tomas = await tomasId(harness);
+    expect((await harness.engine.load('ravenford'))?.state.entities.get(tomas)).toMatchObject({
       name: 'Томас Рид',
       description: 'Молодой стражник Равенфордской стражи, двадцати двух лет.',
     });
@@ -211,7 +224,7 @@ describe('the image smoke fails', () => {
     expect(await runImageSmoke(harness.context())).toBe(EXIT.failed);
     expect(output(harness)).toMatch(/the job FAILED \(UNAVAILABLE\)/);
     expect(output(harness)).toContain('ledger     no reservation for this request');
-    expect((await lineage(harness))?.canonical.has('tomas-reed')).toBe(false);
+    expect((await lineage(harness))?.canonical.has(await tomasId(harness))).toBe(false);
   });
 
   it('on a paid call the provider refused, and still accounts for its reservation', async () => {

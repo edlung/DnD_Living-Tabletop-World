@@ -28,7 +28,7 @@ import {
  * ever learn: its image is shown once Elowen sees it, and nothing else.
  */
 const BASE = '/campaigns/ravenford';
-const WATCHER = 'nb-hooded-watcher';
+const WATCHER = 'npc-2c4cf6cd';
 const MIRA = 'mira-vale';
 
 let engine: WorldEngine;
@@ -144,7 +144,6 @@ describe('player metadata isolation', () => {
         {
           variant: 'reference',
           purpose: 'image',
-          version: 1,
           contentHash: expect.stringMatching(/^sha256:[0-9a-f]{64}$/) as string,
           mediaType: 'image/svg+xml',
         },

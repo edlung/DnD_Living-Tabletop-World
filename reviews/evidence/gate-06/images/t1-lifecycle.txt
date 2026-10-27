@@ -1,0 +1,54 @@
+stream ready: 1 / 1
+before: pres=["eae1c693f9f7","1d33b9ef391c"] assets=[["reference","image",1,"eae1c693f9f7","image/webp"],["derived","figure",1,"1d33b9ef391c","image/webp"]]
+player RequestAsset: 403 {"status":null,"code":null}
+DM RequestAsset: 200 {"status":"accepted","code":null}
+candidate: CANDIDATE	image/svg+xml hash=856f7c1d7af9
+player stream changed after request+candidate: 0 (focus) total=0
+candidate: pres=["eae1c693f9f7","1d33b9ef391c"] assets=[["reference","image",1,"eae1c693f9f7","image/webp"],["derived","figure",1,"1d33b9ef391c","image/webp"]] content=404 contentPARTY=404 dmcontent=200 ct=image/svg+xml csp="default-src 'none'; style-src 'unsafe-inline'; sandbox" cc=no-store
+approve: 400 {"status":null,"code":null} approve: 400 {"status":null,"code":null}
+player stream changed after approve: 0
+approved: pres=["eae1c693f9f7","1d33b9ef391c"] assets=[["reference","image",1,"eae1c693f9f7","image/webp"],["derived","figure",1,"1d33b9ef391c","image/webp"]] content=404
+old curated reference now: content=200
+reference	image	CANONICAL	eae1c693f9f7
+derived	figure	APPROVED	1d33b9ef391c
+reference	image	CANDIDATE	856f7c1d7af9
+jq: error (at /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/g06-work/response.body:0): Cannot iterate over null (null)
+undo approve: 400 {"status":null,"code":null} undo approve: 400 {"status":null,"code":null}
+after undo: pres=["eae1c693f9f7","1d33b9ef391c"] assets=[["reference","image",1,"eae1c693f9f7","image/webp"],["derived","figure",1,"1d33b9ef391c","image/webp"]] cand-content=404 old=200
+redo approve (new id): 400 {"status":null,"code":null} redo approve (new id): 400 {"status":null,"code":null}
+retract: 400 {"status":null,"code":null} retract: 400 {"status":null,"code":null}
+after retract: pres=["eae1c693f9f7","1d33b9ef391c"] assets=[["reference","image",1,"eae1c693f9f7","image/webp"],["derived","figure",1,"1d33b9ef391c","image/webp"]] cand-content=404 old=200
+at-past content of retracted (at=clock): 404
+reference	image	CANONICAL	eae1c693f9f7
+derived	figure	APPROVED	1d33b9ef391c
+reference	image	CANDIDATE	856f7c1d7af9
+approved (apx): pres=["856f7c1d7af9","1d33b9ef391c"] assets=[["reference","image",2,"856f7c1d7af9","image/svg+xml"],["derived","figure",1,"1d33b9ef391c","image/webp"]] cand=200 ct=image/svg+xml old=404
+reference	image	SUPERSEDED	eae1c693f9f7;derived	figure	APPROVED	1d33b9ef391c;reference	image	CANONICAL	856f7c1d7af9;
+undo approve: 400 undo approve: 400
+{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"d19c05a7-0dc0-47ac-ba91-936c6b380414"}
+after undo: pres=["856f7c1d7af9","1d33b9ef391c"] assets=[["reference","image",2,"856f7c1d7af9","image/svg+xml"],["derived","figure",1,"1d33b9ef391c","image/webp"]] cand=200 old=404
+reference	image	SUPERSEDED	eae1c693f9f7;derived	figure	APPROVED	1d33b9ef391c;reference	image	CANONICAL	856f7c1d7af9;
+re-approve: 400 re-approve: 400
+{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"ad2fdfe1-06e6-43d2-9e5f-bf3a71ac1788"}
+retract: 400 retract: 400
+{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"81da2bd7-c5a4-4776-ac89-03331ad1eeb6"}
+after retract: pres=["856f7c1d7af9","1d33b9ef391c"] assets=[["reference","image",2,"856f7c1d7af9","image/svg+xml"],["derived","figure",1,"1d33b9ef391c","image/webp"]] cand=200 old=404
+reference	image	SUPERSEDED	eae1c693f9f7;derived	figure	APPROVED	1d33b9ef391c;reference	image	CANONICAL	856f7c1d7af9;
+worldTime=36000
+undo approve:
+200 ["accepted",null,null,null,["CommandUndone"]]
+after undo: pres=["eae1c693f9f7","1d33b9ef391c",null] assets=[["reference","image",1,"eae1c693f9f7"],["derived","figure",1,"1d33b9ef391c"]] cand=404 old=200
+reference	image		players	CANONICAL	eae1c693f9f7;derived	figure	figure	players	APPROVED	1d33b9ef391c;reference	image		players	CANDIDATE	856f7c1d7af9;
+re-approve:
+200 ["accepted",null,null,null,["AssetApproved"]]
+after: pres=["856f7c1d7af9","1d33b9ef391c",null] cand=200 old=404
+retract:
+200 ["accepted",null,null,null,["AssetRetracted"]]
+after retract: pres=[null,"1d33b9ef391c",null] assets=[["derived","figure",1,"1d33b9ef391c"]] cand=404 old=404 cand-at0=404
+reference	image		players	SUPERSEDED	eae1c693f9f7;derived	figure	figure	players	APPROVED	1d33b9ef391c;reference	image		players	RETRACTED	856f7c1d7af9;
+undo retract:
+422 ["rejected","UNDO_NOT_SUPPORTED",null,null,[]]
+undo re-approve (beneath retraction):
+422 ["rejected","UNDO_UNSAFE",null,null,[]]
+final: pres=[null,"1d33b9ef391c",null] old=404
+reference	image		players	SUPERSEDED	eae1c693f9f7;derived	figure	figure	players	APPROVED	1d33b9ef391c;reference	image		players	RETRACTED	856f7c1d7af9;

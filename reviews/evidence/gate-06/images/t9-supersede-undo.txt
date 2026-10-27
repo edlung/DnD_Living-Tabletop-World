@@ -1,0 +1,17 @@
+DM-only night request http:dm-ravenford:mn-1793111388#0 (stamp 1793111388)
+200 ["accepted",null,null,null,["AssetRequested"]]
+new players night: 2a8006802433
+200 ["accepted",null,null,null,["AssetApproved"]]
+approval events/supersedes: ["players","SUPERSEDED","3304fe22"] ["dm","SUPERSEDED","37f6e459"] ["players","APPROVED","2a800680"] 
+player market assets: [["reference","image",1,"7ad7a7c7453b"],["derived","image",1,"857482643f76"],["derived","image",1,"2b25278781ca"],["derived","image",3,"2a8006802433"]]
+undo earlier DM-only approval beneath the later one:
+422 ["rejected","UNDO_UNSAFE",null,null,[]]
+undo latest players approval:
+200 ["accepted",null,null,null,["CommandUndone"]]
+after: reference	image		players	CANONICAL	7ad7a7c7453b;derived	image	night	players	SUPERSEDED	3304fe225e4c;derived	image	rain	players	APPROVED	857482643f76;derived	image	night-rain	players	APPROVED	2b25278781ca;derived	image	night	dm	APPROVED	37f6e4598453;derived	image	night	players	CANDIDATE	2a8006802433;
+player market assets: [["reference","image",1,"7ad7a7c7453b"],["derived","image",1,"857482643f76"],["derived","image",1,"2b25278781ca"]]
+now undo DM-only approval:
+422 ["rejected","UNDO_UNSAFE",null,null,[]]
+after: reference	image		players	CANONICAL	7ad7a7c7453b;derived	image	night	players	SUPERSEDED	3304fe225e4c;derived	image	rain	players	APPROVED	857482643f76;derived	image	night-rain	players	APPROVED	2b25278781ca;derived	image	night	dm	APPROVED	37f6e4598453;derived	image	night	players	CANDIDATE	2a8006802433;
+player market assets: [["reference","image",1,"7ad7a7c7453b"],["derived","image",1,"857482643f76"],["derived","image",1,"2b25278781ca"]]
+{"status":"rejected","commandId":"http:dm-ravenford:u4-1793112053","code":"UNDO_UNSAFE","message":"Later commands depend on what \"http:dm-ravenford:mnA-1793111388\" changed; undo them first","details":{"blockers":[{"commandId":"http:dm-ravenford:pn-1793112036","commandType":"RequestAsset","sequence":361}]}}

@@ -1,0 +1,18 @@
+postgres: CapAdd=[CAP_CHOWN CAP_DAC_OVERRIDE CAP_FOWNER CAP_SETGID CAP_SETUID] CapDrop=[ALL] PidsLimit=512 Memory=1073741824 ReadonlyRootfs=false User=
+server: CapAdd=[] CapDrop=[ALL] PidsLimit=256 Memory=1073741824 ReadonlyRootfs=true User=node
+proxy: CapAdd=[] CapDrop=[ALL] PidsLimit=256 Memory=268435456 ReadonlyRootfs=true User=caddy
+backup: CapAdd=[] CapDrop=[ALL] PidsLimit=128 Memory=536870912 ReadonlyRootfs=true User=70:70
+-- postgres effective caps (PID 1 CapEff/CapBnd):
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	00000000000000cb
+-- drill-db config (profile drill):
+6:    cap_add:
+12:    cap_drop:
+30:        max-size: 100m
+31:    mem_limit: "1073741824"
+34:    pids_limit: 256
+37:    shm_size: "268435456"
+38:    tmpfs:
+39:      - /var/lib/postgresql:size=768m
+56:    max-size: 100m

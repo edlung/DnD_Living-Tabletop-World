@@ -1,4 +1,4 @@
-import { submissionsFromScript, type WorldEngine } from '@ltw/domain';
+import { submissionsFromScript, type EventStore, type WorldEngine } from '@ltw/domain';
 import { scriptedDice } from '@ltw/rules';
 
 import type { AssetContentStore } from '../assets/content-store.ts';
@@ -21,9 +21,13 @@ const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
  * `ui-image-campaigns.ts` get the curated pictures, their bytes in `contents`, and the image
  * journeys of Stage 330 part B their own campaigns (`ui-image-journeys.ts`).
  */
-export async function uiCampaigns(contents: AssetContentStore): Promise<WorldEngine> {
+export async function uiCampaigns(
+  contents: AssetContentStore,
+  /** Where the campaigns are stored; the fixture-integrity test passes one it can enumerate. */
+  store?: EventStore,
+): Promise<WorldEngine> {
   // All scripted checks get the same result, independent of parallel campaigns.
-  const engine = await seededEngine(undefined, scriptedDice(Array<number>(512).fill(15)));
+  const engine = await seededEngine(store, scriptedDice(Array<number>(512).fill(15)));
   const referenceSheet = rulesSeed.commands.find((command) => command.type === 'SetCharacterSheet');
   if (!referenceSheet) throw new Error('UI character sheet seed is missing');
   for (const submission of submissionsFromScript({

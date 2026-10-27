@@ -1,0 +1,16 @@
+single request (tc):
+200 ["accepted",null,null,null,["AssetRequested"]]
+FAILED	UNAVAILABLE
+8 concurrent RequestAsset (tc):
+c2 ["accepted",null,null]
+c7 [null,null,"RATE_LIMITED"]
+c1 [null,null,"RATE_LIMITED"]
+c8 [null,null,"RATE_LIMITED"]
+c3 ["accepted",null,null]
+c5 ["accepted",null,null]
+c4 ["accepted",null,null]
+c6 ["accepted",null,null]
+{"revision":1,"ceilingMicros":"1","spentMicros":"0","heldMicros":"0","remainingMicros":"1","charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+   5 ceiling
+   5 no-budget
+0

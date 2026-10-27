@@ -213,7 +213,7 @@ describe('lore as claims (§4)', () => {
       {
         type: 'SetClaim',
         target: { kind: 'clue', clueId: 'clue-tracks-boots' },
-        claim: { subjectId: 'wagon-tracks', aspect: 'maker', value: 'boots' },
+        claim: { subjectId: 'feature-ccec7e50', aspect: 'maker', value: 'boots' },
       },
     ]);
     const party = await world.preview([

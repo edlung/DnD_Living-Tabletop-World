@@ -15,12 +15,12 @@ const encounter = (changes: Partial<EncounterView> = {}): EncounterView => ({
   encounterId: 'e1',
   round: 1,
   currentCombatantId: 'elowen-starwhisper',
-  order: ['elowen-starwhisper', 'seren-ashgrove', 'goblin-shaman'],
+  order: ['elowen-starwhisper', 'seren-ashgrove', 'creature-ae08be99'],
   battlefield: { width: 16, height: 12, difficult: [], cover: [] },
   combatants: [
     combatant('elowen-starwhisper', 'character', 'Elowen Starwhisper'),
     combatant('seren-ashgrove', 'character', 'Seren Ashgrove'),
-    combatant('goblin-shaman', 'creature', 'Goblin Shaman'),
+    combatant('creature-ae08be99', 'creature', 'Goblin Shaman'),
   ],
   reactionWindow: null,
   ...changes,
@@ -34,14 +34,14 @@ describe('standInChoices', () => {
   });
 
   it('offers nothing on a creature’s turn, but a character the open window waits on', () => {
-    expect(standInChoices(encounter({ currentCombatantId: 'goblin-shaman' }))).toEqual([]);
+    expect(standInChoices(encounter({ currentCombatantId: 'creature-ae08be99' }))).toEqual([]);
     const waiting = encounter({
-      currentCombatantId: 'goblin-shaman',
+      currentCombatantId: 'creature-ae08be99',
       reactionWindow: {
         windowId: 'w1',
         trigger: {
           kind: 'spell',
-          caster: { entityId: 'goblin-shaman', kind: 'creature', name: 'Goblin Shaman' },
+          caster: { entityId: 'creature-ae08be99', kind: 'creature', name: 'Goblin Shaman' },
           components: ['V', 'S'],
         },
         candidates: [

@@ -1,0 +1,3 @@
+redeem DM link (token sha256 prefix 6a65fc36 ): 200 {'campaignId': 'ravenford'}
+session: 200 {"actorId": "dm-ravenford", "role": "DM", "character": null, "campaign": {"campaignId": "ravenford", "name": "Пропавший караван", "language": "ru"}, "perspectives": [{"value": "DM", "label": "Мастер"}, {"value": "PARTY", "label": "Отряд"}, {"value": "PUBLIC", "label": "Публичный вид"}, {"value": "CH
+DM surroundings: 403 {'error': {'code': 'FORBIDDEN', 'message': 'Not permitted'}, 'requestId': '83067f61-6761-48d2-b018-5649634ae7bb'}

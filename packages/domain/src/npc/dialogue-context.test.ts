@@ -57,7 +57,7 @@ async function atOrins(): Promise<InvestigationWorld> {
       scope: { kind: 'PARTY' },
       knowledgeType: 'EVIDENCE',
       statement: 'A strange symbol is burned into a wagon plank.',
-      subjects: ['strange-symbol'],
+      subjects: ['feature-19c7c7f7'],
       knownSince: null,
     },
     DM,
@@ -101,13 +101,13 @@ describe('the Orin scene, as Orin may speak it', () => {
       type: 'AskAbout',
       characterId: ELOWEN,
       npcId: ORIN,
-      topicId: 'strange-symbol',
+      topicId: 'feature-19c7c7f7',
     });
     const snapshot = await world.engine.load(CAMPAIGN);
     const justShared = sharedSources(snapshot?.history ?? [], asked.commandId ?? '');
     expect(justShared).toEqual(['orin-prior-incident']);
 
-    const context = await contextFor(world, ORIN, { topicId: 'strange-symbol', justShared });
+    const context = await contextFor(world, ORIN, { topicId: 'feature-19c7c7f7', justShared });
     expect(context.topic?.name).toBe('Strange Symbol');
     expect(names(context.shown)).toEqual(['Strange Symbol']);
     expect(texts(context.justTold)).toEqual([
@@ -161,7 +161,7 @@ describe('names the speaker does not know', () => {
   it('keeps them out: a stranger in the shop is someone, by kind only', async () => {
     const context = await contextFor(await atOrins(), ORIN);
     expect(context.around).toContainEqual({
-      entityId: 'nb-hooded-watcher',
+      entityId: 'npc-2c4cf6cd',
       kind: 'npc',
       name: null,
     });

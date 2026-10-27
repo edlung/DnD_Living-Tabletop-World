@@ -21,7 +21,7 @@ const elowen: EncounterCombatantView = {
   hitPoints: { current: 78, max: 78 },
 };
 const raider: EncounterCombatantView = {
-  entity: { entityId: 'goblin-raider-1', kind: 'creature', name: null },
+  entity: { entityId: 'creature-10fb59d4', kind: 'creature', name: null },
   side: 'hostile',
   position: { x: 8, y: 4 },
   state: 'down',
@@ -63,7 +63,7 @@ describe('the name of a board square', () => {
     expect(raiderName).toBe(
       'Square 8, 4: Unidentified creature 1, hostile, down, prone, unconscious; half cover; in the area',
     );
-    expect(raiderName).not.toContain('goblin-raider-1');
+    expect(raiderName).not.toContain('creature-10fb59d4');
     expect(squareName(english, { x: 0, y: 9 }, { ...empty, difficult: true })).toBe(
       'Square 0, 9: difficult terrain',
     );

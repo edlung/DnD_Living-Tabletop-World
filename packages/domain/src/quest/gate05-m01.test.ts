@@ -18,8 +18,8 @@ import { questLog } from './projection.ts';
  * move changes nothing, and a restarted engine agrees.
  */
 const QUESTS = questBookSchema.parse(questBook).quests;
-const SYMBOL = 'strange-symbol';
-const SITE = 'abandoned-caravan-site';
+const SYMBOL = 'feature-19c7c7f7';
+const SITE = 'location-f3b82c8b';
 
 async function examinedAt(world: ChronicleWorld): Promise<string[]> {
   const snapshot = await world.snapshot();

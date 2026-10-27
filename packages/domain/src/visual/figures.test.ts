@@ -17,7 +17,7 @@ const ELOWEN = 'elowen-starwhisper';
 const MIRA = 'mira-vale';
 const ORIN = 'orin-stonebeard';
 const ROAD = 'old-trade-road';
-const SITE = 'abandoned-caravan-site';
+const SITE = 'location-f3b82c8b';
 const SQUARE = 'market-square';
 const NIGHT = worldTimeAt(1, 22);
 

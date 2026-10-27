@@ -270,7 +270,6 @@ export function World({
               rail={
                 <PartyRail api={api} encounter={encounter} selectedId={focus} onSelect={select} />
               }
-              anchorId={focus ?? (speaking ? conversation.npcId : null)}
               conversation={
                 speaking && (
                   <DialoguePanel

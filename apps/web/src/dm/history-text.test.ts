@@ -21,7 +21,7 @@ const en = (key: string, params?: Record<string, string | number>) => translate(
 const ru = (key: string, params?: Record<string, string | number>) => translate('ru', key, params);
 
 const directory: EntityRef[] = [
-  { entityId: 'goblin-raider-1', kind: 'creature', name: 'Goblin Raider' },
+  { entityId: 'creature-10fb59d4', kind: 'creature', name: 'Goblin Raider' },
   { entityId: 'north-gate', kind: 'location', name: 'North Gate' },
 ];
 
@@ -48,7 +48,7 @@ const shot: DmSubstitutionEntry = {
     type: 'Attack',
     combatantId: 'elowen-starwhisper',
     attackId: 'longbow',
-    targetId: 'goblin-raider-1',
+    targetId: 'creature-10fb59d4',
   },
   reason: { reason: 'asked', note: 'Back in five' },
 };
@@ -96,7 +96,7 @@ describe('the DM history in words', () => {
         type: 'CastSpell',
         combatantId: id,
         spellId: 'hunters-mark',
-        targetId: 'goblin-raider-1',
+        targetId: 'creature-10fb59d4',
       }),
     ).toBe('Cast hunters mark on Goblin Raider');
     expect(said({ type: 'MoveCombatant', combatantId: id, path: [{ x: 3, y: 6 }] })).toBe(

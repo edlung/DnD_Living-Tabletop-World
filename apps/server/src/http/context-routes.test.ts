@@ -25,9 +25,9 @@ const ENTITY_IDS = [
   'ravenford',
   'old-trade-road',
   'merchant-guild-faction',
-  'strange-symbol',
-  'abandoned-caravan-site',
-  'goblin-weapon',
+  'feature-19c7c7f7',
+  'location-f3b82c8b',
+  'item-0869f47a',
   ASHEN_CIRCLE_ID,
   'no-such-entity',
 ];
@@ -81,7 +81,7 @@ describe('GET /campaigns/:id/entities/:entityId/context', () => {
 
   it('answers unknown, unperceived and nonexistent entities with one uniform 404', async () => {
     const bodies = await Promise.all(
-      ['strange-symbol', ASHEN_CIRCLE_ID, 'no-such-entity'].map(async (entityId) => {
+      ['feature-19c7c7f7', ASHEN_CIRCLE_ID, 'no-such-entity'].map(async (entityId) => {
         const response = await get(app, contextUrl(entityId, 'PLAYER'), TOKENS.player);
         expect(response.statusCode, entityId).toBe(404);
         return withoutRequestId(response);

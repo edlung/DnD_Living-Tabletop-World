@@ -19,7 +19,7 @@ const examine = (entityId: string, method: string) => ({
 
 async function atSite(): Promise<InvestigationWorld> {
   const world = await investigationWorld();
-  for (const locationId of ['old-trade-road', 'abandoned-caravan-site']) {
+  for (const locationId of ['old-trade-road', 'location-f3b82c8b']) {
     const result = await world.submit({ type: 'EnterLocation', characterId: ELOWEN, locationId });
     if (result.status === 'rejected') throw new Error(result.code);
   }
@@ -36,7 +36,7 @@ async function statements(world: InvestigationWorld, ids: readonly string[]) {
 describe('inspect', () => {
   it('reveals the obvious clue as PARTY EVIDENCE and records a DISCOVERY memory', async () => {
     const world = await atSite();
-    const result = await world.submit(examine('goblin-weapon', 'inspect'));
+    const result = await world.submit(examine('item-0869f47a', 'inspect'));
     const outcome = outcomeOf(result);
     expect(outcome).toMatchObject({ kind: 'ExamineEntity', roll: null });
     const ids = outcome?.kind === 'ExamineEntity' ? outcome.discovered : [];
@@ -46,7 +46,7 @@ describe('inspect', () => {
     expect(record).toMatchObject({
       scope: { kind: 'PARTY' },
       knowledgeType: 'EVIDENCE',
-      subjects: ['goblin-weapon'],
+      subjects: ['item-0869f47a'],
       attributedTo: null,
     });
     const memory = [...state.memories.values()].find((m) =>
@@ -55,25 +55,25 @@ describe('inspect', () => {
     expect(memory).toMatchObject({
       scope: { kind: 'PARTY' },
       memoryKind: 'DISCOVERY',
-      locationId: 'abandoned-caravan-site',
-      participants: [ELOWEN, 'goblin-weapon'],
+      locationId: 'location-f3b82c8b',
+      participants: [ELOWEN, 'item-0869f47a'],
       witnesses: [ELOWEN],
     });
   });
 
   it('may be repeated; nothing is revealed twice', async () => {
     const world = await atSite();
-    await world.submit(examine('goblin-weapon', 'inspect'));
-    const again = await world.submit(examine('goblin-weapon', 'inspect'));
+    await world.submit(examine('item-0869f47a', 'inspect'));
+    const again = await world.submit(examine('item-0869f47a', 'inspect'));
     expect(outcomeOf(again)).toEqual({ kind: 'ExamineEntity', roll: null, discovered: [] });
   });
 
   it('makes the site known by name once inspected', async () => {
     const world = await atSite();
-    const outcome = outcomeOf(await world.submit(examine('abandoned-caravan-site', 'inspect')));
+    const outcome = outcomeOf(await world.submit(examine('location-f3b82c8b', 'inspect')));
     const ids = outcome?.kind === 'ExamineEntity' ? outcome.discovered : [];
     const record = (await world.state()).knowledge.get(ids[0] ?? '');
-    expect(record?.subjects).toEqual(['abandoned-caravan-site', 'guild-caravan', 'old-trade-road']);
+    expect(record?.subjects).toEqual(['location-f3b82c8b', 'guild-caravan', 'old-trade-road']);
   });
 });
 
@@ -81,7 +81,7 @@ describe('skill checks', () => {
   it('adds the rules modifier to the engine-drawn d20 and reveals clues with DC ≤ total', async () => {
     const world = await atSite();
     world.roll(7); // 7 + 8 = 15 meets DC 15
-    const outcome = outcomeOf(await world.submit(examine('goblin-weapon', 'investigation')));
+    const outcome = outcomeOf(await world.submit(examine('item-0869f47a', 'investigation')));
     expect(outcome).toMatchObject({
       kind: 'ExamineEntity',
       roll: { d20: 7, modifier: 8, total: 15 },
@@ -95,7 +95,7 @@ describe('skill checks', () => {
   it('records a failed roll exactly like a search with nothing to find', async () => {
     const world = await atSite();
     world.roll(6, 6); // 14 misses DC 15; the wheel's DC 13 is met only by the second
-    const failed = await world.submit(examine('goblin-weapon', 'investigation'));
+    const failed = await world.submit(examine('item-0869f47a', 'investigation'));
     expect(outcomeOf(failed)).toEqual({
       kind: 'ExamineEntity',
       roll: { d20: 6, modifier: 8, total: 14 },
@@ -108,7 +108,7 @@ describe('skill checks', () => {
         kind: 'item',
         name: 'Plain Rock',
         existsSince: null,
-        placement: { locationId: 'abandoned-caravan-site', since: null },
+        placement: { locationId: 'location-f3b82c8b', since: null },
       },
       DM,
     );
@@ -126,18 +126,18 @@ describe('skill checks', () => {
   it('allows one attempt per character, entity, and method', async () => {
     const world = await atSite();
     world.roll(1, 19); // the engine draws before deciding, even for a rejected repeat
-    await world.submit(examine('goblin-weapon', 'investigation'));
-    expect(codeOf(await world.submit(examine('goblin-weapon', 'investigation')))).toBe(
+    await world.submit(examine('item-0869f47a', 'investigation'));
+    expect(codeOf(await world.submit(examine('item-0869f47a', 'investigation')))).toBe(
       'ALREADY_ATTEMPTED',
     );
     world.roll(20);
-    expect(codeOf(await world.submit(examine('goblin-weapon', 'perception')))).toBe('accepted');
+    expect(codeOf(await world.submit(examine('item-0869f47a', 'perception')))).toBe('accepted');
   });
 
   it('applies only to objects and needs a sheet and a capable character', async () => {
     const world = await atSite();
     world.roll(10, 10);
-    expect(codeOf(await world.submit(examine('abandoned-caravan-site', 'investigation')))).toBe(
+    expect(codeOf(await world.submit(examine('location-f3b82c8b', 'investigation')))).toBe(
       'NO_EFFECT',
     );
     const state = await world.state();
@@ -150,10 +150,10 @@ describe('skill checks', () => {
       },
       DM,
     );
-    expect(codeOf(await world.submit(examine('goblin-weapon', 'investigation')))).toBe(
+    expect(codeOf(await world.submit(examine('item-0869f47a', 'investigation')))).toBe(
       'ACTOR_INCAPACITATED',
     );
-    expect(codeOf(await world.submit(examine('goblin-weapon', 'inspect')))).toBe('accepted');
+    expect(codeOf(await world.submit(examine('item-0869f47a', 'inspect')))).toBe('accepted');
   });
 });
 
@@ -161,7 +161,7 @@ describe('secrecy of the investigation path', () => {
   it('answers unknown, unperceived and nonexistent targets identically', async () => {
     const world = await investigationWorld(); // in Market Square
     const results = await Promise.all(
-      ['goblin-weapon', 'strange-symbol', 'no-such-entity'].map((entityId) =>
+      ['item-0869f47a', 'feature-19c7c7f7', 'no-such-entity'].map((entityId) =>
         world.submit(examine(entityId, 'inspect')),
       ),
     );
@@ -184,7 +184,7 @@ describe('secrecy of the investigation path', () => {
 
   it('never reveals a clue to the party twice, even across characters of the party', async () => {
     const world = await atSite();
-    await world.submit(examine('strange-symbol', 'inspect'));
+    await world.submit(examine('feature-19c7c7f7', 'inspect'));
     const state = await world.state();
     expect([...state.investigation.revealed]).toEqual(['PARTY|clue-symbol-seen']);
   });

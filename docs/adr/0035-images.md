@@ -167,3 +167,13 @@ approval; storage and backup must be decided for production.
     tests point at a square where it shows.
   - **The Chronicle's pictures** (UI kit, ADR 0034 amendment): the candle-lit desk under the
     spread, the red ribbon as chapter tabs, the gold frame around the flashback's vignette.
+- 2026-10-27 (Gate 06 remediation, G06-images-04; design-accepted risk of §6 kept): **the DM sees
+  what the image model reads.** The request is still built from the entity's recorded description,
+  which is DM-only elsewhere and may hold secrets; a picture painted from it reaches players after
+  one approval. The DM's lineage (`GET …/assets`, DM only) now carries each entity's description as
+  the prompt reads it (`descriptions`: trimmed, absent when empty), and the request form shows it
+  word for word with "Players may not know this. A picture you approve for players can show it."
+  (`apps/web/src/images/request-form.tsx`), so the request and the approval for players are
+  informed. No appearance-only field, no change to the prompt or the pipeline. The other Gate 06
+  image fixes (what a player is listed and served, no version for players, the placeholder's frame)
+  are recorded in ADR 0022 and ADR 0023 (amendments of 2026-10-27).

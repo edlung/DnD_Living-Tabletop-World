@@ -86,7 +86,7 @@ describe('enabled operations (owner decision, §2)', () => {
     ['a hypothesis for an NPC', testimony({ knowledgeType: 'HYPOTHESIS' }), 'L3'],
     [
       'moving an item',
-      { type: 'PlaceEntity', entityId: 'goblin-weapon', locationId: 'market-square' },
+      { type: 'PlaceEntity', entityId: 'item-0869f47a', locationId: 'market-square' },
       'L3',
     ],
     [

@@ -78,7 +78,7 @@ test('the DM skips an absent player’s turn, and the player’s screen follows 
   expect(await player.content()).not.toContain('Stepped away');
   await expect(dmHistory(player)).toHaveCount(0);
   // At the Old Trade Road she perceives the unnamed site nearby (ADR 0012), as in combat-turn.
-  await traffic.assertPlayerBoundary(['Stepped away', 'dm/history'], ['"abandoned-caravan-site"']);
+  await traffic.assertPlayerBoundary(['Stepped away', 'dm/history'], ['"location-f3b82c8b"']);
   await player.close();
   await dm.close();
 });

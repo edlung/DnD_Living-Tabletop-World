@@ -5,6 +5,7 @@ import { useId } from 'react';
 import { useHeldImage } from '../visual/approved-images.ts';
 import { Medallion, type MedallionCondition } from '../visual/medallion.tsx';
 import { Miniature } from '../visual/miniature.tsx';
+import { statusWord, unidentifiedName } from './entity-words.ts';
 
 function condition(entity: EntityPresentation): MedallionCondition | null {
   if (entity.status === 'dead' || entity.status === 'destroyed') return 'dead';
@@ -17,14 +18,11 @@ function SceneObject({
   entity,
   name,
   selected,
-  anchor,
   onSelect,
 }: {
   readonly entity: EntityPresentation;
   readonly name: string;
   readonly selected: boolean;
-  /** The result of an action concerns this one: the stage shows it above (CSS anchor). */
-  readonly anchor: boolean;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
@@ -40,7 +38,6 @@ function SceneObject({
       aria-label={name}
       aria-describedby={stateId}
       aria-pressed={selected}
-      data-anchor={anchor ? '' : undefined}
       onClick={() => {
         onSelect(entity.entityId, entity.kind);
       }}
@@ -62,7 +59,7 @@ function SceneObject({
         <span className="name-plate-kind">{t(entity.kind)}</span>
       </span>
       <span className="object-state" id={stateId}>
-        {entity.status ? t(entity.status) : t('Not observed')}
+        {entity.status ? statusWord(t, entity.kind, entity.status) : t('Not observed')}
         {entity.vitals?.wounded ? t(' · wounded') : ''}
         {entity.vitals?.unconscious ? t(' · unconscious') : ''}
       </span>
@@ -80,13 +77,11 @@ export function SceneObjects({
   present,
   directory,
   selectedId,
-  anchorId,
   onSelect,
 }: {
   readonly present: readonly EntityPresentation[];
   readonly directory: readonly EntityRef[];
   readonly selectedId: string | null;
-  readonly anchorId: string | null;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
@@ -98,10 +93,9 @@ export function SceneObjects({
             entity={entity}
             name={
               directory.find((item) => item.entityId === entity.entityId)?.name ??
-              t('Unidentified {kind}', { kind: t(entity.kind) })
+              unidentifiedName(t, entity.kind)
             }
             selected={selectedId === entity.entityId}
-            anchor={anchorId === entity.entityId}
             onSelect={onSelect}
           />
         </li>

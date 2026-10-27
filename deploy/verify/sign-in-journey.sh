@@ -18,7 +18,7 @@ source "$(dirname "$0")/../scripts/lib.sh"
 source "$(dirname "$0")/http.sh"
 
 ELOWEN=elowen-starwhisper
-SITE=abandoned-caravan-site
+SITE=location-f3b82c8b
 SITE_TEXT='Сломанные повозки и разбросанные ящики заполняют придорожную поляну: здесь напали на гильдейский караван.'
 STAMP=$(date +%s)
 failures=0

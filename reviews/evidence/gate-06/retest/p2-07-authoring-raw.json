@@ -1,0 +1,338 @@
+{
+ "p1": {
+  "proposal": {
+   "proposalId": "5c3a8a52-6e90-43d1-9069-5f18d2d96482",
+   "campaignId": "ravenford",
+   "revision": 1,
+   "summary": "Предложено по запросу: Добавь: молчаливый незнакомец в капюшоне у Северных ворот, который видел, как ушёл караван.",
+   "source": {
+    "kind": "ai",
+    "traceId": "3608bb7e-4618-4ffb-9c5e-2d12814a63d8"
+   },
+   "commands": [
+    {
+     "kind": "npc",
+     "name": "Томас Рид",
+     "type": "CreateEntity",
+     "entityId": "npc-08b7a35d",
+     "placement": {
+      "since": null,
+      "locationId": "north-gate"
+     },
+     "description": "Молчаливый незнакомец.",
+     "existsSince": null
+    },
+    {
+     "type": "AddKnowledge",
+     "scope": {
+      "kind": "NPC",
+      "npcId": "npc-08b7a35d"
+     },
+     "subjects": [
+      "north-gate"
+     ],
+     "statement": "Свидетель: Томас Рид. Видел, как ушёл караван.",
+     "knownSince": null,
+     "attributedTo": "npc-08b7a35d",
+     "knowledgeType": "TESTIMONY",
+     "knowledgeId": "5adbc2db-d584-4cf8-b8ee-a586f887c8d8"
+    }
+   ],
+   "createdBy": "dm-ravenford",
+   "createdAt": "2026-10-27T16:40:34.453Z",
+   "appliedOption": null,
+   "status": "DRAFT",
+   "commit": null
+  },
+  "preview": {
+   "stateVersion": 317,
+   "warnings": [],
+   "notes": [],
+   "risk": {
+    "level": "L2",
+    "reasons": [
+     {
+      "commandIndex": 0,
+      "level": "L2",
+      "reason": "Добавляет в мир нового НПС"
+     },
+     {
+      "commandIndex": 1,
+      "level": "L2",
+      "reason": "Даёт НПС знание"
+     }
+    ]
+   },
+   "committable": true,
+   "issues": [],
+   "confirmation": {
+    "riskLevel": "L2",
+    "acknowledgedWarnings": []
+   },
+   "changes": [
+    {
+     "type": "EntityCreated",
+     "payload": {
+      "entityId": "npc-08b7a35d",
+      "kind": "npc",
+      "name": "Томас Рид",
+      "description": "Молчаливый незнакомец.",
+      "existsSince": null,
+      "location": null
+     }
+    },
+    {
+     "type": "EntityPlaced",
+     "payload": {
+      "entityId": "npc-08b7a35d",
+      "locationId": "north-gate",
+      "since": null,
+      "previousLocationId": null
+     }
+    },
+    {
+     "type": "KnowledgeAssigned",
+     "payload": {
+      "knowledgeId": "5adbc2db-d584-4cf8-b8ee-a586f887c8d8",
+      "scope": {
+       "kind": "NPC",
+       "npcId": "npc-08b7a35d"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Свидетель: Томас Рид. Видел, как ушёл караван.",
+      "subjects": [
+       "north-gate"
+      ],
+      "attributedTo": "npc-08b7a35d",
+      "relations": [],
+      "knownSince": null
+     }
+    },
+    {
+     "type": "AssetRequested",
+     "payload": {
+      "requestId": "authoring.5c3a8a52-6e90-43d1-9069-5f18d2d96482#0",
+      "entityId": "npc-08b7a35d",
+      "variant": "reference",
+      "label": null,
+      "audience": "players",
+      "note": null,
+      "source": {
+       "kind": "authoring",
+       "proposalId": "5c3a8a52-6e90-43d1-9069-5f18d2d96482"
+      },
+      "derivedFrom": null
+     }
+    }
+   ]
+  }
+ },
+ "p2": {
+  "proposal": {
+   "proposalId": "2863b490-98a5-4f31-bbd7-58d9a6552400",
+   "campaignId": "ravenford",
+   "revision": 1,
+   "summary": "Предложено по запросу: Добавь: молчаливый незнакомец в капюшоне у Северных ворот, который видел, как ушёл караван.",
+   "source": {
+    "kind": "ai",
+    "traceId": "3608bb7e-4618-4ffb-9c5e-2d12814a63d8"
+   },
+   "commands": [
+    {
+     "kind": "npc",
+     "name": "Томас Рид",
+     "type": "CreateEntity",
+     "entityId": "npc-08b7a35d",
+     "placement": {
+      "since": null,
+      "locationId": "north-gate"
+     },
+     "description": "Молчаливый незнакомец.",
+     "existsSince": null
+    },
+    {
+     "type": "AddKnowledge",
+     "scope": {
+      "kind": "NPC",
+      "npcId": "npc-08b7a35d"
+     },
+     "subjects": [
+      "north-gate"
+     ],
+     "statement": "Свидетель: Томас Рид. Видел, как ушёл караван.",
+     "knownSince": null,
+     "attributedTo": "npc-08b7a35d",
+     "knowledgeType": "TESTIMONY",
+     "knowledgeId": "65b38015-86ac-41ed-aa6f-06dea1a2183d"
+    }
+   ],
+   "createdBy": "dm-ravenford",
+   "createdAt": "2026-10-27T16:40:34.466Z",
+   "appliedOption": null,
+   "status": "DRAFT",
+   "commit": null
+  },
+  "preview": {
+   "stateVersion": 317,
+   "warnings": [],
+   "notes": [],
+   "risk": {
+    "level": "L2",
+    "reasons": [
+     {
+      "commandIndex": 0,
+      "level": "L2",
+      "reason": "Добавляет в мир нового НПС"
+     },
+     {
+      "commandIndex": 1,
+      "level": "L2",
+      "reason": "Даёт НПС знание"
+     }
+    ]
+   },
+   "committable": true,
+   "issues": [],
+   "confirmation": {
+    "riskLevel": "L2",
+    "acknowledgedWarnings": []
+   },
+   "changes": [
+    {
+     "type": "EntityCreated",
+     "payload": {
+      "entityId": "npc-08b7a35d",
+      "kind": "npc",
+      "name": "Томас Рид",
+      "description": "Молчаливый незнакомец.",
+      "existsSince": null,
+      "location": null
+     }
+    },
+    {
+     "type": "EntityPlaced",
+     "payload": {
+      "entityId": "npc-08b7a35d",
+      "locationId": "north-gate",
+      "since": null,
+      "previousLocationId": null
+     }
+    },
+    {
+     "type": "KnowledgeAssigned",
+     "payload": {
+      "knowledgeId": "65b38015-86ac-41ed-aa6f-06dea1a2183d",
+      "scope": {
+       "kind": "NPC",
+       "npcId": "npc-08b7a35d"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Свидетель: Томас Рид. Видел, как ушёл караван.",
+      "subjects": [
+       "north-gate"
+      ],
+      "attributedTo": "npc-08b7a35d",
+      "relations": [],
+      "knownSince": null
+     }
+    },
+    {
+     "type": "AssetRequested",
+     "payload": {
+      "requestId": "authoring.2863b490-98a5-4f31-bbd7-58d9a6552400#0",
+      "entityId": "npc-08b7a35d",
+      "variant": "reference",
+      "label": null,
+      "audience": "players",
+      "note": null,
+      "source": {
+       "kind": "authoring",
+       "proposalId": "2863b490-98a5-4f31-bbd7-58d9a6552400"
+      },
+      "derivedFrom": null
+     }
+    }
+   ]
+  }
+ },
+ "trace": {
+  "input": "Добавь: молчаливый незнакомец в капюшоне у Северных ворот, который видел, как ушёл караван.",
+  "scope": "PUBLIC",
+  "issues": [],
+  "status": "PROPOSED",
+  "actorId": "dm-ravenford",
+  "purpose": "dm-intent",
+  "traceId": "3608bb7e-4618-4ffb-9c5e-2d12814a63d8",
+  "attempts": [
+   {
+    "kind": "initial",
+    "error": null,
+    "model": "local-interpreter-1",
+    "usage": null,
+    "issues": [],
+    "output": "{\"kind\":\"proposal\",\"proposal\":{\"summary\":\"Предложено по запросу: Добавь: молчаливый незнакомец в капюшоне у Северных ворот, который видел, как ушёл караван.\",\"commands\":[{\"type\":\"CreateEntity\",\"entityId\":\"tomas-reed\",\"kind\":\"npc\",\"name\":\"Томас Рид\",\"description\":\"Молчаливый незнакомец.\",\"existsSince\":null,\"placement\":{\"locationId\":\"north-gate\",\"since\":null}},{\"type\":\"AddKnowledge\",\"scope\":{\"kind\":\"NPC\",\"npcId\":\"tomas-reed\"},\"knowledgeType\":\"TESTIMONY\",\"statement\":\"Свидетель: Томас Рид. Видел, как ушёл караван.\",\"subjects\":[\"north-gate\"],\"attributedTo\":\"tomas-reed\",\"knownSince\":null}]}}",
+    "billing": {
+     "status": "local",
+     "costMicros": "0",
+     "pricingVersion": null,
+     "reservedMicros": null
+    },
+    "outcome": "valid",
+    "provider": "local",
+    "attemptId": "59469fe4-d09d-44b9-8806-3fd112a75a8f",
+    "latencyMs": 3
+   }
+  ],
+  "proposal": {
+   "summary": "Предложено по запросу: Добавь: молчаливый незнакомец в капюшоне у Северных ворот, который видел, как ушёл караван.",
+   "commands": [
+    {
+     "kind": "npc",
+     "name": "Томас Рид",
+     "type": "CreateEntity",
+     "entityId": "tomas-reed",
+     "placement": {
+      "since": null,
+      "locationId": "north-gate"
+     },
+     "description": "Молчаливый незнакомец.",
+     "existsSince": null
+    },
+    {
+     "type": "AddKnowledge",
+     "scope": {
+      "kind": "NPC",
+      "npcId": "tomas-reed"
+     },
+     "subjects": [
+      "north-gate"
+     ],
+     "statement": "Свидетель: Томас Рид. Видел, как ушёл караван.",
+     "knownSince": null,
+     "attributedTo": "tomas-reed",
+     "knowledgeType": "TESTIMONY"
+    }
+   ]
+  },
+  "createdAt": "2026-10-27T16:40:34.422Z",
+  "sourceIds": [
+   "world#clock",
+   "captain-thorne",
+   "golden-stag-inn",
+   "guild-caravan",
+   "market-square",
+   "merchant-guild",
+   "merchant-guild-faction",
+   "mira-vale",
+   "north-gate",
+   "old-trade-road",
+   "orin-stonebeard",
+   "orins-alchemy",
+   "ravenford",
+   "ravenford-guard"
+  ],
+  "campaignId": "ravenford",
+  "capability": "reasoning",
+  "canonicalEvents": []
+ }
+}

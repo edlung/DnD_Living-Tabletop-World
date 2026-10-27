@@ -1,0 +1,9 @@
+$ dc stop backup proxy server
+ Container ltw-g06-retest-backup-1 Stopping 
+ Container ltw-g06-retest-proxy-1 Stopping 
+ Container ltw-g06-retest-backup-1 Stopped 
+ Container ltw-g06-retest-proxy-1 Stopped 
+ Container ltw-g06-retest-server-1 Stopping 
+ Container ltw-g06-retest-server-1 Stopped 
+$ step 3
+rc=0

@@ -1,0 +1,22 @@
+Elowen at: location-f3b82c8b
+player POST dm/substitutions: 404
+player GET dm/history: 404
+player GET dm/history as Elowen: 404
+DM records reason: 201 {'status': 'recorded'}
+DM acts for Elowen (EnterLocation old-trade-road): 200 accepted http:dm-ravenford:standin-1793119513
+Elowen now at: old-trade-road
+DM history entry: {"commandId": "http:dm-ravenford:standin-1793119513", "sequence": 328, "worldTime": 36000, "recordedAt": "2026-10-27T16:45:13.584Z", "status": "COMMITTED", "undo": {"possible": true}, "kind": "substitution", "character": {"entityId": "elowen-starwhisper", "kind": "character", "name": "Эловен Старвиспер"}, "command": {"type": "EnterLocation", "characterId": "elowen-starwhisper", "locationId": "old-trade-road"}, "reason": {"reason": "absent", "note": "RT-NOTE-1793119513"}}
+note or reason in any player body: False
+player acts for mira-vale: 403 None None
+player acts for captain-thorne: 403 None None
+player acts for creature-ae08be99: 403 None None
+player acts for npc-08b7a35d: 403 None None
+player undoes the DM substitution: 400 rejected INVALID_COMMAND
+DM undoes it: 400 rejected INVALID_COMMAND
+Elowen after undo at: old-trade-road
+history status after undo: COMMITTED
+-- retry with the correct UndoCommand shape (targetCommandId)
+player undoes the DM substitution: 403 None None
+DM undoes it: 200 accepted None
+Elowen after undo at: location-f3b82c8b
+history status after undo: UNDONE None

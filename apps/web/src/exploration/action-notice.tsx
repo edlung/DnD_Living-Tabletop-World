@@ -8,8 +8,8 @@ import { KnowledgeCards } from '../visual/knowledge-cards.tsx';
 import type { ActionNotice as Notice } from './use-action.ts';
 
 /**
- * The result of an action, where it happened (docs/STAGE_320_DESIGN.md §5.2–5.3): the stage
- * anchors it above the medallion it concerns, or at the stage's bottom centre. What was learned
+ * The result of an action (docs/STAGE_320_DESIGN.md §5.2–5.3, Gate 06 amendment): one place on
+ * the stage, clear of the people and things in the scene (stage.css). What was learned
  * follows beneath it as typed records; spoken words belong to the conversation panel when it
  * shows them (its line is a live region, so they are announced once, there), and are never
  * merged with a record.

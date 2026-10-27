@@ -203,7 +203,7 @@ describe('NPC isolation in Russian (Gate 04)', () => {
   ];
   const INTENTS = [
     { kind: 'talk' },
-    { kind: 'ask', topicId: 'strange-symbol' },
+    { kind: 'ask', topicId: 'feature-19c7c7f7' },
     { kind: 'ask', topicId: 'guild-caravan' },
     { kind: 'insight', topicId: 'old-trade-road' },
     { kind: 'show', knowledgeId: 'party-symbol-evidence' },
@@ -227,7 +227,7 @@ describe('NPC isolation in Russian (Gate 04)', () => {
             scope: { kind: 'PARTY' },
             knowledgeType: 'EVIDENCE',
             statement: 'На доске повозки выжжен странный знак.',
-            subjects: ['strange-symbol'],
+            subjects: ['feature-19c7c7f7'],
             knownSince: null,
           },
           { type: 'EnterLocation', characterId: ELOWEN, locationId: PLACES[npcId] },

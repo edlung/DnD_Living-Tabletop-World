@@ -1,0 +1,1 @@
+{"traceId":"469ab215-f753-439b-9dcf-ca9a0b605515","status":"PROPOSED","proposal":{"summary":"Отметить Орина Стоунберда погибшим.","commands":[{"type":"ChangeEntityStatus","entityId":"orin-stonebeard","status":"dead"}]},"issues":[],"committable":false}

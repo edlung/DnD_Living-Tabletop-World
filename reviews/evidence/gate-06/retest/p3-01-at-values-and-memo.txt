@@ -1,0 +1,36 @@
+dead (DM-approved, presentable to nobody but DM): sha256:737ccd4bd073  allowed control (market-square reference): sha256:7ad7a7c7453b
+== odd at values (player, Elowen): status for allowed / for dead
+  at=''                       allowed=200 dead=404
+  at='-1'                     allowed=200 dead=404
+  at='0'                      allowed=200 dead=404
+  at='-0'                     allowed=200 dead=404
+  at='36000'                  allowed=200 dead=404
+  at='36001'                  allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"1e4b18f0-2804-4984-88b8-04a306d042a0'
+  at='99999999999'            allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"ea5f9ea1-8ce4-4bf3-be8d-eac2aaed8265'
+  at='1e309'                  allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"aebe4828-6689-4ab3-8267-9728612db8db'
+  at='NaN'                    allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"573caa6f-fadb-4238-9e0b-bfd6b61369ff'
+  at='Infinity'               allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"6fb0fb55-68ab-452c-a209-86266128d16d'
+  at='abc'                    allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"80679ec2-0e88-4501-be43-97188ffc24e5'
+  at='0x10'                   allowed=200 dead=404
+  at='+36000'                 allowed=200 dead=404
+  at='36000.5'                allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"5cf5921c-c25f-4018-ad61-8cfd73030ff1'
+  at='1e3'                    allowed=200 dead=404
+  at='%20'                    allowed=200 dead=404
+  at='36000&at=0'             allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"0cd21adc-1936-4f6c-91e8-ab013a5cb822'
+  at='00036000'               allowed=200 dead=404
+  at='9007199254740993'       allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"b6ad2c26-9af9-4642-a89d-55baddd1d523'
+  at='-9007199254740993'      allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"1ee1c013-1c8c-4cae-a75b-3c462edcfbda'
+  at='36000%00'               allowed=400 dead=400 body=b'{"error":{"code":"INVALID_REQUEST","message":"The request is invalid"},"requestId":"6da523da-ff83-48d4-bff1-7e32b06d594b'
+== memo order attacks (same history version)
+  at=now: DM-as-DM 200 -> DM preview as Elowen 404 -> player Elowen 404 -> player PARTY 404; listed to player False
+  at&at=36000: DM-as-DM 200 -> DM preview as Elowen 404 -> player Elowen 404 -> player PARTY 404; listed to player False
+  at&at=12345: DM-as-DM 200 -> DM preview as Elowen 404 -> player Elowen 404 -> player PARTY 404; listed to player False
+== perspective spelling variants (player)
+  perspective=character:elowen-starwhisper                     content(dead)=400 content(ok)=400
+  perspective=CHARACTER:Elowen-Starwhisper                     content(dead)=400 content(ok)=400
+  perspective=CHARACTER:elowen-starwhisper%20                  content(dead)=400 content(ok)=400
+  perspective=CHARACTER:elowen-starwhisper&perspective=DM      content(dead)=400 content(ok)=400
+  perspective=DM                                               content(dead)=403 content(ok)=403
+  perspective=CHARACTER:captain-thorne                         content(dead)=403 content(ok)=403
+  perspective=NPC:captain-thorne                               content(dead)=403 content(ok)=403
+  perspective=                                                 content(dead)=400 content(ok)=400

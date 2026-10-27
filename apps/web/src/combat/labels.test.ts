@@ -30,21 +30,21 @@ const ambush = (order: readonly string[]): EncounterView => ({
   order,
   battlefield: { width: 12, height: 10, difficult: [], cover: [] },
   combatants: [
-    fighter('goblin-shaman', null, { x: 9, y: 3 }),
+    fighter('creature-ae08be99', null, { x: 9, y: 3 }),
     fighter('elowen-starwhisper', 'Elowen Starwhisper', { x: 2, y: 6 }),
-    fighter('goblin-raider-2', null, { x: 8, y: 6 }),
-    fighter('goblin-raider-1', null, { x: 6, y: 4 }),
-    fighter('goblin-raider-3', null, { x: 9, y: 5 }),
+    fighter('creature-589f6668', null, { x: 8, y: 6 }),
+    fighter('creature-10fb59d4', null, { x: 6, y: 4 }),
+    fighter('creature-6513bec0', null, { x: 9, y: 5 }),
   ],
   reactionWindow: null,
 });
 
 const ORDER = [
   'elowen-starwhisper',
-  'goblin-raider-1',
-  'goblin-raider-2',
-  'goblin-raider-3',
-  'goblin-shaman',
+  'creature-10fb59d4',
+  'creature-589f6668',
+  'creature-6513bec0',
+  'creature-ae08be99',
 ];
 
 describe('combatant labels', () => {
@@ -67,12 +67,12 @@ describe('combatant labels', () => {
   });
 
   it('fall back to position (row, then column) for anyone the order does not list', () => {
-    const labelOf = labelsOf(ambush(['elowen-starwhisper', 'goblin-shaman']), english);
-    expect(labelOf('goblin-shaman')).toBe('Unidentified creature 1');
+    const labelOf = labelsOf(ambush(['elowen-starwhisper', 'creature-ae08be99']), english);
+    expect(labelOf('creature-ae08be99')).toBe('Unidentified creature 1');
     // Unlisted: raider 1 stands on row 4, raider 3 on row 5, raider 2 on row 6.
-    expect(labelOf('goblin-raider-1')).toBe('Unidentified creature 2');
-    expect(labelOf('goblin-raider-3')).toBe('Unidentified creature 3');
-    expect(labelOf('goblin-raider-2')).toBe('Unidentified creature 4');
+    expect(labelOf('creature-10fb59d4')).toBe('Unidentified creature 2');
+    expect(labelOf('creature-6513bec0')).toBe('Unidentified creature 3');
+    expect(labelOf('creature-589f6668')).toBe('Unidentified creature 4');
   });
 
   it('keep every name the projection carries, as the DM receives them', () => {
@@ -84,10 +84,10 @@ describe('combatant labels', () => {
         entity: { ...entry.entity, name: entry.entity.name ?? 'Goblin Raider' },
       })),
     };
-    expect(labelsOf(named, english)('goblin-raider-2')).toBe('Goblin Raider');
+    expect(labelsOf(named, english)('creature-589f6668')).toBe('Goblin Raider');
   });
 
   it('speak Russian in a Russian campaign', () => {
-    expect(labelsOf(ambush(ORDER), russian)('goblin-shaman')).toBe('Неопознанное существо 4');
+    expect(labelsOf(ambush(ORDER), russian)('creature-ae08be99')).toBe('Неопознанное существо 4');
   });
 });

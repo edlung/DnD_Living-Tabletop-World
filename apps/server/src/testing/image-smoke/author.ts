@@ -1,3 +1,5 @@
+import { randomBytes } from 'node:crypto';
+
 import { interpretLocally } from '@ltw/ai';
 import type {
   AiTraceView,
@@ -13,10 +15,11 @@ import type {
   SessionListResponse,
 } from '@ltw/contracts';
 
+import { withOpaqueIds } from '../../authoring/opaque-ids.ts';
 import { EN_SCRIPT } from '../scenario/script.ts';
 import { RU_SCRIPT } from '../scenario/script-ru.ts';
 import { SmokeFailure, campaignPath, expectStatus, type SmokeContext } from './client.ts';
-import { NORTH_GATE, TOMAS } from './preflight.ts';
+import { NORTH_GATE, TOMAS_NAMES } from './preflight.ts';
 
 /**
  * The portrait request (`../image-smoke.ts`). Without Tomas the DM authors him as RAVENFORD_SPEC.md's
@@ -38,6 +41,8 @@ export interface PortraitRequest {
   /** The `AssetRequested` event: it must be in the database the smoke reads. */
   readonly eventId: string;
   readonly how: 'authoring commit' | 'RequestAsset';
+  /** Tomas's ID: the one found, or the one his authoring commit created. */
+  readonly tomasId: string;
 }
 
 /** Attempts of the local provider only: a remote one is a paid text call. */
@@ -63,13 +68,13 @@ const lineage = (context: SmokeContext) =>
 async function newRequest(
   context: SmokeContext,
   before: ReadonlySet<string>,
-  result: CommandResult,
+  { result, tomasId }: { readonly result: CommandResult; readonly tomasId: string },
   how: PortraitRequest['how'],
 ): Promise<PortraitRequest> {
   if (result.status === 'rejected') throw new SmokeFailure(`${how} rejected: ${result.code}`);
   const events = result.events.filter((summary) => summary.type === 'AssetRequested');
   const requests = (await lineage(context)).requests.filter(
-    (request) => request.entityId === TOMAS && !before.has(request.requestId),
+    (request) => request.entityId === tomasId && !before.has(request.requestId),
   );
   const [request] = requests;
   const [event] = events;
@@ -81,28 +86,28 @@ async function newRequest(
       `the ${how} queued a ${request.variant} ${request.purpose}, not a portrait`,
     );
   }
-  return { request, eventId: event.eventId, how };
+  return { request, eventId: event.eventId, how, tomasId };
 }
 
 export async function requestPortrait(
   context: SmokeContext,
-  tomasExists: boolean,
+  tomasId: string | null,
   language: Language,
 ): Promise<PortraitRequest> {
   const known = new Set((await lineage(context)).requests.map((request) => request.requestId));
-  if (tomasExists) {
+  if (tomasId !== null) {
     const reply = await context.client.post('dm', campaignPath(context, '/commands'), {
       commandId: `${context.runId}.portrait`,
       command: {
         type: 'RequestAsset',
-        entityId: TOMAS,
+        entityId: tomasId,
         variant: 'reference',
         purpose: 'image',
         audience: 'players',
       },
     });
     const result = await expectStatus<CommandResult>(reply, 200, 'RequestAsset');
-    return newRequest(context, known, result, 'RequestAsset');
+    return newRequest(context, known, { result, tomasId }, 'RequestAsset');
   }
   return newRequest(context, known, await authorTomas(context, language), 'authoring commit');
 }
@@ -135,7 +140,11 @@ async function propose(context: SmokeContext, sentence: string): Promise<Authori
     const written = await expectStatus<AuthoringProposalResponse>(
       client.post('dm', proposals, {
         summary: interpretation.summary,
-        commands: interpretation.commands,
+        // Players meet him unnamed: an opaque ID, never the interpreter's "tomas-reed" (ADR 0008).
+        commands: withOpaqueIds(
+          interpretation.commands,
+          (_, kind) => `${kind}-${randomBytes(4).toString('hex')}`,
+        ),
       }),
       201,
       'authoring proposal',
@@ -172,14 +181,18 @@ async function propose(context: SmokeContext, sentence: string): Promise<Authori
   return proposed.proposal;
 }
 
-async function authorTomas(context: SmokeContext, language: Language): Promise<CommandResult> {
+async function authorTomas(
+  context: SmokeContext,
+  language: Language,
+): Promise<{ readonly result: CommandResult; readonly tomasId: string }> {
   const { client, log } = context;
   const script = language === 'ru' ? RU_SCRIPT : EN_SCRIPT;
   const first = await propose(context, script.tomasRequest);
   const created = first.commands.find((command) => command.type === 'CreateEntity');
   if (
     created?.type !== 'CreateEntity' ||
-    created.entityId !== TOMAS ||
+    created.entityId === undefined ||
+    !TOMAS_NAMES.has(created.name) ||
     created.kind !== 'npc' ||
     created.placement?.locationId !== NORTH_GATE
   ) {
@@ -215,5 +228,5 @@ async function authorTomas(context: SmokeContext, language: Language): Promise<C
     `[author] the DM committed proposal ${first.proposalId} (revision ` +
       `${String(revised.proposal.revision)}): Tomas Reed, a young guard at the North Gate`,
   );
-  return result;
+  return { result, tomasId: created.entityId };
 }

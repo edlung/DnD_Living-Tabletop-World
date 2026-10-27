@@ -1,0 +1,62 @@
+{
+ "PARTY": {
+  "result": {
+   "status": "accepted",
+   "commandId": "chronicle.e4a9e96f-4222-4987-a649-bd79f820db9f",
+   "campaignId": "ravenford",
+   "events": [
+    {
+     "sequence": 331,
+     "eventId": "7b41b90f-3f68-4c47-b9d7-c5f7dc12040a",
+     "type": "ChronicleGenerated"
+    }
+   ]
+  },
+  "chronicleId": "chronicle.e4a9e96f-4222-4987-a649-bd79f820db9f",
+  "rendering": {
+   "status": "RENDERED",
+   "provider": "local",
+   "traceId": "1c9f3870-5d41-4281-9d58-cda9c3666dac"
+  }
+ },
+ "DM": {
+  "result": {
+   "status": "accepted",
+   "commandId": "chronicle.fdc1492c-1904-4bc6-9337-9e9ce51e449e",
+   "campaignId": "ravenford",
+   "events": [
+    {
+     "sequence": 332,
+     "eventId": "1f56d808-eb23-44e1-98d7-1b65c6282db7",
+     "type": "ChronicleGenerated"
+    }
+   ]
+  },
+  "chronicleId": "chronicle.fdc1492c-1904-4bc6-9337-9e9ce51e449e",
+  "rendering": {
+   "status": "RENDERED",
+   "provider": "local",
+   "traceId": "3562c800-2214-4855-843a-25bd216943ad"
+  }
+ },
+ "CHARACTER:elowen-starwhisper": {
+  "result": {
+   "status": "accepted",
+   "commandId": "chronicle.6ca47d93-cb40-41bf-a0a5-478527bd0ebe",
+   "campaignId": "ravenford",
+   "events": [
+    {
+     "sequence": 333,
+     "eventId": "7cece5e1-8bd2-4225-bf64-317ce30663a4",
+     "type": "ChronicleGenerated"
+    }
+   ]
+  },
+  "chronicleId": "chronicle.6ca47d93-cb40-41bf-a0a5-478527bd0ebe",
+  "rendering": {
+   "status": "RENDERED",
+   "provider": "local",
+   "traceId": "b8fe4488-9bf9-41de-8a14-1d8c16180da4"
+  }
+ }
+}

@@ -69,7 +69,7 @@ test('a written chapter opens for the player with cited entries and a flashback'
   await expect(flashback).toBeVisible();
   await expect(flashback).toContainText('Mira');
   await expect(flashback).toContainText('Day 1');
-  await traffic.assertPlayerBoundary([], ['"abandoned-caravan-site"']);
+  await traffic.assertPlayerBoundary([], ['"location-f3b82c8b"']);
   await player.close();
   await dm.close();
 });
@@ -123,7 +123,7 @@ test('the DM performs Tomas for Elowen and the words are not recorded as fact', 
 
   await dm.getByLabel('Ask about', { exact: true }).selectOption('guild-caravan');
   const asked = dm.waitForResponse((response) =>
-    new URL(response.url()).pathname.endsWith('/npcs/tomas-reed/dialogue'),
+    /\/npcs\/[^/]+\/dialogue$/.test(new URL(response.url()).pathname),
   );
   await dm.getByRole('button', { name: 'Answer the question' }).click();
   expect((await (await asked).json()) as { reply: { status: string } | null }).toMatchObject({

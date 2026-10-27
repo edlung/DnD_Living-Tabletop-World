@@ -190,7 +190,7 @@ describe('leaving the battlefield', () => {
     const left = await world.submit({
       type: 'EnterLocation',
       characterId: ELOWEN,
-      locationId: 'abandoned-caravan-site',
+      locationId: 'location-f3b82c8b',
     });
     expect(codeOf(left)).toBe('accepted');
     const refused = await undo(world, ended);

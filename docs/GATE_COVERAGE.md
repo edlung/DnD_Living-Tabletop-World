@@ -696,3 +696,47 @@ Stage 350 full product introduction evidence (ADR 0037, "Full product notes"; St
 - **Client under the policy**: zod is jitless in the browser (`apps/web/src/schema-config.ts`), so
   no page asks for eval; no route, projection or rule changed.
 - Transcripts: `reports/evidence/stage-350/full-product/` (index `00-index.txt`).
+
+Gate 06 remediation, images (red-team report `g06-imagesRT.md`, G06-images-01 to 04; ADR 0022 and
+ADR 0023 amendments of 2026-10-27, ADR 0035 amendment "Gate 06 remediation"): row 330 narrowed.
+- **What a player is listed and served** (G06-images-01): a perspective other than the DM gets
+  from `…/entities/:id/assets` and `…/assets/content/:hash` (with or without `at`) only what
+  presentation could choose for it then (`presentableAssets` in
+  `packages/domain/src/visual/presentation.ts`, the rule `imageFor` uses): the canonical reference,
+  derived images whose label parts are all among the tags it sees, the figure and the battle map. A
+  state picture (`dead`, `unconscious`, …) of an entity known but not observed in that state is the
+  404 of a hash nobody stored. The client fetches a picture chosen for a past time with that time
+  (`apps/web/src/visual/approved-images.ts`; Chronicle plate and flashback).
+- **No version for players** (G06-images-03): `PlayerAssetView` is variant, purpose, content hash
+  and media type; the DM's lineage keeps versions.
+- **The placeholder hides the label** (G06-images-02): a derived variant's frame is hued from the
+  seed and base, never from the label; it draws no text, name, description or note.
+- **The DM sees the prompt's description** (G06-images-04, accepted design risk kept): the DM's
+  lineage carries each entity's recorded description as the prompt reads it, and the request form
+  shows it word for word with a note that players may not know it.
+- Tests (the HTTP, PostgreSQL, placeholder and lineage ones fail on revision 81ec8d3):
+  `apps/server/src/http/image-exposure.test.ts` (over HTTP:
+  an unobserved entity's `dead`/`unconscious` pictures neither listed nor served, the 404 identical
+  to an unknown hash; a `night` variant served at night and for a past night, not by day, every
+  picture of a scene at T served at T; no `version` in the list, presentation or scene),
+  `apps/server/src/assets/assets.integration.test.ts` (the same on PostgreSQL),
+  `packages/domain/src/assets/purposes.property.test.ts` (list, content and presentation agree
+  after every random step), `packages/ai/src/placeholder-images.test.ts` (labels draw nothing),
+  `packages/domain/src/assets/views.test.ts` and `tests/e2e/images-dm.spec.ts` (the description in
+  the lineage and in the request form). `deploy/verify/images.sh` reads its visible set from the
+  player's list, so it checks the narrowed rule through the proxy.
+- **Review follow-up** (same day): a scene's pictures cost one replay (timelines and each
+  perspective's servable pictures remembered per history version, bounded:
+  `packages/domain/src/visual/memo.ts`, `memo.test.ts`); live pictures are fetched for their
+  presentation's `worldTime` (`withPictureTimes` in `apps/web/src/visual/approved-images.ts`,
+  `approved-images.test.ts`; `images-dm.spec.ts` checks every player picture request carries
+  `at`); the DM's broad pool takes no perspective and is no longer exported. Pinned in
+  `image-exposure.test.ts`: the party with `at`, a time before the entity existed, observed then
+  but not now, a figure and battle map of what is known but unobserved, the DM previewing
+  Elowen; `purposes.property.test.ts` also checks a past time for Elowen and the party.
+
+## Gate 06 result (2026-10-27)
+
+PASS after remediation and retest: `reviews/ASTRA_GATE_06_REPORT.md`, evidence
+`reviews/evidence/gate-06/`. Every alpha row above was attacked on a deployment (the report's
+coverage table names the team per row). Open for the owner: G06-client-02.

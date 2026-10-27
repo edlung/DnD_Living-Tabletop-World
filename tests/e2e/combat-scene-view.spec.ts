@@ -62,7 +62,7 @@ test('on the scene view a player still hears whose turn it is and answers a reac
     headers: { authorization: `Bearer ${TOKENS.dm}` },
     data: {
       commandId: `${campaign}.journey.end-shaman`,
-      command: { type: 'EndTurn', combatantId: 'goblin-shaman' },
+      command: { type: 'EndTurn', combatantId: 'creature-ae08be99' },
     },
   });
   expect(((await ended.json()) as { status: string }).status).toBe('accepted');

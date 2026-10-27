@@ -8,7 +8,8 @@
 #   2. the curated set is in the campaign, every picture approved for players by the DM and made
 #      by the `curated` generator (the DM's lineage through the proxy);
 #   3. a player the DM invited reads, through Caddy, every approved picture of what Elowen knows
-#      or perceives: 200, image/webp, nosniff, no-store (authorized bytes: never kept by a browser
+#      or perceives that presentation could choose for her now (Gate 06: no state picture of a
+#      state she does not see): 200, image/webp, nosniff, no-store (authorized bytes: never kept by a browser
 #      or a shared cache, ADR 0022 §6), the server's sandbox policy, uncompressed, bytes whose
 #      SHA-256 is the hash; every other curated picture is a 404;
 #   4. the page's policy lets the client show them (img-src 'self' blob:, the object URLs);
@@ -129,7 +130,7 @@ check 'requested by the DM (none by authoring)' is "$(jq '[.requests[] |
   select(.requestId | startswith("ravenford.curated.")) | select(.source.kind != "dm")] | length' \
   "$WORK/lineage.json")" 0
 
-say 'the player reads what Elowen knows or perceives, through Caddy'
+say 'the player reads what presentation could choose for Elowen now, through Caddy'
 : >"$WORK/visible.txt"
 for entity in $(cut -d' ' -f1 "$WORK/curated.txt" | sort -u); do
   if [ "$(get player "/campaigns/$CAMPAIGN/entities/$entity/assets?$AS_ELOWEN")" = 200 ]; then
@@ -173,7 +174,7 @@ while read -r hash; do
   status=$(content player "$hash")
   if [ "$status" = 404 ]; then hidden_ok=$((hidden_ok + 1)); else hidden_bad="$hidden_bad $hash($status)"; fi
 done <"$WORK/hidden.txt"
-printf '     curated pictures of what Elowen neither knows nor perceives: %s of %s are 404;%s\n' \
+printf '     other curated pictures (unknown, unseen, or a state she does not see): %s of %s are 404;%s\n' \
   "$hidden_ok" "$(wc -l <"$WORK/hidden.txt" | tr -d ' ')" "${hidden_bad:- none other}"
 check 'every other curated picture is a 404 for the player' test -z "$hidden_bad"
 

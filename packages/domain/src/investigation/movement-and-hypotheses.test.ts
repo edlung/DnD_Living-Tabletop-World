@@ -20,10 +20,10 @@ describe('EnterLocation', () => {
       kind: 'EnterLocation',
       locationId: 'old-trade-road',
     });
-    expect(codeOf(await world.submit(enter('abandoned-caravan-site')))).toBe('accepted');
+    expect(codeOf(await world.submit(enter('location-f3b82c8b')))).toBe('accepted');
     const state = await world.state();
     expect(state.entities.get(ELOWEN)?.placement).toEqual({
-      locationId: 'abandoned-caravan-site',
+      locationId: 'location-f3b82c8b',
       since: state.clock,
     });
   });
@@ -31,7 +31,7 @@ describe('EnterLocation', () => {
   it('treats unknown, unperceived and nonexistent locations identically', async () => {
     const world = await investigationWorld();
     const results = await Promise.all(
-      ['abandoned-caravan-site', 'no-such-place'].map(async (id) => {
+      ['location-f3b82c8b', 'no-such-place'].map(async (id) => {
         const r = await world.submit(enter(id));
         return r.status === 'rejected' ? [r.code, r.message, r.details] : r.status;
       }),
@@ -89,7 +89,7 @@ describe('FormHypothesis', () => {
     expect(await shape(cite('orin-symbol-secret'))).toEqual(['KNOWLEDGE_NOT_FOUND', 'Not found']);
     expect(await shape(cite('no-such-record'))).toEqual(['KNOWLEDGE_NOT_FOUND', 'Not found']);
     for (const subject of [
-      'strange-symbol',
+      'feature-19c7c7f7',
       '3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53',
       'no-such-entity',
     ]) {

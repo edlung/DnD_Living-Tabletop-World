@@ -31,13 +31,13 @@ async function consistent(world: InvestigationWorld) {
 describe('negative premises of examinations', () => {
   it('a repeated inspection blocks undoing the first one; reverse order works', async () => {
     const world = await investigationWorld();
-    for (const locationId of ['old-trade-road', 'abandoned-caravan-site']) {
+    for (const locationId of ['old-trade-road', 'location-f3b82c8b']) {
       await world.submit({ type: 'EnterLocation', characterId: ELOWEN, locationId });
     }
     const inspect = {
       type: 'ExamineEntity',
       characterId: ELOWEN,
-      entityId: 'broken-wagon-wheel',
+      entityId: 'item-f44e7183',
       method: 'inspect',
     };
     const first = await world.submit(inspect);

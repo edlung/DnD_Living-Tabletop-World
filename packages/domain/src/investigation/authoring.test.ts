@@ -5,14 +5,14 @@ import { DM, ELOWEN, OUTSIDER, PLAYER, codeOf, investigationWorld } from './test
 /** DM authoring of clues and disclosure; who may issue what (ADR 0013 §1–3). */
 describe('AddClue', () => {
   it.each([
-    [{ entityId: 'goblin-weapon', method: 'investigation' }, 'INVALID_CLUE'],
-    [{ entityId: 'goblin-weapon', method: 'inspect', dc: 10 }, 'INVALID_CLUE'],
+    [{ entityId: 'item-0869f47a', method: 'investigation' }, 'INVALID_CLUE'],
+    [{ entityId: 'item-0869f47a', method: 'inspect', dc: 10 }, 'INVALID_CLUE'],
     [{ entityId: 'mira-vale', method: 'perception', dc: 10 }, 'INVALID_CLUE'],
     [{ entityId: 'merchant-guild-faction', method: 'inspect' }, 'INVALID_CLUE'],
     [{ entityId: 'no-such-entity', method: 'inspect' }, 'ENTITY_NOT_FOUND'],
-    [{ entityId: 'goblin-weapon', method: 'inspect', subjects: ['x-missing'] }, 'ENTITY_NOT_FOUND'],
+    [{ entityId: 'item-0869f47a', method: 'inspect', subjects: ['x-missing'] }, 'ENTITY_NOT_FOUND'],
     [
-      { entityId: 'goblin-weapon', method: 'inspect', clueId: 'clue-blade-found' },
+      { entityId: 'item-0869f47a', method: 'inspect', clueId: 'clue-blade-found' },
       'ID_ALREADY_USED',
     ],
   ])('rejects %o with %s', async (fields, code) => {
@@ -27,7 +27,7 @@ describe('AddClue', () => {
       world.submit(
         {
           type: 'AddClue',
-          entityId: 'goblin-weapon',
+          entityId: 'item-0869f47a',
           method: 'perception',
           dc: 10,
           statement: 'x',
@@ -59,7 +59,7 @@ describe('authorization', () => {
   it('keeps authoring DM-only', async () => {
     const world = await investigationWorld();
     for (const command of [
-      { type: 'AddClue', entityId: 'goblin-weapon', method: 'inspect', statement: 'x' },
+      { type: 'AddClue', entityId: 'item-0869f47a', method: 'inspect', statement: 'x' },
       { type: 'SetDisclosure', knowledgeId: 'orin-knows-thorne', disclosure: 'WILLING' },
     ]) {
       expect(codeOf(await world.submit(command, PLAYER))).toBe('FORBIDDEN');

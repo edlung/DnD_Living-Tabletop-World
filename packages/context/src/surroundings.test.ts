@@ -41,7 +41,7 @@ describe('perceived surroundings', () => {
     const state = await world.current();
     const before = structuredClone(state);
     expect(surroundings(state, elowenView(state))?.nearby).toEqual([
-      { entityId: 'abandoned-caravan-site', kind: 'location', name: null },
+      { entityId: 'location-f3b82c8b', kind: 'location', name: null },
     ]);
     expect(state).toEqual(before);
     expect(
@@ -49,13 +49,13 @@ describe('perceived surroundings', () => {
         await world.submit({
           type: 'EnterLocation',
           characterId: ELOWEN,
-          locationId: 'abandoned-caravan-site',
+          locationId: 'location-f3b82c8b',
         })
       ).status,
     ).toBe('accepted');
     const atSite = await world.current();
     expect(surroundings(atSite, elowenView(atSite))).toMatchObject({
-      location: { entityId: 'abandoned-caravan-site', kind: 'location', name: null },
+      location: { entityId: 'location-f3b82c8b', kind: 'location', name: null },
       nearby: [{ entityId: 'old-trade-road', kind: 'location', name: 'Old Trade Road' }],
     });
     expect(
@@ -63,7 +63,7 @@ describe('perceived surroundings', () => {
         await world.submit({
           type: 'ExamineEntity',
           characterId: ELOWEN,
-          entityId: 'abandoned-caravan-site',
+          entityId: 'location-f3b82c8b',
           method: 'inspect',
         })
       ).status,
@@ -80,7 +80,7 @@ describe('perceived surroundings', () => {
     const changed = await world.apply(
       {
         type: 'UpdateEntityProfile',
-        entityId: 'abandoned-caravan-site',
+        entityId: 'location-f3b82c8b',
         name: 'SECRET PLACE NAME',
         description: 'SECRET DESCRIPTION',
       },
@@ -103,7 +103,7 @@ describe('perceived surroundings', () => {
     );
     expect(surroundings(changed, elowenView(changed))).toEqual(view);
     const entities = new Map(changed.entities);
-    const site = entities.get('abandoned-caravan-site');
+    const site = entities.get('location-f3b82c8b');
     if (!site) throw new Error('Missing site');
     entities.set(site.entityId, {
       ...site,
@@ -117,7 +117,7 @@ describe('perceived surroundings', () => {
     const world = await seedRavenford();
     await world.apply({ type: 'PlaceEntity', entityId: ELOWEN, locationId: 'old-trade-road' });
     const state = await world.current();
-    const site = state.entities.get('abandoned-caravan-site');
+    const site = state.entities.get('location-f3b82c8b');
     if (!site) throw new Error('Missing site');
     const entities = new Map(state.entities).set(site.entityId, {
       ...site,

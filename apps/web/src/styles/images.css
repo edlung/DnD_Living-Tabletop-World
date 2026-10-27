@@ -239,6 +239,38 @@
 .image-request .action-row {
   margin: 0.35rem 0 0;
 }
+/* What the image model reads of the entity: the DM's own record, word for word (Gate 06) */
+.image-request-brief {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.3rem 0 0;
+}
+.image-request-brief-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  /* The form's labels (base.css `label`): the title reads as the field it is, not as a heading. */
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.image-request-brief-title .glyph {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--magic);
+}
+.image-request-description {
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  border-inline-start: 3px solid var(--magic);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--magic) 8%, transparent);
+  font-style: italic;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
 
 /* The result of the DM's last command, where it was given */
 .images-result {

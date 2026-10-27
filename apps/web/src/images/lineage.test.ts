@@ -140,6 +140,7 @@ function northGate(): NorthGate {
       ],
       assets,
       canonical: [{ entityId: 'north-gate', assetId: `${second.requestId}~asset` }],
+      descriptions: [],
     },
     ids: {
       second: second.requestId,
@@ -194,7 +195,12 @@ describe("an entity's pictures as the DM sees them", () => {
     const old = request('mira-vale', { variant: 'derived', purpose: 'figure', label: 'figure' });
     const newer = request('mira-vale', { variant: 'derived', purpose: 'figure', label: 'pose' });
     const images = entityImages(
-      { requests: [old, newer], assets: [asset(old), asset(newer)], canonical: [] },
+      {
+        requests: [old, newer],
+        assets: [asset(old), asset(newer)],
+        canonical: [],
+        descriptions: [],
+      },
       'mira-vale',
     );
     expect(images.approved.map(({ asset: shown }) => shown.requestId)).toEqual([newer.requestId]);
@@ -214,6 +220,7 @@ describe('the work waiting for the DM across the campaign', () => {
         requests: [done],
         assets: [asset(done, { status: 'CANONICAL' })],
         canonical: [],
+        descriptions: [],
       }),
     ).toEqual([]);
   });
@@ -373,6 +380,7 @@ describe('what an approval did, read from the lineage after it', () => {
         asset(rain, { version: 2 }),
       ],
       canonical: [],
+      descriptions: [],
     };
     const standing = (from: AssetRequestView) =>
       approvalStanding(lineage, `${from.requestId}~asset`);

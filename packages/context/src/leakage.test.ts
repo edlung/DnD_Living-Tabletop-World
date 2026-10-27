@@ -42,7 +42,7 @@ describe('secret markers', () => {
     const state = await seeded.apply({
       type: 'PlaceEntity',
       entityId: ELOWEN,
-      locationId: 'abandoned-caravan-site',
+      locationId: 'location-f3b82c8b',
     });
     const perceivedIds = [...state.entities.keys()].map((entityId) => `"${entityId}"`);
     const output = everyContext(state);
@@ -50,9 +50,9 @@ describe('secret markers', () => {
     for (const marker of ELOWEN_FORBIDDEN_MARKERS.filter((m) => !perceivedIds.includes(m))) {
       expect(output, marker).not.toContain(marker);
     }
-    const symbol = entityContext(state, elowenView(state), 'strange-symbol');
+    const symbol = entityContext(state, elowenView(state), 'feature-19c7c7f7');
     expect(symbol.ok && symbol.context.entity).toEqual({
-      entityId: 'strange-symbol',
+      entityId: 'feature-19c7c7f7',
       kind: 'feature',
       name: null,
     });
@@ -130,18 +130,23 @@ describe('noninterference', () => {
       await world.submit({
         type: 'EnterLocation',
         characterId: ELOWEN,
-        locationId: 'abandoned-caravan-site',
+        locationId: 'location-f3b82c8b',
       });
     }
     await changed.apply(
       {
         type: 'AddClue',
-        entityId: 'goblin-weapon',
+        entityId: 'item-0869f47a',
         method: 'perception',
         dc: 30,
         statement: 'Hidden.',
       },
-      { type: 'AddClue', entityId: 'wagon-tracks', method: 'inspect', statement: 'More tracks.' },
+      {
+        type: 'AddClue',
+        entityId: 'feature-ccec7e50',
+        method: 'inspect',
+        statement: 'More tracks.',
+      },
       { type: 'AddClue', entityId: 'mira-vale', method: 'inspect', statement: 'Mira looks tired.' },
       { type: 'SetDisclosure', knowledgeId: 'thorne-missing-patrol', disclosure: 'WILLING' },
       { type: 'SetDisclosure', knowledgeId: 'mira-cargo-logistics', disclosure: 'GUARDED' },
@@ -174,7 +179,7 @@ describe('noninterference', () => {
           scope: { kind: 'CHARACTER', characterId: 'bram-tull' },
           knowledgeType: 'EVIDENCE',
           statement: 'Bram found the symbol too.',
-          subjects: ['strange-symbol'],
+          subjects: ['feature-19c7c7f7'],
           knownSince: null,
         },
       );
@@ -206,11 +211,11 @@ describe('noninterference', () => {
   it('a goblin’s hidden statistics never change any context in combat (ADR 0015 §6)', async () => {
     const baseline = await seedRavenford();
     const changed = await seedRavenford();
-    const block = changed.state.statBlocks.get('goblin-raider-1');
+    const block = changed.state.statBlocks.get('creature-10fb59d4');
     if (!block) throw new Error('no stat block');
     await changed.apply({
       type: 'SetStatBlock',
-      entityId: 'goblin-raider-1',
+      entityId: 'creature-10fb59d4',
       statBlock: {
         ...block,
         armorClass: 21,
@@ -235,12 +240,12 @@ describe('noninterference', () => {
     const contexts = async (spellId: string) => {
       const world = await seedRavenford();
       await world.apply(...ambush.place, ambush.startCombat);
-      for (const id of [ELOWEN, 'goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3']) {
+      for (const id of [ELOWEN, 'creature-10fb59d4', 'creature-589f6668', 'creature-6513bec0']) {
         await world.apply({ type: 'EndTurn', combatantId: id });
       }
       const state = await world.apply({
         type: 'CastSpell',
-        combatantId: 'goblin-shaman',
+        combatantId: 'creature-ae08be99',
         spellId,
         targetId: ELOWEN,
       });

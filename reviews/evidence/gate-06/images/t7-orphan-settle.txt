@@ -1,0 +1,19 @@
+young reservation settle:
+ai:operator: refused (RESERVATION_TOO_RECENT)
+columns:
+charge_id campaign_id request_id provider model reserved_micros created_at 
+INSERT 0 1
+list older than 15:
+{"olderThanMinutes":15,"settleableAfterMinutes":15,"reservations":[{"chargeId":"11111111-1111-4111-8111-111111111111","campaignId":"c","requestId":"old#0","provider":"openrouter-openai","model":"openai/gpt-5.4-image-2","reservedMicros":"500000","createdAt":"2026-10-27T13:39:17.430Z","ageMinutes":60}]}
+settle with charge-micros above reservation:
+{"settled":{"chargeId":"11111111-1111-4111-8111-111111111111","reservedMicros":"500000","chargedMicros":"900000"}}
+settle with negative:
+ai:operator: expected nonnegative integer microdollars
+settle with 0:
+ai:operator: refused (ALREADY_SETTLED)
+settle again:
+ai:operator: refused (ALREADY_SETTLED)
+status:
+{"openHolds":0,"activeStops":0,"incompleteRequests":0,"disabledAccounts":0,"disabledApprovals":0,"images":{"revision":1,"ceilingMicros":"1000000","spentMicros":"2300000","heldMicros":"500000","remainingMicros":"0","charges":3,"unsettled":1}}
+append-only? update:
+CONTEXT:  PL/pgSQL function ltw_reject_history_rewrite() line 3 at RAISE

@@ -30,7 +30,10 @@ test('objects lead from Mira to evidence, a hypothesis, contradictory testimony,
   await expect(entityDetails(page)).toContainText('Abandoned Caravan Site');
 
   const scene = page.getByRole('region', { name: 'Scene', exact: true });
-  await scene.getByRole('button', { name: 'Unidentified item', exact: true }).first().click();
+  // The scene lists what it holds by ID; the IDs are opaque (ADR 0008, Gate 06), so the wheel is
+  // simply the last of the three unidentified items. The site's result stays clear of the row
+  // (scene-result-layout.spec.ts): the player clicks with it still showing.
+  await scene.getByRole('button', { name: 'Unidentified item', exact: true }).last().click();
   await commandAction(page, 'Inspect');
   await expect(
     entityDetails(page).getByRole('heading', { name: 'Broken Wagon Wheel', exact: true }),

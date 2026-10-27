@@ -199,8 +199,8 @@
 }
 
 /*
- * The result of an action, where it happened: above the chosen medallion, or bottom centre of
- * the stage. It sits above every sheet and panel (a sibling of the stage), so its words and its
+ * The result of an action: bottom centre of the stage on a phone, its bottom-right corner from
+ * a tablet up (below). It sits above every sheet and panel (a sibling of the stage), so its words and its
  * Retry are never covered by the tool that caused it.
  */
 .outcome {
@@ -219,31 +219,45 @@
 .world-main:has(.stage--talking) .outcome {
   width: min(360px, calc(100% - 32px));
 }
-/* Above the medallion while it can be seen: no sheet over it, nor (on a tablet) the drawer. */
-@supports (position-area: top) {
-  @media (min-width: 1200px) {
-    .world-main:not(.has-battle):not(:has(.sheet:not([hidden]))):has(.object-button[data-anchor])
-      .outcome {
-      position-anchor: --result-anchor;
-      position-area: top;
-      bottom: auto;
-      left: auto;
-      margin-bottom: 0.4rem;
-      translate: none;
-    }
+/*
+ * Gate 06: the result has one place, the stage's bottom-right corner below the exits, and the
+ * people and things in the scene keep clear of it on its left. Centred, or anchored above the
+ * medallion it concerns, it lay over the row (or the row above) and swallowed their clicks.
+ */
+@media (min-width: 768px) {
+  .world-main:not(.has-battle):has(.outcome) {
+    --outcome-w: min(360px, 36%);
   }
-  @media (min-width: 768px) and (max-width: 1199px) {
-    .world-main:not(.has-battle):not(.has-details):not(:has(.sheet:not([hidden]))):has(
-        .object-button[data-anchor]
-      )
-      .outcome {
-      position-anchor: --result-anchor;
-      position-area: top;
-      bottom: auto;
-      left: auto;
-      margin-bottom: 0.4rem;
-      translate: none;
-    }
+  .world-main:not(.has-battle) .outcome {
+    right: 16px;
+    left: auto;
+    width: var(--outcome-w);
+    translate: none;
+  }
+  .world-main:not(.has-battle):has(.outcome) .scene-presence {
+    right: calc(var(--outcome-w) + 32px);
+  }
+}
+@media (min-width: 1200px) {
+  .world-main.has-details:not(.has-battle) .outcome {
+    right: calc(var(--panel-w) + 16px);
+    left: auto;
+  }
+}
+/*
+ * A tablet's selection drawer leaves the stage too narrow for the result beside the row: the
+ * result sits at the drawer's foot instead (it concerns the selection), and the drawer's content
+ * scrolls clear of it.
+ */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .world-main.has-details:not(.has-battle) .outcome {
+    right: 16px;
+    left: auto;
+    width: calc(min(var(--panel-w), 92vw) - 32px);
+  }
+  .world-main.has-details:not(.has-battle):has(.outcome) .detail-panel {
+    padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
+    scroll-padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
   }
 }
 /* While a sheet is open the result sits just above it, clear of the sheet's own controls. */
@@ -294,6 +308,12 @@
   position: absolute;
   top: 4px;
   right: 4px;
+}
+/* What was learned is read over the scene: an opaque panel, like the notice above it. */
+.discovered-knowledge {
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow);
 }
 .discovered-knowledge .knowledge-list {
   margin: 0;

@@ -1,12 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
-import { DM } from '../authoring/testing/world.ts';
+import { CAMPAIGN, DM } from '../authoring/testing/world.ts';
 import { parseRecordedEvent, type RecordedEvent } from '../kernel/events.ts';
 import { replay } from '../kernel/evolve.ts';
 import { holderPerspective } from '../knowledge/perspective.ts';
+import { entityAssetsAt } from '../visual/views.ts';
 import { assetIdFor } from './records.ts';
 import { WORKER, assetWorld, codeOf, hash } from './testing/world.ts';
-import { assetLineage, entityAssetsFor } from './views.ts';
+import { assetLineage } from './views.ts';
 
 /**
  * Asset purposes (docs/adr/0035-images.md §4): an `image` (the default, chosen by state tags), a
@@ -16,7 +17,7 @@ import { assetLineage, entityAssetsFor } from './views.ts';
 const MIRA = 'mira-vale';
 const ELOWEN = 'elowen-starwhisper';
 const ROAD = 'old-trade-road';
-const WHEEL = 'broken-wagon-wheel';
+const WHEEL = 'item-f44e7183';
 
 const figure = { variant: 'derived', label: 'figure', purpose: 'figure' } as const;
 const figure_ = (label: string) => ({ variant: 'derived', label, purpose: 'figure' }) as const;
@@ -207,22 +208,23 @@ describe('a figure and a battle map', () => {
       kind: 'CHARACTER',
       characterId: ELOWEN,
     });
-    expect(
-      entityAssetsFor(await world.state(), elowen, ELOWEN)?.map((asset) => asset.contentHash),
-    ).toEqual([hash(1)]);
+    const listed = async () => {
+      const snapshot = await world.engine.load(CAMPAIGN);
+      if (!snapshot) throw new Error('missing campaign');
+      return entityAssetsAt(snapshot, elowen, ELOWEN);
+    };
+    expect((await listed())?.map((asset) => asset.contentHash)).toEqual([hash(1)]);
     await world.approve(assetIdFor(requestId));
-    expect(entityAssetsFor(await world.state(), elowen, ELOWEN)).toEqual([
+    expect(await listed()).toEqual([
       {
         variant: 'reference',
         purpose: 'image',
-        version: 1,
         contentHash: hash(1),
         mediaType: 'image/svg+xml',
       },
       {
         variant: 'derived',
         purpose: 'figure',
-        version: 1,
         contentHash: hash(2),
         mediaType: 'image/svg+xml',
       },

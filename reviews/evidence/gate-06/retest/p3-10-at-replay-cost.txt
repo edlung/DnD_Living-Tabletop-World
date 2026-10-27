@@ -1,0 +1,2 @@
+same at x40: 0.57s codes={200}
+40 distinct at: 0.40s codes={200, 400}

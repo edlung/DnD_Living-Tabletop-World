@@ -36,12 +36,15 @@ export async function seedCombatCampaign(
     ...(stage === 'placed' ? [] : [ambush.startCombat]),
     ...(stage === 'window'
       ? [
-          ...['elowen-starwhisper', 'goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3'].map(
-            (combatantId) => ({ type: 'EndTurn', combatantId }),
-          ),
+          ...[
+            'elowen-starwhisper',
+            'creature-10fb59d4',
+            'creature-589f6668',
+            'creature-6513bec0',
+          ].map((combatantId) => ({ type: 'EndTurn', combatantId })),
           {
             type: 'CastSpell',
-            combatantId: 'goblin-shaman',
+            combatantId: 'creature-ae08be99',
             spellId: 'ashen-bolt',
             targetId: 'elowen-starwhisper',
           },

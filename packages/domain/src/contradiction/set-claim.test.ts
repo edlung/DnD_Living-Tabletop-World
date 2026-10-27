@@ -41,8 +41,8 @@ describe('SetClaim', () => {
     const onClue = (subjectId: string) =>
       claimOn({ kind: 'clue', clueId: 'clue-tracks-boots' }, subjectId);
     expect(codeOf(await world.submit(onClue('guild-caravan'), DM))).toBe('INVALID_CLAIM');
-    expect(codeOf(await world.submit(onClue('wagon-tracks'), DM))).toBe('accepted');
-    expect(codeOf(await world.submit(onClue('wagon-tracks'), DM))).toBe('INVALID_CLAIM');
+    expect(codeOf(await world.submit(onClue('feature-ccec7e50'), DM))).toBe('accepted');
+    expect(codeOf(await world.submit(onClue('feature-ccec7e50'), DM))).toBe('INVALID_CLAIM');
     expect(
       codeOf(await world.submit(claimOn({ kind: 'clue', clueId: 'no-such-clue' }, 'x'), DM)),
     ).toBe('INVALID_CLAIM');

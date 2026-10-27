@@ -79,7 +79,7 @@ describe('the Russian campaign', () => {
 
   it('creates Tomas from a Russian sentence, as a native person, and performs him', async () => {
     expect(one.commit.json<{ status: string }>()).toMatchObject({ status: 'accepted' });
-    expect((await session.snapshot()).state.entities.get('tomas-reed')?.name).toBe('Томас Рид');
+    expect((await session.snapshot()).state.entities.get(one.tomasId)?.name).toBe('Томас Рид');
     expect(one.performed.reply).toMatchObject({ status: 'REPLIED', canonical: false });
     expect(one.performed.reply?.text).toMatch(CYRILLIC);
     expect(one.askMira.reply?.text).toMatch(CYRILLIC);
@@ -123,7 +123,7 @@ describe('recall and the Chronicle in Russian', () => {
 
   it('opens the fight as a flashback in Russian', () => {
     expect(road.battleFlashback.participants.map((p) => p.entity.entityId)).toContain(
-      'goblin-shaman',
+      'creature-ae08be99',
     );
     expect(road.battleFlashback.scene?.entityId).toBe('old-trade-road');
   });

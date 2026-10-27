@@ -15,7 +15,7 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - Everything below this section up to "Current continuation" and the older sections is **historical
   record** of the 2026-10-11/12 role-based process; preserve it, do not follow its role rules.
 
-## Current status — 2026-10-24
+## Current status — 2026-10-27
 
 - Authorized by the owner (`reviews/OWNER_DECISIONS_9_2026-10-15.json`): Stages 310, 320, 330, 340,
   350, the Gate 06 red-team pass (355) and the non-human parts of 360; the session adopts each
@@ -32,9 +32,14 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   controls, figures, battle map, Chronicle art; one authorized live OpenRouter smoke ($0.240833 of
   $5); independent review of the client with all findings fixed; reports
   `reports/STAGE_330_COMPLETION.md`, `reports/STAGE_330_IDENTITY.md`.
-- Stage 350: rebased onto `main` with Stage 330 (tree identical to the revision verified locally
-  with the full product; reviews fixed); its PR is next, then the Gate 06 red-team pass (355).
+- Stage 350: merged (PR 8, `0cc8d8d`, 2026-10-27) after CI fixes for the hosted runner.
   The owner confirmed on 2026-10-24 that stage PRs are merged on green CI.
+- Gate 06 (Stage 355): PASS after remediation and retest (`reviews/ASTRA_GATE_06_REPORT.md`,
+  PR 9 `gate-06-fixes`): five independent teams on their own deployments of `0cc8d8d`, one High
+  (semantic IDs of unidentified entities), one Medium (state pictures of unobserved entities),
+  Lows; all fixed and retested; G06-client-02 (visible equipment before identification) awaits
+  the owner. Next: the non-human parts of Stage 360 (AI stand-in pass, playtest kit, prepared
+  release), no v0.1 tag.
 - Spending: paid runtime calls only within the stored operator ceilings (ADR 0032); in-play images
   through OpenRouter within $5 (Stage 330); never read `.env.local`.
 

@@ -8,7 +8,7 @@ import type {
 
 import { SmokeFailure, campaignPath, expectStatus, type SmokeContext } from './client.ts';
 import { contentHashOf } from './job.ts';
-import { NORTH_GATE, TOMAS } from './preflight.ts';
+import { NORTH_GATE } from './preflight.ts';
 
 /**
  * What the player sees of Tomas's new portrait (`../image-smoke.ts`), before and after the DM
@@ -23,12 +23,16 @@ export interface PlayerView {
   readonly contentBytes: Uint8Array;
 }
 
-export async function playerView(context: SmokeContext, contentHash: string): Promise<PlayerView> {
+export async function playerView(
+  context: SmokeContext,
+  tomasId: string,
+  contentHash: string,
+): Promise<PlayerView> {
   const { client } = context;
   const { presentation } = await expectStatus<EntityPresentationResponse>(
     client.get(
       'player',
-      campaignPath(context, `/entities/${TOMAS}/presentation?perspective=PLAYER`),
+      campaignPath(context, `/entities/${tomasId}/presentation?perspective=PLAYER`),
     ),
     200,
     "player's presentation of Tomas",
@@ -41,10 +45,10 @@ export async function playerView(context: SmokeContext, contentHash: string): Pr
     200,
     "player's scene of the North Gate",
   );
-  const inScene = scene.present.find((entity) => entity.entityId === TOMAS);
+  const inScene = scene.present.find((entity) => entity.entityId === tomasId);
   if (!inScene) throw new SmokeFailure('the player does not see Tomas at the North Gate');
   const { assets } = await expectStatus<EntityAssetsResponse>(
-    client.get('player', campaignPath(context, `/entities/${TOMAS}/assets?perspective=PLAYER`)),
+    client.get('player', campaignPath(context, `/entities/${tomasId}/assets?perspective=PLAYER`)),
     200,
     "player's assets of Tomas",
   );
@@ -98,7 +102,11 @@ export function assertShown(view: PlayerView, contentHash: string, variants: boo
 }
 
 /** The DM approves the candidate; it must become Tomas's canonical reference. */
-export async function approve(context: SmokeContext, assetId: string): Promise<boolean> {
+export async function approve(
+  context: SmokeContext,
+  tomasId: string,
+  assetId: string,
+): Promise<boolean> {
   const { client } = context;
   const result = await expectStatus<CommandResult>(
     client.post('dm', campaignPath(context, '/commands'), {
@@ -114,14 +122,14 @@ export async function approve(context: SmokeContext, assetId: string): Promise<b
     200,
     'DM asset lineage',
   );
-  const canonical = lineage.canonical.find((entry) => entry.entityId === TOMAS);
+  const canonical = lineage.canonical.find((entry) => entry.entityId === tomasId);
   if (canonical?.assetId !== assetId) {
     throw new SmokeFailure("the approved portrait is not Tomas's canonical reference");
   }
   // Other approved pictures of Tomas the presentation may prefer by his state tags.
   return lineage.assets.some(
     (asset) =>
-      asset.entityId === TOMAS &&
+      asset.entityId === tomasId &&
       asset.assetId !== assetId &&
       asset.purpose === 'image' &&
       asset.variant === 'derived' &&

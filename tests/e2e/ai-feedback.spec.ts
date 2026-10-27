@@ -88,7 +88,7 @@ test('the DM sees the NPC replying, and a late reply never lands on another list
   await expect(
     page.getByRole('status').filter({ hasText: 'Mira Vale is replying…' }),
   ).toBeVisible();
-  await expect(page.getByLabel('Speaking with')).toHaveValue('bram-holt');
+  await expect(page.getByLabel('Speaking with')).toHaveValue('character-7beabb40');
   await page.getByLabel('Speaking with').selectOption('elowen-starwhisper');
   await expect(page.getByText('Mira Vale is replying…')).toHaveCount(0);
   // The held request was aborted by the switch; releasing it delivers nothing to the panel.

@@ -34,8 +34,10 @@ Rules:
   `approvalStanding`), never assumed: the main picture, a figure or a battle map is what players
   who can see the entity now see; a state picture shows only in its state ("at night", "in snow");
   a DM-only picture, or one no longer the shown one of its kind, says so. Never claim more.
-- Requests are built from the entity's kind and recorded description by the server; the DM's
-  note is the one thing added, and the form says it reaches the image model. A figure, a battle
+- Requests are built from the entity's kind and recorded description by the server; the form
+  shows that description word for word from the lineage (`descriptions`) and that players may not
+  know it (ADR 0035 amendment "Gate 06 remediation"); the DM's note is the one thing added, and the
+  form says it reaches the image model. A figure, a battle
   map or a variant derives from the approved main picture: those choices stay disabled without
   one. Each press is one request (a paid generation in play): nothing is requested by itself.
 - Discard is `RetractAsset` of a candidate; Replace asks for another picture of the same kind,

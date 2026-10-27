@@ -163,11 +163,16 @@ export class WorldApi {
     }
   }
 
-  async image(contentHash: string, signal: AbortSignal): Promise<Blob> {
+  /**
+   * An image's bytes. A picture chosen for a past time (`at`, a Chronicle page or a flashback) is
+   * fetched for that time: the server serves only what presentation could choose then (Gate 06).
+   */
+  async image(contentHash: string, signal: AbortSignal, at: number | null = null): Promise<Blob> {
     const response = await this.response(
       `assets/content/${encodeURIComponent(contentHash)}`,
       signal,
       true,
+      at === null ? undefined : { parameters: { at: String(at) } },
     );
     const blob = await response.blob();
     if (!['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml'].includes(blob.type)) {

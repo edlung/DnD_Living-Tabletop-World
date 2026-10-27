@@ -1,0 +1,28 @@
+$ dc up --detach --wait --wait-timeout 300
+ Container ltw-g06-retest-postgres-1 Running 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-backup-1 Starting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-server-1 Starting 
+ Container ltw-g06-retest-backup-1 Started 
+ Container ltw-g06-retest-server-1 Started 
+ Container ltw-g06-retest-server-1 Waiting 
+ Container ltw-g06-retest-server-1 Healthy 
+ Container ltw-g06-retest-proxy-1 Starting 
+ Container ltw-g06-retest-proxy-1 Started 
+ Container ltw-g06-retest-server-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-backup-1 Waiting 
+ Container ltw-g06-retest-proxy-1 Waiting 
+ Container ltw-g06-retest-server-1 Healthy 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-proxy-1 Healthy 
+ Container ltw-g06-retest-backup-1 Healthy 
+rc=0
+NAME                        IMAGE                                                                                        COMMAND                  SERVICE    CREATED              STATUS                        PORTS
+ltw-g06-retest-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     About a minute ago   Up 10 seconds (healthy)       5432/tcp
+ltw-g06-retest-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   About a minute ago   Up About a minute (healthy)   5432/tcp
+ltw-g06-retest-proxy-1      ltw-proxy:127afb418022                                                                       "caddy run --config …"   proxy      47 seconds ago       Up 7 seconds (healthy)        127.0.0.1:18085->80/tcp, 127.0.0.1:18448->443/tcp
+ltw-g06-retest-server-1     ltw-server:127afb418022                                                                      "/usr/local/bin/ltw-…"   server     48 seconds ago       Up 10 seconds (healthy)       3000/tcp

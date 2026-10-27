@@ -92,6 +92,14 @@ const shownOf = (
       asset.entityId === entityId && asset.purpose === purpose && shownTo(scope.perspective, asset),
   );
 
+/** Whether a derived image's label fits the tags: every part of it is among them (ADR 0023 §4). */
+const partsOf = (asset: AssetRecord): readonly string[] | null =>
+  asset.variant === 'derived' && asset.label !== null ? asset.label.split('-') : null;
+const fits = (
+  parts: readonly string[] | null,
+  tags: readonly string[],
+): parts is readonly string[] => parts !== null && parts.every((part) => tags.includes(part));
+
 /** The current approved image that fits the tags best: a matching variant, else the reference. */
 export function imageFor(
   timeline: VisualTimeline,
@@ -99,19 +107,23 @@ export function imageFor(
   entityId: string,
   tags: readonly string[],
 ): PlayerAssetView | null {
-  const shown = shownOf(timeline, scope, entityId, 'image');
+  const chosen = chosenImage(shownOf(timeline, scope, entityId, 'image'), tags);
+  return chosen ? playerAssetView(chosen) : null;
+}
+
+function chosenImage(shown: readonly AssetRecord[], tags: readonly string[]): AssetRecord | null {
   const fitting = shown
-    .filter((asset) => asset.variant === 'derived' && asset.label !== null)
-    .map((asset) => ({ asset, parts: (asset.label ?? '').split('-') }))
-    .filter(({ parts }) => parts.every((part) => tags.includes(part)))
+    .map((asset) => ({ asset, parts: partsOf(asset) }))
+    .filter((entry): entry is { asset: AssetRecord; parts: readonly string[] } =>
+      fits(entry.parts, tags),
+    )
     .sort(
       (a, b) =>
         b.parts.length - a.parts.length ||
         b.asset.version - a.asset.version ||
         (a.asset.label ?? '').localeCompare(b.asset.label ?? ''),
     );
-  const chosen = fitting[0]?.asset ?? shown.find((asset) => asset.status === 'CANONICAL');
-  return chosen ? playerAssetView(chosen) : null;
+  return fitting[0]?.asset ?? shown.find((asset) => asset.status === 'CANONICAL') ?? null;
 }
 
 /**
@@ -127,16 +139,23 @@ export function purposeImageFor(
   kind: string,
   purpose: Exclude<AssetPurpose, 'image'>,
 ): PlayerAssetView | null {
-  if (!PURPOSE_KINDS[purpose].has(kind)) return null;
-  const newest = shownOf(timeline, scope, entityId, purpose).at(-1);
+  const newest = purposeAsset(timeline, scope, entityId, kind, purpose);
   return newest ? playerAssetView(newest) : null;
 }
 
-export function presentEntity(
+const purposeAsset = (
   timeline: VisualTimeline,
   scope: PresentationScope,
   entityId: string,
-): EntityPresentation | null {
+  kind: string,
+  purpose: Exclude<AssetPurpose, 'image'>,
+): AssetRecord | null =>
+  PURPOSE_KINDS[purpose].has(kind)
+    ? (shownOf(timeline, scope, entityId, purpose).at(-1) ?? null)
+    : null;
+
+/** How the entity looked to the scope at T, before any picture is chosen; null when not visible. */
+function lookOf(timeline: VisualTimeline, scope: PresentationScope, entityId: string) {
   const at = timeline.view.entities.get(entityId);
   if (!at || !has(scope.visible, entityId)) return null;
   const observed = has(scope.observed, entityId);
@@ -169,6 +188,17 @@ export function presentEntity(
       ...conditions,
     ]),
   ];
+  return { at, observed, held, vitals, weather, conditions, tags };
+}
+
+export function presentEntity(
+  timeline: VisualTimeline,
+  scope: PresentationScope,
+  entityId: string,
+): EntityPresentation | null {
+  const look = lookOf(timeline, scope, entityId);
+  if (!look) return null;
+  const { at, observed, held, vitals, weather, conditions, tags } = look;
   return {
     entityId,
     kind: at.kind,
@@ -183,6 +213,28 @@ export function presentEntity(
     figure: purposeImageFor(timeline, scope, entityId, at.kind, 'figure'),
     battleMap: purposeImageFor(timeline, scope, entityId, at.kind, 'battle-map'),
   };
+}
+
+/**
+ * The pictures of an entity a perspective may be given at T (Gate 06, G06-images-01): what
+ * presentation could choose for it then, by the rule above. The canonical reference, each derived
+ * image whose every label part is among the tags the scope sees of the entity at T, the figure and
+ * the battle map; null when the entity is not visible. A state picture of an entity not observed
+ * in that state, a DM-only or an unapproved picture is never among them.
+ */
+export function presentableAssets(
+  timeline: VisualTimeline,
+  scope: PresentationScope,
+  entityId: string,
+): AssetRecord[] | null {
+  const look = lookOf(timeline, scope, entityId);
+  if (!look) return null;
+  const images = shownOf(timeline, scope, entityId, 'image').filter(
+    (asset) => asset.status === 'CANONICAL' || fits(partsOf(asset), look.tags),
+  );
+  const figure = purposeAsset(timeline, scope, entityId, look.at.kind, 'figure');
+  const battleMap = purposeAsset(timeline, scope, entityId, look.at.kind, 'battle-map');
+  return [...images, ...(figure ? [figure] : []), ...(battleMap ? [battleMap] : [])];
 }
 
 /** A place at T and what the perspective perceived there then. Null when not visible. */

@@ -55,17 +55,17 @@ describe('perception', () => {
     const state = await worldAfter({
       type: 'PlaceEntity',
       entityId: ELOWEN,
-      locationId: 'abandoned-caravan-site',
+      locationId: 'location-f3b82c8b',
     });
     expect([...perceivedEntityIds(state, ELOWEN)].sort()).toEqual([
-      'abandoned-caravan-site',
-      'broken-wagon-wheel',
-      'burned-cargo',
       ELOWEN,
-      'goblin-weapon',
+      'feature-19c7c7f7', // Strange Symbol
+      'feature-ccec7e50', // Tracks
+      'item-0869f47a', // Goblin Weapon
+      'item-08851105', // Burned Cargo
+      'item-f44e7183', // Broken Wagon Wheel
+      'location-f3b82c8b', // Abandoned Caravan Site
       'old-trade-road',
-      'strange-symbol',
-      'wagon-tracks',
     ]);
   });
 

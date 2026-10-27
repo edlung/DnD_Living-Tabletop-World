@@ -44,12 +44,12 @@ async function arrange(phase: Phase): Promise<SeededWorld> {
     for (let turn = 0; turn < 8; turn += 1) {
       const encounter = (await world.current()).encounter;
       const current = encounter ? currentCombatant(encounter)?.entityId : undefined;
-      if (current === 'goblin-shaman') break;
+      if (current === 'creature-ae08be99') break;
       await world.apply({ type: 'EndTurn', combatantId: current });
     }
     await world.apply({
       type: 'CastSpell',
-      combatantId: 'goblin-shaman',
+      combatantId: 'creature-ae08be99',
       spellId: 'ashen-bolt',
       targetId: SEREN,
     });
@@ -69,7 +69,7 @@ const spellsOn = (context: EntityContextView) =>
 
 describe('context for a character outside a fight', () => {
   it('a combatant is out of her spells’ reach in every phase of the fight', async () => {
-    const shaman = async (phase: Phase) => contextOf(await arrange(phase), 'goblin-shaman');
+    const shaman = async (phase: Phase) => contextOf(await arrange(phase), 'creature-ae08be99');
     const none = await shaman('no fight');
     const fight = await shaman('a fight');
     const window = await shaman('a fight with an open window');
@@ -94,11 +94,11 @@ describe('context for a character outside a fight', () => {
           type: 'CastSpell',
           combatantId: ELOWEN,
           spellId,
-          targetId: 'goblin-shaman',
+          targetId: 'creature-ae08be99',
         });
         expect(result).toMatchObject({ code: 'ILLEGAL_ACTION', message: 'TARGET_IN_COMBAT' });
         expect(
-          (await contextOf(world, 'goblin-shaman')).actions.find((a) => a.id === id)?.legal,
+          (await contextOf(world, 'creature-ae08be99')).actions.find((a) => a.id === id)?.legal,
         ).toBe(false);
       }
       expect(spellsOn(await contextOf(world, ELOWEN)).every((a) => a.legal)).toBe(true);

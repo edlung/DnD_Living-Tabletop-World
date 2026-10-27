@@ -5,7 +5,7 @@
   "commands": [
     {
       "type": "CreateEntity",
-      "entityId": "goblin-raider-1",
+      "entityId": "creature-10fb59d4",
       "kind": "creature",
       "name": "Goblin Raider",
       "description": "A wiry goblin with a notched scimitar and a short bow.",
@@ -13,7 +13,7 @@
     },
     {
       "type": "CreateEntity",
-      "entityId": "goblin-raider-2",
+      "entityId": "creature-589f6668",
       "kind": "creature",
       "name": "Goblin Raider",
       "description": "A goblin in mismatched leathers, quick on its feet.",
@@ -21,7 +21,7 @@
     },
     {
       "type": "CreateEntity",
-      "entityId": "goblin-raider-3",
+      "entityId": "creature-6513bec0",
       "kind": "creature",
       "name": "Goblin Raider",
       "description": "A scarred goblin who keeps to the wagons' shadow.",
@@ -29,7 +29,7 @@
     },
     {
       "type": "CreateEntity",
-      "entityId": "goblin-shaman",
+      "entityId": "creature-ae08be99",
       "kind": "creature",
       "name": "Goblin Shaman",
       "description": "A goblin draped in ash-grey charms, muttering over a bone fetish.",
@@ -37,7 +37,7 @@
     },
     {
       "type": "SetStatBlock",
-      "entityId": "goblin-raider-1",
+      "entityId": "creature-10fb59d4",
       "statBlock": {
         "armorClass": 15,
         "hitPoints": {
@@ -110,7 +110,7 @@
     },
     {
       "type": "SetStatBlock",
-      "entityId": "goblin-raider-2",
+      "entityId": "creature-589f6668",
       "statBlock": {
         "armorClass": 15,
         "hitPoints": {
@@ -183,7 +183,7 @@
     },
     {
       "type": "SetStatBlock",
-      "entityId": "goblin-raider-3",
+      "entityId": "creature-6513bec0",
       "statBlock": {
         "armorClass": 15,
         "hitPoints": {
@@ -256,7 +256,7 @@
     },
     {
       "type": "SetStatBlock",
-      "entityId": "goblin-shaman",
+      "entityId": "creature-ae08be99",
       "statBlock": {
         "armorClass": 13,
         "hitPoints": {

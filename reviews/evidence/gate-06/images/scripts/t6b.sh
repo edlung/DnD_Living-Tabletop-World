@@ -1,0 +1,6 @@
+source /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/g06-work/op.sh
+echo "== spend after no-budget denials"; op spend | grep '^{' | jq -c .images
+echo "== set ceiling without authorization args"; op image-budget-set --micros 1 | tail -2
+echo "== negative / fractional / huge ceiling"; op image-budget-set --micros -5 --owner g06 --authorized-on 2026-10-27 --authorization-source g06 | tail -1; op image-budget-set --micros 1.5 --owner g06 --authorized-on 2026-10-27 --authorization-source g06 | tail -1; op image-budget-set --micros 99999999999999999999999 --owner g06 --authorized-on 2026-10-27 --authorization-source g06 | tail -1
+echo "== tiny ceiling 1 micro"; op image-budget-set --micros 1 --owner g06-redteam --authorized-on 2026-10-27 --authorization-source gate06-images-tiny-ceiling | tail -1
+echo "== reservations list / settle bogus"; op image-reservations --older-than-minutes 0 | tail -3; op image-reservation-settle --charge 00000000-0000-4000-8000-000000000000 --owner g06 --authorized-on 2026-10-27 --authorization-source g06 | tail -1; op image-reservation-settle --charge "x'; drop table ltw_image_charges;--" --owner g06 --authorized-on 2026-10-27 --authorization-source g06 | tail -1

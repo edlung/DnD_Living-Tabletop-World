@@ -63,7 +63,7 @@
     },
     {
       "file": "goblin-raider.webp",
-      "entityIds": ["goblin-raider-1", "goblin-raider-2", "goblin-raider-3"],
+      "entityIds": ["creature-10fb59d4", "creature-589f6668", "creature-6513bec0"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -77,7 +77,7 @@
     },
     {
       "file": "goblin-shaman.webp",
-      "entityIds": ["goblin-shaman"],
+      "entityIds": ["creature-ae08be99"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -192,7 +192,7 @@
     },
     {
       "file": "abandoned-caravan-site.webp",
-      "entityIds": ["abandoned-caravan-site"],
+      "entityIds": ["location-f3b82c8b"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -206,7 +206,7 @@
     },
     {
       "file": "broken-wagon-wheel.webp",
-      "entityIds": ["broken-wagon-wheel"],
+      "entityIds": ["item-f44e7183"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -220,7 +220,7 @@
     },
     {
       "file": "goblin-weapon.webp",
-      "entityIds": ["goblin-weapon"],
+      "entityIds": ["item-0869f47a"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -234,7 +234,7 @@
     },
     {
       "file": "strange-symbol.webp",
-      "entityIds": ["strange-symbol"],
+      "entityIds": ["feature-19c7c7f7"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -248,7 +248,7 @@
     },
     {
       "file": "wagon-tracks.webp",
-      "entityIds": ["wagon-tracks"],
+      "entityIds": ["feature-ccec7e50"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -262,7 +262,7 @@
     },
     {
       "file": "burned-cargo.webp",
-      "entityIds": ["burned-cargo"],
+      "entityIds": ["item-08851105"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -374,7 +374,7 @@
     },
     {
       "file": "abandoned-caravan-site--night.webp",
-      "entityIds": ["abandoned-caravan-site"],
+      "entityIds": ["location-f3b82c8b"],
       "variant": "derived",
       "label": "night",
       "purpose": "image",
@@ -528,7 +528,7 @@
     },
     {
       "file": "goblin-raider--wounded.webp",
-      "entityIds": ["goblin-raider-1", "goblin-raider-2", "goblin-raider-3"],
+      "entityIds": ["creature-10fb59d4", "creature-589f6668", "creature-6513bec0"],
       "variant": "derived",
       "label": "wounded",
       "purpose": "image",
@@ -542,7 +542,7 @@
     },
     {
       "file": "goblin-shaman--wounded.webp",
-      "entityIds": ["goblin-shaman"],
+      "entityIds": ["creature-ae08be99"],
       "variant": "derived",
       "label": "wounded",
       "purpose": "image",
@@ -612,7 +612,7 @@
     },
     {
       "file": "goblin-raider--figure.webp",
-      "entityIds": ["goblin-raider-1", "goblin-raider-2", "goblin-raider-3"],
+      "entityIds": ["creature-10fb59d4", "creature-589f6668", "creature-6513bec0"],
       "variant": "derived",
       "label": "figure",
       "purpose": "figure",
@@ -626,7 +626,7 @@
     },
     {
       "file": "goblin-shaman--figure.webp",
-      "entityIds": ["goblin-shaman"],
+      "entityIds": ["creature-ae08be99"],
       "variant": "derived",
       "label": "figure",
       "purpose": "figure",

@@ -1,0 +1,4 @@
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 92 accepted, 0 already present; curated pictures: 51 imported, 0 already present, 0 skipped; version 305, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 72 h): hand it over privately
+{"invitationId":"<SECRET>","expiresAt":"2026-10-30T16:34:01.156Z","link":"https://localhost:18448/join#<SECRET>","campaignId":"ravenford"}

@@ -117,7 +117,7 @@ describe('approving the older of two pictures of a kind', { timeout: SLOW_MS }, 
     await command({ type: 'ApproveAsset', assetId: older });
     await command({ type: 'AdvanceWorldTime', to: worldTimeAt(1, 22) });
     const shown = (await playerView()).image;
-    expect(shown).toMatchObject({ variant: 'derived', version: 1 });
+    expect(shown).toMatchObject({ variant: 'derived' });
     expect(shown?.contentHash).toBe(await contentOf(older));
     expect(await statusOf(newer)).toBe('SUPERSEDED');
   });

@@ -75,3 +75,5 @@ reviews/evidence/stage-300-b2-2026-10-11/
 reviews/STAGE_300_CHECKPOINT_C_OPUS_*_REVIEW*.md
 reviews/STAGE_300_CHECKPOINT_C_REVIEW_RECEIPTS_2026-10-12.json
 reviews/evidence/stage-300-c-2026-10-12/
+# Gate 06 red-team evidence, kept as the teams captured it.
+reviews/evidence/gate-06/

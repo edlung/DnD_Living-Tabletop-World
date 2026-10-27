@@ -1,0 +1,131 @@
+200
+{
+"perspective": "DM",
+"entities": [
+{
+"entityId": "3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53",
+"kind": "faction",
+"name": "Пепельный круг"
+},
+{
+"entityId": "captain-thorne",
+"kind": "npc",
+"name": "Капитан Торн"
+},
+{
+"entityId": "creature-10fb59d4",
+"kind": "creature",
+"name": "Гоблин-налётчик"
+},
+{
+"entityId": "creature-589f6668",
+"kind": "creature",
+"name": "Гоблин-налётчик"
+},
+{
+"entityId": "creature-6513bec0",
+"kind": "creature",
+"name": "Гоблин-налётчик"
+},
+{
+"entityId": "creature-ae08be99",
+"kind": "creature",
+"name": "Гоблин-шаман"
+},
+{
+"entityId": "elowen-starwhisper",
+"kind": "character",
+"name": "Эловен Старвиспер"
+},
+{
+"entityId": "feature-19c7c7f7",
+"kind": "feature",
+"name": "Странный знак"
+},
+{
+"entityId": "feature-ccec7e50",
+"kind": "feature",
+"name": "Следы"
+},
+{
+"entityId": "golden-stag-inn",
+"kind": "location",
+"name": "«Золотой Олень»"
+},
+{
+"entityId": "guild-caravan",
+"kind": "item",
+"name": "Караван Торговой гильдии"
+},
+{
+"entityId": "item-0869f47a",
+"kind": "item",
+"name": "Оружие гоблина"
+},
+{
+"entityId": "item-08851105",
+"kind": "item",
+"name": "Сожжённый груз"
+},
+{
+"entityId": "item-f44e7183",
+"kind": "item",
+"name": "Сломанное колесо повозки"
+},
+{
+"entityId": "location-f3b82c8b",
+"kind": "location",
+"name": "Заброшенная стоянка каравана"
+},
+{
+"entityId": "market-square",
+"kind": "location",
+"name": "Рыночная площадь"
+},
+{
+"entityId": "merchant-guild",
+"kind": "location",
+"name": "Торговая гильдия"
+},
+{
+"entityId": "merchant-guild-faction",
+"kind": "faction",
+"name": "Торговая гильдия"
+},
+{
+"entityId": "mira-vale",
+"kind": "npc",
+"name": "Мира Вейл"
+},
+{
+"entityId": "north-gate",
+"kind": "location",
+"name": "Северные ворота"
+},
+{
+"entityId": "old-trade-road",
+"kind": "location",
+"name": "Старая Торговая дорога"
+},
+{
+"entityId": "orin-stonebeard",
+"kind": "npc",
+"name": "Орин Стоунберд"
+},
+{
+"entityId": "orins-alchemy",
+"kind": "location",
+"name": "Алхимическая лавка"
+},
+{
+"entityId": "ravenford",
+"kind": "location",
+"name": "Равенфорд"
+},
+{
+"entityId": "ravenford-guard",
+"kind": "faction",
+"name": "Равенфордская стража"
+}
+]
+}

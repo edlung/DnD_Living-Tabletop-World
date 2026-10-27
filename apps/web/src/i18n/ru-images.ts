@@ -124,8 +124,14 @@ registerRussian({
     'Варианты, фигурки и карты боя сохраняют облик основного изображения: сначала одобрите основное изображение.',
   'For which state': 'Для какого состояния',
   'Note to the image model (optional)': 'Заметка для модели изображений (необязательно)',
-  'Sent to the image model with what the world records about it. Players never see it; leave out what the model should not read.':
-    'Отправляется модели изображений вместе с тем, что о нём записано в мире. Игроки её не видят; не пишите того, что модели читать не следует.',
+  'Sent to the image model with the description above. Players never see it; leave out what the model should not read.':
+    'Отправляется модели изображений вместе с описанием выше. Игроки её не видят; не пишите того, что модели читать не следует.',
+  'The image model reads its recorded description:':
+    'Модель изображений читает записанное в мире описание:',
+  'Nothing is recorded about it: the image model is told only what kind of thing it is.':
+    'О нём ничего не записано: модель изображений узнает только, что это за объект.',
+  'Players may not know this. A picture you approve for players can show it.':
+    'Игроки могут этого не знать. Изображение, одобренное для игроков, может это показать.',
   'Request picture': 'Запросить изображение',
   'Requested: {what}. The candidate will appear here for your approval.':
     'Запрошено: {what}. Кандидат появится здесь для вашего одобрения.',

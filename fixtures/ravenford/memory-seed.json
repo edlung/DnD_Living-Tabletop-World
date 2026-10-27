@@ -46,7 +46,7 @@
       "memoryKind": "OBSERVATION",
       "summary": "A frightened traveller showed Orin the strange symbol scratched on a broken crate.",
       "occurredAt": -17323200,
-      "participants": ["orin-stonebeard", "strange-symbol"],
+      "participants": ["orin-stonebeard", "feature-19c7c7f7"],
       "salience": 5,
       "locationId": "orins-alchemy",
       "relatedKnowledge": ["orin-prior-incident"]

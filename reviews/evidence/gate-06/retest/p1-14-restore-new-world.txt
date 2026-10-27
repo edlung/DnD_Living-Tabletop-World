@@ -1,0 +1,90 @@
+ Container ltw-g06-retest-postgres-1 Running 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+==> dump: ltw-prerestore-20261027T163641Z.dump
+{"time":"2026-10-27T16:37:17Z","service":"ltw-backup","level":"info","msg":"verified: ltw-prerestore-20261027T163641Z.dump"}
+==> the current state, kept as a protected dump
+{"time":"2026-10-27T16:37:18Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-prerestore-20261027T163717Z.dump (14866062 bytes)"}
+{"time":"2026-10-27T16:37:18Z","service":"ltw-backup","level":"info","msg":"retention: kept 8, removed 0"}
+==> the state before the restore: ltw-prerestore-20261027T163717Z.dump
+==> stopping the backup service, the proxy and the server
+ Container ltw-g06-retest-proxy-1 Stopping 
+ Container ltw-g06-retest-backup-1 Stopping 
+ Container ltw-g06-retest-backup-1 Stopped 
+ Container ltw-g06-retest-proxy-1 Stopped 
+ Container ltw-g06-retest-server-1 Stopping 
+ Container ltw-g06-retest-server-1 Stopped 
+==> the database, empty
+==> restoring ltw-prerestore-20261027T163641Z.dump (one transaction)
+ Container ltw-g06-retest-backup-run-fb079bf8a707 Creating 
+ Container ltw-g06-retest-backup-run-fb079bf8a707 Created 
+==> starting every service (migrations bring an older dump forward)
+ Container ltw-g06-retest-postgres-1 Running 
+ Container ltw-g06-retest-postgres-1 Running 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-backup-1 Starting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-server-1 Starting 
+ Container ltw-g06-retest-backup-1 Started 
+ Container ltw-g06-retest-server-1 Started 
+ Container ltw-g06-retest-server-1 Waiting 
+ Container ltw-g06-retest-server-1 Healthy 
+ Container ltw-g06-retest-proxy-1 Starting 
+ Container ltw-g06-retest-proxy-1 Started 
+ Container ltw-g06-retest-server-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-backup-1 Waiting 
+ Container ltw-g06-retest-proxy-1 Waiting 
+ Container ltw-g06-retest-server-1 Healthy 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-proxy-1 Healthy 
+ Container ltw-g06-retest-backup-1 Healthy 
+==> dump: ltw-prerestore-20261027T163641Z.dump (taken 2026-10-27T16:36:41Z)
+{"time":"2026-10-27T16:37:31Z","service":"ltw-backup","level":"info","msg":"verified: ltw-prerestore-20261027T163641Z.dump"}
+==> throwaway database
+ Container ltw-g06-retest-drill-db-1 Creating 
+ Container ltw-g06-retest-drill-db-1 Created 
+ Container ltw-g06-retest-drill-db-1 Starting 
+ Container ltw-g06-retest-drill-db-1 Started 
+ Container ltw-g06-retest-drill-db-1 Waiting 
+ Container ltw-g06-retest-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-27T16:37:34.877Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-27T16:37:34.898Z","service":"ltw-migrate","applied":[],"alreadyApplied":12,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 45
+ltw_auth_attempts 1
+ltw_auth_invitations 1
+ltw_auth_sessions 1
+ltw_authoring_revisions 0
+ltw_commands 296
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 305
+ltw_image_budget 0
+ltw_image_charges 0
+ltw_image_operator_settlements 0
+ltw_image_settlements 0
+ltw_schema_migrations 12
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":305,"digest":"sha256:d8a605b9cca23175656684badab96c71b06502feaa8230020b3a01b835068738","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":305,"status":"match","expected":"sha256:d8a605b9cca23175656684badab96c71b06502feaa8230020b3a01b835068738","actual":"sha256:d8a605b9cca23175656684badab96c71b06502feaa8230020b3a01b835068738","head":305}],"unrestored":[],"failures":[]}
+==> restore drill passed
+==> restored ltw-prerestore-20261027T163641Z.dump; the state before it: ltw-prerestore-20261027T163717Z.dump

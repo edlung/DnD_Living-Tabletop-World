@@ -57,6 +57,8 @@ export interface DayOne {
   readonly askThorne: NpcDialogueResponse;
   readonly proposal: AuthoringProposalResponse;
   readonly commit: Reply;
+  /** Tomas's ID: the server's, not the model's (ADR 0008, Gate 06 remediation). */
+  readonly tomasId: string;
   readonly tomasContext: EntityContextResponse;
   readonly askTomas: NpcDialogueResponse;
   readonly performed: NpcDialogueResponse;
@@ -78,19 +80,19 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
   session.phase('investigation');
   await session.dm({ type: 'AdvanceWorldTime', by: 3_600 });
   await session.act({ type: 'EnterLocation', locationId: 'old-trade-road' });
-  await session.act({ type: 'EnterLocation', locationId: 'abandoned-caravan-site' });
-  const symbolContext = await contextOf(session, 'strange-symbol');
+  await session.act({ type: 'EnterLocation', locationId: 'location-f3b82c8b' });
+  const symbolContext = await contextOf(session, 'feature-19c7c7f7');
   const examinations: [string, string][] = [
-    ['abandoned-caravan-site', 'inspect'],
-    ['strange-symbol', 'inspect'],
-    ['strange-symbol', 'investigation'],
-    ['broken-wagon-wheel', 'inspect'],
-    ['broken-wagon-wheel', 'investigation'],
-    ['goblin-weapon', 'inspect'],
-    ['goblin-weapon', 'investigation'],
-    ['wagon-tracks', 'perception'],
-    ['burned-cargo', 'inspect'],
-    ['burned-cargo', 'investigation'],
+    ['location-f3b82c8b', 'inspect'],
+    ['feature-19c7c7f7', 'inspect'],
+    ['feature-19c7c7f7', 'investigation'],
+    ['item-f44e7183', 'inspect'],
+    ['item-f44e7183', 'investigation'],
+    ['item-0869f47a', 'inspect'],
+    ['item-0869f47a', 'investigation'],
+    ['feature-ccec7e50', 'perception'],
+    ['item-08851105', 'inspect'],
+    ['item-08851105', 'investigation'],
   ];
   for (const [entityId, method] of examinations) {
     await session.act({ type: 'ExamineEntity', entityId, method });
@@ -109,7 +111,7 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
   const symbolEvidence = (await partyKnowledge(session)).find(
     (record) =>
       record.knowledgeType === 'EVIDENCE' &&
-      record.subjects.some((s) => s.entityId === 'strange-symbol'),
+      record.subjects.some((s) => s.entityId === 'feature-19c7c7f7'),
   );
   if (!symbolEvidence) throw new Error('the party holds no evidence about the symbol');
   const showOrin = ok(
@@ -119,10 +121,10 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
     }),
   ).json<NpcDialogueResponse>();
   const askOrin = ok(
-    await dialogue(session, 'orin-stonebeard', { kind: 'ask', topicId: 'strange-symbol' }),
+    await dialogue(session, 'orin-stonebeard', { kind: 'ask', topicId: 'feature-19c7c7f7' }),
   ).json<NpcDialogueResponse>();
   const insightOrin = ok(
-    await dialogue(session, 'orin-stonebeard', { kind: 'insight', topicId: 'strange-symbol' }),
+    await dialogue(session, 'orin-stonebeard', { kind: 'insight', topicId: 'feature-19c7c7f7' }),
   ).json<NpcDialogueResponse>();
 
   // The North Gate: Thorne's account, against Mira's.
@@ -157,25 +159,26 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
     }),
   );
   await session.runAssetWorker();
+  const tomasId = createdEntityId(proposal.proposal.commands);
   const tomasImage = ok(await session.get('dm', `${BASE}/assets`))
     .json<{ assets: { assetId: string; entityId: string; status: string }[] }>()
-    .assets.find((asset) => asset.entityId === 'tomas-reed' && asset.status === 'CANDIDATE');
+    .assets.find((asset) => asset.entityId === tomasId && asset.status === 'CANDIDATE');
   if (!tomasImage) throw new Error('no candidate image of Tomas');
   await session.dm({ type: 'ApproveAsset', assetId: tomasImage.assetId });
   // The DM refines him after the commit, as for any NPC.
   await session.dm({
     type: 'UpdateEntityProfile',
-    entityId: 'tomas-reed',
+    entityId: tomasId,
     description: session.script.tomasRefined,
   });
-  const tomasContext = await contextOf(session, 'tomas-reed');
+  const tomasContext = await contextOf(session, tomasId);
   const askTomas = ok(
-    await dialogue(session, 'tomas-reed', { kind: 'ask', topicId: 'guild-caravan' }),
+    await dialogue(session, tomasId, { kind: 'ask', topicId: 'guild-caravan' }),
   ).json<NpcDialogueResponse>();
   // The DM switches to the party's view, then performs Tomas for Elowen.
   ok(await session.get('dm', `${BASE}/knowledge?perspective=PARTY`));
   const performed = ok(
-    await session.post('dm', `${BASE}/npcs/tomas-reed/dialogue`, {
+    await session.post('dm', `${BASE}/npcs/${tomasId}/dialogue`, {
       characterId: 'elowen-starwhisper',
       intent: { kind: 'talk' },
     }),
@@ -192,10 +195,20 @@ export async function playDayOne(session: RavenfordSession): Promise<DayOne> {
     askThorne,
     proposal,
     commit,
+    tomasId,
     tomasContext,
     askTomas,
     performed,
   };
+}
+
+/** The entity a proposal creates: its ID is fixed when the revision is stored. */
+export function createdEntityId(commands: readonly ProposableCommand[]): string {
+  const created = commands.find((command) => command.type === 'CreateEntity');
+  if (created?.type !== 'CreateEntity' || created.entityId === undefined) {
+    throw new Error('the stored revision creates no entity with a resolved ID');
+  }
+  return created.entityId;
 }
 
 /** The DM's edit: Tomas's age and role, and his willingness to tell what he saw. */

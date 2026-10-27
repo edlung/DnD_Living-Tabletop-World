@@ -2,6 +2,7 @@ import { createPlaceholderImageGenerator } from '@ltw/ai';
 import { commandSubmissionSchema, type WorldEngine } from '@ltw/domain';
 
 import campaigns from '../../../../tests/e2e/fixtures/image-campaigns.json' with { type: 'json' };
+import entities from '../../../../tests/e2e/fixtures/image-entities.json' with { type: 'json' };
 import type { AssetContentStore } from '../assets/content-store.ts';
 import { ASSET_WORKER, AssetWorker } from '../assets/worker.ts';
 import { startAssetWorkerLoop } from '../assets/worker-loop.ts';
@@ -164,7 +165,7 @@ export async function seedUiImageJourneys(
     await dm(engine, site, 'site', {
       type: 'PlaceEntity',
       entityId: 'elowen-starwhisper',
-      locationId: 'abandoned-caravan-site',
+      locationId: 'location-f3b82c8b',
     });
     await importInto(site);
     await seedCombatCampaign(engine, battle, 'started', ru ? RAVENFORD_RU_FIXTURES_DIR : undefined);
@@ -179,7 +180,8 @@ export async function seedUiImageJourneys(
     await seedRavenford(engine, campaignId, ru);
     await dm(engine, campaignId, 'tomas', {
       type: 'CreateEntity',
-      entityId: 'tomas-reed',
+      // Players meet him unnamed: an opaque ID (ADR 0008, Gate 06 remediation).
+      entityId: entities.tomas,
       kind: 'npc',
       name: ru ? 'Томас Рид' : 'Tomas Reed',
       description: (ru ? RU_SCRIPT : EN_SCRIPT).tomasEdited,

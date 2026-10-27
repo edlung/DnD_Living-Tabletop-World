@@ -101,13 +101,13 @@ describe('talking with an NPC', () => {
       scope: { kind: 'PARTY' },
       knowledgeType: 'EVIDENCE',
       statement: 'A strange symbol is burned into a wagon plank.',
-      subjects: ['strange-symbol'],
+      subjects: ['feature-19c7c7f7'],
       knownSince: null,
     });
     await asDm({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'orins-alchemy' });
 
     const first = (
-      await say('orin-stonebeard', { kind: 'ask', topicId: 'strange-symbol' })
+      await say('orin-stonebeard', { kind: 'ask', topicId: 'feature-19c7c7f7' })
     ).json<NpcDialogueResponse>();
     expect(first.command).toMatchObject({ status: 'rejected', code: 'NO_EFFECT' });
     expect(first.reply?.text).toBe(
@@ -123,7 +123,7 @@ describe('talking with an NPC', () => {
       outcome: { kind: 'ShowEvidence', shown: 'party-symbol-evidence' },
     });
     const told = (
-      await say('orin-stonebeard', { kind: 'ask', topicId: 'strange-symbol' })
+      await say('orin-stonebeard', { kind: 'ask', topicId: 'feature-19c7c7f7' })
     ).json<NpcDialogueResponse>();
     expect(told.reply?.text).toContain(
       'Orin recognized the same symbol after a caravan vanished last spring.',
@@ -191,7 +191,7 @@ describe('who may talk, and when', () => {
 
   it('refuses before any command or provider call when the NPC cannot hear', async () => {
     const before = await version();
-    const absent = await say('orin-stonebeard', { kind: 'ask', topicId: 'strange-symbol' });
+    const absent = await say('orin-stonebeard', { kind: 'ask', topicId: 'feature-19c7c7f7' });
     expect(absent.statusCode).toBe(422);
     expect(absent.json()).toEqual({ command: null, refused: 'NOT_PRESENT', reply: null });
 

@@ -36,7 +36,7 @@ export const PARTY_EVIDENCE = {
   scope: { kind: 'PARTY' },
   knowledgeType: 'EVIDENCE',
   statement: 'На доске фургона выжжен странный знак.',
-  subjects: ['strange-symbol'],
+  subjects: ['feature-19c7c7f7'],
   knownSince: null,
 } as const;
 
@@ -67,7 +67,7 @@ export type DialogueIntent = Readonly<Record<string, unknown>> & { readonly kind
 export const GATE04_INTENTS: readonly { readonly name: string; readonly intent: DialogueIntent }[] =
   [
     { name: 'talk', intent: { kind: 'talk' } },
-    { name: 'ask about the symbol', intent: { kind: 'ask', topicId: 'strange-symbol' } },
+    { name: 'ask about the symbol', intent: { kind: 'ask', topicId: 'feature-19c7c7f7' } },
     { name: 'ask about the caravan', intent: { kind: 'ask', topicId: 'guild-caravan' } },
     { name: 'insight on the trade road', intent: { kind: 'insight', topicId: 'old-trade-road' } },
     {
@@ -118,7 +118,7 @@ export const DIALOGUE_CASES: readonly DialogueCase[] = [
   {
     name: 'ask about the symbol',
     scenario: null,
-    intent: { kind: 'ask', topicId: 'strange-symbol' },
+    intent: { kind: 'ask', topicId: 'feature-19c7c7f7' },
     line: null,
     injection: false,
   },

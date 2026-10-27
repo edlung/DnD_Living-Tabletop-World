@@ -75,6 +75,8 @@ export default defineConfig(
       '**/coverage/**',
       'playwright-report/**',
       'test-results/**',
+      // Review evidence: probes kept as reviewers ran them, not project code.
+      'reviews/evidence/**',
     ],
   },
   js.configs.recommended,

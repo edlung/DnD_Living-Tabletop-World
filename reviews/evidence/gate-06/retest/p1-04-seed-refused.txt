@@ -1,0 +1,2 @@
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+seed-review-campaign: review campaign CreateEntity: seed command ravenford.seed.0009 rejected: COMMAND_ID_CONFLICT: this database was seeded by an older fixture revision (its command ravenford.seed.0009 is a different command); a rerun cannot change it. Reset required: back up, then a fresh database and the seed again; see deploy/RUNBOOK.md, section 12

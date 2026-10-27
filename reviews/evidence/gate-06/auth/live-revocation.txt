@@ -1,0 +1,6 @@
+event: ready
+data: {}
+
+event: closed
+data: {"reason":"unauthenticated"}
+

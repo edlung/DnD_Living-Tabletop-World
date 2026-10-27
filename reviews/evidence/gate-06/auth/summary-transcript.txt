@@ -1,0 +1,49 @@
+Gate 06 auth — key reproductions (rev 0cc8d8d; stack ltw-g06-auth; https://localhost:18443,
+http 127.0.0.1:18080). Tokens redacted.
+
+[dev-persona in prod]  Bearer <fixtures/ravenford persona> on /campaigns/ravenford/live and
+  /auth/session -> 401 (invitation mode ignores Authorization). SOUND.
+
+[origin/CSRF]  POST /auth/redeem: Origin=evil ->403, no Origin ->403, correct ->200.
+  GET /auth/session and /campaigns/ravenford/live: foreign Origin ->403, no Origin+no
+  Sec-Fetch-Site ->403, same-origin ->200. Exact-match: "...:18443/", "...:18443.evil.com",
+  "evil.localhost:18443", "null", "HTTPS://..." all ->403. SOUND.
+
+[cookie flags over HTTPS]  Set-Cookie: ltw_session=...; Path=/api; HttpOnly; SameSite=Strict;
+  Max-Age=1209600; Secure. SOUND.
+
+[cookie clearing on /auth/session 401]  one bad cookie -> 401 + Max-Age=0 clear; two cookies ->
+  401 no Set-Cookie; no cookie -> 401 no Set-Cookie. SOUND.
+
+[invitation lifecycle]  player redeem ->200; replay same token ->401 (uniform); used invite shows
+  status "used" to DM.
+
+[409 replace]  signed-in browser redeem without replaceSession (any token) ->409 CONFLICT,
+  invitation untouched. SOUND.
+
+[racing]  10 concurrent redeems of ONE token -> exactly 1x200, 9x401; DM members view shows
+  activeSessions:1, one seat. Race-safe. SOUND.
+
+[member revocation]  POST /members/elowen-starwhisper/revoke -> {released:true,sessionsRevoked:1};
+  player /auth/session immediately ->401 + cookie cleared. Open live stream closes next cycle with
+  event: closed data:{"reason":"unauthenticated"} (see live-revocation.txt). SOUND.
+
+[rate limit identity / forged XFF]  see xff-ratelimit.txt. Per-client 10 redeems/min; forged
+  X-Forwarded-For does NOT change client identity (Caddy appends its observed peer; proxy-addr
+  stops at that untrusted hop). No evasion, no targeted-victim lockout. SOUND.
+
+[live caps]  4 concurrent DM streams -> all ready; 5th & 6th -> event: closed
+  data:{"reason":"overloaded"}. perActor=4. SOUND.
+
+[request size]  POST /auth/redeem 2MB body -> 400. SOUND.
+
+[clickjacking]  GET /join -> X-Frame-Options: DENY + CSP frame-ancestors 'none'. SOUND.
+
+[log leakage]  grep of server & proxy logs for DM/player tokens and "ltw_session=" -> 0 hits.
+
+[operator CLI]  sessions --campaign ravenford -> sessionId/actor/role/times, NO token/hash;
+  revoke-actor without --authorization-source -> usage error exit 2; dm-invite --expires-hours 999
+  -> "must be 1-168"; unknown subcommand -> usage exit 2. SOUND.
+
+[plain HTTP :18080]  308 redirect to https (Location drops :18443 custom port -> standard 443;
+  cosmetic for non-standard-port local verification only). Secure cookies never transit HTTP.

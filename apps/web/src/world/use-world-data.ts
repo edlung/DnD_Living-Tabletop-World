@@ -10,6 +10,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { withPictureTimes } from '../visual/approved-images.ts';
 
 /**
  * After the viewer's own action the world screen's views are read again in the background,
@@ -67,10 +68,13 @@ export function useScene(api: WorldApi, placeId: string, revision: number) {
     (signal: AbortSignal) =>
       placeId === ''
         ? Promise.resolve(null)
-        : api.get<ScenePresentationResponse>(
-            `locations/${encodeURIComponent(placeId)}/scene`,
-            signal,
-          ),
+        : api
+            .get<ScenePresentationResponse>(
+              `locations/${encodeURIComponent(placeId)}/scene`,
+              signal,
+            )
+            // Its pictures are fetched for the time they were chosen for (Gate 06).
+            .then(withPictureTimes),
     [api, placeId],
   );
   const { resource, retry, reread } = useResource(`scene:${placeId}`, load);

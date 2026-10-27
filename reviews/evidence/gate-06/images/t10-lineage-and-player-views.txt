@@ -1,0 +1,2199 @@
+{
+  "assets": [
+    {
+      "assetId": "ravenford.curated.elowen-starwhisper.elowen-starwhisper#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:c0a8f25a2eb23d1373739f63d9ecfde518ad90d90ebd2e8b91630ecc1ec7ae00",
+      "derivedFrom": null,
+      "entityId": "elowen-starwhisper",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.elowen-starwhisper.elowen-starwhisper#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.mira-vale.mira-vale#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:eae1c693f9f758dd16c0341b0adc7885a1ad7603510457862d3101833b3782a8",
+      "derivedFrom": null,
+      "entityId": "mira-vale",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.mira-vale.mira-vale#0",
+      "status": "SUPERSEDED",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:6da169001f551dd36ec108bf99d7f1b28fc9b0a686e41d5f185c6c2e6613377c",
+      "derivedFrom": null,
+      "entityId": "orin-stonebeard",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.orin-stonebeard.orin-stonebeard#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.captain-thorne.captain-thorne#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:edc0aa16db5c300d8487eec219ba6b02fa0f891e239437dc8feb416a307e23c7",
+      "derivedFrom": null,
+      "entityId": "captain-thorne",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.captain-thorne.captain-thorne#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider.goblin-raider-1#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:45214ecc9565c33caccf312cfd8d9448cb2963fca0d531186dfb4334ffe17bad",
+      "derivedFrom": null,
+      "entityId": "goblin-raider-1",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider.goblin-raider-1#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider.goblin-raider-2#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:45214ecc9565c33caccf312cfd8d9448cb2963fca0d531186dfb4334ffe17bad",
+      "derivedFrom": null,
+      "entityId": "goblin-raider-2",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider.goblin-raider-2#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider.goblin-raider-3#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:45214ecc9565c33caccf312cfd8d9448cb2963fca0d531186dfb4334ffe17bad",
+      "derivedFrom": null,
+      "entityId": "goblin-raider-3",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider.goblin-raider-3#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-shaman.goblin-shaman#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:8e440c3f2f4920f2cf768bf225d12a3ac97b7c20c297428d05c785e803c5a459",
+      "derivedFrom": null,
+      "entityId": "goblin-shaman",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-shaman.goblin-shaman#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.ravenford.ravenford#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:e2401363bcfc26d1d924e7fa4292cf4f188f85656c2e65ed26bd5a5c0a645490",
+      "derivedFrom": null,
+      "entityId": "ravenford",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.ravenford.ravenford#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.market-square.market-square#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:7ad7a7c7453b5be2e2b8c2801aab5d5d7eefa56e4b64a621730e08ae6cd80b1d",
+      "derivedFrom": null,
+      "entityId": "market-square",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.market-square.market-square#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.golden-stag-inn.golden-stag-inn#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:bfc54984e7ded72419d980373da8d09712ef88ef8607c8278995269159162641",
+      "derivedFrom": null,
+      "entityId": "golden-stag-inn",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.golden-stag-inn.golden-stag-inn#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.orins-alchemy.orins-alchemy#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:03ea6bcad62f4877a16c03117031f8974e0315e265d646e004edb2a76e1232de",
+      "derivedFrom": null,
+      "entityId": "orins-alchemy",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.orins-alchemy.orins-alchemy#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.merchant-guild.merchant-guild#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:ff78842f7de50a8cd5aa9ec8888bd6069f652c302d4dd62128b28c03d5f090f5",
+      "derivedFrom": null,
+      "entityId": "merchant-guild",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.merchant-guild.merchant-guild#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.north-gate.north-gate#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:e30d9fea053da460c2010e052b738158cb83592bc8ec9b86e0294dde8964ed47",
+      "derivedFrom": null,
+      "entityId": "north-gate",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.north-gate.north-gate#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.old-trade-road.old-trade-road#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:741be3dad6477e3c9d62b36a44d87d80ed42ef083de41b977252b09924737ac9",
+      "derivedFrom": null,
+      "entityId": "old-trade-road",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.old-trade-road.old-trade-road#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.abandoned-caravan-site.abandoned-caravan-site#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:bdb4359ac08d02df80f314a6f3556eb7697d496fec98bbda7299303a011cb8a6",
+      "derivedFrom": null,
+      "entityId": "abandoned-caravan-site",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.abandoned-caravan-site.abandoned-caravan-site#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.broken-wagon-wheel.broken-wagon-wheel#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:a41e2005e41ee6a261af8aa9cda512baa865df2c4a50bea8d14571625d3d5fda",
+      "derivedFrom": null,
+      "entityId": "broken-wagon-wheel",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.broken-wagon-wheel.broken-wagon-wheel#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-weapon.goblin-weapon#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:a0b3abd70b826f3a656eb22fa7d9d40707de6d148bcfce5541b9a37d2578b72c",
+      "derivedFrom": null,
+      "entityId": "goblin-weapon",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-weapon.goblin-weapon#0",
+      "status": "CANDIDATE",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.strange-symbol.strange-symbol#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:fda530a1f6d206d51046660acce2369d6d555209349b181eacf8f4c408cf350e",
+      "derivedFrom": null,
+      "entityId": "strange-symbol",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.strange-symbol.strange-symbol#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.wagon-tracks.wagon-tracks#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:1a5e361e159329057187ad8489d73067b4517ca6a1f4a524cf74d67ba79ba73a",
+      "derivedFrom": null,
+      "entityId": "wagon-tracks",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.wagon-tracks.wagon-tracks#0",
+      "status": "RETRACTED",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.burned-cargo.burned-cargo#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:a5bec17287425f1545ecd2f308be04c58fcf705f3c6f3314d3ed9fe90698991b",
+      "derivedFrom": null,
+      "entityId": "burned-cargo",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": null,
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.burned-cargo.burned-cargo#0",
+      "status": "CANONICAL",
+      "variant": "reference",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.ravenford--night.ravenford#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:e37d9d26b3274c97c25da0ada109271f948862e075b01d220b121a4eec410e51",
+      "derivedFrom": "ravenford.curated.ravenford.ravenford#0~asset",
+      "entityId": "ravenford",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.ravenford--night.ravenford#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.market-square--night.market-square#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:3304fe225e4c51be7b7d73e70f5b1d58f7c49002226cd223817d67ce2e076a83",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.market-square--night.market-square#0",
+      "status": "SUPERSEDED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.golden-stag-inn--night.golden-stag-inn#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:eb8516aad4337e716a530de4de039919d3e205903ad0a9f10176e20ed1fa1108",
+      "derivedFrom": "ravenford.curated.golden-stag-inn.golden-stag-inn#0~asset",
+      "entityId": "golden-stag-inn",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.golden-stag-inn--night.golden-stag-inn#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.orins-alchemy--night.orins-alchemy#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:a6413733683e4cf7c71895730df6c36af50c5e0f4d360e9875b5d3cbf2b1a061",
+      "derivedFrom": "ravenford.curated.orins-alchemy.orins-alchemy#0~asset",
+      "entityId": "orins-alchemy",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.orins-alchemy--night.orins-alchemy#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.merchant-guild--night.merchant-guild#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:1686df3af59ca5aad7f95e3e861d1cad63e5511eebde17d4be3685aca83aa549",
+      "derivedFrom": "ravenford.curated.merchant-guild.merchant-guild#0~asset",
+      "entityId": "merchant-guild",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.merchant-guild--night.merchant-guild#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.north-gate--night.north-gate#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:3373f8a6ff8062d61aa8da0d7396522c7c5090ef837ca8da3f2d9acda6e729f9",
+      "derivedFrom": "ravenford.curated.north-gate.north-gate#0~asset",
+      "entityId": "north-gate",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.north-gate--night.north-gate#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.old-trade-road--night.old-trade-road#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:70adb723b753047a28a9e260904eb7bdc3d8adc82b81b5a8fecdd8227652e0d1",
+      "derivedFrom": "ravenford.curated.old-trade-road.old-trade-road#0~asset",
+      "entityId": "old-trade-road",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.old-trade-road--night.old-trade-road#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.abandoned-caravan-site--night.abandoned-caravan-site#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:ab79d9b2b82dabf59cd85a517a928433f9d0bea35673c2ce1fd4951c0faf6d7f",
+      "derivedFrom": "ravenford.curated.abandoned-caravan-site.abandoned-caravan-site#0~asset",
+      "entityId": "abandoned-caravan-site",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.abandoned-caravan-site--night.abandoned-caravan-site#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.ravenford--rain.ravenford#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:ad0236866be8eae65a1767b6f1c0d2bd07ac58c94e204fbe2803c5defc9eded5",
+      "derivedFrom": "ravenford.curated.ravenford.ravenford#0~asset",
+      "entityId": "ravenford",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "rain",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.ravenford--rain.ravenford#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.market-square--rain.market-square#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:857482643f76a894cf5689a8f7be481c8bf194727551db6c8dcd1a1369c4f430",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "rain",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.market-square--rain.market-square#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.golden-stag-inn--rain.golden-stag-inn#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:342366e29fc8340e2a9e862a3750f6bfd8810c7a233dea1cfc15a4f5b4052483",
+      "derivedFrom": "ravenford.curated.golden-stag-inn.golden-stag-inn#0~asset",
+      "entityId": "golden-stag-inn",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "rain",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.golden-stag-inn--rain.golden-stag-inn#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.orins-alchemy--rain.orins-alchemy#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:32bb25d8222f93316e38bdd2d6f7f95327e4d6ce9b7d4ee1c85a8def867405c9",
+      "derivedFrom": "ravenford.curated.orins-alchemy.orins-alchemy#0~asset",
+      "entityId": "orins-alchemy",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "rain",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.orins-alchemy--rain.orins-alchemy#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.merchant-guild--rain.merchant-guild#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:37e119d30808a9fda4997a593c8a4cd0d6bdf08cf5da035fb0a2ee29e54eb1dd",
+      "derivedFrom": "ravenford.curated.merchant-guild.merchant-guild#0~asset",
+      "entityId": "merchant-guild",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "rain",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.merchant-guild--rain.merchant-guild#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.north-gate--rain.north-gate#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:30c019070bf117b665fb145d7ea82ec704fdf15d06cbd519960c2481c5b75808",
+      "derivedFrom": "ravenford.curated.north-gate.north-gate#0~asset",
+      "entityId": "north-gate",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "rain",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.north-gate--rain.north-gate#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.old-trade-road--fog.old-trade-road#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:52c7a7a796a46f9e19f4ec372375eb63ccba97ce179630874e5cfb21b54412b1",
+      "derivedFrom": "ravenford.curated.old-trade-road.old-trade-road#0~asset",
+      "entityId": "old-trade-road",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "fog",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.old-trade-road--fog.old-trade-road#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.market-square--night-rain.market-square#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:2b25278781ca70257458fb19fba8d8415e10453c68ad71cff6182456c5cd2d9f",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "night-rain",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.market-square--night-rain.market-square#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.old-trade-road--map.old-trade-road#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:663ae126818c23b46e4198d65a41d49a1cb758e9859657bfbe953fccdf5540a5",
+      "derivedFrom": "ravenford.curated.old-trade-road.old-trade-road#0~asset",
+      "entityId": "old-trade-road",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "map",
+      "mediaType": "image/webp",
+      "purpose": "battle-map",
+      "requestId": "ravenford.curated.old-trade-road--map.old-trade-road#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.elowen-starwhisper--wounded.elowen-starwhisper#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:fd180ae5693c5449169e94657138a76d327f1a978fc669d53c7d78ed285aa5cb",
+      "derivedFrom": "ravenford.curated.elowen-starwhisper.elowen-starwhisper#0~asset",
+      "entityId": "elowen-starwhisper",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "wounded",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.elowen-starwhisper--wounded.elowen-starwhisper#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider--wounded.goblin-raider-1#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:9f4d9a1ad6f42dddf8e482d784ef5c70d4b0e6b5de7ff8c65daaa50da8662bfd",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-1#0~asset",
+      "entityId": "goblin-raider-1",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "wounded",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider--wounded.goblin-raider-1#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider--wounded.goblin-raider-2#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:9f4d9a1ad6f42dddf8e482d784ef5c70d4b0e6b5de7ff8c65daaa50da8662bfd",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-2#0~asset",
+      "entityId": "goblin-raider-2",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "wounded",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider--wounded.goblin-raider-2#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider--wounded.goblin-raider-3#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:9f4d9a1ad6f42dddf8e482d784ef5c70d4b0e6b5de7ff8c65daaa50da8662bfd",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-3#0~asset",
+      "entityId": "goblin-raider-3",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "wounded",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider--wounded.goblin-raider-3#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-shaman--wounded.goblin-shaman#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:d8a6181871c6c04bf7c291c5bc355a9710a773cb769980f6b8da5cdbb8a9df99",
+      "derivedFrom": "ravenford.curated.goblin-shaman.goblin-shaman#0~asset",
+      "entityId": "goblin-shaman",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "wounded",
+      "mediaType": "image/webp",
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-shaman--wounded.goblin-shaman#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.elowen-starwhisper--figure.elowen-starwhisper#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:8e6da589f998eb7bec4e4b2abac867fd81fcc2d4739a6c89f3065a3a293992cc",
+      "derivedFrom": "ravenford.curated.elowen-starwhisper.elowen-starwhisper#0~asset",
+      "entityId": "elowen-starwhisper",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "figure",
+      "mediaType": "image/webp",
+      "purpose": "figure",
+      "requestId": "ravenford.curated.elowen-starwhisper--figure.elowen-starwhisper#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.mira-vale--figure.mira-vale#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:1d33b9ef391c3d7362256565bfb77e149158564a5ec3ae54707054a2a676534e",
+      "derivedFrom": "ravenford.curated.mira-vale.mira-vale#0~asset",
+      "entityId": "mira-vale",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "figure",
+      "mediaType": "image/webp",
+      "purpose": "figure",
+      "requestId": "ravenford.curated.mira-vale--figure.mira-vale#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.orin-stonebeard--figure.orin-stonebeard#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:5317ad38a9e1c6698baa087be1c65f7eb703bf10f8e01e997aa91abe78ab5db2",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "figure",
+      "mediaType": "image/webp",
+      "purpose": "figure",
+      "requestId": "ravenford.curated.orin-stonebeard--figure.orin-stonebeard#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.captain-thorne--figure.captain-thorne#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:872bee5d0ff6003b5caf724e304ebbc5497e9b7cf15d100b74155ad2158c8de4",
+      "derivedFrom": "ravenford.curated.captain-thorne.captain-thorne#0~asset",
+      "entityId": "captain-thorne",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "figure",
+      "mediaType": "image/webp",
+      "purpose": "figure",
+      "requestId": "ravenford.curated.captain-thorne--figure.captain-thorne#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider--figure.goblin-raider-1#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:e5ca7e332e869a72fd228f1bce54cf558a39694fdccfefc02849e25e5c50facf",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-1#0~asset",
+      "entityId": "goblin-raider-1",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "figure",
+      "mediaType": "image/webp",
+      "purpose": "figure",
+      "requestId": "ravenford.curated.goblin-raider--figure.goblin-raider-1#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider--figure.goblin-raider-2#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:e5ca7e332e869a72fd228f1bce54cf558a39694fdccfefc02849e25e5c50facf",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-2#0~asset",
+      "entityId": "goblin-raider-2",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "figure",
+      "mediaType": "image/webp",
+      "purpose": "figure",
+      "requestId": "ravenford.curated.goblin-raider--figure.goblin-raider-2#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider--figure.goblin-raider-3#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:e5ca7e332e869a72fd228f1bce54cf558a39694fdccfefc02849e25e5c50facf",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-3#0~asset",
+      "entityId": "goblin-raider-3",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "figure",
+      "mediaType": "image/webp",
+      "purpose": "figure",
+      "requestId": "ravenford.curated.goblin-raider--figure.goblin-raider-3#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "ravenford.curated.goblin-shaman--figure.goblin-shaman#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:bcda56fa4f7fbcbeeb165add0e5c3238026d4a007ade3e68b12abb1b4f5ff1a5",
+      "derivedFrom": "ravenford.curated.goblin-shaman.goblin-shaman#0~asset",
+      "entityId": "goblin-shaman",
+      "generator": {
+        "model": "codex-cli/imagegen",
+        "provider": "curated"
+      },
+      "label": "figure",
+      "mediaType": "image/webp",
+      "purpose": "figure",
+      "requestId": "ravenford.curated.goblin-shaman--figure.goblin-shaman#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "http:dm-ravenford:req-1793111110#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:856f7c1d7af90e518c801f5e1d371a043ce4f8942c3979bdcac18411dc096842",
+      "derivedFrom": null,
+      "entityId": "mira-vale",
+      "generator": {
+        "model": "placeholder-svg-1",
+        "provider": "local"
+      },
+      "label": null,
+      "mediaType": "image/svg+xml",
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:req-1793111110#0",
+      "status": "RETRACTED",
+      "variant": "reference",
+      "version": 2
+    },
+    {
+      "assetId": "http:dm-ravenford:ga-1793111388#0~asset",
+      "audience": "dm",
+      "contentHash": "sha256:d4f3f5bc3560507fdd1f75a81140fddbdcb0d7a5720ac55c854a69cca31a50fe",
+      "derivedFrom": "ravenford.curated.goblin-shaman.goblin-shaman#0~asset",
+      "entityId": "goblin-shaman",
+      "generator": {
+        "model": "placeholder-svg-1",
+        "provider": "local"
+      },
+      "label": "dead",
+      "mediaType": "image/svg+xml",
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:ga-1793111388#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "http:dm-ravenford:td-1793111388#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:9c4e6321dd611d604b82a08db3fd7837a34a8a7d127e3a2bb6db7e7af4db32e3",
+      "derivedFrom": "ravenford.curated.captain-thorne.captain-thorne#0~asset",
+      "entityId": "captain-thorne",
+      "generator": {
+        "model": "placeholder-svg-1",
+        "provider": "local"
+      },
+      "label": "dead",
+      "mediaType": "image/svg+xml",
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:td-1793111388#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "http:dm-ravenford:mn-1793111388#0~asset",
+      "audience": "dm",
+      "contentHash": "sha256:37f6e45984539a65d4ced3acc81edeb6b07c4172c93bc0d76c93e2ba1a608bc6",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "generator": {
+        "model": "placeholder-svg-1",
+        "provider": "local"
+      },
+      "label": "night",
+      "mediaType": "image/svg+xml",
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:mn-1793111388#0",
+      "status": "APPROVED",
+      "variant": "derived",
+      "version": 2
+    },
+    {
+      "assetId": "http:dm-ravenford:f0-1793111615#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:f96e45340aed4f704a50bc75020e37e18e036e5f76694be24aba57a8029c9927",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "generator": {
+        "model": "placeholder-svg-1",
+        "provider": "local"
+      },
+      "label": "night",
+      "mediaType": "image/svg+xml",
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:f0-1793111615#0",
+      "status": "CANDIDATE",
+      "variant": "derived",
+      "version": 1
+    },
+    {
+      "assetId": "http:dm-ravenford:pn-1793112036#0~asset",
+      "audience": "players",
+      "contentHash": "sha256:2a800680243366f12810f63394a1e2e49194a6916f048bd3c365e610f8f1a2db",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "generator": {
+        "model": "placeholder-svg-1",
+        "provider": "local"
+      },
+      "label": "night",
+      "mediaType": "image/svg+xml",
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:pn-1793112036#0",
+      "status": "CANDIDATE",
+      "variant": "derived",
+      "version": 3
+    }
+  ],
+  "canonical": [
+    {
+      "assetId": "ravenford.curated.elowen-starwhisper.elowen-starwhisper#0~asset",
+      "entityId": "elowen-starwhisper"
+    },
+    {
+      "assetId": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard"
+    },
+    {
+      "assetId": "ravenford.curated.captain-thorne.captain-thorne#0~asset",
+      "entityId": "captain-thorne"
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider.goblin-raider-1#0~asset",
+      "entityId": "goblin-raider-1"
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider.goblin-raider-2#0~asset",
+      "entityId": "goblin-raider-2"
+    },
+    {
+      "assetId": "ravenford.curated.goblin-raider.goblin-raider-3#0~asset",
+      "entityId": "goblin-raider-3"
+    },
+    {
+      "assetId": "ravenford.curated.goblin-shaman.goblin-shaman#0~asset",
+      "entityId": "goblin-shaman"
+    },
+    {
+      "assetId": "ravenford.curated.ravenford.ravenford#0~asset",
+      "entityId": "ravenford"
+    },
+    {
+      "assetId": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square"
+    },
+    {
+      "assetId": "ravenford.curated.golden-stag-inn.golden-stag-inn#0~asset",
+      "entityId": "golden-stag-inn"
+    },
+    {
+      "assetId": "ravenford.curated.orins-alchemy.orins-alchemy#0~asset",
+      "entityId": "orins-alchemy"
+    },
+    {
+      "assetId": "ravenford.curated.merchant-guild.merchant-guild#0~asset",
+      "entityId": "merchant-guild"
+    },
+    {
+      "assetId": "ravenford.curated.north-gate.north-gate#0~asset",
+      "entityId": "north-gate"
+    },
+    {
+      "assetId": "ravenford.curated.old-trade-road.old-trade-road#0~asset",
+      "entityId": "old-trade-road"
+    },
+    {
+      "assetId": "ravenford.curated.abandoned-caravan-site.abandoned-caravan-site#0~asset",
+      "entityId": "abandoned-caravan-site"
+    },
+    {
+      "assetId": "ravenford.curated.broken-wagon-wheel.broken-wagon-wheel#0~asset",
+      "entityId": "broken-wagon-wheel"
+    },
+    {
+      "assetId": "ravenford.curated.strange-symbol.strange-symbol#0~asset",
+      "entityId": "strange-symbol"
+    },
+    {
+      "assetId": "ravenford.curated.burned-cargo.burned-cargo#0~asset",
+      "entityId": "burned-cargo"
+    }
+  ],
+  "requests": [
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "elowen-starwhisper",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.elowen-starwhisper.elowen-starwhisper#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "mira-vale",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.mira-vale.mira-vale#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "orin-stonebeard",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.orin-stonebeard.orin-stonebeard#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "captain-thorne",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.captain-thorne.captain-thorne#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "goblin-raider-1",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider.goblin-raider-1#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "goblin-raider-2",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider.goblin-raider-2#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "goblin-raider-3",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider.goblin-raider-3#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "goblin-shaman",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-shaman.goblin-shaman#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "ravenford",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.ravenford.ravenford#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "market-square",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.market-square.market-square#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "golden-stag-inn",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.golden-stag-inn.golden-stag-inn#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "orins-alchemy",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.orins-alchemy.orins-alchemy#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "merchant-guild",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.merchant-guild.merchant-guild#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "north-gate",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.north-gate.north-gate#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "old-trade-road",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.old-trade-road.old-trade-road#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "abandoned-caravan-site",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.abandoned-caravan-site.abandoned-caravan-site#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "broken-wagon-wheel",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.broken-wagon-wheel.broken-wagon-wheel#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "goblin-weapon",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-weapon.goblin-weapon#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "strange-symbol",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.strange-symbol.strange-symbol#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "wagon-tracks",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.wagon-tracks.wagon-tracks#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "burned-cargo",
+      "failure": null,
+      "label": null,
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.burned-cargo.burned-cargo#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.ravenford.ravenford#0~asset",
+      "entityId": "ravenford",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.ravenford--night.ravenford#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.market-square--night.market-square#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.golden-stag-inn.golden-stag-inn#0~asset",
+      "entityId": "golden-stag-inn",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.golden-stag-inn--night.golden-stag-inn#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orins-alchemy.orins-alchemy#0~asset",
+      "entityId": "orins-alchemy",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.orins-alchemy--night.orins-alchemy#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.merchant-guild.merchant-guild#0~asset",
+      "entityId": "merchant-guild",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.merchant-guild--night.merchant-guild#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.north-gate.north-gate#0~asset",
+      "entityId": "north-gate",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.north-gate--night.north-gate#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.old-trade-road.old-trade-road#0~asset",
+      "entityId": "old-trade-road",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.old-trade-road--night.old-trade-road#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.abandoned-caravan-site.abandoned-caravan-site#0~asset",
+      "entityId": "abandoned-caravan-site",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.abandoned-caravan-site--night.abandoned-caravan-site#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.ravenford.ravenford#0~asset",
+      "entityId": "ravenford",
+      "failure": null,
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.ravenford--rain.ravenford#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "failure": null,
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.market-square--rain.market-square#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.golden-stag-inn.golden-stag-inn#0~asset",
+      "entityId": "golden-stag-inn",
+      "failure": null,
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.golden-stag-inn--rain.golden-stag-inn#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orins-alchemy.orins-alchemy#0~asset",
+      "entityId": "orins-alchemy",
+      "failure": null,
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.orins-alchemy--rain.orins-alchemy#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.merchant-guild.merchant-guild#0~asset",
+      "entityId": "merchant-guild",
+      "failure": null,
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.merchant-guild--rain.merchant-guild#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.north-gate.north-gate#0~asset",
+      "entityId": "north-gate",
+      "failure": null,
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.north-gate--rain.north-gate#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.old-trade-road.old-trade-road#0~asset",
+      "entityId": "old-trade-road",
+      "failure": null,
+      "label": "fog",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.old-trade-road--fog.old-trade-road#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "failure": null,
+      "label": "night-rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.market-square--night-rain.market-square#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.old-trade-road.old-trade-road#0~asset",
+      "entityId": "old-trade-road",
+      "failure": null,
+      "label": "map",
+      "note": null,
+      "purpose": "battle-map",
+      "requestId": "ravenford.curated.old-trade-road--map.old-trade-road#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.elowen-starwhisper.elowen-starwhisper#0~asset",
+      "entityId": "elowen-starwhisper",
+      "failure": null,
+      "label": "wounded",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.elowen-starwhisper--wounded.elowen-starwhisper#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-1#0~asset",
+      "entityId": "goblin-raider-1",
+      "failure": null,
+      "label": "wounded",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider--wounded.goblin-raider-1#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-2#0~asset",
+      "entityId": "goblin-raider-2",
+      "failure": null,
+      "label": "wounded",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider--wounded.goblin-raider-2#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-3#0~asset",
+      "entityId": "goblin-raider-3",
+      "failure": null,
+      "label": "wounded",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-raider--wounded.goblin-raider-3#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.goblin-shaman.goblin-shaman#0~asset",
+      "entityId": "goblin-shaman",
+      "failure": null,
+      "label": "wounded",
+      "note": null,
+      "purpose": "image",
+      "requestId": "ravenford.curated.goblin-shaman--wounded.goblin-shaman#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.elowen-starwhisper.elowen-starwhisper#0~asset",
+      "entityId": "elowen-starwhisper",
+      "failure": null,
+      "label": "figure",
+      "note": null,
+      "purpose": "figure",
+      "requestId": "ravenford.curated.elowen-starwhisper--figure.elowen-starwhisper#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.mira-vale.mira-vale#0~asset",
+      "entityId": "mira-vale",
+      "failure": null,
+      "label": "figure",
+      "note": null,
+      "purpose": "figure",
+      "requestId": "ravenford.curated.mira-vale--figure.mira-vale#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": null,
+      "label": "figure",
+      "note": null,
+      "purpose": "figure",
+      "requestId": "ravenford.curated.orin-stonebeard--figure.orin-stonebeard#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.captain-thorne.captain-thorne#0~asset",
+      "entityId": "captain-thorne",
+      "failure": null,
+      "label": "figure",
+      "note": null,
+      "purpose": "figure",
+      "requestId": "ravenford.curated.captain-thorne--figure.captain-thorne#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-1#0~asset",
+      "entityId": "goblin-raider-1",
+      "failure": null,
+      "label": "figure",
+      "note": null,
+      "purpose": "figure",
+      "requestId": "ravenford.curated.goblin-raider--figure.goblin-raider-1#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-2#0~asset",
+      "entityId": "goblin-raider-2",
+      "failure": null,
+      "label": "figure",
+      "note": null,
+      "purpose": "figure",
+      "requestId": "ravenford.curated.goblin-raider--figure.goblin-raider-2#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.goblin-raider.goblin-raider-3#0~asset",
+      "entityId": "goblin-raider-3",
+      "failure": null,
+      "label": "figure",
+      "note": null,
+      "purpose": "figure",
+      "requestId": "ravenford.curated.goblin-raider--figure.goblin-raider-3#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.goblin-shaman.goblin-shaman#0~asset",
+      "entityId": "goblin-shaman",
+      "failure": null,
+      "label": "figure",
+      "note": null,
+      "purpose": "figure",
+      "requestId": "ravenford.curated.goblin-shaman--figure.goblin-shaman#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": null,
+      "entityId": "mira-vale",
+      "failure": null,
+      "label": null,
+      "note": "DMSECRET-NOTE she is the smuggler",
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:req-1793111110#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "reference"
+    },
+    {
+      "audience": "dm",
+      "derivedFrom": "ravenford.curated.goblin-shaman.goblin-shaman#0~asset",
+      "entityId": "goblin-shaman",
+      "failure": null,
+      "label": "dead",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:ga-1793111388#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.captain-thorne.captain-thorne#0~asset",
+      "entityId": "captain-thorne",
+      "failure": null,
+      "label": "dead",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:td-1793111388#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "dm",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:mn-1793111388#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:f0-1793111615#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:nb-1793111726#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:nb-c2-1793111726#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:nb-c7-1793111726#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:nb-c1-1793111726#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:nb-c8-1793111726#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:tc-1793111854#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:tc-c2-1793111854#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:tc-c5-1793111854#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:tc-c4-1793111854#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.orin-stonebeard.orin-stonebeard#0~asset",
+      "entityId": "orin-stonebeard",
+      "failure": "UNAVAILABLE",
+      "label": "rain",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:tc-c6-1793111854#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "FAILED",
+      "variant": "derived"
+    },
+    {
+      "audience": "players",
+      "derivedFrom": "ravenford.curated.market-square.market-square#0~asset",
+      "entityId": "market-square",
+      "failure": null,
+      "label": "night",
+      "note": null,
+      "purpose": "image",
+      "requestId": "http:dm-ravenford:pn-1793112036#0",
+      "requestedAt": 36000,
+      "source": {
+        "kind": "dm"
+      },
+      "status": "COMPLETED",
+      "variant": "derived"
+    }
+  ]
+}
+abandoned-caravan-site  [null,null,null]
+broken-wagon-wheel  [null,null,null]
+burned-cargo  [null,null,null]
+captain-thorne [["reference","image",1,"edc0aa16db5c"],["derived","figure",1,"872bee5d0ff6"],["derived","image",1,"9c4e6321dd61"]] ["edc0aa16db5c","872bee5d0ff6",null]
+elowen-starwhisper [["reference","image",1,"c0a8f25a2eb2"],["derived","image",1,"fd180ae5693c"],["derived","figure",1,"8e6da589f998"]] ["c0a8f25a2eb2","8e6da589f998",null]
+goblin-raider-1  [null,null,null]
+goblin-raider-2  [null,null,null]
+goblin-raider-3  [null,null,null]
+goblin-shaman  [null,null,null]
+goblin-weapon  [null,null,null]
+golden-stag-inn [["reference","image",1,"bfc54984e7de"],["derived","image",1,"eb8516aad433"],["derived","image",1,"342366e29fc8"]] ["bfc54984e7de",null,null]
+market-square [["reference","image",1,"7ad7a7c7453b"],["derived","image",1,"857482643f76"],["derived","image",1,"2b25278781ca"]] ["7ad7a7c7453b",null,null]
+merchant-guild [["reference","image",1,"ff78842f7de5"],["derived","image",1,"1686df3af59c"],["derived","image",1,"37e119d30808"]] ["ff78842f7de5",null,null]
+mira-vale [["derived","figure",1,"1d33b9ef391c"]] [null,"1d33b9ef391c",null]
+north-gate [["reference","image",1,"e30d9fea053d"],["derived","image",1,"3373f8a6ff80"],["derived","image",1,"30c019070bf1"]] ["e30d9fea053d",null,null]
+old-trade-road [["reference","image",1,"741be3dad647"],["derived","image",1,"70adb723b753"],["derived","image",1,"52c7a7a796a4"],["derived","battle-map",1,"663ae126818c"]] ["741be3dad647",null,"663ae126818c"]
+orin-stonebeard [["reference","image",1,"6da169001f55"],["derived","figure",1,"5317ad38a9e1"]] ["6da169001f55","5317ad38a9e1",null]
+orins-alchemy [["reference","image",1,"03ea6bcad62f"],["derived","image",1,"a6413733683e"],["derived","image",1,"32bb25d8222f"]] ["03ea6bcad62f",null,null]
+ravenford [["reference","image",1,"e2401363bcfc"],["derived","image",1,"e37d9d26b327"],["derived","image",1,"ad0236866be8"]] ["e2401363bcfc",null,null]
+strange-symbol  [null,null,null]
+wagon-tracks  [null,null,null]

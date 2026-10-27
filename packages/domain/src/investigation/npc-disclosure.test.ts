@@ -35,7 +35,7 @@ async function atOrins(): Promise<InvestigationWorld> {
       scope: { kind: 'PARTY' },
       knowledgeType: 'EVIDENCE',
       statement: 'A strange symbol is burned into a wagon plank.',
-      subjects: ['strange-symbol'],
+      subjects: ['feature-19c7c7f7'],
       knownSince: null,
     },
     DM,
@@ -52,7 +52,7 @@ async function atOrins(): Promise<InvestigationWorld> {
   return world;
 }
 
-const ask = (world: InvestigationWorld, topicId = 'strange-symbol') =>
+const ask = (world: InvestigationWorld, topicId = 'feature-19c7c7f7') =>
   world.submit({ type: 'AskAbout', characterId: ELOWEN, npcId: ORIN, topicId });
 const show = (world: InvestigationWorld, knowledgeId = SYMBOL_EVIDENCE) =>
   world.submit({ type: 'ShowEvidence', characterId: ELOWEN, npcId: ORIN, knowledgeId });
@@ -167,7 +167,7 @@ describe('ShowEvidence', () => {
           scope,
           knowledgeType: 'EVIDENCE',
           statement: 'Someone else holds this.',
-          subjects: ['strange-symbol'],
+          subjects: ['feature-19c7c7f7'],
           knownSince: null,
         },
         DM,

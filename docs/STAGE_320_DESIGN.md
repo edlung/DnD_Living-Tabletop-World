@@ -147,6 +147,10 @@ accessible name and a visible tooltip.
   it. The arrangement stays symbolic and says so ("Symbolic arrangement — no distances shown").
 - The result of an action appears where it happened: the outcome notice is anchored above the
   medallion it concerns (the stage's bottom centre when it concerns the place).
+  _Gate 06 amendment (2026-10-27): anchored or centred, the notice lay over the row of people
+  and things (or the row above) and swallowed their clicks. It now has one place, the stage's
+  bottom-right corner below the exits (bottom of the screen on a phone), and the row keeps clear
+  of it; `tests/e2e/scene-result-layout.spec.ts` checks that every object stays reachable._
 - "Beyond this place": exits as cartouche buttons at the stage's bottom-right; known destinations
   and the location choice in the Places sheet.
 

@@ -98,7 +98,7 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
       `sha256:${set.entries.find((entry) => entry.file === file)?.sha256 ?? ''}`;
     expect(shown('market-square')?.image?.contentHash).toBe(hash('market-square.webp'));
     expect(shown('mira-vale')?.figure?.contentHash).toBe(hash('mira-vale--figure.webp'));
-    expect(shown('abandoned-caravan-site')).toBeUndefined();
+    expect(shown('location-f3b82c8b')).toBeUndefined();
 
     const rerun = await seedReviewCampaign(engine, { pictures });
     expect(rerun).toEqual({
@@ -159,7 +159,27 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
     const english = await seededEngine();
 
     await expect(seedReviewCampaign(english)).rejects.toThrow(ReviewCampaignError);
-    await expect(seedReviewCampaign(english)).rejects.toThrow(/COMMAND_ID_CONFLICT/);
+    await expect(seedReviewCampaign(english)).rejects.toThrow(
+      /COMMAND_ID_CONFLICT: this database holds the en Ravenford, not the ru one/,
+    );
+  });
+
+  it('tells the operator that a database seeded by an older fixture revision needs a reset', async () => {
+    // The review campaign as the fixtures were before Gate 06 gave the Shaman an opaque ID.
+    const engine = emptyEngine();
+    const { submissions } = await loadReviewCampaignSeed();
+    for (const submission of submissions) {
+      const older: unknown = JSON.parse(
+        JSON.stringify(submission).replaceAll('creature-ae08be99', 'goblin-shaman'),
+      );
+      expect((await engine.execute(older)).status).toBe('accepted');
+    }
+
+    const refused = seedReviewCampaign(engine);
+    await expect(refused).rejects.toThrow(ReviewCampaignError);
+    await expect(refused).rejects.toThrow(
+      /COMMAND_ID_CONFLICT: this database was seeded by an older fixture revision .*Reset required.*deploy\/RUNBOOK\.md, section 12/,
+    );
   });
 
   it('lets an invited player take the open seat and explore in Russian', async () => {
@@ -191,12 +211,12 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
       await run('review-test.site', PLAYER, {
         type: 'EnterLocation',
         characterId: elowen,
-        locationId: 'abandoned-caravan-site',
+        locationId: 'location-f3b82c8b',
       }),
       await run('review-test.inspect', PLAYER, {
         type: 'ExamineEntity',
         characterId: elowen,
-        entityId: 'abandoned-caravan-site',
+        entityId: 'location-f3b82c8b',
         method: 'inspect',
       }),
     ];

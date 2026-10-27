@@ -43,7 +43,7 @@ const CAMPAIGN = 'ravenford';
 const DM: Actor = { actorId: 'dm-ravenford', kind: 'user' };
 const PLAYER: Actor = { actorId: 'player-elowen', kind: 'user' };
 const ELOWEN = 'elowen-starwhisper';
-const SHAMAN = 'goblin-shaman';
+const SHAMAN = 'creature-ae08be99';
 
 const submission = (commandId: string, actor: Actor, command: Record<string, unknown>) => ({
   commandId,
@@ -114,7 +114,12 @@ describe('combat on PostgreSQL', () => {
       expect((await engine.execute(submission(id, actor, command))).status, id).toBe('accepted');
     }
     const fought = await verify(engine, new PostgresEventStore(pool));
-    for (const id of ['goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3', 'goblin-shaman']) {
+    for (const id of [
+      'creature-10fb59d4',
+      'creature-589f6668',
+      'creature-6513bec0',
+      'creature-ae08be99',
+    ]) {
       expect(fought?.entities.get(id)?.status, id).toBe('dead');
     }
     expect(fought?.encounter).toMatchObject({ round: 2, currentIndex: 0 });
@@ -160,7 +165,7 @@ describe('combat on PostgreSQL', () => {
     }
     const state = await verify(engine, store);
     expect(state?.encounter).toBeNull();
-    expect(state?.statBlocks.get('goblin-shaman')?.hitPoints.current).toBe(21);
+    expect(state?.statBlocks.get('creature-ae08be99')?.hitPoints.current).toBe(21);
     expect(state?.characterSheets.get(ELOWEN)?.spellSlots.expended[2]).toBe(0);
   });
 });

@@ -23,9 +23,20 @@ interface GenerationItem {
   readonly prompt: string;
 }
 
-/** Fixture entity IDs that share one picture, where the generation name differs. */
+/**
+ * Fixture entity IDs of a generation name that differs from them: pictures several entities
+ * share, and entities a player meets unidentified, whose fixture IDs are opaque (ADR 0008, Gate 06
+ * remediation). Generation names stay descriptive; they never reach a player.
+ */
 const ENTITY_IDS: Readonly<Record<string, readonly string[]>> = {
-  'goblin-raider': ['goblin-raider-1', 'goblin-raider-2', 'goblin-raider-3'],
+  'goblin-raider': ['creature-10fb59d4', 'creature-589f6668', 'creature-6513bec0'],
+  'goblin-shaman': ['creature-ae08be99'],
+  'abandoned-caravan-site': ['location-f3b82c8b'],
+  'broken-wagon-wheel': ['item-f44e7183'],
+  'goblin-weapon': ['item-0869f47a'],
+  'burned-cargo': ['item-08851105'],
+  'strange-symbol': ['feature-19c7c7f7'],
+  'wagon-tracks': ['feature-ccec7e50'],
 };
 const CONCEPTS: Readonly<Record<string, string>> = {
   overview: 'docs/design/stage-320/owner-concepts/01-overview.webp',

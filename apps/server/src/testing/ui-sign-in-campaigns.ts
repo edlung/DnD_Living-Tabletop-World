@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 
-import { commandSubmissionSchema, type WorldEngine } from '@ltw/domain';
+import { commandSubmissionSchema, type EventStore, type WorldEngine } from '@ltw/domain';
 import { scriptedDice } from '@ltw/rules';
 
 import campaigns from '../../../../tests/e2e/fixtures/sign-in-campaigns.json' with { type: 'json' };
@@ -26,8 +26,8 @@ const SCANNED: ReadonlySet<string> = new Set([campaigns.a11y, campaigns.a11yRu])
  * scans' campaigns keep her seated instead (a player who is not signed in) and add an empty
  * seat for Seren Ashgrove. Scripted checks all roll 15.
  */
-export async function seedSignInCampaigns(): Promise<WorldEngine> {
-  const engine = await seededEngine(undefined, scriptedDice(Array<number>(512).fill(15)));
+export async function seedSignInCampaigns(store?: EventStore): Promise<WorldEngine> {
+  const engine = await seededEngine(store, scriptedDice(Array<number>(512).fill(15)));
   const english = await loadRavenfordSeed();
   const russian = await loadRavenfordSeed(RAVENFORD_RU_FIXTURES_DIR);
   for (const campaignId of Object.values(campaigns)) {
@@ -40,10 +40,11 @@ export async function seedSignInCampaigns(): Promise<WorldEngine> {
         commandId: `${campaignId}.${submission.commandId}`,
       });
     }
+    // Seren's empty seat: Elowen meets her unnamed, so her ID is opaque (ADR 0008, Gate 06).
     const seat = SCANNED.has(campaignId)
       ? {
           type: 'CreateEntity',
-          entityId: 'seren-ashgrove',
+          entityId: 'character-4edddd60',
           kind: 'character',
           name: 'Seren Ashgrove',
           existsSince: null,

@@ -48,7 +48,7 @@ describe('Ravenford on PostgreSQL', () => {
   it('plays the whole slice, and a restarted server agrees on canon and on every view', async () => {
     const contents = new PostgresAssetContentStore(pool);
     const session = await RavenfordSession.open({ store: new PostgresEventStore(pool), contents });
-    await playDayOne(session);
+    const { tomasId } = await playDayOne(session);
     const road = await playRoad(session);
     expect(road.chapter.result.status).toBe('accepted');
     const views = [
@@ -56,7 +56,7 @@ describe('Ravenford on PostgreSQL', () => {
       `${BASE}/chronicle?perspective=PARTY`,
       `${BASE}/knowledge?perspective=PARTY`,
       `${BASE}/locations/market-square/scene?perspective=PLAYER&at=40000`,
-      `${BASE}/entities/tomas-reed/presentation?perspective=PLAYER`,
+      `${BASE}/entities/${tomasId}/presentation?perspective=PLAYER`,
     ];
     const before = await Promise.all(
       views.map(async (url) => (await session.get('player', url)).raw),

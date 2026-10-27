@@ -21,8 +21,8 @@ import { chronicleChapters } from './views.ts';
  * examination no standing chapter tells stays undoable. Every source a
  * standing chapter resolves stays resolved.
  */
-const SITE = 'abandoned-caravan-site';
-const SYMBOL = 'strange-symbol';
+const SITE = 'location-f3b82c8b';
+const SYMBOL = 'feature-19c7c7f7';
 const TOKEN = 'g05-plain-token';
 
 const blockersOf = (result: CommandResult) =>

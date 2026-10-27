@@ -71,7 +71,6 @@ export function Scene({
   battlefield,
   rail,
   conversation,
-  anchorId,
 }: {
   readonly location: EntityRef;
   readonly scene: Resource<ScenePresentationResponse | null>;
@@ -86,8 +85,6 @@ export function Scene({
   readonly rail: ReactNode;
   /** The conversation with an NPC of this scene, when one is open. */
   readonly conversation: ReactNode;
-  /** The medallion a result concerns: the selection, else whoever the player speaks with. */
-  readonly anchorId: string | null;
 }) {
   const t = useT();
   const view = scene.status === 'ready' ? scene.value : null;
@@ -136,7 +133,6 @@ export function Scene({
             present={view.present}
             directory={directory}
             selectedId={selectedId}
-            anchorId={anchorId}
             onSelect={onSelect}
           />
         )}

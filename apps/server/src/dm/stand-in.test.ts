@@ -82,7 +82,7 @@ describe('acting for a player adds no authority', () => {
         type: 'CastSpell',
         combatantId: ELOWEN,
         spellId: 'hunters-mark',
-        targetId: 'goblin-raider-1',
+        targetId: 'creature-10fb59d4',
       },
       TOKENS.player,
     );
@@ -108,7 +108,7 @@ describe('acting for a player adds no authority', () => {
     // Elowen's player can answer for nobody but Elowen, and run no creature.
     for (const body of [
       { type: 'DeclineReaction', combatantId: SEREN, windowId },
-      { type: 'EndTurn', combatantId: 'goblin-shaman' },
+      { type: 'EndTurn', combatantId: 'creature-ae08be99' },
       { type: 'EndTurn', combatantId: SEREN },
     ]) {
       expect((await command(body, TOKENS.player)).status, body.type).toBe(403);
@@ -166,7 +166,7 @@ describe('acting for a player adds no authority', () => {
     expect(
       (await table.standIn('skip', { type: 'EndTurn', combatantId: ELOWEN })).result.status,
     ).toBe('accepted');
-    expect((await encounter(table))?.currentCombatantId).toBe('goblin-raider-1');
+    expect((await encounter(table))?.currentCombatantId).toBe('creature-10fb59d4');
     expect((await table.page()).entries[0]).toMatchObject({ undo: { possible: true } });
     const undone = await table.command(
       { type: 'UndoCommand', targetCommandId: 'http:dm-ravenford:skip' },
