@@ -14,16 +14,19 @@ import {
  * stays reachable while the result shows: on a desktop with the selection's column, and on a
  * tablet once its drawer is closed (docs/STAGE_320_DESIGN.md §5.2–5.3; stage.css).
  */
-async function unreachable(page: Page): Promise<string[]> {
-  return page.locator('.object-button').evaluateAll((buttons) =>
-    buttons
+async function unreachable(page: Page, besideDrawer = false): Promise<string[]> {
+  return page.locator('.object-button').evaluateAll((buttons, besideDrawer) => {
+    const drawer = document.querySelector('.detail-panel')?.getBoundingClientRect();
+    return buttons
       .filter((button) => {
         const box = button.getBoundingClientRect();
+        // Under an open drawer by design: only what the drawer leaves visible must be reachable.
+        if (besideDrawer && drawer && box.x + box.width / 2 >= drawer.left) return false;
         const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
         return !button.contains(hit);
       })
-      .map((button) => button.textContent.trim()),
-  );
+      .map((button) => button.textContent.trim());
+  }, besideDrawer);
 }
 
 test('the people and things in the scene stay reachable while a result shows', async ({ page }) => {
@@ -46,7 +49,11 @@ test('the people and things in the scene stay reachable while a result shows', a
   await expect(result).toBeVisible();
   expect(await unreachable(page)).toEqual([]);
 
+  // A tablet with the selection's drawer open: the result sits at the drawer's foot.
   await page.setViewportSize({ width: 768, height: 1024 });
+  await expect(page.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
+  expect(await unreachable(page, true)).toEqual([]);
+  // ... and with it closed.
   await page
     .getByRole('complementary', { name: 'Entity details' })
     .getByRole('button', { name: /^Close/ })

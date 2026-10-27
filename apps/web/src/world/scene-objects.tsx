@@ -5,6 +5,7 @@ import { useId } from 'react';
 import { useHeldImage } from '../visual/approved-images.ts';
 import { Medallion, type MedallionCondition } from '../visual/medallion.tsx';
 import { Miniature } from '../visual/miniature.tsx';
+import { statusWord, unidentifiedName } from './entity-words.ts';
 
 function condition(entity: EntityPresentation): MedallionCondition | null {
   if (entity.status === 'dead' || entity.status === 'destroyed') return 'dead';
@@ -58,7 +59,7 @@ function SceneObject({
         <span className="name-plate-kind">{t(entity.kind)}</span>
       </span>
       <span className="object-state" id={stateId}>
-        {entity.status ? t(entity.status) : t('Not observed')}
+        {entity.status ? statusWord(t, entity.kind, entity.status) : t('Not observed')}
         {entity.vitals?.wounded ? t(' · wounded') : ''}
         {entity.vitals?.unconscious ? t(' · unconscious') : ''}
       </span>
@@ -92,7 +93,7 @@ export function SceneObjects({
             entity={entity}
             name={
               directory.find((item) => item.entityId === entity.entityId)?.name ??
-              t('Unidentified {kind}', { kind: t(entity.kind) })
+              unidentifiedName(t, entity.kind)
             }
             selected={selectedId === entity.entityId}
             onSelect={onSelect}

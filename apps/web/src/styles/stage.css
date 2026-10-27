@@ -244,10 +244,20 @@
     left: auto;
   }
 }
+/*
+ * A tablet's selection drawer leaves the stage too narrow for the result beside the row: the
+ * result sits at the drawer's foot instead (it concerns the selection), and the drawer's content
+ * scrolls clear of it.
+ */
 @media (min-width: 768px) and (max-width: 1199px) {
   .world-main.has-details:not(.has-battle) .outcome {
-    right: calc(min(var(--panel-w), 92vw) + 16px);
+    right: 16px;
     left: auto;
+    width: calc(min(var(--panel-w), 92vw) - 32px);
+  }
+  .world-main.has-details:not(.has-battle):has(.outcome) .detail-panel {
+    padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
+    scroll-padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
   }
 }
 /* While a sheet is open the result sits just above it, clear of the sheet's own controls. */

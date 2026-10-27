@@ -724,7 +724,8 @@ are one client to the per-address limits. On a Linux server outside clients keep
 сообщением «this database was seeded by an older fixture revision … Reset required»: ID команд
 сида позиционные (`ravenford.seed.0001`, …), и после изменения фикстур (Gate 06 дал секретным
 существам непрозрачные ID) те же ID в базе хранят другие команды — повтор этого не исправит.
-Порядок: свежая копия (её имя печатается — сохраните его), остановка `backup`, прокси и сервера,
+Порядок: защищённая копия (вид `prerestore`: обычное хранение её не удаляет; имя печатается —
+сохраните его), остановка `backup`, прокси и сервера,
 новая пустая база, запуск всего (миграции создают таблицы), сид и новая ссылка DM, затем копия и
 тренировка уже нового мира. Потолки ИИ и изображений (разделы 7–8) задайте заново, игроков
 пригласите заново. Вернуться к прежнему миру: `deploy/scripts/restore.sh <копия из шага 1>`.
@@ -734,14 +735,16 @@ invitations, AI and image spending records, stored ceilings. Needed when the see
 "this database was seeded by an older fixture revision … Reset required": seed command IDs are
 positional (`ravenford.seed.0001`, …), so after the fixtures change (Gate 06 gave secret entities
 opaque IDs) the same IDs in the database hold other commands, and no rerun can fix that. In
-order: a fresh dump (its name is printed — keep it), stop `backup`, the proxy and the server, a
+order: a protected dump (kind `prerestore`: the regular retention never removes it; its name is
+printed — keep it), stop `backup`, the proxy and the server, a
 new empty database, start everything (migrations create the tables), the seed and a new DM link,
 then a dump and a drill of the new world. Set the AI and image ceilings again (sections 7–8) and
 invite the players again. Back to the previous world: `deploy/scripts/restore.sh <the dump of
 step 1>`.
 
 ```bash
-deploy/scripts/backup-now.sh                      # 1. keep the printed name / сохраните имя
+dump=$(dc exec -T backup /bin/sh /opt/ltw/backup.sh pre-restore)   # 1. protected / защищённая
+dc exec -T backup /bin/sh /opt/ltw/backup.sh verify "$dump" && echo "$dump"   # keep the name
 dc stop backup proxy server                       # 2.
 dc exec -T postgres psql --username ltw --dbname postgres --quiet --set ON_ERROR_STOP=1 \
   --command 'DROP DATABASE ltw WITH (FORCE)' --command 'CREATE DATABASE ltw OWNER ltw'  # 3.

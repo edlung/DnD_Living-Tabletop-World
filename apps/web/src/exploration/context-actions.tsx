@@ -15,6 +15,7 @@ import { Hypothesis } from './hypothesis.tsx';
 import { Recall } from './recall.tsx';
 import type { ExplorationIntent } from './use-action.ts';
 import { useT, type Translate } from '@ltw/ui';
+import { unidentifiedName } from '../world/entity-words.ts';
 
 export const executable: ReadonlySet<string> = new Set([
   'talk',
@@ -65,7 +66,7 @@ export function ContextActions({
   const [recall, setRecall] = useState(false);
   const { entity, actions } = context.context;
   const actor = context.actingCharacterId;
-  const name = entity.name ?? t('Unidentified {kind}', { kind: t(entity.kind) });
+  const name = entity.name ?? unidentifiedName(t, entity.kind);
   const listed = actions.filter(
     (action) => executable.has(action.id) && !(conversing && CONVERSATION.has(action.id)),
   );
