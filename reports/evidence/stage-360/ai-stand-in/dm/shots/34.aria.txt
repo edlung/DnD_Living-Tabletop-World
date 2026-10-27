@@ -1,0 +1,74 @@
+- link "Перейти к миру":
+  - /url: "#world-main"
+- banner:
+  - text: Живой настольный мир
+  - heading "Пропавший караван" [level=1]
+  - text: "Сессия 1: Прибытие в Равенфорд Обновления: На связи Вид"
+  - combobox "Вид":
+    - option "Мастер" [selected]
+    - option "Отряд"
+    - option "Публичный вид"
+    - option "Эловен Старвиспер"
+  - button "Обновить мир"
+  - button "Выйти"
+- main:
+  - region "Сцена":
+    - heading "Рыночная площадь" [level=2]
+    - group "Условия сцены": День 1 · 10:00 день
+    - region "За столом":
+      - paragraph: Мастер на связи
+      - list:
+        - listitem:
+          - button "Эловен Старвиспер · на связи"
+    - heading "В этой сцене" [level=3]
+    - list "Видимые объекты мира":
+      - listitem:
+        - button "Мира Вейл":
+          - strong: Мира Вейл
+          - text: НПС жив
+    - paragraph: Выберите человека или предмет, чтобы рассмотреть ближе. Условная расстановка — расстояния не показаны
+  - region "Время и погода (мастер)":
+    - heading "Время и погода (мастер)" [level=2]
+    - 'button "Закрыть: Время и погода (мастер)"'
+    - region "Время в мире":
+      - heading "Время в мире" [level=3]
+      - paragraph: День 1 · 10:00 день
+      - button "Перейти к дню 2, 10:00"
+      - text: Или сдвинуть на (часов)
+      - spinbutton "Или сдвинуть на (часов)": "8"
+      - button "Сдвинуть время"
+    - region "Погода":
+      - heading "Погода" [level=3]
+      - paragraph: "Сейчас: не задана"
+      - text: "Погода: Рыночная площадь"
+      - 'combobox "Погода: Рыночная площадь"':
+        - option "ясно"
+        - option "пасмурно"
+        - option "дождь" [selected]
+        - option "гроза"
+        - option "туман"
+        - option "снег"
+      - button "Установить погоду"
+  - navigation "Инструменты мира":
+    - list:
+      - listitem:
+        - button "Сцена"
+      - listitem:
+        - button "Места"
+      - listitem:
+        - button "Журнал"
+      - listitem:
+        - button "Хроника"
+    - list "Инструменты мастера":
+      - listitem:
+        - button "Добавить в мир"
+      - listitem:
+        - button "Схватка"
+      - listitem:
+        - button "Время и погода" [expanded]
+      - listitem:
+        - button "История"
+      - listitem:
+        - button "Изображения"
+      - listitem:
+        - button "Игроки"
