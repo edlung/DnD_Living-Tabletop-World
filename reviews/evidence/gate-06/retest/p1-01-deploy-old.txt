@@ -1,0 +1,52 @@
+==> no database yet: nothing to back up
+==> starting ltw-server:0cc8d8db2411 and ltw-proxy:0cc8d8db2411 (previous: none)
+ Network ltw-g06-retest_backend Creating 
+ Network ltw-g06-retest_backend Created 
+ Network ltw-g06-retest_data Creating 
+ Network ltw-g06-retest_data Created 
+ Network ltw-g06-retest_edge Creating 
+ Network ltw-g06-retest_edge Created 
+ Network ltw-g06-retest_egress Creating 
+ Network ltw-g06-retest_egress Created 
+ Volume ltw-g06-retest_caddy-data Creating 
+ Volume ltw-g06-retest_caddy-data Created 
+ Volume ltw-g06-retest_caddy-config Creating 
+ Volume ltw-g06-retest_caddy-config Created 
+ Volume ltw-g06-retest_pgdata Creating 
+ Volume ltw-g06-retest_pgdata Created 
+ Container ltw-g06-retest-postgres-1 Creating 
+ Container ltw-g06-retest-postgres-1 Created 
+ Container ltw-g06-retest-backup-1 Creating 
+ Container ltw-g06-retest-server-1 Creating 
+ Container ltw-g06-retest-backup-1 Created 
+ Container ltw-g06-retest-server-1 Created 
+ Container ltw-g06-retest-proxy-1 Creating 
+ Container ltw-g06-retest-proxy-1 Created 
+ Container ltw-g06-retest-postgres-1 Starting 
+ Container ltw-g06-retest-postgres-1 Started 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-server-1 Starting 
+ Container ltw-g06-retest-backup-1 Starting 
+ Container ltw-g06-retest-backup-1 Started 
+ Container ltw-g06-retest-server-1 Started 
+ Container ltw-g06-retest-server-1 Waiting 
+ Container ltw-g06-retest-server-1 Healthy 
+ Container ltw-g06-retest-proxy-1 Starting 
+ Container ltw-g06-retest-proxy-1 Started 
+ Container ltw-g06-retest-server-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-backup-1 Waiting 
+ Container ltw-g06-retest-proxy-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-server-1 Healthy 
+ Container ltw-g06-retest-proxy-1 Healthy 
+ Container ltw-g06-retest-backup-1 Healthy 
+NAME                        IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-g06-retest-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     16 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-g06-retest-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   16 seconds ago   Up 16 seconds (healthy)   5432/tcp
+ltw-g06-retest-proxy-1      ltw-proxy:0cc8d8db2411                                                                       "caddy run --config …"   proxy      16 seconds ago   Up 7 seconds (healthy)    127.0.0.1:18085->80/tcp, 127.0.0.1:18448->443/tcp
+ltw-g06-retest-server-1     ltw-server:0cc8d8db2411                                                                      "/usr/local/bin/ltw-…"   server     16 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed 0cc8d8db2411

@@ -1,0 +1,149 @@
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are enabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/18/docker ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default "max_connections" ... 100
+postgres-1  | selecting default "shared_buffers" ... 128MB
+postgres-1  | selecting default time zone ... UTC
+postgres-1  | creating configuration files ... ok
+postgres-1  | running bootstrap script ... ok
+postgres-1  | sh: locale: not found
+postgres-1  | 2026-10-27 14:20:45.159 UTC [39] WARNING:  no usable system locales were found
+postgres-1  | performing post-bootstrap initialization ... ok
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/18/docker -l logfile start
+postgres-1  | 
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | waiting for server to start....2026-10-27 14:20:45.519 UTC [45] LOG:  starting PostgreSQL 18.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-10-27 14:20:45.520 UTC [45] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-27 14:20:45.522 UTC [51] LOG:  database system was shut down at 2026-10-27 14:20:45 UTC
+postgres-1  | 2026-10-27 14:20:45.524 UTC [45] LOG:  database system is ready to accept connections
+postgres-1  |  done
+postgres-1  | server started
+postgres-1  | CREATE DATABASE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres-1  | 
+postgres-1  | waiting for server to shut down....2026-10-27 14:20:45.735 UTC [45] LOG:  received fast shutdown request
+postgres-1  | 2026-10-27 14:20:45.737 UTC [45] LOG:  aborting any active transactions
+postgres-1  | 2026-10-27 14:20:45.739 UTC [45] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-1  | 2026-10-27 14:20:45.739 UTC [49] LOG:  shutting down
+postgres-1  | 2026-10-27 14:20:45.739 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-10-27 14:20:45.770 UTC [49] LOG:  checkpoint complete: wrote 943 buffers (5.8%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.020 s, total=0.032 s; sync files=303, longest=0.007 s, average=0.001 s; distance=4362 kB, estimate=4362 kB; lsn=0/1BA8880, redo lsn=0/1BA8880
+postgres-1  | 2026-10-27 14:20:45.778 UTC [45] LOG:  database system is shut down
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+postgres-1  | 2026-10-27 14:20:45.851 UTC [1] LOG:  starting PostgreSQL 18.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-10-27 14:20:45.851 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-10-27 14:20:45.851 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-10-27 14:20:45.855 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-27 14:20:45.858 UTC [67] LOG:  database system was shut down at 2026-10-27 14:20:45 UTC
+postgres-1  | 2026-10-27 14:20:45.860 UTC [1] LOG:  database system is ready to accept connections
+postgres-1  | 2026-10-27 14:25:45.891 UTC [65] LOG:  checkpoint starting: time
+proxy-1     | {"level":"info","ts":1793110853.2351015,"msg":"maxprocs: Leaving GOMAXPROCS=12: CPU quota undefined"}
+proxy-1     | {"level":"info","ts":1793110853.2353146,"msg":"GOMEMLIMIT is updated","package":"github.com/KimMachineGun/automemlimit/memlimit","GOMEMLIMIT":241591910,"previous":9223372036854775807}
+proxy-1     | {"level":"info","ts":1793110853.2354062,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+proxy-1     | {"level":"info","ts":1793110853.23726,"msg":"adapted config to JSON","adapter":"caddyfile"}
+proxy-1     | {"level":"info","ts":1793110853.2377427,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+proxy-1     | {"level":"warn","ts":1793110853.237762,"logger":"admin","msg":"admin endpoint disabled"}
+proxy-1     | {"level":"info","ts":1793110853.2389877,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x4000134480"}
+proxy-1     | {"level":"info","ts":1793110853.2442875,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+proxy-1     | {"level":"info","ts":1793110853.2443333,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+proxy-1     | {"level":"warn","ts":1793110853.2490125,"logger":"http","msg":"HTTP/2 skipped because it requires TLS","network":"tcp","addr":"127.0.0.1:2020"}
+proxy-1     | {"level":"info","ts":1793110853.2490375,"logger":"http.log","msg":"server running","name":"srv0","protocols":["h1","h2"]}
+proxy-1     | {"level":"info","ts":1793110853.2491083,"logger":"http.log","msg":"server running","name":"srv1","protocols":["h1","h2"]}
+proxy-1     | {"level":"warn","ts":1793110853.249143,"logger":"http","msg":"HTTP/2 skipped because it requires TLS","network":"tcp","addr":":80"}
+proxy-1     | {"level":"warn","ts":1793110853.2491455,"logger":"http","msg":"HTTP/3 skipped because it requires TLS","network":"tcp","addr":":80"}
+proxy-1     | {"level":"info","ts":1793110853.249147,"logger":"http.log","msg":"server running","name":"remaining_auto_https_redirects","protocols":["h1","h2","h3"]}
+proxy-1     | {"level":"info","ts":1793110853.2491553,"logger":"http","msg":"enabling automatic TLS certificate management","domains":["localhost"]}
+proxy-1     | {"level":"info","ts":1793110853.2492478,"logger":"pki.ca.local","msg":"root certificate trust store installation disabled; unconfigured clients may show warnings","path":"storage:pki/authorities/local/root.crt"}
+proxy-1     | {"level":"info","ts":1793110853.2495034,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
+proxy-1     | {"level":"info","ts":1793110853.249513,"msg":"serving initial configuration"}
+proxy-1     | {"level":"info","ts":1793110853.2511218,"logger":"tls.obtain","msg":"acquiring lock","identifier":"localhost"}
+proxy-1     | {"level":"info","ts":1793110853.2513268,"logger":"tls","msg":"cleaning storage unit","storage":"FileStorage:/data/caddy"}
+proxy-1     | {"level":"info","ts":1793110853.2531927,"logger":"tls.obtain","msg":"lock acquired","identifier":"localhost"}
+proxy-1     | {"level":"info","ts":1793110853.253249,"logger":"tls.obtain","msg":"obtaining certificate","identifier":"localhost"}
+proxy-1     | {"level":"info","ts":1793110853.2535777,"logger":"tls","msg":"finished cleaning storage units"}
+proxy-1     | {"level":"info","ts":1793110853.2563434,"logger":"tls.obtain","msg":"certificate obtained successfully","identifier":"localhost","issuer":"local"}
+proxy-1     | {"level":"info","ts":1793110853.2564251,"logger":"tls.obtain","msg":"releasing lock","identifier":"localhost"}
+proxy-1     | {"level":"warn","ts":1793110853.2566762,"logger":"tls","msg":"stapling OCSP","identifiers":["localhost"]}
+backup-1    | {"time":"2026-10-27T14:20:50Z","service":"ltw-backup","level":"info","msg":"backups every 21600 s; keeping 14 daily and 8 weekly"}
+backup-1    | {"time":"2026-10-27T14:20:50Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261027T142050Z.dump (814 bytes)"}
+backup-1    | {"time":"2026-10-27T14:20:50Z","service":"ltw-backup","level":"info","msg":"retention: kept 1, removed 0"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.653Z","service":"ltw-migrate","database":"postgres://postgres:5432/ltw","msg":"connecting"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.703Z","service":"ltw-migrate","migration":"0001_world_event_store","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.729Z","service":"ltw-migrate","migration":"0002_ai_traces","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.735Z","service":"ltw-migrate","migration":"0003_authoring_proposals","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.741Z","service":"ltw-migrate","migration":"0004_asset_contents","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.746Z","service":"ltw-migrate","migration":"0005_ai_accounting","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.788Z","service":"ltw-migrate","migration":"0006_ai_outcome_window","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.790Z","service":"ltw-migrate","migration":"0007_ai_outcome_code","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.792Z","service":"ltw-migrate","migration":"0008_ai_attempt_responses","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.795Z","service":"ltw-migrate","migration":"0009_dm_substitutions","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.798Z","service":"ltw-migrate","migration":"0010_auth","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.808Z","service":"ltw-migrate","migration":"0011_image_budget","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.814Z","service":"ltw-migrate","migration":"0012_image_orphaned_settlements","msg":"applying migration"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:50.818Z","service":"ltw-migrate","applied":["0001_world_event_store","0002_ai_traces","0003_authoring_proposals","0004_asset_contents","0005_ai_accounting","0006_ai_outcome_window","0007_ai_outcome_code","0008_ai_attempt_responses","0009_dm_substitutions","0010_auth","0011_image_budget","0012_image_orphaned_settlements"],"alreadyApplied":0,"msg":"migrations complete"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.145Z","service":"ltw-server","generator":"placeholder","msg":"image generator"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.300Z","service":"ltw-server","msg":"Server listening at http://10.241.5.10:3000"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.301Z","service":"ltw-server","nodeEnv":"production","authMode":"invitations","trustedProxies":1,"database":"postgres://postgres:5432/ltw","allowNewerSchema":false,"msg":"server ready"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.301Z","service":"ltw-server","capability":"reasoning","providers":["local"],"msg":"AI route"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.301Z","service":"ltw-server","capability":"npc-dialogue","providers":["local"],"msg":"AI route"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.301Z","service":"ltw-server","capability":"narrative","providers":["local"],"msg":"AI route"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.301Z","service":"ltw-server","capability":"fast-context","providers":[],"msg":"AI route"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.329Z","service":"ltw-server","attempts":0,"sessions":0,"msg":"sign-in records pruned"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.333Z","service":"ltw-server","module":"readiness","msg":"ready"}
+server-1    | {"level":"info","time":"2026-10-27T14:20:51.348Z","service":"ltw-server","openHolds":0,"activeStops":0,"incompleteRequests":0,"disabledAccounts":0,"disabledApprovals":0,"msg":"AI accounting status (shared by every player and DM request)"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.447Z","service":"ltw-server","requestId":"2fd00a9e-3ed8-4568-9c6f-fd8c4db51d15","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.472Z","service":"ltw-server","requestId":"2fd00a9e-3ed8-4568-9c6f-fd8c4db51d15","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.473Z","service":"ltw-server","requestId":"2fd00a9e-3ed8-4568-9c6f-fd8c4db51d15","res":{"statusCode":401},"responseTime":21.697876000020187,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.491Z","service":"ltw-server","requestId":"a6aa8b46-2843-47c6-9ed4-a2e9c37efb0e","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.495Z","service":"ltw-server","requestId":"a6aa8b46-2843-47c6-9ed4-a2e9c37efb0e","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.495Z","service":"ltw-server","requestId":"a6aa8b46-2843-47c6-9ed4-a2e9c37efb0e","res":{"statusCode":401},"responseTime":3.5271250000223517,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.507Z","service":"ltw-server","requestId":"b3ba8161-20f9-49a2-94bf-8efd4239277c","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.509Z","service":"ltw-server","requestId":"b3ba8161-20f9-49a2-94bf-8efd4239277c","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.509Z","service":"ltw-server","requestId":"b3ba8161-20f9-49a2-94bf-8efd4239277c","res":{"statusCode":401},"responseTime":1.8289590000058524,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.522Z","service":"ltw-server","requestId":"0d44bcbc-144d-4c2c-8ae0-09d93921cbed","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.524Z","service":"ltw-server","requestId":"0d44bcbc-144d-4c2c-8ae0-09d93921cbed","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.524Z","service":"ltw-server","requestId":"0d44bcbc-144d-4c2c-8ae0-09d93921cbed","res":{"statusCode":401},"responseTime":1.624415999976918,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.538Z","service":"ltw-server","requestId":"79583f40-f6d6-4353-9849-e7378635c184","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.540Z","service":"ltw-server","requestId":"79583f40-f6d6-4353-9849-e7378635c184","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.540Z","service":"ltw-server","requestId":"79583f40-f6d6-4353-9849-e7378635c184","res":{"statusCode":401},"responseTime":2.0529589999932796,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.556Z","service":"ltw-server","requestId":"8063ef43-f7d6-4133-ab6d-ea43a1f74e19","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.558Z","service":"ltw-server","requestId":"8063ef43-f7d6-4133-ab6d-ea43a1f74e19","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.558Z","service":"ltw-server","requestId":"8063ef43-f7d6-4133-ab6d-ea43a1f74e19","res":{"statusCode":401},"responseTime":2.410915999993449,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.571Z","service":"ltw-server","requestId":"629dfcb8-84e5-41d6-a47c-3ea05c4f526d","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.572Z","service":"ltw-server","requestId":"629dfcb8-84e5-41d6-a47c-3ea05c4f526d","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.573Z","service":"ltw-server","requestId":"629dfcb8-84e5-41d6-a47c-3ea05c4f526d","res":{"statusCode":401},"responseTime":2.0171250000130385,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.588Z","service":"ltw-server","requestId":"ea58cac8-b2de-4c8b-a71a-33d53455b383","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.590Z","service":"ltw-server","requestId":"ea58cac8-b2de-4c8b-a71a-33d53455b383","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.590Z","service":"ltw-server","requestId":"ea58cac8-b2de-4c8b-a71a-33d53455b383","res":{"statusCode":401},"responseTime":2.1427919999987353,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.605Z","service":"ltw-server","requestId":"55a4bad9-d6d3-4e45-b204-6aadcd03b3e3","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.608Z","service":"ltw-server","requestId":"55a4bad9-d6d3-4e45-b204-6aadcd03b3e3","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.608Z","service":"ltw-server","requestId":"55a4bad9-d6d3-4e45-b204-6aadcd03b3e3","res":{"statusCode":401},"responseTime":2.676625000021886,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.623Z","service":"ltw-server","requestId":"91f18d88-4de7-4aaa-a1cb-34a08cc9fb0e","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.626Z","service":"ltw-server","requestId":"91f18d88-4de7-4aaa-a1cb-34a08cc9fb0e","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.626Z","service":"ltw-server","requestId":"91f18d88-4de7-4aaa-a1cb-34a08cc9fb0e","res":{"statusCode":401},"responseTime":2.327166999981273,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.644Z","service":"ltw-server","requestId":"ebb7f47c-29e2-4cae-b8ba-2f2793798454","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.646Z","service":"ltw-server","requestId":"ebb7f47c-29e2-4cae-b8ba-2f2793798454","limit":"redeem","reason":"too-fast","msg":"request limited"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.646Z","service":"ltw-server","requestId":"ebb7f47c-29e2-4cae-b8ba-2f2793798454","res":{"statusCode":429},"responseTime":1.774915999994846,"msg":"request completed"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.709Z","service":"ltw-server","requestId":"cad4ead5-f4b7-4ecf-995d-0cd47851dd61","req":{"method":"POST","url":"/auth/redeem"},"msg":"incoming request"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.711Z","service":"ltw-server","requestId":"cad4ead5-f4b7-4ecf-995d-0cd47851dd61","reason":"unknown","msg":"sign-in refused"}
+server-1    | {"level":"info","time":"2026-10-27T14:23:55.712Z","service":"ltw-server","requestId":"cad4ead5-f4b7-4ecf-995d-0cd47851dd61","res":{"statusCode":401},"responseTime":2.5407499999855645,"msg":"request completed"}

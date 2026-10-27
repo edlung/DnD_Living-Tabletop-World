@@ -1,0 +1,47 @@
+before: latest=ltw-20261027T163721Z.dump
+planted: ltw-20261027T999999Z.dump (impossible time), ltw-20991231T235959Z.dump (valid time, not in manifest; copies of the empty first dump)
+latest -> {"time":"2026-10-27T16:44:03Z","service":"ltw-backup","level":"warn","msg":"ignored, not a real time: ltw-20261027T999999Z.dump"}
+ltw-20261027T163721Z.dump
+verify impossible:
+{"time":"2026-10-27T16:44:03Z","service":"ltw-backup","level":"error","msg":"not in the manifest: ltw-20261027T999999Z.dump"}
+verify unlisted:
+{"time":"2026-10-27T16:44:03Z","service":"ltw-backup","level":"error","msg":"not in the manifest: ltw-20991231T235959Z.dump"}
+prune:
+{"time":"2026-10-27T16:44:03Z","service":"ltw-backup","level":"warn","msg":"ignored, not a real time: ltw-20261027T999999Z.dump"}
+{"time":"2026-10-27T16:44:03Z","service":"ltw-backup","level":"warn","msg":"ignored, not a real time: ltw-20261027T999999Z.dump"}
+{"time":"2026-10-27T16:44:03Z","service":"ltw-backup","level":"info","msg":"retention: kept 10, removed 0"}
+SHA256SUMS
+ltw-20261027T163344Z.dump
+ltw-20261027T163432Z.dump
+ltw-20261027T163451Z.dump
+ltw-20261027T163606Z.dump
+ltw-20261027T163644Z.dump
+ltw-20261027T163721Z.dump
+ltw-20261027T999999Z.dump
+ltw-20991231T235959Z.dump
+ltw-predeploy-20261027T163412Z.dump
+ltw-prerestore-20261027T163641Z.dump
+ltw-prerestore-20261027T163717Z.dump
+latest after prune -> {"time":"2026-10-27T16:44:03Z","service":"ltw-backup","level":"warn","msg":"ignored, not a real time: ltw-20261027T999999Z.dump"}
+ltw-20991231T235959Z.dump
+3
+restore.sh of the impossible name:
+ Container ltw-g06-retest-postgres-1 Healthy 
+==> dump: ltw-20261027T999999Z.dump
+{"time":"2026-10-27T16:44:04Z","service":"ltw-backup","level":"error","msg":"not in the manifest: ltw-20261027T999999Z.dump"}
+-- health with the future-dated stray as latest:
+{"time":"2026-10-27T16:44:20Z","service":"ltw-backup","level":"warn","msg":"ignored, not a real time: ltw-20261027T999999Z.dump"}
+health rc=0
+-- simulated: backups stopped for 3 days (BACKUP_NOW_EPOCH not used by health; checking age arithmetic)
+-- restore-drill.sh (default = latest):
+{"time":"2026-10-27T16:44:28Z","service":"ltw-backup","level":"warn","msg":"ignored, not a real time: ltw-20261027T999999Z.dump"}
+==> dump: ltw-20991231T235959Z.dump (taken 2099-12-31T23:59:59Z)
+{"time":"2026-10-27T16:44:28Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20991231T235959Z.dump"}
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[{"campaignId":"ravenford","version":327,"createdAt":"2026-10-27T16:35:23.439Z"}],"failures":["empty","unrestored"]}
+restore-drill.sh: restore drill FAILED: a restored campaign differs from the live one, the restore is empty, or it lacks a live campaign (see failures)
+ltw-20261027T163721Z.dump

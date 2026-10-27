@@ -1,0 +1,50 @@
+{"time":"2026-10-27T16:36:07Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261027T163606Z.dump (14866633 bytes)"}
+{"time":"2026-10-27T16:36:07Z","service":"ltw-backup","level":"info","msg":"retention: kept 5, removed 0"}
+{"time":"2026-10-27T16:36:07Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261027T163606Z.dump"}
+ltw-20261027T163606Z.dump
+==> dump: ltw-20261027T163606Z.dump (taken 2026-10-27T16:36:06Z)
+{"time":"2026-10-27T16:36:08Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261027T163606Z.dump"}
+==> throwaway database
+ Container ltw-g06-retest-drill-db-1 Creating 
+ Container ltw-g06-retest-drill-db-1 Created 
+ Container ltw-g06-retest-drill-db-1 Starting 
+ Container ltw-g06-retest-drill-db-1 Started 
+ Container ltw-g06-retest-drill-db-1 Waiting 
+ Container ltw-g06-retest-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-27T16:36:11.568Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-27T16:36:11.588Z","service":"ltw-migrate","applied":[],"alreadyApplied":12,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 45
+ltw_auth_attempts 1
+ltw_auth_invitations 1
+ltw_auth_sessions 1
+ltw_authoring_revisions 0
+ltw_commands 296
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 305
+ltw_image_budget 0
+ltw_image_charges 0
+ltw_image_operator_settlements 0
+ltw_image_settlements 0
+ltw_schema_migrations 12
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":305,"digest":"sha256:d8a605b9cca23175656684badab96c71b06502feaa8230020b3a01b835068738","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":305,"status":"match","expected":"sha256:d8a605b9cca23175656684badab96c71b06502feaa8230020b3a01b835068738","actual":"sha256:d8a605b9cca23175656684badab96c71b06502feaa8230020b3a01b835068738","head":305}],"unrestored":[],"failures":[]}
+==> restore drill passed

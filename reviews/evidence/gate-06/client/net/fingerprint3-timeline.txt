@@ -1,0 +1,8 @@
+1793111707.04 ACTION idle
+1793111712.08 ACTION SECRET CreateEntity(hidden)
+1793111712.17 DMCMD create -> 200 accepted 
+1793111716.21 ACTION SECRET ChangeEntityStatus(hidden watcher)
+1793111716.27 DMCMD status -> 400 rejected INVALID_COMMAND
+1793111720.31 ACTION CONTROL MoveCombatant(goblin-raider-2 active, visible)
+1793111720.38 DMCMD move -> 200 accepted 
+1793111724.42 ACTION done

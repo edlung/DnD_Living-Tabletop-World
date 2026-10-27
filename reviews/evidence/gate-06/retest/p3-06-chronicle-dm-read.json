@@ -1,0 +1,678 @@
+{
+ "perspective": "DM",
+ "chapters": [
+  {
+   "chronicleId": "chronicle.e4a9e96f-4222-4987-a649-bd79f820db9f",
+   "title": "Глава RT PARTY",
+   "perspective": "PARTY",
+   "from": 0,
+   "to": 36000,
+   "generatedAt": 36000,
+   "entries": [
+    {
+     "key": "e1",
+     "occurredAt": 34200,
+     "text": "Мира рассказала нам, что караван ушёл до рассвета.",
+     "salience": 4,
+     "memoryId": "mem-party-talk-mira",
+     "memoryKind": "CONVERSATION",
+     "eventType": null,
+     "location": {
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      },
+      {
+       "entityId": "mira-vale",
+       "kind": "npc",
+       "name": "Мира Вейл"
+      }
+     ],
+     "knowledge": [
+      {
+       "knowledgeId": "party-mira-departure",
+       "knowledgeType": "TESTIMONY",
+       "statement": "Мира Вейл говорит, что караван ушёл до рассвета."
+      }
+     ],
+     "sources": [
+      {
+       "eventId": "c956e864-0d8c-4433-8c3a-3b79478eb54e",
+       "eventType": "MemoryRecorded",
+       "sequence": 71
+      },
+      {
+       "eventId": "4a0dbb55-8ebb-4da5-8f9f-b67dba8e4cd8",
+       "eventType": "KnowledgeAssigned",
+       "sequence": 52
+      }
+     ]
+    },
+    {
+     "key": "e2",
+     "occurredAt": 35400,
+     "text": "Мы решили искать караван на Старой Торговой дороге.",
+     "salience": 5,
+     "memoryId": "mem-party-decide-road",
+     "memoryKind": "DECISION",
+     "eventType": null,
+     "location": {
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "eb5e05c8-adcf-4150-b6c0-35e5e0b7e494",
+       "eventType": "MemoryRecorded",
+       "sequence": 73
+      }
+     ]
+    },
+    {
+     "key": "e3",
+     "occurredAt": 35700,
+     "text": "Из-за этого решения мы закупили припасы в дорогу.",
+     "salience": 2,
+     "memoryId": "mem-party-supplies",
+     "memoryKind": "CONSEQUENCE",
+     "eventType": null,
+     "location": {
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "1749b2c0-bff6-4e1e-8791-3159d5fb7740",
+       "eventType": "MemoryRecorded",
+       "sequence": 74
+      }
+     ]
+    }
+   ],
+   "prose": {
+    "provider": "local",
+    "model": "local-interpreter-1",
+    "traceId": "1c9f3870-5d41-4281-9d58-cda9c3666dac",
+    "paragraphs": [
+     {
+      "text": "Мира рассказала нам, что караван ушёл до рассвета. Со слов рассказчика: Мира Вейл говорит, что караван ушёл до рассвета.",
+      "cites": [
+       "e1"
+      ]
+     },
+     {
+      "text": "Мы решили искать караван на Старой Торговой дороге.",
+      "cites": [
+       "e2"
+      ]
+     },
+     {
+      "text": "Из-за этого решения мы закупили припасы в дорогу.",
+      "cites": [
+       "e3"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "chronicleId": "chronicle.fdc1492c-1904-4bc6-9337-9e9ce51e449e",
+   "title": "Глава RT DM",
+   "perspective": "DM",
+   "from": 0,
+   "to": 36000,
+   "generatedAt": 36000,
+   "entries": [
+    {
+     "key": "e1",
+     "occurredAt": 32400,
+     "text": "Новое лицо в истории: Мира Вейл.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "EntityCreated",
+     "location": null,
+     "participants": [
+      {
+       "entityId": "mira-vale",
+       "kind": "npc",
+       "name": "Мира Вейл"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "e1a0ad79-f0ea-45c6-a33b-00d0a3a9c4cc",
+       "eventType": "EntityCreated",
+       "sequence": 10
+      }
+     ]
+    },
+    {
+     "key": "e2",
+     "occurredAt": 32400,
+     "text": "Новое лицо в истории: Орин Стоунберд.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "EntityCreated",
+     "location": null,
+     "participants": [
+      {
+       "entityId": "orin-stonebeard",
+       "kind": "npc",
+       "name": "Орин Стоунберд"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "5cdecb2c-264b-4a78-a4d4-1456329ae1f4",
+       "eventType": "EntityCreated",
+       "sequence": 12
+      }
+     ]
+    },
+    {
+     "key": "e3",
+     "occurredAt": 32400,
+     "text": "Новое лицо в истории: Капитан Торн.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "EntityCreated",
+     "location": null,
+     "participants": [
+      {
+       "entityId": "captain-thorne",
+       "kind": "npc",
+       "name": "Капитан Торн"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "c53fb2dd-aac4-4829-a4a3-f8c35c9124b5",
+       "eventType": "EntityCreated",
+       "sequence": 14
+      }
+     ]
+    },
+    {
+     "key": "e4",
+     "occurredAt": 32400,
+     "text": "Перемещение: Эловен Старвиспер → Рыночная площадь.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "EntityPlaced",
+     "location": {
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "bf3360a0-178b-436e-8336-132ba5130872",
+       "eventType": "EntityPlaced",
+       "sequence": 17
+      }
+     ]
+    },
+    {
+     "key": "e5",
+     "occurredAt": 36000,
+     "text": "Новое лицо в истории: Томас Рид.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "EntityCreated",
+     "location": null,
+     "participants": [
+      {
+       "entityId": "npc-08b7a35d",
+       "kind": "npc",
+       "name": "Томас Рид"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "79015c81-e3e2-4ab8-9a0d-2f47838ca5f4",
+       "eventType": "EntityCreated",
+       "sequence": 318
+      }
+     ]
+    },
+    {
+     "key": "e6",
+     "occurredAt": 36000,
+     "text": "Началась схватка. Место: Старая Торговая дорога. Участники: Гоблин-шаман, Эловен Старвиспер, Гоблин-налётчик, Гоблин-налётчик, Гоблин-налётчик.",
+     "salience": 4,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "CombatStarted",
+     "location": {
+      "entityId": "old-trade-road",
+      "kind": "location",
+      "name": "Старая Торговая дорога"
+     },
+     "participants": [
+      {
+       "entityId": "creature-ae08be99",
+       "kind": "creature",
+       "name": "Гоблин-шаман"
+      },
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      },
+      {
+       "entityId": "creature-10fb59d4",
+       "kind": "creature",
+       "name": "Гоблин-налётчик"
+      },
+      {
+       "entityId": "creature-589f6668",
+       "kind": "creature",
+       "name": "Гоблин-налётчик"
+      },
+      {
+       "entityId": "creature-6513bec0",
+       "kind": "creature",
+       "name": "Гоблин-налётчик"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "528af8cc-a893-4501-9b93-94cca88f138f",
+       "eventType": "CombatStarted",
+       "sequence": 313
+      }
+     ]
+    },
+    {
+     "key": "e7",
+     "occurredAt": 36000,
+     "text": "Схватка закончилась.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "CombatEnded",
+     "location": null,
+     "participants": [],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "b1965f11-468e-4c2d-85af-736986d06440",
+       "eventType": "CombatEnded",
+       "sequence": 315
+      }
+     ]
+    },
+    {
+     "key": "e8",
+     "occurredAt": 36000,
+     "text": "Перемещение: Эловен Старвиспер → Старая Торговая дорога.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "EntityPlaced",
+     "location": {
+      "entityId": "old-trade-road",
+      "kind": "location",
+      "name": "Старая Торговая дорога"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "5ddb533b-1d3f-4a55-b4c4-5f254c3c74c6",
+       "eventType": "EntityPlaced",
+       "sequence": 308
+      }
+     ]
+    },
+    {
+     "key": "e9",
+     "occurredAt": 36000,
+     "text": "Перемещение: Эловен Старвиспер → Заброшенная стоянка каравана.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "EntityPlaced",
+     "location": {
+      "entityId": "location-f3b82c8b",
+      "kind": "location",
+      "name": "Заброшенная стоянка каравана"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "96ffe864-c51e-4e40-b541-0b04af0a2a6b",
+       "eventType": "EntityPlaced",
+       "sequence": 317
+      }
+     ]
+    },
+    {
+     "key": "e10",
+     "occurredAt": 36000,
+     "text": "Выдвинута гипотеза: Караван атаковали гоблины.",
+     "salience": 3,
+     "memoryId": null,
+     "memoryKind": null,
+     "eventType": "KnowledgeAssigned",
+     "location": null,
+     "participants": [],
+     "knowledge": [
+      {
+       "knowledgeId": "party-goblin-hypothesis",
+       "knowledgeType": "HYPOTHESIS",
+       "statement": "Караван атаковали гоблины."
+      }
+     ],
+     "sources": [
+      {
+       "eventId": "7b878213-c75c-4f20-87f9-2341f8bd63c6",
+       "eventType": "KnowledgeAssigned",
+       "sequence": 53
+      }
+     ]
+    }
+   ],
+   "prose": {
+    "provider": "local",
+    "model": "local-interpreter-1",
+    "traceId": "3562c800-2214-4855-843a-25bd216943ad",
+    "paragraphs": [
+     {
+      "text": "Новое лицо в истории: Мира Вейл.",
+      "cites": [
+       "e1"
+      ]
+     },
+     {
+      "text": "Новое лицо в истории: Орин Стоунберд.",
+      "cites": [
+       "e2"
+      ]
+     },
+     {
+      "text": "Новое лицо в истории: Капитан Торн.",
+      "cites": [
+       "e3"
+      ]
+     },
+     {
+      "text": "Перемещение: Эловен Старвиспер → Рыночная площадь.",
+      "cites": [
+       "e4"
+      ]
+     },
+     {
+      "text": "Новое лицо в истории: Томас Рид.",
+      "cites": [
+       "e5"
+      ]
+     },
+     {
+      "text": "Началась схватка. Место: Старая Торговая дорога. Участники: Гоблин-шаман, Эловен Старвиспер, Гоблин-налётчик, Гоблин-налётчик, Гоблин-налётчик.",
+      "cites": [
+       "e6"
+      ]
+     },
+     {
+      "text": "Схватка закончилась.",
+      "cites": [
+       "e7"
+      ]
+     },
+     {
+      "text": "Перемещение: Эловен Старвиспер → Старая Торговая дорога.",
+      "cites": [
+       "e8"
+      ]
+     },
+     {
+      "text": "Перемещение: Эловен Старвиспер → Заброшенная стоянка каравана.",
+      "cites": [
+       "e9"
+      ]
+     },
+     {
+      "text": "Выдвинута гипотеза: Караван атаковали гоблины. Подозрение, не установлено: Караван атаковали гоблины.",
+      "cites": [
+       "e10"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "chronicleId": "chronicle.6ca47d93-cb40-41bf-a0a5-478527bd0ebe",
+   "title": "Глава RT CHARACTER:elowen-starwhisper",
+   "perspective": "CHARACTER:elowen-starwhisper",
+   "from": 0,
+   "to": 36000,
+   "generatedAt": 36000,
+   "entries": [
+    {
+     "key": "e1",
+     "occurredAt": 34200,
+     "text": "Мира рассказала нам, что караван ушёл до рассвета.",
+     "salience": 4,
+     "memoryId": "mem-party-talk-mira",
+     "memoryKind": "CONVERSATION",
+     "eventType": null,
+     "location": {
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      },
+      {
+       "entityId": "mira-vale",
+       "kind": "npc",
+       "name": "Мира Вейл"
+      }
+     ],
+     "knowledge": [
+      {
+       "knowledgeId": "party-mira-departure",
+       "knowledgeType": "TESTIMONY",
+       "statement": "Мира Вейл говорит, что караван ушёл до рассвета."
+      }
+     ],
+     "sources": [
+      {
+       "eventId": "c956e864-0d8c-4433-8c3a-3b79478eb54e",
+       "eventType": "MemoryRecorded",
+       "sequence": 71
+      },
+      {
+       "eventId": "4a0dbb55-8ebb-4da5-8f9f-b67dba8e4cd8",
+       "eventType": "KnowledgeAssigned",
+       "sequence": 52
+      }
+     ]
+    },
+    {
+     "key": "e2",
+     "occurredAt": 34500,
+     "text": "Эловен заметила, как Мира нервно поглядывает в сторону Северных ворот.",
+     "salience": 2,
+     "memoryId": "mem-elowen-mira-glance",
+     "memoryKind": "OBSERVATION",
+     "eventType": null,
+     "location": {
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      },
+      {
+       "entityId": "mira-vale",
+       "kind": "npc",
+       "name": "Мира Вейл"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "171dd0d3-111e-4029-b16a-27ee843970f9",
+       "eventType": "MemoryRecorded",
+       "sequence": 72
+      }
+     ]
+    },
+    {
+     "key": "e3",
+     "occurredAt": 35400,
+     "text": "Мы решили искать караван на Старой Торговой дороге.",
+     "salience": 5,
+     "memoryId": "mem-party-decide-road",
+     "memoryKind": "DECISION",
+     "eventType": null,
+     "location": {
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "eb5e05c8-adcf-4150-b6c0-35e5e0b7e494",
+       "eventType": "MemoryRecorded",
+       "sequence": 73
+      }
+     ]
+    },
+    {
+     "key": "e4",
+     "occurredAt": 35700,
+     "text": "Из-за этого решения мы закупили припасы в дорогу.",
+     "salience": 2,
+     "memoryId": "mem-party-supplies",
+     "memoryKind": "CONSEQUENCE",
+     "eventType": null,
+     "location": {
+      "entityId": "market-square",
+      "kind": "location",
+      "name": "Рыночная площадь"
+     },
+     "participants": [
+      {
+       "entityId": "elowen-starwhisper",
+       "kind": "character",
+       "name": "Эловен Старвиспер"
+      }
+     ],
+     "knowledge": [],
+     "sources": [
+      {
+       "eventId": "1749b2c0-bff6-4e1e-8791-3159d5fb7740",
+       "eventType": "MemoryRecorded",
+       "sequence": 74
+      }
+     ]
+    }
+   ],
+   "prose": {
+    "provider": "local",
+    "model": "local-interpreter-1",
+    "traceId": "b8fe4488-9bf9-41de-8a14-1d8c16180da4",
+    "paragraphs": [
+     {
+      "text": "Мира рассказала нам, что караван ушёл до рассвета. Со слов рассказчика: Мира Вейл говорит, что караван ушёл до рассвета.",
+      "cites": [
+       "e1"
+      ]
+     },
+     {
+      "text": "Эловен заметила, как Мира нервно поглядывает в сторону Северных ворот.",
+      "cites": [
+       "e2"
+      ]
+     },
+     {
+      "text": "Мы решили искать караван на Старой Торговой дороге.",
+      "cites": [
+       "e3"
+      ]
+     },
+     {
+      "text": "Из-за этого решения мы закупили припасы в дорогу.",
+      "cites": [
+       "e4"
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

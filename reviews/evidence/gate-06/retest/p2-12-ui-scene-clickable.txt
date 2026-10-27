@@ -1,0 +1,32 @@
+at Старая Торговая дорога
+command Войти: Неопознанный объект (место) 200 {"status":"accepted","commandId":"http:player:c109ed0d-c8d2-4777-940d-894b242d4856:explore-73252222-25dc-4809-bf8c-01689
+details now: - complementary "Подробности":
+  - paragraph: Взгляд поближе
+  - heading "Неопознанный объект (место)" [level=2]
+  - paragraph: место
+  - button "Закрыть подробности"
+  - list:
+    - listitem: Находится рядом с вами
+  - region "Действия":
+    - heading "Что вы хотите сделать?" [level=3]
+    - button
+command Осмотреть 200 {"status":"accepted","commandId":"http:player:c109ed0d-c8d2-4777-940d-894b242d4856:explore-d14f547b-2bd8-43f6-8da2-28609
+01-site-inspected-1440: outcome visible=true objects=6 unreachable=[]
+command Осмотреть 200 {"status":"accepted","commandId":"http:player:c109ed0d-c8d2-4777-940d-894b242d4856:explore-79f08175-1017-4e46-8080-b5fe5
+02-object-inspected-1440: outcome visible=true objects=6 unreachable=[]
+  1440 trial click #0 Эловен Старвисперперсонажжив: reachable
+  1440 trial click #1 Неопознанный объект (особенность)особенностьжив: reachable
+  1440 trial click #2 Неопознанный объект (особенность)особенностьжив: reachable
+  1440 trial click #3 Неопознанный объект (предмет)предметжив: reachable
+  1440 trial click #4 Неопознанный объект (предмет)предметжив: reachable
+  1440 trial click #5 Сломанное колесо повозкипредметжив: reachable
+03-768-drawer-open: outcome visible=true objects=6 unreachable=["Неопознанный объект (особенность)особенностьжив -> covered by detail-panel","Неопознанный объект (предмет)предметжив -> covered by detail-panel","Неопознанный объект (предмет)предметжив -> covered by P","Сломанное колесо повозкипредметжив -> covered by detail-panel"]
+04-768-drawer-closed: outcome visible=true objects=6 unreachable=[]
+  768 trial click #0 Эловен Старвисперперсонажжив: reachable
+  768 trial click #1 Неопознанный объект (особенность)особенностьжив: reachable
+  768 trial click #2 Неопознанный объект (особенность)особенностьжив: reachable
+  768 trial click #3 Неопознанный объект (предмет)предметжив: reachable
+  768 trial click #4 Неопознанный объект (предмет)предметжив: reachable
+  768 trial click #5 Сломанное колесо повозкипредметжив: reachable
+768 real click opens details: Эловен Старвиспер outcome still visible: true
+errors []

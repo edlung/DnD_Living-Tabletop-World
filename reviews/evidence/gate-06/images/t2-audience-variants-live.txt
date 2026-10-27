@@ -1,0 +1,24 @@
+ready: 1 1 1
+changed: focusThorne=0 plain=0 focusGoblin=0
+== A. hidden entity (goblin-shaman), DM-only candidate + approve
+200 ["accepted",null,null,null,["AssetRequested"]]
+changed: focusThorne=0 plain=0 focusGoblin=0
+200 ["accepted",null,null,null,["AssetApproved"]]
+changed: focusThorne=0 plain=0 focusGoblin=0
+== B. known-unobserved captain-thorne: players derived 'dead' candidate
+200 ["accepted",null,null,null,["AssetRequested"]]
+sha256:9c4e6321dd611d604b82a08db3fd7837a34a8a7d127e3a2bb6db7e7af4db32e3	CANDIDATE
+changed: focusThorne=0 plain=0 focusGoblin=0
+player thorne before approve: pres=["edc0aa16db5c","872bee5d0ff6",null] assets=[["reference","image",1,"edc0aa16db5c"],["derived","figure",1,"872bee5d0ff6"]]
+200 ["accepted",null,null,null,["AssetApproved"]]
+changed: focusThorne=0 plain=0 focusGoblin=0
+player thorne after approve: pres=["edc0aa16db5c","872bee5d0ff6",null] assets=[["reference","image",1,"edc0aa16db5c"],["derived","figure",1,"872bee5d0ff6"],["derived","image",1,"9c4e6321dd61"]] content=200
+{"observed":false,"status":null,"tags":["day"]}
+== C. market-square: DM-only 'night' supersedes players' night
+player market assets before: [["reference","image",1,"7ad7a7c7453b"],["derived","image",1,"3304fe225e4c"],["derived","image",1,"857482643f76"],["derived","image",1,"2b25278781ca"]] night-content=200
+200 ["accepted",null,null,null,["AssetRequested"]]
+changed: focusThorne=0 plain=0 focusGoblin=0
+200 ["accepted",null,null,null,["AssetApproved"]]
+changed: focusThorne=0 plain=0 focusGoblin=0
+player market after DM-only approve: [["reference","image",1,"7ad7a7c7453b"],["derived","image",1,"857482643f76"],["derived","image",1,"2b25278781ca"]] old-night=404 old-night-at=404 dmonly=404
+reference	image		players	CANONICAL	7ad7a7c7453b;derived	image	night	players	SUPERSEDED	3304fe225e4c;derived	image	rain	players	APPROVED	857482643f76;derived	image	night-rain	players	APPROVED	2b25278781ca;derived	image	night	dm	APPROVED	37f6e4598453;

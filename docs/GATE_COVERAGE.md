@@ -734,3 +734,9 @@ ADR 0023 amendments of 2026-10-27, ADR 0035 amendment "Gate 06 remediation"): ro
   `image-exposure.test.ts`: the party with `at`, a time before the entity existed, observed then
   but not now, a figure and battle map of what is known but unobserved, the DM previewing
   Elowen; `purposes.property.test.ts` also checks a past time for Elowen and the party.
+
+## Gate 06 result (2026-10-27)
+
+PASS after remediation and retest: `reviews/ASTRA_GATE_06_REPORT.md`, evidence
+`reviews/evidence/gate-06/`. Every alpha row above was attacked on a deployment (the report's
+coverage table names the team per row). Open for the owner: G06-client-02.

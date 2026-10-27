@@ -1,0 +1,35 @@
+/sbin/docker-init -- /usr/local/bin/ltw-server-start 
+--- env (redacted secrets) ---
+OPENROUTER_API_KEY=<redacted>
+DATABASE_URL=<redacted>
+LOG_LEVEL=
+LTW_ASSET_WORKER_INTERVAL_MS=
+NODE_VERSION=24.21.0
+HOSTNAME=aaa7c4e0003a
+YARN_VERSION=1.22.22
+SHLVL=1
+HOME=/home/node
+LTW_QUESTS_FILE=/app/fixtures/ravenford-ru/quests.json
+LTW_AI_REQUEST_TIMEOUT_MS=
+LTW_AI_RELEVANCE_BUDGET_MS=
+DEEPSEEK_API_KEY=<redacted>
+LTW_AI_ROUTES=
+HTTP_HOST=10.241.5.10
+LTW_AI_MODEL=
+PUBLIC_ORIGIN=https://localhost:18447
+AUTH_MODE=invitations
+HTTP_PORT=3000
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ANTHROPIC_API_KEY=<redacted>
+LTW_AI_TIMEOUT_MS=
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_AI_APPROVAL_ID=
+DEV_PERSONAS_FILE=
+LTW_DEEPSEEK_MODEL=
+LTW_TRUST_PROXY=10.241.5.0/24
+PWD=/app
+LTW_ASSET_TIMEOUT_MS=
+LTW_IMAGE_GENERATOR=placeholder
+LTW_REVISION=0cc8d8db24113820240739081080de5da0664b5f
+NODE_ENV=production
+LTW_IMAGE_MODEL=

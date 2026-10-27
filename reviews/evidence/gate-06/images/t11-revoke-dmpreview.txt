@@ -1,0 +1,7 @@
+DM preview as Elowen: goblin content=404 market=200 goblin-assets=404
+DM as DM: goblin content=200
+player before revoke: 200
+revoke: 200
+stream: event: closed data: {"reason":"unauthenticated"} 
+revoked player content=401 assets=401 pres=401
+note in logs: 0

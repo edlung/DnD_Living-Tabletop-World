@@ -1,0 +1,37 @@
+== lineage (descriptions) is DM-only
+  player GET /assets: 403 descriptions-in-body=False
+  player GET /assets?perspective=DM: 403 descriptions-in-body=False
+  player GET /assets?perspective=CHARACTER:elowen-starwhisper: 403 descriptions-in-body=False
+  player GET /assets?perspective=PARTY: 403 descriptions-in-body=False
+  outsider GET /assets: 401 descriptions-in-body=False
+  outsider GET /assets?perspective=DM: 401 descriptions-in-body=False
+  outsider GET /assets?perspective=CHARACTER:elowen-starwhisper: 401 descriptions-in-body=False
+  outsider GET /assets?perspective=PARTY: 401 descriptions-in-body=False
+  DM: 200 descriptions count 14 includes Ashen Circle description: True
+== perspective escalation (player)
+  knowledge?perspective=DM: 403  encounter: 403
+  knowledge?perspective=NPC:mira-vale: 403  encounter: 403
+  knowledge?perspective=CHARACTER:captain-thorne: 403  encounter: 403
+  knowledge?perspective=CHARACTER:creature-ae08be99: 403  encounter: 403
+  knowledge?perspective=PUBLIC: 200  encounter: 200
+  knowledge?perspective=PARTY: 200  encounter: 200
+== uniform 404 (player): hidden vs nonexistent
+  /entities/{}/context           hidden-npc (404, 'c005fbb4cb', '1ffbe4feb5') hidden-faction (404, 'c005fbb4cb', '1ffbe4feb5') nonexistent (404, 'c005fbb4cb', '1ffbe4feb5') old-id (404, 'c005fbb4cb', '1ffbe4feb5')
+  /entities/{}/sheet             hidden-npc (404, 'c005fbb4cb', '1ffbe4feb5') hidden-faction (404, 'c005fbb4cb', '1ffbe4feb5') nonexistent (404, 'c005fbb4cb', '1ffbe4feb5') old-id (404, 'c005fbb4cb', '1ffbe4feb5')
+  /entities/{}/presentation      hidden-npc (404, 'c005fbb4cb', '1ffbe4feb5') hidden-faction (404, 'c005fbb4cb', '1ffbe4feb5') nonexistent (404, 'c005fbb4cb', '1ffbe4feb5') old-id (404, 'c005fbb4cb', '1ffbe4feb5')
+  /entities/{}/assets            hidden-npc (404, 'c005fbb4cb', '1ffbe4feb5') hidden-faction (404, 'c005fbb4cb', '1ffbe4feb5') nonexistent (404, 'c005fbb4cb', '1ffbe4feb5') old-id (404, 'c005fbb4cb', '1ffbe4feb5')
+  /locations/{}/scene            hidden-npc (404, 'c005fbb4cb', '1ffbe4feb5') hidden-faction (404, 'c005fbb4cb', '1ffbe4feb5') nonexistent (404, 'c005fbb4cb', '1ffbe4feb5') old-id (404, 'c005fbb4cb', '1ffbe4feb5')
+  /entities/{}/knowledge         hidden-npc (404, 'c005fbb4cb', '1ffbe4feb5') hidden-faction (404, 'c005fbb4cb', '1ffbe4feb5') nonexistent (404, 'c005fbb4cb', '1ffbe4feb5') old-id (404, 'c005fbb4cb', '1ffbe4feb5')
+  content: hidden-hash vs random hash (404, 'c005fbb4cb', '1ffbe4feb5')
+== CSRF / Origin (player, state-changing command)
+  foreign Origin                   -> 403 FORBIDDEN
+  no Origin, cross-site            -> 403 FORBIDDEN
+  null Origin                      -> 403 FORBIDDEN
+  http origin same host            -> 403 FORBIDDEN
+  origin w/o port                  -> 403 FORBIDDEN
+  no Origin no fetch-metadata      -> 403 FORBIDDEN
+  text/plain body                  -> 400 INVALID_REQUEST
+== forged X-Forwarded-For (session/rate-limit identity)
+  XFF 1.2.3.4: redeem forged -> 401
+  XFF 127.0.0.1: redeem forged -> 401
+  XFF 10.241.6.10: redeem forged -> 401

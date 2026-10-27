@@ -1,0 +1,14 @@
+== spend after no-budget denials
+{"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+== set ceiling without authorization args
+ai:operator: --authorized-on is required
+== negative / fractional / huge ceiling
+ai:operator: expected nonnegative integer microdollars
+ai:operator: expected nonnegative integer microdollars
+ai:operator: expected nonnegative integer microdollars
+== tiny ceiling 1 micro
+{"imageBudgetRevision":1}
+== reservations list / settle bogus
+{"olderThanMinutes":0,"settleableAfterMinutes":15,"reservations":[]}
+ai:operator: refused (UNKNOWN_RESERVATION)
+ai:operator: --charge expects a reservation ID (UUID)

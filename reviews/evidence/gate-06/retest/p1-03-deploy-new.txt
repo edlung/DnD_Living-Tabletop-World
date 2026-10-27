@@ -1,0 +1,45 @@
+==> backup before the change (protected dump)
+ Container ltw-g06-retest-postgres-1 Running 
+ Container ltw-g06-retest-backup-1 Running 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-backup-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-backup-1 Healthy 
+ Container ltw-g06-retest-postgres-1 Healthy 
+{"time":"2026-10-27T16:34:13Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-predeploy-20261027T163412Z.dump (14865791 bytes)"}
+{"time":"2026-10-27T16:34:13Z","service":"ltw-backup","level":"info","msg":"retention: kept 2, removed 0"}
+==> the state before this deploy: ltw-predeploy-20261027T163412Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:127afb418022 and ltw-proxy:127afb418022 (previous: 0cc8d8db2411)
+ Container ltw-g06-retest-postgres-1 Running 
+ Container ltw-g06-retest-backup-1 Running 
+ Container ltw-g06-retest-server-1 Recreate 
+ Container ltw-g06-retest-server-1 Recreated 
+ Container ltw-g06-retest-proxy-1 Recreate 
+ Container ltw-g06-retest-proxy-1 Recreated 
+ Container ltw-g06-retest-postgres-1 Running 
+ Container ltw-g06-retest-backup-1 Running 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-server-1 Starting 
+ Container ltw-g06-retest-server-1 Started 
+ Container ltw-g06-retest-server-1 Waiting 
+ Container ltw-g06-retest-server-1 Healthy 
+ Container ltw-g06-retest-proxy-1 Starting 
+ Container ltw-g06-retest-proxy-1 Started 
+ Container ltw-g06-retest-server-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Waiting 
+ Container ltw-g06-retest-backup-1 Waiting 
+ Container ltw-g06-retest-proxy-1 Waiting 
+ Container ltw-g06-retest-postgres-1 Healthy 
+ Container ltw-g06-retest-backup-1 Healthy 
+ Container ltw-g06-retest-server-1 Healthy 
+ Container ltw-g06-retest-proxy-1 Healthy 
+NAME                        IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-g06-retest-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     42 seconds ago   Up 36 seconds (healthy)   5432/tcp
+ltw-g06-retest-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   42 seconds ago   Up 42 seconds (healthy)   5432/tcp
+ltw-g06-retest-proxy-1      ltw-proxy:127afb418022                                                                       "caddy run --config …"   proxy      6 seconds ago    Up 2 seconds (healthy)    127.0.0.1:18085->80/tcp, 127.0.0.1:18448->443/tcp
+ltw-g06-retest-server-1     ltw-server:127afb418022                                                                      "/usr/local/bin/ltw-…"   server     7 seconds ago    Up 5 seconds (healthy)    3000/tcp
+==> deployed 127afb418022

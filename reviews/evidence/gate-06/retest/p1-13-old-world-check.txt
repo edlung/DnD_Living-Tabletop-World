@@ -1,0 +1,3 @@
+new-world DM cookie against restored old world: 401
+old-world DM link (sha 0f441059 ) redeem: 200
+DM entities: 200 {'perspective': 'DM', 'entities': [{'entityId': '3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53', 'kind': 'faction', 'name': 'Пепельный круг'}, {'entityId': 'abandoned-caravan-site', 'kind': 'location', 'name': 'Заброшенная стоянка каравана'}, {'entityId': 'broken-wagon-wheel', 'kind': 'item', 'name': 'Сломан

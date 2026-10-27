@@ -1,0 +1,45 @@
+==> topology of project ltw-g06-infra
+     edge     false  192.168.16.0/20 host=192.168.16.1 | proxy
+     backend  true isolated 10.241.5.0/24 host=none | proxy server
+     data     true isolated 192.168.0.0/20 host=none | backup postgres server
+     egress   false  192.168.32.0/20 host=192.168.32.1 | server
+PASS  backend: internal, no host address (isolated), the pinned range
+PASS  backend: the proxy and the server only
+PASS  data: internal, no host address (isolated)
+PASS  data: the server, the database and the backups only
+PASS  edge: the proxy only
+PASS  egress: the server only
+PASS  the server's backend address is 10.241.5.10
+PASS  HTTP_HOST is that address
+PASS  LTW_TRUST_PROXY is the backend range
+     listening on port 3000: 10.241.5.10:3000
+PASS  the API listens only at the backend address
+==> reachable: nothing but the proxy reaches the API
+     host namespace: 10.241.5.10:3000 timeout
+     host namespace: 192.168.0.2:3000 timeout
+     host namespace: 192.168.32.2:3000 refused
+     host namespace: 192.168.16.2:443 open
+PASS  from the host: the backend address
+PASS  from the host: the data address
+PASS  from the host: the egress address
+PASS  control: the host reaches the proxy
+     edge network:   server:3000 no-such-name
+     edge network:   10.241.5.10:3000 timeout
+     edge network:   192.168.0.2:3000 timeout
+     edge network:   192.168.32.2:3000 timeout
+     edge network:   proxy:443 open
+PASS  from the edge network: the service name
+PASS  from the edge network: the backend address
+PASS  from the edge network: the data address
+PASS  from the edge network: the egress address
+PASS  control: the edge network reaches the proxy
+     egress network: server:3000 refused
+     egress network: 192.168.32.2:3000 refused
+PASS  from the egress network: the server's port is closed
+PASS  control: the proxy reaches the server
+==> forwarded: a client cannot choose the address it is limited as
+     through the proxy, X-Forwarded-For 203.0.113.1, .2, …: 401 401 401 401 401 401 401 401 401 401 429
+PASS  one client to the limits: 429 by the eleventh redeem
+     from the proxy (trusted peer), a forged X-Forwarded-For: wget: server returned error: HTTP/1.1 401 Unauthorized
+PASS  control: from a trusted peer the header names a new client (401, not 429)
+==> trust boundary checks passed

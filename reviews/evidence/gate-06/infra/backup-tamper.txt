@@ -1,0 +1,24 @@
+### TEST 1: byte-flip corruption, manifest unchanged ###
+flipped 1 byte at offset 407 size 814
+--- verify (expect FAIL: checksum mismatch) ---
+{"time":"2026-10-27T14:24:44Z","service":"ltw-backup","level":"error","msg":"checksum mismatch: ltw-20261027T142050Z.dump"}
+exit=1
+
+### TEST 2: truncation to 100 bytes ###
+--- verify (expect FAIL) ---
+{"time":"2026-10-27T14:24:44Z","service":"ltw-backup","level":"error","msg":"checksum mismatch: ltw-20261027T142050Z.dump"}
+exit=1
+
+### TEST 3: empty (0-byte) dump, manifest unchanged ###
+--- verify (expect FAIL) ---
+{"time":"2026-10-27T14:24:44Z","service":"ltw-backup","level":"error","msg":"checksum mismatch: ltw-20261027T142050Z.dump"}
+exit=1
+
+### TEST 4: valid dump name not in manifest ###
+{"time":"2026-10-27T14:24:44Z","service":"ltw-backup","level":"error","msg":"not in the manifest: ltw-20261027T142051Z.dump"}
+exit=1
+
+### restore original small dump ###
+--- verify restored (expect PASS) ---
+{"time":"2026-10-27T14:24:44Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261027T142050Z.dump"}
+exit=0

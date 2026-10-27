@@ -1,0 +1,13 @@
+=== chapter PARTY provider local
+  PARA: Мира рассказала нам, что караван ушёл до рассвета. Со слов рассказчика: Мира Вейл говорит, что караван ушёл до рассвета.
+    cites hedged: [('e1', 'TESTIMONY', 'Мира Вейл говорит, что караван ушёл до рассвета.')]
+=== chapter DM provider local
+  PARA: Выдвинута гипотеза: Караван атаковали гоблины. Подозрение, не установлено: Караван атаковали гоблины.
+    cites hedged: [('e10', 'HYPOTHESIS', 'Караван атаковали гоблины.')]
+=== chapter CHARACTER:elowen-starwhisper provider local
+  PARA: Мира рассказала нам, что караван ушёл до рассвета. Со слов рассказчика: Мира Вейл говорит, что караван ушёл до рассвета.
+    cites hedged: [('e1', 'TESTIMONY', 'Мира Вейл говорит, что караван ушёл до рассвета.')]
+player reads chronicle?perspective=PARTY: 200 chapters=['PARTY'] DM-chapter-text-present=False goblin-names=False
+player reads chronicle?perspective=CHARACTER:elowen-starwhisper: 200 chapters=['CHARACTER:elowen-starwhisper'] DM-chapter-text-present=False goblin-names=False
+player reads chronicle?perspective=DM: 403 chapters=[] DM-chapter-text-present=False goblin-names=False
+player reads chronicle?perspective=PUBLIC: 200 chapters=[] DM-chapter-text-present=False goblin-names=False

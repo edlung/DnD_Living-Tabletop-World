@@ -1,0 +1,13 @@
+=== container hardening ===
+--- ltw-g06-infra-proxy-1 ---
+User=caddy ReadOnly=true CapDrop=[ALL] CapAdd=[] SecOpt=[no-new-privileges:true] Mem=268435456 Pids=<nil>
+  running uid: uid=1000(caddy) gid=1000(caddy) groups=1000(caddy)
+--- ltw-g06-infra-server-1 ---
+User=node ReadOnly=true CapDrop=[ALL] CapAdd=[] SecOpt=[no-new-privileges:true] Mem=1073741824 Pids=<nil>
+  running uid: uid=1000(node) gid=1000(node) groups=1000(node)
+--- ltw-g06-infra-postgres-1 ---
+User= ReadOnly=false CapDrop=[] CapAdd=[] SecOpt=[no-new-privileges:true] Mem=1073741824 Pids=<nil>
+  running uid: uid=0(root) gid=0(root) groups=0(root),0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
+--- ltw-g06-infra-backup-1 ---
+User=70:70 ReadOnly=true CapDrop=[ALL] CapAdd=[] SecOpt=[no-new-privileges:true] Mem=536870912 Pids=<nil>
+  running uid: uid=70(postgres) gid=70(postgres) groups=70(postgres)

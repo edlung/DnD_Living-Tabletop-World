@@ -1,0 +1,19 @@
+approve SUPERSEDED curated mira ref:
+422 ["rejected","INVALID_ASSET",null,null,[]]
+approve RETRACTED wagon-tracks:
+422 ["rejected","INVALID_ASSET",null,null,[]]
+DM forges StartAssetJob/CompleteAssetJob:
+200 ["accepted",null,null,null,["AssetRequested"]]
+403 [null,null,"FORBIDDEN",null,[]]
+403 [null,null,"FORBIDDEN",null,[]]
+403 [null,null,"FORBIDDEN",null,[]]
+player forges approve/retract/cancel:
+403 [null,null,"FORBIDDEN",null,[]]
+403 [null,null,"FORBIDDEN",null,[]]
+purpose/kind mismatch: battle-map for a character, figure for a location, derived without label, label injection:
+422 ["rejected","INVALID_ASSET",null,null,[]]
+422 ["rejected","INVALID_ASSET",null,null,[]]
+422 ["rejected","INVALID_ASSET",null,null,[]]
+422 ["rejected","INVALID_ASSET",null,null,[]]
+400 ["rejected","INVALID_COMMAND",null,null,[]]
+422 ["rejected","ENTITY_NOT_FOUND",null,null,[]]

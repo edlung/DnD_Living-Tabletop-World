@@ -1,0 +1,7 @@
+200 feature-19c7c7f7 name= None bytes 590
+200 feature-ccec7e50 name= None bytes 590
+200 item-0869f47a name= None bytes 584
+200 item-08851105 name= None bytes 584
+200 item-f44e7183 name= None bytes 584
+player knowledge ids: ['elowen-sigil-lore', 'party-goblin-hypothesis', 'party-mira-departure', 'party-who-attacked', 'pub-caravan-overdue', 'pub-golden-stag', 'pub-guild-caravans', 'pub-market-square', 'pub-mira-trader', 'pub-orin-alchemist', 'pub-ravenford-town', 'pub-thorne-captain']
+{"perspective": "CHARACTER:elowen-starwhisper", "asOf": null, "knowledge": [{"knowledgeId": "pub-ravenford-town", "knowledgeType": "FACT", "scope": {"kind": "PUBLIC"}, "statement": "Равенфорд — торгов

@@ -1,0 +1,53 @@
+DM inventory: 200 9
+   mem-party-decide-road {"kind": "PARTY"} | Мы решили искать караван на Старой Торговой дороге.
+   mem-party-talk-mira {"kind": "PARTY"} | Мира рассказала нам, что караван ушёл до рассвета.
+   mem-orin-prior-symbol {"kind": "NPC", "npcId": "orin-stonebeard"} | Напуганный путник показал Орину странный знак, нацарапанный на разбитом ящике.
+   mem-party-supplies {"kind": "PARTY"} | Из-за этого решения мы закупили припасы в дорогу.
+   mem-thorne-departure {"kind": "NPC", "npcId": "captain-thorne"} | Торн записал в журнал, что караван миновал Северные ворота после восхода.
+   mem-elowen-mira-glance {"kind": "CHARACTER", "characterId": "elowen-starwhisper"} | Эловен заметила, как Мира нервно поглядывает в сторону Северных ворот.
+   mem-mira-departure {"kind": "NPC", "npcId": "mira-vale"} | Мира видела, как гильдейский караван выкатился с Рыночной площади до рассвета.
+   mem-thorne-patrol {"kind": "NPC", "npcId": "captain-thorne"} | Торн понял, что вечерний патруль не вернулся.
+   mem-public-vanished-spring {"kind": "PUBLIC"} | Прошлой весной на Старой Торговой дороге пропал караван.
+Elowen sees: ['mem-elowen-mira-glance', 'mem-party-decide-road', 'mem-party-supplies', 'mem-party-talk-mira', 'mem-public-vanished-spring']
+PARTY sees: ['mem-party-decide-road', 'mem-party-supplies', 'mem-party-talk-mira', 'mem-public-vanished-spring']
+foreign (not hers): ['mem-mira-departure', 'mem-orin-prior-symbol', 'mem-thorne-departure', 'mem-thorne-patrol']
+-- Russian queries (declined forms) as Elowen; any foreign memory returned?
+  q='караван'              200 hits= 3 ['mem-party-decide-road', 'mem-party-talk-mira', 'mem-public-vanished-spring'] foreign=[]
+  q='каравана'             200 hits= 3 ['mem-party-decide-road', 'mem-party-talk-mira', 'mem-public-vanished-spring'] foreign=[]
+  q='каравану'             200 hits= 3 ['mem-party-decide-road', 'mem-party-talk-mira', 'mem-public-vanished-spring'] foreign=[]
+  q='караваном'            200 hits= 3 ['mem-party-decide-road', 'mem-party-talk-mira', 'mem-public-vanished-spring'] foreign=[]
+  q='о караване'           200 hits= 3 ['mem-party-decide-road', 'mem-party-talk-mira', 'mem-public-vanished-spring'] foreign=[]
+  q='Мира'                 200 hits= 2 ['mem-party-talk-mira', 'mem-elowen-mira-glance'] foreign=[]
+  q='Миры'                 200 hits= 0 [] foreign=[]
+  q='Мирой'                200 hits= 0 [] foreign=[]
+  q='Мире'                 200 hits= 0 [] foreign=[]
+  q='дорога'               200 hits= 3 ['mem-party-decide-road', 'mem-party-supplies', 'mem-public-vanished-spring'] foreign=[]
+  q='дороги'               200 hits= 3 ['mem-party-decide-road', 'mem-party-supplies', 'mem-public-vanished-spring'] foreign=[]
+  q='дорогой'              200 hits= 3 ['mem-party-decide-road', 'mem-party-supplies', 'mem-public-vanished-spring'] foreign=[]
+  q='по дороге'            200 hits= 3 ['mem-party-decide-road', 'mem-party-supplies', 'mem-public-vanished-spring'] foreign=[]
+  q='решение'              200 hits= 0 [] foreign=[]
+  q='решения'              200 hits= 1 ['mem-party-supplies'] foreign=[]
+  q='припасы'              200 hits= 1 ['mem-party-supplies'] foreign=[]
+  q='припасов'             200 hits= 1 ['mem-party-supplies'] foreign=[]
+  q='стража'               200 hits= 0 [] foreign=[]
+  q='стражи'               200 hits= 0 [] foreign=[]
+  q='капитан'              200 hits= 0 [] foreign=[]
+  q='капитана'             200 hits= 0 [] foreign=[]
+  q='Торн'                 200 hits= 0 [] foreign=[]
+  q='Торна'                200 hits= 0 [] foreign=[]
+  q='гоблины'              200 hits= 0 [] foreign=[]
+  q='гоблинов'             200 hits= 0 [] foreign=[]
+  q='культ'                200 hits= 0 [] foreign=[]
+  q='культа'               200 hits= 0 [] foreign=[]
+  q='пепельный круг'       200 hits= 0 [] foreign=[]
+  q='Пепельного круга'     200 hits= 0 [] foreign=[]
+  q='свидетель'            200 hits= 0 [] foreign=[]
+  q='Томас'                200 hits= 0 [] foreign=[]
+  q='Томаса'               200 hits= 0 [] foreign=[]
+  q='незнакомец'           200 hits= 0 [] foreign=[]
+  q='незнакомца'           200 hits= 0 [] foreign=[]
+-- player asking for other perspectives:
+   DM 403
+   NPC:mira-vale 403
+   CHARACTER:captain-thorne 403
+   NPC:npc-08b7a35d 403

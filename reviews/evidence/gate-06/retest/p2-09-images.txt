@@ -1,0 +1,36 @@
+world clock None
+== A. G06-images-01: captain-thorne (known, unobserved): players-audience derived "dead", approved
+   RequestAsset 200 accepted None
+  candidate CANDIDATE sha256:737ccd4bd073
+   ApproveAsset 200 accepted None
+  player assets list: 200 {"perspective": "CHARACTER:elowen-starwhisper", "assets": [{"variant": "reference", "purpose": "image", "contentHash": "sha256:edc0aa16db5c300d8487eec219ba6b02fa0f891e239437dc8feb416a307e23c7", "mediaType": "image/webp"}, {"variant": "derived", "purpose": "figure", "contentHash": "sha256:872bee5d0ff6003b5caf724e304ebbc5497e9b7cf15d100b74155ad2158c8de4", "mediaType": "image/webp"}]}
+  dead hash listed to player? False
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/g06-rt-tools/images.py", line 25, in <module>
+    for extra in ['','&at='+str(clock),'&at=0','&at=1','&at='+str(clock-1),'&at=36000.0','&at=3.6e4']:
+                                                                  ~~~~~^~
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'
+world clock 36000
+== A. G06-images-01: captain-thorne (known, unobserved): players-audience derived "dead", approved
+  reusing approved APPROVED sha256:737ccd4bd073
+  player assets list: 200 {"perspective": "CHARACTER:elowen-starwhisper", "assets": [{"variant": "reference", "purpose": "image", "contentHash": "sha256:edc0aa16db5c300d8487eec219ba6b02fa0f891e239437dc8feb416a307e23c7", "mediaType": "image/webp"}, {"variant": "derived", "purpose": "figure", "contentHash": "sha256:872bee5d0ff6003b5caf724e304ebbc5497e9b7cf15d100b74155ad2158c8de4", "mediaType": "image/webp"}]}
+  dead hash listed to player? False
+  content as Elowen (now): 404
+  content as Elowen&at=36000: 404
+  content as Elowen&at=0: 404
+  content as Elowen&at=1: 404
+  content as Elowen&at=35999: 404
+  content as Elowen&at=36000.0: 404
+  content as Elowen&at=3.6e4: 404
+  presentation: 200 {"entityId": "captain-thorne", "kind": "npc", "observed": false, "status": null, "vitals": null, "conditions": [], "equipment": [], "weather": null, "tags": ["day"], "image": {"variant": "reference", "purpose": "image", "contentHash": "sha256:edc0aa16db5c300d8487eec219ba6b02fa0f891e239437dc8feb416a3
+  perspective=PARTY: content 404, listed False
+  perspective=PUBLIC: content 404, listed False
+  DM content: 200 1342 bytes
+== B. G06-images-02: placeholder hue vs label
+  hsl in DM bytes: ['hsl(10 30% 92%)', 'hsl(185 55% 45%)', 'hsl(185 55% 45%)', 'hsl(185 55% 45%)', 'hsl(185 55% 45%)']  label text present: False
+== C. G06-images-03: version in player bodies
+  market-square assets: 200 version-key=False {"perspective": "CHARACTER:elowen-starwhisper", "assets": [{"variant": "reference", "purpose": "image", "contentHash": "sha256:7ad7a7c7453b5be2e2b8c2801aab5d5d7eefa56e4b64a621730e08ae6cd80b1d", "media
+  elowen-starwhisper assets: 200 version-key=False {"perspective": "CHARACTER:elowen-starwhisper", "assets": [{"variant": "reference", "purpose": "image", "contentHash": "sha256:c0a8f25a2eb23d1373739f63d9ecfde518ad90d90ebd2e8b91630ecc1ec7ae00", "media
+  old-trade-road assets: 200 version-key=False {"perspective": "CHARACTER:elowen-starwhisper", "assets": [{"variant": "reference", "purpose": "image", "contentHash": "sha256:741be3dad6477e3c9d62b36a44d87d80ed42ef083de41b977252b09924737ac9", "media
+  scene has "version": False
+  presentation has "version": False

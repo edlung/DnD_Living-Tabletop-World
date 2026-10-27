@@ -1,0 +1,4 @@
+stream before revoke: 1 ready event(s)
+DM revokes Elowen: 200 {'released': True, 'sessionsRevoked': 1, 'invitationsRevoked': 0}
+stream ended 1.00s after revoke; tail: ['data: {}', 'event: closed', 'data: {"reason":"unauthenticated"}', 'curl-exit=0']
+player GET session after: 401  command: 401

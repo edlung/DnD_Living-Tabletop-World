@@ -1,0 +1,1 @@
+{"traceId":"d32ff205-af87-414e-aa92-73cba28a5fd7","status":"PROPOSED","proposal":{"summary":"Создать предмет «Корона Пепельного круга» на Рыночной площади.","commands":[{"type":"CreateEntity","entityId":"ashen-circle-crown","kind":"item","name":"Корона Пепельного круга","existsSince":null,"placement":{"locationId":"market-square","since":null}}]},"issues":[],"committable":false}

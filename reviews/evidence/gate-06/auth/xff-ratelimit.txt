@@ -1,0 +1,5 @@
+Per-client redeem limit = 10/min confirmed (401 x~10 then 429). Forged X-Forwarded-For:
+198.51.100.77 did NOT reset the client identity (still 429 x4), control with no XFF also
+429. Caddy appends its observed peer to XFF; Fastify proxy-addr (trustProxy=10.241.1.0/24)
+stops at that untrusted hop, so the client-supplied XFF is never used as request.ip.
+=> XFF forgery / rate-limit evasion / targeted-victim lockout: DEFENDED.

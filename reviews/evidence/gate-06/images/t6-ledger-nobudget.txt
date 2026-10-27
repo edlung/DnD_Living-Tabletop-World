@@ -1,0 +1,12 @@
+single request (nb):
+200 ["accepted",null,null,null,["AssetRequested"]]
+FAILED	UNAVAILABLE
+8 concurrent RequestAsset (nb):
+c2 [null,null,"RATE_LIMITED"]
+c5 [null,null,"RATE_LIMITED"]
+c6 [null,null,"RATE_LIMITED"]
+c3 [null,null,"RATE_LIMITED"]
+c4 [null,null,"RATE_LIMITED"]
+c7 ["accepted",null,null]
+c1 ["accepted",null,null]
+c8 ["accepted",null,null]

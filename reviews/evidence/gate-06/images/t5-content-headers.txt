@@ -1,0 +1,48 @@
+== approved, player:
+200
+HTTP/2 200 
+cache-control: no-store
+content-disposition: inline
+content-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+content-type: image/webp
+cross-origin-opener-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Cookie
+x-content-type-options: nosniff
+x-frame-options: DENY
+content-length: 458688
+
+== 404 probe 8e440c3f2f49:
+404
+b60ed29c6a498b304a30fe45a0e31949
+{"error":{"code":"NOT_FOUND","message":"Not found"},"requestId":"<id>"}
+== 404 probe 856f7c1d7af9:
+404
+b60ed29c6a498b304a30fe45a0e31949
+{"error":{"code":"NOT_FOUND","message":"Not found"},"requestId":"<id>"}
+== 404 probe 2d711642b726:
+404
+b60ed29c6a498b304a30fe45a0e31949
+{"error":{"code":"NOT_FOUND","message":"Not found"},"requestId":"<id>"}
+== HEAD approved:
+HTTP/2 200 
+cache-control: no-store
+content-disposition: inline
+content-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+content-type: image/webp
+content-length: 458688
+== Range:
+200 458688
+== cross-site fetch of approved image (Sec-Fetch-Site: cross-site, no-cors img):
+200
+== cross-site navigate:
+200
+== cookie attrs:
+httponly-prefix=#HttpOnly_ secure=TRUE path=/api
+== page CSP:
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+cross-origin-opener-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+x-frame-options: DENY

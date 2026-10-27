@@ -1,0 +1,13 @@
+undo curated approval of goblin-weapon:
+200 ["accepted",null,null,null,["CommandUndone"]]
+retract curated wagon-tracks:
+200 ["accepted",null,null,null,["AssetRetracted"]]
+reference	image		players	CANDIDATE	a0b3abd70b82;
+reference	image		players	RETRACTED	1a5e361e1593;
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; curated pictures: 0 imported, 51 already present, 0 skipped; version 327, 25 entities; open seats: none
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+goblin-weapon: reference	image		players	CANDIDATE	a0b3abd70b82;
+wagon-tracks: reference	image		players	RETRACTED	1a5e361e1593;
+mira-vale: reference	image		players	SUPERSEDED	eae1c693f9f7;derived	figure	figure	players	APPROVED	1d33b9ef391c;reference	image		players	RETRACTED	856f7c1d7af9;
+market-square: reference	image		players	CANONICAL	7ad7a7c7453b;derived	image	night	players	SUPERSEDED	3304fe225e4c;derived	image	rain	players	APPROVED	857482643f76;derived	image	night-rain	players	APPROVED	2b25278781ca;derived	image	night	dm	APPROVED	37f6e4598453;
