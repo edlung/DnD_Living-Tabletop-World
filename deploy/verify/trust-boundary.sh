@@ -53,10 +53,10 @@ members() {
     sort | tr '\n' ' ' | sed 's/ $//'
 }
 # internal, gateway mode, range and host address of a network (Docker prints a missing
-# address as "invalid IP": here `none`).
+# address as "invalid IP", older Engines as nothing: here `none`).
 facts() {
   docker network inspect "$(net "$1")" --format '{{.Internal}} {{index .Options "com.docker.network.bridge.gateway_mode_ipv4"}} {{range .IPAM.Config}}{{.Subnet}} host={{.Gateway}}{{end}}' |
-    sed 's/host=invalid IP$/host=none/'
+    sed -e 's/host=invalid IP$/host=none/' -e 's/host=$/host=none/'
 }
 address() { docker inspect "$1" --format "{{(index .NetworkSettings.Networks \"$(net "$2")\").IPAddress}}"; }
 # A setting of the server container; never prints any other.
@@ -129,7 +129,9 @@ check 'from the host: the egress address' closed host "$egress_ip:3000"
 check 'control: the host reaches the proxy' is "$(verdict host "$proxy_edge:443")" open
 probe "$(net edge)" server:3000 "$prefix.10:3000" "$data_ip:3000" "$egress_ip:3000" proxy:443 >"$work/edge"
 sed 's/^/     edge network:   /' "$work/edge"
-check 'from the edge network: the service name' is "$(verdict edge server:3000)" no-such-name
+# Docker's DNS on the edge network does not know `server`; a host resolver it forwards to may
+# still answer the bare name (the hosted runner's does), so the guarantee is that nothing answers.
+check 'from the edge network: the service name' closed edge server:3000
 check 'from the edge network: the backend address' closed edge "$prefix.10:3000"
 check 'from the edge network: the data address' closed edge "$data_ip:3000"
 check 'from the edge network: the egress address' closed edge "$egress_ip:3000"
