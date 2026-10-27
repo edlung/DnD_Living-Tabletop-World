@@ -226,8 +226,10 @@
       .outcome {
       position-anchor: --result-anchor;
       position-area: top;
+      right: auto;
       bottom: auto;
       left: auto;
+      width: min(440px, calc(100% - 32px));
       margin-bottom: 0.4rem;
       translate: none;
     }
@@ -239,10 +241,61 @@
       .outcome {
       position-anchor: --result-anchor;
       position-area: top;
+      right: auto;
       bottom: auto;
       left: auto;
+      width: min(440px, calc(100% - 32px));
       margin-bottom: 0.4rem;
       translate: none;
+    }
+  }
+}
+/*
+ * A result with nothing to anchor it to (the place itself, a tablet with the drawer open, no
+ * anchor positioning) would lie over the people and things in the scene, which sit at the same
+ * height, bottom centre. It takes the stage's bottom-right corner instead, below the exits, and
+ * the row of people and things keeps clear of it on its left. Anchored above a medallion, the
+ * result is already clear of the row (the rules after this one restore both).
+ */
+@media (min-width: 768px) {
+  .world-main:not(.has-battle):has(.outcome) {
+    --outcome-w: min(360px, 36%);
+  }
+  .world-main:not(.has-battle) .outcome {
+    right: 16px;
+    left: auto;
+    width: var(--outcome-w);
+    translate: none;
+  }
+  .world-main:not(.has-battle):has(.outcome) .scene-presence {
+    right: calc(var(--outcome-w) + 32px);
+  }
+}
+@media (min-width: 1200px) {
+  .world-main.has-details:not(.has-battle) .outcome {
+    right: calc(var(--panel-w) + 16px);
+    left: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .world-main.has-details:not(.has-battle) .outcome {
+    right: calc(min(var(--panel-w), 92vw) + 16px);
+    left: auto;
+  }
+}
+@supports (position-area: top) {
+  @media (min-width: 1200px) {
+    .world-main:not(.has-battle):not(:has(.sheet:not([hidden]))):has(.object-button[data-anchor])
+      .scene-presence {
+      right: 16px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .world-main:not(.has-battle):not(.has-details):not(:has(.sheet:not([hidden]))):has(
+        .object-button[data-anchor]
+      )
+      .scene-presence {
+      right: 16px;
     }
   }
 }
@@ -294,6 +347,12 @@
   position: absolute;
   top: 4px;
   right: 4px;
+}
+/* What was learned is read over the scene: an opaque panel, like the notice above it. */
+.discovered-knowledge {
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow);
 }
 .discovered-knowledge .knowledge-list {
   margin: 0;
