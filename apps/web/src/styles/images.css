@@ -250,6 +250,10 @@
   align-items: center;
   gap: 0.4rem;
   margin: 0;
+  /* The form's labels (base.css `label`): the title reads as the field it is, not as a heading. */
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 .image-request-brief-title .glyph {
   flex: none;
