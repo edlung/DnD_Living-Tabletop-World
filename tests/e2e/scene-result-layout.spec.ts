@@ -39,7 +39,7 @@ test('the people and things in the scene stay reachable while a result shows', a
   const result = page.locator('.outcome');
   await expect(result).toContainText('Evidence discovered.');
   await expect(page.locator('.object-button')).toHaveCount(6);
-  expect(await unreachable(page)).toEqual([]);
+  await expect.poll(() => unreachable(page)).toEqual([]);
   // A result about one of them (it once sat above that medallion, over the row above it).
   await page
     .getByRole('region', { name: 'Scene', exact: true })
@@ -48,19 +48,19 @@ test('the people and things in the scene stay reachable while a result shows', a
     .click();
   await commandAction(page, 'Inspect');
   await expect(result).toBeVisible();
-  expect(await unreachable(page)).toEqual([]);
+  await expect.poll(() => unreachable(page)).toEqual([]);
 
   // A tablet with the selection's drawer open: the result sits at the drawer's foot.
   await page.setViewportSize({ width: 768, height: 1024 });
   await expect(page.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
-  expect(await unreachable(page, true)).toEqual([]);
+  await expect.poll(() => unreachable(page, true)).toEqual([]);
   // ... and with it closed.
   await page
     .getByRole('complementary', { name: 'Entity details' })
     .getByRole('button', { name: /^Close/ })
     .click();
   await expect(result).toBeVisible();
-  expect(await unreachable(page)).toEqual([]);
+  await expect.poll(() => unreachable(page)).toEqual([]);
 });
 
 /** Words split across lines in the elements' text: a name or hint broken mid-word. */
@@ -99,7 +99,7 @@ test('beside an open conversation and a result the scene keeps room for its name
   await expect(page.getByRole('region', { name: 'Conversation with Mira Vale' })).toBeVisible();
   await expect(page.locator('.outcome')).toBeVisible();
   expect(await brokenWords(page, '.scene-presence .name-plate strong, .scene-caption')).toEqual([]);
-  expect(await unreachable(page)).toEqual([]);
+  await expect.poll(() => unreachable(page)).toEqual([]);
   const overlaps = await page.locator('.scene-presence').evaluate((row) => {
     const box = row.getBoundingClientRect();
     return ['.outcome', '.dialogue-panel', '.exits'].filter((selector) => {
@@ -139,7 +139,7 @@ for (const width of [768, 1024]) {
     await dm.getByRole('button', { name: 'Mira Vale', exact: true }).click();
     await expect(dm.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
     await expect(dm.locator('nav.dock button')).toHaveCount(9);
-    expect(await coveredDockButtons(dm)).toEqual([]);
+    await expect.poll(() => coveredDockButtons(dm)).toEqual([]);
 
     // A player's result at the drawer's foot keeps clear of the dock too (read-only: talking with
     // no dialogue provider records nothing).
@@ -151,7 +151,7 @@ for (const width of [768, 1024]) {
       .getByRole('button', { name: 'Talk', exact: true })
       .click();
     await expect(player.locator('.outcome')).toBeVisible();
-    expect(await coveredDockButtons(player)).toEqual([]);
+    await expect.poll(() => coveredDockButtons(player)).toEqual([]);
     const [outcome, dock] = await Promise.all([
       player.locator('.outcome').boundingBox(),
       player.locator('nav.dock').boundingBox(),
