@@ -26,7 +26,7 @@ registerRussian({
   // Scene
   'No approved image yet': 'Изображения пока нет',
   'Symbolic arrangement — no distances shown': 'Условная расстановка — расстояния не показаны',
-  Explore: 'Осмотреть',
+  Explore: 'Взглянуть',
   'this place': 'это место',
   'What the stage shows': 'Что показывает сцена',
 

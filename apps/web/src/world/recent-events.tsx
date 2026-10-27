@@ -6,12 +6,21 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { latestFirst } from './memory-order.ts';
 
-/** Remembered events are the existing scoped projection, never raw world history. */
+/** The recall projection's cap (`MAX_RECALL_LIMIT`). */
+const JOURNAL_LIMIT = 50;
+
+/**
+ * Remembered events are the existing scoped projection, never raw world history, shown latest
+ * first (`memory-order.ts`).
+ */
 export function RecentEvents({ api }: { readonly api: WorldApi }) {
   const t = useT();
   const load = useCallback(
-    (signal: AbortSignal) => api.get<MemoryRecallResponse>('memories', signal),
+    // As many as the projection gives (its cap), not its default ten most relevant: a timeline.
+    (signal: AbortSignal) =>
+      api.get<MemoryRecallResponse>('memories', signal, true, { limit: String(JOURNAL_LIMIT) }),
     [api],
   );
   const { resource, retry } = useResource('memories', load);
@@ -28,7 +37,7 @@ export function RecentEvents({ api }: { readonly api: WorldApi }) {
         <p className="muted">{t('No memories are available in this perspective yet.')}</p>
       ) : (
         <ul className="memory-list">
-          {resource.value.memories.map(({ memory }) => (
+          {latestFirst(resource.value.memories).map(({ memory }) => (
             <li key={memory.memoryId}>
               <span className="memory-meta">
                 <Glyph name="memory" />

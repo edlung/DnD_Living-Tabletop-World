@@ -237,6 +237,19 @@
   .world-main:not(.has-battle):has(.outcome) .scene-presence {
     right: calc(var(--outcome-w) + 32px);
   }
+  /*
+   * Stage 360: beside an open conversation the row had no room left of the result (names broke
+   * mid-word, the hint stood one word a line); there it stands above the result instead, and
+   * the ways beyond this place rise to the stage's top corner to leave it room.
+   */
+  .world-main:not(.has-battle):has(.outcome) .stage--talking .scene-presence {
+    right: 16px;
+    bottom: calc(var(--dock-h) + 24px + var(--outcome-h, 0px) + 12px);
+  }
+  .world-main:not(.has-battle):has(.outcome) .stage--talking .exits {
+    top: 16px;
+    translate: none;
+  }
 }
 @media (min-width: 1200px) {
   .world-main.has-details:not(.has-battle) .outcome {
@@ -252,6 +265,7 @@
 @media (min-width: 768px) and (max-width: 1199px) {
   .world-main.has-details:not(.has-battle) .outcome {
     right: 16px;
+    bottom: calc(var(--dock-h) + 36px);
     left: auto;
     width: calc(min(var(--panel-w), 92vw) - 32px);
   }

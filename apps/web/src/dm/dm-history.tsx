@@ -6,7 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { historyPageKey, historyPageLoader, PageCursor } from './history-pages.ts';
-import { entryDetails, entryStatus, entryTitle, STEP_TEXT } from './history-text.ts';
+import { entryDetails, entryStatus, entryTitle, isPictureHold, STEP_TEXT } from './history-text.ts';
 import { useHistoryUndo } from './use-history-undo.ts';
 
 type Actions = ReturnType<typeof useHistoryUndo>;
@@ -148,7 +148,7 @@ function HistoryPage({
   );
 }
 
-function HistoryEntry({
+export function HistoryEntry({
   entry,
   directory,
   actions,
@@ -216,14 +216,22 @@ function HistoryEntry({
               {blockers.map((blocker, index) => (
                 <li key={blocker.commandId}>
                   <span id={`${ids}-step-${String(index)}`}>{step(blocker.commandType)}</span>{' '}
-                  <button
-                    disabled={actions.busy}
-                    onClick={() => {
-                      void actions.undoBlocker(blocker.commandId);
-                    }}
-                  >
-                    {t('Undo “{step}” first', { step: step(blocker.commandType) })}
-                  </button>
+                  {isPictureHold(blocker.commandType) ? (
+                    <span className="muted">
+                      {t(
+                        'A picture made for this holds it: discard that picture under Images, then undo again.',
+                      )}
+                    </span>
+                  ) : (
+                    <button
+                      disabled={actions.busy}
+                      onClick={() => {
+                        void actions.undoBlocker(blocker.commandId);
+                      }}
+                    >
+                      {t('Undo “{step}” first', { step: step(blocker.commandType) })}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

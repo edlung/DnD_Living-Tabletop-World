@@ -15,7 +15,7 @@ import { Hypothesis } from './hypothesis.tsx';
 import { Recall } from './recall.tsx';
 import type { ExplorationIntent } from './use-action.ts';
 import { useT, type Translate } from '@ltw/ui';
-import { unidentifiedName } from '../world/entity-words.ts';
+import { distinctNames, unidentifiedName } from '../world/entity-words.ts';
 
 export const executable: ReadonlySet<string> = new Set([
   'talk',
@@ -67,6 +67,7 @@ export function ContextActions({
   const { entity, actions } = context.context;
   const actor = context.actingCharacterId;
   const name = entity.name ?? unidentifiedName(t, entity.kind);
+  const names = distinctNames(t, directory);
   const listed = actions.filter(
     (action) => executable.has(action.id) && !(conversing && CONVERSATION.has(action.id)),
   );
@@ -108,7 +109,7 @@ export function ContextActions({
                 }}
               >
                 <Glyph name={actionGlyph(action.id)} />
-                <span>{actionLabel(t, action, name, knowledge)}</span>
+                <span>{actionLabel(t, action, name, knowledge, names)}</span>
               </button>
               {!action.legal && <small id={reasonId}>{reasonWords(t, action)}</small>}
               {action.cost && (
@@ -143,7 +144,7 @@ export function ContextActions({
             <li key={`${action.id}:${index}`}>
               <strong>
                 <Glyph name={actionGlyph(action.id)} />
-                {actionLabel(t, action, name, knowledge)}
+                {actionLabel(t, action, name, knowledge, names)}
               </strong>
               <span>{action.legal ? t('Available in the world') : reasonWords(t, action)}</span>
               {action.hints?.map((hint) => (
@@ -178,10 +179,17 @@ export function actionLabel(
   action: ContextAction,
   target: string,
   knowledge: readonly KnowledgeView[],
+  /** Names told apart in the viewer's directory (`distinctNames`), by entity ID. */
+  names?: ReadonlyMap<string, string>,
 ): string {
   switch (action.id) {
     case 'ask_about':
-      return t('Ask about {topic}', { topic: action.topic?.name ?? t('Unidentified subject') });
+      return t('Ask about {topic}', {
+        topic:
+          (action.topic && names?.get(action.topic.entityId)) ??
+          action.topic?.name ??
+          t('Unidentified subject'),
+      });
     case 'show_evidence':
       return t('Show evidence: {statement}', {
         statement:

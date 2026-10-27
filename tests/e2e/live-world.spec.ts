@@ -29,7 +29,7 @@ test('private authoring reaches the player only once published, without a refres
   await enterWorld(player, TOKENS.player, campaign);
   const scene = player.getByRole('region', { name: 'Scene', exact: true });
   await expect(scene.getByRole('heading', { name: 'North Gate' })).toBeVisible();
-  const tomas = scene.getByRole('button', { name: /Unidentified npc|Tomas Reed/ });
+  const tomas = scene.getByRole('button', { name: /Stranger|Tomas Reed/ });
   const dm = await browser.newPage();
   await enterAsDm(dm, campaign);
   await expectLive(dm);

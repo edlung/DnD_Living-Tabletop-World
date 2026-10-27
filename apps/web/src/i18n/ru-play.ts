@@ -164,6 +164,8 @@ registerRussian({
   'Undo is blocked by later steps that depend on this:':
     'Отмене мешают более поздние шаги, которые от этого зависят:',
   'Undo “{step}” first': 'Сначала отменить: «{step}»',
+  'A picture made for this holds it: discard that picture under Images, then undo again.':
+    'Это удерживает созданное для него изображение: отклоните его в «Изображениях», затем повторите отмену.',
   'Create {kind} {name}': 'Создать ({kind}): {name}',
   ' at {place}': ' · место: {place}',
   ' — {description}': ' — {description}',
@@ -234,7 +236,7 @@ registerRussian({
   'update entity profile': 'обновление профиля сущности',
 
   // Live session (ADR 0033)
-  Live: 'На связи',
+  Live: 'Вживую',
   'Connecting…': 'Подключение…',
   'Reconnecting…': 'Переподключение…',
   Offline: 'Нет связи',

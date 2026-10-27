@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { distinctNames } from '../world/entity-words.ts';
 import { useT, type Translate } from '@ltw/ui';
 
 function refusal(t: Translate, code: string, npc: string): string {
@@ -83,6 +84,7 @@ export function PerformNpc({
   const t = useT();
   const characters = directory.filter((entity) => entity.kind === 'character');
   const topics = directory.filter((entity) => entity.entityId !== npcId);
+  const names = distinctNames(t, directory);
   const [characterId, setCharacterId] = useState(characters[0]?.entityId ?? '');
   const [topicId, setTopicId] = useState('');
   const [line, setLine] = useState('');
@@ -206,7 +208,7 @@ export function PerformNpc({
           <option value="">{t('Choose a subject')}</option>
           {topics.map((entity) => (
             <option key={entity.entityId} value={entity.entityId}>
-              {entity.name}
+              {names.get(entity.entityId) ?? entity.name}
             </option>
           ))}
         </select>

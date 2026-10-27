@@ -46,7 +46,7 @@ test('approving the older of two figures makes it the one players see and the DM
   const dm = await (await browser.newContext()).newPage();
   const player = await (await browser.newContext()).newPage();
   await enterWorld(player, TOKENS.player, campaign);
-  const seen = player.getByRole('button', { name: 'Unidentified npc', exact: true });
+  const seen = player.getByRole('button', { name: 'Stranger', exact: true });
   await expect(seen).toBeVisible();
 
   await enterWorld(dm, TOKENS.dm, campaign);

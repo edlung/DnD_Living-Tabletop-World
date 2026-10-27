@@ -7,6 +7,7 @@ import type { Shell } from '../shell/use-shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { kindGlyph } from '../visual/glyph-map.ts';
 import { KnowledgeCards } from '../visual/knowledge-cards.tsx';
+import { distinctNames } from './entity-words.ts';
 import { RecentEvents } from './recent-events.tsx';
 
 export interface JournalData {
@@ -38,6 +39,7 @@ export function JournalSheet({
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
+  const names = distinctNames(t, journal?.directory ?? [], { kindShown: true });
   const hypotheses =
     journal?.knowledge.filter((record) => record.knowledgeType === 'HYPOTHESIS') ?? [];
   return (
@@ -67,7 +69,9 @@ export function JournalSheet({
                     }}
                   >
                     <Glyph name={kindGlyph(entity.kind)} />
-                    <span className="directory-name">{entity.name}</span>
+                    <span className="directory-name">
+                      {names.get(entity.entityId) ?? entity.name}
+                    </span>
                     <span className="directory-kind">{t(entity.kind)}</span>
                   </button>
                 </li>

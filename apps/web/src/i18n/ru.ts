@@ -42,6 +42,7 @@ registerRussian({
   'Unidentified creature': 'Неопознанное существо',
   'Unidentified subject': 'Неопознанный предмет',
   'Unidentified {kind}': 'Неопознанный объект ({kind})',
+  Stranger: 'Незнакомец',
   'There are no known locations in this perspective yet.': 'В этом виде пока нет известных мест.',
   'New knowledge': 'Новые знания',
 
@@ -69,7 +70,7 @@ registerRussian({
   'Beyond this place': 'За пределами этого места',
   'Choose a place to look at it. To go there, use Enter in its details.':
     'Выберите место, чтобы взглянуть на него. Чтобы отправиться туда, нажмите «Войти» в его подробностях.',
-  'Explore {place}': 'Осмотреть: {place}',
+  'Explore {place}': 'Взглянуть: {place}',
   'Known destinations': 'Известные места назначения',
   'Known people & places': 'Известные люди и места',
   'What this perspective knows. Presence is shown separately in the scene.':
@@ -89,6 +90,7 @@ registerRussian({
   'Distance: {feet} ft': 'Расстояние: {feet} фт',
   'Full character sheet': 'Полный лист персонажа',
   'Loading the full character sheet…': 'Загружаем полный лист персонажа…',
+  'No character sheet is recorded here.': 'Лист персонажа здесь не заведён.',
   'Follow a lead': 'Следовать зацепке',
   'Related leads': 'Связанные зацепки',
   'Full knowledge': 'Все знания',
@@ -173,8 +175,9 @@ registerRussian({
   'Nothing new was shared.': 'Ничего нового не рассказали.',
   'Evidence discovered.': 'Обнаружена улика.',
   'No new evidence was discovered.': 'Новых улик не найдено.',
-  'You showed the evidence. The conversation may have new leads.':
-    'Вы показали улику. В беседе могли появиться новые зацепки.',
+  'You showed the evidence. Talk or ask again to hear what they make of it.':
+    'Вы показали улику. Поговорите или спросите снова, чтобы узнать, что скажет собеседник.',
+  'They have nothing new to tell you about this.': 'Об этом собеседнику нечего добавить.',
   'An inference was recorded.': 'Записан вывод.',
   'No new inference was recorded.': 'Новый вывод не записан.',
   'Hypothesis recorded as HYPOTHESIS.': 'Версия записана как ГИПОТЕЗА.',
