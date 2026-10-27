@@ -6,7 +6,8 @@
 # younger than a day, the newest of each of the 14 most recent days and of each of the 8 most
 # recent ISO weeks (21 files); of the protected ones the 5 newest of each kind, however old (5
 # pre-deploy, 3 pre-restore); all 29 listed in SHA256SUMS, which verifies. Exit status 0 when all
-# of that holds. The script directory is mounted as the backup service mounts it.
+# of that holds; a name with an impossible time (T999999Z) is ignored, never listed or `latest`,
+# and `latest` skips a dump the manifest does not list. The script directory is mounted as the backup service mounts it.
 set -euo pipefail
 DEPLOY_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 IMAGE=$(sed -n 's/^x-postgres-image: &postgres-image //p' "$DEPLOY_DIR/compose.yaml")
@@ -25,8 +26,11 @@ done
 for days in 100 110 119; do
   touch "/backups/ltw-prerestore-$(date -u -d "@$((now - days * 86400))" +%Y%m%dT%H%M%SZ).dump"
 done
+# A name whose time is not a real time sorts first: it is no dump, kept and never listed.
+touch /backups/ltw-20261016T999999Z.dump
 /bin/sh /opt/ltw/backup.sh prune
-kept=$(ls /backups | grep -c "^ltw-[0-9].*\.dump$")
+expect_impossible_kept=/backups/ltw-20261016T999999Z.dump
+kept=$(ls /backups | grep -v T999999Z | grep -c "^ltw-[0-9].*\.dump$")
 predeploy=$(ls /backups | grep -c "^ltw-predeploy-.*\.dump$")
 prerestore=$(ls /backups | grep -c "^ltw-prerestore-.*\.dump$")
 echo "kept $kept of 480 regular, $predeploy of 8 pre-deploy, $prerestore of 3 pre-restore"
@@ -57,5 +61,11 @@ refusal=$(/bin/sh /opt/ltw/backup.sh verify ltw-predeploy-20261016T110000Z.dump 
 case $refusal in
   *"not a backup file name"* | *"not in the manifest"*) echo "verify refuses a protected dump: $refusal"; exit 1 ;;
 esac
+[ -e "$expect_impossible_kept" ] || { echo "the impossible name was removed"; exit 1; }
+if grep -q T999999Z /backups/SHA256SUMS; then echo "the impossible name is listed"; exit 1; fi
+# `latest`: the newest listed dump; a valid name only dropped into the directory is not one.
+touch /backups/ltw-20261016T130000Z.dump
+[ "$(/bin/sh /opt/ltw/backup.sh latest 2>/dev/null)" = ltw-20261016T120000Z.dump ] ||
+  { echo "latest is not the newest listed dump"; exit 1; }
 echo "retention check passed"
 '

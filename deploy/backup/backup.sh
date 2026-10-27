@@ -9,7 +9,7 @@
 #                             prints its file name
 #   backup.sh pre-restore     a protected dump of the state a restore replaces
 #                             (deploy/scripts/restore.sh); prints its file name
-#   backup.sh latest          the newest regular dump's file name
+#   backup.sh latest          the newest regular dump's file name (listed in SHA256SUMS)
 #   backup.sh verify [<name>] a dump (default: the newest regular one) against the manifest, and
 #                             its contents
 #   backup.sh health          the service's health check: the newest regular dump is recent enough
@@ -42,8 +42,23 @@ log() {
 }
 
 # Regular dumps, or those matching the pattern given, newest first (the names sort by time).
+# A name whose time is not a real UTC time (ltw-20261016T999999Z.dump) is no dump: it would sort
+# first and pass for the newest, so it is ignored everywhere (retention, manifest, latest).
 dumps_newest_first() {
-  ls -1 "$DIR" | grep -E "${1:-$PATTERN}" | sort -r || true
+  for candidate in $(ls -1 "$DIR" | grep -E "${1:-$PATTERN}" | sort -r || true); do
+    if real_time "$candidate"; then
+      echo "$candidate"
+    else
+      log warn "ignored, not a real time: $candidate"
+    fi
+  done
+}
+
+# Whether a dump name's time is a real UTC time: its epoch formats back to the same stamp.
+real_time() {
+  stamp=$(echo "$1" | sed -E 's/^ltw-([a-z]+-)?([0-9]{8}T[0-9]{6}Z)\.dump$/\2/')
+  seconds=$(epoch_of "$1" 2>/dev/null) || return 1
+  [ "$(date -u -d "@$seconds" +%Y%m%dT%H%M%SZ)" = "$stamp" ]
 }
 
 # Epoch seconds of a dump's name: ltw-20261016T120000Z.dump -> 1792152000 (busybox date).
@@ -162,13 +177,16 @@ dump_once() {
   fi
 }
 
+# The newest regular dump the manifest lists (a file only dropped into the directory is not one).
 latest() {
-  name=$(dumps_newest_first | head -n 1)
-  [ -n "$name" ] || {
-    log error 'no backup yet'
-    return 1
-  }
-  echo "$name"
+  for name in $(dumps_newest_first); do
+    if grep -Eq "^[0-9a-f]{64}  $name\$" "$MANIFEST" 2>/dev/null; then
+      echo "$name"
+      return 0
+    fi
+  done
+  log error 'no backup yet'
+  return 1
 }
 
 verify() {
