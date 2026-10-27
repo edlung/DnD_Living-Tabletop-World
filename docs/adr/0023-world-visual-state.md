@@ -87,6 +87,7 @@ There is no calendar, so there are no seasons; a season would need its own decis
 ## Amendments
 
 - 2026-10-27 (Gate 06 remediation, G06-images-01): **the image rule bounds the asset routes too** (§3–§4; ADR 0022 amendment). A perspective other than the DM is listed and served (`…/assets`, `…/assets/content/:hash`, with or without `at`) only what presentation could choose for it then: the canonical reference, derived images whose label parts are all among the tags it sees, the figure and the battle map, by the same code (`presentableAssets`). A state picture of an entity not observed in that state is a 404 like nothing. Without `at`, content is what presentation could choose now (no longer "what it may see now"); the client passes `at` for a picture it was given for a past time. Every picture an entity or scene presentation returns at T is served at T.
+- 2026-10-27 (Gate 06 review of the remediation): **the live screens fetch for their presentation's time too**, and views are remembered. The client records each presentation, scene or flashback response's `worldTime` for its pictures and fetches their bytes with it as `at`, so a picture chosen just before the world moved on is not a 404 (bytes already held are shown for any time). The server remembers each timeline and each perspective's servable pictures per history version, perspective and time (bounded, `packages/domain/src/visual/memo.ts`), so a scene's pictures cost one replay. The DM's broad asset pool takes no perspective and is not exported.
 
 ## Invariants affected
 

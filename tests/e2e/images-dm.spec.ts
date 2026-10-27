@@ -29,6 +29,12 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
   const dm = await (await browser.newContext()).newPage();
   const player = await (await browser.newContext()).newPage();
   const received = collectApiBodies(player);
+  // Gate 06 review: the player's screen asks for every picture's bytes for the world time its
+  // presentation chose it for, never for "now" after the world may have moved on.
+  const pictureFetches: string[] = [];
+  player.on('request', (request) => {
+    if (request.url().includes('/assets/content/')) pictureFetches.push(request.url());
+  });
   await enterWorld(player, TOKENS.player, campaign);
   const seen = player.getByRole('button', { name: 'Unidentified npc', exact: true });
   await expect(seen).toBeVisible();
@@ -145,6 +151,9 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
     .click();
   await expectServedPicture(seen.locator('.miniature-art'));
   expect((await playerPresentation(player, campaign, 'tomas-reed')).figure?.purpose).toBe('figure');
+
+  expect(pictureFetches.length).toBeGreaterThan(0);
+  for (const url of pictureFetches) expect(new URL(url).searchParams.get('at')).toMatch(/^\d+$/);
 
   // Nothing the player received over the network ever named the discarded candidate.
   await received.assertPlayerBoundary([first.contentHash, first.assetId, 'tomas-reed#']);

@@ -725,3 +725,12 @@ ADR 0023 amendments of 2026-10-27, ADR 0035 amendment "Gate 06 remediation"): ro
   `packages/domain/src/assets/views.test.ts` and `tests/e2e/images-dm.spec.ts` (the description in
   the lineage and in the request form). `deploy/verify/images.sh` reads its visible set from the
   player's list, so it checks the narrowed rule through the proxy.
+- **Review follow-up** (same day): a scene's pictures cost one replay (timelines and each
+  perspective's servable pictures remembered per history version, bounded:
+  `packages/domain/src/visual/memo.ts`, `memo.test.ts`); live pictures are fetched for their
+  presentation's `worldTime` (`withPictureTimes` in `apps/web/src/visual/approved-images.ts`,
+  `approved-images.test.ts`; `images-dm.spec.ts` checks every player picture request carries
+  `at`); the DM's broad pool takes no perspective and is no longer exported. Pinned in
+  `image-exposure.test.ts`: the party with `at`, a time before the entity existed, observed then
+  but not now, a figure and battle map of what is known but unobserved, the DM previewing
+  Elowen; `purposes.property.test.ts` also checks a past time for Elowen and the party.

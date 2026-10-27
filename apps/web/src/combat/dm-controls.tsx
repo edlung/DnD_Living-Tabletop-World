@@ -10,6 +10,7 @@ import { useCallback, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { withPictureTimes } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
@@ -105,10 +106,9 @@ function StartControls({
   const t = useT();
   const load = useCallback(
     (signal: AbortSignal) =>
-      api.get<ScenePresentationResponse>(
-        `locations/${encodeURIComponent(locationId)}/scene`,
-        signal,
-      ),
+      api
+        .get<ScenePresentationResponse>(`locations/${encodeURIComponent(locationId)}/scene`, signal)
+        .then(withPictureTimes),
     [api, locationId],
   );
   const { resource, retry } = useResource(locationId, load);

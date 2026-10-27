@@ -162,12 +162,8 @@ export { magicDiscoveryEvents, magicSensingPremises } from './investigation/reve
 export { authoringCommandId, previewAuthoring, type PreviewInput } from './authoring/preview.ts';
 export type { ConsentRequirement } from './authoring/consent.ts';
 export type { ResolvedProposable } from './kernel/decision.ts';
-export {
-  assetContentFor,
-  assetLineage,
-  assetVisibleEntityIds,
-  entityAssetsFor,
-} from './assets/views.ts';
+// A player's assets and their bytes come only from `./visual/views.ts` (Gate 06).
+export { assetLineage } from './assets/views.ts';
 export {
   assetIdFor,
   type AssetJobRecord,

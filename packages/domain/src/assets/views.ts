@@ -5,40 +5,19 @@ import type {
   PlayerAssetView,
 } from '@ltw/contracts';
 
-import { perceivedEntityIds } from '../investigation/perception.ts';
 import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
-import { knownEntityIds } from '../knowledge/projection.ts';
 import { SHOWN_ASSET, type AssetRecord } from './records.ts';
 
 /**
  * Who sees which assets (docs/adr/0022-asset-identity.md §5, owner decision).
- * A non-DM perspective sees approved player assets of the entities it knows
- * or perceives, as variant, purpose (ADR 0035 §4), and content hash only
- * (no version since Gate 06), and only what presentation could choose for it
- * (`../visual/views.ts`); anything else is indistinguishable from an entity that does not
- * exist. The DM sees every approved asset, and the whole lineage separately.
+ * A non-DM perspective sees approved player assets, as variant, purpose (ADR
+ * 0035 §4), and content hash only (no version since Gate 06), and only what
+ * presentation could choose for it (`../visual/views.ts`, the only player
+ * entry points); anything else is indistinguishable from an entity or content
+ * that does not exist. The DM sees every approved asset, and the whole lineage
+ * separately (this file).
  */
-
-/** The entities a perspective may see assets of; `ALL` for the DM. */
-export function assetVisibleEntityIds(
-  state: WorldState,
-  perspective: ResolvedPerspective,
-): ReadonlySet<string> | 'ALL' {
-  if (perspective.scopes === 'ALL') return 'ALL';
-  const visible = knownEntityIds(state, perspective);
-  // Perceived by the holder itself, or, for the party, by any party member.
-  const perceivers =
-    perspective.kind === 'PARTY'
-      ? [...state.roster.keys()]
-      : perspective.holderId === null
-        ? []
-        : [perspective.holderId];
-  for (const perceiver of perceivers) {
-    for (const entityId of perceivedEntityIds(state, perceiver)) visible.add(entityId);
-  }
-  return visible;
-}
 
 export function shownTo(perspective: ResolvedPerspective, asset: AssetRecord): boolean {
   return (
@@ -67,44 +46,30 @@ export const sortedViews = (assets: readonly AssetRecord[]): PlayerAssetView[] =
     .map(playerAssetView);
 
 /**
- * An entity's approved assets the perspective's audience and visibility allow; null when the
- * entity is not visible. The route lists these for the DM only: anyone else is given only what
- * presentation could choose for it (`entityAssetsAt` in `../visual/views.ts`, Gate 06).
+ * The DM's view of an entity's approved assets, every audience; null when the entity does not
+ * exist. DM only by construction (no perspective): a player's list is `entityAssetsAt` in
+ * `../visual/views.ts` (Gate 06), never this broader pool.
  */
-export function entityAssetsFor(
-  state: WorldState,
-  perspective: ResolvedPerspective,
-  entityId: string,
-): PlayerAssetView[] | null {
-  const visible = assetVisibleEntityIds(state, perspective);
-  if (!state.entities.has(entityId) || (visible !== 'ALL' && !visible.has(entityId))) return null;
+export function dmEntityAssets(state: WorldState, entityId: string): PlayerAssetView[] | null {
+  if (!state.entities.has(entityId)) return null;
   return sortedViews(
     [...state.assets.assets.values()].filter(
-      (asset) => asset.entityId === entityId && shownTo(perspective, asset),
+      (asset) => asset.entityId === entityId && SHOWN_ASSET.has(asset.status),
     ),
   );
 }
 
 /**
- * Whether the perspective may fetch these bytes: some asset with this
- * content it may see, of an entity it may see. Null otherwise, exactly as
- * for content that does not exist. The DM may fetch any asset's bytes, so
- * it can look at a candidate before approving it. The route serves anyone
- * else only what presentation could choose (`assetContentAt`, Gate 06).
+ * Whether the DM may fetch these bytes: any asset's, a candidate's included, so the DM can look
+ * at it before approving it. Null for content no asset holds. DM only by construction: a player's
+ * check is `assetContentAt` in `../visual/views.ts` (Gate 06).
  */
-export function assetContentFor(
+export function dmAssetContent(
   state: WorldState,
-  perspective: ResolvedPerspective,
   contentHash: string,
-  /** The entities it may see; by default those it knows or perceives now (ADR 0023 adds a past time). */
-  visible: ReadonlySet<string> | 'ALL' = assetVisibleEntityIds(state, perspective),
 ): { readonly mediaType: AssetMediaType } | null {
   for (const asset of state.assets.assets.values()) {
-    if (asset.contentHash !== contentHash) continue;
-    if (visible === 'ALL') return { mediaType: asset.mediaType };
-    if (!shownTo(perspective, asset)) continue;
-    if (!state.entities.has(asset.entityId)) continue;
-    if (visible.has(asset.entityId)) return { mediaType: asset.mediaType };
+    if (asset.contentHash === contentHash) return { mediaType: asset.mediaType };
   }
   return null;
 }

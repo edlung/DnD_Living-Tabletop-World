@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { withPictureTimes } from '../visual/approved-images.ts';
 
 /**
  * The approved image of an entity as this perspective sees it now (`…/presentation`, ADR 0023),
@@ -12,10 +13,13 @@ import { useResource } from '../api/resource.ts';
 export function usePortrait(api: WorldApi, entityId: string): PlayerAssetView | null {
   const load = useCallback(
     (signal: AbortSignal) =>
-      api.get<EntityPresentationResponse>(
-        `entities/${encodeURIComponent(entityId)}/presentation`,
-        signal,
-      ),
+      api
+        .get<EntityPresentationResponse>(
+          `entities/${encodeURIComponent(entityId)}/presentation`,
+          signal,
+        )
+        // Its picture is fetched for the time it was chosen for (Gate 06).
+        .then(withPictureTimes),
     [api, entityId],
   );
   const { resource } = useResource(`portrait:${entityId}`, load);

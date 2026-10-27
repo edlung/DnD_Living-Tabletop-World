@@ -32,13 +32,18 @@ import {
  *   it (at `at`, or now): never a state picture of a state it does not see. Anything else is a 404
  *   identical to a hash that does not exist.
  * - G06-images-03: no player-facing view carries a version, which counted the DM's hidden pictures.
+ * - Edges the review pinned: the party with `at`, a time before the entity existed, observed then
+ *   but not now, a figure and a battle map of what is known but not observed, the DM previewing.
  */
 const BASE = '/campaigns/ravenford';
 const MIRA = 'mira-vale';
+/** A place Elowen knows and does not see from the shop. */
+const PLACE = 'north-gate';
 const SHOP = 'orins-alchemy';
 const NIGHT = worldTimeAt(1, 22);
 const MORNING = worldTimeAt(2, 10);
 const NOTHING = `sha256:${'0'.repeat(64)}`;
+const ELOWEN_VIEW = 'CHARACTER:elowen-starwhisper';
 
 let engine: WorldEngine;
 let contents: InMemoryAssetContentStore;
@@ -135,6 +140,10 @@ describe('G06-images-01: a state picture of an entity a player does not observe 
     }
     expect((await content(reference)).statusCode).toBe(200);
 
+    // The DM previewing Elowen follows her rules.
+    expect(await listed(MIRA, ELOWEN_VIEW, TOKENS.dm)).toEqual([reference]);
+    const previewed = await content(dead, undefined, ELOWEN_VIEW, TOKENS.dm);
+    expect(previewed.statusCode).toBe(404);
     expect(await listed(MIRA, 'DM', TOKENS.dm)).toEqual([reference, dead, unconscious]);
     expect((await content(dead, undefined, 'DM', TOKENS.dm)).statusCode).toBe(200);
   });
@@ -211,5 +220,79 @@ describe('G06-images-03: what a player is shown of a picture', () => {
     // The DM's lineage keeps the versions.
     const lineage = (await get(app, `${BASE}/assets`, TOKENS.dm)).json<AssetLineageResponse>();
     expect(lineage.assets.find((asset) => asset.contentHash === second)?.version).toBe(3);
+  });
+});
+
+describe('pinned edges of the rule (Gate 06 review)', () => {
+  it('serves the party what it could see at a time, and nothing else then or now', async () => {
+    await approved(SHOP, [{ variant: 'reference' }]);
+    const [night = ''] = await approved(SHOP, [{ variant: 'derived', label: 'night' }]);
+    await command({ type: 'AdvanceWorldTime', to: NIGHT });
+    await command({ type: 'AdvanceWorldTime', to: MORNING });
+    expect((await content(night, NIGHT, 'PARTY')).statusCode).toBe(200);
+    for (const at of [MORNING, undefined]) {
+      expect((await content(night, at, 'PARTY')).statusCode).toBe(404);
+    }
+  });
+
+  it('serves what was observed then but is not now only for then, and nothing before it existed', async () => {
+    await command({ type: 'AdvanceWorldTime', to: NIGHT });
+    await command({
+      type: 'CreateEntity',
+      entityId: 'tomas-reed',
+      kind: 'npc',
+      name: 'Tomas Reed',
+      existsSince: NIGHT,
+      placement: { locationId: SHOP, since: NIGHT },
+    });
+    const [reference = ''] = await approved('tomas-reed', [{ variant: 'reference' }]);
+    const [night = ''] = await approved('tomas-reed', [{ variant: 'derived', label: 'night' }]);
+    expect((await presented('tomas-reed')).image?.contentHash).toBe(night);
+    // Morning: Elowen goes back to the square; she never learned who stood in the shop.
+    await command({ type: 'AdvanceWorldTime', to: MORNING });
+    await command(
+      { type: 'EnterLocation', characterId: 'elowen-starwhisper', locationId: 'market-square' },
+      TOKENS.player,
+    );
+    const missingEntity = await get(
+      app,
+      `${BASE}/entities/no-such-entity/assets${query('PLAYER')}`,
+      TOKENS.player,
+    );
+    const tomas = await get(
+      app,
+      `${BASE}/entities/tomas-reed/assets${query('PLAYER')}`,
+      TOKENS.player,
+    );
+    expect(withoutRequestId(tomas)).toEqual(withoutRequestId(missingEntity));
+    for (const hash of [reference, night]) {
+      await expectNothing(hash);
+      await expectNothing(hash, MORNING);
+      // Before Tomas existed, Elowen stood in that same shop.
+      await expectNothing(hash, worldTimeAt(1, 12));
+    }
+    expect((await presented('tomas-reed', NIGHT)).image?.contentHash).toBe(night);
+    expect((await content(night, NIGHT)).statusCode).toBe(200);
+    expect((await content(reference, NIGHT)).statusCode).toBe(200);
+  });
+
+  it('lists and serves the figure and the battle map of what a player knows but does not observe', async () => {
+    await approved(MIRA, [{ variant: 'reference' }]);
+    const [figure = ''] = await approved(MIRA, [
+      { variant: 'derived', label: 'figure', purpose: 'figure' },
+    ]);
+    await approved(PLACE, [{ variant: 'reference' }]);
+    const [map = ''] = await approved(PLACE, [
+      { variant: 'derived', label: 'map', purpose: 'battle-map' },
+    ]);
+    const mira = await presented(MIRA);
+    expect(mira.observed).toBe(false);
+    expect(mira.figure?.contentHash).toBe(figure);
+    const place = await presented(PLACE);
+    expect(place.observed).toBe(false);
+    expect(place.battleMap?.contentHash).toBe(map);
+    expect(await listed(MIRA)).toContain(figure);
+    expect(await listed(PLACE)).toContain(map);
+    for (const hash of [figure, map]) expect((await content(hash)).statusCode).toBe(200);
   });
 });

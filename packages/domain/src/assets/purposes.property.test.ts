@@ -76,6 +76,34 @@ function exposedAsPresented(
   }
 }
 
+/**
+ * The same with `at` (Gate 06 review): the bytes served for a view at T are what presentation
+ * could choose for the perspective at T. Its picks at T are served at T; a picture served at T is
+ * the players', of an entity visible at T, and a state picture only when its label parts are all
+ * among the tags it saw then.
+ */
+function servedAtAsPresented(
+  snapshot: Snapshot,
+  perspective: ResolvedPerspective,
+  entityId: string,
+  at: number,
+  where: string,
+) {
+  const presented = entityPresentationAt(snapshot, perspective, entityId, at)?.presentation;
+  for (const view of [presented?.image, presented?.figure, presented?.battleMap]) {
+    if (!view) continue;
+    expect(assetContentAt(snapshot, perspective, view.contentHash, at), where).not.toBeNull();
+  }
+  for (const asset of snapshot.state.assets.assets.values()) {
+    if (asset.entityId !== entityId) continue;
+    if (assetContentAt(snapshot, perspective, asset.contentHash, at) === null) continue;
+    expect(SHOWN_ASSET.has(asset.status) && asset.audience === 'players', where).toBe(true);
+    expect(presented, `${where}: visible at T`).toBeDefined();
+    if (asset.purpose !== 'image' || asset.status === 'CANONICAL' || asset.label === null) continue;
+    for (const part of asset.label.split('-')) expect(presented?.tags, where).toContain(part);
+  }
+}
+
 describe('purposes under random work', () => {
   it.each([3, 11, 29, 47, 83, 131])(
     'seed %i',
@@ -193,6 +221,17 @@ describe('purposes under random work', () => {
             else expect(shown?.battleMap ?? null).toBeNull();
           }
           exposedAsPresented(snapshot, elowen, entityId, `step ${String(step)} ${entityId}`);
+          // A past view half a day earlier: another day phase, for Elowen and the party.
+          const earlier = Math.max(0, state.clock - 12 * 3_600);
+          for (const perspective of [elowen, holderPerspective(state, { kind: 'PARTY' })]) {
+            servedAtAsPresented(
+              snapshot,
+              perspective,
+              entityId,
+              earlier,
+              `step ${String(step)} ${entityId} at ${String(earlier)}`,
+            );
+          }
         }
       }
       await world.verified();
