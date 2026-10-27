@@ -7,6 +7,7 @@ import {
   travelTo,
 } from './support/investigation.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
+import { closeSheet } from './support/shell.ts';
 
 /**
  * Gate 06: a result with nothing to anchor it to (inspecting the place itself) sat bottom
@@ -35,6 +36,8 @@ test('the people and things in the scene stay reachable while a result shows', a
   await enterInvestigation(page, INVESTIGATION_CAMPAIGNS.resultLayout);
   await travelTo(page, 'Old Trade Road');
   await travelTo(page, 'Unidentified location');
+  // Travel may go through the Places sheet; the player looks at the scene with it closed.
+  await closeSheet(page, 'Places');
   await commandAction(page, 'Inspect');
   const result = page.locator('.outcome');
   await expect(result).toContainText('Evidence discovered.');
