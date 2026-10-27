@@ -7,6 +7,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   MigrationIntegrityError,
   checksumOf,
+  compareMigrations,
   loadMigrations,
   parseMigrations,
   planMigrations,
@@ -84,6 +85,41 @@ describe('planMigrations', () => {
     expect(() => planMigrations(available.slice(0, 1), [record(0), record(1)])).toThrow(
       /missing on disk: 0002_b/,
     );
+  });
+});
+
+describe('compareMigrations (rollback to an earlier build, ADR 0037)', () => {
+  const available = parseMigrations([file('0001_a.sql', 'A'), file('0002_b.sql', 'B')]);
+  const newerBuild = parseMigrations([
+    file('0001_a.sql', 'A'),
+    file('0002_b.sql', 'B'),
+    file('0003_c.sql', 'C'),
+    file('0004_d.sql', 'D'),
+  ]);
+  const history = newerBuild.map(({ id, checksum }) => ({ id, checksum }));
+
+  it('reports the migrations only a newer build applied, and nothing pending', () => {
+    expect(compareMigrations(available, history)).toEqual({
+      pending: [],
+      newer: ['0003_c', '0004_d'],
+    });
+  });
+
+  it('reports pending files and no newer history for an older database', () => {
+    const result = compareMigrations(newerBuild, history.slice(0, 1));
+    expect(result.pending.map((migration) => migration.id)).toEqual(['0002_b', '0003_c', '0004_d']);
+    expect(result.newer).toEqual([]);
+  });
+
+  it('still refuses drift in the history both builds share', () => {
+    const edited = history.map((entry, index) =>
+      index === 1 ? { ...entry, checksum: 'other' } : entry,
+    );
+    expect(() => compareMigrations(available, edited)).toThrow(/modified after it was applied/);
+    const reordered = [history[1], history[0], ...history.slice(2)].filter(
+      (entry) => entry !== undefined,
+    );
+    expect(() => compareMigrations(available, reordered)).toThrow(/diverges at position 1/);
   });
 });
 

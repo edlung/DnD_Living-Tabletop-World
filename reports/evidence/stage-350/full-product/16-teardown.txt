@@ -1,0 +1,19 @@
+### Teardown: the stack with its volumes and networks removed; the backups (a scratch directory) and the env files removed; the shared development database left running (2026-10-16T09:49:35Z)
+$ cd deploy && docker compose --profile drill down --volumes --remove-orphans 2>&1 | grep -E 'Removed' | sort | uniq -c | sed 's/^ *//'; cd .. && rm -f deploy/.env deploy/restore-drill.log deploy/alarms.log && rm -rf /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/backups && mkdir -m 0777 /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/backups && rm -f /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/.env /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/restore-drill.log /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/alarms.log; echo "containers: $(docker ps -a --filter label=com.docker.compose.project=ltw-stage350f -q | wc -l | tr -d ' ')"; echo "volumes: $(docker volume ls -q --filter label=com.docker.compose.project=ltw-stage350f | wc -l | tr -d ' ')"; echo "networks: $(docker network ls -q --filter label=com.docker.compose.project=ltw-stage350f | wc -l | tr -d ' ')"; docker ps --filter name=living-tabletop-world-dev-pack-v12-postgres-1 --format '{{.Names}} {{.Status}}'; git status --short --ignored deploy
+1  Container ltw-stage350f-backup-1 Removed 
+1  Container ltw-stage350f-postgres-1 Removed 
+1  Container ltw-stage350f-proxy-1 Removed 
+1  Container ltw-stage350f-server-1 Removed 
+1  Network ltw-stage350f_backend Removed 
+1  Network ltw-stage350f_data Removed 
+1  Network ltw-stage350f_edge Removed 
+1  Network ltw-stage350f_egress Removed 
+1  Volume ltw-stage350f_caddy-config Removed 
+1  Volume ltw-stage350f_caddy-data Removed 
+1  Volume ltw-stage350f_pgdata Removed 
+containers: 0
+volumes: 0
+networks: 0
+living-tabletop-world-dev-pack-v12-postgres-1 Up 16 hours (healthy)
+[exit 0]
+

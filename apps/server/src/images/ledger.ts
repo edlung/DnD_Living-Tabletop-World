@@ -75,12 +75,15 @@ interface Totals {
   readonly unsettled: number;
 }
 
-async function latestCeiling(tx: Tx): Promise<{ revision: number; ceiling: bigint } | null> {
+/** Statements of a transaction: the ledger's reads run in the caller's (`status`, `spend`). */
+type Reader = Pick<Tx, 'query'>;
+
+async function latestCeiling(tx: Reader): Promise<{ revision: number; ceiling: bigint } | null> {
   const row = (await tx.query<{ revision: number; ceiling: string }>(LATEST)).rows[0];
   return row ? { revision: row.revision, ceiling: BigInt(row.ceiling) } : null;
 }
 
-async function totals(tx: Tx): Promise<Totals> {
+async function totals(tx: Reader): Promise<Totals> {
   const row = (await tx.query<Totals>(TOTALS)).rows[0];
   if (!row) throw new Error('image ledger totals unavailable');
   return row;
@@ -177,33 +180,41 @@ export function setImageCeiling(
   });
 }
 
-/** The operator's counters (`pnpm ai:operator status`): amounts as decimal microdollars. */
+/**
+ * The operator's counters (`pnpm ai:operator status` and `spend`): amounts as decimal
+ * microdollars. No stored ceiling: `revision`, `ceilingMicros` and `remainingMicros` are null, and
+ * no image call is admitted.
+ */
 export interface ImageBudgetStatus {
   readonly revision: number | null;
   readonly ceilingMicros: string | null;
   readonly spentMicros: string;
   /** Reservations not yet settled, counted whole in `spentMicros`. */
   readonly heldMicros: string;
+  /** What the ceiling still admits, never below zero. */
   readonly remainingMicros: string | null;
   readonly charges: number;
   readonly unsettled: number;
 }
 
 export function imageBudgetStatus(pool: pg.Pool): Promise<ImageBudgetStatus> {
-  return readCommitted(pool, fixedStep(), async (tx) => {
-    const budget = await latestCeiling(tx);
-    const sums = await totals(tx);
-    const spent = BigInt(sums.spent);
-    return {
-      revision: budget?.revision ?? null,
-      ceilingMicros: budget ? budget.ceiling.toString() : null,
-      spentMicros: sums.spent,
-      heldMicros: sums.held,
-      remainingMicros: budget
-        ? (budget.ceiling > spent ? budget.ceiling - spent : 0n).toString()
-        : null,
-      charges: sums.charges,
-      unsettled: sums.unsettled,
-    };
-  });
+  return readCommitted(pool, fixedStep(), readImageBudgetStatus);
+}
+
+/** The counters within the caller's transaction (`spend-report.ts` reads them beside the AI's). */
+export async function readImageBudgetStatus(tx: Reader): Promise<ImageBudgetStatus> {
+  const budget = await latestCeiling(tx);
+  const sums = await totals(tx);
+  const spent = BigInt(sums.spent);
+  return {
+    revision: budget?.revision ?? null,
+    ceilingMicros: budget ? budget.ceiling.toString() : null,
+    spentMicros: sums.spent,
+    heldMicros: sums.held,
+    remainingMicros: budget
+      ? (budget.ceiling > spent ? budget.ceiling - spent : 0n).toString()
+      : null,
+    charges: sums.charges,
+    unsettled: sums.unsettled,
+  };
 }

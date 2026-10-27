@@ -1,0 +1,21 @@
+### A 20 s database outage on fb35fa6f7bbc: /api/readyz through the proxy every 4 s; the server keeps running (2026-10-16T09:46:07Z)
+$ cd deploy && docker compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt > /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/ca.crt; probe() { printf '%s ' "$(date -u +%H:%M:%S)"; curl -sS --cacert /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/ca.crt --resolve localhost:28443:127.0.0.1 -o /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/ready.json -w '%{http_code} ' https://localhost:28443/api/readyz; cat /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/ready.json; printf '  server: %s\n' "$(docker inspect "$(docker compose ps -q server)" --format '{{.State.Status}}, restarts {{.RestartCount}}, {{.State.Health.Status}}')"; }; probe; docker compose stop postgres 2>&1 | grep -v Stopping; for i in 1 2 3 4 5; do sleep 4; probe; done; docker compose start postgres 2>&1 | grep -v Starting; for i in 1 2 3 4 5 6; do sleep 4; probe; grep -q '"ready"' /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/ready.json && break; done; docker compose logs --no-color --no-log-prefix --since 2m server | grep -E '"msg":"(ready|not ready|database connection lost[^"]*)"' | jq -c '{time, msg, check}' | head -8
+09:46:07 200 {"status":"ready"}  server: running, restarts 0, healthy
+ Container ltw-stage350f-postgres-1 Stopped 
+09:46:11 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+09:46:15 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+09:46:19 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+09:46:24 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+09:46:28 503 {"status":"not_ready","failed":["database","migrations","eventStore"]}  server: running, restarts 0, healthy
+ Container ltw-stage350f-postgres-1 Started 
+09:46:32 200 {"status":"ready"}  server: running, restarts 0, healthy
+{"time":"2026-10-16T09:44:52.494Z","msg":"ready","check":null}
+{"time":"2026-10-16T09:46:07.391Z","msg":"database connection lost; the pool reconnects on demand","check":null}
+{"time":"2026-10-16T09:46:07.391Z","msg":"database connection lost; the pool reconnects on demand","check":null}
+{"time":"2026-10-16T09:46:07.391Z","msg":"database connection lost; the pool reconnects on demand","check":null}
+{"time":"2026-10-16T09:46:11.620Z","msg":"not ready","check":"database"}
+{"time":"2026-10-16T09:46:11.621Z","msg":"not ready","check":"migrations"}
+{"time":"2026-10-16T09:46:11.621Z","msg":"not ready","check":"eventStore"}
+{"time":"2026-10-16T09:46:32.639Z","msg":"ready","check":null}
+[exit 0]
+

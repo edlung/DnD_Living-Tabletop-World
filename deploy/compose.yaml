@@ -1,0 +1,245 @@
+# Living Tabletop World deployment (docs/adr/0037-deployment.md; operations in deploy/RUNBOOK.md).
+# One Compose project: `proxy` (Caddy: the client and /api over TLS, the only published ports),
+# `server` (migrations at start, then the API; never published), `postgres` (named volume,
+# internal network only), `backup` (pg_dump every 6 h and on demand, retention, SHA-256 manifest)
+# and, for the restore drill only, `drill-db` (profile `drill`, data on tmpfs). Settings and
+# secrets come from deploy/.env (git-ignored; deploy/.env.example lists the names), and each
+# service receives only the ones it names below. Images are local, built by
+# deploy/scripts/build.sh and tagged by git revision.
+# Networks (the trust boundary, deploy/verify/trust-boundary.sh): `edge` (the proxy alone; the
+# published ports), `backend` (the proxy and the server; internal, no host address), `data`
+# (server, database, backups; internal, no host address), `egress` (the server alone; its
+# outbound calls to AI providers; nothing listens there).
+name: ltw
+
+x-logging: &logging
+  driver: local
+  options:
+    max-size: 100m
+    max-file: '5'
+
+x-postgres-image: &postgres-image postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873
+
+services:
+  proxy:
+    image: ltw-proxy:${LTW_IMAGE_TAG:?set LTW_IMAGE_TAG in deploy/.env}
+    pull_policy: never
+    restart: unless-stopped
+    depends_on:
+      server:
+        condition: service_healthy
+    environment:
+      PUBLIC_HOST: ${PUBLIC_HOST:?set PUBLIC_HOST in deploy/.env}
+      TLS_MODE: ${TLS_MODE:?set TLS_MODE (acme or internal) in deploy/.env}
+    ports:
+      - '${PROXY_HTTP_PUBLISH:-80}:80'
+      - '${PROXY_HTTPS_PUBLISH:-443}:443'
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+    networks: [edge, backend]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    # The non-root proxy binds 80 and 443 without capabilities.
+    sysctls:
+      net.ipv4.ip_unprivileged_port_start: 0
+    mem_limit: ${PROXY_MEMORY:-256m}
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1:2020/healthz']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+      start_interval: 2s
+    logging: *logging
+
+  server:
+    image: ltw-server:${LTW_IMAGE_TAG:?set LTW_IMAGE_TAG in deploy/.env}
+    pull_policy: never
+    restart: unless-stopped
+    init: true
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Only what the server reads (apps/server/src/platform/config/config.ts), never deploy/.env
+    # whole: the internet-facing process must not hold the host's settings, the database password
+    # apart from its own connection, or the alarm webhook. A setting a later stage adds is named
+    # here (deploy/AGENTS.md); verify/smoke.sh checks that nothing else from deploy/.env arrives.
+    environment:
+      NODE_ENV: production
+      # Invitation sign-in (ADR 0036) needs the browser's origin.
+      AUTH_MODE: invitations
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?set PUBLIC_ORIGIN in deploy/.env}
+      # The API listens only at the server's backend address: not on `data`, not on `egress`.
+      HTTP_HOST: ${LTW_BACKEND_PREFIX:-10.231.251}.10
+      HTTP_PORT: '3000'
+      # The client's address comes from X-Forwarded-For only when the peer is on `backend`, where
+      # the proxy is the only other member and replaces any such header a client sends (ADR 0036
+      # amendment; per-client limits).
+      LTW_TRUST_PROXY: ${LTW_BACKEND_PREFIX:-10.231.251}.0/24
+      DATABASE_URL: postgres://ltw:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}@postgres:5432/ltw
+      DEV_PERSONAS_FILE: ''
+      # The review campaign is the Russian Ravenford: its quest summaries (ADR 0031).
+      LTW_QUESTS_FILE: ${LTW_QUESTS_FILE:-/app/fixtures/ravenford-ru/quests.json}
+      # The rollback step (deploy.sh --rollback): the migrator accepts a database a newer image
+      # migrated, and readiness parses every stored event before it reports ready.
+      LTW_ALLOW_NEWER_SCHEMA: ${LTW_ALLOW_NEWER_SCHEMA:-false}
+      LOG_LEVEL: ${LOG_LEVEL:-}
+      # Live AI (ADR 0032) and images in play (ADR 0035): empty keeps every capability local.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      LTW_AI_MODEL: ${LTW_AI_MODEL:-}
+      LTW_AI_TIMEOUT_MS: ${LTW_AI_TIMEOUT_MS:-}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      LTW_DEEPSEEK_MODEL: ${LTW_DEEPSEEK_MODEL:-}
+      LTW_AI_ROUTES: ${LTW_AI_ROUTES:-}
+      LTW_AI_REQUEST_TIMEOUT_MS: ${LTW_AI_REQUEST_TIMEOUT_MS:-}
+      LTW_AI_APPROVAL_ID: ${LTW_AI_APPROVAL_ID:-}
+      LTW_AI_RELEVANCE_BUDGET_MS: ${LTW_AI_RELEVANCE_BUDGET_MS:-}
+      # The asset worker's generator: the local placeholder unless the operator chooses
+      # openrouter-openai (with OPENROUTER_API_KEY); its spending ceiling is an operator record
+      # (ai:operator image-budget-set), never a setting (deploy/RUNBOOK.md section 8).
+      LTW_IMAGE_GENERATOR: ${LTW_IMAGE_GENERATOR:-placeholder}
+      LTW_IMAGE_MODEL: ${LTW_IMAGE_MODEL:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      LTW_ASSET_WORKER_INTERVAL_MS: ${LTW_ASSET_WORKER_INTERVAL_MS:-}
+      LTW_ASSET_TIMEOUT_MS: ${LTW_ASSET_TIMEOUT_MS:-}
+    networks:
+      backend:
+        ipv4_address: ${LTW_BACKEND_PREFIX:-10.231.251}.10
+      data: {}
+      egress: {}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    mem_limit: ${SERVER_MEMORY:-1g}
+    stop_grace_period: 30s
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://' + process.env.HTTP_HOST + ':3000/readyz').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+      start_interval: 2s
+    logging: *logging
+
+  postgres:
+    image: *postgres-image
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ltw
+      POSTGRES_DB: ltw
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+    volumes:
+      - pgdata:/var/lib/postgresql
+    networks: [data]
+    shm_size: 256m
+    security_opt: ['no-new-privileges:true']
+    mem_limit: ${POSTGRES_MEMORY:-1g}
+    stop_grace_period: 60s
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ltw -d ltw']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    logging: *logging
+
+  backup:
+    image: *postgres-image
+    restart: unless-stopped
+    init: true
+    user: '70:70'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '/opt/ltw/backup.sh']
+    command: ['loop']
+    # The digest of deploy/backup/ (deploy.sh writes it): a changed script changes this label, so
+    # the deploy recreates the service and the loop runs the checkout's script.
+    labels:
+      ltw.backup-script: ${LTW_BACKUP_SCRIPT_DIGEST:-unset}
+    environment:
+      PGHOST: postgres
+      PGUSER: ltw
+      PGDATABASE: ltw
+      PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-21600}
+      BACKUP_KEEP_DAILY: ${BACKUP_KEEP_DAILY:-14}
+      BACKUP_KEEP_WEEKLY: ${BACKUP_KEEP_WEEKLY:-8}
+      BACKUP_KEEP_PROTECTED: ${BACKUP_KEEP_PROTECTED:-5}
+    volumes:
+      # The directory, not the file: a single-file mount keeps the file a checkout replaced.
+      - ./backup:/opt/ltw:ro
+      - ${BACKUP_DIR:?set BACKUP_DIR in deploy/.env}:/backups
+    networks: [data]
+    read_only: true
+    # /var/lib/postgresql: the image declares a volume there, which the backups never use; a
+    # tmpfs keeps Docker from leaving an anonymous volume behind every backup container.
+    tmpfs: [/tmp, /var/lib/postgresql]
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    mem_limit: ${BACKUP_MEMORY:-512m}
+    healthcheck:
+      test: ['CMD', '/bin/sh', '/opt/ltw/backup.sh', 'health']
+      interval: 5m
+      timeout: 30s
+      retries: 1
+      start_period: 15m
+      start_interval: 10s
+    logging: *logging
+
+  # The restore drill's throwaway database (deploy/scripts/restore-drill.sh): started, filled from
+  # a dump, compared and removed by the drill; nothing persists.
+  drill-db:
+    profiles: [drill]
+    image: *postgres-image
+    environment:
+      POSTGRES_USER: ltw
+      POSTGRES_DB: ltw_restore_drill
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+    tmpfs: [/var/lib/postgresql]
+    volumes:
+      - ${BACKUP_DIR:?set BACKUP_DIR in deploy/.env}:/backups:ro
+    networks: [data]
+    shm_size: 256m
+    security_opt: ['no-new-privileges:true']
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ltw -d ltw_restore_drill']
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    logging: *logging
+
+networks:
+  # The proxy alone: the published ports, outbound traffic for certificates (ACME).
+  edge: {}
+  # The proxy and the server, nothing else. Internal, and without an address on the host
+  # (gateway mode `isolated`, Docker Engine 28 or later): no host process and no other network
+  # reaches the server. A fixed range: the server trusts X-Forwarded-For from it alone; the
+  # server's address lies outside the range other members get.
+  backend:
+    internal: true
+    driver_opts:
+      com.docker.network.bridge.gateway_mode_ipv4: isolated
+    ipam:
+      config:
+        - subnet: ${LTW_BACKEND_PREFIX:-10.231.251}.0/24
+          ip_range: ${LTW_BACKEND_PREFIX:-10.231.251}.128/25
+  # Server, database and backups; internal, no address on the host, nothing published.
+  data:
+    internal: true
+    driver_opts:
+      com.docker.network.bridge.gateway_mode_ipv4: isolated
+  # The server alone: outbound calls to AI providers. The server does not listen on it.
+  egress: {}
+
+volumes:
+  pgdata: {}
+  caddy-data: {}
+  caddy-config: {}

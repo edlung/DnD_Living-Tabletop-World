@@ -1,0 +1,76 @@
+Stage 350 part B: local verification transcripts (2026-10-16, Europe/Oslo; times in UTC)
+
+Machine: Apple Silicon (Darwin arm64), Docker Desktop with Engine 29.5.3, Compose v5.1.4, bash
+3.2. Every entry is "### title (time)", "$ command" as run from the worktree root, its combined
+output and "[exit N]" ("### Finding"/observation entries have no command). Secret values never
+appear: deploy/.env is shown redacted, invitation links and session cookies as <token> and
+<session> (the scripts print nothing else), and POSTGRES_PASSWORD is expanded only inside the
+containers. The stack ran as Compose project ltw-stage350b on 127.0.0.1:80/443 (both free),
+PUBLIC_ORIGIN=https://localhost, TLS_MODE=internal, production mode (NODE_ENV=production,
+AUTH_MODE=invitations, compose.yaml alone), and was removed at the end (13).
+
+Revisions (tags = 12-character commits; images built by deploy/scripts/build.sh from `git
+archive`, so committed files only):
+  333a8791b1e8  part A rebased onto Stage 340 (333a879): the previous tag; its own deploy files
+                for the first install (git archive 333a879 deploy, under the scratchpad)
+  8b362b15ec68  part B (8b362b1): every check of 02-13
+  73306363dc89  part B (7330636; differs from 8b362b1 only in deploy/scripts/deploy.sh, a host
+                script): the CI job run of 14
+8b362b1 and 7330636 were working commits of this part (kept in the local branch
+backup/stage-350-part-b-7330636); the part B commit squashes them with these transcripts and the
+report. It changes no image input after 8b362b1 (deploy/Dockerfile copies apps/, packages/,
+fixtures/ravenford*, deploy/server/start.sh and deploy/proxy/Caddyfile), so its images hold the
+same files. After the first install (part A's deploy files), part B's deploy files ran every
+step, deploy.sh with its fix from the finding in 02 onward.
+
+Files
+  00-environment.txt       revision, Docker and tool versions, free ports, redacted deploy/.env,
+                           the images run
+  01-build.txt             both revisions rebuilt from cache; the server image holds the review
+                           campaign CLI (part B only), the Russian fixtures, no sources, tests or
+                           .env files
+  02-install-and-upgrade.txt  first install with part A as it shipped (edge network trusted);
+                           the upgrade to part B: a finding (Compose and changed networks; fixed in
+                           deploy.sh) and the passing upgrade; settings after it; the review
+                           campaign by the operator script (seeded, then idempotent; DM link
+                           redacted)
+  03-smoke.txt             deploy/verify/smoke.sh: 39/39 after the upgrade, 39/39 again at the
+                           end (after a restore, two rollbacks and two forward deploys)
+  04-trust-boundary.txt    the server's outbound path (default route via egress, a TCP handshake
+                           to the AI provider); Docker Desktop: Caddy sees this machine as the edge
+                           gateway 172.28.0.1; deploy/verify/trust-boundary.sh 23/23 (networks and
+                           members, isolated gateways, the listening socket, TCP probes from the
+                           host namespace and the edge and egress networks, forged
+                           X-Forwarded-For: 401 x10 then 429, control from the proxy: 401)
+  05-proxy-contract.txt    deploy/verify/proxy-contract.sh 10/10
+  06-sign-in-journeys.txt  deploy/verify/sign-in-journey.sh 50/50: operator DM link, DM joins,
+                           invites, the player joins and explores in Russian, revocation (the
+                           player's stream closed 0.61 s later), used/forged/revoked links (one
+                           fixed 401), 409, cross-site refusals, sign-out (stream closed 0.52 s
+                           later), no credential in 141 log lines
+  07-live-stream.txt       deploy/verify/live-stream.sh (invitation session, cookie and Origin):
+                           ready 0.11 s, changed 0.96 s after a DM command, heartbeat 15.16 s,
+                           closed 0.99 s after sign-out, uncompressed, x-accel-buffering: no
+  08-readiness.txt         a 20 s database outage: 503 {database, migrations, eventStore} during,
+                           200 after, no server restart (Docker health needs 3 failed probes,
+                           30 s, to turn unhealthy: part A's 30 s outage showed that)
+  09-backup-restore.txt    dump A (seeded campaign), drill on A with the live world ahead (match
+                           at 101), dump B (116), a real restore of A by the runbook and its
+                           drill (match), negatives: B with the live stream shorter (behind),
+                           B at the same version with another world (mismatch), a damaged dump
+                           (checksum); the final drill on the final state (match at 116)
+  10-rollback.txt          rollback 8b362b15ec68 -> 333a8791b1e8 -> 8b362b15ec68 on the same
+                           database (no network change, nothing taken down); a database a newer
+                           build migrated: refused by the strict start, accepted by --rollback
+  11-operations.txt        watch.sh, spend.sh, logs.sh, the operator's sessions and revoke-dm
+  12-retention.txt         deploy/verify/retention-check.sh (21 of 480 kept), backup health
+  13-teardown.txt          the stack removed; the shared development database left running
+  14-ci-script.txt         deploy/verify/ci.sh on this clean worktree: 122/122 checks (39 smoke,
+                           10 proxy contract, 50 journey, 23 trust boundary), drill, retention,
+                           live stream; everything it created removed. Its trust boundary run
+                           follows the journeys within the minute, so the forged headers met 429
+                           at the third attempt (the host had spent 8 of its 10 redeems).
+  15-validate.txt          pnpm validate on the final tree (own database, shared lock): passed;
+                           format, lint, typecheck, context budget (849 files, none over 500
+                           lines), 2,627 unit tests (247 files), build, migrate and seed, 207
+                           integration tests (38 files), 59 browser journeys

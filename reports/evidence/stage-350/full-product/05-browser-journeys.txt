@@ -1,0 +1,32 @@
+### deploy/verify/browser-journey.sh: the Russian browser journey through Caddy (Playwright Chromium; Caddy s local CA trusted for the run by its intermediate s key); a fresh campaign: Elowen is at the market square (2026-10-16T09:45:09Z)
+$ time deploy/verify/browser-journey.sh
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.cR1m1cKmyq/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/YC9vxKDjQmEnuubyTvJmB5p6wMDOQ5Ilo6USQkvmNsk=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:44:28 2026 GMT
+==> the browser journeys against https://localhost:28443
+
+Running 1 test using 1 worker
+
+     1.1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the operator issues the DM link in the server container (330ms)
+     1.2 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM takes the seat on the join page («Занять место») (291ms)
+     1.3 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM invites a player for Elowen in the Players sheet (453ms)
+     1.4 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player takes the seat in another browser (269ms)
+     1.5 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the market square: its curated picture, the figures standing in it (178ms)
+     1.6 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › checked: 2 standing figures and the backdrop, of 4 pictures the player's page fetched (0ms)
+     1.7 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player acts once: Elowen looks Mira over («Осмотреть») (117ms)
+     1.8 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM revokes the player: «Вы вышли» through the live stream alone (4.1s)
+     1.9 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player's screen said «Вы вышли» 0.93 s after the DM began the revocation (asked and confirmed), with no request of its own (0ms)
+     1.10 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM signs out, asked first (113ms)
+     1.11 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › no policy violation, no token out of place, no credential in any log (99ms)
+  ✓  1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy (6.2s)
+
+  1 passed (6.8s)
+==> browser journeys passed
+
+real	0m7.468s
+user	0m4.227s
+sys	0m0.913s
+[exit 0]
+

@@ -1,0 +1,24 @@
+### The final revision's images rebuilt from git archive (cached layers; prints the tag) (2026-10-16T09:44:16Z)
+$ deploy/scripts/build.sh fb35fa6f7bbc 2>/dev/null
+fb35fa6f7bbc
+[exit 0]
+
+### What the images hold: the server image has the curated set (45 pictures and the manifest) and the review campaign seeder that imports it; no sources, tests or .env files; the client in the proxy image makes zod jitless (2026-10-16T09:44:18Z)
+$ docker run --rm --entrypoint sh ltw-server:fb35fa6f7bbc -c 'ls /app/fixtures/ravenford-ru/assets/*.webp | wc -l; ls /app/fixtures/ravenford-ru/assets/manifest.json; grep -c importCuratedSet /app/apps/server/dist/world-engine/review-campaign.js; grep -c readImageBudgetStatus /app/apps/server/dist/ai/accounting/spend-report.js; find /app -name "*.ts" -not -name "*.d.ts" -not -path "*/node_modules/*" | head -3; find /app -name "*.test.*" -not -path "*/node_modules/*" | head -3; find /app -name ".env*" -not -path "*/node_modules/*" | head -3; echo checked'; docker run --rm --entrypoint sh ltw-proxy:fb35fa6f7bbc -c 'grep -o "[A-Za-z]*({jitless:!0})" /srv/assets/index-*.js; grep -c "Function(\`\`)" /srv/assets/index-*.js'
+45
+/app/fixtures/ravenford-ru/assets/manifest.json
+2
+2
+checked
+Be({jitless:!0})
+1
+[exit 0]
+
+### The images ci.sh built of 6ee2fda (6ee2fdaf123d) hold the same files as those of fb35fa6 (fb35fa6f7bbc) that the manual run used: one SHA-256 over the SHA-256 of every file, by path (6ee2fda changes only deploy/verify/ci.sh, a host script) (2026-10-16T09:56:20Z)
+$ for i in server proxy; do for t in fb35fa6f7bbc 6ee2fdaf123d; do docker run --rm --entrypoint sh "ltw-$i:$t" -c "cd / && find app srv etc/caddy -type f -exec sha256sum {} + 2>/dev/null | LC_ALL=C sort -k 2" | sha256sum | sed "s/ .*//; s/^/ltw-$i:$t files: /"; done; done
+ltw-server:fb35fa6f7bbc files: ba3289c7480c475f052cdf57e033755d0ca3634d836d95e464f8a6e5e4ff8f5f
+ltw-server:6ee2fdaf123d files: ba3289c7480c475f052cdf57e033755d0ca3634d836d95e464f8a6e5e4ff8f5f
+ltw-proxy:fb35fa6f7bbc files: 3cfa01fbf3028b4556245f58a8404e562663126e0e87ca361a48b85380750ed5
+ltw-proxy:6ee2fdaf123d files: 3cfa01fbf3028b4556245f58a8404e562663126e0e87ca361a48b85380750ed5
+[exit 0]
+

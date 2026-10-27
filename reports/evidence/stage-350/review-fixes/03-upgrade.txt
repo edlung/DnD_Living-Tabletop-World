@@ -1,0 +1,70 @@
+Stage 350 review fixes: the upgrade from b1618cb04a50 to dee48d337459 with this revision's deploy files
+
+### deploy/.env now in this worktree (a copy of the one b1618cb's scripts wrote); the settings deploy.sh keeps (2026-10-16T02:26:59Z)
+$ grep -E '^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|NETWORKS_DIGEST|PREDEPLOY_DUMP|ROLLBACK_DUMP|BACKUP_SCRIPT_DIGEST)=' deploy/.env; ls -l deploy/.env | cut -c1-10
+LTW_IMAGE_TAG=b1618cb04a50
+LTW_PREVIOUS_IMAGE_TAG=
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_NETWORKS_DIGEST=3e6c08454fb760acf24cef772e7f6393fe1ee562de5974e967cb8b95995082c9
+-rw-------
+[exit 0]
+
+### Upgrade: deploy.sh dee48d337459 (Engine check, rollback guard, the backup service recreated for this checkout's script, a protected pre-deploy dump, containers created, networks checked, then started) (2026-10-16T02:26:59Z)
+$ set -o pipefail; deploy/scripts/deploy.sh dee48d337459 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Starting|Waiting|Stopping|Removing|Running)|^\{'
+==> backup before the change (protected dump)
+ Container ltw-fix350-backup-1 Recreate 
+ Container ltw-fix350-backup-1 Recreated 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-backup-1 Started 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-backup-1 Healthy 
+==> the state before this deploy: ltw-predeploy-20261016T022712Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:dee48d337459 and ltw-proxy:dee48d337459 (previous: b1618cb04a50)
+ Container ltw-fix350-server-1 Recreate 
+ Container ltw-fix350-server-1 Recreated 
+ Container ltw-fix350-proxy-1 Recreate 
+ Container ltw-fix350-proxy-1 Recreated 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-server-1 Started 
+ Container ltw-fix350-server-1 Healthy 
+ Container ltw-fix350-proxy-1 Started 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-server-1 Healthy 
+ Container ltw-fix350-backup-1 Healthy 
+ Container ltw-fix350-proxy-1 Healthy 
+NAME                    IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-fix350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     19 seconds ago   Up 18 seconds (healthy)   5432/tcp
+ltw-fix350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   3 minutes ago    Up 3 minutes (healthy)    5432/tcp
+ltw-fix350-proxy-1      ltw-proxy:dee48d337459                                                                       "caddy run --config …"   proxy      6 seconds ago    Up 2 seconds (healthy)    127.0.0.1:18080->80/tcp, 127.0.0.1:18443->443/tcp
+ltw-fix350-server-1     ltw-server:dee48d337459                                                                      "/usr/local/bin/ltw-…"   server     7 seconds ago    Up 5 seconds (healthy)    3000/tcp
+==> deployed dee48d337459
+[exit 0]
+
+### After the upgrade: the settings deploy.sh wrote, the dumps (the protected one listed in the manifest and verified), the backup service's label and mount, the server's startup line (2026-10-16T02:27:28Z)
+$ grep -E '^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|NETWORKS_DIGEST|PREDEPLOY_DUMP|ROLLBACK_DUMP|BACKUP_SCRIPT_DIGEST)=' deploy/.env; cd deploy && docker compose exec -T backup ls -1 /backups && docker compose exec -T backup cat /backups/SHA256SUMS | cut -c1-12,65- && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh verify ltw-predeploy-20261016T022712Z.dump && id=$(docker compose ps -q backup) && docker inspect "$id" --format 'label ltw.backup-script={{index .Config.Labels "ltw.backup-script"}}{{range .Mounts}}{{"\n"}}mount {{.Destination}} <- {{.Source}} ({{if .RW}}rw{{else}}ro{{end}}){{end}}' | sed "s|/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350|<S>|; s|/private/tmp/claude-501/[^ ]*/wt-350|<worktree>|" && docker compose logs --no-color server | grep '"server ready"' | tail -1 | sed -E 's/^server-1 *\| //'
+LTW_IMAGE_TAG=dee48d337459
+LTW_PREVIOUS_IMAGE_TAG=b1618cb04a50
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_NETWORKS_DIGEST=3e6c08454fb760acf24cef772e7f6393fe1ee562de5974e967cb8b95995082c9
+LTW_BACKUP_SCRIPT_DIGEST=6c8c0ce1c5f688011092581e5acb53a03751a329a85de531a2f9cbee0a4cb81c
+LTW_PREDEPLOY_DUMP=ltw-predeploy-20261016T022712Z.dump
+SHA256SUMS
+ltw-20261016T022334Z.dump
+ltw-20261016T022448Z.dump
+ltw-20261016T022500Z.dump
+ltw-20261016T022701Z.dump
+ltw-predeploy-20261016T022712Z.dump
+cd1edbb2a8c5  ltw-20261016T022334Z.dump
+a9075f5e07e6  ltw-20261016T022448Z.dump
+1df938672e79  ltw-20261016T022500Z.dump
+23d0da1b0952  ltw-20261016T022701Z.dump
+d843beb7e20c  ltw-predeploy-20261016T022712Z.dump
+{"time":"2026-10-16T02:27:28Z","service":"ltw-backup","level":"info","msg":"verified: ltw-predeploy-20261016T022712Z.dump"}
+label ltw.backup-script=6c8c0ce1c5f688011092581e5acb53a03751a329a85de531a2f9cbee0a4cb81c
+mount /backups <- <S>/backups (rw)
+mount /opt/ltw <- <worktree>/deploy/backup (ro)
+mount /var/lib/postgresql <- /var/lib/docker/volumes/a892c1e664b83292fff34a83d05b8b6929fd95b28dcad3b8f936d387747b4d27/_data (rw)
+{"level":"info","time":"2026-10-16T02:27:14.795Z","service":"ltw-server","nodeEnv":"production","authMode":"invitations","trustedProxies":1,"database":"postgres://postgres:5432/ltw","allowNewerSchema":false,"msg":"server ready"}
+[exit 0]
+

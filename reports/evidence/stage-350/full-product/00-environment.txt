@@ -1,0 +1,64 @@
+### Revision, tools and host ports (2026-10-16T09:44:15Z)
+$ git log --oneline -6 && git status --short | head; docker version --format "Docker client {{.Client.Version}}, server {{.Server.Version}} ({{.Server.Os}}/{{.Server.Arch}})" && docker compose version && uname -sm && bash --version | head -1 && node --version && for t in curl jq python3 openssl; do printf "%s: " "$t"; command -v "$t"; done; openssl version; node_modules/.bin/playwright --version; for p in 80 443 28080 28443; do if nc -z -w 1 127.0.0.1 $p; then echo "port $p in use"; else echo "port $p free"; fi; done
+fb35fa6 WIP Stage 350 full product: runbook dump size
+aa301a5 WIP Stage 350 full product: docs, runbook, journey steps, sign-in journey robustness
+f62f87f WIP Stage 350 full product: client zod jitless under the deployment's policy; journey and image check fixes
+cb438f3 WIP Stage 350 full product: image spending, curated pictures in the review campaign, image and browser checks
+a0da82a Stage 350: fix review findings (readiness after rollback, empty-dump drill, backup script mount, protected pre-deploy dumps, runbook cron and off-host, secrets out of argv and the server env, Docker 28 check)
+a51e9ac Stage 350 part B: invitation sign-in on the deployment, backend network trust boundary, review campaign, full local verification
+Docker client 29.5.3, server 29.5.3 (linux/arm64)
+Docker Compose version v5.1.4
+Darwin arm64
+GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)
+v25.8.1
+curl: /usr/bin/curl
+jq: /usr/bin/jq
+python3: /opt/homebrew/bin/python3
+openssl: /opt/homebrew/bin/openssl
+OpenSSL 4.0.3 29 Sep 2026 (Library: OpenSSL 4.0.3 29 Sep 2026)
+Version 1.63.0
+port 80 free
+port 443 free
+port 28080 free
+port 28443 free
+[exit 0]
+
+### Local deploy/.env (secret values redacted); the previous revision a0da82a deploy files are git archive a0da82a deploy, extracted under the scratchpad with a copy of this file (2026-10-16T09:44:16Z)
+$ sed -E 's/^(POSTGRES_PASSWORD|ANTHROPIC_API_KEY|OPENROUTER_API_KEY|ALARM_WEBHOOK_URL)=.+/\1=<redacted>/; s|^(BACKUP_DIR=).*/scratchpad/|\1<scratchpad>/|' /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/.env && ls -l /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/.env | cut -c1-10
+COMPOSE_PROJECT_NAME=ltw-stage350f
+LTW_IMAGE_TAG=
+LTW_PREVIOUS_IMAGE_TAG=
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_NETWORKS_DIGEST=
+LTW_BACKUP_SCRIPT_DIGEST=
+LTW_PREDEPLOY_DUMP=
+LTW_ROLLBACK_DUMP=
+PUBLIC_HOST=localhost
+PUBLIC_ORIGIN=https://localhost:28443
+TLS_MODE=internal
+PROXY_HTTP_PUBLISH=127.0.0.1:28080
+PROXY_HTTPS_PUBLISH=127.0.0.1:28443
+LTW_BACKEND_PREFIX=10.231.157
+POSTGRES_PASSWORD=<redacted>
+BACKUP_DIR=<scratchpad>/full350/backups
+BACKUP_INTERVAL_SECONDS=
+BACKUP_KEEP_DAILY=
+BACKUP_KEEP_WEEKLY=
+BACKUP_KEEP_PROTECTED=
+ANTHROPIC_API_KEY=
+LTW_AI_ROUTES=
+LTW_AI_APPROVAL_ID=
+OPENROUTER_API_KEY=
+LTW_QUESTS_FILE=
+ALARM_WEBHOOK_URL=
+-rw-------
+[exit 0]
+
+### Images to run: the previous revision (a0da82a7648c, the full product before this work) and this one (fb35fa6f7bbc) (2026-10-16T09:44:16Z)
+$ for t in a0da82a7648c fb35fa6f7bbc; do for i in server proxy; do docker image inspect "ltw-$i:$t" --format "ltw-$i:$t {{.Id}} revision={{index .Config.Labels \"org.opencontainers.image.revision\"}} user={{.Config.User}} {{.Size}} bytes"; done; done
+ltw-server:a0da82a7648c sha256:ab06362911467590763bc86b4fe4babcc4087be5bbbc9b7061233fd0ebc48514 revision=a0da82a7648c57a22ba93ccc69a73e0ce33046b7 user=node 86579547 bytes
+ltw-proxy:a0da82a7648c sha256:a5b03d6bf9d7d5934f58450f49d6fddc4e29bd37c22a858a4f5d30e4cfae2759 revision=a0da82a7648c57a22ba93ccc69a73e0ce33046b7 user=caddy 38873860 bytes
+ltw-server:fb35fa6f7bbc sha256:d76a4137c5db24c19bba9661c347f4b025f2f979ee18a58eac2f0623ce62c65e revision=fb35fa6f7bbc64db430c332e96bbc4d0cb0358fd user=node 86581071 bytes
+ltw-proxy:fb35fa6f7bbc sha256:bdb3b5be4e5b9b8ef3a4cc2247231fe674bb91bec253397897fe2519a2b6cf7f revision=fb35fa6f7bbc64db430c332e96bbc4d0cb0358fd user=caddy 38873221 bytes
+[exit 0]
+

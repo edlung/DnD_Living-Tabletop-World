@@ -49,11 +49,106 @@ const EVENT_COLUMNS = `stream_id, sequence, event_id, event_type, schema_version
 const COMMAND_COLUMNS = `command_id, stream_id, command_type, actor, fingerprint, command,
   reason, first_sequence, last_sequence, recorded_at`;
 
+/** Events per query when readiness reads every stored event (`assertReadable`). */
+export const HISTORY_PAGE_SIZE = 500;
+
+/** How much stored history `assertReadable` parses beneath the stream heads. */
+type HistoryScope = 'shapes' | 'events';
+
+/** An event's key, where the next page of every event starts after. */
+interface EventKey {
+  readonly streamId: string;
+  readonly sequence: string;
+}
+
 export class PostgresEventStore implements EventStore {
   readonly #pool: pg.Pool;
+  readonly #historyRead = new Set<HistoryScope>();
+  readonly #historyReading = new Map<HistoryScope, Promise<void>>();
 
   constructor(pool: pg.Pool) {
     this.#pool = pool;
+  }
+
+  /**
+   * Readiness (docs/adr/0037-deployment.md §3): can this build read the store? Every call parses
+   * the newest event of every stream, which each stream head must have. Until a call succeeds,
+   * the history beneath is parsed with this build's schemas too: normally one stored event of
+   * every (type, schema version), which is cheap; with `everyEvent` (the deployment's rollback
+   * step) every stored event, page by page, because a newer build may have loosened a payload
+   * schema without a new version (ADR 0007 allows it) and this build's strict schemas refuse what
+   * it wrote anywhere in a stream. Concurrent calls share one read of the history, which goes on
+   * when a caller stops waiting (the probe's bound), so a long read completes across probes.
+   * Throws when anything cannot be read, naming the event.
+   */
+  async assertReadable(
+    options: { readonly everyEvent?: boolean; readonly pageSize?: number } = {},
+  ): Promise<void> {
+    await this.#readHistory(
+      options.everyEvent === true ? 'events' : 'shapes',
+      options.pageSize ?? HISTORY_PAGE_SIZE,
+    );
+    // One statement, one snapshot: every head with its event, if it has one.
+    const { rows } = await this.#pool.query<EventRow & { found: boolean }>(
+      `SELECT e.*, e.event_id IS NOT NULL AS found
+         FROM ltw_event_streams h
+         LEFT JOIN ltw_events e ON e.stream_id = h.stream_id AND e.sequence = h.version`,
+    );
+    for (const row of rows) {
+      if (!row.found) throw new Error('a stream head has no event');
+      readableEvent(row);
+    }
+  }
+
+  async #readHistory(scope: HistoryScope, pageSize: number): Promise<void> {
+    if (this.#historyRead.has('events') || this.#historyRead.has(scope)) return;
+    let reading = this.#historyReading.get(scope);
+    if (reading === undefined) {
+      reading = (scope === 'events' ? this.#parseEveryEvent(pageSize) : this.#parseEveryShape())
+        .then(() => {
+          this.#historyRead.add(scope);
+        })
+        .finally(() => {
+          this.#historyReading.delete(scope);
+        });
+      this.#historyReading.set(scope, reading);
+    }
+    await reading;
+  }
+
+  async #parseEveryShape(): Promise<void> {
+    const { rows } = await this.#pool.query<EventRow>(
+      `SELECT DISTINCT ON (event_type, schema_version) ${EVENT_COLUMNS} FROM ltw_events
+        ORDER BY event_type, schema_version, stream_id, sequence`,
+    );
+    rows.forEach(readableEvent);
+  }
+
+  /** Every stored event in key order, `pageSize` rows per query (the primary key's order). */
+  async #parseEveryEvent(pageSize: number): Promise<void> {
+    let after: EventKey | null = null;
+    for (;;) {
+      const page = await this.#eventPage(after, pageSize);
+      page.forEach(readableEvent);
+      const last = page.at(-1);
+      if (last === undefined || page.length < pageSize) return;
+      after = { streamId: last.stream_id, sequence: last.sequence };
+    }
+  }
+
+  async #eventPage(after: EventKey | null, pageSize: number): Promise<EventRow[]> {
+    const { rows } =
+      after === null
+        ? await this.#pool.query<EventRow>(
+            `SELECT ${EVENT_COLUMNS} FROM ltw_events ORDER BY stream_id, sequence LIMIT $1`,
+            [pageSize],
+          )
+        : await this.#pool.query<EventRow>(
+            `SELECT ${EVENT_COLUMNS} FROM ltw_events WHERE (stream_id, sequence) > ($2, $3)
+              ORDER BY stream_id, sequence LIMIT $1`,
+            [pageSize, after.streamId, after.sequence],
+          );
+    return rows;
   }
 
   async loadStream(campaignId: string, afterSequence = 0): Promise<StreamSlice | null> {
@@ -169,6 +264,18 @@ export class PostgresEventStore implements EventStore {
     } finally {
       client.release();
     }
+  }
+}
+
+/** `toRecordedEvent` for readiness: a refusal names the event (stream, sequence, type, version). */
+function readableEvent(row: EventRow): void {
+  try {
+    toRecordedEvent(row);
+  } catch (error: unknown) {
+    throw new Error(
+      `this build cannot read event ${row.stream_id}#${row.sequence} (${row.event_type} v${String(row.schema_version)})`,
+      { cause: error },
+    );
   }
 }
 

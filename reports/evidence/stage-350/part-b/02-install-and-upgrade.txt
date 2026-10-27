@@ -1,0 +1,143 @@
+Stage 350 part B: first install as part A shipped it, the upgrade to part B, the review campaign
+
+### First install on an empty host with part A as it shipped (its deploy files at 333a879 and its images): one edge network trusted as the proxy range, no backend network (2026-10-16T01:06:36Z)
+$ A=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/part-a; "$A/deploy/scripts/deploy.sh" 333a8791b1e8 2>&1 | grep -vE "^ (Container|Network|Volume) .* (Creating|Starting|Waiting)" ; (cd "$A/deploy" && docker compose exec -T server printenv LTW_TRUST_PROXY HTTP_HOST AUTH_MODE && docker network ls --filter label=com.docker.compose.project=ltw-stage350b --format "{{.Name}}")
+==> starting ltw-server:333a8791b1e8 and ltw-proxy:333a8791b1e8 (previous: none)
+ Network ltw-stage350b_edge Created 
+ Network ltw-stage350b_data Created 
+ Volume ltw-stage350b_caddy-config Created 
+ Volume ltw-stage350b_pgdata Created 
+ Volume ltw-stage350b_caddy-data Created 
+ Container ltw-stage350b-postgres-1 Created 
+ Container ltw-stage350b-backup-1 Created 
+ Container ltw-stage350b-server-1 Created 
+ Container ltw-stage350b-proxy-1 Created 
+ Container ltw-stage350b-postgres-1 Started 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-backup-1 Started 
+ Container ltw-stage350b-server-1 Started 
+ Container ltw-stage350b-server-1 Healthy 
+ Container ltw-stage350b-proxy-1 Started 
+ Container ltw-stage350b-server-1 Healthy 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-proxy-1 Healthy 
+ Container ltw-stage350b-backup-1 Healthy 
+NAME                       IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350b-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     16 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-stage350b-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   16 seconds ago   Up 15 seconds (healthy)   5432/tcp
+ltw-stage350b-proxy-1      ltw-proxy:333a8791b1e8                                                                       "caddy run --config …"   proxy      16 seconds ago   Up 7 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350b-server-1     ltw-server:333a8791b1e8                                                                      "/usr/local/bin/ltw-…"   server     16 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed 333a8791b1e8
+10.231.250.0/24
+0.0.0.0
+invitations
+ltw-stage350b_data
+ltw-stage350b_edge
+[exit 0]
+
+### Upgrade to part B (8b362b15ec68) with its deploy files: a backup first, the previous tag recorded; the networks changed, so every container is recreated (2026-10-16T01:07:02Z)
+$ A=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/part-a; cat "$A/deploy/.env" > deploy/.env && deploy/scripts/deploy.sh 8b362b15ec68 2>&1 | grep -vE "^ (Container|Network|Volume) .* (Creating|Starting|Waiting|Stopping|Removing)|^\{" ; grep -E "^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|NETWORKS_DIGEST)=" deploy/.env
+==> backup before the change
+ltw-20261016T010702Z.dump
+==> the networks changed since the last deploy: every container is recreated
+==> starting ltw-server:8b362b15ec68 and ltw-proxy:8b362b15ec68 (previous: 333a8791b1e8)
+ Container ltw-stage350b-proxy-1 Stopped 
+ Network ltw-stage350b_edge Removed 
+Error response from daemon: error while removing network: network ltw-stage350b_edge has active endpoints (name:"ltw-stage350b-server-1" id:"2907997863a1")
+LTW_IMAGE_TAG=8b362b15ec68
+LTW_PREVIOUS_IMAGE_TAG=333a8791b1e8
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_NETWORKS_DIGEST=
+[exit 0]
+
+### Finding (2026-10-16T01:07Z): the attempt above failed (the grep at the end of that command line hid deploy.sh's exit status; every later command line sets pipefail)
+With --force-recreate, Compose 5.1.4 stopped the proxy and removed the edge network while the
+server (on part A's layout) still used it: "network ltw-stage350b_edge has active endpoints".
+Without --force-recreate (a trial run before this transcript) Compose recreated the networks but
+only restarted PostgreSQL, which came back on the new data network without its service name, so
+the server's migrations failed with "getaddrinfo ENOTFOUND postgres". deploy.sh now takes the
+stack down first when the resolved networks differ from the last deploy's digest (`compose down
+--remove-orphans`: containers and networks only; volumes, the backup directory and the database
+stay), then starts it. The images are unchanged; only the host script changed. State now: the
+proxy stopped, the other services still on part A's networks, deploy/.env already names
+8b362b15ec68 with 333a8791b1e8 as the previous tag.
+
+### Upgrade to part B again with the fixed deploy.sh: a backup first; the networks changed, so the containers and networks are created anew (volumes kept) (2026-10-16T01:07:49Z)
+$ set -o pipefail; deploy/scripts/deploy.sh 8b362b15ec68 2>&1 | grep -vE "^ (Container|Network|Volume) .* (Creating|Starting|Waiting|Stopping|Removing)|^\{" ; grep -E "^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|NETWORKS_DIGEST)=" deploy/.env; docker volume ls --filter label=com.docker.compose.project=ltw-stage350b --format "volume {{.Name}}"
+==> backup before the change
+ltw-20261016T010749Z.dump
+==> the networks changed since the last deploy: containers and networks are created anew (volumes kept)
+ Container ltw-stage350b-proxy-1 Stopped 
+ Container ltw-stage350b-proxy-1 Removed 
+ Container ltw-stage350b-backup-1 Stopped 
+ Container ltw-stage350b-backup-1 Removed 
+ Container ltw-stage350b-server-1 Stopped 
+ Container ltw-stage350b-server-1 Removed 
+ Container ltw-stage350b-postgres-1 Stopped 
+ Container ltw-stage350b-postgres-1 Removed 
+ Network ltw-stage350b_edge Removed 
+ Network ltw-stage350b_data Removed 
+==> starting ltw-server:8b362b15ec68 and ltw-proxy:8b362b15ec68 (previous: 8b362b15ec68)
+ Network ltw-stage350b_backend Created 
+ Network ltw-stage350b_data Created 
+ Network ltw-stage350b_egress Created 
+ Network ltw-stage350b_edge Created 
+ Container ltw-stage350b-postgres-1 Created 
+ Container ltw-stage350b-backup-1 Created 
+ Container ltw-stage350b-server-1 Created 
+ Container ltw-stage350b-proxy-1 Created 
+ Container ltw-stage350b-postgres-1 Started 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-backup-1 Started 
+ Container ltw-stage350b-server-1 Started 
+ Container ltw-stage350b-server-1 Healthy 
+ Container ltw-stage350b-proxy-1 Started 
+ Container ltw-stage350b-server-1 Healthy 
+ Container ltw-stage350b-postgres-1 Healthy 
+ Container ltw-stage350b-proxy-1 Healthy 
+ Container ltw-stage350b-backup-1 Healthy 
+NAME                       IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350b-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     17 seconds ago   Up 11 seconds (healthy)   5432/tcp
+ltw-stage350b-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   17 seconds ago   Up 16 seconds (healthy)   5432/tcp
+ltw-stage350b-proxy-1      ltw-proxy:8b362b15ec68                                                                       "caddy run --config …"   proxy      17 seconds ago   Up 7 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350b-server-1     ltw-server:8b362b15ec68                                                                      "/usr/local/bin/ltw-…"   server     17 seconds ago   Up 11 seconds (healthy)   3000/tcp
+==> deployed 8b362b15ec68
+LTW_IMAGE_TAG=8b362b15ec68
+LTW_PREVIOUS_IMAGE_TAG=333a8791b1e8
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_NETWORKS_DIGEST=b647b790131cb67dc0a2786225476effdcd7c5b94aae6ff6005a49ab45119730
+volume ltw-stage350b_caddy-config
+volume ltw-stage350b_caddy-data
+volume ltw-stage350b_pgdata
+[exit 0]
+
+### Server, networks and settings after the upgrade (2026-10-16T01:08:21Z)
+$ cd deploy && docker compose exec -T server printenv HTTP_HOST LTW_TRUST_PROXY AUTH_MODE NODE_ENV LTW_QUESTS_FILE && docker network ls --filter label=com.docker.compose.project=ltw-stage350b --format "{{.Name}}" | sort
+10.231.251.10
+10.231.251.0/24
+invitations
+production
+/app/fixtures/ravenford-ru/quests.json
+ltw-stage350b_backend
+ltw-stage350b_data
+ltw-stage350b_edge
+ltw-stage350b_egress
+[exit 0]
+
+### The operator: the review campaign and the DM link (deploy/scripts/review-campaign.sh; the link is a secret, shown here redacted) (2026-10-16T01:08:21Z)
+$ set -o pipefail; deploy/scripts/review-campaign.sh --expires-hours 1 2>&1 | sed -E "s/#[A-Za-z0-9_-]{43}/#<token>/g"
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 92 accepted, 0 already present; version 101, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+{"invitationId":"31ebad46-e87f-49ae-ab1f-dd97aae20bb6","expiresAt":"2026-10-16T02:08:22.696Z","link":"https://localhost/join#<token>","campaignId":"ravenford"}
+[exit 0]
+
+### The review campaign again: idempotent (every command already present), a new DM link each run (the previous one stays valid until used, revoked or expired) (2026-10-16T01:08:22Z)
+$ set -o pipefail; deploy/scripts/review-campaign.sh --expires-hours 1 2>&1 | sed -E "s/#[A-Za-z0-9_-]{43}/#<token>/g"
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; version 101, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+{"invitationId":"179cdd5f-4509-449d-b032-46911f4745cf","expiresAt":"2026-10-16T02:08:23.511Z","link":"https://localhost/join#<token>","campaignId":"ravenford"}
+[exit 0]

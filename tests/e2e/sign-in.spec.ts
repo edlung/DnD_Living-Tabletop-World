@@ -305,8 +305,11 @@ test('joining, the Players sheet and signing out work from the keyboard', async 
   const page = await browser.newPage();
   // A link: Tab reaches "Take your seat". It fails: its title takes focus, Tab reaches what next.
   await page.goto(joinPath(forgedToken()));
+  // The client renders the join page after it loads (slowly on hosted runners): Tab waits for it.
+  const takeSeat = page.getByRole('button', { name: words.takeSeat });
+  await expect(takeSeat).toBeVisible();
   await page.keyboard.press('Tab');
-  await expect(page.getByRole('button', { name: words.takeSeat })).toBeFocused();
+  await expect(takeSeat).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { name: words.failed })).toBeFocused();
   await page.keyboard.press('Tab');

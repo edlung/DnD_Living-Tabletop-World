@@ -1,0 +1,21 @@
+# Build context of deploy/Dockerfile (BuildKit reads this file for that Dockerfile). Only what the
+# images are built from; never dependencies, build output, environment files or history.
+*
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!tsconfig.base.json
+!tsconfig.build.json
+!apps
+!packages
+!fixtures/ravenford
+!fixtures/ravenford-ru
+!deploy/server/start.sh
+!deploy/proxy/Caddyfile
+**/node_modules
+**/dist
+apps/web/build
+**/.env
+**/.env.*
+**/*.test.ts
+**/*.test.tsx

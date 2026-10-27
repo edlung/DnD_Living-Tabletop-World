@@ -91,6 +91,13 @@ export interface AppConfig {
   };
   /** Quest definitions (docs/adr/0025-ravenford-integration.md §2). */
   readonly questsFile: string;
+  /**
+   * `LTW_ALLOW_NEWER_SCHEMA=true`: the deployment's rollback step (docs/adr/0037-deployment.md).
+   * This build runs on a database a newer build migrated and wrote, so readiness parses every
+   * stored event before it reports ready; `deploy/server/start.sh` gives the migrator the same
+   * setting (`--allow-newer-database`). Only `true` or `false` (default).
+   */
+  readonly allowNewerSchema: boolean;
   /** The asset worker (docs/adr/0022-asset-identity.md §4) and its image generator (ADR 0035). */
   readonly assets: {
     /** Pause between worker runs; 0 disables the worker. */
@@ -192,6 +199,10 @@ const envSchema = z.object({
   LTW_TRUST_PROXY: z.preprocess(emptyAsUndefined, z.string().max(1_000).optional()),
   DEV_PERSONAS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
   LTW_QUESTS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
+  LTW_ALLOW_NEWER_SCHEMA: z.preprocess(
+    emptyAsUndefined,
+    z.enum(['true', 'false']).default('false'),
+  ),
   ANTHROPIC_API_KEY: z.preprocess(emptyAsUndefined, z.string().trim().min(1).optional()),
   LTW_AI_MODEL: z.preprocess(
     emptyAsUndefined,
@@ -383,6 +394,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
       routes: routes === null ? null : Object.freeze(routes),
     }),
     questsFile: values.LTW_QUESTS_FILE ?? DEFAULT_QUESTS_FILE,
+    allowNewerSchema: values.LTW_ALLOW_NEWER_SCHEMA === 'true',
     assets: Object.freeze({
       workerIntervalMs: values.LTW_ASSET_WORKER_INTERVAL_MS,
       generationTimeoutMs:

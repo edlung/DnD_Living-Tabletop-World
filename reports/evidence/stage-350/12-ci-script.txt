@@ -1,0 +1,599 @@
+
+### The CI job script on this clean checkout (no deploy/.env): build HEAD, run, check, remove (2026-10-15T23:41:01Z)
+$ deploy/verify/ci.sh
+==> images of HEAD
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.5s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 done
+#4 DONE 0.0s
+
+#5 [pnpm 2/4] WORKDIR /app
+#5 CACHED
+
+#6 [manifests 2/4] COPY apps apps
+#6 CACHED
+
+#7 [build 1/9] COPY --from=manifests /app /app
+#7 CACHED
+
+#8 [build 5/9] COPY packages packages
+#8 CACHED
+
+#9 [pnpm 3/4] COPY package.json ./
+#9 CACHED
+
+#10 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#10 CACHED
+
+#11 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#11 CACHED
+
+#12 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#12 CACHED
+
+#13 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#13 CACHED
+
+#14 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#14 CACHED
+
+#15 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#15 CACHED
+
+#16 [build 4/9] COPY apps apps
+#16 CACHED
+
+#17 [build 6/9] RUN pnpm build
+#17 CACHED
+
+#18 [server 4/5] COPY --from=build /out /app
+#18 CACHED
+
+#19 [server 3/5] COPY --from=prod-deps /app /app
+#19 CACHED
+
+#20 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#20 CACHED
+
+#21 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#21 CACHED
+
+#22 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#22 CACHED
+
+#23 [manifests 3/4] COPY packages packages
+#23 CACHED
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 CACHED
+
+#25 exporting to image
+#25 exporting layers done
+#25 exporting manifest sha256:1b4cdea1ad7eeb0768e9e9b73c97201848203866ddcaa3340ef2bf5c0b887735 done
+#25 exporting config sha256:1950bb334594ad7a7f1fa29deec4dc78fc75f582cd077fe2e1758f6a091941f1 done
+#25 exporting attestation manifest sha256:82b0783e30530faefd774feed1fdb5ddf16f01e8270272b9dd966ce909aff812 0.0s done
+#25 exporting manifest list sha256:9607e3a88f2d157d6b26c7951d65aa10261e93c0c7dd3c97f970ae9261508a53
+#25 exporting manifest list sha256:9607e3a88f2d157d6b26c7951d65aa10261e93c0c7dd3c97f970ae9261508a53 done
+#25 naming to docker.io/library/ltw-server:73ce95bad8a0 done
+#25 unpacking to docker.io/library/ltw-server:73ce95bad8a0 done
+#25 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/1i8wudrgxbear4e8bbfnkxwla
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.6s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.1s
+
+#4 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#4 DONE 0.1s
+
+#5 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.1s done
+#5 DONE 0.1s
+
+#6 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.1s done
+#6 DONE 0.1s
+
+#7 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#7 CACHED
+
+#8 [pnpm 2/4] WORKDIR /app
+#8 CACHED
+
+#9 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#9 CACHED
+
+#10 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#10 CACHED
+
+#11 [manifests 2/4] COPY apps apps
+#11 CACHED
+
+#12 [manifests 3/4] COPY packages packages
+#12 CACHED
+
+#13 [build 1/9] COPY --from=manifests /app /app
+#13 CACHED
+
+#14 [pnpm 3/4] COPY package.json ./
+#14 CACHED
+
+#15 [build 5/9] COPY packages packages
+#15 CACHED
+
+#16 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#16 CACHED
+
+#17 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#17 CACHED
+
+#18 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#18 CACHED
+
+#19 [build 6/9] RUN pnpm build
+#19 CACHED
+
+#20 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#20 CACHED
+
+#21 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#21 CACHED
+
+#22 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#22 CACHED
+
+#23 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#23 CACHED
+
+#24 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#24 CACHED
+
+#25 [build 4/9] COPY apps apps
+#25 CACHED
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 CACHED
+
+#27 exporting to image
+#27 exporting layers 0.0s done
+#27 exporting manifest sha256:739dee177ca9b41c85ac184c74f0ef87f735f14027eb5b7ea79a5881f0a4dc6e done
+#27 exporting config sha256:e15d35f898a8c94eb8412d0a9d418f22fffabfd4e9ac54e9a2940c0e83e9a767 done
+#27 exporting attestation manifest sha256:a3188f009e472fac2bb180ee8792d08c638192b8780976a362e6a37e06c0d66b 0.1s done
+#27 exporting manifest list sha256:ded1f8bba03e176b118bb96a88d656bb34ce9d4d5a967dbae954382044d05e06
+#27 exporting manifest list sha256:ded1f8bba03e176b118bb96a88d656bb34ce9d4d5a967dbae954382044d05e06 0.0s done
+#27 naming to docker.io/library/ltw-proxy:73ce95bad8a0 done
+#27 unpacking to docker.io/library/ltw-proxy:73ce95bad8a0 0.1s done
+#27 DONE 0.6s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/mpvcqjhis4snrlckm6ytxhdbi
+deploy.sh: no image ltw-server:==> building ltw-server:73ce95bad8a0 from 73ce95bad8a0e6dc41755a60c6d98646316a236a
+==> building ltw-proxy:73ce95bad8a0 from 73ce95bad8a0e6dc41755a60c6d98646316a236a
+73ce95bad8a0: run deploy/scripts/build.sh <revision> first
+[exit 1]
+
+### Finding: the attempt above captured build.sh's progress lines with the tag
+deploy/scripts/build.sh printed its "==> building …" lines on stdout, so `tag=$(build.sh …)` (in
+ci.sh, and in the runbook) took them for the tag. They now go to stderr (stdout carries the tag
+alone); the run below repeats the job with that fix in the working tree.
+
+### The CI job script again, after the fix (2026-10-15T23:41:24Z)
+$ deploy/verify/ci.sh
+==> images of HEAD
+==> building ltw-server:73ce95bad8a0 from 73ce95bad8a0e6dc41755a60c6d98646316a236a
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.3s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#4 DONE 0.0s
+
+#5 [manifests 2/4] COPY apps apps
+#5 CACHED
+
+#6 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#6 CACHED
+
+#7 [build 1/9] COPY --from=manifests /app /app
+#7 CACHED
+
+#8 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#8 CACHED
+
+#9 [manifests 3/4] COPY packages packages
+#9 CACHED
+
+#10 [server 4/5] COPY --from=build /out /app
+#10 CACHED
+
+#11 [pnpm 2/4] WORKDIR /app
+#11 CACHED
+
+#12 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#12 CACHED
+
+#13 [server 3/5] COPY --from=prod-deps /app /app
+#13 CACHED
+
+#14 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#14 CACHED
+
+#15 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#15 CACHED
+
+#16 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#16 CACHED
+
+#17 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#17 CACHED
+
+#18 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#18 CACHED
+
+#19 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#19 CACHED
+
+#20 [build 6/9] RUN pnpm build
+#20 CACHED
+
+#21 [build 4/9] COPY apps apps
+#21 CACHED
+
+#22 [build 5/9] COPY packages packages
+#22 CACHED
+
+#23 [pnpm 3/4] COPY package.json ./
+#23 CACHED
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 CACHED
+
+#25 exporting to image
+#25 exporting layers done
+#25 exporting manifest sha256:1b4cdea1ad7eeb0768e9e9b73c97201848203866ddcaa3340ef2bf5c0b887735 done
+#25 exporting config sha256:1950bb334594ad7a7f1fa29deec4dc78fc75f582cd077fe2e1758f6a091941f1 done
+#25 exporting attestation manifest sha256:f3205d1df923208940d04e93bf3eab84c2d8d9dc6919547b6639d70f7c23b0c2 0.0s done
+#25 exporting manifest list sha256:2dabd4bdb1866c8b1eef85108c247161cb5fb243c8312021c7f2953f560b42b3
+#25 exporting manifest list sha256:2dabd4bdb1866c8b1eef85108c247161cb5fb243c8312021c7f2953f560b42b3 done
+#25 naming to docker.io/library/ltw-server:73ce95bad8a0 done
+#25 unpacking to docker.io/library/ltw-server:73ce95bad8a0 done
+#25 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/wjydfn7nds10qrzepe4w9u53z
+==> building ltw-proxy:73ce95bad8a0 from 73ce95bad8a0e6dc41755a60c6d98646316a236a
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.3s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#4 DONE 0.0s
+
+#5 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#5 DONE 0.0s
+
+#6 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.0s done
+#6 DONE 0.0s
+
+#7 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#7 CACHED
+
+#8 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#8 CACHED
+
+#9 [build 1/9] COPY --from=manifests /app /app
+#9 CACHED
+
+#10 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#10 CACHED
+
+#11 [build 4/9] COPY apps apps
+#11 CACHED
+
+#12 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#12 CACHED
+
+#13 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#13 CACHED
+
+#14 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#14 CACHED
+
+#15 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#15 CACHED
+
+#16 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#16 CACHED
+
+#17 [manifests 3/4] COPY packages packages
+#17 CACHED
+
+#18 [pnpm 3/4] COPY package.json ./
+#18 CACHED
+
+#19 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#19 CACHED
+
+#20 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#20 CACHED
+
+#21 [pnpm 2/4] WORKDIR /app
+#21 CACHED
+
+#22 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#22 CACHED
+
+#23 [build 6/9] RUN pnpm build
+#23 CACHED
+
+#24 [build 5/9] COPY packages packages
+#24 CACHED
+
+#25 [manifests 2/4] COPY apps apps
+#25 CACHED
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 CACHED
+
+#27 exporting to image
+#27 exporting layers done
+#27 exporting manifest sha256:739dee177ca9b41c85ac184c74f0ef87f735f14027eb5b7ea79a5881f0a4dc6e done
+#27 exporting config sha256:e15d35f898a8c94eb8412d0a9d418f22fffabfd4e9ac54e9a2940c0e83e9a767 done
+#27 exporting attestation manifest sha256:f9d579f5f61411f5b68268f4a3d0b26b6529e8d0f8e852d28d487abfad8d6008 0.0s done
+#27 exporting manifest list sha256:5c27f41568b5f64ecc5f041bf10a5c9e49fbe8688ee435a110236942c6275e2d
+#27 exporting manifest list sha256:5c27f41568b5f64ecc5f041bf10a5c9e49fbe8688ee435a110236942c6275e2d done
+#27 naming to docker.io/library/ltw-proxy:73ce95bad8a0 done
+#27 unpacking to docker.io/library/ltw-proxy:73ce95bad8a0 done
+#27 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/xteryfxeop8oow2sjgwvbbumm
+==> starting ltw-server:73ce95bad8a0 and ltw-proxy:73ce95bad8a0 (previous: none)
+ Network ltw-ci-72326_data Creating 
+ Network ltw-ci-72326_data Created 
+ Network ltw-ci-72326_edge Creating 
+ Network ltw-ci-72326_edge Created 
+ Volume ltw-ci-72326_pgdata Creating 
+ Volume ltw-ci-72326_pgdata Created 
+ Volume ltw-ci-72326_caddy-data Creating 
+ Volume ltw-ci-72326_caddy-data Created 
+ Volume ltw-ci-72326_caddy-config Creating 
+ Volume ltw-ci-72326_caddy-config Created 
+ Container ltw-ci-72326-postgres-1 Creating 
+ Container ltw-ci-72326-postgres-1 Created 
+ Container ltw-ci-72326-server-1 Creating 
+ Container ltw-ci-72326-backup-1 Creating 
+ Container ltw-ci-72326-backup-1 Created 
+ Container ltw-ci-72326-server-1 Created 
+ Container ltw-ci-72326-proxy-1 Creating 
+ Container ltw-ci-72326-proxy-1 Created 
+ Container ltw-ci-72326-postgres-1 Starting 
+ Container ltw-ci-72326-postgres-1 Started 
+ Container ltw-ci-72326-postgres-1 Waiting 
+ Container ltw-ci-72326-postgres-1 Waiting 
+ Container ltw-ci-72326-postgres-1 Healthy 
+ Container ltw-ci-72326-server-1 Starting 
+ Container ltw-ci-72326-postgres-1 Healthy 
+ Container ltw-ci-72326-backup-1 Starting 
+ Container ltw-ci-72326-backup-1 Started 
+ Container ltw-ci-72326-server-1 Started 
+ Container ltw-ci-72326-server-1 Waiting 
+ Container ltw-ci-72326-server-1 Healthy 
+ Container ltw-ci-72326-proxy-1 Starting 
+ Container ltw-ci-72326-proxy-1 Started 
+ Container ltw-ci-72326-postgres-1 Waiting 
+ Container ltw-ci-72326-backup-1 Waiting 
+ Container ltw-ci-72326-proxy-1 Waiting 
+ Container ltw-ci-72326-server-1 Waiting 
+ Container ltw-ci-72326-server-1 Healthy 
+ Container ltw-ci-72326-postgres-1 Healthy 
+ Container ltw-ci-72326-proxy-1 Healthy 
+ Container ltw-ci-72326-backup-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-ci-72326-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     17 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-ci-72326-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   17 seconds ago   Up 16 seconds (healthy)   5432/tcp
+ltw-ci-72326-proxy-1      ltw-proxy:73ce95bad8a0                                                                       "caddy run --config …"   proxy      17 seconds ago   Up 7 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-ci-72326-server-1     ltw-server:73ce95bad8a0                                                                      "/usr/local/bin/ltw-…"   server     17 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed 73ce95bad8a0
+==> seeding Ravenford through the World Engine
+{"level":"info","time":"2026-10-15T23:41:44.489Z","service":"ltw-seed","database":"postgres://postgres:5432/ltw","msg":"seeding Ravenford"}
+{"level":"info","time":"2026-10-15T23:41:44.687Z","service":"ltw-seed","campaignId":"ravenford","accepted":91,"duplicate":0,"version":100,"entities":25,"worldTime":"Day 1 10:00:00","msg":"Ravenford seeded"}
+ravenford: 91 accepted, 0 already present; version 100, 25 entities
+==> HTTPS at https://localhost (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> smoke checks passed
+{"time":"2026-10-15T23:41:46Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T234146Z.dump (86043 bytes)"}
+{"time":"2026-10-15T23:41:46Z","service":"ltw-backup","level":"info","msg":"retention: kept 2, removed 0"}
+{"time":"2026-10-15T23:41:46Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T234146Z.dump"}
+ltw-20261015T234146Z.dump
+==> dump: ltw-20261015T234146Z.dump
+{"time":"2026-10-15T23:41:47Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T234146Z.dump"}
+==> throwaway database
+ Container ltw-ci-72326-drill-db-1 Creating 
+ Container ltw-ci-72326-drill-db-1 Created 
+ Container ltw-ci-72326-drill-db-1 Starting 
+ Container ltw-ci-72326-drill-db-1 Started 
+ Container ltw-ci-72326-drill-db-1 Waiting 
+ Container ltw-ci-72326-drill-db-1 Healthy 
+==> migrations of this image on the restored database
+{"level":"info","time":"2026-10-15T23:41:50.622Z","service":"ltw-migrate","database":"postgres://drill-db:5432/ltw_restore_drill","msg":"connecting"}
+{"level":"info","time":"2026-10-15T23:41:50.650Z","service":"ltw-migrate","applied":[],"alreadyApplied":9,"msg":"migrations complete"}
+==> restored tables (exact row counts)
+ltw_ai_account_revisions 0
+ltw_ai_accounting 0
+ltw_ai_approval_revisions 0
+ltw_ai_approvals 0
+ltw_ai_attempt_responses 0
+ltw_ai_attempts 0
+ltw_ai_billing_accounts 0
+ltw_ai_evaluation_runs 0
+ltw_ai_evidence_batches 0
+ltw_ai_request_outcomes 0
+ltw_ai_requests 0
+ltw_ai_stop_clearances 0
+ltw_ai_stops 0
+ltw_ai_traces 0
+ltw_asset_contents 0
+ltw_authoring_revisions 0
+ltw_commands 91
+ltw_dm_substitutions 0
+ltw_event_streams 1
+ltw_events 100
+ltw_schema_migrations 9
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":100,"digest":"sha256:238efb24a0d6a49dbdf1c7758982ddc1f377776a383dd012713d7475347cddac","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":100,"status":"match","expected":"sha256:238efb24a0d6a49dbdf1c7758982ddc1f377776a383dd012713d7475347cddac","actual":"sha256:238efb24a0d6a49dbdf1c7758982ddc1f377776a383dd012713d7475347cddac","head":100}]}
+==> restore drill passed
+{"time":"2026-10-15T23:41:54Z","service":"ltw-backup","level":"info","msg":"retention: kept 21, removed 459"}
+kept 21 of 480
+retention check passed
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+==> live stream through the proxy (development personas, local only)
+ Container ltw-ci-72326-postgres-1 Running 
+ Container ltw-ci-72326-backup-1 Running 
+ Container ltw-ci-72326-server-1 Recreate 
+ Container ltw-ci-72326-server-1 Recreated 
+ Container ltw-ci-72326-proxy-1 Running 
+ Container ltw-ci-72326-postgres-1 Waiting 
+ Container ltw-ci-72326-postgres-1 Waiting 
+ Container ltw-ci-72326-postgres-1 Healthy 
+ Container ltw-ci-72326-postgres-1 Healthy 
+ Container ltw-ci-72326-server-1 Starting 
+ Container ltw-ci-72326-server-1 Started 
+ Container ltw-ci-72326-server-1 Waiting 
+ Container ltw-ci-72326-server-1 Healthy 
+ Container ltw-ci-72326-backup-1 Waiting 
+ Container ltw-ci-72326-proxy-1 Waiting 
+ Container ltw-ci-72326-server-1 Waiting 
+ Container ltw-ci-72326-postgres-1 Waiting 
+ Container ltw-ci-72326-server-1 Healthy 
+ Container ltw-ci-72326-postgres-1 Healthy 
+ Container ltw-ci-72326-proxy-1 Healthy 
+ Container ltw-ci-72326-backup-1 Healthy 
+==> opening the live stream through the proxy (HTTP/2)
+==> ready after 0.158 s
+HTTP/2 200 
+cache-control: no-store
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+content-type: text/event-stream; charset=utf-8
+cross-origin-opener-policy: same-origin
+date: Thu, 15 Oct 2026 23:42:02 GMT
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Authorization
+x-accel-buffering: no
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-request-id: f007e15a-7dbd-473c-9e39-cc4110dfd98e
+
+==> one DM command through the proxy (a new item: the DM perspective can read it)
+{"status":"accepted","commandId":"http:dm-ravenford:live-check-1792107724","campaignId":"ravenford","events":[{"sequence":101,"eventId":"b55814f0-8eac-4a53-8cd3-98f7874ed428","type":"EntityCreated"}]}
+==> changed 0.915 s after the command, stream open
+==> waiting for the next heartbeat
+==> heartbeat 15.177 s after opening, stream open
+==> frames received (raw):
+event: ready
+data: {}
+event: changed
+data: {"seq":1}
+: heartbeat
+==> live stream passes the proxy unbuffered
+==> deployment check passed for 73ce95bad8a0
+[exit 0]

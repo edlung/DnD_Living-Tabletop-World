@@ -1,0 +1,100 @@
+Stage 350, the full product: local verification transcripts (2026-10-16, Europe/Oslo; times in UTC)
+
+Machine: Apple Silicon (Darwin arm64), Docker Desktop with Engine 29.5.3, Compose v5.1.4, bash
+3.2, Node 25.8.1, OpenSSL 4.0.3, Playwright 1.63.0. Every entry is "### title (time)", "$ command"
+as run from the worktree root, its combined output and "[exit N]" ("Finding" entries name what
+failed and what changed). Secret values never appear: deploy/.env is shown redacted, invitation
+links and session cookies as <token> (the scripts print nothing else), POSTGRES_PASSWORD is
+expanded only inside the containers, and the browser journey asserts about tokens only yes/no and
+keeps no trace, screenshot or video. The stack ran as Compose project ltw-stage350f on
+127.0.0.1:28080/28443 (80 and 443 were free; other ports avoid other sessions), PUBLIC_ORIGIN=
+https://localhost:28443, TLS_MODE=internal, LTW_BACKEND_PREFIX=10.231.157, production mode
+(NODE_ENV=production, AUTH_MODE=invitations, compose.yaml alone), and was removed at the end (16).
+No paid AI or image call was made; the image generator stayed `placeholder`.
+
+Revisions (tags = 12-character commits; images built by deploy/scripts/build.sh from `git archive`):
+  a0da82a7648c  the previous revision: the complete product (Stages 320, 340, 330 underneath) with
+                Stage 350 parts A, B and the review fixes; its own deploy files (git archive
+                a0da82a deploy, under the scratchpad) for the first install and the rollback
+  fb35fa6f7bbc  this work (fb35fa6): every check of 02-16
+  6ee2fdaf123d  6ee2fda: fb35fa6 plus a fix in deploy/verify/ci.sh (a host script; its images hold
+                the same files, 01): the CI job's run of 17
+cb438f3, f62f87f, aa301a5, fb35fa6 and 6ee2fda are working commits (local branch
+backup/stage-350-full-product-6ee2fda); the commit adding these transcripts squashes them with the
+report and changes no image input after them.
+
+Files
+  00-environment.txt       revision, Docker and tool versions, free ports, redacted deploy/.env,
+                           the images run
+  01-build.txt             the final images rebuilt from cache; what they hold (the curated set,
+                           45 pictures and the manifest, and the seeder importing it in the server
+                           image; no sources, tests or .env files; the client's jitless zod in the
+                           proxy image); the images of 6ee2fda hold the same files as fb35fa6's
+  02-install-and-upgrade.txt  first install with a0da82a as it shipped; its review campaign (92
+                           commands, version 101, no pictures); the upgrade to fb35fa6f7bbc (the
+                           protected pre-deploy dump first; LTW_IMAGE_GENERATOR=placeholder reaches
+                           the server); review-campaign.sh again with the server running: 51
+                           curated pictures imported (version 305), then idempotent; the server's
+                           asset worker took none; the review campaign's test fails on a0da82a's
+                           seeder (2 of 7) and passes (7 of 7)
+  03-smoke.txt             deploy/verify/smoke.sh 42/42 after the upgrade and 42/42 at the end
+  04-images.txt            deploy/verify/images.sh 23/23: placeholder generator, no ceiling,
+                           nothing spent; the in-play generator's start (sharp 0.34.4, libvips
+                           8.17.2, style references) in the image with no network; the 51 curated
+                           pictures approved for players, the manifest's bytes, requested by the
+                           DM; the 32 pictures Elowen sees served through Caddy (200, image/webp,
+                           nosniff, no-store, the sandbox policy, Vary: Cookie, uncompressed,
+                           SHA-256 = hash), the other 13 a 404; the page's img-src 'self' blob:;
+                           an unapproved placeholder candidate: 404 for the player like an unknown
+                           hash, 200 for the DM (sandboxed), discarded; no credential in the logs
+  05-browser-journeys.txt  deploy/verify/browser-journey.sh on a fresh campaign: Chromium trusts
+                           Caddy's local intermediate (SPKI) for the run; the operator's DM link,
+                           «Занять место», the Players sheet, the player's market square with its
+                           curated picture and two standing figures, «Осмотреть» Mira, the DM's
+                           revocation: «Вы вышли» 0.93 s later through the live stream alone, the
+                           DM's sign-out; no policy violation, no token outside the redeem or in
+                           the logs
+  06-spend.txt             spend.sh before (a0da82a: no image section) and after (the image
+                           ledger beside the AI counters); the spend report's test fails on
+                           a0da82a's spend-report.ts (3 of 3) and passes, with the ledger tests
+                           (18 of 18)
+  07-sign-in-journeys.txt  deploy/verify/sign-in-journey.sh 50/50 (the player's stream closed
+                           0.48 s after the revocation, the DM's 0.47 s after sign-out; no
+                           credential in 954 log lines)
+  08-live-stream.txt       deploy/verify/live-stream.sh: ready 0.10 s, changed 1.01 s after a
+                           command, heartbeat 15.11 s, closed 1.04 s after sign-out
+  09-browser-journey-again.txt  the browser journey after the HTTP journeys left Elowen at the
+                           caravan site: she walks back first; «Вы вышли» 0.91 s after the
+                           revocation began
+  10-proxy-contract.txt    deploy/verify/proxy-contract.sh 10/10
+  11-readiness.txt         a 20 s database outage: 503 {database, migrations, eventStore} during,
+                           200 four seconds after, no server restart
+  12-backup-restore.txt    the first dump (before any campaign): the drill refuses it as empty
+                           (exit 1), passes with --allow-empty; a fresh dump with the pictures (46
+                           contents, 12 MB): the drill matches at version 315; a real restore of
+                           it by restore.sh (protected pre-restore dump, backup service stopped):
+                           the pictures and the world back, the drill matches
+  13-rollback.txt          rollback fb35fa6f7bbc -> a0da82a7648c with its own deploy files on the
+                           same database (LTW_ALLOW_NEWER_SCHEMA=true: every stored event parsed
+                           before ready; 330 events, 46 pictures) and forward again
+  14-operations.txt        watch.sh ok; logs.sh (only the outage's FATAL lines); the operator's
+                           sessions (none left); retention-check.sh (21 of 480, 5 of 8, 3 of 3);
+                           watch-check.sh 7/7; preflight-check.sh 6/6
+  15-trust-boundary.txt    deploy/verify/trust-boundary.sh 23/23 (forged X-Forwarded-For: 401 x8,
+                           then 429: the browser journey had spent two of the minute's redeems)
+  16-teardown.txt          the stack, its volumes and networks removed; the shared development
+                           database left running
+  17-ci-script.txt         deploy/verify/ci.sh on this clean worktree, twice: the first run (HEAD
+                           fb35fa6) failed in the HTTP journeys (a finding: 429 within the redeem
+                           window, fixed in 6ee2fda); the second (HEAD 6ee2fda) passed end to end
+                           in 2 min 24 s: 160 checks (5 preflight, 42 smoke, 23 images, 7 watch, 10
+                           proxy contract, 50 sign-in, 23 trust boundary), the browser journey, the
+                           drills (empty refused, --allow-empty, newest matched), retention, the
+                           live stream; everything it created removed
+  18-validate.txt          pnpm validate (own database ltw_stage350, shared lock): passed; format,
+                           lint, typecheck, context budget (1042 files, none over 500 lines), 2,879
+                           unit tests (284 files), build, migrate 0001-0012 and seed (51 curated
+                           pictures), 229 integration tests (41 files), 118 browser journeys
+  19-development-findings.txt  the image checks and the browser journey on the development stack
+                           while they were being made to pass: eight findings, among them the
+                           client's eval probe under the policy (fixed in the client)

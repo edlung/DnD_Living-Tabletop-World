@@ -1,0 +1,1139 @@
+### deploy/verify/ci.sh on this clean worktree (HEAD fb35fa6, no deploy/.env), ports 127.0.0.1:28180/28543: the CI job s script, end to end (2026-10-16T09:49:46Z)
+$ git status --short --ignored deploy; time LTW_CI_HTTP_PORT=28180 LTW_CI_HTTPS_PORT=28543 deploy/verify/ci.sh 2>&1 | grep -vE "^ (Container|Network|Volume) .* (Creating|Created|Starting|Started|Waiting|Healthy|Stopping|Stopped|Removing|Removed|Running|Recreate|Recreated)|^\{\"level\"|^\{\"time\"|^ltw_[a-z_]+ [0-9]+$"; echo "ci.sh exit status: ${PIPESTATUS[0]}"
+==> Docker Engine 27 (a stub answers `docker version`; any other call fails and is recorded)
+PASS  deploy.sh refuses Docker Engine 27 before any other Docker call
+     deploy.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  ci.sh refuses Docker Engine 27 before any other Docker call
+     ci.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  this host runs Docker Engine 28 or later
+==> networks: a throwaway project ltwpreflight65876 whose backend gives the host an address
+     ltwpreflight65876_backend: true  [{"Subnet":"172.26.0.0/16","Gateway":"172.26.0.1"}]
+     ltwpreflight65876_data: true isolated [{"Subnet":"172.27.0.0/16"}]
+PASS  a backend network with a host address is refused
+     preflight-check.sh: network ltwpreflight65876_backend gives the host an address (true  [{"Subnet":"172.26.0.0/16","Gateway":"172.26.0.1"}]): the host could reach the server inside the range it trusts; Docker Engine 28+ with gateway mode isolated is required (deploy/RUNBOOK.md section 1)
+PASS  isolated internal backend and data networks pass
+==> preflight checks passed
+==> images of HEAD
+==> building ltw-server:fb35fa6f7bbc from fb35fa6f7bbc64db430c332e96bbc4d0cb0358fd
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.5s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 done
+#4 DONE 0.0s
+
+#5 [build 5/9] COPY packages packages
+#5 CACHED
+
+#6 [server 4/5] COPY --from=build /out /app
+#6 CACHED
+
+#7 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#7 CACHED
+
+#8 [manifests 2/4] COPY apps apps
+#8 CACHED
+
+#9 [build 1/9] COPY --from=manifests /app /app
+#9 CACHED
+
+#10 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#10 CACHED
+
+#11 [pnpm 3/4] COPY package.json ./
+#11 CACHED
+
+#12 [server 3/5] COPY --from=prod-deps /app /app
+#12 CACHED
+
+#13 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#13 CACHED
+
+#14 [build 6/9] RUN pnpm build
+#14 CACHED
+
+#15 [pnpm 2/4] WORKDIR /app
+#15 CACHED
+
+#16 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#16 CACHED
+
+#17 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#17 CACHED
+
+#18 [manifests 3/4] COPY packages packages
+#18 CACHED
+
+#19 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#19 CACHED
+
+#20 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#20 CACHED
+
+#21 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#21 CACHED
+
+#22 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#22 CACHED
+
+#23 [build 4/9] COPY apps apps
+#23 CACHED
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 CACHED
+
+#25 exporting to image
+#25 exporting layers done
+#25 exporting manifest sha256:b325eb7e13f6453fd7e4d40802f5e43bf6e0abba013f47b6314b09801029219a done
+#25 exporting config sha256:dd30946e8f2f4aac9176d9537ff0dcbc596ce120c5f3f5edaae38ffa948a37f8 done
+#25 exporting attestation manifest sha256:8ed93a4a3750e2fdced267b6e7820381887f7d68fd7fea8cce87d815d76d341b done
+#25 exporting manifest list sha256:44b90c76a014b3ce845224aebaa1f92efea3fdc2281c9246eac799ec51736ed4 done
+#25 naming to docker.io/library/ltw-server:fb35fa6f7bbc done
+#25 unpacking to docker.io/library/ltw-server:fb35fa6f7bbc done
+#25 DONE 0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/nj3cixiuyikh9pfvhfdaiy02e
+==> building ltw-proxy:fb35fa6f7bbc from fb35fa6f7bbc64db430c332e96bbc4d0cb0358fd
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.6s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#4 DONE 0.0s
+
+#5 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#5 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.0s done
+#5 DONE 0.0s
+
+#6 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#6 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#6 DONE 0.0s
+
+#7 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#7 CACHED
+
+#8 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#8 CACHED
+
+#9 [build 1/9] COPY --from=manifests /app /app
+#9 CACHED
+
+#10 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#10 CACHED
+
+#11 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#11 CACHED
+
+#12 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#12 CACHED
+
+#13 [manifests 2/4] COPY apps apps
+#13 CACHED
+
+#14 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#14 CACHED
+
+#15 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#15 CACHED
+
+#16 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#16 CACHED
+
+#17 [pnpm 2/4] WORKDIR /app
+#17 CACHED
+
+#18 [manifests 3/4] COPY packages packages
+#18 CACHED
+
+#19 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#19 CACHED
+
+#20 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#20 CACHED
+
+#21 [pnpm 3/4] COPY package.json ./
+#21 CACHED
+
+#22 [build 4/9] COPY apps apps
+#22 CACHED
+
+#23 [build 6/9] RUN pnpm build
+#23 CACHED
+
+#24 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#24 CACHED
+
+#25 [build 5/9] COPY packages packages
+#25 CACHED
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 CACHED
+
+#27 exporting to image
+#27 exporting layers done
+#27 exporting manifest sha256:8a030fe50a8a09e9a34778faab7933c6790b79b3c30270d685bbd39eca81eb73 done
+#27 exporting config sha256:a935dc90184f902175815b2bd94fcd57d8215ff68860fe706703a6eaac5a0d2a done
+#27 exporting attestation manifest sha256:3ad939eca846380955681ea9f1257000b665b3361f3e68c4a9dc2c8beb158a75 0.0s done
+#27 exporting manifest list sha256:556d4dc13a5ebaad29c75cedf6fd178e98dd3b98cfdfac8b8e3978ccc258e259 done
+#27 naming to docker.io/library/ltw-proxy:fb35fa6f7bbc
+#27 naming to docker.io/library/ltw-proxy:fb35fa6f7bbc done
+#27 unpacking to docker.io/library/ltw-proxy:fb35fa6f7bbc done
+#27 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/hmj36knabqp297z7kk1y4w6hq
+==> no database yet: nothing to back up
+==> starting ltw-server:fb35fa6f7bbc and ltw-proxy:fb35fa6f7bbc (previous: none)
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-ci-65860-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     17 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-ci-65860-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   17 seconds ago   Up 16 seconds (healthy)   5432/tcp
+ltw-ci-65860-proxy-1      ltw-proxy:fb35fa6f7bbc                                                                       "caddy run --config …"   proxy      16 seconds ago   Up 7 seconds (healthy)    127.0.0.1:28180->80/tcp, 127.0.0.1:28543->443/tcp
+ltw-ci-65860-server-1     ltw-server:fb35fa6f7bbc                                                                      "/usr/local/bin/ltw-…"   server     16 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed fb35fa6f7bbc
+==> seeding the review campaign and its curated pictures through the World Engine (no DM link in this log)
+review campaign ravenford («Пропавший караван», ru): 92 accepted, 0 already present; curated pictures: 51 imported, 0 already present, 0 skipped; version 305, 25 entities; open seats: elowen-starwhisper
+==> HTTPS at https://localhost:28543 (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> settings and scripts
+     deploy/.env settings in the server beyond its own: none
+PASS  the server receives no other setting of deploy/.env
+PASS  the backup service was created for this checkout's deploy/backup/ (label)
+PASS  the backup service reads this checkout's backup.sh
+==> smoke checks passed
+==> no image provider: the placeholder generator, no ceiling stored, nothing spent
+PASS  the server runs LTW_IMAGE_GENERATOR=placeholder
+     start: {"msg":"image generator","generator":"placeholder","model":null}
+PASS  the server's start named the placeholder
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  spend.sh: no image ceiling, nothing spent, held or reserved
+     ltw-server:fb35fa6f7bbc, no network: sharp 0.34.4, libvips 8.17.2; style references (bytes): {"person":[71624,84172],"place":[139586,98800],"object":[130910,112660]}
+PASS  the in-play generator can start in this image (sharp, style references; not enabled)
+==> the DM signs in (the operator link) and invites a player for Elowen; the player joins
+     DM and player signed in (cookies; tokens never printed)
+==> the curated set in the campaign (the DM's lineage)
+     51 curated pictures approved for players (manifest: 51 for 45 files)
+PASS  every curated picture is approved for players
+PASS  their bytes are the manifest's files
+PASS  requested by the DM (none by authoring)
+==> the player reads what Elowen knows or perceives, through Caddy
+     visible to Elowen: 32 pictures; not: 13; the market square shows market-square.webp, Mira stands as mira-vale--figure.webp
+PASS  the market square's picture is a curated one Elowen sees
+PASS  Mira's figure is a curated one Elowen sees
+     sha256:03ea6bcad62f4877a16c03117031f8974e0315e265d646e004edb2a76e1232de:
+       HTTP/2 200 
+       cache-control: no-store
+       content-disposition: inline
+       content-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+       content-type: image/webp
+       cross-origin-opener-policy: same-origin
+       permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+       referrer-policy: no-referrer
+       vary: Cookie
+       x-content-type-options: nosniff
+       x-frame-options: DENY
+       content-length: 385508
+       
+     served as checked: 32 of 32; none other
+PASS  each: 200 image/webp, nosniff, no-store, sandbox policy, Vary Cookie, uncompressed, SHA-256 = hash
+     curated pictures of what Elowen neither knows nor perceives: 13 of 13 are 404; none other
+PASS  every other curated picture is a 404 for the player
+==> the page's policy lets the client show them (object URLs)
+     default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+PASS  the page's img-src allows 'self' and blob:
+==> an unapproved picture: the DM requests one, the placeholder worker makes it
+PASS  RequestAsset accepted
+     candidate: http:dm-ravenford:images-check-1792144208#0~asset sha256:013a23f0d05ebdc16a74fb238a20880e72b7b2c9e2bb3db251126671d7a68e12 CANDIDATE image/svg+xml local placeholder-svg-1
+PASS  a candidate, not approved, by the local placeholder
+     player: 404 {"code":"NOT_FOUND","message":"Not found"}
+PASS  the player gets 404 for the unapproved hash
+PASS  ... the same as for a hash nobody stored
+     DM: 200 image/svg+xml, default-src 'none'; style-src 'unsafe-inline'; sandbox
+PASS  the DM reads it, under the sandbox policy
+PASS  the DM discards it
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  the ledger is still empty (the placeholder spends nothing)
+==> the DM revokes the player and signs out
+PASS  the player is revoked
+PASS  the player's next picture request is 401
+PASS  the DM signs out (204)
+PASS  none of the 4 credentials in 304 log lines
+==> image checks passed
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.xiTRoktfNU/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/v2OM1tDNEuXeGK2RYyrwLJjxZU3JUBm8NpKpPATqMqY=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:49:58 2026 GMT
+==> the browser journeys against https://localhost:28543
+
+Running 1 test using 1 worker
+
+     1.1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the operator issues the DM link in the server container (321ms)
+     1.2 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM takes the seat on the join page («Занять место») (253ms)
+     1.3 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM invites a player for Elowen in the Players sheet (422ms)
+     1.4 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player takes the seat in another browser (247ms)
+     1.5 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the market square: its curated picture, the figures standing in it (125ms)
+     1.6 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › checked: 2 standing figures and the backdrop, of 4 pictures the player's page fetched (0ms)
+     1.7 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player acts once: Elowen looks Mira over («Осмотреть») (111ms)
+     1.8 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM revokes the player: «Вы вышли» through the live stream alone (4.2s)
+     1.9 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player's screen said «Вы вышли» 0.91 s after the DM began the revocation (asked and confirmed), with no request of its own (0ms)
+     1.10 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM signs out, asked first (77ms)
+     1.11 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › no policy violation, no token out of place, no credential in any log (75ms)
+  ✓  1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy (6.0s)
+
+  1 passed (6.6s)
+==> browser journeys passed
+==> restore drill on the first dump (ltw-20261016T094956Z.dump, empty): must fail
+==> dump: ltw-20261016T094956Z.dump (taken 2026-10-16T09:49:56Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+{"streams":[]}
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[],"failures":["empty"]}
+restore-drill.sh: restore drill FAILED: a restored campaign differs from the live one, the restore is empty, or it lacks a live campaign (see failures)
+==> the same with --allow-empty: passes, since the campaign came after the dump
+==> dump: ltw-20261016T094956Z.dump (taken 2026-10-16T09:49:56Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+{"streams":[]}
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[],"failures":[]}
+==> restore drill passed
+==> a second deploy of the same images: a protected pre-deploy dump first
+==> backup before the change (protected dump)
+==> the state before this deploy: ltw-predeploy-20261016T095034Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:fb35fa6f7bbc and ltw-proxy:fb35fa6f7bbc (previous: fb35fa6f7bbc)
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-ci-65860-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     49 seconds ago   Up 42 seconds (healthy)   5432/tcp
+ltw-ci-65860-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   49 seconds ago   Up 47 seconds (healthy)   5432/tcp
+ltw-ci-65860-proxy-1      ltw-proxy:fb35fa6f7bbc                                                                       "caddy run --config …"   proxy      48 seconds ago   Up 39 seconds (healthy)   127.0.0.1:28180->80/tcp, 127.0.0.1:28543->443/tcp
+ltw-ci-65860-server-1     ltw-server:fb35fa6f7bbc                                                                      "/usr/local/bin/ltw-…"   server     48 seconds ago   Up 42 seconds (healthy)   3000/tcp
+==> deployed fb35fa6f7bbc
+ltw-20261016T095038Z.dump
+==> dump: ltw-20261016T095038Z.dump (taken 2026-10-16T09:50:38Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":315,"digest":"sha256:6233da02ae3d7ceff1ae4b0b8085dd98ef50a0ce67d61b485eb383cd660a6b02","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":315,"status":"match","expected":"sha256:6233da02ae3d7ceff1ae4b0b8085dd98ef50a0ce67d61b485eb383cd660a6b02","actual":"sha256:6233da02ae3d7ceff1ae4b0b8085dd98ef50a0ce67d61b485eb383cd660a6b02","head":315}],"unrestored":[],"failures":[]}
+==> restore drill passed
+kept 21 of 480 regular, 5 of 8 pre-deploy, 3 of 3 pre-restore
+retention check passed
+==> no restore drill recorded
+     2026-10-16T09:50:48Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:50:48Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.zbYHNCC2bZ at 85% (limit 0%)
+     2026-10-16T09:50:48Z ltw-watch ALARM no restore drill recorded (deploy/scripts/restore-drill.sh, weekly; /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.kl9niCQd9E/drill.log)
+PASS  alarm: no restore drill recorded
+==> the last drill passed 9 days ago
+     2026-10-16T09:50:49Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:50:49Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.zbYHNCC2bZ at 85% (limit 0%)
+     2026-10-16T09:50:49Z ltw-watch ALARM the last restore drill is 9 days old (2026-10-07T09:50:47Z; limit 8 days)
+PASS  alarm: the last restore drill is 9 days old
+==> the last drill failed now
+     2026-10-16T09:50:49Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:50:49Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.zbYHNCC2bZ at 85% (limit 0%)
+     2026-10-16T09:50:50Z ltw-watch ALARM the last restore drill failed (2026-10-16T09:50:47Z, ltw-20261016T000000Z.dump)
+PASS  alarm: the last restore drill failed
+==> the last drill passed now
+     2026-10-16T09:50:50Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:50:50Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.zbYHNCC2bZ at 85% (limit 0%)
+PASS  no restore drill alarm after a drill that passed now
+==> the webhook
+     curl calls: 15, of them alarms posted: 11; received: 11
+PASS  every alarm reached the webhook as JSON {"text": …}
+PASS  the webhook URL is in no curl call's arguments
+PASS  curl read the webhook URL from its standard input
+==> watch checks passed
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+==> the operator: review campaign and the DM link (deploy/scripts/review-campaign.sh)
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; curated pictures: 0 imported, 51 already present, 0 skipped; version 315, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+{"invitationId":"a4204023-2b6c-41ab-a91f-18d0d30636a1","expiresAt":"2026-10-16T10:50:54.698Z","link":"https://localhost:28543/join#<token>","campaignId":"ravenford"}
+PASS  the DM link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the DM joins through the link
+     answer {"campaignId":"ravenford"}; Set-Cookie: ltw_session=<session>; Path=/api; HttpOnly; SameSite=Strict; Max-Age=1209600; Secure
+PASS  redeem answers the campaign
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+PASS  GET /api/auth/session (same-origin): the campaign
+     {"role":"DM","campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the DM sees the Russian campaign
+==> DM live stream ready after 0.16 s
+==> the DM invites a player for Elowen
+     201 {"invitationId":"cb493da6-2f7a-412f-9ea3-077eebe6de59","expiresAt":"2026-10-16T10:50:55.106Z","link":"https://localhost:28543/join#<token>","characterId":"elowen-starwhisper"}
+PASS  invitation created (201)
+PASS  the player link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the player joins in another browser
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+     {"role":"PLAYER","character":{"entityId":"elowen-starwhisper","kind":"character","name":"Эловен Старвиспер"},"campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the player holds Elowen in Russian
+==> player live stream ready after 0.09 s
+PASS  the player cannot list invitations (404)
+PASS  the player cannot read as the DM (403)
+==> the player explores (the Russian investigation)
+     ask: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"AskAbout","shared":["a7876bbf-0ae1-4c8a-980b-b7ed0603da2a"]}}
+PASS  ask Mira about the guild caravan (or nothing new on a rerun)
+     road: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"old-trade-road"}}
+PASS  take the Old Trade Road
+     site: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"abandoned-caravan-site"}}
+PASS  enter the place off the road
+     inspect: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"ExamineEntity","roll":null,"discovered":["0c3c3f01-98e7-4b2e-bcbb-cb08292344c5"]}}
+PASS  inspect it
+     now at: {"entityId":"abandoned-caravan-site","kind":"location","name":"Заброшенная стоянка каравана"}
+PASS  the place is identified in Russian
+PASS  the player reads the discovery in Russian
+PASS  the DM's stream signalled the changes
+==> the DM sees the members and invitations (never a token)
+     {"members":[{"characterId":"elowen-starwhisper","activeSessions":1,"lastSeenAt":"2026-10-16T09:50:55.137Z"}],"invitations":[{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"},{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"},{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"}]}
+PASS  Elowen is a member with one live session
+PASS  no link or token in the listing
+     operator sessions: [{"role":"dm","characterIds":[]},{"role":"player","characterIds":["elowen-starwhisper"]}]
+PASS  the operator lists both sessions without a secret
+==> the DM revokes the player: the player's screen is signed out at once
+     200 {"released":true,"sessionsRevoked":1,"invitationsRevoked":0}
+PASS  revoked: released, one session
+==> player stream: closed (unauthenticated) 0.45 s after the revocation
+PASS  the player's stream ended
+PASS  the DM's stream stays open
+PASS  the player can no longer act (401)
+PASS  the player can no longer read (401)
+PASS  GET /api/auth/session: 401
+PASS  ... and the cookie it presented is cleared
+==> used, revoked and forged links fail alike (the same error; only the request ID differs)
+     used player link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"e9b74e6e-b486-47d6-99d2-c4a3faaddc78"}
+PASS  used player link: 401, no cookie
+PASS  used player link: the fixed message
+     used DM link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"4454b412-d00d-43da-863d-c7c67e1b8958"}
+PASS  used DM link: 401, no cookie
+PASS  used DM link: the fixed message
+     forged token: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"8a8e4c19-e52a-4b6f-abdd-736449334105"}
+PASS  forged token: 401, no cookie
+PASS  forged token: the fixed message
+PASS  the fixed message is UNAUTHENTICATED
+==> the seat is free again; a signed-in browser must confirm before an invitation is spent
+PASS  Elowen can be invited again (201)
+     the DM browser redeems it: 409 {"error":{"code":"CONFLICT","message":"Conflict"},"requestId":"f4e55483-f563-416b-9b1b-1d81e743b4b7"}
+PASS  a signed-in browser gets 409 (CONFLICT)
+PASS  ... and the invitation stays pending
+PASS  the DM revokes that invitation
+FAIL  a revoked link fails with the fixed message
+==> cross-site requests are refused through the proxy
+PASS  GET /api/auth/session with a foreign Origin: 403
+PASS  ... without touching the cookie
+PASS  the live stream with Sec-Fetch-Site: cross-site: 403
+PASS  sign-out without Origin: 403
+PASS  the DM is still signed in
+==> the DM signs out
+PASS  POST /api/auth/sign-out: 204
+PASS  ... and the cookie is cleared
+==> DM stream: closed (unauthenticated) 0.56 s after signing out
+PASS  the DM's stream ended
+PASS  GET /api/auth/session: 401
+==> no credential in any log of the proxy or the server
+PASS  none of the 5 credentials in 922 log lines
+sign-in-journey.sh: 1 check(s) failed
+
+real	1m13.846s
+user	0m11.552s
+sys	0m8.280s
+ci.sh exit status: 1
+[exit 0]
+
+### Finding: on this fast machine the drills and the second deploy took less than the redeem window s minute, so the HTTP journeys met the four redeems of the image checks and the browser journey (11 in the window: the revoked link was answered 429, not 401). ci.sh now waits until those four left the window (6ee2fda; a host script, the images are unchanged). ci.sh again on the clean worktree (HEAD 6ee2fda) (2026-10-16T09:51:49Z)
+$ git status --short --ignored deploy; time LTW_CI_HTTP_PORT=28180 LTW_CI_HTTPS_PORT=28543 deploy/verify/ci.sh 2>&1 | grep -vE "^ (Container|Network|Volume) .* (Creating|Created|Starting|Started|Waiting|Healthy|Stopping|Stopped|Removing|Removed|Running|Recreate|Recreated)|^\{\"level\"|^\{\"time\"|^ltw_[a-z_]+ [0-9]+$"; echo "ci.sh exit status: ${PIPESTATUS[0]}"
+==> Docker Engine 27 (a stub answers `docker version`; any other call fails and is recorded)
+PASS  deploy.sh refuses Docker Engine 27 before any other Docker call
+     deploy.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  ci.sh refuses Docker Engine 27 before any other Docker call
+     ci.sh: Docker Engine 27.5.1: 28 or later is required (isolated internal networks; deploy/RUNBOOK.md section 1)
+PASS  this host runs Docker Engine 28 or later
+==> networks: a throwaway project ltwpreflight70268 whose backend gives the host an address
+     ltwpreflight70268_backend: true  [{"Subnet":"172.26.0.0/16","Gateway":"172.26.0.1"}]
+     ltwpreflight70268_data: true isolated [{"Subnet":"172.27.0.0/16"}]
+PASS  a backend network with a host address is refused
+     preflight-check.sh: network ltwpreflight70268_backend gives the host an address (true  [{"Subnet":"172.26.0.0/16","Gateway":"172.26.0.1"}]): the host could reach the server inside the range it trusts; Docker Engine 28+ with gateway mode isolated is required (deploy/RUNBOOK.md section 1)
+PASS  isolated internal backend and data networks pass
+==> preflight checks passed
+==> images of HEAD
+==> building ltw-server:6ee2fdaf123d from 6ee2fdaf123d694ad8ebd3b7071d6c2cc1c1888c
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 0.7s
+
+#1 [internal] load remote build context
+#1 DONE 0.7s
+
+#2 copy /context /
+#2 DONE 0.3s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#4 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#4 DONE 0.0s
+
+#5 [build 4/9] COPY apps apps
+#5 CACHED
+
+#6 [server 3/5] COPY --from=prod-deps /app /app
+#6 CACHED
+
+#7 [server 4/5] COPY --from=build /out /app
+#7 CACHED
+
+#8 [build 6/9] RUN pnpm build
+#8 CACHED
+
+#9 [manifests 3/4] COPY packages packages
+#9 CACHED
+
+#10 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#10 CACHED
+
+#11 [pnpm 3/4] COPY package.json ./
+#11 CACHED
+
+#12 [prod-deps 2/2] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --prod --filter @ltw/server... --store-dir /pnpm-store
+#12 CACHED
+
+#13 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#13 CACHED
+
+#14 [build 5/9] COPY packages packages
+#14 CACHED
+
+#15 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#15 CACHED
+
+#16 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#16 CACHED
+
+#17 [manifests 2/4] COPY apps apps
+#17 CACHED
+
+#18 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#18 CACHED
+
+#19 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#19 CACHED
+
+#20 [build 1/9] COPY --from=manifests /app /app
+#20 CACHED
+
+#21 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#21 CACHED
+
+#22 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#22 CACHED
+
+#23 [pnpm 2/4] WORKDIR /app
+#23 CACHED
+
+#24 [server 5/5] COPY --chmod=0555 deploy/server/start.sh /usr/local/bin/ltw-server-start
+#24 CACHED
+
+#25 exporting to image
+#25 exporting layers done
+#25 exporting manifest sha256:f39637a82bd4633809f6860057e4ff8c4a71ad009e5c25e654e2c1e92ca46925 0.0s done
+#25 exporting config sha256:992ec9327271861cbb889758240d93ac2ee4f922042262f9c7b2da5ab30d3958 0.0s done
+#25 exporting attestation manifest sha256:2242e819bbfb4704de12ab04660461c2167d6e73f2a102fb230de829bf7089ac 0.0s done
+#25 exporting manifest list sha256:ab502a055eb3ef7261552e06753579886cc6b78988b2fded25ea86858b5aa247 0.0s done
+#25 naming to docker.io/library/ltw-server:6ee2fdaf123d done
+#25 unpacking to docker.io/library/ltw-server:6ee2fdaf123d done
+#25 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/dm3n592iypq85as74fj44oser
+==> building ltw-proxy:6ee2fdaf123d from 6ee2fdaf123d694ad8ebd3b7071d6c2cc1c1888c
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load remote build context
+#1 DONE 1.3s
+
+#1 [internal] load remote build context
+#1 CACHED
+
+#2 copy /context /
+#2 CACHED
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#4 DONE 0.0s
+
+#5 [pnpm 1/4] FROM docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21.0-alpine3.24@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.1s done
+#5 DONE 0.1s
+
+#6 [proxy 1/5] FROM docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+#6 resolve docker.io/library/caddy:2.10.2-alpine@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d 0.1s done
+#6 CACHED
+
+#7 [build 8/9] COPY fixtures/ravenford /out/fixtures/ravenford
+#7 CACHED
+
+#8 [build 6/9] RUN pnpm build
+#8 CACHED
+
+#9 [build 4/9] COPY apps apps
+#9 CACHED
+
+#10 [build 2/9] RUN --mount=type=cache,id=ltw-pnpm-store,target=/pnpm-store     pnpm install --frozen-lockfile --store-dir /pnpm-store
+#10 CACHED
+
+#11 [build 7/9] RUN mkdir -p /out/apps/server /out/fixtures  && cp -R apps/server/package.json apps/server/dist apps/server/migrations /out/apps/server/  && for dir in packages/*; do       mkdir -p "/out/$dir" && cp -R "$dir/package.json" "$dir/dist" "/out/$dir/";     done  && find /out ( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' ) -delete
+#11 CACHED
+
+#12 [pnpm 4/4] RUN corepack enable pnpm && corepack install
+#12 CACHED
+
+#13 [build 5/9] COPY packages packages
+#13 CACHED
+
+#14 [manifests 4/4] RUN find apps packages -mindepth 2 -maxdepth 2 ! -name package.json -exec rm -rf {} +
+#14 CACHED
+
+#15 [manifests 2/4] COPY apps apps
+#15 CACHED
+
+#16 [build 1/9] COPY --from=manifests /app /app
+#16 CACHED
+
+#17 [pnpm 2/4] WORKDIR /app
+#17 CACHED
+
+#18 [manifests 1/4] COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+#18 CACHED
+
+#19 [manifests 3/4] COPY packages packages
+#19 CACHED
+
+#20 [pnpm 3/4] COPY package.json ./
+#20 CACHED
+
+#21 [build 3/9] COPY tsconfig.base.json tsconfig.build.json ./
+#21 CACHED
+
+#22 [build 9/9] COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+#22 CACHED
+
+#23 [proxy 2/5] RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy  && chown -R caddy:caddy /data /config  && setcap -r /usr/bin/caddy
+#23 DONE 0.5s
+
+#24 [proxy 3/5] COPY --from=build /app/apps/web/build /srv
+#24 DONE 0.2s
+
+#25 [proxy 4/5] COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
+#25 DONE 0.0s
+
+#26 [proxy 5/5] RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile  && rm -rf /data/caddy /config/caddy
+#26 0.187 {"level":"info","ts":1792144315.1326287,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.189 {"level":"info","ts":1792144315.1348033,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.189 {"level":"info","ts":1792144315.1351717,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.189 {"level":"info","ts":1792144315.1353302,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.189 {"level":"info","ts":1792144315.135351,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.190 {"level":"info","ts":1792144315.1359699,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x4000629100"}
+#26 0.208 {"level":"info","ts":1792144315.1543164,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x4000629100"}
+#26 0.208 {"level":"info","ts":1792144315.1543438,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.208 Valid configuration
+#26 0.234 {"level":"info","ts":1792144315.180332,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+#26 0.236 {"level":"info","ts":1792144315.181928,"msg":"adapted config to JSON","adapter":"caddyfile"}
+#26 0.237 {"level":"info","ts":1792144315.1830425,"msg":"redirected default logger","from":"stderr","to":"stdout"}
+#26 0.238 {"level":"info","ts":1792144315.1838913,"logger":"http.auto_https","msg":"server is listening only on the HTTPS port but has no TLS connection policies; adding one to enable TLS","server_name":"srv1","https_port":443}
+#26 0.238 {"level":"info","ts":1792144315.1839252,"logger":"http.auto_https","msg":"enabling automatic HTTP->HTTPS redirects","server_name":"srv1"}
+#26 0.239 {"level":"info","ts":1792144315.1847522,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x400074b000"}
+#26 0.239 {"level":"info","ts":1792144315.1853535,"logger":"http","msg":"servers shutting down with eternal grace period"}
+#26 0.239 {"level":"info","ts":1792144315.1854131,"logger":"tls.cache.maintenance","msg":"stopped background certificate maintenance","cache":"0x400074b000"}
+#26 0.239 Valid configuration
+#26 DONE 0.3s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 1.2s done
+#27 exporting manifest sha256:17016700f7145af40bdabe80afb3e8581fd27f5a734a2b03f8b241cd04d85b22 done
+#27 exporting config sha256:2b624316c00d086b6e61b497e2bb3a5e4274b83b262d54f85b61089ce3bb282a done
+#27 exporting attestation manifest sha256:7929b5048a30137278c7c9875785cb8d5886eea5fe49e61bbc720048d97e94f2 0.0s done
+#27 exporting manifest list sha256:843bdddc708fce5cd749bdae53ad644e0bfe4ddc84853e7385db8423ae2013db done
+#27 naming to docker.io/library/ltw-proxy:6ee2fdaf123d done
+#27 unpacking to docker.io/library/ltw-proxy:6ee2fdaf123d
+#27 unpacking to docker.io/library/ltw-proxy:6ee2fdaf123d 0.4s done
+#27 DONE 1.6s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/k74hr31cizxaxyj3avcnzo93z
+==> no database yet: nothing to back up
+==> starting ltw-server:6ee2fdaf123d and ltw-proxy:6ee2fdaf123d (previous: none)
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-ci-70249-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     18 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-ci-70249-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   18 seconds ago   Up 16 seconds (healthy)   5432/tcp
+ltw-ci-70249-proxy-1      ltw-proxy:6ee2fdaf123d                                                                       "caddy run --config …"   proxy      17 seconds ago   Up 7 seconds (healthy)    127.0.0.1:28180->80/tcp, 127.0.0.1:28543->443/tcp
+ltw-ci-70249-server-1     ltw-server:6ee2fdaf123d                                                                      "/usr/local/bin/ltw-…"   server     18 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed 6ee2fdaf123d
+==> seeding the review campaign and its curated pictures through the World Engine (no DM link in this log)
+review campaign ravenford («Пропавший караван», ru): 92 accepted, 0 already present; curated pictures: 51 imported, 0 already present, 0 skipped; version 305, 25 entities; open seats: elowen-starwhisper
+==> HTTPS at https://localhost:28543 (Caddy's local CA)
+PASS  TLS verifies against the local CA
+PASS  TLS 1.3 negotiated
+PASS  TLS 1.1 refused
+PASS  HTTP redirects to HTTPS
+==> static client
+PASS  page answers 200 with the client
+PASS  page is the client
+PASS  page is revalidated (no-cache)
+PASS  bundle referenced
+PASS  bundle answers 200
+PASS  bundle is immutable
+PASS  bundle is compressed
+PASS  client routes get the page
+PASS  a missing bundle is a 404, not the page
+==> security headers
+PASS  Content-Security-Policy
+PASS  Referrer-Policy no-referrer
+PASS  X-Content-Type-Options nosniff
+PASS  X-Frame-Options DENY
+PASS  Cross-Origin-Opener-Policy same-origin
+PASS  Permissions-Policy
+PASS  no Server header
+PASS  no HSTS in local verification
+==> API through the proxy
+PASS  /api/healthz 200
+PASS  /api/healthz ok
+PASS  /api/readyz 200
+PASS  /api/readyz ready
+PASS  API answers are never cached
+PASS  API answers carry a CSP
+PASS  API answers carry no Server or Via
+PASS  campaign routes need a credential (401)
+==> only the proxy is published
+PASS  server publishes no port
+PASS  postgres publishes no port
+PASS  backup publishes no port
+PASS  proxy publishes 80/tcp and 443/tcp only
+==> containers
+PASS  server has a read-only root filesystem
+PASS  server runs as a non-root user
+PASS  proxy has a read-only root filesystem
+PASS  proxy runs as a non-root user
+PASS  backup has a read-only root filesystem
+PASS  backup runs as a non-root user
+==> settings and scripts
+     deploy/.env settings in the server beyond its own: none
+PASS  the server receives no other setting of deploy/.env
+PASS  the backup service was created for this checkout's deploy/backup/ (label)
+PASS  the backup service reads this checkout's backup.sh
+==> smoke checks passed
+==> no image provider: the placeholder generator, no ceiling stored, nothing spent
+PASS  the server runs LTW_IMAGE_GENERATOR=placeholder
+     start: {"msg":"image generator","generator":"placeholder","model":null}
+PASS  the server's start named the placeholder
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  spend.sh: no image ceiling, nothing spent, held or reserved
+     ltw-server:6ee2fdaf123d, no network: sharp 0.34.4, libvips 8.17.2; style references (bytes): {"person":[71624,84172],"place":[139586,98800],"object":[130910,112660]}
+PASS  the in-play generator can start in this image (sharp, style references; not enabled)
+==> the DM signs in (the operator link) and invites a player for Elowen; the player joins
+     DM and player signed in (cookies; tokens never printed)
+==> the curated set in the campaign (the DM's lineage)
+     51 curated pictures approved for players (manifest: 51 for 45 files)
+PASS  every curated picture is approved for players
+PASS  their bytes are the manifest's files
+PASS  requested by the DM (none by authoring)
+==> the player reads what Elowen knows or perceives, through Caddy
+     visible to Elowen: 32 pictures; not: 13; the market square shows market-square.webp, Mira stands as mira-vale--figure.webp
+PASS  the market square's picture is a curated one Elowen sees
+PASS  Mira's figure is a curated one Elowen sees
+     sha256:03ea6bcad62f4877a16c03117031f8974e0315e265d646e004edb2a76e1232de:
+       HTTP/2 200 
+       cache-control: no-store
+       content-disposition: inline
+       content-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+       content-type: image/webp
+       cross-origin-opener-policy: same-origin
+       permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+       referrer-policy: no-referrer
+       vary: Cookie
+       x-content-type-options: nosniff
+       x-frame-options: DENY
+       content-length: 385508
+       
+     served as checked: 32 of 32; none other
+PASS  each: 200 image/webp, nosniff, no-store, sandbox policy, Vary Cookie, uncompressed, SHA-256 = hash
+     curated pictures of what Elowen neither knows nor perceives: 13 of 13 are 404; none other
+PASS  every other curated picture is a 404 for the player
+==> the page's policy lets the client show them (object URLs)
+     default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+PASS  the page's img-src allows 'self' and blob:
+==> an unapproved picture: the DM requests one, the placeholder worker makes it
+PASS  RequestAsset accepted
+     candidate: http:dm-ravenford:images-check-1792144340#0~asset sha256:c55d47f1fbb7656429fd0e2ba3d0dac72925992bcb34b919a947fd91d4c381e6 CANDIDATE image/svg+xml local placeholder-svg-1
+PASS  a candidate, not approved, by the local placeholder
+     player: 404 {"code":"NOT_FOUND","message":"Not found"}
+PASS  the player gets 404 for the unapproved hash
+PASS  ... the same as for a hash nobody stored
+     DM: 200 image/svg+xml, default-src 'none'; style-src 'unsafe-inline'; sandbox
+PASS  the DM reads it, under the sandbox policy
+PASS  the DM discards it
+     spend.sh images: {"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}
+PASS  the ledger is still empty (the placeholder spends nothing)
+==> the DM revokes the player and signs out
+PASS  the player is revoked
+PASS  the player's next picture request is 401
+PASS  the DM signs out (204)
+PASS  none of the 4 credentials in 300 log lines
+==> image checks passed
+/var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.lzSvKMV1z8/intermediate.crt: OK
+==> Chromium trusts Caddy's local CA for this run: its intermediate, SPKI sha256/FjrI5lqwhwsDyix4RSfUKebcyYkhNE7P1YPx3f6gGwE=
+     subject=CN=Caddy Local Authority - ECC Intermediate
+     issuer=CN=Caddy Local Authority - 2026 ECC Root
+     notAfter=Oct 23 09:52:09 2026 GMT
+==> the browser journeys against https://localhost:28543
+
+Running 1 test using 1 worker
+
+     1.1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the operator issues the DM link in the server container (408ms)
+     1.2 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM takes the seat on the join page («Занять место») (282ms)
+     1.3 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM invites a player for Elowen in the Players sheet (410ms)
+     1.4 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player takes the seat in another browser (227ms)
+     1.5 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the market square: its curated picture, the figures standing in it (144ms)
+     1.6 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › checked: 2 standing figures and the backdrop, of 4 pictures the player's page fetched (0ms)
+     1.7 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player acts once: Elowen looks Mira over («Осмотреть») (117ms)
+     1.8 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM revokes the player: «Вы вышли» through the live stream alone (4.2s)
+     1.9 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the player's screen said «Вы вышли» 0.39 s after the DM began the revocation (asked and confirmed), with no request of its own (0ms)
+     1.10 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › the DM signs out, asked first (74ms)
+     1.11 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy › no policy violation, no token out of place, no credential in any log (103ms)
+  ✓  1 [chromium] › tests/deploy/review-campaign.deploy.ts:67:1 › the review campaign in Russian browsers, through Caddy (6.1s)
+
+  1 passed (6.8s)
+==> browser journeys passed
+==> restore drill on the first dump (ltw-20261016T095206Z.dump, empty): must fail
+==> dump: ltw-20261016T095206Z.dump (taken 2026-10-16T09:52:06Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+{"streams":[]}
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[],"failures":["empty"]}
+restore-drill.sh: restore drill FAILED: a restored campaign differs from the live one, the restore is empty, or it lacks a live campaign (see failures)
+==> the same with --allow-empty: passes, since the campaign came after the dump
+==> dump: ltw-20261016T095206Z.dump (taken 2026-10-16T09:52:06Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+{"streams":[]}
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[],"unrestored":[],"failures":[]}
+==> restore drill passed
+==> a second deploy of the same images: a protected pre-deploy dump first
+==> backup before the change (protected dump)
+==> the state before this deploy: ltw-predeploy-20261016T095246Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:6ee2fdaf123d and ltw-proxy:6ee2fdaf123d (previous: 6ee2fdaf123d)
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-ci-70249-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     50 seconds ago   Up 43 seconds (healthy)   5432/tcp
+ltw-ci-70249-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   50 seconds ago   Up 48 seconds (healthy)   5432/tcp
+ltw-ci-70249-proxy-1      ltw-proxy:6ee2fdaf123d                                                                       "caddy run --config …"   proxy      49 seconds ago   Up 40 seconds (healthy)   127.0.0.1:28180->80/tcp, 127.0.0.1:28543->443/tcp
+ltw-ci-70249-server-1     ltw-server:6ee2fdaf123d                                                                      "/usr/local/bin/ltw-…"   server     50 seconds ago   Up 43 seconds (healthy)   3000/tcp
+==> deployed 6ee2fdaf123d
+ltw-20261016T095249Z.dump
+==> dump: ltw-20261016T095249Z.dump (taken 2026-10-16T09:52:49Z)
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+==> replay of every restored campaign stream
+{"streams":[{"campaignId":"ravenford","version":315,"digest":"sha256:a4d03a00d50309bba87d4b2ff98cbb0349c1014abd4225e1faee688c0fd60647","violations":0}]}
+==> live database replayed at the same versions
+{"compared":1,"matched":1,"streams":[{"campaignId":"ravenford","version":315,"status":"match","expected":"sha256:a4d03a00d50309bba87d4b2ff98cbb0349c1014abd4225e1faee688c0fd60647","actual":"sha256:a4d03a00d50309bba87d4b2ff98cbb0349c1014abd4225e1faee688c0fd60647","head":315}],"unrestored":[],"failures":[]}
+==> restore drill passed
+kept 21 of 480 regular, 5 of 8 pre-deploy, 3 of 3 pre-restore
+retention check passed
+==> no restore drill recorded
+     2026-10-16T09:52:57Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:52:58Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.m2eoBexuUZ at 85% (limit 0%)
+     2026-10-16T09:52:58Z ltw-watch ALARM no restore drill recorded (deploy/scripts/restore-drill.sh, weekly; /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.5In3ATgtW3/drill.log)
+PASS  alarm: no restore drill recorded
+==> the last drill passed 9 days ago
+     2026-10-16T09:52:58Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:52:58Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.m2eoBexuUZ at 85% (limit 0%)
+     2026-10-16T09:52:59Z ltw-watch ALARM the last restore drill is 9 days old (2026-10-07T09:52:57Z; limit 8 days)
+PASS  alarm: the last restore drill is 9 days old
+==> the last drill failed now
+     2026-10-16T09:52:59Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:52:59Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.m2eoBexuUZ at 85% (limit 0%)
+     2026-10-16T09:52:59Z ltw-watch ALARM the last restore drill failed (2026-10-16T09:52:57Z, ltw-20261016T000000Z.dump)
+PASS  alarm: the last restore drill failed
+==> the last drill passed now
+     2026-10-16T09:53:00Z ltw-watch ALARM disk / at 8% (limit 0%)
+     2026-10-16T09:53:00Z ltw-watch ALARM disk /var/folders/lc/bn810m856k9_cs18w_qkkbpr0000gn/T/tmp.m2eoBexuUZ at 85% (limit 0%)
+PASS  no restore drill alarm after a drill that passed now
+==> the webhook
+     curl calls: 15, of them alarms posted: 11; received: 11
+PASS  every alarm reached the webhook as JSON {"text": …}
+PASS  the webhook URL is in no curl call's arguments
+PASS  curl read the webhook URL from its standard input
+==> watch checks passed
+PASS  prefix stripped
+PASS  Host kept
+PASS  Origin forwarded
+PASS  Sec-Fetch-Site forwarded
+PASS  Sec-Fetch-Mode forwarded
+PASS  Cookie forwarded
+PASS  Authorization forwarded
+PASS  forged X-Forwarded-For replaced by the real peer
+PASS  the server's own CSP kept
+PASS  the proxy's CSP on the client
+proxy contract checks passed
+==> waiting 40 s until this host's redeems of the checks above leave the limit's window
+==> the operator: review campaign and the DM link (deploy/scripts/review-campaign.sh)
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; curated pictures: 0 imported, 51 already present, 0 skipped; version 315, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+{"invitationId":"64a22fc9-c82f-48da-a168-dd40c0bd5797","expiresAt":"2026-10-16T10:53:44.002Z","link":"https://localhost:28543/join#<token>","campaignId":"ravenford"}
+PASS  the DM link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the DM joins through the link
+     answer {"campaignId":"ravenford"}; Set-Cookie: ltw_session=<session>; Path=/api; HttpOnly; SameSite=Strict; Max-Age=1209600; Secure
+PASS  redeem answers the campaign
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+PASS  GET /api/auth/session (same-origin): the campaign
+     {"role":"DM","campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the DM sees the Russian campaign
+==> DM live stream ready after 0.09 s
+==> the DM invites a player for Elowen
+     201 {"invitationId":"6e34bc8f-bdc9-4ee5-a6d6-0742f6173c17","expiresAt":"2026-10-16T10:53:44.297Z","link":"https://localhost:28543/join#<token>","characterId":"elowen-starwhisper"}
+PASS  invitation created (201)
+PASS  the player link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the player joins in another browser
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+     {"role":"PLAYER","character":{"entityId":"elowen-starwhisper","kind":"character","name":"Эловен Старвиспер"},"campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the player holds Elowen in Russian
+==> player live stream ready after 0.08 s
+PASS  the player cannot list invitations (404)
+PASS  the player cannot read as the DM (403)
+==> the player explores (the Russian investigation)
+     ask: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"AskAbout","shared":["dcfb8bdb-7a1a-458d-89a1-3fdf742e4b46"]}}
+PASS  ask Mira about the guild caravan (or nothing new on a rerun)
+     road: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"old-trade-road"}}
+PASS  take the Old Trade Road
+     site: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"abandoned-caravan-site"}}
+PASS  enter the place off the road
+     inspect: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"ExamineEntity","roll":null,"discovered":["01702df2-7590-48d4-82a0-af1e1dcbaf33"]}}
+PASS  inspect it
+     now at: {"entityId":"abandoned-caravan-site","kind":"location","name":"Заброшенная стоянка каравана"}
+PASS  the place is identified in Russian
+PASS  the player reads the discovery in Russian
+PASS  the DM's stream signalled the changes
+==> the DM sees the members and invitations (never a token)
+     {"members":[{"characterId":"elowen-starwhisper","activeSessions":1,"lastSeenAt":"2026-10-16T09:53:44.330Z"}],"invitations":[{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"},{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"},{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"}]}
+PASS  Elowen is a member with one live session
+PASS  no link or token in the listing
+     operator sessions: [{"role":"dm","characterIds":[]},{"role":"player","characterIds":["elowen-starwhisper"]}]
+PASS  the operator lists both sessions without a secret
+==> the DM revokes the player: the player's screen is signed out at once
+     200 {"released":true,"sessionsRevoked":1,"invitationsRevoked":0}
+PASS  revoked: released, one session
+==> player stream: closed (unauthenticated) 0.61 s after the revocation
+PASS  the player's stream ended
+PASS  the DM's stream stays open
+PASS  the player can no longer act (401)
+PASS  the player can no longer read (401)
+PASS  GET /api/auth/session: 401
+PASS  ... and the cookie it presented is cleared
+==> used, revoked and forged links fail alike (the same error; only the request ID differs)
+     used player link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"386d11aa-d239-4217-b524-4307c6ded156"}
+PASS  used player link: 401, no cookie
+PASS  used player link: the fixed message
+     used DM link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"c674a55c-8f4e-4962-b5e4-f5d958709e0a"}
+PASS  used DM link: 401, no cookie
+PASS  used DM link: the fixed message
+     forged token: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"b1853119-bc9b-4064-a326-bb209936606a"}
+PASS  forged token: 401, no cookie
+PASS  forged token: the fixed message
+PASS  the fixed message is UNAUTHENTICATED
+==> the seat is free again; a signed-in browser must confirm before an invitation is spent
+PASS  Elowen can be invited again (201)
+     the DM browser redeems it: 409 {"error":{"code":"CONFLICT","message":"Conflict"},"requestId":"3b7f5e94-072b-4790-8040-83e704b627e8"}
+PASS  a signed-in browser gets 409 (CONFLICT)
+PASS  ... and the invitation stays pending
+PASS  the DM revokes that invitation
+PASS  a revoked link fails with the fixed message
+==> cross-site requests are refused through the proxy
+PASS  GET /api/auth/session with a foreign Origin: 403
+PASS  ... without touching the cookie
+PASS  the live stream with Sec-Fetch-Site: cross-site: 403
+PASS  sign-out without Origin: 403
+PASS  the DM is still signed in
+==> the DM signs out
+PASS  POST /api/auth/sign-out: 204
+PASS  ... and the cookie is cleared
+==> DM stream: closed (unauthenticated) 0.53 s after signing out
+PASS  the DM's stream ended
+PASS  GET /api/auth/session: 401
+==> no credential in any log of the proxy or the server
+PASS  none of the 5 credentials in 880 log lines
+==> sign-in journeys passed
+==> the DM signs in with an invitation from the operator (the link is never printed)
+{"campaignId":"ravenford"}
+==> opening the live stream through the proxy (HTTP/2, cookie and Origin)
+==> ready after 0.09 s
+HTTP/2 200 
+cache-control: no-store
+content-security-policy: default-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'
+content-type: text/event-stream; charset=utf-8
+cross-origin-opener-policy: same-origin
+date: Fri, 16 Oct 2026 09:53:47 GMT
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+referrer-policy: no-referrer
+vary: Cookie
+x-accel-buffering: no
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-request-id: 7cdde382-becb-41c6-a4ae-9095b2bf732d
+
+==> one DM command through the proxy (a new item: the DM perspective can read it)
+{"status":"accepted","commandId":"http:dm-ravenford:live-check-1792144430"}
+==> changed 0.92 s after the command, stream open
+==> waiting for the next heartbeat
+==> heartbeat 15.12 s after opening, stream open
+==> the DM signs out: the stream closes within one cycle
+==> closed 0.96 s after signing out; connection ended at 0.99 s
+==> frames received (raw):
+event: ready
+data: {}
+event: changed
+data: {"seq":1}
+: heartbeat
+event: closed
+data: {"reason":"unauthenticated"}
+==> live stream passes the proxy unbuffered
+==> topology of project ltw-ci-70249
+     edge     false  172.28.0.0/16 host=172.28.0.1 | proxy
+     backend  true isolated 10.231.251.0/24 host=none | proxy server
+     data     true isolated 172.27.0.0/16 host=none | backup postgres server
+     egress   false  172.26.0.0/16 host=172.26.0.1 | server
+PASS  backend: internal, no host address (isolated), the pinned range
+PASS  backend: the proxy and the server only
+PASS  data: internal, no host address (isolated)
+PASS  data: the server, the database and the backups only
+PASS  edge: the proxy only
+PASS  egress: the server only
+PASS  the server's backend address is 10.231.251.10
+PASS  HTTP_HOST is that address
+PASS  LTW_TRUST_PROXY is the backend range
+     listening on port 3000: 10.231.251.10:3000
+PASS  the API listens only at the backend address
+==> reachable: nothing but the proxy reaches the API
+     host namespace: 10.231.251.10:3000 timeout
+     host namespace: 172.27.0.3:3000 timeout
+     host namespace: 172.26.0.2:3000 refused
+     host namespace: 172.28.0.2:443 open
+PASS  from the host: the backend address
+PASS  from the host: the data address
+PASS  from the host: the egress address
+PASS  control: the host reaches the proxy
+     edge network:   server:3000 no-such-name
+     edge network:   10.231.251.10:3000 timeout
+     edge network:   172.27.0.3:3000 timeout
+     edge network:   172.26.0.2:3000 timeout
+     edge network:   proxy:443 open
+PASS  from the edge network: the service name
+PASS  from the edge network: the backend address
+PASS  from the edge network: the data address
+PASS  from the edge network: the egress address
+PASS  control: the edge network reaches the proxy
+     egress network: server:3000 refused
+     egress network: 172.26.0.2:3000 refused
+PASS  from the egress network: the server's port is closed
+PASS  control: the proxy reaches the server
+==> forwarded: a client cannot choose the address it is limited as
+     through the proxy, X-Forwarded-For 203.0.113.1, .2, …: 401 401 429
+PASS  one client to the limits: 429 by the eleventh redeem
+     from the proxy (trusted peer), a forged X-Forwarded-For: wget: server returned error: HTTP/1.1 401 Unauthorized
+PASS  control: from a trusted peer the header names a new client (401, not 429)
+==> trust boundary checks passed
+==> deployment check passed for 6ee2fdaf123d
+
+real	2m24.409s
+user	0m13.457s
+sys	0m10.184s
+ci.sh exit status: 0
+[exit 0]
+

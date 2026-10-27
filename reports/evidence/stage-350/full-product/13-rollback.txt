@@ -1,0 +1,46 @@
+### Roll back to the previous tag (a0da82a7648c, the full product before this work) with its own deploy files, on the same database: a protected dump first, every stored event parsed before ready (2026-10-16T09:47:37Z)
+$ umask 077; cat deploy/.env > /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/.env && "/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/scripts/deploy.sh" --rollback a0da82a7648c 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Created|Starting|Started|Waiting|Healthy|Stopping|Stopped|Removing|Removed|Running|Recreate|Recreated)|^\{'; grep -E '^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|ROLLBACK_DUMP)=' /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/.env
+==> backup before the change (protected dump)
+==> the state before the rollback: ltw-predeploy-20261016T094749Z.dump (LTW_ROLLBACK_DUMP)
+==> starting ltw-server:a0da82a7648c and ltw-proxy:a0da82a7648c (previous: fb35fa6f7bbc)
+NAME                       IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                        PORTS
+ltw-stage350f-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     20 seconds ago   Up 19 seconds (healthy)       5432/tcp
+ltw-stage350f-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   3 minutes ago    Up About a minute (healthy)   5432/tcp
+ltw-stage350f-proxy-1      ltw-proxy:a0da82a7648c                                                                       "caddy run --config …"   proxy      6 seconds ago    Up 2 seconds (healthy)        127.0.0.1:28080->80/tcp, 127.0.0.1:28443->443/tcp
+ltw-stage350f-server-1     ltw-server:a0da82a7648c                                                                      "/usr/local/bin/ltw-…"   server     7 seconds ago    Up 5 seconds (healthy)        3000/tcp
+==> deployed a0da82a7648c
+LTW_IMAGE_TAG=a0da82a7648c
+LTW_PREVIOUS_IMAGE_TAG=fb35fa6f7bbc
+LTW_ALLOW_NEWER_SCHEMA=true
+LTW_ROLLBACK_DUMP=ltw-predeploy-20261016T094749Z.dump
+[exit 0]
+
+### Rolled back: images, readiness through the proxy, the world and its pictures as they were (2026-10-16T09:47:57Z)
+$ cd /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy && docker compose ps --format '{{.Service}} {{.Image}} {{.Status}}' && curl -sS --cacert /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/ca.crt --resolve localhost:28443:127.0.0.1 https://localhost:28443/api/readyz && echo && docker compose logs --no-color --no-log-prefix server | grep -E '"msg":"(ready|not ready)"' | tail -n 2 | jq -c '{time, msg, check}'; docker compose exec -T postgres psql -U ltw -d ltw -At -c 'SELECT stream_id, version FROM ltw_event_streams' -c 'SELECT count(*) FROM ltw_asset_contents'
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 19 seconds (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up About a minute (healthy)
+proxy ltw-proxy:a0da82a7648c Up 2 seconds (healthy)
+server ltw-server:a0da82a7648c Up 5 seconds (healthy)
+{"status":"ready"}
+{"time":"2026-10-16T09:47:53.204Z","msg":"ready","check":null}
+ravenford|330
+46
+[exit 0]
+
+### Forward again to fb35fa6f7bbc with this checkout's deploy files: the rollback flag cleared (2026-10-16T09:47:58Z)
+$ umask 077; cat /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/.env > deploy/.env && deploy/scripts/deploy.sh fb35fa6f7bbc 2>&1 | grep -E '^==>|Error'; grep -E '^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|PREDEPLOY_DUMP)=' deploy/.env; cd deploy && docker compose ps --format '{{.Service}} {{.Image}} {{.Status}}' && curl -sS --cacert /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/ca.crt --resolve localhost:28443:127.0.0.1 https://localhost:28443/api/readyz; echo
+==> backup before the change (protected dump)
+==> the state before this deploy: ltw-predeploy-20261016T094810Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:fb35fa6f7bbc and ltw-proxy:fb35fa6f7bbc (previous: a0da82a7648c)
+==> deployed fb35fa6f7bbc
+LTW_IMAGE_TAG=fb35fa6f7bbc
+LTW_PREVIOUS_IMAGE_TAG=a0da82a7648c
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_PREDEPLOY_DUMP=ltw-predeploy-20261016T094810Z.dump
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 19 seconds (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up About a minute (healthy)
+proxy ltw-proxy:fb35fa6f7bbc Up 2 seconds (healthy)
+server ltw-server:fb35fa6f7bbc Up 5 seconds (healthy)
+{"status":"ready"}
+[exit 0]
+

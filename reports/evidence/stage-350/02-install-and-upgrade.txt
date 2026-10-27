@@ -1,0 +1,223 @@
+
+### First install: the first revision on an empty host (no stack yet, so no backup first) (2026-10-15T23:20:54Z)
+$ deploy/scripts/deploy.sh 3e9090467a4b
+==> starting ltw-server:3e9090467a4b and ltw-proxy:3e9090467a4b (previous: none)
+ Network ltw-stage350_edge Creating 
+ Network ltw-stage350_edge Created 
+ Network ltw-stage350_data Creating 
+ Network ltw-stage350_data Created 
+ Volume ltw-stage350_caddy-data Creating 
+ Volume ltw-stage350_caddy-data Created 
+ Volume ltw-stage350_caddy-config Creating 
+ Volume ltw-stage350_caddy-config Created 
+ Volume ltw-stage350_pgdata Creating 
+ Volume ltw-stage350_pgdata Created 
+ Container ltw-stage350-postgres-1 Creating 
+ Container ltw-stage350-postgres-1 Created 
+ Container ltw-stage350-server-1 Creating 
+ Container ltw-stage350-backup-1 Creating 
+ Container ltw-stage350-backup-1 Created 
+ Container ltw-stage350-server-1 Created 
+ Container ltw-stage350-proxy-1 Creating 
+ Container ltw-stage350-proxy-1 Created 
+ Container ltw-stage350-postgres-1 Starting 
+ Container ltw-stage350-postgres-1 Started 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-backup-1 Starting 
+ Container ltw-stage350-server-1 Starting 
+ Container ltw-stage350-backup-1 Started 
+ Container ltw-stage350-server-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-proxy-1 Starting 
+ Container ltw-stage350-proxy-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-backup-1 Waiting 
+ Container ltw-stage350-proxy-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+ Container ltw-stage350-backup-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     16 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-stage350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   16 seconds ago   Up 15 seconds (healthy)   5432/tcp
+ltw-stage350-proxy-1      ltw-proxy:3e9090467a4b                                                                       "caddy run --config …"   proxy      16 seconds ago   Up 7 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350-server-1     ltw-server:3e9090467a4b                                                                      "/usr/local/bin/ltw-…"   server     16 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed 3e9090467a4b
+[exit 0]
+
+### Seed Ravenford through the World Engine (operator command inside the server container) (2026-10-15T23:21:19Z)
+$ cd deploy && docker compose exec -T server node apps/server/dist/world-engine/seed-ravenford-cli.js 2>&1 | grep -v "^{"
+ravenford: 91 accepted, 0 already present; version 100, 25 entities
+[exit 0]
+
+### Upgrade to the second revision: a backup first, the previous tag recorded, then wait for health (2026-10-15T23:21:20Z)
+$ deploy/scripts/deploy.sh 4a17f1c6c79a
+==> backup before the change
+{"time":"2026-10-15T23:21:21Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T232121Z.dump (86113 bytes)"}
+{"time":"2026-10-15T23:21:21Z","service":"ltw-backup","level":"info","msg":"retention: kept 2, removed 0"}
+{"time":"2026-10-15T23:21:22Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T232121Z.dump"}
+ltw-20261015T232121Z.dump
+==> starting ltw-server:4a17f1c6c79a and ltw-proxy:4a17f1c6c79a (previous: 3e9090467a4b)
+ Container ltw-stage350-postgres-1 Running 
+ Container ltw-stage350-backup-1 Running 
+ Container ltw-stage350-server-1 Recreate 
+ Container ltw-stage350-server-1 Recreated 
+ Container ltw-stage350-proxy-1 Recreate 
+ Container ltw-stage350-proxy-1 Recreated 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Starting 
+ Container ltw-stage350-server-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-proxy-1 Starting 
+ Container ltw-stage350-proxy-1 Started 
+ Container ltw-stage350-proxy-1 Waiting 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-backup-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     34 seconds ago   Up 28 seconds (healthy)   5432/tcp
+ltw-stage350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   34 seconds ago   Up 33 seconds (healthy)   5432/tcp
+ltw-stage350-proxy-1      ltw-proxy:4a17f1c6c79a                                                                       "caddy run --config …"   proxy      6 seconds ago    Up 2 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350-server-1     ltw-server:4a17f1c6c79a                                                                      "/usr/local/bin/ltw-…"   server     7 seconds ago    Up 5 seconds (healthy)    3000/tcp
+==> deployed 4a17f1c6c79a
+[exit 0]
+
+### Image tags recorded in deploy/.env (2026-10-15T23:21:29Z)
+$ grep -E "^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA)=" deploy/.env
+LTW_IMAGE_TAG=4a17f1c6c79a
+LTW_PREVIOUS_IMAGE_TAG=3e9090467a4b
+LTW_ALLOW_NEWER_SCHEMA=false
+[exit 0]
+
+### Upgrade to the third revision (2026-10-15T23:26:36Z)
+$ deploy/scripts/deploy.sh 56ec5d8b14fa
+==> backup before the change
+{"time":"2026-10-15T23:26:37Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T232637Z.dump (86113 bytes)"}
+{"time":"2026-10-15T23:26:37Z","service":"ltw-backup","level":"info","msg":"retention: kept 3, removed 0"}
+{"time":"2026-10-15T23:26:37Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T232637Z.dump"}
+ltw-20261015T232637Z.dump
+==> starting ltw-server:56ec5d8b14fa and ltw-proxy:56ec5d8b14fa (previous: 4a17f1c6c79a)
+ Container ltw-stage350-postgres-1 Running 
+ Container ltw-stage350-backup-1 Running 
+ Container ltw-stage350-server-1 Recreate 
+ Container ltw-stage350-server-1 Recreated 
+ Container ltw-stage350-proxy-1 Recreate 
+ Container ltw-stage350-proxy-1 Recreated 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Starting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-proxy-1 Starting 
+ Container ltw-stage350-proxy-1 Started 
+ Container ltw-stage350-backup-1 Waiting 
+ Container ltw-stage350-proxy-1 Waiting 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED         STATUS                        PORTS
+ltw-stage350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     5 minutes ago   Up 5 minutes (healthy)        5432/tcp
+ltw-stage350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   5 minutes ago   Up About a minute (healthy)   5432/tcp
+ltw-stage350-proxy-1      ltw-proxy:56ec5d8b14fa                                                                       "caddy run --config …"   proxy      6 seconds ago   Up 2 seconds (healthy)        127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350-server-1     ltw-server:56ec5d8b14fa                                                                      "/usr/local/bin/ltw-…"   server     7 seconds ago   Up 5 seconds (healthy)        3000/tcp
+==> deployed 56ec5d8b14fa
+[exit 0]
+
+### Upgrade to the fourth revision (the proxy gets its fixed address) (2026-10-15T23:30:35Z)
+$ deploy/scripts/deploy.sh 049db3031faa
+==> backup before the change
+{"time":"2026-10-15T23:30:35Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T233035Z.dump (86113 bytes)"}
+{"time":"2026-10-15T23:30:35Z","service":"ltw-backup","level":"info","msg":"retention: kept 4, removed 0"}
+{"time":"2026-10-15T23:30:36Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233035Z.dump"}
+ltw-20261015T233035Z.dump
+==> starting ltw-server:049db3031faa and ltw-proxy:049db3031faa (previous: 56ec5d8b14fa)
+ Container ltw-stage350-postgres-1 Running 
+ Container ltw-stage350-backup-1 Running 
+ Container ltw-stage350-server-1 Recreate 
+ Container ltw-stage350-server-1 Recreated 
+ Container ltw-stage350-proxy-1 Recreate 
+ Container ltw-stage350-proxy-1 Recreated 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Starting 
+ Container ltw-stage350-server-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-proxy-1 Starting 
+ Container ltw-stage350-proxy-1 Started 
+ Container ltw-stage350-proxy-1 Waiting 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-backup-1 Waiting 
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED         STATUS                   PORTS
+ltw-stage350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     9 minutes ago   Up 9 minutes (healthy)   5432/tcp
+ltw-stage350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   9 minutes ago   Up 3 minutes (healthy)   5432/tcp
+ltw-stage350-proxy-1      ltw-proxy:049db3031faa                                                                       "caddy run --config …"   proxy      7 seconds ago   Up 2 seconds (healthy)   127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350-server-1     ltw-server:049db3031faa                                                                      "/usr/local/bin/ltw-…"   server     8 seconds ago   Up 5 seconds (healthy)   3000/tcp
+==> deployed 049db3031faa
+[exit 0]
+
+### Upgrade to the fifth (final code) revision; the proxy returns to a dynamic address in the pinned range (2026-10-15T23:34:54Z)
+$ deploy/scripts/deploy.sh 73ce95bad8a0
+==> backup before the change
+{"time":"2026-10-15T23:34:54Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T233454Z.dump (86113 bytes)"}
+{"time":"2026-10-15T23:34:54Z","service":"ltw-backup","level":"info","msg":"retention: kept 5, removed 0"}
+{"time":"2026-10-15T23:34:55Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233454Z.dump"}
+ltw-20261015T233454Z.dump
+==> starting ltw-server:73ce95bad8a0 and ltw-proxy:73ce95bad8a0 (previous: 049db3031faa)
+ Container ltw-stage350-postgres-1 Running 
+ Container ltw-stage350-backup-1 Running 
+ Container ltw-stage350-server-1 Recreate 
+ Container ltw-stage350-server-1 Recreated 
+ Container ltw-stage350-proxy-1 Recreate 
+ Container ltw-stage350-proxy-1 Recreated 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Starting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-proxy-1 Starting 
+ Container ltw-stage350-proxy-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-backup-1 Waiting 
+ Container ltw-stage350-proxy-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     14 minutes ago   Up 14 minutes (healthy)   5432/tcp
+ltw-stage350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   14 minutes ago   Up 7 minutes (healthy)    5432/tcp
+ltw-stage350-proxy-1      ltw-proxy:73ce95bad8a0                                                                       "caddy run --config …"   proxy      7 seconds ago    Up 2 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350-server-1     ltw-server:73ce95bad8a0                                                                      "/usr/local/bin/ltw-…"   server     7 seconds ago    Up 5 seconds (healthy)    3000/tcp
+==> deployed 73ce95bad8a0
+[exit 0]

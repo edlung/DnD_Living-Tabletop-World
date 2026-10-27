@@ -1,0 +1,91 @@
+### deploy/verify/sign-in-journey.sh: the Russian sign-in journeys over HTTP through the proxy (2026-10-16T09:47:14Z)
+$ deploy/verify/sign-in-journey.sh
+==> the operator: review campaign and the DM link (deploy/scripts/review-campaign.sh)
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; curated pictures: 0 imported, 51 already present, 0 skipped; version 315, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+{"invitationId":"dff37740-3e37-4bfa-8b0d-5a3011750e35","expiresAt":"2026-10-16T10:47:16.451Z","link":"https://localhost:28443/join#<token>","campaignId":"ravenford"}
+PASS  the DM link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the DM joins through the link
+     answer {"campaignId":"ravenford"}; Set-Cookie: ltw_session=<session>; Path=/api; HttpOnly; SameSite=Strict; Max-Age=1209600; Secure
+PASS  redeem answers the campaign
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+PASS  GET /api/auth/session (same-origin): the campaign
+     {"role":"DM","campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the DM sees the Russian campaign
+==> DM live stream ready after 0.14 s
+==> the DM invites a player for Elowen
+     201 {"invitationId":"40a74a05-5944-4dd8-b82d-37d847188067","expiresAt":"2026-10-16T10:47:16.825Z","link":"https://localhost:28443/join#<token>","characterId":"elowen-starwhisper"}
+PASS  invitation created (201)
+PASS  the player link is <PUBLIC_ORIGIN>/join#<43-character token>
+==> the player joins in another browser
+PASS  session cookie: Path=/api, HttpOnly, SameSite=Strict, Secure
+     {"role":"PLAYER","character":{"entityId":"elowen-starwhisper","kind":"character","name":"Эловен Старвиспер"},"campaign":{"campaignId":"ravenford","name":"Пропавший караван","language":"ru"}}
+PASS  the player holds Elowen in Russian
+==> player live stream ready after 0.08 s
+PASS  the player cannot list invitations (404)
+PASS  the player cannot read as the DM (403)
+==> the player explores (the Russian investigation)
+     ask: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"AskAbout","shared":["16f862d7-c607-4959-a31d-abdd3e27f9d1"]}}
+PASS  ask Mira about the guild caravan (or nothing new on a rerun)
+     road: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"old-trade-road"}}
+PASS  take the Old Trade Road
+     site: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"EnterLocation","locationId":"abandoned-caravan-site"}}
+PASS  enter the place off the road
+     inspect: {"status":"accepted","campaignId":"ravenford","events":[],"outcome":{"kind":"ExamineEntity","roll":null,"discovered":["e3791a9f-5f46-4dbb-9451-8ea202e2ec9b"]}}
+PASS  inspect it
+     now at: {"entityId":"abandoned-caravan-site","kind":"location","name":"Заброшенная стоянка каравана"}
+PASS  the place is identified in Russian
+PASS  the player reads the discovery in Russian
+PASS  the DM's stream signalled the changes
+==> the DM sees the members and invitations (never a token)
+     {"members":[{"characterId":"elowen-starwhisper","activeSessions":1,"lastSeenAt":"2026-10-16T09:47:16.853Z"}],"invitations":[{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"},{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"},{"purpose":"player","characterId":"elowen-starwhisper","status":"used"},{"purpose":"dm","characterId":null,"status":"used"},{"purpose":"dm","characterId":null,"status":"pending"},{"purpose":"dm","characterId":null,"status":"pending"}]}
+PASS  Elowen is a member with one live session
+PASS  no link or token in the listing
+     operator sessions: [{"role":"dm","characterIds":[]},{"role":"player","characterIds":["elowen-starwhisper"]}]
+PASS  the operator lists both sessions without a secret
+==> the DM revokes the player: the player's screen is signed out at once
+     200 {"released":true,"sessionsRevoked":1,"invitationsRevoked":0}
+PASS  revoked: released, one session
+==> player stream: closed (unauthenticated) 0.48 s after the revocation
+PASS  the player's stream ended
+PASS  the DM's stream stays open
+PASS  the player can no longer act (401)
+PASS  the player can no longer read (401)
+PASS  GET /api/auth/session: 401
+PASS  ... and the cookie it presented is cleared
+==> used, revoked and forged links fail alike (the same error; only the request ID differs)
+     used player link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"3a1a0ccb-4f25-4fda-9a09-8804964e6a01"}
+PASS  used player link: 401, no cookie
+PASS  used player link: the fixed message
+     used DM link: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"d807b3a9-2286-4845-93c3-c48802de2d72"}
+PASS  used DM link: 401, no cookie
+PASS  used DM link: the fixed message
+     forged token: 401 {"error":{"code":"UNAUTHENTICATED","message":"Authentication required"},"requestId":"bc26ba4f-f139-4c58-a8f2-0d53a5186b99"}
+PASS  forged token: 401, no cookie
+PASS  forged token: the fixed message
+PASS  the fixed message is UNAUTHENTICATED
+==> the seat is free again; a signed-in browser must confirm before an invitation is spent
+PASS  Elowen can be invited again (201)
+     the DM browser redeems it: 409 {"error":{"code":"CONFLICT","message":"Conflict"},"requestId":"cc13b446-5cc8-4640-9f9d-b9aab60acae4"}
+PASS  a signed-in browser gets 409 (CONFLICT)
+PASS  ... and the invitation stays pending
+PASS  the DM revokes that invitation
+PASS  a revoked link fails with the fixed message
+==> cross-site requests are refused through the proxy
+PASS  GET /api/auth/session with a foreign Origin: 403
+PASS  ... without touching the cookie
+PASS  the live stream with Sec-Fetch-Site: cross-site: 403
+PASS  sign-out without Origin: 403
+PASS  the DM is still signed in
+==> the DM signs out
+PASS  POST /api/auth/sign-out: 204
+PASS  ... and the cookie is cleared
+==> DM stream: closed (unauthenticated) 0.47 s after signing out
+PASS  the DM's stream ended
+PASS  GET /api/auth/session: 401
+==> no credential in any log of the proxy or the server
+PASS  none of the 5 credentials in 954 log lines
+==> sign-in journeys passed
+[exit 0]
+

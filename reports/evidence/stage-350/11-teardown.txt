@@ -1,0 +1,17 @@
+
+### Remove the local stack: containers, the volumes and networks of project ltw-stage350 (2026-10-15T23:40:51Z)
+$ cd deploy && docker compose --profile drill down --volumes --remove-orphans 2>&1 | grep -E "Removed" ; docker ps -a --format "{{.Names}}" | grep -c "ltw-stage350" ; docker volume ls --format "{{.Name}}" | grep -c "ltw-stage350"; docker network ls --format "{{.Name}}" | grep -c "ltw-stage350"; docker ps --format "{{.Names}}" | grep -x living-tabletop-world-dev-pack-v12-postgres-1
+ Container ltw-stage350-backup-1 Removed 
+ Container ltw-stage350-proxy-1 Removed 
+ Container ltw-stage350-server-1 Removed 
+ Container ltw-stage350-postgres-1 Removed 
+ Volume ltw-stage350_pgdata Removed 
+ Volume ltw-stage350_caddy-config Removed 
+ Volume ltw-stage350_caddy-data Removed 
+ Network ltw-stage350_data Removed 
+ Network ltw-stage350_edge Removed 
+0
+0
+0
+living-tabletop-world-dev-pack-v12-postgres-1
+[exit 0]

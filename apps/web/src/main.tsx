@@ -1,3 +1,6 @@
+// Before any schema is built: no eval probe under the page's policy (`schema-config.ts`).
+import './schema-config.ts';
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 

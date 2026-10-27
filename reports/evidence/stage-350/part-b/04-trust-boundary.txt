@@ -1,0 +1,80 @@
+Stage 350 part B: the network trust boundary (deploy/verify/trust-boundary.sh) and what Docker Desktop changes locally
+
+### The server keeps its outbound path for AI providers: its routes (default via the egress network) and one TCP handshake to the provider (no request sent) (2026-10-16T01:10:42Z)
+$ cd deploy && docker compose exec -T server ip route && docker compose exec -T server node -e "require(\"node:net\").connect({ host: \"api.anthropic.com\", port: 443, timeout: 5000 }).on(\"connect\", function () { console.log(\"api.anthropic.com:443: TCP connected from\", this.localAddress, \"(no request sent)\"); this.destroy(); }).on(\"timeout\", function () { console.log(\"timeout\"); this.destroy(); process.exitCode = 1; }).on(\"error\", (e) => { console.log(\"error\", e.code); process.exitCode = 1; })"
+default via 172.27.0.1 dev eth2 
+10.231.251.0/24 dev eth0 scope link  src 10.231.251.10 
+172.26.0.0/16 dev eth1 scope link  src 172.26.0.3 
+172.27.0.0/16 dev eth2 scope link  src 172.27.0.2 
+api.anthropic.com:443: TCP connected from 172.27.0.2 (no request sent)
+[exit 0]
+
+### Docker Desktop: the client address Caddy sees for a connection from this machine to the published port (one TCP connection held open while the proxy's TCP tables are read) (2026-10-16T01:10:43Z)
+$ cat /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/peer.sh | sed -n "6,22p"; /bin/bash /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/ltw350b/peer.sh
+cd "$(dirname "$0")/../wt-350/deploy"
+v4() { printf '%d.%d.%d.%d' "0x${1:6:2}" "0x${1:4:2}" "0x${1:2:2}" "0x${1:0:2}"; }
+exec 3<>/dev/tcp/127.0.0.1/443
+docker compose exec -T proxy cat /proc/net/tcp /proc/net/tcp6 |
+  awk '$4 == "01" && $2 ~ /:01BB$/ { print $3 }' |
+  while IFS=: read -r h _; do
+    case $h in
+      0000000000000000FFFF0000*) peer=$(v4 "${h:24:8}") ;;
+      ????????) peer=$(v4 "$h") ;;
+      *) peer="IPv6 $h" ;;
+    esac
+    printf 'Caddy (:443) has an open connection from %s\n' "$peer"
+  done
+exec 3<&-
+docker network inspect ltw-stage350b_edge --format 'edge network gateway: {{range .IPAM.Config}}{{.Gateway}}{{end}}'
+Caddy (:443) has an open connection from 172.28.0.1
+edge network gateway: 172.28.0.1
+[exit 0]
+
+### Trust boundary checks on 8b362b15ec68 (more than a minute after the last redeem of this machine) (2026-10-16T01:11:24Z)
+$ deploy/verify/trust-boundary.sh
+==> topology of project ltw-stage350b
+     edge     false  172.28.0.0/16 host=172.28.0.1 | proxy
+     backend  true isolated 10.231.251.0/24 host=none | proxy server
+     data     true isolated 172.26.0.0/16 host=none | backup postgres server
+     egress   false  172.27.0.0/16 host=172.27.0.1 | server
+PASS  backend: internal, no host address (isolated), the pinned range
+PASS  backend: the proxy and the server only
+PASS  data: internal, no host address (isolated)
+PASS  data: the server, the database and the backups only
+PASS  edge: the proxy only
+PASS  egress: the server only
+PASS  the server's backend address is 10.231.251.10
+PASS  HTTP_HOST is that address
+PASS  LTW_TRUST_PROXY is the backend range
+     listening on port 3000: 10.231.251.10:3000
+PASS  the API listens only at the backend address
+==> reachable: nothing but the proxy reaches the API
+     host namespace: 10.231.251.10:3000 timeout
+     host namespace: 172.26.0.3:3000 timeout
+     host namespace: 172.27.0.2:3000 refused
+     host namespace: 172.28.0.2:443 open
+PASS  from the host: the backend address
+PASS  from the host: the data address
+PASS  from the host: the egress address
+PASS  control: the host reaches the proxy
+     edge network:   server:3000 no-such-name
+     edge network:   10.231.251.10:3000 timeout
+     edge network:   172.26.0.3:3000 timeout
+     edge network:   172.27.0.2:3000 timeout
+     edge network:   proxy:443 open
+PASS  from the edge network: the service name
+PASS  from the edge network: the backend address
+PASS  from the edge network: the data address
+PASS  from the edge network: the egress address
+PASS  control: the edge network reaches the proxy
+     egress network: server:3000 refused
+     egress network: 172.27.0.2:3000 refused
+PASS  from the egress network: the server's port is closed
+PASS  control: the proxy reaches the server
+==> forwarded: a client cannot choose the address it is limited as
+     through the proxy, X-Forwarded-For 203.0.113.1, .2, …: 401 401 401 401 401 401 401 401 401 401 429
+PASS  one client to the limits: 429 by the eleventh redeem
+     from the proxy (trusted peer), a forged X-Forwarded-For: wget: server returned error: HTTP/1.1 401 Unauthorized
+PASS  control: from a trusted peer the header names a new client (401, not 429)
+==> trust boundary checks passed
+[exit 0]

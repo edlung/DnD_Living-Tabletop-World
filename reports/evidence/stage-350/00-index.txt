@@ -1,0 +1,56 @@
+Stage 350 part A: local verification transcripts (2026-10-15/16, Europe/Oslo; times in UTC)
+
+Part B (on Stage 340, 2026-10-16): part-b/ (index part-b/00-index.txt). The review fixes
+(2026-10-16): review-fixes/ (index review-fixes/00-index.txt). The transcripts below are part A's,
+on its revisions before the rebase (local branch backup/stage-350-part-a-117453b).
+
+Machine: Apple Silicon (Darwin arm64), Docker Desktop with Engine 29.5.3, Compose v5.1.4. Every
+entry is "### title (time)", "$ command" as run from the worktree root, its combined output and
+"[exit N]". Secret values never appear: deploy/.env is shown with them redacted, and scripts
+expand POSTGRES_PASSWORD only inside the containers. The local stack ran as Compose project
+ltw-stage350 on 127.0.0.1:80/443 with TLS_MODE=internal and was removed at the end (11).
+
+Image revisions, in the order they ran (tags = 12-character commits; built by
+deploy/scripts/build.sh from `git archive`, so committed files only):
+  3e9090467a4b  first install (3e90904: the deployment, readiness, drill CLI, runbook)
+  4a17f1c6c79a  upgrade (4a17f1c: a server-side trust-proxy setting, since removed: Stage 340
+                owns it; the proxy contract check)
+  56ec5d8b14fa  upgrade (56ec5d8: the server survives a database restart; finding in 04)
+  049db3031faa  upgrade (049db30: the proxy pinned to a fixed address, since reverted; see 03)
+  73ce95bad8a0  final code (73ce95b): every check after the 03 observation runs on it; the
+                rollback in 08 goes 73ce95bad8a0 -> 049db3031faa -> 73ce95bad8a0
+The commit that adds these transcripts changes no image input (deploy/Dockerfile copies apps/,
+packages/, fixtures/ravenford*, deploy/server/start.sh and deploy/proxy/Caddyfile, unchanged
+since 73ce95b); it fixes two host scripts (build.sh progress on stderr, watch.sh state text).
+
+Files
+  00-environment.txt       revision, Docker versions, free ports, redacted deploy/.env, base pins
+  01-build.txt             images: tags, IDs, revision labels, users, contents (no sources,
+                           tests or .env files), proxy without file capabilities, reproducible
+                           client files across rebuilds
+  01-build-log.txt         the full `docker build` logs of the five revisions
+  02-install-and-upgrade.txt  first install, seeding through the World Engine, four upgrades
+                           (each with the automatic backup first and the recorded previous tag)
+  03-smoke.txt             deploy/verify/smoke.sh (39 checks) on 4a17f1c6c79a, 049db3031faa (one
+                           failure, explained by the observation after it) and 73ce95bad8a0; raw
+                           headers, networks, container hardening as Docker runs it
+  04-readiness.txt         /readyz during database outages: the crash found on 4a17f1c6c79a,
+                           503 naming the failed checks on 56ec5d8b14fa and 73ce95bad8a0, health
+                           following readiness; history this build cannot read keeps it 503
+  05-proxy-contract.txt    deploy/verify/proxy-contract.sh (10 checks) on three revisions; the
+                           client address end to end (the server logs the peer Caddy saw)
+  06-live-stream.txt       the live stream through the proxy over HTTP/2 (development personas,
+                           local only): ready 0.25 s, changed 0.83 s after a DM command,
+                           heartbeat at 15.16 s, stream open, uncompressed
+  07-backup-restore.txt    dumps, restore drills (live ahead; after a real restore by the
+                           runbook; negative: shorter and divergent live streams, a damaged
+                           dump), the final drill in production mode
+  08-rollback.txt          rollback to the previous image and forward; a database a newer build
+                           migrated: refused by the strict start, accepted by --rollback
+  09-operations.txt        watch.sh (a real disk alarm on this machine; forced service alarm with
+                           a local webhook), spend.sh, logs.sh
+  10-retention.txt         deploy/verify/retention-check.sh, the backup health check
+  11-teardown.txt          the stack removed; the shared development database left running
+  12-ci-script.txt         deploy/verify/ci.sh (the CI job) on a clean checkout, a finding and
+                           the passing run (49 checks, drill, retention, live stream)
+  13-validate.txt          pnpm validate on the final tree (own database, shared lock): passed

@@ -1,0 +1,121 @@
+### First install on an empty host with the previous revision as it shipped (a0da82a: its deploy files and images) (2026-10-16T09:44:19Z)
+$ "/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/scripts/deploy.sh" a0da82a7648c 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Starting|Waiting)'; (cd "/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy" && docker compose exec -T server printenv AUTH_MODE HTTP_HOST LTW_TRUST_PROXY; docker compose exec -T server printenv LTW_IMAGE_GENERATOR || echo 'LTW_IMAGE_GENERATOR: not passed to the server by this revision')
+==> no database yet: nothing to back up
+==> starting ltw-server:a0da82a7648c and ltw-proxy:a0da82a7648c (previous: none)
+ Network ltw-stage350f_edge Created 
+ Network ltw-stage350f_egress Created 
+ Network ltw-stage350f_data Created 
+ Network ltw-stage350f_backend Created 
+ Volume ltw-stage350f_caddy-data Created 
+ Volume ltw-stage350f_caddy-config Created 
+ Volume ltw-stage350f_pgdata Created 
+ Container ltw-stage350f-postgres-1 Created 
+ Container ltw-stage350f-backup-1 Created 
+ Container ltw-stage350f-server-1 Created 
+ Container ltw-stage350f-proxy-1 Created 
+ Container ltw-stage350f-postgres-1 Started 
+ Container ltw-stage350f-postgres-1 Healthy 
+ Container ltw-stage350f-postgres-1 Healthy 
+ Container ltw-stage350f-backup-1 Started 
+ Container ltw-stage350f-server-1 Started 
+ Container ltw-stage350f-server-1 Healthy 
+ Container ltw-stage350f-proxy-1 Started 
+ Container ltw-stage350f-postgres-1 Healthy 
+ Container ltw-stage350f-server-1 Healthy 
+ Container ltw-stage350f-proxy-1 Healthy 
+ Container ltw-stage350f-backup-1 Healthy 
+NAME                       IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350f-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     16 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-stage350f-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   16 seconds ago   Up 16 seconds (healthy)   5432/tcp
+ltw-stage350f-proxy-1      ltw-proxy:a0da82a7648c                                                                       "caddy run --config …"   proxy      16 seconds ago   Up 7 seconds (healthy)    127.0.0.1:28080->80/tcp, 127.0.0.1:28443->443/tcp
+ltw-stage350f-server-1     ltw-server:a0da82a7648c                                                                      "/usr/local/bin/ltw-…"   server     16 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed a0da82a7648c
+invitations
+10.231.157.10
+10.231.157.0/24
+LTW_IMAGE_GENERATOR: not passed to the server by this revision
+[exit 0]
+
+### The review campaign by the previous revision's operator script (its seeder knows no pictures; the DM link it prints is redacted here and expires unused in an hour) (2026-10-16T09:44:36Z)
+$ "/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/scripts/review-campaign.sh" --expires-hours 1 2>&1 | sed -E 's/#[A-Za-z0-9_-]{43}/#<token>/g'
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 92 accepted, 0 already present; version 101, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+{"invitationId":"3afa836d-3049-424a-a77c-92e34f4d55e0","expiresAt":"2026-10-16T10:44:36.784Z","link":"https://localhost:28443/join#<token>","campaignId":"ravenford"}
+[exit 0]
+
+### Upgrade to this revision (fb35fa6f7bbc) with its deploy files: the protected pre-deploy dump first, the previous tag recorded, the server recreated with the image generator setting (2026-10-16T09:44:37Z)
+$ umask 077; cat "/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/.env" > deploy/.env && deploy/scripts/deploy.sh fb35fa6f7bbc 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Starting|Waiting|Stopping|Removing)|^\{'; grep -E '^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA|PREDEPLOY_DUMP)=' deploy/.env; docker compose -f deploy/compose.yaml exec -T server printenv LTW_IMAGE_GENERATOR; docker compose -f deploy/compose.yaml exec -T server printenv LTW_IMAGE_MODEL | sed 's/^$/(empty: the default model)/'; docker compose -f deploy/compose.yaml logs --no-color --no-log-prefix server | grep '"msg":"image generator"' | jq -c '{level, msg, generator}'
+==> backup before the change (protected dump)
+ Container ltw-stage350f-postgres-1 Running 
+ Container ltw-stage350f-backup-1 Recreate 
+ Container ltw-stage350f-backup-1 Recreated 
+ Container ltw-stage350f-postgres-1 Healthy 
+ Container ltw-stage350f-backup-1 Started 
+ Container ltw-stage350f-postgres-1 Healthy 
+ Container ltw-stage350f-backup-1 Healthy 
+==> the state before this deploy: ltw-predeploy-20261016T094449Z.dump (LTW_PREDEPLOY_DUMP)
+==> starting ltw-server:fb35fa6f7bbc and ltw-proxy:fb35fa6f7bbc (previous: a0da82a7648c)
+ Container ltw-stage350f-postgres-1 Running 
+ Container ltw-stage350f-backup-1 Running 
+ Container ltw-stage350f-server-1 Recreate 
+ Container ltw-stage350f-server-1 Recreated 
+ Container ltw-stage350f-proxy-1 Recreate 
+ Container ltw-stage350f-proxy-1 Recreated 
+ Container ltw-stage350f-postgres-1 Running 
+ Container ltw-stage350f-backup-1 Running 
+ Container ltw-stage350f-postgres-1 Healthy 
+ Container ltw-stage350f-postgres-1 Healthy 
+ Container ltw-stage350f-server-1 Started 
+ Container ltw-stage350f-server-1 Healthy 
+ Container ltw-stage350f-proxy-1 Started 
+ Container ltw-stage350f-postgres-1 Healthy 
+ Container ltw-stage350f-backup-1 Healthy 
+ Container ltw-stage350f-server-1 Healthy 
+ Container ltw-stage350f-proxy-1 Healthy 
+NAME                       IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350f-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     20 seconds ago   Up 18 seconds (healthy)   5432/tcp
+ltw-stage350f-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   38 seconds ago   Up 37 seconds (healthy)   5432/tcp
+ltw-stage350f-proxy-1      ltw-proxy:fb35fa6f7bbc                                                                       "caddy run --config …"   proxy      7 seconds ago    Up 2 seconds (healthy)    127.0.0.1:28080->80/tcp, 127.0.0.1:28443->443/tcp
+ltw-stage350f-server-1     ltw-server:fb35fa6f7bbc                                                                      "/usr/local/bin/ltw-…"   server     8 seconds ago    Up 5 seconds (healthy)    3000/tcp
+==> deployed fb35fa6f7bbc
+LTW_IMAGE_TAG=fb35fa6f7bbc
+LTW_PREVIOUS_IMAGE_TAG=a0da82a7648c
+LTW_ALLOW_NEWER_SCHEMA=false
+LTW_PREDEPLOY_DUMP=ltw-predeploy-20261016T094449Z.dump
+placeholder
+(empty: the default model)
+{"level":"info","msg":"image generator","generator":"placeholder"}
+[exit 0]
+
+### The review campaign by this revision's operator script on the upgraded stack (the server running): the campaign is there, the curated pictures arrive (the DM link is redacted here and expires unused in an hour) (2026-10-16T09:44:57Z)
+$ time (deploy/scripts/review-campaign.sh --expires-hours 1 2>&1 | sed -E 's/#[A-Za-z0-9_-]{43}/#<token>/g')
+==> review campaign: the Russian Ravenford through the World Engine (idempotent)
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; curated pictures: 51 imported, 0 already present, 0 skipped; version 305, 25 entities; open seats: elowen-starwhisper
+==> the DM's invitation, shown once (valid 1 h): hand it over privately
+{"invitationId":"568c0e4c-f99a-4fc5-8fc9-ec6158a612e5","expiresAt":"2026-10-16T10:44:58.892Z","link":"https://localhost:28443/join#<token>","campaignId":"ravenford"}
+
+real	0m1.162s
+user	0m0.070s
+sys	0m0.053s
+[exit 0]
+
+### Again: idempotent, every command and picture already present; the server s asset worker took none of the import s requests (2026-10-16T09:44:58Z)
+$ docker compose -f deploy/compose.yaml exec -T server node apps/server/dist/world-engine/seed-review-campaign-cli.js | grep -v '^{'; echo "asset worker runs logged by the server: $(docker compose -f deploy/compose.yaml logs --no-color --no-log-prefix server | grep -c '"msg":"asset worker run"')"
+review campaign ravenford («Пропавший караван», ru): 0 accepted, 92 already present; curated pictures: 0 imported, 51 already present, 0 skipped; version 305, 25 entities; open seats: elowen-starwhisper
+asset worker runs logged by the server: 0
+[exit 0]
+
+### The review campaign s test: against the previous revision s review-campaign.ts (a0da82a) the pictures test fails (no pictures imported), against this one all pass (2026-10-16T09:45:53Z)
+$ F=apps/server/src/world-engine/review-campaign.ts; git show a0da82a:$F > $F; pnpm exec vitest run --project unit apps/server/src/world-engine/review-campaign.test.ts 2>&1 | grep -E "^ +(✓|×)|Test Files|Tests |AssertionError|expected" | head -12; git checkout -q $F && git status --short $F && echo "restored this revision s $F"; pnpm exec vitest run --project unit apps/server/src/world-engine/review-campaign.test.ts 2>&1 | grep -E "^ +(✓|×)|Test Files|Tests "
+     × seeds the Russian Ravenford through the World Engine with every seat open 26ms
+     × brings the curated pictures, approved for players by the DM; a rerun finds them 28ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected undefined to be null
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed (7)
+restored this revision s apps/server/src/world-engine/review-campaign.ts
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+[exit 0]
+

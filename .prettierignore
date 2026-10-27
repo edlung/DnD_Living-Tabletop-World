@@ -11,6 +11,8 @@ fixtures/history/*.json
 # Immutable evaluation evidence written by `pnpm eval:ai` (ADR 0032, C): exact bytes, never reformatted.
 reports/evidence/stage-300-offline/
 reports/evidence/stage-300-live/
+# Stage 350 deployment evidence: command transcripts kept byte for byte.
+reports/evidence/stage-350/
 
 # Development Pack product, architecture, and workflow documents are authored
 # by the project owner; tooling must not reformat them.

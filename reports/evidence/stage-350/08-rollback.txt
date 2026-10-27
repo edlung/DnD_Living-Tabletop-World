@@ -1,0 +1,137 @@
+
+### Back to the production mode of this revision (pre-340 override: AUTH_MODE=disabled) (2026-10-15T23:38:09Z)
+$ cd deploy && sed -i "" "s|^COMPOSE_FILE=.*|COMPOSE_FILE=compose.yaml:verify/pre-340.yaml|" .env && grep "^COMPOSE_FILE=" .env && docker compose up --detach --wait --wait-timeout 300 2>&1 | grep -E "Recreated|Healthy" | sort -u && grep -E "^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA)=" .env
+COMPOSE_FILE=compose.yaml:verify/pre-340.yaml
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-server-1 Recreated 
+LTW_IMAGE_TAG=73ce95bad8a0
+LTW_PREVIOUS_IMAGE_TAG=049db3031faa
+LTW_ALLOW_NEWER_SCHEMA=false
+[exit 0]
+
+### Roll back to the previous revision (049db3031faa) on the same database (2026-10-15T23:38:13Z)
+$ deploy/scripts/deploy.sh --rollback 049db3031faa
+==> backup before the change
+{"time":"2026-10-15T23:38:13Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T233813Z.dump (86627 bytes)"}
+{"time":"2026-10-15T23:38:13Z","service":"ltw-backup","level":"info","msg":"retention: kept 8, removed 0"}
+{"time":"2026-10-15T23:38:13Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233813Z.dump"}
+ltw-20261015T233813Z.dump
+==> starting ltw-server:049db3031faa and ltw-proxy:049db3031faa (previous: 73ce95bad8a0)
+ Container ltw-stage350-postgres-1 Running 
+ Container ltw-stage350-backup-1 Running 
+ Container ltw-stage350-server-1 Recreate 
+ Container ltw-stage350-server-1 Recreated 
+ Container ltw-stage350-proxy-1 Recreate 
+ Container ltw-stage350-proxy-1 Recreated 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Starting 
+ Container ltw-stage350-server-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-proxy-1 Starting 
+ Container ltw-stage350-proxy-1 Started 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-backup-1 Waiting 
+ Container ltw-stage350-proxy-1 Waiting 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     17 minutes ago   Up 17 minutes (healthy)   5432/tcp
+ltw-stage350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   17 minutes ago   Up 2 minutes (healthy)    5432/tcp
+ltw-stage350-proxy-1      ltw-proxy:049db3031faa                                                                       "caddy run --config …"   proxy      6 seconds ago    Up 2 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350-server-1     ltw-server:049db3031faa                                                                      "/usr/local/bin/ltw-…"   server     7 seconds ago    Up 5 seconds (healthy)    3000/tcp
+==> deployed 049db3031faa
+[exit 0]
+
+### Rolled back: images, recorded tags, readiness, the world (2026-10-15T23:38:20Z)
+$ cd deploy && docker compose ps --format "{{.Service}} {{.Image}} {{.Status}}" && grep -E "^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA)=" .env && docker compose exec -T server node -e "fetch(\"http://127.0.0.1:3000/readyz\").then((r) => r.text()).then(console.log)" && docker compose exec -T postgres psql -U ltw -d ltw -At -c "SELECT stream_id, version FROM ltw_event_streams"
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 17 minutes (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 2 minutes (healthy)
+proxy ltw-proxy:049db3031faa Up 2 seconds (healthy)
+server ltw-server:049db3031faa Up 5 seconds (healthy)
+LTW_IMAGE_TAG=049db3031faa
+LTW_PREVIOUS_IMAGE_TAG=73ce95bad8a0
+LTW_ALLOW_NEWER_SCHEMA=true
+{"status":"ready"}
+ravenford|103
+[exit 0]
+
+### Forward again to the final revision (73ce95bad8a0); the rollback flag is cleared (2026-10-15T23:38:29Z)
+$ deploy/scripts/deploy.sh 73ce95bad8a0 && grep -E "^LTW_(IMAGE_TAG|PREVIOUS_IMAGE_TAG|ALLOW_NEWER_SCHEMA)=" deploy/.env
+==> backup before the change
+{"time":"2026-10-15T23:38:29Z","service":"ltw-backup","level":"info","msg":"backup written: ltw-20261015T233829Z.dump (86627 bytes)"}
+{"time":"2026-10-15T23:38:29Z","service":"ltw-backup","level":"info","msg":"retention: kept 9, removed 0"}
+{"time":"2026-10-15T23:38:30Z","service":"ltw-backup","level":"info","msg":"verified: ltw-20261015T233829Z.dump"}
+ltw-20261015T233829Z.dump
+==> starting ltw-server:73ce95bad8a0 and ltw-proxy:73ce95bad8a0 (previous: 049db3031faa)
+ Container ltw-stage350-postgres-1 Running 
+ Container ltw-stage350-backup-1 Running 
+ Container ltw-stage350-server-1 Recreate 
+ Container ltw-stage350-server-1 Recreated 
+ Container ltw-stage350-proxy-1 Recreate 
+ Container ltw-stage350-proxy-1 Recreated 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Starting 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-server-1 Started 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-proxy-1 Starting 
+ Container ltw-stage350-proxy-1 Started 
+ Container ltw-stage350-postgres-1 Waiting 
+ Container ltw-stage350-backup-1 Waiting 
+ Container ltw-stage350-proxy-1 Waiting 
+ Container ltw-stage350-server-1 Waiting 
+ Container ltw-stage350-server-1 Healthy 
+ Container ltw-stage350-postgres-1 Healthy 
+ Container ltw-stage350-backup-1 Healthy 
+ Container ltw-stage350-proxy-1 Healthy 
+NAME                      IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-stage350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     17 minutes ago   Up 17 minutes (healthy)   5432/tcp
+ltw-stage350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   17 minutes ago   Up 2 minutes (healthy)    5432/tcp
+ltw-stage350-proxy-1      ltw-proxy:73ce95bad8a0                                                                       "caddy run --config …"   proxy      6 seconds ago    Up 2 seconds (healthy)    127.0.0.1:80->80/tcp, 127.0.0.1:443->443/tcp
+ltw-stage350-server-1     ltw-server:73ce95bad8a0                                                                      "/usr/local/bin/ltw-…"   server     6 seconds ago    Up 5 seconds (healthy)    3000/tcp
+==> deployed 73ce95bad8a0
+LTW_IMAGE_TAG=73ce95bad8a0
+LTW_PREVIOUS_IMAGE_TAG=049db3031faa
+LTW_ALLOW_NEWER_SCHEMA=false
+[exit 0]
+
+### A database a newer build migrated (simulated: one extra history row); the strict start refuses it (2026-10-15T23:38:36Z)
+$ cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -c "INSERT INTO ltw_schema_migrations (id, checksum) VALUES ('9999_from_a_newer_build', 'simulated')" && docker compose up --detach --force-recreate --no-deps server >/dev/null 2>&1; until [ "$(docker inspect "$(docker compose ps -aq server)" --format '{{.RestartCount}}')" -ge 1 ]; do sleep 1; done; docker compose logs --no-color server | grep -E 'missing on disk' | head -2 | sed -E 's/^server-1 *\| //'
+INSERT 0 1
+MigrationIntegrityError: Applied migrations missing on disk: 9999_from_a_newer_build
+MigrationIntegrityError: Applied migrations missing on disk: 9999_from_a_newer_build
+[exit 0]
+
+### The explicit rollback step accepts that database: the previous image starts and applies nothing (2026-10-15T23:38:49Z)
+$ deploy/scripts/deploy.sh --rollback 049db3031faa >/dev/null 2>&1; echo "deploy exit status: $?"; cd deploy && docker compose ps --format '{{.Service}} {{.Image}} {{.Status}}' | grep -E '^(server|proxy) ' && docker compose logs --no-color server | grep -E 'newer build' | tail -1 | sed -E 's/^server-1 *\| //' && docker compose exec -T server node -e 'fetch("http://127.0.0.1:3000/readyz").then((r) => r.text()).then(console.log)'
+deploy exit status: 0
+proxy ltw-proxy:049db3031faa Up 2 seconds (healthy)
+server ltw-server:049db3031faa Up 5 seconds (healthy)
+{"level":"warn","time":"2026-10-15T23:38:51.836Z","service":"ltw-migrate","newer":["9999_from_a_newer_build"],"msg":"database was migrated by a newer build; applying nothing (rollback)"}
+{"status":"ready"}
+[exit 0]
+
+### The simulated row removed; forward to the final revision with the strict start (2026-10-15T23:38:57Z)
+$ cd deploy && docker compose exec -T postgres psql -U ltw -d ltw -c "DELETE FROM ltw_schema_migrations WHERE id = '9999_from_a_newer_build'" && cd .. && deploy/scripts/deploy.sh 73ce95bad8a0 >/dev/null 2>&1; echo "deploy exit status: $?"; grep -E '^LTW_(IMAGE_TAG|ALLOW_NEWER_SCHEMA)=' deploy/.env; cd deploy && docker compose ps --format '{{.Service}} {{.Image}} {{.Status}}'
+DELETE 1
+deploy exit status: 0
+LTW_IMAGE_TAG=73ce95bad8a0
+LTW_ALLOW_NEWER_SCHEMA=false
+backup postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 18 minutes (healthy)
+postgres postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873 Up 3 minutes (healthy)
+proxy ltw-proxy:73ce95bad8a0 Up 2 seconds (healthy)
+server ltw-server:73ce95bad8a0 Up 5 seconds (healthy)
+[exit 0]

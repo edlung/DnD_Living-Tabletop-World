@@ -1,0 +1,31 @@
+### Before: the previous revision's spend.sh (a0da82a) on its stack: the spend report has no image section; only status counts the image ledger (2026-10-16T09:44:36Z)
+$ "/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy/scripts/spend.sh"; (cd "/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/full350/prev/deploy" && docker compose exec -T server node apps/server/dist/ai/accounting/operator-cli.js spend | jq -e 'has("images")' || echo 'the spend report of a0da82a has no images key')
+==> AI and image accounting status (counts)
+{"openHolds":0,"activeStops":0,"incompleteRequests":0,"disabledAccounts":0,"disabledApprovals":0,"images":{"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0}}
+==> AI spending (microdollars)
+{"day":"2026-10-16","accounts":[],"approvals":[]}
+false
+the spend report of a0da82a has no images key
+[exit 0]
+
+### After: this revision's spend.sh: status and the spend report with the image ledger (no ceiling stored, nothing spent) (2026-10-16T09:45:08Z)
+$ deploy/scripts/spend.sh
+==> AI and image accounting status (counts and the image ledger)
+{"openHolds":0,"activeStops":0,"incompleteRequests":0,"disabledAccounts":0,"disabledApprovals":0,"images":{"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0}}
+==> spending (microdollars): AI per billing account and approval; images: ceiling, spent, held, remaining, unsettled reservations
+{"day":"2026-10-16","accounts":[],"approvals":[],"images":{"revision":null,"ceilingMicros":null,"spentMicros":"0","heldMicros":"0","remainingMicros":null,"charges":0,"unsettled":0,"unsettledReservations":[],"settleableAfterMinutes":15}}
+[exit 0]
+
+### The spend report s test (integration, own throwaway databases on the development server): against the previous revision s spend-report.ts (a0da82a) it fails, against this one it passes (2026-10-16T09:45:40Z)
+$ export DATABASE_URL=postgres://ltw:ltw_dev_password@127.0.0.1:54329/ltw_stage350; F=apps/server/src/ai/accounting/spend-report.ts; git show a0da82a:$F > $F; pnpm exec vitest run --project integration apps/server/src/ai/accounting/spend-report.integration.test.ts 2>&1 | grep -E "^ +(✓|×)|Test Files|Tests " ; git checkout -q $F && git status --short $F && echo "restored this revision s $F"; pnpm exec vitest run --project integration apps/server/src/ai/accounting/spend-report.integration.test.ts apps/server/src/images/ledger.integration.test.ts apps/server/src/images/ledger-operator.integration.test.ts 2>&1 | grep -E "^ +(✓|×)|Test Files|Tests "
+     × reports effective spend today and in total, open holds, and each approval 276ms
+     × is empty without operator records, and takes no flags 187ms
+     × reports the image ceiling, spent, held, remaining and each unsettled reservation 160ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+restored this revision s apps/server/src/ai/accounting/spend-report.ts
+ Test Files  3 passed (3)
+      Tests  18 passed (18)
+[exit 0]
+

@@ -86,3 +86,38 @@ jobs:
 
       - name: UI and API journeys
         run: pnpm run test:e2e
+
+  deploy:
+    name: Deployment check
+    # Docker Engine with BuildKit and the Compose plugin are preinstalled on this image.
+    runs-on: ubuntu-24.04
+    # Two image builds without a build cache, the checks of the running stack and the browser
+    # journeys (deploy/verify/ci.sh took 2.5 minutes on a workstation with a warm cache).
+    timeout-minutes: 40
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      # The browser journeys against the deployment run Playwright's Chromium from the
+      # repository's dependencies (deploy/verify/browser-journey.sh).
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium for the browser journeys
+        run: pnpm exec playwright install --with-deps chromium
+
+      # Images of this revision, the production stack (invitation sign-in) behind Caddy with
+      # internal TLS, the review campaign with its curated pictures, smoke checks, the pictures
+      # through the proxy, the Russian browser journeys, backup and restore drill, retention and
+      # proxy contract checks, the Russian HTTP sign-in journeys and the live stream through the
+      # proxy, the network trust boundary (docs/adr/0037-deployment.md). The script removes
+      # everything it created.
+      - name: Build, run and check the deployment
+        run: bash deploy/verify/ci.sh

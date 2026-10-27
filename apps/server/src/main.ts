@@ -1,4 +1,4 @@
-import pg from 'pg';
+import type pg from 'pg';
 
 import { createPlaceholderImageGenerator, type ImageGenerator } from '@ltw/ai';
 
@@ -28,8 +28,12 @@ import {
   obsoleteVariables,
   type AppConfig,
 } from './platform/config/config.ts';
+import { loadMigrations } from './platform/db/migration-source.ts';
+import { MIGRATIONS_DIR } from './platform/db/migrations-dir.ts';
+import { createPool } from './platform/db/pool.ts';
 import { createLogger, type Logger } from './platform/logging/logger.ts';
 import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
+import { storeReadiness } from './world-engine/store-readiness.ts';
 
 /**
  * Server composition root. Wires platform services, the World Engine, and
@@ -38,9 +42,10 @@ import { createWorldEngine, randomIds, systemClock } from './world-engine/runtim
 async function main(): Promise<void> {
   const config = loadConfig();
   const logger = createLogger({ service: 'ltw-server', level: config.logLevel });
-  const pool = new pg.Pool({ connectionString: config.databaseUrl });
+  // Pools survive the database closing idle connections (a restart): see `createPool`.
+  const pool = createPool(config.databaseUrl, logger);
   // Proposal locks wait for the event store while held, so they get connections of their own.
-  const proposalLocks = new pg.Pool({ connectionString: config.databaseUrl, max: 4 });
+  const proposalLocks = createPool(config.databaseUrl, logger, { max: 4 });
 
   // Sign-in by mode (docs/adr/0036-production-sign-in.md §5): session cookies from DM
   // invitations in production; development personas are refused under NODE_ENV=production.
@@ -84,6 +89,11 @@ async function main(): Promise<void> {
     throw error;
   }
   const quests = await loadQuestBook(config.questsFile);
+  // After a rollback (LTW_ALLOW_NEWER_SCHEMA) readiness parses every stored event first: a newer
+  // build may have written events this one cannot read anywhere in a stream (ADR 0037).
+  const readiness = storeReadiness(pool, await loadMigrations(MIGRATIONS_DIR), logger, {
+    readEveryEvent: config.allowNewerSchema,
+  });
   // The live session (ADR 0033) closes its streams with `shutdown` when the app closes.
   const { app } = buildLiveApp({
     engine,
@@ -98,6 +108,7 @@ async function main(): Promise<void> {
     ...(signIn ? { signIn } : {}),
     // Request limits key on the client behind this reverse proxy (ADR 0036, 2026-10-16).
     trustedProxies: config.http.trustedProxies,
+    readiness,
   });
   await app.listen({ host: config.http.host, port: config.http.port });
   logger.info(
@@ -106,10 +117,13 @@ async function main(): Promise<void> {
       authMode: config.auth.mode,
       trustedProxies: config.http.trustedProxies.length,
       database: describeDatabaseUrl(config.databaseUrl),
+      allowNewerSchema: config.allowNewerSchema,
     },
     'server ready',
   );
   reportAiSpending(logger, pool, ai);
+  // The first verdict is logged now; later probes log only changes.
+  void readiness();
 
   const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
   const stopAssets = startAssetWorkerLoop({

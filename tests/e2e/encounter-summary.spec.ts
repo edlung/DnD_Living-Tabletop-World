@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Response } from '@playwright/test';
 
 import { collectApiBodies, enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
@@ -18,14 +18,23 @@ test('player reads a real paused encounter and their reaction choices without DM
   page,
 }) => {
   const traffic = collectApiBodies(page);
-  // Read the body as soon as the first encounter response arrives: Chromium may drop a response
-  // body it has already delivered once later reads of the same view (live refreshes) follow.
-  const encounterPayload = page
-    .waitForResponse(
-      (response) =>
-        new URL(response.url()).pathname === `/api/campaigns/${COMBAT_CAMPAIGN}/encounter`,
-    )
-    .then(async (response) => (await response.json()) as EncounterPayload);
+  // The first encounter body that can be read: Chromium may drop a response body it has already
+  // delivered once later reads of the same view (live refreshes) follow, so a failed read waits
+  // for the next response of the same view instead of failing the test.
+  const encounterPayload = new Promise<EncounterPayload>((resolve) => {
+    const read = (response: Response) => {
+      if (new URL(response.url()).pathname !== `/api/campaigns/${COMBAT_CAMPAIGN}/encounter`)
+        return;
+      response.json().then(
+        (body) => {
+          page.off('response', read);
+          resolve(body as EncounterPayload);
+        },
+        () => undefined,
+      );
+    };
+    page.on('response', read);
+  });
   await enterWorld(page, TOKENS.player, COMBAT_CAMPAIGN);
   // The summary in words is the Journal's; the stage shows the battlefield.
   await expect(page.getByRole('region', { name: 'Battlefield', exact: true })).toBeVisible();

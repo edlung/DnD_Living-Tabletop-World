@@ -1,0 +1,147 @@
+Stage 350 review fixes: first install with the deploy files and images of b1618cb (part B as it shipped), and what its scripts and the new checks show there (the findings, before the fixes)
+
+### First install of b1618cb04a50 with its own deploy files (<S>/old/deploy) (2026-10-16T02:23:28Z)
+$ S=/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350; set -o pipefail; "$S/old/deploy/scripts/deploy.sh" b1618cb04a50 2>&1 | grep -vE '^ (Container|Network|Volume) .* (Creating|Starting|Waiting|Stopping|Removing)|^\{'
+==> starting ltw-server:b1618cb04a50 and ltw-proxy:b1618cb04a50 (previous: none)
+ Network ltw-fix350_data Created 
+ Network ltw-fix350_backend Created 
+ Network ltw-fix350_edge Created 
+ Network ltw-fix350_egress Created 
+ Volume ltw-fix350_caddy-data Created 
+ Volume ltw-fix350_caddy-config Created 
+ Volume ltw-fix350_pgdata Created 
+ Container ltw-fix350-postgres-1 Created 
+ Container ltw-fix350-backup-1 Created 
+ Container ltw-fix350-server-1 Created 
+ Container ltw-fix350-proxy-1 Created 
+ Container ltw-fix350-postgres-1 Started 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-backup-1 Started 
+ Container ltw-fix350-server-1 Started 
+ Container ltw-fix350-server-1 Healthy 
+ Container ltw-fix350-proxy-1 Started 
+ Container ltw-fix350-postgres-1 Healthy 
+ Container ltw-fix350-server-1 Healthy 
+ Container ltw-fix350-proxy-1 Healthy 
+ Container ltw-fix350-backup-1 Healthy 
+NAME                    IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+ltw-fix350-backup-1     postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "/bin/sh /opt/ltw/ba…"   backup     17 seconds ago   Up 10 seconds (healthy)   5432/tcp
+ltw-fix350-postgres-1   postgres:18-alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873   "docker-entrypoint.s…"   postgres   17 seconds ago   Up 15 seconds (healthy)   5432/tcp
+ltw-fix350-proxy-1      ltw-proxy:b1618cb04a50                                                                       "caddy run --config …"   proxy      16 seconds ago   Up 7 seconds (healthy)    127.0.0.1:18080->80/tcp, 127.0.0.1:18443->443/tcp
+ltw-fix350-server-1     ltw-server:b1618cb04a50                                                                      "/usr/local/bin/ltw-…"   server     16 seconds ago   Up 10 seconds (healthy)   3000/tcp
+==> deployed b1618cb04a50
+[exit 0]
+
+### The backup service's first dump (taken at start, before any campaign) and the seeded review campaign (World Engine; no DM link is issued here) (2026-10-16T02:23:52Z)
+$ cd /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy && docker compose exec -T backup ls -1 /backups && docker compose exec -T server node apps/server/dist/world-engine/seed-review-campaign-cli.js | grep -v '^{' && docker compose exec -T postgres psql -U ltw -d ltw -At -c 'SELECT stream_id, version, created_at FROM ltw_event_streams'
+SHA256SUMS
+ltw-20261016T022334Z.dump
+review campaign ravenford («Пропавший караван», ru): 92 accepted, 0 already present; version 101, 25 entities; open seats: elowen-starwhisper
+ravenford|101|2026-10-16 02:23:53.333319+00
+[exit 0]
+
+### Finding 2, before: b1618cb's restore drill on that empty dump passes (no campaign restored, nothing compared) (2026-10-16T02:23:59Z)
+$ set -o pipefail; /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy/scripts/restore-drill.sh ltw-20261016T022334Z.dump 2>&1 | grep -E '^==>|^restore-drill|"compared"|^ltw_event|"streams"'
+==> dump: ltw-20261016T022334Z.dump
+==> throwaway database
+==> migrations of this image on the restored database
+==> restored tables (exact row counts)
+ltw_event_streams 0
+ltw_events 0
+==> replay of every restored campaign stream
+{"streams":[]}
+==> live database replayed at the same versions
+{"compared":0,"matched":0,"streams":[]}
+==> restore drill passed
+[exit 0]
+
+### Finding 3, before: b1618cb mounts backup.sh as a single file; a checkout replaces the file (a new file renamed over it, as git writes files), and the running service keeps the old one (2026-10-16T02:24:15Z)
+$ cd /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy && host() { openssl dgst -sha256 -r backup/backup.sh | cut -c1-16; }; inside() { docker compose exec -T backup sha256sum /opt/ltw/backup.sh | cut -c1-16; }; echo "before: host $(host), backup service $(inside)"; cp backup/backup.sh backup/.next && printf '# a newer revision of this file\n' >>backup/.next && mv backup/.next backup/backup.sh; echo "after the checkout: host $(host), backup service $(inside)"; docker compose exec -T backup grep -c 'a newer revision' /opt/ltw/backup.sh || true; grep -v '^# a newer revision of this file$' backup/backup.sh >backup/.next && mv backup/.next backup/backup.sh; echo "put back: host $(host), backup service $(inside)"
+before: host bbb14316e023803c, backup service bbb14316e023803c
+sha256sum: can't open '/opt/ltw/backup.sh': No such file or directory
+after the checkout: host 106d5807a79a619f, backup service 
+grep: /opt/ltw/backup.sh: No such file or directory
+sha256sum: can't open '/opt/ltw/backup.sh': No such file or directory
+put back: host bbb14316e023803c, backup service 
+[exit 0]
+
+### Finding 3, before (continued): the backup service can no longer run its script at all here (Docker Desktop's file sharing drops the replaced file; a Linux host keeps serving the old file's contents instead), so on-demand backups and the health check fail until the service is recreated (2026-10-16T02:24:29Z)
+$ cd /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh latest; echo "backup.sh latest exit status: $?"; docker compose ps --format '{{.Service}} {{.Status}}' backup
+/bin/sh: can't open '/opt/ltw/backup.sh': No such file or directory
+backup.sh latest exit status: 2
+backup Up 54 seconds (healthy)
+[exit 0]
+
+### The backup service recreated with b1618cb's files, so it has its script again (only recreating helps) (2026-10-16T02:24:47Z)
+$ set -o pipefail; cd /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy && docker compose up --detach --wait --force-recreate --no-deps backup 2>&1 | grep -E 'Recreated|Healthy|Error' && docker compose exec -T backup /bin/sh /opt/ltw/backup.sh latest
+ Container ltw-fix350-backup-1 Recreated 
+ Container ltw-fix350-backup-1 Healthy 
+ltw-20261016T022448Z.dump
+[exit 0]
+
+### Finding 4, before: with the backup service stopped, b1618cb's deploy.sh takes no backup before the change and says nothing (the dumps before and after; a redeploy of the same tag) (2026-10-16T02:24:59Z)
+$ set -o pipefail; cd /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy && docker compose stop backup 2>&1 | grep -v Stopping; ls -1 /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/backups | grep dump; echo '--- deploy.sh b1618cb04a50:'; ../deploy/scripts/deploy.sh b1618cb04a50 2>&1 | grep -E '^==>'; echo '--- the dumps after it:'; ls -1 /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/backups | grep dump
+ Container ltw-fix350-backup-1 Stopped 
+ltw-20261016T022334Z.dump
+ltw-20261016T022448Z.dump
+--- deploy.sh b1618cb04a50:
+==> starting ltw-server:b1618cb04a50 and ltw-proxy:b1618cb04a50 (previous: b1618cb04a50)
+==> deployed b1618cb04a50
+--- the dumps after it:
+ltw-20261016T022334Z.dump
+ltw-20261016T022448Z.dump
+ltw-20261016T022500Z.dump
+[exit 0]
+
+### Findings 3 and 6, before: this revision's smoke checks on the b1618cb stack (deploy/.env copied into this worktree; the same Compose project). The server holds every setting of deploy/.env (env_file), and the backup service was not created for this checkout's script (2026-10-16T02:25:22Z)
+$ deploy/verify/smoke.sh 2>&1 | grep -vE '^PASS'
+==> HTTPS at https://localhost:18443 (Caddy's local CA)
+==> static client
+==> security headers
+==> API through the proxy
+==> only the proxy is published
+==> containers
+==> settings and scripts
+     deploy/.env settings in the server beyond its own: ALARM_WEBHOOK_URL BACKUP_DIR BACKUP_INTERVAL_SECONDS BACKUP_KEEP_DAILY BACKUP_KEEP_WEEKLY COMPOSE_PROJECT_NAME LTW_BACKEND_PREFIX LTW_IMAGE_TAG LTW_NETWORKS_DIGEST LTW_PREVIOUS_IMAGE_TAG POSTGRES_PASSWORD PROXY_HTTPS_PUBLISH PROXY_HTTP_PUBLISH PUBLIC_HOST TLS_MODE
+FAIL  the server receives no other setting of deploy/.env
+FAIL  the backup service was created for this checkout's deploy/backup/ (label)
+FAIL  the backup service reads this checkout's backup.sh
+smoke.sh: 3 check(s) failed
+[exit 0]
+
+### Findings 5 and 6, before: this revision's watch-check.sh run against b1618cb's watch.sh (copied into <S>/old/deploy/verify, so it drives b1618cb's watch.sh and deploy/.env): no alarm for a missing, failed or 9-day-old restore drill, and the webhook URL in curl's arguments (2026-10-16T02:26:37Z)
+$ /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy/verify/watch-check.sh 2>&1 | grep -v '     .* ltw-watch ALARM disk'
+==> no restore drill recorded
+FAIL  alarm: no restore drill recorded
+==> the last drill passed 9 days ago
+FAIL  alarm: the last restore drill is 9 days old
+==> the last drill failed now
+FAIL  alarm: the last restore drill failed
+==> the last drill passed now
+PASS  no restore drill alarm after a drill that passed now
+==> the webhook
+     curl calls: 12, of them alarms posted: 8; received: 8
+PASS  every alarm reached the webhook as JSON {"text": …}
+FAIL  the webhook URL is in no curl call's arguments
+FAIL  curl read the webhook URL from its standard input
+watch-check.sh: 5 check(s) failed
+[exit 0]
+
+### Finding 7, before: this revision's preflight-check.sh run against b1618cb's scripts (copied likewise): deploy.sh goes on to other Docker calls on Engine 27, ci.sh refuses for another reason, and there is no network guard (the last lines: its helpers do not exist there) (2026-10-16T02:26:44Z)
+$ /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy/verify/preflight-check.sh 2>&1
+==> Docker Engine 27 (a stub answers `docker version`; any other call fails and is recorded)
+FAIL  deploy.sh refuses Docker Engine 27 before any other Docker call
+     deploy.sh: no image ltw-server:000000000000: run deploy/scripts/build.sh <revision> first
+FAIL  ci.sh refuses Docker Engine 27 before any other Docker call
+     ci.sh: deploy/.env exists; ci.sh writes its own (use a clean checkout)
+FAIL  this host runs Docker Engine 28 or later
+==> networks: a throwaway project ltwpreflight58731 whose backend gives the host an address
+     ltwpreflight58731_backend: true  [{"Subnet":"172.29.0.0/16","Gateway":"172.29.0.1"}]
+     ltwpreflight58731_data: true isolated [{"Subnet":"172.30.0.0/16"}]
+FAIL  a backend network with a host address is refused
+     /private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy/verify/preflight-check.sh: line 68: require_isolated_networks: command not found
+FAIL  isolated internal backend and data networks pass
+/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/fix350/old/deploy/verify/preflight-check.sh: line 82: project_name: command not found
+[exit 127]
+
