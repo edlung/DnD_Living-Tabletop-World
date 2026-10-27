@@ -2,8 +2,8 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { campaignIdSchema } from '@ltw/contracts';
-import { actorSchema, submissionsFromScript, type Actor } from '@ltw/domain';
+import { campaignIdSchema, type CommandRejected } from '@ltw/contracts';
+import { actorSchema, submissionsFromScript, type Actor, type WorldEngine } from '@ltw/domain';
 import { z } from 'zod';
 
 /** `fixtures/ravenford/`, resolved from both `src/` and `dist/`. */
@@ -74,4 +74,34 @@ export async function loadRavenfordSeed(
       }),
     ),
   };
+}
+
+/** Where the operator resets a campaign database whose seed changed (deploy/RUNBOOK.md). */
+export const SEED_RESET_PROCEDURE = 'deploy/RUNBOOK.md, section 12';
+
+/**
+ * Why a seed command was refused, for the operator. Seed command IDs are positional
+ * (`<campaign>.<prefix>.NNNN`), so a seed whose fixtures changed since this database was seeded
+ * (Gate 06 gave secret entities opaque IDs) meets its own IDs holding other commands: that is not
+ * a rerun, and only a fresh database helps. A database holding the other language's Ravenford is
+ * said as such.
+ */
+export async function seedRefusal(
+  engine: WorldEngine,
+  campaignId: string,
+  language: string,
+  commandId: string,
+  result: CommandRejected,
+): Promise<string> {
+  const plain = `seed command ${commandId} rejected: ${result.code}`;
+  if (result.code !== 'COMMAND_ID_CONFLICT') return `${plain} (${result.message})`;
+  const held = (await engine.load(campaignId))?.state.campaign;
+  if (held && held.language !== language) {
+    return `${plain}: this database holds the ${held.language} Ravenford, not the ${language} one`;
+  }
+  return (
+    `${plain}: this database was seeded by an older fixture revision (its command ${commandId} ` +
+    `is a different command); a rerun cannot change it. Reset required: back up, then a fresh ` +
+    `database and the seed again; see ${SEED_RESET_PROCEDURE}`
+  );
 }

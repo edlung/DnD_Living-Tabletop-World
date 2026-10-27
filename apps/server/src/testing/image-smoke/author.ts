@@ -15,7 +15,7 @@ import type {
   SessionListResponse,
 } from '@ltw/contracts';
 
-import { withOpaqueEntityIds } from '../../authoring/opaque-ids.ts';
+import { withOpaqueIds } from '../../authoring/opaque-ids.ts';
 import { EN_SCRIPT } from '../scenario/script.ts';
 import { RU_SCRIPT } from '../scenario/script-ru.ts';
 import { SmokeFailure, campaignPath, expectStatus, type SmokeContext } from './client.ts';
@@ -141,9 +141,9 @@ async function propose(context: SmokeContext, sentence: string): Promise<Authori
       client.post('dm', proposals, {
         summary: interpretation.summary,
         // Players meet him unnamed: an opaque ID, never the interpreter's "tomas-reed" (ADR 0008).
-        commands: withOpaqueEntityIds(
+        commands: withOpaqueIds(
           interpretation.commands,
-          () => `npc-${randomBytes(4).toString('hex')}`,
+          (_, kind) => `${kind}-${randomBytes(4).toString('hex')}`,
         ),
       }),
       201,

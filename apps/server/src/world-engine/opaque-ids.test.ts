@@ -77,22 +77,43 @@ async function campaignsOf(
 
 const dice = () => scriptedDice(Array<number>(512).fill(15));
 
+interface Composition {
+  readonly build: (store: CampaignRecordingStore) => Promise<WorldEngine>;
+  /**
+   * Entities it must find unnamed, so the check cannot pass on nothing: the Shaman, the caravan
+   * site, its wheel, and each composition's own strangers.
+   */
+  readonly expected: readonly string[];
+}
+
+const RAVENFORD_SECRETS = ['creature-ae08be99', 'location-f3b82c8b', 'item-f44e7183'];
+
 /** Every seeded or composed campaign: the seeds, the deployment's, and the browser tests'. */
-const COMPOSITIONS: Readonly<
-  Record<string, (store: CampaignRecordingStore) => Promise<WorldEngine>>
-> = {
-  'English Ravenford with the Gate 04 markers': async (store) => {
-    const engine = await seededEngine(store, dice());
-    await plantNpcBoundary(engine);
-    return engine;
+const COMPOSITIONS: Readonly<Record<string, Composition>> = {
+  'English Ravenford with the Gate 04 markers': {
+    build: async (store) => {
+      const engine = await seededEngine(store, dice());
+      await plantNpcBoundary(engine);
+      return engine;
+    },
+    expected: [...RAVENFORD_SECRETS, 'npc-2c4cf6cd'],
   },
-  'Russian Ravenford, as the deployment seeds it': async (store) => {
-    const engine = await seededEngine(store, dice(), MIDDLE_ENTROPY, RAVENFORD_RU_FIXTURES_DIR);
-    await seedReviewCampaign(engine);
-    return engine;
+  'Russian Ravenford, as the deployment seeds it': {
+    build: async (store) => {
+      const engine = await seededEngine(store, dice(), MIDDLE_ENTROPY, RAVENFORD_RU_FIXTURES_DIR);
+      await seedReviewCampaign(engine);
+      return engine;
+    },
+    expected: RAVENFORD_SECRETS,
   },
-  'browser-test campaigns': (store) => uiCampaigns(new InMemoryAssetContentStore(), store),
-  'sign-in browser-test campaigns': (store) => seedSignInCampaigns(store),
+  'browser-test campaigns': {
+    build: (store) => uiCampaigns(new InMemoryAssetContentStore(), store),
+    expected: [...RAVENFORD_SECRETS, 'npc-8d1d976d', 'character-7beabb40'],
+  },
+  'sign-in browser-test campaigns': {
+    build: (store) => seedSignInCampaigns(store),
+    expected: [...RAVENFORD_SECRETS, 'character-4edddd60'],
+  },
 };
 
 /** IDs public in the canonical Ravenford of either language. */
@@ -109,30 +130,39 @@ async function publicIds(): Promise<Set<string>> {
   return ids;
 }
 
-describe('opaque IDs for entities players meet unnamed (G06-client-01)', () => {
-  it.each(Object.entries(COMPOSITIONS))('holds in the %s', async (_, build) => {
-    const public_ = await publicIds();
-    const states = await campaignsOf(build);
-    expect(states.size).toBeGreaterThan(0);
-    const unnamed = [...states].flatMap(([campaignId, state]) =>
-      unnamedForPlayers(campaignId, state),
-    );
-    // The check reaches what it is about: the goblins, the caravan site and its evidence.
-    expect(unnamed.length).toBeGreaterThan(0);
-    const semantic = unnamed.filter(
-      ({ entityId }) => !OPAQUE.test(entityId) && !public_.has(entityId),
-    );
-    expect(semantic).toEqual([]);
-  });
+describe(
+  'opaque IDs for entities players meet unnamed (G06-client-01)',
+  { timeout: 30_000 },
+  () => {
+    it.each(Object.entries(COMPOSITIONS))('holds in the %s', async (_, { build, expected }) => {
+      const public_ = await publicIds();
+      const states = await campaignsOf(build);
+      expect(states.size).toBeGreaterThan(0);
+      const unnamed = [...states].flatMap(([campaignId, state]) =>
+        unnamedForPlayers(campaignId, state),
+      );
+      // The check reaches what it is about.
+      for (const id of expected) expect(unnamed.map(({ entityId }) => entityId)).toContain(id);
+      const semantic = unnamed.filter(
+        ({ entityId }) => !OPAQUE.test(entityId) && !public_.has(entityId),
+      );
+      expect(semantic).toEqual([]);
+    });
 
-  it('recognizes the opaque forms only', () => {
-    for (const id of [
-      'creature-10fb59d4',
-      'location-f3b82c8b',
-      '3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53',
-    ])
-      expect(id).toMatch(OPAQUE);
-    for (const id of ['goblin-shaman', 'creature-shaman1', 'npc-tomas-reed', 'creature-10fb59d4x'])
-      expect(id).not.toMatch(OPAQUE);
-  });
-});
+    it('recognizes the opaque forms only', () => {
+      for (const id of [
+        'creature-10fb59d4',
+        'location-f3b82c8b',
+        '3f9c2b7e-5a1d-4e8f-9b06-7c4d2e1a8f53',
+      ])
+        expect(id).toMatch(OPAQUE);
+      for (const id of [
+        'goblin-shaman',
+        'creature-shaman1',
+        'npc-tomas-reed',
+        'creature-10fb59d4x',
+      ])
+        expect(id).not.toMatch(OPAQUE);
+    });
+  },
+);

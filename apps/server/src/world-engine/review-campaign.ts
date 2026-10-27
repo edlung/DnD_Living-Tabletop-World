@@ -10,7 +10,7 @@ import type { AssetContentStore } from '../assets/content-store.ts';
 import { importCuratedSet, type CuratedImportSummary } from '../images/curated-import.ts';
 import type { CuratedSet } from '../images/curated-set.ts';
 import type { Logger } from '../platform/logging/logger.ts';
-import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from './ravenford-seed.ts';
+import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed, seedRefusal } from './ravenford-seed.ts';
 
 /**
  * The review campaign of a deployment (Gate 06; docs/adr/0037-deployment.md, part B notes): the
@@ -84,9 +84,19 @@ export class ReviewCampaignError extends Error {
   }
 }
 
-const rejection = (submission: CommandSubmission, result: CommandRejected) =>
+const rejection = async (
+  engine: WorldEngine,
+  submission: CommandSubmission,
+  result: CommandRejected,
+) =>
   new ReviewCampaignError(
-    `review campaign command ${submission.commandId} (${submission.command.type}) rejected: ${result.code}`,
+    `review campaign ${submission.command.type}: ${await seedRefusal(
+      engine,
+      submission.campaignId ?? 'ravenford',
+      'ru',
+      submission.commandId,
+      result,
+    )}`,
   );
 
 /**
@@ -102,7 +112,7 @@ export async function seedReviewCampaign(
   const counts = { accepted: 0, duplicate: 0 };
   for (const submission of seed.submissions) {
     const result = await engine.execute(submission);
-    if (result.status === 'rejected') throw rejection(submission, result);
+    if (result.status === 'rejected') throw await rejection(engine, submission, result);
     counts[result.status] += 1;
   }
   const seeded = (await engine.load(seed.campaignId))?.state;
