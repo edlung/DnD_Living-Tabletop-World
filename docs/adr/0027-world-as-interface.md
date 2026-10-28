@@ -54,3 +54,13 @@ unknown-concept campaign omits caravan knowledge and, through a DM
 No dependency edge, contract, or canonical mutation path changes. No previous
 gate coverage is invalidated, so no gate is reopened. Combat actions (Stage 220)
 and authoring (Stage 230) remain unimplemented.
+
+## Amendment — Gate 06 (2026-10-28, owner decisions 11)
+
+Decision 3 withholds an unidentified entity's **name and identity**, not its look. Since Gate 06
+its ID is opaque too (ADR 0008 amendment), so nothing in the payload names it. What a perceiving
+character can see — the equipment it carries (ADR 0023 §3, owner decision 4) and its approved
+player-audience pictures (ADR 0035) — stays visible, even when that sets one unidentified creature
+apart from others (G06-client-02: the shaman's dagger beside the raiders' scimitars). A DM who
+wants creatures indistinguishable keeps their pictures DM-only and gives them the same gear.
+(`reviews/OWNER_DECISIONS_11_2026-10-28.json#G06-client-02`)
