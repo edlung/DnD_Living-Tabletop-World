@@ -284,8 +284,8 @@ registerRussian({
   'History and undo (DM)': 'История и отмена (мастер)',
   'DM history': 'История мастера',
   'Reading the history…': 'Читаем историю…',
-  'Nothing yet: authoring commits and actions taken for players appear here.':
-    'Пока пусто: здесь появятся добавления мастера и действия за игроков.',
+  'Nothing yet: authoring commits, actions taken for players, and time and weather changes appear here.':
+    'Пока пусто: здесь появятся добавления мастера, действия за игроков и смены времени и погоды.',
   'Show older': 'Показать раньше',
   'Undo this action': 'Отменить это действие',
   'This cannot be undone now.': 'Сейчас это нельзя отменить.',
@@ -317,6 +317,12 @@ registerRussian({
   'Read {npc} for insight': 'Проницательность: {npc}',
   'Examined {target}': 'Осмотр: {target}',
   'Formed a hypothesis': 'Записана гипотеза',
+  'Time: {from} → {to}': 'Время: {from} → {to}',
+  'Weather at {place}: {from} → {to}': 'Погода ({place}): {from} → {to}',
+  'not set': 'не задана',
+  'Undo this change': 'Отменить это изменение',
+  'Undone. The world is as it was before this change.':
+    'Отменено. Мир снова таков, каким был до этого изменения.',
   // Steps named in the history's undo blockers (every command type)
   'create campaign': 'создание кампании',
   'start scene': 'начало сцены',

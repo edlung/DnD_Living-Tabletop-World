@@ -13,5 +13,6 @@
   "a11y": "ui-dm-a11y",
   "motion": "ui-dm-motion",
   "pinned": "ui-dm-pinned",
-  "a11yBook": "ui-dm-a11y-book"
+  "a11yBook": "ui-dm-a11y-book",
+  "timeHistory": "ui-dm-time-history"
 }

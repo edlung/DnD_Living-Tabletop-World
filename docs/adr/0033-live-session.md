@@ -43,7 +43,8 @@ control stayed offered after Day 2.
    `UndoCommand`.
 7. **DM history** (`GET …/dm/history`, DM only) lists authoring commits and DM substitutions from
    durable history with canonical status and current undo availability; it replaces ADR 0029 §8's
-   screen-local undo.
+   screen-local undo. Amended 2026-10-28: it also lists the DM's world-time and weather changes
+   (see Amendments).
 8. **The day control** offers the next day's morning computed from the current world time.
 
 ## Consequences
@@ -55,3 +56,20 @@ control stayed offered after Day 2.
   itself raise one.
 - Gate 06 reviews the stream, presence, substitution audit and DM history routes
   (`docs/GATE_COVERAGE.md`).
+
+## Amendments
+
+- 2026-10-28 (owner decision SI-D4-time-in-history, `reviews/OWNER_DECISIONS_11_2026-10-28.json`;
+  evidence `reports/evidence/stage-360/ai-stand-in/dm/notes.md` steps 36, 42): **time and weather
+  in the DM history.** §7 also lists the `AdvanceWorldTime` and `SetWeather` commands the
+  campaign's DM issued at the table, through `POST …/commands` (stored as
+  `http:<dmActorId>:<clientCommandId>`); the seed's setup clock is not listed. A new entry kind
+  `world` (`DmWorldEntry`) carries the change as the World Engine recorded it: the clock's `from`
+  and `to` (`WorldTimeAdvanced`), or the place, its own weather before (null when it had none)
+  and after (`WeatherSet`). The client reads it as «Время: День 1 · 10:00 → День 2 · 10:00» /
+  "Time: Day 1 · 10:00 → Day 2 · 10:00" and «Погода (Рыночная площадь): ясно → дождь» /
+  "Weather at Market Square: clear → rain", with "Undo this change". Undo is the existing
+  `UndoCommand` with its rules, unchanged: availability is `previewUndo`'s dry decision, and since
+  almost every later command reads the clock, a time change is usually blocked by the commands
+  after it, which History names with "Undo … first" as for any entry. No new command, event or
+  authority.
