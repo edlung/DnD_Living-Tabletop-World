@@ -25,9 +25,11 @@ a player or a lower perspective, and nothing here adds authority.
 - Never log a note or a character; log the reason code and the outcome only.
 - Tests: `substitution-routes.test.ts` (check order, 404 for non-DMs, validation, idempotency,
   roster, before-the-command, no echo, nothing changes for any perspective, logs),
-  `history-routes.test.ts` (check order, cross-campaign 404, listing, time and weather entries
-  without the seed's clock and their undo blocked by a named later command, blockers equal to the undo
-  route's, status after undo, paging, a fresh app over the same stores), `history-preview.test.ts`
+  `history-routes.test.ts` (check order, cross-campaign 404, listing, blockers equal to the undo
+  route's, status after undo, paging, a fresh app over the same stores), `history-world.test.ts` (time and weather entries
+  without the seed's clock, undo blocked by a named later command at any place, weather restored to
+  the earlier value, a player's attempt forbidden and never listed, a change not recorded left out
+  and logged), `history-preview.test.ts`
   (an NPC created and edited by one commit is undoable while the DM's stream follows; a throwing
   dry decision is one entry's, logged without world content), `stand-in.test.ts` (no new
   authority: a player cannot act for another character; the DM's End turn cannot pass an open

@@ -39,7 +39,9 @@ import type { SubstitutionRecord, SubstitutionStore } from './substitution-store
  * A dry decision that throws is that entry's alone: the entry is answered as not possible
  * (`UNDO_NOT_SUPPORTED`, as the engine could not undo it either) and logged by command ID, type
  * and error name, never the message, which may name world content. It never fails the page
- * (a 500) or the DM's live stream, which fingerprints this page (`gone`).
+ * (a 500) or the DM's live stream, which fingerprints this page (`gone`). Likewise a time or
+ * weather command whose recorded event is not its change is left out of the page and logged
+ * by command ID and type (`dm history change not recorded`).
  */
 type Listed =
   | {
@@ -84,7 +86,10 @@ export async function dmHistoryPage(
   );
   return {
     perspective: 'DM',
-    entries: page.map((item) => entryOf(item, snapshot, actor, campaignId, reasons, log)),
+    entries: page.flatMap((item) => {
+      const entry = entryOf(item, snapshot, actor, campaignId, reasons, log);
+      return entry === null ? [] : [entry];
+    }),
     nextBefore: older.length > page.length ? (page.at(-1)?.stored.firstSequence ?? null) : null,
   };
 }
@@ -186,7 +191,7 @@ function entryOf(
   campaignId: string,
   reasons: ReadonlyMap<string, SubstitutionRecord>,
   log: HistoryLog,
-): DmHistoryEntry {
+): DmHistoryEntry | null {
   const { stored } = item;
   const undoneBy = snapshot.state.commands.get(stored.commandId)?.undoneBy ?? null;
   const common = {
@@ -201,7 +206,15 @@ function entryOf(
     return { ...common, kind: 'authoring', proposalId: item.proposalId, summary: item.summary };
   }
   if (item.kind === 'world') {
-    return { ...common, kind: 'world', change: worldChange(snapshot, stored) };
+    const change = worldChange(snapshot, stored);
+    if (change === null) {
+      log.warn(
+        { commandId: stored.commandId, commandType: stored.commandType },
+        'dm history change not recorded',
+      );
+      return null;
+    }
+    return { ...common, kind: 'world', change };
   }
   const { characterId } = item;
   const recorded = reasons.get(stored.commandId);
@@ -265,8 +278,14 @@ function decided(
   }
 }
 
-/** What the time or weather command changed, from the event the World Engine recorded. */
-function worldChange(snapshot: CampaignSnapshot, stored: StoredCommand): DmWorldEntry['change'] {
+/**
+ * What the time or weather command changed, from the event the World Engine recorded; null if
+ * that event is not one (never for an accepted command: the caller skips and logs it).
+ */
+function worldChange(
+  snapshot: CampaignSnapshot,
+  stored: StoredCommand,
+): DmWorldEntry['change'] | null {
   const event = snapshot.history[stored.firstSequence - 1];
   if (event?.type === 'WorldTimeAdvanced') {
     return { kind: 'time', from: event.payload.from, to: event.payload.to };
@@ -275,7 +294,7 @@ function worldChange(snapshot: CampaignSnapshot, stored: StoredCommand): DmWorld
     const { locationId, from, to } = event.payload;
     return { kind: 'weather', location: entityRef(snapshot, locationId, 'location'), from, to };
   }
-  throw new Error(`${stored.commandType} recorded no time or weather change`);
+  return null;
 }
 
 function characterRef(snapshot: CampaignSnapshot, characterId: string): EntityRef {

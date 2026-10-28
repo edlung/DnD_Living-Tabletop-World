@@ -72,4 +72,8 @@ control stayed offered after Day 2.
   `UndoCommand` with its rules, unchanged: availability is `previewUndo`'s dry decision, and since
   almost every later command reads the clock, a time change is usually blocked by the commands
   after it, which History names with "Undo … first" as for any entry. No new command, event or
-  authority.
+  authority. A command whose recorded event is not its change (never for an accepted command)
+  is left out of the page and logged by command ID and type, never failing the page or the DM's
+  live stream. Known limitation, as for substitutions: entries are matched to the campaign's
+  current DM (`dmActorId`), so if the DM changed, the earlier DM's time and weather changes are no
+  longer listed; their undo remains the plain `UndoCommand`.
