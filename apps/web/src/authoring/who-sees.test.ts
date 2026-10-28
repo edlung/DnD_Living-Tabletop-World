@@ -2,7 +2,9 @@ import type { ProposableCommand } from '@ltw/contracts';
 import { translate } from '@ltw/ui';
 import { describe, expect, it } from 'vitest';
 
+import '../i18n/ru-play.ts';
 import '../i18n/ru-visual.ts';
+import { profileEdit } from './npc-profile.tsx';
 import { whoWillSee } from './who-sees.ts';
 
 const english = (key: string, params?: Readonly<Record<string, string | number>>) =>
@@ -67,5 +69,38 @@ describe('who will see a proposal', () => {
     expect(whoWillSee(russian, tomas, [], new Map([['tomas-reed', 'Томас Рид']]))[2]).toBe(
       'Этот рассказ знает только Томас Рид',
     );
+  });
+
+  it('says who sees an NPC’s new name, and that the description stays the DM’s (SI-D8)', () => {
+    const edit = profileEdit(
+      'captain-thorne',
+      { name: 'Captain Thorne', description: 'Head of the guard.' },
+      { name: 'Captain Aldric Thorne', description: 'Head of the guard, scarred.' },
+    );
+    const directory = [
+      { entityId: 'captain-thorne', kind: 'npc' as const, name: 'Captain Thorne' },
+    ];
+    expect(whoWillSee(english, edit ?? [], directory).slice(1)).toEqual([
+      'Players who already know Captain Thorne see the new name Captain Aldric Thorne; to others it stays unknown.',
+      'Players never read the description; it guides your image requests.',
+    ]);
+    expect(whoWillSee(russian, edit ?? [], directory)[1]).toBe(
+      'Игроки, которые уже знают персонажа Captain Thorne, увидят новое имя Captain Aldric Thorne; для остальных оно останется неизвестным.',
+    );
+  });
+});
+
+describe('an NPC card’s edit (SI-D8)', () => {
+  const before = { name: 'Tomas', description: 'A guard.' };
+  it('proposes only what changed, as one UpdateEntityProfile', () => {
+    expect(profileEdit('tomas', before, { name: ' Tomas ', description: 'A guard.' })).toBeNull();
+    expect(
+      profileEdit('tomas', before, { name: 'Tomas', description: '  A guard, scarred. ' }),
+    ).toEqual([
+      { type: 'UpdateEntityProfile', entityId: 'tomas', description: 'A guard, scarred.' },
+    ]);
+    expect(profileEdit('tomas', before, { name: 'Tomas Reed', description: '' })).toEqual([
+      { type: 'UpdateEntityProfile', entityId: 'tomas', name: 'Tomas Reed' },
+    ]);
   });
 });

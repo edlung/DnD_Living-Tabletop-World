@@ -222,6 +222,26 @@ registerRussian({
     'Этот шаг пока нельзя отменить. Сначала отмените более новые.',
   'Proposal discarded. Nothing was added to the world.':
     'Предложение отброшено. В мир ничего не добавлено.',
+  // The DM's open drafts, an NPC's edit, a witness's past (owner decisions 11)
+  'Your unfinished proposal was restored.': 'Ваше незавершённое предложение восстановлено.',
+  Discarded: 'Отброшено',
+  'Edit the description': 'Изменить описание',
+  'Edit the description on the card of {name}': 'Изменить описание в карточке: {name}',
+  'Description (DM)': 'Описание (мастер)',
+  'Edit name and description': 'Изменить имя и описание',
+  'Edit {name}': 'Правка: {name}',
+  'A change goes through a proposal you review and confirm; History can undo it.':
+    'Изменение пройдёт через предложение, которое вы проверите и подтвердите; отменить его можно в «Истории».',
+  'Another proposal is open. Confirm or cancel it first.':
+    'Открыто другое предложение. Сначала подтвердите или отмените его.',
+  'Propose the change': 'Предложить изменение',
+  'Show the open proposal': 'Показать открытое предложение',
+  'New name (empty keeps it)': 'Новое имя (пусто — оставить прежнее)',
+  'New description (empty keeps it)': 'Новое описание (пусто — оставить прежнее)',
+  'Players who already know {name} see the new name {value}; to others it stays unknown.':
+    'Игроки, которые уже знают персонажа {name}, увидят новое имя {value}; для остальных оно останется неизвестным.',
+  'Players never read the description; it guides your image requests.':
+    'Игроки никогда не читают описание; оно служит вашим запросам изображений.',
   'entity created': 'создана сущность',
   'entity placed': 'сущность помещена',
   'knowledge assigned': 'передано знание',

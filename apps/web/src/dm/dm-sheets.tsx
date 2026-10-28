@@ -3,7 +3,7 @@ import { useT } from '@ltw/ui';
 
 import type { WorldApi } from '../api/client.ts';
 import { AuthoringPanel } from '../authoring/authoring-panel.tsx';
-import { useAuthoring } from '../authoring/use-authoring.ts';
+import type { useAuthoring } from '../authoring/use-authoring.ts';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
 import type { StandIn } from '../combat/stand-in.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
@@ -33,6 +33,7 @@ export interface DmPlace {
  */
 export function DmSheets({
   api,
+  authoring,
   shell,
   directory,
   place,
@@ -46,6 +47,8 @@ export function DmSheets({
   onShowEntity,
 }: {
   readonly api: WorldApi;
+  /** The DM's authoring session, shared with an NPC card's edit (owner decisions 11, SI-D8). */
+  readonly authoring: ReturnType<typeof useAuthoring>;
   readonly shell: Shell;
   readonly directory: readonly EntityRef[];
   /** Null until the world has loaded. */
@@ -61,7 +64,6 @@ export function DmSheets({
   readonly onShowEntity: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
-  const authoring = useAuthoring(api, onWorldChanged);
   const shown = authoring.proposal?.proposal.proposalId;
   const invitations = useSignInKind() === 'session';
   return (
@@ -73,7 +75,14 @@ export function DmSheets({
         open={shell.sheet === 'add'}
         onClose={shell.closeSheet}
       >
-        <AuthoringPanel authoring={authoring} directory={directory} />
+        <AuthoringPanel
+          authoring={authoring}
+          directory={directory}
+          onShowEntity={(entityId) => {
+            shell.dismissSheet();
+            onShowEntity(entityId, 'npc');
+          }}
+        />
       </Sheet>
       <Sheet
         id="encounter"

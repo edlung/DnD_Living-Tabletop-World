@@ -89,7 +89,8 @@ export interface AuthoringPreview {
   readonly changes: readonly { readonly type: string; readonly payload: unknown }[];
 }
 
-export const PROPOSAL_STATUSES = ['DRAFT', 'COMMITTED', 'UNDONE'] as const;
+/** `CANCELLED`: the DM discarded the draft (owner decisions 11, SI-D1); it never commits. */
+export const PROPOSAL_STATUSES = ['DRAFT', 'COMMITTED', 'UNDONE', 'CANCELLED'] as const;
 export type ProposalStatus = (typeof PROPOSAL_STATUSES)[number];
 
 export interface AuthoringProposalView {
@@ -117,6 +118,26 @@ export interface AuthoringProposalResponse {
   readonly proposal: AuthoringProposalView;
   /** Present while the proposal is a draft. */
   readonly preview: AuthoringPreview | null;
+}
+
+/** One proposal the DM has not finished: a draft neither committed nor cancelled. */
+export interface OpenProposalSummary {
+  readonly proposalId: string;
+  /** The latest revision. */
+  readonly revision: number;
+  readonly summary: string;
+  readonly source: AuthoringSource;
+  /** When its latest revision was stored. */
+  readonly updatedAt: string;
+}
+
+/**
+ * `GET …/authoring/proposals` (DM only; owner decisions 11, SI-D1): the campaign's open drafts,
+ * the most recently changed first, so a reload or a change of perspective restores the DM's
+ * unfinished proposal instead of losing it (ADR 0029 §6, amendment 2026-10-28).
+ */
+export interface OpenProposalsResponse {
+  readonly proposals: readonly OpenProposalSummary[];
 }
 
 /** `POST …/authoring/proposals`: from an AI trace's proposal, or written by the DM. */

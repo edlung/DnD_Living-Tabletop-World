@@ -142,6 +142,7 @@ function proposalStore(beforeRevision: ReturnType<typeof gate>): ProposalStore {
   return {
     exclusive: (campaignId, proposalId, work) => real.exclusive(campaignId, proposalId, work),
     latest: (campaignId, proposalId) => real.latest(campaignId, proposalId),
+    latestOfCampaign: (campaignId) => real.latestOfCampaign(campaignId),
     append: async (revision) => {
       if (revision.revision > 1) await beforeRevision.pass();
       return real.append(revision);

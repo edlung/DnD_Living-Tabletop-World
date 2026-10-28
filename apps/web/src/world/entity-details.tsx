@@ -11,6 +11,7 @@ import { useCallback, useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { NpcProfile, type ProfileEditing } from '../authoring/npc-profile.tsx';
 import { PerformNpc } from '../dm/perform-npc.tsx';
 import { ContextActions } from '../exploration/context-actions.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
@@ -32,7 +33,8 @@ import { distinctNames, unidentifiedName } from './entity-words.ts';
  * objects show their approved images in details) — the actions the server lists with their
  * glyphs, what this perspective knows as typed records, and the full sheet on demand. The DM
  * perspective shows what its projection supplies, "Perform", and the entity's images with the
- * DM's controls. The last selection's panel stays mounted while closed, and after the viewer's
+ * DM's controls, and an NPC's name and description with their edit (owner decisions 11, SI-D8).
+ * The last selection's panel stays mounted while closed, and after the viewer's
  * own action it is read again in the background (`revision`), so drafts in it survive both.
  */
 export function EntityDetails({
@@ -52,6 +54,7 @@ export function EntityDetails({
   onRun,
   onSelect,
   onClose,
+  profileEditing = null,
 }: {
   readonly api: WorldApi;
   readonly entityId: string;
@@ -71,6 +74,8 @@ export function EntityDetails({
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
   readonly onClose: () => void;
+  /** The DM's authoring session, for an NPC's edit; null outside the DM perspective. */
+  readonly profileEditing?: ProfileEditing | null;
 }) {
   const t = useT();
   const acting = effectivePerspective.startsWith('CHARACTER:');
@@ -190,6 +195,9 @@ export function EntityDetails({
                   </div>
                 ))}
             </section>
+          )}
+          {effectivePerspective === 'DM' && kind === 'npc' && profileEditing && name !== null && (
+            <NpcProfile entityId={entityId} name={name} editing={profileEditing} />
           )}
           {effectivePerspective === 'DM' && kind === 'npc' && (
             <PerformNpc

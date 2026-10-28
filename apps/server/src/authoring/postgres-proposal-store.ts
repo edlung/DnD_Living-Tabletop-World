@@ -84,4 +84,14 @@ export class PostgresProposalStore implements ProposalStore {
     );
     return result.rows[0]?.revision_doc ?? null;
   }
+
+  async latestOfCampaign(campaignId: string): Promise<readonly ProposalRevision[]> {
+    const result = await this.#pool.query<{ revision_doc: ProposalRevision }>(
+      `SELECT DISTINCT ON (proposal_id) revision_doc FROM ltw_authoring_revisions
+        WHERE campaign_id = $1
+        ORDER BY proposal_id, revision DESC`,
+      [campaignId],
+    );
+    return result.rows.map((row) => row.revision_doc);
+  }
 }

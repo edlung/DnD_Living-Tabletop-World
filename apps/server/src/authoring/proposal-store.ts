@@ -19,6 +19,11 @@ export interface ProposalRevision {
   readonly createdAt: string;
   /** The option this revision applied (ADR 0019 §1); absent in revisions stored before Stage 120. */
   readonly appliedOption?: { readonly optionId: string; readonly label: string } | null;
+  /**
+   * True on the revision that records the DM's cancel (owner decisions 11, SI-D1): the draft is
+   * closed and never commits. Absent in revisions stored before it.
+   */
+  readonly cancelled?: boolean;
 }
 
 export interface ProposalStore {
@@ -33,6 +38,8 @@ export interface ProposalStore {
   append(revision: ProposalRevision): Promise<void>;
   /** The latest revision, or null when the proposal does not exist in that campaign. */
   latest(campaignId: string, proposalId: string): Promise<ProposalRevision | null>;
+  /** The latest revision of every proposal of the campaign, in no particular order. */
+  latestOfCampaign(campaignId: string): Promise<readonly ProposalRevision[]>;
 }
 
 export class ProposalConflictError extends Error {
@@ -79,5 +86,14 @@ export class InMemoryProposalStore implements ProposalStore {
       null,
     );
     return Promise.resolve(latest?.campaignId === campaignId ? structuredClone(latest) : null);
+  }
+
+  async latestOfCampaign(campaignId: string): Promise<readonly ProposalRevision[]> {
+    const found: ProposalRevision[] = [];
+    for (const proposalId of this.#revisions.keys()) {
+      const latest = await this.latest(campaignId, proposalId);
+      if (latest) found.push(latest);
+    }
+    return found;
   }
 }
