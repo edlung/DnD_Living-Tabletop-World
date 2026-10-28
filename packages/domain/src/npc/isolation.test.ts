@@ -158,21 +158,46 @@ describe('the NPC context holds only what the NPC may say', () => {
 
 /**
  * Owner decisions 11, SI-N1: what the NPC has already told the speaker. After every topic
- * was asked of a trusting NPC that was shown evidence, each context, asked again or not,
- * knows they have met; its told-before lines are its own records that its recorded sharing
- * told this scope, never a SECRET or another holder's record, and no planted secret enters.
+ * was asked of a trusting NPC that was shown evidence, each context, asked again or not, knows
+ * Elowen met it. The told-before lines must be exactly the NPC's own records that recorded
+ * `InformationShared` events gave the party, read here from the history independently of the
+ * builder's state keys; never a SECRET or another holder's record; no planted secret enters.
  */
 describe('what it has already told stays inside the boundary', () => {
   for (const npcId of BOUNDARY_NPCS) {
     it(`${npcId}: trusted, shown evidence, every topic asked, then asked again`, async () => {
       const world = await scene(npcId, 'TRUSTED', 'feature-19c7c7f7');
       const topics = TOPICS.filter((topicId) => topicId !== null);
-      for (const topicId of topics) await askAndBuild(world, npcId, topicId);
+      for (const topicId of topics) {
+        await world.submit({ type: 'AskAbout', characterId: ELOWEN, npcId, topicId });
+      }
+      const snapshot = await world.engine.load(CAMPAIGN);
+      if (!snapshot) throw new Error('no campaign');
+      const { state, history } = snapshot;
+      const recorded = new Set(
+        history.flatMap((event) =>
+          event.type === 'InformationShared' &&
+          event.payload.npcId === npcId &&
+          event.payload.scope === 'PARTY'
+            ? [event.payload.sourceKnowledgeId]
+            : [],
+        ),
+      );
+      expect(recorded.size, 'not vacuous').toBeGreaterThan(0);
+      const talk = checkTalk(state, PLAYER, ELOWEN, npcId);
+      if (!talk.ok) throw new Error(`cannot talk: ${talk.code}`);
       for (const topicId of TOPICS) {
-        const { state, context } = await askAndBuild(world, npcId, topicId);
+        const context = npcDialogueContext(state, {
+          speaker: talk.speaker,
+          npcId,
+          topicId,
+          justShared: [],
+          conversation: { history, exchangeCommandId: null },
+        });
+        if (!context) throw new Error('no context');
         expect(context.metBefore).toBe(true);
-        const told = context.mayTell.filter((line) => line.toldBefore);
-        expect(told.length, 'not vacuous').toBeGreaterThan(0);
+        const toldIds = context.mayTell.filter((l) => l.toldBefore).map((l) => l.sourceId);
+        expect(new Set(toldIds)).toEqual(recorded);
         const text = `${spoken(context)}\n${JSON.stringify(context)}`;
         for (const marker of neverSaidBy(npcId)) expect(text, marker).not.toContain(marker);
         const own = scopeKey({ kind: 'NPC', npcId });
@@ -180,7 +205,6 @@ describe('what it has already told stays inside the boundary', () => {
           const record = state.knowledge.get(line.sourceId);
           expect(record && scopeKey(record.scope)).toBe(own);
           expect(['SECRET', 'UNKNOWN', 'CONTRADICTION']).not.toContain(record?.knowledgeType);
-          expect(line.toldBefore).toBe(state.investigation.shared.has(`PARTY|${line.sourceId}`));
           if (line.aboutTopic) expect(record?.subjects).toContain(topicId);
         }
       }

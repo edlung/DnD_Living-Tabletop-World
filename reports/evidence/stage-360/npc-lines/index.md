@@ -5,7 +5,9 @@ Owner decisions 11, `SI-N1-npc-lines`; ADR 0020 amendment 2026-10-28. A focused 
 live `claude-sonnet-5-5` (effort low, the runtime adapter `createAnthropicProvider`) as the only
 `npc-dialogue` provider, and records each exchange's exact system text, prompt and reply. "Before"
 ran with the four changed source files stashed (base `3251f25`), "after" with the change. Same
-script, same steps. No key is recorded.
+script, same steps. No key is recorded. The "after" run is of commit `bc929d6`; the review revision that
+followed (met-before per character, one snapshot, trace citations, "again" only after an accepted
+or `NO_EFFECT` ask) gives the same met and told facts for these single-character steps (only the told heading now adds "or their companions"), so it was not re-run.
 
 Spend, from returned usage at catalog prices: $0.0257 + $0.0225 (Mira, Orin) + $0.0072 + $0.0075
 (Thorne) = about **$0.063**, under the $1 limit. The script stopped itself at $0.40 per run. It

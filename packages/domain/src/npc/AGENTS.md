@@ -18,5 +18,5 @@ Rules:
 - Sayable records come only from `npcDisclosure` (§2) plus what the NPC has told the speaker's scope; never re-implement the rule here.
 - Entity names appear only for entities the speaker knows (`Acting.known`); otherwise kind only.
 - Every line keeps its `sourceId` for the trace. The AI gateway renders names and sentences only; no ID may reach a provider.
-- What it already said to the speaker (`metBefore`, `toldBefore`; ADR 0020 amendment 2026-10-28) comes only from its own recorded acts toward the speaker's scope, read before the exchange's command (`priorState`); never from the speaker's memories or records.
+- What it already said (ADR 0020 amendment 2026-10-28) comes only from its own recorded exchanges: `metBefore` per character, from the `InformationShared`, `EvidenceShown` and `InsightChecked` events naming the character and the NPC (not undone, not of this exchange's command; cited in the trace as `event#<id>`); `toldBefore` per the speaker's scope. Never from the speaker's memories or records.
 - Talk records nothing. It is authorized like a player command (`authorizeActingFor`) and checks `AskAbout`'s preconditions in the same order, so a refusal reveals no more than a command's rejection.
