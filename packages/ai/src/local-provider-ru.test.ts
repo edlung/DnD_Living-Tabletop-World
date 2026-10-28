@@ -25,6 +25,26 @@ describe('the offline interpreter in Russian (ADR 0031 §8)', () => {
       description: 'Молодой стражник.',
     });
     expect(proposal.commands[1]?.statement).toBe('Свидетель: Томас Рид. Видел, как ушёл караван.');
+    // Never silently guarded (owner decisions 11, round 2): he tells it when asked.
+    expect(proposal.commands[2]).toEqual({
+      type: 'SetDisclosure',
+      knowledgeId: 'tomas-reed-account',
+      disclosure: 'WILLING',
+    });
+  });
+
+  it.each([
+    'Добавь: стражник у Северных ворот, который видел, как ушёл караван, но скрывает это.',
+    'Добавь: стражник у Северных ворот, который видел, как ушёл караван, и никому не скажет.',
+    'Добавь: стражник у Северных ворот, который неохотно говорит о том, как ушёл караван.',
+    'Добавь: стражник у Северных ворот, который тайно видел, как ушёл караван.',
+  ])('guards the account only when the DM says so: %s', (request) => {
+    const proposal = interpretLocally(request, directory) as { commands: unknown[] };
+    expect(proposal.commands.at(-1)).toEqual({
+      type: 'SetDisclosure',
+      knowledgeId: 'tomas-reed-account',
+      disclosure: 'GUARDED',
+    });
   });
 
   it('moves, kills, and advances time', () => {

@@ -65,6 +65,22 @@ describe('who will see a proposal', () => {
     expect(scoped({ kind: 'WORLD_TRUTH' })).toBe('It is world truth: no one is told it');
   });
 
+  // Owner decisions 11, round 2: whether he tells it is said plainly, both ways.
+  it('says whether the person will tell the account or evade it', () => {
+    const guarded = tomas.map((command) =>
+      command.type === 'SetDisclosure' ? { ...command, disclosure: 'GUARDED' as const } : command,
+    );
+    const names = new Map([['tomas-reed', 'Tomas Reed']]);
+    expect(whoWillSee(english, guarded, [], names)[3]).toBe(
+      'Tomas Reed will evade questions about it',
+    );
+    const ru = new Map([['tomas-reed', 'Томас Рид']]);
+    expect(whoWillSee(russian, tomas, [], ru)[3]).toBe('Если спросят, расскажет Томас Рид');
+    expect(whoWillSee(russian, guarded, [], ru)[3]).toBe(
+      'Томас Рид будет уклоняться от вопросов об этом',
+    );
+  });
+
   it('speaks Russian, names placed as given', () => {
     expect(whoWillSee(russian, tomas, [], new Map([['tomas-reed', 'Томас Рид']]))[2]).toBe(
       'Этот рассказ знает только Томас Рид',

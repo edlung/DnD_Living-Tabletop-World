@@ -124,8 +124,18 @@ export const INTENT_CASES: readonly IntentCase[] = [
       if (typeof created === 'string') return created;
       const knowledge = only(commands, 'AddKnowledge');
       if (typeof knowledge === 'string') return knowledge;
-      const counted = count(commands, 2);
+      // The account's disclosure is explicit and willing (owner decisions 11, round 2).
+      const disclosure = only(commands, 'SetDisclosure');
+      if (typeof disclosure === 'string') return disclosure;
+      const counted = count(commands, 3);
       if (counted !== null) return counted;
+      if (
+        knowledge['knowledgeId'] === undefined ||
+        disclosure['knowledgeId'] !== knowledge['knowledgeId'] ||
+        disclosure['disclosure'] !== 'WILLING'
+      ) {
+        return 'the account is not explicitly told when asked (WILLING)';
+      }
       const npc = newNpcAt(created, 'north-gate');
       if (npc !== null) return npc;
       const guard = created['entityId'];

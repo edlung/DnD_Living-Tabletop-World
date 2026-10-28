@@ -77,6 +77,13 @@ function mentionedRu(text: string, directory: readonly EntityRef[]): EntityRef[]
 
 const capital = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
+/**
+ * Whether the DM's words say the person keeps what they know to themselves (owner decisions 11,
+ * round 2): only then is the account GUARDED; otherwise they tell it when asked.
+ */
+const RETICENT =
+  /(?<![\p{L}])(?:скрыва|утаива|умалчива|неохотно|не\s+скаж|не\s+расскаж|не\s+говор|молч|тайн|секрет|не\s+хочет\s+(?:говорить|рассказывать))/iu;
+
 function addPerson(text: string, directory: readonly EntityRef[]): ProposableCommand[] | null {
   const match =
     /(?:добавь|создай|введи)\s*:?\s+(.+?)\s+(?:у|возле|около|рядом с|в|на)\s+(.+?)(?:\s*,\s*(?:который|которая|что)\s+(.+?))?[.!]?$/iu.exec(
@@ -104,8 +111,10 @@ function addPerson(text: string, directory: readonly EntityRef[]): ProposableCom
   ];
   if (witnessed) {
     const subjects = mentionedRu(witnessed, directory).map((entity) => entity.entityId);
+    const knowledgeId = `${person.id}-account`;
     commands.push({
       type: 'AddKnowledge',
+      knowledgeId,
       scope: { kind: 'NPC', npcId: person.id },
       knowledgeType: 'TESTIMONY',
       // Nominal wording: no verb agrees with the name's gender (ADR 0031 §5).
@@ -113,6 +122,12 @@ function addPerson(text: string, directory: readonly EntityRef[]): ProposableCom
       subjects: [...new Set([...subjects, location.entityId])],
       attributedTo: person.id,
       knownSince: null,
+    });
+    // Always explicit: never left GUARDED by default (owner decisions 11, round 2).
+    commands.push({
+      type: 'SetDisclosure',
+      knowledgeId,
+      disclosure: RETICENT.test(text) ? 'GUARDED' : 'WILLING',
     });
   }
   return commands;
