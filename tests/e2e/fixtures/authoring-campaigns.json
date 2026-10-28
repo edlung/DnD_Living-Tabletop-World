@@ -8,5 +8,6 @@
   "restore": "ui-authoring-restore",
   "editNpc": "ui-authoring-edit-npc",
   "editHidden": "ui-authoring-edit-hidden",
-  "past": "ui-authoring-past"
+  "past": "ui-authoring-past",
+  "drafts": "ui-authoring-drafts"
 }

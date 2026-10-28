@@ -10,11 +10,15 @@ export interface ProfileEditing {
   /** A draft is on the Add sheet: one proposal at a time, as with words. */
   readonly draftOpen: boolean;
   readonly busy: boolean;
-  /** Stores the DM's proposal and shows its review on the Add sheet. */
-  readonly propose: (summary: string, commands: readonly ProposableCommand[]) => void;
+  /** Stores the DM's proposal and shows its review on the Add sheet; true once it is stored. */
+  readonly propose: (summary: string, commands: readonly ProposableCommand[]) => Promise<boolean>;
   /** Shows the open draft on the Add sheet. */
   readonly showDraft: () => void;
 }
+
+/** The World Engine's limits on a name and a description (`world-commands.ts`). */
+const NAME_MAX = 120;
+const DESCRIPTION_MAX = 4000;
 
 /**
  * The profile edit of one NPC, as commands: only what changed, as `UpdateEntityProfile`
@@ -79,8 +83,10 @@ export function NpcProfile({
           onSubmit={(event) => {
             event.preventDefault();
             if (!commands || editing.draftOpen) return;
-            editing.propose(t('Edit {name}', { name }), commands);
-            setDraft(null);
+            // The words stay until the server has stored the proposal: a refusal keeps them.
+            void editing.propose(t('Edit {name}', { name }), commands).then((stored) => {
+              if (stored) setDraft(null);
+            });
           }}
         >
           <p className="muted">
@@ -89,6 +95,7 @@ export function NpcProfile({
           <label htmlFor={field('name')}>{t('Name')}</label>
           <input
             id={field('name')}
+            maxLength={NAME_MAX}
             value={shown.name}
             onChange={(event) => {
               setDraft({ ...shown, name: event.target.value });
@@ -97,6 +104,7 @@ export function NpcProfile({
           <label htmlFor={field('description')}>{t('Description')}</label>
           <textarea
             id={field('description')}
+            maxLength={DESCRIPTION_MAX}
             value={shown.description}
             onChange={(event) => {
               setDraft({ ...shown, description: event.target.value });

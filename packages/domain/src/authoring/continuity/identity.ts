@@ -4,6 +4,7 @@ import { knownEntityIds } from '../../knowledge/projection.ts';
 import {
   ACKNOWLEDGE,
   findingKey,
+  nameOf,
   normalized,
   type ContinuityInput,
   type WarningDraft,
@@ -47,6 +48,7 @@ export function nameInUse(
           ),
         ]
       : [];
+  const v = voice(input.state);
   return [
     {
       key: findingKey('NAME_IN_USE', index),
@@ -54,9 +56,21 @@ export function nameInUse(
       commandIndex: index,
       entityIds: [named.entityId, ...others.map((entity) => entity.entityId)],
       knowledgeIds: [],
-      message: voice(input.state).say('"{name}" is also the name of {others}', {
+      // Named as the DM knows them, with where each one is, never by ID (opaque since Gate 06).
+      message: v.say('"{name}" is also the name of {others}', {
         name: named.name,
-        others: others.map((entity) => entity.entityId).join(', '),
+        others: others
+          .map((entity) =>
+            entity.placement
+              ? v.say('{name} ({where})', {
+                  name: nameOf(input.state, entity.entityId),
+                  where: v.say('at {place}', {
+                    place: nameOf(input.state, entity.placement.locationId),
+                  }),
+                })
+              : nameOf(input.state, entity.entityId),
+          )
+          .join(v.say(' or ')),
       }),
       options: [...keepName, ...removal(input.commands, index), ACKNOWLEDGE],
     },
@@ -64,7 +78,7 @@ export function nameInUse(
 }
 
 /**
- * Warning: renaming an NPC the party or the public knows. Names are timeless
+ * Warning: renaming an NPC the party, the public, or any one character knows by name. Names are timeless
  * corrections (ADR 0006 §3), so every account they hold would show the new name.
  */
 export function renameKnown(
@@ -75,11 +89,20 @@ export function renameKnown(
   if (command.type !== 'UpdateEntityProfile' || command.name === undefined) return [];
   const current = input.before.entities.get(command.entityId);
   if (!current || current.name === command.name) return [];
-  const knownBy = (['PARTY', 'PUBLIC'] as const).filter((kind) =>
-    knownEntityIds(input.before, holderPerspective(input.before, { kind })).has(command.entityId),
-  );
-  if (knownBy.length === 0) return [];
+  const knows = (perspective: Parameters<typeof knownEntityIds>[1]) =>
+    knownEntityIds(input.before, perspective).has(command.entityId);
   const v = voice(input.state);
+  const knownBy: string[] = (['PARTY', 'PUBLIC'] as const)
+    .filter((kind) => knows(holderPerspective(input.before, { kind })))
+    .map((kind) => v.say(kind.toLowerCase()));
+  // A character alone may know the name too (owner decisions 11 review): their accounts change.
+  const characters = [...input.before.entities.values()].filter(
+    (entity) =>
+      entity.kind === 'character' &&
+      knows(holderPerspective(input.before, { kind: 'CHARACTER', characterId: entity.entityId })),
+  );
+  if (knownBy.length === 0 && characters.length === 0) return [];
+  const readers = characters.map((entity) => entity.name).join(v.say(' or '));
   const description = v
     .say('{description} Also known as {name}.', {
       description: command.description ?? current.description,
@@ -93,13 +116,19 @@ export function renameKnown(
       commandIndex: index,
       entityIds: [command.entityId],
       knowledgeIds: [],
-      message: v.say(
-        'The {kinds} know {name}; renaming changes that name in every account they hold',
-        {
-          kinds: knownBy.map((kind) => v.say(kind.toLowerCase())).join(v.say(' and the ')),
-          name: current.name,
-        },
-      ),
+      message:
+        knownBy.length > 0
+          ? v.say(
+              'The {kinds} know {name}; renaming changes that name in every account they hold',
+              { kinds: knownBy.join(v.say(' and the ')), name: current.name },
+            )
+          : v.say(
+              '{name} is known by name to {readers}; renaming changes that name in every account they hold',
+              {
+                readers,
+                name: current.name,
+              },
+            ),
       options: [
         edit(
           v.say('Keep "{name}" and note "{other}" in the description', {

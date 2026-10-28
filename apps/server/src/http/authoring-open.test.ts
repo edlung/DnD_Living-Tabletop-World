@@ -110,6 +110,14 @@ describe('the open drafts', () => {
     ]);
   });
 
+  it('are at most 20, the newest', async () => {
+    const made: string[] = [];
+    for (let n = 0; n < 25; n += 1) {
+      made.push((await draft(`npc-${String(n)}`, `Guard ${String(n)}`)).proposalId);
+    }
+    expect((await open()).map((item) => item.proposalId)).toEqual(made.slice(5).reverse());
+  });
+
   it('leave out a cancelled draft, which then can be neither edited nor committed', async () => {
     const ada = await draft('ada-brook', 'Ada Brook');
     const at = `${PROPOSALS}/${ada.proposalId}`;

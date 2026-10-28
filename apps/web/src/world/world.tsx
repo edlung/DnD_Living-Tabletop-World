@@ -440,8 +440,8 @@ export function World({
                       draftOpen: authoring.proposal?.proposal.status === 'DRAFT',
                       busy: authoring.busy,
                       propose: (summary, commands) => {
-                        void authoring.proposeWritten(summary, commands);
                         showAuthoring();
+                        return authoring.proposeWritten(summary, commands);
                       },
                       showDraft: showAuthoring,
                     }

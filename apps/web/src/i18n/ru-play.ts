@@ -225,6 +225,11 @@ registerRussian({
   // The DM's open drafts, an NPC's edit, a witness's past (owner decisions 11)
   'Your unfinished proposal was restored.': 'Ваше незавершённое предложение восстановлено.',
   Discarded: 'Отброшено',
+  'Open drafts': 'Открытые черновики',
+  'shown below': 'показан ниже',
+  Resume: 'Продолжить',
+  'Resume: {summary}': 'Продолжить: {summary}',
+  'Discard: {summary}': 'Отклонить: {summary}',
   'Edit the description': 'Изменить описание',
   'Edit the description on the card of {name}': 'Изменить описание в карточке: {name}',
   'Description (DM)': 'Описание (мастер)',

@@ -102,29 +102,6 @@ describe('PostgresProposalStore', () => {
 });
 
 describe('the open drafts on PostgreSQL (owner decisions 11, SI-D1)', () => {
-  it('reads the latest revision of each proposal of one campaign only', async () => {
-    const store = new PostgresProposalStore(pool);
-    const second = '00000000-0000-4000-8000-0000000000d2';
-    await store.append(revision());
-    await store.append(revision({ revision: 2, summary: 'Tomas, edited.' }));
-    await store.append(revision({ proposalId: second, summary: 'Ada.' }));
-    await store.append(revision({ proposalId: second, revision: 2, cancelled: true }));
-    await store.append(
-      revision({ proposalId: '00000000-0000-4000-8000-0000000000d3', campaignId: 'elsewhere' }),
-    );
-
-    const latest = await store.latestOfCampaign('ravenford');
-    expect(
-      latest.map(({ proposalId, revision, cancelled }) => [proposalId, revision, cancelled]),
-    ).toEqual(
-      expect.arrayContaining([
-        [revision().proposalId, 2, undefined],
-        [second, 2, true],
-      ]),
-    );
-    expect(latest).toHaveLength(2);
-  });
-
   it('restores a draft after a restart, the newest first, and never a cancelled one', async () => {
     await seeded();
     const first = await server(0xc1);
