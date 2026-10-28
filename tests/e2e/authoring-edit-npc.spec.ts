@@ -35,8 +35,15 @@ async function editFromCard(page: Page, npc: string, name: string, description?:
 async function confirm(page: Page) {
   const warnings = review(page).getByRole('group', { name: /Warnings you must accept/ });
   for (const box of await warnings.getByRole('checkbox').all()) await box.check();
-  await review(page).getByRole('button', { name: 'Confirm and add to the world' }).click();
+  // An edit adds nothing: its confirm says so (second stand-in pass).
+  await expect(
+    review(page).getByRole('button', { name: 'Confirm and add to the world' }),
+  ).toHaveCount(0);
+  await review(page).getByRole('button', { name: 'Confirm the edit' }).click();
   await expect(review(page)).toContainText('Added to the world');
+  // Once confirmed, "who will see" no longer says the proposal is the DM's alone.
+  await expect(review(page)).toContainText('Confirmed: it is in the world now, seen as follows.');
+  await expect(review(page)).not.toContainText('Until you confirm it, only you see this proposal.');
 }
 
 test('a known NPC’s new name reaches the player; the description stays the DM’s; undo restores it', async ({

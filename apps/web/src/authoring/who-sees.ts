@@ -1,4 +1,9 @@
-import type { EntityRef, KnowledgeScope, ProposableCommand } from '@ltw/contracts';
+import type {
+  AuthoringProposalResponse,
+  EntityRef,
+  KnowledgeScope,
+  ProposableCommand,
+} from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
 import { nameFor } from './command-text.ts';
@@ -21,6 +26,14 @@ function holder(t: Translate, scope: KnowledgeScope, who: (id: string) => string
   }
 }
 
+/** The proposal's own visibility, by its status: only a draft is still the DM's alone. */
+const STATUS_LINE: Readonly<Record<AuthoringProposalResponse['proposal']['status'], string>> = {
+  DRAFT: 'Until you confirm it, only you see this proposal.',
+  COMMITTED: 'Confirmed: it is in the world now, seen as follows.',
+  UNDONE: 'Undone: the world no longer holds it, and no one sees it.',
+  CANCELLED: 'Discarded: it never reached the world, and no one saw it.',
+};
+
 /**
  * "Who will see" for an authoring proposal (docs/STAGE_320_DESIGN.md §5.7), read from the
  * proposed commands alone: the proposal is the DM's until confirmed (ADR 0018), each record is
@@ -34,9 +47,10 @@ export function whoWillSee(
   commands: readonly ProposableCommand[],
   directory: readonly EntityRef[],
   names: ReadonlyMap<string, string> = new Map(),
+  status: AuthoringProposalResponse['proposal']['status'] = 'DRAFT',
 ): readonly string[] {
   const who = (id: string) => names.get(id) ?? nameFor(directory, id);
-  const lines = [t('Until you confirm it, only you see this proposal.')];
+  const lines = [t(STATUS_LINE[status])];
   const held = new Map<string, KnowledgeScope>();
   for (const command of commands) {
     if (command.type === 'CreateEntity') {

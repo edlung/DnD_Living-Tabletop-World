@@ -13,6 +13,10 @@ a player or a lower perspective, and nothing here adds authority.
 - The canonical record is the stored command with the DM as issuer. A reason is descriptive: it is
   attached to a listed command only when recorded for the same character, and a reason whose
   command was never stored is never shown.
+- A blocker that is a player's own action (a player command a player issued) carries `player`
+  (the character and the command as submitted), so the DM confirms before undoing it; the
+  player is told through `GET …/undone-actions` (`http/routes/undone-routes.ts`, the requester's
+  own commands only; `undone-actions.test.ts`).
 - Never decide legality here: the World Engine decides every command; undo availability comes
   from `previewUndo` (`@ltw/domain`), the engine's own authorization and decision of `UndoCommand`
   against the snapshot, never by committing. Undo itself uses the existing routes.

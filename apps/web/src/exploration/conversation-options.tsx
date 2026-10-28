@@ -13,6 +13,7 @@ export function ConversationOptions({
   directory,
   characterId,
   npcId,
+  suggestedEvidence,
   locked,
   onRun,
 }: {
@@ -20,13 +21,15 @@ export function ConversationOptions({
   readonly directory: readonly EntityRef[];
   readonly characterId: string;
   readonly npcId: string;
+  /** The evidence the server suggests showing this NPC (its `show_evidence` action): preselected. */
+  readonly suggestedEvidence?: string | undefined;
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
   const names = distinctNames(t, directory);
   const [topic, setTopic] = useState('');
-  const [evidence, setEvidence] = useState('');
+  const [evidence, setEvidence] = useState(suggestedEvidence ?? '');
   const [showEvidence, setShowEvidence] = useState(false);
   const load = useCallback(
     (signal: AbortSignal) =>

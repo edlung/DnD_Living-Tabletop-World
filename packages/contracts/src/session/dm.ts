@@ -47,6 +47,15 @@ export interface DmUndoBlocker {
   readonly commandId: string;
   readonly commandType: KernelCommandType;
   readonly sequence: number;
+  /**
+   * Present when the blocker is a player's own action (a player command a player issued, not
+   * the DM): whose character it was and what was done, so the DM confirms before undoing it.
+   */
+  readonly player?: {
+    readonly character: EntityRef;
+    /** The command as the player submitted it, without the engine's recorded draws. */
+    readonly command: KernelCommandOf<PlayerCommandType>;
+  };
 }
 
 /**
@@ -121,4 +130,23 @@ export interface DmHistoryResponse {
   readonly entries: readonly DmHistoryEntry[];
   /** `before` for the next older page; null when nothing older remains. */
   readonly nextBefore: number | null;
+}
+
+/** At most this many of a player's undone actions are listed (`GET …/undone-actions`). */
+export const UNDONE_ACTIONS_LIMIT = 10;
+
+/**
+ * `GET /campaigns/:campaignId/undone-actions?perspective=CHARACTER:<id>`: the requester's own
+ * actions for that character that someone else (the DM) undid since the player last acted for
+ * it (until then the client tells the player), newest first. Only what the
+ * player submitted: no undo's issuer, time, position or any other perspective's data. Every
+ * other perspective gets an empty list.
+ */
+export interface UndoneActionsResponse {
+  readonly perspective: string;
+  readonly actions: readonly {
+    /** The player's own command ID: stable, so the client remembers what it already said. */
+    readonly commandId: string;
+    readonly command: KernelCommandOf<PlayerCommandType>;
+  }[];
 }

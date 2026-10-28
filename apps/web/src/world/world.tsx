@@ -32,6 +32,7 @@ import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
 import { PlacesSheet } from './places-sheet.tsx';
 import { Scene } from './scene.tsx';
+import { UndoneNotice } from './undone-notice.tsx';
 import { useScene, useWorldData } from './use-world-data.ts';
 
 interface Selected {
@@ -70,7 +71,8 @@ export function World({
 }) {
   const t = useT();
   const [revision, setRevision] = useState(0);
-  const [dmWeather, setDmWeather] = useState<Weather>('rain');
+  // The DM's weather choice; null until chosen, so the choice shows the place's weather now.
+  const [dmWeather, setDmWeather] = useState<Weather | null>(null);
   const [viewing, setViewing] = useState<string | null>(null);
   const [selected, setSelected] = useState<Selected | null>(null);
   // The last selection: its panel stays mounted while closed, so drafts in it survive.
@@ -287,6 +289,7 @@ export function World({
               rail={
                 <PartyRail api={api} encounter={encounter} selectedId={focus} onSelect={select} />
               }
+              notice={acting && <UndoneNotice api={api} directory={directory} />}
               conversation={
                 speaking && (
                   <DialoguePanel
@@ -395,7 +398,7 @@ export function World({
               }}
             />
           )}
-          <Dock isDm={isDm} shell={shell} />
+          <Dock isDm={isDm} shell={shell} drafts={isDm ? authoring.drafts.length : 0} />
         </div>
         {/* The result of an action sits above every sheet and panel, so its words and its Retry
             are never covered by the tool that caused it. */}

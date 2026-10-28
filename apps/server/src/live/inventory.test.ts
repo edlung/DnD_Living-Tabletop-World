@@ -33,7 +33,7 @@ describe('the coverage inventory', () => {
     expect(paths(coverageInventory(target({})))).toEqual(ALWAYS);
   });
 
-  it('adds surroundings and the focused context for an acting character', () => {
+  it('adds surroundings, the player’s undone actions and the focused context for an acting character', () => {
     const views = coverageInventory(
       target({
         perspective: 'PLAYER',
@@ -45,6 +45,7 @@ describe('the coverage inventory', () => {
     expect(paths(views)).toEqual([
       ...ALWAYS,
       '/campaigns/ravenford/surroundings',
+      '/campaigns/ravenford/undone-actions',
       '/campaigns/ravenford/entities/mira-vale/context ?',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
