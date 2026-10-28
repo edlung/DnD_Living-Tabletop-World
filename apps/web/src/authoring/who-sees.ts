@@ -24,7 +24,8 @@ function holder(t: Translate, scope: KnowledgeScope, who: (id: string) => string
 /**
  * "Who will see" for an authoring proposal (docs/STAGE_320_DESIGN.md §5.7), read from the
  * proposed commands alone: the proposal is the DM's until confirmed (ADR 0018), each record is
- * held by the scope its command names, an account marked willing is told when asked, and the
+ * held by the scope its command names, an account marked willing is told when asked and one
+ * marked guarded is kept back, and the
  * players meet what is created only through their characters, in play (invariant 5). Nothing
  * here decides visibility; the server's projections do.
  */
@@ -63,13 +64,23 @@ export function whoWillSee(
     } else if (command.type === 'AddKnowledge') {
       if (command.knowledgeId !== undefined) held.set(command.knowledgeId, command.scope);
       lines.push(holder(t, command.scope, who));
-    } else if (command.type === 'SetDisclosure' && command.disclosure === 'WILLING') {
+    } else if (command.type === 'SetDisclosure') {
       const scope = held.get(command.knowledgeId);
-      lines.push(
-        scope?.kind === 'NPC'
-          ? t('{name} will tell it when asked', { name: who(scope.npcId) })
-          : t('It will be told when asked'),
-      );
+      const npc = scope?.kind === 'NPC' ? who(scope.npcId) : null;
+      if (command.disclosure === 'WILLING') {
+        lines.push(
+          npc !== null
+            ? t('{name} will tell it when asked', { name: npc })
+            : t('It will be told when asked'),
+        );
+      } else {
+        // A guarded account (owner decisions 11, round 2): said plainly, never left implicit.
+        lines.push(
+          npc !== null
+            ? t('{name} will evade questions about it', { name: npc })
+            : t('It will be kept back when asked'),
+        );
+      }
     }
   }
   return lines;

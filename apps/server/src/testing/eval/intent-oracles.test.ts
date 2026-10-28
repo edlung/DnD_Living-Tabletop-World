@@ -44,6 +44,7 @@ const GUARD: readonly Command[] = [
   },
   {
     type: 'AddKnowledge',
+    knowledgeId: 'tomas-reed-account',
     scope: { kind: 'NPC', npcId: 'tomas-reed' },
     knowledgeType: 'TESTIMONY',
     statement: 'Свидетель: Томас Рид. Видел, как ушёл караван.',
@@ -51,6 +52,7 @@ const GUARD: readonly Command[] = [
     attributedTo: 'tomas-reed',
     knownSince: null,
   },
+  { type: 'SetDisclosure', knowledgeId: 'tomas-reed-account', disclosure: 'WILLING' },
 ];
 const FISHMONGER: readonly Command[] = [
   {
@@ -191,6 +193,17 @@ describe('intent oracles', () => {
       'a guard that is not an NPC',
       'add a guard with a witnessed account',
       at(GUARD, 0, { kind: 'character' }),
+    ],
+    // His account is told when asked, explicitly (owner decisions 11, round 2).
+    [
+      'an account left without a disclosure',
+      'add a guard with a witnessed account',
+      GUARD.slice(0, 2),
+    ],
+    [
+      'an account guarded though nobody said so',
+      'add a guard with a witnessed account',
+      at(GUARD, 2, { disclosure: 'GUARDED' }),
     ],
     // Declines expected.
     ['any proposal for a non-game request', 'not a game command', MOVE],

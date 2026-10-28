@@ -4,6 +4,7 @@ import type {
   DmIntentResponse,
   EntityContextResponse,
   NpcDialogueResponse,
+  NpcDialogueTraceView,
 } from '@ltw/contracts';
 import type { FastifyInstance } from 'fastify';
 import pg from 'pg';
@@ -96,6 +97,55 @@ describe('PostgresAiTraceStore', () => {
     await expect(pool.query('DELETE FROM ltw_ai_traces')).rejects.toThrow(/append-only/);
     await expect(pool.query('TRUNCATE ltw_ai_traces')).rejects.toThrow(/append-only/);
     expect(await store.get('ravenford', TRACE.traceId)).toEqual(TRACE);
+  });
+
+  it('lists an NPC’s spoken replies to one character in a campaign, latest few, oldest first', async () => {
+    const store = new PostgresAiTraceStore(pool);
+    const reply = (
+      n: number,
+      changes: Partial<NpcDialogueTraceView> = {},
+    ): NpcDialogueTraceView => ({
+      traceId: `00000000-00b1-4000-8000-${String(n).padStart(12, '0')}`,
+      campaignId: 'ravenford',
+      actorId: 'player-elowen',
+      purpose: 'npc-dialogue',
+      capability: 'npc-dialogue',
+      scope: 'NPC:orin-stonebeard',
+      sourceIds: ['world#clock'],
+      input: '',
+      attempts: [],
+      status: 'REPLIED',
+      intent: { kind: 'talk' },
+      commandId: null,
+      reply: 'Can I help you?',
+      speakerId: 'elowen-starwhisper',
+      issues: [],
+      canonicalEvents: [],
+      createdAt: `2026-10-29T12:00:0${String(n)}.000Z`,
+      ...changes,
+    });
+    const own = [1, 2, 3, 4, 5].map((n) => reply(n));
+    // A trace written before traces named the speaker.
+    const { speakerId: named, ...legacy } = reply(0);
+    expect(named).toBe('elowen-starwhisper');
+    for (const trace of [
+      ...own,
+      reply(6, { speakerId: 'bran-ironfoot' }),
+      reply(7, { scope: 'NPC:mira-vale' }),
+      reply(8, { status: 'AI_UNAVAILABLE', reply: null }),
+      reply(9, { campaignId: 'elsewhere' }),
+      legacy,
+    ]) {
+      await store.append(trace);
+    }
+    const ids = own.map((trace) => trace.traceId);
+    expect(await store.npcReplies('ravenford', 'orin-stonebeard', 'elowen-starwhisper', 4)).toEqual(
+      ids.slice(1),
+    );
+    expect(await store.npcReplies('ravenford', 'orin-stonebeard', 'bran-ironfoot', 4)).toHaveLength(
+      1,
+    );
+    expect(await store.npcReplies('ravenford', 'mira-vale', 'bran-ironfoot', 4)).toEqual([]);
   });
 
   it('records an intent over HTTP and leaves the event store untouched', async () => {

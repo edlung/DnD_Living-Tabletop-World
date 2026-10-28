@@ -57,7 +57,11 @@ describe('POST /campaigns/:campaignId/ai/intents', () => {
     expect(response.statusCode).toBe(200);
     const body = response.json<DmIntentResponse>();
     expect(body).toMatchObject({ status: 'PROPOSED', issues: [], committable: false });
-    expect(body.proposal?.commands.map((c) => c.type)).toEqual(['CreateEntity', 'AddKnowledge']);
+    expect(body.proposal?.commands.map((c) => c.type)).toEqual([
+      'CreateEntity',
+      'AddKnowledge',
+      'SetDisclosure',
+    ]);
     expect(await versionOf(engine)).toBe(before);
     for (const marker of ALL_SECRET_MARKERS) expect(response.body).not.toContain(marker);
   });

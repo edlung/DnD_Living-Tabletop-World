@@ -67,6 +67,7 @@ describe('interpretDmIntent', () => {
     expect(response.proposal?.commands.map((c) => c.type)).toEqual([
       'CreateEntity',
       'AddKnowledge',
+      'SetDisclosure',
     ]);
     expect(await world.version()).toBe(before);
 

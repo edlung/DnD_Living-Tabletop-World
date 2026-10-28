@@ -1,5 +1,11 @@
 import type { CommandResult, NpcDialogueResponse } from '@ltw/contracts';
-import { checkTalk, dialogueSourceIds, npcDialogueContext, sharedSources } from '@ltw/domain';
+import {
+  checkTalk,
+  DIALOGUE_LIMITS,
+  dialogueSourceIds,
+  npcDialogueContext,
+  sharedSources,
+} from '@ltw/domain';
 
 import { TOKENS, post } from '../ravenford-app.ts';
 import {
@@ -18,7 +24,8 @@ import { dialogueIsolation, forbiddenFor, lexicalLeaks } from './oracles.ts';
  * ADR 0032, checkpoint C repair 1). For each NPC: three plain cases, then every attitude and
  * disclosure scenario (`cases.ts`) with every Gate 04 intent and injection line. After each
  * request the runner rebuilds the context the route gave the NPC, with the route's own domain
- * functions on the same snapshot (`checkTalk`, `npcDialogueContext`, `sharedSources`), and checks
+ * functions on the same snapshot (`checkTalk`, `npcDialogueContext`, `sharedSources`, and the NPC's
+ * earlier replies read from the traces before the request), and checks
  * the exact provider input against it (`dialogueIsolation`) apart from the reply's lexical scan.
  * NPC fidelity and voice are never judged here.
  */
@@ -35,6 +42,7 @@ async function rebuiltContext(
   npc: EvalNpc,
   intent: DialogueIntent,
   command: CommandResult | null,
+  earlierReplies: readonly string[],
 ): Promise<{ text: string; sourceIds: readonly string[] } | null> {
   const snapshot = await world.engine.load(CAMPAIGN);
   if (snapshot === null) return null;
@@ -47,7 +55,11 @@ async function rebuiltContext(
     topicId: typeof intent['topicId'] === 'string' ? intent['topicId'] : null,
     justShared:
       command !== null && accepted ? sharedSources(snapshot.history, command.commandId) : [],
-    conversation: { history: snapshot.history, exchangeCommandId: command?.commandId ?? null },
+    conversation: {
+      history: snapshot.history,
+      exchangeCommandId: command?.commandId ?? null,
+      earlierReplies,
+    },
   });
   return context === null
     ? null
@@ -99,6 +111,13 @@ export async function dialogue(context: EvalContext): Promise<CapabilityResult> 
           }
         }
         const before = world.sent.length;
+        // Its earlier spoken replies, as the route reads them before this request.
+        const earlier = await world.ai.traces.npcReplies(
+          CAMPAIGN,
+          npc,
+          ELOWEN,
+          DIALOGUE_LIMITS.repliedOn,
+        );
         const { value: res, ms } = await timed(() =>
           post(
             world.app,
@@ -114,7 +133,7 @@ export async function dialogue(context: EvalContext): Promise<CapabilityResult> 
         const body = res.json<NpcDialogueResponse>();
         const reply = body.reply;
         const text = reply?.text ?? '';
-        const rebuilt = await rebuiltContext(world, npc, testCase.intent, body.command);
+        const rebuilt = await rebuiltContext(world, npc, testCase.intent, body.command, earlier);
         const seen = await observe(world, reply?.traceId ?? null);
         rows.push({
           case: `${npc}: ${testCase.name}`,

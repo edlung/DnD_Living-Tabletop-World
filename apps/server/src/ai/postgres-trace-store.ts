@@ -38,4 +38,22 @@ export class PostgresAiTraceStore {
     );
     return result.rows[0]?.trace ?? null;
   }
+
+  /** `AiTraceStore.npcReplies`: the latest `limit`, returned oldest first. */
+  async npcReplies(
+    campaignId: string,
+    npcId: string,
+    speakerId: string,
+    limit: number,
+  ): Promise<readonly string[]> {
+    const result = await this.#pool.query<{ trace_id: string }>(
+      `SELECT trace_id FROM ltw_ai_traces
+        WHERE campaign_id = $1 AND purpose = 'npc-dialogue' AND status = 'REPLIED'
+          AND trace->>'scope' = $2 AND trace->>'speakerId' = $3
+        ORDER BY created_at DESC, trace_id DESC
+        LIMIT $4`,
+      [campaignId, `NPC:${npcId}`, speakerId, limit],
+    );
+    return result.rows.map((row) => row.trace_id).reverse();
+  }
 }

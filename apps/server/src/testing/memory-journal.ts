@@ -33,6 +33,15 @@ export class MemoryAiJournal implements AiJournal {
     return this.store.get(campaignId, traceId);
   }
 
+  npcReplies(
+    campaignId: string,
+    npcId: string,
+    speakerId: string,
+    limit: number,
+  ): Promise<readonly string[]> {
+    return this.store.npcReplies(campaignId, npcId, speakerId, limit);
+  }
+
   diagnose(campaignId: string, traceId: string): Promise<AiAccountingDiagnosticView | null> {
     return memoryDiagnose(this.store, campaignId, traceId);
   }
