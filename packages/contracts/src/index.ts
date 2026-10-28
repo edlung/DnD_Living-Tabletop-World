@@ -111,6 +111,7 @@ export {
   type DmSubstitutionEntry,
   type DmUndoAvailability,
   type DmUndoBlocker,
+  type DmWorldEntry,
   type RecordSubstitutionRequest,
   type RecordSubstitutionResponse,
   type SubstitutionReason,

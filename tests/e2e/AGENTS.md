@@ -58,6 +58,8 @@ application on 4313.
   `fixtures/live-campaigns.json`. `authoring-undo.spec.ts` undoes from the history list that
   replaced the review's screen-local undo; while the history's preview says the world refuses an
   undo, Undo is disabled and described by its reason (the blockers), as in the stand-in journey.
+  `dm-tools.spec.ts` (`timeHistory`) finds the DM's day change and rain in History, undoes the
+  rain the day change names as its blocker, then the day, and the scene returns to Day 1.
   Helpers: `support/dm.ts`.
 - Shell (Stage 320, `docs/STAGE_320_DESIGN.md` §5.1): controls live in the dock's sheets, one
   open at a time, and a closed sheet stays mounted but `hidden`. Open the sheet that holds a

@@ -2,6 +2,7 @@ import {
   KERNEL_COMMAND_TYPES,
   type DmAuthoringEntry,
   type DmSubstitutionEntry,
+  type DmWorldEntry,
   type EntityRef,
 } from '@ltw/contracts';
 import { russianEntry, translate } from '@ltw/ui';
@@ -9,6 +10,7 @@ import { describe, expect, it } from 'vitest';
 
 import '../i18n/ru.ts';
 import '../i18n/ru-play.ts';
+import '../i18n/ru-visual.ts';
 import {
   describeSubstitution,
   entryDetails,
@@ -61,6 +63,28 @@ const tomas: DmAuthoringEntry = {
   summary: 'Tomas Reed guards North Gate.',
 };
 
+const dayTwo: DmWorldEntry = {
+  ...common,
+  commandId: 'http:dm-ravenford:day-two',
+  worldTime: 122_400,
+  kind: 'world',
+  change: { kind: 'time', from: 36_000, to: 122_400 },
+};
+
+const toRain = {
+  kind: 'weather',
+  location: { entityId: 'market-square', kind: 'location', name: 'Market Square' },
+  from: 'clear',
+  to: 'rain',
+} as const;
+
+const rain: DmWorldEntry = {
+  ...common,
+  commandId: 'http:dm-ravenford:rain',
+  kind: 'world',
+  change: toRain,
+};
+
 describe('the DM history in words', () => {
   it('says who the DM acted as, what was done, why and when', () => {
     expect(entryTitle(en, shot, directory)).toBe(
@@ -81,6 +105,25 @@ describe('the DM history in words', () => {
     expect(entryTitle(en, tomas, directory)).toBe('Tomas Reed guards North Gate.');
     expect(entryDetails(en, tomas)).toBe('Authoring · Day 1 · 10:00');
     expect(entryStatus(en, tomas)).toBe('Added to the world');
+  });
+
+  it('shows a time or weather change from what it was to what it became', () => {
+    expect(entryTitle(en, dayTwo, directory)).toBe('Time: Day 1 · 10:00 → Day 2 · 10:00');
+    expect(entryDetails(en, dayTwo)).toBe('World time · Day 2 · 10:00');
+    expect(entryStatus(en, dayTwo)).toBe('In effect');
+    expect(entryTitle(en, rain, directory)).toBe('Weather at Market Square: clear → rain');
+    expect(entryDetails(en, rain)).toBe('Weather · Day 1 · 10:00');
+    const first = { ...toRain, from: null };
+    expect(entryTitle(en, { ...rain, change: first }, directory)).toBe(
+      'Weather at Market Square: not set → rain',
+    );
+    expect(entryTitle(ru, dayTwo, directory)).toBe('Время: День 1 · 10:00 → День 2 · 10:00');
+    expect(entryDetails(ru, dayTwo)).toBe('Время в мире · День 2 · 10:00');
+    expect(entryTitle(ru, rain, directory)).toBe('Погода (Market Square): ясно → дождь');
+    expect(entryTitle(ru, { ...rain, change: first }, directory)).toBe(
+      'Погода (Market Square): не задана → дождь',
+    );
+    expect(entryDetails(ru, rain)).toBe('Погода · День 1 · 10:00');
   });
 
   it('describes every player command the DM may issue for a character', () => {

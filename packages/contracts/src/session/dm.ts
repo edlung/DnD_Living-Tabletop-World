@@ -5,6 +5,7 @@ import { entityIdSchema } from '../kernel/identifiers.ts';
 import type { KernelCommandOf, KernelCommandType } from '../kernel/commands.ts';
 import type { RejectionCode } from '../kernel/results.ts';
 import type { EntityRef } from '../knowledge/views.ts';
+import type { Weather } from '../visual/commands.ts';
 
 /**
  * The DM's table tools of the live session (docs/adr/0033-live-session.md §6–7;
@@ -95,7 +96,24 @@ export interface DmSubstitutionEntry extends DmHistoryCommon {
   } | null;
 }
 
-export type DmHistoryEntry = DmAuthoringEntry | DmSubstitutionEntry;
+/**
+ * A world-time or weather change the DM made at the table (`AdvanceWorldTime`, `SetWeather`),
+ * as the World Engine recorded it; undone as `UndoCommand` (owner decision SI-D4, 2026-10-28).
+ */
+export interface DmWorldEntry extends DmHistoryCommon {
+  readonly kind: 'world';
+  readonly change:
+    | { readonly kind: 'time'; readonly from: number; readonly to: number }
+    | {
+        readonly kind: 'weather';
+        readonly location: EntityRef;
+        /** Null when the place had no weather of its own before. */
+        readonly from: Weather | null;
+        readonly to: Weather;
+      };
+}
+
+export type DmHistoryEntry = DmAuthoringEntry | DmSubstitutionEntry | DmWorldEntry;
 
 /** `GET /campaigns/:campaignId/dm/history?perspective=DM[&before=<sequence>]` (DM only). */
 export interface DmHistoryResponse {

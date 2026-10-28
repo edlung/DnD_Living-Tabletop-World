@@ -11,6 +11,19 @@ import { useHistoryUndo } from './use-history-undo.ts';
 
 type Actions = ReturnType<typeof useHistoryUndo>;
 
+const KIND_GLYPH = {
+  authoring: 'add-character',
+  substitution: 'perform',
+  time: 'time',
+  weather: 'weather',
+} as const;
+
+const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {
+  authoring: 'Undo this addition',
+  substitution: 'Undo this action',
+  world: 'Undo this change',
+};
+
 /**
  * The DM history with its undo (docs/adr/0033-live-session.md §7; replaces the screen-local
  * undo of ADR 0029 §8), in the History sheet. Read from the server in the DM perspective only,
@@ -111,7 +124,9 @@ function HistoryPage({
     <>
       {before === null && entries.length === 0 && (
         <p className="muted">
-          {t('Nothing yet: authoring commits and actions taken for players appear here.')}
+          {t(
+            'Nothing yet: authoring commits, actions taken for players, and time and weather changes appear here.',
+          )}
         </p>
       )}
       <ol className="dm-history-list">
@@ -170,7 +185,7 @@ export function HistoryEntry({
   return (
     <li className={`dm-history-entry dm-history-entry--${entry.status.toLowerCase()}`}>
       <Glyph
-        name={entry.kind === 'authoring' ? 'add-character' : 'perform'}
+        name={KIND_GLYPH[entry.kind === 'world' ? entry.change.kind : entry.kind]}
         className="history-kind"
       />
       <div className="history-body">
@@ -198,7 +213,7 @@ export function HistoryEntry({
               }}
             >
               <Glyph name="undo" />
-              {entry.kind === 'authoring' ? t('Undo this addition') : t('Undo this action')}
+              {t(UNDO_LABEL[entry.kind])}
             </button>
           </div>
         )}
