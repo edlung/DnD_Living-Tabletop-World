@@ -1,6 +1,7 @@
 import type {
   ContextAction,
   ContextActionId,
+  ContextHint,
   EntityContextResponse,
   EntityRef,
   KnowledgeView,
@@ -39,6 +40,10 @@ export const CONVERSATION: ReadonlySet<string> = new Set(['talk', 'ask_about', '
 /** Why the server says an action is unavailable, in words (its fixed reason vocabulary). */
 export const reasonWords = (t: Translate, action: ContextAction): string =>
   t(action.reason?.replaceAll('_', ' ').toLowerCase() ?? 'Unavailable');
+
+/** A hint the server attaches to an action (its fixed vocabulary), in words. */
+export const hintWords = (t: Translate, hint: ContextHint): string =>
+  t(hint.replaceAll('_', ' ').toLowerCase());
 
 export function ContextActions({
   api,
@@ -136,6 +141,10 @@ export function ContextActions({
           directory={directory}
           characterId={actor}
           npcId={entity.entityId}
+          suggestedEvidence={
+            actions.find((action) => action.id === 'show_evidence' && action.legal)?.evidence
+              ?.knowledgeId
+          }
           locked={locked}
           onRun={onRun}
         />
@@ -154,7 +163,7 @@ export function ContextActions({
               </strong>
               <span>{action.legal ? t('Available in the world') : reasonWords(t, action)}</span>
               {action.hints?.map((hint) => (
-                <small key={hint}>{t(hint.replaceAll('_', ' ').toLowerCase())}</small>
+                <small key={hint}>{hintWords(t, hint)}</small>
               ))}
               {action.resolution?.moveRequiredFt !== undefined && (
                 <small>

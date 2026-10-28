@@ -129,6 +129,59 @@ describe('a player’s action undone by the DM', () => {
     expect((await undone(table, TOKENS.player, `CHARACTER:${ELOWEN}`)).body.actions).toEqual([]);
   });
 
+  it('never brings back an undo the player has played past, after a later undo', async () => {
+    const table = await dmTable();
+    tables.push(table);
+    const { command } = table;
+    const at = (place: string) => ({
+      type: 'EnterLocation',
+      characterId: ELOWEN,
+      locationId: place,
+    });
+    const listed = async () =>
+      (await undone(table, TOKENS.player, `CHARACTER:${ELOWEN}`)).body.actions.map(
+        (action) => action.commandId,
+      );
+    // A, undone; the player goes on with B, so A is no longer news.
+    expect((await command(at('north-gate'), TOKENS.player, 'a')).result.status).toBe('accepted');
+    const undoA = { type: 'UndoCommand', targetCommandId: 'http:player-elowen:a' };
+    expect((await command(undoA, TOKENS.dm)).result.status).toBe('accepted');
+    expect(await listed()).toEqual(['http:player-elowen:a']);
+    expect((await command(at('orins-alchemy'), TOKENS.player, 'b')).result.status).toBe('accepted');
+    expect(await listed()).toEqual([]);
+    // B undone: B alone is news; A stays played past.
+    const undoB = { type: 'UndoCommand', targetCommandId: 'http:player-elowen:b' };
+    expect((await command(undoB, TOKENS.dm)).result.status).toBe('accepted');
+    expect(await listed()).toEqual(['http:player-elowen:b']);
+  });
+
+  it('names no player, and promises no notice, once the character is released', async () => {
+    const table = await dmTable();
+    tables.push(table);
+    const { command, page } = table;
+    expect(
+      (await command({ type: 'AdvanceWorldTime', to: 122_400 }, TOKENS.dm, 'day')).status,
+    ).toBe(200);
+    const road = { type: 'EnterLocation', characterId: ELOWEN, locationId: 'old-trade-road' };
+    expect((await command(road, TOKENS.player, 'road')).result.status).toBe('accepted');
+    const blockerOf = async () => {
+      const [day] = (await page()).entries as [DmHistoryEntry];
+      return day.undo && !day.undo.possible ? day.undo.blockers[0] : undefined;
+    };
+    expect((await blockerOf())?.player?.character.entityId).toBe(ELOWEN);
+    // The seat is freed (as a revoked member's is: not through the commands route).
+    const released = await table.engine.execute({
+      commandId: 'release-elowen',
+      campaignId: 'ravenford',
+      actor: { actorId: 'dm-ravenford', kind: 'user' },
+      command: { type: 'ReleaseCharacter', characterId: ELOWEN },
+    });
+    expect(released.status).toBe('accepted');
+    const blocker = await blockerOf();
+    expect(blocker?.commandId).toBe('http:player-elowen:road');
+    expect(blocker?.player).toBeUndefined();
+  });
+
   it('is refused to anyone outside the campaign, as every view is', async () => {
     const table = await dmTable();
     tables.push(table);

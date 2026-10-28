@@ -7,10 +7,8 @@ import { useResource } from '../api/resource.ts';
 import { describePlayerAction } from '../dm/history-text.ts';
 import { Glyph } from '../visual/glyph.tsx';
 
-interface Told {
-  readonly commandId: string;
-  readonly text: string;
-}
+/** What was told: the player's own command, put into words at each render (a language switch). */
+type Told = UndoneActionsResponse['actions'][number];
 
 /**
  * "The DM undid your action: …" (docs/adr/0033-live-session.md, amendment of 2026-10-28): the
@@ -49,25 +47,19 @@ export function UndoneNotice({
           !current.some((entry) => entry.commandId === action.commandId),
       );
       if (fresh.length === 0) return current;
-      return [
-        ...fresh.map((action) => ({
-          commandId: action.commandId,
-          text: describePlayerAction(
-            t,
-            action.command,
-            (id) =>
-              seen.current.get(id) ??
-              t(
-                action.command.type === 'EnterLocation'
-                  ? 'Unidentified location'
-                  : 'Unidentified subject',
-              ),
-          ),
-        })),
-        ...current,
-      ];
+      return [...fresh, ...current];
     });
   }, [listed]);
+  const words = (entry: Told) =>
+    describePlayerAction(
+      t,
+      entry.command,
+      (id) =>
+        seen.current.get(id) ??
+        t(
+          entry.command.type === 'EnterLocation' ? 'Unidentified location' : 'Unidentified subject',
+        ),
+    );
   return (
     // Always present, so what arrives is announced once (a polite live region).
     <div className="undone-notice-region" role="status" aria-live="polite">
@@ -76,13 +68,15 @@ export function UndoneNotice({
           <Glyph name="undo" />
           <div>
             {told.length === 1 ? (
-              <p>{t('The DM undid your action: {action}', { action: told[0]?.text ?? '' })}</p>
+              <p>
+                {t('The DM undid your action: {action}', { action: told[0] ? words(told[0]) : '' })}
+              </p>
             ) : (
               <>
                 <p>{t('The DM undid some of your actions:')}</p>
                 <ul>
                   {told.map((entry) => (
-                    <li key={entry.commandId}>{entry.text}</li>
+                    <li key={entry.commandId}>{words(entry)}</li>
                   ))}
                 </ul>
               </>

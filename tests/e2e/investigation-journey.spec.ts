@@ -88,6 +88,8 @@ test('objects lead from Mira to evidence, a hypothesis, contradictory testimony,
   ).toHaveCount(0);
   await entityDetails(page).getByText('More conversation options', { exact: true }).click();
   await entityDetails(page).getByText('Show evidence', { exact: true }).click();
+  // The evidence the world suggests for Orin is chosen already; another can still be picked.
+  await expect(page.getByLabel('Evidence to show', { exact: true })).not.toHaveValue('');
   await page
     .getByLabel('Evidence to show', { exact: true })
     .selectOption({ label: 'A strange symbol is burned into a wagon plank.' });

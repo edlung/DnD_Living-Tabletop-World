@@ -60,12 +60,13 @@ export function undoneActions(
     PLAYER_TYPES.has(stored.commandType) &&
     actingCharacter(stored) === characterId;
   const traces = [...state.commands.values()];
-  // News until the player acts again: an undo before the player's latest action in effect has
-  // already been played past, so it is no longer listed (no browser storage remembers it).
+  // News until the player acts again: an undo before the player's latest action (undone or
+  // not, so a later undo never brings an older one back) has already been played past, so it
+  // is no longer listed (no browser storage remembers it).
   const latest = Math.max(
     0,
     ...traces
-      .filter((trace) => trace.undoneBy === null && mine(byId.get(trace.commandId)))
+      .filter((trace) => mine(byId.get(trace.commandId)))
       .map((trace) => trace.firstSequence),
   );
   const own = traces.flatMap((trace) => {

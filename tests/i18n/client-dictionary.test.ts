@@ -10,7 +10,11 @@ import {
 import { russianEntry, type Translate } from '../../packages/ui/src/index.ts';
 import { describe, expect, it } from 'vitest';
 
-import { actionLabel, reasonWords } from '../../apps/web/src/exploration/context-actions.tsx';
+import {
+  actionLabel,
+  hintWords,
+  reasonWords,
+} from '../../apps/web/src/exploration/context-actions.tsx';
 
 import '../../apps/web/src/i18n/ru.ts';
 import '../../apps/web/src/i18n/ru-play.ts';
@@ -95,7 +99,7 @@ describe('the Russian client dictionary', () => {
     for (const reason of CONTEXT_ILLEGAL_REASONS) {
       reasonWords(t, { id: 'talk', legal: false, reason } as unknown as ContextAction);
     }
-    for (const hint of CONTEXT_HINTS) t(hint.replaceAll('_', ' ').toLowerCase());
+    for (const hint of CONTEXT_HINTS) hintWords(t, hint);
     expect([...asked].filter((key) => russianEntry(key) === undefined)).toEqual([]);
   });
 

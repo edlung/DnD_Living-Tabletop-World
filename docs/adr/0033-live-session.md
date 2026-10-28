@@ -81,14 +81,16 @@ control stayed offered after Day 2.
   20–27): **a player's action the DM undoes.** Reaching an earlier step (a day change) meant
   undoing the player's later actions one by one, silently: the player found the world rolled
   back with no word. (1) In §7 a blocker (`DmUndoBlocker`) that is a player's own action — a
-  player command issued by a user other than the campaign's DM — carries `player`: the
+  player command issued by a user other than the campaign's DM, for a character that user still
+  plays on the roster — carries `player`: the
   character (`EntityRef`) and the command as submitted, without the engine's draws. History says
   «Действие игрока (Эловен Старвиспер): Переход: Старая Торговая дорога» and its button
   "Undo the action of Elowen Starwhisper first" asks first, inline: what it takes back and that
   the player will be told; "Keep it" changes nothing. Undo itself is unchanged (`UndoCommand`).
   (2) `GET …/undone-actions?perspective=…` lists the requester's own player commands for the
   perspective's character that someone else undid since the player last acted for that
-  character (an undo already played past is no longer news), newest first, at most 10: the
+  character, undone or not (an undo already played past is no longer news, and a later undo never
+  brings it back), newest first, at most 10: the
   player's own command ID and submission only, never who undid it, when, an event position or
   anything of another perspective. Any perspective other than the requester's own character
   (`PARTY`, `PUBLIC`, the DM's, the DM holding the character's) answers an empty list. The

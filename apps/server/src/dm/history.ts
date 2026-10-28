@@ -276,8 +276,10 @@ function availability(
 
 /**
  * A blocker that is a player's own action: a player command a player issued (not the DM, who
- * also issues player commands when acting for a character). The DM is asked to confirm before
- * undoing it, and its player is told afterwards (`undone-actions.ts`).
+ * also issues player commands when acting for a character) for a character that player still
+ * plays. The DM is asked to confirm before undoing it, and its player is told afterwards
+ * (`http/routes/undone-routes.ts`); an action of a released character is a plain step, with
+ * no promise of a notice no one would receive.
  */
 function playersAction(
   snapshot: CampaignSnapshot,
@@ -288,6 +290,8 @@ function playersAction(
   if (!PLAYER_TYPES.has(stored.commandType)) return null;
   const characterId = actingCharacter(stored);
   if (characterId === null) return null;
+  // Only while the issuer still plays the character: then, and only then, is that player told.
+  if (snapshot.state.roster.get(characterId) !== stored.actor.actorId) return null;
   return { character: characterRef(snapshot, characterId), command: submitted(stored) };
 }
 
