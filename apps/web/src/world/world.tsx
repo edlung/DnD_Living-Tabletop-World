@@ -14,6 +14,7 @@ import { ActionNotice } from '../exploration/action-notice.tsx';
 import { useDmImagesState } from '../images/dm-images.ts';
 import { WorldPictures } from '../images/world-pictures.tsx';
 import { CONVERSATION_PANEL_ID, DialoguePanel } from '../exploration/dialogue-panel.tsx';
+import { toldAbout } from '../exploration/outcome-messages.ts';
 import {
   useAction,
   type ActionNotice as Notice,
@@ -112,7 +113,11 @@ export function World({
   }, []);
   // Players act as their character; the DM alone runs the existing encounter operations, and
   // fights as a player's character only after choosing to, each command with its reason.
-  const action = useAction(api, canAct || standIn !== null || isDm, onResolved);
+  // Read when a question's answer arrives, from the records shown before it was asked.
+  const knowledge = data?.knowledge.knowledge ?? [];
+  const action = useAction(api, canAct || standIn !== null || isDm, onResolved, (npcId, topicId) =>
+    toldAbout(knowledge, npcId, topicId),
+  );
   // A spoken line belongs to the conversation with whoever spoke it; an NPC who would not
   // talk now leaves no conversation open (no "Keep talking" after a refusal).
   useEffect(() => {
