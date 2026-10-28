@@ -99,6 +99,8 @@ export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependenci
       npcId: path.npcId,
       topicId: 'topicId' in body.intent ? body.intent.topicId : null,
       justShared: result && accepted ? sharedSources(after.history, result.commandId) : [],
+      // Whether they have spoken before is read before this exchange's command.
+      priorState: before.state,
     });
     if (!context) return refused('NO_EFFECT', seen);
 

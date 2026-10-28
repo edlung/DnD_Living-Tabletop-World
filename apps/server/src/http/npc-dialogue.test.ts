@@ -131,6 +131,28 @@ describe('talking with an NPC', () => {
     expect(JSON.stringify(told)).not.toContain('reagent');
   });
 
+  it('remembers what it told: no fresh greeting, and asked again it repeats, never denies (SI-N1)', async () => {
+    const greeting = (await say('mira-vale', { kind: 'talk' })).json<NpcDialogueResponse>();
+    expect(greeting.reply?.text).toBe('Mira Vale looks up. “Can I help you?”');
+
+    const asked = (
+      await say('mira-vale', { kind: 'ask', topicId: 'old-trade-road' })
+    ).json<NpcDialogueResponse>();
+    expect(asked.command).toMatchObject({ status: 'accepted' });
+
+    const again = (await say('mira-vale', { kind: 'talk' })).json<NpcDialogueResponse>();
+    expect(again.reply?.text).toBe('Mira Vale looks up. “Back again. What else can I do for you?”');
+
+    const repeated = (
+      await say('mira-vale', { kind: 'ask', topicId: 'old-trade-road' })
+    ).json<NpcDialogueResponse>();
+    expect(repeated.command).toMatchObject({ status: 'rejected', code: 'NO_EFFECT' });
+    expect(repeated.reply?.text).toContain('As I told you:');
+    expect(repeated.reply?.text).toContain(
+      'A similar caravan vanished on the Old Trade Road last spring.',
+    );
+  });
+
   it('reads an NPC once with Insight, and keeps talking after', async () => {
     const first = (
       await say('mira-vale', { kind: 'insight', topicId: 'guild-caravan' })
