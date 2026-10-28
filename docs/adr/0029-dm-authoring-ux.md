@@ -76,10 +76,15 @@ work as written. Asset approval, clue authoring, and multi-NPC proposals are out
     discarded draft never returns. Nothing is written to browser storage; a lower perspective
     reads nothing. The session hook moved from the DM sheets to the world screen, which a
     perspective change still remounts.
+    "Your unfinished proposal was restored." shows only when the restored draft is the one on
+    screen. When more than one draft is open, an "Open drafts" list (newest first, with its time)
+    under the intent field resumes or discards each one, so older drafts never pile up unseen.
   - **SI-D8, the DM edits an NPC from its card.** In the DM perspective an NPC's details show its
     recorded description ("Description (DM)", from the DM's lineage) and "Edit name and
     description". Submitting stores a DM-written proposal of one `UpdateEntityProfile` with only
-    the changed fields and opens it under Add to the world: the same preview, who-sees (players
+    the changed fields (an empty field keeps its value; the World Engine's limits, 120 and 4000
+    characters, are the fields' maximum) and opens it under Add to the world; the form keeps its
+    words until the server has stored the proposal: the same preview, who-sees (players
     who know the NPC see the new name; players never read the description), confirm, and
     History undo. One proposal at a time: while a draft is open the form says so and offers to
     show it. The proposal editor also edits such a proposal's name and description.

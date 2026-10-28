@@ -38,8 +38,39 @@ export interface ProposalStore {
   append(revision: ProposalRevision): Promise<void>;
   /** The latest revision, or null when the proposal does not exist in that campaign. */
   latest(campaignId: string, proposalId: string): Promise<ProposalRevision | null>;
-  /** The latest revision of every proposal of the campaign, in no particular order. */
-  latestOfCampaign(campaignId: string): Promise<readonly ProposalRevision[]>;
+  /**
+   * One page of the campaign's proposals whose latest revision is not cancelled, the most
+   * recently changed first (ties: the larger proposal ID first), after `after` when given. Only
+   * what a list shows. Whether one was committed is canon's: a store may leave committed ones out
+   * already, and the caller still filters by canon.
+   */
+  uncancelled(campaignId: string, page: DraftPage): Promise<readonly DraftSummary[]>;
+}
+
+/** A proposal's latest revision, as the DM's list of drafts shows it. */
+export interface DraftSummary {
+  readonly proposalId: string;
+  readonly revision: number;
+  readonly summary: string;
+  readonly source: AuthoringSource;
+  readonly createdAt: string;
+}
+
+export interface DraftPage {
+  readonly limit: number;
+  /** The last summary of the previous page; null for the first. */
+  readonly after: { readonly createdAt: string; readonly proposalId: string } | null;
+}
+
+/** Newest first, then the larger proposal ID: the order of `uncancelled`. */
+export function compareDrafts(
+  a: { readonly createdAt: string; readonly proposalId: string },
+  b: { readonly createdAt: string; readonly proposalId: string },
+): number {
+  return (
+    Date.parse(b.createdAt) - Date.parse(a.createdAt) ||
+    (a.proposalId < b.proposalId ? 1 : a.proposalId > b.proposalId ? -1 : 0)
+  );
 }
 
 export class ProposalConflictError extends Error {
@@ -88,12 +119,18 @@ export class InMemoryProposalStore implements ProposalStore {
     return Promise.resolve(latest?.campaignId === campaignId ? structuredClone(latest) : null);
   }
 
-  async latestOfCampaign(campaignId: string): Promise<readonly ProposalRevision[]> {
-    const found: ProposalRevision[] = [];
+  async uncancelled(campaignId: string, page: DraftPage): Promise<readonly DraftSummary[]> {
+    const found: DraftSummary[] = [];
     for (const proposalId of this.#revisions.keys()) {
       const latest = await this.latest(campaignId, proposalId);
-      if (latest) found.push(latest);
+      if (!latest || latest.cancelled === true) continue;
+      const { revision, summary, source, createdAt } = latest;
+      found.push({ proposalId, revision, summary, source, createdAt });
     }
-    return found;
+    const { after } = page;
+    return found
+      .sort(compareDrafts)
+      .filter((draft) => after === null || compareDrafts(after, draft) < 0)
+      .slice(0, page.limit);
   }
 }

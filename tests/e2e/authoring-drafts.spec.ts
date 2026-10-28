@@ -3,6 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import {
   ADD_TO_THE_WORLD,
   AUTHORING_CAMPAIGNS,
+  dmRequest,
   enterAsDm,
   propose,
   review,
@@ -96,4 +97,50 @@ test('a witness elsewhere is explained, never moved, and the description is one 
   await review(page).getByRole('button', { name: 'Confirm and add to the world' }).click();
   await expect(review(page)).toContainText('Added to the world · revision 3');
   await expect(page.getByRole('button', { name: 'Tomas Reed', exact: true })).toBeVisible();
+});
+
+test('every open draft stays reachable: the newest is restored, the others resumed or discarded', async ({
+  page,
+}) => {
+  const campaign = AUTHORING_CAMPAIGNS.drafts;
+  await enterAsDm(page, campaign);
+  for (const name of ['Ada Brook', 'Bram Holt', 'Cora Lane']) {
+    const created = await dmRequest(page, campaign, 'post', 'authoring/proposals', {
+      summary: `Add ${name}.`,
+      commands: [
+        {
+          type: 'CreateEntity',
+          kind: 'npc',
+          name,
+          description: 'A traveller.',
+          existsSince: null,
+          placement: { locationId: 'north-gate', since: null },
+        },
+      ],
+    });
+    expect(created.status).toBe(201);
+  }
+  await page.reload();
+  await enterAsDm(page, campaign);
+  await openSheet(page, ADD_TO_THE_WORLD);
+  await expect(review(page)).toContainText('Add Cora Lane.');
+  const drafts = page.getByRole('region', { name: 'Open drafts', exact: true });
+  await expect(drafts.getByRole('listitem')).toHaveCount(3);
+  await expect(drafts.getByRole('listitem').first()).toContainText('shown below');
+
+  await drafts.getByRole('button', { name: 'Resume: Add Ada Brook.' }).click();
+  await expect(review(page)).toContainText('Add Ada Brook.');
+  await drafts.getByRole('button', { name: 'Discard: Add Bram Holt.' }).click();
+  await expect(drafts.getByRole('listitem')).toHaveCount(2);
+  await expect(review(page)).toContainText('Add Ada Brook.');
+  // Discarding the one shown closes its review; one draft left needs no list.
+  await drafts.getByRole('button', { name: 'Discard: Add Ada Brook.' }).click();
+  await expect(review(page)).toHaveCount(0);
+  await expect(drafts).toHaveCount(0);
+
+  await page.reload();
+  await enterAsDm(page, campaign);
+  await openSheet(page, ADD_TO_THE_WORLD);
+  await expect(review(page)).toContainText('Add Cora Lane.');
+  await expect(page.getByRole('region', { name: 'Open drafts', exact: true })).toHaveCount(0);
 });

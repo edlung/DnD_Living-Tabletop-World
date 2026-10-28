@@ -81,6 +81,7 @@ ADR 0018's checks remain as they were (`KNOWLEDGE_BEFORE_SUBJECT` blocks; `NAME_
 
 - 2026-10-04 (Stage 130, ADR 0020 §2–3): an NPC's attitude now changes disclosure (hostile or wary keeps guarded records back; trusted shares them without evidence) and is part of the NPC's own dialogue context, so a reply's tone may reflect it. No player view or outcome shows the attitude itself.
 - 2026-10-28 (owner decisions 11, SI-D7): **`WITNESS_ELSEWHERE` no longer offers to place the witness where it happened.** An NPC has one recorded place, where they are now, so "place them there since then" moved them today (Stage 360 stand-in DM, step 09). The warning now says that the world records only where someone is now, not where they were before, and offers "make it a rumor they heard" and acknowledgement; the DM's client adds "Edit the description" (the proposal's editor for an NPC it creates, the NPC card's edit for one already in the world, ADR 0029 amendment 2026-10-28). Modelling past whereabouts is future work (after v0.1).
+- 2026-10-28 (review of owner decisions 11): `NAME_IN_USE` names the other entities by name with where each one is, never by ID (IDs are opaque since Gate 06). `RENAME_KNOWN` also warns when a single character knows the NPC by name ("… is known by name to Elowen Starwhisper"), since that character's accounts change too.
 
 ## Invariants affected
 

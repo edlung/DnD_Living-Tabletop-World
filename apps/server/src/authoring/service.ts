@@ -7,6 +7,7 @@ import {
   type CommandResult,
   type CommitProposalRequest,
   type CreateProposalRequest,
+  type OpenProposalSummary,
   type OpenProposalsResponse,
   type ProposableCommand,
   type ReviseProposalRequest,
@@ -26,6 +27,7 @@ import {
 import { traceScopedIds, withOpaqueIds } from './opaque-ids.ts';
 import {
   ProposalConflictError,
+  type DraftPage,
   type ProposalRevision,
   type ProposalStore,
 } from './proposal-store.ts';
@@ -61,6 +63,8 @@ export type AuthoringOutcome<T> =
 
 /** How many open drafts the list returns, the most recently changed first. */
 export const OPEN_PROPOSALS_LIMIT = 20;
+/** How many proposals one read of the store returns while the list fills. */
+const OPEN_PROPOSALS_PAGE = 50;
 
 const ok = <T>(value: T): AuthoringOutcome<T> => ({ kind: 'ok', value });
 const error = <T>(
@@ -142,25 +146,24 @@ export class AuthoringService {
   async open(actor: Actor, campaignId: string): Promise<AuthoringOutcome<OpenProposalsResponse>> {
     const snapshot = await this.#asDm(actor, campaignId);
     if (snapshot.kind !== 'ok') return snapshot;
-    const latest = await this.#deps.proposals.latestOfCampaign(campaignId);
-    const proposals = latest
-      .filter(
-        (revision) =>
-          revision.cancelled !== true && !committed(snapshot.value, revision.proposalId),
-      )
-      .sort(
-        (a, b) =>
-          Date.parse(b.createdAt) - Date.parse(a.createdAt) ||
-          (a.proposalId < b.proposalId ? 1 : a.proposalId > b.proposalId ? -1 : 0),
-      )
-      .slice(0, OPEN_PROPOSALS_LIMIT)
-      .map(({ proposalId, revision, summary, source, createdAt }) => ({
-        proposalId,
-        revision,
-        summary,
-        source,
-        updatedAt: createdAt,
-      }));
+    // Committed proposals are canon's to tell, so pages are read until enough drafts remain.
+    const proposals: OpenProposalSummary[] = [];
+    let after: DraftPage['after'] = null;
+    for (;;) {
+      const page = await this.#deps.proposals.uncancelled(campaignId, {
+        limit: OPEN_PROPOSALS_PAGE,
+        after,
+      });
+      for (const draft of page) {
+        if (committed(snapshot.value, draft.proposalId)) continue;
+        const { proposalId, revision, summary, source, createdAt } = draft;
+        proposals.push({ proposalId, revision, summary, source, updatedAt: createdAt });
+        if (proposals.length === OPEN_PROPOSALS_LIMIT) return ok({ proposals });
+      }
+      const last = page.at(-1);
+      if (page.length < OPEN_PROPOSALS_PAGE || !last) break;
+      after = { createdAt: last.createdAt, proposalId: last.proposalId };
+    }
     return ok({ proposals });
   }
 

@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
+import { OpenDrafts } from './open-drafts.tsx';
 import { ProposalReview } from './proposal-review.tsx';
 import type { useAuthoring } from './use-authoring.ts';
 
@@ -76,6 +77,13 @@ export function AuthoringPanel({
           {t(authoring.notice.text)}
         </p>
       )}
+      <OpenDrafts
+        drafts={authoring.drafts}
+        shownId={authoring.proposal?.proposal.proposalId ?? null}
+        busy={authoring.busy}
+        onResume={(id) => void authoring.resume(id)}
+        onDiscard={(id) => void authoring.discard(id)}
+      />
       {authoring.proposal && (
         <ProposalReview
           data={authoring.proposal}

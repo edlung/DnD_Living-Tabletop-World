@@ -2,6 +2,7 @@ import type {
   AuthoringProposalResponse,
   CommandRejected,
   DmIntentResponse,
+  OpenProposalSummary,
   OpenProposalsResponse,
   ProposableCommand,
 } from '@ltw/contracts';
@@ -40,7 +41,15 @@ const REFUSALS: Readonly<Record<string, string>> = {
  * never returns.
  */
 export function useAuthoring(api: WorldApi, enabled: boolean, onWorldChanged: () => void) {
-  const [proposal, setProposal] = useState<AuthoringProposalResponse | null>(null);
+  const [proposal, setShown] = useState<AuthoringProposalResponse | null>(null);
+  // What the screen shows now, readable at once by a restore that finishes later.
+  const shownNow = useRef<AuthoringProposalResponse | null>(null);
+  const setProposal = (next: AuthoringProposalResponse | null) => {
+    shownNow.current = next;
+    setShown(next);
+  };
+  /** The DM's open drafts, newest first (the server's list, read again after each step). */
+  const [drafts, setDrafts] = useState<readonly OpenProposalSummary[]>([]);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState<Notice | null>(null);
   const inFlight = useRef(false);
@@ -56,17 +65,17 @@ export function useAuthoring(api: WorldApi, enabled: boolean, onWorldChanged: ()
       controller.current?.abort();
     };
   }, []);
+  async function readDrafts(signal: AbortSignal): Promise<readonly OpenProposalSummary[]> {
+    const open = await api.get<OpenProposalsResponse>('authoring/proposals', signal, false);
+    if (isLive()) setDrafts(open.proposals);
+    return open.proposals;
+  }
   // The unfinished draft comes back, unless the DM has already started another.
   useEffect(() => {
     if (!enabled) return;
     const request = new AbortController();
     void (async () => {
-      const open = await api.get<OpenProposalsResponse>(
-        'authoring/proposals',
-        request.signal,
-        false,
-      );
-      const newest = open.proposals[0];
+      const [newest] = await readDrafts(request.signal);
       if (!newest || !isLive() || !idle()) return;
       const fresh = await api.get<unknown>(
         `authoring/proposals/${newest.proposalId}`,
@@ -74,11 +83,10 @@ export function useAuthoring(api: WorldApi, enabled: boolean, onWorldChanged: ()
         false,
       );
       if (!isLive() || !idle() || !isProposal(fresh)) return;
-      if (fresh.proposal.status !== 'DRAFT') return;
-      setProposal((current) => current ?? fresh);
-      setNotice(
-        (current) => current ?? { kind: 'info', text: 'Your unfinished proposal was restored.' },
-      );
+      if (fresh.proposal.status !== 'DRAFT' || shownNow.current !== null) return;
+      // Said only when the restored draft is the one shown.
+      setProposal(fresh);
+      setNotice({ kind: 'info', text: 'Your unfinished proposal was restored.' });
     })().catch(() => undefined);
     return () => {
       request.abort();
@@ -94,6 +102,8 @@ export function useAuthoring(api: WorldApi, enabled: boolean, onWorldChanged: ()
     setNotice(null);
     try {
       await work(request.signal);
+      // Every step may open, change or close a draft: the list follows the server.
+      if (enabled && isLive()) await readDrafts(request.signal).catch(() => undefined);
     } catch (error) {
       if (isLive()) {
         setNotice({
@@ -152,8 +162,32 @@ export function useAuthoring(api: WorldApi, enabled: boolean, onWorldChanged: ()
     }
   }
 
+  function discard(id: string | null) {
+    return step(async (signal) => {
+      if (id === null) return;
+      try {
+        await api.post<unknown>(`authoring/proposals/${id}/cancel`, {}, signal);
+      } catch (error) {
+        if (error instanceof ApiError && error.status === 409) {
+          // Committed meanwhile: show what the server holds.
+          setNotice({
+            kind: 'error',
+            text: 'This proposal was already decided differently. It was reloaded.',
+          });
+          await reload(signal, id);
+          return;
+        }
+        throw error;
+      }
+      if (!isLive()) return;
+      if (shownNow.current?.proposal.proposalId === id) setProposal(null);
+      setNotice({ kind: 'info', text: 'Proposal discarded. Nothing was added to the world.' });
+    });
+  }
+
   return {
     proposal,
+    drafts,
     busy,
     notice,
     propose: (text: string) =>
@@ -181,17 +215,22 @@ export function useAuthoring(api: WorldApi, enabled: boolean, onWorldChanged: ()
         else setNotice({ kind: 'error', text: 'The proposal could not be stored.' });
       }),
     /** The DM's own proposal (an edit of an NPC's card): the same preview, confirm and undo. */
-    proposeWritten: (summary: string, commands: readonly ProposableCommand[]) =>
-      step(async (signal) => {
+    proposeWritten: async (summary: string, commands: readonly ProposableCommand[]) => {
+      let stored = false;
+      await step(async (signal) => {
         const created = await api.post<unknown>(
           'authoring/proposals',
           { summary, commands },
           signal,
         );
         if (!isLive()) return;
-        if (isProposal(created)) setProposal(created);
-        else setNotice({ kind: 'error', text: 'The proposal could not be stored.' });
-      }),
+        if (isProposal(created)) {
+          setProposal(created);
+          stored = true;
+        } else setNotice({ kind: 'error', text: 'The proposal could not be stored.' });
+      });
+      return stored;
+    },
     revise: (commands: readonly ProposableCommand[]) =>
       step(async (signal) => {
         if (!proposal) return;
@@ -249,27 +288,14 @@ export function useAuthoring(api: WorldApi, enabled: boolean, onWorldChanged: ()
       step(async (signal) => {
         if (proposal) await reload(signal, proposal.proposal.proposalId);
       }),
-    cancel: () =>
+    cancel: () => discard(proposal?.proposal.proposalId ?? null),
+    /** Discards one open draft, shown or listed. */
+    discard: (proposalId: string) => discard(proposalId),
+    /** Shows another open draft from the list; the one shown stays open. */
+    resume: (proposalId: string) =>
       step(async (signal) => {
-        if (!proposal) return;
-        const id = proposal.proposal.proposalId;
-        try {
-          await api.post<unknown>(`authoring/proposals/${id}/cancel`, {}, signal);
-        } catch (error) {
-          if (error instanceof ApiError && error.status === 409) {
-            // Committed meanwhile: show what the server holds.
-            setNotice({
-              kind: 'error',
-              text: 'This proposal was already decided differently. It was reloaded.',
-            });
-            await reload(signal, id);
-            return;
-          }
-          throw error;
-        }
-        if (!isLive()) return;
-        setProposal(null);
-        setNotice({ kind: 'info', text: 'Proposal discarded. Nothing was added to the world.' });
+        const fresh = await api.get<unknown>(`authoring/proposals/${proposalId}`, signal, false);
+        if (isLive() && isProposal(fresh)) setProposal(fresh);
       }),
     clear: () => {
       setProposal(null);

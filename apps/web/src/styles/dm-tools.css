@@ -352,6 +352,54 @@
   height: 18px;
 }
 
+/* The DM's open drafts, when more than one is open (owner decisions 11) */
+.open-drafts {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.open-drafts > h3 {
+  margin: 0 0 0.5rem;
+  color: var(--gold-bright);
+  font-size: 1.05rem;
+}
+.open-drafts ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.open-drafts li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 0.75rem;
+}
+.open-drafts li + li {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--line);
+}
+.open-draft-text {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.open-draft-summary {
+  overflow-wrap: anywhere;
+}
+.open-draft-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.open-draft-actions .glyph {
+  width: 18px;
+  height: 18px;
+}
+
 /* An NPC's recorded description, for the DM, above its edit (owner decisions 11) */
 .npc-description {
   margin-top: 1rem;

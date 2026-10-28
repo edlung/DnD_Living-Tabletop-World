@@ -142,7 +142,7 @@ function proposalStore(beforeRevision: ReturnType<typeof gate>): ProposalStore {
   return {
     exclusive: (campaignId, proposalId, work) => real.exclusive(campaignId, proposalId, work),
     latest: (campaignId, proposalId) => real.latest(campaignId, proposalId),
-    latestOfCampaign: (campaignId) => real.latestOfCampaign(campaignId),
+    uncancelled: (campaignId, page) => real.uncancelled(campaignId, page),
     append: async (revision) => {
       if (revision.revision > 1) await beforeRevision.pass();
       return real.append(revision);
@@ -332,5 +332,44 @@ describe('G04-M02 identical_authoring_commit_retry_returns_original_duplicate', 
       status: 'duplicate',
     });
     expect(await count('ltw_events')).toBe(afterUndo);
+  });
+});
+
+describe('a cancel racing a commit (owner decisions 11, SI-D1)', () => {
+  it('a cancel during a commit waits, then is refused: the commit stands', async () => {
+    await seed();
+    const [committer, canceller] = [await processOn(10), await processOn(20)];
+    const id = await proposal(committer.app);
+
+    committer.beforeAppend.arm();
+    const commit = post(committer.app, `${PROPOSALS}/${id}/commit`, confirm, TOKENS.dm);
+    await committer.beforeAppend.reached;
+    const cancel = post(canceller.app, `${PROPOSALS}/${id}/cancel`, {}, TOKENS.dm);
+    expect(await settlesWithin(cancel, 500)).toBe(false);
+    committer.beforeAppend.release();
+    const [committed, cancelled] = [await commit, await cancel];
+
+    expect(committed.statusCode).toBe(200);
+    expect(cancelled.statusCode).toBe(409);
+    expect((await consistent(id)).status).toBe('COMMITTED');
+  });
+
+  it('a commit during a cancel waits, then is refused: nothing becomes canon', async () => {
+    await seed();
+    const [committer, canceller] = [await processOn(10), await processOn(20)];
+    const id = await proposal(committer.app);
+
+    canceller.beforeRevision.arm();
+    const cancel = post(canceller.app, `${PROPOSALS}/${id}/cancel`, {}, TOKENS.dm);
+    await canceller.beforeRevision.reached;
+    const commit = post(committer.app, `${PROPOSALS}/${id}/commit`, confirm, TOKENS.dm);
+    expect(await settlesWithin(commit, 500)).toBe(false);
+    canceller.beforeRevision.release();
+    const [cancelled, committed] = [await cancel, await commit];
+
+    expect(cancelled.statusCode).toBe(200);
+    expect(committed.statusCode).toBe(409);
+    const after = await consistent(id);
+    expect([after.status, after.revision]).toEqual(['CANCELLED', 2]);
   });
 });

@@ -100,6 +100,9 @@ registerRussianSentences({
   '"{name}" is also the name of {others}': 'Имя «{name}» уже носят: {others}',
   'The {kinds} know {name}; renaming changes that name in every account they hold':
     'Знают: {kinds}. Сущность: {name}. Переименование изменит имя во всех их рассказах',
+  '{name} is known by name to {readers}; renaming changes that name in every account they hold':
+    'Знают: {readers}. Сущность: {name}. Переименование изменит имя во всех их рассказах',
+  '{name} ({where})': '{name} ({where})',
   '{description} Also known as {name}.': '{description} Другое имя: {name}.',
   'the world truth ({id})': 'истина мира ({id})',
   "{name}'s account ({id})": 'рассказ: {name} ({id})',
