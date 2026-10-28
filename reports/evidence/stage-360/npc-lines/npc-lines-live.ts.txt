@@ -1,0 +1,133 @@
+// Focused live check for SI-N1 (owner decisions 11): Russian Ravenford, Mira and Orin, two
+// conversations each, through the real HTTP dialogue route with live Sonnet 5.5 as the only
+// npc-dialogue provider. Records the exact system text, prompt and reply per exchange (never a
+// key). Hard spend cap enforced from returned usage. Usage: node --conditions=@ltw/source
+// npc-lines-live.ts <label> <out.json>
+import { writeFileSync } from 'node:fs';
+
+const WT =
+  '/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-dnpc';
+const { InMemoryEventStore } = await import(`${WT}/packages/domain/src/index.ts`);
+const { scriptedDice } = await import(`${WT}/packages/rules/src/index.ts`);
+const { testBrand } = await import(`${WT}/packages/ai/src/testing/providers.ts`);
+const { createAnthropicProvider } = await import(`${WT}/apps/server/src/ai/anthropic-provider.ts`);
+const { RAVENFORD_RU_FIXTURES_DIR } = await import(
+  `${WT}/apps/server/src/world-engine/ravenford-seed.ts`
+);
+const app$ = await import(`${WT}/apps/server/src/testing/ravenford-app.ts`);
+
+const [label = 'run', out = 'out.json', mode = 'main'] = process.argv.slice(2);
+const CAP_USD = 0.4; // per run; two runs stay well under the $1 owner limit
+const key = process.env['ANTHROPIC_API_KEY'];
+if (!key) throw new Error('no key in the environment');
+
+const raw = createAnthropicProvider({
+  apiKey: () => key,
+  model: 'claude-sonnet-5-5',
+  timeoutMs: 60_000,
+  effort: 'low',
+  maxTokens: 4_096,
+  cache: '5m',
+});
+let spent = 0;
+const exchanges: Record<string, unknown>[] = [];
+let pending: Record<string, unknown> = {};
+const provider = testBrand('anthropic-live', 'remote', async (request: any) => {
+  if (spent >= CAP_USD) throw new Error(`spend cap reached: $${spent.toFixed(4)}`);
+  const prepared = raw.prepare(request);
+  const response: any = await raw.dispatch(prepared, new AbortController().signal, () => {});
+  const d = response.billing?.dimensions ?? {};
+  // Conservative: all input at the uncached price unless split is reported.
+  const cost =
+    ((d.input_tokens ?? response.usage?.inputTokens ?? 0) * 2 +
+      (d.cache_creation_input_tokens ?? 0) * 2.5 +
+      (d.cache_read_input_tokens ?? 0) * 0.1 +
+      (d.output_tokens ?? response.usage?.outputTokens ?? 0) * 10) /
+    1e6;
+  spent += cost;
+  pending = {
+    system: request.system,
+    prompt: request.prompt,
+    usage: response.usage,
+    costUsd: Number(cost.toFixed(6)),
+  };
+  return response;
+});
+
+const engine = await app$.seededEngine(
+  new InMemoryEventStore(),
+  scriptedDice(Array<number>(64).fill(15)),
+  app$.MIDDLE_ENTROPY,
+  RAVENFORD_RU_FIXTURES_DIR,
+);
+const app = await app$.ravenfordApp(engine, app$.testAiGateway(provider));
+const ELOWEN = 'elowen-starwhisper';
+const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
+let n = 0;
+const dm = async (command: Record<string, unknown>) => {
+  n += 1;
+  const r = await engine.execute({ commandId: `npc-lines.${n}`, campaignId: 'ravenford', actor: DM, command });
+  if (r.status === 'rejected' && r.code !== 'NO_EFFECT') throw new Error(`setup: ${r.code}`);
+};
+const say = async (step: string, npcId: string, intent: Record<string, unknown>, line?: string) => {
+  pending = {};
+  const res = await app$.post(
+    app,
+    `/campaigns/ravenford/npcs/${npcId}/dialogue`,
+    { characterId: ELOWEN, intent, ...(line ? { line } : {}) },
+    app$.TOKENS.player,
+  );
+  const body = res.json();
+  exchanges.push({
+    step,
+    npcId,
+    intent,
+    line: line ?? null,
+    command: body.command
+      ? { status: body.command.status, code: body.command.code ?? null }
+      : null,
+    replyStatus: body.reply?.status ?? null,
+    reply: body.reply?.text ?? null,
+    ...pending,
+  });
+  console.log(`[${label}] ${step}: ${body.reply?.status} ${body.reply?.text ?? ''}`);
+};
+
+await dm({
+  type: 'AddKnowledge',
+  knowledgeId: 'party-symbol-evidence',
+  scope: { kind: 'PARTY' },
+  knowledgeType: 'EVIDENCE',
+  statement: 'На обломке фургона выжжен странный знак.',
+  subjects: ['feature-19c7c7f7'],
+  knownSince: null,
+});
+if (mode === 'gate') {
+  await dm({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'north-gate' });
+  await say('thorne-1 talk', 'captain-thorne', { kind: 'talk' }, 'Добрый день, капитан.');
+  await say('thorne-1 ask caravan', 'captain-thorne', { kind: 'ask', topicId: 'guild-caravan' });
+  await say('thorne-2 talk', 'captain-thorne', { kind: 'talk' }, 'Капитан, ещё пара вопросов.');
+} else {
+await dm({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'market-square' });
+// Mira, first conversation: greeting and the caravan.
+await say('mira-1 talk', 'mira-vale', { kind: 'talk' }, 'Доброе утро!');
+await say('mira-1 ask caravan', 'mira-vale', { kind: 'ask', topicId: 'guild-caravan' });
+// Mira, second conversation.
+await say('mira-2 talk', 'mira-vale', { kind: 'talk' }, 'Так что ещё вы можете сказать о караване?');
+await say('mira-2 ask caravan again', 'mira-vale', { kind: 'ask', topicId: 'guild-caravan' });
+
+await dm({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'orins-alchemy' });
+// Orin, first conversation: show the symbol, ask about it.
+await say('orin-1 show symbol', 'orin-stonebeard', { kind: 'show', knowledgeId: 'party-symbol-evidence' }, 'Взгляните на этот знак.');
+await say('orin-1 ask symbol', 'orin-stonebeard', { kind: 'ask', topicId: 'feature-19c7c7f7' });
+// Orin, second conversation.
+await say('orin-2 talk', 'orin-stonebeard', { kind: 'talk' }, 'Добрый день ещё раз.');
+await say('orin-2 talk symbol', 'orin-stonebeard', { kind: 'talk' }, 'Расскажите ещё про этот знак.');
+}
+
+writeFileSync(
+  out,
+  JSON.stringify({ label, model: 'claude-sonnet-5-5', spentUsd: Number(spent.toFixed(6)), exchanges }, null, 2),
+);
+console.log(`[${label}] spent ~$${spent.toFixed(4)}`);
+process.exit(0);

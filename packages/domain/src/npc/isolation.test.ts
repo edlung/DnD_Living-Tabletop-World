@@ -155,3 +155,35 @@ describe('the NPC context holds only what the NPC may say', () => {
     }, 120_000);
   }
 });
+
+/**
+ * Owner decisions 11, SI-N1: what the NPC has already told the speaker. After every topic
+ * was asked of a trusting NPC that was shown evidence, each context, asked again or not,
+ * knows they have met; its told-before lines are its own records that its recorded sharing
+ * told this scope, never a SECRET or another holder's record, and no planted secret enters.
+ */
+describe('what it has already told stays inside the boundary', () => {
+  for (const npcId of BOUNDARY_NPCS) {
+    it(`${npcId}: trusted, shown evidence, every topic asked, then asked again`, async () => {
+      const world = await scene(npcId, 'TRUSTED', 'feature-19c7c7f7');
+      const topics = TOPICS.filter((topicId) => topicId !== null);
+      for (const topicId of topics) await askAndBuild(world, npcId, topicId);
+      for (const topicId of TOPICS) {
+        const { state, context } = await askAndBuild(world, npcId, topicId);
+        expect(context.metBefore).toBe(true);
+        const told = context.mayTell.filter((line) => line.toldBefore);
+        expect(told.length, 'not vacuous').toBeGreaterThan(0);
+        const text = `${spoken(context)}\n${JSON.stringify(context)}`;
+        for (const marker of neverSaidBy(npcId)) expect(text, marker).not.toContain(marker);
+        const own = scopeKey({ kind: 'NPC', npcId });
+        for (const line of context.mayTell) {
+          const record = state.knowledge.get(line.sourceId);
+          expect(record && scopeKey(record.scope)).toBe(own);
+          expect(['SECRET', 'UNKNOWN', 'CONTRADICTION']).not.toContain(record?.knowledgeType);
+          expect(line.toldBefore).toBe(state.investigation.shared.has(`PARTY|${line.sourceId}`));
+          if (line.aboutTopic) expect(record?.subjects).toContain(topicId);
+        }
+      }
+    }, 60_000);
+  }
+});

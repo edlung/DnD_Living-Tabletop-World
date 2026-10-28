@@ -119,6 +119,7 @@ export {
   type DialogueEntity,
   type DialogueLine,
   type NpcDialogueContext,
+  type TellableLine,
 } from './npc/dialogue-context.ts';
 export { attemptKey, insightKey, shownKey, type Clue } from './investigation/records.ts';
 export type { SkillCheckPort } from './investigation/skill-checks.ts';
