@@ -4,5 +4,9 @@
   "stale": "ui-authoring-stale",
   "blocked": "ui-authoring-blocked",
   "undo": "ui-authoring-undo",
-  "warning": "ui-authoring-warning"
+  "warning": "ui-authoring-warning",
+  "restore": "ui-authoring-restore",
+  "editNpc": "ui-authoring-edit-npc",
+  "editHidden": "ui-authoring-edit-hidden",
+  "past": "ui-authoring-past"
 }

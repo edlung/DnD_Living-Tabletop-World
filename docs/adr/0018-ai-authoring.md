@@ -139,6 +139,10 @@ Migration `0003_authoring_proposals.sql` adds `ltw_authoring_revisions`. Like tr
   - **A commit that creates an NPC or a location also requests its visual reference.** The `AssetRequested` events are part of the commit's command, after its operations' events.
   - **The preview decides under the commit's own command ID** (`authoring.<proposalId>`), so the changes it lists match the events the commit records exactly, including request IDs.
   - **Undo.** Undoing the commit is held while a requested job runs, or while its image stands, until the DM cancels the job or retracts the image (ADR 0006 Stage 150 amendment).
+- 2026-10-28 (owner decisions 11, SI-D1 and SI-D8; `reviews/OWNER_DECISIONS_11_2026-10-28.json`):
+  - **Open drafts are listed.** `GET /campaigns/:campaignId/authoring/proposals` returns the campaign's drafts that are neither committed nor cancelled, as `{ proposalId, revision, summary, source, updatedAt }`, the most recently changed first (ties by the larger proposal ID), at most 20. Same check order as §8 (401, 400, 404 for a non-member, 403 for a player, with the fixed bodies); no proposal content reaches a refusal.
+  - **A cancel is stored.** `POST …/proposals/:proposalId/cancel` appends a closing revision (`cancelled: true` in the revision document; §9 stays append-only, no migration). A cancelled proposal reads as `CANCELLED` with no preview; an edit or commit of it is `409`; cancelling it again changes nothing; cancelling a committed proposal is `409`. Status other than `CANCELLED` still comes from canon.
+  - **The DM's own proposal edits an NPC.** A DM-written proposal of one `UpdateEntityProfile` (already enabled at L1 by §2) is how the DM's NPC card changes a name or description; no new canonical command.
 
 ## Invariants affected
 

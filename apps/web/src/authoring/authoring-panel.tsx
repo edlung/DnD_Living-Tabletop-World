@@ -11,16 +11,20 @@ import type { useAuthoring } from './use-authoring.ts';
  * the world takes shape → review and adjust → part of the world). The intent field with the
  * quill; "Creating…" while the assistant turns the words into a proposal (a ring that turns,
  * still under reduced motion); then the proposal card. Undo is the History sheet's (ADR 0033
- * §7). The authoring session is held by the DM's sheets, in memory only, so a change of
- * perspective discards every preview and private fact it showed; the sheet stays mounted while
- * closed, so a draft survives closing it and every refresh.
+ * §7). The screen's copy of the session is held by the DM's world, in memory only, so a change
+ * of perspective discards every preview and private fact it showed; the sheet stays mounted
+ * while closed, so a draft survives closing it and every refresh, and the draft itself is the
+ * server's, so a reload or a return to the DM perspective restores it (owner decisions 11).
  */
 export function AuthoringPanel({
   authoring,
   directory,
+  onShowEntity,
 }: {
   readonly authoring: ReturnType<typeof useAuthoring>;
   readonly directory: readonly EntityRef[];
+  /** Opens an NPC's card, where its own edit is (owner decisions 11, SI-D7). */
+  readonly onShowEntity: (entityId: string) => void;
 }) {
   const t = useT();
   const [text, setText] = useState('');
@@ -78,6 +82,7 @@ export function AuthoringPanel({
           directory={directory}
           busy={authoring.busy}
           actions={authoring}
+          onShowEntity={onShowEntity}
         />
       )}
     </div>

@@ -23,7 +23,8 @@ import { authenticate, parseInput, type RouteDependencies } from '../request-con
  * in the ADR 0009 check order (401, 400, 404 for a non-member, 403 for a
  * player). World Engine rejections reach the DM with their details (issues,
  * warnings, the consent required, undo blockers). Logs carry proposal IDs and
- * outcomes, never proposal content.
+ * outcomes, never proposal content. The list of open drafts and the cancel (owner decisions 11,
+ * SI-D1) answer in the same order.
  */
 export interface AuthoringRouteDependencies extends RouteDependencies {
   readonly ai: { readonly traces: AiTraceStore };
@@ -53,6 +54,14 @@ export function registerAuthoringRoutes(
     if (outcome.kind === 'ok')
       logged(request, 'authoring proposal created', outcome.value.proposal);
     return send(request, reply, outcome, 201);
+  });
+
+  app.get(base, async (request, reply) => {
+    const actor = await authenticate(request, reply, deps);
+    if (!actor) return reply;
+    const params = parseInput(campaignParams, request.params, request, reply);
+    if (!params) return reply;
+    return send(request, reply, await service.open(actor, params.campaignId));
   });
 
   app.get(`${base}/:proposalId`, async (request, reply) => {
@@ -88,6 +97,17 @@ export function registerAuthoringRoutes(
       { actorId: actor.actorId, proposalId: params.proposalId, outcome: outcomeOf(outcome) },
       'authoring commit',
     );
+    return send(request, reply, outcome);
+  });
+
+  app.post(`${base}/:proposalId/cancel`, async (request, reply) => {
+    const actor = await authenticate(request, reply, deps);
+    if (!actor) return reply;
+    const params = parseInput(proposalParams, request.params, request, reply);
+    if (!params) return reply;
+    const outcome = await service.cancel(actor, params.campaignId, params.proposalId);
+    if (outcome.kind === 'ok')
+      logged(request, 'authoring proposal cancelled', outcome.value.proposal);
     return send(request, reply, outcome);
   });
 

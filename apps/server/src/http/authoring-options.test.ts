@@ -72,10 +72,11 @@ describe('options', () => {
     expect(preview?.notes.map((note) => note.code)).toEqual(['CLAIM_AGREES', 'CLAIM_AGREES']);
     const witness = preview?.warnings.find((warning) => warning.key === WITNESS);
     expect(witness?.message).toBe(
-      'Tomas Reed was nowhere recorded Day -1 05:00:00, not at North Gate',
+      'Tomas Reed was nowhere recorded Day -1 05:00:00, not at North Gate. The world records only where someone is now, not where they were before: tell it in the description, or accept this warning',
     );
-    const [place] = witness?.options ?? [];
-    expect(place).toMatchObject({ optionId: `${WITNESS}/1`, kind: 'edit' });
+    // No option moves Tomas (owner decisions 11, SI-D7): the first makes his account hearsay.
+    const [rumor] = witness?.options ?? [];
+    expect(rumor).toMatchObject({ optionId: `${WITNESS}/1`, kind: 'edit' });
 
     // Viewing changes nothing: still revision 1.
     expect(
@@ -85,18 +86,19 @@ describe('options', () => {
     const applied = await post(
       app,
       `${at}/revisions`,
-      { basedOnRevision: 1, optionId: place?.optionId },
+      { basedOnRevision: 1, optionId: rumor?.optionId },
       TOKENS.dm,
     );
     expect(applied.statusCode).toBe(201);
     const second = applied.json<AuthoringProposalResponse>();
     expect(second.proposal).toMatchObject({
       revision: 2,
-      appliedOption: { optionId: `${WITNESS}/1`, label: place?.label },
+      appliedOption: { optionId: `${WITNESS}/1`, label: rumor?.label },
     });
     expect(second.proposal.commands[0]).toMatchObject({
-      placement: { locationId: 'north-gate', since: DEPARTURE },
+      placement: { locationId: 'north-gate', since: DAY_0_08 },
     });
+    expect(second.proposal.commands[1]).toMatchObject({ knowledgeType: 'RUMOR' });
     expect(second.preview?.warnings.map((warning) => warning.key)).toEqual([
       'CLAIM_CONFLICT@2:thorne-departure',
     ]);

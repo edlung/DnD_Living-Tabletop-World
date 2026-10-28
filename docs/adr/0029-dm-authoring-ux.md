@@ -63,3 +63,27 @@ No dependency edge, contract, canonical mutation path, or reviewed projection ch
 no gate is reopened. The shared client's `post` now preserves a refusal's HTTP status
 (it was collapsed to "interrupted"), which also lets the action hook's existing 4xx branch
 work as written. Asset approval, clue authoring, and multi-NPC proposals are out of scope.
+
+## Amendments
+
+- 2026-10-28 (owner decisions 11, `reviews/OWNER_DECISIONS_11_2026-10-28.json`; evidence
+  `reports/evidence/stage-360/ai-stand-in/dm/notes.md` steps 08–09, 17–19, 30):
+  - **SI-D1, drafts survive a reload and a perspective switch (replaces §6, keeps §8).** The
+    DM's client reads the open drafts (`GET …/authoring/proposals`, ADR 0018 amendment
+    2026-10-28) when the DM view mounts — a reload, or a switch back to the DM — and shows the
+    newest with "Your unfinished proposal was restored.", unless the DM has already started
+    another. No paid interpretation is repeated. Cancel is now the server's (`…/cancel`), so a
+    discarded draft never returns. Nothing is written to browser storage; a lower perspective
+    reads nothing. The session hook moved from the DM sheets to the world screen, which a
+    perspective change still remounts.
+  - **SI-D8, the DM edits an NPC from its card.** In the DM perspective an NPC's details show its
+    recorded description ("Description (DM)", from the DM's lineage) and "Edit name and
+    description". Submitting stores a DM-written proposal of one `UpdateEntityProfile` with only
+    the changed fields and opens it under Add to the world: the same preview, who-sees (players
+    who know the NPC see the new name; players never read the description), confirm, and
+    History undo. One proposal at a time: while a draft is open the form says so and offers to
+    show it. The proposal editor also edits such a proposal's name and description.
+  - **SI-D7, a witness's past.** A `WITNESS_ELSEWHERE` warning shows "Edit the description",
+    which opens the proposal's editor with the description focused when the proposal creates
+    the witness, or the NPC's card when the witness is already in the world. No option moves
+    the witness (ADR 0019 amendment 2026-10-28).

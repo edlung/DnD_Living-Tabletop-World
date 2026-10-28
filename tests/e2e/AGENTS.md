@@ -33,7 +33,9 @@ application on 4313.
 - Stage 230 authoring journeys each own a campaign from `fixtures/authoring-campaigns.json`
   (`ui-authoring-campaigns.ts`). The browser-test server routes `reasoning` to the
   deterministic offline interpreter, so "Add a young guard near North Gate…" proposes
-  Tomas Reed with no external provider. Namespace player command IDs per campaign (IDs
+  Tomas Reed with no external provider. `authoring-drafts.spec.ts` (a reload and a perspective
+  switch restore the draft; a witness elsewhere is never moved) and `authoring-edit-npc.spec.ts`
+  (an NPC's card edit, the player's view of the new name) follow owner decisions 11. Namespace player command IDs per campaign (IDs
   are unique per actor across campaigns); scan rendered text, not stylesheets, for UI words.
 - AI feedback (`ai-feedback.spec.ts`, ADR 0032 checkpoint C): `ui-ai-feedback` adds a second
   character (Bram Holt) for the stale-reply check, and `ui-ai-no-start` never gets a durable AI

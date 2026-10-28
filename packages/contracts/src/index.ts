@@ -329,6 +329,8 @@ export {
   type AuthoringWarning,
   type CommitProposalRequest,
   type CreateProposalRequest,
+  type OpenProposalSummary,
+  type OpenProposalsResponse,
   type ProposalStatus,
   type ResolutionOption,
   type ReviseProposalRequest,

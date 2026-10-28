@@ -36,6 +36,11 @@ export function useShell() {
       setSheet(sheet === id ? null : id);
       last.current = 'sheet';
     },
+    /** Opens a sheet from elsewhere (an NPC card's edit opens its proposal under Add). */
+    openSheet: (id: SheetId) => {
+      setSheet(id);
+      last.current = 'sheet';
+    },
     /** Closes the open sheet and returns focus to its dock button. */
     closeSheet: () => {
       if (sheet === null) return;

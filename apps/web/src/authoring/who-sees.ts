@@ -44,6 +44,22 @@ export function whoWillSee(
           name: command.name,
         }),
       );
+    } else if (command.type === 'UpdateEntityProfile') {
+      // A name is shown to whoever knows the person; the description is the DM's (ADR 0020 §3).
+      if (command.name !== undefined) {
+        lines.push(
+          t(
+            'Players who already know {name} see the new name {value}; to others it stays unknown.',
+            {
+              name: who(command.entityId),
+              value: command.name,
+            },
+          ),
+        );
+      }
+      if (command.description !== undefined) {
+        lines.push(t('Players never read the description; it guides your image requests.'));
+      }
     } else if (command.type === 'AddKnowledge') {
       if (command.knowledgeId !== undefined) held.set(command.knowledgeId, command.scope);
       lines.push(holder(t, command.scope, who));
