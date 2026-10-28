@@ -4,6 +4,7 @@ import {
   type DialogueIntent,
   type Language,
   type NpcReply,
+  type RejectionCode,
 } from '@ltw/contracts';
 import { dialogueSourceIds, type Actor, type NpcDialogueContext } from '@ltw/domain';
 
@@ -31,6 +32,8 @@ export interface DialogueInput {
   readonly intent: DialogueIntent;
   /** Whether the World Engine accepted the intent's command; true for Talk. */
   readonly accepted: boolean;
+  /** The command's rejection code, when it was rejected. */
+  readonly rejection?: RejectionCode | null;
   /** The canonical command decided before the reply; null for Talk. */
   readonly commandId: string | null;
   /** The player's own words, if any. */
@@ -63,6 +66,7 @@ export async function replyAsNpc(deps: DialogueDeps, input: DialogueInput): Prom
   const prompt = dialoguePrompt(input.context, {
     intent: input.intent.kind,
     accepted: input.accepted,
+    rejection: input.rejection ?? null,
     line: input.line,
     ...(input.language ? { language: input.language } : {}),
   });

@@ -153,6 +153,38 @@ describe('talking with an NPC', () => {
     );
   });
 
+  it('a companion who never met her gets no "Back again" (SI-N1, per character)', async () => {
+    await asDm({
+      type: 'CreateEntity',
+      entityId: 'bran-ironfoot',
+      kind: 'character',
+      name: 'Bran Ironfoot',
+      existsSince: null,
+      placement: { locationId: 'market-square', since: null },
+    });
+    await asDm({
+      type: 'AssignCharacter',
+      characterId: 'bran-ironfoot',
+      playerActorId: 'player-bran',
+    });
+    await say('mira-vale', { kind: 'ask', topicId: 'old-trade-road' });
+    const elowen = (await say('mira-vale', { kind: 'talk' })).json<NpcDialogueResponse>();
+    expect(elowen.reply?.text).toContain('Back again.');
+
+    const bran = (
+      await post(
+        app,
+        dialogue('mira-vale'),
+        {
+          characterId: 'bran-ironfoot',
+          intent: { kind: 'talk' },
+        },
+        TOKENS.dm,
+      )
+    ).json<NpcDialogueResponse>();
+    expect(bran.reply?.text).toBe('Mira Vale looks up. “Can I help you?”');
+  });
+
   it('reads an NPC once with Insight, and keeps talking after', async () => {
     const first = (
       await say('mira-vale', { kind: 'insight', topicId: 'guild-caravan' })

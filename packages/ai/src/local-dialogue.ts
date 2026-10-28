@@ -1,6 +1,6 @@
 import { MAX_NPC_REPLY, type Attitude } from '@ltw/contracts';
 
-import type { DialoguePrompt } from './dialogue-prompt.ts';
+import { askedAgain, type DialoguePrompt } from './dialogue-prompt.ts';
 
 /**
  * Deterministic NPC replies for the local provider (docs/adr/0020-npc-intelligence.md
@@ -63,7 +63,7 @@ const GREETING_AGAIN_RU: Readonly<Record<Attitude, string>> = {
 
 function saidRu(prompt: DialoguePrompt): string {
   if (prompt.justTold.length > 0) return prompt.justTold.join(' ');
-  if (prompt.intent === 'ask' && prompt.toldOnTopic.length > 0) {
+  if (askedAgain(prompt)) {
     return `Повторю то, что уже сказано: ${prompt.toldOnTopic.join(' ')}`;
   }
   if (prompt.intent === 'ask') {
@@ -82,7 +82,7 @@ function saidRu(prompt: DialoguePrompt): string {
 
 function said(prompt: DialoguePrompt): string {
   if (prompt.justTold.length > 0) return prompt.justTold.join(' ');
-  if (prompt.intent === 'ask' && prompt.toldOnTopic.length > 0) {
+  if (askedAgain(prompt)) {
     return `As I told you: ${prompt.toldOnTopic.join(' ')}`;
   }
   if (prompt.intent === 'ask') {

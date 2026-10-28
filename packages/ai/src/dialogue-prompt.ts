@@ -4,6 +4,7 @@ import {
   type Attitude,
   type DialogueIntent,
   type Language,
+  type RejectionCode,
 } from '@ltw/contracts';
 import { formatWorldTime, type DialogueEntity, type NpcDialogueContext } from '@ltw/domain';
 import { z } from 'zod';
@@ -30,10 +31,12 @@ export interface DialoguePrompt {
   readonly intent: DialogueIntent['kind'];
   /** Whether the World Engine accepted the intent's command; true for Talk. */
   readonly accepted: boolean;
+  /** The command's rejection code, when it was rejected. */
+  readonly rejection?: RejectionCode | null;
   readonly topic: string | null;
-  /** Whether it has spoken with the speaker before this exchange (owner decisions 11, SI-N1). */
+  /** Whether it has spoken with this character before this exchange (owner decisions 11, SI-N1). */
   readonly metBefore: boolean;
-  /** What it told the speaker before this exchange. */
+  /** What it told the speaker or their companions before this exchange. */
   readonly toldBefore: readonly string[];
   /** Of those, what is about the topic. */
   readonly toldOnTopic: readonly string[];
@@ -53,11 +56,21 @@ export interface DialoguePrompt {
 export interface Exchange {
   readonly intent: DialogueIntent['kind'];
   readonly accepted: boolean;
+  readonly rejection?: RejectionCode | null;
   readonly line: string | null;
   readonly language?: Language;
 }
 
 const named = (entity: DialogueEntity) => entity.name ?? `an unfamiliar ${entity.kind}`;
+
+/**
+ * Whether a question was asked again of something it told before: the ask was accepted or
+ * had nothing new to share (`NO_EFFECT`), never another rejection.
+ */
+export const askedAgain = (prompt: DialoguePrompt): boolean =>
+  prompt.intent === 'ask' &&
+  prompt.toldOnTopic.length > 0 &&
+  (prompt.accepted || prompt.rejection === 'NO_EFFECT');
 
 export function dialoguePrompt(context: NpcDialogueContext, exchange: Exchange): DialoguePrompt {
   const text = (lines: readonly { readonly text: string }[]) => lines.map((line) => line.text);
@@ -71,6 +84,7 @@ export function dialoguePrompt(context: NpcDialogueContext, exchange: Exchange):
     around: context.around.map(named),
     intent: exchange.intent,
     accepted: exchange.accepted,
+    rejection: exchange.rejection ?? null,
     topic: context.topic ? named(context.topic) : null,
     metBefore: context.metBefore,
     toldBefore: text(told),
@@ -124,7 +138,7 @@ function exchangeLine(prompt: DialoguePrompt): string {
       if (prompt.justTold.length > 0) {
         return `They asked you about ${topic}; you have just told them what you would.`;
       }
-      return prompt.toldOnTopic.length > 0
+      return askedAgain(prompt)
         ? `They ask you again about ${topic}; you have already told them what you would.`
         : `They ask you about ${topic}.`;
     case 'show':
@@ -143,6 +157,13 @@ function section(title: string, lines: readonly string[]): string[] {
   return lines.length === 0 ? [] : [title, ...lines.map((line) => `- ${line}`)];
 }
 
+function metLine(prompt: DialoguePrompt): string {
+  if (!prompt.metBefore) return 'You do not recall speaking with them before.';
+  return prompt.npc === null
+    ? 'You have spoken with them before, but they do not know your name.'
+    : 'You have spoken with them before; they know who you are.';
+}
+
 function render(prompt: DialoguePrompt, repair: RepairNote | null): string {
   const lines = [
     '<npc_context>',
@@ -154,13 +175,11 @@ function render(prompt: DialoguePrompt, repair: RepairNote | null): string {
     `Where you are: ${prompt.place}.`,
     ...(prompt.around.length > 0 ? [`Also here: ${prompt.around.join('; ')}.`] : []),
     `Speaking with you: ${prompt.speaker}.`,
-    prompt.metBefore
-      ? 'You have spoken with them before; they know who you are.'
-      : 'You do not recall speaking with them before.',
+    metLine(prompt),
     ...(prompt.shown.length > 0
       ? [`They have shown you evidence about: ${prompt.shown.join('; ')}.`]
       : []),
-    ...section('You have already told them:', prompt.toldBefore),
+    ...section('You have already told them or their companions:', prompt.toldBefore),
     ...section('You have just told them:', prompt.justTold),
     ...section('You may also tell them:', prompt.mayTell),
     ...section(
