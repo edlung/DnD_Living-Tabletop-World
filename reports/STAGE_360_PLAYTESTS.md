@@ -92,6 +92,30 @@ fixed. The NPC live check spent about $0.063 by calling the provider adapter dir
 the stored operator ceilings (an admitted call holds about $2.54, more than a $1 test ceiling
 admits); the script stopped itself at $0.40 a run.
 
+## Second AI stand-in pass (after owner decisions 11)
+
+Same conditions as the first pass on build `880bf072f719` (main after pull request 11), with task
+sheets aimed at the changed flows (`reports/evidence/stage-360/ai-stand-in-2/`); live Sonnet 5.5
+through stored ceilings, spent $0.055.
+
+**Confirmed fixed:** the draft came back after a reload; the NPC edit saved; the day change was
+listed in History and undone; Mira and Thorne remembered Elowen and did not contradict themselves.
+
+**Found and fixed** (branch `stage-360-round2`, each with tests and an independent review):
+
+| Finding                                                                                                                                                                | Fix                                                                                                                                                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The DM's undo of a time change also rolled back the player's later actions with no word to the player (evidence gone, back in the shop)                                | History names a player's action as such and asks the DM to confirm; the player gets «Мастер отменил ваше действие: …» on the next live update, built only from the player's own command (`GET …/undone-actions`, ADR 0033 amendment; live-isolation tests) |
+| A DM-created NPC denied his own testimony («сам я его не видел»)                                                                                                       | NPCs may decline but never deny what they know; authoring now proposes an explicit disclosure for every testimony (tells when asked unless the DM says otherwise) and who-sees shows it (ADR 0018, 0020 amendments)                                        |
+| «Я уже говорил…» about what was being told for the first time; Orin re-introducing himself on plain talk; «ты» and «вы» mixed                                          | Records shared by the current exchange are not "already told"; an NPC's own earlier replies to this character (non-canonical traces) count as having met; Russian NPCs keep «вы»                                                                           |
+| No sign of a restored draft until opening «Добавить в мир»; stale who-sees copy after confirm; «Подтвердить и добавить в мир» for an edit; weather preselected «дождь» | Dock marker; copy by status; «Подтвердить правку»; current weather or «Выберите погоду»                                                                                                                                                                    |
+| Untranslated «trade», «longbow attack»; «Показать улику» with the full text as a primary action                                                                        | Typed action labels with a completeness test; show evidence in the conversation options, preselected                                                                                                                                                       |
+| «Нечего добавить» when nothing was said                                                                                                                                | «Собеседнику нечего сказать об этом.» unless something was told                                                                                                                                                                                            |
+
+**Reported, not changed (design):** the DM gets no signal when a player approaches an NPC; the DM's
+view stays on the market square. The NPC live checks of this round (about $0.035, round 2) again
+called the provider adapter directly rather than through the stored ceilings.
+
 ## Human sessions
 
 Not run. Three to five uncoached sessions in Russian with real people, per `docs/playtest/`, are
