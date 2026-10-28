@@ -80,7 +80,19 @@ export function describeSubstitution(
   command: DmSubstitutionEntry['command'],
   directory: readonly EntityRef[],
 ): string {
-  const name = (id: string) => nameFor(directory, id);
+  return describePlayerAction(t, command, (id) => nameFor(directory, id));
+}
+
+/**
+ * A player command in plain words, with names as the reader may know them: the DM's directory
+ * in the history, the player's own directory (and neutral words for the rest) in the player's
+ * notice of an undone action.
+ */
+export function describePlayerAction(
+  t: Translate,
+  command: DmSubstitutionEntry['command'],
+  name: (id: string) => string,
+): string {
   switch (command.type) {
     case 'EndTurn':
       return t('Ended the turn');

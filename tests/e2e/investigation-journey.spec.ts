@@ -80,6 +80,12 @@ test('objects lead from Mira to evidence, a hypothesis, contradictory testimony,
 
   await travelTo(page, "Orin's Alchemy");
   await page.getByRole('button', { name: 'Orin Stonebeard', exact: true }).click();
+  // Evidence is shown deliberately, never one click among the primary actions.
+  const actions = entityDetails(page).getByRole('region', { name: 'Contextual actions' });
+  await expect(actions.getByText('More conversation options', { exact: true })).toBeVisible();
+  await expect(
+    actions.locator('.context-buttons').getByRole('button', { name: /^Show evidence/ }),
+  ).toHaveCount(0);
   await entityDetails(page).getByText('More conversation options', { exact: true }).click();
   await entityDetails(page).getByText('Show evidence', { exact: true }).click();
   await page

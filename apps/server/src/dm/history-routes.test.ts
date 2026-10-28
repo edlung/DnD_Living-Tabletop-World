@@ -244,11 +244,12 @@ describe('the entries', () => {
     const refused = await post(app, `${PROPOSALS}/${proposalId}/undo`, {}, TOKENS.dm);
     const result = refused.json<CommandResult>();
     expect(result.status).toBe('rejected');
-    expect(blocked?.undo).toEqual({
-      possible: false,
-      code: 'UNDO_UNSAFE',
-      blockers: result.status === 'rejected' ? result.details?.['blockers'] : null,
-    });
+    // The kernel's blockers, each a player's own action here, which the page also names.
+    const listed = blocked?.undo && !blocked.undo.possible ? blocked.undo.blockers : [];
+    expect(
+      listed.map(({ commandId, commandType, sequence }) => ({ commandId, commandType, sequence })),
+    ).toEqual(result.status === 'rejected' ? result.details?.['blockers'] : null);
+    expect(listed.map((blocker) => blocker.player?.command.type)).toEqual(['AskAbout']);
     // The page computed it without committing anything: the refusal above is all there is.
     expect((await page()).entries[0]?.undo).toEqual(blocked?.undo);
 

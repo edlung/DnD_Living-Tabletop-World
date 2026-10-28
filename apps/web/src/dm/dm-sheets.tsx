@@ -55,7 +55,7 @@ export function DmSheets({
   readonly place: DmPlace | null;
   readonly revision: number;
   readonly locked: boolean;
-  readonly weather: Weather;
+  readonly weather: Weather | null;
   readonly onWeather: (weather: Weather) => void;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onActAs: (standIn: StandIn) => void;

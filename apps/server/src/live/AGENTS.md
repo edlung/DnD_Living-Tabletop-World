@@ -19,6 +19,9 @@ change the perspective cannot read.
   route refuses for a perspective (403) must not be in its inventory, or the stream closes.
 - The DM's identity view lists hidden characters: it is not covered while the DM holds a lower
   perspective (`LiveTarget.identity`).
+- An acting character also covers `undone-actions` (the requester's own actions the DM undid,
+  ADR 0033 amendment of 2026-10-28, `http/routes/undone-routes.ts`): built from the requester's
+  own commands only, so it signals nothing the player may not read.
 - The DM perspective also covers `dm/history?perspective=DM` (Stage 310 part C, `src/dm/`) and
   the asset lineage `assets` (Stage 330 part B: the DM's image controls follow the asset worker;
   the route takes no perspective and answers the campaign's DM only); no lower perspective covers

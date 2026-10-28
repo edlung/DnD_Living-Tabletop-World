@@ -71,6 +71,7 @@ export function Scene({
   battlefield,
   rail,
   conversation,
+  notice,
 }: {
   readonly location: EntityRef;
   readonly scene: Resource<ScenePresentationResponse | null>;
@@ -85,6 +86,8 @@ export function Scene({
   readonly rail: ReactNode;
   /** The conversation with an NPC of this scene, when one is open. */
   readonly conversation: ReactNode;
+  /** What the table changed under the viewer (the DM's undo of their action), in the cartouche. */
+  readonly notice?: ReactNode;
 }) {
   const t = useT();
   const view = scene.status === 'ready' ? scene.value : null;
@@ -111,6 +114,7 @@ export function Scene({
         {view && !view.location.image && (
           <p className="cartouche-note">{t('No approved image yet')}</p>
         )}
+        {notice}
       </header>
       {rail}
       <div className="scene-presence" id="scene-presence" hidden={battlefield}>

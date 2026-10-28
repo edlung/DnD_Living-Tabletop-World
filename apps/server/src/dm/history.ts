@@ -4,6 +4,7 @@ import {
   type DmHistoryEntry,
   type DmHistoryResponse,
   type DmUndoAvailability,
+  type DmUndoBlocker,
   type DmWorldEntry,
   type EntityRef,
   type KernelCommandOf,
@@ -64,7 +65,12 @@ export type HistoryLog = Pick<FastifyBaseLogger, 'warn'>;
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
 /** The DM's "Time and weather" commands (owner decision SI-D4, 2026-10-28). */
 const WORLD_TYPES: ReadonlySet<string> = new Set(['AdvanceWorldTime', 'SetWeather']);
-const listedMemo = new WeakMap<readonly RecordedEvent[], Promise<readonly Listed[]>>();
+/** The listed entries and every stored command by ID (a blocker's issuer and submission). */
+interface Logged {
+  readonly listed: readonly Listed[];
+  readonly byId: ReadonlyMap<string, StoredCommand>;
+}
+const listedMemo = new WeakMap<readonly RecordedEvent[], Promise<Logged>>();
 const previewMemo = new WeakMap<readonly RecordedEvent[], Map<string, UndoPreview | Undecided>>();
 
 export async function dmHistoryPage(
@@ -76,7 +82,7 @@ export async function dmHistoryPage(
   before: number | undefined,
   log: HistoryLog,
 ): Promise<DmHistoryResponse> {
-  const listed = await listedCommands(engine, snapshot, campaignId);
+  const { listed, byId } = await listedCommands(engine, snapshot, campaignId);
   const older =
     before === undefined ? listed : listed.filter((item) => item.stored.firstSequence < before);
   const page = older.slice(0, DM_HISTORY_PAGE_SIZE);
@@ -87,7 +93,7 @@ export async function dmHistoryPage(
   return {
     perspective: 'DM',
     entries: page.flatMap((item) => {
-      const entry = entryOf(item, snapshot, actor, campaignId, reasons, log);
+      const entry = entryOf(item, snapshot, actor, campaignId, reasons, byId, log);
       return entry === null ? [] : [entry];
     }),
     nextBefore: older.length > page.length ? (page.at(-1)?.stored.firstSequence ?? null) : null,
@@ -98,10 +104,13 @@ function listedCommands(
   engine: WorldEngine,
   snapshot: CampaignSnapshot,
   campaignId: string,
-): Promise<readonly Listed[]> {
+): Promise<Logged> {
   const known = listedMemo.get(snapshot.history);
   if (known) return known;
-  const computed = engine.commandLog(campaignId).then((log) => listFrom(snapshot, log));
+  const computed = engine.commandLog(campaignId).then((log) => ({
+    listed: listFrom(snapshot, log),
+    byId: new Map(log.map((stored) => [stored.commandId, stored])),
+  }));
   listedMemo.set(snapshot.history, computed);
   // A failed read is never remembered.
   computed.catch(() => listedMemo.delete(snapshot.history));
@@ -140,7 +149,7 @@ function listFrom(snapshot: CampaignSnapshot, log: readonly StoredCommand[]): Li
 }
 
 /** The character a player command acts for, as authorization reads it. */
-function actingCharacter(stored: StoredCommand): string | null {
+export function actingCharacter(stored: StoredCommand): string | null {
   const { command } = stored;
   if ('characterId' in command && typeof command.characterId === 'string') {
     return command.characterId;
@@ -190,6 +199,7 @@ function entryOf(
   actor: Actor,
   campaignId: string,
   reasons: ReadonlyMap<string, SubstitutionRecord>,
+  byId: ReadonlyMap<string, StoredCommand>,
   log: HistoryLog,
 ): DmHistoryEntry | null {
   const { stored } = item;
@@ -200,7 +210,7 @@ function entryOf(
     worldTime: snapshot.history[stored.firstSequence - 1]?.worldTime ?? snapshot.state.clock,
     recordedAt: stored.recordedAt,
     status: undoneBy === null ? ('COMMITTED' as const) : ('UNDONE' as const),
-    undo: undoneBy === null ? availability(snapshot, actor, campaignId, stored, log) : null,
+    undo: undoneBy === null ? availability(snapshot, actor, campaignId, stored, byId, log) : null,
   };
   if (item.kind === 'authoring') {
     return { ...common, kind: 'authoring', proposalId: item.proposalId, summary: item.summary };
@@ -236,6 +246,7 @@ function availability(
   actor: Actor,
   campaignId: string,
   stored: StoredCommand,
+  byId: ReadonlyMap<string, StoredCommand>,
   log: HistoryLog,
 ): DmUndoAvailability {
   const memo = previewMemo.get(snapshot.history) ?? new Map<string, UndoPreview | Undecided>();
@@ -256,12 +267,28 @@ function availability(
     : {
         possible: false,
         code: preview.code,
-        blockers: preview.blockers.map(({ commandId: id, commandType, sequence }) => ({
-          commandId: id,
-          commandType,
-          sequence,
-        })),
+        blockers: preview.blockers.map(({ commandId: id, commandType, sequence }) => {
+          const player = playersAction(snapshot, byId.get(id));
+          return { commandId: id, commandType, sequence, ...(player ? { player } : {}) };
+        }),
       };
+}
+
+/**
+ * A blocker that is a player's own action: a player command a player issued (not the DM, who
+ * also issues player commands when acting for a character). The DM is asked to confirm before
+ * undoing it, and its player is told afterwards (`undone-actions.ts`).
+ */
+function playersAction(
+  snapshot: CampaignSnapshot,
+  stored: StoredCommand | undefined,
+): DmUndoBlocker['player'] | null {
+  if (!stored || stored.actor.kind !== 'user') return null;
+  if (stored.actor.actorId === snapshot.state.campaign?.dmActorId) return null;
+  if (!PLAYER_TYPES.has(stored.commandType)) return null;
+  const characterId = actingCharacter(stored);
+  if (characterId === null) return null;
+  return { character: characterRef(snapshot, characterId), command: submitted(stored) };
 }
 
 /** The engine's dry decision of the undo; one that throws is recorded, never rethrown. */
@@ -313,7 +340,7 @@ function entityRef(
 }
 
 /** The player command as submitted: the engine's recorded draws stay server-side. */
-function submitted(stored: StoredCommand): KernelCommandOf<PlayerCommandType> {
+export function submitted(stored: StoredCommand): KernelCommandOf<PlayerCommandType> {
   return Object.fromEntries(
     Object.entries(stored.command).filter(([key]) => key !== 'resolution'),
   ) as KernelCommandOf<PlayerCommandType>;

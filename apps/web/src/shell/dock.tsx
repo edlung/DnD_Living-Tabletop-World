@@ -11,18 +11,22 @@ interface Item {
   /** The tab bar's word on a phone; contained in the label, which stays the name. */
   readonly short: string;
   readonly glyph: GlyphName;
+  /** Something waits there (the DM's open draft): a marker, and its words as a description. */
+  readonly waiting?: string;
 }
 
 function DockButton({ item, shell }: { readonly item: Item; readonly shell: Shell }) {
   const common = {
     id: dockButtonId(item.id),
     type: 'button' as const,
-    className: 'dock-button',
+    className: `dock-button${item.waiting ? ' has-waiting' : ''}`,
     'aria-label': item.label,
+    'aria-describedby': item.waiting ? `${dockButtonId(item.id)}-waiting` : undefined,
   };
   const content = (
     <>
       <Glyph name={item.glyph} />
+      {item.waiting && <span className="dock-marker" aria-hidden="true" />}
       <span className="dock-label" aria-hidden="true">
         {item.label}
       </span>
@@ -67,7 +71,16 @@ function DockButton({ item, shell }: { readonly item: Item; readonly shell: Shel
  * invitation (docs/adr/0036-production-sign-in.md §4). A phone shows it as a tab bar with short
  * words.
  */
-export function Dock({ isDm, shell }: { readonly isDm: boolean; readonly shell: Shell }) {
+export function Dock({
+  isDm,
+  shell,
+  drafts = 0,
+}: {
+  readonly isDm: boolean;
+  readonly shell: Shell;
+  /** The DM's open drafts: "Add to the world" is marked while one waits (after a reload too). */
+  readonly drafts?: number;
+}) {
   const t = useT();
   const invitations = useSignInKind() === 'session';
   const world: readonly Item[] = [
@@ -77,7 +90,13 @@ export function Dock({ isDm, shell }: { readonly isDm: boolean; readonly shell: 
     { id: 'chronicle', label: t('Chronicle'), short: t('Chronicle'), glyph: 'chronicle' },
   ];
   const dm: readonly Item[] = [
-    { id: 'add', label: t('Add to the world'), short: t('Add'), glyph: 'add-character' },
+    {
+      id: 'add',
+      label: t('Add to the world'),
+      short: t('Add'),
+      glyph: 'add-character',
+      ...(drafts > 0 ? { waiting: t('An unfinished proposal is waiting') } : {}),
+    },
     { id: 'encounter', label: t('Encounter'), short: t('Encounter'), glyph: 'encounter' },
     { id: 'time', label: t('Time and weather'), short: t('Time'), glyph: 'time' },
     { id: 'history', label: t('History'), short: t('History'), glyph: 'history' },
@@ -100,6 +119,11 @@ export function Dock({ isDm, shell }: { readonly isDm: boolean; readonly shell: 
           {dm.map((item) => (
             <li key={item.id}>
               <DockButton item={item} shell={shell} />
+              {item.waiting && (
+                <span id={`${dockButtonId(item.id)}-waiting`} className="visually-hidden">
+                  {item.waiting}
+                </span>
+              )}
             </li>
           ))}
         </ul>

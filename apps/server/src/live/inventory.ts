@@ -57,7 +57,12 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
   ];
   // The client reads surroundings and entity context only for an acting character.
   const acting = target.kind === 'CHARACTER';
-  if (acting) views.push(scoped('surroundings'));
+  if (acting) {
+    views.push(scoped('surroundings'));
+    // The player's own actions the DM undid: the notice in the player's client (ADR 0033,
+    // amendment of 2026-10-28). Built from the requester's own commands only.
+    views.push(scoped('undone-actions'));
+  }
   if (target.kind === 'DM') {
     // The suggestions route takes no perspective (DM only); the whole history is its range.
     views.push({

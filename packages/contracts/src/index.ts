@@ -103,6 +103,7 @@ export {
   DM_HISTORY_PAGE_SIZE,
   SUBSTITUTION_NOTE_CHARS,
   SUBSTITUTION_REASONS,
+  UNDONE_ACTIONS_LIMIT,
   clientCommandIdSchema,
   recordSubstitutionRequestSchema,
   type DmAuthoringEntry,
@@ -115,6 +116,7 @@ export {
   type RecordSubstitutionRequest,
   type RecordSubstitutionResponse,
   type SubstitutionReason,
+  type UndoneActionsResponse,
 } from './session/dm.ts';
 export {
   CREDENTIAL_TOKEN_PATTERN,

@@ -32,6 +32,7 @@ import { registerQuestRoutes } from './routes/quest-routes.ts';
 import { registerReadinessRoute } from './routes/readiness-routes.ts';
 import { registerSessionRoutes } from './routes/session-routes.ts';
 import { registerSurroundingsRoutes } from './routes/surroundings-routes.ts';
+import { registerUndoneRoutes } from './routes/undone-routes.ts';
 import { registerVisualRoutes } from './routes/visual-routes.ts';
 import { SECURITY_HEADERS, registerOriginCheck } from './security.ts';
 
@@ -140,6 +141,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   registerDmRoutes(app, deps);
+  registerUndoneRoutes(app, deps);
   if (deps.signIn) {
     const signIn = { ...deps, signIn: deps.signIn };
     registerAuthRoutes(app, signIn);

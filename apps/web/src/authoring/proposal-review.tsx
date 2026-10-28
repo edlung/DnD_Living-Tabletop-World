@@ -21,6 +21,9 @@ const CHANGE_TEXT: Readonly<Record<string, string>> = {
   DisclosureSet: 'Their willingness to share is set',
   AssetRequested: 'A portrait is requested',
 };
+/** A proposal that only changes what exists (an NPC card's edit) adds nothing to the world. */
+const isEdit = (commands: readonly ProposableCommand[]) =>
+  commands.length > 0 && commands.every((command) => command.type === 'UpdateEntityProfile');
 const words = (type: string) => type.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
 
 const STATUS_TEXT = {
@@ -203,7 +206,7 @@ export function ProposalReview({
             {t('Who will see')}
           </h4>
           <ul>
-            {whoWillSee(t, proposal.commands, directory, names).map((line) => (
+            {whoWillSee(t, proposal.commands, directory, names, proposal.status).map((line) => (
               <li key={line}>{line}</li>
             ))}
           </ul>
@@ -287,7 +290,7 @@ export function ProposalReview({
               }}
             >
               <Glyph name="confirm" />
-              {t('Confirm and add to the world')}
+              {t(isEdit(proposal.commands) ? 'Confirm the edit' : 'Confirm and add to the world')}
             </button>
             <button
               type="button"
