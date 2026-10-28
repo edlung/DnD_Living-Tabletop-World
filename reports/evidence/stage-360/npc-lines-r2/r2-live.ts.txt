@@ -1,0 +1,155 @@
+// Focused live check for owner decisions 11 round 2 (second stand-in pass): Russian Ravenford,
+// Tomas (DM-created, testimony with no disclosure) and Orin (plain Talk twice, evidence then Talk), through the real HTTP dialogue route with live Sonnet 5.5 as the only
+// npc-dialogue provider. Records the exact system text, prompt and reply per exchange (never a
+// key). Hard spend cap enforced from returned usage. Usage: node --conditions=@ltw/source
+// npc-lines-live.ts <label> <out.json>
+import { writeFileSync } from 'node:fs';
+
+const WT =
+  '/private/tmp/claude-501/-Users-oleksandr-Documents-living-tabletop-world-dev-pack-v1-2/f6fadd8c-9fcd-493b-b5d3-2fed6e160fdb/scratchpad/wt-r2npc2';
+const { InMemoryEventStore } = await import(`${WT}/packages/domain/src/index.ts`);
+const { scriptedDice } = await import(`${WT}/packages/rules/src/index.ts`);
+const { testBrand } = await import(`${WT}/packages/ai/src/testing/providers.ts`);
+const { createAnthropicProvider } = await import(`${WT}/apps/server/src/ai/anthropic-provider.ts`);
+const { RAVENFORD_RU_FIXTURES_DIR } = await import(
+  `${WT}/apps/server/src/world-engine/ravenford-seed.ts`
+);
+const app$ = await import(`${WT}/apps/server/src/testing/ravenford-app.ts`);
+
+const [label = 'run', out = 'out.json', mode = 'main'] = process.argv.slice(2);
+const CAP_USD = 0.14; // per run; two runs stay under the $0.30 allowed for this check
+const key = process.env['ANTHROPIC_API_KEY'];
+if (!key) throw new Error('no key in the environment');
+
+const raw = createAnthropicProvider({
+  apiKey: () => key,
+  model: 'claude-sonnet-5-5',
+  timeoutMs: 60_000,
+  effort: 'low',
+  maxTokens: 4_096,
+  cache: '5m',
+});
+let spent = 0;
+const exchanges: Record<string, unknown>[] = [];
+let pending: Record<string, unknown> = {};
+const provider = testBrand('anthropic-live', 'remote', async (request: any) => {
+  if (spent >= CAP_USD) throw new Error(`spend cap reached: $${spent.toFixed(4)}`);
+  const prepared = raw.prepare(request);
+  const response: any = await raw.dispatch(prepared, new AbortController().signal, () => {});
+  const d = response.billing?.dimensions ?? {};
+  // Conservative: all input at the uncached price unless split is reported.
+  const cost =
+    ((d.input_tokens ?? response.usage?.inputTokens ?? 0) * 2 +
+      (d.cache_creation_input_tokens ?? 0) * 2.5 +
+      (d.cache_read_input_tokens ?? 0) * 0.1 +
+      (d.output_tokens ?? response.usage?.outputTokens ?? 0) * 10) /
+    1e6;
+  spent += cost;
+  pending = {
+    system: request.system,
+    prompt: request.prompt,
+    usage: response.usage,
+    costUsd: Number(cost.toFixed(6)),
+  };
+  return response;
+});
+
+const engine = await app$.seededEngine(
+  new InMemoryEventStore(),
+  scriptedDice(Array<number>(64).fill(15)),
+  app$.MIDDLE_ENTROPY,
+  RAVENFORD_RU_FIXTURES_DIR,
+);
+const app = await app$.ravenfordApp(engine, app$.testAiGateway(provider));
+const ELOWEN = 'elowen-starwhisper';
+const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
+let n = 0;
+const dm = async (command: Record<string, unknown>) => {
+  n += 1;
+  const r = await engine.execute({ commandId: `npc-lines.${n}`, campaignId: 'ravenford', actor: DM, command });
+  if (r.status === 'rejected' && r.code !== 'NO_EFFECT') throw new Error(`setup: ${r.code}`);
+};
+const say = async (step: string, npcId: string, intent: Record<string, unknown>, line?: string) => {
+  pending = {};
+  const res = await app$.post(
+    app,
+    `/campaigns/ravenford/npcs/${npcId}/dialogue`,
+    { characterId: ELOWEN, intent, ...(line ? { line } : {}) },
+    app$.TOKENS.player,
+  );
+  const body = res.json();
+  exchanges.push({
+    step,
+    npcId,
+    intent,
+    line: line ?? null,
+    command: body.command
+      ? { status: body.command.status, code: body.command.code ?? null }
+      : null,
+    replyStatus: body.reply?.status ?? null,
+    reply: body.reply?.text ?? null,
+    ...pending,
+  });
+  console.log(`[${label}] ${step}: ${body.reply?.status} ${body.reply?.text ?? ''}`);
+};
+
+const command = async (cmd: Record<string, unknown>) => {
+  n += 1;
+  const res = await app$.post(
+    app,
+    '/campaigns/ravenford/commands',
+    { commandId: `r2-live.player.${n}`, command: cmd },
+    app$.TOKENS.player,
+  );
+  console.log(`[${label}] command ${String(cmd['type'])}: ${res.json().status}`);
+};
+
+// Tomas as the stand-in DM created him: an NPC and his testimony, no disclosure chosen.
+await dm({
+  type: 'CreateEntity',
+  entityId: 'tomas',
+  kind: 'npc',
+  name: 'Томас',
+  description: 'Стражник у Северных ворот.',
+  existsSince: null,
+  placement: { locationId: 'north-gate', since: null },
+});
+await dm({
+  type: 'AddKnowledge',
+  knowledgeId: 'tomas-testimony',
+  scope: { kind: 'NPC', npcId: 'tomas' },
+  knowledgeType: 'TESTIMONY',
+  statement: 'Томас видел, как караван вышел через северные ворота на рассвете.',
+  subjects: ['guild-caravan'],
+  attributedTo: 'tomas',
+  knownSince: null,
+});
+await dm({
+  type: 'AddKnowledge',
+  knowledgeId: 'party-camp-evidence',
+  scope: { kind: 'PARTY' },
+  knowledgeType: 'EVIDENCE',
+  statement: 'На обломке фургона выжжен странный знак.',
+  subjects: ['feature-19c7c7f7', 'old-trade-road'],
+  knownSince: null,
+});
+await dm({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'north-gate' });
+// DM 36: performing Tomas with a line about the caravan; DM 37: asking about it.
+await say('tomas talk with line', 'tomas', { kind: 'talk' }, 'Вы видели караван Торговой гильдии?');
+await say('tomas ask caravan', 'tomas', { kind: 'ask', topicId: 'guild-caravan' });
+
+await dm({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'orins-alchemy' });
+// Player 11, 25, 26: plain Talk, three times.
+await say('orin talk 1', 'orin-stonebeard', { kind: 'talk' });
+await say('orin talk 2', 'orin-stonebeard', { kind: 'talk' });
+// Player 37–39: evidence shown through the command route (no words), then Talk twice.
+await command({ type: 'ShowEvidence', characterId: ELOWEN, npcId: 'orin-stonebeard', knowledgeId: 'party-camp-evidence' });
+await say('orin talk after evidence', 'orin-stonebeard', { kind: 'talk' });
+await say('orin keep talking', 'orin-stonebeard', { kind: 'talk' });
+
+writeFileSync(
+  out,
+  JSON.stringify({ label, model: 'claude-sonnet-5-5', spentUsd: Number(spent.toFixed(6)), exchanges }, null, 2),
+);
+console.log(`[${label}] spent ~$${spent.toFixed(4)}`);
+process.exit(0);

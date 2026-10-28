@@ -43,6 +43,7 @@ describe('interpretLocally', () => {
         },
         {
           type: 'AddKnowledge',
+          knowledgeId: 'tomas-reed-account',
           scope: { kind: 'NPC', npcId: 'tomas-reed' },
           knowledgeType: 'TESTIMONY',
           statement: 'Tomas Reed saw the guild caravan leave before dawn.',
@@ -50,6 +51,8 @@ describe('interpretLocally', () => {
           attributedTo: 'tomas-reed',
           knownSince: null,
         },
+        // Never silently guarded (owner decisions 11, round 2): he tells it when asked.
+        { type: 'SetDisclosure', knowledgeId: 'tomas-reed-account', disclosure: 'WILLING' },
       ],
     });
   });
@@ -57,16 +60,16 @@ describe('interpretLocally', () => {
   it('proposes commands the World Engine would accept from the DM', async () => {
     const { output } = interpret(TOMAS);
     const { commands } = output as { commands: Record<string, unknown>[] };
-    const [first, second] = submissionsFromScript({
+    const submissions = submissionsFromScript({
       campaignId: CAMPAIGN,
       actor: DM,
       commands,
       commandIdPrefix: 'probe',
     });
-    if (!first || !second) throw new Error('expected two submissions');
-
-    expect((await world.engine.execute(first)).status).toBe('accepted');
-    expect((await world.engine.execute(second)).status).toBe('accepted');
+    expect(submissions).toHaveLength(3);
+    for (const submission of submissions) {
+      expect((await world.engine.execute(submission)).status).toBe('accepted');
+    }
   });
 
   it('answers the same request the same way', () => {
@@ -97,7 +100,23 @@ describe('interpretLocally', () => {
           statement: 'Tomas Reed saw the caravan leave.',
           subjects: ['guild-caravan', 'north-gate'],
         },
+        { type: 'SetDisclosure', disclosure: 'WILLING' },
       ],
+    });
+  });
+
+  it.each([
+    'Add a guard near North Gate who saw the caravan leave but hides it.',
+    'Add a guard near North Gate who saw the caravan leave and is reluctant to talk.',
+    'Add a guard near North Gate who secretly saw the caravan leave.',
+    "Add a guard near North Gate who saw the caravan leave and won't tell anyone.",
+  ])('guards the account only when the DM says so: %s', (request) => {
+    const { output, check } = interpret(request);
+    expect(check.ok).toBe(true);
+    expect((output as { commands: unknown[] }).commands.at(-1)).toEqual({
+      type: 'SetDisclosure',
+      knowledgeId: 'tomas-reed-account',
+      disclosure: 'GUARDED',
     });
   });
 

@@ -9,6 +9,7 @@ import './i18n/ru-play.ts';
 import './i18n/ru-visual.ts';
 import './i18n/ru-access.ts';
 import './i18n/ru-images.ts';
+import './i18n/ru-table.ts';
 import { App } from './session/app.tsx';
 import { takeInvitation } from './session/invitation-link.ts';
 import { pageStart } from './session/sign-in-flow.ts';

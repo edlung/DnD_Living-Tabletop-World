@@ -152,6 +152,15 @@ export class PostgresAiJournal implements AiJournal {
     return this.#traces.get(campaignId, traceId);
   }
 
+  npcReplies(
+    campaignId: string,
+    npcId: string,
+    speakerId: string,
+    limit: number,
+  ): Promise<readonly string[]> {
+    return this.#traces.npcReplies(campaignId, npcId, speakerId, limit);
+  }
+
   diagnose(campaignId: string, traceId: string): Promise<AiAccountingDiagnosticView | null> {
     return readDiagnostic(this.#pool, campaignId, traceId);
   }

@@ -40,6 +40,18 @@ test('a Russian player finds Mira, asks about the caravan, and reads only Russia
   await expect(page.getByText('СВИДЕТЕЛЬСТВО').first()).toBeVisible();
   await expectNoEnglish(page, 'after asking');
 
+  // Asked again, she has nothing to add; asked about what she never spoke of, nothing to say.
+  await page.getByRole('button', { name: 'Спросить: Караван Торговой гильдии' }).click();
+  await expect(
+    page.getByRole('status').filter({ hasText: 'Об этом собеседнику нечего добавить.' }),
+  ).toBeVisible();
+  await page.getByText('Другие варианты беседы', { exact: true }).click();
+  await page.getByLabel('Тема беседы', { exact: true }).selectOption('orins-alchemy');
+  await page.getByRole('button', { name: 'Спросить о выбранной теме', exact: true }).click();
+  await expect(
+    page.getByRole('status').filter({ hasText: 'Собеседнику нечего сказать об этом.' }),
+  ).toBeVisible();
+
   await page.getByRole('button', { name: 'Поговорить', exact: true }).click();
   // The browser-test server has no dialogue provider, so the honest answer is that no words came.
   await expect(

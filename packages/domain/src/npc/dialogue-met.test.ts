@@ -37,6 +37,8 @@ interface Build {
   readonly exchange?: string | null;
   readonly characterId?: string;
   readonly actor?: Actor;
+  /** Trace IDs of its earlier spoken replies to this character. */
+  readonly earlierReplies?: readonly string[];
 }
 
 async function contextFor(
@@ -58,7 +60,11 @@ async function contextFor(
     npcId,
     topicId: options.topicId ?? null,
     justShared: options.justShared ?? [],
-    conversation: { history: snapshot.history, exchangeCommandId: options.exchange ?? null },
+    conversation: {
+      history: snapshot.history,
+      exchangeCommandId: options.exchange ?? null,
+      ...(options.earlierReplies ? { earlierReplies: options.earlierReplies } : {}),
+    },
   });
   if (!context) throw new Error('no context');
   return context;
@@ -244,5 +250,50 @@ describe('whether the NPC has spoken with this character', () => {
     expect(told(orin)).toEqual([]);
     const all = JSON.stringify(orin);
     for (const sourceId of shared) expect(all).not.toContain(sourceId);
+  });
+
+  /*
+   * Stage 360 second stand-in pass (player 38): what is told now is never "already told"; and
+   * (player 11, 25, 26) a conversation of plain Talk is remembered from its own spoken replies.
+   */
+  it('what the exchange’s own command shares is just told, even when the caller passes nothing', async () => {
+    const world = await withEvidence();
+    await enter(world, MIRA);
+    const asked = await ask(world, MIRA, 'guild-caravan');
+    expect(asked.shared.length).toBeGreaterThan(0);
+    const context = await contextFor(world, MIRA, {
+      topicId: 'guild-caravan',
+      exchange: asked.commandId,
+    });
+    expect(told(context)).toEqual([]);
+    expect(context.justTold.map((line) => line.sourceId)).toEqual(asked.shared);
+  });
+
+  it('after evidence is shown, what it unlocks is new to them, not already told', async () => {
+    const world = await withEvidence();
+    await enter(world, ORIN);
+    await show(world);
+    const talking = await contextFor(world, ORIN);
+    expect(talking.metBefore).toBe(true);
+    expect(talking.mayTell).toContainEqual(
+      expect.objectContaining({ text: PRIOR_INCIDENT, toldBefore: false }),
+    );
+    expect(told(talking)).toEqual([]);
+  });
+
+  it('its own earlier spoken replies to this character count as having met, cited by trace', async () => {
+    const world = await withEvidence();
+    await enter(world, ORIN);
+    const first = await contextFor(world, ORIN);
+    expect(first.metBefore).toBe(false);
+    const replies = ['t-1', 't-2', 't-3', 't-4', 't-5'];
+    const again = await contextFor(world, ORIN, { earlierReplies: replies });
+    expect(again.metBefore).toBe(true);
+    expect(again.metOn).toEqual([]);
+    expect(again.repliedOn).toEqual(['t-2', 't-3', 't-4', 't-5']);
+    expect(dialogueSourceIds(again)).toEqual(expect.arrayContaining(['trace#t-5']));
+    // Only that it spoke counts: nothing it said is told, nothing new is sayable.
+    expect(told(again)).toEqual([]);
+    expect(again.mayTell).toEqual(first.mayTell);
   });
 });

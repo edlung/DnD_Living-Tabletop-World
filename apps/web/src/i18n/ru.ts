@@ -178,6 +178,7 @@ registerRussian({
   'You showed the evidence. Talk or ask again to hear what they make of it.':
     'Вы показали улику. Поговорите или спросите снова, чтобы узнать, что скажет собеседник.',
   'They have nothing new to tell you about this.': 'Об этом собеседнику нечего добавить.',
+  'They have nothing to say about this.': 'Собеседнику нечего сказать об этом.',
   'An inference was recorded.': 'Записан вывод.',
   'No new inference was recorded.': 'Новый вывод не записан.',
   'Hypothesis recorded as HYPOTHESIS.': 'Версия записана как ГИПОТЕЗА.',

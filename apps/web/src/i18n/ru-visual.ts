@@ -160,6 +160,8 @@ registerRussian({
   'It is world truth: no one is told it': 'Это истина мира: её никому не сообщают',
   '{name} will tell it when asked': 'Если спросят, расскажет {name}',
   'It will be told when asked': 'Если спросят, это расскажут',
+  '{name} will evade questions about it': '{name} будет уклоняться от вопросов об этом',
+  'It will be kept back when asked': 'Если спросят, об этом промолчат',
   'Now: {weather}': 'Сейчас: {weather}',
   'Now: not set': 'Сейчас: не задана',
   'Undo is possible now: the world allows it.': 'Отмена возможна сейчас: мир это позволяет.',

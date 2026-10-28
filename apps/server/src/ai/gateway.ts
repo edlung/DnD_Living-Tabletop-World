@@ -173,6 +173,8 @@ export function createAiGateway(config: AppConfig['ai'], options: AiGatewayOptio
       journal.begin(start, identities.get(start.capability) ?? LOCAL_ONLY, deadline),
     finalize: (outcome, deadline) => journal.finalize(outcome, deadline),
     get: (campaignId, traceId) => journal.get(campaignId, traceId),
+    npcReplies: (campaignId, npcId, speakerId, limit) =>
+      journal.npcReplies(campaignId, npcId, speakerId, limit),
   };
   // Frozen, like its router: nothing may swap a route or provider in after composition.
   const gateway: AiGateway = {

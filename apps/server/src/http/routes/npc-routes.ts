@@ -12,6 +12,7 @@ import {
 import {
   campaignRole,
   checkTalk,
+  DIALOGUE_LIMITS,
   languageOf,
   npcDialogueContext,
   sharedSources,
@@ -32,6 +33,9 @@ import { forPlayer } from './command-routes.ts';
  * trace ID, never the player's words or the reply. The reply's accounting
  * session comes from the snapshot before the command; a reply without a
  * durable request start has `traceId: null` and the command's result stands.
+ * Whether the NPC has spoken with the character also counts its own earlier spoken
+ * replies to them, read from the reply traces (ADR 0020 amendment 2026-10-28, round 2): only
+ * their IDs, never their words; if they cannot be read, the reply goes on without them.
  */
 export interface NpcRouteDependencies extends RouteDependencies {
   readonly ai: DialogueDeps;
@@ -94,13 +98,23 @@ export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependenci
     const heard = after && checkTalk(after.state, actor, body.characterId, path.npcId);
     if (!after || !heard?.ok) return refused(heard && !heard.ok ? heard.code : 'NO_EFFECT', seen);
     const accepted = result === null || result.status !== 'rejected';
+    const earlierReplies = await deps.ai.traces
+      .npcReplies(path.campaignId, path.npcId, body.characterId, DIALOGUE_LIMITS.repliedOn)
+      .catch((error: unknown) => {
+        request.log.warn({ err: error }, 'npc dialogue: earlier replies unavailable');
+        return [];
+      });
     const context = npcDialogueContext(after.state, {
       speaker: heard.speaker,
       npcId: path.npcId,
       topicId: 'topicId' in body.intent ? body.intent.topicId : null,
       justShared: result && accepted ? sharedSources(after.history, result.commandId) : [],
       // Whether they have spoken before: the same snapshot, this exchange's events excluded.
-      conversation: { history: after.history, exchangeCommandId: result?.commandId ?? null },
+      conversation: {
+        history: after.history,
+        exchangeCommandId: result?.commandId ?? null,
+        earlierReplies,
+      },
     });
     if (!context) return refused('NO_EFFECT', seen);
 

@@ -59,6 +59,7 @@ export function controlledJournal(
       await store.finalize(outcome);
     },
     get: (campaignId, traceId) => store.get(campaignId, traceId),
+    npcReplies: (...query) => store.npcReplies(...query),
   };
 }
 

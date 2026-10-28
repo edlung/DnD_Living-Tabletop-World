@@ -8,7 +8,7 @@ import {
   propose,
   review,
 } from './support/authoring.ts';
-import { openSheet } from './support/shell.ts';
+import { dockButton, openSheet } from './support/shell.ts';
 
 /**
  * The DM's drafts live on the server (owner decisions 11, SI-D1; ADR 0029 §6, amendment
@@ -34,9 +34,14 @@ test('a reload and a change of perspective keep the DM’s unfinished draft', as
   await review(page).getByRole('button', { name: 'Apply changes' }).click();
   await expect(review(page).getByText('revision 2')).toBeVisible();
 
-  // A reload forgets the screen and the credential; the draft is the server's.
+  // A reload forgets the screen and the credential; the draft is the server's. Before the DM
+  // opens anything, "Add to the world" is marked as holding it (second stand-in pass).
   await page.reload();
   await enterAsDm(page, campaign);
+  await expect(dockButton(page, ADD_TO_THE_WORLD)).toHaveAccessibleDescription(
+    'An unfinished proposal is waiting',
+  );
+  await expect(page.locator('nav.dock .dock-marker')).toBeVisible();
   await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toContainText('Create npc Tomas Reed at North Gate');
   await expect(review(page)).toContainText('A young guard with a scar over one eye.');
@@ -61,6 +66,8 @@ test('a reload and a change of perspective keep the DM’s unfinished draft', as
   // A cancel is the server's too: the discarded draft never returns.
   await review(page).getByRole('button', { name: 'Cancel proposal' }).click();
   await expect(review(page)).toHaveCount(0);
+  await expect(page.locator('nav.dock .dock-marker')).toHaveCount(0);
+  await expect(dockButton(page, ADD_TO_THE_WORLD)).toHaveAccessibleDescription('');
   await page.reload();
   await enterAsDm(page, campaign);
   await openSheet(page, ADD_TO_THE_WORLD);

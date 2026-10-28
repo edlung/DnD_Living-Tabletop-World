@@ -141,6 +141,11 @@ export interface NpcDialogueTraceView extends AiTraceBase {
   /** The canonical command the World Engine decided before the reply; null for Talk. */
   readonly commandId: string | null;
   readonly reply: string | null;
+  /**
+   * Additive (owner decisions 11, round 2): the character it replied to; absent on earlier
+   * traces. Lets the NPC know it has spoken with them (ADR 0020 amendment 2026-10-28, round 2).
+   */
+  readonly speakerId?: string;
 }
 
 /**

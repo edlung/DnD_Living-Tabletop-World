@@ -38,12 +38,15 @@ export interface ActionNotice {
   readonly talkRefusedBy?: string;
 }
 type Attempt = { readonly intent: ExplorationIntent; readonly commandId: string };
+/** Whether this NPC told the actor's side anything about the topic before (the view's records). */
+export type ToldAbout = (npcId: string, topicId: string) => boolean;
 
 /** One mutation in flight. The same attempt survives an uncertain transport failure. */
 export function useAction(
   api: WorldApi,
   canAct: boolean,
   onResolved: (outcome?: PlayerOutcome) => void,
+  toldAbout: ToldAbout = () => false,
 ) {
   const t = useT();
   const [state, setState] = useState<{
@@ -117,7 +120,7 @@ export function useAction(
         if (!['accepted', 'duplicate', 'rejected'].includes(result.status)) throw new ApiError(0);
         notice =
           result.status === 'rejected'
-            ? { message: refusal(t, attempt.intent, result.code, result.message) }
+            ? { message: refusal(t, attempt.intent, result.code, result.message, toldAbout) }
             : {
                 message: outcomeMessage(t, result.outcome),
                 ...(result.outcome ? { outcome: result.outcome } : {}),
@@ -181,7 +184,13 @@ async function recordReason(
 }
 
 /** A refusal in words; skipping a player's turn says plainly why it waits (ADR 0016). */
-function refusal(t: Translate, intent: ExplorationIntent, code: string, message: string): string {
+function refusal(
+  t: Translate,
+  intent: ExplorationIntent,
+  code: string,
+  message: string,
+  toldAbout: ToldAbout,
+): string {
   if (
     intent.kind === 'command' &&
     intent.standIn &&
@@ -192,10 +201,12 @@ function refusal(t: Translate, intent: ExplorationIntent, code: string, message:
       'The turn cannot end while a reaction is pending. Close the reaction window first, or wait for the answer.',
     );
   }
+  const command = intent.kind === 'command' ? intent.command : null;
   return rejectionMessage(
     t,
     code,
     message,
-    intent.kind === 'command' ? intent.command.type : undefined,
+    command?.type,
+    command?.type === 'AskAbout' && toldAbout(command.npcId, command.topicId),
   );
 }

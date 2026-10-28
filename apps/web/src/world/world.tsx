@@ -14,6 +14,7 @@ import { ActionNotice } from '../exploration/action-notice.tsx';
 import { useDmImagesState } from '../images/dm-images.ts';
 import { WorldPictures } from '../images/world-pictures.tsx';
 import { CONVERSATION_PANEL_ID, DialoguePanel } from '../exploration/dialogue-panel.tsx';
+import { toldAbout } from '../exploration/outcome-messages.ts';
 import {
   useAction,
   type ActionNotice as Notice,
@@ -31,6 +32,7 @@ import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
 import { PlacesSheet } from './places-sheet.tsx';
 import { Scene } from './scene.tsx';
+import { UndoneNotice } from './undone-notice.tsx';
 import { useScene, useWorldData } from './use-world-data.ts';
 
 interface Selected {
@@ -69,7 +71,8 @@ export function World({
 }) {
   const t = useT();
   const [revision, setRevision] = useState(0);
-  const [dmWeather, setDmWeather] = useState<Weather>('rain');
+  // The DM's weather choice; null until chosen, so the choice shows the place's weather now.
+  const [dmWeather, setDmWeather] = useState<Weather | null>(null);
   const [viewing, setViewing] = useState<string | null>(null);
   const [selected, setSelected] = useState<Selected | null>(null);
   // The last selection: its panel stays mounted while closed, so drafts in it survive.
@@ -112,7 +115,11 @@ export function World({
   }, []);
   // Players act as their character; the DM alone runs the existing encounter operations, and
   // fights as a player's character only after choosing to, each command with its reason.
-  const action = useAction(api, canAct || standIn !== null || isDm, onResolved);
+  // Read when a question's answer arrives, from the records shown before it was asked.
+  const knowledge = data?.knowledge.knowledge ?? [];
+  const action = useAction(api, canAct || standIn !== null || isDm, onResolved, (npcId, topicId) =>
+    toldAbout(knowledge, npcId, topicId),
+  );
   // A spoken line belongs to the conversation with whoever spoke it; an NPC who would not
   // talk now leaves no conversation open (no "Keep talking" after a refusal).
   useEffect(() => {
@@ -282,6 +289,7 @@ export function World({
               rail={
                 <PartyRail api={api} encounter={encounter} selectedId={focus} onSelect={select} />
               }
+              notice={acting && <UndoneNotice api={api} directory={directory} />}
               conversation={
                 speaking && (
                   <DialoguePanel
@@ -390,7 +398,7 @@ export function World({
               }}
             />
           )}
-          <Dock isDm={isDm} shell={shell} />
+          <Dock isDm={isDm} shell={shell} drafts={isDm ? authoring.drafts.length : 0} />
         </div>
         {/* The result of an action sits above every sheet and panel, so its words and its Retry
             are never covered by the tool that caused it. */}

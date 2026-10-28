@@ -16,7 +16,7 @@ const PLAYER = { actorId: 'player-elowen', kind: 'user' } as const;
  * DM skipping her turn, the DM acting as her), the encounter on the Goblin Shaman's turn
  * (before the DM casts: the Counterspell window, and the same window reaching a player who
  * looks at the scene or reads the Chronicle), Elowen at North Gate before any authoring, and
- * untouched Ravenfords (reconnect, the DM history).
+ * untouched Ravenfords (reconnect, the DM history, the player told of an undone action).
  */
 export async function seedUiLiveCampaigns(engine: WorldEngine): Promise<void> {
   for (const campaignId of [campaigns.turn, campaigns.skip, campaigns.actAs]) {
@@ -43,6 +43,7 @@ export async function seedUiLiveCampaigns(engine: WorldEngine): Promise<void> {
     campaigns.history,
     campaigns.historyView,
     campaigns.historyPages,
+    campaigns.undoNotice,
   ]) {
     for (const input of seed.submissions) {
       const submission = commandSubmissionSchema.parse(input);

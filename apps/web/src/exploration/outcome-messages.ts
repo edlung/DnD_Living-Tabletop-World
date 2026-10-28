@@ -1,4 +1,4 @@
-import type { PlayerOutcome } from '@ltw/contracts';
+import type { KnowledgeView, PlayerOutcome } from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
 /**
@@ -28,16 +28,37 @@ const REJECTIONS: Readonly<Record<string, string>> = {
 const readableReason = (reason: string) =>
   /^[A-Z_]+$/.test(reason) ? reason.replaceAll('_', ' ').toLowerCase() : null;
 
+/**
+ * Whether the asker's side already holds what this NPC told about the topic: a record of the
+ * party's or a character's, attributed to the NPC, about the topic. Never an NPC's own record.
+ */
+export const toldAbout = (
+  knowledge: readonly KnowledgeView[],
+  npcId: string,
+  topicId: string,
+): boolean =>
+  knowledge.some(
+    (record) =>
+      record.scope.kind !== 'NPC' &&
+      record.attributedTo?.entityId === npcId &&
+      record.subjects.some((subject) => subject.entityId === topicId),
+  );
+
 export function rejectionMessage(
   t: Translate,
   code: string,
   message?: string,
   commandType?: string,
+  /** For a question: whether this NPC told the asker's side anything about the topic before. */
+  toldBefore = false,
 ): string {
   // Asking someone who has nothing (more) to tell is an answer, not a failure (Stage 360): the
   // server lists the question whether or not they know anything, so as not to give that away.
+  // "Nothing to add" only after something was told (second stand-in pass, player 12).
   if (commandType === 'AskAbout' && code === 'NO_EFFECT') {
-    return t('They have nothing new to tell you about this.');
+    return toldBefore
+      ? t('They have nothing new to tell you about this.')
+      : t('They have nothing to say about this.');
   }
   const base = t(REJECTIONS[code] ?? 'The world could not accept this action.');
   const reason = code === 'ILLEGAL_ACTION' && message ? readableReason(message) : null;

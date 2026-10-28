@@ -36,6 +36,7 @@ const app = await ravenfordApp(
         start.campaignId === dmTools.aiNoStart ? Promise.resolve(false) : traces.start(start),
       finalize: (outcome) => traces.finalize(outcome),
       get: (campaignId, traceId) => traces.get(campaignId, traceId),
+      npcReplies: (...query) => traces.npcReplies(...query),
     },
     ids: new SequentialIds(0xe2e),
     clock: { now: () => clock.now(), nowMs: () => (elapsed += 5) },

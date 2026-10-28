@@ -29,7 +29,8 @@ export function DmWorldControls({
   onWeather,
   onRun,
 }: {
-  readonly weather: (typeof WEATHERS)[number];
+  /** The DM's choice; null until chosen, when the choice shows the place's weather now. */
+  readonly weather: (typeof WEATHERS)[number] | null;
   readonly onWeather: (weather: (typeof WEATHERS)[number]) => void;
   readonly api: WorldApi;
   /** The world screen's refresh count: the clock is read again after each command. */
@@ -57,6 +58,9 @@ export function DmWorldControls({
   const scene = now.status === 'ready' ? now.value : null;
   const next = scene ? nextMorning(scene.worldTime) : null;
   const sky = scene?.location.weather ?? null;
+  // Never a weather the place does not have unless the DM picked it (second stand-in pass:
+  // "Now: not set" beside a preselected "rain" read as if rain were set).
+  const chosen = weather ?? sky;
   return (
     <div className="dm-world">
       <section className="tool-group" aria-labelledby="dm-time-title">
@@ -123,14 +127,22 @@ export function DmWorldControls({
         )}
         <label htmlFor="weather-choice">{t('Weather at {place}', { place: locationName })}</label>
         <div className="inline-field weather-field">
-          <Glyph name={weatherGlyph(weather)} className="weather-choice-glyph" />
+          <Glyph
+            name={chosen ? weatherGlyph(chosen) : 'unknown'}
+            className="weather-choice-glyph"
+          />
           <select
             id="weather-choice"
-            value={weather}
+            value={chosen ?? ''}
             onChange={(event) => {
               onWeather(event.target.value as (typeof WEATHERS)[number]);
             }}
           >
+            {chosen === null && (
+              <option value="" disabled>
+                {t('Choose the weather')}
+              </option>
+            )}
             {WEATHERS.map((entry) => (
               <option key={entry} value={entry}>
                 {t(entry)}
@@ -138,9 +150,9 @@ export function DmWorldControls({
             ))}
           </select>
           <button
-            disabled={locked}
+            disabled={locked || chosen === null}
             onClick={() => {
-              run({ type: 'SetWeather', locationId, weather });
+              if (chosen) run({ type: 'SetWeather', locationId, weather: chosen });
             }}
           >
             {t('Set weather')}

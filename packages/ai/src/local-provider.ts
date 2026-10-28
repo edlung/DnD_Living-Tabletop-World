@@ -99,6 +99,13 @@ function mentioned(text: string, directory: readonly EntityRef[]): EntityRef[] {
     .map((match) => match.entity);
 }
 
+/**
+ * Whether the DM's words say the person keeps what they know to themselves (owner decisions 11,
+ * round 2): only then is the account GUARDED; otherwise they tell it when asked.
+ */
+const RETICENT =
+  /\b(?:reluctant(?:ly)?|hid(?:e|es|ing)|hidden|secret(?:ly|ive)?|guarded|won'?t\s+(?:tell|say|talk)|will\s+not\s+(?:tell|say|talk)|refuses?\s+to\s+(?:tell|say|talk)|keeps?\s+(?:it|quiet|silent))\b/i;
+
 function addPerson(text: string, directory: readonly EntityRef[]): ProposableCommand[] | null {
   const match =
     /\b(?:add|create|introduce)\s+(?:an?\s+)?(.+?)\s+(?:near|at|in|by|outside)\s+(?:the\s+)?(.+?)(?:\s*,?\s+who\s+(.+?))?[.!]?$/i.exec(
@@ -125,14 +132,22 @@ function addPerson(text: string, directory: readonly EntityRef[]): ProposableCom
   ];
   if (witnessed) {
     const subjects = mentioned(witnessed, directory).map((e) => e.entityId);
+    const knowledgeId = `${npcId}-account`;
     commands.push({
       type: 'AddKnowledge',
+      knowledgeId,
       scope: { kind: 'NPC', npcId },
       knowledgeType: 'TESTIMONY',
       statement: `${name} ${witnessed.trim().replace(/[.!]+$/, '')}.`,
       subjects: [...new Set([...subjects, location.entityId])],
       attributedTo: npcId,
       knownSince: null,
+    });
+    // Always explicit: never left GUARDED by default (owner decisions 11, round 2).
+    commands.push({
+      type: 'SetDisclosure',
+      knowledgeId,
+      disclosure: RETICENT.test(text) ? 'GUARDED' : 'WILLING',
     });
   }
   return commands;

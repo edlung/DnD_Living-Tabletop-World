@@ -1,5 +1,7 @@
 import type {
   ContextAction,
+  ContextActionId,
+  ContextHint,
   EntityContextResponse,
   EntityRef,
   KnowledgeView,
@@ -39,6 +41,10 @@ export const CONVERSATION: ReadonlySet<string> = new Set(['talk', 'ask_about', '
 export const reasonWords = (t: Translate, action: ContextAction): string =>
   t(action.reason?.replaceAll('_', ' ').toLowerCase() ?? 'Unavailable');
 
+/** A hint the server attaches to an action (its fixed vocabulary), in words. */
+export const hintWords = (t: Translate, hint: ContextHint): string =>
+  t(hint.replaceAll('_', ' ').toLowerCase());
+
 export function ContextActions({
   api,
   context,
@@ -68,8 +74,13 @@ export function ContextActions({
   const actor = context.actingCharacterId;
   const name = entity.name ?? unidentifiedName(t, entity.kind);
   const names = distinctNames(t, directory);
+  // Evidence is shown deliberately, from "More conversation options" (or the conversation):
+  // never a one-click button among the primary actions (second stand-in pass).
   const listed = actions.filter(
-    (action) => executable.has(action.id) && !(conversing && CONVERSATION.has(action.id)),
+    (action) =>
+      executable.has(action.id) &&
+      action.id !== 'show_evidence' &&
+      !(conversing && CONVERSATION.has(action.id)),
   );
   return (
     <section className="exploration-actions" aria-label={t('Contextual actions')}>
@@ -130,6 +141,10 @@ export function ContextActions({
           directory={directory}
           characterId={actor}
           npcId={entity.entityId}
+          suggestedEvidence={
+            actions.find((action) => action.id === 'show_evidence' && action.legal)?.evidence
+              ?.knowledgeId
+          }
           locked={locked}
           onRun={onRun}
         />
@@ -148,7 +163,7 @@ export function ContextActions({
               </strong>
               <span>{action.legal ? t('Available in the world') : reasonWords(t, action)}</span>
               {action.hints?.map((hint) => (
-                <small key={hint}>{t(hint.replaceAll('_', ' ').toLowerCase())}</small>
+                <small key={hint}>{hintWords(t, hint)}</small>
               ))}
               {action.resolution?.moveRequiredFt !== undefined && (
                 <small>
@@ -190,12 +205,14 @@ export function actionLabel(
           action.topic?.name ??
           t('Unidentified subject'),
       });
-    case 'show_evidence':
+    case 'show_evidence': {
+      const statement = knowledge.find(
+        (record) => record.knowledgeId === action.evidence?.knowledgeId,
+      )?.statement;
       return t('Show evidence: {statement}', {
-        statement:
-          knowledge.find((record) => record.knowledgeId === action.evidence?.knowledgeId)
-            ?.statement ?? t('Known evidence'),
+        statement: statement === undefined ? t('Known evidence') : shortStatement(statement),
       });
+    }
     case 'enter_location':
       return t('Enter {place}', { place: target });
     case 'inspect':
@@ -211,6 +228,49 @@ export function actionLabel(
     case 'talk':
       return t('Talk');
     default:
-      return t(action.id.replaceAll('_', ' '));
+      return t(ACTION_TEXT[action.id]);
   }
+}
+
+/**
+ * The words of every other server-listed action: English keys the client dictionary translates,
+ * one per action ID, so a new ID cannot reach a Russian screen untranslated
+ * (`i18n/dictionary-coverage.test.ts`).
+ */
+const ACTION_TEXT: Readonly<
+  Record<
+    Exclude<
+      ContextActionId,
+      | 'ask_about'
+      | 'show_evidence'
+      | 'enter_location'
+      | 'inspect'
+      | 'investigation_check'
+      | 'perception_check'
+      | 'detect_magic'
+      | 'recall'
+      | 'talk'
+    >,
+    string
+  >
+> = {
+  trade: 'Trade',
+  insight_check: 'Insight check',
+  healing_word: 'Healing Word',
+  hunters_mark: 'Hunters Mark',
+  longbow_attack: 'Longbow attack',
+  fireball: 'Fireball',
+  counterspell: 'Counterspell',
+};
+
+/** Longest evidence wording on a button; the full statement is in the journal and the picker. */
+const STATEMENT_CHARS = 48;
+
+/** A piece of evidence named briefly: its first words, cut at a word, with an ellipsis. */
+export function shortStatement(statement: string): string {
+  const text = statement.trim();
+  if (text.length <= STATEMENT_CHARS) return text;
+  const cut = text.slice(0, STATEMENT_CHARS);
+  const space = cut.lastIndexOf(' ');
+  return `${(space > STATEMENT_CHARS / 2 ? cut.slice(0, space) : cut).replace(/[\s,.:;—-]+$/u, '')}…`;
 }

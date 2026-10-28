@@ -20,7 +20,7 @@ ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the 
 | `src/relevance-prompt.ts`   | Ranker request: legal actions under opaque keys, the target as seen, the perspective's records and memories                    |
 | `src/local-provider.ts`     | Deterministic offline interpreter (tests, development, fallback); identity `isLocalProvider`                                   |
 | `src/intent.ts`             | DM intent use case: role check, PUBLIC context, fallback, trace                                                                |
-| `src/traces.ts`             | Request journal/trace port (`start`, `finalize`, `get`) and the in-memory store (tests, development)                           |
+| `src/traces.ts`             | Request journal/trace port (`start`, `finalize`, `get`, `npcReplies`) and the in-memory store (tests, development)             |
 | `src/images.ts`             | Image port (ADR 0022 §3, ADR 0035): `ImageGenerator`, `ImageBrief` (purpose, reference bytes), `ImageJob`, failure codes       |
 | `src/placeholder-images.ts` | Deterministic local SVG placeholder: no text, never reads names, descriptions, or notes                                        |
 | `src/chronicle.ts`          | Chronicle prose (ADR 0024 §3): `narrative` rendering, validation with the World Engine's prose rules, template fallback, trace |

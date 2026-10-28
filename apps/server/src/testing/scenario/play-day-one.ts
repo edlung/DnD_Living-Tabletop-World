@@ -217,10 +217,24 @@ function edited(commands: readonly ProposableCommand[], description: string): Pr
   if (record?.type !== 'AddKnowledge' || record.knowledgeId === undefined) {
     throw new Error('the stored revision has a resolved record ID');
   }
+  // The interpreter now proposes the disclosure itself (owner decisions 11, round 2); the DM's
+  // edit makes sure it is willing either way.
+  const willing: ProposableCommand = {
+    type: 'SetDisclosure',
+    knowledgeId: record.knowledgeId,
+    disclosure: 'WILLING',
+  };
+  const disclosed = commands.some(
+    (command) => command.type === 'SetDisclosure' && command.knowledgeId === record.knowledgeId,
+  );
   return [
     ...commands.map((command) =>
-      command.type === 'CreateEntity' ? { ...command, description } : command,
+      command.type === 'CreateEntity'
+        ? { ...command, description }
+        : command.type === 'SetDisclosure' && command.knowledgeId === record.knowledgeId
+          ? willing
+          : command,
     ),
-    { type: 'SetDisclosure', knowledgeId: record.knowledgeId, disclosure: 'WILLING' },
+    ...(disclosed ? [] : [willing]),
   ];
 }

@@ -79,11 +79,14 @@ test('undo is refused while the story depends on him, and works after the depend
   await openHistory(page);
   const undo = commit(page).getByRole('button', { name: 'Undo this addition' });
   const blockers = commit(page).getByRole('group', { name: 'Undo blockers' });
-  await expect(blockers).toContainText('ask about');
+  // The blocker is the player's own action, said as such (second stand-in pass).
+  const asked =
+    'A player’s action (Elowen Starwhisper): Asked Tomas Reed about Merchant Guild caravan';
+  await expect(blockers).toContainText(asked);
   // The preview says the world refuses the undo now: the button agrees, and says why.
   await expect(undo).toBeDisabled();
   await expect(undo).toHaveAccessibleDescription(
-    'Undo is blocked by later steps that depend on this: ask about',
+    `Undo is blocked by later steps that depend on this: ${asked}`,
   );
   await expect(commit(page)).toContainText('Added to the world');
   await openSheet(page, ADD_TO_THE_WORLD);
@@ -93,7 +96,10 @@ test('undo is refused while the story depends on him, and works after the depend
 
   // The DM resolves the dependency explicitly, then the same undo succeeds.
   await openHistory(page);
-  await blockers.getByRole('button', { name: 'Undo “ask about” first' }).click();
+  await blockers
+    .getByRole('button', { name: 'Undo the action of Elowen Starwhisper first' })
+    .click();
+  await blockers.getByRole('button', { name: 'Undo the player’s action' }).click();
   await expect(blockers).toHaveCount(0);
   await expect(undo).toBeEnabled();
   await expect(undo).toHaveAccessibleDescription('');

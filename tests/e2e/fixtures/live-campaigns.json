@@ -10,5 +10,6 @@
   "historyPages": "ui-live-history-pages",
   "skipWindow": "ui-live-skip-window",
   "sceneWindow": "ui-live-scene-window",
-  "bookWindow": "ui-live-book-window"
+  "bookWindow": "ui-live-book-window",
+  "undoNotice": "ui-live-undo-notice"
 }

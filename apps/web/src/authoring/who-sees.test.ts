@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import '../i18n/ru-play.ts';
 import '../i18n/ru-visual.ts';
+import '../i18n/ru-table.ts';
 import { profileEdit } from './npc-profile.tsx';
 import { whoWillSee } from './who-sees.ts';
 
@@ -35,6 +36,18 @@ const tomas = [
 ] as unknown as readonly ProposableCommand[];
 
 describe('who will see a proposal', () => {
+  it('says the proposal is the DM’s alone only while it is a draft', () => {
+    const first = (status: 'DRAFT' | 'COMMITTED' | 'UNDONE' | 'CANCELLED') =>
+      whoWillSee(english, tomas, [], new Map(), status)[0];
+    expect(first('DRAFT')).toBe('Until you confirm it, only you see this proposal.');
+    expect(first('COMMITTED')).toBe('Confirmed: it is in the world now, seen as follows.');
+    expect(first('UNDONE')).toBe('Undone: the world no longer holds it, and no one sees it.');
+    expect(first('CANCELLED')).toBe('Discarded: it never reached the world, and no one saw it.');
+    expect(whoWillSee(russian, tomas, [], new Map(), 'COMMITTED')[0]).toBe(
+      'Подтверждено: это уже в мире, и видят это так:',
+    );
+  });
+
   it('reads each line from the proposed commands, the proposal itself first', () => {
     expect(whoWillSee(english, tomas, [], new Map([['tomas-reed', 'Tomas Reed']]))).toEqual([
       'Until you confirm it, only you see this proposal.',
@@ -63,6 +76,22 @@ describe('who will see a proposal', () => {
     expect(scoped({ kind: 'PUBLIC' })).toBe('Anyone may know this');
     expect(scoped({ kind: 'DM' })).toBe('Only you, the DM, know this');
     expect(scoped({ kind: 'WORLD_TRUTH' })).toBe('It is world truth: no one is told it');
+  });
+
+  // Owner decisions 11, round 2: whether he tells it is said plainly, both ways.
+  it('says whether the person will tell the account or evade it', () => {
+    const guarded = tomas.map((command) =>
+      command.type === 'SetDisclosure' ? { ...command, disclosure: 'GUARDED' as const } : command,
+    );
+    const names = new Map([['tomas-reed', 'Tomas Reed']]);
+    expect(whoWillSee(english, guarded, [], names)[3]).toBe(
+      'Tomas Reed will evade questions about it',
+    );
+    const ru = new Map([['tomas-reed', 'Томас Рид']]);
+    expect(whoWillSee(russian, tomas, [], ru)[3]).toBe('Если спросят, расскажет Томас Рид');
+    expect(whoWillSee(russian, guarded, [], ru)[3]).toBe(
+      'Томас Рид будет уклоняться от вопросов об этом',
+    );
   });
 
   it('speaks Russian, names placed as given', () => {

@@ -253,6 +253,20 @@
 .dock-items--dm .dock-button > .glyph {
   color: var(--gold);
 }
+/* Something waits under this tool (the DM's open draft): a marker at the glyph's corner. */
+.dock-button.has-waiting {
+  position: relative;
+}
+.dock-marker {
+  position: absolute;
+  top: 6px;
+  left: calc(50% + 8px);
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--ink-950);
+  border-radius: 50%;
+  background: var(--gold-bright);
+}
 .dock-label {
   max-width: 7.5rem;
   white-space: nowrap;

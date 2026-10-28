@@ -3,6 +3,7 @@ import type {
   CommandResult,
   DmIntentResponse,
   KnowledgeListResponse,
+  NpcDialogueResponse,
   ProposableCommand,
 } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
@@ -51,20 +52,23 @@ async function proposeTomas(): Promise<AuthoringProposalResponse> {
   return created.json<AuthoringProposalResponse>();
 }
 
-/** The DM's edit: Tomas's age and role, and his willingness to tell what he saw. */
+/** The DM's edit: Tomas's age and role; his willingness to tell is already proposed. */
 function edited(commands: readonly ProposableCommand[]): ProposableCommand[] {
   const record = commands.find((command) => command.type === 'AddKnowledge');
   if (record?.type !== 'AddKnowledge' || record.knowledgeId === undefined) {
     throw new Error('the stored revision has a resolved record ID');
   }
-  return [
-    ...commands.map((command) =>
-      command.type === 'CreateEntity'
-        ? { ...command, description: 'A young guard of the Ravenford Guard, 22 years old.' }
-        : command,
-    ),
-    { type: 'SetDisclosure', knowledgeId: record.knowledgeId, disclosure: 'WILLING' },
-  ];
+  // The interpreter proposes his disclosure already (owner decisions 11, round 2): willing.
+  expect(commands).toContainEqual({
+    type: 'SetDisclosure',
+    knowledgeId: record.knowledgeId,
+    disclosure: 'WILLING',
+  });
+  return commands.map((command) =>
+    command.type === 'CreateEntity'
+      ? { ...command, description: 'A young guard of the Ravenford Guard, 22 years old.' }
+      : command,
+  );
 }
 
 describe('DM authoring of Tomas Reed over HTTP', () => {
@@ -232,5 +236,49 @@ describe('DM authoring of Tomas Reed over HTTP', () => {
 
     expect(asPlayer.statusCode).toBe(403);
     for (const marker of ALL_SECRET_MARKERS) expect(asPlayer.body).not.toContain(marker);
+  });
+
+  // Second stand-in pass (DM 36–37): a DM-created witness, confirmed as proposed, tells what he
+  // saw when the player asks; his account is never silently guarded (owner decisions 11, round 2).
+  it('a witness confirmed as proposed answers the player with his account', async () => {
+    const proposed = await proposeTomas();
+    expect(proposed.proposal.commands.map((command) => command.type)).toEqual([
+      'CreateEntity',
+      'AddKnowledge',
+      'SetDisclosure',
+    ]);
+    const tomas = createdEntityId(proposed.proposal.commands);
+    const committed = await post(
+      app,
+      `${PROPOSALS}/${proposed.proposal.proposalId}/commit`,
+      { revision: 1, confirmation: proposed.preview?.confirmation },
+      TOKENS.dm,
+    );
+    expect(committed.statusCode).toBe(200);
+    const entered = await post(
+      app,
+      '/campaigns/ravenford/commands',
+      {
+        commandId: 'enter-witness',
+        command: {
+          type: 'EnterLocation',
+          characterId: 'elowen-starwhisper',
+          locationId: 'north-gate',
+        },
+      },
+      TOKENS.player,
+    );
+    expect(entered.statusCode).toBe(200);
+    const asked = (
+      await post(
+        app,
+        `/campaigns/ravenford/npcs/${tomas}/dialogue`,
+        { characterId: 'elowen-starwhisper', intent: { kind: 'ask', topicId: 'guild-caravan' } },
+        TOKENS.player,
+      )
+    ).json<NpcDialogueResponse>();
+    expect(asked.command).toMatchObject({ status: 'accepted' });
+    expect(asked.reply).toMatchObject({ status: 'REPLIED' });
+    expect(asked.reply?.text).toContain('Tomas Reed saw the caravan leave.');
   });
 });

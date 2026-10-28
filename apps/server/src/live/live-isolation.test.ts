@@ -1,6 +1,7 @@
 import type { WorldEngine } from '@ltw/domain';
 import { beforeAll, describe, expect, it } from 'vitest';
 
+import ambush from '../../../../fixtures/ravenford/road-ambush.json' with { type: 'json' };
 import hiddenCharacter from '../../../../tests/e2e/fixtures/hidden-character.json' with { type: 'json' };
 import { delivered, liveRavenford, readyLive, type LiveStream } from '../testing/live.ts';
 import { ASHEN_CIRCLE_ID, TOKENS } from '../testing/ravenford-app.ts';
@@ -180,5 +181,138 @@ describe('the live signal for a perspective', () => {
     for (const stream of [...observers, dm]) {
       for (const frame of stream.frames()) expect(frame).toMatch(grammar);
     }
+  });
+});
+
+/**
+ * The DM's undo and the player's notice of an undone action (ADR 0033, amendment of 2026-10-28):
+ * Elowen's player's `undone-actions` view changes only when one of that player's own commands is
+ * undone. Any other undo leaves it empty, and signals the player no more than the undone command
+ * itself did; the undo of the player's own command signals exactly once.
+ */
+describe('the live signal for an undo', () => {
+  const PLAYER = { actorId: 'player-elowen', kind: 'user' } as const;
+  const SEREN = { actorId: 'player-seren', kind: 'user' } as const;
+  let live: Awaited<ReturnType<typeof liveRavenford>>;
+  let elowen: LiveStream;
+  let issued = 0;
+
+  async function run(actor: typeof DM | typeof PLAYER | typeof SEREN, command: object) {
+    issued += 1;
+    const commandId = `live-undo.${String(issued)}`;
+    const result = await live.engine.execute({
+      commandId,
+      campaignId: 'ravenford',
+      actor,
+      command,
+    });
+    expect(result.status, JSON.stringify(result)).toBe('accepted');
+    return commandId;
+  }
+  async function settle(): Promise<number> {
+    const before = changes(elowen).length;
+    await live.hub.cycle();
+    await live.hub.cycle();
+    await delivered();
+    return changes(elowen).length - before;
+  }
+  async function undoneFor(): Promise<unknown> {
+    const response = await live.app.inject({
+      method: 'GET',
+      url: '/campaigns/ravenford/undone-actions?perspective=PLAYER',
+      headers: { authorization: `Bearer ${TOKENS.player}` },
+    });
+    return response.json<{ actions: unknown[] }>().actions;
+  }
+  /** The command, then its undo by the DM: the undo is told to no one and signals no more. */
+  async function undoneQuietly(actor: typeof DM | typeof PLAYER | typeof SEREN, command: object) {
+    const id = await run(actor, command);
+    const done = await settle();
+    await run(DM, { type: 'UndoCommand', targetCommandId: id });
+    expect(await settle()).toBeLessThanOrEqual(done);
+    expect(await undoneFor()).toEqual([]);
+  }
+
+  beforeAll(async () => {
+    live = await liveRavenford({ limits: { perActor: 20 } });
+    // Seren, a second player's character, at North Gate.
+    await run(DM, {
+      type: 'CreateEntity',
+      entityId: 'seren-ashgrove',
+      kind: 'character',
+      name: 'Seren Ashgrove',
+      existsSince: null,
+      placement: { locationId: 'north-gate', since: null },
+    });
+    await run(DM, {
+      type: 'AssignCharacter',
+      characterId: 'seren-ashgrove',
+      playerActorId: 'player-seren',
+    });
+    elowen = await readyLive(live.app, query('PLAYER'), TOKENS.player);
+    await settle();
+  });
+
+  it('stays silent when the DM undoes the DM’s own authoring', async () => {
+    const id = await run(DM, {
+      type: 'AddKnowledge',
+      knowledgeId: 'live-undo-dm-note',
+      scope: { kind: 'DM' },
+      knowledgeType: 'SECRET',
+      statement: 'The ford is watched.',
+      subjects: ['old-trade-road'],
+      knownSince: null,
+    });
+    expect(await settle()).toBe(0);
+    await run(DM, { type: 'UndoCommand', targetCommandId: id });
+    expect(await settle()).toBe(0);
+    expect(await undoneFor()).toEqual([]);
+  });
+
+  it('tells Elowen’s player nothing when the DM undoes another player’s action', async () => {
+    await undoneQuietly(SEREN, {
+      type: 'EnterLocation',
+      characterId: 'seren-ashgrove',
+      locationId: 'market-square',
+    });
+  });
+
+  it('tells nothing of an undone time advance', async () => {
+    await undoneQuietly(DM, { type: 'AdvanceWorldTime', by: 3600 });
+  });
+
+  it('tells nothing of an undone creature attack', async () => {
+    for (const step of [...ambush.place, ambush.startCombat]) await run(DM, step);
+    await run(PLAYER, { type: 'EndTurn', combatantId: 'elowen-starwhisper' });
+    await settle();
+    await undoneQuietly(DM, {
+      type: 'Attack',
+      combatantId: 'creature-10fb59d4',
+      attackId: 'shortbow',
+      targetId: 'elowen-starwhisper',
+    });
+  });
+
+  it('signals exactly once, and lists it, when the DM undoes Elowen’s player’s own action', async () => {
+    const id = await run(PLAYER, {
+      type: 'ExamineEntity',
+      characterId: 'elowen-starwhisper',
+      entityId: 'location-f3b82c8b',
+      method: 'inspect',
+    });
+    await settle();
+    await run(DM, { type: 'UndoCommand', targetCommandId: id });
+    expect(await settle()).toBe(1);
+    expect(await undoneFor()).toEqual([
+      {
+        commandId: id,
+        command: {
+          type: 'ExamineEntity',
+          characterId: 'elowen-starwhisper',
+          entityId: 'location-f3b82c8b',
+          method: 'inspect',
+        },
+      },
+    ]);
   });
 });

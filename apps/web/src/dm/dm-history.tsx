@@ -1,12 +1,19 @@
-import type { DmHistoryEntry, EntityRef } from '@ltw/contracts';
+import type { DmHistoryEntry, DmUndoBlocker, EntityRef } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useEffect, useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { historyPageKey, historyPageLoader, PageCursor } from './history-pages.ts';
-import { entryDetails, entryStatus, entryTitle, isPictureHold, STEP_TEXT } from './history-text.ts';
+import {
+  describeSubstitution,
+  entryDetails,
+  entryStatus,
+  entryTitle,
+  isPictureHold,
+  STEP_TEXT,
+} from './history-text.ts';
 import { useHistoryUndo } from './use-history-undo.ts';
 
 type Actions = ReturnType<typeof useHistoryUndo>;
@@ -230,8 +237,22 @@ export function HistoryEntry({
             <ul>
               {blockers.map((blocker, index) => (
                 <li key={blocker.commandId}>
-                  <span id={`${ids}-step-${String(index)}`}>{step(blocker.commandType)}</span>{' '}
-                  {isPictureHold(blocker.commandType) ? (
+                  <span id={`${ids}-step-${String(index)}`}>
+                    {blocker.player
+                      ? t('A player’s action ({name}): {action}', {
+                          name: blocker.player.character.name,
+                          action: describeSubstitution(t, blocker.player.command, directory),
+                        })
+                      : step(blocker.commandType)}
+                  </span>{' '}
+                  {blocker.player ? (
+                    <PlayerBlocker
+                      blocker={blocker}
+                      player={blocker.player}
+                      directory={directory}
+                      actions={actions}
+                    />
+                  ) : isPictureHold(blocker.commandType) ? (
                     <span className="muted">
                       {t(
                         'A picture made for this holds it: discard that picture under Images, then undo again.',
@@ -254,5 +275,80 @@ export function HistoryEntry({
         )}
       </div>
     </li>
+  );
+}
+
+/**
+ * Undoing a blocker that is a player's own action takes back what the player did (owner
+ * decisions 11, second stand-in pass): the DM confirms first, told whose action it is, what it
+ * was, and that the player will be told.
+ */
+function PlayerBlocker({
+  blocker,
+  player,
+  directory,
+  actions,
+}: {
+  readonly blocker: DmUndoBlocker;
+  readonly player: NonNullable<DmUndoBlocker['player']>;
+  readonly directory: readonly EntityRef[];
+  readonly actions: Actions;
+}) {
+  const t = useT();
+  const ids = useId();
+  const [asking, setAsking] = useState(false);
+  // Focus follows the question and comes back to its button when the DM keeps the action.
+  const confirm = useRef<HTMLButtonElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const opened = useRef(false);
+  useEffect(() => {
+    if (asking) confirm.current?.focus();
+    else if (opened.current) trigger.current?.focus();
+    opened.current = asking;
+  }, [asking]);
+  const name = player.character.name;
+  if (!asking) {
+    return (
+      <button
+        ref={trigger}
+        disabled={actions.busy}
+        onClick={() => {
+          setAsking(true);
+        }}
+      >
+        {t('Undo the action of {name} first', { name })}
+      </button>
+    );
+  }
+  return (
+    <div role="group" aria-labelledby={`${ids}-ask`} className="history-confirm">
+      <p id={`${ids}-ask`}>
+        {t(
+          'This takes back what the player of {name} did: {action}. The player will be told. Undo it?',
+          { name, action: describeSubstitution(t, player.command, directory) },
+        )}
+      </p>
+      <div className="action-row">
+        <button
+          ref={confirm}
+          disabled={actions.busy}
+          onClick={() => {
+            opened.current = false;
+            setAsking(false);
+            void actions.undoBlocker(blocker.commandId);
+          }}
+        >
+          <Glyph name="undo" />
+          {t('Undo the player’s action')}
+        </button>
+        <button
+          onClick={() => {
+            setAsking(false);
+          }}
+        >
+          {t('Keep it')}
+        </button>
+      </div>
+    </div>
   );
 }
