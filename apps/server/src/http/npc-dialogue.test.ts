@@ -185,6 +185,25 @@ describe('talking with an NPC', () => {
     expect(bran.reply?.text).toBe('Mira Vale looks up. “Can I help you?”');
   });
 
+  it('plain Talk again: its own spoken reply means they have met (round 2, player 25–26)', async () => {
+    const first = (await say('mira-vale', { kind: 'talk' })).json<NpcDialogueResponse>();
+    expect(first.reply?.text).toBe('Mira Vale looks up. “Can I help you?”');
+    const again = (await say('mira-vale', { kind: 'talk' })).json<NpcDialogueResponse>();
+    expect(again.reply?.text).toBe('Mira Vale looks up. “Back again. What else can I do for you?”');
+    // The trace names whom it replied to, and the second cites the first; never its words.
+    const trace = (id: string | null | undefined) =>
+      get(app, `/campaigns/ravenford/ai/traces/${id ?? ''}`, TOKENS.dm).then((response) =>
+        response.json<AiTraceView>(),
+      );
+    expect(await trace(first.reply?.traceId)).toMatchObject({ speakerId: ELOWEN });
+    const second = await trace(again.reply?.traceId);
+    expect(second.sourceIds).toContain(`trace#${first.reply?.traceId ?? ''}`);
+    // Another NPC has not spoken with her.
+    await asDm({ type: 'EnterLocation', characterId: ELOWEN, locationId: 'orins-alchemy' });
+    const orin = (await say('orin-stonebeard', { kind: 'talk' })).json<NpcDialogueResponse>();
+    expect(orin.reply?.text).toBe('Orin Stonebeard looks up. “Can I help you?”');
+  });
+
   it('reads an NPC once with Insight, and keeps talking after', async () => {
     const first = (
       await say('mira-vale', { kind: 'insight', topicId: 'guild-caravan' })

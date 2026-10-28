@@ -26,6 +26,7 @@ const orin = (met: boolean): NpcDialogueContext => ({
   speaker: { entityId: 'elowen-starwhisper', kind: 'character', name: 'Elowen Starwhisper' },
   metBefore: met,
   metOn: met ? ['00000000-0000-4000-8000-000000000001'] : [],
+  repliedOn: [],
   attitude: 'NEUTRAL',
   worldTime: 36_000,
   place: { entityId: 'orins-alchemy', kind: 'location', name: "Orin's Alchemy" },
@@ -66,11 +67,11 @@ describe('the NPC-dialogue request', () => {
       They have shown you evidence about: Strange Symbol.
       You have already told them or their companions:
       - Orin recognized the same symbol after a caravan vanished last spring.
-      You may also tell them:
+      You have not told them this yet; you may tell them now:
       - The shop opens at dawn.
       Everyone around here knows (background: bring it up only if asked or it concerns you):
       - Rooms are let at the Golden Stag.
-      Guarded topics: Strange Symbol.
+      Guarded topics (you know something about them that you will not share now): Strange Symbol.
       </npc_context>
       <exchange>
       They ask you again about Strange Symbol; you have already told them what you would.

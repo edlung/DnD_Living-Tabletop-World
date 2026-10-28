@@ -46,7 +46,25 @@ export interface AiTraceStore {
   finalize(outcome: FrozenOutcome, deadline: RequestDeadline): Promise<void>;
   /** The trace, or null when it does not exist in that campaign. */
   get(campaignId: string, traceId: string): Promise<AiTraceView | null>;
+  /**
+   * The trace IDs of an NPC's spoken replies (`REPLIED`) to one character in a campaign, oldest
+   * first, at most `limit` (the latest). Only that it spoke, never what: the NPC dialogue context
+   * counts them as having met (docs/adr/0020-npc-intelligence.md, amendment 2026-10-28, round 2).
+   */
+  npcReplies(
+    campaignId: string,
+    npcId: string,
+    speakerId: string,
+    limit: number,
+  ): Promise<readonly string[]>;
 }
+
+/** Whether a trace is an NPC's spoken reply to this character. */
+export const isNpcReplyTo = (trace: AiTraceView, npcId: string, speakerId: string): boolean =>
+  trace.purpose === 'npc-dialogue' &&
+  trace.status === 'REPLIED' &&
+  trace.scope === `NPC:${npcId}` &&
+  trace.speakerId === speakerId;
 
 /** A finalization that contradicts an outcome already stored: never an overwrite. */
 export class OutcomeConflict extends Error {
@@ -84,6 +102,18 @@ export class InMemoryAiTraceStore implements AiTraceStore {
   get(campaignId: string, traceId: string): Promise<AiTraceView | null> {
     const trace = this.#traces.get(traceId);
     return Promise.resolve(trace?.campaignId === campaignId ? structuredClone(trace) : null);
+  }
+
+  npcReplies(
+    campaignId: string,
+    npcId: string,
+    speakerId: string,
+    limit: number,
+  ): Promise<readonly string[]> {
+    const ids = [...this.#traces.values()]
+      .filter((trace) => trace.campaignId === campaignId && isNpcReplyTo(trace, npcId, speakerId))
+      .map((trace) => trace.traceId);
+    return Promise.resolve(limit > 0 ? ids.slice(-limit) : []);
   }
 
   /** Every trace, in insertion order (tests). */

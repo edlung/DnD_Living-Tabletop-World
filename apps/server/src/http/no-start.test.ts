@@ -29,6 +29,7 @@ const failing = (mode: 'fail' | 'stall'): AiTraceStore => ({
   start: () => (mode === 'fail' ? Promise.resolve(false) : new Promise<boolean>(() => undefined)),
   finalize: () => Promise.reject(new Error('never started')),
   get: () => Promise.resolve(null),
+  npcReplies: () => Promise.resolve([]),
 });
 
 describe.each(['fail', 'stall'] as const)('every AI route when the request start %ss', (mode) => {

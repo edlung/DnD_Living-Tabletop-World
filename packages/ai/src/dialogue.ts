@@ -114,6 +114,7 @@ export async function replyAsNpc(deps: DialogueDeps, input: DialogueInput): Prom
           intent: input.intent,
           commandId: input.commandId,
           reply: reply.text,
+          speakerId: input.context.speaker.entityId,
           issues: result.status === 'INVALID_OUTPUT' ? result.issues : [],
           canonicalEvents: [],
           createdAt: deps.clock.now(),
