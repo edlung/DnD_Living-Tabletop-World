@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 import {
   ADD_TO_THE_WORLD,
@@ -15,7 +15,7 @@ import { openSheet } from './support/shell.ts';
  * asking the assistant again, nothing is kept in browser storage, and a cancelled draft never
  * comes back. A witness who was elsewhere is never moved by a fix (SI-D7).
  */
-const restored = (page: import('@playwright/test').Page) =>
+const restored = (page: Page) =>
   page.getByRole('status').filter({ hasText: 'Your unfinished proposal was restored.' });
 
 test('a reload and a change of perspective keep the DM’s unfinished draft', async ({ page }) => {
