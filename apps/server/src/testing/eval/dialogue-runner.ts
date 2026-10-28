@@ -47,6 +47,7 @@ async function rebuiltContext(
     topicId: typeof intent['topicId'] === 'string' ? intent['topicId'] : null,
     justShared:
       command !== null && accepted ? sharedSources(snapshot.history, command.commandId) : [],
+    conversation: { history: snapshot.history, exchangeCommandId: command?.commandId ?? null },
   });
   return context === null
     ? null

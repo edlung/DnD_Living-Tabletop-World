@@ -4,6 +4,7 @@ import {
   type DmHistoryEntry,
   type DmHistoryResponse,
   type DmUndoAvailability,
+  type DmWorldEntry,
   type EntityRef,
   type KernelCommandOf,
   type PlayerCommandType,
@@ -19,14 +20,16 @@ import {
 } from '@ltw/domain';
 import type { FastifyBaseLogger } from 'fastify';
 
+import { httpCommandId } from '../http/routes/command-routes.ts';
 import type { SubstitutionRecord, SubstitutionStore } from './substitution-store.ts';
 
 /**
  * The DM history (docs/adr/0033-live-session.md §7; docs/STAGE_310_DESIGN.md §C): authoring
- * commits and the player commands the DM issued for a character that had a player when it was
- * decided, newest first. Everything comes from durable data: the stored commands (issuer,
- * command, summary), canonical state (undone or not, the roster's history) and the DM's
- * recorded reasons. Whether undo is possible is the World Engine's own decision of
+ * commits, the player commands the DM issued for a character that had a player when it was
+ * decided, and the world-time and weather changes the DM made at the table, newest first.
+ * Everything comes from durable data: the stored commands (issuer, command, summary), canonical
+ * state (undone or not, the roster's history, the recorded time and weather change) and the
+ * DM's recorded reasons. Whether undo is possible is the World Engine's own decision of
  * `UndoCommand` against the snapshot, made dry by `previewUndo`; nothing is committed.
  *
  * Both are memoized per campaign history (the snapshot's frozen event list, which every append
@@ -36,7 +39,9 @@ import type { SubstitutionRecord, SubstitutionStore } from './substitution-store
  * A dry decision that throws is that entry's alone: the entry is answered as not possible
  * (`UNDO_NOT_SUPPORTED`, as the engine could not undo it either) and logged by command ID, type
  * and error name, never the message, which may name world content. It never fails the page
- * (a 500) or the DM's live stream, which fingerprints this page (`gone`).
+ * (a 500) or the DM's live stream, which fingerprints this page (`gone`). Likewise a time or
+ * weather command whose recorded event is not its change is left out of the page and logged
+ * by command ID and type (`dm history change not recorded`).
  */
 type Listed =
   | {
@@ -45,7 +50,8 @@ type Listed =
       readonly proposalId: string;
       readonly summary: string;
     }
-  | { readonly kind: 'substitution'; readonly stored: StoredCommand; readonly characterId: string };
+  | { readonly kind: 'substitution'; readonly stored: StoredCommand; readonly characterId: string }
+  | { readonly kind: 'world'; readonly stored: StoredCommand };
 
 /** A dry decision that threw: the error's name only. */
 interface Undecided {
@@ -56,6 +62,8 @@ interface Undecided {
 export type HistoryLog = Pick<FastifyBaseLogger, 'warn'>;
 
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
+/** The DM's "Time and weather" commands (owner decision SI-D4, 2026-10-28). */
+const WORLD_TYPES: ReadonlySet<string> = new Set(['AdvanceWorldTime', 'SetWeather']);
 const listedMemo = new WeakMap<readonly RecordedEvent[], Promise<readonly Listed[]>>();
 const previewMemo = new WeakMap<readonly RecordedEvent[], Map<string, UndoPreview | Undecided>>();
 
@@ -78,7 +86,10 @@ export async function dmHistoryPage(
   );
   return {
     perspective: 'DM',
-    entries: page.map((item) => entryOf(item, snapshot, actor, campaignId, reasons, log)),
+    entries: page.flatMap((item) => {
+      const entry = entryOf(item, snapshot, actor, campaignId, reasons, log);
+      return entry === null ? [] : [entry];
+    }),
     nextBefore: older.length > page.length ? (page.at(-1)?.stored.firstSequence ?? null) : null,
   };
 }
@@ -111,8 +122,15 @@ function listFrom(snapshot: CampaignSnapshot, log: readonly StoredCommand[]): Li
       listed.push({ kind: 'authoring', stored, proposalId, summary });
       continue;
     }
-    if (!PLAYER_TYPES.has(stored.commandType)) continue;
     if (stored.actor.kind !== 'user' || stored.actor.actorId !== dm) continue;
+    if (WORLD_TYPES.has(stored.commandType)) {
+      // At the table, through the commands route: the seed's setup clock is not a DM's change.
+      if (stored.commandId.startsWith(httpCommandId(dm, ''))) {
+        listed.push({ kind: 'world', stored });
+      }
+      continue;
+    }
+    if (!PLAYER_TYPES.has(stored.commandType)) continue;
     const characterId = actingCharacter(stored);
     if (characterId !== null && hadPlayer(characterId, stored.firstSequence)) {
       listed.push({ kind: 'substitution', stored, characterId });
@@ -173,7 +191,7 @@ function entryOf(
   campaignId: string,
   reasons: ReadonlyMap<string, SubstitutionRecord>,
   log: HistoryLog,
-): DmHistoryEntry {
+): DmHistoryEntry | null {
   const { stored } = item;
   const undoneBy = snapshot.state.commands.get(stored.commandId)?.undoneBy ?? null;
   const common = {
@@ -186,6 +204,17 @@ function entryOf(
   };
   if (item.kind === 'authoring') {
     return { ...common, kind: 'authoring', proposalId: item.proposalId, summary: item.summary };
+  }
+  if (item.kind === 'world') {
+    const change = worldChange(snapshot, stored);
+    if (change === null) {
+      log.warn(
+        { commandId: stored.commandId, commandType: stored.commandType },
+        'dm history change not recorded',
+      );
+      return null;
+    }
+    return { ...common, kind: 'world', change };
   }
   const { characterId } = item;
   const recorded = reasons.get(stored.commandId);
@@ -249,11 +278,38 @@ function decided(
   }
 }
 
+/**
+ * What the time or weather command changed, from the event the World Engine recorded; null if
+ * that event is not one (never for an accepted command: the caller skips and logs it).
+ */
+function worldChange(
+  snapshot: CampaignSnapshot,
+  stored: StoredCommand,
+): DmWorldEntry['change'] | null {
+  const event = snapshot.history[stored.firstSequence - 1];
+  if (event?.type === 'WorldTimeAdvanced') {
+    return { kind: 'time', from: event.payload.from, to: event.payload.to };
+  }
+  if (event?.type === 'WeatherSet') {
+    const { locationId, from, to } = event.payload;
+    return { kind: 'weather', location: entityRef(snapshot, locationId, 'location'), from, to };
+  }
+  return null;
+}
+
 function characterRef(snapshot: CampaignSnapshot, characterId: string): EntityRef {
-  const entity = snapshot.state.entities.get(characterId);
+  return entityRef(snapshot, characterId, 'character');
+}
+
+function entityRef(
+  snapshot: CampaignSnapshot,
+  entityId: string,
+  kind: EntityRef['kind'],
+): EntityRef {
+  const entity = snapshot.state.entities.get(entityId);
   return entity
     ? { entityId: entity.entityId, kind: entity.kind, name: entity.name }
-    : { entityId: characterId, kind: 'character', name: characterId };
+    : { entityId, kind, name: entityId };
 }
 
 /** The player command as submitted: the engine's recorded draws stay server-side. */

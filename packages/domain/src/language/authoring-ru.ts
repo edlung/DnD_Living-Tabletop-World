@@ -52,7 +52,6 @@ registerRussianSentences({
   'Learn it just before {name} died ({before})':
     'Узнать это незадолго до смерти: {name} ({before})',
   'Heard just before {name} died ({before})': 'Услышано незадолго до смерти: {name} ({before})',
-  'Place {name} at {place} from {when}': 'Поместить: {name} → {place}, с {when}',
   'Agree with {whose}: {value}': 'Согласовать с источником {whose}: {value}',
   'Keep "{name}" and note "{other}" in the description':
     'Оставить «{name}» и записать «{other}» в описании',
@@ -94,11 +93,16 @@ registerRussianSentences({
   '{name} is dead; this moves the body to {place}': 'Мёртв: {name}. Это переносит тело в: {place}',
   '{holder} was {where} {when}, not at {places}':
     'Свидетель: {holder}. Где был: {where}; время: {when}. Не в: {places}',
+  'The world records only where someone is now, not where they were before: tell it in the description, or accept this warning':
+    'Мир хранит только то, где персонаж находится сейчас, а не где он был раньше: расскажите об этом в описании или примите это предупреждение',
   'A fight is running at {place}; {name} would be there without taking part':
     'Идёт схватка: {place}. {name} окажется там, но не участвует в ней',
   '"{name}" is also the name of {others}': 'Имя «{name}» уже носят: {others}',
   'The {kinds} know {name}; renaming changes that name in every account they hold':
     'Знают: {kinds}. Сущность: {name}. Переименование изменит имя во всех их рассказах',
+  '{name} is known by name to {readers}; renaming changes that name in every account they hold':
+    'Знают: {readers}. Сущность: {name}. Переименование изменит имя во всех их рассказах',
+  '{name} ({where})': '{name} ({where})',
   '{description} Also known as {name}.': '{description} Другое имя: {name}.',
   'the world truth ({id})': 'истина мира ({id})',
   "{name}'s account ({id})": 'рассказ: {name} ({id})',

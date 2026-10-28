@@ -69,7 +69,7 @@ test('the history never appears for a player or in a lower perspective', async (
   await enterWorld(dm, TOKENS.dm, viewed);
   await openHistory(dm);
   await expect(dmHistory(dm)).toContainText(
-    'Nothing yet: authoring commits and actions taken for players appear here.',
+    'Nothing yet: authoring commits, actions taken for players, and time and weather changes appear here.',
   );
 
   // The DM holding Elowen's or the party's view: no history, no read of it, no row left.

@@ -2,6 +2,7 @@ import {
   ASSET_WORKER_COMMAND_TYPES,
   type DmHistoryEntry,
   type DmSubstitutionEntry,
+  type DmWorldEntry,
   type EntityRef,
   type KernelCommandType,
   type SubstitutionReason,
@@ -132,18 +133,41 @@ const PICTURE_HOLDS: ReadonlySet<KernelCommandType> = new Set([
 export const isPictureHold = (commandType: KernelCommandType): boolean =>
   PICTURE_HOLDS.has(commandType);
 
-/** The entry's heading: an authoring summary, or who the DM acted as and what was done. */
+/** A time or weather change, from what it was to what it became. */
+export function describeWorldChange(t: Translate, change: DmWorldEntry['change']): string {
+  if (change.kind === 'time') {
+    return t('Time: {from} → {to}', {
+      from: formatWorldTime(change.from, t),
+      to: formatWorldTime(change.to, t),
+    });
+  }
+  return t('Weather at {place}: {from} → {to}', {
+    place: change.location.name,
+    from: change.from === null ? t('not set') : t(change.from),
+    to: t(change.to),
+  });
+}
+
+/**
+ * The entry's heading: an authoring summary, who the DM acted as and what was done, or the
+ * time or weather change.
+ */
 export function entryTitle(
   t: Translate,
   entry: DmHistoryEntry,
   directory: readonly EntityRef[],
 ): string {
-  return entry.kind === 'authoring'
-    ? entry.summary
-    : t('Acting as {name}: {action}', {
+  switch (entry.kind) {
+    case 'authoring':
+      return entry.summary;
+    case 'world':
+      return describeWorldChange(t, entry.change);
+    case 'substitution':
+      return t('Acting as {name}: {action}', {
         name: entry.character.name,
         action: describeSubstitution(t, entry.command, directory),
       });
+  }
 }
 
 /** The entry's details line: what kind, the DM's stated reason, and when in the world. */
@@ -151,14 +175,16 @@ export function entryDetails(t: Translate, entry: DmHistoryEntry): string {
   const kind =
     entry.kind === 'authoring'
       ? t('Authoring')
-      : entry.reason === null
-        ? t('No reason was recorded')
-        : entry.reason.note === null
-          ? t(REASON_TEXT[entry.reason.reason])
-          : t('{reason}: “{note}”', {
-              reason: t(REASON_TEXT[entry.reason.reason]),
-              note: entry.reason.note,
-            });
+      : entry.kind === 'world'
+        ? t(entry.change.kind === 'time' ? 'World time' : 'Weather')
+        : entry.reason === null
+          ? t('No reason was recorded')
+          : entry.reason.note === null
+            ? t(REASON_TEXT[entry.reason.reason])
+            : t('{reason}: “{note}”', {
+                reason: t(REASON_TEXT[entry.reason.reason]),
+                note: entry.reason.note,
+              });
   return `${kind} · ${formatWorldTime(entry.worldTime, t)}`;
 }
 

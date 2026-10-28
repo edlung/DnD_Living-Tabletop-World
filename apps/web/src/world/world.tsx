@@ -8,6 +8,7 @@ import { useLiveTarget } from '../api/live-context.ts';
 import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
 import { askedWindowOf } from '../combat/reaction-prompt.tsx';
 import { standInReason, type StandIn } from '../combat/stand-in.ts';
+import { useAuthoring } from '../authoring/use-authoring.ts';
 import { DmSheets } from '../dm/dm-sheets.tsx';
 import { ActionNotice } from '../exploration/action-notice.tsx';
 import { useDmImagesState } from '../images/dm-images.ts';
@@ -94,6 +95,11 @@ export function World({
   const dmImages = useDmImagesState(api, isDm, revision, () => {
     setRevision((value) => value + 1);
   });
+  // The DM's authoring session: the Add sheet and an NPC card's edit share it (SI-D8), and it
+  // restores the DM's open draft on mount (SI-D1); a lower perspective reads nothing.
+  const authoring = useAuthoring(api, isDm, () => {
+    setRevision((value) => value + 1);
+  });
   const onResolved = useCallback((outcome?: PlayerOutcome) => {
     if (outcome?.kind === 'EnterLocation') {
       // Arrival keeps the place itself as the object in context, so it can be examined.
@@ -156,6 +162,12 @@ export function World({
     requestAnimationFrame(() => {
       document.getElementById(CONVERSATION_PANEL_ID)?.focus();
     });
+  };
+  // An NPC card's edit opens its proposal under Add; where the panel covers the sheet it steps
+  // aside (staying mounted), as for a conversation.
+  const showAuthoring = () => {
+    if (!window.matchMedia(WIDE).matches) setSelected(null);
+    shell.openSheet('add');
   };
   useEscape(() => {
     if (selected && (shell.sheet === null || shell.topmost() === 'details')) {
@@ -351,6 +363,7 @@ export function World({
           {isDm && (
             <DmSheets
               api={api}
+              authoring={authoring}
               shell={shell}
               directory={data?.directory.entities ?? knownDirectory.current}
               place={
@@ -421,6 +434,19 @@ export function World({
               onRun={explore}
               onSelect={select}
               onClose={closeDetails}
+              profileEditing={
+                isDm
+                  ? {
+                      draftOpen: authoring.proposal?.proposal.status === 'DRAFT',
+                      busy: authoring.busy,
+                      propose: (summary, commands) => {
+                        showAuthoring();
+                        return authoring.proposeWritten(summary, commands);
+                      },
+                      showDraft: showAuthoring,
+                    }
+                  : null
+              }
             />
           )}
         </aside>

@@ -222,6 +222,31 @@ registerRussian({
     'Этот шаг пока нельзя отменить. Сначала отмените более новые.',
   'Proposal discarded. Nothing was added to the world.':
     'Предложение отброшено. В мир ничего не добавлено.',
+  // The DM's open drafts, an NPC's edit, a witness's past (owner decisions 11)
+  'Your unfinished proposal was restored.': 'Ваше незавершённое предложение восстановлено.',
+  Discarded: 'Отброшено',
+  'Open drafts': 'Открытые черновики',
+  'shown below': 'показан ниже',
+  Resume: 'Продолжить',
+  'Resume: {summary}': 'Продолжить: {summary}',
+  'Discard: {summary}': 'Отклонить: {summary}',
+  'Edit the description': 'Изменить описание',
+  'Edit the description on the card of {name}': 'Изменить описание в карточке: {name}',
+  'Description (DM)': 'Описание (мастер)',
+  'Edit name and description': 'Изменить имя и описание',
+  'Edit {name}': 'Правка: {name}',
+  'A change goes through a proposal you review and confirm; History can undo it.':
+    'Изменение пройдёт через предложение, которое вы проверите и подтвердите; отменить его можно в «Истории».',
+  'Another proposal is open. Confirm or cancel it first.':
+    'Открыто другое предложение. Сначала подтвердите или отмените его.',
+  'Propose the change': 'Предложить изменение',
+  'Show the open proposal': 'Показать открытое предложение',
+  'New name (empty keeps it)': 'Новое имя (пусто — оставить прежнее)',
+  'New description (empty keeps it)': 'Новое описание (пусто — оставить прежнее)',
+  'Players who already know {name} see the new name {value}; to others it stays unknown.':
+    'Игроки, которые уже знают персонажа {name}, увидят новое имя {value}; для остальных оно останется неизвестным.',
+  'Players never read the description; it guides your image requests.':
+    'Игроки никогда не читают описание; оно служит вашим запросам изображений.',
   'entity created': 'создана сущность',
   'entity placed': 'сущность помещена',
   'knowledge assigned': 'передано знание',
@@ -284,8 +309,8 @@ registerRussian({
   'History and undo (DM)': 'История и отмена (мастер)',
   'DM history': 'История мастера',
   'Reading the history…': 'Читаем историю…',
-  'Nothing yet: authoring commits and actions taken for players appear here.':
-    'Пока пусто: здесь появятся добавления мастера и действия за игроков.',
+  'Nothing yet: authoring commits, actions taken for players, and time and weather changes appear here.':
+    'Пока пусто: здесь появятся добавления мастера, действия за игроков и смены времени и погоды.',
   'Show older': 'Показать раньше',
   'Undo this action': 'Отменить это действие',
   'This cannot be undone now.': 'Сейчас это нельзя отменить.',
@@ -317,6 +342,12 @@ registerRussian({
   'Read {npc} for insight': 'Проницательность: {npc}',
   'Examined {target}': 'Осмотр: {target}',
   'Formed a hypothesis': 'Записана гипотеза',
+  'Time: {from} → {to}': 'Время: {from} → {to}',
+  'Weather at {place}: {from} → {to}': 'Погода ({place}): {from} → {to}',
+  'not set': 'не задана',
+  'Undo this change': 'Отменить это изменение',
+  'Undone. The world is as it was before this change.':
+    'Отменено. Мир снова таков, каким был до этого изменения.',
   // Steps named in the history's undo blockers (every command type)
   'create campaign': 'создание кампании',
   'start scene': 'начало сцены',

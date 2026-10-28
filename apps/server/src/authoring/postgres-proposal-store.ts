@@ -1,7 +1,10 @@
+import type { AuthoringSource } from '@ltw/contracts';
 import type pg from 'pg';
 
 import {
   ProposalConflictError,
+  type DraftPage,
+  type DraftSummary,
   type ProposalRevision,
   type ProposalStore,
 } from './proposal-store.ts';
@@ -83,5 +86,50 @@ export class PostgresProposalStore implements ProposalStore {
       [campaignId, proposalId],
     );
     return result.rows[0]?.revision_doc ?? null;
+  }
+
+  /**
+   * Each proposal's latest revision (index `ltw_authoring_revisions_latest`, migration 0013),
+   * without the cancelled and the committed ones, newest first, one bounded page after a keyset
+   * cursor.
+   */
+  async uncancelled(campaignId: string, page: DraftPage): Promise<readonly DraftSummary[]> {
+    const result = await this.#pool.query<{
+      proposal_id: string;
+      revision: number;
+      summary: string;
+      source: AuthoringSource;
+      created_at: Date;
+    }>(
+      `SELECT proposal_id, revision, summary, source, created_at
+         FROM (
+           SELECT DISTINCT ON (proposal_id)
+                  proposal_id, revision, created_at,
+                  revision_doc ->> 'summary' AS summary,
+                  revision_doc -> 'source' AS source,
+                  coalesce(revision_doc ->> 'cancelled', 'false') = 'true' AS cancelled
+             FROM ltw_authoring_revisions
+            WHERE campaign_id = $1
+            ORDER BY proposal_id, revision DESC
+         ) AS latest
+        WHERE NOT cancelled
+          -- Committed proposals are skipped here already, so pages hold drafts; the service still
+          -- checks canon, which is the authority on what was committed.
+          AND NOT EXISTS (
+            SELECT 1 FROM ltw_commands
+             WHERE command_id = 'authoring.' || latest.proposal_id
+          )
+          AND ($2::timestamptz IS NULL OR (created_at, proposal_id) < ($2::timestamptz, $3::text))
+        ORDER BY created_at DESC, proposal_id DESC
+        LIMIT $4`,
+      [campaignId, page.after?.createdAt ?? null, page.after?.proposalId ?? null, page.limit],
+    );
+    return result.rows.map((row) => ({
+      proposalId: row.proposal_id,
+      revision: row.revision,
+      summary: row.summary,
+      source: row.source,
+      createdAt: row.created_at.toISOString(),
+    }));
   }
 }

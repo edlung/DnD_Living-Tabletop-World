@@ -68,10 +68,6 @@ export function witnessElsewhere(
     at === null
       ? v.say('nowhere recorded')
       : v.say('at {place}', { place: nameOf(input.state, at) });
-  const created = input.commands.findIndex(
-    (other) => other.type === 'CreateEntity' && other.entityId === holder,
-  );
-  const creation = input.commands[created];
   return [
     {
       key: findingKey('WITNESS_ELSEWHERE', index, holder),
@@ -79,28 +75,19 @@ export function witnessElsewhere(
       commandIndex: index,
       entityIds: [holder, ...places],
       knowledgeIds: [command.knowledgeId],
-      message: v.say('{holder} was {where} {when}, not at {places}', {
+      message: `${v.say('{holder} was {where} {when}, not at {places}', {
         holder: nameOf(input.state, holder),
         where,
         when: v.when(command.knownSince),
         places: places.map((id) => nameOf(input.state, id)).join(v.say(' or ')),
-      }),
+      })}. ${v.say(
+        'The world records only where someone is now, not where they were before: tell it in the description, or accept this warning',
+      )}`,
+      // No option moves the holder (owner decisions 11, SI-D7): an NPC has one recorded place,
+      // where they are now, so "place them there since then" would move them today. Past
+      // whereabouts are future work; the DM tells the past in the description, makes it hearsay,
+      // or accepts the warning.
       options: [
-        ...(creation?.type === 'CreateEntity'
-          ? [
-              edit(
-                v.say('Place {name} at {place} from {when}', {
-                  name: nameOf(input.state, holder),
-                  place: nameOf(input.state, place),
-                  when: v.when(command.knownSince),
-                }),
-                replaced(input.commands, created, {
-                  ...creation,
-                  placement: { locationId: place, since: command.knownSince },
-                }),
-              ),
-            ]
-          : []),
         edit(
           'Make it a rumor they heard',
           replaced(input.commands, index, { ...command, knowledgeType: 'RUMOR' }),

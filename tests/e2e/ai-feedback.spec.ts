@@ -106,7 +106,11 @@ test('without a recorded request the DM gets no proposal source, and the chapter
 }) => {
   const proposals: string[] = [];
   page.on('request', (request) => {
-    if (new URL(request.url()).pathname.endsWith('/authoring/proposals')) {
+    // Reading the open drafts on load (owner decisions 11) is not a proposal; creating one is.
+    if (
+      new URL(request.url()).pathname.endsWith('/authoring/proposals') &&
+      request.method() === 'POST'
+    ) {
       proposals.push(request.method());
     }
   });

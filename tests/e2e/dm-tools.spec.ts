@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { expectAccepted, submit } from './support/combat.ts';
 import { dmRequest, playerCommand } from './support/authoring.ts';
+import { dmHistory, historyEntry, openHistory } from './support/dm.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
@@ -34,6 +35,49 @@ test('the DM moves time and weather and the player returns to a changed Ravenfor
   await expect(conditions).toContainText('rain');
   await player.close();
   await dm.close();
+});
+
+test('the DM finds a day change in History and undoes it once the weather set after it is undone', async ({
+  page: dm,
+}) => {
+  await enterWorld(dm, TOKENS.dm, campaigns.timeHistory);
+  const conditions = dm.getByLabel('Scene conditions');
+  await expect(conditions).toContainText('Day 1 · 10:00');
+  await openSheet(dm, 'Time and weather');
+  expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Advance to Day 2, 10:00' })));
+  await expect(conditions).toContainText('Day 2 · 10:00');
+  await dm.getByLabel('Weather at Market Square').selectOption('rain');
+  expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Set weather' })));
+
+  // History lists both, newest first; the rain was set on Day 2, so it holds the day change.
+  await openHistory(dm);
+  const day = historyEntry(dm, 'Time: Day 1 · 10:00 → Day 2 · 10:00');
+  const rain = historyEntry(dm, 'Weather at Market Square: not set → rain');
+  await expect(dmHistory(dm).locator('.dm-history-list > li')).toHaveCount(2);
+  await expect(dmHistory(dm).locator('.dm-history-list > li').first()).toContainText('rain');
+  await expect(day).toContainText('World time · Day 2 · 10:00');
+  await expect(day).toContainText('In effect');
+  const undoDay = day.getByRole('button', { name: 'Undo this change' });
+  await expect(undoDay).toBeDisabled();
+  await expect(day).toContainText('Undo is blocked by later steps that depend on this:');
+  await day.getByRole('button', { name: 'Undo “set weather” first' }).click();
+  await expect(
+    dm.getByRole('status').filter({ hasText: 'That step was undone. You can try the undo again.' }),
+  ).toBeVisible();
+  await expect(rain).toContainText('Undone');
+
+  await expect(undoDay).toBeEnabled();
+  await undoDay.click();
+  await expect(
+    dm
+      .getByRole('status')
+      .filter({ hasText: 'Undone. The world is as it was before this change.' }),
+  ).toBeVisible();
+  await expect(day).toContainText('Undone');
+  await expect(undoDay).toHaveCount(0);
+  await expect(conditions).toContainText('Day 1 · 10:00');
+  await openSheet(dm, 'Time and weather');
+  await expect(dm.getByRole('button', { name: 'Advance to Day 2, 10:00' })).toBeVisible();
 });
 
 test('a written chapter opens for the player with cited entries and a flashback', async ({

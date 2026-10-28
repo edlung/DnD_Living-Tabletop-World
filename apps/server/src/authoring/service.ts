@@ -7,6 +7,8 @@ import {
   type CommandResult,
   type CommitProposalRequest,
   type CreateProposalRequest,
+  type OpenProposalSummary,
+  type OpenProposalsResponse,
   type ProposableCommand,
   type ReviseProposalRequest,
 } from '@ltw/contracts';
@@ -25,6 +27,7 @@ import {
 import { traceScopedIds, withOpaqueIds } from './opaque-ids.ts';
 import {
   ProposalConflictError,
+  type DraftPage,
   type ProposalRevision,
   type ProposalStore,
 } from './proposal-store.ts';
@@ -40,6 +43,9 @@ import {
  * exclusive section (`ProposalStore.exclusive`), reading canon there, so
  * they take turns across processes: an edit after a commit, or a commit of
  * a revision an edit replaced, is a conflict (Gate 04, G04-H01).
+ *
+ * A cancel is stored too, as a closing revision (owner decisions 11, SI-D1): the DM's open
+ * drafts are listed, so a reload restores the unfinished one and never one the DM discarded.
  */
 export interface AuthoringDependencies {
   readonly proposals: ProposalStore;
@@ -54,6 +60,11 @@ export type AuthoringOutcome<T> =
       readonly code: 'NOT_FOUND' | 'FORBIDDEN' | 'CONFLICT' | 'UNPROCESSABLE';
     }
   | { readonly kind: 'rejected'; readonly result: CommandRejected };
+
+/** How many open drafts the list returns, the most recently changed first. */
+export const OPEN_PROPOSALS_LIMIT = 20;
+/** How many proposals one read of the store returns while the list fills. */
+const OPEN_PROPOSALS_PAGE = 50;
 
 const ok = <T>(value: T): AuthoringOutcome<T> => ({ kind: 'ok', value });
 const error = <T>(
@@ -129,6 +140,69 @@ export class AuthoringService {
   }
 
   /**
+   * The campaign's open drafts (neither committed nor cancelled), the most recently changed
+   * first; ties go to the larger proposal ID so the order is total. Only the DM reads them.
+   */
+  async open(actor: Actor, campaignId: string): Promise<AuthoringOutcome<OpenProposalsResponse>> {
+    const snapshot = await this.#asDm(actor, campaignId);
+    if (snapshot.kind !== 'ok') return snapshot;
+    // Committed proposals are canon's to tell, so pages are read until enough drafts remain.
+    const proposals: OpenProposalSummary[] = [];
+    let after: DraftPage['after'] = null;
+    for (;;) {
+      const page = await this.#deps.proposals.uncancelled(campaignId, {
+        limit: OPEN_PROPOSALS_PAGE,
+        after,
+      });
+      for (const draft of page) {
+        if (committed(snapshot.value, draft.proposalId)) continue;
+        const { proposalId, revision, summary, source, createdAt } = draft;
+        proposals.push({ proposalId, revision, summary, source, updatedAt: createdAt });
+        if (proposals.length === OPEN_PROPOSALS_LIMIT) return ok({ proposals });
+      }
+      const last = page.at(-1);
+      if (page.length < OPEN_PROPOSALS_PAGE || !last) break;
+      after = { createdAt: last.createdAt, proposalId: last.proposalId };
+    }
+    return ok({ proposals });
+  }
+
+  /**
+   * The DM discards a draft: a closing revision, after which it is neither listed, edited, nor
+   * committed. Cancelling a cancelled draft again changes nothing; a committed one is a conflict.
+   */
+  async cancel(
+    actor: Actor,
+    campaignId: string,
+    proposalId: string,
+  ): Promise<AuthoringOutcome<AuthoringProposalResponse>> {
+    const allowed = await this.#asDm(actor, campaignId);
+    if (allowed.kind !== 'ok') return allowed;
+    return this.#deps.proposals.exclusive(campaignId, proposalId, async () => {
+      const latest = await this.#deps.proposals.latest(campaignId, proposalId);
+      if (!latest) return error('NOT_FOUND');
+      const snapshot = await this.#engine.load(campaignId);
+      if (!snapshot) return error('NOT_FOUND');
+      if (committed(snapshot, proposalId)) return error('CONFLICT');
+      if (latest.cancelled === true) return ok(await this.#response(snapshot, actor, latest));
+      const revision: ProposalRevision = {
+        ...latest,
+        revision: latest.revision + 1,
+        cancelled: true,
+        createdBy: actor.actorId,
+        createdAt: this.#deps.clock.now(),
+      };
+      try {
+        await this.#deps.proposals.append(revision);
+      } catch (cause) {
+        if (cause instanceof ProposalConflictError) return error('CONFLICT');
+        throw cause;
+      }
+      return ok(await this.#response(snapshot, actor, revision));
+    });
+  }
+
+  /**
    * An edit: a new revision of a draft, which voids every earlier preview and
    * confirmation. Either the DM's own commands, or one option of the latest
    * revision's preview, recomputed against the world now (ADR 0019 §1). An
@@ -148,7 +222,11 @@ export class AuthoringService {
       if (!latest) return error('NOT_FOUND');
       const snapshot = await this.#engine.load(campaignId);
       if (!snapshot) return error('NOT_FOUND');
-      if (committed(snapshot, proposalId) || request.basedOnRevision !== latest.revision) {
+      if (
+        committed(snapshot, proposalId) ||
+        latest.cancelled === true ||
+        request.basedOnRevision !== latest.revision
+      ) {
         return error('CONFLICT');
       }
       let edited: Pick<ProposalRevision, 'summary' | 'appliedOption'> & {
@@ -211,8 +289,10 @@ export class AuthoringService {
     return this.#deps.proposals.exclusive(campaignId, proposalId, async () => {
       const latest = await this.#deps.proposals.latest(campaignId, proposalId);
       if (!latest) return error('NOT_FOUND');
-      // An edit voids every earlier revision's confirmation.
-      if (request.revision !== latest.revision) return error('CONFLICT');
+      // An edit voids every earlier revision's confirmation; a cancelled draft never commits.
+      if (request.revision !== latest.revision || latest.cancelled === true) {
+        return error('CONFLICT');
+      }
       const result = await this.#engine.execute({
         commandId: commitCommandId(proposalId),
         campaignId,
@@ -305,7 +385,9 @@ export class AuthoringService {
       createdAt,
       appliedOption: revision.appliedOption ?? null,
     };
-    if (!trace) return { ...base, status: 'DRAFT', commit: null };
+    if (!trace) {
+      return { ...base, status: revision.cancelled === true ? 'CANCELLED' : 'DRAFT', commit: null };
+    }
     const stored = (await this.#engine.commandLog(campaignId)).find(
       (command) => command.commandId === commandId,
     );

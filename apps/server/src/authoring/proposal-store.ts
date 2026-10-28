@@ -19,6 +19,11 @@ export interface ProposalRevision {
   readonly createdAt: string;
   /** The option this revision applied (ADR 0019 §1); absent in revisions stored before Stage 120. */
   readonly appliedOption?: { readonly optionId: string; readonly label: string } | null;
+  /**
+   * True on the revision that records the DM's cancel (owner decisions 11, SI-D1): the draft is
+   * closed and never commits. Absent in revisions stored before it.
+   */
+  readonly cancelled?: boolean;
 }
 
 export interface ProposalStore {
@@ -33,6 +38,39 @@ export interface ProposalStore {
   append(revision: ProposalRevision): Promise<void>;
   /** The latest revision, or null when the proposal does not exist in that campaign. */
   latest(campaignId: string, proposalId: string): Promise<ProposalRevision | null>;
+  /**
+   * One page of the campaign's proposals whose latest revision is not cancelled, the most
+   * recently changed first (ties: the larger proposal ID first), after `after` when given. Only
+   * what a list shows. Whether one was committed is canon's: a store may leave committed ones out
+   * already, and the caller still filters by canon.
+   */
+  uncancelled(campaignId: string, page: DraftPage): Promise<readonly DraftSummary[]>;
+}
+
+/** A proposal's latest revision, as the DM's list of drafts shows it. */
+export interface DraftSummary {
+  readonly proposalId: string;
+  readonly revision: number;
+  readonly summary: string;
+  readonly source: AuthoringSource;
+  readonly createdAt: string;
+}
+
+export interface DraftPage {
+  readonly limit: number;
+  /** The last summary of the previous page; null for the first. */
+  readonly after: { readonly createdAt: string; readonly proposalId: string } | null;
+}
+
+/** Newest first, then the larger proposal ID: the order of `uncancelled`. */
+export function compareDrafts(
+  a: { readonly createdAt: string; readonly proposalId: string },
+  b: { readonly createdAt: string; readonly proposalId: string },
+): number {
+  return (
+    Date.parse(b.createdAt) - Date.parse(a.createdAt) ||
+    (a.proposalId < b.proposalId ? 1 : a.proposalId > b.proposalId ? -1 : 0)
+  );
 }
 
 export class ProposalConflictError extends Error {
@@ -79,5 +117,20 @@ export class InMemoryProposalStore implements ProposalStore {
       null,
     );
     return Promise.resolve(latest?.campaignId === campaignId ? structuredClone(latest) : null);
+  }
+
+  async uncancelled(campaignId: string, page: DraftPage): Promise<readonly DraftSummary[]> {
+    const found: DraftSummary[] = [];
+    for (const proposalId of this.#revisions.keys()) {
+      const latest = await this.latest(campaignId, proposalId);
+      if (!latest || latest.cancelled === true) continue;
+      const { revision, summary, source, createdAt } = latest;
+      found.push({ proposalId, revision, summary, source, createdAt });
+    }
+    const { after } = page;
+    return found
+      .sort(compareDrafts)
+      .filter((draft) => after === null || compareDrafts(after, draft) < 0)
+      .slice(0, page.limit);
   }
 }

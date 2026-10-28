@@ -4,6 +4,63 @@ import { useT } from '@ltw/ui';
 
 type Create = Extract<ProposableCommand, { type: 'CreateEntity' }>;
 type Know = Extract<ProposableCommand, { type: 'AddKnowledge' }>;
+type Profile = Extract<ProposableCommand, { type: 'UpdateEntityProfile' }>;
+
+/** A DM's edit of one NPC's card (owner decisions 11, SI-D8): its name and description. */
+export function editableProfile(commands: readonly ProposableCommand[]): Profile | null {
+  const [only] = commands;
+  return commands.length === 1 && only?.type === 'UpdateEntityProfile' ? only : null;
+}
+
+function ProfileEditor({
+  profile,
+  busy,
+  onApply,
+}: {
+  readonly profile: Profile;
+  readonly busy: boolean;
+  readonly onApply: (commands: readonly ProposableCommand[]) => void;
+}) {
+  const t = useT();
+  const [name, setName] = useState(profile.name ?? '');
+  const [description, setDescription] = useState(profile.description ?? '');
+  const edited: Profile = {
+    type: 'UpdateEntityProfile',
+    entityId: profile.entityId,
+    ...(name.trim() === '' ? {} : { name: name.trim() }),
+    ...(description.trim() === '' ? {} : { description: description.trim() }),
+  };
+  const valid = edited.name !== undefined || edited.description !== undefined;
+  return (
+    <form
+      className="proposal-editor"
+      onSubmit={(event) => {
+        event.preventDefault();
+        if (valid) onApply([edited]);
+      }}
+    >
+      <label htmlFor="edit-name">{t('New name (empty keeps it)')}</label>
+      <input
+        id="edit-name"
+        value={name}
+        onChange={(event) => {
+          setName(event.target.value);
+        }}
+      />
+      <label htmlFor="edit-description">{t('New description (empty keeps it)')}</label>
+      <textarea
+        id="edit-description"
+        value={description}
+        onChange={(event) => {
+          setDescription(event.target.value);
+        }}
+      />
+      <button type="submit" disabled={busy || !valid}>
+        {t('Apply changes')}
+      </button>
+    </form>
+  );
+}
 
 /**
  * The editable shape of a proposed NPC: name, description, place, what they
@@ -83,6 +140,8 @@ export function ProposalEditor({
   const [locationId, setLocationId] = useState(npc?.create.placement?.locationId ?? '');
   const [statement, setStatement] = useState(npc?.record?.statement ?? '');
   const [willing, setWilling] = useState(npc?.willing ?? false);
+  const profile = editableProfile(commands);
+  if (!npc && profile) return <ProfileEditor profile={profile} busy={busy} onApply={onApply} />;
   if (!npc) {
     return (
       <p className="muted">

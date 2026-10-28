@@ -99,6 +99,8 @@ export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependenci
       npcId: path.npcId,
       topicId: 'topicId' in body.intent ? body.intent.topicId : null,
       justShared: result && accepted ? sharedSources(after.history, result.commandId) : [],
+      // Whether they have spoken before: the same snapshot, this exchange's events excluded.
+      conversation: { history: after.history, exchangeCommandId: result?.commandId ?? null },
     });
     if (!context) return refused('NO_EFFECT', seen);
 
@@ -108,6 +110,7 @@ export function registerNpcRoutes(app: FastifyInstance, deps: NpcRouteDependenci
       context,
       intent: body.intent,
       accepted,
+      rejection: result?.status === 'rejected' ? result.code : null,
       commandId: result?.commandId ?? null,
       line: body.line ?? null,
       language: languageOf(after.state),

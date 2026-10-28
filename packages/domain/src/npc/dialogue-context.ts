@@ -22,6 +22,12 @@ import { attitudeOf } from '../relationships/records.ts';
  *
  * Each line keeps its source ID for the trace; the AI gateway never shows
  * a provider any ID.
+ *
+ * What it has already said comes only from its own recorded exchanges (owner
+ * decisions 11, SI-N1): whether it met this character, from the events that
+ * name the character; what it told, per the speaker's scope (party members
+ * share it). Talk records nothing, so a conversation of Talk alone is not
+ * remembered.
  */
 export interface DialogueEntity {
   readonly entityId: string;
@@ -36,9 +42,25 @@ export interface DialogueLine {
   readonly text: string;
 }
 
+/** A record it may say, and whether it has said it to this speaker already. */
+export interface TellableLine extends DialogueLine {
+  /** Told to the speaker's scope, the character or a companion, before this exchange. */
+  readonly toldBefore: boolean;
+  /** About the exchange's topic, when the speaker knows the topic. */
+  readonly aboutTopic: boolean;
+}
+
 export interface NpcDialogueContext {
   readonly npc: DialogueEntity;
   readonly speaker: DialogueEntity;
+  /**
+   * Whether it has spoken with this character before this exchange: an `InformationShared`,
+   * `EvidenceShown` or `InsightChecked` event naming both, not undone, and not of this
+   * exchange's command. Per character: a companion's conversation does not count.
+   */
+  readonly metBefore: boolean;
+  /** The IDs of those events (the latest, capped), for the trace. */
+  readonly metOn: readonly string[];
   readonly attitude: Attitude;
   readonly worldTime: number;
   readonly place: DialogueEntity | null;
@@ -48,8 +70,8 @@ export interface NpcDialogueContext {
   readonly topic: DialogueEntity | null;
   /** Its records the intent's command has just told the speaker's scope. */
   readonly justTold: readonly DialogueLine[];
-  /** Its other records it may say now: told before, or shareable now (§2). */
-  readonly mayTell: readonly DialogueLine[];
+  /** Its other records it may say now: told before (listed first), or shareable now (§2). */
+  readonly mayTell: readonly TellableLine[];
   /** PUBLIC records. */
   readonly common: readonly DialogueLine[];
   /** Recallable memories (§3a). */
@@ -67,6 +89,14 @@ export interface DialogueContextRequest {
   readonly topicId: string | null;
   /** The NPC records the intent's command just shared (`sharedSources`). */
   readonly justShared: readonly string[];
+  /**
+   * The history `state` folds, and this exchange's command (null for Talk), for `metBefore`:
+   * one snapshot, the exchange's own events excluded. Without it, `metBefore` is false.
+   */
+  readonly conversation?: {
+    readonly history: readonly RecordedEvent[];
+    readonly exchangeCommandId: string | null;
+  };
 }
 
 /** Caps that bound what a provider is sent. */
@@ -76,6 +106,7 @@ export const DIALOGUE_LIMITS = {
   common: 8,
   memories: 6,
   guarded: 8,
+  metOn: 8,
 } as const;
 
 /** Types that hold nothing back: an NPC's open question or a conflict it noticed. */
@@ -118,9 +149,12 @@ export function npcDialogueContext(
   const justTold = own.filter(
     (record) => told(record) && request.justShared.includes(record.knowledgeId),
   );
-  const mayTell = own.filter(
-    (record) => !justTold.includes(record) && (told(record) || shareable.has(record.knowledgeId)),
-  );
+  // Told first, so the cap never drops what it has already said.
+  const mayTell = own
+    .filter(
+      (record) => !justTold.includes(record) && (told(record) || shareable.has(record.knowledgeId)),
+    )
+    .sort((a, b) => Number(told(b)) - Number(told(a)));
   const common = [...state.knowledge.values()].filter(
     (record) => record.scope.kind === 'PUBLIC' && now(record),
   );
@@ -141,6 +175,14 @@ export function npcDialogueContext(
     .flatMap((id) => entity(id) ?? []);
   const topic =
     request.topicId !== null && speaker.known.has(request.topicId) ? entity(request.topicId) : null;
+  const met = request.conversation
+    ? exchangesWith(request.conversation, npcId, speaker.character.entityId)
+    : [];
+  const tellable = (record: KnowledgeRecord): TellableLine => ({
+    ...line(record),
+    toldBefore: told(record),
+    aboutTopic: topic !== null && record.subjects.includes(topic.entityId),
+  });
 
   return {
     npc: entity(npcId) ?? { entityId: npcId, kind: 'npc', name: null },
@@ -149,18 +191,49 @@ export function npcDialogueContext(
       kind: speaker.character.kind,
       name: speaker.character.name,
     },
+    metBefore: met.length > 0,
+    metOn: met.slice(-DIALOGUE_LIMITS.metOn),
     attitude: attitudeOf(state, npcId),
     worldTime: state.clock,
     place: placeId === null ? null : entity(placeId),
     around: around.slice(0, DIALOGUE_LIMITS.around),
     topic,
     justTold: justTold.map(line),
-    mayTell: mayTell.slice(0, DIALOGUE_LIMITS.mayTell).map(line),
+    mayTell: mayTell.slice(0, DIALOGUE_LIMITS.mayTell).map(tellable),
     common: common.slice(0, DIALOGUE_LIMITS.common).map(line),
     memories: recallable(state, npcId, sayable).slice(0, DIALOGUE_LIMITS.memories),
     shown,
     guarded: guarded.slice(0, DIALOGUE_LIMITS.guarded),
   };
+}
+
+/**
+ * The events, oldest first, in which the NPC exchanged words with this character: it shared
+ * a record with them, they showed it evidence, or they tried Insight on it. Each names both
+ * (`npcId`, `characterId`). Undone commands and the exchange's own command do not count.
+ */
+export function exchangesWith(
+  conversation: NonNullable<DialogueContextRequest['conversation']>,
+  npcId: string,
+  characterId: string,
+): string[] {
+  const { history, exchangeCommandId } = conversation;
+  const undone = new Set(
+    history.flatMap((event) =>
+      event.type === 'CommandUndone' ? [event.payload.targetCommandId] : [],
+    ),
+  );
+  return history.flatMap((event) =>
+    (event.type === 'InformationShared' ||
+      event.type === 'EvidenceShown' ||
+      event.type === 'InsightChecked') &&
+    event.payload.npcId === npcId &&
+    event.payload.characterId === characterId &&
+    event.causation.commandId !== exchangeCommandId &&
+    !undone.has(event.causation.commandId)
+      ? [event.eventId]
+      : [],
+  );
 }
 
 /**
@@ -204,7 +277,14 @@ export function dialogueSourceIds(context: NpcDialogueContext): string[] {
     ...context.common,
     ...context.memories,
   ].map((item) => item.sourceId);
-  return unique(['world#clock', `relationship#${context.npc.entityId}`, ...entities, ...lines]);
+  const met = context.metOn.map((eventId) => `event#${eventId}`);
+  return unique([
+    'world#clock',
+    `relationship#${context.npc.entityId}`,
+    ...entities,
+    ...lines,
+    ...met,
+  ]);
 }
 
 /** The NPC records a command shared, from its recorded events. */

@@ -33,7 +33,9 @@ application on 4313.
 - Stage 230 authoring journeys each own a campaign from `fixtures/authoring-campaigns.json`
   (`ui-authoring-campaigns.ts`). The browser-test server routes `reasoning` to the
   deterministic offline interpreter, so "Add a young guard near North Gate…" proposes
-  Tomas Reed with no external provider. Namespace player command IDs per campaign (IDs
+  Tomas Reed with no external provider. `authoring-drafts.spec.ts` (a reload and a perspective
+  switch restore the draft; a witness elsewhere is never moved) and `authoring-edit-npc.spec.ts`
+  (an NPC's card edit, the player's view of the new name) follow owner decisions 11. Namespace player command IDs per campaign (IDs
   are unique per actor across campaigns); scan rendered text, not stylesheets, for UI words.
 - AI feedback (`ai-feedback.spec.ts`, ADR 0032 checkpoint C): `ui-ai-feedback` adds a second
   character (Bram Holt) for the stale-reply check, and `ui-ai-no-start` never gets a durable AI
@@ -58,6 +60,8 @@ application on 4313.
   `fixtures/live-campaigns.json`. `authoring-undo.spec.ts` undoes from the history list that
   replaced the review's screen-local undo; while the history's preview says the world refuses an
   undo, Undo is disabled and described by its reason (the blockers), as in the stand-in journey.
+  `dm-tools.spec.ts` (`timeHistory`) finds the DM's day change and rain in History, undoes the
+  rain the day change names as its blocker, then the day, and the scene returns to Day 1.
   Helpers: `support/dm.ts`.
 - Shell (Stage 320, `docs/STAGE_320_DESIGN.md` §5.1): controls live in the dock's sheets, one
   open at a time, and a closed sheet stays mounted but `hidden`. Open the sheet that holds a

@@ -60,22 +60,46 @@ describe('options', () => {
     expect(JSON.stringify(proposal)).toBe(snapshot);
   });
 
-  it.each([
-    ['place the witness where it happened', `WITNESS_ELSEWHERE@1:${TOMAS}`, 0],
-    ['make it a rumor', `WITNESS_ELSEWHERE@1:${TOMAS}`, 1],
-  ])('resolve what they were offered for: %s', async (_label, key, position) => {
+  it('never move a witness to where it happened (owner decisions 11, SI-D7)', async () => {
     const world = await authoringWorld();
-    const preview = await world.preview([
-      tomas({ placement: { locationId: 'north-gate', since: worldTimeAt(0, 8) } }),
-      testimony({ knownSince: DEPARTURE }),
-    ]);
-    const option = optionsOf(preview, key)[position];
-    const after = await world.preview(commandsOf(option));
+    const proposal = [
+      tomas({ placement: { locationId: 'market-square', since: null } }),
+      testimony({ knownSince: null }),
+    ];
+    const preview = await world.preview(proposal);
+    const warning = preview.warnings.find(
+      (finding) => finding.key === `WITNESS_ELSEWHERE@1:${TOMAS}`,
+    );
 
-    expect(option?.kind).toBe('edit');
-    expect(keysOf(after)).not.toContain(key);
-    expect(after.committable).toBe(true);
+    // The NPC has one recorded place, where they are now; the warning says so.
+    expect(warning?.message).toMatch(/only where someone is now, not where they were before/);
+    expect(warning?.options?.map((option) => option.label)).toEqual([
+      'Make it a rumor they heard',
+      'Accept it, and acknowledge it when confirming the commit',
+    ]);
+    for (const option of warning?.options ?? []) {
+      expect(commandsOf(option).filter((command) => command.type === 'CreateEntity')).toEqual(
+        option.commands === null ? [] : [proposal[0]],
+      );
+    }
   });
+
+  it.each([['make it a rumor', `WITNESS_ELSEWHERE@1:${TOMAS}`, 0]])(
+    'resolve what they were offered for: %s',
+    async (_label, key, position) => {
+      const world = await authoringWorld();
+      const preview = await world.preview([
+        tomas({ placement: { locationId: 'north-gate', since: worldTimeAt(0, 8) } }),
+        testimony({ knownSince: DEPARTURE }),
+      ]);
+      const option = optionsOf(preview, key)[position];
+      const after = await world.preview(commandsOf(option));
+
+      expect(option?.kind).toBe('edit');
+      expect(keysOf(after)).not.toContain(key);
+      expect(after.committable).toBe(true);
+    },
+  );
 
   it('repair what the rules refused: a used ID and a time out of bounds', async () => {
     const world = await authoringWorld();

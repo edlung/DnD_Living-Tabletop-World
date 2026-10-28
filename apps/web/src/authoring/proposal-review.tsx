@@ -11,7 +11,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
 import { describeCommand } from './command-text.ts';
-import { ProposalEditor } from './proposal-editor.tsx';
+import { editableNpc, ProposalEditor } from './proposal-editor.tsx';
 import { whoWillSee } from './who-sees.ts';
 
 const CHANGE_TEXT: Readonly<Record<string, string>> = {
@@ -23,7 +23,56 @@ const CHANGE_TEXT: Readonly<Record<string, string>> = {
 };
 const words = (type: string) => type.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
 
-const STATUS_TEXT = { DRAFT: 'Draft', COMMITTED: 'Added to the world', UNDONE: 'Undone' } as const;
+const STATUS_TEXT = {
+  DRAFT: 'Draft',
+  COMMITTED: 'Added to the world',
+  UNDONE: 'Undone',
+  CANCELLED: 'Discarded',
+} as const;
+
+/**
+ * "Tell it in the description" for a witness who was elsewhere (owner decisions 11, SI-D7): the
+ * world records only where an NPC is now. A holder this proposal creates is edited here; an NPC
+ * already in the world, on its card.
+ */
+function DescribeThePast({
+  warning,
+  commands,
+  directory,
+  onEditHere,
+  onShowEntity,
+}: {
+  readonly warning: AuthoringWarning;
+  readonly commands: readonly ProposableCommand[];
+  readonly directory: readonly EntityRef[];
+  readonly onEditHere: () => void;
+  readonly onShowEntity: (entityId: string) => void;
+}) {
+  const t = useT();
+  const [holder] = warning.entityIds;
+  if (warning.code !== 'WITNESS_ELSEWHERE' || holder === undefined) return null;
+  const created = commands.some(
+    (command) => command.type === 'CreateEntity' && command.entityId === holder,
+  );
+  if (created && editableNpc(commands)) {
+    return (
+      <button type="button" onClick={onEditHere}>
+        {t('Edit the description')}
+      </button>
+    );
+  }
+  const known = directory.find((entity) => entity.entityId === holder);
+  return known ? (
+    <button
+      type="button"
+      onClick={() => {
+        onShowEntity(holder);
+      }}
+    >
+      {t('Edit the description on the card of {name}', { name: known.name })}
+    </button>
+  ) : null;
+}
 
 function Options({
   options,
@@ -66,10 +115,13 @@ export function ProposalReview({
   directory,
   busy,
   actions,
+  onShowEntity,
 }: {
   readonly data: AuthoringProposalResponse;
   readonly directory: readonly EntityRef[];
   readonly busy: boolean;
+  /** Opens an NPC's card (its own edit), from a warning about it. */
+  readonly onShowEntity: (entityId: string) => void;
   readonly actions: {
     readonly revise: (commands: readonly ProposableCommand[]) => void;
     readonly applyOption: (optionId: string) => void;
@@ -89,6 +141,12 @@ export function ProposalReview({
   const accepted = acknowledged?.revision === proposal.revision ? acknowledged.keys : [];
   const [editingRevision, setEditingRevision] = useState<number | null>(null);
   const editing = editingRevision === proposal.revision;
+  // "Edit the description" opens the editor with its description field focused.
+  const [describe, setDescribe] = useState(0);
+  useEffect(() => {
+    if (describe === 0) return;
+    document.getElementById('edit-description')?.focus();
+  }, [describe]);
   const names = new Map(
     proposal.commands.flatMap((command) =>
       command.type === 'CreateEntity' && command.entityId !== undefined
@@ -192,6 +250,16 @@ export function ProposalReview({
                     {warning.message}
                   </label>
                   <Options options={warning.options} busy={busy} onPick={actions.applyOption} />
+                  <DescribeThePast
+                    warning={warning}
+                    commands={proposal.commands}
+                    directory={directory}
+                    onEditHere={() => {
+                      setEditingRevision(proposal.revision);
+                      setDescribe((value) => value + 1);
+                    }}
+                    onShowEntity={onShowEntity}
+                  />
                 </div>
               ))}
             </fieldset>

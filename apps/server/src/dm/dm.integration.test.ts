@@ -122,12 +122,16 @@ describe('the DM history on PostgreSQL', () => {
     return app;
   }
 
-  it('lists the same commits, substitutions and reasons after a restart', async () => {
+  async function seed(): Promise<void> {
     const seeding = createWorldEngine(pool);
     for (const submission of (await loadRavenfordSeed()).submissions) {
       const result = await seeding.execute(submission);
       if (result.status === 'rejected') throw new Error(`seed rejected: ${result.code}`);
     }
+  }
+
+  it('lists the same commits, substitutions and reasons after a restart', async () => {
+    await seed();
     const first = await server(0xd1);
     const drafted = await post(
       first,
@@ -208,5 +212,52 @@ describe('the DM history on PostgreSQL', () => {
     expect(undone.json<CommandResult>().status).toBe('accepted');
     const after = (await get(restarted, url, TOKENS.dm)).json<DmHistoryResponse>();
     expect(after.entries[0]).toMatchObject({ status: 'UNDONE', undo: null });
+  });
+
+  it('lists the DM’s day change after a restart, and its undo returns the clock', async () => {
+    await seed();
+    const first = await server(0xd3);
+    const advance = { type: 'AdvanceWorldTime', to: 122_400 };
+    const advanced = await post(
+      first,
+      '/campaigns/ravenford/commands',
+      { commandId: 'day-two', command: advance },
+      TOKENS.dm,
+    );
+    expect(advanced.json<CommandResult>().status).toBe('accepted');
+    const url = '/campaigns/ravenford/dm/history?perspective=DM';
+    const before = (await get(first, url, TOKENS.dm)).json<DmHistoryResponse>();
+    expect(before.entries).toMatchObject([
+      {
+        kind: 'world',
+        commandId: 'http:dm-ravenford:day-two',
+        change: { kind: 'time', from: 36_000, to: 122_400 },
+        status: 'COMMITTED',
+        undo: { possible: true },
+      },
+    ]);
+    await first.close();
+    apps.splice(apps.indexOf(first), 1);
+
+    const restarted = await server(0xd4);
+    expect((await get(restarted, url, TOKENS.dm)).json()).toEqual(before);
+    const undone = await post(
+      restarted,
+      '/campaigns/ravenford/commands',
+      {
+        commandId: 'undo-day-two',
+        command: { type: 'UndoCommand', targetCommandId: 'http:dm-ravenford:day-two' },
+      },
+      TOKENS.dm,
+    );
+    expect(undone.json<CommandResult>().status).toBe('accepted');
+    const after = (await get(restarted, url, TOKENS.dm)).json<DmHistoryResponse>();
+    expect(after.entries[0]).toMatchObject({ status: 'UNDONE', undo: null });
+    const scene = await get(
+      restarted,
+      '/campaigns/ravenford/locations/market-square/scene?perspective=DM',
+      TOKENS.dm,
+    );
+    expect(scene.json<{ worldTime: number }>().worldTime).toBe(36_000);
   });
 });

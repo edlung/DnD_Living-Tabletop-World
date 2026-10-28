@@ -15,6 +15,13 @@ const REFUSALS: Readonly<Record<string, string>> = {
   FORBIDDEN: 'Only the DM can change the world this way.',
 };
 
+/** What an accepted undo of each kind of entry did. */
+const UNDONE: Readonly<Record<DmHistoryEntry['kind'], string>> = {
+  authoring: 'Undone. The world no longer holds this.',
+  substitution: 'Undone. The world is as it was before this action.',
+  world: 'Undone. The world is as it was before this change.',
+};
+
 /**
  * Undo from the DM history (docs/adr/0033-live-session.md §7) through the existing routes only:
  * an authoring commit through its proposal's undo, anything else as `UndoCommand`. The World
@@ -99,10 +106,7 @@ export function useHistoryUndo(api: WorldApi, onChanged: (undone: DmHistoryEntry
         }
         setNotice({
           kind: 'success',
-          text:
-            entry.kind === 'authoring'
-              ? 'Undone. The world no longer holds this.'
-              : 'Undone. The world is as it was before this action.',
+          text: UNDONE[entry.kind],
         });
         return entry;
       }),

@@ -6,6 +6,7 @@ import { worldTimeAt } from '../kernel/world-time.ts';
 import {
   ASHEN_CIRCLE,
   DEPARTURE,
+  DM,
   ELOWEN,
   TESTIMONY,
   TOMAS,
@@ -258,6 +259,46 @@ describe('identity', () => {
     expect(created.warnings[0]?.entityIds).toEqual([TOMAS, 'captain-thorne']);
     // Stage 120 adds that the party and the public know Mira (ADR 0019 §2).
     expect(warningKeys(renamed)).toEqual(['NAME_IN_USE@0', 'RENAME_KNOWN@0:mira-vale']);
+  });
+
+  it('names the other entity by its name and place, never its ID (owner decisions 11 review)', async () => {
+    const created = await world.preview([tomas({ name: 'captain  thorne' })]);
+    const [warning] = created.warnings;
+
+    expect(warning?.message).toMatch(/^"captain {2}thorne" is also the name of Captain Thorne/);
+    expect(warning?.message).not.toContain('captain-thorne');
+  });
+
+  it('warns on renaming an NPC whom only one character knows by name', async () => {
+    const own = await authoringWorld();
+    expect(
+      (await own.commit([tomas()], { confirmation: { riskLevel: 'L2', acknowledgedWarnings: [] } }))
+        .status,
+    ).toBe('accepted');
+    const rename: ResolvedProposable[] = [
+      { type: 'UpdateEntityProfile', entityId: TOMAS, name: 'Tomas the Gatekeeper' },
+    ];
+    // Nobody has learned his name yet: nothing to warn about.
+    expect(warningKeys(await own.preview(rename))).toEqual([]);
+
+    const told = await own.submit(
+      {
+        type: 'AddKnowledge',
+        knowledgeId: 'elowen-met-tomas',
+        scope: { kind: 'CHARACTER', characterId: ELOWEN },
+        knowledgeType: 'FACT',
+        statement: 'Tomas Reed keeps the North Gate.',
+        subjects: [TOMAS],
+        knownSince: null,
+      },
+      DM,
+    );
+    expect(told.status).toBe('accepted');
+    const preview = await own.preview(rename);
+    expect(warningKeys(preview)).toEqual([`RENAME_KNOWN@0:${TOMAS}`]);
+    expect(preview.warnings[0]?.message).toBe(
+      'Tomas Reed is known by name to Elowen Starwhisper; renaming changes that name in every account they hold',
+    );
   });
 });
 

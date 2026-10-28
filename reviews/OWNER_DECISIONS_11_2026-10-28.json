@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-28",
+  "source": "Owner message in a Claude Code session, replying to the list of open items after Stage 360's non-human parts",
+  "messages": [
+    "Решения по открытым пунктам: G06-client-02: снаряжение шамана видно до опознания. Черновик описания NPC пропадает при перезагрузке страницы. Смена дня не отображается в истории. Нельзя задать, где NPC находился в прошлом. Нельзя редактировать существующего NPC. Качество реплик NPC. — подумай и прими оптимальные решения",
+    "приступай"
+  ],
+  "delegation": "The owner delegated these six decisions to the session ('think and make the optimal decisions') and authorized starting the work. Decided by the session on 2026-10-28; each decision below is the owner's by that delegation.",
+  "decisions": {
+    "G06-client-02": "No change. Visible equipment is what an observer sees (ADR 0023 §3, owner decision 4); identification withholds the name, not the look (ADR 0027 §3). A DM who wants a creature indistinguishable keeps its pictures DM-only. Recorded in ADR 0027 as an amendment.",
+    "SI-D1-drafts": "Fix. Open authoring proposals already live on the server; the DM's client lists the DM's open proposals on load and restores the latest unfinished one, so a reload or a perspective switch no longer loses a draft or forces another paid interpretation. Nothing goes into browser storage (ADR 0029 §8 stands).",
+    "SI-D4-time-in-history": "Fix. World-time and weather commands are listed in the DM's History like authoring commits, with the existing safe undo (named blockers when later events depend on the time).",
+    "SI-D7-past-whereabouts": "Do not model past locations in this release. Fix the misleading part: the continuity warning no longer offers a 'place since before records' fix that changes where the NPC is now; it explains that the NPC's current place is what the world records and offers the DM to edit the description or keep the warning. Modelling past whereabouts is future work (after v0.1).",
+    "SI-D8-edit-npc": "Fix. The DM's NPC card gets an edit form (name, description) that submits a DM-written authoring proposal with UpdateEntityProfile, through the same preview, who-sees and confirm flow and undo; no new canonical command.",
+    "SI-N1-npc-lines": "Fix within Stage 300's boundaries: the NPC context tells the model whether this NPC has spoken with this character before (from the recorded conversation, never a secret), so it does not re-introduce itself; the prompt asks for replies grounded in the NPC's own knowledge and role instead of generic advice. Verified offline and with a small live check within the stored ceilings."
+  }
+}

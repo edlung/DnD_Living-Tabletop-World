@@ -61,6 +61,9 @@ describe('NPC replies in Russian', () => {
     intent: 'ask' as const,
     accepted: true,
     topic: 'Странный знак',
+    metBefore: false,
+    toldBefore: [],
+    toldOnTopic: [],
     justTold: [],
     mayTell: [],
     common: [],
@@ -81,5 +84,20 @@ describe('NPC replies in Russian', () => {
     expect(
       replyLocally({ ...base, guarded: [], justTold: ['Караван ушёл до рассвета.'] }).reply,
     ).toContain('«Караван ушёл до рассвета.»');
+  });
+
+  it('asked again, repeats what it already told rather than denying it (SI-N1)', () => {
+    const told = 'Орин узнал тот же знак после того, как прошлой весной пропал караван.';
+    expect(
+      replyLocally({ ...base, metBefore: true, toldBefore: [told], toldOnTopic: [told] }).reply,
+    ).toBe(`Орин Стоунберд поднимает взгляд. «Повторю то, что уже сказано: ${told}»`);
+  });
+
+  it('does not greet someone it has spoken with as a stranger (SI-N1)', () => {
+    const talk = { ...base, intent: 'talk' as const, topic: null, guarded: [] };
+    expect(replyLocally(talk).reply).toContain('Чем могу помочь?');
+    expect(replyLocally({ ...talk, metBefore: true }).reply).toBe(
+      'Орин Стоунберд поднимает взгляд. «Снова вы. Чем ещё могу помочь?»',
+    );
   });
 });
