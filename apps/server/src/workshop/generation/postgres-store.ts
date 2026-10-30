@@ -17,7 +17,10 @@ import {
   publicJob,
   transaction,
   type JobRow,
+  type PublicJobRow,
+  PUBLIC_JOB_COLUMNS,
 } from './postgres-rows.ts';
+import { loadProgress } from './postgres-progress.ts';
 import { prepareStep, beginDispatch, completeStep } from './postgres-steps.ts';
 import { finalize } from './postgres-finalize.ts';
 import type {
@@ -161,14 +164,17 @@ export class PostgresCampaignGenerationRepository implements CampaignGenerationR
       return row ? jobView(row) : null;
     });
   }
+  progress(scope: GenerationJobScope) {
+    return transaction(this.#pool, (client) => loadProgress(client, scope));
+  }
   list(
     scope: GenerationScope,
     limit: number,
     before?: Pick<CampaignGenerationJob, 'createdAt' | 'jobId'> | null,
   ) {
     return transaction(this.#pool, async (client) => {
-      const rows = await client.query<JobRow>(
-        'SELECT * FROM ltw_campaign_generation_jobs WHERE owner_id=$1 AND draft_id=$2 AND ($4::timestamptz IS NULL OR (created_at,job_id)<($4::timestamptz,$5::uuid)) ORDER BY created_at DESC,job_id DESC LIMIT $3',
+      const rows = await client.query<PublicJobRow>(
+        `SELECT ${PUBLIC_JOB_COLUMNS} FROM ltw_campaign_generation_jobs WHERE owner_id=$1 AND draft_id=$2 AND ($4::timestamptz IS NULL OR (created_at,job_id)<($4::timestamptz,$5::uuid)) ORDER BY created_at DESC,job_id DESC LIMIT $3`,
         [
           scope.ownerId,
           scope.draftId,

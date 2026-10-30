@@ -4,6 +4,7 @@ import type {
   CampaignGenerationStep,
   CampaignGenerationCandidate,
   CampaignRevision,
+  CampaignGenerationProgressView,
 } from '@ltw/contracts';
 
 export interface GenerationScope {
@@ -61,6 +62,7 @@ export interface CampaignGenerationRepository {
   enqueue(input: EnqueueGeneration): Promise<JobMutation>;
   retry(scope: GenerationJobScope, requestId: string, authSessionId: string): Promise<JobMutation>;
   get(scope: GenerationJobScope): Promise<StoredGenerationJob | null>;
+  progress(scope: GenerationJobScope): Promise<CampaignGenerationProgressView | null>;
   list(
     scope: GenerationScope,
     limit: number,

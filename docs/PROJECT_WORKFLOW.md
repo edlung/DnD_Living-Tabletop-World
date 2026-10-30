@@ -11,7 +11,7 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   The session keeps scoped stages, checks, adversarial passes and reports and
   continues autonomously. Final functionality is shown to the owner; no runtime
   DM confirmation, architecture invariant, deployment or human-acceptance boundary
-  is waived. Current implementation scope: `work-orders/STAGE_400.md`.
+  is waived. Current implementation scope: `work-orders/STAGE_410.md`.
 
 - In the current project chat the owner requested AI-generated campaigns with
   scenario and visual preview, approved implementation of the proposed Stages
@@ -38,13 +38,17 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   immutable owner-private revisions and isolated World Engine materialization are
   implemented and verified: 3,049 unit, 261 integration and 144 browser tests pass. No real credentials,
   default local DB, production campaign or deployment has been changed.
-- Current implementation: **Stage 400 TECHNICALLY_VERIFIED**, `work-orders/STAGE_400.md`.
+- Stage400: **TECHNICALLY_VERIFIED**, `work-orders/STAGE_400.md`.
   Durable AI preparation jobs and admitted-provider integration; full offline
   validation passed:3,100unit,284integration,144browser tests. Report and technical
   handoff: `reports/STAGE_400_COMPLETION.md`, `handoffs/STAGE_400_REQUEST.md`.
   Live-provider quality remains unperformed and carried to450, never inferred from
   scripted tests.
-- Stages 410–450 continue after their scoped technical verification under the
+- Stage410: **TECHNICALLY_VERIFIED**, `work-orders/STAGE_410.md`.
+  Private linked scenario inspection, immutable basic corrections and generation
+  browser; full offline validation passed:3,132unit,286integration,156browser tests.
+  Report:`reports/STAGE_410_COMPLETION.md`. Continue to420 under delegated authority.
+- Stages420–450 continue after their scoped technical verification under the
   owner's delegated continuation. Runtime confirmation and final human acceptance
   remain the owner's actions.
 - Stage 370's full offline validation passed (2,985 unit, 237 integration, 132

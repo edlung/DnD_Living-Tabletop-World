@@ -119,6 +119,17 @@ export function registerCampaignGenerationRoutes(
     });
   });
 
+  app.get('/workshop/drafts/:draftId/generation/:jobId/progress', async (request, reply) => {
+    const grant = await owned(request, reply);
+    if (!grant) return reply;
+    const path = jobPath.safeParse(request.params);
+    if (!path.success || !empty.safeParse(request.query).success)
+      return sendError(reply, request, 'INVALID_REQUEST');
+    const scope = { ...grant.scope, jobId: path.data.jobId };
+    const progress = await repository.progress(scope);
+    return progress ? reply.send(progress) : sendError(reply, request, 'NOT_FOUND');
+  });
+
   app.get('/workshop/drafts/:draftId/generation/:jobId', async (request, reply) => {
     const grant = await owned(request, reply);
     if (!grant) return reply;

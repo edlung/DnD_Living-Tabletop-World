@@ -22,7 +22,8 @@ import { seedWorkshopAccess } from './ui-workshop-fixtures.ts';
  * tests/e2e/AGENTS.md): production sign-in — session cookies, the sign-in and member routes,
  * the origin check, limits, the live stream on the cookie — over the real World Engine with
  * in-memory credentials, behind the second Vite server (`SIGN_IN_ORIGIN`, which is therefore
- * the public origin). No configured AI provider or worker. Redeem limits are raised, since every
+ * the public origin). A test-only scripted workshop worker is composed here; no remote AI.
+ * Redeem limits are raised, since every
  * journey's browser is the same loopback client (the limits have their own server tests).
  * Localhost only; never used by the production entry point.
  */
@@ -45,7 +46,7 @@ const signIn: SignInDependencies = {
   ),
   evidence: evidenceHasher(),
 };
-const workshop = await seedWorkshopAccess(credentials, engine, seed);
+const { workshop, stopGeneration } = await seedWorkshopAccess(credentials, engine, seed);
 const { app } = buildLiveApp({
   ai: testAiGateway(),
   authoring: testAuthoring(),
@@ -58,6 +59,9 @@ const { app } = buildLiveApp({
   signIn,
   workshop,
   trustedProxies: [],
+});
+app.addHook('onClose', async () => {
+  await stopGeneration();
 });
 
 // Test-process-only operator revocation trigger; never imported by production composition.

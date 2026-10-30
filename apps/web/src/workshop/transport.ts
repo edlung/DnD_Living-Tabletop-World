@@ -33,6 +33,7 @@ export async function workshopRequest(
     return await fetch(`/api/workshop${path}`, {
       credentials: 'same-origin',
       cache: 'no-store',
+      redirect: 'error',
       signal: controller.signal,
       headers: {
         Accept: 'application/json',

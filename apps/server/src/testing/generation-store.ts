@@ -8,7 +8,7 @@ import {
 
 import { campaignCanonicalJson } from '../workshop/packages/content.ts';
 import type { CampaignRevisionRepository } from '../workshop/packages/store.ts';
-import { generationJobView } from '../workshop/generation/views.ts';
+import { generationJobView, generationStepProgress } from '../workshop/generation/views.ts';
 import type {
   CampaignGenerationRepository,
   EnqueueGeneration,
@@ -168,6 +168,27 @@ export class MemoryCampaignGenerationRepository implements CampaignGenerationRep
       this.#nonces.set(nonce, { fingerprint, scope: job });
       return { kind: 'saved', job: clone(job) } as const;
     });
+  }
+  progress(scope: GenerationJobScope) {
+    const job = this.#jobs.get(key(scope));
+    if (!job) return Promise.resolve(null);
+    const candidate = this.#candidates.get(key(scope));
+    return Promise.resolve(
+      clone({
+        job: generationJobView(job),
+        brief: job.seed.brief,
+        steps: [...(this.#steps.get(key(scope))?.values() ?? [])]
+          .sort((a, b) => a.ordinal - b.ordinal)
+          .map(generationStepProgress),
+        candidate: candidate
+          ? {
+              contentDigest: candidate.contentDigest,
+              baseRevision: candidate.baseRevision,
+              createdAt: candidate.createdAt,
+            }
+          : null,
+      }),
+    );
   }
   get(scope: GenerationJobScope) {
     return Promise.resolve(clone(this.#jobs.get(key(scope)) ?? null));

@@ -15,3 +15,7 @@ Read the accepted Stage 370 contract/ADR 0038 and current scoped work order.
 - Party entries are prepared character seats; controllers join via real invitations.
 - Stored package schema versions remain readable; adding a future version must
   preserve older revisions. Do not silently narrow earlier stored content.
+
+The feature public API lives in index.ts, re-exported by the contracts package;
+feature internals import their concrete files. Progress DTOs exclude scenario
+bodies and provider inputs. Full owner packages load only through explicit reads.

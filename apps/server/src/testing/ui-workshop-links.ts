@@ -19,6 +19,20 @@ export const WORKSHOP_FIXTURES = [
   'a11y',
   'stale-a',
   'stale-b',
+  'scenario-en',
+  'scenario-ru',
+  'scenario-layout',
+  'scenario-a11y',
+  'scenario-generation',
+  'scenario-retry',
+  'scenario-unavailable',
+  'scenario-revoked',
+  'scenario-stale-a',
+  'scenario-stale-b',
+  'scenario-replacement',
+  'scenario-cas',
+  'scenario-correction',
+  'scenario-cancel',
 ] as const;
 export type WorkshopFixture = (typeof WORKSHOP_FIXTURES)[number];
 export const WORKSHOP_CAMPAIGN = 'ui-workshop-coexist';
@@ -27,5 +41,11 @@ export function workshopInvitationToken(seed: string, name: WorkshopFixture): st
 }
 export function workshopOwnerId(seed: string, name: WorkshopFixture): string {
   const hex = createHmac('sha256', seed).update(`workshop-owner\n${name}`).digest('hex');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-4${hex.slice(13, 16)}-8${hex.slice(17, 20)}-${hex.slice(20, 32)}`;
+}
+
+/** The Stage410 draft only; existing Stage380 owners keep their empty draft lists. */
+export function workshopDraftId(seed: string, name: WorkshopFixture): string {
+  const hex = createHmac('sha256', seed).update(`workshop-draft\n${name}`).digest('hex');
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-4${hex.slice(13, 16)}-8${hex.slice(17, 20)}-${hex.slice(20, 32)}`;
 }

@@ -5,7 +5,7 @@ import { flushSync } from 'react-dom';
 import type { InvitationHolder } from '../session/invitation-link.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { WorkshopAccess, type AccessKind } from './access.tsx';
-import { WorkshopDrafts } from './drafts.tsx';
+import { WorkshopPrivate } from './private.tsx';
 import type { WorkshopStart } from './start.ts';
 import { joinWorkshop, probeWorkshop, workshopRequest, type WorkshopProbe } from './transport.ts';
 
@@ -46,13 +46,15 @@ function WorkshopPage({
     );
   }, []);
   const ended = useCallback(() => {
-    setAsking(false);
-    setScreen({ kind: 'signed-out' });
+    flushSync(() => {
+      setAsking(false);
+      setScreen({ kind: 'signed-out' });
+    });
   }, []);
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = t('Campaign workshop');
-  }, [language, t]);
+  }, [language]);
   useEffect(() => {
     if (start.kind !== 'checking') return;
     let alive = true;
@@ -150,7 +152,7 @@ function WorkshopPage({
           )}
         </header>
         {screen.kind === 'workshop' ? (
-          <WorkshopDrafts ownerId={screen.ownerId} onEnded={ended} />
+          <WorkshopPrivate key={screen.ownerId} ownerId={screen.ownerId} onEnded={ended} />
         ) : (
           <WorkshopAccess
             kind={screen.kind}

@@ -19,37 +19,6 @@ export {
   type WorkshopDraftList,
 } from './workshop/access.ts';
 export {
-  CAMPAIGN_PACKAGE_VERSION,
-  campaignBriefSchema,
-  campaignEntitySchema,
-  campaignKnowledgeSchema,
-  campaignPackageSchema,
-  type CampaignPackage,
-  type CampaignEntity,
-  type CampaignKnowledge,
-  type CampaignScope,
-  type CampaignIdentities,
-  type CampaignFinding,
-  type CampaignAssessment,
-} from './campaign/package.ts';
-export {
-  campaignKeySchema,
-  campaignClueSchema,
-  campaignConflictSchema,
-  campaignSituationSchema,
-  campaignEncounterSchema,
-  campaignVisualBriefSchema,
-} from './campaign/story.ts';
-export {
-  campaignRevisionNumberSchema,
-  saveCampaignRevisionSchema,
-  campaignRevisionQuerySchema,
-  type CampaignRevisionSource,
-  type CampaignRevision,
-  type CampaignRevisionView,
-  type CampaignRevisionSummary,
-} from './campaign/revisions.ts';
-export {
   OBJECT_ID_PATTERN,
   actorIdSchema,
   campaignIdSchema,
@@ -461,21 +430,4 @@ export type {
   EntityAssetsResponse,
   PlayerAssetView,
 } from './assets/views.ts';
-export {
-  CAMPAIGN_GENERATION_STATUSES,
-  enqueueCampaignGenerationSchema,
-  retryCampaignGenerationSchema,
-  type CampaignGenerationStatus,
-  type CampaignGenerationJob,
-  type CampaignGenerationStep,
-  type CampaignGenerationCandidate,
-  type CampaignGenerationView,
-  type CampaignGenerationAvailability,
-} from './campaign/generation-jobs.ts';
-export {
-  CAMPAIGN_GENERATION_STAGES,
-  campaignGenerationStageSchema,
-  campaignGenerationOutputSchemas,
-  type CampaignGenerationStage,
-  type CampaignGenerationOutputByStage,
-} from './campaign/generation.ts';
+export * from './campaign/index.ts';

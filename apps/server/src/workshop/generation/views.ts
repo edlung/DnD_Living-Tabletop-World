@@ -1,4 +1,8 @@
-import type { CampaignGenerationJob, CampaignGenerationStep } from '@ltw/contracts';
+import type {
+  CampaignGenerationJob,
+  CampaignGenerationStep,
+  CampaignGenerationProgressStep,
+} from '@ltw/contracts';
 
 import type { StoredGenerationJob, StoredGenerationStep } from './store.ts';
 
@@ -16,16 +20,19 @@ export function generationJobView(job: StoredGenerationJob): CampaignGenerationJ
     failureCode: job.failureCode,
   };
 }
-export function generationStepView(step: StoredGenerationStep): CampaignGenerationStep {
+export function generationStepProgress(step: StoredGenerationStep): CampaignGenerationProgressStep {
   return {
     ordinal: step.ordinal,
     stage: step.stage,
     status: step.status,
     traceId: step.traceId,
-    content: step.content,
     provider: step.provider,
     model: step.model,
     createdAt: step.createdAt,
     completedAt: step.completedAt,
   };
+}
+
+export function generationStepView(step: StoredGenerationStep): CampaignGenerationStep {
+  return { ...generationStepProgress(step), content: step.content };
 }

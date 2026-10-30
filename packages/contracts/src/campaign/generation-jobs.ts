@@ -65,3 +65,15 @@ export interface CampaignGenerationAvailability {
   readonly reason: 'READY' | 'NO_ROUTE' | 'NO_PREPARATION_GRANT' | 'UNAVAILABLE';
   readonly providers: readonly string[];
 }
+
+/** Lightweight polling never carries generated scenario bodies or raw provider inputs. */
+export type CampaignGenerationProgressStep = Omit<CampaignGenerationStep, 'content'>;
+export interface CampaignGenerationProgressView {
+  readonly job: CampaignGenerationJob;
+  readonly brief: CampaignPackage['brief'];
+  readonly steps: readonly CampaignGenerationProgressStep[];
+  readonly candidate: Pick<
+    CampaignGenerationCandidate,
+    'contentDigest' | 'baseRevision' | 'createdAt'
+  > | null;
+}

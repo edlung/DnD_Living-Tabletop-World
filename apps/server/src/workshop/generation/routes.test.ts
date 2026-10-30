@@ -1,7 +1,11 @@
 import { randomUUID } from 'node:crypto';
 
 import { InMemoryEventStore, SequentialIds, SteppingClock, WorldEngine } from '@ltw/domain';
-import type { CampaignGenerationJob, CampaignGenerationView } from '@ltw/contracts';
+import type {
+  CampaignGenerationJob,
+  CampaignGenerationView,
+  CampaignGenerationProgressView,
+} from '@ltw/contracts';
 import type { FastifyInstance } from 'fastify';
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -130,6 +134,35 @@ describe('owner-private campaign generation HTTP', () => {
     expect(packageResponse.json<{ assessment: { readiness: string } }>().assessment.readiness).toBe(
       'READY',
     );
+  });
+  it('polls lightweight progress and restores the original brief without scenario bodies', async () => {
+    const f = await setup();
+    const queued = await f.send('POST', f.url, f.request),
+      job = queued.json<{ job: CampaignGenerationJob }>().job;
+    const path = `${f.url}/${job.jobId}/progress`;
+    const initial = await f.send('GET', path);
+    expect(initial.statusCode).toBe(200);
+    expect(initial.json<CampaignGenerationProgressView>().brief).toEqual(f.content.brief);
+    await f.worker.run({ ownerId: f.ownerId, draftId: f.draftId, jobId: job.jobId });
+    const completed = await f.send('GET', path);
+    const value = completed.json<CampaignGenerationProgressView>();
+    expect(value.job.status).toBe('SUCCEEDED');
+    expect(value.steps).toHaveLength(7);
+    expect(value.candidate?.contentDigest).toMatch(/^sha256:/);
+    for (const forbidden of [
+      '"content":',
+      '"identities":',
+      '"prompt":',
+      '"seed":',
+      '"knowledge":',
+      '"authSessionId":',
+    ])
+      expect(completed.body).not.toContain(forbidden);
+    expect(
+      (await f.send('GET', path, undefined, { 'x-workshop-owner': randomUUID() })).statusCode,
+    ).toBe(409);
+    await f.workshop.revokeOwner(f.ownerId, new Date(T0).toISOString(), 'test:progress');
+    expect((await f.send('GET', path)).statusCode).toBe(401);
   });
   it('refuses campaign-only, stale owner, other-owner, cross-origin and malformed requests', async () => {
     const f = await setup();

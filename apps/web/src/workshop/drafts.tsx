@@ -2,14 +2,17 @@ import type { CreateWorkshopDraft, Language, WorkshopDraftView } from '@ltw/cont
 import { StatusPanel, useLanguage, useT } from '@ltw/ui';
 import { useCallback, useEffect, useRef, useState, type SubmitEvent } from 'react';
 
-import { createWorkshopDraft, probeWorkshop, readWorkshopDrafts } from './transport.ts';
+import { createWorkshopDraft, readWorkshopDrafts } from './transport.ts';
+import { workshopDraftPath } from './route.ts';
 
 export function WorkshopDrafts({
   ownerId,
   onEnded,
+  onOpen,
 }: {
   readonly ownerId: string;
   readonly onEnded: () => void;
+  readonly onOpen: (draftId: string) => void;
 }) {
   const t = useT();
   const language = useLanguage();
@@ -46,37 +49,6 @@ export function WorkshopDrafts({
     void load();
     return () => reading.current.controller?.abort();
   }, [load]);
-  useEffect(() => {
-    const controller = new AbortController();
-    let checking = false;
-    const check = async () => {
-      if (checking || document.visibilityState !== 'visible') return;
-      checking = true;
-      const result = await probeWorkshop(controller.signal);
-      checking = false;
-      if (controller.signal.aborted) return;
-      if (
-        result.kind === 'signed-out' ||
-        (result.kind === 'signed-in' && result.ownerId !== ownerId)
-      )
-        onEnded();
-    };
-    const changed = () => {
-      void check();
-    };
-    const timer = window.setInterval(changed, 15_000);
-    window.addEventListener('online', changed);
-    window.addEventListener('focus', changed);
-    document.addEventListener('visibilitychange', changed);
-    return () => {
-      controller.abort();
-      window.clearInterval(timer);
-      window.removeEventListener('online', changed);
-      window.removeEventListener('focus', changed);
-      document.removeEventListener('visibilitychange', changed);
-    };
-  }, [ownerId, onEnded]);
-
   return (
     <div className="workshop-columns">
       <section className="workshop-panel" aria-labelledby="new-draft-title">
@@ -111,7 +83,26 @@ export function WorkshopDrafts({
           <ul className="workshop-draft-list">
             {drafts.map((draft) => (
               <li key={draft.draftId}>
-                <h3>{draft.title}</h3>
+                <h3 aria-label={draft.title}>
+                  <a
+                    href={workshopDraftPath(draft.draftId)}
+                    aria-label={t('Open draft: {title}', { title: draft.title })}
+                    onClick={(event) => {
+                      if (
+                        event.button !== 0 ||
+                        event.metaKey ||
+                        event.ctrlKey ||
+                        event.shiftKey ||
+                        event.altKey
+                      )
+                        return;
+                      event.preventDefault();
+                      onOpen(draft.draftId);
+                    }}
+                  >
+                    {draft.title}
+                  </a>
+                </h3>
                 <p>
                   {draft.language === 'ru' ? t('Russian') : t('English')}
                   {' · '}

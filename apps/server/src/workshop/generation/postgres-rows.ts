@@ -54,6 +54,21 @@ export type JobRow = {
   candidate_available: boolean;
   failure_code: string | null;
 };
+export type PublicJobRow = Pick<
+  JobRow,
+  | 'job_id'
+  | 'draft_id'
+  | 'base_revision'
+  | 'status'
+  | 'next_step'
+  | 'created_at'
+  | 'updated_at'
+  | 'attached_revision'
+  | 'candidate_available'
+  | 'failure_code'
+>;
+export const PUBLIC_JOB_COLUMNS =
+  'job_id,draft_id,base_revision,status,next_step,created_at,updated_at,attached_revision,candidate_available,failure_code';
 export const keys = (scope: GenerationJobScope) => [scope.ownerId, scope.draftId, scope.jobId];
 export const digest = (value: unknown): string =>
   `sha256:${createHash('sha256').update(campaignCanonicalJson(value)).digest('hex')}`;
@@ -113,30 +128,18 @@ export function jobView(row: JobRow): StoredGenerationJob {
     failureCode: row.failure_code,
   };
 }
-export function publicJob(row: JobRow): CampaignGenerationJob {
-  const {
-    jobId,
-    draftId,
-    baseRevision,
-    status,
-    nextStep,
-    createdAt,
-    updatedAt,
-    attachedRevision,
-    candidateAvailable,
-    failureCode,
-  } = jobView(row);
+export function publicJob(row: PublicJobRow): CampaignGenerationJob {
   return {
-    jobId,
-    draftId,
-    baseRevision,
-    status,
-    nextStep,
-    createdAt,
-    updatedAt,
-    attachedRevision,
-    candidateAvailable,
-    failureCode,
+    jobId: row.job_id,
+    draftId: row.draft_id,
+    baseRevision: row.base_revision,
+    status: row.status,
+    nextStep: row.next_step,
+    createdAt: row.created_at.toISOString(),
+    updatedAt: row.updated_at.toISOString(),
+    attachedRevision: row.attached_revision,
+    candidateAvailable: row.candidate_available,
+    failureCode: row.failure_code,
   };
 }
 export async function transaction<T>(
