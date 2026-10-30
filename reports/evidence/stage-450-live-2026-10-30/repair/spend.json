@@ -1,0 +1,48 @@
+{
+  "day": "2026-10-30",
+  "accounts": [
+    {
+      "accountId": "stage450-anthropic-existing-account",
+      "enabled": true,
+      "globalDailyCeilingMicros": null,
+      "todayMicros": "661081",
+      "totalMicros": "661081",
+      "openHoldMicros": "0",
+      "monetaryPolicy": {
+        "revision": 1,
+        "mode": "UNLIMITED",
+        "ownerId": "project-owner",
+        "authorizedOn": "2026-10-30",
+        "authorizationSource": "reviews/OWNER_LIVE_CAMPAIGN_AUTHORIZATION_2026-10-30.json"
+      }
+    }
+  ],
+  "approvals": [
+    {
+      "approvalId": "stage450-live-campaign-20261030",
+      "accountId": "stage450-anthropic-existing-account",
+      "stage": "450-live-campaign",
+      "enabled": true,
+      "stageCeilingMicros": null,
+      "spentMicros": "661081",
+      "monetaryPolicy": {
+        "revision": 1,
+        "mode": "UNLIMITED",
+        "ownerId": "project-owner",
+        "authorizedOn": "2026-10-30",
+        "authorizationSource": "reviews/OWNER_LIVE_CAMPAIGN_AUTHORIZATION_2026-10-30.json"
+      }
+    }
+  ],
+  "images": {
+    "revision": null,
+    "ceilingMicros": null,
+    "spentMicros": "0",
+    "heldMicros": "0",
+    "remainingMicros": null,
+    "charges": 0,
+    "unsettled": 0,
+    "unsettledReservations": [],
+    "settleableAfterMinutes": 15
+  }
+}

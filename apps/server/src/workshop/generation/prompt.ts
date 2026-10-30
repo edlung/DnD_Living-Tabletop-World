@@ -23,9 +23,15 @@ const DIRECTIONS: Readonly<Record<CampaignGenerationStage, string>> = {
     'Conflicts describe actors and stakes without forcing an outcome. Actor keys may be fulfilled by cast next.',
   cast:
     'Create nonlocation entities, prepared party seats, NPC initial attitudes, and visual briefs. ' +
-    'Preserve every existing location exactly. Use existing conflict actor keys, and place the entire party ' +
+    'Return only nonlocation objects in entities; the server retains every existing location, so do not repeat locations. ' +
+    'The entities and party arrays must not be empty. Every party key must name an actual character object in entities, ' +
+    'with a complete supported sheet. Return exactly brief.partySize distinct prepared characters at brief.partyLevel. ' +
+    'Declare every existing conflict actor key as an actual entity rather than only mentioning it in prose. ' +
+    'Use existing conflict actor keys, and place the entire party ' +
     'at the startLocation. Use status=active and existsSince=null for fresh preparation unless backstory ' +
     'requires an earlier time. Only item, feature, character, npc, creature have placement; factions do not. ' +
+    'Every active physical entity must have an initial placement at an existing location, including NPCs, ' +
+    'creatures, items and features; do not leave scene participants unplaced. ' +
     'Placement is {location,since}; entities have no location metadata in this step. ' +
     'Provide complete supported sheets for party seats and statBlocks for intended combatant NPCs/creatures. ' +
     'NPC attitude is HOSTILE/WARY/NEUTRAL/FRIENDLY/TRUSTED. Visual purpose is image, figure or ' +
@@ -41,7 +47,8 @@ const DIRECTIONS: Readonly<Record<CampaignGenerationStage, string>> = {
     'Specify actual holders and NPC willingness (WILLING/GUARDED), keeping secrets out of PUBLIC/PARTY. ' +
     'Only TESTIMONY/RUMOR may carry attributedTo; TESTIMONY needs a speaker. Relation knowledge references ' +
     'other local record keys, without dependency cycles. Clue methods: inspect, investigation, perception, ' +
-    'magic; investigation/perception require dc, inspect/magic forbid dc. Use only existing subjects/entities.',
+    'magic; investigation/perception require dc and can target only item/feature entities. ' +
+    'Use inspect or magic for a location; inspect/magic forbid dc. Use only existing subjects/entities.',
   encounters:
     'Prepare optional encounters using existing places and supported combatants; introduce no new entities. ' +
     'Give a plausible trigger, legal bounded positions, terrain and cover, and alternatives to combat. ' +

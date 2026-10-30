@@ -1,0 +1,66 @@
+{
+  "kind": "EXPLICIT_MANUAL_COMPATIBILITY_CORRECTION",
+  "authorizedSource": "owner delegated technical fixes",
+  "aiCandidateJobId": "75e39d72-b67b-4fd2-bff3-66f922635771",
+  "aiCandidateDigest": "sha256:9f152a84a0810c866af0cac06b78d72f69fccf5159cdccd84027ba56aff8b4f4",
+  "basedOnRevision": 1,
+  "savedRevision": 2,
+  "source": {
+    "kind": "OWNER",
+    "actorId": "1097257d-185e-46d2-b164-6a2909d57429"
+  },
+  "changes": [
+    {
+      "path": "clues.clue-boat-tracks.method",
+      "before": "perception",
+      "after": "inspect"
+    },
+    {
+      "path": "clues.clue-boat-tracks.dc",
+      "before": 12,
+      "after": null
+    },
+    {
+      "path": "clues.clue-tower-notes.method",
+      "before": "investigation",
+      "after": "inspect"
+    },
+    {
+      "path": "clues.clue-tower-notes.dc",
+      "before": 13,
+      "after": null
+    },
+    {
+      "path": "clues.clue-lamp-hall-empty-socket.method",
+      "before": "perception",
+      "after": "inspect"
+    },
+    {
+      "path": "clues.clue-lamp-hall-empty-socket.dc",
+      "before": 10,
+      "after": null
+    },
+    {
+      "path": "clues.clue-savva-ledger.method",
+      "before": "investigation",
+      "after": "inspect"
+    },
+    {
+      "path": "clues.clue-savva-ledger.dc",
+      "before": 14,
+      "after": null
+    },
+    {
+      "path": "clues.clue-post-veh-markers.method",
+      "before": "investigation",
+      "after": "inspect"
+    },
+    {
+      "path": "clues.clue-post-veh-markers.dc",
+      "before": 11,
+      "after": null
+    }
+  ],
+  "otherCandidateContentChanged": false,
+  "rawAiOutputsPreserved": true
+}

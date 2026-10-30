@@ -1,4 +1,4 @@
-import { CHECK_METHODS, type EntityKind } from '@ltw/contracts';
+import { CHECK_METHODS, type ClueMethod, type EntityKind } from '@ltw/contracts';
 
 import { findEntity } from '../kernel/decide/lookups.ts';
 import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
@@ -20,6 +20,11 @@ const INSPECTABLE: ReadonlySet<EntityKind> = new Set([
 /** Skill checks apply to objects, matching the Context Engine catalog (ADR 0012). */
 const CHECKABLE: ReadonlySet<EntityKind> = new Set(['item', 'feature']);
 
+/** One target rule for canonical initial authoring and generated preparation. */
+export function clueTargetSupportsMethod(kind: EntityKind, method: ClueMethod): boolean {
+  return ((CHECK_METHODS as ReadonlySet<string>).has(method) ? CHECKABLE : INSPECTABLE).has(kind);
+}
+
 export function decideAddClue(state: WorldState, command: ResolvedCommandOf<'AddClue'>): Decision {
   const { clueId, entityId, method } = command;
   const subjects = command.subjects ?? [];
@@ -30,7 +35,7 @@ export function decideAddClue(state: WorldState, command: ResolvedCommandOf<'Add
   if (!entity.ok) return entity;
   // Skill-check clues need a DC; `inspect` and `magic` (Detect Magic, ADR 0015) never have one.
   const check = (CHECK_METHODS as ReadonlySet<string>).has(method);
-  if (!(check ? CHECKABLE : INSPECTABLE).has(entity.value.kind)) {
+  if (!clueTargetSupportsMethod(entity.value.kind, method)) {
     return reject('INVALID_CLUE', `A ${method} clue cannot be placed on a ${entity.value.kind}`);
   }
   if (check !== (command.dc !== undefined)) {

@@ -27,6 +27,9 @@ Rules:
 - A result that found nothing still depends on why (Gate 03 remediation). An examination records the clues it passed over because its scope had found them (`revealed` premise). Detect Magic (`reveal.ts`: `magicSensingPremises`) also records where the caster stood and every magic clue it did not reach, with where its entity was (`unreached` premise). `negative-premises.test.ts` and the what-if undo check in `premises.property.test.ts` guard this.
 - Premises are written with `premiseSchema` (`PremisesRecorded` version 2) and read with `recordedPremiseSchema`, which keeps `placement`: revision 88d8137 recorded it in version 1 events, with the entity but not its clues. It is never written again and reads what it originally meant, the entity and where it was; the command that recorded it rests on everything before it anyway (Gate 03 retests 2 and 3; `kernel/event-versions.ts`, ADR 0006).
 - Clue existence, DCs, disclosure policy, and source records never reach player views or outcomes. A failed check and a check with nothing to find produce the same events.
+- `clueTargetSupportsMethod` in `authoring.ts` shares the exact canonical target-kind
+  rule with generated preparation. Investigation/perception clues belong only to
+  items/features; do not copy or widen those target sets in a preparation validator.
 - No command changes a record's type. Hypotheses stay HYPOTHESIS; a DM FACT is a new record.
 - The engine draws IDs and the d20 at resolution (`Resolution` on the stored command). Decisions stay pure; replay never rolls.
 - Tests: `testing/world.ts` (full Ravenford seed plus a fake skill-check port with Elowen's modifiers). The validation gate test is `investigation-path.test.ts`. The Context Engine's `command-alignment.test.ts` proves context legality matches acceptance.

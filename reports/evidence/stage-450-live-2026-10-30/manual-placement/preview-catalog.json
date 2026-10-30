@@ -1,0 +1,30 @@
+{
+  "revision": 3,
+  "language": "ru",
+  "campaignName": "Маяк под водой",
+  "worldName": "Серебряный Брод",
+  "characters": [
+    {
+      "entityId": "13fd54d2-c473-4d0d-a03f-72c34c26ce30",
+      "kind": "character",
+      "name": "Следопыт"
+    },
+    {
+      "entityId": "de30ca37-6a8f-4879-92be-04a24083e55c",
+      "kind": "character",
+      "name": "Стрелок"
+    },
+    {
+      "entityId": "f46a1581-6fd8-4ca2-ba64-829498d03ef3",
+      "kind": "character",
+      "name": "Учёная"
+    }
+  ],
+  "encounters": [
+    {
+      "encounterId": "6440b747-332e-441a-9ab6-cd4596d7198f",
+      "title": "Хранитель в ламповом зале",
+      "locationId": "688d20c7-4bf4-443c-a71a-9d8bd1536d19"
+    }
+  ]
+}

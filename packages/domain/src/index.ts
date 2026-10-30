@@ -99,6 +99,7 @@ export {
 } from './knowledge/projection-party.ts';
 export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
+export { clueTargetSupportsMethod } from './investigation/authoring.ts';
 export { knownEntityIds, visibleRecords } from './knowledge/projection.ts';
 export type { MemoryRecord, SessionRecord } from './memory/records.ts';
 export {
@@ -201,6 +202,10 @@ export { flashbackFor } from './chronicle/flashback.ts';
 export { questFor, questLog } from './quest/projection.ts';
 export { buildCampaignPlan, type CampaignPlan } from './campaign/plan.ts';
 export { seedCampaignPackage, mergeCampaignGenerationStep } from './campaign/generation.ts';
+export {
+  validateCampaignGenerationStep,
+  type CampaignGenerationStepValidation,
+} from './campaign/generation-validation.ts';
 export {
   campaignEditTargets,
   resolveCampaignEditTarget,

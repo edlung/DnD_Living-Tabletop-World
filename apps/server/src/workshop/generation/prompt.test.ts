@@ -3,6 +3,7 @@ import {
   CLASS_IDS,
   SPELL_IDS,
   WEAPON_IDS,
+  campaignGenerationOutputSchemas,
   type CampaignPackage,
 } from '@ltw/contracts';
 import { seedCampaignPackage } from '@ltw/domain';
@@ -30,6 +31,37 @@ function seed(): CampaignPackage {
 }
 
 describe('private campaign preparation prompts', () => {
+  it('cannot describe prepared party seats while returning no cast entities', () => {
+    expect(
+      campaignGenerationOutputSchemas.cast.safeParse({
+        entities: [],
+        party: ['prepared-hero'],
+        relationships: [],
+        visuals: [],
+      }).success,
+    ).toBe(false);
+  });
+
+  it('requires a nonempty party in a completed cast step', () => {
+    expect(
+      campaignGenerationOutputSchemas.cast.safeParse({
+        entities: [
+          {
+            key: 'guide',
+            kind: 'npc',
+            name: 'Guide',
+            description: '',
+            status: 'active',
+            existsSince: null,
+          },
+        ],
+        party: [],
+        relationships: [],
+        visuals: [],
+      }).success,
+    ).toBe(false);
+  });
+
   it('keeps the complete owner seed and edit instructions only in the user message for every step', () => {
     const content = seed();
     content.knowledge.push({

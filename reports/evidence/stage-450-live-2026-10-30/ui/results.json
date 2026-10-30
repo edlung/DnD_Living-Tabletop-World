@@ -1,0 +1,614 @@
+[
+  {
+    "state": "scenario-opening",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x228, 14.4px x28, 11.2px x6"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-opening",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x228, 14.4px x28, 11.2px x6"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-opening",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x426, 7.2px x228, 14.4px x28, 3px x20, 11.2px x6"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-opening",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x426, 7.2px x228, 14.4px x28, 3px x20, 11.2px x6"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-prepared-party",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x220, 14.4px x26, 11.2px x6"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-prepared-party",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x220, 14.4px x26, 11.2px x6"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-prepared-party",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x400, 7.2px x220, 14.4px x26, 3px x16, 11.2px x6, 18px x1"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-prepared-party",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x400, 7.2px x220, 14.4px x26, 3px x16, 11.2px x6, 18px x1"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-prepared-encounter",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x232, 14.4px x28, 11.2px x6"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-prepared-encounter",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x232, 14.4px x28, 11.2px x6"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-prepared-encounter",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x565, 7.2px x232, 14.4px x28, 3px x24, 11.2px x6, 18px x3"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "scenario-prepared-encounter",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x565, 7.2px x232, 14.4px x28, 3px x24, 11.2px x6, 18px x3"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-initial-scene",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x46, 14.4px x21, 5.6px x12, 11.2px x8, 4.8px x5, 6.4px x4, 12.8px x2, 22.4px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-initial-scene",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x46, 14.4px x21, 5.6px x12, 11.2px x8, 4.8px x5, 6.4px x4, 12.8px x2, 22.4px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-initial-scene",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x46, 14.4px x20, 5.6px x12, 11.2px x8, 6.4px x4, 4.8px x3, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-initial-scene",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x46, 14.4px x20, 5.6px x12, 11.2px x8, 6.4px x4, 4.8px x3, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-prepared-sheet",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6.4px x66, 4.8px x65, 7.2px x58, 14.4px x27, 9.6px x20, 8.8px x18, 5.6px x12, 11.2px x8"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-prepared-sheet",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6.4px x66, 4.8px x65, 7.2px x58, 14.4px x27, 9.6px x20, 8.8px x18, 5.6px x12, 11.2px x8"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-prepared-sheet",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6.4px x66, 4.8px x63, 7.2px x58, 14.4px x26, 9.6px x20, 8.8px x18, 5.6px x12, 11.2px x8"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-prepared-sheet",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6.4px x66, 4.8px x63, 7.2px x58, 14.4px x26, 9.6px x20, 8.8px x18, 5.6px x12, 11.2px x8"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-location-map",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x21, 11.2px x8, 5.6px x6, 6.4px x4, 4.8px x2, 12.8px x2, 22.4px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-location-map",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x21, 11.2px x8, 5.6px x6, 6.4px x4, 4.8px x2, 12.8px x2, 22.4px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-location-map",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x8, 5.6px x6, 6.4px x4, 10.4px x2, 13.6px x2, 18.4px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-location-map",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x8, 5.6px x6, 6.4px x4, 10.4px x2, 13.6px x2, 18.4px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-prepared-layout",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x332, 14.4px x21, 11.2px x8, 6px x8, 4.8px x6, 5.6px x6, 6.4px x4, 9.6px x4"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-prepared-layout",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x332, 14.4px x21, 11.2px x8, 6px x8, 4.8px x6, 5.6px x6, 6.4px x4, 9.6px x4"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-prepared-layout",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x332, 14.4px x20, 11.2px x8, 6px x8, 5.6px x6, 6.4px x4, 4.8px x4, 9.6px x4"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "owner-prepared-layout",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x336, 14.4px x20, 11.2px x8, 6px x8, 5.6px x6, 6.4px x4, 4.8px x4, 9.6px x4"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  },
+  {
+    "state": "character-initial-scene",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x14, 5.6px x12, 14.4px x5, 4.8px x5, 6.4px x2, 11.2px x2, 12.8px x2, 22.4px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "character-initial-scene",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x14, 5.6px x12, 14.4px x5, 4.8px x5, 6.4px x2, 11.2px x2, 12.8px x2, 22.4px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "character-initial-scene",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x14, 5.6px x12, 14.4px x4, 4.8px x3, 6.4px x2, 11.2px x2, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "character-initial-scene",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x14, 5.6px x12, 14.4px x4, 4.8px x3, 6.4px x2, 11.2px x2, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  },
+  {
+    "state": "character-prepared-sheet",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "4.8px x65, 6.4px x64, 9.6px x20, 7.2px x18, 8.8px x18, 5.6px x12, 14.4px x7, 11.2px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 1440,
+      "page": 1440
+    },
+    "accessibility": []
+  },
+  {
+    "state": "character-prepared-sheet",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "4.8px x65, 6.4px x64, 9.6px x20, 7.2px x18, 8.8px x18, 5.6px x12, 14.4px x7, 11.2px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 768,
+      "page": 768
+    },
+    "accessibility": []
+  },
+  {
+    "state": "character-prepared-sheet",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6.4px x64, 4.8px x63, 9.6px x20, 7.2px x18, 8.8px x18, 5.6px x12, 14.4px x6, 11.2px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 390,
+      "page": 390
+    },
+    "accessibility": []
+  },
+  {
+    "state": "character-prepared-sheet",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6.4px x64, 4.8px x63, 9.6px x20, 7.2px x18, 8.8px x18, 5.6px x12, 14.4px x6, 11.2px x2"
+      }
+    ],
+    "overflow": {
+      "viewport": 320,
+      "page": 320
+    },
+    "accessibility": []
+  }
+]

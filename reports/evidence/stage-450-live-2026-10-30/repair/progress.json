@@ -1,0 +1,56 @@
+{
+  "edit": {
+    "instruction": "Repair the missing cast declarations in this SAME campaign, not a new campaign or rewritten scenario.\nChange ONLY entities by adding the missing nonlocation entities listed below. Return the COMPLETE CampaignPackage.\nPreserve all 13 existing locations byte-for-byte in the exact original order. Keep them first; append the new nonlocation entities.\nPreserve EVERY non-entities field and every array order exactly, even if the structural dependency closure includes those fields.\nKeep the existing 3 prepared party keys unchanged; declare each as a distinct active character with complete supported sheets at brief.partyLevel, full HP and legal initial placement at world.startLocation.\nDeclare every existing relationships.npc and NPC knowledge holder as an NPC. Prepare supported NPC/creature statBlocks for existing nonparty encounter combatants.\nUse baseline narrative to distinguish the named faction/group, creature and boat/object. A boat is an item or feature, not a fabricated character or faction.\nFulfill EVERY existing referenced local key below. Reuse these keys exactly; do not rename, delete or rewrite the references in other sections.\nDo not add canonical IDs, controllers, accounts, memberships, actual discoveries, played history or already-decided outcomes. Keep all supported temporal constraints.\n{\"requiredMissingKeys\":[{\"key\":\"chuzhaya-lodka\",\"roles\":[\"clue subject\",\"conflict actor: NPC, character or faction as described\",\"existing image visual subject\",\"knowledge subject\",\"quest subject\"]},{\"key\":\"faina\",\"roles\":[\"NPC/character: attributed speaker\",\"NPC: existing initial relationship\",\"NPC: knowledge holder\",\"clue subject\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"situation participant\"]},{\"key\":\"gordey\",\"roles\":[\"NPC/character: attributed speaker\",\"NPC: existing initial relationship\",\"NPC: knowledge holder\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"quest informant: NPC\",\"situation participant\"]},{\"key\":\"khranitel-mayaka\",\"roles\":[\"clue subject\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"prepared combatant: character sheet or NPC/creature statBlock\",\"quest subject\",\"situation participant\"]},{\"key\":\"mirela-tikhonova\",\"roles\":[\"NPC: existing initial relationship\",\"NPC: knowledge holder\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"quest activation subject\",\"situation participant\"]},{\"key\":\"ranger-sledopyt\",\"roles\":[\"existing figure visual subject\",\"prepared character: complete supported sheet\",\"prepared combatant: character sheet or NPC/creature statBlock\"]},{\"key\":\"ranger-strelok\",\"roles\":[\"existing figure visual subject\",\"prepared character: complete supported sheet\",\"prepared combatant: character sheet or NPC/creature statBlock\"]},{\"key\":\"rybaki-posyolka\",\"roles\":[\"NPC/character: attributed speaker\",\"conflict actor: NPC, character or faction as described\",\"knowledge subject\",\"situation participant\"]},{\"key\":\"savva\",\"roles\":[\"NPC: existing initial relationship\",\"NPC: knowledge holder\",\"clue subject\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"quest subject\",\"situation participant\"]},{\"key\":\"wizard-uchenaya\",\"roles\":[\"existing figure visual subject\",\"prepared character: complete supported sheet\",\"prepared combatant: character sheet or NPC/creature statBlock\"]}]}",
+    "requestedTargets": [
+      "section:entities"
+    ]
+  },
+  "job": {
+    "mode": "EDIT",
+    "jobId": "75e39d72-b67b-4fd2-bff3-66f922635771",
+    "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+    "baseRevision": 1,
+    "status": "SUCCEEDED",
+    "nextStep": 1,
+    "createdAt": "2026-10-30T18:00:30.814Z",
+    "updatedAt": "2026-10-30T18:02:02.290Z",
+    "attachedRevision": null,
+    "candidateAvailable": true,
+    "failureCode": null
+  },
+  "brief": {
+    "intent": "Создай самостоятельную кампанию на русском языке: в речном посёлке по ночам светит затонувший маяк, а лодки возвращаются без людей. Герои расследуют причину, разговаривают с жителями и выбирают, как прекратить опасность. Нужны несколько путей к уликам, честные слухи и свидетельства, секретная причина, мирное решение и один необязательный бой. Первая сессия должна быть полностью пригодна для игры, а будущие решения персонажей не должны считаться уже случившимися. Используй только поддерживаемые правила, полные листы трёх персонажей и статистики противника. Все названия, описания, знания, улики, задания и планы сессии — по-русски.",
+    "setting": "Северный речной посёлок Серебряный Брод в самостоятельном фэнтезийном мире.",
+    "tone": "Таинственное приключение с понятными ставками и свободой выбора.",
+    "duration": "Первая сессия около трёх часов; короткая кампания на три-пять встреч.",
+    "partySize": 3,
+    "partyLevel": 3,
+    "include": [
+      "Три подготовленных персонажа третьего уровня с поддерживаемыми действиями",
+      "Не менее двух путей расследования и доступная социальная сцена",
+      "Один подготовленный необязательный бой и мирная альтернатива"
+    ],
+    "exclude": [
+      "Рейвенфорд, Ива и сюжет колокола из готовых примеров",
+      "Новые неподдерживаемые механики",
+      "Предрешённые решения игроков и записи будущих побед как фактов"
+    ]
+  },
+  "steps": [
+    {
+      "ordinal": 0,
+      "stage": "edit",
+      "status": "SUCCEEDED",
+      "traceId": "2d2ea65c-e00c-43d1-97fb-bd6fd0ad45f1",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "createdAt": "2026-10-30T18:00:30.858Z",
+      "completedAt": "2026-10-30T18:02:02.254Z"
+    }
+  ],
+  "candidate": {
+    "contentDigest": "sha256:9f152a84a0810c866af0cac06b78d72f69fccf5159cdccd84027ba56aff8b4f4",
+    "baseRevision": 1,
+    "createdAt": "2026-10-30T18:02:02.279Z"
+  }
+}

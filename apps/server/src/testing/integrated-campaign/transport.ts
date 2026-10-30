@@ -27,10 +27,15 @@ interface DispatchRow {
 }
 
 /** Scripted transport only: every surrounding admission/storage component stays real. */
-export function integratedCampaignTransport(observer: pg.Pool, specimen: CampaignPackage) {
+export function integratedCampaignTransport(
+  observer: pg.Pool,
+  specimen: CampaignPackage,
+  options: { invalidCastOnce?: boolean } = {},
+) {
   let binding: (GenerationJobScope & { mode: GenerationMode; proposal?: CampaignPackage }) | null =
     null;
   const admissions: AdmissionEvidence[] = [];
+  let invalidCastSent = false;
   const transport = fakeFetch(async (call) => {
     if (!binding) throw new Error('TEST_TRANSPORT_UNBOUND');
     const body = JSON.parse(call.body) as { tools: readonly { name: string }[] };
@@ -61,7 +66,8 @@ export function integratedCampaignTransport(observer: pg.Pool, specimen: Campaig
          AND r.workshop_owner_id=j.owner_id AND r.workshop_draft_id=j.draft_id
          AND p.job_id=j.job_id AND p.auth_session_id=j.auth_session_id
          AND a.subject_kind='workshop' AND a.campaign_id IS NULL
-         AND a.preparation_session_id=p.preparation_session_id AND a.reserved_micros>0`,
+         AND a.preparation_session_id=p.preparation_session_id AND a.reserved_micros>0
+       ORDER BY a.created_at DESC,a.attempt_id DESC LIMIT 1`,
       [binding.ownerId, binding.draftId, binding.jobId, ordinal],
     );
     const row = proof.rows[0];
@@ -84,11 +90,20 @@ export function integratedCampaignTransport(observer: pg.Pool, specimen: Campaig
       mode: binding.mode,
     });
     if (editing && !binding.proposal) throw new Error('TEST_EDIT_PROPOSAL_ABSENT');
+    let output = step === 'edit' ? binding.proposal : specimenOutput(step, specimen);
+    if (step === 'cast' && options.invalidCastOnce && !invalidCastSent) {
+      invalidCastSent = true;
+      const cast = structuredClone(specimen);
+      const hero = cast.entities.find((entity) => entity.key === cast.party[0]);
+      if (!hero?.sheet) throw new Error('TEST_PREPARED_SHEET_MISSING');
+      delete hero.sheet;
+      output = specimenOutput('cast', cast);
+    }
     return jsonResponse(
       ANTHROPIC.reply({
         tool,
         model: 'claude-sonnet-5-5',
-        output: step === 'edit' ? binding.proposal : specimenOutput(step, specimen),
+        output,
       }),
     );
   });

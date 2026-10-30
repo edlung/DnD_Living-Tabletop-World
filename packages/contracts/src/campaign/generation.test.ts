@@ -12,7 +12,21 @@ const outputs = {
     world: { name: 'Harbor', worldName: 'Coast', startsAt: 0, weather: 'fog', opening: '' },
   },
   topology: { locations: [], startLocation: null, conflicts: [] },
-  cast: { entities: [], party: [], relationships: [], visuals: [] },
+  cast: {
+    entities: [
+      {
+        key: 'hero',
+        kind: 'character',
+        name: 'Hero',
+        description: '',
+        status: 'active',
+        existsSince: null,
+      },
+    ],
+    party: ['hero'],
+    relationships: [],
+    visuals: [],
+  },
   knowledge: { knowledge: [], clues: [] },
   encounters: { encounters: [] },
   'first-session': { situations: [], quests: [], firstSession: [] },

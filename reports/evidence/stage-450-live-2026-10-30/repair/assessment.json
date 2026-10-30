@@ -1,0 +1,18 @@
+{
+  "compilerVersion": 1,
+  "readiness": "INVALID",
+  "findings": [
+    {
+      "severity": "error",
+      "code": "INVALID_CLUE",
+      "path": "clues.clue-boat-tracks",
+      "message": "A perception clue cannot be placed on a location"
+    }
+  ],
+  "counts": {
+    "entities": 23,
+    "knowledge": 14,
+    "encounters": 1,
+    "quests": 1
+  }
+}

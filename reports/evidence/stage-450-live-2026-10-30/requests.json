@@ -1,0 +1,72 @@
+[
+  {
+    "request_id": "44f755c3-92e7-4d7b-b5f8-9e4fb079ace8",
+    "capability": "campaign-preparation",
+    "session_class": "preparation",
+    "subject_kind": "workshop",
+    "campaign_id": null,
+    "configured_model": "claude-sonnet-5-5",
+    "created_at": "2026-10-30T17:44:02.505Z",
+    "deadline_at": "2026-10-30T17:49:02.500Z"
+  },
+  {
+    "request_id": "dd713ef9-f561-43b9-b9fe-ff6ca3cd8122",
+    "capability": "campaign-preparation",
+    "session_class": "preparation",
+    "subject_kind": "workshop",
+    "campaign_id": null,
+    "configured_model": "claude-sonnet-5-5",
+    "created_at": "2026-10-30T17:44:08.571Z",
+    "deadline_at": "2026-10-30T17:49:08.565Z"
+  },
+  {
+    "request_id": "3d11ca4c-3041-4fae-8f52-48b7aa25dca5",
+    "capability": "campaign-preparation",
+    "session_class": "preparation",
+    "subject_kind": "workshop",
+    "campaign_id": null,
+    "configured_model": "claude-sonnet-5-5",
+    "created_at": "2026-10-30T17:44:26.792Z",
+    "deadline_at": "2026-10-30T17:49:26.784Z"
+  },
+  {
+    "request_id": "bd3d2242-5867-4c25-8cc5-8f3e0e5ddaa0",
+    "capability": "campaign-preparation",
+    "session_class": "preparation",
+    "subject_kind": "workshop",
+    "campaign_id": null,
+    "configured_model": "claude-sonnet-5-5",
+    "created_at": "2026-10-30T17:45:01.539Z",
+    "deadline_at": "2026-10-30T17:50:01.531Z"
+  },
+  {
+    "request_id": "6ab47d3a-2260-45ac-bfd1-143e214900ae",
+    "capability": "campaign-preparation",
+    "session_class": "preparation",
+    "subject_kind": "workshop",
+    "campaign_id": null,
+    "configured_model": "claude-sonnet-5-5",
+    "created_at": "2026-10-30T17:45:41.248Z",
+    "deadline_at": "2026-10-30T17:50:41.239Z"
+  },
+  {
+    "request_id": "51589482-cbb8-466d-8bd6-1ace7eed31fa",
+    "capability": "campaign-preparation",
+    "session_class": "preparation",
+    "subject_kind": "workshop",
+    "campaign_id": null,
+    "configured_model": "claude-sonnet-5-5",
+    "created_at": "2026-10-30T17:45:50.360Z",
+    "deadline_at": "2026-10-30T17:50:50.355Z"
+  },
+  {
+    "request_id": "4bf5a4e3-e320-4479-bb0a-7e74d8fddb3a",
+    "capability": "campaign-preparation",
+    "session_class": "preparation",
+    "subject_kind": "workshop",
+    "campaign_id": null,
+    "configured_model": "claude-sonnet-5-5",
+    "created_at": "2026-10-30T17:46:19.780Z",
+    "deadline_at": "2026-10-30T17:51:19.774Z"
+  }
+]

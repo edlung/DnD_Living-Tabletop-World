@@ -84,3 +84,8 @@ reviews/evidence/gate-06/
 reports/evidence/stage-360/ai-stand-in/
 # Stage 360 second AI stand-in notes, kept as the participants wrote them.
 reports/evidence/stage-360/ai-stand-in-2/
+
+# Sanitized live provider/accounting receipts retain the runner's captured serialization.
+reports/evidence/stage-450-live-2026-10-30/**/*.json
+# Frozen Stage 450 receipt: preserve its committed evidence hash.
+reports/evidence/stage-450/uuid-red-receipt.md

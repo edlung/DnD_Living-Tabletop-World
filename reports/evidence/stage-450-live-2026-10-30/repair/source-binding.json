@@ -1,0 +1,15 @@
+{
+  "ownerId": "1097257d-185e-46d2-b164-6a2909d57429",
+  "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+  "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+  "revision": 1,
+  "packageDigest": "sha256:a60f72a8a4b44ace32af790fa77ecfe2286dd6a955534f0289b85b10f62df801",
+  "requestId": "469a2cef-a51b-5d28-8384-a6623e2e9859",
+  "approvalId": "stage450-live-campaign-20261030",
+  "model": "anthropic:claude-sonnet-5-5",
+  "authorization": {
+    "ownerId": "project-owner",
+    "authorizedOn": "2026-10-30",
+    "source": "reviews/OWNER_LIVE_CAMPAIGN_AUTHORIZATION_2026-10-30.json:same-draft-cast-repair"
+  }
+}

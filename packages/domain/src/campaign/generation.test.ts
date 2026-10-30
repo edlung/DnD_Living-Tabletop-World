@@ -129,12 +129,17 @@ describe('pure campaign preparation assembly', () => {
       current.entities.filter((entity) => entity.kind !== 'location'),
     );
     const cast = mergeCampaignGenerationStep(current, 'cast', {
-      entities: [],
-      party: [],
+      entities: outputs.cast.entities,
+      party: outputs.cast.party,
       relationships: [],
       visuals: [],
     });
-    expect(cast.entities).toEqual(current.entities.filter((entity) => entity.kind === 'location'));
+    expect(cast.entities.filter((entity) => entity.kind === 'location')).toEqual(
+      current.entities.filter((entity) => entity.kind === 'location'),
+    );
+    expect(cast.entities.filter((entity) => entity.kind !== 'location')).toEqual(
+      outputs.cast.entities,
+    );
     expect(topology.world.language).toBe(current.world.language);
     expect(topology.world.opening).toBe(current.world.opening);
   });

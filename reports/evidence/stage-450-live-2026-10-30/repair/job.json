@@ -1,0 +1,13 @@
+{
+  "mode": "EDIT",
+  "jobId": "75e39d72-b67b-4fd2-bff3-66f922635771",
+  "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+  "baseRevision": 1,
+  "status": "QUEUED",
+  "nextStep": 0,
+  "createdAt": "2026-10-30T18:00:30.814Z",
+  "updatedAt": "2026-10-30T18:00:30.814Z",
+  "attachedRevision": null,
+  "candidateAvailable": false,
+  "failureCode": null
+}

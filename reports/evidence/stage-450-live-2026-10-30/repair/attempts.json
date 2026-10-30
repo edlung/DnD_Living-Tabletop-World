@@ -1,0 +1,25 @@
+[
+  {
+    "attempt_id": "c4c4fe0a-3c1f-4ba9-9982-148c53f6456a",
+    "request_id": "2d2ea65c-e00c-43d1-97fb-bd6fd0ad45f1",
+    "account_id": "stage450-anthropic-existing-account",
+    "approval_id": "stage450-live-campaign-20261030",
+    "campaign_id": null,
+    "session_class": "preparation",
+    "session_id": "3e739c56-d42d-4301-ab6d-8409ee355d6d",
+    "billing_day": "2026-10-29T23:00:00.000Z",
+    "capability": "campaign-preparation",
+    "attempt_kind": "initial",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "pricing_version": "anthropic-claude-sonnet-5-5-2026-10-12",
+    "reserved_micros": "2827680",
+    "created_at": "2026-10-30T18:00:30.901Z",
+    "monetary_policy_revision": 1,
+    "subject_kind": "workshop",
+    "workshop_owner_id": "1097257d-185e-46d2-b164-6a2909d57429",
+    "workshop_draft_id": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+    "preparation_session_id": "3e739c56-d42d-4301-ab6d-8409ee355d6d",
+    "subject_key": "workshop:1097257d-185e-46d2-b164-6a2909d57429:2b1c1d85-d631-4f23-86c5-9eca06f2849a"
+  }
+]

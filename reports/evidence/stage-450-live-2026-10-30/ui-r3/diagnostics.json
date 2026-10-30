@@ -1,0 +1,70 @@
+{
+  "diagnostics": [
+    {
+      "kind": "navigation-abort",
+      "phase": "normal-invitation",
+      "path": "/api/workshop/campaigns"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "normal-invitation",
+      "path": "/api/workshop/drafts"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "stored-revision",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "stored-revision",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/revisions"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "stored-revision",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/editing"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "scenario-prepared-encounter",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/preview/catalog"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "scenario-prepared-encounter",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/preview"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "scenario-prepared-encounter",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/images"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "owner-initial-scene",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/preview/entities/13fd54d2-c473-4d0d-a03f-72c34c26ce30"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "owner-initial-scene",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/preview/entities/13fd54d2-c473-4d0d-a03f-72c34c26ce30/sheet"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "owner-prepared-layout",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/preview"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "character-initial-scene",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/preview/entities/13fd54d2-c473-4d0d-a03f-72c34c26ce30"
+    },
+    {
+      "kind": "navigation-abort",
+      "phase": "character-initial-scene",
+      "path": "/api/workshop/drafts/2b1c1d85-d631-4f23-86c5-9eca06f2849a/preview/entities/13fd54d2-c473-4d0d-a03f-72c34c26ce30/sheet"
+    }
+  ],
+  "blocked": []
+}

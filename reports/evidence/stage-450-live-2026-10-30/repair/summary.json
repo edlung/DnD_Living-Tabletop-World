@@ -1,0 +1,9 @@
+{
+  "elapsedMs": 91743,
+  "jobId": "75e39d72-b67b-4fd2-bff3-66f922635771",
+  "status": "SUCCEEDED",
+  "candidate": true,
+  "readiness": "INVALID",
+  "confirmable": null,
+  "accountingIssues": []
+}

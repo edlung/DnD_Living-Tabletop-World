@@ -50,7 +50,7 @@ const unavailableImages = {
 };
 
 /** Blank private draft through HTTP; no prebuilt revision or canonical campaign is seeded. */
-export async function integratedCampaignFixture() {
+export async function integratedCampaignFixture(options: { invalidCastOnce?: boolean } = {}) {
   const db = await accountingDb();
   const cleanup: (() => Promise<unknown>)[] = [() => db.close()];
   const close = async () => {
@@ -64,7 +64,7 @@ export async function integratedCampaignFixture() {
       generation = new PostgresCampaignGenerationRepository(db.pool),
       edits = new PostgresCampaignGenerationRepository(db.pool, 'EDIT');
     const content = englishBellCampaign(),
-      transport = integratedCampaignTransport(db.pool2(), content),
+      transport = integratedCampaignTransport(db.pool2(), content, options),
       accountingIssues: string[] = [],
       tasks = new AccountingTasks((issue) => accountingIssues.push(issue));
     cleanup.push(() => tasks.shutdown());

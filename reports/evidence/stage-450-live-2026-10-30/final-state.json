@@ -1,0 +1,58 @@
+{
+  "kind": "LIVE_CAMPAIGN_FINAL_STATE",
+  "at": "2026-10-30T18:36:45.284Z",
+  "model": "claude-sonnet-5-5",
+  "canonicalEvents": 0,
+  "canonicalStreams": 0,
+  "preparationGrant": {
+    "enabled": false,
+    "revision": 4
+  },
+  "requests": 8,
+  "attempts": 8,
+  "settledActual": 8,
+  "totalMicros": "661081",
+  "models": [
+    "claude-sonnet-5-5"
+  ],
+  "returnedModels": [
+    "claude-sonnet-5-5"
+  ],
+  "openHoldMicros": "0",
+  "readiness": "READY",
+  "revision": 3,
+  "manualCompatibilityClues": 5,
+  "manualInitialPlacements": 6,
+  "checkedSecretStatements": 3,
+  "characterSecrecy": [
+    {
+      "character": "Следопыт",
+      "ownerAssessmentPresent": false,
+      "preparedEncounterPresent": false,
+      "secretStatementsLeaked": 0
+    },
+    {
+      "character": "Стрелок",
+      "ownerAssessmentPresent": false,
+      "preparedEncounterPresent": false,
+      "secretStatementsLeaked": 0
+    },
+    {
+      "character": "Учёная",
+      "ownerAssessmentPresent": false,
+      "preparedEncounterPresent": false,
+      "secretStatementsLeaked": 0
+    }
+  ],
+  "previewStand": {
+    "webPort": 4332,
+    "apiPort": 4333,
+    "keysRemovedFromChildEnvironment": true,
+    "routes": "LOCAL_ONLY",
+    "imageGenerator": "placeholder",
+    "providerCallsAfterRepair": 0
+  },
+  "defaultDatabaseMutations": 0,
+  "retainedPaidLedger": true,
+  "activated": false
+}

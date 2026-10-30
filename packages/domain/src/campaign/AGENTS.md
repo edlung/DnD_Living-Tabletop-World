@@ -7,6 +7,16 @@ Read accepted ADR 0038 / `docs/STAGE_370_DESIGN.md`, current work order and
   must still run the World Engine's own decisions in an isolated store.
 - `references.ts` checks local keys, opaque mappings and graph references;
   `story.ts` validates prepared declarations and rewrites quest entity references.
+- `generation-validation.ts` checks each generated partition before accepting it:
+  topology may defer future cast actors, but cast must declare its exact prepared
+  party and resolve existing conflict actors/relationships/visual references.
+  Later steps validate their own references against resolved earlier sections.
+  Generated cast must place every active physical entity, including nonparty NPCs,
+  creatures, items and features; inactive/offstage content and abstract factions
+  retain the ordinary package rules. This generation requirement does not narrow
+  the global owner-authored package/compiler contract.
+  Reuse compiler validators; never require future collections prematurely, invent
+  missing entities, or turn a semantic failure into a successful empty result.
 - No generated future scenario, encounter, decision or memory is executed here.
 - `bootstrap-plan.ts` adds prepared party seats and ordered chosen-asset descriptors;
   `bootstrap.ts` decides the whole initial batch against provisional state. It is a

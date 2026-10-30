@@ -1,0 +1,216 @@
+{
+  "revision": 3,
+  "language": "ru",
+  "campaignName": "Маяк под водой",
+  "worldName": "Серебряный Брод",
+  "manifestDigest": "sha256:f6458aa09b90aea1e3b91f00c9cdbec22be19d819fadbae51c4c23d4b4ff340e",
+  "directory": [
+    {
+      "entityId": "097d2866-4812-47e3-8481-c66e5f443730",
+      "kind": "npc",
+      "name": null
+    },
+    {
+      "entityId": "18d43c41-043e-4ce4-9971-39764e4d8033",
+      "kind": "location",
+      "name": null
+    },
+    {
+      "entityId": "c0f27c4e-7767-4543-b9ae-ffd65360c100",
+      "kind": "location",
+      "name": null
+    },
+    {
+      "entityId": "3f25917b-bb37-4066-a5e8-f40ebcde45c8",
+      "kind": "location",
+      "name": "Главный причал"
+    },
+    {
+      "entityId": "ef66f85f-3cd1-42d6-aafc-b071eb538712",
+      "kind": "location",
+      "name": "Затонувший маяк"
+    },
+    {
+      "entityId": "390cb710-aa06-4791-98e2-690044a929df",
+      "kind": "npc",
+      "name": "Мирела Тихонова"
+    },
+    {
+      "entityId": "35dba5b7-2230-4234-83db-fce54e57a827",
+      "kind": "faction",
+      "name": "Рыбаки посёлка"
+    },
+    {
+      "entityId": "836c981a-0eda-4238-a544-625f9af92ab6",
+      "kind": "npc",
+      "name": "Савва"
+    },
+    {
+      "entityId": "13fd54d2-c473-4d0d-a03f-72c34c26ce30",
+      "kind": "character",
+      "name": "Следопыт"
+    },
+    {
+      "entityId": "de30ca37-6a8f-4879-92be-04a24083e55c",
+      "kind": "character",
+      "name": "Стрелок"
+    },
+    {
+      "entityId": "f46a1581-6fd8-4ca2-ba64-829498d03ef3",
+      "kind": "character",
+      "name": "Учёная"
+    }
+  ],
+  "locations": [
+    {
+      "entityId": "18d43c41-043e-4ce4-9971-39764e4d8033",
+      "kind": "location",
+      "name": null
+    },
+    {
+      "entityId": "c0f27c4e-7767-4543-b9ae-ffd65360c100",
+      "kind": "location",
+      "name": null
+    },
+    {
+      "entityId": "3f25917b-bb37-4066-a5e8-f40ebcde45c8",
+      "kind": "location",
+      "name": "Главный причал"
+    },
+    {
+      "entityId": "ef66f85f-3cd1-42d6-aafc-b071eb538712",
+      "kind": "location",
+      "name": "Затонувший маяк"
+    }
+  ],
+  "scene": {
+    "perspective": "CHARACTER:f46a1581-6fd8-4ca2-ba64-829498d03ef3",
+    "worldTime": 0,
+    "phase": "night",
+    "location": {
+      "entityId": "3f25917b-bb37-4066-a5e8-f40ebcde45c8",
+      "kind": "location",
+      "observed": true,
+      "status": "active",
+      "vitals": null,
+      "conditions": [],
+      "equipment": [],
+      "weather": "fog",
+      "tags": [
+        "night",
+        "fog"
+      ],
+      "image": null,
+      "figure": null,
+      "battleMap": null
+    },
+    "present": [
+      {
+        "entityId": "097d2866-4812-47e3-8481-c66e5f443730",
+        "kind": "npc",
+        "observed": true,
+        "status": "active",
+        "vitals": null,
+        "conditions": [],
+        "equipment": [],
+        "weather": "fog",
+        "tags": [
+          "night",
+          "fog"
+        ],
+        "image": null,
+        "figure": null,
+        "battleMap": null
+      },
+      {
+        "entityId": "13fd54d2-c473-4d0d-a03f-72c34c26ce30",
+        "kind": "character",
+        "observed": true,
+        "status": "active",
+        "vitals": {
+          "wounded": false,
+          "unconscious": false
+        },
+        "conditions": [],
+        "equipment": [
+          "longbow"
+        ],
+        "weather": "fog",
+        "tags": [
+          "night",
+          "fog"
+        ],
+        "image": null,
+        "figure": null,
+        "battleMap": null
+      },
+      {
+        "entityId": "390cb710-aa06-4791-98e2-690044a929df",
+        "kind": "npc",
+        "observed": true,
+        "status": "active",
+        "vitals": null,
+        "conditions": [],
+        "equipment": [],
+        "weather": "fog",
+        "tags": [
+          "night",
+          "fog"
+        ],
+        "image": null,
+        "figure": null,
+        "battleMap": null
+      },
+      {
+        "entityId": "de30ca37-6a8f-4879-92be-04a24083e55c",
+        "kind": "character",
+        "observed": true,
+        "status": "active",
+        "vitals": {
+          "wounded": false,
+          "unconscious": false
+        },
+        "conditions": [],
+        "equipment": [
+          "longbow"
+        ],
+        "weather": "fog",
+        "tags": [
+          "night",
+          "fog"
+        ],
+        "image": null,
+        "figure": null,
+        "battleMap": null
+      },
+      {
+        "entityId": "f46a1581-6fd8-4ca2-ba64-829498d03ef3",
+        "kind": "character",
+        "observed": true,
+        "status": "active",
+        "vitals": {
+          "wounded": false,
+          "unconscious": false
+        },
+        "conditions": [],
+        "equipment": [],
+        "weather": "fog",
+        "tags": [
+          "night",
+          "fog"
+        ],
+        "image": null,
+        "figure": null,
+        "battleMap": null
+      }
+    ]
+  },
+  "perspective": {
+    "kind": "CHARACTER",
+    "character": {
+      "entityId": "f46a1581-6fd8-4ca2-ba64-829498d03ef3",
+      "kind": "character",
+      "name": "Учёная"
+    }
+  }
+}

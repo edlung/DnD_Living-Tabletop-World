@@ -1,0 +1,345 @@
+[
+  {
+    "trace_id": "44f755c3-92e7-4d7b-b5f8-9e4fb079ace8",
+    "trace": {
+      "input": "",
+      "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+      "scope": "WORKSHOP:1097257d-185e-46d2-b164-6a2909d57429",
+      "stage": "concept",
+      "issues": [],
+      "status": "GENERATED",
+      "actorId": "1097257d-185e-46d2-b164-6a2909d57429",
+      "purpose": "campaign-preparation",
+      "subject": {
+        "kind": "workshop",
+        "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+        "ownerId": "1097257d-185e-46d2-b164-6a2909d57429"
+      },
+      "traceId": "44f755c3-92e7-4d7b-b5f8-9e4fb079ace8",
+      "attempts": [
+        {
+          "kind": "initial",
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "usage": {
+            "inputTokens": 769,
+            "outputTokens": 534
+          },
+          "issues": [],
+          "output": "{\"world\":{\"name\":\"Маяк под водой\",\"worldName\":\"Серебряный Брод\",\"startsAt\":0,\"weather\":\"fog\",\"opening\":\"Третью ночь подряд над Серебряным Бродом разливается холодный бело-голубой свет: он идёт из-под воды, где сто лет лежит затонувший маяк. К рассвету к причалу приплывают пустые лодки — вёсла аккуратно уложены, сети мокрые, людей нет. Староста Мирела Тихонова боится, что посёлок опустеет, и просит героев разобраться до следующей ночи. Рыбаки шепчутся, что маяк зовёт тех, кто должен ему долг; перевозчик Гордей уверяет, что видел у маяка чужую лодку без огней; старая смотрительница вех Фаина молчит и прячет ключ от старого склада. Герои могут расспросить жителей на причале, осмотреть вернувшиеся лодки, пройти по берегу к руинам береговой башни или выйти на воду к свету. Времени немного: к закату родные пропавших хотят сами плыть к маяку, а местный торговец Савва требует закрыть перевал и не пускать чужаков, чтобы слухи не отпугнули купцов. Что на самом деле заставляет маяк светить и кто за этим стоит, героям предстоит выяснить самим, и остановить опасность можно разными способами — от переговоров до схватки.\"}}",
+          "billing": {
+            "status": "known",
+            "costMicros": "16056",
+            "pricingVersion": "anthropic-claude-sonnet-5-5-2026-10-12",
+            "reservedMicros": "2827680"
+          },
+          "outcome": "valid",
+          "provider": "anthropic",
+          "attemptId": "fe89cc53-e5a1-4bd8-b0f4-a8d30c73a935",
+          "latencyMs": 5937
+        }
+      ],
+      "createdAt": "2026-10-30T17:44:08.454Z",
+      "sourceIds": [
+        "6356de80-8020-4b5b-b6ae-9dd35da3874a"
+      ],
+      "campaignId": null,
+      "capability": "campaign-preparation",
+      "canonicalEvents": []
+    }
+  },
+  {
+    "trace_id": "dd713ef9-f561-43b9-b9fe-ff6ca3cd8122",
+    "trace": {
+      "input": "",
+      "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+      "scope": "WORKSHOP:1097257d-185e-46d2-b164-6a2909d57429",
+      "stage": "topology",
+      "issues": [],
+      "status": "GENERATED",
+      "actorId": "1097257d-185e-46d2-b164-6a2909d57429",
+      "purpose": "campaign-preparation",
+      "subject": {
+        "kind": "workshop",
+        "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+        "ownerId": "1097257d-185e-46d2-b164-6a2909d57429"
+      },
+      "traceId": "dd713ef9-f561-43b9-b9fe-ff6ca3cd8122",
+      "attempts": [
+        {
+          "kind": "initial",
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "usage": {
+            "inputTokens": 1204,
+            "outputTokens": 2457
+          },
+          "issues": [],
+          "output": "{\"locations\":[{\"key\":\"serebryany-brod\",\"kind\":\"location\",\"name\":\"Серебряный Брод\",\"description\":\"Северный регион речного посёлка: река, туманные берега, старые вехи и затонувший маяк под водой.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"region\",\"parent\":null}},{\"key\":\"posyolok\",\"kind\":\"location\",\"name\":\"Посёлок Серебряный Брод\",\"description\":\"Небольшой рыбацкий посёлок на излучине реки. Дома стоят на сваях, по ночам над водой стелется туман, а жители тревожно следят за рекой.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"settlement\",\"parent\":\"serebryany-brod\"}},{\"key\":\"prichal\",\"kind\":\"location\",\"name\":\"Главный причал\",\"description\":\"Деревянный причал, куда к рассвету прибивает пустые лодки с уложенными вёслами и мокрыми сетями. Здесь можно расспросить рыбаков, перевозчика Гордея и осмотреть лодки.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"district\",\"parent\":\"posyolok\"}},{\"key\":\"lodochnyy-sarai\",\"kind\":\"location\",\"name\":\"Лодочный сарай\",\"description\":\"Длинный навес, где лежат вернувшиеся лодки. На дне и бортах можно искать следы, воск, чужие узлы и мокрые отпечатки.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"building\",\"parent\":\"prichal\"}},{\"key\":\"dom-starosty\",\"kind\":\"location\",\"name\":\"Дом старосты\",\"description\":\"Просторная изба Мирелы Тихоновой с картой реки и списком пропавших. Место спокойного разговора и получения задания.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"building\",\"parent\":\"posyolok\"}},{\"key\":\"torgovaya-lavka\",\"kind\":\"location\",\"name\":\"Лавка Саввы\",\"description\":\"Лавка торговца Саввы, который боится за торговлю и требует закрыть перевал для чужаков. Здесь доступна социальная сцена с давлением и торгом.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"building\",\"parent\":\"posyolok\"}},{\"key\":\"post-vekh\",\"kind\":\"location\",\"name\":\"Пост смотрительницы вех\",\"description\":\"Небольшой домик Фаины с рядами пронумерованных вех. Фаина молчит о ключе от старого склада, но может заговорить при доверии.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"building\",\"parent\":\"posyolok\"}},{\"key\":\"bereg-tropa\",\"kind\":\"location\",\"name\":\"Береговая тропа\",\"description\":\"Туманная тропа вдоль воды к руинам береговой башни. По пути видны следы волочения, обрывки верёвок и огоньки.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"route\",\"parent\":\"serebryany-brod\"}},{\"key\":\"ruiny-bashni\",\"kind\":\"location\",\"name\":\"Руины береговой башни\",\"description\":\"Полуразрушенная башня, откуда когда-то подавали сигналы маяку. В подвале сохранились линзы, журналы и скрытый ход к старому складу.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"site\",\"parent\":\"serebryany-brod\"}},{\"key\":\"staryy-sklad\",\"kind\":\"location\",\"name\":\"Старый склад\",\"description\":\"Заперт на ключ Фаины. Внутри хранятся ящики с линзами, журналы маячных сторожей и следы недавних посещений.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"building\",\"parent\":\"ruiny-bashni\"}},{\"key\":\"vodnyy-put\",\"kind\":\"location\",\"name\":\"Водный путь к свету\",\"description\":\"Широкий плёс в тумане, где лодки теряют ориентиры. Над затонувшим маяком вода светится бело-голубым.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"route\",\"parent\":\"serebryany-brod\"}},{\"key\":\"zatonuvshiy-mayak\",\"kind\":\"location\",\"name\":\"Затонувший маяк\",\"description\":\"Столетний маяк на дне, чей свет виден сквозь воду. Здесь скрыта настоящая причина свечения и возможное место необязательного боя или мирных переговоров.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"site\",\"parent\":\"serebryany-brod\"}},{\"key\":\"lampovyy-zal\",\"kind\":\"location\",\"name\":\"Ламповый зал маяка\",\"description\":\"Верхняя комната затонувшего маяка с источником света. Поле для мирного решения или схватки.\",\"status\":\"active\",\"existsSince\":null,\"location\":{\"type\":\"room\",\"parent\":\"zatonuvshiy-mayak\"}}],\"startLocation\":\"prichal\",\"conflicts\":[{\"key\":\"pustye-lodki\",\"title\":\"Пустые лодки и исчезнувшие люди\",\"description\":\"Каждую ночь свет маяка сопровождается исчезновением людей. Причина скрыта, а герои могут искать её на причале, на берегу или на воде.\",\"actors\":[\"mirela-tikhonova\",\"gordey\",\"faina\"],\"stakes\":\"Жизни пропавших и будущее посёлка. Если причину не найти до следующей ночи, могут пострадать новые люди.\"},{\"key\":\"rodnye-protiv-sroka\",\"title\":\"Родные хотят плыть к маяку\",\"description\":\"К закату семьи пропавших готовы сами выйти на воду, не дожидаясь расследования.\",\"actors\":[\"mirela-tikhonova\",\"rybaki-posyolka\"],\"stakes\":\"Риск потерять ещё людей и разрушить доверие жителей к старосте и героям.\"},{\"key\":\"slukhi-i-torgovlya\",\"title\":\"Слухи против торговли\",\"description\":\"Савва требует закрыть перевал и скрыть происходящее ради купцов, а рыбаки приписывают свет долгу перед маяком.\",\"actors\":[\"savva\",\"rybaki-posyolka\",\"mirela-tikhonova\"],\"stakes\":\"Изоляция посёлка и прибыль торговцев против открытости и помощи. Слухи могут помочь или увести от правды.\"},{\"key\":\"tayna-klyucha\",\"title\":\"Тайна ключа и склада\",\"description\":\"Фаина хранит ключ от старого склада и что-то знает о маяке. Её молчание можно разрушить давлением или заслужить доверием.\",\"actors\":[\"faina\",\"gordey\"],\"stakes\":\"Доступ к уликам о происхождении света и о том, кто стоит за исчезновениями.\"},{\"key\":\"skrytaya-prichina\",\"title\":\"Скрытая причина свечения\",\"description\":\"За светом маяка стоит скрытая сила или человек. Остановить опасность можно переговорами, обходом тайного механизма или схваткой.\",\"actors\":[\"khranitel-mayaka\",\"chuzhaya-lodka\"],\"stakes\":\"Освобождение людей и покой реки против продолжения зова и возможной вражды. Исход решают герои.\"}]}",
+          "billing": {
+            "status": "known",
+            "costMicros": "49613",
+            "pricingVersion": "anthropic-claude-sonnet-5-5-2026-10-12",
+            "reservedMicros": "2827680"
+          },
+          "outcome": "valid",
+          "provider": "anthropic",
+          "attemptId": "f9c6c3ae-72a4-4cb0-80ef-5bdfd94a5554",
+          "latencyMs": 18044
+        }
+      ],
+      "createdAt": "2026-10-30T17:44:26.625Z",
+      "sourceIds": [
+        "6356de80-8020-4b5b-b6ae-9dd35da3874a"
+      ],
+      "campaignId": null,
+      "capability": "campaign-preparation",
+      "canonicalEvents": []
+    }
+  },
+  {
+    "trace_id": "3d11ca4c-3041-4fae-8f52-48b7aa25dca5",
+    "trace": {
+      "input": "",
+      "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+      "scope": "WORKSHOP:1097257d-185e-46d2-b164-6a2909d57429",
+      "stage": "cast",
+      "issues": [],
+      "status": "GENERATED",
+      "actorId": "1097257d-185e-46d2-b164-6a2909d57429",
+      "purpose": "campaign-preparation",
+      "subject": {
+        "kind": "workshop",
+        "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+        "ownerId": "1097257d-185e-46d2-b164-6a2909d57429"
+      },
+      "traceId": "3d11ca4c-3041-4fae-8f52-48b7aa25dca5",
+      "attempts": [
+        {
+          "kind": "initial",
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "usage": {
+            "inputTokens": 3536,
+            "outputTokens": 5334
+          },
+          "issues": [],
+          "output": "{\"entities\":[],\"party\":[\"ranger-sledopyt\",\"ranger-strelok\",\"wizard-uchenaya\"],\"relationships\":[{\"npc\":\"mirela-tikhonova\",\"attitude\":\"FRIENDLY\"},{\"npc\":\"gordey\",\"attitude\":\"NEUTRAL\"},{\"npc\":\"faina\",\"attitude\":\"WARY\"},{\"npc\":\"savva\",\"attitude\":\"WARY\"}],\"visuals\":[{\"entity\":\"mirela-tikhonova\",\"purpose\":\"figure\",\"description\":\"Женщина около пятидесяти лет в тёплом шерстяном платке и тёмном жилете, с усталым, но твёрдым взглядом, в руке свиток со списком имён.\",\"style\":\"Живописная фэнтези-иллюстрация, приглушённые северные цвета, мягкий туманный свет.\"},{\"entity\":\"gordey\",\"purpose\":\"figure\",\"description\":\"Пожилой перевозчик с седой щетиной, в промасленной куртке и сапогах, опирается на длинный шест.\",\"style\":\"Живописная фэнтези-иллюстрация, холодная палитра, туман.\"},{\"entity\":\"faina\",\"purpose\":\"figure\",\"description\":\"Сухая пожилая женщина в сером плаще, на шее шнурок с бронзовым ключом, внимательный недоверчивый взгляд.\",\"style\":\"Живописная фэнтези-иллюстрация, приглушённые тона, мягкий рассеянный свет.\"},{\"entity\":\"savva\",\"purpose\":\"figure\",\"description\":\"Упитанный торговец в добротном синем кафтане с перстнями, держит счётную книгу, лицо озабоченное.\",\"style\":\"Живописная фэнтези-иллюстрация, тёплый свет лавки на холодном фоне.\"},{\"entity\":\"khranitel-mayaka\",\"purpose\":\"figure\",\"description\":\"Высокая полупрозрачная фигура из воды и стекла в остатках формы сторожа, изнутри светится бело-голубым светом.\",\"style\":\"Мистическая фэнтези-иллюстрация, подводное свечение, холодные оттенки.\"},{\"entity\":\"chuzhaya-lodka\",\"purpose\":\"image\",\"description\":\"Узкая тёмная лодка без фонаря и надписей, дрейфует в тумане, на уключинах заметны следы воска.\",\"style\":\"Атмосферная фэнтези-иллюстрация, густой туман, бело-голубые блики на воде.\"},{\"entity\":\"prichal\",\"purpose\":\"image\",\"description\":\"Деревянный причал на сваях в тумане на рассвете, пустые лодки с уложенными вёслами, вдали бело-голубое свечение воды.\",\"style\":\"Атмосферная фэнтези-иллюстрация, холодная палитра, мягкий туман.\"},{\"entity\":\"lampovyy-zal\",\"purpose\":\"battle-map\",\"description\":\"Круглый подводный ламповый зал маяка, в центре огромная светящаяся линза, по краям колонны и обломки, для небольшой схватки.\",\"style\":\"Тактическая карта сверху, чёткая сетка, холодные бело-голубые тона.\"},{\"entity\":\"ranger-sledopyt\",\"purpose\":\"figure\",\"description\":\"Молодая женщина-следопыт в кожаной броне и зелёном плаще, длинный лук за спиной, внимательный взгляд.\",\"style\":\"Живописная фэнтези-иллюстрация, приглушённые зелёные и серые тона.\"},{\"entity\":\"ranger-strelok\",\"purpose\":\"figure\",\"description\":\"Широкоплечий мужчина в тёмном дорожном плаще и кожаной броне, длинный лук наготове, спокойный взгляд.\",\"style\":\"Живописная фэнтези-иллюстрация, приглушённые тона, туманный фон.\"},{\"entity\":\"wizard-uchenaya\",\"purpose\":\"figure\",\"description\":\"Молодая волшебница в синей мантии с сумкой для свитков и тетрадью, без оружия, любопытный взгляд.\",\"style\":\"Живописная фэнтези-иллюстрация, холодные синие тона, мягкое свечение.\"}]}",
+          "billing": {
+            "status": "known",
+            "costMicros": "83532",
+            "pricingVersion": "anthropic-claude-sonnet-5-5-2026-10-12",
+            "reservedMicros": "2827680"
+          },
+          "outcome": "valid",
+          "provider": "anthropic",
+          "attemptId": "0d501dea-c168-4015-97fe-f931a354c903",
+          "latencyMs": 34529
+        }
+      ],
+      "createdAt": "2026-10-30T17:45:01.332Z",
+      "sourceIds": [
+        "6356de80-8020-4b5b-b6ae-9dd35da3874a"
+      ],
+      "campaignId": null,
+      "capability": "campaign-preparation",
+      "canonicalEvents": []
+    }
+  },
+  {
+    "trace_id": "bd3d2242-5867-4c25-8cc5-8f3e0e5ddaa0",
+    "trace": {
+      "input": "",
+      "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+      "scope": "WORKSHOP:1097257d-185e-46d2-b164-6a2909d57429",
+      "stage": "knowledge",
+      "issues": [],
+      "status": "GENERATED",
+      "actorId": "1097257d-185e-46d2-b164-6a2909d57429",
+      "purpose": "campaign-preparation",
+      "subject": {
+        "kind": "workshop",
+        "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+        "ownerId": "1097257d-185e-46d2-b164-6a2909d57429"
+      },
+      "traceId": "bd3d2242-5867-4c25-8cc5-8f3e0e5ddaa0",
+      "attempts": [
+        {
+          "kind": "initial",
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "usage": {
+            "inputTokens": 4877,
+            "outputTokens": 5760
+          },
+          "issues": [],
+          "output": "{\"knowledge\":[{\"key\":\"party-start\",\"scope\":{\"kind\":\"PARTY\"},\"knowledgeType\":\"FACT\",\"statement\":\"Третью ночь подряд из-под воды у Серебряного Брода светит бело-голубой свет, а к рассвету к причалу прибивает пустые лодки с уложенными вёслами и мокрыми сетями. Староста Мирела Тихонова просит героев разобраться до следующей ночи.\",\"subjects\":[\"prichal\",\"mirela-tikhonova\"],\"knownSince\":null,\"relations\":[]},{\"key\":\"public-closure-demand\",\"scope\":{\"kind\":\"PUBLIC\"},\"knowledgeType\":\"FACT\",\"statement\":\"Торговец Савва открыто требует закрыть перевал для чужаков, чтобы слухи не отпугнули купцов, а семьи пропавших грозятся к закату сами плыть к маяку.\",\"subjects\":[\"savva\",\"rybaki-posyolka\"],\"knownSince\":null,\"relations\":[]},{\"key\":\"rumor-debt\",\"scope\":{\"kind\":\"PUBLIC\"},\"knowledgeType\":\"RUMOR\",\"attributedTo\":\"rybaki-posyolka\",\"statement\":\"Рыбаки шепчутся, что маяк зовёт тех, кто должен ему долг. Подтверждений этому нет.\",\"subjects\":[\"rybaki-posyolka\",\"zatonuvshiy-mayak\"],\"knownSince\":null,\"relations\":[]},{\"key\":\"mirela-list\",\"scope\":{\"kind\":\"NPC\",\"holder\":\"mirela-tikhonova\"},\"knowledgeType\":\"FACT\",\"disclosure\":\"WILLING\",\"statement\":\"Мирела ведёт список пропавших и охотно покажет его. Она знает, что журналы старых сторожей хранились в старой береговой башне и на старом складе, но ключ от склада у Фаины.\",\"subjects\":[\"mirela-tikhonova\",\"ruiny-bashni\",\"staryy-sklad\",\"faina\"],\"knownSince\":null,\"relations\":[]},{\"key\":\"gordey-testimony\",\"scope\":{\"kind\":\"NPC\",\"holder\":\"gordey\"},\"knowledgeType\":\"TESTIMONY\",\"attributedTo\":\"gordey\",\"disclosure\":\"WILLING\",\"statement\":\"Гордей говорит, что в первую ночь видел у света узкую лодку без огней и надписей; на вёслах кто-то гребал, обмотав уключины. Лица он не разглядел.\",\"subjects\":[\"gordey\",\"chuzhaya-lodka\",\"vodnyy-put\"],\"knownSince\":null,\"relations\":[]},{\"key\":\"faina-testimony\",\"scope\":{\"kind\":\"NPC\",\"holder\":\"faina\"},\"knowledgeType\":\"TESTIMONY\",\"attributedTo\":\"faina\",\"disclosure\":\"GUARDED\",\"statement\":\"Фаина, если ей доверятся, расскажет: отец учил её, что у маяка есть дух-хранитель, а свет сердцевины-линзы держит его в покое. Ключ от склада она прячет, потому что боится, что линзу снова тронут.\",\"subjects\":[\"faina\",\"khranitel-mayaka\",\"staryy-sklad\"],\"knownSince\":null,\"relations\":[]},{\"key\":\"savva-secret-npc\",\"scope\":{\"kind\":\"NPC\",\"holder\":\"savva\"},\"knowledgeType\":\"SECRET\",\"disclosure\":\"GUARDED\",\"statement\":\"Савва знает, что нанял чужаков поднять со дна часть линзы маяка на продажу, и боится, что это вскроется.\",\"subjects\":[\"savva\",\"chuzhaya-lodka\"],\"knownSince\":null,\"relations\":[{\"type\":\"DERIVED_FROM\",\"knowledge\":\"wt-savva\"}]},{\"key\":\"wt-keeper\",\"scope\":{\"kind\":\"WORLD_TRUTH\"},\"knowledgeType\":\"FACT\",\"statement\":\"Свет излучает хранитель маяка, водный дух, связанный с затонувшим маяком. Он не злодей: он проснулся, когда у линзы забрали сердцевину.\",\"subjects\":[\"khranitel-mayaka\",\"zatonuvshiy-mayak\",\"lampovyy-zal\"],\"knownSince\":null,\"relations\":[]},{\"key\":\"wt-lens-stolen\",\"scope\":{\"kind\":\"WORLD_TRUTH\"},\"knowledgeType\":\"SECRET\",\"statement\":\"Несколько ночей назад чужаки подняли из лампового зала часть линзы-сердцевины. С тех пор хранитель зовёт людей, пытаясь восстановить вахту.\",\"subjects\":[\"khranitel-mayaka\",\"lampovyy-zal\",\"chuzhaya-lodka\"],\"knownSince\":null,\"relations\":[{\"type\":\"SUPPORTS\",\"knowledge\":\"wt-keeper\"}]},{\"key\":\"wt-boat\",\"scope\":{\"kind\":\"WORLD_TRUTH\"},\"knowledgeType\":\"FACT\",\"statement\":\"Узкая лодка без огней принадлежит нанятым чужакам; на её уключинах воск, которым глушили скрип.\",\"subjects\":[\"chuzhaya-lodka\",\"lodochnyy-sarai\"],\"knownSince\":null,\"relations\":[{\"type\":\"SUPPORTS\",\"knowledge\":\"wt-lens-stolen\"}]},{\"key\":\"wt-savva\",\"scope\":{\"kind\":\"WORLD_TRUTH\"},\"knowledgeType\":\"SECRET\",\"statement\":\"Чужаков нанял и оплатил Савва ради продажи линзы; он требует закрыть перевал, чтобы скрыть следы.\",\"subjects\":[\"savva\",\"chuzhaya-lodka\"],\"knownSince\":null,\"relations\":[{\"type\":\"DERIVED_FROM\",\"knowledge\":\"wt-lens-stolen\"}]},{\"key\":\"wt-people-alive\",\"scope\":{\"kind\":\"WORLD_TRUTH\"},\"knowledgeType\":\"FACT\",\"statement\":\"Пропавшие люди живы и спят в лямповом зале под светом хранителя; чем дольше они там, тем слабее они становятся.\",\"subjects\":[\"lampovyy-zal\",\"khranitel-mayaka\"],\"knownSince\":null,\"relations\":[{\"type\":\"DERIVED_FROM\",\"knowledge\":\"wt-keeper\"}]},{\"key\":\"dm-peace-path\",\"scope\":{\"kind\":\"DM\"},\"knowledgeType\":\"HYPOTHESIS\",\"statement\":\"Возможный мирный путь: вернуть или заменить сердцевину линзы и ответить хранителю условным сигналом из журналов. Это возможность, а не гарантия; игроки вправе выбрать переговоры, обход или бой.\",\"subjects\":[\"khranitel-mayaka\",\"lampovyy-zal\",\"staryy-sklad\"],\"knownSince\":null,\"relations\":[{\"type\":\"DERIVED_FROM\",\"knowledge\":\"wt-keeper\"}]},{\"key\":\"dm-unknown-keeper-reaction\",\"scope\":{\"kind\":\"DM\"},\"knowledgeType\":\"UNKNOWN\",\"statement\":\"Неизвестно заранее, как хранитель отреагирует на героев; исход определяют их решения и броски.\",\"subjects\":[\"khranitel-mayaka\"],\"knownSince\":null,\"relations\":[]}],\"clues\":[{\"key\":\"clue-boat-wax\",\"entity\":\"lodochnyy-sarai\",\"method\":\"inspect\",\"statement\":\"На уключинах вернувшихся лодок и в одной чужой узкой лодке видны следы воска и свежие узлы, не здешней вязки: кто-то глушил скрип вёсел.\",\"subjects\":[\"chuzhaya-lodka\",\"lodochnyy-sarai\"]},{\"key\":\"clue-boat-tracks\",\"entity\":\"bereg-tropa\",\"method\":\"perception\",\"dc\":12,\"statement\":\"У воды на тропе тянутся следы волочения и обрывки промасленной верёвки; кто-то вытаскивал на берег тяжёлый ящик.\",\"subjects\":[\"chuzhaya-lodka\",\"bereg-tropa\"]},{\"key\":\"clue-lamp-magic\",\"entity\":\"vodnyy-put\",\"method\":\"magic\",\"statement\":\"Свет излучает не огонь, а связанная водная магия: у неё живая, сторожевая структура, и она будто ищет недостающую часть.\",\"subjects\":[\"khranitel-mayaka\",\"vodnyy-put\"]},{\"key\":\"clue-tower-notes\",\"entity\":\"ruiny-bashni\",\"method\":\"investigation\",\"dc\":13,\"statement\":\"В подвале башни среди линз лежат записи сторожей: свет хранителя держится на сердцевине линзы, и без неё он зовёт людей на вахту.\",\"subjects\":[\"khranitel-mayaka\",\"ruiny-bashni\",\"lampovyy-zal\"]},{\"key\":\"clue-sklad-logs\",\"entity\":\"staryy-sklad\",\"method\":\"inspect\",\"statement\":\"В журналах склада описан условный сигнал из башни, которым сторожа успокаивали хранителя, и пустое гнездо в ящике для сердцевины линзы с недавним следом воска.\",\"subjects\":[\"khranitel-mayaka\",\"staryy-sklad\"]},{\"key\":\"clue-lamp-hall-empty-socket\",\"entity\":\"lampovyy-zal\",\"method\":\"perception\",\"dc\":10,\"statement\":\"В центральной линзе зияет пустое гнездо, спящие люди лежат под светом, и дышат ровно.\",\"subjects\":[\"lampovyy-zal\",\"khranitel-mayaka\"]},{\"key\":\"clue-savva-ledger\",\"entity\":\"torgovaya-lavka\",\"method\":\"investigation\",\"dc\":14,\"statement\":\"В счётной книге Саввы запись о крупной выплате «за стекло» чужакам без имён и расписка с восковой печатью, как на лодке.\",\"subjects\":[\"savva\",\"chuzhaya-lodka\"]},{\"key\":\"clue-savva-candle\",\"entity\":\"torgovaya-lavka\",\"method\":\"inspect\",\"statement\":\"Воск на связке свечей в лавке тот же, что на уключинах узкой лодки.\",\"subjects\":[\"savva\",\"chuzhaya-lodka\"]},{\"key\":\"clue-post-veh-markers\",\"entity\":\"post-vekh\",\"method\":\"investigation\",\"dc\":11,\"statement\":\"В записях Фаины о вехах отмечено, что вехи у плёса сдвинули ночью: кто-то подводил лодку к свету.\",\"subjects\":[\"faina\",\"vodnyy-put\",\"chuzhaya-lodka\"]}]}",
+          "billing": {
+            "status": "known",
+            "costMicros": "80134",
+            "pricingVersion": "anthropic-claude-sonnet-5-5-2026-10-12",
+            "reservedMicros": "2827680"
+          },
+          "outcome": "valid",
+          "provider": "anthropic",
+          "attemptId": "eea471e9-3e8e-415d-9d72-11ee551d183d",
+          "latencyMs": 39554
+        }
+      ],
+      "createdAt": "2026-10-30T17:45:41.111Z",
+      "sourceIds": [
+        "6356de80-8020-4b5b-b6ae-9dd35da3874a"
+      ],
+      "campaignId": null,
+      "capability": "campaign-preparation",
+      "canonicalEvents": []
+    }
+  },
+  {
+    "trace_id": "6ab47d3a-2260-45ac-bfd1-143e214900ae",
+    "trace": {
+      "input": "",
+      "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+      "scope": "WORKSHOP:1097257d-185e-46d2-b164-6a2909d57429",
+      "stage": "encounters",
+      "issues": [],
+      "status": "GENERATED",
+      "actorId": "1097257d-185e-46d2-b164-6a2909d57429",
+      "purpose": "campaign-preparation",
+      "subject": {
+        "kind": "workshop",
+        "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+        "ownerId": "1097257d-185e-46d2-b164-6a2909d57429"
+      },
+      "traceId": "6ab47d3a-2260-45ac-bfd1-143e214900ae",
+      "attempts": [
+        {
+          "kind": "initial",
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "usage": {
+            "inputTokens": 8371,
+            "outputTokens": 1059
+          },
+          "issues": [],
+          "output": "{\"encounters\":[{\"key\":\"boy-lampovyy-zal\",\"title\":\"Хранитель в ламповом зале\",\"location\":\"lampovyy-zal\",\"trigger\":\"Возможный необязательный бой. Он начнётся, только если герои войдут в ламповый зал и решат силой тронуть спящих, сорвать свет или напасть на хранителя, либо если переговоры сорвутся. Хранитель защищает линзу и спящих людей, а не жаждет крови. Альтернативы бою: показать, что герои пришли помочь; ответить условным сигналом из журналов склада и башни; вернуть или заменить сердцевину линзы; убедить хранителя отпустить спящих; осторожно вынести людей, пока он спокоен. Исход определяют решения и броски игроков. Бой не считается начатым, пока не брошена инициатива.\",\"battlefield\":{\"width\":12,\"height\":12,\"difficult\":[{\"x\":5,\"y\":5},{\"x\":6,\"y\":5},{\"x\":5,\"y\":6},{\"x\":6,\"y\":6},{\"x\":3,\"y\":8},{\"x\":8,\"y\":3}],\"cover\":[{\"x\":2,\"y\":2,\"level\":\"three-quarters\"},{\"x\":9,\"y\":2,\"level\":\"three-quarters\"},{\"x\":2,\"y\":9,\"level\":\"three-quarters\"},{\"x\":9,\"y\":9,\"level\":\"three-quarters\"},{\"x\":4,\"y\":4,\"level\":\"half\"},{\"x\":7,\"y\":4,\"level\":\"half\"},{\"x\":4,\"y\":7,\"level\":\"half\"},{\"x\":7,\"y\":7,\"level\":\"half\"}]},\"combatants\":[{\"entity\":\"ranger-sledopyt\",\"side\":\"party\",\"position\":{\"x\":1,\"y\":10}},{\"entity\":\"ranger-strelok\",\"side\":\"party\",\"position\":{\"x\":3,\"y\":10}},{\"entity\":\"wizard-uchenaya\",\"side\":\"party\",\"position\":{\"x\":2,\"y\":11}},{\"entity\":\"khranitel-mayaka\",\"side\":\"hostile\",\"position\":{\"x\":6,\"y\":2}}]}]}",
+          "billing": {
+            "status": "known",
+            "costMicros": "38115",
+            "pricingVersion": "anthropic-claude-sonnet-5-5-2026-10-12",
+            "reservedMicros": "2827680"
+          },
+          "outcome": "valid",
+          "provider": "anthropic",
+          "attemptId": "7a742ba7-f218-4595-b529-86351cc9d5bb",
+          "latencyMs": 8982
+        }
+      ],
+      "createdAt": "2026-10-30T17:45:50.239Z",
+      "sourceIds": [
+        "6356de80-8020-4b5b-b6ae-9dd35da3874a"
+      ],
+      "campaignId": null,
+      "capability": "campaign-preparation",
+      "canonicalEvents": []
+    }
+  },
+  {
+    "trace_id": "51589482-cbb8-466d-8bd6-1ace7eed31fa",
+    "trace": {
+      "input": "",
+      "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+      "scope": "WORKSHOP:1097257d-185e-46d2-b164-6a2909d57429",
+      "stage": "first-session",
+      "issues": [],
+      "status": "GENERATED",
+      "actorId": "1097257d-185e-46d2-b164-6a2909d57429",
+      "purpose": "campaign-preparation",
+      "subject": {
+        "kind": "workshop",
+        "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+        "ownerId": "1097257d-185e-46d2-b164-6a2909d57429"
+      },
+      "traceId": "51589482-cbb8-466d-8bd6-1ace7eed31fa",
+      "attempts": [
+        {
+          "kind": "initial",
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "usage": {
+            "inputTokens": 9054,
+            "outputTokens": 4159
+          },
+          "issues": [],
+          "output": "{\"situations\":[{\"key\":\"rassvet-na-prichale\",\"title\":\"Рассвет на причале\",\"location\":\"prichal\",\"description\":\"Туман, пустые лодки с уложенными вёслами, мокрые сети. Собираются рыбаки, тревога растёт. Это стартовая площадка: отсюда герои могут пойти к старосте, в сарай, к Гордею или сразу на воду.\",\"hooks\":[\"Мирела просит разобраться до следующей ночи.\",\"Рыбаки шепчутся о долге перед маяком.\",\"Гордей рассказывает о чужой лодке, если с ним заговорят.\"],\"participants\":[\"mirela-tikhonova\",\"gordey\",\"rybaki-posyolka\"],\"clueKeys\":[],\"approaches\":[\"Расспросить рыбаков и Гордея спокойно или за помощь в работе.\",\"Осмотреть лодки на причале и отправиться в сарай.\",\"Пойти к старосте за списком пропавших.\",\"Выйти на воду сразу, рискуя пропустить подсказки.\"],\"developments\":[{\"if\":\"Герои грубо давят на рыбаков\",\"then\":\"Жители замыкаются, а слухи становятся громче и путаннее; Мирела может помочь сгладить обстановку.\"},{\"if\":\"Герои проявляют уважение и слушают\",\"then\":\"Гордей охотно делится свидетельством о лодке без огней, а рыбаки называют имена пропавших.\"}]},{\"key\":\"osmotr-lodok\",\"title\":\"Осмотр лодок в сарае\",\"location\":\"lodochnyy-sarai\",\"description\":\"Вернувшиеся лодки лежат под навесом. Можно искать следы воска, незнакомые узлы и отпечатки. Это первый путь к улике.\",\"hooks\":[\"Вёсла уложены слишком аккуратно.\",\"Уключины странно гладкие.\"],\"participants\":[\"gordey\"],\"clueKeys\":[\"clue-boat-wax\"],\"approaches\":[\"Внимательный осмотр уключин и узлов.\",\"Расспросить Гордея, какие лодки обычно так вяжут.\",\"Магическое чутьё может показать лишь остаточный след, но не заменяет осмотр.\"],\"developments\":[{\"if\":\"Герои находят воск\",\"then\":\"Появляется вопрос, у кого в посёлке есть такой воск; это ведёт к лавке Саввы или к берегу.\"},{\"if\":\"Осмотр провален или поспешен\",\"then\":\"Улику можно найти позже вместе с другими подсказками, но потеряно время до заката.\"}]},{\"key\":\"razgovor-so-starostoy\",\"title\":\"Староста и список пропавших\",\"location\":\"dom-starosty\",\"description\":\"Мирела показывает карту реки и список. Она назовёт, где хранились журналы сторожей, и предупредит о сроке: к закату семьи хотят плыть сами.\",\"hooks\":[\"Список имён и сроков.\",\"Ключ от склада у Фаины.\"],\"participants\":[\"mirela-tikhonova\"],\"clueKeys\":[],\"approaches\":[\"Попросить помощи и разрешения говорить от её имени.\",\"Договориться о том, чтобы удержать семьи до вечера.\",\"Обсудить требования Саввы.\"],\"developments\":[{\"if\":\"Герои обещают держать посёлок в курсе\",\"then\":\"Мирела просит родных подождать до заката и даёт рекомендацию к Фаине.\"},{\"if\":\"Герои ничего не обещают\",\"then\":\"Староста всё равно помогает, но давление родных на закате растёт.\"}]},{\"key\":\"davlenie-savvy\",\"title\":\"Савва и закрытый перевал\",\"location\":\"torgovaya-lavka\",\"description\":\"Социальная сцена с торгом: Савва требует закрыть перевал и торопит героев. Он нервничает и скрывает свою роль.\",\"hooks\":[\"Он слишком настойчиво требует тишины.\",\"На прилавке связка свечей и счётная книга.\"],\"participants\":[\"savva\"],\"clueKeys\":[\"clue-savva-ledger\",\"clue-savva-candle\"],\"approaches\":[\"Дипломатия: предложить альтернативы, не пугающие купцов.\",\"Наблюдательность: заметить воск на свечах.\",\"Расследование: изучить счётную книгу, пока он отвлечён.\",\"Давление уликами, когда они уже найдены.\"],\"developments\":[{\"if\":\"Герои предъявляют восковые улики\",\"then\":\"Савва сначала отпирается; при давлении или выгодной сделке может признаться, что нанял чужаков, и умолять скрыть это.\"},{\"if\":\"Герои грубо нападают на него\",\"then\":\"Савва зовёт стражу и закрывает двери; доступ к книге затрудняется, но другие пути остаются.\"}]},{\"key\":\"molchanie-fainy\",\"title\":\"Фаина и ключ\",\"location\":\"post-vekh\",\"description\":\"Фаина прячет ключ от склада, боясь, что линзу тронут снова. Доверие можно заслужить честностью или помощью.\",\"hooks\":[\"Ряды пронумерованных вех.\",\"Бронзовый ключ на шнурке.\"],\"participants\":[\"faina\"],\"clueKeys\":[\"clue-post-veh-markers\"],\"approaches\":[\"Убедить, что герои хотят защитить маяк.\",\"Изучить её записи о вехах.\",\"Принести доказательства чужой лодки.\",\"Предложить сопровождать её на склад.\"],\"developments\":[{\"if\":\"Фаина доверяет героям\",\"then\":\"Она рассказывает о хранителе и отдаёт ключ или открывает склад сама.\"},{\"if\":\"Герои давят и угрожают\",\"then\":\"Она отказывается, но склад можно достичь через руины башни, потратив время.\"}]},{\"key\":\"bereg-i-bashnya\",\"title\":\"Берег и руины башни\",\"location\":\"ruiny-bashni\",\"description\":\"Путь по тропе к руинам с подвалом и ходом к складу. Здесь можно найти записи сторожей и журналы.\",\"hooks\":[\"Следы волочения на тропе.\",\"Линзы и записи в подвале.\"],\"participants\":[\"faina\"],\"clueKeys\":[\"clue-boat-tracks\",\"clue-tower-notes\",\"clue-sklad-logs\"],\"approaches\":[\"Выследить следы на тропе.\",\"Разобрать записи в подвале.\",\"Пройти скрытым ходом к складу, если нет ключа.\"],\"developments\":[{\"if\":\"Герои находят записи\",\"then\":\"Они узнают, что без сердцевины хранитель зовёт людей, и могут искать мирный сигнал.\"},{\"if\":\"Герои задерживаются до заката\",\"then\":\"Родные начинают выходить на воду; нужно срочно вмешаться.\"}]},{\"key\":\"voda-k-svetu\",\"title\":\"Выход на воду\",\"location\":\"vodnyy-put\",\"description\":\"Плёс в тумане, где лодки теряют ориентиры. Свет можно изучить магически и приблизиться к маяку.\",\"hooks\":[\"Бело-голубой свет под водой.\",\"Сдвинутые вехи.\"],\"participants\":[\"gordey\"],\"clueKeys\":[\"clue-lamp-magic\"],\"approaches\":[\"Использовать обнаружение магии, чтобы понять природу света.\",\"Нанять Гордея с лодкой.\",\"Идти по вехам Фаины.\"],\"developments\":[{\"if\":\"Герои плывут без подготовки\",\"then\":\"Свет тянет их к маяку; они встретят хранителя, не зная о сигнале, и мирный путь будет труднее.\"}]},{\"key\":\"lampovyy-zal-situatsiya\",\"title\":\"Ламповый зал\",\"location\":\"lampovyy-zal\",\"description\":\"Спящие люди дышат ровно под светом хранителя; в линзе пустое гнездо. Здесь решается мирно или боем.\",\"hooks\":[\"Пустое гнездо в линзе.\",\"Хранитель стоит между героями и спящими.\"],\"participants\":[\"khranitel-mayaka\"],\"clueKeys\":[\"clue-lamp-hall-empty-socket\"],\"approaches\":[\"Ответить условным сигналом из журналов.\",\"Вернуть или заменить сердцевину линзы.\",\"Договориться о постепенном освобождении спящих.\",\"Применить силу, если переговоры сорваны.\"],\"developments\":[{\"if\":\"Герои показывают, что пришли помочь\",\"then\":\"Хранитель может ослабить свет; исход зависит от решений и бросков.\"},{\"if\":\"Герои нападают или трогают спящих\",\"then\":\"Возможен бой на подготовленном поле; хранитель защищает линзу и людей.\"},{\"if\":\"Герои отступают\",\"then\":\"Люди слабеют, а время до новых зовов сокращается; можно вернуться с новыми сведениями.\"}]}],\"quests\":[{\"questId\":\"svet-pod-vodoy\",\"title\":\"Свет под водой\",\"activation\":{\"subject\":\"mirela-tikhonova\",\"summary\":\"Мирела просит разобраться с маяком до следующей ночи.\"},\"milestones\":[{\"kind\":\"reached\",\"stage\":\"prichal-reached\",\"locationId\":\"prichal\",\"summary\":\"Герои на причале, где прибивает пустые лодки.\"},{\"kind\":\"examined-at\",\"stage\":\"boats-examined\",\"locationId\":\"lodochnyy-sarai\",\"summary\":\"Герои осмотрели лодки в сарае.\"},{\"kind\":\"told-by\",\"stage\":\"gordey-told\",\"informant\":\"gordey\",\"subject\":\"chuzhaya-lodka\",\"summary\":\"Гордей рассказал о лодке без огней.\"},{\"kind\":\"hypothesized\",\"stage\":\"keeper-guess\",\"subject\":\"khranitel-mayaka\",\"summary\":\"Герои предположили, что свет связан с духом-хранителем.\"},{\"kind\":\"contradiction-found\",\"stage\":\"savva-lie\",\"subject\":\"savva\",\"summary\":\"Герои нашли расхождение между словами Саввы и уликами.\"},{\"kind\":\"reached\",\"stage\":\"lamp-hall\",\"locationId\":\"lampovyy-zal\",\"summary\":\"Герои достигли лампового зала.\"},{\"kind\":\"survived-fight-at\",\"stage\":\"hall-fight\",\"locationId\":\"lampovyy-zal\",\"summary\":\"Герои пережили бой в ламповом зале, если он произойдёт.\"},{\"kind\":\"returned-to\",\"stage\":\"back-at-dock\",\"locationId\":\"prichal\",\"after\":\"lamp-hall\",\"summary\":\"Герои вернулись на причал после ламповой залы.\"}]}],\"firstSession\":[\"Открытие (15 мин): опишите туман, бело-голубой свет и пустые лодки на причале. Покажите Мирелу и дайте срок: к закату родные хотят плыть сами. Спросите героев, с чего начнут.\",\"Свободное исследование (60–75 мин): причал, сарай, дом старосты, лавка Саввы, пост Фаины, береговая тропа. Достаточно двух путей, чтобы выйти к воску и лодке; журналы и ключ дают мирный путь.\",\"Социальная сц…",
+          "billing": {
+            "status": "known",
+            "costMicros": "74326",
+            "pricingVersion": "anthropic-claude-sonnet-5-5-2026-10-12",
+            "reservedMicros": "2827680"
+          },
+          "outcome": "valid",
+          "provider": "anthropic",
+          "attemptId": "29ffb483-cfe9-4614-ba51-3458be37d78e",
+          "latencyMs": 29231
+        }
+      ],
+      "createdAt": "2026-10-30T17:46:19.599Z",
+      "sourceIds": [
+        "6356de80-8020-4b5b-b6ae-9dd35da3874a"
+      ],
+      "campaignId": null,
+      "capability": "campaign-preparation",
+      "canonicalEvents": []
+    }
+  },
+  {
+    "trace_id": "4bf5a4e3-e320-4479-bb0a-7e74d8fddb3a",
+    "trace": {
+      "input": "",
+      "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+      "scope": "WORKSHOP:1097257d-185e-46d2-b164-6a2909d57429",
+      "stage": "outline",
+      "issues": [],
+      "status": "GENERATED",
+      "actorId": "1097257d-185e-46d2-b164-6a2909d57429",
+      "purpose": "campaign-preparation",
+      "subject": {
+        "kind": "workshop",
+        "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+        "ownerId": "1097257d-185e-46d2-b164-6a2909d57429"
+      },
+      "traceId": "4bf5a4e3-e320-4479-bb0a-7e74d8fddb3a",
+      "attempts": [
+        {
+          "kind": "initial",
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "usage": {
+            "inputTokens": 13107,
+            "outputTokens": 2154
+          },
+          "issues": [],
+          "output": "{\"laterOutline\":[\"Общая рамка (3–5 встреч): кампания «Маяк под водой» строится вокруг одного вопроса: кто и зачем разбудил хранителя маяка (khranitel-mayaka) и как остановить зов, не потеряв ни спящих людей, ни доверие посёлка. Всё ниже — возможные направления; ничего из этого не считается случившимся, пока игроки сами этого не сделают.\",\"Встреча 1 — «Рассвет на причале» (первая сессия, см. firstSession). Герои выбирают путь: причал и Гордей (gordey), сарай (lodochnyy-sarai, clue-boat-wax), дом старосты (dom-starosty), лавка Саввы (torgovaya-lavka), пост Фаины (post-vekh), береговая тропа (bereg-tropa) или сразу вода (vodnyy-put). Достаточно двух-трёх сходящихся улик. Слухи о долге перед маяком (rumor-debt) остаются непроверенным слухом, пока герои не найдут подтверждение или опровержение: правда ближе к «недостающей части», чем к «долгу». Показания Гордея и Фаины — свидетельства живых людей, а не истина мира; они могут быть неполными.\",\"Если после первой встречи герои уже нашли воск и связали его с Саввой (clue-savva-candle, clue-savva-ledger): возможны три направления. (а) Открытое обвинение: Савва отпирается, затем может признаться под давлением или ради выгодной сделки; (б) тихая слежка и выход на чужаков, которых он нанял; (в) использование улики как рычага, чтобы Савва сам помог вернуть часть линзы. Каждое по-разному влияет на отношение посёлка и страх перед закрытием перевала.\",\"Если герои сначала идут к Фаине (molchanie-fainy) и заслуживают доверие: она открывает склад или отдаёт ключ, и журналы (clue-sklad-logs) дают условный сигнал и пустое гнездо для сердцевины. Если давят или угрожают, она замыкается, но путь через руины башни (ruiny-bashni) и скрытый ход остаётся, ценой времени и её недоверия. Позже Фаина может стать союзником, сопровождающим героев, либо хранить обиду; решает отыгрыш.\",\"Если герои выходят на воду без подготовки: свет тянет их к маяку, встреча с хранителем происходит без знания сигнала, мирный путь труднее, но не закрыт. Гордей может провести по вехам, если ему доверяют. Магия обнаружения (clue-lamp-magic) подсказывает, что свет — сторожевая связанная структура, ищущая недостающую часть.\",\"Срок заката (rodnye-protiv-sroka): если герои удержали семьи обещанием, Мирела выигрывает ещё ночь. Если нет, часть родных выходит на воду, и в следующей встрече героям придётся спасать их в тумане или догонять лодки. Это давление, а не гарантированная потеря: исход зависит от выбора героев.\",\"Встреча 2 — «Лампов зал» (возможное развитие первой). У героев есть варианты: ответить условным сигналом; вернуть или заменить сердцевину линзы; договориться о постепенном освобождении спящих (wt-people-alive: они живы, но слабеют); осторожно вынести людей. Бой boy-lampovyy-zal необязателен и начинается только если герои нападут, тронут спящих или сорвут переговоры. Хранитель защищает линзу и людей, поэтому его можно остановить без убийства: отступлением, соглашением или возвратом линзы.\",\"Ветвления после зала. Мирное завершение: свет гаснет или становится сторожевым огоньком, спящие просыпаются слабыми, а хранитель требует вахты или возвращения сердцевины. Затяжное решение: сердцевина не найдена, хранитель успокоен лишь временно, нужна дополнительная встреча на поиск линзы. Бой: если герои победили, свет гаснет, но линза остаётся без хранителя, а Фаина и река переживают потерю; если отступили или проиграли, хранитель отходит, оставляя героев живыми, но спящие слабеют, и нужны новые сведения.\",\"Встреча 3 — «Чужаки и линза». Если героям нужна сердцевина, они ищут чужаков с узкой лодкой (chuzhaya-lodka), которым Савва заплатил. Возможные пути: перехватить сделку, уговорить покупателей, выкупить или выманить часть линзы, найти тайник по следам на тропе. Если герои не вышли на Савву, чужаки могут отплыть или спрятать линзу: добыча сложнее, но следы на тропе и вехи (clue-post-veh-markers) дают новую нить.\",\"Встреча 4 — «Последствия». Посёлок оценивает решения героев: судьба Саввы (суд, изгнание, штраф, сделка), доверие рыбаков, перевал, положение Мирелы, отношение Фаины. Если истина вскрыта публично, слухи сменяются фактами; если герои скрыли правду, возникают долги и риск раскрытия. Хранитель может остаться союзником реки, обиженным стражем или уснувшим духом, в зависимости от выбора.\",\"Встреча 5 (необязательный эпилог). Короткая сцена, где посёлок, река и хранитель отвечают на выбор героев: новая вахта, праздник возвращения, тревожный свет по ночам или попытка чужаков вернуться. Мастер фиксирует только то, что действительно произошло за столом, и оставляет открытыми нити, которые игроки решили не закрывать.\",\"Страховки для мастера: если улики пропущены, Мирела направляет к Фаине, а Гордей подсказывает сдвинутые вехи; одна найденная улика может открывать вторую. Не требуйте всех путей. Если игроки пошли в неожиданную сторону, используйте существующие места, лиц и улики, не добавляя новых канонических сущностей без утверждения владельца.\"]}",
+          "billing": {
+            "status": "known",
+            "costMicros": "56542",
+            "pricingVersion": "anthropic-claude-sonnet-5-5-2026-10-12",
+            "reservedMicros": "2827680"
+          },
+          "outcome": "valid",
+          "provider": "anthropic",
+          "attemptId": "557142ba-cadb-4a76-9e9a-259c40131f35",
+          "latencyMs": 18143
+        }
+      ],
+      "createdAt": "2026-10-30T17:46:37.928Z",
+      "sourceIds": [
+        "6356de80-8020-4b5b-b6ae-9dd35da3874a"
+      ],
+      "campaignId": null,
+      "capability": "campaign-preparation",
+      "canonicalEvents": []
+    }
+  }
+]

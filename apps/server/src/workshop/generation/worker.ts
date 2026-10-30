@@ -1,5 +1,5 @@
 import { CAMPAIGN_GENERATION_STAGES } from '@ltw/contracts';
-import { mergeCampaignGenerationStep } from '@ltw/domain';
+import { validateCampaignGenerationStep } from '@ltw/domain';
 
 import { campaignCanonicalJson, MAX_CAMPAIGN_PACKAGE_BYTES } from '../packages/content.ts';
 import { campaignPreparationPrompt } from './prompt.ts';
@@ -21,7 +21,9 @@ export class CampaignGenerationWorker extends CampaignPreparationWorker {
           validate: (stage, content, output) => {
             try {
               if (stage === 'edit') return { ok: false, issues: ['INVALID_GENERATION_STAGE'] };
-              const value = mergeCampaignGenerationStep(content, stage, output);
+              const checked = validateCampaignGenerationStep(content, stage, output);
+              if (!checked.ok) return checked;
+              const value = checked.value;
               return Buffer.byteLength(campaignCanonicalJson(value), 'utf8') >
                 MAX_CAMPAIGN_PACKAGE_BYTES
                 ? { ok: false, issues: ['CAMPAIGN_PACKAGE_TOO_LARGE'] }

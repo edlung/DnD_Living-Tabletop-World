@@ -1,0 +1,25 @@
+[
+  {
+    "entry_id": "8",
+    "attempt_id": "c4c4fe0a-3c1f-4ba9-9982-148c53f6456a",
+    "kind": "settled",
+    "transition_key": "settle:c4c4fe0a-3c1f-4ba9-9982-148c53f6456a:4ceb9115515f5192dd2e11e73b43e8a63e6becaa1bdbba8923263402ee14d1dc",
+    "charge_micros": "262763",
+    "usage": {
+      "input_tokens": 19475,
+      "output_tokens": 18764,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 14469,
+      "output_tokens_details.thinking_tokens": 1193,
+      "cache_creation.ephemeral_1h_input_tokens": 0,
+      "cache_creation.ephemeral_5m_input_tokens": 14469
+    },
+    "returned_model": "claude-sonnet-5-5",
+    "provider_request_id": "msg_011CgYrjg45nSJh84imDnkYj",
+    "batch_id": null,
+    "owner_id": null,
+    "authorized_on": null,
+    "authorization_source": null,
+    "created_at": "2026-10-30T18:02:02.237Z"
+  }
+]
