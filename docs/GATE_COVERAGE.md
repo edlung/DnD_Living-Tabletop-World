@@ -9,7 +9,10 @@ Stage 370 introduced documentation only. Stage 380 access/accounting implementat
 and evidence are in `reports/STAGE_380_COMPLETION.md`; final full validation passed
 (3,016 unit, 254 integration, 144 browser tests), accepted by the owner on 2026-10-30.
 Stage 390 implements package contracts, private immutable revisions and isolated
-materialization; its full checkpoint passed (3,049 unit, 261 integration, 144 browser tests). Stages 400–450 remain
+materialization; its full checkpoint passed (3,049 unit, 261 integration, 144 browser tests). Stage 400 implements durable preparation, real workshop AI sessions and admitted
+accounting; its offline checkpoint passed (3,100unit,284integration,144browser
+tests). Live-provider quality is NOT_RUN and carried to450; scripted tests do
+not close it. Stages 410–450 remain
 **FUTURE / NOT YET IMPLEMENTED OR TESTED**. The owner delegates technical checkpoint
 continuation (`reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json`); each stage
 still verifies its own boundary and preserves human acceptance separately.

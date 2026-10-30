@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 
 import type { AttemptScope } from './lock-keys.ts';
 import type { Tx } from './pg-transaction.ts';
+import { accountingSubjectKey } from './subjects.ts';
 
 /**
  * Effective spending and stops, read under the policy lock and the sorted bucket locks
@@ -36,20 +37,20 @@ export async function readBucketSpend(db: Queryable, scope: AttemptScope): Promi
     `WITH per AS (${EFFECTIVE}
        WHERE a.approval_id = $3
           OR (a.account_id = $1 AND a.billing_day = $6::date)
-          OR (a.campaign_id = $2 AND a.billing_day = $6::date))
+          OR (a.subject_key = $2 AND a.billing_day = $6::date))
      SELECT
        COALESCE(sum(effective) FILTER (WHERE account_id = $1 AND billing_day = $6::date), 0)::text
          AS "globalDay",
-       COALESCE(sum(effective) FILTER (WHERE campaign_id = $2 AND billing_day = $6::date), 0)::text
+       COALESCE(sum(effective) FILTER (WHERE subject_key = $2 AND billing_day = $6::date), 0)::text
          AS "campaignDay",
        COALESCE(sum(effective) FILTER (WHERE approval_id = $3), 0)::text AS "stage",
        COALESCE(sum(effective) FILTER (
-         WHERE approval_id = $3 AND campaign_id = $2 AND session_class = $4 AND session_id = $5
+         WHERE approval_id = $3 AND subject_key = $2 AND session_class = $4 AND session_id = $5
        ), 0)::text AS "session"
      FROM per`,
     [
       scope.accountId,
-      scope.campaignId,
+      accountingSubjectKey(scope),
       scope.approvalId,
       scope.sessionClass,
       scope.sessionId,

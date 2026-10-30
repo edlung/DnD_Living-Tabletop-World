@@ -26,6 +26,7 @@ describe('loadConfig', () => {
         anthropic: null,
         relevanceBudgetMs: 2_000,
         requestTimeoutMs: 60_000,
+        preparationTimeoutMs: 300_000,
         approvalId: null,
         deepseek: null,
         routes: null,

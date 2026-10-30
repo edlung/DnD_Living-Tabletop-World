@@ -1,0 +1,15 @@
+$ pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run context-budget && pnpm run test && pnpm run build && pnpm run db:migrate && pnpm run seed:ravenford && pnpm run test:integration && pnpm run test:e2e
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ node --max-old-space-size=4096 node_modules/eslint/bin/eslint.js . --max-warnings=0
+
+/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/main.ts
+  136:68  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  166:18  error  Async arrow function has no 'await' expression                                                                      @typescript-eslint/require-await
+
+✖ 2 problems (2 errors, 0 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

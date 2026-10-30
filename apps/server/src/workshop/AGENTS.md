@@ -11,7 +11,8 @@ Authority: owner-accepted `docs/STAGE_370_DESIGN.md`,
 - Every draft query is owner-qualified. Another owner's ID is the unknown-ID 404.
 - Drafts are private containers with immutable package revisions (Stage 390).
   Read `packages/AGENTS.md` for revision CAS, identity and compiler boundaries.
-  Generation, progress streams, previews and activation belong to Stages 400–440.
+  Generation is Stage 400 (`generation/AGENTS.md`); private polling reauthorizes
+  every request. Scenario/visual preview and activation belong to410–440.
 - Future progress streams must recheck this same durable session on each cycle;
   a one-time authorization is insufficient after operator revocation.
 - Keep stores, HTTP, token policy and operator CLI cohesive and under 500 lines.

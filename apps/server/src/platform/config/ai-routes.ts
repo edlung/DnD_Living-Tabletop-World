@@ -13,6 +13,7 @@ export const ROUTE_CAPABILITIES = [
   'npc-dialogue',
   'narrative',
   'fast-context',
+  'campaign-preparation',
 ] as const;
 export type RouteProvider = 'anthropic' | 'deepseek';
 export type RouteMode = 'runtime' | 'evaluation';
@@ -53,7 +54,11 @@ const remoteOf = (entry: string): RouteProvider | null =>
 function shapeAllowed(capability: string, entries: readonly string[], mode: RouteMode): boolean {
   const [first, second, ...rest] = entries;
   const remote = first !== undefined && remoteOf(first) !== null;
-  if (mode === 'evaluation' || capability === 'fast-context') {
+  if (
+    mode === 'evaluation' ||
+    capability === 'fast-context' ||
+    capability === 'campaign-preparation'
+  ) {
     return remote && second === undefined;
   }
   if (rest.length > 0) return false;
@@ -70,7 +75,9 @@ export function routeIssues(
   for (const [capability, entries] of Object.entries(routes)) {
     if (!shapeAllowed(capability, entries, mode)) {
       issues.push(
-        mode === 'evaluation' || capability === 'fast-context'
+        mode === 'evaluation' ||
+          capability === 'fast-context' ||
+          capability === 'campaign-preparation'
           ? `LTW_AI_ROUTES: ${capability} takes exactly one remote provider`
           : `LTW_AI_ROUTES: ${capability} takes local, or one remote provider then local`,
       );

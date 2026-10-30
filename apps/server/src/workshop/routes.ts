@@ -19,6 +19,7 @@ import { workshopCookie, workshopCookieValues } from './cookies.ts';
 import { authorizeWorkshop, workshopPrincipal, workshopSignedOut } from './access.ts';
 import { WORKSHOP_SESSION_MS, type WorkshopDependencies } from './service.ts';
 import { registerCampaignPackageRoutes } from './packages/routes.ts';
+import { registerCampaignGenerationRoutes } from './generation/routes.ts';
 
 const empty = z.object({}).strict();
 const params = z.object({ draftId: workshopIdSchema }).strict();
@@ -142,4 +143,6 @@ export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDepen
   });
 
   if (deps.packages) registerCampaignPackageRoutes(app, deps, deps.packages);
+  if (deps.generation)
+    registerCampaignGenerationRoutes(app, deps, deps.generation, deps.cancelGeneration);
 }

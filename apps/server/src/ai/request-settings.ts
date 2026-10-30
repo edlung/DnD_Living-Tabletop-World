@@ -28,4 +28,5 @@ export const ANTHROPIC_REQUEST_SETTINGS: Readonly<
   'npc-dialogue': Object.freeze({ effort: 'low', maxTokens: 4_096 }),
   reasoning: Object.freeze({ effort: 'medium', maxTokens: 8_192 }),
   narrative: Object.freeze({ effort: 'medium', maxTokens: 12_288 }),
+  'campaign-preparation': Object.freeze({ effort: 'medium', maxTokens: 32_768 }),
 });

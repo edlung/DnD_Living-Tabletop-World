@@ -11,6 +11,10 @@ import {
 import { VERIFIED_CATALOG, identityResolver } from './ai/catalog.ts';
 import { createAiGateway, type AiGateway } from './ai/gateway.ts';
 import { PostgresAiJournal } from './ai/journal.ts';
+import { createCampaignPreparationRuntime } from './ai/preparation-gateway.ts';
+import { PostgresCampaignGenerationRepository } from './workshop/generation/postgres-store.ts';
+import { CampaignGenerationWorker } from './workshop/generation/worker.ts';
+import { startCampaignGenerationLoop } from './workshop/generation/worker-loop.ts';
 import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
 import { composeAuthentication, startCredentialPruning } from './auth/composition.ts';
@@ -63,16 +67,31 @@ async function main(): Promise<void> {
   const tasks = new AccountingTasks((issue) => {
     logger.warn({ issue }, 'AI accounting needs operator attention');
   });
+  const budget = new PostgresBudgetStore(pool, identityResolver(VERIFIED_CATALOG));
+  const approvalStored =
+    config.ai.approvalId !== null && (await approvalExists(pool, config.ai.approvalId));
   const ai = createAiGateway(config.ai, {
     journal: new PostgresAiJournal(pool, (issue) => {
       tasks.report(issue);
     }),
-    budget: new PostgresBudgetStore(pool, identityResolver(VERIFIED_CATALOG)),
+    budget,
     catalog: VERIFIED_CATALOG,
-    approvalStored:
-      config.ai.approvalId !== null && (await approvalExists(pool, config.ai.approvalId)),
+    approvalStored,
     tasks,
   });
+  const generation = signIn
+    ? {
+        repository: new PostgresCampaignGenerationRepository(pool),
+        preparation: createCampaignPreparationRuntime(config.ai, {
+          pool,
+          budget,
+          catalog: VERIFIED_CATALOG,
+          approvalStored,
+          tasks,
+        }),
+      }
+    : null;
+  const generationWorker = generation ? new CampaignGenerationWorker(generation) : null;
   const authoring = {
     proposals: new PostgresProposalStore(pool, proposalLocks),
     ids: randomIds,
@@ -113,6 +132,14 @@ async function main(): Promise<void> {
           workshop: {
             store: new PostgresWorkshopStore(pool),
             packages: new PostgresCampaignRevisionRepository(pool),
+            ...(generation && generationWorker
+              ? {
+                  generation,
+                  cancelGeneration: (jobId: string) => {
+                    generationWorker.cancel(jobId);
+                  },
+                }
+              : {}),
             publicOrigin: signIn.publicOrigin,
             clock: signIn.clock,
             limits: signIn.limits,
@@ -138,6 +165,10 @@ async function main(): Promise<void> {
   // The first verdict is logged now; later probes log only changes.
   void readiness();
 
+  const stopGeneration =
+    generation && generationWorker
+      ? startCampaignGenerationLoop(generation.repository, generationWorker, logger)
+      : () => Promise.resolve();
   const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
   const stopAssets = startAssetWorkerLoop({
     engine,
@@ -154,7 +185,7 @@ async function main(): Promise<void> {
   const shutdown = (signal: NodeJS.Signals): void => {
     logger.info({ signal }, 'shutting down');
     stopPruning();
-    stopAssets()
+    Promise.all([stopAssets(), stopGeneration()])
       .then(() => app.close())
       // Settlement retries stop; any unsettled hold stays for the operator.
       .then(() => ai.accounting.shutdown())

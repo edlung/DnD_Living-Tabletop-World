@@ -196,3 +196,4 @@ export { memorySuggestions, type SuggestionScope } from './chronicle/suggestions
 export { flashbackFor } from './chronicle/flashback.ts';
 export { questFor, questLog } from './quest/projection.ts';
 export { buildCampaignPlan, type CampaignPlan } from './campaign/plan.ts';
+export { seedCampaignPackage, mergeCampaignGenerationStep } from './campaign/generation.ts';

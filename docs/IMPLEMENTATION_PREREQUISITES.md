@@ -5,8 +5,10 @@
 The owner authorized Stages 370–450 and unlimited monetary AI spending in the
 current project chat. This supersedes older finite spending requirements for this
 owner's authorized work; runtime admission changes belong to Stage 380. It does
-not waive checkpoint dispositions, protected architecture invariants, actual cost
-accounting, operational controls or existing human play acceptance obligations.
+not waive protected architecture invariants, actual cost accounting, operational
+controls or human play acceptance. The later owner continuation
+(`reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json`) delegates intermediate
+technical checkpoints while preserving their verification and evidence.
 
 The owner accepted the following detailed decisions with
 `reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json`. Their implementation and

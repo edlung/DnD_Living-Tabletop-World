@@ -8,6 +8,7 @@ import { StorageUnavailable, readCommitted, type Tx } from './pg-transaction.ts'
 import { readBucketSpend } from './spend.ts';
 import { stopDenies, type Resolve } from './stop-scope.ts';
 import type { AdmissionRequest, AdmissionResult, DenialCode, DenialDetail } from './types.ts';
+import { preparationSessionEligible } from './preparation-sessions.ts';
 
 /**
  * Budget admission (docs/STAGE_300_REMEDIATION_DESIGN.md §1). One READ COMMITTED transaction:
@@ -29,7 +30,12 @@ const denied = (code: DenialCode, detail: DenialDetail): AdmissionResult => ({
 });
 
 interface RequestRow {
-  campaign_id: string;
+  campaign_id: string | null;
+  actor_id: string;
+  subject_kind: string;
+  workshop_owner_id: string | null;
+  workshop_draft_id: string | null;
+  preparation_session_id: string | null;
   approval_id: string | null;
   session_class: SessionClass | null;
   session_id: string | null;
@@ -76,7 +82,8 @@ async function admitIn(
   await tx.policy('shared');
   const stored = (
     await tx.query<RequestRow>(
-      `SELECT campaign_id, approval_id, session_class, session_id, capability,
+      `SELECT campaign_id, actor_id, subject_kind,workshop_owner_id,workshop_draft_id,preparation_session_id,
+         approval_id, session_class, session_id, capability,
          to_char((clock_timestamp() AT TIME ZONE 'UTC')::date, 'YYYY-MM-DD') AS day
        FROM ltw_ai_requests WHERE request_id = $1`,
       [request.requestId],
@@ -87,12 +94,18 @@ async function admitIn(
   if (approvalId === null || sessionClass === null || sessionId === null) {
     return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   }
+  const preparation = sessionClass === 'preparation';
+  if (preparation !== (stored.capability === 'campaign-preparation'))
+    return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   const policy = (await tx.query<PolicyRow>(POLICY, [approvalId, sessionId, stored.campaign_id]))
     .rows[0];
   if (policy === undefined) return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   if (!policy.account_enabled) return denied('ADMISSION_DISABLED', 'ACCOUNT_DISABLED');
   if (!policy.approval_enabled) return denied('ADMISSION_DISABLED', 'APPROVAL_DISABLED');
-  if (!policy.campaign_ids.includes(stored.campaign_id)) {
+  if (
+    !preparation &&
+    (stored.campaign_id === null || !policy.campaign_ids.includes(stored.campaign_id))
+  ) {
     return denied('ADMISSION_DISABLED', 'CAMPAIGN_NOT_BOUND');
   }
   if (sessionClass === 'evaluation' && !policy.run_registered) {
@@ -103,6 +116,26 @@ async function admitIn(
     accountId: policy.account_id,
   });
   const unlimited = monetaryPolicy?.mode === 'UNLIMITED';
+  if (preparation) {
+    if (
+      !unlimited ||
+      stored.campaign_id !== null ||
+      stored.subject_kind !== 'workshop' ||
+      stored.workshop_owner_id === null ||
+      stored.workshop_draft_id === null ||
+      stored.preparation_session_id !== sessionId ||
+      stored.actor_id !== stored.workshop_owner_id ||
+      !(await preparationSessionEligible(
+        tx,
+        sessionId,
+        stored.workshop_owner_id,
+        stored.workshop_draft_id,
+        approvalId,
+      ))
+    ) {
+      return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
+    }
+  }
   const ceilings = {
     globalDay: BigInt(policy.global_day),
     campaignDay: BigInt(policy.campaign_day),
@@ -118,6 +151,8 @@ async function admitIn(
     accountId: policy.account_id,
     approvalId,
     campaignId: stored.campaign_id,
+    ...(stored.workshop_owner_id ? { workshopOwnerId: stored.workshop_owner_id } : {}),
+    ...(stored.workshop_draft_id ? { workshopDraftId: stored.workshop_draft_id } : {}),
     sessionClass,
     sessionId,
     day: stored.day,
@@ -148,8 +183,9 @@ async function admitIn(
   await tx.query(
     `INSERT INTO ltw_ai_attempts (attempt_id, request_id, account_id, approval_id, campaign_id,
        session_class, session_id, billing_day, capability, attempt_kind, provider, model,
-       pricing_version, reserved_micros, monetary_policy_revision)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8::date, $9, $10, $11, $12, $13, $14::bigint, $15)`,
+       pricing_version, reserved_micros, monetary_policy_revision,
+       subject_kind,workshop_owner_id,workshop_draft_id,preparation_session_id)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8::date, $9, $10, $11, $12, $13, $14::bigint, $15,$16,$17,$18,$19)`,
     [
       request.attemptId,
       request.requestId,
@@ -166,6 +202,10 @@ async function admitIn(
       request.pricingVersion,
       request.reserveMicros.toString(),
       monetaryPolicy?.revision ?? null,
+      stored.subject_kind,
+      stored.workshop_owner_id,
+      stored.workshop_draft_id,
+      stored.preparation_session_id,
     ],
   );
   return {

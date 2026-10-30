@@ -6,6 +6,7 @@ import type { RequestLimits } from '../auth/limits.ts';
 import type { AuthClock } from '../auth/session-authenticator.ts';
 import { hashToken, newToken } from '../auth/tokens.ts';
 import type { WorkshopStore } from './store.ts';
+import type { CampaignGenerationDependencies } from './generation/runtime.ts';
 import type { CampaignRevisionRepository } from './packages/store.ts';
 
 export interface WorkshopDependencies {
@@ -14,6 +15,8 @@ export interface WorkshopDependencies {
   readonly clock: AuthClock;
   readonly limits: RequestLimits;
   readonly packages?: CampaignRevisionRepository;
+  readonly generation?: CampaignGenerationDependencies;
+  readonly cancelGeneration?: (jobId: string) => void;
 }
 export const WORKSHOP_SESSION_MS = SESSION_DAYS * 24 * 60 * 60_000;
 

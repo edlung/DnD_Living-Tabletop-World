@@ -83,6 +83,7 @@ const DEFAULT_ROUTE: Readonly<Record<(typeof ROUTE_CAPABILITIES)[number], readon
   'npc-dialogue': ['local'],
   narrative: ['local'],
   'fast-context': [],
+  'campaign-preparation': [],
 };
 
 const MAX_TOKENS = 4_096;
@@ -112,7 +113,10 @@ export function createAiGateway(config: AppConfig['ai'], options: AiGatewayOptio
       return createAnthropicProvider({
         ...common,
         apiKey: () => apiKey.reveal(),
-        timeoutMs,
+        timeoutMs:
+          capability === 'campaign-preparation'
+            ? (config.preparationTimeoutMs ?? timeoutMs)
+            : timeoutMs,
         effort: settings.effort,
         maxTokens: Math.min(settings.maxTokens, entry.limits.maxOutputTokens),
         ...(entry.cache === '5m' ? { cache: '5m' as const } : {}),
@@ -123,7 +127,10 @@ export function createAiGateway(config: AppConfig['ai'], options: AiGatewayOptio
       return createDeepSeekProvider({
         ...common,
         apiKey: () => apiKey.reveal(),
-        timeoutMs,
+        timeoutMs:
+          capability === 'campaign-preparation'
+            ? (config.preparationTimeoutMs ?? timeoutMs)
+            : timeoutMs,
         thinking: 'disabled',
       });
     }

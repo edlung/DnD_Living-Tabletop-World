@@ -6,6 +6,7 @@
  * perspective-scoped knowledge views. Contracts carry no domain
  * behavior and depend on no other workspace package.
  */
+export type { WorkshopAiSubject, CampaignPreparationTraceView } from './ai-gateway/preparation.ts';
 export {
   WORKSHOP_COOKIE,
   workshopIdSchema,
@@ -460,3 +461,21 @@ export type {
   EntityAssetsResponse,
   PlayerAssetView,
 } from './assets/views.ts';
+export {
+  CAMPAIGN_GENERATION_STATUSES,
+  enqueueCampaignGenerationSchema,
+  retryCampaignGenerationSchema,
+  type CampaignGenerationStatus,
+  type CampaignGenerationJob,
+  type CampaignGenerationStep,
+  type CampaignGenerationCandidate,
+  type CampaignGenerationView,
+  type CampaignGenerationAvailability,
+} from './campaign/generation-jobs.ts';
+export {
+  CAMPAIGN_GENERATION_STAGES,
+  campaignGenerationStageSchema,
+  campaignGenerationOutputSchemas,
+  type CampaignGenerationStage,
+  type CampaignGenerationOutputByStage,
+} from './campaign/generation.ts';

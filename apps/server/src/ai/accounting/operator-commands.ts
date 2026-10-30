@@ -14,6 +14,7 @@ import { identityResolver, VERIFIED_CATALOG } from '../catalog.ts';
 import { recoverIncomplete } from './recovery.ts';
 import { spendReport } from './spend-report.ts';
 import { explainStops } from './stop-diagnostics.ts';
+import { grantPreparationApproval } from './preparation-sessions.ts';
 
 /**
  * `pnpm ai:operator <command> …` (docs/adr/0032-live-ai.md, amendment 2026-10-11): the only
@@ -36,6 +37,8 @@ export async function runOperatorCommand(
 ): Promise<unknown> {
   const operator = new OperatorStore(pool);
   switch (command.kind) {
+    case 'preparation-grant':
+      return { preparationGrantRevision: await grantPreparationApproval(pool, command) };
     case 'monetary-policy-set':
       return {
         monetaryPolicyRevision: await setMonetaryPolicy(pool, {

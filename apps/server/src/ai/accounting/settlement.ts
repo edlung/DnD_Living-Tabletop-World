@@ -40,14 +40,16 @@ async function lockAttempt(tx: Tx, attemptId: string): Promise<StoredAttempt | n
     await tx.query<{
       account_id: string;
       approval_id: string;
-      campaign_id: string;
-      session_class: 'play' | 'evaluation';
+      campaign_id: string | null;
+      workshop_owner_id: string | null;
+      workshop_draft_id: string | null;
+      session_class: 'play' | 'evaluation' | 'preparation';
       session_id: string;
       day: string;
       provider: string;
       model: string;
     }>(
-      `SELECT account_id, approval_id, campaign_id, session_class, session_id,
+      `SELECT account_id, approval_id, campaign_id, workshop_owner_id, workshop_draft_id, session_class, session_id,
          to_char(billing_day, 'YYYY-MM-DD') AS day, provider, model
        FROM ltw_ai_attempts WHERE attempt_id = $1`,
       [attemptId],
@@ -59,6 +61,8 @@ async function lockAttempt(tx: Tx, attemptId: string): Promise<StoredAttempt | n
     accountId: row.account_id,
     approvalId: row.approval_id,
     campaignId: row.campaign_id,
+    ...(row.workshop_owner_id ? { workshopOwnerId: row.workshop_owner_id } : {}),
+    ...(row.workshop_draft_id ? { workshopDraftId: row.workshop_draft_id } : {}),
     sessionClass: row.session_class,
     sessionId: row.session_id,
     day: row.day,

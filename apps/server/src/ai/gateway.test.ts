@@ -136,6 +136,7 @@ describe('createAiGateway at checkpoint B2', () => {
       { capability: 'npc-dialogue', providers: ['local'], refused: [] },
       { capability: 'narrative', providers: ['local'], refused: [] },
       { capability: 'fast-context', providers: [], refused: [] },
+      { capability: 'campaign-preparation', providers: [], refused: [] },
     ]);
   });
 
@@ -176,9 +177,12 @@ describe('createAiGateway at checkpoint B2', () => {
       const fetchSpy = vi.spyOn(globalThis, 'fetch');
       const { ai, secret } = keyed(approvalId, entry);
       const served = await serveAll(options, ai);
-      expect(served.gateway.routes.map((route) => route.refused)).toEqual(
-        ['reasoning', 'npc-dialogue', 'narrative', 'fast-context'].map(() => [{ entry, reason }]),
-      );
+      expect(served.gateway.routes.map((route) => route.refused)).toEqual([
+        ...['reasoning', 'npc-dialogue', 'narrative', 'fast-context'].map(() => [
+          { entry, reason },
+        ]),
+        [],
+      ]);
       expect(served.intent.status).toBe('PROPOSED');
       expect(served.reply.reply?.status).toBe('REPLIED');
       expect(served.ranked.ranking).toMatchObject({
@@ -208,6 +212,7 @@ describe('createAiGateway at checkpoint B2', () => {
       [SONNET, 'local'],
       [SONNET, 'local'],
       [SONNET],
+      [],
     ]);
     expect(served.intent.status).toBe('PROPOSED');
     const trace = await served.journal.get('ravenford', served.intent.traceId ?? '');

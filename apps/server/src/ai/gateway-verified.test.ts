@@ -169,6 +169,7 @@ describe('the documented runtime routes (.env.example, owner decisions 6)', () =
       { capability: 'npc-dialogue', providers: [SONNET, 'local'], refused: [] },
       { capability: 'narrative', providers: [SONNET, 'local'], refused: [] },
       { capability: 'fast-context', providers: [], refused: [] },
+      { capability: 'campaign-preparation', providers: [], refused: [] },
     ]);
     expect(secret.reveals).toBe(0);
   });
@@ -196,9 +197,10 @@ describe('the verified Sonnet 5.5 route', () => {
       const { ai, secret } = config(keys);
       const fake = fakeFetch(() => jsonResponse(SONNET_REPLY));
       const served = await serveAll(ai, { ...options, fetch: fake.fetchImpl }, 'open');
-      expect(served.gateway.routes.map((route) => route.refused)).toEqual(
-        Object.keys(ROUTES).map(() => [{ entry: SONNET, reason }]),
-      );
+      expect(served.gateway.routes.map((route) => route.refused)).toEqual([
+        ...Object.keys(ROUTES).map(() => [{ entry: SONNET, reason }]),
+        [],
+      ]);
       expect(served.intent.status).toBe('PROPOSED');
       expect(served.reply.reply?.status).toBe('REPLIED');
       expect(served.ranked.ranking).toMatchObject({ source: 'deterministic' });
@@ -224,6 +226,7 @@ describe('the verified Sonnet 5.5 route', () => {
       [SONNET, 'local'],
       [SONNET, 'local'],
       [SONNET],
+      [],
     ]);
     expect(served.intent.status).toBe('PROPOSED');
     const trace = await served.journal.get('ravenford', served.intent.traceId ?? '');
