@@ -2,6 +2,32 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Current request — AI campaigns, 2026-10-30
+
+- In the current project chat the owner requested AI-generated campaigns with
+  scenario and visual preview, approved implementation of the proposed Stages
+  370–450 («выполняй реализацию всех этапов»), and removed monetary AI limits
+  («Бюджет пока неограничен»). This monetary policy supersedes the older finite
+  text/image spending requirements below for this owner's authorized work.
+- The implementation must represent unlimited spending explicitly and retain
+  actual/unknown cost accounting, provider allowlists, authentication, cancellation,
+  timeouts and bounded retries. Existing runtime ceilings have **not yet changed**;
+  that implementation belongs to Stage 380. No credential or provider/model change
+  is authorized by the monetary-policy correction alone.
+- Current work order: `work-orders/STAGE_370.md`. Detailed contract:
+  `docs/STAGE_370_DESIGN.md`; ADR 0038 is proposed. The owner's program instruction
+  is not recorded as approval of technical choices the session wrote afterward.
+- At the Stage 370 checkpoint, write the report/handoff and stop for owner
+  disposition under `AGENT_WORKFLOW.md`. Later stages retain their authorization
+  but wait for prerequisite checkpoint dispositions and their scoped work orders.
+- Stage 370 is now `CHECKPOINT_READY / AWAITING_OWNER_DISPOSITION`:
+  `reports/STAGE_370_COMPLETION.md`, `handoffs/STAGE_370_REQUEST.md`. Full offline
+  `pnpm validate` passed (2,985 unit, 237 integration, 132 browser tests).
+  The checkpoint adds documentation only; Stages 380–450 remain future work.
+- One session, one selected model remains the policy. No assigned orchestrator,
+  separate reviewer/model gate, deployment, publishing or v0.1 tag is introduced.
+  Existing human acceptance deferrals and Stage 360 obligations remain recorded.
+
 ## Current owner policy — 2026-10-15 (supersedes all older assignments)
 
 - One session, one model: the model selected in the session plans, implements, verifies and reports.

@@ -1,5 +1,9 @@
 # Living Tabletop World --- Execution Plan v0.3
 
+> Current workflow: `docs/PROJECT_WORKFLOW.md` and `AGENT_WORKFLOW.md` supersede
+> the historical model/role assignments below. The owner's 2026-10-30 AI-campaign
+> request adds Stages 370–450; detailed design/checkpoint status is tracked there.
+
 ## Purpose
 
 Turn the Ravenford vertical-slice specification into a gated engineering
@@ -336,7 +340,95 @@ remediate within bounds, and then complete the release that Stage 250
 prepared. An AI stand-in pass may precede the sessions as a filter; it is
 never acceptance.
 
-## Responsibility Split
+## AI Campaign Program — Stages 370–450 (requested 2026-10-30)
+
+The owner authorized implementation of this program in the project chat and
+specified an unlimited monetary AI budget for text and images. Costs remain
+observable; operational timeouts, cancellation and bounded retries remain.
+Detailed contract: `docs/STAGE_370_DESIGN.md`; proposed architecture ADR 0038.
+Current scope: `work-orders/STAGE_370.md`. Formal checkpoints still stop for
+the owner's disposition. This program does not complete Stage 360's human
+playtests or authorize a deployment, publication or release tag.
+
+### Stage 370 — Campaign Contract
+
+Define the package, ownership before a campaign exists, generation/recovery,
+scenario and visual preview, selective editing and confirmed startup. Provide
+a concrete non-Ravenford example and assign verification to every later surface.
+
+**Checkpoint:** owner disposition of the detailed contract and proposed ADR.
+
+### Stage 380 — Workshop Access and Unlimited Monetary Policy
+
+Introduce separately authorized workshop identity/invitations and private draft
+ownership. Implement explicit unlimited monetary authorization for owner-approved
+text/image work while retaining accounting, credential isolation and operational
+controls. Preserve finite historical records.
+
+**Checkpoint:** cross-owner/campaign/session refusal and revocation coverage;
+former monetary ceilings cannot stop unlimited-mode admission; cost evidence
+and unknown-charge recovery remain correct.
+
+### Stage 390 — Campaign Package and Compiler
+
+Implement strict schemas, immutable revisions, stable IDs and a compiler using
+supported World Engine decisions. Add campaign-specific scenario/quest content.
+Keep current facts, scoped knowledge and future narrative plans distinct.
+
+**Checkpoint:** a different campaign compiles without Ravenford data; invalid
+references/mechanics/knowledge fail; no live mutation occurs.
+
+### Stage 400 — Durable AI Generation
+
+Add campaign preparation as a real capability/session. Persist the concept,
+topology, cast, knowledge, encounters, first-session plan and later outline in
+resumable jobs with cancellation, worker fencing and stale-output handling.
+
+**Checkpoint:** offline fault/restart/race coverage and recorded live generation
+quality; provider success alone never proves a playable campaign.
+
+### Stage 410 — Scenario Preview
+
+Provide the owner's linked opening, cast/motivations, truths, rumors, secrets,
+clues, possible developments and session notes. Surface findings and dependencies.
+
+**Checkpoint:** understandable owner journey in Russian/English; every player,
+outsider and unrelated owner is refused access to private scenario content.
+
+### Stage 420 — Visual Preview
+
+Add draft-scoped image generation/choice and isolated materialization in the
+existing scene/battlefield interface, with owner and selected-character views.
+
+**Checkpoint:** same-revision scenery and selected bytes; no forbidden names,
+metadata or images in player preview; live history remains untouched.
+
+### Stage 430 — Selective Revision
+
+Manual/AI edits, locks, dependency-aware comparison, image staleness and restoring
+old content as a new revision. Late jobs cannot overwrite newer choices.
+
+**Checkpoint:** targeted changes preserve locked/unaffected entities and images;
+conflicts are explained and old confirmation becomes invalid.
+
+### Stage 440 — Confirmed Campaign Startup
+
+Implement the dedicated atomic World Engine bootstrap, idempotent provisioning,
+exact image adoption, owned-campaign list and normal campaign entry/invitations.
+Backups/replay include generated scenario, quests, identities and picture lineage.
+
+**Checkpoint:** reviewed revision/hash equals initial play; crash/retry produces
+one campaign and exposes no partial world; Ravenford still works independently.
+
+### Stage 450 — Integrated Acceptance
+
+Exercise investigation, social and combat campaigns through generation, both
+previews, revision, startup and actual play. Run the adversarial accounting,
+credential, knowledge, provider-context and race pass; obtain owner play acceptance.
+
+**Checkpoint:** full verification evidence plus the owner's human disposition.
+
+## Responsibility Split (historical)
 
 -   Product authority: project owner + Product Blueprint.
 -   Primary backend builder: Claude Opus 5.5.

@@ -1,5 +1,30 @@
 # Implementation Prerequisites
 
+## AI campaign program — current request, 2026-10-30
+
+The owner authorized Stages 370–450 and unlimited monetary AI spending in the
+current project chat. This supersedes older finite spending requirements for this
+owner's authorized work; runtime admission changes belong to Stage 380. It does
+not waive checkpoint dispositions, protected architecture invariants, actual cost
+accounting, operational controls or existing human play acceptance obligations.
+
+Current detailed decisions await the Stage 370 handoff disposition:
+
+| Decision | Proposed contract | Must be settled before |
+|---|---|---|
+| Q12 — workshop authority | Separate operator-invited owner identity; campaign membership does not imply workshop authority | 380 identity implementation |
+| Q13 — unlimited admission and preparation | Explicit stored unlimited monetary policy for authorized text/image calls; real preparation session; historic accounting preserved | 380 policy implementation; 400 preparation dispatch |
+| Q14 — campaign content and quests | Immutable versioned package; truth/knowledge/plans separated; definitions per campaign, progress derived | 390 schemas/compiler |
+| Q15 — preview | Scoped server materialization, read-only navigation; draft picture selection and staleness; optional explicit text-only startup | 410 scenario; 420 visual preview |
+| Q16 — selective revision | Locks, dependency-aware diffs, compare-and-swap and restore-as-new-revision | 430 revisions |
+| Q17 — initial authoring authority | Dedicated confirmed atomic bootstrap, closed provisioning, exact picture adoption; no bulk undo after play | 440 startup |
+| Q18 — first acceptance specimen | Fully prepared first session plus connected later outline; investigation, social and combat specimens; owner human acceptance | 400 generation evaluation; 450 acceptance |
+
+Details: `docs/STAGE_370_DESIGN.md`, proposed ADR 0038 and the concrete example at
+`docs/design/campaign-generation/EXAMPLE.md`. Existing owner approvals authorize
+the program and its monetary policy; these newly proposed technical choices have
+not been self-approved by the session.
+
 These are scheduled decision/check obligations, not approved ADRs. They do not block repository-only Stage 0. The authorized stage prepares its required decision before dependent implementation; request owner approval where product semantics or invariants are affected. Do not start future stages to resolve their decisions early.
 
 ## Temporal and undo contracts — Stage 10, extended at Stages 90/110

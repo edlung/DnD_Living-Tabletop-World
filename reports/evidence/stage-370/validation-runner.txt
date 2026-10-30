@@ -1,0 +1,39 @@
+import { openSync, closeSync } from 'node:fs';
+import { spawn } from 'node:child_process';
+import { createThrowawayDatabase } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/testing/throwaway-database.ts';
+
+const projectRoot = '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2';
+const taskLogPath = '/private/tmp/ltw-stage370-validate.log';
+Object.assign(process.env, {
+  NODE_ENV: 'test',
+  DATABASE_URL: 'postgres://ltw:ltw_dev_password@127.0.0.1:54329/ltw',
+  ANTHROPIC_API_KEY: '',
+  DEEPSEEK_API_KEY: '',
+  OPENROUTER_API_KEY: '',
+  LTW_AI_APPROVAL_ID: '',
+  LTW_AI_ROUTES: 'reasoning=local;npc-dialogue=local;narrative=local',
+  LTW_IMAGE_GENERATOR: 'placeholder',
+  AUTH_MODE: 'dev-personas',
+  PUBLIC_ORIGIN: '',
+  HTTP_HOST: '127.0.0.1',
+});
+const database = await createThrowawayDatabase();
+const output = openSync(taskLogPath, 'w');
+let result = 1;
+try {
+  console.log('Running pnpm validate in an isolated throwaway database with local providers.');
+  result = await new Promise((resolve, reject) => {
+    const child = spawn('pnpm', ['validate'], {
+      cwd: projectRoot,
+      env: { ...process.env, DATABASE_URL: database.url },
+      stdio: ['ignore', output, output],
+    });
+    child.once('error', reject);
+    child.once('exit', (code) => resolve(code ?? 1));
+  });
+} finally {
+  closeSync(output);
+  await database.drop();
+  console.log(`Validation exit=${result}; log=${taskLogPath}; throwaway database dropped.`);
+}
+process.exitCode = result;
