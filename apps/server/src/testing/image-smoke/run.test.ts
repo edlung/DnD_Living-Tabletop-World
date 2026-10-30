@@ -186,6 +186,27 @@ describe('the image smoke', () => {
     expect(text).toContain('spending   $0.041200 during the smoke');
   });
 
+  it('allows explicit unlimited image policy with no finite ceiling and still checks its charge', async () => {
+    const sink: { harness?: SmokeHarness } = {};
+    const harness = await smokeHarness({ generator: await paidGenerator(sink) });
+    sink.harness = harness;
+    harness.budget = {
+      ...CEILING,
+      ceilingMicros: null,
+      remainingMicros: null,
+      monetaryPolicy: {
+        revision: 1,
+        mode: 'UNLIMITED',
+        ownerId: 'owner',
+        authorizedOn: '2026-10-30',
+        authorizationSource: 'chat:380',
+      },
+    };
+    expect(await runImageSmoke(harness.context(PAID))).toBe(EXIT.passed);
+    expect(output(harness)).toContain('unlimited');
+    expect(output(harness)).toContain('spending   $0.041200 during the smoke');
+  });
+
   it('fails a paid run whose job left no ledger record, and approves nothing', async () => {
     const harness = await smokeHarness({ generator: await paidGenerator({}) });
     harness.budget = CEILING;

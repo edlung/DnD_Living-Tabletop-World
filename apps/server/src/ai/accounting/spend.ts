@@ -94,8 +94,9 @@ export type StopReason = 'OVERRUN' | 'DISCREPANCY' | 'UNEXPECTED_MODEL' | 'UNVER
 export function stopForCharge(
   charge: bigint,
   prior: { reserved: bigint; effective: bigint; terminal: boolean },
+  unlimitedMonetary = false,
 ): StopReason | null {
-  if (charge > prior.reserved) return 'OVERRUN';
+  if (!unlimitedMonetary && charge > prior.reserved) return 'OVERRUN';
   if (prior.terminal && charge > prior.effective) return 'DISCREPANCY';
   return null;
 }

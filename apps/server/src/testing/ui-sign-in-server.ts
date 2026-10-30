@@ -14,6 +14,8 @@ import {
 } from './ravenford-app.ts';
 import { seedDmInvitations, seedSignInCampaigns } from './ui-sign-in-campaigns.ts';
 import { SIGN_IN_ORIGIN, SIGN_IN_PORTS, signInSeed } from './ui-sign-in-links.ts';
+import { WORKSHOP_FIXTURES, workshopOwnerId } from './ui-workshop-links.ts';
+import { seedWorkshopAccess } from './ui-workshop-fixtures.ts';
 
 /**
  * Browser-test composition in invitation mode (docs/adr/0036-production-sign-in.md;
@@ -43,6 +45,7 @@ const signIn: SignInDependencies = {
   ),
   evidence: evidenceHasher(),
 };
+const workshop = await seedWorkshopAccess(credentials, engine, seed);
 const { app } = buildLiveApp({
   ai: testAiGateway(),
   authoring: testAuthoring(),
@@ -53,7 +56,20 @@ const { app } = buildLiveApp({
   authenticator: sessionAuthenticator(credentials, systemAuthClock),
   logger: createLogger({ service: 'ui-sign-in-test', level: 'silent' }),
   signIn,
+  workshop,
   trustedProxies: [],
+});
+
+// Test-process-only operator revocation trigger; never imported by production composition.
+app.post<{ Params: { name: string } }>('/testing/workshop-revoke/:name', async (request, reply) => {
+  const name = WORKSHOP_FIXTURES.find((candidate) => candidate === request.params.name);
+  if (!name) return reply.code(404).send({});
+  await workshop.store.revokeOwner(
+    workshopOwnerId(seed, name),
+    new Date().toISOString(),
+    'browser-test:revocation',
+  );
+  return reply.send({ revoked: true });
 });
 
 await app.listen({ host: '127.0.0.1', port: SIGN_IN_PORTS.api });

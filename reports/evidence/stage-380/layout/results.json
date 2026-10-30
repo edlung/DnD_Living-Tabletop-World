@@ -1,0 +1,146 @@
+[
+  {
+    "state": "invitation",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x4, 14.4px x2"
+      }
+    ]
+  },
+  {
+    "state": "invitation",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x4, 14.4px x2"
+      }
+    ]
+  },
+  {
+    "state": "invitation",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x4, 14.4px x2"
+      }
+    ]
+  },
+  {
+    "state": "invitation",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x4, 14.4px x2"
+      }
+    ]
+  },
+  {
+    "state": "drafts",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x12, 14.4px x6, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "drafts",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x12, 14.4px x6, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "drafts",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x12, 14.4px x6, 11.2px x4, 6px x2"
+      }
+    ]
+  },
+  {
+    "state": "drafts",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x12, 14.4px x6, 11.2px x4, 6px x2"
+      }
+    ]
+  },
+  {
+    "state": "sign-out",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x20, 14.4px x10, 11.2px x4, 20.8px x2, 19.2px x1, 17.6px x1"
+      }
+    ]
+  },
+  {
+    "state": "sign-out",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x20, 14.4px x10, 11.2px x4, 20.8px x2, 19.2px x1, 17.6px x1"
+      }
+    ]
+  },
+  {
+    "state": "sign-out",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x20, 14.4px x10, 11.2px x4, 6px x2, 20.8px x2, 19.2px x1, 17.6px x1"
+      }
+    ]
+  },
+  {
+    "state": "sign-out",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x20, 14.4px x10, 11.2px x4, 6px x2, 20.8px x2, 19.2px x1, 17.6px x1"
+      }
+    ]
+  }
+]

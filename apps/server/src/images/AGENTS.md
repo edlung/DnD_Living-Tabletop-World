@@ -1,5 +1,13 @@
 # Images (`src/images/`)
 
+Stage 380 / ADR 0038 (accepted 2026-10-30): an explicit stored `UNLIMITED` image
+monetary policy supersedes numeric ceilings while retaining all reservations,
+actual/unknown costs and settlements. `pnpm ai:operator monetary-policy-set --scope
+images --mode unlimited --owner … --authorized-on … --authorization-source …`
+records it in migration 0014; `--mode finite` explicitly restores the historical
+numeric ceiling. No env switch or magic amount means unlimited. Text-account
+policies are separate. Shared policy lock precedes the image ledger lock.
+
 Image generators behind the port of `@ltw/ai` (`packages/ai/src/images.ts`), their spending and
 the curated Ravenford set. Authority: `docs/adr/0035-images.md` and `docs/STAGE_330_DESIGN.md`
 (Stage 330), ADR 0022 (lineage, approval, visibility, worker), ADR 0034 (art direction). The asset
@@ -15,6 +23,7 @@ worker and content stores stay in `src/assets/`. Gate 06 reviews these surfaces
 | Curated style references, downscaled once at startup                                | `style-references.ts`                           |
 | Re-encoding to WebP ≤ 1,536 px and ≤ 1.5 MB; figure to alpha, battle map to 4:3     | `reencode.ts`                                   |
 | Image ledger: ceiling revisions, reservations, settlements, operator status         | `ledger.ts` (migration `0011_image_budget.sql`) |
+| Image ledger lock shared with monetary-policy operator                              | `ledger-lock.ts`                                |
 | Orphaned reservations: listing, the operator's settlement, one request's charges    | `ledger-operator.ts` (migration `0012_…`)       |
 | The curated set: manifest schema, hash check, `curated` generator                   | `curated-set.ts`                                |
 | Importing the curated set through real commands, idempotently                       | `curated-import.ts`                             |
@@ -29,8 +38,8 @@ Configuration (`src/platform/config/config.ts`, `.env.example`):
   (`.env.local`), held as a `Secret`, revealed only for the request header.
 - `LTW_ASSET_TIMEOUT_MS`: one generation's bound; 180 s by default with `openrouter-openai`.
 - The ceiling is never configuration: `pnpm ai:operator image-budget-set --micros <n> --owner …
---authorized-on … --authorization-source …` (zero stops all calls); `pnpm ai:operator status`
-  shows the counters (`images`). Without a stored ceiling every in-play call is denied.
+--authorized-on … --authorization-source …` (zero stops calls in FINITE mode); `pnpm ai:operator status`
+  shows the counters (`images`). Without a stored ceiling or explicit unlimited policy every in-play call is denied.
 - Orphaned reservations (a job that stopped between its reservation and its settlement; the
   restarted worker runs the job again under a new reservation): `pnpm ai:operator
 image-reservations --older-than-minutes <n>` lists the unsettled ones (read-only);

@@ -7,6 +7,17 @@
  * behavior and depend on no other workspace package.
  */
 export {
+  WORKSHOP_COOKIE,
+  workshopIdSchema,
+  workshopRedeemSchema,
+  workshopDraftQuerySchema,
+  createWorkshopDraftSchema,
+  type CreateWorkshopDraft,
+  type WorkshopSessionView,
+  type WorkshopDraftView,
+  type WorkshopDraftList,
+} from './workshop/access.ts';
+export {
   OBJECT_ID_PATTERN,
   actorIdSchema,
   campaignIdSchema,

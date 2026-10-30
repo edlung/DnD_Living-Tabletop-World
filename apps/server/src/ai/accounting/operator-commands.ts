@@ -7,6 +7,7 @@ import {
   settleOrphanedReservation,
 } from '../../images/ledger-operator.ts';
 import type { OperatorCommand } from './operator-args.ts';
+import { monetaryPolicyStatus, setMonetaryPolicy } from './monetary-policy.ts';
 import { OperatorStore } from './operator-store.ts';
 import { accountingStatus } from './postgres-budget-store.ts';
 import { identityResolver, VERIFIED_CATALOG } from '../catalog.ts';
@@ -35,6 +36,16 @@ export async function runOperatorCommand(
 ): Promise<unknown> {
   const operator = new OperatorStore(pool);
   switch (command.kind) {
+    case 'monetary-policy-set':
+      return {
+        monetaryPolicyRevision: await setMonetaryPolicy(pool, {
+          ...command.target,
+          mode: command.mode,
+          authorization: command.authorization,
+        }),
+      };
+    case 'monetary-policy-status':
+      return { monetaryPolicy: await monetaryPolicyStatus(pool, command.target) };
     case 'account-create':
       await operator.createAccount(command);
       return { created: command.accountId };

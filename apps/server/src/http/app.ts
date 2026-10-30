@@ -6,6 +6,8 @@ import type { WorldEngine } from '@ltw/domain';
 import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } from 'fastify';
 
 import type { AssetContentStore } from '../assets/content-store.ts';
+import { registerWorkshopRoutes } from '../workshop/routes.ts';
+import type { WorkshopDependencies } from '../workshop/service.ts';
 import { registerAuthRoutes } from '../auth/auth-routes.ts';
 import { registerMemberRoutes } from '../auth/member-routes.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
@@ -42,6 +44,8 @@ import { SECURITY_HEADERS, registerOriginCheck } from './security.ts';
  * responses are never cacheable, and errors never reveal internals.
  */
 export interface AppDependencies {
+  /** Independent workshop identity; its cookie never authenticates campaign requests. */
+  readonly workshop?: WorkshopDependencies;
   readonly engine: WorldEngine;
   readonly authenticator: Authenticator;
   readonly logger: Logger;
@@ -102,7 +106,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   app.addHook('onSend', async (request, reply) => {
     reply.header('x-request-id', request.id);
     reply.header('cache-control', 'no-store');
-    reply.header('vary', vary);
+    reply.header('vary', request.routeOptions.url?.startsWith('/workshop/') ? 'Cookie' : vary);
     for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
       // A route's own stricter policy (asset content) stays.
       if (!reply.hasHeader(name)) reply.header(name, value);
@@ -147,5 +151,6 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     registerAuthRoutes(app, signIn);
     registerMemberRoutes(app, signIn);
   }
+  if (deps.workshop) registerWorkshopRoutes(app, deps.workshop);
   return app;
 }

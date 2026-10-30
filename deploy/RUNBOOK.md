@@ -449,7 +449,8 @@ integer microdollars as strings). RU: две строки JSON. `status` — с�
 действующие остановки, незавершённые запросы, отключённые счета и одобрения, и `images`. `spend` —
 по каждому счёту ИИ траты за сегодня (UTC-день базы) и всего, открытые удержания, потолок и
 переключатель; по каждому одобрению траты против потолка этапа; и `images` — журнал картин:
-`ceilingMicros` (null — потолка нет, вызовов нет), `spentMicros` (списанное как списано, открытые
+`ceilingMicros` (null — численного потолка нет; при `monetaryPolicy.mode = UNLIMITED` расходы
+разрешены без денежного лимита, иначе без сохранённого потолка вызовы запрещены), `spentMicros` (списанное как списано, открытые
 резервы целиком), `heldMicros` (открытые резервы), `remainingMicros` (что потолок ещё допускает,
 не меньше нуля), `charges`, `unsettled` и `unsettledReservations` — каждый открытый резерв с
 кампанией, моделью, суммой и возрастом (`ageMinutes`; старше `settleableAfterMinutes` — брошенный,
@@ -457,7 +458,8 @@ integer microdollars as strings). RU: две строки JSON. `status` — с�
 requests, disabled accounts and approvals, and `images`. `spend` gives each AI billing account's
 spend today (the database's UTC day) and in total, its open holds, ceiling and switch; each
 approval's spend against its stage ceiling; and `images`, the picture ledger: `ceilingMicros`
-(null: no ceiling, no call), `spentMicros` (settled charges as settled, open reservations whole),
+(null: no numeric ceiling; `monetaryPolicy.mode = UNLIMITED` explicitly permits uncapped
+monetary spending, otherwise a missing stored ceiling refuses calls), `spentMicros` (settled charges as settled, open reservations whole),
 `heldMicros` (open reservations), `remainingMicros` (what the ceiling still admits, never below
 zero), `charges`, `unsettled` and `unsettledReservations`, each open reservation with its campaign,
 model, amount and age (`ageMinutes`; older than `settleableAfterMinutes` is orphaned, section 8).

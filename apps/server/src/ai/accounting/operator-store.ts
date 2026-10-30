@@ -4,6 +4,7 @@ import type pg from 'pg';
 
 import { fixedStep } from './deadline.ts';
 import { MAX_MICROS } from './money.ts';
+import { unlimitedText } from './monetary-policy.ts';
 import { readCommitted, type Tx } from './pg-transaction.ts';
 import { appendStop, readAttemptCharge, stopForCharge } from './spend.ts';
 import { AccountingRejection, type Authorization } from './types.ts';
@@ -388,7 +389,17 @@ async function appendVerifiedCharge(
       ...auth(authorization),
     ],
   );
-  const stop = stopForCharge(charge, prior);
+  const account = (
+    await tx.query<{ account_id: string }>(
+      'SELECT account_id FROM ltw_ai_attempts WHERE attempt_id = $1',
+      [attemptId],
+    )
+  ).rows[0];
+  const stop = stopForCharge(
+    charge,
+    prior,
+    account !== undefined && (await unlimitedText(tx, account.account_id)),
+  );
   const stops: string[] = [];
   if (stop !== null) {
     const attempt = (

@@ -3,9 +3,12 @@
 ## AI campaign program — Stages 370–450
 
 The owner's 2026-10-30 program request and unlimited monetary policy are recorded
-in `docs/PROJECT_WORKFLOW.md`. Detailed contract: `docs/STAGE_370_DESIGN.md` and
-proposed ADR 0038. Stage 370 introduces documentation only; the runtime surfaces
-below are **FUTURE / NOT YET IMPLEMENTED OR TESTED**. Each introducing stage runs
+in `docs/PROJECT_WORKFLOW.md`. The detailed contract/ADR 0038 were accepted by
+`reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json` (reviewed proposal bytes frozen).
+Stage 370 introduced documentation only. Stage 380 access/accounting implementation
+and evidence are in `reports/STAGE_380_COMPLETION.md`; final full validation passed
+(3,016 unit, 254 integration, 144 browser tests), owner disposition is pending.
+Stages 390–450 remain **FUTURE / NOT YET IMPLEMENTED OR TESTED**. Each introducing stage runs
 its deterministic/adversarial checks and ends at an owner checkpoint; a separate
 model review is optional under the current workflow.
 

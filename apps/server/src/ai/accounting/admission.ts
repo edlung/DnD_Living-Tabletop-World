@@ -3,6 +3,7 @@ import type pg from 'pg';
 import { boundByRequest, expired, storageStep, type Deadline } from './deadline.ts';
 import { scopeBuckets, sortedLockKeys, type AttemptScope, type SessionClass } from './lock-keys.ts';
 import { MAX_MICROS } from './money.ts';
+import { readMonetaryPolicy } from './monetary-policy.ts';
 import { StorageUnavailable, readCommitted, type Tx } from './pg-transaction.ts';
 import { readBucketSpend } from './spend.ts';
 import { stopDenies, type Resolve } from './stop-scope.ts';
@@ -13,7 +14,7 @@ import type { AdmissionRequest, AdmissionResult, DenialCode, DenialDetail } from
  * the shared policy lock in its own statement; then the stored request, its approval's and its
  * billing account's latest revisions and the database UTC day; then the sorted bucket and
  * account-control locks, one statement each; then stops and totals; and only if every ceiling
- * admits, the attempt row with its reservation. Identity, campaign and session come from the stored
+ * admits (or a stored UNLIMITED monetary policy supersedes them), the attempt row with its reservation. Identity, campaign and session come from the stored
  * request, never from the caller.
  *
  * B2: the requested model must be the canonical model of its verified pricing version (`resolve`,
@@ -97,6 +98,11 @@ async function admitIn(
   if (sessionClass === 'evaluation' && !policy.run_registered) {
     return denied('ADMISSION_DISABLED', 'RUN_NOT_REGISTERED');
   }
+  const monetaryPolicy = await readMonetaryPolicy(tx, {
+    scope: 'text',
+    accountId: policy.account_id,
+  });
+  const unlimited = monetaryPolicy?.mode === 'UNLIMITED';
   const ceilings = {
     globalDay: BigInt(policy.global_day),
     campaignDay: BigInt(policy.campaign_day),
@@ -104,7 +110,7 @@ async function admitIn(
     session: BigInt(sessionClass === 'play' ? policy.play_session : policy.evaluation_run),
   };
   // Missing, zero or negative ceilings deny (the schema also refuses them).
-  if (Object.values(ceilings).some((ceiling) => ceiling <= 0n)) {
+  if (!unlimited && Object.values(ceilings).some((ceiling) => ceiling <= 0n)) {
     return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   }
 
@@ -124,7 +130,8 @@ async function admitIn(
     provider: request.provider,
     model: request.model,
   };
-  if (await stopDenies(tx, target, resolve)) return denied('ADMISSION_DISABLED', 'STOPPED');
+  if (await stopDenies(tx, target, resolve, unlimited))
+    return denied('ADMISSION_DISABLED', 'STOPPED');
   const spent = await readBucketSpend(tx, scope);
   const order = [
     ['globalDay', 'GLOBAL_DAY'],
@@ -133,7 +140,7 @@ async function admitIn(
     ['session', 'SESSION'],
   ] as const;
   for (const [bucket, detail] of order) {
-    if (spent[bucket] + request.reserveMicros > ceilings[bucket]) {
+    if (!unlimited && spent[bucket] + request.reserveMicros > ceilings[bucket]) {
       return denied('BUDGET_DENIED', detail);
     }
   }
@@ -141,8 +148,8 @@ async function admitIn(
   await tx.query(
     `INSERT INTO ltw_ai_attempts (attempt_id, request_id, account_id, approval_id, campaign_id,
        session_class, session_id, billing_day, capability, attempt_kind, provider, model,
-       pricing_version, reserved_micros)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8::date, $9, $10, $11, $12, $13, $14::bigint)`,
+       pricing_version, reserved_micros, monetary_policy_revision)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8::date, $9, $10, $11, $12, $13, $14::bigint, $15)`,
     [
       request.attemptId,
       request.requestId,
@@ -158,6 +165,7 @@ async function admitIn(
       request.model,
       request.pricingVersion,
       request.reserveMicros.toString(),
+      monetaryPolicy?.revision ?? null,
     ],
   );
   return {

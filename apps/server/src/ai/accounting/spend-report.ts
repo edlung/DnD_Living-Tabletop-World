@@ -7,6 +7,7 @@ import {
   type OpenImageReservation,
 } from '../../images/ledger-operator.ts';
 import { fixedStep } from './deadline.ts';
+import { readMonetaryPolicy, type MonetaryPolicyRevision } from './monetary-policy.ts';
 import { readCommitted } from './pg-transaction.ts';
 import { EFFECTIVE } from './spend.ts';
 
@@ -22,20 +23,22 @@ import { EFFECTIVE } from './spend.ts';
  * at startup and never shown to a campaign: amounts stay with the operator.
  */
 export interface AccountSpend {
+  readonly monetaryPolicy?: MonetaryPolicyRevision;
   readonly accountId: string;
   readonly enabled: boolean;
-  readonly globalDailyCeilingMicros: string;
+  readonly globalDailyCeilingMicros: string | null;
   readonly todayMicros: string;
   readonly totalMicros: string;
   readonly openHoldMicros: string;
 }
 
 export interface ApprovalSpend {
+  readonly monetaryPolicy?: MonetaryPolicyRevision;
   readonly approvalId: string;
   readonly accountId: string;
   readonly stage: string;
   readonly enabled: boolean;
-  readonly stageCeilingMicros: string;
+  readonly stageCeilingMicros: string | null;
   readonly spentMicros: string;
 }
 
@@ -63,6 +66,7 @@ const OPEN = `NOT EXISTS (SELECT 1 FROM ltw_ai_accounting c
 
 export function spendReport(pool: pg.Pool): Promise<SpendReport> {
   return readCommitted(pool, fixedStep(), async (tx) => {
+    await tx.policy('shared');
     const day = await tx.query<{ day: string }>(
       `SELECT to_char((clock_timestamp() AT TIME ZONE 'UTC')::date, 'YYYY-MM-DD') AS day`,
     );
@@ -105,6 +109,32 @@ export function spendReport(pool: pg.Pool): Promise<SpendReport> {
       unsettledReservations: await readOpenImageReservations(tx, 0),
       settleableAfterMinutes: ORPHAN_AFTER_MINUTES,
     };
-    return { day: today, accounts: accounts.rows, approvals: approvals.rows, images };
+    const policies = new Map<string, MonetaryPolicyRevision>();
+    for (const account of accounts.rows) {
+      const policy = await readMonetaryPolicy(tx, { scope: 'text', accountId: account.accountId });
+      if (policy !== null) policies.set(account.accountId, policy);
+    }
+    const policyOf = (accountId: string) => {
+      const policy = policies.get(accountId);
+      return policy === undefined ? {} : { monetaryPolicy: policy };
+    };
+    return {
+      day: today,
+      accounts: accounts.rows.map((account) => ({
+        ...account,
+        ...policyOf(account.accountId),
+        ...(policies.get(account.accountId)?.mode === 'UNLIMITED'
+          ? { globalDailyCeilingMicros: null }
+          : {}),
+      })),
+      approvals: approvals.rows.map((approval) => ({
+        ...approval,
+        ...policyOf(approval.accountId),
+        ...(policies.get(approval.accountId)?.mode === 'UNLIMITED'
+          ? { stageCeilingMicros: null }
+          : {}),
+      })),
+      images,
+    };
   });
 }

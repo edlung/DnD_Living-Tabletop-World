@@ -1,5 +1,12 @@
 # Migrations
 
+Stage 380 (owner-accepted ADR 0038): `0014_ai_unlimited_policy.sql` adds immutable
+text-account and image monetary-policy revisions and reservation references;
+`0015_workshop_access.sql` adds separate owners, hashed invitation/session
+credentials, revocation evidence and private draft metadata. No campaign
+membership or played state is stored in workshop tables. Keep ownership immutable;
+Stage 390 package revisions will reference these containers rather than rewrite them.
+
 Forward-only PostgreSQL migrations applied by `pnpm db:migrate`
 (runner: `apps/server/src/platform/db/`; decision: `docs/adr/0003-persistence-and-migrations.md`).
 

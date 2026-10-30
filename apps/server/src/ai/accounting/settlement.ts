@@ -5,6 +5,7 @@ import type pg from 'pg';
 import { fixedStep } from './deadline.ts';
 import { scopeBuckets, sortedLockKeys, type AttemptScope } from './lock-keys.ts';
 import { MAX_MICROS } from './money.ts';
+import { unlimitedText } from './monetary-policy.ts';
 import { readCommitted, type Tx } from './pg-transaction.ts';
 import { appendStop, readAttemptCharge, stopForCharge } from './spend.ts';
 import {
@@ -112,7 +113,11 @@ export async function settle(pool: pg.Pool, input: SettlementInput): Promise<Set
       ],
     );
     if (inserted.rowCount === 0) return 'duplicate';
-    const stop = stopForCharge(input.chargeMicros, prior);
+    const stop = stopForCharge(
+      input.chargeMicros,
+      prior,
+      await unlimitedText(tx, attempt.accountId),
+    );
     if (stop !== null) await appendStop(tx, attempt, stop);
     return kind === 'settled' ? 'settled' : 'evidence';
   });

@@ -8,9 +8,11 @@ owner's authorized work; runtime admission changes belong to Stage 380. It does
 not waive checkpoint dispositions, protected architecture invariants, actual cost
 accounting, operational controls or existing human play acceptance obligations.
 
-Current detailed decisions await the Stage 370 handoff disposition:
+The owner accepted the following detailed decisions with
+`reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json`. Their implementation and
+verification remain assigned to the introducing stages:
 
-| Decision | Proposed contract | Must be settled before |
+| Decision | Accepted contract | Implemented at |
 |---|---|---|
 | Q12 — workshop authority | Separate operator-invited owner identity; campaign membership does not imply workshop authority | 380 identity implementation |
 | Q13 — unlimited admission and preparation | Explicit stored unlimited monetary policy for authorized text/image calls; real preparation session; historic accounting preserved | 380 policy implementation; 400 preparation dispatch |
@@ -20,10 +22,10 @@ Current detailed decisions await the Stage 370 handoff disposition:
 | Q17 — initial authoring authority | Dedicated confirmed atomic bootstrap, closed provisioning, exact picture adoption; no bulk undo after play | 440 startup |
 | Q18 — first acceptance specimen | Fully prepared first session plus connected later outline; investigation, social and combat specimens; owner human acceptance | 400 generation evaluation; 450 acceptance |
 
-Details: `docs/STAGE_370_DESIGN.md`, proposed ADR 0038 and the concrete example at
+Details: `docs/STAGE_370_DESIGN.md`, accepted ADR 0038 (reviewed proposal bytes frozen) and the concrete example at
 `docs/design/campaign-generation/EXAMPLE.md`. Existing owner approvals authorize
-the program and its monetary policy; these newly proposed technical choices have
-not been self-approved by the session.
+the program, monetary policy and these detailed choices through the recorded
+Stage 370 disposition. The session has not approved any product decision for the owner.
 
 These are scheduled decision/check obligations, not approved ADRs. They do not block repository-only Stage 0. The authorized stage prepares its required decision before dependent implementation; request owner approval where product semantics or invariants are affected. Do not start future stages to resolve their decisions early.
 

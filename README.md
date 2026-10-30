@@ -90,8 +90,12 @@ requires no database or external AI.
 | `pnpm test` | Unit tests (no external services) |
 | `pnpm test:integration` | Integration tests; needs PostgreSQL (`pnpm db:up`) |
 | `pnpm test:e2e` | Browser/API journeys; install Playwright Chromium first |
-| `pnpm eval:ai` | Explicit live-provider evaluation; excluded from validation/CI. Do not run until text-provider spending ceilings are approved; Stage 300 accounting/evaluation remediation is pending. See `docs/PROJECT_WORKFLOW.md`. |
+| `pnpm eval:ai` | Explicit live-provider evaluation; excluded from validation/CI. Requires an authorized stored spending policy and registered evaluation run. The owner's unlimited monetary policy retains accounting and explicit live-run authorization; see `docs/PROJECT_WORKFLOW.md`. |
 | `pnpm auth:operator dm-invite --campaign <id> --expires-hours <n>` | Prints the DM's single-use sign-in link for a campaign (`AUTH_MODE=invitations`, `PUBLIC_ORIGIN`; ADR 0036); the only way to DM access in production |
+| `pnpm workshop:operator invite --expires-hours <n> --authorization-source <reference>` | Creates a workshop owner and prints its single-use `/workshop/join` link once; optional `--owner <uuid>` grants access to an existing owner's drafts. Requires invitation mode and `PUBLIC_ORIGIN`. |
+| `pnpm workshop:operator revoke --owner <uuid> --authorization-source <reference>` | Revokes the owner's workshop sessions and pending invitations; campaign membership and cookies remain independent. |
+| `pnpm ai:operator monetary-policy-set --scope text --account <id> --mode unlimited --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>` | Records explicit unlimited monetary policy for the text billing account; eligibility and usage accounting remain. Use `--scope images` without `--account` for the installation's image ledger. |
+| `pnpm ai:operator monetary-policy-status --scope images` | Shows the selected policy. Use `--scope text --account <id>` for text. Historical finite ceilings remain stored; `--mode finite` restores their enforcement explicitly. |
 | `pnpm dev:web` | Local Player/DM web client and API proxy |
 | `pnpm build` / `pnpm clean` | Compile all projects and bundle the web app / remove TypeScript outputs |
 | `pnpm db:up` / `pnpm db:down` | Start / stop local PostgreSQL |
@@ -102,6 +106,11 @@ requires no database or external AI.
 | `pnpm validate:ci-local` | CI-equivalent run: frozen install, start database, clean build, every check (`scripts/ci-local.sh`) |
 | `deploy/scripts/build.sh` / `deploy/scripts/deploy.sh` | Build the server and proxy images from a committed revision / run them behind Caddy with TLS, backups and health checks (`deploy/RUNBOOK.md`, Russian and English; ADR 0037) |
 | `deploy/verify/ci.sh` | The deployment check of CI: images of HEAD, a local stack with internal TLS, smoke checks, backup and restore drill, live stream (needs Docker and free ports 80/443) |
+
+In unlimited image mode, setting the historical image ceiling to zero does not
+stop dispatch. To restore a finite stop, record `--scope images --mode finite`
+with the operator's authorization and set the image ceiling to zero. Cancellation,
+provider failures and actual/unknown cost accounting remain active in both modes.
 
 CI (`.github/workflows/ci.yml`) runs the same steps on Node 24 with a PostgreSQL 18 service container, and a second job runs `deploy/verify/ci.sh`.
 

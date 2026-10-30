@@ -11,19 +11,28 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   text/image spending requirements below for this owner's authorized work.
 - The implementation must represent unlimited spending explicitly and retain
   actual/unknown cost accounting, provider allowlists, authentication, cancellation,
-  timeouts and bounded retries. Existing runtime ceilings have **not yet changed**;
-  that implementation belongs to Stage 380. No credential or provider/model change
+  timeouts and bounded retries. Stage 380 implements this policy; existing
+  installations retain their stored finite mode until migration and explicit
+  unlimited-policy activation. No credential or provider/model change
   is authorized by the monetary-policy correction alone.
-- Current work order: `work-orders/STAGE_370.md`. Detailed contract:
-  `docs/STAGE_370_DESIGN.md`; ADR 0038 is proposed. The owner's program instruction
-  is not recorded as approval of technical choices the session wrote afterward.
-- At the Stage 370 checkpoint, write the report/handoff and stop for owner
-  disposition under `AGENT_WORKFLOW.md`. Later stages retain their authorization
-  but wait for prerequisite checkpoint dispositions and their scoped work orders.
-- Stage 370 is now `CHECKPOINT_READY / AWAITING_OWNER_DISPOSITION`:
-  `reports/STAGE_370_COMPLETION.md`, `handoffs/STAGE_370_REQUEST.md`. Full offline
-  `pnpm validate` passed (2,985 unit, 237 integration, 132 browser tests).
-  The checkpoint adds documentation only; Stages 380–450 remain future work.
+- The owner accepted the detailed Stage 370 contract and ADR 0038 with
+  «Выполняй реализацию всех этапов. Подтверждаю». Disposition and exact hashes:
+  `reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json`. The original design,
+  proposed ADR and initial handoff remain frozen as reviewed artifacts; this
+  disposition supersedes their pending-status text. Stage 370 is accepted.
+- Current implementation: **Stage 380 CHECKPOINT_READY / AWAITING_OWNER_DISPOSITION**, scoped by
+  `work-orders/STAGE_380.md` and `docs/STAGE_380_DESIGN.md`. Workshop credentials,
+  private draft containers and explicit unlimited monetary policy are implemented.
+  Final offline validation passed: 3,016 unit, 254 integration, 144 browser tests,
+  including the synchronous-history privacy fix. Report/handoff:
+  `reports/STAGE_380_COMPLETION.md`, `handoffs/STAGE_380_REQUEST.md`.
+  No real credentials/operator records or default local DB were changed by tests.
+- Stages 390–450 retain authorization but wait for prerequisite checkpoint
+  dispositions and their scoped work orders. At the Stage 380 checkpoint, write
+  the report/handoff and stop under `AGENT_WORKFLOW.md`.
+- Stage 370's full offline validation passed (2,985 unit, 237 integration, 132
+  browser tests). Those results validate its documentation checkpoint, not the
+  new Stage 380 implementation; the fresh Stage 380 results are recorded above.
 - One session, one selected model remains the policy. No assigned orchestrator,
   separate reviewer/model gate, deployment, publishing or v0.1 tag is introduced.
   Existing human acceptance deferrals and Stage 360 obligations remain recorded.

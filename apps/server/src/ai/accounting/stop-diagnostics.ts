@@ -1,6 +1,7 @@
 import type pg from 'pg';
 
 import { fixedStep } from './deadline.ts';
+import { unlimitedText } from './monetary-policy.ts';
 import { readCommitted } from './pg-transaction.ts';
 import { acceptedShape, routeWide, unclearedStops, type Resolve } from './stop-scope.ts';
 
@@ -8,7 +9,9 @@ import { acceptedShape, routeWide, unclearedStops, type Resolve } from './stop-s
  * Trusted operator diagnostics of uncleared stops (`pnpm ai:operator stops --account <id>`;
  * docs/adr/0032-live-ai.md, B2). For the operator deciding on a clearance only: never served over
  * HTTP or shown to a campaign, whose callers see only the fixed `ADMISSION_DISABLED`/`STOPPED`
- * denial. Read-only, without advisory locks, in one bounded READ COMMITTED transaction.
+ * denial. Read-only under the shared policy lock in one bounded READ COMMITTED transaction.
+ * Valid OVERRUN evidence superseded by UNLIMITED monetary policy remains listed with empty
+ * restrictions and an explicit superseded marker; corrupt or nonmonetary stops remain effective.
  *
  * `restricts` is what admission denies while the stop stands: `approval` (every route of the
  * recorded approval), `route` (the account's provider/model on every approval), `provider`
@@ -16,6 +19,8 @@ import { acceptedShape, routeWide, unclearedStops, type Resolve } from './stop-s
  * mismatched source attempt, or unresolved identity).
  */
 export interface StopExplanation {
+  /** A valid monetary overrun remains in history but no longer restricts admission. */
+  readonly supersededByMonetaryPolicy?: 'UNLIMITED';
   readonly stopId: string;
   readonly reason: string;
   readonly approvalId: string | null;
@@ -35,8 +40,10 @@ export function explainStops(
   accountId: string,
   resolve: Resolve,
 ): Promise<StopExplanation[]> {
-  return readCommitted(pool, fixedStep(), async (tx) =>
-    (await unclearedStops(tx, accountId)).map((row): StopExplanation => {
+  return readCommitted(pool, fixedStep(), async (tx) => {
+    await tx.policy('shared');
+    const unlimited = await unlimitedText(tx, accountId);
+    const explanations = (await unclearedStops(tx, accountId)).map((row): StopExplanation => {
       const base = {
         stopId: row.stop_id,
         reason: row.reason,
@@ -106,6 +113,15 @@ export function explainStops(
         identity: canonical === null ? 'unresolved' : 'resolved',
         restricts: canonical === null ? ['account'] : ['approval', 'route'],
       };
-    }),
-  );
+    });
+    return explanations.map((explanation): StopExplanation =>
+      unlimited &&
+      explanation.reason === 'OVERRUN' &&
+      explanation.shape === 'accepted' &&
+      explanation.source === 'consistent' &&
+      explanation.identity === 'resolved'
+        ? { ...explanation, restricts: [], supersededByMonetaryPolicy: 'UNLIMITED' }
+        : explanation,
+    );
+  });
 }

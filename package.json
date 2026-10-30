@@ -30,6 +30,7 @@
     "eval:ai": "node --conditions=@ltw/source apps/server/src/testing/eval/eval-cli.ts",
     "ai:operator": "pnpm --filter @ltw/server run ai:operator",
     "auth:operator": "pnpm --filter @ltw/server run auth:operator",
+    "workshop:operator": "pnpm --filter @ltw/server run workshop:operator",
     "images:smoke": "node --conditions=@ltw/source apps/server/src/testing/image-smoke.ts"
   },
   "devDependencies": {

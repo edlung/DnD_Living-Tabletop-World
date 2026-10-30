@@ -1,5 +1,14 @@
 # Server (`@ltw/server`)
 
+Stage 380 workshop access: `src/workshop/AGENTS.md` is the entry for independent
+owner credentials and private draft containers. Production composition wires it
+only beside invitation-mode sign-in; its HttpOnly cookie never authenticates a
+campaign. Contracts: `packages/contracts/src/workshop/access.ts`; operator:
+`pnpm workshop:operator`. Owner disposition: ADR 0038 through
+`reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json`. Unlimited monetary policy is
+explicitly recorded in `src/ai/accounting/monetary-policy.ts`; never infer a grant
+from a missing finite ceiling or an environment flag.
+
 Composition root of the modular monolith and the only workspace package allowed to perform I/O (`docs/adr/0004-module-boundaries.md`).
 
 Live AI (Stage 300, remediation in progress): start with ADR 0032 (amendments 2026-10-11 and later, C last),

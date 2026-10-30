@@ -1,30 +1,28 @@
-import { createHash } from 'node:crypto';
-
 import type pg from 'pg';
 
 import { fixedStep } from '../ai/accounting/deadline.ts';
+import {
+  readMonetaryPolicy,
+  type MonetaryPolicyRevision,
+} from '../ai/accounting/monetary-policy.ts';
 import { readCommitted, type Tx } from '../ai/accounting/pg-transaction.ts';
 import type { Authorization } from '../ai/accounting/types.ts';
+import { IMAGE_LEDGER_LOCK_KEY } from './ledger-lock.ts';
+
+export { IMAGE_LEDGER_LOCK_KEY } from './ledger-lock.ts';
 
 /**
  * The image spending ledger (docs/adr/0035-images.md §2; migration 0011_image_budget.sql). Before
  * a provider call a job reserves a worst-case amount against the stored ceiling; afterwards it
  * settles to the provider's reported cost, keeps the whole reservation when the cost is unknown,
- * or releases it when the request was never sent. No stored ceiling, or a ceiling of zero, admits
- * nothing; only the operator CLI stores a ceiling, and no configuration can raise it.
+ * or releases it when the request was never sent. In finite mode, no stored ceiling or a ceiling
+ * of zero admits nothing. Stage 380's separately recorded UNLIMITED policy supersedes monetary
+ * comparisons; only the operator CLI changes policy, and no configuration can raise it.
  *
  * Every write runs in one READ COMMITTED transaction under one exclusive advisory lock, so two
- * jobs cannot both pass a nearly full ceiling: the second reads the first's reservation. Money is
+ * jobs cannot both pass a nearly full finite ceiling: the second reads the first's reservation. Money is
  * integer microdollars; history is never updated or deleted.
  */
-
-/** The ledger's lock: a nonnegative 63-bit key, apart from the accounting store's negative keys. */
-export const IMAGE_LEDGER_LOCK_KEY =
-  createHash('sha256')
-    .update(JSON.stringify(['image-ledger']))
-    .digest()
-    .readBigUInt64BE(0) &
-  ((1n << 63n) - 1n);
 
 export type ImageChargeOutcome = 'generated' | 'refused' | 'failed' | 'timeout' | 'not-sent';
 
@@ -99,15 +97,23 @@ export class PostgresImageLedger implements ImageLedger {
   reserve(charge: ImageCharge): Promise<ReserveResult> {
     if (charge.reserveMicros <= 0n) return Promise.resolve('ceiling');
     return readCommitted(this.#pool, fixedStep(), async (tx) => {
+      await tx.policy('shared');
       await tx.lock(IMAGE_LEDGER_LOCK_KEY, 'exclusive');
+      const policy = await readMonetaryPolicy(tx, { scope: 'images' });
+      const unlimited = policy?.mode === 'UNLIMITED';
       const budget = await latestCeiling(tx);
-      if (budget === null) return 'no-budget';
+      if (!unlimited && budget === null) return 'no-budget';
       const spent = BigInt((await totals(tx)).spent);
-      if (budget.ceiling === 0n || spent + charge.reserveMicros > budget.ceiling) return 'ceiling';
+      if (
+        !unlimited &&
+        budget !== null &&
+        (budget.ceiling === 0n || spent + charge.reserveMicros > budget.ceiling)
+      )
+        return 'ceiling';
       await tx.query(
         `INSERT INTO ltw_image_charges
-           (charge_id, campaign_id, request_id, provider, model, reserved_micros)
-         VALUES ($1, $2, $3, $4, $5, $6)`,
+           (charge_id, campaign_id, request_id, provider, model, reserved_micros, monetary_policy_revision)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
         [
           charge.chargeId,
           charge.campaignId,
@@ -115,6 +121,7 @@ export class PostgresImageLedger implements ImageLedger {
           charge.provider,
           charge.model,
           charge.reserveMicros.toString(),
+          policy?.revision ?? null,
         ],
       );
       return 'reserved';
@@ -123,6 +130,7 @@ export class PostgresImageLedger implements ImageLedger {
 
   settle(chargeId: string, settlement: ImageSettlement): Promise<void> {
     return readCommitted(this.#pool, fixedStep(), async (tx) => {
+      await tx.policy('shared');
       await tx.lock(IMAGE_LEDGER_LOCK_KEY, 'exclusive');
       const reserved = (
         await tx.query<{ reserved: string }>(
@@ -153,7 +161,7 @@ export class PostgresImageLedger implements ImageLedger {
 }
 
 /**
- * Records a new ceiling (`pnpm ai:operator image-budget-set`); zero stops every image call. The
+ * Records a finite ceiling (`pnpm ai:operator image-budget-set`); zero stops image calls in FINITE mode. The
  * owner's authorization is recorded with it. Returns the new revision.
  */
 export function setImageCeiling(
@@ -162,6 +170,7 @@ export function setImageCeiling(
   authorization: Authorization,
 ): Promise<number> {
   return readCommitted(pool, fixedStep(), async (tx) => {
+    await tx.policy('shared');
     await tx.lock(IMAGE_LEDGER_LOCK_KEY, 'exclusive');
     const revision = ((await latestCeiling(tx))?.revision ?? 0) + 1;
     await tx.query(
@@ -183,9 +192,11 @@ export function setImageCeiling(
 /**
  * The operator's counters (`pnpm ai:operator status` and `spend`): amounts as decimal
  * microdollars. No stored ceiling: `revision`, `ceilingMicros` and `remainingMicros` are null, and
- * no image call is admitted.
+ * no image call is admitted unless an explicit UNLIMITED monetary policy exists.
  */
 export interface ImageBudgetStatus {
+  /** Present only after an explicit policy has been recorded; null remaining means no ceiling in UNLIMITED mode. */
+  readonly monetaryPolicy?: MonetaryPolicyRevision;
   readonly revision: number | null;
   readonly ceilingMicros: string | null;
   readonly spentMicros: string;
@@ -198,22 +209,29 @@ export interface ImageBudgetStatus {
 }
 
 export function imageBudgetStatus(pool: pg.Pool): Promise<ImageBudgetStatus> {
-  return readCommitted(pool, fixedStep(), readImageBudgetStatus);
+  return readCommitted(pool, fixedStep(), async (tx) => {
+    await tx.policy('shared');
+    return readImageBudgetStatus(tx);
+  });
 }
 
 /** The counters within the caller's transaction (`spend-report.ts` reads them beside the AI's). */
 export async function readImageBudgetStatus(tx: Reader): Promise<ImageBudgetStatus> {
+  const policy = await readMonetaryPolicy(tx, { scope: 'images' });
+  const unlimited = policy?.mode === 'UNLIMITED';
   const budget = await latestCeiling(tx);
   const sums = await totals(tx);
   const spent = BigInt(sums.spent);
   return {
+    ...(policy === null ? {} : { monetaryPolicy: policy }),
     revision: budget?.revision ?? null,
-    ceilingMicros: budget ? budget.ceiling.toString() : null,
+    ceilingMicros: !unlimited && budget ? budget.ceiling.toString() : null,
     spentMicros: sums.spent,
     heldMicros: sums.held,
-    remainingMicros: budget
-      ? (budget.ceiling > spent ? budget.ceiling - spent : 0n).toString()
-      : null,
+    remainingMicros:
+      !unlimited && budget
+        ? (budget.ceiling > spent ? budget.ceiling - spent : 0n).toString()
+        : null,
     charges: sums.charges,
     unsettled: sums.unsettled,
   };

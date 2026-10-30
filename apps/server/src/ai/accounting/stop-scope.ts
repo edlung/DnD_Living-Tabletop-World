@@ -142,7 +142,19 @@ export async function stopDenies(
   db: Queryable,
   target: StopTarget,
   resolve: Resolve,
+  unlimitedMonetary = false,
 ): Promise<boolean> {
   const rows = await unclearedStops(db, target.accountId);
-  return rows.some((row) => stopCause(row, target, resolve) !== null);
+  return rows.some((row) => {
+    const cause = stopCause(row, target, resolve);
+    // Only a valid, fully resolved monetary overrun can be superseded. Corrupt
+    // shapes, missing sources, identity gaps and billing/model stops still deny.
+    if (
+      unlimitedMonetary &&
+      row.reason === 'OVERRUN' &&
+      (cause === 'RECORDED_SCOPE' || cause === 'SOURCE_ROUTE')
+    )
+      return false;
+    return cause !== null;
+  });
 }
