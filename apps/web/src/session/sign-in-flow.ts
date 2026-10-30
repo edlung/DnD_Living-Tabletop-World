@@ -1,4 +1,5 @@
 import { OBJECT_ID_PATTERN } from '@ltw/contracts';
+import type { GameSignOutGuard } from '../api/client.ts';
 
 import { holdInvitation, type InvitationHolder } from './invitation-link.ts';
 
@@ -116,14 +117,30 @@ export async function redeemInvitation(
 }
 
 /** `POST /auth/sign-out`: ended, or still signed in because the server was not reached. */
-export async function signOut(transport: Transport): Promise<'signed-out' | 'failed'> {
-  const response = await send(transport, '/api/auth/sign-out', {
-    method: 'POST',
-    headers: { 'Content-Type': JSON_TYPE },
-    body: '{}',
-  });
+export async function signOut(
+  transport: Transport,
+  mounted?: GameSignOutGuard,
+  signal?: AbortSignal,
+): Promise<'signed-out' | 'failed'> {
+  const response = await send(
+    transport,
+    '/api/auth/sign-out',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': JSON_TYPE,
+        ...(mounted ? { 'x-game-campaign': mounted.campaignId } : {}),
+        ...(mounted?.actorId ? { 'x-game-actor': mounted.actorId } : {}),
+      },
+      body: '{}',
+    },
+    signal,
+  );
   // A 401 means no session was left to end: signed out all the same.
-  return response !== null && (response.ok || response.status === 401) ? 'signed-out' : 'failed';
+  return response !== null &&
+    (response.ok || response.status === 401 || (mounted !== undefined && response.status === 409))
+    ? 'signed-out'
+    : 'failed';
 }
 
 /** Whose world a sign-in opens: the campaign, the actor, the role and the character. */

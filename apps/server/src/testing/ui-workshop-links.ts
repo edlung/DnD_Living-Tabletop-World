@@ -54,6 +54,15 @@ export const WORKSHOP_FIXTURES = [
   'edit-a11y',
   'edit-layout',
   'edit-unavailable',
+  'activation-en',
+  'activation-ru',
+  'activation-pictures',
+  'activation-text-only',
+  'activation-layout',
+  'activation-a11y',
+  'activation-pending',
+  'activation-revoked',
+  'activation-coexist',
 ] as const;
 export type WorkshopFixture = (typeof WORKSHOP_FIXTURES)[number];
 export const WORKSHOP_CAMPAIGN = 'ui-workshop-coexist';

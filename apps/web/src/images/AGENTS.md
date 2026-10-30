@@ -19,6 +19,11 @@ Figures, battle maps and an object's picture for everyone live beside the pictur
 
 Rules:
 
+- Canonical images adopted during campaign activation may have preparation `origin`
+  metadata and no corresponding in-play request. Validate that origin with the public
+  schema before describing its source revision; never invent a queue/job card for it.
+  The player asset whitelist stays unchanged.
+
 - DM only. `DmImagesContext` is provided by the world screen (`world-pictures.tsx`, beside the
   picture cache) in the DM perspective alone; without it every component renders nothing and
   nothing is read. The lineage route takes no perspective and is never requested for a lower one. Candidates, requests, notes, labels and generators are

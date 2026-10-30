@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useT } from '@ltw/ui';
 
 import { WorkshopClient } from './client.ts';
-import { WorkshopDrafts } from './drafts.tsx';
+import { WorkshopHome } from './home.tsx';
 import { DraftEditor } from './editor.tsx';
 import { workshopDraftPath, workshopRoute } from './route.ts';
 import { useWorkshopSession } from './use-workshop-session.ts';
@@ -66,7 +66,8 @@ export function WorkshopPrivate({
       </section>
     );
   return (
-    <WorkshopDrafts
+    <WorkshopHome
+      client={client}
       ownerId={ownerId}
       onEnded={onEnded}
       onOpen={(id) => {

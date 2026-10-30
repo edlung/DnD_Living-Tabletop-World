@@ -1,3 +1,4 @@
+import { partyMemberIds } from './party.ts';
 import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from './perspective.ts';
 
@@ -10,7 +11,7 @@ export function projectionPartyMemberIds(
   state: WorldState,
   perspective: ResolvedPerspective,
 ): ReadonlySet<string> {
-  return perspective.partyMemberIds ?? new Set(state.roster.keys());
+  return perspective.partyMemberIds ?? partyMemberIds(state);
 }
 
 /** Copy and validate so caller mutations or non-character IDs cannot alter an already resolved view. */

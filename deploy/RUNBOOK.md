@@ -301,6 +301,40 @@ as full generation. Game-event readiness does not establish compatibility of
 these tables. An older build requires a consistent protected backup from before
 the new controls were used.
 
+**RU — активация кампаний (этап440).** Для записей0022 нужна сборка приложения,
+оператора и replay-инструментов, понимающая активацию. Старые сборки не закрывают
+неопубликованные потоки и не завершают подтверждённое действие; проверка событий этого не
+исправляет. После событий `PreparedPartyEstablished`, `AssetAdopted` или
+`CampaignBootstrapped` нужны и совместимые схемы событий. `--rollback` /
+`LTW_ALLOW_NEWER_SCHEMA` не разрешают такой откат. Сохраняйте совместимую сборку
+для восстановления; для более старой нужна согласованная защищённая копия до новых активаций.
+
+При перезапуске worker продолжает тот же подтверждённый источник и стабильные ID,
+даже если прежняя сессия завершилась. До проверки команды, provenance, immutable
+контента и точных байтов кампания остаётся PROVISIONING и закрыта для игры,
+приглашений, изображений и SSE. Не меняйте SQL status/phase/source и не удаляйте
+запись для повторного старта. Исправьте причину отказа и используйте совместимую
+сборку/разрешённый владельцу retry для повторяемого сбоя. Ошибки proof не обходятся
+ручной публикацией или снятием запрета retry.
+Активация не генерирует изображения и не вызывает платного провайдера.
+
+**EN — campaign activation (Stage440).** Records from0022 require an aware app,
+operator and replay build. Older builds do not gate unpublished streams or resume
+accepted intent; event readiness cannot repair that. Once
+`PreparedPartyEstablished`, `AssetAdopted` or `CampaignBootstrapped` is stored,
+compatible event schemas are also required. `--rollback` / `LTW_ALLOW_NEWER_SCHEMA`
+does not authorize this downgrade. Keep an aware recovery build; an older build
+requires a consistent protected backup from before the new activations.
+
+On restart, the worker resumes the same confirmed source and stable IDs even after
+the original session ends. The campaign remains PROVISIONING, closed to play,
+invitations, pictures and SSE until command/provenance, immutable content and exact
+bytes are verified. Never change SQL status/phase/source or delete the row to
+restart. Repair the cause and use the aware build/authorized owner retry for a
+retryable failure. Never bypass failed proof by publishing manually or changing
+the retryability flag. Activation generates no pictures and
+makes no paid provider call.
+
 ```bash
 previous=$(sed -n 's/^LTW_PREVIOUS_IMAGE_TAG=//p' deploy/.env)
 git checkout "$previous"          # the deploy files of that revision
@@ -368,6 +402,16 @@ does not notice: run `dc down` first (never `-v`: volumes and the database stay)
 retention: the newest 5 of each kind are kept (`BACKUP_KEEP_PROTECTED`). `SHA256SUMS` lists them
 all. The event store is canonical: a restore is proven by replaying every campaign. List the
 dumps: `dc exec -T backup ls -1 /backups`.
+
+**RU/EN — Stage440.** Сохраняйте activation-записи, immutable initial content,
+команды/события, исходные draft-байты и campaign-байты вместе в одной копии базы.
+Raw readiness/replay включает неопубликованные потоки; обычный gated engine для
+тренировки непригоден. Replay не доказывает целостность private manifests/байтов:
+совместимый recovery worker проверяет их до публикации. Preserve activation rows,
+immutable initial content, commands/events and both draft/campaign image bytes in
+the same database backup. Raw readiness/replay includes unpublished streams; the
+ordinary gated engine cannot prove a full restore. Replay does not prove private
+manifest/byte integrity: the aware recovery worker verifies them before publication.
 
 **Тренировка (еженедельно и после выкатки) / Drill (weekly and after every deploy).** RU: новейшая
 обычная копия (или названная) восстанавливается во временную базу, каждая кампания проигрывается

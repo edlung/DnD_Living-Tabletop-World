@@ -9,6 +9,7 @@ import { ScenarioTab, type ScenarioSource, type ScenarioMode } from './scenario-
 import { useRequestSignal } from './use-request-signal.ts';
 import { OwnerPreviewTab } from './preview/tab.tsx';
 import { PreviewWorld } from './preview/world.tsx';
+import { ActivationTab } from './activation/tab.tsx';
 
 export function DraftEditor({
   client,
@@ -138,7 +139,7 @@ function EditorContent({
   const t = useT();
   const language = useLanguage();
   const head = history.revisions[0]?.revision ?? 0;
-  const [tab, setTab] = useState<'scenario' | 'generation' | 'visual'>(() =>
+  const [tab, setTab] = useState<'scenario' | 'generation' | 'visual' | 'activation'>(() =>
     initialPreviewRevision !== null ? 'visual' : head ? 'scenario' : 'generation',
   );
   const [source, setSource] = useState<ScenarioSource>({
@@ -146,6 +147,7 @@ function EditorContent({
     revision: initialPreviewRevision,
   });
   const [older, setOlder] = useState<RevisionHistory | null>(null);
+  const [activationPending, setActivationPending] = useState(false);
   const [scenarioPending, setScenarioPending] = useState(false),
     [scenarioMode, setScenarioMode] = useState<ScenarioMode>('inspect');
   const [linkedEntity, setLinkedEntity] = useState<{ revision: number; entityId: string } | null>(
@@ -153,6 +155,7 @@ function EditorContent({
   );
   const [historyState, setHistoryState] = useState<'idle' | 'loading' | 'failed'>('idle');
   const signal = useRequestSignal();
+  const ownerPending = scenarioPending || activationPending;
   useEffect(() => {
     const previousTitle = document.title;
     const previousLanguage = document.documentElement.lang;
@@ -192,7 +195,7 @@ function EditorContent({
   return (
     <>
       <header className="workshop-editor-heading">
-        <button disabled={scenarioPending} onClick={onBack}>
+        <button disabled={ownerPending} onClick={onBack}>
           {t('Back to the workshop')}
         </button>
         <div>
@@ -203,7 +206,9 @@ function EditorContent({
               : t('No campaign content has been saved yet.')}
           </p>
         </div>
-        <button onClick={onRefresh}>{t('Refresh revision history')}</button>
+        <button disabled={ownerPending} onClick={onRefresh}>
+          {t('Refresh revision history')}
+        </button>
       </header>
       <nav
         className="workshop-tabs"
@@ -231,6 +236,7 @@ function EditorContent({
       >
         <button
           id="workshop-tab-scenario"
+          disabled={activationPending}
           role="tab"
           aria-selected={tab === 'scenario'}
           tabIndex={tab === 'scenario' ? 0 : -1}
@@ -243,7 +249,7 @@ function EditorContent({
         </button>
         <button
           id="workshop-tab-generation"
-          disabled={scenarioPending}
+          disabled={ownerPending}
           role="tab"
           aria-selected={tab === 'generation'}
           tabIndex={tab === 'generation' ? 0 : -1}
@@ -260,14 +266,34 @@ function EditorContent({
           aria-selected={tab === 'visual'}
           tabIndex={tab === 'visual' ? 0 : -1}
           aria-controls="workshop-editor-panel"
-          disabled={head === 0 || scenarioPending}
+          disabled={head === 0 || ownerPending}
           onClick={() => {
             setTab('visual');
           }}
         >
           {t('World preview')}
         </button>
+        <button
+          id="workshop-tab-activation"
+          role="tab"
+          aria-selected={tab === 'activation'}
+          tabIndex={tab === 'activation' ? 0 : -1}
+          aria-controls="workshop-editor-panel"
+          disabled={head === 0 || scenarioPending}
+          onClick={() => {
+            setTab('activation');
+          }}
+        >
+          {t('Activation')}
+        </button>
       </nav>
+      {activationPending && (
+        <p role="status">
+          {t(
+            'The activation answer is pending. Keep this page open to retry the exact confirmation.',
+          )}
+        </p>
+      )}
       {scenarioPending && (
         <p role="status">
           {t('Save, retry or explicitly discard the pending edit before leaving this scenario.')}
@@ -285,7 +311,7 @@ function EditorContent({
               <label htmlFor="workshop-revision">{t('Saved revision')}</label>
               <select
                 id="workshop-revision"
-                disabled={scenarioPending}
+                disabled={ownerPending}
                 value={source.kind === 'revision' ? (source.revision ?? 'latest') : source.kind}
                 onChange={(event) => {
                   if (
@@ -366,6 +392,20 @@ function EditorContent({
               }}
             />
           </>
+        ) : tab === 'activation' ? (
+          <ActivationTab
+            client={client}
+            draftId={draftId}
+            revision={source.kind === 'revision' ? (source.revision ?? head) : head}
+            headRevision={head}
+            onPendingChanged={setActivationPending}
+            onInspect={(revision) => {
+              inspect({ kind: 'revision', revision });
+            }}
+            onRestore={(revision) => {
+              inspect({ kind: 'restore', revision });
+            }}
+          />
         ) : tab === 'visual' ? (
           <OwnerPreviewTab
             key={source.kind === 'revision' ? (source.revision ?? head) : head}

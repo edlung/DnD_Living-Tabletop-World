@@ -1,5 +1,6 @@
 import { formatPerspective, type PerspectiveRequest } from '@ltw/contracts';
 
+import { partyMemberIds as canonicalPartyMemberIds } from './party.ts';
 import type { Actor } from '../kernel/actor.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { preparedPartyIds, type PartyProjectionContext } from './projection-party.ts';
@@ -140,7 +141,7 @@ function granted(
     case 'CHARACTER': {
       const characterId = holderId ?? '';
       scopes.add(`CHARACTER:${characterId}`);
-      if ((partyMemberIds ?? state.roster).has(characterId)) scopes.add('PARTY');
+      if ((partyMemberIds ?? canonicalPartyMemberIds(state)).has(characterId)) scopes.add('PARTY');
       request = { kind, characterId };
       break;
     }

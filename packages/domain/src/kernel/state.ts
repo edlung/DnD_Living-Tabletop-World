@@ -1,5 +1,6 @@
 import type {
   Attitude,
+  BootstrapCampaignCommand,
   CharacterSheet,
   EntityKind,
   EntityStatus,
@@ -88,8 +89,15 @@ export interface WorldState {
   readonly commands: ReadonlyMap<string, CommandTrace>;
   /** Knowledge records by ID (ADR 0008); canonical, never projected directly. */
   readonly knowledge: ReadonlyMap<string, KnowledgeRecord>;
-  /** Character ID → controlling player actor ID; assigned characters form the party. */
+  /** Character ID → controlling player actor ID; control grants are independent of prepared seats. */
   readonly roster: ReadonlyMap<string, string>;
+  /** Present only in bootstrapped campaigns; never a controller or actor grant. */
+  readonly preparedParty?: ReadonlySet<string>;
+  readonly bootstrap?: {
+    readonly source: BootstrapCampaignCommand['source'];
+    readonly visualMode: 'CHOSEN' | 'TEXT_ONLY';
+    readonly confirmation: BootstrapCampaignCommand['confirmation'];
+  };
   /**
    * Character ID → sequence of the `CharacterAssigned` event its current assignment came from.
    * The roster is kept in this order (assignment order), so undoing a release

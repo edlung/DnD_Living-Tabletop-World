@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { bootstrapCampaignCommandSchema } from '../campaign/bootstrap.ts';
+
 import {
   approveAssetCommandSchema,
   cancelAssetRequestCommandSchema,
@@ -112,6 +114,7 @@ const undoCommand = z
 export const kernelCommandSchema = z
   .discriminatedUnion('type', [
     createCampaign,
+    bootstrapCampaignCommandSchema,
     createEntityCommandSchema,
     placeEntityCommandSchema,
     updateEntityProfileCommandSchema,
@@ -169,6 +172,7 @@ export type KernelCommandOf<T extends KernelCommandType> = Extract<KernelCommand
 
 export const KERNEL_COMMAND_TYPES = [
   'CreateCampaign',
+  'BootstrapCampaign',
   'CreateEntity',
   'PlaceEntity',
   'UpdateEntityProfile',

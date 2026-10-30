@@ -105,6 +105,9 @@ const VERSIONING: Partial<Record<KernelEventType, Versioning>> = {
  * version, so one is refused.
  */
 const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
+  PreparedPartyEstablished: DEPENDENCY_CONTRACT,
+  CampaignBootstrapped: DEPENDENCY_CONTRACT,
+  AssetAdopted: DEPENDENCY_CONTRACT,
   RelationshipChanged: DEPENDENCY_CONTRACT,
   AuthoringPremisesRecorded: DEPENDENCY_CONTRACT,
   EvidenceShown: DEPENDENCY_CONTRACT,

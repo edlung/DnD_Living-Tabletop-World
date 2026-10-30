@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { commandSubmissionSchema, type WorldEngine } from '@ltw/domain';
 
 import type { CredentialStore } from '../auth/credential-store.ts';
+import type { AssetContentStore } from '../assets/content-store.ts';
 import { RequestLimits, SIGN_IN_LIMITS } from '../auth/limits.ts';
 import { systemAuthClock } from '../auth/session-authenticator.ts';
 import { hashToken } from '../auth/tokens.ts';
@@ -13,6 +14,7 @@ import { MemoryCampaignRevisionRepository } from './campaign-packages.ts';
 import { bellCampaign } from '../../../../packages/domain/src/campaign/testing/bell.ts';
 import { englishBellCampaign } from './generation/bell-english.ts';
 import { seedWorkshopEdits } from './ui-workshop-edits.ts';
+import { seedWorkshopActivation } from './ui-workshop-activation.ts';
 import { seedWorkshopGeneration } from './ui-workshop-generation.ts';
 import { seedWorkshopImages, completePreviewVisualBriefs } from './ui-workshop-images.ts';
 import { SIGN_IN_ORIGIN, dmInvitationToken } from './ui-sign-in-links.ts';
@@ -29,9 +31,11 @@ export async function seedWorkshopAccess(
   credentials: CredentialStore,
   engine: WorldEngine,
   seed: string,
+  runtime?: { bootstrap: WorldEngine; contents: AssetContentStore },
 ): Promise<{
   readonly workshop: WorkshopDependencies;
   readonly stopGeneration: () => Promise<void>;
+  readonly activationFixture: Awaited<ReturnType<typeof seedWorkshopActivation>> | null;
 }> {
   const store = new MemoryWorkshopStore();
   const revisions = new MemoryCampaignRevisionRepository(store);
@@ -67,12 +71,20 @@ export async function seedWorkshopAccess(
             ? 'browser-test:stage-410'
             : 'browser-test:stage-380',
     });
-    if (name.startsWith('scenario-') || name.startsWith('preview-') || name.startsWith('edit-')) {
+    if (
+      name.startsWith('scenario-') ||
+      name.startsWith('preview-') ||
+      name.startsWith('edit-') ||
+      name.startsWith('activation-')
+    ) {
       const content =
-        name === 'scenario-ru' || name === 'preview-ru' || name === 'edit-ru'
+        name === 'scenario-ru' ||
+        name === 'preview-ru' ||
+        name === 'edit-ru' ||
+        name === 'activation-ru'
           ? bellCampaign()
           : englishBellCampaign();
-      if (name.startsWith('preview-') || name.startsWith('edit-'))
+      if (name.startsWith('preview-') || name.startsWith('edit-') || name.startsWith('activation-'))
         completePreviewVisualBriefs(content);
       const ownerId = workshopOwnerId(seed, name),
         draftId = workshopDraftId(seed, name);
@@ -131,7 +143,19 @@ export async function seedWorkshopAccess(
     generation.repository,
     seed,
   );
+  const activationFixture = runtime
+    ? await seedWorkshopActivation({
+        store,
+        revisions,
+        images: images.repository,
+        controls: revisionControls,
+        bootstrap: runtime.bootstrap,
+        contents: runtime.contents,
+        seed,
+      })
+    : null;
   return {
+    activationFixture,
     workshop: {
       ...workshop,
       generation,
@@ -141,9 +165,10 @@ export async function seedWorkshopAccess(
       edits,
       revisionControls,
       cancelEdit,
+      ...(activationFixture ? { activation: activationFixture.activation } : {}),
     },
     stopGeneration: async () => {
-      await Promise.all([stopGeneration(), stopImages(), stopEdits()]);
+      await Promise.all([stopGeneration(), stopImages(), stopEdits(), activationFixture?.stop()]);
     },
   };
 }

@@ -1,0 +1,470 @@
+[
+  {
+    "state": "chosen-review",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "chosen-review",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "chosen-review",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "chosen-review",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "text-only-review",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "text-only-review",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "text-only-review",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "text-only-review",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "acknowledged-review",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "acknowledged-review",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "acknowledged-review",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "acknowledged-review",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "published",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "published",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "published",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "published",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owned-campaigns",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x20, 14.4px x10, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owned-campaigns",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x20, 14.4px x10, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owned-campaigns",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x20, 14.4px x10, 11.2px x4, 6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owned-campaigns",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x20, 14.4px x10, 11.2px x4, 6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "activated-world",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "5.6px x43, 3.2px x38, 9.6px x20, 7.2px x12, 4.8px x11, 2.4px x3, 6.4px x3, 12.8px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "activated-world",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "5.6px x43, 3.2px x38, 9.6px x20, 7.2px x12, 4.8px x11, 2.4px x3, 6.4px x3, 12.8px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "activated-world",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "5.6px x56, 3.2px x28, 4.8px x10, 7.2px x10, 2.4px x9, 9.6px x4, 10.4px x2, 8.8px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "activated-world",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "5.6px x56, 3.2px x28, 4.8px x10, 7.2px x10, 2.4px x9, 9.6px x4, 10.4px x2, 8.8px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "provisioning",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "provisioning",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "provisioning",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "provisioning",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "russian-review",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "russian-review",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "russian-review",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "russian-review",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "russian-published",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "russian-published",
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "russian-published",
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "russian-published",
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x36, 14.4px x18"
+      }
+    ],
+    "accessibility": []
+  }
+]

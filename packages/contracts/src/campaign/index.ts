@@ -112,3 +112,33 @@ export {
   type CampaignRevisionReview,
   type CampaignRevisionConflictView,
 } from './review.ts';
+export {
+  ACTIVATION_PHASES,
+  campaignActivationViewSchema,
+  campaignActivationAnswerSchema,
+  campaignActivationFindingSchema,
+  campaignActivationReviewSchema,
+  startCampaignActivationSchema,
+  CAMPAIGN_ACTIVATION_CONFLICTS,
+  campaignActivationConflictSchema,
+  ownedCampaignSchema,
+  ownedCampaignListSchema,
+  campaignEntrySchema,
+  type CampaignActivationView,
+  type CampaignActivationFinding,
+  type CampaignActivationReview,
+  type StartCampaignActivation,
+  type CampaignActivationConflict,
+  type OwnedCampaign,
+} from './activation.ts';
+export {
+  bootstrapCampaignCommandSchema,
+  bootstrapCampaignAssetSchema,
+  bootstrapAssetOriginSchema,
+  MAX_BOOTSTRAP_ASSETS,
+  MAX_BOOTSTRAP_OPERATIONS,
+  MAX_BOOTSTRAP_EVENTS,
+  MAX_BOOTSTRAP_BYTES,
+  type CampaignBootstrapAsset,
+  type BootstrapCampaignCommand,
+} from './bootstrap.ts';

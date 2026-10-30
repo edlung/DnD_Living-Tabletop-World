@@ -4,6 +4,8 @@ import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
 import { withPerspective, type RouteDependencies } from '../request-context.ts';
+import { sendError } from '../errors.ts';
+import type { CampaignQuestBooks } from '../../campaigns/quest-books.ts';
 
 /**
  * The party's quest log (docs/adr/0025-ravenford-integration.md §2): a
@@ -12,6 +14,7 @@ import { withPerspective, type RouteDependencies } from '../request-context.ts';
  */
 export interface QuestRouteDependencies extends RouteDependencies {
   readonly quests: readonly QuestDefinition[];
+  readonly campaignQuests?: CampaignQuestBooks;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -22,9 +25,16 @@ export function registerQuestRoutes(app: FastifyInstance, deps: QuestRouteDepend
     const ready = await withPerspective(request, reply, deps, { params, query });
     if (!ready) return reply;
     const { context } = ready;
+    const definitions = context.state.bootstrap
+      ? await deps.campaignQuests?.get(
+          ready.params.campaignId,
+          context.state.bootstrap.source.questDigest,
+        )
+      : deps.quests;
+    if (!definitions) return sendError(reply, request, 'INTERNAL');
     const body: QuestListResponse = {
       perspective: context.perspective.label,
-      quests: questLog(context, context.perspective, deps.quests),
+      quests: questLog(context, context.perspective, definitions),
     };
     return reply.send(body);
   });

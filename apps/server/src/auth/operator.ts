@@ -141,7 +141,7 @@ export function parseAuthOperatorArgs(argv: readonly string[]): AuthOperatorComm
   }
 }
 
-type OperatorDependencies = Pick<SignInDependencies, 'credentials' | 'clock'>;
+type OperatorDependencies = Pick<SignInDependencies, 'credentials' | 'clock' | 'publication'>;
 type Command<K extends AuthOperatorCommand['kind']> = Extract<AuthOperatorCommand, { kind: K }>;
 
 async function campaignOrRefuse(engine: WorldEngine, campaignId: string) {
@@ -153,7 +153,7 @@ async function campaignOrRefuse(engine: WorldEngine, campaignId: string) {
 /** Issues one DM invitation for the campaign's DM; its link is shown once, to the operator. */
 export async function issueDmInvitation(
   engine: WorldEngine,
-  deps: Pick<SignInDependencies, 'credentials' | 'publicOrigin' | 'clock'>,
+  deps: Pick<SignInDependencies, 'credentials' | 'publicOrigin' | 'clock' | 'publication'>,
   command: Command<'dm-invite'>,
 ): Promise<IssuedInvitation & { readonly campaignId: string }> {
   const { campaign } = await campaignOrRefuse(engine, command.campaignId);

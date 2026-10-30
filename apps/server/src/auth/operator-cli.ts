@@ -11,6 +11,7 @@ import {
 } from './operator.ts';
 import { PostgresCredentialStore } from './postgres-credential-store.ts';
 import { systemAuthClock } from './session-authenticator.ts';
+import { PostgresCampaignPublication } from '../campaigns/postgres-publication.ts';
 
 /**
  * Entry for `pnpm auth:operator` (docs/adr/0036-production-sign-in.md §1, amendment 2026-10-16):
@@ -54,7 +55,12 @@ async function main(): Promise<void> {
   try {
     const result = await runAuthOperatorCommand(
       createWorldEngine(pool),
-      { credentials: new PostgresCredentialStore(pool), publicOrigin, clock: systemAuthClock },
+      {
+        credentials: new PostgresCredentialStore(pool),
+        publicOrigin,
+        clock: systemAuthClock,
+        publication: new PostgresCampaignPublication(pool),
+      },
       command,
     );
     console.log(JSON.stringify(result));

@@ -27,6 +27,7 @@ export const REASON_TEXT: Readonly<Record<SubstitutionReason, string>> = {
 /** A command type as a step the DM can name: blockers and undo actions. */
 export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   CreateCampaign: 'create campaign',
+  BootstrapCampaign: 'start campaign from preparation',
   CreateEntity: 'create entity',
   PlaceEntity: 'place entity',
   UpdateEntityProfile: 'update entity profile',

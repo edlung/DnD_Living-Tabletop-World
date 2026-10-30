@@ -1,0 +1,107 @@
+.workshop-home,
+.campaign-activation,
+.campaign-activation-review,
+.campaign-activation-consent,
+.campaign-activation-status,
+.workshop-owned-campaigns,
+.campaign-entry {
+  display: grid;
+  align-items: start;
+  min-width: 0;
+  gap: var(--gutter);
+}
+.campaign-activation p,
+.workshop-owned-campaigns > p,
+.campaign-entry p {
+  max-width: 65ch;
+  margin-block: 0;
+}
+.campaign-activation h3,
+.campaign-activation h4 {
+  margin-block: 0;
+}
+.campaign-activation button,
+.campaign-entry button,
+.workshop-owned-campaigns > button {
+  justify-self: start;
+}
+.campaign-activation-policy {
+  display: grid;
+  gap: var(--gutter);
+  max-width: 640px;
+  width: 100%;
+  margin: 0;
+}
+.campaign-activation-policy legend {
+  padding: 8px;
+  color: var(--gold-bright);
+}
+.campaign-activation-policy input[type='radio'] {
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+.campaign-activation-findings,
+.workshop-campaign-list {
+  display: grid;
+  gap: var(--gutter);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.campaign-activation-findings > li,
+.workshop-campaign-list > li {
+  padding: var(--gutter);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--glass-soft);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.campaign-activation-findings .campaign-checkbox {
+  padding: 0;
+}
+.campaign-activation-pictures summary {
+  min-height: 32px;
+  cursor: pointer;
+}
+.campaign-activation-pictures ul {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-inline-start: 24px;
+  overflow-wrap: anywhere;
+}
+.workshop-campaign-list {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  align-items: start;
+}
+.workshop-campaign-list > li {
+  display: grid;
+  gap: var(--gutter);
+}
+.workshop-campaign-list h3 {
+  margin: 0;
+}
+.workshop-campaign-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--gold-bright);
+  justify-self: start;
+}
+.workshop-campaign-list a:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 4px;
+}
+@media (min-width: 1100px) {
+  .campaign-activation-review {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  }
+  .campaign-activation-review > h3,
+  .campaign-activation-review > p {
+    grid-column: 1 / -1;
+  }
+}

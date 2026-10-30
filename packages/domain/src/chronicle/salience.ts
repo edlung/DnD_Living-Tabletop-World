@@ -1,3 +1,4 @@
+import { isPartyMember } from '../knowledge/party.ts';
 import { SECONDS_PER_DAY } from '@ltw/contracts';
 
 import type { RecordedEvent } from '../kernel/events.ts';
@@ -147,7 +148,7 @@ export function salientEvents(
       }
       case 'EntityPlaced': {
         const { entityId, locationId } = event.payload;
-        if (!state.roster.has(entityId)) break;
+        if (!isPartyMember(state, entityId)) break;
         entry = {
           ...base,
           text: words.wentTo(name(entityId), name(locationId)),

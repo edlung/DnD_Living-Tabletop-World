@@ -5,6 +5,7 @@ import type {
   AssetPurpose,
   AssetStatus,
   AssetVariant,
+  CampaignBootstrapAsset,
 } from '@ltw/contracts';
 
 /**
@@ -63,6 +64,8 @@ export interface AssetRecord {
   readonly mediaType: AssetMediaType;
   readonly generator: { readonly provider: string; readonly model: string };
   readonly status: AssetStatus;
+  /** Exact already-generated draft bytes; absent for ordinary external jobs. */
+  readonly origin?: CampaignBootstrapAsset['origin'] | undefined;
 }
 
 export interface AssetState {

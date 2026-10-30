@@ -8,6 +8,7 @@ import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } 
 import type { AssetContentStore } from '../assets/content-store.ts';
 import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
+import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAuthRoutes } from '../auth/auth-routes.ts';
 import { registerMemberRoutes } from '../auth/member-routes.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
@@ -59,6 +60,8 @@ export interface AppDependencies {
   readonly assets: { readonly contents: AssetContentStore };
   /** Quest definitions (docs/adr/0025-ravenford-integration.md §2); the log is a projection. */
   readonly quests: readonly QuestDefinition[];
+  /** Immutable per-campaign definitions for bootstrapped campaigns; legacy fallback stays above. */
+  readonly campaignQuests?: CampaignQuestBooks;
   /**
    * Live subscriptions (docs/adr/0033-live-session.md §5), shared by the application and its
    * silent fingerprint twin (`src/live/live-app.ts`). Without a live session nobody is present.

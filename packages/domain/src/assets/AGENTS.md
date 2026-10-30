@@ -20,6 +20,11 @@ Asset identity and lineage: requests for images of world entities, the external 
 Rules:
 
 - Visual state is not world state (invariant 14). No asset event writes a world fact, and no gameplay decision reads the lineage. `lineage.test.ts` compares every world fact before and after.
+- Stage 440 `AssetAdopted` is confined to a USER-confirmed bootstrap batch, followed
+  by normal initial approval. It creates no request or provider job. Its `origin`
+  survives supersession, retraction and undo restores; it is DM lineage only, never
+  a player projection. Replay and integrity bind derived assets to the chosen
+  reference bytes and the final campaign bootstrap source.
 - The worker's reports (`StartAssetJob`, `CompleteAssetJob`, `FailAssetJob`) are system-only. They, `CancelAssetRequest`, and `RetractAsset` are final: not undoable, folded as recorded by the re-decision oracle, and reading no fact a world command wrote. Keep it so, or a failed job would block undo forever.
 - Undo safety for external work lives in `hold.ts`, not in footprints: a started job, or an image neither retracted nor discarded, blocks undo of the command that requested it.
 - A job copies its request when it starts, so lineage survives an undo of the request. Never make job events require the request.

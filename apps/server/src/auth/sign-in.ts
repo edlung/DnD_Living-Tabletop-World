@@ -7,6 +7,7 @@ import type { CredentialStore, InvitationPurpose, InvitationRecord } from './cre
 import type { RequestLimits } from './limits.ts';
 import { iso, type AuthClock } from './session-authenticator.ts';
 import { hashToken, newToken } from './tokens.ts';
+import type { CampaignPublication } from '../campaigns/publication.ts';
 
 /**
  * Invitations and their redemption (docs/adr/0036-production-sign-in.md §1–2;
@@ -15,6 +16,7 @@ import { hashToken, newToken } from './tokens.ts';
  * `invite:<invitationId>`, so a retried redeem converges on the same command.
  */
 export interface SignInDependencies {
+  readonly publication?: CampaignPublication;
   readonly credentials: CredentialStore;
   /** `PUBLIC_ORIGIN`: invitation links, the cookie's `Secure` flag, the origin check. */
   readonly publicOrigin: string;
@@ -41,7 +43,7 @@ export interface IssuedInvitation {
 
 /** Stores a new invitation (by its token's hash) and returns its link, shown once. */
 export async function issueInvitation(
-  deps: Pick<SignInDependencies, 'credentials' | 'publicOrigin' | 'clock'>,
+  deps: Pick<SignInDependencies, 'credentials' | 'publicOrigin' | 'clock' | 'publication'>,
   input: {
     readonly campaignId: string;
     readonly purpose: InvitationPurpose;
@@ -52,6 +54,8 @@ export async function issueInvitation(
     readonly hours: number;
   },
 ): Promise<IssuedInvitation> {
+  if ((await deps.publication?.state(input.campaignId)) === 'UNPUBLISHED')
+    throw new Error('CAMPAIGN_UNPUBLISHED');
   const token = newToken();
   const now = deps.clock.now();
   const invitation = {

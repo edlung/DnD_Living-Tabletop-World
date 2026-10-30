@@ -10,6 +10,10 @@ import type { CampaignGenerationDependencies } from './generation/runtime.ts';
 import type { CampaignRevisionRepository } from './packages/store.ts';
 import type { DraftImageDependencies } from './images/runtime.ts';
 import type { CampaignRevisionControlRepository } from './revisions/store.ts';
+import type {
+  CampaignActivationDependencies,
+  CampaignEntryDependencies,
+} from './activation/runtime.ts';
 
 export interface WorkshopDependencies {
   readonly store: WorkshopStore;
@@ -24,6 +28,8 @@ export interface WorkshopDependencies {
   readonly revisionControls?: CampaignRevisionControlRepository;
   readonly edits?: CampaignGenerationDependencies;
   readonly cancelEdit?: (jobId: string) => void;
+  readonly activation?: CampaignActivationDependencies;
+  readonly campaignEntry?: CampaignEntryDependencies;
 }
 export const WORKSHOP_SESSION_MS = SESSION_DAYS * 24 * 60 * 60_000;
 

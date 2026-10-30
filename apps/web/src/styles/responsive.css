@@ -212,6 +212,8 @@
     width: auto;
     padding-bottom: 2px;
     overflow-x: auto;
+    padding-inline-end: 16px;
+    mask-image: linear-gradient(to right, #000 calc(100% - 16px), transparent);
   }
   .party-rail ul {
     display: flex;

@@ -2,7 +2,7 @@ import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
-import type { AssetJobRecord, AssetRecord, AssetState } from './records.ts';
+import { assetIdFor, type AssetJobRecord, type AssetRecord, type AssetState } from './records.ts';
 
 /**
  * Fold and undo restores of the asset lineage (docs/adr/0022-asset-identity.md).
@@ -13,6 +13,7 @@ type AssetEvent = Extract<
   RecordedEvent,
   {
     type:
+      | 'AssetAdopted'
       | 'AssetRequested'
       | 'AssetJobStarted'
       | 'AssetGenerated'
@@ -37,6 +38,39 @@ function job(state: WorldState, requestId: string): AssetJobRecord {
 export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldState {
   const { assets } = state;
   switch (event.type) {
+    case 'AssetAdopted': {
+      const p = event.payload,
+        prefix = `${event.causation.commandId}#`,
+        ordinal = p.requestId.slice(prefix.length),
+        reference = p.derivedFrom === null ? undefined : assets.assets.get(p.derivedFrom);
+      if (
+        event.causation.commandType !== 'BootstrapCampaign' ||
+        event.causation.actor.kind !== 'user' ||
+        event.causation.actor.actorId !== state.campaign?.dmActorId ||
+        state.preparedParty === undefined ||
+        state.bootstrap !== undefined ||
+        !p.requestId.startsWith(prefix) ||
+        !/^(0|[1-9][0-9]{0,2})$/.test(ordinal) ||
+        p.assetId !== assetIdFor(p.requestId) ||
+        assets.assets.has(p.assetId) ||
+        assets.jobs.has(p.requestId) ||
+        assets.requests.has(p.requestId) ||
+        !state.entities.has(p.entityId) ||
+        (p.variant === 'reference'
+          ? p.derivedFrom !== null ||
+            p.origin.referenceHash !== null ||
+            p.label !== null ||
+            (p.purpose ?? 'image') !== 'image'
+          : p.label === null ||
+            reference?.status !== 'CANONICAL' ||
+            reference.entityId !== p.entityId ||
+            reference.contentHash !== p.origin.referenceHash)
+      )
+        throw new CorruptHistoryError('invalid adopted asset');
+      return with_(state, {
+        assets: withEntry(assets.assets, p.assetId, { ...p, purpose: p.purpose ?? 'image' }),
+      });
+    }
     case 'AssetRequested': {
       const p = event.payload;
       if (!state.entities.has(p.entityId)) {

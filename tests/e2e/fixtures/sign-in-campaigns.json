@@ -8,5 +8,8 @@
   "a11yRu": "ui-signin-a11y-ru",
   "keyboard": "ui-signin-keyboard",
   "onClick": "ui-signin-on-click",
-  "tabs": "ui-signin-tabs"
+  "tabs": "ui-signin-tabs",
+  "gameCookieOld": "ui-game-cookie-old",
+  "gameCookieNew": "ui-game-cookie-new",
+  "activationGame": "ui-activation-game"
 }

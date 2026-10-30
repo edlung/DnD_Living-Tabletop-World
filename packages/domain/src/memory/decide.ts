@@ -1,3 +1,4 @@
+import { partyMemberIds } from '../knowledge/party.ts';
 import { findEntity } from '../kernel/decide/lookups.ts';
 import {
   accept,
@@ -72,7 +73,7 @@ export function decideRecordMemory(
     if (memoryKind === 'CONVERSATION' && participants.length === 0) {
       return reject('INVALID_MEMORY', 'A conversation needs participants');
     }
-    const candidates = holderId !== null ? [holderId] : [...state.roster.keys()];
+    const candidates = holderId !== null ? [holderId] : [...partyMemberIds(state)];
     witnesses = candidates.filter((id) => {
       const at = placementAt(state, history, id, occurredAt);
       return (

@@ -7,6 +7,8 @@ import type { ClaimTarget } from '@ltw/contracts';
 export type FactKey = string;
 
 export const facts = {
+  preparedParty: (): FactKey => 'party#prepared',
+  bootstrap: (): FactKey => 'campaign#bootstrap',
   campaign: (): FactKey => 'campaign',
   clock: (): FactKey => 'world#clock',
   activeScene: (): FactKey => 'world#activeScene',

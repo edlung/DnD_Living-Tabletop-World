@@ -213,3 +213,9 @@ export {
   resolveCampaignVisualBrief,
   campaignImageSourceProjection,
 } from './campaign/visual-source.ts';
+export {
+  buildCampaignBootstrapPlan,
+  type CampaignBootstrapPlan,
+} from './campaign/bootstrap-plan.ts';
+
+export { partyMemberIds, isPartyMember } from './knowledge/party.ts';

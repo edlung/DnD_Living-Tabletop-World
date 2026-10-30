@@ -12,6 +12,7 @@ import './i18n/ru-workshop-editor.ts';
 import './i18n/ru-workshop-scenario.ts';
 import './i18n/ru-workshop-preview.ts';
 import './i18n/ru-workshop-editing.ts';
+import './i18n/ru-workshop-activation.ts';
 import './i18n/ru-images.ts';
 import './i18n/ru-table.ts';
 import { App } from './session/app.tsx';
@@ -48,6 +49,7 @@ import './styles/workshop-scenario.css';
 import './styles/workshop-preview.css';
 import './styles/workshop-pictures.css';
 import './styles/workshop-editing.css';
+import './styles/workshop-activation.css';
 
 // An invitation link's token leaves the address before anything is requested or rendered
 // (docs/adr/0036-production-sign-in.md §7) and waits in a one-shot holder, never bound here,

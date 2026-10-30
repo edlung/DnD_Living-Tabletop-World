@@ -2,6 +2,7 @@ import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
+import type { Connection, GameSignOutGuard } from '../api/client.ts';
 import { signOut } from './sign-in-flow.ts';
 
 /**
@@ -16,31 +17,49 @@ export function SignOutDialog({
   onCancel,
   onSignedOut,
   transport = fetch,
+  connection,
 }: {
   readonly open: boolean;
   readonly onCancel: () => void;
   readonly onSignedOut: () => void;
   readonly transport?: typeof fetch;
+  readonly connection: Extract<Connection, { kind: 'session' }>;
 }) {
   const t = useT();
   const ref = useRef<HTMLDialogElement>(null);
   const stay = useRef<HTMLButtonElement>(null);
   const [state, setState] = useState<'asking' | 'signing-out' | 'failed'>('asking');
+  const request = useRef<AbortController | null>(null);
+  const mounted = useRef<GameSignOutGuard>({ campaignId: connection.campaignId });
+  const sending = useRef(false);
   useEffect(() => {
+    const controller = new AbortController();
+    request.current = controller;
+    sending.current = false;
     const dialog = ref.current;
     if (!dialog) return;
     if (open && !dialog.open) {
+      mounted.current = connection.signOutGuard?.() ?? { campaignId: connection.campaignId };
       setState('asking');
       dialog.showModal();
       // The final choice is never the one a second key press makes.
       stay.current?.focus();
     }
     if (!open && dialog.open) dialog.close();
-  }, [open]);
+    return () => {
+      controller.abort();
+      if (request.current === controller) request.current = null;
+    };
+  }, [open, connection]);
   const busy = state === 'signing-out';
   const confirm = () => {
+    const controller = request.current;
+    if (!open || !controller || controller.signal.aborted || sending.current) return;
+    sending.current = true;
     setState('signing-out');
-    void signOut(transport).then((result) => {
+    void signOut(transport, mounted.current, controller.signal).then((result) => {
+      if (controller.signal.aborted || request.current !== controller) return;
+      sending.current = false;
       if (result === 'signed-out') onSignedOut();
       else setState('failed');
     });

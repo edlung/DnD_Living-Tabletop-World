@@ -141,6 +141,8 @@ export function App({ start }: { readonly start: PageStart }) {
         {connection.kind === 'session' && (
           <LanguageProvider language={campaignLanguage ?? browser}>
             <SignOutDialog
+              key={screen.key}
+              connection={connection}
               open={flow.askingSignOut}
               onCancel={flow.cancelSignOut}
               onSignedOut={flow.signedOut}

@@ -11,6 +11,7 @@ import { facts, type FactKey } from '../kernel/fact-keys.ts';
  * not yet retracted, from losing what it depicts.
  */
 type AssetEventType =
+  | 'AssetAdopted'
   | 'AssetRequested'
   | 'AssetJobStarted'
   | 'AssetGenerated'
@@ -24,6 +25,22 @@ export function assetFootprint(event: Extract<KernelEvent, { type: AssetEventTyp
   writes: FactKey[];
 } {
   switch (event.type) {
+    case 'AssetAdopted':
+      return {
+        reads: [
+          facts.clock(),
+          facts.campaign(),
+          facts.preparedParty(),
+          facts.entity(event.payload.entityId),
+          ...(event.payload.derivedFrom === null
+            ? []
+            : [
+                facts.assetCanonical(event.payload.entityId),
+                facts.asset(event.payload.derivedFrom),
+              ]),
+        ],
+        writes: [facts.asset(event.payload.assetId)],
+      };
     case 'AssetRequested': {
       const { requestId, entityId, derivedFrom } = event.payload;
       return {

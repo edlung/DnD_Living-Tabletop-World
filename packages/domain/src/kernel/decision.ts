@@ -8,6 +8,7 @@ import type {
   Skill,
 } from '@ltw/contracts';
 
+import type { BootstrapConsentRequirement } from '../campaign/bootstrap-consent.ts';
 import type { ConsentRequirement } from '../authoring/consent.ts';
 import type { Actor } from './actor.ts';
 import type { CombatPort } from '../combat/port.ts';
@@ -36,6 +37,7 @@ export type Decision =
        * not a premise: re-decision ignores it.
        */
       readonly requires?: ConsentRequirement;
+      readonly requiresBootstrap?: BootstrapConsentRequirement;
     }
   | { readonly ok: false; readonly rejection: Rejection };
 

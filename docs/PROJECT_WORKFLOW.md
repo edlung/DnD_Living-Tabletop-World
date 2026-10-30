@@ -11,7 +11,7 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   The session keeps scoped stages, checks, adversarial passes and reports and
   continues autonomously. Final functionality is shown to the owner; no runtime
   DM confirmation, architecture invariant, deployment or human-acceptance boundary
-  is waived. Current implementation scope: `work-orders/STAGE_430.md`.
+  is waived. Current implementation scope: `work-orders/STAGE_440.md`.
 
 - In the current project chat the owner requested AI-generated campaigns with
   scenario and visual preview, approved implementation of the proposed Stages
@@ -56,7 +56,13 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   manual editing, protected content/images, directed EDIT proposals, full review,
   explicit adoption and restore-as-new. Full isolated validation:3,267unit,331PG,
   172browser tests;44layout/axe state-width combinations,88screenshots,0violations.
-  Report:`reports/STAGE_430_COMPLETION.md`. Ready to continue to440; no owner stop.
+  Report:`reports/STAGE_430_COMPLETION.md`; checkpoint`689967c`.
+- Stage440:**TECHNICALLY_VERIFIED**, `work-orders/STAGE_440.md`,
+  `docs/STAGE_440_DESIGN.md`. Confirmed atomic bootstrap, exact pictures,
+  immutable per-campaign content, closed provisioning, owned-campaign entry and
+  cookie-race protection. Full isolated validation:3,350unit,339PG,180browser;
+  four-width audit:36combinations,0errors/warnings/axe violations.
+  Report:`reports/STAGE_440_COMPLETION.md`. Continue450 under delegated authority.
 - Stages440–450 continue after their scoped technical verification under the
   owner's delegated continuation. Runtime confirmation and final human acceptance
   remain the owner's actions.

@@ -40,6 +40,12 @@ from a committed revision, verified locally in Docker. Operations for people: `R
   accounting or draft manifests exist, keep an0018/0019/0020-aware recovery build.
   Older app/operator binaries do not understand those subjects or atomic manifest
   obligations; event-readiness alone cannot prove compatibility. See RUNBOOK§3.
+- Confirmed activation (Stage440): keep an0022-aware app/operator/replay build once
+  activation rows exist, including before the bootstrap append. Older engines lack
+  the publication gate. New prepared-party/adoption/bootstrap events also require
+  compatible event schemas; `--rollback` does not make an older build compatible.
+  Recovery preserves activation/content/bytes/events together and resumes the same
+  stable command; never publish by editing SQL status. See RUNBOOK§3/§5.
 - Docker Engine 28 or later: `backend` and `data` use the gateway mode `isolated`; `deploy.sh`
   checks the Engine and, before anything starts, the networks (`lib.sh`).
 - The live stream must never be buffered or compressed by the proxy (ADR 0033): `/api` has no

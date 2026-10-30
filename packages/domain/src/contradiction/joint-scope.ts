@@ -1,3 +1,4 @@
+import { isPartyMember } from '../knowledge/party.ts';
 import type { KnowledgeScope } from '@ltw/contracts';
 
 import type { WorldState } from '../kernel/state.ts';
@@ -24,7 +25,9 @@ export function jointScope(
   if (a.kind === 'PARTY' && b.kind === 'PARTY') return { kind: 'PARTY' };
   const other = a.kind === 'PARTY' ? b : b.kind === 'PARTY' ? a : null;
   if (other !== null) {
-    return other.kind === 'CHARACTER' && state.roster.has(other.characterId) ? copy(other) : null;
+    return other.kind === 'CHARACTER' && isPartyMember(state, other.characterId)
+      ? copy(other)
+      : null;
   }
   if (a.kind === 'CHARACTER' && b.kind === 'CHARACTER') {
     return a.characterId === b.characterId ? copy(a) : null;

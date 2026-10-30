@@ -1,5 +1,6 @@
 import { PLAYER_COMMAND_TYPES } from '@ltw/contracts';
 
+import { decideBootstrapCampaign } from '../../campaign/bootstrap.ts';
 import { decideApplyAuthoring } from '../../authoring/decide.ts';
 import { decideSetCharacterSheet } from '../../character/character.ts';
 import { decideSetStatBlock } from '../../combat/authoring.ts';
@@ -70,6 +71,8 @@ export function decide(context: DecisionContext, command: ResolvedCommand): Deci
   const paused = pausedByChanges(context.state, command.type, all);
   if (paused) return paused;
   // Authoring states the consent its commit needs (ADR 0018 §4).
+  if (decision.requiresBootstrap)
+    return { ok: true, events: all, requiresBootstrap: decision.requiresBootstrap };
   return decision.requires
     ? { ok: true, events: all, requires: decision.requires }
     : accept(...all);
@@ -104,6 +107,8 @@ function withAuthorityPremise(
 function route(context: DecisionContext, command: ResolvedCommand): Decision {
   const { state } = context;
   switch (command.type) {
+    case 'BootstrapCampaign':
+      return decideBootstrapCampaign(context, command);
     case 'CreateCampaign':
       return decideCreateCampaign(context, command);
     case 'CreateEntity':

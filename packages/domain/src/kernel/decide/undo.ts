@@ -41,6 +41,7 @@ import type { WorldState } from '../state.ts';
  */
 const NOT_UNDOABLE: ReadonlySet<KernelCommandType> = new Set([
   'CreateCampaign',
+  'BootstrapCampaign',
   'UndoCommand',
   // What settles external asset work is final (ADR 0006 §9, ADR 0022).
   ...ASSET_SETTLING_COMMAND_TYPES,
@@ -403,6 +404,9 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'AssetJobFailed':
       case 'AssetRequestCancelled':
       case 'AssetRetracted':
+      case 'PreparedPartyEstablished':
+      case 'CampaignBootstrapped':
+      case 'AssetAdopted':
       case 'CampaignCreated':
       case 'CommandUndone':
         throw new Error(`${event.type} is not undoable`);

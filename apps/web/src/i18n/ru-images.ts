@@ -5,6 +5,8 @@ import { registerRussian } from '@ltw/ui';
  * (docs/STAGE_330_DESIGN.md "DM controls"). Keys are the English source strings.
  */
 registerRussian({
+  'Imported from campaign preparation': 'Перенесено из подготовки кампании',
+  'Source revision: {revision}': 'Исходная версия: {revision}',
   // The dock and the Images sheet
   Images: 'Изображения',
   'Images (DM)': 'Изображения (мастер)',

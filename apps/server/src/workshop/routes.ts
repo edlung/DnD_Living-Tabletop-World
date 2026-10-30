@@ -22,6 +22,8 @@ import { registerCampaignPackageRoutes } from './packages/routes.ts';
 import { registerCampaignGenerationRoutes } from './generation/routes.ts';
 import { registerCampaignEditRequestRoutes } from './generation/edit-routes.ts';
 import { registerCampaignRevisionControlRoutes } from './revisions/routes.ts';
+import { registerCampaignActivationRoutes } from './activation/routes.ts';
+import { registerOwnedCampaignRoutes } from '../campaigns/owner-routes.ts';
 import { registerCampaignPreviewRoutes } from './preview/routes.ts';
 import { registerDraftImageReadRoutes } from './images/read-routes.ts';
 import { registerDraftImageMutationRoutes } from './images/mutation-routes.ts';
@@ -163,5 +165,9 @@ export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDepen
   if (deps.edits) {
     registerCampaignGenerationRoutes(app, deps, deps.edits, deps.cancelEdit);
     registerCampaignEditRequestRoutes(app, deps);
+  }
+  if (deps.activation) {
+    registerCampaignActivationRoutes(app, deps);
+    registerOwnedCampaignRoutes(app, deps);
   }
 }

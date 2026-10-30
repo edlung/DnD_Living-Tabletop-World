@@ -1,3 +1,4 @@
+import { isPartyMember } from '../knowledge/party.ts';
 import type {
   ChronicleSourceView,
   QuestDefinition,
@@ -35,7 +36,7 @@ function partyCanRead(state: WorldState, perspective: ResolvedPerspective): bool
   return (
     perspective.kind === 'CHARACTER' &&
     perspective.holderId !== null &&
-    state.roster.has(perspective.holderId)
+    isPartyMember(state, perspective.holderId)
   );
 }
 
@@ -70,6 +71,10 @@ function occurrences(
 
   for (const event of events) {
     switch (event.type) {
+      case 'PreparedPartyEstablished':
+        // Initial placements precede this event; they are prepared state, never played visits.
+        for (const id of event.payload.characterIds) members.add(id);
+        break;
       case 'CharacterAssigned':
         members.add(event.payload.characterId);
         break;

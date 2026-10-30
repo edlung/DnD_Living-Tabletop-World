@@ -27,6 +27,12 @@ import { PostgresCredentialStore } from './auth/postgres-credential-store.ts';
 import { PostgresWorkshopStore } from './workshop/postgres-store.ts';
 import { PostgresCampaignRevisionRepository } from './workshop/packages/postgres-store.ts';
 import { PostgresCampaignRevisionControlRepository } from './workshop/revisions/postgres-store.ts';
+import { PostgresCampaignActivationRepository } from './workshop/activation/postgres-store.ts';
+import { CampaignActivationWorker } from './workshop/activation/worker.ts';
+import { startCampaignActivationLoop } from './workshop/activation/worker-loop.ts';
+import { PostgresCampaignInitialContentStore } from './campaigns/postgres-content.ts';
+import { PostgresCampaignPublication } from './campaigns/postgres-publication.ts';
+import { createCampaignQuestBooks } from './campaigns/quest-books.ts';
 import { isCuratedRequest } from './images/curated-import.ts';
 import { loadCuratedSet } from './images/curated-set.ts';
 import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
@@ -44,7 +50,12 @@ import { loadMigrations } from './platform/db/migration-source.ts';
 import { MIGRATIONS_DIR } from './platform/db/migrations-dir.ts';
 import { createPool } from './platform/db/pool.ts';
 import { createLogger, type Logger } from './platform/logging/logger.ts';
-import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
+import {
+  createWorldEngine,
+  createRawWorldEngine,
+  randomIds,
+  systemClock,
+} from './world-engine/runtime.ts';
 import { storeReadiness } from './world-engine/store-readiness.ts';
 
 /**
@@ -61,10 +72,12 @@ async function main(): Promise<void> {
 
   // Sign-in by mode (docs/adr/0036-production-sign-in.md §5): session cookies from DM
   // invitations in production; development personas are refused under NODE_ENV=production.
-  const { authenticator, signIn } = await composeAuthentication(
+  const { authenticator, signIn: baseSignIn } = await composeAuthentication(
     config,
     () => new PostgresCredentialStore(pool),
   );
+  const publication = new PostgresCampaignPublication(pool);
+  const signIn = baseSignIn ? { ...baseSignIn, publication } : null;
   if (config.auth.mode === 'dev-personas') {
     logger.warn('development persona authentication is enabled (never use in production)');
   }
@@ -114,8 +127,9 @@ async function main(): Promise<void> {
     ids: randomIds,
     clock: systemClock,
   };
-  const engine = createWorldEngine(pool);
+  const engine = createWorldEngine(pool, publication);
   const contents = new PostgresAssetContentStore(pool);
+  const initialContent = new PostgresCampaignInitialContentStore(pool);
   // Before the server listens: a generator that cannot be built stops the start (ADR 0035 §1).
   let generator: ImageGenerator;
   try {
@@ -135,6 +149,17 @@ async function main(): Promise<void> {
       }
     : null;
   const draftImageWorker = draftImages ? new DraftImageWorker(draftImages) : null;
+  const activation =
+    signIn && draftImageRepository
+      ? {
+          repository: new PostgresCampaignActivationRepository(pool),
+          initialContent,
+          contents,
+          draftImages: draftImageRepository,
+          bootstrap: createRawWorldEngine(pool),
+        }
+      : null;
+  const activationWorker = activation ? new CampaignActivationWorker(activation) : null;
   // After a rollback (LTW_ALLOW_NEWER_SCHEMA) readiness parses every stored event first: a newer
   // build may have written events this one cannot read anywhere in a stream (ADR 0037).
   const readiness = storeReadiness(pool, await loadMigrations(MIGRATIONS_DIR), logger, {
@@ -151,6 +176,7 @@ async function main(): Promise<void> {
     dm: { substitutions: new PostgresSubstitutionStore(pool), clock: systemClock },
     assets: { contents },
     quests,
+    campaignQuests: createCampaignQuestBooks(initialContent),
     ...(signIn ? { signIn } : {}),
     ...(signIn
       ? {
@@ -186,6 +212,7 @@ async function main(): Promise<void> {
                   },
                 }
               : {}),
+            ...(activation ? { activation, campaignEntry: { engine, signIn } } : {}),
             publicOrigin: signIn.publicOrigin,
             clock: signIn.clock,
             limits: signIn.limits,
@@ -216,6 +243,10 @@ async function main(): Promise<void> {
       ? startCampaignGenerationLoop(generation.repository, generationWorker, logger)
       : () => Promise.resolve();
   const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
+  const stopActivation =
+    activation && activationWorker
+      ? startCampaignActivationLoop(activation.repository, activationWorker, logger)
+      : () => Promise.resolve();
   const stopEdits =
     edits && editWorker
       ? startCampaignGenerationLoop(edits.repository, editWorker, logger)
@@ -239,7 +270,7 @@ async function main(): Promise<void> {
   const shutdown = (signal: NodeJS.Signals): void => {
     logger.info({ signal }, 'shutting down');
     stopPruning();
-    Promise.all([stopAssets(), stopGeneration(), stopEdits(), stopDraftImages()])
+    Promise.all([stopAssets(), stopGeneration(), stopEdits(), stopDraftImages(), stopActivation()])
       .then(() => app.close())
       // Settlement retries stop; any unsettled hold stays for the operator.
       .then(() => ai.accounting.shutdown())
