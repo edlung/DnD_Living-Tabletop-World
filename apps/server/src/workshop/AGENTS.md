@@ -9,8 +9,9 @@ Authority: owner-accepted `docs/STAGE_370_DESIGN.md`,
 - PostgreSQL serializes issue/redeem/revoke on the owner row and keeps redemption
   one-use. In-memory stores belong under `testing/` only.
 - Every draft query is owner-qualified. Another owner's ID is the unknown-ID 404.
-- Current drafts are private metadata containers. Versioned contents, generation,
-  progress streams, previews and activation belong to Stages 390–440.
+- Drafts are private containers with immutable package revisions (Stage 390).
+  Read `packages/AGENTS.md` for revision CAS, identity and compiler boundaries.
+  Generation, progress streams, previews and activation belong to Stages 400–440.
 - Future progress streams must recheck this same durable session on each cycle;
   a one-time authorization is insufficient after operator revocation.
 - Keep stores, HTTP, token policy and operator CLI cohesive and under 500 lines.

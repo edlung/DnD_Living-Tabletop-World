@@ -7,10 +7,12 @@ in `docs/PROJECT_WORKFLOW.md`. The detailed contract/ADR 0038 were accepted by
 `reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json` (reviewed proposal bytes frozen).
 Stage 370 introduced documentation only. Stage 380 access/accounting implementation
 and evidence are in `reports/STAGE_380_COMPLETION.md`; final full validation passed
-(3,016 unit, 254 integration, 144 browser tests), owner disposition is pending.
-Stages 390–450 remain **FUTURE / NOT YET IMPLEMENTED OR TESTED**. Each introducing stage runs
-its deterministic/adversarial checks and ends at an owner checkpoint; a separate
-model review is optional under the current workflow.
+(3,016 unit, 254 integration, 144 browser tests), accepted by the owner on 2026-10-30.
+Stage 390 implements package contracts, private immutable revisions and isolated
+materialization; its full checkpoint passed (3,049 unit, 261 integration, 144 browser tests). Stages 400–450 remain
+**FUTURE / NOT YET IMPLEMENTED OR TESTED**. The owner delegates technical checkpoint
+continuation (`reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json`); each stage
+still verifies its own boundary and preserves human acceptance separately.
 
 | Introduced at | Required coverage at introduction | Integrated checkpoint |
 |---:|---|---|

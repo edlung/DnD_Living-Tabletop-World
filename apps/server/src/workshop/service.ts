@@ -6,12 +6,14 @@ import type { RequestLimits } from '../auth/limits.ts';
 import type { AuthClock } from '../auth/session-authenticator.ts';
 import { hashToken, newToken } from '../auth/tokens.ts';
 import type { WorkshopStore } from './store.ts';
+import type { CampaignRevisionRepository } from './packages/store.ts';
 
 export interface WorkshopDependencies {
   readonly store: WorkshopStore;
   readonly publicOrigin: string;
   readonly clock: AuthClock;
   readonly limits: RequestLimits;
+  readonly packages?: CampaignRevisionRepository;
 }
 export const WORKSHOP_SESSION_MS = SESSION_DAYS * 24 * 60 * 60_000;
 

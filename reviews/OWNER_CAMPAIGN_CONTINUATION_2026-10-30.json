@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-30",
+  "source": "Direct owner message in this project chat",
+  "ownerInstruction": "Принимаю 380. Остальные технические контрольные точки проходи самостоятельно, готовый функционал покажи в конце",
+  "stage380": {
+    "disposition": "ACCEPTED",
+    "packageManifestSha256": "333adc720d875d4eb80e654652a261624603f37a121f2725c57bbf318daaf572",
+    "commit": "b6d5957"
+  },
+  "authorizedStages": [390, 400, 410, 420, 430, 440, 450],
+  "technicalCheckpoints": "Session performs checks, adversarial passes, reports and technical dispositions autonomously and continues without intermediate owner confirmation.",
+  "finalPresentation": "Show the completed campaign generation, scenario preview, visual preview, revision and activation flow to the owner at the end.",
+  "unchangedBoundaries": [
+    "World Engine authority",
+    "DM confirmation before campaign activation",
+    "knowledge isolation",
+    "usage accounting with unlimited monetary budget",
+    "no automatic deployment, publication, credential changes or release tag",
+    "human play acceptance remains honestly reported"
+  ]
+}

@@ -8,6 +8,15 @@ The model selected in the session does the work. `EFFORT_MATRIX.md` and work-ord
 
 # Living Tabletop World Agent Instructions
 
+Owner override for the AI campaign program, 2026-10-30:
+`reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json` accepts Stage 380 and authorizes
+the session to pass the technical checkpoints of Stages 390–450 autonomously.
+Keep scoped work orders, verification, adversarial passes and reports; continue
+between these stages without intermediate owner confirmation. Show the finished
+functionality at the end. This overrides the technical HARD STOP below for this
+program only; product authority, runtime DM confirmation, human acceptance honesty,
+deployment/credential/publication restrictions and all architecture invariants remain.
+
 Start with `docs/AI_CONTEXT_MAP.md`, then read the nearest applicable `AGENTS.md` and the files needed for the task.
 Use `AGENT_WORKFLOW.md` for protocol and `docs/PROJECT_WORKFLOW.md` for current status.
 Use `ARCHITECTURE_INVARIANTS.md` whenever work touches authority, state, knowledge, rules, history, AI mutation, or UX guarantees.

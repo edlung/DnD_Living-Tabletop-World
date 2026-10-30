@@ -18,6 +18,37 @@ export {
   type WorkshopDraftList,
 } from './workshop/access.ts';
 export {
+  CAMPAIGN_PACKAGE_VERSION,
+  campaignBriefSchema,
+  campaignEntitySchema,
+  campaignKnowledgeSchema,
+  campaignPackageSchema,
+  type CampaignPackage,
+  type CampaignEntity,
+  type CampaignKnowledge,
+  type CampaignScope,
+  type CampaignIdentities,
+  type CampaignFinding,
+  type CampaignAssessment,
+} from './campaign/package.ts';
+export {
+  campaignKeySchema,
+  campaignClueSchema,
+  campaignConflictSchema,
+  campaignSituationSchema,
+  campaignEncounterSchema,
+  campaignVisualBriefSchema,
+} from './campaign/story.ts';
+export {
+  campaignRevisionNumberSchema,
+  saveCampaignRevisionSchema,
+  campaignRevisionQuerySchema,
+  type CampaignRevisionSource,
+  type CampaignRevision,
+  type CampaignRevisionView,
+  type CampaignRevisionSummary,
+} from './campaign/revisions.ts';
+export {
   OBJECT_ID_PATTERN,
   actorIdSchema,
   campaignIdSchema,

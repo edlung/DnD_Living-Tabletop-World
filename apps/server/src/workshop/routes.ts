@@ -15,8 +15,10 @@ import { hashToken, newToken, secureCookies, tokenPrefix } from '../auth/tokens.
 import { sendError } from '../http/errors.ts';
 import { fromPublicOrigin } from '../http/security.ts';
 import { clientGroup } from '../platform/net/addresses.ts';
-import { workshopCookie, workshopCookieValues, workshopToken } from './cookies.ts';
+import { workshopCookie, workshopCookieValues } from './cookies.ts';
+import { authorizeWorkshop, workshopPrincipal, workshopSignedOut } from './access.ts';
 import { WORKSHOP_SESSION_MS, type WorkshopDependencies } from './service.ts';
+import { registerCampaignPackageRoutes } from './packages/routes.ts';
 
 const empty = z.object({}).strict();
 const params = z.object({ draftId: workshopIdSchema }).strict();
@@ -25,37 +27,11 @@ const PAGE_SIZE = 50;
 export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDependencies): void {
   const secure = secureCookies(deps.publicOrigin);
   const now = () => new Date(deps.clock.now()).toISOString();
-  const principal = async (request: FastifyRequest) => {
-    const token = workshopToken(request.headers.cookie);
-    return token === null ? null : deps.store.session(hashToken(token), now());
-  };
-  const signedOut = (request: FastifyRequest, reply: FastifyReply) => {
-    if (workshopCookieValues(request.headers.cookie).length === 1)
-      reply.header('set-cookie', workshopCookie('', 0, secure));
-    return sendError(reply, request, 'UNAUTHENTICATED');
-  };
-  // A mounted browser may still show owner A after another tab signs in as B.
-  // Its expected identity prevents old draft input from being applied under B's cookie.
-  const draftPrincipal = async (request: FastifyRequest, reply: FastifyReply) => {
-    const session = await principal(request);
-    if (!session) {
-      signedOut(request, reply);
-      return null;
-    }
-    const expected = request.headers['x-workshop-owner'];
-    if (expected !== undefined) {
-      const parsed = workshopIdSchema.safeParse(expected);
-      if (!parsed.success) {
-        sendError(reply, request, 'INVALID_REQUEST');
-        return null;
-      }
-      if (parsed.data !== session.ownerId) {
-        sendError(reply, request, 'CONFLICT');
-        return null;
-      }
-    }
-    return session;
-  };
+  const principal = (request: FastifyRequest) => workshopPrincipal(request, deps);
+  const signedOut = (request: FastifyRequest, reply: FastifyReply) =>
+    workshopSignedOut(request, reply, deps);
+  const draftPrincipal = (request: FastifyRequest, reply: FastifyReply) =>
+    authorizeWorkshop(request, reply, deps);
 
   // Scoped hook also protects test compositions without the campaign sign-in plugin.
   app.addHook('onRequest', async (request, reply) => {
@@ -164,4 +140,6 @@ export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDepen
     const draft = await deps.store.draft(session.ownerId, path.data.draftId);
     return draft ? reply.send(draft) : sendError(reply, request, 'NOT_FOUND');
   });
+
+  if (deps.packages) registerCampaignPackageRoutes(app, deps, deps.packages);
 }

@@ -4,6 +4,15 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 
 ## Current request — AI campaigns, 2026-10-30
 
+- Latest owner disposition: «Принимаю 380. Остальные технические контрольные точки
+  проходи самостоятельно, готовый функционал покажи в конце».
+  `reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json` accepts Stage 380 and
+  supersedes intermediate technical HARD STOP requirements for Stages 390–450.
+  The session keeps scoped stages, checks, adversarial passes and reports and
+  continues autonomously. Final functionality is shown to the owner; no runtime
+  DM confirmation, architecture invariant, deployment or human-acceptance boundary
+  is waived. Current implementation scope: `work-orders/STAGE_390.md`.
+
 - In the current project chat the owner requested AI-generated campaigns with
   scenario and visual preview, approved implementation of the proposed Stages
   370–450 («выполняй реализацию всех этапов»), and removed monetary AI limits
@@ -20,16 +29,18 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json`. The original design,
   proposed ADR and initial handoff remain frozen as reviewed artifacts; this
   disposition supersedes their pending-status text. Stage 370 is accepted.
-- Current implementation: **Stage 380 CHECKPOINT_READY / AWAITING_OWNER_DISPOSITION**, scoped by
-  `work-orders/STAGE_380.md` and `docs/STAGE_380_DESIGN.md`. Workshop credentials,
-  private draft containers and explicit unlimited monetary policy are implemented.
-  Final offline validation passed: 3,016 unit, 254 integration, 144 browser tests,
-  including the synchronous-history privacy fix. Report/handoff:
-  `reports/STAGE_380_COMPLETION.md`, `handoffs/STAGE_380_REQUEST.md`.
-  No real credentials/operator records or default local DB were changed by tests.
-- Stages 390–450 retain authorization but wait for prerequisite checkpoint
-  dispositions and their scoped work orders. At the Stage 380 checkpoint, write
-  the report/handoff and stop under `AGENT_WORKFLOW.md`.
+- Stage 380: implemented and accepted by the owner on 2026-10-30. Its final
+  offline validation passed: 3,016 unit, 254 integration, 144 browser tests.
+  Report: `reports/STAGE_380_COMPLETION.md`; acceptance and delegated continuation:
+  `reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json`.
+- Current implementation: **Stage 390 TECHNICALLY_VERIFIED**, scoped by
+  `work-orders/STAGE_390.md` and `docs/STAGE_390_DESIGN.md`. Strict packages,
+  immutable owner-private revisions and isolated World Engine materialization are
+  implemented and verified: 3,049 unit, 261 integration and 144 browser tests pass. No real credentials,
+  default local DB, production campaign or deployment has been changed.
+- Stages 400–450 continue after their scoped technical verification under the
+  owner's delegated continuation. Runtime confirmation and final human acceptance
+  remain the owner's actions.
 - Stage 370's full offline validation passed (2,985 unit, 237 integration, 132
   browser tests). Those results validate its documentation checkpoint, not the
   new Stage 380 implementation; the fresh Stage 380 results are recorded above.

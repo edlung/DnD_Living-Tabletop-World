@@ -16,6 +16,7 @@ import { startAssetWorkerLoop } from './assets/worker-loop.ts';
 import { composeAuthentication, startCredentialPruning } from './auth/composition.ts';
 import { PostgresCredentialStore } from './auth/postgres-credential-store.ts';
 import { PostgresWorkshopStore } from './workshop/postgres-store.ts';
+import { PostgresCampaignRevisionRepository } from './workshop/packages/postgres-store.ts';
 import { isCuratedRequest } from './images/curated-import.ts';
 import { loadCuratedSet } from './images/curated-set.ts';
 import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
@@ -111,6 +112,7 @@ async function main(): Promise<void> {
       ? {
           workshop: {
             store: new PostgresWorkshopStore(pool),
+            packages: new PostgresCampaignRevisionRepository(pool),
             publicOrigin: signIn.publicOrigin,
             clock: signIn.clock,
             limits: signIn.limits,
