@@ -1,3 +1,16 @@
+import '../i18n/ru-workshop-editor.ts';
+import '../i18n/ru-workshop-scenario.ts';
+import '../i18n/ru-workshop-preview.ts';
+import '../i18n/ru-workshop-editing.ts';
+import '../i18n/ru-workshop-activation.ts';
+import '../styles/workshop-editor.css';
+import '../styles/workshop-generation.css';
+import '../styles/workshop-scenario.css';
+import '../styles/workshop-preview.css';
+import '../styles/workshop-pictures.css';
+import '../styles/workshop-editing.css';
+import '../styles/workshop-activation.css';
+
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useT } from '@ltw/ui';
 

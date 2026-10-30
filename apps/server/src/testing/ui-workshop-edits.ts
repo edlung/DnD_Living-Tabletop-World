@@ -175,9 +175,9 @@ export function seedWorkshopEdits(
   generation.configureControls(readers);
   repository.configureControls(readers);
   const owners = new Set(
-    WORKSHOP_FIXTURES.filter((name) => name.startsWith('edit-') && name !== 'edit-unavailable').map(
-      (name) => workshopOwnerId(seed, name),
-    ),
+    WORKSHOP_FIXTURES.filter(
+      (name) => (name.startsWith('edit-') || name === 'demo-ru') && name !== 'edit-unavailable',
+    ).map((name) => workshopOwnerId(seed, name)),
   );
   const slow = new Set([workshopOwnerId(seed, 'edit-late'), workshopOwnerId(seed, 'edit-revoked')]);
   const failed = new Set<string>();

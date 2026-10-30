@@ -11,7 +11,11 @@ export async function validateIsolatedBootstrap(
   ownerId: string,
   frozen: FrozenCampaignActivation,
 ): Promise<readonly CampaignFinding[]> {
-  const engine = isolatedCampaignEngine(new InMemoryEventStore(), frozen.revision.createdAt, 68000);
+  const engine = isolatedCampaignEngine(
+    new InMemoryEventStore(),
+    frozen.revision.createdAt,
+    0x6800,
+  );
   let submission: ReturnType<typeof activationSubmission>;
   try {
     submission = activationSubmission({

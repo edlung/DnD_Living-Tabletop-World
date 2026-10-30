@@ -5,7 +5,7 @@ import { flushSync } from 'react-dom';
 import type { InvitationHolder } from '../session/invitation-link.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { WorkshopAccess, type AccessKind } from './access.tsx';
-import { WorkshopPrivate } from './private.tsx';
+import { DeferredWorkshopPrivate } from './deferred-private.tsx';
 import type { WorkshopStart } from './start.ts';
 import { joinWorkshop, probeWorkshop, workshopRequest, type WorkshopProbe } from './transport.ts';
 
@@ -174,7 +174,7 @@ function WorkshopPage({
           </header>
         )}
         {screen.kind === 'workshop' ? (
-          <WorkshopPrivate
+          <DeferredWorkshopPrivate
             key={screen.ownerId}
             ownerId={screen.ownerId}
             onEnded={ended}

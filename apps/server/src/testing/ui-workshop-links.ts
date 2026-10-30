@@ -63,6 +63,10 @@ export const WORKSHOP_FIXTURES = [
   'activation-pending',
   'activation-revoked',
   'activation-coexist',
+  'lazy-entry',
+  'lazy-failure',
+  'lazy-held',
+  'demo-ru',
 ] as const;
 export type WorkshopFixture = (typeof WORKSHOP_FIXTURES)[number];
 export const WORKSHOP_CAMPAIGN = 'ui-workshop-coexist';

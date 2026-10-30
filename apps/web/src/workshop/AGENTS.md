@@ -1,4 +1,4 @@
-# Workshop browser access and campaign drafts (Stages 380, 410–440)
+# Workshop browser access and campaign drafts (Stages 380, 410–450)
 
 Read the accepted Stage 370 contract, current work order and `apps/web/AGENTS.md`.
 
@@ -6,6 +6,9 @@ Read the accepted Stage 370 contract, current work order and `apps/web/AGENTS.md
 - `transport.ts` keeps credentials inside one-shot holders/request-local variables;
   React state/props receive no token. Never use browser storage for credentials/data.
 - `app.tsx` owns entry/replacement/sign-out; campaign sign-in is independent.
+- `deferred-private.tsx` loads the editor, its dictionaries and styles only after
+  authentication. Suspense/error states contain no package. `app.tsx` keeps its
+  synchronous pagehide boundary mounted during that import; reload rechecks access.
 - `private.tsx`, `route.ts`, `use-workshop-session.ts` share the owner boundary
   across the shelf and exact draft routes, including history navigation.
 - `drafts.tsx` owns private container metadata and paging. `editor.tsx` holds
@@ -35,5 +38,5 @@ Read the accepted Stage 370 contract, current work order and `apps/web/AGENTS.md
 - Draft requests include the mounted `x-workshop-owner` identity, so a replaced
   cookie cannot move an old tab's draft input into the new owner's workshop.
 - Access strings remain in `i18n/ru-access.ts`; editor/scenario strings belong in
-  `ru-workshop-editor.ts` / `ru-workshop-scenario.ts`, imported by main and coverage.
+  `ru-workshop-editor.ts` / `ru-workshop-scenario.ts`, loaded by the deferred private module and dictionary coverage.
 - Use the existing UI art/tokens; inspect 1440/768/390/320 px and run layout/axe checks.

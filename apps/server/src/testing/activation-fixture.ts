@@ -148,11 +148,11 @@ export async function activationMemoryFixture() {
     contents = new InMemoryAssetContentStore(),
     publication = new MemoryCampaignPublication(repository),
     rawStore = new InMemoryEventStore();
-  const bootstrap = isolatedCampaignEngine(rawStore, new Date(now).toISOString(), 91000);
+  const bootstrap = isolatedCampaignEngine(rawStore, new Date(now).toISOString(), 0x9100);
   // Reuse normal adapters while injecting the gated store, without exposing it to the bootstrap engine.
   const ordinary = new WorldEngine({
     store: new PublishedEventStore(rawStore, publication),
-    ids: new SequentialIds(92000),
+    ids: new SequentialIds(0x9200),
     clock: new SteppingClock(),
   });
   repository.configureProof({ engine: bootstrap, initialContent: content, contents });

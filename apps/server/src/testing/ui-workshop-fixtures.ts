@@ -75,13 +75,15 @@ export async function seedWorkshopAccess(
       name.startsWith('scenario-') ||
       name.startsWith('preview-') ||
       name.startsWith('edit-') ||
-      name.startsWith('activation-')
+      name.startsWith('activation-') ||
+      name === 'demo-ru'
     ) {
       const content =
         name === 'scenario-ru' ||
         name === 'preview-ru' ||
         name === 'edit-ru' ||
-        name === 'activation-ru'
+        name === 'activation-ru' ||
+        name === 'demo-ru'
           ? bellCampaign()
           : englishBellCampaign();
       if (name.startsWith('preview-') || name.startsWith('edit-') || name.startsWith('activation-'))
@@ -94,7 +96,9 @@ export async function seedWorkshopAccess(
         draftId,
         new Date(now).toISOString(),
       );
-      if (!['scenario-generation', 'scenario-retry', 'scenario-unavailable'].includes(name)) {
+      if (
+        !['scenario-generation', 'scenario-retry', 'scenario-unavailable', 'demo-ru'].includes(name)
+      ) {
         const saved = await revisions.append({
           ownerId,
           draftId,

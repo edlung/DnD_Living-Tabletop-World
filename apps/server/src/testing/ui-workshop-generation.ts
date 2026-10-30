@@ -41,7 +41,7 @@ export function seedWorkshopGeneration(
   const availableOwners = new Set(
     WORKSHOP_FIXTURES.filter(
       (name) =>
-        (name.startsWith('scenario-') || name.startsWith('edit-')) &&
+        (name.startsWith('scenario-') || name.startsWith('edit-') || name === 'demo-ru') &&
         name !== 'scenario-unavailable' &&
         name !== 'edit-unavailable',
     ).map((name) => workshopOwnerId(seed, name)),

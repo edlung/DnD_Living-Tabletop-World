@@ -108,7 +108,7 @@ export async function seedWorkshopImages(
   script.model = WORKSHOP_IMAGE_FIXTURE_MODEL;
   const allowedNames = WORKSHOP_FIXTURES.filter(
     (name) =>
-      (name.startsWith('preview-') || name.startsWith('edit-')) &&
+      (name.startsWith('preview-') || name.startsWith('edit-') || name === 'demo-ru') &&
       name !== 'preview-unavailable' &&
       name !== 'edit-unavailable',
   );

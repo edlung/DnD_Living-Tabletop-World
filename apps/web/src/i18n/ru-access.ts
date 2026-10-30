@@ -12,6 +12,11 @@ registerRussian({
   'Campaign workshop': 'Мастерская кампаний',
   'A place for the worlds you want to create.': 'Место для миров, которые вы хотите создать.',
   'Opening your workshop…': 'Открываем мастерскую…',
+  'Loading workshop tools…': 'Загружаем инструменты мастерской…',
+  'Workshop tools could not be loaded': 'Не удалось загрузить инструменты мастерской',
+  'Your saved drafts are kept. Reload the workshop to try again.':
+    'Ваши черновики сохранены. Перезагрузите мастерскую, чтобы попробовать снова.',
+  'Reload workshop': 'Перезагрузить мастерскую',
   'You are invited to a workshop': 'Вас пригласили в мастерскую',
   'Keep your campaign ideas and drafts together in your private workshop.':
     'Храните идеи и черновики кампаний в своей приватной мастерской.',
