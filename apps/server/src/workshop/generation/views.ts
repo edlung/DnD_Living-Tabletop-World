@@ -8,6 +8,7 @@ import type { StoredGenerationJob, StoredGenerationStep } from './store.ts';
 
 export function generationJobView(job: StoredGenerationJob): CampaignGenerationJob {
   return {
+    ...(job.mode === 'EDIT' ? { mode: 'EDIT' as const } : {}),
     jobId: job.jobId,
     draftId: job.draftId,
     baseRevision: job.baseRevision,

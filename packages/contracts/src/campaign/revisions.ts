@@ -7,6 +7,7 @@ import {
   type CampaignAssessment,
 } from './package.ts';
 import { workshopIdSchema } from '../workshop/access.ts';
+import { contentHashSchema } from '../assets/commands.ts';
 
 export const campaignRevisionNumberSchema = z.number().int().min(0).max(1_000_000);
 export const saveCampaignRevisionSchema = z
@@ -14,8 +15,17 @@ export const saveCampaignRevisionSchema = z
     requestId: workshopIdSchema,
     basedOnRevision: campaignRevisionNumberSchema.max(999_999),
     content: campaignPackageSchema,
+    expectedLockVersion: z.number().int().min(0).max(1_000_000).default(0),
+    expectedManifestVersion: z.number().int().min(0).max(1_000_000).optional(),
+    expectedManifestDigest: contentHashSchema.optional(),
   })
-  .strict();
+  .strict()
+  .refine(
+    (value) =>
+      (value.expectedManifestVersion === undefined) ===
+      (value.expectedManifestDigest === undefined),
+    { message: 'Manifest version and digest must be supplied together' },
+  );
 export const campaignRevisionQuerySchema = z
   .object({
     before: z.coerce.number().int().min(1).max(1_000_000).optional(),

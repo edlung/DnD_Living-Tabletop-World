@@ -1,3 +1,4 @@
+import { resolveCampaignVisualBrief } from '@ltw/domain';
 import {
   ASSET_PURPOSES,
   ASSET_VARIANTS,
@@ -78,16 +79,7 @@ export function resolveDraftImageVisual(
   localKey: string,
   purpose: AssetPurpose,
 ) {
-  const exact = content.visuals.filter(
-    (item) => item.entity === localKey && item.purpose === purpose,
-  );
-  if (exact.length > 1) return null;
-  if (exact[0]) return exact[0];
-  if (purpose === 'image') return null;
-  const fallback = content.visuals.filter(
-    (item) => item.entity === localKey && item.purpose === 'image',
-  );
-  return fallback.length === 1 ? (fallback[0] ?? null) : null;
+  return resolveCampaignVisualBrief(content, localKey, purpose);
 }
 
 /** Only normalized permitted art fields reach the provider, never narrative/private identity. */

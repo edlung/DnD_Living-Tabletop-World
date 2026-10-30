@@ -41,11 +41,12 @@ export async function finalize(
     return { kind: 'attached', revision, candidate };
   }
   if (!(await activeLease(client, row, lease))) return { kind: 'fenced' };
-  if (row?.next_step !== 7) return { kind: 'incomplete' };
+  const count = row?.mode === 'EDIT' ? 1 : 7;
+  if (row?.next_step !== count) return { kind: 'incomplete' };
   const steps = await loadSteps(client, lease);
-  const last = steps[6];
+  const last = steps[count - 1];
   if (
-    steps.length !== 7 ||
+    steps.length !== count ||
     steps.some((step, index) => step.ordinal !== index || step.status !== 'SUCCEEDED') ||
     !last?.content ||
     !last.provider ||
@@ -66,18 +67,22 @@ export async function finalize(
   );
   const candidate = await loadCandidate(client, lease);
   if (!candidate) throw new Error('CANDIDATE_NOT_STORED');
-  const result = await appendCampaignRevisionInTransaction(client, {
-    ownerId: lease.ownerId,
-    draftId: lease.draftId,
-    requestId: lease.jobId,
-    basedOnRevision: row.base_revision,
-    content: candidate.content,
-    source,
-    createdAt: candidate.createdAt,
-  });
+  const result =
+    row.mode === 'EDIT'
+      ? null
+      : await appendCampaignRevisionInTransaction(client, {
+          ownerId: lease.ownerId,
+          draftId: lease.draftId,
+          requestId: lease.jobId,
+          basedOnRevision: row.base_revision,
+          expectedLockVersion: row.lock_version,
+          content: candidate.content,
+          source,
+          createdAt: candidate.createdAt,
+        });
   // Expiry while storing a large package rolls back candidate and revision together.
   if (!(await activeLease(client, row, lease))) throw new Error('FINALIZE_LEASE_EXPIRED');
-  const attached = result.kind === 'saved' ? result.revision : null;
+  const attached = result?.kind === 'saved' ? result.revision : null;
   await client.query(
     `UPDATE ltw_campaign_generation_jobs SET status='SUCCEEDED',candidate_available=true,attached_revision=$4,lease_until=NULL,updated_at=clock_timestamp()
     WHERE owner_id=$1 AND draft_id=$2 AND job_id=$3`,

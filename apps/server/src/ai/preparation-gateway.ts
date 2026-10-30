@@ -1,5 +1,5 @@
 import { runCampaignPreparation } from '@ltw/ai';
-import type { CampaignPreparationTraceView } from '@ltw/contracts';
+import { CAMPAIGN_GENERATION_STAGES, type CampaignPreparationTraceView } from '@ltw/contracts';
 import type pg from 'pg';
 
 import type { AppConfig } from '../platform/config/config.ts';
@@ -61,7 +61,9 @@ export function createCampaignPreparationRuntime(
   };
   return {
     availability,
-    forJob: async (binding) => {
+    forJob: async (rawBinding) => {
+      const binding = { ...rawBinding };
+      const mode = binding.mode ?? 'GENERATE';
       if (!(await availability(binding.ownerId)).available || approvalId === null) return null;
       const sessionId = await openPreparationSession(options.pool, binding, approvalId);
       if (sessionId === null) return null;
@@ -71,6 +73,21 @@ export function createCampaignPreparationRuntime(
         provider,
         model,
         run: async (input) => {
+          const stageAllowed =
+            mode === 'EDIT'
+              ? input.stage === 'edit'
+              : CAMPAIGN_GENERATION_STAGES.some((stage) => stage === input.stage);
+          if (!stageAllowed)
+            return {
+              status: 'AI_UNAVAILABLE',
+              value: null,
+              traceId: input.traceId,
+              provider: null,
+              model: null,
+              issues: ['PREPARATION_MODE_STAGE_MISMATCH'],
+              attempts: [],
+            };
+
           const result = await runCampaignPreparation(gateway, {
             ...input,
             sessionId,

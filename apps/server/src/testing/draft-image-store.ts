@@ -10,6 +10,7 @@ import {
 } from '@ltw/contracts';
 
 import { checkContent, contentHashOf } from '../assets/content-store.ts';
+import { publicDraftImageJob } from '../workshop/images/views.ts';
 import {
   imageDigest,
   imageSlotKey,
@@ -55,6 +56,21 @@ export class MemoryDraftImageRepository implements DraftImageRepository {
     string,
     { fingerprint: string; manifest: DraftVisualManifest }
   >();
+  readonly #selectionGuards = new Set<
+    (scope: DraftImageScope, revision: CampaignRevision, manifest: DraftVisualManifest) => boolean
+  >();
+  registerSelectionGuard(
+    guard: (
+      scope: DraftImageScope,
+      revision: CampaignRevision,
+      manifest: DraftVisualManifest,
+    ) => boolean,
+  ) {
+    this.#selectionGuards.add(guard);
+  }
+  snapshotManifest(scope: DraftImageScope, revision: number): DraftVisualManifest | null {
+    return copy(this.#manifests.get(`${scopeKey(scope)}/${revision}`)?.at(-1) ?? null);
+  }
   #tail: Promise<void> = Promise.resolve();
   constructor(
     workshop: MemoryWorkshopStore,
@@ -124,30 +140,7 @@ export class MemoryDraftImageRepository implements DraftImageRepository {
     return last;
   }
   #public(job: StoredDraftImageJob): DraftImageJob {
-    const {
-      jobId,
-      revision,
-      entityId,
-      purpose,
-      variant,
-      label,
-      status,
-      createdAt,
-      updatedAt,
-      failureCode,
-    } = job;
-    return {
-      jobId,
-      revision,
-      entityId,
-      purpose,
-      variant,
-      label,
-      status,
-      createdAt,
-      updatedAt,
-      failureCode,
-    };
+    return publicDraftImageJob(job);
   }
   request(raw: RequestDraftImage) {
     const input = checkedImageRequest(raw);
@@ -436,63 +429,67 @@ export class MemoryDraftImageRepository implements DraftImageRepository {
     });
   }
   select(input: SelectDraftImage) {
-    return this.#atomic(async () => {
-      const { ownerId, draftId, authSessionId, ...body } = input;
-      const parsed = selectDraftImageSchema.parse(body),
-        fingerprint = imageDigest(parsed);
-      if (!(await this.#workshop.draft(ownerId, draftId))) return { kind: 'not-found' } as const;
-      if (!this.#active(ownerId, authSessionId)) return { kind: 'conflict' } as const;
-      const nonce = `${scopeKey(input)}/${input.requestId}`,
-        old = this.#selectionNonces.get(nonce);
-      if (old)
-        return old.fingerprint === fingerprint
-          ? ({ kind: 'saved', manifest: copy(old.manifest) } as const)
-          : ({ kind: 'conflict' } as const);
-      const revision = await this.#revisions.get(ownerId, draftId, input.revision);
-      if (!revision) return { kind: 'not-found' } as const;
-      const manifest = this.#ensure(input, revision);
-      if (
-        revision.digest !== input.packageDigest ||
-        manifest.version !== input.expectedManifestVersion
-      )
-        return { kind: 'conflict' } as const;
-      const entries = manifest.entries.filter(
-        (entry) => imageSlotKey(entry) !== imageSlotKey(input),
-      );
-      if (input.candidateId !== null) {
-        const candidate = this.#candidates.get(`${scopeKey(input)}/${input.candidateId}`);
-        if (!candidate || imageSlotKey(candidate) !== imageSlotKey(input))
-          return { kind: 'conflict' } as const;
-        const referenceHash =
-          input.variant === 'reference'
-            ? null
-            : (selectedReference(manifest, input.entityId)?.contentHash ?? null);
+    return this.#revisions.withDraftLock(input, () =>
+      this.#atomic(async () => {
+        const { ownerId, draftId, authSessionId, ...body } = input;
+        const parsed = selectDraftImageSchema.parse(body),
+          fingerprint = imageDigest(parsed);
+        if (!(await this.#workshop.draft(ownerId, draftId))) return { kind: 'not-found' } as const;
+        if (!this.#active(ownerId, authSessionId)) return { kind: 'conflict' } as const;
+        const nonce = `${scopeKey(input)}/${input.requestId}`,
+          old = this.#selectionNonces.get(nonce);
+        if (old)
+          return old.fingerprint === fingerprint
+            ? ({ kind: 'saved', manifest: copy(old.manifest) } as const)
+            : ({ kind: 'conflict' } as const);
+        const revision = await this.#revisions.get(ownerId, draftId, input.revision);
+        if (!revision) return { kind: 'not-found' } as const;
+        const manifest = this.#ensure(input, revision);
         if (
-          candidate.referenceHash !== referenceHash ||
-          candidate.sourceSignature !== draftImageSourceSignature(revision, input, referenceHash)
+          revision.digest !== input.packageDigest ||
+          manifest.version !== input.expectedManifestVersion
         )
           return { kind: 'conflict' } as const;
-        const entry: DraftVisualEntry = {
-          entityId: candidate.entityId,
-          purpose: candidate.purpose,
-          variant: candidate.variant,
-          label: candidate.label,
-          candidateId: candidate.candidateId,
-          contentHash: candidate.contentHash,
-          mediaType: candidate.mediaType,
-          sourceRevision: candidate.sourceRevision,
-          sourceSignature: candidate.sourceSignature,
-          referenceHash: candidate.referenceHash,
-          state: 'CURRENT',
-          staleReason: null,
-        };
-        entries.push(entry);
-      }
-      const next = newVisualManifest(revision, manifest.version + 1, entries, this.#time());
-      this.#manifests.get(`${scopeKey(input)}/${input.revision}`)?.push(next);
-      this.#selectionNonces.set(nonce, { fingerprint, manifest: next });
-      return { kind: 'saved', manifest: copy(next) } as const;
-    });
+        const entries = manifest.entries.filter(
+          (entry) => imageSlotKey(entry) !== imageSlotKey(input),
+        );
+        if (input.candidateId !== null) {
+          const candidate = this.#candidates.get(`${scopeKey(input)}/${input.candidateId}`);
+          if (!candidate || imageSlotKey(candidate) !== imageSlotKey(input))
+            return { kind: 'conflict' } as const;
+          const referenceHash =
+            input.variant === 'reference'
+              ? null
+              : (selectedReference(manifest, input.entityId)?.contentHash ?? null);
+          if (
+            candidate.referenceHash !== referenceHash ||
+            candidate.sourceSignature !== draftImageSourceSignature(revision, input, referenceHash)
+          )
+            return { kind: 'conflict' } as const;
+          const entry: DraftVisualEntry = {
+            entityId: candidate.entityId,
+            purpose: candidate.purpose,
+            variant: candidate.variant,
+            label: candidate.label,
+            candidateId: candidate.candidateId,
+            contentHash: candidate.contentHash,
+            mediaType: candidate.mediaType,
+            sourceRevision: candidate.sourceRevision,
+            sourceSignature: candidate.sourceSignature,
+            referenceHash: candidate.referenceHash,
+            state: 'CURRENT',
+            staleReason: null,
+          };
+          entries.push(entry);
+        }
+        const next = newVisualManifest(revision, manifest.version + 1, entries, this.#time());
+        if ([...this.#selectionGuards].some((guard) => !guard(input, revision, next)))
+          return { kind: 'conflict' } as const;
+        this.#manifests.get(`${scopeKey(input)}/${input.revision}`)?.push(next);
+        this.#selectionNonces.set(nonce, { fingerprint, manifest: next });
+        return { kind: 'saved', manifest: copy(next) } as const;
+      }),
+    );
   }
   content(scope: DraftImageScope, hash: string) {
     return Promise.resolve(copy(this.#bytes.get(`${scopeKey(scope)}/${hash}`) ?? null));

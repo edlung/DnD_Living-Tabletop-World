@@ -8,6 +8,8 @@ import type { OutputCheck, StructuredOutputSpec } from '@ltw/ai';
 
 import type { CampaignGenerationRepository, GenerationLease } from './store.ts';
 
+export type CampaignPreparationStage = CampaignGenerationStage | 'edit';
+
 export interface PreparationPayload {
   readonly system: string;
   readonly prompt: string;
@@ -27,7 +29,7 @@ export interface PreparedCampaignRun {
   readonly model: string;
   run(
     input: PreparationPayload & {
-      readonly stage: CampaignGenerationStage;
+      readonly stage: CampaignPreparationStage;
       readonly traceId: string;
       readonly signal: AbortSignal;
       readonly validate: (output: unknown) => OutputCheck<CampaignPackage>;

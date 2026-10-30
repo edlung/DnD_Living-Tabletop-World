@@ -14,6 +14,7 @@ import { PostgresAiJournal } from './ai/journal.ts';
 import { createCampaignPreparationRuntime } from './ai/preparation-gateway.ts';
 import { PostgresCampaignGenerationRepository } from './workshop/generation/postgres-store.ts';
 import { CampaignGenerationWorker } from './workshop/generation/worker.ts';
+import { CampaignEditWorker } from './workshop/generation/edit-worker.ts';
 import { startCampaignGenerationLoop } from './workshop/generation/worker-loop.ts';
 import { PostgresDraftImageRepository } from './workshop/images/postgres-store.ts';
 import { DraftImageWorker } from './workshop/images/worker.ts';
@@ -25,6 +26,7 @@ import { composeAuthentication, startCredentialPruning } from './auth/compositio
 import { PostgresCredentialStore } from './auth/postgres-credential-store.ts';
 import { PostgresWorkshopStore } from './workshop/postgres-store.ts';
 import { PostgresCampaignRevisionRepository } from './workshop/packages/postgres-store.ts';
+import { PostgresCampaignRevisionControlRepository } from './workshop/revisions/postgres-store.ts';
 import { isCuratedRequest } from './images/curated-import.ts';
 import { loadCuratedSet } from './images/curated-set.ts';
 import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
@@ -96,6 +98,17 @@ async function main(): Promise<void> {
       }
     : null;
   const generationWorker = generation ? new CampaignGenerationWorker(generation) : null;
+  const campaignPackages = signIn ? new PostgresCampaignRevisionRepository(pool) : null;
+  const edits = generation
+    ? {
+        repository: new PostgresCampaignGenerationRepository(pool, 'EDIT'),
+        preparation: generation.preparation,
+      }
+    : null;
+  const editWorker =
+    edits && campaignPackages
+      ? new CampaignEditWorker({ ...edits, packages: campaignPackages })
+      : null;
   const authoring = {
     proposals: new PostgresProposalStore(pool, proposalLocks),
     ids: randomIds,
@@ -143,7 +156,12 @@ async function main(): Promise<void> {
       ? {
           workshop: {
             store: new PostgresWorkshopStore(pool),
-            packages: new PostgresCampaignRevisionRepository(pool),
+            ...(campaignPackages
+              ? {
+                  packages: campaignPackages,
+                  revisionControls: new PostgresCampaignRevisionControlRepository(pool),
+                }
+              : {}),
             ...(draftImages && draftImageWorker
               ? {
                   images: draftImages,
@@ -157,6 +175,14 @@ async function main(): Promise<void> {
                   generation,
                   cancelGeneration: (jobId: string) => {
                     generationWorker.cancel(jobId);
+                  },
+                }
+              : {}),
+            ...(edits && editWorker
+              ? {
+                  edits,
+                  cancelEdit: (jobId: string) => {
+                    editWorker.cancel(jobId);
                   },
                 }
               : {}),
@@ -190,6 +216,10 @@ async function main(): Promise<void> {
       ? startCampaignGenerationLoop(generation.repository, generationWorker, logger)
       : () => Promise.resolve();
   const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
+  const stopEdits =
+    edits && editWorker
+      ? startCampaignGenerationLoop(edits.repository, editWorker, logger)
+      : () => Promise.resolve();
   const stopDraftImages =
     draftImages && draftImageWorker
       ? startDraftImageLoop(draftImages.repository, draftImageWorker, logger)
@@ -209,7 +239,7 @@ async function main(): Promise<void> {
   const shutdown = (signal: NodeJS.Signals): void => {
     logger.info({ signal }, 'shutting down');
     stopPruning();
-    Promise.all([stopAssets(), stopGeneration(), stopDraftImages()])
+    Promise.all([stopAssets(), stopGeneration(), stopEdits(), stopDraftImages()])
       .then(() => app.close())
       // Settlement retries stop; any unsettled hold stays for the operator.
       .then(() => ai.accounting.shutdown())

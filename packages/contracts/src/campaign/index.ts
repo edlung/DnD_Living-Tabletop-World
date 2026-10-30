@@ -77,3 +77,38 @@ export {
   type DraftImageAvailability,
   type CampaignDraftImagesView,
 } from './images.ts';
+export {
+  draftLockTargetSchema,
+  replaceDraftLocksSchema,
+  type DraftLockTarget,
+  type DraftLockEntry,
+  type DraftLockSnapshot,
+  type DraftLockConflict,
+} from './locks.ts';
+export {
+  CAMPAIGN_EDIT_SECTIONS,
+  campaignEditTargetIdSchema,
+  campaignEditTargetSchema,
+  planCampaignEditSchema,
+  enqueueCampaignEditSchema,
+  retryCampaignEditSchema,
+  type CampaignEditSection,
+  type CampaignEditTarget,
+  type CampaignEditClosureItem,
+  type CampaignEditSpec,
+  type PlanCampaignEdit,
+  type EnqueueCampaignEdit,
+  type CampaignEditPlanConflict,
+  type CampaignEditPlanView,
+} from './edits.ts';
+export {
+  adoptCampaignEditSchema,
+  restoreCampaignRevisionSchema,
+  CAMPAIGN_REVISION_CONFLICTS,
+  campaignRevisionConflictSchema,
+  type CampaignEditingContext,
+  type CampaignFieldChange,
+  type CampaignVisualChange,
+  type CampaignRevisionReview,
+  type CampaignRevisionConflictView,
+} from './review.ts';

@@ -107,7 +107,10 @@ export async function seedWorkshopImages(
   script.provider = WORKSHOP_IMAGE_FIXTURE_PROVIDER;
   script.model = WORKSHOP_IMAGE_FIXTURE_MODEL;
   const allowedNames = WORKSHOP_FIXTURES.filter(
-    (name) => name.startsWith('preview-') && name !== 'preview-unavailable',
+    (name) =>
+      (name.startsWith('preview-') || name.startsWith('edit-')) &&
+      name !== 'preview-unavailable' &&
+      name !== 'edit-unavailable',
   );
   const owners = new Set(allowedNames.map((name) => workshopOwnerId(seed, name)));
   const drafts = new Set(allowedNames.map((name) => workshopDraftId(seed, name)));
@@ -152,10 +155,10 @@ export async function seedWorkshopImages(
           const choose = (entries: readonly CuratedEntry[]) =>
             entries
               .map((_, index) => entries[(hash + index) % entries.length])
-              .find((entry) => entry && !used.has(entry.sha256));
+              .find((entry) => entry && !used.has(`${lease.ownerId}/${entry.sha256}`));
           const entry = choose(preferred) ?? choose(pool);
           if (!entry) throw new Error('BROWSER_IMAGE_FIXTURE_POOL_EXHAUSTED');
-          used.add(entry.sha256);
+          used.add(`${lease.ownerId}/${entry.sha256}`);
           const bytes = set.bytesOf(entry.file);
           sources.set(contentHashOf(bytes), entry);
           return { ...result, bytes, mediaType: 'image/webp' };

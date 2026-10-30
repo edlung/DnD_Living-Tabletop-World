@@ -1,11 +1,11 @@
 import type { Logger } from '../../platform/logging/logger.ts';
 import type { CampaignGenerationRepository } from './store.ts';
-import type { CampaignGenerationWorker } from './worker.ts';
+import type { GenerationJobScope } from './store.ts';
 
 /** The scheduler discovers scopes internally; it exposes no cross-owner HTTP inventory. */
 export function startCampaignGenerationLoop(
   repository: CampaignGenerationRepository,
-  worker: CampaignGenerationWorker,
+  worker: { run(scope: GenerationJobScope): Promise<void>; stop(): Promise<void> },
   logger: Logger,
 ): () => Promise<void> {
   let stopped = false;

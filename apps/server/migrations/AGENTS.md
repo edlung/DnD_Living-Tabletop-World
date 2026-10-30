@@ -14,6 +14,12 @@ atomically create manifest version0. After these subjects/manifests exist, recov
 requires an0019/0020-aware app/operator build (`deploy/RUNBOOK.md`§3); the ordinary
 older-image event-readiness check does not establish compatibility.
 
+Stage430: `0021_campaign_revision_controls.sql` adds immutable draft lock versions,
+revision policy receipts and mode-aware GENERATE/EDIT jobs. Once used, recovery
+requires a430-aware application/operator: older writers could skip locks and older
+workers could process EDIT through the seven-stage pipeline. New job columns are
+covered by0017's whole-row immutable comparison outside its explicit control fields.
+
 Forward-only PostgreSQL migrations applied by `pnpm db:migrate`
 (runner: `apps/server/src/platform/db/`; decision: `docs/adr/0003-persistence-and-migrations.md`).
 

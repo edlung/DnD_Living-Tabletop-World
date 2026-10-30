@@ -79,7 +79,8 @@ export function registerCampaignPackageRoutes(
         createdAt: new Date(deps.clock.now()).toISOString(),
       });
       if (result.kind === 'not-found') return sendError(reply, request, 'NOT_FOUND');
-      if (result.kind === 'conflict') return sendError(reply, request, 'CONFLICT');
+      if (result.kind === 'conflict')
+        return reply.code(409).send({ conflict: { reason: result.reason } });
       return reply.send({
         revision: result.revision,
         assessment: await assessCampaignRevision(result.revision, session.ownerId),

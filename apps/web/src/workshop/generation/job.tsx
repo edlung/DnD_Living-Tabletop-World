@@ -1,4 +1,4 @@
-import type { CampaignGenerationJob } from '@ltw/contracts';
+import { campaignRevisionConflictSchema, type CampaignGenerationJob } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
@@ -6,6 +6,7 @@ import type { WorkshopClient } from '../client.ts';
 import { jobAnswerSchema, type GenerationProgress } from '../response-schemas.ts';
 import { canRetryGeneration, jobWords, stepStatusWords, stepWords } from './words.ts';
 import { useRequestSignal } from '../use-request-signal.ts';
+import { EditConflict } from '../editing/conflicts.tsx';
 
 export function GenerationJob({
   client,
@@ -23,13 +24,14 @@ export function GenerationJob({
   readonly onRefresh: () => void;
   readonly onSelectJob: (jobId: string) => void;
   readonly onInspectCandidate: (jobId: string) => void;
-  readonly onInspectRevision: (revision: number) => void;
-  readonly onInspectStep: (jobId: string, ordinal: number) => void;
+  readonly onInspectRevision?: (revision: number) => void;
+  readonly onInspectStep?: (jobId: string, ordinal: number) => void;
 }) {
   const t = useT();
   const { job } = progress;
   const [command, setCommand] = useState<'cancel' | 'retry' | null>(null);
   const [failed, setFailed] = useState(false);
+  const [conflict, setConflict] = useState<unknown>(null);
   const pending = useRef<{ requestId: string } | null>(null);
   const alive = useRef(true);
   const signal = useRequestSignal();
@@ -43,18 +45,20 @@ export function GenerationJob({
     if (command) return;
     setCommand(action);
     setFailed(false);
+    setConflict(null);
     const retry =
       action === 'retry' ? (pending.current ?? { requestId: crypto.randomUUID() }) : null;
     if (retry) pending.current = retry;
     const body = retry ?? {};
     const result = await client.request(
-      `/drafts/${draftId}/generation/${job.jobId}/${action}`,
+      `/drafts/${draftId}/${job.mode === 'EDIT' ? 'edits' : 'generation'}/${job.jobId}/${action}`,
       jobAnswerSchema,
-      { body, signal: signal() },
+      { body, signal: signal(), conflictSchema: campaignRevisionConflictSchema },
     );
     if (!alive.current) return;
     setCommand(null);
     setFailed(result.kind !== 'ready');
+    if (result.kind === 'conflict') setConflict(result.details ?? null);
     if (result.kind === 'ready') {
       pending.current = null;
       if (action === 'retry') onSelectJob(result.value.job.jobId);
@@ -63,9 +67,16 @@ export function GenerationJob({
   };
   const running = job.status === 'QUEUED' || job.status === 'RUNNING';
   return (
-    <section className="workshop-panel workshop-job" aria-label={t('Selected generation')}>
-      <h3>{jobWords(t, job.status)}</h3>
-      <p>{t('Preparation steps completed: {count} of 7', { count: job.nextStep })}</p>
+    <section
+      className="workshop-panel workshop-job"
+      aria-label={t(job.mode === 'EDIT' ? 'Selected edit' : 'Selected generation')}
+    >
+      <h3>{jobWords(t, job.status, job.mode)}</h3>
+      <p>
+        {job.mode === 'EDIT'
+          ? t('A proposed edit is reviewed before it becomes a new revision.')
+          : t('Preparation steps completed: {count} of 7', { count: job.nextStep })}
+      </p>
       {job.status === 'DISPATCH_UNKNOWN' && (
         <p role="status">
           {t(
@@ -76,7 +87,9 @@ export function GenerationJob({
       {job.failureCode && job.status !== 'DISPATCH_UNKNOWN' && (
         <p>
           {t(
-            'This generation did not attach new content. Review the saved scenario or start again explicitly.',
+            job.mode === 'EDIT'
+              ? 'This edit did not produce a usable proposal. Review the saved scenario or start again explicitly.'
+              : 'This generation did not attach new content. Review the saved scenario or start again explicitly.',
           )}
         </p>
       )}
@@ -89,7 +102,7 @@ export function GenerationJob({
             {step.model && (
               <span className="muted">{t('Model: {model}', { model: step.model })}</span>
             )}
-            {step.status === 'SUCCEEDED' && (
+            {step.status === 'SUCCEEDED' && job.mode === 'GENERATE' && onInspectStep && (
               <button
                 onClick={() => {
                   onInspectStep(job.jobId, step.ordinal);
@@ -109,7 +122,7 @@ export function GenerationJob({
               void run('cancel');
             }}
           >
-            {t('Cancel generation')}
+            {t(job.mode === 'EDIT' ? 'Cancel edit' : 'Cancel generation')}
           </button>
         )}
         {canRetryGeneration(job.status) && (
@@ -119,10 +132,10 @@ export function GenerationJob({
               void run('retry');
             }}
           >
-            {t('Retry generation')}
+            {t(job.mode === 'EDIT' ? 'Retry edit' : 'Retry generation')}
           </button>
         )}
-        {job.attachedRevision !== null && (
+        {job.attachedRevision !== null && job.mode === 'GENERATE' && onInspectRevision && (
           <button
             onClick={() => {
               onInspectRevision(job.attachedRevision ?? 0);
@@ -137,7 +150,7 @@ export function GenerationJob({
               onInspectCandidate(job.jobId);
             }}
           >
-            {t('View generation proposal')}
+            {job.mode === 'EDIT' ? t('Review proposed changes') : t('View generation proposal')}
           </button>
         )}
       </div>
@@ -146,6 +159,7 @@ export function GenerationJob({
           {t('The action could not be confirmed. Refresh progress or retry the same action.')}
         </p>
       )}
+      {conflict !== null && <EditConflict value={conflict} />}
     </section>
   );
 }

@@ -12,6 +12,7 @@ import { MemoryWorkshopStore } from './workshop-store.ts';
 import { MemoryCampaignRevisionRepository } from './campaign-packages.ts';
 import { bellCampaign } from '../../../../packages/domain/src/campaign/testing/bell.ts';
 import { englishBellCampaign } from './generation/bell-english.ts';
+import { seedWorkshopEdits } from './ui-workshop-edits.ts';
 import { seedWorkshopGeneration } from './ui-workshop-generation.ts';
 import { seedWorkshopImages, completePreviewVisualBriefs } from './ui-workshop-images.ts';
 import { SIGN_IN_ORIGIN, dmInvitationToken } from './ui-sign-in-links.ts';
@@ -58,16 +59,21 @@ export async function seedWorkshopAccess(
       tokenHash: hashToken(workshopInvitationToken(seed, name)),
       createdAt: new Date(now).toISOString(),
       expiresAt: new Date(now + 24 * 60 * 60_000).toISOString(),
-      authorizationSource: name.startsWith('preview-')
-        ? 'browser-test:stage-420'
-        : name.startsWith('scenario-')
-          ? 'browser-test:stage-410'
-          : 'browser-test:stage-380',
+      authorizationSource: name.startsWith('edit-')
+        ? 'browser-test:stage-430'
+        : name.startsWith('preview-')
+          ? 'browser-test:stage-420'
+          : name.startsWith('scenario-')
+            ? 'browser-test:stage-410'
+            : 'browser-test:stage-380',
     });
-    if (name.startsWith('scenario-') || name.startsWith('preview-')) {
+    if (name.startsWith('scenario-') || name.startsWith('preview-') || name.startsWith('edit-')) {
       const content =
-        name === 'scenario-ru' || name === 'preview-ru' ? bellCampaign() : englishBellCampaign();
-      if (name.startsWith('preview-')) completePreviewVisualBriefs(content);
+        name === 'scenario-ru' || name === 'preview-ru' || name === 'edit-ru'
+          ? bellCampaign()
+          : englishBellCampaign();
+      if (name.startsWith('preview-') || name.startsWith('edit-'))
+        completePreviewVisualBriefs(content);
       const ownerId = workshopOwnerId(seed, name),
         draftId = workshopDraftId(seed, name);
       await store.createDraft(
@@ -118,10 +124,26 @@ export async function seedWorkshopAccess(
     revisions,
     seed,
   );
+  const { edits, revisionControls, cancelEdit, stopEdits } = seedWorkshopEdits(
+    store,
+    revisions,
+    images.repository,
+    generation.repository,
+    seed,
+  );
   return {
-    workshop: { ...workshop, generation, cancelGeneration, images, cancelImage },
+    workshop: {
+      ...workshop,
+      generation,
+      cancelGeneration,
+      images,
+      cancelImage,
+      edits,
+      revisionControls,
+      cancelEdit,
+    },
     stopGeneration: async () => {
-      await Promise.all([stopGeneration(), stopImages()]);
+      await Promise.all([stopGeneration(), stopImages(), stopEdits()]);
     },
   };
 }

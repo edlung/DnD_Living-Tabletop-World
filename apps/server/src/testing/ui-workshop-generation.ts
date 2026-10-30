@@ -40,7 +40,10 @@ export function seedWorkshopGeneration(
   const repository = new MemoryCampaignGenerationRepository(store, revisions);
   const availableOwners = new Set(
     WORKSHOP_FIXTURES.filter(
-      (name) => name.startsWith('scenario-') && name !== 'scenario-unavailable',
+      (name) =>
+        (name.startsWith('scenario-') || name.startsWith('edit-')) &&
+        name !== 'scenario-unavailable' &&
+        name !== 'edit-unavailable',
     ).map((name) => workshopOwnerId(seed, name)),
   );
   const cancelOwner = workshopOwnerId(seed, 'scenario-cancel');
@@ -92,6 +95,7 @@ export function seedWorkshopGeneration(
               issues: ['SCRIPTED_FIXTURE_FAILURE'],
             };
           }
+          if (input.stage === 'edit') throw new Error('TEST_GENERATE_MODE_ONLY');
           const checked = input.validate(specimenOutput(input.stage, content));
           return checked.ok
             ? { ...identity, status: 'GENERATED', value: checked.value, issues: [] }

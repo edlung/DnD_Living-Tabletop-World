@@ -1,23 +1,31 @@
-# Durable campaign preparation — Stage 400
+# Durable campaign preparation — Stages 400 and 430
 
-Read the current work order, ADR 0038, architecture invariants and Stage 400 design.
+Read the current work order, ADR 0038, architecture invariants and the current stage design.
 
-- `store.ts` is the owner/draft-qualified job port. PostgreSQL owns lease time,
-  fencing, immutable inputs/results, nonce replay and exact final attachment.
-- `postgres-finalize.ts` locks draft→job, checks live session and appends the
-  revision in the same transaction. Do not call append after a separate lease check.
-- A dispatch marker must COMMIT before any provider invocation. onStart is only
-  transport evidence; it cannot implement the durable gate.
-- DISPATCH_UNKNOWN cannot retry. Saved results survive unknown acknowledgements;
-  prepared inputs reuse the exact prompt/schema/trace. New input chains to seed or
-  prior completed content. Cancellation and revocation forbid late attachment.
-- `worker.ts` uses only the preparation runtime port, never a live World Engine.
-  Pure stage output is a proposal; job success is not readiness or DM confirmation.
-- `prompt.ts` and `rules-guide.ts` expose public rules only in system/schema.
-  Private draft data belongs only in the owner-authorized user payload. Never
-  import a fixture into runtime or label local/scripted output AI-generated.
-- `runtime.ts` is implemented by the admitted AI factory. No raw adapter,
-  credential, approval, model or accounting bypass belongs here.
-- HTTP maps internal stored rows through explicit `views.ts` DTOs; session IDs,
-  worker IDs, fences and raw prompts are internal. Every poll reauthorizes access.
-- Test-only reference storage/fixtures live under server testing/, excluded from builds.
+- `store.ts` is the owner/draft-qualified job port. Each repository instance fixes mode
+  `GENERATE` or `EDIT`; every read, control, lease, artifact and scheduler path enforces it.
+  PostgreSQL owns lease time, fencing, immutable inputs/results and nonce replay.
+- `postgres-enqueue.ts` captures an omitted GENERATE lock version under the owned draft lock.
+  Explicit versions assert CAS. EDIT freezes the actual baseline, parsed scope, lock snapshot
+  and selected-image manifest. Immutable nonce replay precedes current-head/guard checks.
+- `postgres-finalize.ts` locks draft→job and checks the live lease/session. GENERATE has seven
+  stages and attempts guarded revision append in the same transaction. EDIT has only ordinal
+  zero, stage `edit`, and stores a candidate without appending. Adoption is a separate explicit
+  owner operation in revisions/, never mutation of a terminal job's attachment field.
+- A dispatch marker must COMMIT before any provider invocation. onStart is only transport
+  evidence; it cannot implement the durable gate. DISPATCH_UNKNOWN cannot retry. Saved
+  results survive unknown acknowledgements; prepared inputs reuse exact prompt/schema/trace.
+- `worker-core.ts` shares the durable loop. `worker.ts` supplies only the seven-stage strategy;
+  `edit-worker.ts` loads the immutable owner-qualified baseline and validates the complete
+  proposal against the stored directed scope and locks. Neither invokes a live World Engine.
+- `edit-spec.ts` strictly parses stored scope and verifies snapshot/projection digests. Do not
+  infer permissions from display labels or provider output. The pure domain validator rebuilds
+  the allowed closure, preserves outside order and distinguishes readonly locked dependencies.
+- `prompt.ts`, `edit-prompt.ts` and `rules-guide.ts` expose public rules only in system/schema.
+  Private draft data belongs only in the owner-authorized user payload. Oversized requests fail
+  honestly; never truncate content, change models or import a fixture into runtime.
+- `runtime.ts` is implemented by the admitted AI factory. Real preparation sessions bind the
+  immutable job mode and current fence. EDIT permits `edit`; GENERATE permits its seven stages.
+  No raw adapter, credential, approval, model or accounting bypass belongs here.
+- HTTP maps internal rows through explicit DTOs; session IDs, workers, fences and raw prompts
+  are internal. Every poll reauthorizes access. Test-only storage/fixtures live under testing/.

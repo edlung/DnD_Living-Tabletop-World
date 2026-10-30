@@ -1,0 +1,69 @@
+{
+  "kind": "EXTRACT_FROM_CAPTURED_FIRST_PASS_MEASUREMENTS",
+  "findings": [
+    {
+      "state": "structured-sheet",
+      "width": 1440,
+      "level": "error",
+      "rule": "touching-cards",
+      "where": "button \"Review manual changes\"",
+      "detail": "only 0.0px from the previous box"
+    },
+    {
+      "state": "structured-sheet",
+      "width": 768,
+      "level": "error",
+      "rule": "touching-cards",
+      "where": "button \"Review manual changes\"",
+      "detail": "only 0.0px from the previous box"
+    },
+    {
+      "state": "structured-sheet",
+      "width": 390,
+      "level": "error",
+      "rule": "touching-cards",
+      "where": "button \"Review manual changes\"",
+      "detail": "only 0.0px from the previous box"
+    },
+    {
+      "state": "structured-sheet",
+      "width": 320,
+      "level": "error",
+      "rule": "touching-cards",
+      "where": "button \"Review manual changes\"",
+      "detail": "only 0.0px from the previous box"
+    },
+    {
+      "state": "manual-diff",
+      "width": 1440,
+      "level": "error",
+      "rule": "touching-cards",
+      "where": "button \"Review manual changes\"",
+      "detail": "only 0.0px from the previous box"
+    },
+    {
+      "state": "manual-diff",
+      "width": 768,
+      "level": "error",
+      "rule": "touching-cards",
+      "where": "button \"Review manual changes\"",
+      "detail": "only 0.0px from the previous box"
+    },
+    {
+      "state": "manual-diff",
+      "width": 390,
+      "level": "error",
+      "rule": "touching-cards",
+      "where": "button \"Review manual changes\"",
+      "detail": "only 0.0px from the previous box"
+    },
+    {
+      "state": "manual-diff",
+      "width": 320,
+      "level": "error",
+      "rule": "touching-cards",
+      "where": "button \"Review manual changes\"",
+      "detail": "only 0.0px from the previous box"
+    }
+  ]
+}

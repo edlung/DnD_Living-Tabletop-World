@@ -103,6 +103,7 @@ export async function generationFixture() {
         provider: PROVIDER,
         model: MODEL,
         run: async (input) => {
+          if (input.stage === 'edit') throw new Error('TEST_GENERATE_MODE_ONLY');
           calls.push(input.stage);
           await before?.(input);
           const checked = input.validate(specimenOutput(input.stage, content));

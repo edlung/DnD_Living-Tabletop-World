@@ -30,6 +30,8 @@ export function registerCampaignGenerationRoutes(
   cancelInFlight: (jobId: string) => void = () => undefined,
 ): void {
   const repository = generation.repository;
+  const editing = repository.mode === 'EDIT';
+  const base = `/workshop/drafts/:draftId/${editing ? 'edits' : 'generation'}`;
   const limited = async (
     ownerId: string,
     request: FastifyRequest,
@@ -60,49 +62,51 @@ export function registerCampaignGenerationRoutes(
     return { session, draft, scope: { ownerId: session.ownerId, draftId: draft.draftId } };
   };
 
-  app.get('/workshop/drafts/:draftId/generation/availability', async (request, reply) => {
-    const grant = await owned(request, reply);
-    if (!grant) return reply;
-    if (!draftPath.safeParse(request.params).success || !empty.safeParse(request.query).success)
-      return sendError(reply, request, 'INVALID_REQUEST');
-    return reply.send(await generation.preparation.availability(grant.session.ownerId));
-  });
-
-  app.post(
-    '/workshop/drafts/:draftId/generation',
-    { bodyLimit: MAX_CAMPAIGN_PACKAGE_BYTES + 16 * 1024 },
-    async (request, reply) => {
+  if (!editing)
+    app.get(`${base}/availability`, async (request, reply) => {
       const grant = await owned(request, reply);
       if (!grant) return reply;
-      const input = enqueueCampaignGenerationSchema.safeParse(request.body);
-      if (
-        !draftPath.safeParse(request.params).success ||
-        !input.success ||
-        !empty.safeParse(request.query).success
-      )
+      if (!draftPath.safeParse(request.params).success || !empty.safeParse(request.query).success)
         return sendError(reply, request, 'INVALID_REQUEST');
-      return limited(grant.session.ownerId, request, reply, async () => {
-        const availability = await generation.preparation.availability(grant.session.ownerId);
-        if (!availability.available) return reply.code(422).send({ availability });
-        const result = await repository.enqueue({
-          ...grant.scope,
-          authSessionId: grant.session.sessionId,
-          requestId: input.data.requestId,
-          basedOnRevision: input.data.basedOnRevision,
-          seed: seedCampaignPackage({
-            title: grant.draft.title,
-            language: grant.draft.language,
-            brief: input.data.brief,
-          }),
-        });
-        if (result.kind === 'not-found') return sendError(reply, request, 'NOT_FOUND');
-        if (result.kind === 'conflict') return sendError(reply, request, 'CONFLICT');
-        return reply.send({ job: generationJobView(result.job) });
-      });
-    },
-  );
+      return reply.send(await generation.preparation.availability(grant.session.ownerId));
+    });
 
-  app.get('/workshop/drafts/:draftId/generation', async (request, reply) => {
+  if (!editing)
+    app.post(
+      base,
+      { bodyLimit: MAX_CAMPAIGN_PACKAGE_BYTES + 16 * 1024 },
+      async (request, reply) => {
+        const grant = await owned(request, reply);
+        if (!grant) return reply;
+        const input = enqueueCampaignGenerationSchema.safeParse(request.body);
+        if (
+          !draftPath.safeParse(request.params).success ||
+          !input.success ||
+          !empty.safeParse(request.query).success
+        )
+          return sendError(reply, request, 'INVALID_REQUEST');
+        return limited(grant.session.ownerId, request, reply, async () => {
+          const availability = await generation.preparation.availability(grant.session.ownerId);
+          if (!availability.available) return reply.code(422).send({ availability });
+          const result = await repository.enqueue({
+            ...grant.scope,
+            authSessionId: grant.session.sessionId,
+            requestId: input.data.requestId,
+            basedOnRevision: input.data.basedOnRevision,
+            seed: seedCampaignPackage({
+              title: grant.draft.title,
+              language: grant.draft.language,
+              brief: input.data.brief,
+            }),
+          });
+          if (result.kind === 'not-found') return sendError(reply, request, 'NOT_FOUND');
+          if (result.kind === 'conflict') return sendError(reply, request, 'CONFLICT');
+          return reply.send({ job: generationJobView(result.job) });
+        });
+      },
+    );
+
+  app.get(base, async (request, reply) => {
     const grant = await owned(request, reply);
     if (!grant) return reply;
     const query = listQuery.safeParse(request.query);
@@ -119,7 +123,7 @@ export function registerCampaignGenerationRoutes(
     });
   });
 
-  app.get('/workshop/drafts/:draftId/generation/:jobId/progress', async (request, reply) => {
+  app.get(`${base}/:jobId/progress`, async (request, reply) => {
     const grant = await owned(request, reply);
     if (!grant) return reply;
     const path = jobPath.safeParse(request.params);
@@ -130,7 +134,7 @@ export function registerCampaignGenerationRoutes(
     return progress ? reply.send(progress) : sendError(reply, request, 'NOT_FOUND');
   });
 
-  app.get('/workshop/drafts/:draftId/generation/:jobId', async (request, reply) => {
+  app.get(`${base}/:jobId`, async (request, reply) => {
     const grant = await owned(request, reply);
     if (!grant) return reply;
     const path = jobPath.safeParse(request.params);
@@ -150,7 +154,7 @@ export function registerCampaignGenerationRoutes(
     } satisfies CampaignGenerationView);
   });
 
-  app.post('/workshop/drafts/:draftId/generation/:jobId/cancel', async (request, reply) => {
+  app.post(`${base}/:jobId/cancel`, async (request, reply) => {
     const grant = await owned(request, reply);
     if (!grant) return reply;
     const path = jobPath.safeParse(request.params);
@@ -167,7 +171,7 @@ export function registerCampaignGenerationRoutes(
     return reply.send({ job: generationJobView(result.job) });
   });
 
-  app.post('/workshop/drafts/:draftId/generation/:jobId/retry', async (request, reply) => {
+  app.post(`${base}/:jobId/retry`, async (request, reply) => {
     const grant = await owned(request, reply);
     if (!grant) return reply;
     const path = jobPath.safeParse(request.params),
@@ -175,6 +179,16 @@ export function registerCampaignGenerationRoutes(
     if (!path.success || !input.success || !empty.safeParse(request.query).success)
       return sendError(reply, request, 'INVALID_REQUEST');
     return limited(grant.session.ownerId, request, reply, async () => {
+      if (editing && (await repository.requestById(grant.scope, input.data.requestId))) {
+        const replay = await repository.retry(
+          { ...grant.scope, jobId: path.data.jobId },
+          input.data.requestId,
+          grant.session.sessionId,
+        );
+        return replay.kind === 'saved'
+          ? reply.send({ job: generationJobView(replay.job) })
+          : sendError(reply, request, replay.kind === 'not-found' ? 'NOT_FOUND' : 'CONFLICT');
+      }
       const availability = await generation.preparation.availability(grant.session.ownerId);
       if (!availability.available) return reply.code(422).send({ availability });
       const result = await repository.retry(
@@ -188,7 +202,7 @@ export function registerCampaignGenerationRoutes(
     });
   });
 
-  app.get('/workshop/drafts/:draftId/generation/:jobId/traces/:traceId', async (request, reply) => {
+  app.get(`${base}/:jobId/traces/:traceId`, async (request, reply) => {
     const grant = await owned(request, reply);
     if (!grant) return reply;
     const path = tracePath.safeParse(request.params);

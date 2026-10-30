@@ -2,7 +2,14 @@ import { selectDraftImageSchema, type DraftVisualEntry } from '@ltw/contracts';
 import type pg from 'pg';
 
 import { readCampaignRevisionInTransaction } from '../packages/postgres-store.ts';
-import { draftImageSourceSignature, imageDigest, imageSlotKey } from './manifest.ts';
+import {
+  draftImageSourceSignature,
+  imageDigest,
+  imageSlotKey,
+  newVisualManifest,
+} from './manifest.ts';
+import { readDraftLocks } from '../revisions/postgres-helpers.ts';
+import { draftLockConflicts } from '../revisions/policy.ts';
 import { ensureManifest, insertManifest, manifestNonce } from './postgres-manifests.ts';
 import { imageCandidate, imageDraftLock, imageSession } from './postgres-rows.ts';
 import { selectedReference } from './requests.ts';
@@ -58,6 +65,17 @@ export async function selectImage(
     };
     entries.push(entry);
   }
+  const locks = await readDraftLocks(client, input);
+  const imageLocks = locks
+    ? { ...locks, entries: locks.entries.filter((entry) => entry.target.kind === 'image') }
+    : null;
+  const prospective = newVisualManifest(
+    revision,
+    manifest.version + 1,
+    entries,
+    new Date().toISOString(),
+  );
+  if (draftLockConflicts(imageLocks, revision, prospective).length) return { kind: 'conflict' };
   return {
     kind: 'saved',
     manifest: await insertManifest(

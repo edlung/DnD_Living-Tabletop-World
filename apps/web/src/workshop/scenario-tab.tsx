@@ -1,205 +1,256 @@
-import type { CampaignPackage } from '@ltw/contracts';
+import { campaignPackageSchema } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { useResource } from '../api/resource.ts';
 import type { WorkshopClient } from './client.ts';
-import { generationViewSchema, revisionViewSchema } from './response-schemas.ts';
+import { RevisionReview, type ReviewSource } from './comparison/review.tsx';
+import { CampaignChanges } from './comparison/changes.tsx';
+import { CampaignAiEdit, type AiEditDraft } from './editing/ai-edit.tsx';
+import { EditConflict } from './editing/conflicts.tsx';
+import { CampaignManualEditor } from './editing/editor.tsx';
+import { CampaignLocks } from './editing/locks.tsx';
+import { contentPathLocked, targetForNode } from './editing/targets.ts';
+import { useScenarioSave, type ManualDraftBuffer } from './editing/use-scenario-save.ts';
 import { ScenarioBrowser } from './scenario/browser.tsx';
+import { buildScenarioIndex, nearestScenarioPath } from './scenario/graph.ts';
+import {
+  readScenarioKey,
+  useScenarioResource,
+  type ReadScenarioSource,
+} from './scenario-resource.ts';
 
-export type ScenarioSource =
-  | { readonly kind: 'revision'; readonly revision: number | null }
-  | { readonly kind: 'candidate'; readonly jobId: string }
-  | { readonly kind: 'step'; readonly jobId: string; readonly ordinal: number };
-
-/** A full owner package exists only inside this mounted scenario boundary. */
-export function ScenarioTab({
-  client,
-  draftId,
-  source,
-  onSaved,
-  initialEntityId,
-  onVisual,
-}: {
+export type ScenarioSource = ReadScenarioSource | ReviewSource;
+export type ScenarioMode = 'inspect' | 'edit' | 'ai' | 'locks';
+interface ScenarioProps {
   readonly client: WorkshopClient;
   readonly draftId: string;
   readonly source: ScenarioSource;
   readonly onSaved: (revision: number) => void;
+  readonly onInspectSource: (source: ScenarioSource) => void;
+  readonly headRevision: number;
+  readonly revisions: readonly { revision: number }[];
+  readonly initialMode?: ScenarioMode;
   readonly initialEntityId?: string;
+  readonly onPendingChanged: (pending: boolean) => void;
+  readonly onRefreshHistory: () => void;
   readonly onVisual?: (revision: number, entityId: string) => void;
-}) {
+}
+
+/** Every package, buffer and comparison lives inside this mounted owner boundary. */
+export function ScenarioTab(props: ScenarioProps) {
+  const { source } = props;
+  if (source.kind === 'review' || source.kind === 'compare' || source.kind === 'restore')
+    return (
+      <RevisionReview
+        client={props.client}
+        draftId={props.draftId}
+        source={source}
+        onSaved={props.onSaved}
+        onBack={() => {
+          props.onInspectSource({ kind: 'revision', revision: null });
+        }}
+        onPendingChanged={props.onPendingChanged}
+        onRestore={(revision) => {
+          props.onInspectSource({ kind: 'restore', revision });
+        }}
+      />
+    );
+  return <ScenarioContent {...props} source={source} />;
+}
+
+function ScenarioContent({
+  client,
+  draftId,
+  source,
+  onSaved,
+  onInspectSource,
+  headRevision,
+  revisions,
+  initialMode = 'inspect',
+  initialEntityId,
+  onVisual,
+  onPendingChanged,
+  onRefreshHistory,
+}: Omit<ScenarioProps, 'source'> & { readonly source: ReadScenarioSource }) {
   const t = useT();
-  const [selected, setSelected] = useState<string | null>(null);
-  const [saveState, setSaveState] = useState<'idle' | 'saving' | 'uncertain' | 'conflict'>('idle');
-  const pending = useRef<{
-    requestId: string;
-    basedOnRevision: number;
-    content: CampaignPackage;
-  } | null>(null);
-  const alive = useRef(true);
-  const section = useRef<HTMLElement>(null);
-  const restoreFocus = useRef(false);
+  const [selected, setSelected] = useState<string | null>(null),
+    [mode, setMode] = useState<ScenarioMode>(initialMode);
+  const [compare, setCompare] = useState(headRevision),
+    [manualReview, setManualReview] = useState(false);
+  const [buffer, setBuffer] = useState<ManualDraftBuffer | null>(null);
+  const [aiDraft, setAiDraft] = useState<AiEditDraft>({ instruction: '', targets: [] }),
+    [operationPending, setOperationPending] = useState(false);
+  const section = useRef<HTMLElement>(null),
+    restoreFocus = useRef(false),
+    knownHead = useRef(0);
+  const contextKey = readScenarioKey(source);
+  const { resource, retry, reread } = useScenarioResource(client, draftId, source);
+  const data = resource.status === 'ready' ? resource.value : null,
+    context = data?.context ?? null;
   useEffect(() => {
-    alive.current = true;
-    return () => {
-      alive.current = false;
-    };
-  }, []);
-  const revision = source.kind === 'revision' ? source.revision : null;
-  const jobId = source.kind === 'revision' ? null : source.jobId;
-  const ordinal = source.kind === 'step' ? source.ordinal : null;
-  const contextKey = `${source.kind}:${String(revision)}:${String(jobId)}:${String(ordinal)}`;
-  const currentContext = useRef(contextKey);
-  currentContext.current = contextKey;
-  const writing = useRef<AbortController | null>(null);
+    if (
+      context &&
+      context.revision.revision > headRevision &&
+      context.revision.revision > knownHead.current
+    ) {
+      knownHead.current = context.revision.revision;
+      onRefreshHistory();
+    }
+  }, [context, headRevision, onRefreshHistory]);
   useEffect(() => {
-    const controller = new AbortController();
-    writing.current = controller;
-    pending.current = null;
-    setSaveState('idle');
-    return () => {
-      controller.abort();
-    };
-  }, [contextKey]);
-  const load = useCallback(
-    async (signal: AbortSignal) => {
-      if (jobId !== null) {
-        const result = await client.request(
-          `/drafts/${draftId}/generation/${jobId}`,
-          generationViewSchema,
-          { signal },
-        );
-        if (result.kind !== 'ready') throw new Error('WORKSHOP_READ_FAILED');
-        if (ordinal !== null) {
-          const step = result.value.steps.find((entry) => entry.ordinal === ordinal);
-          if (step?.status !== 'SUCCEEDED' || !step.content)
-            throw new Error('WORKSHOP_READ_FAILED');
-          return { content: step.content, assessment: null, revision: null, entities: null };
-        }
-        if (!result.value.candidate) throw new Error('WORKSHOP_READ_FAILED');
-        return {
-          content: result.value.candidate.content,
-          assessment: null,
-          revision: null,
-          entities: null,
-        };
-      }
-      const path = revision === null ? 'package' : `revisions/${String(revision)}`;
-      const result = await client.request(`/drafts/${draftId}/${path}`, revisionViewSchema, {
-        signal,
-      });
-      if (result.kind !== 'ready') throw new Error('WORKSHOP_READ_FAILED');
-      return {
-        content: result.value.revision?.content ?? null,
-        assessment: result.value.assessment,
-        revision: result.value.revision?.revision ?? null,
-        entities: result.value.revision?.identities.entities ?? null,
-      };
-    },
-    [client, draftId, revision, jobId, ordinal],
-  );
-  const { resource, retry } = useResource(`scenario:${draftId}:${contextKey}`, load);
-  useEffect(() => {
-    if (!initialEntityId || resource.status !== 'ready' || !resource.value.entities) return;
-    const entry = Object.entries(resource.value.entities).find(([, id]) => id === initialEntityId);
+    if (!initialEntityId || !data?.entities) return;
+    const entry = Object.entries(data.entities).find(([, id]) => id === initialEntityId);
     if (entry) setSelected(`entities.${entry[0]}`);
-  }, [initialEntityId, resource]);
+  }, [initialEntityId, data]);
   useEffect(() => {
     if (resource.status !== 'ready' || !restoreFocus.current) return;
     restoreFocus.current = false;
-    const target = section.current?.querySelector<HTMLElement>('.scenario-inspector-target');
+    const target = section.current?.querySelector<HTMLElement>(
+      '.scenario-inspector-target,.campaign-manual-editor',
+    );
     target?.focus({ preventScroll: true });
-    if (window.matchMedia('(max-width: 1099px)').matches)
-      target?.scrollIntoView({ block: 'start' });
+    if (window.matchMedia('(max-width:1099px)').matches) target?.scrollIntoView({ block: 'start' });
   }, [resource]);
-  const save = async (
-    content: CampaignPackage,
-  ): Promise<'saved' | 'conflict' | 'uncertain' | 'failed'> => {
-    if (resource.status !== 'ready' || resource.value.revision === null || jobId !== null)
-      return 'failed';
-    const payload = pending.current ?? {
-      requestId: crypto.randomUUID(),
-      basedOnRevision: resource.value.revision,
-      content,
+  const saving = useScenarioSave({
+    client,
+    draftId,
+    context,
+    contextKey,
+    writable: source.kind === 'revision',
+    bufferBaseDigest: buffer?.baseDigest ?? null,
+    onConflict: () => {
+      reread();
+      onRefreshHistory();
+    },
+    onSaved: (revision) => {
+      setBuffer(null);
+      setManualReview(false);
+      restoreFocus.current = true;
+      onSaved(revision);
+    },
+  });
+  const { state: saveState, conflict, save } = saving;
+  const dirty = buffer !== null && JSON.stringify(buffer.value) !== JSON.stringify(buffer.base);
+  const stale =
+    buffer !== null && context !== null && buffer.baseDigest !== context.revision.digest;
+  const blocked = saveState !== 'idle';
+  useEffect(() => {
+    onPendingChanged(blocked || dirty || operationPending);
+    return () => {
+      onPendingChanged(false);
     };
-    if (JSON.stringify(payload.content) !== JSON.stringify(content)) {
-      setSaveState('uncertain');
-      return 'uncertain';
-    }
-    pending.current = payload;
-    setSaveState('saving');
-    const startedIn = contextKey;
-    const result = await client.request(`/drafts/${draftId}/revisions`, revisionViewSchema, {
-      body: payload,
-      ...(writing.current ? { signal: writing.current.signal } : {}),
-    });
-    if (!alive.current || currentContext.current !== startedIn) return 'failed';
-    if (result.kind === 'conflict') {
-      setSaveState('conflict');
-      return 'conflict';
-    }
-    if (result.kind !== 'ready' || !result.value.revision) {
-      setSaveState('uncertain');
-      return 'uncertain';
-    }
-    pending.current = null;
-    setSaveState('idle');
-    restoreFocus.current = true;
-    onSaved(result.value.revision.revision);
-    return 'saved';
+  }, [blocked, dirty, operationPending, onPendingChanged]);
+  const reload = () => {
+    saving.discard();
+    setBuffer(null);
+    setManualReview(false);
+    retry();
   };
+  const index = data?.content ? buildScenarioIndex(data.content) : null;
+  const node = index ? index.byPath.get(nearestScenarioPath(index, selected)) : null;
+  const selectedProtected =
+    context && node
+      ? contentPathLocked(context, data?.content, [
+          node.group,
+          ...(node.group === 'visuals' ||
+          node.group === 'entities' ||
+          node.group === 'knowledge' ||
+          node.group === 'clues' ||
+          node.group === 'encounters' ||
+          node.group === 'situations' ||
+          node.group === 'conflicts' ||
+          node.group === 'quests'
+            ? [(data?.content?.[node.group] ?? []).findIndex((item) => item === node.value)]
+            : []),
+        ])
+      : false;
   return (
     <section ref={section} className="workshop-scenario" aria-label={t('Scenario')}>
       <div className="workshop-section-heading">
         <h3>
-          {ordinal !== null
+          {source.kind === 'step'
             ? t('Saved preparation step')
-            : jobId
+            : source.kind === 'candidate'
               ? t('Unattached generation proposal')
               : t('Scenario overview')}
         </h3>
-        <button
-          onClick={() => {
-            pending.current = null;
-            setSaveState('idle');
-            retry();
-          }}
-        >
+        <button type="button" onClick={reload}>
           {t('Reload saved content')}
         </button>
       </div>
-      {resource.status === 'ready' &&
-        resource.value.revision !== null &&
-        onVisual &&
-        (() => {
-          const entityKey = selected?.match(/^(?:entities|visuals)\.([^.]+)/)?.[1];
-          const entityId = entityKey ? resource.value.entities?.[entityKey] : null;
-          const currentRevision = resource.value.revision;
-          return (
-            entityId && (
-              <button
-                className="workshop-object-link"
-                onClick={() => {
-                  onVisual(currentRevision, entityId);
-                }}
-              >
-                {t('View selected object in world')}
-              </button>
-            )
-          );
-        })()}
-      {ordinal !== null ? (
+      {source.kind === 'step' ? (
         <p>
           {t(
             'This is unfinished preparation from one saved step. It has not passed the complete campaign checks.',
           )}
         </p>
       ) : (
-        jobId && (
+        source.kind === 'candidate' && (
           <p>
             {t('This proposal is separate from saved revisions. It cannot change a played world.')}
           </p>
         )
+      )}
+      {context && (
+        <>
+          <nav className="campaign-edit-modes" aria-label={t('Scenario editing actions')}>
+            {(['inspect', 'edit', 'ai', 'locks'] as const).map((next) => (
+              <button
+                type="button"
+                key={next}
+                aria-pressed={mode === next}
+                disabled={saveState === 'saving' || saveState === 'uncertain' || operationPending}
+                onClick={() => {
+                  setMode(next);
+                }}
+              >
+                {next === 'inspect'
+                  ? t('Inspect scenario')
+                  : next === 'edit'
+                    ? t('Structured editing')
+                    : next === 'ai'
+                      ? t('Targeted AI edit')
+                      : t('Protections')}
+              </button>
+            ))}
+          </nav>
+          <div className="campaign-compare-controls">
+            <label htmlFor="scenario-compare-revision">{t('Compare with revision')}</label>
+            <select
+              id="scenario-compare-revision"
+              value={compare}
+              onChange={(event) => {
+                setCompare(Number(event.target.value));
+              }}
+            >
+              {revisions.map((entry) => (
+                <option key={entry.revision} value={entry.revision}>
+                  {t('Revision {revision}', { revision: entry.revision })}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              disabled={blocked || dirty || compare === 0}
+              onClick={() => {
+                onInspectSource({ kind: 'compare', from: context.revision.revision, to: compare });
+              }}
+            >
+              {t('Compare revisions')}
+            </button>
+            {context.revision.revision !== headRevision && (
+              <button
+                type="button"
+                disabled={blocked || dirty}
+                onClick={() => {
+                  onInspectSource({ kind: 'restore', revision: context.revision.revision });
+                }}
+              >
+                {t('Restore as a new revision')}
+              </button>
+            )}
+          </div>
+        </>
       )}
       {(saveState === 'uncertain' || saveState === 'conflict') && (
         <div className="workshop-panel" role="status">
@@ -212,14 +263,45 @@ export function ScenarioTab({
           </p>
           {saveState === 'uncertain' && (
             <button
+              type="button"
               onClick={() => {
-                if (pending.current) void save(pending.current.content);
+                saving.retry();
               }}
             >
               {t('Retry original correction')}
             </button>
           )}
+          {conflict !== null && <EditConflict value={conflict} />}
+          {saveState === 'conflict' && (
+            <>
+              <button
+                type="button"
+                onClick={() => {
+                  setMode('locks');
+                }}
+              >
+                {t('Review protections')}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const kept = saving.keepChanges();
+                  if (kept) setBuffer(kept);
+                  setMode('edit');
+                }}
+              >
+                {t('Keep changes and start a new save')}
+              </button>
+            </>
+          )}
         </div>
+      )}
+      {stale && (
+        <p role="status">
+          {t(
+            'The selected revision changed. Your manual buffer is kept; discard it before editing a newer revision.',
+          )}
+        </p>
       )}
       {resource.status !== 'ready' ? (
         <StatusPanel
@@ -231,16 +313,118 @@ export function ScenarioTab({
           }
           onRetry={retry}
         />
-      ) : resource.value.content === null ? (
+      ) : !data?.content ? (
         <p>{t('Generate a campaign to prepare its scenario.')}</p>
-      ) : (
-        <ScenarioBrowser
-          content={resource.value.content}
-          assessment={resource.value.assessment}
-          selectedPath={selected}
-          onSelect={setSelected}
-          {...(jobId === null ? { onSave: save } : {})}
+      ) : context && mode === 'edit' ? (
+        <div className="campaign-manual-workspace">
+          <CampaignManualEditor
+            base={buffer?.base ?? data.content}
+            value={buffer?.value ?? data.content}
+            initialSection={node?.group ?? 'world'}
+            pending={blocked || stale}
+            onChange={(value) => {
+              setBuffer((previous) =>
+                previous
+                  ? { ...previous, value }
+                  : {
+                      baseDigest: context.revision.digest,
+                      baseRevision: context.revision.revision,
+                      base: context.revision.content,
+                      value,
+                    },
+              );
+            }}
+            onSave={save}
+            onDiscard={() => {
+              setBuffer(null);
+              setManualReview(false);
+            }}
+            isLocked={(path) => contentPathLocked(context, buffer?.value ?? data.content, path)}
+          />
+          {dirty &&
+            (() => {
+              const parsed = campaignPackageSchema.safeParse(buffer.value);
+              return (
+                parsed.success && (
+                  <>
+                    <button
+                      type="button"
+                      aria-expanded={manualReview}
+                      onClick={() => {
+                        setManualReview((open) => !open);
+                      }}
+                    >
+                      {t('Review manual changes')}
+                    </button>
+                    {manualReview && <CampaignChanges before={buffer.base} after={parsed.data} />}
+                  </>
+                )
+              );
+            })()}
+        </div>
+      ) : context && mode === 'ai' ? (
+        <CampaignAiEdit
+          client={client}
+          draftId={draftId}
+          context={context}
+          historical={context.revision.revision !== headRevision}
+          dirty={dirty}
+          draft={aiDraft}
+          onDraftChange={setAiDraft}
+          onPendingChanged={setOperationPending}
+          onReview={(jobId) => {
+            onInspectSource({ kind: 'review', jobId });
+          }}
+          onRefresh={reread}
         />
+      ) : context && mode === 'locks' ? (
+        <CampaignLocks
+          client={client}
+          draftId={draftId}
+          context={context}
+          historical={context.revision.revision !== headRevision}
+          onRefresh={reread}
+          onPendingChanged={setOperationPending}
+        />
+      ) : (
+        <>
+          {context && node && selectedProtected && (
+            <p role="status">
+              {t('Selected content is protected. Open Protections to unlock it explicitly.')}
+            </p>
+          )}
+          {dirty && <p role="status">{t('Your manual changes are kept in Structured editing.')}</p>}
+          {context &&
+            onVisual &&
+            node &&
+            (() => {
+              const target = targetForNode(context, node);
+              const key = target?.key?.split(':')[0];
+              const entityId = key ? context.revision.identities.entities[key] : null;
+              return (
+                entityId &&
+                ['entities', 'visuals'].includes(node.group) && (
+                  <button
+                    className="workshop-object-link"
+                    type="button"
+                    disabled={blocked || dirty}
+                    onClick={() => {
+                      onVisual(context.revision.revision, entityId);
+                    }}
+                  >
+                    {t('View selected object in world')}
+                  </button>
+                )
+              );
+            })()}
+          <ScenarioBrowser
+            content={data.content}
+            assessment={data.assessment}
+            selectedPath={selected}
+            onSelect={setSelected}
+            {...(context && !dirty && !selectedProtected ? { onSave: save } : {})}
+          />
+        </>
       )}
     </section>
   );

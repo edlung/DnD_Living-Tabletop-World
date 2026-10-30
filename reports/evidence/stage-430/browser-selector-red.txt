@@ -1,0 +1,68 @@
+[WebServer] (node:87138) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:87155) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] (node:87170) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+[WebServer] (node:87187) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:87196) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:87201) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+[WebServer] (node:87214) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+[WebServer] (node:87234) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 2 workers
+
+(node:87243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:87244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:170:1 › Russian structured editing and an AI proposal remain localized and require explicit application (4.5s)
+  ✓  3 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:201:1 › unavailable AI editing keeps the owner instruction and selection without fabricating a job or proposal (900ms)
+  ✓  2 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:83:1 › an AI source change reviews picture staleness before explicit adoption and preserves unrelated chosen bytes (6.7s)
+  ✓  4 [chromium] › tests/e2e/workshop-editing.spec.ts:63:1 › structured manual changes, directed AI proposal, full comparison and restore form immutable revisions (4.2s)
+  ✘  5 [chromium] › tests/e2e/workshop-editing.spec.ts:117:1 › protections require explicit unlock and block both manual changes and directly requested AI targets (6.1s)
+Testing stopped early after 1 maximum allowed failures.
+  ✘  6 [chromium] › tests/e2e/workshop-editing.spec.ts:167:1 › an old AI proposal remains inspectable after another revision and cannot silently rebase (3.3s)
+
+
+  1) [chromium] › tests/e2e/workshop-editing.spec.ts:117:1 › protections require explicit unlock and block both manual changes and directly requested AI targets 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Unlock this content explicitly or choose another target.', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Unlock this content explicitly or choose another target.', { exact: true }) with timeout 5000ms
+      - waiting for getByText('Unlock this content explicitly or choose another target.', { exact: true })
+
+
+      151 |   await expect(
+      152 |     page.getByText('Unlock this content explicitly or choose another target.', { exact: true }),
+    > 153 |   ).toBeVisible();
+          |     ^
+      154 |   await expect(
+      155 |     page.getByRole('button', { name: 'Prepare proposed changes', exact: true }),
+      156 |   ).toHaveCount(0);
+        at /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/tests/e2e/workshop-editing.spec.ts:153:5
+
+    Error Context: test-results/workshop-editing-protectio-a7d38-rectly-requested-AI-targets-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/e2e/workshop-editing.spec.ts:117:1 › protections require explicit unlock and block both manual changes and directly requested AI targets 
+  1 interrupted
+    [chromium] › tests/e2e/workshop-editing.spec.ts:167:1 › an old AI proposal remains inspectable after another revision and cannot silently rebase 
+  2 did not run
+  4 passed (19.3s)
+  1 error was not a part of any test, see above for details

@@ -57,7 +57,7 @@ const identities = z
     scene: id,
   })
   .strict();
-const revisionSchema = z
+export const revisionSchema = z
   .object({
     draftId: id,
     revision: number,
@@ -80,6 +80,7 @@ export const revisionHistorySchema = z
   .strict();
 export const jobSchema = z
   .object({
+    mode: z.enum(['GENERATE', 'EDIT']).default('GENERATE'),
     jobId: id,
     draftId: id,
     baseRevision: number,
@@ -120,6 +121,10 @@ const candidateSummary = z
   .strict();
 export const progressSchema = z
   .object({
+    edit: z
+      .object({ instruction: z.string(), requestedTargets: z.array(z.string()) })
+      .strict()
+      .optional(),
     job: jobSchema,
     brief: campaignBriefSchema,
     steps: z.array(step),

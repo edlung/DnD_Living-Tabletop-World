@@ -1,0 +1,14 @@
+      - region "AI edit history":
+        - heading "AI edit history" [level=3]
+        - button "Refresh edit history"
+        - paragraph: No AI edits have been requested yet.
+      - group: Submitted edit instructions
+      - region "Selected generation":
+        - heading "Generation completed" [level=3]
+        - paragraph: "Preparation steps completed: 1 of 7"
+        - list:
+          - listitem:
+            - strong: Selective edit
+            - text: "· Step completed Model: scripted-offline-edit-1"
+        - button "View generation proposal"
+```

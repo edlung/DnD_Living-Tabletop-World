@@ -21,6 +21,8 @@ import type {
   CampaignRevisionRepository,
 } from '../workshop/packages/store.ts';
 import type { WorkshopStore } from '../workshop/store.ts';
+import { imageDigest } from '../workshop/images/manifest.ts';
+import { revisionWriteIntent } from '../workshop/revisions/policy.ts';
 
 export function emptyCampaignPackage(): CampaignPackage {
   return campaignPackageSchema.parse({
@@ -63,9 +65,19 @@ export function emptyCampaignPackage(): CampaignPackage {
 export class MemoryCampaignRevisionRepository implements CampaignRevisionRepository {
   readonly #workshop: WorkshopStore;
   readonly #revisions = new Map<string, CampaignRevision[]>();
-  readonly #requests = new Map<string, { fingerprint: string; revision: CampaignRevision }>();
+  readonly #requests = new Map<
+    string,
+    { fingerprint: string; policy: string; revision: CampaignRevision }
+  >();
   readonly #identities = new Map<string, readonly CampaignIdentityRecord[]>();
   readonly #appendHooks = new Set<(ownerId: string, revision: CampaignRevision) => () => void>();
+  readonly #appendGuards = new Set<
+    (
+      input: AppendCampaignRevision,
+      revision: CampaignRevision,
+    ) => AppendCampaignRevisionResult | null
+  >();
+  readonly #draftTails = new Map<string, Promise<void>>();
   constructor(workshop: WorkshopStore) {
     this.#workshop = workshop;
   }
@@ -73,26 +85,70 @@ export class MemoryCampaignRevisionRepository implements CampaignRevisionReposit
   registerAppendHook(hook: (ownerId: string, revision: CampaignRevision) => () => void): void {
     this.#appendHooks.add(hook);
   }
+  registerAppendGuard(
+    guard: (
+      input: AppendCampaignRevision,
+      revision: CampaignRevision,
+    ) => AppendCampaignRevisionResult | null,
+  ) {
+    this.#appendGuards.add(guard);
+  }
+  async withDraftLock<T>(
+    scope: { ownerId: string; draftId: string },
+    work: () => Promise<T> | T,
+  ): Promise<T> {
+    const key = `${scope.ownerId}/${scope.draftId}`,
+      old = this.#draftTails.get(key) ?? Promise.resolve();
+    let release = () => {};
+    const tail = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    this.#draftTails.set(key, tail);
+    await old;
+    try {
+      return await work();
+    } finally {
+      release();
+      if (this.#draftTails.get(key) === tail) this.#draftTails.delete(key);
+    }
+  }
 
   async append(raw: AppendCampaignRevision): Promise<AppendCampaignRevisionResult> {
     const input = normalizeCampaignAppend(raw);
     if (!(await this.#workshop.draft(input.ownerId, input.draftId))) return { kind: 'not-found' };
+    return this.withDraftLock(input, () => this.appendWithinDraftLock(input));
+  }
+  /** Caller must hold withDraftLock after owner authorization. No await before mutation completes. */
+  appendWithinDraftLock(input: AppendCampaignRevision): AppendCampaignRevisionResult {
+    const prepared = this.prepareAppendWithinDraftLock(input);
+    prepared.commit();
+    return prepared.result;
+  }
+  prepareAppendWithinDraftLock(raw: AppendCampaignRevision): {
+    result: AppendCampaignRevisionResult;
+    commit: () => void;
+  } {
+    const input = normalizeCampaignAppend(raw);
+    const reject = (result: AppendCampaignRevisionResult) => ({ result, commit: () => {} });
     // No await from reading the current version until the whole mutation is stored.
     const key = `${input.ownerId}/${input.draftId}`;
     const requestKey = `${key}/${input.requestId}`;
     const fingerprint = campaignRequestFingerprint(input);
+    const policy = imageDigest(revisionWriteIntent(input));
     const previous = this.#requests.get(requestKey);
     if (previous)
-      return previous.fingerprint === fingerprint
-        ? { kind: 'saved', revision: structuredClone(previous.revision) }
-        : { kind: 'conflict', reason: 'REQUEST_REUSED' };
+      return reject(
+        previous.fingerprint === fingerprint && previous.policy === policy
+          ? { kind: 'saved', revision: structuredClone(previous.revision) }
+          : { kind: 'conflict', reason: 'REQUEST_REUSED' },
+      );
     const revisions = this.#revisions.get(key) ?? [];
     if ((revisions.at(-1)?.revision ?? 0) !== input.basedOnRevision)
-      return { kind: 'conflict', reason: 'STALE_REVISION' };
+      return reject({ kind: 'conflict', reason: 'STALE_REVISION' });
     const registry = this.#identities.get(key) ?? [];
     const allocation = allocateCampaignIdentities(input.content, registry);
     if (allocation.kind === 'conflict')
-      return { kind: 'conflict', reason: 'IDENTITY_KIND_CHANGED' };
+      return reject({ kind: 'conflict', reason: 'IDENTITY_KIND_CHANGED' });
     const revision: CampaignRevision = {
       draftId: input.draftId,
       revision: input.basedOnRevision + 1,
@@ -104,18 +160,49 @@ export class MemoryCampaignRevisionRepository implements CampaignRevisionReposit
       createdAt: input.createdAt,
     };
     const stored = structuredClone(revision);
+    if (this.#appendGuards.size === 0 && (input.expectedLockVersion ?? 0) !== 0)
+      return reject({ kind: 'conflict', reason: 'STALE_LOCKS' });
+    if (this.#appendGuards.size === 0 && input.expectedManifestVersion !== undefined)
+      return reject({ kind: 'conflict', reason: 'STALE_MANIFEST' });
+    for (const guard of this.#appendGuards) {
+      const rejected = guard(input, stored);
+      if (rejected) return reject(rejected);
+    }
     const commits = [...this.#appendHooks].map((hook) =>
       hook(input.ownerId, structuredClone(stored)),
     );
-    this.#revisions.set(key, [...revisions, stored]);
-    this.#identities.set(key, [...registry, ...allocation.added]);
-    this.#requests.set(requestKey, { fingerprint, revision: stored });
-    for (const commit of commits) commit();
-    return { kind: 'saved', revision: structuredClone(stored) };
+    return {
+      result: { kind: 'saved', revision: structuredClone(stored) },
+      commit: () => {
+        this.#revisions.set(key, [...revisions, stored]);
+        this.#identities.set(key, [...registry, ...allocation.added]);
+        this.#requests.set(requestKey, { fingerprint, policy, revision: stored });
+        for (const commit of commits) commit();
+      },
+    };
   }
   async latest(ownerId: string, draftId: string): Promise<CampaignRevision | null> {
     if (!(await this.#workshop.draft(ownerId, draftId))) return null;
     return structuredClone(this.#revisions.get(`${ownerId}/${draftId}`)?.at(-1) ?? null);
+  }
+  async identityRecords(
+    ownerId: string,
+    draftId: string,
+    content: CampaignPackage,
+  ): Promise<readonly CampaignIdentityRecord[]> {
+    if (!(await this.#workshop.draft(ownerId, draftId))) return [];
+    const keys = {
+      entities: new Set(content.entities.map((e) => e.key)),
+      knowledge: new Set(content.knowledge.map((e) => e.key)),
+      clues: new Set(content.clues.map((e) => e.key)),
+      encounters: new Set(content.encounters.map((e) => e.key)),
+      scene: new Set(['initial']),
+    };
+    return structuredClone(
+      (this.#identities.get(`${ownerId}/${draftId}`) ?? [])
+        .filter((record) => keys[record.namespace].has(record.key))
+        .sort((a, b) => a.namespace.localeCompare(b.namespace) || a.key.localeCompare(b.key)),
+    );
   }
   async get(ownerId: string, draftId: string, revision: number): Promise<CampaignRevision | null> {
     if (!(await this.#workshop.draft(ownerId, draftId))) return null;

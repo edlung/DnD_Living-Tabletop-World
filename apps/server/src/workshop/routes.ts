@@ -20,6 +20,8 @@ import { authorizeWorkshop, workshopPrincipal, workshopSignedOut } from './acces
 import { WORKSHOP_SESSION_MS, type WorkshopDependencies } from './service.ts';
 import { registerCampaignPackageRoutes } from './packages/routes.ts';
 import { registerCampaignGenerationRoutes } from './generation/routes.ts';
+import { registerCampaignEditRequestRoutes } from './generation/edit-routes.ts';
+import { registerCampaignRevisionControlRoutes } from './revisions/routes.ts';
 import { registerCampaignPreviewRoutes } from './preview/routes.ts';
 import { registerDraftImageReadRoutes } from './images/read-routes.ts';
 import { registerDraftImageMutationRoutes } from './images/mutation-routes.ts';
@@ -157,4 +159,9 @@ export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDepen
   }
   if (deps.generation)
     registerCampaignGenerationRoutes(app, deps, deps.generation, deps.cancelGeneration);
+  if (deps.packages && deps.revisionControls) registerCampaignRevisionControlRoutes(app, deps);
+  if (deps.edits) {
+    registerCampaignGenerationRoutes(app, deps, deps.edits, deps.cancelEdit);
+    registerCampaignEditRequestRoutes(app, deps);
+  }
 }

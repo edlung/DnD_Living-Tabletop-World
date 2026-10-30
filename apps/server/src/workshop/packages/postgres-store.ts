@@ -1,4 +1,9 @@
-import type { CampaignIdentities, CampaignRevision, CampaignRevisionSummary } from '@ltw/contracts';
+import type {
+  CampaignIdentities,
+  CampaignRevision,
+  CampaignRevisionSummary,
+  CampaignPackage,
+} from '@ltw/contracts';
 import type pg from 'pg';
 import { z } from 'zod';
 
@@ -21,6 +26,14 @@ import type {
   CampaignRevisionRepository,
 } from './store.ts';
 import { appendInitialVisualManifestInTransaction } from '../images/postgres-manifests.ts';
+import { readManifest } from '../images/postgres-manifests.ts';
+import { readDraftLocks, readWriteReceipt, writeReceipt } from '../revisions/postgres-helpers.ts';
+import {
+  draftLockConflicts,
+  prospectiveVisualManifest,
+  revisionWriteIntent,
+} from '../revisions/policy.ts';
+import { imageDigest } from '../images/manifest.ts';
 
 type RevisionRow = {
   draft_id: string;
@@ -82,6 +95,45 @@ export async function readCampaignRevisionInTransaction(
   return row ? revisionView(row) : null;
 }
 
+/** Bounded by the candidate key sets; retained history outside this proposal is not loaded. */
+async function readIdentityRecords(
+  client: pg.PoolClient,
+  ownerId: string,
+  draftId: string,
+  content: CampaignPackage,
+): Promise<readonly CampaignIdentityRecord[]> {
+  const rows = (
+    await client.query<{
+      namespace: CampaignIdentityNamespace;
+      local_key: string;
+      canonical_id: string;
+      entity_kind: CampaignIdentityRecord['entityKind'];
+    }>(
+      `SELECT namespace,local_key,canonical_id,entity_kind
+    FROM ltw_campaign_package_identities WHERE owner_id=$1 AND draft_id=$2 AND (
+      (namespace='entities' AND local_key=ANY($3::text[])) OR
+      (namespace='knowledge' AND local_key=ANY($4::text[])) OR
+      (namespace='clues' AND local_key=ANY($5::text[])) OR
+      (namespace='encounters' AND local_key=ANY($6::text[])) OR
+      (namespace='scene' AND local_key='initial')) ORDER BY namespace,local_key`,
+      [
+        ownerId,
+        draftId,
+        content.entities.map((e) => e.key),
+        content.knowledge.map((e) => e.key),
+        content.clues.map((e) => e.key),
+        content.encounters.map((e) => e.key),
+      ],
+    )
+  ).rows;
+  return rows.map((row) => ({
+    namespace: row.namespace,
+    key: row.local_key,
+    id: row.canonical_id,
+    entityKind: row.entity_kind,
+  }));
+}
+
 /** Caller owns the transaction; locks the owned draft and preserves nonce/CAS/identity semantics. */
 export async function appendCampaignRevisionInTransaction(
   client: pg.PoolClient,
@@ -101,10 +153,15 @@ export async function appendCampaignRevisionInTransaction(
       [input.draftId, input.ownerId, input.requestId],
     )
   ).rows[0];
-  if (previous)
-    return previous.request_fingerprint === fingerprint
+  if (previous) {
+    const receipt = await readWriteReceipt(client, input, input.requestId);
+    const policyMatches = receipt
+      ? receipt.request_fingerprint === imageDigest(revisionWriteIntent(input))
+      : (input.expectedLockVersion ?? 0) === 0 && input.writePolicy === undefined;
+    return previous.request_fingerprint === fingerprint && policyMatches
       ? { kind: 'saved', revision: revisionView(previous) }
       : { kind: 'conflict', reason: 'REQUEST_REUSED' };
+  }
   const latest =
     (
       await client.query<{ revision: number }>(
@@ -113,25 +170,31 @@ export async function appendCampaignRevisionInTransaction(
       )
     ).rows[0]?.revision ?? 0;
   if (latest !== input.basedOnRevision) return { kind: 'conflict', reason: 'STALE_REVISION' };
-  const rows = (
-    await client.query<{
-      namespace: CampaignIdentityNamespace;
-      local_key: string;
-      canonical_id: string;
-      entity_kind: CampaignIdentityRecord['entityKind'];
-    }>(
-      'SELECT namespace, local_key, canonical_id, entity_kind FROM ltw_campaign_package_identities WHERE draft_id = $1 AND owner_id = $2',
-      [input.draftId, input.ownerId],
-    )
-  ).rows;
-  const registry: CampaignIdentityRecord[] = rows.map((row) => ({
-    namespace: row.namespace,
-    key: row.local_key,
-    id: row.canonical_id,
-    entityKind: row.entity_kind,
-  }));
+  const locks = await readDraftLocks(client, input);
+  if ((locks?.version ?? 0) !== (input.expectedLockVersion ?? 0))
+    return { kind: 'conflict', reason: 'STALE_LOCKS' };
+  const registry = await readIdentityRecords(client, input.ownerId, input.draftId, input.content);
   const allocation = allocateCampaignIdentities(input.content, registry);
   if (allocation.kind === 'conflict') return { kind: 'conflict', reason: 'IDENTITY_KIND_CHANGED' };
+  const prospective: CampaignRevision = {
+    draftId: input.draftId,
+    revision: latest + 1,
+    basedOnRevision: latest,
+    content: input.content,
+    identities: allocation.identities,
+    digest: campaignContentDigest(input.content, allocation.identities),
+    source: input.source,
+    createdAt: input.createdAt,
+  };
+  const parent = latest === 0 ? null : await readManifest(client, input, latest);
+  if (
+    input.expectedManifestVersion !== undefined &&
+    (parent?.version !== input.expectedManifestVersion ||
+      parent.digest !== input.expectedManifestDigest)
+  )
+    return { kind: 'conflict', reason: 'STALE_MANIFEST' };
+  if (draftLockConflicts(locks, prospective, prospectiveVisualManifest(prospective, parent)).length)
+    return { kind: 'conflict', reason: 'LOCKED_CONTENT' };
   for (const record of allocation.added)
     await client.query(
       `INSERT INTO ltw_campaign_package_identities
@@ -161,6 +224,7 @@ export async function appendCampaignRevisionInTransaction(
   if (!row) throw new Error('CAMPAIGN_REVISION_NOT_STORED');
   const revision = revisionView(row);
   await appendInitialVisualManifestInTransaction(client, input, revision, input.basedOnRevision);
+  await writeReceipt(client, input, revision.revision);
   return { kind: 'saved', revision };
 }
 
@@ -191,6 +255,9 @@ export class PostgresCampaignRevisionRepository implements CampaignRevisionRepos
   async append(raw: AppendCampaignRevision): Promise<AppendCampaignRevisionResult> {
     const input = normalizeCampaignAppend(raw);
     return this.#transaction((client) => appendCampaignRevisionInTransaction(client, input));
+  }
+  identityRecords(ownerId: string, draftId: string, content: CampaignPackage) {
+    return this.#transaction((client) => readIdentityRecords(client, ownerId, draftId, content));
   }
 
   latest(ownerId: string, draftId: string): Promise<CampaignRevision | null> {

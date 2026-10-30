@@ -8,6 +8,7 @@ import { unlimitedText } from './monetary-policy.ts';
 import type { Authorization } from './types.ts';
 
 export interface PreparationJobBinding {
+  readonly mode?: 'GENERATE' | 'EDIT';
   readonly jobId: string;
   readonly ownerId: string;
   readonly draftId: string;
@@ -110,7 +111,7 @@ export function openPreparationSession(
        JOIN LATERAL (SELECT revision, enabled FROM ltw_ai_preparation_grants
           WHERE approval_id = $5 AND owner_id = j.owner_id ORDER BY revision DESC LIMIT 1) g ON g.enabled
        WHERE j.job_id = $1::uuid AND j.owner_id = $2::uuid AND j.draft_id = $3::uuid
-         AND j.fence = $4::bigint AND j.auth_session_id = $6::uuid
+         AND j.fence = $4::bigint AND j.auth_session_id = $6::uuid AND j.mode = $7
          AND j.status = 'RUNNING' AND j.lease_until > clock_timestamp()
          AND s.revoked_at IS NULL AND s.created_at <= clock_timestamp() AND s.expires_at > clock_timestamp()
        FOR SHARE OF j,s`,
@@ -121,6 +122,7 @@ export function openPreparationSession(
           binding.fence,
           approvalId,
           binding.authSessionId,
+          binding.mode ?? 'GENERATE',
         ],
       )
     ).rows[0];

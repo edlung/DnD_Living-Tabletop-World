@@ -1,0 +1,421 @@
+$ pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run context-budget && pnpm run test && pnpm run build && pnpm run db:migrate && pnpm run seed:ravenford && pnpm run test:integration && pnpm run test:e2e
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ node --max-old-space-size=4096 node_modules/eslint/bin/eslint.js . --max-warnings=0
+$ tsc -p tsconfig.json
+$ node scripts/context-budget/cli.ts
+context-budget: 1381 active files checked, 0 over target, 0 over hard limit
+$ vitest run --project unit
+
+ RUN  v4.1.11 /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2
+
+
+ Test Files  351 passed (351)
+      Tests  3267 passed (3267)
+   Start at  15:52:44
+   Duration  21.33s (transform 15.59s, setup 3.16s, import 111.90s, tests 68.45s, environment 28ms)
+
+$ tsc -b tsconfig.build.json && pnpm --filter @ltw/web run build
+$ vite build
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 521 modules transformed.
+rendering chunks...
+computing gzip size...
+build/index.html                                                        0.55 kB │ gzip:   0.31 kB
+build/assets/contradiction-CoklhLkU.png                                 1.49 kB
+build/assets/more-ChUl8VNg.png                                          1.56 kB
+build/assets/bookmark-DFef9dfu.png                                      1.58 kB
+build/assets/chevron-left-9bWa9IjK.png                                  1.90 kB
+build/assets/chevron-down-CCsB-6p9.png                                  1.94 kB
+build/assets/chevron-right-CWsVimPm.png                                 1.98 kB
+build/assets/prone-Bp71dwsF.png                                         2.14 kB
+build/assets/dusk-DHHlMRSY.png                                          2.26 kB
+build/assets/overcast-CSBmxs-2.png                                      2.53 kB
+build/assets/dawn-J446UGBM.png                                          2.67 kB
+build/assets/place-E0yiK9fS.png                                         2.73 kB
+build/assets/undo-9x-MPpXm.png                                          2.76 kB
+build/assets/generate-DnkGSFmL.png                                      2.83 kB
+build/assets/picture-D6vAqt8D.png                                       2.87 kB
+build/assets/rain-Cr1p-58U.png                                          2.99 kB
+build/assets/close-DcUFAXML.png                                         3.21 kB
+build/assets/tilt-DceEmW1L.png                                          3.24 kB
+build/assets/next-day-DRLsF2eR.png                                      3.24 kB
+build/assets/reaction-CE_u_PvW.png                                      3.28 kB
+build/assets/night-CfjOce03.png                                         3.32 kB
+build/assets/wounded-CGkJcveL.png                                       3.32 kB
+build/assets/day-counter-DJ0GgJ04.png                                   3.38 kB
+build/assets/day-Duv1Kwpn.png                                           3.39 kB
+build/assets/unconscious-CU_lNu3t.png                                   3.43 kB
+build/assets/evidence-C_HxjXtQ.png                                      3.43 kB
+build/assets/clear-h6FuIh3G.png                                         3.44 kB
+build/assets/warning-isNi_5Dl.png                                       3.51 kB
+build/assets/offline-diRW4Vge.png                                       3.52 kB
+build/assets/ai-assistant-Bbm4GvZW.png                                  3.53 kB
+build/assets/snow-jvJE-vjB.png                                          3.59 kB
+build/assets/flat-D3nOpC31.png                                          3.61 kB
+build/assets/cast-BpbP4TB9.png                                          3.69 kB
+build/assets/inference-CuHoBcJH.png                                     3.70 kB
+build/assets/sign-in-4d0pX-V9.png                                       3.71 kB
+build/assets/invitation-ZWK7Niwh.png                                    3.77 kB
+build/assets/talk-iPTZddaM.png                                          3.77 kB
+build/assets/settings-DQ5xUXo1.png                                      3.78 kB
+build/assets/zoom-out-Ct6hp_OF.png                                      3.78 kB
+build/assets/who-sees-Dc7baKV8.png                                      3.80 kB
+build/assets/chronicle-Ds1I1gjN.png                                     3.82 kB
+build/assets/target-BBTWntsd.png                                        3.86 kB
+build/assets/incapacitated-ChDxy7f1.png                                 3.91 kB
+build/assets/inspect-C8YOl5Iv.png                                       3.91 kB
+build/assets/fog-IZKfTVc_.png                                           3.96 kB
+build/assets/link-CmPsaNVz.png                                          3.97 kB
+build/assets/map-DlA5-gZj.png                                           4.00 kB
+build/assets/give-Dg-ANQgf.png                                          4.00 kB
+build/assets/hit-points-BwIkQWf9.png                                    4.00 kB
+build/assets/rumor-DEzfr0cW.png                                         4.03 kB
+build/assets/look-B1dKZ0Bc.png                                          4.05 kB
+build/assets/ranged-BaCmDlbb.png                                        4.06 kB
+build/assets/leave-gBjKIg0F.png                                         4.12 kB
+build/assets/slowed-BdRMSH0Q.png                                        4.14 kB
+build/assets/unknown-DyeMUsYC.png                                       4.15 kB
+build/assets/refresh-D1j0C2dG.png                                       4.19 kB
+build/assets/search-DsfHbk33.png                                        4.21 kB
+build/assets/zoom-in-69JleCyD.png                                       4.24 kB
+build/assets/key-DthWjapj.png                                           4.25 kB
+build/assets/copy-BNcpINP4.png                                          4.26 kB
+build/assets/character-CfadQ1ds.png                                     4.27 kB
+build/assets/hidden-C073PA3O.png                                        4.44 kB
+build/assets/info-QvffWj2n.png                                          4.46 kB
+build/assets/chapter-BpZD71kE.png                                       4.47 kB
+build/assets/time-CpQ6IlY1.png                                          4.57 kB
+build/assets/storm-CWwcayce.png                                         4.67 kB
+build/assets/travel-DR-qDqkR.png                                        4.70 kB
+build/assets/blessing-B3ed7gRW.png                                      4.72 kB
+build/assets/confirm-D19486KU.png                                       4.72 kB
+build/assets/thought-Jv44JVVz.png                                       4.73 kB
+build/assets/revoke-DTQ28LNn.png                                        4.77 kB
+build/assets/party-CHFGqNGl.png                                         4.83 kB
+build/assets/end-turn-C35APMsc.png                                      4.84 kB
+build/assets/ask-BuVnD-a1.png                                           4.90 kB
+build/assets/journal-CJ_Uc8QX.png                                       4.93 kB
+build/assets/help-CLJWveWj.png                                          4.95 kB
+build/assets/member-CjjRikrW.png                                        4.96 kB
+build/assets/add-character-Bw07gu-S.png                                 5.00 kB
+build/assets/live-B9wbpfQz.png                                          5.01 kB
+build/assets/flashback-hzyDv5DR.png                                     5.05 kB
+build/assets/cancel-Z3EJbWSu.png                                        5.07 kB
+build/assets/approve-hBkTwt2B.png                                       5.21 kB
+build/assets/secret-BqdcgzW3.png                                        5.22 kB
+build/assets/candidate-BOae8lca.png                                     5.23 kB
+build/assets/weather-D2SR7XEE.png                                       5.27 kB
+build/assets/melee-CwDwxJVA.png                                         5.30 kB
+build/assets/recall-B50klkNF.png                                        5.42 kB
+build/assets/counterspell-D_Hz36vB.png                                  5.45 kB
+build/assets/armor-class-uMRCA2yM.png                                   5.47 kB
+build/assets/use-item-Dm7DbShF.png                                      5.48 kB
+build/assets/speed-B1_IruDC.png                                         5.62 kB
+build/assets/initiative-t0KbWNN5.png                                    5.71 kB
+build/assets/history-CDEvRFmv.png                                       5.78 kB
+build/assets/hypothesis-BzWroKu_.png                                    5.83 kB
+build/assets/perform-DPTNJj49.png                                       5.86 kB
+build/assets/cover-BBvnimiD.png                                         5.91 kB
+build/assets/move-o0uFukuk.png                                          5.94 kB
+build/assets/memory-DKk_BK6k.png                                        5.97 kB
+build/assets/replace-DLuVXxTY.png                                       6.11 kB
+build/assets/testimony-DS2aE0Y8.png                                     6.12 kB
+build/assets/dead-CJTURp0q.png                                          6.16 kB
+build/assets/ready-CqHPNgOm.png                                         6.21 kB
+build/assets/trade-DDB0woGV.png                                         6.27 kB
+build/assets/discard-BV5awO0Q.png                                       6.34 kB
+build/assets/encounter-R83nNmNN.png                                     6.44 kB
+build/assets/dodge-Cj6B_1Ol.png                                         6.45 kB
+build/assets/roll-SkBOx27v.png                                          6.46 kB
+build/assets/hide-juOOx97m.png                                          6.61 kB
+build/assets/fact-DiJkkPu9.png                                          6.72 kB
+build/assets/concentration-KqrStugh.png                                 6.85 kB
+build/assets/game-master-C23S7XiL.png                                   6.87 kB
+build/assets/language-BIr8h5G-.png                                      7.04 kB
+build/assets/difficult-OixQoWDj.png                                     7.32 kB
+build/assets/dagger-Cen8cI5o.webp                                       9.67 kB
+build/assets/scimitar-9YWs3Sie.webp                                     9.89 kB
+build/assets/panel-grain-DpZK4x_H.webp                                  9.97 kB
+build/assets/app-backdrop-xQPmrNWT.webp                                10.37 kB
+build/assets/corner-UwlbhN1t.webp                                      10.69 kB
+build/assets/figure-silhouette-m3Z9WpJa.webp                           11.12 kB
+build/assets/alegreya-cyrillic-400-normal-72Io3whm.woff2               12.13 kB
+build/assets/cormorant-garamond-cyrillic-700-normal-SLG_-a_c.woff2     12.53 kB
+build/assets/alegreya-cyrillic-500-normal-uJUgykjJ.woff2               12.85 kB
+build/assets/alegreya-cyrillic-700-normal-Bftrb-m-.woff2               12.94 kB
+build/assets/cormorant-garamond-cyrillic-600-normal-C2atO-64.woff2     13.01 kB
+build/assets/alegreya-cyrillic-400-italic-CzOFVsaV.woff2               13.35 kB
+build/assets/divider-DDncpl1u.webp                                     15.66 kB
+build/assets/longbow-BHLhyFjx.webp                                     17.01 kB
+build/assets/shortbow-CaVjBScg.webp                                    17.55 kB
+build/assets/cormorant-garamond-latin-700-normal-DajfzrDU.woff2        22.34 kB
+build/assets/alegreya-latin-400-normal-BLlBRtDv.woff2                  22.88 kB
+build/assets/alegreya-latin-400-italic-BXpar-rJ.woff2                  23.15 kB
+build/assets/cormorant-garamond-latin-600-normal-Co1r35X9.woff2        23.39 kB
+build/assets/ashen-bolt-BSu2VTPc.webp                                  24.16 kB
+build/assets/alegreya-latin-500-normal-C25lLdV_.woff2                  24.20 kB
+build/assets/alegreya-latin-700-normal-Vpz_43wJ.woff2                  24.35 kB
+build/assets/healing-word-DVeqZw0w.webp                                24.46 kB
+build/assets/bad-script-cyrillic-400-normal-DiCCMyg0.woff2             25.80 kB
+build/assets/scene-fallback-CPWysYCl.webp                              26.01 kB
+build/assets/portrait-ring-BRY7JuXG.webp                               26.68 kB
+build/assets/d20-DGBLDdtA.webp                                         28.18 kB
+build/assets/detect-magic-Dz-XYJWl.webp                                29.54 kB
+build/assets/hunters-mark-UTq2VHvV.webp                                33.14 kB
+build/assets/bad-script-latin-400-normal-BmdsbNWy.woff2                34.70 kB
+build/assets/fireball-B3Pv4-Sd.webp                                    37.95 kB
+build/assets/misty-step-CrkO6gqi.webp                                  38.57 kB
+build/assets/compass-rose-DneXJv5s.webp                                39.88 kB
+build/assets/counterspell-loD2elZI.webp                                43.25 kB
+build/assets/binding-hex-B3C_MpQq.webp                                 43.59 kB
+build/assets/parchment-BGdSP2MY.webp                                   52.22 kB
+build/assets/ribbon-DLLP_EPX.webp                                      60.28 kB
+build/assets/difficult-DC6QW1Ap.webp                                   67.81 kB
+build/assets/cover-three-quarters-B0Gk9QW1.webp                        70.07 kB
+build/assets/cover-half-9A6MMyGY.webp                                  70.31 kB
+build/assets/emblem-J7I-9TCp.webp                                      75.52 kB
+build/assets/chronicle-desk-Dh6qhqD_.webp                             113.92 kB
+build/assets/flashback-frame-BgcxGRGm.webp                            117.21 kB
+build/assets/cover-total-BhW-QoNO.webp                                134.33 kB
+build/assets/book-spread-D0So0lep.webp                                163.39 kB
+build/assets/brand-keyart-D5Hjfro3.webp                               207.43 kB
+build/assets/ground-BMZpk2q7.webp                                     283.82 kB
+build/assets/index-Cn7RpURn.css                                       129.92 kB │ gzip:  24.17 kB
+build/assets/index-WnT6YbzR.js                                      1,212.94 kB │ gzip: 327.66 kB
+
+✓ built in 229ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+$ pnpm --filter @ltw/server run db:migrate
+$ node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/platform/db/migrate-cli.js
+../../.env not found. Continuing without it.
+$ pnpm --filter @ltw/server run seed:ravenford
+$ node --env-file-if-exists=../../.env --env-file-if-exists=../../.env.local dist/world-engine/seed-ravenford-cli.js
+../../.env not found. Continuing without it.
+ravenford: 91 accepted, 0 already present; curated pictures: 51 imported, 0 already present; version 304, 25 entities
+$ vitest run --project integration
+
+ RUN  v4.1.11 /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2
+
+
+ Test Files  56 passed (56)
+      Tests  331 passed (331)
+   Start at  15:53:11
+   Duration  48.44s (transform 6.77s, setup 453ms, import 20.59s, tests 489.45s, environment 3ms)
+
+$ playwright test
+[WebServer] (node:94406) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:94418) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] (node:94442) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+[WebServer] (node:94464) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:94487) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:94501) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+[WebServer] (node:94542) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+[WebServer] (node:94582) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 172 tests using 2 workers
+
+(node:94619) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:94620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    2 [chromium] › tests/e2e/accessibility.spec.ts:24:3 › sign-in, scene, conversation and every DM sheet pass axe at phone width (7.1s)
+  ✓    1 [chromium] › tests/e2e/accessibility.spec.ts:24:3 › sign-in, scene, conversation and every DM sheet pass axe at tablet width (7.6s)
+  ✓    4 [chromium] › tests/e2e/accessibility.spec.ts:82:1 › the battlefield passes axe: the player’s turn and a target with a previewed area (7.8s)
+  ✓    3 [chromium] › tests/e2e/accessibility.spec.ts:24:3 › sign-in, scene, conversation and every DM sheet pass axe at desktop width (8.5s)
+  ✓    6 [chromium] › tests/e2e/accessibility.spec.ts:104:1 › the battlefield passes axe: the DM’s Encounter sheet (4.3s)
+  ✓    5 [chromium] › tests/e2e/accessibility.spec.ts:98:1 › the battlefield passes axe: the reaction prompt (5.9s)
+  ✓    7 [chromium] › tests/e2e/accessibility.spec.ts:111:1 › the DM’s tools with content pass axe: a proposal card and the history with an entry (5.3s)
+  ✓    8 [chromium] › tests/e2e/accessibility.spec.ts:129:1 › the Chronicle book and a flashback pass axe (5.4s)
+  ✓    9 [chromium] › tests/e2e/accessibility.spec.ts:159:1 › the Russian scene with a selection passes axe at phone width (1.5s)
+  ✓   10 [chromium] › tests/e2e/accessibility.spec.ts:167:1 › Escape closes the topmost sheet, panel or book and returns focus (1.6s)
+  ✓   11 [chromium] › tests/e2e/ai-feedback.spec.ts:38:1 › a player waits for a reply and is told honestly that no words came (1.5s)
+  ✓   13 [chromium] › tests/e2e/ai-feedback.spec.ts:104:1 › without a recorded request the DM gets no proposal source, and the chapter is the plain record (1.6s)
+  ✓   12 [chromium] › tests/e2e/ai-feedback.spec.ts:56:1 › the DM sees the NPC replying, and a late reply never lands on another listener (1.9s)
+  ✓   14 [chromium] › tests/e2e/ai-feedback.spec.ts:159:1 › without a recorded request a player still talks, with no reply and no promise (1.0s)
+  ✓   16 [chromium] › tests/e2e/authoring-drafts.spec.ts:79:1 › a witness elsewhere is explained, never moved, and the description is one click away (1.7s)
+  ✓   15 [chromium] › tests/e2e/authoring-drafts.spec.ts:22:1 › a reload and a change of perspective keep the DM’s unfinished draft (3.8s)
+  ✓   17 [chromium] › tests/e2e/authoring-drafts.spec.ts:109:1 › every open draft stays reachable: the newest is restored, the others resumed or discarded (3.4s)
+  ✓   18 [chromium] › tests/e2e/authoring-edit-npc.spec.ts:49:1 › a known NPC’s new name reaches the player; the description stays the DM’s; undo restores it (18.4s)
+  ✓   19 [chromium] › tests/e2e/authoring-edit-npc.spec.ts:88:1 › an NPC the player has not met keeps its new name from the player (17.7s)
+  ✓   21 [chromium] › tests/e2e/authoring-rejections.spec.ts:17:1 › a stale confirmation is refused, reloaded, and never looks committed (2.0s)
+  ✓   22 [chromium] › tests/e2e/authoring-rejections.spec.ts:55:1 › an invalid proposal cannot be confirmed, forced, or mistaken for a world entity (1.3s)
+  ✓   23 [chromium] › tests/e2e/authoring-rejections.spec.ts:83:1 › a continuity warning must be accepted before the proposal can be confirmed (1.5s)
+  ✓   24 [chromium] › tests/e2e/authoring-undo.spec.ts:25:1 › an untouched authoring commit is undone as one safe unit (2.2s)
+  ✓   25 [chromium] › tests/e2e/authoring-undo.spec.ts:46:1 › undo is refused while the story depends on him, and works after the dependents are undone (2.2s)
+  ✓   26 [chromium] › tests/e2e/battlefield-plates.spec.ts:70:3 › every combatant's name plate is readable at desktop width, tilted and flat (1.2s)
+  ✓   27 [chromium] › tests/e2e/battlefield-plates.spec.ts:70:3 › every combatant's name plate is readable at tablet width, tilted and flat (1.2s)
+  ✓   28 [chromium] › tests/e2e/chronicle-book.spec.ts:44:1 › the player reads a chapter as a book, opens a flashback and returns by keyboard (2.4s)
+  ✓   29 [chromium] › tests/e2e/chronicle-book.spec.ts:99:1 › under reduced motion nothing moves: the sheet and the waiting ring stay still (877ms)
+  ✓   20 [chromium] › tests/e2e/authoring-flow.spec.ts:17:1 › Tomas Reed goes from a sentence to a previewed, edited, confirmed, native NPC (18.1s)
+  ✓   30 [chromium] › tests/e2e/chronicle-pinned.spec.ts:28:1 › a chapter written while the player reads never replaces the page; its ribbon says New (2.5s)
+  ✓   31 [chromium] › tests/e2e/combat-area.spec.ts:19:1 › Fireball previews who it affects, warns about an ally, and still casts when chosen (1.4s)
+  ✓   32 [chromium] › tests/e2e/combat-area.spec.ts:62:1 › Fireball centered away from every ally shows no warning (1.0s)
+  ✓   33 [chromium] › tests/e2e/combat-board-pointer.spec.ts:26:1 › a tilted figure is chosen where it stands, and its pip names its condition (1.4s)
+  ✓   34 [chromium] › tests/e2e/combat-board-pointer.spec.ts:135:1 › a standing figure and its name plate choose their own combatant where they show (1.9s)
+  ✓   35 [chromium] › tests/e2e/combat-book-reaction.spec.ts:26:1 › a reaction asked over the open Chronicle closes the book, is told once and answered (5.9s)
+  ✓   36 [chromium] › tests/e2e/combat-lifecycle.spec.ts:17:1 › the DM starts, runs, and ends an encounter and the player returns to exploration (5.7s)
+  ✓   37 [chromium] › tests/e2e/combat-narrow.spec.ts:24:1 › a narrow screen shows a Fireball’s slot and its ally warning with the tray’s button (1.4s)
+  ✓   38 [chromium] › tests/e2e/combat-reactions.spec.ts:19:1 › a valid Counterspell is answered by the domain, spends one slot, and closes the window (1.3s)
+  ✓   39 [chromium] › tests/e2e/combat-reactions.spec.ts:44:1 › Don’t interfere lets the spell resolve without spending a slot (1.0s)
+  ✓   41 [chromium] › tests/e2e/combat-reactions.spec.ts:110:1 › a duplicate or repeated answer never spends a second slot (958ms)
+  ✓   40 [chromium] › tests/e2e/combat-reactions.spec.ts:64:1 › a window the DM closes expires for the player, and the stale answer is refused (6.0s)
+  ✓   42 [chromium] › tests/e2e/combat-scene-view.spec.ts:21:1 › on the scene view a player still hears whose turn it is and answers a reaction (5.4s)
+  ✓   44 [chromium] › tests/e2e/conversation.spec.ts:19:1 › while a conversation is open each of its controls exists once, and the panel leads to it (1.2s)
+  ✓   45 [chromium] › tests/e2e/conversation.spec.ts:44:1 › an NPC who will not talk now leaves no conversation open, and says why (1.2s)
+  ✓   46 [chromium] › tests/e2e/details-and-scenes.spec.ts:12:1 › full authorized character sheet remains reachable from the selected character (1.2s)
+  ✓   47 [chromium] › tests/e2e/details-and-scenes.spec.ts:40:1 › real empty scene and failed scene load can recover (1.3s)
+  ✓   48 [chromium] › tests/e2e/details-and-scenes.spec.ts:61:1 › late detail response cannot replace the newer selection (1.1s)
+  ✓   49 [chromium] › tests/e2e/details-and-scenes.spec.ts:84:1 › DM can read an NPC sheet while the player cannot request it through the detail flow (1.1s)
+  ✓   50 [chromium] › tests/e2e/details-and-scenes.spec.ts:104:1 › a person with no sheet says so to the DM, not that the view hides it (Stage 360) (1.1s)
+  ✓   51 [chromium] › tests/e2e/dm-history.spec.ts:34:1 › an authoring commit is listed after a reload, and its undo works from there (2.9s)
+  ✓   43 [chromium] › tests/e2e/combat-turn.spec.ts:18:1 › the battlefield shows terrain, cover, and tokens, and a turn moves, attacks, and ends (15.6s)
+  ✓   53 [chromium] › tests/e2e/dm-history.spec.ts:125:1 › older pages stay open with their rows while new entries arrive (6.2s)
+  ✓   54 [chromium] › tests/e2e/dm-tools.spec.ts:10:1 › the DM moves time and weather and the player returns to a changed Ravenford (2.2s)
+  ✓   55 [chromium] › tests/e2e/dm-tools.spec.ts:47:1 › the DM finds a day change in History and undoes it once the weather set after it is undone (1.9s)
+  ✓   52 [chromium] › tests/e2e/dm-history.spec.ts:66:1 › the history never appears for a player or in a lower perspective (18.2s)
+  ✓   57 [chromium] › tests/e2e/dm-tools.spec.ts:128:1 › the DM performs Tomas for Elowen and the words are not recorded as fact (1.2s)
+  ✓   58 [chromium] › tests/e2e/dm-tools.spec.ts:189:1 › refusals and technical words are explained in plain language (1.1s)
+  ✓   59 [chromium] › tests/e2e/drafts.spec.ts:15:1 › Escape in a field with a draft keeps the panel, and a closed panel keeps the draft (963ms)
+  ✓   60 [chromium] › tests/e2e/drafts.spec.ts:44:1 › the DM’s line for an NPC survives Escape, closing the panel and the DM’s own action (1.6s)
+  ✓   56 [chromium] › tests/e2e/dm-tools.spec.ts:90:1 › a written chapter opens for the player with cited entries and a flashback (16.7s)
+  ✓   62 [chromium] › tests/e2e/encounter-summary.spec.ts:77:1 › DM summary exposes authorized spell and stats, then clears them for character and public previews (2.0s)
+  ✓   63 [chromium] › tests/e2e/images-accessibility.spec.ts:22:3 › the DM's image controls pass axe at phone width (2.3s)
+  ✓   64 [chromium] › tests/e2e/images-accessibility.spec.ts:22:3 › the DM's image controls pass axe at tablet width (2.3s)
+  ✓   61 [chromium] › tests/e2e/encounter-summary.spec.ts:17:1 › player reads a real paused encounter and their reaction choices without DM spell or monster stats (15.6s)
+  ✓   65 [chromium] › tests/e2e/images-accessibility.spec.ts:22:3 › the DM's image controls pass axe at desktop width (2.8s)
+  ✓   66 [chromium] › tests/e2e/images-accessibility.spec.ts:49:1 › the keyboard reaches every image control in order, and Escape closes the sheet (1.5s)
+  ✓   67 [chromium] › tests/e2e/images-accessibility.spec.ts:89:3 › the Russian image controls pass axe at phone width (2.2s)
+  ✓   68 [chromium] › tests/e2e/images-accessibility.spec.ts:89:3 › the Russian image controls pass axe at tablet width (2.3s)
+  ✓   70 [chromium] › tests/e2e/images-commands.spec.ts:112:1 › an approval whose answer was lost holds the controls, and says so with Retry everywhere (2.6s)
+  ✓   69 [chromium] › tests/e2e/images-commands.spec.ts:41:1 › approving the older of two figures makes it the one players see and the DM’s list approves (6.3s)
+  ✓   72 [chromium] › tests/e2e/images-commands.spec.ts:209:1 › the keyboard keeps its place in the Images sheet when a command takes away its card (1.5s)
+  ✓   71 [chromium] › tests/e2e/images-commands.spec.ts:164:1 › a second press before the list shows the request sends nothing (6.2s)
+  ✓   73 [chromium] › tests/e2e/images-commands.spec.ts:247:1 › in a panel, focus comes back once per command, never on a later read of the lineage (1.8s)
+  ✓   74 [chromium] › tests/e2e/images-curated.spec.ts:20:1 › the player sees the curated scene, portraits and standing figures (984ms)
+  ✓   76 [chromium] › tests/e2e/images-curated.spec.ts:63:1 › an investigation object shows its approved picture in its panel (1.1s)
+  ✓   75 [chromium] › tests/e2e/images-curated.spec.ts:37:1 › the battlefield stands the approved figures on the place’s battle map (1.5s)
+  ✓   77 [chromium] › tests/e2e/images-curated.spec.ts:78:1 › the Russian player sees the same pictures (1.4s)
+  ✓   79 [chromium] › tests/e2e/images-dm.spec.ts:164:1 › a failed request says why and is tried again from the Images sheet (1.6s)
+  ✓   80 [chromium] › tests/e2e/images-dm.spec.ts:199:1 › a Russian DM approves Tomas’s picture in Russian, and the player sees it (3.5s)
+  ✓   78 [chromium] › tests/e2e/images-dm.spec.ts:25:1 › the DM requests, discards, approves and replaces Tomas’s picture; the player sees only what is approved (15.5s)
+  ✓   81 [chromium] › tests/e2e/investigation-journey.spec.ts:13:1 › objects lead from Mira to evidence, a hypothesis, contradictory testimony, and Orin recall (15.5s)
+  ✓   82 [chromium] › tests/e2e/investigation-journey.spec.ts:107:1 › Mira caravan action appears only after the player learns the concept through an authorized subject (15.5s)
+  ✓   83 [chromium] › tests/e2e/investigation-recovery.spec.ts:12:1 › an uncertain completed action retries the same command and records only one hypothesis (15.5s)
+  ✓   84 [chromium] › tests/e2e/investigation-recovery.spec.ts:60:1 › a late accepted action cannot restore a previously selected object (15.7s)
+  ✓   86 [chromium] › tests/e2e/investigation-session.spec.ts:11:1 › an accepted private action completing after a perspective change cannot enter the public view (1.0s)
+  ✓   87 [chromium] › tests/e2e/investigation-session.spec.ts:34:1 › an action accepted before logout cannot restore its session or private result (872ms)
+  ✓   88 [chromium] › tests/e2e/language-ru.spec.ts:25:1 › a Russian player finds Mira, asks about the caravan, and reads only Russian (1.5s)
+  ✓   89 [chromium] › tests/e2e/language-ru.spec.ts:63:1 › a Russian DM adds Tomas Reed from a Russian sentence, previews, edits, and confirms (1.2s)
+  ✓   90 [chromium] › tests/e2e/language-ru.spec.ts:82:1 › a Russian player answers a Counterspell window, and the answer is in Russian (1.2s)
+  ✓   85 [chromium] › tests/e2e/investigation-recovery.spec.ts:84:1 › late recalled memories cannot replace the current object context (15.5s)
+  ✓   91 [chromium] › tests/e2e/language-ru.spec.ts:100:1 › a Russian player’s battlefield speaks Russian: the board, the turn, a target and its options (1.3s)
+  ✓   92 [chromium] › tests/e2e/language-ru.spec.ts:130:1 › a Russian DM moves time and weather, and writes a chapter that reads in Russian (2.2s)
+  ✓   93 [chromium] › tests/e2e/live-combat.spec.ts:33:1 › the turn passes from the player to the DM and back without a refresh (7.9s)
+  ✓   94 [chromium] › tests/e2e/live-combat.spec.ts:76:1 › the DM opens a Counterspell window and the player answers it without a refresh (7.1s)
+  ✓   96 [chromium] › tests/e2e/live-stand-in.spec.ts:86:1 › the DM acts as the character with a reason; her screen follows, and the history undoes it (7.2s)
+  ✓   97 [chromium] › tests/e2e/live-stand-in.spec.ts:166:1 › the DM’s skip waits for an open reaction window, and the DM answers it for an absent player (7.6s)
+  ✓   95 [chromium] › tests/e2e/live-stand-in.spec.ts:37:1 › the DM skips an absent player’s turn, and the player’s screen follows without a refresh (17.6s)
+  ✓   98 [chromium] › tests/e2e/live-undo-notice.spec.ts:20:1 › the DM confirms undoing a player’s action, and that player alone is told (16.2s)
+  ✓   99 [chromium] › tests/e2e/live-world.spec.ts:23:1 › private authoring reaches the player only once published, without a refresh (16.0s)
+  ✓  101 [chromium] › tests/e2e/outcome-layer.spec.ts:12:1 › an interrupted result and its Retry show over the DM sheet that caused them (1.2s)
+  ✓  102 [chromium] › tests/e2e/outcome-layer.spec.ts:47:1 › on a phone a result shows over the selection’s full-height panel (940ms)
+  ✓  103 [chromium] › tests/e2e/perspective-choices.spec.ts:13:3 › hidden character choices disappear during delayed public preview and return only in DM (1.0s)
+  ✓  104 [chromium] › tests/e2e/perspective-choices.spec.ts:13:3 › hidden character choices disappear during failed public preview and return only in DM (1.2s)
+  ✓  100 [chromium] › tests/e2e/live-world.spec.ts:66:1 › a cut stream reconnects and the player catches up on what changed meanwhile (7.6s)
+  ✓  106 [chromium] › tests/e2e/perspectives.spec.ts:31:1 › DM data disappears before a delayed player preview completes (1.0s)
+  ✓  107 [chromium] › tests/e2e/perspectives.spec.ts:54:1 › failed perspective downgrade stays empty and recovers without stale DM data (1.1s)
+  ✓  108 [chromium] › tests/e2e/perspectives.spec.ts:87:1 › late DM response cannot overwrite an already loaded player preview (1.1s)
+  ✓  109 [chromium] › tests/e2e/phone-layout.spec.ts:14:1 › on a phone the party rail is a compact strip clear of who is present (659ms)
+  ✓  110 [chromium] › tests/e2e/phone-layout.spec.ts:26:1 › on a phone a result never keeps a control of the scene under it (944ms)
+  ✓  111 [chromium] › tests/e2e/scene-result-layout.spec.ts:34:1 › the people and things in the scene stay reachable while a result shows (1.7s)
+  ✓  112 [chromium] › tests/e2e/scene-result-layout.spec.ts:90:1 › beside an open conversation and a result the scene keeps room for its names (Stage 360) (977ms)
+  ✓  113 [chromium] › tests/e2e/scene-result-layout.spec.ts:136:3 › with the selection's drawer open every dock item stays reachable at 768 px (Stage 360) (1.8s)
+  ✓  114 [chromium] › tests/e2e/scene-result-layout.spec.ts:136:3 › with the selection's drawer open every dock item stays reachable at 1024 px (Stage 360) (1.8s)
+  ✓  115 [chromium] › tests/e2e/scene-result-layout.spec.ts:167:3 › a conversation beside the open drawer keeps every choice reachable at 768 px (Stage 360) (917ms)
+  ✓  116 [chromium] › tests/e2e/scene-result-layout.spec.ts:167:3 › a conversation beside the open drawer keeps every choice reachable at 1024 px (Stage 360) (951ms)
+  ✓  105 [chromium] › tests/e2e/perspectives.spec.ts:13:1 › player uses real authorized scene and knowledge without receiving DM secrets (15.7s)
+  ✓  117 [chromium] › tests/e2e/session-lifecycle.spec.ts:6:1 › logout and account switch remove DM data and do not persist access tokens (1.6s)
+  ✓  119 [chromium] › tests/e2e/session-lifecycle.spec.ts:54:1 › narrow viewport supports keyboard entry, selection, and disclosure (1.7s)
+  ✓  118 [chromium] › tests/e2e/session-lifecycle.spec.ts:31:1 › unknown campaign and unauthorized account show errors without previous campaign data (2.4s)
+  ✓  120 [chromium] › tests/e2e/session-lifecycle.spec.ts:84:1 › Back and Forward navigation require a fresh session without restoring privileged content (2.2s)
+(node:96321) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:96333) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  121 [chromium] › tests/e2e/sign-in-accessibility.spec.ts:104:3 › join, signed out and the Players sheet pass axe at phone width (5.4s)
+  ✓  122 [chromium] › tests/e2e/sign-in-accessibility.spec.ts:104:3 › join, signed out and the Players sheet pass axe at tablet width (5.3s)
+  ✓  123 [chromium] › tests/e2e/sign-in-accessibility.spec.ts:104:3 › join, signed out and the Players sheet pass axe at desktop width (4.8s)
+  ✓  124 [chromium] › tests/e2e/sign-in-accessibility.spec.ts:111:1 › in Russian, join, signed out and the Players sheet pass axe on a phone (5.1s)
+  ✓  125 [chromium] › tests/e2e/sign-in-ru.spec.ts:26:1 › in Russian, the DM invites, an English browser joins, and is signed out in Russian (4.0s)
+  ✓  126 [chromium] › tests/e2e/sign-in-tabs.spec.ts:34:1 › tabs still showing the DM’s world are signed out once another tab replaced the sign-in (7.6s)
+  ✓  127 [chromium] › tests/e2e/sign-in.spec.ts:42:1 › the DM invites, the player joins and plays, and revocation signs the player out at once (6.9s)
+  ✓  128 [chromium] › tests/e2e/sign-in.spec.ts:130:1 › an invitation link sends nothing until the person takes the seat (3.4s)
+  ✓  129 [chromium] › tests/e2e/sign-in.spec.ts:176:1 › a used, forged or malformed link shows the one fixed failure and opens nothing (4.4s)
+  ✓  131 [chromium] › tests/e2e/sign-in.spec.ts:272:1 › signing out asks first, ends the session for good, and keeps nothing (992ms)
+  ✓  130 [chromium] › tests/e2e/sign-in.spec.ts:212:1 › a browser already signed in is asked before an invitation replaces its sign-in (4.5s)
+(node:96480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  133 [chromium] › tests/e2e/workshop-access.spec.ts:25:1 › an invitation waits for a deliberate entry; a private draft survives reload and sign-out asks first (1.0s)
+  ✓  132 [chromium] › tests/e2e/sign-in.spec.ts:304:1 › joining, the Players sheet and signing out work from the keyboard (2.5s)
+  ✓  134 [chromium] › tests/e2e/workshop-access.spec.ts:67:1 › two owners see only their own drafts and cannot fetch one another’s container (1.0s)
+(node:96496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  135 [chromium] › tests/e2e/workshop-access.spec.ts:106:1 › keeping the workshop leaves the other invitation usable in another browser (1.5s)
+  ✓  136 [chromium] › tests/e2e/workshop-access.spec.ts:91:1 › replacing workshop access asks first and clears the old owner content (2.0s)
+  ✓  137 [chromium] › tests/e2e/workshop-access.spec.ts:124:1 › a workshop and a game sign-in coexist and signing out of the workshop preserves the game (1.2s)
+  ✓  138 [chromium] › tests/e2e/workshop-access.spec.ts:140:1 › more drafts keeps every private container reachable after the first page (846ms)
+  ✓  139 [chromium] › tests/e2e/workshop-access.spec.ts:158:1 › operator revocation removes private content when the page checks its sign-in again (616ms)
+  ✓  140 [chromium] › tests/e2e/workshop-access.spec.ts:174:1 › a lost draft response retries the same request and creates one container (696ms)
+  ✓  141 [chromium] › tests/e2e/workshop-access.spec.ts:194:1 › page-history restoration clears private content and reads the workshop identity again (668ms)
+  ✓  143 [chromium] › tests/e2e/workshop-access.spec.ts:241:1 › workshop access and creating a draft work in Russian on a phone (632ms)
+  ✓  142 [chromium] › tests/e2e/workshop-access.spec.ts:214:1 › a stale tab cannot create its previous owner’s draft under a replaced cookie (2.0s)
+  ✓  144 [chromium] › tests/e2e/workshop-accessibility.spec.ts:23:1 › workshop invitation and drafts are accessible on four widths and usable by keyboard (1.6s)
+  ✓  146 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:170:1 › Russian structured editing and an AI proposal remain localized and require explicit application (3.6s)
+  ✓  147 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:201:1 › unavailable AI editing keeps the owner instruction and selection without fabricating a job or proposal (909ms)
+  ✓  145 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:83:1 › an AI source change reviews picture staleness before explicit adoption and preserves unrelated chosen bytes (5.6s)
+  ✓  149 [chromium] › tests/e2e/workshop-editing.spec.ts:117:1 › protections require explicit unlock and block both manual changes and directly requested AI targets (1.2s)
+  ✓  148 [chromium] › tests/e2e/workshop-editing.spec.ts:63:1 › structured manual changes, directed AI proposal, full comparison and restore form immutable revisions (3.9s)
+  ✓  151 [chromium] › tests/e2e/workshop-editing.spec.ts:201:1 › a lost manual-save acknowledgement retries the exact request once and keeps the local edit (766ms)
+  ✓  150 [chromium] › tests/e2e/workshop-editing.spec.ts:167:1 › an old AI proposal remains inspectable after another revision and cannot silently rebase (3.4s)
+  ✓  152 [chromium] › tests/e2e/workshop-editing.spec.ts:235:1 › revocation clears a mounted private comparison before a delayed review can return (3.3s)
+  ✓  153 [chromium] › tests/e2e/workshop-preview-accessibility.spec.ts:19:1 › owner preview, exact image brief and character sheet stay accessible at four widths with keyboard transitions (4.0s)
+  ✓  155 [chromium] › tests/e2e/workshop-preview-pictures.spec.ts:106:1 › restricted mode never preloads a hidden chosen place, unused candidates, owner catalog or private narrative (2.7s)
+  ✓  154 [chromium] › tests/e2e/workshop-preview-pictures.spec.ts:23:1 › a generated candidate stays out of character preview until chosen, then serves the exact reviewed bytes (4.1s)
+  ✓  157 [chromium] › tests/e2e/workshop-preview-private.spec.ts:18:1 › revocation clears the preview and picker before a delayed owner response can return (1.0s)
+  ✓  156 [chromium] › tests/e2e/workshop-preview-pictures.spec.ts:155:1 › an unavailable image route stays truthful and never creates a picture request (1.1s)
+  ✓  158 [chromium] › tests/e2e/workshop-preview-private.spec.ts:38:1 › late owner data cannot enter character mode, and a stale cookie response cannot clear a replacement owner session (920ms)
+  ✓  159 [chromium] › tests/e2e/workshop-preview.spec.ts:19:1 › owner inspects a static prepared layout, then the character sees initial knowledge, own sheet and an unobserved remote camera (1.1s)
+  ✓  160 [chromium] › tests/e2e/workshop-preview.spec.ts:86:1 › Russian character preview stays bilingual and keyboard usable on a phone (1.0s)
+  ✓  162 [chromium] › tests/e2e/workshop-scenario-corrections.spec.ts:18:1 › a lost correction response retries its exact nonce and a later conflict preserves the owner’s input (1.1s)
+  ✓  163 [chromium] › tests/e2e/workshop-scenario-corrections.spec.ts:96:1 › cancelling a generation closes the job and does not offer an unsupported retry (766ms)
+  ✓  164 [chromium] › tests/e2e/workshop-scenario-private.spec.ts:15:1 › a campaign DM cookie and an unrelated workshop owner cannot read the scenario or its progress (1.2s)
+  ✓  165 [chromium] › tests/e2e/workshop-scenario-private.spec.ts:42:1 › revocation removes the complete private editor before a delayed scenario response returns (704ms)
+  ✓  166 [chromium] › tests/e2e/workshop-scenario-private.spec.ts:78:1 › the full scenario leaves the DOM synchronously before a history snapshot (797ms)
+  ✓  167 [chromium] › tests/e2e/workshop-scenario.spec.ts:23:1 › the owner follows opening, clue, testimony, holder and truth through a full independent scenario (921ms)
+  ✓  168 [chromium] › tests/e2e/workshop-scenario.spec.ts:76:1 › Russian scenario fields save as a new immutable revision and survive reload (915ms)
+  ✓  161 [chromium] › tests/e2e/workshop-scenario-accessibility.spec.ts:20:1 › scenario, linked inspector, correction and generation pass axe at four widths and keep keyboard focus (9.4s)
+  ✓  169 [chromium] › tests/e2e/workshop-scenario.spec.ts:132:1 › generation persists every step while its progress responses contain no scenario package (3.2s)
+  ✓  171 [chromium] › tests/e2e/workshop-scenario.spec.ts:229:1 › an unavailable provider cannot pretend a generated campaign exists (582ms)
+  ✓  172 [chromium] › tests/e2e/workshop-scenario.spec.ts:238:1 › a late generated proposal does not replace the owner’s intervening revision (3.0s)
+  ✓  170 [chromium] › tests/e2e/workshop-scenario.spec.ts:172:1 › a failed generation retries only its unfinished steps and keeps earlier artifacts (7.4s)
+
+  172 passed (5.9m)

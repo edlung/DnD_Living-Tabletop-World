@@ -1,4 +1,4 @@
-# Workshop browser access and campaign drafts (Stages 380, 410, 420)
+# Workshop browser access and campaign drafts (Stages 380, 410–430)
 
 Read the accepted Stage 370 contract, current work order and `apps/web/AGENTS.md`.
 
@@ -18,7 +18,10 @@ Read the accepted Stage 370 contract, current work order and `apps/web/AGENTS.md
 - `response-schemas.ts` validates response DTOs. Generation progress excludes
   all step/candidate content; `generation/` polls it only while visible/running.
 - `scenario/` owns the linked index, complete structured inspector and basic
-  field corrections. Never infer runtime facts or execute any scenario plan.
+  field corrections. `editing/` owns complete manual forms, content/image protections
+  and targeted edit preparation; `comparison/` owns full diffs and explicit adoption
+  or restoration. Full packages and manual buffers stay inside mounted Scenario.
+  Never infer runtime facts or execute any scenario plan.
 - `preview/` owns stored-revision scene/board views. Its character branch loads only
   projected DTOs; the owner editor/catalogue unmount before that branch is shown.
 - `pictures/` is owner-only generation/selection with manifest CAS, exact purpose

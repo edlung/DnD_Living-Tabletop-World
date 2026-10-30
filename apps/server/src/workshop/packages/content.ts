@@ -47,6 +47,9 @@ export function normalizeCampaignAppend(input: AppendCampaignRevision): AppendCa
     requestId: input.requestId,
     basedOnRevision: input.basedOnRevision,
     content: input.content,
+    expectedLockVersion: input.expectedLockVersion,
+    expectedManifestVersion: input.expectedManifestVersion,
+    expectedManifestDigest: input.expectedManifestDigest,
   });
   const source = sourceSchema.safeParse(input.source);
   const validTime = z.iso.datetime().safeParse(input.createdAt).success;
@@ -56,6 +59,12 @@ export function normalizeCampaignAppend(input: AppendCampaignRevision): AppendCa
     !validTime ||
     !workshopIdSchema.safeParse(input.ownerId).success ||
     !workshopIdSchema.safeParse(input.draftId).success ||
+    !z
+      .number()
+      .int()
+      .min(0)
+      .max(1_000_000)
+      .safeParse(input.expectedLockVersion ?? 0).success ||
     (source.data.kind === 'OWNER' && source.data.actorId !== input.ownerId) ||
     Buffer.byteLength(campaignCanonicalJson(request.data.content), 'utf8') >
       MAX_CAMPAIGN_PACKAGE_BYTES

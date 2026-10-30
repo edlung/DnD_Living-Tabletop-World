@@ -193,6 +193,22 @@ describe('PostgreSQL campaign revisions', () => {
       }),
     );
     expect(removed.identities.entities).toEqual({});
+    const records = await new PostgresCampaignRevisionRepository(pool).identityRecords(
+      request.ownerId,
+      request.draftId,
+      request.content,
+    );
+    expect(records).toContainEqual({
+      namespace: 'entities',
+      key: 'iva',
+      id: first.identities.entities['iva'],
+      entityKind: 'npc',
+    });
+    expect(
+      await repository.identityRecords(request.ownerId, request.draftId, removed.content),
+    ).toEqual([
+      { namespace: 'scene', key: 'initial', id: first.identities.scene, entityKind: null },
+    ]);
     const restored = saved(
       await repository.append({ ...request, requestId: randomUUID(), basedOnRevision: 2 }),
     );
@@ -207,6 +223,7 @@ describe('PostgreSQL campaign revisions', () => {
     expect(await repository.get(b.ownerId, a.draftId, 1)).toBeNull();
     expect(await repository.latest(b.ownerId, a.draftId)).toBeNull();
     expect(await repository.list(b.ownerId, a.draftId, null, 50)).toEqual([]);
+    expect(await repository.identityRecords(b.ownerId, a.draftId, a.content)).toEqual([]);
     expect(await repository.append({ ...a, ownerId: b.ownerId, source: b.source })).toEqual({
       kind: 'not-found',
     });

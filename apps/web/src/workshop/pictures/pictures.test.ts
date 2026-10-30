@@ -27,6 +27,7 @@ const subject: DraftImageSubject = {
 };
 const actions: ReturnType<typeof usePictureActions> = {
   state: 'idle',
+  conflict: null,
   busy: false,
   send: vi.fn(),
   retry: vi.fn(),

@@ -9,6 +9,8 @@ import {
 import type pg from 'pg';
 import { z } from 'zod';
 
+import { parseCampaignEditSpec } from './edit-spec.ts';
+
 import {
   campaignCanonicalJson,
   MAX_CAMPAIGN_PACKAGE_BYTES,
@@ -34,6 +36,9 @@ export const STAGES = [
 ] as const;
 export const LEASE_SECONDS = 30;
 export type JobRow = {
+  mode: 'GENERATE' | 'EDIT';
+  lock_version: number;
+  edit_spec: unknown;
   job_id: string;
   owner_id: string;
   draft_id: string;
@@ -56,6 +61,7 @@ export type JobRow = {
 };
 export type PublicJobRow = Pick<
   JobRow,
+  | 'mode'
   | 'job_id'
   | 'draft_id'
   | 'base_revision'
@@ -68,7 +74,7 @@ export type PublicJobRow = Pick<
   | 'failure_code'
 >;
 export const PUBLIC_JOB_COLUMNS =
-  'job_id,draft_id,base_revision,status,next_step,created_at,updated_at,attached_revision,candidate_available,failure_code';
+  'mode,job_id,draft_id,base_revision,status,next_step,created_at,updated_at,attached_revision,candidate_available,failure_code';
 export const keys = (scope: GenerationJobScope) => [scope.ownerId, scope.draftId, scope.jobId];
 export const digest = (value: unknown): string =>
   `sha256:${createHash('sha256').update(campaignCanonicalJson(value)).digest('hex')}`;
@@ -87,10 +93,16 @@ export function checkedEnqueue(value: EnqueueGeneration): EnqueueGeneration {
       requestId: workshopIdSchema,
       basedOnRevision: z.number().int().min(0).max(999999),
       seed: campaignPackageSchema,
+      lockVersion: z.number().int().min(0).max(1000000).optional(),
     })
     .strict()
     .parse(value);
-  return { ...parsed, seed: checkedContent(parsed.seed) };
+  const { lockVersion, ...input } = parsed;
+  return {
+    ...input,
+    ...(lockVersion === undefined ? {} : { lockVersion }),
+    seed: checkedContent(parsed.seed),
+  };
 }
 export function checkedStep(value: GenerationStepInput): GenerationStepInput {
   const parsed = z
@@ -108,6 +120,9 @@ export function checkedStep(value: GenerationStepInput): GenerationStepInput {
 }
 export function jobView(row: JobRow): StoredGenerationJob {
   return {
+    mode: row.mode,
+    lockVersion: row.lock_version,
+    editSpec: row.mode === 'EDIT' ? parseCampaignEditSpec(row.edit_spec) : null,
     jobId: row.job_id,
     ownerId: row.owner_id,
     draftId: row.draft_id,
@@ -130,6 +145,7 @@ export function jobView(row: JobRow): StoredGenerationJob {
 }
 export function publicJob(row: PublicJobRow): CampaignGenerationJob {
   return {
+    ...(row.mode === 'EDIT' ? { mode: 'EDIT' as const } : {}),
     jobId: row.job_id,
     draftId: row.draft_id,
     baseRevision: row.base_revision,
@@ -170,8 +186,8 @@ export async function loadJob(
   return (
     (
       await client.query<JobRow>(
-        `SELECT * FROM ltw_campaign_generation_jobs WHERE owner_id=$1 AND draft_id=$2 AND job_id=$3${lock ? ' FOR UPDATE' : ''}`,
-        keys(scope),
+        `SELECT * FROM ltw_campaign_generation_jobs WHERE owner_id=$1 AND draft_id=$2 AND job_id=$3 AND mode=$4${lock ? ' FOR UPDATE' : ''}`,
+        [...keys(scope), scope.mode ?? 'GENERATE'],
       )
     ).rows[0] ?? null
   );
@@ -198,6 +214,7 @@ export async function activeLease(
 ): Promise<boolean> {
   return (
     row !== null &&
+    row.mode === (lease.mode ?? 'GENERATE') &&
     row.status === 'RUNNING' &&
     row.worker_id === lease.workerId &&
     row.fence === lease.fence &&
@@ -226,10 +243,10 @@ export async function loadSteps(
 ): Promise<readonly StoredGenerationStep[]> {
   const rows = await client.query<StepRow>(
     `SELECT s.*,d.job_id IS NOT NULL AS dispatched,r.content,r.content_digest,r.provider_request_id,r.completed_at
-    FROM ltw_campaign_generation_steps s LEFT JOIN ltw_campaign_generation_dispatches d USING(owner_id,draft_id,job_id,ordinal)
+    FROM ltw_campaign_generation_steps s JOIN ltw_campaign_generation_jobs j USING(owner_id,draft_id,job_id) LEFT JOIN ltw_campaign_generation_dispatches d USING(owner_id,draft_id,job_id,ordinal)
     LEFT JOIN ltw_campaign_generation_results r USING(owner_id,draft_id,job_id,ordinal)
-    WHERE s.owner_id=$1 AND s.draft_id=$2 AND s.job_id=$3 ORDER BY ordinal`,
-    keys(scope),
+    WHERE s.owner_id=$1 AND s.draft_id=$2 AND s.job_id=$3 AND j.mode=$4 ORDER BY ordinal`,
+    [...keys(scope), scope.mode ?? 'GENERATE'],
   );
   return rows.rows.map((row) => {
     const input = checkedContent(row.input);
@@ -249,7 +266,7 @@ export async function loadSteps(
       throw new Error('CORRUPT_GENERATION_OUTPUT');
     return {
       ordinal: row.ordinal,
-      stage: STAGES[row.ordinal] ?? '',
+      stage: scope.mode === 'EDIT' ? 'edit' : (STAGES[row.ordinal] ?? ''),
       status: row.completed_at !== null ? 'SUCCEEDED' : row.dispatched ? 'DISPATCHING' : 'PREPARED',
       traceId: row.trace_id,
       input,
@@ -278,8 +295,8 @@ export async function loadCandidate(
     }>(
       `SELECT c.*,j.base_revision
     FROM ltw_campaign_generation_candidates c JOIN ltw_campaign_generation_jobs j USING(owner_id,draft_id,job_id)
-    WHERE c.owner_id=$1 AND c.draft_id=$2 AND c.job_id=$3`,
-      keys(scope),
+    WHERE c.owner_id=$1 AND c.draft_id=$2 AND c.job_id=$3 AND j.mode=$4`,
+      [...keys(scope), scope.mode ?? 'GENERATE'],
     )
   ).rows[0];
   if (!row) return null;

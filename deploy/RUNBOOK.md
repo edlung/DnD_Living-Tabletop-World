@@ -289,6 +289,18 @@ migration-aware recovery build; an older build requires a matching consistent
 protected backup and external provider-cost reconciliation. Restoring a database
 does not reverse already dispatched paid calls.
 
+**RU — защищённые правки (этап430).** После миграции0021 используйте понимающую
+её сборку приложения и оператора. Более старый писатель пропускает защиту, а
+старый worker может обработать EDIT как полную генерацию. Проверка событий игры
+не устанавливает совместимость этих таблиц. Для отката к старой сборке нужна
+согласованная защищённая копия до использования новых правок.
+
+**EN — protected edits (Stage430).** After migration0021, retain an aware app and
+operator build. Older writers bypass protections; older workers may consume EDIT
+as full generation. Game-event readiness does not establish compatibility of
+these tables. An older build requires a consistent protected backup from before
+the new controls were used.
+
 ```bash
 previous=$(sed -n 's/^LTW_PREVIOUS_IMAGE_TAG=//p' deploy/.env)
 git checkout "$previous"          # the deploy files of that revision

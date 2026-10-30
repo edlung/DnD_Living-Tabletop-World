@@ -12,6 +12,7 @@ import {
 import { useResource } from '../../api/resource.ts';
 import { ApprovedImages, ApprovedImagesContext } from '../../visual/approved-images.ts';
 import type { WorkshopClient } from '../client.ts';
+import { EditConflict } from '../editing/conflicts.tsx';
 import { usePictureActions } from './actions.ts';
 import { PictureCandidates, PictureSelection } from './cards.tsx';
 import { PictureForm } from './form.tsx';
@@ -23,11 +24,13 @@ export function OwnerPictures({
   draftId,
   revision,
   onChanged,
+  onManageProtections,
 }: {
   readonly client: WorkshopClient;
   readonly draftId: string;
   readonly revision: number;
   readonly onChanged: () => void;
+  readonly onManageProtections?: () => void;
 }) {
   const t = useT();
   const [entityId, setEntityId] = useState('');
@@ -78,6 +81,16 @@ export function OwnerPictures({
           {t('Refresh pictures')}
         </button>
       </div>
+      {onManageProtections && (
+        <button
+          className="workshop-object-link"
+          type="button"
+          disabled={actions.state === 'busy' || actions.state === 'uncertain'}
+          onClick={onManageProtections}
+        >
+          {t('Manage protections in Scenario')}
+        </button>
+      )}
       <p>
         {t(
           'Generating creates a candidate. Choose it explicitly before it appears in the world preview.',
@@ -237,6 +250,9 @@ function ActionReceipt({ actions }: { readonly actions: ReturnType<typeof usePic
   if (actions.state === 'idle') return null;
   return (
     <div className="workshop-picture-receipt" role="status" tabIndex={-1} ref={element}>
+      {actions.state === 'conflict' && actions.conflict !== null && (
+        <EditConflict value={actions.conflict} />
+      )}
       <p>
         {actions.state === 'busy'
           ? t('Saving the picture request…')

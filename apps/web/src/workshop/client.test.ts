@@ -11,6 +11,67 @@ const signedIn = (): Promise<WorkshopProbe> =>
   Promise.resolve({ kind: 'signed-in', ownerId: 'owner' });
 
 describe('workshop editor requests', () => {
+  it('decodes only an explicitly typed conflict after confirming the same owner', async () => {
+    const conflictSchema = z
+      .object({ conflict: z.object({ reason: z.literal('LOCKED_CONTENT') }).strict() })
+      .strict();
+    const body = { conflict: { reason: 'LOCKED_CONTENT' } };
+    const response = reply(409, body),
+      read = vi.spyOn(response, 'json');
+    const client = new WorkshopClient('owner', vi.fn(), () => Promise.resolve(response), signedIn);
+    expect(await client.request('/revision', schema, { conflictSchema })).toEqual({
+      kind: 'conflict',
+      details: body,
+    });
+    expect(read).toHaveBeenCalledTimes(1);
+    const invalid = new WorkshopClient(
+      'owner',
+      vi.fn(),
+      () => Promise.resolve(reply(409, { ...body, rawSecret: 'Never reflected' })),
+      signedIn,
+    );
+    expect(await invalid.request('/revision', schema, { conflictSchema })).toEqual({
+      kind: 'conflict',
+    });
+  });
+  it('never decodes a typed conflict for a replaced owner', async () => {
+    const response = reply(409, { conflict: { reason: 'LOCKED_CONTENT' } });
+    const read = vi.spyOn(response, 'json'),
+      ended = vi.fn();
+    const client = new WorkshopClient(
+      'owner',
+      ended,
+      () => Promise.resolve(response),
+      () => Promise.resolve({ kind: 'signed-in', ownerId: 'replacement' }),
+    );
+    expect(await client.request('/revision', schema, { conflictSchema: z.unknown() })).toEqual({
+      kind: 'signed-out',
+    });
+    expect(read).not.toHaveBeenCalled();
+    expect(ended).toHaveBeenCalledTimes(1);
+  });
+  it('ignores a conflict body that finishes decoding after the client is released', async () => {
+    const response = reply(409);
+    let complete: (value: unknown) => void = () => undefined;
+    let started: () => void = () => undefined;
+    const reading = new Promise<void>((resolve) => {
+      started = resolve;
+    });
+    vi.spyOn(response, 'json').mockImplementation(() => {
+      started();
+      return new Promise((resolve) => {
+        complete = resolve;
+      });
+    });
+    const client = new WorkshopClient('owner', vi.fn(), () => Promise.resolve(response), signedIn);
+    const pending = client.request('/revision', schema, {
+      conflictSchema: z.object({ reason: z.string() }).strict(),
+    });
+    await reading;
+    client.release();
+    complete({ reason: 'Private old owner conflict' });
+    expect(await pending).toEqual({ kind: 'cancelled' });
+  });
   it('binds each request to the mounted owner and parses successful content', async () => {
     const transport = vi.fn(() => Promise.resolve(reply(200, { title: 'Private draft' })));
     const client = new WorkshopClient('owner', vi.fn(), transport, signedIn);

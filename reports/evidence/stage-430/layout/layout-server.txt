@@ -1,0 +1,26 @@
+import { InMemoryCredentialStore } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/auth/credential-store.ts';
+import { RequestLimits, SIGN_IN_LIMITS } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/auth/limits.ts';
+import { sessionAuthenticator, systemAuthClock } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/auth/session-authenticator.ts';
+import { evidenceHasher } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/auth/tokens.ts';
+import { buildLiveApp } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/live/live-app.ts';
+import { createLogger } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/platform/logging/logger.ts';
+import { RAVENFORD_QUESTS, testAiGateway, testAssets, testAuthoring, testDm } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/testing/ravenford-app.ts';
+import { seedSignInCampaigns } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/testing/ui-sign-in-campaigns.ts';
+import { seedWorkshopAccess } from '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/apps/server/src/testing/ui-workshop-fixtures.ts';
+const seed = process.env.LTW_UI_SIGN_IN_SEED;
+if (!seed) throw new Error('AUDIT_SEED_MISSING');
+const engine = await seedSignInCampaigns();
+const credentials = new InMemoryCredentialStore();
+const seeded = await seedWorkshopAccess(credentials, engine, seed);
+const publicOrigin = 'http://127.0.0.1:4322';
+const { app } = buildLiveApp({ engine, ai: testAiGateway(), authoring: testAuthoring(), dm: testDm(),
+  assets: testAssets(), quests: RAVENFORD_QUESTS,
+  authenticator: sessionAuthenticator(credentials, systemAuthClock),
+  logger: createLogger({ service: 'workshop-audit', level: 'silent' }), trustedProxies: [],
+  signIn: { credentials, publicOrigin, clock: systemAuthClock,
+    limits: new RequestLimits({ ...SIGN_IN_LIMITS, redeemPerMinute: 1000 }, () => Date.now()), evidence: evidenceHasher() },
+  workshop: { ...seeded.workshop, publicOrigin },
+});
+app.addHook('onClose', async () => { await seeded.stopGeneration(); });
+await app.listen({ host: '127.0.0.1', port: 4323 });
+for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, () => { void app.close().then(() => process.exit(0)); });

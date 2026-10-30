@@ -4,21 +4,28 @@ import { useResource } from '../../api/resource.ts';
 import type { WorkshopClient } from '../client.ts';
 import { availabilitySchema, jobsSchema, progressSchema } from '../response-schemas.ts';
 
-export function useGeneration(client: WorkshopClient, draftId: string, jobId: string | null) {
-  const path = `/drafts/${draftId}/generation`;
+export function useGeneration(
+  client: WorkshopClient,
+  draftId: string,
+  jobId: string | null,
+  mode: 'GENERATE' | 'EDIT' = 'GENERATE',
+) {
+  const path = `/drafts/${draftId}/${mode === 'EDIT' ? 'edits' : 'generation'}`;
   const load = useCallback(
     async (signal: AbortSignal) => {
       const [availability, jobs] = await Promise.all([
-        client.request(`${path}/availability`, availabilitySchema, { signal }),
+        client.request(`/drafts/${draftId}/generation/availability`, availabilitySchema, {
+          signal,
+        }),
         client.request(path, jobsSchema, { signal }),
       ]);
       if (availability.kind !== 'ready' || jobs.kind !== 'ready')
         throw new Error('WORKSHOP_READ_FAILED');
       return { availability: availability.value, ...jobs.value };
     },
-    [client, path],
+    [client, path, draftId],
   );
-  const history = useResource(`generation:${draftId}`, load);
+  const history = useResource(`${mode}:${draftId}`, load);
   const loadJob = useCallback(
     async (signal: AbortSignal) => {
       if (!jobId) return null;

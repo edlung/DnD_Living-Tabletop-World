@@ -141,6 +141,7 @@ describe('lightweight PostgreSQL preparation progress', () => {
       expect(step).not.toHaveProperty('prompt');
     }
     expect(progress?.job).not.toHaveProperty('seed');
+    expect(progress?.job).not.toHaveProperty('mode');
     expect(progress?.job).not.toHaveProperty('authSessionId');
     expect(progress?.candidate).not.toHaveProperty('content');
     expect(await repository.progress({ ...scope, ownerId: randomUUID() })).toBeNull();

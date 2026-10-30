@@ -5,11 +5,15 @@ import type {
   CampaignGenerationCandidate,
   CampaignRevision,
   CampaignGenerationProgressView,
+  CampaignEditSpec,
 } from '@ltw/contracts';
+
+export type GenerationMode = 'GENERATE' | 'EDIT';
 
 export interface GenerationScope {
   readonly ownerId: string;
   readonly draftId: string;
+  readonly mode?: GenerationMode;
 }
 export interface GenerationJobScope extends GenerationScope {
   readonly jobId: string;
@@ -20,6 +24,9 @@ export interface GenerationLease extends GenerationJobScope {
   readonly authSessionId: string;
 }
 export interface StoredGenerationJob extends CampaignGenerationJob {
+  readonly mode: GenerationMode;
+  readonly lockVersion: number;
+  readonly editSpec: CampaignEditSpec | null;
   readonly ownerId: string;
   readonly authSessionId: string;
   readonly seed: CampaignPackage;
@@ -34,6 +41,10 @@ export interface EnqueueGeneration extends GenerationScope {
   readonly requestId: string;
   readonly basedOnRevision: number;
   readonly seed: CampaignPackage;
+  readonly lockVersion?: number;
+}
+export interface EnqueueEdit extends EnqueueGeneration {
+  readonly editSpec: CampaignEditSpec;
 }
 export interface GenerationStepInput {
   readonly ordinal: number;
@@ -59,8 +70,11 @@ export type GenerationClaim =
   | { readonly kind: 'claimed'; readonly job: StoredGenerationJob; readonly lease: GenerationLease }
   | { readonly kind: 'unavailable' };
 export interface CampaignGenerationRepository {
+  readonly mode: GenerationMode;
   enqueue(input: EnqueueGeneration): Promise<JobMutation>;
+  enqueueEdit(input: EnqueueEdit): Promise<JobMutation>;
   retry(scope: GenerationJobScope, requestId: string, authSessionId: string): Promise<JobMutation>;
+  requestById(scope: GenerationScope, requestId: string): Promise<StoredGenerationJob | null>;
   get(scope: GenerationJobScope): Promise<StoredGenerationJob | null>;
   progress(scope: GenerationJobScope): Promise<CampaignGenerationProgressView | null>;
   list(

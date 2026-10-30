@@ -28,7 +28,8 @@ export async function prepareStep(
   const inputDigest = digest(input);
   if (old)
     return old.inputDigest === inputDigest ? { kind: 'prepared', step: old } : { kind: 'conflict' };
-  if (row?.next_step !== input.ordinal) return { kind: 'conflict' };
+  if ((row?.mode === 'EDIT' && input.ordinal !== 0) || row?.next_step !== input.ordinal)
+    return { kind: 'conflict' };
   const expected =
     input.ordinal === 0
       ? checkedContent(row.seed)

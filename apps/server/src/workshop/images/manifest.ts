@@ -7,10 +7,10 @@ import type {
   DraftVisualManifest,
 } from '@ltw/contracts';
 
-import { resolveDraftImageVisual } from '../../images/draft-input.ts';
+import { campaignImageSourceProjection, CAMPAIGN_IMAGE_TEMPLATE_VERSION } from '@ltw/domain';
 import { campaignCanonicalJson } from '../packages/content.ts';
 
-export const DRAFT_IMAGE_TEMPLATE_VERSION = 1;
+export const DRAFT_IMAGE_TEMPLATE_VERSION = CAMPAIGN_IMAGE_TEMPLATE_VERSION;
 export const imageDigest = (value: unknown): string =>
   `sha256:${createHash('sha256').update(campaignCanonicalJson(value)).digest('hex')}`;
 export const imageSlotKey = (slot: DraftImageSlot): string =>
@@ -20,46 +20,8 @@ export function draftImageSourceSignature(
   slot: DraftImageSlot,
   referenceHash: string | null,
 ): string | null {
-  const entity = revision.content.entities.find(
-    (item) => revision.identities.entities[item.key] === slot.entityId,
-  );
-  if (!entity) return null;
-  if (slot.purpose === 'figure' && !['character', 'npc', 'creature'].includes(entity.kind))
-    return null;
-  if (slot.purpose === 'battle-map' && entity.kind !== 'location') return null;
-  if (
-    (slot.purpose === 'image' &&
-      (slot.variant !== 'reference' || slot.label !== null || referenceHash !== null)) ||
-    (slot.purpose !== 'image' &&
-      (slot.variant !== 'derived' || slot.label !== slot.purpose || referenceHash === null))
-  )
-    return null;
-  const visual = resolveDraftImageVisual(revision.content, entity.key, slot.purpose);
-  if (!visual || visual.description.trim() === '') return null;
-  const geometry =
-    slot.purpose === 'battle-map'
-      ? revision.content.encounters
-          .filter((encounter) => encounter.location === entity.key)
-          .map((encounter) => ({
-            id: revision.identities.encounters[encounter.key],
-            battlefield: encounter.battlefield,
-          }))
-          .sort((a, b) => (a.id ?? '').localeCompare(b.id ?? ''))
-      : [];
-  return imageDigest({
-    templateVersion: DRAFT_IMAGE_TEMPLATE_VERSION,
-    entityId: slot.entityId,
-    kind: entity.kind,
-    name: entity.name,
-    description: entity.description,
-    appearance: visual.description,
-    style: visual.style,
-    purpose: slot.purpose,
-    variant: slot.variant,
-    label: slot.label,
-    geometry,
-    referenceHash,
-  });
+  const projection = campaignImageSourceProjection(revision, slot, referenceHash);
+  return projection === null ? null : imageDigest(projection);
 }
 /** Re-evaluate a frozen selection against this revision. This never reads a live parent later. */
 export function inheritVisualEntries(

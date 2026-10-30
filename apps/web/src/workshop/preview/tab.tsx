@@ -14,6 +14,7 @@ export function OwnerPreviewTab({
   onCharacter,
   initialEntityId,
   onScenario,
+  onManageProtections,
 }: {
   readonly client: WorkshopClient;
   readonly draftId: string;
@@ -21,6 +22,7 @@ export function OwnerPreviewTab({
   readonly onCharacter: (revision: number, characterId: string) => void;
   readonly initialEntityId?: string;
   readonly onScenario?: (revision: number, entityId: string) => void;
+  readonly onManageProtections?: (revision: number) => void;
 }) {
   const t = useT();
   const load = useCallback(
@@ -105,6 +107,13 @@ export function OwnerPreviewTab({
         onChanged={() => {
           setPicturesChanged((value) => value + 1);
         }}
+        {...(onManageProtections
+          ? {
+              onManageProtections: () => {
+                onManageProtections(revision);
+              },
+            }
+          : {})}
       />
     </div>
   );

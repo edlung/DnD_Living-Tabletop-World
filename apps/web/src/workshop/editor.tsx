@@ -5,7 +5,7 @@ import { useResource } from '../api/resource.ts';
 import type { WorkshopClient } from './client.ts';
 import { GenerationTab } from './generation/tab.tsx';
 import { draftSchema, revisionHistorySchema, type RevisionHistory } from './response-schemas.ts';
-import { ScenarioTab, type ScenarioSource } from './scenario-tab.tsx';
+import { ScenarioTab, type ScenarioSource, type ScenarioMode } from './scenario-tab.tsx';
 import { useRequestSignal } from './use-request-signal.ts';
 import { OwnerPreviewTab } from './preview/tab.tsx';
 import { PreviewWorld } from './preview/world.tsx';
@@ -146,6 +146,8 @@ function EditorContent({
     revision: initialPreviewRevision,
   });
   const [older, setOlder] = useState<RevisionHistory | null>(null);
+  const [scenarioPending, setScenarioPending] = useState(false),
+    [scenarioMode, setScenarioMode] = useState<ScenarioMode>('inspect');
   const [linkedEntity, setLinkedEntity] = useState<{ revision: number; entityId: string } | null>(
     null,
   );
@@ -181,7 +183,8 @@ function EditorContent({
         nextBefore: result.value.nextBefore,
       });
   };
-  const inspect = (next: ScenarioSource) => {
+  const inspect = (next: ScenarioSource, nextMode: ScenarioMode = 'inspect') => {
+    setScenarioMode(nextMode);
     setSource(next);
     setTab('scenario');
     document.getElementById('workshop-tab-scenario')?.focus();
@@ -189,7 +192,9 @@ function EditorContent({
   return (
     <>
       <header className="workshop-editor-heading">
-        <button onClick={onBack}>{t('Back to the workshop')}</button>
+        <button disabled={scenarioPending} onClick={onBack}>
+          {t('Back to the workshop')}
+        </button>
         <div>
           <h2>{title}</h2>
           <p>
@@ -238,6 +243,7 @@ function EditorContent({
         </button>
         <button
           id="workshop-tab-generation"
+          disabled={scenarioPending}
           role="tab"
           aria-selected={tab === 'generation'}
           tabIndex={tab === 'generation' ? 0 : -1}
@@ -254,7 +260,7 @@ function EditorContent({
           aria-selected={tab === 'visual'}
           tabIndex={tab === 'visual' ? 0 : -1}
           aria-controls="workshop-editor-panel"
-          disabled={head === 0}
+          disabled={head === 0 || scenarioPending}
           onClick={() => {
             setTab('visual');
           }}
@@ -262,6 +268,11 @@ function EditorContent({
           {t('World preview')}
         </button>
       </nav>
+      {scenarioPending && (
+        <p role="status">
+          {t('Save, retry or explicitly discard the pending edit before leaving this scenario.')}
+        </p>
+      )}
       <div
         id="workshop-editor-panel"
         role="tabpanel"
@@ -274,9 +285,15 @@ function EditorContent({
               <label htmlFor="workshop-revision">{t('Saved revision')}</label>
               <select
                 id="workshop-revision"
+                disabled={scenarioPending}
                 value={source.kind === 'revision' ? (source.revision ?? 'latest') : source.kind}
                 onChange={(event) => {
-                  if (['candidate', 'step'].includes(event.target.value)) return;
+                  if (
+                    ['candidate', 'step', 'review', 'compare', 'restore'].includes(
+                      event.target.value,
+                    )
+                  )
+                    return;
                   setSource({
                     kind: 'revision',
                     revision: event.target.value === 'latest' ? null : Number(event.target.value),
@@ -289,6 +306,15 @@ function EditorContent({
                 )}
                 {source.kind === 'step' && (
                   <option value="step">{t('Saved preparation step')}</option>
+                )}
+                {source.kind === 'review' && (
+                  <option value="review">{t('AI edit proposal')}</option>
+                )}
+                {source.kind === 'compare' && (
+                  <option value="compare">{t('Revision comparison')}</option>
+                )}
+                {source.kind === 'restore' && (
+                  <option value="restore">{t('Restore preview')}</option>
                 )}
                 {revisions.map((revision) => (
                   <option key={revision.revision} value={revision.revision}>
@@ -320,6 +346,12 @@ function EditorContent({
               client={client}
               draftId={draftId}
               source={source}
+              initialMode={scenarioMode}
+              headRevision={head}
+              revisions={revisions}
+              onPendingChanged={setScenarioPending}
+              onRefreshHistory={onRefresh}
+              onInspectSource={inspect}
               {...(linkedEntity ? { initialEntityId: linkedEntity.entityId } : {})}
               onVisual={(revision, entityId) => {
                 setLinkedEntity({ revision, entityId });
@@ -328,6 +360,7 @@ function EditorContent({
                 document.getElementById('workshop-tab-visual')?.focus();
               }}
               onSaved={(revision) => {
+                setScenarioMode('inspect');
                 setSource({ kind: 'revision', revision });
                 onRefresh();
               }}
@@ -342,8 +375,12 @@ function EditorContent({
             onCharacter={onCharacter}
             {...(linkedEntity ? { initialEntityId: linkedEntity.entityId } : {})}
             onScenario={(revision, entityId) => {
+              setScenarioMode('inspect');
               setLinkedEntity({ revision, entityId });
               inspect({ kind: 'revision', revision });
+            }}
+            onManageProtections={(revision) => {
+              inspect({ kind: 'revision', revision }, 'locks');
             }}
           />
         ) : (

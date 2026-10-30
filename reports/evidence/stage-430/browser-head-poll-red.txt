@@ -1,0 +1,63 @@
+[WebServer] (node:85901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] (node:85925) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+[WebServer] (node:85944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85955) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85977) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+[WebServer] (node:85990) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+[WebServer] (node:86009) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 2 workers
+
+(node:86023) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:86022) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:163:1 › Russian structured editing and an AI proposal remain localized and require explicit application (4.9s)
+  ✓  3 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:194:1 › unavailable AI editing keeps the owner instruction and selection without fabricating a job or proposal (932ms)
+  ✓  1 [chromium] › tests/e2e/workshop-editing-pictures.spec.ts:76:1 › an AI source change reviews picture staleness before explicit adoption and preserves unrelated chosen bytes (6.9s)
+  ✘  4 [chromium] › tests/e2e/workshop-editing.spec.ts:49:1 › structured manual changes, directed AI proposal, full comparison and restore form immutable revisions (3.8s)
+Testing stopped early after 1 maximum allowed failures.
+  ✘  5 [chromium] › tests/e2e/workshop-editing.spec.ts:103:1 › protections require explicit unlock and block both manual changes and directly requested AI targets (2.8s)
+
+
+  1) [chromium] › tests/e2e/workshop-editing.spec.ts:49:1 › structured manual changes, directed AI proposal, full comparison and restore form immutable revisions 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 429
+
+      14 | async function editing(page: Page, name: WorkshopFixture): Promise<CampaignEditingContext> {
+      15 |   const response = await page.request.get(`${draftApi(name)}/editing`);
+    > 16 |   expect(response.status()).toBe(200);
+         |                             ^
+      17 |   return (await response.json()) as CampaignEditingContext;
+      18 | }
+      19 | async function currentRevision(page: Page, name: WorkshopFixture, revision: number) {
+        at editing (/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/tests/e2e/workshop-editing.spec.ts:16:29)
+        at /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/tests/e2e/workshop-editing.spec.ts:20:34
+        at currentRevision (/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/tests/e2e/workshop-editing.spec.ts:20:3)
+        at /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/tests/e2e/workshop-editing.spec.ts:95:3
+
+    Error Context: test-results/workshop-editing-structure-7bce8-re-form-immutable-revisions-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/e2e/workshop-editing.spec.ts:49:1 › structured manual changes, directed AI proposal, full comparison and restore form immutable revisions 
+  1 interrupted
+    [chromium] › tests/e2e/workshop-editing.spec.ts:103:1 › protections require explicit unlock and block both manual changes and directly requested AI targets 
+  3 did not run
+  3 passed (20.0s)
+  1 error was not a part of any test, see above for details

@@ -52,7 +52,7 @@ test('revocation removes the complete private editor before a delayed scenario r
   const fetched = new Promise<void>((resolve) => {
     observed = resolve;
   });
-  await page.route(`**${draftApi('scenario-revoked')}/package`, async (route) => {
+  await page.route(`**${draftApi('scenario-revoked')}/editing*`, async (route) => {
     const response = await route.fetch();
     observed();
     await held;

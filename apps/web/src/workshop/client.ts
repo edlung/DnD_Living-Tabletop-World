@@ -2,10 +2,11 @@ import type { z } from 'zod';
 
 import { probeWorkshop, workshopRequest } from './transport.ts';
 
-export type WorkshopResult<T> =
+export type WorkshopResult<T, C = never> =
   | { readonly kind: 'ready'; readonly value: T }
+  | { readonly kind: 'conflict'; readonly details?: C }
   | {
-      readonly kind: 'conflict' | 'signed-out' | 'failed' | 'missing' | 'unavailable' | 'cancelled';
+      readonly kind: 'signed-out' | 'failed' | 'missing' | 'unavailable' | 'cancelled';
     };
 
 /** Session changes invalidate this entire client, including transports that ignore abort. */
@@ -39,11 +40,15 @@ export class WorkshopClient {
     this.#active = true;
   }
 
-  request<T>(
+  request<T, C = never>(
     path: string,
     schema: z.ZodType<T>,
-    options: { readonly body?: object; readonly signal?: AbortSignal } = {},
-  ): Promise<WorkshopResult<T>> {
+    options: {
+      readonly body?: object;
+      readonly signal?: AbortSignal;
+      readonly conflictSchema?: z.ZodType<C>;
+    } = {},
+  ): Promise<WorkshopResult<T, C>> {
     return this.#perform(
       path,
       async (response) => {
@@ -68,11 +73,15 @@ export class WorkshopClient {
     );
   }
 
-  async #perform<T>(
+  async #perform<T, C = never>(
     path: string,
     decode: (response: Response) => Promise<WorkshopResult<T>>,
-    options: { readonly body?: object; readonly signal?: AbortSignal },
-  ): Promise<WorkshopResult<T>> {
+    options: {
+      readonly body?: object;
+      readonly signal?: AbortSignal;
+      readonly conflictSchema?: z.ZodType<C>;
+    },
+  ): Promise<WorkshopResult<T, C>> {
     if (!this.#active || options.signal?.aborted) return { kind: 'cancelled' };
     const controller = new AbortController();
     const abort = () => {
@@ -93,7 +102,20 @@ export class WorkshopClient {
           (identity.kind === 'signed-in' && identity.ownerId !== this.#ownerId)
         )
           return this.#end();
-        return { kind: identity.kind === 'signed-in' ? 'conflict' : 'failed' };
+        if (identity.kind !== 'signed-in') return { kind: 'failed' };
+        if (options.conflictSchema) {
+          try {
+            const body: unknown = await response.json();
+            if (cancelled()) return { kind: 'cancelled' };
+            const parsed = options.conflictSchema.safeParse(body);
+            return parsed.success
+              ? { kind: 'conflict', details: parsed.data }
+              : { kind: 'conflict' };
+          } catch {
+            return { kind: cancelled() ? 'cancelled' : 'conflict' };
+          }
+        }
+        return { kind: 'conflict' };
       }
       if (response?.status === 404) return { kind: 'missing' };
       if (response?.status === 422) return { kind: 'unavailable' };

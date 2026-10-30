@@ -10,6 +10,7 @@ const JOB_WORDS: Record<CampaignGenerationStatus, string> = {
   DISPATCH_UNKNOWN: 'The AI response is uncertain',
 };
 const STEP_WORDS: Record<string, string> = {
+  edit: 'Selective edit',
   concept: 'Concept and opening',
   topology: 'Places and conflicts',
   cast: 'Cast and party',
@@ -18,8 +19,19 @@ const STEP_WORDS: Record<string, string> = {
   'first-session': 'First session',
   outline: 'Later sessions',
 };
-export const jobWords = (t: Translate, status: CampaignGenerationStatus): string =>
-  t(JOB_WORDS[status]);
+const EDIT_WORDS: Record<CampaignGenerationStatus, string> = {
+  QUEUED: 'Edit queued',
+  RUNNING: 'Preparing proposed changes',
+  SUCCEEDED: 'Edit proposal ready',
+  FAILED: 'Edit stopped',
+  CANCELLED: 'Edit cancelled',
+  DISPATCH_UNKNOWN: 'The AI response is uncertain',
+};
+export const jobWords = (
+  t: Translate,
+  status: CampaignGenerationStatus,
+  mode: 'GENERATE' | 'EDIT' = 'GENERATE',
+): string => t(mode === 'EDIT' ? EDIT_WORDS[status] : JOB_WORDS[status]);
 export const stepWords = (t: Translate, stage: string): string =>
   t(STEP_WORDS[stage] ?? 'Campaign preparation');
 

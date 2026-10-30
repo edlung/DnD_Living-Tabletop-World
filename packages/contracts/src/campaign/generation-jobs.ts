@@ -24,6 +24,8 @@ export const retryCampaignGenerationSchema = z.object({ requestId: workshopIdSch
 
 /** Private owner DTO. Lease/session/worker identity never crosses HTTP. */
 export interface CampaignGenerationJob {
+  /** Emitted for EDIT; absent preserves the historical GENERATE response shape. */
+  readonly mode?: 'GENERATE' | 'EDIT';
   readonly jobId: string;
   readonly draftId: string;
   readonly baseRevision: number;
@@ -69,6 +71,8 @@ export interface CampaignGenerationAvailability {
 /** Lightweight polling never carries generated scenario bodies or raw provider inputs. */
 export type CampaignGenerationProgressStep = Omit<CampaignGenerationStep, 'content'>;
 export interface CampaignGenerationProgressView {
+  /** Lightweight EDIT context only; no frozen scope, locks, projections or provider input. */
+  readonly edit?: { readonly instruction: string; readonly requestedTargets: readonly string[] };
   readonly job: CampaignGenerationJob;
   readonly brief: CampaignPackage['brief'];
   readonly steps: readonly CampaignGenerationProgressStep[];

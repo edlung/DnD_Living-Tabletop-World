@@ -1,0 +1,56 @@
+{
+  "kind": "RECONSTRUCTED_RECEIPT_NOT_RAW_LOG",
+  "source": "Actual recorded tool output in this agent conversation; original runs were not redirected to files.",
+  "nullable_red": {
+    "command": "pnpm exec vitest run apps/web/src/workshop/editing/model.test.ts apps/web/src/workshop/comparison/model.test.ts",
+    "vitest_printed_start": "15:18:23",
+    "exit_code": 1,
+    "files": 2,
+    "tests": 20,
+    "passed": 18,
+    "failed": 2,
+    "failures": [
+      {
+        "test": "public structured campaign form model > selects tagged and nullable branches from data instead of assuming the first visible variant",
+        "observation": "matchingBranch(nullable,null) and matchingBranch(nullable,'keeper') both returned 0; expected distinct branches."
+      },
+      {
+        "test": "structured field rendering from public JSON Schema > renders bounded numeric controls without losing zero, optional absence or null",
+        "observation": "Expected None recorded and Value presence; actual HTML was a campaign-field--string,null textarea."
+      }
+    ],
+    "finding": "Zod public JSON Schema optimizes z.string().nullable() to type:['string','null']; schemaBranches did not normalize type arrays. Current constrained world-time schemas use anyOf and were not claimed broken."
+  },
+  "nullable_green_original_tool_run": {
+    "command": "pnpm exec vitest run apps/web/src/workshop/editing/model.test.ts apps/web/src/workshop/comparison/model.test.ts",
+    "vitest_printed_start": "15:23:47",
+    "exit_code": 0,
+    "files": 2,
+    "passed": 20,
+    "failed": 0,
+    "duration_ms": 426
+  },
+  "nullable_green_existing_fresh_raw_log": "/private/tmp/workshop-stage430-model-green.log",
+  "fix_owner": "workshop_entry modified the UI model; unlimited_policy modified only the two authorized test files.",
+  "pg_original_tool_runs_not_saved_as_raw_logs": [
+    {
+      "command": "DATABASE_URL=<local throwaway admin URL> pnpm exec vitest run apps/server/src/workshop/generation/edit-storage.integration.test.ts apps/server/src/workshop/generation/storage-progress.integration.test.ts",
+      "vitest_printed_start": "14:48:53",
+      "exit_code": 0,
+      "files": 2,
+      "passed": 7,
+      "duration_seconds": 9.81
+    },
+    {
+      "command": "DATABASE_URL=<local throwaway admin URL> pnpm exec vitest run apps/server/src/workshop/generation/edit-http.integration.test.ts",
+      "vitest_printed_start": "14:55:23",
+      "exit_code": 0,
+      "files": 1,
+      "passed": 2,
+      "duration_seconds": 3.15
+    }
+  ],
+  "pg_note": "These were separate 7-test and 2-test runs, not a captured combined 9-test log. They predate the subsequent public mode DTO fix. No raw PG log paths are available from this agent.",
+  "new_test_execution_by_this_agent_for_receipt": false,
+  "source_or_test_changes_by_this_agent_for_receipt": false
+}
