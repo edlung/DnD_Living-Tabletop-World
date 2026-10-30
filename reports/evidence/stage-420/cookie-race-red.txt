@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2
+
+ ❯ |unit| apps/server/src/workshop/preview/routes.test.ts (6 tests | 1 failed | 5 skipped) 72ms
+     × never expires a newer browser cookie through an old revoked request response 72ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |unit| apps/server/src/workshop/preview/routes.test.ts > private visual preview HTTP > never expires a newer browser cookie through an old revoked request response
+AssertionError: expected 'ltw_workshop=; Path=/api/workshop; Ht…' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"ltw_workshop=; Path=/api/workshop; HttpOnly; SameSite=Strict; Max-Age=0; Secure"
+
+ ❯ apps/server/src/workshop/preview/routes.test.ts:39:43
+     37|       const stale = await t.send(path, t.owner.cookie, { owner: t.owne…
+     38|       expect(stale.statusCode).toBe(401);
+     39|       expect(stale.headers['set-cookie']).toBeUndefined();
+       |                                           ^
+     40|     }
+     41|     expect((await t.send('/workshop/auth/session', newer.cookie)).stat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  13:34:27
+   Duration  1.24s (transform 739ms, setup 16ms, import 1.03s, tests 72ms, environment 0ms)
+

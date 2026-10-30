@@ -7,6 +7,13 @@ credentials, revocation evidence and private draft metadata. No campaign
 membership or played state is stored in workshop tables. Keep ownership immutable;
 Stage 390 package revisions will reference these containers rather than rewrite them.
 
+Stage420: `0019_workshop_images.sql` adds private draft-image jobs, immutable
+dispatches/candidates/bytes and chosen visual manifests; `0020_workshop_image_accounting.sql`
+adds genuine nullable-campaign workshop image charges. New revision writers must
+atomically create manifest version0. After these subjects/manifests exist, recovery
+requires an0019/0020-aware app/operator build (`deploy/RUNBOOK.md`§3); the ordinary
+older-image event-readiness check does not establish compatibility.
+
 Forward-only PostgreSQL migrations applied by `pnpm db:migrate`
 (runner: `apps/server/src/platform/db/`; decision: `docs/adr/0003-persistence-and-migrations.md`).
 

@@ -20,6 +20,7 @@ import type {
   AppendCampaignRevisionResult,
   CampaignRevisionRepository,
 } from './store.ts';
+import { appendInitialVisualManifestInTransaction } from '../images/postgres-manifests.ts';
 
 type RevisionRow = {
   draft_id: string;
@@ -158,7 +159,9 @@ export async function appendCampaignRevisionInTransaction(
   );
   const row = inserted.rows[0];
   if (!row) throw new Error('CAMPAIGN_REVISION_NOT_STORED');
-  return { kind: 'saved', revision: revisionView(row) };
+  const revision = revisionView(row);
+  await appendInitialVisualManifestInTransaction(client, input, revision, input.basedOnRevision);
+  return { kind: 'saved', revision };
 }
 
 /** The owner-qualified draft lock serializes CAS, nonce replay and identity allocation. */

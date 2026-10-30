@@ -2,6 +2,7 @@ import type { EntityRef, KnowledgeScope, KnowledgeView } from '@ltw/contracts';
 
 import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from './perspective.ts';
+import { projectionPartyMemberIds } from './projection-party.ts';
 import { scopeKey, type KnowledgeRecord } from './records.ts';
 
 /**
@@ -56,7 +57,7 @@ export function knownEntityBases(
   };
   if (perspective.holderId !== null) offer(perspective.holderId, { kind: 'self' });
   if (perspective.scopes === 'ALL' || perspective.scopes.has('PARTY')) {
-    for (const characterId of state.roster.keys()) {
+    for (const characterId of projectionPartyMemberIds(state, perspective)) {
       offer(characterId, { kind: 'party-member', characterId });
     }
   }

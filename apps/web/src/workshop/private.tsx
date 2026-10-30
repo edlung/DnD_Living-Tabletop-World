@@ -10,9 +10,11 @@ import { useWorkshopSession } from './use-workshop-session.ts';
 export function WorkshopPrivate({
   ownerId,
   onEnded,
+  onRestricted,
 }: {
   readonly ownerId: string;
   readonly onEnded: () => void;
+  readonly onRestricted: (restricted: boolean) => void;
 }) {
   const t = useT();
   useWorkshopSession(ownerId, onEnded);
@@ -26,13 +28,14 @@ export function WorkshopPrivate({
   const [route, setRoute] = useState(() => workshopRoute(window.location.pathname));
   useEffect(() => {
     const pop = () => {
+      onRestricted(false);
       setRoute(workshopRoute(window.location.pathname));
     };
     window.addEventListener('popstate', pop);
     return () => {
       window.removeEventListener('popstate', pop);
     };
-  }, []);
+  }, [onRestricted]);
   const navigate = (path: string) => {
     window.history.pushState(null, '', path);
     setRoute(workshopRoute(path));
@@ -46,6 +49,7 @@ export function WorkshopPrivate({
         onBack={() => {
           navigate('/workshop');
         }}
+        onRestricted={onRestricted}
       />
     );
   if (route.kind === 'missing')

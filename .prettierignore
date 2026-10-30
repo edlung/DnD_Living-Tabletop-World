@@ -13,6 +13,9 @@ reports/evidence/stage-300-offline/
 reports/evidence/stage-300-live/
 # Stage 350 deployment evidence: command transcripts kept byte for byte.
 reports/evidence/stage-350/
+# Generated visual-audit measurements are immutable checkpoint evidence, kept byte for byte.
+reports/evidence/stage-*/layout/results.json
+reports/evidence/stage-*/layout/accessibility.json
 
 # Development Pack product, architecture, and workflow documents are authored
 # by the project owner; tooling must not reformat them.

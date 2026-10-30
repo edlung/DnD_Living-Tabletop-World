@@ -8,6 +8,7 @@ import { hashToken, newToken } from '../auth/tokens.ts';
 import type { WorkshopStore } from './store.ts';
 import type { CampaignGenerationDependencies } from './generation/runtime.ts';
 import type { CampaignRevisionRepository } from './packages/store.ts';
+import type { DraftImageDependencies } from './images/runtime.ts';
 
 export interface WorkshopDependencies {
   readonly store: WorkshopStore;
@@ -17,6 +18,8 @@ export interface WorkshopDependencies {
   readonly packages?: CampaignRevisionRepository;
   readonly generation?: CampaignGenerationDependencies;
   readonly cancelGeneration?: (jobId: string) => void;
+  readonly images?: DraftImageDependencies;
+  readonly cancelImage?: (jobId: string) => void;
 }
 export const WORKSHOP_SESSION_MS = SESSION_DAYS * 24 * 60 * 60_000;
 

@@ -1,0 +1,124 @@
+import { createHash } from 'node:crypto';
+
+import type {
+  CampaignRevision,
+  DraftImageSlot,
+  DraftVisualEntry,
+  DraftVisualManifest,
+} from '@ltw/contracts';
+
+import { resolveDraftImageVisual } from '../../images/draft-input.ts';
+import { campaignCanonicalJson } from '../packages/content.ts';
+
+export const DRAFT_IMAGE_TEMPLATE_VERSION = 1;
+export const imageDigest = (value: unknown): string =>
+  `sha256:${createHash('sha256').update(campaignCanonicalJson(value)).digest('hex')}`;
+export const imageSlotKey = (slot: DraftImageSlot): string =>
+  `${slot.entityId}/${slot.purpose}/${slot.variant}/${slot.label ?? ''}`;
+export function draftImageSourceSignature(
+  revision: CampaignRevision,
+  slot: DraftImageSlot,
+  referenceHash: string | null,
+): string | null {
+  const entity = revision.content.entities.find(
+    (item) => revision.identities.entities[item.key] === slot.entityId,
+  );
+  if (!entity) return null;
+  if (slot.purpose === 'figure' && !['character', 'npc', 'creature'].includes(entity.kind))
+    return null;
+  if (slot.purpose === 'battle-map' && entity.kind !== 'location') return null;
+  if (
+    (slot.purpose === 'image' &&
+      (slot.variant !== 'reference' || slot.label !== null || referenceHash !== null)) ||
+    (slot.purpose !== 'image' &&
+      (slot.variant !== 'derived' || slot.label !== slot.purpose || referenceHash === null))
+  )
+    return null;
+  const visual = resolveDraftImageVisual(revision.content, entity.key, slot.purpose);
+  if (!visual || visual.description.trim() === '') return null;
+  const geometry =
+    slot.purpose === 'battle-map'
+      ? revision.content.encounters
+          .filter((encounter) => encounter.location === entity.key)
+          .map((encounter) => ({
+            id: revision.identities.encounters[encounter.key],
+            battlefield: encounter.battlefield,
+          }))
+          .sort((a, b) => (a.id ?? '').localeCompare(b.id ?? ''))
+      : [];
+  return imageDigest({
+    templateVersion: DRAFT_IMAGE_TEMPLATE_VERSION,
+    entityId: slot.entityId,
+    kind: entity.kind,
+    name: entity.name,
+    description: entity.description,
+    appearance: visual.description,
+    style: visual.style,
+    purpose: slot.purpose,
+    variant: slot.variant,
+    label: slot.label,
+    geometry,
+    referenceHash,
+  });
+}
+/** Re-evaluate a frozen selection against this revision. This never reads a live parent later. */
+export function inheritVisualEntries(
+  revision: CampaignRevision,
+  entries: readonly DraftVisualEntry[],
+): readonly DraftVisualEntry[] {
+  const evaluated = entries.map((entry) => {
+    const exists = revision.content.entities.some(
+      (entity) => revision.identities.entities[entity.key] === entry.entityId,
+    );
+    const signature = draftImageSourceSignature(revision, entry, entry.referenceHash);
+    return {
+      ...entry,
+      state: signature === entry.sourceSignature ? ('CURRENT' as const) : ('STALE' as const),
+      staleReason:
+        signature === entry.sourceSignature
+          ? null
+          : exists
+            ? ('SOURCE_CHANGED' as const)
+            : ('SUBJECT_REMOVED' as const),
+    };
+  });
+  return evaluated
+    .map((entry) => {
+      if (entry.variant === 'reference') return entry;
+      const reference = evaluated.find(
+        (item) =>
+          item.entityId === entry.entityId &&
+          item.purpose === 'image' &&
+          item.variant === 'reference' &&
+          item.state === 'CURRENT',
+      );
+      return reference?.contentHash === entry.referenceHash
+        ? entry
+        : { ...entry, state: 'STALE' as const, staleReason: 'REFERENCE_CHANGED' as const };
+    })
+    .sort((a, b) => imageSlotKey(a).localeCompare(imageSlotKey(b)));
+}
+export function manifestDigest(
+  manifest: Pick<DraftVisualManifest, 'revision' | 'version' | 'packageDigest' | 'entries'>,
+): string {
+  return imageDigest({
+    revision: manifest.revision,
+    version: manifest.version,
+    packageDigest: manifest.packageDigest,
+    entries: manifest.entries,
+  });
+}
+export function newVisualManifest(
+  revision: CampaignRevision,
+  version: number,
+  entries: readonly DraftVisualEntry[],
+  createdAt: string,
+): DraftVisualManifest {
+  const value = {
+    revision: revision.revision,
+    version,
+    packageDigest: revision.digest,
+    entries: inheritVisualEntries(revision, entries),
+  };
+  return { ...value, digest: manifestDigest(value), createdAt };
+}

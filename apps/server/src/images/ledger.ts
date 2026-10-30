@@ -1,4 +1,5 @@
 import type pg from 'pg';
+import type { WorkshopImageSubject } from '@ltw/ai';
 
 import { fixedStep } from '../ai/accounting/deadline.ts';
 import {
@@ -8,6 +9,7 @@ import {
 import { readCommitted, type Tx } from '../ai/accounting/pg-transaction.ts';
 import type { Authorization } from '../ai/accounting/types.ts';
 import { IMAGE_LEDGER_LOCK_KEY } from './ledger-lock.ts';
+import { eligibleDraftImageClaim } from './draft-admission.ts';
 
 export { IMAGE_LEDGER_LOCK_KEY } from './ledger-lock.ts';
 
@@ -26,16 +28,20 @@ export { IMAGE_LEDGER_LOCK_KEY } from './ledger-lock.ts';
 
 export type ImageChargeOutcome = 'generated' | 'refused' | 'failed' | 'timeout' | 'not-sent';
 
-export interface ImageCharge {
+interface ImageChargeBase {
   /** A fresh UUID per provider call. */
   readonly chargeId: string;
-  readonly campaignId: string;
   readonly requestId: string;
   readonly provider: string;
   readonly model: string;
   /** The worst case of one call of this model; positive. */
   readonly reserveMicros: bigint;
 }
+export type ImageCharge = ImageChargeBase &
+  (
+    | { readonly campaignId: string; readonly subject?: never }
+    | { readonly campaignId?: never; readonly subject: WorkshopImageSubject }
+  );
 
 export interface ImageSettlement {
   readonly outcome: ImageChargeOutcome;
@@ -46,7 +52,7 @@ export interface ImageSettlement {
 }
 
 /** `no-budget`: no ceiling is stored; `ceiling`: zero, or this reservation would pass it. */
-export type ReserveResult = 'reserved' | 'no-budget' | 'ceiling';
+export type ReserveResult = 'reserved' | 'no-budget' | 'ceiling' | 'ineligible';
 
 export interface ImageLedger {
   reserve(charge: ImageCharge): Promise<ReserveResult>;
@@ -101,6 +107,11 @@ export class PostgresImageLedger implements ImageLedger {
       await tx.lock(IMAGE_LEDGER_LOCK_KEY, 'exclusive');
       const policy = await readMonetaryPolicy(tx, { scope: 'images' });
       const unlimited = policy?.mode === 'UNLIMITED';
+      if (charge.subject) {
+        if (!unlimited) return 'no-budget';
+        if (!(await eligibleDraftImageClaim(tx, charge.subject, charge.chargeId, charge)))
+          return 'ineligible';
+      }
       const budget = await latestCeiling(tx);
       if (!unlimited && budget === null) return 'no-budget';
       const spent = BigInt((await totals(tx)).spent);
@@ -112,16 +123,23 @@ export class PostgresImageLedger implements ImageLedger {
         return 'ceiling';
       await tx.query(
         `INSERT INTO ltw_image_charges
-           (charge_id, campaign_id, request_id, provider, model, reserved_micros, monetary_policy_revision)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+           (charge_id, campaign_id, request_id, provider, model, reserved_micros, monetary_policy_revision,
+            workshop_owner_id,workshop_draft_id,workshop_job_id,workshop_auth_session_id,workshop_worker_id,workshop_fence)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8,$9,$10,$11,$12,$13)`,
         [
           charge.chargeId,
-          charge.campaignId,
+          charge.campaignId ?? null,
           charge.requestId,
           charge.provider,
           charge.model,
           charge.reserveMicros.toString(),
           policy?.revision ?? null,
+          charge.subject?.ownerId ?? null,
+          charge.subject?.draftId ?? null,
+          charge.subject?.jobId ?? null,
+          charge.subject?.authSessionId ?? null,
+          charge.subject?.workerId ?? null,
+          charge.subject?.fence ?? null,
         ],
       );
       return 'reserved';

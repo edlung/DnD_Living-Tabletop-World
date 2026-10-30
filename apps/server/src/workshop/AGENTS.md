@@ -15,4 +15,13 @@ Authority: owner-accepted `docs/STAGE_370_DESIGN.md`,
   every request. Scenario/visual preview and activation belong to410–440.
 - Future progress streams must recheck this same durable session on each cycle;
   a one-time authorization is insufficient after operator revocation.
+- A401 or sign-out response never expires the cookie: it may arrive after another
+  tab installed a newer credential. Sign-out revokes the presented server session,
+  and binds the mounted owner header. Invalid old credentials retain no server
+  access; the browser clears private state. Redeem replaces the opaque cookie.
 - Keep stores, HTTP, token policy and operator CLI cohesive and under 500 lines.
+
+Stage420: `preview/AGENTS.md` covers isolated owner/character scenes and static
+owner-only prepared layouts; `images/AGENTS.md` covers draft jobs, exact bytes and
+chosen manifests. Both use the same workshop auth boundary, never campaign
+credentials. New previews cannot inject a canonical event store.

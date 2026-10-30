@@ -1,0 +1,128 @@
+import { spawn } from 'node:child_process';
+import { createRequire } from 'node:module';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { createHmac, randomBytes } from 'node:crypto';
+import { auditPage } from '/Users/oleksandr/.agents/skills/ui-layout-audit/audit.mjs';
+const projectRoot = '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2';
+const require = createRequire(`${projectRoot}/package.json`);
+const { chromium, expect } = require('@playwright/test');
+const axeModule=require('@axe-core/playwright'); const AxeBuilder=axeModule.default ?? axeModule;
+const seed = randomBytes(32).toString('hex');
+const directory = '/private/tmp/workshop-stage420-layout';
+mkdirSync(directory, { recursive: true });
+const children = [], results = [];
+const launch = (args, env = {}) => {
+  const child = spawn('pnpm', args, { cwd: projectRoot, env: { ...process.env, ...env }, stdio: 'ignore', detached: true });
+  children.push(child); return child;
+};
+let browser;
+try {
+  launch(['exec', 'node', '--conditions=@ltw/source', '/private/tmp/workshop-stage420-audit-server.mjs'], { LTW_UI_SIGN_IN_SEED: seed });
+  launch(['dev:web', '--host', '127.0.0.1', '--port', '4322'], { LTW_API_TARGET: 'http://127.0.0.1:4323', LTW_VITE_CACHE_DIR: 'node_modules/.vite-workshop-audit420' });
+  for (const url of ['http://127.0.0.1:4323/healthz', 'http://127.0.0.1:4322']) {
+    let ready = false;
+    for (let i = 0; i < 120; i++) {
+      try { if ((await fetch(url)).ok) { ready = true; break; } } catch {}
+      await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+    if (!ready) throw new Error('AUDIT_SERVER_NOT_READY');
+  }
+  browser = await chromium.launch();
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, locale: 'en-US' });
+  const page = await context.newPage();
+  page.on('pageerror', (e) => console.log('PAGE_ERROR', e.message));
+  const token = createHmac('sha256', seed).update('workshop-invitation\npreview-layout').digest('base64url');
+  await page.goto(`http://127.0.0.1:4322/workshop/join#${token}`);
+  await page.getByRole('button', { name: 'Enter the workshop', exact: true }).click();
+  await page.getByRole('link', { name: 'Open draft: The Bell Beneath the Ice', exact: true }).click();
+  const draftId = new URL(page.url()).pathname.split('/').at(-1);
+  await page.getByRole('tab', { name: 'World preview', exact: true }).click();
+  await page.locator('.workshop-preview-stage').waitFor();
+  async function inspect(state, target) {
+    for (const width of [1440, 768, 390, 320]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await page.evaluate(() => document.fonts.ready);
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(200);
+      const findings = await auditPage(page);
+      const contentTop = await page.locator(target).first().evaluate((element) => Math.round(element.getBoundingClientRect().top + window.scrollY));
+      const axeResult = await new AxeBuilder({page}).analyze();
+      const accessibility = axeResult.violations.map(({id,impact,help,nodes}) => ({id,impact,help,nodes:nodes.map(({target,failureSummary})=>({target,failureSummary}))}));
+      results.push({ state, width, contentTop, findings, accessibility });
+      await page.screenshot({ path: `${directory}/${state}-${width}.png`, fullPage: true });
+      await page.locator(target).first().evaluate((element) => element.scrollIntoView({ block: 'start' }));
+      await page.screenshot({ path: `${directory}/${state}-${width}-viewport.png` });
+      writeFileSync(`${directory}/results.json`, JSON.stringify(results, null, 2));
+    }
+  }
+  async function make(subject, purpose = 'Main picture', choose = true) {
+    await page.getByLabel('Picture object', { exact: true }).selectOption({ label: subject });
+    await page.getByLabel('Picture purpose', { exact: true }).waitFor();
+    await page.getByLabel('Picture purpose', { exact: true }).selectOption({ label: purpose });
+    const cards = page.locator('.workshop-picture-card').filter({ has: page.getByRole('heading', {name: purpose, exact: true}) });
+    const before = await cards.count();
+    await page.getByRole('button', { name: 'Generate picture', exact: true }).click();
+    await expect(cards).toHaveCount(before + 1, { timeout: 20000 });
+    if (choose) {
+      await cards.first().getByRole('button', {name:'Choose picture', exact:true}).click();
+      await expect(cards.first().getByText('Chosen picture', {exact:true})).toBeVisible();
+      await page.waitForTimeout(250);
+    }
+  }
+  await inspect('owner-empty', '.workshop-preview-stage');
+  await make('The Dock');
+  await make('Arden');
+  await make('Arden', 'Tabletop figure');
+  await make('The Old Sluice');
+  await make('The Old Sluice', 'Battle map');
+  await inspect('owner-scene', '.workshop-preview-stage');
+  await page.locator('.workshop-preview-stage').getByRole('button', {name:'Arden', exact:true}).click();
+  await expect(page.getByRole('complementary', {name:'Preview object details'}).getByRole('heading', {name:'Arden', exact:true})).toBeVisible();
+  await inspect('owner-detail', '.workshop-preview-details');
+  const encounter = page.getByLabel('Prepared encounter layout', {exact:true});
+  const encounterId = await encounter.locator('option').nth(1).getAttribute('value');
+  await encounter.selectOption(encounterId);
+  await page.getByRole('group', {name:'Battlefield', exact:true}).waitFor();
+  await inspect('owner-layout', '.workshop-preview-board');
+  await page.getByLabel('Choose a prepared character', {exact:true}).selectOption({label:'Alena'});
+  await page.getByRole('button', {name:'Preview as character', exact:true}).click();
+  await page.locator('.workshop-character-preview .workshop-preview-stage').waitFor();
+  await inspect('character-scene', '.workshop-preview-stage');
+  await page.getByRole('button', {name:'Inspect your prepared character', exact:true}).click();
+  await page.getByRole('button', {name:'Full character sheet', exact:true}).click();
+  await page.locator('.character-sheet').waitFor();
+  await inspect('character-sheet', '.workshop-preview-details');
+  await page.getByRole('button', {name:'Return to owner preview', exact:true}).click();
+  await page.getByLabel('Picture object', {exact:true}).waitFor();
+  await make('Iva', 'Main picture', false);
+  await inspect('picture-candidate', '.workshop-picture-form');
+  await page.locator('.workshop-picture-card').first().getByRole('button', {name:'Choose picture', exact:true}).click();
+  await expect(page.getByText('Current picture', {exact:true})).toBeVisible();
+  await inspect('picture-selected', '.workshop-picture-selections');
+  const ownerHex = createHmac('sha256', seed).update('workshop-owner\npreview-layout').digest('hex');
+  const ownerId = `${ownerHex.slice(0,8)}-${ownerHex.slice(8,12)}-4${ownerHex.slice(13,16)}-8${ownerHex.slice(17,20)}-${ownerHex.slice(20,32)}`;
+  await page.evaluate(async ({draftId, ownerId}) => {
+    const headers = {'content-type':'application/json', 'x-workshop-owner':ownerId};
+    const current = await (await fetch(`/api/workshop/drafts/${draftId}/package`, {headers})).json();
+    current.revision.content.visuals.find((item) => item.entity === 'iva' && item.purpose === 'image').description += ' A blue scarf, visibly changed.';
+    const response = await fetch(`/api/workshop/drafts/${draftId}/revisions`, {method:'POST', headers,
+      body:JSON.stringify({requestId:crypto.randomUUID(), basedOnRevision:1, content:current.revision.content})});
+    if (!response.ok) throw new Error('AUDIT_STALE_REVISION_FAILED');
+  }, {draftId, ownerId});
+  await page.reload();
+  await page.getByRole('tab', {name:'World preview',exact:true}).click();
+  await page.getByLabel('Picture object', {exact:true}).selectOption({label:'Iva'});
+  await expect(page.getByText('Stale: the appearance or object changed.', {exact:true})).toBeVisible();
+  await inspect('picture-stale', '.workshop-picture-selections');
+  const issues = results.flatMap((r) => r.findings.filter((f) => ['warn','error'].includes(f.level)).map((f) => ({state:r.state,width:r.width,...f})));
+  const accessibility=results.flatMap((r)=>r.accessibility.map((a)=>({state:r.state,width:r.width,...a})));
+  console.log(JSON.stringify({states:results.length, issues, accessibility}));
+  if (issues.length || accessibility.length) process.exitCode = 1;
+} catch (e) {
+  console.log('AUDIT_FAILED', e.message);
+  if (browser) { const pages=browser.contexts().flatMap((c)=>c.pages()); await pages[0]?.screenshot({path:`${directory}/failure.png`,fullPage:true}); }
+  throw e;
+} finally {
+  await browser?.close();
+  for (const child of children) { try { process.kill(-child.pid, 'SIGTERM'); } catch {} }
+}

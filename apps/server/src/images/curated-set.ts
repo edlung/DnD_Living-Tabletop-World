@@ -160,6 +160,10 @@ export function createCuratedImageGenerator(set: CuratedSet): ImageGenerator {
   return {
     id: CURATED_PROVIDER,
     generate: (brief): Promise<GeneratedImage> => {
+      if (!('entityId' in brief.subject))
+        return Promise.reject(
+          new ImageGenerationError('UNAVAILABLE', 'no curated workshop picture'),
+        );
       const entry = byKey.get(
         keyOf(brief.subject.entityId, brief.variant, brief.label, brief.purpose),
       );

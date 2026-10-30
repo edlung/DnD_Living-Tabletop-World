@@ -162,6 +162,8 @@ export function CombatPanel({
       <ActiveCard api={api} encounter={encounter} actorId={actorId} imageOf={imageOf} />
       <Board
         encounter={encounter}
+        labelOf={labelOf}
+        currentCombatantId={encounter.currentCombatantId}
         selfId={actorId}
         selected={focus?.kind === 'square' ? focus.square : (picked?.position ?? null)}
         path={plan?.path ?? []}

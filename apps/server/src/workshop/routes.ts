@@ -20,6 +20,9 @@ import { authorizeWorkshop, workshopPrincipal, workshopSignedOut } from './acces
 import { WORKSHOP_SESSION_MS, type WorkshopDependencies } from './service.ts';
 import { registerCampaignPackageRoutes } from './packages/routes.ts';
 import { registerCampaignGenerationRoutes } from './generation/routes.ts';
+import { registerCampaignPreviewRoutes } from './preview/routes.ts';
+import { registerDraftImageReadRoutes } from './images/read-routes.ts';
+import { registerDraftImageMutationRoutes } from './images/mutation-routes.ts';
 
 const empty = z.object({}).strict();
 const params = z.object({ draftId: workshopIdSchema }).strict();
@@ -30,7 +33,7 @@ export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDepen
   const now = () => new Date(deps.clock.now()).toISOString();
   const principal = (request: FastifyRequest) => workshopPrincipal(request, deps);
   const signedOut = (request: FastifyRequest, reply: FastifyReply) =>
-    workshopSignedOut(request, reply, deps);
+    workshopSignedOut(request, reply);
   const draftPrincipal = (request: FastifyRequest, reply: FastifyReply) =>
     authorizeWorkshop(request, reply, deps);
 
@@ -95,12 +98,14 @@ export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDepen
   });
 
   app.post('/workshop/auth/sign-out', async (request, reply) => {
-    const session = await principal(request);
-    if (!session) return signedOut(request, reply);
+    const session = await authorizeWorkshop(request, reply, deps);
+    if (!session) return reply;
     if (!empty.optional().safeParse(request.body).success)
       return sendError(reply, request, 'INVALID_REQUEST');
     await deps.store.signOut(session.tokenHash, now());
-    return reply.header('set-cookie', workshopCookie('', 0, secure)).send({ signedOut: true });
+    // Revoke the presented server session. Expiring a shared cookie here could erase a newer
+    // credential installed by another tab while this response was in flight.
+    return reply.send({ signedOut: true });
   });
 
   app.post('/workshop/drafts', async (request, reply) => {
@@ -142,7 +147,14 @@ export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDepen
     return draft ? reply.send(draft) : sendError(reply, request, 'NOT_FOUND');
   });
 
-  if (deps.packages) registerCampaignPackageRoutes(app, deps, deps.packages);
+  if (deps.packages) {
+    registerCampaignPackageRoutes(app, deps, deps.packages);
+    registerCampaignPreviewRoutes(app, deps, deps.packages, deps.images?.repository);
+    if (deps.images) {
+      registerDraftImageReadRoutes(app, deps, deps.packages, deps.images);
+      registerDraftImageMutationRoutes(app, deps, deps.packages, deps.images);
+    }
+  }
   if (deps.generation)
     registerCampaignGenerationRoutes(app, deps, deps.generation, deps.cancelGeneration);
 }

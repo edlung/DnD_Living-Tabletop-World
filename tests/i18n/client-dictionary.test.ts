@@ -22,6 +22,7 @@ import '../../apps/web/src/i18n/ru-visual.ts';
 import '../../apps/web/src/i18n/ru-access.ts';
 import '../../apps/web/src/i18n/ru-workshop-editor.ts';
 import '../../apps/web/src/i18n/ru-workshop-scenario.ts';
+import '../../apps/web/src/i18n/ru-workshop-preview.ts';
 import '../../apps/web/src/i18n/ru-images.ts';
 import '../../apps/web/src/i18n/ru-table.ts';
 

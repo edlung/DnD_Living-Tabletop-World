@@ -15,6 +15,10 @@ import { createCampaignPreparationRuntime } from './ai/preparation-gateway.ts';
 import { PostgresCampaignGenerationRepository } from './workshop/generation/postgres-store.ts';
 import { CampaignGenerationWorker } from './workshop/generation/worker.ts';
 import { startCampaignGenerationLoop } from './workshop/generation/worker-loop.ts';
+import { PostgresDraftImageRepository } from './workshop/images/postgres-store.ts';
+import { DraftImageWorker } from './workshop/images/worker.ts';
+import { startDraftImageLoop } from './workshop/images/worker-loop.ts';
+import { createDraftImageRuntime } from './images/draft-runtime.ts';
 import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
 import { composeAuthentication, startCredentialPruning } from './auth/composition.ts';
@@ -110,6 +114,14 @@ async function main(): Promise<void> {
     throw error;
   }
   const quests = await loadQuestBook(config.questsFile);
+  const draftImageRepository = signIn ? new PostgresDraftImageRepository(pool) : null;
+  const draftImages = draftImageRepository
+    ? {
+        repository: draftImageRepository,
+        runtime: createDraftImageRuntime({ pool, config, logger, contents: draftImageRepository }),
+      }
+    : null;
+  const draftImageWorker = draftImages ? new DraftImageWorker(draftImages) : null;
   // After a rollback (LTW_ALLOW_NEWER_SCHEMA) readiness parses every stored event first: a newer
   // build may have written events this one cannot read anywhere in a stream (ADR 0037).
   const readiness = storeReadiness(pool, await loadMigrations(MIGRATIONS_DIR), logger, {
@@ -132,6 +144,14 @@ async function main(): Promise<void> {
           workshop: {
             store: new PostgresWorkshopStore(pool),
             packages: new PostgresCampaignRevisionRepository(pool),
+            ...(draftImages && draftImageWorker
+              ? {
+                  images: draftImages,
+                  cancelImage: (jobId: string) => {
+                    draftImageWorker.cancel(jobId);
+                  },
+                }
+              : {}),
             ...(generation && generationWorker
               ? {
                   generation,
@@ -170,6 +190,10 @@ async function main(): Promise<void> {
       ? startCampaignGenerationLoop(generation.repository, generationWorker, logger)
       : () => Promise.resolve();
   const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
+  const stopDraftImages =
+    draftImages && draftImageWorker
+      ? startDraftImageLoop(draftImages.repository, draftImageWorker, logger)
+      : () => Promise.resolve();
   const stopAssets = startAssetWorkerLoop({
     engine,
     contents,
@@ -185,7 +209,7 @@ async function main(): Promise<void> {
   const shutdown = (signal: NodeJS.Signals): void => {
     logger.info({ signal }, 'shutting down');
     stopPruning();
-    Promise.all([stopAssets(), stopGeneration()])
+    Promise.all([stopAssets(), stopGeneration(), stopDraftImages()])
       .then(() => app.close())
       // Settlement retries stop; any unsettled hold stays for the operator.
       .then(() => ai.accounting.shutdown())
@@ -201,7 +225,7 @@ async function main(): Promise<void> {
 
 /**
  * The asset worker's image generator (docs/adr/0035-images.md §1): the local placeholder, or an
- * OpenAI image model through OpenRouter that spends only within the stored image ceiling. Startup
+ * OpenAI image model through OpenRouter under the explicit stored monetary policy. Startup
  * names the generator and model and whether a ceiling is stored; never the key or an amount.
  */
 async function imageGenerator(

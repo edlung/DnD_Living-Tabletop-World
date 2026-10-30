@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2
+
+
+ Test Files  2 passed (2)
+      Tests  16 passed (16)
+   Start at  13:36:52
+   Duration  1.34s (transform 1.44s, setup 31ms, import 2.06s, tests 322ms, environment 0ms)
+

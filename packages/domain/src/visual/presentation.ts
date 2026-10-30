@@ -3,6 +3,7 @@ import type { AssetPurpose, EntityPresentation, PlayerAssetView } from '@ltw/con
 import { PURPOSE_KINDS, type AssetRecord } from '../assets/records.ts';
 import { playerAssetView, shownTo } from '../assets/views.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
+import { projectionPartyMemberIds } from '../knowledge/projection-party.ts';
 import { knownEntityIds } from '../knowledge/projection.ts';
 import { INDOOR_LOCATION_TYPES, type VisualTimeline } from './timeline.ts';
 
@@ -63,7 +64,7 @@ export function presentationScopeAt(
   const { view, current } = timeline;
   const perceivers =
     perspective.kind === 'PARTY'
-      ? [...current.roster.keys()]
+      ? [...projectionPartyMemberIds(current, perspective)]
       : perspective.holderId === null
         ? []
         : [perspective.holderId];

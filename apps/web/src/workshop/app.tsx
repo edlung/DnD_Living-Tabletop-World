@@ -29,12 +29,15 @@ function WorkshopPage({
 }) {
   const t = useT();
   const [screen, setScreen] = useState<Screen>({ kind: start.kind });
+  const currentScreen = useRef(screen);
+  currentScreen.current = screen;
   const invitation = useRef<InvitationHolder | null>(
     start.kind === 'invited' ? start.invitation : null,
   );
   const busy = useRef(false);
   const [asking, setAsking] = useState(false);
   const [signOutFailed, setSignOutFailed] = useState(false);
+  const [restricted, setRestricted] = useState(false);
   const question = useRef<HTMLDialogElement>(null);
   const stay = useRef<HTMLButtonElement>(null);
   const signOutButton = useRef<HTMLButtonElement>(null);
@@ -48,6 +51,7 @@ function WorkshopPage({
   const ended = useCallback(() => {
     flushSync(() => {
       setAsking(false);
+      setRestricted(false);
       setScreen({ kind: 'signed-out' });
     });
   }, []);
@@ -72,6 +76,7 @@ function WorkshopPage({
       // The history snapshot can be taken before React's native-event batch commits.
       flushSync(() => {
         setAsking(false);
+        setRestricted(false);
         setScreen({ kind: 'checking' });
       });
     };
@@ -118,10 +123,25 @@ function WorkshopPage({
     window.location.replace('/workshop');
   };
   const leave = async () => {
-    if (busy.current) return;
+    if (busy.current || screen.kind !== 'workshop') return;
+    const ownerId = screen.ownerId;
+    const stillCurrent = () =>
+      currentScreen.current.kind === 'workshop' && currentScreen.current.ownerId === ownerId;
     busy.current = true;
-    const response = await workshopRequest('/auth/sign-out', {});
+    const response = await workshopRequest('/auth/sign-out', {}, undefined, ownerId);
     busy.current = false;
+    if (!stillCurrent()) return;
+    if (response?.status === 409) {
+      const identity = await probeWorkshop();
+      if (!stillCurrent()) return;
+      if (
+        identity.kind === 'signed-out' ||
+        (identity.kind === 'signed-in' && identity.ownerId !== ownerId)
+      )
+        ended();
+      else setSignOutFailed(true);
+      return;
+    }
     if (response?.ok || response?.status === 401) ended();
     else setSignOutFailed(true);
   };
@@ -130,29 +150,36 @@ function WorkshopPage({
       <img className="workshop-art" src={textureUrl('brand-keyart')} alt="" />
       <div className="workshop-scrim" aria-hidden="true" />
       <div className="workshop-content">
-        <header className="workshop-header">
-          <div>
-            <p className="workshop-brand">
-              <img src={ornamentUrl('emblem')} alt="" />
-              {t('Living Tabletop World')}
-            </p>
-            <h1>{t('Campaign workshop')}</h1>
-            <p>{t('A place for the worlds you want to create.')}</p>
-          </div>
-          {screen.kind === 'workshop' && (
-            <button
-              ref={signOutButton}
-              onClick={() => {
-                setSignOutFailed(false);
-                setAsking(true);
-              }}
-            >
-              {t('Sign out of workshop')}
-            </button>
-          )}
-        </header>
+        {!restricted && (
+          <header className="workshop-header">
+            <div>
+              <p className="workshop-brand">
+                <img src={ornamentUrl('emblem')} alt="" />
+                {t('Living Tabletop World')}
+              </p>
+              <h1>{t('Campaign workshop')}</h1>
+              <p>{t('A place for the worlds you want to create.')}</p>
+            </div>
+            {screen.kind === 'workshop' && (
+              <button
+                ref={signOutButton}
+                onClick={() => {
+                  setSignOutFailed(false);
+                  setAsking(true);
+                }}
+              >
+                {t('Sign out of workshop')}
+              </button>
+            )}
+          </header>
+        )}
         {screen.kind === 'workshop' ? (
-          <WorkshopPrivate key={screen.ownerId} ownerId={screen.ownerId} onEnded={ended} />
+          <WorkshopPrivate
+            key={screen.ownerId}
+            ownerId={screen.ownerId}
+            onEnded={ended}
+            onRestricted={setRestricted}
+          />
         ) : (
           <WorkshopAccess
             kind={screen.kind}
@@ -170,37 +197,39 @@ function WorkshopPage({
           />
         )}
       </div>
-      <dialog
-        ref={question}
-        className="sign-out-dialog"
-        onCancel={(event) => {
-          event.preventDefault();
-          setAsking(false);
-        }}
-        aria-labelledby="workshop-sign-out-title"
-      >
-        <h2 id="workshop-sign-out-title">{t('Sign out of workshop?')}</h2>
-        <p>{t('Your drafts stay saved. To return, open a new workshop invitation.')}</p>
-        {signOutFailed && <p role="alert">{t('The workshop could not be reached')}</p>}
-        <div className="workshop-actions">
-          <button
-            ref={stay}
-            className="primary-button"
-            onClick={() => {
-              setAsking(false);
-            }}
-          >
-            {t('Stay signed in')}
-          </button>
-          <button
-            onClick={() => {
-              void leave();
-            }}
-          >
-            {t('Sign out of workshop')}
-          </button>
-        </div>
-      </dialog>
+      {!restricted && (
+        <dialog
+          ref={question}
+          className="sign-out-dialog"
+          onCancel={(event) => {
+            event.preventDefault();
+            setAsking(false);
+          }}
+          aria-labelledby="workshop-sign-out-title"
+        >
+          <h2 id="workshop-sign-out-title">{t('Sign out of workshop?')}</h2>
+          <p>{t('Your drafts stay saved. To return, open a new workshop invitation.')}</p>
+          {signOutFailed && <p role="alert">{t('The workshop could not be reached')}</p>}
+          <div className="workshop-actions">
+            <button
+              ref={stay}
+              className="primary-button"
+              onClick={() => {
+                setAsking(false);
+              }}
+            >
+              {t('Stay signed in')}
+            </button>
+            <button
+              onClick={() => {
+                void leave();
+              }}
+            >
+              {t('Sign out of workshop')}
+            </button>
+          </div>
+        </dialog>
+      )}
     </main>
   );
 }

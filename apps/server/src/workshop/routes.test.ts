@@ -148,7 +148,7 @@ describe('workshop identity and private draft containers', () => {
         .statusCode,
     ).toBe(401);
     const leaving = await real.send('POST', '/workshop/auth/sign-out', { cookie: both }, {});
-    expect(leaving.headers['set-cookie']).not.toContain('ltw_session=');
+    expect(leaving.headers['set-cookie']).toBeUndefined();
     expect(
       (await real.send('GET', '/campaigns/ravenford/session', { cookie: dmCookie })).statusCode,
     ).toBe(200);
@@ -316,8 +316,7 @@ describe('workshop identity and private draft containers', () => {
     }
     const response = await t.send('POST', '/workshop/auth/sign-out', a.cookie, {});
     expect(response.statusCode).toBe(200);
-    expect(response.headers['set-cookie']).toContain('ltw_workshop=;');
-    expect(response.headers['set-cookie']).not.toContain('ltw_session=');
+    expect(response.headers['set-cookie']).toBeUndefined();
     expect((await t.send('GET', '/workshop/auth/session', a.cookie)).statusCode).toBe(401);
   });
 });

@@ -17,6 +17,12 @@ account UNLIMITED policy remain necessary. No local generator substitutes for a
 missing route. Production composition starts the bounded preparation worker only
 beside invitation-mode workshop auth.
 
+Stage420 scoped visual preview: `src/workshop/preview/AGENTS.md`; private images:
+`src/workshop/images/AGENTS.md`. Main starts a separate fenced draft image worker
+beside invitation auth. It uses existing image settings and explicit stored image
+UNLIMITED policy, without calling the canonical asset worker. Migrations0019/0020
+require an aware recovery build; see `deploy/RUNBOOK.md`§3.
+
 Composition root of the modular monolith and the only workspace package allowed to perform I/O (`docs/adr/0004-module-boundaries.md`).
 
 Live AI (Stage 300, remediation in progress): start with ADR 0032 (amendments 2026-10-11 and later, C last),

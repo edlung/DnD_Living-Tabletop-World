@@ -14,7 +14,10 @@ accounting; its offline checkpoint passed (3,100unit,284integration,144browser
 tests). Live-provider quality is NOT_RUN and carried to450; scripted tests do
 not close it. Stage410 implements the private scenario/generation browser and
 lightweight progress; full checkpoint passed (3,132unit,286integration,156browser
-tests), with24layout/accessibility state-width combinations. Stages420–450 remain
+tests), with24layout/accessibility state-width combinations. Stage420 implements
+scoped visual preview, fenced draft-image generation and explicit manifests; full
+checkpoint passed (3,185unit,306integration,164browser tests) plus36layout/axe
+combinations. Stages430–450 remain
 **FUTURE / NOT YET IMPLEMENTED OR TESTED**. The owner delegates technical checkpoint
 continuation (`reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json`); each stage
 still verifies its own boundary and preserves human acceptance separately.

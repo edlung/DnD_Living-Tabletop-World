@@ -36,6 +36,10 @@ from a committed revision, verified locally in Docker. Operations for people: `R
   `LTW_PREDEPLOY_DUMP` or `LTW_ROLLBACK_DUMP`); never let a deploy go on without one. The restore
   drill fails on an empty restore unless `--allow-empty`, and on a live campaign the dump lacks;
   `watch.sh` alarms on its verdicts (`restore-drill.log`).
+- Campaign workshop exception (Stages400/420): after genuine workshop text/image
+  accounting or draft manifests exist, keep an0018/0019/0020-aware recovery build.
+  Older app/operator binaries do not understand those subjects or atomic manifest
+  obligations; event-readiness alone cannot prove compatibility. See RUNBOOK§3.
 - Docker Engine 28 or later: `backend` and `data` use the gateway mode `isolated`; `deploy.sh`
   checks the Engine and, before anything starts, the networks (`lib.sh`).
 - The live stream must never be buffered or compressed by the proxy (ADR 0033): `/api` has no

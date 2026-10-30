@@ -128,6 +128,8 @@ export {
   type ImageBrief,
   type ImageGenerator,
   type ImageJob,
+  type ImageExecution,
+  type WorkshopImageSubject,
 } from './images.ts';
 export {
   PLACEHOLDER_MODEL,

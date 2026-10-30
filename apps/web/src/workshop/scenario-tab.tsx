@@ -18,11 +18,15 @@ export function ScenarioTab({
   draftId,
   source,
   onSaved,
+  initialEntityId,
+  onVisual,
 }: {
   readonly client: WorkshopClient;
   readonly draftId: string;
   readonly source: ScenarioSource;
   readonly onSaved: (revision: number) => void;
+  readonly initialEntityId?: string;
+  readonly onVisual?: (revision: number, entityId: string) => void;
 }) {
   const t = useT();
   const [selected, setSelected] = useState<string | null>(null);
@@ -70,10 +74,15 @@ export function ScenarioTab({
           const step = result.value.steps.find((entry) => entry.ordinal === ordinal);
           if (step?.status !== 'SUCCEEDED' || !step.content)
             throw new Error('WORKSHOP_READ_FAILED');
-          return { content: step.content, assessment: null, revision: null };
+          return { content: step.content, assessment: null, revision: null, entities: null };
         }
         if (!result.value.candidate) throw new Error('WORKSHOP_READ_FAILED');
-        return { content: result.value.candidate.content, assessment: null, revision: null };
+        return {
+          content: result.value.candidate.content,
+          assessment: null,
+          revision: null,
+          entities: null,
+        };
       }
       const path = revision === null ? 'package' : `revisions/${String(revision)}`;
       const result = await client.request(`/drafts/${draftId}/${path}`, revisionViewSchema, {
@@ -84,11 +93,17 @@ export function ScenarioTab({
         content: result.value.revision?.content ?? null,
         assessment: result.value.assessment,
         revision: result.value.revision?.revision ?? null,
+        entities: result.value.revision?.identities.entities ?? null,
       };
     },
     [client, draftId, revision, jobId, ordinal],
   );
   const { resource, retry } = useResource(`scenario:${draftId}:${contextKey}`, load);
+  useEffect(() => {
+    if (!initialEntityId || resource.status !== 'ready' || !resource.value.entities) return;
+    const entry = Object.entries(resource.value.entities).find(([, id]) => id === initialEntityId);
+    if (entry) setSelected(`entities.${entry[0]}`);
+  }, [initialEntityId, resource]);
   useEffect(() => {
     if (resource.status !== 'ready' || !restoreFocus.current) return;
     restoreFocus.current = false;
@@ -153,6 +168,26 @@ export function ScenarioTab({
           {t('Reload saved content')}
         </button>
       </div>
+      {resource.status === 'ready' &&
+        resource.value.revision !== null &&
+        onVisual &&
+        (() => {
+          const entityKey = selected?.match(/^(?:entities|visuals)\.([^.]+)/)?.[1];
+          const entityId = entityKey ? resource.value.entities?.[entityKey] : null;
+          const currentRevision = resource.value.revision;
+          return (
+            entityId && (
+              <button
+                className="workshop-object-link"
+                onClick={() => {
+                  onVisual(currentRevision, entityId);
+                }}
+              >
+                {t('View selected object in world')}
+              </button>
+            )
+          );
+        })()}
       {ordinal !== null ? (
         <p>
           {t(

@@ -50,3 +50,30 @@ export {
   type CampaignGenerationStage,
   type CampaignGenerationOutputByStage,
 } from './generation.ts';
+export {
+  campaignPreviewRevisionQuerySchema,
+  campaignPreviewScopeQuerySchema,
+  campaignPreviewQuerySchema,
+  type CampaignPreviewScopeQuery,
+  type CampaignPreviewQuery,
+  type CampaignPreviewEntityRef,
+  type PreparedBattlefieldLayout,
+  type CampaignPreviewCatalog,
+  type CampaignPreviewPerspective,
+  type CampaignPreviewView,
+  type CampaignPreviewEntityView,
+  type CampaignPreviewSheetView,
+} from './preview.ts';
+export {
+  requestDraftImageSchema,
+  selectDraftImageSchema,
+  type DraftImageSlot,
+  type DraftImageStatus,
+  type DraftImageJob,
+  type DraftImageCandidate,
+  type DraftVisualEntry,
+  type DraftVisualManifest,
+  type DraftImageSubject,
+  type DraftImageAvailability,
+  type CampaignDraftImagesView,
+} from './images.ts';

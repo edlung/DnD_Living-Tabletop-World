@@ -273,6 +273,22 @@ waiting for an unhealthy `server`; the log shows `not ready` with `eventStore` a
 before the deploy you are rolling back (`LTW_PREDEPLOY_DUMP`; play since then is lost, and
 `LTW_ROLLBACK_DUMP` keeps the state you leave), or fix and roll forward.
 
+**RU — мастерская кампаний (этапы400/420).** После появления расходов AI с областью
+мастерской или выбранных визуальных манифестов откат к сборкам до0018/0019/0020
+на той же базе не поддерживается, даже с `--rollback`. Прежняя готовность проверяет
+события игры, но не новые области расходов и атомарное наследование изображений.
+Для восстановления сохраняйте сборку, понимающую эти миграции; для более старой
+сборки нужна согласованная защищённая копия и сверка внешних расходов провайдера.
+Уже совершённые платные вызовы не отменяются восстановлением базы.
+
+**EN — campaign workshop (Stages400/420).** Once workshop AI accounting or chosen
+visual manifests exist, application/operator builds predating0018/0019/0020 are
+unsupported on that database, including with `--rollback`. Earlier readiness checks
+game events, not the new spending subjects or atomic image inheritance. Retain a
+migration-aware recovery build; an older build requires a matching consistent
+protected backup and external provider-cost reconciliation. Restoring a database
+does not reverse already dispatched paid calls.
+
 ```bash
 previous=$(sed -n 's/^LTW_PREVIOUS_IMAGE_TAG=//p' deploy/.env)
 git checkout "$previous"          # the deploy files of that revision

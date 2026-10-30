@@ -7,15 +7,69 @@ import { GenerationTab } from './generation/tab.tsx';
 import { draftSchema, revisionHistorySchema, type RevisionHistory } from './response-schemas.ts';
 import { ScenarioTab, type ScenarioSource } from './scenario-tab.tsx';
 import { useRequestSignal } from './use-request-signal.ts';
+import { OwnerPreviewTab } from './preview/tab.tsx';
+import { PreviewWorld } from './preview/world.tsx';
 
 export function DraftEditor({
   client,
   draftId,
   onBack,
+  onRestricted,
 }: {
   readonly client: WorkshopClient;
   readonly draftId: string;
   readonly onBack: () => void;
+  readonly onRestricted: (restricted: boolean) => void;
+}) {
+  const [mode, setMode] = useState<
+    | { kind: 'owner'; revision: number | null }
+    | { kind: 'character'; revision: number; characterId: string }
+  >({ kind: 'owner', revision: null });
+  if (mode.kind === 'character')
+    return (
+      <section className="workshop-editor workshop-character-preview">
+        <PreviewWorld
+          key={`${mode.revision}:${mode.characterId}`}
+          client={client}
+          draftId={draftId}
+          scope={{
+            revision: mode.revision,
+            perspective: 'CHARACTER',
+            characterId: mode.characterId,
+          }}
+          onLeave={() => {
+            onRestricted(false);
+            setMode({ kind: 'owner', revision: mode.revision });
+          }}
+        />
+      </section>
+    );
+  return (
+    <OwnerDraftEditor
+      client={client}
+      draftId={draftId}
+      onBack={onBack}
+      initialPreviewRevision={mode.revision}
+      onCharacter={(revision, characterId) => {
+        onRestricted(true);
+        setMode({ kind: 'character', revision, characterId });
+      }}
+    />
+  );
+}
+
+function OwnerDraftEditor({
+  client,
+  draftId,
+  onBack,
+  initialPreviewRevision,
+  onCharacter,
+}: {
+  readonly client: WorkshopClient;
+  readonly draftId: string;
+  readonly onBack: () => void;
+  readonly initialPreviewRevision: number | null;
+  readonly onCharacter: (revision: number, characterId: string) => void;
 }) {
   const t = useT();
   const load = useCallback(
@@ -53,6 +107,8 @@ export function DraftEditor({
             history={resource.value.history}
             onRefresh={reread}
             onBack={onBack}
+            initialPreviewRevision={initialPreviewRevision}
+            onCharacter={onCharacter}
           />
         </LanguageProvider>
       )}
@@ -67,6 +123,8 @@ function EditorContent({
   history,
   onRefresh,
   onBack,
+  initialPreviewRevision,
+  onCharacter,
 }: {
   readonly client: WorkshopClient;
   readonly draftId: string;
@@ -74,15 +132,23 @@ function EditorContent({
   readonly history: RevisionHistory;
   readonly onRefresh: () => void;
   readonly onBack: () => void;
+  readonly initialPreviewRevision: number | null;
+  readonly onCharacter: (revision: number, characterId: string) => void;
 }) {
   const t = useT();
   const language = useLanguage();
   const head = history.revisions[0]?.revision ?? 0;
-  const [tab, setTab] = useState<'scenario' | 'generation'>(() =>
-    head ? 'scenario' : 'generation',
+  const [tab, setTab] = useState<'scenario' | 'generation' | 'visual'>(() =>
+    initialPreviewRevision !== null ? 'visual' : head ? 'scenario' : 'generation',
   );
-  const [source, setSource] = useState<ScenarioSource>({ kind: 'revision', revision: null });
+  const [source, setSource] = useState<ScenarioSource>({
+    kind: 'revision',
+    revision: initialPreviewRevision,
+  });
   const [older, setOlder] = useState<RevisionHistory | null>(null);
+  const [linkedEntity, setLinkedEntity] = useState<{ revision: number; entityId: string } | null>(
+    null,
+  );
   const [historyState, setHistoryState] = useState<'idle' | 'loading' | 'failed'>('idle');
   const signal = useRequestSignal();
   useEffect(() => {
@@ -182,6 +248,19 @@ function EditorContent({
         >
           {t('Generation')}
         </button>
+        <button
+          id="workshop-tab-visual"
+          role="tab"
+          aria-selected={tab === 'visual'}
+          tabIndex={tab === 'visual' ? 0 : -1}
+          aria-controls="workshop-editor-panel"
+          disabled={head === 0}
+          onClick={() => {
+            setTab('visual');
+          }}
+        >
+          {t('World preview')}
+        </button>
       </nav>
       <div
         id="workshop-editor-panel"
@@ -241,12 +320,32 @@ function EditorContent({
               client={client}
               draftId={draftId}
               source={source}
+              {...(linkedEntity ? { initialEntityId: linkedEntity.entityId } : {})}
+              onVisual={(revision, entityId) => {
+                setLinkedEntity({ revision, entityId });
+                setSource({ kind: 'revision', revision });
+                setTab('visual');
+                document.getElementById('workshop-tab-visual')?.focus();
+              }}
               onSaved={(revision) => {
                 setSource({ kind: 'revision', revision });
                 onRefresh();
               }}
             />
           </>
+        ) : tab === 'visual' ? (
+          <OwnerPreviewTab
+            key={source.kind === 'revision' ? (source.revision ?? head) : head}
+            client={client}
+            draftId={draftId}
+            revision={source.kind === 'revision' ? (source.revision ?? head) : head}
+            onCharacter={onCharacter}
+            {...(linkedEntity ? { initialEntityId: linkedEntity.entityId } : {})}
+            onScenario={(revision, entityId) => {
+              setLinkedEntity({ revision, entityId });
+              inspect({ kind: 'revision', revision });
+            }}
+          />
         ) : (
           <GenerationTab
             client={client}

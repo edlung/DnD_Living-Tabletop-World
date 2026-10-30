@@ -126,4 +126,38 @@ describe('workshop editor requests', () => {
     );
     expect(await failed.request('/package', schema)).toEqual({ kind: 'failed' });
   });
+  it('uses the same owner/authentication boundary for picture bytes', async () => {
+    const request = vi.fn(() =>
+      Promise.resolve(new Response(new Blob(['pixels'], { type: 'image/png' }))),
+    );
+    const client = new WorkshopClient('owner', vi.fn(), request);
+    const result = await client.bytes('/picture', new AbortController().signal);
+    expect(result.kind).toBe('ready');
+    expect(request).toHaveBeenCalledWith('/picture', undefined, expect.any(AbortSignal), 'owner');
+    const ended = vi.fn();
+    const revoked = new WorkshopClient('owner', ended, () => Promise.resolve(reply(401)));
+    expect(await revoked.bytes('/picture', new AbortController().signal)).toEqual({
+      kind: 'signed-out',
+    });
+    expect(ended).toHaveBeenCalledOnce();
+  });
+  it('never returns late or non-image bytes to a mounted picture consumer', async () => {
+    let resolve!: (response: Response) => void;
+    const request = () =>
+      new Promise<Response>((done) => {
+        resolve = done;
+      });
+    const client = new WorkshopClient('owner', vi.fn(), request);
+    const pending = client.bytes('/picture', new AbortController().signal);
+    client.release();
+    client.open();
+    resolve(new Response(new Blob(['old pixels'], { type: 'image/png' })));
+    expect(await pending).toEqual({ kind: 'cancelled' });
+    const invalid = new WorkshopClient('owner', vi.fn(), () =>
+      Promise.resolve(new Response('private error', { headers: { 'content-type': 'text/html' } })),
+    );
+    expect(await invalid.bytes('/picture', new AbortController().signal)).toEqual({
+      kind: 'failed',
+    });
+  });
 });

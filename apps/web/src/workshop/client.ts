@@ -39,10 +39,39 @@ export class WorkshopClient {
     this.#active = true;
   }
 
-  async request<T>(
+  request<T>(
     path: string,
     schema: z.ZodType<T>,
     options: { readonly body?: object; readonly signal?: AbortSignal } = {},
+  ): Promise<WorkshopResult<T>> {
+    return this.#perform(
+      path,
+      async (response) => {
+        const body: unknown = await response.json();
+        const parsed = schema.safeParse(body);
+        return parsed.success ? { kind: 'ready', value: parsed.data } : { kind: 'failed' };
+      },
+      options,
+    );
+  }
+
+  bytes(path: string, signal: AbortSignal): Promise<WorkshopResult<Blob>> {
+    return this.#perform(
+      path,
+      async (response) => {
+        const blob = await response.blob();
+        return ['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml'].includes(blob.type)
+          ? { kind: 'ready', value: blob }
+          : { kind: 'failed' };
+      },
+      { signal },
+    );
+  }
+
+  async #perform<T>(
+    path: string,
+    decode: (response: Response) => Promise<WorkshopResult<T>>,
+    options: { readonly body?: object; readonly signal?: AbortSignal },
   ): Promise<WorkshopResult<T>> {
     if (!this.#active || options.signal?.aborted) return { kind: 'cancelled' };
     const controller = new AbortController();
@@ -69,15 +98,14 @@ export class WorkshopClient {
       if (response?.status === 404) return { kind: 'missing' };
       if (response?.status === 422) return { kind: 'unavailable' };
       if (!response?.ok) return { kind: 'failed' };
-      let body: unknown;
+      let decoded: WorkshopResult<T>;
       try {
-        body = await response.json();
+        decoded = await decode(response);
       } catch {
         return { kind: 'failed' };
       }
       if (cancelled()) return { kind: 'cancelled' };
-      const parsed = schema.safeParse(body);
-      return parsed.success ? { kind: 'ready', value: parsed.data } : { kind: 'failed' };
+      return decoded;
     } finally {
       this.#controllers.delete(controller);
       options.signal?.removeEventListener('abort', abort);

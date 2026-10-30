@@ -29,7 +29,7 @@ export function BoardPlates({
   onPick,
   onPoint,
 }: {
-  readonly encounter: EncounterView;
+  readonly encounter: Pick<EncounterView, 'combatants'>;
   readonly layout: BoardLayout;
   readonly labelOf: LabelOf;
   /** A press on a combatant's plate: its square is chosen. */

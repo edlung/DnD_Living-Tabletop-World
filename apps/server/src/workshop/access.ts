@@ -1,9 +1,9 @@
 import { workshopIdSchema } from '@ltw/contracts';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 
-import { hashToken, secureCookies } from '../auth/tokens.ts';
+import { hashToken } from '../auth/tokens.ts';
 import { sendError } from '../http/errors.ts';
-import { workshopCookie, workshopCookieValues, workshopToken } from './cookies.ts';
+import { workshopToken } from './cookies.ts';
 import type { WorkshopDependencies } from './service.ts';
 
 export function workshopPrincipal(request: FastifyRequest, deps: WorkshopDependencies) {
@@ -12,14 +12,9 @@ export function workshopPrincipal(request: FastifyRequest, deps: WorkshopDepende
     ? Promise.resolve(null)
     : deps.store.session(hashToken(token), new Date(deps.clock.now()).toISOString());
 }
-export function workshopSignedOut(
-  request: FastifyRequest,
-  reply: FastifyReply,
-  deps: WorkshopDependencies,
-) {
-  if (workshopCookieValues(request.headers.cookie).length === 1) {
-    reply.header('set-cookie', workshopCookie('', 0, secureCookies(deps.publicOrigin)));
-  }
+export function workshopSignedOut(request: FastifyRequest, reply: FastifyReply) {
+  // An old response can arrive after another tab redeemed a newer cookie. Never expire that
+  // newer credential through a rejected request. Sign-out revokes its server session too.
   return sendError(reply, request, 'UNAUTHENTICATED');
 }
 
@@ -31,7 +26,7 @@ export async function authorizeWorkshop(
 ) {
   const session = await workshopPrincipal(request, deps);
   if (!session) {
-    workshopSignedOut(request, reply, deps);
+    workshopSignedOut(request, reply);
     return null;
   }
   const expected = request.headers['x-workshop-owner'];

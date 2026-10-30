@@ -21,6 +21,9 @@ export interface CampaignMaterialization {
   readonly snapshot: CampaignSnapshot | null;
   readonly plan: CampaignPlan;
 }
+export interface PreparedCampaignMaterialization extends CampaignMaterialization {
+  readonly preparedSnapshot: CampaignSnapshot | null;
+}
 const failedPlan = (): CampaignPlan => ({
   commands: [],
   commandPaths: [],
@@ -30,18 +33,23 @@ const failedPlan = (): CampaignPlan => ({
 });
 
 /** No database, provider, real campaign engine or externally supplied store is reachable here. */
-export async function materializeCampaign(
+async function materialize(
   revision: CampaignRevision,
   ownerId: string,
-): Promise<CampaignMaterialization> {
+  requestedEncounterId: string | null,
+): Promise<PreparedCampaignMaterialization> {
   const findings: CampaignFinding[] = [];
+  let preparedSnapshot: CampaignSnapshot | null = null;
   const parsed = campaignPackageSchema.safeParse(revision.content);
   const finish = (
     plan: CampaignPlan,
     snapshot: CampaignSnapshot | null,
-  ): CampaignMaterialization => ({
+  ): PreparedCampaignMaterialization => ({
     plan,
     snapshot,
+    preparedSnapshot: findings.some((finding) => finding.severity === 'error')
+      ? null
+      : preparedSnapshot,
     assessment: {
       compilerVersion: 1,
       readiness: findings.some((finding) => finding.severity === 'error')
@@ -153,8 +161,8 @@ export async function materializeCampaign(
         break;
       }
     }
-    if (valid)
-      await execute(
+    if (valid) {
+      const outcome = await execute(
         branch,
         {
           type: 'StartCombat',
@@ -169,8 +177,30 @@ export async function materializeCampaign(
         },
         path,
       );
+      if (
+        outcome === 'applied' &&
+        revision.identities.encounters[encounter.key] === requestedEncounterId
+      )
+        preparedSnapshot = await branch.load(revision.draftId);
+    }
   }
   return finish(effectivePlan, snapshot);
+}
+
+export function materializeCampaign(
+  revision: CampaignRevision,
+  ownerId: string,
+): Promise<CampaignMaterialization> {
+  return materialize(revision, ownerId, null);
+}
+
+/** Owner-only preview callers may inspect one isolated prepared branch; initial state stays intact. */
+export function materializeCampaignEncounter(
+  revision: CampaignRevision,
+  ownerId: string,
+  encounterId: string,
+): Promise<PreparedCampaignMaterialization> {
+  return materialize(revision, ownerId, encounterId);
 }
 
 export async function assessCampaignRevision(

@@ -65,8 +65,13 @@ export class MemoryCampaignRevisionRepository implements CampaignRevisionReposit
   readonly #revisions = new Map<string, CampaignRevision[]>();
   readonly #requests = new Map<string, { fingerprint: string; revision: CampaignRevision }>();
   readonly #identities = new Map<string, readonly CampaignIdentityRecord[]>();
+  readonly #appendHooks = new Set<(ownerId: string, revision: CampaignRevision) => () => void>();
   constructor(workshop: WorkshopStore) {
     this.#workshop = workshop;
+  }
+  /** Test-only atomic authoring metadata hook: prepare before mutation, then commit synchronously. */
+  registerAppendHook(hook: (ownerId: string, revision: CampaignRevision) => () => void): void {
+    this.#appendHooks.add(hook);
   }
 
   async append(raw: AppendCampaignRevision): Promise<AppendCampaignRevisionResult> {
@@ -99,9 +104,13 @@ export class MemoryCampaignRevisionRepository implements CampaignRevisionReposit
       createdAt: input.createdAt,
     };
     const stored = structuredClone(revision);
+    const commits = [...this.#appendHooks].map((hook) =>
+      hook(input.ownerId, structuredClone(stored)),
+    );
     this.#revisions.set(key, [...revisions, stored]);
     this.#identities.set(key, [...registry, ...allocation.added]);
     this.#requests.set(requestKey, { fingerprint, revision: stored });
+    for (const commit of commits) commit();
     return { kind: 'saved', revision: structuredClone(stored) };
   }
   async latest(ownerId: string, draftId: string): Promise<CampaignRevision | null> {

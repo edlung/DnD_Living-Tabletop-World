@@ -1,4 +1,5 @@
 import type pg from 'pg';
+import type { WorkshopImageSubject } from '@ltw/ai';
 
 import { fixedStep } from '../ai/accounting/deadline.ts';
 import { readCommitted, type Tx } from '../ai/accounting/pg-transaction.ts';
@@ -26,7 +27,8 @@ export const ORPHAN_AFTER_MINUTES = Math.ceil(MAX_ASSET_TIMEOUT_MS / 60_000) + 5
 /** An unsettled reservation: its whole amount still counts as spent. */
 export interface OpenImageReservation {
   readonly chargeId: string;
-  readonly campaignId: string;
+  readonly campaignId: string | null;
+  readonly subject?: WorkshopImageSubject;
   readonly requestId: string;
   readonly provider: string;
   readonly model: string;
@@ -38,7 +40,13 @@ export interface OpenImageReservation {
 
 interface OpenRow {
   readonly charge_id: string;
-  readonly campaign_id: string;
+  readonly campaign_id: string | null;
+  readonly workshop_owner_id: string | null;
+  readonly workshop_draft_id: string | null;
+  readonly workshop_job_id: string | null;
+  readonly workshop_auth_session_id: string | null;
+  readonly workshop_worker_id: string | null;
+  readonly workshop_fence: string | null;
   readonly request_id: string;
   readonly provider: string;
   readonly model: string;
@@ -48,6 +56,8 @@ interface OpenRow {
 }
 
 const OPEN_RESERVATIONS = `SELECT c.charge_id::text AS charge_id, c.campaign_id, c.request_id,
+    c.workshop_owner_id::text,c.workshop_draft_id::text,c.workshop_job_id::text,
+    c.workshop_auth_session_id::text,c.workshop_worker_id::text,c.workshop_fence::text,
     c.provider, c.model, c.reserved_micros::text AS reserved, c.created_at,
     floor(extract(epoch FROM clock_timestamp() - c.created_at) / 60)::int AS age_minutes
   FROM ltw_image_charges c LEFT JOIN ltw_image_settlements s USING (charge_id)
@@ -75,6 +85,24 @@ function toOpen(row: OpenRow): OpenImageReservation {
   return {
     chargeId: row.charge_id,
     campaignId: row.campaign_id,
+    ...(row.workshop_owner_id !== null &&
+    row.workshop_draft_id !== null &&
+    row.workshop_job_id !== null &&
+    row.workshop_auth_session_id !== null &&
+    row.workshop_worker_id !== null &&
+    row.workshop_fence !== null
+      ? {
+          subject: {
+            kind: 'workshop' as const,
+            ownerId: row.workshop_owner_id,
+            draftId: row.workshop_draft_id,
+            jobId: row.workshop_job_id,
+            authSessionId: row.workshop_auth_session_id,
+            workerId: row.workshop_worker_id,
+            fence: row.workshop_fence,
+          },
+        }
+      : {}),
     requestId: row.request_id,
     provider: row.provider,
     model: row.model,

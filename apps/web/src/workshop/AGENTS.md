@@ -1,4 +1,4 @@
-# Workshop browser access and campaign drafts (Stages 380, 410)
+# Workshop browser access and campaign drafts (Stages 380, 410, 420)
 
 Read the accepted Stage 370 contract, current work order and `apps/web/AGENTS.md`.
 
@@ -19,6 +19,10 @@ Read the accepted Stage 370 contract, current work order and `apps/web/AGENTS.md
   all step/candidate content; `generation/` polls it only while visible/running.
 - `scenario/` owns the linked index, complete structured inspector and basic
   field corrections. Never infer runtime facts or execute any scenario plan.
+- `preview/` owns stored-revision scene/board views. Its character branch loads only
+  projected DTOs; the owner editor/catalogue unmount before that branch is shown.
+- `pictures/` is owner-only generation/selection with manifest CAS, exact purpose
+  briefs and explicit candidate choice. It never mounts in character preview.
 - Keep an uncertain write's exact payload/nonce reachable across object
   navigation; do not silently replay it as a different correction or generation.
 - A changed/revoked owner drops all private content. New server reads remain scoped.

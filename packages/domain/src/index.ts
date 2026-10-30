@@ -93,6 +93,10 @@ export {
   type ListResult,
 } from './knowledge/queries.ts';
 export { controlledCharacter, holderPerspective } from './knowledge/perspective.ts';
+export {
+  projectionPartyMemberIds,
+  type PartyProjectionContext,
+} from './knowledge/projection-party.ts';
 export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
 export { knownEntityIds, visibleRecords } from './knowledge/projection.ts';

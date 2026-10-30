@@ -11,7 +11,7 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   The session keeps scoped stages, checks, adversarial passes and reports and
   continues autonomously. Final functionality is shown to the owner; no runtime
   DM confirmation, architecture invariant, deployment or human-acceptance boundary
-  is waived. Current implementation scope: `work-orders/STAGE_410.md`.
+  is waived. Current implementation scope: `work-orders/STAGE_420.md`.
 
 - In the current project chat the owner requested AI-generated campaigns with
   scenario and visual preview, approved implementation of the proposed Stages
@@ -48,7 +48,11 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   Private linked scenario inspection, immutable basic corrections and generation
   browser; full offline validation passed:3,132unit,286integration,156browser tests.
   Report:`reports/STAGE_410_COMPLETION.md`. Continue to420 under delegated authority.
-- Stages420–450 continue after their scoped technical verification under the
+- Stage420: **TECHNICALLY_VERIFIED**, `work-orders/STAGE_420.md`. Scoped owner/
+  character visual preview, durable private pictures and explicit chosen manifests.
+  Full offline validation passed:3,185unit,306integration,164browser tests;36layout/
+  axe state-width combinations passed. Report:`reports/STAGE_420_COMPLETION.md`.
+- Stages430–450 continue after their scoped technical verification under the
   owner's delegated continuation. Runtime confirmation and final human acceptance
   remain the owner's actions.
 - Stage 370's full offline validation passed (2,985 unit, 237 integration, 132

@@ -3,6 +3,7 @@ import {
   combatantOf,
   currentCombatant,
   knownEntityIds,
+  projectionPartyMemberIds,
   type ResolvedPerspective,
   type WorldState,
 } from '@ltw/domain';
@@ -32,7 +33,8 @@ export function encounterView(
 
   const known = knownEntityIds(state, perspective);
   const party = new Set<string>(holder === null ? [] : [holder]);
-  if (holder !== null && state.roster.has(holder)) state.roster.forEach((_, id) => party.add(id));
+  const members = projectionPartyMemberIds(state, perspective);
+  if (holder !== null && members.has(holder)) members.forEach((id) => party.add(id));
 
   const combatants = encounter.combatants.map((combatant): EncounterCombatantView => {
     const entity = state.entities.get(combatant.entityId);

@@ -13,6 +13,7 @@ import { MemoryCampaignRevisionRepository } from './campaign-packages.ts';
 import { bellCampaign } from '../../../../packages/domain/src/campaign/testing/bell.ts';
 import { englishBellCampaign } from './generation/bell-english.ts';
 import { seedWorkshopGeneration } from './ui-workshop-generation.ts';
+import { seedWorkshopImages, completePreviewVisualBriefs } from './ui-workshop-images.ts';
 import { SIGN_IN_ORIGIN, dmInvitationToken } from './ui-sign-in-links.ts';
 import {
   WORKSHOP_CAMPAIGN,
@@ -33,6 +34,7 @@ export async function seedWorkshopAccess(
 }> {
   const store = new MemoryWorkshopStore();
   const revisions = new MemoryCampaignRevisionRepository(store);
+  const { images, cancelImage, stopImages } = await seedWorkshopImages(store, revisions, seed);
   const workshop: WorkshopDependencies = {
     store,
     packages: revisions,
@@ -56,12 +58,16 @@ export async function seedWorkshopAccess(
       tokenHash: hashToken(workshopInvitationToken(seed, name)),
       createdAt: new Date(now).toISOString(),
       expiresAt: new Date(now + 24 * 60 * 60_000).toISOString(),
-      authorizationSource: name.startsWith('scenario-')
-        ? 'browser-test:stage-410'
-        : 'browser-test:stage-380',
+      authorizationSource: name.startsWith('preview-')
+        ? 'browser-test:stage-420'
+        : name.startsWith('scenario-')
+          ? 'browser-test:stage-410'
+          : 'browser-test:stage-380',
     });
-    if (name.startsWith('scenario-')) {
-      const content = name === 'scenario-ru' ? bellCampaign() : englishBellCampaign();
+    if (name.startsWith('scenario-') || name.startsWith('preview-')) {
+      const content =
+        name === 'scenario-ru' || name === 'preview-ru' ? bellCampaign() : englishBellCampaign();
+      if (name.startsWith('preview-')) completePreviewVisualBriefs(content);
       const ownerId = workshopOwnerId(seed, name),
         draftId = workshopDraftId(seed, name);
       await store.createDraft(
@@ -112,5 +118,10 @@ export async function seedWorkshopAccess(
     revisions,
     seed,
   );
-  return { workshop: { ...workshop, generation, cancelGeneration }, stopGeneration };
+  return {
+    workshop: { ...workshop, generation, cancelGeneration, images, cancelImage },
+    stopGeneration: async () => {
+      await Promise.all([stopGeneration(), stopImages()]);
+    },
+  };
 }

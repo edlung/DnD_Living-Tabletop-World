@@ -14,7 +14,7 @@ import {
   uprightTransform,
   type Size,
 } from './geometry.ts';
-import { useCombatantLabels } from '../labels.ts';
+import type { LabelOf } from '../labels.ts';
 import { BoardGround } from './board-ground.tsx';
 import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
@@ -66,6 +66,8 @@ type StageStyle = CSSProperties & {
  */
 export function Board({
   encounter,
+  labelOf,
+  currentCombatantId = null,
   selfId,
   selected,
   path,
@@ -76,7 +78,10 @@ export function Board({
   view,
   onPick,
 }: {
-  readonly encounter: EncounterView;
+  readonly encounter: Pick<EncounterView, 'battlefield' | 'combatants'>;
+  readonly labelOf: LabelOf;
+  /** Only a live encounter has an active turn; prepared layouts omit it. */
+  readonly currentCombatantId?: string | null;
   readonly selfId: string | null;
   readonly selected: Square | null;
   /** The advisory route to the selected square, without the mover's own square. */
@@ -109,7 +114,6 @@ export function Board({
   const walk = new Set(path.map(key));
   const destination = path.at(-1);
   const mover = encounter.combatants.find((entry) => entry.entity.entityId === selfId);
-  const labelOf = useCombatantLabels(encounter);
   // The pointer over a square, or over the plate of the combatant standing on it (`plates.tsx`).
   const point = (square: Square, over: boolean) => {
     if (over) setPointed(square);
@@ -125,8 +129,7 @@ export function Board({
     const target =
       selected ??
       mover?.position ??
-      encounter.combatants.find((entry) => entry.entity.entityId === encounter.currentCombatantId)
-        ?.position;
+      encounter.combatants.find((entry) => entry.entity.entityId === currentCombatantId)?.position;
     if (!element || !target) return;
     if (element.scrollWidth <= element.clientWidth && element.scrollHeight <= element.clientHeight)
       return;
@@ -209,7 +212,7 @@ export function Board({
               image={imageOf(occupant.entity.entityId)}
               figure={figureOf(occupant.entity.entityId)}
               tilted={tilt !== null}
-              current={occupant.entity.entityId === encounter.currentCombatantId}
+              current={occupant.entity.entityId === currentCombatantId}
               selected={isSelected}
               inArea={inArea}
             />

@@ -113,6 +113,18 @@ stop dispatch. To restore a finite stop, record `--scope images --mode finite`
 with the operator's authorization and set the image ceiling to zero. Cancellation,
 provider failures and actual/unknown cost accounting remain active in both modes.
 
+The campaign workshop opens generated drafts in Scenario and World preview. The
+owner can inspect initial scenes, switch to one prepared character's permitted
+view, inspect a static prepared encounter layout and explicitly request/select
+draft pictures. Pictures require the existing `openrouter-openai` configuration
+and stored images UNLIMITED policy; placeholder mode reports unavailable. A
+candidate becomes visible in preview only after selection. Figures/maps require
+the chosen portrait/location reference. Changed appearance/style/reference marks
+affected choices stale while retaining bytes for comparison. Preview and image
+selection create no live campaign. Activation remains a separate confirmed flow.
+Recovery compatibility for workshop accounting/manifests is described in
+`deploy/RUNBOOK.md`§3; installing this source does not migrate or enable a runtime.
+
 CI (`.github/workflows/ci.yml`) runs the same steps on Node 24 with a PostgreSQL 18 service container, and a second job runs `deploy/verify/ci.sh`.
 
 ## Knowledge API (development)

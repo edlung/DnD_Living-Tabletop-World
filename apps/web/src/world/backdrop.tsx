@@ -1,5 +1,6 @@
 import type { PlayerAssetView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
+import type { ReactNode } from 'react';
 
 import { useApprovedImage } from '../visual/approved-images.ts';
 import { textureUrl } from '../visual/ui-kit.ts';
@@ -13,10 +14,12 @@ import { textureUrl } from '../visual/ui-kit.ts';
 export function Backdrop({
   image,
   settled,
+  missingImageNote,
 }: {
   readonly image: PlayerAssetView | null;
   /** The scene has loaded: a missing image is now known to be missing. */
   readonly settled: boolean;
+  readonly missingImageNote?: ReactNode;
 }) {
   const t = useT();
   const url = useApprovedImage(image);
@@ -29,7 +32,9 @@ export function Backdrop({
         aria-hidden="true"
       />
       <div className="backdrop-vignette" aria-hidden="true" />
-      {settled && !image && <p className="backdrop-note">{t('No approved image yet')}</p>}
+      {settled && !image && (
+        <p className="backdrop-note">{missingImageNote ?? t('No approved image yet')}</p>
+      )}
     </div>
   );
 }
