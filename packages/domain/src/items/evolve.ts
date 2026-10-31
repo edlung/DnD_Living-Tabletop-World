@@ -64,6 +64,23 @@ export function applyItemTransferred(state: WorldState, event: Ev<'ItemTransferr
   );
 }
 
+export function applyItemSplit(state: WorldState, event: Ev<'ItemSplit'>): WorldState {
+  const { itemId, newItemId, holderId, quantity } = event.payload;
+  const current = mustHold(state, itemId);
+  if (
+    current.holderId !== holderId ||
+    current.slot !== null ||
+    current.quantity <= quantity ||
+    state.entities.get(newItemId)?.kind !== 'item' ||
+    possessionOf(state, newItemId)
+  )
+    throw new CorruptHistoryError(`item ${itemId} cannot be split`);
+  return put(put(state, itemId, { ...current, quantity: current.quantity - quantity }), newItemId, {
+    ...current,
+    quantity,
+  });
+}
+
 export function applyItemRestore(
   state: WorldState,
   restore: Extract<Restore, { fact: 'possession' }>,

@@ -51,6 +51,7 @@ import {
   itemEquippedPayloadSchema,
   itemGrantedPayloadSchema,
   itemRestoreSchemas,
+  itemSplitPayloadSchema,
   itemTransferredPayloadSchema,
   itemUnequippedPayloadSchema,
   itemUsedPayloadSchema,
@@ -262,6 +263,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ItemUnequipped', itemUnequippedPayloadSchema),
   event('ItemUsed', itemUsedPayloadSchema),
   event('ItemTransferred', itemTransferredPayloadSchema),
+  event('ItemSplit', itemSplitPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

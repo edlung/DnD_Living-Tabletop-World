@@ -382,3 +382,48 @@ describe('standing beside', () => {
     expect(adjacentInEncounter(state, 'a', 'nobody')).toBe(false);
   });
 });
+
+describe('part of a stack', () => {
+  it('hands over some units as an item of their own and keeps the rest', async () => {
+    await grant('balm', 'woodland-balm', 3);
+    const given = expectAccepted(
+      await act({ type: 'GiveItem', itemId: 'balm', toHolderId: 'friend', quantity: 1 }),
+    );
+    const state = await verified();
+    expect(possessionOf(state, 'balm')).toMatchObject({ holderId: 'hero', quantity: 2 });
+    const moved = [...state.possessions].find(
+      ([id, p]) => id !== 'balm' && p.holderId === 'friend',
+    );
+    expect(moved?.[1]).toMatchObject({ catalogId: 'woodland-balm', quantity: 1 });
+    expect(state.entities.get(moved?.[0] ?? '')?.name).toBe('balm');
+    // Undo puts every unit back under the one stack.
+    expectAccepted(await harness.submit({ type: 'UndoCommand', targetCommandId: given.commandId }));
+    const back = await verified();
+    expect(possessionOf(back, 'balm')?.quantity).toBe(3);
+    expect(moved && possessionOf(back, moved[0])).toBeUndefined();
+  });
+
+  it('drops part of a stack where the character stands, and refuses impossible portions', async () => {
+    await grant('balm', 'woodland-balm', 3);
+    await grant('cloak', 'caravan-cloak');
+    expectRejected(await act({ type: 'DropItem', itemId: 'balm', quantity: 4 }), 'INVALID_ITEM');
+    expectAccepted(await act({ type: 'DropItem', itemId: 'balm', quantity: 2 }));
+    const state = await verified();
+    expect(possessionOf(state, 'balm')?.quantity).toBe(1);
+    const ground = [...state.possessions].find(([, p]) => p.holderId === null);
+    expect(ground?.[1].quantity).toBe(2);
+    expect(state.entities.get(ground?.[0] ?? '')?.placement?.locationId).toBe('square');
+  });
+
+  it('conserves the total when the same stack is divided twice at once', async () => {
+    await grant('balm', 'woodland-balm', 3);
+    await Promise.all(
+      [2, 2].map((quantity) =>
+        act({ type: 'GiveItem', itemId: 'balm', toHolderId: 'friend', quantity }),
+      ),
+    );
+    const state = await verified();
+    const total = [...state.possessions.values()].reduce((sum, p) => sum + p.quantity, 0);
+    expect(total).toBe(3);
+  });
+});

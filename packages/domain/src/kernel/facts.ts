@@ -396,6 +396,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ItemUnequipped':
     case 'ItemUsed':
     case 'ItemTransferred':
+    case 'ItemSplit':
       return itemFootprint(event);
     case 'AuthoringPremisesRecorded':
       // Reads only: what an authoring commit's legality rested on (ADR 0019 §2).

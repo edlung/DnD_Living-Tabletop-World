@@ -16,6 +16,8 @@ export const UI_ITEM_CAMPAIGNS = {
   axe: 'ui-items-axe',
   /** Elowen's turn in the road ambush, wounded, with the seeded gear (Stage 490). */
   fight: 'ui-items-fight',
+  /** Part of a stack is handed over (Stage 490). */
+  split: 'ui-items-split',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -58,6 +60,7 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.take, 'en'],
     [UI_ITEM_CAMPAIGNS.ru, 'ru'],
     [UI_ITEM_CAMPAIGNS.axe, 'en'],
+    [UI_ITEM_CAMPAIGNS.split, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

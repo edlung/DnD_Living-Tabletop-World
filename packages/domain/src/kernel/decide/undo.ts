@@ -362,6 +362,17 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: before.weather.get(event.payload.locationId) ?? null,
         });
         break;
+      case 'ItemSplit':
+        restores.push(
+          {
+            fact: 'possession',
+            itemId: event.payload.itemId,
+            holderId: null,
+            value: before.possessions.get(event.payload.itemId) ?? null,
+          },
+          { fact: 'possession', itemId: event.payload.newItemId, holderId: null, value: null },
+        );
+        break;
       case 'ItemGranted':
       case 'ItemEquipped':
       case 'ItemUnequipped':

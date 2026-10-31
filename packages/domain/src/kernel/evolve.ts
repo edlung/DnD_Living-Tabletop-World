@@ -49,6 +49,7 @@ import {
   applyItemEquipped,
   applyItemGranted,
   applyItemRestore,
+  applyItemSplit,
   applyItemTransferred,
   applyItemUnequipped,
   applyItemUsed,
@@ -244,6 +245,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyItemUsed(state, event);
     case 'ItemTransferred':
       return applyItemTransferred(state, event);
+    case 'ItemSplit':
+      return applyItemSplit(state, event);
     case 'WeatherSet':
       return applyWeatherSet(state, event);
     case 'ChronicleGenerated':

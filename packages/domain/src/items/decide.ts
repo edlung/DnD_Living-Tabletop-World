@@ -264,6 +264,67 @@ export function decideUseItem(state: WorldState, command: ResolvedCommandOf<'Use
   );
 }
 
+/**
+ * How much of a stack moves, and the events that make it a thing of its own when it is part:
+ * a new item entity (its ID drawn by the engine) takes that quantity from the stack.
+ */
+function portion(
+  state: WorldState,
+  command: {
+    readonly itemId: string;
+    readonly quantity?: number | undefined;
+    readonly characterId: string;
+    readonly resolution: { readonly ids: readonly string[] };
+  },
+  possession: Possession,
+):
+  | {
+      readonly ok: true;
+      readonly itemId: string;
+      readonly quantity: number;
+      readonly events: KernelEvent[];
+    }
+  | (Decision & { ok: false }) {
+  const wanted = command.quantity ?? possession.quantity;
+  if (wanted > possession.quantity)
+    return reject('INVALID_ITEM', 'Not that many are carried', { itemId: command.itemId });
+  if (wanted === possession.quantity)
+    return { ok: true, itemId: command.itemId, quantity: wanted, events: [] };
+  if (!entryOf(possession)?.stackable)
+    return reject('INVALID_ITEM', 'Only a stack can be divided', { itemId: command.itemId });
+  const newItemId = command.resolution.ids[0];
+  const source = state.entities.get(command.itemId);
+  if (newItemId === undefined || !source)
+    return reject('INVALID_ITEM', 'The stack cannot be divided now', { itemId: command.itemId });
+  return {
+    ok: true,
+    itemId: newItemId,
+    quantity: wanted,
+    events: [
+      {
+        type: 'EntityCreated',
+        payload: {
+          entityId: newItemId,
+          kind: 'item',
+          name: source.name,
+          description: source.description,
+          existsSince: source.existsSince,
+          location: null,
+        },
+      },
+      {
+        type: 'ItemSplit',
+        payload: {
+          itemId: command.itemId,
+          newItemId,
+          holderId: command.characterId,
+          quantity: wanted,
+        },
+      },
+    ],
+  };
+}
+
 export function decideGiveItem(
   state: WorldState,
   command: ResolvedCommandOf<'GiveItem'>,
@@ -291,19 +352,22 @@ export function decideGiveItem(
     return reject('NOT_PRESENT', `"${command.toHolderId}" is not here`, {
       entityId: command.toHolderId,
     });
+  const part = portion(state, command, own.possession);
+  if (!part.ok) return part;
   return played(
     state,
     command.characterId,
     [{ kind: 'perceived', entityId: command.toHolderId }],
     [
+      ...part.events,
       {
         type: 'ItemTransferred',
         payload: {
-          itemId: command.itemId,
+          itemId: part.itemId,
           from: command.characterId,
           to: command.toHolderId,
           catalogId: own.possession.catalogId,
-          quantity: own.possession.quantity,
+          quantity: part.quantity,
         },
       },
     ],
@@ -321,28 +385,31 @@ export function decideDropItem(
     return reject('INVALID_ITEM', 'Take the item off before dropping it');
   const here = own.actor.placement?.locationId;
   if (here === undefined) return reject('NOT_PRESENT', 'There is nowhere to drop it');
+  const part = portion(state, command, own.possession);
+  if (!part.ok) return part;
   return played(
     state,
     command.characterId,
     [{ kind: 'self' }],
     [
+      ...part.events,
       {
         type: 'ItemTransferred',
         payload: {
-          itemId: command.itemId,
+          itemId: part.itemId,
           from: command.characterId,
           to: null,
           catalogId: own.possession.catalogId,
-          quantity: own.possession.quantity,
+          quantity: part.quantity,
         },
       },
       {
         type: 'EntityPlaced',
         payload: {
-          entityId: command.itemId,
+          entityId: part.itemId,
           locationId: here,
           since: state.clock,
-          previousLocationId: state.entities.get(command.itemId)?.placement?.locationId ?? null,
+          previousLocationId: state.entities.get(part.itemId)?.placement?.locationId ?? null,
         },
       },
     ],

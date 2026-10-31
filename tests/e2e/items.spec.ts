@@ -16,6 +16,7 @@ const CAMPAIGNS = {
   ru: 'ui-items-ru',
   axe: 'ui-items-axe',
   fight: 'ui-items-fight',
+  split: 'ui-items-split',
 } as const;
 
 const row = (page: Page, name: string | RegExp) =>
@@ -69,6 +70,18 @@ test('an item can be handed to someone who is here, and dropped', async ({ page 
   await buckler.getByRole('button', { name: 'Drop', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'You dropped it.' })).toBeVisible();
   await expect(page.getByRole('button', { name: /^Oak buckler/ })).toHaveCount(0);
+});
+
+test('part of a stack can be handed over', async ({ page }) => {
+  await enterWorld(page, TOKENS.player, CAMPAIGNS.split);
+  await openSheet(page, 'Items');
+  const balm = await openItem(page, 'Spare balm');
+  await balm.getByLabel('How many of Spare balm', { exact: true }).selectOption('1');
+  await balm.getByLabel('Give Spare balm to', { exact: true }).selectOption({ label: 'Mira Vale' });
+  await balm.getByRole('button', { name: 'Give', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'You handed it over.' })).toBeVisible();
+  // One is left in the pack.
+  await expect(page.getByRole('button', { name: /^Spare balm/ })).not.toContainText('×');
 });
 
 test('a thing on the ground is picked up from the scene', async ({ page }) => {

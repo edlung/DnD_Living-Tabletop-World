@@ -37,6 +37,10 @@ export function ItemRow({
   const id = useId();
   const [slot, setSlot] = useState<EquipSlot | null>(null);
   const [toHolderId, setToHolderId] = useState('');
+  // How many of a stack to hand over or drop; everything unless chosen otherwise.
+  const [amount, setAmount] = useState<number | null>(null);
+  const howMany = Math.min(amount ?? item.quantity, item.quantity);
+  const part = howMany < item.quantity ? { quantity: howMany } : {};
   const catalog = item.catalog;
   const art = item.catalog ? itemArtUrl(item.catalog.itemId) : null;
   const kind = kindName(item, language);
@@ -141,6 +145,21 @@ export function ItemRow({
                 {t('Use')}
               </button>
             )}
+            {item.slot === null && item.quantity > 1 && (
+              <select
+                aria-label={t('How many of {item}', { item: item.name })}
+                value={howMany}
+                onChange={(event) => {
+                  setAmount(Number(event.target.value));
+                }}
+              >
+                {Array.from({ length: item.quantity }, (_, index) => index + 1).map((count) => (
+                  <option key={count} value={count}>
+                    {t('{count} of {total}', { count, total: item.quantity })}
+                  </option>
+                ))}
+              </select>
+            )}
             {item.slot === null && recipients.length > 0 && (
               <span className="item-give">
                 <select
@@ -161,7 +180,7 @@ export function ItemRow({
                   type="button"
                   disabled={blocked || toHolderId === ''}
                   onClick={() => {
-                    onRun({ type: 'GiveItem', itemId: item.itemId, toHolderId });
+                    onRun({ type: 'GiveItem', itemId: item.itemId, toHolderId, ...part });
                     setToHolderId('');
                   }}
                 >
@@ -174,7 +193,7 @@ export function ItemRow({
                 type="button"
                 disabled={blocked}
                 onClick={() => {
-                  onRun({ type: 'DropItem', itemId: item.itemId });
+                  onRun({ type: 'DropItem', itemId: item.itemId, ...part });
                 }}
               >
                 {t('Drop')}

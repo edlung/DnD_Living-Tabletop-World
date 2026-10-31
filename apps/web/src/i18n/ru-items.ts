@@ -21,6 +21,8 @@ registerRussian({
   Weight: 'Вес',
   Effect: 'Действие',
   'Unique object': 'Особый предмет',
+  'How many of {item}': 'Сколько: {item}',
+  '{count} of {total}': '{count} из {total}',
   Wear: 'Надеть',
   'Take off': 'Снять',
   Use: 'Использовать',
