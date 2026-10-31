@@ -40,5 +40,11 @@ export const FINDING_LABELS: Readonly<Record<string, string>> = {
   COMBATANT_INACTIVE: 'A prepared combatant must be active.',
   DUPLICATE_VISUAL: 'Keep one visual brief for each object and purpose.',
   DUPLICATE_RELATIONSHIP: 'An NPC can have one initial attitude.',
+  POSSESSION_DUPLICATE: 'An item has one starting holder.',
+  POSSESSION_PLACED: 'A carried item has no place of its own; remove its placement.',
+  POSSESSION_INACTIVE: 'A carried item must be active.',
+  POSSESSION_HOLDER_INACTIVE: 'The one who carries an item must be active.',
+  POSSESSION_QUANTITY: 'Only a stackable catalog item has a quantity.',
+  CATALOG_UNKNOWN: 'The catalog has no such item.',
   DUPLICATE_QUEST: 'Quest design references must be unique.',
 };

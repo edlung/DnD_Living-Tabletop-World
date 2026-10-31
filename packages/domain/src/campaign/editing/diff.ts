@@ -86,8 +86,8 @@ export function diffCampaignPackages(
     emit('CHANGED', path, targetId, left, right);
   };
   for (const section of CAMPAIGN_EDIT_SECTIONS) {
-    const left = before.content[section],
-      right = after[section];
+    const left = before.content[section] ?? [],
+      right = after[section] ?? [];
     const targetId = `section:${section}`;
     if (
       !KEYED_CAMPAIGN_EDIT_SECTIONS.has(section) ||

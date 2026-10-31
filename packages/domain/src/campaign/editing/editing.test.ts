@@ -31,7 +31,7 @@ describe('stable protected campaign edits', () => {
     expect(base.content.entities.find((item) => item.key === 'iva')?.description).not.toBe(
       'Cannot mutate the base',
     );
-    expect(campaignEditTargets(base).filter((item) => item.key === null)).toHaveLength(14);
+    expect(campaignEditTargets(base).filter((item) => item.key === null)).toHaveLength(15);
   });
 
   it('uses incoming declared dependencies and keeps locked dependents read-only', () => {
@@ -242,5 +242,29 @@ describe('stable protected campaign edits', () => {
         (change) => change.kind === 'REMOVED' && typeof change.before === 'object',
       ),
     ).toBe(true);
+  });
+
+  it('guards starting items: silent changes are out of scope, the section target allows them, absent equals empty', () => {
+    const base = editRevision();
+    const ivaPlan = buildCampaignEditPlan(base, editLocks(base), editManifest(base), 'Change Iva', [
+      `entity:${base.identities.entities['iva']}`,
+    ]);
+    if (!ivaPlan.spec) throw new Error('missing spec');
+    const row = { item: 'plan-copy', holder: 'alena', quantity: 1 };
+    const sneaky = { ...structuredClone(base.content), possessions: [row] };
+    expect(validateCampaignEditOutput(base, sneaky, ivaPlan.spec).ok).toBe(false);
+    // An empty list where none was saved is not a change.
+    const empty = { ...structuredClone(base.content), possessions: [] };
+    expect(validateCampaignEditOutput(base, empty, ivaPlan.spec).ok).toBe(true);
+
+    const section = buildCampaignEditPlan(
+      base,
+      editLocks(base),
+      editManifest(base),
+      'Give starting items',
+      ['section:possessions'],
+    );
+    if (!section.spec) throw new Error('missing section spec');
+    expect(validateCampaignEditOutput(base, sneaky, section.spec).ok).toBe(true);
   });
 });

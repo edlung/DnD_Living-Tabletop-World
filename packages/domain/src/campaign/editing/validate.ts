@@ -31,10 +31,10 @@ function outsideScope(
   const issues: string[] = [];
   const targets = campaignEditTargetRecords(base);
   for (const section of CAMPAIGN_EDIT_SECTIONS) {
-    if (allowed.has(`section:${section}`) || equal(base.content[section], candidate[section]))
-      continue;
-    const before = base.content[section],
-      after = candidate[section];
+    // Starting items are absent from packages saved before Stage 470: absent equals empty.
+    const before = base.content[section] ?? [],
+      after = candidate[section] ?? [];
+    if (allowed.has(`section:${section}`) || equal(before, after)) continue;
     if (!KEYED.has(section) || !Array.isArray(before) || !Array.isArray(after)) {
       issues.push(`EDIT_OUTSIDE_SCOPE:${section}`);
       continue;

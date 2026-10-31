@@ -12,6 +12,7 @@ import {
   type CampaignPlan,
   type PlanContext,
 } from './context.ts';
+import { validatePossessions } from './possessions.ts';
 import { validateEntities, validateIdentities, validateKnowledge } from './references.ts';
 import { rewriteQuests, validateStory } from './story.ts';
 
@@ -36,6 +37,7 @@ export function buildCampaignPlan(
   validateIdentities(context);
   validateEntities(context);
   validateKnowledge(context);
+  validatePossessions(context);
   validateStory(context);
   const locations = topological(
     context,
@@ -117,6 +119,18 @@ export function buildCampaignPlan(
         `entities.${entity.key}.statBlock`,
       );
   }
+  // What each holder carries from the first moment (ADR 0039): items start carried, never worn.
+  for (const row of [...(content.possessions ?? [])].sort((a, b) => compareKey(a.item, b.item)))
+    add(
+      {
+        type: 'GrantItem',
+        itemId: identity(identities.entities, row.item),
+        holderId: identity(identities.entities, row.holder),
+        ...(row.catalog === undefined ? {} : { catalogId: row.catalog }),
+        quantity: row.quantity,
+      },
+      `possessions.${row.item}`,
+    );
   for (const record of records) {
     const knowledgeId = identity(identities.knowledge, record.key);
     const scope: KnowledgeScope =

@@ -1,4 +1,4 @@
-import { CharacterSheetDetails, StatusPanel, useT } from '@ltw/ui';
+import { CharacterSheetDetails, StatusPanel, useLanguage, useT } from '@ltw/ui';
 import type { CampaignPreviewEntityRef } from '@ltw/contracts';
 import { useCallback, useState } from 'react';
 
@@ -116,7 +116,10 @@ function PreviewSheet({
   const { resource, retry } = useResource(`preview-sheet:${entityId}`, load);
   return resource.status === 'ready' ? (
     resource.value ? (
-      <CharacterSheetDetails name={resource.value.entity.name} sheet={resource.value.sheet} />
+      <>
+        <CharacterSheetDetails name={resource.value.entity.name} sheet={resource.value.sheet} />
+        <PreviewCarried api={api} entityId={entityId} />
+      </>
     ) : (
       <p>{t('No character sheet is recorded here.')}</p>
     )
@@ -130,5 +133,51 @@ function PreviewSheet({
       }
       onRetry={retry}
     />
+  );
+}
+
+/** What the character carries at the start (docs/adr/0039-item-possession.md, Stage 470). */
+function PreviewCarried({
+  api,
+  entityId,
+}: {
+  readonly api: DraftPreviewApi;
+  readonly entityId: string;
+}) {
+  const t = useT();
+  const language = useLanguage();
+  const load = useCallback(
+    (signal: AbortSignal) => api.inventory(entityId, signal),
+    [api, entityId],
+  );
+  const { resource, retry } = useResource(`preview-inventory:${entityId}`, load);
+  if (resource.status !== 'ready')
+    return (
+      <StatusPanel
+        state={resource.status}
+        label={
+          resource.status === 'error' ? t('The items could not be read.') : t('Loading items…')
+        }
+        onRetry={retry}
+      />
+    );
+  const items = resource.value?.items ?? [];
+  return (
+    <section className="sheet-section" aria-label={t('Carried at the start')}>
+      <h4>{t('Carried at the start')}</h4>
+      {items.length === 0 ? (
+        <p className="muted">{t('This character carries nothing at the start.')}</p>
+      ) : (
+        <ul>
+          {items.map((item) => (
+            <li key={item.itemId}>
+              {item.name}
+              {item.quantity > 1 ? ` ×${String(item.quantity)}` : ''}
+              {item.catalog ? ` · ${item.catalog.name[language === 'ru' ? 'ru' : 'en']}` : ''}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }

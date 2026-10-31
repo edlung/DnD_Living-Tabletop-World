@@ -92,6 +92,7 @@ export function ScenarioBrowser({
                             'brief',
                             'party',
                             'relationships',
+                            'possessions',
                             'firstSession',
                             'laterOutline',
                           ].includes(target.group)

@@ -13,6 +13,13 @@ registerRussian({
   'Visual briefs': 'Визуальные замыслы',
   'Prepared party': 'Подготовленная группа',
   'Initial attitudes': 'Начальные отношения',
+  'Starting items': 'Стартовые вещи',
+  Carries: 'Несёт',
+  'Carried items': 'Вещи в сумке',
+  'Starting item': 'Стартовая вещь',
+  Item: 'Вещь',
+  'Catalog item': 'Предмет каталога',
+  Quantity: 'Количество',
   'First session': 'Первая сессия',
   'Later outline': 'Дальнейший план',
   'Starting place': 'Начальное место',
@@ -320,5 +327,13 @@ registerRussian({
   'Keep one visual brief for each object and purpose.':
     'Для объекта и назначения оставьте один визуальный замысел.',
   'An NPC can have one initial attitude.': 'У НПС может быть одно начальное отношение.',
+  'An item has one starting holder.': 'У вещи один стартовый владелец.',
+  'A carried item has no place of its own; remove its placement.':
+    'У вещи в сумке нет своего места: уберите размещение.',
+  'A carried item must be active.': 'Вещь в сумке должна быть в игре.',
+  'The one who carries an item must be active.': 'Тот, кто несёт вещь, должен быть в игре.',
+  'Only a stackable catalog item has a quantity.':
+    'Количество бывает только у стопкуемых предметов каталога.',
+  'The catalog has no such item.': 'В каталоге нет такого предмета.',
   'Quest design references must be unique.': 'Внутренние адреса заданий должны быть уникальными.',
 });

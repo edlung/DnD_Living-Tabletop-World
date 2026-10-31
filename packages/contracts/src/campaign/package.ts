@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { itemCatalogIdSchema } from '../items/schema.ts';
 import { characterSheetSchema } from '../rules/character-sheet.ts';
 import { statBlockSchema } from '../combat/stat-block.ts';
 import { ENTITY_KINDS, ENTITY_STATUSES, LOCATION_TYPES } from '../kernel/world-commands.ts';
@@ -54,6 +55,19 @@ export const campaignEntitySchema = z
     statBlock: statBlockSchema.optional(),
   })
   .strict();
+/**
+ * What a character or NPC carries when the campaign starts (docs/adr/0039-item-possession.md):
+ * an `item` entity (no placement) with its starting holder and, optionally, the catalog entry it
+ * is an instance of. Items start carried, never worn.
+ */
+export const campaignPossessionSchema = z
+  .object({
+    item: campaignKeySchema,
+    holder: campaignKeySchema,
+    catalog: itemCatalogIdSchema.optional(),
+    quantity: z.number().int().min(1).max(99).default(1),
+  })
+  .strict();
 export const campaignKnowledgeScopeSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('WORLD_TRUTH') }).strict(),
   z.object({ kind: z.literal('DM') }).strict(),
@@ -103,6 +117,8 @@ export const campaignPackageSchema = z
     relationships: z
       .array(z.object({ npc: campaignKeySchema, attitude: z.enum(ATTITUDES) }).strict())
       .max(500),
+    /** Absent from packages saved before Stage 470: such a revision keeps its bytes and digest. */
+    possessions: z.array(campaignPossessionSchema).max(500).exactOptional(),
     clues: z.array(campaignClueSchema).max(500),
     conflicts: z.array(campaignConflictSchema).max(100),
     situations: z.array(campaignSituationSchema).max(200),
@@ -116,6 +132,7 @@ export const campaignPackageSchema = z
   .strict();
 export type CampaignPackage = z.infer<typeof campaignPackageSchema>;
 export type CampaignEntity = z.infer<typeof campaignEntitySchema>;
+export type CampaignPossession = z.infer<typeof campaignPossessionSchema>;
 export type CampaignKnowledge = z.infer<typeof campaignKnowledgeSchema>;
 export type CampaignScope = z.infer<typeof campaignKnowledgeScopeSchema>;
 

@@ -13,6 +13,7 @@ export const SCENARIO_GROUPS = [
   'visuals',
   'party',
   'relationships',
+  'possessions',
   'firstSession',
   'laterOutline',
 ] as const;
@@ -31,6 +32,7 @@ export const GROUP_LABELS: Record<ScenarioGroup, string> = {
   visuals: 'Visual briefs',
   party: 'Prepared party',
   relationships: 'Initial attitudes',
+  possessions: 'Starting items',
   firstSession: 'First session',
   laterOutline: 'Later outline',
 };
@@ -101,6 +103,7 @@ export function buildScenarioIndex(content: CampaignPackage): ScenarioIndex {
   });
   add('party', 'party', GROUP_LABELS.party, content.party);
   add('relationships', 'relationships', GROUP_LABELS.relationships, content.relationships);
+  add('possessions', 'possessions', GROUP_LABELS.possessions, content.possessions ?? []);
   add('firstSession', 'firstSession', GROUP_LABELS.firstSession, content.firstSession);
   add('laterOutline', 'laterOutline', GROUP_LABELS.laterOutline, content.laterOutline);
   const nameCounts = new Map<string, number>();
@@ -149,6 +152,10 @@ export function buildScenarioIndex(content: CampaignPackage): ScenarioIndex {
   });
   content.relationships.forEach((item) => {
     connect('relationships', entity(item.npc), 'Initial attitude', 'Initial attitudes');
+  });
+  (content.possessions ?? []).forEach((row) => {
+    connect('possessions', entity(row.holder), 'Carries', 'Carried items');
+    connect('possessions', entity(row.item), 'Starting item', 'Starting items');
   });
   content.knowledge.forEach((item) => {
     const path = pathOf(item, `knowledge.${item.key}`);

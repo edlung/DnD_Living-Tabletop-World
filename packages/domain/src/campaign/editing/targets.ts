@@ -20,6 +20,7 @@ const SECTION_NAMES: Readonly<Record<CampaignEditSection, readonly [string, stri
   party: ['Prepared party', 'Подготовленная группа'],
   knowledge: ['Knowledge', 'Знания'],
   relationships: ['Relationships', 'Отношения'],
+  possessions: ['Starting items', 'Стартовые вещи'],
   clues: ['Clues', 'Улики'],
   conflicts: ['Conflicts', 'Конфликты'],
   situations: ['Situations', 'Ситуации'],
@@ -38,7 +39,7 @@ function records(revision: CampaignRevision): TargetRecord[] {
     section,
     key: null,
     label: SECTION_NAMES[section][ru ? 1 : 0],
-    projection: content[section],
+    projection: content[section] ?? [],
   }));
   const add = (
     section: CampaignEditSection,

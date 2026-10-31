@@ -88,7 +88,7 @@ export function mergeCampaignGenerationStep(
       const parsed = campaignGenerationOutputSchemas.cast.safeParse(output);
       if (parsed.success)
         merged = {
-          ...value,
+          ...Object.fromEntries(Object.entries(value).filter(([key]) => key !== 'possessions')),
           ...parsed.data,
           entities: [
             ...value.entities.filter((entity) => entity.kind === 'location'),

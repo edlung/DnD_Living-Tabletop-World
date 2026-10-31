@@ -59,6 +59,7 @@ export function ScenarioOverview({
                         'brief',
                         'party',
                         'relationships',
+                        'possessions',
                         'firstSession',
                         'laterOutline',
                       ].includes(group)

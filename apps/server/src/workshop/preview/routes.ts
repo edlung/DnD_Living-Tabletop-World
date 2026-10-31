@@ -23,6 +23,7 @@ import {
   previewContext,
   projectPreview,
   projectPreviewEntity,
+  projectPreviewInventory,
   projectPreviewSheet,
 } from './projection.ts';
 
@@ -135,6 +136,18 @@ export function registerCampaignPreviewRoutes(
     const view = ready.context ? projectPreviewSheet(ready.context, ready.params.entityId) : null;
     return view ? reply.send(view) : sendError(reply, request, 'NOT_FOUND');
   });
+
+  app.get(
+    '/workshop/drafts/:draftId/preview/entities/:entityId/inventory',
+    async (request, reply) => {
+      const ready = await projected(request, reply, entityPath, campaignPreviewScopeQuerySchema);
+      if (!ready) return reply;
+      const view = ready.context
+        ? projectPreviewInventory(ready.context, ready.params.entityId)
+        : null;
+      return view ? reply.send(view) : sendError(reply, request, 'NOT_FOUND');
+    },
+  );
 
   app.get('/workshop/drafts/:draftId/preview/content/:contentHash', async (request, reply) => {
     const ready = await projected(request, reply, contentPath, campaignPreviewScopeQuerySchema);
