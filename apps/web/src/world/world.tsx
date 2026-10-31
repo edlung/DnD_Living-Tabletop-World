@@ -352,7 +352,7 @@ export function World({
             characterId={acting ? actorId : null}
             canAct={canAct || standIn !== null}
             locked={action.locked}
-            inEncounter={encounter !== null}
+            encounter={encounter}
             recipients={recipientsOf(view, directory, actorId)}
             onRun={run}
           />

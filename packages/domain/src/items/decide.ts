@@ -1,6 +1,7 @@
 import { catalogEntry, type CharacterSheet } from '@ltw/contracts';
 
 import { isCombatant } from '../combat/records.ts';
+import { adjacentInEncounter, spendTurn, type ItemCost } from './economy.ts';
 import { premisesEvent } from '../investigation/acting.ts';
 import type { Premise } from '../investigation/events.ts';
 import { findEntity, type Lookup } from '../kernel/decide/lookups.ts';
@@ -44,13 +45,10 @@ function item(state: WorldState, id: string): Lookup<EntityState> {
   return found;
 }
 
-/** Refusals shared by every play action of a character: dead, unconscious, in combat. */
+/** Refusals shared by every play action of a character: dead, unconscious. */
 function mayHandle(state: WorldState, characterId: string): Lookup<EntityState> {
   const actor = carrier(state, characterId);
   if (!actor.ok) return actor;
-  // Only a combatant is held back: someone outside a fight cannot tell one runs (G03-H06).
-  if (isCombatant(state, characterId))
-    return reject('COMBAT_ALREADY_ACTIVE', 'Items cannot be handled while an encounter runs');
   if (state.characterSheets.get(characterId)?.conditions.includes('unconscious'))
     return reject('ACTOR_INCAPACITATED', `"${characterId}" is unconscious`);
   return actor;
@@ -77,10 +75,17 @@ function ownItem(
 
 /** A player's item command: the premises it relied on come first (Gate 02, G02-H02). */
 const played = (
+  state: WorldState,
   characterId: string,
   premises: readonly Premise[],
   events: readonly KernelEvent[],
-): Decision => accept(premisesEvent(characterId, premises), ...events);
+  cost: ItemCost,
+): Decision => {
+  const spent = spendTurn(state, characterId, cost);
+  return spent.ok
+    ? accept(premisesEvent(characterId, premises), ...events, ...spent.events)
+    : spent;
+};
 
 const SELF: readonly Premise[] = [{ kind: 'self' }, { kind: 'sheet' }];
 
@@ -151,7 +156,10 @@ export function decideEquipItem(
     return reject('NO_CHARACTER_SHEET', "Armor needs the wearer's character sheet");
   const requested = sheet ? armorClassDelta(entry, command.slot, sheet.abilities.dex) : 0;
   const applied = sheet ? clampArmorClass(sheet.armorClass + requested) - sheet.armorClass : 0;
+  if (command.slot === 'body' && isCombatant(state, command.characterId))
+    return reject('INVALID_ITEM', 'Armor cannot be changed during an encounter');
   return played(
+    state,
     command.characterId,
     SELF,
     withSheet(
@@ -170,6 +178,7 @@ export function decideEquipItem(
       ],
       (s) => (applied === 0 ? s : { ...s, armorClass: s.armorClass + applied }),
     ),
+    command.slot === 'offhand' ? 'action' : 'bonus',
   );
 }
 
@@ -181,7 +190,10 @@ export function decideUnequipItem(
   if (!own.ok) return own;
   const { slot, acDelta } = own.possession;
   if (slot === null) return reject('NO_EFFECT', `"${command.itemId}" is not worn`);
+  if (slot === 'body' && isCombatant(state, command.characterId))
+    return reject('INVALID_ITEM', 'Armor cannot be changed during an encounter');
   return played(
+    state,
     command.characterId,
     SELF,
     withSheet(
@@ -198,6 +210,7 @@ export function decideUnequipItem(
         return armorClass === s.armorClass ? s : { ...s, armorClass };
       },
     ),
+    slot === 'offhand' ? 'action' : 'bonus',
   );
 }
 
@@ -242,7 +255,13 @@ export function decideUseItem(state: WorldState, command: ResolvedCommandOf<'Use
       type: 'EntityStatusChanged',
       payload: { entityId: command.itemId, from: 'active', to: 'destroyed' },
     });
-  return played(command.characterId, SELF, withSheet(state, command.characterId, events, change));
+  return played(
+    state,
+    command.characterId,
+    SELF,
+    withSheet(state, command.characterId, events, change),
+    effect.kind === 'narrative' ? 'action' : 'bonus',
+  );
 }
 
 export function decideGiveItem(
@@ -264,7 +283,16 @@ export function decideGiveItem(
     });
   const to = carrier(state, command.toHolderId);
   if (!to.ok) return to;
+  // In a fight the receiver must stand beside the giver on the battlefield.
+  if (
+    isCombatant(state, command.characterId) &&
+    !adjacentInEncounter(state, command.characterId, command.toHolderId)
+  )
+    return reject('NOT_PRESENT', `"${command.toHolderId}" is not here`, {
+      entityId: command.toHolderId,
+    });
   return played(
+    state,
     command.characterId,
     [{ kind: 'perceived', entityId: command.toHolderId }],
     [
@@ -279,6 +307,7 @@ export function decideGiveItem(
         },
       },
     ],
+    'bonus',
   );
 }
 
@@ -293,6 +322,7 @@ export function decideDropItem(
   const here = own.actor.placement?.locationId;
   if (here === undefined) return reject('NOT_PRESENT', 'There is nowhere to drop it');
   return played(
+    state,
     command.characterId,
     [{ kind: 'self' }],
     [
@@ -316,6 +346,7 @@ export function decideDropItem(
         },
       },
     ],
+    'free',
   );
 }
 
@@ -325,6 +356,9 @@ export function decideTakeItem(
 ): Decision {
   const actor = mayHandle(state, command.characterId);
   if (!actor.ok) return actor;
+  // Things on the ground are not on the battlefield: nothing is picked up in the middle of a fight.
+  if (isCombatant(state, command.characterId))
+    return reject('COMBAT_ALREADY_ACTIVE', 'Items cannot be picked up while an encounter runs');
   // What is not lying here, whether absent, hidden, carried by someone else or no item: one answer.
   const here = actor.value.placement?.locationId;
   const possession = possessionOf(state, command.itemId);
@@ -335,6 +369,7 @@ export function decideTakeItem(
   const thing = item(state, command.itemId);
   if (!thing.ok) return thing;
   return played(
+    state,
     command.characterId,
     [{ kind: 'perceived', entityId: command.itemId }],
     [
@@ -349,5 +384,6 @@ export function decideTakeItem(
         },
       },
     ],
+    'free',
   );
 }

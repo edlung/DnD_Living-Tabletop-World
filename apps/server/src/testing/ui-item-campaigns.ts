@@ -1,6 +1,7 @@
 import { commandSubmissionSchema, type WorldEngine } from '@ltw/domain';
 
 import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
+import { seedCombatCampaign } from './ui-combat-campaigns.ts';
 
 /**
  * Browser-test campaigns for item possession (docs/adr/0039-item-possession.md); each journey
@@ -13,6 +14,8 @@ export const UI_ITEM_CAMPAIGNS = {
   ru: 'ui-items-ru',
   /** Read-only: only looked at, at three widths. */
   axe: 'ui-items-axe',
+  /** Elowen's turn in the road ambush, wounded, with the seeded gear (Stage 490). */
+  fight: 'ui-items-fight',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -36,6 +39,20 @@ const NAMES = {
 } as const;
 
 export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
+  await seedCombatCampaign(engine, UI_ITEM_CAMPAIGNS.fight, 'started');
+  const fight = (await engine.load(UI_ITEM_CAMPAIGNS.fight))?.state.characterSheets.get(ELOWEN);
+  if (!fight) throw new Error('UI items fight: no sheet');
+  const wounded = await engine.execute({
+    campaignId: UI_ITEM_CAMPAIGNS.fight,
+    commandId: `${UI_ITEM_CAMPAIGNS.fight}.items.wounded`,
+    actor: DM,
+    command: {
+      type: 'SetCharacterSheet',
+      entityId: ELOWEN,
+      sheet: { ...fight, hitPoints: { ...fight.hitPoints, current: fight.hitPoints.max - 30 } },
+    },
+  });
+  if (wounded.status !== 'accepted') throw new Error('UI items fight: wounding failed');
   for (const [campaignId, language] of [
     [UI_ITEM_CAMPAIGNS.play, 'en'],
     [UI_ITEM_CAMPAIGNS.take, 'en'],

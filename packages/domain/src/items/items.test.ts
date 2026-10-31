@@ -12,7 +12,8 @@ import {
 import { redecideEffective } from '../kernel/verification/redecide.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { replay } from '../kernel/evolve.ts';
-import { decideDropItem } from './decide.ts';
+import { decideDropItem, decideTakeItem } from './decide.ts';
+import { adjacentInEncounter } from './economy.ts';
 import { possessionOf } from './records.ts';
 
 /** Item possession (docs/adr/0039-item-possession.md): grant, wear, use, hand over, drop, take, undo. */
@@ -255,19 +256,27 @@ describe('what others see', () => {
 });
 
 describe('during an encounter', () => {
-  it('holds back a combatant, not someone outside the fight', async () => {
+  it('holds back picking up for a combatant, and a combatant off its turn; not someone outside', async () => {
     await grant('letter');
     const state = await harness.state();
     const fighting = {
       ...state,
-      encounter: { combatants: [{ entityId: 'hero' }] },
+      encounter: { currentIndex: 0, combatants: [{ entityId: 'friend' }, { entityId: 'hero' }] },
     } as unknown as typeof state;
     const drop = { type: 'DropItem', characterId: 'hero', itemId: 'letter' } as never;
     expect(decideDropItem(fighting, drop)).toMatchObject({
       ok: false,
+      rejection: { code: 'ILLEGAL_ACTION', message: 'NOT_YOUR_TURN' },
+    });
+    const take = { type: 'TakeItem', characterId: 'hero', itemId: 'letter' } as never;
+    expect(decideTakeItem(fighting, take)).toMatchObject({
+      ok: false,
       rejection: { code: 'COMBAT_ALREADY_ACTIVE' },
     });
-    const other = { ...fighting, encounter: { combatants: [{ entityId: 'friend' }] } } as never;
+    const other = {
+      ...fighting,
+      encounter: { currentIndex: 0, combatants: [{ entityId: 'friend' }, { entityId: 'far' }] },
+    } as never;
     expect(decideDropItem(other, drop).ok).toBe(true);
   });
 });
@@ -358,5 +367,18 @@ describe('refusals confirm nothing', () => {
         { type: 'UseItem', itemId: 'far' },
       ]),
     ).toEqual(['INVALID_ITEM', 'INVALID_ITEM', 'INVALID_ITEM']);
+  });
+});
+
+describe('standing beside', () => {
+  it('counts squares, diagonals as one', () => {
+    const at = (entityId: string, x: number, y: number) => ({ entityId, position: { x, y } });
+    const state = {
+      encounter: { combatants: [at('a', 2, 2), at('b', 3, 3), at('c', 5, 2), at('d', 2, 4)] },
+    } as never;
+    expect(adjacentInEncounter(state, 'a', 'b')).toBe(true);
+    expect(adjacentInEncounter(state, 'a', 'c')).toBe(false);
+    expect(adjacentInEncounter(state, 'a', 'd')).toBe(false);
+    expect(adjacentInEncounter(state, 'a', 'nobody')).toBe(false);
   });
 });

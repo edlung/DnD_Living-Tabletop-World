@@ -13,7 +13,9 @@ registerRussian({
   'Carrying {weight} lb': 'Несёте: {weight} фунт.',
   '{weight} lb': '{weight} фунт.',
   'You carry nothing yet.': 'У вас пока ничего нет.',
-  'Items cannot be handled while an encounter runs.': 'Пока идёт схватка, вещами заняться нельзя.',
+  'You can handle items on your own turn.': 'Вещами можно заняться в свой ход.',
+  'In a fight a potion or worn gear costs your Bonus Action, a shield or any other use your Action, and handing something over a Bonus Action beside the receiver. Dropping is free; armor and picking up wait.':
+    'В бою зелье и смена одежды — бонусное действие, щит и прочее использование — действие, а передача вещи рядом стоящему — бонусное действие. Бросить можно бесплатно; броня и подбор ждут конца боя.',
   Worn: 'Надето',
   Carried: 'В сумке',
   Weight: 'Вес',
@@ -54,5 +56,5 @@ registerRussian({
   'You dropped it. Your view has been refreshed.': 'Вы бросили вещь. Вид обновлён.',
   'You picked it up. Your view has been refreshed.': 'Вы подняли вещь. Вид обновлён.',
   'That item cannot be handled like this right now.': 'С этой вещью сейчас нельзя так поступить.',
-  'Items cannot be handled during an encounter.': 'Во время схватки вещами заняться нельзя.',
+  'Items cannot be handled during an encounter.': 'Это нельзя сделать во время схватки.',
 });
