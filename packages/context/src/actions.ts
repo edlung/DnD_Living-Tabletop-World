@@ -1,5 +1,5 @@
 import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
-import { attemptKey, combatantOf, insightKey, type EntityState } from '@ltw/domain';
+import { attemptKey, combatantOf, insightKey, isCombatant, type EntityState } from '@ltw/domain';
 
 import {
   combatAttackVerdict,
@@ -137,6 +137,18 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     );
     add('perception_check', 'present', () => checkVerdict(sheet, attempted('perception')), examine);
     add('detect_magic', 'present', spell('detect-magic', false), 'low');
+    // An uncarried item can be picked up (ADR 0039); a combatant handles no items.
+    if (target.kind === 'item' && target.status === 'active') {
+      const carried = inputs.state.possessions.get(target.entityId)?.holderId ?? null;
+      if (carried === null)
+        add(
+          'take_item',
+          'present',
+          () =>
+            isCombatant(inputs.state, inputs.actor.entityId) ? illegalBecause('IN_COMBAT') : LEGAL,
+          examine,
+        );
+    }
   } else if (target.kind === 'location') {
     add('inspect', 'present', () => LEGAL, 'low');
     const here = inputs.actor.placement?.locationId === target.entityId;

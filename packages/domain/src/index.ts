@@ -99,6 +99,8 @@ export {
 } from './knowledge/projection-party.ts';
 export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
+export { inventoryView } from './items/view.ts';
+export { carriedBy, possessionOf, type Possession } from './items/records.ts';
 export { clueTargetSupportsMethod } from './investigation/authoring.ts';
 export { knownEntityIds, visibleRecords } from './knowledge/projection.ts';
 export type { MemoryRecord, SessionRecord } from './memory/records.ts';

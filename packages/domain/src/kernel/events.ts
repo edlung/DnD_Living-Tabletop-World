@@ -48,6 +48,14 @@ import {
   relationshipRestoreSchemas,
 } from '../relationships/events.ts';
 import {
+  itemEquippedPayloadSchema,
+  itemGrantedPayloadSchema,
+  itemRestoreSchemas,
+  itemTransferredPayloadSchema,
+  itemUnequippedPayloadSchema,
+  itemUsedPayloadSchema,
+} from '../items/events.ts';
+import {
   assetAdoptedPayloadSchema,
   assetApprovedPayloadSchema,
   assetGeneratedPayloadSchema,
@@ -125,6 +133,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...assetRestoreSchemas,
   ...weatherRestoreSchemas,
   ...chronicleRestoreSchemas,
+  ...itemRestoreSchemas,
 ]);
 export type Restore = z.infer<typeof restoreSchema>;
 
@@ -248,6 +257,11 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('WeatherSet', weatherSetPayloadSchema),
   event('ChronicleGenerated', chronicleGeneratedPayloadSchema),
   event('CharacterReleased', characterReleasedPayloadSchema),
+  event('ItemGranted', itemGrantedPayloadSchema),
+  event('ItemEquipped', itemEquippedPayloadSchema),
+  event('ItemUnequipped', itemUnequippedPayloadSchema),
+  event('ItemUsed', itemUsedPayloadSchema),
+  event('ItemTransferred', itemTransferredPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

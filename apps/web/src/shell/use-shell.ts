@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
  * (docs/adr/0036-production-sign-in.md §4).
  */
 export type SheetId =
-  'places' | 'journal' | 'add' | 'encounter' | 'time' | 'history' | 'images' | 'players';
+  'places' | 'journal' | 'items' | 'add' | 'encounter' | 'time' | 'history' | 'images' | 'players';
 
 export const sheetElementId = (id: SheetId) => `sheet-${id}`;
 export const dockButtonId = (id: SheetId | 'scene' | 'chronicle') => `dock-${id}`;

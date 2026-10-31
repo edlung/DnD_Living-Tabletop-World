@@ -28,6 +28,7 @@ export const executable: ReadonlySet<string> = new Set([
   'perception_check',
   'detect_magic',
   'enter_location',
+  'take_item',
   'recall',
 ]);
 
@@ -261,6 +262,7 @@ const ACTION_TEXT: Readonly<
   longbow_attack: 'Longbow attack',
   fireball: 'Fireball',
   counterspell: 'Counterspell',
+  take_item: 'Pick up',
 };
 
 /** Longest evidence wording on a button; the full statement is in the journal and the picker. */

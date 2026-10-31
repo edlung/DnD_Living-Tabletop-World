@@ -15,6 +15,7 @@ const ACTIONS: Readonly<Record<ContextActionId, GlyphName>> = {
   show_evidence: 'evidence',
   inspect: 'inspect',
   recall: 'recall',
+  take_item: 'give',
   insight_check: 'thought',
   investigation_check: 'search',
   perception_check: 'look',

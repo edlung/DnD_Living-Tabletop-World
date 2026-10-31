@@ -1,0 +1,81 @@
+/* The Items sheet: what the acting character carries and wears (docs/adr/0039-item-possession.md). */
+.items-summary {
+  margin: 0 0 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.item-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item-row {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.item-summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+.item-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.item-count,
+.item-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.item-more {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0 0.75rem 0.75rem;
+}
+.item-more p {
+  margin: 0;
+}
+.item-kind {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.item-facts {
+  display: grid;
+  gap: 0.25rem 1rem;
+  margin: 0;
+}
+.item-facts > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.item-facts dt {
+  color: var(--text-muted);
+}
+.item-facts dd {
+  margin: 0;
+}
+.item-actions,
+.item-give {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.item-actions select {
+  min-height: 44px;
+  max-width: 100%;
+}
+.item-actions button {
+  min-height: 44px;
+  min-width: 44px;
+}

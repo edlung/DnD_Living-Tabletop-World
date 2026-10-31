@@ -2,6 +2,15 @@ import type { KernelCommandType, PlayerOutcome } from '@ltw/contracts';
 
 import type { KernelEvent } from '../kernel/events.ts';
 
+const ITEM_ACTIONS = {
+  EquipItem: 'equip',
+  UnequipItem: 'unequip',
+  UseItem: 'use',
+  GiveItem: 'give',
+  DropItem: 'drop',
+  TakeItem: 'take',
+} as const;
+
 /**
  * The player-visible outcome of an accepted player command
  * (docs/adr/0013-investigation.md §6), derived from its events. Never
@@ -49,6 +58,17 @@ export function playerOutcome(
         roll: roll ? { d20: roll.d20, modifier: roll.modifier, total: roll.total } : null,
         discovered: examined.payload.revealed.map(({ knowledgeId }) => knowledgeId),
       };
+    }
+    case 'EquipItem':
+    case 'UnequipItem':
+    case 'UseItem':
+    case 'GiveItem':
+    case 'DropItem':
+    case 'TakeItem': {
+      const moved = events.find((event) => 'itemId' in event.payload);
+      return moved && 'itemId' in moved.payload
+        ? { kind: 'Item', action: ITEM_ACTIONS[commandType], itemId: moved.payload.itemId }
+        : undefined;
     }
     case 'FormHypothesis': {
       const formed = events.find(

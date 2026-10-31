@@ -73,6 +73,13 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   ApproveAsset: 'approve asset',
   SetWeather: 'set weather',
   GenerateChronicle: 'generate chronicle',
+  GrantItem: 'grant item',
+  EquipItem: 'equip item',
+  UnequipItem: 'unequip item',
+  UseItem: 'use item',
+  GiveItem: 'give item',
+  DropItem: 'drop item',
+  TakeItem: 'take item',
 };
 
 /** What the DM did for the character, in plain words. */
@@ -129,6 +136,21 @@ export function describePlayerAction(
       return t('Examined {target}', { target: name(command.entityId) });
     case 'FormHypothesis':
       return t('Formed a hypothesis');
+    case 'EquipItem':
+      return t('Put on {item}', { item: name(command.itemId) });
+    case 'UnequipItem':
+      return t('Took off {item}', { item: name(command.itemId) });
+    case 'UseItem':
+      return t('Used {item}', { item: name(command.itemId) });
+    case 'GiveItem':
+      return t('Gave {item} to {target}', {
+        item: name(command.itemId),
+        target: name(command.toHolderId),
+      });
+    case 'DropItem':
+      return t('Dropped {item}', { item: name(command.itemId) });
+    case 'TakeItem':
+      return t('Picked up {item}', { item: name(command.itemId) });
   }
 }
 

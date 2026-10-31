@@ -81,6 +81,12 @@ describe('exploration option bindings', () => {
     },
   );
 
+  it('binds picking an item up to its own character and the selected item', () => {
+    const command = commandFor(action('take_item'), actor, target);
+    expect(command).toEqual({ type: 'TakeItem', characterId: actor, itemId: target });
+    expect(kernelCommandSchema.safeParse(command).success).toBe(true);
+  });
+
   it('does not invent a topic, record, payment, actor, or target when one is missing', () => {
     for (const option of [
       action('ask_about'),
@@ -104,6 +110,7 @@ describe('exploration option bindings', () => {
       'show_evidence',
       'enter_location',
       'detect_magic',
+      'take_item',
     ]);
     for (const id of CONTEXT_ACTION_IDS) {
       const complete = action(id, {

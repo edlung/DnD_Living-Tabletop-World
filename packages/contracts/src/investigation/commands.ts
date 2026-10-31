@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import type { ReactionId } from '../combat/reactions.ts';
 import { entityIdSchema, knowledgeIdSchema } from '../kernel/identifiers.ts';
+import { ITEM_PLAYER_COMMAND_TYPES } from '../items/commands.ts';
 import { knowledgeRelationSchema } from '../knowledge/commands.ts';
 
 /**
@@ -119,6 +120,7 @@ export const PLAYER_COMMAND_TYPES = [
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
+  ...ITEM_PLAYER_COMMAND_TYPES,
 ] as const;
 export type PlayerCommandType = (typeof PLAYER_COMMAND_TYPES)[number];
 
@@ -177,4 +179,8 @@ export type PlayerOutcome =
       /** True when the reaction stopped the spell. */
       readonly countered: boolean;
     }
-  | { readonly kind: 'DeclineReaction'; readonly windowId: string };
+  | { readonly kind: 'DeclineReaction'; readonly windowId: string }
+  | { readonly kind: 'Item'; readonly action: ItemAction; readonly itemId: string };
+
+/** What an accepted item command did (docs/adr/0039-item-possession.md). */
+export type ItemAction = 'equip' | 'unequip' | 'use' | 'give' | 'drop' | 'take';

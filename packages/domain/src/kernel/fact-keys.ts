@@ -47,6 +47,9 @@ export const facts = {
   assetCanonical: (entityId: string): FactKey => `assetcanonical:${entityId}`,
   weather: (locationId: string): FactKey => `weather:${locationId}`,
   chronicle: (chronicleId: string): FactKey => `chronicle:${chronicleId}`,
+  possession: (itemId: string): FactKey => `possession:${itemId}`,
+  /** A holder's worn set: slot occupancy is a premise of every equip (ADR 0039). */
+  equipment: (holderId: string): FactKey => `equipment:${holderId}`,
   /**
    * A command's standing in current canon: every command writes its own, and
    * only its undo changes it. A record citing the command's events reads it

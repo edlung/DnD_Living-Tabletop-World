@@ -60,6 +60,7 @@ const LABEL: Readonly<Record<ContextActionId, string>> = {
   show_evidence: 'Show them the evidence',
   inspect: 'Inspect it',
   recall: 'Recall memories about it',
+  take_item: 'Pick it up',
   insight_check: 'Read them (Wisdom (Insight) check)',
   investigation_check: 'Investigate it (Intelligence (Investigation) check)',
   perception_check: 'Search it (Wisdom (Perception) check)',

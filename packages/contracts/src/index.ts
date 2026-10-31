@@ -206,6 +206,7 @@ export {
   type ClueMethod,
   type Disclosure,
   type ExamineMethod,
+  type ItemAction,
   type PlayerCommandType,
   type PlayerOutcome,
 } from './investigation/commands.ts';
@@ -431,3 +432,27 @@ export type {
   PlayerAssetView,
 } from './assets/views.ts';
 export * from './campaign/index.ts';
+
+export {
+  EQUIP_SLOTS,
+  ITEM_CATEGORIES,
+  itemCatalogIdSchema,
+  itemEffectSchema,
+  itemEntrySchema,
+  type EquipSlot,
+  type ItemCategory,
+  type ItemEffect,
+  type ItemEntry,
+} from './items/schema.ts';
+export { ITEM_CATALOG, catalogEntry, isCatalogItemId } from './items/catalog.ts';
+export {
+  ITEM_PLAYER_COMMAND_TYPES,
+  dropItemCommandSchema,
+  equipItemCommandSchema,
+  giveItemCommandSchema,
+  grantItemCommandSchema,
+  takeItemCommandSchema,
+  unequipItemCommandSchema,
+  useItemCommandSchema,
+} from './items/commands.ts';
+export type { InventoryItem, InventoryResponse } from './items/views.ts';

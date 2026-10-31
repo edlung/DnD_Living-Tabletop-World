@@ -1,4 +1,5 @@
 import { assetFootprint, assetRestoredFacts } from '../assets/footprints.ts';
+import { itemFootprint } from '../items/footprints.ts';
 import { chronicleFootprint } from '../chronicle/decide.ts';
 import { namedEntityIds } from '../combat/named-entities.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
@@ -390,6 +391,12 @@ export function footprintOf(event: KernelEvent): Footprint {
         reads: [clock, ...entityChecked(event.payload.npcId)],
         writes: [facts.relationship(event.payload.npcId)],
       };
+    case 'ItemGranted':
+    case 'ItemEquipped':
+    case 'ItemUnequipped':
+    case 'ItemUsed':
+    case 'ItemTransferred':
+      return itemFootprint(event);
     case 'AuthoringPremisesRecorded':
       // Reads only: what an authoring commit's legality rested on (ADR 0019 §2).
       return {
@@ -471,6 +478,11 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.weather(restore.locationId)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
+    case 'possession':
+      return [
+        facts.possession(restore.itemId),
+        ...(restore.holderId === null ? [] : [facts.equipment(restore.holderId)]),
+      ];
   }
 }
 

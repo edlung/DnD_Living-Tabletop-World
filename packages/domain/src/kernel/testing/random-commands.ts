@@ -1,5 +1,7 @@
 import {
   ENTITY_KINDS,
+  EQUIP_SLOTS,
+  ITEM_CATALOG,
   ENTITY_STATUSES,
   KNOWLEDGE_RELATION_TYPES,
   KNOWLEDGE_TYPES,
@@ -77,7 +79,8 @@ export function randomCommand(
   if (roll < 0.7) return { type: 'AdvanceWorldTime', by: 1 + Math.floor(rng() * 7_200) };
   if (roll < 0.77) return randomKnowledge(rng, pick, state, entities, step);
   if (roll < 0.82) return randomMemory(rng, pick, state, entities, step);
-  if (roll < 0.915) return randomInvestigation(rng, pick, state, entities, step);
+  if (roll < 0.88) return randomInvestigation(rng, pick, state, entities, step);
+  if (roll < 0.915) return randomItem(rng, pick, state, entities);
   if (roll < 0.93) {
     // Mostly a character, so that seats are taken, given up (below) and taken again.
     const characters = [...state.entities.values()].filter((e) => e.kind === 'character');
@@ -240,6 +243,44 @@ function randomKnowledge(
       ? pick([null, state.clock, state.clock - 3_600])
       : pick([null, state.clock + 1]),
   };
+}
+
+/** Item possession (ADR 0039): grants, and acts of a character, mostly on real carriers and items. */
+function randomItem(
+  rng: () => number,
+  pick: <T>(items: readonly T[]) => T,
+  state: WorldState,
+  entities: readonly string[],
+): Record<string, unknown> {
+  const of = (kind: string) => [...state.entities.values()].filter((e) => e.kind === kind);
+  const carriers = [...of('character'), ...of('npc')].map((e) => e.entityId);
+  const items = of('item').map((e) => e.entityId);
+  const valid = rng() < 0.85;
+  const carrier = pick(valid && carriers.length ? carriers : entities);
+  const item = pick(valid && items.length ? items : entities);
+  const catalogId = pick([...ITEM_CATALOG.map((entry) => entry.itemId), 'no-such-item']);
+  const roll = rng();
+  if (roll < 0.3)
+    return {
+      type: 'GrantItem',
+      itemId: item,
+      holderId: carrier,
+      ...(rng() < 0.8 ? { catalogId } : {}),
+      quantity: pick([1, 1, 2]),
+    };
+  if (roll < 0.5)
+    return { type: 'EquipItem', characterId: carrier, itemId: item, slot: pick(EQUIP_SLOTS) };
+  if (roll < 0.6) return { type: 'UnequipItem', characterId: carrier, itemId: item };
+  if (roll < 0.7) return { type: 'UseItem', characterId: carrier, itemId: item };
+  if (roll < 0.8)
+    return {
+      type: 'GiveItem',
+      characterId: carrier,
+      itemId: item,
+      toHolderId: pick(carriers.length ? carriers : entities),
+    };
+  if (roll < 0.9) return { type: 'DropItem', characterId: carrier, itemId: item };
+  return { type: 'TakeItem', characterId: carrier, itemId: item };
 }
 
 function randomMemory(
