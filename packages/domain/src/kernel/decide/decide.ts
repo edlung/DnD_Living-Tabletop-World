@@ -33,6 +33,15 @@ import {
   decideReleaseCharacter,
 } from '../../knowledge/decide.ts';
 import { decideEndSession, decideRecordMemory, decideStartSession } from '../../memory/decide.ts';
+import {
+  decideDropItem,
+  decideEquipItem,
+  decideGiveItem,
+  decideGrantItem,
+  decideTakeItem,
+  decideUnequipItem,
+  decideUseItem,
+} from '../../items/decide.ts';
 import { decideSetRelationship } from '../../relationships/decide.ts';
 import { accept, type Decision, type DecisionContext, type ResolvedCommand } from '../decision.ts';
 import type { KernelEvent } from '../events.ts';
@@ -165,6 +174,20 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideApplyAuthoring(context, command);
     case 'SetRelationship':
       return decideSetRelationship(state, command);
+    case 'GrantItem':
+      return decideGrantItem(state, command);
+    case 'EquipItem':
+      return decideEquipItem(state, command);
+    case 'UnequipItem':
+      return decideUnequipItem(state, command);
+    case 'UseItem':
+      return decideUseItem(state, command);
+    case 'GiveItem':
+      return decideGiveItem(state, command);
+    case 'DropItem':
+      return decideDropItem(state, command);
+    case 'TakeItem':
+      return decideTakeItem(state, command);
     case 'RequestAsset':
       return decideRequestAsset(state, context.commandId, command);
     case 'StartAssetJob':

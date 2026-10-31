@@ -390,6 +390,58 @@ export function footprintOf(event: KernelEvent): Footprint {
         reads: [clock, ...entityChecked(event.payload.npcId)],
         writes: [facts.relationship(event.payload.npcId)],
       };
+    case 'ItemGranted':
+      return {
+        reads: [
+          clock,
+          ...entityChecked(event.payload.itemId),
+          ...entityChecked(event.payload.holderId),
+          facts.possession(event.payload.itemId),
+        ],
+        writes: [facts.possession(event.payload.itemId)],
+      };
+    case 'ItemEquipped':
+    case 'ItemUnequipped':
+      // Slot occupancy and the wearer's sheet are premises; the sheet itself changes in its own event.
+      return {
+        reads: [
+          clock,
+          facts.encounter(),
+          ...entityChecked(event.payload.itemId),
+          ...entityChecked(event.payload.holderId),
+          facts.possession(event.payload.itemId),
+          facts.equipment(event.payload.holderId),
+          facts.sheet(event.payload.holderId),
+        ],
+        writes: [facts.possession(event.payload.itemId), facts.equipment(event.payload.holderId)],
+      };
+    case 'ItemUsed':
+      return {
+        reads: [
+          clock,
+          facts.encounter(),
+          ...entityChecked(event.payload.itemId),
+          ...entityChecked(event.payload.holderId),
+          facts.possession(event.payload.itemId),
+          facts.sheet(event.payload.holderId),
+        ],
+        writes: [facts.possession(event.payload.itemId)],
+      };
+    case 'ItemTransferred': {
+      const { itemId, from, to } = event.payload;
+      return {
+        reads: [
+          clock,
+          facts.encounter(),
+          ...entityChecked(itemId),
+          facts.possession(itemId),
+          ...(from === null ? [facts.entityPlacement(itemId)] : entityChecked(from)),
+          ...(to === null ? [] : [...entityChecked(to), facts.entityPlacement(to)]),
+          ...(from === null ? [] : [facts.entityPlacement(from)]),
+        ],
+        writes: [facts.possession(itemId)],
+      };
+    }
     case 'AuthoringPremisesRecorded':
       // Reads only: what an authoring commit's legality rested on (ADR 0019 §2).
       return {
@@ -471,6 +523,11 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.weather(restore.locationId)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
+    case 'possession':
+      return [
+        facts.possession(restore.itemId),
+        ...(restore.holderId === null ? [] : [facts.equipment(restore.holderId)]),
+      ];
   }
 }
 

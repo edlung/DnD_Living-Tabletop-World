@@ -45,6 +45,14 @@ import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../
 import { applyAssetEvent, applyAssetRestore } from '../assets/evolve.ts';
 import { applyWeatherRestore, applyWeatherSet } from '../weather/weather.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
+import {
+  applyItemEquipped,
+  applyItemGranted,
+  applyItemRestore,
+  applyItemTransferred,
+  applyItemUnequipped,
+  applyItemUsed,
+} from '../items/evolve.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
@@ -226,6 +234,16 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyReactionWindowResolved(state, event);
     case 'RelationshipChanged':
       return applyRelationshipChanged(state, event);
+    case 'ItemGranted':
+      return applyItemGranted(state, event);
+    case 'ItemEquipped':
+      return applyItemEquipped(state, event);
+    case 'ItemUnequipped':
+      return applyItemUnequipped(state, event);
+    case 'ItemUsed':
+      return applyItemUsed(state, event);
+    case 'ItemTransferred':
+      return applyItemTransferred(state, event);
     case 'WeatherSet':
       return applyWeatherSet(state, event);
     case 'ChronicleGenerated':
@@ -359,6 +377,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyReactionRestore(state, restore);
     case 'relationship':
       return applyRelationshipRestore(state, restore);
+    case 'possession':
+      return applyItemRestore(state, restore);
     case 'assetRequest':
     case 'asset':
     case 'assetCanonical':

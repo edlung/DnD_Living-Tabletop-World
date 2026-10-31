@@ -1,3 +1,4 @@
+import type { Possession } from '../items/records.ts';
 import type {
   Attitude,
   BootstrapCampaignCommand,
@@ -128,6 +129,8 @@ export interface WorldState {
   readonly weather: ReadonlyMap<string, Weather>;
   /** Chronicle chapters (ADR 0024): records of what was told, never world facts. */
   readonly chronicles: ReadonlyMap<string, ChronicleRecord>;
+  /** Item entity ID → who carries it and how (ADR 0039); absent means no record. */
+  readonly possessions: ReadonlyMap<string, Possession>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -155,6 +158,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   assets: EMPTY_ASSETS,
   weather: new Map(),
   chronicles: new Map(),
+  possessions: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

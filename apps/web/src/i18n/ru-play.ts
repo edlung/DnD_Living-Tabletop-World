@@ -342,6 +342,12 @@ registerRussian({
   'Read {npc} for insight': 'Проницательность: {npc}',
   'Examined {target}': 'Осмотр: {target}',
   'Formed a hypothesis': 'Записана гипотеза',
+  'Put on {item}': 'Надето: {item}',
+  'Took off {item}': 'Снято: {item}',
+  'Used {item}': 'Использовано: {item}',
+  'Gave {item} to {target}': 'Передано: {item} — {target}',
+  'Dropped {item}': 'Брошено: {item}',
+  'Picked up {item}': 'Поднято: {item}',
   'Time: {from} → {to}': 'Время: {from} → {to}',
   'Weather at {place}: {from} → {to}': 'Погода ({place}): {from} → {to}',
   'not set': 'не задана',
@@ -389,6 +395,13 @@ registerRussian({
   'approve asset': 'одобрение изображения',
   'set weather': 'погода',
   'generate chronicle': 'глава хроники',
+  'grant item': 'выдача предмета',
+  'equip item': 'надеть предмет',
+  'unequip item': 'снять предмет',
+  'use item': 'использовать предмет',
+  'give item': 'передать предмет',
+  'drop item': 'бросить предмет',
+  'take item': 'поднять предмет',
 
   // Transport and sign-in
   'Your access token was not accepted. Leave the session to reconnect.':

@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import type { ReactionId } from '../combat/reactions.ts';
 import { entityIdSchema, knowledgeIdSchema } from '../kernel/identifiers.ts';
+import { ITEM_PLAYER_COMMAND_TYPES } from '../items/commands.ts';
 import { knowledgeRelationSchema } from '../knowledge/commands.ts';
 
 /**
@@ -119,6 +120,7 @@ export const PLAYER_COMMAND_TYPES = [
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
+  ...ITEM_PLAYER_COMMAND_TYPES,
 ] as const;
 export type PlayerCommandType = (typeof PLAYER_COMMAND_TYPES)[number];
 

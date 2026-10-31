@@ -1,6 +1,7 @@
 import { assetViolations } from '../../assets/integrity.ts';
 import { chronicleViolations } from '../../chronicle/integrity.ts';
 import { combatViolations } from '../../combat/integrity.ts';
+import { itemViolations } from '../../items/integrity.ts';
 import { WORLD_TRUTH_TYPES, holderOf } from '../../knowledge/records.ts';
 import { PLACEABLE_KINDS, STATUSES_BY_KIND, type WorldState } from '../state.ts';
 import { isAtOrAfter } from '../world-time.ts';
@@ -20,6 +21,8 @@ export function checkWorldIntegrity(state: WorldState): string[] {
   for (const locationId of state.weather.keys()) {
     if (!isLocation(locationId)) report(`weather of non-location ${locationId}`);
   }
+
+  violations.push(...itemViolations(state));
 
   for (const npcId of state.relationships.keys()) {
     if (state.entities.get(npcId)?.kind !== 'npc') report(`relationship of non-NPC ${npcId}`);

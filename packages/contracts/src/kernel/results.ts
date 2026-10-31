@@ -105,6 +105,8 @@ export const REJECTION_CODES = [
   'INVALID_WEATHER',
   /** Chronicle (ADR 0024): an empty window, an unknown perspective, or prose that does not trace. */
   'INVALID_CHRONICLE',
+  /** Items (ADR 0039): not an item, not carried, wrong slot, or not usable now. */
+  'INVALID_ITEM',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

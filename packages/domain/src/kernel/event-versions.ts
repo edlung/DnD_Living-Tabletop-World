@@ -123,6 +123,12 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   ChronicleGenerated: DEPENDENCY_CONTRACT,
   // Stage 340 (ADR 0036): a member's release.
   CharacterReleased: DEPENDENCY_CONTRACT,
+  // Stage 460 (ADR 0039): item possession.
+  ItemGranted: DEPENDENCY_CONTRACT,
+  ItemEquipped: DEPENDENCY_CONTRACT,
+  ItemUnequipped: DEPENDENCY_CONTRACT,
+  ItemUsed: DEPENDENCY_CONTRACT,
+  ItemTransferred: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>
