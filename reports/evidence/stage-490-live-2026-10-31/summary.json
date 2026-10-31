@@ -1,0 +1,29 @@
+{
+  "model": "claude-sonnet-5-5",
+  "elapsedMs": 69328,
+  "job": {
+    "jobId": "a66fdb42-d752-4f7f-8a6d-259e6da419dc",
+    "draftId": "9a18a149-5c33-4f3b-8d23-2daa14ed5652",
+    "baseRevision": 0,
+    "status": "FAILED",
+    "nextStep": 2,
+    "createdAt": "2026-10-31T21:17:58.034Z",
+    "updatedAt": "2026-10-31T21:19:07.362Z",
+    "attachedRevision": null,
+    "candidateAvailable": false,
+    "failureCode": "INVALID_OUTPUT"
+  },
+  "readiness": "INCOMPLETE",
+  "findingCounts": {
+    "error:PACKAGE_MISSING": 1
+  },
+  "counts": {
+    "entities": 0,
+    "knowledge": 0,
+    "encounters": 0,
+    "quests": 0
+  },
+  "possessionsReturned": 0,
+  "possessionsReferToItems": true,
+  "catalogIdsUsed": []
+}

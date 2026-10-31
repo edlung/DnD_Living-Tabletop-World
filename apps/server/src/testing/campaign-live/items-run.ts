@@ -95,6 +95,8 @@ async function main(): Promise<void> {
   });
   let keepDatabase: boolean;
   let ownerId = '';
+  // A run that did not succeed keeps its database, so the failure can be inspected.
+  let succeeded = false;
   const approvalId = 'live-490';
   try {
     await db.operator.createAccount({
@@ -290,6 +292,7 @@ async function main(): Promise<void> {
         ...new Set(possessions.flatMap((row) => (row.catalog ? [row.catalog] : []))),
       ],
     };
+    succeeded = view.job.status === 'SUCCEEDED';
     await write('summary.json', summary);
     await write('possessions.json', possessions);
     await write('assessment.json', revision.assessment);
@@ -322,7 +325,7 @@ async function main(): Promise<void> {
         `SELECT count(*)::int AS n FROM ltw_ai_attempts a WHERE NOT EXISTS
            (SELECT 1 FROM ltw_ai_accounting c WHERE c.attempt_id = a.attempt_id AND c.kind <> 'evidence')`,
       );
-      keepDatabase = (open.rows[0] as { n: number }).n > 0;
+      keepDatabase = (open.rows[0] as { n: number }).n > 0 || !succeeded;
     } catch (error) {
       keepDatabase = true;
       say(

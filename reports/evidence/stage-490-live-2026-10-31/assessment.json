@@ -1,0 +1,18 @@
+{
+  "compilerVersion": 1,
+  "readiness": "INCOMPLETE",
+  "findings": [
+    {
+      "severity": "error",
+      "code": "PACKAGE_MISSING",
+      "path": "content",
+      "message": "Save a campaign package to assess it"
+    }
+  ],
+  "counts": {
+    "entities": 0,
+    "knowledge": 0,
+    "encounters": 0,
+    "quests": 0
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "day": "2026-10-31",
+  "accounts": [
+    {
+      "accountId": "anthropic-owner",
+      "enabled": true,
+      "globalDailyCeilingMicros": null,
+      "todayMicros": "213109",
+      "totalMicros": "213109",
+      "openHoldMicros": "0",
+      "monetaryPolicy": {
+        "revision": 1,
+        "mode": "UNLIMITED",
+        "ownerId": "owner",
+        "authorizedOn": "2026-10-31",
+        "authorizationSource": "reviews/OWNER_LIVE_CAMPAIGN_AUTHORIZATION_2026-10-31.json"
+      }
+    }
+  ],
+  "approvals": [
+    {
+      "approvalId": "live-490",
+      "accountId": "anthropic-owner",
+      "stage": "490",
+      "enabled": true,
+      "stageCeilingMicros": null,
+      "spentMicros": "213109",
+      "monetaryPolicy": {
+        "revision": 1,
+        "mode": "UNLIMITED",
+        "ownerId": "owner",
+        "authorizedOn": "2026-10-31",
+        "authorizationSource": "reviews/OWNER_LIVE_CAMPAIGN_AUTHORIZATION_2026-10-31.json"
+      }
+    }
+  ],
+  "images": {
+    "revision": null,
+    "ceilingMicros": null,
+    "spentMicros": "0",
+    "heldMicros": "0",
+    "remainingMicros": null,
+    "charges": 0,
+    "unsettled": 0,
+    "unsettledReservations": [],
+    "settleableAfterMinutes": 15
+  }
+}
