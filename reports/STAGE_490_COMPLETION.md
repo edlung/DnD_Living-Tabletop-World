@@ -27,7 +27,7 @@ uncommitted config). Not run: hosted CI, a human playtest, a live generation tha
 
 ## Open
 
-- Consent of the receiver when a player gives to another player's character (a product decision; none implemented).
+- Consent of the receiver when a player gives to another player's character: decided by the owner on 2026-10-31 to stay as is (the hand-over is immediate).
 - Armor and picking up stay impossible during a fight; weight is still not enforced.
 
 ## Live run (owner-authorized, 2026-10-31)

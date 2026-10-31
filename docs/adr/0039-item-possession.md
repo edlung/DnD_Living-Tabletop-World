@@ -57,3 +57,5 @@ catalog IDs from campaign packages; Stage 480 attaches art by catalog ID.
   The turn is spent by a `CombatantUpdated` event beside the item event.
 - `GiveItem`/`DropItem` take an optional `quantity` (part of a stack): `EntityCreated` for a new item entity, `ItemSplit`, then
   `ItemTransferred` of the new item. Total quantity is conserved.
+
+Owner decision 2026-10-31: a hand-over between players takes effect at once, with no consent step for the receiver.
