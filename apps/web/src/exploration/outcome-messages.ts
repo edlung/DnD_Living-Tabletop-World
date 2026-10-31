@@ -22,7 +22,26 @@ const REJECTIONS: Readonly<Record<string, string>> = {
   INVALID_ENCOUNTER: 'That encounter cannot be started as set up.',
   ILLEGAL_ACTION: 'This action is not available in the current world.',
   NO_EFFECT: 'This action would make no change.',
+  INVALID_ITEM: 'That item cannot be handled like this right now.',
 };
+
+const ITEM_COMMANDS: ReadonlySet<string> = new Set([
+  'EquipItem',
+  'UnequipItem',
+  'UseItem',
+  'GiveItem',
+  'DropItem',
+  'TakeItem',
+]);
+
+const ITEM_DONE = {
+  equip: 'You put it on. Your view has been refreshed.',
+  unequip: 'You took it off. Your view has been refreshed.',
+  use: 'You used it. Your view has been refreshed.',
+  give: 'You handed it over. Your view has been refreshed.',
+  drop: 'You dropped it. Your view has been refreshed.',
+  take: 'You picked it up. Your view has been refreshed.',
+} as const;
 
 /** Rules reasons arrive as a fixed vocabulary (for example `OUT_OF_RANGE`), never free text. */
 const readableReason = (reason: string) =>
@@ -60,6 +79,12 @@ export function rejectionMessage(
       ? t('They have nothing new to tell you about this.')
       : t('They have nothing to say about this.');
   }
+  if (
+    commandType !== undefined &&
+    ITEM_COMMANDS.has(commandType) &&
+    code === 'COMBAT_ALREADY_ACTIVE'
+  )
+    return `${t('Items cannot be handled during an encounter.')} ${t('Your view has been refreshed.')}`;
   const base = t(REJECTIONS[code] ?? 'The world could not accept this action.');
   const reason = code === 'ILLEGAL_ACTION' && message ? readableReason(message) : null;
   return `${reason ? `${base} (${t(reason)})` : base} ${t('Your view has been refreshed.')}`;
@@ -86,6 +111,8 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
         : t('No new inference was recorded.');
     case 'FormHypothesis':
       return t('Hypothesis recorded as HYPOTHESIS.');
+    case 'Item':
+      return t(ITEM_DONE[outcome.action]);
     case 'MoveCombatant':
       return t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });
     case 'Attack':

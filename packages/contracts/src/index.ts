@@ -206,6 +206,7 @@ export {
   type ClueMethod,
   type Disclosure,
   type ExamineMethod,
+  type ItemAction,
   type PlayerCommandType,
   type PlayerOutcome,
 } from './investigation/commands.ts';

@@ -28,6 +28,9 @@ import { WIDE } from '../combat/board/board-view.ts';
 import { Backdrop } from './backdrop.tsx';
 import { CombatStage } from './combat-stage.tsx';
 import { EntityDetails } from './entity-details.tsx';
+import { ItemsSheet } from '../items/items-sheet.tsx';
+import { recipientsOf } from '../items/recipients.ts';
+import { useConversationNotice, type Conversation } from './use-conversation-notice.ts';
 import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
 import { PlacesSheet } from './places-sheet.tsx';
@@ -38,12 +41,6 @@ import { useScene, useWorldData } from './use-world-data.ts';
 interface Selected {
   readonly entityId: string;
   readonly kind: EntityKind;
-}
-
-/** The NPC a player is speaking with, and the last line they spoke in this conversation. */
-interface Conversation {
-  readonly npcId: string;
-  readonly line: string | null;
 }
 
 /**
@@ -120,19 +117,7 @@ export function World({
   const action = useAction(api, canAct || standIn !== null || isDm, onResolved, (npcId, topicId) =>
     toldAbout(knowledge, npcId, topicId),
   );
-  // A spoken line belongs to the conversation with whoever spoke it; an NPC who would not
-  // talk now leaves no conversation open (no "Keep talking" after a refusal).
-  useEffect(() => {
-    const notice = action.notice;
-    const refused = notice?.talkRefusedBy;
-    if (refused) setConversation((current) => (current?.npcId === refused ? null : current));
-    const speech = notice?.speech;
-    const speaker = notice?.speakerId;
-    if (!speech || !speaker) return;
-    setConversation((current) =>
-      current?.npcId === speaker ? { npcId: speaker, line: speech } : current,
-    );
-  }, [action.notice]);
+  useConversationNotice(action.notice, setConversation);
   const run = (intent: ExplorationIntent) => {
     action.run(
       standIn && intent.kind === 'command'
@@ -359,6 +344,17 @@ export function World({
               shell.dismissSheet();
               select(place.entityId, place.kind);
             }}
+          />
+          <ItemsSheet
+            api={api}
+            shell={shell}
+            revision={revision}
+            characterId={acting ? actorId : null}
+            canAct={canAct || standIn !== null}
+            locked={action.locked}
+            inEncounter={encounter !== null}
+            recipients={recipientsOf(view, directory, actorId)}
+            onRun={run}
           />
           <JournalSheet
             api={api}

@@ -8,6 +8,12 @@ export type ExplorationCommand = KernelCommandOf<
   | 'ExamineEntity'
   | 'FormHypothesis'
   | 'CastSpell'
+  | 'EquipItem'
+  | 'UnequipItem'
+  | 'UseItem'
+  | 'GiveItem'
+  | 'DropItem'
+  | 'TakeItem'
 >;
 
 /**
