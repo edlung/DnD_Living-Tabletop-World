@@ -1,7 +1,6 @@
 import type { PlayerAssetView, ScenePresentationResponse } from '@ltw/contracts';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
-import type { WorldApi } from '../api/client.ts';
 import { ApprovedImages, pictureTime, withPictureTimes } from './approved-images.ts';
 
 /**
@@ -28,7 +27,7 @@ function api(fail: readonly (number | null)[] = []) {
         : Promise.resolve(new Blob(['<svg/>'], { type: 'image/svg+xml' }));
     },
   };
-  return { api: fake as unknown as WorldApi, calls };
+  return { api: fake, calls };
 }
 
 describe('the time a picture was chosen for', () => {
@@ -62,5 +61,32 @@ describe('the time a picture was chosen for', () => {
       { hash: 'sha256:a', at: 200 },
     ]);
     images.release();
+  });
+  it('releases old scope URLs and ignores a transport that returns bytes after scope exit', async () => {
+    let complete!: (blob: Blob) => void;
+    const slow = new ApprovedImages({
+      image: () =>
+        new Promise<Blob>((done) => {
+          complete = done;
+        }),
+    });
+    const create = vi.spyOn(URL, 'createObjectURL');
+    const pending = slow.load('sha256:late');
+    slow.release();
+    complete(new Blob(['private'], { type: 'image/png' }));
+    expect(await pending).toBeNull();
+    expect(slow.peek('sha256:late')).toBeNull();
+    expect(create).not.toHaveBeenCalled();
+    const { api: fake } = api();
+    const owner = new ApprovedImages(fake);
+    const held = await owner.load('sha256:chosen');
+    const revoke = vi.spyOn(URL, 'revokeObjectURL');
+    owner.release();
+    expect(revoke).toHaveBeenCalledWith(held);
+    expect(owner.peek('sha256:chosen')).toBeNull();
+    const character = new ApprovedImages(fake);
+    expect(character.peek('sha256:chosen')).toBeNull();
+    create.mockRestore();
+    revoke.mockRestore();
   });
 });

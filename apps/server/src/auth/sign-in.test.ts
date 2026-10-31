@@ -162,14 +162,12 @@ describe('sessions', () => {
     );
   });
 
-  it('end at sign-out, which clears the cookie', async () => {
+  it('ends at sign-out without a response that could erase a newer cookie', async () => {
     const table = await signInTable();
     const { player } = await dmAndPlayer(table);
     const out = await table.send('POST', '/auth/sign-out', { cookie: player });
     expect(out.statusCode).toBe(204);
-    expect(out.headers['set-cookie']).toBe(
-      'ltw_session=; Path=/api; HttpOnly; SameSite=Strict; Max-Age=0; Secure',
-    );
+    expect(out.headers['set-cookie']).toBeUndefined();
     expect((await table.send('GET', '/auth/session', { cookie: player })).statusCode).toBe(401);
     expect((await table.send('POST', '/auth/sign-out', { cookie: player })).statusCode).toBe(401);
   });

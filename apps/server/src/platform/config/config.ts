@@ -71,6 +71,8 @@ export interface AppConfig {
      * trace write. `LTW_AI_TIMEOUT_MS` stays the per-attempt transport bound within it.
      */
     readonly requestTimeoutMs: number;
+    /** Separate bounded campaign preparation deadline; legacy hand-built compositions may omit it. */
+    readonly preparationTimeoutMs?: number;
     /**
      * The operator-created approval this process selects (`LTW_AI_APPROVAL_ID`), or null. It only
      * names a stored record: ceilings live in that record and cannot be set or raised here.
@@ -228,6 +230,10 @@ const envSchema = z.object({
     emptyAsUndefined,
     z.coerce.number().int().min(1_000).max(300_000).default(DEFAULT_REQUEST_TIMEOUT_MS),
   ),
+  LTW_AI_PREPARATION_TIMEOUT_MS: z.preprocess(
+    emptyAsUndefined,
+    z.coerce.number().int().min(1_000).max(600_000).default(300_000),
+  ),
   LTW_AI_APPROVAL_ID: z.preprocess(
     emptyAsUndefined,
     z
@@ -382,6 +388,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
             }),
       relevanceBudgetMs: values.LTW_AI_RELEVANCE_BUDGET_MS,
       requestTimeoutMs: values.LTW_AI_REQUEST_TIMEOUT_MS,
+      preparationTimeoutMs: values.LTW_AI_PREPARATION_TIMEOUT_MS,
       approvalId: values.LTW_AI_APPROVAL_ID ?? null,
       deepseek:
         values.DEEPSEEK_API_KEY === undefined

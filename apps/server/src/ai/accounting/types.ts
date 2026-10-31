@@ -1,5 +1,6 @@
 import type { Deadline } from './deadline.ts';
 import type { BillingDay, SessionClass } from './lock-keys.ts';
+import type { WorkshopAiSubject } from '@ltw/contracts';
 
 /**
  * Ports of the durable accounting store (docs/adr/0032-live-ai.md, amendment 2026-10-11;
@@ -14,19 +15,23 @@ import type { BillingDay, SessionClass } from './lock-keys.ts';
  */
 export type AccountingSession =
   | { readonly class: 'play'; readonly sessionId: string }
-  | { readonly class: 'evaluation'; readonly runId: string };
+  | { readonly class: 'evaluation'; readonly runId: string }
+  | { readonly class: 'preparation'; readonly sessionId: string };
 
 export const sessionKey = (
   session: AccountingSession,
 ): { sessionClass: SessionClass; sessionId: string } =>
   session.class === 'play'
     ? { sessionClass: 'play', sessionId: session.sessionId }
-    : { sessionClass: 'evaluation', sessionId: session.runId };
+    : session.class === 'evaluation'
+      ? { sessionClass: 'evaluation', sessionId: session.runId }
+      : { sessionClass: 'preparation', sessionId: session.sessionId };
 
 /** A durable request start: its ID is also the parent trace ID. */
 export interface RequestStart {
   readonly requestId: string;
-  readonly campaignId: string;
+  readonly campaignId: string | null;
+  readonly subject?: WorkshopAiSubject;
   readonly actorId: string;
   readonly purpose: string;
   readonly capability: string;

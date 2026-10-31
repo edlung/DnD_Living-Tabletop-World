@@ -1,5 +1,21 @@
 # AI Gateway (`@ltw/ai`)
 
+Stage 400 / accepted ADR 0038: `src/preparation.ts` adds `campaign-preparation`
+for a real owner/draft job session. It has no local generator or fixture fallback.
+Its caller supplies a static structured output schema and validator; every result
+is a candidate only. `campaignId:null` plus a typed workshop subject is deliberate,
+never a fabricated campaign/play/evaluation. Its durable trace is private to that
+owner/draft. Old runtime requests without captured play sessions stay local-only.
+Preallocated trace IDs and caller cancellation flow through the shared request
+lifecycle. Cancellation before transport is not-dispatched; after transport it
+can leave an unknown hold. No late result may replace the frozen outcome.
+
+Stage420 extends the pure image port with a real workshop job/subject branch,
+execution evidence and an awaited durable dispatch callback. The server owns its
+authorization, accounting and bytes; no campaign ID is fabricated. Legacy
+campaign briefs/callers remain compatible. Draft generation has no placeholder
+fallback and cannot approve or mutate a world.
+
 ADR 0017 (owner-approved). Pure: no I/O, no provider SDKs, and **no path to the World Engine**. Use cases: DM intents (ADR 0017), NPC replies (ADR 0020 §3), relevance ranking (ADR 0021), the image-generation port (ADR 0022), and Chronicle prose (ADR 0024). `workspace-boundaries.json` `forbiddenNames` bars `WorldEngine`, event stores, and decision functions from non-test sources. The package reads a `WorldState` snapshot and returns proposals. Stage 110 owns any commit.
 
 | File                        | Responsibility                                                                                                                 |

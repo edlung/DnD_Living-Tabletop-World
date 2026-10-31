@@ -1,0 +1,22 @@
+{
+  "kind": "OWNER_LIVE_CAMPAIGN_AUTHORIZATION",
+  "date": "2026-10-30",
+  "scope": "One live campaign generation and quality/preview assessment",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "confirmation": {
+    "owner_question": "Какую модель anthropic?",
+    "assistant_model": "Sonnet 5.5 — claude-sonnet-5-5, as recorded in the project catalog; actual API availability not yet verified.",
+    "owner_disposition": "Разрешаю"
+  },
+  "monetary_policy": "UNLIMITED, retaining actual/unknown accounting and operational limits",
+  "constraints": [
+    "Use genuine admitted preparation runtime and durable accounting",
+    "No silent model/provider fallback",
+    "No default DB migration or mutation",
+    "No credential changes or direct reading/logging of .env.local",
+    "No canonical activation without a separate explicit runtime confirmation",
+    "No deployment or external publishing",
+    "Store only sanitized live receipts and generated campaign content"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "kind": "EXPLICIT_MANUAL_INITIAL_PLACEMENTS",
+  "authorizedSource": "owner delegated technical fixes",
+  "aiCandidateJobId": "75e39d72-b67b-4fd2-bff3-66f922635771",
+  "aiCandidateDigest": "sha256:9f152a84a0810c866af0cac06b78d72f69fccf5159cdccd84027ba56aff8b4f4",
+  "basedOnRevision": 2,
+  "savedRevision": 3,
+  "source": {
+    "kind": "OWNER",
+    "actorId": "1097257d-185e-46d2-b164-6a2909d57429"
+  },
+  "changes": [
+    {
+      "path": "entities.mirela-tikhonova.placement",
+      "before": null,
+      "after": {
+        "location": "prichal",
+        "since": null
+      }
+    },
+    {
+      "path": "entities.gordey.placement",
+      "before": null,
+      "after": {
+        "location": "prichal",
+        "since": null
+      }
+    },
+    {
+      "path": "entities.faina.placement",
+      "before": null,
+      "after": {
+        "location": "post-vekh",
+        "since": null
+      }
+    },
+    {
+      "path": "entities.savva.placement",
+      "before": null,
+      "after": {
+        "location": "torgovaya-lavka",
+        "since": null
+      }
+    },
+    {
+      "path": "entities.khranitel-mayaka.placement",
+      "before": null,
+      "after": {
+        "location": "lampovyy-zal",
+        "since": null
+      }
+    },
+    {
+      "path": "entities.chuzhaya-lodka.placement",
+      "before": null,
+      "after": {
+        "location": "vodnyy-put",
+        "since": null
+      }
+    }
+  ],
+  "otherPriorRevisionContentChanged": false,
+  "rawAiOutputsPreserved": true
+}

@@ -12,7 +12,7 @@ import {
   streamDigestsSchema,
   type StreamDigest,
 } from './replay-digest.ts';
-import { createWorldEngine } from './runtime.ts';
+import { createRawWorldEngine } from './runtime.ts';
 
 /**
  * The restore drill's CLI (docs/adr/0037-deployment.md §4; `deploy/scripts/restore-drill.sh`),
@@ -109,7 +109,7 @@ async function main(): Promise<void> {
   const expected = command.kind === 'compare' ? await readExpected(command.expected) : [];
   const pool = new pg.Pool({ connectionString: loadConfig().databaseUrl, max: 2 });
   try {
-    const engine = createWorldEngine(pool);
+    const engine = createRawWorldEngine(pool);
     if (command.kind === 'digest') {
       const streams = await digestStreams(pool, engine, command.at);
       console.log(JSON.stringify({ streams }));

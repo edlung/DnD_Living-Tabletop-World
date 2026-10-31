@@ -1,0 +1,75 @@
+import { spawn } from 'node:child_process';
+import { createRequire } from 'node:module';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { createHmac, randomBytes } from 'node:crypto';
+import { auditPage } from '/Users/oleksandr/.agents/skills/ui-layout-audit/audit.mjs';
+const projectRoot = '/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2';
+const require = createRequire(`${projectRoot}/package.json`);
+const { chromium } = require('@playwright/test');
+const seed = randomBytes(32).toString('hex');
+const directory = '/private/tmp/workshop-stage410-layout';
+mkdirSync(directory, { recursive: true });
+const children = [];
+const launch = (args, env = {}) => {
+  const child = spawn('pnpm', args, { cwd: projectRoot, env: { ...process.env, ...env }, stdio: 'ignore', detached: true });
+  children.push(child); return child;
+};
+let browser;
+try {
+  launch(['exec', 'node', '--conditions=@ltw/source', '/private/tmp/workshop-stage410-audit-server.mjs'], { LTW_UI_SIGN_IN_SEED: seed });
+  launch(['dev:web', '--host', '127.0.0.1', '--port', '4322'], { LTW_API_TARGET: 'http://127.0.0.1:4323', LTW_VITE_CACHE_DIR: 'node_modules/.vite-workshop-audit410' });
+  for (const url of ['http://127.0.0.1:4323/healthz', 'http://127.0.0.1:4322']) {
+    let ready = false;
+    for (let i = 0; i < 120; i++) {
+      try { if ((await fetch(url)).ok) { ready = true; break; } } catch {}
+      await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+    if (!ready) throw new Error('AUDIT_SERVER_NOT_READY');
+  }
+  browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, locale: 'en-US' });
+  page.on('pageerror', () => { console.log('BROWSER_PAGE_ERROR'); });
+  const token = createHmac('sha256', seed).update('workshop-invitation\nscenario-layout').digest('base64url');
+  await page.goto(`http://127.0.0.1:4322/workshop/join#${token}`);
+  await page.getByRole('button', { name: 'Enter the workshop', exact: true }).click();
+  await page.getByRole('link', { name: 'Open draft: The Bell Beneath the Ice', exact: true }).click();
+  await page.getByRole('navigation', { name: 'Scenario objects' }).waitFor();
+  const results = [];
+  async function inspect(state) {
+    for (const width of [1440, 768, 390, 320]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await page.evaluate(() => document.fonts.ready);
+      await page.evaluate(() => window.scrollTo(0, 0));
+      const findings = await auditPage(page);
+      const contentTop = await page.locator(state === 'generation' ? '.workshop-generation-form' : state === 'job-completed' ? '.workshop-job' : '.scenario-inspector').evaluate((element) => Math.round(element.getBoundingClientRect().top + window.scrollY));
+      results.push({ state, width, contentTop, findings });
+      await page.screenshot({ path: `${directory}/${state}-${width}.png`, fullPage: true });
+      const target = state === 'generation' ? '.workshop-generation-form' : state === 'job-completed' ? '.workshop-job' : state === 'correction' ? '.scenario-edit' : '.scenario-inspector';
+      await page.locator(target).evaluate((element) => element.scrollIntoView({ block: 'start' }));
+      await page.screenshot({ path: `${directory}/${state}-${width}-viewport.png` });
+      writeFileSync(`${directory}/results.json`, JSON.stringify(results, null, 2));
+    }
+  }
+  await inspect('opening');
+  await page.getByRole('navigation', { name: 'Scenario objects' }).locator('section').filter({ has: page.getByRole('heading', { name: /^Cast and places/ }) }).getByRole('button', { name: /^Iva(?: \(\d+\))?$/ }).click();
+  await inspect('inspector');
+  await page.getByRole('button', { name: 'Edit fields', exact: true }).click();
+  await inspect('correction');
+  await page.getByRole('tab', { name: 'Generation', exact: true }).click();
+  await page.getByLabel('Campaign idea', { exact: true }).waitFor();
+  await inspect('generation');
+  await page.getByLabel('Campaign idea', { exact: true }).fill('Prepare an independent river mystery with a peaceful solution and an optional fight.');
+  await page.getByRole('button', { name: 'Generate campaign', exact: true }).click();
+  await page.getByRole('button', { name: 'View generated scenario', exact: true }).waitFor();
+  await inspect('job-completed');
+  await page.getByRole('button', { name: 'View result: Cast and party', exact: true }).click();
+  await page.getByRole('heading', { name: 'Saved preparation step', exact: true }).waitFor();
+  await page.getByRole('navigation', { name: 'Scenario objects' }).waitFor();
+  await inspect('preparation-step');
+  writeFileSync(`${directory}/results.json`, JSON.stringify(results, null, 2));
+  for (const result of results) console.log(JSON.stringify(result));
+  if (results.some((result) => result.findings.some((finding) => finding.level === 'error' || finding.level === 'warn'))) process.exitCode = 1;
+} finally {
+  await browser?.close();
+  for (const child of children) { try { process.kill(-child.pid, 'SIGTERM'); } catch {} }
+}

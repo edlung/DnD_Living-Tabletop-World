@@ -1,5 +1,44 @@
 # Gate Coverage and Surface Introduction
 
+## AI campaign program — Stages 370–450
+
+The owner's 2026-10-30 program request and unlimited monetary policy are recorded
+in `docs/PROJECT_WORKFLOW.md`. The detailed contract/ADR 0038 were accepted by
+`reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json` (reviewed proposal bytes frozen).
+Stage 370 introduced documentation only. Stage 380 access/accounting implementation
+and evidence are in `reports/STAGE_380_COMPLETION.md`; final full validation passed
+(3,016 unit, 254 integration, 144 browser tests), accepted by the owner on 2026-10-30.
+Stage 390 implements package contracts, private immutable revisions and isolated
+materialization; its full checkpoint passed (3,049 unit, 261 integration, 144 browser tests). Stage 400 implements durable preparation, real workshop AI sessions and admitted
+accounting; its offline checkpoint passed (3,100unit,284integration,144browser
+tests). Live-provider quality is NOT_RUN and carried to450; scripted tests do
+not close it. Stage410 implements the private scenario/generation browser and
+lightweight progress; full checkpoint passed (3,132unit,286integration,156browser
+tests), with24layout/accessibility state-width combinations. Stage420 implements
+scoped visual preview, fenced draft-image generation and explicit manifests; full
+checkpoint passed (3,185unit,306integration,164browser tests) plus36layout/axe
+combinations. Stages430–450 remain
+**FUTURE / NOT YET IMPLEMENTED OR TESTED**. The owner delegates technical checkpoint
+continuation (`reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json`); each stage
+still verifies its own boundary and preserves human acceptance separately.
+
+| Introduced at | Required coverage at introduction | Integrated checkpoint |
+|---:|---|---|
+| 370 | Owner-requirement traceability, example knowledge/clue audit, invariant assessment, honest distinction between proposed and implemented behavior | Stage 370 owner disposition |
+| 380 | Workshop invitation/cookie/origin, cross-owner and campaign credential isolation, revocation including progress, no secret logging; unlimited text/image admission above all former monetary ceilings with actual/unknown costs preserved | 450 |
+| 390 | Strict schemas, opaque stable IDs, temporal/reference/rules checks, per-campaign quest definitions, revision races/restart, no live writes | 450 |
+| 400 | Provider inputs limited to authorized draft; hostile instructions cannot dispatch commands; cancellation/lease/restart/stale output, idempotent stored-result reuse, uncertain dispatch accounting; honest local/remote status and live quality evidence | 450 |
+| 410 | Owner scenario access, linked truth/testimony/rumor/plans, findings; refusal for player/outsider/unrelated owner, no leakage in response/DOM/cache/errors | 450 |
+| 420 | Scoped player projections and exact selected image bytes; forbidden entity/image absence across API/DOM/preloads/metadata/progress; draft image lineage/staleness; preview creates no real events, observations or membership | 450 |
+| 430 | Locked/dependent content, compare-and-swap, late jobs, restore as new revision, visual invalidation, stale package confirmation | 450 |
+| 440 | User-only consent over revision and manifests; atomic World Engine append, footprint/event-version/replay/undo obligations; crash reconciliation and no partial publication/invitations; exact art adoption; quest/scenario/asset backup and restore; cross-campaign entry/listing | 450 |
+| 450 | End-to-end investigation/social/combat generation and actual play, all earlier boundary regressions, adversarial races/knowledge/auth/accounting, layout/accessibility and owner's human acceptance | Stage 450 owner disposition |
+
+The historical ledgers below retain their revision-specific finite-ceiling checks.
+Stage 380 must add new policy coverage rather than rewriting past evidence as
+unlimited-mode tests. No later surface passes merely because Stage 370's design
+or the existing Ravenford suites pass.
+
 All existing surfaces relevant to an invariant remain subject to review. This table schedules new surfaces; it does not exempt an already implemented route, cache, serializer, or fallback. Test through public or explicit test interfaces without implementing future-stage features solely for a review.
 
 | Introduced at | Required deterministic coverage at introduction | Next independent review |

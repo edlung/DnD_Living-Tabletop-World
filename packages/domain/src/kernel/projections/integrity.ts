@@ -113,6 +113,13 @@ export function checkWorldIntegrity(state: WorldState): string[] {
 
   const players = new Set<string>();
   let assignedBefore = 0;
+  if (state.preparedParty !== undefined && state.bootstrap === undefined)
+    report('prepared party exists without bootstrap provenance');
+  if (state.bootstrap !== undefined && state.preparedParty === undefined)
+    report('bootstrap provenance exists without prepared party');
+  for (const characterId of state.preparedParty ?? [])
+    if (state.entities.get(characterId)?.kind !== 'character')
+      report(`prepared party references invalid character ${characterId}`);
   for (const [characterId, playerId] of state.roster) {
     if (state.entities.get(characterId)?.kind !== 'character') {
       report(`roster entry ${characterId} is not a character`);

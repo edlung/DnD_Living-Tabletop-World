@@ -1,3 +1,4 @@
+import { applyPreparedParty, applyCampaignBootstrapped } from '../campaign/bootstrap-evolve.ts';
 import { DEFAULT_LANGUAGE } from '@ltw/contracts';
 
 import { applyCharacterSheetSet } from '../character/character.ts';
@@ -165,6 +166,10 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyUndo(state, event);
     case 'KnowledgeAssigned':
       return applyKnowledgeAssigned(state, event);
+    case 'PreparedPartyEstablished':
+      return applyPreparedParty(state, event);
+    case 'CampaignBootstrapped':
+      return applyCampaignBootstrapped(state, event);
     case 'CharacterAssigned':
       return applyCharacterAssigned(state, event);
     case 'CharacterReleased':
@@ -229,6 +234,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyEvidenceShown(state, event);
     case 'InsightChecked':
       return applyInsightChecked(state, event);
+    case 'AssetAdopted':
     case 'AssetRequested':
     case 'AssetJobStarted':
     case 'AssetGenerated':

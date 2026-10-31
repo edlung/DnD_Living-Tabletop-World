@@ -17,16 +17,18 @@ export interface NearbyPlace {
 function Exits({
   nearby,
   onSelect,
+  hint,
 }: {
   readonly nearby: readonly NearbyPlace[];
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
+  readonly hint?: ReactNode;
 }) {
   const t = useT();
   return (
     <section className="exits" aria-label={t('Nearby places')}>
       <h3>{t('Beyond this place')}</h3>
       <p className="exits-hint">
-        {t('Choose a place to look at it. To go there, use Enter in its details.')}
+        {hint ?? t('Choose a place to look at it. To go there, use Enter in its details.')}
       </p>
       <ul>
         {nearby.map((place) => {
@@ -72,6 +74,8 @@ export function Scene({
   rail,
   conversation,
   notice,
+  nearbyHint,
+  missingImageNote,
 }: {
   readonly location: EntityRef;
   readonly scene: Resource<ScenePresentationResponse | null>;
@@ -88,6 +92,8 @@ export function Scene({
   readonly conversation: ReactNode;
   /** What the table changed under the viewer (the DM's undo of their action), in the cartouche. */
   readonly notice?: ReactNode;
+  readonly nearbyHint?: ReactNode;
+  readonly missingImageNote?: ReactNode;
 }) {
   const t = useT();
   const view = scene.status === 'ready' ? scene.value : null;
@@ -112,7 +118,7 @@ export function Scene({
         )}
         {/* On a phone the art does not scroll with the scene: the note rides in the cartouche. */}
         {view && !view.location.image && (
-          <p className="cartouche-note">{t('No approved image yet')}</p>
+          <p className="cartouche-note">{missingImageNote ?? t('No approved image yet')}</p>
         )}
         {notice}
       </header>
@@ -146,7 +152,9 @@ export function Scene({
         </p>
       </div>
       {conversation}
-      {nearby.length > 0 && !battlefield && <Exits nearby={nearby} onSelect={onSelect} />}
+      {nearby.length > 0 && !battlefield && (
+        <Exits nearby={nearby} onSelect={onSelect} hint={nearbyHint} />
+      )}
     </section>
   );
 }

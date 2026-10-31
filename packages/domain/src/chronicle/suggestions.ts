@@ -1,3 +1,4 @@
+import { partyMemberIds } from '../knowledge/party.ts';
 import { SECONDS_PER_DAY, type MemoryKind, type MemorySuggestionView } from '@ltw/contracts';
 
 import type { RecordedEvent } from '../kernel/events.ts';
@@ -42,8 +43,7 @@ export function memorySuggestions(
   from: number,
   to: number,
 ): MemorySuggestionView[] {
-  const members =
-    scope.kind === 'PARTY' ? new Set(state.roster.keys()) : new Set([scope.characterId]);
+  const members = scope.kind === 'PARTY' ? partyMemberIds(state) : new Set([scope.characterId]);
   const perspective = holderPerspective(state, scope);
   const known = knownEntityIds(state, perspective);
   const words = chronicleText(languageOf(state));

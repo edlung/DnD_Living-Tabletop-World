@@ -1,0 +1,15 @@
+{
+  "stage": 370,
+  "date": "2026-10-30",
+  "disposition": "ACCEPTED",
+  "source": "Owner reply in this project chat after the Stage 370 approval request",
+  "ownerInstruction": "Выполняй реализацию всех этапов. Подтверждаю",
+  "design": "docs/STAGE_370_DESIGN.md",
+  "designSha256": "4b2c6157accc3d24ec9d1e5674930ec4691b59524c0b3e504b3e92759170d769",
+  "packageManifestSha256": "2693d060ff120f629d272880c2fa8027427325b1e0000f108e80d0dd713df94e",
+  "approvedArchitecture": "docs/adr/0038-ai-campaign-workshop.md",
+  "implementationAuthorization": [380, 390, 400, 410, 420, 430, 440, 450],
+  "monetaryPolicy": "UNLIMITED for owner-authorized text and image AI; retain usage accounting",
+  "historicalArtifacts": "The proposed-status design and initial handoff remain frozen; this disposition supersedes their pending status.",
+  "unchanged": ["checkpoint stops", "human play acceptance", "no automatic release or deployment"]
+}

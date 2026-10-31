@@ -24,9 +24,11 @@ other case, and never appears in a log, trace, error, URL or listing.
 - Limits key on `clientGroup(request.ip)` (`platform/net/addresses.ts`): the client behind the
   proxy `LTW_TRUST_PROXY` names, an IPv6 /64 as one. A table that is full refuses a new client's
   redeem (fail closed); never add a sweep over a table or a per-key array that grows with traffic.
-- Only a request that presented exactly one session cookie, and it opened nothing, gets a
-  clearing `Set-Cookie`; `/auth/session` is origin-checked. A redeem never replaces a working
-  session without `replaceSession: true`.
+- Stage440:401 and sign-out never expire a cookie, because their response may arrive after
+  another tab installed a newer credential. Sign-out revokes the presented server session;
+  mounted `x-game-campaign`/`x-game-actor` headers refuse stale questions with409 before
+  revocation. `/auth/session` is origin-checked. A redeem never replaces a working session
+  without `replaceSession: true`.
 - Every failed redeem answers the same 401; a session used on another campaign is an actor no
   campaign has (`http/auth.ts`, `actorFor`), so it ends in the same 404 as a non-member, after
   input validation (ADR 0009 order).

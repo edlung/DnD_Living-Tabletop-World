@@ -76,11 +76,14 @@ function standingOf(entry: Omit<StoredEntry, 'key'>): string[] {
 }
 
 /** What an entry's words and selection rest on, beyond the source it tells. */
-function premisesOf(entry: Omit<StoredEntry, 'key'>): string[] {
+function premisesOf(entry: Omit<StoredEntry, 'key'>, prepared: boolean): string[] {
   const named = [...entry.participants, ...(entry.locationId === null ? [] : [entry.locationId])];
   const member =
     entry.source.kind === 'event' && entry.source.eventType === 'EntityPlaced'
-      ? entry.participants.map((id) => facts.rosterCharacter(id))
+      ? [
+          ...(prepared ? [facts.preparedParty()] : []),
+          ...entry.participants.map((id) => facts.rosterCharacter(id)),
+        ]
       : [];
   return [
     ...named.map((id) => facts.entityProfile(id)),
@@ -90,11 +93,15 @@ function premisesOf(entry: Omit<StoredEntry, 'key'>): string[] {
 }
 
 /** What the perspective itself rests on: its holder, and a character's place in the party. */
-function perspectivePremises(perspective: ResolvedPerspective): string[] {
+function perspectivePremises(perspective: ResolvedPerspective, prepared: boolean): string[] {
   const holder = perspective.holderId;
   if (holder === null) return [];
   return perspective.kind === 'CHARACTER'
-    ? [facts.entity(holder), facts.rosterCharacter(holder)]
+    ? [
+        facts.entity(holder),
+        facts.rosterCharacter(holder),
+        ...(prepared ? [facts.preparedParty()] : []),
+      ]
     : [facts.entity(holder)];
 }
 
@@ -127,9 +134,9 @@ export function chronicleEntries(
         ...kept.flatMap(({ entry, rests }) => [
           ...rests,
           ...standingOf(entry),
-          ...premisesOf(entry),
+          ...premisesOf(entry, state.preparedParty !== undefined),
         ]),
-        ...perspectivePremises(perspective),
+        ...perspectivePremises(perspective, state.preparedParty !== undefined),
       ]),
     ].sort(),
   };

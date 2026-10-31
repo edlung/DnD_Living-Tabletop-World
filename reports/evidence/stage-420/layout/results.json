@@ -1,0 +1,506 @@
+[
+  {
+    "state": "owner-empty",
+    "width": 1440,
+    "contentTop": 661,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x42, 14.4px x17, 5.6px x16, 11.2px x8, 4.8px x7, 6.4px x4, 12.8px x2, 22.4px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-empty",
+    "width": 768,
+    "contentTop": 661,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x42, 14.4px x17, 5.6px x16, 11.2px x8, 4.8px x7, 6.4px x4, 12.8px x2, 22.4px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-empty",
+    "width": 390,
+    "contentTop": 907,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x42, 14.4px x16, 5.6px x16, 11.2px x8, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-empty",
+    "width": 320,
+    "contentTop": 974,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x42, 14.4px x16, 5.6px x16, 11.2px x8, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-scene",
+    "width": 1440,
+    "contentTop": 661,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x62, 14.4px x27, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-scene",
+    "width": 768,
+    "contentTop": 661,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x62, 14.4px x27, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-scene",
+    "width": 390,
+    "contentTop": 907,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x62, 14.4px x26, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-scene",
+    "width": 320,
+    "contentTop": 974,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x62, 14.4px x26, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-detail",
+    "width": 1440,
+    "contentTop": 661,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x74, 14.4px x33, 5.6px x20, 11.2px x14, 6.4px x8, 13.6px x5, 4.8px x5, 9.6px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-detail",
+    "width": 768,
+    "contentTop": 1150,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x74, 14.4px x33, 5.6px x20, 11.2px x14, 6.4px x8, 13.6px x5, 4.8px x5, 9.6px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-detail",
+    "width": 390,
+    "contentTop": 1494,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x74, 14.4px x32, 5.6px x20, 11.2px x14, 6.4px x8, 13.6px x6, 4.8px x5, 9.6px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-detail",
+    "width": 320,
+    "contentTop": 1726,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x74, 14.4px x32, 5.6px x20, 11.2px x14, 6.4px x8, 13.6px x6, 4.8px x5, 9.6px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-layout",
+    "width": 1440,
+    "contentTop": 922,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x152, 14.4px x27, 11.2px x12, 6px x8, 5.6px x6, 6.4px x4, 4.8px x4, 9.6px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-layout",
+    "width": 768,
+    "contentTop": 911,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x152, 14.4px x27, 11.2px x12, 6px x8, 5.6px x6, 6.4px x4, 4.8px x4, 9.6px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-layout",
+    "width": 390,
+    "contentTop": 1073,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x156, 14.4px x26, 11.2px x12, 6px x8, 5.6px x6, 6.4px x4, 4.8px x4, 9.6px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "owner-layout",
+    "width": 320,
+    "contentTop": 1139,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x156, 14.4px x26, 11.2px x12, 6px x8, 5.6px x6, 6.4px x4, 4.8px x4, 9.6px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "character-scene",
+    "width": 1440,
+    "contentTop": 318,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x18, 5.6px x16, 14.4px x5, 4.8px x5, 6.4px x2, 11.2px x2, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "character-scene",
+    "width": 768,
+    "contentTop": 309,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x18, 5.6px x16, 14.4px x5, 4.8px x5, 6.4px x2, 11.2px x2, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "character-scene",
+    "width": 390,
+    "contentTop": 308,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x18, 5.6px x16, 4.8px x5, 14.4px x4, 6.4px x2, 11.2px x2, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "character-scene",
+    "width": 320,
+    "contentTop": 308,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x18, 5.6px x16, 4.8px x5, 14.4px x4, 6.4px x2, 11.2px x2, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "character-sheet",
+    "width": 1440,
+    "contentTop": 318,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "4.8px x65, 6.4px x64, 7.2px x22, 9.6px x20, 8.8px x18, 5.6px x16, 14.4px x7, 11.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "character-sheet",
+    "width": 768,
+    "contentTop": 799,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "4.8px x65, 6.4px x64, 7.2px x22, 9.6px x20, 8.8px x18, 5.6px x16, 14.4px x7, 11.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "character-sheet",
+    "width": 390,
+    "contentTop": 895,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "4.8px x65, 6.4px x64, 7.2px x22, 9.6px x20, 8.8px x18, 5.6px x16, 14.4px x6, 11.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "character-sheet",
+    "width": 320,
+    "contentTop": 1061,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "4.8px x65, 6.4px x64, 7.2px x22, 9.6px x20, 8.8px x18, 5.6px x16, 14.4px x6, 11.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-candidate",
+    "width": 1440,
+    "contentTop": 1625,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x50, 14.4px x21, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-candidate",
+    "width": 768,
+    "contentTop": 1737,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x50, 14.4px x21, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-candidate",
+    "width": 390,
+    "contentTop": 2006,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x50, 14.4px x20, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-candidate",
+    "width": 320,
+    "contentTop": 2263,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x50, 14.4px x20, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-selected",
+    "width": 1440,
+    "contentTop": 1569,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x54, 14.4px x23, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-selected",
+    "width": 768,
+    "contentTop": 1680,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x54, 14.4px x23, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-selected",
+    "width": 390,
+    "contentTop": 1928,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x54, 14.4px x22, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-selected",
+    "width": 320,
+    "contentTop": 2185,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x54, 14.4px x22, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-stale",
+    "width": 1440,
+    "contentTop": 1478,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x50, 14.4px x21, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-stale",
+    "width": 768,
+    "contentTop": 1590,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x50, 14.4px x21, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 22.4px x2, 3.2px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-stale",
+    "width": 390,
+    "contentTop": 1850,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x50, 14.4px x20, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "picture-stale",
+    "width": 320,
+    "contentTop": 2107,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x50, 14.4px x20, 5.6px x16, 11.2px x12, 4.8px x5, 6.4px x4, 10.4px x2, 13.6px x2"
+      }
+    ],
+    "accessibility": []
+  }
+]

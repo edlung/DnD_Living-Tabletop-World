@@ -48,6 +48,7 @@ import {
   relationshipRestoreSchemas,
 } from '../relationships/events.ts';
 import {
+  assetAdoptedPayloadSchema,
   assetApprovedPayloadSchema,
   assetGeneratedPayloadSchema,
   assetJobFailedPayloadSchema,
@@ -59,6 +60,10 @@ import {
 } from '../assets/events.ts';
 import { weatherRestoreSchemas, weatherSetPayloadSchema } from '../weather/weather.ts';
 import { chronicleGeneratedPayloadSchema, chronicleRestoreSchemas } from '../chronicle/records.ts';
+import {
+  preparedPartyEstablishedPayloadSchema,
+  campaignBootstrappedPayloadSchema,
+} from '../campaign/bootstrap-events.ts';
 import { actorSchema } from './actor.ts';
 import { decodePayload, isVersioned } from './event-versions.ts';
 
@@ -230,6 +235,9 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AuthoringPremisesRecorded', authoringPremisesPayloadSchema),
   event('EvidenceShown', evidenceShownPayloadSchema),
   event('InsightChecked', insightCheckedPayloadSchema),
+  event('PreparedPartyEstablished', preparedPartyEstablishedPayloadSchema),
+  event('CampaignBootstrapped', campaignBootstrappedPayloadSchema),
+  event('AssetAdopted', assetAdoptedPayloadSchema),
   event('AssetRequested', assetRequestedPayloadSchema),
   event('AssetJobStarted', assetJobStartedPayloadSchema),
   event('AssetGenerated', assetGeneratedPayloadSchema),

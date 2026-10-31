@@ -1,4 +1,4 @@
-import type { AiCapability, AiTraceView } from '@ltw/contracts';
+import type { AiCapability, AiTraceView, WorkshopAiSubject } from '@ltw/contracts';
 
 import type { RequestDeadline } from './request-deadline.ts';
 
@@ -13,13 +13,14 @@ import type { RequestDeadline } from './request-deadline.ts';
 export interface AiRequestStart {
   /** Also the trace ID. */
   readonly requestId: string;
-  readonly campaignId: string;
+  readonly campaignId: string | null;
+  readonly subject?: WorkshopAiSubject;
   readonly actorId: string;
   readonly purpose: AiTraceView['purpose'];
   readonly capability: AiCapability;
   readonly scope: string;
   readonly sourceIds: readonly string[];
-  /** The play session captured when the request began; null means local only. */
+  /** Captured play session or authorized durable workshop session; null means local only. */
   readonly sessionId: string | null;
 }
 

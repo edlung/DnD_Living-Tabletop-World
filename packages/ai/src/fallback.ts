@@ -196,10 +196,18 @@ export async function runWithFallback<T>(deps: FallbackDeps<T>): Promise<Fallbac
     // propagates as is.
     const started = deps.nowMs();
     const attemptId = deps.accounting.newAttemptId();
-    const { requestId, campaignId, capability, sessionId } = deps.accounting;
+    const { requestId, campaignId, capability, sessionId, subject } = deps.accounting;
     const request: ProviderRequest = {
       ...deps.build(repair),
-      accounting: { requestId, campaignId, capability, sessionId, attemptId, attemptKind: kind },
+      accounting: {
+        requestId,
+        campaignId,
+        capability,
+        sessionId,
+        attemptId,
+        attemptKind: kind,
+        ...(subject ? { subject } : {}),
+      },
     };
     if (callerGone()) return cancelled();
     const startFailure = notify({

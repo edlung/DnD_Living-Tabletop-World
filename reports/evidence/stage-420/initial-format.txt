@@ -1,0 +1,7 @@
+$ pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run context-budget && pnpm run test && pnpm run build && pnpm run db:migrate && pnpm run seed:ravenford && pnpm run test:integration && pnpm run test:e2e
+$ prettier --check .
+Checking formatting...
+[warn] reports/evidence/stage-410/layout/results.json
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

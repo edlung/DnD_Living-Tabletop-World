@@ -1,0 +1,223 @@
+.workshop-owner-preview,
+.workshop-preview {
+  display: grid;
+  gap: var(--gutter);
+  min-width: 0;
+}
+.workshop-object-link {
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: var(--gutter);
+}
+.workshop-preview-character-choice {
+  display: grid;
+  grid-template-columns: minmax(0, 32rem) auto;
+  justify-content: start;
+  align-items: center;
+  gap: var(--gutter);
+}
+.workshop-preview-character-choice label {
+  grid-column: 1;
+}
+.workshop-preview-character-choice select {
+  grid-column: 1;
+  grid-row: 2;
+}
+.workshop-preview-character-choice button {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+}
+.workshop-preview-character-choice p {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.workshop-preview-heading h1,
+.workshop-preview-heading h2,
+.workshop-preview-heading p,
+.workshop-preview > p {
+  margin: 0;
+}
+.workshop-preview-heading p {
+  color: var(--text-muted);
+}
+.workshop-preview-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--gutter);
+}
+.workshop-preview-controls > div {
+  display: grid;
+  flex: 1 1 220px;
+  gap: 0.4rem;
+  max-width: 32rem;
+  min-width: 0;
+}
+.workshop-preview-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter);
+  align-items: start;
+}
+.workshop-preview-detail-actions > .character-sheet {
+  flex-basis: 100%;
+}
+.workshop-preview select,
+.workshop-preview-character-choice select {
+  width: 100%;
+  min-width: 0;
+}
+.workshop-preview-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  align-items: start;
+  gap: var(--gutter);
+}
+.workshop-preview-stage {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 470px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-panel);
+  isolation: isolate;
+}
+.workshop-preview-stage .scene {
+  position: relative;
+  inset: auto;
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: space-between;
+  gap: 7rem;
+  min-height: 470px;
+  padding: var(--gutter);
+}
+.workshop-preview-stage .stage-backdrop {
+  bottom: 0;
+  height: 100%;
+}
+.workshop-preview-stage .cartouche {
+  position: relative;
+  inset: auto;
+  width: fit-content;
+  max-width: 100%;
+}
+.workshop-preview-stage .scene-presence {
+  position: relative;
+  inset: auto;
+}
+.workshop-preview-stage .scene-presence[hidden] {
+  display: none;
+}
+.workshop-preview-stage .backdrop-note {
+  top: auto;
+  bottom: 8px;
+  right: 8px;
+  max-width: calc(100% - 16px);
+}
+.workshop-preview-stage:has(.backdrop-note) .scene {
+  padding-bottom: 3rem;
+}
+.workshop-preview-stage .world-objects {
+  gap: 0.75rem;
+}
+.workshop-preview-stage .object-button {
+  min-width: 86px;
+  max-width: 130px;
+}
+.workshop-preview-details {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.workshop-preview-details > .medallion {
+  margin-block: var(--gutter);
+}
+.workshop-preview-object-picture {
+  display: block;
+  width: 100%;
+  max-height: 24rem;
+  object-fit: contain;
+  margin-block: var(--gutter);
+}
+.workshop-preview-details .character-sheet {
+  min-width: 0;
+}
+.workshop-preview-details .stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+}
+.workshop-preview-details .stat-grid dt {
+  overflow-wrap: normal;
+}
+.workshop-preview-details button {
+  margin-block: 0.35rem;
+}
+.workshop-preview-empty {
+  position: relative;
+  z-index: 1;
+  padding: var(--gutter);
+}
+.workshop-preview-stage.has-prepared-board .scene {
+  min-height: 0;
+  padding-bottom: var(--gutter);
+}
+.workshop-preview-board {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+.workshop-preview-board > h3,
+.workshop-preview-board > p {
+  position: relative;
+  margin: var(--gutter);
+  width: fit-content;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-control);
+  background: var(--glass);
+}
+.workshop-preview-board .board {
+  position: relative;
+  height: 470px;
+}
+.workshop-preview > button {
+  justify-self: start;
+}
+.workshop-character-preview .workshop-preview-heading h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+@media (max-width: 1000px) {
+  .workshop-preview-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .workshop-preview-character-choice {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .workshop-preview-character-choice button {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .workshop-preview-stage,
+  .workshop-preview-stage .scene {
+    min-height: 390px;
+  }
+  .workshop-preview-stage .scene {
+    gap: 3rem;
+  }
+  .workshop-preview-stage .cartouche {
+    padding: 0.65rem 0.85rem;
+  }
+  .workshop-preview-stage .backdrop-note {
+    display: none;
+  }
+  .workshop-preview-stage .cartouche-note {
+    display: block;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  .workshop-preview-board .board {
+    height: 390px;
+  }
+}

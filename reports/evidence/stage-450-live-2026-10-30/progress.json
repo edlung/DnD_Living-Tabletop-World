@@ -1,0 +1,109 @@
+{
+  "job": {
+    "jobId": "6356de80-8020-4b5b-b6ae-9dd35da3874a",
+    "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+    "baseRevision": 0,
+    "status": "SUCCEEDED",
+    "nextStep": 7,
+    "createdAt": "2026-10-30T17:44:02.468Z",
+    "updatedAt": "2026-10-30T17:46:38.102Z",
+    "attachedRevision": 1,
+    "candidateAvailable": true,
+    "failureCode": null
+  },
+  "brief": {
+    "intent": "Создай самостоятельную кампанию на русском языке: в речном посёлке по ночам светит затонувший маяк, а лодки возвращаются без людей. Герои расследуют причину, разговаривают с жителями и выбирают, как прекратить опасность. Нужны несколько путей к уликам, честные слухи и свидетельства, секретная причина, мирное решение и один необязательный бой. Первая сессия должна быть полностью пригодна для игры, а будущие решения персонажей не должны считаться уже случившимися. Используй только поддерживаемые правила, полные листы трёх персонажей и статистики противника. Все названия, описания, знания, улики, задания и планы сессии — по-русски.",
+    "setting": "Северный речной посёлок Серебряный Брод в самостоятельном фэнтезийном мире.",
+    "tone": "Таинственное приключение с понятными ставками и свободой выбора.",
+    "duration": "Первая сессия около трёх часов; короткая кампания на три-пять встреч.",
+    "partySize": 3,
+    "partyLevel": 3,
+    "include": [
+      "Три подготовленных персонажа третьего уровня с поддерживаемыми действиями",
+      "Не менее двух путей расследования и доступная социальная сцена",
+      "Один подготовленный необязательный бой и мирная альтернатива"
+    ],
+    "exclude": [
+      "Рейвенфорд, Ива и сюжет колокола из готовых примеров",
+      "Новые неподдерживаемые механики",
+      "Предрешённые решения игроков и записи будущих побед как фактов"
+    ]
+  },
+  "steps": [
+    {
+      "ordinal": 0,
+      "stage": "concept",
+      "status": "SUCCEEDED",
+      "traceId": "44f755c3-92e7-4d7b-b5f8-9e4fb079ace8",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "createdAt": "2026-10-30T17:44:02.491Z",
+      "completedAt": "2026-10-30T17:44:08.520Z"
+    },
+    {
+      "ordinal": 1,
+      "stage": "topology",
+      "status": "SUCCEEDED",
+      "traceId": "dd713ef9-f561-43b9-b9fe-ff6ca3cd8122",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "createdAt": "2026-10-30T17:44:08.539Z",
+      "completedAt": "2026-10-30T17:44:26.703Z"
+    },
+    {
+      "ordinal": 2,
+      "stage": "cast",
+      "status": "SUCCEEDED",
+      "traceId": "3d11ca4c-3041-4fae-8f52-48b7aa25dca5",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "createdAt": "2026-10-30T17:44:26.743Z",
+      "completedAt": "2026-10-30T17:45:01.436Z"
+    },
+    {
+      "ordinal": 3,
+      "stage": "knowledge",
+      "status": "SUCCEEDED",
+      "traceId": "bd3d2242-5867-4c25-8cc5-8f3e0e5ddaa0",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "createdAt": "2026-10-30T17:45:01.462Z",
+      "completedAt": "2026-10-30T17:45:41.180Z"
+    },
+    {
+      "ordinal": 4,
+      "stage": "encounters",
+      "status": "SUCCEEDED",
+      "traceId": "6ab47d3a-2260-45ac-bfd1-143e214900ae",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "createdAt": "2026-10-30T17:45:41.204Z",
+      "completedAt": "2026-10-30T17:45:50.285Z"
+    },
+    {
+      "ordinal": 5,
+      "stage": "first-session",
+      "status": "SUCCEEDED",
+      "traceId": "51589482-cbb8-466d-8bd6-1ace7eed31fa",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "createdAt": "2026-10-30T17:45:50.317Z",
+      "completedAt": "2026-10-30T17:46:19.641Z"
+    },
+    {
+      "ordinal": 6,
+      "stage": "outline",
+      "status": "SUCCEEDED",
+      "traceId": "4bf5a4e3-e320-4479-bb0a-7e74d8fddb3a",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "createdAt": "2026-10-30T17:46:19.672Z",
+      "completedAt": "2026-10-30T17:46:38.010Z"
+    }
+  ],
+  "candidate": {
+    "contentDigest": "sha256:4a95cd0cf87fbbabad69de899e78d73b14e5cd8627468d387f9ddac3dffe149c",
+    "baseRevision": 0,
+    "createdAt": "2026-10-30T17:46:38.051Z"
+  }
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "stage": "concept",
+    "startedAt": "2026-10-30T17:44:02.501Z",
+    "status": "GENERATED",
+    "finishedAt": "2026-10-30T17:44:08.510Z",
+    "elapsedMs": 6008,
+    "traceId": "44f755c3-92e7-4d7b-b5f8-9e4fb079ace8",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "issues": []
+  },
+  {
+    "stage": "topology",
+    "startedAt": "2026-10-30T17:44:08.565Z",
+    "status": "GENERATED",
+    "finishedAt": "2026-10-30T17:44:26.689Z",
+    "elapsedMs": 18123,
+    "traceId": "dd713ef9-f561-43b9-b9fe-ff6ca3cd8122",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "issues": []
+  },
+  {
+    "stage": "cast",
+    "startedAt": "2026-10-30T17:44:26.785Z",
+    "status": "GENERATED",
+    "finishedAt": "2026-10-30T17:45:01.427Z",
+    "elapsedMs": 34641,
+    "traceId": "3d11ca4c-3041-4fae-8f52-48b7aa25dca5",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "issues": []
+  },
+  {
+    "stage": "knowledge",
+    "startedAt": "2026-10-30T17:45:01.535Z",
+    "status": "GENERATED",
+    "finishedAt": "2026-10-30T17:45:41.164Z",
+    "elapsedMs": 39629,
+    "traceId": "bd3d2242-5867-4c25-8cc5-8f3e0e5ddaa0",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "issues": []
+  },
+  {
+    "stage": "encounters",
+    "startedAt": "2026-10-30T17:45:41.240Z",
+    "status": "GENERATED",
+    "finishedAt": "2026-10-30T17:45:50.270Z",
+    "elapsedMs": 9029,
+    "traceId": "6ab47d3a-2260-45ac-bfd1-143e214900ae",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "issues": []
+  },
+  {
+    "stage": "first-session",
+    "startedAt": "2026-10-30T17:45:50.356Z",
+    "status": "GENERATED",
+    "finishedAt": "2026-10-30T17:46:19.627Z",
+    "elapsedMs": 29269,
+    "traceId": "51589482-cbb8-466d-8bd6-1ace7eed31fa",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "issues": []
+  },
+  {
+    "stage": "outline",
+    "startedAt": "2026-10-30T17:46:19.775Z",
+    "status": "GENERATED",
+    "finishedAt": "2026-10-30T17:46:37.978Z",
+    "elapsedMs": 18203,
+    "traceId": "4bf5a4e3-e320-4479-bb0a-7e74d8fddb3a",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "issues": []
+  }
+]

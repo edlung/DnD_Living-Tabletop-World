@@ -1,0 +1,534 @@
+{
+  "compilerVersion": 1,
+  "readiness": "INVALID",
+  "findings": [
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-boat-tracks.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-boat-wax.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-lamp-hall-empty-socket.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-lamp-magic.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-post-veh-markers.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-post-veh-markers.subjects.faina",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-savva-candle.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-savva-candle.subjects.savva",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-savva-ledger.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-savva-ledger.subjects.savva",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-sklad-logs.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "clues.clue-tower-notes.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.pustye-lodki.actors.faina",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.pustye-lodki.actors.gordey",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.pustye-lodki.actors.mirela-tikhonova",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.rodnye-protiv-sroka.actors.mirela-tikhonova",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.rodnye-protiv-sroka.actors.rybaki-posyolka",
+      "message": "Entity reference rybaki-posyolka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.skrytaya-prichina.actors.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.skrytaya-prichina.actors.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.slukhi-i-torgovlya.actors.mirela-tikhonova",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.slukhi-i-torgovlya.actors.rybaki-posyolka",
+      "message": "Entity reference rybaki-posyolka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.slukhi-i-torgovlya.actors.savva",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.tayna-klyucha.actors.faina",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "conflicts.tayna-klyucha.actors.gordey",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "encounters.boy-lampovyy-zal.combatants.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "encounters.boy-lampovyy-zal.combatants.ranger-sledopyt",
+      "message": "Entity reference ranger-sledopyt does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "encounters.boy-lampovyy-zal.combatants.ranger-strelok",
+      "message": "Entity reference ranger-strelok does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "encounters.boy-lampovyy-zal.combatants.wizard-uchenaya",
+      "message": "Entity reference wizard-uchenaya does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.dm-peace-path.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.dm-unknown-keeper-reaction.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.faina-testimony.attributedTo",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.faina-testimony.scope.holder",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.faina-testimony.subjects.faina",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.faina-testimony.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.gordey-testimony.attributedTo",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.gordey-testimony.scope.holder",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.gordey-testimony.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.gordey-testimony.subjects.gordey",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.mirela-list.scope.holder",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.mirela-list.subjects.faina",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.mirela-list.subjects.mirela-tikhonova",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.party-start.subjects.mirela-tikhonova",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.public-closure-demand.subjects.rybaki-posyolka",
+      "message": "Entity reference rybaki-posyolka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.public-closure-demand.subjects.savva",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.rumor-debt.attributedTo",
+      "message": "Entity reference rybaki-posyolka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.rumor-debt.subjects.rybaki-posyolka",
+      "message": "Entity reference rybaki-posyolka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.savva-secret-npc.scope.holder",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.savva-secret-npc.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.savva-secret-npc.subjects.savva",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.wt-boat.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.wt-keeper.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.wt-lens-stolen.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.wt-lens-stolen.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.wt-people-alive.subjects.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.wt-savva.subjects.chuzhaya-lodka",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "knowledge.wt-savva.subjects.savva",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "party.ranger-sledopyt",
+      "message": "Entity reference ranger-sledopyt does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "party.ranger-strelok",
+      "message": "Entity reference ranger-strelok does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "party.wizard-uchenaya",
+      "message": "Entity reference wizard-uchenaya does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "quests.svet-pod-vodoy.activation.subject",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "quests.svet-pod-vodoy.gordey-told.informant",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "quests.svet-pod-vodoy.gordey-told.subject",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "quests.svet-pod-vodoy.keeper-guess.subject",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "quests.svet-pod-vodoy.savva-lie.subject",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "relationships.faina",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "relationships.gordey",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "relationships.mirela-tikhonova",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "relationships.savva",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.bereg-i-bashnya.participants.faina",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.davlenie-savvy.participants.savva",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.lampovyy-zal-situatsiya.participants.khranitel-mayaka",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.molchanie-fainy.participants.faina",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.osmotr-lodok.participants.gordey",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.rassvet-na-prichale.participants.gordey",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.rassvet-na-prichale.participants.mirela-tikhonova",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.rassvet-na-prichale.participants.rybaki-posyolka",
+      "message": "Entity reference rybaki-posyolka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.razgovor-so-starostoy.participants.mirela-tikhonova",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "situations.voda-k-svetu.participants.gordey",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.chuzhaya-lodka.image.entity",
+      "message": "Entity reference chuzhaya-lodka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.faina.figure.entity",
+      "message": "Entity reference faina does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.gordey.figure.entity",
+      "message": "Entity reference gordey does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.khranitel-mayaka.figure.entity",
+      "message": "Entity reference khranitel-mayaka does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.mirela-tikhonova.figure.entity",
+      "message": "Entity reference mirela-tikhonova does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.ranger-sledopyt.figure.entity",
+      "message": "Entity reference ranger-sledopyt does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.ranger-strelok.figure.entity",
+      "message": "Entity reference ranger-strelok does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.savva.figure.entity",
+      "message": "Entity reference savva does not exist"
+    },
+    {
+      "severity": "error",
+      "code": "REFERENCE_MISSING",
+      "path": "visuals.wizard-uchenaya.figure.entity",
+      "message": "Entity reference wizard-uchenaya does not exist"
+    }
+  ],
+  "counts": {
+    "entities": 13,
+    "knowledge": 14,
+    "encounters": 1,
+    "quests": 1
+  }
+}

@@ -94,6 +94,9 @@ export function taskText(brief: ImageBrief, styleReferences: number): string {
       `The game master's direction for this picture, a JSON string: ${JSON.stringify(brief.note)}`,
     );
   }
+  if (brief.style !== undefined && brief.style.trim() !== '') {
+    lines.push(`Additional visual style, a JSON string: ${JSON.stringify(brief.style)}`);
+  }
   if (brief.variant === 'derived') {
     lines.push(
       'The first attached image is the approved canonical reference of this subject. Keep the ' +

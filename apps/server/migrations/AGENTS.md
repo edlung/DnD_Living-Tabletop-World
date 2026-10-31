@@ -1,5 +1,42 @@
 # Migrations
 
+Stage 380 (owner-accepted ADR 0038): `0014_ai_unlimited_policy.sql` adds immutable
+text-account and image monetary-policy revisions and reservation references;
+`0015_workshop_access.sql` adds separate owners, hashed invitation/session
+credentials, revocation evidence and private draft metadata. No campaign
+membership or played state is stored in workshop tables. Keep ownership immutable;
+Stage 390 package revisions will reference these containers rather than rewrite them.
+
+Stage420: `0019_workshop_images.sql` adds private draft-image jobs, immutable
+dispatches/candidates/bytes and chosen visual manifests; `0020_workshop_image_accounting.sql`
+adds genuine nullable-campaign workshop image charges. New revision writers must
+atomically create manifest version0. After these subjects/manifests exist, recovery
+requires an0019/0020-aware app/operator build (`deploy/RUNBOOK.md`§3); the ordinary
+older-image event-readiness check does not establish compatibility.
+
+Stage430: `0021_campaign_revision_controls.sql` adds immutable draft lock versions,
+revision policy receipts and mode-aware GENERATE/EDIT jobs. Once used, recovery
+requires a430-aware application/operator: older writers could skip locks and older
+workers could process EDIT through the seven-stage pipeline. New job columns are
+covered by0017's whole-row immutable comparison outside its explicit control fields.
+
+Stage440: `0022_campaign_activation.sql` reserves a stable private activation and
+stores immutable initial scenario/quest/asset manifests. Publication is one-way;
+ordinary engines, invitations and live routes must use the gated view. Bootstrap,
+reconciliation and whole-store replay/readiness keep explicitly raw access. This
+migration and the bootstrap/adoption event schemas require a matching recovery build.
+Accepted source and initial content are immutable, publication is terminal, and
+delete/truncate are forbidden. Preserve both tables with draft/campaign image bytes,
+commands/events and migration history in one protected database restore. Do not
+repair provisioning by editing phase/status/source or dropping triggers: the aware
+worker reconciles the same stable command and frozen consent after lease expiry.
+After activation records exist, pre440 binaries are unsupported even if no bootstrap
+event has yet been appended; they lack publication/recovery guards. Once
+CampaignBootstrapped/PreparedPartyEstablished/AssetAdopted events exist, an older
+event schema also cannot read them. `--allow-newer-database` does not waive either
+boundary. Retain an aware app/operator/replay build or restore a matching protected
+pre-activation backup; operational details are in `deploy/RUNBOOK.md`§3/§5.
+
 Forward-only PostgreSQL migrations applied by `pnpm db:migrate`
 (runner: `apps/server/src/platform/db/`; decision: `docs/adr/0003-persistence-and-migrations.md`).
 

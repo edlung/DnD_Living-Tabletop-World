@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { hash } from '../assets/testing/world.ts';
+import { holderPerspective } from '../knowledge/perspective.ts';
 import { MEMO_LIMIT } from './memo.ts';
 import { DAY1, DAY1_NIGHT, visualWorld } from './testing/world.ts';
 import { assetContentAt, presentableContent, timelineOf } from './views.ts';
@@ -11,6 +12,35 @@ import { assetContentAt, presentableContent, timelineOf } from './views.ts';
  * forgotten with that version, and bounded per version.
  */
 describe('views remembered per history version', () => {
+  it('separates prepared-party contexts with identical labels/scopes and the same history', async () => {
+    const world = await visualWorld();
+    await world.dm({
+      type: 'CreateEntity',
+      entityId: 'unnamed-preview-feature',
+      kind: 'feature',
+      name: 'Unidentified carved stone',
+      description: 'A carved stone.',
+      existsSince: null,
+      placement: { locationId: 'market-square', since: null },
+    });
+    await world.approved('unnamed-preview-feature', 91);
+    const snapshot = await world.snapshot();
+    const without = holderPerspective(snapshot.state, { kind: 'PARTY' }, { memberIds: new Set() });
+    const withHolder = holderPerspective(
+      snapshot.state,
+      { kind: 'PARTY' },
+      {
+        memberIds: new Set(['elowen-starwhisper']),
+      },
+    );
+    expect(without.label).toBe(withHolder.label);
+    expect(without.scopes).toEqual(withHolder.scopes);
+    expect(assetContentAt(snapshot, without, hash(91), null)).toBeNull();
+    expect(assetContentAt(snapshot, withHolder, hash(91), null)).toEqual({
+      mediaType: 'image/svg+xml',
+    });
+    expect(assetContentAt(snapshot, without, hash(91), null)).toBeNull();
+  });
   it('builds the timeline and the servable pictures once for many content requests', async () => {
     const world = await visualWorld();
     await world.approved('mira-vale', 1);

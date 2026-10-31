@@ -1,4 +1,6 @@
 import {
+  bootstrapAssetOriginSchema,
+  bootstrapCampaignAssetSchema,
   ASSET_AUDIENCES,
   ASSET_FAILURES,
   ASSET_MEDIA_TYPES,
@@ -116,6 +118,14 @@ export const assetApprovedPayloadSchema = assetApprovedV2PayloadSchema
   .extend({ supersedes: z.array(assetIdSchema).min(1).optional() })
   .strict();
 
+export const assetAdoptedPayloadSchema = assetGeneratedPayloadSchema
+  .extend({
+    origin: bootstrapAssetOriginSchema,
+    generator: bootstrapCampaignAssetSchema.shape.generator,
+    status: z.literal('CANDIDATE'),
+  })
+  .strict();
+
 const assetRecordSchema = z
   .object({
     assetId: assetIdSchema,
@@ -131,6 +141,7 @@ const assetRecordSchema = z
     mediaType: z.enum(ASSET_MEDIA_TYPES),
     generator,
     status: z.enum(ASSET_STATUSES),
+    origin: bootstrapAssetOriginSchema.optional(),
   })
   .strict();
 

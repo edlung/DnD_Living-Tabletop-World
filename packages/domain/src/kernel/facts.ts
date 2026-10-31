@@ -29,6 +29,13 @@ export function footprintOf(event: KernelEvent): Footprint {
   // Every event happens at the current world time, so it depends on the clock.
   const clock = facts.clock();
   switch (event.type) {
+    case 'PreparedPartyEstablished':
+      return {
+        reads: [clock, facts.campaign(), ...event.payload.characterIds.map(facts.entity)],
+        writes: [facts.preparedParty()],
+      };
+    case 'CampaignBootstrapped':
+      return { reads: [facts.campaign(), facts.preparedParty()], writes: [facts.bootstrap()] };
     case 'CampaignCreated':
       return { reads: [], writes: [facts.campaign(), clock, facts.activeScene()] };
     case 'EntityCreated': {
@@ -105,8 +112,12 @@ export function footprintOf(event: KernelEvent): Footprint {
           clock,
           ...[...entities].map((id) => facts.entity(id)),
           ...p.witnesses.map((id) => facts.entityPlacement(id)),
-          ...(p.scope.kind === 'PARTY' ? p.witnesses.map((id) => facts.rosterCharacter(id)) : []),
-          ...(p.scope.kind === 'CHARACTER' ? [facts.rosterCharacter(p.scope.characterId)] : []),
+          ...(p.scope.kind === 'PARTY'
+            ? [facts.preparedParty(), ...p.witnesses.map((id) => facts.rosterCharacter(id))]
+            : []),
+          ...(p.scope.kind === 'CHARACTER'
+            ? [facts.preparedParty(), facts.rosterCharacter(p.scope.characterId)]
+            : []),
           ...p.relatedKnowledge.map((id) => facts.knowledge(id)),
           ...p.causedBy.map((id) => facts.memory(id)),
           ...(p.sessionId === null ? [] : [facts.session(p.sessionId)]),
@@ -160,6 +171,7 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.entityPlacement(characterId),
           ...entityChecked(entityId),
           facts.entityPlacement(entityId),
+          facts.preparedParty(),
           facts.rosterCharacter(characterId),
           ...(roll === null ? [] : [facts.sheet(characterId)]),
           ...revealed.map(({ clueId }) => facts.clue(clueId)),
@@ -212,6 +224,7 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.entityPlacement(npcId),
           ...entityChecked(characterId),
           facts.entityPlacement(characterId),
+          facts.preparedParty(),
           facts.rosterCharacter(characterId),
           facts.knowledge(sourceKnowledgeId),
           facts.disclosure(sourceKnowledgeId),
@@ -246,7 +259,9 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.knowledge(b),
           facts.claim({ kind: 'knowledge', knowledgeId: a }),
           facts.claim({ kind: 'knowledge', knowledgeId: b }),
-          ...(scope.kind === 'CHARACTER' ? [facts.rosterCharacter(scope.characterId)] : []),
+          ...(scope.kind === 'CHARACTER'
+            ? [facts.preparedParty(), facts.rosterCharacter(scope.characterId)]
+            : []),
           ...(named ?? [subjectId]).map((id) => facts.entityProfile(id)),
         ],
         writes: [facts.contradiction(pairKey(scopeKey(scope), a, b))],
@@ -351,6 +366,7 @@ export function footprintOf(event: KernelEvent): Footprint {
           facts.rosterPlayer(event.payload.playerActorId),
         ],
       };
+    case 'AssetAdopted':
     case 'AssetRequested':
     case 'AssetJobStarted':
     case 'AssetGenerated':

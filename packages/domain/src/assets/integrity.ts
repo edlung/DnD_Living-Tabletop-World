@@ -1,4 +1,5 @@
 import type { WorldState } from '../kernel/state.ts';
+import { adoptedProofMatches } from './adoption-proof.ts';
 import { assetIdFor, SETTLED_ASSET } from './records.ts';
 
 /**
@@ -52,7 +53,13 @@ export function assetViolations(state: WorldState): string[] {
       report(`asset key ${id} does not match its request ${asset.requestId}`);
     }
     const job = jobs.get(asset.requestId);
-    if (job?.entityId !== asset.entityId || job.purpose !== asset.purpose) {
+    if (asset.origin && !adoptedProofMatches(asset, state.bootstrap?.source, assets))
+      report(`asset ${id} has invalid adopted provenance`);
+    if (
+      asset.origin
+        ? job !== undefined || requests.has(asset.requestId)
+        : job?.entityId !== asset.entityId || job.purpose !== asset.purpose
+    ) {
       report(`asset ${id} has no matching job`);
     }
     // A figure or a battle map is a derived variant (ADR 0035 §4).

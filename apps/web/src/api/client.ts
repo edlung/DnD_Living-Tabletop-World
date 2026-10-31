@@ -1,5 +1,11 @@
 import type { SessionResponse } from '@ltw/contracts';
 
+/** Mounted identity metadata, never a credential or a fresh cookie probe. */
+export interface GameSignOutGuard {
+  readonly campaignId: string;
+  readonly actorId?: string;
+}
+
 /**
  * How the browser's requests say who it is (docs/adr/0036-production-sign-in.md §7):
  * - `persona`: a development persona's bearer token (ADR 0009), entered by hand and held in
@@ -21,6 +27,7 @@ export type Connection =
       readonly onSignedOut: () => void;
       readonly onDoubt: () => void;
       readonly onIdentity: (identity: SessionResponse) => void;
+      readonly signOutGuard?: () => GameSignOutGuard;
     };
 
 /** The credential part of a request to the API for this connection. */

@@ -61,6 +61,8 @@ export function validOutput(request: ProviderRequest): unknown {
           { key: 'a2', relevance: 'low' },
         ],
       };
+    case 'campaign-preparation':
+      throw new Error('Preparation uses a workshop-specific test provider');
   }
 }
 

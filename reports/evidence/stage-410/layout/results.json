@@ -1,0 +1,314 @@
+[
+  {
+    "state": "opening",
+    "width": 1440,
+    "contentTop": 498,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x152, 14.4px x14, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "opening",
+    "width": 768,
+    "contentTop": 1045,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x152, 14.4px x14, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "opening",
+    "width": 390,
+    "contentTop": 1099,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x330, 7.2px x152, 14.4px x14, 3px x12, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "opening",
+    "width": 320,
+    "contentTop": 1181,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x330, 7.2px x152, 14.4px x14, 3px x12, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "inspector",
+    "width": 1440,
+    "contentTop": 498,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x174, 14.4px x14, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "inspector",
+    "width": 768,
+    "contentTop": 1045,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x174, 14.4px x14, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "inspector",
+    "width": 390,
+    "contentTop": 1099,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x377, 7.2px x174, 3px x34, 14.4px x14, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "inspector",
+    "width": 320,
+    "contentTop": 1181,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x377, 7.2px x174, 3px x34, 14.4px x14, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "correction",
+    "width": 1440,
+    "contentTop": 498,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x178, 14.4px x16, 11.2px x8"
+      }
+    ]
+  },
+  {
+    "state": "correction",
+    "width": 768,
+    "contentTop": 1045,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x178, 14.4px x16, 11.2px x8"
+      }
+    ]
+  },
+  {
+    "state": "correction",
+    "width": 390,
+    "contentTop": 1099,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x381, 7.2px x178, 3px x34, 14.4px x16, 11.2px x8"
+      }
+    ]
+  },
+  {
+    "state": "correction",
+    "width": 320,
+    "contentTop": 1181,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x381, 7.2px x178, 3px x34, 14.4px x16, 11.2px x8"
+      }
+    ]
+  },
+  {
+    "state": "generation",
+    "width": 1440,
+    "contentTop": 223,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x28, 11.2px x16, 14.4px x14"
+      }
+    ]
+  },
+  {
+    "state": "generation",
+    "width": 768,
+    "contentTop": 223,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x28, 11.2px x16, 14.4px x14"
+      }
+    ]
+  },
+  {
+    "state": "generation",
+    "width": 390,
+    "contentTop": 343,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x28, 11.2px x16, 14.4px x14"
+      }
+    ]
+  },
+  {
+    "state": "generation",
+    "width": 320,
+    "contentTop": 353,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x28, 11.2px x16, 14.4px x14"
+      }
+    ]
+  },
+  {
+    "state": "job-completed",
+    "width": 1440,
+    "contentTop": 460,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x66, 14.4px x34, 11.2px x16"
+      }
+    ]
+  },
+  {
+    "state": "job-completed",
+    "width": 768,
+    "contentTop": 1525,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x66, 14.4px x34, 11.2px x16"
+      }
+    ]
+  },
+  {
+    "state": "job-completed",
+    "width": 390,
+    "contentTop": 1698,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x66, 14.4px x34, 11.2px x16, 6px x2"
+      }
+    ]
+  },
+  {
+    "state": "job-completed",
+    "width": 320,
+    "contentTop": 1758,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x66, 14.4px x34, 11.2px x16, 6px x2"
+      }
+    ]
+  },
+  {
+    "state": "preparation-step",
+    "width": 1440,
+    "contentTop": 485,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x106, 14.4px x12, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "preparation-step",
+    "width": 768,
+    "contentTop": 1032,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x106, 14.4px x12, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "preparation-step",
+    "width": 390,
+    "contentTop": 1145,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x226, 7.2px x106, 14.4px x12, 3px x8, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "state": "preparation-step",
+    "width": 320,
+    "contentTop": 1247,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "6px x226, 7.2px x106, 14.4px x12, 3px x8, 11.2px x4"
+      }
+    ]
+  }
+]

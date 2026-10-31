@@ -1,7 +1,10 @@
 import type { PlayerAssetView } from '@ltw/contracts';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import type { WorldApi } from '../api/client.ts';
+/** A scoped source of authorized bytes; campaign and draft transports implement the same port. */
+export interface ImageReader {
+  image(contentHash: string, signal: AbortSignal, at?: number | null): Promise<Blob>;
+}
 
 /**
  * Approved world images (ADR 0022, ADR 0026 §6): fetched with the viewer's authorization and
@@ -17,12 +20,12 @@ import type { WorldApi } from '../api/client.ts';
  * shown for any (the viewer already holds them); a failed fetch for one time never blocks another.
  */
 export class ApprovedImages {
-  readonly #api: WorldApi;
+  readonly #api: ImageReader;
   readonly #urls = new Map<string, string>();
   readonly #pending = new Map<string, Promise<string | null>>();
   #controller = new AbortController();
 
-  constructor(api: WorldApi) {
+  constructor(api: ImageReader) {
     this.#api = api;
   }
 

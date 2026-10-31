@@ -13,6 +13,7 @@ import {
 import { requestLockKey } from './lock-keys.ts';
 import { StorageUnavailable, readCommitted, type Tx } from './pg-transaction.ts';
 import { AccountingRejection, sessionKey, type RequestStart } from './types.ts';
+import { subjectColumns } from './subjects.ts';
 
 /**
  * Request starts, caller outcomes and recovery (docs/STAGE_300_REMEDIATION_DESIGN.md §2).
@@ -43,14 +44,16 @@ export async function startRequest(
 ): Promise<StartOutcome> {
   if (expired(requestDeadline)) return { status: 'failed', reason: 'CALLER_CANCELLED' };
   const session = start.session === null ? null : sessionKey(start.session);
+  const subject = subjectColumns(start.campaignId, start.subject);
   const step = storageStep(requestDeadline);
   try {
     await readCommitted(pool, step, async (tx) => {
       await tx.query(
         `INSERT INTO ltw_ai_requests (request_id, campaign_id, actor_id, purpose, capability, scope,
-           source_ids, approval_id, session_class, session_id, configured_model, deadline_at)
+           source_ids, approval_id, session_class, session_id, configured_model, deadline_at,
+           subject_kind,workshop_owner_id,workshop_draft_id,preparation_session_id)
          VALUES ($1, $2, $3, $4, $5, $6, $7::jsonb, $8, $9, $10, $11,
-           clock_timestamp() + make_interval(secs => $12::double precision / 1000))`,
+           clock_timestamp() + make_interval(secs => $12::double precision / 1000),$13,$14,$15,$16)`,
         // Evaluated after every preparatory wait, as the INSERT is sent: the caller's time left.
         () => {
           const remaining = Math.floor(remainingMs(requestDeadline));
@@ -68,6 +71,10 @@ export async function startRequest(
             session?.sessionId ?? null,
             start.configuredModel,
             remaining,
+            subject.kind,
+            subject.ownerId,
+            subject.draftId,
+            session?.sessionClass === 'preparation' ? session.sessionId : null,
           ];
         },
       );
@@ -99,7 +106,7 @@ export interface FinalOutcome {
   /** The trace exactly as stored: serialized once by the caller. */
   readonly traceJson: string;
   readonly trace: {
-    readonly campaignId: string;
+    readonly campaignId: string | null;
     readonly actorId: string;
     readonly purpose: string;
     readonly createdAt: string;
@@ -189,8 +196,11 @@ export async function finalize(
       );
       if (inserted.rowCount !== 1) throw new AccountingRejection('WINDOW_CLOSED');
       await tx.query(
-        `INSERT INTO ltw_ai_traces (trace_id, campaign_id, actor_id, purpose, status, trace, created_at)
-         VALUES ($1, $2, $3, $4, $5, $6::jsonb, $7)`,
+        `INSERT INTO ltw_ai_traces (trace_id, campaign_id, actor_id, purpose, status, trace, created_at,
+           subject_kind,workshop_owner_id,workshop_draft_id,preparation_session_id)
+         SELECT $1::text, $2::text, $3::text, $4::text, $5::text, $6::jsonb, $7::timestamptz,
+           subject_kind,workshop_owner_id,workshop_draft_id,preparation_session_id
+         FROM ltw_ai_requests WHERE request_id=$1::uuid`,
         [
           outcome.requestId,
           outcome.trace.campaignId,

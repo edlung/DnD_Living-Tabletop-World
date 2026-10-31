@@ -1,0 +1,98 @@
+.workshop-generation-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: start;
+  gap: calc(2 * var(--gutter));
+}
+.workshop-generation-layout > div,
+.workshop-generation-results {
+  min-width: 0;
+  display: grid;
+  gap: calc(2 * var(--gutter));
+}
+.workshop-generation-form {
+  max-width: 640px;
+}
+.workshop-generation-form form,
+.workshop-generation-form fieldset {
+  display: grid;
+  gap: var(--gutter);
+  min-width: 0;
+}
+.workshop-generation-form fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.workshop-generation-form label {
+  display: block;
+  margin-bottom: calc(var(--gutter) / 2);
+}
+.workshop-generation-form input,
+.workshop-generation-form textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+.workshop-generation-form textarea {
+  resize: vertical;
+}
+.workshop-generation-form form > button {
+  justify-self: start;
+}
+.workshop-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--gutter);
+}
+.workshop-generation-history {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--gutter);
+  display: grid;
+  gap: var(--gutter);
+  max-height: 320px;
+  overflow-y: auto;
+}
+.workshop-generation-history button {
+  width: 100%;
+  text-align: start;
+  display: grid;
+  gap: calc(var(--gutter) / 2);
+}
+.workshop-generation-history button[aria-pressed='true'] {
+  background: var(--teal-fill);
+  border-color: var(--teal);
+}
+.workshop-generation-history button span {
+  color: var(--text-muted);
+}
+.workshop-generation-history button[aria-pressed='true'] span {
+  color: var(--text);
+}
+.workshop-job-steps {
+  padding-left: calc(2 * var(--gutter));
+  display: grid;
+  gap: var(--gutter);
+}
+.workshop-job-steps .muted {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.workshop-job-steps button {
+  margin-top: calc(var(--gutter) / 2);
+}
+.workshop-job p,
+.workshop-availability p {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1099px) {
+  .workshop-generation-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .workshop-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,4 +1,5 @@
 import { MAX_MICROS, positiveMicros } from './money.ts';
+import type { MonetaryMode, MonetaryPolicyTarget } from './monetary-policy.ts';
 import type { ApprovalCeilings } from './operator-store.ts';
 import type { Authorization } from './types.ts';
 
@@ -78,6 +79,20 @@ export type OperatorCommand =
   | { kind: 'recover-incomplete' }
   | { kind: 'stops'; accountId: string }
   | { kind: 'status' }
+  | {
+      kind: 'monetary-policy-set';
+      target: MonetaryPolicyTarget;
+      mode: MonetaryMode;
+      authorization: Authorization;
+    }
+  | { kind: 'monetary-policy-status'; target: MonetaryPolicyTarget }
+  | {
+      kind: 'preparation-grant';
+      approvalId: string;
+      ownerId: string;
+      enabled: boolean;
+      authorization: Authorization;
+    }
   /**
    * The image ceiling (docs/adr/0035-images.md §2): a new revision, zero to stop image calls.
    * Its own ledger, apart from the text-provider accounts and approvals above.
@@ -140,6 +155,9 @@ const FLAGS: Record<OperatorCommand['kind'], readonly string[]> = {
   'recover-incomplete': [],
   stops: ['account'],
   status: [],
+  'monetary-policy-set': ['scope', 'account', 'mode', ...AUTH],
+  'monetary-policy-status': ['scope', 'account'],
+  'preparation-grant': ['approval', 'workshop-owner', 'enable', 'disable', ...AUTH],
   'image-budget-set': ['micros', ...AUTH],
   'image-reservations': ['older-than-minutes'],
   'image-reservation-settle': ['charge', 'charge-micros', ...AUTH],
@@ -231,6 +249,21 @@ const chargeId = (text: string): string => {
 const optionalMicros = (text: string | undefined) =>
   text === undefined ? undefined : micros(text);
 
+function monetaryTarget(flags: ReturnType<typeof readFlags>): MonetaryPolicyTarget {
+  const scope = flags.one('scope');
+  if (scope === 'text') return { scope, accountId: flags.one('account') };
+  if (scope !== 'images') throw new OperatorUsageError('--scope must be text or images');
+  if (flags.has('account')) throw new OperatorUsageError('images scope does not take --account');
+  return { scope };
+}
+
+function monetaryMode(flags: ReturnType<typeof readFlags>): MonetaryMode {
+  const mode = flags.one('mode');
+  if (mode === 'unlimited') return 'UNLIMITED';
+  if (mode === 'finite') return 'FINITE';
+  throw new OperatorUsageError('--mode must be unlimited or finite');
+}
+
 export function parseOperatorArgs(argv: readonly string[]): OperatorCommand {
   const [kind, ...rest] = argv;
   if (kind === undefined || !(kind in FLAGS)) {
@@ -239,6 +272,28 @@ export function parseOperatorArgs(argv: readonly string[]): OperatorCommand {
   const command = kind as OperatorCommand['kind'];
   const flags = readFlags(command, rest);
   switch (command) {
+    case 'preparation-grant': {
+      const state = enabled(flags);
+      const ownerId = chargeId(flags.one('workshop-owner'));
+      if (state === undefined)
+        throw new OperatorUsageError('preparation-grant needs --enable or --disable');
+      return {
+        kind: command,
+        approvalId: flags.one('approval'),
+        ownerId,
+        enabled: state,
+        authorization: authorization(flags),
+      };
+    }
+    case 'monetary-policy-set':
+      return {
+        kind: command,
+        target: monetaryTarget(flags),
+        mode: monetaryMode(flags),
+        authorization: authorization(flags),
+      };
+    case 'monetary-policy-status':
+      return { kind: command, target: monetaryTarget(flags) };
     case 'account-create':
       return {
         kind: command,

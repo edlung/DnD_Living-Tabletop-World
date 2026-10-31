@@ -1,0 +1,34 @@
+[WebServer] (node:87974) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:87981) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] (node:87996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+[WebServer] (node:88012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:88024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:88029) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+[WebServer] (node:88043) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+[WebServer] (node:88059) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 2 workers
+
+(node:88070) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:88069) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chromium] › tests/e2e/workshop-editing.spec.ts:117:1 › protections require explicit unlock and block both manual changes and directly requested AI targets (1.8s)
+  ✓  1 [chromium] › tests/e2e/workshop-editing.spec.ts:63:1 › structured manual changes, directed AI proposal, full comparison and restore form immutable revisions (4.7s)
+  ✓  3 [chromium] › tests/e2e/workshop-editing.spec.ts:167:1 › an old AI proposal remains inspectable after another revision and cannot silently rebase (3.8s)
+  ✓  4 [chromium] › tests/e2e/workshop-editing.spec.ts:201:1 › a lost manual-save acknowledgement retries the exact request once and keeps the local edit (1.6s)
+  ✓  5 [chromium] › tests/e2e/workshop-editing.spec.ts:235:1 › revocation clears a mounted private comparison before a delayed review can return (3.5s)
+
+  5 passed (16.5s)

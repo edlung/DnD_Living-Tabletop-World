@@ -7,7 +7,7 @@ import { entityChecked, facts, type FactKey } from './fact-keys.ts';
  * accepted player or combat command relied on, so undo sees the dependency.
  */
 export function premiseFacts(characterId: string, premise: RecordedPremise): FactKey[] {
-  const party = [facts.rosterCharacter(characterId)];
+  const party = [facts.preparedParty(), facts.rosterCharacter(characterId)];
   switch (premise.kind) {
     case 'perceived':
       // Seen where both stood: the target's existence and placement, and the character's.
@@ -29,7 +29,7 @@ export function premiseFacts(characterId: string, premise: RecordedPremise): Fac
     case 'party':
       return party;
     case 'controller':
-      return [...party, facts.rosterPlayer(premise.playerActorId)];
+      return [facts.rosterCharacter(characterId), facts.rosterPlayer(premise.playerActorId)];
     case 'vitals':
       // Everything a combat decision may read about a creature (Gate 03, G03-H02).
       return [

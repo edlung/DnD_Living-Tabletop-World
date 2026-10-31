@@ -1,0 +1,24 @@
+[
+  {
+    "request_id": "2d2ea65c-e00c-43d1-97fb-bd6fd0ad45f1",
+    "campaign_id": null,
+    "actor_id": "1097257d-185e-46d2-b164-6a2909d57429",
+    "purpose": "campaign-preparation",
+    "capability": "campaign-preparation",
+    "scope": "WORKSHOP:1097257d-185e-46d2-b164-6a2909d57429",
+    "source_ids": [
+      "75e39d72-b67b-4fd2-bff3-66f922635771"
+    ],
+    "approval_id": "stage450-live-campaign-20261030",
+    "session_class": "preparation",
+    "session_id": "3e739c56-d42d-4301-ab6d-8409ee355d6d",
+    "configured_model": "claude-sonnet-5-5",
+    "created_at": "2026-10-30T18:00:30.881Z",
+    "deadline_at": "2026-10-30T18:05:30.876Z",
+    "subject_kind": "workshop",
+    "workshop_owner_id": "1097257d-185e-46d2-b164-6a2909d57429",
+    "workshop_draft_id": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+    "preparation_session_id": "3e739c56-d42d-4301-ab6d-8409ee355d6d",
+    "subject_key": "workshop:1097257d-185e-46d2-b164-6a2909d57429:2b1c1d85-d631-4f23-86c5-9eca06f2849a"
+  }
+]

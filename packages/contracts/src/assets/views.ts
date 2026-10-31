@@ -1,3 +1,4 @@
+import type { CampaignBootstrapAsset } from '../campaign/bootstrap.ts';
 import type {
   AssetAudience,
   AssetFailure,
@@ -63,6 +64,7 @@ export interface AssetView {
   readonly mediaType: AssetMediaType;
   readonly generator: { readonly provider: string; readonly model: string };
   readonly status: AssetStatus;
+  readonly origin?: CampaignBootstrapAsset['origin'] | undefined;
 }
 
 /** `GET /campaigns/:campaignId/assets` (DM only): the lineage. */

@@ -10,18 +10,27 @@ import type { AssetFailure, AssetMediaType, AssetPurpose, AssetVariant } from '@
 export interface ImageBrief {
   /** Distinct per request, so every generation of an entity is its own image. */
   readonly seed: string;
-  readonly subject: {
-    /** The entity's stable ID: for a generator that holds images by entity (the curated set). */
-    readonly entityId: string;
-    readonly kind: string;
-    readonly name: string;
-    readonly description: string | null;
-  };
+  readonly subject:
+    | {
+        /** The entity's stable ID: for a generator that holds images by entity (the curated set). */
+        readonly entityId: string;
+        readonly kind: string;
+        readonly name: string;
+        readonly description: string | null;
+      }
+    | {
+        readonly scope: 'workshop';
+        readonly localKey: string;
+        readonly kind: string;
+        readonly description: string | null;
+      };
   readonly variant: AssetVariant;
   /** What the image is for (ADR 0035 §4): an image, a character's figure, a place's battle map. */
   readonly purpose: AssetPurpose;
   readonly label: string | null;
   readonly note: string | null;
+  /** Explicit draft art direction; absent for historical in-play requests. */
+  readonly style?: string;
   /** The content hash of the canonical reference a derived variant is based on. */
   readonly basedOn: string | null;
   /**
@@ -32,15 +41,40 @@ export interface ImageBrief {
 }
 
 /** Which job a generation belongs to: for spending records, never for the provider. */
-export interface ImageJob {
-  readonly campaignId: string;
-  readonly requestId: string;
+export interface WorkshopImageSubject {
+  readonly kind: 'workshop';
+  readonly ownerId: string;
+  readonly draftId: string;
+  readonly jobId: string;
+  readonly authSessionId: string;
+  readonly workerId: string;
+  readonly fence: string;
+}
+export type ImageJob =
+  | { readonly campaignId: string; readonly requestId: string; readonly subject?: never }
+  | {
+      readonly campaignId?: never;
+      readonly requestId: string;
+      readonly subject: WorkshopImageSubject;
+      readonly chargeId: string;
+      /** Must commit authorization and the unique durable marker before resolving true. */
+      readonly beforeDispatch: (proof: {
+        readonly chargeId: string;
+        readonly requestDigest: string;
+      }) => Promise<boolean>;
+    };
+export interface ImageExecution {
+  readonly chargeId: string | null;
+  readonly outcome: 'not_dispatched' | 'dispatch_unknown' | 'provider_failed' | 'generated';
+  readonly returnedModel: string | null;
+  readonly providerRequestId: string | null;
 }
 
 export interface GeneratedImage {
   readonly bytes: Uint8Array;
   readonly mediaType: AssetMediaType;
   readonly model: string;
+  readonly execution?: ImageExecution;
 }
 
 export interface ImageGenerator {
@@ -52,11 +86,18 @@ export interface ImageGenerator {
 /** A generation that produced no image. Carries a code and a safe message only. */
 export class ImageGenerationError extends Error {
   readonly code: AssetFailure;
+  readonly execution?: ImageExecution;
 
-  constructor(code: AssetFailure, message: string, options?: ErrorOptions) {
+  constructor(
+    code: AssetFailure,
+    message: string,
+    options?: ErrorOptions,
+    execution?: ImageExecution,
+  ) {
     super(message, options);
     this.name = 'ImageGenerationError';
     this.code = code;
+    if (execution) this.execution = execution;
   }
 }
 

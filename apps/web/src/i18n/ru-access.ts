@@ -7,6 +7,55 @@ import { registerRussian } from '@ltw/ui';
  * (docs/adr/0031-play-language.md §5), so sentences about a character lead with the name.
  */
 registerRussian({
+  Russian: 'Русский',
+  English: 'Английский',
+  'Campaign workshop': 'Мастерская кампаний',
+  'A place for the worlds you want to create.': 'Место для миров, которые вы хотите создать.',
+  'Opening your workshop…': 'Открываем мастерскую…',
+  'Loading workshop tools…': 'Загружаем инструменты мастерской…',
+  'Workshop tools could not be loaded': 'Не удалось загрузить инструменты мастерской',
+  'Your saved drafts are kept. Reload the workshop to try again.':
+    'Ваши черновики сохранены. Перезагрузите мастерскую, чтобы попробовать снова.',
+  'Reload workshop': 'Перезагрузить мастерскую',
+  'You are invited to a workshop': 'Вас пригласили в мастерскую',
+  'Keep your campaign ideas and drafts together in your private workshop.':
+    'Храните идеи и черновики кампаний в своей приватной мастерской.',
+  'The invitation is used only when you choose to enter.':
+    'Приглашение используется только после вашего решения войти.',
+  'Enter the workshop': 'Войти в мастерскую',
+  'Replace your workshop sign-in?': 'Заменить вход в мастерскую?',
+  'This browser already has a workshop open. Your game session stays separate.':
+    'В этом браузере уже открыта мастерская. Вход в игру остаётся отдельным.',
+  'Keeping it leaves this invitation unused. Replacing it opens the invited workshop instead.':
+    'Если оставить текущий вход, приглашение сохранится. При замене откроется мастерская из приглашения.',
+  'Keep my workshop': 'Оставить мою мастерскую',
+  'Open the invited workshop': 'Открыть мастерскую из приглашения',
+  'Back to the workshop': 'К мастерской',
+  'The workshop could not be reached': 'Не удалось связаться с мастерской',
+  'Open your workshop with an invitation': 'Вход в мастерскую по приглашению',
+  'Your workshop is private. Open an invitation link to sign in to it.':
+    'Ваша мастерская приватна. Для входа откройте ссылку-приглашение.',
+  'Start a campaign draft': 'Начать черновик кампании',
+  'Give your idea a name and choose the language of your campaign.':
+    'Назовите свою идею и выберите язык кампании.',
+  'Your drafts': 'Ваши черновики',
+  'Refresh drafts': 'Обновить черновики',
+  'Reading your drafts…': 'Читаем черновики…',
+  'The drafts could not be read. Try again.': 'Не удалось прочитать черновики. Попробуйте снова.',
+  'Your first campaign starts with a draft.': 'Ваша первая кампания начинается с черновика.',
+  'More drafts': 'Ещё черновики',
+  'Campaign title': 'Название кампании',
+  'Campaign language': 'Язык кампании',
+  'Saving draft…': 'Сохраняем черновик…',
+  'Retry saving draft': 'Повторить сохранение',
+  'Create draft': 'Создать черновик',
+  'Your draft is saved in this workshop.': 'Черновик сохранён в этой мастерской.',
+  'The answer could not be confirmed. Retry to save the same draft.':
+    'Ответ не удалось подтвердить. Повторите сохранение того же черновика.',
+  'Sign out of workshop': 'Выйти из мастерской',
+  'Sign out of workshop?': 'Выйти из мастерской?',
+  'Your drafts stay saved. To return, open a new workshop invitation.':
+    'Черновики сохранятся. Чтобы вернуться, откройте новое приглашение в мастерскую.',
   // Sign-in screens
   'You are signed out.': 'Вы вышли.',
   'Sign out': 'Выйти',

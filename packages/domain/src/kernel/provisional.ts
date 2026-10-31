@@ -13,7 +13,9 @@ import type { WorldState } from './state.ts';
  * placeholders stand in for the metadata the World Engine stamps later.
  */
 export function foldDrafts(
-  context: Pick<DecisionContext, 'state' | 'commandId' | 'actor'>,
+  context: Pick<DecisionContext, 'state' | 'commandId' | 'actor'> & {
+    readonly campaignId?: string;
+  },
   commandType: KernelCommandType,
   drafts: readonly KernelEvent[],
 ): WorldState {
@@ -22,7 +24,9 @@ export function foldDrafts(
 
 /** As `foldDrafts`, also returning the provisional events, for checks that read history. */
 export function foldDraftsWithEvents(
-  context: Pick<DecisionContext, 'state' | 'commandId' | 'actor'>,
+  context: Pick<DecisionContext, 'state' | 'commandId' | 'actor'> & {
+    readonly campaignId?: string;
+  },
   commandType: KernelCommandType,
   drafts: readonly KernelEvent[],
 ): { readonly state: WorldState; readonly events: readonly RecordedEvent[] } {
@@ -31,7 +35,7 @@ export function foldDraftsWithEvents(
   for (const draft of drafts) {
     const provisional: RecordedEvent = {
       ...draft,
-      campaignId: state.campaign?.campaignId ?? 'provisional',
+      campaignId: context.campaignId ?? state.campaign?.campaignId ?? 'provisional',
       sequence: state.version + 1,
       eventId: '00000000-0000-4000-8000-000000000000',
       schemaVersion: schemaVersionOf(draft.type),

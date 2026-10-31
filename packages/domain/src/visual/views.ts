@@ -10,6 +10,7 @@ import { dmAssetContent, dmEntityAssets, sortedViews } from '../assets/views.ts'
 import type { RecordedEvent } from '../kernel/events.ts';
 import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
+import { projectionPartyMemberIds } from '../knowledge/projection-party.ts';
 import {
   presentableAssets,
   presentationScopeAt,
@@ -110,9 +111,10 @@ export function presentableContent(
   const at = worldTime ?? snapshot.state.clock;
   // Within one history the label decides the scopes; they are part of the key all the same.
   const scopes = perspective.scopes === 'ALL' ? 'ALL' : [...perspective.scopes].sort().join(',');
+  const party = [...projectionPartyMemberIds(snapshot.state, perspective)].sort().join(',');
   return remembered(
     snapshot.history,
-    `content|${String(at)}|${perspective.label}|${scopes}`,
+    `content|${String(at)}|${perspective.label}|${scopes}|${party}`,
     () => {
       const timeline = timelineOf(snapshot, at);
       const scope = presentationScopeAt(timeline, perspective);

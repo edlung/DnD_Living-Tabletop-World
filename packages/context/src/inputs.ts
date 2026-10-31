@@ -1,6 +1,7 @@
 import type { CharacterSheet } from '@ltw/contracts';
 import {
   knownEntityIds,
+  partyMemberIds,
   perceivedEntityIds,
   scopeKey,
   visibleRecords,
@@ -43,9 +44,9 @@ export function gatherInputs(
   if (perspective.kind !== 'CHARACTER' || perspective.holderId === null) return null;
   const actor = state.entities.get(perspective.holderId);
   if (actor?.kind !== 'character') return null;
-  const party = new Set([actor.entityId]);
-  if (state.roster.has(actor.entityId)) state.roster.forEach((_, id) => party.add(id));
-  const own = state.roster.has(actor.entityId)
+  const members = perspective.partyMemberIds ?? partyMemberIds(state),
+    party = members.has(actor.entityId) ? new Set(members) : new Set([actor.entityId]);
+  const own = members.has(actor.entityId)
     ? scopeKey({ kind: 'PARTY' })
     : scopeKey({ kind: 'CHARACTER', characterId: actor.entityId });
   return {

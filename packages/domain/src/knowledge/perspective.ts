@@ -1,7 +1,9 @@
 import { formatPerspective, type PerspectiveRequest } from '@ltw/contracts';
 
+import { partyMemberIds as canonicalPartyMemberIds } from './party.ts';
 import type { Actor } from '../kernel/actor.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { preparedPartyIds, type PartyProjectionContext } from './projection-party.ts';
 
 /**
  * Perspective resolution and authorization (docs/adr/0008-knowledge-boundary.md).
@@ -21,6 +23,8 @@ export interface ResolvedPerspective {
   readonly holderId: string | null;
   /** Scope keys whose records are visible; `ALL` only for the DM view. */
   readonly scopes: ReadonlySet<string> | 'ALL';
+  /** Trusted owner preparation projection only; never used to authorize a command. */
+  readonly partyMemberIds?: ReadonlySet<string>;
 }
 
 export type PerspectiveAccess =
@@ -48,6 +52,7 @@ export function resolvePerspective(
   state: WorldState | null,
   actor: Actor,
   request: PerspectiveRequest,
+  preparation?: PartyProjectionContext,
 ): PerspectiveAccess {
   const role = campaignRole(state, actor);
   if (state === null || role === null) return NOT_FOUND;
@@ -68,20 +73,21 @@ export function resolvePerspective(
   }
 
   // DM or trusted system process: any perspective, but targets must be real.
+  const party = preparedPartyIds(state, preparation);
   switch (request.kind) {
     case 'DM':
     case 'PUBLIC':
     case 'PARTY':
-      return granted(state, request.kind, null);
+      return granted(state, request.kind, null, party);
     case 'PLAYER':
       return FORBIDDEN;
     case 'CHARACTER':
       return state.entities.get(request.characterId)?.kind === 'character'
-        ? granted(state, 'CHARACTER', request.characterId)
+        ? granted(state, 'CHARACTER', request.characterId, party)
         : NOT_FOUND;
     case 'NPC':
       return state.entities.get(request.npcId)?.kind === 'npc'
-        ? granted(state, 'NPC', request.npcId)
+        ? granted(state, 'NPC', request.npcId, party)
         : NOT_FOUND;
   }
 }
@@ -96,10 +102,11 @@ export function holderPerspective(
     | { readonly kind: 'PUBLIC' | 'PARTY' }
     | { readonly kind: 'CHARACTER'; readonly characterId: string }
     | { readonly kind: 'NPC'; readonly npcId: string },
+  preparation?: PartyProjectionContext,
 ): ResolvedPerspective {
   const holderId =
     scope.kind === 'CHARACTER' ? scope.characterId : scope.kind === 'NPC' ? scope.npcId : null;
-  const access = granted(state, scope.kind, holderId);
+  const access = granted(state, scope.kind, holderId, preparedPartyIds(state, preparation));
   if (!access.ok) throw new Error('unreachable: holder perspectives are always granted');
   return access.perspective;
 }
@@ -108,12 +115,22 @@ function granted(
   state: WorldState,
   kind: ResolvedPerspective['kind'],
   holderId: string | null,
+  partyMemberIds?: ReadonlySet<string>,
 ): PerspectiveAccess {
   const scopes = new Set(['PUBLIC']);
   let request: PerspectiveRequest;
   switch (kind) {
     case 'DM':
-      return { ok: true, perspective: { label: 'DM', kind, holderId: null, scopes: 'ALL' } };
+      return {
+        ok: true,
+        perspective: {
+          label: 'DM',
+          kind,
+          holderId: null,
+          scopes: 'ALL',
+          ...(partyMemberIds === undefined ? {} : { partyMemberIds }),
+        },
+      };
     case 'PUBLIC':
       request = { kind };
       break;
@@ -124,7 +141,7 @@ function granted(
     case 'CHARACTER': {
       const characterId = holderId ?? '';
       scopes.add(`CHARACTER:${characterId}`);
-      if (state.roster.has(characterId)) scopes.add('PARTY');
+      if ((partyMemberIds ?? canonicalPartyMemberIds(state)).has(characterId)) scopes.add('PARTY');
       request = { kind, characterId };
       break;
     }
@@ -135,5 +152,14 @@ function granted(
       break;
     }
   }
-  return { ok: true, perspective: { label: formatPerspective(request), kind, holderId, scopes } };
+  return {
+    ok: true,
+    perspective: {
+      label: formatPerspective(request),
+      kind,
+      holderId,
+      scopes,
+      ...(partyMemberIds === undefined ? {} : { partyMemberIds }),
+    },
+  };
 }

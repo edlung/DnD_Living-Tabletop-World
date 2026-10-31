@@ -31,6 +31,10 @@ const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
 const WORKER_TYPES: ReadonlySet<string> = new Set(ASSET_WORKER_COMMAND_TYPES);
 
 export function authorize(state: WorldState, actor: Actor, command: KernelCommand): Authorization {
+  if (command.type === 'BootstrapCampaign')
+    return actor.kind === 'user' && actor.actorId === command.source.ownerId
+      ? { ok: true, authority: 'campaign-creator' }
+      : forbidden('Only the confirming owner can bootstrap a campaign');
   if (command.type === 'CreateCampaign') {
     return actor.kind === 'user'
       ? { ok: true, authority: 'campaign-creator' }

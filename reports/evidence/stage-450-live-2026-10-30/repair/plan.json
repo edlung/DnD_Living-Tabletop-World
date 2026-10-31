@@ -1,0 +1,928 @@
+{
+  "targets": [
+    {
+      "targetId": "section:brief",
+      "section": "brief",
+      "key": null,
+      "label": "Замысел кампании",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:world",
+      "section": "world",
+      "key": null,
+      "label": "Мир и завязка",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:entities",
+      "section": "entities",
+      "key": null,
+      "label": "Персонажи и места",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:party",
+      "section": "party",
+      "key": null,
+      "label": "Подготовленная группа",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:knowledge",
+      "section": "knowledge",
+      "key": null,
+      "label": "Знания",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:relationships",
+      "section": "relationships",
+      "key": null,
+      "label": "Отношения",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:clues",
+      "section": "clues",
+      "key": null,
+      "label": "Улики",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:conflicts",
+      "section": "conflicts",
+      "key": null,
+      "label": "Конфликты",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:situations",
+      "section": "situations",
+      "key": null,
+      "label": "Ситуации",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:encounters",
+      "section": "encounters",
+      "key": null,
+      "label": "Подготовленные встречи",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:quests",
+      "section": "quests",
+      "key": null,
+      "label": "Задания",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:visuals",
+      "section": "visuals",
+      "key": null,
+      "label": "Описания внешности",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:firstSession",
+      "section": "firstSession",
+      "key": null,
+      "label": "Первая сессия",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "section:laterOutline",
+      "section": "laterOutline",
+      "key": null,
+      "label": "Дальнейшие события",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:7865f368-4f4c-4d3d-8171-07423af1cd97",
+      "section": "entities",
+      "key": "serebryany-brod",
+      "label": "Серебряный Брод",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:c0f27c4e-7767-4543-b9ae-ffd65360c100",
+      "section": "entities",
+      "key": "posyolok",
+      "label": "Посёлок Серебряный Брод",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:3f25917b-bb37-4066-a5e8-f40ebcde45c8",
+      "section": "entities",
+      "key": "prichal",
+      "label": "Главный причал",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:18d43c41-043e-4ce4-9971-39764e4d8033",
+      "section": "entities",
+      "key": "lodochnyy-sarai",
+      "label": "Лодочный сарай",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:67ba6dfa-54f3-4bb5-99c1-2eb8a77ad444",
+      "section": "entities",
+      "key": "dom-starosty",
+      "label": "Дом старосты",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:cfd71463-4e84-4e38-93b7-535665924946",
+      "section": "entities",
+      "key": "torgovaya-lavka",
+      "label": "Лавка Саввы",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:0386fabc-d208-4d03-96bb-b4fdb457cb1e",
+      "section": "entities",
+      "key": "post-vekh",
+      "label": "Пост смотрительницы вех",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:f66d7867-bfef-41ff-969f-4d183cc3b04d",
+      "section": "entities",
+      "key": "bereg-tropa",
+      "label": "Береговая тропа",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:26231f22-71ca-445c-9ad9-679e3ef44a48",
+      "section": "entities",
+      "key": "ruiny-bashni",
+      "label": "Руины береговой башни",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:239f6f63-77fe-4129-836b-63901dbecf7c",
+      "section": "entities",
+      "key": "staryy-sklad",
+      "label": "Старый склад",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:0ad00147-8861-4621-b7d3-badc15b9d5d3",
+      "section": "entities",
+      "key": "vodnyy-put",
+      "label": "Водный путь к свету",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:ef66f85f-3cd1-42d6-aafc-b071eb538712",
+      "section": "entities",
+      "key": "zatonuvshiy-mayak",
+      "label": "Затонувший маяк",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "entity:688d20c7-4bf4-443c-a71a-9d8bd1536d19",
+      "section": "entities",
+      "key": "lampovyy-zal",
+      "label": "Ламповый зал маяка",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:8aee6ee6-8fc8-4909-a871-8b36990cad58",
+      "section": "knowledge",
+      "key": "party-start",
+      "label": "Третью ночь подряд из-под воды у Серебряного Брода светит бело-голубой свет, а к рассвету к причалу прибивает пустые лод",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:21681aa1-382b-40c0-a372-6772a2e734a3",
+      "section": "knowledge",
+      "key": "public-closure-demand",
+      "label": "Торговец Савва открыто требует закрыть перевал для чужаков, чтобы слухи не отпугнули купцов, а семьи пропавших грозятся ",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:c633779e-373f-42e2-a6f5-aaa50fa1c1aa",
+      "section": "knowledge",
+      "key": "rumor-debt",
+      "label": "Рыбаки шепчутся, что маяк зовёт тех, кто должен ему долг. Подтверждений этому нет.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:77245dc8-a26f-43cc-bb03-8422e2bf694b",
+      "section": "knowledge",
+      "key": "mirela-list",
+      "label": "Мирела ведёт список пропавших и охотно покажет его. Она знает, что журналы старых сторожей хранились в старой береговой ",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:dc98b961-6dcb-4de7-bc32-2d00ba366a7a",
+      "section": "knowledge",
+      "key": "gordey-testimony",
+      "label": "Гордей говорит, что в первую ночь видел у света узкую лодку без огней и надписей; на вёслах кто-то гребал, обмотав уключ",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:cdb59762-f50c-4557-9ea8-0ef4fd5dbe13",
+      "section": "knowledge",
+      "key": "faina-testimony",
+      "label": "Фаина, если ей доверятся, расскажет: отец учил её, что у маяка есть дух-хранитель, а свет сердцевины-линзы держит его в ",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:1b08701b-ec8d-48e6-8ab5-6fe9e49383e0",
+      "section": "knowledge",
+      "key": "savva-secret-npc",
+      "label": "Савва знает, что нанял чужаков поднять со дна часть линзы маяка на продажу, и боится, что это вскроется.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:f63411b8-8c75-4ab3-be02-b77587a3626e",
+      "section": "knowledge",
+      "key": "wt-keeper",
+      "label": "Свет излучает хранитель маяка, водный дух, связанный с затонувшим маяком. Он не злодей: он проснулся, когда у линзы забр",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:439c39e9-f10b-47cf-b2d0-5706d11cf972",
+      "section": "knowledge",
+      "key": "wt-lens-stolen",
+      "label": "Несколько ночей назад чужаки подняли из лампового зала часть линзы-сердцевины. С тех пор хранитель зовёт людей, пытаясь ",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:91f4c185-1756-4819-9a99-a6ae6e677d83",
+      "section": "knowledge",
+      "key": "wt-boat",
+      "label": "Узкая лодка без огней принадлежит нанятым чужакам; на её уключинах воск, которым глушили скрип.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:9f036230-5dda-4659-8c71-6a2b170715f7",
+      "section": "knowledge",
+      "key": "wt-savva",
+      "label": "Чужаков нанял и оплатил Савва ради продажи линзы; он требует закрыть перевал, чтобы скрыть следы.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:140cd247-fa46-410f-b7f6-8687530bcc60",
+      "section": "knowledge",
+      "key": "wt-people-alive",
+      "label": "Пропавшие люди живы и спят в лямповом зале под светом хранителя; чем дольше они там, тем слабее они становятся.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:4114313c-483b-4049-99aa-3d0bcc9eec2f",
+      "section": "knowledge",
+      "key": "dm-peace-path",
+      "label": "Возможный мирный путь: вернуть или заменить сердцевину линзы и ответить хранителю условным сигналом из журналов. Это воз",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "knowledge:93fdacd5-a41b-4ead-96b3-520a00f775ca",
+      "section": "knowledge",
+      "key": "dm-unknown-keeper-reaction",
+      "label": "Неизвестно заранее, как хранитель отреагирует на героев; исход определяют их решения и броски.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:dd350c0b-63fa-496c-b730-d0c0677b82d1",
+      "section": "clues",
+      "key": "clue-boat-wax",
+      "label": "На уключинах вернувшихся лодок и в одной чужой узкой лодке видны следы воска и свежие узлы, не здешней вязки: кто-то глу",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:b3c72802-ff73-4412-9659-b0711751ffe9",
+      "section": "clues",
+      "key": "clue-boat-tracks",
+      "label": "У воды на тропе тянутся следы волочения и обрывки промасленной верёвки; кто-то вытаскивал на берег тяжёлый ящик.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:41a3de93-d3c3-4e5e-ba02-b3d57e113213",
+      "section": "clues",
+      "key": "clue-lamp-magic",
+      "label": "Свет излучает не огонь, а связанная водная магия: у неё живая, сторожевая структура, и она будто ищет недостающую часть.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:6cf3f28f-b5e4-4cda-8b9a-3c06d3fcb84e",
+      "section": "clues",
+      "key": "clue-tower-notes",
+      "label": "В подвале башни среди линз лежат записи сторожей: свет хранителя держится на сердцевине линзы, и без неё он зовёт людей ",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:acae7272-e7a1-4f20-a3d6-c84eab1139de",
+      "section": "clues",
+      "key": "clue-sklad-logs",
+      "label": "В журналах склада описан условный сигнал из башни, которым сторожа успокаивали хранителя, и пустое гнездо в ящике для се",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:9b946a3a-de00-4c33-8eb7-3723eb62fd75",
+      "section": "clues",
+      "key": "clue-lamp-hall-empty-socket",
+      "label": "В центральной линзе зияет пустое гнездо, спящие люди лежат под светом, и дышат ровно.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:0c3667d3-c99b-404e-9d01-46397eedc444",
+      "section": "clues",
+      "key": "clue-savva-ledger",
+      "label": "В счётной книге Саввы запись о крупной выплате «за стекло» чужакам без имён и расписка с восковой печатью, как на лодке.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:c7259c78-7771-4698-acee-987ae3d2ce01",
+      "section": "clues",
+      "key": "clue-savva-candle",
+      "label": "Воск на связке свечей в лавке тот же, что на уключинах узкой лодки.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "clue:ef52ae03-28f5-4f6d-8cf6-d854f030d080",
+      "section": "clues",
+      "key": "clue-post-veh-markers",
+      "label": "В записях Фаины о вехах отмечено, что вехи у плёса сдвинули ночью: кто-то подводил лодку к свету.",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "encounter:6440b747-332e-441a-9ab6-cd4596d7198f",
+      "section": "encounters",
+      "key": "boy-lampovyy-zal",
+      "label": "Хранитель в ламповом зале",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "conflict:pustye-lodki",
+      "section": "conflicts",
+      "key": "pustye-lodki",
+      "label": "Пустые лодки и исчезнувшие люди",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "conflict:rodnye-protiv-sroka",
+      "section": "conflicts",
+      "key": "rodnye-protiv-sroka",
+      "label": "Родные хотят плыть к маяку",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "conflict:slukhi-i-torgovlya",
+      "section": "conflicts",
+      "key": "slukhi-i-torgovlya",
+      "label": "Слухи против торговли",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "conflict:tayna-klyucha",
+      "section": "conflicts",
+      "key": "tayna-klyucha",
+      "label": "Тайна ключа и склада",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "conflict:skrytaya-prichina",
+      "section": "conflicts",
+      "key": "skrytaya-prichina",
+      "label": "Скрытая причина свечения",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "situation:rassvet-na-prichale",
+      "section": "situations",
+      "key": "rassvet-na-prichale",
+      "label": "Рассвет на причале",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "situation:osmotr-lodok",
+      "section": "situations",
+      "key": "osmotr-lodok",
+      "label": "Осмотр лодок в сарае",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "situation:razgovor-so-starostoy",
+      "section": "situations",
+      "key": "razgovor-so-starostoy",
+      "label": "Староста и список пропавших",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "situation:davlenie-savvy",
+      "section": "situations",
+      "key": "davlenie-savvy",
+      "label": "Савва и закрытый перевал",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "situation:molchanie-fainy",
+      "section": "situations",
+      "key": "molchanie-fainy",
+      "label": "Фаина и ключ",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "situation:bereg-i-bashnya",
+      "section": "situations",
+      "key": "bereg-i-bashnya",
+      "label": "Берег и руины башни",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "situation:voda-k-svetu",
+      "section": "situations",
+      "key": "voda-k-svetu",
+      "label": "Выход на воду",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "situation:lampovyy-zal-situatsiya",
+      "section": "situations",
+      "key": "lampovyy-zal-situatsiya",
+      "label": "Ламповый зал",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "quest:svet-pod-vodoy",
+      "section": "quests",
+      "key": "svet-pod-vodoy",
+      "label": "Свет под водой",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "visual:3f25917b-bb37-4066-a5e8-f40ebcde45c8:image",
+      "section": "visuals",
+      "key": "prichal:image",
+      "label": "Главный причал · картинка",
+      "locked": false,
+      "ambiguous": false
+    },
+    {
+      "targetId": "visual:688d20c7-4bf4-443c-a71a-9d8bd1536d19:battle-map",
+      "section": "visuals",
+      "key": "lampovyy-zal:battle-map",
+      "label": "Ламповый зал маяка · карта боя",
+      "locked": false,
+      "ambiguous": false
+    }
+  ],
+  "conflicts": [],
+  "spec": {
+    "version": 1,
+    "baselineDigest": "sha256:a60f72a8a4b44ace32af790fa77ecfe2286dd6a955534f0289b85b10f62df801",
+    "instruction": "Repair the missing cast declarations in this SAME campaign, not a new campaign or rewritten scenario.\nChange ONLY entities by adding the missing nonlocation entities listed below. Return the COMPLETE CampaignPackage.\nPreserve all 13 existing locations byte-for-byte in the exact original order. Keep them first; append the new nonlocation entities.\nPreserve EVERY non-entities field and every array order exactly, even if the structural dependency closure includes those fields.\nKeep the existing 3 prepared party keys unchanged; declare each as a distinct active character with complete supported sheets at brief.partyLevel, full HP and legal initial placement at world.startLocation.\nDeclare every existing relationships.npc and NPC knowledge holder as an NPC. Prepare supported NPC/creature statBlocks for existing nonparty encounter combatants.\nUse baseline narrative to distinguish the named faction/group, creature and boat/object. A boat is an item or feature, not a fabricated character or faction.\nFulfill EVERY existing referenced local key below. Reuse these keys exactly; do not rename, delete or rewrite the references in other sections.\nDo not add canonical IDs, controllers, accounts, memberships, actual discoveries, played history or already-decided outcomes. Keep all supported temporal constraints.\n{\"requiredMissingKeys\":[{\"key\":\"chuzhaya-lodka\",\"roles\":[\"clue subject\",\"conflict actor: NPC, character or faction as described\",\"existing image visual subject\",\"knowledge subject\",\"quest subject\"]},{\"key\":\"faina\",\"roles\":[\"NPC/character: attributed speaker\",\"NPC: existing initial relationship\",\"NPC: knowledge holder\",\"clue subject\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"situation participant\"]},{\"key\":\"gordey\",\"roles\":[\"NPC/character: attributed speaker\",\"NPC: existing initial relationship\",\"NPC: knowledge holder\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"quest informant: NPC\",\"situation participant\"]},{\"key\":\"khranitel-mayaka\",\"roles\":[\"clue subject\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"prepared combatant: character sheet or NPC/creature statBlock\",\"quest subject\",\"situation participant\"]},{\"key\":\"mirela-tikhonova\",\"roles\":[\"NPC: existing initial relationship\",\"NPC: knowledge holder\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"quest activation subject\",\"situation participant\"]},{\"key\":\"ranger-sledopyt\",\"roles\":[\"existing figure visual subject\",\"prepared character: complete supported sheet\",\"prepared combatant: character sheet or NPC/creature statBlock\"]},{\"key\":\"ranger-strelok\",\"roles\":[\"existing figure visual subject\",\"prepared character: complete supported sheet\",\"prepared combatant: character sheet or NPC/creature statBlock\"]},{\"key\":\"rybaki-posyolka\",\"roles\":[\"NPC/character: attributed speaker\",\"conflict actor: NPC, character or faction as described\",\"knowledge subject\",\"situation participant\"]},{\"key\":\"savva\",\"roles\":[\"NPC: existing initial relationship\",\"NPC: knowledge holder\",\"clue subject\",\"conflict actor: NPC, character or faction as described\",\"existing figure visual subject\",\"knowledge subject\",\"quest subject\",\"situation participant\"]},{\"key\":\"wizard-uchenaya\",\"roles\":[\"existing figure visual subject\",\"prepared character: complete supported sheet\",\"prepared combatant: character sheet or NPC/creature statBlock\"]}]}",
+    "requestedTargets": [
+      "section:entities"
+    ],
+    "closure": [
+      {
+        "targetId": "clue:0c3667d3-c99b-404e-9d01-46397eedc444",
+        "reasons": [
+          "Clue source"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "clue:41a3de93-d3c3-4e5e-ba02-b3d57e113213",
+        "reasons": [
+          "Clue source",
+          "Clue subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "clue:6cf3f28f-b5e4-4cda-8b9a-3c06d3fcb84e",
+        "reasons": [
+          "Clue source",
+          "Clue subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "clue:9b946a3a-de00-4c33-8eb7-3723eb62fd75",
+        "reasons": [
+          "Clue source",
+          "Clue subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "clue:acae7272-e7a1-4f20-a3d6-c84eab1139de",
+        "reasons": [
+          "Clue source",
+          "Clue subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "clue:b3c72802-ff73-4412-9659-b0711751ffe9",
+        "reasons": [
+          "Clue source",
+          "Clue subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "clue:c7259c78-7771-4698-acee-987ae3d2ce01",
+        "reasons": [
+          "Clue source"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "clue:dd350c0b-63fa-496c-b730-d0c0677b82d1",
+        "reasons": [
+          "Clue source",
+          "Clue subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "clue:ef52ae03-28f5-4f6d-8cf6-d854f030d080",
+        "reasons": [
+          "Clue source",
+          "Clue subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "encounter:6440b747-332e-441a-9ab6-cd4596d7198f",
+        "reasons": [
+          "Encounter location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:0386fabc-d208-4d03-96bb-b4fdb457cb1e",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:0ad00147-8861-4621-b7d3-badc15b9d5d3",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:18d43c41-043e-4ce4-9971-39764e4d8033",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:239f6f63-77fe-4129-836b-63901dbecf7c",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:26231f22-71ca-445c-9ad9-679e3ef44a48",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:3f25917b-bb37-4066-a5e8-f40ebcde45c8",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:67ba6dfa-54f3-4bb5-99c1-2eb8a77ad444",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:688d20c7-4bf4-443c-a71a-9d8bd1536d19",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:7865f368-4f4c-4d3d-8171-07423af1cd97",
+        "reasons": [
+          "Collection member"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:c0f27c4e-7767-4543-b9ae-ffd65360c100",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:cfd71463-4e84-4e38-93b7-535665924946",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:ef66f85f-3cd1-42d6-aafc-b071eb538712",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "entity:f66d7867-bfef-41ff-969f-4d183cc3b04d",
+        "reasons": [
+          "Collection member",
+          "Location parent"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:140cd247-fa46-410f-b7f6-8687530bcc60",
+        "reasons": [
+          "Declared knowledge relation",
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:1b08701b-ec8d-48e6-8ab5-6fe9e49383e0",
+        "reasons": [
+          "Declared knowledge relation"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:4114313c-483b-4049-99aa-3d0bcc9eec2f",
+        "reasons": [
+          "Declared knowledge relation",
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:439c39e9-f10b-47cf-b2d0-5706d11cf972",
+        "reasons": [
+          "Declared knowledge relation",
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:77245dc8-a26f-43cc-bb03-8422e2bf694b",
+        "reasons": [
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:8aee6ee6-8fc8-4909-a871-8b36990cad58",
+        "reasons": [
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:91f4c185-1756-4819-9a99-a6ae6e677d83",
+        "reasons": [
+          "Declared knowledge relation",
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:9f036230-5dda-4659-8c71-6a2b170715f7",
+        "reasons": [
+          "Declared knowledge relation"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:c633779e-373f-42e2-a6f5-aaa50fa1c1aa",
+        "reasons": [
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:cdb59762-f50c-4557-9ea8-0ef4fd5dbe13",
+        "reasons": [
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:dc98b961-6dcb-4de7-bc32-2d00ba366a7a",
+        "reasons": [
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "knowledge:f63411b8-8c75-4ab3-be02-b77587a3626e",
+        "reasons": [
+          "Knowledge subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "quest:svet-pod-vodoy",
+        "reasons": [
+          "Quest location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "section:entities",
+        "reasons": [
+          "Selected by owner"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "section:world",
+        "reasons": [
+          "Starting location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "situation:bereg-i-bashnya",
+        "reasons": [
+          "Situation clue",
+          "Situation location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "situation:davlenie-savvy",
+        "reasons": [
+          "Situation clue",
+          "Situation location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "situation:lampovyy-zal-situatsiya",
+        "reasons": [
+          "Situation clue",
+          "Situation location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "situation:molchanie-fainy",
+        "reasons": [
+          "Situation clue",
+          "Situation location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "situation:osmotr-lodok",
+        "reasons": [
+          "Situation clue",
+          "Situation location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "situation:rassvet-na-prichale",
+        "reasons": [
+          "Situation location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "situation:razgovor-so-starostoy",
+        "reasons": [
+          "Situation location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "situation:voda-k-svetu",
+        "reasons": [
+          "Situation clue",
+          "Situation location"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "visual:3f25917b-bb37-4066-a5e8-f40ebcde45c8:image",
+        "reasons": [
+          "Visual subject"
+        ],
+        "readOnly": false
+      },
+      {
+        "targetId": "visual:688d20c7-4bf4-443c-a71a-9d8bd1536d19:battle-map",
+        "reasons": [
+          "Battle map geometry",
+          "Visual subject"
+        ],
+        "readOnly": false
+      }
+    ],
+    "lockSnapshot": {
+      "version": 0,
+      "revision": 1,
+      "packageDigest": "sha256:a60f72a8a4b44ace32af790fa77ecfe2286dd6a955534f0289b85b10f62df801",
+      "manifestDigest": "sha256:0ce807b2beed1b2c2a7b46f73a3b3db1f5705cd1f20ee0aeccd5b80d148b69a6",
+      "entries": [],
+      "digest": "sha256:93e10a057afc538619b37caf1d4101938dc843fd1e1d6030e1cc66f1d20743cb",
+      "createdAt": "2026-10-30T18:00:30.770Z"
+    },
+    "manifestVersion": 0,
+    "manifestDigest": "sha256:0ce807b2beed1b2c2a7b46f73a3b3db1f5705cd1f20ee0aeccd5b80d148b69a6"
+  }
+}

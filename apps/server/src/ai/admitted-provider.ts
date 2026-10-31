@@ -70,12 +70,30 @@ const KINDS: Readonly<Record<RequestAccounting['attemptKind'], AttemptKind>> = {
 /** The trusted identity, copied once, or null when it is not one this wrapper can account for. */
 function identityOf(request: ProviderRequest): (RequestAccounting & { kind: AttemptKind }) | null {
   try {
-    const { requestId, campaignId, capability, sessionId, attemptId, attemptKind } =
+    const { requestId, campaignId, capability, sessionId, attemptId, attemptKind, subject } =
       request.accounting;
     const kind = Object.hasOwn(KINDS, attemptKind) ? KINDS[attemptKind] : undefined;
     if (!UUID.test(requestId) || !UUID.test(attemptId) || kind === undefined) return null;
     if (typeof sessionId !== 'string' || sessionId === '') return null;
-    return { requestId, campaignId, capability, sessionId, attemptId, attemptKind, kind };
+    if (
+      campaignId === null &&
+      (capability !== 'campaign-preparation' ||
+        subject?.kind !== 'workshop' ||
+        !UUID.test(subject.ownerId) ||
+        !UUID.test(subject.draftId))
+    )
+      return null;
+    if (campaignId !== null && capability === 'campaign-preparation') return null;
+    return {
+      requestId,
+      campaignId,
+      capability,
+      sessionId,
+      attemptId,
+      attemptKind,
+      kind,
+      ...(subject ? { subject } : {}),
+    };
   } catch {
     return null;
   }

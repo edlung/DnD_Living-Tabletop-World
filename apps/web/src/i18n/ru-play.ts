@@ -349,6 +349,7 @@ registerRussian({
   'Undone. The world is as it was before this change.':
     'Отменено. Мир снова таков, каким был до этого изменения.',
   // Steps named in the history's undo blockers (every command type)
+  'start campaign from preparation': 'запустить кампанию из подготовки',
   'create campaign': 'создание кампании',
   'start scene': 'начало сцены',
   'end scene': 'конец сцены',

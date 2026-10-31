@@ -1,3 +1,4 @@
+import { isPartyMember } from '../knowledge/party.ts';
 import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
@@ -124,7 +125,7 @@ export function applyPremisesRecorded(
           state.investigation.clues.has(premise.clueId) && state.entities.has(premise.entityId)
         );
       case 'party-member':
-        return state.roster.has(premise.characterId);
+        return isPartyMember(state, premise.characterId);
       case 'knowledge':
         return state.knowledge.has(premise.knowledgeId);
       case 'memory':

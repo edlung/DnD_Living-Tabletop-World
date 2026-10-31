@@ -147,3 +147,13 @@ Out of scope for the alpha: a compromised host or database, distributed denial o
      primary and focused; replacing is available only after the page has been visible and focused
      for 0.5 s and a pointer or key was used since the question appeared; the question says that
      coming back takes a new invitation (the DM's from the operator).
+- 2026-10-30 (Stage 440, confirmed activation and protected entry, `552d418`): no answer expires
+  the session cookie; this replaces the clearing rule of the Stage 340 part A amendment 1. The
+  browser holds one `ltw_session` for whichever campaign it entered last, so a 401 or a sign-out
+  answer that arrives after another tab installed a newer credential would erase that one. A 401
+  never carries `Set-Cookie`. `POST /auth/sign-out` revokes the session whose cookie it presented
+  and answers 204 without one; a tab's `x-game-campaign` or `x-game-actor` header that does not
+  match that session gets 409 before anything is revoked. A revoked or expired cookie opens
+  nothing, and the next redeem replaces it. The only answer that sets `ltw_session` is still a
+  successful redeem. Checked by `tests/e2e/game-sign-out-identity.spec.ts` and
+  `deploy/verify/sign-in-journey.sh`.

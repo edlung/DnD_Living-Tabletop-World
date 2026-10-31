@@ -1,5 +1,36 @@
 # AI spending accounting
 
+Stage 400 / ADR 0038: `preparation-sessions.ts` implements operator owner→approval
+grants and real job-bound preparation sessions (migration 0018 after jobs0017).
+Preparation requests/attempts/traces have null campaign IDs and explicit workshop
+owner/draft subjects. Never create a fake campaign, play session or evaluation run.
+Admission rechecks current grant, enabled account/approval, explicit unlimited
+policy, live auth session, RUNNING job, fence and lease. Legacy play/evaluation
+capabilities cannot consume a preparation session. Account/stage accounting is
+shared; `subjects.ts` and new subject/session buckets retain old campaign lock
+identities. Settlement uses persisted subject fields. `preparation-grant` is the
+recorded operator path; no request body or environment flag grants authority.
+
+Stage 380 / ADR 0038 (owner disposition 2026-10-30): monetary limits may be
+explicitly `UNLIMITED`. `monetary-policy.ts` reads/appends durable policy revisions
+in migration 0014; `monetary-policy-set` is the operator path, with recorded owner
+authorization. No missing record, numeric sentinel, env setting or route parameter
+means unlimited. Historical finite approvals and every accounting row remain.
+Unlimited text policy is scoped to a billing account; images have their existing
+installation-wide ledger scope. All identity/eligibility/nonmonetary checks remain.
+Only valid, source-resolved `OVERRUN` stops are superseded by unlimited policy.
+`DISCREPANCY`, suspect billing/model stops and malformed/unknown evidence still deny.
+
+Stage 400 preparation is a real workshop subject/session, not a campaign or play
+session. Read `preparation-sessions.ts`, `subjects.ts`, the job-bound journal and
+`../preparation-gateway.ts`; migration0018 adds nullable campaign IDs and explicit
+workshop owner/draft columns. Admission rechecks the live job/fence/lease/auth
+session, enabled owner grant and explicit unlimited policy on every attempt.
+Legacy campaign bucket lock identities stay unchanged. Preparation has separate
+subject/session buckets; account/global/stage accounting still includes all work.
+Campaign trace reads cannot return workshop rows. Never synthesize a play or
+evaluation session, reinterpret a campaign cookie or infer a grant from a key.
+
 Durable admission, accounting journal and operator records for live AI
 (`docs/adr/0032-live-ai.md`, amendment 2026-10-11; `docs/STAGE_300_REMEDIATION_DESIGN.md` §1–2).
 Schema: `apps/server/migrations/0005_ai_accounting.sql` (append-only),
@@ -13,6 +44,7 @@ by `ai/admitted-provider.ts`. Stop scope follows the approved B2 delta
 | File                                                          | Responsibility                                                                                 |
 | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `types.ts`                                                    | `BudgetStore` port, session classes, admission/settlement results, rejections                  |
+| `monetary-policy.ts`                                          | Explicit finite/unlimited revisions, operator scope/authorization, status; migration 0014      |
 | `money.ts`                                                    | Integer microdollars: per-dimension `ceil`, tiers, reservation at highest rate                 |
 | `lock-keys.ts`                                                | Policy `-1`, nonnegative bucket/account keys, negative request keys, ordering                  |
 | `deadline.ts`                                                 | Monotonic deadlines; storage step = MIN(request, 5 s); fixed 5 s steps                         |
@@ -38,7 +70,8 @@ by `ai/admitted-provider.ts`. Stop scope follows the approved B2 delta
 - Stops: one immutable row, two effective restrictions (recorded predicate OR, for overruns and
   discrepancies, the source attempt's account/provider/canonical model on every approval and day).
   An unexpected shape, a missing or mismatched source, or an identity the verified registry cannot
-  map fails closed for the account. Only an operator clearance lifts a stop; campaign views never
+  map fails closed for the account. Only an operator clearance lifts a nonmonetary stop; a valid
+  monetary overrun may be superseded by explicit unlimited policy without deleting it. Campaign views never
   show stops. Identities resolve through `ai/catalog.ts`; tests use `TEST_RESOLVE` or fixtures.
 - A caller outcome never proves a provider attempt finished: only terminal accounting resolves an
   attempt. An unconfirmed COMMIT may have committed: never treat its hold as absent. Only definite

@@ -47,7 +47,7 @@ const dollars = (micros: string | null) =>
   micros === null ? 'none' : formatDollars(BigInt(micros));
 
 export const budgetLine = (status: ImageBudgetStatus) =>
-  `ceiling ${dollars(status.ceilingMicros)}, spent ${dollars(status.spentMicros)} ` +
+  `${status.monetaryPolicy?.mode === 'UNLIMITED' ? 'unlimited' : `ceiling ${dollars(status.ceilingMicros)}`}, spent ${dollars(status.spentMicros)} ` +
   `(held ${dollars(status.heldMicros)}), remaining ${dollars(status.remainingMicros)}, ` +
   `${String(status.charges)} reservations (${String(status.unsettled)} unsettled)`;
 
@@ -113,7 +113,10 @@ export async function preflight(context: SmokeContext): Promise<Preflight> {
         `${String(open.ageMinutes)} min old); see pnpm ai:operator image-reservations`,
     );
   }
-  if (options.generator === 'openrouter-openai') {
+  if (
+    options.generator === 'openrouter-openai' &&
+    budgetBefore.monetaryPolicy?.mode !== 'UNLIMITED'
+  ) {
     if (budgetBefore.ceilingMicros === null) {
       throw new SmokeRefusal(
         'no image ceiling is stored: every call would be denied (pnpm ai:operator image-budget-set)',

@@ -1,0 +1,17 @@
+{
+  "kind": "READ_ONLY_SOURCE_BINDING",
+  "configuredApprovalId": null,
+  "bindings": [
+    {
+      "approval_id": "stage-300-sonnet",
+      "account_id": "anthropic-owner",
+      "stage": "stage-300",
+      "account_enabled": true,
+      "approval_enabled": true,
+      "campaign_ids": [
+        "ravenford"
+      ]
+    }
+  ],
+  "defaultDatabaseMutations": 0
+}

@@ -4,6 +4,11 @@
  * I/O and trace persistence live in the server. Map: ../AGENTS.md.
  */
 export {
+  runCampaignPreparation,
+  type CampaignPreparationInput,
+  type CampaignPreparationResult,
+} from './preparation.ts';
+export {
   buildContext,
   type BuiltContext,
   type ContextItem,
@@ -123,6 +128,8 @@ export {
   type ImageBrief,
   type ImageGenerator,
   type ImageJob,
+  type ImageExecution,
+  type WorkshopImageSubject,
 } from './images.ts';
 export {
   PLACEHOLDER_MODEL,

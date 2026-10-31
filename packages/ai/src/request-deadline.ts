@@ -26,11 +26,16 @@ export class DeadlineConfigError extends Error {
   }
 }
 
-export function openDeadline(durationMs: number): OpenDeadline {
+export function openDeadline(durationMs: number, caller?: AbortSignal): OpenDeadline {
   if (!Number.isSafeInteger(durationMs) || durationMs <= 0) {
     throw new DeadlineConfigError('a whole-request deadline needs a positive integer duration');
   }
   const controller = new AbortController();
+  const cancel = () => {
+    controller.abort();
+  };
+  if (caller?.aborted) cancel();
+  else caller?.addEventListener('abort', cancel, { once: true });
   const atMs = performance.now() + durationMs;
   const timer = setTimeout(() => {
     controller.abort();
@@ -39,6 +44,7 @@ export function openDeadline(durationMs: number): OpenDeadline {
     deadline: { atMs, signal: controller.signal },
     close: () => {
       clearTimeout(timer);
+      caller?.removeEventListener('abort', cancel);
       controller.abort();
     },
   };

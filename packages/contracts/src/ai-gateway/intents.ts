@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { proposalCommandsSchema, proposalSummarySchema } from '../authoring/commands.ts';
 import type { RankingStatus, Relevance } from '../context/views.ts';
 import type { DialogueIntent, DialogueStatus } from '../npc/dialogue.ts';
+import type { CampaignPreparationTraceView } from './preparation.ts';
 
 /**
  * AI gateway contracts (docs/adr/0017-ai-gateway.md). The AI proposes; it
@@ -20,6 +21,7 @@ export const AI_CAPABILITIES = [
   'narrative',
   'vision',
   'image-generation',
+  'campaign-preparation',
 ] as const;
 export type AiCapability = (typeof AI_CAPABILITIES)[number];
 
@@ -183,4 +185,8 @@ export interface ChronicleTraceView extends AiTraceBase {
 
 /** `GET /campaigns/:campaignId/ai/traces/:traceId` (DM only): why the system said, ranked, or proposed this. */
 export type AiTraceView =
-  DmIntentTraceView | NpcDialogueTraceView | RelevanceTraceView | ChronicleTraceView;
+  | DmIntentTraceView
+  | NpcDialogueTraceView
+  | RelevanceTraceView
+  | ChronicleTraceView
+  | CampaignPreparationTraceView;

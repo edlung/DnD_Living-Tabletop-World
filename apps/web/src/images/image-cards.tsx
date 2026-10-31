@@ -1,4 +1,4 @@
-import type { AssetRequestView, AssetView } from '@ltw/contracts';
+import { bootstrapAssetOriginSchema, type AssetRequestView, type AssetView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 
 import { useContentImage } from '../visual/approved-images.ts';
@@ -31,6 +31,19 @@ function Picture({ asset }: { readonly asset: AssetView }) {
         )
       )}
     </span>
+  );
+}
+
+/** Imported bytes have honest draft lineage and no fictitious in-play request. DM only. */
+function ImportedOrigin({ asset }: { readonly asset: AssetView }) {
+  const t = useT();
+  const origin = bootstrapAssetOriginSchema.safeParse(asset.origin);
+  if (!origin.success) return null;
+  return (
+    <p className="image-card-meta">
+      {t('Imported from campaign preparation')} ·{' '}
+      {t('Source revision: {revision}', { revision: origin.data.revision })}
+    </p>
   );
 }
 
@@ -91,6 +104,7 @@ export function CandidateCard({
             maker: makerWords(t, asset.generator),
           })}
         </p>
+        <ImportedOrigin asset={asset} />
         {request?.note && (
           <p className="image-card-note">
             {t('Your note to the image model: {note}', { note: request.note })}
@@ -189,6 +203,7 @@ export function ApprovedCard({
             ? t('Shown to players who can see it')
             : t('Only you see this')}
         </p>
+        <ImportedOrigin asset={asset} />
         <div className="image-card-actions">
           <button
             type="button"

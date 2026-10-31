@@ -1,0 +1,618 @@
+[
+  {
+    "state": "structured-world",
+    "width": 1440,
+    "contentTop": 461,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x56, 14.4px x28, 11.2px x20, 6.4px x16, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-world",
+    "width": 768,
+    "contentTop": 461,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x56, 14.4px x28, 11.2px x20, 6.4px x16, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-world",
+    "width": 390,
+    "contentTop": 753,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x56, 14.4px x28, 11.2px x20, 6.4px x16, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-world",
+    "width": 320,
+    "contentTop": 863,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x56, 14.4px x28, 11.2px x20, 6.4px x16, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-sheet",
+    "width": 1440,
+    "contentTop": 518,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x140, 6.4px x80, 14.4px x70, 11.2px x50, 5.6px x3, 10px x3"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-sheet",
+    "width": 768,
+    "contentTop": 518,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x140, 6.4px x80, 14.4px x70, 11.2px x50, 5.6px x3, 10px x3"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-sheet",
+    "width": 390,
+    "contentTop": 831,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x140, 6.4px x80, 14.4px x70, 11.2px x50, 5.6px x3, 10px x3"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-sheet",
+    "width": 320,
+    "contentTop": 941,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x140, 6.4px x80, 14.4px x70, 11.2px x50, 5.6px x3, 10px x3"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-quest",
+    "width": 1440,
+    "contentTop": 461,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x88, 14.4px x44, 6.4px x24, 11.2px x18, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-quest",
+    "width": 768,
+    "contentTop": 461,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x88, 14.4px x44, 6.4px x24, 11.2px x18, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-quest",
+    "width": 390,
+    "contentTop": 753,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x88, 14.4px x44, 6.4px x24, 11.2px x18, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "structured-quest",
+    "width": 320,
+    "contentTop": 863,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x88, 14.4px x44, 6.4px x24, 11.2px x18, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "manual-diff",
+    "width": 1440,
+    "contentTop": 1778,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x60, 14.4px x30, 11.2px x22, 6.4px x16, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "manual-diff",
+    "width": 768,
+    "contentTop": 1778,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x60, 14.4px x30, 11.2px x22, 6.4px x16, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "manual-diff",
+    "width": 390,
+    "contentTop": 2100,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x60, 14.4px x30, 11.2px x22, 6.4px x16, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "manual-diff",
+    "width": 320,
+    "contentTop": 2235,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x60, 14.4px x30, 11.2px x22, 6.4px x16, 5.6px x1, 10px x1"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "protections",
+    "width": 1440,
+    "contentTop": 461,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x52, 14.4px x26, 11.2px x6"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "protections",
+    "width": 768,
+    "contentTop": 461,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x52, 14.4px x26, 11.2px x6"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "protections",
+    "width": 390,
+    "contentTop": 753,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x52, 14.4px x26, 11.2px x6"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "protections",
+    "width": 320,
+    "contentTop": 863,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x52, 14.4px x26, 11.2px x6"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "blocked-scope",
+    "width": 1440,
+    "contentTop": 1329,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x56, 14.4px x28, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "blocked-scope",
+    "width": 768,
+    "contentTop": 1329,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x56, 14.4px x28, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "blocked-scope",
+    "width": 390,
+    "contentTop": 1594,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x56, 14.4px x28, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "blocked-scope",
+    "width": 320,
+    "contentTop": 1729,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x56, 14.4px x28, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "resolved-scope",
+    "width": 1440,
+    "contentTop": 1329,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x60, 14.4px x30, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "resolved-scope",
+    "width": 768,
+    "contentTop": 1329,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x60, 14.4px x30, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "resolved-scope",
+    "width": 390,
+    "contentTop": 1594,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x60, 14.4px x30, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "resolved-scope",
+    "width": 320,
+    "contentTop": 1729,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x60, 14.4px x30, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "edit-result",
+    "width": 1440,
+    "contentTop": 788,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x70, 14.4px x36, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "edit-result",
+    "width": 768,
+    "contentTop": 2724,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x70, 14.4px x36, 11.2px x8"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "edit-result",
+    "width": 390,
+    "contentTop": 2935,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x70, 14.4px x36, 11.2px x8, 6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "edit-result",
+    "width": 320,
+    "contentTop": 3211,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x70, 14.4px x36, 11.2px x8, 6px x2"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "candidate-diff",
+    "width": 1440,
+    "contentTop": 939,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "candidate-diff",
+    "width": 768,
+    "contentTop": 939,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "candidate-diff",
+    "width": 390,
+    "contentTop": 1085,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "candidate-diff",
+    "width": 320,
+    "contentTop": 1211,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "revision-diff",
+    "width": 1440,
+    "contentTop": 899,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "revision-diff",
+    "width": 768,
+    "contentTop": 899,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "revision-diff",
+    "width": 390,
+    "contentTop": 1049,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "revision-diff",
+    "width": 320,
+    "contentTop": 1175,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "restore-preview",
+    "width": 1440,
+    "contentTop": 439,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "restore-preview",
+    "width": 768,
+    "contentTop": 439,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "restore-preview",
+    "width": 390,
+    "contentTop": 625,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  },
+  {
+    "state": "restore-preview",
+    "width": 320,
+    "contentTop": 716,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ],
+    "accessibility": []
+  }
+]

@@ -1,3 +1,5 @@
+import { partyMemberIds } from '../knowledge/party.ts';
+
 import type { KnowledgeType, RiskLevel } from '@ltw/contracts';
 
 import type { ResolvedProposable } from '../kernel/decision.ts';
@@ -30,7 +32,7 @@ const NPC_RECORD_TYPES: ReadonlySet<KnowledgeType> = new Set([
 /** Entities that are not secret: known to the PUBLIC perspective, or members of the party. */
 export function publicEntityIds(state: WorldState): Set<string> {
   const ids = knownEntityIds(state, holderPerspective(state, { kind: 'PUBLIC' }));
-  for (const characterId of state.roster.keys()) ids.add(characterId);
+  for (const characterId of partyMemberIds(state)) ids.add(characterId);
   return ids;
 }
 

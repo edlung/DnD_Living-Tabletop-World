@@ -3,17 +3,19 @@ import type pg from 'pg';
 import { boundByRequest, expired, storageStep, type Deadline } from './deadline.ts';
 import { scopeBuckets, sortedLockKeys, type AttemptScope, type SessionClass } from './lock-keys.ts';
 import { MAX_MICROS } from './money.ts';
+import { readMonetaryPolicy } from './monetary-policy.ts';
 import { StorageUnavailable, readCommitted, type Tx } from './pg-transaction.ts';
 import { readBucketSpend } from './spend.ts';
 import { stopDenies, type Resolve } from './stop-scope.ts';
 import type { AdmissionRequest, AdmissionResult, DenialCode, DenialDetail } from './types.ts';
+import { preparationSessionEligible } from './preparation-sessions.ts';
 
 /**
  * Budget admission (docs/STAGE_300_REMEDIATION_DESIGN.md §1). One READ COMMITTED transaction:
  * the shared policy lock in its own statement; then the stored request, its approval's and its
  * billing account's latest revisions and the database UTC day; then the sorted bucket and
  * account-control locks, one statement each; then stops and totals; and only if every ceiling
- * admits, the attempt row with its reservation. Identity, campaign and session come from the stored
+ * admits (or a stored UNLIMITED monetary policy supersedes them), the attempt row with its reservation. Identity, campaign and session come from the stored
  * request, never from the caller.
  *
  * B2: the requested model must be the canonical model of its verified pricing version (`resolve`,
@@ -28,7 +30,12 @@ const denied = (code: DenialCode, detail: DenialDetail): AdmissionResult => ({
 });
 
 interface RequestRow {
-  campaign_id: string;
+  campaign_id: string | null;
+  actor_id: string;
+  subject_kind: string;
+  workshop_owner_id: string | null;
+  workshop_draft_id: string | null;
+  preparation_session_id: string | null;
   approval_id: string | null;
   session_class: SessionClass | null;
   session_id: string | null;
@@ -75,7 +82,8 @@ async function admitIn(
   await tx.policy('shared');
   const stored = (
     await tx.query<RequestRow>(
-      `SELECT campaign_id, approval_id, session_class, session_id, capability,
+      `SELECT campaign_id, actor_id, subject_kind,workshop_owner_id,workshop_draft_id,preparation_session_id,
+         approval_id, session_class, session_id, capability,
          to_char((clock_timestamp() AT TIME ZONE 'UTC')::date, 'YYYY-MM-DD') AS day
        FROM ltw_ai_requests WHERE request_id = $1`,
       [request.requestId],
@@ -86,16 +94,47 @@ async function admitIn(
   if (approvalId === null || sessionClass === null || sessionId === null) {
     return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   }
+  const preparation = sessionClass === 'preparation';
+  if (preparation !== (stored.capability === 'campaign-preparation'))
+    return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   const policy = (await tx.query<PolicyRow>(POLICY, [approvalId, sessionId, stored.campaign_id]))
     .rows[0];
   if (policy === undefined) return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   if (!policy.account_enabled) return denied('ADMISSION_DISABLED', 'ACCOUNT_DISABLED');
   if (!policy.approval_enabled) return denied('ADMISSION_DISABLED', 'APPROVAL_DISABLED');
-  if (!policy.campaign_ids.includes(stored.campaign_id)) {
+  if (
+    !preparation &&
+    (stored.campaign_id === null || !policy.campaign_ids.includes(stored.campaign_id))
+  ) {
     return denied('ADMISSION_DISABLED', 'CAMPAIGN_NOT_BOUND');
   }
   if (sessionClass === 'evaluation' && !policy.run_registered) {
     return denied('ADMISSION_DISABLED', 'RUN_NOT_REGISTERED');
+  }
+  const monetaryPolicy = await readMonetaryPolicy(tx, {
+    scope: 'text',
+    accountId: policy.account_id,
+  });
+  const unlimited = monetaryPolicy?.mode === 'UNLIMITED';
+  if (preparation) {
+    if (
+      !unlimited ||
+      stored.campaign_id !== null ||
+      stored.subject_kind !== 'workshop' ||
+      stored.workshop_owner_id === null ||
+      stored.workshop_draft_id === null ||
+      stored.preparation_session_id !== sessionId ||
+      stored.actor_id !== stored.workshop_owner_id ||
+      !(await preparationSessionEligible(
+        tx,
+        sessionId,
+        stored.workshop_owner_id,
+        stored.workshop_draft_id,
+        approvalId,
+      ))
+    ) {
+      return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
+    }
   }
   const ceilings = {
     globalDay: BigInt(policy.global_day),
@@ -104,7 +143,7 @@ async function admitIn(
     session: BigInt(sessionClass === 'play' ? policy.play_session : policy.evaluation_run),
   };
   // Missing, zero or negative ceilings deny (the schema also refuses them).
-  if (Object.values(ceilings).some((ceiling) => ceiling <= 0n)) {
+  if (!unlimited && Object.values(ceilings).some((ceiling) => ceiling <= 0n)) {
     return denied('ADMISSION_DISABLED', 'NOT_ELIGIBLE');
   }
 
@@ -112,6 +151,8 @@ async function admitIn(
     accountId: policy.account_id,
     approvalId,
     campaignId: stored.campaign_id,
+    ...(stored.workshop_owner_id ? { workshopOwnerId: stored.workshop_owner_id } : {}),
+    ...(stored.workshop_draft_id ? { workshopDraftId: stored.workshop_draft_id } : {}),
     sessionClass,
     sessionId,
     day: stored.day,
@@ -124,7 +165,8 @@ async function admitIn(
     provider: request.provider,
     model: request.model,
   };
-  if (await stopDenies(tx, target, resolve)) return denied('ADMISSION_DISABLED', 'STOPPED');
+  if (await stopDenies(tx, target, resolve, unlimited))
+    return denied('ADMISSION_DISABLED', 'STOPPED');
   const spent = await readBucketSpend(tx, scope);
   const order = [
     ['globalDay', 'GLOBAL_DAY'],
@@ -133,7 +175,7 @@ async function admitIn(
     ['session', 'SESSION'],
   ] as const;
   for (const [bucket, detail] of order) {
-    if (spent[bucket] + request.reserveMicros > ceilings[bucket]) {
+    if (!unlimited && spent[bucket] + request.reserveMicros > ceilings[bucket]) {
       return denied('BUDGET_DENIED', detail);
     }
   }
@@ -141,8 +183,9 @@ async function admitIn(
   await tx.query(
     `INSERT INTO ltw_ai_attempts (attempt_id, request_id, account_id, approval_id, campaign_id,
        session_class, session_id, billing_day, capability, attempt_kind, provider, model,
-       pricing_version, reserved_micros)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8::date, $9, $10, $11, $12, $13, $14::bigint)`,
+       pricing_version, reserved_micros, monetary_policy_revision,
+       subject_kind,workshop_owner_id,workshop_draft_id,preparation_session_id)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8::date, $9, $10, $11, $12, $13, $14::bigint, $15,$16,$17,$18,$19)`,
     [
       request.attemptId,
       request.requestId,
@@ -158,6 +201,11 @@ async function admitIn(
       request.model,
       request.pricingVersion,
       request.reserveMicros.toString(),
+      monetaryPolicy?.revision ?? null,
+      stored.subject_kind,
+      stored.workshop_owner_id,
+      stored.workshop_draft_id,
+      stored.preparation_session_id,
     ],
   );
   return {

@@ -1,0 +1,49 @@
+{
+  "kind": "STAGE_430_UI_LAYOUT_AND_ACCESSIBILITY",
+  "fixture": "edit-layout",
+  "seed": "workshop-stage430-isolated-layout",
+  "ports": {
+    "web": 4322,
+    "api": 4323
+  },
+  "command": "node /private/tmp/workshop-stage430-audit.mjs",
+  "reproduce": [
+    "Copy layout-runner.txt to /private/tmp/workshop-stage430-audit.mjs and layout-server.txt to /private/tmp/workshop-stage430-audit-server.mjs.",
+    "From the repository root, run node /private/tmp/workshop-stage430-audit.mjs with local server/browser permission.",
+    "The runner creates fresh in-memory fixtures, stops both local servers on completion and emits results.json plus full-page and viewport PNGs."
+  ],
+  "widths": [1440, 768, 390, 320],
+  "viewportHeight": 1000,
+  "states": [
+    "structured-world",
+    "structured-sheet",
+    "structured-quest",
+    "manual-diff",
+    "protections",
+    "blocked-scope",
+    "resolved-scope",
+    "edit-result",
+    "candidate-diff",
+    "revision-diff",
+    "restore-preview"
+  ],
+  "checkedWidthStates": 44,
+  "screenshots": 88,
+  "layoutErrors": 0,
+  "layoutWarnings": 0,
+  "axeViolations": 0,
+  "visualInspection": "All 11 states at all four widths reviewed using full-page and viewport screenshots; no remaining clipping, horizontal page overflow or touching controls found.",
+  "reviewedInformation": "Each state reports off-scale-spacing information from existing fractional-rem UI tokens/native controls. Existing design tokens retained; visual spacing is consistent. No error/warning suppression was added.",
+  "fixes": [
+    "Added a scoped grid gap between the manual editor card, Review manual changes and complete diff.",
+    "Tagged-union changes preserve supported existing immutable identity fields; new objects still receive fresh identities (covered by model regressions)."
+  ],
+  "checks": {
+    "scopedUnit": "PASS: 6 files, 42 tests",
+    "wholeTypecheck": "PASS",
+    "scopedESLint": "PASS",
+    "scopedPrettier": "PASS",
+    "gitDiffCheck": "PASS"
+  },
+  "limits": "Scripted offline EDIT/image fixtures only. No live provider calls, paid quality/latency evidence, default database changes or human play acceptance."
+}

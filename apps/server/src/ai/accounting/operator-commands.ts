@@ -7,12 +7,14 @@ import {
   settleOrphanedReservation,
 } from '../../images/ledger-operator.ts';
 import type { OperatorCommand } from './operator-args.ts';
+import { monetaryPolicyStatus, setMonetaryPolicy } from './monetary-policy.ts';
 import { OperatorStore } from './operator-store.ts';
 import { accountingStatus } from './postgres-budget-store.ts';
 import { identityResolver, VERIFIED_CATALOG } from '../catalog.ts';
 import { recoverIncomplete } from './recovery.ts';
 import { spendReport } from './spend-report.ts';
 import { explainStops } from './stop-diagnostics.ts';
+import { grantPreparationApproval } from './preparation-sessions.ts';
 
 /**
  * `pnpm ai:operator <command> …` (docs/adr/0032-live-ai.md, amendment 2026-10-11): the only
@@ -35,6 +37,18 @@ export async function runOperatorCommand(
 ): Promise<unknown> {
   const operator = new OperatorStore(pool);
   switch (command.kind) {
+    case 'preparation-grant':
+      return { preparationGrantRevision: await grantPreparationApproval(pool, command) };
+    case 'monetary-policy-set':
+      return {
+        monetaryPolicyRevision: await setMonetaryPolicy(pool, {
+          ...command.target,
+          mode: command.mode,
+          authorization: command.authorization,
+        }),
+      };
+    case 'monetary-policy-status':
+      return { monetaryPolicy: await monetaryPolicyStatus(pool, command.target) };
     case 'account-create':
       await operator.createAccount(command);
       return { created: command.accountId };

@@ -1,0 +1,8 @@
+{
+  "kind": "PRIVATE_LIVE_EVIDENCE_LEAK_AUDIT",
+  "textFiles": 83,
+  "opaqueRuntimeSecretsChecked": 2,
+  "violations": [],
+  "scope": "only live evidence text; no credential file reads; no output of credential values",
+  "at": "2026-10-30T18:36:45.464Z"
+}

@@ -11,9 +11,7 @@ import type { EvidenceOutcome } from './limits.ts';
 import { iso } from './session-authenticator.ts';
 import { SESSION_MS, redeemInvitation, type SignInDependencies } from './sign-in.ts';
 import {
-  clearedSessionCookie,
   hashToken,
-  presentedSessionCookies,
   secureCookies,
   sessionCookie,
   sessionTokenFrom,
@@ -25,8 +23,8 @@ import {
  * docs/STAGE_340_DESIGN.md "Flows"): `POST /auth/redeem`, `GET /auth/session`,
  * `POST /auth/sign-out`. Every failed redeem answers the same fixed 401, whatever the reason;
  * limits answer the fixed 429; a browser already signed in must confirm replacing its session
- * (409 otherwise). The cookie is cleared only for a request that presented one and it opened
- * nothing. Logs carry outcomes and invitation IDs, never a token, a hash, a cookie or an address.
+ * (409 otherwise). Failed reads and logout never expire a cookie: their delayed response could
+ * erase a newer campaign credential. Logs carry outcomes/IDs, never credentials or addresses.
  */
 export interface AuthRouteDependencies {
   readonly engine: WorldEngine;
@@ -42,14 +40,10 @@ export function registerAuthRoutes(app: FastifyInstance, deps: AuthRouteDependen
   const secure = secureCookies(deps.signIn.publicOrigin);
 
   /**
-   * 401 for a request that opens nothing. Only a request that presented exactly one session
-   * cookie has it cleared: one without (a cross-site navigation never carries the strict
-   * cookie) must not delete the browser's only credential, and two are ambiguous.
+   * A delayed401 cannot know whether another tab has installed a newer credential. Invalid
+   * opaque cookies retain no server access and normal redemption replaces them.
    */
   const signedOut = (request: FastifyRequest, reply: FastifyReply) => {
-    if (presentedSessionCookies(request.headers.cookie) === 1) {
-      reply.header('set-cookie', clearedSessionCookie(secure));
-    }
     return sendError(reply, request, 'UNAUTHENTICATED');
   };
 
@@ -140,7 +134,7 @@ export function registerAuthRoutes(app: FastifyInstance, deps: AuthRouteDependen
       .send(response);
   });
 
-  // Same-origin only in invitation mode (`http/security.ts`): its 401 may clear the cookie.
+  // Same-origin only in invitation mode (`http/security.ts`); no credential mutation on reads.
   app.get('/auth/session', async (request, reply) => {
     const principal = await deps.authenticator.authenticate(credentialsOf(request));
     if (!principal || principal.campaignId === null) return signedOut(request, reply);
@@ -162,8 +156,16 @@ export function registerAuthRoutes(app: FastifyInstance, deps: AuthRouteDependen
     if (!emptyBody.safeParse(request.body).success) {
       return sendError(reply, request, 'INVALID_REQUEST');
     }
+    const campaign = request.headers['x-game-campaign'];
+    const actor = request.headers['x-game-actor'];
+    if (
+      (campaign !== undefined && campaign !== principal.campaignId) ||
+      (actor !== undefined && actor !== principal.actor.actorId)
+    ) {
+      return sendError(reply, request, 'CONFLICT');
+    }
     await credentials.revokeSession(hashToken(token), iso(clock.now()));
     request.log.info('signed out');
-    return reply.header('set-cookie', clearedSessionCookie(secure)).code(204).send();
+    return reply.code(204).send();
   });
 }

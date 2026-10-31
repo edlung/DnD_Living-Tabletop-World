@@ -2,6 +2,102 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Current request — AI campaigns, 2026-10-30
+
+- Latest owner disposition: «Принимаю 380. Остальные технические контрольные точки
+  проходи самостоятельно, готовый функционал покажи в конце».
+  `reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json` accepts Stage 380 and
+  supersedes intermediate technical HARD STOP requirements for Stages 390–450.
+  The session keeps scoped stages, checks, adversarial passes and reports and
+  continues autonomously. Final functionality is shown to the owner; no runtime
+  DM confirmation, architecture invariant, deployment or human-acceptance boundary
+  is waived. Current implementation scope: `work-orders/STAGE_450_LIVE.md`.
+
+- In the current project chat the owner requested AI-generated campaigns with
+  scenario and visual preview, approved implementation of the proposed Stages
+  370–450 («выполняй реализацию всех этапов»), and removed monetary AI limits
+  («Бюджет пока неограничен»). This monetary policy supersedes the older finite
+  text/image spending requirements below for this owner's authorized work.
+- The implementation must represent unlimited spending explicitly and retain
+  actual/unknown cost accounting, provider allowlists, authentication, cancellation,
+  timeouts and bounded retries. Stage 380 implements this policy; existing
+  installations retain their stored finite mode until migration and explicit
+  unlimited-policy activation. No credential or provider/model change
+  is authorized by the monetary-policy correction alone.
+- The owner accepted the detailed Stage 370 contract and ADR 0038 with
+  «Выполняй реализацию всех этапов. Подтверждаю». Disposition and exact hashes:
+  `reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json`. The original design,
+  proposed ADR and initial handoff remain frozen as reviewed artifacts; this
+  disposition supersedes their pending-status text. Stage 370 is accepted.
+- Stage 380: implemented and accepted by the owner on 2026-10-30. Its final
+  offline validation passed: 3,016 unit, 254 integration, 144 browser tests.
+  Report: `reports/STAGE_380_COMPLETION.md`; acceptance and delegated continuation:
+  `reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json`.
+- Stage 390: **TECHNICALLY_VERIFIED**, scoped by
+  `work-orders/STAGE_390.md` and `docs/STAGE_390_DESIGN.md`. Strict packages,
+  immutable owner-private revisions and isolated World Engine materialization are
+  implemented and verified: 3,049 unit, 261 integration and 144 browser tests pass. No real credentials,
+  default local DB, production campaign or deployment has been changed.
+- Stage400: **TECHNICALLY_VERIFIED**, `work-orders/STAGE_400.md`.
+  Durable AI preparation jobs and admitted-provider integration; full offline
+  validation passed:3,100unit,284integration,144browser tests. Report and technical
+  handoff: `reports/STAGE_400_COMPLETION.md`, `handoffs/STAGE_400_REQUEST.md`.
+  Live-provider quality remains unperformed and carried to450, never inferred from
+  scripted tests.
+- Stage410: **TECHNICALLY_VERIFIED**, `work-orders/STAGE_410.md`.
+  Private linked scenario inspection, immutable basic corrections and generation
+  browser; full offline validation passed:3,132unit,286integration,156browser tests.
+  Report:`reports/STAGE_410_COMPLETION.md`. Continue to420 under delegated authority.
+- Stage420: **TECHNICALLY_VERIFIED**, `work-orders/STAGE_420.md`. Scoped owner/
+  character visual preview, durable private pictures and explicit chosen manifests.
+  Full offline validation passed:3,185unit,306integration,164browser tests;36layout/
+  axe state-width combinations passed. Report:`reports/STAGE_420_COMPLETION.md`.
+- Stage430: **TECHNICALLY_VERIFIED**, `work-orders/STAGE_430.md`. Complete typed
+  manual editing, protected content/images, directed EDIT proposals, full review,
+  explicit adoption and restore-as-new. Full isolated validation:3,267unit,331PG,
+  172browser tests;44layout/axe state-width combinations,88screenshots,0violations.
+  Report:`reports/STAGE_430_COMPLETION.md`; checkpoint`689967c`.
+- Stage440:**TECHNICALLY_VERIFIED**, `work-orders/STAGE_440.md`,
+  `docs/STAGE_440_DESIGN.md`. Confirmed atomic bootstrap, exact pictures,
+  immutable per-campaign content, closed provisioning, owned-campaign entry and
+  cookie-race protection. Full isolated validation:3,350unit,339PG,180browser;
+  four-width audit:36combinations,0errors/warnings/axe violations.
+  Report:`reports/STAGE_440_COMPLETION.md`. Continue450 under delegated authority.
+- Stage450:**TECHNICALLY_VERIFIED / OWNER_DEMONSTRATION_READY**,
+  `work-orders/STAGE_450.md`. Complete admitted-runtime PG generation/edit/
+  preview/activation/access/play journey, investigation/social/combat/replay
+  specimens and deferred private editor loading. Full isolated validation:
+  3,352unit,340PG,184browser. Four-width audit:44combinations,0errors/warnings/axe.
+  Report:`reports/STAGE_450_COMPLETION.md`. Base440 checkpoint:`552d418`.
+  Technical implementation370–450 is delivered. At that offline checkpoint,
+  human acceptance and live-provider quality/cost/latency were PENDING/NOT_RUN.
+  Its isolated local demonstration uses labelled scripted responses and curated
+  raster fixtures. Those checks changed no default DB, real provider or deployment.
+- Live continuation authorized2026-10-30:after identifying Anthropic
+  `claude-sonnet-5-5`, the owner replied «Разрешаю» to one live campaign run.
+  Authority:`reviews/OWNER_LIVE_CAMPAIGN_AUTHORIZATION_2026-10-30.json`;
+  active scope:`work-orders/STAGE_450_LIVE.md`. The actual admitted GENERATE and
+  same-draft EDIT used Sonnet5.5; all8requests settled for$0.661081 with0openhold.
+  The initial cast omitted its entities; AI repair supplied them. Five illegal
+  location skill checks were then explicitly changed to inspect in OWNER revision2,
+  which is READY. This is not a claim of first-try automatic quality. Stage-owned
+  semantic validation now feeds these defects into bounded native repair.
+  Actual PG preview audit:36state/width combinations,72PNGs,0layout/axe/console
+  findings. Full post-fix isolated validation passed:3,395unit/373files,
+  341PG/60files,184browser;context1,475files,0over. Its temporary validation
+  database was dropped; the real paid ledger remains retained. Report:
+  `reports/STAGE_450_LIVE_RESULT_2026-10-30.md`. Human acceptance remains pending;
+  no activation, live images, provider substitution or default DB change occurred.
+- Stages440–450 continue after their scoped technical verification under the
+  owner's delegated continuation. Runtime confirmation and final human acceptance
+  remain the owner's actions.
+- Stage 370's full offline validation passed (2,985 unit, 237 integration, 132
+  browser tests). Those results validate its documentation checkpoint, not the
+  new Stage 380 implementation; the fresh Stage 380 results are recorded above.
+- One session, one selected model remains the policy. No assigned orchestrator,
+  separate reviewer/model gate, deployment, publishing or v0.1 tag is introduced.
+  Existing human acceptance deferrals and Stage 360 obligations remain recorded.
+
 ## Current owner policy — 2026-10-15 (supersedes all older assignments)
 
 - One session, one model: the model selected in the session plans, implements, verifies and reports.

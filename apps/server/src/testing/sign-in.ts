@@ -9,6 +9,7 @@ import { sessionAuthenticator, type AuthClock } from '../auth/session-authentica
 import type { SignInDependencies } from '../auth/sign-in.ts';
 import { evidenceHasher } from '../auth/tokens.ts';
 import type { LiveHub } from '../live/hub.ts';
+import type { WorkshopDependencies } from '../workshop/service.ts';
 import { buildLiveApp } from '../live/live-app.ts';
 import { createLogger, type Logger } from '../platform/logging/logger.ts';
 import { ManualTimers } from './live.ts';
@@ -162,6 +163,7 @@ export async function signInTable(
     readonly credentials?: CredentialStore;
     readonly engine?: WorldEngine;
     readonly ai?: ReturnType<typeof testAiGateway>;
+    readonly workshop?: WorkshopDependencies;
     /** `LTW_TRUST_PROXY`: the reverse proxy whose `X-Forwarded-For` names the client. */
     readonly trustedProxies?: readonly string[];
   } = {},
@@ -190,6 +192,7 @@ export async function signInTable(
       authenticator: sessionAuthenticator(credentials, clock),
       logger: options.logger ?? createLogger({ service: 'sign-in-test', level: 'silent' }),
       signIn,
+      ...(options.workshop ? { workshop: options.workshop } : {}),
       ...(options.trustedProxies === undefined ? {} : { trustedProxies: options.trustedProxies }),
     },
     { timers },

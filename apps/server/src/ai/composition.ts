@@ -32,6 +32,12 @@ export function composeRouter(routes: Routes): CapabilityRouter {
     if (capability === 'fast-context' && providers.some((provider) => isLocalProvider(provider))) {
       throw new CompositionError('fast-context: relevance has no local provider');
     }
+    if (
+      capability === 'campaign-preparation' &&
+      (providers.length > 1 || providers.some((provider) => isLocalProvider(provider)))
+    ) {
+      throw new CompositionError('campaign-preparation: one admitted remote provider or none');
+    }
   }
   const router = new CapabilityRouter(snapshot);
   Object.freeze(router);

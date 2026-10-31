@@ -23,3 +23,6 @@ Rules:
 - Records never change type. Facts come only from new DM-authored records (ADR 0014). Claims (`state.epistemics`) are DM data; only the DM projection shows them.
 - Footprints for knowledge events live in `kernel/facts.ts`; keep them complete (holder, subjects, attribution, related records).
 - Tests: `*.test.ts` here. Keep the randomized boundary test passing when adding fields or queries.
+- Stage420 `projection-party.ts` supplies validated prepared-party IDs only for
+  trusted owner read projections. Actual PLAYER resolution ignores it. Never use
+  it for campaignRole, controlledCharacter, roster updates or command permission.

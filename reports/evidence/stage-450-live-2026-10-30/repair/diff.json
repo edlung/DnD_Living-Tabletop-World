@@ -1,0 +1,500 @@
+{
+  "changes": [
+    {
+      "kind": "ORDER",
+      "path": [
+        "entities"
+      ],
+      "targetId": "section:entities",
+      "before": [
+        "serebryany-brod",
+        "posyolok",
+        "prichal",
+        "lodochnyy-sarai",
+        "dom-starosty",
+        "torgovaya-lavka",
+        "post-vekh",
+        "bereg-tropa",
+        "ruiny-bashni",
+        "staryy-sklad",
+        "vodnyy-put",
+        "zatonuvshiy-mayak",
+        "lampovyy-zal"
+      ],
+      "after": [
+        "serebryany-brod",
+        "posyolok",
+        "prichal",
+        "lodochnyy-sarai",
+        "dom-starosty",
+        "torgovaya-lavka",
+        "post-vekh",
+        "bereg-tropa",
+        "ruiny-bashni",
+        "staryy-sklad",
+        "vodnyy-put",
+        "zatonuvshiy-mayak",
+        "lampovyy-zal",
+        "ranger-sledopyt",
+        "ranger-strelok",
+        "wizard-uchenaya",
+        "mirela-tikhonova",
+        "gordey",
+        "faina",
+        "savva",
+        "rybaki-posyolka",
+        "khranitel-mayaka",
+        "chuzhaya-lodka"
+      ]
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "ranger-sledopyt"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "ranger-sledopyt",
+        "kind": "character",
+        "name": "Следопыт",
+        "description": "Молодая женщина-следопыт в кожаной броне и зелёном плаще, длинный лук за спиной, внимательный взгляд. Умеет читать следы и держаться в тумане.",
+        "status": "active",
+        "existsSince": null,
+        "placement": {
+          "location": "prichal",
+          "since": null
+        },
+        "sheet": {
+          "classes": [
+            {
+              "classId": "ranger",
+              "level": 3
+            }
+          ],
+          "abilities": {
+            "str": 10,
+            "dex": 16,
+            "con": 14,
+            "int": 10,
+            "wis": 15,
+            "cha": 8
+          },
+          "hitPoints": {
+            "max": 28,
+            "current": 28
+          },
+          "armorClass": 15,
+          "speedFt": 30,
+          "savingThrows": [
+            "str",
+            "dex"
+          ],
+          "skills": {
+            "proficient": [
+              "perception",
+              "survival",
+              "stealth"
+            ],
+            "expertise": []
+          },
+          "fightingStyle": "archery",
+          "attacksPerAction": 1,
+          "weapons": [
+            "longbow"
+          ],
+          "spellSlots": {
+            "max": [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "expended": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "spellcasting": [
+            {
+              "source": "ranger",
+              "ability": "wis",
+              "spells": [
+                "hunters-mark",
+                "detect-magic"
+              ]
+            }
+          ],
+          "conditions": [],
+          "concentration": null
+        }
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "ranger-strelok"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "ranger-strelok",
+        "kind": "character",
+        "name": "Стрелок",
+        "description": "Широкоплечий мужчина в тёмном дорожном плаще и кожаной броне, длинный лук наготове, спокойный взгляд. Внимателен к деталям и метко стреляет.",
+        "status": "active",
+        "existsSince": null,
+        "placement": {
+          "location": "prichal",
+          "since": null
+        },
+        "sheet": {
+          "classes": [
+            {
+              "classId": "ranger",
+              "level": 3
+            }
+          ],
+          "abilities": {
+            "str": 12,
+            "dex": 17,
+            "con": 14,
+            "int": 12,
+            "wis": 14,
+            "cha": 8
+          },
+          "hitPoints": {
+            "max": 28,
+            "current": 28
+          },
+          "armorClass": 15,
+          "speedFt": 30,
+          "savingThrows": [
+            "str",
+            "dex"
+          ],
+          "skills": {
+            "proficient": [
+              "perception",
+              "investigation",
+              "stealth"
+            ],
+            "expertise": []
+          },
+          "fightingStyle": "archery",
+          "attacksPerAction": 1,
+          "weapons": [
+            "longbow"
+          ],
+          "spellSlots": {
+            "max": [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "expended": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "spellcasting": [
+            {
+              "source": "ranger",
+              "ability": "wis",
+              "spells": [
+                "hunters-mark"
+              ]
+            }
+          ],
+          "conditions": [],
+          "concentration": null
+        }
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "wizard-uchenaya"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "wizard-uchenaya",
+        "kind": "character",
+        "name": "Учёная",
+        "description": "Молодая волшебница в синей мантии с сумкой для свитков и тетрадью, без оружия, любопытный взгляд.",
+        "status": "active",
+        "existsSince": null,
+        "placement": {
+          "location": "prichal",
+          "since": null
+        },
+        "sheet": {
+          "classes": [
+            {
+              "classId": "wizard",
+              "level": 3
+            }
+          ],
+          "abilities": {
+            "str": 8,
+            "dex": 14,
+            "con": 14,
+            "int": 16,
+            "wis": 12,
+            "cha": 10
+          },
+          "hitPoints": {
+            "max": 21,
+            "current": 21
+          },
+          "armorClass": 12,
+          "speedFt": 30,
+          "savingThrows": [
+            "int",
+            "wis"
+          ],
+          "skills": {
+            "proficient": [
+              "arcana",
+              "investigation",
+              "insight"
+            ],
+            "expertise": []
+          },
+          "attacksPerAction": 1,
+          "weapons": [],
+          "spellSlots": {
+            "max": [
+              4,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "expended": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "spellcasting": [
+            {
+              "source": "wizard",
+              "ability": "int",
+              "spells": [
+                "detect-magic",
+                "misty-step"
+              ]
+            }
+          ],
+          "conditions": [],
+          "concentration": null
+        }
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "mirela-tikhonova"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "mirela-tikhonova",
+        "kind": "npc",
+        "name": "Мирела Тихонова",
+        "description": "Староста посёлка, женщина около пятидесяти лет с усталым, но твёрдым взглядом. Ведёт список пропавших и просит героев разобраться до следующей ночи.",
+        "status": "active",
+        "existsSince": null
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "gordey"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "gordey",
+        "kind": "npc",
+        "name": "Гордей",
+        "description": "Пожилой перевозчик с седой щетиной, в промасленной куртке. Говорит, что видел у света чужую лодку без огней.",
+        "status": "active",
+        "existsSince": null
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "faina"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "faina",
+        "kind": "npc",
+        "name": "Фаина",
+        "description": "Старая смотрительница вех в сером плаще, на шее шнурок с бронзовым ключом от старого склада. Молчалива и недоверчива.",
+        "status": "active",
+        "existsSince": null
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "savva"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "savva",
+        "kind": "npc",
+        "name": "Савва",
+        "description": "Упитанный торговец в синем кафтане с перстнями. Требует закрыть перевал для чужаков, боится за торговлю и скрывает свои дела.",
+        "status": "active",
+        "existsSince": null
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "rybaki-posyolka"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "rybaki-posyolka",
+        "kind": "faction",
+        "name": "Рыбаки посёлка",
+        "description": "Местные рыбаки и семьи пропавших: тревожатся, передают слухи о долге перед маяком и к закату хотят сами плыть к свету.",
+        "status": "active",
+        "existsSince": null
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "khranitel-mayaka"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "khranitel-mayaka",
+        "kind": "creature",
+        "name": "Хранитель маяка",
+        "description": "Высокая полупрозрачная фигура из воды и стекла в остатках формы сторожа, изнутри светится бело-голубым. Водный дух, связанный с затонувшим маяком; защищает линзу и спящих.",
+        "status": "active",
+        "existsSince": null,
+        "statBlock": {
+          "armorClass": 13,
+          "hitPoints": {
+            "max": 45,
+            "current": 45
+          },
+          "speedFt": 30,
+          "abilities": {
+            "str": 14,
+            "dex": 14,
+            "con": 14,
+            "int": 10,
+            "wis": 13,
+            "cha": 10
+          },
+          "savingThrows": {
+            "str": 2,
+            "dex": 2,
+            "con": 2,
+            "int": 0,
+            "wis": 1,
+            "cha": 0
+          },
+          "initiativeBonus": 2,
+          "attacksPerAction": 2,
+          "attacks": [
+            {
+              "attackId": "vodyanaya-plet",
+              "name": "Водяная плеть",
+              "kind": "melee",
+              "bonus": 4,
+              "reachFt": 10,
+              "damage": {
+                "count": 1,
+                "sides": 8,
+                "bonus": 2,
+                "type": "bludgeoning"
+              }
+            }
+          ],
+          "spells": [],
+          "conditions": []
+        }
+      }
+    },
+    {
+      "kind": "ADDED",
+      "path": [
+        "entities",
+        "chuzhaya-lodka"
+      ],
+      "targetId": "section:entities",
+      "before": null,
+      "after": {
+        "key": "chuzhaya-lodka",
+        "kind": "item",
+        "name": "Узкая лодка без огней",
+        "description": "Узкая тёмная лодка без фонаря и надписей, принадлежащая нанятым чужакам. На уключинах заметны следы воска, которым глушили скрип.",
+        "status": "active",
+        "existsSince": null
+      }
+    }
+  ],
+  "visualChanges": [],
+  "conflicts": [],
+  "issues": []
+}

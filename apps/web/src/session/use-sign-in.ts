@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 import type { Connection } from '../api/client.ts';
 import type { InvitationHolder } from './invitation-link.ts';
@@ -13,6 +14,7 @@ import {
   type SessionProbe,
 } from './sign-in-flow.ts';
 import { SignInWatch, watchReturns } from './sign-in-watch.ts';
+import { MountedGameIdentity } from './mounted-game.ts';
 
 /**
  * What the page shows before and around a world (docs/adr/0036-production-sign-in.md §7;
@@ -109,6 +111,7 @@ export function useSignIn(
         if (active.current === connection) next({ kind: 'signed-out', reason: 'ended' });
       };
       const watching = new SignInWatch({ transport, campaignId, onChanged: ended });
+      const mounted = new MountedGameIdentity(campaignId);
       const connection: Connection = {
         kind: 'session',
         campaignId,
@@ -117,8 +120,12 @@ export function useSignIn(
           if (active.current === connection) watching.doubt();
         },
         onIdentity: (identity) => {
-          if (active.current === connection) watching.observe(identity);
+          if (active.current === connection) {
+            mounted.observe(identity);
+            watching.observe(identity);
+          }
         },
+        signOutGuard: () => mounted.read(),
       };
       enter(connection, watching);
     },
@@ -218,7 +225,10 @@ export function useSignIn(
   useEffect(() => {
     const hide = () => {
       if (start.kind === 'invited') start.invitation.forget();
-      next(mode.current === 'personas' ? { kind: 'personas' } : { kind: 'checking' });
+      // A history snapshot may precede React's native-event batch commit.
+      flushSync(() => {
+        next(mode.current === 'personas' ? { kind: 'personas' } : { kind: 'checking' });
+      });
     };
     const show = (event: PageTransitionEvent) => {
       if (event.persisted) probe();
@@ -284,7 +294,8 @@ export function useSignIn(
     },
     /** The server ended this browser's session. */
     signedOut: () => {
-      next({ kind: 'signed-out', reason: 'left' });
+      if (screen.kind === 'session' && active.current === screen.connection)
+        next({ kind: 'signed-out', reason: 'left' });
     },
   };
 }

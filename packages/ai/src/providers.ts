@@ -1,4 +1,4 @@
-import type { AiCapability } from '@ltw/contracts';
+import type { AiCapability, WorkshopAiSubject } from '@ltw/contracts';
 
 import type { BuiltContext } from './context-builder.ts';
 import type { DialoguePrompt } from './dialogue-prompt.ts';
@@ -53,13 +53,20 @@ export interface ChronicleTask {
   readonly repair: RepairNote | null;
 }
 
+export interface CampaignPreparationTask {
+  readonly kind: 'campaign-preparation';
+  readonly stage: string;
+  readonly repair: RepairNote | null;
+}
+
 /** What an attempt asks of a provider: the only content an adapter may serialize. */
 export interface ProviderPayload {
   readonly capability: AiCapability;
   readonly system: string;
   readonly prompt: string;
   readonly output: StructuredOutputSpec;
-  readonly task: IntentTask | DialogueTask | RelevanceTask | ChronicleTask;
+  readonly task:
+    IntentTask | DialogueTask | RelevanceTask | ChronicleTask | CampaignPreparationTask;
 }
 
 /**
@@ -70,9 +77,10 @@ export interface ProviderPayload {
  */
 export interface RequestAccounting {
   readonly requestId: string;
-  readonly campaignId: string;
+  readonly campaignId: string | null;
+  readonly subject?: WorkshopAiSubject;
   readonly capability: AiCapability;
-  /** The play session captured when the request began; null means the request may only run locally. */
+  /** Captured play session or authorized durable workshop session; null permits local only. */
   readonly sessionId: string | null;
   readonly attemptId: string;
   readonly attemptKind: 'initial' | 'repair' | 'fallback';

@@ -273,6 +273,68 @@ waiting for an unhealthy `server`; the log shows `not ready` with `eventStore` a
 before the deploy you are rolling back (`LTW_PREDEPLOY_DUMP`; play since then is lost, and
 `LTW_ROLLBACK_DUMP` keeps the state you leave), or fix and roll forward.
 
+**RU — мастерская кампаний (этапы400/420).** После появления расходов AI с областью
+мастерской или выбранных визуальных манифестов откат к сборкам до0018/0019/0020
+на той же базе не поддерживается, даже с `--rollback`. Прежняя готовность проверяет
+события игры, но не новые области расходов и атомарное наследование изображений.
+Для восстановления сохраняйте сборку, понимающую эти миграции; для более старой
+сборки нужна согласованная защищённая копия и сверка внешних расходов провайдера.
+Уже совершённые платные вызовы не отменяются восстановлением базы.
+
+**EN — campaign workshop (Stages400/420).** Once workshop AI accounting or chosen
+visual manifests exist, application/operator builds predating0018/0019/0020 are
+unsupported on that database, including with `--rollback`. Earlier readiness checks
+game events, not the new spending subjects or atomic image inheritance. Retain a
+migration-aware recovery build; an older build requires a matching consistent
+protected backup and external provider-cost reconciliation. Restoring a database
+does not reverse already dispatched paid calls.
+
+**RU — защищённые правки (этап430).** После миграции0021 используйте понимающую
+её сборку приложения и оператора. Более старый писатель пропускает защиту, а
+старый worker может обработать EDIT как полную генерацию. Проверка событий игры
+не устанавливает совместимость этих таблиц. Для отката к старой сборке нужна
+согласованная защищённая копия до использования новых правок.
+
+**EN — protected edits (Stage430).** After migration0021, retain an aware app and
+operator build. Older writers bypass protections; older workers may consume EDIT
+as full generation. Game-event readiness does not establish compatibility of
+these tables. An older build requires a consistent protected backup from before
+the new controls were used.
+
+**RU — активация кампаний (этап440).** Для записей0022 нужна сборка приложения,
+оператора и replay-инструментов, понимающая активацию. Старые сборки не закрывают
+неопубликованные потоки и не завершают подтверждённое действие; проверка событий этого не
+исправляет. После событий `PreparedPartyEstablished`, `AssetAdopted` или
+`CampaignBootstrapped` нужны и совместимые схемы событий. `--rollback` /
+`LTW_ALLOW_NEWER_SCHEMA` не разрешают такой откат. Сохраняйте совместимую сборку
+для восстановления; для более старой нужна согласованная защищённая копия до новых активаций.
+
+При перезапуске worker продолжает тот же подтверждённый источник и стабильные ID,
+даже если прежняя сессия завершилась. До проверки команды, provenance, immutable
+контента и точных байтов кампания остаётся PROVISIONING и закрыта для игры,
+приглашений, изображений и SSE. Не меняйте SQL status/phase/source и не удаляйте
+запись для повторного старта. Исправьте причину отказа и используйте совместимую
+сборку/разрешённый владельцу retry для повторяемого сбоя. Ошибки proof не обходятся
+ручной публикацией или снятием запрета retry.
+Активация не генерирует изображения и не вызывает платного провайдера.
+
+**EN — campaign activation (Stage440).** Records from0022 require an aware app,
+operator and replay build. Older builds do not gate unpublished streams or resume
+accepted intent; event readiness cannot repair that. Once
+`PreparedPartyEstablished`, `AssetAdopted` or `CampaignBootstrapped` is stored,
+compatible event schemas are also required. `--rollback` / `LTW_ALLOW_NEWER_SCHEMA`
+does not authorize this downgrade. Keep an aware recovery build; an older build
+requires a consistent protected backup from before the new activations.
+
+On restart, the worker resumes the same confirmed source and stable IDs even after
+the original session ends. The campaign remains PROVISIONING, closed to play,
+invitations, pictures and SSE until command/provenance, immutable content and exact
+bytes are verified. Never change SQL status/phase/source or delete the row to
+restart. Repair the cause and use the aware build/authorized owner retry for a
+retryable failure. Never bypass failed proof by publishing manually or changing
+the retryability flag. Activation generates no pictures and
+makes no paid provider call.
+
 ```bash
 previous=$(sed -n 's/^LTW_PREVIOUS_IMAGE_TAG=//p' deploy/.env)
 git checkout "$previous"          # the deploy files of that revision
@@ -340,6 +402,16 @@ does not notice: run `dc down` first (never `-v`: volumes and the database stay)
 retention: the newest 5 of each kind are kept (`BACKUP_KEEP_PROTECTED`). `SHA256SUMS` lists them
 all. The event store is canonical: a restore is proven by replaying every campaign. List the
 dumps: `dc exec -T backup ls -1 /backups`.
+
+**RU/EN — Stage440.** Сохраняйте activation-записи, immutable initial content,
+команды/события, исходные draft-байты и campaign-байты вместе в одной копии базы.
+Raw readiness/replay включает неопубликованные потоки; обычный gated engine для
+тренировки непригоден. Replay не доказывает целостность private manifests/байтов:
+совместимый recovery worker проверяет их до публикации. Preserve activation rows,
+immutable initial content, commands/events and both draft/campaign image bytes in
+the same database backup. Raw readiness/replay includes unpublished streams; the
+ordinary gated engine cannot prove a full restore. Replay does not prove private
+manifest/byte integrity: the aware recovery worker verifies them before publication.
 
 **Тренировка (еженедельно и после выкатки) / Drill (weekly and after every deploy).** RU: новейшая
 обычная копия (или названная) восстанавливается во временную базу, каждая кампания проигрывается
@@ -449,7 +521,8 @@ integer microdollars as strings). RU: две строки JSON. `status` — с�
 действующие остановки, незавершённые запросы, отключённые счета и одобрения, и `images`. `spend` —
 по каждому счёту ИИ траты за сегодня (UTC-день базы) и всего, открытые удержания, потолок и
 переключатель; по каждому одобрению траты против потолка этапа; и `images` — журнал картин:
-`ceilingMicros` (null — потолка нет, вызовов нет), `spentMicros` (списанное как списано, открытые
+`ceilingMicros` (null — численного потолка нет; при `monetaryPolicy.mode = UNLIMITED` расходы
+разрешены без денежного лимита, иначе без сохранённого потолка вызовы запрещены), `spentMicros` (списанное как списано, открытые
 резервы целиком), `heldMicros` (открытые резервы), `remainingMicros` (что потолок ещё допускает,
 не меньше нуля), `charges`, `unsettled` и `unsettledReservations` — каждый открытый резерв с
 кампанией, моделью, суммой и возрастом (`ageMinutes`; старше `settleableAfterMinutes` — брошенный,
@@ -457,7 +530,8 @@ integer microdollars as strings). RU: две строки JSON. `status` — с�
 requests, disabled accounts and approvals, and `images`. `spend` gives each AI billing account's
 spend today (the database's UTC day) and in total, its open holds, ceiling and switch; each
 approval's spend against its stage ceiling; and `images`, the picture ledger: `ceilingMicros`
-(null: no ceiling, no call), `spentMicros` (settled charges as settled, open reservations whole),
+(null: no numeric ceiling; `monetaryPolicy.mode = UNLIMITED` explicitly permits uncapped
+monetary spending, otherwise a missing stored ceiling refuses calls), `spentMicros` (settled charges as settled, open reservations whole),
 `heldMicros` (open reservations), `remainingMicros` (what the ceiling still admits, never below
 zero), `charges`, `unsettled` and `unsettledReservations`, each open reservation with its campaign,
 model, amount and age (`ageMinutes`; older than `settleableAfterMinutes` is orphaned, section 8).

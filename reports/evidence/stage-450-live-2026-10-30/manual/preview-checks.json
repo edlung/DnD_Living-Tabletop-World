@@ -1,0 +1,71 @@
+[
+  {
+    "query": {
+      "perspective": "OWNER"
+    },
+    "status": 200,
+    "perspective": {
+      "kind": "OWNER"
+    },
+    "prepared": null
+  },
+  {
+    "query": {
+      "perspective": "CHARACTER",
+      "characterId": "13fd54d2-c473-4d0d-a03f-72c34c26ce30"
+    },
+    "status": 200,
+    "perspective": {
+      "kind": "CHARACTER",
+      "character": {
+        "entityId": "13fd54d2-c473-4d0d-a03f-72c34c26ce30",
+        "kind": "character",
+        "name": "Следопыт"
+      }
+    },
+    "prepared": null
+  },
+  {
+    "query": {
+      "perspective": "CHARACTER",
+      "characterId": "de30ca37-6a8f-4879-92be-04a24083e55c"
+    },
+    "status": 200,
+    "perspective": {
+      "kind": "CHARACTER",
+      "character": {
+        "entityId": "de30ca37-6a8f-4879-92be-04a24083e55c",
+        "kind": "character",
+        "name": "Стрелок"
+      }
+    },
+    "prepared": null
+  },
+  {
+    "query": {
+      "perspective": "CHARACTER",
+      "characterId": "f46a1581-6fd8-4ca2-ba64-829498d03ef3"
+    },
+    "status": 200,
+    "perspective": {
+      "kind": "CHARACTER",
+      "character": {
+        "entityId": "f46a1581-6fd8-4ca2-ba64-829498d03ef3",
+        "kind": "character",
+        "name": "Учёная"
+      }
+    },
+    "prepared": null
+  },
+  {
+    "query": {
+      "perspective": "OWNER",
+      "encounterId": "6440b747-332e-441a-9ab6-cd4596d7198f"
+    },
+    "status": 200,
+    "perspective": {
+      "kind": "OWNER"
+    },
+    "prepared": "6440b747-332e-441a-9ab6-cd4596d7198f"
+  }
+]

@@ -1,0 +1,92 @@
+import {spawn} from 'node:child_process';
+import {createRequire} from 'node:module';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {createHmac} from 'node:crypto';
+import {auditPage} from '/Users/oleksandr/.agents/skills/ui-layout-audit/audit.mjs';
+const root='/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2';
+const require=createRequire(`${root}/package.json`);
+const {chromium,expect}=require('@playwright/test');
+const axeModule=require('@axe-core/playwright'),AxeBuilder=axeModule.default??axeModule;
+const seed='workshop-stage430-isolated-layout',directory=`${root}/reports/evidence/stage-430/layout`;
+mkdirSync(directory,{recursive:true});const children=[],results=[];let browser;
+function launch(args,env={}){const child=spawn('pnpm',args,{cwd:root,env:{...process.env,...env},stdio:'ignore',detached:true});children.push(child);}
+try{
+ launch(['exec','node','--conditions=@ltw/source','/private/tmp/workshop-stage430-audit-server.mjs'],{LTW_UI_SIGN_IN_SEED:seed});
+ launch(['dev:web','--host','127.0.0.1','--port','4322'],{LTW_API_TARGET:'http://127.0.0.1:4323',LTW_VITE_CACHE_DIR:'node_modules/.vite-workshop-audit430'});
+ for(const url of ['http://127.0.0.1:4323/healthz','http://127.0.0.1:4322']){
+  let ready=false;for(let i=0;i<120;i++){try{if((await fetch(url)).ok){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,250));}if(!ready)throw new Error('AUDIT_SERVER_NOT_READY');
+ }
+ browser=await chromium.launch();const context=await browser.newContext({viewport:{width:1440,height:1000},locale:'en-US'}),page=await context.newPage();
+ page.on('pageerror',error=>console.log('PAGE_ERROR',error.message));
+ const token=createHmac('sha256',seed).update('workshop-invitation\nedit-layout').digest('base64url');
+ await page.goto(`http://127.0.0.1:4322/workshop/join#${token}`);
+ await page.getByRole('button',{name:'Enter the workshop',exact:true}).click();
+ await page.getByRole('link',{name:'Open draft: The Bell Beneath the Ice',exact:true}).click();
+ await page.getByRole('button',{name:'Structured editing',exact:true}).click();
+ async function inspect(state,target){
+  for(const width of [1440,768,390,320]){
+   await page.setViewportSize({width,height:1000});await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>window.scrollTo(0,0));await page.waitForTimeout(150);
+   const findings=await auditPage(page),axe=await new AxeBuilder({page}).analyze();
+   const accessibility=axe.violations.map(({id,impact,help,nodes})=>({id,impact,help,nodes:nodes.map(({target,failureSummary})=>({target,failureSummary}))}));
+   const contentTop=await page.locator(target).first().evaluate(el=>Math.round(el.getBoundingClientRect().top+window.scrollY));
+   results.push({state,width,contentTop,findings,accessibility});writeFileSync(`${directory}/results.json`,JSON.stringify(results,null,2));
+   await page.screenshot({path:`${directory}/${state}-${width}.png`,fullPage:true});
+   await page.locator(target).first().evaluate(el=>el.scrollIntoView({block:'start'}));await page.screenshot({path:`${directory}/${state}-${width}-viewport.png`});
+  }
+ }
+ async function manual(){await page.getByRole('button',{name:'Structured editing',exact:true}).click();await page.getByLabel('Edit section',{exact:true}).waitFor();}
+ async function section(label){await page.getByLabel('Edit section',{exact:true}).selectOption({label});}
+ async function makePicture(subject){
+  await page.getByLabel('Picture object',{exact:true}).selectOption({label:subject});await page.getByLabel('Picture purpose',{exact:true}).waitFor();
+  const cards=page.locator('.workshop-picture-card'),before=await cards.count();await page.getByRole('button',{name:'Generate picture',exact:true}).click();
+  await expect(cards).toHaveCount(before+1,{timeout:20000});await cards.first().getByRole('button',{name:'Choose picture',exact:true}).click();
+  await expect(cards.first().getByText('Chosen picture',{exact:true})).toBeVisible();
+ }
+ await inspect('structured-world','.campaign-manual-editor');
+ await section('Cast and places');
+ await page.locator('.campaign-collection-row').filter({has:page.locator('summary').filter({hasText:/^Alena$/})}).first().locator('summary').first().click();
+ await page.getByLabel('Value presence',{exact:true}).first().selectOption({label:'Use a value'});
+ await inspect('structured-sheet','.campaign-manual-editor');
+ await page.getByRole('button',{name:'Discard manual changes',exact:true}).click();
+ await section('Quests');await page.locator('.campaign-collection-row').first().locator('summary').first().click();
+ const milestones=page.getByRole('group',{name:'Milestones',exact:true});await milestones.locator('.campaign-collection-row').first().locator('summary').first().click();
+ await inspect('structured-quest','.campaign-manual-editor');
+ await section('Opening');await page.getByLabel('Opening',{exact:true}).fill('A second bell rings beneath the winter river. Travelers can choose their own approach.');
+ await page.getByRole('button',{name:'Review manual changes',exact:true}).click();await page.locator('.campaign-change-list details').first().locator('summary').click();
+ await inspect('manual-diff','.campaign-changes');
+ await page.getByRole('button',{name:'Save structural changes',exact:true}).click();
+ await expect(page.getByText('Latest saved revision: 2',{exact:true})).toBeVisible();
+ await page.getByRole('tab',{name:'World preview',exact:true}).click();await page.getByLabel('Picture object',{exact:true}).waitFor();
+ await makePicture('Arden');
+ await page.getByRole('button',{name:'Manage protections in Scenario',exact:true}).click();
+ await page.getByRole('heading',{name:'Content and picture protections',exact:true}).waitFor();
+ const lockGroup=page.locator('.campaign-locks').getByRole('group',{name:'Cast and places',exact:true});
+ await lockGroup.getByRole('checkbox',{name:'Iva',exact:true}).check();
+ const imageLock=page.locator('.campaign-locks').getByRole('group',{name:'Chosen pictures',exact:true}).getByRole('checkbox');await imageLock.check();
+ await page.getByRole('button',{name:'Save protections',exact:true}).click();await expect(page.getByText('Protections saved.',{exact:true})).toBeVisible();
+ await inspect('protections','.campaign-locks');
+ await imageLock.uncheck();await page.getByRole('button',{name:'Save protections',exact:true}).click();await expect(page.getByText('Protections saved.',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Targeted AI edit',exact:true}).click();
+ await page.getByLabel('Instructions for this edit',{exact:true}).fill('Give Iva a clearer motivation.');
+ await page.locator('.campaign-ai-form').getByRole('group',{name:'Cast and places',exact:true}).getByRole('checkbox',{name:'Iva',exact:true}).check();
+ await page.getByRole('button',{name:'Review edit scope',exact:true}).click();await page.getByText('Unlock this content explicitly or choose another target.').waitFor();
+ await inspect('blocked-scope','.campaign-edit-closure');
+ await page.locator('.campaign-ai-form').getByRole('group',{name:'Cast and places',exact:true}).getByRole('checkbox',{name:'Iva',exact:true}).uncheck();
+ await page.getByLabel('Instructions for this edit',{exact:true}).fill('Give Arden a clearer reason to protect river travelers; keep the prepared setting intact.');
+ await page.locator('.campaign-ai-form').getByRole('group',{name:'Cast and places',exact:true}).getByRole('checkbox',{name:'Arden',exact:true}).check();
+ await page.getByRole('button',{name:'Review edit scope',exact:true}).click();await page.getByRole('button',{name:'Prepare proposed changes',exact:true}).waitFor();
+ await inspect('resolved-scope','.campaign-edit-closure');
+ await page.getByRole('button',{name:'Prepare proposed changes',exact:true}).click();await page.getByRole('button',{name:'Review proposed changes',exact:true}).waitFor({timeout:20000});
+ await inspect('edit-result','.workshop-job');
+ await page.getByRole('button',{name:'Review proposed changes',exact:true}).click();await page.getByRole('button',{name:'Apply proposal as a new revision',exact:true}).waitFor();
+ await page.locator('.campaign-change-list details').first().locator('summary').click();await inspect('candidate-diff','.campaign-changes');
+ await page.getByRole('button',{name:'Apply proposal as a new revision',exact:true}).click();await expect(page.getByText('Latest saved revision: 3',{exact:true})).toBeVisible();
+ await page.getByLabel('Compare with revision',{exact:true}).selectOption('2');await page.getByRole('button',{name:'Compare revisions',exact:true}).click();
+ await page.getByRole('heading',{name:'Compare saved revisions',exact:true}).waitFor();await page.locator('.campaign-change-list details').first().locator('summary').click();
+ await inspect('revision-diff','.campaign-changes');
+ await page.getByRole('button',{name:'Restore compared revision as new',exact:true}).click();await page.getByRole('heading',{name:'Restore as a new revision',exact:true}).waitFor();
+ await page.locator('.campaign-change-list details').first().locator('summary').click();await inspect('restore-preview','.campaign-review-summary');
+ const issues=results.flatMap(r=>r.findings.filter(f=>['error','warn'].includes(f.level)).map(f=>({state:r.state,width:r.width,...f}))),accessibility=results.flatMap(r=>r.accessibility.map(a=>({state:r.state,width:r.width,...a})));
+ console.log(JSON.stringify({states:results.length,issues,accessibility}));if(issues.length||accessibility.length)process.exitCode=1;
+}catch(error){console.log('AUDIT_FAILED',error.message);if(browser){const pages=browser.contexts().flatMap(c=>c.pages());await pages[0]?.screenshot({path:`${directory}/failure.png`,fullPage:true});}throw error;
+}finally{await browser?.close();for(const child of children){try{process.kill(-child.pid,'SIGTERM');}catch{}}}

@@ -1,0 +1,7 @@
+{
+  "available": true,
+  "reason": "READY",
+  "providers": [
+    "anthropic:claude-sonnet-5-5"
+  ]
+}

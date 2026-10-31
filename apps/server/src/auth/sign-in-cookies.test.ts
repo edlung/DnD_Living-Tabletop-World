@@ -17,7 +17,6 @@ const UNAUTHENTICATED = {
 };
 const FORBIDDEN = { status: 403, error: { code: 'FORBIDDEN', message: 'Not permitted' } };
 const CONFLICT = { status: 409, error: { code: 'CONFLICT', message: 'Conflict' } };
-const CLEARED = 'ltw_session=; Path=/api; HttpOnly; SameSite=Strict; Max-Age=0; Secure';
 
 /** A link on another site, followed: the strict cookie stays home, and no `Origin` is sent. */
 const CROSS_SITE_NAVIGATION = {
@@ -59,7 +58,7 @@ describe('the session probe', () => {
     expect(still.headers['set-cookie']).toBeUndefined();
   });
 
-  it('clears the cookie only when the request presented one that opens nothing', async () => {
+  it('refuses invalid sessions without expiring a possibly newer browser cookie', async () => {
     const table = await signInTable();
     const dm = await table.signInWith(await table.dmInvitation());
     const { token } = await table.invite(dm, SEREN);
@@ -75,12 +74,12 @@ describe('the session probe', () => {
     const two = await probe(table, `${dm}; ltw_session=${newToken()}`);
     expect(two.statusCode).toBe(401);
     expect(two.headers['set-cookie']).toBeUndefined();
-    // One that opens nothing (forged, malformed, revoked, a released seat's) is cleared.
+    // A forged, malformed or revoked credential has no access. A late answer cannot erase its replacement.
     await table.send('POST', `/campaigns/ravenford/members/${SEREN}/revoke`, { cookie: dm }, {});
     for (const cookie of [`ltw_session=${newToken()}`, 'ltw_session=short', `x=1; ${player}`]) {
       const answer = await probe(table, cookie);
       expect(withoutRequestId(answer), cookie).toEqual(UNAUTHENTICATED);
-      expect(answer.headers['set-cookie']).toBe(CLEARED);
+      expect(answer.headers['set-cookie']).toBeUndefined();
     }
     // A live one is answered and kept.
     const live = await probe(table, dm);
@@ -99,7 +98,7 @@ describe('signing out', () => {
       cookie: `ltw_session=${newToken()}`,
     });
     expect(withoutRequestId(stale)).toEqual(UNAUTHENTICATED);
-    expect(stale.headers['set-cookie']).toBe(CLEARED);
+    expect(stale.headers['set-cookie']).toBeUndefined();
   });
 });
 

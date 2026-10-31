@@ -93,8 +93,13 @@ export {
   type ListResult,
 } from './knowledge/queries.ts';
 export { controlledCharacter, holderPerspective } from './knowledge/perspective.ts';
+export {
+  projectionPartyMemberIds,
+  type PartyProjectionContext,
+} from './knowledge/projection-party.ts';
 export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
+export { clueTargetSupportsMethod } from './investigation/authoring.ts';
 export { knownEntityIds, visibleRecords } from './knowledge/projection.ts';
 export type { MemoryRecord, SessionRecord } from './memory/records.ts';
 export {
@@ -195,3 +200,27 @@ export { chronicleChapters } from './chronicle/views.ts';
 export { memorySuggestions, type SuggestionScope } from './chronicle/suggestions.ts';
 export { flashbackFor } from './chronicle/flashback.ts';
 export { questFor, questLog } from './quest/projection.ts';
+export { buildCampaignPlan, type CampaignPlan } from './campaign/plan.ts';
+export { seedCampaignPackage, mergeCampaignGenerationStep } from './campaign/generation.ts';
+export {
+  validateCampaignGenerationStep,
+  type CampaignGenerationStepValidation,
+} from './campaign/generation-validation.ts';
+export {
+  campaignEditTargets,
+  resolveCampaignEditTarget,
+  buildCampaignEditPlan,
+  validateCampaignEditOutput,
+  diffCampaignPackages,
+} from './campaign/editing.ts';
+export {
+  CAMPAIGN_IMAGE_TEMPLATE_VERSION,
+  resolveCampaignVisualBrief,
+  campaignImageSourceProjection,
+} from './campaign/visual-source.ts';
+export {
+  buildCampaignBootstrapPlan,
+  type CampaignBootstrapPlan,
+} from './campaign/bootstrap-plan.ts';
+
+export { partyMemberIds, isPartyMember } from './knowledge/party.ts';

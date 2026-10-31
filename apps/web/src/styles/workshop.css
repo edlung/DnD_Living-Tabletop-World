@@ -1,0 +1,162 @@
+/* Workshop access and private draft containers reuse the world's art and tokens. */
+.workshop {
+  position: relative;
+  min-height: 100dvh;
+  padding: calc(2 * var(--gutter));
+  isolation: isolate;
+}
+.workshop-art,
+.workshop-scrim {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  object-fit: cover;
+}
+.workshop-scrim {
+  z-index: -1;
+  background: color-mix(in srgb, var(--ink-950) 85%, transparent);
+}
+.workshop-content {
+  max-width: 1240px;
+  margin-inline: auto;
+}
+.workshop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(2 * var(--gutter));
+  margin-bottom: calc(2 * var(--gutter));
+}
+.workshop-header h1 {
+  margin-block: var(--gutter);
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+.workshop-header p {
+  margin-bottom: 0;
+  max-width: 65ch;
+}
+.workshop-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--gutter);
+  color: var(--gold-bright);
+}
+.workshop-brand img {
+  width: 48px;
+  height: 48px;
+}
+.workshop-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: calc(2 * var(--gutter));
+}
+.workshop-panel,
+.workshop-access {
+  min-width: 0;
+  padding: calc(2 * var(--gutter));
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+}
+.workshop-access {
+  max-width: 640px;
+}
+.workshop-panel h2,
+.workshop-access h2 {
+  margin-bottom: var(--gutter);
+}
+.workshop-panel p,
+.workshop-access p {
+  max-width: 65ch;
+}
+.workshop-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter);
+}
+.workshop button {
+  min-height: 44px;
+}
+.workshop button[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.workshop-section-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--gutter);
+  margin-bottom: var(--gutter);
+}
+.workshop-section-heading h2 {
+  margin: 0;
+}
+.workshop-draft-form {
+  display: grid;
+  gap: calc(var(--gutter) / 2);
+}
+.workshop-draft-form label:not(:first-child) {
+  margin-top: var(--gutter);
+}
+.workshop-draft-form input,
+.workshop-draft-form select {
+  width: 100%;
+  min-width: 0;
+}
+.workshop-draft-form button {
+  justify-self: start;
+  margin-top: var(--gutter);
+}
+.workshop-draft-form [aria-live] p {
+  margin-block: var(--gutter) 0;
+}
+.workshop-draft-list {
+  display: grid;
+  gap: var(--gutter);
+  list-style: none;
+  padding: 0;
+  margin: var(--gutter) 0;
+  max-height: 480px;
+  overflow-y: auto;
+}
+.workshop-draft-list li {
+  min-width: 0;
+  padding-block: var(--gutter);
+  border-top: 1px solid var(--line);
+}
+.workshop-draft-list h3 {
+  margin-bottom: calc(var(--gutter) / 2);
+  overflow-wrap: anywhere;
+}
+.workshop-draft-list p {
+  margin: 0;
+  color: var(--text-muted);
+}
+@media (max-width: 1099px) {
+  .workshop-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .workshop {
+    padding: var(--gutter);
+  }
+  .workshop-header {
+    align-items: start;
+    flex-direction: column;
+    gap: var(--gutter);
+  }
+  .workshop-panel,
+  .workshop-access {
+    padding: var(--gutter);
+  }
+  .workshop-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

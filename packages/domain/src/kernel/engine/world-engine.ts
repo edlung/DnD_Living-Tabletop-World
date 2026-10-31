@@ -9,6 +9,7 @@ import {
   type PlayerCommandType,
 } from '@ltw/contracts';
 
+import { bootstrapConsentRejection } from '../../campaign/bootstrap-consent.ts';
 import { consentRejection } from '../../authoring/consent.ts';
 import { playerOutcome } from '../../investigation/outcome.ts';
 import { ENTROPY_POOL, type CombatPort, type EntropySource } from '../../combat/port.ts';
@@ -144,13 +145,13 @@ export class WorldEngine {
       // on, so its outcome must be reported instead of a decision against it.
       const prior = await this.#store.findCommand(commandId);
       if (prior) return this.#priorOutcome(prior, fingerprint);
-      if (command.type === 'CreateCampaign' && snapshot) {
+      if ((command.type === 'CreateCampaign' || command.type === 'BootstrapCampaign') && snapshot) {
         return rejected(commandId, {
           code: 'CAMPAIGN_ALREADY_EXISTS',
           message: `Campaign "${campaignId}" already exists`,
         });
       }
-      if (command.type !== 'CreateCampaign' && !snapshot) {
+      if (command.type !== 'CreateCampaign' && command.type !== 'BootstrapCampaign' && !snapshot) {
         return rejected(commandId, {
           code: 'CAMPAIGN_NOT_FOUND',
           message: `Campaign "${campaignId}" does not exist`,
@@ -187,7 +188,9 @@ export class WorldEngine {
       );
       if (!decision.ok) return rejected(commandId, decision.rejection);
       // Risk and confirmation (invariant 16): authoring commits only with consent covering now (ADR 0018 §4).
-      const refused = consentRejection(command, decision.requires);
+      const refused =
+        consentRejection(command, decision.requires) ??
+        bootstrapConsentRejection(command, decision.requiresBootstrap);
       if (refused) return rejected(commandId, refused);
 
       const recordedAt = this.#clock.now();

@@ -226,6 +226,9 @@ export function createLocalProvider(): LocalProvider {
         if (task.kind === 'relevance') {
           return Promise.reject(new ProviderError('UNAVAILABLE', 'no local relevance ranker'));
         }
+        if (task.kind === 'campaign-preparation') {
+          return Promise.reject(new ProviderError('UNAVAILABLE', 'no local campaign generator'));
+        }
         // The local chronicle writer is the deterministic template (ADR 0024 §3).
         if (task.kind === 'chronicle') {
           return Promise.resolve(

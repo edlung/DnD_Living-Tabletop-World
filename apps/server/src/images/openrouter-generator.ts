@@ -6,10 +6,12 @@ import {
   type ImageBrief,
   type ImageGenerator,
   type ImageJob,
+  type ImageExecution,
 } from '@ltw/ai';
 import type { AssetFailure } from '@ltw/contracts';
 
 import type { Secret } from '../platform/config/config.ts';
+import { contentHashOf } from '../assets/content-store.ts';
 import type { Logger } from '../platform/logging/logger.ts';
 import type { ImageChargeOutcome, ImageLedger } from './ledger.ts';
 import {
@@ -78,6 +80,8 @@ export function requestBody(
   model: ImageModel,
   styleReferences: StyleReferences,
 ): Body {
+  if ('scope' in brief.subject && !brief.subject.description?.trim())
+    throw new ImageGenerationError('UNAVAILABLE', 'a draft appearance is required');
   const images: string[] = [];
   if (brief.variant === 'derived') {
     // Identity first: the canonical reference is the input image (ADR 0035 §1). Without one the
@@ -200,10 +204,12 @@ export function createOpenRouterImageGenerator(options: OpenRouterImageOptions):
     body: string,
     headers: Record<string, string>,
     signal: AbortSignal,
+    evidence: (outcome: ImageExecution['outcome'], answer?: ImageAnswer) => void,
   ): Promise<ImageAnswer> => {
     let response: Response;
     try {
       const send = options.fetch ?? globalThis.fetch;
+      evidence('dispatch_unknown');
       response = await send(OPENROUTER_CHAT_URL, {
         method: 'POST',
         headers,
@@ -217,12 +223,14 @@ export function createOpenRouterImageGenerator(options: OpenRouterImageOptions):
         : new Failure('PROVIDER_ERROR', 'failed');
     }
     if (!response.ok) {
+      evidence('provider_failed');
       logger.warn({ status: response.status }, 'image provider answered with an error');
       throw await statusFailure(response);
     }
     let answer: ImageAnswer;
     try {
       answer = readImageAnswer(parseJson(await readBounded(response, MAX_ANSWER_BYTES)));
+      evidence('provider_failed', answer);
     } catch (error) {
       if (error instanceof Failure) throw error;
       throw signal.aborted
@@ -242,77 +250,131 @@ export function createOpenRouterImageGenerator(options: OpenRouterImageOptions):
     signal?: AbortSignal,
     job?: ImageJob,
   ): Promise<GeneratedImage> => {
-    if (job === undefined) {
-      throw new ImageGenerationError('UNAVAILABLE', 'an image job is needed to account for it');
-    }
-    const body = JSON.stringify(requestBody(brief, model, styleReferences));
-    const bounded = AbortSignal.any([
-      AbortSignal.timeout(timeoutMs),
-      ...(signal === undefined ? [] : [signal]),
-    ]);
-    // A function, not a narrowed property: the signal may abort during any wait.
-    const stopped = () => bounded.aborted;
-    if (stopped()) throw new ImageGenerationError('TIMEOUT', 'image generation timed out');
+    let evidence: ImageExecution = {
+      chargeId: job?.subject ? job.chargeId : null,
+      outcome: 'not_dispatched',
+      returnedModel: null,
+      providerRequestId: null,
+    };
+    const run = async (): Promise<GeneratedImage> => {
+      if (job === undefined) {
+        throw new ImageGenerationError('UNAVAILABLE', 'an image job is needed to account for it');
+      }
+      if (Boolean(job.subject) !== 'scope' in brief.subject)
+        throw new ImageGenerationError('UNAVAILABLE', 'image subject scope does not match its job');
+      const body = JSON.stringify(requestBody(brief, model, styleReferences));
+      const bounded = AbortSignal.any([
+        AbortSignal.timeout(timeoutMs),
+        ...(signal === undefined ? [] : [signal]),
+      ]);
+      // A function, not a narrowed property: the signal may abort during any wait.
+      const stopped = () => bounded.aborted;
+      if (stopped()) throw new ImageGenerationError('TIMEOUT', 'image generation timed out');
 
-    const chargeId = randomUUID();
-    let reserved: Awaited<ReturnType<ImageLedger['reserve']>>;
-    try {
-      reserved = await ledger.reserve({
-        chargeId,
-        campaignId: job.campaignId,
-        requestId: job.requestId,
-        provider: OPENROUTER_OPENAI_PROVIDER,
+      const chargeId = job.subject ? job.chargeId : randomUUID();
+      evidence = { ...evidence, chargeId };
+      let reserved: Awaited<ReturnType<ImageLedger['reserve']>>;
+      try {
+        reserved = await ledger.reserve({
+          chargeId,
+          ...(job.subject ? { subject: job.subject } : { campaignId: job.campaignId }),
+          requestId: job.requestId,
+          provider: OPENROUTER_OPENAI_PROVIDER,
+          model,
+          reserveMicros: IMAGE_MODELS[model].reserveMicros,
+        });
+      } catch {
+        logger.warn('image ledger unavailable; no image call made');
+        throw new ImageGenerationError('UNAVAILABLE', 'the image ledger is unavailable');
+      }
+      if (reserved !== 'reserved') {
+        logger.warn({ denied: reserved }, 'image budget denied; no image call made');
+        throw new ImageGenerationError('UNAVAILABLE', 'no image budget for this call');
+      }
+      if (stopped()) {
+        await settle(chargeId, 'not-sent', null);
+        throw new ImageGenerationError('TIMEOUT', 'image generation timed out');
+      }
+      let headers: Record<string, string>;
+      try {
+        headers = {
+          authorization: `Bearer ${apiKey.reveal()}`,
+          'content-type': 'application/json',
+        };
+      } catch {
+        await settle(chargeId, 'not-sent', null);
+        throw new ImageGenerationError('UNAVAILABLE', 'the image provider key is unavailable');
+      }
+
+      if (job.subject) {
+        let allowed = false;
+        try {
+          if (!stopped())
+            allowed = await job.beforeDispatch({
+              chargeId,
+              requestDigest: contentHashOf(Buffer.from(body, 'utf8')),
+            });
+        } catch {
+          /* No fetch was invoked, even when a marker's commit acknowledgement was lost. */
+        }
+        if (!allowed || stopped()) {
+          await settle(chargeId, 'not-sent', null);
+          throw new ImageGenerationError(
+            stopped() ? 'TIMEOUT' : 'UNAVAILABLE',
+            'image dispatch was not authorized',
+          );
+        }
+      }
+      let answer: ImageAnswer;
+      try {
+        answer = await call(body, headers, bounded, (outcome, response) => {
+          evidence = {
+            ...evidence,
+            outcome,
+            returnedModel: response?.returnedModel ?? null,
+            providerRequestId: response?.providerRequestId ?? null,
+          };
+        });
+      } catch (error) {
+        const failure = error instanceof Failure ? error : new Failure('PROVIDER_ERROR', 'failed');
+        await settle(chargeId, failure.outcome, failure.answer);
+        logger.warn({ code: failure.code }, 'image generation failed');
+        throw new ImageGenerationError(failure.code, 'the image provider produced no image');
+      }
+      let bytes: Uint8Array;
+      try {
+        bytes = await reencodeImage(answer.image?.bytes ?? new Uint8Array(), brief.purpose);
+      } catch (error) {
+        await settle(chargeId, 'failed', answer);
+        logger.warn({ code: 'PROVIDER_ERROR' }, 'image generation failed');
+        throw error instanceof ImageGenerationError
+          ? error
+          : new ImageGenerationError('PROVIDER_ERROR', 'the provider sent no usable image');
+      }
+      if (answer.costMicros !== null && answer.costMicros > IMAGE_MODELS[model].reserveMicros) {
+        // Recorded as reported; the reservation was too small for this call.
+        logger.warn('image call cost more than its reservation');
+      }
+      await settle(chargeId, 'generated', answer);
+      evidence = { ...evidence, outcome: 'generated' };
+      return {
+        bytes,
+        mediaType: 'image/webp',
         model,
-        reserveMicros: IMAGE_MODELS[model].reserveMicros,
-      });
-    } catch {
-      logger.warn('image ledger unavailable; no image call made');
-      throw new ImageGenerationError('UNAVAILABLE', 'the image ledger is unavailable');
-    }
-    if (reserved !== 'reserved') {
-      logger.warn({ denied: reserved }, 'image budget denied; no image call made');
-      throw new ImageGenerationError('UNAVAILABLE', 'no image budget for this call');
-    }
-    if (stopped()) {
-      await settle(chargeId, 'not-sent', null);
-      throw new ImageGenerationError('TIMEOUT', 'image generation timed out');
-    }
-    let headers: Record<string, string>;
-    try {
-      headers = {
-        authorization: `Bearer ${apiKey.reveal()}`,
-        'content-type': 'application/json',
+        ...(job.subject ? { execution: evidence } : {}),
       };
-    } catch {
-      await settle(chargeId, 'not-sent', null);
-      throw new ImageGenerationError('UNAVAILABLE', 'the image provider key is unavailable');
-    }
-
-    let answer: ImageAnswer;
+    };
     try {
-      answer = await call(body, headers, bounded);
+      return await run();
     } catch (error) {
-      const failure = error instanceof Failure ? error : new Failure('PROVIDER_ERROR', 'failed');
-      await settle(chargeId, failure.outcome, failure.answer);
-      logger.warn({ code: failure.code }, 'image generation failed');
-      throw new ImageGenerationError(failure.code, 'the image provider produced no image');
+      if (!job?.subject) throw error;
+      throw new ImageGenerationError(
+        error instanceof ImageGenerationError ? error.code : 'PROVIDER_ERROR',
+        'the draft image produced no usable result',
+        undefined,
+        evidence,
+      );
     }
-    let bytes: Uint8Array;
-    try {
-      bytes = await reencodeImage(answer.image?.bytes ?? new Uint8Array(), brief.purpose);
-    } catch (error) {
-      await settle(chargeId, 'failed', answer);
-      logger.warn({ code: 'PROVIDER_ERROR' }, 'image generation failed');
-      throw error instanceof ImageGenerationError
-        ? error
-        : new ImageGenerationError('PROVIDER_ERROR', 'the provider sent no usable image');
-    }
-    if (answer.costMicros !== null && answer.costMicros > IMAGE_MODELS[model].reserveMicros) {
-      // Recorded as reported; the reservation was too small for this call.
-      logger.warn('image call cost more than its reservation');
-    }
-    await settle(chargeId, 'generated', answer);
-    return { bytes, mediaType: 'image/webp', model };
   };
 
   return { id: OPENROUTER_OPENAI_PROVIDER, generate };

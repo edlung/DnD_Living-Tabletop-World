@@ -41,6 +41,7 @@ export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependenc
     // (docs/adr/0036-production-sign-in.md §4).
     if (
       input.command.type === 'CreateCampaign' ||
+      input.command.type === 'BootstrapCampaign' ||
       input.command.type === 'ApplyAuthoring' ||
       input.command.type === 'GenerateChronicle' ||
       input.command.type === 'ReleaseCharacter'

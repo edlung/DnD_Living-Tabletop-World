@@ -1,3 +1,4 @@
+import { isPartyMember } from '../knowledge/party.ts';
 import type { CharacterSheet, KnowledgeScope, MemoryKind } from '@ltw/contracts';
 
 import type { Lookup } from '../kernel/decide/lookups.ts';
@@ -41,7 +42,7 @@ export function acting(state: WorldState, characterId: string): Lookup<Acting> {
   if (character?.kind !== 'character') return notFound();
   if (character.status !== 'active') return reject('ACTOR_DEAD', 'The character is dead');
   const perspective = holderPerspective(state, { kind: 'CHARACTER', characterId });
-  const scope: Acting['scope'] = state.roster.has(characterId)
+  const scope: Acting['scope'] = isPartyMember(state, characterId)
     ? { kind: 'PARTY' }
     : { kind: 'CHARACTER', characterId };
   return {

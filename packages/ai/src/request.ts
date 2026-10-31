@@ -19,8 +19,8 @@ import type { AiRequestStart, AiTraceStore, FrozenOutcome } from './traces.ts';
  * 2. A durable request start, bounded by that deadline. Without a confirmed start nothing runs and
  *    the use case answers its no-start response (no trace ID).
  * 3. The fallback policy under the deadline's signal, with the request's trusted accounting
- *    identity. A request without a play session runs only its local provider: no remote attempt is
- *    made or recorded for it.
+ *    identity. A request without a play or authorized durable workshop session runs only its local
+ *    provider: no remote attempt is made or recorded for it.
  * 4. The outcome freeze: the public result and its trace are decided once, synchronously. If the
  *    deadline has passed by then, the cancellation result is frozen instead, with the attempts known
  *    at that moment (one still in flight is recorded as `CALLER_CANCELLED`) and no late output.
@@ -38,6 +38,9 @@ export interface LifecycleDeps {
 }
 
 export interface AiRequestSpec<T, R> {
+  /** Durable workers preallocate the request/trace ID before dispatch. */
+  readonly requestId?: string;
+  readonly signal?: AbortSignal;
   /** The whole-request duration in milliseconds; required, positive. */
   readonly timeoutMs: number;
   readonly start: Omit<AiRequestStart, 'requestId'>;
@@ -58,6 +61,7 @@ interface Pending {
   readonly providerKind: ProviderKind;
   readonly attemptId: string;
   readonly startedMs: number;
+  readonly dispatched: boolean;
 }
 
 /** What has happened so far, so the deadline can freeze the attempts without awaiting them. */
@@ -68,14 +72,16 @@ function attemptTracker(nowMs: () => number) {
     onProgress: (event: AttemptProgress) => {
       if (event.type === 'start') {
         const { provider, providerKind, kind, attemptId, startedMs } = event;
-        pending = { provider, providerKind, kind, attemptId, startedMs };
+        pending = { provider, providerKind, kind, attemptId, startedMs, dispatched: false };
       } else if (event.type === 'abandoned') pending = null;
+      else if (event.type === 'dispatched' && pending !== null)
+        pending = { ...pending, dispatched: true };
       else if (event.type === 'end') {
         settled.push(event.attempt);
         pending = null;
       }
     },
-    /** The cancellation result: no output survives; an attempt in flight is CALLER_CANCELLED. */
+    /** No output survives; only a transport that started can carry an unknown charge. */
     cancelled: <T>(): FallbackResult<T> => {
       const attempts: AiAttemptView[] = settled.map((attempt) =>
         attempt.outcome === 'valid'
@@ -98,7 +104,19 @@ function attemptTracker(nowMs: () => number) {
           billing:
             inFlight.providerKind === 'local'
               ? { status: 'local', pricingVersion: null, reservedMicros: null, costMicros: '0' }
-              : { status: 'unknown', pricingVersion: null, reservedMicros: null, costMicros: null },
+              : !inFlight.dispatched
+                ? {
+                    status: 'not_dispatched',
+                    pricingVersion: null,
+                    reservedMicros: null,
+                    costMicros: '0',
+                  }
+                : {
+                    status: 'unknown',
+                    pricingVersion: null,
+                    reservedMicros: null,
+                    costMicros: null,
+                  },
         });
       }
       return { status: 'AI_UNAVAILABLE', code: 'CALLER_CANCELLED', attempts };
@@ -120,9 +138,9 @@ export async function runAiRequest<T, R>(
   deps: LifecycleDeps,
   spec: AiRequestSpec<T, R>,
 ): Promise<R> {
-  const { deadline, close } = openDeadline(spec.timeoutMs);
+  const { deadline, close } = openDeadline(spec.timeoutMs, spec.signal);
   try {
-    const requestId = deps.ids.next();
+    const requestId = spec.requestId ?? deps.ids.next();
     const start: AiRequestStart = { ...spec.start, requestId };
     const started = await untilDeadline(
       deps.traces.start(start, deadline).catch(() => false),
@@ -147,6 +165,7 @@ export async function runAiRequest<T, R>(
             accounting: {
               requestId,
               campaignId: start.campaignId,
+              ...(start.subject ? { subject: start.subject } : {}),
               capability: start.capability,
               sessionId: start.sessionId,
               newAttemptId: () => deps.ids.next(),

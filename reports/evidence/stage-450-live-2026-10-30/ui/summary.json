@@ -1,0 +1,37 @@
+{
+  "source": "actual provider-generated and explicitly corrected stored PG revision; no fixture",
+  "ownerId": "1097257d-185e-46d2-b164-6a2909d57429",
+  "draftId": "2b1c1d85-d631-4f23-86c5-9eca06f2849a",
+  "revision": 2,
+  "language": "ru",
+  "states": [
+    "scenario-opening",
+    "scenario-prepared-party",
+    "scenario-prepared-encounter",
+    "owner-initial-scene",
+    "owner-prepared-sheet",
+    "owner-location-map",
+    "owner-prepared-layout",
+    "character-initial-scene",
+    "character-prepared-sheet"
+  ],
+  "widths": [
+    1440,
+    768,
+    390,
+    320
+  ],
+  "combinations": 36,
+  "pngs": 72,
+  "errors": 0,
+  "warnings": 0,
+  "axeViolations": 0,
+  "horizontalOverflow": 0,
+  "consoleErrors": 0,
+  "failedRequests": 0,
+  "blockedRequests": 0,
+  "privateRequestsInCharacter": 0,
+  "activation": false,
+  "providerCalls": false,
+  "campaignWrites": false
+}

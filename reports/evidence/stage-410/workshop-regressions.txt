@@ -1,0 +1,53 @@
+[WebServer] (node:12706) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] (node:12738) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+[WebServer] (node:12756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12768) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+[WebServer] (node:12781) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+[WebServer] (node:12799) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 24 tests using 2 workers
+
+(node:12806) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12805) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/e2e/workshop-access.spec.ts:25:1 › an invitation waits for a deliberate entry; a private draft survives reload and sign-out asks first (1.4s)
+  ✓   2 [chromium] › tests/e2e/workshop-access.spec.ts:67:1 › two owners see only their own drafts and cannot fetch one another’s container (1.6s)
+  ✓   4 [chromium] › tests/e2e/workshop-access.spec.ts:106:1 › keeping the workshop leaves the other invitation usable in another browser (1.3s)
+  ✓   3 [chromium] › tests/e2e/workshop-access.spec.ts:91:1 › replacing workshop access asks first and clears the old owner content (2.0s)
+  ✓   6 [chromium] › tests/e2e/workshop-access.spec.ts:140:1 › more drafts keeps every private container reachable after the first page (1.2s)
+  ✓   5 [chromium] › tests/e2e/workshop-access.spec.ts:124:1 › a workshop and a game sign-in coexist and signing out of the workshop preserves the game (1.8s)
+  ✓   7 [chromium] › tests/e2e/workshop-access.spec.ts:158:1 › operator revocation removes private content when the page checks its sign-in again (745ms)
+  ✓   8 [chromium] › tests/e2e/workshop-access.spec.ts:174:1 › a lost draft response retries the same request and creates one container (864ms)
+  ✓   9 [chromium] › tests/e2e/workshop-access.spec.ts:194:1 › page-history restoration clears private content and reads the workshop identity again (670ms)
+  ✓  11 [chromium] › tests/e2e/workshop-access.spec.ts:241:1 › workshop access and creating a draft work in Russian on a phone (640ms)
+  ✓  10 [chromium] › tests/e2e/workshop-access.spec.ts:214:1 › a stale tab cannot create its previous owner’s draft under a replaced cookie (2.1s)
+  ✓  12 [chromium] › tests/e2e/workshop-accessibility.spec.ts:23:1 › workshop invitation and drafts are accessible on four widths and usable by keyboard (1.8s)
+  ✓  14 [chromium] › tests/e2e/workshop-scenario-corrections.spec.ts:18:1 › a lost correction response retries its exact nonce and a later conflict preserves the owner’s input (1.6s)
+  ✓  15 [chromium] › tests/e2e/workshop-scenario-corrections.spec.ts:96:1 › cancelling a generation closes the job and does not offer an unsupported retry (1.5s)
+  ✓  16 [chromium] › tests/e2e/workshop-scenario-private.spec.ts:15:1 › a campaign DM cookie and an unrelated workshop owner cannot read the scenario or its progress (1.3s)
+  ✓  17 [chromium] › tests/e2e/workshop-scenario-private.spec.ts:42:1 › revocation removes the complete private editor before a delayed scenario response returns (693ms)
+  ✓  18 [chromium] › tests/e2e/workshop-scenario-private.spec.ts:78:1 › the full scenario leaves the DOM synchronously before a history snapshot (869ms)
+  ✓  19 [chromium] › tests/e2e/workshop-scenario.spec.ts:23:1 › the owner follows opening, clue, testimony, holder and truth through a full independent scenario (974ms)
+  ✓  20 [chromium] › tests/e2e/workshop-scenario.spec.ts:76:1 › Russian scenario fields save as a new immutable revision and survive reload (915ms)
+  ✓  13 [chromium] › tests/e2e/workshop-scenario-accessibility.spec.ts:20:1 › scenario, linked inspector, correction and generation pass axe at four widths and keep keyboard focus (11.5s)
+  ✓  21 [chromium] › tests/e2e/workshop-scenario.spec.ts:132:1 › generation persists every step while its progress responses contain no scenario package (3.3s)
+  ✓  23 [chromium] › tests/e2e/workshop-scenario.spec.ts:229:1 › an unavailable provider cannot pretend a generated campaign exists (782ms)
+  ✓  24 [chromium] › tests/e2e/workshop-scenario.spec.ts:238:1 › a late generated proposal does not replace the owner’s intervening revision (3.2s)
+  ✓  22 [chromium] › tests/e2e/workshop-scenario.spec.ts:172:1 › a failed generation retries only its unfinished steps and keeps earlier artifacts (5.7s)
+
+  24 passed (31.4s)

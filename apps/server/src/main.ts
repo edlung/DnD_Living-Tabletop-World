@@ -11,10 +11,28 @@ import {
 import { VERIFIED_CATALOG, identityResolver } from './ai/catalog.ts';
 import { createAiGateway, type AiGateway } from './ai/gateway.ts';
 import { PostgresAiJournal } from './ai/journal.ts';
+import { createCampaignPreparationRuntime } from './ai/preparation-gateway.ts';
+import { PostgresCampaignGenerationRepository } from './workshop/generation/postgres-store.ts';
+import { CampaignGenerationWorker } from './workshop/generation/worker.ts';
+import { CampaignEditWorker } from './workshop/generation/edit-worker.ts';
+import { startCampaignGenerationLoop } from './workshop/generation/worker-loop.ts';
+import { PostgresDraftImageRepository } from './workshop/images/postgres-store.ts';
+import { DraftImageWorker } from './workshop/images/worker.ts';
+import { startDraftImageLoop } from './workshop/images/worker-loop.ts';
+import { createDraftImageRuntime } from './images/draft-runtime.ts';
 import { PostgresAssetContentStore } from './assets/postgres-content-store.ts';
 import { startAssetWorkerLoop } from './assets/worker-loop.ts';
 import { composeAuthentication, startCredentialPruning } from './auth/composition.ts';
 import { PostgresCredentialStore } from './auth/postgres-credential-store.ts';
+import { PostgresWorkshopStore } from './workshop/postgres-store.ts';
+import { PostgresCampaignRevisionRepository } from './workshop/packages/postgres-store.ts';
+import { PostgresCampaignRevisionControlRepository } from './workshop/revisions/postgres-store.ts';
+import { PostgresCampaignActivationRepository } from './workshop/activation/postgres-store.ts';
+import { CampaignActivationWorker } from './workshop/activation/worker.ts';
+import { startCampaignActivationLoop } from './workshop/activation/worker-loop.ts';
+import { PostgresCampaignInitialContentStore } from './campaigns/postgres-content.ts';
+import { PostgresCampaignPublication } from './campaigns/postgres-publication.ts';
+import { createCampaignQuestBooks } from './campaigns/quest-books.ts';
 import { isCuratedRequest } from './images/curated-import.ts';
 import { loadCuratedSet } from './images/curated-set.ts';
 import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
@@ -32,7 +50,12 @@ import { loadMigrations } from './platform/db/migration-source.ts';
 import { MIGRATIONS_DIR } from './platform/db/migrations-dir.ts';
 import { createPool } from './platform/db/pool.ts';
 import { createLogger, type Logger } from './platform/logging/logger.ts';
-import { createWorldEngine, randomIds, systemClock } from './world-engine/runtime.ts';
+import {
+  createWorldEngine,
+  createRawWorldEngine,
+  randomIds,
+  systemClock,
+} from './world-engine/runtime.ts';
 import { storeReadiness } from './world-engine/store-readiness.ts';
 
 /**
@@ -49,10 +72,12 @@ async function main(): Promise<void> {
 
   // Sign-in by mode (docs/adr/0036-production-sign-in.md §5): session cookies from DM
   // invitations in production; development personas are refused under NODE_ENV=production.
-  const { authenticator, signIn } = await composeAuthentication(
+  const { authenticator, signIn: baseSignIn } = await composeAuthentication(
     config,
     () => new PostgresCredentialStore(pool),
   );
+  const publication = new PostgresCampaignPublication(pool);
+  const signIn = baseSignIn ? { ...baseSignIn, publication } : null;
   if (config.auth.mode === 'dev-personas') {
     logger.warn('development persona authentication is enabled (never use in production)');
   }
@@ -61,23 +86,50 @@ async function main(): Promise<void> {
   const tasks = new AccountingTasks((issue) => {
     logger.warn({ issue }, 'AI accounting needs operator attention');
   });
+  const budget = new PostgresBudgetStore(pool, identityResolver(VERIFIED_CATALOG));
+  const approvalStored =
+    config.ai.approvalId !== null && (await approvalExists(pool, config.ai.approvalId));
   const ai = createAiGateway(config.ai, {
     journal: new PostgresAiJournal(pool, (issue) => {
       tasks.report(issue);
     }),
-    budget: new PostgresBudgetStore(pool, identityResolver(VERIFIED_CATALOG)),
+    budget,
     catalog: VERIFIED_CATALOG,
-    approvalStored:
-      config.ai.approvalId !== null && (await approvalExists(pool, config.ai.approvalId)),
+    approvalStored,
     tasks,
   });
+  const generation = signIn
+    ? {
+        repository: new PostgresCampaignGenerationRepository(pool),
+        preparation: createCampaignPreparationRuntime(config.ai, {
+          pool,
+          budget,
+          catalog: VERIFIED_CATALOG,
+          approvalStored,
+          tasks,
+        }),
+      }
+    : null;
+  const generationWorker = generation ? new CampaignGenerationWorker(generation) : null;
+  const campaignPackages = signIn ? new PostgresCampaignRevisionRepository(pool) : null;
+  const edits = generation
+    ? {
+        repository: new PostgresCampaignGenerationRepository(pool, 'EDIT'),
+        preparation: generation.preparation,
+      }
+    : null;
+  const editWorker =
+    edits && campaignPackages
+      ? new CampaignEditWorker({ ...edits, packages: campaignPackages })
+      : null;
   const authoring = {
     proposals: new PostgresProposalStore(pool, proposalLocks),
     ids: randomIds,
     clock: systemClock,
   };
-  const engine = createWorldEngine(pool);
+  const engine = createWorldEngine(pool, publication);
   const contents = new PostgresAssetContentStore(pool);
+  const initialContent = new PostgresCampaignInitialContentStore(pool);
   // Before the server listens: a generator that cannot be built stops the start (ADR 0035 §1).
   let generator: ImageGenerator;
   try {
@@ -89,6 +141,25 @@ async function main(): Promise<void> {
     throw error;
   }
   const quests = await loadQuestBook(config.questsFile);
+  const draftImageRepository = signIn ? new PostgresDraftImageRepository(pool) : null;
+  const draftImages = draftImageRepository
+    ? {
+        repository: draftImageRepository,
+        runtime: createDraftImageRuntime({ pool, config, logger, contents: draftImageRepository }),
+      }
+    : null;
+  const draftImageWorker = draftImages ? new DraftImageWorker(draftImages) : null;
+  const activation =
+    signIn && draftImageRepository
+      ? {
+          repository: new PostgresCampaignActivationRepository(pool),
+          initialContent,
+          contents,
+          draftImages: draftImageRepository,
+          bootstrap: createRawWorldEngine(pool),
+        }
+      : null;
+  const activationWorker = activation ? new CampaignActivationWorker(activation) : null;
   // After a rollback (LTW_ALLOW_NEWER_SCHEMA) readiness parses every stored event first: a newer
   // build may have written events this one cannot read anywhere in a stream (ADR 0037).
   const readiness = storeReadiness(pool, await loadMigrations(MIGRATIONS_DIR), logger, {
@@ -105,7 +176,49 @@ async function main(): Promise<void> {
     dm: { substitutions: new PostgresSubstitutionStore(pool), clock: systemClock },
     assets: { contents },
     quests,
+    campaignQuests: createCampaignQuestBooks(initialContent),
     ...(signIn ? { signIn } : {}),
+    ...(signIn
+      ? {
+          workshop: {
+            store: new PostgresWorkshopStore(pool),
+            ...(campaignPackages
+              ? {
+                  packages: campaignPackages,
+                  revisionControls: new PostgresCampaignRevisionControlRepository(pool),
+                }
+              : {}),
+            ...(draftImages && draftImageWorker
+              ? {
+                  images: draftImages,
+                  cancelImage: (jobId: string) => {
+                    draftImageWorker.cancel(jobId);
+                  },
+                }
+              : {}),
+            ...(generation && generationWorker
+              ? {
+                  generation,
+                  cancelGeneration: (jobId: string) => {
+                    generationWorker.cancel(jobId);
+                  },
+                }
+              : {}),
+            ...(edits && editWorker
+              ? {
+                  edits,
+                  cancelEdit: (jobId: string) => {
+                    editWorker.cancel(jobId);
+                  },
+                }
+              : {}),
+            ...(activation ? { activation, campaignEntry: { engine, signIn } } : {}),
+            publicOrigin: signIn.publicOrigin,
+            clock: signIn.clock,
+            limits: signIn.limits,
+          },
+        }
+      : {}),
     // Request limits key on the client behind this reverse proxy (ADR 0036, 2026-10-16).
     trustedProxies: config.http.trustedProxies,
     readiness,
@@ -125,7 +238,23 @@ async function main(): Promise<void> {
   // The first verdict is logged now; later probes log only changes.
   void readiness();
 
+  const stopGeneration =
+    generation && generationWorker
+      ? startCampaignGenerationLoop(generation.repository, generationWorker, logger)
+      : () => Promise.resolve();
   const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
+  const stopActivation =
+    activation && activationWorker
+      ? startCampaignActivationLoop(activation.repository, activationWorker, logger)
+      : () => Promise.resolve();
+  const stopEdits =
+    edits && editWorker
+      ? startCampaignGenerationLoop(edits.repository, editWorker, logger)
+      : () => Promise.resolve();
+  const stopDraftImages =
+    draftImages && draftImageWorker
+      ? startDraftImageLoop(draftImages.repository, draftImageWorker, logger)
+      : () => Promise.resolve();
   const stopAssets = startAssetWorkerLoop({
     engine,
     contents,
@@ -141,7 +270,7 @@ async function main(): Promise<void> {
   const shutdown = (signal: NodeJS.Signals): void => {
     logger.info({ signal }, 'shutting down');
     stopPruning();
-    stopAssets()
+    Promise.all([stopAssets(), stopGeneration(), stopEdits(), stopDraftImages(), stopActivation()])
       .then(() => app.close())
       // Settlement retries stop; any unsettled hold stays for the operator.
       .then(() => ai.accounting.shutdown())
@@ -157,7 +286,7 @@ async function main(): Promise<void> {
 
 /**
  * The asset worker's image generator (docs/adr/0035-images.md §1): the local placeholder, or an
- * OpenAI image model through OpenRouter that spends only within the stored image ceiling. Startup
+ * OpenAI image model through OpenRouter under the explicit stored monetary policy. Startup
  * names the generator and model and whether a ceiling is stored; never the key or an amount.
  */
 async function imageGenerator(
@@ -184,7 +313,7 @@ async function imageGenerator(
   logger.info({ generator: generator.id, model: chosen.model }, 'image generator');
   imageBudgetStatus(pool).then(
     (status) => {
-      if (status.ceilingMicros === null) {
+      if (status.monetaryPolicy?.mode !== 'UNLIMITED' && status.ceilingMicros === null) {
         logger.warn(
           'no image ceiling stored: every image call is denied until the operator sets one',
         );
