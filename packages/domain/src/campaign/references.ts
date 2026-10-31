@@ -192,6 +192,20 @@ export function validateKnowledge(context: PlanContext): void {
   for (const record of context.content.knowledge) {
     const path = `knowledge.${record.key}`;
     const scope = record.scope;
+    // Players see PUBLIC and PARTY records from the first moment; a secret-like type there is
+    // the owner's call, so it is a warning to acknowledge (Gate 07, G07-07).
+    if (
+      (scope.kind === 'PUBLIC' || scope.kind === 'PARTY') &&
+      (record.knowledgeType === 'SECRET' ||
+        record.knowledgeType === 'UNKNOWN' ||
+        record.knowledgeType === 'CONTRADICTION')
+    )
+      context.findings.push({
+        severity: 'warning',
+        code: 'SECRET_IN_PUBLIC_SCOPE',
+        path: `${path}.scope`,
+        message: 'A secret-like record is visible to players from the start',
+      });
     if (scope.kind === 'NPC' || scope.kind === 'CHARACTER') {
       const holder = entityReference(context, scope.holder, `${path}.scope.holder`, [
         scope.kind === 'NPC' ? 'npc' : 'character',

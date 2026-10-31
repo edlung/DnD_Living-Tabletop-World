@@ -160,7 +160,7 @@ describe('replyAsNpc', () => {
     expect(first?.system).toBe(second?.system);
     const sent = JSON.stringify(payloadOf(first));
     for (const sourceId of dialogueSourceIds(context)) expect(sent).not.toContain(sourceId);
-    expect(first?.prompt).toContain('You are Mira Vale.');
+    expect(first?.prompt).toContain('You are "Mira Vale".');
     expect(first?.prompt).toContain('NBXMIRAWILLING');
   });
 

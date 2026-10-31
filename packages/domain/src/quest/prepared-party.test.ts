@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { buildCampaignBootstrapPlan } from '../campaign/bootstrap-plan.ts';
 import { bootstrapCommand, OWNER } from '../campaign/testing/bootstrap.ts';
+import { testBootstrapIdentities } from '../campaign/testing/identities.ts';
 import { resolvePerspective } from '../knowledge/perspective.ts';
 import { createHarness, expectAccepted } from '../kernel/testing/kernel-harness.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
@@ -82,5 +83,48 @@ describe('prepared party quest occurrences', () => {
     expect(
       redecideEffective(await h.engine.commandLog('test-campaign'), snapshot, () => 3),
     ).toBeNull();
+  });
+
+  it('does not complete a milestone from the starting knowledge (Gate 07, G07-06)', async () => {
+    const h = createHarness(),
+      base = bootstrapCommand();
+    const content = structuredClone(base.content);
+    content.knowledge.push({
+      key: 'starting-hypothesis',
+      scope: { kind: 'PARTY' },
+      knowledgeType: 'HYPOTHESIS',
+      statement: 'Perhaps the journal explains the bell.',
+      subjects: ['sluice-journal'],
+      knownSince: null,
+      relations: [],
+    });
+    content.quests = [
+      {
+        questId: 'spoiler',
+        title: 'A quest with a hypothesis milestone',
+        activation: { subject: 'sluice-journal', summary: 'Find the journal.' },
+        milestones: [
+          {
+            kind: 'hypothesized',
+            stage: 'journal-guessed',
+            subject: 'sluice-journal',
+            summary: 'Form a hypothesis about the journal.',
+          },
+        ],
+      },
+    ];
+    const command = { ...base, content, identities: testBootstrapIdentities(content) };
+    expectAccepted(await h.submit(command, { actor: OWNER, commandId: 'boot' }));
+    const quests = buildCampaignBootstrapPlan(content, command.identities, [], 'TEXT_ONLY').quests,
+      characterId = command.identities.entities['alena'];
+    if (!characterId) throw new Error('TEST_IDENTITIES');
+    const snapshot = await h.snapshot(),
+      access = resolvePerspective(snapshot.state, OWNER, { kind: 'CHARACTER', characterId });
+    if (!access.ok) throw new Error('TEST_PERSPECTIVE');
+    const stages = questLog(snapshot, access.perspective, quests)[0]?.transitions.map(
+      (transition) => transition.stage,
+    );
+    // The quest may start activated by what the party already knows; no milestone is done.
+    expect(stages ?? []).not.toContain('journal-guessed');
   });
 });

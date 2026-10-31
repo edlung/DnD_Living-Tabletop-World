@@ -3,7 +3,7 @@ import { randomBytes } from 'node:crypto';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 
-import { MAX_EDGE_PX, MAX_STORED_BYTES, reencodeImage } from './reencode.ts';
+import { MAX_EDGE_PX, MAX_STORED_BYTES, hasAllowedSignature, reencodeImage } from './reencode.ts';
 
 /**
  * Re-encoding a provider's image (docs/STAGE_330_DESIGN.md): a WebP of at most 1,536 px and
@@ -108,6 +108,22 @@ describe('re-encoding', { timeout: SLOW_MS }, () => {
     const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"/>');
     for (const input of [gif, svg, Buffer.from('not an image'), new Uint8Array()]) {
       expect(await codeOf(reencodeImage(input, 'image'))).toBe('PROVIDER_ERROR');
+    }
+  });
+
+  it('looks at the signature before any decoder runs (Gate 07, G07-09)', async () => {
+    const svg = Buffer.from(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><script>1</script></svg>',
+    );
+    const tiff = await solid(8, 8, '#112233').tiff().toBuffer();
+    const gif = Buffer.from('GIF89a\x01\x00\x01\x00\x00\x00\x00;', 'latin1');
+    for (const bytes of [svg, tiff, gif, Buffer.alloc(0), randomBytes(64)]) {
+      expect(hasAllowedSignature(bytes)).toBe(false);
+      expect(await codeOf(reencodeImage(bytes, 'image'))).toBe('PROVIDER_ERROR');
+    }
+    for (const format of ['png', 'jpeg', 'webp'] as const) {
+      const bytes = await solid(8, 8, '#112233').toFormat(format).toBuffer();
+      expect(hasAllowedSignature(bytes)).toBe(true);
     }
   });
 });
