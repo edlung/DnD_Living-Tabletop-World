@@ -103,6 +103,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - 2026-10-31: Stage 470 (starting possessions in campaign packages, Ravenford starting gear) is implemented on
   `claude/stage-470-campaign-items`; Stage 480 (item pictures) has client support and recipes but **no pictures**: the image
   channel is out of quota until 2026-11-04. Report `reports/STAGE_470_480_COMPLETION.md`.
+- 2026-10-31: Stage 490 (items in combat with turn economy, part of a stack, NPC gear) and the Gate 07 Lows G07-06…G07-10 are
+  implemented on `claude/stage-490-items-in-combat`; report `reports/STAGE_490_COMPLETION.md`. G07-05 and the Gate 07 retest stay
+  the owner's call.
 - Stages440–450 continue after their scoped technical verification under the
   owner's delegated continuation. Runtime confirmation and final human acceptance
   remain the owner's actions.

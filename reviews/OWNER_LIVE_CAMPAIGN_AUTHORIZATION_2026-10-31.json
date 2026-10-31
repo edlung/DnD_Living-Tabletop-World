@@ -1,0 +1,21 @@
+{
+  "kind": "OWNER_LIVE_CAMPAIGN_AUTHORIZATION",
+  "date": "2026-10-31",
+  "scope": "One live seven-step campaign generation whose brief asks for starting items (Stage 470 possessions), assessed offline",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "confirmation": {
+    "assistant_question": "Запустить один живой прогон генерации кампании с предметами? Это платный запрос модели (в прошлый раз около $0,66).",
+    "owner_disposition": "Да, запусти",
+    "model_identity": "claude-sonnet-5-5, the single entry of the verified catalog; the owner confirmed this model on 2026-10-30"
+  },
+  "monetary_policy": "UNLIMITED in an isolated database, retaining actual/unknown accounting, one worst-case hold at a time and operational limits",
+  "constraints": [
+    "Genuine admitted preparation runtime and durable accounting; no fixture transport, no raw Messages bypass",
+    "No silent model/provider fallback",
+    "Isolated throwaway database only; no default database mutation",
+    "The credential comes only from the process environment; never read, printed or logged",
+    "No canonical activation, no picture generation, no deployment or publishing",
+    "Disable the temporary preparation grant afterwards; keep the paid ledger if anything is held or unknown"
+  ]
+}

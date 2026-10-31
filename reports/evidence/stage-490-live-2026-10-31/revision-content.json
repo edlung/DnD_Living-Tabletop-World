@@ -1,0 +1,1089 @@
+{
+  "schemaVersion": 1,
+  "brief": {
+    "intent": "Короткое расследование в портовом городке: пропали рыбацкие сети гильдии, и никто не хочет говорить почему. У героев есть собственное стартовое снаряжение.",
+    "setting": "Небольшой портовый город у холодного моря, ранняя осень.",
+    "tone": "Тёплая, немного тревожная история с понятными мотивами.",
+    "duration": "Первая сессия около двух часов.",
+    "partySize": 2,
+    "partyLevel": 3,
+    "include": [
+      "Каждый герой и несколько NPC несут стартовые предметы: используй предметы каталога (possessions) — зелья, плащи, щиты, инструменты",
+      "Несколько путей к уликам",
+      "Мирное решение возможно"
+    ],
+    "exclude": ["Обязательный бой"]
+  },
+  "world": {
+    "name": "Живой прогон: порт и сети",
+    "worldName": "Живой прогон: порт и сети",
+    "language": "ru",
+    "startsAt": 0,
+    "startLocation": "net-warehouse",
+    "weather": "fog",
+    "opening": "Ранняя осень, холодное море дышит туманом, и порт просыпается раньше обычного: на причале гильдии рыбаков вместо привычного шума — тишина. Три дня назад со складских козел исчезли новые сети, добротные, ещё не оплаченные до конца. Старшина гильдии твердит, что это «обычная пропажа», рыбаки отводят глаза, а торговец у соседнего пирса вдруг стал слишком щедр на тёплое вино и разговоры о пустяках.\n\nГероев, только что сошедших с дороги, окликает девочка-посыльная с обрывком мокрой верёвки в руке: на нём чужой узел и следы смолы. Гильдия готова заплатить тому, кто вернёт сети до утреннего отлива, когда флот должен выйти в море. Если сетей не будет, часть семей останется без заработка перед холодами.\n\nУ каждого свои интересы. Старшина боится огласки и долгов перед кредиторами. Рыбаки, возможно, кого-то прикрывают из жалости или страха. Торговец что-то скрывает, но не обязательно злое. Начать можно у склада, где остались следы смолы, в таверне, где языки развязывает ужин, или у причала, где туман скрывает чужие лодки и тех, кто не хочет быть замеченным. Правду можно выяснить разговором, наблюдением, сверкой записей или хитростью, и дело вполне можно уладить миром, прежде чем кто-то схватится за оружие."
+  },
+  "entities": [
+    {
+      "key": "port-town",
+      "kind": "location",
+      "name": "Портовый город Серый Мыс",
+      "description": "Небольшой портовый город у холодного моря. Ранняя осень, туман по утрам, люди готовятся к холодам.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "settlement",
+        "parent": null
+      }
+    },
+    {
+      "key": "fishers-quay",
+      "kind": "location",
+      "name": "Причал гильдии рыбаков",
+      "description": "Длинный деревянный причал, где обычно шумно. Сейчас тихо, туман скрывает лодки и тех, кто не хочет быть замеченным.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "district",
+        "parent": "port-town"
+      }
+    },
+    {
+      "key": "net-warehouse",
+      "kind": "location",
+      "name": "Склад сетей",
+      "description": "Склад гильдии со складскими козлами, откуда три дня назад исчезли новые сети. На досках остались следы смолы.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "fishers-quay"
+      }
+    },
+    {
+      "key": "guild-office",
+      "kind": "location",
+      "name": "Контора гильдии",
+      "description": "Тесная контора старшины с учётными книгами, долговыми расписками и печатью гильдии.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parent": "fishers-quay"
+      }
+    },
+    {
+      "key": "tavern-lantern",
+      "kind": "location",
+      "name": "Таверна «Тёплый фонарь»",
+      "description": "Уютная таверна у порта, где за ужином развязываются языки и слышны рыбацкие разговоры.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "port-town"
+      }
+    },
+    {
+      "key": "merchant-pier",
+      "kind": "location",
+      "name": "Соседний пирс торговца",
+      "description": "Пирс с лавкой торговца, где в последние дни щедро наливают тёплое вино и говорят о пустяках.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "district",
+        "parent": "port-town"
+      }
+    },
+    {
+      "key": "merchant-shop",
+      "kind": "location",
+      "name": "Лавка торговца",
+      "description": "Лавка с товарами и конторкой. В задней комнате хранятся бочки и записи о сделках.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "merchant-pier"
+      }
+    },
+    {
+      "key": "fog-cove",
+      "kind": "location",
+      "name": "Туманная бухточка",
+      "description": "Укромная бухта за мысом, куда можно добраться по тропе или на лодке. Здесь легко спрятать сети и лодку.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parent": "port-town"
+      }
+    },
+    {
+      "key": "shore-path",
+      "kind": "location",
+      "name": "Прибрежная тропа",
+      "description": "Узкая тропа вдоль скал от причала к бухточке. На камнях видны следы смолы.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "route",
+        "parent": "port-town"
+      }
+    },
+    {
+      "key": "lira-warden",
+      "kind": "character",
+      "name": "Лира Вересковая",
+      "description": "Следопытка с дороги, привыкшая читать следы и туман. Немногословна, внимательна, не любит несправедливости.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "net-warehouse",
+        "since": null
+      },
+      "sheet": {
+        "classes": [
+          {
+            "classId": "ranger",
+            "level": 3
+          }
+        ],
+        "abilities": {
+          "str": 10,
+          "dex": 16,
+          "con": 14,
+          "int": 10,
+          "wis": 15,
+          "cha": 8
+        },
+        "hitPoints": {
+          "max": 28,
+          "current": 28
+        },
+        "armorClass": 14,
+        "speedFt": 30,
+        "savingThrows": ["str", "dex"],
+        "skills": {
+          "proficient": ["perception", "survival", "stealth"],
+          "expertise": []
+        },
+        "fightingStyle": "archery",
+        "attacksPerAction": 1,
+        "weapons": ["longbow"],
+        "spellSlots": {
+          "max": [3, 0, 0, 0, 0, 0, 0, 0, 0],
+          "expended": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        "spellcasting": [
+          {
+            "source": "ranger",
+            "ability": "wis",
+            "spells": ["hunters-mark", "detect-magic"]
+          }
+        ],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "key": "toma-scholar",
+      "kind": "character",
+      "name": "Тома Серебров",
+      "description": "Странствующий маг-книжник, любознательный и вежливый, замечает мелочи в записях и узорах узлов.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "net-warehouse",
+        "since": null
+      },
+      "sheet": {
+        "classes": [
+          {
+            "classId": "wizard",
+            "level": 3
+          }
+        ],
+        "abilities": {
+          "str": 8,
+          "dex": 14,
+          "con": 14,
+          "int": 16,
+          "wis": 12,
+          "cha": 10
+        },
+        "hitPoints": {
+          "max": 20,
+          "current": 20
+        },
+        "armorClass": 12,
+        "speedFt": 30,
+        "savingThrows": ["int", "wis"],
+        "skills": {
+          "proficient": ["arcana", "investigation", "insight"],
+          "expertise": []
+        },
+        "attacksPerAction": 1,
+        "weapons": [],
+        "spellSlots": {
+          "max": [4, 2, 0, 0, 0, 0, 0, 0, 0],
+          "expended": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        "spellcasting": [
+          {
+            "source": "wizard",
+            "ability": "int",
+            "spells": ["detect-magic", "misty-step"]
+          }
+        ],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "key": "guild-elder",
+      "kind": "npc",
+      "name": "Старшина Боривой Крепс",
+      "description": "Грузный усталый старшина гильдии рыбаков. Называет пропажу обычной и избегает вопросов о книгах.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "guild-office",
+        "since": null
+      }
+    },
+    {
+      "key": "merchant",
+      "kind": "npc",
+      "name": "Торговец Ансельм Фогг",
+      "description": "Радушный торговец с соседнего пирса, щедрый на тёплое вино и пустые разговоры.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "merchant-shop",
+        "since": null
+      }
+    },
+    {
+      "key": "messenger-girl",
+      "kind": "npc",
+      "name": "Миля, девочка-посыльная",
+      "description": "Шустрая девочка лет двенадцати, знающая каждый закоулок порта. Держит мокрую верёвку с чужим узлом.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "net-warehouse",
+        "since": null
+      }
+    },
+    {
+      "key": "fishers",
+      "kind": "faction",
+      "name": "Рыбаки гильдии",
+      "description": "Община рыбаков Серого Мыса. Опасаются остаться без заработка перед холодами и неохотно говорят о пропаже.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "tar-marks",
+      "kind": "feature",
+      "name": "Следы смолы",
+      "description": "Тёмные пятна смолы на досках склада и камнях, ведущие в сторону тропы.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "net-warehouse",
+        "since": null
+      }
+    },
+    {
+      "key": "lira-cloak",
+      "kind": "item",
+      "name": "Дорожный плащ Лиры",
+      "description": "Тёплый плащ каравана.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "lira-balm",
+      "kind": "item",
+      "name": "Лесной бальзам",
+      "description": "Баночки целебного бальзама.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "lira-rope",
+      "kind": "item",
+      "name": "Верёвка Лиры",
+      "description": "Моток пеньковой верёвки.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "toma-tools",
+      "kind": "item",
+      "name": "Инструменты картографа",
+      "description": "Набор для зарисовок и измерений.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "toma-rootwater",
+      "kind": "item",
+      "name": "Корневая вода",
+      "description": "Бутылочки травяного настоя.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "toma-candles",
+      "kind": "item",
+      "name": "Сальные свечи",
+      "description": "Свечи для чтения в дороге.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "elder-signet",
+      "kind": "item",
+      "name": "Печатка гильдии",
+      "description": "Печатка старшины.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "elder-ledger",
+      "kind": "item",
+      "name": "Торговая книга гильдии",
+      "description": "Учётная книга со столбцами цифр.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "merchant-wine",
+      "kind": "item",
+      "name": "Пряное вино",
+      "description": "Тёплое пряное вино для гостей.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "merchant-seal-kit",
+      "kind": "item",
+      "name": "Набор для печатей",
+      "description": "Воск и штемпели торговца.",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "wet-rope",
+      "kind": "item",
+      "name": "Мокрый обрывок верёвки",
+      "description": "Обрывок верёвки с чужим узлом и следами смолы.",
+      "status": "active",
+      "existsSince": null
+    }
+  ],
+  "party": ["lira-warden", "toma-scholar"],
+  "knowledge": [
+    {
+      "key": "truth-pledge",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Старшина Боривой тайно заложил новые, не до конца оплаченные сети торговцу Ансельму в обеспечение займа, чтобы расплатиться с кредиторами гильдии.",
+      "subjects": ["guild-elder", "merchant", "elder-ledger"],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-moved",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Сети перенесли со склада по прибрежной тропе и спрятали в Туманной бухточке; смола с просмоленных мешков осталась на досках и камнях. Сети целы.",
+      "subjects": ["tar-marks", "shore-path", "fog-cove", "merchant"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "SUPPORTS",
+          "knowledge": "truth-pledge"
+        }
+      ]
+    },
+    {
+      "key": "truth-fishers-silent",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Рыбаки догадываются, где сети, и молчат из жалости к старшине и страха, что огласка разорит гильдию. Злого умысла у них нет.",
+      "subjects": ["fishers", "guild-elder"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "DERIVED_FROM",
+          "knowledge": "truth-pledge"
+        }
+      ]
+    },
+    {
+      "key": "secret-elder-debt",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Долги гильдии перед кредиторами больше, чем признаёт старшина; он боится потерять доверие рыбаков, если это раскроется.",
+      "subjects": ["guild-elder", "elder-ledger"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "SUPPORTS",
+          "knowledge": "truth-pledge"
+        }
+      ]
+    },
+    {
+      "key": "secret-merchant-terms",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Ансельм не хочет оставлять сети себе: он вернёт их, если гильдия письменно подтвердит долг и срок выплаты. Щедрость с вином — попытка заглушить собственную неловкость.",
+      "subjects": ["merchant", "merchant-wine", "merchant-seal-kit"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledge": "truth-pledge"
+        }
+      ]
+    },
+    {
+      "key": "elder-knows-pledge",
+      "scope": {
+        "kind": "NPC",
+        "holder": "guild-elder"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Старшина помнит, что отдал сети в залог Ансельму, и надеется выкупить их после отлива, пока никто не узнал.",
+      "subjects": ["guild-elder", "merchant"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "DERIVED_FROM",
+          "knowledge": "truth-pledge"
+        }
+      ],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "merchant-knows-terms",
+      "scope": {
+        "kind": "NPC",
+        "holder": "merchant"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Ансельм держит сети в бухточке и готов вернуть их при подтверждении долга с печатью гильдии; он признается, если его уличат мягко.",
+      "subjects": ["merchant", "fog-cove"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "DERIVED_FROM",
+          "knowledge": "secret-merchant-terms"
+        }
+      ],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "mila-night-boat",
+      "scope": {
+        "kind": "NPC",
+        "holder": "messenger-girl"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Миля говорит, что в ночь пропажи видела у склада людей с фонарём, которые несли тяжёлые мешки к тропе, а один из них был похож по походке на помощника торговца. Лиц она не разглядела.",
+      "subjects": ["messenger-girl", "shore-path", "merchant"],
+      "attributedTo": "messenger-girl",
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "SUPPORTS",
+          "knowledge": "truth-moved"
+        }
+      ],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "party-reward",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Гильдия заплатит тому, кто вернёт сети до утреннего отлива; без сетей часть семей останется без заработка перед холодами.",
+      "subjects": ["guild-elder", "fishers"],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "party-rope",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "EVIDENCE",
+      "statement": "У Мили мокрый обрывок верёвки с чужим узлом и следами смолы.",
+      "subjects": ["messenger-girl", "wet-rope"],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "party-tar",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "FACT",
+      "statement": "На досках склада видны следы смолы, ведущие к двери в сторону тропы.",
+      "subjects": ["tar-marks", "net-warehouse"],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "public-elder-claim",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Старшина публично называет пропажу обычной и просит не поднимать шума.",
+      "subjects": ["guild-elder"],
+      "attributedTo": "guild-elder",
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "CONTRADICTS",
+          "knowledge": "truth-pledge"
+        }
+      ]
+    },
+    {
+      "key": "public-wine-rumor",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "RUMOR",
+      "statement": "В порту говорят, что торговец Ансельм в последние дни неспроста щедр на вино и пустые разговоры.",
+      "subjects": ["merchant", "merchant-wine"],
+      "attributedTo": "fishers",
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "dm-peaceful-paths",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "HYPOTHESIS",
+      "statement": "Возможная развязка, не предопределённая: герои убеждают старшину признать долг, получают подтверждение от торговца и возвращают сети без боя. Возможны и другие решения игроков.",
+      "subjects": ["guild-elder", "merchant", "fog-cove"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledge": "truth-pledge"
+        }
+      ]
+    },
+    {
+      "key": "dm-unknown-creditors",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "UNKNOWN",
+      "statement": "Неизвестно, кто именно остальные кредиторы гильдии и насколько они настойчивы; это можно развить позже по решению мастера.",
+      "subjects": ["guild-elder"],
+      "knownSince": null,
+      "relations": [
+        {
+          "type": "REFERS_TO",
+          "knowledge": "secret-elder-debt"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "npc": "guild-elder",
+      "attitude": "WARY"
+    },
+    {
+      "npc": "merchant",
+      "attitude": "NEUTRAL"
+    },
+    {
+      "npc": "messenger-girl",
+      "attitude": "FRIENDLY"
+    }
+  ],
+  "possessions": [
+    {
+      "item": "lira-cloak",
+      "holder": "lira-warden",
+      "catalog": "caravan-cloak",
+      "quantity": 1
+    },
+    {
+      "item": "lira-balm",
+      "holder": "lira-warden",
+      "catalog": "woodland-balm",
+      "quantity": 2
+    },
+    {
+      "item": "lira-rope",
+      "holder": "lira-warden",
+      "catalog": "hemp-rope",
+      "quantity": 1
+    },
+    {
+      "item": "toma-tools",
+      "holder": "toma-scholar",
+      "catalog": "cartographer-tools",
+      "quantity": 1
+    },
+    {
+      "item": "toma-rootwater",
+      "holder": "toma-scholar",
+      "catalog": "rootwater",
+      "quantity": 2
+    },
+    {
+      "item": "toma-candles",
+      "holder": "toma-scholar",
+      "catalog": "tallow-candle",
+      "quantity": 3
+    },
+    {
+      "item": "elder-signet",
+      "holder": "guild-elder",
+      "catalog": "guild-signet",
+      "quantity": 1
+    },
+    {
+      "item": "elder-ledger",
+      "holder": "guild-elder",
+      "catalog": "merchant-ledger",
+      "quantity": 1
+    },
+    {
+      "item": "merchant-wine",
+      "holder": "merchant",
+      "catalog": "spiced-wine",
+      "quantity": 4
+    },
+    {
+      "item": "merchant-seal-kit",
+      "holder": "merchant",
+      "catalog": "wax-seal-kit",
+      "quantity": 1
+    },
+    {
+      "item": "wet-rope",
+      "holder": "messenger-girl",
+      "quantity": 1
+    }
+  ],
+  "clues": [
+    {
+      "key": "clue-tar-trail",
+      "entity": "tar-marks",
+      "method": "perception",
+      "dc": 10,
+      "statement": "Пятна смолы идут от козел к двери и дальше к прибрежной тропе; смола с мешков, а не с лодки.",
+      "subjects": ["tar-marks", "shore-path"]
+    },
+    {
+      "key": "clue-rope-knot",
+      "entity": "wet-rope",
+      "method": "investigation",
+      "dc": 11,
+      "statement": "Узел на верёвке — торговый, каким перевязывают тюки на пирсе торговца; смола та же, что на складе.",
+      "subjects": ["wet-rope", "merchant"]
+    },
+    {
+      "key": "clue-path-inspect",
+      "entity": "shore-path",
+      "method": "inspect",
+      "statement": "На камнях тропы свежая смола и царапины от волочения мешков; тропа ведёт в Туманную бухточку.",
+      "subjects": ["shore-path", "fog-cove"]
+    },
+    {
+      "key": "clue-cove-inspect",
+      "entity": "fog-cove",
+      "method": "inspect",
+      "statement": "В бухточке под навесом из парусины лежат сети, целые и аккуратно уложенные, рядом причал для небольшой лодки.",
+      "subjects": ["fog-cove"]
+    },
+    {
+      "key": "clue-ledger-entry",
+      "entity": "elder-ledger",
+      "method": "investigation",
+      "dc": 13,
+      "statement": "В торговой книге гильдии запись о залоге новых сетей и займе у Фогга; строка зачёркнута, но читается.",
+      "subjects": ["elder-ledger", "guild-elder", "merchant"]
+    },
+    {
+      "key": "clue-seal-wax",
+      "entity": "merchant-seal-kit",
+      "method": "investigation",
+      "dc": 12,
+      "statement": "В наборе торговца свежий воск и бланк залогового письма с оттиском, похожим на печатку гильдии.",
+      "subjects": ["merchant-seal-kit", "elder-signet"]
+    },
+    {
+      "key": "clue-shop-inspect",
+      "entity": "merchant-shop",
+      "method": "inspect",
+      "statement": "В задней комнате лавки лежат записи сделок и расписка о залоге без подписи получателя; это видно без проверок.",
+      "subjects": ["merchant-shop", "merchant"]
+    },
+    {
+      "key": "clue-wine-talk",
+      "entity": "merchant-wine",
+      "method": "perception",
+      "dc": 9,
+      "statement": "Торговец наливает вино слишком охотно и избегает слова «сети»; нервно косится в сторону бухточки.",
+      "subjects": ["merchant-wine", "merchant"]
+    },
+    {
+      "key": "clue-signet-inspect",
+      "entity": "elder-signet",
+      "method": "investigation",
+      "dc": 12,
+      "statement": "На печатке свежие следы воска: ею недавно ставили оттиск на документе.",
+      "subjects": ["elder-signet", "guild-elder"]
+    },
+    {
+      "key": "clue-office-inspect",
+      "entity": "guild-office",
+      "method": "inspect",
+      "statement": "В конторе на столе стопка долговых расписок и недописанное письмо о выкупе залога после отлива.",
+      "subjects": ["guild-office", "guild-elder"]
+    }
+  ],
+  "conflicts": [
+    {
+      "key": "missing-nets",
+      "title": "Пропавшие сети гильдии",
+      "description": "Новые, не до конца оплаченные сети исчезли со склада. Гильдия хочет вернуть их до утреннего отлива, но никто не желает говорить, почему они пропали.",
+      "actors": ["guild-elder", "fishers", "merchant", "messenger-girl"],
+      "stakes": "Если сетей не будет, часть семей останется без заработка перед холодами. Правду можно выяснить разговором, наблюдением, сверкой записей или хитростью, и дело можно уладить миром."
+    },
+    {
+      "key": "elder-debts",
+      "title": "Долги и страх огласки",
+      "description": "Старшина скрывает долги перед кредиторами и опасается, что огласка подорвёт доверие к нему и к гильдии.",
+      "actors": ["guild-elder", "merchant"],
+      "stakes": "Репутация старшины и устойчивость гильдии против честного разговора о долгах."
+    },
+    {
+      "key": "fishers-silence",
+      "title": "Молчание рыбаков",
+      "description": "Рыбаки отводят глаза: возможно, они прикрывают кого-то из жалости или страха.",
+      "actors": ["fishers", "guild-elder"],
+      "stakes": "Доверие внутри общины и судьба того, кого могут прикрывать. Исход зависит от выбора героев."
+    }
+  ],
+  "situations": [
+    {
+      "key": "warehouse-opening",
+      "title": "Тишина у пустых козел",
+      "location": "net-warehouse",
+      "description": "Туман, пустые складские козлы, следы смолы на досках. Миля протягивает мокрый обрывок верёвки и просит помочь до отлива. Герои сами решают, с чего начать.",
+      "hooks": [
+        "Миля показывает верёвку с чужим узлом и просит не говорить об этом старшине сразу.",
+        "Следы смолы тянутся от козел к двери.",
+        "Гильдия обещала плату за возврат сетей до утреннего отлива."
+      ],
+      "participants": ["messenger-girl", "lira-warden", "toma-scholar"],
+      "clueKeys": ["clue-tar-trail", "clue-rope-knot"],
+      "approaches": [
+        "Лира осматривает смолу и дверь (Восприятие).",
+        "Тома изучает узел на верёвке (Расследование).",
+        "Расспросить Милю о ночи пропажи; она охотно рассказывает, что видела.",
+        "Запустить обнаружение магии на складе — по желанию игроков."
+      ],
+      "developments": [
+        {
+          "if": "Герои хорошо осмотрели следы смолы",
+          "then": "Становится ясно, что сети уносили в мешках по прибрежной тропе, а не увозили на лодке."
+        },
+        {
+          "if": "Герои не нашли ничего за первые минуты",
+          "then": "Миля сама предлагает отвести их к тропе или в таверну, где болтают рыбаки."
+        },
+        {
+          "if": "Герои сразу идут к старшине",
+          "then": "Он отмахивается словами «обычная пропажа», но оставляет им повод вернуться к книгам."
+        }
+      ]
+    },
+    {
+      "key": "guild-office-talk",
+      "title": "Старшина просит не поднимать шума",
+      "location": "guild-office",
+      "description": "Усталый старшина Боривой называет пропажу обычной. В конторе лежат расписки и учётные книги. Он боится огласки и долгов, но не злодей.",
+      "hooks": [
+        "Старшина торопит героев и обещает плату за возврат сетей.",
+        "На столе недописанное письмо о выкупе залога."
+      ],
+      "participants": ["guild-elder"],
+      "clueKeys": ["clue-office-inspect", "clue-ledger-entry", "clue-signet-inspect"],
+      "approaches": [
+        "Вежливо расспросить о долгах и сроках оплаты сетей (Проницательность).",
+        "Изучить торговую книгу, пока старшина отвлечён или согласен показать её (Расследование).",
+        "Заметить свежий воск на печатке.",
+        "Пообещать конфиденциальность в обмен на правду."
+      ],
+      "developments": [
+        {
+          "if": "Герои предъявляют запись о залоге и обещают не выносить дело на публику",
+          "then": "Старшина может признать залог Ансельму и согласиться подтвердить долг письменно."
+        },
+        {
+          "if": "Герои давят и угрожают оглаской",
+          "then": "Старшина замыкается и просит уйти; остаются другие пути через таверну, лавку и бухточку."
+        },
+        {
+          "if": "Герои попробуют тайком смотреть книгу и их заметят",
+          "then": "Доверие падает, но старшина может уступить, если ему предложат тихое решение."
+        }
+      ]
+    },
+    {
+      "key": "tavern-whispers",
+      "title": "Ужин, на котором развязываются языки",
+      "location": "tavern-lantern",
+      "description": "В «Тёплом фонаре» рыбаки говорят вполголоса и отводят глаза. Они догадываются, где сети, но жалеют старшину и боятся разорения гильдии.",
+      "hooks": [
+        "Слух о том, что Ансельм слишком щедр на вино.",
+        "Рыбаки замолкают при упоминании сетей."
+      ],
+      "participants": ["fishers"],
+      "clueKeys": ["clue-wine-talk"],
+      "approaches": [
+        "Угостить рыбаков ужином и заверить, что цель не наказание, а возврат сетей.",
+        "Подслушать разговоры незаметно (Скрытность).",
+        "Прочитать настроение рыбаков (Проницательность).",
+        "Сослаться на слова Мили."
+      ],
+      "developments": [
+        {
+          "if": "Герои покажут, что не собираются разорять гильдию",
+          "then": "Рыбаки намекают, что сети надо искать в стороне бухточки и разговаривать с Ансельмом."
+        },
+        {
+          "if": "Герои обвиняют рыбаков в воровстве",
+          "then": "Разговор замирает, а им придётся искать улики самим."
+        }
+      ]
+    },
+    {
+      "key": "merchant-conversation",
+      "title": "Тёплое вино и неловкость",
+      "location": "merchant-shop",
+      "description": "Ансельм Фогг гостеприимен, но избегает слова «сети». В задней комнате лежат записи сделок и расписка о залоге. Он не хочет оставлять сети себе.",
+      "hooks": [
+        "Щедрое угощение вином и пустые разговоры.",
+        "Торговец нервно косится в сторону бухточки."
+      ],
+      "participants": ["merchant"],
+      "clueKeys": ["clue-wine-talk", "clue-shop-inspect", "clue-seal-wax", "clue-rope-knot"],
+      "approaches": [
+        "Мягко уличить его уликами и предложить решение, устраивающее обе стороны.",
+        "Осмотреть заднюю комнату, пока он занят гостеприимством.",
+        "Изучить набор для печатей (Расследование).",
+        "Привести старшину для разговора."
+      ],
+      "developments": [
+        {
+          "if": "Ансельма уличили мягко",
+          "then": "Он признаётся, что сети в бухточке, и готов вернуть их при письменном подтверждении долга с печатью гильдии."
+        },
+        {
+          "if": "Его обвиняют в краже грубо",
+          "then": "Он закрывается и отрицает; тогда пригодятся тропа, бухточка и свидетельство старшины."
+        }
+      ]
+    },
+    {
+      "key": "shore-path-cove",
+      "title": "Тропа в тумане и бухточка",
+      "location": "fog-cove",
+      "description": "Прибрежная тропа ведёт к бухточке, где под парусиной лежат целые сети. Туман скрывает следы и звуки.",
+      "hooks": ["Свежая смола и следы волочения на камнях.", "Небольшой причал для лодки."],
+      "participants": ["merchant"],
+      "clueKeys": ["clue-path-inspect", "clue-cove-inspect", "clue-tar-trail"],
+      "approaches": [
+        "Пройти по следам смолы (Выживание, Восприятие).",
+        "Дождаться, кто придёт к сетям.",
+        "Забрать сети самим, понимая, что это может задеть торговца и старшину.",
+        "Вернуться за подтверждением и забрать сети по договорённости."
+      ],
+      "developments": [
+        {
+          "if": "Герои забирают сети без договорённости",
+          "then": "Ансельм может обидеться и потребовать долг; придётся улаживать спор мирно."
+        },
+        {
+          "if": "Кто-то из помощников торговца окликнет героев",
+          "then": "Возможен напряжённый разговор; драка не обязательна."
+        },
+        {
+          "if": "Герои не успевают до отлива",
+          "then": "Старшина просит об отсрочке выхода флота, и дело можно закончить на следующий день."
+        }
+      ]
+    },
+    {
+      "key": "settlement-ending",
+      "title": "Сети, долг и отлив",
+      "location": "fishers-quay",
+      "description": "Финал сессии: герои решают, как вернуть сети и что рассказать гильдии. Исход зависит от их выбора.",
+      "hooks": ["Приближается утренний отлив.", "Рыбаки ждут вестей."],
+      "participants": ["guild-elder", "merchant", "fishers", "messenger-girl"],
+      "clueKeys": ["clue-ledger-entry", "clue-cove-inspect"],
+      "approaches": [
+        "Устроить тихую встречу старшины и Ансельма.",
+        "Публично вернуть сети, не называя виновных.",
+        "Раскрыть правду рыбакам.",
+        "Найти иной выход."
+      ],
+      "developments": [
+        {
+          "if": "Договор о долге подтверждён печатью",
+          "then": "Сети возвращаются, остаётся вопрос о других кредиторах."
+        },
+        {
+          "if": "Герои вернули сети, но скрыли правду",
+          "then": "Долги остаются нерешённым вопросом на будущее."
+        },
+        {
+          "if": "Дело не решено до отлива",
+          "then": "Часть флота задерживается, давая героям ещё немного времени."
+        }
+      ]
+    }
+  ],
+  "encounters": [],
+  "quests": [
+    {
+      "questId": "missing-nets",
+      "title": "Пропавшие сети",
+      "activation": {
+        "subject": "messenger-girl",
+        "summary": "Миля просит героев помочь вернуть сети до отлива."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "warehouse-examined",
+          "locationId": "net-warehouse",
+          "summary": "Герои осмотрели склад и следы смолы."
+        },
+        {
+          "kind": "told-by",
+          "stage": "mila-testimony",
+          "informant": "messenger-girl",
+          "subject": "shore-path",
+          "summary": "Миля рассказала о людях с мешками у тропы."
+        },
+        {
+          "kind": "examined-at",
+          "stage": "path-examined",
+          "locationId": "shore-path",
+          "summary": "Герои осмотрели тропу."
+        },
+        {
+          "kind": "reached",
+          "stage": "cove-reached",
+          "locationId": "fog-cove",
+          "summary": "Герои добрались до бухточки."
+        },
+        {
+          "kind": "hypothesized",
+          "stage": "pledge-theory",
+          "subject": "guild-elder",
+          "summary": "Герои предположили, что сети заложены."
+        },
+        {
+          "kind": "contradiction-found",
+          "stage": "elder-contradiction",
+          "subject": "guild-elder",
+          "summary": "Слова старшины расходятся с записями."
+        },
+        {
+          "kind": "returned-to",
+          "stage": "back-to-quay",
+          "locationId": "fishers-quay",
+          "after": "cove-reached",
+          "summary": "Герои вернулись на причал после бухточки."
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "entity": "lira-warden",
+      "purpose": "figure",
+      "description": "Молодая следопытка в дорожном плаще с длинным луком за спиной, внимательный взгляд, лёгкая кожаная одежда.",
+      "style": "тёплая рисованная книжная иллюстрация, приглушённые осенние тона"
+    },
+    {
+      "entity": "toma-scholar",
+      "purpose": "figure",
+      "description": "Худощавый маг-книжник в поношенной мантии, с сумкой для карт и свечами у пояса.",
+      "style": "тёплая рисованная книжная иллюстрация, приглушённые осенние тона"
+    },
+    {
+      "entity": "guild-elder",
+      "purpose": "figure",
+      "description": "Грузный усталый мужчина в тёмном кафтане с печаткой на цепочке.",
+      "style": "тёплая рисованная книжная иллюстрация, приглушённые осенние тона"
+    },
+    {
+      "entity": "messenger-girl",
+      "purpose": "image",
+      "description": "Девочка-посыльная в большой куртке держит мокрую верёвку на фоне тумана у причала.",
+      "style": "тёплая рисованная книжная иллюстрация, приглушённые осенние тона"
+    },
+    {
+      "entity": "net-warehouse",
+      "purpose": "battle-map",
+      "description": "Склад сетей с рядами козел, узкими проходами, бочками и дверью к причалу.",
+      "style": "карта сверху в сетке, акварель, приглушённые тона"
+    }
+  ],
+  "firstSession": [
+    "Открытие (10–15 мин): туман, тишина на складе, Миля с верёвкой. Дайте игрокам выбрать, с чего начать: склад, таверна, контора или пирс.",
+    "Исследование (40–60 мин): три пути к правде: осмотр и следы (склад, тропа, бухточка), разговоры (Миля, рыбаки, торговец, старшина), записи и печати (книга гильдии, лавка, печатка).",
+    "Социальный путь: старшина и торговец ждут мягкого, честного подхода. Рыбаки заговорят, если поймут, что их не накажут.",
+    "Необязательный конфликт: напряжение у бухточки может перерасти в перепалку, но боя не требуется. Не вводите схватку, если игроки выбирают разговор.",
+    "Восстановление после неудачи: если проверки провалены, Миля, рыбаки или запись в конторе подсказывают другой путь. Провал стоит времени и доверия, но не закрывает историю.",
+    "Финал (15–20 мин): сети возвращены миром, или спор остаётся открытым. Оставьте на потом вопрос других кредиторов гильдии и доверие рыбаков.",
+    "Не заявляйте результаты за игроков; все исходы лишь возможны."
+  ],
+  "laterOutline": [
+    "Акт I. Сети и отлив (первая сессия, уже подготовлена). Отправная точка: склад (net-warehouse), следы смолы (tar-marks), мокрый обрывок верёвки (wet-rope) и просьба Мили (messenger-girl). Три пути к правде: следы (склад, shore-path, fog-cove), разговоры (Миля, рыбаки в tavern-lantern, Ансельм, старшина) и записи (elder-ledger, merchant-seal-kit, elder-signet). Ни один путь не обязателен, все ведут к одному: сети целы, их заложили, а не украли.",
+    "Акт I. Если герои нашли сети по следам, а торговца не расспрашивали. Тогда у них в руках целые сети, но без договорённости. Это возможность, а не итог. Забрать их силой значит задеть Ансельма (merchant) и подставить старшину (guild-elder). Вернуть их по уговору значит сперва получить письменное подтверждение долга с печатью гильдии. Оба выбора оставляют открытый мирный выход.",
+    "Акт I. Если герои сначала пошли к старшине. Он называет пропажу «обычной» (public-elder-claim). Если им покажут запись в книге или недописанное письмо, он может признаться, особенно при обещании тихого решения. Если они давят, он замыкается, и остаются таверна, лавка и бухточка. Старшина не злодей, он боится огласки (secret-elder-debt).",
+    "Акт I. Если герои пошли к рыбакам (fishers). Рыбаки заговорят, когда поймут, что гильдию не собираются разорять. Обвинение в воровстве остановит разговор. Их молчание можно объяснить жалостью к старшине, и это можно использовать как мост к честному разговору о долгах.",
+    "Акт II. Последствия мирной развязки (если игроки к ней придут). Договор о долге с печатью гильдии подтверждён, сети возвращены, флот выходит на отливе. Вопрос остаётся открытым: кто остальные кредиторы (dm-unknown-creditors), насколько они настойчивы и как скоро потребуют платежей. Мастер может развить это в короткую серию: пересмотр долгов гильдии, встреча с кредиторами, поиск честного способа расплатиться, помощь рыбакам. Всё это только предложения, выбор остаётся за игроками.",
+    "Акт II. Если правду скрыли или дело закрыли наспех. Сети вернулись, но долг остался тайной. Рыбаки могут догадаться и потерять доверие к старшине, а Ансельм начнёт требовать подтверждения позже. Кредиторы могут появиться раньше, чем гильдия готова, и герои окажутся свидетелями, а может, посредниками.",
+    "Акт II. Если правду раскрыли рыбакам. Возможны разные реакции: сочувствие и сбор общей помощи, обида на старшину, требование нового выбора главы гильдии. Герои могут помогать общине примириться, но ни один исход не предрешён. Миля и рыбаки могут стать союзниками героев в следующем деле.",
+    "Акт II. Если к отливу не успели. Старшина просит об отсрочке выхода флота, часть семей теряет день заработка, давление растёт. Время можно использовать, чтобы закончить разговор с Ансельмом и подтвердить долг. Напряжение должно быть заметным, но не обязано перерастать в бой.",
+    "Акт III. Расширение (по желанию мастера и по решению игроков). Порт Серый Мыс (port-town) остаётся живым местом: кредиторы, торговые связи Ансельма, слухи в таверне. Герои, возможно, станут людьми, которым порт доверяет решать тихие споры. Можно предложить новые мирные расследования, но любой конфликт с оружием должен вытекать из выбора игроков, а не быть обязательным.",
+    "Принципы ведения. Все развития условны и зависят от выбора героев. Провал проверки стоит времени или доверия, но не закрывает историю: Миля, рыбаки или запись в конторе подскажут другой путь. Сохраняйте тёплый, немного тревожный тон. Не вводите бой, если игроки выбирают разговор. Новые персонажи и места добавляйте только как отдельное решение мастера, не как факт, заданный заранее."
+  ]
+}

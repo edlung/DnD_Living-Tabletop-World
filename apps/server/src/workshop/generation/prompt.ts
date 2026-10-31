@@ -33,6 +33,7 @@ const DIRECTIONS: Readonly<Record<CampaignGenerationStage, string>> = {
     'requires an earlier time. Only item, feature, character, npc, creature have placement; factions do not. ' +
     'Every active physical entity must have an initial placement at an existing location, including NPCs, ' +
     'creatures, items and features; do not leave scene participants unplaced. ' +
+    'The one exception: an item listed in possessions is carried by its holder, so it has NO placement. ' +
     'Placement is {location,since}; entities have no location metadata in this step. ' +
     'Provide complete supported sheets for party seats and statBlocks for intended combatant NPCs/creatures. ' +
     'NPC attitude is HOSTILE/WARY/NEUTRAL/FRIENDLY/TRUSTED. Visual purpose is image, figure or ' +

@@ -46,5 +46,7 @@ export const FINDING_LABELS: Readonly<Record<string, string>> = {
   POSSESSION_HOLDER_INACTIVE: 'The one who carries an item must be active.',
   POSSESSION_QUANTITY: 'Only a stackable catalog item has a quantity.',
   CATALOG_UNKNOWN: 'The catalog has no such item.',
+  SECRET_IN_PUBLIC_SCOPE:
+    'A secret-like record is visible to players from the start; check it is meant to be.',
   DUPLICATE_QUEST: 'Quest design references must be unique.',
 };

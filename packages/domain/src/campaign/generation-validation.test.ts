@@ -75,6 +75,33 @@ describe('stage-owned campaign semantic validation', () => {
     expect(result).toContain('REFERENCE_MISSING at party.');
   });
 
+  it('accepts a carried item without a placement, and still demands one for a loose item (live finding, Stage 490)', () => {
+    const f = topology();
+    const output = cast(f.complete);
+    const holder = f.complete.party[0] ?? '';
+    const carried = {
+      key: 'carried-flask',
+      kind: 'item' as const,
+      name: 'Фляга',
+      description: '',
+      status: 'active' as const,
+      existsSince: null,
+    };
+    const withRow = {
+      ...output,
+      entities: [...output.entities, carried],
+      possessions: [{ item: 'carried-flask', holder, catalog: 'woodland-balm', quantity: 2 }],
+    };
+    expect(validateCampaignGenerationStep(f.content, 'cast', withRow).ok).toBe(true);
+    const loose = { ...withRow, possessions: [] };
+    expect(issues(f.content, 'cast', loose).join('\n')).toContain('CAST_PLACEMENT_INCOMPLETE');
+    const bad = {
+      ...withRow,
+      possessions: [{ item: 'carried-flask', holder, catalog: 'nope', quantity: 1 }],
+    };
+    expect(issues(f.content, 'cast', bad).join('\n')).toContain('CATALOG_UNKNOWN');
+  });
+
   it('accepts all seven valid partitions without demanding future sections or mutating inputs', () => {
     const f = topology();
     let current = f.seed;

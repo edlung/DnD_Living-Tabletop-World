@@ -1,5 +1,5 @@
 {
-  "$comment": "Stage 470 (docs/adr/0039-item-possession.md): Elowen's starting gear, carried not worn. Seeded last, so earlier seeded history keeps its command IDs.",
+  "$comment": "Stages 470/490 (docs/adr/0039-item-possession.md): Elowen's starting gear, and what Orin and Mira carry, all carried not worn. Seeded last, so earlier seeded history keeps its command IDs.",
   "campaignId": "ravenford",
   "dmActorId": "dm-ravenford",
   "commands": [
@@ -36,6 +36,38 @@
       "existsSince": null
     },
     {
+      "type": "CreateEntity",
+      "entityId": "item-71e4c2a9",
+      "kind": "item",
+      "name": "Orin's herb satchel",
+      "description": "A worn satchel of dried herbs, a mortar and a bone knife.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-0b93d5e7",
+      "kind": "item",
+      "name": "Orin's stock of balm",
+      "description": "Rows of small vials on the alchemist's shelf.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-e6a2184c",
+      "kind": "item",
+      "name": "Mira's guild signet",
+      "description": "A heavy signet with the guild's plain seal.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-4d7f90b3",
+      "kind": "item",
+      "name": "Mira's ledger",
+      "description": "A ledger with columns of figures in a neat hand.",
+      "existsSince": null
+    },
+    {
       "type": "GrantItem",
       "itemId": "item-5a1c7e30",
       "holderId": "elowen-starwhisper",
@@ -61,6 +93,34 @@
       "itemId": "item-2f8b1d94",
       "holderId": "elowen-starwhisper",
       "catalogId": "oil-lantern",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-71e4c2a9",
+      "holderId": "orin-stonebeard",
+      "catalogId": "herbalist-pouch",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-0b93d5e7",
+      "holderId": "orin-stonebeard",
+      "catalogId": "woodland-balm",
+      "quantity": 6
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-e6a2184c",
+      "holderId": "mira-vale",
+      "catalogId": "guild-signet",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-4d7f90b3",
+      "holderId": "mira-vale",
+      "catalogId": "merchant-ledger",
       "quantity": 1
     }
   ]

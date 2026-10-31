@@ -15,6 +15,8 @@ const CAMPAIGNS = {
   take: 'ui-items-take',
   ru: 'ui-items-ru',
   axe: 'ui-items-axe',
+  fight: 'ui-items-fight',
+  split: 'ui-items-split',
 } as const;
 
 const row = (page: Page, name: string | RegExp) =>
@@ -70,6 +72,18 @@ test('an item can be handed to someone who is here, and dropped', async ({ page 
   await expect(page.getByRole('button', { name: /^Oak buckler/ })).toHaveCount(0);
 });
 
+test('part of a stack can be handed over', async ({ page }) => {
+  await enterWorld(page, TOKENS.player, CAMPAIGNS.split);
+  await openSheet(page, 'Items');
+  const balm = await openItem(page, 'Spare balm');
+  await balm.getByLabel('How many of Spare balm', { exact: true }).selectOption('1');
+  await balm.getByLabel('Give Spare balm to', { exact: true }).selectOption({ label: 'Mira Vale' });
+  await balm.getByRole('button', { name: 'Give', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'You handed it over.' })).toBeVisible();
+  // One is left in the pack.
+  await expect(page.getByRole('button', { name: /^Spare balm/ })).not.toContainText('×');
+});
+
 test('a thing on the ground is picked up from the scene', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.take);
   await openSheet(page, 'Items');
@@ -83,6 +97,22 @@ test('a thing on the ground is picked up from the scene', async ({ page }) => {
   await expect(page.getByRole('status').filter({ hasText: 'You picked it up.' })).toBeVisible();
   await openSheet(page, 'Items');
   await expect(page.getByRole('button', { name: /^Dented lantern/ })).toBeVisible();
+});
+
+test('in a fight a potion costs the Bonus Action, once a turn', async ({ page }) => {
+  await enterWorld(page, TOKENS.player, CAMPAIGNS.fight);
+  await openSheet(page, 'Items');
+  const sheet = page.locator('#sheet-items');
+  await expect(sheet.getByRole('note')).toContainText('Bonus Action');
+  const balm = await openItem(page, "Orin's balm");
+  await balm.getByRole('button', { name: 'Use', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'You used it.' })).toBeVisible();
+  const again = await openItem(page, "Orin's balm");
+  await again.getByRole('button', { name: 'Use', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: /no bonus action/i })).toBeVisible();
+  // Armor waits for the end of the fight.
+  const cloak = await openItem(page, 'Travel-worn cloak');
+  await expect(cloak.getByRole('button', { name: 'Wear', exact: true })).toBeEnabled();
 });
 
 test('the DM perspective has no pack to open', async ({ page }) => {

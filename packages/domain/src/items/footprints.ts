@@ -4,7 +4,15 @@ import type { Footprint } from '../kernel/facts.ts';
 
 type ItemEvent = Extract<
   KernelEvent,
-  { type: 'ItemGranted' | 'ItemEquipped' | 'ItemUnequipped' | 'ItemUsed' | 'ItemTransferred' }
+  {
+    type:
+      | 'ItemGranted'
+      | 'ItemEquipped'
+      | 'ItemUnequipped'
+      | 'ItemUsed'
+      | 'ItemTransferred'
+      | 'ItemSplit';
+  }
 >;
 
 /**
@@ -50,6 +58,17 @@ export function itemFootprint(event: ItemEvent): Footprint {
           facts.sheet(event.payload.holderId),
         ],
         writes: [facts.possession(event.payload.itemId)],
+      };
+    case 'ItemSplit':
+      return {
+        reads: [
+          clock,
+          facts.encounter(),
+          ...entityChecked(event.payload.itemId),
+          ...entityChecked(event.payload.holderId),
+          facts.possession(event.payload.itemId),
+        ],
+        writes: [facts.possession(event.payload.itemId), facts.possession(event.payload.newItemId)],
       };
     case 'ItemTransferred': {
       const { itemId, from, to } = event.payload;

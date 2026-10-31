@@ -38,6 +38,19 @@ export const itemUsedPayloadSchema = z
   .object({ itemId: entityIdSchema, holderId: entityIdSchema, remaining: quantity })
   .strict();
 
+/**
+ * Part of a stack becomes an item of its own, held by the same holder: a new item entity (made by
+ * `EntityCreated` just before) takes `quantity` units from `itemId`, which keeps the rest.
+ */
+export const itemSplitPayloadSchema = z
+  .object({
+    itemId: entityIdSchema,
+    newItemId: entityIdSchema,
+    holderId: entityIdSchema,
+    quantity: quantity.min(1),
+  })
+  .strict();
+
 /** A change of carrier: `from` null = picked up, `to` null = dropped. */
 export const itemTransferredPayloadSchema = z
   .object({

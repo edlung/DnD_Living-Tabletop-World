@@ -1,0 +1,67 @@
+[
+  {
+    "item": "lira-cloak",
+    "holder": "lira-warden",
+    "catalog": "caravan-cloak",
+    "quantity": 1
+  },
+  {
+    "item": "lira-balm",
+    "holder": "lira-warden",
+    "catalog": "woodland-balm",
+    "quantity": 2
+  },
+  {
+    "item": "lira-rope",
+    "holder": "lira-warden",
+    "catalog": "hemp-rope",
+    "quantity": 1
+  },
+  {
+    "item": "toma-tools",
+    "holder": "toma-scholar",
+    "catalog": "cartographer-tools",
+    "quantity": 1
+  },
+  {
+    "item": "toma-rootwater",
+    "holder": "toma-scholar",
+    "catalog": "rootwater",
+    "quantity": 2
+  },
+  {
+    "item": "toma-candles",
+    "holder": "toma-scholar",
+    "catalog": "tallow-candle",
+    "quantity": 3
+  },
+  {
+    "item": "elder-signet",
+    "holder": "guild-elder",
+    "catalog": "guild-signet",
+    "quantity": 1
+  },
+  {
+    "item": "elder-ledger",
+    "holder": "guild-elder",
+    "catalog": "merchant-ledger",
+    "quantity": 1
+  },
+  {
+    "item": "merchant-wine",
+    "holder": "merchant",
+    "catalog": "spiced-wine",
+    "quantity": 4
+  },
+  {
+    "item": "merchant-seal-kit",
+    "holder": "merchant",
+    "catalog": "wax-seal-kit",
+    "quantity": 1
+  },
+  {
+    "item": "wet-rope",
+    "holder": "messenger-girl",
+    "quantity": 1
+  }
+]

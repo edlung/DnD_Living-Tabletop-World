@@ -1,0 +1,38 @@
+{
+  "model": "claude-sonnet-5-5",
+  "elapsedMs": 136642,
+  "job": {
+    "jobId": "052216ae-27f1-49d5-9c81-8e01dc3e460f",
+    "draftId": "1ce2bb11-c0ad-41dd-ba6a-caea65e6de3f",
+    "baseRevision": 0,
+    "status": "SUCCEEDED",
+    "nextStep": 7,
+    "createdAt": "2026-10-31T21:23:40.029Z",
+    "updatedAt": "2026-10-31T21:25:56.671Z",
+    "attachedRevision": 1,
+    "candidateAvailable": true,
+    "failureCode": null
+  },
+  "readiness": "READY",
+  "findingCounts": {},
+  "counts": {
+    "entities": 27,
+    "knowledge": 15,
+    "encounters": 0,
+    "quests": 1
+  },
+  "possessionsReturned": 11,
+  "possessionsReferToItems": true,
+  "catalogIdsUsed": [
+    "caravan-cloak",
+    "woodland-balm",
+    "hemp-rope",
+    "cartographer-tools",
+    "rootwater",
+    "tallow-candle",
+    "guild-signet",
+    "merchant-ledger",
+    "spiced-wine",
+    "wax-seal-kit"
+  ]
+}

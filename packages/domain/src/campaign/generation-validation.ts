@@ -11,6 +11,7 @@ import { mergeCampaignGenerationStep } from './generation.ts';
 import { clueTargetSupportsMethod } from '../investigation/authoring.ts';
 import { PLACEABLE_KINDS } from '../kernel/state.ts';
 import { compareKey, topological, uniqueKeys, type PlanContext } from './context.ts';
+import { validatePossessions } from './possessions.ts';
 import { validateEntities, validateKnowledge } from './references.ts';
 import { rewriteQuests, validateStory } from './story.ts';
 
@@ -165,11 +166,19 @@ export function validateCampaignGenerationStep(
       );
       uniqueKeys(context, value.conflicts, 'conflicts');
       break;
-    case 'cast':
+    case 'cast': {
       validateEntities(context);
+      validatePossessions(context);
       validateStory(context);
+      // A carried item has no place of its own: it is where its holder is (ADR 0039).
+      const carried = new Set((value.possessions ?? []).map((row) => row.item));
       for (const entity of value.entities) {
-        if (entity.status === 'active' && PLACEABLE_KINDS.has(entity.kind) && !entity.placement)
+        if (
+          entity.status === 'active' &&
+          PLACEABLE_KINDS.has(entity.kind) &&
+          !entity.placement &&
+          !carried.has(entity.key)
+        )
           add(
             'CAST_PLACEMENT_INCOMPLETE',
             `entities.${entity.key}.placement`,
@@ -196,6 +205,7 @@ export function validateCampaignGenerationStep(
           );
       }
       break;
+    }
     case 'knowledge':
       validateKnowledge(context);
       topological(

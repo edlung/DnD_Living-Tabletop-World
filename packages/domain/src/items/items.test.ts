@@ -12,7 +12,8 @@ import {
 import { redecideEffective } from '../kernel/verification/redecide.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { replay } from '../kernel/evolve.ts';
-import { decideDropItem } from './decide.ts';
+import { decideDropItem, decideTakeItem } from './decide.ts';
+import { adjacentInEncounter } from './economy.ts';
 import { possessionOf } from './records.ts';
 
 /** Item possession (docs/adr/0039-item-possession.md): grant, wear, use, hand over, drop, take, undo. */
@@ -255,19 +256,27 @@ describe('what others see', () => {
 });
 
 describe('during an encounter', () => {
-  it('holds back a combatant, not someone outside the fight', async () => {
+  it('holds back picking up for a combatant, and a combatant off its turn; not someone outside', async () => {
     await grant('letter');
     const state = await harness.state();
     const fighting = {
       ...state,
-      encounter: { combatants: [{ entityId: 'hero' }] },
+      encounter: { currentIndex: 0, combatants: [{ entityId: 'friend' }, { entityId: 'hero' }] },
     } as unknown as typeof state;
     const drop = { type: 'DropItem', characterId: 'hero', itemId: 'letter' } as never;
     expect(decideDropItem(fighting, drop)).toMatchObject({
       ok: false,
+      rejection: { code: 'ILLEGAL_ACTION', message: 'NOT_YOUR_TURN' },
+    });
+    const take = { type: 'TakeItem', characterId: 'hero', itemId: 'letter' } as never;
+    expect(decideTakeItem(fighting, take)).toMatchObject({
+      ok: false,
       rejection: { code: 'COMBAT_ALREADY_ACTIVE' },
     });
-    const other = { ...fighting, encounter: { combatants: [{ entityId: 'friend' }] } } as never;
+    const other = {
+      ...fighting,
+      encounter: { currentIndex: 0, combatants: [{ entityId: 'friend' }, { entityId: 'far' }] },
+    } as never;
     expect(decideDropItem(other, drop).ok).toBe(true);
   });
 });
@@ -358,5 +367,63 @@ describe('refusals confirm nothing', () => {
         { type: 'UseItem', itemId: 'far' },
       ]),
     ).toEqual(['INVALID_ITEM', 'INVALID_ITEM', 'INVALID_ITEM']);
+  });
+});
+
+describe('standing beside', () => {
+  it('counts squares, diagonals as one', () => {
+    const at = (entityId: string, x: number, y: number) => ({ entityId, position: { x, y } });
+    const state = {
+      encounter: { combatants: [at('a', 2, 2), at('b', 3, 3), at('c', 5, 2), at('d', 2, 4)] },
+    } as never;
+    expect(adjacentInEncounter(state, 'a', 'b')).toBe(true);
+    expect(adjacentInEncounter(state, 'a', 'c')).toBe(false);
+    expect(adjacentInEncounter(state, 'a', 'd')).toBe(false);
+    expect(adjacentInEncounter(state, 'a', 'nobody')).toBe(false);
+  });
+});
+
+describe('part of a stack', () => {
+  it('hands over some units as an item of their own and keeps the rest', async () => {
+    await grant('balm', 'woodland-balm', 3);
+    const given = expectAccepted(
+      await act({ type: 'GiveItem', itemId: 'balm', toHolderId: 'friend', quantity: 1 }),
+    );
+    const state = await verified();
+    expect(possessionOf(state, 'balm')).toMatchObject({ holderId: 'hero', quantity: 2 });
+    const moved = [...state.possessions].find(
+      ([id, p]) => id !== 'balm' && p.holderId === 'friend',
+    );
+    expect(moved?.[1]).toMatchObject({ catalogId: 'woodland-balm', quantity: 1 });
+    expect(state.entities.get(moved?.[0] ?? '')?.name).toBe('balm');
+    // Undo puts every unit back under the one stack.
+    expectAccepted(await harness.submit({ type: 'UndoCommand', targetCommandId: given.commandId }));
+    const back = await verified();
+    expect(possessionOf(back, 'balm')?.quantity).toBe(3);
+    expect(moved && possessionOf(back, moved[0])).toBeUndefined();
+  });
+
+  it('drops part of a stack where the character stands, and refuses impossible portions', async () => {
+    await grant('balm', 'woodland-balm', 3);
+    await grant('cloak', 'caravan-cloak');
+    expectRejected(await act({ type: 'DropItem', itemId: 'balm', quantity: 4 }), 'INVALID_ITEM');
+    expectAccepted(await act({ type: 'DropItem', itemId: 'balm', quantity: 2 }));
+    const state = await verified();
+    expect(possessionOf(state, 'balm')?.quantity).toBe(1);
+    const ground = [...state.possessions].find(([, p]) => p.holderId === null);
+    expect(ground?.[1].quantity).toBe(2);
+    expect(state.entities.get(ground?.[0] ?? '')?.placement?.locationId).toBe('square');
+  });
+
+  it('conserves the total when the same stack is divided twice at once', async () => {
+    await grant('balm', 'woodland-balm', 3);
+    await Promise.all(
+      [2, 2].map((quantity) =>
+        act({ type: 'GiveItem', itemId: 'balm', toHolderId: 'friend', quantity }),
+      ),
+    );
+    const state = await verified();
+    const total = [...state.possessions.values()].reduce((sum, p) => sum + p.quantity, 0);
+    expect(total).toBe(3);
   });
 });

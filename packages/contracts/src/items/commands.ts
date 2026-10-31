@@ -28,10 +28,20 @@ export const unequipItemCommandSchema = z
   .object({ type: z.literal('UnequipItem'), ...acting })
   .strict();
 export const useItemCommandSchema = z.object({ type: z.literal('UseItem'), ...acting }).strict();
+/** Part of a stack: absent means everything the holder has of it. */
+const partOfStack = z.number().int().min(1).max(99).optional();
+
 export const giveItemCommandSchema = z
-  .object({ type: z.literal('GiveItem'), ...acting, toHolderId: entityIdSchema })
+  .object({
+    type: z.literal('GiveItem'),
+    ...acting,
+    toHolderId: entityIdSchema,
+    quantity: partOfStack,
+  })
   .strict();
-export const dropItemCommandSchema = z.object({ type: z.literal('DropItem'), ...acting }).strict();
+export const dropItemCommandSchema = z
+  .object({ type: z.literal('DropItem'), ...acting, quantity: partOfStack })
+  .strict();
 export const takeItemCommandSchema = z.object({ type: z.literal('TakeItem'), ...acting }).strict();
 
 /** Player item commands: issued for the actor's own character (or by the DM/system). */

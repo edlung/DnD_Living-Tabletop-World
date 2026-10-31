@@ -1,0 +1,11 @@
+{
+  "compilerVersion": 1,
+  "readiness": "READY",
+  "findings": [],
+  "counts": {
+    "entities": 27,
+    "knowledge": 15,
+    "encounters": 0,
+    "quests": 1
+  }
+}

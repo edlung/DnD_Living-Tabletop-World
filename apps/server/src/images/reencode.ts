@@ -22,6 +22,21 @@ const BLACK = 30;
 const invalid = () =>
   new ImageGenerationError('PROVIDER_ERROR', 'the provider sent no usable image');
 
+/**
+ * The signature of PNG, JPEG or WebP, checked before any decoder sees the bytes: libvips would
+ * otherwise run the SVG, TIFF, GIF or HEIF loader on provider bytes first and refuse them only
+ * afterwards (Gate 07, G07-09).
+ */
+export function hasAllowedSignature(bytes: Uint8Array): boolean {
+  const at = (offset: number, ...expected: number[]) =>
+    expected.every((value, index) => bytes[offset + index] === value);
+  return (
+    at(0, 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a) ||
+    at(0, 0xff, 0xd8, 0xff) ||
+    (at(0, 0x52, 0x49, 0x46, 0x46) && at(8, 0x57, 0x45, 0x42, 0x50))
+  );
+}
+
 const open = (bytes: Uint8Array) =>
   sharp(bytes, { limitInputPixels: MAX_INPUT_PIXELS, failOn: 'error' });
 
@@ -113,6 +128,7 @@ export async function reencodeImage(
   /** The stored limit; smaller only in tests. */
   maxBytes: number = MAX_STORED_BYTES,
 ): Promise<Uint8Array> {
+  if (!hasAllowedSignature(bytes)) throw invalid();
   let pipeline: Sharp;
   try {
     const { format } = await open(bytes).metadata();

@@ -536,6 +536,49 @@ monetary spending, otherwise a missing stored ceiling refuses calls), `spentMicr
 zero), `charges`, `unsettled` and `unsettledReservations`, each open reservation with its campaign,
 model, amount and age (`ageMinutes`; older than `settleableAfterMinutes` is orphaned, section 8).
 
+## 7b. Мастерская кампаний: пригласить, отозвать, остановить расходы · Campaign workshop: invite, revoke, stop spending (Gate 07, G07-10)
+
+**RU.** Мастерская (создание кампаний ИИ) доступна только владельцу с приглашением. Оператор
+выдаёт и отзывает приглашения командой `workshop:operator`; отзыв владельца **не** закрывает
+сессии DM в уже активированных им кампаниях и не отзывает ранее выданные ссылки DM — для этого
+`revoke-dm` по каждой кампании (раздел 6; это решение владельца проекта, G07-05). При
+`monetaryPolicy.mode = UNLIMITED` единственные остановки расходов — эти команды: у текста и у
+картин свои переключатели. Каждая команда выводит одну строку JSON — сохраните её как запись
+оператора (кто и где разрешил: `--authorization-source`).
+
+**EN.** The workshop (AI campaign creation) is for an invited owner only. The operator issues and
+revokes invitations with `workshop:operator`; revoking an owner does **not** close the DM sessions
+in campaigns they already activated, nor withdraw DM links issued earlier — use `revoke-dm` per
+campaign for that (section 6; the project owner's decision, G07-05). Under
+`monetaryPolicy.mode = UNLIMITED` these commands are the only spending stops: text and pictures
+have their own switches. Each command prints one JSON line: keep it as the operator's record
+(who allowed it and where: `--authorization-source`).
+
+```bash
+# Пригласить владельца (ссылка печатается один раз) · Invite an owner (the link is printed once)
+dc exec -T server node apps/server/dist/workshop/operator-cli.js invite \
+  --owner <uuid> --expires-hours 24 --authorization-source '<who asked, where>'
+# Отозвать владельца · Revoke an owner
+dc exec -T server node apps/server/dist/workshop/operator-cli.js revoke \
+  --owner <uuid> --authorization-source '<who asked, where>'
+# Платная подготовка текста: включить/выключить грант владельца · Paid text preparation: grant on/off
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js preparation-grant \
+  --approval <id> --workshop-owner <uuid> --disable \
+  --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>
+# Платные картины: грант владельца · Paid pictures: the owner's grant
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js picture-grant \
+  --workshop-owner <uuid> --disable \
+  --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>
+# Аварийная остановка денежной политики: FINITE · Emergency stop: monetary policy to FINITE
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js monetary-policy-set \
+  --scope text --account <id> --mode finite \
+  --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js monetary-policy-set \
+  --scope images --mode finite \
+  --owner <owner> --authorized-on <YYYY-MM-DD> --authorization-source <reference>
+deploy/scripts/spend.sh               # проверить: траты и удержания · check: spend and holds
+```
+
 ## 7a. Включить живой ИИ · Enable live AI
 
 **RU.** Без этого раздела все возможности локальные: NPC отвечают заготовками, намерения DM разбирает

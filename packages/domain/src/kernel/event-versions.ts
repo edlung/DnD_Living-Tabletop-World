@@ -129,6 +129,7 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   ItemUnequipped: DEPENDENCY_CONTRACT,
   ItemUsed: DEPENDENCY_CONTRACT,
   ItemTransferred: DEPENDENCY_CONTRACT,
+  ItemSplit: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>

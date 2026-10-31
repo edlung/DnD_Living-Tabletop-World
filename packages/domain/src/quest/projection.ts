@@ -84,6 +84,9 @@ function occurrences(
         if (record.scope.kind !== PARTY) break;
         const at = { worldTime: record.knownSince ?? event.worldTime, events: [event] };
         if (record.subjects.includes(quest.activation.subject)) activation.push(at);
+        // What a campaign starts out knowing is prepared state, not progress: no milestone is
+        // completed by the bootstrap's own records (Gate 07, G07-06).
+        if (event.causation.commandType === 'BootstrapCampaign') break;
         for (const milestone of quest.milestones) {
           const about = (subject: string) => record.subjects.includes(subject);
           if (

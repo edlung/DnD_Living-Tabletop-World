@@ -113,10 +113,10 @@ describe('an NPC never denies what it knows', () => {
     // Gate 04: the withheld content never enters, only that it is guarded.
     expect(text).not.toContain(TESTIMONY);
     expect(sent.prompt).toContain(
-      'Guarded topics (you know something about them that you will not share now): Merchant Guild caravan.',
+      'Guarded topics (you know something about them that you will not share now): "Merchant Guild caravan".',
     );
     expect(sent.prompt).toContain(
-      'They ask you about Merchant Guild caravan, a guarded topic: you know something about it that you will not share now.',
+      'They ask you about "Merchant Guild caravan", a guarded topic: you know something about it that you will not share now.',
     );
     expect(sent.system).toContain(
       'never claim you know nothing about it, never say you did not see or hear it',
@@ -148,7 +148,7 @@ describe('an NPC never denies what it knows', () => {
     expect(talk.guarded).toEqual([]);
     const sent = request(talk, exchangeOf('talk'));
     expect(sent.prompt).toContain(
-      `You have not told them this yet; you may tell them now:\n- ${TESTIMONY}`,
+      `You have not told them this yet; you may tell them now:\n- "${TESTIMONY}"`,
     );
     expect(sent.prompt).not.toContain('You have already told them');
     expect(sent.system).toContain(

@@ -1,4 +1,4 @@
-import type { InventoryItem, InventoryResponse } from '@ltw/contracts';
+import type { EncounterView, InventoryItem, InventoryResponse } from '@ltw/contracts';
 import { StatusPanel, useLanguage, useT } from '@ltw/ui';
 import { useCallback, useState } from 'react';
 
@@ -29,7 +29,7 @@ export function ItemsSheet({
   characterId,
   canAct,
   locked,
-  inEncounter,
+  encounter,
   recipients,
   onRun,
 }: {
@@ -40,7 +40,8 @@ export function ItemsSheet({
   readonly characterId: string | null;
   readonly canAct: boolean;
   readonly locked: boolean;
-  readonly inEncounter: boolean;
+  /** The encounter this perspective sees; its own turn spends the turn's actions. */
+  readonly encounter: EncounterView | null;
   readonly recipients: readonly Recipient[];
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
@@ -62,7 +63,12 @@ export function ItemsSheet({
   const inventory = resource.status === 'ready' ? resource.value : null;
   const worn = inventory?.items.filter((item) => item.slot !== null) ?? [];
   const carried = inventory?.items.filter((item) => item.slot === null) ?? [];
-  const blocked = !canAct || locked || inEncounter;
+  // In a fight a combatant acts on its own turn only (docs/adr/0039-item-possession.md, Stage 490).
+  const fighting =
+    characterId !== null &&
+    (encounter?.combatants.some((entry) => entry.entity.entityId === characterId) ?? false);
+  const myTurn = fighting && encounter?.currentCombatantId === characterId;
+  const blocked = !canAct || locked || (fighting && !myTurn);
   const run = (body: ItemCommandBody) => {
     if (characterId === null) return;
     onRun({ kind: 'command', command: { characterId, ...body } });
@@ -110,9 +116,13 @@ export function ItemsSheet({
           <p className="items-summary">
             {t('Carrying {weight} lb', { weight: formatWeight(inventory.totalWeightLb) })}
           </p>
-          {inEncounter && (
+          {fighting && (
             <p className="field-hint" role="note">
-              {t('Items cannot be handled while an encounter runs.')}
+              {myTurn
+                ? t(
+                    'In a fight a potion or worn gear costs your Bonus Action, a shield or any other use your Action, and handing something over a Bonus Action beside the receiver. Dropping is free; armor and picking up wait.',
+                  )
+                : t('You can handle items on your own turn.')}
             </p>
           )}
           {inventory.items.length === 0 && <p className="muted">{t('You carry nothing yet.')}</p>}
