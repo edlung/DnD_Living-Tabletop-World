@@ -5,8 +5,8 @@
       "accountId": "anthropic-owner",
       "enabled": true,
       "globalDailyCeilingMicros": null,
-      "todayMicros": "213109",
-      "totalMicros": "213109",
+      "todayMicros": "413046",
+      "totalMicros": "413046",
       "openHoldMicros": "0",
       "monetaryPolicy": {
         "revision": 1,
@@ -24,7 +24,7 @@
       "stage": "490",
       "enabled": true,
       "stageCeilingMicros": null,
-      "spentMicros": "213109",
+      "spentMicros": "413046",
       "monetaryPolicy": {
         "revision": 1,
         "mode": "UNLIMITED",

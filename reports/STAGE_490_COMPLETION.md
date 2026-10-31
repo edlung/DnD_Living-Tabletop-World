@@ -29,3 +29,11 @@ uncommitted config). Not run: hosted CI, a human playtest, a live generation tha
 
 - Consent of the receiver when a player gives to another player's character (a product decision; none implemented).
 - Armor and picking up stay impossible during a fight; weight is still not enforced.
+
+## Live run (owner-authorized, 2026-10-31)
+
+Two real seven-step generations on `claude-sonnet-5-5` with a brief asking for starting items (`work-orders/STAGE_490_LIVE.md`,
+evidence `reports/evidence/stage-490-live-2026-10-31/`). Run 1 failed at the cast step ($0.213, 4 settled): the validator demanded a
+placement for every active item, but carried items have none; fixed with a regression test and a prompt exception. Run 2: SUCCEEDED,
+READY, 0 findings, 11 `possessions` rows with real catalog IDs, $0.413046, 8 settled, 0 holds, 136.6 s. Compiler result only: no
+human review, no activation, no pictures.
