@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
+import { LIVE_URL } from './support/live.ts';
 import { dockButton } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
@@ -90,8 +91,13 @@ test('old game logout and delayed refusals preserve the new cookie; history snap
   test.setTimeout(90_000);
   const oldCampaign = SIGN_IN_CAMPAIGNS.gameCookieOld,
     newCampaign = SIGN_IN_CAMPAIGNS.gameCookieNew;
-  const context = await browser.newContext(),
-    old = await context.newPage();
+  const context = await browser.newContext();
+  // A replaced sign-in's open live stream closes as `unauthenticated` at the server's next
+  // recheck (each second) and signs its tab out, on a slow runner before the stale logout is
+  // sent. Held down, as in `sign-in-tabs.spec.ts`, the stream leaves that logout as the only way
+  // these tabs can learn of a newer sign-in.
+  await context.route(LIVE_URL, (route) => route.abort());
+  const old = await context.newPage();
   await joinAsDm(old, oldCampaign);
   const oldActor = await actor(old, oldCampaign);
   await keepOldWorld(old);

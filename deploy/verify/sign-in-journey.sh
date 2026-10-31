@@ -7,10 +7,12 @@
 #      Mira, takes the road, enters and inspects the caravan site); both live streams are open
 #      (cookie and `Sec-Fetch-Site: same-origin`, as a browser's EventSource sends them);
 #   3. the DM revokes the player: the player's stream closes at once (`closed`, unauthenticated)
-#      and every request of that browser is 401, the cookie cleared;
+#      and every request of that browser is 401, with no `Set-Cookie` (no answer expires the
+#      cookie, so a late one cannot erase a newer sign-in: ADR 0036, Stage 440 amendment);
 #   4. a used player link, the used DM link, a revoked and a forged link fail with one fixed 401;
 #      a signed-in browser gets 409 instead of spending an invitation;
-#   5. cross-site requests are refused through the proxy; the DM signs out, the stream closes;
+#   5. cross-site requests are refused through the proxy; the DM signs out (204, no `Set-Cookie`),
+#      the stream closes;
 #   6. no token or session cookie appears in any log of the proxy or the server.
 # Rerunnable on the same stack. Tokens, links and cookies are never printed (<token>, <session>).
 # Prints one line per check; exit status 1 if any failed.
@@ -62,7 +64,6 @@ strict_cookie() {
     *) return 1 ;;
   esac
 }
-clearing_cookie() { case $(header set-cookie) in 'ltw_session=;'*'Max-Age=0'*) return 0 ;; *) return 1 ;; esac; }
 no_cookie_set() { [ -z "$(header set-cookie)" ]; }
 # A browser's EventSource on this origin: no Origin, same-origin fetch metadata, the cookie.
 stream() {
@@ -193,7 +194,7 @@ check 'the player can no longer act (401)' is "$(post player "/campaigns/$CAMPAI
   "{\"commandId\":\"review-after-$STAMP\",\"command\":{\"type\":\"EnterLocation\",\"characterId\":\"$ELOWEN\",\"locationId\":\"old-trade-road\"}}")" 401
 check 'the player can no longer read (401)' is "$(get player "/campaigns/$CAMPAIGN/session")" 401
 check 'GET /api/auth/session: 401' is "$(get player /auth/session)" 401
-check '... and the cookie it presented is cleared' clearing_cookie
+check '... and its cookie is left alone (no Set-Cookie)' no_cookie_set
 
 say 'used, revoked and forged links fail alike (the same error; only the request ID differs)'
 fixed=''
@@ -236,7 +237,7 @@ check 'the DM is still signed in' is "$(get dm /auth/session)" 200
 say 'the DM signs out'
 left=$(now)
 check 'POST /api/auth/sign-out: 204' is "$(post dm /auth/sign-out '{}')" 204
-check '... and the cookie is cleared' clearing_cookie
+check '... and its cookie is left alone (no Set-Cookie)' no_cookie_set
 if closed=$(arrival dm-stream '^data: {"reason":"unauthenticated"}' 1 3); then
   say "DM stream: closed (unauthenticated) $(since "$closed" "$left") s after signing out"
   check "the DM's stream ended" ended dm-stream 3
