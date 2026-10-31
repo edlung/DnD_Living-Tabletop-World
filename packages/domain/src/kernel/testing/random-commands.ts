@@ -80,7 +80,7 @@ export function randomCommand(
   if (roll < 0.77) return randomKnowledge(rng, pick, state, entities, step);
   if (roll < 0.82) return randomMemory(rng, pick, state, entities, step);
   if (roll < 0.88) return randomInvestigation(rng, pick, state, entities, step);
-  if (roll < 0.915) return randomItem(rng, pick, state, entities, step);
+  if (roll < 0.915) return randomItem(rng, pick, state, entities);
   if (roll < 0.93) {
     // Mostly a character, so that seats are taken, given up (below) and taken again.
     const characters = [...state.entities.values()].filter((e) => e.kind === 'character');
@@ -251,7 +251,6 @@ function randomItem(
   pick: <T>(items: readonly T[]) => T,
   state: WorldState,
   entities: readonly string[],
-  step: number,
 ): Record<string, unknown> {
   const of = (kind: string) => [...state.entities.values()].filter((e) => e.kind === kind);
   const carriers = [...of('character'), ...of('npc')].map((e) => e.entityId);
@@ -281,7 +280,6 @@ function randomItem(
       toHolderId: pick(carriers.length ? carriers : entities),
     };
   if (roll < 0.9) return { type: 'DropItem', characterId: carrier, itemId: item };
-  void step;
   return { type: 'TakeItem', characterId: carrier, itemId: item };
 }
 

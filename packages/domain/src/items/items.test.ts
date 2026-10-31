@@ -302,3 +302,61 @@ describe('undo safety', () => {
     expect(redecideEffective(log, snapshot, () => 0)).toBeNull();
   });
 });
+
+describe('concurrent handling', () => {
+  it('lets only one of two simultaneous hand-overs of the same item succeed', async () => {
+    await grant('letter');
+    expectAccepted(
+      await harness.submit({ type: 'PlaceEntity', entityId: 'far', locationId: 'square' }),
+    );
+    const results = await Promise.all(
+      ['friend', 'far'].map((toHolderId) =>
+        act({ type: 'GiveItem', itemId: 'letter', toHolderId }),
+      ),
+    );
+    expect(results.filter((result) => result.status === 'accepted')).toHaveLength(1);
+    expect(results.filter((result) => result.status === 'rejected')).toHaveLength(1);
+    const state = await verified();
+    expect(['friend', 'far']).toContain(possessionOf(state, 'letter')?.holderId);
+  });
+
+  it('never duplicates a stack by dropping and taking it at once', async () => {
+    await grant('balm', 'woodland-balm', 2);
+    await Promise.all([
+      act({ type: 'DropItem', itemId: 'balm' }),
+      act({ type: 'DropItem', itemId: 'balm' }),
+    ]);
+    const state = await verified();
+    expect(possessionOf(state, 'balm')?.quantity).toBe(2);
+  });
+});
+
+describe('refusals confirm nothing', () => {
+  it('answers alike for what exists elsewhere, is carried by another, or does not exist', async () => {
+    await grant('letter');
+    const codes = async (commands: Record<string, unknown>[]) =>
+      (await Promise.all(commands.map((c) => act(c)))).map((r) =>
+        r.status === 'rejected' ? r.code : 'accepted',
+      );
+    expect(
+      await codes([
+        { type: 'GiveItem', itemId: 'letter', toHolderId: 'far' },
+        { type: 'GiveItem', itemId: 'letter', toHolderId: 'no-such-person' },
+      ]),
+    ).toEqual(['NOT_PRESENT', 'NOT_PRESENT']);
+    expect(
+      await codes([
+        { type: 'TakeItem', itemId: 'no-such-item' },
+        { type: 'TakeItem', itemId: 'letter' },
+        { type: 'TakeItem', itemId: 'far' },
+      ]),
+    ).toEqual(['NOT_PRESENT', 'NOT_PRESENT', 'NOT_PRESENT']);
+    expect(
+      await codes([
+        { type: 'EquipItem', itemId: 'mail', slot: 'body' },
+        { type: 'EquipItem', itemId: 'no-such-item', slot: 'body' },
+        { type: 'UseItem', itemId: 'far' },
+      ]),
+    ).toEqual(['INVALID_ITEM', 'INVALID_ITEM', 'INVALID_ITEM']);
+  });
+});

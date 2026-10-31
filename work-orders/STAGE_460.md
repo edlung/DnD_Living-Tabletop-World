@@ -1,6 +1,6 @@
 # Work Order — Stage 460: Item catalog, possession and in-play item actions
 
-Status: **DRAFT — implementation not authorized until the owner confirms.**
+Status: **IMPLEMENTED and locally verified 2026-10-31** (owner: «Да, реализуй»). Report: `reports/STAGE_460_COMPLETION.md`.
 Authority: owner decisions 2026-10-31 (original Ravenford catalog; in-play actions included).
 Base: `main` after Gate 07 remediation (PR 16/17 merged). Design: `docs/STAGE_460_DESIGN.md`.
 

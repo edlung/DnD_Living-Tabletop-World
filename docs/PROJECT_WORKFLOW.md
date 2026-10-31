@@ -97,6 +97,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `work-orders/GATE_07_REMEDIATION.md`; report: `reports/GATE_07_REMEDIATION.md`;
   ADR 0038 amendment 2026-10-31. Lows G07-05…G07-10 await a later disposition, and a
   Gate 07 retest is the owner's call.
+- 2026-10-31: Stage 460 (item catalog, possession and in-play item actions; ADR 0039, owner decisions: original
+  Ravenford catalog, in-play actions included) is implemented on `claude/stage-460-items`, locally verified; report
+  `reports/STAGE_460_COMPLETION.md`. Stages 470 (items in AI campaign packages) and 480 (item art) are not started.
 - Stages440–450 continue after their scoped technical verification under the
   owner's delegated continuation. Runtime confirmation and final human acceptance
   remain the owner's actions.

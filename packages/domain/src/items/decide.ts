@@ -56,7 +56,10 @@ function mayHandle(state: WorldState, characterId: string): Lookup<EntityState> 
   return actor;
 }
 
-/** The acting character's own, active item. */
+/**
+ * The acting character's own, active item. What they do not carry is refused alike whether it
+ * exists, is hidden, or is not an item: a refusal never confirms an entity (ADR 0013 §1).
+ */
 function ownItem(
   state: WorldState,
   characterId: string,
@@ -64,11 +67,11 @@ function ownItem(
 ): { ok: true; possession: Possession; actor: EntityState } | (Decision & { ok: false }) {
   const actor = mayHandle(state, characterId);
   if (!actor.ok) return actor;
-  const thing = item(state, itemId);
-  if (!thing.ok) return thing;
   const possession = possessionOf(state, itemId);
   if (possession?.holderId !== characterId)
     return reject('INVALID_ITEM', `"${characterId}" does not carry "${itemId}"`, { itemId });
+  const thing = item(state, itemId);
+  if (!thing.ok) return thing;
   return { ok: true, possession, actor: actor.value };
 }
 
@@ -252,13 +255,15 @@ export function decideGiveItem(
     return reject('INVALID_ITEM', 'Take the item off before handing it over');
   if (command.toHolderId === command.characterId)
     return reject('NO_EFFECT', 'The item is already with its holder');
-  const to = carrier(state, command.toHolderId);
-  if (!to.ok) return to;
+  // Someone who is not here, does not exist, or cannot be perceived: one answer for all.
   const here = own.actor.placement?.locationId;
-  if (here === undefined || here !== to.value.placement?.locationId)
+  const recipient = state.entities.get(command.toHolderId);
+  if (here === undefined || here !== recipient?.placement?.locationId)
     return reject('NOT_PRESENT', `"${command.toHolderId}" is not here`, {
       entityId: command.toHolderId,
     });
+  const to = carrier(state, command.toHolderId);
+  if (!to.ok) return to;
   return played(
     command.characterId,
     [{ kind: 'perceived', entityId: command.toHolderId }],
@@ -320,14 +325,15 @@ export function decideTakeItem(
 ): Decision {
   const actor = mayHandle(state, command.characterId);
   if (!actor.ok) return actor;
+  // What is not lying here, whether absent, hidden, carried by someone else or no item: one answer.
+  const here = actor.value.placement?.locationId;
+  const possession = possessionOf(state, command.itemId);
+  const lying = state.entities.get(command.itemId);
+  const seen = lying?.kind === 'item' && lying.placement?.locationId === here;
+  if (here === undefined || !seen || (possession?.holderId ?? null) !== null)
+    return reject('NOT_PRESENT', `"${command.itemId}" is not here`, { itemId: command.itemId });
   const thing = item(state, command.itemId);
   if (!thing.ok) return thing;
-  const possession = possessionOf(state, command.itemId);
-  if (possession && possession.holderId !== null)
-    return reject('INVALID_ITEM', `"${command.itemId}" is already carried`);
-  const here = actor.value.placement?.locationId;
-  if (here === undefined || thing.value.placement?.locationId !== here)
-    return reject('NOT_PRESENT', `"${command.itemId}" is not here`, { itemId: command.itemId });
   return played(
     command.characterId,
     [{ kind: 'perceived', entityId: command.itemId }],

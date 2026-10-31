@@ -4,7 +4,7 @@ import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from '../world-engine/ra
 
 /**
  * Browser-test campaigns for item possession (docs/adr/0039-item-possession.md); each journey
- * owns one, seeded through real commands. Elowen carries a brigandine, a buckler, a cloak and two
+ * owns one, seeded through real commands. Item IDs are opaque: players meet them unnamed (Gate 06). Elowen carries a brigandine, a buckler, a cloak and two
  * balms and is wounded; a lantern lies on the ground where she stands.
  */
 export const UI_ITEM_CAMPAIGNS = {
@@ -89,7 +89,7 @@ async function seedItems(
       existsSince: null,
       ...(placement ? { placement: { locationId: placement, since: null } } : {}),
     });
-  await create('item-lantern', names.lantern, here);
+  await create('item-4c1e9a07', names.lantern, here);
   if (!carried) return;
   await run('wounded', {
     type: 'SetCharacterSheet',
@@ -97,10 +97,10 @@ async function seedItems(
     sheet: { ...sheet, hitPoints: { ...sheet.hitPoints, current: sheet.hitPoints.max - 30 } },
   });
   for (const [id, name, catalogId, quantity] of [
-    ['item-brigandine', names.brigandine, 'ravenford-brigandine', 1],
-    ['item-buckler', names.buckler, 'oak-buckler', 1],
-    ['item-cloak', names.cloak, 'caravan-cloak', 1],
-    ['item-balm', names.balm, 'woodland-balm', 2],
+    ['item-8d2b5f31', names.brigandine, 'ravenford-brigandine', 1],
+    ['item-1a7c3e92', names.buckler, 'oak-buckler', 1],
+    ['item-6e0f4b58', names.cloak, 'caravan-cloak', 1],
+    ['item-b93d2a16', names.balm, 'woodland-balm', 2],
   ] as const) {
     await create(id, name);
     await run(`grant-${id}`, {
