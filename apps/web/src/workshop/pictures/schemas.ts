@@ -91,7 +91,7 @@ export const picturesSchema = z
     availability: z
       .object({
         available: z.boolean(),
-        reason: z.enum(['READY', 'NO_ROUTE', 'NO_POLICY', 'UNAVAILABLE']),
+        reason: z.enum(['READY', 'NO_ROUTE', 'NO_POLICY', 'NO_GRANT', 'UNAVAILABLE']),
         providers: z.array(z.string()),
       })
       .strict(),

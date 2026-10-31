@@ -144,9 +144,11 @@ export function buildCampaignPlan(
       },
       `knowledge.${record.key}`,
     );
-    if (record.scope.kind === 'NPC')
+    // An omitted disclosure keeps the engine's GUARDED default (Gate 07, G07-04): only a record
+    // the package marks WILLING is told on request.
+    if (record.scope.kind === 'NPC' && record.disclosure !== undefined)
       add(
-        { type: 'SetDisclosure', knowledgeId, disclosure: record.disclosure ?? 'WILLING' },
+        { type: 'SetDisclosure', knowledgeId, disclosure: record.disclosure },
         `knowledge.${record.key}.disclosure`,
       );
   }

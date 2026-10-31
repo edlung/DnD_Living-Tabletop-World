@@ -46,6 +46,9 @@ from a committed revision, verified locally in Docker. Operations for people: `R
   compatible event schemas; `--rollback` does not make an older build compatible.
   Recovery preserves activation/content/bytes/events together and resumes the same
   stable command; never publish by editing SQL status. See RUNBOOK§3/§5.
+- Gate 07 (2026-10-31): after migrations 0023/0024 keep a Gate 07-aware build for recovery: an
+  older one cannot read draft revisions saved with quest identities and checks no picture grant.
+  Workshop pictures need `ai:operator picture-grant` per owner (RUNBOOK §8).
 - Docker Engine 28 or later: `backend` and `data` use the gateway mode `isolated`; `deploy.sh`
   checks the Engine and, before anything starts, the networks (`lib.sh`).
 - The live stream must never be buffered or compressed by the proxy (ADR 0033): `/api` has no

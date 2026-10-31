@@ -655,6 +655,34 @@ RU: картины лежат в базе (`ltw_asset_contents`, до 2 МБ к�
 кураторов добавляет около 15 МБ. EN: pictures live in the database (`ltw_asset_contents`, up to
 2 MB each) and are in every dump: the curated set adds about 15 MB.
 
+**Иллюстрации мастерской: грант владельца · Workshop pictures: the owner's grant (Gate 07).**
+RU: политика UNLIMITED для изображений сама никому не разрешает платные иллюстрации в мастерской:
+нужен грант конкретного владельца, как `preparation-grant` для текста. Он проверяется, когда
+мастерская предлагает иллюстрации, когда задание ставится в очередь и когда резервируются деньги;
+выключение действует на следующий же резерв. При обновлении (миграция 0024) грант получили
+владельцы, у которых был включён грант на текст. Приглашение нового владельца иллюстраций не
+даёт. Задания ограничены: на черновик одна активная генерация или правка, на владельца две, и не
+больше четырёх иллюстраций в работе; лишний запрос получает 429 и ничего не записывает, а
+очередь обслуживает владельцев по очереди. EN: the UNLIMITED image policy alone admits no owner
+to paid workshop pictures: each owner needs their own grant, as `preparation-grant` is for text.
+It is checked when the workshop offers pictures, when a job is queued and when its charge is
+reserved; disabling it stops the very next reservation. At the upgrade (migration 0024) owners
+whose text grant was enabled received it; inviting a new owner grants no pictures. Jobs are
+bounded: one active generation or edit per draft, two per owner, at most four pictures in
+progress; a request over the bound gets 429 and records nothing, and the queue serves owners in
+turn.
+
+```bash
+dc exec -T server node apps/server/dist/ai/accounting/operator-cli.js picture-grant \
+  --workshop-owner <ownerId> --enable|--disable --owner <owner> --authorized-on <YYYY-MM-DD> \
+  --authorization-source <reference>
+```
+
+RU: после миграций 0023/0024 откат требует сборки, которая их знает (раздел 3): старая сборка не
+проверяет грант и не может прочитать ревизии черновиков, сохранённые с идентификаторами квестов.
+EN: after migrations 0023/0024 a rollback needs a build that knows them (section 3): an older
+build checks no grant and cannot read draft revisions saved with quest identities.
+
 ## 9. Журналы и тревоги · Logs and alarms
 
 **RU.** Журналы — JSON в stdout каждого контейнера, Docker хранит 5 × 100 МБ на сервис.

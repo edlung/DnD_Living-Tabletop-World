@@ -143,7 +143,7 @@ export function EditScenarioFields({
                     setFields({ ...fields, [field]: event.target.value });
                   }}
                 >
-                  <option value="">{t('None recorded')}</option>
+                  <option value="">{t('Guarded (default)')}</option>
                   <option value="WILLING">{t('Willing to share')}</option>
                   <option value="GUARDED">{t('Guarded')}</option>
                 </select>

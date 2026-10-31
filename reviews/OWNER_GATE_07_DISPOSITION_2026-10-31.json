@@ -1,0 +1,35 @@
+{
+  "gate": "GATE-07",
+  "date": "2026-10-31",
+  "source": "Owner replies in a Claude Code session after the Gate 07 report (pull request edlung/DnD_Living-Tabletop-World#16)",
+  "review": "reviews/GATE_07_SECURITY_REVIEW_2026-10-31.md",
+  "question": "Исправлять четыре Medium-находки Gate 07?",
+  "ownerInstruction": "Да, исправить",
+  "disposition": {
+    "G07-01": "FIX",
+    "G07-02": "FIX",
+    "G07-03": "FIX",
+    "G07-04": "FIX",
+    "G07-05..G07-10 (Low) and I-01..I-21 (Info)": "Not in this remediation; open for a later disposition"
+  },
+  "productDecisions": [
+    {
+      "finding": "G07-01",
+      "question": "Сколько платных задач один владелец мастерской может держать в очереди одновременно (G07-01)?",
+      "answer": "Умеренный лимит (Recommended)",
+      "meaning": "Generation or edit: one active per draft and at most two per owner; pictures: at most four active per owner. A request over the bound gets a clear 'wait for completion' refusal, and the queue serves owners in turn."
+    },
+    {
+      "finding": "G07-02",
+      "question": "Как разрешать владельцу платную генерацию картинок (G07-02)?",
+      "answer": "Отдельный грант (Recommended)",
+      "meaning": "A new operator command enables or disables paid pictures per owner, separately from text. Owners whose latest text preparation grant is enabled keep pictures automatically at the upgrade (migration 0024)."
+    }
+  ],
+  "implementationScope": "work-orders/GATE_07_REMEDIATION.md",
+  "unchanged": [
+    "human play acceptance",
+    "no release tag",
+    "no deployment, credential, provider or default-database change"
+  ]
+}

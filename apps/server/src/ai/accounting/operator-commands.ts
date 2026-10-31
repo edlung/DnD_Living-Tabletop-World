@@ -1,6 +1,7 @@
 import type pg from 'pg';
 
 import { imageBudgetStatus, setImageCeiling } from '../../images/ledger.ts';
+import { grantWorkshopPictures } from '../../images/picture-grants.ts';
 import {
   ORPHAN_AFTER_MINUTES,
   openImageReservations,
@@ -30,6 +31,8 @@ import { grantPreparationApproval } from './preparation-sessions.ts';
  * (`src/images/ledger-operator.ts`, ADR 0035 amendment 2026-10-16).
  * `spend` (read-only) prints the spending counters, the AI providers' and the image ledger's with
  * its unsettled reservations (`spend-report.ts`, docs/adr/0037-deployment.md).
+ * `picture-grant` enables or disables one workshop owner's paid pictures, as `preparation-grant`
+ * does their text preparation (Gate 07, G07-02; migration 0024).
  */
 export async function runOperatorCommand(
   pool: pg.Pool,
@@ -39,6 +42,8 @@ export async function runOperatorCommand(
   switch (command.kind) {
     case 'preparation-grant':
       return { preparationGrantRevision: await grantPreparationApproval(pool, command) };
+    case 'picture-grant':
+      return { pictureGrantRevision: await grantWorkshopPictures(pool, command) };
     case 'monetary-policy-set':
       return {
         monetaryPolicyRevision: await setMonetaryPolicy(pool, {

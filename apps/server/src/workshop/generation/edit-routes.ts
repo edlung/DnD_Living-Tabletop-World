@@ -14,6 +14,7 @@ import { authorizeWorkshop } from '../access.ts';
 import { newVisualManifest } from '../images/manifest.ts';
 import type { WorkshopDependencies } from '../service.ts';
 import type { StoredGenerationJob } from './store.ts';
+import { refusal } from './routes.ts';
 import { generationJobView } from './views.ts';
 
 const pathSchema = z.object({ draftId: workshopIdSchema }).strict();
@@ -124,9 +125,9 @@ export function registerCampaignEditRequestRoutes(
       });
       return replay.kind === 'saved'
         ? reply.send({ job: generationJobView(replay.job) })
-        : replay.kind === 'not-found'
-          ? sendError(reply, request, 'NOT_FOUND')
-          : conflict(reply, 'REQUEST_REUSED');
+        : replay.kind === 'conflict'
+          ? conflict(reply, 'REQUEST_REUSED')
+          : sendError(reply, request, refusal(replay.kind));
     }
     const slot = deps.limits.expensive(`workshop:${grant.scope.ownerId}`);
     if (!slot) return sendError(reply, request, 'RATE_LIMITED');
@@ -147,9 +148,9 @@ export function registerCampaignEditRequestRoutes(
       });
       return result.kind === 'saved'
         ? await reply.send({ job: generationJobView(result.job) })
-        : result.kind === 'not-found'
-          ? await sendError(reply, request, 'NOT_FOUND')
-          : await conflict(reply, 'STALE_REVISION');
+        : result.kind === 'conflict'
+          ? await conflict(reply, 'STALE_REVISION')
+          : await sendError(reply, request, refusal(result.kind));
     } finally {
       slot.release();
     }

@@ -1,11 +1,12 @@
 import { createCombatEngine } from '@ltw/combat';
-import type {
-  EntityAssetsResponse,
-  EncounterResponse,
-  EntityPresentationResponse,
-  KnowledgeListResponse,
-  MemoryRecallResponse,
-  QuestListResponse,
+import {
+  OPAQUE_QUEST_ID,
+  type EntityAssetsResponse,
+  type EncounterResponse,
+  type EntityPresentationResponse,
+  type KnowledgeListResponse,
+  type MemoryRecallResponse,
+  type QuestListResponse,
 } from '@ltw/contracts';
 import {
   checkWorldIntegrity,
@@ -130,9 +131,15 @@ describe('offline owner-specimen campaign after confirmed bootstrap', () => {
     ).toBe(true);
     expect(records.some((record) => record.scope.kind === 'WORLD_TRUTH')).toBe(false);
     const quest = await f.send('player', 'GET', '/quests?perspective=PLAYER');
+    // Gate 07, G07-03: the player's quest log names the quest and its stages by opaque IDs only.
+    const questKey = f.revision.content.quests[0]?.questId ?? '';
+    const stage = (key: string) => f.revision.identities.stages?.[questKey]?.[key];
+    const authored = [questKey, 'find-sluice', 'read-journal', 'return-harbor'];
+    expect(quest.json<QuestListResponse>().quests[0]?.questId).toMatch(OPAQUE_QUEST_ID);
     expect(
       quest.json<QuestListResponse>().quests[0]?.transitions.map((transition) => transition.stage),
-    ).toEqual(['activated', 'find-sluice', 'read-journal']);
+    ).toEqual(['activated', stage('find-sluice'), stage('read-journal')]);
+    expect(authored.filter((key) => quest.body.includes(key))).toEqual([]);
     const combat = await playPreparedCombat(f);
     expect(combat.playerEncounter.statusCode).toBe(200);
     const encounter = combat.playerEncounter.json<EncounterResponse>().encounter;
@@ -161,7 +168,8 @@ describe('offline owner-specimen campaign after confirmed bootstrap', () => {
       completed
         .json<QuestListResponse>()
         .quests[0]?.transitions.map((transition) => transition.stage),
-    ).toEqual(['activated', 'find-sluice', 'read-journal', 'return-harbor']);
+    ).toEqual(['activated', stage('find-sluice'), stage('read-journal'), stage('return-harbor')]);
+    expect(authored.filter((key) => completed.body.includes(key))).toEqual([]);
     const journal = await f.send('player', 'GET', '/memories?perspective=PLAYER');
     expect(journal.statusCode).toBe(200);
     expect(journal.json<MemoryRecallResponse>().memories.length).toBeGreaterThan(0);

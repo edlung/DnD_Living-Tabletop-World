@@ -7,7 +7,9 @@ import { useRequestSignal } from '../use-request-signal.ts';
 
 export function usePictureActions(client: WorkshopClient, onChanged: () => void) {
   const signal = useRequestSignal();
-  const [state, setState] = useState<'idle' | 'busy' | 'uncertain' | 'conflict' | 'done'>('idle');
+  const [state, setState] = useState<
+    'idle' | 'busy' | 'uncertain' | 'conflict' | 'done' | 'waiting'
+  >('idle');
   const [conflict, setConflict] = useState<unknown>(null);
   const alive = useRef(true);
   const pending = useRef<{ path: string; body: object; schema: z.ZodType } | null>(null);
@@ -37,6 +39,9 @@ export function usePictureActions(client: WorkshopClient, onChanged: () => void)
       setState('conflict');
       setConflict(result.details ?? null);
       onChanged();
+    } else if (result.kind === 'busy') {
+      pending.current = null;
+      setState('waiting');
     } else if (result.kind !== 'cancelled' && result.kind !== 'signed-out') setState('uncertain');
   };
   return {

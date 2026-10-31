@@ -51,6 +51,8 @@ registerRussian({
     'Для этой мастерской не настроен провайдер изображений.',
   'Image generation is not enabled for this workshop.':
     'Генерация иллюстраций не включена для этой мастерской.',
+  'The operator has not enabled paid pictures for your workshop account.':
+    'Оператор не включил платные иллюстрации для вашей учётной записи мастерской.',
   'Picture generation is temporarily unavailable. Try again later.':
     'Генерация иллюстраций временно недоступна. Попробуйте позже.',
   'Picture object': 'Объект иллюстрации',

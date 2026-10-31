@@ -10,6 +10,7 @@ import { readCommitted, type Tx } from '../ai/accounting/pg-transaction.ts';
 import type { Authorization } from '../ai/accounting/types.ts';
 import { IMAGE_LEDGER_LOCK_KEY } from './ledger-lock.ts';
 import { eligibleDraftImageClaim } from './draft-admission.ts';
+import { pictureGrantEnabled } from './picture-grants.ts';
 
 export { IMAGE_LEDGER_LOCK_KEY } from './ledger-lock.ts';
 
@@ -109,6 +110,8 @@ export class PostgresImageLedger implements ImageLedger {
       const unlimited = policy?.mode === 'UNLIMITED';
       if (charge.subject) {
         if (!unlimited) return 'no-budget';
+        // Gate 07, G07-02: the owner's own picture grant, read under the shared policy lock.
+        if (!(await pictureGrantEnabled(tx, charge.subject.ownerId))) return 'ineligible';
         if (!(await eligibleDraftImageClaim(tx, charge.subject, charge.chargeId, charge)))
           return 'ineligible';
       }

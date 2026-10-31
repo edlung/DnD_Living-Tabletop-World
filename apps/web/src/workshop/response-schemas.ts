@@ -1,6 +1,7 @@
 import {
   campaignBriefSchema,
   campaignPackageSchema,
+  campaignQuestIdentitiesShape,
   CAMPAIGN_GENERATION_STATUSES,
   workshopIdSchema,
 } from '@ltw/contracts';
@@ -55,6 +56,7 @@ const identities = z
     clues: z.record(z.string(), id),
     encounters: z.record(z.string(), id),
     scene: id,
+    ...campaignQuestIdentitiesShape,
   })
   .strict();
 export const revisionSchema = z

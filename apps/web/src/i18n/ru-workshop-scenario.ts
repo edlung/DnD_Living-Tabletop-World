@@ -103,6 +103,7 @@ registerRussian({
     'Не удалось сохранить исправления. Попробуйте снова.',
   'Willing to share': 'Готов поделиться',
   Guarded: 'Скрывает',
+  'Guarded (default)': 'Скрывает (по умолчанию)',
   'Campaign idea': 'Идея кампании',
   Setting: 'Сеттинг',
   Tone: 'Тон',

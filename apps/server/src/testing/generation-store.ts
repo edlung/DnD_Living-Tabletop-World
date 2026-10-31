@@ -10,6 +10,7 @@ import {
 
 import type { MemoryCampaignRevisionRepository } from './campaign-packages.ts';
 import { checkedJobInput, jobFingerprint } from '../workshop/generation/postgres-enqueue.ts';
+import { ownersInTurn, roomForTextJob } from '../workshop/job-limits.ts';
 import {
   clone,
   digest,
@@ -156,6 +157,7 @@ export class MemoryCampaignGenerationRepository implements CampaignGenerationRep
             : ({ kind: 'conflict' } as const);
         const capturedLockVersion = await this.#current(input);
         if (capturedLockVersion === null) return { kind: 'conflict' } as const;
+        if (!roomForTextJob(this.#jobs.values(), input)) return { kind: 'busy' } as const;
         const job: Mutable<StoredGenerationJob> = {
           mode: this.mode,
           lockVersion: capturedLockVersion,
@@ -214,6 +216,7 @@ export class MemoryCampaignGenerationRepository implements CampaignGenerationRep
           this.mode,
         );
         if ((await this.#current(context)) === null) return { kind: 'conflict' } as const;
+        if (!roomForTextJob(this.#jobs.values(), old)) return { kind: 'busy' } as const;
         const job: Mutable<StoredGenerationJob> = {
           ...clone(old),
           jobId: randomUUID(),
@@ -296,13 +299,15 @@ export class MemoryCampaignGenerationRepository implements CampaignGenerationRep
   }
   pending(limit: number) {
     return Promise.resolve(
-      [...this.#jobs.values()]
-        .filter((job) => job.mode === this.mode)
-        .filter(
-          (job) =>
-            job.status === 'QUEUED' ||
-            (job.status === 'RUNNING' && (job.leaseUntil ?? '') <= this.#time()),
-        )
+      ownersInTurn(
+        [...this.#jobs.values()]
+          .filter((job) => job.mode === this.mode)
+          .filter(
+            (job) =>
+              job.status === 'QUEUED' ||
+              (job.status === 'RUNNING' && (job.leaseUntil ?? '') <= this.#time()),
+          ),
+      )
         .slice(0, limit)
         .map(({ ownerId, draftId, jobId }) => ({ ownerId, draftId, jobId })),
     );

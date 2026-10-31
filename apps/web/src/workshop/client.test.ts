@@ -187,6 +187,15 @@ describe('workshop editor requests', () => {
     );
     expect(await failed.request('/package', schema)).toEqual({ kind: 'failed' });
   });
+  it('tells a paid job refused at the owner bound (429) apart from an uncertain failure (Gate 07)', async () => {
+    const client = new WorkshopClient(
+      'owner',
+      vi.fn(),
+      () => Promise.resolve(reply(429, { error: { code: 'RATE_LIMITED' } })),
+      signedIn,
+    );
+    expect(await client.request('/generation', schema, { body: {} })).toEqual({ kind: 'busy' });
+  });
   it('uses the same owner/authentication boundary for picture bytes', async () => {
     const request = vi.fn(() =>
       Promise.resolve(new Response(new Blob(['pixels'], { type: 'image/png' }))),

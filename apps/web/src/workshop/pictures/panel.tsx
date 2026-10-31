@@ -115,7 +115,9 @@ export function OwnerPictures({
                 ? t('No image provider is configured for this workshop.')
                 : resource.value.availability.reason === 'NO_POLICY'
                   ? t('Image generation is not enabled for this workshop.')
-                  : t('Picture generation is temporarily unavailable. Try again later.')}
+                  : resource.value.availability.reason === 'NO_GRANT'
+                    ? t('The operator has not enabled paid pictures for your workshop account.')
+                    : t('Picture generation is temporarily unavailable. Try again later.')}
             </p>
           )}
           <label htmlFor="workshop-picture-subject">{t('Picture object')}</label>
@@ -258,13 +260,15 @@ function ActionReceipt({ actions }: { readonly actions: ReturnType<typeof usePic
           ? t('Saving the picture request…')
           : actions.state === 'done'
             ? t('Picture request recorded.')
-            : actions.state === 'conflict'
-              ? t(
-                  'The pictures changed in another view. Refresh and review them before making a new choice.',
-                )
-              : t(
-                  'The answer is uncertain. Retry the original request before making another choice.',
-                )}
+            : actions.state === 'waiting'
+              ? t('Too many paid jobs at once. Wait until a running one finishes, then try again.')
+              : actions.state === 'conflict'
+                ? t(
+                    'The pictures changed in another view. Refresh and review them before making a new choice.',
+                  )
+                : t(
+                    'The answer is uncertain. Retry the original request before making another choice.',
+                  )}
       </p>
       {actions.state === 'uncertain' && (
         <button onClick={actions.retry}>{t('Retry original picture request')}</button>

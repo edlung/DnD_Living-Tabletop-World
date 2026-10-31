@@ -2,7 +2,8 @@ import { randomUUID } from 'node:crypto';
 
 import type { CampaignIdentities, CampaignPackage, EntityKind } from '@ltw/contracts';
 
-export type CampaignIdentityNamespace = 'entities' | 'knowledge' | 'clues' | 'encounters' | 'scene';
+export type CampaignIdentityNamespace =
+  'entities' | 'knowledge' | 'clues' | 'encounters' | 'scene' | 'quests' | 'quest-stages';
 export interface CampaignIdentityRecord {
   readonly namespace: CampaignIdentityNamespace;
   readonly key: string;
@@ -59,9 +60,40 @@ export function allocateCampaignIdentities(
   }
   const scene = resolve('scene', 'initial', null);
   if (scene === null) return { kind: 'conflict' };
+  // Gate 07, G07-03: quests and their stages reach players under these IDs, never their slugs.
+  const opaque = (prefix: string, id: string) => `${prefix}-${id.replaceAll('-', '')}`;
+  const quests: Record<string, string> = {};
+  const stages: Record<string, Record<string, string>> = {};
+  for (const quest of content.quests) {
+    const id = resolve('quests', quest.questId, null);
+    if (id === null) return { kind: 'conflict' };
+    quests[quest.questId] = opaque('q', id);
+    const questStages: Record<string, string> = {};
+    for (const milestone of quest.milestones) {
+      const stage = resolve('quest-stages', questStageKey(quest.questId, milestone.stage), null);
+      if (stage === null) return { kind: 'conflict' };
+      questStages[milestone.stage] = opaque('s', stage);
+    }
+    stages[quest.questId] = questStages;
+  }
   return {
     kind: 'allocated',
-    identities: { entities, knowledge, clues, encounters, scene },
+    identities: { entities, knowledge, clues, encounters, scene, quests, stages },
     added,
   };
+}
+
+/** A stage's registry key: stage slugs are unique only within their quest. */
+export const questStageKey = (questId: string, stage: string): string => `${questId}/${stage}`;
+
+/** The registry UUID behind a public quest or stage ID (`q-` or `s-` and 32 hex digits). */
+export function canonicalOfOpaque(id: string): string {
+  const hex = id.slice(2);
+  return [
+    hex.slice(0, 8),
+    hex.slice(8, 12),
+    hex.slice(12, 16),
+    hex.slice(16, 20),
+    hex.slice(20),
+  ].join('-');
 }

@@ -118,6 +118,11 @@ test('explicit activation opens the stored world, prepared party, normal player 
     await player.request.get(`${base}/quests?perspective=PLAYER`)
   ).json()) as QuestListResponse;
   expect(log.quests.map((row) => row.title)).toContain(quest.title);
+  // Gate 07, G07-03: the quest reaches the player under its opaque ID, never the authored key.
+  expect(log.quests.find((row) => row.title === quest.title)?.questId).toBe(
+    source.revision.identities.quests?.[quest.questId],
+  );
+  expect(JSON.stringify(log)).not.toContain(quest.questId);
   expect(calls.some((path) => path.endsWith('/images/jobs') || path.endsWith('/generation'))).toBe(
     false,
   );

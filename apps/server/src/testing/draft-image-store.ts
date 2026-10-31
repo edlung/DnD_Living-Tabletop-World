@@ -11,6 +11,7 @@ import {
 
 import { checkContent, contentHashOf } from '../assets/content-store.ts';
 import { publicDraftImageJob } from '../workshop/images/views.ts';
+import { ownersInTurn, roomForPicture } from '../workshop/job-limits.ts';
 import {
   imageDigest,
   imageSlotKey,
@@ -167,6 +168,7 @@ export class MemoryDraftImageRepository implements DraftImageRepository {
         !preparedImageMatches(input, revision, manifest)
       )
         return { kind: 'conflict' } as const;
+      if (!roomForPicture(this.#jobs.values(), input.ownerId)) return { kind: 'busy' } as const;
       const job: Mutable<StoredDraftImageJob> = {
         requestId: input.requestId,
         expectedManifestVersion: input.expectedManifestVersion,
@@ -234,12 +236,13 @@ export class MemoryDraftImageRepository implements DraftImageRepository {
   }
   pending(limit: number) {
     return Promise.resolve(
-      [...this.#jobs.values()]
-        .filter(
+      ownersInTurn(
+        [...this.#jobs.values()].filter(
           (job) =>
             job.status === 'QUEUED' ||
             (job.status === 'RUNNING' && (job.leaseUntil ?? '') <= this.#time()),
-        )
+        ),
+      )
         .slice(0, limit)
         .map(({ ownerId, draftId, jobId }) => ({ ownerId, draftId, jobId })),
     );

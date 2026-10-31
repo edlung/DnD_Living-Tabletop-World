@@ -4,6 +4,8 @@ import type { AssetMediaType, DraftImageCandidate, DraftImageJob } from '@ltw/co
 import type pg from 'pg';
 
 import { checkContent, contentHashOf } from '../../assets/content-store.ts';
+import { pictureGrantEnabled } from '../../images/picture-grants.ts';
+import { OWNERS_IN_TURN, pictureJobAllowed } from '../job-limits.ts';
 import { readCampaignRevisionInTransaction } from '../packages/postgres-store.ts';
 import {
   claimImage,
@@ -39,6 +41,7 @@ import type {
   RequestDraftImage,
   SelectDraftImage,
   ImageJobMutation,
+  ImageRequestMutation,
 } from './store.ts';
 
 const bounded = (limit: number) => Math.max(1, Math.min(50, Math.trunc(limit)));
@@ -47,7 +50,7 @@ export class PostgresDraftImageRepository implements DraftImageRepository {
   constructor(pool: pg.Pool) {
     this.#pool = pool;
   }
-  request(raw: RequestDraftImage): Promise<ImageJobMutation> {
+  request(raw: RequestDraftImage): Promise<ImageRequestMutation> {
     const input = checkedImageRequest(raw);
     return imageTransaction(this.#pool, async (client) => {
       if (!(await imageDraftLock(client, input))) return { kind: 'not-found' };
@@ -64,6 +67,9 @@ export class PostgresDraftImageRepository implements DraftImageRepository {
         return prior.request_fingerprint === fingerprint
           ? { kind: 'saved', job: imageJobView(prior) }
           : { kind: 'conflict' };
+      // Gate 07: the owner's picture grant (G07-02) and active-job bound (G07-01), under the lock.
+      if (!(await pictureGrantEnabled(client, input.ownerId))) return { kind: 'no-grant' };
+      if (!(await pictureJobAllowed(client, input.ownerId))) return { kind: 'busy' };
       const revision = await readCampaignRevisionInTransaction(
         client,
         input.ownerId,
@@ -151,8 +157,10 @@ export class PostgresDraftImageRepository implements DraftImageRepository {
   pending(limit: number) {
     return imageTransaction(this.#pool, async (client) => {
       const rows = await client.query<{ owner_id: string; draft_id: string; job_id: string }>(
-        `SELECT owner_id,draft_id,job_id FROM ltw_workshop_image_jobs
-   WHERE status='QUEUED' OR(status='RUNNING' AND lease_until<=clock_timestamp()) ORDER BY created_at,job_id LIMIT $1`,
+        `SELECT owner_id,draft_id,job_id FROM (SELECT owner_id,draft_id,job_id,created_at,
+   ${OWNERS_IN_TURN} AS turn FROM ltw_workshop_image_jobs
+   WHERE status='QUEUED' OR(status='RUNNING' AND lease_until<=clock_timestamp())) pending
+   ORDER BY turn,created_at,job_id LIMIT $1`,
         [bounded(limit)],
       );
       return rows.rows.map((row) => ({

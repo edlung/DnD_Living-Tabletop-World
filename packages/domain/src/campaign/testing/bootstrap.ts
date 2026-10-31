@@ -1,13 +1,13 @@
 import type { BootstrapCampaignCommand, CampaignBootstrapAsset } from '@ltw/contracts';
 
 import { bellCampaign } from './bell.ts';
-import { testCampaignIdentities } from './identities.ts';
+import { testBootstrapIdentities } from './identities.ts';
 
 export const OWNER = { actorId: '20000000-0000-4000-8000-000000000001', kind: 'user' as const };
 export const bootstrapHash = (n: number) => `sha256:${n.toString(16).padStart(64, '0')}`;
 export function bootstrapCommand(withPictures = false): BootstrapCampaignCommand {
   const content = bellCampaign(),
-    identities = testCampaignIdentities(content);
+    identities = testBootstrapIdentities(content);
   const source = {
     activationId: '20000000-0000-4000-8000-000000000002',
     ownerId: OWNER.actorId,

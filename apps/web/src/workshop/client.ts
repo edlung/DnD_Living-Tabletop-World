@@ -6,7 +6,8 @@ export type WorkshopResult<T, C = never> =
   | { readonly kind: 'ready'; readonly value: T }
   | { readonly kind: 'conflict'; readonly details?: C }
   | {
-      readonly kind: 'signed-out' | 'failed' | 'missing' | 'unavailable' | 'cancelled';
+      /** `busy`: the fixed 429, the owner's paid jobs at their bound (Gate 07, G07-01). */
+      readonly kind: 'signed-out' | 'failed' | 'missing' | 'unavailable' | 'cancelled' | 'busy';
     };
 
 /** Session changes invalidate this entire client, including transports that ignore abort. */
@@ -119,6 +120,7 @@ export class WorkshopClient {
       }
       if (response?.status === 404) return { kind: 'missing' };
       if (response?.status === 422) return { kind: 'unavailable' };
+      if (response?.status === 429) return { kind: 'busy' };
       if (!response?.ok) return { kind: 'failed' };
       let decoded: WorkshopResult<T>;
       try {

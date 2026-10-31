@@ -9,7 +9,7 @@ import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { createHarness, expectAccepted } from '../kernel/testing/kernel-harness.ts';
 import { MAX_CLUES_PER_METHOD } from '../investigation/records.ts';
 import { bootstrapCommand, bootstrapHash, OWNER } from './testing/bootstrap.ts';
-import { testCampaignIdentities } from './testing/identities.ts';
+import { testBootstrapIdentities } from './testing/identities.ts';
 
 async function history() {
   const h = createHarness();
@@ -100,7 +100,7 @@ describe('bootstrap replay and durable proof integrity', () => {
     if (!clue) throw new Error('CLUE_MISSING');
     for (let index = 0; index < MAX_CLUES_PER_METHOD; index++)
       command.content.clues.push({ ...clue, key: `extra-clue-${index}` });
-    command.identities = testCampaignIdentities(command.content);
+    command.identities = testBootstrapIdentities(command.content);
     expect(bootstrapCampaignCommandSchema.safeParse(command).success).toBe(true);
     expect(await h.submit(command, { actor: OWNER })).toMatchObject({
       status: 'rejected',

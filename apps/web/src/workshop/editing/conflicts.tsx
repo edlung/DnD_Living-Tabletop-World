@@ -64,6 +64,11 @@ export function PendingEditReceipt({
           {t('The answer is uncertain. Retry the original request before making another change.')}
         </p>
       )}
+      {action.state === 'waiting' && (
+        <p role="status">
+          {t('Too many paid jobs at once. Wait until a running one finishes, then try again.')}
+        </p>
+      )}
       {action.state === 'uncertain' && (
         <button type="button" onClick={onRetry}>
           {t('Retry original request')}

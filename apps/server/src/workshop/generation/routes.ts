@@ -21,6 +21,9 @@ const jobPath = draftPath.extend({ jobId: workshopIdSchema }).strict();
 const tracePath = jobPath.extend({ traceId: workshopIdSchema }).strict();
 const listQuery = z.object({ after: workshopIdSchema.optional() }).strict();
 const PAGE_SIZE = 25;
+/** A refused enqueue; `busy` is the owner's active-job bound (Gate 07, G07-01), the fixed 429. */
+export const refusal = (kind: 'not-found' | 'conflict' | 'busy') =>
+  kind === 'not-found' ? 'NOT_FOUND' : kind === 'busy' ? 'RATE_LIMITED' : 'CONFLICT';
 
 /** Polling uses ordinary durable workshop authorization on every request. */
 export function registerCampaignGenerationRoutes(
@@ -99,8 +102,7 @@ export function registerCampaignGenerationRoutes(
               brief: input.data.brief,
             }),
           });
-          if (result.kind === 'not-found') return sendError(reply, request, 'NOT_FOUND');
-          if (result.kind === 'conflict') return sendError(reply, request, 'CONFLICT');
+          if (result.kind !== 'saved') return sendError(reply, request, refusal(result.kind));
           return reply.send({ job: generationJobView(result.job) });
         });
       },
@@ -187,7 +189,7 @@ export function registerCampaignGenerationRoutes(
         );
         return replay.kind === 'saved'
           ? reply.send({ job: generationJobView(replay.job) })
-          : sendError(reply, request, replay.kind === 'not-found' ? 'NOT_FOUND' : 'CONFLICT');
+          : sendError(reply, request, refusal(replay.kind));
       }
       const availability = await generation.preparation.availability(grant.session.ownerId);
       if (!availability.available) return reply.code(422).send({ availability });
@@ -196,8 +198,7 @@ export function registerCampaignGenerationRoutes(
         input.data.requestId,
         grant.session.sessionId,
       );
-      if (result.kind === 'not-found') return sendError(reply, request, 'NOT_FOUND');
-      if (result.kind === 'conflict') return sendError(reply, request, 'CONFLICT');
+      if (result.kind !== 'saved') return sendError(reply, request, refusal(result.kind));
       return reply.send({ job: generationJobView(result.job) });
     });
   });

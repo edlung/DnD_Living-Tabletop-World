@@ -24,6 +24,7 @@ import { Secret } from '../../platform/config/config.ts';
 import { createLogger } from '../../platform/logging/logger.ts';
 import { TEST_AUTH, accountingDb, type AccountingDb } from '../../testing/accounting.ts';
 import { fakeFetch, jsonResponse } from '../../testing/fake-fetch.ts';
+import { grantTestPictures } from '../../testing/picture-grant.ts';
 import { englishBellCampaign } from '../../testing/generation/bell-english.ts';
 import { answer, dataUrl, picture } from '../../testing/image-provider.ts';
 import { testAiGateway, testAuthoring, testDm } from '../../testing/ravenford-app.ts';
@@ -131,6 +132,7 @@ describe('actual private image HTTP generation pipeline', () => {
       hours: 1,
       authorizationSource: 'test:420-http',
     });
+    await grantTestPictures(database.pool, ownerId);
     const token = invitation.link.split('#')[1];
     if (!token) throw new Error('TEST_INVITATION_MISSING');
     const redeemed = await server.inject({

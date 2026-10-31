@@ -3,6 +3,7 @@ import {
   bootstrapCampaignAssetSchema,
   campaignActivationViewSchema,
   campaignPackageSchema,
+  campaignQuestIdentitiesShape,
   contentHashSchema,
   questBookSchema,
   workshopIdSchema,
@@ -25,7 +26,9 @@ export const activationRevisionSchema = z
     revision: z.number().int().min(1).max(1000000),
     basedOnRevision: z.number().int().min(0).max(999999),
     content: campaignPackageSchema,
-    identities: bootstrapCampaignCommandSchema.shape.identities,
+    identities: bootstrapCampaignCommandSchema.shape.identities.extend(
+      campaignQuestIdentitiesShape,
+    ),
     digest: contentHashSchema,
     source: z.unknown().transform(parseStoredCampaignSource),
     createdAt: z.iso.datetime(),

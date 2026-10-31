@@ -11,7 +11,7 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   The session keeps scoped stages, checks, adversarial passes and reports and
   continues autonomously. Final functionality is shown to the owner; no runtime
   DM confirmation, architecture invariant, deployment or human-acceptance boundary
-  is waived. Current implementation scope: `work-orders/STAGE_450_LIVE.md`.
+  is waived. Current implementation scope: `work-orders/GATE_07_REMEDIATION.md`.
 
 - In the current project chat the owner requested AI-generated campaigns with
   scenario and visual preview, approved implementation of the proposed Stages
@@ -88,6 +88,15 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   database was dropped; the real paid ledger remains retained. Report:
   `reports/STAGE_450_LIVE_RESULT_2026-10-30.md`. Human acceptance remains pending;
   no activation, live images, provider substitution or default DB change occurred.
+- 2026-10-31: Stages 370–450 merged into `main` (`64efe21`, PR 13). Gate 07, an
+  independent read-only security and invariant review of the workshop
+  (`reviews/GATE_07_SECURITY_REVIEW_2026-10-31.md`, PR 16), found no Critical or High
+  and four Medium findings. The owner disposed «Да, исправить», with moderate job
+  bounds and a separate picture grant
+  (`reviews/OWNER_GATE_07_DISPOSITION_2026-10-31.json`). Scope:
+  `work-orders/GATE_07_REMEDIATION.md`; report: `reports/GATE_07_REMEDIATION.md`;
+  ADR 0038 amendment 2026-10-31. Lows G07-05…G07-10 await a later disposition, and a
+  Gate 07 retest is the owner's call.
 - Stages440–450 continue after their scoped technical verification under the
   owner's delegated continuation. Runtime confirmation and final human acceptance
   remain the owner's actions.

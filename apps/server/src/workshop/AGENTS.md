@@ -20,6 +20,11 @@ Authority: owner-accepted `docs/STAGE_370_DESIGN.md`,
   and binds the mounted owner header. Invalid old credentials retain no server
   access; the browser clears private state. Redeem replaces the opaque cookie.
 - Keep stores, HTTP, token policy and operator CLI cohesive and under 500 lines.
+- Gate 07 (ADR 0038 amendment 2026-10-31): `job-limits.ts` bounds paid jobs inside each enqueue
+  transaction (one active generation/edit per draft, two per owner, four pictures per owner; a
+  refusal is the fixed 429) and orders the workers' `pending` so owners are served in turn. Paid
+  pictures also need the owner's grant (`../images/picture-grants.ts`). Keep both in every new
+  enqueue path, PostgreSQL and the in-memory stores under `testing/`.
 
 Stage420: `preview/AGENTS.md` covers isolated owner/character scenes and static
 owner-only prepared layouts; `images/AGENTS.md` covers draft jobs, exact bytes and

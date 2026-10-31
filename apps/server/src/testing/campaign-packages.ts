@@ -7,6 +7,8 @@ import {
 
 import {
   allocateCampaignIdentities,
+  questStageKey,
+  type CampaignIdentityNamespace,
   type CampaignIdentityRecord,
 } from '../workshop/packages/identities.ts';
 import {
@@ -191,12 +193,18 @@ export class MemoryCampaignRevisionRepository implements CampaignRevisionReposit
     content: CampaignPackage,
   ): Promise<readonly CampaignIdentityRecord[]> {
     if (!(await this.#workshop.draft(ownerId, draftId))) return [];
-    const keys = {
+    const keys: Record<CampaignIdentityNamespace, Set<string>> = {
       entities: new Set(content.entities.map((e) => e.key)),
       knowledge: new Set(content.knowledge.map((e) => e.key)),
       clues: new Set(content.clues.map((e) => e.key)),
       encounters: new Set(content.encounters.map((e) => e.key)),
       scene: new Set(['initial']),
+      quests: new Set(content.quests.map((quest) => quest.questId)),
+      'quest-stages': new Set(
+        content.quests.flatMap((quest) =>
+          quest.milestones.map((milestone) => questStageKey(quest.questId, milestone.stage)),
+        ),
+      ),
     };
     return structuredClone(
       (this.#identities.get(`${ownerId}/${draftId}`) ?? [])

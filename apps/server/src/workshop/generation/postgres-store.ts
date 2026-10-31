@@ -16,6 +16,7 @@ import {
   type PublicJobRow,
   PUBLIC_JOB_COLUMNS,
 } from './postgres-rows.ts';
+import { OWNERS_IN_TURN, textJobAllowed } from '../job-limits.ts';
 import { loadProgress } from './postgres-progress.ts';
 import { prepareStep, beginDispatch, completeStep } from './postgres-steps.ts';
 import { finalize } from './postgres-finalize.ts';
@@ -35,6 +36,7 @@ import type {
   GenerationLease,
   GenerationScope,
   GenerationStepInput,
+  EnqueueMutation,
   JobMutation,
 } from './store.ts';
 
@@ -47,15 +49,15 @@ export class PostgresCampaignGenerationRepository implements CampaignGenerationR
     this.mode = mode;
     this.#pool = pool;
   }
-  enqueue(raw: EnqueueGeneration): Promise<JobMutation> {
+  enqueue(raw: EnqueueGeneration): Promise<EnqueueMutation> {
     if (this.mode !== 'GENERATE') return Promise.resolve({ kind: 'conflict' });
     return this.#enqueue(raw);
   }
-  enqueueEdit(raw: EnqueueEdit): Promise<JobMutation> {
+  enqueueEdit(raw: EnqueueEdit): Promise<EnqueueMutation> {
     if (this.mode !== 'EDIT') return Promise.resolve({ kind: 'conflict' });
     return this.#enqueue(raw);
   }
-  #enqueue(raw: EnqueueGeneration | EnqueueEdit): Promise<JobMutation> {
+  #enqueue(raw: EnqueueGeneration | EnqueueEdit): Promise<EnqueueMutation> {
     const input = checkedJobInput(raw, this.mode);
     return transaction(this.#pool, async (client) => {
       if (!(await draftLock(client, input))) return { kind: 'not-found' };
@@ -70,6 +72,7 @@ export class PostgresCampaignGenerationRepository implements CampaignGenerationR
       if (old) return old;
       const capturedLockVersion = await enqueueContextCurrent(client, input);
       if (capturedLockVersion === null) return { kind: 'conflict' };
+      if (!(await textJobAllowed(client, input))) return { kind: 'busy' };
       return {
         kind: 'saved',
         job: jobView(await insertJob(client, input, null, 0, capturedLockVersion)),
@@ -80,7 +83,7 @@ export class PostgresCampaignGenerationRepository implements CampaignGenerationR
     rawScope: GenerationJobScope,
     requestId: string,
     authSessionId: string,
-  ): Promise<JobMutation> {
+  ): Promise<EnqueueMutation> {
     const scope = { ...rawScope, mode: this.mode };
     workshopIdSchema.parse(requestId);
     workshopIdSchema.parse(authSessionId);
@@ -108,6 +111,7 @@ export class PostgresCampaignGenerationRepository implements CampaignGenerationR
       if (old) return old;
       if (parent.status !== 'FAILED' || (await enqueueContextCurrent(client, input)) === null)
         return { kind: 'conflict' };
+      if (!(await textJobAllowed(client, scope))) return { kind: 'busy' };
       const steps = await loadSteps(client, scope);
       if (steps.filter((step) => step.status === 'SUCCEEDED').length !== parent.next_step)
         throw new Error('CORRUPT_GENERATION_STEPS');
@@ -172,8 +176,10 @@ export class PostgresCampaignGenerationRepository implements CampaignGenerationR
   pending(limit: number) {
     return transaction(this.#pool, async (client) => {
       const rows = await client.query<{ owner_id: string; draft_id: string; job_id: string }>(
-        `SELECT owner_id,draft_id,job_id FROM ltw_campaign_generation_jobs
-      WHERE mode=$2 AND (status='QUEUED' OR (status='RUNNING' AND lease_until<=clock_timestamp())) ORDER BY created_at,job_id LIMIT $1`,
+        `SELECT owner_id,draft_id,job_id FROM (SELECT owner_id,draft_id,job_id,created_at,
+      ${OWNERS_IN_TURN} AS turn FROM ltw_campaign_generation_jobs
+      WHERE mode=$2 AND (status='QUEUED' OR (status='RUNNING' AND lease_until<=clock_timestamp()))) pending
+      ORDER BY turn,created_at,job_id LIMIT $1`,
         [bounded(limit), this.mode],
       );
       return rows.rows.map((row) => ({

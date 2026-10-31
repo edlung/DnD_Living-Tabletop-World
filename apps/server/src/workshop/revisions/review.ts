@@ -13,7 +13,12 @@ import { campaignEditTargets, diffCampaignPackages, validateCampaignEditOutput }
 import { imageDigest, imageSlotKey } from '../images/manifest.ts';
 import { assessCampaignRevision } from '../packages/compiler.ts';
 import { campaignContentDigest } from '../packages/content.ts';
-import { allocateCampaignIdentities, type CampaignIdentityRecord } from '../packages/identities.ts';
+import {
+  allocateCampaignIdentities,
+  canonicalOfOpaque,
+  questStageKey,
+  type CampaignIdentityRecord,
+} from '../packages/identities.ts';
 import { draftLockConflicts, prospectiveVisualManifest, revisionReviewDigest } from './policy.ts';
 
 export interface BuildCampaignRevisionReview {
@@ -50,6 +55,17 @@ function retainedHeadIdentities(
     }))
       records.push({ namespace, key, id, entityKind: null });
   records.push({ namespace: 'scene', key: 'initial', id: head.identities.scene, entityKind: null });
+  for (const [key, id] of Object.entries({
+    ...historical?.identities.quests,
+    ...head.identities.quests,
+  }))
+    records.push({ namespace: 'quests', key, id: canonicalOfOpaque(id), entityKind: null });
+  const stages = new Map<string, string>();
+  for (const revision of [historical, head])
+    for (const [quest, ids] of Object.entries(revision?.identities.stages ?? {}))
+      for (const [stage, id] of Object.entries(ids)) stages.set(questStageKey(quest, stage), id);
+  for (const [key, id] of stages)
+    records.push({ namespace: 'quest-stages', key, id: canonicalOfOpaque(id), entityKind: null });
   return records;
 }
 

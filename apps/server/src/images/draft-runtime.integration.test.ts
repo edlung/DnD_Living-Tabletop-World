@@ -9,6 +9,7 @@ import { Secret } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { TEST_AUTH, accountingDb, type AccountingDb } from '../testing/accounting.ts';
 import { emptyCampaignPackage } from '../testing/campaign-packages.ts';
+import { grantTestPictures } from '../testing/picture-grant.ts';
 import { fakeFetch, jsonResponse } from '../testing/fake-fetch.ts';
 import { STYLE, answer, picture, dataUrl } from '../testing/image-provider.ts';
 import { PostgresWorkshopStore } from '../workshop/postgres-store.ts';
@@ -62,6 +63,7 @@ beforeEach(async () => {
     { sessionId: authSessionId, tokenHash: hashToken(newToken()), createdAt, expiresAt },
     null,
   );
+  await grantTestPictures(db.pool, ownerId);
   await workshop.createDraft(
     ownerId,
     { requestId: randomUUID(), title: 'Private images', language: 'en' },
@@ -229,6 +231,25 @@ describe('real workshop image runtime and accounting', () => {
     });
     expect(calls).toHaveLength(0);
     expect((await imageBudgetStatus(db.pool)).charges).toBe(0);
+  });
+
+  it('refuses workshop images once the owner picture grant is disabled, before any charge (Gate 07, G07-02)', async () => {
+    await unlimited();
+    await grantTestPictures(db.pool, ownerId, false);
+    const { preparation, calls } = runtime(() => jsonResponse({}));
+    expect(await preparation.availability(ownerId)).toMatchObject({
+      available: false,
+      reason: 'NO_GRANT',
+    });
+    // The job was queued while granted: its reservation, the last gate, refuses it.
+    expect((await run(preparation)).execution).toMatchObject({ outcome: 'not_dispatched' });
+    expect(calls).toHaveLength(0);
+    expect((await imageBudgetStatus(db.pool)).charges).toBe(0);
+    await grantTestPictures(db.pool, ownerId);
+    expect(await preparation.availability(ownerId)).toMatchObject({
+      available: true,
+      reason: 'READY',
+    });
   });
 
   it('keeps missing usage charged at the full reservation without inventing a reported cost', async () => {

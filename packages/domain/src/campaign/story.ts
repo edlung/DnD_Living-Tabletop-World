@@ -149,8 +149,21 @@ function rewriteMilestone(
   }
 }
 
+function renameStages(milestone: QuestMilestone, stage: (key: string) => string): QuestMilestone {
+  return milestone.kind === 'returned-to'
+    ? { ...milestone, stage: stage(milestone.stage), after: stage(milestone.after) }
+    : { ...milestone, stage: stage(milestone.stage) };
+}
+
+/**
+ * Quest keys and stage slugs become their server IDs (Gate 07, G07-03): an authored slug can
+ * state a plot point, and quest logs reach players. Without quest identities (the engine's
+ * bootstrap, which never publishes quests, and revisions saved before them) the authored keys
+ * stay; the server compiler refuses to activate such a revision.
+ */
 export function rewriteQuests(context: PlanContext): QuestDefinition[] {
   const seen = new Set<string>();
+  const { quests, stages } = context.ids;
   return [...context.content.quests]
     .sort((a, b) => compareKey(a.questId, b.questId))
     .map((quest) => {
@@ -167,14 +180,17 @@ export function rewriteQuests(context: PlanContext): QuestDefinition[] {
         quest.activation.subject,
         `quests.${quest.questId}.activation.subject`,
       );
+      const stageIds = stages?.[quest.questId] ?? {};
+      const stage = (key: string) => (quests === undefined ? key : identity(stageIds, key));
       return {
         ...quest,
+        questId: quests === undefined ? quest.questId : identity(quests, quest.questId),
         activation: {
           ...quest.activation,
           subject: identity(context.ids.entities, quest.activation.subject),
         },
         milestones: quest.milestones.map((milestone) =>
-          rewriteMilestone(context, quest.questId, milestone),
+          renameStages(rewriteMilestone(context, quest.questId, milestone), stage),
         ),
       };
     });

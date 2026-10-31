@@ -128,6 +128,12 @@ export function registerDraftImageMutationRoutes(
         requestDigest: prepared.requestDigest,
       });
       if (saved.kind === 'not-found') return await sendError(reply, request, 'NOT_FOUND');
+      // Gate 07: a grant disabled meanwhile (G07-02); the owner's active pictures at their bound (G07-01).
+      if (saved.kind === 'no-grant')
+        return await reply
+          .code(422)
+          .send({ availability: { available: false, reason: 'NO_GRANT', providers: [] } });
+      if (saved.kind === 'busy') return await sendError(reply, request, 'RATE_LIMITED');
       return await (saved.kind === 'saved'
         ? reply.send({ job: publicDraftImageJob(saved.job) })
         : sendError(reply, request, 'CONFLICT'));
