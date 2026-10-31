@@ -16,10 +16,20 @@ import { createLogger } from '../platform/logging/logger.ts';
 export interface ThrowawayDatabase {
   readonly name: string;
   readonly url: string;
+  /** Waits (bounded) for client connections to close, then drops the database by force. */
   drop(): Promise<void>;
 }
 
 const adminUrl = () => loadConfig({ ...process.env, NODE_ENV: 'test' }).databaseUrl;
+
+/**
+ * How long a drop or a template copy waits for the test's own connections to finish closing.
+ * `pool.end()` resolves before its clients' sockets close (pg-pool ends them without waiting), so
+ * a forced drop right after it could terminate an idle client mid-close; its pool then emits the
+ * `57P01` error with no listener, an uncaught exception that fails the whole run. Past the wait
+ * the drop still forces, so a test that leaks a connection leaves no database behind.
+ */
+const CLOSE_WAIT_MS = 5_000;
 
 async function withAdmin<T>(work: (admin: pg.Client) => Promise<T>): Promise<T> {
   const admin = new pg.Client({ connectionString: adminUrl() });
@@ -28,6 +38,22 @@ async function withAdmin<T>(work: (admin: pg.Client) => Promise<T>): Promise<T> 
     return await work(admin);
   } finally {
     await admin.end();
+  }
+}
+
+async function clientConnections(admin: pg.Client, database: string): Promise<number> {
+  const result = await admin.query<{ open: number }>(
+    `SELECT count(*)::int AS open FROM pg_stat_activity
+     WHERE datname = $1 AND backend_type = 'client backend'`,
+    [database],
+  );
+  return result.rows[0]?.open ?? 0;
+}
+
+async function untilDisconnected(admin: pg.Client, database: string): Promise<void> {
+  const deadline = Date.now() + CLOSE_WAIT_MS;
+  while ((await clientConnections(admin, database)) > 0 && Date.now() < deadline) {
+    await new Promise((resolve) => setTimeout(resolve, 20));
   }
 }
 
@@ -42,8 +68,12 @@ export async function createThrowawayDatabase(
   } = {},
 ): Promise<ThrowawayDatabase> {
   const name = `ltw_it_${randomUUID().replaceAll('-', '')}`;
-  const template = options.copyOf === undefined ? '' : ` TEMPLATE ${options.copyOf.name}`;
-  await withAdmin((admin) => admin.query(`CREATE DATABASE ${name}${template}`));
+  const { copyOf } = options;
+  await withAdmin(async (admin) => {
+    if (copyOf !== undefined) await untilDisconnected(admin, copyOf.name);
+    const template = copyOf === undefined ? '' : ` TEMPLATE ${copyOf.name}`;
+    await admin.query(`CREATE DATABASE ${name}${template}`);
+  });
   const url = new URL(adminUrl());
   url.pathname = `/${name}`;
 
@@ -65,7 +95,10 @@ export async function createThrowawayDatabase(
     name,
     url: url.toString(),
     drop: async () => {
-      await withAdmin((admin) => admin.query(`DROP DATABASE IF EXISTS ${name} WITH (FORCE)`));
+      await withAdmin(async (admin) => {
+        await untilDisconnected(admin, name);
+        await admin.query(`DROP DATABASE IF EXISTS ${name} WITH (FORCE)`);
+      });
     },
   };
 }

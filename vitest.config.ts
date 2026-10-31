@@ -7,7 +7,8 @@ import { defineConfig } from 'vitest/config';
  * Workspace packages resolve to their TypeScript sources via the
  * `@ltw/source` export condition, so tests never depend on a prior build.
  */
-const exclude = ['**/node_modules/**', '**/dist/**'];
+// `.claude/worktrees/` holds other checkouts of this repository (Claude Code sessions).
+const exclude = ['**/node_modules/**', '**/dist/**', '**/.claude/**'];
 export default defineConfig({
   ssr: { resolve: { conditions: ['@ltw/source', 'node', 'development|production'] } },
   test: {

@@ -77,6 +77,8 @@ export default defineConfig(
       'test-results/**',
       // Review evidence: probes kept as reviewers ran them, not project code.
       'reviews/evidence/**',
+      // Other checkouts of this repository (Claude Code session worktrees).
+      '.claude/**',
     ],
   },
   js.configs.recommended,
