@@ -1,0 +1,67 @@
+{
+  "$comment": "Stage 470 (docs/adr/0039-item-possession.md): Elowen's starting gear, carried not worn. Seeded last, so earlier seeded history keeps its command IDs.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "item-5a1c7e30",
+      "kind": "item",
+      "name": "Дорожный плащ",
+      "description": "Просмолённый плащ с обтрёпанным от дальних дорог подолом.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-9d42b6f1",
+      "kind": "item",
+      "name": "Бальзам Орина",
+      "description": "Маленькие флаконы лесного бальзама алхимика.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-c07e3a58",
+      "kind": "item",
+      "name": "Перчатки лучника",
+      "description": "Мягкая кожа, протёртая на пальцах тетивы.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2f8b1d94",
+      "kind": "item",
+      "name": "Жестяной фонарь",
+      "description": "Помятый фонарь с заслонкой от ветра.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-5a1c7e30",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "caravan-cloak",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-9d42b6f1",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "woodland-balm",
+      "quantity": 2
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-c07e3a58",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "archer-gloves",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2f8b1d94",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "oil-lantern",
+      "quantity": 1
+    }
+  ]
+}

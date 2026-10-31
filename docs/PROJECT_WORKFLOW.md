@@ -100,6 +100,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - 2026-10-31: Stage 460 (item catalog, possession and in-play item actions; ADR 0039, owner decisions: original
   Ravenford catalog, in-play actions included) is implemented on `claude/stage-460-items`, locally verified; report
   `reports/STAGE_460_COMPLETION.md`. Stages 470 (items in AI campaign packages) and 480 (item art) are not started.
+- 2026-10-31: Stage 470 (starting possessions in campaign packages, Ravenford starting gear) is implemented on
+  `claude/stage-470-campaign-items`; Stage 480 (item pictures) has client support and recipes but **no pictures**: the image
+  channel is out of quota until 2026-11-04. Report `reports/STAGE_470_480_COMPLETION.md`.
 - Stages440–450 continue after their scoped technical verification under the
   owner's delegated continuation. Runtime confirmation and final human acceptance
   remain the owner's actions.

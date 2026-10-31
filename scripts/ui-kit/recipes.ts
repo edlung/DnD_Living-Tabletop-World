@@ -19,6 +19,9 @@ export type Recipe =
       readonly quality: number;
     };
 
+import { ITEM_CATALOG } from '../../packages/contracts/src/items/catalog.ts';
+
+const ITEM_CATALOG_IDS = ITEM_CATALOG.map((entry) => entry.itemId);
 const glyphs = (...names: string[]): Recipe => ({ kind: 'glyphs', names, size: 128 });
 
 export const RECIPES: Readonly<Record<string, Recipe>> = {
@@ -178,6 +181,13 @@ export const RECIPES: Readonly<Record<string, Recipe>> = {
     ['longbow', 'shortbow', 'scimitar', 'dagger'].map((id) => [
       `weapon-${id}`,
       { kind: 'art', out: `catalog/weapons/${id}.webp`, width: 512, quality: 82 } as const,
+    ]),
+  ),
+  // Item catalog pictures (Stage 480, ADR 0039): originals are named item-<catalog id>.
+  ...Object.fromEntries(
+    ITEM_CATALOG_IDS.map((id) => [
+      `item-${id}`,
+      { kind: 'art', out: `catalog/items/${id}.webp`, width: 384, quality: 82 } as const,
     ]),
   ),
   ...Object.fromEntries(
