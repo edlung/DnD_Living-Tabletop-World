@@ -24,7 +24,7 @@ stage's catalog IDs and possession model. They are outlined in §9 only so 460 d
 ## 2. Terms
 
 - **Catalog entry** — static rules data keyed by `ItemId` (e.g. `ravenford.healing-draught`). It
-  describes a *kind* of thing. It never claims to be a particular world object.
+  describes a _kind_ of thing. It never claims to be a particular world object.
 - **Item entity** — a world entity (`kind: item`) that optionally references a catalog entry
   (`catalogId`). Unique story objects (a sealed letter) have no catalog entry.
 - **Stack** — N interchangeable units of one catalog entry carried by one holder.
@@ -39,20 +39,20 @@ unified `catalogEntry(id)` so callers need not care.
 
 Entry shape (all fields required unless marked):
 
-| Field | Meaning |
-|---|---|
-| `itemId` | stable ASCII slug, never reused or renamed after release |
-| `category` | `armor`, `shield`, `consumable`, `gear`, `tool`, `weapon` |
-| `weightLb`, `valueCp` | integers; value in copper |
-| `stackable`, `maxStack` | stacking rules |
-| `slots` | equip slots it may occupy (`body`, `offhand`, `head`, `hands`, `feet`, `cloak`, `neck`, `ring`, `mainhand`) |
-| `armor` (optional) | `baseAc`, `dexCap`, `stealthDisadvantage`, `minStr` |
-| `effect` (optional) | consumable effect, a closed typed union (§5) |
-| `nameKey`, `descriptionKey` | RU/EN dictionary keys; no prose in code |
+| Field                       | Meaning                                                                                                     |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `itemId`                    | stable ASCII slug, never reused or renamed after release                                                    |
+| `category`                  | `armor`, `shield`, `consumable`, `gear`, `tool`, `weapon`                                                   |
+| `weightLb`, `valueCp`       | integers; value in copper                                                                                   |
+| `stackable`, `maxStack`     | stacking rules                                                                                              |
+| `slots`                     | equip slots it may occupy (`body`, `offhand`, `head`, `hands`, `feet`, `cloak`, `neck`, `ring`, `mainhand`) |
+| `armor` (optional)          | `baseAc`, `dexCap`, `stealthDisadvantage`, `minStr`                                                         |
+| `effect` (optional)         | consumable effect, a closed typed union (§5)                                                                |
+| `nameKey`, `descriptionKey` | RU/EN dictionary keys; no prose in code                                                                     |
 
 Content is **original** to the Ravenford setting: an initial set of about 30 entries (e.g. «зелье
 лесного бальзама», «плащ караванщика», «стёганка гильдии»), authored for this project. No SRD item
-names or stat blocks are copied. Rules *mechanics* (AC formula, advantage) already in the rules
+names or stat blocks are copied. Rules _mechanics_ (AC formula, advantage) already in the rules
 package are reused as the project already uses them.
 
 Validation (unit + property tests): unique IDs, closed category/slot sets, positive integers,
@@ -145,3 +145,18 @@ cross-campaign catalog ID spoofing, old-event replay breakage.
 2. Content volume (~30 entries RU/EN) is mine to author; the owner may want to review names.
 3. Currency/shop/trade is **out of scope** (value is data only). Say if you want it later.
 4. Encumbrance is displayed (weight total) but not enforced unless the owner asks.
+
+## 11. As implemented (differences from the proposal above)
+
+- The catalog data lives in `@ltw/contracts` (`packages/contracts/src/items/`), not `@ltw/rules`: the kernel validates and
+  applies it and `@ltw/domain` does not depend on `@ltw/rules`. Names and descriptions are RU/EN data fields of each entry.
+  It has 30 entries (armor 4, shields 2, consumables 8, gear and tools 16). Weapons stay in `@ltw/rules`.
+- No separate `migration 0025`: possession is canonical event-sourced state, rebuilt from the log.
+- Only a **combatant** is refused item handling during an encounter; someone outside the fight is not (Gate 03, G03-H06:
+  a non-combatant must not learn that a fight runs).
+- Healing is a fixed amount per catalog entry (deterministic, no dice); a character at 0 HP cannot be healed by an item.
+- A stack moves whole; there is no partial split. Dropping places the item where the character stands; picking up needs it
+  placed in the same location.
+- Equip/unequip adjust armor class as an ordinary `CharacterSheetSet` beside the item event; body armor replaces the
+  unarmored base (10 + Dexterity), a shield adds its bonus. Armor and shield equips are refused while the wearer fights.
+- Items on the scene: `take_item` is a server-listed context action; the pack is the dock's Items sheet.
