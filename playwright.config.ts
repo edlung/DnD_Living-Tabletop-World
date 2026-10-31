@@ -13,6 +13,8 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: Boolean(process.env['CI']),
   retries: 0,
+  // Two locally too: with six (half the cores) on a busy workstation, 28 of 132 journeys timed
+  // out. Hosted CI shards the suite across jobs instead (.github/workflows/ci.yml).
   workers: 2,
   // Hosted CI runners are about four times slower than a workstation; multi-page live journeys
   // (a DM and a player across several change cycles) take 28–32 s there. Same assertions.

@@ -35,7 +35,7 @@ Read the nearest `AGENTS.md`, then only the entries needed for the task.
 | Task | Smallest starting set |
 |---|---|
 | Local setup, commands, validation | `README.md` (Commands), `package.json` scripts, `scripts/ci-local.sh` |
-| CI | `.github/workflows/ci.yml` (mirrors `scripts/ci-local.sh`) |
+| CI | `.github/workflows/ci.yml` (parallel jobs and the `CI passed` aggregate; `scripts/ci-local.sh` runs the same steps in sequence and maps them to the jobs) |
 | Technical decisions | `docs/adr/README.md` index, then only the relevant ADR |
 | Module boundaries / add a dependency edge | `docs/adr/0004-module-boundaries.md`, `workspace-boundaries.json`, `eslint.config.js`, `tests/architecture/` |
 | TypeScript / build wiring | `tsconfig.base.json`, `tsconfig.json` (typecheck), `tsconfig.build.json` + `<project>/tsconfig.build.json` (build) |
