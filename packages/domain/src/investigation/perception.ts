@@ -23,6 +23,12 @@ export function perceivedEntityIds(state: WorldState, actingCharacterId: string)
   }
   for (const entity of state.entities.values()) {
     if (!exists(entity)) continue;
+    // A carried item is seen only by its carrier (ADR 0039 §9): its old placement says nothing.
+    const carrier = state.possessions.get(entity.entityId)?.holderId ?? null;
+    if (carrier !== null) {
+      if (carrier === actingCharacterId) perceived.add(entity.entityId);
+      continue;
+    }
     if (entity.placement?.locationId === here) perceived.add(entity.entityId);
     if (entity.kind === 'location' && entity.location?.parentId === here) {
       perceived.add(entity.entityId);

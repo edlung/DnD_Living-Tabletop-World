@@ -454,3 +454,4 @@ export {
   unequipItemCommandSchema,
   useItemCommandSchema,
 } from './items/commands.ts';
+export type { InventoryItem, InventoryResponse } from './items/views.ts';

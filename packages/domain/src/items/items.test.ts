@@ -235,3 +235,19 @@ describe('history', () => {
     expect(replay(snapshot.history)).toEqual(snapshot.state);
   });
 });
+
+describe('what others see', () => {
+  it('shows a carried item only to its carrier, and a dropped one to everybody here', async () => {
+    const { perceivedEntityIds } = await import('../investigation/perception.ts');
+    expectAccepted(
+      await harness.submit({ type: 'PlaceEntity', entityId: 'letter', locationId: 'square' }),
+    );
+    expect(perceivedEntityIds(await harness.state(), 'friend').has('letter')).toBe(true);
+    await grant('letter');
+    const state = await harness.state();
+    expect(perceivedEntityIds(state, 'hero').has('letter')).toBe(true);
+    expect(perceivedEntityIds(state, 'friend').has('letter')).toBe(false);
+    expectAccepted(await act({ type: 'DropItem', itemId: 'letter' }));
+    expect(perceivedEntityIds(await harness.state(), 'friend').has('letter')).toBe(true);
+  });
+});
