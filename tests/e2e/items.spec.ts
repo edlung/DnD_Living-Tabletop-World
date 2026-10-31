@@ -85,12 +85,14 @@ test('a thing on the ground is picked up from the scene', async ({ page }) => {
   await expect(page.getByRole('button', { name: /^Dented lantern/ })).toBeVisible();
 });
 
-test('the DM sees no pack of their own', async ({ page }) => {
+test('the DM perspective has no pack to open', async ({ page }) => {
   await enterWorld(page, TOKENS.dm, CAMPAIGNS.play);
-  await openSheet(page, 'Items');
-  await expect(page.locator('#sheet-items')).toContainText(
-    'Choose a character to see what they carry.',
-  );
+  await expect(
+    page.locator('nav.dock').getByRole('button', { name: 'Journal', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.locator('nav.dock').getByRole('button', { name: 'Items', exact: true }),
+  ).toHaveCount(0);
 });
 
 test('a Russian pack reads only Russian', async ({ page }) => {

@@ -83,13 +83,15 @@ export function Dock({
 }) {
   const t = useT();
   const invitations = useSignInKind() === 'session';
-  const world: readonly Item[] = [
+  const world: Item[] = [
     { id: 'scene', label: t('Scene'), short: t('Scene'), glyph: 'look' },
     { id: 'places', label: t('Places'), short: t('Places'), glyph: 'map' },
     { id: 'journal', label: t('Journal'), short: t('Journal'), glyph: 'journal' },
-    { id: 'items', label: t('Items'), short: t('Items'), glyph: 'use-item' },
     { id: 'chronicle', label: t('Chronicle'), short: t('Chronicle'), glyph: 'chronicle' },
   ];
+  // The DM's perspective carries nothing; the DM acts for a character from that character's own view.
+  if (!isDm)
+    world.splice(3, 0, { id: 'items', label: t('Items'), short: t('Items'), glyph: 'use-item' });
   const dm: readonly Item[] = [
     {
       id: 'add',
