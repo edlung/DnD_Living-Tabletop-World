@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import sharp, { type Sharp } from 'sharp';
 
 /**
  * Mechanical pixel operations for GPT-made UI-kit originals (ADR 0034): no retouching, only
@@ -18,7 +18,7 @@ export async function load(path: string): Promise<Rgba> {
   return { data: new Uint8ClampedArray(data), width: info.width, height: info.height };
 }
 
-export function toSharp(image: Rgba): sharp.Sharp {
+export function toSharp(image: Rgba): Sharp {
   return sharp(Buffer.from(image.data), {
     raw: { width: image.width, height: image.height, channels: 4 },
   });
