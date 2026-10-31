@@ -125,7 +125,7 @@ selection create no live campaign. Activation remains a separate confirmed flow.
 Recovery compatibility for workshop accounting/manifests is described in
 `deploy/RUNBOOK.md`§3; installing this source does not migrate or enable a runtime.
 
-CI (`.github/workflows/ci.yml`) runs the same steps on Node 24 with a PostgreSQL 18 service container, and a second job runs `deploy/verify/ci.sh`.
+CI (`.github/workflows/ci.yml`) runs the same steps on Node 24 as parallel jobs: static checks, unit tests, the build with migrations, seed and integration tests (PostgreSQL 18 service container), the UI and API journeys in three shards, and the deployment check (`deploy/verify/ci.sh`). The `CI passed` job fails unless every other job succeeded, so it is the one check to require.
 
 ## Knowledge API (development)
 

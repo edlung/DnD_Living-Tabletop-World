@@ -9,12 +9,70 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+# Parallel jobs for wall time; `CI passed` folds them into the one check to require.
+# scripts/ci-local.sh runs the same steps in sequence (its header maps them to these jobs).
 jobs:
-  validate:
-    name: Validate
-    # Pinned: Playwright system dependencies are installed for this image.
+  static:
+    name: Static checks
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 15
+
+    env:
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: pnpm run format:check
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Context budget
+        run: pnpm run context-budget
+
+  unit:
+    name: Unit tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    env:
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Unit tests
+        run: pnpm run test
+
+  integration:
+    name: Build and integration tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
 
     services:
       postgres:
@@ -48,21 +106,6 @@ jobs:
       - name: Install (frozen lockfile)
         run: pnpm install --frozen-lockfile
 
-      - name: Format check
-        run: pnpm run format:check
-
-      - name: Lint
-        run: pnpm run lint
-
-      - name: Typecheck
-        run: pnpm run typecheck
-
-      - name: Context budget
-        run: pnpm run context-budget
-
-      - name: Unit tests
-        run: pnpm run test
-
       - name: Build
         run: pnpm run build
 
@@ -81,11 +124,69 @@ jobs:
       - name: Integration tests
         run: pnpm run test:integration
 
+  e2e:
+    name: UI and API journeys (${{ matrix.shard }}/${{ strategy.job-total }})
+    # Pinned: Playwright system dependencies are installed for this image.
+    runs-on: ubuntu-24.04
+    # A shard's third of the journeys: 5–7 of the 20 minutes the 184 took in one job (two
+    # workers, 2026-10-31).
+    timeout-minutes: 30
+
+    strategy:
+      # Every shard reports its own failures.
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+
+    env:
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      # The journeys import the server's test helpers, whose workspace packages resolve to dist.
+      - name: Build
+        run: pnpm run build
+
+      - name: Playwright version
+        id: playwright
+        run: |
+          version=$(pnpm exec playwright --version | awk '{print $2}')
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Restore Chromium
+        id: chromium
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
+      # Downloads Chromium only when the cache missed; its system packages and fonts (Cyrillic
+      # among them) are installed on every run.
       - name: Install Chromium for UI journeys
         run: pnpm exec playwright install --with-deps chromium
 
+      # One shard saves the download as soon as it has it, whatever the journeys do.
+      - name: Save Chromium
+        if: steps.chromium.outputs.cache-hit != 'true' && matrix.shard == 1
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ steps.chromium.outputs.cache-primary-key }}
+
       - name: UI and API journeys
-        run: pnpm run test:e2e
+        run: pnpm run test:e2e --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
   deploy:
     name: Deployment check
@@ -121,3 +222,20 @@ jobs:
       # everything it created.
       - name: Build, run and check the deployment
         run: bash deploy/verify/ci.sh
+
+  passed:
+    name: CI passed
+    # The one check for branch protection. It runs whatever happened before it (a failure, a
+    # skip, a cancel) and fails unless every job succeeded, since a skipped check counts as passed.
+    if: always()
+    needs: [static, unit, integration, e2e, deploy]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Every job succeeded
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          jq -r 'to_entries[] | "\(.key): \(.value.result)"' <<<"$NEEDS"
+          jq -e 'all(.[]; .result == "success")' <<<"$NEEDS" >/dev/null
