@@ -47,6 +47,8 @@ export function commandFor(
             knowledgeId: action.evidence.knowledgeId,
           }
         : null;
+    case 'take_item':
+      return { type: 'TakeItem', characterId, itemId: targetId };
     case 'enter_location':
       return { type: 'EnterLocation', characterId, locationId: targetId };
     case 'detect_magic':

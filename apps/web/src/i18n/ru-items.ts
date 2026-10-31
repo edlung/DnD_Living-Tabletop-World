@@ -3,6 +3,8 @@ import { registerRussian } from '@ltw/ui';
 /** Russian words for items (docs/adr/0039-item-possession.md); keys are the English sentences. */
 registerRussian({
   Items: 'Вещи',
+  'Pick up': 'Поднять',
+  'in combat': 'идёт схватка',
   'Loading items…': 'Загружаем вещи…',
   'Choose a character to see what they carry.': 'Выберите персонажа, чтобы увидеть его вещи.',
   'Carrying {weight} lb': 'Несёте: {weight} фунт.',

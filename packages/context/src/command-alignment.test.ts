@@ -23,6 +23,7 @@ import {
 const EXECUTABLE: Partial<
   Record<ContextAction['id'], (entityId: string, action: ContextAction) => Record<string, unknown>>
 > = {
+  take_item: (itemId) => ({ type: 'TakeItem', characterId: ELOWEN, itemId }),
   enter_location: (locationId) => ({ type: 'EnterLocation', characterId: ELOWEN, locationId }),
   inspect: (entityId) => ({
     type: 'ExamineEntity',

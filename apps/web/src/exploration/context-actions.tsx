@@ -261,6 +261,7 @@ const ACTION_TEXT: Readonly<
   longbow_attack: 'Longbow attack',
   fireball: 'Fireball',
   counterspell: 'Counterspell',
+  take_item: 'Pick up',
 };
 
 /** Longest evidence wording on a button; the full statement is in the journal and the picker. */

@@ -1,5 +1,6 @@
 import { catalogEntry, type CharacterSheet } from '@ltw/contracts';
 
+import { isCombatant } from '../combat/records.ts';
 import { premisesEvent } from '../investigation/acting.ts';
 import type { Premise } from '../investigation/events.ts';
 import { findEntity, type Lookup } from '../kernel/decide/lookups.ts';
@@ -47,7 +48,8 @@ function item(state: WorldState, id: string): Lookup<EntityState> {
 function mayHandle(state: WorldState, characterId: string): Lookup<EntityState> {
   const actor = carrier(state, characterId);
   if (!actor.ok) return actor;
-  if (state.encounter !== null)
+  // Only a combatant is held back: someone outside a fight cannot tell one runs (G03-H06).
+  if (isCombatant(state, characterId))
     return reject('COMBAT_ALREADY_ACTIVE', 'Items cannot be handled while an encounter runs');
   if (state.characterSheets.get(characterId)?.conditions.includes('unconscious'))
     return reject('ACTOR_INCAPACITATED', `"${characterId}" is unconscious`);
