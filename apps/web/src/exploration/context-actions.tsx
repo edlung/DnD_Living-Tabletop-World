@@ -28,6 +28,7 @@ export const executable: ReadonlySet<string> = new Set([
   'perception_check',
   'detect_magic',
   'enter_location',
+  'take_item',
   'recall',
 ]);
 

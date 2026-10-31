@@ -11,6 +11,7 @@ import { seedUiCuratedImages } from './ui-image-campaigns.ts';
 import { seedUiImageJourneys } from './ui-image-journeys.ts';
 import { seedUiInvestigationCampaigns } from './ui-investigation-campaigns.ts';
 import { seedUiLiveCampaigns } from './ui-live-campaigns.ts';
+import { seedUiItemCampaigns } from './ui-item-campaigns.ts';
 import { seedUiRussianCampaigns } from './ui-ru-campaigns.ts';
 
 const COMBAT_CAMPAIGN = 'ui-combat';
@@ -45,6 +46,7 @@ export async function uiCampaigns(
   await seedUiInvestigationCampaigns(engine);
   await seedUiAuthoringCampaigns(engine);
   await seedUiRussianCampaigns(engine);
+  await seedUiItemCampaigns(engine);
   await seedUiLiveCampaigns(engine);
   await seedUiCuratedImages(engine, contents);
   await seedUiImageJourneys(engine, contents);
