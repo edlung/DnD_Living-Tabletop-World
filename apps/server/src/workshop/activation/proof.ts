@@ -1,8 +1,26 @@
-import { bootstrapCampaignCommandSchema, type BootstrapCampaignCommand } from '@ltw/contracts';
+import {
+  bootstrapCampaignCommandSchema,
+  type BootstrapCampaignCommand,
+  type CampaignIdentities,
+} from '@ltw/contracts';
 import { commandSubmissionSchema, fingerprintOf } from '@ltw/domain';
 
 import { imageDigest } from '../images/manifest.ts';
 import type { StoredCampaignActivation } from './store.ts';
+
+/**
+ * The identities the engine's bootstrap command carries. Its plan never publishes quests: the
+ * quest book is frozen from the server's plan, with opaque quest IDs (Gate 07, G07-03).
+ */
+export function engineIdentities({
+  entities,
+  knowledge,
+  clues,
+  encounters,
+  scene,
+}: CampaignIdentities): BootstrapCampaignCommand['identities'] {
+  return { entities, knowledge, clues, encounters, scene };
+}
 
 export function activationBootstrapCommand(
   activation: StoredCampaignActivation,
@@ -11,7 +29,7 @@ export function activationBootstrapCommand(
   return {
     type: 'BootstrapCampaign',
     content: frozen.revision.content,
-    identities: frozen.revision.identities,
+    identities: engineIdentities(frozen.revision.identities),
     source: {
       activationId: activation.activationId,
       ownerId: activation.ownerId,

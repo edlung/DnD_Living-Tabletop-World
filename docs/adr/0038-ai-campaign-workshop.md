@@ -106,3 +106,27 @@ and `docs/GATE_COVERAGE.md`. Stage 370 verifies the design/example only. None of
 the future routes, monetary changes, providers, previews or activation paths are
 reported as implemented or tested by this ADR. Its status changes only after
 the owner disposes the Stage 370 handoff.
+
+## Amendment 2026-10-31: Gate 07 remediation
+
+The owner disposed Gate 07's four Medium findings «Да, исправить», with a moderate job bound and a
+separate picture grant (`reviews/OWNER_GATE_07_DISPOSITION_2026-10-31.json`; scope
+`work-orders/GATE_07_REMEDIATION.md`; report `reports/GATE_07_REMEDIATION.md`).
+
+- **Paid job bounds (G07-01).** Under UNLIMITED, "concurrency remains in force" now covers queued
+  work, not only requests: an owner holds at most one active generation or edit per draft and two in
+  all, and four active pictures (`apps/server/src/workshop/job-limits.ts`). The bound is counted in
+  the enqueue transaction under the draft lock and a per-owner advisory lock; a refusal is the fixed
+  429 and records nothing. The serial workers take each owner's oldest waiting job in turn.
+- **Picture grant (G07-02).** UNLIMITED images admit no owner by themselves: paid pictures need the
+  owner's latest `ltw_workshop_picture_grants` revision enabled (`pnpm ai:operator picture-grant`),
+  checked when pictures are offered (`NO_GRANT`), when a job is queued and when its charge is
+  reserved. Migration 0024 granted it to owners whose latest text preparation grant was enabled.
+- **Opaque quest identifiers (G07-03).** Quests and their stages get server identities like entities
+  (migration 0023; public forms `q-` and `s-` with 32 hex digits): quest logs reach players, and an
+  authored slug can state a plot point. A revision saved before them is refused for activation
+  (`QUEST_IDENTITIES_MISSING`) until saved again. The engine's bootstrap command keeps its identity
+  shape: its plan never publishes quests, which the server freezes from its own plan. Campaigns
+  activated before this amendment keep their authored quest keys.
+- **NPC disclosure default (G07-04).** An NPC-held record without `disclosure` stays GUARDED, the
+  engine's default; the owner's editor shows "Guarded (default)".

@@ -8,7 +8,7 @@ import { useRequestSignal } from '../use-request-signal.ts';
 /** One pending intention. Its path, schema, CAS and nonce survive uncertain answers unchanged. */
 export function useEditAction(client: WorkshopClient, onReady: () => void = () => {}) {
   const [state, setState] = useState<
-    'idle' | 'busy' | 'done' | 'uncertain' | 'conflict' | 'unavailable'
+    'idle' | 'busy' | 'done' | 'uncertain' | 'conflict' | 'unavailable' | 'waiting'
   >('idle');
   const [conflict, setConflict] = useState<unknown>(null);
   const pending = useRef<{ path: string; body: object; schema: z.ZodType } | null>(null);
@@ -54,6 +54,9 @@ export function useEditAction(client: WorkshopClient, onReady: () => void = () =
     } else if (result.kind === 'unavailable') {
       pending.current = null;
       setState('unavailable');
+    } else if (result.kind === 'busy') {
+      pending.current = null;
+      setState('waiting');
     } else if (result.kind !== 'cancelled' && result.kind !== 'signed-out') setState('uncertain');
     return result;
   };

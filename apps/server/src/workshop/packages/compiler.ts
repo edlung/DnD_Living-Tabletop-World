@@ -85,6 +85,16 @@ async function materialize(
     return finish(failedPlan(), null);
   }
   const content = parsed.data;
+  // Gate 07, G07-03: without quest identities the plan would publish the authored quest slugs.
+  if (content.quests.length > 0 && revision.identities.quests === undefined) {
+    findings.push({
+      severity: 'error',
+      code: 'QUEST_IDENTITIES_MISSING',
+      path: 'identities.quests',
+      message: 'This revision predates opaque quest IDs; save it again before activation',
+    });
+    return finish(failedPlan(), null);
+  }
   const plan = buildCampaignPlan(content, revision.identities);
   findings.push(...plan.findings);
   if (findings.some((finding) => finding.severity === 'error')) return finish(plan, null);

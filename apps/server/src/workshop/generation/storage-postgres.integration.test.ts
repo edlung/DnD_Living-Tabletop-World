@@ -16,7 +16,7 @@ import type {
   GenerationClaim,
   GenerationJobScope,
   GenerationLease,
-  JobMutation,
+  EnqueueMutation,
 } from './store.ts';
 
 const cleanup: (() => Promise<unknown>)[] = [];
@@ -42,7 +42,7 @@ beforeEach(async () => {
 afterEach(async () => {
   for (const close of cleanup.splice(0).reverse()) await close();
 });
-const job = (result: JobMutation) => {
+const job = (result: EnqueueMutation) => {
   if (result.kind !== 'saved') throw new Error(`expected saved ${result.kind}`);
   return result.job;
 };
@@ -405,7 +405,11 @@ describe('durable PostgreSQL campaign generation', () => {
   });
   it('paginates the complete job history and forbids identity/output history mutation', async () => {
     const input = await seed();
-    for (let i = 0; i < 3; i++) await repository.enqueue({ ...input, requestId: randomUUID() });
+    for (let i = 0; i < 3; i++) {
+      const queued = job(await repository.enqueue({ ...input, requestId: randomUUID() }));
+      // One active generation per draft (Gate 07, G07-01): each ends before the next starts.
+      await repository.cancel({ ...input, jobId: queued.jobId });
+    }
     const first = await repository.list(input, 2);
     expect(first).toHaveLength(2);
     const second = await repository.list(input, 2, first[1]);

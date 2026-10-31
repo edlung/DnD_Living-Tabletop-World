@@ -1,9 +1,9 @@
-import { kernelCommandSchema } from '@ltw/contracts';
+import { OPAQUE_QUEST_ID, OPAQUE_STAGE_ID, kernelCommandSchema } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { buildCampaignPlan } from './plan.ts';
 import { bellCampaign } from './testing/bell.ts';
-import { testCampaignIdentities } from './testing/identities.ts';
+import { testBootstrapIdentities, testCampaignIdentities } from './testing/identities.ts';
 
 describe('campaign initial plan', () => {
   it('compiles a different playable campaign without assigning fake players or starting future events', () => {
@@ -106,6 +106,44 @@ describe('campaign initial plan', () => {
     ).toBe(true);
   });
 
+  it('names quests and stages by their server IDs, never the authored slugs (Gate 07, G07-03)', () => {
+    const content = bellCampaign();
+    const ids = testCampaignIdentities(content);
+    const plan = buildCampaignPlan(content, ids);
+    expect(plan.findings).toEqual([]);
+    expect(plan.quests).toHaveLength(content.quests.length);
+    let returns = 0;
+    for (const quest of content.quests) {
+      const compiled = plan.quests.find((entry) => entry.questId === ids.quests?.[quest.questId]);
+      expect(compiled?.questId).toMatch(OPAQUE_QUEST_ID);
+      expect(compiled?.milestones.map((milestone) => milestone.stage)).toEqual(
+        quest.milestones.map((milestone) => ids.stages?.[quest.questId]?.[milestone.stage]),
+      );
+      for (const milestone of compiled?.milestones ?? []) {
+        expect(milestone.stage).toMatch(OPAQUE_STAGE_ID);
+        if (milestone.kind === 'returned-to') {
+          returns += 1;
+          expect(compiled?.milestones.map((entry) => entry.stage)).toContain(milestone.after);
+        }
+      }
+    }
+    expect(returns).toBeGreaterThan(0);
+    const [first] = content.quests;
+    if (!first) throw new Error('fixture missing a quest');
+    const partial = { ...ids, stages: { ...ids.stages, [first.questId]: {} } };
+    expect(
+      buildCampaignPlan(content, partial).findings.filter(
+        (finding) => finding.code === 'IDENTITY_MISSING',
+      ),
+    ).toHaveLength(first.milestones.length);
+    // Without quest identities (the engine's bootstrap, older revisions) the authored keys stay.
+    const legacy = buildCampaignPlan(content, testBootstrapIdentities(content));
+    expect(legacy.findings).toEqual([]);
+    expect(legacy.quests.map((quest) => quest.questId).sort()).toEqual(
+      content.quests.map((quest) => quest.questId).sort(),
+    );
+  });
+
   it('preserves truth, rumor, testimony and explicit NPC disclosure without cross-scope holders', () => {
     const content = bellCampaign();
     const ids = testCampaignIdentities(content);
@@ -118,9 +156,26 @@ describe('campaign initial plan', () => {
       expect(plan.commands).toContainEqual({
         type: 'SetDisclosure',
         knowledgeId: ids.knowledge[record.key],
-        disclosure: record.disclosure ?? 'WILLING',
+        disclosure: record.disclosure,
       });
     }
+    const unstated = bellCampaign();
+    const willing = unstated.knowledge.find(
+      (entry) => entry.scope.kind === 'NPC' && entry.disclosure === 'WILLING',
+    );
+    if (!willing) throw new Error('fixture missing a willing NPC record');
+    // Gate 07, G07-04: an omitted disclosure keeps the engine's GUARDED default.
+    delete willing.disclosure;
+    const unstatedIds = testCampaignIdentities(unstated);
+    const guarded = buildCampaignPlan(unstated, unstatedIds);
+    expect(guarded.findings).toEqual([]);
+    expect(
+      guarded.commands.some(
+        (command) =>
+          command.type === 'SetDisclosure' &&
+          command.knowledgeId === unstatedIds.knowledge[willing.key],
+      ),
+    ).toBe(false);
     const malformed = bellCampaign();
     const record = malformed.knowledge.find((record) => record.scope.kind === 'NPC');
     const location = malformed.entities.find((entity) => entity.kind === 'location');

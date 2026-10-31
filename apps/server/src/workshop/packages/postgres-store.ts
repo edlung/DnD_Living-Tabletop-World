@@ -7,9 +7,10 @@ import type {
 import type pg from 'pg';
 import { z } from 'zod';
 
-import { campaignKeySchema, workshopIdSchema } from '@ltw/contracts';
+import { campaignKeySchema, campaignQuestIdentitiesShape, workshopIdSchema } from '@ltw/contracts';
 import {
   allocateCampaignIdentities,
+  questStageKey,
   type CampaignIdentityRecord,
   type CampaignIdentityNamespace,
 } from './identities.ts';
@@ -57,6 +58,7 @@ const identitiesSchema = z
     clues: identityMap,
     encounters: identityMap,
     scene: workshopIdSchema,
+    ...campaignQuestIdentitiesShape,
   })
   .strict();
 function revisionView(row: RevisionRow): CampaignRevision {
@@ -115,6 +117,8 @@ async function readIdentityRecords(
       (namespace='knowledge' AND local_key=ANY($4::text[])) OR
       (namespace='clues' AND local_key=ANY($5::text[])) OR
       (namespace='encounters' AND local_key=ANY($6::text[])) OR
+      (namespace='quests' AND local_key=ANY($7::text[])) OR
+      (namespace='quest-stages' AND local_key=ANY($8::text[])) OR
       (namespace='scene' AND local_key='initial')) ORDER BY namespace,local_key`,
       [
         ownerId,
@@ -123,6 +127,10 @@ async function readIdentityRecords(
         content.knowledge.map((e) => e.key),
         content.clues.map((e) => e.key),
         content.encounters.map((e) => e.key),
+        content.quests.map((quest) => quest.questId),
+        content.quests.flatMap((quest) =>
+          quest.milestones.map((milestone) => questStageKey(quest.questId, milestone.stage)),
+        ),
       ],
     )
   ).rows;

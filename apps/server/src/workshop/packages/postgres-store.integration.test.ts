@@ -1,8 +1,10 @@
 import { randomUUID } from 'node:crypto';
 
+import { OPAQUE_QUEST_ID, OPAQUE_STAGE_ID } from '@ltw/contracts';
 import pg from 'pg';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import { bellCampaign } from '../../../../../packages/domain/src/campaign/testing/bell.ts';
 import { createThrowawayDatabase } from '../../testing/throwaway-database.ts';
 import { emptyCampaignPackage } from '../../testing/campaign-packages.ts';
 import { PostgresWorkshopStore } from '../postgres-store.ts';
@@ -82,6 +84,46 @@ describe('PostgreSQL campaign revisions', () => {
     expect((await pool.query('SELECT COUNT(*)::int AS n FROM ltw_events')).rows[0]).toEqual({
       n: 0,
     });
+  });
+
+  it('stores opaque quest and stage identities and keeps them across revisions (Gate 07, G07-03)', async () => {
+    const request = await input();
+    const content = bellCampaign();
+    const first = saved(await repository.append({ ...request, content }));
+    expect(
+      await new PostgresCampaignRevisionRepository(pool).get(request.ownerId, request.draftId, 1),
+    ).toEqual(first);
+    for (const quest of content.quests) {
+      expect(first.identities.quests?.[quest.questId]).toMatch(OPAQUE_QUEST_ID);
+      for (const milestone of quest.milestones)
+        expect(first.identities.stages?.[quest.questId]?.[milestone.stage]).toMatch(
+          OPAQUE_STAGE_ID,
+        );
+    }
+    const second = saved(
+      await repository.append({
+        ...request,
+        requestId: randomUUID(),
+        basedOnRevision: 1,
+        content: { ...content, world: { ...content.world, name: 'Renamed' } },
+      }),
+    );
+    expect(second.identities.quests).toEqual(first.identities.quests);
+    expect(second.identities.stages).toEqual(first.identities.stages);
+    const rows = await pool.query<{ namespace: string; n: number }>(
+      `SELECT namespace, COUNT(*)::int AS n FROM ltw_campaign_package_identities
+       WHERE namespace IN ('quests', 'quest-stages') GROUP BY namespace ORDER BY namespace`,
+    );
+    expect(rows.rows).toEqual([
+      {
+        namespace: 'quest-stages',
+        n: content.quests.reduce(
+          (sum, quest) => sum + new Set(quest.milestones.map((milestone) => milestone.stage)).size,
+          0,
+        ),
+      },
+      { namespace: 'quests', n: content.quests.length },
+    ]);
   });
 
   it('serializes competing base revisions and stores only the winner identities', async () => {

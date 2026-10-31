@@ -76,7 +76,9 @@ export async function imageAvailability(runtime: DraftImageRuntime, ownerId: str
         ? ('NO_ROUTE' as const)
         : result.reason === 'NO_POLICY'
           ? ('NO_POLICY' as const)
-          : ('UNAVAILABLE' as const),
+          : result.reason === 'NO_GRANT'
+            ? ('NO_GRANT' as const)
+            : ('UNAVAILABLE' as const),
     providers: result.available && result.provider !== null ? [result.provider] : [],
   };
 }

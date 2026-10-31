@@ -93,4 +93,18 @@ describe('isolated campaign materialization', () => {
     ).toBe(true);
     expect(result.snapshot).toBeNull();
   });
+  it('refuses a revision saved before quest identities, whose plan would publish quest slugs', async () => {
+    const input = revision();
+    const { entities, knowledge, clues, encounters, scene } = input.identities;
+    const legacy = { entities, knowledge, clues, encounters, scene };
+    const result = await materializeCampaign(
+      { ...input, identities: legacy, digest: campaignContentDigest(input.content, legacy) },
+      ownerId,
+    );
+    expect(result.assessment.readiness).toBe('INVALID');
+    expect(result.assessment.findings.map((finding) => finding.code)).toEqual([
+      'QUEST_IDENTITIES_MISSING',
+    ]);
+    expect(result.snapshot).toBeNull();
+  });
 });

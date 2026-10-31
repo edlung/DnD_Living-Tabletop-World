@@ -77,5 +77,26 @@ describe('campaign preparation configuration remains distinct from runtime', () 
         ...flags,
       ]),
     ).toThrow();
+    // Gate 07, G07-02: pictures have their own per-owner grant, with the same authorization.
+    expect(
+      parseOperatorArgs(['picture-grant', '--workshop-owner', owner, '--disable', ...flags]),
+    ).toMatchObject({ kind: 'picture-grant', ownerId: owner, enabled: false });
+    expect(() =>
+      parseOperatorArgs(['picture-grant', '--workshop-owner', owner, '--enable']),
+    ).toThrow();
+    expect(() =>
+      parseOperatorArgs(['picture-grant', '--workshop-owner', owner, ...flags]),
+    ).toThrow();
+    expect(() =>
+      parseOperatorArgs([
+        'picture-grant',
+        '--approval',
+        'a1',
+        '--workshop-owner',
+        owner,
+        '--enable',
+        ...flags,
+      ]),
+    ).toThrow();
   });
 });

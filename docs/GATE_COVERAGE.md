@@ -34,6 +34,16 @@ still verifies its own boundary and preserves human acceptance separately.
 | 440 | User-only consent over revision and manifests; atomic World Engine append, footprint/event-version/replay/undo obligations; crash reconciliation and no partial publication/invitations; exact art adoption; quest/scenario/asset backup and restore; cross-campaign entry/listing | 450 |
 | 450 | End-to-end investigation/social/combat generation and actual play, all earlier boundary regressions, adversarial races/knowledge/auth/accounting, layout/accessibility and owner's human acceptance | Stage 450 owner disposition |
 
+Gate 07 (2026-10-31, `reviews/GATE_07_SECURITY_REVIEW_2026-10-31.md`) reviewed the rows
+above as an independent read-only pass: no Critical or High finding. Its four Medium findings
+are remediated (`reports/GATE_07_REMEDIATION.md`): bounded paid jobs and owners served in turn
+(`apps/server/src/workshop/job-limits.integration.test.ts`), the per-owner picture grant
+(`apps/server/src/images/picture-grants.integration.test.ts` and the draft runtime's grant test),
+opaque quest and stage IDs in player quest answers (`packages/domain/src/campaign/plan.test.ts`,
+`apps/server/src/scenario/campaign-play.test.ts`, `tests/e2e/workshop-activation.spec.ts`) and the
+GUARDED default for an omitted NPC disclosure (`plan.test.ts`). A retest is NOT YET IN SCOPE until
+the owner orders it; Lows G07-05…G07-10 remain open for disposition.
+
 The historical ledgers below retain their revision-specific finite-ceiling checks.
 Stage 380 must add new policy coverage rather than rewriting past evidence as
 unlimited-mode tests. No later surface passes merely because Stage 370's design

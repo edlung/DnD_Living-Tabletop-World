@@ -93,6 +93,8 @@ export type OperatorCommand =
       enabled: boolean;
       authorization: Authorization;
     }
+  /** A workshop owner's paid pictures (Gate 07, G07-02; `src/images/picture-grants.ts`). */
+  | { kind: 'picture-grant'; ownerId: string; enabled: boolean; authorization: Authorization }
   /**
    * The image ceiling (docs/adr/0035-images.md §2): a new revision, zero to stop image calls.
    * Its own ledger, apart from the text-provider accounts and approvals above.
@@ -158,6 +160,7 @@ const FLAGS: Record<OperatorCommand['kind'], readonly string[]> = {
   'monetary-policy-set': ['scope', 'account', 'mode', ...AUTH],
   'monetary-policy-status': ['scope', 'account'],
   'preparation-grant': ['approval', 'workshop-owner', 'enable', 'disable', ...AUTH],
+  'picture-grant': ['workshop-owner', 'enable', 'disable', ...AUTH],
   'image-budget-set': ['micros', ...AUTH],
   'image-reservations': ['older-than-minutes'],
   'image-reservation-settle': ['charge', 'charge-micros', ...AUTH],
@@ -281,6 +284,17 @@ export function parseOperatorArgs(argv: readonly string[]): OperatorCommand {
         kind: command,
         approvalId: flags.one('approval'),
         ownerId,
+        enabled: state,
+        authorization: authorization(flags),
+      };
+    }
+    case 'picture-grant': {
+      const state = enabled(flags);
+      if (state === undefined)
+        throw new OperatorUsageError('picture-grant needs --enable or --disable');
+      return {
+        kind: command,
+        ownerId: chargeId(flags.one('workshop-owner')),
         enabled: state,
         authorization: authorization(flags),
       };

@@ -7,6 +7,7 @@ import { PostgresCampaignRevisionRepository } from '../workshop/packages/postgre
 import { PostgresDraftImageRepository } from '../workshop/images/postgres-store.ts';
 import { PostgresCampaignRevisionControlRepository } from '../workshop/revisions/postgres-store.ts';
 import { englishBellCampaign } from './generation/bell-english.ts';
+import { grantTestPictures } from './picture-grant.ts';
 
 export async function revisionControlFixture(pool: pg.Pool) {
   const workshop = new PostgresWorkshopStore(pool),
@@ -32,6 +33,7 @@ export async function revisionControlFixture(pool: pg.Pool) {
     { sessionId: authSessionId, tokenHash: hashToken(newToken()), createdAt: at, expiresAt },
     null,
   );
+  await grantTestPictures(pool, ownerId);
   await workshop.createDraft(
     ownerId,
     { requestId: randomUUID(), title: 'Bell', language: 'en' },

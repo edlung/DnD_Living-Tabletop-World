@@ -1,4 +1,4 @@
-import type { CampaignIdentities } from '@ltw/contracts';
+import { OPAQUE_QUEST_ID, OPAQUE_STAGE_ID, type CampaignIdentities } from '@ltw/contracts';
 
 import { isAtOrAfter } from '../kernel/world-time.ts';
 import { PLACEABLE_KINDS } from '../kernel/state.ts';
@@ -16,16 +16,26 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-
 const SPEAKERS = ['npc', 'character', 'creature', 'faction'] as const;
 
 export function validateIdentities(context: PlanContext): void {
-  const required: Record<Exclude<keyof CampaignIdentities, 'scene'>, readonly string[]> = {
+  const required: Record<
+    Exclude<keyof CampaignIdentities, 'scene' | 'quests' | 'stages'>,
+    readonly string[]
+  > = {
     entities: context.content.entities.map((entity) => entity.key),
     knowledge: context.content.knowledge.map((record) => record.key),
     clues: context.content.clues.map((clue) => clue.key),
     encounters: context.content.encounters.map((encounter) => encounter.key),
   };
   const seen = new Set<string>();
-  const check = (id: string, path: string) => {
-    if (!UUID.test(id))
-      error(context, 'IDENTITY_INVALID', path, 'Identity must be a lowercase opaque UUID');
+  const check = (id: string, path: string, pattern = UUID) => {
+    if (!pattern.test(id))
+      error(
+        context,
+        'IDENTITY_INVALID',
+        path,
+        pattern === UUID
+          ? 'Identity must be a lowercase opaque UUID'
+          : 'Identity must be a lowercase opaque ID',
+      );
     else if (seen.has(id))
       error(context, 'IDENTITY_COLLISION', path, 'Canonical identities must be unique');
     seen.add(id);
@@ -46,6 +56,25 @@ export function validateIdentities(context: PlanContext): void {
       check(id, `identities.${namespace}.${key}`);
   }
   check(context.ids.scene, 'identities.scene');
+  // Quest identities (Gate 07, G07-03) are required once a revision has any.
+  const { quests, stages } = context.ids;
+  if (quests === undefined) return;
+  const present = (id: string, path: string, pattern: RegExp) => {
+    if (id) check(id, path, pattern);
+    else error(context, 'IDENTITY_MISSING', path, 'Server identity is missing');
+  };
+  for (const quest of [...context.content.quests].sort((a, b) =>
+    compareKey(a.questId, b.questId),
+  )) {
+    present(identity(quests, quest.questId), `identities.quests.${quest.questId}`, OPAQUE_QUEST_ID);
+    const stageIds = stages?.[quest.questId] ?? {};
+    for (const milestone of quest.milestones)
+      present(
+        identity(stageIds, milestone.stage),
+        `identities.stages.${quest.questId}.${milestone.stage}`,
+        OPAQUE_STAGE_ID,
+      );
+  }
 }
 
 export function validateEntities(context: PlanContext): void {

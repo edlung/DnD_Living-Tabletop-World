@@ -14,6 +14,7 @@ import type { DraftImageRuntime, DraftImageRunResult } from './draft-runtime-typ
 import { PostgresImageLedger } from './ledger.ts';
 import { OPENROUTER_OPENAI_PROVIDER } from './models.ts';
 import { createOpenRouterImageGenerator, requestBody } from './openrouter-generator.ts';
+import { pictureGrantEnabled } from './picture-grants.ts';
 import { subjectGroup } from './style.ts';
 import type { StyleReferences } from './style-references.ts';
 
@@ -66,7 +67,7 @@ export function createDraftImageRuntime(deps: DraftImageRuntimeDependencies): Dr
   const unavailable = (reason: string) => ({ status: 'UNAVAILABLE' as const, reason });
   return {
     async availability(ownerId) {
-      const denied = (reason: 'NO_ROUTE' | 'NO_POLICY' | 'UNAVAILABLE') => ({
+      const denied = (reason: 'NO_ROUTE' | 'NO_POLICY' | 'NO_GRANT' | 'UNAVAILABLE') => ({
         available: false,
         provider: null,
         model: null,
@@ -81,9 +82,9 @@ export function createDraftImageRuntime(deps: DraftImageRuntimeDependencies): Dr
             [ownerId],
           );
           if (owner.rowCount !== 1) return 'UNAVAILABLE';
-          return (await readMonetaryPolicy(tx, { scope: 'images' }))?.mode === 'UNLIMITED'
-            ? 'READY'
-            : 'NO_POLICY';
+          if ((await readMonetaryPolicy(tx, { scope: 'images' }))?.mode !== 'UNLIMITED')
+            return 'NO_POLICY';
+          return (await pictureGrantEnabled(tx, ownerId)) ? 'READY' : 'NO_GRANT';
         });
         return reason === 'READY'
           ? {

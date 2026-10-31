@@ -125,7 +125,24 @@ export interface CampaignIdentities {
   readonly clues: Readonly<Record<string, string>>;
   readonly encounters: Readonly<Record<string, string>>;
   readonly scene: string;
+  /**
+   * Opaque public IDs of quests and of each quest's stages (Gate 07, G07-03): an authored quest
+   * key or stage slug states a plot point, and quest logs reach players. Absent from revisions
+   * saved before them; such a revision cannot be activated until it is saved again.
+   */
+  readonly quests?: Readonly<Record<string, string>>;
+  readonly stages?: Readonly<Record<string, Readonly<Record<string, string>>>>;
 }
+/** The public forms of those quest and stage IDs; both are valid quest slugs. */
+export const OPAQUE_QUEST_ID = /^q-[0-9a-f]{32}$/;
+export const OPAQUE_STAGE_ID = /^s-[0-9a-f]{32}$/;
+/** Quest and stage identities as a stored revision holds them, when it holds them. */
+export const campaignQuestIdentitiesShape = {
+  quests: z.record(campaignKeySchema, z.string().regex(OPAQUE_QUEST_ID)).exactOptional(),
+  stages: z
+    .record(campaignKeySchema, z.record(campaignKeySchema, z.string().regex(OPAQUE_STAGE_ID)))
+    .exactOptional(),
+};
 export interface CampaignFinding {
   readonly severity: 'error' | 'warning' | 'info';
   readonly code: string;

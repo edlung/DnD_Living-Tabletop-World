@@ -62,6 +62,7 @@
 
 - 2026-10-03 (Stage 70, ADR 0014): **valid transitions decided.** Types never change. A holder gains a FACT only through a new, explicitly DM-authored record, which may relate to what it settles. Contradictions are new CONTRADICTION records in the joint holder scope. DM views also show a record's structured `claim`; non-DM views never do.
 - 2026-10-27 (Gate 06 remediation, G06-client-01): **semantic IDs only for public identities.** Semantic IDs are only for entities whose identity is public; the client and authoring never generate them for others — an AI proposal's new entities and records get server IDs, derived from its DM-only trace so a repeated proposal collides (`apps/server/src/authoring/opaque-ids.ts`), and every seeded entity a player can meet unnamed has an opaque ID, its kind and eight hex digits or a UUID (`apps/server/src/world-engine/opaque-ids.test.ts`); an ID the DM writes into a command is the DM's own choice.
+- 2026-10-31 (Gate 07 remediation, G07-03): **quests and stages of generated campaigns are opaque too.** A generated or owner-authored campaign's quest keys and milestone stage slugs reach players in quest logs, so the workshop compiler replaces them with server identities (`q-`/`s-` and 32 hex digits) from the draft's identity registry (ADR 0038, amendment 2026-10-31); `apps/server/src/scenario/campaign-play.test.ts` and `tests/e2e/workshop-activation.spec.ts` assert the player's quest answers hold no authored key. Ravenford's hand-written quest book is unchanged.
 
 ## Invariants affected
 

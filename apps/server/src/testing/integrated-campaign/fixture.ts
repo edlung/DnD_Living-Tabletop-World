@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { AccountingTasks } from '../../ai/accounting-tasks.ts';
 import { setMonetaryPolicy } from '../../ai/accounting/monetary-policy.ts';
 import { grantPreparationApproval } from '../../ai/accounting/preparation-sessions.ts';
+import { grantTestPictures } from '../picture-grant.ts';
 import { PostgresBudgetStore } from '../../ai/accounting/postgres-budget-store.ts';
 import { identityResolver } from '../../ai/catalog.ts';
 import { createCampaignPreparationRuntime } from '../../ai/preparation-gateway.ts';
@@ -201,6 +202,7 @@ export async function integratedCampaignFixture(options: { invalidCastOnce?: boo
       enabled: true,
       authorization: TEST_AUTH,
     });
+    await grantTestPictures(db.pool, ownerId);
     const redeemGame = async (link: string) => {
       const answer = await sendGame('POST', '/auth/redeem', '', { token: tokenOfLink(link) });
       const cookie = sessionCookieOf(answer);

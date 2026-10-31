@@ -233,10 +233,13 @@ describe('owner-private campaign generation HTTP', () => {
   });
   it('keeps all jobs reachable through an owner-qualified history cursor', async () => {
     const f = await setup();
-    for (let i = 0; i < 27; i++)
-      expect(
-        (await f.send('POST', f.url, { ...f.request, requestId: randomUUID() })).statusCode,
-      ).toBe(200);
+    for (let i = 0; i < 27; i++) {
+      const started = await f.send('POST', f.url, { ...f.request, requestId: randomUUID() });
+      expect(started.statusCode).toBe(200);
+      // One active generation per draft (Gate 07, G07-01): each ends before the next starts.
+      const { job } = started.json<{ job: CampaignGenerationJob }>();
+      expect((await f.send('POST', `${f.url}/${job.jobId}/cancel`, {})).statusCode).toBe(200);
+    }
     const first = (await f.send('GET')).json<{
       jobs: CampaignGenerationJob[];
       nextCursor: string;
@@ -250,5 +253,19 @@ describe('owner-private campaign generation HTTP', () => {
     expect(second.nextCursor).toBeNull();
     expect(new Set([...first.jobs, ...second.jobs].map((job) => job.jobId)).size).toBe(27);
     expect((await f.send('GET', `${f.url}?after=${randomUUID()}`)).statusCode).toBe(404);
+  });
+
+  it('refuses a second active generation on a draft with the fixed 429 until the first ends (Gate 07, G07-01)', async () => {
+    const f = await setup();
+    const first = await f.send('POST', f.url, { ...f.request, requestId: randomUUID() });
+    expect(first.statusCode).toBe(200);
+    const refused = await f.send('POST', f.url, { ...f.request, requestId: randomUUID() });
+    expect(refused.statusCode).toBe(429);
+    expect(refused.json()).toMatchObject({ error: { code: 'RATE_LIMITED' } });
+    const { job } = first.json<{ job: CampaignGenerationJob }>();
+    expect((await f.send('POST', `${f.url}/${job.jobId}/cancel`, {})).statusCode).toBe(200);
+    expect(
+      (await f.send('POST', f.url, { ...f.request, requestId: randomUUID() })).statusCode,
+    ).toBe(200);
   });
 });

@@ -69,6 +69,8 @@ registerRussian({
   'Generation is not enabled for this workshop.': 'Генерация не включена для этой мастерской.',
   'Generation is temporarily unavailable. Try again.':
     'Генерация временно недоступна. Попробуйте снова.',
+  'Too many paid jobs at once. Wait until a running one finishes, then try again.':
+    'Слишком много платных задач одновременно. Дождитесь, пока одна из них завершится, и попробуйте снова.',
   'Waiting to generate': 'Ожидает генерации',
   'Generating campaign': 'Генерируем кампанию',
   'Generation completed': 'Генерация завершена',

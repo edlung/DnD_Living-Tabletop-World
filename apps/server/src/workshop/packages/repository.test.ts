@@ -1,12 +1,15 @@
 import { randomUUID } from 'node:crypto';
 
+import { OPAQUE_QUEST_ID, OPAQUE_STAGE_ID } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
+import { bellCampaign } from '../../../../../packages/domain/src/campaign/testing/bell.ts';
 import { MemoryWorkshopStore } from '../../testing/workshop-store.ts';
 import {
   emptyCampaignPackage,
   MemoryCampaignRevisionRepository,
 } from '../../testing/campaign-packages.ts';
+import { canonicalOfOpaque } from './identities.ts';
 import type { AppendCampaignRevision, AppendCampaignRevisionResult } from './store.ts';
 
 const T0 = '2026-10-30T12:00:00.000Z';
@@ -82,6 +85,31 @@ describe('private immutable campaign revisions', () => {
     expect(first.identities.entities['iva']).toMatch(/^[0-9a-f-]{36}$/);
     expect(restored.digest).toBe(first.digest);
   });
+  it('gives quests and their stages opaque IDs that survive later revisions (Gate 07, G07-03)', async () => {
+    const t = await setup();
+    const content = bellCampaign();
+    const first = saved(await t.repository.append({ ...t.input, content }));
+    const [quest] = content.quests;
+    if (!quest) throw new Error('fixture missing a quest');
+    const questId = first.identities.quests?.[quest.questId] ?? '';
+    const stages = Object.values(first.identities.stages?.[quest.questId] ?? {});
+    expect(questId).toMatch(OPAQUE_QUEST_ID);
+    expect(canonicalOfOpaque(questId)).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-/);
+    expect(stages).toHaveLength(new Set(quest.milestones.map((milestone) => milestone.stage)).size);
+    for (const stage of stages) expect(stage).toMatch(OPAQUE_STAGE_ID);
+    expect(new Set([questId, ...stages]).size).toBe(stages.length + 1);
+    const second = saved(
+      await t.repository.append({
+        ...t.input,
+        requestId: randomUUID(),
+        basedOnRevision: 1,
+        content: { ...content, world: { ...content.world, name: 'Renamed' } },
+      }),
+    );
+    expect(second.identities.quests).toEqual(first.identities.quests);
+    expect(second.identities.stages).toEqual(first.identities.stages);
+  });
+
   it('returns the original exact nonce response after a newer revision and conflicts on changed payload', async () => {
     const t = await setup();
     const first = saved(await t.repository.append(t.input));

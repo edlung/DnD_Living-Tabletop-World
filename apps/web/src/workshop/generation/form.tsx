@@ -43,7 +43,7 @@ export function GenerationForm({
   const [brief, setBrief] = useState(emptyBrief);
   const [ready, setReady] = useState(false);
   const [status, setStatus] = useState<
-    'idle' | 'busy' | 'uncertain' | 'conflict' | 'unavailable' | 'invalid' | 'started'
+    'idle' | 'busy' | 'uncertain' | 'conflict' | 'unavailable' | 'invalid' | 'started' | 'waiting'
   >('idle');
   const pending = useRef<{ requestId: string; basedOnRevision: number; brief: Brief } | null>(null);
   const alive = useRef(true);
@@ -99,6 +99,9 @@ export function GenerationForm({
       pending.current = null;
       setStatus('unavailable');
       onConflict();
+    } else if (result.kind === 'busy') {
+      pending.current = null;
+      setStatus('waiting');
     } else if (result.kind !== 'cancelled' && result.kind !== 'signed-out') setStatus('uncertain');
   };
   const locked =
@@ -223,6 +226,11 @@ export function GenerationForm({
           )}
           {status === 'unavailable' && (
             <p>{t('Generation is temporarily unavailable. Try again.')}</p>
+          )}
+          {status === 'waiting' && (
+            <p>
+              {t('Too many paid jobs at once. Wait until a running one finishes, then try again.')}
+            </p>
           )}
         </div>
         {status === 'conflict' && (

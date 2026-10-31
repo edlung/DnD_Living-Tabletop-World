@@ -16,3 +16,6 @@
 - Campaign-specific quests and scenario plans live in immutable package content.
   Their eventual live publication is Stage 440, never the global Ravenford file.
 - Test-only memory storage and the non-Ravenford specimen remain under testing/.
+- Quests and their stages have registry identities too (Gate 07, migration 0023): players read
+  only `q-`/`s-` IDs. A revision without them is refused (`QUEST_IDENTITIES_MISSING`); the engine's
+  bootstrap command carries no quest identities (`activation/proof.ts` `engineIdentities`).

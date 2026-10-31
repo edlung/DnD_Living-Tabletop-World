@@ -8,7 +8,7 @@ export interface DraftImageAvailability {
   readonly available: boolean;
   readonly provider: string | null;
   readonly model: string | null;
-  readonly reason: 'READY' | 'NO_ROUTE' | 'NO_POLICY' | 'UNAVAILABLE';
+  readonly reason: 'READY' | 'NO_ROUTE' | 'NO_POLICY' | 'NO_GRANT' | 'UNAVAILABLE';
 }
 export type DraftImagePreparationResult =
   | {

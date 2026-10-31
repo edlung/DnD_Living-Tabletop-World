@@ -46,7 +46,9 @@ export function StructuredFields({ value, field, index, node, onSelect }: FieldP
       <span>
         {['knownSince', 'existsSince', 'since'].includes(field ?? '')
           ? t('Before recorded history')
-          : t('None recorded')}
+          : field === 'disclosure'
+            ? t('Guarded (default)')
+            : t('None recorded')}
       </span>
     );
   if (typeof value === 'boolean') return <span>{value ? t('Yes') : t('No')}</span>;
@@ -112,9 +114,17 @@ export function StructuredFields({ value, field, index, node, onSelect }: FieldP
     );
   }
   if (typeof value !== 'object') return null;
-  const entries = Object.entries(value).filter(
-    ([key]) => !['key', 'questId', 'stage'].includes(key),
-  );
+  // An NPC's record without a disclosure stays guarded (Gate 07, G07-04): show what applies.
+  const scope = (value as { scope?: { kind?: unknown } }).scope;
+  const unstated =
+    node.group === 'knowledge' &&
+    value === node.value &&
+    scope?.kind === 'NPC' &&
+    !('disclosure' in value);
+  const entries: [string, unknown][] = [
+    ...Object.entries(value).filter(([key]) => !['key', 'questId', 'stage'].includes(key)),
+    ...(unstated ? [['disclosure', undefined] as [string, unknown]] : []),
+  ];
   return (
     <dl className="scenario-fields">
       {entries.map(([key, entry]: [string, unknown]) => (

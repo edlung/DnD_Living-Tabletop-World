@@ -44,7 +44,7 @@ const DIRECTIONS: Readonly<Record<CampaignGenerationStage, string>> = {
     'Scope is WORLD_TRUTH/DM/PUBLIC/PARTY or CHARACTER/NPC with holder=local entity key. ' +
     'State what the party starts knowing separately from what can be discovered. Each essential conclusion ' +
     'needs redundant independent clue routes, including a route not gated on one failed skill roll. ' +
-    'Specify actual holders and NPC willingness (WILLING/GUARDED), keeping secrets out of PUBLIC/PARTY. ' +
+    'Specify actual holders and NPC willingness (WILLING/GUARDED; omitted means GUARDED), keeping secrets out of PUBLIC/PARTY. ' +
     'Only TESTIMONY/RUMOR may carry attributedTo; TESTIMONY needs a speaker. Relation knowledge references ' +
     'other local record keys, without dependency cycles. Clue methods: inspect, investigation, perception, ' +
     'magic; investigation/perception require dc and can target only item/feature entities. ' +

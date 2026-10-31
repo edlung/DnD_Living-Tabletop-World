@@ -64,6 +64,8 @@ export type JobMutation =
   | { readonly kind: 'saved'; readonly job: StoredGenerationJob }
   | { readonly kind: 'not-found' }
   | { readonly kind: 'conflict' };
+/** A new paid job may also find the owner's jobs at their bound (`../job-limits.ts`). */
+export type EnqueueMutation = JobMutation | { readonly kind: 'busy' };
 export type LeaseMutation =
   { readonly kind: 'saved'; readonly job: StoredGenerationJob } | { readonly kind: 'fenced' };
 export type GenerationClaim =
@@ -71,9 +73,13 @@ export type GenerationClaim =
   | { readonly kind: 'unavailable' };
 export interface CampaignGenerationRepository {
   readonly mode: GenerationMode;
-  enqueue(input: EnqueueGeneration): Promise<JobMutation>;
-  enqueueEdit(input: EnqueueEdit): Promise<JobMutation>;
-  retry(scope: GenerationJobScope, requestId: string, authSessionId: string): Promise<JobMutation>;
+  enqueue(input: EnqueueGeneration): Promise<EnqueueMutation>;
+  enqueueEdit(input: EnqueueEdit): Promise<EnqueueMutation>;
+  retry(
+    scope: GenerationJobScope,
+    requestId: string,
+    authSessionId: string,
+  ): Promise<EnqueueMutation>;
   requestById(scope: GenerationScope, requestId: string): Promise<StoredGenerationJob | null>;
   get(scope: GenerationJobScope): Promise<StoredGenerationJob | null>;
   progress(scope: GenerationJobScope): Promise<CampaignGenerationProgressView | null>;

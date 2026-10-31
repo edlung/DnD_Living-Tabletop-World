@@ -31,6 +31,7 @@ export function GenerationJob({
   const { job } = progress;
   const [command, setCommand] = useState<'cancel' | 'retry' | null>(null);
   const [failed, setFailed] = useState(false);
+  const [waiting, setWaiting] = useState(false);
   const [conflict, setConflict] = useState<unknown>(null);
   const pending = useRef<{ requestId: string } | null>(null);
   const alive = useRef(true);
@@ -45,6 +46,7 @@ export function GenerationJob({
     if (command) return;
     setCommand(action);
     setFailed(false);
+    setWaiting(false);
     setConflict(null);
     const retry =
       action === 'retry' ? (pending.current ?? { requestId: crypto.randomUUID() }) : null;
@@ -57,7 +59,10 @@ export function GenerationJob({
     );
     if (!alive.current) return;
     setCommand(null);
-    setFailed(result.kind !== 'ready');
+    // Gate 07, G07-01: a refused retry was not recorded; the next press may send a new one.
+    setFailed(result.kind !== 'ready' && result.kind !== 'busy');
+    setWaiting(result.kind === 'busy');
+    if (result.kind === 'busy') pending.current = null;
     if (result.kind === 'conflict') setConflict(result.details ?? null);
     if (result.kind === 'ready') {
       pending.current = null;
@@ -157,6 +162,11 @@ export function GenerationJob({
       {failed && (
         <p role="alert">
           {t('The action could not be confirmed. Refresh progress or retry the same action.')}
+        </p>
+      )}
+      {waiting && (
+        <p role="status">
+          {t('Too many paid jobs at once. Wait until a running one finishes, then try again.')}
         </p>
       )}
       {conflict !== null && <EditConflict value={conflict} />}

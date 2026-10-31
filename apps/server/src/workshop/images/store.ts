@@ -62,8 +62,11 @@ export type ImageJobMutation =
   | { readonly kind: 'saved'; readonly job: StoredDraftImageJob }
   | { readonly kind: 'not-found' }
   | { readonly kind: 'conflict' };
+/** A new picture may also find the owner at their bound (`../job-limits.ts`) or ungranted (G07-02). */
+export type ImageRequestMutation =
+  ImageJobMutation | { readonly kind: 'busy' } | { readonly kind: 'no-grant' };
 export interface DraftImageRepository {
-  request(input: RequestDraftImage): Promise<ImageJobMutation>;
+  request(input: RequestDraftImage): Promise<ImageRequestMutation>;
   requestById(scope: DraftImageScope, requestId: string): Promise<StoredDraftImageJob | null>;
   get(scope: DraftImageJobScope): Promise<StoredDraftImageJob | null>;
   list(

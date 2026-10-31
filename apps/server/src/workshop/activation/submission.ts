@@ -1,6 +1,7 @@
 import { bootstrapCampaignCommandSchema } from '@ltw/contracts';
 import { commandSubmissionSchema } from '@ltw/domain';
 
+import { engineIdentities } from './proof.ts';
 import type { StoredCampaignActivation } from './store.ts';
 
 /** Stable caller/IDs/consent come from the accepted server row, never a worker or HTTP assertion. */
@@ -14,7 +15,7 @@ export function activationSubmission(
   const command = bootstrapCampaignCommandSchema.parse({
     type: 'BootstrapCampaign',
     content: frozen.revision.content,
-    identities: frozen.revision.identities,
+    identities: engineIdentities(frozen.revision.identities),
     source: {
       activationId: record.activationId,
       ownerId: record.ownerId,

@@ -6,12 +6,14 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { hashToken, newToken } from '../../auth/tokens.ts';
 import { createThrowawayDatabase } from '../../testing/throwaway-database.ts';
 import { englishBellCampaign } from '../../testing/generation/bell-english.ts';
+import { grantTestPictures } from '../../testing/picture-grant.ts';
 import { finishImage, imageRequestFor, TEST_DRAFT_PNG } from '../../testing/draft-image-fixture.ts';
 import { PostgresWorkshopStore } from '../postgres-store.ts';
 import { PostgresCampaignRevisionRepository } from '../packages/postgres-store.ts';
 import { issueWorkshopInvitation } from '../service.ts';
 import { PostgresDraftImageRepository } from './postgres-store.ts';
 import type { DraftImageJobScope, SelectDraftImage } from './store.ts';
+import { WORKSHOP_JOB_LIMITS } from '../job-limits.ts';
 
 const cleanup: (() => Promise<unknown>)[] = [];
 let pool: pg.Pool;
@@ -58,6 +60,7 @@ async function fixture() {
     },
     null,
   );
+  await grantTestPictures(pool, ownerId);
   await workshop.createDraft(
     ownerId,
     { requestId: randomUUID(), title: 'Bell', language: 'en' },
@@ -109,6 +112,17 @@ async function expire(scope: DraftImageJobScope) {
 }
 
 describe('PostgreSQL private draft images', () => {
+  it('bounds an owner to four active pictures and queues nothing for an ungranted owner (Gate 07)', async () => {
+    const f = await fixture();
+    for (let index = 0; index < WORKSHOP_JOB_LIMITS.picturesPerOwner; index++)
+      expect((await images.request(f.request())).kind).toBe('saved');
+    expect((await images.request(f.request())).kind).toBe('busy');
+    const ungranted = await fixture();
+    await grantTestPictures(pool, ungranted.scope.ownerId, false);
+    expect((await images.request(ungranted.request())).kind).toBe('no-grant');
+    expect(await images.list(ungranted.scope, 1, 10)).toEqual([]);
+  });
+
   it('replays requests before manifest CAS and rejects changed intent, forged source or appearance', async () => {
     const f = await fixture();
     const request = f.request();

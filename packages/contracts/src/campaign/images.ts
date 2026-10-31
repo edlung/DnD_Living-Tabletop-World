@@ -102,7 +102,8 @@ export interface DraftImageSubject {
 }
 export interface DraftImageAvailability {
   readonly available: boolean;
-  readonly reason: 'READY' | 'NO_ROUTE' | 'NO_POLICY' | 'UNAVAILABLE';
+  /** NO_GRANT: the operator has not enabled paid pictures for this owner (Gate 07, G07-02). */
+  readonly reason: 'READY' | 'NO_ROUTE' | 'NO_POLICY' | 'NO_GRANT' | 'UNAVAILABLE';
   readonly providers: readonly string[];
 }
 export interface CampaignDraftImagesView {
