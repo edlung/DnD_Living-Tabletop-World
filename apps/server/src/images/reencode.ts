@@ -1,6 +1,6 @@
 import { ImageGenerationError } from '@ltw/ai';
 import type { AssetPurpose } from '@ltw/contracts';
-import sharp from 'sharp';
+import sharp, { type Sharp } from 'sharp';
 
 /**
  * Re-encoding of a provider's image (docs/STAGE_330_DESIGN.md, `openrouter-openai`): whatever the
@@ -79,7 +79,7 @@ function floodOut(data: Buffer, width: number, height: number): Buffer {
   return out;
 }
 
-async function shaped(bytes: Uint8Array, purpose: AssetPurpose): Promise<sharp.Sharp> {
+async function shaped(bytes: Uint8Array, purpose: AssetPurpose): Promise<Sharp> {
   if (purpose === 'figure') {
     // Scaled down first: the fill runs on the event loop, so it gets at most 1,536² pixels.
     const { data, info } = await open(bytes)
@@ -113,7 +113,7 @@ export async function reencodeImage(
   /** The stored limit; smaller only in tests. */
   maxBytes: number = MAX_STORED_BYTES,
 ): Promise<Uint8Array> {
-  let pipeline: sharp.Sharp;
+  let pipeline: Sharp;
   try {
     const { format } = await open(bytes).metadata();
     if (!INPUT_FORMATS.has(format)) throw invalid();
