@@ -9,8 +9,10 @@ import {
   seedBasicWorld,
   type Harness,
 } from '../kernel/testing/kernel-harness.ts';
+import { redecideEffective } from '../kernel/verification/redecide.ts';
 import { checkWorldIntegrity } from '../kernel/projections/integrity.ts';
 import { replay } from '../kernel/evolve.ts';
+import { decideDropItem } from './decide.ts';
 import { possessionOf } from './records.ts';
 
 /** Item possession (docs/adr/0039-item-possession.md): grant, wear, use, hand over, drop, take, undo. */
@@ -249,5 +251,54 @@ describe('what others see', () => {
     expect(perceivedEntityIds(state, 'friend').has('letter')).toBe(false);
     expectAccepted(await act({ type: 'DropItem', itemId: 'letter' }));
     expect(perceivedEntityIds(await harness.state(), 'friend').has('letter')).toBe(true);
+  });
+});
+
+describe('during an encounter', () => {
+  it('holds back a combatant, not someone outside the fight', async () => {
+    await grant('letter');
+    const state = await harness.state();
+    const fighting = {
+      ...state,
+      encounter: { combatants: [{ entityId: 'hero' }] },
+    } as unknown as typeof state;
+    const drop = { type: 'DropItem', characterId: 'hero', itemId: 'letter' } as never;
+    expect(decideDropItem(fighting, drop)).toMatchObject({
+      ok: false,
+      rejection: { code: 'COMBAT_ALREADY_ACTIVE' },
+    });
+    const other = { ...fighting, encounter: { combatants: [{ entityId: 'friend' }] } } as never;
+    expect(decideDropItem(other, drop).ok).toBe(true);
+  });
+});
+
+describe('undo safety', () => {
+  it('will not undo a grant beneath a standing equip, or a drop beneath a pickup', async () => {
+    const granted = await grant('cloak', 'caravan-cloak');
+    expectAccepted(await act({ type: 'EquipItem', itemId: 'cloak', slot: 'cloak' }));
+    expectRejected(
+      await harness.submit({ type: 'UndoCommand', targetCommandId: granted.commandId }),
+      'UNDO_UNSAFE',
+    );
+
+    await grant('letter');
+    const dropped = expectAccepted(await act({ type: 'DropItem', itemId: 'letter' }));
+    expectAccepted(await act({ type: 'TakeItem', itemId: 'letter' }));
+    expectRejected(
+      await harness.submit({ type: 'UndoCommand', targetCommandId: dropped.commandId }),
+      'UNDO_UNSAFE',
+    );
+    await verified();
+  });
+
+  it('keeps every effective command re-decidable after undoing the last ones', async () => {
+    await grant('mail', 'watchman-mail');
+    const worn = expectAccepted(await act({ type: 'EquipItem', itemId: 'mail', slot: 'body' }));
+    await grant('letter');
+    expectAccepted(await act({ type: 'GiveItem', itemId: 'letter', toHolderId: 'friend' }));
+    expectAccepted(await harness.submit({ type: 'UndoCommand', targetCommandId: worn.commandId }));
+    const snapshot = await harness.snapshot();
+    const log = await harness.engine.commandLog('test-campaign');
+    expect(redecideEffective(log, snapshot, () => 0)).toBeNull();
   });
 });

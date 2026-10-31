@@ -20,6 +20,17 @@ const INVESTIGATION = new Set([
   'SetClaim',
 ]);
 
+const ITEM_COMMANDS = new Set([
+  'GrantItem',
+  'EquipItem',
+  'UnequipItem',
+  'UseItem',
+  'GiveItem',
+  'DropItem',
+  'TakeItem',
+]);
+let itemCommandsAccepted = 0;
+
 describe('deterministic replay over randomized command sequences', () => {
   it.each([1, 7, 42, 1337, 20261003])('seed %i', async (seed) => {
     const rng = mulberry32(seed);
@@ -55,6 +66,7 @@ describe('deterministic replay over randomized command sequences', () => {
       if (command['type'] === 'AssignCharacter') outcomes.assigned += 1;
       if (command['type'] === 'RecordMemory') outcomes.memories += 1;
       if (INVESTIGATION.has(String(command['type']))) outcomes.investigation += 1;
+      if (ITEM_COMMANDS.has(String(command['type']))) itemCommandsAccepted += 1;
       accepted.push(commandId);
       expect(checkWorldIntegrity(after), JSON.stringify(command)).toEqual([]);
       snapshots.set(after.version, after);
@@ -115,6 +127,10 @@ describe('deterministic replay over randomized command sequences', () => {
     effective.slice(1).forEach((event, index) => {
       expect(event.worldTime).toBeGreaterThanOrEqual(effective[index]?.worldTime ?? -Infinity);
     });
+  });
+
+  it('exercised item possession across the seeds', () => {
+    expect(itemCommandsAccepted).toBeGreaterThan(0);
   });
 });
 
