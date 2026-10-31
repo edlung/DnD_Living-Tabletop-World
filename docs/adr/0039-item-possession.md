@@ -49,3 +49,11 @@ catalog IDs from campaign packages; Stage 480 attaches art by catalog ID.
   the bootstrap grants them atomically. Items start carried, never worn. The field is additive, so stored revisions are valid.
 - Item pictures are keyed by catalog ID in the UI kit (`catalog/items/<id>.webp`); an item without a picture shows the neutral
   glyph.
+
+## Amendment 2026-10-31 (Stage 490)
+
+- A combatant handles items on its own turn only. Costs: potion or worn-gear change = Bonus Action; shield or a mundane use = Action;
+  handing over = Bonus Action beside the receiver; dropping = free; body armor and picking up are refused during an encounter.
+  The turn is spent by a `CombatantUpdated` event beside the item event.
+- `GiveItem`/`DropItem` take an optional `quantity` (part of a stack): `EntityCreated` for a new item entity, `ItemSplit`, then
+  `ItemTransferred` of the new item. Total quantity is conserved.
