@@ -6,8 +6,11 @@ import {
   KNOWLEDGE_RELATION_TYPES,
   KNOWLEDGE_TYPES,
   WEATHERS,
+  EQUIP_SLOTS,
+  ITEM_CATEGORIES,
   battlefieldSchema,
   characterSheetSchema,
+  itemEffectSchema,
   knowledgeClaimSchema,
   workshopIdSchema,
 } from '@ltw/contracts';
@@ -176,5 +179,35 @@ export const previewSheetSchema = z
     perspective: z.string(),
     entity: reference,
     sheet: characterSheetSchema,
+  })
+  .strict();
+const inventoryItem = z
+  .object({
+    itemId: id,
+    name: z.string(),
+    description: z.string(),
+    quantity: z.number().int().min(1),
+    slot: z.enum(EQUIP_SLOTS).nullable(),
+    catalog: z
+      .object({
+        itemId: z.string(),
+        category: z.enum(ITEM_CATEGORIES),
+        name: z.object({ ru: z.string(), en: z.string() }).strict(),
+        description: z.object({ ru: z.string(), en: z.string() }).strict(),
+        weightLb: z.number(),
+        slots: z.array(z.enum(EQUIP_SLOTS)),
+        effect: itemEffectSchema.nullable(),
+      })
+      .strict()
+      .nullable(),
+  })
+  .strict();
+export const previewInventorySchema = z
+  .object({
+    revision: z.number().int().min(1),
+    perspective: z.string(),
+    entity: reference,
+    items: z.array(inventoryItem),
+    totalWeightLb: z.number(),
   })
   .strict();

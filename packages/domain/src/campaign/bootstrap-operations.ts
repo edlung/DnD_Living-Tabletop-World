@@ -3,6 +3,7 @@ import type { KernelCommand } from '@ltw/contracts';
 import { decideSetCharacterSheet } from '../character/character.ts';
 import { decideSetStatBlock } from '../combat/authoring.ts';
 import { decideAddClue, decideSetDisclosure } from '../investigation/authoring.ts';
+import { decideGrantItem } from '../items/decide.ts';
 import { decideAddKnowledge } from '../knowledge/decide.ts';
 import { decideChangeEntityStatus, decideCreateEntity } from '../kernel/decide/entities.ts';
 import { decideStartScene } from '../kernel/decide/world.ts';
@@ -30,6 +31,8 @@ export function decideInitialOperation(state: WorldState, command: KernelCommand
       return command.sceneId === undefined
         ? invalid()
         : decideStartScene(state, { ...command, sceneId: command.sceneId });
+    case 'GrantItem':
+      return decideGrantItem(state, command);
     case 'SetCharacterSheet':
       return decideSetCharacterSheet(state, command);
     case 'SetStatBlock':

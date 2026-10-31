@@ -64,10 +64,13 @@ describe('inventory view', () => {
     expect(response.statusCode).toBe(200);
     expect(response.headers['cache-control']).toBe('no-store');
     const body = response.json<InventoryResponse>();
-    expect(body.items.map((item) => item.itemId)).toEqual(['inv-cloak']);
-    expect(body.items[0]?.catalog?.name.en).toBe('Caravan cloak');
-    expect(body.totalWeightLb).toBe(4);
-    expect(Object.keys(body.items[0] ?? {}).sort()).toEqual(
+    expect(body.items.map((item) => item.itemId)).toContain('inv-cloak');
+    // Her seeded starting gear is carried too (Stage 470), and is the same for every viewer.
+    expect(body.items.length).toBeGreaterThan(1);
+    const cloak = body.items.find((item) => item.itemId === 'inv-cloak');
+    expect(cloak?.catalog?.name.en).toBe('Caravan cloak');
+    expect(body.totalWeightLb).toBeGreaterThanOrEqual(4);
+    expect(Object.keys(cloak ?? {}).sort()).toEqual(
       ['catalog', 'description', 'itemId', 'name', 'quantity', 'slot'].sort(),
     );
   });

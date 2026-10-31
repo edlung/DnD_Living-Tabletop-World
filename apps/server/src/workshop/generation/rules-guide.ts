@@ -1,4 +1,4 @@
-import { CLASS_IDS, CONDITIONS, SKILLS, SPELL_IDS, WEAPON_IDS } from '@ltw/contracts';
+import { CLASS_IDS, CONDITIONS, ITEM_CATALOG, SKILLS, SPELL_IDS, WEAPON_IDS } from '@ltw/contracts';
 import { SPELLS, spellSlotsFor, WEAPONS } from '@ltw/rules';
 
 /** Public rules only: this cacheable text contains no owner, seed, fixture or generated story. */
@@ -29,7 +29,17 @@ export const CAMPAIGN_RULES_GUIDE = [
   'must be in bounds; combatants occupy distinct squares. Sides: party, hostile, neutral.',
   'Cover levels are half, three-quarters, total. One square is 5 feet. Encounters are optional plans,',
   'never already-started combat, guaranteed victories, initiative history or player choices.',
+  'Starting items: an item is an entity with kind=item. One that a character or NPC carries at the start has NO',
+  'placement and a possessions row {item,holder,catalog?,quantity}; a catalog ID is optional (a unique story',
+  'object has none) and must be one of the listed ones. Only a stackable catalog item has quantity above 1.',
+  'Items start carried, never worn. An item lying in a place is a placed entity with no possessions row.',
   JSON.stringify({
+    itemCatalog: ITEM_CATALOG.map((entry) => ({
+      id: entry.itemId,
+      category: entry.category,
+      name: entry.name.en,
+      stackable: entry.stackable,
+    })),
     classes: CLASS_IDS,
     skills: SKILLS,
     conditions: CONDITIONS,

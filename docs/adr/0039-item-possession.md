@@ -42,3 +42,10 @@ it did. The rules catalog held only spells and one weapon.
 
 Item commands add a kernel event family; the re-decision oracle and random-command tests cover them. Stage 470 may reference
 catalog IDs from campaign packages; Stage 480 attaches art by catalog ID.
+
+## Amendment 2026-10-31 (Stages 470–480)
+
+- Campaign packages carry optional `possessions` rows (`item`, `holder`, `catalog?`, `quantity`); the compiler validates them and
+  the bootstrap grants them atomically. Items start carried, never worn. The field is additive, so stored revisions are valid.
+- Item pictures are keyed by catalog ID in the UI kit (`catalog/items/<id>.webp`); an item without a picture shows the neutral
+  glyph.

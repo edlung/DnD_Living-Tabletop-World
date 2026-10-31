@@ -14,6 +14,7 @@ import type {
 import { encounterView } from '@ltw/combat';
 import {
   characterSheetView,
+  inventoryView,
   entityKnowledge,
   entityPresentationAt,
   knownEntities,
@@ -225,5 +226,10 @@ export function projectPreviewSheet(
   entityId: string,
 ): CampaignPreviewSheetView | null {
   const view = characterSheetView(context.snapshot.state, context.perspective, entityId);
+  return view === null ? null : { ...view, revision: context.revision.revision };
+}
+
+export function projectPreviewInventory(context: PreviewContext, entityId: string) {
+  const view = inventoryView(context.snapshot.state, context.perspective, entityId);
   return view === null ? null : { ...view, revision: context.revision.revision };
 }

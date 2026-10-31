@@ -39,6 +39,7 @@ export const campaignGenerationOutputSchemas = {
       entities: z.array(nonlocation).min(1).max(500),
       party: fields.party.min(1),
       relationships: fields.relationships,
+      possessions: fields.possessions,
       visuals: fields.visuals,
     })
     .strict(),

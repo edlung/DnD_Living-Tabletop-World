@@ -20,9 +20,14 @@ export function ScenarioInspector({
 }) {
   const t = useT();
   const links = index.links.get(node.path) ?? [];
-  const standalone = ['brief', 'party', 'relationships', 'firstSession', 'laterOutline'].includes(
-    node.group,
-  );
+  const standalone = [
+    'brief',
+    'party',
+    'relationships',
+    'possessions',
+    'firstSession',
+    'laterOutline',
+  ].includes(node.group);
   return (
     <article className="scenario-inspector" aria-label={t('Scenario inspector')}>
       <header>

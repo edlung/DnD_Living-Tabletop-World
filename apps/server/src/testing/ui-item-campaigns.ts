@@ -23,14 +23,14 @@ const NAMES = {
     brigandine: 'Ravenford brigandine',
     buckler: 'Oak buckler',
     cloak: 'Grey road cloak',
-    balm: "Orin's balm",
+    balm: 'Spare balm',
     lantern: 'Dented lantern',
   },
   ru: {
     brigandine: 'Равенфордский бригандин',
     buckler: 'Дубовый баклер',
     cloak: 'Серый дорожный плащ',
-    balm: 'Бальзам Орина',
+    balm: 'Запасной бальзам',
     lantern: 'Помятый фонарь',
   },
 } as const;

@@ -235,4 +235,53 @@ describe('private visual preview HTTP', () => {
     expect(restricted.body).not.toContain('absent');
     expect(restricted.body).not.toContain('findings');
   });
+
+  it("shows a character what they carry at the start, never another character's pack", async () => {
+    const content = bellCampaign();
+    content.entities.push(
+      {
+        key: 'balm-flask',
+        kind: 'item',
+        name: 'Фляга бальзама',
+        description: '',
+        status: 'active',
+        existsSince: null,
+      },
+      {
+        key: 'mail',
+        kind: 'item',
+        name: 'Кольчуга',
+        description: '',
+        status: 'active',
+        existsSince: null,
+      },
+    );
+    content.possessions = [
+      { item: 'balm-flask', holder: 'alena', catalog: 'woodland-balm', quantity: 2 },
+      { item: 'mail', holder: 'borin', catalog: 'watchman-mail', quantity: 1 },
+    ];
+    const t = await setup(content);
+    const alena = t.revision.identities.entities['alena'] ?? '';
+    const borin = t.revision.identities.entities['borin'] ?? '';
+    const own = await t.send(
+      `${t.url}/preview/entities/${alena}/inventory?revision=1&perspective=CHARACTER&characterId=${alena}`,
+      t.owner.cookie,
+    );
+    expect(own.statusCode).toBe(200);
+    expect(own.json<{ items: { name: string; quantity: number }[] }>().items).toMatchObject([
+      { name: 'Фляга бальзама', quantity: 2 },
+    ]);
+    expect(own.body).not.toContain('Кольчуга');
+    const other = await t.send(
+      `${t.url}/preview/entities/${borin}/inventory?revision=1&perspective=CHARACTER&characterId=${alena}`,
+      t.owner.cookie,
+    );
+    expect(other.statusCode).toBe(404);
+    const owner = await t.send(
+      `${t.url}/preview/entities/${borin}/inventory?revision=1&perspective=OWNER`,
+      t.owner.cookie,
+    );
+    expect(owner.statusCode).toBe(200);
+    expect(owner.body).toContain('Кольчуга');
+  });
 });

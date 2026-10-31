@@ -67,6 +67,16 @@ const weapons = byName(
   }),
 );
 
+// Item pictures (Stage 480): one per item catalog ID, generated later by the image model; an item
+// without one shows the neutral glyph, never a stand-in picture of something else.
+const items = byName(
+  import.meta.glob<string>('../assets/ui-kit/catalog/items/*.webp', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
+);
+
 /** A white alpha mask; render with `Glyph` (CSS `mask-image` tinted by `currentColor`). */
 export const glyphUrl = (name: GlyphName): string => glyphs.get(name) ?? '';
 export const textureUrl = (name: TextureName): string => textures.get(name) ?? '';
@@ -77,6 +87,9 @@ export const boardUrl = (name: BoardName): string => board.get(name) ?? '';
 export function catalogUrl(kind: CatalogKind, id: string): string | null {
   return (kind === 'spells' ? spells : weapons).get(id) ?? null;
 }
+
+/** The picture of an item catalog entry (`woodland-balm`), or null while it has none. */
+export const itemArtUrl = (itemId: string): string | null => items.get(itemId) ?? null;
 
 /** Every loaded name per folder, for the completeness test. */
 export const LOADED = { glyphs, textures, ornaments, board, spells, weapons } as const;

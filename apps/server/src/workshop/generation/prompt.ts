@@ -22,7 +22,8 @@ const DIRECTIONS: Readonly<Record<CampaignGenerationStage, string>> = {
     'Parents reference local location keys or null, with no cycles; places are active. ' +
     'Conflicts describe actors and stakes without forcing an outcome. Actor keys may be fulfilled by cast next.',
   cast:
-    'Create nonlocation entities, prepared party seats, NPC initial attitudes, and visual briefs. ' +
+    'Create nonlocation entities, prepared party seats, NPC initial attitudes, optional starting possessions ' +
+    '(items carried from the start, see the rules), and visual briefs. ' +
     'Return only nonlocation objects in entities; the server retains every existing location, so do not repeat locations. ' +
     'The entities and party arrays must not be empty. Every party key must name an actual character object in entities, ' +
     'with a complete supported sheet. Return exactly brief.partySize distinct prepared characters at brief.partyLevel. ' +

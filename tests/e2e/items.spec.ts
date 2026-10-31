@@ -45,11 +45,11 @@ test('the pack lists worn and carried items, and wearing and using change them',
   await expect(worn.getByRole('button', { name: 'Take off', exact: true })).toBeVisible();
   await expect(worn.getByRole('button', { name: 'Drop', exact: true })).toHaveCount(0);
 
-  const balm = await openItem(page, "Orin's balm");
-  await expect(page.getByRole('button', { name: /^Orin's balm.*×2/ })).toBeVisible();
+  const balm = await openItem(page, 'Spare balm');
+  await expect(page.getByRole('button', { name: /^Spare balm.*×2/ })).toBeVisible();
   await balm.getByRole('button', { name: 'Use', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'You used it.' })).toBeVisible();
-  await expect(page.getByRole('button', { name: /^Orin's balm/ })).not.toContainText('×');
+  await expect(page.getByRole('button', { name: /^Spare balm/ })).not.toContainText('×');
   await expectPlayerBoundary(page);
 });
 
@@ -73,7 +73,7 @@ test('an item can be handed to someone who is here, and dropped', async ({ page 
 test('a thing on the ground is picked up from the scene', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.take);
   await openSheet(page, 'Items');
-  await expect(page.locator('#sheet-items')).toContainText('You carry nothing yet.');
+  await expect(page.getByRole('button', { name: /^Dented lantern/ })).toHaveCount(0);
   await page.locator('nav.dock').getByRole('button', { name: 'Scene', exact: true }).click();
   await page
     .getByRole('list', { name: 'Visible world objects' })

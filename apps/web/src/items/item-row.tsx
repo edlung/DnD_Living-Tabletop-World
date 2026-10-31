@@ -3,6 +3,7 @@ import { useT, type Language } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
+import { itemArtUrl } from '../visual/ui-kit.ts';
 import type { ItemCommandBody } from './item-command.ts';
 import type { Recipient } from './items-sheet.tsx';
 import {
@@ -37,6 +38,7 @@ export function ItemRow({
   const [slot, setSlot] = useState<EquipSlot | null>(null);
   const [toHolderId, setToHolderId] = useState('');
   const catalog = item.catalog;
+  const art = item.catalog ? itemArtUrl(item.catalog.itemId) : null;
   const kind = kindName(item, language);
   const description = kindDescription(item, language) ?? item.description;
   const slots = catalog?.slots ?? [];
@@ -50,7 +52,11 @@ export function ItemRow({
         aria-controls={`${id}-more`}
         onClick={onToggle}
       >
-        <Glyph name="use-item" />
+        {art ? (
+          <img className="item-art" src={art} alt="" width={40} height={40} loading="lazy" />
+        ) : (
+          <Glyph name="use-item" />
+        )}
         <span className="item-title">
           {item.name}
           {item.quantity > 1 && <span className="item-count"> ×{item.quantity}</span>}

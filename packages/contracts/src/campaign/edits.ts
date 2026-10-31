@@ -12,6 +12,7 @@ export const CAMPAIGN_EDIT_SECTIONS = [
   'party',
   'knowledge',
   'relationships',
+  'possessions',
   'clues',
   'conflicts',
   'situations',
@@ -28,7 +29,7 @@ export const campaignEditTargetIdSchema = z
   .min(1)
   .max(300)
   .regex(
-    /^(?:section:(?:brief|world|entities|party|knowledge|relationships|clues|conflicts|situations|encounters|quests|visuals|firstSession|laterOutline)|(?:entity|knowledge|clue|encounter|relationship):[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}|(?:situation|conflict|quest):[a-z][a-z0-9-]{0,47}|visual:[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}:(?:image|figure|battle-map))$/,
+    /^(?:section:(?:brief|world|entities|party|knowledge|relationships|possessions|clues|conflicts|situations|encounters|quests|visuals|firstSession|laterOutline)|(?:entity|knowledge|clue|encounter|relationship):[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}|(?:situation|conflict|quest):[a-z][a-z0-9-]{0,47}|visual:[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}:(?:image|figure|battle-map))$/,
   );
 export interface CampaignEditTarget {
   readonly targetId: string;

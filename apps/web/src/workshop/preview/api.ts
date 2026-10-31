@@ -2,7 +2,12 @@ import type { CampaignPreviewEntityView, CampaignPreviewView } from '@ltw/contra
 
 import { withPictureTimes, type ImageReader } from '../../visual/approved-images.ts';
 import type { WorkshopClient } from '../client.ts';
-import { previewEntitySchema, previewSheetSchema, previewViewSchema } from './schemas.ts';
+import {
+  previewEntitySchema,
+  previewInventorySchema,
+  previewSheetSchema,
+  previewViewSchema,
+} from './schemas.ts';
 import { previewMatches, previewQuery, type PreviewCamera, type PreviewScope } from './scope.ts';
 
 export class DraftPreviewApi implements ImageReader {
@@ -49,6 +54,22 @@ export class DraftPreviewApi implements ImageReader {
     const result = await this.#client.request(
       `${this.#path}/entities/${encodeURIComponent(entityId)}/sheet?${previewQuery(this.#scope)}`,
       previewSheetSchema,
+      { signal },
+    );
+    if (result.kind === 'missing') return null;
+    if (
+      result.kind !== 'ready' ||
+      result.value.revision !== this.#scope.revision ||
+      result.value.perspective !== this.#perspective() ||
+      result.value.entity.entityId !== entityId
+    )
+      throw new Error('PREVIEW_UNAVAILABLE');
+    return result.value;
+  }
+  async inventory(entityId: string, signal: AbortSignal) {
+    const result = await this.#client.request(
+      `${this.#path}/entities/${encodeURIComponent(entityId)}/inventory?${previewQuery(this.#scope)}`,
+      previewInventorySchema,
       { signal },
     );
     if (result.kind === 'missing') return null;
