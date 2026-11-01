@@ -36,6 +36,14 @@ test('the pack lists worn and carried items, and wearing and using change them',
   const sheet = page.locator('#sheet-items');
   await expect(sheet.getByRole('heading', { name: 'Carried' })).toBeVisible();
   await expect(sheet).toContainText('Carrying');
+  // Catalog pictures (Stage 480) load; they are decorative, so each carries an empty alt.
+  const pictures = sheet.locator('img.item-art');
+  await expect(pictures.first()).toBeVisible();
+  expect(
+    await pictures.evaluateAll((images) =>
+      images.every((image) => (image as HTMLImageElement).naturalWidth > 0),
+    ),
+  ).toBe(true);
   await expect(sheet.getByRole('heading', { name: 'Worn' })).toHaveCount(0);
 
   const brigandine = await openItem(page, 'Ravenford brigandine');
