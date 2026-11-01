@@ -28,9 +28,9 @@ const within = <T,>(promise: Promise<T | null>, ms: number): Promise<T | null> =
   Promise.race([promise, wait(ms).then(() => null)]);
 
 /** The engine's first load (a chunk, textures, shaders) may take this long before a roll goes on. */
-const ENGINE_WAIT_MS = 3000;
-/** A throw lands well within this; past it the plate tells the numbers anyway. */
-const LANDING_WAIT_MS = 6000;
+const ENGINE_WAIT_MS = 2500;
+/** A throw lasts at most five seconds (`engine/simulate.ts`); past this the plate tells the numbers. */
+const LANDING_WAIT_MS = 5500;
 
 const requestsOf = (group: RollGroup): DieRequest[] =>
   group.dice.map((die) => ({

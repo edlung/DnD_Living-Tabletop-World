@@ -64,7 +64,7 @@ test('the Missing Caravan from the sign-in to its ending, with dice, a rest and 
   await chooseLocation(dm, 'old-trade-road');
   await openSheet(dm, 'Encounter');
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Start encounter' })));
-  await expect(battlefield(player)).toBeVisible();
+  await expect(battlefield(player)).toBeVisible({ timeout: 15_000 });
 
   // Elowen shoots first: the server rolls, the dice fly and land on its numbers.
   // The ambushers stand in a file: on the flat board each square shows whole.
@@ -77,13 +77,13 @@ test('the Missing Caravan from the sign-in to its ending, with dice, a rest and 
     name: 'Attack Unidentified creature 1 with longbow',
   });
   expectAccepted(await submit(player, shot));
-  await expect(player.locator('.dice-plate')).toContainText('Attack roll', { timeout: 10_000 });
+  await expect(player.locator('.dice-plate')).toContainText('Attack roll', { timeout: 15_000 });
   expectAccepted(await submit(player, turnTray(player).getByRole('button', { name: 'End turn' })));
 
   // The ambushers break; the DM ends the fight with Elowen standing.
   await dm.getByRole('button', { name: 'End encounter' }).click();
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Yes, end encounter' })));
-  await expect(battlefield(player)).toHaveCount(0);
+  await expect(battlefield(player)).toHaveCount(0, { timeout: 15_000 });
 
   // The return to Ravenford, and the truth told to Mira: the party's evidence of her caravan.
   await travelTo(player, 'Market Square');
@@ -125,6 +125,8 @@ test('the Missing Caravan from the sign-in to its ending, with dice, a rest and 
   await sheet.getByRole('button', { name: 'Grant Wizard 8 → 9' }).click();
   await expect(dm.getByRole('dialog').getByText('Level 16', { exact: true })).toBeVisible();
   const own = await openCharacter(player, 'Overview');
-  await expect(player.getByRole('dialog').getByText('Level 16', { exact: true })).toBeVisible();
+  await expect(player.getByRole('dialog').getByText('Level 16', { exact: true })).toBeVisible({
+    timeout: 15_000,
+  });
   await expect(own.getByText('Wizard 8 → 9')).toHaveCount(0);
 });

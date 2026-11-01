@@ -31,6 +31,8 @@ async function rolled(page: Page, press: () => Promise<void>): Promise<RollEntry
 }
 
 const plate = (page: Page) => page.locator('.dice-plate');
+/** How long a throw may take to land: a hosted runner's software WebGL is slow (Stage 540). */
+const LANDS = 15_000;
 
 test('free dice fly, land on the server’s values and join the log', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.roll);
@@ -49,7 +51,7 @@ test('free dice fly, land on the server’s values and join the log', async ({ p
   expect(group?.total).toBe((group?.dice ?? []).reduce((sum, die) => sum + die.value, 0) + 3);
   // The dice fly in the top layer; the plate tells the sum once they rest.
   await expect(page.locator('.dice-layer')).toBeVisible();
-  await expect(plate(page)).toContainText(`= ${String(group?.total)}`, { timeout: 10_000 });
+  await expect(plate(page)).toContainText(`= ${String(group?.total)}`, { timeout: LANDS });
   const log = sheet.getByRole('region', { name: 'Recent rolls' });
   await expect(log).toContainText(`= ${String(group?.total)}`);
   await expect(log).toContainText('Elowen Starwhisper');

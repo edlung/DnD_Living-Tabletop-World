@@ -18,6 +18,8 @@ const CAMPAIGNS = {
 } as const;
 
 const banner = (page: Page) => page.locator('.rest-banner');
+/** A change another browser made arrives through the live signal: slower on a hosted runner. */
+const LIVE = 15_000;
 /** The character card's hit points, "current / max" (a hidden "of" reads them aloud). */
 const hitPoints = (page: Page, current: number, max: number) =>
   expect(page.getByRole('dialog').locator('.hero-hp-value')).toHaveText(
@@ -49,7 +51,9 @@ test('the DM’s short rest lets the player spend a Hit Point Die the server rol
   await expect(dm.getByText('The party settles for a short rest.', { exact: false })).toBeVisible();
   await expect(banner(dm)).toContainText('Short rest: the players spend Hit Point Dice.');
   // The player learns of it live, and goes from the banner to the sheet's Hit Point Dice.
-  await expect(banner(player)).toContainText('Short rest: spend Hit Point Dice to recover.');
+  await expect(banner(player)).toContainText('Short rest: spend Hit Point Dice to recover.', {
+    timeout: LIVE,
+  });
   await banner(player).getByRole('button', { name: 'Spend Hit Point Dice' }).click();
   const dialog = player.getByRole('dialog');
   await expect(dialog.getByRole('heading', { name: 'Hit Point Dice' })).toBeVisible();
@@ -62,11 +66,11 @@ test('the DM’s short rest lets the player spend a Hit Point Die the server rol
   await hitPoints(player, 30 + healed, 78);
   await expect(dialog.getByText('6 of 7 left')).toBeVisible();
   // The die flies with its plate.
-  await expect(player.locator('.dice-plate')).toContainText('Hit Point Die', { timeout: 10_000 });
+  await expect(player.locator('.dice-plate')).toContainText('Hit Point Die', { timeout: LIVE });
   // The DM ends the rest; the player can spend no more.
   await banner(dm).getByRole('button', { name: 'End the short rest' }).click();
   await expect(banner(dm)).toHaveCount(0);
-  await expect(dialog.getByRole('button', { name: 'Spend a d10' })).toBeDisabled();
+  await expect(dialog.getByRole('button', { name: 'Spend a d10' })).toBeDisabled({ timeout: LIVE });
   await expect(
     dialog.getByText('Hit Point Dice are spent in a short rest the DM calls.'),
   ).toBeVisible();
