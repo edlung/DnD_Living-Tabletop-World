@@ -413,6 +413,12 @@
 }
 
 /* The result of an action taken in the dialog (the world behind it is out of reach) */
+/* The result lies over the sheet's foot: the sheet keeps room for it (--outcome-h, measured by the
+   result), so its last lines scroll clear and none stays under it (Stage 540). */
+.hero-dialog:has(.hero-notice .outcome) .hero-panel {
+  padding-bottom: calc(var(--outcome-h, 6rem) + 48px);
+  scroll-padding-bottom: calc(var(--outcome-h, 6rem) + 48px);
+}
 .hero-dialog .hero-notice .outcome {
   position: absolute;
   right: 24px;

@@ -23,6 +23,9 @@ same ending.
   show at once, the engine's first load and a landing are waited for a bounded time, and a page out
   of sight shows the numbers without a throw. A browser without WebGL has its own journey
   (`dice.spec.ts`, `ui-dice-plain`).
+- A result shown inside the character sheet lay over the sheet's last lines (the features under
+  the attacks), which could not be scrolled clear: the sheet now keeps room for it at every width
+  (`rest.spec.ts`, `ui-rest-notice`).
 - (Stage 530, same pass) the short rest's banner over the place's card and the side panel; the
   knowledge card's raw "Recorded at" time.
 

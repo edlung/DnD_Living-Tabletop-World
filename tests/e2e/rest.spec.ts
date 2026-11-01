@@ -15,6 +15,7 @@ const CAMPAIGNS = {
   long: 'ui-rest-long',
   ru: 'ui-rest-ru',
   axe: 'ui-rest-axe',
+  notice: 'ui-rest-notice',
 } as const;
 
 const banner = (page: Page) => page.locator('.rest-banner');
@@ -116,6 +117,37 @@ test('the Russian rest reads only Russian', async ({ page }) => {
   await expect(sheet).toContainText('Идёт короткий отдых');
   const text = await banner(page).innerText();
   expect(text.match(/[A-Za-z]{3,}/g) ?? []).toEqual([]);
+});
+
+test('a result in the character sheet never hides the sheet’s last lines', async ({ page }) => {
+  await enterWorld(page, TOKENS.player, CAMPAIGNS.notice);
+  await openShortRest(page, CAMPAIGNS.notice);
+  const dialog = page.getByRole('dialog');
+  for (const size of WIDTHS) {
+    await page.setViewportSize({ width: size.width, height: size.height });
+    if (!(await dialog.isVisible())) {
+      await banner(page).getByRole('button', { name: 'Spend Hit Point Dice' }).click();
+      await dialog.getByRole('button', { name: 'Spend a d6' }).click();
+    }
+    await expect(dialog.locator('.hero-notice .outcome')).toBeVisible();
+    // Scrolled to its end in whatever scrolls here (the panel, or the whole sheet on a phone).
+    const clear = await dialog
+      .locator('.feature-list li')
+      .last()
+      .evaluate((line) => {
+        let box = line.parentElement;
+        while (
+          box &&
+          !(box.scrollHeight > box.clientHeight && getComputedStyle(box).overflowY !== 'visible')
+        ) {
+          box = box.parentElement;
+        }
+        box?.scrollTo(0, box.scrollHeight);
+        const notice = document.querySelector('.hero-notice .outcome')?.getBoundingClientRect();
+        return line.getBoundingClientRect().bottom <= (notice?.top ?? Number.POSITIVE_INFINITY);
+      });
+    expect(clear, `${size.name}: the last line ends above the result`).toBe(true);
+  }
 });
 
 for (const size of WIDTHS) {

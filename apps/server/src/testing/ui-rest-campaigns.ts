@@ -12,6 +12,8 @@ export const UI_REST_CAMPAIGNS = {
   ru: 'ui-rest-ru',
   /** Read-only: only looked at, at three widths. */
   axe: 'ui-rest-axe',
+  /** A result inside the character sheet, which must never hide its last lines (Stage 540). */
+  notice: 'ui-rest-notice',
 } as const;
 
 const ELOWEN = 'elowen-starwhisper';
@@ -23,6 +25,7 @@ export async function seedUiRestCampaigns(engine: WorldEngine): Promise<void> {
     [UI_REST_CAMPAIGNS.long, 'en'],
     [UI_REST_CAMPAIGNS.ru, 'ru'],
     [UI_REST_CAMPAIGNS.axe, 'en'],
+    [UI_REST_CAMPAIGNS.notice, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {
