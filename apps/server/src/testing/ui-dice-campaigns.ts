@@ -8,6 +8,8 @@ import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from '../world-engine/ra
  */
 export const UI_DICE_CAMPAIGNS = {
   roll: 'ui-dice-roll',
+  /** A check from the sheet: its own table, so no other journey's roll queues before it. */
+  sheet: 'ui-dice-sheet',
   ask: 'ui-dice-ask',
   ru: 'ui-dice-ru',
   /** Read-only: only looked at, at three widths. */
@@ -20,6 +22,7 @@ export const UI_DICE_CAMPAIGNS = {
 export async function seedUiDiceCampaigns(engine: WorldEngine): Promise<void> {
   for (const [campaignId, language] of [
     [UI_DICE_CAMPAIGNS.roll, 'en'],
+    [UI_DICE_CAMPAIGNS.sheet, 'en'],
     [UI_DICE_CAMPAIGNS.ask, 'en'],
     [UI_DICE_CAMPAIGNS.ru, 'ru'],
     [UI_DICE_CAMPAIGNS.axe, 'en'],

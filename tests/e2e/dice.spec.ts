@@ -12,6 +12,7 @@ import { openCharacter, openSheet } from './support/shell.ts';
  */
 const CAMPAIGNS = {
   roll: 'ui-dice-roll',
+  sheet: 'ui-dice-sheet',
   ask: 'ui-dice-ask',
   ru: 'ui-dice-ru',
   axe: 'ui-dice-axe',
@@ -62,7 +63,7 @@ test('free dice fly, land on the server’s values and join the log', async ({ p
 });
 
 test('a check rolled from the sheet takes the sheet’s bonus', async ({ page }) => {
-  await enterWorld(page, TOKENS.player, CAMPAIGNS.roll);
+  await enterWorld(page, TOKENS.player, CAMPAIGNS.sheet);
   const skills = await openCharacter(page, 'Skills');
   const roll = await rolled(page, () =>
     skills.getByRole('button', { name: /^Roll Perception/ }).click(),
