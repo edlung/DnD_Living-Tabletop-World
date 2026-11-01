@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-02",
+  "source": "Direct owner message in this project chat",
+  "ownerInstruction": "План принимаю, даю согласия и разрешения. Реализуй весь проект со всеми этапами.",
+  "approvedPlan": "docs/FULL_GAME_PLAN.md (table and online play), reviewed by Claude Opus 5.5 and GPT 6.1 Sol",
+  "authorizedStages": [600, 605, 610, 620, 630, 640, 650, 660, 670, 680, 690, 695, 697, 699],
+  "delegation": "Product decisions inside the program are delegated to the session and recorded in docs/FULL_GAME_PLAN.md and the ADRs, marked 'Accepted (owner-delegated product decision 2026-11-02)'. Technical checkpoints pass with the checks, adversarial passes and reports the workflow requires.",
+  "askedAtTheTime": "Merges into main, deployments, VPS network changes and AI keys are confirmed with the owner in the chat when they come up.",
+  "unchangedBoundaries": [
+    "World Engine authority: rule outcomes are the server's (entered physical dice are an input the server judges)",
+    "knowledge isolation between perspectives",
+    "DM confirmation for AI-authored changes",
+    "the old /opt/dnd project on the VPS stays untouched",
+    "human play acceptance is the owner's and is reported honestly"
+  ]
+}

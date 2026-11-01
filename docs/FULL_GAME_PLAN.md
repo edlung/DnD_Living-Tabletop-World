@@ -2,7 +2,7 @@
 
 Owner request 2026-11-01: «построишь план того что не доделано для полноценной игры в DnD … Мне нужен
 целый, готовый продукт. У него должно быть два режима игры: 1. оффлайн режим — … ДМ руковожу процессом,
-стоя с ноутбуком или iPad, вывожу происходящее на телевизор … игроки … залогинившись в свои учетки … 2. онлайн режим — со всеми соответствующими функциями.» Status: proposed, awaiting the owner's approval.
+стоя с ноутбуком или iPad, вывожу происходящее на телевизор … игроки … залогинившись в свои учетки … 2. онлайн режим — со всеми соответствующими функциями.» Status: approved by the owner on 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`).
 Two independent reviews read it (Claude Opus 5.5, and GPT 6.1 Sol at high effort through the Codex
 CLI); their findings were checked against the code and the SRD text and folded in.
 It follows the product completion program (Stages 500–540, `docs/PRODUCT_COMPLETION_PLAN.md`).

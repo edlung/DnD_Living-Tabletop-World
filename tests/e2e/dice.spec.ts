@@ -73,7 +73,7 @@ test('a check rolled from the sheet takes the sheet’s bonus', async ({ page })
   // Over the open character dialog.
   await expect(plate(page)).toContainText('Perception check');
   await expect(plate(page)).toContainText(`= ${String(roll.groups[0]?.total)}`, {
-    timeout: 10_000,
+    timeout: LANDS,
   });
 });
 
