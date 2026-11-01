@@ -15,10 +15,18 @@ import { illegal, isIncapacitated, type Illegal, type TurnState } from './turn.t
 export type Cover = 'none' | 'half' | 'three-quarters' | 'total';
 const COVER_AC: Record<Exclude<Cover, 'total'>, number> = { none: 0, half: 2, 'three-quarters': 5 };
 
+/** The ability modifier a weapon uses: a finesse weapon takes the better of Strength and Dexterity. */
+export function weaponModifier(sheet: CharacterSheet, weaponId: WeaponId): number {
+  const weapon = WEAPONS[weaponId];
+  return weapon.ability === 'finesse'
+    ? Math.max(modifierOf(sheet, 'str'), modifierOf(sheet, 'dex'))
+    : modifierOf(sheet, weapon.ability);
+}
+
 export function weaponAttackBonus(sheet: CharacterSheet, weaponId: WeaponId): number {
   const weapon = WEAPONS[weaponId];
   const archery = weapon.ranged && sheet.fightingStyle === 'archery' ? 2 : 0;
-  return modifierOf(sheet, weapon.ability) + proficiencyBonus(totalLevel(sheet)) + archery;
+  return weaponModifier(sheet, weaponId) + proficiencyBonus(totalLevel(sheet)) + archery;
 }
 
 /** Taking the Attack action grants `attacksPerAction` attacks (Extra Attack). */
@@ -95,7 +103,7 @@ export function resolveWeaponAttack(
     dice,
     weapon.damageDice.count,
     weapon.damageDice.sides,
-    modifierOf(sheet, weapon.ability),
+    weaponModifier(sheet, weaponId),
     roll.critical,
   );
   const huntersMarkDamage = context.huntersMark ? rollDamage(dice, 1, 6, 0, roll.critical) : null;

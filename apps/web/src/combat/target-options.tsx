@@ -13,9 +13,8 @@ import { actionGlyph } from '../visual/glyph-map.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
 import { Medallion } from '../visual/medallion.tsx';
-import { catalogUrl } from '../visual/ui-kit.ts';
 import { HpBar } from './board/token.tsx';
-import { catalogArtOf, COMBAT_ACTIONS, conditionGlyph, optionLabel } from './combat-art.ts';
+import { COMBAT_ACTIONS, conditionGlyph, optionArtUrl, optionLabelFor } from './combat-art.ts';
 import type { LabelOf } from './labels.ts';
 
 const words = (t: Translate, text: string) => t(text.replaceAll('_', ' ').toLowerCase());
@@ -167,10 +166,10 @@ export function TargetDetails({
           <ul className="option-list">
             {actions?.map((action, index) => (
               <OptionEntry
-                key={`${action.id}:${String(index)}`}
+                key={`${action.id}:${action.weapon ?? ''}:${String(index)}`}
                 id={detailId(index)}
                 action={action}
-                label={optionLabel(t, action.id, name)}
+                label={optionLabelFor(t, action, name)}
                 labelOf={labelOf}
               />
             ))}
@@ -193,8 +192,7 @@ function OptionEntry({
   readonly labelOf: LabelOf;
 }) {
   const t = useT();
-  const art = catalogArtOf(action.id);
-  const url = art ? catalogUrl(art.kind, art.id) : null;
+  const url = optionArtUrl(action);
   return (
     <li className={`option-entry${action.legal ? '' : ' is-unavailable'}`}>
       {url ? (

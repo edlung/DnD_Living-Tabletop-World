@@ -5,13 +5,13 @@ import {
   type CharacterDerived,
   type CharacterSheet,
   type Skill,
+  type WeaponId,
 } from '@ltw/contracts';
 
-import { weaponAttackBonus } from './attacks.ts';
+import { weaponAttackBonus, weaponModifier } from './attacks.ts';
 import { SPELLS, WEAPONS } from './catalog.ts';
 import {
   abilityModifier,
-  modifierOf,
   proficiencyBonus,
   savingThrowModifier,
   skillModifier,
@@ -23,6 +23,9 @@ import {
 /** Strength score × 15 lb (SRD 5.2.1 carrying capacity, Medium size). */
 const CAPACITY_PER_STRENGTH_LB = 15;
 
+export const carryingCapacityLb = (sheet: CharacterSheet): number =>
+  sheet.abilities.str * CAPACITY_PER_STRENGTH_LB;
+
 const proficiencyOf = (sheet: CharacterSheet, skill: Skill) =>
   sheet.skills.expertise.includes(skill)
     ? 'expertise'
@@ -30,11 +33,30 @@ const proficiencyOf = (sheet: CharacterSheet, skill: Skill) =>
       ? 'proficient'
       : 'none';
 
+/** A weapon's attack for this sheet: bonus to hit, damage dice and modifier, reach or range. */
+export function weaponAttack(sheet: CharacterSheet, weaponId: WeaponId) {
+  const weapon = WEAPONS[weaponId];
+  return {
+    weaponId,
+    attackBonus: weaponAttackBonus(sheet, weaponId),
+    damage: { ...weapon.damageDice, bonus: weaponModifier(sheet, weaponId) },
+    damageType: weapon.damageType,
+    ranged: weapon.ranged,
+    normalRangeFt: weapon.normalRangeFt,
+    longRangeFt: weapon.longRangeFt,
+    properties: [...weapon.properties],
+  };
+}
+
 /**
  * Everything the rules derive from a sheet for the character view (Stage 500): the server adds it to
- * the sheet response, so the client shows rule numbers without computing them.
+ * the sheet response, so the client shows rule numbers without computing them. `wielded` are the
+ * weapon items the character holds (Stage 520), attacked with beside the sheet's own weapons.
  */
-export function deriveCharacter(sheet: CharacterSheet): CharacterDerived {
+export function deriveCharacter(
+  sheet: CharacterSheet,
+  wielded: readonly WeaponId[] = [],
+): CharacterDerived {
   const level = totalLevel(sheet);
   const abilities = Object.fromEntries(
     ABILITIES.map((ability) => [
@@ -82,18 +104,18 @@ export function deriveCharacter(sheet: CharacterSheet): CharacterDerived {
         components: [...spell.components],
         concentration: spell.concentration,
       })),
-    attacks: sheet.weapons.map((weaponId) => {
-      const weapon = WEAPONS[weaponId];
+    attacks: [...new Set([...sheet.weapons, ...wielded])].map((weaponId) => {
+      const attack = weaponAttack(sheet, weaponId);
       return {
         weaponId,
-        attackBonus: weaponAttackBonus(sheet, weaponId),
-        damage: { ...weapon.damageDice, bonus: modifierOf(sheet, weapon.ability) },
-        damageType: weapon.damageType,
-        ranged: weapon.ranged,
-        normalRangeFt: weapon.normalRangeFt,
-        longRangeFt: weapon.longRangeFt,
+        attackBonus: attack.attackBonus,
+        damage: attack.damage,
+        damageType: attack.damageType,
+        ranged: attack.ranged,
+        normalRangeFt: attack.normalRangeFt,
+        longRangeFt: attack.longRangeFt,
       };
     }),
-    carryingCapacityLb: sheet.abilities.str * CAPACITY_PER_STRENGTH_LB,
+    carryingCapacityLb: carryingCapacityLb(sheet),
   };
 }

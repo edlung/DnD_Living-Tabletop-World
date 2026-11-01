@@ -1,6 +1,7 @@
-import type { Condition, ContextActionId, SpellId, WeaponId } from '@ltw/contracts';
-import type { Translate } from '@ltw/ui';
+import type { Condition, ContextAction, ContextActionId, SpellId, WeaponId } from '@ltw/contracts';
+import { readableLabel, type Translate } from '@ltw/ui';
 
+import { catalogUrl, weaponArtUrl } from '../visual/ui-kit.ts';
 import type { CatalogKind, GlyphName } from '../visual/ui-kit-names.ts';
 
 /**
@@ -45,6 +46,7 @@ export function suggestionArt(command: {
 /** The server-listed options the battlefield offers against a combatant, in this order. */
 export const COMBAT_ACTIONS: readonly ContextActionId[] = [
   'longbow_attack',
+  'weapon_attack',
   'fireball',
   'counterspell',
   'healing_word',
@@ -89,3 +91,27 @@ const CONDITIONS: Readonly<Record<Condition, GlyphName>> = {
 };
 
 export const conditionGlyph = (condition: Condition): GlyphName => CONDITIONS[condition];
+
+/** A weapon's words (the rules weapon ID read as a name: "Shortsword"), a translation key. */
+export const weaponWords = (t: Translate, weaponId: WeaponId): string => readableLabel(weaponId, t);
+
+/** An option's picture: a weapon's for `weapon_attack` (Stage 520), else its catalog entry's. */
+export function optionArtUrl(action: ContextAction): string | null {
+  if (action.id === 'weapon_attack') return action.weapon ? weaponArtUrl(action.weapon) : null;
+  const art = catalogArtOf(action.id);
+  return art ? catalogUrl(art.kind, art.id) : null;
+}
+
+/** An option's full words, naming the weapon of `weapon_attack`. */
+export function optionLabelFor(t: Translate, action: ContextAction, target: string): string {
+  if (action.id === 'weapon_attack' && action.weapon) {
+    return t('Attack {target} with {weapon}', { target, weapon: weaponWords(t, action.weapon) });
+  }
+  return optionLabel(t, action.id, target);
+}
+
+/** The tray's short words for an option: a weapon attack shows the weapon. */
+export const shortLabelFor = (t: Translate, action: ContextAction): string =>
+  action.id === 'weapon_attack' && action.weapon
+    ? weaponWords(t, action.weapon)
+    : t(shortLabelOf(action.id));

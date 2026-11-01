@@ -13,6 +13,7 @@ import './i18n/ru-table.ts';
 import './i18n/ru-items.ts';
 import './i18n/ru-character.ts';
 import './i18n/ru-dice.ts';
+import './i18n/ru-inventory.ts';
 import { App } from './session/app.tsx';
 import { WorkshopApp } from './workshop/app.tsx';
 import { isWorkshopPath, workshopStart } from './workshop/start.ts';

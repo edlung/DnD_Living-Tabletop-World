@@ -1,4 +1,5 @@
 import type { EntityRef } from '../knowledge/views.ts';
+import type { WeaponId } from '../rules/character-sheet.ts';
 import type { EquipSlot, ItemCategory, ItemEffect } from './schema.ts';
 
 /** One carried item as its carrier sees it (docs/adr/0039-item-possession.md). */
@@ -19,7 +20,25 @@ export interface InventoryItem {
     readonly weightLb: number;
     readonly slots: readonly EquipSlot[];
     readonly effect: ItemEffect | null;
+    /** Worth in copper pennies (Stage 520). */
+    readonly valueCp: number;
+    readonly armor: { readonly baseAc: number; readonly dexCap: number | null } | null;
+    readonly shieldBonus: number | null;
+    /** The rules weapon a weapon fights as. */
+    readonly weapon: WeaponId | null;
   } | null;
+}
+
+/** A weapon's attack for the carrying character, by the rules (the server adds it, Stage 520). */
+export interface InventoryWeapon {
+  readonly attackBonus: number;
+  readonly damage: { readonly count: number; readonly sides: number; readonly bonus: number };
+  readonly damageType: string;
+  readonly ranged: boolean;
+  /** Reach for a melee weapon; normal and long range for a ranged one. */
+  readonly normalRangeFt: number;
+  readonly longRangeFt: number;
+  readonly properties: readonly string[];
 }
 
 /** The items a character carries; shown to the DM or to that character's own perspective only. */
@@ -28,4 +47,8 @@ export interface InventoryResponse {
   readonly entity: EntityRef;
   readonly items: readonly InventoryItem[];
   readonly totalWeightLb: number;
+  /** What Strength carries (× 15 lb), when the carrier has a sheet (Stage 520). */
+  readonly capacityLb?: number;
+  /** Each carried weapon's attack for this character, by rules weapon ID. */
+  readonly weapons?: Readonly<Partial<Record<WeaponId, InventoryWeapon>>>;
 }

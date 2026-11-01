@@ -59,3 +59,12 @@ catalog IDs from campaign packages; Stage 480 attaches art by catalog ID.
   `ItemTransferred` of the new item. Total quantity is conserved.
 
 Owner decision 2026-10-31: a hand-over between players takes effect at once, with no consent step for the receiver.
+
+
+## Amendment 2026-11-01 (Stage 520, owner-delegated: `reviews/OWNER_PRODUCT_COMPLETION_2026-11-01.json`)
+
+Weapons and coins join the catalog. A weapon item names the SRD 5.2.1 weapon it fights as
+(`weapon`); a character attacks with the weapon items it holds in a hand as well as the weapons its
+sheet lists (`wieldedWeapons`, `@ltw/combat` legality); finesse takes the better of Strength and
+Dexterity. Coins (crowns, marks, pennies) are stackable catalog items. Stacks stay at most 99 units:
+the event schemas do not change. The inventory UI is a paper doll, a bag and an item card.

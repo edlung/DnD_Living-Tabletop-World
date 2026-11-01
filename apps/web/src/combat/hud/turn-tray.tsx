@@ -5,8 +5,7 @@ import type { ExplorationIntent } from '../../exploration/use-action.ts';
 import { useReservedHeight } from '../../shell/reserved-height.ts';
 import { actionGlyph } from '../../visual/glyph-map.ts';
 import { Glyph } from '../../visual/glyph.tsx';
-import { catalogUrl } from '../../visual/ui-kit.ts';
-import { catalogArtOf, optionLabel, shortLabelOf } from '../combat-art.ts';
+import { optionArtUrl, optionLabelFor, shortLabelFor } from '../combat-art.ts';
 import { combatCommandFor } from '../combat-bindings.ts';
 import { useCombatantLabels } from '../labels.ts';
 import type { PlannedPath } from '../movement.ts';
@@ -103,15 +102,14 @@ export function TurnTray({
               { entityId: target.entity.entityId, position: target.position },
               encounter,
             );
-            const art = catalogArtOf(action.id);
-            const url = art ? catalogUrl(art.kind, art.id) : null;
+            const url = optionArtUrl(action);
             const notes = optionNotes(t, action);
             return (
               <button
-                key={`${action.id}:${String(index)}`}
+                key={`${action.id}:${action.weapon ?? ''}:${String(index)}`}
                 type="button"
                 className="tray-action"
-                aria-label={optionLabel(t, action.id, labelOf(target.entity.entityId))}
+                aria-label={optionLabelFor(t, action, labelOf(target.entity.entityId))}
                 aria-describedby={detailId(index)}
                 disabled={locked || command === null}
                 onClick={() => {
@@ -124,7 +122,7 @@ export function TurnTray({
                   <Glyph name={actionGlyph(action.id)} className="tray-glyph" />
                 )}
                 <span className="tray-words" aria-hidden="true">
-                  {t(shortLabelOf(action.id))}
+                  {shortLabelFor(t, action)}
                 </span>
                 {notes.length > 0 && (
                   <small className="tray-note" aria-hidden="true">

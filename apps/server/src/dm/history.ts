@@ -140,6 +140,9 @@ function listFrom(snapshot: CampaignSnapshot, log: readonly StoredCommand[]): Li
       continue;
     }
     if (!PLAYER_TYPES.has(stored.commandType)) continue;
+    // At the table only, as for time and weather: a seed's set-up (the bow Elowen starts with in
+    // hand, Stage 520) is not the DM acting for a player.
+    if (!stored.commandId.startsWith(httpCommandId(dm, ''))) continue;
     const characterId = actingCharacter(stored);
     if (characterId !== null && hadPlayer(characterId, stored.firstSequence)) {
       listed.push({ kind: 'substitution', stored, characterId });

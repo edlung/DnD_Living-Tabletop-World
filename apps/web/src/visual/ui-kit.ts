@@ -1,3 +1,5 @@
+import { ITEM_CATALOG, type WeaponId } from '@ltw/contracts';
+
 import type {
   BoardName,
   CatalogKind,
@@ -90,6 +92,17 @@ export function catalogUrl(kind: CatalogKind, id: string): string | null {
 
 /** The picture of an item catalog entry (`woodland-balm`), or null while it has none. */
 export const itemArtUrl = (itemId: string): string | null => items.get(itemId) ?? null;
+
+/**
+ * A rules weapon's picture (Stage 520): the weapons catalog's own where there is one, else the
+ * picture of the Ravenford weapon item that fights as it.
+ */
+export function weaponArtUrl(weaponId: WeaponId): string | null {
+  const own = catalogUrl('weapons', weaponId);
+  if (own) return own;
+  const item = ITEM_CATALOG.find((entry) => entry.weapon === weaponId);
+  return item ? itemArtUrl(item.itemId) : null;
+}
 
 /** Every loaded name per folder, for the completeness test. */
 export const LOADED = { glyphs, textures, ornaments, board, spells, weapons } as const;

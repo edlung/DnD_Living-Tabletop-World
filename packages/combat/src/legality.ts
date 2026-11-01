@@ -1,6 +1,7 @@
 import type { CoverLevel, Damage, SpellId, Square } from '@ltw/contracts';
 import {
   combatantOf,
+  wieldedWeapons,
   type CombatantRecord,
   type EncounterState,
   type WorldState,
@@ -10,7 +11,6 @@ import {
   FIREBALL_RADIUS_FT,
   SPELLS,
   WEAPONS,
-  abilityModifier,
   attackCircumstances,
   beginAttackAction,
   moveRequiredFt,
@@ -20,6 +20,7 @@ import {
   type IllegalReason,
   type TurnState,
   weaponAttackBonus,
+  weaponModifier,
 } from '@ltw/rules';
 
 import { coverAt, isAlive, turnStateOf } from './battlefield.ts';
@@ -103,7 +104,7 @@ export function attackPlan(
   const distanceFt = squareDistanceFt(attacker.position, target.position);
   const coverLevel = coverAt(encounter, target.position);
   if (coverLevel === 'total') return refuse('TOTAL_COVER');
-  const weapon = weaponOf(attackerVitals, attackId);
+  const weapon = weaponOf(state, attackerVitals, attackId);
   if (!weapon) return refuse('NO_WEAPON');
   const limit = weapon.melee ? weapon.reachFt : weapon.longRangeFt;
   if (distanceFt > limit)
@@ -151,12 +152,15 @@ interface WeaponView {
   readonly slow: boolean;
 }
 
-function weaponOf(v: Vitals, attackId: string): WeaponView | null {
+function weaponOf(state: WorldState, v: Vitals, attackId: string): WeaponView | null {
   if (v.kind === 'character') {
-    const weapon = v.sheet.weapons.find((id) => id === attackId);
+    // The sheet's weapons, and the weapon items the character wields (Stage 520).
+    const weapon = [...v.sheet.weapons, ...wieldedWeapons(state, v.entityId)].find(
+      (id) => id === attackId,
+    );
     if (!weapon) return null;
     const definition = WEAPONS[weapon];
-    const modifier = abilityModifier(v.sheet.abilities[definition.ability]);
+    const modifier = weaponModifier(v.sheet, weapon);
     return {
       melee: !definition.ranged,
       reachFt: 5,

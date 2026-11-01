@@ -1,11 +1,21 @@
 import { z } from 'zod';
 
+import { WEAPON_IDS } from '../rules/character-sheet.ts';
+
 /**
  * Item catalog entries (docs/adr/0039-item-possession.md). A catalog entry
  * describes a kind of thing; it never claims to be a particular world object.
  * Content is original to the Ravenford setting, not derived from the SRD.
  */
-export const ITEM_CATEGORIES = ['armor', 'shield', 'weapon', 'consumable', 'gear', 'tool'] as const;
+export const ITEM_CATEGORIES = [
+  'armor',
+  'shield',
+  'weapon',
+  'consumable',
+  'gear',
+  'tool',
+  'coins',
+] as const;
 export type ItemCategory = (typeof ITEM_CATEGORIES)[number];
 
 export const EQUIP_SLOTS = [
@@ -62,6 +72,8 @@ export const itemEntrySchema = z
       .optional(),
     /** Shield: AC bonus while carried in the offhand. */
     shieldBonus: z.number().int().min(1).max(3).optional(),
+    /** Weapon: the rules weapon it fights as (Stage 520; `@ltw/rules` WEAPONS). */
+    weapon: z.enum(WEAPON_IDS).optional(),
     effect: itemEffectSchema.optional(),
   })
   .strict()
@@ -84,5 +96,10 @@ export const itemEntrySchema = z
     if (entry.category === 'consumable' && entry.slots.length > 0)
       issue('a consumable is not equipped');
     if (entry.stackable && entry.slots.length > 0) issue('a stackable item is not equipped');
+    if (entry.category === 'weapon' && (!entry.weapon || !entry.slots.includes('mainhand')))
+      issue('a weapon names its rules weapon and goes in the main hand');
+    if (entry.category !== 'weapon' && entry.weapon) issue('only a weapon names a rules weapon');
+    if (entry.category === 'coins' && (!entry.stackable || entry.slots.length > 0))
+      issue('coins stack and are not worn');
   });
 export type ItemEntry = z.infer<typeof itemEntrySchema>;

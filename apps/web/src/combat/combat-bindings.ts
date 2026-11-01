@@ -40,6 +40,15 @@ export function combatCommandFor(
         attackId: 'longbow',
         targetId: target.entityId,
       };
+    case 'weapon_attack':
+      return action.weapon
+        ? {
+            type: 'Attack',
+            combatantId: actorId,
+            attackId: action.weapon,
+            targetId: target.entityId,
+          }
+        : null;
     case 'fireball':
       return {
         type: 'CastSpell',

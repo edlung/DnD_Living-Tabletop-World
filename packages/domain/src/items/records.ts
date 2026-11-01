@@ -1,4 +1,4 @@
-import { catalogEntry, type EquipSlot, type ItemEntry } from '@ltw/contracts';
+import { catalogEntry, type EquipSlot, type ItemEntry, type WeaponId } from '@ltw/contracts';
 
 import type { WorldState } from '../kernel/state.ts';
 
@@ -58,3 +58,21 @@ export function armorClassDelta(entry: ItemEntry, slot: EquipSlot, dexterity: nu
 }
 
 export const clampArmorClass = (value: number): number => Math.min(40, Math.max(1, value));
+
+/**
+ * The rules weapons a holder wields (Stage 520): weapon items it carries in a hand, in slot order
+ * (main hand first). A character attacks with these beside the weapons its sheet lists.
+ */
+export function wieldedWeapons(state: WorldState, holderId: string): WeaponId[] {
+  const wielded: WeaponId[] = [];
+  for (const slot of ['mainhand', 'offhand'] as const) {
+    for (const itemId of carriedBy(state, holderId)) {
+      const possession = state.possessions.get(itemId);
+      const weapon = possession?.slot === slot ? entryOf(possession)?.weapon : undefined;
+      if (weapon && !wielded.includes(weapon) && state.entities.get(itemId)?.status === 'active') {
+        wielded.push(weapon);
+      }
+    }
+  }
+  return wielded;
+}

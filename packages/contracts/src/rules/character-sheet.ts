@@ -48,7 +48,26 @@ export const SPELL_IDS = [
 ] as const;
 export type SpellId = (typeof SPELL_IDS)[number];
 
-export const WEAPON_IDS = ['longbow'] as const;
+/**
+ * The weapons the rules know (SRD 5.2.1 mechanics; `@ltw/rules` WEAPONS). The longbow came first;
+ * the rest join with the Ravenford weapons of the item catalog (Stage 520).
+ */
+export const WEAPON_IDS = [
+  'longbow',
+  'shortbow',
+  'light-crossbow',
+  'dagger',
+  'shortsword',
+  'longsword',
+  'rapier',
+  'scimitar',
+  'handaxe',
+  'battleaxe',
+  'mace',
+  'warhammer',
+  'quarterstaff',
+  'spear',
+] as const;
 export type WeaponId = (typeof WEAPON_IDS)[number];
 
 export const CLASS_IDS = ['ranger', 'wizard'] as const;

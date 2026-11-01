@@ -20,6 +20,7 @@ const CATEGORIES: Readonly<Record<ItemCategory, string>> = {
   consumable: 'Consumable',
   gear: 'Gear',
   tool: 'Tool',
+  coins: 'Coins',
 };
 
 export const slotName = (t: Translate, slot: EquipSlot) => t(SLOTS[slot]);

@@ -12,6 +12,9 @@ import {
   conditionGlyph,
   optionLabel,
   shortLabelOf,
+  optionArtUrl,
+  optionLabelFor,
+  shortLabelFor,
   suggestionArt,
 } from './combat-art.ts';
 
@@ -19,7 +22,8 @@ const glyphs = new Set<string>(GLYPH_NAMES);
 
 describe('combat option pictures and words', () => {
   it('shows each battlefield option with the catalog art of the entry its command uses', () => {
-    for (const action of COMBAT_ACTIONS) {
+    // A weapon attack's picture is its weapon's (`optionArtUrl`), checked below.
+    for (const action of COMBAT_ACTIONS.filter((id) => id !== 'weapon_attack')) {
       const art = catalogArtOf(action);
       expect(art, action).not.toBeNull();
       if (!art) continue;
@@ -28,6 +32,20 @@ describe('combat option pictures and words', () => {
     expect(catalogArtOf('longbow_attack')).toEqual({ kind: 'weapons', id: 'longbow' });
     expect(catalogArtOf('hunters_mark')).toEqual({ kind: 'spells', id: 'hunters-mark' });
     expect(catalogArtOf('talk')).toBeNull();
+  });
+
+  it('pictures and names a weapon attack by its weapon (Stage 520)', () => {
+    const strike = {
+      id: 'weapon_attack',
+      weapon: 'shortsword',
+      legal: true,
+      relevance: 'low',
+    } as const;
+    expect(optionArtUrl(strike)).not.toBeNull();
+    const t = (key: string, params?: Record<string, string | number>) =>
+      key.replace(/\{(\w+)\}/g, (_, name: string) => String(params?.[name] ?? ''));
+    expect(optionLabelFor(t, strike, 'Goblin')).toBe('Attack Goblin with Shortsword');
+    expect(shortLabelFor(t, strike)).toBe('Shortsword');
   });
 
   it('keys a suggested creature turn’s art by its attack or spell ID, and nothing else', () => {

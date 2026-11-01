@@ -1,4 +1,4 @@
-import type { ContextEntityRef, ContextIllegalReason, SpellId } from '@ltw/contracts';
+import type { ContextEntityRef, ContextIllegalReason, SpellId, WeaponId } from '@ltw/contracts';
 import {
   attackPlan,
   characterSpellPlan,
@@ -62,9 +62,10 @@ export function combatAttackVerdict(
   frame: CombatFrame,
   inputs: ContextInputs,
   targetId: string,
+  weaponId: WeaponId = 'longbow',
 ): Verdict {
   if (paused(inputs)) return PAUSED;
-  const plan = attackPlan(inputs.state, frame.encounter, frame.actor.entityId, 'longbow', targetId);
+  const plan = attackPlan(inputs.state, frame.encounter, frame.actor.entityId, weaponId, targetId);
   if (!plan.legal) return fromRefusal(plan);
   return plan.longRange ? { legal: true, hints: ['LONG_RANGE'] } : { legal: true };
 }
