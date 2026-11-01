@@ -2,7 +2,13 @@ import type pg from 'pg';
 
 import type { Check, RollGroup, RollMode, RollSubject } from '@ltw/contracts';
 
-import type { CheckRequestRecord, TableRollRecord, TableStore } from './table-store.ts';
+import type {
+  CheckRequestRecord,
+  RestRecord,
+  RestStore,
+  TableRollRecord,
+  TableStore,
+} from './table-store.ts';
 
 /**
  * PostgreSQL table rolls and check requests (migration 0025_table_rolls.sql). Rolls are
@@ -165,6 +171,55 @@ export class PostgresTableStore implements TableStore {
       `UPDATE ltw_check_requests SET status = 'cancelled'
        WHERE campaign_id = $1 AND request_id = $2 AND status = 'open'`,
       [campaignId, requestId],
+    );
+    return rowCount === 1;
+  }
+}
+
+/** PostgreSQL short rests (migration 0026): the partial unique index keeps one open per campaign. */
+export class PostgresRestStore implements RestStore {
+  readonly #pool: pg.Pool;
+
+  constructor(pool: pg.Pool) {
+    this.#pool = pool;
+  }
+
+  async openRest(campaignId: string): Promise<RestRecord | null> {
+    const { rows } = await this.#pool.query<{
+      rest_id: string;
+      campaign_id: string;
+      started_at: Date;
+    }>(
+      `SELECT rest_id, campaign_id, started_at FROM ltw_rests
+       WHERE campaign_id = $1 AND ended_at IS NULL`,
+      [campaignId],
+    );
+    const row = rows[0];
+    return row
+      ? {
+          restId: row.rest_id,
+          campaignId: row.campaign_id,
+          kind: 'short',
+          startedAt: row.started_at.toISOString(),
+          endedAt: null,
+        }
+      : null;
+  }
+
+  async startRest(record: RestRecord): Promise<boolean> {
+    const { rowCount } = await this.#pool.query(
+      `INSERT INTO ltw_rests (campaign_id, rest_id, kind, started_at) VALUES ($1, $2, $3, $4)
+       ON CONFLICT DO NOTHING`,
+      [record.campaignId, record.restId, record.kind, record.startedAt],
+    );
+    return rowCount === 1;
+  }
+
+  async endRest(campaignId: string, restId: string, at: string): Promise<boolean> {
+    const { rowCount } = await this.#pool.query(
+      `UPDATE ltw_rests SET ended_at = $3
+       WHERE campaign_id = $1 AND rest_id = $2 AND ended_at IS NULL`,
+      [campaignId, restId, at],
     );
     return rowCount === 1;
   }

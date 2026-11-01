@@ -73,6 +73,11 @@ export type WeaponId = (typeof WEAPON_IDS)[number];
 export const CLASS_IDS = ['ranger', 'wizard'] as const;
 export type ClassId = (typeof CLASS_IDS)[number];
 
+/** Hit Point Dice by size (SRD 5.2.1); each class has one (Stage 530, `@ltw/rules`). */
+export const HIT_DIE_SIDES = [6, 8, 10, 12] as const;
+export type HitDieSides = (typeof HIT_DIE_SIDES)[number];
+const spentDice = z.number().int().min(0).max(20);
+
 /**
  * Slice conditions. Incapacitated ends Concentration and blocks actions;
  * Unconscious (a character at 0 HP, ADR 0015 §4) includes Incapacitated and Prone.
@@ -149,6 +154,12 @@ export const characterSheetSchema = z
       })
       .strict()
       .optional(),
+    /** Hit Point Dice spent since the last long rest, by size; absent when none is (Stage 530). */
+    hitDiceSpent: z
+      .object({ d6: spentDice, d8: spentDice, d10: spentDice, d12: spentDice })
+      .partial()
+      .strict()
+      .optional(),
   })
   .strict()
   .superRefine((sheet, context) => {
@@ -156,6 +167,11 @@ export const characterSheetSchema = z
       context.addIssue({ code: 'custom', message });
     };
     if (sheet.hitPoints.current > sheet.hitPoints.max) issue('current HP exceeds maximum');
+    const dice = sheet.hitDiceSpent;
+    const spent = (dice?.d6 ?? 0) + (dice?.d8 ?? 0) + (dice?.d10 ?? 0) + (dice?.d12 ?? 0);
+    if (spent > sheet.classes.reduce((sum, entry) => sum + entry.level, 0)) {
+      issue('more Hit Point Dice spent than the character has');
+    }
     sheet.spellSlots.expended.forEach((used, index) => {
       if (used > (sheet.spellSlots.max[index] ?? 0))
         issue(`more level ${index + 1} slots expended than available`);

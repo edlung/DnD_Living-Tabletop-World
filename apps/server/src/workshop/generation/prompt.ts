@@ -61,7 +61,8 @@ const DIRECTIONS: Readonly<Record<CampaignGenerationStage, string>> = {
     'conditional {if,then} developments, not a compulsory script. Quest activation/milestones are future ' +
     'projection definitions, never acquired progress; entity-reference fields use local keys even when ' +
     'named subject/informant/locationId. Milestone stage names are unique within a quest; returned-to.after ' +
-    'references another stage of that quest. Cover opening, social/investigation routes, optional conflict, ' +
+    'and shown-to.after reference another stage of that quest; completion names the stage that ends it ' +
+    '(for example evidence shown-to the quest giver after the return). Cover opening, social/investigation routes, optional conflict, ' +
     'failure recovery and an open ending. Never fabricate already-played memories or discoveries.',
   outline:
     'Write a connected laterOutline grounded in the established conflicts, cast, clues and first session. ' +

@@ -4,31 +4,31 @@ import {
   ROLL_FEED_SIZE,
   campaignIdSchema,
   checkRequestSchema,
-  parsePerspective,
   tableRollRequestSchema,
   type CheckRequestView,
   type CheckRequestsResponse,
   type RollEntry,
   type RollFeedResponse,
 } from '@ltw/contracts';
-import { knownEntityIds, resolvePerspective, type ResolvedPerspective } from '@ltw/domain';
-import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import { knownEntityIds, type ResolvedPerspective } from '@ltw/domain';
+import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
 import { sendError } from '../http/errors.ts';
 import {
-  authenticate,
-  parseInput,
+  withBody,
   withPerspective,
   type PerspectiveContext,
   type RouteDependencies,
 } from '../http/request-context.ts';
 import { rollCheck, rollFreeDice, type DiceSource } from './table-rolls.ts';
-import type { CheckRequestRecord, TableRollRecord, TableStore } from './table-store.ts';
+import type { CheckRequestRecord, RestStore, TableRollRecord, TableStore } from './table-store.ts';
 import { worldRolls, type WorldRoll } from './world-rolls.ts';
 
 export interface TableDependencies {
   readonly store: TableStore;
+  /** The DM's open short rests (Stage 530, `src/rest/`). */
+  readonly rests: RestStore;
   readonly dice: DiceSource;
   readonly now: () => string;
 }
@@ -38,35 +38,6 @@ const requestParams = z.object({ campaignId: campaignIdSchema, requestId: z.uuid
 const query = z.object({ perspective: z.string() }).strict();
 /** How many of the DM's requests the DM's list keeps. */
 const REQUEST_LIST = 20;
-
-/** The ADR 0009 check order with a body: 401 → 400 (path, query, body) → 404 → 403. */
-async function withBody<P extends { campaignId: string }, B>(
-  request: FastifyRequest,
-  reply: FastifyReply,
-  deps: RouteDependencies,
-  schemas: { readonly params: z.ZodType<P>; readonly body: z.ZodType<B> },
-): Promise<{ context: Omit<PerspectiveContext, 'history'>; params: P; body: B } | null> {
-  const actor = await authenticate(request, reply, deps);
-  if (!actor) return null;
-  const path = parseInput(schemas.params, request.params, request, reply);
-  if (!path) return null;
-  const search = parseInput(query, request.query, request, reply);
-  if (!search) return null;
-  const body = parseInput(schemas.body, request.body, request, reply);
-  if (body === null) return null;
-  const wanted = parsePerspective(search.perspective);
-  if (!wanted) {
-    sendError(reply, request, 'INVALID_REQUEST');
-    return null;
-  }
-  const state = (await deps.engine.load(path.campaignId))?.state ?? null;
-  const access = resolvePerspective(state, actor, wanted);
-  if (!access.ok || state === null) {
-    sendError(reply, request, access.ok ? 'NOT_FOUND' : access.reason);
-    return null;
-  }
-  return { context: { actor, state, perspective: access.perspective }, params: path, body };
-}
 
 /** Who may see a roll, and under which name (never a hidden character's). */
 function viewer(context: Omit<PerspectiveContext, 'history'>) {

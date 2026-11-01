@@ -18,6 +18,7 @@ export const QUEST_MILESTONE_KINDS = [
   'told-by',
   'survived-fight-at',
   'returned-to',
+  'shown-to',
 ] as const;
 export type QuestMilestoneKind = (typeof QUEST_MILESTONE_KINDS)[number];
 
@@ -69,7 +70,24 @@ export const questMilestoneSchema = z.discriminatedUnion('kind', [
       summary,
     })
     .strict(),
+  z
+    .object({
+      kind: z.literal('shown-to'),
+      stage: slug,
+      /** The NPC a party member shows the party's evidence to (Stage 530). */
+      npcId: entityIdSchema,
+      /** What the evidence is about. */
+      subject: entityIdSchema,
+      /** The stage after which showing it counts, if any. */
+      after: slug.optional(),
+      summary,
+    })
+    .strict(),
 ]);
+
+/** The stage a milestone waits for, if any. */
+export const milestoneAfter = (milestone: QuestMilestone): string | undefined =>
+  milestone.kind === 'returned-to' || milestone.kind === 'shown-to' ? milestone.after : undefined;
 export type QuestMilestone = z.infer<typeof questMilestoneSchema>;
 
 export const questDefinitionSchema = z
@@ -79,17 +97,21 @@ export const questDefinitionSchema = z
     /** Active once the party first holds a record or memory of its own about this entity. */
     activation: z.object({ subject: entityIdSchema, summary }).strict(),
     milestones: z.array(questMilestoneSchema).max(20),
+    /** The stage that completes the quest (Stage 530); without one the quest stays open. */
+    completion: slug.optional(),
   })
   .strict()
-  .refine(
-    (quest) =>
-      new Set(quest.milestones.map((m) => m.stage)).size === quest.milestones.length &&
-      quest.milestones.every(
-        (m) =>
-          m.kind !== 'returned-to' || quest.milestones.some((other) => other.stage === m.after),
-      ),
-    'stages must be unique, and a return must follow a stage of the same quest',
-  );
+  .refine((quest) => {
+    const stages = new Set(quest.milestones.map((m) => m.stage));
+    return (
+      stages.size === quest.milestones.length &&
+      quest.milestones.every((m) => {
+        const after = milestoneAfter(m);
+        return after === undefined || (after !== m.stage && stages.has(after));
+      }) &&
+      (quest.completion === undefined || stages.has(quest.completion))
+    );
+  }, 'stages must be unique, a stage waited for and the completing stage must be of the same quest');
 export type QuestDefinition = z.infer<typeof questDefinitionSchema>;
 
 export const questBookSchema = z

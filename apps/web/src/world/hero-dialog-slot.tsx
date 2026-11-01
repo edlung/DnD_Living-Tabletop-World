@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { HeroDialog } from '../character/hero-dialog.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { InventoryPanel, type Recipient } from '../items/inventory-panel.tsx';
+import { GrantLevel, HitDice } from '../rest/sheet-rest.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 
 /**
@@ -51,6 +52,12 @@ export function WorldHeroDialog({
       onTab={shell.showHeroTab}
       onClose={shell.closeHero}
       notice={notice}
+      overview={(shown) => (
+        <>
+          <HitDice {...shown} locked={locked} onRun={onRun} />
+          <GrantLevel {...shown} locked={locked} onRun={onRun} />
+        </>
+      )}
       inventory={
         <InventoryPanel
           api={api}

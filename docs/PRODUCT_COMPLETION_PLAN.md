@@ -54,8 +54,9 @@ land on one branch and pull request so the owner is asked once, at the end, to m
 8. **Weapons** join the item catalog with SRD weapon mechanics under Ravenford names; a character attacks
    with what it wields (sheet weapons keep working). Not modelled: weapon mastery, two-weapon fighting,
    ammunition counting.
-9. **Rests** are the DM's call: a short rest lets players spend hit dice (rolled), a long rest restores
-   hit points, slots, free casts and half the hit dice. **Levels** are milestones the DM grants.
+9. **Rests** are the DM's call: a short rest lets players spend Hit Point Dice (rolled), a long rest
+   restores hit points, slots, free casts and every spent Hit Point Die (SRD 5.2.1; corrected from
+   "half" in Stage 530). **Levels** are milestones the DM grants.
 10. **The Missing Caravan ends**: after the return, telling the guild what the party learned completes
     the quest.
 11. **Out of scope**: new classes or species, character creation (parties are prepared by the DM or the

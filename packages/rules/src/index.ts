@@ -27,6 +27,17 @@ export {
 } from './character-math.ts';
 export { carryingCapacityLb, deriveCharacter, weaponAttack } from './character-derived.ts';
 export {
+  CLASS_HIT_DIE,
+  hitDice,
+  hitDieRefusal,
+  levelUp,
+  longRest,
+  spendHitDie,
+  type HitDicePool,
+  type HitDieRefusal,
+  type LevelUpRefusal,
+} from './rest.ts';
+export {
   attackRoll,
   d20Test,
   rollDamage,

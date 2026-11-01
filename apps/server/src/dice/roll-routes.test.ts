@@ -16,7 +16,7 @@ import {
   testDm,
 } from '../testing/ravenford-app.ts';
 import type { DiceSource } from './table-rolls.ts';
-import { InMemoryTableStore } from './table-store.ts';
+import { InMemoryRestStore, InMemoryTableStore } from './table-store.ts';
 
 /** The table's dice, scripted: each test queues the faces it expects. */
 const queue: number[] = [];
@@ -45,6 +45,7 @@ beforeAll(async () => {
     testDm(),
     {
       store: new InMemoryTableStore(),
+      rests: new InMemoryRestStore(),
       dice,
       now: () => new Date(Date.UTC(2030, 0, 1, 0, 0, (tick += 1))).toISOString(),
     },

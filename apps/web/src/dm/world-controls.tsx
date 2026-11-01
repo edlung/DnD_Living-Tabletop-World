@@ -1,5 +1,5 @@
 import { WEATHERS, type KernelCommandOf, type ScenePresentationResponse } from '@ltw/contracts';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, type ReactNode } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -28,6 +28,7 @@ export function DmWorldControls({
   weather,
   onWeather,
   onRun,
+  children,
 }: {
   /** The DM's choice; null until chosen, when the choice shows the place's weather now. */
   readonly weather: (typeof WEATHERS)[number] | null;
@@ -39,6 +40,8 @@ export function DmWorldControls({
   readonly locationName: string;
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
+  /** More of the DM's table tools in the same grid (the rests, Stage 530). */
+  readonly children?: ReactNode;
 }) {
   const t = useT();
   const [hours, setHours] = useState('8');
@@ -159,6 +162,7 @@ export function DmWorldControls({
           </button>
         </div>
       </section>
+      {children}
     </div>
   );
 }

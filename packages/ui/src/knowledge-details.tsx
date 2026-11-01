@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 
 import { readableLabel } from './labels.ts';
 import { StatusPanel } from './status-panel.tsx';
-import { useT, type Translate } from './i18n.tsx';
+import { useLanguage, useT, type Translate } from './i18n.tsx';
 
 export interface KnowledgeDetailsProps {
   readonly knowledge: readonly KnowledgeView[];
@@ -24,6 +24,7 @@ function scopeLabel(t: Translate, scope: KnowledgeScope): string {
  */
 export function KnowledgeDetails({ knowledge, typeMark }: KnowledgeDetailsProps) {
   const t = useT();
+  const language = useLanguage();
   if (knowledge.length === 0) {
     return (
       <StatusPanel state="empty" label={t('No knowledge is available in this perspective.')} />
@@ -153,7 +154,11 @@ export function KnowledgeDetails({ knowledge, typeMark }: KnowledgeDetailsProps)
                     </div>
                     <div>
                       <dt>{t('Recorded at')}</dt>
-                      <dd>{record.origin.recordedAt}</dd>
+                      <dd>
+                        <time dateTime={record.origin.recordedAt}>
+                          {new Date(record.origin.recordedAt).toLocaleString(language)}
+                        </time>
+                      </dd>
                     </div>
                     <div>
                       <dt>{t('World time')}</dt>

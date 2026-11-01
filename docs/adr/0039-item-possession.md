@@ -60,7 +60,6 @@ catalog IDs from campaign packages; Stage 480 attaches art by catalog ID.
 
 Owner decision 2026-10-31: a hand-over between players takes effect at once, with no consent step for the receiver.
 
-
 ## Amendment 2026-11-01 (Stage 520, owner-delegated: `reviews/OWNER_PRODUCT_COMPLETION_2026-11-01.json`)
 
 Weapons and coins join the catalog. A weapon item names the SRD 5.2.1 weapon it fights as

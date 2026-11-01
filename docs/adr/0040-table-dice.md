@@ -31,3 +31,18 @@ world-rolls.ts`); table rolls (free dice, checks, saves) are rolled by the serve
 - The live fingerprint covers `rolls` and `check-requests`, so every viewer's dice follow at once.
 - Rolls survive restarts (PostgreSQL) and appear in a per-campaign log (latest 30).
 - A third-party 3D stack enters the client (MIT), only in a lazy chunk.
+
+## Amendment 2026-11-01 (Stage 530, owner-delegated): rests at the table
+
+- The DM's open short rest is table state beside the rolls (`ltw_rests`, migration 0026): at most one
+  open per campaign (a partial unique index), never canonical history. A fight hides it and refuses
+  spending; a long rest closes it.
+- What a rest does to a character is a `SetCharacterSheet` the rules computed (`@ltw/rules`
+  `longRest`, `spendHitDie`, `levelUp`), recorded through the World Engine by the table's system
+  actor (`table`, as sign-in records a seat, ADR 0036 §4) with command IDs `rest:`, `hit-die:` and
+  `level:` plus the client's `requestId`, so a retried request is `duplicate`. Time passes with
+  `AdvanceWorldTime` (an hour, eight hours). These commands are not the DM's `http:` commands, so
+  the DM history lists none of them.
+- A spent Hit Point Die is a table roll (`subject: hit-die`): the server rolls it, the feed shows it
+  and the client throws it like any other die. The live fingerprint covers `rest` for the DM and an
+  acting character.

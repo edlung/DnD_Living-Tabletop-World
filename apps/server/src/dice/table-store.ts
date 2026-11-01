@@ -98,3 +98,47 @@ export class InMemoryTableStore implements TableStore {
     return Promise.resolve(true);
   }
 }
+
+/** An open short rest the DM called (Stage 530): players spend hit dice until the DM ends it. */
+export interface RestRecord {
+  readonly restId: string;
+  readonly campaignId: string;
+  readonly kind: 'short';
+  readonly startedAt: string;
+  readonly endedAt: string | null;
+}
+
+/** The DM's short rests (migration 0026): at most one open per campaign. */
+export interface RestStore {
+  openRest(campaignId: string): Promise<RestRecord | null>;
+  /** False when a rest is already open (nothing is written then). */
+  startRest(record: RestRecord): Promise<boolean>;
+  /** False when that rest is not open. */
+  endRest(campaignId: string, restId: string, at: string): Promise<boolean>;
+}
+
+export class InMemoryRestStore implements RestStore {
+  readonly #rests: RestRecord[] = [];
+
+  openRest(campaignId: string): Promise<RestRecord | null> {
+    return Promise.resolve(
+      this.#rests.find((rest) => rest.campaignId === campaignId && rest.endedAt === null) ?? null,
+    );
+  }
+
+  async startRest(record: RestRecord): Promise<boolean> {
+    if (await this.openRest(record.campaignId)) return false;
+    this.#rests.push(record);
+    return true;
+  }
+
+  endRest(campaignId: string, restId: string, at: string): Promise<boolean> {
+    const index = this.#rests.findIndex(
+      (rest) => rest.campaignId === campaignId && rest.restId === restId && rest.endedAt === null,
+    );
+    const rest = this.#rests[index];
+    if (!rest) return Promise.resolve(false);
+    this.#rests[index] = { ...rest, endedAt: at };
+    return Promise.resolve(true);
+  }
+}

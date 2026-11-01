@@ -1,5 +1,6 @@
 import type { CharacterDerived, CharacterSheet } from '@ltw/contracts';
 import { readableLabel, useT, type Translate } from '@ltw/ui';
+import type { ReactNode } from 'react';
 
 import { catalogUrl } from '../visual/ui-kit.ts';
 import { RollButton, useRollFor } from './roll-buttons.tsx';
@@ -204,19 +205,25 @@ function DeathSaves({ saves }: { readonly saves: NonNullable<CharacterSheet['dea
   );
 }
 
-/** The overview tab: abilities, attacks and features, and death saves while dying. */
+/**
+ * The overview tab: death saves while dying, the table's sections (Hit Point Dice, the DM's level,
+ * Stage 530), abilities, attacks and features.
+ */
 export function OverviewTab({
   entityId,
   sheet,
   derived,
+  table,
 }: {
   readonly entityId: string;
   readonly sheet: CharacterSheet;
   readonly derived: CharacterDerived;
+  readonly table?: ReactNode;
 }) {
   return (
     <div className="hero-overview">
       {sheet.deathSaves && <DeathSaves saves={sheet.deathSaves} />}
+      {table}
       <Abilities entityId={entityId} derived={derived} />
       <Combat sheet={sheet} derived={derived} />
     </div>

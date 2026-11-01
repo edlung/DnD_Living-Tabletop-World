@@ -19,6 +19,7 @@ import {
   spellSaveDc,
   totalLevel,
 } from './character-math.ts';
+import { hitDice } from './rest.ts';
 
 /** Strength score × 15 lb (SRD 5.2.1 carrying capacity, Medium size). */
 const CAPACITY_PER_STRENGTH_LB = 15;
@@ -117,5 +118,6 @@ export function deriveCharacter(
       };
     }),
     carryingCapacityLb: carryingCapacityLb(sheet),
+    hitDice: hitDice(sheet).map(({ sides, total, left }) => ({ sides, total, left })),
   };
 }

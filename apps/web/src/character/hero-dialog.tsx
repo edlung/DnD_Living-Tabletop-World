@@ -1,4 +1,9 @@
-import type { CharacterSheetResponse, EntityKind } from '@ltw/contracts';
+import type {
+  CharacterDerived,
+  CharacterSheet,
+  CharacterSheetResponse,
+  EntityKind,
+} from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
 import {
   useCallback,
@@ -19,6 +24,13 @@ import { CharacterCard } from './character-card.tsx';
 import { OverviewTab } from './overview-tab.tsx';
 import { SkillsTab } from './skills-tab.tsx';
 import { SpellsTab } from './spells-tab.tsx';
+
+/** Sections the world adds to the Overview tab for the sheet shown. */
+export type OverviewSections = (shown: {
+  readonly entityId: string;
+  readonly sheet: CharacterSheet;
+  readonly derived: CharacterDerived;
+}) => ReactNode;
 
 const TABS: readonly { readonly id: HeroTab; readonly label: string }[] = [
   { id: 'overview', label: 'Overview' },
@@ -99,6 +111,7 @@ export function HeroDialog({
   onTab,
   onClose,
   inventory,
+  overview,
   notice,
 }: {
   readonly api: WorldApi;
@@ -112,6 +125,8 @@ export function HeroDialog({
   readonly onClose: () => void;
   /** The Inventory tab's content for the open character. */
   readonly inventory: ReactNode;
+  /** The table's sections of the Overview tab for the shown sheet (Stage 530). */
+  readonly overview?: OverviewSections;
   /** The result of the latest action: the world behind a modal is out of reach. */
   readonly notice: ReactNode;
 }) {
@@ -142,6 +157,7 @@ export function HeroDialog({
           onTab={onTab}
           onClose={onClose}
           inventory={inventory}
+          overview={overview}
         />
       )}
       {entityId !== null && <div className="hero-notice">{notice}</div>}
@@ -158,6 +174,7 @@ function HeroContent({
   onTab,
   onClose,
   inventory,
+  overview,
 }: {
   readonly api: WorldApi;
   readonly revision: number;
@@ -167,6 +184,7 @@ function HeroContent({
   readonly onTab: (tab: HeroTab) => void;
   readonly onClose: () => void;
   readonly inventory: ReactNode;
+  readonly overview: OverviewSections | undefined;
 }) {
   const t = useT();
   const idBase = useId();
@@ -243,7 +261,12 @@ function HeroContent({
               {!value.derived ? (
                 <StatusPanel state="empty" label={t('No character sheet is recorded here.')} />
               ) : tab === 'overview' ? (
-                <OverviewTab entityId={entityId} sheet={value.sheet} derived={value.derived} />
+                <OverviewTab
+                  entityId={entityId}
+                  sheet={value.sheet}
+                  derived={value.derived}
+                  table={overview?.({ entityId, sheet: value.sheet, derived: value.derived })}
+                />
               ) : tab === 'skills' ? (
                 <SkillsTab entityId={entityId} derived={value.derived} />
               ) : tab === 'spells' ? (

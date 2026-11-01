@@ -1,0 +1,210 @@
+/* Rests, Hit Point Dice, levels and the quest log (Stage 530). Tokens only. */
+
+/* Hit Point Dice on the sheet */
+.hit-dice {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hit-die-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--glass-soft);
+}
+.hit-die-row > .glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--hp);
+}
+.hit-die-kind {
+  min-width: 40px;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+.hit-die-left {
+  flex: 1 1 120px;
+  color: var(--text);
+}
+.hit-die-row .roll-button--text {
+  min-height: 32px;
+}
+
+/* The DM's rest card: what is under way */
+.rest-now {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: var(--gold-bright);
+}
+.rest-now .glyph {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--hp);
+}
+
+/* The short rest over the world: centred under the top bar on a wide screen; below the place's
+   card and the party rail, at the left edge, where they or an open side panel would meet it. */
+.rest-banner-slot {
+  position: fixed;
+  top: calc(var(--topbar-h) + 12px);
+  left: 50%;
+  z-index: 6;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  translate: -50% 0;
+  pointer-events: none;
+}
+.rest-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(var(--blur));
+  color: var(--text);
+  pointer-events: auto;
+}
+.rest-banner > .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold-bright);
+}
+.rest-banner-text {
+  min-width: 0;
+}
+.rest-banner button {
+  min-height: 36px;
+}
+
+/* The quest log in the Journal */
+.quest-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: var(--glass-soft);
+}
+.quest-card + .quest-card {
+  margin-top: 16px;
+}
+.quest-card--done {
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+}
+.quest-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+.quest-head h4 {
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+.quest-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.quest-status .glyph {
+  width: 16px;
+  height: 16px;
+}
+.quest-card--done .quest-status {
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  color: var(--gold-bright);
+}
+.quest-steps {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.quest-step {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+  gap: 4px 12px;
+  padding-left: 12px;
+  border-left: 2px solid var(--line-strong);
+}
+.quest-step.is-final {
+  border-left-color: var(--gold);
+}
+.quest-when {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.quest-step.is-final .quest-summary {
+  color: var(--gold-bright);
+}
+@container (max-width: 420px) {
+  .quest-step {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 1279px) {
+  /* Right of the party rail, under the place's card (stage.css, scene.css), clear of the panel. */
+  .rest-banner-slot {
+    top: calc(var(--topbar-h) + 120px);
+    left: 120px;
+    max-width: calc(100vw - 136px);
+    translate: none;
+  }
+  body:has(.detail-panel:not([hidden])) .rest-banner-slot {
+    max-width: calc(100vw - 152px - var(--panel-w));
+  }
+}
+@media (max-width: 767px) {
+  /* A phone's scene flows under a two-row top bar: the banner sits above the tab bar and the
+     result (--outcome-h, shell/reserved-height.ts), the scene keeps room for it, and a sheet or
+     panel over the whole screen hides it. */
+  .rest-banner-slot,
+  body:has(.detail-panel:not([hidden])) .rest-banner-slot {
+    top: auto;
+    right: 8px;
+    bottom: calc(var(--dock-h) + var(--outcome-h, 0px) + 16px);
+    left: 8px;
+    width: auto;
+    max-width: none;
+    translate: none;
+  }
+  .world-main:has(.rest-banner) .stage {
+    padding-bottom: calc(var(--dock-h) + var(--outcome-h, 0px) + 8rem);
+  }
+  .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden])) .rest-banner-slot {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .quest-step {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rest-banner {
+    border-radius: var(--radius-panel);
+  }
+}

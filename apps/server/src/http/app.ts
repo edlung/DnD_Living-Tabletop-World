@@ -16,7 +16,8 @@ import type { AuthoringDependencies } from '../authoring/service.ts';
 import { registerDmRoutes, type DmDependencies } from '../dm/dm-routes.ts';
 import { registerRollRoutes, type TableDependencies } from '../dice/roll-routes.ts';
 import { serverDice } from '../dice/table-rolls.ts';
-import { InMemoryTableStore } from '../dice/table-store.ts';
+import { InMemoryRestStore, InMemoryTableStore } from '../dice/table-store.ts';
+import { registerRestRoutes } from '../rest/rest-routes.ts';
 import { registerPresenceRoutes } from '../live/presence.ts';
 import { NOBODY_CONNECTED, type PresenceSource } from '../live/registry.ts';
 import { processReadiness, type ReadinessProbe } from '../platform/health/readiness.ts';
@@ -93,6 +94,7 @@ export interface AppDependencies {
 /** The table's rolls in memory, with the server's dice: for compositions without a database. */
 export const memoryTable = (): TableDependencies => ({
   store: new InMemoryTableStore(),
+  rests: new InMemoryRestStore(),
   dice: serverDice,
   now: () => new Date().toISOString(),
 });
@@ -161,7 +163,9 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
-  registerRollRoutes(app, { ...deps, table: deps.table ?? memoryTable() });
+  const table = deps.table ?? memoryTable();
+  registerRollRoutes(app, { ...deps, table });
+  registerRestRoutes(app, { ...deps, table });
   if (deps.signIn) {
     const signIn = { ...deps, signIn: deps.signIn };
     registerAuthRoutes(app, signIn);

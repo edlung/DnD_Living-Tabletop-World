@@ -1,6 +1,8 @@
 import type {
   CheckRequestInput,
   CheckRequestsResponse,
+  RestResponse,
+  RestView,
   RollEntry,
   RollFeedResponse,
   TableRollRequest,
@@ -14,12 +16,14 @@ import { useRereadOn } from '../world/use-world-data.ts';
 
 /**
  * The table's dice in the client (Stage 510): the roll feed this perspective may see, the DM's check
- * requests, and the writes — a roll, a request, a cancel — each followed by a re-read. Every die is
- * the server's; the client only shows it.
+ * requests, the open short rest (Stage 530), and the writes — a roll, a request, a cancel — each
+ * followed by a re-read. Every die is the server's; the client only shows it.
  */
 export interface DiceTable {
   readonly feed: Resource<RollFeedResponse>;
   readonly requests: Resource<CheckRequestsResponse>;
+  /** The short rest the DM opened, while it lasts (Stage 530). */
+  readonly rest: RestView | null;
   /** Rolls that arrived since this screen first read the feed, oldest first, once each. */
   readonly fresh: readonly RollEntry[];
   readonly takeFresh: () => void;
@@ -67,10 +71,19 @@ export function useDiceTableState(
         : Promise.resolve({ perspective, requests: [] }),
     [api, rolling, perspective],
   );
+  const loadRest = useCallback(
+    (signal: AbortSignal) =>
+      rolling
+        ? api.get<RestResponse>('rest', signal)
+        : Promise.resolve({ perspective, rest: null }),
+    [api, rolling, perspective],
+  );
   const feed = useResource('rolls', loadFeed);
   const requests = useResource('check-requests', loadRequests);
+  const rest = useResource('rest', loadRest);
   useRereadOn(revision, feed.reread);
   useRereadOn(revision, requests.reread);
+  useRereadOn(revision, rest.reread);
   const [fresh, setFresh] = useState<readonly RollEntry[]>([]);
   const [flying, setFlying] = useState<ReadonlySet<string>>(new Set());
   const seen = useRef<Set<string> | null>(null);
@@ -118,6 +131,7 @@ export function useDiceTableState(
   return {
     feed: feed.resource,
     requests: requests.resource,
+    rest: rest.resource.status === 'ready' ? rest.resource.value.rest : null,
     fresh,
     takeFresh: () => {
       setFresh([]);

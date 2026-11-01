@@ -23,7 +23,7 @@ export function ok(reply: Reply, expected = 200): Reply {
   return reply;
 }
 
-const dialogue = (
+export const dialogue = (
   session: RavenfordSession,
   npcId: string,
   intent: Record<string, unknown>,

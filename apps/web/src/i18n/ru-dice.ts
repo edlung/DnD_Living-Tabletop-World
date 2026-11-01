@@ -50,7 +50,7 @@ registerRussian({
   '{skill} check': 'Проверка: {skill}',
   '{weapon} attack': 'Атака: {weapon}',
   'Death saving throw': 'Спасбросок от смерти',
-  'Hit die': 'Кость хитов',
+  'Hit Point Die': 'Кость хитов',
   DM: 'Мастер',
   'Someone at the table': 'Кто-то за столом',
   'Attack roll': 'Бросок атаки',

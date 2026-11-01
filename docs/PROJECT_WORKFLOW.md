@@ -8,6 +8,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   Record `reviews/OWNER_PRODUCT_COMPLETION_2026-11-01.json`; program and delegated decisions
   `docs/PRODUCT_COMPLETION_PLAN.md`; current scope `work-orders/STAGE_500.md` onward (500–540).
   One branch and pull request for the program; the owner is asked once at the end to merge and deploy.
+- Status: Stages 500, 510, 520 and 530 complete on `claude/product-completion` (reports
+  `reports/STAGE_5[0-3]0_COMPLETION.md`); Stage 540 (A-to-Z verification, audits, release) next.
 
 ## Current request — AI campaigns, 2026-10-30
 

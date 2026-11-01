@@ -8,12 +8,13 @@ import { DiceStage } from '../dice/dice-stage.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import type { Recipient } from '../items/inventory-panel.tsx';
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
+import { RestBanner } from '../rest/sheet-rest.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { WorldHeroDialog } from './hero-dialog-slot.tsx';
 
 /**
- * What lies over the world screen: the Chronicle book, the character dialog and the dice (Stage
- * 510). The action's result and the latest roll in words go where the viewer is — inside the
+ * What lies over the world screen: the short rest's banner (Stage 530), the Chronicle book, the
+ * character dialog and the dice (Stage 510). The action's result and the latest roll in words go where the viewer is — inside the
  * character dialog while it is open (the world behind a modal is out of reach), else in the world.
  */
 export function WorldOverlays({
@@ -51,6 +52,16 @@ export function WorldOverlays({
   const announcer = <RollAnnouncer entry={announced} />;
   return (
     <>
+      <RestBanner
+        isDm={isDm}
+        actorId={actorId}
+        fighting={encounter !== null}
+        locked={locked}
+        onRun={onRun}
+        onOpenSheet={(characterId) => {
+          shell.openHero(characterId, 'overview');
+        }}
+      />
       {shell.hero === null && (
         <>
           {outcome}

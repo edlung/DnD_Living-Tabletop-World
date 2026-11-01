@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ApiError, type WorldApi } from '../api/client.ts';
 import type { CombatUiCommand } from '../combat/combat-bindings.ts';
 import type { DmWorldCommand } from '../dm/world-controls.tsx';
+import { runRest, type RestAction } from '../rest/rest-intent.ts';
 import type { ExplorationCommand } from './action-bindings.ts';
 import { outcomeMessage, rejectionMessage } from './outcome-messages.ts';
 
@@ -26,7 +27,8 @@ export type ExplorationIntent =
       readonly command: ExplorationCommand | CombatUiCommand | DmWorldCommand;
       readonly standIn?: StandInReason;
     }
-  | { readonly kind: 'talk'; readonly characterId: string; readonly npcId: string };
+  | { readonly kind: 'talk'; readonly characterId: string; readonly npcId: string }
+  | RestAction;
 
 export interface ActionNotice {
   readonly message: string;
@@ -102,6 +104,8 @@ export function useAction(
                 speakerId: intent.npcId,
               }
             : { message: t('No spoken reply is available. You can still ask about a subject.') };
+      } else if (attempt.intent.kind === 'rest') {
+        notice = { message: await runRest(api, attempt.intent, request.signal, t) };
       } else {
         const { command, standIn } = attempt.intent;
         // The reason first, under the same client command ID: a retry repeats both safely.

@@ -290,7 +290,7 @@ describe('the Chronicle and the quest log', () => {
     expect(road.battleFlashback.scene?.entityId).toBe('old-trade-road');
   });
 
-  it('tracks the Missing Caravan from Mira’s account to the return', async () => {
+  it('tracks the Missing Caravan from Mira’s account to the truth told her after the return', async () => {
     const [quest] = road.quests.quests;
     expect(quest?.transitions.map((t) => [t.type, t.stage])).toEqual([
       ['QuestActivated', 'activated'],
@@ -301,7 +301,13 @@ describe('the Chronicle and the quest log', () => {
       ['QuestUpdated', 'contradiction-found'],
       ['QuestUpdated', 'ambush-survived'],
       ['QuestUpdated', 'returned'],
+      ['QuestCompleted', 'guild-told'],
     ]);
+    expect(quest?.status).toBe('completed');
+    expect(road.showMira.command).toMatchObject({
+      status: 'accepted',
+      outcome: { kind: 'ShowEvidence' },
+    });
     const recorded = new Set((await session.snapshot()).history.map((e) => e.eventId));
     for (const transition of quest?.transitions ?? []) {
       for (const source of transition.sources) expect(recorded.has(source.eventId)).toBe(true);

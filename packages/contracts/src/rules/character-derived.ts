@@ -1,4 +1,11 @@
-import type { Ability, Skill, SpellId, SpellcastingSource, WeaponId } from './character-sheet.ts';
+import type {
+  Ability,
+  HitDieSides,
+  Skill,
+  SpellId,
+  SpellcastingSource,
+  WeaponId,
+} from './character-sheet.ts';
 
 /**
  * Numbers that follow from a character sheet by the rules (SRD 5.2.1; `@ltw/rules` computes them on
@@ -64,4 +71,10 @@ export interface CharacterDerived {
   }[];
   /** Strength × 15 lb; shown, never enforced (ADR 0039). */
   readonly carryingCapacityLb: number;
+  /** Hit Point Dice by size, largest first: one per class level, spent in short rests. */
+  readonly hitDice: readonly {
+    readonly sides: HitDieSides;
+    readonly total: number;
+    readonly left: number;
+  }[];
 }

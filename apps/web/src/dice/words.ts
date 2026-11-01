@@ -21,7 +21,7 @@ export function subjectWords(t: Translate, subject: RollSubject): string {
     case 'initiative':
       return t('Initiative');
     case 'hit-die':
-      return t('Hit die');
+      return t('Hit Point Die');
     case 'dice':
       return t('Dice');
   }
@@ -38,7 +38,7 @@ const PURPOSE: Readonly<Record<RollGroup['purpose'], string>> = {
   save: 'Save',
   'death-save': 'Death save',
   initiative: 'Initiative',
-  'hit-die': 'Hit die',
+  'hit-die': 'Hit Point Die',
   dice: 'Roll',
 };
 

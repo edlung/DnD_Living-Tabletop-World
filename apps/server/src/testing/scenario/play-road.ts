@@ -14,7 +14,7 @@ import type {
 
 import ambush from '../../../../../fixtures/ravenford/road-ambush.json' with { type: 'json' };
 import dayTwo from '../../../../../fixtures/ravenford/day-two.json' with { type: 'json' };
-import { contextOf, ok } from './play-day-one.ts';
+import { contextOf, dialogue, ok, partyKnowledge } from './play-day-one.ts';
 import { EN_SCRIPT } from './script.ts';
 import { BASE, ELOWEN, type RavenfordSession } from './session.ts';
 
@@ -36,6 +36,8 @@ export interface Road {
   readonly fireball: CommandResult;
   readonly miraAfter: EntityContextResponse;
   readonly talkAfter: NpcDialogueResponse;
+  /** The truth told: the party's evidence of the caravan shown to Mira, which ends the quest. */
+  readonly showMira: NpcDialogueResponse;
   readonly squareDayOne: ScenePresentationResponse;
   readonly squareDayTwo: ScenePresentationResponse;
   readonly suggestions: MemorySuggestionsResponse;
@@ -138,6 +140,19 @@ export async function playRoad(session: RavenfordSession): Promise<Road> {
       intent: { kind: 'talk' },
     }),
   ).json<NpcDialogueResponse>();
+  // The party tells Mira what became of her caravan: the evidence it found at the site.
+  const caravanEvidence = (await partyKnowledge(session)).find(
+    (record) =>
+      record.knowledgeType === 'EVIDENCE' &&
+      record.subjects.some((subject) => subject.entityId === 'guild-caravan'),
+  );
+  if (!caravanEvidence) throw new Error('the party holds no evidence about the caravan');
+  const showMira = ok(
+    await dialogue(session, 'mira-vale', {
+      kind: 'show',
+      knowledgeId: caravanEvidence.knowledgeId,
+    }),
+  ).json<NpcDialogueResponse>();
 
   // Day 2: clear skies over the afternoon, then rain the next morning.
   session.phase('day-two');
@@ -201,6 +216,7 @@ export async function playRoad(session: RavenfordSession): Promise<Road> {
     fireball,
     miraAfter,
     talkAfter,
+    showMira,
     squareDayOne,
     squareDayTwo,
     suggestions,
