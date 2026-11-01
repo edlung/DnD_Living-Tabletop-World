@@ -130,12 +130,21 @@
   font-size: 1.1rem;
 }
 .related-leads {
-  margin-top: 1rem;
+  margin: 1.25rem 0 0;
+  padding-bottom: 0.9rem;
 }
+/* The same look and size as the action buttons above, so the section reads as part of the list. */
 .lead-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.lead-buttons button {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
 }
 .contradiction-highlight {
   margin: 0.75rem 0;
