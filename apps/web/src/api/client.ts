@@ -152,9 +152,12 @@ export class WorldApi {
     }
   }
 
-  /** Writes are explicit; callers retain the command ID across uncertain retries. */
-  async post<T>(path: string, body: unknown, signal: AbortSignal): Promise<T> {
-    const response = await this.response(path, signal, false, {
+  /**
+   * Writes are explicit; callers retain the command ID across uncertain retries. A `scoped` write
+   * names this perspective, as the table's rolls do (Stage 510).
+   */
+  async post<T>(path: string, body: unknown, signal: AbortSignal, scoped = false): Promise<T> {
+    const response = await this.response(path, signal, scoped, {
       body,
       acceptedStatuses: [409, 422],
     });

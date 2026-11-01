@@ -325,3 +325,35 @@
     grid-column: 2;
   }
 }
+
+/* Rolls from the sheet (Stage 510): the die glyph beside a skill, Check and Save under an ability */
+.roll-button {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+}
+.roll-button .glyph {
+  width: 18px;
+  height: 18px;
+  color: var(--gold-bright);
+}
+.roll-button--text {
+  display: inline-flex;
+  gap: 6px;
+  width: auto;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+}
+.skill-row {
+  grid-template-columns: 10px minmax(0, 1fr) auto auto;
+}
+.ability-rolls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}

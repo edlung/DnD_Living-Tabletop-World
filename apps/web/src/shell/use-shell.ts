@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
  * (docs/adr/0036-production-sign-in.md §4).
  */
 export type SheetId =
-  'places' | 'journal' | 'add' | 'encounter' | 'time' | 'history' | 'images' | 'players';
+  'places' | 'journal' | 'dice' | 'add' | 'encounter' | 'time' | 'history' | 'images' | 'players';
 
 /** The character dialog's tabs (Stage 500). */
 export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory';

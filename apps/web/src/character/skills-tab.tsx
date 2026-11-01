@@ -1,6 +1,7 @@
 import type { Ability, CharacterDerived, Skill } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 
+import { RollButton, useRollFor } from './roll-buttons.tsx';
 import { ABILITY_NAMES, ABILITY_ORDER, signed, skillName } from './words.ts';
 
 const PROFICIENCY_WORDS = {
@@ -13,8 +14,15 @@ const PROFICIENCY_WORDS = {
  * The skills tab (Stage 500): the three passive scores, then all 18 skills grouped under their
  * ability, each with its proficiency mark (none, proficient, expertise) and total bonus.
  */
-export function SkillsTab({ derived }: { readonly derived: CharacterDerived }) {
+export function SkillsTab({
+  entityId,
+  derived,
+}: {
+  readonly entityId: string;
+  readonly derived: CharacterDerived;
+}) {
   const t = useT();
+  const roll = useRollFor(entityId);
   const entries = Object.entries(derived.skills) as [Skill, CharacterDerived['skills'][Skill]][];
   const byAbility = (ability: Ability) =>
     entries
@@ -60,6 +68,17 @@ export function SkillsTab({ derived }: { readonly derived: CharacterDerived }) {
                     <span className="proficiency-mark" aria-hidden="true" />
                     <span className="skill-name">{skillName(t, skill)}</span>
                     <span className="skill-total">{signed(entry.total)}</span>
+                    {roll && (
+                      <RollButton
+                        label={t('Roll {skill} ({bonus})', {
+                          skill: skillName(t, skill),
+                          bonus: signed(entry.total),
+                        })}
+                        onRoll={() => {
+                          roll({ kind: 'skill', skill });
+                        }}
+                      />
+                    )}
                     <span className="visually-hidden">
                       {t(PROFICIENCY_WORDS[entry.proficiency])}
                     </span>

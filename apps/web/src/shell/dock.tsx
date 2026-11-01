@@ -105,6 +105,7 @@ export function Dock({
     { id: 'scene', label: t('Scene'), short: t('Scene'), glyph: 'look' },
     { id: 'places', label: t('Places'), short: t('Places'), glyph: 'map' },
     { id: 'journal', label: t('Journal'), short: t('Journal'), glyph: 'journal' },
+    { id: 'dice', label: t('Dice'), short: t('Dice'), glyph: 'roll' },
     { id: 'chronicle', label: t('Chronicle'), short: t('Chronicle'), glyph: 'chronicle' },
   ];
   // The acting character's sheet and pack (Stage 500). The DM's perspective has no character of

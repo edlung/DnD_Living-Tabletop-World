@@ -1915,6 +1915,24 @@
       "originalSha256": "6754d8d5ec80e8a10fa53c20f95b13fd8701015955c5dc41ebba600e9b495bea",
       "recipe": "resized to 1920 px wide; WebP q78"
     },
+    "textures/dice-ivory.webp": {
+      "source": "dice-ivory",
+      "prompt": "Visual language: match the attached concept art in palette and mood — premium dark-fantasy game art; deep night-blue and charcoal, burnished antique gold, accents of luminous teal-cyan. Use the attached image only as a style reference: do not copy its layout, characters or any text.\n\nCreate: Square 1:1, a flat, evenly lit, seamless tileable surface texture seen straight on: aged carved bone ivory with a soft warm cream tone, faint fine grain and a few very subtle hairline cracks. Low contrast, no highlights, no shadows, no objects, no border, no vignette. Absolutely no text, letters, numbers, symbols, logos, signatures or watermarks.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "8ed027d2b48207877b40508e69a576d22f8152a6e1eeb0fc007ce2998c5b0a41",
+      "recipe": "wrapped to tile seamlessly (offset blend); 512 px; WebP q80"
+    },
+    "textures/dice-obsidian.webp": {
+      "source": "dice-obsidian",
+      "prompt": "Visual language: match the attached concept art in palette and mood — premium dark-fantasy game art; deep night-blue and charcoal, burnished antique gold, accents of luminous teal-cyan. Use the attached image only as a style reference: do not copy its layout, characters or any text.\n\nCreate: Square 1:1, a flat, evenly lit, seamless tileable surface texture seen straight on: polished dark obsidian stone, nearly black blue-charcoal, with very faint thin teal mineral veins and a sparse dusting of tiny gold flecks. Low contrast, no highlights, no shadows, no objects, no border, no vignette. Absolutely no text, letters, numbers, symbols, logos, signatures or watermarks.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "51d715a6bd62b205336c215f35a76315e646367a763427a09d48046089ef34a9",
+      "recipe": "wrapped to tile seamlessly (offset blend); 512 px; WebP q80"
+    },
     "textures/panel-grain.webp": {
       "source": "panel-texture",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A seamless, subtle, very dark navy-charcoal texture of fine worn leather and brushed fabric grain, almost flat and low contrast (values close to #111a24), for the background of interface panels. No pattern motifs, no objects, no border, no vignette. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.",

@@ -158,6 +158,9 @@ export const RECIPES: Readonly<Record<string, Recipe>> = {
   'book-spread': { kind: 'art', out: 'textures/book-spread.webp', width: 2048, quality: 82 },
   'brand-keyart': { kind: 'art', out: 'textures/brand-keyart.webp', width: 1920, quality: 80 },
   'chronicle-desk': { kind: 'art', out: 'textures/chronicle-desk.webp', width: 1920, quality: 78 },
+  // The dice's surfaces (Stage 510): the players' obsidian and the DM's ivory.
+  'dice-obsidian': { kind: 'tile', out: 'textures/dice-obsidian.webp', width: 512, quality: 80 },
+  'dice-ivory': { kind: 'tile', out: 'textures/dice-ivory.webp', width: 512, quality: 80 },
   'flashback-frame': { kind: 'unscreen', out: 'ornaments/flashback-frame.webp', width: 1200 },
   ribbon: { kind: 'flood', out: 'ornaments/ribbon.webp', width: 160 },
   emblem: { kind: 'flood', out: 'ornaments/emblem.webp', width: 512 },

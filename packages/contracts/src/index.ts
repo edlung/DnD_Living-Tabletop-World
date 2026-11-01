@@ -433,6 +433,7 @@ export type {
   PlayerAssetView,
 } from './assets/views.ts';
 export * from './campaign/index.ts';
+export * from './dice/rolls.ts';
 
 export {
   EQUIP_SLOTS,

@@ -2,11 +2,19 @@ import type { CharacterDerived, CharacterSheet } from '@ltw/contracts';
 import { readableLabel, useT, type Translate } from '@ltw/ui';
 
 import { catalogUrl } from '../visual/ui-kit.ts';
+import { RollButton, useRollFor } from './roll-buttons.tsx';
 import { ABILITY_NAMES, ABILITY_ORDER, ABILITY_SHORT, diceWords, signed } from './words.ts';
 
 /** The six abilities as tiles: the modifier large, the score and the saving throw beneath. */
-function Abilities({ derived }: { readonly derived: CharacterDerived }) {
+function Abilities({
+  entityId,
+  derived,
+}: {
+  readonly entityId: string;
+  readonly derived: CharacterDerived;
+}) {
   const t = useT();
+  const roll = useRollFor(entityId);
   return (
     <section className="hero-section" aria-labelledby="hero-abilities">
       <h3 id="hero-abilities">{t('Abilities and saving throws')}</h3>
@@ -40,6 +48,30 @@ function Abilities({ derived }: { readonly derived: CharacterDerived }) {
                 })}
                 {entry.saveProficient ? ` · ${t('proficient')}` : ''}
               </span>
+              {roll && (
+                <span className="ability-rolls">
+                  <RollButton
+                    text="Check"
+                    label={t('Roll a {ability} check ({bonus})', {
+                      ability: t(ABILITY_NAMES[ability]),
+                      bonus: signed(entry.modifier),
+                    })}
+                    onRoll={() => {
+                      roll({ kind: 'ability', ability });
+                    }}
+                  />
+                  <RollButton
+                    text="Save"
+                    label={t('Roll a {ability} saving throw ({bonus})', {
+                      ability: t(ABILITY_NAMES[ability]),
+                      bonus: signed(entry.save),
+                    })}
+                    onRoll={() => {
+                      roll({ kind: 'save', ability });
+                    }}
+                  />
+                </span>
+              )}
             </li>
           );
         })}
@@ -174,16 +206,18 @@ function DeathSaves({ saves }: { readonly saves: NonNullable<CharacterSheet['dea
 
 /** The overview tab: abilities, attacks and features, and death saves while dying. */
 export function OverviewTab({
+  entityId,
   sheet,
   derived,
 }: {
+  readonly entityId: string;
   readonly sheet: CharacterSheet;
   readonly derived: CharacterDerived;
 }) {
   return (
     <div className="hero-overview">
       {sheet.deathSaves && <DeathSaves saves={sheet.deathSaves} />}
-      <Abilities derived={derived} />
+      <Abilities entityId={entityId} derived={derived} />
       <Combat sheet={sheet} derived={derived} />
     </div>
   );

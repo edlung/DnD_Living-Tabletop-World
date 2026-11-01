@@ -1,0 +1,314 @@
+/*
+ * Dice (Stage 510): the layer the 3D dice fly in (the top layer, over every dialog, never taking a
+ * pointer), the plate with the sum beside where they landed, and the Dice sheet. The dice faces are
+ * the GPT obsidian and ivory; code draws the plate, the picker's die outlines and the text.
+ */
+.dice-layer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+}
+.dice-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The plate: the roll's sum, beside the dice once they rest (above the dock without motion) */
+.dice-plate {
+  position: fixed;
+  bottom: calc(var(--dock-h) + 96px);
+  left: 50%;
+  display: grid;
+  gap: 4px;
+  min-width: 220px;
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 12px 16px;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow);
+  translate: -50% 0;
+  animation: dice-plate-in var(--t-panel) var(--ease);
+}
+.dice-plate.is-placed {
+  bottom: auto;
+}
+.dice-plate.is-above {
+  translate: -50% -100%;
+}
+.dice-plate.is-leaving {
+  opacity: 0;
+  transition: opacity 400ms var(--ease);
+}
+@keyframes dice-plate-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.dice-plate-who {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0 0 4px;
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+.dice-plate-who span + span::before {
+  content: '·';
+  margin-right: 8px;
+  color: var(--text-muted);
+}
+.dice-plate-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 0;
+}
+.dice-plate-purpose {
+  min-width: 64px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.dice-plate-sum {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+.dice-plate-result {
+  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.dice-plate-result.is-hit,
+.dice-plate-result.is-success {
+  color: var(--hp);
+}
+.dice-plate-result.is-miss {
+  color: var(--text-muted);
+}
+.dice-plate-result.is-failure {
+  color: var(--danger);
+}
+.dice-plate-result.is-critical {
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--gold) 70%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dice-plate {
+    animation: none;
+  }
+}
+
+/* The Dice sheet: what to roll beside the latest rolls on a wide screen */
+.dice-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+@media (min-width: 900px) {
+  .dice-panel {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+.dice-panel label,
+.dice-panel legend {
+  display: block;
+  margin: 12px 0 4px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.dice-panel select,
+.dice-panel input[type='number'] {
+  width: 100%;
+  max-width: 360px;
+}
+.dice-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dice-pick {
+  position: relative;
+}
+.dice-pick-add {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 100%;
+  min-height: 84px;
+  padding: 8px 4px;
+  text-align: center;
+}
+.dice-pick.is-chosen .dice-pick-add {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+}
+.dice-pick-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.dice-pick-count {
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+.dice-pick-less {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 32px;
+  min-height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--glass-raised);
+  font-size: 1.1rem;
+}
+/* The picker's die outlines: drawn markup in gold, one shape per die */
+.die-shape {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(160deg, var(--gold-bright), var(--gold-deep));
+}
+.die-shape--d4 {
+  clip-path: polygon(50% 4%, 96% 92%, 4% 92%);
+}
+.die-shape--d6 {
+  clip-path: inset(8% round 4px);
+}
+.die-shape--d8 {
+  clip-path: polygon(50% 0, 96% 50%, 50% 100%, 4% 50%);
+}
+.die-shape--d10,
+.die-shape--d100 {
+  clip-path: polygon(50% 0, 98% 42%, 50% 100%, 2% 42%);
+}
+.die-shape--d12 {
+  clip-path: polygon(50% 2%, 98% 38%, 80% 96%, 20% 96%, 2% 38%);
+}
+.die-shape--d20 {
+  clip-path: polygon(50% 0, 96% 25%, 96% 75%, 50% 100%, 4% 75%, 4% 25%);
+}
+.dice-builder-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 24px;
+}
+.dice-modifier input {
+  width: 120px;
+}
+.dice-hidden,
+.dice-toggle,
+.dice-mode {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--text) !important;
+}
+.dice-pool {
+  min-height: 1.6em;
+  margin: 12px 0;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+}
+.dice-builder-actions {
+  display: flex;
+  gap: 8px;
+}
+.dice-modes {
+  margin: 8px 0 12px;
+  padding: 0;
+  border: 0;
+}
+.dice-check .primary-button,
+.dice-check select {
+  margin-top: 4px;
+}
+.dice-requests,
+.dice-log-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dice-request {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.dice-request.is-open {
+  border-color: color-mix(in srgb, var(--teal) 55%, transparent);
+}
+.dice-request .glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--teal);
+}
+.dice-request-what,
+.dice-request-state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+}
+.dice-log-entry {
+  padding: 8px 12px;
+  border-left: 2px solid var(--gold-deep);
+  background: color-mix(in srgb, var(--ink-950) 40%, transparent);
+}
+.dice-log-entry.is-hidden {
+  border-left-color: var(--text-muted);
+}
+.dice-log-who,
+.dice-log-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 0;
+}
+.dice-log-line {
+  margin-top: 4px;
+}
+.dice-log-hidden {
+  padding: 0 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+}
+.dice-panel .field-error {
+  margin: 12px 0 0;
+  color: var(--danger);
+}
+.dice-settings {
+  margin-top: 16px;
+}
+.dice-settings input[type='range'] {
+  width: 100%;
+  max-width: 360px;
+}

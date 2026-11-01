@@ -12,6 +12,7 @@ import './i18n/ru-images.ts';
 import './i18n/ru-table.ts';
 import './i18n/ru-items.ts';
 import './i18n/ru-character.ts';
+import './i18n/ru-dice.ts';
 import { App } from './session/app.tsx';
 import { WorkshopApp } from './workshop/app.tsx';
 import { isWorkshopPath, workshopStart } from './workshop/start.ts';
@@ -42,6 +43,7 @@ import './styles/images.css';
 import './styles/items.css';
 import './styles/character.css';
 import './styles/character-tabs.css';
+import './styles/dice.css';
 import './styles/workshop.css';
 
 // An invitation link's token leaves the address before anything is requested or rendered

@@ -243,9 +243,9 @@ function HeroContent({
               {!value.derived ? (
                 <StatusPanel state="empty" label={t('No character sheet is recorded here.')} />
               ) : tab === 'overview' ? (
-                <OverviewTab sheet={value.sheet} derived={value.derived} />
+                <OverviewTab entityId={entityId} sheet={value.sheet} derived={value.derived} />
               ) : tab === 'skills' ? (
-                <SkillsTab derived={value.derived} />
+                <SkillsTab entityId={entityId} derived={value.derived} />
               ) : tab === 'spells' ? (
                 <SpellsTab sheet={value.sheet} derived={value.derived} />
               ) : (

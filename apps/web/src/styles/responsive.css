@@ -69,6 +69,11 @@
   .dock:has(#dock-images) .dock-short {
     display: block;
   }
+  /* Stage 510: with Dice beside them the DM's eleven items take only their words' width. */
+  .dock:has(#dock-images) .dock-button {
+    min-width: 0;
+    padding-inline: 0.45rem;
+  }
 }
 
 @media (max-width: 1199px) and (min-width: 768px) {
@@ -389,6 +394,27 @@
   }
   .sign-in-scrim {
     background: linear-gradient(to bottom, transparent 18vh, var(--ink-950) 48vh);
+  }
+}
+
+/*
+ * The narrowest phones (Stage 510): a player's six tabs share the bar's width, so Chronicle stays in
+ * view without scrolling. The DM's bar, with its tools, keeps scrolling.
+ */
+@media (max-width: 359px) {
+  .dock:not(:has(.dock-items--dm)) .dock-items {
+    flex: 1;
+    gap: 0;
+  }
+  .dock:not(:has(.dock-items--dm)) .dock-items > li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .dock:not(:has(.dock-items--dm)) .dock-button {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 2px;
+    font-size: 0.68rem;
   }
 }
 

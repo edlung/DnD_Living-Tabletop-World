@@ -124,6 +124,8 @@ export const TEXTURE_NAMES = [
   'book-spread',
   'brand-keyart',
   'chronicle-desk',
+  'dice-ivory',
+  'dice-obsidian',
   'panel-grain',
   'parchment',
   'scene-fallback',
