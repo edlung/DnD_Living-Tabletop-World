@@ -11,6 +11,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - Status: Stages 500–540 complete on `claude/product-completion` (reports
   `reports/STAGE_5[0-4]0_COMPLETION.md`); the owner's merge of the pull request and the VPS release
   remain (Stage 540 §4).
+- Proposed next program (owner request 2026-11-01, awaiting approval): `docs/FULL_GAME_PLAN.md` —
+  table and online play, Stages 600–699 in four milestones.
 
 ## Current request — AI campaigns, 2026-10-30
 

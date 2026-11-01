@@ -1,8 +1,11 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, test, type Page } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openCharacter, openSheet } from './support/shell.ts';
+
+/** Several browsers wait on each other's changes: a hosted runner is about four times slower. */
+const expect = baseExpect.configure({ timeout: 15_000 });
 
 /**
  * Rests, Hit Point Dice, milestone levels and the quest log (Stage 530, work-orders/STAGE_530.md):

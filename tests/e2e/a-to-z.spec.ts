@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect as baseExpect, test } from '@playwright/test';
 
 import {
   battlefield,
@@ -15,6 +15,9 @@ import {
 } from './support/investigation.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, closeSheet, openCharacter, openSheet } from './support/shell.ts';
+
+/** Several browsers wait on each other's changes: a hosted runner is about four times slower. */
+const expect = baseExpect.configure({ timeout: 15_000 });
 
 /**
  * The whole game in the browser (Stage 540, work-orders/STAGE_540.md): the Missing Caravan from the
