@@ -198,3 +198,9 @@ application on 4313.
   plate the topmost thing at its centre, ends and number while every element of the board lets
   pointers through, at 1440 × 900 and 820 × 1180, tilted and flat). A journey that changes its
   campaign cannot be repeated against the same server (`--repeat-each` needs fresh servers).
+- Product completion (Stages 500–540, `docs/PRODUCT_COMPLETION_PLAN.md`): `character-sheet.spec.ts`,
+  `dice.spec.ts`, `items.spec.ts`, `rest.spec.ts` (own campaigns of `ui-dice-campaigns.ts`,
+  `ui-item-campaigns.ts`, `ui-rest-campaigns.ts`; Elowen starts the rest campaigns hurt) and
+  `a-to-z.spec.ts`, the whole Missing Caravan with the DM and the player in one journey (owns
+  `ui-a-to-z`, `ui-a-to-z-campaigns.ts`: the ambushers wait on the road; the DM starts the fight from
+  the Encounter sheet, so the raiders stand in a file and the journey chooses on the flat board).

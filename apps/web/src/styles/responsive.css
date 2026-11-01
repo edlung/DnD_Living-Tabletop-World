@@ -402,6 +402,14 @@
  * view without scrolling. The DM's bar, with its tools, keeps scrolling.
  */
 @media (max-width: 359px) {
+  /* The perspective takes a row of its own, so its chosen name is read whole (Stage 540). */
+  .session-controls {
+    flex-wrap: wrap;
+  }
+  .perspective-control {
+    flex: 1 1 100%;
+    order: 1;
+  }
   .dock:not(:has(.dock-items--dm)) .dock-items {
     flex: 1;
     gap: 0;

@@ -27,6 +27,7 @@ import { Backdrop } from './backdrop.tsx';
 import { CombatStage } from './combat-stage.tsx';
 import { EntityDetails } from './entity-details.tsx';
 import { recipientsOf } from '../items/recipients.ts';
+import { useFightTakesStage } from './use-fight-takes-stage.ts';
 import { WorldOverlays } from './world-overlays.tsx';
 import { DicePanel } from '../dice/dice-panel.tsx';
 import { DiceTableProvider, useDiceTableState } from '../dice/table.tsx';
@@ -213,6 +214,9 @@ export function World({
     shell.closeChronicle();
     shell.closeHero();
   }, [askedWindow]);
+  useFightTakesStage(encounter?.encounterId ?? null, details, () => {
+    setSelected(null);
+  });
   const battlefield = encounter !== null && sceneFor !== encounter.encounterId;
   const view = scene.resource.status === 'ready' ? scene.resource.value : null;
   const presentImage = (entityId: string) =>

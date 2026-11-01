@@ -23,6 +23,15 @@ const wait = (ms: number) =>
     window.setTimeout(resolve, ms);
   });
 
+/** What `promise` gives within `ms`, else null: a slow engine never holds a roll's numbers back. */
+const within = <T,>(promise: Promise<T | null>, ms: number): Promise<T | null> =>
+  Promise.race([promise, wait(ms).then(() => null)]);
+
+/** The engine's first load (a chunk, textures, shaders) may take this long before a roll goes on. */
+const ENGINE_WAIT_MS = 3000;
+/** A throw lands well within this; past it the plate tells the numbers anyway. */
+const LANDING_WAIT_MS = 6000;
+
 const requestsOf = (group: RollGroup): DieRequest[] =>
   group.dice.map((die) => ({
     sides: die.sides,
@@ -50,7 +59,9 @@ interface Shown {
  * The dice on the screen (Stage 510): every roll new to this perspective is thrown across the whole
  * screen in the top layer (above an open dialog), lands on the server's values with the sound of its
  * bounces, and leaves a plate with the sum and what came of it. Rolls queue; motion follows the
- * viewer's setting (reduced motion shows the plate and keeps the sound). Decorative: the roll is
+ * viewer's setting (reduced motion shows the plate and keeps the sound). Without WebGL, with an
+ * engine still loading or a page out of sight, the plate tells the numbers without the throw
+ * (Stage 540: a CI runner's software GL never held them back again). Decorative: the roll is
  * announced in words by `RollAnnouncer`.
  */
 export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEntry) => void }) {
@@ -99,8 +110,10 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
       // Re-shown on each roll, so it lies above a dialog opened since.
       if (element?.matches(':popover-open')) element.hidePopover();
       element?.showPopover();
-      const motion = animates(settingsRef.current);
-      const loaded = motion ? await loadEngine() : null;
+      // Who rolled and for what show at once; a hidden page draws no frames, so it throws none.
+      setShown({ entry, landed: 0, at: null, leaving: false });
+      const motion = animates(settingsRef.current) && !document.hidden;
+      const loaded = motion ? await within(loadEngine(), ENGINE_WAIT_MS) : null;
       const set = entry.hidden || entry.roller === null ? 'ivory' : 'obsidian';
       let at: Shown['at'] = null;
       for (const [index, group] of entry.groups.entries()) {
@@ -109,7 +122,7 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
         if (loaded && group.dice.length > 0) {
           const thrown = loaded.throw(requestsOf(group), set);
           if (sound.sound) playImpacts(thrown.hits, sound.volume);
-          at = await thrown.landed;
+          at = await within(thrown.landed, LANDING_WAIT_MS);
         } else {
           if (sound.sound && group.dice.length > 0) playImpacts(STILL_TUMBLE, sound.volume);
           await wait(450);

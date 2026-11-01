@@ -16,6 +16,7 @@ const CAMPAIGNS = {
   ru: 'ui-dice-ru',
   axe: 'ui-dice-axe',
   still: 'ui-dice-still',
+  plain: 'ui-dice-plain',
 } as const;
 
 /** The roll the server answered with, for the button press `press` makes. */
@@ -119,6 +120,35 @@ test('without motion the plate still tells the roll', async ({ browser }) => {
   );
   await expect(plate(page)).toContainText(String(roll.groups[0]?.total));
   await context.close();
+});
+
+test('without WebGL the plate still tells the server’s numbers at once', async ({ page }) => {
+  // A browser with no WebGL (no GPU, acceleration off): the throw is left out, never the roll.
+  await page.addInitScript(() => {
+    type GetContext = (
+      this: HTMLCanvasElement,
+      kind: string,
+      options?: unknown,
+    ) => RenderingContext | null;
+    const original = Reflect.get(HTMLCanvasElement.prototype, 'getContext') as GetContext;
+    Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
+      configurable: true,
+      value(this: HTMLCanvasElement, kind: string, options?: unknown) {
+        return kind.startsWith('webgl') ? null : original.call(this, kind, options);
+      },
+    });
+  });
+  await enterWorld(page, TOKENS.player, CAMPAIGNS.plain);
+  await openSheet(page, 'Dice');
+  const sheet = page.locator('#sheet-dice');
+  await sheet.getByRole('button', { name: 'Add a d20' }).click();
+  await sheet.getByLabel('Modifier').fill('1');
+  const roll = await rolled(page, () =>
+    sheet.getByRole('button', { name: 'Roll', exact: true }).click(),
+  );
+  await expect(plate(page)).toContainText(`= ${String(roll.groups[0]?.total)}`, { timeout: 3000 });
+  const log = sheet.getByRole('region', { name: 'Recent rolls' });
+  await expect(log).toContainText(`= ${String(roll.groups[0]?.total)}`);
 });
 
 test('the Russian dice read only Russian', async ({ page }) => {
