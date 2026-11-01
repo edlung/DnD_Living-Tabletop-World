@@ -8,6 +8,11 @@ The model selected in the session does the work. `EFFORT_MATRIX.md` and work-ord
 
 # Living Tabletop World Agent Instructions
 
+Owner request 2026-11-01 (`reviews/OWNER_PRODUCT_COMPLETION_2026-11-01.json`): finish the product
+(Stages 500–540, `docs/PRODUCT_COMPLETION_PLAN.md`) with minimal interruptions; the owner delegated the
+program's product decisions (recorded in the plan). Technical checkpoints pass autonomously with the usual
+checks and reports; World Engine authority, knowledge isolation and the deployment/credential limits stay.
+
 Owner override for the AI campaign program, 2026-10-30:
 `reviews/OWNER_CAMPAIGN_CONTINUATION_2026-10-30.json` accepts Stage 380 and authorizes
 the session to pass the technical checkpoints of Stages 390–450 autonomously.

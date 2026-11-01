@@ -64,3 +64,25 @@ export async function expectOnTop(locator: Locator): Promise<void> {
     )
     .toBe(true);
 }
+
+/**
+ * Opens the acting character's dialog from the dock (Stage 500) and shows one of its tabs, in the
+ * campaign's words; returns the tab's panel.
+ */
+export async function openCharacter(page: Page, tab: string, dock = 'Character'): Promise<Locator> {
+  const dialog = page.getByRole('dialog');
+  if (!(await dialog.isVisible())) await dockButton(page, dock).click();
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole('tab', { name: tab, exact: true }).click();
+  await expect(dialog.getByRole('tab', { name: tab, exact: true })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
+  return dialog.getByRole('tabpanel');
+}
+
+/** Closes the character dialog with Escape. */
+export async function closeCharacter(page: Page): Promise<void> {
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+}

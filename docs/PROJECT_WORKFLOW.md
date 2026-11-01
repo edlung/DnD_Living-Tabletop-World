@@ -2,6 +2,13 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Current request — product completion, 2026-11-01
+
+- Owner: «доделай проект до конца … полностью играбельный от А до Я … отвлекай меня по минимуму».
+  Record `reviews/OWNER_PRODUCT_COMPLETION_2026-11-01.json`; program and delegated decisions
+  `docs/PRODUCT_COMPLETION_PLAN.md`; current scope `work-orders/STAGE_500.md` onward (500–540).
+  One branch and pull request for the program; the owner is asked once at the end to merge and deploy.
+
 ## Current request — AI campaigns, 2026-10-30
 
 - Latest owner disposition: «Принимаю 380. Остальные технические контрольные точки

@@ -28,8 +28,9 @@ import { WIDE } from '../combat/board/board-view.ts';
 import { Backdrop } from './backdrop.tsx';
 import { CombatStage } from './combat-stage.tsx';
 import { EntityDetails } from './entity-details.tsx';
-import { ItemsSheet } from '../items/items-sheet.tsx';
 import { recipientsOf } from '../items/recipients.ts';
+import { WorldHeroDialog } from './hero-dialog-slot.tsx';
+import { revealedIds } from '../exploration/revealed.ts';
 import { useConversationNotice, type Conversation } from './use-conversation-notice.ts';
 import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
@@ -208,7 +209,9 @@ export function World({
   // and the question takes focus once it has (each window once; the reader may open it again).
   const askedWindow = askedWindowOf(encounter, actorId);
   useEffect(() => {
-    if (askedWindow !== null) shell.closeChronicle();
+    if (askedWindow === null) return;
+    shell.closeChronicle();
+    shell.closeHero();
   }, [askedWindow]);
   const battlefield = encounter !== null && sceneFor !== encounter.encounterId;
   const view = scene.resource.status === 'ready' ? scene.resource.value : null;
@@ -234,6 +237,23 @@ export function World({
     action.notice?.speech && action.notice.speakerId === conversation?.npcId
       ? action.notice.speech
       : null;
+
+  const outcome = (
+    <ActionNotice
+      notice={notice}
+      status={action.status}
+      discovered={
+        data
+          ? data.knowledge.knowledge.filter((record) => discovered.includes(record.knowledgeId))
+          : []
+      }
+      quoteElsewhere={speaking && notice?.speakerId === conversation.npcId}
+      onRetry={action.retry}
+      onDismiss={() => {
+        setDismissed(action.notice);
+      }}
+    />
+  );
 
   return (
     <WorldPictures images={images} dm={isDm ? dmImages : null}>
@@ -345,17 +365,6 @@ export function World({
               select(place.entityId, place.kind);
             }}
           />
-          <ItemsSheet
-            api={api}
-            shell={shell}
-            revision={revision}
-            characterId={acting ? actorId : null}
-            canAct={canAct || standIn !== null}
-            locked={action.locked}
-            encounter={encounter}
-            recipients={recipientsOf(view, directory, actorId)}
-            onRun={run}
-          />
           <JournalSheet
             api={api}
             shell={shell}
@@ -394,24 +403,22 @@ export function World({
               }}
             />
           )}
-          <Dock isDm={isDm} shell={shell} drafts={isDm ? authoring.drafts.length : 0} />
+          <Dock
+            isDm={isDm}
+            shell={shell}
+            drafts={isDm ? authoring.drafts.length : 0}
+            onCharacter={
+              acting && actorId !== null
+                ? () => {
+                    shell.openHero(actorId);
+                  }
+                : undefined
+            }
+          />
         </div>
-        {/* The result of an action sits above every sheet and panel, so its words and its Retry
-            are never covered by the tool that caused it. */}
-        <ActionNotice
-          notice={notice}
-          status={action.status}
-          discovered={
-            data
-              ? data.knowledge.knowledge.filter((record) => discovered.includes(record.knowledgeId))
-              : []
-          }
-          quoteElsewhere={speaking && notice?.speakerId === conversation.npcId}
-          onRetry={action.retry}
-          onDismiss={() => {
-            setDismissed(action.notice);
-          }}
-        />
+        {/* The result of an action sits above every sheet and panel (inside the character
+            dialog while it is open), so its words and Retry are never covered by their tool. */}
+        {shell.hero === null && outcome}
         <aside
           ref={details}
           className="detail-panel"
@@ -437,6 +444,9 @@ export function World({
               onShowConversation={showConversation}
               onRun={explore}
               onSelect={select}
+              onOpenSheet={() => {
+                shell.openHero(shown.entityId);
+              }}
               onClose={closeDetails}
               profileEditing={
                 isDm
@@ -465,23 +475,20 @@ export function World({
             />
           )}
         </ChronicleDialog>
+        <WorldHeroDialog
+          api={api}
+          shell={shell}
+          revision={revision}
+          directory={directory}
+          actorId={actorId}
+          canAct={canAct || standIn !== null}
+          locked={action.locked}
+          encounter={encounter}
+          recipients={recipientsOf(view, directory, actorId)}
+          onRun={run}
+          notice={shell.hero === null ? null : outcome}
+        />
       </main>
     </WorldPictures>
   );
-}
-
-function revealedIds(outcome: PlayerOutcome | undefined): readonly string[] {
-  switch (outcome?.kind) {
-    case 'AskAbout':
-      return outcome.shared;
-    case 'ExamineEntity':
-    case 'CastSpell':
-      return outcome.discovered;
-    case 'InsightCheck':
-      return outcome.inferred;
-    case 'FormHypothesis':
-      return [outcome.knowledgeId];
-    default:
-      return [];
-  }
 }

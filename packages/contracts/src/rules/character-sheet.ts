@@ -10,6 +10,11 @@ import { entityIdSchema } from '../kernel/identifiers.ts';
 export const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha'] as const;
 export type Ability = (typeof ABILITIES)[number];
 
+/**
+ * The 18 SRD 5.2.1 skills and their abilities. The slice's checks use the first six; a sheet may be
+ * proficient in any (Stage 500, docs/PRODUCT_COMPLETION_PLAN.md decision 6). The order is the
+ * slice's first, so earlier lists keep their order.
+ */
 export const SKILLS = {
   perception: 'wis',
   investigation: 'int',
@@ -17,6 +22,18 @@ export const SKILLS = {
   survival: 'wis',
   arcana: 'int',
   stealth: 'dex',
+  athletics: 'str',
+  acrobatics: 'dex',
+  'sleight-of-hand': 'dex',
+  history: 'int',
+  nature: 'int',
+  religion: 'int',
+  'animal-handling': 'wis',
+  medicine: 'wis',
+  deception: 'cha',
+  intimidation: 'cha',
+  performance: 'cha',
+  persuasion: 'cha',
 } as const satisfies Record<string, Ability>;
 export type Skill = keyof typeof SKILLS;
 const skillIds = Object.keys(SKILLS) as [Skill, ...Skill[]];

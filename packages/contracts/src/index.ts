@@ -154,6 +154,7 @@ export {
 } from './session/auth.ts';
 export { DEFAULT_LANGUAGE, LANGUAGES, languageSchema, type Language } from './language/language.ts';
 export type { CharacterSheetResponse } from './rules/character-view.ts';
+export type { CharacterDerived } from './rules/character-derived.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';
 export {
   ABILITIES,

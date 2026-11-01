@@ -1,5 +1,6 @@
 import { campaignIdSchema, entityIdSchema } from '@ltw/contracts';
 import { characterSheetView, inventoryView } from '@ltw/domain';
+import { deriveCharacter } from '@ltw/rules';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -16,7 +17,8 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     const { context, params: path } = ready;
     const body = characterSheetView(context.state, context.perspective, path.entityId);
     if (!body) return sendError(reply, request, 'NOT_FOUND');
-    return reply.send(body);
+    // The rules' numbers beside the sheet (Stage 500): the client shows them, never recomputes them.
+    return reply.send({ ...body, derived: deriveCharacter(body.sheet) });
   });
 
   app.get('/campaigns/:campaignId/entities/:entityId/inventory', async (request, reply) => {

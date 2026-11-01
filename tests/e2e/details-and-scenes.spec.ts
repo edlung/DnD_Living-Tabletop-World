@@ -15,25 +15,14 @@ test('full authorized character sheet remains reachable from the selected charac
   await playerScene(page);
   await page.getByRole('button', { name: 'Elowen Starwhisper', exact: true }).click();
   await page.getByRole('button', { name: 'Full character sheet', exact: true }).click();
-  const details = page.getByRole('complementary', { name: 'Entity details' });
-  const sheet = details.getByRole('region', { name: 'Character sheet', exact: true });
-  await expect(sheet).toBeVisible();
-  for (const label of [
-    'Proficiencies and attacks',
-    'Spell slots',
-    'Spellcasting sources and free casts',
-    'Conditions, concentration and death saves',
-  ]) {
-    await sheet.getByText(label, { exact: true }).click();
-  }
-  await expect(sheet.getByRole('table', { name: 'Spell slots by level' })).toBeVisible();
-  await expect(sheet.getByRole('table').getByRole('row')).toHaveCount(10);
-  await expect(sheet.getByText(/Detect magic.*Counterspell/i)).toBeVisible();
-  await expect(details).toContainText(/ranger/i);
-  await expect(details).toContainText(/wizard/i);
-  await expect(details).toContainText(/counterspell/i);
-  await expect(details).toContainText(/longbow/i);
-  await expect(details).toContainText('78');
+  const dialog = page.getByRole('dialog', { name: 'Character: Elowen Starwhisper' });
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toContainText(/Ranger 7.*Wizard 8/);
+  await expect(dialog).toContainText('78');
+  await expect(dialog.getByRole('tabpanel')).toContainText('Longbow');
+  await dialog.getByRole('tab', { name: 'Spells', exact: true }).click();
+  await expect(dialog.getByRole('tabpanel')).toContainText('Counterspell');
+  await expect(dialog.getByRole('tabpanel')).toContainText('Detect Magic');
   await expectPlayerBoundary(page);
 });
 
@@ -87,9 +76,8 @@ test('DM can read an NPC sheet while the player cannot request it through the de
   await enterWorld(page, TOKENS.dm);
   await page.getByRole('button', { name: 'Mira Vale', exact: true }).click();
   await page.getByRole('button', { name: 'Full character sheet', exact: true }).click();
-  await expect(page.getByRole('region', { name: 'Character sheet', exact: true })).toContainText(
-    '78 / 78',
-  );
+  await expect(page.getByRole('dialog', { name: 'Character: Mira Vale' })).toContainText('78');
+  await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Leave session', exact: true }).click();
   await page.getByLabel('Access token', { exact: true }).fill(TOKENS.player);
   await page.getByRole('button', { name: 'Enter world', exact: true }).click();
@@ -109,10 +97,10 @@ test('a person with no sheet says so to the DM, not that the view hides it (Stag
   await chooseLocation(page, 'north-gate');
   await page.getByRole('button', { name: 'Captain Thorne', exact: true }).click();
   await page.getByRole('button', { name: 'Full character sheet', exact: true }).click();
-  const details = page.getByRole('complementary', { name: 'Entity details' });
+  const dialog = page.getByRole('dialog');
   await expect(
-    details.getByRole('status').filter({ hasText: 'No character sheet is recorded here.' }),
+    dialog.getByRole('status').filter({ hasText: 'No character sheet is recorded here.' }),
   ).toBeVisible();
-  await expect(details.getByRole('alert')).toHaveCount(0);
-  await expect(details.getByRole('button', { name: 'Try again' })).toHaveCount(0);
+  await expect(dialog.getByRole('alert')).toHaveCount(0);
+  await expect(dialog.getByRole('button', { name: 'Try again' })).toHaveCount(0);
 });

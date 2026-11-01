@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { closeCharacter, openCharacter } from './support/shell.ts';
 
 /**
  * Item possession in the browser (docs/adr/0039-item-possession.md): the Items sheet shows the
@@ -32,8 +32,7 @@ test('the pack lists worn and carried items, and wearing and using change them',
   page,
 }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.play);
-  await openSheet(page, 'Items');
-  const sheet = page.locator('#sheet-items');
+  const sheet = await openCharacter(page, 'Inventory');
   await expect(sheet.getByRole('heading', { name: 'Carried' })).toBeVisible();
   await expect(sheet).toContainText('Carrying');
   // Catalog pictures (Stage 480) load; they are decorative, so each carries an empty alt.
@@ -65,7 +64,7 @@ test('the pack lists worn and carried items, and wearing and using change them',
 
 test('an item can be handed to someone who is here, and dropped', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.play);
-  await openSheet(page, 'Items');
+  await openCharacter(page, 'Inventory');
   const cloak = await openItem(page, 'Grey road cloak');
   await cloak
     .getByLabel('Give Grey road cloak to', { exact: true })
@@ -82,7 +81,7 @@ test('an item can be handed to someone who is here, and dropped', async ({ page 
 
 test('part of a stack can be handed over', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.split);
-  await openSheet(page, 'Items');
+  await openCharacter(page, 'Inventory');
   const balm = await openItem(page, 'Spare balm');
   await balm.getByLabel('How many of Spare balm', { exact: true }).selectOption('1');
   await balm.getByLabel('Give Spare balm to', { exact: true }).selectOption({ label: 'Mira Vale' });
@@ -94,23 +93,22 @@ test('part of a stack can be handed over', async ({ page }) => {
 
 test('a thing on the ground is picked up from the scene', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.take);
-  await openSheet(page, 'Items');
+  await openCharacter(page, 'Inventory');
   await expect(page.getByRole('button', { name: /^Dented lantern/ })).toHaveCount(0);
-  await page.locator('nav.dock').getByRole('button', { name: 'Scene', exact: true }).click();
+  await closeCharacter(page);
   await page
     .getByRole('list', { name: 'Visible world objects' })
     .getByRole('button', { name: /Unidentified item/ })
     .click();
   await page.getByRole('button', { name: 'Pick up', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'You picked it up.' })).toBeVisible();
-  await openSheet(page, 'Items');
+  await openCharacter(page, 'Inventory');
   await expect(page.getByRole('button', { name: /^Dented lantern/ })).toBeVisible();
 });
 
 test('in a fight a potion costs the Bonus Action, once a turn', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.fight);
-  await openSheet(page, 'Items');
-  const sheet = page.locator('#sheet-items');
+  const sheet = await openCharacter(page, 'Inventory');
   await expect(sheet.getByRole('note')).toContainText('Bonus Action');
   const balm = await openItem(page, "Orin's balm");
   await balm.getByRole('button', { name: 'Use', exact: true }).click();
@@ -123,20 +121,19 @@ test('in a fight a potion costs the Bonus Action, once a turn', async ({ page })
   await expect(cloak.getByRole('button', { name: 'Wear', exact: true })).toBeEnabled();
 });
 
-test('the DM perspective has no pack to open', async ({ page }) => {
+test('the DM perspective has no character of its own to open', async ({ page }) => {
   await enterWorld(page, TOKENS.dm, CAMPAIGNS.play);
   await expect(
     page.locator('nav.dock').getByRole('button', { name: 'Journal', exact: true }),
   ).toBeVisible();
   await expect(
-    page.locator('nav.dock').getByRole('button', { name: 'Items', exact: true }),
+    page.locator('nav.dock').getByRole('button', { name: 'Character', exact: true }),
   ).toHaveCount(0);
 });
 
 test('a Russian pack reads only Russian', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.ru);
-  await openSheet(page, 'Вещи');
-  const sheet = page.locator('#sheet-items');
+  const sheet = await openCharacter(page, 'Снаряжение', 'Персонаж');
   await expect(sheet.getByRole('heading', { name: 'В сумке' })).toBeVisible();
   const bag = await openItem(page, 'Равенфордский бригандин');
   await expect(bag.getByRole('button', { name: 'Надеть', exact: true })).toBeVisible();
@@ -145,10 +142,10 @@ test('a Russian pack reads only Russian', async ({ page }) => {
 });
 
 for (const size of WIDTHS) {
-  test(`the Items sheet passes axe at ${size.name} width`, async ({ page }) => {
+  test(`the character's inventory passes axe at ${size.name} width`, async ({ page }) => {
     await page.setViewportSize({ width: size.width, height: size.height });
     await enterWorld(page, TOKENS.player, CAMPAIGNS.axe);
-    await openSheet(page, 'Items');
+    await openCharacter(page, 'Inventory');
     await openItem(page, 'Oak buckler');
     await expectAccessible(page, `${size.name} items sheet`);
   });

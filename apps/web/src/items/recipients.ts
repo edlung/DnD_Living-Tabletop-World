@@ -1,6 +1,6 @@
 import type { EntityRef, ScenePresentationResponse } from '@ltw/contracts';
 
-import type { Recipient } from './items-sheet.tsx';
+import type { Recipient } from './inventory-panel.tsx';
 
 /** Who the acting character can hand something to: the people they perceive in the viewed place. */
 export function recipientsOf(

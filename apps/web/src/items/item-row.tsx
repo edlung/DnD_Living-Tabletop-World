@@ -5,7 +5,7 @@ import { useId, useState } from 'react';
 import { Glyph } from '../visual/glyph.tsx';
 import { itemArtUrl } from '../visual/ui-kit.ts';
 import type { ItemCommandBody } from './item-command.ts';
-import type { Recipient } from './items-sheet.tsx';
+import type { Recipient } from './inventory-panel.tsx';
 import {
   categoryName,
   effectText,

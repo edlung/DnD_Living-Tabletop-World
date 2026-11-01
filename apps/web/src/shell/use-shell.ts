@@ -6,10 +6,13 @@ import { useEffect, useRef, useState } from 'react';
  * (docs/adr/0036-production-sign-in.md §4).
  */
 export type SheetId =
-  'places' | 'journal' | 'items' | 'add' | 'encounter' | 'time' | 'history' | 'images' | 'players';
+  'places' | 'journal' | 'add' | 'encounter' | 'time' | 'history' | 'images' | 'players';
+
+/** The character dialog's tabs (Stage 500). */
+export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory';
 
 export const sheetElementId = (id: SheetId) => `sheet-${id}`;
-export const dockButtonId = (id: SheetId | 'scene' | 'chronicle') => `dock-${id}`;
+export const dockButtonId = (id: SheetId | 'scene' | 'chronicle' | 'character') => `dock-${id}`;
 
 /** Moves focus to an element still on screen, if there is one. */
 export function focusOn(element: HTMLElement | null | undefined): boolean {
@@ -27,10 +30,24 @@ export function focusOn(element: HTMLElement | null | undefined): boolean {
 export function useShell() {
   const [sheet, setSheet] = useState<SheetId | null>(null);
   const [chronicle, setChronicle] = useState(false);
+  // The character dialog (Stage 500): whose sheet is open, and the tab it was last read at.
+  const [hero, setHero] = useState<string | null>(null);
+  const [heroTab, setHeroTab] = useState<HeroTab>('overview');
   const last = useRef<'sheet' | 'details'>('sheet');
   return {
     sheet,
     chronicle,
+    hero,
+    heroTab,
+    /** Opens a character's dialog, at a tab when one is named (else where it was last read). */
+    openHero: (entityId: string, tab?: HeroTab) => {
+      setHero(entityId);
+      if (tab) setHeroTab(tab);
+    },
+    closeHero: () => {
+      setHero(null);
+    },
+    showHeroTab: setHeroTab,
     /** The dock: opens a sheet, or closes it when it is already open. */
     toggleSheet: (id: SheetId) => {
       setSheet(sheet === id ? null : id);

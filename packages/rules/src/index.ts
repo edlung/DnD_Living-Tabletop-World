@@ -25,6 +25,7 @@ export {
   spellSlotsFor,
   totalLevel,
 } from './character-math.ts';
+export { deriveCharacter } from './character-derived.ts';
 export {
   attackRoll,
   d20Test,

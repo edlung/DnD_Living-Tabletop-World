@@ -5,8 +5,6 @@ import { useCallback, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
-import { Sheet } from '../shell/sheet.tsx';
-import type { Shell } from '../shell/use-shell.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
 import type { ItemCommandBody } from './item-command.ts';
 import { ItemRow } from './item-row.tsx';
@@ -18,13 +16,13 @@ export interface Recipient {
 }
 
 /**
- * The Items sheet (docs/adr/0039-item-possession.md): what the acting character carries and
- * wears, with the actions the World Engine allows (wear, take off, use, give, drop). Only the
- * character's own pack is ever read; every action is checked again by the World Engine.
+ * The character's pack (docs/adr/0039-item-possession.md), the Inventory tab of the character
+ * dialog (Stage 500): what the character carries and wears, with the actions the World Engine
+ * allows (wear, take off, use, give, drop). Only a pack this perspective may see is ever read;
+ * every action is checked again by the World Engine.
  */
-export function ItemsSheet({
+export function InventoryPanel({
   api,
-  shell,
   revision,
   characterId,
   canAct,
@@ -34,7 +32,6 @@ export function ItemsSheet({
   onRun,
 }: {
   readonly api: WorldApi;
-  readonly shell: Shell;
   readonly revision: number;
   /** The acting character; null in a perspective that carries nothing (the DM, a party view). */
   readonly characterId: string | null;
@@ -96,13 +93,7 @@ export function ItemsSheet({
       </section>
     );
   return (
-    <Sheet
-      id="items"
-      title={t('Items')}
-      glyph="use-item"
-      open={shell.sheet === 'items'}
-      onClose={shell.closeSheet}
-    >
+    <>
       {characterId === null ? (
         <p className="muted">{t('Choose a character to see what they carry.')}</p>
       ) : !inventory ? (
@@ -130,6 +121,6 @@ export function ItemsSheet({
           {list(carried, t('Carried'), 'items-carried')}
         </div>
       )}
-    </Sheet>
+    </>
   );
 }

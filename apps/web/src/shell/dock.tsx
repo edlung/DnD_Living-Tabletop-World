@@ -6,7 +6,7 @@ import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { dockButtonId, sheetElementId, type SheetId, type Shell } from './use-shell.ts';
 
 interface Item {
-  readonly id: SheetId | 'scene' | 'chronicle';
+  readonly id: SheetId | 'scene' | 'chronicle' | 'character';
   readonly label: string;
   /** The tab bar's word on a phone; contained in the label, which stays the name. */
   readonly short: string;
@@ -15,7 +15,15 @@ interface Item {
   readonly waiting?: string;
 }
 
-function DockButton({ item, shell }: { readonly item: Item; readonly shell: Shell }) {
+function DockButton({
+  item,
+  shell,
+  onCharacter,
+}: {
+  readonly item: Item;
+  readonly shell: Shell;
+  readonly onCharacter?: (() => void) | undefined;
+}) {
   const common = {
     id: dockButtonId(item.id),
     type: 'button' as const,
@@ -49,6 +57,13 @@ function DockButton({ item, shell }: { readonly item: Item; readonly shell: Shel
       </button>
     );
   }
+  if (item.id === 'character') {
+    return (
+      <button {...common} aria-haspopup="dialog" onClick={onCharacter}>
+        {content}
+      </button>
+    );
+  }
   const id = item.id;
   return (
     <button
@@ -75,11 +90,14 @@ export function Dock({
   isDm,
   shell,
   drafts = 0,
+  onCharacter,
 }: {
   readonly isDm: boolean;
   readonly shell: Shell;
   /** The DM's open drafts: "Add to the world" is marked while one waits (after a reload too). */
   readonly drafts?: number;
+  /** Opens the acting character's dialog (Stage 500); absent where no character acts. */
+  readonly onCharacter?: (() => void) | undefined;
 }) {
   const t = useT();
   const invitations = useSignInKind() === 'session';
@@ -89,9 +107,15 @@ export function Dock({
     { id: 'journal', label: t('Journal'), short: t('Journal'), glyph: 'journal' },
     { id: 'chronicle', label: t('Chronicle'), short: t('Chronicle'), glyph: 'chronicle' },
   ];
-  // The DM's perspective carries nothing; the DM acts for a character from that character's own view.
-  if (!isDm)
-    world.splice(3, 0, { id: 'items', label: t('Items'), short: t('Items'), glyph: 'use-item' });
+  // The acting character's sheet and pack (Stage 500). The DM's perspective has no character of
+  // its own; the DM opens any character's sheet from its details.
+  if (onCharacter)
+    world.splice(3, 0, {
+      id: 'character',
+      label: t('Character'),
+      short: t('Character'),
+      glyph: 'character',
+    });
   const dm: readonly Item[] = [
     {
       id: 'add',
@@ -113,7 +137,7 @@ export function Dock({
       <ul className="dock-items">
         {world.map((item) => (
           <li key={item.id}>
-            <DockButton item={item} shell={shell} />
+            <DockButton item={item} shell={shell} onCharacter={onCharacter} />
           </li>
         ))}
       </ul>

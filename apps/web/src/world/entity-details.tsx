@@ -1,15 +1,14 @@
 import type {
-  CharacterSheetResponse,
   EntityContextResponse,
   EntityKind,
   EntityKnowledgeResponse,
   EntityRef,
   KnowledgeView,
 } from '@ltw/contracts';
-import { CharacterSheetDetails, StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useState } from 'react';
+import { StatusPanel, useT } from '@ltw/ui';
+import { useCallback } from 'react';
 
-import { ApiError, type WorldApi } from '../api/client.ts';
+import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { NpcProfile, type ProfileEditing } from '../authoring/npc-profile.tsx';
 import { PerformNpc } from '../dm/perform-npc.tsx';
@@ -53,6 +52,7 @@ export function EntityDetails({
   onShowConversation,
   onRun,
   onSelect,
+  onOpenSheet,
   onClose,
   profileEditing = null,
 }: {
@@ -73,13 +73,14 @@ export function EntityDetails({
   readonly onShowConversation: () => void;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
+  /** Opens the character dialog for this entity (Stage 500). */
+  readonly onOpenSheet: () => void;
   readonly onClose: () => void;
   /** The DM's authoring session, for an NPC's edit; null outside the DM perspective. */
   readonly profileEditing?: ProfileEditing | null;
 }) {
   const t = useT();
   const acting = effectivePerspective.startsWith('CHARACTER:');
-  const [sheetOpen, setSheetOpen] = useState(false);
   const image = usePortrait(api, entityId);
   // People keep their round portrait; a thing or a place shows its approved image as a plate.
   const plate = useHeldImage(isFigure(kind) ? null : image);
@@ -170,31 +171,12 @@ export function EntityDetails({
             </>
           )}
           {resource.value.knowledge && (
-            <section className="related-leads" aria-label={t('Related leads')}>
-              <h3>{t('Follow a lead')}</h3>
-              <div className="lead-buttons">
-                {resource.value.knowledge.relatedEntities
-                  .filter((entity) => entity.entityId !== entityId)
-                  .map((entity) => (
-                    <button
-                      key={entity.entityId}
-                      onClick={() => {
-                        onSelect(entity.entityId, entity.kind);
-                      }}
-                    >
-                      {t('Explore {place}', { place: names.get(entity.entityId) ?? entity.name })}
-                    </button>
-                  ))}
-              </div>
-              {resource.value.knowledge.knowledge
-                .filter((record) => record.knowledgeType === 'CONTRADICTION')
-                .map((record) => (
-                  <div className="contradiction-highlight" key={record.knowledgeId}>
-                    <KnowledgeBadge type="CONTRADICTION" />
-                    <p>{record.statement}</p>
-                  </div>
-                ))}
-            </section>
+            <Leads
+              knowledge={resource.value.knowledge}
+              entityId={entityId}
+              names={names}
+              onSelect={onSelect}
+            />
           )}
           {effectivePerspective === 'DM' && kind === 'npc' && profileEditing && name !== null && (
             <NpcProfile entityId={entityId} name={name} editing={profileEditing} />
@@ -214,16 +196,9 @@ export function EntityDetails({
           </details>
           {canReadSheet && (
             <div className="sheet-access">
-              <button
-                className="primary-button"
-                aria-expanded={sheetOpen}
-                onClick={() => {
-                  setSheetOpen((open) => !open);
-                }}
-              >
+              <button className="primary-button" aria-haspopup="dialog" onClick={onOpenSheet}>
                 {t('Full character sheet')}
               </button>
-              {sheetOpen && <Sheet api={api} entityId={entityId} />}
             </div>
           )}
         </>
@@ -233,36 +208,49 @@ export function EntityDetails({
 }
 
 /**
- * The full sheet on demand. A person the DM added in words has no sheet until one is set: the
- * server's 404 then says so plainly instead of a failure with Retry (Stage 360).
+ * Leads from what this perspective knows: the related people, things and places to explore, and
+ * contradictions to look at. Nothing is shown when there is neither (no heading over nothing).
  */
-function Sheet({ api, entityId }: { readonly api: WorldApi; readonly entityId: string }) {
+function Leads({
+  knowledge,
+  entityId,
+  names,
+  onSelect,
+}: {
+  readonly knowledge: EntityKnowledgeResponse;
+  readonly entityId: string;
+  readonly names: ReadonlyMap<string, string>;
+  readonly onSelect: (entityId: string, kind: EntityKind) => void;
+}) {
   const t = useT();
-  const load = useCallback(
-    (signal: AbortSignal) =>
-      api
-        .get<CharacterSheetResponse>(`entities/${encodeURIComponent(entityId)}/sheet`, signal)
-        .catch((error: unknown) => {
-          if (error instanceof ApiError && error.status === 404) return null;
-          throw error;
-        }),
-    [api, entityId],
+  const related = knowledge.relatedEntities.filter((entity) => entity.entityId !== entityId);
+  const contradictions = knowledge.knowledge.filter(
+    (record) => record.knowledgeType === 'CONTRADICTION',
   );
-  const { resource, retry } = useResource(entityId, load);
-  if (resource.status === 'ready') {
-    return resource.value ? (
-      <CharacterSheetDetails name={resource.value.entity.name} sheet={resource.value.sheet} />
-    ) : (
-      <StatusPanel state="empty" label={t('No character sheet is recorded here.')} />
-    );
-  }
+  if (related.length === 0 && contradictions.length === 0) return null;
   return (
-    <StatusPanel
-      state={resource.status}
-      label={
-        resource.status === 'error' ? resource.message : t('Loading the full character sheet…')
-      }
-      onRetry={retry}
-    />
+    <section className="related-leads" aria-label={t('Related leads')}>
+      <h3>{t('Follow a lead')}</h3>
+      {related.length > 0 && (
+        <div className="lead-buttons">
+          {related.map((entity) => (
+            <button
+              key={entity.entityId}
+              onClick={() => {
+                onSelect(entity.entityId, entity.kind);
+              }}
+            >
+              {t('Explore {place}', { place: names.get(entity.entityId) ?? entity.name })}
+            </button>
+          ))}
+        </div>
+      )}
+      {contradictions.map((record) => (
+        <div className="contradiction-highlight" key={record.knowledgeId}>
+          <KnowledgeBadge type="CONTRADICTION" />
+          <p>{record.statement}</p>
+        </div>
+      ))}
+    </section>
   );
 }
