@@ -58,6 +58,276 @@
       "originalSha256": "402fa088210bd6bd79d4e9a619534b3f0d571561c0bcb4f75a7ee6e7556330a6",
       "recipe": "wrapped to tile seamlessly (offset blend); 1024 px; WebP q80"
     },
+    "catalog/items/archer-gloves.webp": {
+      "source": "item-archer-gloves",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a pair of supple leather archery gloves with the fingertips cut away, worn thin at the draw fingers.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "f4e5c7d14719e5e0fe16061bab3d0defc3bc8459801ec1ddebdfe10bb5229e09",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/caravan-cloak.webp": {
+      "source": "item-caravan-cloak",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a heavy tarred travelling cloak in dark grey-brown, hooded, folded with the clasp showing.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "f06569849652ebcc1c3ea502891a406c623ff9968fcf0988da97c4c146a54b57",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/cartographer-tools.webp": {
+      "source": "item-cartographer-tools",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a brass compass divider, quills and a small ink bottle laid on rolled parchment.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "2adb5d050458ce0aaa867ced7160008c7b00b9b661001f333f2cb6b042845ffe",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/greater-balm.webp": {
+      "source": "item-greater-balm",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a squat dark glass bottle of deep red-green raven-root draught, wax-sealed cork, warm inner glow.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "4e065a3f8ea89a7d9cf9f817f260d0cee11760e6645f819ea82f397c567ea220",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/guild-signet.webp": {
+      "source": "item-guild-signet",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a heavy gold signet ring with a plain engraved seal face, a small teal gem shoulder, no letters.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "fcde7734bb96469dab36e6f9777efb65d4612100d4913dc86aa42740d316bfa5",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/hemp-rope.webp": {
+      "source": "item-hemp-rope",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a coiled fifty-foot hank of strong hemp rope with a neat tie.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "f0758c5f72e90a87761ecbf230e1a0f3514d5950208e18278b27bf2476c649da",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/herbalist-pouch.webp": {
+      "source": "item-herbalist-pouch",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a leather herbalist satchel open to show bundles of dried herbs, a stone mortar and a bone knife.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "317e3de277a321e5bff570f447723d6127b78e4c1bf535bc0058bd713ae3263e",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/hooded-cowl.webp": {
+      "source": "item-hooded-cowl",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a woollen cowl hood in muted blue with faded embroidered trim at the edge, no readable symbols.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "ebc3ed66ce1016b92fb3bb4f769f4e3ee708af20f17da6419e4a83803985ac43",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/inn-ale.webp": {
+      "source": "item-inn-ale",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a wooden tankard of dark foaming ale with iron bands, condensation on the wood.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "25869ef74bf4cd0d197fb20062a36dac029687c2383e251a337eb5d7bad1c1f4",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/iron-rations.webp": {
+      "source": "item-iron-rations",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a bundle of dried strips of meat and hardtack biscuits tied in waxed cloth with twine.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "0051162742b488fb98260903ccf5c58030c22fe572517a054c90fca243b13579",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/merchant-ledger.webp": {
+      "source": "item-merchant-ledger",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a worn leather-bound merchant ledger with brass corner caps and a ribbon, closed.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "a85029d574296e8361ab1c929bbd16a4766e118ef6d25648b021c035005747c8",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/oak-buckler.webp": {
+      "source": "item-oak-buckler",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a small round oak buckler shield rimmed with iron, a central iron boss, worn wood grain.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "97d8cb14b040192d33c077c0fd9f8b74cca79017e501cc06acb52826f62ceab4",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/oil-lantern.webp": {
+      "source": "item-oil-lantern",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a dented tin oil lantern with a wind shutter and a warm amber flame glowing inside.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "4c0dc5bc6376e6d682ab78979accc1302aed7d24f2d878c0048f39512892cd84",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/padded-cap.webp": {
+      "source": "item-padded-cap",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a thick quilted padded arming cap in worn beige cloth with ear flaps.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "9a36ac25b86fedc096d897dd28a3c49e69ad3c5ff544f493a66070ad3a5fcd29",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/pitch-torch.webp": {
+      "source": "item-pitch-torch",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a wooden torch with a tar-soaked rag head, lit with a lively amber flame.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "0cf39affd48096d2a00551c49133f2feba99c8fd2f4a03675f4a8a5f69039dfa",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/quilted-gambeson.webp": {
+      "source": "item-quilted-gambeson",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a thick quilted padded gambeson jacket in faded dark teal cloth with horizontal stitched channels, laid out front view.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "f3b24253c7d1e4e2dd0c557ecadfe6bd6e9e41db781a6fbc75847a458705660d",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/ravenford-brigandine.webp": {
+      "source": "item-ravenford-brigandine",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a leather brigandine vest with rows of riveted steel plates showing beneath dark cloth, brass rivets.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "17638c2a1f728b31f138745ad05d979d316baefd0c3606354f58be91eba8b41b",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/road-boots.webp": {
+      "source": "item-road-boots",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a pair of sturdy thick-soled brown leather road boots with buckles, mud on the soles.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "2d39481f0dc7910ac9381227ea701430b7836cfc7a05727a7f4961bff60f28d4",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/rootwater.webp": {
+      "source": "item-rootwater",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a slim clear glass flask of faintly shimmering pale water with a tiny root floating inside.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "e3bfc753cccbe8247de31ec6d6bd6bec6500b3225d3ac0f19b8b298b2c690a3e",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/smelling-salts.webp": {
+      "source": "item-smelling-salts",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a tiny brass-capped glass bottle of white crystalline salts on a short chain.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "0e3bb3428fd6a4003cb9e53dc08817556fbc55122bcd2032e111f94c37062b28",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/spiced-wine.webp": {
+      "source": "item-spiced-wine",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a rounded dark glass bottle of spiced mulled wine with a cork, a cinnamon stick and star anise beside it.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "3c8b262e0b8135668389a14b9e4a3c67bba4a9680931ae080551239ae4d6eb9d",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/stag-pendant.webp": {
+      "source": "item-stag-pendant",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a small copper pendant shaped like a stag head on a leather cord, soft patina.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "3c325ab9d7e910e5c6fcfdb26c9ffc2023e828971ef35d6851e97bb5645d7686",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/stag-shield.webp": {
+      "source": "item-stag-shield",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a sturdy heater shield painted dark blue with a golden stag head emblem, iron rim, scuffed.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "5e236b6d79c825247f8b428d7243919eb8bfa7b078baccaeb09e445c35c52167",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/tallow-candle.webp": {
+      "source": "item-tallow-candle",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a short crooked tallow candle in a small iron holder with a lit flame and soot.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "3844709eadd163fb8f931b73ee6af149ef9c9b92165c7776bc2092c594aae2a1",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/thieves-picks.webp": {
+      "source": "item-thieves-picks",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a slim leather roll case open to show fine steel lockpicks and tension wrenches.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "cae33be7d6245e59532856f6a602faf923400042ab9c058949ed37e46475e8bf",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/traveller-bread.webp": {
+      "source": "item-traveller-bread",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a dense round loaf of dry travel bread studded with nuts, wrapped half in a cloth.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "e0ab270a1f230302b8d72f8cccc7fb2be3a84c55ac7baa072f903d871428a31c",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/traveller-jerkin.webp": {
+      "source": "item-traveller-jerkin",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a cured brown leather jerkin with small sewn-on bone plates and lacing at the sides.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "ba9001ee21b1844639a21c8295a0791df6fa74de7e809c1f9a0b00c6912ce1ff",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/watchman-mail.webp": {
+      "source": "item-watchman-mail",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a heavy chain mail hauberk of dark steel rings with a plain tabard crest on the shoulder, no readable symbols.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "304fb4fb0a2dc5977932375924a86906d0863c1dfadff86af95aa6cfbba4d21c",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/wax-seal-kit.webp": {
+      "source": "item-wax-seal-kit",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a stick of red sealing wax, a small candle stub and a blank brass seal stamp on a leather pad.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "d7e1631b863515efe330ea43b783450a1fdf486b7d1fd49fa3cad5e682049f7b",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/items/woodland-balm.webp": {
+      "source": "item-woodland-balm",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a small round glass vial of thick green herbal balm with a cork stopper and a twine tie, faint glow.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-01",
+      "originalSha256": "d27da661fae266e51d6ace7f0c15894d754c984beddef92ea3ccefcf945ad04d",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
     "catalog/spells/ashen-bolt.webp": {
       "source": "spell-ashen-bolt",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a bolt of grey ash and dying embers streaking forward.",
