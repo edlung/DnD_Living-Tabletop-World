@@ -19,7 +19,8 @@ export type SheetId =
   | 'party'
   | 'notes'
   | 'session'
-  | 'chat';
+  | 'chat'
+  | 'shared';
 
 const SHEETS: readonly SheetId[] = [
   'places',
@@ -36,6 +37,7 @@ const SHEETS: readonly SheetId[] = [
   'notes',
   'session',
   'chat',
+  'shared',
 ];
 
 /**

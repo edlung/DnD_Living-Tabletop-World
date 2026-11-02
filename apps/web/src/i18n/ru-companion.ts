@@ -28,4 +28,23 @@ registerRussian({
   'My d{sides} shows': 'На моём d{sides}',
   'Players roll their own dice and enter what they show':
     'Игроки бросают свои кубики и вносят, что выпало',
+  // Handouts and the table's screen online (§5)
+  Handouts: 'Материалы',
+  'For the party': 'Для отряда',
+  'For {name}': 'Для: {name}',
+  'Give a handout': 'Дать материал',
+  For: 'Кому',
+  'Text (optional)': 'Текст (необязательно)',
+  'Write a text or choose a picture.': 'Напишите текст или выберите картинку.',
+  'Picture (optional)': 'Картинка (необязательно)',
+  'No picture': 'Без картинки',
+  'Give the handout': 'Дать материал',
+  'Given.': 'Отдано.',
+  'It could not be given: the picture must be of something its reader knows.':
+    'Не удалось отдать: на картинке должно быть то, что получатель знает.',
+  'The DM gave you a handout: {title}': 'Мастер дал вам материал: {title}',
+  Read: 'Прочитать',
+  'New handouts: {count}': 'Новых материалов: {count}',
+  'The DM shows the battlefield: it is on your own screen.':
+    'Мастер показывает поле боя: оно на вашем экране.',
 });

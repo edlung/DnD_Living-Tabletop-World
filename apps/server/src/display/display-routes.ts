@@ -99,7 +99,8 @@ export function partyPlace(state: WorldState): string | null {
 /**
  * The cast as anyone below the DM reads it: a place, a picture or a combatant the party does not
  * know is none — a scene without a place, a dark screen, whoever acts — so not even its ID reaches
- * a display or a player.
+ * a display or a player. The join card is the table's screen's only: a player's shared view online
+ * shows nothing then (ADR 0042 §5, ADR 0044 §5).
  */
 export function castForParty(
   state: WorldState,
@@ -121,6 +122,8 @@ export function castForParty(
       return { cast: seen(cast.entityId) ? cast : { kind: 'blank' }, place: shown };
     case 'battlefield':
       return { cast: { ...cast, focus: seen(cast.focus) ? cast.focus : null }, place: shown };
+    case 'join':
+      return { cast: actor.kind === 'display' ? cast : { kind: 'blank' }, place: shown };
     default:
       return { cast, place: shown };
   }

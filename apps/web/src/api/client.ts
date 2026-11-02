@@ -76,6 +76,11 @@ export class WorldApi {
     this.transport = transport;
   }
 
+  /** The same connection in another perspective (a player's shared view reads the PARTY's). */
+  as(perspective: string): WorldApi {
+    return new WorldApi(this.connection, perspective, perspective, this.transport);
+  }
+
   private failure(status: number): ApiError {
     return new ApiError(status, this.connection.kind);
   }

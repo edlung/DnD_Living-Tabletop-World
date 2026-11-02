@@ -68,6 +68,8 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     views.push(scoped('rolls'), scoped('check-requests'), scoped('rest'));
     // Table talk (ADR 0044 §1): a message signals whoever may read it.
     views.push(scoped('chat'));
+    // Handouts (§5): a new one signals its readers.
+    views.push(scoped('handouts'));
   }
   if (target.display === true) {
     // A table display (ADR 0042) also follows the table's rolls and the open join link.

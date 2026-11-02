@@ -4,6 +4,7 @@ import {
   buildApp,
   credentialHeaderOf,
   memoryChat,
+  memoryHandouts,
   memoryTable,
   type AppDependencies,
 } from '../http/app.ts';
@@ -47,6 +48,8 @@ export function buildLiveApp(
     lobby: deps.lobby ?? memoryLobby(),
     // And one chat, so a message signals its readers (ADR 0044 §1).
     chat: deps.chat ?? memoryChat(),
+    // And one set of handouts, so a new one signals its readers (ADR 0044 §5).
+    handouts: deps.handouts ?? memoryHandouts(),
     presence: registry,
   };
   const app = buildApp(shared);

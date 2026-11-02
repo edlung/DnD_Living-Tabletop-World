@@ -16,5 +16,6 @@
   "accountsClaim": "ui-accounts-claim",
   "display": "ui-table-display",
   "dock": "ui-signin-dock",
-  "dockRu": "ui-signin-dock-ru"
+  "dockRu": "ui-signin-dock-ru",
+  "online": "ui-signin-online"
 }

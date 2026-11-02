@@ -2,10 +2,11 @@ import type { CheckRequestView, EncounterView, RestView } from '@ltw/contracts';
 
 /**
  * What the table waits for from this player (docs/adr/0044-online-play.md §3, plan decision 10):
- * their turn, a reaction asked of them, a check the DM asked for, a short rest to take. Read from
- * the server's views only, so a reload, or a phone that slept, comes back to the same questions.
+ * their turn, a reaction asked of them, a check the DM asked for, a short rest to take, a handout
+ * to read (§5). Read from the server's views only, so a reload, or a phone that slept, comes back
+ * to the same questions.
  */
-export type WaitKind = 'reaction' | 'turn' | 'check' | 'rest';
+export type WaitKind = 'reaction' | 'turn' | 'check' | 'rest' | 'handout';
 
 export interface Wait {
   /** One per question: a new turn, window, request or rest is a new key. */
@@ -19,6 +20,7 @@ export function waitsOf({
   requests,
   rest,
   restsTaken,
+  handouts = [],
 }: {
   readonly encounter: EncounterView | null;
   /** The character this player acts as; none, nothing waits. */
@@ -27,6 +29,8 @@ export function waitsOf({
   readonly rest: RestView | null;
   /** Short rests this player has already gone to. */
   readonly restsTaken: ReadonlySet<string>;
+  /** Handouts given since the table was first read here, not yet opened. */
+  readonly handouts?: readonly { readonly handoutId: string }[];
 }): Wait[] {
   if (actorId === null) return [];
   const waits: Wait[] = [];
@@ -45,6 +49,9 @@ export function waitsOf({
   }
   if (rest !== null && encounter === null && !restsTaken.has(rest.restId)) {
     waits.push({ key: `rest:${rest.restId}`, kind: 'rest' });
+  }
+  for (const handout of handouts) {
+    waits.push({ key: `handout:${handout.handoutId}`, kind: 'handout' });
   }
   return waits;
 }

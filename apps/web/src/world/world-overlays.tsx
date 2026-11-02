@@ -7,9 +7,10 @@ import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
 import { RollAnnouncer } from '../dice/announcer.tsx';
 import { DiceStage } from '../dice/dice-stage.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { handoutElementId } from '../handouts/handouts.tsx';
 import type { Recipient } from '../items/inventory-panel.tsx';
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
-import type { Shell } from '../shell/use-shell.ts';
+import { focusOn, type Shell } from '../shell/use-shell.ts';
 import { WorldHeroDialog } from './hero-dialog-slot.tsx';
 
 /**
@@ -67,6 +68,13 @@ export function WorldOverlays({
         onRun={onRun}
         onOpenSheet={(characterId) => {
           shell.openHero(characterId, 'overview');
+        }}
+        onReadHandout={(handoutId) => {
+          shell.openSheet('journal');
+          // Once the Journal shows, the handout takes focus and so comes into view.
+          requestAnimationFrame(() => {
+            focusOn(document.getElementById(handoutElementId(handoutId)));
+          });
         }}
       />
       {shell.hero === null && (

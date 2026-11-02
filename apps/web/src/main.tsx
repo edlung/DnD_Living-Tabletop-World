@@ -49,6 +49,7 @@ import './styles/display.css';
 import './styles/dm-screen.css';
 import './styles/chat.css';
 import './styles/guide.css';
+import './styles/shared-screen.css';
 import './styles/responsive.css';
 import './styles/battle-layout.css';
 import './styles/figures.css';

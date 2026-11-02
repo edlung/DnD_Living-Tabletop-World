@@ -56,3 +56,17 @@
    (`shownTo`) as well as hidden; a check the DM asks in private is answered so, and the table's
    screen does not list it. Such a roll (`audience_id`) is read by the DM and that character only.
    Attacks, damage and saves in a fight stay the World Engine's dice.
+5. **Handouts and the shared view online** (plan decision 4). A handout is table material beside
+   the world (migration 0032, append-only): a title, a text, a picture of an entity, or both, for
+   the party or one character. The DM gives it from the Party sheet; a picture must be of
+   something its recipient knows when given (the party's view, or that character's; else 422),
+   and shows only while the reader knows it; names are the reader's own. The DM reads every one, a
+   character's perspective the party's and its own, the party's view (a table display too) the
+   party's; nobody else reads any. A handout given since the table was first read waits over the
+   player's stage ("The DM gave you a handout") and marks the Journal until it is read there; it
+   rings like any other question. It teaches nothing by itself: what it tells, the DM records as
+   knowledge. While a session plays online, each player's dock holds the Table screen: what the DM
+   casts, read in the party's view exactly as the TV reads it (`castForParty`), sized to a sheet; it
+   follows the DM — a picture, a title card or the Chronicle cast opens it when no other sheet or
+   dialog is open — and a battlefield cast is named, not drawn twice. The join card is a table
+   display's only: below the DM, anyone else reads a dark screen (ADR 0042 §5).

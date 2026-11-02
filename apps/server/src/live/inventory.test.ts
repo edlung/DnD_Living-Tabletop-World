@@ -52,8 +52,9 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/rolls',
       '/campaigns/ravenford/check-requests',
       '/campaigns/ravenford/rest',
-      // Table talk (ADR 0044 §1).
+      // Table talk (ADR 0044 §1) and handouts (§5).
       '/campaigns/ravenford/chat',
+      '/campaigns/ravenford/handouts',
       '/campaigns/ravenford/surroundings',
       '/campaigns/ravenford/undone-actions',
       '/campaigns/ravenford/entities/mira-vale/context ?',
@@ -80,6 +81,7 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/check-requests',
       '/campaigns/ravenford/rest',
       '/campaigns/ravenford/chat',
+      '/campaigns/ravenford/handouts',
       '/campaigns/ravenford/chronicle/suggestions',
       '/campaigns/ravenford/dm/history',
       '/campaigns/ravenford/assets',

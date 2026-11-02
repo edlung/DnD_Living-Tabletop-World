@@ -35,6 +35,7 @@ export function TableAsks({
   locked,
   onRun,
   onOpenSheet,
+  onReadHandout,
 }: {
   readonly api: WorldApi;
   readonly isDm: boolean;
@@ -46,6 +47,8 @@ export function TableAsks({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onOpenSheet: (characterId: string) => void;
+  /** Opens a handout where it is read (the Journal). */
+  readonly onReadHandout: (handoutId: string) => void;
 }) {
   const t = useT();
   const table = useDiceTable();
@@ -53,7 +56,14 @@ export function TableAsks({
   const requests = table?.requests.status === 'ready' ? table.requests.value.requests : [];
   const waits = isDm
     ? []
-    : waitsOf({ encounter, actorId, requests, rest: table?.rest ?? null, restsTaken });
+    : waitsOf({
+        encounter,
+        actorId,
+        requests,
+        rest: table?.rest ?? null,
+        restsTaken,
+        handouts: table?.unreadHandouts ?? [],
+      });
   // First sight is the first real read for this character (a reload, another perspective).
   const characterId = table?.characterId ?? null;
   useWaitSignals(
@@ -94,6 +104,26 @@ export function TableAsks({
             <AnswerCheck request={request} />
           </div>
         ))}
+      {table?.unreadHandouts.map((handout) => (
+        <div key={handout.handoutId} className="rest-banner asked-check">
+          <p className="asked-check-what">
+            <Glyph name="journal" />
+            <span className="rest-banner-text">
+              {t('The DM gave you a handout: {title}', { title: handout.title })}
+            </span>
+          </p>
+          <button
+            type="button"
+            className="primary-button"
+            onClick={() => {
+              table.readHandout(handout.handoutId);
+              onReadHandout(handout.handoutId);
+            }}
+          >
+            {t('Read')}
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

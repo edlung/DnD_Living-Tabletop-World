@@ -129,6 +129,7 @@ export function Dock({
   // the DM asked of this player waits (§3).
   const table = useDiceTable();
   const unread = table?.chat.unread ?? 0;
+  const handoutsWaiting = table?.unreadHandouts.length ?? 0;
   const asked =
     table && !table.isDm && table.requests.status === 'ready'
       ? table.requests.value.requests.filter((request) => request.status === 'open').length
@@ -136,7 +137,15 @@ export function Dock({
   const world: Item[] = [
     { id: 'scene', label: t('Scene'), short: t('Scene'), glyph: 'look' },
     { id: 'places', label: t('Places'), short: t('Places'), glyph: 'map' },
-    { id: 'journal', label: t('Journal'), short: t('Journal'), glyph: 'journal' },
+    {
+      id: 'journal',
+      label: t('Journal'),
+      short: t('Journal'),
+      glyph: 'journal',
+      ...(handoutsWaiting > 0
+        ? { waiting: t('New handouts: {count}', { count: handoutsWaiting }) }
+        : {}),
+    },
     {
       id: 'dice',
       label: t('Dice'),
@@ -151,6 +160,10 @@ export function Dock({
       glyph: 'talk',
       ...(unread > 0 ? { waiting: t('New messages: {count}', { count: unread }) } : {}),
     },
+    // Online, the table's screen on every player's screen (ADR 0044 §5).
+    ...(table?.online === true && !isDm
+      ? ([{ id: 'shared', label: t('Table screen'), short: t('Screen'), glyph: 'live' }] as const)
+      : []),
     { id: 'chronicle', label: t('Chronicle'), short: t('Chronicle'), glyph: 'chronicle' },
   ];
   // The acting character's sheet and pack (Stage 500). The DM's perspective has no character of

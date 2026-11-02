@@ -3,6 +3,9 @@ import type {
   ChatMessageRequest,
   CheckRequestInput,
   CheckRequestsResponse,
+  HandoutRequest,
+  HandoutsResponse,
+  HandoutView,
   LobbyResponse,
   RestResponse,
   RestView,
@@ -43,6 +46,15 @@ export interface DiceTable {
   readonly isDm: boolean;
   /** The campaign's dice are the players' own: faces may be entered (ADR 0044 §4). */
   readonly physical: boolean;
+  /** The session plays online: every screen shows the table's (ADR 0044 §5). */
+  readonly online: boolean;
+  /** Handouts this perspective reads (ADR 0044 §5), oldest first. */
+  readonly handouts: readonly HandoutView[];
+  /** Handouts that arrived since the table was first read here, not yet opened. */
+  readonly unreadHandouts: readonly HandoutView[];
+  readonly readHandout: (handoutId: string) => void;
+  /** The DM gives a handout. */
+  readonly give: (body: HandoutRequest) => Promise<boolean>;
   /** The character this perspective acts as; null for the DM. */
   readonly characterId: string | null;
   /** Table talk (docs/adr/0044-online-play.md §1), read with the dice. */
@@ -116,6 +128,30 @@ export function useDiceTableState(
   const lobby = useResource(`lobby-dice:${scope}`, loadLobby);
   useRereadOn(revision, lobby.reread);
   const physical = lobby.resource.status === 'ready' && lobby.resource.value?.dice === 'physical';
+  const online = lobby.resource.status === 'ready' && lobby.resource.value?.mode === 'online';
+  // Handouts (ADR 0044 §5): those there at the first read are read; later ones wait to be opened.
+  const loadHandouts = useCallback(
+    (signal: AbortSignal) =>
+      rolling
+        ? api.get<HandoutsResponse>('handouts', signal)
+        : Promise.resolve({ perspective, handouts: [] }),
+    [api, rolling, perspective],
+  );
+  const handoutLog = useResource(`handouts:${scope}`, loadHandouts);
+  useRereadOn(revision, handoutLog.reread);
+  const handouts =
+    handoutLog.resource.status === 'ready' ? handoutLog.resource.value.handouts : null;
+  const [opened, setOpened] = useState<{ scope: string; ids: ReadonlySet<string> } | null>(null);
+  const openedIds = opened?.scope === scope ? opened.ids : null;
+  useEffect(() => {
+    if (handouts !== null && openedIds === null) {
+      setOpened({ scope, ids: new Set(handouts.map((handout) => handout.handoutId)) });
+    }
+  }, [handouts, openedIds, scope]);
+  const unreadHandouts =
+    handouts === null || openedIds === null || isDm
+      ? []
+      : handouts.filter((handout) => !openedIds.has(handout.handoutId));
   useRereadOn(revision, chatLog.reread);
   // Messages read on this screen: the first read is read, later ones by others wait to be seen.
   const [read, setRead] = useState<{ scope: string; ids: ReadonlySet<string> } | null>(null);
@@ -209,6 +245,23 @@ export function useDiceTableState(
     error,
     isDm,
     physical,
+    online,
+    handouts: handouts ?? [],
+    unreadHandouts,
+    readHandout: (handoutId) => {
+      setOpened((now) =>
+        now?.scope === scope ? { scope, ids: new Set([...now.ids, handoutId]) } : now,
+      );
+    },
+    give: async (body) => {
+      try {
+        await api.post('handouts', body, AbortSignal.timeout(15_000), true);
+        handoutLog.reread();
+        return true;
+      } catch {
+        return false;
+      }
+    },
     characterId,
     chat: {
       log: chatLog.resource,

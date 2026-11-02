@@ -12,6 +12,8 @@ import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
 import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
 import { InMemoryChatStore } from '../chat/chat-store.ts';
+import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
+import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
@@ -111,11 +113,18 @@ export interface AppDependencies {
   readonly lobby?: LobbyDependencies;
   /** Table talk (ADR 0044 §1): chat, whispers, the DM's word to one player; in memory when absent. */
   readonly chat?: ChatDependencies;
+  /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
+  readonly handouts?: HandoutDependencies;
 }
 
 /** Table talk in memory: for compositions without a database. */
 export const memoryChat = (): ChatDependencies => ({
   store: new InMemoryChatStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryHandouts = (): HandoutDependencies => ({
+  store: new InMemoryHandoutStore(),
   now: () => new Date().toISOString(),
 });
 
@@ -194,6 +203,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
   registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
+  registerHandoutRoutes(app, { ...deps, handouts: deps.handouts ?? memoryHandouts() });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
   // The roll and rest routes read the campaign's dice from the same table state (ADR 0044 §4).

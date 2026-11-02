@@ -125,4 +125,10 @@ describe('what the table waits for', () => {
       { key: 'check:r2', kind: 'check' },
     ]);
   });
+
+  it('waits for each handout given since the table was first read, until it is opened', () => {
+    expect(
+      waitsOf({ ...none, encounter: null, actorId: ELOWEN, handouts: [{ handoutId: 'h1' }] }),
+    ).toEqual([{ key: 'handout:h1', kind: 'handout' }]);
+  });
 });

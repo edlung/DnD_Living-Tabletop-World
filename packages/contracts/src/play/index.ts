@@ -4,3 +4,4 @@
  */
 export * from '../display/display.ts';
 export * from '../chat/chat.ts';
+export * from './handouts.ts';

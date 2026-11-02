@@ -85,6 +85,7 @@ export function DmSheets({
           open={shell.sheet === 'party'}
           revision={revision}
           locationId={place?.locationId ?? null}
+          directory={directory}
           locked={locked}
           onRun={(command) => {
             onRun({ kind: 'command', command });

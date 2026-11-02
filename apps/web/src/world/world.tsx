@@ -384,6 +384,7 @@ export function World({
               onSelect={select}
             />
             <DicePanel
+              api={api}
               shell={shell}
               characters={directory.filter((entity) => entity.kind === 'character')}
             />

@@ -5,6 +5,7 @@ import { useCallback, useId, useState, type SubmitEvent } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { AskForCheck } from '../dice/check-forms.tsx';
+import { GiveHandout } from '../handouts/handouts.tsx';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
@@ -22,6 +23,7 @@ export function PartySheet({
   open,
   revision,
   locationId,
+  directory,
   locked,
   onRun,
   onOpenSheet,
@@ -29,6 +31,8 @@ export function PartySheet({
   readonly api: WorldApi;
   readonly open: boolean;
   readonly revision: number;
+  /** What a handout may picture (ADR 0044 §5). */
+  readonly directory: readonly EntityRef[];
   /** The viewed place: a ruling happens at the world time read there. */
   readonly locationId: string | null;
   readonly locked: boolean;
@@ -91,6 +95,10 @@ export function PartySheet({
           revision={revision}
           locked={locked}
           onRun={onRun}
+        />
+        <GiveHandout
+          characters={characters.map((entry) => entry.character)}
+          directory={directory}
         />
       </div>
     </div>
