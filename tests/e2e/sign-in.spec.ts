@@ -336,6 +336,9 @@ test('joining, the Players sheet and signing out work from the keyboard', async 
   await expect(sheet).toBeFocused();
   const character = sheet.getByLabel(words.character, { exact: true });
   await character.focus();
+  // Her companions' seats are free too (Stage 605): a letter picks Elowen in the list.
+  await page.keyboard.type('E');
+  await expect(character.locator('option:checked')).toHaveText(ELOWEN);
   await page.keyboard.press('Tab');
   await expect(sheet.getByLabel('The link expires after', { exact: true })).toBeFocused();
   await page.keyboard.press('Tab');

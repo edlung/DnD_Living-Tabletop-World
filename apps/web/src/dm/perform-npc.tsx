@@ -75,14 +75,19 @@ export function PerformNpc({
   npcId,
   npcName,
   directory,
+  presentIds,
 }: {
   readonly api: WorldApi;
   readonly npcId: string;
   readonly npcName: string;
   readonly directory: readonly EntityRef[];
+  /** Who stands in the viewed place: they come first, so the first listener can be spoken to. */
+  readonly presentIds: ReadonlySet<string>;
 }) {
   const t = useT();
-  const characters = directory.filter((entity) => entity.kind === 'character');
+  const characters = directory
+    .filter((entity) => entity.kind === 'character')
+    .sort((a, b) => Number(presentIds.has(b.entityId)) - Number(presentIds.has(a.entityId)));
   const topics = directory.filter((entity) => entity.entityId !== npcId);
   const names = distinctNames(t, directory);
   const [characterId, setCharacterId] = useState(characters[0]?.entityId ?? '');

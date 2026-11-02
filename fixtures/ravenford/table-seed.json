@@ -1,0 +1,1042 @@
+{
+  "$comment": "Stage 605 (work-orders/STAGE_605.md): three companions for Elowen, known to the party, with their gear (armor and shields worn), and DM data: the ambushers a party of four meets on the Old Trade Road, created unplaced with their stat blocks (the prepared encounter in encounters.json places them). Seeded last, so earlier seeded history keeps its command IDs.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "brann-ironvale",
+      "kind": "character",
+      "name": "Brann Ironvale",
+      "description": "Fighter 15. A broad-shouldered caravan guard turned sellsword, steady behind a stag-crest shield.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "market-square",
+        "since": 32400
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "tamsin-quickfoot",
+      "kind": "character",
+      "name": "Tamsin Quickfoot",
+      "description": "Rogue 15. A halfling with quick hands and quicker eyes, who notices what others miss.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "market-square",
+        "since": 32400
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "maren-ashby",
+      "kind": "character",
+      "name": "Maren Ashby",
+      "description": "Cleric 15. A dwarven healer of the Life Domain, calm in a crisis and blunt in counsel.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "market-square",
+        "since": 32400
+      }
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-brann-company",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Brann Ironvale travels with the company: a sellsword who holds the line behind a stag-crest shield.",
+      "subjects": ["brann-ironvale", "elowen-starwhisper"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-tamsin-company",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Tamsin Quickfoot travels with the company: a halfling rogue with quick hands and a sharp eye.",
+      "subjects": ["tamsin-quickfoot", "elowen-starwhisper"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-maren-company",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Maren Ashby travels with the company: a dwarven cleric of the Life Domain and the company's healer.",
+      "subjects": ["maren-ashby", "elowen-starwhisper"],
+      "knownSince": null
+    },
+    {
+      "type": "SetCharacterSheet",
+      "entityId": "brann-ironvale",
+      "sheet": {
+        "classes": [
+          {
+            "classId": "fighter",
+            "level": 15,
+            "subclass": "Champion"
+          }
+        ],
+        "abilities": {
+          "str": 20,
+          "dex": 12,
+          "con": 16,
+          "int": 10,
+          "wis": 13,
+          "cha": 10
+        },
+        "hitPoints": {
+          "max": 139,
+          "current": 139
+        },
+        "armorClass": 11,
+        "speedFt": 30,
+        "savingThrows": ["str", "con"],
+        "skills": {
+          "proficient": ["athletics", "intimidation", "perception", "survival"],
+          "expertise": []
+        },
+        "attacksPerAction": 3,
+        "weapons": ["longsword", "handaxe", "light-crossbow"],
+        "spellSlots": {
+          "max": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          "expended": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        "spellcasting": [],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "type": "SetCharacterSheet",
+      "entityId": "tamsin-quickfoot",
+      "sheet": {
+        "classes": [
+          {
+            "classId": "rogue",
+            "level": 15,
+            "subclass": "Thief"
+          }
+        ],
+        "abilities": {
+          "str": 8,
+          "dex": 20,
+          "con": 14,
+          "int": 13,
+          "wis": 12,
+          "cha": 14
+        },
+        "hitPoints": {
+          "max": 108,
+          "current": 108
+        },
+        "armorClass": 15,
+        "speedFt": 30,
+        "savingThrows": ["dex", "int", "wis", "cha"],
+        "skills": {
+          "proficient": [
+            "acrobatics",
+            "deception",
+            "insight",
+            "investigation",
+            "perception",
+            "persuasion",
+            "sleight-of-hand",
+            "stealth"
+          ],
+          "expertise": ["acrobatics", "perception", "sleight-of-hand", "stealth"]
+        },
+        "attacksPerAction": 1,
+        "weapons": ["rapier", "shortbow", "dagger"],
+        "spellSlots": {
+          "max": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          "expended": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        "spellcasting": [],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "type": "SetCharacterSheet",
+      "entityId": "maren-ashby",
+      "sheet": {
+        "classes": [
+          {
+            "classId": "cleric",
+            "level": 15,
+            "subclass": "Life Domain"
+          }
+        ],
+        "abilities": {
+          "str": 14,
+          "dex": 10,
+          "con": 14,
+          "int": 10,
+          "wis": 20,
+          "cha": 13
+        },
+        "hitPoints": {
+          "max": 108,
+          "current": 108
+        },
+        "armorClass": 10,
+        "speedFt": 30,
+        "savingThrows": ["wis", "cha"],
+        "skills": {
+          "proficient": ["insight", "medicine", "persuasion", "religion"],
+          "expertise": []
+        },
+        "attacksPerAction": 1,
+        "weapons": ["mace", "warhammer"],
+        "spellSlots": {
+          "max": [4, 3, 3, 3, 2, 1, 1, 1, 0],
+          "expended": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        "spellcasting": [
+          {
+            "source": "cleric",
+            "ability": "wis",
+            "spells": ["healing-word", "detect-magic"]
+          }
+        ],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-f2b2e708",
+      "kind": "item",
+      "name": "Brann Ironvale's Arming sword",
+      "description": "Part of the gear Brann Ironvale carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-0af2e4d0",
+      "kind": "item",
+      "name": "Brann Ironvale's Woodcutter's hatchet",
+      "description": "Part of the gear Brann Ironvale carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2c750eb2",
+      "kind": "item",
+      "name": "Brann Ironvale's Guard's crossbow",
+      "description": "Part of the gear Brann Ironvale carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-28229592",
+      "kind": "item",
+      "name": "Brann Ironvale's Watchman mail",
+      "description": "Part of the gear Brann Ironvale carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-83c2346a",
+      "kind": "item",
+      "name": "Brann Ironvale's Stag shield",
+      "description": "Part of the gear Brann Ironvale carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-cca4eb7a",
+      "kind": "item",
+      "name": "Brann Ironvale's Gold crowns",
+      "description": "Part of the gear Brann Ironvale carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-df92ba81",
+      "kind": "item",
+      "name": "Tamsin Quickfoot's Duellist's rapier",
+      "description": "Part of the gear Tamsin Quickfoot carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-270fe2b6",
+      "kind": "item",
+      "name": "Tamsin Quickfoot's Hunting shortbow",
+      "description": "Part of the gear Tamsin Quickfoot carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-167f5bc4",
+      "kind": "item",
+      "name": "Tamsin Quickfoot's Hunting knife",
+      "description": "Part of the gear Tamsin Quickfoot carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-936435b6",
+      "kind": "item",
+      "name": "Tamsin Quickfoot's Traveller jerkin",
+      "description": "Part of the gear Tamsin Quickfoot carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-d6fdfd52",
+      "kind": "item",
+      "name": "Tamsin Quickfoot's Gold crowns",
+      "description": "Part of the gear Tamsin Quickfoot carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-35e067cb",
+      "kind": "item",
+      "name": "Tamsin Quickfoot's Silver marks",
+      "description": "Part of the gear Tamsin Quickfoot carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2dbf5329",
+      "kind": "item",
+      "name": "Maren Ashby's Flanged mace",
+      "description": "Part of the gear Maren Ashby carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-45630961",
+      "kind": "item",
+      "name": "Maren Ashby's Smith's warhammer",
+      "description": "Part of the gear Maren Ashby carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-e755b31d",
+      "kind": "item",
+      "name": "Maren Ashby's Watchman mail",
+      "description": "Part of the gear Maren Ashby carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-898c841c",
+      "kind": "item",
+      "name": "Maren Ashby's Oak buckler",
+      "description": "Part of the gear Maren Ashby carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-ac453038",
+      "kind": "item",
+      "name": "Maren Ashby's Woodland balm",
+      "description": "Part of the gear Maren Ashby carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-0ffbe019",
+      "kind": "item",
+      "name": "Maren Ashby's Gold crowns",
+      "description": "Part of the gear Maren Ashby carries on the road.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-f2b2e708",
+      "holderId": "brann-ironvale",
+      "catalogId": "arming-sword",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-0af2e4d0",
+      "holderId": "brann-ironvale",
+      "catalogId": "woodcutter-hatchet",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2c750eb2",
+      "holderId": "brann-ironvale",
+      "catalogId": "guard-crossbow",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-28229592",
+      "holderId": "brann-ironvale",
+      "catalogId": "watchman-mail",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-83c2346a",
+      "holderId": "brann-ironvale",
+      "catalogId": "stag-shield",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-cca4eb7a",
+      "holderId": "brann-ironvale",
+      "catalogId": "gold-crown",
+      "quantity": 12
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-df92ba81",
+      "holderId": "tamsin-quickfoot",
+      "catalogId": "duelist-rapier",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-270fe2b6",
+      "holderId": "tamsin-quickfoot",
+      "catalogId": "hunting-shortbow",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-167f5bc4",
+      "holderId": "tamsin-quickfoot",
+      "catalogId": "hunting-knife",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-936435b6",
+      "holderId": "tamsin-quickfoot",
+      "catalogId": "traveller-jerkin",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-d6fdfd52",
+      "holderId": "tamsin-quickfoot",
+      "catalogId": "gold-crown",
+      "quantity": 20
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-35e067cb",
+      "holderId": "tamsin-quickfoot",
+      "catalogId": "silver-mark",
+      "quantity": 15
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2dbf5329",
+      "holderId": "maren-ashby",
+      "catalogId": "flanged-mace",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-45630961",
+      "holderId": "maren-ashby",
+      "catalogId": "smith-warhammer",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-e755b31d",
+      "holderId": "maren-ashby",
+      "catalogId": "watchman-mail",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-898c841c",
+      "holderId": "maren-ashby",
+      "catalogId": "oak-buckler",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-ac453038",
+      "holderId": "maren-ashby",
+      "catalogId": "woodland-balm",
+      "quantity": 3
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-0ffbe019",
+      "holderId": "maren-ashby",
+      "catalogId": "gold-crown",
+      "quantity": 8
+    },
+    {
+      "type": "EquipItem",
+      "characterId": "brann-ironvale",
+      "itemId": "item-28229592",
+      "slot": "body"
+    },
+    {
+      "type": "EquipItem",
+      "characterId": "brann-ironvale",
+      "itemId": "item-83c2346a",
+      "slot": "offhand"
+    },
+    {
+      "type": "EquipItem",
+      "characterId": "tamsin-quickfoot",
+      "itemId": "item-936435b6",
+      "slot": "body"
+    },
+    {
+      "type": "EquipItem",
+      "characterId": "maren-ashby",
+      "itemId": "item-e755b31d",
+      "slot": "body"
+    },
+    {
+      "type": "EquipItem",
+      "characterId": "maren-ashby",
+      "itemId": "item-898c841c",
+      "slot": "offhand"
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-e4045805",
+      "kind": "creature",
+      "name": "Goblin Raider",
+      "description": "A goblin with a split ear and a scimitar wrapped in rags.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-09a3666b",
+      "kind": "creature",
+      "name": "Goblin Raider",
+      "description": "A goblin archer with an arrow already on the string.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-19c9df4a",
+      "kind": "creature",
+      "name": "Goblin Raider",
+      "description": "A goblin in a dented helm too large for its head.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-e02754d2",
+      "kind": "creature",
+      "name": "Goblin Shaman",
+      "description": "A hunched goblin in ash-smeared furs, chanting under its breath.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-208d86da",
+      "kind": "creature",
+      "name": "Grey Worg",
+      "description": "A wolf the size of a pony, grey as old ash, with a torn ear.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-9f5fe645",
+      "kind": "creature",
+      "name": "Grey Worg",
+      "description": "A heavy grey wolf with a scarred muzzle and a goblin harness.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-90defd0d",
+      "kind": "creature",
+      "name": "Goblin Warlord",
+      "description": "A tall goblin in a wolf-pelt cloak and a breastplate of mismatched plates.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-e4045805",
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 10,
+          "current": 10
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 8,
+          "dex": 15,
+          "con": 10,
+          "int": 10,
+          "wis": 8,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": -1,
+          "dex": 2,
+          "con": 0,
+          "int": 0,
+          "wis": -1,
+          "cha": -1
+        },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "scimitar",
+            "name": "Scimitar",
+            "kind": "melee",
+            "bonus": 4,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 2,
+              "type": "slashing"
+            },
+            "advantageDamage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 0,
+              "type": "slashing"
+            }
+          },
+          {
+            "attackId": "shortbow",
+            "name": "Shortbow",
+            "kind": "ranged",
+            "bonus": 4,
+            "normalRangeFt": 80,
+            "longRangeFt": 320,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 2,
+              "type": "piercing"
+            },
+            "advantageDamage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 0,
+              "type": "piercing"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-09a3666b",
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 10,
+          "current": 10
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 8,
+          "dex": 15,
+          "con": 10,
+          "int": 10,
+          "wis": 8,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": -1,
+          "dex": 2,
+          "con": 0,
+          "int": 0,
+          "wis": -1,
+          "cha": -1
+        },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "scimitar",
+            "name": "Scimitar",
+            "kind": "melee",
+            "bonus": 4,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 2,
+              "type": "slashing"
+            },
+            "advantageDamage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 0,
+              "type": "slashing"
+            }
+          },
+          {
+            "attackId": "shortbow",
+            "name": "Shortbow",
+            "kind": "ranged",
+            "bonus": 4,
+            "normalRangeFt": 80,
+            "longRangeFt": 320,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 2,
+              "type": "piercing"
+            },
+            "advantageDamage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 0,
+              "type": "piercing"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-19c9df4a",
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 10,
+          "current": 10
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 8,
+          "dex": 15,
+          "con": 10,
+          "int": 10,
+          "wis": 8,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": -1,
+          "dex": 2,
+          "con": 0,
+          "int": 0,
+          "wis": -1,
+          "cha": -1
+        },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "scimitar",
+            "name": "Scimitar",
+            "kind": "melee",
+            "bonus": 4,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 2,
+              "type": "slashing"
+            },
+            "advantageDamage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 0,
+              "type": "slashing"
+            }
+          },
+          {
+            "attackId": "shortbow",
+            "name": "Shortbow",
+            "kind": "ranged",
+            "bonus": 4,
+            "normalRangeFt": 80,
+            "longRangeFt": 320,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 2,
+              "type": "piercing"
+            },
+            "advantageDamage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 0,
+              "type": "piercing"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-e02754d2",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": {
+          "max": 21,
+          "current": 21
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 8,
+          "dex": 14,
+          "con": 12,
+          "int": 10,
+          "wis": 14,
+          "cha": 10
+        },
+        "savingThrows": {
+          "str": -1,
+          "dex": 2,
+          "con": 1,
+          "int": 0,
+          "wis": 2,
+          "cha": 0
+        },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "dagger",
+            "name": "Dagger",
+            "kind": "melee",
+            "bonus": 4,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 2,
+              "type": "piercing"
+            }
+          }
+        ],
+        "spells": [
+          {
+            "spellId": "ashen-bolt",
+            "name": "Ashen Bolt",
+            "level": 1,
+            "castingTime": "action",
+            "rangeFt": 120,
+            "components": ["V", "S"],
+            "effect": {
+              "kind": "attack",
+              "bonus": 4,
+              "damage": {
+                "count": 2,
+                "sides": 8,
+                "bonus": 0,
+                "type": "necrotic"
+              }
+            }
+          },
+          {
+            "spellId": "binding-hex",
+            "name": "Binding Hex",
+            "level": 1,
+            "castingTime": "action",
+            "rangeFt": 60,
+            "components": ["V", "S"],
+            "effect": {
+              "kind": "save",
+              "ability": "wis",
+              "dc": 12,
+              "damage": {
+                "count": 2,
+                "sides": 6,
+                "bonus": 0,
+                "type": "psychic"
+              },
+              "halfOnSuccess": true
+            }
+          }
+        ],
+        "conditions": []
+      }
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-208d86da",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": {
+          "max": 45,
+          "current": 45
+        },
+        "speedFt": 50,
+        "abilities": {
+          "str": 16,
+          "dex": 13,
+          "con": 14,
+          "int": 7,
+          "wis": 11,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": 3,
+          "dex": 1,
+          "con": 2,
+          "int": -2,
+          "wis": 0,
+          "cha": -1
+        },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "bite",
+            "name": "Bite",
+            "kind": "melee",
+            "bonus": 5,
+            "reachFt": 5,
+            "damage": {
+              "count": 2,
+              "sides": 6,
+              "bonus": 3,
+              "type": "piercing"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-9f5fe645",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": {
+          "max": 45,
+          "current": 45
+        },
+        "speedFt": 50,
+        "abilities": {
+          "str": 16,
+          "dex": 13,
+          "con": 14,
+          "int": 7,
+          "wis": 11,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": 3,
+          "dex": 1,
+          "con": 2,
+          "int": -2,
+          "wis": 0,
+          "cha": -1
+        },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "bite",
+            "name": "Bite",
+            "kind": "melee",
+            "bonus": 5,
+            "reachFt": 5,
+            "damage": {
+              "count": 2,
+              "sides": 6,
+              "bonus": 3,
+              "type": "piercing"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-90defd0d",
+      "statBlock": {
+        "armorClass": 17,
+        "hitPoints": {
+          "max": 90,
+          "current": 90
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 14,
+          "dex": 16,
+          "con": 14,
+          "int": 12,
+          "wis": 10,
+          "cha": 14
+        },
+        "savingThrows": {
+          "str": 2,
+          "dex": 6,
+          "con": 5,
+          "int": 1,
+          "wis": 3,
+          "cha": 2
+        },
+        "initiativeBonus": 3,
+        "attacksPerAction": 3,
+        "attacks": [
+          {
+            "attackId": "scimitar",
+            "name": "Scimitar",
+            "kind": "melee",
+            "bonus": 7,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 4,
+              "type": "slashing"
+            },
+            "advantageDamage": {
+              "count": 2,
+              "sides": 4,
+              "bonus": 0,
+              "type": "slashing"
+            }
+          },
+          {
+            "attackId": "shortbow",
+            "name": "Shortbow",
+            "kind": "ranged",
+            "bonus": 7,
+            "normalRangeFt": 80,
+            "longRangeFt": 320,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 4,
+              "type": "piercing"
+            },
+            "advantageDamage": {
+              "count": 2,
+              "sides": 4,
+              "bonus": 0,
+              "type": "piercing"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    }
+  ]
+}

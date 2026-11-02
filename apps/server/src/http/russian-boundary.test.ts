@@ -10,6 +10,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 import knowledgeBoundary from '../../../../fixtures/ravenford-ru/knowledge-boundary.json' with { type: 'json' };
 import knowledgeSeed from '../../../../fixtures/ravenford-ru/knowledge-seed.json' with { type: 'json' };
+import tableSeed from '../../../../fixtures/ravenford-ru/table-seed.json' with { type: 'json' };
 import memoryBoundary from '../../../../fixtures/ravenford-ru/memory-boundary.json' with { type: 'json' };
 import memorySeed from '../../../../fixtures/ravenford-ru/memory-seed.json' with { type: 'json' };
 import npcBoundary from '../../../../fixtures/ravenford-ru/npc-boundary.json' with { type: 'json' };
@@ -38,7 +39,8 @@ const BASE = '/campaigns/ravenford';
 const russianEngine = (store = new InMemoryEventStore(), dice = scriptedDice([])) =>
   seededEngine(store, dice, MIDDLE_ENTROPY, RAVENFORD_RU_FIXTURES_DIR);
 
-const KNOWLEDGE_IDS = knowledgeSeed.commands.flatMap((command) =>
+// The party's knowledge of its companions comes with the table seed (Stage 605).
+const KNOWLEDGE_IDS = [...knowledgeSeed.commands, ...tableSeed.commands].flatMap((command) =>
   'knowledgeId' in command && typeof command.knowledgeId === 'string' ? [command.knowledgeId] : [],
 );
 const MEMORY_IDS = memorySeed.commands.flatMap((command) =>

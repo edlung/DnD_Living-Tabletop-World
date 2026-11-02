@@ -21,6 +21,11 @@
 | Ashen Circle                          | Пепельный круг                    |
 | Ravenford Guard                       | Равенфордская стража              |
 | Goblin Raider / Goblin Shaman         | Гоблин-налётчик / Гоблин-шаман    |
+| Goblin Warlord / Grey Worg            | Гоблин-вожак / Серый ворг         |
+| Brann Ironvale                        | Бранн Айронвейл                   |
+| Tamsin Quickfoot                      | Тамсин Квикфут                    |
+| Maren Ashby                           | Марен Эшби                        |
+| Ambush on the Old Trade Road          | Засада на Старой Торговой дороге  |
 | Chapter I — Shadows on the Trade Road | Глава I — Тени на Торговой дороге |
 
 Заклинания: Fireball — Огненный шар; Counterspell — Контрзаклинание; Healing Word — Лечащее слово; Hunter's Mark — Метка охотника; Misty Step — Туманный шаг; Detect Magic — Обнаружение магии.

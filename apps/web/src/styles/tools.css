@@ -206,3 +206,46 @@
   max-width: 40rem;
   margin: 0.25rem 0 0.5rem;
 }
+
+/* Prepared encounters (Stage 605): the adventure's ready fights, above the open-ground start */
+.prepared-encounters {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+.prepared-encounters h4 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.prepared-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.prepared-row {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.prepared-row p {
+  margin: 0;
+}
+.prepared-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.prepared-head .glyph,
+.prepared-row .primary-button .glyph {
+  width: 20px;
+  height: 20px;
+}
+.prepared-row .primary-button {
+  justify-self: start;
+}

@@ -282,6 +282,16 @@ export type {
   ReactionWindowView,
 } from './combat/views.ts';
 export {
+  preparedEncounterBookSchema,
+  preparedEncounterSchema,
+  startPreparedEncounterRequestSchema,
+  type PreparedEncounter,
+  type PreparedEncounterBlock,
+  type PreparedEncounterListResponse,
+  type PreparedEncounterView,
+  type StartedPreparedEncounterResponse,
+} from './combat/prepared.ts';
+export {
   AI_CAPABILITIES,
   INTENT_DECLINE_REASONS,
   INTENT_STATUSES,

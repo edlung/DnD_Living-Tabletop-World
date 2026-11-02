@@ -169,6 +169,31 @@
   --m: 72px;
 }
 
+/*
+ * Beside a conversation the stage is narrow: a crowded scene shrinks another step, so the row
+ * stays under the ways beyond this place (Stage 605: a party of four among the townsfolk).
+ */
+.stage--talking .world-objects:has(> li:nth-child(5)) {
+  gap: 0.35rem 0.6rem;
+}
+.stage--talking .world-objects:has(> li:nth-child(5)) .object-button {
+  min-width: 88px;
+  max-width: 132px;
+  gap: 0.2rem;
+}
+.stage--talking .world-objects:has(> li:nth-child(5)) .object-button .medallion--lg {
+  --m: 56px;
+}
+.stage--talking .world-objects:has(> li:nth-child(5)) .object-button--figure .miniature {
+  --mini-h: clamp(80px, 10vh, 104px);
+}
+.stage--talking .world-objects:has(> li:nth-child(5)) .name-plate {
+  padding: 0.2rem 0.5rem 0.25rem;
+}
+.stage--talking .world-objects:has(> li:nth-child(5)) .name-plate strong {
+  font-size: 0.95rem;
+}
+
 @media (max-width: 767px) {
   .object-button--figure .miniature,
   .world-objects:has(> li:nth-child(5)) .object-button--figure .miniature {

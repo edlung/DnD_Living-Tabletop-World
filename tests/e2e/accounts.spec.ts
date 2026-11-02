@@ -117,20 +117,6 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
     .click();
   await expect(inWorld(laptop)).toBeVisible(LIVE);
 
-  // A campaign from a ready adventure: the login is its DM; the hub then lists both.
-  await laptop.getByRole('button', { name: 'My campaigns', exact: true }).click();
-  await hub(laptop)
-    .getByRole('button', { name: 'The Missing Caravan, in English', exact: true })
-    .click();
-  await expect(dockButton(laptop, words.players)).toBeVisible(LIVE);
-  await laptop.getByRole('button', { name: 'My campaigns', exact: true }).click();
-  await expect(hub(laptop).getByRole('listitem')).toHaveCount(2);
-  await expect(hub(laptop)).toContainText('You are the DM');
-  await hub(laptop)
-    .getByRole('button', { name: `Open The Missing Caravan: You play ${ELOWEN}`, exact: true })
-    .click();
-  await expect(inWorld(laptop)).toBeVisible(LIVE);
-
   // The DM hands over a reset link (shown once, with its QR code).
   await seat.getByRole('button', { name: `Password reset link: ${ELOWEN}`, exact: true }).click();
   const field = players(dm).getByLabel('Password reset link', { exact: true });
@@ -156,6 +142,25 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
   await expect(accessState(laptop, words.signedOut)).toBeVisible(LIVE);
   await signIn(tablet, 'lena.plays', 'a brand new phrase');
   await expect(hub(tablet)).toContainText(`You play ${ELOWEN}`);
+
+  // A campaign from a ready adventure: the login is its DM; the hub then lists both.
+  await hub(tablet)
+    .getByRole('button', { name: 'The Missing Caravan, in English', exact: true })
+    .click();
+  await expect(dockButton(tablet, words.players)).toBeVisible(LIVE);
+  await tablet.getByRole('button', { name: 'My campaigns', exact: true }).click();
+  await expect(hub(tablet).getByRole('listitem')).toHaveCount(2);
+  await expect(hub(tablet)).toContainText('You are the DM');
+  await hub(tablet)
+    .getByRole('button', { name: `Open The Missing Caravan: You play ${ELOWEN}`, exact: true })
+    .click();
+  await expect(inWorld(tablet)).toBeVisible(LIVE);
+
+  // Now the login leads a table of its own: its reset is the operator's, not this DM's.
+  await seat.getByRole('button', { name: `Password reset link: ${ELOWEN}`, exact: true }).click();
+  await expect(players(dm)).toContainText(
+    'That login also plays at other tables: the operator gives its reset link.',
+  );
 });
 
 test('a seat is saved to a login later, a taken login waits, and "I have a login" adds a seat', async ({

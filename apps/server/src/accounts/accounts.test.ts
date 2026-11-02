@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto';
 
-import type { AccountResponse, EnteredCampaignResponse } from '@ltw/contracts';
+import type { AccountResponse, EnteredCampaignResponse, QuestListResponse } from '@ltw/contracts';
 import type { LightMyRequestResponse } from 'fastify';
 import { describe, expect, it } from 'vitest';
 
@@ -323,6 +323,13 @@ describe('accounts', () => {
     expect(state?.roster.size).toBe(0);
     const session = cookieOf(created, 'ltw_session') ?? '';
     expect((await table.send('GET', '/auth/session', { cookie: session })).statusCode).toBe(200);
+    // A Russian campaign reads the Russian quest book, whatever the server's own (Stage 605).
+    const quests = await table.send('GET', `/campaigns/${campaignId}/quests?perspective=DM`, {
+      cookie: session,
+    });
+    expect(quests.json<QuestListResponse>().quests.map((quest) => quest.title)).toEqual([
+      'Пропавший караван',
+    ]);
     const listed = (await accountOf(table, account)).campaigns.map((c) => [c.campaignId, c.role]);
     expect(listed).toEqual([
       ['ravenford', 'player'],

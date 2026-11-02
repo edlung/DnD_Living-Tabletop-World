@@ -13,6 +13,7 @@ import { seedUiInvestigationCampaigns } from './ui-investigation-campaigns.ts';
 import { seedUiLiveCampaigns } from './ui-live-campaigns.ts';
 import { seedUiDiceCampaigns } from './ui-dice-campaigns.ts';
 import { seedUiAToZCampaign } from './ui-a-to-z-campaigns.ts';
+import { seedUiPartyCampaigns } from './ui-party-campaigns.ts';
 import { seedUiRestCampaigns } from './ui-rest-campaigns.ts';
 import { seedUiItemCampaigns } from './ui-item-campaigns.ts';
 import { seedUiRussianCampaigns } from './ui-ru-campaigns.ts';
@@ -52,6 +53,7 @@ export async function uiCampaigns(
   await seedUiItemCampaigns(engine);
   await seedUiDiceCampaigns(engine);
   await seedUiRestCampaigns(engine);
+  await seedUiPartyCampaigns(engine);
   await seedUiAToZCampaign(engine);
   await seedUiLiveCampaigns(engine);
   await seedUiCuratedImages(engine, contents);

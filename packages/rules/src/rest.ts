@@ -7,7 +7,13 @@ import { abilityModifier, spellSlotsFor, totalLevel } from './character-math.ts'
  * Dice, spending them in a short rest, the long rest, and a milestone level the DM grants. Pure
  * functions over sheets; the server rolls the dice and the World Engine records the sheets.
  */
-export const CLASS_HIT_DIE: Readonly<Record<ClassId, HitDieSides>> = { ranger: 10, wizard: 6 };
+export const CLASS_HIT_DIE: Readonly<Record<ClassId, HitDieSides>> = {
+  ranger: 10,
+  wizard: 6,
+  fighter: 10,
+  rogue: 8,
+  cleric: 8,
+};
 
 /** A level's fixed hit points: the die's average rounded up (4, 5, 6, 7). */
 const LEVEL_HP: Readonly<Record<HitDieSides, number>> = { 6: 4, 8: 5, 10: 6, 12: 7 };
@@ -115,13 +121,33 @@ export function longRest(sheet: CharacterSheet): CharacterSheet {
 
 export type LevelUpRefusal = 'NOT_A_CLASS_OF_THE_CHARACTER' | 'MAX_LEVEL';
 
-/** A Ranger attacks twice from level 5 (Extra Attack). */
-const EXTRA_ATTACK_LEVEL: Partial<Record<ClassId, number>> = { ranger: 5 };
+/**
+ * Attacks per Attack action by class level (SRD 5.2.1): a Ranger's Extra Attack at 5; a Fighter's
+ * at 5, Two Extra Attacks at 11, Three at 20. Several classes do not add up: the best counts.
+ */
+const EXTRA_ATTACKS: Partial<Record<ClassId, readonly (readonly [number, number])[]>> = {
+  ranger: [[5, 2]],
+  fighter: [
+    [5, 2],
+    [11, 3],
+    [20, 4],
+  ],
+};
+
+export function attacksFor(classes: CharacterSheet['classes']): number {
+  let attacks = 1;
+  for (const entry of classes) {
+    for (const [level, count] of EXTRA_ATTACKS[entry.classId] ?? []) {
+      if (entry.level >= level) attacks = Math.max(attacks, count);
+    }
+  }
+  return attacks;
+}
 
 /**
  * A milestone level in one of the character's classes: the level's fixed hit points plus the
  * Constitution modifier (at least 1), the spell slots for the new levels, and Extra Attack where the
- * class gains it. The proficiency bonus and every number that follows from the level are derived,
+ * class gains it (`attacksFor`). The proficiency bonus and every number that follows from the level are derived,
  * so they follow too. Features beyond these (new spells, subclass features) are the DM's to add.
  */
 export function levelUp(sheet: CharacterSheet, classId: ClassId): CharacterSheet | LevelUpRefusal {
@@ -137,9 +163,6 @@ export function levelUp(sheet: CharacterSheet, classId: ClassId): CharacterSheet
     LEVEL_HP[CLASS_HIT_DIE[classId]] + abilityModifier(sheet.abilities.con),
   );
   const slots = spellSlotsFor(classes);
-  const extra = classes.some(
-    (entry) => entry.level >= (EXTRA_ATTACK_LEVEL[entry.classId] ?? Number.POSITIVE_INFINITY),
-  );
   return {
     ...sheet,
     classes,
@@ -148,6 +171,6 @@ export function levelUp(sheet: CharacterSheet, classId: ClassId): CharacterSheet
       max: slots,
       expended: slots.map((max, index) => Math.min(max, sheet.spellSlots.expended[index] ?? 0)),
     },
-    attacksPerAction: extra ? Math.max(sheet.attacksPerAction, 2) : sheet.attacksPerAction,
+    attacksPerAction: Math.max(sheet.attacksPerAction, attacksFor(classes)),
   };
 }

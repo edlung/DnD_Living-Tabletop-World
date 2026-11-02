@@ -148,6 +148,10 @@ describe('entities through knowledge', () => {
   it('knows only entities named by visible records, itself, and party members', () => {
     expect(entityIds(as('PARTY'))).toEqual(
       [
+        // Elowen's companions, named by the party's records of its company (Stage 605).
+        'brann-ironvale',
+        'maren-ashby',
+        'tamsin-quickfoot',
         'captain-thorne',
         'elowen-starwhisper',
         'golden-stag-inn',

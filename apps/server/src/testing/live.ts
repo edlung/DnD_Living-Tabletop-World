@@ -10,6 +10,8 @@ import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
 import { createLogger, type Logger } from '../platform/logging/logger.ts';
 import {
   RAVENFORD_QUESTS,
+  RAVENFORD_QUESTS_BY_LANGUAGE,
+  RAVENFORD_PREPARED,
   seededEngine,
   testAiGateway,
   testAssets,
@@ -97,6 +99,8 @@ export async function liveRavenford(
       dm: options.dm ?? testDm(),
       assets: testAssets(),
       quests: RAVENFORD_QUESTS,
+      questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
+      preparedEncounters: RAVENFORD_PREPARED,
       engine,
       authenticator:
         options.authenticator ?? (await loadDevPersonaAuthenticator(DEFAULT_PERSONAS_FILE)),

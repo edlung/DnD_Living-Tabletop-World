@@ -1,8 +1,11 @@
+import { join } from 'node:path';
+
 import type pg from 'pg';
 
 import { createPlaceholderImageGenerator, type ImageGenerator } from '@ltw/ai';
 
 import { AccountingTasks } from './ai/accounting-tasks.ts';
+import { loadPreparedEncounterBooks } from './combat/prepared-encounters.ts';
 import {
   PostgresBudgetStore,
   accountingStatus,
@@ -59,6 +62,10 @@ import {
   randomIds,
   systemClock,
 } from './world-engine/runtime.ts';
+import {
+  RAVENFORD_FIXTURES_DIR,
+  RAVENFORD_RU_FIXTURES_DIR,
+} from './world-engine/ravenford-seed.ts';
 import { storeReadiness } from './world-engine/store-readiness.ts';
 
 /**
@@ -146,6 +153,12 @@ async function main(): Promise<void> {
     throw error;
   }
   const quests = await loadQuestBook(config.questsFile);
+  // Ravenford in both languages (Stage 605): campaigns from either template read their own.
+  const questsByLanguage = {
+    en: await loadQuestBook(join(RAVENFORD_FIXTURES_DIR, 'quests.json')),
+    ru: await loadQuestBook(join(RAVENFORD_RU_FIXTURES_DIR, 'quests.json')),
+  };
+  const preparedEncounters = await loadPreparedEncounterBooks();
   const draftImageRepository = signIn ? new PostgresDraftImageRepository(pool) : null;
   const draftImages = draftImageRepository
     ? {
@@ -188,6 +201,8 @@ async function main(): Promise<void> {
     },
     assets: { contents },
     quests,
+    questsByLanguage,
+    preparedEncounters,
     campaignQuests: createCampaignQuestBooks(initialContent),
     ...(signIn ? { signIn } : {}),
     ...(signIn

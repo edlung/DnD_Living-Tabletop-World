@@ -1,0 +1,213 @@
+{
+  "$comment": "Stage 605: prepared encounters (packages/contracts/src/combat/prepared.ts). The DM starts one in a single step: its foes are placed, then StartCombat runs with the party characters at the place. Content, not state; DM data.",
+  "encounters": [
+    {
+      "encounterId": "road-ambush",
+      "title": "Ambush on the Old Trade Road",
+      "summary": "Goblin raiders with two shamans, two grey worgs and a goblin warlord fall on the company from behind the wagons and out of the ditch. Ready for the whole party of four.",
+      "locationId": "old-trade-road",
+      "battlefield": {
+        "width": 16,
+        "height": 12,
+        "difficult": [
+          {
+            "x": 0,
+            "y": 9
+          },
+          {
+            "x": 1,
+            "y": 9
+          },
+          {
+            "x": 2,
+            "y": 9
+          },
+          {
+            "x": 3,
+            "y": 9
+          },
+          {
+            "x": 4,
+            "y": 9
+          },
+          {
+            "x": 5,
+            "y": 9
+          },
+          {
+            "x": 6,
+            "y": 9
+          },
+          {
+            "x": 7,
+            "y": 9
+          },
+          {
+            "x": 8,
+            "y": 9
+          },
+          {
+            "x": 9,
+            "y": 9
+          },
+          {
+            "x": 10,
+            "y": 9
+          },
+          {
+            "x": 11,
+            "y": 9
+          },
+          {
+            "x": 12,
+            "y": 9
+          },
+          {
+            "x": 13,
+            "y": 9
+          },
+          {
+            "x": 14,
+            "y": 9
+          },
+          {
+            "x": 15,
+            "y": 9
+          }
+        ],
+        "cover": [
+          {
+            "x": 7,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 9,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 12,
+            "y": 6,
+            "level": "three-quarters"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "level": "total"
+          }
+        ]
+      },
+      "foes": [
+        {
+          "entityId": "creature-10fb59d4",
+          "position": {
+            "x": 8,
+            "y": 4
+          }
+        },
+        {
+          "entityId": "creature-589f6668",
+          "position": {
+            "x": 10,
+            "y": 7
+          }
+        },
+        {
+          "entityId": "creature-6513bec0",
+          "position": {
+            "x": 11,
+            "y": 5
+          }
+        },
+        {
+          "entityId": "creature-ae08be99",
+          "position": {
+            "x": 12,
+            "y": 6
+          }
+        },
+        {
+          "entityId": "creature-e4045805",
+          "position": {
+            "x": 9,
+            "y": 3
+          }
+        },
+        {
+          "entityId": "creature-09a3666b",
+          "position": {
+            "x": 10,
+            "y": 2
+          }
+        },
+        {
+          "entityId": "creature-19c9df4a",
+          "position": {
+            "x": 11,
+            "y": 8
+          }
+        },
+        {
+          "entityId": "creature-e02754d2",
+          "position": {
+            "x": 13,
+            "y": 4
+          }
+        },
+        {
+          "entityId": "creature-208d86da",
+          "position": {
+            "x": 9,
+            "y": 6
+          }
+        },
+        {
+          "entityId": "creature-9f5fe645",
+          "position": {
+            "x": 10,
+            "y": 10
+          }
+        },
+        {
+          "entityId": "creature-90defd0d",
+          "position": {
+            "x": 13,
+            "y": 7
+          }
+        }
+      ],
+      "partyStart": [
+        {
+          "x": 2,
+          "y": 6
+        },
+        {
+          "x": 2,
+          "y": 4
+        },
+        {
+          "x": 1,
+          "y": 5
+        },
+        {
+          "x": 3,
+          "y": 7
+        },
+        {
+          "x": 1,
+          "y": 7
+        },
+        {
+          "x": 3,
+          "y": 5
+        }
+      ]
+    }
+  ]
+}

@@ -36,6 +36,8 @@
 /* The anchor: the turn order as portraits, the round, whose turn and the viewer's hit points */
 .encounter-anchor {
   display: grid;
+  /* One column no wider than the anchor: a long turn order scrolls inside it (Stage 605: 15). */
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   gap: 0.3rem;
 }
@@ -57,6 +59,22 @@
   overflow-x: auto;
   list-style: none;
   scrollbar-width: none;
+}
+/* More of the order beyond an edge: that edge fades (a long fight's order scrolls in the band). */
+.initiative[data-more-after] {
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+}
+.initiative[data-more-before] {
+  mask-image: linear-gradient(to right, transparent, #000 28px);
+}
+.initiative[data-more-before][data-more-after] {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 28px,
+    #000 calc(100% - 28px),
+    transparent
+  );
 }
 .initiative-entry {
   display: grid;
@@ -124,11 +142,12 @@
   max-width: 100%;
   overflow: hidden;
   color: var(--text);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   line-height: 1.15;
   text-align: center;
   hyphens: auto;
-  overflow-wrap: break-word;
+  /* A word longer than the entry ("Гоблин-военачальник") breaks rather than being cut. */
+  overflow-wrap: anywhere;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }

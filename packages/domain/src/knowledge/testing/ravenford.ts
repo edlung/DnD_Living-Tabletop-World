@@ -4,6 +4,7 @@ import boundary from '../../../../../fixtures/ravenford/knowledge-boundary.json'
 import kernelSeed from '../../../../../fixtures/ravenford/kernel-seed.json' with { type: 'json' };
 import knowledgeSeed from '../../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
 import memorySeed from '../../../../../fixtures/ravenford/memory-seed.json' with { type: 'json' };
+import tableSeed from '../../../../../fixtures/ravenford/table-seed.json' with { type: 'json' };
 import type { Actor } from '../../kernel/actor.ts';
 import { SequentialIds, SteppingClock } from '../../kernel/engine/deterministic-sources.ts';
 import { InMemoryEventStore } from '../../kernel/engine/in-memory-event-store.ts';
@@ -39,6 +40,13 @@ export async function seedRavenford(): Promise<{ engine: WorldEngine; state: Wor
       commands: memorySeed.commands,
       commandIdPrefix: `${CAMPAIGN}.memory`,
     }),
+    // Elowen's companions, known to the party (Stage 605); self-contained after the kernel seed.
+    ...submissionsFromScript({
+      campaignId: CAMPAIGN,
+      actor: DM,
+      commands: tableSeed.commands,
+      commandIdPrefix: `${CAMPAIGN}.table`,
+    }),
   ];
   for (const submission of submissions) {
     const result = await engine.execute(submission);
@@ -62,7 +70,10 @@ export function perspective(
 }
 
 /** Every knowledge record ID in the fixture, in seed order. */
-export const ALL_KNOWLEDGE_IDS: readonly string[] = knowledgeSeed.commands.flatMap((command) =>
+export const ALL_KNOWLEDGE_IDS: readonly string[] = [
+  ...knowledgeSeed.commands,
+  ...tableSeed.commands,
+].flatMap((command) =>
   'knowledgeId' in command && typeof command.knowledgeId === 'string' ? [command.knowledgeId] : [],
 );
 

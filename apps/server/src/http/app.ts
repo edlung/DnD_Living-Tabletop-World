@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
 import type { RelevanceDeps } from '@ltw/ai';
-import type { QuestDefinition } from '@ltw/contracts';
+import type { Language, QuestDefinition } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } from 'fastify';
 
@@ -32,6 +32,10 @@ import { registerCharacterRoutes } from './routes/character-routes.ts';
 import { registerAuthoringRoutes } from './routes/authoring-routes.ts';
 import { registerCommandRoutes } from './routes/command-routes.ts';
 import { registerContextRoutes } from './routes/context-routes.ts';
+import {
+  registerPreparedEncounterRoutes,
+  type PreparedEncounterBooks,
+} from '../combat/prepared-encounters.ts';
 import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
@@ -67,6 +71,13 @@ export interface AppDependencies {
   readonly quests: readonly QuestDefinition[];
   /** Immutable per-campaign definitions for bootstrapped campaigns; legacy fallback stays above. */
   readonly campaignQuests?: CampaignQuestBooks;
+  /**
+   * Ravenford's quest books by language (Stage 605): a campaign seeded from Ravenford reads the one
+   * in its language, so a campaign started from either template reads its own; `quests` otherwise.
+   */
+  readonly questsByLanguage?: Readonly<Partial<Record<Language, readonly QuestDefinition[]>>>;
+  /** Prepared encounters by language (Stage 605); none when absent. */
+  readonly preparedEncounters?: PreparedEncounterBooks;
   /**
    * Live subscriptions (docs/adr/0033-live-session.md §5), shared by the application and its
    * silent fingerprint twin (`src/live/live-app.ts`). Without a live session nobody is present.
@@ -153,6 +164,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerContextRoutes(app, deps);
   registerSurroundingsRoutes(app, deps);
   registerEncounterRoutes(app, deps);
+  registerPreparedEncounterRoutes(app, deps);
   registerCommandRoutes(app, deps);
   registerAiRoutes(app, deps);
   registerNpcRoutes(app, deps);

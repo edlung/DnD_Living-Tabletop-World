@@ -29,6 +29,7 @@ const SEED_FILES = [
   { file: 'contradiction-seed.json', prefix: 'contradiction' },
   { file: 'combat-seed.json', prefix: 'combat' },
   { file: 'items-seed.json', prefix: 'items' },
+  { file: 'table-seed.json', prefix: 'table' },
 ] as const;
 
 const seedSchema = z.object({

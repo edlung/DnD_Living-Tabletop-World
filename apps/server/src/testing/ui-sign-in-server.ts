@@ -11,6 +11,8 @@ import { buildLiveApp } from '../live/live-app.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import {
   RAVENFORD_QUESTS,
+  RAVENFORD_QUESTS_BY_LANGUAGE,
+  RAVENFORD_PREPARED,
   testAiGateway,
   testAssets,
   testAuthoring,
@@ -87,6 +89,8 @@ const { app } = buildLiveApp({
   dm: testDm(),
   assets,
   quests: RAVENFORD_QUESTS,
+  questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
+  preparedEncounters: RAVENFORD_PREPARED,
   campaignQuests: createCampaignQuestBooks(activationFixture.initialContent),
   engine,
   authenticator: sessionAuthenticator(credentials, systemAuthClock),

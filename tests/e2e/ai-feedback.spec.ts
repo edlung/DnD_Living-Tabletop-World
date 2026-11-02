@@ -81,7 +81,8 @@ test('the DM sees the NPC replying, and a late reply never lands on another list
   await page.unroute(isDialogue);
 
   // A reply still in flight when the DM switches who Mira speaks with is discarded: it was
-  // spoken to Bram (first in the list), not to Elowen.
+  // spoken to Bram, not to Elowen.
+  await page.getByLabel('Speaking with').selectOption('character-7beabb40');
   const second = holdDialogue(page);
   await second.ready;
   await page.getByRole('button', { name: 'Speak as Mira Vale' }).click();

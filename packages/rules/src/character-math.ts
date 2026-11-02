@@ -53,7 +53,7 @@ export function sourcesFor(sheet: CharacterSheet, spellId: SpellId): Spellcastin
   return sheet.spellcasting.filter((source) => source.spells.includes(spellId));
 }
 
-const FULL_CASTERS: ReadonlySet<ClassId> = new Set(['wizard']);
+const FULL_CASTERS: ReadonlySet<ClassId> = new Set(['wizard', 'cleric']);
 const HALF_CASTERS: ReadonlySet<ClassId> = new Set(['ranger']);
 
 /** SRD 5.2.1 Multiclass Spellcaster table, levels 1-20, slot levels 1-9. */

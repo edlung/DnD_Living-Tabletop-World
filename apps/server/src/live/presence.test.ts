@@ -27,6 +27,8 @@ const presence = async (live: LiveRavenford, perspective: string, token: string)
 
 const present = (body: PresenceResponse) =>
   Object.fromEntries(body.characters.map((entry) => [entry.character.name, entry.present]));
+/** Elowen's presence (her companions have no players here, so they stay absent). */
+const elowenHere = (body: PresenceResponse) => present(body)['Elowen Starwhisper'];
 
 const live = (perspective: string) =>
   `/campaigns/ravenford/live?perspective=${encodeURIComponent(perspective)}`;
@@ -48,18 +50,19 @@ describe('presence', () => {
   it('shows who is at the table, counts tabs once, and keeps a 10 s grace', async () => {
     const world = await liveRavenford();
     const own = () => presence(world, 'PLAYER', TOKENS.player);
+    // The party's characters: Elowen and the three companions the party knows (Stage 605).
+    const absent = (entityId: string, name: string) => ({
+      character: { entityId, kind: 'character', name },
+      present: false,
+    });
     expect(await own()).toEqual({
       perspective: 'CHARACTER:elowen-starwhisper',
       dmConnected: false,
       characters: [
-        {
-          character: {
-            entityId: 'elowen-starwhisper',
-            kind: 'character',
-            name: 'Elowen Starwhisper',
-          },
-          present: false,
-        },
+        absent('brann-ironvale', 'Brann Ironvale'),
+        absent('elowen-starwhisper', 'Elowen Starwhisper'),
+        absent('maren-ashby', 'Maren Ashby'),
+        absent('tamsin-quickfoot', 'Tamsin Quickfoot'),
       ],
     });
     const tabs = [
@@ -68,19 +71,19 @@ describe('presence', () => {
     ];
     const dm = await readyLive(world.app, live('DM'), TOKENS.dm);
     expect(await own()).toMatchObject({ dmConnected: true });
-    expect(present(await own())).toEqual({ 'Elowen Starwhisper': true });
+    expect(elowenHere(await own())).toBe(true);
     tabs[0]?.disconnect();
     await delivered();
-    expect(present(await own())).toEqual({ 'Elowen Starwhisper': true });
+    expect(elowenHere(await own())).toBe(true);
     tabs[1]?.disconnect();
     dm.disconnect();
     await delivered();
     world.timers.advance(9_999);
     expect(await own()).toMatchObject({ dmConnected: true });
-    expect(present(await own())).toEqual({ 'Elowen Starwhisper': true });
+    expect(elowenHere(await own())).toBe(true);
     world.timers.advance(1);
     expect(await own()).toMatchObject({ dmConnected: false });
-    expect(present(await own())).toEqual({ 'Elowen Starwhisper': false });
+    expect(elowenHere(await own())).toBe(false);
     // A reconnect within the grace never shows an absence.
     const back = await readyLive(world.app, live('PLAYER'), TOKENS.player);
     back.disconnect();
@@ -88,7 +91,7 @@ describe('presence', () => {
     world.timers.advance(5_000);
     await readyLive(world.app, live('PLAYER'), TOKENS.player);
     world.timers.advance(20_000);
-    expect(present(await own())).toEqual({ 'Elowen Starwhisper': true });
+    expect(elowenHere(await own())).toBe(true);
   });
 
   it('never lists, or signals, a character the perspective cannot see', async () => {

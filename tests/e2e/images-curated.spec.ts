@@ -26,8 +26,11 @@ test('the player sees the curated scene, portraits and standing figures', async 
   // Who has an approved figure stands in the scene as it; the party rail keeps the portrait.
   await expectServedPicture(mira.locator('.miniature-art'));
   await expect(mira.locator('.medallion')).toHaveCount(0);
+  // Elowen's entry (her companions have no approved portrait yet: they keep the silhouette).
   const rail = page.getByRole('region', { name: 'At the table', exact: true });
-  await expectServedPicture(rail.locator('.medallion-face img').first());
+  await expectServedPicture(
+    rail.locator('.rail-member', { hasText: 'Elowen Starwhisper' }).locator('.medallion-face img'),
+  );
   await mira.click();
   // A person keeps the round portrait in the panel, never the figure.
   await expectServedPicture(detailsPanel(page).locator('.details-header .medallion-face img'));

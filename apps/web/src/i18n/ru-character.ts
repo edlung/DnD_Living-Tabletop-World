@@ -19,6 +19,9 @@ registerRussian({
   'Concentrating: {spell}': 'Концентрация: {spell}',
   Hunter: 'Охотник',
   Evoker: 'Воплотитель',
+  Champion: 'Чемпион',
+  Thief: 'Вор',
+  'Life Domain': 'Домен жизни',
 
   // Abilities and saves
   'Abilities and saving throws': 'Характеристики и спасброски',

@@ -21,6 +21,8 @@ import { createLogger, type Logger } from '../platform/logging/logger.ts';
 import { ManualTimers } from './live.ts';
 import {
   RAVENFORD_QUESTS,
+  RAVENFORD_QUESTS_BY_LANGUAGE,
+  RAVENFORD_PREPARED,
   seededEngine,
   testAiGateway,
   testAssets,
@@ -203,6 +205,8 @@ export async function signInTable(
       dm: testDm(),
       assets: testAssets(),
       quests: RAVENFORD_QUESTS,
+      questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
+      preparedEncounters: RAVENFORD_PREPARED,
       engine,
       authenticator: sessionAuthenticator(credentials, clock),
       logger: options.logger ?? createLogger({ service: 'sign-in-test', level: 'silent' }),

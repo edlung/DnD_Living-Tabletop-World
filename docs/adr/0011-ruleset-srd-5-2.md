@@ -106,6 +106,7 @@ A character sheet (static statistics plus current resources: HP, slots, per-rest
 ## Amendments
 
 - 2026-10-04 (Stage 80, ADR 0015 §3–4, owner-approved): the slice adds the Unconscious condition (it includes Incapacitated), death saving throws, damage at 0 HP and massive damage, cover (+2/+5 to AC and Dexterity saves; total cover cannot be targeted), Advantage and Disadvantage from Prone and Unconscious, and the Longbow's damage type and Slow mastery. Mechanics live in `packages/rules/src/combat.ts`.
+- 2026-11-02 (Stage 605, owner-delegated; `docs/FULL_GAME_PLAN.md`): **the Fighter, the Rogue and the Cleric** join the Ranger and the Wizard as sheet classes, with what the rules already do: Hit Point Dice (d10, d8, d8), the Cleric a full caster for the multiclass slot table and a spellcasting source, and Extra Attack by class level (`attacksFor`: a Ranger's at 5; a Fighter's at 5, 11 and 20 for two, three and four attacks). Their other features (Sneak Attack, Second Wind, Channel Divinity, subclass features) and the spell lists are Stages 640–660; until then the DM rules on them. Ravenford gains three level-15 companions for Elowen built this way (`fixtures/ravenford{,-ru}/table-seed.json`): Brann Ironvale (Fighter, Champion), Tamsin Quickfoot (Rogue, Thief) and Maren Ashby (Cleric, Life Domain, Healing Word and Detect Magic), their armor and shields worn through `EquipItem`, so their Armor Class follows what they wear.
 
 ## Invariants affected
 

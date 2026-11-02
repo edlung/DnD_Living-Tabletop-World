@@ -1,7 +1,9 @@
 import type { EncounterView, PlayerAssetView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
+import { useRef } from 'react';
 
 import { Medallion } from '../../visual/medallion.tsx';
+import { useScrollEdges } from '../../visual/scroll-edges.ts';
 import { HpBar } from '../board/token.tsx';
 import { splitLabel, useCombatantLabels } from '../labels.ts';
 
@@ -26,6 +28,9 @@ export function InitiativeStrip({
   const myTurn = self !== undefined && encounter.currentCombatantId === actorId;
   const window = encounter.reactionWindow;
   const currentName = labelOf(encounter.currentCombatantId);
+  // A long order scrolls inside the band; its edges fade where more of it hides (Stage 605).
+  const list = useRef<HTMLOListElement>(null);
+  const edges = useScrollEdges(list, encounter.order.join(' '));
   return (
     <div
       className="encounter-anchor"
@@ -35,7 +40,14 @@ export function InitiativeStrip({
     >
       <div className="initiative-band">
         {/* Focusable, so a keyboard can scroll a long order on a narrow screen. */}
-        <ol className="initiative" aria-label={t('Turn order')} tabIndex={0}>
+        <ol
+          ref={list}
+          className="initiative"
+          aria-label={t('Turn order')}
+          tabIndex={0}
+          data-more-before={edges.before || undefined}
+          data-more-after={edges.after || undefined}
+        >
           {encounter.order.map((entityId) => {
             const combatant = encounter.combatants.find(
               (entry) => entry.entity.entityId === entityId,

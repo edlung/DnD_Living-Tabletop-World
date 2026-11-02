@@ -70,7 +70,8 @@ export const WEAPON_IDS = [
 ] as const;
 export type WeaponId = (typeof WEAPON_IDS)[number];
 
-export const CLASS_IDS = ['ranger', 'wizard'] as const;
+/** The classes sheets may hold (Stage 605 added the Fighter, the Rogue and the Cleric). */
+export const CLASS_IDS = ['ranger', 'wizard', 'fighter', 'rogue', 'cleric'] as const;
 export type ClassId = (typeof CLASS_IDS)[number];
 
 /** Hit Point Dice by size (SRD 5.2.1); each class has one (Stage 530, `@ltw/rules`). */
@@ -90,8 +91,8 @@ const slotRow = z.array(z.number().int().min(0).max(4)).length(9);
 
 export const spellcastingSourceSchema = z
   .object({
-    /** Ranger and Wizard class casting, or the Magic Initiate (Cleric) feat. */
-    source: z.enum(['ranger', 'wizard', 'magic-initiate']),
+    /** Ranger, Wizard and Cleric class casting, or the Magic Initiate (Cleric) feat. */
+    source: z.enum(['ranger', 'wizard', 'cleric', 'magic-initiate']),
     ability: z.enum(ABILITIES),
     spells: z.array(z.enum(SPELL_IDS)).min(1),
     /** Slot-free casts per Long Rest (Favored Enemy, Magic Initiate). */

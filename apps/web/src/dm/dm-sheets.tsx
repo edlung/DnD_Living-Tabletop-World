@@ -102,6 +102,7 @@ export function DmSheets({
             locked={locked}
             onRun={onRun}
             onActAs={onActAs}
+            onWorldChanged={onWorldChanged}
           />
         )}
       </Sheet>

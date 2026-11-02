@@ -56,7 +56,10 @@ describe('authenticated campaign session', () => {
       'DM',
       'PARTY',
       'PUBLIC',
+      'CHARACTER:brann-ironvale',
       'CHARACTER:elowen-starwhisper',
+      'CHARACTER:maren-ashby',
+      'CHARACTER:tamsin-quickfoot',
     ]);
     expect(response.body).not.toContain(TOKENS.player);
     expect(response.body).not.toContain('player-elowen');
