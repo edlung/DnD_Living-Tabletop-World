@@ -103,8 +103,9 @@ test('the DM asks for a check with a hidden DC, and the player answers it', asyn
   const roll = await rolled(player, () => asked.getByRole('button', { name: 'Roll' }).click());
   expect(roll.groups[0]?.modifier).toBe(9);
   const total = roll.groups[0]?.total ?? 0;
+  // The DM's sheet follows the player's roll through the live stream: a loaded runner's time.
   const requests = dmSheet.getByRole('region', { name: 'Requests' });
-  await expect(requests).toContainText(String(total));
+  await expect(requests).toContainText(String(total), { timeout: LANDS });
   await expect(requests).toContainText(total >= 15 ? 'Success' : 'Failure');
   await expect(asked).toHaveCount(0);
   await dmContext.close();
