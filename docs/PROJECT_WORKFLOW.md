@@ -2,6 +2,18 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Current request — native apps, 2026-11-02
+
+- Owner: «разработать iOS и Android приложение для игроков, чтобы оно мэтчилось с проектом + iOS и
+  iPadOS приложение для DM»; four product answers, each the recommended option (a native shell
+  around the shared client, no push services, the owner installs Xcode and the session the Android
+  tools, the family's own devices first). Record `reviews/OWNER_NATIVE_APPS_2026-11-02.json`; program
+  `docs/NATIVE_APPS_PLAN.md`; ADR 0070; scope `work-orders/STAGE_700.md` (700a–e). Branch
+  `claude/mobile-apps` in the worktree `/Users/oleksandr/Documents/ltw-mobile`, one pull request; the
+  rules program (Milestone B, `wip/stage-640`) continues on its own.
+- Status: Stage 700 (700a–e) complete, report `reports/STAGE_700_COMPLETION.md`, install guide
+  `docs/NATIVE_APPS_INSTALL.md`; awaiting the owner's merge decision. Not deployed.
+
 ## Current request — product completion, 2026-11-01
 
 - Owner: «доделай проект до конца … полностью играбельный от А до Я … отвлекай меня по минимуму».
