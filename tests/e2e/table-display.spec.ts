@@ -172,6 +172,32 @@ test('a TV pairs by its code, shows what the DM casts, and the table joins by it
     'Seat taken',
   );
 
+  // Whom the table waits for shows over whatever the screen shows (ADR 0044 §3): the DM asks
+  // Tamsin, now at the table, for a check; her player's phone asks too; the strip goes when the
+  // DM takes the question back.
+  await openSheet(dm, 'Table screen');
+  await cast(dm, 'A title card', async (form) => {
+    await form.getByLabel('Title', { exact: true }).fill('Chapter Two');
+  });
+  await openSheet(dm, 'Dice');
+  const dice = dm.locator('#sheet-dice');
+  await dice
+    .getByLabel('Character', { exact: true })
+    .last()
+    .selectOption({ label: 'Tamsin Quickfoot' });
+  await dice
+    .getByLabel('Check', { exact: true })
+    .last()
+    .selectOption({ label: 'Dexterity saving throw' });
+  await dice.getByRole('button', { name: 'Ask', exact: true }).click();
+  const waiting = tv.locator('.display-waiting-strip');
+  await expect(waiting).toContainText('Tamsin Quickfoot — Dexterity saving throw', LIVE);
+  await expect(tv.getByRole('heading', { level: 1, name: 'Chapter Two' })).toBeVisible();
+  await expectAccessible(tv, 'whom the table waits for over a title card');
+  await expect(phone.locator('.asked-check')).toContainText('Dexterity saving throw', LIVE);
+  await dice.getByRole('button', { name: 'Withdraw', exact: true }).click();
+  await expect(waiting).toBeEmpty(LIVE);
+
   // The screen read the party's view only: none of the DM's secrets reached it.
   const bodies = await received();
   for (const marker of boundary.forbiddenMarkers.PARTY) {

@@ -1,6 +1,7 @@
 import type { EncounterView, EntityRef, RollEntry } from '@ltw/contracts';
 import { useState, type ReactNode } from 'react';
 
+import { TableAsks } from '../alerts/table-asks.tsx';
 import type { WorldApi } from '../api/client.ts';
 import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
 import { RollAnnouncer } from '../dice/announcer.tsx';
@@ -8,14 +9,13 @@ import { DiceStage } from '../dice/dice-stage.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import type { Recipient } from '../items/inventory-panel.tsx';
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
-import { RestBanner } from '../rest/sheet-rest.tsx';
-import { LobbyBanner } from '../session/lobby-banner.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { WorldHeroDialog } from './hero-dialog-slot.tsx';
 
 /**
- * What lies over the world screen: the short rest's banner (Stage 530), the Chronicle book, the
- * character dialog and the dice (Stage 510). The action's result and the latest roll in words go where the viewer is — inside the
+ * What lies over the world screen: the table's questions — the short rest (Stage 530) and the
+ * checks asked, with the companion's alerts (ADR 0044 §3) — the Chronicle book, the character
+ * dialog and the dice (Stage 510). The action's result and the latest roll in words go where the viewer is — inside the
  * character dialog while it is open (the world behind a modal is out of reach), else in the world.
  */
 export function WorldOverlays({
@@ -29,6 +29,7 @@ export function WorldOverlays({
   canAct,
   locked,
   encounter,
+  sessionOpen,
   recipients,
   onRun,
   outcome,
@@ -44,6 +45,8 @@ export function WorldOverlays({
   readonly canAct: boolean;
   readonly locked: boolean;
   readonly encounter: EncounterView | null;
+  /** A play session is open: the screen stays awake (ADR 0044 §3). */
+  readonly sessionOpen: boolean;
   readonly recipients: readonly Recipient[];
   readonly onRun: (intent: ExplorationIntent) => void;
   /** The result of the latest action. */
@@ -53,11 +56,13 @@ export function WorldOverlays({
   const announcer = <RollAnnouncer entry={announced} />;
   return (
     <>
-      {!isDm && <LobbyBanner api={api} actorId={actorId} />}
-      <RestBanner
+      <TableAsks
+        api={api}
         isDm={isDm}
+        ready={ready}
         actorId={actorId}
-        fighting={encounter !== null}
+        encounter={encounter}
+        sessionOpen={sessionOpen}
         locked={locked}
         onRun={onRun}
         onOpenSheet={(characterId) => {

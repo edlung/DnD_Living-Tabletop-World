@@ -4,6 +4,8 @@ import { useCallback, useId, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { checkWords } from '../dice/checks.ts';
+import { useDiceTable } from '../dice/table.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { usePortrait } from '../world/use-portrait.ts';
@@ -57,6 +59,14 @@ export function PartyCard({
     setForm(null);
     onRun(command);
   };
+  // Whom the table waits for (ADR 0044 §3): the checks asked of this character, not yet rolled.
+  const table = useDiceTable();
+  const asked =
+    table?.requests.status === 'ready'
+      ? table.requests.value.requests.filter(
+          (request) => request.status === 'open' && request.characterId === character.entityId,
+        )
+      : [];
   const hp = sheet?.hitPoints;
   const low = hp !== undefined && hp.current * 2 <= hp.max;
   const slots = sheet
@@ -89,6 +99,14 @@ export function PartyCard({
           </span>
         )}
       </div>
+      {asked.length > 0 && (
+        <p className="party-waiting" role="status">
+          <Glyph name="roll" />
+          {t('Waiting for: {checks}', {
+            checks: asked.map((request) => checkWords(t, request.check, request.mode)).join(', '),
+          })}
+        </p>
+      )}
       {sheet && hp ? (
         <>
           <div className="party-card-vitals">

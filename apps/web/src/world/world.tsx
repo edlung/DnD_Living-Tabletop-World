@@ -441,6 +441,7 @@ export function World({
             canAct={canAct || standIn !== null}
             locked={action.locked}
             encounter={encounter}
+            sessionOpen={openSession !== undefined}
             recipients={recipientsOf(view, directory, actorId)}
             onRun={run}
             outcome={outcome}

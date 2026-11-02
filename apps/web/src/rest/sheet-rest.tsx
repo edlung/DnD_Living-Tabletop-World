@@ -159,7 +159,10 @@ export function GrantLevel({ entityId, sheet, locked, onRun }: Omit<SheetRestPro
   );
 }
 
-/** The short rest at the table, over the world: what it is for, and the way to it. */
+/**
+ * The short rest at the table, over the world: what it is for, and the way to it. It lies in the
+ * table's questions over the stage (`alerts/table-asks.tsx`).
+ */
 export function RestBanner({
   isDm,
   actorId,
@@ -178,41 +181,38 @@ export function RestBanner({
   const t = useT();
   const rest = useDiceTable()?.rest ?? null;
   const shown = rest !== null && !fighting && (isDm || actorId !== null);
+  if (!shown) return null;
   return (
-    <div className="rest-banner-slot" aria-live="polite">
-      {shown && (
-        <div className="rest-banner">
-          <Glyph name="dawn" />
-          <span className="rest-banner-text">
-            {isDm
-              ? t('Short rest: the players spend Hit Point Dice.')
-              : t('Short rest: spend Hit Point Dice to recover.')}
-          </span>
-          {isDm ? (
-            <button
-              type="button"
-              disabled={locked}
-              onClick={() => {
-                onRun(restAction({ action: 'end' }));
-              }}
-            >
-              {t('End the short rest')}
-            </button>
-          ) : (
-            actorId !== null && (
-              <button
-                type="button"
-                className="primary-button"
-                onClick={() => {
-                  onOpenSheet(actorId);
-                }}
-              >
-                <Glyph name="hit-points" />
-                {t('Spend Hit Point Dice')}
-              </button>
-            )
-          )}
-        </div>
+    <div className="rest-banner">
+      <Glyph name="dawn" />
+      <span className="rest-banner-text">
+        {isDm
+          ? t('Short rest: the players spend Hit Point Dice.')
+          : t('Short rest: spend Hit Point Dice to recover.')}
+      </span>
+      {isDm ? (
+        <button
+          type="button"
+          disabled={locked}
+          onClick={() => {
+            onRun(restAction({ action: 'end' }));
+          }}
+        >
+          {t('End the short rest')}
+        </button>
+      ) : (
+        actorId !== null && (
+          <button
+            type="button"
+            className="primary-button"
+            onClick={() => {
+              onOpenSheet(actorId);
+            }}
+          >
+            <Glyph name="hit-points" />
+            {t('Spend Hit Point Dice')}
+          </button>
+        )
       )}
     </div>
   );

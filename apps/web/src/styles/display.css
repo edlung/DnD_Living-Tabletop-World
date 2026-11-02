@@ -480,3 +480,17 @@
   width: 20px;
   height: 20px;
 }
+/* Whom the table waits for, over every cast but the dice' own (display/waiting-strip.tsx). */
+.display-waiting-strip {
+  position: absolute;
+  top: 3vmin;
+  left: 50%;
+  z-index: 4;
+  width: max-content;
+  max-width: 80vw;
+  translate: -50% 0;
+  pointer-events: none;
+}
+.display-waiting-strip:empty {
+  display: none;
+}

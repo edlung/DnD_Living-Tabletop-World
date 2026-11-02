@@ -222,6 +222,32 @@ describe('the live client', () => {
     live.close();
   });
 
+  it('opens a fresh stream when the page shows again, keeping the old until it is ready', async () => {
+    const { live, calls, refreshes } = client();
+    live.subscribe(PLAYER);
+    await tick();
+    calls[0]?.send(READY);
+    await tick(150);
+    expect(refreshes()).toBe(1);
+    // A phone unlocked: its stream may have died unseen, so another opens at once.
+    live.resume();
+    await tick();
+    expect(calls).toHaveLength(2);
+    expect(calls[1]?.url).toBe(calls[0]?.url);
+    expect(calls[0]?.aborted()).toBe(false);
+    calls[1]?.send(READY);
+    await tick();
+    expect(calls[0]?.aborted()).toBe(true);
+    // Its ready re-reads every view: the open questions come back.
+    await tick(150);
+    expect(refreshes()).toBe(2);
+    live.close();
+    // Closed, it opens nothing more.
+    live.resume();
+    await tick();
+    expect(calls).toHaveLength(2);
+  });
+
   it('ignores every message of a stale generation', async () => {
     const { live, calls, statuses, refreshes } = client();
     live.subscribe(PLAYER);

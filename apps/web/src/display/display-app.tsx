@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { WorldApi, type Connection } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { useScreenAwake } from '../alerts/screen.ts';
 import { useLiveSession } from '../session/use-live-session.ts';
 import { ApprovedImages, ApprovedImagesContext } from '../visual/approved-images.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
@@ -16,6 +17,7 @@ import {
   spacedCode,
   type SessionAnswer,
 } from './display-flow.ts';
+import { WaitingStrip } from './waiting-strip.tsx';
 
 /**
  * The table display (docs/adr/0042-table-display.md): a TV's browser opens `/display`, shows a
@@ -194,6 +196,8 @@ function DisplayStage({
     [images],
   );
   const live = useLiveSession(connection, 'PARTY');
+  // A paired screen stays awake (ADR 0044 §3): the TV never dims mid-game.
+  useScreenAwake(true);
   const loadCast = useCallback(
     (signal: AbortSignal) => api.get<CastResponse>('display/cast', signal, false),
     [api],
@@ -214,13 +218,19 @@ function DisplayStage({
         data-cast={cast.resource.status === 'ready' ? cast.resource.value.cast.kind : 'loading'}
       >
         {cast.resource.status === 'ready' ? (
-          <CastView
-            api={api}
-            cast={cast.resource.value}
-            directory={directory}
-            refresh={live.refresh}
-            campaignName={session.campaignName}
-          />
+          <>
+            <CastView
+              api={api}
+              cast={cast.resource.value}
+              directory={directory}
+              refresh={live.refresh}
+              campaignName={session.campaignName}
+            />
+            {/* The dice cast lists whom the table waits for itself; the join card is for joining. */}
+            {!['dice', 'join'].includes(cast.resource.value.cast.kind) && (
+              <WaitingStrip api={api} refresh={live.refresh} directory={directory} />
+            )}
+          </>
         ) : (
           <div className="display-wait">
             <StatusPanel

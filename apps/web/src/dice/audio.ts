@@ -151,3 +151,26 @@ export function playImpacts(impacts: readonly Impact[], volume: number): void {
     source.start(start + hit.time);
   }
 }
+
+/**
+ * The companion's alert (docs/adr/0044-online-play.md §3): two soft bell notes, synthesized like the
+ * dice, at the dice's volume. Silent until unlocked.
+ */
+export function playChime(volume: number): void {
+  if (!context || !master || context.state !== 'running' || volume <= 0) return;
+  master.gain.value = volume * 0.8;
+  const start = context.currentTime + 0.02;
+  for (const [index, hz] of [880, 1318.5].entries()) {
+    const at = start + index * 0.16;
+    const tone = context.createOscillator();
+    tone.type = 'sine';
+    tone.frequency.value = hz;
+    const gain = context.createGain();
+    gain.gain.setValueAtTime(0, at);
+    gain.gain.linearRampToValueAtTime(0.35, at + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, at + 0.9);
+    tone.connect(gain).connect(master);
+    tone.start(at);
+    tone.stop(at + 0.95);
+  }
+}

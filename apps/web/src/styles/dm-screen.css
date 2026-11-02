@@ -74,6 +74,25 @@
   width: 16px;
   height: 16px;
 }
+/* Whom the table waits for (ADR 0044 §3): a check asked of this character, not yet rolled. */
+.party-waiting {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--teal) 60%, transparent);
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+}
+.party-waiting .glyph {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--teal);
+}
 .party-card-vitals {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -322,16 +341,7 @@
 }
 
 /* A player's lobby: ready for the session to come, or the game paused */
-.lobby-banner-slot {
-  position: fixed;
-  top: calc(var(--topbar-h) + 12px);
-  left: 50%;
-  z-index: 6;
-  width: max-content;
-  max-width: calc(100vw - 32px);
-  translate: -50% 0;
-  pointer-events: none;
-}
+/* The lobby or the pause, first among the table's questions over the stage (alerts/table-asks). */
 .lobby-banner {
   display: flex;
   flex-wrap: wrap;
@@ -353,14 +363,6 @@
 }
 .lobby-banner button {
   min-height: 36px;
-}
-
-/* A phone's top bar takes two rows: the banner sits above the tab bar and the action's result. */
-@media (max-width: 767px) {
-  .lobby-banner-slot {
-    top: auto;
-    bottom: calc(var(--dock-h) + var(--outcome-h, 0px) + 12px);
-  }
 }
 
 @media (max-width: 900px) {

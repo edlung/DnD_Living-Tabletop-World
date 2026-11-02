@@ -3,7 +3,7 @@ import { expect as baseExpect, test, type Page } from '@playwright/test';
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
 import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { dockButton, openSheet } from './support/shell.ts';
+import { closeSheet, dockButton, openSheet } from './support/shell.ts';
 
 /**
  * The table's chat (docs/adr/0044-online-play.md §1, Stage 630): a player speaks to the table as
@@ -60,6 +60,15 @@ test('the table talks, whispers to the DM, and the DM answers one player', async
   );
   await expect(logOf(player)).toContainText('You notice a faint smell of bitter almonds.');
   await expect(logOf(player)).toContainText('to Elowen Starwhisper');
+
+  // A reload reads the table afresh: what was already said is not news.
+  await closeSheet(player, 'Chat');
+  await player.reload();
+  await enterWorld(player, TOKENS.player, CAMPAIGN);
+  await expect(player.getByRole('region', { name: 'Scene', exact: true })).toBeVisible();
+  await expect(dockButton(player, 'Chat')).toBeVisible();
+  await player.waitForTimeout(1500);
+  await expect(dockButton(player, 'Chat')).not.toHaveClass(/has-waiting/);
 
   // A roll joins the log.
   await openSheet(player, 'Dice');

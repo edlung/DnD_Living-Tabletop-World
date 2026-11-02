@@ -125,13 +125,25 @@ export function Dock({
 }) {
   const t = useT();
   const invitations = useSignInKind() === 'session';
-  // Table talk (ADR 0044 §1): marked while others' messages wait to be read.
-  const unread = useDiceTable()?.chat.unread ?? 0;
+  // Table talk (ADR 0044 §1): marked while others' messages wait to be read; Dice while a check
+  // the DM asked of this player waits (§3).
+  const table = useDiceTable();
+  const unread = table?.chat.unread ?? 0;
+  const asked =
+    table && !table.isDm && table.requests.status === 'ready'
+      ? table.requests.value.requests.filter((request) => request.status === 'open').length
+      : 0;
   const world: Item[] = [
     { id: 'scene', label: t('Scene'), short: t('Scene'), glyph: 'look' },
     { id: 'places', label: t('Places'), short: t('Places'), glyph: 'map' },
     { id: 'journal', label: t('Journal'), short: t('Journal'), glyph: 'journal' },
-    { id: 'dice', label: t('Dice'), short: t('Dice'), glyph: 'roll' },
+    {
+      id: 'dice',
+      label: t('Dice'),
+      short: t('Dice'),
+      glyph: 'roll',
+      ...(asked > 0 ? { waiting: t('Checks the DM asked for: {count}', { count: asked }) } : {}),
+    },
     {
       id: 'chat',
       label: t('Chat'),

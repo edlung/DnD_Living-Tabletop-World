@@ -56,11 +56,16 @@
 
 /* The short rest over the world: centred under the top bar on a wide screen; below the place's
    card and the party rail, at the left edge, where they or an open side panel would meet it. */
+/* The table's questions over the stage (alerts/table-asks.tsx): the short rest, each check asked. */
 .rest-banner-slot {
   position: fixed;
   top: calc(var(--topbar-h) + 12px);
   left: 50%;
   z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
   width: max-content;
   max-width: calc(100vw - 32px);
   translate: -50% 0;
@@ -189,6 +194,7 @@
     right: 8px;
     bottom: calc(var(--dock-h) + var(--outcome-h, 0px) + 16px);
     left: 8px;
+    align-items: stretch;
     width: auto;
     max-width: none;
     translate: none;

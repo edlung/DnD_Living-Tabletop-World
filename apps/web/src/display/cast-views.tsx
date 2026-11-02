@@ -18,7 +18,6 @@ import { Board } from '../combat/board/board.tsx';
 import { NARROW, WIDE, useMedia } from '../combat/board/board-view.ts';
 import { InitiativeStrip } from '../combat/hud/initiative-strip.tsx';
 import { useCombatantLabels } from '../combat/labels.ts';
-import { checkWords } from '../dice/checks.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
 import { TABLE_PATH } from '../session/invitation-link.ts';
 import { useApprovedImage } from '../visual/approved-images.ts';
@@ -27,6 +26,7 @@ import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { QrCode } from '../visual/qr-code.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { WaitingList } from './waiting-strip.tsx';
 
 /**
  * What the table's screen shows, by the DM's cast (docs/adr/0042-table-display.md §3): each view
@@ -224,20 +224,7 @@ function DiceCast(props: Props) {
   const waiting = (asked?.requests ?? []).filter((request) => request.status === 'open');
   return (
     <section className="display-dice" aria-label={t('The table’s rolls')}>
-      {waiting.length > 0 && (
-        <div className="display-waiting" role="status">
-          <h2>{t('The table waits for')}</h2>
-          <ul>
-            {waiting.map((request) => (
-              <li key={request.requestId}>
-                <strong>{nameIn(props.directory, request.characterId) ?? t('a character')}</strong>
-                {' — '}
-                {checkWords(t, request.check, request.mode)}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <WaitingList waiting={waiting} directory={props.directory} />
       {latest.length === 0 ? (
         <p className="display-quiet">{t('No rolls yet.')}</p>
       ) : (

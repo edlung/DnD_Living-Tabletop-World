@@ -69,6 +69,10 @@ export function useDiceTableState(
   const t = useT();
   const isDm = perspective === 'DM';
   const rolling = isDm || characterId !== null;
+  // Until a player's character is known the table reads nothing; the first real reads then start
+  // afresh (a new key shows them loading), so nothing already there passes for news: no old roll
+  // thrown again, no old message unread, no question already waiting rung again.
+  const scope = `${perspective}|${rolling ? (characterId ?? 'dm') : 'none'}`;
   const loadFeed = useCallback(
     (signal: AbortSignal) =>
       rolling
@@ -97,16 +101,17 @@ export function useDiceTableState(
         : Promise.resolve({ perspective, messages: [] }),
     [api, rolling, perspective],
   );
-  const chatLog = useResource('chat', loadChat);
+  const chatLog = useResource(`chat:${scope}`, loadChat);
   useRereadOn(revision, chatLog.reread);
   // Messages read on this screen: the first read is read, later ones by others wait to be seen.
-  const [readUpTo, setReadUpTo] = useState<ReadonlySet<string> | null>(null);
+  const [read, setRead] = useState<{ scope: string; ids: ReadonlySet<string> } | null>(null);
+  const readUpTo = read?.scope === scope ? read.ids : null;
   const messages = chatLog.resource.status === 'ready' ? chatLog.resource.value.messages : null;
   useEffect(() => {
     if (messages !== null && readUpTo === null) {
-      setReadUpTo(new Set(messages.map((message) => message.messageId)));
+      setRead({ scope, ids: new Set(messages.map((message) => message.messageId)) });
     }
-  }, [messages, readUpTo]);
+  }, [messages, readUpTo, scope]);
   const unread =
     messages === null || readUpTo === null
       ? 0
@@ -115,24 +120,24 @@ export function useDiceTableState(
             !readUpTo.has(message.messageId) &&
             !(isDm ? message.speaker === null : message.speaker?.entityId === characterId),
         ).length;
-  const feed = useResource('rolls', loadFeed);
-  const requests = useResource('check-requests', loadRequests);
-  const rest = useResource('rest', loadRest);
+  const feed = useResource(`rolls:${scope}`, loadFeed);
+  const requests = useResource(`check-requests:${scope}`, loadRequests);
+  const rest = useResource(`rest:${scope}`, loadRest);
   useRereadOn(revision, feed.reread);
   useRereadOn(revision, requests.reread);
   useRereadOn(revision, rest.reread);
   const [fresh, setFresh] = useState<readonly RollEntry[]>([]);
   const [flying, setFlying] = useState<ReadonlySet<string>>(new Set());
-  const seen = useRef<Set<string> | null>(null);
+  const seen = useRef<{ readonly scope: string; readonly ids: Set<string> } | null>(null);
   useEffect(() => {
     if (feed.resource.status !== 'ready') return;
     const rolls = feed.resource.value.rolls;
-    if (seen.current === null) {
+    if (seen.current?.scope !== scope) {
       // The first read is the table as it was: nothing in it is thrown again.
-      seen.current = new Set(rolls.map((roll) => roll.rollId));
+      seen.current = { scope, ids: new Set(rolls.map((roll) => roll.rollId)) };
       return;
     }
-    const known = seen.current;
+    const known = seen.current.ids;
     const arrived = rolls.filter((roll) => !known.has(roll.rollId));
     for (const roll of arrived) known.add(roll.rollId);
     if (arrived.length === 0) return;
@@ -192,7 +197,9 @@ export function useDiceTableState(
       log: chatLog.resource,
       unread,
       markRead: () => {
-        if (messages !== null) setReadUpTo(new Set(messages.map((message) => message.messageId)));
+        if (messages !== null) {
+          setRead({ scope, ids: new Set(messages.map((message) => message.messageId)) });
+        }
       },
       send: async (body) => {
         try {
