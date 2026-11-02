@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
 import type { CombatUiCommand } from '../combat/combat-bindings.ts';
+import type { DmTableCommand } from '../dm/table-commands.ts';
 import type { DmWorldCommand } from '../dm/world-controls.tsx';
 import { runRest, type RestAction } from '../rest/rest-intent.ts';
 import type { ExplorationCommand } from './action-bindings.ts';
@@ -24,7 +25,7 @@ export type StandInReason = Omit<RecordSubstitutionRequest, 'clientCommandId'>;
 export type ExplorationIntent =
   | {
       readonly kind: 'command';
-      readonly command: ExplorationCommand | CombatUiCommand | DmWorldCommand;
+      readonly command: ExplorationCommand | CombatUiCommand | DmWorldCommand | DmTableCommand;
       readonly standIn?: StandInReason;
     }
   | { readonly kind: 'talk'; readonly characterId: string; readonly npcId: string }

@@ -1,0 +1,279 @@
+/*
+ * The DM's screen (docs/adr/0043-dm-screen.md): the Party sheet — every character at a glance with
+ * the DM's hand on each, a check for everyone, a ruling — the turn order the DM changes in the
+ * Encounter sheet, and the DM's notes. Code draws only lines, bars and text; glyphs are GPT masks.
+ */
+.party-sheet {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(min(100%, 18rem), 1fr);
+  align-items: start;
+  gap: 1rem;
+}
+.party-cards h3,
+.notes-list h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.6rem;
+}
+.party-cards h3 .glyph,
+.notes-list h3 .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.party-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.party-card {
+  /* Holds its words for screen readers inside the sheet's scroll pane. */
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.party-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.party-card-head .medallion {
+  --m: 44px;
+}
+.party-card-title {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+.party-card-title strong {
+  overflow-wrap: anywhere;
+}
+.presence-label {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+.presence-label.present {
+  color: var(--teal);
+}
+.status-pill.inspired {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--gold-bright);
+}
+.status-pill.inspired .glyph {
+  width: 16px;
+  height: 16px;
+}
+.party-card-vitals {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+}
+.party-card-vitals .hp-bar {
+  width: 100%;
+  height: 6px;
+}
+.party-hp,
+.party-ac {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-variant-numeric: tabular-nums;
+}
+.party-hp .glyph,
+.party-ac .glyph {
+  width: 18px;
+  height: 18px;
+  color: var(--gold);
+}
+.party-conditions,
+.party-passive,
+.party-slots,
+.party-dying {
+  margin: 0;
+  font-size: 0.875rem;
+}
+.party-passive,
+.party-slots {
+  color: var(--text-muted);
+}
+.party-dying {
+  color: var(--danger);
+  font-weight: 600;
+}
+.party-card-actions {
+  margin: 0;
+}
+.party-card-actions button .glyph {
+  width: 18px;
+  height: 18px;
+}
+.party-tools {
+  display: grid;
+  gap: 1rem;
+}
+.party-tools input,
+.party-tools select,
+.party-tools textarea {
+  max-width: 40rem;
+}
+/* A control sheet: on a laptop or an iPad the party takes most of the screen's height. */
+@media (min-width: 768px) {
+  .sheet--party {
+    max-height: min(78vh, calc(100% - var(--dock-h) - 40px));
+  }
+}
+
+/* The DM's hand: a short form inside its card or panel */
+.hand-form {
+  position: relative;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--glass-soft);
+}
+.hand-form h4,
+.hand-form h5 {
+  margin: 0;
+}
+.hand-form textarea {
+  width: 100%;
+  resize: vertical;
+}
+.hand-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  align-items: start;
+  gap: 0.6rem;
+}
+.hand-choice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.hand-choice legend {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+.hand-choice label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+}
+.hand-form .action-row {
+  margin: 0.2rem 0 0;
+}
+
+/* The turn order the DM changes (Encounter sheet) */
+.turn-order-tools h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.5rem;
+}
+.turn-order-tools h4 .glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+.turn-order {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+.turn-order > li {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.turn-order > li.is-current {
+  border-color: color-mix(in srgb, var(--gold) 70%, transparent);
+}
+.turn-order-row {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+.turn-order-total {
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+.turn-order-name {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.turn-order-row .action-row {
+  margin: 0;
+}
+
+/* The DM's notes */
+.notes-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  align-items: start;
+  gap: 1rem;
+}
+.notes {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.note {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.note .section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.3rem 0.75rem;
+}
+.note-body {
+  margin: 0.4rem 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.note .action-row {
+  margin: 0.4rem 0 0;
+}
+
+@media (max-width: 900px) {
+  .party-sheet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* The check and the ruling side by side where the width allows. */
+  .party-tools {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    align-items: start;
+  }
+}

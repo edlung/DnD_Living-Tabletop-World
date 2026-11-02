@@ -10,6 +10,8 @@ import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from '../world-engine/ra
 export const UI_PARTY_CAMPAIGNS = {
   ambush: 'ui-party-ambush',
   ru: 'ui-party-ru',
+  /** The DM's screen (Stage 620): the party panel, the DM's hand, the turn order, notes. */
+  dmScreen: 'ui-dm-screen',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -19,6 +21,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
   for (const [campaignId, language] of [
     [UI_PARTY_CAMPAIGNS.ambush, 'en'],
     [UI_PARTY_CAMPAIGNS.ru, 'ru'],
+    [UI_PARTY_CAMPAIGNS.dmScreen, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

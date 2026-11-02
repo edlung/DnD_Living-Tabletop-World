@@ -97,7 +97,13 @@ export function CheckRoller() {
   );
 }
 
-/** The DM asks a character for a check, with an optional DC the players never see. */
+/** Asks everyone at the table at once (docs/adr/0043-dm-screen.md §1): one request each. */
+const EVERYONE = '*';
+
+/**
+ * The DM asks a character — or everyone at the table, as one group — for a check, with an
+ * optional DC the players never see.
+ */
 export function AskForCheck({ characters }: { readonly characters: readonly EntityRef[] }) {
   const t = useT();
   const table = useDiceTable();
@@ -111,9 +117,13 @@ export function AskForCheck({ characters }: { readonly characters: readonly Enti
     return <p className="muted">{t('No characters are at the table to ask.')}</p>;
   }
   const check = checkOf(value);
-  const chosen = characters.some((entry) => entry.entityId === characterId)
-    ? characterId
-    : (characters[0]?.entityId ?? '');
+  const group = characters.length >= 2;
+  const chosen =
+    characterId === EVERYONE && group
+      ? EVERYONE
+      : characters.some((entry) => entry.entityId === characterId)
+        ? characterId
+        : (characters[0]?.entityId ?? '');
   const difficulty = Number.parseInt(dc, 10);
   const valid = Number.isNaN(difficulty) || (difficulty >= 1 && difficulty <= 40);
   return (
@@ -127,6 +137,7 @@ export function AskForCheck({ characters }: { readonly characters: readonly Enti
           setCharacterId(event.target.value);
         }}
       >
+        {group && <option value={EVERYONE}>{t('Everyone at the table')}</option>}
         {characters.map((entry) => (
           <option key={entry.entityId} value={entry.entityId}>
             {entry.name}
@@ -155,9 +166,13 @@ export function AskForCheck({ characters }: { readonly characters: readonly Enti
         disabled={!check || !valid || table.busy}
         onClick={() => {
           if (!check) return;
+          const asked =
+            chosen === EVERYONE
+              ? { characterIds: characters.slice(0, 8).map((entry) => entry.entityId) }
+              : { characterId: chosen };
           void table
             .ask({
-              characterId: chosen,
+              ...asked,
               check,
               mode,
               ...(Number.isNaN(difficulty) ? {} : { dc: difficulty }),

@@ -12,6 +12,8 @@ import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { DmHistory } from './dm-history.tsx';
+import { NotesSheet } from './notes-sheet.tsx';
+import { PartySheet } from './party-sheet.tsx';
 import { PlayersSheet } from './players-sheet.tsx';
 import { ScreenSheet } from './screen-sheet.tsx';
 import { DmRestControls } from '../rest/dm-rest-controls.tsx';
@@ -70,6 +72,27 @@ export function DmSheets({
   const invitations = useSignInKind() === 'session';
   return (
     <>
+      <Sheet
+        id="party"
+        title={t('Party (DM)')}
+        glyph="party"
+        open={shell.sheet === 'party'}
+        onClose={shell.closeSheet}
+      >
+        <PartySheet
+          api={api}
+          open={shell.sheet === 'party'}
+          revision={revision}
+          locationId={place?.locationId ?? null}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
+          }}
+          onOpenSheet={(entityId) => {
+            shell.openHero(entityId);
+          }}
+        />
+      </Sheet>
       <Sheet
         id="add"
         title={t('Add to the world (DM)')}
@@ -146,6 +169,15 @@ export function DmSheets({
             if (proposalId === shown) void authoring.reload();
           }}
         />
+      </Sheet>
+      <Sheet
+        id="notes"
+        title={t('Notes (DM)')}
+        glyph="journal"
+        open={shell.sheet === 'notes'}
+        onClose={shell.closeSheet}
+      >
+        <NotesSheet api={api} open={shell.sheet === 'notes'} />
       </Sheet>
       <Sheet
         id="images"

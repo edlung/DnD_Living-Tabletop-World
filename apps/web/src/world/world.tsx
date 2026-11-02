@@ -79,7 +79,7 @@ export function World({
   const [conversation, setConversation] = useState<Conversation | null>(null);
   const [sceneFor, setSceneFor] = useState<string | null>(null);
   const [dismissed, setDismissed] = useState<Notice | null>(null);
-  const shell = useShell();
+  const shell = useShell(effectivePerspective);
   const details = useRef<HTMLElement>(null);
   const opener = useRef<HTMLElement | null>(null);
   const acting = effectivePerspective.startsWith('CHARACTER:');

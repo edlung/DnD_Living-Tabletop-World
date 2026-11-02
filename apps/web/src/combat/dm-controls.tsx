@@ -19,6 +19,7 @@ import type { CombatUiCommand } from './combat-bindings.ts';
 import type { StandIn } from './stand-in.ts';
 import { PreparedEncounters } from './prepared-encounters.tsx';
 import { StandInControls } from './stand-in-controls.tsx';
+import { TurnOrderControls } from './turn-order-controls.tsx';
 
 const FIELD = { width: 16, height: 12 } as const;
 
@@ -86,7 +87,14 @@ export function DmCombatControls({
       </h3>
       {encounter ? (
         <>
-          <RunningControls api={api} encounter={encounter} locked={locked} onRun={onRun} />
+          <RunningControls
+            api={api}
+            encounter={encounter}
+            locationId={locationId}
+            directory={directory}
+            locked={locked}
+            onRun={onRun}
+          />
           <StandInControls
             api={api}
             encounter={encounter}
@@ -210,11 +218,15 @@ function StartControls({
 function RunningControls({
   api,
   encounter,
+  locationId,
+  directory,
   locked,
   onRun,
 }: {
   readonly api: WorldApi;
   readonly encounter: EncounterView;
+  readonly locationId: string;
+  readonly directory: readonly EntityRef[];
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
@@ -277,6 +289,18 @@ function RunningControls({
             </button>
           </div>
         </div>
+      )}
+      {!window && (
+        <TurnOrderControls
+          api={api}
+          encounter={encounter}
+          locationId={locationId}
+          directory={directory}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
+          }}
+        />
       )}
       <div className="action-row end-encounter">
         {confirmingEnd ? (

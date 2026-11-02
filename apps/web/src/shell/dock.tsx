@@ -118,6 +118,8 @@ export function Dock({
       glyph: 'character',
     });
   const dm: readonly Item[] = [
+    // The DM's screen (ADR 0043 §3): the party at a glance with the DM's hand, and notes.
+    { id: 'party', label: t('Party'), short: t('Party'), glyph: 'party' },
     {
       id: 'add',
       label: t('Add to the world'),
@@ -128,6 +130,7 @@ export function Dock({
     { id: 'encounter', label: t('Encounter'), short: t('Encounter'), glyph: 'encounter' },
     { id: 'time', label: t('Time and weather'), short: t('Time'), glyph: 'time' },
     { id: 'history', label: t('History'), short: t('History'), glyph: 'history' },
+    { id: 'notes', label: t('Notes'), short: t('Notes'), glyph: 'journal' },
     { id: 'images', label: t('Images'), short: t('Images'), glyph: 'picture' },
     ...(invitations
       ? ([

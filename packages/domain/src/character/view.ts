@@ -88,6 +88,7 @@ function copySheet(sheet: CharacterSheet, visible: (id: string) => boolean): Cha
           },
         }),
     ...(sheet.hitDiceSpent === undefined ? {} : { hitDiceSpent: spentDice(sheet.hitDiceSpent) }),
+    ...(sheet.heroicInspiration === true ? { heroicInspiration: true } : {}),
   };
 }
 

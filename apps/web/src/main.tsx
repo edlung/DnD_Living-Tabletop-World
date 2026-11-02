@@ -43,6 +43,7 @@ import './styles/sign-in.css';
 import './styles/players.css';
 import './styles/accounts.css';
 import './styles/display.css';
+import './styles/dm-screen.css';
 import './styles/responsive.css';
 import './styles/battle-layout.css';
 import './styles/figures.css';

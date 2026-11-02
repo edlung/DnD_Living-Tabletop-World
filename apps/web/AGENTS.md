@@ -110,8 +110,7 @@ domain, rules, or providers.
   refresh and the viewer's own actions (the panel is keyed by the entity, never by `revision`;
   it re-reads in the background with `useRereadOn`). Escape closes the topmost sheet or panel and
   returns focus, but never from inside a text field that holds a draft (`isDraftField`); the
-  Chronicle is a native modal dialog. Open sheets and the stage's view are in-memory visual state
-  only. The result of an action (`ActionNotice`) is a sibling of the stage above every sheet and
+  Chronicle is a native modal dialog. The stage's view is in-memory visual state only; the open sheet is remembered for the tab (sessionStorage, its name only) so a reload comes back to it (ADR 0043 §4). The result of an action (`ActionNotice`) is a sibling of the stage above every sheet and
   panel (just above an open sheet on wider screens), so a refusal and its Retry are never
   covered; on a phone it sits above the tab bar and every scrolling surface keeps its measured
   height (`--outcome-h`, `shell/reserved-height.ts`) as bottom padding and scroll padding, so no

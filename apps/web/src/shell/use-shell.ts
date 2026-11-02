@@ -15,7 +15,51 @@ export type SheetId =
   | 'history'
   | 'images'
   | 'players'
-  | 'screen';
+  | 'screen'
+  | 'party'
+  | 'notes';
+
+const SHEETS: readonly SheetId[] = [
+  'places',
+  'journal',
+  'dice',
+  'add',
+  'encounter',
+  'time',
+  'history',
+  'images',
+  'players',
+  'screen',
+  'party',
+  'notes',
+];
+
+/**
+ * The open sheet, remembered for this tab (docs/adr/0043-dm-screen.md §4): a reload, or an iPad
+ * that slept and reloaded the page, comes back to it. Only a sheet's name; never world data. A
+ * browser that refuses storage simply forgets.
+ */
+const storedKey = (key: string) => `ltw.sheet:${key}`;
+
+function rememberedSheet(key: string | undefined): SheetId | null {
+  if (key === undefined) return null;
+  try {
+    const value = sessionStorage.getItem(storedKey(key));
+    return SHEETS.find((id) => id === value) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function rememberSheet(key: string | undefined, sheet: SheetId | null): void {
+  if (key === undefined) return;
+  try {
+    if (sheet === null) sessionStorage.removeItem(storedKey(key));
+    else sessionStorage.setItem(storedKey(key), sheet);
+  } catch {
+    // Storage refused (a private window): the sheet is simply not remembered.
+  }
+}
 
 /** The character dialog's tabs (Stage 500). */
 export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory';
@@ -33,11 +77,15 @@ export function focusOn(element: HTMLElement | null | undefined): boolean {
 /**
  * What the shell shows around the stage: at most one open sheet, the Chronicle book, and which
  * of a sheet or the selection opened last, so Escape closes the topmost and returns focus to
- * where it came from (design §7). Visual state only: it lives in this screen's memory, never in
- * world state or browser storage, and a perspective change starts it afresh.
+ * where it came from (design §7). Visual state only, never in world state; the open sheet is
+ * remembered for the tab under `rememberAs` (the perspective), so a reload comes back to it.
  */
-export function useShell() {
-  const [sheet, setSheet] = useState<SheetId | null>(null);
+export function useShell(rememberAs?: string) {
+  const [sheet, setOpenSheet] = useState<SheetId | null>(() => rememberedSheet(rememberAs));
+  const setSheet = (next: SheetId | null) => {
+    setOpenSheet(next);
+    rememberSheet(rememberAs, next);
+  };
   const [chronicle, setChronicle] = useState(false);
   // The character dialog (Stage 500): whose sheet is open, and the tab it was last read at.
   const [hero, setHero] = useState<string | null>(null);
