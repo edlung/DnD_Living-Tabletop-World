@@ -1,6 +1,9 @@
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
+import { parseEquipmentTables } from './equipment.ts';
+import { parseToolsAndGear } from './gear.ts';
+import { catalogEntryOf } from './item-catalog.ts';
 import { deriveMonsterMechanics } from './monster-mechanics.ts';
 import { parseMonsters } from './monsters.ts';
 import { deriveMechanics } from './spell-mechanics.ts';
@@ -8,7 +11,8 @@ import { parseSpells } from './spells.ts';
 import { pageLines, pageRows, srdLine } from './text.ts';
 
 /**
- * Writes the SRD 5.2.1 catalogs into `@ltw/rules` (docs/adr/0051-srd-data.md §2) from the lines
+ * Writes the SRD 5.2.1 catalogs into `@ltw/rules` (docs/adr/0051-srd-data.md §2), and the item
+ * catalog's SRD entries into `@ltw/contracts` (docs/adr/0054-items-as-data.md §2), from the lines
  * `pdflines.swift` wrote. The same lines give the same files; an entry a parser cannot read stops
  * the import.
  *
@@ -37,8 +41,8 @@ const monsters = parseMonsters(
     .map(srdLine),
 );
 
-const write = (name: string, entries: readonly object[]) => {
-  const path = fileURLToPath(new URL(`../../packages/rules/src/srd/${name}`, import.meta.url));
+const write = (name: string, entries: readonly object[], into = 'packages/rules/src/srd') => {
+  const path = fileURLToPath(new URL(`../../${into}/${name}`, import.meta.url));
   writeFileSync(path, `${JSON.stringify(entries, null, 2)}\n`);
 };
 const byId =
@@ -51,4 +55,10 @@ write('spell-mechanics.json', sorted.map(deriveMechanics));
 const bestiary = [...monsters].sort(byId('monsterId'));
 write('monsters.json', bestiary);
 write('monster-blocks.json', bestiary.map(deriveMonsterMechanics));
-process.stdout.write(`spells ${spells.length}, monsters ${monsters.length}\n`);
+// The equipment (docs/adr/0054-items-as-data.md §1–2): its text, and the catalog's entries.
+const equipment = [...parseEquipmentTables(dir), ...parseToolsAndGear(dir)];
+write('equipment.json', equipment);
+write('equipment.json', equipment.map(catalogEntryOf), 'packages/contracts/src/items/srd');
+process.stdout.write(
+  `spells ${spells.length}, monsters ${monsters.length}, equipment ${equipment.length}\n`,
+);

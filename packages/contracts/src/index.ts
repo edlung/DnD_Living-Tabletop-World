@@ -442,6 +442,15 @@ export {
 } from './items/schema.ts';
 export { ITEM_CATALOG, catalogEntry, isCatalogItemId } from './items/catalog.ts';
 export {
+  catalogItemIdSchema,
+  giveCatalogItemRequestSchema,
+  type GiveCatalogItemRequest,
+  type GivenCatalogItemResponse,
+  type ItemCatalogEntryResponse,
+  type ItemCatalogListing,
+  type ItemCatalogResponse,
+} from './items/catalog-api.ts';
+export {
   ITEM_PLAYER_COMMAND_TYPES,
   dropItemCommandSchema,
   equipItemCommandSchema,

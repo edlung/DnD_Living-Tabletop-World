@@ -50,6 +50,8 @@ export function ItemCard({
   const catalog = item.catalog;
   const art = catalog ? itemArtUrl(catalog.itemId) : null;
   const kind = kindName(item, language);
+  // The SRD's words still in English in a Russian campaign (Stage 650e translates them).
+  const english = language === 'ru' && catalog?.untranslated === true;
   const description = kindDescription(item, language) ?? item.description;
   const slots = catalog?.slots ?? [];
   // The first free slot the item fits, unless one was chosen.
@@ -67,15 +69,27 @@ export function ItemCard({
           {item.quantity > 1 && <span className="item-count"> ×{item.quantity}</span>}
         </h3>
         <p className="item-card-kind">
+          {kind && kind !== item.name && (
+            <>
+              <span lang={english ? 'en' : undefined}>{kind}</span>
+              {' · '}
+            </>
+          )}
           {[
-            kind && kind !== item.name ? kind : null,
             catalog ? categoryName(t, catalog.category) : t('Unique object'),
             item.slot ? t('Worn: {slot}', { slot: slotName(t, item.slot) }) : null,
           ]
             .filter(Boolean)
             .join(' · ')}
         </p>
-        {description !== '' && <p>{description}</p>}
+        {/* An SRD entry's own words say more than its line (docs/adr/0054-items-as-data.md §4). */}
+        {catalog?.text ? (
+          <p className="item-srd-words" lang="en">
+            {catalog.text}
+          </p>
+        ) : (
+          description !== '' && <p lang={english ? 'en' : undefined}>{description}</p>
+        )}
         <dl className="item-facts">
           {weapon && (
             <>
@@ -116,10 +130,12 @@ export function ItemCard({
               <dd>
                 {catalog.armor.dexCap === null
                   ? t('{base} + Dexterity', { base: catalog.armor.baseAc })
-                  : t('{base} + Dexterity (up to {cap})', {
-                      base: catalog.armor.baseAc,
-                      cap: catalog.armor.dexCap,
-                    })}
+                  : catalog.armor.dexCap === 0
+                    ? String(catalog.armor.baseAc)
+                    : t('{base} + Dexterity (up to {cap})', {
+                        base: catalog.armor.baseAc,
+                        cap: catalog.armor.dexCap,
+                      })}
               </dd>
             </div>
           )}

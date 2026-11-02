@@ -1,4 +1,4 @@
-import { armorWeight, catalogEntry, effectiveMaximum, type CharacterSheet } from '@ltw/contracts';
+import { armorWeight, effectiveMaximum, type CharacterSheet } from '@ltw/contracts';
 
 import { isCombatant } from '../combat/records.ts';
 import { adjacentInEncounter, spendTurn, type ItemCost } from './economy.ts';
@@ -16,6 +16,7 @@ import {
   wornIn,
   type Possession,
 } from './records.ts';
+import { itemEntry } from './catalog.ts';
 
 /**
  * Item commands (docs/adr/0039-item-possession.md). An item changes hands or
@@ -110,16 +111,11 @@ export function decideGrantItem(
 ): Decision {
   const thing = item(state, command.itemId);
   if (!thing.ok) return thing;
-  const holder = carrier(state, command.holderId);
-  if (!holder.ok) return holder;
+  const catalogId = command.catalogId ?? null;
+  const refused = grantRefusal(state, command.holderId, catalogId, command.quantity);
+  if (refused) return refused;
   if (possessionOf(state, command.itemId))
     return reject('INVALID_ITEM', `Item "${command.itemId}" already has a holder or place`);
-  const catalogId = command.catalogId ?? null;
-  const entry = catalogId === null ? undefined : catalogEntry(catalogId);
-  if (catalogId !== null && !entry)
-    return reject('INVALID_ITEM', `Unknown catalog item "${catalogId}"`, { catalogId });
-  if (command.quantity > 1 && !entry?.stackable)
-    return reject('INVALID_ITEM', 'Only a stackable catalog item can be granted in quantity');
   return accept({
     type: 'ItemGranted',
     payload: {
@@ -129,6 +125,26 @@ export function decideGrantItem(
       quantity: command.quantity,
     },
   });
+}
+
+/**
+ * Why `quantity` of catalog entry `catalogId` could not go to `holderId`, or null, whatever item
+ * it is: the DM's catalog asks before it makes the item (docs/adr/0054-items-as-data.md §4).
+ */
+export function grantRefusal(
+  state: WorldState,
+  holderId: string,
+  catalogId: string | null,
+  quantity: number,
+): (Decision & { ok: false }) | null {
+  const holder = carrier(state, holderId);
+  if (!holder.ok) return holder;
+  const entry = catalogId === null ? undefined : itemEntry(catalogId);
+  if (catalogId !== null && !entry)
+    return reject('INVALID_ITEM', `Unknown catalog item "${catalogId}"`, { catalogId });
+  if (quantity > 1 && !entry?.stackable)
+    return reject('INVALID_ITEM', 'Only a stackable catalog item can be granted in quantity');
+  return null;
 }
 
 export function decideEquipItem(

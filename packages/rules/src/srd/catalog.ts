@@ -1,5 +1,12 @@
-import type { SrdMonster, SrdSpell, SrdSpellMechanics, StatBlock } from '@ltw/contracts';
+import type {
+  SrdEquipment,
+  SrdMonster,
+  SrdSpell,
+  SrdSpellMechanics,
+  StatBlock,
+} from '@ltw/contracts';
 
+import equipment from './equipment.json' with { type: 'json' };
 import blocks from './monster-blocks.json' with { type: 'json' };
 import monsters from './monsters.json' with { type: 'json' };
 import mechanics from './spell-mechanics.json' with { type: 'json' };
@@ -40,3 +47,11 @@ export const SRD_MONSTER_BLOCKS: readonly SrdMonsterBlock[] = blocks;
 const blocksById = new Map(SRD_MONSTER_BLOCKS.map((entry) => [entry.monsterId, entry]));
 export const srdMonsterBlock = (monsterId: string): SrdMonsterBlock | undefined =>
   blocksById.get(monsterId);
+
+/**
+ * The SRD's equipment as its Equipment chapter gives it (docs/adr/0054-items-as-data.md §1): an
+ * item catalog entry `srd-<itemId>` shows these words.
+ */
+export const SRD_EQUIPMENT: readonly SrdEquipment[] = equipment;
+const equipmentById = new Map(SRD_EQUIPMENT.map((entry) => [entry.itemId, entry]));
+export const srdEquipment = (itemId: string): SrdEquipment | undefined => equipmentById.get(itemId);

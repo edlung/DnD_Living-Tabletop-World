@@ -249,6 +249,7 @@ const AMMUNITION: Readonly<Record<AmmunitionKind, string>> = {
   bolt: 'Bolts: {count}',
   bullet: 'Sling bullets: {count}',
   needle: 'Needles: {count}',
+  'firearm-bullet': 'Firearm bullets: {count}',
 };
 
 /**

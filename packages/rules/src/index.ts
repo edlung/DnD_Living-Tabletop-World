@@ -159,10 +159,12 @@ export {
   type InitiativeEntry,
 } from './combat.ts';
 export {
+  SRD_EQUIPMENT,
   SRD_MONSTERS,
   SRD_MONSTER_BLOCKS,
   SRD_SPELLS,
   SRD_SPELL_MECHANICS,
+  srdEquipment,
   srdMonster,
   srdMonsterBlock,
   srdSpell,

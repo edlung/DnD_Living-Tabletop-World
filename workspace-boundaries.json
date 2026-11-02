@@ -1,5 +1,5 @@
 {
-  "$comment": "Single source of truth for workspace dependency direction (docs/adr/0004-module-boundaries.md). Enforced by eslint.config.js and tests/architecture/. Changing an edge is an architecture decision: update the ADR first. forbiddenNames bars named exports of an allowed package from non-test sources.",
+  "$comment": "Single source of truth for workspace dependency direction (docs/adr/0004-module-boundaries.md). Enforced by eslint.config.js and tests/architecture/. Changing an edge is an architecture decision: update the ADR first. forbiddenNames bars named exports of an allowed package from non-test sources. entryPoints lists a package's further public entry points (subpath -> source file); a browser package may import none of them.",
   "moduleGroups": {
     "ai-providers": [
       "openai",
@@ -46,7 +46,10 @@
     "@ltw/contracts": {
       "path": "packages/contracts",
       "mayDependOn": [],
-      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"],
+      "entryPoints": {
+        "./srd-items": "src/items/srd/catalog.ts"
+      }
     },
     "@ltw/domain": {
       "path": "packages/domain",
@@ -92,7 +95,8 @@
     "@ltw/ui": {
       "path": "packages/ui",
       "mayDependOn": ["@ltw/contracts"],
-      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"],
+      "browser": true
     },
     "@ltw/server": {
       "path": "apps/server",
@@ -109,7 +113,8 @@
     "@ltw/web": {
       "path": "apps/web",
       "mayDependOn": ["@ltw/ui", "@ltw/contracts"],
-      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"]
+      "forbiddenGroups": ["ai-providers", "persistence-drivers", "server-io"],
+      "browser": true
     }
   }
 }

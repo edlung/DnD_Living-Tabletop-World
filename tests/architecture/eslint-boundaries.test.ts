@@ -36,6 +36,8 @@ describe('ESLint module-boundary enforcement', () => {
     ['apps/web/src/probe.ts', "import 'openai';", /ai-providers/],
     ['apps/web/src/probe.ts', "import '@ltw/server';", /may depend only on/],
     ['apps/server/src/probe.ts', "import '@ltw/domain/src/internal';", /public entry point/],
+    ['apps/web/src/probe.ts', "import '@ltw/contracts/srd-items';", /main entry point only/],
+    ['packages/ui/src/probe.ts', "import '@ltw/contracts/srd-items';", /main entry point only/],
     ['packages/ai/src/probe.ts', "import { WorldEngine } from '@ltw/domain';", /outside tests/],
     ['packages/ai/src/probe.ts', "import { evolve } from '@ltw/domain';", /outside tests/],
     ['packages/ai/src/probe.ts', "import '@anthropic-ai/sdk';", /ai-providers/],

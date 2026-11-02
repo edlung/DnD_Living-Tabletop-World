@@ -28,6 +28,8 @@ registerRussian({
   Blowgun: 'Духовая трубка',
   'Hand Crossbow': 'Ручной арбалет',
   'Heavy Crossbow': 'Тяжёлый арбалет',
+  Musket: 'Мушкет',
+  Pistol: 'Пистолет',
   Reach: 'Досягаемость',
 
   // The masteries and what each does
@@ -80,6 +82,7 @@ registerRussian({
   'Arrows: {count}': 'Стрелы: {count}',
   'Bolts: {count}': 'Болты: {count}',
   'Sling bullets: {count}': 'Снаряды для пращи: {count}',
+  'Firearm bullets: {count}': 'Пули для огнестрельного оружия: {count}',
   'Needles: {count}': 'Иглы: {count}',
   'Attacked {target} with the other hand': 'Атаковал второй рукой: {target}',
   'Cleaved through to {target}': 'Рассёк и достал: {target}',

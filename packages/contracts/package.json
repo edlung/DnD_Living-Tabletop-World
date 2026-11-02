@@ -9,6 +9,11 @@
       "@ltw/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./srd-items": {
+      "@ltw/source": "./src/items/srd/catalog.ts",
+      "types": "./dist/items/srd/catalog.d.ts",
+      "default": "./dist/items/srd/catalog.js"
     }
   },
   "dependencies": {

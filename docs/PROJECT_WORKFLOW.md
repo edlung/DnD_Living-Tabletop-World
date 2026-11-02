@@ -35,7 +35,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   650b, spells as data (ADR 0052: the mechanics layer, any SRD spell cast through the World
   Engine, the tray's spells with their slot), done; 650c, monsters as data (ADR 0053: the stat
   blocks as the engine's, the DM's bestiary, breaths with Recharge, Pack Tactics, Magic
-  Resistance, legendary attacks, the fight's difficulty), done.
+  Resistance, legendary attacks, the fight's difficulty), done; 650d, items as data (ADR 0054), in
+  progress: part 1, the SRD's equipment in the catalog and the DM's catalog in the open pack, done.
 
 ## Current request — AI campaigns, 2026-10-30
 

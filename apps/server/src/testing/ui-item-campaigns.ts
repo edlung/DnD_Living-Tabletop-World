@@ -18,6 +18,8 @@ export const UI_ITEM_CAMPAIGNS = {
   fight: 'ui-items-fight',
   /** Part of a stack is handed over (Stage 490). */
   split: 'ui-items-split',
+  /** The DM gives items from the catalog (docs/adr/0054-items-as-data.md §4). */
+  catalog: 'ui-items-catalog',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -65,6 +67,7 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.ru, 'ru'],
     [UI_ITEM_CAMPAIGNS.axe, 'en'],
     [UI_ITEM_CAMPAIGNS.split, 'en'],
+    [UI_ITEM_CAMPAIGNS.catalog, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

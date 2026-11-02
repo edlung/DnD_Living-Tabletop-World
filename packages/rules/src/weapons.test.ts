@@ -42,6 +42,8 @@ const MASTERIES = {
   'hand-crossbow': 'vex',
   'heavy-crossbow': 'push',
   longbow: 'slow',
+  musket: 'slow',
+  pistol: 'vex',
 } as const;
 
 describe('the weapon table', () => {

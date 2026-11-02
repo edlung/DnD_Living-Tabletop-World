@@ -25,6 +25,7 @@ import { ApprovedImages } from '../visual/approved-images.ts';
 import { WIDE } from '../combat/board/board-view.ts';
 import { Backdrop } from './backdrop.tsx';
 import { CombatStage } from './combat-stage.tsx';
+import { DetailPanel } from './detail-panel.tsx';
 import { EntityDetails } from './entity-details.tsx';
 import { recipientsOf } from '../items/recipients.ts';
 import { useFightTakesStage } from './use-fight-takes-stage.ts';
@@ -447,12 +448,10 @@ export function World({
             onRun={run}
             outcome={outcome}
           />
-          <aside
-            ref={details}
-            className="detail-panel"
-            aria-label={t('Entity details')}
-            tabIndex={-1}
+          <DetailPanel
+            panelRef={details}
             hidden={!selected}
+            contentKey={`${shown?.entityId ?? ''}|${String(revision)}`}
           >
             {shown && data && (
               <EntityDetails
@@ -492,7 +491,7 @@ export function World({
                 }
               />
             )}
-          </aside>
+          </DetailPanel>
         </main>
       </WorldPictures>
     </DiceTableProvider>

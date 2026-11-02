@@ -1,12 +1,7 @@
-import {
-  catalogEntry,
-  type AmmunitionKind,
-  type EquipSlot,
-  type ItemEntry,
-  type WeaponId,
-} from '@ltw/contracts';
+import type { AmmunitionKind, EquipSlot, ItemEntry, WeaponId } from '@ltw/contracts';
 
 import type { WorldState } from '../kernel/state.ts';
+import { itemEntry } from './catalog.ts';
 
 /**
  * Item possession (docs/adr/0039-item-possession.md): who carries an item
@@ -28,7 +23,7 @@ export const possessionOf = (state: WorldState, itemId: string): Possession | un
   state.possessions.get(itemId);
 
 export const entryOf = (possession: Possession): ItemEntry | undefined =>
-  possession.catalogId === null ? undefined : catalogEntry(possession.catalogId);
+  possession.catalogId === null ? undefined : itemEntry(possession.catalogId);
 
 /** Item IDs a holder carries (worn or not), in ID order. */
 export function carriedBy(state: WorldState, holderId: string): string[] {

@@ -7,6 +7,7 @@ import { z } from 'zod';
 
 import { sendError } from '../errors.ts';
 import { withPerspective, type RouteDependencies } from '../request-context.ts';
+import { withSrdWords } from '../../items/srd-words.ts';
 
 const params = z.object({ campaignId: campaignIdSchema, entityId: entityIdSchema }).strict();
 const query = z.object({ perspective: z.string() }).strict();
@@ -37,8 +38,10 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     const ready = await withPerspective(request, reply, deps, { params, query });
     if (!ready) return reply;
     const { context, params: path } = ready;
-    const body = inventoryView(context.state, context.perspective, path.entityId);
-    if (!body) return sendError(reply, request, 'NOT_FOUND');
+    const viewed = inventoryView(context.state, context.perspective, path.entityId);
+    if (!viewed) return sendError(reply, request, 'NOT_FOUND');
+    // An SRD entry's words beside it (docs/adr/0054-items-as-data.md §4).
+    const body = withSrdWords(viewed);
     // With a sheet, what Strength carries and each carried weapon's attack (Stage 520).
     const sheet = context.state.characterSheets.get(path.entityId);
     if (!sheet) return reply.send(body);

@@ -1,10 +1,11 @@
 import type { AmmunitionKind, WeaponId, WeaponMastery } from '@ltw/contracts';
 
 /**
- * The rules' weapons: the SRD 5.2.1 weapon table, firearms apart (mechanics; text not copied). The
- * longbow was the slice's first (ADR 0011), the next came with the Ravenford weapons of the item
- * catalog (Stage 520), the rest with the weapons' rules (docs/adr/0047-weapons.md): properties,
- * masteries, the Versatile die, Thrown ranges and the ammunition each fires.
+ * The rules' weapons: the SRD 5.2.1 weapon table (mechanics; text not copied). The longbow was the
+ * slice's first (ADR 0011), the next came with the Ravenford weapons of the item catalog (Stage
+ * 520), the rest with the weapons' rules (docs/adr/0047-weapons.md): properties, masteries, the
+ * Versatile die, Thrown ranges and the ammunition each fires; the Musket and the Pistol with the
+ * SRD's equipment (docs/adr/0054-items-as-data.md §1).
  */
 export type WeaponProperty =
   | 'finesse'
@@ -249,6 +250,26 @@ export const WEAPONS: Readonly<Record<WeaponId, WeaponDefinition>> = {
     'slow',
     ['ammunition', 'heavy', 'two-handed'],
     'arrow',
+  ),
+  musket: ranged(
+    'musket',
+    'martial',
+    [1, 12],
+    [40, 120],
+    'piercing',
+    'slow',
+    ['ammunition', 'loading', 'two-handed'],
+    'firearm-bullet',
+  ),
+  pistol: ranged(
+    'pistol',
+    'martial',
+    [1, 10],
+    [30, 90],
+    'piercing',
+    'vex',
+    ['ammunition', 'loading'],
+    'firearm-bullet',
   ),
 };
 

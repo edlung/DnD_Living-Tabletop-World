@@ -54,6 +54,12 @@ Conventions inside a package:
 - 2026-10-03 (Stage 50, ADR 0012): new package `@ltw/context -> rules, domain, contracts` (pure; same forbidden groups as `rules`); `@ltw/server` may also depend on `@ltw/context`. Clients still may not. No existing edge changed.
 - 2026-10-04 (Stage 80, ADR 0015): new package `@ltw/combat -> rules, domain, contracts` (pure; same forbidden groups as `rules`). `@ltw/context` and `@ltw/server` may also depend on `@ltw/combat`; clients may not. The domain reaches combat only through its `CombatPort`, injected by the server. No existing edge changed.
 - 2026-10-04 (Stage 100, ADR 0017): new package `@ltw/ai -> domain, contracts` (pure; same forbidden groups as `rules`), resolving the AI-orchestration placement left open above. `@ltw/server` may also depend on `@ltw/ai`; clients may not. New boundary field `forbiddenNames`: named exports of an allowed package barred from a package's non-test sources. `@ltw/ai` may not import the World Engine, event stores, or decision functions (`WorldEngine`, `InMemoryEventStore`, `evolve`, `replay`, …) from `@ltw/domain`, so it has no write path; its tests and `src/testing/` may, to seed fixtures. Enforced by ESLint and `tests/architecture/`. No existing edge changed.
+- 2026-11-02 (Stage 650d, ADR 0054): a package may declare further public entry points
+  (`entryPoints` in `workspace-boundaries.json`, a subpath and its source file). `@ltw/contracts`
+  declares `@ltw/contracts/srd-items`: the SRD's item catalog entries the World Engine applies.
+  Browser packages (`@ltw/web`, `@ltw/ui`, `browser: true`) may import only a main entry point, so
+  the browser's bundle never carries that data. Enforced by ESLint and `tests/architecture/`. No
+  existing edge changed.
 
 ## Invariants affected
 

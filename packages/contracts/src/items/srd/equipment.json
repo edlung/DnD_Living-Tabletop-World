@@ -1,0 +1,3882 @@
+[
+  {
+    "itemId": "srd-copper-piece",
+    "name": {
+      "en": "Copper Piece",
+      "ru": "Copper Piece"
+    },
+    "description": {
+      "en": "A coin.",
+      "ru": "A coin."
+    },
+    "weightLb": 0.02,
+    "valueCp": 1,
+    "source": "srd",
+    "untranslated": true,
+    "category": "coins",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-silver-piece",
+    "name": {
+      "en": "Silver Piece",
+      "ru": "Silver Piece"
+    },
+    "description": {
+      "en": "A coin.",
+      "ru": "A coin."
+    },
+    "weightLb": 0.02,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "coins",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-electrum-piece",
+    "name": {
+      "en": "Electrum Piece",
+      "ru": "Electrum Piece"
+    },
+    "description": {
+      "en": "A coin.",
+      "ru": "A coin."
+    },
+    "weightLb": 0.02,
+    "valueCp": 50,
+    "source": "srd",
+    "untranslated": true,
+    "category": "coins",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-gold-piece",
+    "name": {
+      "en": "Gold Piece",
+      "ru": "Gold Piece"
+    },
+    "description": {
+      "en": "A coin.",
+      "ru": "A coin."
+    },
+    "weightLb": 0.02,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "coins",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-platinum-piece",
+    "name": {
+      "en": "Platinum Piece",
+      "ru": "Platinum Piece"
+    },
+    "description": {
+      "en": "A coin.",
+      "ru": "A coin."
+    },
+    "weightLb": 0.02,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "coins",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-club",
+    "name": {
+      "en": "Club",
+      "ru": "Club"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d4 Bludgeoning.",
+      "ru": "Simple melee weapon: 1d4 Bludgeoning."
+    },
+    "weightLb": 2,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand",
+      "offhand"
+    ],
+    "weapon": "club"
+  },
+  {
+    "itemId": "srd-dagger",
+    "name": {
+      "en": "Dagger",
+      "ru": "Dagger"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d4 Piercing.",
+      "ru": "Simple melee weapon: 1d4 Piercing."
+    },
+    "weightLb": 1,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand",
+      "offhand"
+    ],
+    "weapon": "dagger"
+  },
+  {
+    "itemId": "srd-greatclub",
+    "name": {
+      "en": "Greatclub",
+      "ru": "Greatclub"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d8 Bludgeoning.",
+      "ru": "Simple melee weapon: 1d8 Bludgeoning."
+    },
+    "weightLb": 10,
+    "valueCp": 20,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "greatclub"
+  },
+  {
+    "itemId": "srd-handaxe",
+    "name": {
+      "en": "Handaxe",
+      "ru": "Handaxe"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d6 Slashing.",
+      "ru": "Simple melee weapon: 1d6 Slashing."
+    },
+    "weightLb": 2,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand",
+      "offhand"
+    ],
+    "weapon": "handaxe"
+  },
+  {
+    "itemId": "srd-javelin",
+    "name": {
+      "en": "Javelin",
+      "ru": "Javelin"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d6 Piercing.",
+      "ru": "Simple melee weapon: 1d6 Piercing."
+    },
+    "weightLb": 2,
+    "valueCp": 50,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "javelin"
+  },
+  {
+    "itemId": "srd-light-hammer",
+    "name": {
+      "en": "Light Hammer",
+      "ru": "Light Hammer"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d4 Bludgeoning.",
+      "ru": "Simple melee weapon: 1d4 Bludgeoning."
+    },
+    "weightLb": 2,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand",
+      "offhand"
+    ],
+    "weapon": "light-hammer"
+  },
+  {
+    "itemId": "srd-mace",
+    "name": {
+      "en": "Mace",
+      "ru": "Mace"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d6 Bludgeoning.",
+      "ru": "Simple melee weapon: 1d6 Bludgeoning."
+    },
+    "weightLb": 4,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "mace"
+  },
+  {
+    "itemId": "srd-quarterstaff",
+    "name": {
+      "en": "Quarterstaff",
+      "ru": "Quarterstaff"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d6 Bludgeoning.",
+      "ru": "Simple melee weapon: 1d6 Bludgeoning."
+    },
+    "weightLb": 4,
+    "valueCp": 20,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "quarterstaff"
+  },
+  {
+    "itemId": "srd-sickle",
+    "name": {
+      "en": "Sickle",
+      "ru": "Sickle"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d4 Slashing.",
+      "ru": "Simple melee weapon: 1d4 Slashing."
+    },
+    "weightLb": 2,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand",
+      "offhand"
+    ],
+    "weapon": "sickle"
+  },
+  {
+    "itemId": "srd-spear",
+    "name": {
+      "en": "Spear",
+      "ru": "Spear"
+    },
+    "description": {
+      "en": "Simple melee weapon: 1d6 Piercing.",
+      "ru": "Simple melee weapon: 1d6 Piercing."
+    },
+    "weightLb": 3,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "spear"
+  },
+  {
+    "itemId": "srd-dart",
+    "name": {
+      "en": "Dart",
+      "ru": "Dart"
+    },
+    "description": {
+      "en": "Simple ranged weapon: 1d4 Piercing.",
+      "ru": "Simple ranged weapon: 1d4 Piercing."
+    },
+    "weightLb": 0.25,
+    "valueCp": 5,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "dart"
+  },
+  {
+    "itemId": "srd-light-crossbow",
+    "name": {
+      "en": "Light Crossbow",
+      "ru": "Light Crossbow"
+    },
+    "description": {
+      "en": "Simple ranged weapon: 1d8 Piercing.",
+      "ru": "Simple ranged weapon: 1d8 Piercing."
+    },
+    "weightLb": 5,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "light-crossbow"
+  },
+  {
+    "itemId": "srd-shortbow",
+    "name": {
+      "en": "Shortbow",
+      "ru": "Shortbow"
+    },
+    "description": {
+      "en": "Simple ranged weapon: 1d6 Piercing.",
+      "ru": "Simple ranged weapon: 1d6 Piercing."
+    },
+    "weightLb": 2,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "shortbow"
+  },
+  {
+    "itemId": "srd-sling",
+    "name": {
+      "en": "Sling",
+      "ru": "Sling"
+    },
+    "description": {
+      "en": "Simple ranged weapon: 1d4 Bludgeoning.",
+      "ru": "Simple ranged weapon: 1d4 Bludgeoning."
+    },
+    "weightLb": 0,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "sling"
+  },
+  {
+    "itemId": "srd-battleaxe",
+    "name": {
+      "en": "Battleaxe",
+      "ru": "Battleaxe"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d8 Slashing.",
+      "ru": "Martial melee weapon: 1d8 Slashing."
+    },
+    "weightLb": 4,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "battleaxe"
+  },
+  {
+    "itemId": "srd-flail",
+    "name": {
+      "en": "Flail",
+      "ru": "Flail"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d8 Bludgeoning.",
+      "ru": "Martial melee weapon: 1d8 Bludgeoning."
+    },
+    "weightLb": 2,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "flail"
+  },
+  {
+    "itemId": "srd-glaive",
+    "name": {
+      "en": "Glaive",
+      "ru": "Glaive"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d10 Slashing.",
+      "ru": "Martial melee weapon: 1d10 Slashing."
+    },
+    "weightLb": 6,
+    "valueCp": 2000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "glaive"
+  },
+  {
+    "itemId": "srd-greataxe",
+    "name": {
+      "en": "Greataxe",
+      "ru": "Greataxe"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d12 Slashing.",
+      "ru": "Martial melee weapon: 1d12 Slashing."
+    },
+    "weightLb": 7,
+    "valueCp": 3000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "greataxe"
+  },
+  {
+    "itemId": "srd-greatsword",
+    "name": {
+      "en": "Greatsword",
+      "ru": "Greatsword"
+    },
+    "description": {
+      "en": "Martial melee weapon: 2d6 Slashing.",
+      "ru": "Martial melee weapon: 2d6 Slashing."
+    },
+    "weightLb": 6,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "greatsword"
+  },
+  {
+    "itemId": "srd-halberd",
+    "name": {
+      "en": "Halberd",
+      "ru": "Halberd"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d10 Slashing.",
+      "ru": "Martial melee weapon: 1d10 Slashing."
+    },
+    "weightLb": 6,
+    "valueCp": 2000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "halberd"
+  },
+  {
+    "itemId": "srd-lance",
+    "name": {
+      "en": "Lance",
+      "ru": "Lance"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d10 Piercing.",
+      "ru": "Martial melee weapon: 1d10 Piercing."
+    },
+    "weightLb": 6,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "lance"
+  },
+  {
+    "itemId": "srd-longsword",
+    "name": {
+      "en": "Longsword",
+      "ru": "Longsword"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d8 Slashing.",
+      "ru": "Martial melee weapon: 1d8 Slashing."
+    },
+    "weightLb": 3,
+    "valueCp": 1500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "longsword"
+  },
+  {
+    "itemId": "srd-maul",
+    "name": {
+      "en": "Maul",
+      "ru": "Maul"
+    },
+    "description": {
+      "en": "Martial melee weapon: 2d6 Bludgeoning.",
+      "ru": "Martial melee weapon: 2d6 Bludgeoning."
+    },
+    "weightLb": 10,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "maul"
+  },
+  {
+    "itemId": "srd-morningstar",
+    "name": {
+      "en": "Morningstar",
+      "ru": "Morningstar"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d8 Piercing.",
+      "ru": "Martial melee weapon: 1d8 Piercing."
+    },
+    "weightLb": 4,
+    "valueCp": 1500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "morningstar"
+  },
+  {
+    "itemId": "srd-pike",
+    "name": {
+      "en": "Pike",
+      "ru": "Pike"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d10 Piercing.",
+      "ru": "Martial melee weapon: 1d10 Piercing."
+    },
+    "weightLb": 18,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "pike"
+  },
+  {
+    "itemId": "srd-rapier",
+    "name": {
+      "en": "Rapier",
+      "ru": "Rapier"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d8 Piercing.",
+      "ru": "Martial melee weapon: 1d8 Piercing."
+    },
+    "weightLb": 2,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "rapier"
+  },
+  {
+    "itemId": "srd-scimitar",
+    "name": {
+      "en": "Scimitar",
+      "ru": "Scimitar"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d6 Slashing.",
+      "ru": "Martial melee weapon: 1d6 Slashing."
+    },
+    "weightLb": 3,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand",
+      "offhand"
+    ],
+    "weapon": "scimitar"
+  },
+  {
+    "itemId": "srd-shortsword",
+    "name": {
+      "en": "Shortsword",
+      "ru": "Shortsword"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d6 Piercing.",
+      "ru": "Martial melee weapon: 1d6 Piercing."
+    },
+    "weightLb": 2,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand",
+      "offhand"
+    ],
+    "weapon": "shortsword"
+  },
+  {
+    "itemId": "srd-trident",
+    "name": {
+      "en": "Trident",
+      "ru": "Trident"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d8 Piercing.",
+      "ru": "Martial melee weapon: 1d8 Piercing."
+    },
+    "weightLb": 4,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "trident"
+  },
+  {
+    "itemId": "srd-warhammer",
+    "name": {
+      "en": "Warhammer",
+      "ru": "Warhammer"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d8 Bludgeoning.",
+      "ru": "Martial melee weapon: 1d8 Bludgeoning."
+    },
+    "weightLb": 5,
+    "valueCp": 1500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "warhammer"
+  },
+  {
+    "itemId": "srd-war-pick",
+    "name": {
+      "en": "War Pick",
+      "ru": "War Pick"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d8 Piercing.",
+      "ru": "Martial melee weapon: 1d8 Piercing."
+    },
+    "weightLb": 2,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "war-pick"
+  },
+  {
+    "itemId": "srd-whip",
+    "name": {
+      "en": "Whip",
+      "ru": "Whip"
+    },
+    "description": {
+      "en": "Martial melee weapon: 1d4 Slashing.",
+      "ru": "Martial melee weapon: 1d4 Slashing."
+    },
+    "weightLb": 3,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "whip"
+  },
+  {
+    "itemId": "srd-blowgun",
+    "name": {
+      "en": "Blowgun",
+      "ru": "Blowgun"
+    },
+    "description": {
+      "en": "Martial ranged weapon: 1 Piercing.",
+      "ru": "Martial ranged weapon: 1 Piercing."
+    },
+    "weightLb": 1,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "blowgun"
+  },
+  {
+    "itemId": "srd-hand-crossbow",
+    "name": {
+      "en": "Hand Crossbow",
+      "ru": "Hand Crossbow"
+    },
+    "description": {
+      "en": "Martial ranged weapon: 1d6 Piercing.",
+      "ru": "Martial ranged weapon: 1d6 Piercing."
+    },
+    "weightLb": 3,
+    "valueCp": 7500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand",
+      "offhand"
+    ],
+    "weapon": "hand-crossbow"
+  },
+  {
+    "itemId": "srd-heavy-crossbow",
+    "name": {
+      "en": "Heavy Crossbow",
+      "ru": "Heavy Crossbow"
+    },
+    "description": {
+      "en": "Martial ranged weapon: 1d10 Piercing.",
+      "ru": "Martial ranged weapon: 1d10 Piercing."
+    },
+    "weightLb": 18,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "heavy-crossbow"
+  },
+  {
+    "itemId": "srd-longbow",
+    "name": {
+      "en": "Longbow",
+      "ru": "Longbow"
+    },
+    "description": {
+      "en": "Martial ranged weapon: 1d8 Piercing.",
+      "ru": "Martial ranged weapon: 1d8 Piercing."
+    },
+    "weightLb": 2,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "longbow"
+  },
+  {
+    "itemId": "srd-musket",
+    "name": {
+      "en": "Musket",
+      "ru": "Musket"
+    },
+    "description": {
+      "en": "Martial ranged weapon: 1d12 Piercing.",
+      "ru": "Martial ranged weapon: 1d12 Piercing."
+    },
+    "weightLb": 10,
+    "valueCp": 50000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "musket"
+  },
+  {
+    "itemId": "srd-pistol",
+    "name": {
+      "en": "Pistol",
+      "ru": "Pistol"
+    },
+    "description": {
+      "en": "Martial ranged weapon: 1d10 Piercing.",
+      "ru": "Martial ranged weapon: 1d10 Piercing."
+    },
+    "weightLb": 3,
+    "valueCp": 25000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "weapon",
+    "stackable": false,
+    "slots": [
+      "mainhand"
+    ],
+    "weapon": "pistol"
+  },
+  {
+    "itemId": "srd-padded-armor",
+    "name": {
+      "en": "Padded Armor",
+      "ru": "Padded Armor"
+    },
+    "description": {
+      "en": "Light armor: Armor Class 11 + Dex modifier.",
+      "ru": "Light armor: Armor Class 11 + Dex modifier."
+    },
+    "weightLb": 8,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 11,
+      "dexCap": null,
+      "stealthDisadvantage": true
+    }
+  },
+  {
+    "itemId": "srd-leather-armor",
+    "name": {
+      "en": "Leather Armor",
+      "ru": "Leather Armor"
+    },
+    "description": {
+      "en": "Light armor: Armor Class 11 + Dex modifier.",
+      "ru": "Light armor: Armor Class 11 + Dex modifier."
+    },
+    "weightLb": 10,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 11,
+      "dexCap": null
+    }
+  },
+  {
+    "itemId": "srd-studded-leather-armor",
+    "name": {
+      "en": "Studded Leather Armor",
+      "ru": "Studded Leather Armor"
+    },
+    "description": {
+      "en": "Light armor: Armor Class 12 + Dex modifier.",
+      "ru": "Light armor: Armor Class 12 + Dex modifier."
+    },
+    "weightLb": 13,
+    "valueCp": 4500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 12,
+      "dexCap": null
+    }
+  },
+  {
+    "itemId": "srd-hide-armor",
+    "name": {
+      "en": "Hide Armor",
+      "ru": "Hide Armor"
+    },
+    "description": {
+      "en": "Medium armor: Armor Class 12 + Dex modifier (max 2).",
+      "ru": "Medium armor: Armor Class 12 + Dex modifier (max 2)."
+    },
+    "weightLb": 12,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 12,
+      "dexCap": 2
+    }
+  },
+  {
+    "itemId": "srd-chain-shirt",
+    "name": {
+      "en": "Chain Shirt",
+      "ru": "Chain Shirt"
+    },
+    "description": {
+      "en": "Medium armor: Armor Class 13 + Dex modifier (max 2).",
+      "ru": "Medium armor: Armor Class 13 + Dex modifier (max 2)."
+    },
+    "weightLb": 20,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 13,
+      "dexCap": 2
+    }
+  },
+  {
+    "itemId": "srd-scale-mail",
+    "name": {
+      "en": "Scale Mail",
+      "ru": "Scale Mail"
+    },
+    "description": {
+      "en": "Medium armor: Armor Class 14 + Dex modifier (max 2).",
+      "ru": "Medium armor: Armor Class 14 + Dex modifier (max 2)."
+    },
+    "weightLb": 45,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 14,
+      "dexCap": 2,
+      "stealthDisadvantage": true
+    }
+  },
+  {
+    "itemId": "srd-breastplate",
+    "name": {
+      "en": "Breastplate",
+      "ru": "Breastplate"
+    },
+    "description": {
+      "en": "Medium armor: Armor Class 14 + Dex modifier (max 2).",
+      "ru": "Medium armor: Armor Class 14 + Dex modifier (max 2)."
+    },
+    "weightLb": 20,
+    "valueCp": 40000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 14,
+      "dexCap": 2
+    }
+  },
+  {
+    "itemId": "srd-half-plate-armor",
+    "name": {
+      "en": "Half Plate Armor",
+      "ru": "Half Plate Armor"
+    },
+    "description": {
+      "en": "Medium armor: Armor Class 15 + Dex modifier (max 2).",
+      "ru": "Medium armor: Armor Class 15 + Dex modifier (max 2)."
+    },
+    "weightLb": 40,
+    "valueCp": 75000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 15,
+      "dexCap": 2,
+      "stealthDisadvantage": true
+    }
+  },
+  {
+    "itemId": "srd-ring-mail",
+    "name": {
+      "en": "Ring Mail",
+      "ru": "Ring Mail"
+    },
+    "description": {
+      "en": "Heavy armor: Armor Class 14.",
+      "ru": "Heavy armor: Armor Class 14."
+    },
+    "weightLb": 40,
+    "valueCp": 3000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 14,
+      "dexCap": 0,
+      "stealthDisadvantage": true
+    }
+  },
+  {
+    "itemId": "srd-chain-mail",
+    "name": {
+      "en": "Chain Mail",
+      "ru": "Chain Mail"
+    },
+    "description": {
+      "en": "Heavy armor: Armor Class 16.",
+      "ru": "Heavy armor: Armor Class 16."
+    },
+    "weightLb": 55,
+    "valueCp": 7500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 16,
+      "dexCap": 0,
+      "strength": 13,
+      "stealthDisadvantage": true
+    }
+  },
+  {
+    "itemId": "srd-splint-armor",
+    "name": {
+      "en": "Splint Armor",
+      "ru": "Splint Armor"
+    },
+    "description": {
+      "en": "Heavy armor: Armor Class 17.",
+      "ru": "Heavy armor: Armor Class 17."
+    },
+    "weightLb": 60,
+    "valueCp": 20000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 17,
+      "dexCap": 0,
+      "strength": 15,
+      "stealthDisadvantage": true
+    }
+  },
+  {
+    "itemId": "srd-plate-armor",
+    "name": {
+      "en": "Plate Armor",
+      "ru": "Plate Armor"
+    },
+    "description": {
+      "en": "Heavy armor: Armor Class 18.",
+      "ru": "Heavy armor: Armor Class 18."
+    },
+    "weightLb": 65,
+    "valueCp": 150000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "armor",
+    "stackable": false,
+    "slots": [
+      "body"
+    ],
+    "armor": {
+      "baseAc": 18,
+      "dexCap": 0,
+      "strength": 15,
+      "stealthDisadvantage": true
+    }
+  },
+  {
+    "itemId": "srd-shield",
+    "name": {
+      "en": "Shield",
+      "ru": "Shield"
+    },
+    "description": {
+      "en": "Shield: +2 to Armor Class.",
+      "ru": "Shield: +2 to Armor Class."
+    },
+    "weightLb": 6,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "shield",
+    "stackable": false,
+    "slots": [
+      "offhand"
+    ],
+    "shieldBonus": 2
+  },
+  {
+    "itemId": "srd-carriage",
+    "name": {
+      "en": "Carriage",
+      "ru": "Carriage"
+    },
+    "description": {
+      "en": "Tack, harness or a drawn vehicle.",
+      "ru": "Tack, harness or a drawn vehicle."
+    },
+    "weightLb": 600,
+    "valueCp": 10000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-cart",
+    "name": {
+      "en": "Cart",
+      "ru": "Cart"
+    },
+    "description": {
+      "en": "Tack, harness or a drawn vehicle.",
+      "ru": "Tack, harness or a drawn vehicle."
+    },
+    "weightLb": 200,
+    "valueCp": 1500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-chariot",
+    "name": {
+      "en": "Chariot",
+      "ru": "Chariot"
+    },
+    "description": {
+      "en": "Tack, harness or a drawn vehicle.",
+      "ru": "Tack, harness or a drawn vehicle."
+    },
+    "weightLb": 100,
+    "valueCp": 25000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-feed-per-day",
+    "name": {
+      "en": "Feed (per day)",
+      "ru": "Feed (per day)"
+    },
+    "description": {
+      "en": "Food or drink.",
+      "ru": "Food or drink."
+    },
+    "weightLb": 10,
+    "valueCp": 5,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-exotic-saddle",
+    "name": {
+      "en": "Exotic Saddle",
+      "ru": "Exotic Saddle"
+    },
+    "description": {
+      "en": "Tack, harness or a drawn vehicle.",
+      "ru": "Tack, harness or a drawn vehicle."
+    },
+    "weightLb": 40,
+    "valueCp": 6000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-military-saddle",
+    "name": {
+      "en": "Military Saddle",
+      "ru": "Military Saddle"
+    },
+    "description": {
+      "en": "Tack, harness or a drawn vehicle.",
+      "ru": "Tack, harness or a drawn vehicle."
+    },
+    "weightLb": 30,
+    "valueCp": 2000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-riding-saddle",
+    "name": {
+      "en": "Riding Saddle",
+      "ru": "Riding Saddle"
+    },
+    "description": {
+      "en": "Tack, harness or a drawn vehicle.",
+      "ru": "Tack, harness or a drawn vehicle."
+    },
+    "weightLb": 25,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-sled",
+    "name": {
+      "en": "Sled",
+      "ru": "Sled"
+    },
+    "description": {
+      "en": "Tack, harness or a drawn vehicle.",
+      "ru": "Tack, harness or a drawn vehicle."
+    },
+    "weightLb": 300,
+    "valueCp": 2000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-wagon",
+    "name": {
+      "en": "Wagon",
+      "ru": "Wagon"
+    },
+    "description": {
+      "en": "Tack, harness or a drawn vehicle.",
+      "ru": "Tack, harness or a drawn vehicle."
+    },
+    "weightLb": 400,
+    "valueCp": 3500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-ale-mug",
+    "name": {
+      "en": "Ale (mug)",
+      "ru": "Ale (mug)"
+    },
+    "description": {
+      "en": "Food or drink.",
+      "ru": "Food or drink."
+    },
+    "weightLb": 0,
+    "valueCp": 4,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-bread-loaf",
+    "name": {
+      "en": "Bread (loaf)",
+      "ru": "Bread (loaf)"
+    },
+    "description": {
+      "en": "Food or drink.",
+      "ru": "Food or drink."
+    },
+    "weightLb": 0,
+    "valueCp": 2,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-cheese-wedge",
+    "name": {
+      "en": "Cheese (wedge)",
+      "ru": "Cheese (wedge)"
+    },
+    "description": {
+      "en": "Food or drink.",
+      "ru": "Food or drink."
+    },
+    "weightLb": 0,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-common-wine-bottle",
+    "name": {
+      "en": "Common Wine (bottle)",
+      "ru": "Common Wine (bottle)"
+    },
+    "description": {
+      "en": "Food or drink.",
+      "ru": "Food or drink."
+    },
+    "weightLb": 0,
+    "valueCp": 20,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-fine-wine-bottle",
+    "name": {
+      "en": "Fine Wine (bottle)",
+      "ru": "Fine Wine (bottle)"
+    },
+    "description": {
+      "en": "Food or drink.",
+      "ru": "Food or drink."
+    },
+    "weightLb": 0,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-alchemists-supplies",
+    "name": {
+      "en": "Alchemist’s Supplies",
+      "ru": "Alchemist’s Supplies"
+    },
+    "description": {
+      "en": "Tool (Intelligence): Identify a substance (DC 15), or start a fire (DC 15).",
+      "ru": "Tool (Intelligence): Identify a substance (DC 15), or start a fire (DC 15)."
+    },
+    "weightLb": 8,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-brewers-supplies",
+    "name": {
+      "en": "Brewer’s Supplies",
+      "ru": "Brewer’s Supplies"
+    },
+    "description": {
+      "en": "Tool (Intelligence): Detect poisoned drink (DC 15), or identify alcohol (DC 10).",
+      "ru": "Tool (Intelligence): Detect poisoned drink (DC 15), or identify alcohol (DC 10)."
+    },
+    "weightLb": 9,
+    "valueCp": 2000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-calligraphers-supplies",
+    "name": {
+      "en": "Calligrapher’s Supplies",
+      "ru": "Calligrapher’s Supplies"
+    },
+    "description": {
+      "en": "Tool (Dexterity): Write text with impressive flourishes that guard against forgery (DC 15).",
+      "ru": "Tool (Dexterity): Write text with impressive flourishes that guard against forgery (DC 15)."
+    },
+    "weightLb": 5,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-carpenters-tools",
+    "name": {
+      "en": "Carpenter’s Tools",
+      "ru": "Carpenter’s Tools"
+    },
+    "description": {
+      "en": "Tool (Strength): Seal or pry open a door or container (DC 20).",
+      "ru": "Tool (Strength): Seal or pry open a door or container (DC 20)."
+    },
+    "weightLb": 6,
+    "valueCp": 800,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-cartographers-tools",
+    "name": {
+      "en": "Cartographer’s Tools",
+      "ru": "Cartographer’s Tools"
+    },
+    "description": {
+      "en": "Tool (Wisdom): Draft a map of a small area (DC 15).",
+      "ru": "Tool (Wisdom): Draft a map of a small area (DC 15)."
+    },
+    "weightLb": 6,
+    "valueCp": 1500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-cobblers-tools",
+    "name": {
+      "en": "Cobbler’s Tools",
+      "ru": "Cobbler’s Tools"
+    },
+    "description": {
+      "en": "Tool (Dexterity): Modify footwear to give Advantage on the wearer’s next Dexterity (Acrobatics) check (DC 10).",
+      "ru": "Tool (Dexterity): Modify footwear to give Advantage on the wearer’s next Dexterity (Acrobatics) check (DC 10)."
+    },
+    "weightLb": 5,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-cooks-utensils",
+    "name": {
+      "en": "Cook’s Utensils",
+      "ru": "Cook’s Utensils"
+    },
+    "description": {
+      "en": "Tool (Wisdom): Improve food’s flavor (DC 10), or detect spoiled or poisoned food (DC 15).",
+      "ru": "Tool (Wisdom): Improve food’s flavor (DC 10), or detect spoiled or poisoned food (DC 15)."
+    },
+    "weightLb": 8,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-glassblowers-tools",
+    "name": {
+      "en": "Glassblower’s Tools",
+      "ru": "Glassblower’s Tools"
+    },
+    "description": {
+      "en": "Tool (Intelligence): Discern what a glass object held in the past 24 hours (DC 15).",
+      "ru": "Tool (Intelligence): Discern what a glass object held in the past 24 hours (DC 15)."
+    },
+    "weightLb": 5,
+    "valueCp": 3000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-jewelers-tools",
+    "name": {
+      "en": "Jeweler’s Tools",
+      "ru": "Jeweler’s Tools"
+    },
+    "description": {
+      "en": "Tool (Intelligence): Discern a gem’s value (DC 15).",
+      "ru": "Tool (Intelligence): Discern a gem’s value (DC 15)."
+    },
+    "weightLb": 2,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-leatherworkers-tools",
+    "name": {
+      "en": "Leatherworker’s Tools",
+      "ru": "Leatherworker’s Tools"
+    },
+    "description": {
+      "en": "Tool (Dexterity): Add a design to a leather item (DC 10).",
+      "ru": "Tool (Dexterity): Add a design to a leather item (DC 10)."
+    },
+    "weightLb": 5,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-masons-tools",
+    "name": {
+      "en": "Mason’s Tools",
+      "ru": "Mason’s Tools"
+    },
+    "description": {
+      "en": "Tool (Strength): Chisel a symbol or hole in stone (DC 10).",
+      "ru": "Tool (Strength): Chisel a symbol or hole in stone (DC 10)."
+    },
+    "weightLb": 8,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-painters-supplies",
+    "name": {
+      "en": "Painter’s Supplies",
+      "ru": "Painter’s Supplies"
+    },
+    "description": {
+      "en": "Tool (Wisdom): Paint a recognizable image of something you’ve seen (DC 10).",
+      "ru": "Tool (Wisdom): Paint a recognizable image of something you’ve seen (DC 10)."
+    },
+    "weightLb": 5,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-potters-tools",
+    "name": {
+      "en": "Potter’s Tools",
+      "ru": "Potter’s Tools"
+    },
+    "description": {
+      "en": "Tool (Intelligence): Discern what a ceramic object held in the past 24 hours (DC 15).",
+      "ru": "Tool (Intelligence): Discern what a ceramic object held in the past 24 hours (DC 15)."
+    },
+    "weightLb": 3,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-smiths-tools",
+    "name": {
+      "en": "Smith’s Tools",
+      "ru": "Smith’s Tools"
+    },
+    "description": {
+      "en": "Tool (Strength): Pry open a door or container (DC 20).",
+      "ru": "Tool (Strength): Pry open a door or container (DC 20)."
+    },
+    "weightLb": 8,
+    "valueCp": 2000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-tinkers-tools",
+    "name": {
+      "en": "Tinker’s Tools",
+      "ru": "Tinker’s Tools"
+    },
+    "description": {
+      "en": "Tool (Dexterity): Assemble a Tiny item composed of scrap, which falls apart in 1 minute (DC 20).",
+      "ru": "Tool (Dexterity): Assemble a Tiny item composed of scrap, which falls apart in 1 minute (DC 20)."
+    },
+    "weightLb": 10,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-weavers-tools",
+    "name": {
+      "en": "Weaver’s Tools",
+      "ru": "Weaver’s Tools"
+    },
+    "description": {
+      "en": "Tool (Dexterity): Mend a tear in clothing (DC 10), or sew a Tiny design (DC 10).",
+      "ru": "Tool (Dexterity): Mend a tear in clothing (DC 10), or sew a Tiny design (DC 10)."
+    },
+    "weightLb": 5,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-woodcarvers-tools",
+    "name": {
+      "en": "Woodcarver’s Tools",
+      "ru": "Woodcarver’s Tools"
+    },
+    "description": {
+      "en": "Tool (Dexterity): Carve a pattern in wood (DC 10).",
+      "ru": "Tool (Dexterity): Carve a pattern in wood (DC 10)."
+    },
+    "weightLb": 5,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-disguise-kit",
+    "name": {
+      "en": "Disguise Kit",
+      "ru": "Disguise Kit"
+    },
+    "description": {
+      "en": "Tool (Charisma): Apply makeup (DC 10).",
+      "ru": "Tool (Charisma): Apply makeup (DC 10)."
+    },
+    "weightLb": 3,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-forgery-kit",
+    "name": {
+      "en": "Forgery Kit",
+      "ru": "Forgery Kit"
+    },
+    "description": {
+      "en": "Tool (Dexterity): Mimic 10 or fewer words of someone else’s handwriting (DC 15), or duplicate a wax seal (DC 20).",
+      "ru": "Tool (Dexterity): Mimic 10 or fewer words of someone else’s handwriting (DC 15), or duplicate a wax seal (DC 20)."
+    },
+    "weightLb": 5,
+    "valueCp": 1500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-dice-gaming-set",
+    "name": {
+      "en": "Dice (Gaming Set)",
+      "ru": "Dice (Gaming Set)"
+    },
+    "description": {
+      "en": "Tool (Wisdom): Discern whether someone is cheating (DC 10), or win the game (DC 20).",
+      "ru": "Tool (Wisdom): Discern whether someone is cheating (DC 10), or win the game (DC 20)."
+    },
+    "weightLb": 0,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-dragonchess-gaming-set",
+    "name": {
+      "en": "Dragonchess (Gaming Set)",
+      "ru": "Dragonchess (Gaming Set)"
+    },
+    "description": {
+      "en": "Tool (Wisdom): Discern whether someone is cheating (DC 10), or win the game (DC 20).",
+      "ru": "Tool (Wisdom): Discern whether someone is cheating (DC 10), or win the game (DC 20)."
+    },
+    "weightLb": 0,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-playing-cards-gaming-set",
+    "name": {
+      "en": "Playing cards (Gaming Set)",
+      "ru": "Playing cards (Gaming Set)"
+    },
+    "description": {
+      "en": "Tool (Wisdom): Discern whether someone is cheating (DC 10), or win the game (DC 20).",
+      "ru": "Tool (Wisdom): Discern whether someone is cheating (DC 10), or win the game (DC 20)."
+    },
+    "weightLb": 0,
+    "valueCp": 50,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-three-dragon-ante-gaming-set",
+    "name": {
+      "en": "Three-dragon ante (Gaming Set)",
+      "ru": "Three-dragon ante (Gaming Set)"
+    },
+    "description": {
+      "en": "Tool (Wisdom): Discern whether someone is cheating (DC 10), or win the game (DC 20).",
+      "ru": "Tool (Wisdom): Discern whether someone is cheating (DC 10), or win the game (DC 20)."
+    },
+    "weightLb": 0,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-herbalism-kit",
+    "name": {
+      "en": "Herbalism Kit",
+      "ru": "Herbalism Kit"
+    },
+    "description": {
+      "en": "Tool (Intelligence): Identify a plant (DC 10).",
+      "ru": "Tool (Intelligence): Identify a plant (DC 10)."
+    },
+    "weightLb": 3,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-bagpipes-musical-instrument",
+    "name": {
+      "en": "Bagpipes (Musical Instrument)",
+      "ru": "Bagpipes (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 6,
+    "valueCp": 3000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-drum-musical-instrument",
+    "name": {
+      "en": "Drum (Musical Instrument)",
+      "ru": "Drum (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 3,
+    "valueCp": 600,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-dulcimer-musical-instrument",
+    "name": {
+      "en": "Dulcimer (Musical Instrument)",
+      "ru": "Dulcimer (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 10,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-flute-musical-instrument",
+    "name": {
+      "en": "Flute (Musical Instrument)",
+      "ru": "Flute (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 1,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-horn-musical-instrument",
+    "name": {
+      "en": "Horn (Musical Instrument)",
+      "ru": "Horn (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 2,
+    "valueCp": 300,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-lute-musical-instrument",
+    "name": {
+      "en": "Lute (Musical Instrument)",
+      "ru": "Lute (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 2,
+    "valueCp": 3500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-lyre-musical-instrument",
+    "name": {
+      "en": "Lyre (Musical Instrument)",
+      "ru": "Lyre (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 2,
+    "valueCp": 3000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-pan-flute-musical-instrument",
+    "name": {
+      "en": "Pan flute (Musical Instrument)",
+      "ru": "Pan flute (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 2,
+    "valueCp": 1200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-shawm-musical-instrument",
+    "name": {
+      "en": "Shawm (Musical Instrument)",
+      "ru": "Shawm (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 1,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-viol-musical-instrument",
+    "name": {
+      "en": "Viol (Musical Instrument)",
+      "ru": "Viol (Musical Instrument)"
+    },
+    "description": {
+      "en": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15).",
+      "ru": "Tool (Charisma): Play a known tune (DC 10), or improvise a song (DC 15)."
+    },
+    "weightLb": 1,
+    "valueCp": 3000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-navigators-tools",
+    "name": {
+      "en": "Navigator’s Tools",
+      "ru": "Navigator’s Tools"
+    },
+    "description": {
+      "en": "Tool (Wisdom): Plot a course (DC 10), or determine position by stargazing (DC 15).",
+      "ru": "Tool (Wisdom): Plot a course (DC 10), or determine position by stargazing (DC 15)."
+    },
+    "weightLb": 2,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-poisoners-kit",
+    "name": {
+      "en": "Poisoner’s Kit",
+      "ru": "Poisoner’s Kit"
+    },
+    "description": {
+      "en": "Tool (Intelligence): Detect a poisoned object (DC 10).",
+      "ru": "Tool (Intelligence): Detect a poisoned object (DC 10)."
+    },
+    "weightLb": 2,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-thieves-tools",
+    "name": {
+      "en": "Thieves’ Tools",
+      "ru": "Thieves’ Tools"
+    },
+    "description": {
+      "en": "Tool (Dexterity): Pick a lock (DC 15), or disarm a trap (DC 15).",
+      "ru": "Tool (Dexterity): Pick a lock (DC 15), or disarm a trap (DC 15)."
+    },
+    "weightLb": 1,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "tool",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-acid",
+    "name": {
+      "en": "Acid",
+      "ru": "Acid"
+    },
+    "description": {
+      "en": "When you take the Attack action, you can replace one of your attacks with throwing a vial of Acid.",
+      "ru": "When you take the Attack action, you can replace one of your attacks with throwing a vial of Acid."
+    },
+    "weightLb": 1,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-alchemists-fire",
+    "name": {
+      "en": "Alchemist’s Fire",
+      "ru": "Alchemist’s Fire"
+    },
+    "description": {
+      "en": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Alchemist’s Fire.",
+      "ru": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Alchemist’s Fire."
+    },
+    "weightLb": 1,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-arrow",
+    "name": {
+      "en": "Arrow",
+      "ru": "Arrow"
+    },
+    "description": {
+      "en": "Ammunition is required by a weapon that has the Ammunition property.",
+      "ru": "Ammunition is required by a weapon that has the Ammunition property."
+    },
+    "weightLb": 0.05,
+    "valueCp": 5,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": [],
+    "ammunition": "arrow"
+  },
+  {
+    "itemId": "srd-bolt",
+    "name": {
+      "en": "Bolt",
+      "ru": "Bolt"
+    },
+    "description": {
+      "en": "Ammunition is required by a weapon that has the Ammunition property.",
+      "ru": "Ammunition is required by a weapon that has the Ammunition property."
+    },
+    "weightLb": 0.075,
+    "valueCp": 5,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": [],
+    "ammunition": "bolt"
+  },
+  {
+    "itemId": "srd-firearm-bullet",
+    "name": {
+      "en": "Firearm Bullet",
+      "ru": "Firearm Bullet"
+    },
+    "description": {
+      "en": "Ammunition is required by a weapon that has the Ammunition property.",
+      "ru": "Ammunition is required by a weapon that has the Ammunition property."
+    },
+    "weightLb": 0.2,
+    "valueCp": 30,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": [],
+    "ammunition": "firearm-bullet"
+  },
+  {
+    "itemId": "srd-sling-bullet",
+    "name": {
+      "en": "Sling Bullet",
+      "ru": "Sling Bullet"
+    },
+    "description": {
+      "en": "Ammunition is required by a weapon that has the Ammunition property.",
+      "ru": "Ammunition is required by a weapon that has the Ammunition property."
+    },
+    "weightLb": 0.075,
+    "valueCp": 0.2,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": [],
+    "ammunition": "bullet"
+  },
+  {
+    "itemId": "srd-needle",
+    "name": {
+      "en": "Needle",
+      "ru": "Needle"
+    },
+    "description": {
+      "en": "Ammunition is required by a weapon that has the Ammunition property.",
+      "ru": "Ammunition is required by a weapon that has the Ammunition property."
+    },
+    "weightLb": 0.02,
+    "valueCp": 2,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": [],
+    "ammunition": "needle"
+  },
+  {
+    "itemId": "srd-antitoxin",
+    "name": {
+      "en": "Antitoxin",
+      "ru": "Antitoxin"
+    },
+    "description": {
+      "en": "As a Bonus Action, you can drink a vial of Antitoxin to gain Advantage on saving throws to avoid or end the Poisoned condition for 1 hour.",
+      "ru": "As a Bonus Action, you can drink a vial of Antitoxin to gain Advantage on saving throws to avoid or end the Poisoned condition for 1 hour."
+    },
+    "weightLb": 0,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-crystal-arcane-focus",
+    "name": {
+      "en": "Crystal (Arcane Focus)",
+      "ru": "Crystal (Arcane Focus)"
+    },
+    "description": {
+      "en": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic.",
+      "ru": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic."
+    },
+    "weightLb": 1,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-orb-arcane-focus",
+    "name": {
+      "en": "Orb (Arcane Focus)",
+      "ru": "Orb (Arcane Focus)"
+    },
+    "description": {
+      "en": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic.",
+      "ru": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic."
+    },
+    "weightLb": 3,
+    "valueCp": 2000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-rod-arcane-focus",
+    "name": {
+      "en": "Rod (Arcane Focus)",
+      "ru": "Rod (Arcane Focus)"
+    },
+    "description": {
+      "en": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic.",
+      "ru": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic."
+    },
+    "weightLb": 2,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-staff-arcane-focus",
+    "name": {
+      "en": "Staff (Arcane Focus)",
+      "ru": "Staff (Arcane Focus)"
+    },
+    "description": {
+      "en": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic.",
+      "ru": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic."
+    },
+    "weightLb": 4,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-wand-arcane-focus",
+    "name": {
+      "en": "Wand (Arcane Focus)",
+      "ru": "Wand (Arcane Focus)"
+    },
+    "description": {
+      "en": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic.",
+      "ru": "An Arcane Focus takes one of the forms in the Arcane Focuses table and is bejeweled or carved to channel arcane magic."
+    },
+    "weightLb": 1,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-backpack",
+    "name": {
+      "en": "Backpack",
+      "ru": "Backpack"
+    },
+    "description": {
+      "en": "A Backpack holds up to 30 pounds within 1 cubic foot.",
+      "ru": "A Backpack holds up to 30 pounds within 1 cubic foot."
+    },
+    "weightLb": 5,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-ball-bearings",
+    "name": {
+      "en": "Ball Bearings",
+      "ru": "Ball Bearings"
+    },
+    "description": {
+      "en": "As a Utilize action, you can spill Ball Bearings from their pouch.",
+      "ru": "As a Utilize action, you can spill Ball Bearings from their pouch."
+    },
+    "weightLb": 2,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-barrel",
+    "name": {
+      "en": "Barrel",
+      "ru": "Barrel"
+    },
+    "description": {
+      "en": "A Barrel holds up to 40 gallons of liquid or up to 4 cubic feet of dry goods.",
+      "ru": "A Barrel holds up to 40 gallons of liquid or up to 4 cubic feet of dry goods."
+    },
+    "weightLb": 70,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-basket",
+    "name": {
+      "en": "Basket",
+      "ru": "Basket"
+    },
+    "description": {
+      "en": "A Basket holds up to 40 pounds within 2 cubic feet.",
+      "ru": "A Basket holds up to 40 pounds within 2 cubic feet."
+    },
+    "weightLb": 2,
+    "valueCp": 40,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-bedroll",
+    "name": {
+      "en": "Bedroll",
+      "ru": "Bedroll"
+    },
+    "description": {
+      "en": "A Bedroll sleeps one Small or Medium creature.",
+      "ru": "A Bedroll sleeps one Small or Medium creature."
+    },
+    "weightLb": 7,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-bell",
+    "name": {
+      "en": "Bell",
+      "ru": "Bell"
+    },
+    "description": {
+      "en": "When rung as a Utilize action, a Bell produces a sound that can be heard up to 60 feet away.",
+      "ru": "When rung as a Utilize action, a Bell produces a sound that can be heard up to 60 feet away."
+    },
+    "weightLb": 0,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-blanket",
+    "name": {
+      "en": "Blanket",
+      "ru": "Blanket"
+    },
+    "description": {
+      "en": "While wrapped in a blanket, you have Advantage on saving throws against extreme cold (see “Gameplay Toolbox”).",
+      "ru": "While wrapped in a blanket, you have Advantage on saving throws against extreme cold (see “Gameplay Toolbox”)."
+    },
+    "weightLb": 3,
+    "valueCp": 50,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-block-and-tackle",
+    "name": {
+      "en": "Block and Tackle",
+      "ru": "Block and Tackle"
+    },
+    "description": {
+      "en": "A Block and Tackle allows you to hoist up to four times the weight you can normally lift.",
+      "ru": "A Block and Tackle allows you to hoist up to four times the weight you can normally lift."
+    },
+    "weightLb": 5,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-book",
+    "name": {
+      "en": "Book",
+      "ru": "Book"
+    },
+    "description": {
+      "en": "A Book contains fiction or nonfiction.",
+      "ru": "A Book contains fiction or nonfiction."
+    },
+    "weightLb": 5,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-bottle-glass",
+    "name": {
+      "en": "Bottle, Glass",
+      "ru": "Bottle, Glass"
+    },
+    "description": {
+      "en": "A Glass Bottle holds up to 11/2 pints.",
+      "ru": "A Glass Bottle holds up to 11/2 pints."
+    },
+    "weightLb": 2,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-bucket",
+    "name": {
+      "en": "Bucket",
+      "ru": "Bucket"
+    },
+    "description": {
+      "en": "A Bucket holds up to half a cubic foot of contents.",
+      "ru": "A Bucket holds up to half a cubic foot of contents."
+    },
+    "weightLb": 2,
+    "valueCp": 5,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-burglars-pack",
+    "name": {
+      "en": "Burglar’s Pack",
+      "ru": "Burglar’s Pack"
+    },
+    "description": {
+      "en": "A Burglar’s Pack contains the following items: Backpack, Ball Bearings, Bell, 10 Candles, Crowbar, Hooded Lantern, 7 flasks of Oil, 5 days of Rations, Rope, Tinderbox, and Waterskin.",
+      "ru": "A Burglar’s Pack contains the following items: Backpack, Ball Bearings, Bell, 10 Candles, Crowbar, Hooded Lantern, 7 flasks of Oil, 5 days of Rations, Rope, Tinderbox, and Waterskin."
+    },
+    "weightLb": 42,
+    "valueCp": 1600,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-caltrops",
+    "name": {
+      "en": "Caltrops",
+      "ru": "Caltrops"
+    },
+    "description": {
+      "en": "As a Utilize action, you can spread Caltrops from their bag to cover a 5-foot-square area within 5 feet of yourself.",
+      "ru": "As a Utilize action, you can spread Caltrops from their bag to cover a 5-foot-square area within 5 feet of yourself."
+    },
+    "weightLb": 2,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-candle",
+    "name": {
+      "en": "Candle",
+      "ru": "Candle"
+    },
+    "description": {
+      "en": "For 1 hour, a lit Candle sheds Bright Light in a 5-foot radius and Dim Light for an additional 5 feet.",
+      "ru": "For 1 hour, a lit Candle sheds Bright Light in a 5-foot radius and Dim Light for an additional 5 feet."
+    },
+    "weightLb": 0,
+    "valueCp": 1,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-case-crossbow-bolt",
+    "name": {
+      "en": "Case, Crossbow Bolt",
+      "ru": "Case, Crossbow Bolt"
+    },
+    "description": {
+      "en": "A Crossbow Bolt Case holds up to 20 Bolts.",
+      "ru": "A Crossbow Bolt Case holds up to 20 Bolts."
+    },
+    "weightLb": 1,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-case-map-or-scroll",
+    "name": {
+      "en": "Case, Map or Scroll",
+      "ru": "Case, Map or Scroll"
+    },
+    "description": {
+      "en": "A Map or Scroll Case holds up to 10 sheets of paper or 5 sheets of parchment.",
+      "ru": "A Map or Scroll Case holds up to 10 sheets of paper or 5 sheets of parchment."
+    },
+    "weightLb": 1,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-chain",
+    "name": {
+      "en": "Chain",
+      "ru": "Chain"
+    },
+    "description": {
+      "en": "As a Utilize action, you can wrap a Chain around an unwilling creature within 5 feet of yourself that has the Grappled, Incapacitated, or Restrained condition if you succeed on a DC 13 Strength (Athletics) check.",
+      "ru": "As a Utilize action, you can wrap a Chain around an unwilling creature within 5 feet of yourself that has the Grappled, Incapacitated, or Restrained condition if you succeed on a DC 13 Strength (Athletics) check."
+    },
+    "weightLb": 10,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-chest",
+    "name": {
+      "en": "Chest",
+      "ru": "Chest"
+    },
+    "description": {
+      "en": "A Chest holds up to 12 cubic feet of contents.",
+      "ru": "A Chest holds up to 12 cubic feet of contents."
+    },
+    "weightLb": 25,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-climbers-kit",
+    "name": {
+      "en": "Climber’s Kit",
+      "ru": "Climber’s Kit"
+    },
+    "description": {
+      "en": "A Climber’s Kit includes boot tips, gloves, pitons, and a harness.",
+      "ru": "A Climber’s Kit includes boot tips, gloves, pitons, and a harness."
+    },
+    "weightLb": 12,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-clothes-fine",
+    "name": {
+      "en": "Clothes, Fine",
+      "ru": "Clothes, Fine"
+    },
+    "description": {
+      "en": "Fine Clothes are made of expensive fabrics and adorned with expertly crafted details.",
+      "ru": "Fine Clothes are made of expensive fabrics and adorned with expertly crafted details."
+    },
+    "weightLb": 6,
+    "valueCp": 1500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-clothes-travelers",
+    "name": {
+      "en": "Clothes, Traveler’s",
+      "ru": "Clothes, Traveler’s"
+    },
+    "description": {
+      "en": "Traveler’s Clothes are resilient garments designed for travel in various environments.",
+      "ru": "Traveler’s Clothes are resilient garments designed for travel in various environments."
+    },
+    "weightLb": 4,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-component-pouch",
+    "name": {
+      "en": "Component Pouch",
+      "ru": "Component Pouch"
+    },
+    "description": {
+      "en": "A Component Pouch is watertight and filled with compartments that hold all the free Material components of your spells.",
+      "ru": "A Component Pouch is watertight and filled with compartments that hold all the free Material components of your spells."
+    },
+    "weightLb": 2,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-costume",
+    "name": {
+      "en": "Costume",
+      "ru": "Costume"
+    },
+    "description": {
+      "en": "While wearing a Costume, you have Advantage on any ability check you make to impersonate the person or type of person it represents.",
+      "ru": "While wearing a Costume, you have Advantage on any ability check you make to impersonate the person or type of person it represents."
+    },
+    "weightLb": 4,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-crowbar",
+    "name": {
+      "en": "Crowbar",
+      "ru": "Crowbar"
+    },
+    "description": {
+      "en": "Using a Crowbar gives you Advantage on Strength checks where the Crowbar’s leverage can be applied.",
+      "ru": "Using a Crowbar gives you Advantage on Strength checks where the Crowbar’s leverage can be applied."
+    },
+    "weightLb": 5,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-diplomats-pack",
+    "name": {
+      "en": "Diplomat’s Pack",
+      "ru": "Diplomat’s Pack"
+    },
+    "description": {
+      "en": "A Diplomat’s Pack contains the following items: Chest, Fine Clothes, Ink, 5 Ink Pens, Lamp, 2 Map or Scroll Cases, 4 flasks of Oil, 5 sheets of Paper, 5 sheets of Parchment, Perfume, and Tinderbox.",
+      "ru": "A Diplomat’s Pack contains the following items: Chest, Fine Clothes, Ink, 5 Ink Pens, Lamp, 2 Map or Scroll Cases, 4 flasks of Oil, 5 sheets of Paper, 5 sheets of Parchment, Perfume, and Tinderbox."
+    },
+    "weightLb": 39,
+    "valueCp": 3900,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-sprig-of-mistletoe-druidic-focus",
+    "name": {
+      "en": "Sprig of mistletoe (Druidic Focus)",
+      "ru": "Sprig of mistletoe (Druidic Focus)"
+    },
+    "description": {
+      "en": "A Druidic Focus takes one of the forms in the Druidic Focuses table and is carved, tied with ribbon, or painted to channel primal magic.",
+      "ru": "A Druidic Focus takes one of the forms in the Druidic Focuses table and is carved, tied with ribbon, or painted to channel primal magic."
+    },
+    "weightLb": 0,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-wooden-staff-druidic-focus",
+    "name": {
+      "en": "Wooden staff (Druidic Focus)",
+      "ru": "Wooden staff (Druidic Focus)"
+    },
+    "description": {
+      "en": "A Druidic Focus takes one of the forms in the Druidic Focuses table and is carved, tied with ribbon, or painted to channel primal magic.",
+      "ru": "A Druidic Focus takes one of the forms in the Druidic Focuses table and is carved, tied with ribbon, or painted to channel primal magic."
+    },
+    "weightLb": 4,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-yew-wand-druidic-focus",
+    "name": {
+      "en": "Yew wand (Druidic Focus)",
+      "ru": "Yew wand (Druidic Focus)"
+    },
+    "description": {
+      "en": "A Druidic Focus takes one of the forms in the Druidic Focuses table and is carved, tied with ribbon, or painted to channel primal magic.",
+      "ru": "A Druidic Focus takes one of the forms in the Druidic Focuses table and is carved, tied with ribbon, or painted to channel primal magic."
+    },
+    "weightLb": 1,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-dungeoneers-pack",
+    "name": {
+      "en": "Dungeoneer’s Pack",
+      "ru": "Dungeoneer’s Pack"
+    },
+    "description": {
+      "en": "A Dungeoneer’s Pack contains the following items: Backpack, Caltrops, Crowbar, 2 flasks of Oil, 10 days of Rations, Rope, Tinderbox, 10 Torches, and Waterskin.",
+      "ru": "A Dungeoneer’s Pack contains the following items: Backpack, Caltrops, Crowbar, 2 flasks of Oil, 10 days of Rations, Rope, Tinderbox, 10 Torches, and Waterskin."
+    },
+    "weightLb": 55,
+    "valueCp": 1200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-entertainers-pack",
+    "name": {
+      "en": "Entertainer’s Pack",
+      "ru": "Entertainer’s Pack"
+    },
+    "description": {
+      "en": "An Entertainer’s Pack contains the following items: Backpack, Bedroll, Bell, Bullseye Lantern, 3 Costumes, Mirror, 8 flasks of Oil, 9 days of Rations, Tinderbox, and Waterskin.",
+      "ru": "An Entertainer’s Pack contains the following items: Backpack, Bedroll, Bell, Bullseye Lantern, 3 Costumes, Mirror, 8 flasks of Oil, 9 days of Rations, Tinderbox, and Waterskin."
+    },
+    "weightLb": 58.5,
+    "valueCp": 4000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-explorers-pack",
+    "name": {
+      "en": "Explorer’s Pack",
+      "ru": "Explorer’s Pack"
+    },
+    "description": {
+      "en": "An Explorer’s Pack contains the following items: Backpack, Bedroll, 2 flasks of Oil, 10 days of Rations, Rope, Tinderbox, 10 Torches, and Waterskin.",
+      "ru": "An Explorer’s Pack contains the following items: Backpack, Bedroll, 2 flasks of Oil, 10 days of Rations, Rope, Tinderbox, 10 Torches, and Waterskin."
+    },
+    "weightLb": 55,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-flask",
+    "name": {
+      "en": "Flask",
+      "ru": "Flask"
+    },
+    "description": {
+      "en": "A Flask holds up to 1 pint.",
+      "ru": "A Flask holds up to 1 pint."
+    },
+    "weightLb": 1,
+    "valueCp": 2,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-grappling-hook",
+    "name": {
+      "en": "Grappling Hook",
+      "ru": "Grappling Hook"
+    },
+    "description": {
+      "en": "As a Utilize action, you can throw the Grappling Hook at a railing, a ledge, or another catch within 50 feet of yourself, and the hook catches on if you succeed on a DC 13 Dexterity (Acrobatics) check.",
+      "ru": "As a Utilize action, you can throw the Grappling Hook at a railing, a ledge, or another catch within 50 feet of yourself, and the hook catches on if you succeed on a DC 13 Dexterity (Acrobatics) check."
+    },
+    "weightLb": 4,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-healers-kit",
+    "name": {
+      "en": "Healer’s Kit",
+      "ru": "Healer’s Kit"
+    },
+    "description": {
+      "en": "A Healer’s Kit has ten uses.",
+      "ru": "A Healer’s Kit has ten uses."
+    },
+    "weightLb": 3,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-amulet-holy-symbol",
+    "name": {
+      "en": "Amulet (Holy Symbol)",
+      "ru": "Amulet (Holy Symbol)"
+    },
+    "description": {
+      "en": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic.",
+      "ru": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic."
+    },
+    "weightLb": 1,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": [
+      "neck"
+    ]
+  },
+  {
+    "itemId": "srd-emblem-holy-symbol",
+    "name": {
+      "en": "Emblem (Holy Symbol)",
+      "ru": "Emblem (Holy Symbol)"
+    },
+    "description": {
+      "en": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic.",
+      "ru": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic."
+    },
+    "weightLb": 0,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-reliquary-holy-symbol",
+    "name": {
+      "en": "Reliquary (Holy Symbol)",
+      "ru": "Reliquary (Holy Symbol)"
+    },
+    "description": {
+      "en": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic.",
+      "ru": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic."
+    },
+    "weightLb": 2,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-holy-water",
+    "name": {
+      "en": "Holy Water",
+      "ru": "Holy Water"
+    },
+    "description": {
+      "en": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Holy Water.",
+      "ru": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Holy Water."
+    },
+    "weightLb": 1,
+    "valueCp": 2500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-hunting-trap",
+    "name": {
+      "en": "Hunting Trap",
+      "ru": "Hunting Trap"
+    },
+    "description": {
+      "en": "As a Utilize action, you can set a Hunting Trap, which is a sawtooth steel ring that snaps shut when a creature steps on a pressure plate in the center.",
+      "ru": "As a Utilize action, you can set a Hunting Trap, which is a sawtooth steel ring that snaps shut when a creature steps on a pressure plate in the center."
+    },
+    "weightLb": 25,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-ink",
+    "name": {
+      "en": "Ink",
+      "ru": "Ink"
+    },
+    "description": {
+      "en": "Ink comes in a 1-ounce bottle, which provides enough ink to write about 500 pages.",
+      "ru": "Ink comes in a 1-ounce bottle, which provides enough ink to write about 500 pages."
+    },
+    "weightLb": 0,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-ink-pen",
+    "name": {
+      "en": "Ink Pen",
+      "ru": "Ink Pen"
+    },
+    "description": {
+      "en": "Using Ink, an Ink Pen is used to write or draw.",
+      "ru": "Using Ink, an Ink Pen is used to write or draw."
+    },
+    "weightLb": 0,
+    "valueCp": 2,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-jug",
+    "name": {
+      "en": "Jug",
+      "ru": "Jug"
+    },
+    "description": {
+      "en": "A Jug holds up to 1 gallon.",
+      "ru": "A Jug holds up to 1 gallon."
+    },
+    "weightLb": 4,
+    "valueCp": 2,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-ladder",
+    "name": {
+      "en": "Ladder",
+      "ru": "Ladder"
+    },
+    "description": {
+      "en": "A Ladder is 10 feet tall.",
+      "ru": "A Ladder is 10 feet tall."
+    },
+    "weightLb": 25,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-lamp",
+    "name": {
+      "en": "Lamp",
+      "ru": "Lamp"
+    },
+    "description": {
+      "en": "A Lamp burns Oil as fuel to cast Bright Light in a 15-foot radius and Dim Light for an additional 30 feet.",
+      "ru": "A Lamp burns Oil as fuel to cast Bright Light in a 15-foot radius and Dim Light for an additional 30 feet."
+    },
+    "weightLb": 1,
+    "valueCp": 50,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-lantern-bullseye",
+    "name": {
+      "en": "Lantern, Bullseye",
+      "ru": "Lantern, Bullseye"
+    },
+    "description": {
+      "en": "A Bullseye Lantern burns Oil as fuel to cast Bright Light in a 60-foot Cone and Dim Light for an additional 60 feet.",
+      "ru": "A Bullseye Lantern burns Oil as fuel to cast Bright Light in a 60-foot Cone and Dim Light for an additional 60 feet."
+    },
+    "weightLb": 2,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-lantern-hooded",
+    "name": {
+      "en": "Lantern, Hooded",
+      "ru": "Lantern, Hooded"
+    },
+    "description": {
+      "en": "A Hooded Lantern burns Oil as fuel to cast Bright Light in a 30-foot radius and Dim Light for an additional 30 feet.",
+      "ru": "A Hooded Lantern burns Oil as fuel to cast Bright Light in a 30-foot radius and Dim Light for an additional 30 feet."
+    },
+    "weightLb": 2,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-lock",
+    "name": {
+      "en": "Lock",
+      "ru": "Lock"
+    },
+    "description": {
+      "en": "A Lock comes with a key.",
+      "ru": "A Lock comes with a key."
+    },
+    "weightLb": 1,
+    "valueCp": 1000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-magnifying-glass",
+    "name": {
+      "en": "Magnifying Glass",
+      "ru": "Magnifying Glass"
+    },
+    "description": {
+      "en": "A Magnifying Glass grants Advantage on any ability check made to appraise or inspect a highly detailed item.",
+      "ru": "A Magnifying Glass grants Advantage on any ability check made to appraise or inspect a highly detailed item."
+    },
+    "weightLb": 0,
+    "valueCp": 10000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-manacles",
+    "name": {
+      "en": "Manacles",
+      "ru": "Manacles"
+    },
+    "description": {
+      "en": "As a Utilize action, you can use Manacles to bind an unwilling Small or Medium creature within 5 feet of yourself that has the Grappled, Incapacitated, or Restrained condition if you succeed on a DC 13 Dexterity (Sleight of Hand) check.",
+      "ru": "As a Utilize action, you can use Manacles to bind an unwilling Small or Medium creature within 5 feet of yourself that has the Grappled, Incapacitated, or Restrained condition if you succeed on a DC 13 Dexterity (Sleight of Hand) check."
+    },
+    "weightLb": 6,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-map",
+    "name": {
+      "en": "Map",
+      "ru": "Map"
+    },
+    "description": {
+      "en": "If you consult an accurate Map, you gain a +5 bonus to Wisdom (Survival) checks you make to find your way in the place represented on it.",
+      "ru": "If you consult an accurate Map, you gain a +5 bonus to Wisdom (Survival) checks you make to find your way in the place represented on it."
+    },
+    "weightLb": 0,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-mirror",
+    "name": {
+      "en": "Mirror",
+      "ru": "Mirror"
+    },
+    "description": {
+      "en": "A handheld steel Mirror is useful for personal cosmetics but also for peeking around corners and reflecting light as a signal.",
+      "ru": "A handheld steel Mirror is useful for personal cosmetics but also for peeking around corners and reflecting light as a signal."
+    },
+    "weightLb": 0.5,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-net",
+    "name": {
+      "en": "Net",
+      "ru": "Net"
+    },
+    "description": {
+      "en": "When you take the Attack action, you can replace one of your attacks with throwing a Net.",
+      "ru": "When you take the Attack action, you can replace one of your attacks with throwing a Net."
+    },
+    "weightLb": 3,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-oil",
+    "name": {
+      "en": "Oil",
+      "ru": "Oil"
+    },
+    "description": {
+      "en": "You can douse a creature, object, or space with Oil or use it as fuel, as detailed below.",
+      "ru": "You can douse a creature, object, or space with Oil or use it as fuel, as detailed below."
+    },
+    "weightLb": 1,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-paper",
+    "name": {
+      "en": "Paper",
+      "ru": "Paper"
+    },
+    "description": {
+      "en": "One sheet of Paper can hold about 250 handwritten words.",
+      "ru": "One sheet of Paper can hold about 250 handwritten words."
+    },
+    "weightLb": 0,
+    "valueCp": 20,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-parchment",
+    "name": {
+      "en": "Parchment",
+      "ru": "Parchment"
+    },
+    "description": {
+      "en": "One sheet of Parchment can hold about 250 handwritten words.",
+      "ru": "One sheet of Parchment can hold about 250 handwritten words."
+    },
+    "weightLb": 0,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-perfume",
+    "name": {
+      "en": "Perfume",
+      "ru": "Perfume"
+    },
+    "description": {
+      "en": "Perfume comes in a 4-ounce vial.",
+      "ru": "Perfume comes in a 4-ounce vial."
+    },
+    "weightLb": 0,
+    "valueCp": 500,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-poison-basic",
+    "name": {
+      "en": "Poison, Basic",
+      "ru": "Poison, Basic"
+    },
+    "description": {
+      "en": "As a Bonus Action, you can use a vial of Basic Poison to coat one weapon or up to three pieces of ammunition.",
+      "ru": "As a Bonus Action, you can use a vial of Basic Poison to coat one weapon or up to three pieces of ammunition."
+    },
+    "weightLb": 0,
+    "valueCp": 10000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-pole",
+    "name": {
+      "en": "Pole",
+      "ru": "Pole"
+    },
+    "description": {
+      "en": "A Pole is 10 feet long.",
+      "ru": "A Pole is 10 feet long."
+    },
+    "weightLb": 7,
+    "valueCp": 5,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-pot-iron",
+    "name": {
+      "en": "Pot, Iron",
+      "ru": "Pot, Iron"
+    },
+    "description": {
+      "en": "An Iron Pot holds up to 1 gallon.",
+      "ru": "An Iron Pot holds up to 1 gallon."
+    },
+    "weightLb": 10,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-potion-of-healing",
+    "name": {
+      "en": "Potion of Healing",
+      "ru": "Potion of Healing"
+    },
+    "description": {
+      "en": "This potion is a magic item.",
+      "ru": "This potion is a magic item."
+    },
+    "weightLb": 0.5,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-pouch",
+    "name": {
+      "en": "Pouch",
+      "ru": "Pouch"
+    },
+    "description": {
+      "en": "A Pouch holds up to 6 pounds within one-fifth of a cubic foot.",
+      "ru": "A Pouch holds up to 6 pounds within one-fifth of a cubic foot."
+    },
+    "weightLb": 1,
+    "valueCp": 50,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-priests-pack",
+    "name": {
+      "en": "Priest’s Pack",
+      "ru": "Priest’s Pack"
+    },
+    "description": {
+      "en": "A Priest’s Pack contains the following items: Backpack, Blanket, Holy Water, Lamp, 7 days of Rations, Robe, and Tinderbox.",
+      "ru": "A Priest’s Pack contains the following items: Backpack, Blanket, Holy Water, Lamp, 7 days of Rations, Robe, and Tinderbox."
+    },
+    "weightLb": 29,
+    "valueCp": 3300,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-quiver",
+    "name": {
+      "en": "Quiver",
+      "ru": "Quiver"
+    },
+    "description": {
+      "en": "A Quiver holds up to 20 Arrows.",
+      "ru": "A Quiver holds up to 20 Arrows."
+    },
+    "weightLb": 1,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-ram-portable",
+    "name": {
+      "en": "Ram, Portable",
+      "ru": "Ram, Portable"
+    },
+    "description": {
+      "en": "You can use a Portable Ram to break down doors.",
+      "ru": "You can use a Portable Ram to break down doors."
+    },
+    "weightLb": 35,
+    "valueCp": 400,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-rations",
+    "name": {
+      "en": "Rations",
+      "ru": "Rations"
+    },
+    "description": {
+      "en": "Rations consist of travel-ready food, including jerky, dried fruit, hardtack, and nuts.",
+      "ru": "Rations consist of travel-ready food, including jerky, dried fruit, hardtack, and nuts."
+    },
+    "weightLb": 2,
+    "valueCp": 50,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-robe",
+    "name": {
+      "en": "Robe",
+      "ru": "Robe"
+    },
+    "description": {
+      "en": "A Robe has vocational or ceremonial significance.",
+      "ru": "A Robe has vocational or ceremonial significance."
+    },
+    "weightLb": 4,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-rope",
+    "name": {
+      "en": "Rope",
+      "ru": "Rope"
+    },
+    "description": {
+      "en": "As a Utilize action, you can tie a knot with Rope if you succeed on a DC 10 Dexterity (Sleight of Hand) check.",
+      "ru": "As a Utilize action, you can tie a knot with Rope if you succeed on a DC 10 Dexterity (Sleight of Hand) check."
+    },
+    "weightLb": 5,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-sack",
+    "name": {
+      "en": "Sack",
+      "ru": "Sack"
+    },
+    "description": {
+      "en": "A Sack holds up to 30 pounds within 1 cubic foot.",
+      "ru": "A Sack holds up to 30 pounds within 1 cubic foot."
+    },
+    "weightLb": 0.5,
+    "valueCp": 1,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-scholars-pack",
+    "name": {
+      "en": "Scholar’s Pack",
+      "ru": "Scholar’s Pack"
+    },
+    "description": {
+      "en": "A Scholar’s Pack contains the following items: Backpack, Book, Ink, Ink Pen, Lamp, 10 flasks of Oil, 10 sheets of Parchment, and Tinderbox.",
+      "ru": "A Scholar’s Pack contains the following items: Backpack, Book, Ink, Ink Pen, Lamp, 10 flasks of Oil, 10 sheets of Parchment, and Tinderbox."
+    },
+    "weightLb": 22,
+    "valueCp": 4000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-shovel",
+    "name": {
+      "en": "Shovel",
+      "ru": "Shovel"
+    },
+    "description": {
+      "en": "Working for 1 hour, you can use a Shovel to dig a hole that is 5 feet on each side in soil or similar material.",
+      "ru": "Working for 1 hour, you can use a Shovel to dig a hole that is 5 feet on each side in soil or similar material."
+    },
+    "weightLb": 5,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-signal-whistle",
+    "name": {
+      "en": "Signal Whistle",
+      "ru": "Signal Whistle"
+    },
+    "description": {
+      "en": "When blown as a Utilize action, a Signal Whistle produces a sound that can be heard up to 600 feet away.",
+      "ru": "When blown as a Utilize action, a Signal Whistle produces a sound that can be heard up to 600 feet away."
+    },
+    "weightLb": 0,
+    "valueCp": 5,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-spell-scroll-cantrip",
+    "name": {
+      "en": "Spell Scroll (Cantrip)",
+      "ru": "Spell Scroll (Cantrip)"
+    },
+    "description": {
+      "en": "A Spell Scroll (Cantrip) or Spell Scroll (Level 1) is a magic item that bears the words of a cantrip or level 1 spell, respectively, determined by the scroll’s creator.",
+      "ru": "A Spell Scroll (Cantrip) or Spell Scroll (Level 1) is a magic item that bears the words of a cantrip or level 1 spell, respectively, determined by the scroll’s creator."
+    },
+    "weightLb": 0,
+    "valueCp": 3000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-spell-scroll-level-1",
+    "name": {
+      "en": "Spell Scroll (Level 1)",
+      "ru": "Spell Scroll (Level 1)"
+    },
+    "description": {
+      "en": "A Spell Scroll (Cantrip) or Spell Scroll (Level 1) is a magic item that bears the words of a cantrip or level 1 spell, respectively, determined by the scroll’s creator.",
+      "ru": "A Spell Scroll (Cantrip) or Spell Scroll (Level 1) is a magic item that bears the words of a cantrip or level 1 spell, respectively, determined by the scroll’s creator."
+    },
+    "weightLb": 0,
+    "valueCp": 5000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "consumable",
+    "stackable": true,
+    "slots": [],
+    "effect": {
+      "kind": "narrative"
+    }
+  },
+  {
+    "itemId": "srd-spikes-iron",
+    "name": {
+      "en": "Spikes, Iron",
+      "ru": "Spikes, Iron"
+    },
+    "description": {
+      "en": "Iron Spikes come in bundles of ten.",
+      "ru": "Iron Spikes come in bundles of ten."
+    },
+    "weightLb": 5,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-spyglass",
+    "name": {
+      "en": "Spyglass",
+      "ru": "Spyglass"
+    },
+    "description": {
+      "en": "Objects viewed through a Spyglass are magnified to twice their size.",
+      "ru": "Objects viewed through a Spyglass are magnified to twice their size."
+    },
+    "weightLb": 1,
+    "valueCp": 100000,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-string",
+    "name": {
+      "en": "String",
+      "ru": "String"
+    },
+    "description": {
+      "en": "String is 10 feet long.",
+      "ru": "String is 10 feet long."
+    },
+    "weightLb": 0,
+    "valueCp": 10,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-tent",
+    "name": {
+      "en": "Tent",
+      "ru": "Tent"
+    },
+    "description": {
+      "en": "A Tent sleeps up to two Small or Medium creatures.",
+      "ru": "A Tent sleeps up to two Small or Medium creatures."
+    },
+    "weightLb": 20,
+    "valueCp": 200,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-tinderbox",
+    "name": {
+      "en": "Tinderbox",
+      "ru": "Tinderbox"
+    },
+    "description": {
+      "en": "A Tinderbox is a small container holding flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire.",
+      "ru": "A Tinderbox is a small container holding flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire."
+    },
+    "weightLb": 1,
+    "valueCp": 50,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-torch",
+    "name": {
+      "en": "Torch",
+      "ru": "Torch"
+    },
+    "description": {
+      "en": "A Torch burns for 1 hour, casting Bright Light in a 20-foot radius and Dim Light for an additional 20 feet.",
+      "ru": "A Torch burns for 1 hour, casting Bright Light in a 20-foot radius and Dim Light for an additional 20 feet."
+    },
+    "weightLb": 1,
+    "valueCp": 1,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": true,
+    "slots": []
+  },
+  {
+    "itemId": "srd-vial",
+    "name": {
+      "en": "Vial",
+      "ru": "Vial"
+    },
+    "description": {
+      "en": "A Vial holds up to 4 ounces.",
+      "ru": "A Vial holds up to 4 ounces."
+    },
+    "weightLb": 0,
+    "valueCp": 100,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  },
+  {
+    "itemId": "srd-waterskin",
+    "name": {
+      "en": "Waterskin",
+      "ru": "Waterskin"
+    },
+    "description": {
+      "en": "A Waterskin holds up to 4 pints.",
+      "ru": "A Waterskin holds up to 4 pints."
+    },
+    "weightLb": 5,
+    "valueCp": 20,
+    "source": "srd",
+    "untranslated": true,
+    "category": "gear",
+    "stackable": false,
+    "slots": []
+  }
+]

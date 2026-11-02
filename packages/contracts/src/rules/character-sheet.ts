@@ -58,7 +58,8 @@ export type SpellId = (typeof SPELL_IDS)[number];
 /**
  * The weapons the rules know (SRD 5.2.1 mechanics; `@ltw/rules` WEAPONS). The longbow came first;
  * the next joined with the Ravenford weapons of the item catalog (Stage 520); the rest of the SRD's
- * weapon table, firearms apart, with the weapons' rules (docs/adr/0047-weapons.md). Only grows.
+ * weapon table with the weapons' rules (docs/adr/0047-weapons.md), and its firearms with the SRD's
+ * equipment (docs/adr/0054-items-as-data.md §1). Only grows.
  */
 export const WEAPON_IDS = [
   'longbow',
@@ -97,6 +98,8 @@ export const WEAPON_IDS = [
   'blowgun',
   'hand-crossbow',
   'heavy-crossbow',
+  'musket',
+  'pistol',
 ] as const;
 export type WeaponId = (typeof WEAPON_IDS)[number];
 
@@ -159,7 +162,8 @@ export const damageDefensesShape = {
 };
 
 /** The kinds of ammunition a weapon fires (ADR 0047 §5): carried as items, spent by attacks. */
-export const AMMUNITION_KINDS = ['arrow', 'bolt', 'bullet', 'needle'] as const;
+/** A sling's bullets and a firearm's are not the same (SRD 5.2.1 Ammunition table). */
+export const AMMUNITION_KINDS = ['arrow', 'bolt', 'bullet', 'needle', 'firearm-bullet'] as const;
 export type AmmunitionKind = (typeof AMMUNITION_KINDS)[number];
 
 /** The classes sheets may hold (Stage 605 added the Fighter, the Rogue and the Cleric). */

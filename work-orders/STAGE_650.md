@@ -41,6 +41,10 @@ chat (2026-11-02); it stays outside the repository.
 - 650d — Equipment and magic items: the SRD's equipment (weapons, armor, tools, gear, prices) and
   magic items (rarity, attunement, charges, unidentified, cursed) in a campaign's item catalog beside
   Ravenford's originals; the ADR 0039 test then forbids SRD names only in Ravenford's originals.
+  ADR 0054; in parts: the equipment (the Equipment chapter's tables and entries, Musket and Pistol,
+  the catalog's SRD entries behind `@ltw/contracts/srd-items`, the DM's catalog in the open pack, an
+  SRD entry's words on its card); magic items with attunement, bonuses on a base item, protection
+  and healing potions; charges at the next dawn, identifying, curses.
 - 650e — The rules reference (the SRD's glossary in the app, tooltips on conditions, spells and
   actions) and the Gameplay Toolbox (diseases, curses, fear and mental stress, traps); the Russian
   translation pipeline (decision 7: the Codex CLI on the owner's subscription, a glossary of the

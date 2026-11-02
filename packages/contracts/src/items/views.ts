@@ -26,6 +26,12 @@ export interface InventoryItem {
     readonly shieldBonus: number | null;
     /** The rules weapon a weapon fights as. */
     readonly weapon: WeaponId | null;
+    /** The SRD's entry, or Ravenford's own (null) (docs/adr/0054-items-as-data.md §3). */
+    readonly source: 'srd' | null;
+    /** Its Russian words are still the English ones (Stage 650e translates them). */
+    readonly untranslated: boolean;
+    /** The SRD's words about it, English, for an SRD entry; null for Ravenford's own. */
+    readonly text: string | null;
   } | null;
 }
 

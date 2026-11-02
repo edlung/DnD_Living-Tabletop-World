@@ -44,5 +44,10 @@ export function effectText(t: Translate, effect: ItemEffect): string {
   }
 }
 
+/** Pounds to the tenth; below a pound, to the hundredth (a coin weighs 0.02 lb). */
 export const formatWeight = (pounds: number) =>
-  `${Number.isInteger(pounds) ? pounds : pounds.toFixed(1)}`;
+  Number.isInteger(pounds)
+    ? String(pounds)
+    : pounds < 1
+      ? String(Math.round(pounds * 100) / 100)
+      : pounds.toFixed(1);

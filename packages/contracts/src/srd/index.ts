@@ -29,6 +29,12 @@ export {
   type SrdSpellMechanics,
 } from './spell-mechanics.ts';
 export {
+  SRD_EQUIPMENT_KINDS,
+  srdEquipmentSchema,
+  type SrdEquipment,
+  type SrdEquipmentKind,
+} from './equipment.ts';
+export {
   addFromBestiaryRequestSchema,
   bestiaryMonsterIdSchema,
   type AddFromBestiaryRequest,

@@ -1,9 +1,10 @@
-import { catalogEntry, type InventoryItem, type InventoryResponse } from '@ltw/contracts';
+import type { InventoryItem, InventoryResponse } from '@ltw/contracts';
 
 import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
 import { entityRef } from '../knowledge/projection.ts';
 import { carriedBy, possessionOf } from './records.ts';
+import { itemEntry } from './catalog.ts';
 
 /**
  * What a character carries, for the DM or for that character's own perspective
@@ -25,7 +26,7 @@ export function inventoryView(
     const possession = possessionOf(state, itemId);
     const entity = state.entities.get(itemId);
     if (!possession || entity?.status !== 'active') continue;
-    const entry = possession.catalogId === null ? undefined : catalogEntry(possession.catalogId);
+    const entry = possession.catalogId === null ? undefined : itemEntry(possession.catalogId);
     totalWeightLb += (entry?.weightLb ?? 0) * possession.quantity;
     items.push({
       itemId,
@@ -46,6 +47,10 @@ export function inventoryView(
             armor: entry.armor ? { baseAc: entry.armor.baseAc, dexCap: entry.armor.dexCap } : null,
             shieldBonus: entry.shieldBonus ?? null,
             weapon: entry.weapon ?? null,
+            source: entry.source ?? null,
+            untranslated: entry.untranslated === true,
+            // The SRD's words come from the server (`@ltw/rules`), which the domain cannot read.
+            text: null,
           }
         : null,
     });

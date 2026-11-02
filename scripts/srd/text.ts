@@ -42,16 +42,18 @@ interface RawLine {
 /** Pages `from`–`to` as lines in reading order, footers and page numbers dropped. */
 export function pageRows(dir: string, from: number, to: number): PdfLine[] {
   const rows: PdfLine[] = [];
-  for (let page = from; page <= to; page += 1) {
-    const file = readFileSync(join(dir, `page-${String(page).padStart(3, '0')}.jsonl`), 'utf8');
-    const lines = file
-      .split('\n')
-      .filter((row) => row.trim() !== '')
-      .map((row) => placed(page, JSON.parse(row) as RawLine))
-      .filter((line) => !FOOTER.test(line.text) && !(/^\d+$/.test(line.text) && line.y0 < 60));
-    rows.push(...inReadingOrder(lines));
-  }
+  for (let page = from; page <= to; page += 1) rows.push(...inReadingOrder(pageLinesAt(dir, page)));
   return rows;
+}
+
+/** One page's lines where they stand, footers and page numbers dropped (tables read them so). */
+export function pageLinesAt(dir: string, page: number): PdfLine[] {
+  const file = readFileSync(join(dir, `page-${String(page).padStart(3, '0')}.jsonl`), 'utf8');
+  return file
+    .split('\n')
+    .filter((row) => row.trim() !== '')
+    .map((row) => placed(page, JSON.parse(row) as RawLine))
+    .filter((line) => !FOOTER.test(line.text) && !(/^\d+$/.test(line.text) && line.y0 < 60));
 }
 
 function placed(page: number, raw: RawLine): PdfLine {

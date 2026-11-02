@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { GiveItemForm } from './give-item-form.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { Bag } from './inventory/bag.tsx';
 import { ItemCard } from './inventory/item-card.tsx';
@@ -160,6 +161,7 @@ export function InventoryPanel({
           </div>
         </>
       )}
+      <GiveItemForm api={api} holderId={characterId} locked={locked} />
     </div>
   );
 }

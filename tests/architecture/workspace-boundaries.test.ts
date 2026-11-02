@@ -20,6 +20,9 @@ interface Boundaries {
       mayDependOn: string[];
       forbiddenGroups: string[];
       forbiddenNames?: Record<string, string[]>;
+      /** Further public entry points: subpath → source file (docs/adr/0004 amendment 2026-11-02). */
+      entryPoints?: Record<string, string>;
+      browser?: boolean;
     }
   >;
 }
@@ -147,15 +150,24 @@ describe('workspace boundaries', () => {
   });
 
   it.each(entries.filter(([, rule]) => rule.path.startsWith('packages/')))(
-    '%s exposes a single public entry point',
+    '%s exposes its declared public entry points only',
     (_name, rule) => {
       const manifest = manifests.get(rule.path);
-      expect(Object.keys(manifest?.exports ?? {})).toEqual(['.']);
+      const further = Object.entries(rule.entryPoints ?? {});
+      expect(Object.keys(manifest?.exports ?? {})).toEqual(['.', ...further.map(([path]) => path)]);
       expect(manifest?.exports?.['.']).toEqual({
         '@ltw/source': './src/index.ts',
         types: './dist/index.d.ts',
         default: './dist/index.js',
       });
+      for (const [path, source] of further) {
+        const built = source.replace(/^src\//, './dist/').replace(/\.ts$/, '');
+        expect(manifest?.exports?.[path]).toEqual({
+          '@ltw/source': `./${source}`,
+          types: `${built}.d.ts`,
+          default: `${built}.js`,
+        });
+      }
     },
   );
 

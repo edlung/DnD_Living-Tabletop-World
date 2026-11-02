@@ -1,5 +1,5 @@
 import type { InventoryItem } from '@ltw/contracts';
-import { useT, type Translate } from '@ltw/ui';
+import { useLanguage, useT, type Translate } from '@ltw/ui';
 
 import { itemArtUrl } from '../../visual/ui-kit.ts';
 import { formatWeight } from '../item-text.ts';
@@ -13,11 +13,13 @@ const COINS = [
 
 /** A worth in pennies as coins, largest first: "15 cr · 3 m · 4 p". */
 export function worthWords(t: Translate, pennies: number): string {
-  let left = pennies;
+  // To the hundredth of a penny: a sling bullet is worth a fifth of one (SRD 5.2.1).
+  let left = Math.round(pennies * 100) / 100;
   const parts: string[] = [];
   for (const coin of COINS) {
-    const count = Math.floor(left / coin.value);
-    left -= count * coin.value;
+    const last = coin.value === 1;
+    const count = last ? left : Math.floor(left / coin.value);
+    left = Math.round((left - count * coin.value) * 100) / 100;
     if (count > 0) parts.push(t(coin.amount, { count }));
   }
   return parts.length === 0 ? t('{count} p', { count: 0 }) : parts.join(' · ');
@@ -37,12 +39,26 @@ export function PurseAndLoad({
   readonly capacityLb: number | null;
 }) {
   const t = useT();
+  const language = useLanguage();
   const coins = COINS.map((coin) => ({
     ...coin,
     count: items
       .filter((item) => item.catalog?.itemId === coin.catalogId)
       .reduce((sum, item) => sum + item.quantity, 0),
   }));
+  // Other coins carried — the SRD's, by their own names (docs/adr/0054-items-as-data.md §3).
+  const own = new Set<string>(COINS.map((coin) => coin.catalogId));
+  const others = new Map<string, { name: string; count: number; english: boolean }>();
+  for (const item of items) {
+    const catalog = item.catalog;
+    if (catalog?.category !== 'coins' || own.has(catalog.itemId)) continue;
+    const before = others.get(catalog.itemId);
+    others.set(catalog.itemId, {
+      name: catalog.name[language === 'ru' ? 'ru' : 'en'],
+      count: (before?.count ?? 0) + item.quantity,
+      english: language === 'ru' && catalog.untranslated,
+    });
+  }
   const share = capacityLb ? Math.min(100, (100 * totalWeightLb) / capacityLb) : 0;
   const heavy = capacityLb !== null && totalWeightLb > capacityLb;
   return (
@@ -62,6 +78,14 @@ export function PurseAndLoad({
               </li>
             );
           })}
+          {[...others].map(([catalogId, coin]) => (
+            <li key={catalogId} className="purse-coin">
+              <span className="purse-count">{coin.count}</span>
+              <span className="purse-name" lang={coin.english ? 'en' : undefined}>
+                {coin.name}
+              </span>
+            </li>
+          ))}
         </ul>
       </section>
       <section className={`load${heavy ? ' is-heavy' : ''}`} aria-label={t('Load')}>

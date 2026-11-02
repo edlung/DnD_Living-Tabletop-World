@@ -57,4 +57,16 @@ registerRussian({
   'You picked it up. Your view has been refreshed.': 'Вы подняли вещь. Вид обновлён.',
   'That item cannot be handled like this right now.': 'С этой вещью сейчас нельзя так поступить.',
   'Items cannot be handled during an encounter.': 'Это нельзя сделать во время схватки.',
+  // The DM's item catalog (docs/adr/0054-items-as-data.md §4).
+  'Give an item from the catalog': 'Выдать предмет из каталога',
+  'Find by name': 'Найти по названию',
+  Kind: 'Вид',
+  'Any kind': 'Любой вид',
+  Item: 'Предмет',
+  '{name} (SRD)': '{name} (SRD)',
+  '{kind} · {worth} · {weight} lb': '{kind} · {worth} · {weight} фунт.',
+  'Give it': 'Выдать',
+  '{item} is in the pack.': '{item} — теперь в снаряжении.',
+  'It could not be given. Try again.': 'Не удалось выдать. Попробуйте ещё раз.',
+  'A whole number from 1 to 99.': 'Целое число от 1 до 99.',
 });

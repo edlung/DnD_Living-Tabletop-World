@@ -10,12 +10,13 @@ import {
   type CommandRejected,
 } from '@ltw/contracts';
 import { JOIN_REFUSALS, joinRefusal } from '@ltw/combat';
-import { campaignRole, type Actor, type WorldState } from '@ltw/domain';
+import type { WorldState } from '@ltw/domain';
 import { SRD_MONSTERS, srdMonster, srdMonsterBlock } from '@ltw/rules';
-import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
 import { statusOf } from '../http/command-status.ts';
+import { dmCampaignState } from '../http/dm-campaign.ts';
 import { sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
 
@@ -43,27 +44,6 @@ const LIST: BestiaryResponse = {
   })),
 };
 
-async function dmOf(
-  request: FastifyRequest,
-  reply: FastifyReply,
-  deps: RouteDependencies,
-  actor: Actor,
-  campaignId: string,
-): Promise<WorldState | null> {
-  const state = (await deps.engine.load(campaignId))?.state ?? null;
-  const role = campaignRole(state, actor);
-  if (role === null || state === null) {
-    await sendError(reply, request, 'NOT_FOUND');
-    return null;
-  }
-  if (role !== 'DM') {
-    await sendError(reply, request, 'FORBIDDEN');
-    return null;
-  }
-  return state;
-}
-
-/** Where a new creature stands: the fight's place, else where a party character is. */
 function placeOf(state: WorldState): string | null {
   if (state.encounter) return state.encounter.locationId;
   for (const entity of state.entities.values()) {
@@ -79,7 +59,7 @@ export function registerBestiaryRoutes(app: FastifyInstance, deps: RouteDependen
     if (!actor) return reply;
     const path = parseInput(params, request.params, request, reply);
     if (!path) return reply;
-    if (!(await dmOf(request, reply, deps, actor, path.campaignId))) return reply;
+    if (!(await dmCampaignState(request, reply, deps, actor, path.campaignId))) return reply;
     return reply.send(LIST);
   });
 
@@ -88,7 +68,7 @@ export function registerBestiaryRoutes(app: FastifyInstance, deps: RouteDependen
     if (!actor) return reply;
     const path = parseInput(entryParams, request.params, request, reply);
     if (!path) return reply;
-    if (!(await dmOf(request, reply, deps, actor, path.campaignId))) return reply;
+    if (!(await dmCampaignState(request, reply, deps, actor, path.campaignId))) return reply;
     const monster = srdMonster(path.monsterId);
     if (!monster) return sendError(reply, request, 'NOT_FOUND');
     const body: BestiaryEntryResponse = { monster };
@@ -102,7 +82,7 @@ export function registerBestiaryRoutes(app: FastifyInstance, deps: RouteDependen
     if (!path) return reply;
     const body = parseInput(addFromBestiaryRequestSchema, request.body, request, reply);
     if (!body) return reply;
-    const state = await dmOf(request, reply, deps, actor, path.campaignId);
+    const state = await dmCampaignState(request, reply, deps, actor, path.campaignId);
     if (!state) return reply;
     const monster = srdMonster(path.monsterId);
     const block = srdMonsterBlock(path.monsterId);

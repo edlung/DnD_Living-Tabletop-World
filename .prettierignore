@@ -92,3 +92,4 @@ reports/evidence/stage-450/uuid-red-receipt.md
 
 # SRD 5.2.1 catalogs written by `scripts/srd/import.ts` (ADR 0051): regenerated, never edited by hand.
 packages/rules/src/srd/*.json
+packages/contracts/src/items/srd/*.json

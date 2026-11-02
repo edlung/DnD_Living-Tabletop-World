@@ -5,7 +5,8 @@ import { AMMUNITION_KINDS, WEAPON_IDS } from '../rules/character-sheet.ts';
 /**
  * Item catalog entries (docs/adr/0039-item-possession.md). A catalog entry
  * describes a kind of thing; it never claims to be a particular world object.
- * Content is original to the Ravenford setting, not derived from the SRD.
+ * Ravenford's entries are its own; the SRD's equipment and magic items join
+ * them (`source: 'srd'`, docs/adr/0054-items-as-data.md).
  */
 export const ITEM_CATEGORIES = [
   'armor',
@@ -35,7 +36,7 @@ export type EquipSlot = (typeof EQUIP_SLOTS)[number];
 export const itemCatalogIdSchema = z
   .string()
   .regex(/^[a-z][a-z0-9]*(-[a-z0-9]+)*$/, 'must be a lowercase ASCII slug')
-  .max(48);
+  .max(64);
 
 /** What using a consumable does. A closed union; the DM narrates anything else. */
 export const itemEffectSchema = z.discriminatedUnion('kind', [
@@ -58,8 +59,16 @@ export const itemEntrySchema = z
     category: z.enum(ITEM_CATEGORIES),
     name: localized,
     description: localizedText,
-    weightLb: z.number().min(0).max(500),
-    valueCp: z.number().int().min(0).max(10_000_000),
+    weightLb: z.number().min(0).max(2000),
+    /** In copper pennies, to the hundredth: a sling bullet is a fifth of one (SRD 5.2.1). */
+    valueCp: z
+      .number()
+      .min(0)
+      .max(100_000_000)
+      .refine(
+        (value) => Math.abs(value * 100 - Math.round(value * 100)) < 1e-6,
+        'to the hundredth',
+      ),
     stackable: z.boolean(),
     slots: z.array(z.enum(EQUIP_SLOTS)).max(2),
     /**
@@ -82,6 +91,10 @@ export const itemEntrySchema = z
     /** Ammunition: the kind a weapon fires, a unit spent by each shot (docs/adr/0047-weapons.md §5). */
     ammunition: z.enum(AMMUNITION_KINDS).optional(),
     effect: itemEffectSchema.optional(),
+    /** The SRD's (docs/adr/0054-items-as-data.md §2); absent for Ravenford's own. */
+    source: z.literal('srd').optional(),
+    /** Its Russian words are still the English ones (the translation comes with Stage 650e). */
+    untranslated: z.literal(true).optional(),
   })
   .strict()
   .superRefine((entry, context) => {

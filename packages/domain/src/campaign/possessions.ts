@@ -1,6 +1,5 @@
-import { catalogEntry } from '@ltw/contracts';
-
 import { entityReference, error, type PlanContext } from './context.ts';
+import { itemEntry } from '../items/catalog.ts';
 
 /**
  * Starting possessions (docs/adr/0039-item-possession.md, Stage 470): each row ties one `item`
@@ -28,7 +27,7 @@ export function validatePossessions(context: PlanContext): void {
     if (holder && holder.status !== 'active')
       error(context, 'POSSESSION_HOLDER_INACTIVE', `${path}.holder`, 'The holder must be active');
     if (row.catalog !== undefined) {
-      const entry = catalogEntry(row.catalog);
+      const entry = itemEntry(row.catalog);
       if (!entry)
         error(context, 'CATALOG_UNKNOWN', `${path}.catalog`, `Unknown catalog item ${row.catalog}`);
       else if (row.quantity > 1 && !entry.stackable)
