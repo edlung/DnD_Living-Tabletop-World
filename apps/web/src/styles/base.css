@@ -120,7 +120,7 @@ textarea {
   min-height: 42px;
   max-width: 100%;
   padding: 0.5rem 0.7rem;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--field-edge);
   border-radius: var(--radius-control);
   background: color-mix(in srgb, var(--ink-950) 70%, transparent);
   color: var(--text);

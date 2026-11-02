@@ -39,6 +39,7 @@ import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
+import { PostgresAccountStore } from './accounts/postgres-account-store.ts';
 import { PostgresRestStore, PostgresTableStore } from './dice/postgres-table-store.ts';
 import { serverDice } from './dice/table-rolls.ts';
 import { buildLiveApp } from './live/live-app.ts';
@@ -77,6 +78,8 @@ async function main(): Promise<void> {
   const { authenticator, signIn: baseSignIn } = await composeAuthentication(
     config,
     () => new PostgresCredentialStore(pool),
+    undefined,
+    () => new PostgresAccountStore(pool),
   );
   const publication = new PostgresCampaignPublication(pool);
   const signIn = baseSignIn ? { ...baseSignIn, publication } : null;

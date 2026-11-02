@@ -1,0 +1,269 @@
+/*
+ * Accounts (docs/adr/0041-accounts.md, Stage 600): signing in with a login, the join page's
+ * choice, the hub, saving a seat, a reset link's new password, and the QR code beside a link the
+ * DM sees once. Code draws only lines, fills and text; glyphs are GPT masks.
+ */
+.account-form {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.6rem 0 0.8rem;
+}
+.account-field {
+  display: grid;
+  gap: 0.25rem;
+}
+.account-field label {
+  margin: 0;
+}
+.account-field .fine-print {
+  margin: 0;
+  font-size: 0.85rem;
+}
+.account-field-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.account-field input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.account-error,
+.account-note {
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--danger) 60%, transparent);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  color: var(--text);
+}
+.account-note {
+  border-color: color-mix(in srgb, var(--hp) 55%, transparent);
+  background: color-mix(in srgb, var(--hp) 10%, transparent);
+}
+.account-error p {
+  margin: 0 0 0.5rem;
+}
+.account-error .glyph,
+.account-form .action-row .glyph,
+.join-panel .action-row .glyph {
+  width: 20px;
+  height: 20px;
+}
+.account-form .action-row,
+.join-panel .action-row {
+  margin: 0.2rem 0 0;
+}
+.account-form button[aria-disabled='true'],
+.join-panel button[aria-disabled='true'] {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+/* The join page: how the person comes back, the radio first and its words after, one left edge */
+.join-panel {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0.6rem 0 0.4rem;
+}
+.join-panel .account-form {
+  margin: 0;
+}
+.join-modes {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.join-modes legend {
+  margin: 0 0 0.4rem;
+  padding: 0;
+  color: var(--text);
+  font-weight: 600;
+}
+.join-modes .join-mode {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  align-items: center;
+  column-gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  transition:
+    background-color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease);
+}
+.join-modes .join-mode:has(input:checked) {
+  border-color: var(--teal);
+  background: color-mix(in srgb, var(--teal-fill) 40%, transparent);
+}
+.join-modes .join-mode input[type='radio'] {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.join-panel .join-modes .join-mode label {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.join-modes .join-mode .fine-print {
+  grid-column: 2;
+  margin: 0.1rem 0 0;
+}
+
+/* The hub: the account's campaigns, a new one, the account */
+.hub-page .hub-panel {
+  width: min(46rem, 100%);
+}
+.hub {
+  display: grid;
+  gap: 1.1rem;
+}
+.hub-head .eyebrow {
+  margin: 0 0 0.2rem;
+}
+.hub-head h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  line-height: 1.1;
+}
+.hub > .muted {
+  margin: 0;
+}
+.hub-campaigns {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hub-campaign {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.hub-campaign > .glyph {
+  width: 28px;
+  height: 28px;
+  color: var(--gold);
+}
+.hub-campaign h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+.hub-campaign-text .muted {
+  margin: 0.15rem 0 0;
+}
+.hub-section {
+  display: grid;
+  gap: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.hub-section h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.hub-section > .muted {
+  margin: 0;
+}
+.hub-templates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.hub-templates .glyph,
+.hub > .action-row .glyph {
+  width: 20px;
+  height: 20px;
+}
+.hub-settings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  align-items: start;
+  gap: 1rem;
+}
+.hub-settings .account-form {
+  margin: 0;
+}
+.hub-settings .account-form > button {
+  justify-self: start;
+}
+.hub-section .fine-print {
+  margin: 0;
+}
+.hub > .action-row {
+  margin: 0;
+}
+/* On a phone the hub is a page to work in: the key art keeps a strip, not a third of the screen */
+@media (max-width: 767px) {
+  .sign-in.hub-page {
+    padding-top: 16vh;
+  }
+}
+@media (max-width: 480px) {
+  .hub-campaign {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .hub-campaign > button {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Saving a seat to a login: the small modal over the world */
+.account-dialog {
+  width: min(32rem, calc(100vw - 2 * var(--gutter)));
+}
+.account-dialog .account-form {
+  margin: 0.4rem 0 0;
+}
+
+/* A link the DM sees once: its words, and beside them the same link as a QR code */
+.players-link-body {
+  display: grid;
+  grid-template-columns: minmax(0, 40rem) auto;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem;
+}
+.players-link-text {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+}
+.players-qr {
+  display: grid;
+  justify-items: center;
+  gap: 0.3rem;
+  margin: 0;
+}
+.players-qr figcaption {
+  margin: 0;
+  text-align: center;
+}
+.qr-code {
+  display: block;
+  width: 168px;
+  height: 168px;
+  border-radius: 4px;
+}
+.qr-code-plate {
+  fill: var(--qr-light);
+}
+.qr-code-modules {
+  fill: var(--qr-dark);
+}
+@media (max-width: 560px) {
+  .players-link-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -130,6 +130,7 @@ export {
   type SubstitutionReason,
   type UndoneActionsResponse,
 } from './session/dm.ts';
+export * from './session/accounts.ts';
 export {
   CREDENTIAL_TOKEN_PATTERN,
   DEFAULT_INVITATION_HOURS,

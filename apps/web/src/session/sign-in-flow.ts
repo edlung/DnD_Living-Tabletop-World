@@ -1,7 +1,7 @@
-import { OBJECT_ID_PATTERN } from '@ltw/contracts';
+import { OBJECT_ID_PATTERN, type NewAccount } from '@ltw/contracts';
 import type { GameSignOutGuard } from '../api/client.ts';
 
-import { holdInvitation, type InvitationHolder } from './invitation-link.ts';
+import { NOTHING_HELD, holdInvitation, type InvitationHolder } from './invitation-link.ts';
 
 /**
  * Production sign-in from the browser (docs/adr/0036-production-sign-in.md §2–3, §7;
@@ -97,20 +97,43 @@ export async function probeSession(
 export type RedeemOutcome =
   | { readonly kind: 'joined'; readonly campaignId: string }
   | { readonly kind: 'needs-confirmation' }
+  /** Accounts (Stage 600): the new login is taken, or the account already sits at that table. */
+  | { readonly kind: 'login-taken' }
+  | { readonly kind: 'already-seated' }
   | { readonly kind: 'failed' };
+
+/** A conflict's reason (Stage 600), or null for the sign-in question's plain conflict. */
+async function conflictReason(
+  response: Response,
+): Promise<'login-taken' | 'already-seated' | null> {
+  const data = await bodyOf(response);
+  const reason =
+    typeof data === 'object' && data !== null && 'reason' in data ? data.reason : undefined;
+  return reason === 'login-taken' || reason === 'already-seated' ? reason : null;
+}
 
 export async function redeemInvitation(
   transport: Transport,
   token: string,
   replaceSession: boolean,
+  newAccount: NewAccount | null = null,
 ): Promise<RedeemOutcome> {
   const response = await send(transport, '/api/auth/redeem', {
     method: 'POST',
     headers: { 'Content-Type': JSON_TYPE, Accept: JSON_TYPE },
-    body: JSON.stringify(replaceSession ? { token, replaceSession: true } : { token }),
+    body: JSON.stringify({
+      token,
+      ...(replaceSession ? { replaceSession: true } : {}),
+      ...(newAccount ? { newAccount } : {}),
+    }),
   });
   if (response === null) return { kind: 'failed' };
-  if (response.status === 409 && !replaceSession) return { kind: 'needs-confirmation' };
+  if (response.status === 409) {
+    const reason = await conflictReason(response);
+    if (reason === 'login-taken') return { kind: 'login-taken' };
+    if (reason === 'already-seated') return { kind: 'already-seated' };
+    if (!replaceSession) return { kind: 'needs-confirmation' };
+  }
   if (!response.ok) return { kind: 'failed' };
   const campaignId = campaignOf(await bodyOf(response));
   return campaignId === null ? { kind: 'failed' } : { kind: 'joined', campaignId };
@@ -249,12 +272,17 @@ export async function describeSignIn(
 export type PageStart =
   | { readonly kind: 'probe'; readonly first: Promise<SessionProbe> }
   | { readonly kind: 'invited'; readonly invitation: InvitationHolder }
+  /** A reset link (Stage 600): its token waits like an invitation's until the new password. */
+  | { readonly kind: 'reset'; readonly reset: InvitationHolder }
   | { readonly kind: 'malformed' };
 
 export function pageStart(
   invitation: InvitationHolder | 'malformed' | null,
   transport: Transport,
+  reset: InvitationHolder | 'malformed' | null = null,
 ): PageStart {
+  // A malformed reset link still shows the reset form, whose try says the link cannot be used.
+  if (reset !== null) return { kind: 'reset', reset: reset === 'malformed' ? NOTHING_HELD : reset };
   if (invitation === null) return { kind: 'probe', first: probeSession(transport) };
   return invitation === 'malformed' ? { kind: 'malformed' } : { kind: 'invited', invitation };
 }
@@ -262,6 +290,14 @@ export function pageStart(
 /** What taking the seat came to. */
 export type SeatOutcome =
   | { readonly kind: 'joined'; readonly campaignId: string }
+  /**
+   * The invitation was not spent (Stage 600): the new login is taken, or the account already sits
+   * at that table; `retry` holds the token for one more try (one-shot).
+   */
+  | {
+      readonly kind: 'login-taken' | 'already-seated';
+      readonly retry: InvitationHolder;
+    }
   /**
    * This browser is signed in already: the person is asked first, and `replacement` holds the
    * token for that question alone (one-shot: kept or replaced, it is gone).
@@ -276,10 +312,14 @@ export type SeatOutcome =
 export async function takeSeat(
   invitation: InvitationHolder,
   transport: Transport,
+  newAccount: NewAccount | null = null,
 ): Promise<SeatOutcome | null> {
   const token = invitation.take();
   if (token === null) return null;
-  const outcome = await redeemInvitation(transport, token, false);
+  const outcome = await redeemInvitation(transport, token, false, newAccount);
+  if (outcome.kind === 'login-taken' || outcome.kind === 'already-seated') {
+    return { kind: outcome.kind, retry: holdInvitation(token) };
+  }
   return outcome.kind === 'needs-confirmation'
     ? { kind: 'needs-confirmation', replacement: holdInvitation(token) }
     : outcome;

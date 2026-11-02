@@ -57,3 +57,21 @@ export function takeInvitation(
   /^/.exec('');
   return wellFormed ? holdInvitation(fragment) : 'malformed';
 }
+
+/** A holder with nothing to give: a malformed reset link, which can only fail. */
+export const NOTHING_HELD: InvitationHolder = {
+  holds: () => false,
+  take: () => null,
+  forget: () => undefined,
+};
+
+/** A reset link is `<origin>/reset#<token>` (ADR 0041 §7): taken out of the address like an invitation. */
+export const RESET_PATH = '/reset';
+
+export function takeReset(
+  location: Pick<Location, 'pathname' | 'hash'>,
+  history: Pick<History, 'replaceState'>,
+): InvitationHolder | 'malformed' | null {
+  if (location.pathname !== RESET_PATH && location.pathname !== `${RESET_PATH}/`) return null;
+  return takeInvitation({ pathname: JOIN_PATH, hash: location.hash }, history);
+}

@@ -8,8 +8,9 @@ import type { Players } from './use-players.ts';
 
 /**
  * The players at the table: each character with a player, whether that player is signed in
- * now, and revoking their access — asked first, since it signs them out at once on every
- * device; the character can then be invited again (docs/adr/0036-production-sign-in.md §4).
+ * now, the login of their seat with a password reset link (docs/adr/0041-accounts.md §7), and
+ * revoking their access — asked first, since it signs them out at once on every device; the
+ * character can then be invited again (docs/adr/0036-production-sign-in.md §4).
  */
 export function MemberList({
   members,
@@ -87,7 +88,24 @@ function MemberRow({
               })
           : t('To let this player back in, revoke their access and send a new invitation.')}
       </p>
+      <p className="players-when">
+        {member.login === null
+          ? t('No login: this player comes back only in the browser they joined in.')
+          : t('Login: {login}', { login: member.login })}
+      </p>
       <div className="action-row">
+        {member.login !== null && (
+          <button
+            aria-label={t('Password reset link: {name}', { name })}
+            disabled={players.working}
+            onClick={() => {
+              void players.resetLink(member);
+            }}
+          >
+            <Glyph name="key" />
+            {t('Password reset link')}
+          </button>
+        )}
         <button
           ref={opener}
           aria-label={t('Revoke access: {name}', { name })}

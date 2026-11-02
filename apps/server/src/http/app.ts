@@ -9,6 +9,7 @@ import type { AssetContentStore } from '../assets/content-store.ts';
 import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
+import { registerAccountRoutes } from '../accounts/account-routes.ts';
 import { registerAuthRoutes } from '../auth/auth-routes.ts';
 import { registerMemberRoutes } from '../auth/member-routes.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
@@ -170,6 +171,11 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     const signIn = { ...deps, signIn: deps.signIn };
     registerAuthRoutes(app, signIn);
     registerMemberRoutes(app, signIn);
+    const { accounts, accountLimits } = deps.signIn;
+    // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns.
+    if (accounts && accountLimits) {
+      registerAccountRoutes(app, { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } });
+    }
   }
   if (deps.workshop) registerWorkshopRoutes(app, deps.workshop);
   return app;

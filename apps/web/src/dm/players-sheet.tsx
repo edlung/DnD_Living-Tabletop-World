@@ -1,19 +1,19 @@
 import {
   DEFAULT_INVITATION_HOURS,
   MAX_INVITATION_HOURS,
-  type CreatedInvitationResponse,
   type EntityRef,
   type MembershipResponse,
 } from '@ltw/contracts';
-import { StatusPanel, useLanguage, useT } from '@ltw/ui';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { StatusPanel, useT } from '@ltw/ui';
+import { useCallback, useEffect, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
-import { formatWhen, freeCharacters, nameOf } from './players.ts';
+import { freeCharacters, nameOf } from './players.ts';
 import { InvitationList, MemberList } from './players-lists.tsx';
+import { ShownLink } from './shown-link.tsx';
 import { usePlayers, type Players } from './use-players.ts';
 
 /** How long a new link lasts: one day, the default three, or the longest a link may last. */
@@ -22,8 +22,8 @@ const EXPIRY_HOURS = [24, DEFAULT_INVITATION_HOURS, MAX_INVITATION_HOURS] as con
 /**
  * The DM's Players sheet (docs/adr/0036-production-sign-in.md §4; docs/STAGE_340_DESIGN.md
  * "Flows"), with production sign-in only: invite a player for a character nobody plays (the
- * link shown once, with a copy button), the open and earlier invitations, the players at the
- * table, and revoking either. Never a token in a listing; never a player's actor ID. The
+ * link shown once, with a copy button and a QR code), the open and earlier invitations, the
+ * players at the table with their logins, a password reset link, and revoking either. Never a token in a listing; never a player's actor ID. The
  * listing is read while the sheet is open and follows the live signal; what is being written
  * (the choice, the new link, a question) stays while the sheet is closed.
  */
@@ -54,10 +54,19 @@ export function PlayersSheet({
         </p>
       )}
       {created && (
-        <CreatedLink
-          created={created}
+        <InvitationLink
+          link={created.link}
+          expiresAt={created.expiresAt}
           name={nameOf(directory, created.characterId) ?? t('a character')}
           onHide={players.hide}
+        />
+      )}
+      {players.reset && (
+        <ResetLink
+          link={players.reset.link}
+          expiresAt={players.reset.expiresAt}
+          name={nameOf(directory, players.reset.characterId) ?? t('a character')}
+          onHide={players.hideReset}
         />
       )}
       {open && (
@@ -189,89 +198,62 @@ function Membership({
   );
 }
 
-/**
- * The new link, shown this once (the server keeps only its hash): copy it, or select it to copy
- * by hand where the clipboard is unavailable.
- */
-function CreatedLink({
-  created,
+function InvitationLink({
+  link,
+  expiresAt,
   name,
   onHide,
 }: {
-  readonly created: CreatedInvitationResponse;
+  readonly link: string;
+  readonly expiresAt: string;
   readonly name: string;
   readonly onHide: () => void;
 }) {
   const t = useT();
-  const language = useLanguage();
-  const field = useRef<HTMLInputElement>(null);
-  const [copied, setCopied] = useState<'copied' | 'select' | null>(null);
-  useEffect(() => {
-    setCopied(null);
-  }, [created]);
-  const copy = () => {
-    const select = () => {
-      field.current?.focus();
-      field.current?.select();
-      setCopied('select');
-    };
-    if (typeof navigator.clipboard === 'undefined') {
-      select();
-      return;
-    }
-    navigator.clipboard.writeText(created.link).then(() => {
-      setCopied('copied');
-    }, select);
-  };
   return (
-    <section className="players-link" aria-labelledby="players-link-title">
-      <h3 id="players-link-title">
-        <Glyph name="link" />
-        {t('Invitation link for {name}', { name })}
-      </h3>
-      <p className="players-once">
-        <Glyph name="hidden" />
-        <span>
-          <strong>{t('Shown only once.')}</strong>{' '}
-          {t(
-            'Copy it now and send it to the player privately: whoever opens it first takes the seat of {name}.',
-            { name },
-          )}
-        </span>
-      </p>
-      <label htmlFor="invitation-link">{t('Invitation link')}</label>
-      <div className="players-link-row">
-        <input
-          id="invitation-link"
-          ref={field}
-          readOnly
-          value={created.link}
-          spellCheck={false}
-          autoComplete="off"
-          onFocus={(event) => {
-            event.currentTarget.select();
-          }}
-        />
-        <button onClick={copy}>
-          <Glyph name="copy" />
-          {t('Copy link')}
-        </button>
-      </div>
-      <p role="status" className="players-copied">
-        {copied === 'copied'
-          ? t('Copied. Paste it into a private message to the player.')
-          : copied === 'select'
-            ? t('The link is selected: copy it with your keyboard.')
-            : ''}
-      </p>
-      <p className="muted">
-        {t('It expires {when}. Until then you can revoke it below.', {
-          when: formatWhen(created.expiresAt, language),
-        })}
-      </p>
-      <button className="quiet-button" onClick={onHide}>
-        {t('Hide the link')}
-      </button>
-    </section>
+    <ShownLink
+      link={link}
+      expiresAt={expiresAt}
+      title={t('Invitation link for {name}', { name })}
+      once={t(
+        'Copy it now and send it to the player privately: whoever opens it first takes the seat of {name}.',
+        { name },
+      )}
+      label={t('Invitation link')}
+      qrLabel={t('QR code of the invitation link for {name}', { name })}
+      copied={t('Copied. Paste it into a private message to the player.')}
+      revocable
+      onHide={onHide}
+    />
+  );
+}
+
+function ResetLink({
+  link,
+  expiresAt,
+  name,
+  onHide,
+}: {
+  readonly link: string;
+  readonly expiresAt: string;
+  readonly name: string;
+  readonly onHide: () => void;
+}) {
+  const t = useT();
+  return (
+    <ShownLink
+      link={link}
+      expiresAt={expiresAt}
+      title={t('Password reset link for {name}', { name })}
+      once={t(
+        'Give it to the player of {name} only: it sets a new password for their login, once.',
+        { name },
+      )}
+      label={t('Password reset link')}
+      qrLabel={t('QR code of the password reset link for {name}', { name })}
+      copied={t('Copied. Give it to the player privately.')}
+      revocable={false}
+      onHide={onHide}
+    />
   );
 }

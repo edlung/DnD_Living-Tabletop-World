@@ -13,7 +13,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   remain (Stage 540 §4).
 - Current program (owner approval 2026-11-02, `reviews/OWNER_FULL_GAME_2026-11-02.json`):
   `docs/FULL_GAME_PLAN.md` — table and online play, Stages 600–699 in four milestones; work orders
-  `work-orders/STAGE_6xx.md`; one pull request per milestone.
+  `work-orders/STAGE_6xx.md`; one pull request per milestone. Milestone A on `claude/full-game-a`:
+  Stage 600 (accounts and the hub, ADR 0041) complete (`reports/STAGE_600_COMPLETION.md`).
 
 ## Current request — AI campaigns, 2026-10-30
 

@@ -119,7 +119,7 @@ Cleave, Graze, Nick, Push, Sap, Slow, Topple, Vex.
 
 ### Milestone A — two modes at one table
 
-- **600 Accounts and the hub.** Sign-up and sign-in (Argon2id, limits), my campaigns, my characters,
+- **600 Accounts and the hub.** Sign-up and sign-in (scrypt, ADR 0041; limits), my campaigns, my characters,
   joining by link, QR or code, roles; today's seats move to accounts; the DM's invitation as a QR code.
 - **605 A party for the table.** Ravenford has one character (Elowen, level 15): three companions join
   her, with sheets built from the rules that exist then, and the ambush is balanced for four, so a

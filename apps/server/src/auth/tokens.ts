@@ -28,23 +28,29 @@ export function evidenceHasher(key: Buffer = randomBytes(32)): (value: string) =
   return (value) => createHmac('sha256', key).update(value, 'utf8').digest('hex');
 }
 
-/** The values of every session cookie a `Cookie` header carries, in order. */
-function sessionCookieValues(cookie: string | undefined): string[] {
+/** The values of every cookie called `name` a `Cookie` header carries, in order. */
+function cookieValues(cookie: string | undefined, name: string): string[] {
   if (cookie === undefined) return [];
   return cookie
     .split(';')
     .map((part) => part.trim())
-    .filter((part) => part.startsWith(`${SESSION_COOKIE}=`))
-    .map((part) => part.slice(SESSION_COOKIE.length + 1));
+    .filter((part) => part.startsWith(`${name}=`))
+    .map((part) => part.slice(name.length + 1));
 }
 
-/** The session token of a `Cookie` header, or null (absent, repeated or malformed). */
-export function sessionTokenFrom(cookie: string | undefined): string | null {
-  const values = sessionCookieValues(cookie);
-  // Two session cookies (a path or domain variant) are ambiguous: neither is trusted.
+const sessionCookieValues = (cookie: string | undefined) => cookieValues(cookie, SESSION_COOKIE);
+
+/** The token of the cookie `name` in a `Cookie` header, or null (absent, repeated or malformed). */
+export function cookieTokenFrom(cookie: string | undefined, name: string): string | null {
+  const values = cookieValues(cookie, name);
+  // Two such cookies (a path or domain variant) are ambiguous: neither is trusted.
   const [only] = values;
   return values.length === 1 && only !== undefined && isToken(only) ? only : null;
 }
+
+/** The session token of a `Cookie` header, or null (absent, repeated or malformed). */
+export const sessionTokenFrom = (cookie: string | undefined): string | null =>
+  cookieTokenFrom(cookie, SESSION_COOKIE);
 
 /**
  * How many session cookies a request presented, well formed or not. Only a request that
@@ -64,10 +70,19 @@ export const LOOPBACK_HOSTS: ReadonlySet<string> = new Set(['localhost', '127.0.
 
 const ATTRIBUTES = 'Path=/api; HttpOnly; SameSite=Strict';
 
-/** `Set-Cookie` for a new session (ADR 0036 §3): script cannot read it; other sites never send it. */
-export function sessionCookie(token: string, maxAgeSeconds: number, secure: boolean): string {
-  return `${SESSION_COOKIE}=${token}; ${ATTRIBUTES}; Max-Age=${String(maxAgeSeconds)}${secure ? '; Secure' : ''}`;
+/** `Set-Cookie` for a new credential cookie: script cannot read it; other sites never send it. */
+export function credentialCookie(
+  name: string,
+  token: string,
+  maxAgeSeconds: number,
+  secure: boolean,
+): string {
+  return `${name}=${token}; ${ATTRIBUTES}; Max-Age=${String(maxAgeSeconds)}${secure ? '; Secure' : ''}`;
 }
+
+/** `Set-Cookie` for a new session (ADR 0036 §3): script cannot read it; other sites never send it. */
+export const sessionCookie = (token: string, maxAgeSeconds: number, secure: boolean): string =>
+  credentialCookie(SESSION_COOKIE, token, maxAgeSeconds, secure);
 
 /** `Set-Cookie` that removes the session cookie from the browser. */
 export function clearedSessionCookie(secure: boolean): string {

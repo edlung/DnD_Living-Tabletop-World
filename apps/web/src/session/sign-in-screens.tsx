@@ -1,11 +1,14 @@
-import { SESSION_DAYS } from '@ltw/contracts';
+import { SESSION_DAYS, type NewAccount } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
+import type { SignInAnswer } from './account-flow.ts';
+import { AccountSignInForm, ResetForm } from './account-forms.tsx';
 import { useDeliberateChoice } from './deliberate-choice.ts';
+import { EMPTY_JOIN, JoinPanel, type JoinDraft } from './join-panel.tsx';
 import { PersonaForm } from './login.tsx';
 import type { CurrentSignIn } from './sign-in-flow.ts';
 import type { SignInScreen } from './use-sign-in.ts';
@@ -155,31 +158,40 @@ function ReplaceQuestion({
 }
 
 /**
- * Everything before a world (docs/adr/0036-production-sign-in.md §7): checking the sign-in, the
- * development personas' form, an invitation waiting for the person to take their seat, joining,
- * the question before an invitation replaces this browser's sign-in, the one fixed message for
- * any invitation that cannot be used, and signed out. Nothing here says why an invitation failed,
- * and nothing here holds a token.
+ * Everything before a world (docs/adr/0036-production-sign-in.md §7; docs/adr/0041-accounts.md):
+ * checking the sign-in, the development personas' form, an invitation waiting for the person to
+ * take their seat (with a new login, theirs, or only this browser), joining, the question before
+ * an invitation replaces this browser's sign-in, the one fixed message for any invitation that
+ * cannot be used, signed out with signing in by login, and a reset link's new password. Nothing
+ * here says why an invitation failed, and nothing here holds a token.
  */
 export function SignInScreens({
   screen,
   onProbe,
   onBackToStart,
   onTakeSeat,
+  onSignInAccount,
+  onReset,
+  onHub,
   onKeep,
   onReplace,
   onConnect,
 }: {
-  readonly screen: Exclude<SignInScreen, { readonly kind: 'session' }>;
+  readonly screen: Exclude<SignInScreen, { readonly kind: 'session' } | { readonly kind: 'hub' }>;
   /** Ask the server again: try again. */
   readonly onProbe: () => void;
   readonly onBackToStart: () => void;
-  readonly onTakeSeat: () => void;
+  readonly onTakeSeat: (newAccount: NewAccount | null) => void;
+  readonly onSignInAccount: (login: string, password: string) => Promise<SignInAnswer>;
+  readonly onReset: (password: string) => Promise<'done' | 'failed'>;
+  readonly onHub: () => void;
   readonly onKeep: () => void;
   readonly onReplace: () => void;
   readonly onConnect: (campaignId: string, token: string) => void;
 }) {
   const t = useT();
+  // The join page's draft outlives a try the server sent back (joining, then invited again).
+  const [join, setJoin] = useState<JoinDraft>(EMPTY_JOIN);
   return <SignInLayout>{content()}</SignInLayout>;
 
   function content(): ReactNode {
@@ -200,18 +212,20 @@ export function SignInScreens({
             title={t('You are invited to a table')}
             focus={false}
           >
-            <p>{t('This invitation link seats you at a table in this browser. It works once.')}</p>
+            <p>{t('This invitation link seats you at a table. It works once.')}</p>
             <p className="fine-print">
               {t(
                 'Nothing is used until you take your seat. Take it only if you expected this invitation.',
               )}
             </p>
-            <div className="action-row">
-              <button className="primary-button" onClick={onTakeSeat}>
-                <Glyph name="sign-in" />
-                {t('Take your seat')}
-              </button>
-            </div>
+            <JoinPanel
+              draft={join}
+              onDraft={setJoin}
+              problem={screen.problem}
+              onTakeSeat={onTakeSeat}
+              onSignInAccount={onSignInAccount}
+              onHub={onHub}
+            />
           </AccessState>
         );
       case 'joining':
@@ -274,19 +288,25 @@ export function SignInScreens({
       case 'signed-out':
         return screen.reason === 'none' ? (
           <AccessState
-            glyph="invitation"
-            eyebrow={t('Take your seat')}
-            title={t('Join with an invitation')}
-            focus={false}
+            glyph="sign-in"
+            eyebrow={t('Welcome back')}
+            title={t('Sign in to your table')}
+            focus={screen.passwordChanged === true}
           >
-            <p>
+            {screen.passwordChanged && (
+              <p className="account-note" role="status">
+                {t('Your new password is set. Sign in with it.')}
+              </p>
+            )}
+            <AccountSignInForm onSignIn={onSignInAccount} />
+            <p className="fine-print">
               {t(
-                'This table is open to invited players. Open the invitation link you were sent to take your seat.',
+                'New at the table? Open the invitation link your DM sent you: it seats you and makes your login.',
               )}
             </p>
             <p className="fine-print">
               {t(
-                'An invitation link works once. Signing in keeps you at the table in this browser for up to {days} days.',
+                'An invitation link works once. A seat taken without a login stays in that browser for up to {days} days.',
                 { days: SESSION_DAYS },
               )}
             </p>
@@ -298,7 +318,40 @@ export function SignInScreens({
             title={t('You are signed out')}
             focus
           >
-            <p>{t('To come back to the table, open a new invitation link.')}</p>
+            {screen.withAccount ? (
+              <>
+                <p>
+                  {t('Your login is still signed in here: your other campaigns are a step away.')}
+                </p>
+                <div className="action-row">
+                  <button className="primary-button" onClick={onHub}>
+                    <Glyph name="party" />
+                    {t('My campaigns')}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p>{t('Sign in with your login, or open a new invitation link.')}</p>
+                <AccountSignInForm onSignIn={onSignInAccount} />
+              </>
+            )}
+          </AccessState>
+        );
+      case 'reset':
+        return (
+          <AccessState
+            glyph="key"
+            eyebrow={t('A password reset')}
+            title={t('Set a new password')}
+            focus={false}
+          >
+            <p>
+              {t(
+                'This link sets a new password for your login once. Your other devices sign in again.',
+              )}
+            </p>
+            <ResetForm onReset={onReset} />
           </AccessState>
         );
     }

@@ -1,3 +1,5 @@
+import { ACCOUNT_LIMITS, AccountLimits } from '../accounts/account-limits.ts';
+import { InMemoryAccountStore } from '../accounts/account-store.ts';
 import { InMemoryCredentialStore } from '../auth/credential-store.ts';
 import { RequestLimits, SIGN_IN_LIMITS } from '../auth/limits.ts';
 import { sessionAuthenticator, systemAuthClock } from '../auth/session-authenticator.ts';
@@ -22,7 +24,8 @@ import { seedWorkshopAccess } from './ui-workshop-fixtures.ts';
 
 /**
  * Browser-test composition in invitation mode (docs/adr/0036-production-sign-in.md;
- * tests/e2e/AGENTS.md): production sign-in — session cookies, the sign-in and member routes,
+ * tests/e2e/AGENTS.md): production sign-in — session cookies, accounts (ADR 0041, in memory),
+ * the sign-in and member routes,
  * the origin check, limits, the live stream on the cookie — over the real World Engine with
  * in-memory credentials, behind the second Vite server (`SIGN_IN_ORIGIN`, which is therefore
  * the public origin). A test-only scripted workshop worker is composed here; no remote AI.
@@ -49,6 +52,17 @@ const baseSignIn: SignInDependencies = {
     () => Date.now(),
   ),
   evidence: evidenceHasher(),
+  // Accounts (ADR 0041), their limits raised like the redeem limits: one loopback client.
+  accounts: new InMemoryAccountStore(),
+  accountLimits: new AccountLimits(
+    {
+      ...ACCOUNT_LIMITS,
+      signInPerMinute: 1_000,
+      accountsPerHour: 1_000,
+      campaignsPerHour: 1_000,
+    },
+    () => Date.now(),
+  ),
 };
 const assets = testAssets();
 const { workshop, stopGeneration, activationFixture } = await seedWorkshopAccess(

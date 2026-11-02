@@ -7,6 +7,8 @@ import type { AppConfig } from '../platform/config/config.ts';
 import type { Logger } from '../platform/logging/logger.ts';
 import { isLoopbackHost } from '../platform/net/addresses.ts';
 import type { CredentialStore } from './credential-store.ts';
+import { ACCOUNT_LIMITS, AccountLimits } from '../accounts/account-limits.ts';
+import { InMemoryAccountStore, type AccountStore } from '../accounts/account-store.ts';
 import { RequestLimits, SIGN_IN_LIMITS } from './limits.ts';
 import {
   iso,
@@ -32,6 +34,8 @@ export async function composeAuthentication(
   config: Pick<AppConfig, 'nodeEnv' | 'auth' | 'http'>,
   credentials: () => CredentialStore,
   clock: AuthClock = systemAuthClock,
+  /** Accounts (ADR 0041); in memory unless the composition stores them. */
+  accounts: () => AccountStore = () => new InMemoryAccountStore(),
 ): Promise<Authentication> {
   switch (config.auth.mode) {
     case 'invitations': {
@@ -46,6 +50,8 @@ export async function composeAuthentication(
           clock,
           limits: new RequestLimits(SIGN_IN_LIMITS, () => clock.now()),
           evidence: evidenceHasher(),
+          accounts: accounts(),
+          accountLimits: new AccountLimits(ACCOUNT_LIMITS, () => clock.now()),
         },
       };
     }

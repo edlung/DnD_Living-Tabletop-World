@@ -11,5 +11,7 @@
   "tabs": "ui-signin-tabs",
   "gameCookieOld": "ui-game-cookie-old",
   "gameCookieNew": "ui-game-cookie-new",
-  "activationGame": "ui-activation-game"
+  "activationGame": "ui-activation-game",
+  "accounts": "ui-accounts",
+  "accountsClaim": "ui-accounts-claim"
 }

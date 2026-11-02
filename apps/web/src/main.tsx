@@ -15,10 +15,11 @@ import './i18n/ru-character.ts';
 import './i18n/ru-dice.ts';
 import './i18n/ru-inventory.ts';
 import './i18n/ru-rest.ts';
+import './i18n/ru-accounts.ts';
 import { App } from './session/app.tsx';
 import { WorkshopApp } from './workshop/app.tsx';
 import { isWorkshopPath, workshopStart } from './workshop/start.ts';
-import { takeInvitation } from './session/invitation-link.ts';
+import { takeInvitation, takeReset } from './session/invitation-link.ts';
 import { pageStart } from './session/sign-in-flow.ts';
 import './styles/tokens.css';
 import './styles/fonts.css';
@@ -37,6 +38,7 @@ import './styles/chronicle-pages.css';
 import './styles/flashback.css';
 import './styles/sign-in.css';
 import './styles/players.css';
+import './styles/accounts.css';
 import './styles/responsive.css';
 import './styles/battle-layout.css';
 import './styles/figures.css';
@@ -63,7 +65,8 @@ if (isWorkshopPath(window.location.pathname)) {
     </StrictMode>,
   );
 } else {
-  const start = pageStart(takeInvitation(window.location, window.history), fetch);
+  const reset = takeReset(window.location, window.history);
+  const start = pageStart(takeInvitation(window.location, window.history), fetch, reset);
   createRoot(root).render(
     <StrictMode>
       <App start={start} />

@@ -1,4 +1,10 @@
-import { redeemRequestSchema, type AuthSessionResponse, type RedeemResponse } from '@ltw/contracts';
+import {
+  ACCOUNT_COOKIE,
+  redeemRequestSchema,
+  type AuthSessionResponse,
+  type RedeemRequest,
+  type RedeemResponse,
+} from '@ltw/contracts';
 import { campaignRole, type WorldEngine } from '@ltw/domain';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
@@ -9,14 +15,33 @@ import { credentialsOf } from '../http/request-context.ts';
 import { clientGroup } from '../platform/net/addresses.ts';
 import type { EvidenceOutcome } from './limits.ts';
 import { iso } from './session-authenticator.ts';
-import { SESSION_MS, redeemInvitation, type SignInDependencies } from './sign-in.ts';
 import {
+  SESSION_MS,
+  redeemInvitation,
+  type RedeemOutcome,
+  type SignInDependencies,
+} from './sign-in.ts';
+import { conflict } from '../accounts/account-routes.ts';
+import type { AccountRecord } from '../accounts/account-store.ts';
+import {
+  ACCOUNT_SESSION_MS,
+  accountOf,
+  newAccountRecord,
+  openAccountSession,
+} from '../accounts/accounts.ts';
+import {
+  credentialCookie,
   hashToken,
   secureCookies,
   sessionCookie,
   sessionTokenFrom,
   tokenPrefix,
 } from './tokens.ts';
+
+/** The account a redeemed seat joins. */
+type SeatAccount =
+  | { readonly kind: 'new'; readonly record: AccountRecord }
+  | { readonly kind: 'signed-in'; readonly record: AccountRecord };
 
 /**
  * Sign-in routes (docs/adr/0036-production-sign-in.md §2–3 and its amendment 2026-10-16;
@@ -84,6 +109,85 @@ export function registerAuthRoutes(app: FastifyInstance, deps: AuthRouteDependen
     }
   };
 
+  const accountCookieOf = (token: string) =>
+    credentialCookie(ACCOUNT_COOKIE, token, ACCOUNT_SESSION_MS / 1000, secure);
+
+  /**
+   * The account a redeem seats (ADR 0041 §4): a new one (its login checked free, its password
+   * hashed now), or the one this browser is signed in to; null without accounts. Answers 409 and
+   * `answered` when the login is taken or the account already sits in the invitation's campaign.
+   */
+  const accountForRedeem = async (
+    request: FastifyRequest,
+    reply: FastifyReply,
+    client: string,
+    body: RedeemRequest,
+  ): Promise<SeatAccount | null | 'answered'> => {
+    const { accounts, accountLimits } = deps.signIn;
+    if (!accounts || !accountLimits) return null;
+    // Only an invitation that would seat someone answers about logins: any other token goes on
+    // to the one 401, so a forged token learns nothing about which logins exist.
+    const invitation = await credentials.findInvitation(hashToken(body.token));
+    const now = iso(clock.now());
+    if (
+      invitation === null ||
+      invitation.usedAt !== null ||
+      invitation.revokedAt !== null ||
+      invitation.expiresAt <= now
+    ) {
+      return null;
+    }
+    let seat: SeatAccount | null = null;
+    if (body.newAccount) {
+      if (await accounts.findByLogin(body.newAccount.login)) {
+        await conflict(reply, request, 'login-taken');
+        return 'answered';
+      }
+      if (!accountLimits.account(client)) {
+        await sendError(reply, request, 'RATE_LIMITED');
+        return 'answered';
+      }
+      seat = { kind: 'new', record: await newAccountRecord(body.newAccount, clock.now()) };
+    } else {
+      const current = await accountOf({ accounts, clock }, request.headers.cookie);
+      if (current) seat = { kind: 'signed-in', record: current.account };
+    }
+    if (seat === null) return null;
+    const seats = seat.kind === 'new' ? [] : await accounts.seats(seat.record.accountId);
+    if (seats.some((entry) => entry.campaignId === invitation.campaignId)) {
+      await conflict(reply, request, 'already-seated');
+      return 'answered';
+    }
+    return seat;
+  };
+
+  /** Adds the redeemed seat to its account; the new account's session token, if one was made. */
+  const seatInAccount = async (
+    request: FastifyRequest,
+    seat: SeatAccount | null,
+    outcome: Extract<RedeemOutcome, { kind: 'redeemed' }>,
+  ): Promise<string | null> => {
+    const { accounts } = deps.signIn;
+    if (!accounts || seat === null) return null;
+    if (seat.kind === 'new' && !(await accounts.createAccount(seat.record))) {
+      // The login was taken meanwhile: the seat keeps its campaign session; the page may claim.
+      request.log.info('redeemed without the new account: its login was taken meanwhile');
+      return null;
+    }
+    const added = await accounts.addSeat({
+      accountId: seat.record.accountId,
+      campaignId: outcome.campaignId,
+      actorId: outcome.actorId,
+      role: outcome.purpose === 'dm' ? 'dm' : 'player',
+      invitationId: outcome.invitationId,
+      joinedAt: iso(clock.now()),
+    });
+    if (!added) request.log.info({ accountId: seat.record.accountId }, 'seat not added to account');
+    return seat.kind === 'new'
+      ? openAccountSession({ accounts, clock }, seat.record.accountId)
+      : null;
+  };
+
   app.post('/auth/redeem', async (request, reply) => {
     // `request.ip` is the client behind the trusted proxy (LTW_TRUST_PROXY); an IPv6 /64 is one.
     const client = clientGroup(request.ip);
@@ -112,6 +216,10 @@ export function registerAuthRoutes(app: FastifyInstance, deps: AuthRouteDependen
       request.log.info({ limit: 'token' }, 'request limited');
       return sendError(reply, request, 'RATE_LIMITED');
     }
+    // Stage 600 (ADR 0041): the seat joins an account — a new one, or the one signed in. What
+    // would refuse it is checked before the invitation is spent.
+    const seatAccount = await accountForRedeem(request, reply, client, body.data);
+    if (seatAccount === 'answered') return reply;
     const outcome = await redeemInvitation(deps.engine, deps.signIn, body.data.token);
     if (outcome.kind === 'refused') {
       admission.failed(prefix);
@@ -129,9 +237,10 @@ export function registerAuthRoutes(app: FastifyInstance, deps: AuthRouteDependen
       'sign-in redeemed',
     );
     const response: RedeemResponse = { campaignId: outcome.campaignId };
-    return reply
-      .header('set-cookie', sessionCookie(outcome.sessionToken, SESSION_MS / 1000, secure))
-      .send(response);
+    const cookies = [sessionCookie(outcome.sessionToken, SESSION_MS / 1000, secure)];
+    const accountToken = await seatInAccount(request, seatAccount, outcome);
+    if (accountToken !== null) cookies.push(accountCookieOf(accountToken));
+    return reply.header('set-cookie', cookies.length === 1 ? cookies[0] : cookies).send(response);
   });
 
   // Same-origin only in invitation mode (`http/security.ts`); no credential mutation on reads.

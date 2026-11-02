@@ -18,6 +18,8 @@ import { TopBar } from '../shell/top-bar.tsx';
 import { ornamentUrl } from '../visual/ui-kit.ts';
 import { World } from '../world/world.tsx';
 import { ActingBar } from './acting-bar.tsx';
+import { SessionAccountProvider } from './account-menu.tsx';
+import { HubPage } from './hub.tsx';
 import type { PageStart } from './sign-in-flow.ts';
 import { SignInKindContext, useSignInKind } from './sign-in-kind.ts';
 import { SignInScreens } from './sign-in-screens.tsx';
@@ -97,9 +99,9 @@ function browserLanguage(): Language {
 }
 
 /**
- * The page (docs/adr/0036-production-sign-in.md §7): sign-in, then a world. With production
- * sign-in the browser holds an HttpOnly session cookie and the screens below never see a
- * credential; development personas type a token, kept in memory. Before a session names the
+ * The page (docs/adr/0036-production-sign-in.md §7, docs/adr/0041-accounts.md): sign-in, the
+ * account's hub, then a world. With production sign-in the browser holds HttpOnly cookies and the
+ * screens below never see a credential; development personas type a token, kept in memory. Before a session names the
  * campaign's language the browser's speaks, and a session that ended keeps its campaign's.
  * Every identity a session's screens read is told to its connection: the first is what this tab
  * shows, and another one later signs the tab out (`sign-in-watch.ts`).
@@ -109,6 +111,18 @@ export function App({ start }: { readonly start: PageStart }) {
   const [campaignLanguage, setCampaignLanguage] = useState<Language | null>(null);
   const { screen } = flow;
   const browser = browserLanguage();
+  if (screen.kind === 'hub') {
+    return (
+      <LanguageProvider language={browser}>
+        <DocumentLanguage />
+        <HubPage
+          onOpen={flow.openCampaign}
+          onCreate={flow.createCampaign}
+          onSignOut={flow.signOutAccount}
+        />
+      </LanguageProvider>
+    );
+  }
   if (screen.kind !== 'session') {
     const ended = screen.kind === 'signed-out' && screen.reason !== 'none';
     return (
@@ -119,6 +133,9 @@ export function App({ start }: { readonly start: PageStart }) {
           onProbe={flow.probe}
           onBackToStart={flow.backToStart}
           onTakeSeat={flow.takeSeat}
+          onSignInAccount={flow.signInAccount}
+          onReset={flow.resetWith}
+          onHub={flow.toHub}
           onKeep={flow.keep}
           onReplace={flow.replace}
           onConnect={flow.connectPersona}
@@ -131,24 +148,30 @@ export function App({ start }: { readonly start: PageStart }) {
     <LanguageProvider language={browser}>
       <DocumentLanguage />
       <SignInKindContext.Provider value={connection.kind}>
-        <SessionBoundary key={screen.key} onLeave={flow.leave}>
-          <SessionGate
-            connection={connection}
-            onLeave={flow.leave}
-            onLanguage={setCampaignLanguage}
-          />
-        </SessionBoundary>
-        {connection.kind === 'session' && (
-          <LanguageProvider language={campaignLanguage ?? browser}>
-            <SignOutDialog
-              key={screen.key}
+        <SessionAccountProvider
+          key={screen.key}
+          enabled={connection.kind === 'session'}
+          onHub={flow.toHub}
+        >
+          <SessionBoundary key={screen.key} onLeave={flow.leave}>
+            <SessionGate
               connection={connection}
-              open={flow.askingSignOut}
-              onCancel={flow.cancelSignOut}
-              onSignedOut={flow.signedOut}
+              onLeave={flow.leave}
+              onLanguage={setCampaignLanguage}
             />
-          </LanguageProvider>
-        )}
+          </SessionBoundary>
+          {connection.kind === 'session' && (
+            <LanguageProvider language={campaignLanguage ?? browser}>
+              <SignOutDialog
+                key={screen.key}
+                connection={connection}
+                open={flow.askingSignOut}
+                onCancel={flow.cancelSignOut}
+                onSignedOut={flow.signedOut}
+              />
+            </LanguageProvider>
+          )}
+        </SessionAccountProvider>
       </SignInKindContext.Provider>
     </LanguageProvider>
   );

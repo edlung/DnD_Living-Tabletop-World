@@ -49,10 +49,11 @@ export const WORDS = {
     signOutQuestion: 'Sign out?',
     stay: 'Stay signed in',
     signedOut: 'You are signed out',
-    none: 'Join with an invitation',
+    none: 'Sign in to your table',
     failed: 'This invitation cannot be used',
     invited: 'You are invited to a table',
     takeSeat: 'Take your seat',
+    onlyBrowser: 'Only this browser',
     replaceQuestion: 'Replace your sign-in?',
     replace: 'Replace with this invitation',
     keep: 'Keep my current sign-in',
@@ -70,10 +71,11 @@ export const WORDS = {
     signOutQuestion: 'Выйти?',
     stay: 'Остаться',
     signedOut: 'Вы вышли',
-    none: 'Вход по приглашению',
+    none: 'Вход за игровой стол',
     failed: 'Это приглашение нельзя использовать',
     invited: 'Вас пригласили за стол',
     takeSeat: 'Занять место',
+    onlyBrowser: 'Только этот браузер',
     replaceQuestion: 'Заменить вход?',
     replace: 'Заменить приглашением',
     keep: 'Оставить текущий вход',
@@ -88,11 +90,14 @@ export type Words = (typeof WORDS)[keyof typeof WORDS];
 export const accessState = (page: Page, title: string) =>
   page.getByRole('group', { name: title, exact: true });
 
-/** "Take your seat" on the join page: the one moment the invitation is sent. */
+/**
+ * "Take your seat" on the join page, the one moment the invitation is sent: without a login, in
+ * this browser only (accounts have their own journeys, `accounts.spec.ts`).
+ */
 export async function takeSeat(page: Page, words: Words = WORDS.en): Promise<void> {
-  await accessState(page, words.invited)
-    .getByRole('button', { name: words.takeSeat, exact: true })
-    .click();
+  const invited = accessState(page, words.invited);
+  await invited.getByRole('radio', { name: words.onlyBrowser, exact: true }).check();
+  await invited.getByRole('button', { name: words.takeSeat, exact: true }).click();
 }
 
 /** Opens an invitation link (`path` or a whole link) and takes the seat. */

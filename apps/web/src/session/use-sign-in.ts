@@ -1,7 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
+import type { CampaignTemplate, NewAccount } from '@ltw/contracts';
+
 import type { Connection } from '../api/client.ts';
+import {
+  createCampaign,
+  enterCampaign,
+  readAccount,
+  resetPassword,
+  signInWithPassword,
+  signOutAccount,
+} from './account-flow.ts';
 import type { InvitationHolder } from './invitation-link.ts';
 import {
   describeSignIn,
@@ -27,7 +37,8 @@ export type SignInScreen =
   | { readonly kind: 'checking' }
   | { readonly kind: 'unreachable' }
   | { readonly kind: 'personas' }
-  | { readonly kind: 'invited' }
+  /** `problem`: the last try kept the invitation unspent (Stage 600). */
+  | { readonly kind: 'invited'; readonly problem?: 'login-taken' | 'already-seated' }
   | { readonly kind: 'joining' }
   | {
       readonly kind: 'confirm';
@@ -36,15 +47,28 @@ export type SignInScreen =
     }
   | { readonly kind: 'join-failed' }
   /** `none`: never signed in here; `ended`: the session ended under it; `left`: signed out. */
-  | { readonly kind: 'signed-out'; readonly reason: 'none' | 'ended' | 'left' }
+  | {
+      readonly kind: 'signed-out';
+      readonly reason: 'none' | 'ended' | 'left';
+      /** A reset set a new password: sign in with it (Stage 600). */
+      readonly passwordChanged?: true;
+      /** The session ended, but this browser's login is still signed in (Stage 600). */
+      readonly withAccount?: true;
+    }
+  /** The account's hub (Stage 600): its campaigns, a new one, its settings. */
+  | { readonly kind: 'hub' }
+  /** A reset link waiting for the new password (Stage 600). */
+  | { readonly kind: 'reset' }
   | { readonly kind: 'session'; readonly connection: Connection; readonly key: number };
 
 const firstScreen = (start: PageStart): SignInScreen =>
   start.kind === 'invited'
     ? { kind: 'invited' }
-    : start.kind === 'malformed'
-      ? { kind: 'join-failed' }
-      : { kind: 'checking' };
+    : start.kind === 'reset'
+      ? { kind: 'reset' }
+      : start.kind === 'malformed'
+        ? { kind: 'join-failed' }
+        : { kind: 'checking' };
 
 /** A fresh start page in place of this one (this history entry is replaced). */
 const startAfresh = () => {
@@ -78,6 +102,10 @@ export function useSignIn(
   const mode = useRef<'unknown' | 'personas' | 'invitations'>('unknown');
   // The question's token: held only while the person is asked whether to replace a sign-in.
   const replacement = useRef<InvitationHolder | null>(null);
+  // The invitation "Take your seat" spends: the page's, or the one an unspent try handed back.
+  const seatHolder = useRef<InvitationHolder | null>(
+    start.kind === 'invited' ? start.invitation : null,
+  );
 
   /**
    * Starts a new generation: whatever an older step still answers is ignored, the shown session's
@@ -108,7 +136,15 @@ export function useSignIn(
   const enterSession = useCallback(
     (campaignId: string) => {
       const ended = () => {
-        if (active.current === connection) next({ kind: 'signed-out', reason: 'ended' });
+        if (active.current !== connection) return;
+        const shown = next({ kind: 'signed-out', reason: 'ended' });
+        // A login still signed in here opens its other campaigns (Stage 600).
+        void readAccount(transport).then((reading) => {
+          if (shown !== step.current || reading.kind !== 'account') return;
+          setScreen((screen) =>
+            screen.kind === 'signed-out' ? { ...screen, withAccount: true } : screen,
+          );
+        });
       };
       const watching = new SignInWatch({ transport, campaignId, onChanged: ended });
       const mounted = new MountedGameIdentity(campaignId);
@@ -151,8 +187,22 @@ export function useSignIn(
           // Seated (the cookie is set): the world opens on a fresh start page.
           restart();
           return;
-        case 'signed-out':
-          next({ kind: 'signed-out', reason: 'none' });
+        case 'signed-out': {
+          // Signed out of every campaign: an account signed in here opens its hub (Stage 600).
+          const checking = next({ kind: 'checking' });
+          void readAccount(transport).then((reading) => {
+            if (checking !== step.current) return;
+            next(
+              reading.kind === 'account' ? { kind: 'hub' } : { kind: 'signed-out', reason: 'none' },
+            );
+          });
+          return;
+        }
+        case 'login-taken':
+        case 'already-seated':
+          // The invitation was not spent: the person may try again (another login).
+          seatHolder.current = outcome.retry;
+          next({ kind: 'invited', problem: outcome.kind });
           return;
         case 'personas':
           next({ kind: 'personas' });
@@ -170,7 +220,7 @@ export function useSignIn(
           return;
       }
     },
-    [enterSession, next, restart],
+    [enterSession, next, restart, transport],
   );
 
   // Without an invitation the first request was sent once, when the page loaded: await it.
@@ -225,6 +275,7 @@ export function useSignIn(
   useEffect(() => {
     const hide = () => {
       if (start.kind === 'invited') start.invitation.forget();
+      seatHolder.current?.forget();
       // A history snapshot may precede React's native-event batch commit.
       flushSync(() => {
         next(mode.current === 'personas' ? { kind: 'personas' } : { kind: 'checking' });
@@ -253,14 +304,55 @@ export function useSignIn(
       restart();
     },
     /** "Take your seat": the invitation is redeemed now, once. */
-    takeSeat: () => {
-      if (screen.kind !== 'invited' || start.kind !== 'invited') return;
-      const { invitation } = start;
-      if (!invitation.holds()) return;
+    takeSeat: (newAccount: NewAccount | null = null) => {
+      const invitation = seatHolder.current;
+      if (screen.kind !== 'invited' || invitation === null || !invitation.holds()) return;
       const generation = next({ kind: 'joining' });
-      void takeSeat(invitation, transport).then((outcome) => {
+      void takeSeat(invitation, transport, newAccount).then((outcome) => {
         if (outcome !== null) apply(outcome, generation);
       });
+    },
+    /** Signed in with a login and a password: the hub (Stage 600). */
+    signInAccount: async (login: string, password: string) => {
+      const answer = await signInWithPassword(transport, login, password);
+      if (answer === 'signed-in' && screen.kind !== 'invited') next({ kind: 'hub' });
+      return answer;
+    },
+    /** From the hub: a campaign's session is set, then its world opens. */
+    openCampaign: async (campaignId: string) => {
+      const answer = await enterCampaign(transport, campaignId);
+      if (answer.kind === 'entered') enterSession(answer.campaignId);
+      return answer;
+    },
+    /** From the hub: a new campaign from a ready adventure, then its world. */
+    createCampaign: async (template: CampaignTemplate) => {
+      const answer = await createCampaign(transport, template);
+      if (answer.kind === 'entered') enterSession(answer.campaignId);
+      return answer;
+    },
+    /**
+     * The account's hub, from a world (the campaign session stays until another one opens) or from
+     * a join page whose seat the login already has (the unspent invitation is forgotten).
+     */
+    toHub: () => {
+      seatHolder.current?.forget();
+      seatHolder.current = null;
+      next({ kind: 'hub' });
+    },
+    /** The account signs out here, with this browser's campaign session. */
+    signOutAccount: async () => {
+      await signOutAccount(transport);
+      next({ kind: 'signed-out', reason: 'left' });
+    },
+    /** A reset link's new password: then signing in with it. */
+    resetWith: async (password: string) => {
+      if (start.kind !== 'reset') return 'failed' as const;
+      const token = start.reset.take();
+      if (token === null) return 'failed' as const;
+      const answer = await resetPassword(transport, token, password);
+      if (answer.kind !== 'done') return 'failed' as const;
+      next({ kind: 'signed-out', reason: 'none', passwordChanged: true });
+      return 'done' as const;
     },
     /** The person keeps this browser's sign-in: the invitation is forgotten, unused. */
     keep: () => {

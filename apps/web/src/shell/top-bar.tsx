@@ -2,6 +2,7 @@ import { useT } from '@ltw/ui';
 import type { Ref } from 'react';
 
 import type { LiveStatus } from '../api/live.ts';
+import { AccountButton } from '../session/account-menu.tsx';
 import { ConnectionBadge } from '../session/live-status.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
 import { IconButton } from '../visual/icon-button.tsx';
@@ -10,8 +11,9 @@ import { ornamentUrl } from '../visual/ui-kit.ts';
 /**
  * The top bar (docs/STAGE_320_DESIGN.md §5.1): the emblem and wordmark, the campaign and the
  * open play session (written in by the world screen, which owns that view), whether this view
- * follows the world live, the perspective, refresh and leave — signing out, for a browser
- * signed in by invitation (docs/adr/0036-production-sign-in.md §7).
+ * follows the world live, the perspective, refresh, the account (my campaigns, or saving the seat
+ * to a login: docs/adr/0041-accounts.md) and leave — signing out, for a browser signed in by
+ * invitation (docs/adr/0036-production-sign-in.md §7).
  */
 export function TopBar({
   campaignName,
@@ -68,6 +70,7 @@ export function TopBar({
           </span>
         </div>
         <IconButton glyph="refresh" label={t('Refresh world')} labelled onClick={onRefresh} />
+        {signedIn && <AccountButton />}
         <IconButton
           glyph="leave"
           label={signedIn ? t('Sign out') : t('Leave session')}

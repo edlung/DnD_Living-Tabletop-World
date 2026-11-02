@@ -12,6 +12,7 @@ import {
 import { PostgresCredentialStore } from './postgres-credential-store.ts';
 import { systemAuthClock } from './session-authenticator.ts';
 import { PostgresCampaignPublication } from '../campaigns/postgres-publication.ts';
+import { PostgresAccountStore } from '../accounts/postgres-account-store.ts';
 
 /**
  * Entry for `pnpm auth:operator` (docs/adr/0036-production-sign-in.md §1, amendment 2026-10-16):
@@ -21,7 +22,8 @@ import { PostgresCampaignPublication } from '../campaigns/postgres-publication.t
  *   DM invitations in that campaign;
  * - `revoke-actor --actor <actorId> --authorization-source <reference>`: sign one actor out
  *   everywhere (its sessions and open invitations in every campaign);
- * - `sessions --campaign <id>`: the campaign's live sessions (no token, no hash).
+ * - `sessions --campaign <id>`: the campaign's live sessions (no token, no hash);
+ * - `reset-password --login <login>`: a single-use reset link for an account (ADR 0041 §7).
  * Prints one JSON line; nothing else ever prints or logs a token.
  */
 async function main(): Promise<void> {
@@ -46,7 +48,10 @@ async function main(): Promise<void> {
   }
   const publicOrigin =
     config.auth.mode === 'invitations' ? (config.auth.publicOrigin ?? null) : null;
-  if (command.kind === 'dm-invite' && publicOrigin === null) {
+  if (
+    (command.kind === 'dm-invite' || command.kind === 'reset-password') &&
+    publicOrigin === null
+  ) {
     console.error('auth:operator: needs AUTH_MODE=invitations and PUBLIC_ORIGIN');
     process.exitCode = 2;
     return;
@@ -60,6 +65,7 @@ async function main(): Promise<void> {
         publicOrigin,
         clock: systemAuthClock,
         publication: new PostgresCampaignPublication(pool),
+        accounts: new PostgresAccountStore(pool),
       },
       command,
     );

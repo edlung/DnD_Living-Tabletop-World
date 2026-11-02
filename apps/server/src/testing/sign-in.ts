@@ -1,6 +1,12 @@
 import type { CreatedInvitationResponse } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import type { FastifyInstance, LightMyRequestResponse } from 'fastify';
+import {
+  ACCOUNT_LIMITS,
+  AccountLimits,
+  type AccountLimitSettings,
+} from '../accounts/account-limits.ts';
+import { InMemoryAccountStore } from '../accounts/account-store.ts';
 
 import { InMemoryCredentialStore, type CredentialStore } from '../auth/credential-store.ts';
 import { RequestLimits, SIGN_IN_LIMITS, type LimitSettings } from '../auth/limits.ts';
@@ -56,6 +62,7 @@ export interface SignInTable {
   readonly timers: ManualTimers;
   readonly engine: WorldEngine;
   readonly credentials: CredentialStore;
+  readonly accounts: InMemoryAccountStore;
   readonly clock: ManualClock;
   readonly signIn: SignInDependencies;
   /** A request as a browser on the public origin sends it, unless told otherwise. */
@@ -101,6 +108,10 @@ export class FlakyCredentialStore implements CredentialStore {
 
   constructor(inner: CredentialStore) {
     this.#inner = inner;
+  }
+
+  createSession(...args: Parameters<CredentialStore['createSession']>): Promise<void> {
+    return this.#inner.createSession(...args);
   }
 
   async completeRedeem(...args: Parameters<CredentialStore['completeRedeem']>): Promise<boolean> {
@@ -159,6 +170,7 @@ export const tokenOfLink = (link: string): string => link.slice(link.indexOf('#'
 export async function signInTable(
   options: {
     readonly limits?: Partial<LimitSettings>;
+    readonly accountLimits?: Partial<AccountLimitSettings>;
     readonly logger?: Logger;
     readonly credentials?: CredentialStore;
     readonly engine?: WorldEngine;
@@ -173,12 +185,15 @@ export async function signInTable(
   const clock = new ManualClock();
   const timers = new ManualTimers();
   const credentials = options.credentials ?? new InMemoryCredentialStore();
+  const accounts = new InMemoryAccountStore();
   const signIn: SignInDependencies = {
     credentials,
     publicOrigin: ORIGIN,
     clock,
     limits: new RequestLimits({ ...SIGN_IN_LIMITS, ...options.limits }, clock.now),
     evidence: evidenceHasher(),
+    accounts,
+    accountLimits: new AccountLimits({ ...ACCOUNT_LIMITS, ...options.accountLimits }, clock.now),
   };
   const ai = options.ai ?? testAiGateway();
   const { app, hub } = buildLiveApp(
@@ -228,6 +243,7 @@ export async function signInTable(
     timers,
     engine,
     credentials,
+    accounts,
     clock,
     signIn,
     send,

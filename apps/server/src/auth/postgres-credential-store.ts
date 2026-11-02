@@ -171,6 +171,26 @@ export class PostgresCredentialStore implements CredentialStore {
     }
   }
 
+  async createSession(session: NewSession): Promise<void> {
+    // Only from a used invitation: the seat's own, never one still open.
+    const { rowCount } = await this.#pool.query(
+      `INSERT INTO ltw_auth_sessions (${SESSION_COLUMNS})
+       SELECT $1, $2, $3, $4, $5, $6, $7, $6, NULL
+       FROM ltw_auth_invitations
+       WHERE invitation_id = $5 AND used_at IS NOT NULL AND campaign_id = $3`,
+      [
+        session.sessionId,
+        session.tokenHash,
+        session.campaignId,
+        session.actorId,
+        session.invitationId,
+        session.createdAt,
+        session.expiresAt,
+      ],
+    );
+    if (rowCount !== 1) throw new Error('a session needs a used invitation of its campaign');
+  }
+
   async findSession(tokenHash: string): Promise<SessionRecord | null> {
     const { rows } = await this.#pool.query<SessionRow>(
       `SELECT ${SESSION_COLUMNS} FROM ltw_auth_sessions WHERE token_hash = $1`,

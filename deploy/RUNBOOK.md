@@ -496,6 +496,23 @@ dc exec -T server node apps/server/dist/auth/operator-cli.js revoke-actor --acto
   --authorization-source '<who asked, where>'
 ```
 
+**Логины / Logins (Stage 600, ADR 0041).** RU: у игроков и мастеров есть логины (без почты);
+логин создаётся только вместе с местом по приглашению. Забытый пароль: мастер кампании выдаёт
+ссылку сброса на листе «Игроки» (кнопка у игрока), а свой собственный — оператор командой ниже.
+Ссылка `<PUBLIC_ORIGIN>/reset#…` срабатывает один раз, живёт 72 часа, показывается один раз —
+передайте её лично, как ссылку-приглашение; новый пароль выводит логин из всех устройств и
+кампаний. Выйти за человека везде — `revoke-actor` выше. EN: players and DMs have logins (no
+e-mail); a login is made only together with a seat from an invitation. A forgotten password: a
+campaign's DM issues a reset link from the Players sheet (a button by the player), the operator
+issues one with the command below (the DM's own, say). The link `<PUBLIC_ORIGIN>/reset#…` works
+once, for 72 hours, and is shown once — hand it over privately, like an invitation; the new
+password signs the login out of every device and campaign. Signing a person out everywhere is
+`revoke-actor` above.
+
+```bash
+dc exec -T server node apps/server/dist/auth/operator-cli.js reset-password --login '<login>'
+```
+
 ## 7. Остановить все расходы на ИИ · Stop all AI spending
 
 **RU.** Сразу: очистите в `deploy/.env` `ANTHROPIC_API_KEY`, `LTW_AI_ROUTES`, `LTW_AI_APPROVAL_ID`
