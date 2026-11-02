@@ -12,6 +12,7 @@ type CombatEvent = Extract<
       | 'CombatantUpdated'
       | 'CombatEnded'
       | 'CombatOrderChanged'
+      | 'LightSet'
       | 'StatBlockSet'
       | 'ActionTaken'
       | 'AttackPerformed'
@@ -53,6 +54,7 @@ export function combatFootprint(event: CombatEvent): Footprint {
     case 'TurnStarted':
     case 'CombatantUpdated':
     case 'CombatEnded':
+    case 'LightSet':
       // Combat is strictly sequential: undo unwinds it in reverse order (ADR 0015).
       return { reads: [clock, facts.encounter()], writes: [facts.encounter()] };
     case 'CombatOrderChanged':

@@ -5,6 +5,7 @@ import { applyCharacterSheetSet } from '../character/character.ts';
 import {
   applyCombatEnded,
   applyCombatOrderChanged,
+  applyLightSet,
   applyCombatRecord,
   applyCombatRestore,
   applyCombatStarted,
@@ -219,6 +220,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyCombatEnded(state, event);
     case 'CombatOrderChanged':
       return applyCombatOrderChanged(state, event);
+    case 'LightSet':
+      return applyLightSet(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
     case 'ActionTaken':

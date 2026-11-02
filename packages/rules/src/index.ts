@@ -55,6 +55,7 @@ export {
   type LevelUpRefusal,
 } from './rest.ts';
 export { OBJECT_ARMOR_CLASS, OBJECT_HIT_POINTS, objectStatBlock } from './objects.ts';
+export { lightSeen, obscurementSeen, perceivesWithin, type Obscurement } from './sight.ts';
 export {
   RUN_UP_FT,
   fallDice,

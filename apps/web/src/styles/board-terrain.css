@@ -98,3 +98,52 @@
 .board--tilted .token.is-riding {
   translate: 0 0 calc(var(--cell) * 0.9);
 }
+
+/*
+ * Light and fog (docs/adr/0050-the-world-around.md §1): a shade over the ground and under the
+ * figures — Dim Light and Darkness darken it, fog veils it; the legend's swatches are drawn alike.
+ */
+.square-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.square-shade--dim {
+  background: color-mix(in srgb, var(--ink-950) 32%, transparent);
+}
+.square-shade--dark {
+  background: color-mix(in srgb, var(--ink-950) 62%, transparent);
+}
+/* A swatch shows the shade over the ground it darkens */
+.legend-swatch--dim {
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--ink-950) 32%, transparent),
+      color-mix(in srgb, var(--ink-950) 32%, transparent)
+    ),
+    url('../assets/ui-kit/board/ground.webp') center / 84px;
+}
+.legend-swatch--dark {
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--ink-950) 62%, transparent),
+      color-mix(in srgb, var(--ink-950) 62%, transparent)
+    ),
+    url('../assets/ui-kit/board/ground.webp') center / 84px;
+}
+.square-shade--fog,
+.legend-swatch--fog {
+  background-color: transparent;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--text) 26%, transparent),
+    color-mix(in srgb, var(--text) 8%, transparent) 70%
+  );
+}
+.square-shade--fog-heavy {
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--text) 46%, transparent),
+    color-mix(in srgb, var(--text) 22%, transparent) 70%
+  );
+}

@@ -130,6 +130,12 @@ export function Board({
   // Water and the ground's heights (docs/adr/0049-space-and-movement.md §5–6).
   const water = new Map((encounter.battlefield.water ?? []).map((w) => [key(w), w.deep === true]));
   const heights = new Map((encounter.battlefield.ground ?? []).map((g) => [key(g), g.ft]));
+  // Its light and its fog (docs/adr/0050-the-world-around.md §1).
+  const ambient = encounter.battlefield.ambient ?? 'bright';
+  const lit = new Map((encounter.battlefield.light ?? []).map((l) => [key(l), l.level]));
+  const fog = new Map(
+    (encounter.battlefield.obscured ?? []).map((o) => [key(o), o.heavy === true] as const),
+  );
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
   // Every square a combatant fills names it; its figure stands on its north-west square, as big
   // as its space (docs/adr/0049-space-and-movement.md §1).
@@ -208,6 +214,7 @@ export function Board({
         water.has(id) ? (water.get(id) ? 'is-water is-deep' : 'is-water') : '',
         (heights.get(id) ?? 0) > 0 ? 'is-raised' : '',
         (heights.get(id) ?? 0) < 0 ? 'is-pit' : '',
+
         anchor && span > 1 ? 'has-span' : '',
         level ? 'has-cover' : '',
         level && occupant ? 'has-occupant' : '',
@@ -240,6 +247,8 @@ export function Board({
             wall: walls.has(id),
             water: water.has(id) ? (water.get(id) ? 'deep' : 'shallow') : null,
             groundFt: heights.get(id) ?? 0,
+            light: lit.get(id) ?? ambient,
+            obscured: fog.has(id) ? (fog.get(id) ? 'heavy' : 'light') : 'none',
             cover: level,
             inArea,
           })}
@@ -260,6 +269,19 @@ export function Board({
             setFocused((known) => (known && key(known) === id ? null : known));
           }}
         >
+          {/* Its light and its fog, a shade under the figures (docs/adr/0050 §1). */}
+          {((lit.get(id) ?? ambient) !== 'bright' || fog.has(id)) && (
+            <span
+              className={[
+                'square-shade',
+                `square-shade--${lit.get(id) ?? ambient}`,
+                fog.has(id) ? (fog.get(id) ? 'square-shade--fog-heavy' : 'square-shade--fog') : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-hidden="true"
+            />
+          )}
           {level && <CoverPiece level={level} />}
           {occupant && anchor && (
             <Token

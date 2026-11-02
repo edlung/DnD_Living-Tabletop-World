@@ -20,6 +20,7 @@ import {
   type TurnState,
 } from '@ltw/rules';
 
+import { canSee } from './sight.ts';
 import {
   coverAt,
   fitsOnField,
@@ -133,7 +134,12 @@ export function characterSpellPlan(
     const located = locateTarget(state, encounter, record, casterId, request.targetId);
     if ('legal' in located) return located;
     target = located.target;
-    castRequest.target = { distanceFt: located.distanceFt, visible: true };
+    // A creature it can see, in this light, with its senses (docs/adr/0050 §3).
+    const seen =
+      !encounter || !record || !located.target.record || request.targetId === casterId
+        ? true
+        : canSee(state, encounter, record, located.target.record);
+    castRequest.target = { distanceFt: located.distanceFt, visible: seen };
   } else if (spellId === 'fireball' || spellId === 'misty-step') {
     if (!encounter || !record) return refuse('NOT_IN_COMBAT');
     if (request.point === undefined) return refuse('TARGET_REQUIRED');

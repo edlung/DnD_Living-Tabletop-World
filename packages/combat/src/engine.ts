@@ -16,6 +16,7 @@ import {
   decideRemoveCombatant,
   decideSetInitiative,
 } from './order.ts';
+import { decideSetLight } from './light.ts';
 import { decideMove } from './movement.ts';
 import { ridersAfter } from './mounts.ts';
 import { decideAddObject } from './objects.ts';
@@ -88,5 +89,7 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideCommandCreature(context, command);
     case 'AddObject':
       return decideAddObject(context, command);
+    case 'SetLight':
+      return decideSetLight(context, command);
   }
 }

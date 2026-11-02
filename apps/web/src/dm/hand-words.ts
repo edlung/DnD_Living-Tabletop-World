@@ -45,6 +45,13 @@ const conditionWord = (t: Translate, condition: string) =>
   condition in CONDITION_WORDS ? t(CONDITION_WORDS[condition as Condition]) : condition;
 
 /** The change's line: who, what, and the hit points before and after. */
+/** The fight's light as the DM's history says it was set (docs/adr/0050 §1). */
+const LIGHT_WORDS = {
+  bright: 'The light of the fight: bright',
+  dim: 'The light of the fight: dim',
+  dark: 'The light of the fight: darkness',
+} as const;
+
 export function describeHand(t: Translate, change: DmHandEntry['change']): string {
   switch (change.kind) {
     case 'hit-points': {
@@ -84,6 +91,8 @@ export function describeHand(t: Translate, change: DmHandEntry['change']): strin
         : t('{name}: Heroic Inspiration taken back', { name: change.target.name });
     case 'ruling':
       return t('Ruling: {summary}', { summary: change.summary });
+    case 'light':
+      return t(LIGHT_WORDS[change.ambient]);
     case 'fight': {
       const name = change.combatant.name;
       switch (change.change) {

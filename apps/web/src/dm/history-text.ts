@@ -107,6 +107,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   DelayTurn: 'delay a turn',
   SetInitiative: 'set initiative',
   AddObject: 'bring an object into the fight',
+  SetLight: 'set the light of the fight',
 };
 
 /** The actions' names (docs/adr/0045-conditions-and-actions.md §5), English keys. */

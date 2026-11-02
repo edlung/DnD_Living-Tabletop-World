@@ -7,6 +7,7 @@ import {
 } from '@ltw/domain';
 import { applyCast, checkCounterspell, slotsRemaining, type TurnState } from '@ltw/rules';
 
+import { canSee } from '../sight.ts';
 import { coverOf, gapBetween, isAlive, turnStateOf } from '../battlefield.ts';
 import type { CombatReason, Refusal } from '../legality.ts';
 import { vitalsOf } from '../vitals.ts';
@@ -61,7 +62,8 @@ export function counterspellPlan(
     turn,
     {
       casterDistanceFt: gapBetween(state, record, caster),
-      casterVisible: coverOf(state, encounter, caster) !== 'total',
+      casterVisible:
+        coverOf(state, encounter, caster) !== 'total' && canSee(state, encounter, record, caster),
       components,
     },
     slotLevel,

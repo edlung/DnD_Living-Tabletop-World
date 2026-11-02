@@ -38,13 +38,13 @@ import { isDodging } from './actions.ts';
 import { coverOf, gapBetween, immersed, isAlive, placedOf, turnStateOf } from './battlefield.ts';
 import { charmedBy, conditionsAgainst, detailOf } from './condition-details.ts';
 import { controlledMount } from './mounts.ts';
+import { canSee, lostInTheDark, perceives } from './sight.ts';
 import { isObjectIn } from './objects.ts';
 import { hostileSides } from './reactions/opportunity.ts';
 import {
   armorClass,
   conditionsOf,
   exhaustionOf,
-  has,
   incapacitated,
   speedsOf,
   vitalsOf,
@@ -175,19 +175,13 @@ const masteryUse = (
 
 /** A foe within 5 ft that sees the attacker and can act: a ranged attack has Disadvantage. */
 function foeClose(state: WorldState, encounter: EncounterState, attacker: CombatantRecord) {
-  const self = vitalsOf(state, attacker.entityId);
   return encounter.combatants.some((other) => {
     if (!hostileSides(other.side, attacker.side) || !isAlive(state, other.entityId)) return false;
     if (gapBetween(state, other, attacker) > 5) return false;
     // An object sees no one (docs/adr/0048-hit-points.md §5).
     if (isObjectIn(state, other.entityId)) return false;
     const vitals = vitalsOf(state, other.entityId);
-    return (
-      vitals !== null &&
-      !incapacitated(vitals) &&
-      !has(vitals, 'blinded') &&
-      !(self && has(self, 'invisible'))
-    );
+    return vitals !== null && !incapacitated(vitals) && canSee(state, encounter, other, attacker);
   });
 }
 
@@ -326,9 +320,30 @@ export function attackPlan(
   );
   const vexed = attacker.vexing?.targetId === targetId;
   const sapped = attacker.sappedBy !== undefined;
+  // Who sees whom (docs/adr/0050-the-world-around.md §2–3): Blindsight or Truesight within range
+  // sees past Blinded and Invisible; the dark and the fog hide what the conditions do not.
+  const thing = isObjectIn(state, targetId);
+  const perceivesTarget = perceives(state, attacker, target);
+  const perceivedBy = !thing && perceives(state, target, attacker);
   const circumstances = attackCircumstances({
-    attackerConditions: conditionsAgainst(state, encounter, attacker, attackerVitals, targetId),
-    targetConditions: conditionsOf(targetVitals),
+    attackerConditions: conditionsAgainst(
+      state,
+      encounter,
+      attacker,
+      attackerVitals,
+      targetId,
+    ).filter(
+      (condition) =>
+        !(perceivesTarget && condition === 'blinded') &&
+        !(perceivedBy && condition === 'invisible'),
+    ),
+    targetConditions: conditionsOf(targetVitals).filter(
+      (condition) =>
+        !(perceivesTarget && condition === 'invisible') &&
+        !(perceivedBy && condition === 'blinded'),
+    ),
+    targetUnseen: lostInTheDark(state, encounter, attacker, target),
+    attackerUnseen: !thing && lostInTheDark(state, encounter, target, attacker),
     melee: weapon.melee,
     distanceFt,
     longRange,

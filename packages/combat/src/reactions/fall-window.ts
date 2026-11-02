@@ -15,7 +15,8 @@ import { FEATHER_FALL, fallDice } from '@ltw/rules';
 import { gapBetween, isAlive } from '../battlefield.ts';
 import { fallEvents } from '../falling.ts';
 import type { Refusal } from '../legality.ts';
-import { has, incapacitated, vitalsOf, type Vitals } from '../vitals.ts';
+import { canSee } from '../sight.ts';
+import { incapacitated, vitalsOf, type Vitals } from '../vitals.ts';
 import { castReaction, openWindow, type Payment } from './attack-windows.ts';
 
 /**
@@ -48,10 +49,7 @@ export function featherFallPlan(
   if (!isAlive(state, reactorId) || incapacitated(vitals)) {
     return { legal: false, reason: 'INCAPACITATED' };
   }
-  const seen = fallers.filter((faller) => {
-    const theirs = vitalsOf(state, faller.entityId);
-    return !has(vitals, 'blinded') && !(theirs && has(theirs, 'invisible'));
-  });
+  const seen = fallers.filter((faller) => canSee(state, encounter, record, faller));
   const nearest = Math.min(
     ...(seen.length > 0 ? seen : fallers).map((faller) => gapBetween(state, record, faller)),
   );

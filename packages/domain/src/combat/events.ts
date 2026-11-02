@@ -1,4 +1,5 @@
 import {
+  LIGHT_LEVELS,
   ABILITIES,
   COMBAT_ACTIONS,
   CONDITIONS,
@@ -159,6 +160,8 @@ export const combatEventPayloadSchemas = {
   TurnStarted: z.object({ combatantId: entityIdSchema, round: z.number().int().min(1) }).strict(),
   CombatantUpdated: z.object({ combatant: combatantRecordSchema }).strict(),
   CombatEnded: z.object({ encounterId: entityIdSchema }).strict(),
+  /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
+  LightSet: z.object({ encounterId: entityIdSchema, ambient: z.enum(LIGHT_LEVELS) }).strict(),
   /**
    * The DM changed a running fight (docs/adr/0043-dm-screen.md §2): who joined, left, delayed or
    * had initiative set, and the whole order after it, with the current turn's place.

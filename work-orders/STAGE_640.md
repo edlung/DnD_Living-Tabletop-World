@@ -84,6 +84,16 @@ each further SRD rule needs an entry or an ADR before it is implemented).
   the full rules (one long rest in 24 hours, an interrupted rest and its partial benefits), armor's
   Strength and Stealth rules.
 
+  ADR 0050 first. Three commits: light and sight; rests by the full rules; hazards and armor.
+
+  First commit done (2026-11-02): the battlefield's light (`ambient`, lit squares) and fog
+  (`obscured`); senses on sheets and stat blocks; who sees whom (`packages/combat/src/sight.ts`
+  `canSee`, `lostInTheDark`) for attacks (unseen attackers and targets; Blindsight past Blinded and
+  Invisible), spells that need a seen target, opportunity attacks, Uncanny Dodge, Hellish Rebuke,
+  Feather Fall, Counterspell, a ranged attack with a foe beside, and the Hide action in the dark;
+  the DM's light of a running fight (`SetLight`, event `LightSet`); the board shades dim and dark
+  squares and fog, names them, lists them in the legend.
+
 ## Boundaries
 
 No new spells beyond the four reactions (Stage 650 brings the SRD spell list); no monsters' new

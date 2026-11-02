@@ -36,12 +36,25 @@ const WINDOW_WAITS = {
 function terrainKeys(battlefield: EncounterView['battlefield']) {
   const water = battlefield.water ?? [];
   const ground = battlefield.ground ?? [];
+  const light = battlefield.light ?? [];
   return [
     { swatch: 'wall', words: 'Wall', shown: (battlefield.walls?.length ?? 0) > 0 },
     { swatch: 'water', words: 'Water', shown: water.some((at) => at.deep !== true) },
     { swatch: 'deep', words: 'Deep water', shown: water.some((at) => at.deep === true) },
     { swatch: 'raised', words: 'Raised ground', shown: ground.some((at) => at.ft > 0) },
     { swatch: 'pit', words: 'Pit', shown: ground.some((at) => at.ft < 0) },
+    // Its light and its fog (docs/adr/0050-the-world-around.md §1).
+    {
+      swatch: 'dim',
+      words: 'Dim light',
+      shown: battlefield.ambient === 'dim' || light.some((at) => at.level === 'dim'),
+    },
+    {
+      swatch: 'dark',
+      words: 'Darkness',
+      shown: battlefield.ambient === 'dark' || light.some((at) => at.level === 'dark'),
+    },
+    { swatch: 'fog', words: 'Fog', shown: (battlefield.obscured?.length ?? 0) > 0 },
   ].filter((entry) => entry.shown);
 }
 

@@ -12,6 +12,7 @@ import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { withPictureTimes } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { LightControl } from './light-control.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
 import { suggestionArt } from './combat-art.ts';
@@ -290,6 +291,7 @@ function RunningControls({
           }}
         />
       )}
+      {!window && <LightControl encounter={encounter} locked={locked} onRun={onRun} />}
       <div className="action-row end-encounter">
         {confirmingEnd ? (
           <>

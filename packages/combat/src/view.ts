@@ -14,6 +14,7 @@ import {
 } from '@ltw/domain';
 
 import { reactionWindowView } from './reactions/view.ts';
+import { sensesOf } from './sight.ts';
 import {
   conditionsOf,
   exhaustionOf,
@@ -110,6 +111,8 @@ export function encounterView(
       ...(combatant.mountedOn === undefined ? {} : { mountedOn: named(combatant.mountedOn) }),
       // Its speeds beside walking, as its hit points: the party's and the DM's to know (§5).
       ...(showHp && Object.keys(speedsOf(vitals)).length > 0 ? { speeds: speedsOf(vitals) } : {}),
+      // Its senses, the same way (docs/adr/0050-the-world-around.md §2).
+      ...(showHp && Object.keys(sensesOf(vitals)).length > 0 ? { senses: sensesOf(vitals) } : {}),
       // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).
       state:
         entity.status !== 'active'
@@ -181,6 +184,20 @@ export function encounterView(
         : {}),
       ...(battlefield.ground
         ? { ground: battlefield.ground.map(({ x, y, ft }) => ({ x, y, ft })) }
+        : {}),
+      // Its light and its fog (docs/adr/0050-the-world-around.md §1), as everyone at the table sees.
+      ...(battlefield.ambient ? { ambient: battlefield.ambient } : {}),
+      ...(battlefield.light
+        ? { light: battlefield.light.map(({ x, y, level }) => ({ x, y, level })) }
+        : {}),
+      ...(battlefield.obscured
+        ? {
+            obscured: battlefield.obscured.map(({ x, y, heavy }) => ({
+              x,
+              y,
+              ...(heavy === true ? { heavy } : {}),
+            })),
+          }
         : {}),
     },
     combatants,

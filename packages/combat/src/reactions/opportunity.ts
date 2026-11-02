@@ -11,7 +11,8 @@ import { WEAPONS } from '@ltw/rules';
 import { gapToSpace, isAlive, placedOf, turnStateOf } from '../battlefield.ts';
 import type { Refusal } from '../legality.ts';
 import { UNARMED_STRIKE, reachOfWeapon } from '../weapon-view.ts';
-import { has, incapacitated, vitalsOf, type Vitals } from '../vitals.ts';
+import { canSee } from '../sight.ts';
+import { incapacitated, vitalsOf, type Vitals } from '../vitals.ts';
 
 /**
  * Opportunity attacks (docs/adr/0046-reactions-beyond-counterspell.md §2): a creature that leaves
@@ -82,8 +83,8 @@ export function opportunityPlan(
   if (incapacitated(vitals)) return { legal: false, reason: 'INCAPACITATED' };
   if (!turnStateOf(encounter, record).reactionAvailable)
     return { legal: false, reason: 'NO_REACTION' };
-  // It must see the mover (light and sight come with 640g).
-  if (has(vitals, 'blinded') || has(seen, 'invisible')) {
+  // It must see the mover, in this light, with its senses (docs/adr/0050 §2).
+  if (!canSee(state, encounter, record, mover)) {
     return { legal: false, reason: 'TARGET_NOT_VISIBLE' };
   }
   return { legal: true, record, attacks: meleeAttacks(state, vitals) };

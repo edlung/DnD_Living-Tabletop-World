@@ -29,6 +29,8 @@ import {
 } from './battlefield.ts';
 import { withDetail } from './condition-details.ts';
 import { controlledMount, decideMounting, mountPlan } from './mounts.ts';
+import { hostileSides } from './reactions/opportunity.ts';
+import { hiddenByTheDark } from './sight.ts';
 import { decideRelease, escapeDcOf, heldBy } from './unarmed.ts';
 import type { Refusal } from './legality.ts';
 import { isObjectIn } from './objects.ts';
@@ -145,9 +147,15 @@ export function actionPlan(
     return { legal: true, actor, vitals, skill: null };
   }
   if (action === 'hide') {
-    // Hide from behind Three-Quarters or Total Cover (light and sight are Stage 640g).
+    // Hide from behind Three-Quarters or Total Cover, or heavily obscured to every foe — in the
+    // dark or the fog (docs/adr/0050-the-world-around.md §4).
     const cover = coverOf(state, encounter, actor);
-    if (cover !== 'three-quarters' && cover !== 'total') return refuse('NO_COVER_TO_HIDE');
+    const dark = hiddenByTheDark(state, encounter, actor, (other) =>
+      hostileSides(other.side, actor.side),
+    );
+    if (cover !== 'three-quarters' && cover !== 'total' && !dark) {
+      return refuse('NO_COVER_TO_HIDE');
+    }
     return { legal: true, actor, vitals, skill: 'stealth' };
   }
   return { legal: true, actor, vitals, skill: null };

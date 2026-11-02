@@ -195,6 +195,20 @@ export const speedsSchema = z
 export type Speeds = z.infer<typeof speedsSchema>;
 
 /**
+ * Senses beside sight, with their ranges in feet (docs/adr/0050-the-world-around.md §2):
+ * Darkvision lifts the light a step, Blindsight and Truesight see whatever is there.
+ */
+export const sensesSchema = z
+  .object({
+    blindsight: feet.optional(),
+    darkvision: feet.optional(),
+    tremorsense: feet.optional(),
+    truesight: feet.optional(),
+  })
+  .strict();
+export type Senses = z.infer<typeof sensesSchema>;
+
+/**
  * The SRD 5.2.1 conditions (docs/adr/0045-conditions-and-actions.md §1), Exhaustion apart (a level,
  * §3), and the Slow mastery's Slowed. Paralyzed, Petrified, Stunned and Unconscious include
  * Incapacitated; Unconscious (a character at 0 HP, ADR 0015 §4) brings Prone with it. The list only
@@ -269,6 +283,7 @@ export const characterSheetSchema = z
     size: z.enum(CREATURE_SIZES).optional(),
     /** Its speeds beside walking (ADR 0049 §5); absent: none. */
     speeds: speedsSchema.optional(),
+    senses: sensesSchema.optional(),
     savingThrows: z.array(z.enum(ABILITIES)),
     skills: z
       .object({ proficient: z.array(z.enum(skillIds)), expertise: z.array(z.enum(skillIds)) })

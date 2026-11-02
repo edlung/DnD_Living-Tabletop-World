@@ -80,6 +80,8 @@ export function handChange(
         change: { kind: 'exhaustion', target: ref(command.targetId), level: command.level },
         reason: command.reason,
       };
+    case 'SetLight':
+      return { change: { kind: 'light', ambient: command.ambient }, reason: null };
     case 'AddCombatant':
     case 'AddObject':
     case 'RemoveCombatant':

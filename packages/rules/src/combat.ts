@@ -69,6 +69,13 @@ export interface AttackCircumstances {
   readonly targetSqueezed?: boolean;
   /** A weapon that drags under water (`underwaterDisadvantage`, ADR 0049 §11). */
   readonly underwater?: boolean;
+  /**
+   * Unseen attackers and targets (docs/adr/0050-the-world-around.md §3): the attacker cannot see
+   * its target in the dark or the fog — Disadvantage; the target cannot see its attacker —
+   * Advantage. Invisible and Blinded are the conditions' own.
+   */
+  readonly targetUnseen?: boolean;
+  readonly attackerUnseen?: boolean;
 }
 
 /**
@@ -94,7 +101,8 @@ export function attackCircumstances(c: AttackCircumstances): {
     (targetProne && c.melee && close) ||
     c.helped === true ||
     c.vexing === true ||
-    c.targetSqueezed === true;
+    c.targetSqueezed === true ||
+    c.attackerUnseen === true;
   const disadvantage =
     attacker.disadvantage ||
     target.disadvantage ||
@@ -105,7 +113,8 @@ export function attackCircumstances(c: AttackCircumstances): {
     c.tooHeavy === true ||
     c.sapped === true ||
     c.attackerSqueezed === true ||
-    c.underwater === true;
+    c.underwater === true ||
+    c.targetUnseen === true;
   return { advantage, disadvantage, criticalOnHit: target.criticalOnHit };
 }
 

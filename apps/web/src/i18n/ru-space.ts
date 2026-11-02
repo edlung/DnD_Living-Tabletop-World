@@ -101,6 +101,21 @@ registerRussian({
   'You ride: your mount carries you on its turn, or get down beside it.':
     'Вы верхом: скакун несёт вас в свой ход, или спешьтесь рядом с ним.',
 
+  // Light and sight (docs/adr/0050-the-world-around.md §1–4)
+  'Light of the fight': 'Освещение боя',
+  Bright: 'Яркий свет',
+  Dim: 'Тусклый свет',
+  Darkness: 'Темнота',
+  'Dim light': 'Тусклый свет',
+  'dim light': 'тусклый свет',
+  darkness: 'темнота',
+  'lightly obscured': 'слабая заслонённость',
+  'heavily obscured': 'сильная заслонённость',
+  'The light of the fight: bright': 'Освещение боя: яркий свет',
+  'The light of the fight: dim': 'Освещение боя: тусклый свет',
+  'The light of the fight: darkness': 'Освещение боя: темнота',
+  'set the light of the fight': 'изменить освещение боя',
+
   // A refusal's reason
   'too large': 'слишком велик',
   'no fly speed': 'не умеет летать',

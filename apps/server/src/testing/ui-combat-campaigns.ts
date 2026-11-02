@@ -96,6 +96,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   featherFall: 'placed',
   // Mounted combat (ADR 0049 §10): a Large worg she commands beside her.
   mount: 'placed',
+  // Light (ADR 0050 §1): the DM puts out the light of a running fight.
+  light: 'started',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {

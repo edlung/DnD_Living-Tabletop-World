@@ -10,82 +10,35 @@ import {
   type DamageType,
   type Skill,
 } from '../rules/character-sheet.ts';
+import {
+  SIDES,
+  MAX_COMBATANTS,
+  squareSchema,
+  LIGHT_LEVELS,
+  battlefieldSchema,
+} from './battlefield.ts';
 
 /**
  * Combat commands (docs/adr/0015-combat-engine.md). Schemas validate shape
  * only; legality is decided by the Rules Engine through the World Engine.
  */
-export const COVER_LEVELS = ['half', 'three-quarters', 'total'] as const;
-export type CoverLevel = (typeof COVER_LEVELS)[number];
-export const SIDES = ['party', 'hostile', 'neutral'] as const;
-export type Side = (typeof SIDES)[number];
-
-export const MAX_BATTLEFIELD = 40;
-/** Fights larger than the slice's 16 (docs/adr/0043-dm-screen.md §2). */
-export const MAX_COMBATANTS = 40;
-
 /** The SRD's damage types, beside the sheet's other vocabularies (`rules/character-sheet.ts`). */
 export { DAMAGE_TYPES, type DamageType };
 
-export const squareSchema = z
-  .object({
-    x: z
-      .number()
-      .int()
-      .min(0)
-      .max(MAX_BATTLEFIELD - 1),
-    y: z
-      .number()
-      .int()
-      .min(0)
-      .max(MAX_BATTLEFIELD - 1),
-  })
-  .strict();
-export type Square = z.infer<typeof squareSchema>;
-
-export const battlefieldSchema = z
-  .object({
-    width: z.number().int().min(1).max(MAX_BATTLEFIELD),
-    height: z.number().int().min(1).max(MAX_BATTLEFIELD),
-    difficult: z.array(squareSchema).max(400),
-    cover: z
-      .array(
-        z
-          .object({ x: squareSchema.shape.x, y: squareSchema.shape.y, level: z.enum(COVER_LEVELS) })
-          .strict(),
-      )
-      .max(400),
-    /** Squares no one stands in or crosses (docs/adr/0049-space-and-movement.md §4). */
-    walls: z.array(squareSchema).max(800).optional(),
-    /** Water, swum (§5); deep water immerses who is in it (§11). */
-    water: z
-      .array(
-        z
-          .object({
-            x: squareSchema.shape.x,
-            y: squareSchema.shape.y,
-            deep: z.literal(true).optional(),
-          })
-          .strict(),
-      )
-      .max(800)
-      .optional(),
-    /** The ground's height in feet, raised (a ledge, a roof) or sunk (a pit); absent: 0 (§6). */
-    ground: z
-      .array(
-        z
-          .object({
-            x: squareSchema.shape.x,
-            y: squareSchema.shape.y,
-            ft: z.number().int().min(-200).max(200).multipleOf(5),
-          })
-          .strict(),
-      )
-      .max(800)
-      .optional(),
-  })
-  .strict();
-export type Battlefield = z.infer<typeof battlefieldSchema>;
+export {
+  COVER_LEVELS,
+  SIDES,
+  MAX_BATTLEFIELD,
+  MAX_COMBATANTS,
+  squareSchema,
+  LIGHT_LEVELS,
+  battlefieldSchema,
+  type CoverLevel,
+  type Side,
+  type Square,
+  type LightLevel,
+  type Battlefield,
+} from './battlefield.ts';
 
 /**
  * One step of a move (docs/adr/0049-space-and-movement.md §5–8): the square entered, its height
@@ -417,6 +370,14 @@ export const setInitiativeCommandSchema = z
   .object({ type: z.literal('SetInitiative'), combatantId: entityIdSchema, total: initiativeTotal })
   .strict();
 
+/**
+ * The light of a running fight (docs/adr/0050-the-world-around.md §1): the DM sets the light
+ * everywhere — a torch put out, the dawn; squares lit otherwise keep theirs.
+ */
+export const setLightCommandSchema = z
+  .object({ type: z.literal('SetLight'), ambient: z.enum(LIGHT_LEVELS) })
+  .strict();
+
 export const FIGHT_CHANGE_COMMAND_TYPES = [
   'AddCombatant',
   'RemoveCombatant',
@@ -425,6 +386,8 @@ export const FIGHT_CHANGE_COMMAND_TYPES = [
   'CommandCreature',
   /** An object the party attacks (docs/adr/0048-hit-points.md §5; `combat/objects.ts`). */
   'AddObject',
+  /** The fight's light (docs/adr/0050-the-world-around.md §1). */
+  'SetLight',
 ] as const;
 
 /** Combat commands a player may issue for their own character. */

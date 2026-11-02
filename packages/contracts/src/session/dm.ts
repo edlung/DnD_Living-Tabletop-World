@@ -1,3 +1,4 @@
+import type { LightLevel } from '../combat/commands.ts';
 import { z } from 'zod';
 
 import type { PlayerCommandType } from '../investigation/commands.ts';
@@ -160,7 +161,9 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly change: 'joined' | 'left' | 'delayed' | 'initiative';
         readonly combatant: EntityRef;
         readonly total: number | null;
-      };
+      }
+    /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
+    | { readonly kind: 'light'; readonly ambient: LightLevel };
   /** The DM's reason; null for a change of the fight that takes none. */
   readonly reason: string | null;
 }

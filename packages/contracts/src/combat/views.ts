@@ -1,5 +1,5 @@
 import type { EntityKind, KernelCommandOf } from '../kernel/commands.ts';
-import type { Ability, Condition, CreatureSize, Speeds } from '../rules/character-sheet.ts';
+import type { Ability, Condition, CreatureSize, Senses, Speeds } from '../rules/character-sheet.ts';
 import type { Battlefield, Side } from './commands.ts';
 import type { ReactionId, ReactionResponse, SpellComponent } from './reactions.ts';
 import type { ObjectMaterial, ObjectSize } from './stat-block.ts';
@@ -41,6 +41,8 @@ export interface EncounterCombatantView {
   readonly flies?: true;
   /** Its speeds beside walking, seen as its hit points are: the route's advisory cost uses them. */
   readonly speeds?: Speeds;
+  /** Its senses, seen the same way (docs/adr/0050-the-world-around.md §2). */
+  readonly senses?: Senses;
   /** The creature it rides, as anyone sees (ADR 0049 §10); it shares that one's space. */
   readonly mountedOn?: { readonly entityId: string; readonly name: string | null };
   /** `down`: at 0 HP but alive (a character making death saves). */

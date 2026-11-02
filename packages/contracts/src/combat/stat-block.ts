@@ -9,6 +9,7 @@ import {
   effectiveMaximum,
   exhaustionSchema,
   hitPointsSchema,
+  sensesSchema,
   speedsSchema,
 } from '../rules/character-sheet.ts';
 
@@ -114,6 +115,7 @@ export const statBlockSchema = z
     size: z.enum(CREATURE_SIZES).optional(),
     /** Its speeds beside walking (ADR 0049 §5); absent: none. */
     speeds: speedsSchema.optional(),
+    senses: sensesSchema.optional(),
     abilities: z
       .object({ str: score, dex: score, con: score, int: score, wis: score, cha: score })
       .strict(),

@@ -23,5 +23,6 @@
   "terrain": "ui-combat-terrain",
   "flight": "ui-combat-flight",
   "featherFall": "ui-combat-feather-fall",
-  "mount": "ui-combat-mount"
+  "mount": "ui-combat-mount",
+  "light": "ui-combat-light"
 }

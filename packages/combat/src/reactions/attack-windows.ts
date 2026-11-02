@@ -30,15 +30,9 @@ import type { AttackPlan, Refusal } from '../legality.ts';
 import { applied as masteryApplied, masteryOnHit } from '../masteries.ts';
 import { fallsAfterHarm } from '../falling.ts';
 import { fallMoment, type Faller } from './fall-window.ts';
+import { canSee } from '../sight.ts';
 import { isObject } from '../objects.ts';
-import {
-  has,
-  incapacitated,
-  vitalsEvent,
-  vitalsOf,
-  withConditions,
-  type Vitals,
-} from '../vitals.ts';
+import { incapacitated, vitalsEvent, vitalsOf, withConditions, type Vitals } from '../vitals.ts';
 
 /**
  * An attack's windows (docs/adr/0046-reactions-beyond-counterspell.md §3–4): after its d20, a
@@ -188,7 +182,8 @@ export function dodgePlan(
   }
   if (!isAlive(state, targetId) || incapacitated(vitals)) return refuse('INCAPACITATED');
   if (!turnStateOf(encounter, record).reactionAvailable) return refuse('NO_REACTION');
-  if (has(vitals, 'blinded') || (attacker && has(attacker, 'invisible'))) {
+  const attackerRecord = combatantOf(encounter, attackerId);
+  if (!attacker || !attackerRecord || !canSee(state, encounter, record, attackerRecord)) {
     return refuse('TARGET_NOT_VISIBLE');
   }
   return { legal: true, record };
@@ -206,7 +201,7 @@ export function rebukePlan(
   const source = combatantOf(encounter, sourceId);
   const seen = vitalsOf(state, sourceId);
   if (!record || !source || !seen || !isAlive(state, sourceId)) return refuse('NOT_A_COMBATANT');
-  const visible = !(vitals && has(vitals, 'blinded')) && !has(seen, 'invisible');
+  const visible = canSee(state, encounter, record, source);
   return castReaction(encounter, vitals, record, 'hellish-rebuke', {
     distanceFt: gapBetween(state, record, source),
     visible,

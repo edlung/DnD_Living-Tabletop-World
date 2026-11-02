@@ -1,4 +1,4 @@
-import type { CoverLevel, EncounterCombatantView, Square } from '@ltw/contracts';
+import type { CoverLevel, EncounterCombatantView, LightLevel, Square } from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
 const COVER: Readonly<Record<CoverLevel, string>> = {
@@ -26,6 +26,9 @@ export interface SquareFacts {
   readonly water?: 'shallow' | 'deep' | null;
   /** The ground's height in feet: raised, or a pit below 0 (§6); absent: 0. */
   readonly groundFt?: number;
+  /** Its light and its fog (docs/adr/0050-the-world-around.md §1); absent: bright and clear. */
+  readonly light?: LightLevel;
+  readonly obscured?: 'none' | 'light' | 'heavy';
   readonly cover: CoverLevel | null;
   /** The occupant is among those a previewed area spell would affect (the server's list). */
   readonly inArea: boolean;
@@ -79,6 +82,10 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
   const ground = facts.groundFt ?? 0;
   if (ground > 0) notes.push(t('raised {feet} ft', { feet: ground }));
   if (ground < 0) notes.push(t('a pit {feet} ft deep', { feet: -ground }));
+  if (facts.light === 'dim') notes.push(t('dim light'));
+  if (facts.light === 'dark') notes.push(t('darkness'));
+  if (facts.obscured === 'light') notes.push(t('lightly obscured'));
+  if (facts.obscured === 'heavy') notes.push(t('heavily obscured'));
   if (facts.difficult) notes.push(t('difficult terrain'));
   if (facts.cover) notes.push(t(COVER[facts.cover]));
   if (occupant && facts.inArea) notes.push(t('in the area'));

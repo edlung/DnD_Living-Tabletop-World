@@ -15,6 +15,7 @@ import {
   rollDamage,
 } from '@ltw/rules';
 
+import { lostInTheDark } from './sight.ts';
 import { combatantEvent, encounterOf, onTurn, withTurn } from './battlefield.ts';
 import { isDodging } from './actions.ts';
 import { conditionsAgainst, isHidden, revealed, withDetail } from './condition-details.ts';
@@ -106,6 +107,13 @@ export function monsterSpellEvents(
       targetDodging: isDodging(target.record, target.vitals),
       attackerSqueezed: plan.record.squeezed === true,
       targetSqueezed: target.record.squeezed === true,
+      // The dark and the fog (docs/adr/0050-the-world-around.md §3).
+      ...(encounter
+        ? {
+            targetUnseen: lostInTheDark(state, encounter, plan.record, target.record),
+            attackerUnseen: lostInTheDark(state, encounter, target.record, plan.record),
+          }
+        : {}),
     });
     const targetAc =
       armorClass(target.vitals) + (target.cover === 'none' ? 0 : COVER_BONUS[target.cover]);
