@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D9E921DE3787D1ED6BD8C6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE4220688070AC6C6914AD3 /* AppDelegate.swift */; };
+		0F3C3A6FDA6836614857DC86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96FBBFE7E816AF7D212AEB86 /* Assets.xcassets */; };
+		17A738DE55F11DDD96DCBBE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A20879690D08EF8AAB152BBC /* InfoPlist.strings */; };
+		3FFA759B42E5D596F998BE57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863142D861628EB2F9FD03D /* AppDelegate.swift */; };
+		4725E5AB79BBD1966368D243 /* LTWShell in Frameworks */ = {isa = PBXBuildFile; productRef = 2E994979F0B43B857423E6B1 /* LTWShell */; };
+		653B35650534D1DEBA002268 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D71C6B6BF16E5900A1B3EFEF /* InfoPlist.strings */; };
+		6FAD16381254FA76ECE3A5EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 696C3B612B19D87DC1088F11 /* Assets.xcassets */; };
+		7EE398EDD72AD0623E7E2E0C /* LTWShell in Frameworks */ = {isa = PBXBuildFile; productRef = 6369E3AF77AE31BC766677B0 /* LTWShell */; };
+		8419F20E41DBF9A58090160F /* ltw-native.js in Resources */ = {isa = PBXBuildFile; fileRef = 61125D54500BBBE757AEFBA6 /* ltw-native.js */; };
+		ADEF369E10A06AC09030236E /* ltw-native.js in Resources */ = {isa = PBXBuildFile; fileRef = 61125D54500BBBE757AEFBA6 /* ltw-native.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09AB5BA9D734D6FF110956DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		349F1F6F3BE3604B2837BC11 /* LTWPlayer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LTWPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3863142D861628EB2F9FD03D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5A1B9996B625170E39B82873 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5E302AB56E5C4C9E1A70B62D /* LTWShell */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LTWShell; path = LTWShell; sourceTree = SOURCE_ROOT; };
+		5E7A4AA721A4364B17B51769 /* LTWDM.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LTWDM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		605977D65669A0A454A3273C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		61125D54500BBBE757AEFBA6 /* ltw-native.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "ltw-native.js"; sourceTree = "<group>"; };
+		696C3B612B19D87DC1088F11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70E4E031130CA0DBD4EEA860 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8AE4220688070AC6C6914AD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		925D59BEE4A944BA0306C1DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		96FBBFE7E816AF7D212AEB86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DA4E719319EF34E6987A3011 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E2A9586AB6566333A2AE9CB6 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D0D505D51AD833FE3D683E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EE398EDD72AD0623E7E2E0C /* LTWShell in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AF804302C779CF9E7910DEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4725E5AB79BBD1966368D243 /* LTWShell in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A990832FA0DF508ABBAC341 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E2A9586AB6566333A2AE9CB6 /* Shared.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		0B2A4ABA5B2F823B55B4A623 /* DM */ = {
+			isa = PBXGroup;
+			children = (
+				3863142D861628EB2F9FD03D /* AppDelegate.swift */,
+				696C3B612B19D87DC1088F11 /* Assets.xcassets */,
+				09AB5BA9D734D6FF110956DE /* Info.plist */,
+				D71C6B6BF16E5900A1B3EFEF /* InfoPlist.strings */,
+			);
+			path = DM;
+			sourceTree = "<group>";
+		};
+		434D80879D6DBC6ADC25E7B8 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				5E302AB56E5C4C9E1A70B62D /* LTWShell */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		45CAFE05E4C51834174B5384 = {
+			isa = PBXGroup;
+			children = (
+				9FE47ECEB6C3E2E731F9147B /* apps */,
+				0A990832FA0DF508ABBAC341 /* Config */,
+				0B2A4ABA5B2F823B55B4A623 /* DM */,
+				434D80879D6DBC6ADC25E7B8 /* Packages */,
+				6F213AAA57980601486B9CAF /* Player */,
+				E226555DC5FDBF18B1221349 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6F213AAA57980601486B9CAF /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				8AE4220688070AC6C6914AD3 /* AppDelegate.swift */,
+				96FBBFE7E816AF7D212AEB86 /* Assets.xcassets */,
+				70E4E031130CA0DBD4EEA860 /* Info.plist */,
+				A20879690D08EF8AAB152BBC /* InfoPlist.strings */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		9FE47ECEB6C3E2E731F9147B /* apps */ = {
+			isa = PBXGroup;
+			children = (
+				E1E20FDC458675D03E769890 /* native-shim */,
+			);
+			name = apps;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		E1E20FDC458675D03E769890 /* native-shim */ = {
+			isa = PBXGroup;
+			children = (
+				61125D54500BBBE757AEFBA6 /* ltw-native.js */,
+			);
+			path = "native-shim";
+			sourceTree = "<group>";
+		};
+		E226555DC5FDBF18B1221349 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E7A4AA721A4364B17B51769 /* LTWDM.app */,
+				349F1F6F3BE3604B2837BC11 /* LTWPlayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2484924C122C7753ADBD324D /* LTWDM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72965C3BB1A429B35B6BAA23 /* Build configuration list for PBXNativeTarget "LTWDM" */;
+			buildPhases = (
+				F182B803F98E7ECC27FFA335 /* Sources */,
+				EC9038591C3DBDE1BE537ED4 /* Resources */,
+				6AF804302C779CF9E7910DEF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LTWDM;
+			packageProductDependencies = (
+				2E994979F0B43B857423E6B1 /* LTWShell */,
+			);
+			productName = LTWDM;
+			productReference = 5E7A4AA721A4364B17B51769 /* LTWDM.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CD0C90DC8EB22CDEEABDD776 /* LTWPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C98D3669A47C1C2E1EAAA66C /* Build configuration list for PBXNativeTarget "LTWPlayer" */;
+			buildPhases = (
+				9C83BF32288A786FA6B63424 /* Sources */,
+				29B41CE43FF5DB8977FA7587 /* Resources */,
+				3D0D505D51AD833FE3D683E0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LTWPlayer;
+			packageProductDependencies = (
+				6369E3AF77AE31BC766677B0 /* LTWShell */,
+			);
+			productName = LTWPlayer;
+			productReference = 349F1F6F3BE3604B2837BC11 /* LTWPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C7CA4F9A35200E6E1025D338 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2484924C122C7753ADBD324D = {
+						ProvisioningStyle = Automatic;
+					};
+					CD0C90DC8EB22CDEEABDD776 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = FD6707CA76E0C9471675E8A9 /* Build configuration list for PBXProject "LTW" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				ru,
+			);
+			mainGroup = 45CAFE05E4C51834174B5384;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7D73F6CACAE70FD92C6D9F50 /* XCLocalSwiftPackageReference "LTWShell" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = E226555DC5FDBF18B1221349 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD0C90DC8EB22CDEEABDD776 /* LTWPlayer */,
+				2484924C122C7753ADBD324D /* LTWDM */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29B41CE43FF5DB8977FA7587 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F3C3A6FDA6836614857DC86 /* Assets.xcassets in Resources */,
+				17A738DE55F11DDD96DCBBE5 /* InfoPlist.strings in Resources */,
+				8419F20E41DBF9A58090160F /* ltw-native.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC9038591C3DBDE1BE537ED4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FAD16381254FA76ECE3A5EC /* Assets.xcassets in Resources */,
+				653B35650534D1DEBA002268 /* InfoPlist.strings in Resources */,
+				ADEF369E10A06AC09030236E /* ltw-native.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C83BF32288A786FA6B63424 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D9E921DE3787D1ED6BD8C6D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F182B803F98E7ECC27FFA335 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FFA759B42E5D596F998BE57 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A20879690D08EF8AAB152BBC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				925D59BEE4A944BA0306C1DE /* en */,
+				605977D65669A0A454A3273C /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D71C6B6BF16E5900A1B3EFEF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA4E719319EF34E6987A3011 /* en */,
+				5A1B9996B625170E39B82873 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		057709DE03C42EFA3CEE7ABE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Player/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tech.vardahei.ltw.player;
+				PRODUCT_NAME = LTWPlayer;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2A8C4B24F2091EFD97ED5722 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2A9586AB6566333A2AE9CB6 /* Shared.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LTW_ALLOWS_LOOPBACK = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4835A112D40EF0EC17CA5A29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = DM/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tech.vardahei.ltw.dm;
+				PRODUCT_NAME = LTWDM;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		896446DC1EF7AE4108F48BC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Player/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tech.vardahei.ltw.player;
+				PRODUCT_NAME = LTWPlayer;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B94B85EB9151E724146C08D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = DM/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tech.vardahei.ltw.dm;
+				PRODUCT_NAME = LTWDM;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F8AD6D7217044C1106D913B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2A9586AB6566333A2AE9CB6 /* Shared.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LTW_ALLOWS_LOOPBACK = NO;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		72965C3BB1A429B35B6BAA23 /* Build configuration list for PBXNativeTarget "LTWDM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B94B85EB9151E724146C08D6 /* Debug */,
+				4835A112D40EF0EC17CA5A29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C98D3669A47C1C2E1EAAA66C /* Build configuration list for PBXNativeTarget "LTWPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				896446DC1EF7AE4108F48BC9 /* Debug */,
+				057709DE03C42EFA3CEE7ABE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FD6707CA76E0C9471675E8A9 /* Build configuration list for PBXProject "LTW" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A8C4B24F2091EFD97ED5722 /* Debug */,
+				F8AD6D7217044C1106D913B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		7D73F6CACAE70FD92C6D9F50 /* XCLocalSwiftPackageReference "LTWShell" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = LTWShell;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2E994979F0B43B857423E6B1 /* LTWShell */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LTWShell;
+		};
+		6369E3AF77AE31BC766677B0 /* LTWShell */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LTWShell;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C7CA4F9A35200E6E1025D338 /* Project object */;
+}

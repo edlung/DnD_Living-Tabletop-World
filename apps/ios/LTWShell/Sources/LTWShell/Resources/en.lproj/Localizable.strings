@@ -1,0 +1,23 @@
+/* The shell's own words (docs/adr/0070-native-apps.md); the game's are the client's. */
+"start.title" = "Living Tabletop World";
+"start.connecting" = "Connecting to %@…";
+"start.unreachable" = "%@ cannot be reached. Check the connection, then try again.";
+"start.retry" = "Try again";
+"start.scan" = "Scan the table’s code";
+"start.server" = "Server…";
+"server.title" = "The server";
+"server.placeholder" = "ltw.vardahei.tech";
+"server.hint" = "The address of the server your table plays on.";
+"server.invalid" = "That is not a server address. It starts with https://";
+"server.recent" = "Chosen before";
+"server.default" = "The default server";
+"server.connect" = "Connect";
+"switch.title" = "Connect to %@?";
+"switch.text" = "This code belongs to another server. Signing in there is separate from here.";
+"scan.hint" = "Point the camera at the table’s QR code";
+"scan.camera" = "The camera is needed to scan the table’s code. Allow it in Settings.";
+"scan.notACode" = "This is not a table’s code.";
+"waits.title" = "The table is waiting for you";
+"waits.text" = "Open the game to answer.";
+"cancel" = "Cancel";
+"close" = "Close";
