@@ -6,6 +6,7 @@ import { createPlaceholderImageGenerator, type ImageGenerator } from '@ltw/ai';
 
 import { AccountingTasks } from './ai/accounting-tasks.ts';
 import { loadPreparedEncounterBooks } from './combat/prepared-encounters.ts';
+import { PostgresDisplayStore } from './display/postgres-display-store.ts';
 import {
   PostgresBudgetStore,
   accountingStatus,
@@ -87,6 +88,7 @@ async function main(): Promise<void> {
     () => new PostgresCredentialStore(pool),
     undefined,
     () => new PostgresAccountStore(pool),
+    () => new PostgresDisplayStore(pool),
   );
   const publication = new PostgresCampaignPublication(pool);
   const signIn = baseSignIn ? { ...baseSignIn, publication } : null;
@@ -269,7 +271,9 @@ async function main(): Promise<void> {
     generation && generationWorker
       ? startCampaignGenerationLoop(generation.repository, generationWorker, logger)
       : () => Promise.resolve();
-  const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
+  const stopPruning = signIn
+    ? startCredentialPruning(signIn.credentials, logger, signIn.clock, signIn.displays)
+    : () => undefined;
   const stopActivation =
     activation && activationWorker
       ? startCampaignActivationLoop(activation.repository, activationWorker, logger)

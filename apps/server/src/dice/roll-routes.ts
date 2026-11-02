@@ -10,7 +10,7 @@ import {
   type RollEntry,
   type RollFeedResponse,
 } from '@ltw/contracts';
-import { knownEntityIds, type ResolvedPerspective } from '@ltw/domain';
+import { knownEntityIds, partyMemberIds, type ResolvedPerspective } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -212,13 +212,15 @@ export function registerRollRoutes(
     const { perspective } = context;
     const dm = perspective.kind === 'DM';
     const recent = await store.recentRequests(path.campaignId, REQUEST_LIST);
+    // The party (the table's display, ADR 0042) sees whom the DM is waiting on, never a DC.
+    const party = perspective.kind === 'PARTY' ? partyMemberIds(context.state) : null;
     const requests = dm
       ? recent
       : recent.filter(
           (record) =>
-            perspective.kind === 'CHARACTER' &&
-            record.characterId === perspective.holderId &&
-            record.status === 'open',
+            record.status === 'open' &&
+            ((perspective.kind === 'CHARACTER' && record.characterId === perspective.holderId) ||
+              party?.has(record.characterId) === true),
         );
     const body: CheckRequestsResponse = {
       perspective: perspective.label,

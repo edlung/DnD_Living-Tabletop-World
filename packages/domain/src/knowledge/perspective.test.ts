@@ -156,3 +156,24 @@ describe('resolvePerspective for others', () => {
     });
   });
 });
+
+describe('a table display (docs/adr/0042-table-display.md)', () => {
+  const DISPLAY = {
+    actorId: 'display:4f1c2a9e-7b3d-4e8a-9c21-5d6f7a8b9c0d',
+    kind: 'display',
+  } as const;
+
+  it('reads the PUBLIC and PARTY views of its campaign and nothing else', () => {
+    expect(campaignRole(state, DISPLAY)).toBe('DISPLAY');
+    for (const raw of ['PUBLIC', 'PARTY']) {
+      const access = resolvePerspective(state, DISPLAY, request(raw));
+      expect(access.ok && access.perspective.kind).toBe(raw);
+    }
+    for (const raw of ['DM', 'PLAYER', 'CHARACTER:elowen-starwhisper', 'NPC:mira-vale']) {
+      expect(resolvePerspective(state, DISPLAY, request(raw))).toEqual({
+        ok: false,
+        reason: 'FORBIDDEN',
+      });
+    }
+  });
+});

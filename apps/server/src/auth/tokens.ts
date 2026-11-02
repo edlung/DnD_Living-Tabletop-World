@@ -84,7 +84,11 @@ export function credentialCookie(
 export const sessionCookie = (token: string, maxAgeSeconds: number, secure: boolean): string =>
   credentialCookie(SESSION_COOKIE, token, maxAgeSeconds, secure);
 
-/** `Set-Cookie` that removes the session cookie from the browser. */
-export function clearedSessionCookie(secure: boolean): string {
-  return `${SESSION_COOKIE}=; ${ATTRIBUTES}; Max-Age=0${secure ? '; Secure' : ''}`;
+/** `Set-Cookie` that removes a credential cookie from the browser. */
+export function clearedCookie(name: string, secure: boolean): string {
+  return `${name}=; ${ATTRIBUTES}; Max-Age=0${secure ? '; Secure' : ''}`;
 }
+
+/** `Set-Cookie` that removes the session cookie from the browser. */
+export const clearedSessionCookie = (secure: boolean): string =>
+  clearedCookie(SESSION_COOKIE, secure);

@@ -10,6 +10,9 @@ import { hashToken, newToken } from './tokens.ts';
 import type { CampaignPublication } from '../campaigns/publication.ts';
 import type { AccountLimits } from '../accounts/account-limits.ts';
 import type { AccountStore } from '../accounts/account-store.ts';
+import type { DisplayLimits } from '../display/display-limits.ts';
+import type { DisplayStore } from '../display/display-store.ts';
+import type { OpenTableLinks } from '../display/table-links.ts';
 
 /**
  * Invitations and their redemption (docs/adr/0036-production-sign-in.md §1–2;
@@ -22,6 +25,10 @@ export interface SignInDependencies {
   /** Accounts (ADR 0041): absent in compositions that have none. */
   readonly accounts?: AccountStore;
   readonly accountLimits?: AccountLimits;
+  /** The table's displays and join links (ADR 0042): absent in compositions that have none. */
+  readonly displays?: DisplayStore;
+  readonly displayLimits?: DisplayLimits;
+  readonly openLinks?: OpenTableLinks;
   readonly credentials: CredentialStore;
   /** `PUBLIC_ORIGIN`: invitation links, the cookie's `Secure` flag, the origin check. */
   readonly publicOrigin: string;

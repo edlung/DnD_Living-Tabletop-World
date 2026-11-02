@@ -13,7 +13,7 @@ import { preparedPartyIds, type PartyProjectionContext } from './projection-part
  * the actor's own role only — never from whether the requested target
  * exists. Nothing ever falls back to a broader perspective.
  */
-export type CampaignRole = 'DM' | 'SYSTEM' | 'PLAYER';
+export type CampaignRole = 'DM' | 'SYSTEM' | 'PLAYER' | 'DISPLAY';
 
 export interface ResolvedPerspective {
   /** Effective perspective label, e.g. `PARTY` or `CHARACTER:elowen-starwhisper`. */
@@ -37,6 +37,8 @@ const FORBIDDEN = { ok: false, reason: 'FORBIDDEN' } as const;
 export function campaignRole(state: WorldState | null, actor: Actor): CampaignRole | null {
   if (!state?.campaign) return null;
   if (actor.kind === 'system') return 'SYSTEM';
+  // A display reaches here only for the campaign it is paired to (the server's `actorFor`).
+  if (actor.kind === 'display') return 'DISPLAY';
   if (actor.actorId === state.campaign.dmActorId) return 'DM';
   return controlledCharacter(state, actor.actorId) === null ? null : 'PLAYER';
 }
@@ -56,6 +58,13 @@ export function resolvePerspective(
 ): PerspectiveAccess {
   const role = campaignRole(state, actor);
   if (state === null || role === null) return NOT_FOUND;
+
+  if (role === 'DISPLAY') {
+    // The table's shared screen: what everyone, and what the party, knows; nothing else.
+    return request.kind === 'PUBLIC' || request.kind === 'PARTY'
+      ? granted(state, request.kind, null)
+      : FORBIDDEN;
+  }
 
   if (role === 'PLAYER') {
     const own = controlledCharacter(state, actor.actorId);

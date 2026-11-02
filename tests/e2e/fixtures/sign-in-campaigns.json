@@ -13,5 +13,6 @@
   "gameCookieNew": "ui-game-cookie-new",
   "activationGame": "ui-activation-game",
   "accounts": "ui-accounts",
-  "accountsClaim": "ui-accounts-claim"
+  "accountsClaim": "ui-accounts-claim",
+  "display": "ui-table-display"
 }

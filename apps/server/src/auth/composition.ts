@@ -9,6 +9,10 @@ import { isLoopbackHost } from '../platform/net/addresses.ts';
 import type { CredentialStore } from './credential-store.ts';
 import { ACCOUNT_LIMITS, AccountLimits } from '../accounts/account-limits.ts';
 import { InMemoryAccountStore, type AccountStore } from '../accounts/account-store.ts';
+import { displayAuthenticator, personOrDisplay } from '../display/display-authenticator.ts';
+import { DISPLAY_LIMITS, DisplayLimits } from '../display/display-limits.ts';
+import { InMemoryDisplayStore, type DisplayStore } from '../display/display-store.ts';
+import { OpenTableLinks } from '../display/table-links.ts';
 import { RequestLimits, SIGN_IN_LIMITS } from './limits.ts';
 import {
   iso,
@@ -36,14 +40,21 @@ export async function composeAuthentication(
   clock: AuthClock = systemAuthClock,
   /** Accounts (ADR 0041); in memory unless the composition stores them. */
   accounts: () => AccountStore = () => new InMemoryAccountStore(),
+  /** The table's displays and join links (ADR 0042); in memory unless stored. */
+  displays: () => DisplayStore = () => new InMemoryDisplayStore(),
 ): Promise<Authentication> {
   switch (config.auth.mode) {
     case 'invitations': {
       const publicOrigin = config.auth.publicOrigin;
       if (publicOrigin === undefined) throw new Error('invitations mode needs PUBLIC_ORIGIN');
       const store = credentials();
+      const displayStore = displays();
       return {
-        authenticator: sessionAuthenticator(store, clock),
+        // A person's session first, then a paired display (ADR 0042), which only reads.
+        authenticator: personOrDisplay(
+          sessionAuthenticator(store, clock),
+          displayAuthenticator(displayStore, clock),
+        ),
         signIn: {
           credentials: store,
           publicOrigin,
@@ -52,6 +63,9 @@ export async function composeAuthentication(
           evidence: evidenceHasher(),
           accounts: accounts(),
           accountLimits: new AccountLimits(ACCOUNT_LIMITS, () => clock.now()),
+          displays: displayStore,
+          displayLimits: new DisplayLimits(DISPLAY_LIMITS, () => clock.now()),
+          openLinks: new OpenTableLinks(),
         },
       };
     }
@@ -69,35 +83,41 @@ export async function composeAuthentication(
   }
 }
 
-/** How long attempt evidence is kept, and how long a dead session's row outlives its expiry. */
+/**
+ * How long attempt evidence is kept, how long a dead session's row outlives its expiry, and how
+ * long a display that never paired outlives its code (ADR 0042).
+ */
 export const ATTEMPTS_KEPT_MS = 7 * 24 * 60 * 60_000;
 export const DEAD_SESSIONS_KEPT_MS = 30 * 24 * 60 * 60_000;
+export const WAITING_DISPLAYS_KEPT_MS = 24 * 60 * 60_000;
 const PRUNE_EVERY_MS = 60 * 60_000;
 
-/** Prunes attempt evidence and long-dead sessions now and hourly; returns its stop. */
+/** Prunes attempt evidence, long-dead sessions and unpaired displays now and hourly; its stop. */
 export function startCredentialPruning(
   store: CredentialStore,
   logger: Logger,
   clock: AuthClock = systemAuthClock,
+  displays?: DisplayStore,
 ): () => void {
   const prune = () => {
     const now = clock.now();
-    store
-      .prune({
+    Promise.all([
+      store.prune({
         attemptsBefore: iso(now - ATTEMPTS_KEPT_MS),
         sessionsExpiredBefore: iso(now - DEAD_SESSIONS_KEPT_MS),
-      })
-      .then(
-        (pruned) => {
-          logger.info(pruned, 'sign-in records pruned');
-        },
-        (error: unknown) => {
-          logger.warn(
-            { err: error instanceof Error ? error.name : 'unknown' },
-            'sign-in prune failed',
-          );
-        },
-      );
+      }),
+      displays?.pruneWaiting(iso(now - WAITING_DISPLAYS_KEPT_MS)) ?? Promise.resolve(0),
+    ]).then(
+      ([pruned, waitingDisplays]) => {
+        logger.info({ ...pruned, waitingDisplays }, 'sign-in records pruned');
+      },
+      (error: unknown) => {
+        logger.warn(
+          { err: error instanceof Error ? error.name : 'unknown' },
+          'sign-in prune failed',
+        );
+      },
+    );
   };
   prune();
   const timer = setInterval(prune, PRUNE_EVERY_MS);

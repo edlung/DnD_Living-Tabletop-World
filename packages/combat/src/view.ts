@@ -16,9 +16,12 @@ import { conditionsOf, hitPoints, vitalsOf } from './vitals.ts';
  * The DM sees everything. A character taking part sees the battlefield, turn
  * order, every combatant's square, side, conditions and whether it is up,
  * down or dead; names only when known; hit points only of the party.
- * Initiative rolls and stat blocks are DM data. Any other perspective
- * (party, public, NPC, a character not in the fight) sees no encounter.
- * Built field by field: canonical objects are never passed through.
+ * Initiative rolls and stat blocks are DM data. The party, while one of its
+ * members takes part, sees what such a member sees with the party's knowledge
+ * and nothing of one character's own: no reaction window (the table's display,
+ * docs/adr/0042-table-display.md §3). Any other perspective (public, NPC, a
+ * character not in the fight) sees no encounter. Built field by field:
+ * canonical objects are never passed through.
  */
 export function encounterView(
   state: WorldState,
@@ -29,12 +32,14 @@ export function encounterView(
   if (!encounter || !current) return null;
   const dm = perspective.kind === 'DM';
   const holder = perspective.kind === 'CHARACTER' ? perspective.holderId : null;
-  if (!dm && (holder === null || !combatantOf(encounter, holder))) return null;
+  const members = projectionPartyMemberIds(state, perspective);
+  const asParty =
+    perspective.kind === 'PARTY' && [...members].some((id) => combatantOf(encounter, id));
+  if (!dm && !asParty && (holder === null || !combatantOf(encounter, holder))) return null;
 
   const known = knownEntityIds(state, perspective);
   const party = new Set<string>(holder === null ? [] : [holder]);
-  const members = projectionPartyMemberIds(state, perspective);
-  if (holder !== null && members.has(holder)) members.forEach((id) => party.add(id));
+  if (asParty || (holder !== null && members.has(holder))) members.forEach((id) => party.add(id));
 
   const combatants = encounter.combatants.map((combatant): EncounterCombatantView => {
     const entity = state.entities.get(combatant.entityId);

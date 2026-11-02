@@ -1,6 +1,10 @@
 import { ACCOUNT_LIMITS, AccountLimits } from '../accounts/account-limits.ts';
 import { InMemoryAccountStore } from '../accounts/account-store.ts';
 import { InMemoryCredentialStore } from '../auth/credential-store.ts';
+import { displayAuthenticator, personOrDisplay } from '../display/display-authenticator.ts';
+import { DISPLAY_LIMITS, DisplayLimits } from '../display/display-limits.ts';
+import { InMemoryDisplayStore } from '../display/display-store.ts';
+import { OpenTableLinks } from '../display/table-links.ts';
 import { RequestLimits, SIGN_IN_LIMITS } from '../auth/limits.ts';
 import { sessionAuthenticator, systemAuthClock } from '../auth/session-authenticator.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
@@ -39,6 +43,7 @@ const seed = signInSeed();
 const rawStore = new InMemoryEventStore();
 const bootstrap = await seedSignInCampaigns(rawStore);
 const credentials = new InMemoryCredentialStore();
+const displays = new InMemoryDisplayStore();
 await seedDmInvitations(credentials, seed);
 const baseSignIn: SignInDependencies = {
   credentials,
@@ -54,6 +59,19 @@ const baseSignIn: SignInDependencies = {
     () => Date.now(),
   ),
   evidence: evidenceHasher(),
+  // The table's displays and join links (ADR 0042), their limits raised: one loopback client.
+  displays,
+  displayLimits: new DisplayLimits(
+    {
+      ...DISPLAY_LIMITS,
+      pairingsPerMinute: 1_000,
+      dmCodesPerMinute: 1_000,
+      tableFailuresPerMinute: 1_000,
+      tableSeatsPerMinute: 1_000,
+    },
+    () => Date.now(),
+  ),
+  openLinks: new OpenTableLinks(),
   // Accounts (ADR 0041), their limits raised like the redeem limits: one loopback client.
   accounts: new InMemoryAccountStore(),
   accountLimits: new AccountLimits(
@@ -93,7 +111,10 @@ const { app } = buildLiveApp({
   preparedEncounters: RAVENFORD_PREPARED,
   campaignQuests: createCampaignQuestBooks(activationFixture.initialContent),
   engine,
-  authenticator: sessionAuthenticator(credentials, systemAuthClock),
+  authenticator: personOrDisplay(
+    sessionAuthenticator(credentials, systemAuthClock),
+    displayAuthenticator(displays, systemAuthClock),
+  ),
   logger: createLogger({ service: 'ui-sign-in-test', level: 'silent' }),
   signIn,
   workshop: { ...workshop, campaignEntry: { engine, signIn } },

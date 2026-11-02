@@ -136,6 +136,8 @@ export function App({ start }: { readonly start: PageStart }) {
           onSignInAccount={flow.signInAccount}
           onReset={flow.resetWith}
           onHub={flow.toHub}
+          onTableOffer={flow.tableOffer}
+          onTableChoose={flow.tableChoose}
           onKeep={flow.keep}
           onReplace={flow.replace}
           onConnect={flow.connectPersona}

@@ -18,6 +18,22 @@
   overscroll-behavior: contain;
   scrollbar-width: thin;
 }
+/* More of the board beyond a side edge (a phone's zoom, the TV's): that edge fades. */
+.board-viewport[data-more-after] {
+  mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+}
+.board-viewport[data-more-before] {
+  mask-image: linear-gradient(to right, transparent, #000 24px);
+}
+.board-viewport[data-more-before][data-more-after] {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
 .board-stage {
   position: relative;
   flex: none;

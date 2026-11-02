@@ -7,6 +7,10 @@ import {
   type AccountLimitSettings,
 } from '../accounts/account-limits.ts';
 import { InMemoryAccountStore } from '../accounts/account-store.ts';
+import { displayAuthenticator, personOrDisplay } from '../display/display-authenticator.ts';
+import { DISPLAY_LIMITS, DisplayLimits } from '../display/display-limits.ts';
+import { InMemoryDisplayStore } from '../display/display-store.ts';
+import { OpenTableLinks } from '../display/table-links.ts';
 
 import { InMemoryCredentialStore, type CredentialStore } from '../auth/credential-store.ts';
 import { RequestLimits, SIGN_IN_LIMITS, type LimitSettings } from '../auth/limits.ts';
@@ -65,11 +69,12 @@ export interface SignInTable {
   readonly engine: WorldEngine;
   readonly credentials: CredentialStore;
   readonly accounts: InMemoryAccountStore;
+  readonly displays: InMemoryDisplayStore;
   readonly clock: ManualClock;
   readonly signIn: SignInDependencies;
   /** A request as a browser on the public origin sends it, unless told otherwise. */
   readonly send: (
-    method: 'GET' | 'POST',
+    method: 'GET' | 'POST' | 'PUT',
     url: string,
     caller?: Caller,
     body?: unknown,
@@ -188,6 +193,7 @@ export async function signInTable(
   const timers = new ManualTimers();
   const credentials = options.credentials ?? new InMemoryCredentialStore();
   const accounts = new InMemoryAccountStore();
+  const displays = new InMemoryDisplayStore();
   const signIn: SignInDependencies = {
     credentials,
     publicOrigin: ORIGIN,
@@ -196,6 +202,9 @@ export async function signInTable(
     evidence: evidenceHasher(),
     accounts,
     accountLimits: new AccountLimits({ ...ACCOUNT_LIMITS, ...options.accountLimits }, clock.now),
+    displays,
+    displayLimits: new DisplayLimits(DISPLAY_LIMITS, clock.now),
+    openLinks: new OpenTableLinks(),
   };
   const ai = options.ai ?? testAiGateway();
   const { app, hub } = buildLiveApp(
@@ -208,7 +217,10 @@ export async function signInTable(
       questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
       preparedEncounters: RAVENFORD_PREPARED,
       engine,
-      authenticator: sessionAuthenticator(credentials, clock),
+      authenticator: personOrDisplay(
+        sessionAuthenticator(credentials, clock),
+        displayAuthenticator(displays, clock),
+      ),
       logger: options.logger ?? createLogger({ service: 'sign-in-test', level: 'silent' }),
       signIn,
       ...(options.workshop ? { workshop: options.workshop } : {}),
@@ -248,6 +260,7 @@ export async function signInTable(
     engine,
     credentials,
     accounts,
+    displays,
     clock,
     signIn,
     send,

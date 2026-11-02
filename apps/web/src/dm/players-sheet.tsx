@@ -14,6 +14,7 @@ import { useRereadOn } from '../world/use-world-data.ts';
 import { freeCharacters, nameOf } from './players.ts';
 import { InvitationList, MemberList } from './players-lists.tsx';
 import { ShownLink } from './shown-link.tsx';
+import { TableLink } from './table-link.tsx';
 import { usePlayers, type Players } from './use-players.ts';
 
 /** How long a new link lasts: one day, the default three, or the longest a link may last. */
@@ -192,6 +193,7 @@ function Membership({
           </form>
         )}
       </section>
+      <TableLink api={api} round={players.round} />
       <MemberList members={listing.members} directory={directory} players={players} />
       <InvitationList invitations={listing.invitations} directory={directory} players={players} />
     </div>

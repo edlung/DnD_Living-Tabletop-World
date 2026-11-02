@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
-import type { CampaignTemplate, NewAccount } from '@ltw/contracts';
+import type { CampaignTemplate, EntityRef, NewAccount, TableKey } from '@ltw/contracts';
 
 import type { Connection } from '../api/client.ts';
 import {
@@ -12,7 +12,8 @@ import {
   signInWithPassword,
   signOutAccount,
 } from './account-flow.ts';
-import type { InvitationHolder } from './invitation-link.ts';
+import { holdInvitation, type InvitationHolder } from './invitation-link.ts';
+import { readTableOffer, takeTableSeat } from './table-flow.ts';
 import {
   describeSignIn,
   probeSession,
@@ -59,6 +60,8 @@ export type SignInScreen =
   | { readonly kind: 'hub' }
   /** A reset link waiting for the new password (Stage 600). */
   | { readonly kind: 'reset' }
+  /** The table's join link: its free seats, one to choose (ADR 0042). */
+  | { readonly kind: 'table'; readonly linked: boolean }
   | { readonly kind: 'session'; readonly connection: Connection; readonly key: number };
 
 const firstScreen = (start: PageStart): SignInScreen =>
@@ -66,9 +69,11 @@ const firstScreen = (start: PageStart): SignInScreen =>
     ? { kind: 'invited' }
     : start.kind === 'reset'
       ? { kind: 'reset' }
-      : start.kind === 'malformed'
-        ? { kind: 'join-failed' }
-        : { kind: 'checking' };
+      : start.kind === 'table'
+        ? { kind: 'table', linked: start.key !== null }
+        : start.kind === 'malformed'
+          ? { kind: 'join-failed' }
+          : { kind: 'checking' };
 
 /** A fresh start page in place of this one (this history entry is replaced). */
 const startAfresh = () => {
@@ -106,6 +111,12 @@ export function useSignIn(
   const seatHolder = useRef<InvitationHolder | null>(
     start.kind === 'invited' ? start.invitation : null,
   );
+  // The table link's token (ADR 0042), read for its seats until one is offered.
+  const tableKey = useRef(start.kind === 'table' ? start.key : null);
+  const keyOf = (typed: TableKey | null): TableKey | null => {
+    const token = tableKey.current?.read() ?? null;
+    return typed ?? (token === null ? null : { token });
+  };
 
   /**
    * Starts a new generation: whatever an older step still answers is ignored, the shown session's
@@ -353,6 +364,23 @@ export function useSignIn(
       if (answer.kind !== 'done') return 'failed' as const;
       next({ kind: 'signed-out', reason: 'none', passwordChanged: true });
       return 'done' as const;
+    },
+    /** The table link's free seats (ADR 0042): by its token, or by the code typed. */
+    tableOffer: async (typed: TableKey | null) => {
+      const key = keyOf(typed);
+      return key === null ? ('refused' as const) : readTableOffer(transport, key);
+    },
+    /** A free seat chosen: its single-use invitation goes to the usual join page. */
+    tableChoose: async (typed: TableKey | null, character: EntityRef) => {
+      const key = keyOf(typed);
+      if (key === null) return 'refused' as const;
+      const answer = await takeTableSeat(transport, key, character.entityId);
+      if (typeof answer === 'string') return answer;
+      tableKey.current?.forget();
+      tableKey.current = null;
+      seatHolder.current = holdInvitation(answer.token);
+      next({ kind: 'invited' });
+      return 'ok' as const;
     },
     /** The person keeps this browser's sign-in: the invitation is forgotten, unused. */
     keep: () => {

@@ -1,0 +1,482 @@
+/*
+ * The table's screen (docs/adr/0042-table-display.md): read from across a room, so type is large
+ * and contrast high; the GPT key art or the place's approved picture fills the screen; no WebGL,
+ * no controls but a quiet corner. Sizes scale with the screen (vmin) for a TV or a laptop alike.
+ */
+.display {
+  position: relative;
+  display: grid;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--ink-950);
+  color: var(--text);
+  isolation: isolate;
+}
+.display-art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.display-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--ink-950) 35%, transparent),
+    color-mix(in srgb, var(--ink-950) 85%, transparent)
+  );
+}
+.display-scrim--low {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--ink-950) 88%, transparent) 0%,
+    transparent 45%
+  );
+}
+
+/* Pairing: the code, big, and how to use it */
+.display-pairing {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2vmin;
+  padding: 4vmin;
+  text-align: center;
+}
+.display-brand {
+  display: flex;
+  align-items: center;
+  gap: 1.5vmin;
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.6vmin, 2rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.display-brand img {
+  width: clamp(40px, 7vmin, 96px);
+  height: clamp(40px, 7vmin, 96px);
+}
+.display-pairing h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vmin, 5rem);
+}
+.display-pairing p {
+  max-width: 40ch;
+  margin: 0;
+  font-size: clamp(1rem, 2.8vmin, 2.2rem);
+}
+.display-code {
+  padding: 1.5vmin 3vmin;
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 70%, transparent);
+  color: var(--gold-bright);
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: clamp(2.4rem, 11vmin, 9rem) !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.display-hint {
+  color: var(--text-muted);
+}
+.display-problem {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+
+/* A place's scene: the picture full-bleed, its name and time below */
+.display-scene,
+.display-title {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-height: 100dvh;
+  isolation: isolate;
+}
+.display-caption {
+  display: grid;
+  gap: 1vmin;
+  padding: 4vmin 5vmin 6vmin;
+}
+.display-caption h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 8vmin, 7rem);
+  line-height: 1;
+  text-shadow: 0 4px 24px color-mix(in srgb, var(--umbra) 70%, transparent);
+}
+.display-caption p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vmin 4vmin;
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.1rem, 3.2vmin, 2.6rem);
+}
+.display-caption p span {
+  display: inline-flex;
+  align-items: center;
+  gap: 1vmin;
+}
+.display-caption .glyph {
+  width: clamp(20px, 3.4vmin, 44px);
+  height: clamp(20px, 3.4vmin, 44px);
+  color: var(--gold);
+}
+.display-party {
+  color: var(--gold-bright) !important;
+}
+
+/* The place has no approved picture: said quietly, as on the world screen */
+.display-note {
+  position: absolute;
+  top: 2vmin;
+  right: 2vmin;
+  margin: 0;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--glass);
+  color: var(--text-muted);
+  font-size: clamp(0.875rem, 1.6vmin, 1.25rem);
+  font-style: italic;
+}
+
+/* A title card */
+.display-title {
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+.display-title-text {
+  display: grid;
+  gap: 2vmin;
+  max-width: 80vw;
+}
+.display-title-text h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 10vmin, 9rem);
+  line-height: 1.02;
+}
+.display-title-text p {
+  margin: 0;
+  color: var(--gold-bright);
+  font-size: clamp(1.2rem, 4vmin, 3.2rem);
+}
+
+/*
+ * The battlefield: the turn order above, the board filling the rest. The world screen's battle
+ * layout places the anchor and the board over its stage (battle-layout.css, unscoped); here they
+ * stand in the page's own grid, and the board has no view controls: the DM chose the zoom.
+ */
+.display-battle {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 2vmin;
+  height: 100dvh;
+  padding: 2vmin 2vmin 4vmin;
+}
+.display .display-battle .encounter-anchor {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  font-size: clamp(1rem, 1.6vmin, 1.5rem);
+}
+.display .display-battle .initiative .medallion {
+  --m: clamp(38px, 5.5vmin, 72px);
+}
+.display .display-battle .initiative-name {
+  font-size: clamp(0.75rem, 1.4vmin, 1.1rem);
+}
+.display-board {
+  position: relative;
+  min-height: 0;
+}
+.display .display-board .board {
+  position: absolute;
+  inset: 0;
+  z-index: auto;
+  width: auto;
+  height: auto;
+}
+.display .display-board .board-controls {
+  display: none;
+}
+
+/* The table's rolls: the newest large, whom the table waits for */
+.display-dice {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 4vmin;
+  min-height: 100dvh;
+  padding: 4vmin;
+  background:
+    linear-gradient(color-mix(in srgb, var(--ink-950) 70%, transparent), var(--ink-950)),
+    url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+}
+.display-waiting {
+  padding: 2vmin 4vmin;
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  text-align: center;
+}
+.display-waiting h2 {
+  margin: 0 0 1vmin;
+  color: var(--gold-bright);
+  font-size: clamp(1.2rem, 3.6vmin, 3rem);
+}
+.display-waiting ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(1.1rem, 3.4vmin, 2.8rem);
+}
+.display-rolls {
+  display: grid;
+  gap: 2vmin;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.display-rolls li {
+  display: grid;
+  justify-items: center;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 3vmin, 2.4rem);
+}
+.display-rolls li.is-latest {
+  color: var(--text);
+  font-size: clamp(1.4rem, 4.4vmin, 3.6rem);
+}
+.display-total {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 2.4em;
+  font-weight: 700;
+  line-height: 1;
+}
+.display-quiet {
+  color: var(--text-muted);
+  font-size: clamp(1.2rem, 4vmin, 3rem);
+}
+
+/* The Chronicle's newest chapter, as a page to read aloud */
+.display-chronicle {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 5vmin;
+  background: var(--page-ground);
+  color: var(--page-ink);
+}
+.display-chronicle article {
+  max-width: 62ch;
+}
+.display-chronicle h1 {
+  margin: 0 0 3vmin;
+  color: var(--rubric);
+  font-size: clamp(2rem, 6vmin, 5rem);
+}
+.display-chronicle p {
+  margin: 0 0 2vmin;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3.2vmin, 2.6rem);
+  line-height: 1.4;
+}
+
+/* A picture, as large as the screen allows */
+.display-picture {
+  display: grid;
+  place-items: center;
+  gap: 2vmin;
+  margin: 0;
+  min-height: 100dvh;
+  padding: 3vmin;
+}
+.display-picture img {
+  max-width: 100%;
+  max-height: 86dvh;
+  object-fit: contain;
+  border: 2px solid var(--gold-deep);
+  border-radius: var(--radius-panel);
+}
+.display-picture figcaption {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vmin, 3.2rem);
+}
+
+/* The QR code to join, and "last time" */
+.display-join {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 32vmin), 1fr));
+  align-items: center;
+  gap: 6vmin;
+  min-height: 100dvh;
+  padding: 5vmin 7vmin;
+  background:
+    linear-gradient(color-mix(in srgb, var(--ink-950) 60%, transparent), var(--ink-950)),
+    url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+}
+.display-join-card {
+  display: grid;
+  justify-items: center;
+  gap: 2vmin;
+  text-align: center;
+}
+.display-join-card h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vmin, 5rem);
+}
+.display-join-card p {
+  margin: 0;
+  font-size: clamp(1rem, 2.8vmin, 2.2rem);
+}
+.display-join .qr-code {
+  width: clamp(200px, 44vmin, 560px);
+  height: clamp(200px, 44vmin, 560px);
+  border-radius: 8px;
+}
+.display-join .display-code {
+  font-size: clamp(1.6rem, 6vmin, 5rem) !important;
+}
+.display-recap {
+  padding: 3vmin 4vmin;
+  border-left: 3px solid var(--gold);
+  background: var(--glass);
+}
+.display-recap h2 {
+  margin: 0 0 1vmin;
+  color: var(--gold);
+  font-size: clamp(1rem, 2.6vmin, 2rem);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.display-recap-title {
+  margin: 0 0 1.5vmin;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vmin, 3.2rem);
+}
+.display-recap p:last-child {
+  margin: 0;
+  font-size: clamp(1rem, 2.6vmin, 2rem);
+  line-height: 1.4;
+}
+
+/* Nothing on the screen: dark, the emblem faint */
+.display-blank {
+  min-height: 100dvh;
+  background: var(--ink-950) url('../assets/ui-kit/ornaments/emblem.webp') center / 12vmin no-repeat;
+  opacity: 0.35;
+}
+
+.display-wait {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+}
+
+/* The quiet corner: full screen and unpairing, out of the way; gone while nobody moves */
+.display-corner {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 4px 8px;
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  font-size: 0.875rem;
+  transition: opacity var(--t-fast) var(--ease);
+}
+.display-corner.is-idle:not(:focus-within, :hover) {
+  opacity: 0;
+}
+.display-name {
+  color: var(--text-muted);
+}
+.display-confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* The DM's Table screen sheet */
+.screen-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  align-items: start;
+  gap: 1rem;
+}
+.screen-pair-form,
+.screen-cast-form {
+  display: grid;
+  gap: 0.6rem;
+}
+.screen-pair-form .primary-button,
+.screen-cast-form .primary-button {
+  justify-self: start;
+}
+/* The battlefield's zoom and whom it keeps in view, side by side */
+.screen-cast-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  align-items: end;
+  gap: 0.6rem;
+}
+/* What to show: a compact grid, so the button stays in reach */
+.screen-cast-form .join-modes {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+}
+.screen-cast-form .join-mode label {
+  margin: 0;
+  color: var(--text);
+  cursor: pointer;
+}
+.screen-sheet .glyph {
+  width: 20px;
+  height: 20px;
+}
+
+/* The table link's free seats to choose from */
+.table-offer {
+  display: grid;
+  gap: 0.6rem;
+}
+.table-offer h3 {
+  margin: 0;
+}
+.table-seats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.table-seat {
+  width: 100%;
+  min-height: 48px;
+  justify-content: flex-start;
+}
+.table-seat .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.table-link .glyph {
+  width: 20px;
+  height: 20px;
+}

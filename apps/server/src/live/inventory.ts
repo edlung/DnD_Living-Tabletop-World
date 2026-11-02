@@ -20,6 +20,8 @@ export interface LiveTarget {
    * would let a DM-only change signal a perspective that cannot read it.
    */
   readonly identity: boolean;
+  /** A table display (ADR 0042): it also reads the table's rolls and the open table link. */
+  readonly display?: boolean;
 }
 
 export interface ViewRequest {
@@ -54,11 +56,19 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     ...(target.identity ? [{ url: `${base}/session`, optional: false }] : []),
     { url: `${base}/sessions`, optional: false },
     ...SCOPED.map((path) => scoped(path)),
+    // What the table's display shows (ADR 0042), read by every member. Optional: a composition
+    // without displays answers 404, which is fingerprinted like any absent view.
+    { url: `${base}/display/cast`, optional: true },
   ];
   // The table's rolls and the DM's check requests (Stage 510): the dice the client animates; the
   // open short rest (Stage 530), when players spend Hit Point Dice.
   if (target.kind === 'CHARACTER' || target.kind === 'DM') {
     views.push(scoped('rolls'), scoped('check-requests'), scoped('rest'));
+  }
+  if (target.display === true) {
+    // A table display (ADR 0042) also follows the table's rolls and the open join link.
+    views.push(scoped('rolls'), scoped('check-requests'));
+    views.push({ url: `${base}/display/join`, optional: true });
   }
   // The client reads surroundings and entity context only for an acting character.
   const acting = target.kind === 'CHARACTER';

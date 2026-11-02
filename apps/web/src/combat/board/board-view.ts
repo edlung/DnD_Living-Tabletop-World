@@ -22,9 +22,11 @@ export interface BoardView {
   readonly choose: (mode: BoardMode) => void;
   readonly zoomIn: (() => void) | null;
   readonly zoomOut: (() => void) | null;
+  /** The largest square in pixels; the table's screen, seen across a room, allows more. */
+  readonly maxCell?: number;
 }
 
-function useMedia(query: string): boolean {
+export function useMedia(query: string): boolean {
   const subscribe = useCallback(
     (changed: () => void) => {
       const list = window.matchMedia(query);

@@ -10,6 +10,8 @@ import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
+import { registerDisplayRoutes } from '../display/display-routes.ts';
+import { registerTableLinkRoutes } from '../display/table-links.ts';
 import { registerAuthRoutes } from '../auth/auth-routes.ts';
 import { registerMemberRoutes } from '../auth/member-routes.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
@@ -187,6 +189,13 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns.
     if (accounts && accountLimits) {
       registerAccountRoutes(app, { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } });
+    }
+    // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.
+    const { displays, displayLimits, openLinks } = deps.signIn;
+    if (displays && displayLimits && openLinks) {
+      const display = { ...signIn, displays, displayLimits, openLinks };
+      registerDisplayRoutes(app, display);
+      registerTableLinkRoutes(app, display);
     }
   }
   if (deps.workshop) registerWorkshopRoutes(app, deps.workshop);

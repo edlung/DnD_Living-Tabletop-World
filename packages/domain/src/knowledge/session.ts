@@ -11,7 +11,7 @@ import { knownEntities } from './queries.ts';
 /** Identity is independent of the selected view; no other player's actor ID is exposed. */
 export function campaignSession(state: WorldState, actor: Actor): SessionResponse | null {
   const role = campaignRole(state, actor);
-  if (!state.campaign || role === null || role === 'SYSTEM') return null;
+  if (!state.campaign || role === null || role === 'SYSTEM' || role === 'DISPLAY') return null;
   const words = sessionText(languageOf(state));
   const ownId = role === 'PLAYER' ? controlledCharacter(state, actor.actorId) : null;
   const character = ownId === null ? null : entityRef(state, ownId);

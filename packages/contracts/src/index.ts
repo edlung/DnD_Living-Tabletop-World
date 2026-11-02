@@ -484,3 +484,4 @@ export {
   useItemCommandSchema,
 } from './items/commands.ts';
 export type { InventoryItem, InventoryResponse, InventoryWeapon } from './items/views.ts';
+export * from './display/display.ts';

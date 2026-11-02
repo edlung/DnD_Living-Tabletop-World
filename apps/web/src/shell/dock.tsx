@@ -130,7 +130,11 @@ export function Dock({
     { id: 'history', label: t('History'), short: t('History'), glyph: 'history' },
     { id: 'images', label: t('Images'), short: t('Images'), glyph: 'picture' },
     ...(invitations
-      ? [{ id: 'players', label: t('Players'), short: t('Players'), glyph: 'party' } as const]
+      ? ([
+          { id: 'players', label: t('Players'), short: t('Players'), glyph: 'party' },
+          // The table's screen (ADR 0042): pairing a TV and what it shows.
+          { id: 'screen', label: t('Table screen'), short: t('Screen'), glyph: 'live' },
+        ] as const)
       : []),
   ];
   return (

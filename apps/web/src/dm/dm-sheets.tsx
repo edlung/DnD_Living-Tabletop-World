@@ -13,6 +13,7 @@ import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { DmHistory } from './dm-history.tsx';
 import { PlayersSheet } from './players-sheet.tsx';
+import { ScreenSheet } from './screen-sheet.tsx';
 import { DmRestControls } from '../rest/dm-rest-controls.tsx';
 import { DmWorldControls } from './world-controls.tsx';
 
@@ -169,6 +170,17 @@ export function DmSheets({
             directory={directory}
             onWorldChanged={onWorldChanged}
           />
+        </Sheet>
+      )}
+      {invitations && (
+        <Sheet
+          id="screen"
+          title={t('Table screen (DM)')}
+          glyph="live"
+          open={shell.sheet === 'screen'}
+          onClose={shell.closeSheet}
+        >
+          <ScreenSheet api={api} open={shell.sheet === 'screen'} directory={directory} />
         </Sheet>
       )}
     </>

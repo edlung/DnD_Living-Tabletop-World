@@ -75,3 +75,35 @@ export function takeReset(
   if (location.pathname !== RESET_PATH && location.pathname !== `${RESET_PATH}/`) return null;
   return takeInvitation({ pathname: JOIN_PATH, hash: location.hash }, history);
 }
+
+/**
+ * The table's join link is `<origin>/table#<token>` (docs/adr/0042-table-display.md §5): taken out
+ * of the address like an invitation. Unlike an invitation it is read twice — for the free seats,
+ * then for the chosen one — so its holder reads without forgetting, until the seat is offered.
+ */
+export const TABLE_PATH = '/table';
+
+export interface TableKeyHolder {
+  readonly read: () => string | null;
+  readonly forget: () => void;
+}
+
+export function takeTable(
+  location: Pick<Location, 'pathname' | 'hash'>,
+  history: Pick<History, 'replaceState'>,
+): TableKeyHolder | 'typed' | null {
+  if (location.pathname !== TABLE_PATH && location.pathname !== `${TABLE_PATH}/`) return null;
+  const fragment = location.hash.startsWith('#') ? location.hash.slice(1) : location.hash;
+  history.replaceState(null, '', '/');
+  const wellFormed = CREDENTIAL_TOKEN_PATTERN.test(fragment);
+  // As for an invitation: the token is not left in the legacy `RegExp.input`.
+  /^/.exec('');
+  if (!wellFormed) return 'typed';
+  let held: string | null = fragment;
+  return {
+    read: () => held,
+    forget: () => {
+      held = null;
+    },
+  };
+}

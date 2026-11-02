@@ -31,6 +31,8 @@ const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
 const WORKER_TYPES: ReadonlySet<string> = new Set(ASSET_WORKER_COMMAND_TYPES);
 
 export function authorize(state: WorldState, actor: Actor, command: KernelCommand): Authorization {
+  // A table display reads; it never changes the world (docs/adr/0042-table-display.md §2).
+  if (actor.kind === 'display') return forbidden('A display issues no command');
   if (command.type === 'BootstrapCampaign')
     return actor.kind === 'user' && actor.actorId === command.source.ownerId
       ? { ok: true, authority: 'campaign-creator' }
@@ -79,6 +81,7 @@ export function authorizeActingFor(
   actor: Actor,
   characterId: string | null,
 ): Authorization {
+  if (actor.kind === 'display') return forbidden('A display acts for no character');
   if (actor.kind === 'system') return { ok: true, authority: 'system' };
   if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
   if (characterId !== null && state.roster.get(characterId) === actor.actorId) {

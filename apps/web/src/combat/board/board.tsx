@@ -14,6 +14,7 @@ import {
   uprightTransform,
   type Size,
 } from './geometry.ts';
+import { useScrollEdges } from '../../visual/scroll-edges.ts';
 import type { LabelOf } from '../labels.ts';
 import { BoardGround } from './board-ground.tsx';
 import { BoardPlates } from './plates.tsx';
@@ -77,6 +78,7 @@ export function Board({
   battleMap,
   view,
   onPick,
+  centreOn = null,
 }: {
   readonly encounter: Pick<EncounterView, 'battlefield' | 'combatants'>;
   readonly labelOf: LabelOf;
@@ -95,6 +97,8 @@ export function Board({
   readonly battleMap: PlayerAssetView | null;
   readonly view: BoardView;
   readonly onPick: (square: Square) => void;
+  /** A square to keep in view when the board scrolls (the table's screen follows the fight). */
+  readonly centreOn?: Square | null;
 }) {
   const t = useT();
   const [area, space] = useSpace();
@@ -105,7 +109,9 @@ export function Board({
   const { width, height, difficult, cover } = encounter.battlefield;
   const grid = { width, height };
   const tilt = view.mode === 'tilted' ? TILT : null;
-  const fitted = space ? fitCell(space, grid, tilt, { min: view.narrow ? 36 : 24, max: 72 }) : 40;
+  const fitted = space
+    ? fitCell(space, grid, tilt, { min: view.narrow ? 36 : 24, max: view.maxCell ?? 72 })
+    : 40;
   const cell = Math.round(fitted * view.zoom);
   const layout = boardLayout(grid, cell, tilt);
   const hard = new Set(difficult.map(key));
@@ -123,10 +129,12 @@ export function Board({
   // On a phone the board scrolls: bring the chosen square, else the viewer, else whoever acts
   // into view when it first shows and whenever its scale or view changes. Only a new scale or
   // view recentres (the effect reads that render's squares); a choice never moves the board
-  // under the pointer.
+  // under the pointer. A square to keep in view (the table's screen) recentres when it moves.
+  const centreKey = centreOn ? key(centreOn) : '';
   useEffect(() => {
     const element = viewport.current;
     const target =
+      centreOn ??
       selected ??
       mover?.position ??
       encounter.combatants.find((entry) => entry.entity.entityId === currentCombatantId)?.position;
@@ -136,7 +144,9 @@ export function Board({
     const point = projectPoint(layout, squareCenter(target, cell));
     element.scrollLeft = point.x - element.clientWidth / 2;
     element.scrollTop = point.y - element.clientHeight / 2;
-  }, [cell, view.mode]);
+  }, [cell, view.mode, centreKey]);
+  // Where the board hides more beyond a side edge, that edge fades (a cut reads as the end).
+  const edges = useScrollEdges(viewport, `${String(cell)}:${view.mode}`);
 
   const stage: StageStyle = {
     width: layout.box.width,
@@ -233,7 +243,12 @@ export function Board({
           difficult={hard.has(key(looked))}
         />
       )}
-      <div className="board-viewport" ref={viewport}>
+      <div
+        className="board-viewport"
+        ref={viewport}
+        data-more-before={edges.before || undefined}
+        data-more-after={edges.after || undefined}
+      >
         <div className="board-stage" style={stage}>
           <div
             className="board-plane"

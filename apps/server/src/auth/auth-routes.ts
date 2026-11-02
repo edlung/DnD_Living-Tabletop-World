@@ -246,7 +246,10 @@ export function registerAuthRoutes(app: FastifyInstance, deps: AuthRouteDependen
   // Same-origin only in invitation mode (`http/security.ts`); no credential mutation on reads.
   app.get('/auth/session', async (request, reply) => {
     const principal = await deps.authenticator.authenticate(credentialsOf(request));
-    if (!principal || principal.campaignId === null) return signedOut(request, reply);
+    // A display is a device, not a person's sign-in: the people's page treats it as none.
+    if (!principal || principal.campaignId === null || principal.actor.kind === 'display') {
+      return signedOut(request, reply);
+    }
     if (!emptyQuery.safeParse(request.query).success) {
       return sendError(reply, request, 'INVALID_REQUEST');
     }

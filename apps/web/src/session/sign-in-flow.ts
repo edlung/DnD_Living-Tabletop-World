@@ -1,7 +1,12 @@
 import { OBJECT_ID_PATTERN, type NewAccount } from '@ltw/contracts';
 import type { GameSignOutGuard } from '../api/client.ts';
 
-import { NOTHING_HELD, holdInvitation, type InvitationHolder } from './invitation-link.ts';
+import {
+  NOTHING_HELD,
+  holdInvitation,
+  type InvitationHolder,
+  type TableKeyHolder,
+} from './invitation-link.ts';
 
 /**
  * Production sign-in from the browser (docs/adr/0036-production-sign-in.md §2–3, §7;
@@ -274,15 +279,19 @@ export type PageStart =
   | { readonly kind: 'invited'; readonly invitation: InvitationHolder }
   /** A reset link (Stage 600): its token waits like an invitation's until the new password. */
   | { readonly kind: 'reset'; readonly reset: InvitationHolder }
+  /** The table's join link (ADR 0042): its token, or none and a code to type. */
+  | { readonly kind: 'table'; readonly key: TableKeyHolder | null }
   | { readonly kind: 'malformed' };
 
 export function pageStart(
   invitation: InvitationHolder | 'malformed' | null,
   transport: Transport,
   reset: InvitationHolder | 'malformed' | null = null,
+  table: TableKeyHolder | 'typed' | null = null,
 ): PageStart {
   // A malformed reset link still shows the reset form, whose try says the link cannot be used.
   if (reset !== null) return { kind: 'reset', reset: reset === 'malformed' ? NOTHING_HELD : reset };
+  if (table !== null) return { kind: 'table', key: table === 'typed' ? null : table };
   if (invitation === null) return { kind: 'probe', first: probeSession(transport) };
   return invitation === 'malformed' ? { kind: 'malformed' } : { kind: 'invited', invitation };
 }

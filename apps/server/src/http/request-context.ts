@@ -72,6 +72,11 @@ export async function authenticate(
     sendError(reply, request, 'UNAUTHENTICATED');
     return null;
   }
+  // A table display only reads (docs/adr/0042-table-display.md §2): any write of one is refused.
+  if (principal.actor.kind === 'display' && request.method !== 'GET' && request.method !== 'HEAD') {
+    sendError(reply, request, 'FORBIDDEN');
+    return null;
+  }
   if (deps.limits && EXPENSIVE.has(request) && !SLOTS.has(request)) {
     const slot = deps.limits.expensive(limitKey(principal));
     if (!slot) {

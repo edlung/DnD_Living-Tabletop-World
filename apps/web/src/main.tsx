@@ -16,10 +16,12 @@ import './i18n/ru-dice.ts';
 import './i18n/ru-inventory.ts';
 import './i18n/ru-rest.ts';
 import './i18n/ru-accounts.ts';
+import './i18n/ru-display.ts';
+import { DisplayApp } from './display/display-app.tsx';
 import { App } from './session/app.tsx';
 import { WorkshopApp } from './workshop/app.tsx';
 import { isWorkshopPath, workshopStart } from './workshop/start.ts';
-import { takeInvitation, takeReset } from './session/invitation-link.ts';
+import { takeInvitation, takeReset, takeTable } from './session/invitation-link.ts';
 import { pageStart } from './session/sign-in-flow.ts';
 import './styles/tokens.css';
 import './styles/fonts.css';
@@ -39,6 +41,7 @@ import './styles/flashback.css';
 import './styles/sign-in.css';
 import './styles/players.css';
 import './styles/accounts.css';
+import './styles/display.css';
 import './styles/responsive.css';
 import './styles/battle-layout.css';
 import './styles/figures.css';
@@ -57,7 +60,14 @@ import './styles/workshop.css';
 // one, the page's first request — whether this browser is signed in — is sent exactly once.
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing application root');
-if (isWorkshopPath(window.location.pathname)) {
+if (window.location.pathname === '/display' || window.location.pathname === '/display/') {
+  // The table's screen (docs/adr/0042-table-display.md): a device, not a person's sign-in.
+  createRoot(root).render(
+    <StrictMode>
+      <DisplayApp />
+    </StrictMode>,
+  );
+} else if (isWorkshopPath(window.location.pathname)) {
   const start = workshopStart(window.location, window.history);
   createRoot(root).render(
     <StrictMode>
@@ -66,7 +76,8 @@ if (isWorkshopPath(window.location.pathname)) {
   );
 } else {
   const reset = takeReset(window.location, window.history);
-  const start = pageStart(takeInvitation(window.location, window.history), fetch, reset);
+  const table = takeTable(window.location, window.history);
+  const start = pageStart(takeInvitation(window.location, window.history), fetch, reset, table);
   createRoot(root).render(
     <StrictMode>
       <App start={start} />

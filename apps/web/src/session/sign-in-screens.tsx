@@ -1,6 +1,6 @@
 import { SESSION_DAYS, type NewAccount } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
@@ -10,6 +10,7 @@ import { AccountSignInForm, ResetForm } from './account-forms.tsx';
 import { useDeliberateChoice } from './deliberate-choice.ts';
 import { EMPTY_JOIN, JoinPanel, type JoinDraft } from './join-panel.tsx';
 import { PersonaForm } from './login.tsx';
+import { TableJoin } from './table-join.tsx';
 import type { CurrentSignIn } from './sign-in-flow.ts';
 import type { SignInScreen } from './use-sign-in.ts';
 
@@ -173,6 +174,8 @@ export function SignInScreens({
   onSignInAccount,
   onReset,
   onHub,
+  onTableOffer,
+  onTableChoose,
   onKeep,
   onReplace,
   onConnect,
@@ -185,6 +188,8 @@ export function SignInScreens({
   readonly onSignInAccount: (login: string, password: string) => Promise<SignInAnswer>;
   readonly onReset: (password: string) => Promise<'done' | 'failed'>;
   readonly onHub: () => void;
+  readonly onTableOffer: ComponentProps<typeof TableJoin>['onOffer'];
+  readonly onTableChoose: ComponentProps<typeof TableJoin>['onChoose'];
   readonly onKeep: () => void;
   readonly onReplace: () => void;
   readonly onConnect: (campaignId: string, token: string) => void;
@@ -336,6 +341,17 @@ export function SignInScreens({
                 <AccountSignInForm onSignIn={onSignInAccount} />
               </>
             )}
+          </AccessState>
+        );
+      case 'table':
+        return (
+          <AccessState
+            glyph="invitation"
+            eyebrow={t('The table')}
+            title={t('Join the table')}
+            focus={false}
+          >
+            <TableJoin linked={screen.linked} onOffer={onTableOffer} onChoose={onTableChoose} />
           </AccessState>
         );
       case 'reset':
