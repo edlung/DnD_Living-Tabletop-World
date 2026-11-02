@@ -28,7 +28,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   0049), in progress: its first part — size and space, walls, squeezing — and its second —
   speeds, water, raised ground and pits, flying, climbing, swimming, crawling, jumping, burrowing
   and falling — and its third — Feather Fall, the reaction to a fall, and underwater combat —
-  done; mounted combat comes in its fourth.
+  done, and its fourth, mounted combat, done: Stage 640f is complete. Next 640g, the world
+  around (vision and light, hazards, rests by the full rules, armor).
 
 ## Current request — AI campaigns, 2026-10-30
 

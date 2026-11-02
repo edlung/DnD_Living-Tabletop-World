@@ -56,11 +56,20 @@ export function encounterView(
   const party = new Set<string>(holder === null ? [] : [holder]);
   if (asParty || (holder !== null && members.has(holder))) members.forEach((id) => party.add(id));
 
+  // A creature a party character commands is the party's to know, its name too (ADR 0044 §7).
+  const ours = new Set(
+    encounter.combatants
+      .filter(
+        (c) => c.commandedBy !== undefined && c.commandedBy !== null && party.has(c.commandedBy),
+      )
+      .map((c) => c.entityId),
+  );
+  const knows = (entityId: string) => dm || known.has(entityId) || ours.has(entityId);
   // A creature named in a condition's details (its source, whose turn ends it), as the viewer
   // knows it (docs/adr/0045-conditions-and-actions.md §2).
   const named = (entityId: string) => ({
     entityId,
-    name: dm || known.has(entityId) ? (state.entities.get(entityId)?.name ?? null) : null,
+    name: knows(entityId) ? (state.entities.get(entityId)?.name ?? null) : null,
   });
   const notesOf = (combatant: (typeof encounter.combatants)[number]): ConditionNoteView[] =>
     (combatant.conditionDetails ?? []).map(({ condition, sourceId, until, save }) => ({
@@ -88,7 +97,7 @@ export function encounterView(
       entity: {
         entityId: entity.entityId,
         kind: entity.kind,
-        name: dm || known.has(entity.entityId) ? entity.name : null,
+        name: knows(entity.entityId) ? entity.name : null,
       },
       side: combatant.side,
       position: { x: combatant.position.x, y: combatant.position.y },
@@ -97,6 +106,8 @@ export function encounterView(
       ...(combatant.squeezed === true ? { squeezed: true as const } : {}),
       ...(combatant.altitudeFt === undefined ? {} : { altitudeFt: combatant.altitudeFt }),
       ...(speedsOf(vitals).fly === undefined ? {} : { flies: true as const }),
+      // The creature it rides, as anyone sees (§10).
+      ...(combatant.mountedOn === undefined ? {} : { mountedOn: named(combatant.mountedOn) }),
       // Its speeds beside walking, as its hit points: the party's and the DM's to know (§5).
       ...(showHp && Object.keys(speedsOf(vitals)).length > 0 ? { speeds: speedsOf(vitals) } : {}),
       // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).

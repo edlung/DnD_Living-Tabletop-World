@@ -13,6 +13,12 @@ export interface SquareFacts {
   /** The occupant's label (`combat/labels.ts`): its name, or "Unidentified creature N". */
   readonly label: string;
   readonly you: boolean;
+  /** Who rides the occupant (docs/adr/0049-space-and-movement.md §10); absent or null: none. */
+  readonly rider?: {
+    readonly view: EncounterCombatantView;
+    readonly label: string;
+    readonly you: boolean;
+  } | null;
   readonly difficult: boolean;
   /** A wall (docs/adr/0049-space-and-movement.md §4); absent: none. */
   readonly wall?: boolean;
@@ -53,6 +59,19 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
       ...(occupant.hitPoints ? [t('{current} / {max} HP', { ...occupant.hitPoints })] : []),
     ];
     notes.push(parts.join(', '));
+  }
+  const { rider } = facts;
+  if (rider) {
+    const name = rider.you ? t('{name} (you)', { name: rider.label }) : rider.label;
+    notes.push(
+      [
+        t('ridden by {name}', { name }),
+        t(rider.view.side),
+        ...(rider.view.state === 'up' ? [] : [t(rider.view.state)]),
+        ...rider.view.conditions.map((condition) => t(condition)),
+        ...(rider.view.hitPoints ? [t('{current} / {max} HP', { ...rider.view.hitPoints })] : []),
+      ].join(', '),
+    );
   }
   if (facts.wall === true) notes.push(t('wall'));
   if (facts.water === 'deep') notes.push(t('deep water'));

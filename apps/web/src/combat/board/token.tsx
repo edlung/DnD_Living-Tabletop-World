@@ -50,6 +50,7 @@ export function Token({
   inArea,
   span = 1,
   cell = 0,
+  riding = false,
 }: {
   readonly combatant: EncounterCombatantView;
   /** Its name, or "Unidentified creature N" (`combat/labels.ts`). */
@@ -69,6 +70,8 @@ export function Token({
    * over 2×2 squares from the square that holds it, everything in it scaled to the space.
    */
   readonly span?: number;
+  /** Sitting on its mount, drawn smaller over it (docs/adr/0049-space-and-movement.md §10). */
+  readonly riding?: boolean;
   /** The board's square in pixels, to scale a spanning figure. */
   readonly cell?: number;
 }) {
@@ -86,6 +89,7 @@ export function Token({
     selected ? 'is-selected' : '',
     inArea ? 'in-area' : '',
     span > 1 ? 'is-spanning' : '',
+    riding ? 'is-riding' : '',
   ];
   const style = span > 1 ? ({ '--cell': `${String(cell * span)}px` } as CSSProperties) : undefined;
   return (

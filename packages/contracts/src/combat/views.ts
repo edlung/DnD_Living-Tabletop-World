@@ -41,6 +41,8 @@ export interface EncounterCombatantView {
   readonly flies?: true;
   /** Its speeds beside walking, seen as its hit points are: the route's advisory cost uses them. */
   readonly speeds?: Speeds;
+  /** The creature it rides, as anyone sees (ADR 0049 §10); it shares that one's space. */
+  readonly mountedOn?: { readonly entityId: string; readonly name: string | null };
   /** `down`: at 0 HP but alive (a character making death saves). */
   readonly state: 'up' | 'down' | 'dead';
   readonly conditions: readonly Condition[];

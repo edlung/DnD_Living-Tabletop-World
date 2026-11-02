@@ -15,6 +15,7 @@ const GLYPHS: Readonly<Record<MoveKind, GlyphName>> = {
   drop: 'falling',
   rise: 'chevron-down',
   descend: 'chevron-down',
+  dismount: 'move',
 };
 
 export const moveGlyph = (option: MoveOption): GlyphName => GLYPHS[option.kind];
@@ -38,6 +39,8 @@ export function moveLabel(t: T, option: MoveOption): string {
       return t('Fly up {feet} ft', { feet: verticalFt(option) });
     case 'descend':
       return t('Fly down {feet} ft', { feet: verticalFt(option) });
+    case 'dismount':
+      return t('Dismount here');
   }
 }
 
@@ -48,9 +51,11 @@ export function moveLabel(t: T, option: MoveOption): string {
 export const moveNote = (t: T, option: MoveOption): string | null =>
   option.kind === 'rise' || option.kind === 'descend'
     ? null
-    : option.kind === 'drop'
-      ? t('a fall of {feet} ft', { feet: option.fallFt ?? 0 })
-      : t('about {feet} ft', { feet: option.costFt });
+    : option.kind === 'dismount'
+      ? t('half your Speed')
+      : option.kind === 'drop'
+        ? t('a fall of {feet} ft', { feet: option.fallFt ?? 0 })
+        : t('about {feet} ft', { feet: option.costFt });
 
 /** The side panel's line on a way beside the plain route; null for the route itself. */
 export function moveDetail(t: T, option: MoveOption): string | null {
@@ -68,6 +73,8 @@ export function moveDetail(t: T, option: MoveOption): string | null {
       return t('Dropping down: a fall of {feet} ft, 1d6 Bludgeoning damage per 10 ft, and Prone.', {
         feet: option.fallFt ?? 0,
       });
+    case 'dismount':
+      return t('Getting down here takes half your Speed; your mount stays where it is.');
     default:
       return null;
   }

@@ -75,6 +75,8 @@ const LABEL: Readonly<Record<ContextActionId, string>> = {
   escape: 'Break free of a grapple',
   release: 'Let go of someone you hold',
   'first-aid': 'Tend a dying or knocked-out creature',
+  mount: 'Climb onto a willing creature to ride it',
+  dismount: 'Get down from the creature you ride',
   enter_location: 'Go there',
   fireball: 'Cast Fireball at them',
   counterspell: 'Counterspell their spell',

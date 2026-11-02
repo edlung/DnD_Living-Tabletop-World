@@ -73,6 +73,12 @@ each further SRD rule needs an entry or an ADR before it is implemented).
   reaction prompt asks the caster; the DM's window says who falls. Under water
   (`battlefield.ts` `immersed`): weapons that drag (`@ltw/rules` `underwaterDisadvantage`), a
   ranged weapon held to its normal range, fire resisted.
+
+  Fourth commit done (2026-11-02): mounted combat (`packages/combat/src/mounts.ts`) — `mount` and
+  `dismount`, the rider in its mount's space and carried by its moves, a controlled mount after its
+  rider with Dash, Disengage and Dodge only, the rider's seat judged after every command; the board
+  draws the rider on its mount and names it in the mount's squares; a commanded creature's turn
+  moves it to a chosen square; a creature the party commands is known by name.
 - 640g — The world around: vision and light (bright, dim, darkness; lightly and heavily obscured;
   Darkvision, Blindsight, Truesight), hazards (falling, suffocation, cold, heat), poisons, rests by
   the full rules (one long rest in 24 hours, an interrupted rest and its partial benefits), armor's

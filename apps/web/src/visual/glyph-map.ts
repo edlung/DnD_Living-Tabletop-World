@@ -30,6 +30,8 @@ const ACTIONS: Readonly<Record<ContextActionId, GlyphName>> = {
   escape: 'grappled',
   release: 'grappled',
   'first-aid': 'help',
+  mount: 'move',
+  dismount: 'move',
   enter_location: 'travel',
   fireball: 'cast',
   counterspell: 'counterspell',

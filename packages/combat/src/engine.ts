@@ -17,6 +17,7 @@ import {
   decideSetInitiative,
 } from './order.ts';
 import { decideMove } from './movement.ts';
+import { ridersAfter } from './mounts.ts';
 import { decideAddObject } from './objects.ts';
 import { decideMakeReadiedAttack } from './readied.ts';
 import {
@@ -35,52 +36,57 @@ import { decideEndTurn } from './turns.ts';
 export function createCombatEngine(): CombatPort {
   return {
     decide(context: DecisionContext, command: CombatCommand, dice: Dice): Decision {
-      switch (command.type) {
-        case 'StartCombat':
-          return decideStartCombat(context, command, dice);
-        case 'MoveCombatant':
-          return decideMove(context, command, dice);
-        case 'Attack':
-          return decideAttack(context, command, dice);
-        case 'CastSpell':
-          return decideCastSpell(context, command, dice);
-        case 'TakeAction':
-          return decideTakeAction(context, command, dice);
-        case 'MakeReadiedAttack':
-          return decideMakeReadiedAttack(context, command, dice);
-        case 'EndTurn':
-          return decideEndTurn(context, command, dice);
-        case 'EndCombat':
-          return decideEndCombat(context, command);
-        case 'UseReaction':
-          return decideUseReaction(context, command, dice);
-        case 'DeclineReaction':
-          return decideDeclineReaction(context, command, dice);
-        case 'CloseReactionWindow':
-          return decideCloseReactionWindow(context, command, dice);
-        case 'AdjustHitPoints':
-          return decideAdjustHitPoints(context, command, dice);
-        case 'SetCondition':
-          return decideSetCondition(context, command, dice);
-        case 'SetExhaustion':
-          return decideSetExhaustion(context, command);
-        case 'SetInspiration':
-          return decideSetInspiration(context, command);
-        case 'SpendInspiration':
-          return decideSpendInspiration(context, command);
-        case 'AddCombatant':
-          return decideAddCombatant(context, command, dice);
-        case 'RemoveCombatant':
-          return decideRemoveCombatant(context, command, dice);
-        case 'DelayTurn':
-          return decideDelayTurn(context, command, dice);
-        case 'SetInitiative':
-          return decideSetInitiative(context, command);
-        case 'CommandCreature':
-          return decideCommandCreature(context, command);
-        case 'AddObject':
-          return decideAddObject(context, command);
-      }
+      // The riders' seats after what the command did (docs/adr/0049-space-and-movement.md §10).
+      return ridersAfter(context, command.type, decideCommand(context, command, dice), dice);
     },
   };
+}
+
+function decideCommand(context: DecisionContext, command: CombatCommand, dice: Dice): Decision {
+  switch (command.type) {
+    case 'StartCombat':
+      return decideStartCombat(context, command, dice);
+    case 'MoveCombatant':
+      return decideMove(context, command, dice);
+    case 'Attack':
+      return decideAttack(context, command, dice);
+    case 'CastSpell':
+      return decideCastSpell(context, command, dice);
+    case 'TakeAction':
+      return decideTakeAction(context, command, dice);
+    case 'MakeReadiedAttack':
+      return decideMakeReadiedAttack(context, command, dice);
+    case 'EndTurn':
+      return decideEndTurn(context, command, dice);
+    case 'EndCombat':
+      return decideEndCombat(context, command);
+    case 'UseReaction':
+      return decideUseReaction(context, command, dice);
+    case 'DeclineReaction':
+      return decideDeclineReaction(context, command, dice);
+    case 'CloseReactionWindow':
+      return decideCloseReactionWindow(context, command, dice);
+    case 'AdjustHitPoints':
+      return decideAdjustHitPoints(context, command, dice);
+    case 'SetCondition':
+      return decideSetCondition(context, command, dice);
+    case 'SetExhaustion':
+      return decideSetExhaustion(context, command);
+    case 'SetInspiration':
+      return decideSetInspiration(context, command);
+    case 'SpendInspiration':
+      return decideSpendInspiration(context, command);
+    case 'AddCombatant':
+      return decideAddCombatant(context, command, dice);
+    case 'RemoveCombatant':
+      return decideRemoveCombatant(context, command, dice);
+    case 'DelayTurn':
+      return decideDelayTurn(context, command, dice);
+    case 'SetInitiative':
+      return decideSetInitiative(context, command);
+    case 'CommandCreature':
+      return decideCommandCreature(context, command);
+    case 'AddObject':
+      return decideAddObject(context, command);
+  }
 }

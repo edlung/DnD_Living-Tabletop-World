@@ -68,14 +68,23 @@ export function CombatPanel({
   const self = encounter.combatants.find((entry) => entry.entity.entityId === actorId);
   const myTurn = self !== undefined && encounter.currentCombatantId === actorId;
   const mayAct = actorId !== null && canAct && myTurn && encounter.reactionWindow === null;
+  // A creature the viewer's character commands, on its own turn (docs/adr/0044-online-play.md §7):
+  // the viewer moves it, a mount among them, where its rider directs (ADR 0049 §10).
+  const commanding =
+    actorId !== null &&
+    canAct &&
+    encounter.reactionWindow === null &&
+    encounter.combatants.find((entry) => entry.entity.entityId === encounter.currentCombatantId)
+      ?.commandedBy?.entityId === actorId;
+  const moverId = commanding ? encounter.currentCombatantId : actorId;
   const picked =
     focus?.kind === 'combatant'
       ? (encounter.combatants.find((entry) => entry.entity.entityId === focus.id) ?? null)
       : null;
   // The ways to a chosen square (docs/adr/0049-space-and-movement.md §5–8); the first is drawn.
   const moves =
-    focus?.kind === 'square' && actorId !== null
-      ? squareMoves(encounter, actorId, focus.square)
+    focus?.kind === 'square' && moverId !== null
+      ? squareMoves(encounter, moverId, focus.square)
       : [];
   const { resource, retry } = useTargetContext(
     api,
@@ -124,7 +133,8 @@ export function CombatPanel({
         square={focus.square}
         moves={moves}
         prone={self?.conditions.includes('prone') ?? false}
-        myTurn={myTurn}
+        riding={self?.mountedOn !== undefined && !commanding}
+        myTurn={myTurn || commanding}
         panel={panel}
         onClose={close}
       />
@@ -168,6 +178,7 @@ export function CombatPanel({
         selfId={actorId}
         selected={focus?.kind === 'square' ? focus.square : (picked?.position ?? null)}
         path={moves[0]?.path ?? []}
+        moverId={moverId}
         affected={affected}
         imageOf={imageOf}
         figureOf={figureOf}
@@ -192,6 +203,7 @@ export function CombatPanel({
           api={api}
           encounter={encounter}
           actorId={canAct ? actorId : null}
+          moves={commanding ? moves : []}
           locked={locked}
           onRun={onRun}
         />

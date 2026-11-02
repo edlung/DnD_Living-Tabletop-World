@@ -56,6 +56,8 @@ export function fitAt(
     const top = bottom + heightFt(placed.size);
     const others = encounter.combatants.filter((other) => {
       if (other.entityId === mover.entityId || !isAlive(state, other.entityId)) return false;
+      // A rider is in its mount's space, never a space of its own (docs/adr/0049 §10).
+      if (other.mountedOn !== undefined) return false;
       const vitals = vitalsOf(state, other.entityId);
       if (!vitals) return false;
       const below = heightOf(state, encounter, other);

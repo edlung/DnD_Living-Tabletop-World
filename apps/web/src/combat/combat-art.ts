@@ -71,6 +71,8 @@ export const TURN_ACTIONS: readonly ContextActionId[] = [
   'escape',
   'release',
   'first-aid',
+  'mount',
+  'dismount',
 ];
 
 /**
@@ -94,6 +96,9 @@ const ACTION_EFFECTS: Partial<Record<ContextActionId, string>> = {
   escape: 'Athletics or Acrobatics against the grapple’s DC: on a success you are free.',
   release: 'Let go of the creature you hold. It takes no action.',
   'first-aid': 'A DC 10 Medicine check: one dying becomes stable, one knocked out comes round.',
+  mount:
+    'Climb onto a willing creature a size larger beside you, for half your Speed: you share its space and go where it goes.',
+  dismount: 'Get down beside your mount, for half your Speed.',
   unarmed_strike:
     'A punch, a grapple or a shove, or a blow with an object at hand: you choose before it lands.',
 };
@@ -120,6 +125,8 @@ const LABELS: Partial<Record<ContextActionId, (t: Translate, target: string) => 
   escape: (t) => t('Escape a grapple'),
   release: (t) => t('Let go'),
   'first-aid': (t, target) => t('First aid for {target}', { target }),
+  mount: (t, target) => t('Mount {target}', { target }),
+  dismount: (t) => t('Dismount'),
   fireball: (t, target) => t('Cast Fireball at {target}', { target }),
   counterspell: (t) => t('Cast Counterspell'),
   healing_word: (t, target) => t('Cast Healing Word on {target}', { target }),
@@ -152,6 +159,8 @@ const SHORT: Partial<Record<ContextActionId, string>> = {
   escape: 'Escape a grapple',
   release: 'Let go',
   'first-aid': 'First aid',
+  mount: 'Mount',
+  dismount: 'Dismount',
 };
 
 /** The tray's short words for an option (a translation key), contained in its full label. */

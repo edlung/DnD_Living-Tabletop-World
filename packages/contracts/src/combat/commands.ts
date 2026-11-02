@@ -216,6 +216,12 @@ export const COMBAT_ACTIONS = [
   'release',
   /** A DC 10 Medicine check: the dying stable, the knocked out awake (ADR 0048 §4). */
   'first-aid',
+  /**
+   * Mounting a willing creature a size larger within 5 ft, or dismounting within 5 ft of it: half
+   * the Speed, no action (docs/adr/0049-space-and-movement.md §10).
+   */
+  'mount',
+  'dismount',
 ] as const;
 export type CombatAction = (typeof COMBAT_ACTIONS)[number];
 
@@ -233,8 +239,13 @@ export const takeActionCommandSchema = z
     type: z.literal('TakeAction'),
     combatantId: entityIdSchema,
     action: z.enum(COMBAT_ACTIONS),
-    /** Help: the foe within 5 ft. Ready: the creature the held attack waits for. */
+    /**
+     * Help: the foe within 5 ft. Ready: the creature the held attack waits for. Mount: the creature
+     * to ride.
+     */
     targetId: entityIdSchema.optional(),
+    /** Dismount: the square within 5 ft of the mount to land on; absent, the nearest free one. */
+    square: squareSchema.optional(),
     /** Influence, Search, Study: the skill of the check (one of the action's own). */
     skill: z.enum(SKILL_IDS).optional(),
     /** Ready: the attack held, and the trigger in the player's words. */

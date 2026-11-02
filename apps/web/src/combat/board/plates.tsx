@@ -44,43 +44,46 @@ export function BoardPlates({
   const occupied = encounter.combatants.map((entry) => entry.position);
   return (
     <div className="board-plates" aria-hidden="true">
-      {encounter.combatants.map((combatant) => {
-        // Under the middle of its space (docs/adr/0049-space-and-movement.md §1).
-        const anchor = plateAnchor(layout, combatant.position, spanOf(combatant));
-        const style: PlateStyle = {
-          left: anchor.x,
-          top: anchor.y,
-          '--plate-scale': anchor.scale,
-          '--plate-room': plateRoom(combatant.position, occupied),
-        };
-        return (
-          <span
-            key={combatant.entity.entityId}
-            className={`board-plate board-plate--${anchor.edge} token--${combatant.side}`}
-            style={style}
-            onClick={() => {
-              onPick(combatant.position);
-            }}
-            onPointerEnter={() => {
-              onPoint(combatant.position, true);
-            }}
-            onPointerLeave={() => {
-              onPoint(combatant.position, false);
-            }}
-          >
-            {(combatant.altitudeFt ?? 0) !== 0 && (
-              <span className="plate-altitude">
-                {(combatant.altitudeFt ?? 0) > 0 ? '↑' : '↓'}{' '}
-                {t('{feet} ft', { feet: Math.abs(combatant.altitudeFt ?? 0) })}
-              </span>
-            )}
-            <TokenPlate
-              label={labelOf(combatant.entity.entityId)}
-              hitPoints={combatant.hitPoints}
-            />
-          </span>
-        );
-      })}
+      {/* A rider's figure sits on its mount's: the mount's squares name it (ADR 0049 §10). */}
+      {encounter.combatants
+        .filter((combatant) => combatant.mountedOn === undefined)
+        .map((combatant) => {
+          // Under the middle of its space (docs/adr/0049-space-and-movement.md §1).
+          const anchor = plateAnchor(layout, combatant.position, spanOf(combatant));
+          const style: PlateStyle = {
+            left: anchor.x,
+            top: anchor.y,
+            '--plate-scale': anchor.scale,
+            '--plate-room': plateRoom(combatant.position, occupied),
+          };
+          return (
+            <span
+              key={combatant.entity.entityId}
+              className={`board-plate board-plate--${anchor.edge} token--${combatant.side}`}
+              style={style}
+              onClick={() => {
+                onPick(combatant.position);
+              }}
+              onPointerEnter={() => {
+                onPoint(combatant.position, true);
+              }}
+              onPointerLeave={() => {
+                onPoint(combatant.position, false);
+              }}
+            >
+              {(combatant.altitudeFt ?? 0) !== 0 && (
+                <span className="plate-altitude">
+                  {(combatant.altitudeFt ?? 0) > 0 ? '↑' : '↓'}{' '}
+                  {t('{feet} ft', { feet: Math.abs(combatant.altitudeFt ?? 0) })}
+                </span>
+              )}
+              <TokenPlate
+                label={labelOf(combatant.entity.entityId)}
+                hitPoints={combatant.hitPoints}
+              />
+            </span>
+          );
+        })}
     </div>
   );
 }

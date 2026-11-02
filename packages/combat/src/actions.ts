@@ -4,6 +4,7 @@ import {
   type CombatAction,
   type KernelCommandOf,
   type Skill,
+  type Square,
 } from '@ltw/contracts';
 import {
   accept,
@@ -27,6 +28,7 @@ import {
   turnStateOf,
 } from './battlefield.ts';
 import { withDetail } from './condition-details.ts';
+import { controlledMount, decideMounting, mountPlan } from './mounts.ts';
 import { decideRelease, escapeDcOf, heldBy } from './unarmed.ts';
 import type { Refusal } from './legality.ts';
 import { isObjectIn } from './objects.ts';
@@ -61,6 +63,8 @@ export const HIDE_DC = 15;
 export interface ActionRequest {
   readonly action: CombatAction;
   readonly targetId?: string | undefined;
+  /** Dismount: the square to land on (docs/adr/0049-space-and-movement.md §10). */
+  readonly square?: Square | undefined;
   readonly skill?: Skill | undefined;
   readonly readied?: { readonly attackId: string; readonly trigger: string } | undefined;
 }
@@ -75,6 +79,9 @@ export interface ActionPlan {
 
 const refuse = (reason: Refusal['reason']): Refusal => ({ legal: false, reason });
 
+/** What a controlled mount may do (SRD 5.2.1): Dash, Disengage, Dodge. */
+const STEED_ACTIONS: ReadonlySet<CombatAction> = new Set(['dash', 'disengage', 'dodge']);
+
 export function actionPlan(
   state: WorldState,
   encounter: EncounterState,
@@ -88,6 +95,15 @@ export function actionPlan(
   const turn = turnStateOf(encounter, actor);
   if (!turn.ownTurn) return refuse('NOT_YOUR_TURN');
   const { action } = request;
+  // Mounting and getting down take half the Speed, no action (docs/adr/0049-space-and-movement.md
+  // §10); a mount its rider controls dashes, disengages or dodges, nothing else.
+  if (action === 'mount' || action === 'dismount') {
+    const plan = mountPlan(state, encounter, actor, vitals, { ...request, action });
+    return plan.legal ? { legal: true, actor, vitals, skill: null } : plan;
+  }
+  if (controlledMount(encounter, actor) && !STEED_ACTIONS.has(action)) {
+    return refuse('CONTROLLED_MOUNT');
+  }
   // Letting go takes no action (docs/adr/0047-weapons.md §3).
   if (action === 'release') {
     return heldBy(state, encounter, actor.entityId).length > 0
@@ -177,6 +193,13 @@ export function decideTakeAction(
   const plan = actionPlan(state, encounter.value, current.value, command);
   if (!plan.legal) return refused(plan);
   if (command.action === 'release') return decideRelease(context, command);
+  if (command.action === 'mount' || command.action === 'dismount') {
+    const mounting = mountPlan(state, encounter.value, current.value, plan.vitals, {
+      ...command,
+      action: command.action,
+    });
+    return mounting.legal ? decideMounting(context, command, mounting) : refused(mounting);
+  }
   const { actor, vitals, skill } = plan;
   const turn = { ...actor.turn, actionUsed: true };
   let record: CombatantRecord;

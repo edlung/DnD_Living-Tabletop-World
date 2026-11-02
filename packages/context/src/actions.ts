@@ -12,8 +12,8 @@ import {
   wieldedWeapons,
   type EntityState,
 } from '@ltw/domain';
-import { needsAid, vitalsOf } from '@ltw/combat';
-import { WEAPONS } from '@ltw/rules';
+import { needsAid, sizeOf, vitalsOf } from '@ltw/combat';
+import { WEAPONS, sizeRank } from '@ltw/rules';
 
 import {
   combatAttackVerdict,
@@ -168,6 +168,15 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       if (holds) {
         add('release', 'present-alive', () => combatActionVerdict(frame, inputs, 'release'), 'low');
       }
+      // Getting down from the creature it rides (docs/adr/0049-space-and-movement.md §10).
+      if (frame.actor.mountedOn !== undefined) {
+        add(
+          'dismount',
+          'present-alive',
+          () => combatActionVerdict(frame, inputs, 'dismount'),
+          'high',
+        );
+      }
     }
     if (frame && !self) {
       for (const at of ['help', 'ready', 'influence'] as const)
@@ -177,6 +186,25 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
           () => combatActionVerdict(frame, inputs, at, target.entityId),
           'low',
         );
+      // A willing creature a size larger to ride (docs/adr/0049-space-and-movement.md §10): one of
+      // its own side, or one it commands.
+      const steed = frame.encounter.combatants.find((c) => c.entityId === target.entityId);
+      const steedVitals = vitalsOf(inputs.state, target.entityId);
+      const riderVitals = vitalsOf(inputs.state, inputs.actor.entityId);
+      if (
+        steed &&
+        steedVitals &&
+        riderVitals &&
+        (steed.side === frame.actor.side || steed.commandedBy === inputs.actor.entityId) &&
+        sizeRank(sizeOf(steedVitals)) > sizeRank(sizeOf(riderVitals))
+      ) {
+        add(
+          'mount',
+          'present-alive',
+          () => combatActionVerdict(frame, inputs, 'mount', target.entityId),
+          'low',
+        );
+      }
       // First aid for one dying or knocked out (docs/adr/0048-hit-points.md §4).
       const tended = vitalsOf(inputs.state, target.entityId);
       if (tended && needsAid(tended)) {

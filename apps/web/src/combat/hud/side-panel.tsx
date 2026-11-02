@@ -125,6 +125,7 @@ export function MoveDetails({
   square,
   moves,
   prone,
+  riding = false,
   myTurn,
   panel,
   onClose,
@@ -133,6 +134,8 @@ export function MoveDetails({
   readonly moves: readonly MoveOption[];
   /** The mover lies Prone: walking stands it up first. */
   readonly prone: boolean;
+  /** The mover rides (docs/adr/0049-space-and-movement.md §10): its mount carries it. */
+  readonly riding?: boolean;
   readonly myTurn: boolean;
   readonly panel: Ref<HTMLElement>;
   readonly onClose: () => void;
@@ -164,6 +167,10 @@ export function MoveDetails({
               : 'Route: {count} squares, about {feet} ft. The rules confirm your speed.',
             { count: plan.path.length, feet: plan.costFt },
           )}
+        </p>
+      ) : riding ? (
+        <p className="muted">
+          {t('You ride: your mount carries you on its turn, or get down beside it.')}
         </p>
       ) : (
         <p className="muted">{t('No open route to this square.')}</p>

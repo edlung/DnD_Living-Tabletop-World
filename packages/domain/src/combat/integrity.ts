@@ -32,6 +32,15 @@ export function combatViolations(state: WorldState): string[] {
       if (x >= encounter.battlefield.width || y >= encounter.battlefield.height) {
         report(`combatant ${combatant.entityId} is off the battlefield`);
       }
+      // A rider stands where its mount stands, sharing its square (docs/adr/0049 §10).
+      if (combatant.mountedOn !== undefined) {
+        const mount = encounter.combatants.find((c) => c.entityId === combatant.mountedOn);
+        if (!mount) report(`rider ${combatant.entityId} rides no combatant`);
+        else if (mount.position.x !== x || mount.position.y !== y) {
+          report(`rider ${combatant.entityId} is not where its mount is`);
+        }
+        continue;
+      }
       if (entity.status === 'active') {
         const square = `${String(x)},${String(y)}`;
         if (occupied.has(square)) report(`two living combatants share square ${square}`);

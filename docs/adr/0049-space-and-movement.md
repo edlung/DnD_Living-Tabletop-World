@@ -70,6 +70,13 @@
     DM's hand. The rider shares the mount's space. A rider whose mount is moved against its will,
     or who is knocked Prone, makes a DC 10 Dexterity save or falls off Prone within 5 ft; a mount
     knocked Prone throws its rider, who lands on their feet with their Reaction or Prone without.
+    Mounting and getting down are actions of their own on the rider's turn, `mount` and `dismount`,
+    once a move; a controlled mount is one its own rider commands, and takes the rider's initiative
+    to act right after it. The rider's seat is judged after every command of the fight — a mount
+    Prone, Incapacitated or dead throws it, and a rider knocked Prone or left behind by its mount
+    saves — except while a reaction window waits; its close is judged in turn. A rider wholly
+    Incapacitated or dead falls off. On its turn the player moves a creature it commands to a
+    square chosen on the board, as its own character.
 11. **Underwater combat** (SRD 5.2.1): the battlefield may mark deep water, where creatures and
     objects are fully immersed — every square of the space deep water, nothing flying above it. The
     melee rule below asks of an immersed attacker; the ranged one of an attacker or a target

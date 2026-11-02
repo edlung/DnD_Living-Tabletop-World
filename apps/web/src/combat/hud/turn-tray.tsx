@@ -151,14 +151,24 @@ export function TurnTray({
             data-move={option.kind}
             disabled={locked}
             onClick={() => {
+              const [square] = option.path;
               onRun({
                 kind: 'command',
-                command: {
-                  type: 'MoveCombatant',
-                  combatantId: actorId,
-                  path: [...option.path],
-                  ...(option.crawl ? { crawl: true } : {}),
-                },
+                // Getting down from a mount is an action of its own (ADR 0049 §10).
+                command:
+                  option.kind === 'dismount' && square
+                    ? {
+                        type: 'TakeAction',
+                        combatantId: actorId,
+                        action: 'dismount',
+                        square: { x: square.x, y: square.y },
+                      }
+                    : {
+                        type: 'MoveCombatant',
+                        combatantId: actorId,
+                        path: [...option.path],
+                        ...(option.crawl ? { crawl: true } : {}),
+                      },
               });
             }}
           >

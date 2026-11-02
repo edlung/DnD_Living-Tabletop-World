@@ -30,7 +30,7 @@ export {
   type CounterspellPlan,
 } from './reactions/eligibility.ts';
 export { reactionWindowViolations } from './reactions/invariants.ts';
-export { hitPoints, vitalsOf, type Vitals } from './vitals.ts';
+export { hitPoints, sizeOf, vitalsOf, type Vitals } from './vitals.ts';
 export { IMPROVISED, UNARMED_STRIKE } from './weapon-view.ts';
 export { encounterView } from './view.ts';
 export { suggestMonsterTurn } from './suggestion.ts';

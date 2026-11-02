@@ -7,10 +7,12 @@ import { groundUnder, planPath } from './movement.ts';
  * The ways the turn tray offers to move (docs/adr/0049-space-and-movement.md §5–8): to the chosen
  * square on foot or through the air at the mover's height, landing there from the air, crawling
  * there while Prone, a jump along a straight line over a pit, water or rough ground, a drop off a
- * ledge or into a pit beside it; and for a flyer, rising or coming down where it is. Each is a path
- * the World Engine judges with its advisory cost: the rules decide, never this list.
+ * ledge or into a pit beside it; and for a flyer, rising or coming down where it is. A rider only
+ * gets down beside its mount (§10). Each is a path the World Engine judges with its advisory cost:
+ * the rules decide, never this list.
  */
-export type MoveKind = 'move' | 'land' | 'crawl' | 'jump' | 'drop' | 'rise' | 'descend';
+export type MoveKind =
+  'move' | 'land' | 'crawl' | 'jump' | 'drop' | 'rise' | 'descend' | 'dismount';
 
 export interface MoveOption {
   readonly kind: MoveKind;
@@ -33,11 +35,16 @@ const MAX_ALTITUDE_FT = 500;
 const same = (a: Square, b: Square) => a.x === b.x && a.y === b.y;
 const key = (square: Square) => `${String(square.x)},${String(square.y)}`;
 
-/** The living combatant whose space holds the square, if any; a flyer before the one below. */
+/**
+ * The combatant whose space holds the square, if any: a rider on the square it sits on (§10), a
+ * flyer before the one below.
+ */
 export const occupantAt = (encounter: Pick<EncounterView, 'combatants'>, square: Square) =>
+  encounter.combatants.find((entry) => entry.mountedOn && same(entry.position, square)) ??
   [...encounter.combatants]
     .sort((a, b) => (b.altitudeFt ?? 0) - (a.altitudeFt ?? 0))
-    .find((entry) => footprint(entry).some((at) => same(at, square))) ?? null;
+    .find((entry) => footprint(entry).some((at) => same(at, square))) ??
+  null;
 
 /** The ways to the chosen square. */
 export function squareMoves(
@@ -47,6 +54,7 @@ export function squareMoves(
 ): MoveOption[] {
   const mover = encounter.combatants.find((entry) => entry.entity.entityId === moverId);
   if (!mover || same(square, mover.position)) return [];
+  if (mover.mountedOn) return dismountAt(encounter, mover.mountedOn.entityId, square);
   const altitude = mover.altitudeFt ?? 0;
   const prone = mover.conditions.includes('prone');
   const options: MoveOption[] = [];
@@ -128,10 +136,34 @@ export function squareMoves(
   return options;
 }
 
-/** A flyer's rising and coming down where it is (§6). */
+/** A rider gets down on a free square beside its mount's space, for half its Speed (§10). */
+function dismountAt(encounter: EncounterView, mountId: string, square: Square): MoveOption[] {
+  const mount = encounter.combatants.find((entry) => entry.entity.entityId === mountId);
+  if (!mount) return [];
+  const space = footprint(mount);
+  const beside =
+    !space.some((at) => same(at, square)) &&
+    space.some((at) => Math.max(Math.abs(at.x - square.x), Math.abs(at.y - square.y)) === 1);
+  const { battlefield } = encounter;
+  const free =
+    square.x >= 0 &&
+    square.y >= 0 &&
+    square.x < battlefield.width &&
+    square.y < battlefield.height &&
+    !(battlefield.walls ?? []).some((at) => same(at, square)) &&
+    !encounter.combatants.some(
+      (other) =>
+        other.state !== 'dead' &&
+        other.mountedOn === undefined &&
+        footprint(other).some((at) => same(at, square)),
+    );
+  return beside && free ? [{ kind: 'dismount', path: [{ ...square }], costFt: 0 }] : [];
+}
+
+/** A flyer's rising and coming down where it is (§6); a rider rides, it does not fly. */
 export function flightMoves(encounter: EncounterView, moverId: string): MoveOption[] {
   const mover = encounter.combatants.find((entry) => entry.entity.entityId === moverId);
-  if (!mover?.flies) return [];
+  if (!mover?.flies || mover.mountedOn) return [];
   const at = mover.position;
   const altitude = mover.altitudeFt ?? 0;
   const options: MoveOption[] = [];

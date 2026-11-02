@@ -85,9 +85,32 @@ registerRussian({
   '{names} falling: Feather Fall may slow the fall.':
     'Падают: {names}. Падение пёрышком может замедлить падение.',
 
+  // Mounted combat
+  Mount: 'Сесть верхом',
+  Dismount: 'Спешиться',
+  'Mount {target}': 'Сесть верхом на: {target}',
+  'Dismount here': 'Спешиться сюда',
+  'half your Speed': 'половина Скорости',
+  'ridden by {name}': 'на нём верхом {name}',
+  'Climb onto a willing creature a size larger beside you, for half your Speed: you share its space and go where it goes.':
+    'Сесть на согласное существо крупнее вас на размер рядом с вами, за половину Скорости: вы делите с ним пространство и движетесь вместе с ним.',
+  'Get down beside your mount, for half your Speed.':
+    'Спешиться рядом со скакуном, за половину Скорости.',
+  'Getting down here takes half your Speed; your mount stays where it is.':
+    'Спешиться сюда — половина вашей Скорости; скакун остаётся на месте.',
+  'You ride: your mount carries you on its turn, or get down beside it.':
+    'Вы верхом: скакун несёт вас в свой ход, или спешьтесь рядом с ним.',
+
   // A refusal's reason
   'too large': 'слишком велик',
   'no fly speed': 'не умеет летать',
   'no burrow speed': 'не умеет рыть',
   'jump too far': 'так далеко не прыгнуть',
+  mounted: 'вы уже верхом',
+  'not mounted': 'вы не верхом',
+  'not willing': 'существо не согласно нести вас',
+  'mount too small': 'скакун должен быть крупнее вас на размер',
+  'mount taken': 'на нём уже кто-то едет',
+  'mounted this turn': 'садиться или спешиваться можно раз за перемещение',
+  'controlled mount': 'подконтрольный скакун может только Рывок, Отход или Уклонение',
 });

@@ -94,6 +94,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   flight: 'placed',
   // Feather Fall (ADR 0049 §8): Elowen knows it, a pit 20 ft deep beside her.
   featherFall: 'placed',
+  // Mounted combat (ADR 0049 §10): a Large worg she commands beside her.
+  mount: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -116,6 +118,7 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedTerrainStart(engine, campaigns.terrain, false);
   await seedTerrainStart(engine, campaigns.flight, true);
   await seedFeatherFallStart(engine, campaigns.featherFall);
+  await seedMountStart(engine, campaigns.mount);
 }
 
 /**
@@ -207,6 +210,47 @@ async function seedFeatherFallStart(engine: WorldEngine, campaignId: string): Pr
     actor: DM,
     commandIdPrefix: `${campaignId}.feather`,
     commands: [{ ...sheet, sheet: { ...sheet.sheet, spellcasting } }, start],
+  })) {
+    await accept(engine, submission);
+  }
+}
+
+/**
+ * The mounted journey (`mounts.spec.ts`, docs/adr/0049-space-and-movement.md §10): the ambush
+ * starts with a Large grey worg on the party's side at (3, 6), beside Elowen, which she commands;
+ * it acts at initiative 12, after the Shaman.
+ */
+async function seedMountStart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const raider = combatSeed.commands.find(
+    (command) => command.type === 'SetStatBlock' && command.entityId === 'creature-10fb59d4',
+  );
+  if (!raider || !('statBlock' in raider)) throw new Error('UI combat: Raider 1 has no stat block');
+  const worg = 'creature-77c0f1a2';
+  const { locationId } = ambush.startCombat;
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.mount`,
+    commands: [
+      ambush.startCombat,
+      {
+        type: 'CreateEntity',
+        entityId: worg,
+        kind: 'creature',
+        name: 'Grey Worg',
+        existsSince: null,
+        placement: { locationId, since: null },
+      },
+      { type: 'SetStatBlock', entityId: worg, statBlock: { ...raider.statBlock, size: 'large' } },
+      {
+        type: 'AddCombatant',
+        entityId: worg,
+        side: 'party',
+        position: { x: 3, y: 6 },
+        initiative: 12,
+      },
+      { type: 'CommandCreature', combatantId: worg, characterId: 'elowen-starwhisper' },
+    ],
   })) {
     await accept(engine, submission);
   }

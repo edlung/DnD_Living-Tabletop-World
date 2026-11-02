@@ -132,3 +132,33 @@ describe('occupantAt', () => {
     expect(occupantAt(view, { x: 6, y: 2 })).toBeNull();
   });
 });
+
+describe('a rider (docs/adr/0049-space-and-movement.md §10)', () => {
+  // A rides a Large worg filling (1, 1)–(2, 2).
+  const riding = () =>
+    encounter({}, { mountedOn: { entityId: 'worg', name: 'Grey Worg' } }, [
+      {
+        entity: { entityId: 'worg', kind: 'creature', name: 'Grey Worg' },
+        side: 'party',
+        position: { x: 1, y: 1 },
+        size: 'large',
+        state: 'up',
+        conditions: [],
+      },
+    ]);
+
+  it('only gets down, on a free square beside the mount', () => {
+    expect(squareMoves(riding(), 'a', { x: 3, y: 1 })).toEqual([
+      { kind: 'dismount', path: [{ x: 3, y: 1 }], costFt: 0 },
+    ]);
+    // Inside the worg's space, or farther off: nothing.
+    expect(squareMoves(riding(), 'a', { x: 2, y: 2 })).toEqual([]);
+    expect(squareMoves(riding(), 'a', { x: 5, y: 1 })).toEqual([]);
+    expect(flightMoves(riding(), 'a')).toEqual([]);
+  });
+
+  it('is the one chosen on the square it sits on; the worg on its others', () => {
+    expect(occupantAt(riding(), { x: 1, y: 1 })?.entity.entityId).toBe('a');
+    expect(occupantAt(riding(), { x: 2, y: 2 })?.entity.entityId).toBe('worg');
+  });
+});

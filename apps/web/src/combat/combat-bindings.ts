@@ -111,7 +111,17 @@ export function combatCommandFor(
     case 'hide':
     case 'utilize':
     case 'release':
+    case 'dismount':
       return { type: 'TakeAction', combatantId: actorId, action: action.id };
+    // Mounting the creature chosen; getting down (above) lands on the nearest free square
+    // (docs/adr/0049-space-and-movement.md §10).
+    case 'mount':
+      return {
+        type: 'TakeAction',
+        combatantId: actorId,
+        action: 'mount',
+        targetId: target.entityId,
+      };
     // A strike without a weapon: its punch, which its question turns into another way (ADR 0047 §3).
     case 'unarmed_strike':
       return {

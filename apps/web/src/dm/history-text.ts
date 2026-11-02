@@ -124,6 +124,8 @@ const ACTION_WORDS: Readonly<Record<CombatAction, string>> = {
   escape: 'Escape a grapple',
   release: 'Let go',
   'first-aid': 'First aid',
+  mount: 'Mount',
+  dismount: 'Dismount',
 };
 
 /** What the DM did for the character, in plain words. */

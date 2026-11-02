@@ -28,6 +28,7 @@ Decides encounter commands for the World Engine through the domain's `CombatPort
 | A path's ways and costs: water, climbs, flight, burrowing, jumps, drops (ADR 0049 §5–8) | `src/steps.ts`                    |
 | Falls, a long jump's landing, a flyer that can no longer stay aloft (ADR 0049 §6–8)     | `src/falling.ts`                  |
 | Feather Fall's window: a fall waits, slowed or landing hard (ADR 0049 §8)               | `src/reactions/fall-window.ts`    |
+| Mounted combat: mount, dismount, a carried rider, the seat after a command (§10)        | `src/mounts.ts`                   |
 | Perspective-scoped encounter view                                                       | `src/view.ts`                     |
 | Reaction matcher and Counterspell eligibility (shared with context)                     | `src/reactions/eligibility.ts`    |
 | Suspending a cast in a reaction window                                                  | `src/reactions/suspend.ts`        |

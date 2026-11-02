@@ -65,6 +65,12 @@ export const isWall = (encounter: EncounterState, square: Square) =>
  * (docs/adr/0049-space-and-movement.md §1, §4).
  */
 export function placedOf(state: WorldState, record: CombatantRecord): Placed {
+  // A rider shares its mount's space (§10).
+  const mount =
+    record.mountedOn === undefined
+      ? undefined
+      : state.encounter?.combatants.find((c) => c.entityId === record.mountedOn);
+  if (mount && mount.mountedOn === undefined) return placedOf(state, mount);
   const vitals = vitalsOf(state, record.entityId);
   return {
     position: record.position,

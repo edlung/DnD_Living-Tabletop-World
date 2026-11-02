@@ -18,6 +18,7 @@ import { gapFt } from '@ltw/rules';
 import { combatantEvent, encounterOf, isAlive, onTurn, placedOf, withTurn } from './battlefield.ts';
 import { sourceOf } from './condition-details.ts';
 import { landingEvents } from './falling.ts';
+import { carryRider } from './mounts.ts';
 import { fallMoment } from './reactions/fall-window.ts';
 import type { Refusal } from './legality.ts';
 import { firstProvocation } from './reactions/opportunity.ts';
@@ -80,6 +81,8 @@ export function movePlan(
   if (!vitals) return { legal: false, reason: 'NOT_A_COMBATANT' };
   if (!isAlive(state, mover.entityId)) return { legal: false, reason: 'ACTOR_DEAD' };
   if (incapacitated(vitals)) return { legal: false, reason: 'INCAPACITATED' };
+  // A rider goes where its mount goes; it gets down first to walk (ADR 0049 §10).
+  if (mover.mountedOn !== undefined) return { legal: false, reason: 'MOUNTED' };
   // A Prone creature crawls instead of standing up, when it says so (ADR 0049 §5).
   const crawling = crawl && has(vitals, 'prone');
   const plan = pathPlan(state, encounter, mover, vitals, path, crawling);
@@ -202,8 +205,12 @@ function walk(
       ...(squeezed ? { squeezed: true as const } : {}),
       ...(altitudeFt === 0 ? {} : { altitudeFt }),
     }),
-    // The creature it grapples comes along behind it.
+    // The creature it grapples comes along behind it; its rider rides along (§10).
     ...dragged(state, encounter, mover.entityId, [mover.position, ...walked]),
+    ...carryRider(encounter, {
+      ...moved,
+      ...(altitudeFt === 0 ? {} : { altitudeFt }),
+    }),
   );
   // Landing a jump in Difficult Terrain, and the fall a drop ends with (§7–8).
   for (let left = landings.length; left > 0; left -= 1) {

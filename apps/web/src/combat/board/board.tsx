@@ -84,6 +84,7 @@ export function Board({
   view,
   onPick,
   centreOn = null,
+  moverId = selfId,
 }: {
   readonly encounter: Pick<EncounterView, 'battlefield' | 'combatants'>;
   readonly labelOf: LabelOf;
@@ -93,6 +94,11 @@ export function Board({
   readonly selected: Square | null;
   /** The advisory route to the selected square, without the mover's own square. */
   readonly path: readonly Square[];
+  /**
+   * Whose route `path` is: the viewer's, or a creature it commands on that creature's turn
+   * (docs/adr/0044-online-play.md §7). Absent: the viewer's.
+   */
+  readonly moverId?: string | null;
   /** Combatants a previewed area spell would affect, as the server listed them. */
   readonly affected: ReadonlySet<string>;
   readonly imageOf: (entityId: string) => PlayerAssetView | null;
@@ -127,14 +133,21 @@ export function Board({
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
   // Every square a combatant fills names it; its figure stands on its north-west square, as big
   // as its space (docs/adr/0049-space-and-movement.md §1).
+  // A rider sits on its mount and shares its space (§10): the mount's squares hold the mount, and
+  // name its rider too; the rider's figure is drawn on the mount's.
   const occupants = new Map(
+    encounter.combatants
+      .filter((entry) => entry.mountedOn === undefined)
+      .flatMap((entry) => footprint(entry).map((square) => [key(square), entry] as const)),
+  );
+  const riders = new Map(
     encounter.combatants.flatMap((entry) =>
-      footprint(entry).map((square) => [key(square), entry] as const),
+      entry.mountedOn ? [[entry.mountedOn.entityId, entry] as const] : [],
     ),
   );
   const walk = new Set(path.map(key));
   const destination = path.at(-1);
-  const mover = encounter.combatants.find((entry) => entry.entity.entityId === selfId);
+  const mover = encounter.combatants.find((entry) => entry.entity.entityId === moverId);
   // The pointer over a square, or over the plate of the combatant standing on it (`plates.tsx`).
   const point = (square: Square, over: boolean) => {
     if (over) setPointed(square);
@@ -182,6 +195,7 @@ export function Board({
       const square = { x, y };
       const id = key(square);
       const occupant = occupants.get(id) ?? null;
+      const rider = occupant ? (riders.get(occupant.entity.entityId) ?? null) : null;
       const anchor = occupant !== null && key(occupant.position) === id;
       const span = occupant ? spanOf(occupant) : 1;
       const level = coverAt.get(id) ?? null;
@@ -215,6 +229,13 @@ export function Board({
             occupant,
             label: occupant ? labelOf(occupant.entity.entityId) : '',
             you: occupant !== null && occupant.entity.entityId === selfId,
+            rider: rider
+              ? {
+                  view: rider,
+                  label: labelOf(rider.entity.entityId),
+                  you: rider.entity.entityId === selfId,
+                }
+              : null,
             difficult: hard.has(id),
             wall: walls.has(id),
             water: water.has(id) ? (water.get(id) ? 'deep' : 'shallow') : null,
@@ -253,6 +274,20 @@ export function Board({
               current={occupant.entity.entityId === currentCombatantId}
               selected={isSelected}
               inArea={inArea}
+            />
+          )}
+          {rider && anchor && (
+            <Token
+              riding
+              combatant={rider}
+              label={labelOf(rider.entity.entityId)}
+              cover={null}
+              image={imageOf(rider.entity.entityId)}
+              figure={figureOf(rider.entity.entityId)}
+              tilted={tilt !== null}
+              current={rider.entity.entityId === currentCombatantId}
+              selected={false}
+              inArea={affected.has(rider.entity.entityId)}
             />
           )}
         </button>,

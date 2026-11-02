@@ -293,6 +293,8 @@ const ACTION_TEXT: Readonly<
   escape: 'Escape a grapple',
   release: 'Let go',
   'first-aid': 'First aid',
+  mount: 'Mount',
+  dismount: 'Dismount',
 };
 
 /** Longest evidence wording on a button; the full statement is in the journal and the picker. */

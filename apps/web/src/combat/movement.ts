@@ -65,8 +65,14 @@ export function planPath(
   const level = groundUnder(encounter, footprint(mover)) + altitude;
   const tall = tallFt(mover.size);
   // Every other living one: its squares, how high it reaches, and whether the mover may pass.
+  // A rider is in its mount's space, never a space of its own (ADR 0049 §10).
   const others = encounter.combatants
-    .filter((other) => other.entity.entityId !== moverId && other.state !== 'dead')
+    .filter(
+      (other) =>
+        other.entity.entityId !== moverId &&
+        other.state !== 'dead' &&
+        other.mountedOn === undefined,
+    )
     .map((other) => {
       const space = footprint(other);
       const bottom = groundUnder(encounter, space) + (other.altitudeFt ?? 0);

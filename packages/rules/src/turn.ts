@@ -72,7 +72,19 @@ export type IllegalReason =
   /** A move through the air or the earth without the speed for it; a jump beyond its reach (§5–7). */
   | 'NO_FLY_SPEED'
   | 'NO_BURROW_SPEED'
-  | 'JUMP_TOO_FAR';
+  | 'JUMP_TOO_FAR'
+  /**
+   * Mounted combat (ADR 0049 §10): it rides already; it rides nothing; the creature is not willing,
+   * not a size larger, or ridden; once a move; a controlled mount's actions are Dash, Disengage and
+   * Dodge.
+   */
+  | 'MOUNTED'
+  | 'NOT_MOUNTED'
+  | 'NOT_WILLING'
+  | 'MOUNT_TOO_SMALL'
+  | 'MOUNT_TAKEN'
+  | 'MOUNTED_THIS_TURN'
+  | 'CONTROLLED_MOUNT';
 
 export interface Illegal {
   readonly legal: false;

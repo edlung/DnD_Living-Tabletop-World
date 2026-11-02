@@ -50,6 +50,9 @@ export const CONTEXT_ACTION_IDS = [
   'release',
   /** A DC 10 Medicine check for the dying or the knocked out (docs/adr/0048-hit-points.md §4). */
   'first-aid',
+  /** Mounting a creature, and getting down (docs/adr/0049-space-and-movement.md §10). */
+  'mount',
+  'dismount',
 ] as const;
 export type ContextActionId = (typeof CONTEXT_ACTION_IDS)[number];
 
@@ -107,6 +110,18 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'NO_FLY_SPEED',
   'NO_BURROW_SPEED',
   'JUMP_TOO_FAR',
+  /**
+   * Mounted combat (ADR 0049 §10): it rides already; it rides nothing; the creature is not willing,
+   * not a size larger, or ridden; once a move; a mount its rider controls dashes, disengages or
+   * dodges only.
+   */
+  'MOUNTED',
+  'NOT_MOUNTED',
+  'NOT_WILLING',
+  'MOUNT_TOO_SMALL',
+  'MOUNT_TAKEN',
+  'MOUNTED_THIS_TURN',
+  'CONTROLLED_MOUNT',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;

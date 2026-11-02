@@ -73,6 +73,8 @@ export const turnRecordSchema = z
       .optional(),
     cleaved: z.literal(true).optional(),
     loadingFired: z.literal(true).optional(),
+    /** It mounted or dismounted this turn: once a move (docs/adr/0049-space-and-movement.md §10). */
+    mounting: z.literal(true).optional(),
   })
   .strict();
 
@@ -125,6 +127,11 @@ export const combatantRecordSchema = z
      */
     squeezed: z.literal(true).optional(),
     /**
+     * The creature it rides (ADR 0049 §10): it shares that one's space and moves as it moves.
+     * Absent: on its own feet.
+     */
+    mountedOn: entityIdSchema.optional(),
+    /**
      * Feet above the ground of its squares (ADR 0049 §6): a flyer's height, or below it while it
      * burrows. Absent: on the ground.
      */
@@ -158,7 +165,8 @@ export const combatEventPayloadSchemas = {
    */
   CombatOrderChanged: z
     .object({
-      change: z.enum(['joined', 'left', 'delayed', 'initiative']),
+      /** `mounted`: a controlled mount acts right after its rider (ADR 0049 §10). */
+      change: z.enum(['joined', 'left', 'delayed', 'initiative', 'mounted']),
       entityId: entityIdSchema,
       combatants: z.array(combatantRecordSchema).min(2).max(MAX_COMBATANTS),
       currentIndex: z
@@ -305,7 +313,8 @@ export const combatEventPayloadSchemas = {
       success: z.boolean(),
       /**
        * `condition`: the save at the end of a turn that ends a condition (ADR 0045 §2); `topple`,
-       * `grapple`, `shove`: against a weapon's Topple or an Unarmed Strike (ADR 0047 §2–3).
+       * `grapple`, `shove`: against a weapon's Topple or an Unarmed Strike (ADR 0047 §2–3); `saddle`:
+       * a rider keeping its seat (docs/adr/0049-space-and-movement.md §10).
        */
       purpose: z.enum([
         'spell',
@@ -315,6 +324,7 @@ export const combatEventPayloadSchemas = {
         'topple',
         'grapple',
         'shove',
+        'saddle',
       ]),
     })
     .strict(),

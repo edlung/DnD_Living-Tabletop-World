@@ -88,6 +88,8 @@ export function handChange(
       const recorded = events.find((event) => event.type === 'CombatOrderChanged');
       if (recorded?.type !== 'CombatOrderChanged') return null;
       const { change, entityId, combatants } = recorded.payload;
+      // A mount taking its rider's place is the rider's move, not the DM's hand (ADR 0049 §10).
+      if (change === 'mounted') return null;
       const total =
         change === 'initiative'
           ? (combatants.find((c) => c.entityId === entityId)?.initiative.total ?? null)

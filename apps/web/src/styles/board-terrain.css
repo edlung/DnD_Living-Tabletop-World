@@ -86,3 +86,15 @@
   white-space: nowrap;
   translate: -50% -2px;
 }
+
+/*
+ * A rider on its mount (§10), drawn from the mount's north-west square over the mount's figure:
+ * flat, stacked above it and a little up and left; tilted, lifted off the board onto its back.
+ */
+.token.is-riding {
+  z-index: 3;
+  translate: -14% -14%;
+}
+.board--tilted .token.is-riding {
+  translate: 0 0 calc(var(--cell) * 0.9);
+}

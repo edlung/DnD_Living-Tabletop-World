@@ -37,6 +37,7 @@ import {
 import { isDodging } from './actions.ts';
 import { coverOf, gapBetween, immersed, isAlive, placedOf, turnStateOf } from './battlefield.ts';
 import { charmedBy, conditionsAgainst, detailOf } from './condition-details.ts';
+import { controlledMount } from './mounts.ts';
 import { isObjectIn } from './objects.ts';
 import { hostileSides } from './reactions/opportunity.ts';
 import {
@@ -257,6 +258,8 @@ export function attackPlan(
   if (attackerId === targetId) return refuse('TARGET_REQUIRED');
   if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
   if (incapacitated(attackerVitals)) return refuse('INCAPACITATED');
+  // A mount its rider controls dashes, disengages or dodges only (ADR 0049 §10).
+  if (controlledMount(encounter, attacker)) return refuse('CONTROLLED_MOUNT');
   // A Charmed creature cannot attack its charmer (docs/adr/0045-conditions-and-actions.md §1).
   if (charmedBy(attacker, attackerVitals, targetId)) return refuse('CHARMED_BY_TARGET');
 
