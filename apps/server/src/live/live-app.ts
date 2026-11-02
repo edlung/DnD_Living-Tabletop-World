@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 
-import { buildApp, credentialHeaderOf, type AppDependencies } from '../http/app.ts';
+import { buildApp, credentialHeaderOf, memoryTable, type AppDependencies } from '../http/app.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { fingerprintSubscription } from './fingerprint.ts';
 import { LIVE_LIMITS, LiveHub, systemTimers, type LiveLimits, type LiveTimers } from './hub.ts';
@@ -32,7 +32,12 @@ export function buildLiveApp(
     perActor: limits.perActor,
     perProcess: limits.perProcess,
   });
-  const shared: AppDependencies = { ...deps, presence: registry };
+  // One table for the application and its fingerprint twin, so a roll signals its viewers.
+  const shared: AppDependencies = {
+    ...deps,
+    table: deps.table ?? memoryTable(),
+    presence: registry,
+  };
   const app = buildApp(shared);
   let mirror: FastifyInstance | null = null;
   const twin = () =>

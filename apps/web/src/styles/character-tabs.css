@@ -1,0 +1,359 @@
+/*
+ * The character dialog's skills and spells tabs, and its narrow layouts (Stage 500). Tokens only;
+ * the spells' pictures are the GPT catalog art keyed by the rules catalog ID.
+ */
+
+/* Skills */
+.passive-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 12px;
+}
+.passive-score {
+  display: grid;
+  gap: 2px;
+  padding: 12px 16px;
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 50%, transparent);
+}
+.passive-score dt {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.passive-score dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.skill-groups {
+  margin-top: 16px;
+  columns: 2 260px;
+  column-gap: 16px;
+}
+.skill-group {
+  margin-bottom: 16px;
+  break-inside: avoid;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+}
+.skill-group h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--gold-bright);
+  font-size: 1.1rem;
+}
+.skill-group-mod {
+  color: var(--gold);
+  font-family: var(--font-display);
+}
+.skill-group ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.skill-row {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 32px;
+}
+.skill-row.is-none .skill-name {
+  color: var(--text-muted);
+}
+.skill-total {
+  min-width: 40px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Spells */
+.casting-sources {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.casting-source {
+  display: grid;
+  gap: 4px;
+  padding: 12px 16px;
+  border: 1px solid color-mix(in srgb, var(--magic) 40%, transparent);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-950) 50%, transparent);
+}
+.casting-name {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.casting-ability,
+.slot-count {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.slot-rows {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.slot-row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+}
+.slot-pips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.slot-pip {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid color-mix(in srgb, var(--magic) 70%, transparent);
+  border-radius: 50%;
+}
+.slot-pip.is-open {
+  background: var(--magic);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--magic) 60%, transparent);
+}
+.spell-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.spell-card {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 50%, transparent);
+}
+.spell-art {
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  border-radius: 8px;
+  background: var(--ink-950);
+}
+.spell-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.spell-body h4 {
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+.spell-meta,
+.spell-text {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+}
+.spell-meta {
+  color: var(--text-muted);
+}
+.spell-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 0;
+  color: var(--magic);
+  font-size: 0.85rem;
+}
+.spell-tag .glyph {
+  width: 14px;
+  height: 14px;
+}
+
+/* Below 900 px the card becomes a band above the tabs */
+@media (max-width: 899px) {
+  .hero-frame {
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px 16px;
+    padding: 16px;
+    overflow: visible;
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--gold) 26%, transparent);
+  }
+  .hero-portrait {
+    grid-row: span 2;
+  }
+  .hero-portrait .medallion--xl {
+    --m: 88px;
+  }
+  .hero-level {
+    right: -4px;
+    bottom: 0;
+    min-width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+  .hero-identity {
+    padding-right: 48px;
+    text-align: left;
+  }
+  .hero-name {
+    font-size: 1.5rem;
+  }
+  .hero-hp,
+  .hero-vitals,
+  .hero-states {
+    grid-column: 1 / -1;
+  }
+  .hero-vitals {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .hero-vital {
+    padding: 6px 8px;
+  }
+  .hero-vital dd {
+    font-size: 1.2rem;
+  }
+  .hero-states {
+    justify-content: flex-start;
+  }
+  .hero-tabs {
+    padding: 8px 16px 0;
+  }
+}
+
+/* A phone: the dialog fills the screen and the whole of it scrolls under the tabs */
+@media (max-width: 599px) {
+  .hero-dialog {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+  .hero-frame {
+    display: block;
+    overflow-y: auto;
+  }
+  .hero-main {
+    display: block;
+  }
+  .hero-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    gap: 0;
+    padding: 0 8px;
+    background: var(--ink-900);
+  }
+  .hero-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 4px;
+    font-size: 1rem;
+  }
+  .hero-panel {
+    padding: 16px;
+    overflow: visible;
+  }
+  .hero-vitals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .passive-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .passive-score {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 12px;
+  }
+  .passive-score dd {
+    font-size: 1.3rem;
+  }
+  .attack-row {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    gap: 8px 12px;
+  }
+  .attack-art {
+    width: 40px;
+    height: 40px;
+  }
+  .attack-row .attack-stat:nth-of-type(3) {
+    grid-column: 2;
+    justify-items: start;
+  }
+  .attack-row .attack-stat:nth-of-type(4) {
+    justify-items: end;
+  }
+  .slot-row {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+  .slot-count {
+    grid-column: 2;
+  }
+}
+
+/* Rolls from the sheet (Stage 510): the die glyph beside a skill, Check and Save under an ability */
+.roll-button {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+}
+.roll-button .glyph {
+  width: 18px;
+  height: 18px;
+  color: var(--gold-bright);
+}
+.roll-button--text {
+  display: inline-flex;
+  gap: 6px;
+  width: auto;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+}
+.skill-row {
+  grid-template-columns: 10px minmax(0, 1fr) auto auto;
+}
+.ability-rolls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}

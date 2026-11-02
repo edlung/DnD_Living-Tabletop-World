@@ -23,6 +23,7 @@ const ACTIONS: Readonly<Record<ContextActionId, GlyphName>> = {
   hunters_mark: 'target',
   detect_magic: 'cast',
   longbow_attack: 'ranged',
+  weapon_attack: 'melee',
   enter_location: 'travel',
   fireball: 'cast',
   counterspell: 'counterspell',

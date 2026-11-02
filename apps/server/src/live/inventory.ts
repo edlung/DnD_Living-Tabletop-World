@@ -55,6 +55,11 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     { url: `${base}/sessions`, optional: false },
     ...SCOPED.map((path) => scoped(path)),
   ];
+  // The table's rolls and the DM's check requests (Stage 510): the dice the client animates; the
+  // open short rest (Stage 530), when players spend Hit Point Dice.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM') {
+    views.push(scoped('rolls'), scoped('check-requests'), scoped('rest'));
+  }
   // The client reads surroundings and entity context only for an acting character.
   const acting = target.kind === 'CHARACTER';
   if (acting) {

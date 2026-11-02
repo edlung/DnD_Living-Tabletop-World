@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, test, type Page } from '@playwright/test';
 
 import {
   battlefield,
@@ -13,6 +13,12 @@ import { dmHistory, historyEntry, openHistory } from './support/dm.ts';
 import { expectLive, LIVE_CAMPAIGNS, turnBanner } from './support/live.ts';
 import { collectApiBodies, TOKENS } from './support/session.ts';
 import { dockButton, expectOnTop, openSheet } from './support/shell.ts';
+
+/**
+ * Every step here waits for another browser to follow the live stream; a hosted runner, or a
+ * laptop running the whole suite, needs more than the default five seconds (tests/e2e/AGENTS.md).
+ */
+const expect = baseExpect.configure({ timeout: 15_000 });
 
 /**
  * The DM acting for an absent player (docs/adr/0033-live-session.md §6): skip the turn, or act

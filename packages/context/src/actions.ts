@@ -1,5 +1,12 @@
 import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
-import { attemptKey, combatantOf, insightKey, isCombatant, type EntityState } from '@ltw/domain';
+import {
+  attemptKey,
+  combatantOf,
+  insightKey,
+  isCombatant,
+  wieldedWeapons,
+  type EntityState,
+} from '@ltw/domain';
 
 import {
   combatAttackVerdict,
@@ -181,6 +188,25 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       : [];
     actions.splice(position, 0, ...asks, ...shows);
   }
+  // In a fight, an attack with every other weapon the actor wields or lists (Stage 520).
+  if (frame && CREATURE_KINDS.has(target.kind) && !self) {
+    const weapons = [
+      ...new Set([
+        ...(sheet?.weapons ?? []),
+        ...wieldedWeapons(inputs.state, inputs.actor.entityId),
+      ]),
+    ].filter((weaponId) => weaponId !== 'longbow');
+    const after = actions.findIndex((action) => action.id === 'longbow_attack') + 1;
+    const strikes = weapons.map((weaponId) =>
+      toAction(
+        'weapon_attack',
+        judge('present-alive', () => combatAttackVerdict(frame, inputs, target.entityId, weaponId)),
+        'low',
+        { weapon: weaponId },
+      ),
+    );
+    actions.splice(after, 0, ...strikes);
+  }
   // Stable: equal relevance keeps catalog order.
   return actions.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);
 }
@@ -189,12 +215,13 @@ function toAction(
   id: ContextActionId,
   verdict: Verdict,
   relevance: Relevance,
-  about: Pick<ContextAction, 'topic' | 'evidence'> = {},
+  about: Pick<ContextAction, 'topic' | 'evidence' | 'weapon'> = {},
 ): ContextAction {
   return {
     id,
     ...(about.topic ? { topic: about.topic } : {}),
     ...(about.evidence ? { evidence: { knowledgeId: about.evidence.knowledgeId } } : {}),
+    ...(about.weapon ? { weapon: about.weapon } : {}),
     legal: verdict.legal,
     ...(verdict.reason ? { reason: verdict.reason } : {}),
     ...(verdict.resolution ? { resolution: verdict.resolution } : {}),

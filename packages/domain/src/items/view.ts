@@ -42,6 +42,10 @@ export function inventoryView(
             weightLb: entry.weightLb,
             slots: [...entry.slots],
             effect: entry.effect ? { ...entry.effect } : null,
+            valueCp: entry.valueCp,
+            armor: entry.armor ? { baseAc: entry.armor.baseAc, dexCap: entry.armor.dexCap } : null,
+            shieldBonus: entry.shieldBonus ?? null,
+            weapon: entry.weapon ?? null,
           }
         : null,
     });

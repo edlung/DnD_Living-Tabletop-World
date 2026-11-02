@@ -1,4 +1,4 @@
-import { questBookSchema } from '@ltw/contracts';
+import { questBookSchema, questDefinitionSchema } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
 import questBook from '../../../../fixtures/ravenford/quests.json' with { type: 'json' };
@@ -123,5 +123,65 @@ describe('the Missing Caravan', () => {
     expect(after.state).toBe(before.state);
     expect(Object.keys(after.state).some((key) => /quest/i.test(key))).toBe(false);
     expect(after.history.some((event) => /^Quest/.test(event.type))).toBe(false);
+  });
+});
+
+describe('a quest completed by telling an NPC (Stage 530)', () => {
+  const TOLD = questDefinitionSchema.parse({
+    questId: 'told',
+    title: 'Told',
+    activation: { subject: 'guild-caravan', summary: 'We learned of the caravan.' },
+    milestones: [
+      {
+        stage: 'mira-told',
+        kind: 'shown-to',
+        npcId: 'mira-vale',
+        subject: 'guild-caravan',
+        summary: 'We told Mira.',
+      },
+    ],
+    completion: 'mira-told',
+  });
+
+  it('completes when a member shows the party’s own evidence, never a private record', async () => {
+    const world = await chronicleWorld();
+    const add = async (statement: string, scope: Record<string, unknown>) => {
+      await world.dm({
+        type: 'AddKnowledge',
+        scope,
+        knowledgeType: 'EVIDENCE',
+        statement,
+        subjects: ['guild-caravan'],
+        knownSince: null,
+      });
+      const records = [...(await world.state()).knowledge.values()];
+      return records.find((record) => record.statement === statement)?.knowledgeId ?? '';
+    };
+    const own = await add('Elowen alone saw the burned wagons.', {
+      kind: 'CHARACTER',
+      characterId: ELOWEN,
+    });
+    const shared = await add('The party found the burned wagons.', { kind: 'PARTY' });
+    const show = (knowledgeId: string) =>
+      world.as(PLAYER, {
+        type: 'ShowEvidence',
+        characterId: ELOWEN,
+        npcId: 'mira-vale',
+        knowledgeId,
+      });
+    const log = async () => {
+      const snapshot = await world.snapshot();
+      return questLog(snapshot, holderPerspective(snapshot.state, { kind: 'PARTY' }), [TOLD]);
+    };
+    expect((await show(own)).status).toBe('accepted');
+    expect((await log())[0]?.status).toBe('active');
+    expect((await show(shared)).status).toBe('accepted');
+    const [quest] = await log();
+    expect(quest?.status).toBe('completed');
+    expect(quest?.transitions.at(-1)).toMatchObject({
+      type: 'QuestCompleted',
+      stage: 'mira-told',
+      sources: [{ eventType: 'EvidenceShown' }],
+    });
   });
 });

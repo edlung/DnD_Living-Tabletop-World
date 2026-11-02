@@ -146,13 +146,25 @@ function rewriteMilestone(
         subject: identity(context.ids.entities, milestone.subject),
         informant: identity(context.ids.entities, milestone.informant),
       };
+    case 'shown-to':
+      entityReference(context, milestone.subject, `${path}.subject`);
+      entityReference(context, milestone.npcId, `${path}.npcId`, ['npc']);
+      return {
+        ...milestone,
+        subject: identity(context.ids.entities, milestone.subject),
+        npcId: identity(context.ids.entities, milestone.npcId),
+      };
   }
 }
 
 function renameStages(milestone: QuestMilestone, stage: (key: string) => string): QuestMilestone {
-  return milestone.kind === 'returned-to'
-    ? { ...milestone, stage: stage(milestone.stage), after: stage(milestone.after) }
-    : { ...milestone, stage: stage(milestone.stage) };
+  if (milestone.kind === 'returned-to') {
+    return { ...milestone, stage: stage(milestone.stage), after: stage(milestone.after) };
+  }
+  if (milestone.kind === 'shown-to' && milestone.after !== undefined) {
+    return { ...milestone, stage: stage(milestone.stage), after: stage(milestone.after) };
+  }
+  return { ...milestone, stage: stage(milestone.stage) };
 }
 
 /**
@@ -192,6 +204,7 @@ export function rewriteQuests(context: PlanContext): QuestDefinition[] {
         milestones: quest.milestones.map((milestone) =>
           renameStages(rewriteMilestone(context, quest.questId, milestone), stage),
         ),
+        ...(quest.completion === undefined ? {} : { completion: stage(quest.completion) }),
       };
     });
 }

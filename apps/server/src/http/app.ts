@@ -14,6 +14,10 @@ import { registerMemberRoutes } from '../auth/member-routes.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import { registerDmRoutes, type DmDependencies } from '../dm/dm-routes.ts';
+import { registerRollRoutes, type TableDependencies } from '../dice/roll-routes.ts';
+import { serverDice } from '../dice/table-rolls.ts';
+import { InMemoryRestStore, InMemoryTableStore } from '../dice/table-store.ts';
+import { registerRestRoutes } from '../rest/rest-routes.ts';
 import { registerPresenceRoutes } from '../live/presence.ts';
 import { NOBODY_CONNECTED, type PresenceSource } from '../live/registry.ts';
 import { processReadiness, type ReadinessProbe } from '../platform/health/readiness.ts';
@@ -83,7 +87,17 @@ export interface AppDependencies {
    * without external stores (tests, in-memory journeys) are ready while the process runs.
    */
   readonly readiness?: ReadinessProbe;
+  /** The table's rolls and the DM's check requests (Stage 510); in memory when absent. */
+  readonly table?: TableDependencies;
 }
+
+/** The table's rolls in memory, with the server's dice: for compositions without a database. */
+export const memoryTable = (): TableDependencies => ({
+  store: new InMemoryTableStore(),
+  rests: new InMemoryRestStore(),
+  dice: serverDice,
+  now: () => new Date().toISOString(),
+});
 
 /** The request header that carries the credential: responses vary on it. */
 export const credentialHeaderOf = (deps: Pick<AppDependencies, 'signIn'>) =>
@@ -149,6 +163,9 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
+  const table = deps.table ?? memoryTable();
+  registerRollRoutes(app, { ...deps, table });
+  registerRestRoutes(app, { ...deps, table });
   if (deps.signIn) {
     const signIn = { ...deps, signIn: deps.signIn };
     registerAuthRoutes(app, signIn);

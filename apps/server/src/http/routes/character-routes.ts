@@ -1,5 +1,7 @@
 import { campaignIdSchema, entityIdSchema } from '@ltw/contracts';
-import { characterSheetView, inventoryView } from '@ltw/domain';
+import type { InventoryResponse, WeaponId } from '@ltw/contracts';
+import { characterSheetView, inventoryView, wieldedWeapons } from '@ltw/domain';
+import { carryingCapacityLb, deriveCharacter, weaponAttack } from '@ltw/rules';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -16,7 +18,10 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     const { context, params: path } = ready;
     const body = characterSheetView(context.state, context.perspective, path.entityId);
     if (!body) return sendError(reply, request, 'NOT_FOUND');
-    return reply.send(body);
+    // The rules' numbers beside the sheet (Stage 500): the client shows them, never recomputes them.
+    // Weapons the character wields count beside the sheet's own (Stage 520).
+    const wielded = wieldedWeapons(context.state, path.entityId);
+    return reply.send({ ...body, derived: deriveCharacter(body.sheet, wielded) });
   });
 
   app.get('/campaigns/:campaignId/entities/:entityId/inventory', async (request, reply) => {
@@ -25,6 +30,33 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     const { context, params: path } = ready;
     const body = inventoryView(context.state, context.perspective, path.entityId);
     if (!body) return sendError(reply, request, 'NOT_FOUND');
-    return reply.send(body);
+    // With a sheet, what Strength carries and each carried weapon's attack (Stage 520).
+    const sheet = context.state.characterSheets.get(path.entityId);
+    if (!sheet) return reply.send(body);
+    const carried = [
+      ...new Set(body.items.flatMap((item) => (item.catalog?.weapon ? [item.catalog.weapon] : []))),
+    ];
+    const enriched: InventoryResponse = {
+      ...body,
+      capacityLb: carryingCapacityLb(sheet),
+      weapons: Object.fromEntries(
+        carried.map((weaponId: WeaponId) => {
+          const attack = weaponAttack(sheet, weaponId);
+          return [
+            weaponId,
+            {
+              attackBonus: attack.attackBonus,
+              damage: attack.damage,
+              damageType: attack.damageType,
+              ranged: attack.ranged,
+              normalRangeFt: attack.normalRangeFt,
+              longRangeFt: attack.longRangeFt,
+              properties: attack.properties,
+            },
+          ];
+        }),
+      ),
+    };
+    return reply.send(enriched);
   });
 }

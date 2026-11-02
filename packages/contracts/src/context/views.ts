@@ -1,4 +1,5 @@
 import type { EntityKind, EntityStatus } from '../kernel/commands.ts';
+import type { WeaponId } from '../rules/character-sheet.ts';
 
 /**
  * Critical Context Contract (docs/adr/0012-context-engine.md, RAVENFORD_SPEC.md).
@@ -21,6 +22,8 @@ export const CONTEXT_ACTION_IDS = [
   'hunters_mark',
   'detect_magic',
   'longbow_attack',
+  /** An attack with another weapon the actor wields or lists (Stage 520); `weapon` names it. */
+  'weapon_attack',
   'enter_location',
   'fireball',
   'counterspell',
@@ -103,6 +106,8 @@ export interface ContextAction {
   readonly topic?: ContextEntityRef;
   /** What `show_evidence` would show: an EVIDENCE record of the acting character's own scope. */
   readonly evidence?: { readonly knowledgeId: string };
+  /** The weapon of `weapon_attack`: a rules weapon ID (Stage 520). */
+  readonly weapon?: WeaponId;
   readonly legal: boolean;
   readonly reason?: ContextIllegalReason;
   readonly resolution?: { readonly moveRequiredFt?: number };

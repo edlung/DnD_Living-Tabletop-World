@@ -44,6 +44,10 @@ describe('the coverage inventory', () => {
     );
     expect(paths(views)).toEqual([
       ...ALWAYS,
+      // The table's rolls and the DM's requests (Stage 510), the open short rest (Stage 530).
+      '/campaigns/ravenford/rolls',
+      '/campaigns/ravenford/check-requests',
+      '/campaigns/ravenford/rest',
       '/campaigns/ravenford/surroundings',
       '/campaigns/ravenford/undone-actions',
       '/campaigns/ravenford/entities/mira-vale/context ?',
@@ -65,6 +69,9 @@ describe('the coverage inventory', () => {
     const views = coverageInventory(target({ perspective: 'DM', kind: 'DM', focus: 'mira-vale' }));
     expect(paths(views)).toEqual([
       ...ALWAYS,
+      '/campaigns/ravenford/rolls',
+      '/campaigns/ravenford/check-requests',
+      '/campaigns/ravenford/rest',
       '/campaigns/ravenford/chronicle/suggestions',
       '/campaigns/ravenford/dm/history',
       '/campaigns/ravenford/assets',

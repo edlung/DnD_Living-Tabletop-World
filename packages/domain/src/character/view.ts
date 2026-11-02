@@ -87,5 +87,18 @@ function copySheet(sheet: CharacterSheet, visible: (id: string) => boolean): Cha
             failures: sheet.deathSaves.failures,
           },
         }),
+    ...(sheet.hitDiceSpent === undefined ? {} : { hitDiceSpent: spentDice(sheet.hitDiceSpent) }),
+  };
+}
+
+/** Spent Hit Point Dice, by size, field by field. */
+function spentDice(
+  spent: NonNullable<CharacterSheet['hitDiceSpent']>,
+): NonNullable<CharacterSheet['hitDiceSpent']> {
+  return {
+    ...(spent.d6 === undefined ? {} : { d6: spent.d6 }),
+    ...(spent.d8 === undefined ? {} : { d8: spent.d8 }),
+    ...(spent.d10 === undefined ? {} : { d10: spent.d10 }),
+    ...(spent.d12 === undefined ? {} : { d12: spent.d12 }),
   };
 }

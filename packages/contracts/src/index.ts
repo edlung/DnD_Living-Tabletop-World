@@ -154,11 +154,13 @@ export {
 } from './session/auth.ts';
 export { DEFAULT_LANGUAGE, LANGUAGES, languageSchema, type Language } from './language/language.ts';
 export type { CharacterSheetResponse } from './rules/character-view.ts';
+export type { CharacterDerived } from './rules/character-derived.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';
 export {
   ABILITIES,
   CLASS_IDS,
   CONDITIONS,
+  HIT_DIE_SIDES,
   SKILLS,
   SPELL_IDS,
   WEAPON_IDS,
@@ -167,11 +169,24 @@ export {
   type CharacterSheet,
   type ClassId,
   type Condition,
+  type HitDieSides,
   type Skill,
   type SpellId,
   type SpellcastingSource,
   type WeaponId,
 } from './rules/character-sheet.ts';
+export {
+  hitDieRequestSchema,
+  levelUpRequestSchema,
+  restEndRequestSchema,
+  restRequestSchema,
+  type HitDieRequest,
+  type LevelUpRequest,
+  type RestRequest,
+  type RestResponse,
+  type RestResult,
+  type RestView,
+} from './rules/rest.ts';
 export {
   CONTEXT_ACTION_IDS,
   CONTEXT_HINTS,
@@ -382,6 +397,7 @@ export {
 } from './assets/commands.ts';
 export {
   QUEST_MILESTONE_KINDS,
+  milestoneAfter,
   questBookSchema,
   questDefinitionSchema,
   questMilestoneSchema,
@@ -432,6 +448,7 @@ export type {
   PlayerAssetView,
 } from './assets/views.ts';
 export * from './campaign/index.ts';
+export * from './dice/rolls.ts';
 
 export {
   EQUIP_SLOTS,
@@ -455,4 +472,4 @@ export {
   unequipItemCommandSchema,
   useItemCommandSchema,
 } from './items/commands.ts';
-export type { InventoryItem, InventoryResponse } from './items/views.ts';
+export type { InventoryItem, InventoryResponse, InventoryWeapon } from './items/views.ts';

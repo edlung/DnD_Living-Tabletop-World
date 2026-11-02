@@ -16,7 +16,7 @@ import { ConversationOptions } from './conversation-options.tsx';
 import { Hypothesis } from './hypothesis.tsx';
 import { Recall } from './recall.tsx';
 import type { ExplorationIntent } from './use-action.ts';
-import { useT, type Translate } from '@ltw/ui';
+import { readableLabel, useT, type Translate } from '@ltw/ui';
 import { distinctNames, unidentifiedName } from '../world/entity-words.ts';
 
 export const executable: ReadonlySet<string> = new Set([
@@ -228,6 +228,10 @@ export function actionLabel(
       return t('Recall memories');
     case 'talk':
       return t('Talk');
+    case 'weapon_attack':
+      return t('Attack with {weapon}', {
+        weapon: action.weapon ? readableLabel(action.weapon, t) : t('a weapon'),
+      });
     default:
       return t(ACTION_TEXT[action.id]);
   }
@@ -251,6 +255,7 @@ const ACTION_TEXT: Readonly<
       | 'detect_magic'
       | 'recall'
       | 'talk'
+      | 'weapon_attack'
     >,
     string
   >

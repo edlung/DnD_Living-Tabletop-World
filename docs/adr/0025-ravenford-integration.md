@@ -147,3 +147,16 @@ Exercises together:
 - 20, which covers player agency.
 
 No invariant is weakened.
+
+## Amendment 2026-11-01 (Stage 530, owner-delegated): the quest's ending
+
+- A new milestone kind, `shown-to` (`npcId`, `subject`, optional `after`): a party member shows the
+  NPC the party's own EVIDENCE record about the subject, in the party's name (`EvidenceShown` with
+  scope `PARTY` of a PARTY record; the record's subjects as they stood then). A character's private
+  record never counts.
+- Any milestone with `after` (a return, and now `shown-to`) counts only after the stage it waits for;
+  chains resolve in order.
+- A definition may name its `completion` stage. Reaching it makes that transition `QuestCompleted`
+  and the quest's `status` `completed`; the log is still a projection, stored nowhere.
+- The Missing Caravan ends when, after the return, a member shows Mira Vale the party's evidence about
+  the caravan (stage `guild-told`). The Journal shows the party's quests (Stage 530).

@@ -10,6 +10,11 @@ import { entityIdSchema } from '../kernel/identifiers.ts';
 export const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha'] as const;
 export type Ability = (typeof ABILITIES)[number];
 
+/**
+ * The 18 SRD 5.2.1 skills and their abilities. The slice's checks use the first six; a sheet may be
+ * proficient in any (Stage 500, docs/PRODUCT_COMPLETION_PLAN.md decision 6). The order is the
+ * slice's first, so earlier lists keep their order.
+ */
 export const SKILLS = {
   perception: 'wis',
   investigation: 'int',
@@ -17,6 +22,18 @@ export const SKILLS = {
   survival: 'wis',
   arcana: 'int',
   stealth: 'dex',
+  athletics: 'str',
+  acrobatics: 'dex',
+  'sleight-of-hand': 'dex',
+  history: 'int',
+  nature: 'int',
+  religion: 'int',
+  'animal-handling': 'wis',
+  medicine: 'wis',
+  deception: 'cha',
+  intimidation: 'cha',
+  performance: 'cha',
+  persuasion: 'cha',
 } as const satisfies Record<string, Ability>;
 export type Skill = keyof typeof SKILLS;
 const skillIds = Object.keys(SKILLS) as [Skill, ...Skill[]];
@@ -31,11 +48,35 @@ export const SPELL_IDS = [
 ] as const;
 export type SpellId = (typeof SPELL_IDS)[number];
 
-export const WEAPON_IDS = ['longbow'] as const;
+/**
+ * The weapons the rules know (SRD 5.2.1 mechanics; `@ltw/rules` WEAPONS). The longbow came first;
+ * the rest join with the Ravenford weapons of the item catalog (Stage 520).
+ */
+export const WEAPON_IDS = [
+  'longbow',
+  'shortbow',
+  'light-crossbow',
+  'dagger',
+  'shortsword',
+  'longsword',
+  'rapier',
+  'scimitar',
+  'handaxe',
+  'battleaxe',
+  'mace',
+  'warhammer',
+  'quarterstaff',
+  'spear',
+] as const;
 export type WeaponId = (typeof WEAPON_IDS)[number];
 
 export const CLASS_IDS = ['ranger', 'wizard'] as const;
 export type ClassId = (typeof CLASS_IDS)[number];
+
+/** Hit Point Dice by size (SRD 5.2.1); each class has one (Stage 530, `@ltw/rules`). */
+export const HIT_DIE_SIDES = [6, 8, 10, 12] as const;
+export type HitDieSides = (typeof HIT_DIE_SIDES)[number];
+const spentDice = z.number().int().min(0).max(20);
 
 /**
  * Slice conditions. Incapacitated ends Concentration and blocks actions;
@@ -113,6 +154,12 @@ export const characterSheetSchema = z
       })
       .strict()
       .optional(),
+    /** Hit Point Dice spent since the last long rest, by size; absent when none is (Stage 530). */
+    hitDiceSpent: z
+      .object({ d6: spentDice, d8: spentDice, d10: spentDice, d12: spentDice })
+      .partial()
+      .strict()
+      .optional(),
   })
   .strict()
   .superRefine((sheet, context) => {
@@ -120,6 +167,11 @@ export const characterSheetSchema = z
       context.addIssue({ code: 'custom', message });
     };
     if (sheet.hitPoints.current > sheet.hitPoints.max) issue('current HP exceeds maximum');
+    const dice = sheet.hitDiceSpent;
+    const spent = (dice?.d6 ?? 0) + (dice?.d8 ?? 0) + (dice?.d10 ?? 0) + (dice?.d12 ?? 0);
+    if (spent > sheet.classes.reduce((sum, entry) => sum + entry.level, 0)) {
+      issue('more Hit Point Dice spent than the character has');
+    }
     sheet.spellSlots.expended.forEach((used, index) => {
       if (used > (sheet.spellSlots.max[index] ?? 0))
         issue(`more level ${index + 1} slots expended than available`);

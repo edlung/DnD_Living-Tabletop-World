@@ -39,6 +39,8 @@ import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
+import { PostgresRestStore, PostgresTableStore } from './dice/postgres-table-store.ts';
+import { serverDice } from './dice/table-rolls.ts';
 import { buildLiveApp } from './live/live-app.ts';
 import {
   describeDatabaseUrl,
@@ -174,6 +176,13 @@ async function main(): Promise<void> {
     authoring,
     // The DM's reasons for acting for a player (ADR 0033 §6; migration 0009).
     dm: { substitutions: new PostgresSubstitutionStore(pool), clock: systemClock },
+    // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).
+    table: {
+      store: new PostgresTableStore(pool),
+      rests: new PostgresRestStore(pool),
+      dice: serverDice,
+      now: () => new Date().toISOString(),
+    },
     assets: { contents },
     quests,
     campaignQuests: createCampaignQuestBooks(initialContent),

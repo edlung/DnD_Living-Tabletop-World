@@ -13,6 +13,7 @@ import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { DmHistory } from './dm-history.tsx';
 import { PlayersSheet } from './players-sheet.tsx';
+import { DmRestControls } from '../rest/dm-rest-controls.tsx';
 import { DmWorldControls } from './world-controls.tsx';
 
 /** What the DM's encounter and clock tools need from the loaded world. */
@@ -121,7 +122,9 @@ export function DmSheets({
             weather={weather}
             onWeather={onWeather}
             onRun={onRun}
-          />
+          >
+            <DmRestControls locked={locked} fighting={place.encounter !== null} onRun={onRun} />
+          </DmWorldControls>
         )}
       </Sheet>
       <Sheet

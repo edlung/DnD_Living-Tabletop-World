@@ -81,6 +81,62 @@ describe('authorized full character sheet', () => {
     expect(preview.json()).toEqual(body);
   });
 
+  it('carries the numbers the rules derive from the sheet (Stage 500)', async () => {
+    const { derived } = (await get(app, url(), TOKENS.player)).json<CharacterSheetResponse>();
+    // Ranger 7 / Wizard 8: level 15, proficiency +5; Dex 18, Int 16, Wis 14.
+    expect(derived).toMatchObject({
+      level: 15,
+      proficiencyBonus: 5,
+      initiative: 4,
+      passive: { perception: 22, investigation: 18, insight: 17 },
+      carryingCapacityLb: 150,
+    });
+    expect(derived?.abilities.dex).toEqual({
+      score: 18,
+      modifier: 4,
+      save: 9,
+      saveProficient: true,
+    });
+    expect(derived?.abilities.int).toEqual({
+      score: 16,
+      modifier: 3,
+      save: 3,
+      saveProficient: false,
+    });
+    expect(derived?.skills.perception).toEqual({
+      ability: 'wis',
+      total: 12,
+      proficiency: 'expertise',
+    });
+    expect(derived?.skills.athletics).toEqual({ ability: 'str', total: 0, proficiency: 'none' });
+    expect(Object.keys(derived?.skills ?? {})).toHaveLength(18);
+    expect(derived?.spellcasting).toEqual([
+      { source: 'ranger', ability: 'wis', saveDc: 15, attackBonus: 7 },
+      { source: 'wizard', ability: 'int', saveDc: 16, attackBonus: 8 },
+      { source: 'magic-initiate', ability: 'wis', saveDc: 15, attackBonus: 7 },
+    ]);
+    // Longbow: Dex +4, proficiency +5, Archery +2; 1d8 + 4 piercing.
+    expect(derived?.attacks).toEqual([
+      {
+        weaponId: 'longbow',
+        attackBonus: 11,
+        damage: { count: 1, sides: 8, bonus: 4 },
+        damageType: 'piercing',
+        ranged: true,
+        normalRangeFt: 150,
+        longRangeFt: 600,
+      },
+    ]);
+    expect(derived?.spells.map((spell) => spell.spellId)).toEqual([
+      'detect-magic',
+      'healing-word',
+      'hunters-mark',
+      'misty-step',
+      'counterspell',
+      'fireball',
+    ]);
+  });
+
   it('makes sheets of known, hidden, and nonexistent other entities indistinguishable', async () => {
     const errors = [];
     for (const id of ['mira-vale', ASHEN_CIRCLE_ID, 'missing-entity']) {

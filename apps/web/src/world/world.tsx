@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 
 import type { WorldApi } from '../api/client.ts';
 import { useLiveTarget } from '../api/live-context.ts';
-import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
 import { askedWindowOf } from '../combat/reaction-prompt.tsx';
 import { standInReason, type StandIn } from '../combat/stand-in.ts';
 import { useAuthoring } from '../authoring/use-authoring.ts';
@@ -20,7 +19,6 @@ import {
   type ActionNotice as Notice,
   type ExplorationIntent,
 } from '../exploration/use-action.ts';
-import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
 import { Dock } from '../shell/dock.tsx';
 import { focusOn, useEscape, useShell } from '../shell/use-shell.ts';
 import { ApprovedImages } from '../visual/approved-images.ts';
@@ -28,8 +26,12 @@ import { WIDE } from '../combat/board/board-view.ts';
 import { Backdrop } from './backdrop.tsx';
 import { CombatStage } from './combat-stage.tsx';
 import { EntityDetails } from './entity-details.tsx';
-import { ItemsSheet } from '../items/items-sheet.tsx';
 import { recipientsOf } from '../items/recipients.ts';
+import { useFightTakesStage } from './use-fight-takes-stage.ts';
+import { WorldOverlays } from './world-overlays.tsx';
+import { DicePanel } from '../dice/dice-panel.tsx';
+import { DiceTableProvider, useDiceTableState } from '../dice/table.tsx';
+import { revealedIds } from '../exploration/revealed.ts';
 import { useConversationNotice, type Conversation } from './use-conversation-notice.ts';
 import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
@@ -208,8 +210,13 @@ export function World({
   // and the question takes focus once it has (each window once; the reader may open it again).
   const askedWindow = askedWindowOf(encounter, actorId);
   useEffect(() => {
-    if (askedWindow !== null) shell.closeChronicle();
+    if (askedWindow === null) return;
+    shell.closeChronicle();
+    shell.closeHero();
   }, [askedWindow]);
+  useFightTakesStage(encounter?.encounterId ?? null, details, () => {
+    setSelected(null);
+  });
   const battlefield = encounter !== null && sceneFor !== encounter.encounterId;
   const view = scene.resource.status === 'ready' ? scene.resource.value : null;
   const presentImage = (entityId: string) =>
@@ -235,253 +242,256 @@ export function World({
       ? action.notice.speech
       : null;
 
+  // The table's dice (Stage 510): the feed, the DM's requests, the rolls this perspective makes.
+  const dice = useDiceTableState(api, revision, effectivePerspective, acting ? actorId : null);
+  const outcome = (
+    <ActionNotice
+      notice={notice}
+      status={action.status}
+      discovered={
+        data
+          ? data.knowledge.knowledge.filter((record) => discovered.includes(record.knowledgeId))
+          : []
+      }
+      quoteElsewhere={speaking && notice?.speakerId === conversation.npcId}
+      onRetry={action.retry}
+      onDismiss={() => {
+        setDismissed(action.notice);
+      }}
+    />
+  );
+
   return (
-    <WorldPictures images={images} dm={isDm ? dmImages : null}>
-      <main
-        id="world-main"
-        className={`world-main${selected ? ' has-details' : ''}${battlefield ? ' has-battle' : ''}`}
-        tabIndex={-1}
-      >
-        {sessionSlot &&
-          data &&
-          createPortal(<span>{openSession?.title ?? t('No open play session')}</span>, sessionSlot)}
-        <div
-          className={`stage${battlefield ? ' stage--battle' : ''}${speaking ? ' stage--talking' : ''}`}
+    <DiceTableProvider value={dice}>
+      <WorldPictures images={images} dm={isDm ? dmImages : null}>
+        <main
+          id="world-main"
+          className={`world-main${selected ? ' has-details' : ''}${battlefield ? ' has-battle' : ''}`}
+          tabIndex={-1}
         >
-          <Backdrop image={view?.location.image ?? null} settled={view !== null} />
-          {!data ? (
-            <div className="stage-status">
-              <StatusPanel
-                state={world.resource.status === 'error' ? 'error' : 'loading'}
-                label={
-                  world.resource.status === 'error'
-                    ? world.resource.message
-                    : t('Gathering your view of the world…')
-                }
-                onRetry={world.retry}
-              />
-            </div>
-          ) : location ? (
-            <Scene
-              location={location}
-              scene={scene.resource}
-              onRetry={scene.retry}
-              directory={directory}
-              nearby={data.surroundings?.nearby ?? []}
-              selectedId={focus}
-              onSelect={select}
-              battlefield={battlefield}
-              rail={
-                <PartyRail api={api} encounter={encounter} selectedId={focus} onSelect={select} />
-              }
-              notice={acting && <UndoneNotice api={api} directory={directory} />}
-              conversation={
-                speaking && (
-                  <DialoguePanel
-                    key={conversation.npcId}
-                    api={api}
-                    npcId={conversation.npcId}
-                    revision={revision}
-                    line={spoken ?? conversation.line}
-                    image={presentImage(conversation.npcId)}
-                    directory={directory}
-                    knowledge={data.knowledge.knowledge}
-                    actorId={data.surroundings?.actingCharacterId ?? ''}
-                    canAct={canAct}
-                    locked={action.locked}
-                    onRun={explore}
-                    onLeave={() => {
-                      setConversation(null);
-                    }}
-                  />
-                )
-              }
-            />
-          ) : (
-            <section className="scene" aria-label={t('Scene')}>
+          {sessionSlot &&
+            data &&
+            createPortal(
+              <span>{openSession?.title ?? t('No open play session')}</span>,
+              sessionSlot,
+            )}
+          <div
+            className={`stage${battlefield ? ' stage--battle' : ''}${speaking ? ' stage--talking' : ''}`}
+          >
+            <Backdrop image={view?.location.image ?? null} settled={view !== null} />
+            {!data ? (
               <div className="stage-status">
                 <StatusPanel
-                  state={data.asOf === revision ? 'empty' : 'loading'}
+                  state={world.resource.status === 'error' ? 'error' : 'loading'}
                   label={
-                    data.asOf === revision
-                      ? t('There are no known locations in this perspective yet.')
-                      : t('Loading the scene…')
+                    world.resource.status === 'error'
+                      ? world.resource.message
+                      : t('Gathering your view of the world…')
                   }
+                  onRetry={world.retry}
                 />
               </div>
-            </section>
-          )}
-          {data && encounter && (
-            <CombatStage
-              api={api}
-              encounter={encounter}
-              revision={revision}
-              battlefield={battlefield}
-              onView={(chosen) => {
-                setSceneFor(chosen === 'scene' ? encounter.encounterId : null);
+            ) : location ? (
+              <Scene
+                location={location}
+                scene={scene.resource}
+                onRetry={scene.retry}
+                directory={directory}
+                nearby={data.surroundings?.nearby ?? []}
+                selectedId={focus}
+                onSelect={select}
+                battlefield={battlefield}
+                rail={
+                  <PartyRail api={api} encounter={encounter} selectedId={focus} onSelect={select} />
+                }
+                notice={acting && <UndoneNotice api={api} directory={directory} />}
+                conversation={
+                  speaking && (
+                    <DialoguePanel
+                      key={conversation.npcId}
+                      api={api}
+                      npcId={conversation.npcId}
+                      revision={revision}
+                      line={spoken ?? conversation.line}
+                      image={presentImage(conversation.npcId)}
+                      directory={directory}
+                      knowledge={data.knowledge.knowledge}
+                      actorId={data.surroundings?.actingCharacterId ?? ''}
+                      canAct={canAct}
+                      locked={action.locked}
+                      onRun={explore}
+                      onLeave={() => {
+                        setConversation(null);
+                      }}
+                    />
+                  )
+                }
+              />
+            ) : (
+              <section className="scene" aria-label={t('Scene')}>
+                <div className="stage-status">
+                  <StatusPanel
+                    state={data.asOf === revision ? 'empty' : 'loading'}
+                    label={
+                      data.asOf === revision
+                        ? t('There are no known locations in this perspective yet.')
+                        : t('Loading the scene…')
+                    }
+                  />
+                </div>
+              </section>
+            )}
+            {data && encounter && (
+              <CombatStage
+                api={api}
+                encounter={encounter}
+                revision={revision}
+                battlefield={battlefield}
+                onView={(chosen) => {
+                  setSceneFor(chosen === 'scene' ? encounter.encounterId : null);
+                }}
+                actorId={actorId}
+                canAct={canAct || standIn !== null}
+                locked={action.locked}
+                blocked={shell.chronicle}
+                imageOf={presentImage}
+                figureOf={presentFigure}
+                battleMap={battleMap}
+                onRun={run}
+              />
+            )}
+            <PlacesSheet
+              shell={shell}
+              placeId={placeId}
+              current={location && !knownPlace ? location : null}
+              locations={data ? locations : null}
+              onView={(id) => {
+                setViewing(id);
+                setSelected(null);
+                setConversation(null);
               }}
-              actorId={actorId}
-              canAct={canAct || standIn !== null}
-              locked={action.locked}
-              blocked={shell.chronicle}
-              imageOf={presentImage}
-              figureOf={presentFigure}
-              battleMap={battleMap}
-              onRun={run}
+              onExplore={(place) => {
+                shell.dismissSheet();
+                select(place.entityId, place.kind);
+              }}
             />
-          )}
-          <PlacesSheet
-            shell={shell}
-            placeId={placeId}
-            current={location && !knownPlace ? location : null}
-            locations={data ? locations : null}
-            onView={(id) => {
-              setViewing(id);
-              setSelected(null);
-              setConversation(null);
-            }}
-            onExplore={(place) => {
-              shell.dismissSheet();
-              select(place.entityId, place.kind);
-            }}
-          />
-          <ItemsSheet
+            <JournalSheet
+              api={api}
+              shell={shell}
+              revision={revision}
+              journal={data ? { directory, knowledge: data.knowledge.knowledge, encounter } : null}
+              selectedId={focus}
+              onSelect={select}
+            />
+            <DicePanel
+              shell={shell}
+              characters={directory.filter((entity) => entity.kind === 'character')}
+            />
+            {isDm && (
+              <DmSheets
+                api={api}
+                authoring={authoring}
+                shell={shell}
+                directory={data?.directory.entities ?? knownDirectory.current}
+                place={
+                  data
+                    ? {
+                        encounter,
+                        locationId: placeId,
+                        locationName: location?.name ?? t('this place'),
+                      }
+                    : null
+                }
+                revision={revision}
+                locked={action.locked}
+                weather={dmWeather}
+                onWeather={setDmWeather}
+                onRun={action.run}
+                onActAs={onActAs}
+                onWorldChanged={() => {
+                  setRevision((value) => value + 1);
+                }}
+                onShowEntity={(entityId, kind) => {
+                  shell.dismissSheet();
+                  select(entityId, kind);
+                }}
+              />
+            )}
+            <Dock
+              isDm={isDm}
+              shell={shell}
+              drafts={isDm ? authoring.drafts.length : 0}
+              onCharacter={
+                acting && actorId !== null
+                  ? () => {
+                      shell.openHero(actorId);
+                    }
+                  : undefined
+              }
+            />
+          </div>
+          <WorldOverlays
             api={api}
             shell={shell}
             revision={revision}
-            characterId={acting ? actorId : null}
+            isDm={isDm}
+            ready={data !== null}
+            directory={directory}
+            actorId={actorId}
             canAct={canAct || standIn !== null}
             locked={action.locked}
             encounter={encounter}
             recipients={recipientsOf(view, directory, actorId)}
             onRun={run}
+            outcome={outcome}
           />
-          <JournalSheet
-            api={api}
-            shell={shell}
-            revision={revision}
-            journal={data ? { directory, knowledge: data.knowledge.knowledge, encounter } : null}
-            selectedId={focus}
-            onSelect={select}
-          />
-          {isDm && (
-            <DmSheets
-              api={api}
-              authoring={authoring}
-              shell={shell}
-              directory={data?.directory.entities ?? knownDirectory.current}
-              place={
-                data
-                  ? {
-                      encounter,
-                      locationId: placeId,
-                      locationName: location?.name ?? t('this place'),
-                    }
-                  : null
-              }
-              revision={revision}
-              locked={action.locked}
-              weather={dmWeather}
-              onWeather={setDmWeather}
-              onRun={action.run}
-              onActAs={onActAs}
-              onWorldChanged={() => {
-                setRevision((value) => value + 1);
-              }}
-              onShowEntity={(entityId, kind) => {
-                shell.dismissSheet();
-                select(entityId, kind);
-              }}
-            />
-          )}
-          <Dock isDm={isDm} shell={shell} drafts={isDm ? authoring.drafts.length : 0} />
-        </div>
-        {/* The result of an action sits above every sheet and panel, so its words and its Retry
-            are never covered by the tool that caused it. */}
-        <ActionNotice
-          notice={notice}
-          status={action.status}
-          discovered={
-            data
-              ? data.knowledge.knowledge.filter((record) => discovered.includes(record.knowledgeId))
-              : []
-          }
-          quoteElsewhere={speaking && notice?.speakerId === conversation.npcId}
-          onRetry={action.retry}
-          onDismiss={() => {
-            setDismissed(action.notice);
-          }}
-        />
-        <aside
-          ref={details}
-          className="detail-panel"
-          aria-label={t('Entity details')}
-          tabIndex={-1}
-          hidden={!selected}
-        >
-          {shown && data && (
-            <EntityDetails
-              key={shown.entityId}
-              api={api}
-              entityId={shown.entityId}
-              revision={revision}
-              name={shownKnown?.name ?? null}
-              kind={shown.kind}
-              known={shownKnown !== undefined}
-              effectivePerspective={effectivePerspective}
-              directory={directory}
-              knowledge={data.knowledge.knowledge}
-              canAct={canAct && encounter === null}
-              locked={action.locked}
-              conversing={speaking && conversation.npcId === shown.entityId}
-              onShowConversation={showConversation}
-              onRun={explore}
-              onSelect={select}
-              onClose={closeDetails}
-              profileEditing={
-                isDm
-                  ? {
-                      draftOpen: authoring.proposal?.proposal.status === 'DRAFT',
-                      busy: authoring.busy,
-                      propose: (summary, commands) => {
-                        showAuthoring();
-                        return authoring.proposeWritten(summary, commands);
-                      },
-                      showDraft: showAuthoring,
-                    }
-                  : null
-              }
-            />
-          )}
-        </aside>
-        <ChronicleDialog open={shell.chronicle} onClose={shell.closeChronicle}>
-          {data && (
-            <ChronicleBook
-              api={api}
-              isDm={isDm}
-              revision={revision}
-              directory={directory}
-              open={shell.chronicle}
-            />
-          )}
-        </ChronicleDialog>
-      </main>
-    </WorldPictures>
+          <aside
+            ref={details}
+            className="detail-panel"
+            aria-label={t('Entity details')}
+            tabIndex={-1}
+            hidden={!selected}
+          >
+            {shown && data && (
+              <EntityDetails
+                key={shown.entityId}
+                api={api}
+                entityId={shown.entityId}
+                revision={revision}
+                name={shownKnown?.name ?? null}
+                kind={shown.kind}
+                known={shownKnown !== undefined}
+                effectivePerspective={effectivePerspective}
+                directory={directory}
+                knowledge={data.knowledge.knowledge}
+                canAct={canAct && encounter === null}
+                locked={action.locked}
+                conversing={speaking && conversation.npcId === shown.entityId}
+                onShowConversation={showConversation}
+                onRun={explore}
+                onSelect={select}
+                onOpenSheet={() => {
+                  shell.openHero(shown.entityId);
+                }}
+                onClose={closeDetails}
+                profileEditing={
+                  isDm
+                    ? {
+                        draftOpen: authoring.proposal?.proposal.status === 'DRAFT',
+                        busy: authoring.busy,
+                        propose: (summary, commands) => {
+                          showAuthoring();
+                          return authoring.proposeWritten(summary, commands);
+                        },
+                        showDraft: showAuthoring,
+                      }
+                    : null
+                }
+              />
+            )}
+          </aside>
+        </main>
+      </WorldPictures>
+    </DiceTableProvider>
   );
-}
-
-function revealedIds(outcome: PlayerOutcome | undefined): readonly string[] {
-  switch (outcome?.kind) {
-    case 'AskAbout':
-      return outcome.shared;
-    case 'ExamineEntity':
-    case 'CastSpell':
-      return outcome.discovered;
-    case 'InsightCheck':
-      return outcome.inferred;
-    case 'FormHypothesis':
-      return [outcome.knowledgeId];
-    default:
-      return [];
-  }
 }

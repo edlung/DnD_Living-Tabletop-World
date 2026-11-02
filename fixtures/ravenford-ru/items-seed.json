@@ -68,6 +68,70 @@
       "existsSince": null
     },
     {
+      "type": "CreateEntity",
+      "entityId": "item-3c8e51a7",
+      "kind": "item",
+      "name": "Тисовый лук Эловен",
+      "description": "Высокий тисовый лук; рукоять потемнела от многих лет в руках.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-a64f2d19",
+      "kind": "item",
+      "name": "Короткий клинок",
+      "description": "Простой короткий меч — на случай, когда враг слишком близко для лука.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-58b0c3e2",
+      "kind": "item",
+      "name": "Нож для разделки",
+      "description": "Маленький нож с костяной рукоятью, спутник охотничьих троп.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-d2e7096b",
+      "kind": "item",
+      "name": "Золотые кроны",
+      "description": "Плата за последний караван, который она охраняла.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-6f1a84c3",
+      "kind": "item",
+      "name": "Серебряные марки",
+      "description": "Монеты на дорогу и постоялый двор.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-90c5e7d4",
+      "kind": "item",
+      "name": "Медные пенни",
+      "description": "Горсть рыночной мелочи.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-1e9b4f62",
+      "kind": "item",
+      "name": "Кроны из шкатулки Миры",
+      "description": "Выручка гильдейской лавки, пересчитанная дважды.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-7ab3d058",
+      "kind": "item",
+      "name": "Посох Орина",
+      "description": "Ясеневый посох, опалённый снизу у неосторожных костров.",
+      "existsSince": null
+    },
+    {
       "type": "GrantItem",
       "itemId": "item-5a1c7e30",
       "holderId": "elowen-starwhisper",
@@ -122,6 +186,68 @@
       "holderId": "mira-vale",
       "catalogId": "merchant-ledger",
       "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-3c8e51a7",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "yew-longbow",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-a64f2d19",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "ranger-shortsword",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-58b0c3e2",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "hunting-knife",
+      "quantity": 1
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-d2e7096b",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "gold-crown",
+      "quantity": 15
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-6f1a84c3",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "silver-mark",
+      "quantity": 23
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-90c5e7d4",
+      "holderId": "elowen-starwhisper",
+      "catalogId": "copper-penny",
+      "quantity": 40
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-1e9b4f62",
+      "holderId": "mira-vale",
+      "catalogId": "gold-crown",
+      "quantity": 95
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-7ab3d058",
+      "holderId": "orin-stonebeard",
+      "catalogId": "ash-staff",
+      "quantity": 1
+    },
+    {
+      "type": "EquipItem",
+      "characterId": "elowen-starwhisper",
+      "itemId": "item-3c8e51a7",
+      "slot": "mainhand"
     }
   ]
 }

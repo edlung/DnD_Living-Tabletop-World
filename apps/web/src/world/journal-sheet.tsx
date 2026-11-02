@@ -8,6 +8,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { kindGlyph } from '../visual/glyph-map.ts';
 import { KnowledgeCards } from '../visual/knowledge-cards.tsx';
 import { distinctNames } from './entity-words.ts';
+import { JournalQuests } from './journal-quests.tsx';
 import { RecentEvents } from './recent-events.tsx';
 
 export interface JournalData {
@@ -17,8 +18,8 @@ export interface JournalData {
 }
 
 /**
- * The Journal sheet (docs/STAGE_320_DESIGN.md §5.4): who and what this perspective knows, its
- * hypotheses, and the events it remembers, each reachable in full (invariant 19). Presence is
+ * The Journal sheet (docs/STAGE_320_DESIGN.md §5.4): the party's quests (Stage 530), who and what
+ * this perspective knows, its hypotheses, and the events it remembers, each reachable in full (invariant 19). Presence is
  * the scene's to show. The encounter's summary, in words, is here too: whether one runs, its
  * turn order and an open reaction window, as this perspective may see them.
  */
@@ -52,6 +53,7 @@ export function JournalSheet({
     >
       {journal && (
         <div className="journal">
+          <JournalQuests api={api} revision={revision} />
           <section className="sheet-section" aria-labelledby="journal-known">
             <h3 id="journal-known">{t('Known people & places')}</h3>
             <p className="muted">

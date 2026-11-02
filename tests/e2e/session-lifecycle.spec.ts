@@ -66,15 +66,14 @@ test('narrow viewport supports keyboard entry, selection, and disclosure', async
   await expect(sheet).toBeVisible();
   await sheet.focus();
   await page.keyboard.press('Enter');
-  const spellcasting = page.getByText('Spellcasting sources and free casts', { exact: true });
-  await expect(spellcasting).toBeVisible();
-  await spellcasting.focus();
-  await page.keyboard.press('Enter');
-  await expect(
-    page
-      .getByRole('complementary', { name: 'Entity details' })
-      .getByText(/Detect magic.*Counterspell/i),
-  ).toBeVisible();
+  const dialog = page.getByRole('dialog', { name: 'Character: Elowen Starwhisper' });
+  await expect(dialog).toBeVisible();
+  // The tabs answer the keyboard: the arrows move between them and show each.
+  await dialog.getByRole('tab', { name: 'Overview', exact: true }).focus();
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('ArrowRight');
+  await expect(dialog.getByRole('tab', { name: 'Spells', exact: true })).toBeFocused();
+  await expect(dialog.getByRole('tabpanel')).toContainText('Counterspell');
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > window.innerWidth,
   );

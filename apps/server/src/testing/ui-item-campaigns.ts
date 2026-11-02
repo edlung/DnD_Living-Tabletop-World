@@ -30,6 +30,8 @@ const NAMES = {
     cloak: 'Grey road cloak',
     balm: 'Spare balm',
     lantern: 'Dented lantern',
+    blade: 'Practice blade',
+    crowns: 'Purse of crowns',
   },
   ru: {
     brigandine: 'Равенфордский бригандин',
@@ -37,6 +39,8 @@ const NAMES = {
     cloak: 'Серый дорожный плащ',
     balm: 'Запасной бальзам',
     lantern: 'Помятый фонарь',
+    blade: 'Учебный клинок',
+    crowns: 'Кошель крон',
   },
 } as const;
 
@@ -121,6 +125,9 @@ async function seedItems(
     ['item-1a7c3e92', names.buckler, 'oak-buckler', 1],
     ['item-6e0f4b58', names.cloak, 'caravan-cloak', 1],
     ['item-b93d2a16', names.balm, 'woodland-balm', 2],
+    // A weapon to wield and a purse (Stage 520).
+    ['item-5f7a1c3e', names.blade, 'ranger-shortsword', 1],
+    ['item-0c9e2d71', names.crowns, 'gold-crown', 12],
   ] as const) {
     await create(id, name);
     await run(`grant-${id}`, {

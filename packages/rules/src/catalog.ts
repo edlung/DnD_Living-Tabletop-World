@@ -1,4 +1,4 @@
-import type { SpellId, WeaponId } from '@ltw/contracts';
+import type { SpellId } from '@ltw/contracts';
 
 /**
  * Slice spells and weapons as data (SRD 5.2.1 mechanics; text not copied).
@@ -81,27 +81,4 @@ export const FIREBALL_RADIUS_FT = 20;
 /** Detect Magic senses magic within 30 ft (ADR 0011). */
 export const DETECT_MAGIC_RADIUS_FT = 30;
 
-export interface WeaponDefinition {
-  readonly weaponId: WeaponId;
-  readonly ranged: boolean;
-  readonly normalRangeFt: number;
-  readonly longRangeFt: number;
-  readonly damageDice: { readonly count: number; readonly sides: number };
-  readonly ability: 'dex' | 'str';
-  readonly damageType: string;
-  /** Weapon mastery property (SRD 5.2.1); Slow on the Longbow (ADR 0011). */
-  readonly mastery: 'slow' | null;
-}
-
-export const WEAPONS: Readonly<Record<WeaponId, WeaponDefinition>> = {
-  longbow: {
-    weaponId: 'longbow',
-    ranged: true,
-    normalRangeFt: 150,
-    longRangeFt: 600,
-    damageDice: { count: 1, sides: 8 },
-    ability: 'dex',
-    damageType: 'piercing',
-    mastery: 'slow',
-  },
-};
+export { WEAPONS, type WeaponDefinition, type WeaponProperty } from './weapons.ts';

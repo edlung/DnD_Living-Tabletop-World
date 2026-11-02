@@ -1,10 +1,11 @@
 import { isPartyMember } from '../knowledge/party.ts';
-import type {
-  ChronicleSourceView,
-  QuestDefinition,
-  QuestMilestone,
-  QuestTransitionView,
-  QuestView,
+import {
+  milestoneAfter,
+  type ChronicleSourceView,
+  type QuestDefinition,
+  type QuestMilestone,
+  type QuestTransitionView,
+  type QuestView,
 } from '@ltw/contracts';
 
 import type { RecordedEvent } from '../kernel/events.ts';
@@ -68,6 +69,7 @@ function occurrences(
     { locationId: string; fighters: string[]; start: RecordedEvent }
   >();
   const statuses = new Map<string, string>();
+  const partyRecords = new Set<string>();
 
   for (const event of events) {
     switch (event.type) {
@@ -82,6 +84,7 @@ function occurrences(
         const record = event.payload;
         subjectsOf.set(record.knowledgeId, record.subjects);
         if (record.scope.kind !== PARTY) break;
+        partyRecords.add(record.knowledgeId);
         const at = { worldTime: record.knownSince ?? event.worldTime, events: [event] };
         if (record.subjects.includes(quest.activation.subject)) activation.push(at);
         // What a campaign starts out knowing is prepared state, not progress: no milestone is
@@ -149,6 +152,23 @@ function occurrences(
         }
         break;
       }
+      case 'EvidenceShown': {
+        // A member shows an NPC the party's own evidence, in the party's name; what it is about is
+        // the record's subjects as they stood then (shown before or not).
+        const { characterId, npcId, scope, knowledgeId } = event.payload;
+        if (!members.has(characterId) || scope !== PARTY || !partyRecords.has(knowledgeId)) break;
+        const about = subjectsOf.get(knowledgeId) ?? [];
+        for (const milestone of quest.milestones) {
+          if (
+            milestone.kind === 'shown-to' &&
+            milestone.npcId === npcId &&
+            about.includes(milestone.subject)
+          ) {
+            add(milestone, { worldTime: event.worldTime, events: [event] });
+          }
+        }
+        break;
+      }
       case 'EntityStatusChanged':
         statuses.set(event.payload.entityId, event.payload.to);
         break;
@@ -210,25 +230,31 @@ export function questFor(
   const activated = earliest(found.activation, Number.NEGATIVE_INFINITY);
   if (!activated) return null;
   const reached = new Map<string, Occurrence>();
-  // A return counts only after the stage it follows; resolve the others first.
-  const ordered = [
-    ...quest.milestones.filter((m) => m.kind !== 'returned-to'),
-    ...quest.milestones.filter((m) => m.kind === 'returned-to'),
-  ];
-  for (const milestone of ordered) {
-    const after =
-      milestone.kind === 'returned-to'
-        ? reached.get(milestone.after)
-        : { worldTime: activated.worldTime, events: [] };
-    if (!after) continue;
-    const list = (found.milestones.get(milestone.stage) ?? []).filter(
-      (occurrence) =>
-        milestone.kind !== 'returned-to' ||
-        (occurrence.events[0]?.sequence ?? 0) > Math.max(...after.events.map((e) => e.sequence)),
-    );
-    const first = earliest(list, after.worldTime);
-    if (first) reached.set(milestone.stage, first);
+  // A stage that waits for another (a return, the truth told after it) counts only after that
+  // one: each is resolved once the stage it waits for is, in as many rounds as the chain is long.
+  const resolved = new Set<string>();
+  for (let round = 0; round <= quest.milestones.length; round += 1) {
+    for (const milestone of quest.milestones) {
+      const waitsFor = milestoneAfter(milestone);
+      if (resolved.has(milestone.stage) || (waitsFor !== undefined && !resolved.has(waitsFor))) {
+        continue;
+      }
+      resolved.add(milestone.stage);
+      const after =
+        waitsFor === undefined
+          ? { worldTime: activated.worldTime, events: [] }
+          : reached.get(waitsFor);
+      if (!after) continue;
+      const list = (found.milestones.get(milestone.stage) ?? []).filter(
+        (occurrence) =>
+          waitsFor === undefined ||
+          (occurrence.events[0]?.sequence ?? 0) > Math.max(...after.events.map((e) => e.sequence)),
+      );
+      const first = earliest(list, after.worldTime);
+      if (first) reached.set(milestone.stage, first);
+    }
   }
+  const completed = quest.completion !== undefined && reached.has(quest.completion);
   // In world-time order; within one world time, in the order the history recorded them.
   const told: (Occurrence & { stage: string; summary: string; activation: boolean })[] = [
     { ...activated, stage: 'activated', summary: quest.activation.summary, activation: true },
@@ -250,8 +276,13 @@ export function questFor(
   return {
     questId: quest.questId,
     title: quest.title,
+    status: completed ? 'completed' : 'active',
     transitions: told.map((occurrence): QuestTransitionView => ({
-      type: occurrence.activation ? 'QuestActivated' : 'QuestUpdated',
+      type: occurrence.activation
+        ? 'QuestActivated'
+        : occurrence.stage === quest.completion
+          ? 'QuestCompleted'
+          : 'QuestUpdated',
       stage: occurrence.stage,
       worldTime: occurrence.worldTime,
       summary: occurrence.summary,

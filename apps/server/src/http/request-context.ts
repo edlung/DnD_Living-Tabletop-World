@@ -8,7 +8,7 @@ import {
   type WorldState,
 } from '@ltw/domain';
 import type { FastifyReply, FastifyRequest } from 'fastify';
-import type { z } from 'zod';
+import { z } from 'zod';
 
 import type { RequestLimits, Slot } from '../auth/limits.ts';
 import { actorFor, type Authenticator, type Credentials, type Principal } from './auth.ts';
@@ -104,6 +104,37 @@ export interface PerspectiveContext {
   /** The campaign's recorded events, for views at a past world time (ADR 0023). */
   readonly history: readonly RecordedEvent[];
   readonly perspective: ResolvedPerspective;
+}
+
+const perspectiveQuery = z.object({ perspective: z.string() }).strict();
+
+/** The same check order for a write with a body: 401 → 400 (path, query, body) → 404 → 403. */
+export async function withBody<P extends { campaignId: string }, B>(
+  request: FastifyRequest,
+  reply: FastifyReply,
+  deps: RouteDependencies,
+  schemas: { readonly params: z.ZodType<P>; readonly body: z.ZodType<B> },
+): Promise<{ context: Omit<PerspectiveContext, 'history'>; params: P; body: B } | null> {
+  const actor = await authenticate(request, reply, deps);
+  if (!actor) return null;
+  const path = parseInput(schemas.params, request.params, request, reply);
+  if (!path) return null;
+  const search = parseInput(perspectiveQuery, request.query, request, reply);
+  if (!search) return null;
+  const body = parseInput(schemas.body, request.body, request, reply);
+  if (body === null) return null;
+  const wanted = parsePerspective(search.perspective);
+  if (!wanted) {
+    sendError(reply, request, 'INVALID_REQUEST');
+    return null;
+  }
+  const state = (await deps.engine.load(path.campaignId))?.state ?? null;
+  const access = resolvePerspective(state, actor, wanted);
+  if (!access.ok || state === null) {
+    sendError(reply, request, access.ok ? 'NOT_FOUND' : access.reason);
+    return null;
+  }
+  return { context: { actor, state, perspective: access.perspective }, params: path, body };
 }
 
 export async function withPerspective<

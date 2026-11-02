@@ -31,6 +31,7 @@ import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import type { DmDependencies } from '../dm/dm-routes.ts';
 import { InMemorySubstitutionStore } from '../dm/substitution-store.ts';
+import type { TableDependencies } from '../dice/roll-routes.ts';
 import type { AccountingDiagnostics } from '../http/routes/ai-routes.ts';
 import { loadDevPersonaAuthenticator } from '../http/auth.ts';
 import { buildLiveApp } from '../live/live-app.ts';
@@ -181,12 +182,14 @@ export async function ravenfordApp(
   authoring: AuthoringDependencies = testAuthoring(),
   contents: AssetContentStore = new InMemoryAssetContentStore(),
   dm: DmDependencies = testDm(),
+  table?: TableDependencies,
 ): Promise<FastifyInstance> {
   // The production composition, live session included (ADR 0033), as the browser tests use it.
   const { app } = buildLiveApp({
     ai,
     authoring,
     dm,
+    ...(table ? { table } : {}),
     assets: { contents },
     quests: RAVENFORD_QUESTS,
     engine: engine ?? (await seededEngine()),
