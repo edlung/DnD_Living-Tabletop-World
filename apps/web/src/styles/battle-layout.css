@@ -466,4 +466,8 @@
     bottom: calc(var(--dock-h) + var(--tray-h, 88px) + 8px);
     left: 8px;
   }
+  /* A reaction asked, or an attack readied, holds the spot above the dock: a result stands above it */
+  .world-main:has(.reaction-prompt) .outcome {
+    bottom: calc(var(--dock-h) + var(--prompt-h, 0px) + 16px);
+  }
 }

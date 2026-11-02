@@ -200,7 +200,7 @@ describe('ignoring', () => {
     world.roll(20, 15);
     world.roll(8, 4, 4);
     const ignored = await world.submit(ignore(ELOWEN, windowId));
-    expect(outcomeOf(ignored)).toEqual({ kind: 'DeclineReaction', windowId });
+    expect(outcomeOf(ignored)).toEqual({ kind: 'DeclineReaction', windowId, trigger: 'spell' });
     const state = await world.state();
     expect(window(state, windowId)).toMatchObject({
       status: 'proceeded',
@@ -237,7 +237,8 @@ describe('what each perspective sees', () => {
         targetId: ELOWEN,
         point: null,
       },
-      candidates: [{ entityId: ELOWEN, response: 'pending' }],
+      // The DM sees what each pending candidate may answer (ADR 0046 §1).
+      candidates: [{ entityId: ELOWEN, response: 'pending', choices: ['counterspell', 'ignore'] }],
       choices: [],
     });
     const player = view(PLAYER, { kind: 'PLAYER' });
@@ -248,7 +249,7 @@ describe('what each perspective sees', () => {
         caster: { entityId: SHAMAN, kind: 'creature', name: null },
         components: ['V', 'S'],
       },
-      candidates: [{ entityId: ELOWEN, response: 'pending' }],
+      candidates: [{ entityId: ELOWEN, response: 'pending', choices: ['counterspell', 'ignore'] }],
       choices: ['counterspell', 'ignore'],
     });
     expect(JSON.stringify(player)).not.toMatch(/ashen|Ashen|targetId|dc/);

@@ -162,7 +162,7 @@ export function counterspellVerdict(
   targetId: string,
 ): Verdict | null {
   const window = openReactionWindow(inputs.state);
-  if (window?.trigger.casterId !== targetId) return null;
+  if (window?.trigger.kind !== 'spell' || window.trigger.casterId !== targetId) return null;
   const mine = window.candidates.find((c) => c.entityId === inputs.actor.entityId);
   if (mine?.response !== 'pending') return null;
   const plan = counterspellPlan(

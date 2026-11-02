@@ -6,8 +6,12 @@ import { ABILITY_NAMES, skillName, spellName } from '../character/words.ts';
 /** The dice's words (Stage 510): English keys the client dictionary translates. */
 export function subjectWords(t: Translate, subject: RollSubject): string {
   switch (subject.kind) {
-    case 'attack':
-      return t('{weapon} attack', { weapon: readableLabel(subject.attack, t) });
+    case 'attack': {
+      const weapon = readableLabel(subject.attack, t);
+      if (subject.by === 'opportunity') return t('Opportunity attack: {weapon}', { weapon });
+      if (subject.by === 'readied') return t('Readied attack: {weapon}', { weapon });
+      return t('{weapon} attack', { weapon });
+    }
     case 'spell':
       return spellName(t, subject.spellId as never);
     case 'skill':

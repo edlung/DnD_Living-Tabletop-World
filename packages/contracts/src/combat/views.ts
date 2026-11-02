@@ -1,7 +1,7 @@
 import type { EntityKind, KernelCommandOf } from '../kernel/commands.ts';
 import type { Ability, Condition } from '../rules/character-sheet.ts';
 import type { Battlefield, Side } from './commands.ts';
-import type { ReactionResponse, SpellComponent } from './reactions.ts';
+import type { ReactionId, ReactionResponse, SpellComponent } from './reactions.ts';
 
 /** A condition's end and source in a fight (docs/adr/0045-conditions-and-actions.md §2). */
 export interface ConditionNoteView {
@@ -43,6 +43,15 @@ export interface EncounterCombatantView {
    * viewer knows them; absent when none or not known to the viewer.
    */
   readonly commandedBy?: { readonly entityId: string; readonly name: string | null };
+  /**
+   * The attack it readied and its trigger (docs/adr/0045-conditions-and-actions.md §5), until its
+   * next turn: the DM's, and its own player's.
+   */
+  readonly readied?: {
+    readonly target: { readonly entityId: string; readonly name: string | null };
+    readonly attackId: string;
+    readonly trigger: string;
+  };
   /** DM only. */
   readonly initiative?: {
     readonly roll: number;
@@ -59,30 +68,58 @@ export interface EncounterCombatantView {
  * their own answer, and their choices; the caster's player sees that the
  * spell awaits reactions. Other players get no window at all.
  */
+/** What a viewer may answer in a window: one of its reactions, or let it go. */
+export type ReactionChoice = ReactionId | 'ignore';
+
+/** An attack an answer may make (docs/adr/0046-reactions-beyond-counterspell.md §2). */
+export interface ReactionAttackOption {
+  readonly attackId: string;
+  /** A stat block attack's name; null for a character's weapon or Unarmed Strike (named by the client). */
+  readonly name: string | null;
+}
+
+export interface ReactionCandidateView {
+  readonly entityId: string;
+  readonly response: ReactionResponse;
+  /** What it may still answer: the DM sees each pending candidate's, a player their own. */
+  readonly choices?: readonly ReactionChoice[];
+  /** The melee attacks an opportunity attack may make. */
+  readonly attacks?: readonly ReactionAttackOption[];
+}
+
+/** Who a window is about, as the viewer knows them. */
+interface WindowActor {
+  readonly entityId: string;
+  readonly kind: EntityKind;
+  readonly name: string | null;
+}
+
 export interface ReactionWindowView {
   readonly windowId: string;
-  readonly trigger: {
-    readonly kind: 'spell';
-    readonly caster: {
-      readonly entityId: string;
-      readonly kind: EntityKind;
-      readonly name: string | null;
-    };
-    readonly components: readonly SpellComponent[];
-    /** The DM and the caster's own player only. */
-    readonly spellId?: string;
-    /** DM only. */
-    readonly targetId?: string | null;
-    /** DM only. */
-    readonly point?: { readonly x: number; readonly y: number } | null;
-  };
+  readonly trigger:
+    | {
+        readonly kind: 'spell';
+        readonly caster: WindowActor;
+        readonly components: readonly SpellComponent[];
+        /** The DM and the caster's own player only. */
+        readonly spellId?: string;
+        /** DM only. */
+        readonly targetId?: string | null;
+        /** DM only. */
+        readonly point?: { readonly x: number; readonly y: number } | null;
+      }
+    | {
+        /** A creature leaving reach (ADR 0046 §2): it stands on the last square inside it. */
+        readonly kind: 'move';
+        readonly mover: WindowActor;
+        readonly at: { readonly x: number; readonly y: number };
+      };
   /** The DM: every candidate. A player: only their own character, if it is one. */
-  readonly candidates: readonly {
-    readonly entityId: string;
-    readonly response: ReactionResponse;
-  }[];
+  readonly candidates: readonly ReactionCandidateView[];
   /** What the viewing player's character may still answer; empty once it answered. */
-  readonly choices: readonly ('counterspell' | 'ignore')[];
+  readonly choices: readonly ReactionChoice[];
+  /** The viewing player's melee attacks for an opportunity attack. */
+  readonly attacks?: readonly ReactionAttackOption[];
 }
 
 export interface EncounterView {

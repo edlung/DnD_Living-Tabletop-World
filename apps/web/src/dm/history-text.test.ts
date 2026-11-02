@@ -148,9 +148,7 @@ describe('the DM history in words', () => {
     expect(
       said({ type: 'UseReaction', combatantId: id, windowId: 'w', reaction: 'counterspell' }),
     ).toBe('Cast Counterspell as a reaction');
-    expect(said({ type: 'DeclineReaction', combatantId: id, windowId: 'w' })).toBe(
-      'Let the spell happen',
-    );
+    expect(said({ type: 'DeclineReaction', combatantId: id, windowId: 'w' })).toBe('Let it happen');
     expect(said({ type: 'EnterLocation', characterId: id, locationId: 'north-gate' })).toBe(
       'Went to North Gate',
     );

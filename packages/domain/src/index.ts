@@ -157,9 +157,11 @@ export {
 } from './combat/records.ts';
 export {
   REACTION_WINDOW_ID_INDEX,
+  candidateReactions,
   consideredCombatants,
   openReactionWindow,
   pendingCandidates,
+  triggerActor,
   type ReactionTrigger,
   type ReactionWindowRecord,
 } from './combat/reactions.ts';

@@ -191,6 +191,14 @@ export const takeActionCommandSchema = z
   })
   .strict();
 
+/**
+ * The readied attack (docs/adr/0046-reactions-beyond-counterspell.md §5): its holder takes its
+ * Reaction to make the attack it readied, when its player (or the DM) judges the trigger has come.
+ */
+export const makeReadiedAttackCommandSchema = z
+  .object({ type: z.literal('MakeReadiedAttack'), combatantId: entityIdSchema })
+  .strict();
+
 export const endCombatCommandSchema = z
   .object({ type: z.literal('EndCombat'), encounterId: entityIdSchema })
   .strict();
@@ -339,6 +347,7 @@ export const PLAYER_COMBAT_COMMAND_TYPES = [
   'Attack',
   'CastSpell',
   'TakeAction',
+  'MakeReadiedAttack',
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
@@ -350,6 +359,7 @@ export const COMBAT_COMMAND_TYPES = [
   'Attack',
   'CastSpell',
   'TakeAction',
+  'MakeReadiedAttack',
   'EndTurn',
   'EndCombat',
   'UseReaction',

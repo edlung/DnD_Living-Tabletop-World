@@ -141,6 +141,11 @@ Positions are the only location of a combatant while an encounter runs, and elig
   - Now a caster outside the fight cannot target combatants (ADR 0015 retest 2 amendment), and nothing else such a character may do writes a combatant's facts. The pause never answers it, and its results are the same whether or not a window is open.
   - By the same decision, "Outsiders cannot probe" (implementation notes) now reads: a window, never; a fight, only that a creature the character perceives is in it.
 
+- 2026-11-02 (Stage 640c, ADR 0046): the window gains triggers beside a spell — a creature leaving
+  reach (opportunity attacks), an attack roll (Heroic Inspiration's reroll, Shield, Uncanny Dodge)
+  and damage taken (Hellish Rebuke); each candidate carries the reactions it may use, and creatures
+  may be candidates, answered by the DM. §6's deferral of opportunity attacks ends there.
+
 ## Consequences
 
 - The mandatory Ravenford case runs end to end: the Shaman's Ashen Bolt or Binding Hex opens a window, and Elowen counters it or ignores it.

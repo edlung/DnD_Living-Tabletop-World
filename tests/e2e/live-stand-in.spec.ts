@@ -234,7 +234,7 @@ test('the DM’s skip waits for an open reaction window, and the DM answers it f
   await expect(historyEntry(dm, 'Acting as Elowen Starwhisper: Ended the turn')).toContainText(
     'The player is absent',
   );
-  await expect(historyEntry(dm, 'Acting as Seren Ashgrove: Let the spell happen')).toContainText(
+  await expect(historyEntry(dm, 'Acting as Seren Ashgrove: Let it happen')).toContainText(
     'The player is absent',
   );
   await player.close();

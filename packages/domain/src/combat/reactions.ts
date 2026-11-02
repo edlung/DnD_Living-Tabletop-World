@@ -30,9 +30,17 @@ export function openReactionWindow(state: WorldState): ReactionWindowRecord | nu
 export const pendingCandidates = (window: ReactionWindowRecord): string[] =>
   window.candidates.filter((c) => c.response === 'pending').map((c) => c.entityId);
 
-/** Everyone whose state the window's eligibility read: the caster, candidates, and the rest. */
+/** Who set the window off: the caster of a spell, or the creature leaving reach (ADR 0046). */
+export const triggerActor = (trigger: ReactionTrigger): string =>
+  trigger.kind === 'spell' ? trigger.casterId : trigger.moverId;
+
+/** The reactions a candidate may use: a window from before ADR 0046 lists none (Counterspell). */
+export const candidateReactions = (candidate: ReactionWindowRecord['candidates'][number]) =>
+  candidate.reactions ?? (['counterspell'] as const);
+
+/** Everyone whose state the window's eligibility read: the trigger's actor, candidates, the rest. */
 export const consideredCombatants = (window: ReactionWindowRecord): string[] => [
-  window.trigger.casterId,
+  triggerActor(window.trigger),
   ...window.candidates.map((c) => c.entityId),
   ...window.ineligible.map((c) => c.entityId),
 ];

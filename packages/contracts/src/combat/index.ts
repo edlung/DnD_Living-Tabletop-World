@@ -16,6 +16,7 @@ export {
   dmReasonSchema,
   setExhaustionCommandSchema,
   takeActionCommandSchema,
+  makeReadiedAttackCommandSchema,
   squareSchema,
   type Battlefield,
   type CombatAction,
@@ -59,6 +60,9 @@ export type {
   EncounterSuggestionResponse,
   EncounterView,
   MonsterTurnSuggestion,
+  ReactionAttackOption,
+  ReactionCandidateView,
+  ReactionChoice,
   ReactionWindowView,
 } from './views.ts';
 export {

@@ -118,6 +118,7 @@ export const PLAYER_COMMAND_TYPES = [
   'Attack',
   'CastSpell',
   'TakeAction',
+  'MakeReadiedAttack',
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
@@ -179,8 +180,20 @@ export type PlayerOutcome =
       readonly reaction: ReactionId;
       /** True when the reaction stopped the spell. */
       readonly countered: boolean;
+      /** An opportunity attack's roll and damage (docs/adr/0046-reactions-beyond-counterspell.md). */
+      readonly attack?: {
+        readonly attackTotal: number;
+        readonly hit: boolean;
+        readonly critical: boolean;
+        readonly damage: number | null;
+      };
     }
-  | { readonly kind: 'DeclineReaction'; readonly windowId: string }
+  | {
+      readonly kind: 'DeclineReaction';
+      readonly windowId: string;
+      /** What the window was about: a spell, or a creature leaving reach (ADR 0046). */
+      readonly trigger: 'spell' | 'move';
+    }
   | { readonly kind: 'Item'; readonly action: ItemAction; readonly itemId: string };
 
 /** What an accepted item command did (docs/adr/0039-item-possession.md). */

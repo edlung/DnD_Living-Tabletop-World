@@ -19,7 +19,7 @@ import { z } from 'zod';
 const slug = z.string().min(1).max(48);
 
 /** The suspended spell, with everything needed to resolve it later. */
-export const reactionTriggerSchema = z
+const spellTriggerSchema = z
   .object({
     kind: z.literal('spell'),
     casterId: entityIdSchema,
@@ -35,6 +35,24 @@ export const reactionTriggerSchema = z
   })
   .strict();
 
+/**
+ * A creature leaving reach (docs/adr/0046-reactions-beyond-counterspell.md §2): it stands on the
+ * last square inside the reach it is leaving, and the rest of its path waits for the window.
+ */
+const moveTriggerSchema = z
+  .object({
+    kind: z.literal('move'),
+    moverId: entityIdSchema,
+    at: squareSchema,
+    rest: z.array(squareSchema).min(1).max(40),
+  })
+  .strict();
+
+export const reactionTriggerSchema = z.discriminatedUnion('kind', [
+  spellTriggerSchema,
+  moveTriggerSchema,
+]);
+
 export const reactionWindowSchema = z
   .object({
     windowId: entityIdSchema,
@@ -42,9 +60,20 @@ export const reactionWindowSchema = z
     round: z.number().int().min(1),
     status: z.enum(REACTION_WINDOW_STATUSES),
     trigger: reactionTriggerSchema,
-    /** Eligible combatants in initiative order, with their answers. */
+    /**
+     * Eligible combatants in initiative order, with their answers and the reactions each may use
+     * here (ADR 0046 §1); a window from before lists none and means Counterspell.
+     */
     candidates: z
-      .array(z.object({ entityId: entityIdSchema, response: z.enum(REACTION_RESPONSES) }).strict())
+      .array(
+        z
+          .object({
+            entityId: entityIdSchema,
+            response: z.enum(REACTION_RESPONSES),
+            reactions: z.array(z.enum(REACTION_IDS)).min(1).optional(),
+          })
+          .strict(),
+      )
       .min(1)
       .max(MAX_COMBATANTS - 1),
     /** Every other combatant considered, with the Rules' reason it could not react. */
@@ -64,10 +93,20 @@ export const reactionEventPayloadSchemas = {
       windowId: entityIdSchema,
       reactorId: entityIdSchema,
       reaction: z.enum(REACTION_IDS),
-      slotLevel: z.number().int().min(1).max(9),
+      /** A spell's slot (Counterspell); absent for a reaction that spends none. */
+      slotLevel: z.number().int().min(1).max(9).optional(),
+      /** An opportunity attack's attack. */
+      attackId: slug.optional(),
     })
     .strict(),
-  ReactionDeclined: z.object({ windowId: entityIdSchema, reactorId: entityIdSchema }).strict(),
+  ReactionDeclined: z
+    .object({
+      windowId: entityIdSchema,
+      reactorId: entityIdSchema,
+      /** What the window was about (ADR 0046); absent on windows of before: a spell. */
+      trigger: z.enum(['spell', 'move']).optional(),
+    })
+    .strict(),
   ReactionWindowExpired: z
     .object({
       windowId: entityIdSchema,

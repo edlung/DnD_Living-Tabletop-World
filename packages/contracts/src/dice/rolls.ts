@@ -57,7 +57,12 @@ export interface RollGroup {
 
 /** What a roll was for, in tokens the client words (never free text, never a target's ID). */
 export type RollSubject =
-  | { readonly kind: 'attack'; readonly attack: string }
+  | {
+      readonly kind: 'attack';
+      readonly attack: string;
+      /** Made with the Reaction (docs/adr/0046-reactions-beyond-counterspell.md); absent: the Attack action. */
+      readonly by?: 'opportunity' | 'readied';
+    }
   | { readonly kind: 'spell'; readonly spellId: string }
   | { readonly kind: 'skill'; readonly skill: Skill }
   | { readonly kind: 'ability'; readonly ability: Ability }

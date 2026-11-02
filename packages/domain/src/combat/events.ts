@@ -153,6 +153,11 @@ export const combatEventPayloadSchemas = {
       cover: z.enum(['none', 'half', 'three-quarters']),
       critical: z.boolean(),
       hit: z.boolean(),
+      /**
+       * Made with the Reaction: an opportunity attack or the readied attack
+       * (docs/adr/0046-reactions-beyond-counterspell.md); absent: the Attack action.
+       */
+      by: z.enum(['opportunity', 'readied']).optional(),
     })
     .strict(),
   SpellCast: z

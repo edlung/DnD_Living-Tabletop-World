@@ -28,11 +28,19 @@ const message = (result: Awaited<ReturnType<RoadWorld['submit']>>) =>
   result.status === 'rejected' ? result.message : result.status;
 const turnOf = async (world: RoadWorld, entityId: string) =>
   (await world.encounter()).combatants.find((c) => c.entityId === entityId)?.turn;
-/** Squares east along row 8, past the Raiders: twelve of them are 60 ft. */
-const eastward = (count: number) => [
-  { x: 3, y: 7 },
-  ...Array.from({ length: count - 1 }, (_, i) => ({ x: 4 + i, y: 8 })),
-];
+/**
+ * Squares north and then east along the top row, clear of every Raider's reach (leaving one
+ * provokes an opportunity attack, ADR 0046) and of the ditch's difficult ground: twelve are 60 ft.
+ */
+const eastward = (count: number) =>
+  [
+    { x: 2, y: 5 },
+    { x: 2, y: 4 },
+    { x: 2, y: 3 },
+    { x: 2, y: 2 },
+    { x: 3, y: 1 },
+    ...Array.from({ length: 11 }, (_, i) => ({ x: 4 + i, y: 0 })),
+  ].slice(0, count);
 
 describe('the actions', () => {
   it('Dash adds the Speed once more, and an action is spent once a turn', async () => {

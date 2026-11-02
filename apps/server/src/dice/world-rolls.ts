@@ -165,7 +165,11 @@ function rollsOf(events: readonly RecordedEvent[], state: WorldState): WorldRoll
           entry(
             event,
             attackerId,
-            { kind: 'attack', attack: attackId },
+            {
+              kind: 'attack',
+              attack: attackId,
+              ...(event.payload.by === undefined ? {} : { by: event.payload.by }),
+            },
             groups,
             !party(attackerId),
           ),

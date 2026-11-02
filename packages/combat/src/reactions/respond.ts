@@ -1,5 +1,6 @@
 import {
   accept,
+  candidateReactions,
   combatantOf,
   pendingCandidates,
   reject,
@@ -12,18 +13,22 @@ import {
   type WorldState,
 } from '@ltw/domain';
 
+import { resolveAttack } from '../attack.ts';
 import { combatantEvent, withTurn } from '../battlefield.ts';
+import { attackPlan } from '../legality.ts';
 import { combatPremises, refused } from '../refusal.ts';
 import { spellSave } from '../saves.ts';
 import { vitalsEvent, vitalsOf } from '../vitals.ts';
 import { completeSuspended } from './complete.ts';
 import { counterspellPlan } from './eligibility.ts';
+import { opportunityPlan } from './opportunity.ts';
 
 /**
  * Answers to a reaction window and its close (docs/adr/0016-reaction-engine.md
- * §1). Each pending candidate answers once; when nobody is pending, the window
- * closes and the suspended cast resolves in the same command. A window that is
- * not open accepts nothing.
+ * §1). Each pending candidate answers once, with one of the reactions it may use
+ * there; when nobody is pending, the window closes and what it suspended — a
+ * cast, or a move out of reach (docs/adr/0046-reactions-beyond-counterspell.md
+ * §2) — goes on in the same command. A window that is not open accepts nothing.
  */
 type Use = Extract<CombatCommand, { type: 'UseReaction' }>;
 type Decline = Extract<CombatCommand, { type: 'DeclineReaction' }>;
@@ -89,6 +94,17 @@ export function decideUseReaction(context: DecisionContext, command: Use, dice: 
   const window = found.value;
   const encounter = state.encounter;
   if (!encounter) return reject('REACTION_WINDOW_CLOSED', 'This reaction window is not open');
+  const candidate = window.candidates.find((c) => c.entityId === command.combatantId);
+  if (
+    !candidate ||
+    !(candidateReactions(candidate) as readonly string[]).includes(command.reaction)
+  ) {
+    return refused({ legal: false, reason: 'NO_VALID_TRIGGER' });
+  }
+  if (command.reaction === 'opportunity-attack') {
+    return decideOpportunityAttack(context, command, window, dice);
+  }
+  if (window.trigger.kind !== 'spell') return refused({ legal: false, reason: 'NO_VALID_TRIGGER' });
   const { casterId, components } = window.trigger;
   const plan = counterspellPlan(
     state,
@@ -143,6 +159,57 @@ export function decideUseReaction(context: DecisionContext, command: Use, dice: 
   );
 }
 
+/**
+ * An opportunity attack (ADR 0046 §2): one melee attack against the creature leaving reach, as it
+ * stands on the last square inside it, paid with the Reaction and resolved at once.
+ */
+function decideOpportunityAttack(
+  context: DecisionContext,
+  command: Use,
+  window: ReactionWindowRecord,
+  dice: Dice,
+): Decision {
+  const { state } = context;
+  const encounter = state.encounter;
+  if (!encounter || window.trigger.kind !== 'move') {
+    return refused({ legal: false, reason: 'NO_VALID_TRIGGER' });
+  }
+  const { moverId } = window.trigger;
+  const reactorId = command.combatantId;
+  const allowed = opportunityPlan(state, encounter, reactorId, moverId);
+  if (!allowed.legal) return refused(allowed);
+  const attackId = command.attackId ?? allowed.attacks[0]?.attackId;
+  if (attackId === undefined || !allowed.attacks.some((a) => a.attackId === attackId)) {
+    return refused({ legal: false, reason: 'NO_WEAPON' });
+  }
+  const plan = attackPlan(state, encounter, reactorId, attackId, moverId, 'reaction');
+  if (!plan.legal) return refused(plan);
+  const { events, attacker } = resolveAttack(
+    state,
+    encounter,
+    dice,
+    plan,
+    { attackerId: reactorId, targetId: moverId, attackId, by: 'opportunity' },
+    plan.turn,
+  );
+  const answered: DraftEvent[] = [
+    combatPremises(state, reactorId),
+    {
+      type: 'ReactionUsed',
+      payload: {
+        windowId: window.windowId,
+        reactorId,
+        reaction: 'opportunity-attack',
+        attackId,
+      },
+    },
+    ...events,
+    combatantEvent(attacker),
+  ];
+  const ids = command.resolution?.ids ?? [];
+  return accept(...closeIfDone(context, command.type, window, [reactorId], answered, dice, ids));
+}
+
 export function decideDeclineReaction(
   context: DecisionContext,
   command: Decline,
@@ -155,7 +222,11 @@ export function decideDeclineReaction(
     combatPremises(state, command.combatantId),
     {
       type: 'ReactionDeclined',
-      payload: { windowId: found.value.windowId, reactorId: command.combatantId },
+      payload: {
+        windowId: found.value.windowId,
+        reactorId: command.combatantId,
+        trigger: found.value.trigger.kind,
+      },
     },
   ];
   const ids = command.resolution?.ids ?? [];

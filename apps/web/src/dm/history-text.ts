@@ -60,6 +60,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   Attack: 'attack',
   CastSpell: 'cast spell',
   TakeAction: 'take an action',
+  MakeReadiedAttack: 'make the readied attack',
   EndTurn: 'end turn',
   EndCombat: 'end combat',
   UseReaction: 'use reaction',
@@ -151,9 +152,13 @@ export function describePlayerAction(
             target: name(command.targetId),
           });
     case 'UseReaction':
-      return t('Cast Counterspell as a reaction');
+      return command.reaction === 'opportunity-attack'
+        ? t('Made an opportunity attack')
+        : t('Cast Counterspell as a reaction');
     case 'DeclineReaction':
-      return t('Let the spell happen');
+      return t('Let it happen');
+    case 'MakeReadiedAttack':
+      return t('Made the readied attack');
     case 'EnterLocation':
       return t('Went to {place}', { place: name(command.locationId) });
     case 'AskAbout':

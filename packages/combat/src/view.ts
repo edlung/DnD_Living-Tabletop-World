@@ -91,6 +91,16 @@ export function encounterView(
             },
           }
         : {}),
+      // The attack it readied: the DM's to see, and its own player's (ADR 0046 §5).
+      ...(combatant.turn.readied && (dm || combatant.entityId === holder)
+        ? {
+            readied: {
+              target: named(combatant.turn.readied.targetId),
+              attackId: combatant.turn.readied.attackId,
+              trigger: combatant.turn.readied.trigger,
+            },
+          }
+        : {}),
       ...(dm ? { initiative: { roll, modifier, total, ...(surprised ? { surprised } : {}) } } : {}),
     };
   });

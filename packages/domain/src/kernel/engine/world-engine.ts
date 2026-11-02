@@ -287,8 +287,9 @@ export class WorldEngine {
       return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
     }
     if (command.type === 'CloseReactionWindow') {
-      // Closing may resolve the suspended spell (ADR 0016): its records and dice.
-      return { ...command, resolution: this.#combatResolution(RESOLVED_ID_POOL) };
+      // Closing may resolve the suspended spell (ADR 0016) — its records and dice — or let a
+      // provoking move go on to the next reach it leaves, a window of its own (ADR 0046).
+      return { ...command, resolution: this.#combatResolution(MAX_RESOLVED_IDS) };
     }
     if (isPlayerCommand(command)) return { ...command, resolution: this.#draw(command) };
     return command;
@@ -415,11 +416,14 @@ const isPlayerCommand = (command: KernelCommand): command is KernelCommandOf<Pla
 /**
  * IDs a combat command may need: a cast may reveal records (Detect Magic,
  * ADR 0015 §3) and open a reaction window; an answer that closes a window
- * may resolve the suspended cast (ADR 0016).
+ * may resolve the suspended cast (ADR 0016); a move may open a window, and an
+ * answer may let a move go on to the next one (docs/adr/0046-reactions-beyond-counterspell.md §2).
  */
 function combatIds(type: string): number {
-  if (type === 'CastSpell') return MAX_RESOLVED_IDS;
-  return type === 'UseReaction' || type === 'DeclineReaction' ? RESOLVED_ID_POOL : 0;
+  if (type === 'CastSpell' || type === 'UseReaction' || type === 'DeclineReaction') {
+    return MAX_RESOLVED_IDS;
+  }
+  return type === 'MoveCombatant' ? MAX_RESOLVED_IDS : 0;
 }
 
 function accepted(

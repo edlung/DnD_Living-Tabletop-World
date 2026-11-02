@@ -297,3 +297,18 @@
 .commanded-turn .action-row {
   margin: 0;
 }
+/* Who answers, when a player answers for their character and a creature it commands */
+.reaction-who {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-weight: 700;
+}
+/* The readied attack waits calmly: no pulse, one wide button (ADR 0046 §5) */
+.readied-card {
+  border-color: color-mix(in srgb, var(--gold) 60%, transparent);
+  box-shadow: var(--shadow);
+  animation: none;
+}
+.readied-card .reaction-choices {
+  grid-template-columns: minmax(0, 1fr);
+}

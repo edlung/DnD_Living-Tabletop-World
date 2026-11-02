@@ -3,7 +3,7 @@ import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { currentCombatant } from './records.ts';
-import { openReactionWindow, type ReactionWindowRecord } from './reactions.ts';
+import { openReactionWindow, triggerActor, type ReactionWindowRecord } from './reactions.ts';
 
 /** Fold cases for reaction window events (docs/adr/0016-reaction-engine.md). */
 type EventOf<T extends RecordedEvent['type']> = Extract<RecordedEvent, { type: T }>;
@@ -23,15 +23,17 @@ export function applyReactionWindowOpened(
   if (window.status !== 'open' || window.closedBy !== null) {
     throw new CorruptHistoryError('a reaction window opens open');
   }
-  if (currentCombatant(encounter)?.entityId !== window.trigger.casterId) {
-    throw new CorruptHistoryError('a reaction trigger outside its caster’s turn');
+  // A spell is cast and a creature moves on its own turn (ADR 0016, ADR 0046 §2).
+  const actor = triggerActor(window.trigger);
+  if (currentCombatant(encounter)?.entityId !== actor) {
+    throw new CorruptHistoryError('a reaction trigger outside its actor’s turn');
   }
   const combatants = new Set(encounter.combatants.map((c) => c.entityId));
   const candidates = window.candidates.map((c) => c.entityId);
   if (
     window.candidates.some((c) => c.response !== 'pending') ||
     new Set(candidates).size !== candidates.length ||
-    candidates.includes(window.trigger.casterId) ||
+    candidates.includes(actor) ||
     !candidates.every((id) => combatants.has(id))
   ) {
     throw new CorruptHistoryError('invalid reaction candidates');

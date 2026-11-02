@@ -10,5 +10,8 @@
   "sessionTurn": "ui-session-turn",
   "sessionWindow": "ui-session-window",
   "board": "ui-combat-board",
-  "narrow": "ui-combat-narrow"
+  "narrow": "ui-combat-narrow",
+  "opportunity": "ui-combat-opportunity",
+  "readied": "ui-combat-readied",
+  "opportunityRu": "ui-combat-opportunity-ru"
 }

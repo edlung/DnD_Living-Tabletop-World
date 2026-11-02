@@ -10,6 +10,7 @@ import {
 
 import { isSliceSpell, type Refusal } from '../legality.ts';
 import { monsterSpellEvents } from '../monster-spells.ts';
+import { continueMove } from '../movement.ts';
 import { combatPremises } from '../refusal.ts';
 import {
   characterSpellPlan,
@@ -32,12 +33,10 @@ export type Replanned =
   | { readonly kind: 'character'; readonly plan: CharacterSpellPlan }
   | { readonly kind: 'creature'; readonly plan: MonsterSpellPlan };
 
+type SpellTrigger = Extract<ReactionWindowRecord['trigger'], { kind: 'spell' }>;
+
 /** The suspended cast, planned again on `state` as if its economy were not spent yet. */
-export function replanSuspended(
-  state: WorldState,
-  window: ReactionWindowRecord,
-): Replanned | Refusal {
-  const { trigger } = window;
+export function replanSuspended(state: WorldState, trigger: SpellTrigger): Replanned | Refusal {
   if (state.entities.get(trigger.casterId)?.kind === 'character') {
     if (!isSliceSpell(trigger.spellId)) return { legal: false, reason: 'NOT_KNOWN' };
     const plan = characterSpellPlan(
@@ -74,10 +73,13 @@ export function completeSuspended(
   ids: readonly string[],
 ): DraftEvent[] {
   const state = foldDrafts(context, commandType, prior);
-  const casterId = window.trigger.casterId;
-  const replanned = replanSuspended(state, window);
+  const { trigger } = window;
+  // A move out of reach goes on (docs/adr/0046-reactions-beyond-counterspell.md §2).
+  if (trigger.kind === 'move') return continueMove(context, state, trigger, ids);
+  const casterId = trigger.casterId;
+  const replanned = replanSuspended(state, trigger);
   if ('legal' in replanned) {
-    throw new Error(`suspended ${window.trigger.spellId} became illegal (${replanned.reason})`);
+    throw new Error(`suspended ${trigger.spellId} became illegal (${replanned.reason})`);
   }
   return replanned.kind === 'character'
     ? castEvents(state, casterId, replanned.plan, dice, ids)

@@ -3,7 +3,7 @@ import { commandSubmissionSchema, submissionsFromScript, type WorldEngine } from
 import ambush from '../../../../fixtures/ravenford/road-ambush.json' with { type: 'json' };
 import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import campaigns from '../../../../tests/e2e/fixtures/combat-campaigns.json' with { type: 'json' };
-import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
+import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
 
@@ -75,13 +75,45 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   // Started below, once Elowen lies prone.
   board: 'placed',
   narrow: 'started',
+  // Started below with Raider 1 beside Elowen (ADR 0046).
+  opportunity: 'placed',
+  readied: 'placed',
+  opportunityRu: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
   for (const [name, campaignId] of Object.entries(campaigns)) {
-    await seedCombatCampaign(engine, campaignId, STAGES[name as keyof typeof campaigns]);
+    // A name ending in Ru is a Russian campaign (ADR 0031).
+    const fixtures = name.endsWith('Ru') ? RAVENFORD_RU_FIXTURES_DIR : undefined;
+    await seedCombatCampaign(engine, campaignId, STAGES[name as keyof typeof campaigns], fixtures);
   }
   await seedProneStart(engine, campaigns.board);
+  await seedBesideStart(engine, campaigns.opportunity);
+  await seedBesideStart(engine, campaigns.readied);
+  await seedBesideStart(engine, campaigns.opportunityRu);
+}
+
+/**
+ * The opportunity attack journeys (`opportunity.spec.ts`): the ambush starts with Raider 1 one
+ * square east of Elowen, at (3,6), so either leaving the other's reach provokes (ADR 0046 §2).
+ */
+async function seedBesideStart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const start = {
+    ...ambush.startCombat,
+    combatants: ambush.startCombat.combatants.map((combatant) =>
+      combatant.entityId === 'creature-10fb59d4'
+        ? { ...combatant, position: { x: 3, y: 6 } }
+        : combatant,
+    ),
+  };
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.beside`,
+    commands: [start],
+  })) {
+    await accept(engine, submission);
+  }
 }
 
 /**

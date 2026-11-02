@@ -16,6 +16,7 @@ import {
   decideSetInitiative,
 } from './order.ts';
 import { decideMove } from './movement.ts';
+import { decideMakeReadiedAttack } from './readied.ts';
 import {
   decideCloseReactionWindow,
   decideDeclineReaction,
@@ -43,6 +44,8 @@ export function createCombatEngine(): CombatPort {
           return decideCastSpell(context, command, dice);
         case 'TakeAction':
           return decideTakeAction(context, command, dice);
+        case 'MakeReadiedAttack':
+          return decideMakeReadiedAttack(context, command, dice);
         case 'EndTurn':
           return decideEndTurn(context, command, dice);
         case 'EndCombat':

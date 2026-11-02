@@ -214,6 +214,7 @@ describe('goblin spells', () => {
     expect(ignored.status === 'accepted' && ignored.outcome).toEqual({
       kind: 'DeclineReaction',
       windowId,
+      trigger: 'spell',
     });
     expect((await world.state()).characterSheets.get(ELOWEN)?.hitPoints.current).toBe(72);
     const again = await world.dm({

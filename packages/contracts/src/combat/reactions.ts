@@ -4,10 +4,11 @@ import { entityIdSchema } from '../kernel/identifiers.ts';
 
 /**
  * Reaction commands (docs/adr/0016-reaction-engine.md). A reaction window
- * suspends a spell until every candidate answers or the DM closes it.
- * Schemas validate shape only; the Rules decide legality.
+ * suspends a spell — or a move out of reach (docs/adr/0046-reactions-beyond-counterspell.md) —
+ * until every candidate answers or the DM closes it. Schemas validate shape only; the Rules
+ * decide legality. The list of reactions only grows, so stored windows stay readable.
  */
-export const REACTION_IDS = ['counterspell'] as const;
+export const REACTION_IDS = ['counterspell', 'opportunity-attack'] as const;
 export type ReactionId = (typeof REACTION_IDS)[number];
 
 export const SPELL_COMPONENTS = ['V', 'S', 'M'] as const;
@@ -31,6 +32,8 @@ export const useReactionCommandSchema = z
       .object({ slotLevel: z.number().int().min(1).max(9) })
       .strict()
       .optional(),
+    /** An opportunity attack's melee attack; omitted = the first the creature has (ADR 0046 §2). */
+    attackId: z.string().min(1).max(48).optional(),
   })
   .strict();
 

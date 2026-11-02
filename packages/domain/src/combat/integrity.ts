@@ -1,5 +1,5 @@
 import type { WorldState } from '../kernel/state.ts';
-import { pendingCandidates } from './reactions.ts';
+import { pendingCandidates, triggerActor } from './reactions.ts';
 
 /**
  * Structural invariants of combat (ADR 0015) and reaction windows
@@ -58,13 +58,16 @@ export function combatViolations(state: WorldState): string[] {
       continue;
     }
     const current = encounter.combatants[encounter.currentIndex]?.entityId;
-    if (current !== window.trigger.casterId) report(`reaction window ${id} off its caster's turn`);
+    if (current !== triggerActor(window.trigger))
+      report(`reaction window ${id} off its actor's turn`);
     for (const candidate of window.candidates) {
       if (!encounter.combatants.some((c) => c.entityId === candidate.entityId)) {
         report(`reaction candidate ${candidate.entityId} is not a combatant`);
       }
-      if (state.entities.get(candidate.entityId)?.kind !== 'character') {
-        report(`reaction candidate ${candidate.entityId} is not a character`);
+      // Counterspell is a character's; an opportunity attack anyone's (ADR 0046 §2).
+      const kind = state.entities.get(candidate.entityId)?.kind;
+      if (window.trigger.kind === 'spell' ? kind !== 'character' : kind === undefined) {
+        report(`reaction candidate ${candidate.entityId} cannot react here`);
       }
     }
   }

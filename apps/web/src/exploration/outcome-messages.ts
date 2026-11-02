@@ -173,10 +173,20 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
     }
     case 'EndTurn':
       return t('Turn ended. Round {round}.', { round: outcome.round });
-    case 'UseReaction':
+    case 'UseReaction': {
+      const { attack } = outcome;
+      if (attack) {
+        return attack.hit
+          ? t('Opportunity attack: hit for {damage} damage (attack {total}).', {
+              damage: attack.damage ?? 0,
+              total: attack.attackTotal,
+            })
+          : t('Opportunity attack: miss (attack {total}).', { total: attack.attackTotal });
+      }
       return outcome.countered ? t('Counterspell stopped the spell.') : t('The reaction was used.');
+    }
     case 'DeclineReaction':
-      return t('You let the spell happen.');
+      return outcome.trigger === 'move' ? t('You let it go.') : t('You let the spell happen.');
     default:
       return t('Action resolved. Your view has been refreshed.');
   }

@@ -69,7 +69,9 @@ export function BoardLegend({
         <div className="legend-window">
           <p>
             <Glyph name="reaction" />
-            {t('Spell resolution is waiting for reactions.')}
+            {window.trigger.kind === 'spell'
+              ? t('Spell resolution is waiting for reactions.')
+              : t('The move is waiting for opportunity attacks.')}
           </p>
           {window.candidates.length > 0 && (
             <ul>

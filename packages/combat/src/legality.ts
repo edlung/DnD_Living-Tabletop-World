@@ -11,11 +11,14 @@ import {
   FIREBALL_RADIUS_FT,
   SPELLS,
   WEAPONS,
+  abilityModifier,
   attackCircumstances,
   beginAttackAction,
   exhaustionPenalty,
   moveRequiredFt,
+  proficiencyBonus,
   squareDistanceFt,
+  totalLevel,
   withinArea,
   type Illegal,
   type IllegalReason,
@@ -57,8 +60,27 @@ export type Refusal = {
 const refuse = (reason: CombatReason, resolution?: Illegal['resolution']): Refusal =>
   resolution ? { legal: false, reason, resolution } : { legal: false, reason };
 
+/** An attack's damage dice; an Unarmed Strike rolls none (`count` 0: 1 + Strength). */
+export interface AttackDamage {
+  readonly count: number;
+  readonly sides: Damage['sides'];
+  readonly bonus: number;
+  readonly type: string;
+}
+
+/** A character's Unarmed Strike (SRD 5.2.1): every character has one, with proficiency. */
+export const UNARMED_STRIKE = 'unarmed-strike';
+
+/**
+ * How an attack is paid: the Attack action on the attacker's turn, or its Reaction — an
+ * opportunity attack or the readied attack (docs/adr/0046-reactions-beyond-counterspell.md).
+ */
+export type AttackEconomy = 'action' | 'reaction';
+
 export interface AttackPlan {
   readonly legal: true;
+  /** Whether the attack is melee: an opportunity attack must be (ADR 0046 §2). */
+  readonly melee: boolean;
   readonly attacker: CombatantRecord;
   readonly target: CombatantRecord;
   readonly attackerVitals: Vitals;
@@ -73,7 +95,7 @@ export interface AttackPlan {
   readonly advantage: boolean;
   readonly disadvantage: boolean;
   readonly criticalOnHit: boolean;
-  readonly damage: Damage;
+  readonly damage: AttackDamage;
   readonly advantageDamage: Damage | null;
   readonly slow: boolean;
   readonly huntersMark: boolean;
@@ -89,6 +111,7 @@ export function attackPlan(
   attackerId: string,
   attackId: string,
   targetId: string,
+  economy: AttackEconomy = 'action',
 ): AttackPlan | Refusal {
   const attacker = combatantOf(encounter, attackerId);
   const target = combatantOf(encounter, targetId);
@@ -105,8 +128,13 @@ export function attackPlan(
   if (charmedBy(attacker, attackerVitals, targetId)) return refuse('CHARMED_BY_TARGET');
 
   let turn = turnStateOf(encounter, attacker);
-  if (!turn.ownTurn) return refuse('NOT_YOUR_TURN');
-  if (turn.attacksRemaining === 0) {
+  if (economy === 'reaction') {
+    // Off its own turn, paid with the Reaction (ADR 0046 §2, §5).
+    if (!turn.reactionAvailable) return refuse('NO_REACTION');
+    turn = { ...turn, reactionAvailable: false };
+  } else if (!turn.ownTurn) {
+    return refuse('NOT_YOUR_TURN');
+  } else if (turn.attacksRemaining === 0) {
     if (attackerVitals.kind === 'character') {
       const begun = beginAttackAction(attackerVitals.sheet, turn);
       if ('legal' in begun) return refuse(begun.reason);
@@ -150,6 +178,7 @@ export function attackPlan(
     attackerVitals.sheet.concentration.targetId === targetId;
   return {
     legal: true,
+    melee: weapon.melee,
     attacker,
     target,
     attackerVitals,
@@ -177,12 +206,25 @@ interface WeaponView {
   readonly normalRangeFt: number;
   readonly longRangeFt: number;
   readonly bonus: number;
-  readonly damage: Damage;
+  readonly damage: AttackDamage;
   readonly advantageDamage: Damage | null;
   readonly slow: boolean;
 }
 
 function weaponOf(state: WorldState, v: Vitals, attackId: string): WeaponView | null {
+  if (v.kind === 'character' && attackId === UNARMED_STRIKE) {
+    const strength = abilityModifier(v.sheet.abilities.str);
+    return {
+      melee: true,
+      reachFt: 5,
+      normalRangeFt: 0,
+      longRangeFt: 0,
+      bonus: strength + proficiencyBonus(totalLevel(v.sheet)),
+      damage: { count: 0, sides: 4, bonus: 1 + strength, type: 'bludgeoning' },
+      advantageDamage: null,
+      slow: false,
+    };
+  }
   if (v.kind === 'character') {
     // The sheet's weapons, and the weapon items the character wields (Stage 520).
     const weapon = [...v.sheet.weapons, ...wieldedWeapons(state, v.entityId)].find(

@@ -16,6 +16,7 @@ import { Medallion } from '../visual/medallion.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
 import { suggestionArt } from './combat-art.ts';
 import type { CombatUiCommand } from './combat-bindings.ts';
+import { DmReactionWindow, DmReadiedList } from './dm-reaction-window.tsx';
 import type { StandIn } from './stand-in.ts';
 import { PreparedEncounters } from './prepared-encounters.tsx';
 import { StandInControls } from './stand-in-controls.tsx';
@@ -255,24 +256,7 @@ function RunningControls({
   return (
     <div className="encounter-tools">
       {window && (
-        <div className="tool-card tool-card--reaction">
-          <p>
-            <Glyph name="reaction" />
-            {t('Spell resolution is waiting for reactions.')}
-          </p>
-          <button
-            disabled={locked}
-            onClick={() => {
-              onRun({
-                kind: 'command',
-                command: { type: 'CloseReactionWindow', windowId: window.windowId },
-              });
-            }}
-          >
-            <Glyph name="close" />
-            {t('Close reaction window')}
-          </button>
-        </div>
+        <DmReactionWindow encounter={encounter} window={window} locked={locked} onRun={onRun} />
       )}
       {suggestion && !window && (
         <div className="tool-card monster-suggestion">
@@ -297,6 +281,7 @@ function RunningControls({
           </div>
         </div>
       )}
+      {!window && <DmReadiedList encounter={encounter} locked={locked} onRun={onRun} />}
       {!window && (
         <TurnOrderControls
           api={api}

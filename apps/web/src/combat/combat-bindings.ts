@@ -11,6 +11,7 @@ export type CombatUiCommand = KernelCommandOf<
   | 'EndCombat'
   | 'CloseReactionWindow'
   | 'TakeAction'
+  | 'MakeReadiedAttack'
 >;
 
 /**
@@ -79,7 +80,8 @@ export function combatCommandFor(
         targetId: target.entityId,
       };
     case 'counterspell':
-      return encounter.reactionWindow?.trigger.caster.entityId === target.entityId
+      return encounter.reactionWindow?.trigger.kind === 'spell' &&
+        encounter.reactionWindow.trigger.caster.entityId === target.entityId
         ? {
             type: 'UseReaction',
             combatantId: actorId,
@@ -111,4 +113,19 @@ export function combatCommandFor(
 /** "Ignore": the character lets the spell happen. */
 export function ignoreReaction(actorId: string, windowId: string): CombatUiCommand {
   return { type: 'DeclineReaction', combatantId: actorId, windowId };
+}
+
+/** An opportunity attack with one of the reactor's melee attacks (ADR 0046 §2). */
+export function opportunityAttack(
+  reactorId: string,
+  windowId: string,
+  attackId: string,
+): CombatUiCommand {
+  return {
+    type: 'UseReaction',
+    combatantId: reactorId,
+    windowId,
+    reaction: 'opportunity-attack',
+    attackId,
+  };
 }

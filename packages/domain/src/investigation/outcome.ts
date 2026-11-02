@@ -96,27 +96,19 @@ function combatOutcome(
         ? { kind: 'MoveCombatant', position: { ...moved.payload.combatant.position } }
         : undefined;
     }
-    case 'Attack': {
-      const attack = events.find((event) => event.type === 'AttackPerformed');
-      if (attack?.type !== 'AttackPerformed') return undefined;
-      const damage = events.find(
-        (event) =>
-          event.type === 'DamageApplied' && event.payload.targetId === attack.payload.targetId,
-      );
-      return {
-        kind: 'Attack',
-        d20: [...attack.payload.rolls],
-        attackTotal: attack.payload.total,
-        hit: attack.payload.hit,
-        critical: attack.payload.critical,
-        damage: damage?.type === 'DamageApplied' ? damage.payload.amount : null,
-      };
+    // The readied attack is an attack, made with the Reaction (ADR 0046 §5).
+    case 'Attack':
+    case 'MakeReadiedAttack': {
+      const attack = attackOf(events);
+      return attack ? { kind: 'Attack', ...attack } : undefined;
     }
     case 'CastSpell': {
       const opened = events.find((event) => event.type === 'ReactionWindowOpened');
-      if (opened?.type === 'ReactionWindowOpened') {
+      const trigger =
+        opened?.type === 'ReactionWindowOpened' ? opened.payload.window.trigger : null;
+      if (trigger?.kind === 'spell') {
         // Suspended in a reaction window (ADR 0016): nothing happened yet.
-        const { spellId } = opened.payload.window.trigger;
+        const { spellId } = trigger;
         return { kind: 'CastSpell', spellId, results: [], discovered: [], awaitingReaction: true };
       }
       const cast = events.find((event) => event.type === 'SpellCast');
@@ -176,15 +168,52 @@ function combatOutcome(
       const countered = events.some(
         (event) => event.type === 'ReactionWindowResolved' && event.payload.outcome === 'countered',
       );
-      return { kind: 'UseReaction', windowId, reaction, countered };
+      // An opportunity attack says how it went, as an attack does (ADR 0046 §2).
+      const attack = reaction === 'opportunity-attack' ? attackOf(events) : null;
+      return {
+        kind: 'UseReaction',
+        windowId,
+        reaction,
+        countered,
+        ...(attack
+          ? {
+              attack: {
+                attackTotal: attack.attackTotal,
+                hit: attack.hit,
+                critical: attack.critical,
+                damage: attack.damage,
+              },
+            }
+          : {}),
+      };
     }
     case 'DeclineReaction': {
       const declined = events.find((event) => event.type === 'ReactionDeclined');
       return declined?.type === 'ReactionDeclined'
-        ? { kind: 'DeclineReaction', windowId: declined.payload.windowId }
+        ? {
+            kind: 'DeclineReaction',
+            windowId: declined.payload.windowId,
+            trigger: declined.payload.trigger ?? 'spell',
+          }
         : undefined;
     }
     default:
       return undefined;
   }
+}
+
+/** The first attack among a command's events: its roll and the damage it did to its target. */
+function attackOf(events: readonly KernelEvent[]) {
+  const attack = events.find((event) => event.type === 'AttackPerformed');
+  if (attack?.type !== 'AttackPerformed') return null;
+  const damage = events.find(
+    (event) => event.type === 'DamageApplied' && event.payload.targetId === attack.payload.targetId,
+  );
+  return {
+    d20: [...attack.payload.rolls],
+    attackTotal: attack.payload.total,
+    hit: attack.payload.hit,
+    critical: attack.payload.critical,
+    damage: damage?.type === 'DamageApplied' ? damage.payload.amount : null,
+  };
 }
