@@ -49,6 +49,11 @@ export interface EncounterCombatantView {
    * A creature's actions with a save, for the DM alone (docs/adr/0053-monsters-as-data.md §2):
    * whether each is ready, aimed at a square (a breath) or a creature, its Recharge and uses.
    */
+  /** Its legendary actions' attacks and the uses left this round, for the DM (ADR 0053 §4). */
+  readonly legendary?: {
+    readonly usesLeft: number;
+    readonly attacks: readonly { readonly attackId: string; readonly name: string }[];
+  };
   readonly creatureActions?: readonly {
     readonly actionId: string;
     readonly name: string;
@@ -208,6 +213,16 @@ export interface EncounterView {
   readonly combatants: readonly EncounterCombatantView[];
   /** The open reaction window, as this perspective may see it; null when none (or not visible). */
   readonly reactionWindow: ReactionWindowView | null;
+  /**
+   * The fight's difficulty for the party, the DM's alone (docs/adr/0053-monsters-as-data.md §3):
+   * the foes' XP against the party's budgets; `unknown`: foes whose stat block names no XP.
+   */
+  readonly difficulty?: {
+    readonly xp: number;
+    readonly unknown: number;
+    readonly budget: { readonly low: number; readonly moderate: number; readonly high: number };
+    readonly rating: 'low' | 'moderate' | 'high' | 'beyond';
+  };
 }
 
 export interface EncounterResponse {

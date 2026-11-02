@@ -278,6 +278,7 @@ export function dataSpellEvents(
         ? { until: { turnOf: casterId, at: 'start' as const, turns: Math.min(100, rounds) } }
         : {}),
       ...(save.repeatSave ? { save: { ability: save.ability, dc } } : {}),
+      spell: true,
     };
     const base = records.get(entityId) ?? combatantOf(encounter, entityId) ?? record;
     const after = withDetail(base, name, details);

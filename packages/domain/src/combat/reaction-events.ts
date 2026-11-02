@@ -75,7 +75,7 @@ const attackTriggerSchema = z
     attackerId: entityIdSchema,
     targetId: entityIdSchema,
     attackId: slug,
-    by: z.enum(['opportunity', 'readied', 'offhand', 'cleave']).optional(),
+    by: z.enum(['opportunity', 'readied', 'offhand', 'cleave', 'legendary']).optional(),
     phase: z.enum(['missed', 'hit']),
     spec: z
       .object({

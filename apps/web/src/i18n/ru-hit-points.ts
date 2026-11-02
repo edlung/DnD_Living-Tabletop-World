@@ -51,6 +51,12 @@ registerRussian({
   '{name} joins the fight.': '{name} вступает в бой.',
   '{name} was added to the campaign.': '{name}: добавлено в кампанию.',
   'It could not be added. Try again.': 'Не удалось добавить. Попробуйте ещё раз.',
+  'Someone already stands there. Choose another square.':
+    'Там уже кто-то стоит. Выберите другую клетку.',
+  'It does not fit there: its space would cross the edge of the battlefield or a wall.':
+    'Здесь не поместится: его место заходит за край поля боя или в стену.',
+  'The fight holds as many combatants as it can.':
+    'В бою уже столько участников, сколько он вмещает.',
   // A creature's actions with a save (docs/adr/0053-monsters-as-data.md §2).
   '{name}: actions with a save': '{name}: действия со спасброском',
   'Aimed at': 'Цель',
@@ -62,6 +68,24 @@ registerRussian({
   'use a creature’s action': 'применить действие существа',
   'not recharged': 'ещё не перезарядилось',
   'no uses left': 'использований не осталось',
+  // Legendary actions and the fight's difficulty (docs/adr/0053-monsters-as-data.md §3–4).
+  'Legendary actions': 'Легендарные действия',
+  '{name}: {count} left this round': '{name}: в этом раунде осталось {count}',
+  '{attack} (legendary)': '{attack} (легендарное)',
+  'Legendary: {weapon}': 'Легендарное: {weapon}',
+  Low: 'Низкая',
+  Moderate: 'Средняя',
+  High: 'Высокая',
+  'Beyond High': 'Выше высокой',
+  'Difficulty: {rating}. Foes {xp} XP; the party’s budget: Low {low}, Moderate {moderate}, High {high}.':
+    'Сложность: {rating}. Противники — {xp} опыта; бюджет отряда: низкая {low}, средняя {moderate}, высокая {high}.',
+  '{count} without XP in their stat block.': 'Без опыта в блоке характеристик: {count}.',
+  'Its stat block': 'Его блок характеристик',
+  'Reading its stat block…': 'Читаю блок характеристик…',
+  Traits: 'Особенности',
+  Actions: 'Действия',
+  'Bonus actions': 'Бонусные действия',
+  Reactions: 'Реакции',
   What: 'Что',
   'Made of': 'Из чего',
   Size: 'Размер',

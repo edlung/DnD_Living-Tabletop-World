@@ -172,6 +172,32 @@ export const statBlockSchema = z
     attacks: z.array(monsterAttackSchema).max(8),
     /** Its actions with a save (docs/adr/0053-monsters-as-data.md §2); absent: none. */
     saveActions: z.array(monsterSaveActionSchema).max(6).optional(),
+    /** Its challenge rating and XP (ADR 0053 §3): the encounter's difficulty counts them. */
+    challenge: z
+      .object({
+        rating: z.string().regex(/^(0|1\/8|1\/4|1\/2|[1-9]|[12]\d|30)$/),
+        xp: z.number().int().min(0).max(200_000),
+      })
+      .strict()
+      .optional(),
+    /** The traits the engine plays (§4): Pack Tactics, Magic Resistance, Legendary Resistance. */
+    traits: z
+      .object({
+        packTactics: z.literal(true).optional(),
+        magicResistance: z.literal(true).optional(),
+        /** Uses a day, the DM's to spend. */
+        legendaryResistance: z.number().int().min(1).max(9).optional(),
+      })
+      .strict()
+      .optional(),
+    /** Legendary actions (§4): uses a round, and the attacks they make. */
+    legendary: z
+      .object({
+        uses: z.number().int().min(1).max(5),
+        attacks: z.array(slug).min(1).max(4),
+      })
+      .strict()
+      .optional(),
     spells: z.array(monsterSpellSchema).max(8),
     conditions: z.array(z.enum(CONDITIONS)),
     /** The conditions it is immune to (docs/adr/0053-monsters-as-data.md §1); absent: none. */

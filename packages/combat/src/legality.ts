@@ -77,7 +77,8 @@ const refuse = (reason: CombatReason, resolution?: Illegal['resolution']): Refus
  * How an attack is paid: the Attack action on the attacker's turn, or its Reaction — an
  * opportunity attack or the readied attack (docs/adr/0046-reactions-beyond-counterspell.md).
  */
-export type AttackEconomy = 'action' | 'reaction';
+/** `legendary`: a legendary action's attack, off its own turn (docs/adr/0053 §4). */
+export type AttackEconomy = 'action' | 'reaction' | 'legendary';
 
 /** What an attack asks before its roll (docs/adr/0047-weapons.md §2, §4). */
 export interface AttackOptions {
@@ -266,6 +267,10 @@ export function attackPlan(
     if (extra !== null) return refuse('NO_EXTRA_ATTACK');
     if (!turn.reactionAvailable) return refuse('NO_REACTION');
     turn = { ...turn, reactionAvailable: false };
+  } else if (economy === 'legendary') {
+    // Off its own turn, paid with a legendary use (docs/adr/0053-monsters-as-data.md §4).
+    if (extra !== null) return refuse('NO_EXTRA_ATTACK');
+    if (turn.ownTurn) return refuse('NOT_YOUR_TURN');
   } else if (!turn.ownTurn) {
     return refuse('NOT_YOUR_TURN');
   } else if (extra === null && turn.attacksRemaining === 0) {
@@ -320,6 +325,22 @@ export function attackPlan(
       c.side === attacker.side &&
       isAlive(state, c.entityId),
   );
+  // Pack Tactics (docs/adr/0053-monsters-as-data.md §4): an ally of the attacker within 5 ft of
+  // the target that is not Incapacitated gives the attack Advantage.
+  const pack =
+    attackerVitals.kind === 'creature' &&
+    attackerVitals.block.traits?.packTactics === true &&
+    encounter.combatants.some((c) => {
+      if (c.entityId === attackerId || c.entityId === targetId || c.side !== attacker.side)
+        return false;
+      const ally = vitalsOf(state, c.entityId);
+      return (
+        isAlive(state, c.entityId) &&
+        ally !== null &&
+        !incapacitated(ally) &&
+        gapBetween(state, c, target) <= 5
+      );
+    });
   const vexed = attacker.vexing?.targetId === targetId;
   const sapped = attacker.sappedBy !== undefined;
   // Who sees whom (docs/adr/0050-the-world-around.md §2–3): Blindsight or Truesight within range
@@ -350,7 +371,7 @@ export function attackPlan(
     distanceFt,
     longRange,
     targetDodging: isDodging(target, targetVitals),
-    helped: helper !== undefined,
+    helped: helper !== undefined || pack,
     foeClose: !weapon.melee && foeClose(state, encounter, attacker),
     tooHeavy: weapon.tooHeavy,
     vexing: vexed,

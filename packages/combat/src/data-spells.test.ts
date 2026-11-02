@@ -156,6 +156,7 @@ describe('spells with a slot', () => {
       sourceId: ELOWEN,
       until: { turnOf: ELOWEN, at: 'start', turns: 10 },
       save: { ability: 'wis' },
+      spell: true,
     });
     expect(state.characterSheets.get(ELOWEN)?.concentration).toEqual({ spellId: 'hold-person' });
     await verifyHistory(world);

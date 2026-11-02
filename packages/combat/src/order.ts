@@ -11,9 +11,7 @@ import {
   type DraftEvent,
   type EncounterState,
 } from '@ltw/domain';
-import { squaresOf } from '@ltw/rules';
-
-import { encounterOf, fitsOnField, isAlive, occupant } from './battlefield.ts';
+import { JOIN_REFUSALS, encounterOf, isAlive, joinRefusal } from './battlefield.ts';
 import { FightWork, leftTheFight } from './condition-details.ts';
 import { isObject, isObjectIn } from './objects.ts';
 import { nextTurn } from './turns.ts';
@@ -91,11 +89,9 @@ export function decideAddCombatant(
     return invalid('The fight holds as many combatants as it can');
   const vitals = vitalsOf(state, command.entityId);
   if (!vitals) return reject('NO_STAT_BLOCK', 'Every combatant needs a sheet or a stat block');
-  // Its whole space on the field, clear of walls and of others (docs/adr/0049-space-and-movement.md §1).
   const space = { position: command.position, size: sizeOf(vitals) };
-  if (!fitsOnField(encounter, space)) return invalid('A combatant stands outside the battlefield');
-  if (squaresOf(space).some((square) => occupant(state, encounter, square, command.entityId)))
-    return invalid('Two combatants cannot share a square');
+  const refused = joinRefusal(state, encounter, space, command.entityId);
+  if (refused !== null) return invalid(JOIN_REFUSALS[refused]);
   // An object rolls no initiative: it joins with `AddObject` (docs/adr/0048-hit-points.md §5).
   if (isObject(vitals)) return invalid('An object joins the fight as an object');
   const rolled = command.initiative === undefined ? rollInitiative(dice, vitals) : null;

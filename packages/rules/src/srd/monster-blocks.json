@@ -70,6 +70,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "10",
+        "xp": 5900
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "tentacle"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -167,6 +180,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "14",
+        "xp": 11500
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -264,6 +290,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "16",
+        "xp": 15000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -361,6 +400,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "13",
+        "xp": 10000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -458,6 +510,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "15",
+        "xp": 13000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -555,6 +620,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "14",
+        "xp": 11500
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -652,6 +730,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "17",
+        "xp": 18000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -752,6 +843,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "15",
+        "xp": 13000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -849,6 +953,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "17",
+        "xp": 18000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -945,6 +1062,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "16",
+        "xp": 15000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1043,6 +1173,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "13",
+        "xp": 10000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1120,6 +1263,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -1183,6 +1330,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -1280,6 +1431,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "21",
+        "xp": 33000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1377,6 +1541,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "23",
+        "xp": 50000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1474,6 +1651,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "20",
+        "xp": 25000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1571,6 +1761,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "22",
+        "xp": 41000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1668,6 +1871,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "21",
+        "xp": 33000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1765,6 +1981,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "24",
+        "xp": 62000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1865,6 +2094,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "22",
+        "xp": 41000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -1962,6 +2204,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "24",
+        "xp": 62000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -2058,6 +2313,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "23",
+        "xp": 50000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -2156,6 +2424,19 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "20",
+        "xp": 25000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "rend"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -2222,6 +2503,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -2291,6 +2576,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -2356,6 +2645,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -2448,6 +2741,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -2499,6 +2796,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -2566,6 +2867,10 @@
           "longRangeFt": 50
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -2620,6 +2925,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -2687,6 +2996,13 @@
           "longRangeFt": 150
         }
       ],
+      "challenge": {
+        "rating": "12",
+        "xp": 8400
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -2770,6 +3086,10 @@
           "longRangeFt": 320
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
       "spells": [],
       "conditions": []
     },
@@ -2827,6 +3147,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -2884,6 +3208,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -2934,6 +3262,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -2999,6 +3331,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -3052,6 +3388,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -3111,6 +3454,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -3209,6 +3556,14 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "19",
+        "xp": 22000
+      },
+      "traits": {
+        "magicResistance": true,
+        "legendaryResistance": 3
+      },
       "spells": [],
       "conditions": []
     },
@@ -3274,6 +3629,10 @@
           "longRangeFt": 320
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -3339,6 +3698,10 @@
           "longRangeFt": 90
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -3433,6 +3796,13 @@
           "longRangeFt": 150
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -3496,6 +3866,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -3552,6 +3926,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -3629,6 +4007,13 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -3724,6 +4109,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "11",
+        "xp": 7200
+      },
       "spells": [],
       "conditions": []
     },
@@ -3775,6 +4164,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -3832,6 +4225,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -3928,6 +4325,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -3999,6 +4400,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -4052,6 +4457,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -4105,6 +4514,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -4201,6 +4617,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -4252,6 +4672,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -4339,6 +4763,13 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "9",
+        "xp": 5000
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -4428,6 +4859,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -4517,6 +4952,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -4587,6 +5026,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -4668,6 +5111,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -4749,6 +5196,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -4807,6 +5258,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -4860,6 +5315,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -4916,6 +5375,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -4980,6 +5443,10 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -5047,6 +5514,13 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -5156,6 +5630,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -5221,6 +5699,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -5299,6 +5781,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "9",
+        "xp": 5000
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -5368,6 +5857,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
       "spells": [],
       "conditions": []
     },
@@ -5445,6 +5938,10 @@
           "longRangeFt": 240
         }
       ],
+      "challenge": {
+        "rating": "9",
+        "xp": 5000
+      },
       "spells": [],
       "conditions": []
     },
@@ -5502,6 +5999,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -5552,6 +6053,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -5608,6 +6113,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -5696,6 +6205,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -5762,6 +6275,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -5818,6 +6335,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -5871,6 +6392,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -5929,6 +6454,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -5987,6 +6516,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -6043,6 +6576,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -6096,6 +6633,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -6149,6 +6690,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -6217,6 +6762,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "10",
+        "xp": 5900
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -6270,6 +6822,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -6353,6 +6912,13 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "11",
+        "xp": 7200
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -6407,6 +6973,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -6457,6 +7027,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -6564,6 +7138,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "17",
+        "xp": 18000
+      },
       "spells": [],
       "conditions": []
     },
@@ -6630,6 +7208,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -6700,6 +7282,10 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -6773,6 +7359,10 @@
           "longRangeFt": 90
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -6841,6 +7431,13 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -6907,6 +7504,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -6960,6 +7561,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -7043,6 +7648,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -7126,6 +7735,13 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "11",
+        "xp": 7200
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -7199,6 +7815,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -7253,6 +7873,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -7327,6 +7951,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "12",
+        "xp": 8400
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -7404,6 +8035,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -7471,6 +8106,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -7543,6 +8182,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -7626,6 +8269,10 @@
           "longRangeFt": 240
         }
       ],
+      "challenge": {
+        "rating": "9",
+        "xp": 5000
+      },
       "spells": [],
       "conditions": []
     },
@@ -7699,6 +8346,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -7764,6 +8418,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -7820,6 +8478,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -7903,6 +8565,10 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
       "spells": [],
       "conditions": []
     },
@@ -7967,6 +8633,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -8030,6 +8700,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -8114,6 +8788,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -8196,6 +8874,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -8277,6 +8959,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -8331,6 +9017,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "7",
+        "xp": 2900
+      },
       "spells": [],
       "conditions": []
     },
@@ -8390,6 +9080,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -8446,6 +9140,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -8496,6 +9194,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -8552,6 +9254,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -8608,6 +9314,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -8664,6 +9374,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -8730,6 +9444,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -8796,6 +9514,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -8861,6 +9583,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -8920,6 +9646,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -8976,6 +9706,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -9032,6 +9766,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -9085,6 +9823,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -9141,6 +9883,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -9197,6 +9943,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -9257,6 +10007,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -9313,6 +10067,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -9387,6 +10148,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -9441,6 +10206,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -9497,6 +10266,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -9561,6 +10334,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -9625,6 +10402,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -9689,6 +10470,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -9748,6 +10533,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -9809,6 +10601,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -9865,6 +10661,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -9930,6 +10730,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -9986,6 +10790,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -10050,6 +10858,13 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "9",
+        "xp": 5000
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -10114,6 +10929,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -10181,6 +11000,10 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -10238,6 +11061,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -10305,6 +11132,10 @@
           "longRangeFt": 320
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -10373,6 +11204,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -10440,6 +11275,10 @@
           "longRangeFt": 320
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -10529,6 +11368,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -10605,6 +11448,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -10667,6 +11514,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -10766,6 +11617,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -10831,6 +11686,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -10900,6 +11759,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -10957,6 +11820,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -11021,6 +11888,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -11085,6 +11956,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -11162,6 +12037,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -11237,6 +12116,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "10",
+        "xp": 5900
+      },
       "spells": [],
       "conditions": []
     },
@@ -11291,6 +12174,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -11344,6 +12231,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -11397,6 +12288,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -11488,6 +12383,13 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -11561,6 +12463,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -11625,6 +12534,10 @@
           "longRangeFt": 240
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -11679,6 +12592,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -11732,6 +12649,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -11815,6 +12736,10 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -11891,6 +12816,13 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -11955,6 +12887,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -12043,6 +12979,13 @@
           "longRangeFt": 150
         }
       ],
+      "challenge": {
+        "rating": "11",
+        "xp": 7200
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -12100,6 +13043,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -12156,6 +13103,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
       "spells": [],
       "conditions": []
     },
@@ -12209,6 +13160,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -12321,6 +13279,13 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "14",
+        "xp": 11500
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -12423,6 +13388,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -12498,6 +13467,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -12560,6 +13536,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -12634,6 +13614,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -12748,6 +13732,13 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "16",
+        "xp": 15000
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -12803,6 +13794,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -12859,6 +13854,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -12939,6 +13938,10 @@
           "longRangeFt": 400
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -13007,6 +14010,13 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -13095,6 +14105,13 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "23",
+        "xp": 50000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
       "spells": [],
       "conditions": []
     },
@@ -13157,6 +14174,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -13222,6 +14243,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -13316,6 +14341,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "21",
+        "xp": 33000
+      },
+      "traits": {
+        "legendaryResistance": 4
+      },
       "spells": [],
       "conditions": []
     },
@@ -13370,6 +14402,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -13426,6 +14465,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -13490,6 +14533,10 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -13591,6 +14638,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -13648,6 +14699,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -13720,6 +14775,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -13791,6 +14850,10 @@
           "longRangeFt": 200
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -13867,6 +14930,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "16",
+        "xp": 15000
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -13920,6 +14990,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -14008,6 +15082,10 @@
           "longRangeFt": 150
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -14093,6 +15171,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -14189,6 +15271,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -14271,6 +15357,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -14346,6 +15436,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -14422,6 +15516,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -14473,6 +15571,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -14547,6 +15649,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -14635,6 +15741,14 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "15",
+        "xp": 13000
+      },
+      "traits": {
+        "magicResistance": true,
+        "legendaryResistance": 3
+      },
       "spells": [],
       "conditions": []
     },
@@ -14712,6 +15826,13 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "13",
+        "xp": 10000
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -14769,6 +15890,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -14834,6 +15962,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -14884,6 +16016,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -14955,6 +16091,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -15011,6 +16151,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -15091,6 +16235,10 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -15151,6 +16299,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -15233,6 +16385,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "7",
+        "xp": 2900
+      },
       "spells": [],
       "conditions": []
     },
@@ -15300,6 +16456,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -15357,6 +16517,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -15413,6 +16577,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -15469,6 +16637,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -15530,6 +16702,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -15594,6 +16770,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -15650,6 +16830,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -15714,6 +16898,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -15778,6 +16966,10 @@
           "longRangeFt": 90
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -15879,6 +17071,14 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "20",
+        "xp": 25000
+      },
+      "traits": {
+        "magicResistance": true,
+        "legendaryResistance": 4
+      },
       "spells": [],
       "conditions": []
     },
@@ -15949,6 +17149,13 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "16",
+        "xp": 15000
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -16002,6 +17209,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -16061,6 +17272,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -16111,6 +17326,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -16183,6 +17402,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -16256,6 +17479,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -16314,6 +17541,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -16367,6 +17601,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -16445,6 +17683,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "15",
+        "xp": 13000
+      },
       "spells": [],
       "conditions": []
     },
@@ -16510,6 +17752,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -16571,6 +17820,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "13",
+        "xp": 10000
+      },
       "spells": [],
       "conditions": []
     },
@@ -16627,6 +17880,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -16680,6 +17937,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -16776,6 +18037,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -16833,6 +18098,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -16902,6 +18174,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "11",
+        "xp": 7200
+      },
       "spells": [],
       "conditions": []
     },
@@ -16952,6 +18228,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -17002,6 +18282,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -17068,6 +18352,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "11",
+        "xp": 7200
+      },
       "spells": [],
       "conditions": []
     },
@@ -17125,6 +18413,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -17178,6 +18470,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -17231,6 +18527,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -17291,6 +18591,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -17383,6 +18687,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -17433,6 +18741,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -17494,6 +18809,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -17558,6 +18877,10 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -17615,6 +18938,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -17654,6 +18981,10 @@
       "initiativeBonus": 1,
       "attacksPerAction": 1,
       "attacks": [],
+      "challenge": {
+        "rating": "0",
+        "xp": 0
+      },
       "spells": [],
       "conditions": []
     },
@@ -17729,6 +19060,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -17803,6 +19138,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -17875,6 +19214,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "7",
+        "xp": 2900
+      },
       "spells": [],
       "conditions": []
     },
@@ -17914,6 +19257,10 @@
       "initiativeBonus": -5,
       "attacksPerAction": 1,
       "attacks": [],
+      "challenge": {
+        "rating": "0",
+        "xp": 0
+      },
       "spells": [],
       "conditions": []
     },
@@ -17999,6 +19346,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -18076,6 +19427,10 @@
           "longRangeFt": 320
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -18173,6 +19528,14 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "21",
+        "xp": 33000
+      },
+      "traits": {
+        "magicResistance": true,
+        "legendaryResistance": 4
+      },
       "spells": [],
       "conditions": []
     },
@@ -18254,6 +19617,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -18321,6 +19688,19 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "11",
+        "xp": 7200
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "claw"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -18388,6 +19768,19 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "17",
+        "xp": 18000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "claw"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -18457,6 +19850,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -18521,6 +19921,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -18603,6 +20007,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
       "spells": [],
       "conditions": []
     },
@@ -18671,6 +20079,10 @@
           "longRangeFt": 160
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -18755,6 +20167,10 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -18827,6 +20243,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -18883,6 +20303,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -18950,6 +20374,10 @@
           "longRangeFt": 240
         }
       ],
+      "challenge": {
+        "rating": "7",
+        "xp": 2900
+      },
       "spells": [],
       "conditions": []
     },
@@ -19037,6 +20465,13 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "10",
+        "xp": 5900
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -19126,6 +20561,10 @@
           "longRangeFt": 500
         }
       ],
+      "challenge": {
+        "rating": "13",
+        "xp": 10000
+      },
       "spells": [],
       "conditions": []
     },
@@ -19211,6 +20650,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -19273,6 +20716,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -19350,6 +20797,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -19411,6 +20862,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -19472,6 +20927,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -19533,6 +20992,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -19591,6 +21054,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -19652,6 +21119,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -19751,6 +21222,14 @@
           "reachFt": 30
         }
       ],
+      "challenge": {
+        "rating": "30",
+        "xp": 155000
+      },
+      "traits": {
+        "magicResistance": true,
+        "legendaryResistance": 6
+      },
       "spells": [],
       "conditions": []
     },
@@ -19806,6 +21285,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1",
+        "xp": 200
+      },
       "spells": [],
       "conditions": []
     },
@@ -19870,6 +21353,13 @@
           "longRangeFt": 400
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -19935,6 +21425,13 @@
           "longRangeFt": 400
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -20007,6 +21504,10 @@
           "longRangeFt": 180
         }
       ],
+      "challenge": {
+        "rating": "9",
+        "xp": 5000
+      },
       "spells": [],
       "conditions": []
     },
@@ -20058,6 +21559,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -20111,6 +21616,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -20164,6 +21673,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -20227,6 +21740,10 @@
           "reachFt": 15
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
       "spells": [],
       "conditions": []
     },
@@ -20302,6 +21819,20 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
+      "traits": {
+        "magicResistance": true,
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "radiant-horn"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -20370,6 +21901,19 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "13",
+        "xp": 10000
+      },
+      "traits": {
+        "legendaryResistance": 3
+      },
+      "legendary": {
+        "uses": 3,
+        "attacks": [
+          "grave-strike"
+        ]
+      },
       "spells": [],
       "conditions": []
     },
@@ -20459,6 +22003,10 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -20515,6 +22063,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -20579,6 +22131,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
       "spells": [],
       "conditions": []
     },
@@ -20632,6 +22188,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },
@@ -20707,6 +22267,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
+      "traits": {
+        "magicResistance": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -20760,6 +22327,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -20810,6 +22384,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -20872,6 +22450,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -20936,6 +22518,13 @@
           "longRangeFt": 60
         }
       ],
+      "challenge": {
+        "rating": "1/8",
+        "xp": 25
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -21000,6 +22589,10 @@
           "longRangeFt": 400
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -21073,6 +22666,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -21129,6 +22726,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "0",
+        "xp": 10
+      },
       "spells": [],
       "conditions": []
     },
@@ -21225,6 +22826,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -21317,6 +22922,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -21402,6 +23011,10 @@
           "longRangeFt": 120
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -21484,6 +23097,10 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "4",
+        "xp": 1100
+      },
       "spells": [],
       "conditions": []
     },
@@ -21566,6 +23183,13 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -21665,6 +23289,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -21758,6 +23386,10 @@
           "longRangeFt": 600
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
       "spells": [],
       "conditions": []
     },
@@ -21838,6 +23470,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "2",
+        "xp": 450
+      },
       "spells": [],
       "conditions": []
     },
@@ -21918,6 +23554,13 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "3",
+        "xp": 700
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -21972,6 +23615,13 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
+      "traits": {
+        "packTactics": true
+      },
       "spells": [],
       "conditions": []
     },
@@ -22025,6 +23675,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/2",
+        "xp": 100
+      },
       "spells": [],
       "conditions": []
     },
@@ -22104,6 +23758,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -22181,6 +23839,10 @@
           "reachFt": 10
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -22260,6 +23922,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "5",
+        "xp": 1800
+      },
       "spells": [],
       "conditions": []
     },
@@ -22357,6 +24023,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "7",
+        "xp": 2900
+      },
       "spells": [],
       "conditions": []
     },
@@ -22454,6 +24124,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "9",
+        "xp": 5000
+      },
       "spells": [],
       "conditions": []
     },
@@ -22543,6 +24217,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -22632,6 +24310,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
       "spells": [],
       "conditions": []
     },
@@ -22721,6 +24403,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "7",
+        "xp": 2900
+      },
       "spells": [],
       "conditions": []
     },
@@ -22810,6 +24496,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "10",
+        "xp": 5900
+      },
       "spells": [],
       "conditions": []
     },
@@ -22910,6 +24600,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "8",
+        "xp": 3900
+      },
       "spells": [],
       "conditions": []
     },
@@ -23007,6 +24701,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "10",
+        "xp": 5900
+      },
       "spells": [],
       "conditions": []
     },
@@ -23095,6 +24793,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "9",
+        "xp": 5000
+      },
       "spells": [],
       "conditions": []
     },
@@ -23193,6 +24895,10 @@
           "perDay": null
         }
       ],
+      "challenge": {
+        "rating": "6",
+        "xp": 2300
+      },
       "spells": [],
       "conditions": []
     },
@@ -23253,6 +24959,10 @@
           "reachFt": 5
         }
       ],
+      "challenge": {
+        "rating": "1/4",
+        "xp": 50
+      },
       "spells": [],
       "conditions": []
     },

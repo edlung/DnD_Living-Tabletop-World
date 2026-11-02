@@ -44,7 +44,13 @@ export function spellSave(
       : d20Test(dice, {
           modifier,
           target: dc,
-          advantage: effects.advantage || (dodging && ability === 'dex'),
+          // Magic Resistance (docs/adr/0053-monsters-as-data.md §4): Advantage against spells.
+          advantage:
+            effects.advantage ||
+            (dodging && ability === 'dex') ||
+            ((purpose === 'spell' || purpose === 'counterspell') &&
+              target.kind === 'creature' &&
+              target.block.traits?.magicResistance === true),
           disadvantage: effects.disadvantage || (squeezed && ability === 'dex') || hampered,
         });
   return {

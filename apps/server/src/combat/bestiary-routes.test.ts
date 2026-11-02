@@ -90,5 +90,22 @@ describe('the bestiary', () => {
     ).json<EncounterResponse>().encounter;
     const wolves = encounter?.combatants.filter((one) => one.entity.entityId === joined.entityId);
     expect(wolves).toHaveLength(1);
+
+    // A square already taken: refused before anything is written, the creature not made.
+    const entities = (await engine.load('ravenford'))?.state.entities.size;
+    const taken = await post(
+      app,
+      `${LIST}/wolf/add`,
+      { requestId: randomUUID(), square: { x: 0, y: 0 }, side: 'hostile' },
+      TOKENS.dm,
+    );
+    expect(taken.statusCode).toBe(422);
+    expect(taken.json()).toMatchObject({
+      status: 'rejected',
+      code: 'INVALID_ENCOUNTER',
+      message: 'Two combatants cannot share a square',
+      details: { square: 'taken' },
+    });
+    expect((await engine.load('ravenford'))?.state.entities.size).toBe(entities);
   });
 });

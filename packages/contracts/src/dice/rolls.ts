@@ -64,7 +64,7 @@ export type RollSubject =
        * Made with the Reaction (docs/adr/0046-reactions-beyond-counterspell.md), or an extra attack
        * (docs/adr/0047-weapons.md: the other hand's, Cleave's); absent: the Attack action.
        */
-      readonly by?: 'opportunity' | 'readied' | 'offhand' | 'cleave';
+      readonly by?: 'opportunity' | 'readied' | 'offhand' | 'cleave' | 'legendary';
     }
   | { readonly kind: 'spell'; readonly spellId: string }
   | { readonly kind: 'skill'; readonly skill: Skill }

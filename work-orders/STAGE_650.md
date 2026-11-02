@@ -34,6 +34,10 @@ chat (2026-11-02); it stays outside the repository.
   stat blocks for summons, companions and Wild Shape forms. ADR 0053; in parts: the conversion
   (attacks with their added damage, condition immunities) and the DM's bestiary; save actions
   with an area, Recharge and per-day uses; traits, reactions, legendary actions and difficulty.
+  Done: summons, companions and Wild Shape forms use the bestiary's stat blocks; the four that a
+  spell's level scales (Animated Object, Otherworldly Steed, Giant Insect, Draconic Spirit) come
+  with the classes in Stage 660; Legendary Resistance's uses, Parry-like reactions and legendary
+  actions that do more than attack stay the DM's (ADR 0053 §4).
 - 650d — Equipment and magic items: the SRD's equipment (weapons, armor, tools, gear, prices) and
   magic items (rarity, attunement, charges, unidentified, cursed) in a campaign's item catalog beside
   Ravenford's originals; the ADR 0039 test then forbids SRD names only in Ravenford's originals.

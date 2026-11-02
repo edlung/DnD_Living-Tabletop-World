@@ -33,7 +33,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   640 is complete. Stage 650, the SRD data (ADR 0051, `work-orders/STAGE_650.md`), in progress:
   650a, the import and the text catalogs (339 spells, 330 stat blocks) and the About page, done;
   650b, spells as data (ADR 0052: the mechanics layer, any SRD spell cast through the World
-  Engine, the tray's spells with their slot), done.
+  Engine, the tray's spells with their slot), done; 650c, monsters as data (ADR 0053: the stat
+  blocks as the engine's, the DM's bestiary, breaths with Recharge, Pack Tactics, Magic
+  Resistance, legendary attacks, the fight's difficulty), done.
 
 ## Current request — AI campaigns, 2026-10-30
 

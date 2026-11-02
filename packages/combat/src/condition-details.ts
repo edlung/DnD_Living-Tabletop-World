@@ -161,13 +161,14 @@ export function savesAtEndOfTurn(work: FightWork, dice: Dice, entityId: string):
     if (!detail.save) continue;
     const vitals = work.vitalsOf(entityId);
     if (!vitals || !has(vitals, detail.condition)) continue;
+    // A spell's condition is a save against the spell (Magic Resistance, ADR 0053 §4).
     const save = spellSave(
       dice,
       vitals,
       detail.save.ability,
       detail.save.dc,
       'none',
-      'condition',
+      detail.spell === true ? 'spell' : 'condition',
       false,
       work.combatant(entityId)?.squeezed === true,
     );

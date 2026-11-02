@@ -68,6 +68,13 @@ export interface MonsterMechanics {
     readonly attacksPerAction: number;
     readonly attacks: readonly Attack[];
     readonly saveActions?: readonly SaveAction[];
+    readonly challenge: { readonly rating: string; readonly xp: number };
+    readonly traits?: {
+      readonly packTactics?: true;
+      readonly magicResistance?: true;
+      readonly legendaryResistance?: number;
+    };
+    readonly legendary?: { readonly uses: number; readonly attacks: readonly string[] };
     readonly spells: readonly never[];
     readonly conditions: readonly never[];
   };
@@ -259,6 +266,40 @@ export function saveActionOf(entry: SrdEntry): SaveAction | null {
   };
 }
 
+/** The traits the engine plays (docs/adr/0053-monsters-as-data.md §4), by their SRD names. */
+function traitsOf(monster: SrdMonsterText): MonsterMechanics['statBlock']['traits'] {
+  const names = monster.traits.map((entry) => entry.name);
+  const legendary = names
+    .map((name) => /^Legendary Resistance \((\d)\/Day/.exec(name))
+    .find((match) => match !== null);
+  const traits = {
+    ...(names.includes('Pack Tactics') ? { packTactics: true as const } : {}),
+    ...(names.includes('Magic Resistance') ? { magicResistance: true as const } : {}),
+    ...(legendary ? { legendaryResistance: Number(legendary[1]) } : {}),
+  };
+  return Object.keys(traits).length > 0 ? traits : undefined;
+}
+
+/**
+ * Its legendary actions the engine plays (§4): how many a round ("3 (4 in Lair)" is 3), and the
+ * attacks they make ("The dragon moves up to half its Speed, and it makes one Rend attack").
+ */
+function legendaryOf(
+  monster: SrdMonsterText,
+  attacks: readonly Attack[],
+): MonsterMechanics['statBlock']['legendary'] {
+  if (!monster.legendary) return undefined;
+  const uses = /^(\d+)/.exec(monster.legendary.uses);
+  const made = monster.legendary.entries.flatMap((entry) => {
+    const named = /makes one ([A-Z][\w’' ]*?) attack/.exec(entry.text)?.[1];
+    const attack = attacks.find((one) => one.name === named);
+    return attack ? [attack.attackId] : [];
+  });
+  return uses && made.length > 0
+    ? { uses: Number(uses[1]), attacks: [...new Set(made)] }
+    : undefined;
+}
+
 /** "makes two Rend attacks", "one Bite attack and two Claw attacks" → how many in all. */
 export function multiattackOf(text: string | undefined): number {
   if (!text) return 1;
@@ -287,10 +328,12 @@ export function deriveMonsterMechanics(monster: SrdMonsterText): MonsterMechanic
     Object.entries(monster.abilities).map(([key, line]) => [key, line.save]),
   );
   const multiattack = monster.actions.find((entry) => entry.name.startsWith('Multiattack'));
+  const traits = traitsOf(monster);
   const saves = [...monster.actions, ...monster.bonusActions]
     .map(saveActionOf)
     .filter((one): one is SaveAction => one !== null)
     .slice(0, 6);
+  const legendary = legendaryOf(monster, unique);
   return {
     monsterId: monster.monsterId,
     statBlock: {
@@ -310,6 +353,9 @@ export function deriveMonsterMechanics(monster: SrdMonsterText): MonsterMechanic
       attacksPerAction: unique.length > 0 ? multiattackOf(multiattack?.text) : 1,
       attacks: unique,
       ...(saves.length > 0 ? { saveActions: saves } : {}),
+      challenge: { rating: monster.challenge.rating, xp: monster.challenge.xp },
+      ...(traits ? { traits } : {}),
+      ...(legendary ? { legendary } : {}),
       spells: [],
       conditions: [],
     },

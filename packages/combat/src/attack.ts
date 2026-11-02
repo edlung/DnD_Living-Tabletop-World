@@ -14,6 +14,7 @@ import {
 import type { TurnState } from '@ltw/rules';
 
 import { combatantEvent, encounterOf, onTurn, withTurn } from './battlefield.ts';
+import { decideLegendaryAttack } from './legendary.ts';
 import { revealed, withDetail } from './condition-details.ts';
 import { attackPlan, type AttackPlan } from './legality.ts';
 import { afterRoll, rollAgainst, specOf } from './reactions/attack-windows.ts';
@@ -37,7 +38,7 @@ export interface MadeAttack {
   readonly attackerId: string;
   readonly targetId: string;
   readonly attackId: string;
-  readonly by?: 'opportunity' | 'readied' | 'offhand' | 'cleave';
+  readonly by?: 'opportunity' | 'readied' | 'offhand' | 'cleave' | 'legendary';
 }
 
 /** The attacker's record after the attack: its turn, the weapons' marks, Vex and Sap used. */
@@ -167,6 +168,8 @@ export function decideAttack(
 ): Decision {
   // An Unarmed Strike's grapple or shove rolls no attack (docs/adr/0047-weapons.md §3).
   if (command.unarmed !== undefined) return decideUnarmed(context, command, dice);
+  // A legendary action's attack, off the creature's own turn (docs/adr/0053 §4).
+  if (command.legendary === true) return decideLegendaryAttack(context, command, dice);
   const { state } = context;
   const encounter = encounterOf(state);
   if (!encounter.ok) return encounter;

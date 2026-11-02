@@ -25,18 +25,27 @@
    (a d6 at the start of the creature's turn, recorded) and **per-day uses** limit them.
 3. **The DM's catalog**: the DM finds a stat block by name, type or challenge rating and adds it
    to the campaign — a new creature with that stat block — and to a running fight on a chosen
-   square. Before a fight starts, its **difficulty** for the party: the SRD 5.2.1's XP budget per
-   character level (Low, Moderate, High) against the XP of its creatures.
-4. **Traits and reactions as data where regular**: Pack Tactics (Advantage with an ally within 5
-   ft of the target), Magic Resistance (Advantage on saves against spells), Legendary Resistance
-   (a failed save made a success, per day), Parry (+AC against one melee hit, a reaction), and
-   **legendary actions** (uses per round, an action after another creature's turn); the rest of a
-   block's traits and actions are shown to the DM as the SRD gives them.
+   square, its whole SRD text at hand. In a running fight, its **difficulty** for the party: the
+   SRD 5.2.1's XP budget per character level (Low, Moderate, High) against the XP of its foes.
+   A square the creature cannot take is refused before anything is written. Summons, companions
+   and Wild Shape forms take their stat blocks from it (a familiar's Owl, Animate Dead's Skeleton,
+   a Polymorph's beast), a player commanding them as any creature (Stage 630e); the four stat
+   blocks written in a spell's text that grow with its level (Animated Object, Otherworldly Steed,
+   Giant Insect, Draconic Spirit) are built from the spell as it is cast, with the classes (Stage
+   660).
+4. **Traits and legendary actions as data where regular**: Pack Tactics (Advantage with an ally
+   within 5 ft of the target that is not Incapacitated) and Magic Resistance (Advantage on saves
+   against spells) play in every attack and save; **legendary actions** that make an attack ("it
+   makes one Rend attack") are the DM's, after another creature's turn, so many a round, back at
+   the start of the creature's turn. Legendary Resistance's uses, reactions such as Parry and the
+   legendary actions that do more than attack stay the DM's: the bestiary shows the SRD's words,
+   and the DM's hand lifts what a resisted save brought.
 
 ## Consequences
 
-- The stat block gains `conditionImmunities`, an attack's `extraDamage`, and save actions with
-  their area, recharge and uses; old stat blocks read as before (every field optional).
+- The stat block gains `conditionImmunities`, an attack's `extraDamage`, save actions with their
+  area, recharge and uses, its `challenge`, `traits` and `legendary`; old stat blocks read as
+  before (every field optional).
 - The DM screen shows a creature's whole SRD text beside its engine stats; a player sees what the
   party knows of it, never its block.
 - Stage 650c runs in parts: the conversion, the catalog and adding creatures; save actions,

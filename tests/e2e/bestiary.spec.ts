@@ -20,6 +20,11 @@ test('the DM adds a wolf from the bestiary to the running fight', async ({ page 
   await expect(creature).toContainText('Wolf · CR 1/4');
   await creature.selectOption({ label: 'Wolf · CR 1/4' });
   await expect(form).toContainText('Medium Beast · AC 12 · 11 HP · 50 XP');
+  // Its whole SRD text, read when the DM opens it.
+  await form.getByText('Its stat block', { exact: true }).click();
+  await expect(form).toContainText('HP 11 (2d8 + 2) · 40 ft.');
+  await expect(form).toContainText('Pack Tactics. The wolf has Advantage on attack rolls');
+  await expect(form).toContainText('Bite.');
   await form.getByLabel('Square across', { exact: true }).fill('0');
   await form.getByLabel('Square down', { exact: true }).fill('0');
   await expectAccessible(page, 'the bestiary form');
@@ -27,4 +32,24 @@ test('the DM adds a wolf from the bestiary to the running fight', async ({ page 
   await expect(form.getByRole('status')).toHaveText('Wolf joins the fight.');
   await expect(square(page, 0, 0)).toHaveAccessibleName(/Wolf/);
   await expect(battlefield(page)).toBeVisible();
+  // Another on its square is refused, and nothing is added.
+  await form.getByRole('button', { name: 'Add to the fight' }).click();
+  await expect(form.getByRole('status')).toHaveText(
+    'Someone already stands there. Choose another square.',
+  );
+
+  // The fight's difficulty counts the wolf's XP; the road's raiders name none.
+  const difficulty = page.getByRole('note').filter({ hasText: 'Difficulty:' });
+  await expect(difficulty).toContainText('Foes 50 XP');
+  await expect(difficulty).toContainText('without XP in their stat block');
+
+  // A legendary creature: its legendary attacks wait for another's turn.
+  await form.getByLabel('Find by name or type', { exact: true }).fill('adult red');
+  await form.getByLabel('Square across', { exact: true }).fill('12');
+  await form.getByLabel('Square down', { exact: true }).fill('0');
+  await form.getByRole('button', { name: 'Add to the fight' }).click();
+  await expect(form.getByRole('status')).toHaveText('Adult Red Dragon joins the fight.');
+  const legendary = page.getByRole('region', { name: 'Legendary actions' });
+  await expect(legendary).toContainText('3 left this round');
+  await expect(legendary.getByRole('button', { name: 'Rend (legendary)' })).toBeVisible();
 });

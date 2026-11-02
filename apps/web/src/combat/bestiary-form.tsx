@@ -2,25 +2,43 @@ import {
   SIDES,
   type AddedFromBestiaryResponse,
   type BestiaryResponse,
+  type CommandRejected,
   type EncounterView,
   type Side,
 } from '@ltw/contracts';
-import { useT } from '@ltw/ui';
+import { useLanguage, useT, type Translate } from '@ltw/ui';
 import { useCallback, useId, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { rejectionMessage } from '../exploration/outcome-messages.ts';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { BestiaryEntry } from './bestiary-entry.tsx';
 import { SquareFields, useSquare } from './join-forms.tsx';
 
 /**
  * A creature from the SRD's bestiary into the running fight (docs/adr/0053-monsters-as-data.md
  * §3): the DM finds a stat block by name or type, names its side and square, and the server adds
  * a new creature with that stat block to the campaign and to the fight. At most forty matches show
- * at once; the words narrow them.
+ * at once; the words narrow them. A square it cannot take is refused before anything is added.
  */
 const SHOWN = 40;
+
+/** The server's reasons a creature cannot take its square (`details.square`), in the DM's words. */
+const SQUARE_REFUSALS: Readonly<Record<string, string>> = {
+  taken: 'Someone already stands there. Choose another square.',
+  outside: 'It does not fit there: its space would cross the edge of the battlefield or a wall.',
+  full: 'The fight holds as many combatants as it can.',
+};
+
+const refusalText = (t: Translate, refused: CommandRejected) => {
+  const square = refused.details?.['square'];
+  const words = typeof square === 'string' ? SQUARE_REFUSALS[square] : undefined;
+  return words === undefined
+    ? rejectionMessage(t, refused.code, refused.message, 'AddCombatant')
+    : t(words);
+};
 
 export function BestiaryForm({
   api,
@@ -32,6 +50,7 @@ export function BestiaryForm({
   readonly locked: boolean;
 }) {
   const t = useT();
+  const number = new Intl.NumberFormat(useLanguage());
   const ids = useId();
   const load = useCallback(
     (signal: AbortSignal) => api.get<BestiaryResponse>('bestiary', signal, false),
@@ -65,16 +84,18 @@ export function BestiaryForm({
     if (at.error || pick === '') return;
     setBusy(true);
     try {
-      const added = await api.post<AddedFromBestiaryResponse>(
+      const added = await api.post<AddedFromBestiaryResponse | CommandRejected>(
         `bestiary/${encodeURIComponent(pick)}/add`,
         { requestId: crypto.randomUUID(), square: at.square, side },
         AbortSignal.timeout(20_000),
       );
       const name = matches.find((entry) => entry.monsterId === pick)?.name ?? pick;
       setNote(
-        added.fighting
-          ? t('{name} joins the fight.', { name: t(name) })
-          : t('{name} was added to the campaign.', { name: t(name) }),
+        added.status === 'rejected'
+          ? refusalText(t, added)
+          : added.fighting
+            ? t('{name} joins the fight.', { name: t(name) })
+            : t('{name} was added to the campaign.', { name: t(name) }),
       );
     } catch {
       setNote(t('It could not be added. Try again.'));
@@ -119,6 +140,7 @@ export function BestiaryForm({
           </select>
         )}
       </Field>
+      {picked && <BestiaryEntry key={picked.monsterId} api={api} monsterId={picked.monsterId} />}
       {picked && (
         <p className="fine-print bestiary-stats">
           {t('{size} {type} · AC {ac} · {hp} HP · {xp} XP', {
@@ -126,7 +148,7 @@ export function BestiaryForm({
             type: t(picked.type),
             ac: picked.armorClass,
             hp: picked.hitPoints,
-            xp: picked.xp,
+            xp: number.format(picked.xp),
           })}
         </p>
       )}

@@ -13,6 +13,7 @@ export function subjectWords(t: Translate, subject: RollSubject): string {
       // The extra attacks (docs/adr/0047-weapons.md §2, §4).
       if (subject.by === 'offhand') return t('Other hand: {weapon}', { weapon });
       if (subject.by === 'cleave') return t('Cleave: {weapon}', { weapon });
+      if (subject.by === 'legendary') return t('Legendary: {weapon}', { weapon });
       return t('{weapon} attack', { weapon });
     }
     case 'spell':

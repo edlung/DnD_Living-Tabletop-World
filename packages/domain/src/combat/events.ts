@@ -148,6 +148,8 @@ export const combatantRecordSchema = z
      * (docs/adr/0053-monsters-as-data.md §2); absent: none.
      */
     spent: z.array(slug).min(1).max(6).optional(),
+    /** Its legendary actions spent this round (ADR 0053 §4); absent: none. */
+    legendaryUsed: z.number().int().min(1).max(5).optional(),
     /** Its per-day actions' uses in this fight (§2); absent: none. */
     used: z
       .array(z.object({ actionId: slug, count: z.number().int().min(1).max(9) }).strict())
@@ -238,7 +240,7 @@ export const combatEventPayloadSchemas = {
        * Made with the Reaction: an opportunity attack or the readied attack
        * (docs/adr/0046-reactions-beyond-counterspell.md); absent: the Attack action.
        */
-      by: z.enum(['opportunity', 'readied', 'offhand', 'cleave']).optional(),
+      by: z.enum(['opportunity', 'readied', 'offhand', 'cleave', 'legendary']).optional(),
       /** The d20 rolled again with Heroic Inspiration: this roll replaces the one before (ADR 0046 §3). */
       rerolled: z.literal(true).optional(),
       /** A Versatile weapon in two hands, or a weapon thrown (docs/adr/0047-weapons.md §1). */

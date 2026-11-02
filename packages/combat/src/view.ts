@@ -10,8 +10,10 @@ import {
   knownEntityIds,
   projectionPartyMemberIds,
   type ResolvedPerspective,
+  type EncounterState,
   type WorldState,
 } from '@ltw/domain';
+import { encounterDifficulty, totalLevel } from '@ltw/rules';
 
 import { reactionWindowView } from './reactions/view.ts';
 import { sensesOf } from './sight.ts';
@@ -114,6 +116,20 @@ export function encounterView(
       // Its breath under water, the same way (docs/adr/0050-the-world-around.md §8).
       ...(showHp && combatant.breath
         ? { breath: { roundsLeft: combatant.breath.roundsLeft } }
+        : {}),
+      // Its legendary actions' attacks, the DM's (docs/adr/0053-monsters-as-data.md §4).
+      ...(dm && vitals.kind === 'creature' && vitals.block.legendary
+        ? {
+            legendary: {
+              usesLeft: vitals.block.legendary.uses - (combatant.legendaryUsed ?? 0),
+              attacks: vitals.block.legendary.attacks.map((attackId) => ({
+                attackId,
+                name:
+                  vitals.block.attacks.find((attack) => attack.attackId === attackId)?.name ??
+                  attackId,
+              })),
+            },
+          }
         : {}),
       // Its actions with a save, the DM's to run (docs/adr/0053-monsters-as-data.md §2).
       ...(dm && vitals.kind === 'creature' && vitals.block.saveActions
@@ -224,5 +240,31 @@ export function encounterView(
     },
     combatants,
     reactionWindow: reactionWindowView(state, { dm, holder, known }),
+    ...(dm ? difficultyOf(state, encounter) : {}),
   };
+}
+
+/**
+ * The fight's difficulty for the DM (docs/adr/0053-monsters-as-data.md §3): the party's characters'
+ * levels against the XP of the living foes whose stat blocks name it.
+ */
+function difficultyOf(
+  state: WorldState,
+  encounter: EncounterState,
+): { difficulty?: NonNullable<EncounterView['difficulty']> } {
+  const levels: number[] = [];
+  let xp = 0;
+  let unknown = 0;
+  for (const combatant of encounter.combatants) {
+    const vitals = vitalsOf(state, combatant.entityId);
+    if (!vitals || state.entities.get(combatant.entityId)?.status !== 'active') continue;
+    if (combatant.side === 'party' && vitals.kind === 'character')
+      levels.push(totalLevel(vitals.sheet));
+    if (combatant.side === 'hostile' && vitals.kind === 'creature' && !vitals.block.object) {
+      if (vitals.block.challenge) xp += vitals.block.challenge.xp;
+      else unknown += 1;
+    }
+  }
+  if (levels.length === 0 || xp + unknown === 0) return {};
+  return { difficulty: { ...encounterDifficulty(levels, xp), unknown } };
 }

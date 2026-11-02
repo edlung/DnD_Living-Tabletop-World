@@ -7,7 +7,9 @@ import {
   type AddedFromBestiaryResponse,
   type BestiaryEntryResponse,
   type BestiaryResponse,
+  type CommandRejected,
 } from '@ltw/contracts';
+import { JOIN_REFUSALS, joinRefusal } from '@ltw/combat';
 import { campaignRole, type Actor, type WorldState } from '@ltw/domain';
 import { SRD_MONSTERS, srdMonster, srdMonsterBlock } from '@ltw/rules';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
@@ -139,6 +141,27 @@ export function registerBestiaryRoutes(app: FastifyInstance, deps: RouteDependen
           ]
         : []),
     ];
+    // A square the creature cannot take is refused before anything is written: no creature is
+    // left behind in the campaign, and the DM tries another square (the engine checks again).
+    const refused =
+      state.encounter && body.square && !state.commands.has(`${prefix}.join`)
+        ? joinRefusal(
+            state,
+            state.encounter,
+            { position: body.square, size: block.statBlock.size ?? 'medium' },
+            entityId,
+          )
+        : null;
+    if (refused !== null) {
+      const rejected: CommandRejected = {
+        status: 'rejected',
+        commandId: `${prefix}.join`,
+        code: 'INVALID_ENCOUNTER',
+        message: JOIN_REFUSALS[refused],
+        details: { square: refused },
+      };
+      return reply.code(statusOf(rejected)).send(rejected);
+    }
     for (const { commandId, command } of commands) {
       if ((await deps.engine.load(path.campaignId))?.state.commands.has(commandId)) continue;
       const result = await deps.engine.execute({

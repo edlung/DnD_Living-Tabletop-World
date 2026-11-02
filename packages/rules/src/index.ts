@@ -177,3 +177,9 @@ export {
   type SpellRules,
 } from './spell-rules.ts';
 export { inSpellArea, type SpellArea } from './areas.ts';
+export {
+  DIFFICULTY_RATINGS,
+  encounterDifficulty,
+  type DifficultyRating,
+  type EncounterDifficulty,
+} from './difficulty.ts';

@@ -165,11 +165,20 @@ export function decideUseCreatureAction(
   );
 }
 
-/** At the start of its turn, each spent action rolls its d6 to come back (ADR 0053 §2). */
+/**
+ * At the start of its turn, each spent action rolls its d6 to come back (ADR 0053 §2), and its
+ * legendary actions come back (§4).
+ */
 export function rechargeAtStart(work: FightWork, dice: Dice, entityId: string): DraftEvent[] {
   const record = work.combatant(entityId);
   const vitals = work.vitalsOf(entityId);
-  if (!record?.spent || vitals?.kind !== 'creature') return [];
+  if (!record || vitals?.kind !== 'creature') return [];
+  if (!record.spent) {
+    if (record.legendaryUsed === undefined) return [];
+    const rested = { ...record };
+    delete rested.legendaryUsed;
+    return [work.record(rested)];
+  }
   const events: DraftEvent[] = [];
   const kept: string[] = [];
   for (const actionId of record.spent) {
@@ -186,6 +195,7 @@ export function rechargeAtStart(work: FightWork, dice: Dice, entityId: string): 
   const next = { ...record };
   if (kept.length > 0) next.spent = kept;
   else delete next.spent;
+  delete next.legendaryUsed;
   events.push(work.record(next));
   return events;
 }

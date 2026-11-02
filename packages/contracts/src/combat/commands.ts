@@ -120,6 +120,11 @@ export const attackCommandSchema = z
     shove: z.enum(['push', 'prone']).optional(),
     /** A melee attack that would bring it to 0 leaves it at 1, Unconscious (ADR 0048 §4). */
     knockOut: z.boolean().optional(),
+    /**
+     * A legendary action's attack (docs/adr/0053-monsters-as-data.md §4): off the creature's own
+     * turn, one of its uses this round; the DM's.
+     */
+    legendary: z.literal(true).optional(),
   })
   .strict();
 
@@ -302,6 +307,8 @@ export const conditionDetailsSchema = z
       .optional(),
     /** Invisible from the Hide action (§5): it ends when the creature attacks or casts a spell. */
     hidden: z.literal(true).optional(),
+    /** From a spell: its repeated save is a save against a spell (Magic Resistance, ADR 0053 §4). */
+    spell: z.literal(true).optional(),
   })
   .strict();
 export type ConditionDetails = z.infer<typeof conditionDetailsSchema>;

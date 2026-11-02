@@ -1,4 +1,4 @@
-import type { CoverLevel, Square } from '@ltw/contracts';
+import { MAX_COMBATANTS, type CoverLevel, type Square } from '@ltw/contracts';
 import {
   combatantOf,
   currentCombatant,
@@ -157,6 +157,32 @@ export function gapBetween(state: WorldState, a: CombatantRecord, b: CombatantRe
 /** Whether a space lies on the battlefield, clear of walls. */
 export const fitsOnField = (encounter: EncounterState, placed: Placed): boolean =>
   squaresOf(placed).every((square) => inBounds(encounter, square) && !isWall(encounter, square));
+
+/** Why a creature cannot join the fight on a space, and the engine's words for it. */
+export type JoinRefusal = 'full' | 'outside' | 'taken';
+export const JOIN_REFUSALS: Readonly<Record<JoinRefusal, string>> = {
+  full: 'The fight holds as many combatants as it can',
+  outside: 'A combatant stands outside the battlefield',
+  taken: 'Two combatants cannot share a square',
+};
+
+/**
+ * Why a creature `entityId` filling `space` cannot join the fight, or null: room in the fight, its
+ * whole space on the field, clear of walls and of others (docs/adr/0049-space-and-movement.md §1).
+ * The bestiary asks it before it writes anything (docs/adr/0053-monsters-as-data.md §3).
+ */
+export function joinRefusal(
+  state: WorldState,
+  encounter: EncounterState,
+  space: Placed,
+  entityId: string,
+): JoinRefusal | null {
+  if (encounter.combatants.length >= MAX_COMBATANTS) return 'full';
+  if (!fitsOnField(encounter, space)) return 'outside';
+  if (squaresOf(space).some((square) => occupant(state, encounter, square, entityId)))
+    return 'taken';
+  return null;
+}
 
 /** A living combatant other than `except` filling the square (the dead do not block). */
 export function occupant(
