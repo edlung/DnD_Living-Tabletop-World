@@ -158,3 +158,4 @@ export {
   type DeathSaves,
   type InitiativeEntry,
 } from './combat.ts';
+export { SRD_MONSTERS, SRD_SPELLS, srdMonster, srdSpell } from './srd/catalog.ts';

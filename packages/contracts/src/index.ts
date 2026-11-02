@@ -452,3 +452,4 @@ export {
 } from './items/commands.ts';
 export type { InventoryItem, InventoryResponse, InventoryWeapon } from './items/views.ts';
 export * from './play/index.ts';
+export * from './srd/index.ts';

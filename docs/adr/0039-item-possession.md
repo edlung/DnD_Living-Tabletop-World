@@ -67,3 +67,10 @@ Weapons and coins join the catalog. A weapon item names the SRD 5.2.1 weapon it 
 sheet lists (`wieldedWeapons`, `@ltw/combat` legality); finesse takes the better of Strength and
 Dexterity. Coins (crowns, marks, pennies) are stackable catalog items. Stacks stay at most 99 units:
 the event schemas do not change. The inventory UI is a paper doll, a bag and an item card.
+
+## Amendment 2026-11-02 (Stage 650, ADR 0051; owner approval `reviews/OWNER_FULL_GAME_2026-11-02.json`, decision 18)
+
+The catalog stops being original only. The SRD 5.2.1's equipment and magic items enter a
+campaign's catalog beside Ravenford's originals, with the SRD's attribution (`NOTICE.md`, the
+About page); Ravenford's originals keep their own names, and the test that forbade SRD names
+holds for them alone (Stage 650d).

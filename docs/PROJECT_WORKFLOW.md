@@ -30,7 +30,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   and falling — and its third — Feather Fall, the reaction to a fall, and underwater combat —
   done, and its fourth, mounted combat, done: Stage 640f is complete. 640g, the world around
   (ADR 0050), done: light and sight, rests by the full rules, hazards, poison and armor. Stage
-  640 is complete; next Stage 650, the SRD data.
+  640 is complete. Stage 650, the SRD data (ADR 0051, `work-orders/STAGE_650.md`), in progress:
+  650a, the import and the text catalogs (339 spells, 330 stat blocks) and the About page, done.
 
 ## Current request — AI campaigns, 2026-10-30
 

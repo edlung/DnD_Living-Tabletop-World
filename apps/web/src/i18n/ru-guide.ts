@@ -8,6 +8,15 @@ registerRussian({
   Back: 'Назад',
   Next: 'Далее',
   'Start playing': 'Начать игру',
+  // About the game (docs/adr/0051-srd-data.md §1); the SRD's attribution stays in English.
+  'About this game': 'Об игре',
+  Close: 'Закрыть',
+  Done: 'Готово',
+  'Living Tabletop World is a table for a group and its DM: the DM runs the game, the table’s screen shows what the party sees, and each phone is a character.':
+    'Живой настольный мир — стол для группы и её Мастера: Мастер ведёт игру, общий экран показывает то, что видит отряд, а телефон каждого — его персонаж.',
+  'The rules': 'Правила',
+  'The rules are those of the System Reference Document 5.2.1 (SRD 5.2.1), used under its license. Ravenford and its people are this game’s own.':
+    'Правила игры — System Reference Document 5.2.1 (SRD 5.2.1), по его лицензии. Рейвенфорд и его жители — собственные персонажи этой игры.',
   'Your screens': 'Ваши экраны',
   'The DM runs the game from a laptop or an iPad.': 'Мастер ведёт игру с ноутбука или iPad.',
   'The table’s screen — a TV, or every screen when you play online — shows what the whole party sees.':
