@@ -228,6 +228,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('TurnStarted', combatEventPayloadSchemas.TurnStarted),
   event('CombatantUpdated', combatEventPayloadSchemas.CombatantUpdated),
   event('CombatEnded', combatEventPayloadSchemas.CombatEnded),
+  event('CombatOrderChanged', combatEventPayloadSchemas.CombatOrderChanged),
   event('StatBlockSet', combatEventPayloadSchemas.StatBlockSet),
   event('AttackPerformed', combatEventPayloadSchemas.AttackPerformed),
   event('SpellCast', combatEventPayloadSchemas.SpellCast),

@@ -97,6 +97,27 @@ describe('the DM’s hand in the history', () => {
     });
   });
 
+  it('lists the DM’s changes of a running fight, undone as the kernel allows', async () => {
+    const { command, page, startAmbush } = await table();
+    await startAmbush();
+    const raider = 'creature-6513bec0';
+    const raised = { type: 'SetInitiative', combatantId: raider, total: 19 };
+    expect((await command(raised, TOKENS.dm, 'raised')).status).toBe(200);
+    const fled = { type: 'RemoveCombatant', entityId: raider, reason: 'Fled into the trees' };
+    expect((await command(fled, TOKENS.dm, 'fled')).status).toBe(200);
+    const [left, initiative] = (await page()).entries as DmHistoryEntry[];
+    expect(left).toMatchObject({
+      kind: 'hand',
+      change: { kind: 'fight', change: 'left', combatant: { entityId: raider }, total: null },
+      reason: 'Fled into the trees',
+      undo: { possible: true },
+    });
+    expect(initiative).toMatchObject({
+      change: { kind: 'fight', change: 'initiative', total: 19 },
+      reason: null,
+    });
+  });
+
   it('refuses the hand to a player', async () => {
     const { command } = await table();
     const heal = {

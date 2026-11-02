@@ -40,6 +40,9 @@ const RESOLVED_TYPES: ReadonlySet<string> = new Set([
   'StartCombat',
   'CloseReactionWindow',
   'AdjustHitPoints',
+  'AddCombatant',
+  'RemoveCombatant',
+  'DelayTurn',
 ]);
 
 /**

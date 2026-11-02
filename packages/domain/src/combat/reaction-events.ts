@@ -1,4 +1,5 @@
 import {
+  MAX_COMBATANTS,
   REACTION_IDS,
   REACTION_RESPONSES,
   REACTION_WINDOW_STATUSES,
@@ -45,9 +46,11 @@ export const reactionWindowSchema = z
     candidates: z
       .array(z.object({ entityId: entityIdSchema, response: z.enum(REACTION_RESPONSES) }).strict())
       .min(1)
-      .max(15),
+      .max(MAX_COMBATANTS - 1),
     /** Every other combatant considered, with the Rules' reason it could not react. */
-    ineligible: z.array(z.object({ entityId: entityIdSchema, reason: slug }).strict()).max(15),
+    ineligible: z
+      .array(z.object({ entityId: entityIdSchema, reason: slug }).strict())
+      .max(MAX_COMBATANTS - 1),
     /** Traceability: the commands that opened and closed the window. */
     openedBy: commandIdSchema,
     closedBy: commandIdSchema.nullable(),
@@ -66,7 +69,13 @@ export const reactionEventPayloadSchemas = {
     .strict(),
   ReactionDeclined: z.object({ windowId: entityIdSchema, reactorId: entityIdSchema }).strict(),
   ReactionWindowExpired: z
-    .object({ windowId: entityIdSchema, expired: z.array(entityIdSchema).min(1).max(15) })
+    .object({
+      windowId: entityIdSchema,
+      expired: z
+        .array(entityIdSchema)
+        .min(1)
+        .max(MAX_COMBATANTS - 1),
+    })
     .strict(),
   ReactionWindowResolved: z
     .object({ windowId: entityIdSchema, outcome: z.enum(['countered', 'proceeded']) })

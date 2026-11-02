@@ -330,6 +330,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'CombatStarted':
       case 'TurnStarted':
       case 'CombatantUpdated':
+      case 'CombatOrderChanged':
       case 'CombatEnded':
         restores.push({
           fact: 'encounter',

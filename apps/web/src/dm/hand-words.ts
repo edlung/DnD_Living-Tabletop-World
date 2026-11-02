@@ -63,5 +63,18 @@ export function describeHand(t: Translate, change: DmHandEntry['change']): strin
         : t('{name}: Heroic Inspiration taken back', { name: change.target.name });
     case 'ruling':
       return t('Ruling: {summary}', { summary: change.summary });
+    case 'fight': {
+      const name = change.combatant.name;
+      switch (change.change) {
+        case 'joined':
+          return t('{name} joined the fight', { name });
+        case 'left':
+          return t('{name} left the fight', { name });
+        case 'delayed':
+          return t('{name} delayed the turn', { name });
+        case 'initiative':
+          return t('{name}: initiative {total}', { name, total: change.total ?? '' });
+      }
+    }
   }
 }

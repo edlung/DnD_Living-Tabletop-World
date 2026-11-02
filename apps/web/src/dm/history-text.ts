@@ -84,6 +84,10 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   AdjustHitPoints: 'change hit points',
   SetCondition: 'set a condition',
   SetInspiration: 'set Heroic Inspiration',
+  AddCombatant: 'add a combatant',
+  RemoveCombatant: 'remove a combatant',
+  DelayTurn: 'delay a turn',
+  SetInitiative: 'set initiative',
 };
 
 /** What the DM did for the character, in plain words. */
@@ -219,7 +223,9 @@ export function entryDetails(t: Translate, entry: DmHistoryEntry): string {
       : entry.kind === 'world'
         ? t(entry.change.kind === 'time' ? 'World time' : 'Weather')
         : entry.kind === 'hand'
-          ? t('By hand: “{reason}”', { reason: entry.reason })
+          ? entry.reason === null
+            ? t('By hand')
+            : t('By hand: “{reason}”', { reason: entry.reason })
           : entry.reason === null
             ? t('No reason was recorded')
             : entry.reason.note === null

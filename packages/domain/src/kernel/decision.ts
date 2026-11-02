@@ -74,6 +74,9 @@ export type ResolvedCommand =
           | 'StartCombat'
           | 'CloseReactionWindow'
           | 'AdjustHitPoints'
+          | 'AddCombatant'
+          | 'RemoveCombatant'
+          | 'DelayTurn'
           | 'ApplyAuthoring'
           | PlayerCommandType;
       }
@@ -87,7 +90,9 @@ export type ResolvedCommand =
       readonly resolution: Resolution;
     })
   | (KernelCommandOf<'CloseReactionWindow'> & { readonly resolution: Resolution })
-  | (KernelCommandOf<'AdjustHitPoints'> & { readonly resolution: Resolution })
+  | (KernelCommandOf<'AdjustHitPoints' | 'AddCombatant' | 'RemoveCombatant' | 'DelayTurn'> & {
+      readonly resolution: Resolution;
+    })
   | (KernelCommandOf<PlayerCommandType> & { readonly resolution: Resolution })
   | (KernelCommandOf<'CreateEntity'> & { readonly entityId: string })
   | (KernelCommandOf<'StartScene'> & { readonly sceneId: string })

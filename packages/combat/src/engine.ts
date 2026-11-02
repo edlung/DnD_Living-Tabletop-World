@@ -2,6 +2,12 @@ import type { CombatCommand, CombatPort, Decision, DecisionContext, Dice } from 
 
 import { decideAttack } from './attack.ts';
 import { decideAdjustHitPoints, decideSetCondition, decideSetInspiration } from './hand.ts';
+import {
+  decideAddCombatant,
+  decideDelayTurn,
+  decideRemoveCombatant,
+  decideSetInitiative,
+} from './order.ts';
 import { decideMove } from './movement.ts';
 import {
   decideCloseReactionWindow,
@@ -44,6 +50,14 @@ export function createCombatEngine(): CombatPort {
           return decideSetCondition(context, command);
         case 'SetInspiration':
           return decideSetInspiration(context, command);
+        case 'AddCombatant':
+          return decideAddCombatant(context, command, dice);
+        case 'RemoveCombatant':
+          return decideRemoveCombatant(context, command, dice);
+        case 'DelayTurn':
+          return decideDelayTurn(context, command, dice);
+        case 'SetInitiative':
+          return decideSetInitiative(context, command);
       }
     },
   };

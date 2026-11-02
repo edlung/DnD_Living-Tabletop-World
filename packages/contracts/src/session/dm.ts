@@ -150,8 +150,16 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly kind: 'ruling';
         readonly summary: string;
         readonly characters: readonly EntityRef[];
+      }
+    | {
+        /** A running fight changed (ADR 0043 §2); the total for an initiative set. */
+        readonly kind: 'fight';
+        readonly change: 'joined' | 'left' | 'delayed' | 'initiative';
+        readonly combatant: EntityRef;
+        readonly total: number | null;
       };
-  readonly reason: string;
+  /** The DM's reason; null for a change of the fight that takes none. */
+  readonly reason: string | null;
 }
 
 export type DmHistoryEntry = DmAuthoringEntry | DmSubstitutionEntry | DmWorldEntry | DmHandEntry;

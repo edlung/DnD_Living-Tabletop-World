@@ -16,6 +16,11 @@ registerRussian({
   '{name}: Heroic Inspiration taken back': '{name}: героическое вдохновение отнято',
   'Ruling: {summary}': 'Решение мастера: {summary}',
   'By hand: “{reason}”': 'Вручную: «{reason}»',
+  'By hand': 'Вручную',
+  '{name} joined the fight': '{name}: вступает в бой',
+  '{name} left the fight': '{name}: выходит из боя',
+  '{name} delayed the turn': '{name}: откладывает ход',
+  '{name}: initiative {total}': '{name}: инициатива {total}',
 
   // Damage types a play screen names (the rest are in ru-character)
   Acid: 'Кислота',

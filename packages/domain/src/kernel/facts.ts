@@ -301,6 +301,22 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'CombatEnded':
       // Combat is strictly sequential: undo unwinds it in reverse order (ADR 0015).
       return { reads: [clock, facts.encounter()], writes: [facts.encounter()] };
+    case 'CombatOrderChanged':
+      // The DM's change of a running fight (ADR 0043 §2): every combatant of the new order, as
+      // a fight's start reads them (a joining creature's place, sheet or stat block included).
+      return {
+        reads: [
+          clock,
+          facts.encounter(),
+          ...event.payload.combatants.flatMap((c) => [
+            ...entityChecked(c.entityId),
+            facts.entityPlacement(c.entityId),
+            facts.sheet(c.entityId),
+            facts.statBlock(c.entityId),
+          ]),
+        ],
+        writes: [facts.encounter()],
+      };
     case 'StatBlockSet':
       // Authoring is refused for a combatant, so it relied on the encounter as it was (Gate 03).
       return {

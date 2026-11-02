@@ -1,4 +1,9 @@
-import { DM_HAND_COMMAND_TYPES, type DmHandEntry, type EntityRef } from '@ltw/contracts';
+import {
+  DM_HAND_COMMAND_TYPES,
+  FIGHT_CHANGE_COMMAND_TYPES,
+  type DmHandEntry,
+  type EntityRef,
+} from '@ltw/contracts';
 import type { CampaignSnapshot, StoredCommand } from '@ltw/domain';
 
 /**
@@ -6,7 +11,10 @@ import type { CampaignSnapshot, StoredCommand } from '@ltw/domain';
  * as the World Engine recorded it (the amounts after the rules), a condition, Heroic Inspiration,
  * or a ruling — a party memory the DM recorded with a reason. The reason is the stored command's.
  */
-const HAND_TYPES: ReadonlySet<string> = new Set(DM_HAND_COMMAND_TYPES);
+const HAND_TYPES: ReadonlySet<string> = new Set([
+  ...DM_HAND_COMMAND_TYPES,
+  ...FIGHT_CHANGE_COMMAND_TYPES,
+]);
 
 /** Whether a stored command of the DM's is a change by hand. */
 export function isHandCommand(stored: StoredCommand): boolean {
@@ -65,6 +73,22 @@ export function handChange(
         },
         reason: command.reason,
       };
+    case 'AddCombatant':
+    case 'RemoveCombatant':
+    case 'DelayTurn':
+    case 'SetInitiative': {
+      const recorded = events.find((event) => event.type === 'CombatOrderChanged');
+      if (recorded?.type !== 'CombatOrderChanged') return null;
+      const { change, entityId, combatants } = recorded.payload;
+      const total =
+        change === 'initiative'
+          ? (combatants.find((c) => c.entityId === entityId)?.initiative.total ?? null)
+          : null;
+      return {
+        change: { kind: 'fight', change, combatant: ref(entityId), total },
+        reason: command.type === 'RemoveCombatant' ? command.reason : null,
+      };
+    }
     case 'RecordMemory':
       return command.reason === undefined
         ? null

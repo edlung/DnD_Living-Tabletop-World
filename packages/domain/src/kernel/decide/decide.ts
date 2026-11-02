@@ -217,7 +217,11 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'CloseReactionWindow':
     case 'AdjustHitPoints':
     case 'SetCondition':
-    case 'SetInspiration': {
+    case 'SetInspiration':
+    case 'AddCombatant':
+    case 'RemoveCombatant':
+    case 'DelayTurn':
+    case 'SetInitiative': {
       if (!context.combat) throw new Error(`${command.type} needs the combat engine port`);
       const entropy = 'resolution' in command ? command.resolution.entropy : [];
       return context.combat.decide(context, command, poolDice(entropy));

@@ -27,6 +27,7 @@ const KIND_GLYPH = {
   condition: 'incapacitated',
   inspiration: 'blessing',
   ruling: 'game-master',
+  fight: 'initiative',
 } as const;
 
 const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {

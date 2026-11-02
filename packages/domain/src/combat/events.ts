@@ -1,6 +1,7 @@
 import {
   ABILITIES,
   CONDITIONS,
+  MAX_COMBATANTS,
   SIDES,
   battlefieldSchema,
   entityIdSchema,
@@ -50,9 +51,13 @@ export const encounterSchema = z
     encounterId: entityIdSchema,
     locationId: entityIdSchema,
     round: z.number().int().min(0),
-    currentIndex: z.number().int().min(-1).max(15),
+    currentIndex: z
+      .number()
+      .int()
+      .min(-1)
+      .max(MAX_COMBATANTS - 1),
     battlefield: battlefieldSchema,
-    combatants: z.array(combatantRecordSchema).min(2).max(16),
+    combatants: z.array(combatantRecordSchema).min(2).max(MAX_COMBATANTS),
   })
   .strict();
 
@@ -61,6 +66,22 @@ export const combatEventPayloadSchemas = {
   TurnStarted: z.object({ combatantId: entityIdSchema, round: z.number().int().min(1) }).strict(),
   CombatantUpdated: z.object({ combatant: combatantRecordSchema }).strict(),
   CombatEnded: z.object({ encounterId: entityIdSchema }).strict(),
+  /**
+   * The DM changed a running fight (docs/adr/0043-dm-screen.md §2): who joined, left, delayed or
+   * had initiative set, and the whole order after it, with the current turn's place.
+   */
+  CombatOrderChanged: z
+    .object({
+      change: z.enum(['joined', 'left', 'delayed', 'initiative']),
+      entityId: entityIdSchema,
+      combatants: z.array(combatantRecordSchema).min(2).max(MAX_COMBATANTS),
+      currentIndex: z
+        .number()
+        .int()
+        .min(-1)
+        .max(MAX_COMBATANTS - 1),
+    })
+    .strict(),
   StatBlockSet: z.object({ entityId: entityIdSchema, statBlock: statBlockSchema }).strict(),
   AttackPerformed: z
     .object({

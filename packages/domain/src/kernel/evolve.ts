@@ -4,6 +4,7 @@ import { DEFAULT_LANGUAGE } from '@ltw/contracts';
 import { applyCharacterSheetSet } from '../character/character.ts';
 import {
   applyCombatEnded,
+  applyCombatOrderChanged,
   applyCombatRecord,
   applyCombatRestore,
   applyCombatStarted,
@@ -213,6 +214,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyCombatantUpdated(state, event);
     case 'CombatEnded':
       return applyCombatEnded(state, event);
+    case 'CombatOrderChanged':
+      return applyCombatOrderChanged(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
     case 'AttackPerformed':
