@@ -24,6 +24,7 @@
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
     "resolveJsonModule": false,
+    "allowArbitraryExtensions": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
 

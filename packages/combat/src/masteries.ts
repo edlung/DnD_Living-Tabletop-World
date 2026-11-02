@@ -18,7 +18,14 @@ import type { MasteryUse } from './legality.ts';
 import { isObject } from './objects.ts';
 import { spellSave } from './saves.ts';
 import { fitAt } from './space.ts';
-import { has, sizeOf, vitalsEvent, withConditions, type Vitals } from './vitals.ts';
+import {
+  conditionImmune,
+  has,
+  sizeOf,
+  vitalsEvent,
+  withConditions,
+  type Vitals,
+} from './vitals.ts';
 
 /**
  * The weapon masteries at work (docs/adr/0047-weapons.md §2), after a hit's damage: Sap, Vex,
@@ -137,7 +144,8 @@ export function masteryOnHit(
       ];
     }
     case 'topple': {
-      if (has(target, 'prone') || mastery.dc === undefined) return [];
+      if (has(target, 'prone') || conditionImmune(target, 'prone') || mastery.dc === undefined)
+        return [];
       const save = spellSave(dice, target, 'con', mastery.dc, 'none', 'topple');
       if (save.success) return [applied(made, 'topple'), save.event];
       return [

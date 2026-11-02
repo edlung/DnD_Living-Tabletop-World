@@ -28,3 +28,12 @@ export {
   type SpellEffect,
   type SrdSpellMechanics,
 } from './spell-mechanics.ts';
+export {
+  addFromBestiaryRequestSchema,
+  bestiaryMonsterIdSchema,
+  type AddFromBestiaryRequest,
+  type AddedFromBestiaryResponse,
+  type BestiaryEntry,
+  type BestiaryEntryResponse,
+  type BestiaryResponse,
+} from './bestiary.ts';

@@ -25,5 +25,6 @@
   "featherFall": "ui-combat-feather-fall",
   "mount": "ui-combat-mount",
   "light": "ui-combat-light",
-  "spells": "ui-combat-spells"
+  "spells": "ui-combat-spells",
+  "bestiary": "ui-combat-bestiary"
 }

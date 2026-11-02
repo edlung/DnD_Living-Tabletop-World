@@ -18,7 +18,6 @@ import {
   attackRoll,
   checkCast,
   hasUncannyDodge,
-  rollDamage,
   slotsRemaining,
   type TurnState,
 } from '@ltw/rules';
@@ -26,6 +25,7 @@ import {
 import type { MadeAttack } from '../attack.ts';
 import { combatantEvent, gapBetween, isAlive, turnStateOf } from '../battlefield.ts';
 import { applyDamage } from '../damage.ts';
+import { damageOf, died, withExtras, type Extra } from './hit-damage.ts';
 import type { AttackPlan, Refusal } from '../legality.ts';
 import { applied as masteryApplied, masteryOnHit } from '../masteries.ts';
 import { fallsAfterHarm } from '../falling.ts';
@@ -54,6 +54,9 @@ export const specOf = (plan: AttackPlan): AttackSpec => ({
   cover: plan.cover,
   damage: { ...plan.damage },
   advantageDamage: plan.advantageDamage ? { ...plan.advantageDamage } : null,
+  ...(plan.extraDamage.length > 0
+    ? { extraDamage: plan.extraDamage.map((one) => ({ ...one })) }
+    : {}),
   huntersMark: plan.huntersMark,
   slow: plan.slow,
   ...(plan.mastery ? { mastery: { ...plan.mastery } } : {}),
@@ -84,21 +87,6 @@ export function rollAgainst(dice: Dice, spec: AttackSpec): Rolled {
     total: roll.total,
     hit,
     critical: hit && (roll.critical || spec.criticalOnHit),
-  };
-}
-
-/** A hit's damage: the weapon's dice, the Advantage die, Hunter's Mark — doubled on a Critical Hit. */
-export function damageOf(dice: Dice, spec: AttackSpec, critical: boolean) {
-  const { damage } = spec;
-  const parts = [rollDamage(dice, damage.count, damage.sides, damage.bonus, critical)];
-  if (spec.advantageDamage && spec.advantage && !spec.disadvantage) {
-    const extra = spec.advantageDamage;
-    parts.push(rollDamage(dice, extra.count, extra.sides, extra.bonus, critical));
-  }
-  if (spec.huntersMark) parts.push(rollDamage(dice, 1, 6, 0, critical));
-  return {
-    amount: parts.reduce((total, part) => total + part.total, 0),
-    rolls: parts.flatMap((part) => [...part.rolls]),
   };
 }
 
@@ -361,9 +349,6 @@ function rebukeWindow(
   return openWindow(context, state, trigger, asked, ids, nestUnder);
 }
 
-const died = (events: readonly DraftEvent[]) =>
-  events.some((event) => event.type === 'EntityStatusChanged' && event.payload.to === 'dead');
-
 /**
  * A miss that stays one: Graze deals the attack's ability modifier as the weapon's damage
  * (docs/adr/0047-weapons.md §2).
@@ -410,7 +395,11 @@ export function hitEvents(
   made: MadeAttack,
   spec: AttackSpec,
   critical: boolean,
-  damage: { readonly amount: number; readonly rolls: readonly number[] },
+  damage: {
+    readonly amount: number;
+    readonly rolls: readonly number[];
+    readonly extras?: readonly Extra[] | undefined;
+  },
   halved: boolean,
   nestUnder?: string,
 ): DraftEvent[] {
@@ -418,14 +407,19 @@ export function hitEvents(
   const vitals = vitalsOf(state, made.targetId);
   if (!encounter || !vitals) return [];
   const amount = halved ? Math.floor(damage.amount / 2) : damage.amount;
-  const applied = applyDamage(state, dice, vitals, {
-    sourceId: made.attackerId,
-    amount,
-    damageType: spec.damage.type,
-    rolls: damage.rolls,
-    critical,
-    ...(spec.knockOut === true ? { knockOut: true } : {}),
-  });
+  const applied = withExtras(
+    state,
+    dice,
+    applyDamage(state, dice, vitals, {
+      sourceId: made.attackerId,
+      amount,
+      damageType: spec.damage.type,
+      rolls: damage.rolls,
+      critical,
+      ...(spec.knockOut === true ? { knockOut: true } : {}),
+    }),
+    { sourceId: made.attackerId, extras: damage.extras ?? [], halved, critical },
+  );
   const events: DraftEvent[] = [...applied.events];
   const dead = died(applied.events);
   const target = combatantOf(encounter, made.targetId);

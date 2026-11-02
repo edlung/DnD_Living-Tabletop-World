@@ -30,6 +30,7 @@ import { combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { fitAt } from './space.ts';
 import {
+  conditionImmune,
   has,
   incapacitated,
   saveModifier,
@@ -137,6 +138,9 @@ export function decideUnarmed(
   );
   events.push(save.event);
   if (save.success) return accept(...events);
+  // A creature immune to the condition is held or toppled by nothing (docs/adr/0053 §1).
+  if (conditionImmune(targetVitals, effect === 'grapple' ? 'grappled' : 'prone'))
+    return accept(...events);
   if (effect === 'grapple') {
     events.push(
       {

@@ -137,12 +137,18 @@ export function withAllHitPoints(v: Vitals, next: HitPoints): Vitals {
     : { ...v, block: { ...v.block, hitPoints: whole } };
 }
 
+/** A condition its stat block is immune to (docs/adr/0053-monsters-as-data.md §1). */
+export const conditionImmune = (v: Vitals, condition: Condition): boolean =>
+  v.kind === 'creature' && (v.block.conditionImmunities ?? []).includes(condition);
+
 export function withConditions(
   v: Vitals,
   add: readonly Condition[],
   remove: readonly Condition[],
 ): Vitals {
-  const next = [...new Set([...conditionsOf(v).filter((c) => !remove.includes(c)), ...add])];
+  // A condition it is immune to never takes hold.
+  const taken = add.filter((condition) => !conditionImmune(v, condition));
+  const next = [...new Set([...conditionsOf(v).filter((c) => !remove.includes(c)), ...taken])];
   // Awake, it is knocked out no longer (docs/adr/0048-hit-points.md §4).
   const kept = withKnockedOut(v, knockedOutOf(v) && next.includes('unconscious'));
   return kept.kind === 'character'

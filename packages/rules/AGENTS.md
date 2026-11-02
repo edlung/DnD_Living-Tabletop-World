@@ -20,7 +20,7 @@ Deterministic slice rules on SRD 5.2.1. Authority: `docs/adr/0011-ruleset-srd-5-
 
 Rules:
 
-- Pure functions only. No clocks, no `Math.random`, no I/O. Randomness comes only from `Dice`; resolvers return the rolls they used.
+- Pure functions only. No clocks, no `Math.random`, no I/O — but `src/srd/catalog.ts`, which reads the SRD catalogs once from the package's own files (ADR 0051). Randomness comes only from `Dice`; resolvers return the rolls they used.
 - A new rule, spell, or condition needs an ADR 0011 entry, or a new ADR, before code. Encode mechanics. SRD text enters only through the SRD import (`scripts/srd/`, ADR 0051) into `src/srd/`, never by hand.
 - Illegal results carry a typed `reason` and, where useful, a `resolution` (for example `moveRequiredFt`).
 - Tests use `src/testing/elowen.ts` (the approved fixture) and `scriptedDice`.

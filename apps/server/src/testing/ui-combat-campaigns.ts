@@ -100,6 +100,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   light: 'started',
   // SRD spells (ADR 0052): Elowen also studies as a wizard; started below.
   spells: 'placed',
+  // The bestiary (ADR 0053 §3): the DM adds a creature to the running fight.
+  bestiary: 'started',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {

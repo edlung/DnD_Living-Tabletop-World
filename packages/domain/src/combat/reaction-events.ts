@@ -87,6 +87,8 @@ const attackTriggerSchema = z
         cover: z.enum(['none', 'half', 'three-quarters']),
         damage: damageDice,
         advantageDamage: damageDice.nullable(),
+        /** A stat block's added damage, each of its own type (docs/adr/0053 §1). */
+        extraDamage: z.array(damageDice).min(1).max(2).optional(),
         huntersMark: z.boolean(),
         slow: z.boolean(),
         /**
@@ -115,6 +117,19 @@ const attackTriggerSchema = z
       .object({
         amount: z.number().int().min(0).max(999),
         rolls: z.array(z.number().int()).max(60),
+        /** The added damage of a stat block's attack, by its type (docs/adr/0053 §1). */
+        extras: z
+          .array(
+            z
+              .object({
+                type: slug,
+                amount: z.number().int().min(0).max(999),
+                rolls: z.array(z.number().int()).max(60),
+              })
+              .strict(),
+          )
+          .max(2)
+          .optional(),
       })
       .strict()
       .nullable(),

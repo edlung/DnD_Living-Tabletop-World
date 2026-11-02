@@ -160,11 +160,14 @@ export {
 } from './combat.ts';
 export {
   SRD_MONSTERS,
+  SRD_MONSTER_BLOCKS,
   SRD_SPELLS,
   SRD_SPELL_MECHANICS,
   srdMonster,
+  srdMonsterBlock,
   srdSpell,
   srdSpellMechanics,
+  type SrdMonsterBlock,
 } from './srd/catalog.ts';
 export {
   FAR_FT,

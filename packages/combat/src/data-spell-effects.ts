@@ -28,6 +28,7 @@ import { combatPremiseList } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { lostInTheDark } from './sight.ts';
 import {
+  conditionImmune,
   armorClass,
   conditionsOf,
   exhaustionOf,
@@ -252,7 +253,13 @@ export function dataSpellEvents(
   ) {
     const name = save.condition;
     const vitals = current(entityId);
-    if (!name || !vitals || conditionBlocked(name, conditionsOf(vitals))) return;
+    if (
+      !name ||
+      !vitals ||
+      conditionBlocked(name, conditionsOf(vitals)) ||
+      conditionImmune(vitals, name)
+    )
+      return;
     const next = withConditions(vitals, [name], []);
     working.set(entityId, next);
     effects.push(

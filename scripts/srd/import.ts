@@ -1,6 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
+import { deriveMonsterMechanics } from './monster-mechanics.ts';
 import { parseMonsters } from './monsters.ts';
 import { deriveMechanics } from './spell-mechanics.ts';
 import { parseSpells } from './spells.ts';
@@ -47,5 +48,7 @@ const byId =
 const sorted = [...spells].sort(byId('spellId'));
 write('spells.json', sorted);
 write('spell-mechanics.json', sorted.map(deriveMechanics));
-write('monsters.json', [...monsters].sort(byId('monsterId')));
+const bestiary = [...monsters].sort(byId('monsterId'));
+write('monsters.json', bestiary);
+write('monster-blocks.json', bestiary.map(deriveMonsterMechanics));
 process.stdout.write(`spells ${spells.length}, monsters ${monsters.length}\n`);

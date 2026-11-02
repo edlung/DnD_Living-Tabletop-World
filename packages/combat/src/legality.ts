@@ -126,6 +126,8 @@ export interface AttackPlan {
   readonly criticalOnHit: boolean;
   readonly damage: AttackDamage;
   readonly advantageDamage: Damage | null;
+  /** A stat block's added damage, each of its own type (docs/adr/0053-monsters-as-data.md §1). */
+  readonly extraDamage: readonly Damage[];
   readonly slow: boolean;
   readonly huntersMark: boolean;
   /** The ally whose Help gave this attack Advantage: it is spent (ADR 0045 §5). */
@@ -413,6 +415,7 @@ export function attackPlan(
     ...circumstances,
     damage,
     advantageDamage: weapon.advantageDamage,
+    extraDamage: weapon.extraDamage,
     slow: mastery?.kind === 'slow',
     huntersMark: marked,
     weapon,

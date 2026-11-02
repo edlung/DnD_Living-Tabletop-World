@@ -8,6 +8,7 @@ import type { DmTableCommand } from '../dm/table-commands.ts';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { objectWords } from './hit-point-words.ts';
+import { BestiaryForm } from './bestiary-form.tsx';
 import { JoinForm, ObjectForm } from './join-forms.tsx';
 import { useCombatantLabels } from './labels.ts';
 
@@ -209,6 +210,8 @@ export function TurnOrderControls({
         locked={locked}
         onRun={send}
       />
+      {/* A creature from the SRD's bestiary (docs/adr/0053-monsters-as-data.md §3). */}
+      <BestiaryForm api={api} encounter={encounter} locked={locked} />
     </section>
   );
 }

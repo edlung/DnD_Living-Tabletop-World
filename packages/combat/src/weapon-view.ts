@@ -43,6 +43,8 @@ export interface WeaponView {
   readonly bonus: number;
   readonly damage: AttackDamage;
   readonly advantageDamage: Damage | null;
+  /** A stat block's added damage, each of its own type (docs/adr/0053-monsters-as-data.md §1). */
+  readonly extraDamage: readonly Damage[];
   /** The character's weapon; null for a stat block's attack or an Unarmed Strike. */
   readonly weaponId: WeaponId | null;
   /** The ability modifier the attack uses: Graze's damage, Topple's DC. */
@@ -62,6 +64,7 @@ export type WeaponRefusal = 'NO_WEAPON' | 'HANDS_FULL';
 
 const plain = {
   advantageDamage: null,
+  extraDamage: [],
   weaponId: null,
   mastery: null,
   grip: null,
@@ -131,6 +134,7 @@ export function weaponOf(
       normalRangeFt: range?.normalFt ?? definition.normalRangeFt,
       longRangeFt: range?.longFt ?? definition.longRangeFt,
       bonus: weaponAttackBonus(v.sheet, weapon),
+      extraDamage: [],
       damage: {
         count: definition.damageDice.count,
         sides: (twoHands
@@ -162,6 +166,7 @@ export function weaponOf(
     bonus: attack.bonus,
     damage: attack.damage,
     advantageDamage: attack.advantageDamage ?? null,
+    extraDamage: attack.extraDamage ?? [],
     abilityModifier: 0,
   };
 }

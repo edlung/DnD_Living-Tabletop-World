@@ -31,7 +31,9 @@ chat (2026-11-02); it stays outside the repository.
   CR); speeds, senses, resistances, immunities and condition immunities from the text; Recharge,
   per-day uses, bonus actions, reactions, traits (Pack Tactics, Magic and Legendary Resistance),
   legendary actions, a Multiattack that mixes attacks; CR, XP and the encounter's difficulty;
-  stat blocks for summons, companions and Wild Shape forms.
+  stat blocks for summons, companions and Wild Shape forms. ADR 0053; in parts: the conversion
+  (attacks with their added damage, condition immunities) and the DM's bestiary; save actions
+  with an area, Recharge and per-day uses; traits, reactions, legendary actions and difficulty.
 - 650d — Equipment and magic items: the SRD's equipment (weapons, armor, tools, gear, prices) and
   magic items (rarity, attunement, charges, unidentified, cursed) in a campaign's item catalog beside
   Ravenford's originals; the ADR 0039 test then forbids SRD names only in Ravenford's originals.

@@ -18,6 +18,7 @@ import { fallEvents, fallsAfterHarm, grounded, killedIn } from './falling.ts';
 import { isObject } from './objects.ts';
 import { spellSave } from './saves.ts';
 import {
+  conditionImmune,
   ceilingOf,
   conditionsOf,
   exhaustionOf,
@@ -243,7 +244,10 @@ export function decideSetCondition(
       combatantEvent(withDetail(combatant, condition, details ?? null)),
     );
   }
-  if (applied && conditionBlocked(condition, conditionsOf(vitals)))
+  if (
+    applied &&
+    (conditionBlocked(condition, conditionsOf(vitals)) || conditionImmune(vitals, condition))
+  )
     return reject('NO_EFFECT', 'It cannot take hold');
   // A save it makes first — a poison's Constitution save — and nothing more on a success
   // (docs/adr/0050-the-world-around.md §9).

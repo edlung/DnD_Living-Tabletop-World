@@ -1,4 +1,5 @@
 import {
+  statBlockSchema,
   srdMonsterSchema,
   srdSpellMechanicsSchema,
   srdSpellSchema,
@@ -10,9 +11,11 @@ import { describe, expect, it } from 'vitest';
 import { SPELLS } from '../catalog.ts';
 import {
   SRD_MONSTERS,
+  SRD_MONSTER_BLOCKS,
   SRD_SPELLS,
   SRD_SPELL_MECHANICS,
   srdMonster,
+  srdMonsterBlock,
   srdSpell,
   srdSpellMechanics,
 } from './catalog.ts';
@@ -233,5 +236,69 @@ describe('the stat blocks', () => {
     // The SRD's misprints, put right by the import: an Initiative score, a save's sign.
     expect(srdMonster('gray-ooze')?.initiative).toEqual({ modifier: -2, score: 8 });
     expect(srdMonster('young-white-dragon')?.abilities.int.save).toBe(-2);
+  });
+});
+
+describe('the stat blocks’ engine stats', () => {
+  it('hold every block to the engine’s schema, its attacks read from its text', () => {
+    expect(SRD_MONSTER_BLOCKS).toHaveLength(330);
+    for (const entry of SRD_MONSTER_BLOCKS)
+      expect(statBlockSchema.safeParse(entry.statBlock).error, entry.monsterId).toBeUndefined();
+    const armed = SRD_MONSTER_BLOCKS.filter((entry) => entry.statBlock.attacks.length > 0);
+    expect(armed.length).toBeGreaterThanOrEqual(328);
+  });
+
+  it('read an attack’s added damage, a Multiattack’s count, speeds and defenses', () => {
+    expect(srdMonsterBlock('adult-red-dragon')?.statBlock).toMatchObject({
+      armorClass: 19,
+      hitPoints: { max: 256, current: 256 },
+      size: 'huge',
+      speedFt: 40,
+      speeds: { climb: 40, fly: 80 },
+      immunities: ['fire'],
+      initiativeBonus: 12,
+      attacksPerAction: 3,
+      attacks: [
+        {
+          attackId: 'rend',
+          kind: 'melee',
+          bonus: 14,
+          reachFt: 10,
+          damage: { count: 1, sides: 10, bonus: 8, type: 'slashing' },
+          extraDamage: [{ count: 2, sides: 4, bonus: 0, type: 'fire' }],
+        },
+      ],
+    });
+    // "plus 1 Necrotic damage": a flat amount, no dice.
+    expect(srdMonsterBlock('cultist')?.statBlock.attacks[0]?.extraDamage).toEqual([
+      { count: 0, sides: 4, bonus: 1, type: 'necrotic' },
+    ]);
+    // "Melee or Ranged": one attack each way.
+    expect(srdMonsterBlock('bandit-captain')?.statBlock.attacks.map((one) => one.kind)).toContain(
+      'ranged',
+    );
+    expect(srdMonsterBlock('gelatinous-cube')?.statBlock.conditionImmunities).toContain('prone');
+    // A breath: a cone from the dragon, one roll, half on a success, recharged on a 5 or 6.
+    expect(srdMonsterBlock('adult-red-dragon')?.statBlock.saveActions).toEqual([
+      {
+        actionId: 'fire-breath',
+        name: 'Fire Breath',
+        ability: 'dex',
+        dc: 21,
+        area: { shape: 'cone', sizeFt: 60, widthFt: null, origin: 'self' },
+        reachFt: null,
+        rangeFt: null,
+        damage: [{ count: 17, sides: 6, bonus: 0, type: 'fire' }],
+        onSuccess: 'half',
+        recharge: 5,
+        perDay: null,
+      },
+    ]);
+    expect(srdMonsterBlock('young-blue-dragon')?.statBlock.saveActions?.[0]?.area).toEqual({
+      shape: 'line',
+      sizeFt: 60,
+      widthFt: 5,
+      origin: 'self',
+    });
   });
 });

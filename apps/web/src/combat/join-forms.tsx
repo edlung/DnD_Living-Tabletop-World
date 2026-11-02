@@ -70,7 +70,7 @@ function useHere(api: WorldApi, encounter: EncounterView, kinds: readonly Entity
 }
 
 /** A square across and down, kept as typed; its error when it is off the battlefield. */
-function useSquare(t: Translate, encounter: EncounterView) {
+export function useSquare(t: Translate, encounter: EncounterView) {
   const spare = freeSquare(encounter);
   const [x, setX] = useState(String(spare.x));
   const [y, setY] = useState(String(spare.y));
@@ -86,7 +86,7 @@ function useSquare(t: Translate, encounter: EncounterView) {
   return { x, y, setX, setY, square, error };
 }
 
-function SquareFields({
+export function SquareFields({
   at,
   attempted,
 }: {

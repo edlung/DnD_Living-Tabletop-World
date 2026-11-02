@@ -7,6 +7,7 @@ import type { FightWork } from './condition-details.ts';
 import type { Faller } from './reactions/fall-window.ts';
 import { applyDamage, type Applied } from './damage.ts';
 import {
+  conditionImmune,
   has,
   incapacitated,
   speedOf,
@@ -44,7 +45,13 @@ export function fallEvents(state: WorldState, dice: Dice, target: Vitals, feet: 
     (event) => event.type === 'DamageApplied' && (event.payload as { amount: number }).amount > 0,
   );
   // At 0 hit points it lies Prone already; a creature it killed is past caring.
-  if (!dealt || has(applied.vitals, 'prone') || !isAlive(state, target.entityId)) return applied;
+  if (
+    !dealt ||
+    has(applied.vitals, 'prone') ||
+    conditionImmune(applied.vitals, 'prone') ||
+    !isAlive(state, target.entityId)
+  )
+    return applied;
   const down = withConditions(applied.vitals, ['prone'], []);
   return {
     vitals: down,
@@ -76,7 +83,8 @@ export function landingEvents(dice: Dice, target: Vitals): Applied {
       },
     },
   ];
-  if (check.success || has(target, 'prone')) return { vitals: target, events };
+  if (check.success || has(target, 'prone') || conditionImmune(target, 'prone'))
+    return { vitals: target, events };
   const down = withConditions(target, ['prone'], []);
   return {
     vitals: down,
