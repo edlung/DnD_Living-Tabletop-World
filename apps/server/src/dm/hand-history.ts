@@ -81,6 +81,7 @@ export function handChange(
         reason: command.reason,
       };
     case 'AddCombatant':
+    case 'AddObject':
     case 'RemoveCombatant':
     case 'DelayTurn':
     case 'SetInitiative': {

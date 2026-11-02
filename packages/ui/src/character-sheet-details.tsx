@@ -1,4 +1,4 @@
-import type { Ability, CharacterSheet } from '@ltw/contracts';
+import { effectiveMaximum, type Ability, type CharacterSheet } from '@ltw/contracts';
 
 import { readableLabel, readableList } from './labels.ts';
 import { useT } from './i18n.tsx';
@@ -28,7 +28,11 @@ export function CharacterSheetDetails({ sheet, name }: CharacterSheetDetailsProp
           <div>
             <dt>{t('Hit points')}</dt>
             <dd>
-              {sheet.hitPoints.current} / {sheet.hitPoints.max}
+              {sheet.hitPoints.current} / {effectiveMaximum(sheet.hitPoints)}
+              {sheet.hitPoints.temporary !== undefined &&
+                `\u00a0· ${t('+{amount} temporary', { amount: sheet.hitPoints.temporary })}`}
+              {sheet.hitPoints.reducedBy !== undefined &&
+                `\u00a0· ${t('Maximum lowered by {amount}', { amount: sheet.hitPoints.reducedBy })}`}
             </dd>
           </div>
           <div>

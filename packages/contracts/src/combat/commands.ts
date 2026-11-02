@@ -4,8 +4,10 @@ import { entityIdSchema } from '../kernel/identifiers.ts';
 import {
   ABILITIES,
   CONDITIONS,
+  DAMAGE_TYPES,
   MAX_EXHAUSTION,
   SKILL_IDS,
+  type DamageType,
   type Skill,
 } from '../rules/character-sheet.ts';
 
@@ -22,23 +24,8 @@ export const MAX_BATTLEFIELD = 40;
 /** Fights larger than the slice's 16 (docs/adr/0043-dm-screen.md §2). */
 export const MAX_COMBATANTS = 40;
 
-/** The SRD's damage types (SRD 5.2.1). */
-export const DAMAGE_TYPES = [
-  'acid',
-  'bludgeoning',
-  'cold',
-  'fire',
-  'force',
-  'lightning',
-  'necrotic',
-  'piercing',
-  'poison',
-  'psychic',
-  'radiant',
-  'slashing',
-  'thunder',
-] as const;
-export type DamageType = (typeof DAMAGE_TYPES)[number];
+/** The SRD's damage types, beside the sheet's other vocabularies (`rules/character-sheet.ts`). */
+export { DAMAGE_TYPES, type DamageType };
 
 export const squareSchema = z
   .object({
@@ -134,6 +121,8 @@ export const attackCommandSchema = z
      */
     unarmed: z.enum(['grapple', 'shove']).optional(),
     shove: z.enum(['push', 'prone']).optional(),
+    /** A melee attack that would bring it to 0 leaves it at 1, Unconscious (ADR 0048 §4). */
+    knockOut: z.boolean().optional(),
   })
   .strict();
 
@@ -181,6 +170,8 @@ export const COMBAT_ACTIONS = [
   /** A grapple's (docs/adr/0047-weapons.md §3): breaking free with the action, letting go freely. */
   'escape',
   'release',
+  /** A DC 10 Medicine check: the dying stable, the knocked out awake (ADR 0048 §4). */
+  'first-aid',
 ] as const;
 export type CombatAction = (typeof COMBAT_ACTIONS)[number];
 
@@ -190,6 +181,7 @@ export const ACTION_SKILLS: Readonly<Partial<Record<CombatAction, readonly Skill
   study: ['arcana', 'history', 'investigation', 'nature', 'religion'],
   influence: ['persuasion', 'deception', 'intimidation', 'performance', 'animal-handling'],
   escape: ['athletics', 'acrobatics'],
+  'first-aid': ['medicine'],
 };
 
 export const takeActionCommandSchema = z
@@ -238,7 +230,11 @@ export const adjustHitPointsCommandSchema = z
   .object({
     type: z.literal('AdjustHitPoints'),
     targetId: entityIdSchema,
-    change: z.enum(['damage', 'healing']),
+    /**
+     * Damage, healing, temporary hit points given, or the maximum lowered
+     * (docs/adr/0048-hit-points.md §1–2).
+     */
+    change: z.enum(['damage', 'healing', 'temporary', 'reduce-maximum']),
     amount: z.number().int().min(1).max(999),
     /** Damage only, and then required (the World Engine refuses otherwise). */
     damageType: z.enum(DAMAGE_TYPES).optional(),
@@ -372,6 +368,8 @@ export const FIGHT_CHANGE_COMMAND_TYPES = [
   'DelayTurn',
   'SetInitiative',
   'CommandCreature',
+  /** An object the party attacks (docs/adr/0048-hit-points.md §5; `combat/objects.ts`). */
+  'AddObject',
 ] as const;
 
 /** Combat commands a player may issue for their own character. */

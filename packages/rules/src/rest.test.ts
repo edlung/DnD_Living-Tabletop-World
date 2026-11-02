@@ -76,6 +76,28 @@ describe('Hit Point Dice (SRD 5.2.1)', () => {
     expect(rested.spellcasting.every((source) => (source.freeCasts?.used ?? 0) === 0)).toBe(true);
     expect(characterSheetSchema.safeParse(rested).success).toBe(true);
   });
+
+  it('heals up to a lowered maximum, wakes the knocked out, and the long rest restores all', () => {
+    // docs/adr/0048-hit-points.md §1, §2, §4.
+    const drained = { ...elowen, hitPoints: { max: 78, current: 40, reducedBy: 30, temporary: 4 } };
+    expect(spent(drained, 10, 10).sheet.hitPoints).toEqual({
+      max: 78,
+      current: 48,
+      reducedBy: 30,
+      temporary: 4,
+    });
+    expect(
+      hitDieRefusal({ ...drained, hitPoints: { ...drained.hitPoints, current: 48 } }, 10),
+    ).toBe('FULL_HIT_POINTS');
+    const out = hurt(1, { knockedOut: true, conditions: ['unconscious', 'prone'] });
+    const woken = spent(out, 10, 3).sheet;
+    expect(woken.knockedOut).toBeUndefined();
+    expect(woken.conditions).toEqual(['prone']);
+    const rested = longRest({ ...drained, knockedOut: true, conditions: ['unconscious'] });
+    expect(rested.hitPoints).toEqual({ max: 78, current: 78 });
+    expect(rested.knockedOut).toBeUndefined();
+    expect(characterSheetSchema.safeParse(rested).success).toBe(true);
+  });
 });
 
 describe('a milestone level', () => {
@@ -87,6 +109,13 @@ describe('a milestone level', () => {
     expect(next.spellSlots.max).toEqual([4, 3, 3, 3, 2, 1, 1, 0, 0]);
     expect(deriveCharacter(next).proficiencyBonus).toBe(5);
     expect(characterSheetSchema.safeParse(next).success).toBe(true);
+    // Temporary hit points and a lowered maximum stay through it (docs/adr/0048-hit-points.md).
+    const drained = levelUp(
+      { ...elowen, hitPoints: { max: 78, current: 40, reducedBy: 30, temporary: 4 } },
+      'wizard',
+    );
+    if (typeof drained === 'string') throw new Error(drained);
+    expect(drained.hitPoints).toEqual({ max: 84, current: 46, reducedBy: 30, temporary: 4 });
   });
 
   it('gives a Ranger Extra Attack at level 5', () => {

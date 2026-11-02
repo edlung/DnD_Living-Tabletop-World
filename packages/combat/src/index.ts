@@ -1,5 +1,6 @@
 export { createCombatEngine } from './engine.ts';
-export { actionPlan, type ActionPlan, type ActionRequest } from './actions.ts';
+export { actionPlan, needsAid, type ActionPlan, type ActionRequest } from './actions.ts';
+export { isObjectIn } from './objects.ts';
 export { coverAt, encounterOf, isAlive, occupant, turnStateOf } from './battlefield.ts';
 export {
   attackPlan,

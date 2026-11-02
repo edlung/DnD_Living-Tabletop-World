@@ -32,6 +32,8 @@ export {
   type Square,
 } from './commands.ts';
 export {
+  OBJECT_MATERIALS,
+  OBJECT_SIZES,
   damageSchema,
   monsterAttackSchema,
   monsterSpellSchema,
@@ -39,8 +41,11 @@ export {
   type Damage,
   type MonsterAttack,
   type MonsterSpell,
+  type ObjectMaterial,
+  type ObjectSize,
   type StatBlock,
 } from './stat-block.ts';
+export { addObjectCommandSchema } from './objects.ts';
 export {
   REACTION_COMMAND_TYPES,
   REACTION_IDS,

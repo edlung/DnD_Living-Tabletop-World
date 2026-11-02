@@ -1,7 +1,14 @@
-import type { CharacterDerived, CharacterSheet, EntityKind, PlayerAssetView } from '@ltw/contracts';
+import {
+  effectiveMaximum,
+  type CharacterDerived,
+  type CharacterSheet,
+  type EntityKind,
+  type PlayerAssetView,
+} from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
 
 import { CONDITION_EFFECTS, exhaustionWords } from '../combat/condition-words.ts';
+import { loweredWords, temporaryWords } from '../combat/hit-point-words.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
@@ -54,8 +61,13 @@ export function CharacterCard({
   readonly derived: CharacterDerived | undefined;
 }) {
   const t = useT();
-  const { current, max } = sheet.hitPoints;
+  const { current } = sheet.hitPoints;
+  // The maximum as an effect may have lowered it (docs/adr/0048-hit-points.md §2).
+  const max = effectiveMaximum(sheet.hitPoints);
   const low = current * 2 <= max;
+  const notes = [temporaryWords(t, sheet.hitPoints), loweredWords(t, sheet.hitPoints)].filter(
+    (note) => note !== null,
+  );
   const condition =
     current === 0
       ? sheet.deathSaves?.failures === 3
@@ -94,6 +106,7 @@ export function CharacterCard({
             <span className="visually-hidden">{t('of')}</span> {max}
           </span>
         </p>
+        {notes.length > 0 && <p className="hero-hp-notes">{notes.join('\u00a0· ')}</p>}
         <span className={`hp-bar hero-hp-bar${low ? ' hp-bar--low' : ''}`} aria-hidden="true">
           <span style={{ width: share(current, max) }} />
         </span>

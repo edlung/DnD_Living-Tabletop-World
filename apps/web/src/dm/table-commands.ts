@@ -12,6 +12,7 @@ export type DmTableCommand = KernelCommandOf<
   | 'SetInspiration'
   | 'RecordMemory'
   | 'AddCombatant'
+  | 'AddObject'
   | 'RemoveCombatant'
   | 'DelayTurn'
   | 'SetInitiative'

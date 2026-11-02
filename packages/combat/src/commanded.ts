@@ -2,6 +2,7 @@ import type { KernelCommandOf } from '@ltw/contracts';
 import { accept, reject, type Decision, type DecisionContext } from '@ltw/domain';
 
 import { encounterOf } from './battlefield.ts';
+import { isObjectIn } from './objects.ts';
 
 /**
  * A creature a player commands (docs/adr/0044-online-play.md §7): the DM hands a creature in the
@@ -21,6 +22,10 @@ export function decideCommandCreature(
   if (!record) return reject('NOT_A_COMBATANT', 'NOT_A_COMBATANT');
   if (state.entities.get(record.entityId)?.kind === 'character') {
     return reject('INVALID_COMMAND', 'A character is played by its own player');
+  }
+  // An object takes no turn (docs/adr/0048-hit-points.md §5): there is nothing to run.
+  if (isObjectIn(state, record.entityId)) {
+    return reject('INVALID_COMMAND', 'An object is not commanded');
   }
   const commander = command.characterId;
   if (

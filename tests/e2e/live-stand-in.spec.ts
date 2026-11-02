@@ -92,6 +92,8 @@ test('the DM skips an absent player’s turn, and the player’s screen follows 
 test('the DM acts as the character with a reason; her screen follows, and the history undoes it', async ({
   browser,
 }) => {
+  // Two screens, two moves and two undos: about 16 s alone, beyond 30 s beside a busy suite.
+  test.slow();
   const campaign = LIVE_CAMPAIGNS.actAs;
   const player = await browser.newPage();
   const dm = await browser.newPage();

@@ -1,7 +1,28 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
-import { ABILITIES, CONDITIONS, exhaustionSchema } from '../rules/character-sheet.ts';
+import {
+  ABILITIES,
+  CONDITIONS,
+  damageDefensesShape,
+  effectiveMaximum,
+  exhaustionSchema,
+  hitPointsSchema,
+} from '../rules/character-sheet.ts';
+
+/** What an object is made of, and how big it is (SRD 5.2.1; ADR 0048 §5). */
+export const OBJECT_MATERIALS = [
+  'cloth',
+  'glass',
+  'wood',
+  'stone',
+  'iron',
+  'mithral',
+  'adamantine',
+] as const;
+export type ObjectMaterial = (typeof OBJECT_MATERIALS)[number];
+export const OBJECT_SIZES = ['tiny', 'small', 'medium', 'large'] as const;
+export type ObjectSize = (typeof OBJECT_SIZES)[number];
 
 /**
  * Stat blocks for non-character combatants (docs/adr/0015-combat-engine.md §5).
@@ -81,10 +102,11 @@ const score = z.number().int().min(1).max(30);
 export const statBlockSchema = z
   .object({
     armorClass: z.number().int().min(1).max(40),
-    hitPoints: z
-      .object({ max: z.number().int().min(1).max(999), current: z.number().int().min(0).max(999) })
-      .strict()
-      .refine((hp) => hp.current <= hp.max, 'current HP exceeds maximum'),
+    hitPoints: hitPointsSchema.refine(
+      (hp) => hp.current <= effectiveMaximum(hp),
+      'current HP exceeds maximum',
+    ),
+    ...damageDefensesShape,
     speedFt: z.number().int().min(0).max(200).multipleOf(5),
     abilities: z
       .object({ str: score, dex: score, con: score, int: score, wis: score, cha: score })
@@ -107,6 +129,20 @@ export const statBlockSchema = z
     conditions: z.array(z.enum(CONDITIONS)),
     /** Exhaustion's level (docs/adr/0045-conditions-and-actions.md §3); absent: none. */
     exhaustion: exhaustionSchema.optional(),
+    /** Knocked out (docs/adr/0048-hit-points.md §4): a captive, Unconscious at 1 hit point. */
+    knockedOut: z.literal(true).optional(),
+    /**
+     * An object the party attacks (docs/adr/0048-hit-points.md §5): its material and size, which gave
+     * its AC and hit points. It takes no turn, fails every save and takes no condition.
+     */
+    object: z
+      .object({
+        material: z.enum(OBJECT_MATERIALS),
+        size: z.enum(OBJECT_SIZES),
+        resilient: z.boolean(),
+      })
+      .strict()
+      .optional(),
   })
   .strict();
 export type StatBlock = z.infer<typeof statBlockSchema>;

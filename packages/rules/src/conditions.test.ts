@@ -6,7 +6,7 @@ import {
   checkEffects,
   conditionBlocked,
   d20Modes,
-  damageAfterConditions,
+  damageAfterDefenses,
   exhaustionPenalty,
   incapacitatedBy,
   initiativeEffects,
@@ -138,10 +138,27 @@ describe('the conditions', () => {
   });
 
   it('halve damage to the Petrified, who cannot be Poisoned', () => {
-    expect(damageAfterConditions(11, ['petrified'])).toBe(5);
-    expect(damageAfterConditions(11, ['stunned'])).toBe(11);
+    expect(damageAfterDefenses(11, 'fire', {}, true)).toEqual({ amount: 5, defense: 'resisted' });
+    expect(damageAfterDefenses(11, 'fire', {})).toEqual({ amount: 11, defense: null });
     expect(conditionBlocked('poisoned', ['petrified'])).toBe(true);
     expect(conditionBlocked('poisoned', [])).toBe(false);
+  });
+
+  it('reckon the damage types: immune, then Resistance once, then Vulnerability', () => {
+    // docs/adr/0048-hit-points.md §3.
+    const dwarf = { resistances: ['poison'], immunities: ['psychic'] };
+    expect(damageAfterDefenses(9, 'psychic', dwarf)).toEqual({ amount: 0, defense: 'immune' });
+    expect(damageAfterDefenses(9, 'poison', dwarf, true)).toEqual({
+      amount: 4,
+      defense: 'resisted',
+    });
+    expect(damageAfterDefenses(7, 'bludgeoning', { vulnerabilities: ['bludgeoning'] })).toEqual({
+      amount: 14,
+      defense: 'vulnerable',
+    });
+    // Both: halved first, then doubled — 9 becomes 8.
+    const both = { resistances: ['fire'], vulnerabilities: ['fire'] };
+    expect(damageAfterDefenses(9, 'fire', both)).toEqual({ amount: 8, defense: 'resisted' });
   });
 
   it('turn an asked mode into the rolled one, cancelling, for the client to look up', () => {

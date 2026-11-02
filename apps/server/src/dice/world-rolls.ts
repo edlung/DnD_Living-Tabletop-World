@@ -163,11 +163,14 @@ function rollsOf(events: readonly RecordedEvent[], state: WorldState): WorldRoll
             event.payload.critical,
             event.payload.grip === 'two-handed',
           );
+          // The roll as made: a Resistance or a Vulnerability changes what the target takes
+          // after it (docs/adr/0048-hit-points.md §3).
+          const rolled = damage.payload.dealt ?? damage.payload.amount;
           groups.push({
             purpose: 'damage',
             dice: diceOf(damage.payload.rolls, sides),
-            modifier: damage.payload.amount - sum(damage.payload.rolls),
-            total: damage.payload.amount,
+            modifier: rolled - sum(damage.payload.rolls),
+            total: rolled,
           });
         }
         rolls.push(

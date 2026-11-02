@@ -16,6 +16,7 @@ import { initiativeOrder } from '@ltw/rules';
 
 import { encounterOf, isAlive } from './battlefield.ts';
 import { FightWork, fightEnded } from './condition-details.ts';
+import { isObject } from './objects.ts';
 import { firstTurn } from './turns.ts';
 import { dexterity, rollInitiative, vitalsOf, withConditions } from './vitals.ts';
 
@@ -63,6 +64,8 @@ export function decideStartCombat(
     if (!inside(combatant.position)) return invalid('A combatant stands outside the battlefield');
     const vitals = vitalsOf(state, combatant.entityId);
     if (!vitals) return reject('NO_STAT_BLOCK', 'Every combatant needs a sheet or a stat block');
+    // An object joins a running fight (docs/adr/0048-hit-points.md §5); it rolls no initiative.
+    if (isObject(vitals)) return invalid('An object joins a running fight as an object');
     const { roll, modifier } = rollInitiative(dice, vitals, combatant.surprised === true);
     entries.push({
       id: combatant.entityId,

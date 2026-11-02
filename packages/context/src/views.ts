@@ -1,4 +1,4 @@
-import type { ContextEntityRef, ContextVisibleState } from '@ltw/contracts';
+import { effectiveMaximum, type ContextEntityRef, type ContextVisibleState } from '@ltw/contracts';
 
 import { distanceTo } from './combat.ts';
 import type { ContextInputs } from './inputs.ts';
@@ -27,7 +27,14 @@ export function visibleStateFor(inputs: ContextInputs, entityId: string): Contex
   return {
     present,
     ...(present ? { status: entity.status } : {}),
-    ...(sheet ? { hitPoints: { current: sheet.hitPoints.current, max: sheet.hitPoints.max } } : {}),
+    ...(sheet
+      ? {
+          hitPoints: {
+            current: sheet.hitPoints.current,
+            max: effectiveMaximum(sheet.hitPoints),
+          },
+        }
+      : {}),
     ...(distanceFt === undefined ? {} : { distanceFt }),
   };
 }

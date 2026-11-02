@@ -263,6 +263,13 @@ function attackOf(events: readonly KernelEvent[]) {
     critical: attack.payload.critical,
     damage: damage?.type === 'DamageApplied' ? damage.payload.amount : null,
     ...(mastery ? { mastery } : {}),
+    // What its defenses made of the damage, and a knock out (docs/adr/0048-hit-points.md §3, §4).
+    ...(damage?.type === 'DamageApplied' && damage.payload.defense
+      ? { defense: damage.payload.defense }
+      : {}),
+    ...(damage?.type === 'DamageApplied' && damage.payload.knockedOut
+      ? { knockedOut: true as const }
+      : {}),
   };
 }
 

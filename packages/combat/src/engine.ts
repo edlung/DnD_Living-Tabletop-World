@@ -17,6 +17,7 @@ import {
   decideSetInitiative,
 } from './order.ts';
 import { decideMove } from './movement.ts';
+import { decideAddObject } from './objects.ts';
 import { decideMakeReadiedAttack } from './readied.ts';
 import {
   decideCloseReactionWindow,
@@ -77,6 +78,8 @@ export function createCombatEngine(): CombatPort {
           return decideSetInitiative(context, command);
         case 'CommandCreature':
           return decideCommandCreature(context, command);
+        case 'AddObject':
+          return decideAddObject(context, command);
       }
     },
   };

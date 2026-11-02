@@ -29,6 +29,13 @@ const REJECTIONS: Readonly<Record<string, string>> = {
   SESSION_PAUSED: 'The DM paused the game. It waits until they resume.',
 };
 
+/** A target's defense against the damage's type (docs/adr/0048-hit-points.md §3). */
+const DEFENSE_WORDS = {
+  resisted: 'It resists the damage: half of it.',
+  vulnerable: 'It is vulnerable to the damage: double.',
+  immune: 'It is immune to the damage.',
+} as const;
+
 /** Changes of a running fight (ADR 0043 §2): a refusal is about the fight, not its start. */
 const FIGHT_COMMANDS: ReadonlySet<string> = new Set([
   'AddCombatant',
@@ -144,7 +151,10 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
           )
         : t('Miss (attack {total}).', { total: outcome.attackTotal });
       const mastery = outcome.mastery ? masteryWords(t, outcome.mastery, outcome.damage) : null;
-      return mastery ? `${roll} ${mastery}` : roll;
+      // What its defenses made of the damage, and a knock out (docs/adr/0048-hit-points.md).
+      const defense = outcome.defense ? t(DEFENSE_WORDS[outcome.defense]) : null;
+      const out = outcome.knockedOut ? t('It is knocked out.') : null;
+      return [roll, defense, mastery, out].filter((part) => part !== null).join(' ');
     }
     case 'UnarmedStrike':
       if (outcome.saved) {

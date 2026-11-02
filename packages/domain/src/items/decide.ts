@@ -1,4 +1,4 @@
-import { catalogEntry, type CharacterSheet } from '@ltw/contracts';
+import { catalogEntry, effectiveMaximum, type CharacterSheet } from '@ltw/contracts';
 
 import { isCombatant } from '../combat/records.ts';
 import { adjacentInEncounter, spendTurn, type ItemCost } from './economy.ts';
@@ -229,13 +229,14 @@ export function decideUseItem(state: WorldState, command: ResolvedCommandOf<'Use
         'INVALID_ITEM',
         'A character at 0 hit points needs care that this item cannot give',
       );
-    if (sheet.hitPoints.current >= sheet.hitPoints.max)
+    // Full up to the maximum as an effect may have lowered it (docs/adr/0048-hit-points.md §2).
+    if (sheet.hitPoints.current >= effectiveMaximum(sheet.hitPoints))
       return reject('NO_EFFECT', 'Already at full hit points');
     change = (s) => ({
       ...s,
       hitPoints: {
         ...s.hitPoints,
-        current: Math.min(s.hitPoints.max, s.hitPoints.current + effect.amount),
+        current: Math.min(effectiveMaximum(s.hitPoints), s.hitPoints.current + effect.amount),
       },
     });
   } else if (effect.kind === 'removeCondition') {

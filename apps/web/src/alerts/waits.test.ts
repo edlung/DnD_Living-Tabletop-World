@@ -12,6 +12,7 @@ const ELOWEN = 'elowen-starwhisper';
 function encounter(change: Partial<EncounterView> = {}): EncounterView {
   return {
     encounterId: 'ambush',
+    locationId: 'old-trade-road',
     round: 2,
     currentCombatantId: ELOWEN,
     order: [ELOWEN, 'raider'],

@@ -43,6 +43,11 @@ each further SRD rule needs an entry or an ADR before it is implemented).
 - 640e — Hit points: temporary hit points (no stacking, lost first), a lowered maximum, resistance,
   vulnerability and immunity for characters as for monsters; knocking out (0 HP by a melee attack:
   Unconscious and stable); attacking objects (a door, a rope: AC and HP by size and material).
+
+  ADR 0048 first. Done in one commit. First aid (a DC 10 Medicine check) wakes the knocked out
+  and stabilizes the dying; the DM gives temporary hit points and lowers a maximum by hand until
+  spells, features and monsters bring their own (650, 660). A Short Rest's end of a knock out
+  comes with the full rests (640g); a Hit Point Die spent wakes the knocked out meanwhile.
 - 640f — Space and movement: creature size and space, squeezing; speeds (walk, fly, swim, climb,
   burrow), climbing and swimming without a speed, jumping (long and high), elevation and falling
   (1d6 per 10 ft, Prone); mounted combat; underwater combat.

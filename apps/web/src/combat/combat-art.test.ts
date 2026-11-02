@@ -7,6 +7,7 @@ import '../i18n/ru-conditions.ts';
 import '../i18n/ru-play.ts';
 import '../i18n/ru-visual.ts';
 import '../i18n/ru-weapons.ts';
+import '../i18n/ru-hit-points.ts';
 import { CATALOG_NAMES, GLYPH_NAMES } from '../visual/ui-kit-names.ts';
 import {
   actionEffect,

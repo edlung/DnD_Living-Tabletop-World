@@ -99,6 +99,15 @@
 .tray-end .tray-glyph {
   color: var(--gold-bright);
 }
+/* The knock-out choice for the melee attacks listed (docs/adr/0048-hit-points.md §4) */
+.tray-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: center;
+  min-height: 32px;
+  font-size: 0.875rem;
+}
 /* What an action asks first, under the tray's row: Search's skill, Ready's attack and trigger */
 .action-choice {
   display: grid;

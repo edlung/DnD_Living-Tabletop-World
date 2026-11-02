@@ -14,6 +14,7 @@ import {
 
 import { encounterOf, inBounds, isAlive, occupant } from './battlefield.ts';
 import { FightWork, leftTheFight } from './condition-details.ts';
+import { isObject, isObjectIn } from './objects.ts';
 import { nextTurn } from './turns.ts';
 import {
   incapacitated,
@@ -92,6 +93,8 @@ export function decideAddCombatant(
     return invalid('The fight holds as many combatants as it can');
   const vitals = vitalsOf(state, command.entityId);
   if (!vitals) return reject('NO_STAT_BLOCK', 'Every combatant needs a sheet or a stat block');
+  // An object rolls no initiative: it joins with `AddObject` (docs/adr/0048-hit-points.md §5).
+  if (isObject(vitals)) return invalid('An object joins the fight as an object');
   const rolled = command.initiative === undefined ? rollInitiative(dice, vitals) : null;
   const initiative =
     rolled === null
@@ -222,6 +225,7 @@ export function decideSetInitiative(
   const encounter = found.value;
   const record = encounter.combatants.find((c) => c.entityId === command.combatantId);
   if (!record) return reject('NOT_A_COMBATANT', 'NOT_A_COMBATANT');
+  if (isObjectIn(state, record.entityId)) return reject('NO_EFFECT', 'An object has no initiative');
   if (record.initiative.total === command.total) return reject('NO_EFFECT', 'Nothing changes');
   // The DM's total: the recorded roll and modifier stay as they were.
   const initiative = { ...record.initiative, total: command.total };

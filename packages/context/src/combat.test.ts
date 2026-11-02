@@ -157,4 +157,30 @@ describe('context in combat', () => {
       action(after, 'longbow_attack').reason ?? 'accepted',
     );
   });
+
+  it('offers the attacks at an object in the fight, without a mastery that names a creature', async () => {
+    // docs/adr/0048-hit-points.md §5: an overturned cart two squares east of Elowen.
+    const cart = 'feature-5e1c0b7d';
+    const world = await seedRavenford();
+    await world.apply(
+      { type: 'CreateEntity', entityId: cart, kind: 'feature', name: 'Cart', existsSince: null },
+      { type: 'PlaceEntity', entityId: cart, locationId: 'old-trade-road' },
+      ...ambush.place,
+      structuredClone(ambush.startCombat),
+      {
+        type: 'AddObject',
+        entityId: cart,
+        material: 'wood',
+        size: 'large',
+        resilient: true,
+        position: { x: 4, y: 6 },
+      },
+    );
+    const context = await contextOf(world, cart);
+    const shot = action(context, 'longbow_attack');
+    expect(shot.legal).toBe(true);
+    expect(shot.mastery).toBeUndefined();
+    expect(action(context, 'unarmed_strike')).toMatchObject({ legal: false });
+    expect(context.actions.some((a) => a.id === 'hunters_mark')).toBe(false);
+  });
 });

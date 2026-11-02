@@ -156,9 +156,33 @@ export function targetTilt(
   };
 }
 
-/** Damage to a Petrified creature: Resistance to all of it (halved, rounded down). */
-export const damageAfterConditions = (damage: number, conditions: readonly Condition[]): number =>
-  conditions.includes('petrified') ? Math.floor(damage / 2) : damage;
+/** Resistance, Vulnerability and Immunity by damage type (docs/adr/0048-hit-points.md §3). */
+export interface DamageDefenses {
+  readonly resistances?: readonly string[] | undefined;
+  readonly vulnerabilities?: readonly string[] | undefined;
+  readonly immunities?: readonly string[] | undefined;
+}
+
+/**
+ * Damage after a creature's defenses (SRD 5.2.1): none if it is immune to the type; Resistance
+ * halves it (rounded down), then Vulnerability doubles it; two Resistances count once. Petrified
+ * resists every type (`resistsAll`). Which defense changed it, if any did.
+ */
+export function damageAfterDefenses(
+  damage: number,
+  type: string,
+  defenses: DamageDefenses,
+  resistsAll = false,
+): { readonly amount: number; readonly defense: 'resisted' | 'vulnerable' | 'immune' | null } {
+  if (defenses.immunities?.includes(type) === true) return { amount: 0, defense: 'immune' };
+  const resisted = resistsAll || defenses.resistances?.includes(type) === true;
+  const halved = resisted ? Math.floor(damage / 2) : damage;
+  const amount = defenses.vulnerabilities?.includes(type) === true ? halved * 2 : halved;
+  return {
+    amount,
+    defense: amount < damage ? 'resisted' : amount > damage ? 'vulnerable' : null,
+  };
+}
 
 /** A condition that cannot take hold: a Petrified creature cannot be Poisoned. */
 export const conditionBlocked = (condition: Condition, conditions: readonly Condition[]): boolean =>

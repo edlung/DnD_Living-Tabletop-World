@@ -1,4 +1,9 @@
-import type { ConditionNoteView, EncounterCombatantView, EncounterView } from '@ltw/contracts';
+import {
+  effectiveMaximum,
+  type ConditionNoteView,
+  type EncounterCombatantView,
+  type EncounterView,
+} from '@ltw/contracts';
 import {
   combatantOf,
   currentCombatant,
@@ -9,7 +14,7 @@ import {
 } from '@ltw/domain';
 
 import { reactionWindowView } from './reactions/view.ts';
-import { conditionsOf, exhaustionOf, hitPoints, vitalsOf } from './vitals.ts';
+import { conditionsOf, exhaustionOf, has, hitPoints, knockedOutOf, vitalsOf } from './vitals.ts';
 
 /**
  * The encounter as a perspective sees it (docs/adr/0015-combat-engine.md §6).
@@ -69,6 +74,7 @@ export function encounterView(
     const showHp =
       dm || commanded || (vitals.kind === 'character' && party.has(combatant.entityId));
     const { roll, modifier, total, surprised } = combatant.initiative;
+    const thing = vitals.kind === 'creature' ? vitals.block.object : undefined;
     return {
       entity: {
         entityId: entity.entityId,
@@ -77,11 +83,25 @@ export function encounterView(
       },
       side: combatant.side,
       position: { x: combatant.position.x, y: combatant.position.y },
-      state: entity.status !== 'active' ? 'dead' : hp.current === 0 ? 'down' : 'up',
+      // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).
+      state:
+        entity.status !== 'active'
+          ? 'dead'
+          : hp.current === 0 || (knockedOutOf(vitals) && has(vitals, 'unconscious'))
+            ? 'down'
+            : 'up',
       conditions: [...conditionsOf(vitals)],
       ...(exhaustionOf(vitals) > 0 ? { exhaustion: exhaustionOf(vitals) } : {}),
       ...(notesOf(combatant).length > 0 ? { conditionNotes: notesOf(combatant) } : {}),
-      ...(showHp ? { hitPoints: { current: hp.current, max: hp.max } } : {}),
+      ...(showHp
+        ? {
+            hitPoints: {
+              current: hp.current,
+              max: effectiveMaximum(hp),
+              ...(hp.temporary === undefined ? {} : { temporary: hp.temporary }),
+            },
+          }
+        : {}),
       ...(commanded
         ? {
             commandedBy: {
@@ -101,12 +121,17 @@ export function encounterView(
             },
           }
         : {}),
-      ...(dm ? { initiative: { roll, modifier, total, ...(surprised ? { surprised } : {}) } } : {}),
+      ...(dm && thing === undefined
+        ? { initiative: { roll, modifier, total, ...(surprised ? { surprised } : {}) } }
+        : {}),
+      // An object (docs/adr/0048-hit-points.md §5): what it is made of shows; it has no turn.
+      ...(thing === undefined ? {} : { object: { material: thing.material, size: thing.size } }),
     };
   });
   const { battlefield } = encounter;
   return {
     encounterId: encounter.encounterId,
+    locationId: encounter.locationId,
     round: encounter.round,
     currentCombatantId: current.entityId,
     order: encounter.combatants.map((c) => c.entityId),

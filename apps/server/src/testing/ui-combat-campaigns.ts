@@ -84,6 +84,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   weapons: 'placed',
   offhand: 'placed',
   grapple: 'placed',
+  // The hit points' journey (docs/adr/0048-hit-points.md): beside her, and a cart on the road.
+  hitPoints: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -100,6 +102,30 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedBesideStart(engine, campaigns.weapons);
   await seedBesideStart(engine, campaigns.offhand);
   await seedBesideStart(engine, campaigns.grapple);
+  await seedCart(engine, campaigns.hitPoints);
+  await seedBesideStart(engine, campaigns.hitPoints);
+}
+
+/** An overturned cart on the Old Trade Road, for the DM to bring into the fight as an object. */
+async function seedCart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const cart = 'feature-a022d4a2';
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.cart`,
+    commands: [
+      {
+        type: 'CreateEntity',
+        entityId: cart,
+        kind: 'feature',
+        name: 'Overturned cart',
+        existsSince: null,
+      },
+      { type: 'PlaceEntity', entityId: cart, locationId: ambush.startCombat.locationId },
+    ],
+  })) {
+    await accept(engine, submission);
+  }
 }
 
 /**

@@ -69,6 +69,7 @@ import {
   declineReactionCommandSchema,
   useReactionCommandSchema,
 } from '../combat/reactions.ts';
+import { addObjectCommandSchema } from '../combat/objects.ts';
 import { setStatBlockCommandSchema } from '../combat/stat-block.ts';
 import { setClaimCommandSchema } from '../knowledge/claims.ts';
 import { setRelationshipCommandSchema } from '../relationships/commands.ts';
@@ -200,6 +201,7 @@ export const kernelCommandSchema = z
     delayTurnCommandSchema,
     setInitiativeCommandSchema,
     commandCreatureCommandSchema,
+    addObjectCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -277,6 +279,7 @@ export const KERNEL_COMMAND_TYPES = [
   'DelayTurn',
   'SetInitiative',
   'CommandCreature',
+  'AddObject',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

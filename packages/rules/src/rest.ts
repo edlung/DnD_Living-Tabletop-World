@@ -1,4 +1,9 @@
-import type { CharacterSheet, ClassId, HitDieSides } from '@ltw/contracts';
+import {
+  effectiveMaximum,
+  type CharacterSheet,
+  type ClassId,
+  type HitDieSides,
+} from '@ltw/contracts';
 
 import { abilityModifier, spellSlotsFor, totalLevel } from './character-math.ts';
 
@@ -47,7 +52,7 @@ export function hitDice(sheet: CharacterSheet): HitDicePool[] {
 }
 
 /** The sheet without one of its optional fields. */
-function without<K extends 'hitDiceSpent' | 'deathSaves' | 'exhaustion'>(
+function without<K extends 'hitDiceSpent' | 'deathSaves' | 'exhaustion' | 'knockedOut'>(
   sheet: CharacterSheet,
   key: K,
 ): Omit<CharacterSheet, K> {
@@ -71,14 +76,15 @@ export function hitDieRefusal(sheet: CharacterSheet, sides: HitDieSides): HitDie
   const pool = hitDice(sheet).find((entry) => entry.sides === sides);
   if (!pool || pool.left === 0) return 'NO_HIT_DICE_LEFT';
   if (sheet.hitPoints.current === 0) return 'DOWN';
-  if (sheet.hitPoints.current >= sheet.hitPoints.max) return 'FULL_HIT_POINTS';
+  if (sheet.hitPoints.current >= effectiveMaximum(sheet.hitPoints)) return 'FULL_HIT_POINTS';
   return null;
 }
 
 /**
  * Spends one Hit Point Die of `sides` in a short rest: the die's roll plus the Constitution modifier
- * comes back as hit points, at least 1 (SRD 5.2.1), up to the maximum. A character at 0 hit points
- * is unconscious and spends none.
+ * comes back as hit points, at least 1 (SRD 5.2.1), up to the maximum as an effect may have lowered
+ * it. A character at 0 hit points is unconscious and spends none; a knocked-out one wakes with them
+ * (docs/adr/0048-hit-points.md §4).
  */
 export function spendHitDie(
   sheet: CharacterSheet,
@@ -90,28 +96,39 @@ export function spendHitDie(
   const refusal = hitDieRefusal(sheet, sides);
   if (refusal) return refusal;
   const pool = hitDice(sheet).find((entry) => entry.sides === sides);
-  const { current, max } = sheet.hitPoints;
+  const { current } = sheet.hitPoints;
   const modifier = abilityModifier(sheet.abilities.con);
-  const healed = Math.min(max - current, Math.max(1, roll + modifier));
+  const healed = Math.min(
+    effectiveMaximum(sheet.hitPoints) - current,
+    Math.max(1, roll + modifier),
+  );
   const spent: Spent = { ...(sheet.hitDiceSpent ?? {}), [KEY[sides]]: (pool?.spent ?? 0) + 1 };
-  return {
-    sheet: withSpent({ ...sheet, hitPoints: { max, current: current + healed } }, spent),
-    healed,
-    modifier,
-  };
+  const rested = { ...sheet, hitPoints: { ...sheet.hitPoints, current: current + healed } };
+  const awake =
+    sheet.knockedOut === true
+      ? {
+          ...without(rested, 'knockedOut'),
+          conditions: rested.conditions.filter((condition) => condition !== 'unconscious'),
+        }
+      : rested;
+  return { sheet: withSpent(awake, spent), healed, modifier };
 }
 
 /**
  * A long rest (SRD 5.2.1): all hit points and all spent Hit Point Dice back, every spell slot and
- * free cast, death saves cleared and the Unconscious condition with them, and one level of
- * Exhaustion fewer (docs/adr/0045-conditions-and-actions.md §3). The rules let a creature at 0 hit
+ * free cast, death saves cleared and the Unconscious condition with them, temporary hit points gone
+ * and a lowered maximum restored (docs/adr/0048-hit-points.md §1, §2), and one level of Exhaustion
+ * fewer (docs/adr/0045-conditions-and-actions.md §3). The rules let a creature at 0 hit
  * points start no long rest; a stable one regains 1 after 1d4 hours, which the product counts
  * inside the eight, so the whole party wakes rested (owner-delegated decision, Stage 530).
  */
 export function longRest(sheet: CharacterSheet): CharacterSheet {
   const exhaustion = (sheet.exhaustion ?? 0) - 1;
   return {
-    ...without(without(without(sheet, 'deathSaves'), 'hitDiceSpent'), 'exhaustion'),
+    ...without(
+      without(without(without(sheet, 'deathSaves'), 'hitDiceSpent'), 'exhaustion'),
+      'knockedOut',
+    ),
     ...(exhaustion > 0 ? { exhaustion } : {}),
     hitPoints: { max: sheet.hitPoints.max, current: sheet.hitPoints.max },
     spellSlots: { max: [...sheet.spellSlots.max], expended: sheet.spellSlots.max.map(() => 0) },
@@ -169,7 +186,11 @@ export function levelUp(sheet: CharacterSheet, classId: ClassId): CharacterSheet
   return {
     ...sheet,
     classes,
-    hitPoints: { max: sheet.hitPoints.max + gained, current: sheet.hitPoints.current + gained },
+    hitPoints: {
+      ...sheet.hitPoints,
+      max: sheet.hitPoints.max + gained,
+      current: sheet.hitPoints.current + gained,
+    },
     spellSlots: {
       max: slots,
       expended: slots.map((max, index) => Math.min(max, sheet.spellSlots.expended[index] ?? 0)),

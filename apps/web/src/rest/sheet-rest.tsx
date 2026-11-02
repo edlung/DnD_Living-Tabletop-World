@@ -1,4 +1,9 @@
-import type { CharacterDerived, CharacterSheet, ClassId } from '@ltw/contracts';
+import {
+  effectiveMaximum,
+  type CharacterDerived,
+  type CharacterSheet,
+  type ClassId,
+} from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
@@ -30,7 +35,8 @@ export function HitDice({ entityId, sheet, derived, locked, onRun }: SheetRestPr
   const [entering, setEntering] = useState(false);
   const [faces, setFaces] = useState<Readonly<Record<number, string>>>({});
   const spends = table !== null && (table.isDm || table.characterId === entityId);
-  const { current, max } = sheet.hitPoints;
+  const { current } = sheet.hitPoints;
+  const max = effectiveMaximum(sheet.hitPoints);
   const reason =
     (table?.rest ?? null) === null
       ? t('Hit Point Dice are spent in a short rest the DM calls.')

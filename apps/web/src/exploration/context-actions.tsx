@@ -292,6 +292,7 @@ const ACTION_TEXT: Readonly<
   unarmed_strike: 'Unarmed Strike',
   escape: 'Escape a grapple',
   release: 'Let go',
+  'first-aid': 'First aid',
 };
 
 /** Longest evidence wording on a button; the full statement is in the journal and the picker. */

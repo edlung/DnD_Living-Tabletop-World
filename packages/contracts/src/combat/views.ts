@@ -2,6 +2,7 @@ import type { EntityKind, KernelCommandOf } from '../kernel/commands.ts';
 import type { Ability, Condition } from '../rules/character-sheet.ts';
 import type { Battlefield, Side } from './commands.ts';
 import type { ReactionId, ReactionResponse, SpellComponent } from './reactions.ts';
+import type { ObjectMaterial, ObjectSize } from './stat-block.ts';
 
 /** A condition's end and source in a fight (docs/adr/0045-conditions-and-actions.md §2). */
 export interface ConditionNoteView {
@@ -37,7 +38,15 @@ export interface EncounterCombatantView {
   /** How its conditions in this fight end and their sources (§2); absent when none has any. */
   readonly conditionNotes?: readonly ConditionNoteView[];
   /** Party members, and a creature the viewer's party commands (and every combatant for the DM). */
-  readonly hitPoints?: { readonly current: number; readonly max: number };
+  /**
+   * Hit points against the maximum an effect may have lowered, and temporary ones beside them
+   * (docs/adr/0048-hit-points.md §1–2).
+   */
+  readonly hitPoints?: {
+    readonly current: number;
+    readonly max: number;
+    readonly temporary?: number;
+  };
   /**
    * The party character commanding this creature (docs/adr/0044-online-play.md §7), as the
    * viewer knows them; absent when none or not known to the viewer.
@@ -52,7 +61,7 @@ export interface EncounterCombatantView {
     readonly attackId: string;
     readonly trigger: string;
   };
-  /** DM only. */
+  /** DM only; never an object's. */
   readonly initiative?: {
     readonly roll: number;
     readonly modifier: number;
@@ -60,6 +69,11 @@ export interface EncounterCombatantView {
     /** Surprised as the fight started: rolled with Disadvantage (ADR 0045 §5). */
     readonly surprised?: true;
   };
+  /**
+   * An object the party attacks (docs/adr/0048-hit-points.md §5): it takes no turn; `dead` is
+   * destroyed. What it is made of and its size, as anyone looking at it sees.
+   */
+  readonly object?: { readonly material: ObjectMaterial; readonly size: ObjectSize };
 }
 
 /**
@@ -147,6 +161,8 @@ export interface ReactionWindowView {
 
 export interface EncounterView {
   readonly encounterId: string;
+  /** The place of the fight, where every combatant stands: the DM's hand adds from it. */
+  readonly locationId: string;
   readonly round: number;
   readonly currentCombatantId: string;
   /** Combatant entity IDs in turn order. */

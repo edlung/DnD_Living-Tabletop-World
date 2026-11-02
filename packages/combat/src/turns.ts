@@ -14,6 +14,7 @@ import { rollDeathSave } from '@ltw/rules';
 
 import { encounterOf, isAlive, onTurn } from './battlefield.ts';
 import { durationsAt, FightWork, savesAtEndOfTurn } from './condition-details.ts';
+import { isObjectIn } from './objects.ts';
 import { grapplesSweep } from './unarmed.ts';
 import { combatPremises } from './refusal.ts';
 import {
@@ -110,7 +111,8 @@ function nextLiving(
   for (let step = 1; step <= count; step += 1) {
     const index = (fromIndex + step) % count;
     const combatant = encounter.combatants[index];
-    if (combatant && isAlive(state, combatant.entityId)) {
+    // An object takes no turn (docs/adr/0048-hit-points.md §5).
+    if (combatant && isAlive(state, combatant.entityId) && !isObjectIn(state, combatant.entityId)) {
       return { combatant, wrapped: fromIndex >= 0 && fromIndex + step >= count };
     }
   }

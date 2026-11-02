@@ -2,6 +2,7 @@ import type { Ability } from '@ltw/contracts';
 import type { Dice, DraftEvent } from '@ltw/domain';
 import { COVER_BONUS, d20Test, saveEffects } from '@ltw/rules';
 
+import { isObject } from './objects.ts';
 import { conditionsOf, exhaustionOf, saveModifier, type Vitals } from './vitals.ts';
 
 /**
@@ -23,14 +24,16 @@ export function spellSave(
   const effects = saveEffects(ability, conditionsOf(target), exhaustionOf(target));
   const bonus = ability === 'dex' && cover !== 'none' ? COVER_BONUS[cover] : 0;
   const modifier = saveModifier(target, ability) + bonus + effects.penalty;
-  const save = effects.autoFail
-    ? { rolls: [] as number[], total: modifier, success: false }
-    : d20Test(dice, {
-        modifier,
-        target: dc,
-        advantage: effects.advantage || (dodging && ability === 'dex'),
-        disadvantage: effects.disadvantage,
-      });
+  // An object has no ability scores: it fails every save (docs/adr/0048-hit-points.md §5).
+  const save =
+    effects.autoFail || isObject(target)
+      ? { rolls: [] as number[], total: modifier, success: false }
+      : d20Test(dice, {
+          modifier,
+          target: dc,
+          advantage: effects.advantage || (dodging && ability === 'dex'),
+          disadvantage: effects.disadvantage,
+        });
   return {
     success: save.success,
     event: {

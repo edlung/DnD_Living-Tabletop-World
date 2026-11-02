@@ -62,7 +62,11 @@ export type IllegalReason =
   /** A grapple's (ADR 0047 §3): it holds the target already; nothing holds it; it holds no one. */
   | 'ALREADY_GRAPPLED'
   | 'NOT_GRAPPLED'
-  | 'NOT_GRAPPLING';
+  | 'NOT_GRAPPLING'
+  /** First aid for a creature neither dying nor knocked out (docs/adr/0048-hit-points.md §4). */
+  | 'NEEDS_NO_AID'
+  /** An object, where a grapple, a mastery or a spell names a creature (ADR 0048 §5). */
+  | 'NOT_A_CREATURE';
 
 export interface Illegal {
   readonly legal: false;

@@ -230,11 +230,19 @@ export const combatEventPayloadSchemas = {
     .object({
       targetId: entityIdSchema,
       sourceId: entityIdSchema,
+      /** What it took, after its defenses (docs/adr/0048-hit-points.md §3). */
       amount: z.number().int().min(0),
       damageType: slug,
       rolls: z.array(z.number().int().min(1).max(12)).max(60),
       hpBefore: hp,
       hpAfter: hp,
+      /** Its Resistance, Vulnerability or Immunity to the type changed it; what was dealt. */
+      defense: z.enum(['resisted', 'vulnerable', 'immune']).optional(),
+      dealt: z.number().int().min(0).optional(),
+      /** Temporary hit points that took part of it (ADR 0048 §1). */
+      absorbed: z.number().int().min(1).max(999).optional(),
+      /** Knocked out instead of brought to 0 (ADR 0048 §4). */
+      knockedOut: z.literal(true).optional(),
     })
     .strict(),
   HealingApplied: z
@@ -251,7 +259,7 @@ export const combatEventPayloadSchemas = {
   HitPointsAdjusted: z
     .object({
       targetId: entityIdSchema,
-      change: z.enum(['damage', 'healing']),
+      change: z.enum(['damage', 'healing', 'temporary', 'reduce-maximum']),
       amount: z.number().int().min(0),
       damageType: slug.optional(),
       hpBefore: hp,

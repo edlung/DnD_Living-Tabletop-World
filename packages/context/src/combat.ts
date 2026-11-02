@@ -15,6 +15,7 @@ import {
   chooseUsing,
   counterspellPlan,
   fireballArea,
+  isObjectIn,
   type Refusal,
   UNARMED_STRIKE,
 } from '@ltw/combat';
@@ -94,10 +95,12 @@ export function combatAttackVerdict(
   const hints: ContextHint[] = [];
   if (plan.longRange) hints.push('LONG_RANGE');
   if (tilt !== null && !(tilt === 'DISADVANTAGE' && plan.longRange)) hints.push(tilt);
+  // A mastery names a creature: at an object it is not shown (docs/adr/0048-hit-points.md §5).
+  const mastery = isObjectIn(inputs.state, targetId) ? null : plan.weapon.mastery;
   return {
     legal: true,
     ...(hints.length > 0 ? { hints } : {}),
-    ...(plan.weapon.mastery !== null ? { mastery: plan.weapon.mastery } : {}),
+    ...(mastery !== null ? { mastery } : {}),
   };
 }
 

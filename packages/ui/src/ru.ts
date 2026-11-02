@@ -27,6 +27,7 @@ registerRussian({
   'Conditions, concentration and death saves': 'Состояния, концентрация и спасброски от смерти',
   'Current turn': 'Сейчас ходит',
   'Unidentified creature {number}': 'Неопознанное существо {number}',
+  'Unidentified object {number}': 'Неопознанный объект {number}',
   'Death saves': 'Спасброски от смерти',
   'Encounter summary': 'Сводка по схватке',
   'Event sequence': 'Номер события',

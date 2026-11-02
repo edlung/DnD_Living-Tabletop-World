@@ -127,6 +127,15 @@ export function combatCommandFor(
         action: 'help',
         targetId: target.entityId,
       };
+    // First aid: Medicine against 10 (docs/adr/0048-hit-points.md §4).
+    case 'first-aid':
+      return {
+        type: 'TakeAction',
+        combatantId: actorId,
+        action: 'first-aid',
+        targetId: target.entityId,
+        skill: 'medicine',
+      };
     default:
       return null;
   }

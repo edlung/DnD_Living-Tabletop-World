@@ -13,6 +13,7 @@ import { Medallion } from '../../visual/medallion.tsx';
 import { boardUrl } from '../../visual/ui-kit.ts';
 import { HpBar } from '../board/token.tsx';
 import { conditionGlyph } from '../combat-art.ts';
+import { sideWords, stateWords, temporaryWords } from '../hit-point-words.ts';
 import { useCombatantLabels } from '../labels.ts';
 import type { PlannedPath } from '../movement.ts';
 
@@ -167,9 +168,9 @@ export function CombatantCard({
       <header className="side-header">
         <Medallion image={image} kind={combatant.entity.kind} size="lg" tone={combatant.side} />
         <div className="side-title">
-          <p className="eyebrow">{t(readableLabel(combatant.side))}</p>
+          <p className="eyebrow">{sideWords(t, combatant)}</p>
           <h3>{label}</h3>
-          <p className="side-state">{t(readableLabel(combatant.state))}</p>
+          <p className="side-state">{stateWords(t, combatant)}</p>
         </div>
         <IconButton glyph="close" label={t('Close options')} onClick={onClose} />
       </header>
@@ -177,6 +178,9 @@ export function CombatantCard({
         <p className="side-hp">
           <Glyph name="hit-points" />
           {t('Hit points: {current} / {max}', { ...combatant.hitPoints })}
+          {temporaryWords(t, combatant.hitPoints) && (
+            <span className="hp-temporary">{temporaryWords(t, combatant.hitPoints)}</span>
+          )}
           <HpBar hitPoints={combatant.hitPoints} />
         </p>
       )}

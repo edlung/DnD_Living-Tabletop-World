@@ -158,6 +158,8 @@
 .hand-form {
   position: relative;
   display: grid;
+  /* A select's longest option must not widen the form past its card (a 320 px phone). */
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.5rem;
   padding: 0.6rem 0.7rem;
   border: 1px solid var(--line);

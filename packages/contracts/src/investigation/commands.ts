@@ -171,6 +171,10 @@ export type PlayerOutcome =
         readonly pushedFt?: number;
         readonly toppled?: boolean;
       };
+      /** The target's defense changed the damage (docs/adr/0048-hit-points.md §3). */
+      readonly defense?: 'resisted' | 'vulnerable' | 'immune';
+      /** Knocked out instead of brought to 0 hit points (ADR 0048 §4). */
+      readonly knockedOut?: true;
     }
   | {
       readonly kind: 'CastSpell';

@@ -47,21 +47,27 @@ const conditionWord = (t: Translate, condition: string) =>
 /** The change's line: who, what, and the hit points before and after. */
 export function describeHand(t: Translate, change: DmHandEntry['change']): string {
   switch (change.kind) {
-    case 'hit-points':
-      return change.change === 'damage'
-        ? t('{name}: {amount} damage ({type}), hit points {before} → {after}', {
-            name: change.target.name,
-            amount: change.amount,
-            type: damageWord(t, change.damageType),
-            before: change.hpBefore,
-            after: change.hpAfter,
-          })
-        : t('{name}: healed {amount}, hit points {before} → {after}', {
-            name: change.target.name,
-            amount: change.amount,
-            before: change.hpBefore,
-            after: change.hpAfter,
-          });
+    case 'hit-points': {
+      const words = {
+        name: change.target.name,
+        amount: change.amount,
+        before: change.hpBefore,
+        after: change.hpAfter,
+      };
+      if (change.change === 'damage') {
+        return t('{name}: {amount} damage ({type}), hit points {before} → {after}', {
+          ...words,
+          type: damageWord(t, change.damageType),
+        });
+      }
+      if (change.change === 'healing') {
+        return t('{name}: healed {amount}, hit points {before} → {after}', words);
+      }
+      // Temporary hit points and a lowered maximum (docs/adr/0048-hit-points.md §1, §2).
+      return change.change === 'temporary'
+        ? t('{name}: {amount} temporary hit points', words)
+        : t('{name}: maximum lowered by {amount}, hit points {before} → {after}', words);
+    }
     case 'condition': {
       const words = { name: change.target.name, condition: conditionWord(t, change.condition) };
       return change.applied

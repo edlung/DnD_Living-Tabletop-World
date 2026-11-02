@@ -46,7 +46,12 @@ function copySheet(sheet: CharacterSheet, visible: (id: string) => boolean): Cha
       wis: sheet.abilities.wis,
       cha: sheet.abilities.cha,
     },
-    hitPoints: { max: sheet.hitPoints.max, current: sheet.hitPoints.current },
+    hitPoints: {
+      max: sheet.hitPoints.max,
+      current: sheet.hitPoints.current,
+      ...(sheet.hitPoints.temporary === undefined ? {} : { temporary: sheet.hitPoints.temporary }),
+      ...(sheet.hitPoints.reducedBy === undefined ? {} : { reducedBy: sheet.hitPoints.reducedBy }),
+    },
     armorClass: sheet.armorClass,
     speedFt: sheet.speedFt,
     savingThrows: [...sheet.savingThrows],

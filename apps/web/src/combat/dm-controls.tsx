@@ -92,7 +92,6 @@ export function DmCombatControls({
           <RunningControls
             api={api}
             encounter={encounter}
-            locationId={locationId}
             directory={directory}
             locked={locked}
             onRun={onRun}
@@ -226,14 +225,12 @@ function StartControls({
 function RunningControls({
   api,
   encounter,
-  locationId,
   directory,
   locked,
   onRun,
 }: {
   readonly api: WorldApi;
   readonly encounter: EncounterView;
-  readonly locationId: string;
   readonly directory: readonly EntityRef[];
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
@@ -286,7 +283,6 @@ function RunningControls({
         <TurnOrderControls
           api={api}
           encounter={encounter}
-          locationId={locationId}
           directory={directory}
           locked={locked}
           onRun={(command) => {

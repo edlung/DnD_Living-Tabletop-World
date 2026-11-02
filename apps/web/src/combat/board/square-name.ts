@@ -28,10 +28,12 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
   const { occupant } = facts;
   const notes: string[] = [];
   if (occupant) {
+    // An object has no side, and is destroyed rather than dead (docs/adr/0048-hit-points.md §5).
+    const thing = occupant.object !== undefined;
     const parts = [
       facts.you ? t('{name} (you)', { name: facts.label }) : facts.label,
-      t(occupant.side),
-      ...(occupant.state === 'up' ? [] : [t(occupant.state)]),
+      thing ? t('object') : t(occupant.side),
+      ...(occupant.state === 'up' ? [] : [thing ? t('destroyed') : t(occupant.state)]),
       ...occupant.conditions.map((condition) => t(condition)),
       ...(occupant.hitPoints ? [t('{current} / {max} HP', { ...occupant.hitPoints })] : []),
     ];

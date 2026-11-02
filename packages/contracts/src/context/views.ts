@@ -48,6 +48,8 @@ export const CONTEXT_ACTION_IDS = [
   'utilize',
   'escape',
   'release',
+  /** A DC 10 Medicine check for the dying or the knocked out (docs/adr/0048-hit-points.md §4). */
+  'first-aid',
 ] as const;
 export type ContextActionId = (typeof CONTEXT_ACTION_IDS)[number];
 
@@ -96,6 +98,9 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'ALREADY_GRAPPLED',
   'NOT_GRAPPLED',
   'NOT_GRAPPLING',
+  'NEEDS_NO_AID',
+  /** An object, where a rule names a creature (docs/adr/0048-hit-points.md §5). */
+  'NOT_A_CREATURE',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;

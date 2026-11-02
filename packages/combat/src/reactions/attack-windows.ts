@@ -29,6 +29,7 @@ import { combatantEvent, isAlive, turnStateOf } from '../battlefield.ts';
 import { applyDamage } from '../damage.ts';
 import type { AttackPlan, Refusal } from '../legality.ts';
 import { applied as masteryApplied, masteryOnHit } from '../masteries.ts';
+import { isObject } from '../objects.ts';
 import {
   has,
   incapacitated,
@@ -62,6 +63,7 @@ export const specOf = (plan: AttackPlan): AttackSpec => ({
   slow: plan.slow,
   ...(plan.mastery ? { mastery: { ...plan.mastery } } : {}),
   melee: plan.melee,
+  ...(plan.knockOut ? { knockOut: true as const } : {}),
 });
 
 export interface Rolled {
@@ -375,7 +377,8 @@ export function missEvents(
 ): DraftEvent[] {
   const graze = spec.mastery?.kind === 'graze' ? (spec.mastery.graze ?? 0) : 0;
   const vitals = vitalsOf(state, made.targetId);
-  if (graze <= 0 || !vitals) return [];
+  // Graze names a creature missed (SRD 5.2.1; docs/adr/0048-hit-points.md §5).
+  if (graze <= 0 || !vitals || isObject(vitals)) return [];
   const dealt = applyDamage(state, dice, vitals, {
     sourceId: made.attackerId,
     amount: graze,
@@ -419,6 +422,7 @@ export function hitEvents(
     damageType: spec.damage.type,
     rolls: damage.rolls,
     critical,
+    ...(spec.knockOut === true ? { knockOut: true } : {}),
   });
   const events: DraftEvent[] = [...applied.events];
   const dead = died(applied.events);

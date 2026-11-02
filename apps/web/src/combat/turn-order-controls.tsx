@@ -1,20 +1,14 @@
-import {
-  SIDES,
-  type EncounterView,
-  type EntityRef,
-  type ScenePresentationResponse,
-  type Side,
-  type Square,
-} from '@ltw/contracts';
+import type { EncounterView, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, useId, useState, type SubmitEvent } from 'react';
+import { useId, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
-import { useResource } from '../api/resource.ts';
 import { ConditionForm } from '../dm/condition-form.tsx';
 import type { DmTableCommand } from '../dm/table-commands.ts';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { objectWords } from './hit-point-words.ts';
+import { JoinForm, ObjectForm } from './join-forms.tsx';
 import { useCombatantLabels } from './labels.ts';
 
 /**
@@ -31,7 +25,6 @@ type Editing = {
 export function TurnOrderControls({
   api,
   encounter,
-  locationId,
   directory,
   locked,
   onRun,
@@ -40,8 +33,6 @@ export function TurnOrderControls({
   readonly encounter: EncounterView;
   /** The DM's names for who stands at the place. */
   readonly directory: readonly EntityRef[];
-  /** The viewed place: who stands there may join. */
-  readonly locationId: string;
   readonly locked: boolean;
   readonly onRun: (command: DmTableCommand) => void;
 }) {
@@ -81,19 +72,25 @@ export function TurnOrderControls({
                   {combatant.initiative?.surprised && (
                     <small className="turn-order-note">{t('surprised')}</small>
                   )}
+                  {/* An object takes no turn (docs/adr/0048-hit-points.md §5). */}
+                  {combatant.object && (
+                    <small className="turn-order-note">{objectWords(t, combatant.object)}</small>
+                  )}
                 </span>
                 <span className="action-row">
-                  <button
-                    type="button"
-                    aria-expanded={open === 'initiative'}
-                    aria-label={t('Initiative of {name}', { name })}
-                    onClick={() => {
-                      setValue(String(combatant.initiative?.total ?? ''));
-                      setEditing(open === 'initiative' ? null : { kind: 'initiative', entityId });
-                    }}
-                  >
-                    {t('Initiative')}
-                  </button>
+                  {!combatant.object && (
+                    <button
+                      type="button"
+                      aria-expanded={open === 'initiative'}
+                      aria-label={t('Initiative of {name}', { name })}
+                      onClick={() => {
+                        setValue(String(combatant.initiative?.total ?? ''));
+                        setEditing(open === 'initiative' ? null : { kind: 'initiative', entityId });
+                      }}
+                    >
+                      {t('Initiative')}
+                    </button>
+                  )}
                   {current && later.length > 0 && (
                     <button
                       type="button"
@@ -107,38 +104,42 @@ export function TurnOrderControls({
                     </button>
                   )}
                   {/* A creature a party character commands (ADR 0044 §7): its player runs it. */}
-                  {combatant.entity.kind !== 'character' && commanders.length > 0 && (
-                    <select
-                      aria-label={t('Who runs {name}', { name })}
-                      value={combatant.commandedBy?.entityId ?? ''}
-                      disabled={locked}
-                      onChange={(event) => {
-                        send({
-                          type: 'CommandCreature',
-                          combatantId: entityId,
-                          characterId: event.target.value === '' ? null : event.target.value,
-                        });
+                  {combatant.entity.kind !== 'character' &&
+                    !combatant.object &&
+                    commanders.length > 0 && (
+                      <select
+                        aria-label={t('Who runs {name}', { name })}
+                        value={combatant.commandedBy?.entityId ?? ''}
+                        disabled={locked}
+                        onChange={(event) => {
+                          send({
+                            type: 'CommandCreature',
+                            combatantId: entityId,
+                            characterId: event.target.value === '' ? null : event.target.value,
+                          });
+                        }}
+                      >
+                        <option value="">{t('The DM')}</option>
+                        {commanders.map((commander) => (
+                          <option key={commander.entity.entityId} value={commander.entity.entityId}>
+                            {t('Player of {name}', { name: labelOf(commander.entity.entityId) })}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                  {/* Any creature's conditions, by the DM's hand (ADR 0045 §1–2). */}
+                  {!combatant.object && (
+                    <button
+                      type="button"
+                      aria-expanded={open === 'conditions'}
+                      aria-label={t('Conditions of {name}', { name })}
+                      onClick={() => {
+                        setEditing(open === 'conditions' ? null : { kind: 'conditions', entityId });
                       }}
                     >
-                      <option value="">{t('The DM')}</option>
-                      {commanders.map((commander) => (
-                        <option key={commander.entity.entityId} value={commander.entity.entityId}>
-                          {t('Player of {name}', { name: labelOf(commander.entity.entityId) })}
-                        </option>
-                      ))}
-                    </select>
+                      {t('Conditions')}
+                    </button>
                   )}
-                  {/* Any combatant's conditions, by the DM's hand (ADR 0045 §1–2). */}
-                  <button
-                    type="button"
-                    aria-expanded={open === 'conditions'}
-                    aria-label={t('Conditions of {name}', { name })}
-                    onClick={() => {
-                      setEditing(open === 'conditions' ? null : { kind: 'conditions', entityId });
-                    }}
-                  >
-                    {t('Conditions')}
-                  </button>
                   <button
                     type="button"
                     className="quiet-button"
@@ -193,10 +194,17 @@ export function TurnOrderControls({
           );
         })}
       </ol>
+      {/* Who and what stands at the fight's place may join it. */}
       <JoinForm
         api={api}
         encounter={encounter}
-        locationId={locationId}
+        directory={directory}
+        locked={locked}
+        onRun={send}
+      />
+      <ObjectForm
+        api={api}
+        encounter={encounter}
         directory={directory}
         locked={locked}
         onRun={send}
@@ -289,188 +297,6 @@ function RowForm({
         </button>
         <button type="button" onClick={onCancel}>
           {t('Cancel')}
-        </button>
-      </div>
-    </form>
-  );
-}
-
-/** The first square no combatant stands on, from the far side of the battlefield. */
-function freeSquare(encounter: EncounterView): Square {
-  const { width, height } = encounter.battlefield;
-  const taken = new Set(
-    encounter.combatants.map((c) => `${String(c.position.x)},${String(c.position.y)}`),
-  );
-  for (let x = width - 1; x >= 0; x -= 1) {
-    for (let y = 0; y < height; y += 1) {
-      if (!taken.has(`${String(x)},${String(y)}`)) return { x, y };
-    }
-  }
-  return { x: 0, y: 0 };
-}
-
-function JoinForm({
-  api,
-  encounter,
-  locationId,
-  directory,
-  locked,
-  onRun,
-}: {
-  readonly api: WorldApi;
-  readonly encounter: EncounterView;
-  readonly locationId: string;
-  readonly directory: readonly EntityRef[];
-  readonly locked: boolean;
-  readonly onRun: (command: DmTableCommand) => void;
-}) {
-  const t = useT();
-  const ids = useId();
-  const load = useCallback(
-    (signal: AbortSignal) =>
-      api.get<ScenePresentationResponse>(
-        `locations/${encodeURIComponent(locationId)}/scene`,
-        signal,
-      ),
-    [api, locationId],
-  );
-  const scene = useResource(`join:${locationId}`, load);
-  const fighting = new Set(encounter.order);
-  const here =
-    scene.resource.status === 'ready'
-      ? scene.resource.value.present.filter(
-          (entity) =>
-            (entity.kind === 'creature' || entity.kind === 'character') &&
-            !fighting.has(entity.entityId),
-        )
-      : [];
-  const spare = freeSquare(encounter);
-  const [who, setWho] = useState('');
-  const [side, setSide] = useState<Side>('hostile');
-  const [x, setX] = useState(String(spare.x));
-  const [y, setY] = useState(String(spare.y));
-  const [total, setTotal] = useState('');
-  const [attempted, setAttempted] = useState(false);
-  if (here.length === 0) return null;
-  const chosen = here.some((entity) => entity.entityId === who) ? who : (here[0]?.entityId ?? '');
-  const square = { x: Number.parseInt(x, 10), y: Number.parseInt(y, 10) };
-  const { width, height } = encounter.battlefield;
-  const squareError =
-    square.x >= 0 && square.x < width && square.y >= 0 && square.y < height
-      ? null
-      : t('A square on the battlefield: 0 to {width} across, 0 to {height} down.', {
-          width: width - 1,
-          height: height - 1,
-        });
-  const named = total.trim() === '' ? null : Number.parseInt(total, 10);
-  const totalError =
-    named === null || (named >= -10 && named <= 60) ? null : t('A whole number from −10 to 60.');
-  const submit = (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setAttempted(true);
-    if (squareError || totalError || chosen === '') return;
-    onRun({
-      type: 'AddCombatant',
-      entityId: chosen,
-      side,
-      position: square,
-      ...(named === null ? {} : { initiative: named }),
-    });
-  };
-  return (
-    <form
-      className="hand-form join-fight"
-      noValidate
-      onSubmit={submit}
-      aria-labelledby={`${ids}-title`}
-    >
-      <h5 id={`${ids}-title`}>{t('Someone joins the fight')}</h5>
-      <div className="hand-row">
-        <Field label={t('Who')}>
-          {(control) => (
-            <select
-              {...control}
-              value={chosen}
-              onChange={(event) => {
-                setWho(event.target.value);
-              }}
-            >
-              {here.map((entity) => (
-                <option key={entity.entityId} value={entity.entityId}>
-                  {directory.find((known) => known.entityId === entity.entityId)?.name ??
-                    t('Stranger')}
-                </option>
-              ))}
-            </select>
-          )}
-        </Field>
-        <Field label={t('Side')}>
-          {(control) => (
-            <select
-              {...control}
-              value={side}
-              onChange={(event) => {
-                setSide(event.target.value as Side);
-              }}
-            >
-              {SIDES.map((option) => (
-                <option key={option} value={option}>
-                  {t(option)}
-                </option>
-              ))}
-            </select>
-          )}
-        </Field>
-      </div>
-      <div className="hand-row">
-        <Field label={t('Square across')} error={attempted ? squareError : null}>
-          {(control) => (
-            <input
-              {...control}
-              type="number"
-              inputMode="numeric"
-              value={x}
-              onChange={(event) => {
-                setX(event.target.value);
-              }}
-            />
-          )}
-        </Field>
-        <Field label={t('Square down')}>
-          {(control) => (
-            <input
-              {...control}
-              type="number"
-              inputMode="numeric"
-              value={y}
-              onChange={(event) => {
-                setY(event.target.value);
-              }}
-            />
-          )}
-        </Field>
-        <Field
-          label={t('Initiative total')}
-          hint={t('Empty: the world rolls it.')}
-          error={attempted ? totalError : null}
-        >
-          {(control) => (
-            <input
-              {...control}
-              type="number"
-              inputMode="numeric"
-              value={total}
-              onChange={(event) => {
-                setTotal(event.target.value);
-              }}
-            />
-          )}
-        </Field>
-      </div>
-      <div className="action-row">
-        <button type="submit" className="primary-button" disabled={locked}>
-          <Glyph name="encounter" />
-          {t('Join the fight')}
         </button>
       </div>
     </form>

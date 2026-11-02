@@ -183,6 +183,7 @@ export function decideAttack(
       ...(command.extra === undefined ? {} : { extra: command.extra }),
       ...(command.push === undefined ? {} : { push: command.push }),
       ...(command.topple === undefined ? {} : { topple: command.topple }),
+      ...(command.knockOut === undefined ? {} : { knockOut: command.knockOut }),
     },
   );
   if (!plan.legal) return refused(plan);

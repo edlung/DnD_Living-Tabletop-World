@@ -13,6 +13,7 @@ const action = (id: ContextAction['id'], extra: Partial<ContextAction> = {}): Co
 });
 const encounter = (window: boolean): EncounterView => ({
   encounterId: 'e1',
+  locationId: 'old-trade-road',
   round: 1,
   currentCombatantId: actor,
   order: [actor],

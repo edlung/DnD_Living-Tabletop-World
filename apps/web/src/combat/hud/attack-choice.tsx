@@ -43,19 +43,33 @@ export function masteryQuestion(
   };
 }
 
-/** What a strike without a weapon does (docs/adr/0047-weapons.md §3, §6). */
-export function unarmedQuestion(t: Translate): AttackQuestion {
-  return {
-    title: t('Without a weapon'),
-    note: t('A grapple or a shove: it resists with Strength or Dexterity against your DC.'),
-    options: [
-      { label: t('Punch: 1 + Strength'), change: {} },
-      { label: t('Grapple'), change: { unarmed: 'grapple' } },
-      { label: t('Shove 5 ft away'), change: { unarmed: 'shove', shove: 'push' } },
-      { label: t('Shove it Prone'), change: { unarmed: 'shove', shove: 'prone' } },
-      { label: t('Strike with an object at hand'), change: { attackId: 'improvised' } },
-    ],
+/**
+ * What a strike without a weapon does (docs/adr/0047-weapons.md §3, §6). An object is struck, never
+ * grappled or shoved (docs/adr/0048-hit-points.md §5).
+ */
+export function unarmedQuestion(t: Translate, object = false): AttackQuestion {
+  const punch = { label: t('Punch: 1 + Strength'), change: {} };
+  const improvised = {
+    label: t('Strike with an object at hand'),
+    change: { attackId: 'improvised' },
   };
+  return object
+    ? {
+        title: t('Without a weapon'),
+        note: t('An object is struck: no grapple or shove takes hold of it.'),
+        options: [punch, improvised],
+      }
+    : {
+        title: t('Without a weapon'),
+        note: t('A grapple or a shove: it resists with Strength or Dexterity against your DC.'),
+        options: [
+          punch,
+          { label: t('Grapple'), change: { unarmed: 'grapple' } },
+          { label: t('Shove 5 ft away'), change: { unarmed: 'shove', shove: 'push' } },
+          { label: t('Shove it Prone'), change: { unarmed: 'shove', shove: 'prone' } },
+          improvised,
+        ],
+      };
 }
 
 /**

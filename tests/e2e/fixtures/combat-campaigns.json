@@ -17,5 +17,6 @@
   "shield": "ui-combat-shield",
   "weapons": "ui-combat-weapons",
   "offhand": "ui-combat-offhand",
-  "grapple": "ui-combat-grapple"
+  "grapple": "ui-combat-grapple",
+  "hitPoints": "ui-combat-hit-points"
 }

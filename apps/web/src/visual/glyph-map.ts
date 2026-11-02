@@ -29,6 +29,7 @@ const ACTIONS: Readonly<Record<ContextActionId, GlyphName>> = {
   unarmed_strike: 'melee',
   escape: 'grappled',
   release: 'grappled',
+  'first-aid': 'help',
   enter_location: 'travel',
   fireball: 'cast',
   counterspell: 'counterspell',

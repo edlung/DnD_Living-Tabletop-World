@@ -133,7 +133,8 @@ export interface DmHandEntry extends DmHistoryCommon {
     | {
         readonly kind: 'hit-points';
         readonly target: EntityRef;
-        readonly change: 'damage' | 'healing';
+        /** Temporary hit points given, or the maximum lowered (docs/adr/0048-hit-points.md). */
+        readonly change: 'damage' | 'healing' | 'temporary' | 'reduce-maximum';
         readonly amount: number;
         readonly damageType: string | null;
         readonly hpBefore: number;

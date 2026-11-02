@@ -1,8 +1,9 @@
-import type { CharacterSheetResponse, EntityRef } from '@ltw/contracts';
+import { effectiveMaximum, type CharacterSheetResponse, type EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useCallback, useId, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { temporaryWords } from '../combat/hit-point-words.ts';
 import { useResource } from '../api/resource.ts';
 import { checkWords } from '../dice/checks.ts';
 import { useDiceTable } from '../dice/table.tsx';
@@ -69,7 +70,9 @@ export function PartyCard({
         )
       : [];
   const hp = sheet?.hitPoints;
-  const low = hp !== undefined && hp.current * 2 <= hp.max;
+  // Against the maximum as an effect may have lowered it (docs/adr/0048-hit-points.md §2).
+  const max = hp === undefined ? 0 : effectiveMaximum(hp);
+  const low = hp !== undefined && hp.current * 2 <= max;
   const slots = sheet
     ? sheet.spellSlots.max.flatMap((max, level) =>
         max > 0
@@ -114,12 +117,15 @@ export function PartyCard({
             <span className="party-hp">
               <span className="visually-hidden">{t('Hit points')}</span>
               <Glyph name="hit-points" />
-              {hp.current}/{hp.max}
+              {hp.current}/{max}
+              {temporaryWords(t, hp) && (
+                <span className="hp-temporary">{temporaryWords(t, hp)}</span>
+              )}
             </span>
             <span className={`hp-bar${low ? ' hp-bar--low' : ''}`} aria-hidden="true">
               <span
                 style={{
-                  width: `${String(Math.max(0, Math.min(100, (100 * hp.current) / hp.max)))}%`,
+                  width: `${String(Math.max(0, Math.min(100, (100 * hp.current) / Math.max(1, max))))}%`,
                 }}
               />
             </span>

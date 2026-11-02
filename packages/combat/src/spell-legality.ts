@@ -22,6 +22,7 @@ import {
 import { coverAt, inBounds, isAlive, occupant, turnStateOf } from './battlefield.ts';
 import { charmedBy } from './condition-details.ts';
 import { fireballArea, type CombatReason, type Refusal } from './legality.ts';
+import { isObject, isObjectIn } from './objects.ts';
 import { incapacitated, vitalsOf, type Vitals } from './vitals.ts';
 
 /**
@@ -169,6 +170,8 @@ function locateTarget(
     const targetRecord = combatantOf(encounter, targetId);
     if (!targetRecord) return refuse('NOT_A_COMBATANT');
     if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
+    // The slice's spells name creatures (docs/adr/0048-hit-points.md §5).
+    if (isObjectIn(state, targetId)) return refuse('NOT_A_CREATURE');
     const cover = coverAt(encounter, targetRecord.position);
     if (cover === 'total' && targetId !== casterId) return refuse('TOTAL_COVER');
     return {
@@ -224,6 +227,7 @@ export function monsterSpellPlan(
   const targetVitals = vitalsOf(state, targetId);
   if (!targetRecord || !targetVitals) return refuse('NOT_A_COMBATANT');
   if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
+  if (isObject(targetVitals)) return refuse('NOT_A_CREATURE');
   if (charmedBy(record, caster, targetId)) return refuse('CHARMED_BY_TARGET');
   const cover = coverAt(encounter, targetRecord.position);
   if (cover === 'total') return refuse('TOTAL_COVER');

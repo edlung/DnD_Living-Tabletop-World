@@ -12,6 +12,7 @@ import {
   wieldedWeapons,
   type EntityState,
 } from '@ltw/domain';
+import { needsAid, vitalsOf } from '@ltw/combat';
 import { WEAPONS } from '@ltw/rules';
 
 import {
@@ -176,6 +177,16 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
           () => combatActionVerdict(frame, inputs, at, target.entityId),
           'low',
         );
+      // First aid for one dying or knocked out (docs/adr/0048-hit-points.md §4).
+      const tended = vitalsOf(inputs.state, target.entityId);
+      if (tended && needsAid(tended)) {
+        add(
+          'first-aid',
+          'present-alive',
+          () => combatActionVerdict(frame, inputs, 'first-aid', target.entityId),
+          'high',
+        );
+      }
     }
   } else if (OBJECT_KINDS.has(target.kind)) {
     add('inspect', 'present', () => LEGAL, examine);
@@ -191,6 +202,15 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     );
     add('perception_check', 'present', () => checkVerdict(sheet, attempted('perception')), examine);
     add('detect_magic', 'present', spell('detect-magic', false), 'low');
+    // An object in the fight is struck as any target (docs/adr/0048-hit-points.md §5).
+    if (frame && fighting) {
+      add(
+        'longbow_attack',
+        'present-alive',
+        () => combatAttackVerdict(frame, inputs, target.entityId),
+        'low',
+      );
+    }
     // An uncarried item can be picked up (ADR 0039); a combatant handles no items.
     if (target.kind === 'item' && target.status === 'active') {
       const carried = inputs.state.possessions.get(target.entityId)?.holderId ?? null;
@@ -235,8 +255,10 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       : [];
     actions.splice(position, 0, ...asks, ...shows);
   }
-  // In a fight, an attack with every other weapon the actor wields or lists (Stage 520).
-  if (frame && CREATURE_KINDS.has(target.kind) && !self) {
+  // In a fight, an attack with every other weapon the actor wields or lists (Stage 520), at a
+  // creature or at an object in the fight (ADR 0048 §5).
+  const struck = CREATURE_KINDS.has(target.kind) || (OBJECT_KINDS.has(target.kind) && fighting);
+  if (frame && struck && !self) {
     const weapons = [
       ...new Set([
         ...(sheet?.weapons ?? []),

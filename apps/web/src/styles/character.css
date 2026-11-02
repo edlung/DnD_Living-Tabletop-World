@@ -150,6 +150,12 @@
   height: 8px;
   border-radius: 4px;
 }
+/* Temporary hit points and a lowered maximum (docs/adr/0048-hit-points.md §1, §2). */
+.hero-hp-notes {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
 .hero-vitals {
   display: grid;
   grid-template-columns: 1fr 1fr;

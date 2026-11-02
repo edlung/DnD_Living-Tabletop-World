@@ -12,6 +12,7 @@ import {
 import type { MadeAttack } from './attack.ts';
 import { combatantEvent, coverAt, inBounds, occupant } from './battlefield.ts';
 import type { MasteryUse } from './legality.ts';
+import { isObject } from './objects.ts';
 import { spellSave } from './saves.ts';
 import { has, vitalsEvent, withConditions, type Vitals } from './vitals.ts';
 
@@ -74,7 +75,8 @@ export function masteryOnHit(
   const encounter = state.encounter;
   const record = encounter ? combatantOf(encounter, made.targetId) : undefined;
   const attacker = encounter ? combatantOf(encounter, made.attackerId) : undefined;
-  if (!encounter || !record || !attacker) return [];
+  // Every mastery names a creature it hits (SRD 5.2.1): an object takes none of them.
+  if (!encounter || !record || !attacker || isObject(target)) return [];
   switch (mastery.kind) {
     case 'sap':
       return [applied(made, 'sap'), combatantEvent({ ...record, sappedBy: made.attackerId })];

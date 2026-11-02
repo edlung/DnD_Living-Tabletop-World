@@ -22,6 +22,7 @@ import {
   optionArtUrl,
   optionLabelFor,
 } from './combat-art.ts';
+import { sideWords, stateWords, temporaryWords } from './hit-point-words.ts';
 import type { LabelOf } from './labels.ts';
 import { masteryEffect } from './weapon-words.ts';
 
@@ -128,9 +129,11 @@ export function TargetDetails({
       <header className="side-header">
         <Medallion image={image} kind={target.entity.kind} size="lg" tone={target.side} />
         <div className="side-title">
-          <p className="eyebrow">{t(readableLabel(target.side))}</p>
+          <p className="eyebrow">{sideWords(t, target)}</p>
           <h3>{name}</h3>
-          {target.state !== 'up' && <p className="side-state">{t(readableLabel(target.state))}</p>}
+          {(target.state !== 'up' || target.object) && (
+            <p className="side-state">{stateWords(t, target)}</p>
+          )}
         </div>
         <IconButton glyph="close" label={t('Close options')} onClick={onClose} />
       </header>
@@ -138,6 +141,9 @@ export function TargetDetails({
         <p className="side-hp">
           <Glyph name="hit-points" />
           {t('Hit points: {current} / {max}', { ...target.hitPoints })}
+          {temporaryWords(t, target.hitPoints) && (
+            <span className="hp-temporary">{temporaryWords(t, target.hitPoints)}</span>
+          )}
           <HpBar hitPoints={target.hitPoints} />
         </p>
       )}
@@ -183,6 +189,7 @@ export function TargetDetails({
                 action={action}
                 label={optionLabelFor(t, action, name)}
                 labelOf={labelOf}
+                object={target.object !== undefined}
               />
             ))}
           </ul>
@@ -197,17 +204,24 @@ function OptionEntry({
   action,
   label,
   labelOf,
+  object,
 }: {
   readonly id: string;
   readonly action: ContextAction;
   readonly label: string;
   readonly labelOf: LabelOf;
+  /** The target is an object: struck, never grappled or shoved (docs/adr/0048-hit-points.md §5). */
+  readonly object: boolean;
 }) {
   const t = useT();
   const url = optionArtUrl(action);
   // A weapon attack tells what its mastery will do (docs/adr/0047-weapons.md §2).
   const effect =
-    action.mastery === undefined ? actionEffect(t, action.id) : masteryEffect(t, action.mastery);
+    object && action.id === 'unarmed_strike'
+      ? t('A punch, or a blow with an object at hand.')
+      : action.mastery === undefined
+        ? actionEffect(t, action.id)
+        : masteryEffect(t, action.mastery);
   return (
     <li className={`option-entry${action.legal ? '' : ' is-unavailable'}`}>
       {url ? (

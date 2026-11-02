@@ -75,6 +75,8 @@ export function TurnTray({
     readonly question: AttackQuestion;
     readonly command: Extract<CombatUiCommand, { type: 'Attack' }>;
   } | null>(null);
+  // Melee attacks knock out instead of killing while this is on (docs/adr/0048-hit-points.md §4).
+  const [sparing, setSparing] = useState(false);
   const chosen = choice.kind === 'combatant' ? choice.target.entity.entityId : choice.kind;
   useEffect(() => {
     setChoosing(null);
@@ -103,6 +105,20 @@ export function TurnTray({
           {t('Warning: this area includes a party member. You may still cast it.')}
         </p>
       )}
+      {choice.kind === 'combatant' &&
+        choice.target.object === undefined &&
+        (choice.actions?.some((action) => ATTACK_OPTIONS.has(action.id)) ?? false) && (
+          <label className="tray-toggle">
+            <input
+              type="checkbox"
+              checked={sparing}
+              onChange={(event) => {
+                setSparing(event.target.checked);
+              }}
+            />
+            {t('Knock out instead of killing (melee)')}
+          </label>
+        )}
       <div
         ref={row}
         className="tray-row"
@@ -135,21 +151,25 @@ export function TurnTray({
         {choice.kind === 'combatant' &&
           choice.actions?.map((action, index) => {
             const { target } = choice;
-            const command = combatCommandFor(
+            const listed = combatCommandFor(
               action,
               actorId,
               { entityId: target.entity.entityId, position: target.position },
               encounter,
             );
+            const command =
+              listed?.type === 'Attack' && sparing ? { ...listed, knockOut: true } : listed;
             const url = optionArtUrl(action);
             const notes = optionNotes(t, action);
             const asks = action.legal && CHOSEN_ACTIONS.has(action.id);
             const key = `${action.id}:${action.weapon ?? ''}:${String(index)}`;
-            // Push and Topple ask their choice first, and a strike without a weapon its way.
+            // Push and Topple ask their choice first, and a strike without a weapon its way; an
+            // object takes no mastery, grapple or shove (docs/adr/0048-hit-points.md §5).
+            const thing = target.object !== undefined;
             const question =
               action.id === 'unarmed_strike'
-                ? unarmedQuestion(t)
-                : action.mastery === 'push' || action.mastery === 'topple'
+                ? unarmedQuestion(t, thing)
+                : !thing && (action.mastery === 'push' || action.mastery === 'topple')
                   ? masteryQuestion(t, action.mastery)
                   : null;
             const aim =
@@ -242,3 +262,12 @@ export function TurnTray({
     </section>
   );
 }
+
+/** The options that attack: the knock-out choice applies to their melee strikes. */
+const ATTACK_OPTIONS: ReadonlySet<string> = new Set([
+  'longbow_attack',
+  'weapon_attack',
+  'offhand_attack',
+  'cleave_attack',
+  'unarmed_strike',
+]);

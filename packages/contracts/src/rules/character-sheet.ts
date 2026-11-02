@@ -110,6 +110,51 @@ export const WEAPON_MASTERIES = [
 ] as const;
 export type WeaponMastery = (typeof WEAPON_MASTERIES)[number];
 
+/** The SRD's damage types (SRD 5.2.1). */
+export const DAMAGE_TYPES = [
+  'acid',
+  'bludgeoning',
+  'cold',
+  'fire',
+  'force',
+  'lightning',
+  'necrotic',
+  'piercing',
+  'poison',
+  'psychic',
+  'radiant',
+  'slashing',
+  'thunder',
+] as const;
+export type DamageType = (typeof DAMAGE_TYPES)[number];
+
+const hitPointValue = z.number().int().min(0).max(999);
+
+/**
+ * Hit points (docs/adr/0048-hit-points.md): temporary ones beside them, spent first; a maximum an
+ * effect lowered, until a Long Rest restores it. Current never exceeds the lowered maximum.
+ */
+export const hitPointsSchema = z
+  .object({
+    max: z.number().int().min(1).max(999),
+    current: hitPointValue,
+    temporary: z.number().int().min(1).max(999).optional(),
+    reducedBy: z.number().int().min(1).max(999).optional(),
+  })
+  .strict();
+export type HitPoints = z.infer<typeof hitPointsSchema>;
+/** The maximum an effect may have lowered (ADR 0048 §2). */
+export const effectiveMaximum = (hp: HitPoints): number =>
+  Math.max(0, hp.max - (hp.reducedBy ?? 0));
+
+/** Resistance, Vulnerability and Immunity by damage type (ADR 0048 §3); absent: none. */
+const damageTypes = z.array(z.enum(DAMAGE_TYPES)).max(DAMAGE_TYPES.length).optional();
+export const damageDefensesShape = {
+  resistances: damageTypes,
+  vulnerabilities: damageTypes,
+  immunities: damageTypes,
+};
+
 /** The kinds of ammunition a weapon fires (ADR 0047 §5): carried as items, spent by attacks. */
 export const AMMUNITION_KINDS = ['arrow', 'bolt', 'bullet', 'needle'] as const;
 export type AmmunitionKind = (typeof AMMUNITION_KINDS)[number];
@@ -190,9 +235,8 @@ export const characterSheetSchema = z
     abilities: z
       .object({ str: score, dex: score, con: score, int: score, wis: score, cha: score })
       .strict(),
-    hitPoints: z
-      .object({ max: z.number().int().min(1).max(999), current: z.number().int().min(0).max(999) })
-      .strict(),
+    hitPoints: hitPointsSchema,
+    ...damageDefensesShape,
     armorClass: z.number().int().min(1).max(40),
     speedFt: z.number().int().min(0).max(200).multipleOf(5),
     savingThrows: z.array(z.enum(ABILITIES)),
@@ -222,6 +266,11 @@ export const characterSheetSchema = z
       .nullable(),
     /** Heroic Inspiration (SRD 5.2.1), granted by the DM (docs/adr/0043-dm-screen.md §1); absent: none. */
     heroicInspiration: z.boolean().optional(),
+    /**
+     * Knocked out (docs/adr/0048-hit-points.md §4): Unconscious at 1 hit point until it regains
+     * hit points or first aid wakes it; absent otherwise.
+     */
+    knockedOut: z.literal(true).optional(),
     /** Death saving throws while at 0 HP (ADR 0015 §4); absent when not dying. */
     deathSaves: z
       .object({
@@ -242,7 +291,8 @@ export const characterSheetSchema = z
     const issue = (message: string) => {
       context.addIssue({ code: 'custom', message });
     };
-    if (sheet.hitPoints.current > sheet.hitPoints.max) issue('current HP exceeds maximum');
+    if (sheet.hitPoints.current > effectiveMaximum(sheet.hitPoints))
+      issue('current HP exceeds maximum');
     const dice = sheet.hitDiceSpent;
     const spent = (dice?.d6 ?? 0) + (dice?.d8 ?? 0) + (dice?.d10 ?? 0) + (dice?.d12 ?? 0);
     if (spent > sheet.classes.reduce((sum, entry) => sum + entry.level, 0)) {

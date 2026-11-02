@@ -105,6 +105,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   RemoveCombatant: 'remove a combatant',
   DelayTurn: 'delay a turn',
   SetInitiative: 'set initiative',
+  AddObject: 'bring an object into the fight',
 };
 
 /** The actions' names (docs/adr/0045-conditions-and-actions.md §5), English keys. */
@@ -121,6 +122,7 @@ const ACTION_WORDS: Readonly<Record<CombatAction, string>> = {
   utilize: 'Utilize',
   escape: 'Escape a grapple',
   release: 'Let go',
+  'first-aid': 'First aid',
 };
 
 /** What the DM did for the character, in plain words. */

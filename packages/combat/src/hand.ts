@@ -14,17 +14,21 @@ import { conditionBlocked, incapacitatedBy } from '@ltw/rules';
 import { combatantEvent } from './battlefield.ts';
 import { detailOf, withDetail } from './condition-details.ts';
 import { applyDamage, applyHealing, statusDead } from './damage.ts';
+import { isObject } from './objects.ts';
 import {
+  ceilingOf,
   conditionsOf,
   exhaustionOf,
   has,
   hitPoints,
   vitalsEvent,
   vitalsOf,
+  withAllHitPoints,
   withConditions,
   withExhaustion,
   withHitPoints,
   withSheet,
+  type Vitals,
 } from './vitals.ts';
 
 /**
@@ -64,6 +68,9 @@ export function decideAdjustHitPoints(
   const target = living(state, command.targetId);
   if (!target.ok) return target.decision;
   const before = hitPoints(target.vitals).current;
+  if (command.change === 'temporary' || command.change === 'reduce-maximum') {
+    return handHitPoints(state, command, target.vitals);
+  }
   if (command.change === 'damage') {
     if (command.damageType === undefined) return reject('INVALID_COMMAND', 'Damage names its type');
     const applied = applyDamage(state, dice, target.vitals, {
@@ -93,7 +100,7 @@ export function decideAdjustHitPoints(
   }
   if (command.damageType !== undefined)
     return reject('INVALID_COMMAND', 'Healing has no damage type');
-  if (before === hitPoints(target.vitals).max) return reject('NO_EFFECT', 'Already at full health');
+  if (before >= ceilingOf(target.vitals)) return reject('NO_EFFECT', 'Already at full health');
   const applied = applyHealing(target.vitals, {
     sourceId: command.targetId,
     amount: command.amount,
@@ -115,6 +122,55 @@ export function decideAdjustHitPoints(
     ...effects,
   );
 }
+
+/**
+ * Temporary hit points given, or the maximum lowered, by the DM's hand (docs/adr/0048-hit-points.md
+ * §1–2): temporary ones never stack — the higher stays; a maximum lowered to 0 kills.
+ */
+function handHitPoints(
+  state: WorldState,
+  command: KernelCommandOf<'AdjustHitPoints'>,
+  vitals: Vitals,
+): Decision {
+  if (command.damageType !== undefined)
+    return reject('INVALID_COMMAND', 'Only damage has a damage type');
+  const hp = hitPoints(vitals);
+  if (command.change === 'temporary') {
+    if ((hp.temporary ?? 0) >= command.amount)
+      return reject('NO_EFFECT', 'It holds as many temporary hit points already');
+    const next = withAllHitPoints(vitals, { ...hp, temporary: command.amount });
+    return accept(
+      readsVitals(command.targetId),
+      adjusted(command, hp.current, hp.current),
+      vitalsEvent(next),
+    );
+  }
+  const reducedBy = Math.min(hp.max, (hp.reducedBy ?? 0) + command.amount);
+  const ceiling = hp.max - reducedBy;
+  const current = Math.min(hp.current, ceiling);
+  const next = withAllHitPoints(vitals, { ...hp, reducedBy, current });
+  return accept(
+    readsVitals(command.targetId),
+    adjusted(command, hp.current, current),
+    vitalsEvent(next),
+    ...(ceiling === 0 ? statusDead(state, command.targetId) : []),
+  );
+}
+
+const adjusted = (
+  command: KernelCommandOf<'AdjustHitPoints'>,
+  hpBefore: number,
+  hpAfter: number,
+): DraftEvent => ({
+  type: 'HitPointsAdjusted',
+  payload: {
+    targetId: command.targetId,
+    change: command.change,
+    amount: command.amount,
+    hpBefore,
+    hpAfter,
+  },
+});
 
 /** A condition's details as one comparable string, whatever order their fields came in. */
 const detailKey = (details: ConditionDetails | undefined): string =>
@@ -138,6 +194,8 @@ export function decideSetCondition(
   const target = living(state, command.targetId);
   if (!target.ok) return target.decision;
   const { vitals } = target;
+  // Conditions are a creature's (docs/adr/0048-hit-points.md §5).
+  if (isObject(vitals)) return reject('NO_EFFECT', 'An object takes no condition');
   const { condition, applied } = command;
   const encounter = state.encounter;
   const combatant = encounter?.combatants.find((c) => c.entityId === command.targetId);
@@ -220,6 +278,7 @@ export function decideSetExhaustion(
   const target = living(state, command.targetId);
   if (!target.ok) return target.decision;
   const { vitals } = target;
+  if (isObject(vitals)) return reject('NO_EFFECT', 'An object takes no condition');
   if (exhaustionOf(vitals) === command.level) return reject('NO_EFFECT', 'Nothing changes');
   let next = withExhaustion(vitals, command.level);
   if (command.level < MAX_EXHAUSTION)

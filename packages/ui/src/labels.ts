@@ -25,14 +25,17 @@ export interface LabelledEncounter {
   readonly combatants: readonly {
     readonly entity: { readonly entityId: string; readonly name: string | null };
     readonly position: { readonly x: number; readonly y: number };
+    /** An object the party attacks (docs/adr/0048-hit-points.md §5). */
+    readonly object?: unknown;
   }[];
 }
 
 /**
  * The label of every combatant of an encounter (docs/STAGE_320_DESIGN.md §5.5): its name when
- * the perspective's projection carries one, else "Unidentified creature N" — never its ID. The
- * unnamed are numbered in turn order, then by position (row, then column) for any the order
- * does not list, so the same fight keeps the same numbers on every screen and refresh.
+ * the perspective's projection carries one, else "Unidentified creature N" — or "Unidentified
+ * object N" for a thing in the fight — never its ID. The unnamed are numbered in turn order, then
+ * by position (row, then column) for any the order does not list, so the same fight keeps the
+ * same numbers on every screen and refresh.
  */
 export function combatantLabels(
   encounter: LabelledEncounter,
@@ -47,14 +50,18 @@ export function combatantLabels(
         a.position.y - b.position.y ||
         a.position.x - b.position.x,
     );
-  const numbers = new Map(unnamed.map((combatant, index) => [combatant.entity.entityId, index]));
+  const numberIn = (things: typeof unnamed) =>
+    new Map(things.map((combatant, index) => [combatant.entity.entityId, index + 1]));
+  const creatures = numberIn(unnamed.filter((combatant) => combatant.object === undefined));
+  const objects = numberIn(unnamed.filter((combatant) => combatant.object !== undefined));
   return new Map(
     encounter.combatants.map((combatant) => {
       const { entityId, name } = combatant.entity;
-      return [
-        entityId,
-        name ?? t('Unidentified creature {number}', { number: (numbers.get(entityId) ?? 0) + 1 }),
-      ];
+      const label =
+        combatant.object === undefined
+          ? t('Unidentified creature {number}', { number: creatures.get(entityId) ?? 1 })
+          : t('Unidentified object {number}', { number: objects.get(entityId) ?? 1 });
+      return [entityId, name ?? label];
     }),
   );
 }

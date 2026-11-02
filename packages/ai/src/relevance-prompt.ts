@@ -74,6 +74,7 @@ const LABEL: Readonly<Record<ContextActionId, string>> = {
   unarmed_strike: 'Strike, grapple or shove them without a weapon',
   escape: 'Break free of a grapple',
   release: 'Let go of someone you hold',
+  'first-aid': 'Tend a dying or knocked-out creature',
   enter_location: 'Go there',
   fireball: 'Cast Fireball at them',
   counterspell: 'Counterspell their spell',

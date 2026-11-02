@@ -13,6 +13,7 @@ function encounter(overrides: Partial<EncounterView['battlefield']> = {}): Encou
   });
   return {
     encounterId: 'e1',
+    locationId: 'old-trade-road',
     round: 1,
     currentCombatantId: 'a',
     order: ['a', 'b', 'c'],

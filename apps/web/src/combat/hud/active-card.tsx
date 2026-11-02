@@ -10,6 +10,7 @@ import { Medallion } from '../../visual/medallion.tsx';
 import { HpBar } from '../board/token.tsx';
 import { conditionGlyph } from '../combat-art.ts';
 import { CONDITION_EFFECTS, conditionNoteWords, exhaustionWords } from '../condition-words.ts';
+import { temporaryWords } from '../hit-point-words.ts';
 import { useCombatantLabels } from '../labels.ts';
 
 /** The viewer's own sheet, read only while the active combatant is the viewer's character. */
@@ -91,6 +92,9 @@ export function ActiveCard({
             <strong>
               {active.hitPoints.current} / {active.hitPoints.max}
             </strong>
+            {temporaryWords(t, active.hitPoints) && (
+              <span className="hp-temporary">{temporaryWords(t, active.hitPoints)}</span>
+            )}
           </p>
           <HpBar hitPoints={active.hitPoints} />
         </div>

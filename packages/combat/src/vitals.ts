@@ -1,4 +1,11 @@
-import type { Ability, CharacterSheet, Condition, StatBlock } from '@ltw/contracts';
+import {
+  effectiveMaximum,
+  type Ability,
+  type CharacterSheet,
+  type Condition,
+  type HitPoints,
+  type StatBlock,
+} from '@ltw/contracts';
 import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
 import {
   abilityModifier,
@@ -28,8 +35,12 @@ export function vitalsOf(state: WorldState, entityId: string): Vitals | null {
   return block ? { kind: 'creature', entityId, block } : null;
 }
 
-export const hitPoints = (v: Vitals) =>
+export const hitPoints = (v: Vitals): HitPoints =>
   v.kind === 'character' ? v.sheet.hitPoints : v.block.hitPoints;
+/** Its hit point maximum as an effect may have lowered it (docs/adr/0048-hit-points.md §2). */
+export const ceilingOf = (v: Vitals): number => effectiveMaximum(hitPoints(v));
+/** Its Resistances, Vulnerabilities and Immunities by damage type (ADR 0048 §3). */
+export const defensesOf = (v: Vitals) => (v.kind === 'character' ? v.sheet : v.block);
 export const armorClass = (v: Vitals) =>
   v.kind === 'character' ? v.sheet.armorClass : v.block.armorClass;
 export const conditionsOf = (v: Vitals): readonly Condition[] =>
@@ -78,9 +89,20 @@ export function speedOf(v: Vitals): number {
 }
 
 export function withHitPoints(v: Vitals, current: number): Vitals {
+  return withAllHitPoints(v, { ...hitPoints(v), current });
+}
+
+/** Its whole hit points replaced: temporary ones and a lowered maximum with them (ADR 0048). */
+export function withAllHitPoints(v: Vitals, next: HitPoints): Vitals {
+  const hp: HitPoints = { max: next.max, current: next.current };
+  const whole: HitPoints = {
+    ...hp,
+    ...(next.temporary !== undefined && next.temporary > 0 ? { temporary: next.temporary } : {}),
+    ...(next.reducedBy !== undefined && next.reducedBy > 0 ? { reducedBy: next.reducedBy } : {}),
+  };
   return v.kind === 'character'
-    ? { ...v, sheet: { ...v.sheet, hitPoints: { ...v.sheet.hitPoints, current } } }
-    : { ...v, block: { ...v.block, hitPoints: { ...v.block.hitPoints, current } } };
+    ? { ...v, sheet: { ...v.sheet, hitPoints: whole } }
+    : { ...v, block: { ...v.block, hitPoints: whole } };
 }
 
 export function withConditions(
@@ -89,9 +111,29 @@ export function withConditions(
   remove: readonly Condition[],
 ): Vitals {
   const next = [...new Set([...conditionsOf(v).filter((c) => !remove.includes(c)), ...add])];
-  return v.kind === 'character'
-    ? { ...v, sheet: { ...v.sheet, conditions: next } }
-    : { ...v, block: { ...v.block, conditions: next } };
+  // Awake, it is knocked out no longer (docs/adr/0048-hit-points.md §4).
+  const kept = withKnockedOut(v, knockedOutOf(v) && next.includes('unconscious'));
+  return kept.kind === 'character'
+    ? { ...kept, sheet: { ...kept.sheet, conditions: next } }
+    : { ...kept, block: { ...kept.block, conditions: next } };
+}
+
+/** Knocked out by a melee attack: Unconscious at 1 hit point (ADR 0048 §4). */
+export const knockedOutOf = (v: Vitals): boolean =>
+  (v.kind === 'character' ? v.sheet.knockedOut : v.block.knockedOut) === true;
+
+/** The knocked-out mark set or cleared; cleared leaves the field absent. */
+export function withKnockedOut(v: Vitals, on: boolean): Vitals {
+  if (v.kind === 'character') {
+    const sheet = { ...v.sheet };
+    if (on) sheet.knockedOut = true;
+    else delete sheet.knockedOut;
+    return { ...v, sheet };
+  }
+  const block = { ...v.block };
+  if (on) block.knockedOut = true;
+  else delete block.knockedOut;
+  return { ...v, block };
 }
 
 /** Exhaustion's level set; 0 leaves the field absent, as on a sheet that never had it. */

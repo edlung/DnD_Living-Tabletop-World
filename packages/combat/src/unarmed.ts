@@ -17,6 +17,7 @@ import { combatantEvent, encounterOf, isAlive, onTurn, withTurn } from './battle
 import { FightWork, endCondition, revealed, sourceOf, withDetail } from './condition-details.ts';
 import { attackPlan, type Refusal } from './legality.ts';
 import { pushedTo } from './masteries.ts';
+import { isObject } from './objects.ts';
 import { combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import {
@@ -84,6 +85,8 @@ export function decideUnarmed(
   );
   if (!plan.legal || effect === undefined) return refused(plan.legal ? noWeapon : plan);
   const { target, targetVitals, attackerVitals } = plan;
+  // A grapple or a shove takes hold of a creature (docs/adr/0048-hit-points.md §5).
+  if (isObject(targetVitals)) return refused({ legal: false, reason: 'NOT_A_CREATURE' });
   if (
     effect === 'grapple' &&
     sourceOf(target, 'grappled') === command.combatantId &&

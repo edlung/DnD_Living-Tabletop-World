@@ -31,7 +31,8 @@ export {
   checkEffects,
   conditionBlocked,
   d20Modes,
-  damageAfterConditions,
+  damageAfterDefenses,
+  type DamageDefenses,
   exhaustionPenalty,
   incapacitatedBy,
   initiativeEffects,
@@ -53,6 +54,7 @@ export {
   type HitDieRefusal,
   type LevelUpRefusal,
 } from './rest.ts';
+export { OBJECT_ARMOR_CLASS, OBJECT_HIT_POINTS, objectStatBlock } from './objects.ts';
 export {
   attackRoll,
   d20Test,

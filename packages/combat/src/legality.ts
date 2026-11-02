@@ -36,6 +36,7 @@ import {
 import { isDodging } from './actions.ts';
 import { coverAt, isAlive, turnStateOf } from './battlefield.ts';
 import { charmedBy, conditionsAgainst, detailOf } from './condition-details.ts';
+import { isObjectIn } from './objects.ts';
 import { hostileSides } from './reactions/opportunity.ts';
 import {
   armorClass,
@@ -82,6 +83,8 @@ export interface AttackOptions {
   /** Push's feet on a hit (0: none; absent: 10), and Topple (absent: yes). */
   readonly push?: 0 | 5 | 10;
   readonly topple?: boolean;
+  /** A melee attack that would bring it to 0 leaves it at 1, Unconscious (ADR 0048 §4). */
+  readonly knockOut?: boolean;
 }
 
 /** A weapon's mastery as one attack uses it: Push's feet, Topple's DC, Graze's damage. */
@@ -135,6 +138,8 @@ export interface AttackPlan {
   /** Vex's Advantage is used on this attack, and Sap's Disadvantage: both end with it. */
   readonly vexed: boolean;
   readonly sapped: boolean;
+  /** Knocking out instead of killing: a melee attack's choice (ADR 0048 §4). */
+  readonly knockOut: boolean;
 }
 
 const masteryUse = (
@@ -171,6 +176,8 @@ function foeClose(state: WorldState, encounter: EncounterState, attacker: Combat
   return encounter.combatants.some((other) => {
     if (!hostileSides(other.side, attacker.side) || !isAlive(state, other.entityId)) return false;
     if (squareDistanceFt(other.position, attacker.position) > 5) return false;
+    // An object sees no one (docs/adr/0048-hit-points.md §5).
+    if (isObjectIn(state, other.entityId)) return false;
     const vitals = vitalsOf(state, other.entityId);
     return (
       vitals !== null &&
@@ -204,6 +211,8 @@ function extraTurn(
     ) {
       return refuse('NO_EXTRA_ATTACK');
     }
+    // Its second target is a creature, as the first was (docs/adr/0048-hit-points.md §5).
+    if (isObjectIn(state, target.entityId)) return refuse('NOT_A_CREATURE');
     const first = combatantOf(encounter, offer.targetId);
     if (!first || squareDistanceFt(first.position, target.position) > 5) {
       return refuse('OUT_OF_RANGE');
@@ -379,6 +388,7 @@ export function attackPlan(
     mastery,
     vexed,
     sapped,
+    knockOut: weapon.melee && options.knockOut === true,
   };
 }
 
@@ -388,9 +398,11 @@ export function fireballArea(
   encounter: EncounterState,
   point: Square,
 ): CombatantRecord[] {
+  // Each creature in the sphere: an object takes no part (docs/adr/0048-hit-points.md §5).
   return encounter.combatants.filter(
     (c) =>
       isAlive(state, c.entityId) &&
+      !isObjectIn(state, c.entityId) &&
       withinArea(point, c.position, FIREBALL_RADIUS_FT) &&
       coverAt(encounter, c.position) !== 'total',
   );

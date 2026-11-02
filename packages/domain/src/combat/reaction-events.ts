@@ -97,6 +97,8 @@ const attackTriggerSchema = z
           .strict()
           .optional(),
         melee: z.boolean().optional(),
+        /** A melee hit that would bring it to 0 leaves it at 1, Unconscious (ADR 0048 §4). */
+        knockOut: z.literal(true).optional(),
       })
       .strict(),
     /** The d20 that counted, the total and whether it hit. */
