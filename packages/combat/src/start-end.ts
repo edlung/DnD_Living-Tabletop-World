@@ -1,6 +1,7 @@
 import {
   FRESH_TURN,
   accept,
+  possessionOf,
   reject,
   type CombatCommand,
   type CombatantRecord,
@@ -8,6 +9,8 @@ import {
   type DecisionContext,
   type Dice,
   type DraftEvent,
+  type EncounterState,
+  type WorldState,
 } from '@ltw/domain';
 import { initiativeOrder } from '@ltw/rules';
 
@@ -126,6 +129,32 @@ export function decideEndCombat(context: DecisionContext, command: EndCombat): D
     }
     events.push(work.record({ ...combatant, slowedBy: null }));
   }
-  events.push(...fightEnded(work));
+  events.push(...fightEnded(work), ...ammunitionRecovered(state, encounter.value));
   return accept(...events, { type: 'CombatEnded', payload: { encounterId: command.encounterId } });
+}
+
+/**
+ * Half the ammunition each one spent, rounded down, comes back to the stack it came from — the
+ * minute's search after a fight the rules allow (docs/adr/0047-weapons.md §5).
+ */
+function ammunitionRecovered(state: WorldState, encounter: EncounterState): DraftEvent[] {
+  const events: DraftEvent[] = [];
+  for (const combatant of encounter.combatants) {
+    for (const { itemId, spent } of combatant.ammunitionSpent ?? []) {
+      const stack = possessionOf(state, itemId);
+      if (!stack || stack.holderId !== combatant.entityId) continue;
+      const quantity = Math.min(99, stack.quantity + Math.floor(spent / 2));
+      if (quantity === stack.quantity) continue;
+      events.push({
+        type: 'ItemRecovered',
+        payload: {
+          itemId,
+          holderId: combatant.entityId,
+          recovered: quantity - stack.quantity,
+          quantity,
+        },
+      });
+    }
+  }
+  return events;
 }

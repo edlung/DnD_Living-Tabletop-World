@@ -10,6 +10,9 @@ export function subjectWords(t: Translate, subject: RollSubject): string {
       const weapon = readableLabel(subject.attack, t);
       if (subject.by === 'opportunity') return t('Opportunity attack: {weapon}', { weapon });
       if (subject.by === 'readied') return t('Readied attack: {weapon}', { weapon });
+      // The extra attacks (docs/adr/0047-weapons.md §2, §4).
+      if (subject.by === 'offhand') return t('Other hand: {weapon}', { weapon });
+      if (subject.by === 'cleave') return t('Cleave: {weapon}', { weapon });
       return t('{weapon} attack', { weapon });
     }
     case 'spell':

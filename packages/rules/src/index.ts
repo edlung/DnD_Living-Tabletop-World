@@ -69,6 +69,7 @@ export {
   SHIELD_AC_BONUS,
   HELLISH_REBUKE_DICE,
   hasUncannyDodge,
+  hasProperty,
   WEAPONS,
   type CastingTime,
   type Component,
@@ -112,6 +113,7 @@ export {
   type AttackPlan,
   type Cover,
 } from './attacks.ts';
+export { masteryCount, masteryOf, weaponMasteriesOf } from './masteries.ts';
 export { skillCheckPort } from './skill-check-port.ts';
 export { applyHitPointChange, resolveCheck, resolveFireball, rollHealingWord } from './effects.ts';
 export {

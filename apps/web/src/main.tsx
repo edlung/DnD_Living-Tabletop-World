@@ -22,6 +22,7 @@ import './i18n/ru-chat.ts';
 import './i18n/ru-guide.ts';
 import './i18n/ru-companion.ts';
 import './i18n/ru-conditions.ts';
+import './i18n/ru-weapons.ts';
 import { DisplayApp } from './display/display-app.tsx';
 import { App } from './session/app.tsx';
 import { WorkshopApp } from './workshop/app.tsx';

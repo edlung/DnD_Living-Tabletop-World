@@ -54,7 +54,8 @@ export type SpellId = (typeof SPELL_IDS)[number];
 
 /**
  * The weapons the rules know (SRD 5.2.1 mechanics; `@ltw/rules` WEAPONS). The longbow came first;
- * the rest join with the Ravenford weapons of the item catalog (Stage 520).
+ * the next joined with the Ravenford weapons of the item catalog (Stage 520); the rest of the SRD's
+ * weapon table, firearms apart, with the weapons' rules (docs/adr/0047-weapons.md). Only grows.
  */
 export const WEAPON_IDS = [
   'longbow',
@@ -71,8 +72,47 @@ export const WEAPON_IDS = [
   'warhammer',
   'quarterstaff',
   'spear',
+  'club',
+  'greatclub',
+  'javelin',
+  'light-hammer',
+  'sickle',
+  'dart',
+  'sling',
+  'flail',
+  'glaive',
+  'greataxe',
+  'greatsword',
+  'halberd',
+  'lance',
+  'maul',
+  'morningstar',
+  'pike',
+  'trident',
+  'war-pick',
+  'whip',
+  'blowgun',
+  'hand-crossbow',
+  'heavy-crossbow',
 ] as const;
 export type WeaponId = (typeof WEAPON_IDS)[number];
+
+/** The weapon masteries (SRD 5.2.1; docs/adr/0047-weapons.md §2). */
+export const WEAPON_MASTERIES = [
+  'cleave',
+  'graze',
+  'nick',
+  'push',
+  'sap',
+  'slow',
+  'topple',
+  'vex',
+] as const;
+export type WeaponMastery = (typeof WEAPON_MASTERIES)[number];
+
+/** The kinds of ammunition a weapon fires (ADR 0047 §5): carried as items, spent by attacks. */
+export const AMMUNITION_KINDS = ['arrow', 'bolt', 'bullet', 'needle'] as const;
+export type AmmunitionKind = (typeof AMMUNITION_KINDS)[number];
 
 /** The classes sheets may hold (Stage 605 added the Fighter, the Rogue and the Cleric). */
 export const CLASS_IDS = ['ranger', 'wizard', 'fighter', 'rogue', 'cleric'] as const;
@@ -162,6 +202,11 @@ export const characterSheetSchema = z
     fightingStyle: z.enum(['archery']).optional(),
     attacksPerAction: z.number().int().min(1).max(4),
     weapons: z.array(z.enum(WEAPON_IDS)),
+    /**
+     * The kinds of weapon whose mastery the character uses (docs/adr/0047-weapons.md §2); absent: as
+     * many of its sheet's weapons, in order, as its classes' Weapon Mastery allows.
+     */
+    weaponMasteries: z.array(z.enum(WEAPON_IDS)).max(8).optional(),
     spellSlots: z.object({ max: slotRow, expended: slotRow }).strict(),
     spellcasting: z.array(spellcastingSourceSchema),
     conditions: z.array(z.enum(CONDITIONS)),

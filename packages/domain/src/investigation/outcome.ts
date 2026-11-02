@@ -222,14 +222,46 @@ function combatOutcome(
 function attackOf(events: readonly KernelEvent[]) {
   const attack = events.find((event) => event.type === 'AttackPerformed');
   if (attack?.type !== 'AttackPerformed') return null;
+  const { targetId } = attack.payload;
   const damage = events.find(
-    (event) => event.type === 'DamageApplied' && event.payload.targetId === attack.payload.targetId,
+    (event) => event.type === 'DamageApplied' && event.payload.targetId === targetId,
   );
+  // What the weapon's mastery did to the target (docs/adr/0047-weapons.md §2).
+  const used = events.find(
+    (event) => event.type === 'WeaponMasteryApplied' && event.payload.targetId === targetId,
+  );
+  const mastery =
+    used?.type === 'WeaponMasteryApplied'
+      ? {
+          kind: used.payload.mastery,
+          ...(used.payload.from && used.payload.to
+            ? {
+                pushedFt:
+                  5 *
+                  Math.max(
+                    Math.abs(used.payload.to.x - used.payload.from.x),
+                    Math.abs(used.payload.to.y - used.payload.from.y),
+                  ),
+              }
+            : {}),
+          ...(used.payload.mastery === 'topple'
+            ? {
+                toppled: events.some(
+                  (event) =>
+                    event.type === 'ConditionApplied' &&
+                    event.payload.targetId === targetId &&
+                    event.payload.cause === 'topple-mastery',
+                ),
+              }
+            : {}),
+        }
+      : null;
   return {
     d20: [...attack.payload.rolls],
     attackTotal: attack.payload.total,
     hit: attack.payload.hit,
     critical: attack.payload.critical,
     damage: damage?.type === 'DamageApplied' ? damage.payload.amount : null,
+    ...(mastery ? { mastery } : {}),
   };
 }

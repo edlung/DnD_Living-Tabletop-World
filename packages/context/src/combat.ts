@@ -2,8 +2,10 @@ import {
   ACTION_SKILLS,
   type CombatAction,
   type ContextEntityRef,
+  type ContextHint,
   type ContextIllegalReason,
   type SpellId,
+  type AttackExtra,
   type WeaponId,
 } from '@ltw/contracts';
 import {
@@ -71,11 +73,31 @@ export function combatAttackVerdict(
   inputs: ContextInputs,
   targetId: string,
   weaponId: WeaponId = 'longbow',
+  /** An extra attack (docs/adr/0047-weapons.md): the other hand's, or Cleave's. */
+  extra?: AttackExtra,
 ): Verdict {
   if (paused(inputs)) return PAUSED;
-  const plan = attackPlan(inputs.state, frame.encounter, frame.actor.entityId, weaponId, targetId);
+  const plan = attackPlan(
+    inputs.state,
+    frame.encounter,
+    frame.actor.entityId,
+    weaponId,
+    targetId,
+    'action',
+    extra === undefined ? {} : { extra },
+  );
   if (!plan.legal) return fromRefusal(plan);
-  return plan.longRange ? { legal: true, hints: ['LONG_RANGE'] } : { legal: true };
+  // What tilts the roll on the whole, beside long range's own word (docs/adr/0047-weapons.md).
+  const tilt: ContextHint | null =
+    plan.advantage === plan.disadvantage ? null : plan.advantage ? 'ADVANTAGE' : 'DISADVANTAGE';
+  const hints: ContextHint[] = [];
+  if (plan.longRange) hints.push('LONG_RANGE');
+  if (tilt !== null && !(tilt === 'DISADVANTAGE' && plan.longRange)) hints.push(tilt);
+  return {
+    legal: true,
+    ...(hints.length > 0 ? { hints } : {}),
+    ...(plan.weapon.mastery !== null ? { mastery: plan.weapon.mastery } : {}),
+  };
 }
 
 /**

@@ -16,7 +16,7 @@ export function spellSave(
   ability: Ability,
   dc: number,
   cover: 'half' | 'three-quarters' | 'none',
-  purpose: 'spell' | 'counterspell' | 'condition' = 'spell',
+  purpose: 'spell' | 'counterspell' | 'condition' | 'topple' | 'grapple' | 'shove' = 'spell',
   /** It Dodges (docs/adr/0045-conditions-and-actions.md §5): Advantage on Dexterity saves. */
   dodging = false,
 ): { success: boolean; event: DraftEvent } {

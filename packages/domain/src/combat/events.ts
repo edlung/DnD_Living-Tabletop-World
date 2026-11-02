@@ -5,6 +5,8 @@ import {
   MAX_COMBATANTS,
   SIDES,
   SKILL_IDS,
+  WEAPON_IDS,
+  WEAPON_MASTERIES,
   battlefieldSchema,
   conditionDetailsSchema,
   entityIdSchema,
@@ -52,6 +54,25 @@ export const turnRecordSchema = z
       .optional(),
     /** Shield's +5 AC until its next turn starts (docs/adr/0046-reactions-beyond-counterspell.md §3). */
     shielded: z.literal(true).optional(),
+    /**
+     * The weapons' rules this turn (docs/adr/0047-weapons.md): the Light weapon the Attack action
+     * attacked with, which the other hand may follow; that extra attack made; a Cleave hit's second
+     * attack on offer while nothing else happened since, and Cleave used; a Loading weapon fired
+     * with the action.
+     */
+    lightWeapon: z.enum(WEAPON_IDS).optional(),
+    offhandAttacked: z.literal(true).optional(),
+    cleave: z
+      .object({
+        targetId: entityIdSchema,
+        attackId: slug,
+        movementUsedFt: z.number().int().min(0).max(1000),
+        attacksRemaining: z.number().int().min(0).max(4),
+      })
+      .strict()
+      .optional(),
+    cleaved: z.literal(true).optional(),
+    loadingFired: z.literal(true).optional(),
   })
   .strict();
 
@@ -82,6 +103,21 @@ export const combatantRecordSchema = z
     conditionDetails: z
       .array(conditionDetailsSchema.extend({ condition: z.enum(CONDITIONS) }).strict())
       .max(CONDITIONS.length)
+      .optional(),
+    /**
+     * The masteries' marks (docs/adr/0047-weapons.md §2): Sap — the creature whose hit gives this one
+     * Disadvantage on its next attack roll, until that creature's next turn starts; Vex — the target
+     * this one has Advantage against, ending after `turnsLeft` more ends of its own turns.
+     */
+    sappedBy: entityIdSchema.optional(),
+    vexing: z
+      .object({ targetId: entityIdSchema, turnsLeft: z.number().int().min(1).max(2) })
+      .strict()
+      .optional(),
+    /** Ammunition this one spent in the fight, by stack: half comes back as it ends (ADR 0047 §5). */
+    ammunitionSpent: z
+      .array(z.object({ itemId: entityIdSchema, spent: z.number().int().min(1).max(99) }).strict())
+      .max(8)
       .optional(),
   })
   .strict();
@@ -159,9 +195,25 @@ export const combatEventPayloadSchemas = {
        * Made with the Reaction: an opportunity attack or the readied attack
        * (docs/adr/0046-reactions-beyond-counterspell.md); absent: the Attack action.
        */
-      by: z.enum(['opportunity', 'readied']).optional(),
+      by: z.enum(['opportunity', 'readied', 'offhand', 'cleave']).optional(),
       /** The d20 rolled again with Heroic Inspiration: this roll replaces the one before (ADR 0046 §3). */
       rerolled: z.literal(true).optional(),
+      /** A Versatile weapon in two hands, or a weapon thrown (docs/adr/0047-weapons.md §1). */
+      grip: z.literal('two-handed').optional(),
+      thrown: z.literal(true).optional(),
+    })
+    .strict(),
+  /**
+   * A weapon's mastery at work (docs/adr/0047-weapons.md §2): Sap, Vex, Topple's attempt, Graze's
+   * damage, and Push with the squares the target was pushed from and to.
+   */
+  WeaponMasteryApplied: z
+    .object({
+      attackerId: entityIdSchema,
+      targetId: entityIdSchema,
+      mastery: z.enum(WEAPON_MASTERIES),
+      from: squareSchema.optional(),
+      to: squareSchema.optional(),
     })
     .strict(),
   SpellCast: z
@@ -215,8 +267,19 @@ export const combatEventPayloadSchemas = {
       modifier: z.number().int(),
       total: z.number().int(),
       success: z.boolean(),
-      /** `condition`: the save at the end of a turn that ends a condition (ADR 0045 §2). */
-      purpose: z.enum(['spell', 'concentration', 'counterspell', 'condition']),
+      /**
+       * `condition`: the save at the end of a turn that ends a condition (ADR 0045 §2); `topple`,
+       * `grapple`, `shove`: against a weapon's Topple or an Unarmed Strike (ADR 0047 §2–3).
+       */
+      purpose: z.enum([
+        'spell',
+        'concentration',
+        'counterspell',
+        'condition',
+        'topple',
+        'grapple',
+        'shove',
+      ]),
     })
     .strict(),
   ConditionApplied: z

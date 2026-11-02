@@ -104,6 +104,13 @@ export const moveCombatantCommandSchema = z
   })
   .strict();
 
+/**
+ * An attack beyond the Attack action's (docs/adr/0047-weapons.md §2, §4): the Light property's with
+ * the other hand (a Bonus Action, or within the Action with Nick), and Cleave's second.
+ */
+export const ATTACK_EXTRAS = ['offhand', 'cleave'] as const;
+export type AttackExtra = (typeof ATTACK_EXTRAS)[number];
+
 export const attackCommandSchema = z
   .object({
     type: z.literal('Attack'),
@@ -114,6 +121,13 @@ export const attackCommandSchema = z
       .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
       .max(48),
     targetId: entityIdSchema,
+    extra: z.enum(ATTACK_EXTRAS).optional(),
+    /**
+     * The mastery's choice on a hit, made before the roll (ADR 0047 §2): Push's feet (0: no push;
+     * absent: 10) and Topple (absent: yes).
+     */
+    push: z.union([z.literal(0), z.literal(5), z.literal(10)]).optional(),
+    topple: z.boolean().optional(),
   })
   .strict();
 

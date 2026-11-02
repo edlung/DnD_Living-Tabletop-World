@@ -2,30 +2,33 @@
 
 Decides encounter commands for the World Engine through the domain's `CombatPort`. Authority: `docs/adr/0015-combat-engine.md` and `docs/adr/0016-reaction-engine.md` (both owner-approved), on top of ADR 0011 (rules) and ADR 0006 (undo). Pure: no AI, no I/O; randomness only from the command's recorded entropy pool (`poolDice`).
 
-| Concern                                                                              | File                           |
-| ------------------------------------------------------------------------------------ | ------------------------------ |
-| Port implementation and dispatch (`createCombatEngine`)                              | `src/engine.ts`                |
-| One view of sheet or stat block; full-value vitals events                            | `src/vitals.ts`                |
-| Encounter lookups, cover, occupancy, turn state                                      | `src/battlefield.ts`           |
-| Rejection mapping, premises                                                          | `src/refusal.ts`               |
-| `StartCombat` (initiative), `EndCombat`                                              | `src/start-end.ts`             |
-| Turn order, start-of-turn effects (Slow ends, death saves)                           | `src/turns.ts`                 |
-| `MoveCombatant`; its legality (`movePlan`, shared with suggestions)                  | `src/movement.ts`              |
-| Monster turn suggestion for the DM (ADR 0020 §5): spell, attack, move, end turn      | `src/suggestion.ts`            |
-| Attack legality (shared with the Context Engine)                                     | `src/legality.ts`              |
-| `Attack` resolution (crits, Hunter's Mark, Slow, goblin die)                         | `src/attack.ts`                |
-| Spell legality: character slice spells and stat-block spells                         | `src/spell-legality.ts`        |
-| Character spell resolution (Fireball, Healing Word, Detect Magic)                    | `src/spells.ts`                |
-| Stat-block spell resolution (Ashen Bolt, Binding Hex)                                | `src/monster-spells.ts`        |
-| Spell saving throws (cover, Unconscious auto-fail)                                   | `src/saves.ts`                 |
-| Damage, 0 HP, death-save failures, concentration, healing                            | `src/damage.ts`                |
-| Perspective-scoped encounter view                                                    | `src/view.ts`                  |
-| Reaction matcher and Counterspell eligibility (shared with context)                  | `src/reactions/eligibility.ts` |
-| Suspending a cast in a reaction window                                               | `src/reactions/suspend.ts`     |
-| Answers and the DM's close (`UseReaction`, `DeclineReaction`, `CloseReactionWindow`) | `src/reactions/respond.ts`     |
-| Resolving a suspended cast after the window closes                                   | `src/reactions/complete.ts`    |
-| The open window as each perspective sees it                                          | `src/reactions/view.ts`        |
-| Rules-level invariants of an open window (spell still legal, candidates eligible)    | `src/reactions/invariants.ts`  |
+| Concern                                                                              | File                              |
+| ------------------------------------------------------------------------------------ | --------------------------------- |
+| Port implementation and dispatch (`createCombatEngine`)                              | `src/engine.ts`                   |
+| One view of sheet or stat block; full-value vitals events                            | `src/vitals.ts`                   |
+| Encounter lookups, cover, occupancy, turn state                                      | `src/battlefield.ts`              |
+| Rejection mapping, premises                                                          | `src/refusal.ts`                  |
+| `StartCombat` (initiative), `EndCombat`                                              | `src/start-end.ts`                |
+| Turn order, start-of-turn effects (Slow ends, death saves)                           | `src/turns.ts`                    |
+| `MoveCombatant`; its legality (`movePlan`, shared with suggestions)                  | `src/movement.ts`                 |
+| Monster turn suggestion for the DM (ADR 0020 §5): spell, attack, move, end turn      | `src/suggestion.ts`               |
+| Attack legality (shared with the Context Engine); the extra attacks' economy         | `src/legality.ts`                 |
+| A weapon at a distance: reach, thrown, grip, Heavy, hands, ammunition (ADR 0047)     | `src/weapon-view.ts`              |
+| `Attack` resolution (crits, Hunter's Mark, Slow, goblin die, ammunition spent)       | `src/attack.ts`                   |
+| The masteries on a hit: Sap, Vex, Topple, Push, Cleave's offer (ADR 0047 §2)         | `src/masteries.ts`                |
+| An attack's windows, its hit, Slow, Graze on a miss (ADR 0046 §3–4)                  | `src/reactions/attack-windows.ts` |
+| Spell legality: character slice spells and stat-block spells                         | `src/spell-legality.ts`           |
+| Character spell resolution (Fireball, Healing Word, Detect Magic)                    | `src/spells.ts`                   |
+| Stat-block spell resolution (Ashen Bolt, Binding Hex)                                | `src/monster-spells.ts`           |
+| Spell saving throws (cover, Unconscious auto-fail)                                   | `src/saves.ts`                    |
+| Damage, 0 HP, death-save failures, concentration, healing                            | `src/damage.ts`                   |
+| Perspective-scoped encounter view                                                    | `src/view.ts`                     |
+| Reaction matcher and Counterspell eligibility (shared with context)                  | `src/reactions/eligibility.ts`    |
+| Suspending a cast in a reaction window                                               | `src/reactions/suspend.ts`        |
+| Answers and the DM's close (`UseReaction`, `DeclineReaction`, `CloseReactionWindow`) | `src/reactions/respond.ts`        |
+| Resolving a suspended cast after the window closes                                   | `src/reactions/complete.ts`       |
+| The open window as each perspective sees it                                          | `src/reactions/view.ts`           |
+| Rules-level invariants of an open window (spell still legal, candidates eligible)    | `src/reactions/invariants.ts`     |
 
 Rules:
 

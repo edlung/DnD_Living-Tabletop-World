@@ -24,6 +24,8 @@ const ACTIONS: Readonly<Record<ContextActionId, GlyphName>> = {
   detect_magic: 'cast',
   longbow_attack: 'ranged',
   weapon_attack: 'melee',
+  offhand_attack: 'melee',
+  cleave_attack: 'melee',
   enter_location: 'travel',
   fireball: 'cast',
   counterspell: 'counterspell',

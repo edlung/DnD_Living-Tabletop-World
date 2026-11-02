@@ -39,6 +39,8 @@ const total = (slots: readonly number[]) => slots.reduce((a, b) => a + b, 0);
 test('the turn passes from the player to the DM and back without a refresh', async ({
   browser,
 }) => {
+  // Two screens through several turns: about 18 s alone, beyond 30 s beside a busy suite.
+  test.slow();
   const campaign = LIVE_CAMPAIGNS.turn;
   const dm = await browser.newPage();
   const player = await browser.newPage();

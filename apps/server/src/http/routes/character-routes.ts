@@ -1,6 +1,6 @@
-import { campaignIdSchema, entityIdSchema } from '@ltw/contracts';
+import { AMMUNITION_KINDS, campaignIdSchema, entityIdSchema } from '@ltw/contracts';
 import type { InventoryResponse, WeaponId } from '@ltw/contracts';
-import { characterSheetView, inventoryView, wieldedWeapons } from '@ltw/domain';
+import { ammunitionOf, characterSheetView, inventoryView, wieldedWeapons } from '@ltw/domain';
 import { carryingCapacityLb, deriveCharacter, weaponAttack } from '@ltw/rules';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
@@ -21,7 +21,16 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     // The rules' numbers beside the sheet (Stage 500): the client shows them, never recomputes them.
     // Weapons the character wields count beside the sheet's own (Stage 520).
     const wielded = wieldedWeapons(context.state, path.entityId);
-    return reply.send({ ...body, derived: deriveCharacter(body.sheet, wielded) });
+    // Counted ammunition, by kind: only the kinds it carries stacks of (docs/adr/0047-weapons.md §5).
+    const ammunition = Object.fromEntries(
+      AMMUNITION_KINDS.flatMap((kind) => {
+        const stacks = ammunitionOf(context.state, path.entityId, kind);
+        return stacks.length === 0
+          ? []
+          : [[kind, stacks.reduce((sum, stack) => sum + stack.quantity, 0)]];
+      }),
+    );
+    return reply.send({ ...body, derived: deriveCharacter(body.sheet, wielded, ammunition) });
   });
 
   app.get('/campaigns/:campaignId/entities/:entityId/inventory', async (request, reply) => {

@@ -143,6 +143,14 @@ export function decideRemoveCombatant(
     }
     work.record({ ...c, slowedBy: null });
   }
+  // Nor will the turn that ends its Sap, and Vex against it has no one left to hit (ADR 0047 §2).
+  for (const c of [...work.combatants]) {
+    if (c.sappedBy !== command.entityId && c.vexing?.targetId !== command.entityId) continue;
+    const kept = { ...c };
+    if (kept.sappedBy === command.entityId) delete kept.sappedBy;
+    if (kept.vexing?.targetId === command.entityId) delete kept.vexing;
+    work.record(kept);
+  }
   events.push(...leftTheFight(work, command.entityId));
   const order = [...work.combatants];
   if (!order.some((c) => isAlive(state, c.entityId))) return invalid('End the fight instead');

@@ -21,7 +21,8 @@
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
-  gap: 0.35rem;
+  /* Options keep clear of each other, on a second line too (a fighter's weapons beside spells) */
+  gap: 0.5rem;
   min-width: 0;
 }
 /* What the side panel says of the options, at hand in the tray while the panel is out of view */
@@ -110,6 +111,16 @@
 .action-choice-title {
   margin: 0;
   font-weight: 700;
+}
+/* A mastery's one-line effect under its question (docs/adr/0047-weapons.md §2) */
+.action-choice-note {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.action-choice > .action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 /* Fields side by side split the row, and the buttons line up with the fields' foot */
 .action-choice-fields {

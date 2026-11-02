@@ -37,6 +37,9 @@ each further SRD rule needs an entry or an ADR before it is implemented).
   Two-Handed, Versatile); the 8 masteries (Cleave, Graze, Nick, Push, Sap, Slow, Topple, Vex);
   Unarmed Strike (damage, grapple, shove: DC 8 + Str + PB, Str or Dex save); two-weapon fighting
   (Light: the Bonus Action attack); improvised weapons; ammunition spent, half recovered.
+
+  ADR 0047 first. Two commits: the weapon table, properties, masteries, the other hand and
+  ammunition; then Unarmed Strike's grapple and shove (escape, dragging) and improvised weapons.
 - 640e — Hit points: temporary hit points (no stacking, lost first), a lowered maximum, resistance,
   vulnerability and immunity for characters as for monsters; knocking out (0 HP by a melee attack:
   Unconscious and stable); attacking objects (a door, a rope: AC and HP by size and material).

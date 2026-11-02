@@ -319,6 +319,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'AuthoringPremisesRecorded':
       case 'ActionTaken':
       case 'AttackPerformed':
+      case 'WeaponMasteryApplied':
       case 'SpellCast':
       case 'DamageApplied':
       case 'HealingApplied':
@@ -382,6 +383,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'ItemEquipped':
       case 'ItemUnequipped':
       case 'ItemUsed':
+      case 'ItemRecovered':
       case 'ItemTransferred':
         restores.push({
           fact: 'possession',

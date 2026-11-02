@@ -59,13 +59,17 @@ export function decideMakeReadiedAttack(
       by: 'readied',
     },
     plan.turn,
+    // Making it ends the readiness.
+    (record) => {
+      const turn = { ...record.turn };
+      delete turn.readied;
+      return { ...record, turn };
+    },
   );
-  const turn = { ...attacker.turn };
-  delete turn.readied;
   return accept(
     combatPremises(state, command.combatantId),
     ...events,
-    combatantEvent({ ...attacker, turn }),
+    combatantEvent(attacker),
     ...outcome,
   );
 }

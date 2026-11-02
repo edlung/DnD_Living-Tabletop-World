@@ -11,7 +11,7 @@ import {
 import { isSliceSpell, type Refusal } from '../legality.ts';
 import { monsterSpellEvents } from '../monster-spells.ts';
 import { continueMove } from '../movement.ts';
-import { hitEvents, madeOf } from './attack-windows.ts';
+import { hitEvents, madeOf, missEvents } from './attack-windows.ts';
 import { combatPremises } from '../refusal.ts';
 import {
   characterSpellPlan,
@@ -77,9 +77,21 @@ export function completeSuspended(
   const { trigger } = window;
   // A move out of reach goes on (docs/adr/0046-reactions-beyond-counterspell.md §2).
   if (trigger.kind === 'move') return continueMove(context, state, trigger, ids);
-  // A hit nobody answered lands in full; a miss stays one; a rebuke's window holds nothing (§3–4).
+  // A hit nobody answered lands in full; a miss stays one, which Graze may still make hurt
+  // (docs/adr/0047-weapons.md §2); a rebuke's window holds nothing (§3–4).
   if (trigger.kind === 'attack') {
-    if (trigger.phase !== 'hit' || trigger.damage === null) return [];
+    if (trigger.phase === 'missed') {
+      return missEvents(
+        context,
+        state,
+        dice,
+        ids,
+        madeOf(trigger),
+        trigger.spec,
+        window.parentWindowId,
+      );
+    }
+    if (trigger.damage === null) return [];
     return hitEvents(
       context,
       state,

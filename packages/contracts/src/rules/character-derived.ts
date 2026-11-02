@@ -5,6 +5,8 @@ import type {
   SpellId,
   SpellcastingSource,
   WeaponId,
+  AmmunitionKind,
+  WeaponMastery,
 } from './character-sheet.ts';
 
 /**
@@ -70,6 +72,10 @@ export interface CharacterDerived {
     readonly ranged: boolean;
     readonly normalRangeFt: number;
     readonly longRangeFt: number;
+    /** The mastery the character uses with it (docs/adr/0047-weapons.md §2); absent: none. */
+    readonly mastery?: WeaponMastery;
+    /** The pieces of its ammunition the character carries, when they are counted (§5). */
+    readonly ammunition?: { readonly kind: AmmunitionKind; readonly count: number };
   }[];
   /** Strength × 15 lb; shown, never enforced (ADR 0039). */
   readonly carryingCapacityLb: number;

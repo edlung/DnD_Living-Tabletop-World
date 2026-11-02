@@ -13,12 +13,13 @@ import {
 } from '../testing/ravenford-app.ts';
 
 let app: FastifyInstance;
+let engine: Awaited<ReturnType<typeof seededEngine>>;
 const BASE = '/campaigns/ravenford/entities';
 const OWN = 'elowen-starwhisper';
 const url = (id = OWN, perspective = 'PLAYER') => `${BASE}/${id}/sheet?perspective=${perspective}`;
 
 beforeAll(async () => {
-  const engine = await seededEngine();
+  engine = await seededEngine();
   const sheet = (await engine.load('ravenford'))?.state.characterSheets.get(OWN);
   if (!sheet) throw new Error('Fixture is missing the sheet');
   for (const entityId of [OWN, 'mira-vale']) {
@@ -115,7 +116,8 @@ describe('authorized full character sheet', () => {
       { source: 'wizard', ability: 'int', saveDc: 16, attackBonus: 8 },
       { source: 'magic-initiate', ability: 'wis', saveDc: 15, attackBonus: 7 },
     ]);
-    // Longbow: Dex +4, proficiency +5, Archery +2; 1d8 + 4 piercing.
+    // Longbow: Dex +4, proficiency +5, Archery +2; 1d8 + 4 piercing. A ranger masters it: Slow
+    // (docs/adr/0047-weapons.md §2); her arrows are not counted, she carries none.
     expect(derived?.attacks).toEqual([
       {
         weaponId: 'longbow',
@@ -125,6 +127,7 @@ describe('authorized full character sheet', () => {
         ranged: true,
         normalRangeFt: 150,
         longRangeFt: 600,
+        mastery: 'slow',
       },
     ]);
     expect(derived?.spells.map((spell) => spell.spellId)).toEqual([
@@ -190,5 +193,39 @@ describe('authorized full character sheet', () => {
     const missing = await get(app, url().replace('ravenford', 'missing-campaign'), TOKENS.outsider);
     expect(outsider.statusCode).toBe(404);
     expect(withoutRequestId(outsider)).toEqual(withoutRequestId(missing));
+  });
+
+  it('counts the arrows she carries beside her bow (docs/adr/0047-weapons.md §5)', async () => {
+    for (const command of [
+      {
+        type: 'CreateEntity',
+        entityId: 'item-quiver-test',
+        kind: 'item',
+        name: 'Quiver',
+        description: 'Arrows in a quiver.',
+        existsSince: null,
+      },
+      {
+        type: 'GrantItem',
+        itemId: 'item-quiver-test',
+        holderId: OWN,
+        catalogId: 'goose-fletched-arrows',
+        quantity: 18,
+      },
+    ]) {
+      const result = await engine.execute({
+        campaignId: 'ravenford',
+        commandId: `quiver-${command.type}`,
+        actor: { kind: 'user', actorId: 'dm-ravenford' },
+        command,
+      });
+      expect(result.status).toBe('accepted');
+    }
+    const derived = (await get(app, url(), TOKENS.player)).json<CharacterSheetResponse>().derived;
+    expect(derived?.attacks[0]).toMatchObject({
+      weaponId: 'longbow',
+      mastery: 'slow',
+      ammunition: { kind: 'arrow', count: 18 },
+    });
   });
 });

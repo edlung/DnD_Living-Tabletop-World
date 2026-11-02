@@ -49,7 +49,16 @@ export type IllegalReason =
   /** Help in a fight is against a foe within 5 ft (§5). */
   | 'NOT_A_FOE'
   /** Hide from behind Three-Quarters or Total Cover (§5). */
-  | 'NO_COVER_TO_HIDE';
+  | 'NO_COVER_TO_HIDE'
+  /**
+   * The weapons' rules (docs/adr/0047-weapons.md): no ammunition of the kind left; both hands
+   * needed while a shield is held; a Loading weapon fired already with this action; no extra
+   * attack on offer (the other hand's, or Cleave's).
+   */
+  | 'NO_AMMUNITION'
+  | 'HANDS_FULL'
+  | 'LOADING'
+  | 'NO_EXTRA_ATTACK';
 
 export interface Illegal {
   readonly legal: false;

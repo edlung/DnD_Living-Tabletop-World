@@ -23,6 +23,7 @@ import {
   optionLabelFor,
 } from './combat-art.ts';
 import type { LabelOf } from './labels.ts';
+import { masteryEffect } from './weapon-words.ts';
 
 const words = (t: Translate, text: string) => t(text.replaceAll('_', ' ').toLowerCase());
 
@@ -63,6 +64,8 @@ export function optionNotes(t: Translate, action: ContextAction): readonly strin
       ? [t('Move {feet} ft closer first', { feet: action.resolution.moveRequiredFt })]
       : []),
     ...(action.hints?.includes('LONG_RANGE') ? [t('long range: disadvantage')] : []),
+    ...(action.hints?.includes('DISADVANTAGE') ? [t('with disadvantage')] : []),
+    ...(action.hints?.includes('ADVANTAGE') ? [t('with advantage')] : []),
   ];
 }
 
@@ -202,7 +205,9 @@ function OptionEntry({
 }) {
   const t = useT();
   const url = optionArtUrl(action);
-  const effect = actionEffect(t, action.id);
+  // A weapon attack tells what its mastery will do (docs/adr/0047-weapons.md §2).
+  const effect =
+    action.mastery === undefined ? actionEffect(t, action.id) : masteryEffect(t, action.mastery);
   return (
     <li className={`option-entry${action.legal ? '' : ' is-unavailable'}`}>
       {url ? (

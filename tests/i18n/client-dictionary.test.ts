@@ -38,6 +38,7 @@ import '../../apps/web/src/i18n/ru-chat.ts';
 import '../../apps/web/src/i18n/ru-guide.ts';
 import '../../apps/web/src/i18n/ru-companion.ts';
 import '../../apps/web/src/i18n/ru-conditions.ts';
+import '../../apps/web/src/i18n/ru-weapons.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the

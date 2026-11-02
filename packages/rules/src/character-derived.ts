@@ -6,6 +6,7 @@ import {
   type CharacterSheet,
   type Skill,
   type WeaponId,
+  type AmmunitionKind,
 } from '@ltw/contracts';
 
 import { weaponAttackBonus, weaponModifier } from './attacks.ts';
@@ -19,6 +20,7 @@ import {
   spellSaveDc,
   totalLevel,
 } from './character-math.ts';
+import { masteryOf } from './masteries.ts';
 import { hitDice } from './rest.ts';
 import { effectiveSpeedFt } from './turn.ts';
 
@@ -58,6 +60,8 @@ export function weaponAttack(sheet: CharacterSheet, weaponId: WeaponId) {
 export function deriveCharacter(
   sheet: CharacterSheet,
   wielded: readonly WeaponId[] = [],
+  /** The ammunition it carries, by kind, where it is counted (docs/adr/0047-weapons.md §5). */
+  ammunition: Readonly<Partial<Record<AmmunitionKind, number>>> = {},
 ): CharacterDerived {
   const level = totalLevel(sheet);
   const abilities = Object.fromEntries(
@@ -110,6 +114,9 @@ export function deriveCharacter(
       })),
     attacks: [...new Set([...sheet.weapons, ...wielded])].map((weaponId) => {
       const attack = weaponAttack(sheet, weaponId);
+      const mastery = masteryOf(sheet, weaponId);
+      const kind = WEAPONS[weaponId].ammunition;
+      const count = kind === undefined ? undefined : ammunition[kind];
       return {
         weaponId,
         attackBonus: attack.attackBonus,
@@ -118,6 +125,8 @@ export function deriveCharacter(
         ranged: attack.ranged,
         normalRangeFt: attack.normalRangeFt,
         longRangeFt: attack.longRangeFt,
+        ...(mastery === null ? {} : { mastery }),
+        ...(kind === undefined || count === undefined ? {} : { ammunition: { kind, count } }),
       };
     }),
     carryingCapacityLb: carryingCapacityLb(sheet),

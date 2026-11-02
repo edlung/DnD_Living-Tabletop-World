@@ -110,4 +110,4 @@ export const FIREBALL_RADIUS_FT = 20;
 /** Detect Magic senses magic within 30 ft (ADR 0011). */
 export const DETECT_MAGIC_RADIUS_FT = 30;
 
-export { WEAPONS, type WeaponDefinition, type WeaponProperty } from './weapons.ts';
+export { WEAPONS, hasProperty, type WeaponDefinition, type WeaponProperty } from './weapons.ts';

@@ -46,6 +46,8 @@ export function suggestionArt(command: {
 /** The server-listed options the battlefield offers against a combatant, in this order. */
 export const COMBAT_ACTIONS: readonly ContextActionId[] = [
   'longbow_attack',
+  'cleave_attack',
+  'offhand_attack',
   'weapon_attack',
   'fireball',
   'counterspell',
@@ -166,23 +168,37 @@ export const conditionGlyph = (condition: Condition): GlyphName => CONDITIONS[co
 /** A weapon's words (the rules weapon ID read as a name: "Shortsword"), a translation key. */
 export const weaponWords = (t: Translate, weaponId: WeaponId): string => readableLabel(weaponId, t);
 
-/** An option's picture: a weapon's for `weapon_attack` (Stage 520), else its catalog entry's. */
+/** The options that strike with a weapon they name (Stage 520; docs/adr/0047-weapons.md). */
+const WEAPON_OPTIONS: ReadonlySet<ContextActionId> = new Set([
+  'weapon_attack',
+  'offhand_attack',
+  'cleave_attack',
+]);
+
+/** An option's picture: its weapon's for a weapon attack (Stage 520), else its catalog entry's. */
 export function optionArtUrl(action: ContextAction): string | null {
-  if (action.id === 'weapon_attack') return action.weapon ? weaponArtUrl(action.weapon) : null;
+  if (WEAPON_OPTIONS.has(action.id)) return action.weapon ? weaponArtUrl(action.weapon) : null;
   const art = catalogArtOf(action.id);
   return art ? catalogUrl(art.kind, art.id) : null;
 }
 
-/** An option's full words, naming the weapon of `weapon_attack`. */
+/** An option's full words, naming its weapon; each holds the tray's short words. */
 export function optionLabelFor(t: Translate, action: ContextAction, target: string): string {
-  if (action.id === 'weapon_attack' && action.weapon) {
-    return t('Attack {target} with {weapon}', { target, weapon: weaponWords(t, action.weapon) });
+  if (action.weapon && WEAPON_OPTIONS.has(action.id)) {
+    const weapon = weaponWords(t, action.weapon);
+    if (action.id === 'offhand_attack')
+      return t('Other hand: {weapon} at {target}', { weapon, target });
+    if (action.id === 'cleave_attack') return t('Cleave: {weapon} at {target}', { weapon, target });
+    return t('Attack {target} with {weapon}', { target, weapon });
   }
   return optionLabel(t, action.id, target);
 }
 
 /** The tray's short words for an option: a weapon attack shows the weapon. */
-export const shortLabelFor = (t: Translate, action: ContextAction): string =>
-  action.id === 'weapon_attack' && action.weapon
-    ? weaponWords(t, action.weapon)
-    : t(shortLabelOf(action.id));
+export function shortLabelFor(t: Translate, action: ContextAction): string {
+  if (!action.weapon || !WEAPON_OPTIONS.has(action.id)) return t(shortLabelOf(action.id));
+  const weapon = weaponWords(t, action.weapon);
+  if (action.id === 'offhand_attack') return t('Other hand: {weapon}', { weapon });
+  if (action.id === 'cleave_attack') return t('Cleave: {weapon}', { weapon });
+  return weapon;
+}

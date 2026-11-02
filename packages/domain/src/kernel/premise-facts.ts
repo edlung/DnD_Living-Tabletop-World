@@ -38,11 +38,13 @@ export function premiseFacts(characterId: string, premise: RecordedPremise): Fac
         facts.encounter(),
       ];
     case 'vitals':
-      // Everything a combat decision may read about a creature (Gate 03, G03-H02).
+      // Everything a combat decision may read about a creature (Gate 03, G03-H02), what it holds
+      // included: a shield rules out a Two-Handed weapon (docs/adr/0047-weapons.md §7).
       return [
         ...entityChecked(premise.entityId),
         facts.sheet(premise.entityId),
         facts.statBlock(premise.entityId),
+        facts.equipment(premise.entityId),
       ];
     case 'revealed':
       // Negative premises: passed over because found before, or out of reach (Gate 03).

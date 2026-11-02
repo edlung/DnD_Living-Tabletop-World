@@ -128,6 +128,8 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   ItemEquipped: DEPENDENCY_CONTRACT,
   ItemUnequipped: DEPENDENCY_CONTRACT,
   ItemUsed: DEPENDENCY_CONTRACT,
+  // Stage 640d (ADR 0047 §5): ammunition picked up after a fight.
+  ItemRecovered: DEPENDENCY_CONTRACT,
   ItemTransferred: DEPENDENCY_CONTRACT,
   ItemSplit: DEPENDENCY_CONTRACT,
 };

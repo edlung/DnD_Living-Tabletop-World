@@ -1,4 +1,9 @@
-import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
+import {
+  WEAPON_IDS,
+  type ContextAction,
+  type ContextActionId,
+  type Relevance,
+} from '@ltw/contracts';
 import {
   attemptKey,
   combatantOf,
@@ -7,6 +12,7 @@ import {
   wieldedWeapons,
   type EntityState,
 } from '@ltw/domain';
+import { WEAPONS } from '@ltw/rules';
 
 import {
   combatAttackVerdict,
@@ -229,7 +235,44 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
         { weapon: weaponId },
       ),
     );
-    actions.splice(after, 0, ...strikes);
+    // The extra attacks while they are on offer (docs/adr/0047-weapons.md §2, §4): the other
+    // hand's after the Attack action's Light weapon, Cleave's after its hit.
+    const turn = frame.actor.turn;
+    const offhand =
+      turn.lightWeapon !== undefined && turn.offhandAttacked !== true
+        ? [
+            ...new Set([
+              ...(sheet?.weapons ?? []),
+              ...wieldedWeapons(inputs.state, inputs.actor.entityId),
+            ]),
+          ]
+            .filter((weaponId) => WEAPONS[weaponId].properties.includes('light'))
+            .map((weaponId) =>
+              toAction(
+                'offhand_attack',
+                judge('present-alive', () =>
+                  combatAttackVerdict(frame, inputs, target.entityId, weaponId, 'offhand'),
+                ),
+                'medium',
+                { weapon: weaponId },
+              ),
+            )
+        : [];
+    const cleaveWeapon = WEAPON_IDS.find((id) => id === turn.cleave?.attackId);
+    const cleave =
+      cleaveWeapon !== undefined
+        ? [
+            toAction(
+              'cleave_attack',
+              judge('present-alive', () =>
+                combatAttackVerdict(frame, inputs, target.entityId, cleaveWeapon, 'cleave'),
+              ),
+              'medium',
+              { weapon: cleaveWeapon },
+            ),
+          ]
+        : [];
+    actions.splice(after, 0, ...cleave, ...offhand, ...strikes);
   }
   // Stable: equal relevance keeps catalog order.
   return actions.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);
@@ -246,6 +289,7 @@ function toAction(
     ...(about.topic ? { topic: about.topic } : {}),
     ...(about.evidence ? { evidence: { knowledgeId: about.evidence.knowledgeId } } : {}),
     ...(about.weapon ? { weapon: about.weapon } : {}),
+    ...(verdict.mastery ? { mastery: verdict.mastery } : {}),
     legal: verdict.legal,
     ...(verdict.reason ? { reason: verdict.reason } : {}),
     ...(verdict.resolution ? { resolution: verdict.resolution } : {}),

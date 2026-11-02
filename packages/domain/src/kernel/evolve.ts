@@ -55,6 +55,7 @@ import {
   applyItemSplit,
   applyItemTransferred,
   applyItemUnequipped,
+  applyItemRecovered,
   applyItemUsed,
 } from '../items/evolve.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
@@ -222,6 +223,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyStatBlockSet(state, event);
     case 'ActionTaken':
     case 'AttackPerformed':
+    case 'WeaponMasteryApplied':
     case 'SpellCast':
     case 'DamageApplied':
     case 'HealingApplied':
@@ -254,6 +256,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyItemUnequipped(state, event);
     case 'ItemUsed':
       return applyItemUsed(state, event);
+    case 'ItemRecovered':
+      return applyItemRecovered(state, event);
     case 'ItemTransferred':
       return applyItemTransferred(state, event);
     case 'ItemSplit':

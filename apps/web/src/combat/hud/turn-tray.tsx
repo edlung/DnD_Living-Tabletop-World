@@ -13,11 +13,12 @@ import { actionGlyph } from '../../visual/glyph-map.ts';
 import { Glyph } from '../../visual/glyph.tsx';
 import { useScrollEdges } from '../../visual/scroll-edges.ts';
 import { optionArtUrl, optionLabelFor, shortLabelFor } from '../combat-art.ts';
-import { CHOSEN_ACTIONS, combatCommandFor } from '../combat-bindings.ts';
+import { CHOSEN_ACTIONS, combatCommandFor, type CombatUiCommand } from '../combat-bindings.ts';
 import { useCombatantLabels } from '../labels.ts';
 import type { PlannedPath } from '../movement.ts';
 import { optionNotes, warnsOfAlly } from '../target-options.tsx';
 import { ActionChoice } from './action-choice.tsx';
+import { AttackChoice } from './attack-choice.tsx';
 
 /** What the tray offers: the chosen square's move, or the chosen combatant's listed options. */
 export type TrayChoice =
@@ -62,9 +63,16 @@ export function TurnTray({
   const tray = useReservedHeight<HTMLElement>('--tray-h', true);
   // An action that asks more first (ADR 0045 §5), for the creature now chosen.
   const [choosing, setChoosing] = useState<CombatAction | null>(null);
+  // An attack whose mastery asks first (docs/adr/0047-weapons.md §2): Push's feet, Topple.
+  const [aiming, setAiming] = useState<{
+    readonly key: string;
+    readonly mastery: 'push' | 'topple';
+    readonly command: Extract<CombatUiCommand, { type: 'Attack' }>;
+  } | null>(null);
   const chosen = choice.kind === 'combatant' ? choice.target.entity.entityId : choice.kind;
   useEffect(() => {
     setChoosing(null);
+    setAiming(null);
   }, [chosen]);
   // On a phone the row scrolls sideways; its edges fade where more options hide.
   const row = useRef<HTMLDivElement>(null);
@@ -130,19 +138,33 @@ export function TurnTray({
             const url = optionArtUrl(action);
             const notes = optionNotes(t, action);
             const asks = action.legal && CHOSEN_ACTIONS.has(action.id);
+            const key = `${action.id}:${action.weapon ?? ''}:${String(index)}`;
+            // Push and Topple ask their choice first (docs/adr/0047-weapons.md §2).
+            const aim =
+              action.legal &&
+              command?.type === 'Attack' &&
+              (action.mastery === 'push' || action.mastery === 'topple')
+                ? { key, mastery: action.mastery, command }
+                : null;
             return (
               <button
-                key={`${action.id}:${action.weapon ?? ''}:${String(index)}`}
+                key={key}
                 type="button"
                 className="tray-action"
                 aria-label={optionLabelFor(t, action, labelOf(target.entity.entityId))}
                 aria-describedby={detailId(index)}
-                aria-expanded={asks ? choosing === action.id : undefined}
+                aria-expanded={
+                  asks ? choosing === action.id : aim ? aiming?.key === key : undefined
+                }
                 disabled={locked || (command === null && !asks)}
                 onClick={() => {
-                  if (asks)
+                  if (asks) {
+                    setAiming(null);
                     setChoosing(choosing === action.id ? null : (action.id as CombatAction));
-                  else if (command) onRun({ kind: 'command', command });
+                  } else if (aim) {
+                    setChoosing(null);
+                    setAiming(aiming?.key === key ? null : aim);
+                  } else if (command) onRun({ kind: 'command', command });
                 }}
               >
                 {url ? (
@@ -173,6 +195,20 @@ export function TurnTray({
           <span className="tray-words">{t('End turn')}</span>
         </button>
       </div>
+      {aiming !== null && (
+        <AttackChoice
+          mastery={aiming.mastery}
+          command={aiming.command}
+          locked={locked}
+          onRun={(intent) => {
+            setAiming(null);
+            onRun(intent);
+          }}
+          onCancel={() => {
+            setAiming(null);
+          }}
+        />
+      )}
       {choosing !== null && choice.kind === 'combatant' && (
         <ActionChoice
           action={choosing}

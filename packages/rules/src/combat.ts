@@ -52,14 +52,23 @@ export interface AttackCircumstances {
    */
   readonly targetDodging?: boolean;
   readonly helped?: boolean;
+  /**
+   * The weapons' rules (docs/adr/0047-weapons.md): a ranged attack made within 5 ft of a foe that
+   * sees the attacker and is not Incapacitated; a Heavy weapon its wielder is too weak for; Vex's
+   * Advantage against this target; Sap's Disadvantage on the attacker's next attack.
+   */
+  readonly foeClose?: boolean;
+  readonly tooHeavy?: boolean;
+  readonly vexing?: boolean;
+  readonly sapped?: boolean;
 }
 
 /**
  * Advantage and Disadvantage from position and conditions (SRD 5.2.1, ADR 0045 §1): the
  * attacker's own conditions (`attackerTilt`), the target's (`targetTilt`, a hit from within 5 ft
  * on a Paralyzed or Unconscious target a Critical Hit), a prone target — melee attacks within
- * 5 ft have Advantage, other attacks Disadvantage — and long range's Disadvantage. Both cancel
- * when both apply (d20Test does that).
+ * 5 ft have Advantage, other attacks Disadvantage — long range's Disadvantage, and the weapons'
+ * (ADR 0047). Both cancel when both apply (d20Test does that).
  */
 export function attackCircumstances(c: AttackCircumstances): {
   advantage: boolean;
@@ -75,13 +84,17 @@ export function attackCircumstances(c: AttackCircumstances): {
     attacker.advantage ||
     target.advantage ||
     (targetProne && c.melee && close) ||
-    c.helped === true;
+    c.helped === true ||
+    c.vexing === true;
   const disadvantage =
     attacker.disadvantage ||
     target.disadvantage ||
     c.longRange ||
     (targetProne && !(c.melee && close)) ||
-    c.targetDodging === true;
+    c.targetDodging === true ||
+    (!c.melee && c.foeClose === true) ||
+    c.tooHeavy === true ||
+    c.sapped === true;
   return { advantage, disadvantage, criticalOnHit: target.criticalOnHit };
 }
 

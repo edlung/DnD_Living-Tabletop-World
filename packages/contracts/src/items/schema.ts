@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { WEAPON_IDS } from '../rules/character-sheet.ts';
+import { AMMUNITION_KINDS, WEAPON_IDS } from '../rules/character-sheet.ts';
 
 /**
  * Item catalog entries (docs/adr/0039-item-possession.md). A catalog entry
@@ -74,6 +74,8 @@ export const itemEntrySchema = z
     shieldBonus: z.number().int().min(1).max(3).optional(),
     /** Weapon: the rules weapon it fights as (Stage 520; `@ltw/rules` WEAPONS). */
     weapon: z.enum(WEAPON_IDS).optional(),
+    /** Ammunition: the kind a weapon fires, a unit spent by each shot (docs/adr/0047-weapons.md §5). */
+    ammunition: z.enum(AMMUNITION_KINDS).optional(),
     effect: itemEffectSchema.optional(),
   })
   .strict()
@@ -98,6 +100,8 @@ export const itemEntrySchema = z
     if (entry.stackable && entry.slots.length > 0) issue('a stackable item is not equipped');
     if (entry.category === 'weapon' && (!entry.weapon || !entry.slots.includes('mainhand')))
       issue('a weapon names its rules weapon and goes in the main hand');
+    if (entry.ammunition !== undefined && (entry.category !== 'gear' || !entry.stackable))
+      issue('ammunition is stackable gear');
     if (entry.category !== 'weapon' && entry.weapon) issue('only a weapon names a rules weapon');
     if (entry.category === 'coins' && (!entry.stackable || entry.slots.length > 0))
       issue('coins stack and are not worn');

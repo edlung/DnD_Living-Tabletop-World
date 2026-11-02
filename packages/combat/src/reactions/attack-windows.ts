@@ -28,6 +28,7 @@ import type { MadeAttack } from '../attack.ts';
 import { combatantEvent, isAlive, turnStateOf } from '../battlefield.ts';
 import { applyDamage } from '../damage.ts';
 import type { AttackPlan, Refusal } from '../legality.ts';
+import { applied as masteryApplied, masteryOnHit } from '../masteries.ts';
 import {
   has,
   incapacitated,
@@ -59,6 +60,8 @@ export const specOf = (plan: AttackPlan): AttackSpec => ({
   advantageDamage: plan.advantageDamage ? { ...plan.advantageDamage } : null,
   huntersMark: plan.huntersMark,
   slow: plan.slow,
+  ...(plan.mastery ? { mastery: { ...plan.mastery } } : {}),
+  melee: plan.melee,
 });
 
 export interface Rolled {
@@ -291,7 +294,9 @@ export function afterRoll(
   const encounter = state.encounter;
   if (!encounter) return [];
   if (!rolled.hit) {
-    if (!mayReroll(state, made.attackerId)) return [];
+    if (!mayReroll(state, made.attackerId)) {
+      return missEvents(context, state, dice, ids, made, spec, nestUnder);
+    }
     const trigger = triggerOf(made, spec, rolled, 'missed', null);
     const asked = [
       { entityId: made.attackerId, reactions: ['inspiration-reroll'] as ReactionId[] },
@@ -330,9 +335,67 @@ export function afterRoll(
   );
 }
 
+/** Damage done, a rebuke's window when the creature struck can answer the attacker so (§4). */
+function rebukeWindow(
+  context: DecisionContext,
+  state: WorldState,
+  ids: readonly string[],
+  made: MadeAttack,
+  amount: number,
+  struck: Vitals,
+  nestUnder?: string,
+): DraftEvent[] {
+  const encounter = state.encounter;
+  if (!encounter || amount <= 0) return [];
+  if (!rebukePlan(state, encounter, made.targetId, made.attackerId, struck).legal) return [];
+  const trigger: ReactionTrigger = {
+    kind: 'damage',
+    sourceId: made.attackerId,
+    damaged: [{ entityId: made.targetId, amount }],
+  };
+  const asked = [{ entityId: made.targetId, reactions: ['hellish-rebuke'] as ReactionId[] }];
+  return openWindow(context, state, trigger, asked, ids, nestUnder);
+}
+
+const died = (events: readonly DraftEvent[]) =>
+  events.some((event) => event.type === 'EntityStatusChanged' && event.payload.to === 'dead');
+
 /**
- * A hit lands: its damage (halved by Uncanny Dodge), the Slow mastery, and — the damage done — a
- * rebuke's window when the creature struck can answer the attacker so.
+ * A miss that stays one: Graze deals the attack's ability modifier as the weapon's damage
+ * (docs/adr/0047-weapons.md §2).
+ */
+export function missEvents(
+  context: DecisionContext,
+  state: WorldState,
+  dice: Dice,
+  ids: readonly string[],
+  made: MadeAttack,
+  spec: AttackSpec,
+  nestUnder?: string,
+): DraftEvent[] {
+  const graze = spec.mastery?.kind === 'graze' ? (spec.mastery.graze ?? 0) : 0;
+  const vitals = vitalsOf(state, made.targetId);
+  if (graze <= 0 || !vitals) return [];
+  const dealt = applyDamage(state, dice, vitals, {
+    sourceId: made.attackerId,
+    amount: graze,
+    damageType: spec.damage.type,
+    rolls: [],
+    critical: false,
+  });
+  return [
+    masteryApplied(made, 'graze'),
+    ...dealt.events,
+    ...(died(dealt.events)
+      ? []
+      : rebukeWindow(context, state, ids, made, graze, dealt.vitals, nestUnder)),
+  ];
+}
+
+/**
+ * A hit lands: its damage (halved by Uncanny Dodge), the Slow mastery and the others
+ * (docs/adr/0047-weapons.md §2), and — the damage done — a rebuke's window when the creature
+ * struck can answer the attacker so.
  */
 export function hitEvents(
   context: DecisionContext,
@@ -358,11 +421,10 @@ export function hitEvents(
     critical,
   });
   const events: DraftEvent[] = [...applied.events];
-  const died = applied.events.some(
-    (event) => event.type === 'EntityStatusChanged' && event.payload.to === 'dead',
-  );
+  const dead = died(applied.events);
   const target = combatantOf(encounter, made.targetId);
-  if (spec.slow && !died && target) {
+  // Slow and Vex need the hit to deal damage (SRD 5.2.1).
+  if (spec.slow && amount > 0 && !dead && target) {
     events.push(
       {
         type: 'ConditionApplied',
@@ -377,18 +439,11 @@ export function hitEvents(
       combatantEvent({ ...target, slowedBy: made.attackerId }),
     );
   }
-  if (
-    amount > 0 &&
-    !died &&
-    rebukePlan(state, encounter, made.targetId, made.attackerId, applied.vitals).legal
-  ) {
-    const trigger: ReactionTrigger = {
-      kind: 'damage',
-      sourceId: made.attackerId,
-      damaged: [{ entityId: made.targetId, amount }],
-    };
-    const asked = [{ entityId: made.targetId, reactions: ['hellish-rebuke'] as ReactionId[] }];
-    events.push(...openWindow(context, state, trigger, asked, ids, nestUnder));
+  if (spec.mastery && !dead) {
+    events.push(...masteryOnHit(state, dice, made, spec.mastery, applied.vitals, amount));
+  }
+  if (!dead) {
+    events.push(...rebukeWindow(context, state, ids, made, amount, applied.vitals, nestUnder));
   }
   return events;
 }

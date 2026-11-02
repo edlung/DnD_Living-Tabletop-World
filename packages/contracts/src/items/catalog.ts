@@ -1,7 +1,7 @@
 import { ARMOR_ITEMS } from './catalog-armor.ts';
 import { CONSUMABLE_ITEMS } from './catalog-consumables.ts';
 import { GEAR_ITEMS } from './catalog-gear.ts';
-import { COIN_ITEMS, WEAPON_ITEMS } from './catalog-weapons.ts';
+import { AMMUNITION_ITEMS, COIN_ITEMS, WEAPON_ITEMS } from './catalog-weapons.ts';
 import { itemEntrySchema, type ItemEntry } from './schema.ts';
 
 /**
@@ -15,6 +15,7 @@ const ENTRIES: readonly ItemEntry[] = [
   ...CONSUMABLE_ITEMS,
   ...GEAR_ITEMS,
   ...WEAPON_ITEMS,
+  ...AMMUNITION_ITEMS,
   ...COIN_ITEMS,
 ].map((entry) => itemEntrySchema.parse(entry));
 

@@ -4,6 +4,7 @@ import type { ReactionId } from '../combat/reactions.ts';
 import { entityIdSchema, knowledgeIdSchema } from '../kernel/identifiers.ts';
 import { ITEM_PLAYER_COMMAND_TYPES } from '../items/commands.ts';
 import { knowledgeRelationSchema } from '../knowledge/commands.ts';
+import type { WeaponMastery } from '../rules/character-sheet.ts';
 
 /**
  * Investigation commands (docs/adr/0013-investigation.md). Player commands
@@ -161,6 +162,15 @@ export type PlayerOutcome =
       readonly damage: number | null;
       /** Its window is open: a reroll or an answer to the hit waits (ADR 0046 §3). */
       readonly awaitingReaction?: true;
+      /**
+       * What the weapon's mastery did (docs/adr/0047-weapons.md §2): the feet Push moved it,
+       * whether Topple knocked it Prone; Graze's damage on a miss is `damage`.
+       */
+      readonly mastery?: {
+        readonly kind: WeaponMastery;
+        readonly pushedFt?: number;
+        readonly toppled?: boolean;
+      };
     }
   | {
       readonly kind: 'CastSpell';

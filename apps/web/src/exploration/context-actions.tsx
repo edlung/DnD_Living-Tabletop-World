@@ -232,6 +232,15 @@ export function actionLabel(
       return t('Attack with {weapon}', {
         weapon: action.weapon ? readableLabel(action.weapon, t) : t('a weapon'),
       });
+    // The extra attacks of docs/adr/0047-weapons.md: the other hand's, Cleave's second.
+    case 'offhand_attack':
+      return t('Other hand: {weapon}', {
+        weapon: action.weapon ? readableLabel(action.weapon, t) : t('a weapon'),
+      });
+    case 'cleave_attack':
+      return t('Cleave: {weapon}', {
+        weapon: action.weapon ? readableLabel(action.weapon, t) : t('a weapon'),
+      });
     default:
       return t(ACTION_TEXT[action.id]);
   }
@@ -256,6 +265,8 @@ const ACTION_TEXT: Readonly<
       | 'recall'
       | 'talk'
       | 'weapon_attack'
+      | 'offhand_attack'
+      | 'cleave_attack'
     >,
     string
   >

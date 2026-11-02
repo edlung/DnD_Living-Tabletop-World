@@ -40,13 +40,10 @@ function axe(page: Page): AxeBuilder {
 }
 
 /**
- * No serious or critical axe violation, text contrast on its panels, and no sideways scroll.
- * Each state is scanned once by every rule: the contrast rule runs only with the art set aside,
- * where it reaches every text the scan with the art could (a picture or gradient behind a text
- * only ever leaves it unchecked) and the text over the art besides, and any impact fails it.
+ * Every finite animation finished: a panel still fading in is not yet at its colours, nor one
+ * sliding in at its place.
  */
-/** A panel still fading in is not yet at its colours: let every finite animation finish. */
-const settled = (page: Page) =>
+export const settled = (page: Page) =>
   page.evaluate(() =>
     Promise.all(
       document
@@ -56,6 +53,12 @@ const settled = (page: Page) =>
     ),
   );
 
+/**
+ * No serious or critical axe violation, text contrast on its panels, and no sideways scroll.
+ * Each state is scanned once by every rule: the contrast rule runs only with the art set aside,
+ * where it reaches every text the scan with the art could (a picture or gradient behind a text
+ * only ever leaves it unchecked) and the text over the art besides, and any impact fails it.
+ */
 export async function expectAccessible(page: Page, where: string): Promise<void> {
   await page.evaluate(() => document.fonts.ready);
   await settled(page);

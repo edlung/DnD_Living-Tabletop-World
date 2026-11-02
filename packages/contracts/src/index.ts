@@ -165,6 +165,7 @@ export type { CharacterDerived } from './rules/character-derived.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';
 export {
   ABILITIES,
+  AMMUNITION_KINDS,
   CLASS_IDS,
   CONDITIONS,
   HIT_DIE_SIDES,
@@ -173,8 +174,10 @@ export {
   SKILL_IDS,
   SPELL_IDS,
   WEAPON_IDS,
+  WEAPON_MASTERIES,
   characterSheetSchema,
   type Ability,
+  type AmmunitionKind,
   type CharacterSheet,
   type ClassId,
   type Condition,
@@ -183,6 +186,7 @@ export {
   type SpellId,
   type SpellcastingSource,
   type WeaponId,
+  type WeaponMastery,
 } from './rules/character-sheet.ts';
 export {
   hitDieRequestSchema,

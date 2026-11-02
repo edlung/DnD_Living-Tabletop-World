@@ -130,9 +130,9 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       return t(ITEM_DONE[outcome.action]);
     case 'MoveCombatant':
       return t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });
-    case 'Attack':
+    case 'Attack': {
       if (outcome.awaitingReaction) return t('The attack waits for a reaction.');
-      return outcome.hit
+      const roll = outcome.hit
         ? t(
             outcome.critical
               ? 'Critical hit: {damage} damage (attack {total}).'
@@ -143,6 +143,9 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
             },
           )
         : t('Miss (attack {total}).', { total: outcome.attackTotal });
+      const mastery = outcome.mastery ? masteryWords(t, outcome.mastery, outcome.damage) : null;
+      return mastery ? `${roll} ${mastery}` : roll;
+    }
     case 'CastSpell': {
       const spell = spellName(t, outcome.spellId);
       if (outcome.awaitingReaction) return t('{spell} is waiting for reactions.', { spell });
@@ -213,5 +216,29 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
           : t('You did not react.');
     default:
       return t('Action resolved. Your view has been refreshed.');
+  }
+}
+
+/** What a weapon's mastery did, after the roll's words (docs/adr/0047-weapons.md §2). */
+function masteryWords(
+  t: Translate,
+  mastery: NonNullable<Extract<PlayerOutcome, { kind: 'Attack' }>['mastery']>,
+  damage: number | null,
+): string | null {
+  switch (mastery.kind) {
+    case 'sap':
+      return t('Sap: its next attack has Disadvantage.');
+    case 'vex':
+      return t('Vex: your next attack against it has Advantage.');
+    case 'push':
+      return t('Push: it is pushed {feet} ft.', { feet: mastery.pushedFt ?? 0 });
+    case 'topple':
+      return mastery.toppled === true
+        ? t('Topple: it falls Prone.')
+        : t('Topple: it keeps its feet.');
+    case 'graze':
+      return t('Graze: {damage} damage.', { damage: damage ?? 0 });
+    default:
+      return null;
   }
 }

@@ -21,7 +21,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `work-orders/STAGE_640.md`) in progress — 640a, the 15 conditions and Exhaustion, and 640b,
   the actions beside Attack and Magic, done; 640c, reactions beyond Counterspell (opportunity
   attacks, the readied attack, Shield, Uncanny Dodge, Hellish Rebuke, Heroic Inspiration on attacks
-  and on table checks; ADR 0046), done; 640d, weapons, next. Feather Fall waits for falling (640f).
+  and on table checks; ADR 0046), done; 640d's first part, the weapons (ADR 0047: properties,
+  masteries, the other hand, ammunition), done, its unarmed strikes (grapple, shove) and
+  improvised weapons next. Feather Fall waits for falling (640f).
 
 ## Current request — AI campaigns, 2026-10-30
 

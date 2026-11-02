@@ -62,6 +62,18 @@ export function combatCommandFor(
             targetId: target.entityId,
           }
         : null;
+    // The extra attacks of docs/adr/0047-weapons.md: the other hand's, Cleave's second.
+    case 'offhand_attack':
+    case 'cleave_attack':
+      return action.weapon
+        ? {
+            type: 'Attack',
+            combatantId: actorId,
+            attackId: action.weapon,
+            targetId: target.entityId,
+            extra: action.id === 'offhand_attack' ? 'offhand' : 'cleave',
+          }
+        : null;
     case 'fireball':
       return {
         type: 'CastSpell',

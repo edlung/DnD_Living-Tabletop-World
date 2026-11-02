@@ -1,6 +1,7 @@
 import {
   MAX_COMBATANTS,
   REACTION_IDS,
+  WEAPON_MASTERIES,
   REACTION_RESPONSES,
   REACTION_WINDOW_STATUSES,
   SPELL_COMPONENTS,
@@ -68,7 +69,7 @@ const attackTriggerSchema = z
     attackerId: entityIdSchema,
     targetId: entityIdSchema,
     attackId: slug,
-    by: z.enum(['opportunity', 'readied']).optional(),
+    by: z.enum(['opportunity', 'readied', 'offhand', 'cleave']).optional(),
     phase: z.enum(['missed', 'hit']),
     spec: z
       .object({
@@ -82,6 +83,20 @@ const attackTriggerSchema = z
         advantageDamage: damageDice.nullable(),
         huntersMark: z.boolean(),
         slow: z.boolean(),
+        /**
+         * The weapon's mastery as this attack uses it (docs/adr/0047-weapons.md §2): Push's feet,
+         * Topple's save DC, Graze's damage on a miss; whether the attack was melee (Cleave).
+         */
+        mastery: z
+          .object({
+            kind: z.enum(WEAPON_MASTERIES),
+            pushFt: z.union([z.literal(0), z.literal(5), z.literal(10)]).optional(),
+            dc: z.number().int().min(1).max(40).optional(),
+            graze: z.number().int().min(0).max(10).optional(),
+          })
+          .strict()
+          .optional(),
+        melee: z.boolean().optional(),
       })
       .strict(),
     /** The d20 that counted, the total and whether it hit. */

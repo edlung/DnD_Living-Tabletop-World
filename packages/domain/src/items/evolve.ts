@@ -50,6 +50,14 @@ export function applyItemUsed(state: WorldState, event: Ev<'ItemUsed'>): WorldSt
   return put(state, itemId, { ...current, quantity: remaining });
 }
 
+export function applyItemRecovered(state: WorldState, event: Ev<'ItemRecovered'>): WorldState {
+  const { itemId, holderId, recovered, quantity } = event.payload;
+  const current = mustHold(state, itemId);
+  if (current.holderId !== holderId || current.quantity + recovered !== quantity)
+    throw new CorruptHistoryError(`item ${itemId} recovery does not follow its quantity`);
+  return put(state, itemId, { ...current, quantity });
+}
+
 export function applyItemTransferred(state: WorldState, event: Ev<'ItemTransferred'>): WorldState {
   const { itemId, from, to, catalogId, quantity } = event.payload;
   const current = possessionOf(state, itemId);

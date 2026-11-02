@@ -1,7 +1,16 @@
-import type { CoverLevel, Damage, SpellId, Square } from '@ltw/contracts';
+import type {
+  AttackExtra,
+  CoverLevel,
+  Damage,
+  SpellId,
+  Square,
+  WeaponId,
+  WeaponMastery,
+} from '@ltw/contracts';
 import {
+  ammunitionOf,
   combatantOf,
-  wieldedWeapons,
+  handsOf,
   type CombatantRecord,
   type EncounterState,
   type WorldState,
@@ -11,8 +20,6 @@ import {
   FIREBALL_RADIUS_FT,
   SHIELD_AC_BONUS,
   SPELLS,
-  WEAPONS,
-  abilityModifier,
   attackCircumstances,
   beginAttackAction,
   exhaustionPenalty,
@@ -24,21 +31,22 @@ import {
   type Illegal,
   type IllegalReason,
   type TurnState,
-  weaponAttackBonus,
-  weaponModifier,
 } from '@ltw/rules';
 
 import { isDodging } from './actions.ts';
 import { coverAt, isAlive, turnStateOf } from './battlefield.ts';
 import { charmedBy, conditionsAgainst, detailOf } from './condition-details.ts';
+import { hostileSides } from './reactions/opportunity.ts';
 import {
   armorClass,
   conditionsOf,
   exhaustionOf,
+  has,
   incapacitated,
   vitalsOf,
   type Vitals,
 } from './vitals.ts';
+import { weaponOf, type AttackDamage, type WeaponView } from './weapon-view.ts';
 
 /**
  * Attack legality (docs/adr/0015-combat-engine.md §3), shared by the combat
@@ -61,22 +69,36 @@ export type Refusal = {
 const refuse = (reason: CombatReason, resolution?: Illegal['resolution']): Refusal =>
   resolution ? { legal: false, reason, resolution } : { legal: false, reason };
 
-/** An attack's damage dice; an Unarmed Strike rolls none (`count` 0: 1 + Strength). */
-export interface AttackDamage {
-  readonly count: number;
-  readonly sides: Damage['sides'];
-  readonly bonus: number;
-  readonly type: string;
-}
-
-/** A character's Unarmed Strike (SRD 5.2.1): every character has one, with proficiency. */
-export const UNARMED_STRIKE = 'unarmed-strike';
-
 /**
  * How an attack is paid: the Attack action on the attacker's turn, or its Reaction — an
  * opportunity attack or the readied attack (docs/adr/0046-reactions-beyond-counterspell.md).
  */
 export type AttackEconomy = 'action' | 'reaction';
+
+/** What an attack asks before its roll (docs/adr/0047-weapons.md §2, §4). */
+export interface AttackOptions {
+  /** An extra attack: the other hand's (Light), or Cleave's second. */
+  readonly extra?: AttackExtra;
+  /** Push's feet on a hit (0: none; absent: 10), and Topple (absent: yes). */
+  readonly push?: 0 | 5 | 10;
+  readonly topple?: boolean;
+}
+
+/** A weapon's mastery as one attack uses it: Push's feet, Topple's DC, Graze's damage. */
+export interface MasteryUse {
+  readonly kind: WeaponMastery;
+  readonly pushFt?: 0 | 5 | 10 | undefined;
+  readonly dc?: number | undefined;
+  readonly graze?: number | undefined;
+}
+
+/** The weapons' marks an attack leaves on its attacker's turn (docs/adr/0047-weapons.md). */
+export interface WeaponMarks {
+  readonly lightWeapon?: WeaponId;
+  readonly offhandAttacked?: true;
+  readonly cleaved?: true;
+  readonly loadingFired?: true;
+}
 
 export interface AttackPlan {
   readonly legal: true;
@@ -104,6 +126,104 @@ export interface AttackPlan {
   readonly helpedBy: string | null;
   /** The attacker was hidden: attacking reveals it (§5). */
   readonly hidden: boolean;
+  readonly weapon: WeaponView;
+  readonly extra: AttackExtra | null;
+  readonly marks: WeaponMarks;
+  /** The stack whose piece this shot spends; null when its ammunition is not counted. */
+  readonly ammunitionFrom: string | null;
+  readonly mastery: MasteryUse | null;
+  /** Vex's Advantage is used on this attack, and Sap's Disadvantage: both end with it. */
+  readonly vexed: boolean;
+  readonly sapped: boolean;
+}
+
+const masteryUse = (
+  weapon: WeaponView,
+  extra: AttackExtra | null,
+  options: AttackOptions,
+  proficiency: number,
+): MasteryUse | null => {
+  switch (weapon.mastery) {
+    case null:
+    case 'nick':
+      return null;
+    case 'push': {
+      const pushFt = options.push ?? 10;
+      return pushFt === 0 ? null : { kind: 'push', pushFt };
+    }
+    case 'topple':
+      return options.topple === false
+        ? null
+        : { kind: 'topple', dc: 8 + weapon.abilityModifier + proficiency };
+    case 'graze':
+      return weapon.abilityModifier > 0 ? { kind: 'graze', graze: weapon.abilityModifier } : null;
+    case 'cleave':
+      // Cleave's own second attack cleaves no further (once per turn).
+      return weapon.melee && extra === null ? { kind: 'cleave' } : null;
+    default:
+      return { kind: weapon.mastery };
+  }
+};
+
+/** A foe within 5 ft that sees the attacker and can act: a ranged attack has Disadvantage. */
+function foeClose(state: WorldState, encounter: EncounterState, attacker: CombatantRecord) {
+  const self = vitalsOf(state, attacker.entityId);
+  return encounter.combatants.some((other) => {
+    if (!hostileSides(other.side, attacker.side) || !isAlive(state, other.entityId)) return false;
+    if (squareDistanceFt(other.position, attacker.position) > 5) return false;
+    const vitals = vitalsOf(state, other.entityId);
+    return (
+      vitals !== null &&
+      !incapacitated(vitals) &&
+      !has(vitals, 'blinded') &&
+      !(self && has(self, 'invisible'))
+    );
+  });
+}
+
+/** Whether an extra attack is on offer now (docs/adr/0047-weapons.md §2, §4), and its turn. */
+function extraTurn(
+  state: WorldState,
+  encounter: EncounterState,
+  attacker: CombatantRecord,
+  target: CombatantRecord,
+  weapon: WeaponView,
+  extra: AttackExtra,
+  turn: TurnState,
+): TurnState | Refusal {
+  const record = attacker.turn;
+  if (extra === 'cleave') {
+    const offer = record.cleave;
+    if (
+      !offer ||
+      offer.attackId !== weapon.weaponId ||
+      offer.targetId === target.entityId ||
+      offer.movementUsedFt !== turn.movementUsedFt ||
+      offer.attacksRemaining !== turn.attacksRemaining ||
+      !weapon.melee
+    ) {
+      return refuse('NO_EXTRA_ATTACK');
+    }
+    const first = combatantOf(encounter, offer.targetId);
+    if (!first || squareDistanceFt(first.position, target.position) > 5) {
+      return refuse('OUT_OF_RANGE');
+    }
+    return turn;
+  }
+  // The Light property's: a different Light weapon after the Attack action's Light one.
+  const first = record.lightWeapon;
+  if (first === undefined || record.offhandAttacked === true || !weapon.light) {
+    return refuse('NO_EXTRA_ATTACK');
+  }
+  const hands = handsOf(state, attacker.entityId);
+  if (hands.shield) return refuse('HANDS_FULL');
+  if (weapon.weaponId === first && !(hands.main === first && hands.off === first)) {
+    return refuse('NO_EXTRA_ATTACK');
+  }
+  // Nick makes it part of the Attack action; else it takes the Bonus Action.
+  if (weapon.mastery === 'nick') return turn;
+  if (turn.bonusActionUsed) return refuse('NO_BONUS_ACTION');
+  return { ...turn, bonusActionUsed: true };
 }
 
 export function attackPlan(
@@ -113,6 +233,7 @@ export function attackPlan(
   attackId: string,
   targetId: string,
   economy: AttackEconomy = 'action',
+  options: AttackOptions = {},
 ): AttackPlan | Refusal {
   const attacker = combatantOf(encounter, attackerId);
   const target = combatantOf(encounter, targetId);
@@ -128,14 +249,16 @@ export function attackPlan(
   // A Charmed creature cannot attack its charmer (docs/adr/0045-conditions-and-actions.md §1).
   if (charmedBy(attacker, attackerVitals, targetId)) return refuse('CHARMED_BY_TARGET');
 
+  const extra = options.extra ?? null;
   let turn = turnStateOf(encounter, attacker);
   if (economy === 'reaction') {
     // Off its own turn, paid with the Reaction (ADR 0046 §2, §5).
+    if (extra !== null) return refuse('NO_EXTRA_ATTACK');
     if (!turn.reactionAvailable) return refuse('NO_REACTION');
     turn = { ...turn, reactionAvailable: false };
   } else if (!turn.ownTurn) {
     return refuse('NOT_YOUR_TURN');
-  } else if (turn.attacksRemaining === 0) {
+  } else if (extra === null && turn.attacksRemaining === 0) {
     if (attackerVitals.kind === 'character') {
       const begun = beginAttackAction(attackerVitals.sheet, turn);
       if ('legal' in begun) return refuse(begun.reason);
@@ -149,11 +272,29 @@ export function attackPlan(
   const distanceFt = squareDistanceFt(attacker.position, target.position);
   const coverLevel = coverAt(encounter, target.position);
   if (coverLevel === 'total') return refuse('TOTAL_COVER');
-  const weapon = weaponOf(state, attackerVitals, attackId);
-  if (!weapon) return refuse('NO_WEAPON');
+  const weapon = weaponOf(state, attackerVitals, attackId, distanceFt);
+  if (typeof weapon === 'string') return refuse(weapon);
+  if (extra !== null) {
+    const paid = extraTurn(state, encounter, attacker, target, weapon, extra, turn);
+    if ('legal' in paid) return paid;
+    turn = paid;
+  }
+  // A Loading weapon fires once an action, whatever Extra Attack allows (ADR 0047 §1).
+  const firesLoading = weapon.loading && economy === 'action' && extra === null;
+  if (firesLoading && attacker.turn.loadingFired === true) return refuse('LOADING');
   const limit = weapon.melee ? weapon.reachFt : weapon.longRangeFt;
   if (distanceFt > limit)
     return refuse('OUT_OF_RANGE', { moveRequiredFt: moveRequiredFt(distanceFt, limit) });
+  // Counted ammunition: a shot needs a piece of its kind (ADR 0047 §5).
+  let ammunitionFrom: string | null = null;
+  if (weapon.ammunition !== null && !weapon.melee) {
+    const stacks = ammunitionOf(state, attackerId, weapon.ammunition);
+    if (stacks.length > 0) {
+      const stack = stacks.find((one) => one.quantity > 0);
+      if (!stack) return refuse('NO_AMMUNITION');
+      ammunitionFrom = stack.itemId;
+    }
+  }
   const longRange = !weapon.melee && distanceFt > weapon.normalRangeFt;
   // Dodge and Help (docs/adr/0045-conditions-and-actions.md §5): a Dodge holds while the target
   // can move and act; Help is an ally's, against this target, until the helper's next turn.
@@ -164,6 +305,8 @@ export function attackPlan(
       c.side === attacker.side &&
       isAlive(state, c.entityId),
   );
+  const vexed = attacker.vexing?.targetId === targetId;
+  const sapped = attacker.sappedBy !== undefined;
   const circumstances = attackCircumstances({
     attackerConditions: conditionsAgainst(state, encounter, attacker, attackerVitals, targetId),
     targetConditions: conditionsOf(targetVitals),
@@ -172,11 +315,38 @@ export function attackPlan(
     longRange,
     targetDodging: isDodging(target, targetVitals),
     helped: helper !== undefined,
+    foeClose: !weapon.melee && foeClose(state, encounter, attacker),
+    tooHeavy: weapon.tooHeavy,
+    vexing: vexed,
+    sapped,
   });
   const marked =
     attackerVitals.kind === 'character' &&
     attackerVitals.sheet.concentration?.spellId === 'hunters-mark' &&
     attackerVitals.sheet.concentration.targetId === targetId;
+  const proficiency =
+    attackerVitals.kind === 'character' ? proficiencyBonus(totalLevel(attackerVitals.sheet)) : 0;
+  const mastery = masteryUse(weapon, extra, options, proficiency);
+  // An extra attack adds no ability modifier to its damage unless it is negative (ADR 0047 §2, §4).
+  const damage =
+    extra === null
+      ? weapon.damage
+      : {
+          ...weapon.damage,
+          bonus: weapon.damage.bonus - weapon.abilityModifier + Math.min(weapon.abilityModifier, 0),
+        };
+  const lightFirst =
+    economy === 'action' &&
+    extra === null &&
+    weapon.light &&
+    weapon.weaponId !== null &&
+    attacker.turn.lightWeapon === undefined;
+  const marks: WeaponMarks = {
+    ...(lightFirst ? { lightWeapon: weapon.weaponId } : {}),
+    ...(extra === 'offhand' ? { offhandAttacked: true as const } : {}),
+    ...(extra === 'cleave' ? { cleaved: true as const } : {}),
+    ...(firesLoading ? { loadingFired: true as const } : {}),
+  };
   return {
     legal: true,
     melee: weapon.melee,
@@ -198,73 +368,17 @@ export function attackPlan(
     distanceFt,
     longRange,
     ...circumstances,
-    damage: weapon.damage,
+    damage,
     advantageDamage: weapon.advantageDamage,
-    slow: weapon.slow,
+    slow: mastery?.kind === 'slow',
     huntersMark: marked,
-  };
-}
-
-interface WeaponView {
-  readonly melee: boolean;
-  readonly reachFt: number;
-  readonly normalRangeFt: number;
-  readonly longRangeFt: number;
-  readonly bonus: number;
-  readonly damage: AttackDamage;
-  readonly advantageDamage: Damage | null;
-  readonly slow: boolean;
-}
-
-function weaponOf(state: WorldState, v: Vitals, attackId: string): WeaponView | null {
-  if (v.kind === 'character' && attackId === UNARMED_STRIKE) {
-    const strength = abilityModifier(v.sheet.abilities.str);
-    return {
-      melee: true,
-      reachFt: 5,
-      normalRangeFt: 0,
-      longRangeFt: 0,
-      bonus: strength + proficiencyBonus(totalLevel(v.sheet)),
-      damage: { count: 0, sides: 4, bonus: 1 + strength, type: 'bludgeoning' },
-      advantageDamage: null,
-      slow: false,
-    };
-  }
-  if (v.kind === 'character') {
-    // The sheet's weapons, and the weapon items the character wields (Stage 520).
-    const weapon = [...v.sheet.weapons, ...wieldedWeapons(state, v.entityId)].find(
-      (id) => id === attackId,
-    );
-    if (!weapon) return null;
-    const definition = WEAPONS[weapon];
-    const modifier = weaponModifier(v.sheet, weapon);
-    return {
-      melee: !definition.ranged,
-      reachFt: 5,
-      normalRangeFt: definition.normalRangeFt,
-      longRangeFt: definition.longRangeFt,
-      bonus: weaponAttackBonus(v.sheet, weapon),
-      damage: {
-        ...definition.damageDice,
-        sides: definition.damageDice.sides as Damage['sides'],
-        bonus: modifier,
-        type: definition.damageType,
-      },
-      advantageDamage: null,
-      slow: definition.mastery === 'slow',
-    };
-  }
-  const attack = v.block.attacks.find((a) => a.attackId === attackId);
-  if (!attack) return null;
-  return {
-    melee: attack.kind === 'melee',
-    reachFt: attack.reachFt ?? 5,
-    normalRangeFt: attack.normalRangeFt ?? 0,
-    longRangeFt: attack.longRangeFt ?? 0,
-    bonus: attack.bonus,
-    damage: attack.damage,
-    advantageDamage: attack.advantageDamage ?? null,
-    slow: false,
+    weapon,
+    extra,
+    marks,
+    ammunitionFrom,
+    mastery,
+    vexed,
+    sapped,
   };
 }
 

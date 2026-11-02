@@ -39,6 +39,19 @@ export const itemUsedPayloadSchema = z
   .strict();
 
 /**
+ * Units come back to a stack: ammunition picked up after a fight (docs/adr/0047-weapons.md §5),
+ * `recovered` of them, the stack holding `quantity` after.
+ */
+export const itemRecoveredPayloadSchema = z
+  .object({
+    itemId: entityIdSchema,
+    holderId: entityIdSchema,
+    recovered: quantity.min(1),
+    quantity,
+  })
+  .strict();
+
+/**
  * Part of a stack becomes an item of its own, held by the same holder: a new item entity (made by
  * `EntityCreated` just before) takes `quantity` units from `itemId`, which keeps the rest.
  */

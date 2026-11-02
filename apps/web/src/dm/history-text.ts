@@ -144,7 +144,12 @@ export function describePlayerAction(
     case 'EndTurn':
       return t('Ended the turn');
     case 'Attack':
-      return t('Attacked {target}', { target: name(command.targetId) });
+      // The extra attacks (docs/adr/0047-weapons.md §2, §4) say which they were.
+      return command.extra === 'offhand'
+        ? t('Attacked {target} with the other hand', { target: name(command.targetId) })
+        : command.extra === 'cleave'
+          ? t('Cleaved through to {target}', { target: name(command.targetId) })
+          : t('Attacked {target}', { target: name(command.targetId) });
     case 'CastSpell':
       return command.targetId === undefined
         ? t('Cast {spell}', { spell: spellName(t, command.spellId) })

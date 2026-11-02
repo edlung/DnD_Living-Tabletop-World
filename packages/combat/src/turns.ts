@@ -44,6 +44,7 @@ export function decideEndTurn(context: DecisionContext, command: EndTurn, dice: 
   const ending = [
     ...savesAtEndOfTurn(work, dice, command.combatantId),
     ...durationsAt(work, command.combatantId, 'end'),
+    ...vexCountsDown(work, command.combatantId),
   ];
   const ended = work.encounter(encounter.value);
   const next = nextLiving(state, ended, ended.currentIndex);
@@ -53,6 +54,18 @@ export function decideEndTurn(context: DecisionContext, command: EndTurn, dice: 
     ...ending,
     ...turnStart(work, ended, next.combatant, round, dice),
   );
+}
+
+/** Vex's Advantage holds until the end of its holder's next turn (docs/adr/0047-weapons.md §2). */
+function vexCountsDown(work: FightWork, combatantId: string): DraftEvent[] {
+  const record = work.combatant(combatantId);
+  if (!record?.vexing) return [];
+  if (record.vexing.turnsLeft > 1) {
+    return [work.record({ ...record, vexing: { ...record.vexing, turnsLeft: 1 } })];
+  }
+  const ended = { ...record };
+  delete ended.vexing;
+  return [work.record(ended)];
 }
 
 /**
@@ -136,6 +149,14 @@ function turnStart(
       );
     }
     events.push(work.record({ ...(work.combatant(other.entityId) ?? other), slowedBy: null }));
+  }
+
+  // Sap's Disadvantage ends as the sapping creature's turn starts (docs/adr/0047-weapons.md §2).
+  for (const other of [...work.combatants]) {
+    if (other.sappedBy !== combatant.entityId) continue;
+    const unsapped = { ...(work.combatant(other.entityId) ?? other) };
+    delete unsapped.sappedBy;
+    events.push(work.record(unsapped));
   }
 
   // What lasts until the start of this combatant's turn ends (ADR 0045 §2).

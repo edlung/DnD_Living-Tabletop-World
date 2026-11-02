@@ -69,6 +69,8 @@ const LABEL: Readonly<Record<ContextActionId, string>> = {
   detect_magic: 'Cast Detect Magic',
   longbow_attack: 'Attack them with a longbow',
   weapon_attack: 'Attack them with a weapon in hand',
+  offhand_attack: 'Strike them with the weapon in the other hand',
+  cleave_attack: 'Cleave through to them with the same swing',
   enter_location: 'Go there',
   fireball: 'Cast Fireball at them',
   counterspell: 'Counterspell their spell',

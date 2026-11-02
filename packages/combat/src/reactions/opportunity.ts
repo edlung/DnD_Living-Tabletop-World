@@ -9,7 +9,8 @@ import {
 import { WEAPONS, squareDistanceFt } from '@ltw/rules';
 
 import { isAlive, turnStateOf } from '../battlefield.ts';
-import { UNARMED_STRIKE, type Refusal } from '../legality.ts';
+import type { Refusal } from '../legality.ts';
+import { UNARMED_STRIKE, reachOfWeapon } from '../weapon-view.ts';
 import { has, incapacitated, vitalsOf, type Vitals } from '../vitals.ts';
 
 /**
@@ -44,9 +45,10 @@ export function meleeAttacks(state: WorldState, vitals: Vitals): MeleeAttack[] {
     ...new Set([...vitals.sheet.weapons, ...wieldedWeapons(state, vitals.entityId)]),
   ];
   return [
+    // A Reach weapon reaches 10 ft for its opportunity attacks too (docs/adr/0047-weapons.md §1).
     ...weapons
       .filter((weaponId) => !WEAPONS[weaponId].ranged)
-      .map((attackId) => ({ attackId, name: null, reachFt: 5 })),
+      .map((attackId) => ({ attackId, name: null, reachFt: reachOfWeapon(attackId) })),
     { attackId: UNARMED_STRIKE, name: null, reachFt: 5 },
   ];
 }

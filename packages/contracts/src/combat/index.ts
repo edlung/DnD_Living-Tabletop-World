@@ -1,6 +1,7 @@
 /** The combat contracts (docs/adr/0015-combat-engine.md, ADR 0045), re-exported by the package index. */
 export {
   ACTION_SKILLS,
+  ATTACK_EXTRAS,
   COMBAT_ACTIONS,
   COMBAT_COMMAND_TYPES,
   COVER_LEVELS,
@@ -19,6 +20,7 @@ export {
   makeReadiedAttackCommandSchema,
   spendInspirationCommandSchema,
   squareSchema,
+  type AttackExtra,
   type Battlefield,
   type CombatAction,
   type CombatCommandType,

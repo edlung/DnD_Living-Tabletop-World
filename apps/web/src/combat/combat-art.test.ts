@@ -25,8 +25,10 @@ const glyphs = new Set<string>(GLYPH_NAMES);
 
 describe('combat option pictures and words', () => {
   it('shows each battlefield option with the catalog art of the entry its command uses', () => {
-    // A weapon attack's picture is its weapon's (`optionArtUrl`), checked below.
-    for (const action of COMBAT_ACTIONS.filter((id) => id !== 'weapon_attack')) {
+    // A weapon attack's picture is its weapon's (`optionArtUrl`), checked below; so is an extra
+    // attack's (docs/adr/0047-weapons.md).
+    const weaponOptions = new Set(['weapon_attack', 'offhand_attack', 'cleave_attack']);
+    for (const action of COMBAT_ACTIONS.filter((id) => !weaponOptions.has(id))) {
       const art = catalogArtOf(action);
       expect(art, action).not.toBeNull();
       if (!art) continue;
@@ -49,6 +51,14 @@ describe('combat option pictures and words', () => {
       key.replace(/\{(\w+)\}/g, (_, name: string) => String(params?.[name] ?? ''));
     expect(optionLabelFor(t, strike, 'Goblin')).toBe('Attack Goblin with Shortsword');
     expect(shortLabelFor(t, strike)).toBe('Shortsword');
+    // The extra attacks name their weapon too; the short words stay inside the full ones.
+    const other = { ...strike, id: 'offhand_attack', weapon: 'dagger' } as const;
+    expect(optionArtUrl(other)).not.toBeNull();
+    expect(shortLabelFor(t, other)).toBe('Other hand: Dagger');
+    expect(optionLabelFor(t, other, 'Goblin')).toBe('Other hand: Dagger at Goblin');
+    const cleave = { ...strike, id: 'cleave_attack', weapon: 'greataxe' } as const;
+    expect(shortLabelFor(t, cleave)).toBe('Cleave: Greataxe');
+    expect(optionLabelFor(t, cleave, 'Goblin')).toContain(shortLabelFor(t, cleave));
   });
 
   it('keys a suggested creature turn’s art by its attack or spell ID, and nothing else', () => {

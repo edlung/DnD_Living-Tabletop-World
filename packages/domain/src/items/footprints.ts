@@ -10,6 +10,7 @@ type ItemEvent = Extract<
       | 'ItemEquipped'
       | 'ItemUnequipped'
       | 'ItemUsed'
+      | 'ItemRecovered'
       | 'ItemTransferred'
       | 'ItemSplit';
   }
@@ -48,6 +49,7 @@ export function itemFootprint(event: ItemEvent): Footprint {
         writes: [facts.possession(event.payload.itemId), facts.equipment(event.payload.holderId)],
       };
     case 'ItemUsed':
+    case 'ItemRecovered':
       return {
         reads: [
           clock,

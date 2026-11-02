@@ -289,6 +289,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'StatBlockSet':
     case 'ActionTaken':
     case 'AttackPerformed':
+    case 'WeaponMasteryApplied':
     case 'SpellCast':
     case 'DamageApplied':
     case 'HealingApplied':
@@ -375,6 +376,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ItemEquipped':
     case 'ItemUnequipped':
     case 'ItemUsed':
+    case 'ItemRecovered':
     case 'ItemTransferred':
     case 'ItemSplit':
       return itemFootprint(event);

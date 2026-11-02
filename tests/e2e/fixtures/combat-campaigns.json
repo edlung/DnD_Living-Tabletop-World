@@ -14,5 +14,7 @@
   "opportunity": "ui-combat-opportunity",
   "readied": "ui-combat-readied",
   "opportunityRu": "ui-combat-opportunity-ru",
-  "shield": "ui-combat-shield"
+  "shield": "ui-combat-shield",
+  "weapons": "ui-combat-weapons",
+  "offhand": "ui-combat-offhand"
 }

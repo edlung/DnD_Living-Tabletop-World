@@ -54,6 +54,7 @@ import {
   itemSplitPayloadSchema,
   itemTransferredPayloadSchema,
   itemUnequippedPayloadSchema,
+  itemRecoveredPayloadSchema,
   itemUsedPayloadSchema,
 } from '../items/events.ts';
 import {
@@ -232,6 +233,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('StatBlockSet', combatEventPayloadSchemas.StatBlockSet),
   event('ActionTaken', combatEventPayloadSchemas.ActionTaken),
   event('AttackPerformed', combatEventPayloadSchemas.AttackPerformed),
+  event('WeaponMasteryApplied', combatEventPayloadSchemas.WeaponMasteryApplied),
   event('SpellCast', combatEventPayloadSchemas.SpellCast),
   event('DamageApplied', combatEventPayloadSchemas.DamageApplied),
   event('HealingApplied', combatEventPayloadSchemas.HealingApplied),
@@ -267,6 +269,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ItemEquipped', itemEquippedPayloadSchema),
   event('ItemUnequipped', itemUnequippedPayloadSchema),
   event('ItemUsed', itemUsedPayloadSchema),
+  event('ItemRecovered', itemRecoveredPayloadSchema),
   event('ItemTransferred', itemTransferredPayloadSchema),
   event('ItemSplit', itemSplitPayloadSchema),
 ]);

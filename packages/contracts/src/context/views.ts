@@ -1,5 +1,5 @@
 import type { EntityKind, EntityStatus } from '../kernel/commands.ts';
-import type { WeaponId } from '../rules/character-sheet.ts';
+import type { WeaponId, WeaponMastery } from '../rules/character-sheet.ts';
 
 /**
  * Critical Context Contract (docs/adr/0012-context-engine.md, RAVENFORD_SPEC.md).
@@ -24,6 +24,12 @@ export const CONTEXT_ACTION_IDS = [
   'longbow_attack',
   /** An attack with another weapon the actor wields or lists (Stage 520); `weapon` names it. */
   'weapon_attack',
+  /**
+   * The extra attacks of docs/adr/0047-weapons.md: the Light property's with the other hand, and
+   * Cleave's second; `weapon` names the weapon.
+   */
+  'offhand_attack',
+  'cleave_attack',
   'enter_location',
   'fireball',
   'counterspell',
@@ -78,6 +84,11 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'INVALID_SKILL',
   'NOT_A_FOE',
   'NO_COVER_TO_HIDE',
+  /** The weapons' rules (docs/adr/0047-weapons.md). */
+  'NO_AMMUNITION',
+  'HANDS_FULL',
+  'LOADING',
+  'NO_EXTRA_ATTACK',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;
@@ -91,7 +102,17 @@ export type Relevance = (typeof RELEVANCE_LEVELS)[number];
  * `ALLY_IN_AREA`: an area spell would also affect a party member (a warning, never a block).
  * `LONG_RANGE`: the attack would be at long range, with Disadvantage.
  */
-export const CONTEXT_HINTS = ['RANGE_NOT_TRACKED', 'ALLY_IN_AREA', 'LONG_RANGE'] as const;
+/**
+ * `DISADVANTAGE`, `ADVANTAGE`: an attack the rules tilt one way on the whole (a foe beside an archer,
+ * a Heavy weapon too heavy, Vex; docs/adr/0047-weapons.md), beside the long range's own hint.
+ */
+export const CONTEXT_HINTS = [
+  'RANGE_NOT_TRACKED',
+  'ALLY_IN_AREA',
+  'LONG_RANGE',
+  'DISADVANTAGE',
+  'ADVANTAGE',
+] as const;
 export type ContextHint = (typeof CONTEXT_HINTS)[number];
 
 /** An entity as the acting character perceives it: the name only when known. */
@@ -124,6 +145,11 @@ export interface ContextAction {
   readonly evidence?: { readonly knowledgeId: string };
   /** The weapon of `weapon_attack`: a rules weapon ID (Stage 520). */
   readonly weapon?: WeaponId;
+  /**
+   * The mastery the actor uses with that weapon (docs/adr/0047-weapons.md §2): Push and Topple
+   * ask their choice before the attack.
+   */
+  readonly mastery?: WeaponMastery;
   readonly legal: boolean;
   readonly reason?: ContextIllegalReason;
   readonly resolution?: { readonly moveRequiredFt?: number };

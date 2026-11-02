@@ -1,4 +1,10 @@
-import { catalogEntry, type EquipSlot, type ItemEntry, type WeaponId } from '@ltw/contracts';
+import {
+  catalogEntry,
+  type AmmunitionKind,
+  type EquipSlot,
+  type ItemEntry,
+  type WeaponId,
+} from '@ltw/contracts';
 
 import type { WorldState } from '../kernel/state.ts';
 
@@ -75,4 +81,46 @@ export function wieldedWeapons(state: WorldState, holderId: string): WeaponId[] 
     }
   }
   return wielded;
+}
+
+/** What a holder's hands hold (docs/adr/0047-weapons.md §7): each hand's weapon, and a shield. */
+export interface Hands {
+  readonly main: WeaponId | null;
+  readonly off: WeaponId | null;
+  readonly shield: boolean;
+}
+
+export function handsOf(state: WorldState, holderId: string): Hands {
+  const held = (slot: EquipSlot) => {
+    const itemId = wornIn(state, holderId, slot);
+    const possession = itemId === null ? undefined : state.possessions.get(itemId);
+    return possession && state.entities.get(itemId ?? '')?.status === 'active'
+      ? entryOf(possession)
+      : undefined;
+  };
+  const main = held('mainhand');
+  const off = held('offhand');
+  return {
+    main: main?.weapon ?? null,
+    off: off?.weapon ?? null,
+    shield: off?.shieldBonus !== undefined,
+  };
+}
+
+/**
+ * The stacks of one kind of ammunition a holder carries, empty ones included, in ID order
+ * (docs/adr/0047-weapons.md §5): none at all means its ammunition of that kind is not counted.
+ */
+export function ammunitionOf(
+  state: WorldState,
+  holderId: string,
+  kind: AmmunitionKind,
+): { readonly itemId: string; readonly quantity: number }[] {
+  const stacks: { itemId: string; quantity: number }[] = [];
+  for (const [itemId, possession] of state.possessions) {
+    if (possession.holderId !== holderId || entryOf(possession)?.ammunition !== kind) continue;
+    if (state.entities.get(itemId)?.status !== 'active') continue;
+    stacks.push({ itemId, quantity: possession.quantity });
+  }
+  return stacks.sort((a, b) => a.itemId.localeCompare(b.itemId));
 }
