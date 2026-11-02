@@ -342,7 +342,9 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'ReactionUsed':
       case 'ReactionDeclined':
       case 'ReactionWindowExpired':
-      case 'ReactionWindowResolved': {
+      case 'ReactionWindowResolved':
+      case 'ReactionWindowWaiting':
+      case 'ReactionWindowResumed': {
         const windowId =
           event.type === 'ReactionWindowOpened'
             ? event.payload.window.windowId

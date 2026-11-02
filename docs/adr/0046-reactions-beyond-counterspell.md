@@ -56,9 +56,19 @@
    which the DM sees). Making it ends the readiness. The player sees the held attack and its
    trigger, with the button, while another creature's turn runs; the DM sees every readied attack
    and makes a creature's.
-6. **Heroic Inspiration on the table's checks.** A player whose own check the table rolled
-   (ADR 0040) may spend the character's Heroic Inspiration to roll it again; the new roll counts and
-   the first stays in the log marked rerolled. The World Engine's saving throws inside a spell's
+6. **Heroic Inspiration on the table's checks.** A player whose character holds Heroic
+   Inspiration may spend it on the character's latest roll when that is a check at the table
+   (ADR 0040), rolled by the app or entered from the player's own dice (ADR 0044 §4): no table or
+   World Engine roll of the character's since, and not a save its conditions fail outright. The
+   rules say "reroll any die": the lower d20 is rolled again — the dropped one with Advantage, the
+   kept one with Disadvantage, the only die a reroll can change for the better — and the check is
+   counted anew in the mode it was rolled in (its conditions counted then), its modifier kept. The
+   new roll counts, a request it answered takes its total, and the first stays in the log marked
+   as no longer counting. Where the dice are the players' own, the new die's face may be entered;
+   the DM confirms it as any entered roll. The inspiration is spent through the World Engine
+   (`SpendInspiration`, under the roll's own command ID, so a second press spends nothing more); the
+   reroll is written once per roll (migration 0033: `reroll_of`, unique, and `check_mode`, the mode
+   rolled in). The DM may do it for a character. The World Engine's saving throws inside a spell's
    resolution are not rerolled yet: a save window comes with Stage 650's spells.
 7. **Not here.** Feather Fall waits for falling (640f). Monster reactions from stat blocks (Parry
    and the like) come with Stage 650's monsters. Forced movement (Push, Shove) provokes nothing and

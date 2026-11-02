@@ -244,6 +244,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ReactionDeclined', reactionEventPayloadSchemas.ReactionDeclined),
   event('ReactionWindowExpired', reactionEventPayloadSchemas.ReactionWindowExpired),
   event('ReactionWindowResolved', reactionEventPayloadSchemas.ReactionWindowResolved),
+  event('ReactionWindowWaiting', reactionEventPayloadSchemas.ReactionWindowWaiting),
+  event('ReactionWindowResumed', reactionEventPayloadSchemas.ReactionWindowResumed),
   event('RelationshipChanged', relationshipChangedPayloadSchema),
   event('AuthoringPremisesRecorded', authoringPremisesPayloadSchema),
   event('EvidenceShown', evidenceShownPayloadSchema),

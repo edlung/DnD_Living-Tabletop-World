@@ -36,7 +36,7 @@ import type { AuthoringDependencies } from '../authoring/service.ts';
 import type { DmDependencies } from '../dm/dm-routes.ts';
 import { InMemoryDmNoteStore } from '../dm/note-store.ts';
 import { InMemorySubstitutionStore } from '../dm/substitution-store.ts';
-import type { TableDependencies } from '../dice/roll-routes.ts';
+import type { TableDependencies } from '../dice/roll-access.ts';
 import type { AccountingDiagnostics } from '../http/routes/ai-routes.ts';
 import { loadDevPersonaAuthenticator } from '../http/auth.ts';
 import { buildLiveApp } from '../live/live-app.ts';

@@ -9,6 +9,7 @@ import {
 import {
   COVER_BONUS,
   FIREBALL_RADIUS_FT,
+  SHIELD_AC_BONUS,
   SPELLS,
   WEAPONS,
   abilityModifier,
@@ -188,7 +189,11 @@ export function attackPlan(
     hidden: detailOf(attacker, 'invisible')?.hidden === true,
     // Exhaustion takes 2 per level from the attack roll (ADR 0045 §3).
     bonus: weapon.bonus + exhaustionPenalty(exhaustionOf(attackerVitals)),
-    targetAc: armorClass(targetVitals) + (coverLevel === 'none' ? 0 : COVER_BONUS[coverLevel]),
+    // Shield's +5 holds until the shielded creature's next turn starts (ADR 0046 §3).
+    targetAc:
+      armorClass(targetVitals) +
+      (coverLevel === 'none' ? 0 : COVER_BONUS[coverLevel]) +
+      (target.turn.shielded === true ? SHIELD_AC_BONUS : 0),
     cover: coverLevel,
     distanceFt,
     longRange,

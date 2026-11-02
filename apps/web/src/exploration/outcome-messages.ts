@@ -131,6 +131,7 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
     case 'MoveCombatant':
       return t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });
     case 'Attack':
+      if (outcome.awaitingReaction) return t('The attack waits for a reaction.');
       return outcome.hit
         ? t(
             outcome.critical
@@ -175,6 +176,14 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       return t('Turn ended. Round {round}.', { round: outcome.round });
     case 'UseReaction': {
       const { attack } = outcome;
+      if (outcome.reaction === 'inspiration-reroll' && attack) {
+        return attack.hit
+          ? t('Rolled again: hit for {damage} damage (attack {total}).', {
+              damage: attack.damage ?? 0,
+              total: attack.attackTotal,
+            })
+          : t('Rolled again: miss (attack {total}).', { total: attack.attackTotal });
+      }
       if (attack) {
         return attack.hit
           ? t('Opportunity attack: hit for {damage} damage (attack {total}).', {
@@ -183,10 +192,25 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
             })
           : t('Opportunity attack: miss (attack {total}).', { total: attack.attackTotal });
       }
-      return outcome.countered ? t('Counterspell stopped the spell.') : t('The reaction was used.');
+      switch (outcome.reaction) {
+        case 'shield':
+          return t('Shield: the attack misses, and your AC is 5 higher until your next turn.');
+        case 'uncanny-dodge':
+          return t('Uncanny Dodge: you take {damage} damage.', { damage: outcome.damage ?? 0 });
+        case 'hellish-rebuke':
+          return t('Hellish Rebuke: {damage} fire damage.', { damage: outcome.damage ?? 0 });
+        default:
+          return outcome.countered
+            ? t('Counterspell stopped the spell.')
+            : t('The reaction was used.');
+      }
     }
     case 'DeclineReaction':
-      return outcome.trigger === 'move' ? t('You let it go.') : t('You let the spell happen.');
+      return outcome.trigger === 'move'
+        ? t('You let it go.')
+        : outcome.trigger === 'spell'
+          ? t('You let the spell happen.')
+          : t('You did not react.');
     default:
       return t('Action resolved. Your view has been refreshed.');
   }

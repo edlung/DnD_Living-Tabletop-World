@@ -253,3 +253,26 @@ export function decideSetInspiration(
   });
   return accept(readsVitals(command.characterId), vitalsEvent(next));
 }
+
+/**
+ * Heroic Inspiration spent by its holder (docs/adr/0046-reactions-beyond-counterspell.md §6): the
+ * table rolls the player's check again, and the new roll counts.
+ */
+export function decideSpendInspiration(
+  context: DecisionContext,
+  command: KernelCommandOf<'SpendInspiration'>,
+): Decision {
+  const { state } = context;
+  const target = living(state, command.characterId);
+  if (!target.ok) return target.decision;
+  const { vitals } = target;
+  if (vitals.kind !== 'character' || vitals.sheet.heroicInspiration !== true) {
+    return reject('NO_EFFECT', 'No Heroic Inspiration to spend');
+  }
+  const next = withSheet(vitals, (sheet) => {
+    const without = { ...sheet };
+    delete without.heroicInspiration;
+    return without;
+  });
+  return accept(readsVitals(command.characterId), vitalsEvent(next));
+}

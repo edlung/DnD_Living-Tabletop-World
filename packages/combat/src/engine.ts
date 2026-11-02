@@ -8,6 +8,7 @@ import {
   decideSetCondition,
   decideSetExhaustion,
   decideSetInspiration,
+  decideSpendInspiration,
 } from './hand.ts';
 import {
   decideAddCombatant,
@@ -64,6 +65,8 @@ export function createCombatEngine(): CombatPort {
           return decideSetExhaustion(context, command);
         case 'SetInspiration':
           return decideSetInspiration(context, command);
+        case 'SpendInspiration':
+          return decideSpendInspiration(context, command);
         case 'AddCombatant':
           return decideAddCombatant(context, command, dice);
         case 'RemoveCombatant':

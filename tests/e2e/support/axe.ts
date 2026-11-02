@@ -45,10 +45,9 @@ function axe(page: Page): AxeBuilder {
  * where it reaches every text the scan with the art could (a picture or gradient behind a text
  * only ever leaves it unchecked) and the text over the art besides, and any impact fails it.
  */
-export async function expectAccessible(page: Page, where: string): Promise<void> {
-  await page.evaluate(() => document.fonts.ready);
-  // A panel still fading in is not yet at its colours: let every finite animation finish.
-  await page.evaluate(() =>
+/** A panel still fading in is not yet at its colours: let every finite animation finish. */
+const settled = (page: Page) =>
+  page.evaluate(() =>
     Promise.all(
       document
         .getAnimations()
@@ -56,6 +55,10 @@ export async function expectAccessible(page: Page, where: string): Promise<void>
         .map((animation) => animation.finished.catch(() => undefined)),
     ),
   );
+
+export async function expectAccessible(page: Page, where: string): Promise<void> {
+  await page.evaluate(() => document.fonts.ready);
+  await settled(page);
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > window.innerWidth,
   );
@@ -66,6 +69,8 @@ export async function expectAccessible(page: Page, where: string): Promise<void>
   );
   expect(listed(blocking), `${where}: serious or critical axe violations`).toEqual([]);
   const flat = await page.addStyleTag({ content: FLAT });
+  // Again: a live update during the first scan (a TV changing what it shows) may have begun one.
+  await settled(page);
   const contrast = await axe(page).withRules(['color-contrast']).analyze();
   await flat.evaluate((node) => {
     node.parentNode?.removeChild(node);

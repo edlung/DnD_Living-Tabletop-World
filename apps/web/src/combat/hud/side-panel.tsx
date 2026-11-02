@@ -21,6 +21,14 @@ import type { PlannedPath } from '../movement.ts';
  * pieces and rings mean — and for the DM, while a spell waits for reactions, each candidate's
  * answer.
  */
+/** What an open window holds, by what set it off (docs/adr/0046-reactions-beyond-counterspell.md). */
+const WINDOW_WAITS = {
+  spell: 'Spell resolution is waiting for reactions.',
+  move: 'The move is waiting for opportunity attacks.',
+  attack: 'The attack is waiting for a reaction.',
+  damage: 'The damage done is waiting for a reaction.',
+} as const;
+
 export function BoardLegend({
   encounter,
   isDm,
@@ -69,9 +77,7 @@ export function BoardLegend({
         <div className="legend-window">
           <p>
             <Glyph name="reaction" />
-            {window.trigger.kind === 'spell'
-              ? t('Spell resolution is waiting for reactions.')
-              : t('The move is waiting for opportunity attacks.')}
+            {t(WINDOW_WAITS[window.trigger.kind])}
           </p>
           {window.candidates.length > 0 && (
             <ul>

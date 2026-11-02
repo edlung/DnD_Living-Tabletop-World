@@ -280,6 +280,15 @@ export const setInspirationCommandSchema = z
   })
   .strict();
 
+/**
+ * Heroic Inspiration spent by its holder's player: a table check rolled again
+ * (docs/adr/0046-reactions-beyond-counterspell.md §6). Its reroll of an attack is an answer to
+ * the attack's window instead.
+ */
+export const spendInspirationCommandSchema = z
+  .object({ type: z.literal('SpendInspiration'), characterId: entityIdSchema })
+  .strict();
+
 /** The DM's hand commands, listed with their reasons in the DM's history. */
 /**
  * A creature a player commands (docs/adr/0044-online-play.md §7): the DM hands a creature in the
@@ -351,6 +360,7 @@ export const PLAYER_COMBAT_COMMAND_TYPES = [
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
+  'SpendInspiration',
 ] as const;
 /** Every combat command decided by the combat engine (through the World Engine's port). */
 export const COMBAT_COMMAND_TYPES = [
@@ -360,6 +370,7 @@ export const COMBAT_COMMAND_TYPES = [
   'CastSpell',
   'TakeAction',
   'MakeReadiedAttack',
+  'SpendInspiration',
   'EndTurn',
   'EndCombat',
   'UseReaction',

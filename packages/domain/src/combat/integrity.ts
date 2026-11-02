@@ -45,6 +45,11 @@ export function combatViolations(state: WorldState): string[] {
     if (id !== window.windowId) report(`reaction window key ${id} != ${window.windowId}`);
     if (!state.usedIds.has(id)) report(`reaction window ${id} missing from used IDs`);
     const pending = pendingCandidates(window);
+    // A window that waits for one its answer opened (ADR 0046 §1): neither closed nor open.
+    if (window.status === 'waiting') {
+      if (window.closedBy !== null) report(`waiting reaction window ${id} has a closing command`);
+      continue;
+    }
     if (window.status !== 'open') {
       if (pending.length > 0) report(`closed reaction window ${id} has pending candidates`);
       if (window.closedBy === null) report(`closed reaction window ${id} has no closing command`);
@@ -57,8 +62,10 @@ export function combatViolations(state: WorldState): string[] {
       report(`open reaction window ${id} outside its encounter`);
       continue;
     }
+    // A spell is cast and a move made on the actor's turn; an attack or damage on anyone's.
     const current = encounter.combatants[encounter.currentIndex]?.entityId;
-    if (current !== triggerActor(window.trigger))
+    const ownTurn = window.trigger.kind === 'spell' || window.trigger.kind === 'move';
+    if (ownTurn && current !== triggerActor(window.trigger))
       report(`reaction window ${id} off its actor's turn`);
     for (const candidate of window.candidates) {
       if (!encounter.combatants.some((c) => c.entityId === candidate.entityId)) {

@@ -48,9 +48,75 @@ const moveTriggerSchema = z
   })
   .strict();
 
+const damageDice = z
+  .object({
+    count: z.number().int().min(0).max(20),
+    sides: z.union([z.literal(4), z.literal(6), z.literal(8), z.literal(10), z.literal(12)]),
+    bonus: z.number().int().min(-10).max(30),
+    type: slug,
+  })
+  .strict();
+
+/**
+ * An attack roll waiting for an answer (ADR 0046 §3): what it was made with, the roll, and —
+ * once it hit — its damage, rolled before anyone answers. A missed roll its attacker may roll
+ * again with Heroic Inspiration; a hit its target may answer with Shield or Uncanny Dodge.
+ */
+const attackTriggerSchema = z
+  .object({
+    kind: z.literal('attack'),
+    attackerId: entityIdSchema,
+    targetId: entityIdSchema,
+    attackId: slug,
+    by: z.enum(['opportunity', 'readied']).optional(),
+    phase: z.enum(['missed', 'hit']),
+    spec: z
+      .object({
+        bonus: z.number().int().min(-40).max(40),
+        armorClass: z.number().int().min(0).max(60),
+        advantage: z.boolean(),
+        disadvantage: z.boolean(),
+        criticalOnHit: z.boolean(),
+        cover: z.enum(['none', 'half', 'three-quarters']),
+        damage: damageDice,
+        advantageDamage: damageDice.nullable(),
+        huntersMark: z.boolean(),
+        slow: z.boolean(),
+      })
+      .strict(),
+    /** The d20 that counted, the total and whether it hit. */
+    natural: z.number().int().min(1).max(20),
+    total: z.number().int(),
+    critical: z.boolean(),
+    damage: z
+      .object({
+        amount: z.number().int().min(0).max(999),
+        rolls: z.array(z.number().int()).max(60),
+      })
+      .strict()
+      .nullable(),
+  })
+  .strict();
+
+/** Damage done by a creature (ADR 0046 §4): those it damaged may rebuke it. */
+const damageTriggerSchema = z
+  .object({
+    kind: z.literal('damage'),
+    sourceId: entityIdSchema,
+    damaged: z
+      .array(
+        z.object({ entityId: entityIdSchema, amount: z.number().int().min(0).max(999) }).strict(),
+      )
+      .min(1)
+      .max(MAX_COMBATANTS),
+  })
+  .strict();
+
 export const reactionTriggerSchema = z.discriminatedUnion('kind', [
   spellTriggerSchema,
   moveTriggerSchema,
+  attackTriggerSchema,
+  damageTriggerSchema,
 ]);
 
 export const reactionWindowSchema = z
@@ -83,6 +149,8 @@ export const reactionWindowSchema = z
     /** Traceability: the commands that opened and closed the window. */
     openedBy: commandIdSchema,
     closedBy: commandIdSchema.nullable(),
+    /** The window that waits while this one is open (ADR 0046 §1); absent: none. */
+    parentWindowId: entityIdSchema.optional(),
   })
   .strict();
 
@@ -104,7 +172,7 @@ export const reactionEventPayloadSchemas = {
       windowId: entityIdSchema,
       reactorId: entityIdSchema,
       /** What the window was about (ADR 0046); absent on windows of before: a spell. */
-      trigger: z.enum(['spell', 'move']).optional(),
+      trigger: z.enum(['spell', 'move', 'attack', 'damage']).optional(),
     })
     .strict(),
   ReactionWindowExpired: z
@@ -119,6 +187,10 @@ export const reactionEventPayloadSchemas = {
   ReactionWindowResolved: z
     .object({ windowId: entityIdSchema, outcome: z.enum(['countered', 'proceeded']) })
     .strict(),
+  /** The window waits while one its answer opened is open (ADR 0046 §1). */
+  ReactionWindowWaiting: z.object({ windowId: entityIdSchema }).strict(),
+  /** It opens again once that one has closed. */
+  ReactionWindowResumed: z.object({ windowId: entityIdSchema }).strict(),
 } as const;
 
 export const reactionRestoreSchemas = [

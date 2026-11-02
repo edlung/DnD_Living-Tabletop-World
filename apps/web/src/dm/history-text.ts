@@ -5,6 +5,7 @@ import {
   type DmSubstitutionEntry,
   type DmWorldEntry,
   type EntityRef,
+  type KernelCommandOf,
   type KernelCommandType,
   type SubstitutionReason,
 } from '@ltw/contracts';
@@ -24,6 +25,16 @@ export const REASON_TEXT: Readonly<Record<SubstitutionReason, string>> = {
   absent: 'The player is absent',
   asked: 'The player asked the DM',
   other: 'Another reason',
+};
+
+/** A reaction as the DM's history says it was used (docs/adr/0046-reactions-beyond-counterspell.md). */
+const REACTION_WORDS: Readonly<Record<KernelCommandOf<'UseReaction'>['reaction'], string>> = {
+  counterspell: 'Cast Counterspell as a reaction',
+  'opportunity-attack': 'Made an opportunity attack',
+  'inspiration-reroll': 'Rolled again with Heroic Inspiration',
+  shield: 'Cast Shield as a reaction',
+  'uncanny-dodge': 'Used Uncanny Dodge',
+  'hellish-rebuke': 'Cast Hellish Rebuke as a reaction',
 };
 
 /** A command type as a step the DM can name: blockers and undo actions. */
@@ -61,6 +72,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   CastSpell: 'cast spell',
   TakeAction: 'take an action',
   MakeReadiedAttack: 'make the readied attack',
+  SpendInspiration: 'spend heroic inspiration',
   EndTurn: 'end turn',
   EndCombat: 'end combat',
   UseReaction: 'use reaction',
@@ -152,13 +164,13 @@ export function describePlayerAction(
             target: name(command.targetId),
           });
     case 'UseReaction':
-      return command.reaction === 'opportunity-attack'
-        ? t('Made an opportunity attack')
-        : t('Cast Counterspell as a reaction');
+      return t(REACTION_WORDS[command.reaction]);
     case 'DeclineReaction':
       return t('Let it happen');
     case 'MakeReadiedAttack':
       return t('Made the readied attack');
+    case 'SpendInspiration':
+      return t('Rolled a check again with Heroic Inspiration');
     case 'EnterLocation':
       return t('Went to {place}', { place: name(command.locationId) });
     case 'AskAbout':

@@ -13,5 +13,6 @@
   "narrow": "ui-combat-narrow",
   "opportunity": "ui-combat-opportunity",
   "readied": "ui-combat-readied",
-  "opportunityRu": "ui-combat-opportunity-ru"
+  "opportunityRu": "ui-combat-opportunity-ru",
+  "shield": "ui-combat-shield"
 }

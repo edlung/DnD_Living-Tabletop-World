@@ -84,15 +84,22 @@ export function rollSentence(t: Translate, entry: RollEntry): string {
     const result = resultWords(t, group);
     return `${purposeWords(t, group)}: ${sumWords(group)}${result ? ` — ${result}` : ''}`;
   });
-  return `${rollerWords(t, entry.roller)} · ${subjectWords(t, entry.subject)}. ${lines.join('. ')}`;
+  const subject = subjectWords(t, entry.subject);
+  const what =
+    entry.rerollOf === undefined ? subject : `${subject}, ${t('Heroic Inspiration reroll')}`;
+  return `${rollerWords(t, entry.roller)} · ${what}. ${lines.join('. ')}`;
 }
 
 /**
  * What else a roll is (docs/adr/0044-online-play.md §4): its faces read off one's own dice, the
- * DM's word on them, and whether only the DM and one player see it — in the viewer's words.
+ * DM's word on them, and whether only the DM and one player see it — in the viewer's words; and a
+ * check rolled again with Heroic Inspiration, the first no longer counting
+ * (docs/adr/0046-reactions-beyond-counterspell.md §6).
  */
 export function rollMarks(t: Translate, entry: RollEntry, isDm: boolean): string[] {
   const marks: string[] = [];
+  if (entry.rerolled) marks.push(t('rolled again, does not count'));
+  if (entry.rerollOf !== undefined) marks.push(t('Heroic Inspiration reroll'));
   if (entry.entered) {
     marks.push(entry.confirmed ? t('own dice, confirmed by the DM') : t('own dice'));
   }

@@ -65,9 +65,10 @@
   font-size: 0.85rem;
   letter-spacing: 0.04em;
 }
-.dice-plate-who span + span::before {
+/* The roller's name ends with the dot, so a wrapped line never starts with one. */
+.dice-plate-who > span:first-child:not(:last-child)::after {
   content: '·';
-  margin-right: 8px;
+  margin-left: 8px;
   color: var(--text-muted);
 }
 .dice-plate-line {
@@ -366,4 +367,31 @@
 .dice-log-confirm {
   min-height: 32px;
   margin-top: 8px;
+}
+/* A check rolled again with Heroic Inspiration (ADR 0046 §6): the first no longer counts. */
+.dice-log-entry.is-rerolled {
+  border-left-color: var(--text-muted);
+}
+.dice-log-entry.is-rerolled .dice-log-line > span:not(.muted) {
+  text-decoration: line-through;
+}
+.dice-reroll {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+.dice-reroll-what {
+  margin: 0;
+  color: var(--gold-bright);
+  font-size: 0.875rem;
+}
+.dice-reroll-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dice-reroll-actions button {
+  min-height: 32px;
 }

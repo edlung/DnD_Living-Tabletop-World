@@ -46,6 +46,9 @@ export const SPELL_IDS = [
   'misty-step',
   'fireball',
   'counterspell',
+  /** Reactions (docs/adr/0046-reactions-beyond-counterspell.md §3–4). */
+  'shield',
+  'hellish-rebuke',
 ] as const;
 export type SpellId = (typeof SPELL_IDS)[number];
 

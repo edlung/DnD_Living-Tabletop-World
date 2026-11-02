@@ -45,10 +45,12 @@ export function decideMakeReadiedAttack(
     'reaction',
   );
   if (!plan.legal) return refused(plan);
-  const { events, attacker } = resolveAttack(
+  const { events, attacker, outcome } = resolveAttack(
+    context,
     state,
     encounter.value,
     dice,
+    command.resolution?.ids ?? [],
     plan,
     {
       attackerId: command.combatantId,
@@ -64,5 +66,6 @@ export function decideMakeReadiedAttack(
     combatPremises(state, command.combatantId),
     ...events,
     combatantEvent({ ...attacker, turn }),
+    ...outcome,
   );
 }

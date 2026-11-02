@@ -19,6 +19,8 @@ import {
   applyReactionWindowExpired,
   applyReactionWindowOpened,
   applyReactionWindowResolved,
+  applyReactionWindowResumed,
+  applyReactionWindowWaiting,
 } from '../combat/reaction-evolve.ts';
 import {
   applyClaimSet,
@@ -238,6 +240,10 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyReactionWindowExpired(state, event);
     case 'ReactionWindowResolved':
       return applyReactionWindowResolved(state, event);
+    case 'ReactionWindowWaiting':
+      return applyReactionWindowWaiting(state, event);
+    case 'ReactionWindowResumed':
+      return applyReactionWindowResumed(state, event);
     case 'RelationshipChanged':
       return applyRelationshipChanged(state, event);
     case 'ItemGranted':

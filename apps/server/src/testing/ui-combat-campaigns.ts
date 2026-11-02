@@ -79,6 +79,7 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   opportunity: 'placed',
   readied: 'placed',
   opportunityRu: 'placed',
+  shield: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -91,6 +92,7 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedBesideStart(engine, campaigns.opportunity);
   await seedBesideStart(engine, campaigns.readied);
   await seedBesideStart(engine, campaigns.opportunityRu);
+  await seedBesideStart(engine, campaigns.shield);
 }
 
 /**

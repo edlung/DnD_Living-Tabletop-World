@@ -87,6 +87,12 @@ export interface RollEntry {
   readonly confirmed?: true;
   /** Seen by the DM and one character only: a word between the DM and one player. */
   readonly private?: true;
+  /**
+   * Heroic Inspiration spent (docs/adr/0046-reactions-beyond-counterspell.md §6): this roll
+   * replaces the one named; that one is `rerolled` and no longer counts.
+   */
+  readonly rerollOf?: string;
+  readonly rerolled?: true;
   /** ISO time the roll was made (wall clock), for ordering and the log. */
   readonly at: string;
 }
@@ -95,6 +101,11 @@ export interface RollEntry {
 export interface RollFeedResponse {
   readonly perspective: string;
   readonly rolls: readonly RollEntry[];
+  /**
+   * The viewer's own latest check, which its character's Heroic Inspiration may roll again
+   * (docs/adr/0046-reactions-beyond-counterspell.md §6): a roll ID of `rolls`, or absent.
+   */
+  readonly rerollable?: string;
 }
 
 /** Most entries a feed returns. */
@@ -156,6 +167,15 @@ export const tableRollRequestSchema = z.discriminatedUnion('kind', [
     .strict(),
 ]);
 export type TableRollRequest = z.infer<typeof tableRollRequestSchema>;
+
+/**
+ * POST …/rolls/:rollId/reroll: Heroic Inspiration spent on one's latest check (ADR 0046 §6), its
+ * lower d20 rolled again by the app, or read off one's own die (ADR 0044 §4).
+ */
+export const tableRerollRequestSchema = z
+  .object({ faces: enteredFacesSchema.max(1).optional() })
+  .strict();
+export type TableRerollRequest = z.infer<typeof tableRerollRequestSchema>;
 
 /**
  * POST …/check-requests (DM): ask a character for a check, with an optional hidden DC — or ask

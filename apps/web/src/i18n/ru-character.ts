@@ -101,6 +101,10 @@ registerRussian({
     'Окутанные серебристым туманом, вы телепортируетесь на расстояние до 30 футов в видимое место.',
   'A bead of flame bursts in a 20-foot radius: everyone there makes a Dexterity save, taking 8d6 Fire damage, half on a success.':
     'Огненная искра взрывается в радиусе 20 футов: каждый там совершает спасбросок Ловкости и получает 8d6 урона огнём, вдвое меньше при успехе.',
+  'As a reaction when an attack would hit you, a ward gives you +5 Armor Class until the start of your next turn, against that attack too.':
+    'Реакцией, когда атака должна попасть по вам, щит даёт +5 к Классу Доспеха до начала вашего следующего хода — и против этой атаки.',
+  'As a reaction when a creature you can see within 60 feet damages you, it takes 2d10 Fire damage, half on a Dexterity save; more with a higher slot.':
+    'Реакцией, когда видимое вами существо в пределах 60 футов наносит вам урон, оно получает 2к10 урона огнём, половину при успешном спасброске Ловкости; больше с ячейкой выше.',
   'As a reaction you interrupt a creature casting a spell within 60 feet: it makes a Constitution save or the spell fails.':
     'Реакцией вы прерываете существо, творящее заклинание в пределах 60 футов: оно совершает спасбросок Телосложения, иначе заклинание не срабатывает.',
 });

@@ -8,6 +8,14 @@ export interface EncounterSummaryProps {
   readonly encounter: EncounterResponse['encounter'];
 }
 
+/** What a window holds, by what set it off (docs/adr/0046-reactions-beyond-counterspell.md). */
+const WAITING: Readonly<Record<ReactionWindowView['trigger']['kind'], string>> = {
+  spell: 'Spell resolution is waiting for reactions.',
+  move: 'The move is waiting for opportunity attacks.',
+  attack: 'The attack is waiting for a reaction.',
+  damage: 'The damage done is waiting for a reaction.',
+};
+
 function ReactionSummary({
   window,
   labels,
@@ -21,11 +29,7 @@ function ReactionSummary({
   const { trigger } = window;
   return (
     <section className="reaction-summary" aria-label={t('Reaction window')}>
-      <p role="status">
-        {trigger.kind === 'spell'
-          ? t('Spell resolution is waiting for reactions.')
-          : t('The move is waiting for opportunity attacks.')}
-      </p>
+      <p role="status">{t(WAITING[trigger.kind])}</p>
       <dl className="field-list">
         {trigger.kind === 'spell' ? (
           <>
@@ -61,10 +65,19 @@ function ReactionSummary({
               </div>
             ) : null}
           </>
-        ) : (
+        ) : trigger.kind === 'move' ? (
           <div>
             <dt>{t('Moving')}</dt>
             <dd>{trigger.mover.name ?? nameOf(trigger.mover.entityId)}</dd>
+          </div>
+        ) : (
+          <div>
+            <dt>{t('Attacker')}</dt>
+            <dd>
+              {trigger.kind === 'attack'
+                ? (trigger.attacker.name ?? nameOf(trigger.attacker.entityId))
+                : (trigger.source.name ?? nameOf(trigger.source.entityId))}
+            </dd>
           </div>
         )}
         <div>

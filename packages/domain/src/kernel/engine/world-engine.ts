@@ -420,11 +420,17 @@ const isPlayerCommand = (command: KernelCommand): command is KernelCommandOf<Pla
  * answer may let a move go on to the next one (docs/adr/0046-reactions-beyond-counterspell.md §2).
  */
 function combatIds(type: string): number {
-  if (type === 'CastSpell' || type === 'UseReaction' || type === 'DeclineReaction') {
-    return MAX_RESOLVED_IDS;
-  }
-  return type === 'MoveCombatant' ? MAX_RESOLVED_IDS : 0;
+  // An attack may open its window: a reroll, an answer to its hit, a rebuke of its damage.
+  return WINDOW_TYPES.has(type) ? MAX_RESOLVED_IDS : 0;
 }
+const WINDOW_TYPES: ReadonlySet<string> = new Set([
+  'CastSpell',
+  'UseReaction',
+  'DeclineReaction',
+  'MoveCombatant',
+  'Attack',
+  'MakeReadiedAttack',
+]);
 
 function accepted(
   status: 'accepted' | 'duplicate',

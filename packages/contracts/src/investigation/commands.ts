@@ -119,6 +119,7 @@ export const PLAYER_COMMAND_TYPES = [
   'CastSpell',
   'TakeAction',
   'MakeReadiedAttack',
+  'SpendInspiration',
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
@@ -158,6 +159,8 @@ export type PlayerOutcome =
       readonly hit: boolean;
       readonly critical: boolean;
       readonly damage: number | null;
+      /** Its window is open: a reroll or an answer to the hit waits (ADR 0046 §3). */
+      readonly awaitingReaction?: true;
     }
   | {
       readonly kind: 'CastSpell';
@@ -180,19 +183,21 @@ export type PlayerOutcome =
       readonly reaction: ReactionId;
       /** True when the reaction stopped the spell. */
       readonly countered: boolean;
-      /** An opportunity attack's roll and damage (docs/adr/0046-reactions-beyond-counterspell.md). */
+      /** An opportunity attack's or a reroll's roll and damage (docs/adr/0046-reactions-beyond-counterspell.md). */
       readonly attack?: {
         readonly attackTotal: number;
         readonly hit: boolean;
         readonly critical: boolean;
         readonly damage: number | null;
       };
+      /** The damage the answer dealt (Hellish Rebuke) or the reactor took (Uncanny Dodge). */
+      readonly damage?: number;
     }
   | {
       readonly kind: 'DeclineReaction';
       readonly windowId: string;
-      /** What the window was about: a spell, or a creature leaving reach (ADR 0046). */
-      readonly trigger: 'spell' | 'move';
+      /** What the window was about: a spell, a creature leaving reach, an attack, damage (ADR 0046). */
+      readonly trigger: 'spell' | 'move' | 'attack' | 'damage';
     }
   | { readonly kind: 'Item'; readonly action: ItemAction; readonly itemId: string };
 

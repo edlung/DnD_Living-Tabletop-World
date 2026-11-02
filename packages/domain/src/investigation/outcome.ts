@@ -100,7 +100,10 @@ function combatOutcome(
     case 'Attack':
     case 'MakeReadiedAttack': {
       const attack = attackOf(events);
-      return attack ? { kind: 'Attack', ...attack } : undefined;
+      if (!attack) return undefined;
+      // Its window opened: what comes of the roll waits for the answer (ADR 0046 §3).
+      const waiting = events.some((event) => event.type === 'ReactionWindowOpened');
+      return { kind: 'Attack', ...attack, ...(waiting ? { awaitingReaction: true as const } : {}) };
     }
     case 'CastSpell': {
       const opened = events.find((event) => event.type === 'ReactionWindowOpened');
@@ -168,8 +171,20 @@ function combatOutcome(
       const countered = events.some(
         (event) => event.type === 'ReactionWindowResolved' && event.payload.outcome === 'countered',
       );
-      // An opportunity attack says how it went, as an attack does (ADR 0046 §2).
-      const attack = reaction === 'opportunity-attack' ? attackOf(events) : null;
+      // An opportunity attack or a reroll says how it went, as an attack does (ADR 0046 §2–3);
+      // Uncanny Dodge the damage still taken, Hellish Rebuke the damage it dealt.
+      const attack =
+        reaction === 'opportunity-attack' || reaction === 'inspiration-reroll'
+          ? attackOf(events)
+          : null;
+      const reactorId = used.payload.reactorId;
+      const dealt = events.find(
+        (event) =>
+          event.type === 'DamageApplied' &&
+          (reaction === 'uncanny-dodge'
+            ? event.payload.targetId === reactorId
+            : reaction === 'hellish-rebuke' && event.payload.sourceId === reactorId),
+      );
       return {
         kind: 'UseReaction',
         windowId,
@@ -185,6 +200,7 @@ function combatOutcome(
               },
             }
           : {}),
+        ...(dealt?.type === 'DamageApplied' ? { damage: dealt.payload.amount } : {}),
       };
     }
     case 'DeclineReaction': {

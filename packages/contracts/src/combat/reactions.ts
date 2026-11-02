@@ -8,7 +8,15 @@ import { entityIdSchema } from '../kernel/identifiers.ts';
  * until every candidate answers or the DM closes it. Schemas validate shape only; the Rules
  * decide legality. The list of reactions only grows, so stored windows stay readable.
  */
-export const REACTION_IDS = ['counterspell', 'opportunity-attack'] as const;
+export const REACTION_IDS = [
+  'counterspell',
+  'opportunity-attack',
+  /** Not a Reaction: Heroic Inspiration spent to roll a missed attack's d20 again (ADR 0046 §3). */
+  'inspiration-reroll',
+  'shield',
+  'uncanny-dodge',
+  'hellish-rebuke',
+] as const;
 export type ReactionId = (typeof REACTION_IDS)[number];
 
 export const SPELL_COMPONENTS = ['V', 'S', 'M'] as const;
@@ -18,7 +26,11 @@ export type SpellComponent = (typeof SPELL_COMPONENTS)[number];
 export const REACTION_RESPONSES = ['pending', 'used', 'declined', 'expired'] as const;
 export type ReactionResponse = (typeof REACTION_RESPONSES)[number];
 
-export const REACTION_WINDOW_STATUSES = ['open', 'countered', 'proceeded'] as const;
+/**
+ * `waiting`: a window held while a window its answer opened is open (an opportunity attack that a
+ * rogue's Uncanny Dodge answers in turn); it opens again when that one closes (ADR 0046 §1).
+ */
+export const REACTION_WINDOW_STATUSES = ['open', 'countered', 'proceeded', 'waiting'] as const;
 export type ReactionWindowStatus = (typeof REACTION_WINDOW_STATUSES)[number];
 
 export const useReactionCommandSchema = z

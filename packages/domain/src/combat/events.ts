@@ -50,6 +50,8 @@ export const turnRecordSchema = z
       })
       .strict()
       .optional(),
+    /** Shield's +5 AC until its next turn starts (docs/adr/0046-reactions-beyond-counterspell.md §3). */
+    shielded: z.literal(true).optional(),
   })
   .strict();
 
@@ -158,6 +160,8 @@ export const combatEventPayloadSchemas = {
        * (docs/adr/0046-reactions-beyond-counterspell.md); absent: the Attack action.
        */
       by: z.enum(['opportunity', 'readied']).optional(),
+      /** The d20 rolled again with Heroic Inspiration: this roll replaces the one before (ADR 0046 §3). */
+      rerolled: z.literal(true).optional(),
     })
     .strict(),
   SpellCast: z

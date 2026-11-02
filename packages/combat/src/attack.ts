@@ -10,14 +10,13 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { attackRoll, rollDamage, type TurnState } from '@ltw/rules';
+import type { TurnState } from '@ltw/rules';
 
 import { combatantEvent, encounterOf, onTurn, withTurn } from './battlefield.ts';
 import { revealed, withDetail } from './condition-details.ts';
-import { applyDamage } from './damage.ts';
 import { attackPlan, type AttackPlan } from './legality.ts';
+import { afterRoll, rollAgainst, specOf } from './reactions/attack-windows.ts';
 import { combatPremises, refused } from './refusal.ts';
-import { vitalsEvent, withConditions } from './vitals.ts';
 
 /**
  * `Attack` (docs/adr/0015-combat-engine.md §3): one attack of the Attack
@@ -36,26 +35,28 @@ export interface MadeAttack {
 }
 
 /**
- * What a legal attack does, however it is paid: its roll, its damage and the Slow mastery, the
- * Help it spends and the hidden attacker it reveals (ADR 0045 §5). The attacker's record comes back
- * with `turn` and without its hiding, for the caller to finish and record.
+ * What a legal attack does, however it is paid: its roll, the Help it spends and the hidden attacker
+ * it reveals (ADR 0045 §5); then, after the attacker's own record, what the roll leads to — a
+ * window for a reroll or an answer to the hit, or the hit itself (docs/adr/0046 §3). The attacker's
+ * record comes back with `turn` and without its hiding, for the caller to finish and record
+ * between the two.
  */
 export function resolveAttack(
+  context: DecisionContext,
   state: WorldState,
   encounter: EncounterState,
   dice: Dice,
+  ids: readonly string[],
   plan: AttackPlan,
   attack: MadeAttack,
   turn: TurnState,
-): { readonly events: DraftEvent[]; readonly attacker: CombatantRecord } {
-  const roll = attackRoll(dice, {
-    modifier: plan.bonus,
-    target: plan.targetAc,
-    advantage: plan.advantage,
-    disadvantage: plan.disadvantage,
-  });
-  const hit = roll.success;
-  const critical = hit && (roll.critical || plan.criticalOnHit);
+): {
+  readonly events: DraftEvent[];
+  readonly attacker: CombatantRecord;
+  readonly outcome: DraftEvent[];
+} {
+  const spec = specOf(plan);
+  const rolled = rollAgainst(dice, spec);
   const events: DraftEvent[] = [
     {
       type: 'AttackPerformed',
@@ -63,55 +64,18 @@ export function resolveAttack(
         attackerId: attack.attackerId,
         targetId: attack.targetId,
         attackId: attack.attackId,
-        rolls: [...roll.rolls],
+        rolls: [...rolled.rolls],
         modifier: plan.bonus,
-        total: roll.total,
+        total: rolled.total,
         advantage: plan.advantage,
         disadvantage: plan.disadvantage,
         cover: plan.cover,
-        critical,
-        hit,
+        critical: rolled.critical,
+        hit: rolled.hit,
         ...(attack.by === undefined ? {} : { by: attack.by }),
       },
     },
   ];
-
-  if (hit) {
-    const { damage } = plan;
-    const parts = [rollDamage(dice, damage.count, damage.sides, damage.bonus, critical)];
-    if (plan.advantageDamage && plan.advantage && !plan.disadvantage) {
-      const extra = plan.advantageDamage;
-      parts.push(rollDamage(dice, extra.count, extra.sides, extra.bonus, critical));
-    }
-    if (plan.huntersMark) parts.push(rollDamage(dice, 1, 6, 0, critical));
-    const applied = applyDamage(state, dice, plan.targetVitals, {
-      sourceId: attack.attackerId,
-      amount: parts.reduce((total, part) => total + part.total, 0),
-      damageType: damage.type,
-      rolls: parts.flatMap((part) => part.rolls),
-      critical,
-    });
-    events.push(...applied.events);
-    const died = applied.events.some(
-      (event) => event.type === 'EntityStatusChanged' && event.payload.to === 'dead',
-    );
-    if (plan.slow && !died) {
-      events.push(
-        {
-          type: 'ConditionApplied',
-          payload: {
-            targetId: attack.targetId,
-            condition: 'slowed',
-            applied: true,
-            cause: 'slow-mastery',
-          },
-        },
-        vitalsEvent(withConditions(applied.vitals, ['slowed'], [])),
-        combatantEvent({ ...plan.target, slowedBy: attack.attackerId }),
-      );
-    }
-  }
-
   // Help is spent on this attack; a hidden attacker is found by it (ADR 0045 §5).
   const helper = plan.helpedBy === null ? undefined : combatantOf(encounter, plan.helpedBy);
   if (helper) {
@@ -124,7 +88,8 @@ export function resolveAttack(
     events.push(...revealed(attack.attackerId, plan.attackerVitals));
     attacker = withDetail(attacker, 'invisible', null);
   }
-  return { events, attacker };
+  const outcome = afterRoll(context, state, dice, ids, attack, spec, rolled);
+  return { events, attacker, outcome };
 }
 
 export function decideAttack(
@@ -145,13 +110,20 @@ export function decideAttack(
     command.targetId,
   );
   if (!plan.legal) return refused(plan);
-  const { events, attacker } = resolveAttack(
+  const { events, attacker, outcome } = resolveAttack(
+    context,
     state,
     encounter.value,
     dice,
+    command.resolution?.ids ?? [],
     plan,
     { attackerId: command.combatantId, targetId: command.targetId, attackId: command.attackId },
     { ...plan.turn, attacksRemaining: plan.turn.attacksRemaining - 1 },
   );
-  return accept(combatPremises(state, command.combatantId), ...events, combatantEvent(attacker));
+  return accept(
+    combatPremises(state, command.combatantId),
+    ...events,
+    combatantEvent(attacker),
+    ...outcome,
+  );
 }

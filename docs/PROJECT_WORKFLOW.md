@@ -19,8 +19,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   Milestone A is done, on PR 24 (the owner chose to merge it on green CI, no deploy yet).
   Milestone B on `claude/full-game-b`: Stage 640 (conditions and actions, ADR 0045,
   `work-orders/STAGE_640.md`) in progress — 640a, the 15 conditions and Exhaustion, and 640b,
-  the actions beside Attack and Magic, done; 640c's first part (opportunity attacks, the readied
-  attack; ADR 0046) done, its attack and damage windows next.
+  the actions beside Attack and Magic, done; 640c, reactions beyond Counterspell (opportunity
+  attacks, the readied attack, Shield, Uncanny Dodge, Hellish Rebuke, Heroic Inspiration on attacks
+  and on table checks; ADR 0046), done; 640d, weapons, next. Feather Fall waits for falling (640f).
 
 ## Current request — AI campaigns, 2026-10-30
 

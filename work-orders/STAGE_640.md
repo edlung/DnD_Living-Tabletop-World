@@ -28,6 +28,11 @@ each further SRD rule needs an entry or an ADR before it is implemented).
   are a decision after a trigger — a creature leaving reach, a die just rolled — that the encounter
   waits for, which is the reaction window this part builds; 640b records Disengage's mark and the
   readied attack for them.
+
+  Moved to 640f (2026-11-02, ADR 0046 §7): Feather Fall, whose trigger is a fall, which 640f brings.
+  Done in two commits: opportunity attacks and the readied attack; then the attack and damage
+  windows (a window waiting inside another), the four reactions and Heroic Inspiration on a missed
+  attack and on a table check (its lower d20, ADR 0046 §6).
 - 640d — Weapons: properties (Ammunition, Finesse, Heavy, Light, Loading, Range, Reach, Thrown,
   Two-Handed, Versatile); the 8 masteries (Cleave, Graze, Nick, Push, Sap, Slow, Topple, Vex);
   Unarmed Strike (damage, grapple, shove: DC 8 + Str + PB, Str or Dex save); two-weapon fighting

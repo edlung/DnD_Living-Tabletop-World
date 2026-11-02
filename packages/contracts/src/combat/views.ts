@@ -113,6 +113,29 @@ export interface ReactionWindowView {
         readonly kind: 'move';
         readonly mover: WindowActor;
         readonly at: { readonly x: number; readonly y: number };
+      }
+    | {
+        /**
+         * An attack roll (ADR 0046 §3): a missed one its attacker may roll again, a hit its target
+         * may answer. What a table hears: the total, the AC it met, the damage a hit would do.
+         */
+        readonly kind: 'attack';
+        readonly attacker: WindowActor;
+        readonly target: WindowActor;
+        readonly phase: 'missed' | 'hit';
+        readonly total: number;
+        /** The target's and the DM's to know; null for the attacker's player. */
+        readonly armorClass: number | null;
+        readonly critical: boolean;
+        /** Rolled when it hit, before anyone answers. */
+        readonly damage: number | null;
+      }
+    | {
+        /** Damage taken (ADR 0046 §4): the creature that did it may be rebuked. */
+        readonly kind: 'damage';
+        readonly source: WindowActor;
+        readonly target: WindowActor;
+        readonly amount: number;
       };
   /** The DM: every candidate. A player: only their own character, if it is one. */
   readonly candidates: readonly ReactionCandidateView[];

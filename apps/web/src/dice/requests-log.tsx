@@ -5,6 +5,7 @@ import { useId } from 'react';
 import { Glyph } from '../visual/glyph.tsx';
 import { checkWords } from './checks.ts';
 import { AnswerCheck } from './own-dice.tsx';
+import { RerollCheck } from './reroll.tsx';
 import { useDiceTable } from './table.tsx';
 import {
   purposeWords,
@@ -119,7 +120,10 @@ export function RollLog() {
       ) : (
         <ol className="dice-log-list">
           {rolls.map((entry) => (
-            <li key={entry.rollId} className={`dice-log-entry${entry.hidden ? ' is-hidden' : ''}`}>
+            <li
+              key={entry.rollId}
+              className={`dice-log-entry${entry.hidden ? ' is-hidden' : ''}${entry.rerolled ? ' is-rerolled' : ''}`}
+            >
               <p className="dice-log-who">
                 <strong>{rollerWords(t, entry.roller)}</strong>
                 <span>{subjectWords(t, entry.subject)}</span>
@@ -146,6 +150,7 @@ export function RollLog() {
                   </p>
                 );
               })}
+              {!table.isDm && entry.rollId === table.rerollable && <RerollCheck entry={entry} />}
               {table.isDm && entry.entered && !entry.confirmed && (
                 <button
                   type="button"

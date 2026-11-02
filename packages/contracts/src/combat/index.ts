@@ -17,6 +17,7 @@ export {
   setExhaustionCommandSchema,
   takeActionCommandSchema,
   makeReadiedAttackCommandSchema,
+  spendInspirationCommandSchema,
   squareSchema,
   type Battlefield,
   type CombatAction,

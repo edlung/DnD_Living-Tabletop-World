@@ -87,4 +87,8 @@ export const SPELL_TEXT: Readonly<Record<SpellId, string>> = {
     'A bead of flame bursts in a 20-foot radius: everyone there makes a Dexterity save, taking 8d6 Fire damage, half on a success.',
   counterspell:
     'As a reaction you interrupt a creature casting a spell within 60 feet: it makes a Constitution save or the spell fails.',
+  shield:
+    'As a reaction when an attack would hit you, a ward gives you +5 Armor Class until the start of your next turn, against that attack too.',
+  'hellish-rebuke':
+    'As a reaction when a creature you can see within 60 feet damages you, it takes 2d10 Fire damage, half on a Dexterity save; more with a higher slot.',
 };

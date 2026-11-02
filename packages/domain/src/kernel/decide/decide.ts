@@ -220,6 +220,7 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'CastSpell':
     case 'TakeAction':
     case 'MakeReadiedAttack':
+    case 'SpendInspiration':
     case 'EndTurn':
     case 'EndCombat':
     case 'UseReaction':

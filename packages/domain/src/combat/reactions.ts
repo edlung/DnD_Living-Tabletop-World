@@ -30,17 +30,44 @@ export function openReactionWindow(state: WorldState): ReactionWindowRecord | nu
 export const pendingCandidates = (window: ReactionWindowRecord): string[] =>
   window.candidates.filter((c) => c.response === 'pending').map((c) => c.entityId);
 
-/** Who set the window off: the caster of a spell, or the creature leaving reach (ADR 0046). */
-export const triggerActor = (trigger: ReactionTrigger): string =>
-  trigger.kind === 'spell' ? trigger.casterId : trigger.moverId;
+/**
+ * Who set the window off: the caster of a spell, the creature leaving reach, the attacker, or the
+ * creature that did the damage (ADR 0046).
+ */
+export function triggerActor(trigger: ReactionTrigger): string {
+  switch (trigger.kind) {
+    case 'spell':
+      return trigger.casterId;
+    case 'move':
+      return trigger.moverId;
+    case 'attack':
+      return trigger.attackerId;
+    case 'damage':
+      return trigger.sourceId;
+  }
+}
+
+/** A window held while a window its answer opened is open (ADR 0046 §1). */
+export const waitingWindows = (state: WorldState): ReactionWindowRecord[] =>
+  [...state.reactionWindows.values()].filter((window) => window.status === 'waiting');
 
 /** The reactions a candidate may use: a window from before ADR 0046 lists none (Counterspell). */
 export const candidateReactions = (candidate: ReactionWindowRecord['candidates'][number]) =>
   candidate.reactions ?? (['counterspell'] as const);
 
-/** Everyone whose state the window's eligibility read: the trigger's actor, candidates, the rest. */
+/** Who else the trigger involves: an attack's target, those the damage struck. */
+const triggerOthers = (trigger: ReactionTrigger): string[] => {
+  if (trigger.kind === 'attack') return [trigger.targetId];
+  if (trigger.kind === 'damage') return trigger.damaged.map((entry) => entry.entityId);
+  return [];
+};
+
+/** Everyone whose state the window's eligibility read: the trigger's actors, candidates, the rest. */
 export const consideredCombatants = (window: ReactionWindowRecord): string[] => [
-  triggerActor(window.trigger),
-  ...window.candidates.map((c) => c.entityId),
-  ...window.ineligible.map((c) => c.entityId),
+  ...new Set([
+    triggerActor(window.trigger),
+    ...triggerOthers(window.trigger),
+    ...window.candidates.map((c) => c.entityId),
+    ...window.ineligible.map((c) => c.entityId),
+  ]),
 ];

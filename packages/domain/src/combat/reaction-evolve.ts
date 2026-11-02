@@ -23,9 +23,17 @@ export function applyReactionWindowOpened(
   if (window.status !== 'open' || window.closedBy !== null) {
     throw new CorruptHistoryError('a reaction window opens open');
   }
-  // A spell is cast and a creature moves on its own turn (ADR 0016, ADR 0046 §2).
+  if (
+    window.parentWindowId !== undefined &&
+    state.reactionWindows.get(window.parentWindowId)?.status !== 'waiting'
+  ) {
+    throw new CorruptHistoryError('a reaction window opened over one that does not wait');
+  }
+  // A spell is cast and a creature moves on its own turn (ADR 0016, ADR 0046 §2); an attack or
+  // its damage may come on anyone's (an opportunity attack, a readied one).
   const actor = triggerActor(window.trigger);
-  if (currentCombatant(encounter)?.entityId !== actor) {
+  const ownTurn = window.trigger.kind === 'spell' || window.trigger.kind === 'move';
+  if (ownTurn && currentCombatant(encounter)?.entityId !== actor) {
     throw new CorruptHistoryError('a reaction trigger outside its actor’s turn');
   }
   const combatants = new Set(encounter.combatants.map((c) => c.entityId));
@@ -33,7 +41,7 @@ export function applyReactionWindowOpened(
   if (
     window.candidates.some((c) => c.response !== 'pending') ||
     new Set(candidates).size !== candidates.length ||
-    candidates.includes(actor) ||
+    (ownTurn && candidates.includes(actor)) ||
     !candidates.every((id) => combatants.has(id))
   ) {
     throw new CorruptHistoryError('invalid reaction candidates');
@@ -101,6 +109,38 @@ export function applyReactionWindowResolved(
   return {
     ...state,
     reactionWindows: withEntry(state.reactionWindows, window.windowId, closed),
+  };
+}
+
+/** The window waits while one its answer opened is open (ADR 0046 §1). */
+export function applyReactionWindowWaiting(
+  state: WorldState,
+  event: EventOf<'ReactionWindowWaiting'>,
+): WorldState {
+  const window = requireOpen(state, event.payload.windowId);
+  return {
+    ...state,
+    reactionWindows: withEntry(state.reactionWindows, window.windowId, {
+      ...window,
+      status: 'waiting',
+    }),
+  };
+}
+
+/** It opens again once that one has closed. */
+export function applyReactionWindowResumed(
+  state: WorldState,
+  event: EventOf<'ReactionWindowResumed'>,
+): WorldState {
+  const window = state.reactionWindows.get(event.payload.windowId);
+  if (window?.status !== 'waiting') throw new CorruptHistoryError('a resumed window did not wait');
+  if (openReactionWindow(state)) throw new CorruptHistoryError('two reaction windows open');
+  return {
+    ...state,
+    reactionWindows: withEntry(state.reactionWindows, window.windowId, {
+      ...window,
+      status: 'open',
+    }),
   };
 }
 

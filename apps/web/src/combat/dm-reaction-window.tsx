@@ -32,22 +32,37 @@ export function DmReactionWindow({
   const { trigger } = window;
   const kindOf = (entityId: string) =>
     encounter.combatants.find((c) => c.entity.entityId === entityId)?.entity.kind;
+  const nameOf = (actor: { readonly entityId: string; readonly name: string | null }) =>
+    actor.name ?? labelOf(actor.entityId);
+  const waiting =
+    trigger.kind === 'spell'
+      ? t('Spell resolution is waiting for reactions.')
+      : trigger.kind === 'move'
+        ? t("{mover}'s move is waiting for opportunity attacks.", { mover: nameOf(trigger.mover) })
+        : trigger.kind === 'attack'
+          ? t("{attacker}'s attack on {target} is waiting for a reaction.", {
+              attacker: nameOf(trigger.attacker),
+              target: nameOf(trigger.target),
+            })
+          : t('{target} may rebuke {source}.', {
+              target: nameOf(trigger.target),
+              source: nameOf(trigger.source),
+            });
   return (
     <div className="tool-card tool-card--reaction">
       <p>
         <Glyph name="reaction" />
-        {trigger.kind === 'spell'
-          ? t('Spell resolution is waiting for reactions.')
-          : t("{mover}'s move is waiting for opportunity attacks.", {
-              mover: trigger.mover.name ?? labelOf(trigger.mover.entityId),
-            })}
+        {waiting}
       </p>
-      {trigger.kind === 'move' && (
+      {trigger.kind !== 'spell' && (
         <ul className="reaction-answers">
           {window.candidates.map((candidate) => {
             const who = labelOf(candidate.entityId);
+            // The DM answers for creatures: their opportunity attacks (stat blocks have no other).
             const answering =
-              candidate.response === 'pending' && kindOf(candidate.entityId) !== 'character';
+              trigger.kind === 'move' &&
+              candidate.response === 'pending' &&
+              kindOf(candidate.entityId) !== 'character';
             return (
               <li key={candidate.entityId}>
                 <strong>{who}</strong>

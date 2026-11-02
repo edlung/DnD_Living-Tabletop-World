@@ -148,6 +148,9 @@ registerRussian({
   "{mover}'s move is waiting for opportunity attacks.":
     '{mover}: перемещение ждёт провоцированных атак.',
   'Waiting for the player': 'Ждём ответа игрока',
+  "{attacker}'s attack on {target} is waiting for a reaction.":
+    '{attacker} атакует {target}: атака ждёт реакции.',
+  '{target} may rebuke {source}.': '{target} может ответить адским возмездием: {source}.',
   '{who}: opportunity attack with {attack}': '{who}: провоцированная атака — {attack}',
   '{who}: let it go': '{who}: пропустить',
   'Let it go': 'Пропустить',
@@ -164,6 +167,38 @@ registerRussian({
     'Провоцированная атака: попадание, урон {damage} (атака {total}).',
   'Opportunity attack: miss (attack {total}).': 'Провоцированная атака: промах (атака {total}).',
   'You let it go.': 'Вы его пропустили.',
+  'You did not react.': 'Вы не стали реагировать.',
+  'Rolled again: hit for {damage} damage (attack {total}).':
+    'Переброс: попадание, урон {damage} (атака {total}).',
+  'Rolled again: miss (attack {total}).': 'Переброс: промах (атака {total}).',
+  'Shield: the attack misses, and your AC is 5 higher until your next turn.':
+    'Щит: атака промахивается, а ваш КД на 5 выше до вашего следующего хода.',
+  'Uncanny Dodge: you take {damage} damage.': 'Невероятное уклонение: вы получаете урон {damage}.',
+  'Hellish Rebuke: {damage} fire damage.': 'Адское возмездие: урон огнём {damage}.',
+  'The attack waits for a reaction.': 'Атака ждёт реакции.',
+  '{source} damaged you: {amount}.': '{source} нанёс вам урон: {amount}.',
+  'The damage is done; your answer comes now.': 'Урон нанесён — ваш ответ следует сейчас.',
+  'Hellish Rebuke spends a level 1 slot or higher: 2d10 Fire, a Dexterity save for half.':
+    'Адское возмездие тратит ячейку 1 уровня или выше: 2к10 огнём, спасбросок Ловкости — половина.',
+  'Let it be': 'Оставить как есть',
+  'Heroic Inspiration': 'Героическое вдохновение',
+  'Your attack missed (total {total}).': 'Ваша атака промахнулась (итог {total}).',
+  'Spend Heroic Inspiration to roll the d20 again? You must take the new roll.':
+    'Потратить героическое вдохновение и перебросить к20? Придётся принять новый бросок.',
+  'Heroic Inspiration is spent whatever the new roll.':
+    'Вдохновение тратится, каким бы ни был новый бросок.',
+  'Keep the roll': 'Оставить бросок',
+  'Reaction: you are hit': 'Реакция: по вам попали',
+  '{attacker} hits you with a critical hit (total {total}, your AC {ac}).':
+    '{attacker} наносит вам критическое попадание (итог {total}, ваш КД {ac}).',
+  '{attacker} hits you (total {total}, your AC {ac}).':
+    '{attacker} попадает по вам (итог {total}, ваш КД {ac}).',
+  'It would deal {damage} damage.': 'Урон составит {damage}.',
+  'A reaction is spent until your next turn.': 'Реакция тратится до вашего следующего хода.',
+  'Take the hit': 'Принять удар',
+  'Roll again': 'Перебросить',
+  'Shield: +5 AC, it misses': 'Щит: +5 к КД, промах',
+  'Uncanny Dodge: take {damage}': 'Невероятное уклонение: урон {damage}',
   'Readied attack: {weapon}': 'Подготовленная атака: {weapon}',
   '{mover} is leaving your reach': '{mover} выходит из вашей досягаемости',
   'The move waits until you answer.': 'Перемещение ждёт вашего ответа.',

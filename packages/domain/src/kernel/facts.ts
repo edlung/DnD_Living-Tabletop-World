@@ -319,7 +319,9 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ReactionUsed':
     case 'ReactionDeclined':
     case 'ReactionWindowExpired':
-    case 'ReactionWindowResolved': {
+    case 'ReactionWindowResolved':
+    case 'ReactionWindowWaiting':
+    case 'ReactionWindowResumed': {
       // Every answer and the close read and change the window: undo is strictly reverse.
       const window = facts.reaction(event.payload.windowId);
       return { reads: [clock, facts.encounter(), window], writes: [window] };

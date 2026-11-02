@@ -15,7 +15,7 @@ import { hitDieRefusal, levelUp, longRest, spendHitDie } from '@ltw/rules';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
-import type { TableDependencies } from '../dice/roll-routes.ts';
+import type { TableDependencies } from '../dice/roll-access.ts';
 import { sendError } from '../http/errors.ts';
 import { withBody, withPerspective, type RouteDependencies } from '../http/request-context.ts';
 

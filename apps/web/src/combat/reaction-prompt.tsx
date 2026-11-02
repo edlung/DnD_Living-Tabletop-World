@@ -7,6 +7,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
 import { combatCommandFor, ignoreReaction } from './combat-bindings.ts';
 import { useCombatantLabels } from './labels.ts';
+import { AttackPrompt } from './attack-prompt.tsx';
 import { OpportunityPrompt } from './opportunity-prompt.tsx';
 import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
 
@@ -25,13 +26,20 @@ export const askedWindowOf = (
   return asked ? window.windowId : null;
 };
 
-/** The question of the open window, by what set it off: a spell, or a creature leaving reach. */
+/**
+ * The question of the open window, by what set it off: a spell, a creature leaving reach, an
+ * attack or the damage it did (docs/adr/0046-reactions-beyond-counterspell.md).
+ */
 export function ReactionPrompt(props: ReactionPromptProps) {
-  return props.encounter.reactionWindow?.trigger.kind === 'move' ? (
-    <OpportunityPrompt {...props} />
-  ) : (
-    <SpellPrompt {...props} />
-  );
+  switch (props.encounter.reactionWindow?.trigger.kind) {
+    case 'move':
+      return <OpportunityPrompt {...props} />;
+    case 'attack':
+    case 'damage':
+      return <AttackPrompt {...props} />;
+    default:
+      return <SpellPrompt {...props} />;
+  }
 }
 
 /**
