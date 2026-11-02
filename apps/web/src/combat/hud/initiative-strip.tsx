@@ -31,6 +31,11 @@ export function InitiativeStrip({
   // A long order scrolls inside the band; its edges fade where more of it hides (Stage 605).
   const list = useRef<HTMLOListElement>(null);
   const edges = useScrollEdges(list, encounter.order.join(' '));
+  // A creature the viewer's character commands (ADR 0044 §7): its turn is the viewer's to run.
+  const commanded =
+    actorId !== null &&
+    encounter.combatants.find((c) => c.entity.entityId === encounter.currentCombatantId)
+      ?.commandedBy?.entityId === actorId;
   return (
     <div
       className="encounter-anchor"
@@ -116,7 +121,9 @@ export function InitiativeStrip({
         )}
         {self && !myTurn && !window && (
           <span className="muted">
-            {t('Waiting for {name}; the DM runs creature turns.', { name: currentName })}
+            {commanded
+              ? t('{name} is yours to run this turn.', { name: currentName })
+              : t('Waiting for {name}; the DM runs creature turns.', { name: currentName })}
           </span>
         )}
         {window && actorId !== null && window.choices.length === 0 && (

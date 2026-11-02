@@ -46,7 +46,11 @@ export function encounterView(
     const vitals = vitalsOf(state, combatant.entityId);
     if (!entity || !vitals) throw new Error(`combatant ${combatant.entityId} lacks canonical data`);
     const hp = hitPoints(vitals);
-    const showHp = dm || (vitals.kind === 'character' && party.has(combatant.entityId));
+    // A creature a party character commands (ADR 0044 §7) is the party's to know, as its own.
+    const commander = combatant.commandedBy ?? null;
+    const commanded = commander !== null && (dm || party.has(commander));
+    const showHp =
+      dm || commanded || (vitals.kind === 'character' && party.has(combatant.entityId));
     const { roll, modifier, total } = combatant.initiative;
     return {
       entity: {
@@ -59,6 +63,15 @@ export function encounterView(
       state: entity.status !== 'active' ? 'dead' : hp.current === 0 ? 'down' : 'up',
       conditions: [...conditionsOf(vitals)],
       ...(showHp ? { hitPoints: { current: hp.current, max: hp.max } } : {}),
+      ...(commanded
+        ? {
+            commandedBy: {
+              entityId: commander,
+              name:
+                dm || known.has(commander) ? (state.entities.get(commander)?.name ?? null) : null,
+            },
+          }
+        : {}),
       ...(dm ? { initiative: { roll, modifier, total } } : {}),
     };
   });

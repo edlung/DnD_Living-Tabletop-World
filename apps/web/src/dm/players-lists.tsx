@@ -1,9 +1,9 @@
 import type { EntityRef, InvitationView, MemberView } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
-import { formatWhen, nameOf, splitInvitations } from './players.ts';
+import { formatWhen, freeCharacters, nameOf, splitInvitations } from './players.ts';
 import type { Players } from './use-players.ts';
 
 /**
@@ -37,6 +37,8 @@ export function MemberList({
               key={member.characterId}
               member={member}
               name={nameOf(directory, member.characterId) ?? t('a character')}
+              also={member.alsoPlays.map((id) => nameOf(directory, id) ?? t('a character'))}
+              free={freeCharacters(directory, members)}
               players={players}
             />
           ))}
@@ -49,15 +51,23 @@ export function MemberList({
 function MemberRow({
   member,
   name,
+  also,
+  free,
   players,
 }: {
   readonly member: MemberView;
   readonly name: string;
+  /** The other characters this player holds, by name (ADR 0044 §6). */
+  readonly also: readonly string[];
+  /** Characters nobody plays: one may be given to this player too. */
+  readonly free: readonly EntityRef[];
   readonly players: Players;
 }) {
   const t = useT();
   const language = useLanguage();
+  const ids = useId();
   const [asking, setAsking] = useState(false);
+  const [given, setGiven] = useState('');
   const opener = useRef<HTMLButtonElement>(null);
   const question = useRef<HTMLParagraphElement>(null);
   const asked = useRef(false);
@@ -93,6 +103,39 @@ function MemberRow({
           ? t('No login: this player comes back only in the browser they joined in.')
           : t('Login: {login}', { login: member.login })}
       </p>
+      {also.length > 0 && (
+        <p className="players-when">{t('Also plays: {names}', { names: also.join(', ') })}</p>
+      )}
+      {free.length > 0 && (
+        <div className="players-give">
+          <label htmlFor={`${ids}-give`}>{t('Another character for this player')}</label>
+          <select
+            id={`${ids}-give`}
+            value={given}
+            onChange={(event) => {
+              setGiven(event.target.value);
+            }}
+          >
+            <option value="">{t('Choose a character')}</option>
+            {free.map((character) => (
+              <option key={character.entityId} value={character.entityId}>
+                {character.name}
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            disabled={given === '' || players.working}
+            onClick={() => {
+              const character = free.find((entry) => entry.entityId === given);
+              if (character) void players.giveCharacter(member, character, name);
+              setGiven('');
+            }}
+          >
+            {t('Give: {name}', { name })}
+          </button>
+        </div>
+      )}
       <div className="action-row">
         {member.login !== null && (
           <button

@@ -18,7 +18,7 @@ export interface PlayersNotice {
   readonly params?: Params;
 }
 
-type Action = 'invite' | 'invitation' | 'member' | 'reset';
+type Action = 'invite' | 'invitation' | 'member' | 'reset' | 'give';
 
 /** Fixed words for each refusal; never the server's text. */
 const REFUSED: Readonly<Record<Action, Partial<Record<number, string>>>> = {
@@ -32,6 +32,10 @@ const REFUSED: Readonly<Record<Action, Partial<Record<number, string>>>> = {
     404: 'That invitation no longer exists.',
   },
   member: { 404: 'That character is not in the campaign any more.' },
+  give: {
+    404: 'That player or character is not in the campaign any more.',
+    422: 'That character has a player now. The list has been read again.',
+  },
   reset: {
     404: 'That player has no login: they come back only in the browser they joined in.',
     409: 'That login also plays at other tables: the operator gives its reset link.',
@@ -44,6 +48,7 @@ const LOST: Readonly<Record<Action, string>> = {
     'The answer was lost on the way. If the list shows a new invitation, revoke it and create another.',
   invitation: 'The answer was lost on the way. The list has been read again to show what happened.',
   member: 'The answer was lost on the way. The list has been read again to show what happened.',
+  give: 'The answer was lost on the way. The list has been read again to show what happened.',
   reset: 'The answer was lost on the way. Ask for a new reset link.',
 };
 
@@ -169,6 +174,25 @@ export function usePlayers(api: WorldApi, onWorldChanged: () => void) {
                   params: { name },
                 },
           );
+          onWorldChanged();
+        },
+      ),
+    /** The member's player is given another character too (ADR 0044 §6). */
+    giveCharacter: (member: MemberView, character: EntityRef, name: string) =>
+      act(
+        'give',
+        (signal) =>
+          api.post<{ readonly assigned: boolean }>(
+            `members/${encodeURIComponent(member.characterId)}/characters`,
+            { characterId: character.entityId },
+            signal,
+          ),
+        () => {
+          setNotice({
+            kind: 'success',
+            text: 'The player of {name} now also plays {other}.',
+            params: { name, other: character.name },
+          });
           onWorldChanged();
         },
       ),

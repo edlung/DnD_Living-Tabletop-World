@@ -4,6 +4,7 @@ import {
   DEFAULT_INVITATION_HOURS,
   campaignIdSchema,
   createInvitationRequestSchema,
+  giveCharacterRequestSchema,
   entityIdSchema,
   invitationIdSchema,
   type CreatedInvitationResponse,
@@ -153,6 +154,9 @@ export function registerMemberRoutes(app: FastifyInstance, deps: MemberRouteDepe
           activeSessions: summaries.get(actorId)?.active ?? 0,
           lastSeenAt: summaries.get(actorId)?.lastSeenAt ?? null,
           login: await loginOf(path.campaignId, actorId),
+          alsoPlays: seats
+            .filter(([other, player]) => player === actorId && other !== characterId)
+            .map(([other]) => other),
         })),
       ),
     };
@@ -194,18 +198,26 @@ export function registerMemberRoutes(app: FastifyInstance, deps: MemberRouteDepe
         : await credentials.revokeActorSessions(path.campaignId, player, now);
     // The account that held the seat cannot open the campaign again (ADR 0041 §4).
     if (player !== undefined) await deps.signIn.accounts?.removeSeats(path.campaignId, player);
-    const invitationsRevoked = await credentials.revokeCharacterInvitations(
-      path.campaignId,
-      path.characterId,
-      now,
-    );
+    // Every character the player holds goes with them (ADR 0044 §6).
+    const held =
+      player === undefined
+        ? [path.characterId]
+        : [...snapshot.state.roster].filter(([, actorId]) => actorId === player).map(([id]) => id);
+    let invitationsRevoked = 0;
+    for (const characterId of held) {
+      invitationsRevoked += await credentials.revokeCharacterInvitations(
+        path.campaignId,
+        characterId,
+        now,
+      );
+    }
     let released = false;
-    if (player !== undefined) {
+    for (const characterId of player === undefined ? [] : held) {
       const result = await deps.engine.execute({
         commandId: `release:${randomUUID()}`,
         campaignId: path.campaignId,
         actor,
-        command: { type: 'ReleaseCharacter', characterId: path.characterId },
+        command: { type: 'ReleaseCharacter', characterId },
       });
       request.log.info({ status: result.status, sessionsRevoked }, 'member revoked');
       if (result.status === 'rejected') return reply.code(statusOf(result)).send(result);
@@ -213,6 +225,30 @@ export function registerMemberRoutes(app: FastifyInstance, deps: MemberRouteDepe
     }
     const response: RevokeMemberResponse = { released, sessionsRevoked, invitationsRevoked };
     return reply.send(response);
+  });
+
+  /**
+   * Gives a member another character, one nobody plays (docs/adr/0044-online-play.md §6): a child
+   * on a shared tablet, a spare hero. The World Engine assigns it to the same player, as the DM;
+   * the player's actor never leaves the server.
+   */
+  app.post('/campaigns/:campaignId/members/:characterId/characters', async (request, reply) => {
+    const dm = await asDm(request, reply, memberParams, giveCharacterRequestSchema, 'body');
+    if (!dm) return reply;
+    const { actor, path, input, snapshot } = dm;
+    const player = snapshot.state.roster.get(path.characterId);
+    if (player === undefined || !isCharacter(snapshot, input.characterId)) {
+      return sendError(reply, request, 'NOT_FOUND');
+    }
+    const result = await deps.engine.execute({
+      commandId: `give-character:${randomUUID()}`,
+      campaignId: path.campaignId,
+      actor,
+      command: { type: 'AssignCharacter', characterId: input.characterId, playerActorId: player },
+    });
+    request.log.info({ status: result.status }, 'member given a character');
+    if (result.status === 'rejected') return reply.code(statusOf(result)).send(result);
+    return reply.code(201).send({ assigned: true });
   });
 
   // A reset link for a member's account (ADR 0041 §7): the DM hands it over, shown once.

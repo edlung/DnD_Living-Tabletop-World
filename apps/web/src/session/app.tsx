@@ -319,15 +319,15 @@ function SessionShell({
   const identity = resource.status === 'ready' ? resource.value : initial;
   const effective =
     perspective === 'PLAYER' ? `CHARACTER:${identity.character?.entityId ?? ''}` : perspective;
+  // A player's own characters (ADR 0044 §6): each one's perspective, to look and act as.
+  const own = new Set(identity.characters.map((character) => `CHARACTER:${character.entityId}`));
   // Names/IDs of other DM-only characters must not survive in option elements.
   const perspectiveChoices = identity.perspectives.filter(
     (item) =>
       perspective === 'DM' ||
       item.value === perspective ||
       ['DM', 'PARTY', 'PUBLIC'].includes(item.value) ||
-      (identity.role === 'PLAYER' &&
-        (item.value === 'PLAYER' ||
-          item.value === `CHARACTER:${identity.character?.entityId ?? ''}`)),
+      (identity.role === 'PLAYER' && (item.value === 'PLAYER' || own.has(item.value))),
   );
   const api = useMemo(
     () => new WorldApi(connection, perspective, effective),
@@ -361,10 +361,7 @@ function SessionShell({
         key={`${perspective}:${String(revision)}`}
         api={api}
         effectivePerspective={effective}
-        canAct={
-          identity.role === 'PLAYER' &&
-          effective === `CHARACTER:${identity.character?.entityId ?? ''}`
-        }
+        canAct={identity.role === 'PLAYER' && own.has(effective)}
         standIn={actingAs}
         onActAs={onActAs}
         sessionSlot={sessionSlot}

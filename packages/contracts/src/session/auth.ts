@@ -106,7 +106,15 @@ export interface MemberView {
   readonly lastSeenAt: string | null;
   /** The login the seat belongs to (ADR 0041; shown to the campaign's DM only), or null. */
   readonly login: string | null;
+  /** The other characters the same player holds (docs/adr/0044-online-play.md §6). */
+  readonly alsoPlays: readonly string[];
 }
+
+/**
+ * `POST …/members/:characterId/characters` (DM only): the player of that character is given
+ * another character, one nobody plays (docs/adr/0044-online-play.md §6).
+ */
+export const giveCharacterRequestSchema = z.object({ characterId: entityIdSchema }).strict();
 
 /** `GET /campaigns/:campaignId/invitations` (DM only): newest invitations first, then members. */
 export interface MembershipResponse {
@@ -121,7 +129,8 @@ export interface RevokeInvitationResponse {
 
 /**
  * `POST …/members/:characterId/revoke` (DM only): the player's sessions and the character's
- * open invitations are revoked, then `ReleaseCharacter` frees the character for a new invitation.
+ * open invitations are revoked, then `ReleaseCharacter` frees the character — and every other
+ * character the same player holds — for a new invitation.
  */
 export interface RevokeMemberResponse {
   readonly released: boolean;

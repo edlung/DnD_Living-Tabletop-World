@@ -55,6 +55,8 @@ export function TurnOrderControls({
     onRun(command);
   };
   const later = encounter.order.slice(encounter.order.indexOf(encounter.currentCombatantId) + 1);
+  // The party's characters in the fight: each may command a creature (ADR 0044 §7).
+  const commanders = encounter.combatants.filter((c) => c.entity.kind === 'character');
   return (
     <section className="tool-card turn-order-tools" aria-labelledby={`${ids}-title`}>
       <h4 id={`${ids}-title`}>
@@ -99,6 +101,28 @@ export function TurnOrderControls({
                     >
                       {t('Delay the turn')}
                     </button>
+                  )}
+                  {/* A creature a party character commands (ADR 0044 §7): its player runs it. */}
+                  {combatant.entity.kind !== 'character' && commanders.length > 0 && (
+                    <select
+                      aria-label={t('Who runs {name}', { name })}
+                      value={combatant.commandedBy?.entityId ?? ''}
+                      disabled={locked}
+                      onChange={(event) => {
+                        send({
+                          type: 'CommandCreature',
+                          combatantId: entityId,
+                          characterId: event.target.value === '' ? null : event.target.value,
+                        });
+                      }}
+                    >
+                      <option value="">{t('The DM')}</option>
+                      {commanders.map((commander) => (
+                        <option key={commander.entity.entityId} value={commander.entity.entityId}>
+                          {t('Player of {name}', { name: labelOf(commander.entity.entityId) })}
+                        </option>
+                      ))}
+                    </select>
                   )}
                   <button
                     type="button"

@@ -155,12 +155,13 @@ describe('player combat commands', () => {
 describe('GET /campaigns/:campaignId/encounter/suggestion', () => {
   const url = '/campaigns/ravenford/encounter/suggestion';
 
-  it('is the DM’s alone, and null outside combat', async () => {
+  it('is the DM’s, a commander’s for their creature only, and null outside combat', async () => {
     expect((await get(app, url)).statusCode).toBe(401);
     expect((await get(app, url, TOKENS.outsider)).statusCode).toBe(404);
     expect(
       (await get(app, '/campaigns/elsewhere/encounter/suggestion', TOKENS.dm)).statusCode,
     ).toBe(404);
+    // Only a creature's commander reads its turn's suggestion (ADR 0044 §7).
     expect((await get(app, url, TOKENS.player)).statusCode).toBe(403);
     expect((await get(app, url, TOKENS.dm)).json<EncounterSuggestionResponse>()).toEqual({
       suggestion: null,

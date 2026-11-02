@@ -212,3 +212,9 @@ application on 4313.
   `a-to-z.spec.ts`, the whole Missing Caravan with the DM and the player in one journey (owns
   `ui-a-to-z`, `ui-a-to-z-campaigns.ts`: the ambushers wait on the road; the DM starts the fight from
   the Encounter sheet, so the raiders stand in a file and the journey chooses on the flat board).
+- The companion and online play (Stage 630, ADR 0044): `chat`, `companion` (alerts, a check over
+  the stage, a pause beside it, a reload), `own-dice`, `handouts`, `commanded` and `guide` run on
+  token campaigns of their own (`UI_PARTY_CAMPAIGNS`); `online` (the table's screen on a player's
+  screen) and `several-characters` (a second character for a player) on sign-in campaigns of their
+  own (`sign-in-campaigns.json`). A buzz is counted by replacing `navigator.vibrate` in an init
+  script. A persona sign-in does not survive a reload: re-enter the world after `reload()`.

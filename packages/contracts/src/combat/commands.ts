@@ -171,6 +171,19 @@ export const setInspirationCommandSchema = z
   .strict();
 
 /** The DM's hand commands, listed with their reasons in the DM's history. */
+/**
+ * A creature a player commands (docs/adr/0044-online-play.md §7): the DM hands a creature in the
+ * fight — a summoned beast, a hireling, a companion — to a character of the party, whose player
+ * then runs its turns; null takes it back.
+ */
+export const commandCreatureCommandSchema = z
+  .object({
+    type: z.literal('CommandCreature'),
+    combatantId: entityIdSchema,
+    characterId: entityIdSchema.nullable(),
+  })
+  .strict();
+
 export const DM_HAND_COMMAND_TYPES = ['AdjustHitPoints', 'SetCondition', 'SetInspiration'] as const;
 export type DmHandCommandType = (typeof DM_HAND_COMMAND_TYPES)[number];
 
@@ -210,6 +223,7 @@ export const FIGHT_CHANGE_COMMAND_TYPES = [
   'RemoveCombatant',
   'DelayTurn',
   'SetInitiative',
+  'CommandCreature',
 ] as const;
 
 /** Combat commands a player may issue for their own character. */

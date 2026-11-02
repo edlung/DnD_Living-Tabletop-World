@@ -1,6 +1,7 @@
 import type { CombatCommand, CombatPort, Decision, DecisionContext, Dice } from '@ltw/domain';
 
 import { decideAttack } from './attack.ts';
+import { decideCommandCreature } from './commanded.ts';
 import { decideAdjustHitPoints, decideSetCondition, decideSetInspiration } from './hand.ts';
 import {
   decideAddCombatant,
@@ -58,6 +59,8 @@ export function createCombatEngine(): CombatPort {
           return decideDelayTurn(context, command, dice);
         case 'SetInitiative':
           return decideSetInitiative(context, command);
+        case 'CommandCreature':
+          return decideCommandCreature(context, command);
       }
     },
   };

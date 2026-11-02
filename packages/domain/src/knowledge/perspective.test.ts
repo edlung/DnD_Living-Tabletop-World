@@ -2,7 +2,8 @@ import { parsePerspective, type PerspectiveRequest } from '@ltw/contracts';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 import type { WorldState } from '../kernel/state.ts';
-import { campaignRole, resolvePerspective } from './perspective.ts';
+import { campaignRole, controlledCharacters, resolvePerspective } from './perspective.ts';
+import { campaignSession } from './session.ts';
 import { ASHEN_CIRCLE_ID, DM, OUTSIDER, PLAYER, seedRavenford } from './testing/ravenford.ts';
 
 let state: WorldState;
@@ -92,6 +93,46 @@ describe('resolvePerspective for the player', () => {
       ok: false,
       reason: 'FORBIDDEN',
     });
+  });
+});
+
+describe('a player who holds several characters (docs/adr/0044-online-play.md §6)', () => {
+  const BRANN = 'brann-ironvale';
+  const both = (): WorldState => ({
+    ...state,
+    roster: new Map([...[...state.roster].filter(([id]) => id !== BRANN), [BRANN, PLAYER.actorId]]),
+  });
+
+  it('looks as each of them, each with its own knowledge, and as no one else', () => {
+    const held = both();
+    expect(controlledCharacters(held, PLAYER.actorId)).toEqual(['elowen-starwhisper', BRANN]);
+    const brann = resolvePerspective(held, PLAYER, request(`CHARACTER:${BRANN}`));
+    expect(brann.ok && brann.perspective.label).toBe(`CHARACTER:${BRANN}`);
+    expect(brann.ok && [...(brann.perspective.scopes as Set<string>)].sort()).toEqual(
+      ['PARTY', 'PUBLIC', `CHARACTER:${BRANN}`].sort(),
+    );
+    // The PLAYER perspective is the first character's.
+    const first = resolvePerspective(held, PLAYER, request('PLAYER'));
+    expect(first.ok && first.perspective.label).toBe('CHARACTER:elowen-starwhisper');
+    expect(resolvePerspective(held, PLAYER, request('CHARACTER:maren-ashby'))).toEqual({
+      ok: false,
+      reason: 'FORBIDDEN',
+    });
+  });
+
+  it('offers a perspective for each in the session', () => {
+    const session = campaignSession(both(), PLAYER);
+    expect(session?.characters.map((character) => character.entityId)).toEqual([
+      'elowen-starwhisper',
+      BRANN,
+    ]);
+    expect(session?.perspectives.map((option) => option.value)).toEqual([
+      'PLAYER',
+      'CHARACTER:elowen-starwhisper',
+      `CHARACTER:${BRANN}`,
+      'PARTY',
+      'PUBLIC',
+    ]);
   });
 });
 

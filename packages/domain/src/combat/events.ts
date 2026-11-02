@@ -43,6 +43,8 @@ export const combatantRecordSchema = z
       .strict(),
     turn: turnRecordSchema,
     slowedBy: entityIdSchema.nullable(),
+    /** The party character whose player runs this creature (ADR 0044 §7); absent or null: none. */
+    commandedBy: entityIdSchema.nullable().optional(),
   })
   .strict();
 

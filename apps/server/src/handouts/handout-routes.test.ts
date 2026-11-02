@@ -22,7 +22,7 @@ afterEach(async () => {
   await app.close();
 });
 
-const give = (body: Record<string, unknown>, token = TOKENS.dm, perspective = 'DM') =>
+const give = (body: Record<string, unknown>, token: string = TOKENS.dm, perspective = 'DM') =>
   post(app, `${BASE}/handouts?perspective=${perspective}`, body, token);
 const read = async (perspective: string, token: string) =>
   (await get(app, `${BASE}/handouts?perspective=${perspective}`, token)).json<HandoutsResponse>()

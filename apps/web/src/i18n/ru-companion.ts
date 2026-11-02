@@ -47,4 +47,24 @@ registerRussian({
   'New handouts: {count}': 'Новых материалов: {count}',
   'The DM shows the battlefield: it is on your own screen.':
     'Мастер показывает поле боя: оно на вашем экране.',
+  // Several characters for one player (§6)
+  'Also plays: {names}': 'Также играет: {names}',
+  'Another character for this player': 'Ещё один персонаж этому игроку',
+  'Choose a character': 'Выберите персонажа',
+  'Give: {name}': 'Дать игроку {name}',
+  'The player of {name} now also plays {other}.': 'Игрок за {name} теперь играет и за {other}.',
+  'That player or character is not in the campaign any more.':
+    'Этого игрока или персонажа больше нет в кампании.',
+  // A creature a player commands (§7)
+  'Who runs {name}': 'Кто управляет: {name}',
+  'Player of {name}': 'Игрок за {name}',
+  'Attack {target}': 'Атаковать: {target}',
+  'Cast a spell': 'Сотворить заклинание',
+  'Move closer to its foes': 'Подойти к врагам',
+  'Nothing it can do now': 'Сейчас ему нечего делать',
+  '{name}’s turn': 'Ход: {name}',
+  '{name}’s turn: you command it.': 'Ход: {name} — вы управляете им.',
+  'Do it': 'Сделать',
+  '{name} is yours to run this turn.': 'Этот ход {name} ведёте вы.',
+  'End its turn': 'Закончить его ход',
 });

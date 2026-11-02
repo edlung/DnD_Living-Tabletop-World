@@ -5,7 +5,7 @@ import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 
 /**
- * The first-session guide (docs/adr/0044-online-play.md §9): five short pages from "How to play" in
+ * The first-session guide (docs/adr/0044-online-play.md §8): five short pages from "How to play" in
  * the top bar — the screens, exploring, a turn, the dice, talking — in English and in Russian.
  */
 test('a new player reads how to play, page by page, and comes back to the world', async ({

@@ -114,6 +114,17 @@ const currentPremises = [
   /** Authorized as the character's controlling player (Gate 02, G02-H03). */
   z.object({ kind: z.literal('controller'), playerActorId: actorIdSchema }).strict(),
   /**
+   * Authorized as the player of the character commanding this creature in the fight
+   * (docs/adr/0044-online-play.md §7).
+   */
+  z
+    .object({
+      kind: z.literal('commander'),
+      characterId: entityIdSchema,
+      playerActorId: actorIdSchema,
+    })
+    .strict(),
+  /**
    * A creature's status, sheet, and stat block were read: every combatant for a
    * combat decision, or the target of a spell outside combat (Gate 03, G03-H02).
    */

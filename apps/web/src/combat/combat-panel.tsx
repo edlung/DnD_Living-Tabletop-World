@@ -9,6 +9,7 @@ import type { BoardView } from './board/board-view.ts';
 import { ActiveCard } from './hud/active-card.tsx';
 import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
+import { CommandedTurn } from './commanded-turn.tsx';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
 import { planPath } from './movement.ts';
 import { useCombatantLabels } from './labels.ts';
@@ -182,6 +183,16 @@ export function CombatPanel({
           choice={choice}
           locked={locked}
           detailId={detailId}
+          onRun={onRun}
+        />
+      )}
+      {/* A creature the player's character commands (ADR 0044 §7): its turn, where theirs is. */}
+      {!mayAct && encounter.reactionWindow === null && (
+        <CommandedTurn
+          api={api}
+          encounter={encounter}
+          actorId={canAct ? actorId : null}
+          locked={locked}
           onRun={onRun}
         />
       )}

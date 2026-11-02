@@ -5,3 +5,5 @@
 export * from '../display/display.ts';
 export * from '../chat/chat.ts';
 export * from './handouts.ts';
+// A player given another character (ADR 0044 §6), beside the members' contracts.
+export { giveCharacterRequestSchema } from '../session/auth.ts';

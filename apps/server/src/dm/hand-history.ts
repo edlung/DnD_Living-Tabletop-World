@@ -11,10 +11,12 @@ import type { CampaignSnapshot, StoredCommand } from '@ltw/domain';
  * as the World Engine recorded it (the amounts after the rules), a condition, Heroic Inspiration,
  * or a ruling — a party memory the DM recorded with a reason. The reason is the stored command's.
  */
-const HAND_TYPES: ReadonlySet<string> = new Set([
-  ...DM_HAND_COMMAND_TYPES,
-  ...FIGHT_CHANGE_COMMAND_TYPES,
-]);
+const HAND_TYPES: ReadonlySet<string> = new Set(
+  // A creature handed to a player (ADR 0044 §7) is listed as any other command of the DM's.
+  [...DM_HAND_COMMAND_TYPES, ...FIGHT_CHANGE_COMMAND_TYPES].filter(
+    (type) => type !== 'CommandCreature',
+  ),
+);
 
 /** Whether a stored command of the DM's is a change by hand. */
 export function isHandCommand(stored: StoredCommand): boolean {

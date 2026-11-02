@@ -43,11 +43,17 @@ export function campaignRole(state: WorldState | null, actor: Actor): CampaignRo
   return controlledCharacter(state, actor.actorId) === null ? null : 'PLAYER';
 }
 
+/** The player's first character, in assignment order (the PLAYER perspective's). */
 export function controlledCharacter(state: WorldState, actorId: string): string | null {
-  for (const [characterId, playerId] of state.roster) {
-    if (playerId === actorId) return characterId;
-  }
-  return null;
+  return controlledCharacters(state, actorId)[0] ?? null;
+}
+
+/**
+ * Every character the player holds, in assignment order (docs/adr/0044-online-play.md §6): the
+ * player may look and act as each, and each keeps its own knowledge.
+ */
+export function controlledCharacters(state: WorldState, actorId: string): string[] {
+  return [...state.roster].filter(([, playerId]) => playerId === actorId).map(([id]) => id);
 }
 
 export function resolvePerspective(
@@ -75,7 +81,10 @@ export function resolvePerspective(
       case 'PLAYER':
         return own === null ? FORBIDDEN : granted(state, 'CHARACTER', own);
       case 'CHARACTER':
-        return request.characterId === own ? granted(state, 'CHARACTER', own) : FORBIDDEN;
+        // Any of the player's own characters (ADR 0044 §6), never another's.
+        return state.roster.get(request.characterId) === actor.actorId
+          ? granted(state, 'CHARACTER', request.characterId)
+          : FORBIDDEN;
       default:
         return FORBIDDEN;
     }

@@ -131,4 +131,17 @@ describe('what the table waits for', () => {
       waitsOf({ ...none, encounter: null, actorId: ELOWEN, handouts: [{ handoutId: 'h1' }] }),
     ).toEqual([{ key: 'handout:h1', kind: 'handout' }]);
   });
+
+  it('waits for the turn of a creature the player’s character commands', () => {
+    const commanded = encounter({
+      currentCombatantId: 'worg',
+      combatants: [
+        { entity: { entityId: ELOWEN } },
+        { entity: { entityId: 'worg' }, commandedBy: { entityId: ELOWEN, name: 'Elowen' } },
+      ] as unknown as EncounterView['combatants'],
+    });
+    expect(waitsOf({ ...none, encounter: commanded, actorId: ELOWEN })).toEqual([
+      { key: 'turn:ambush:2:worg', kind: 'turn' },
+    ]);
+  });
 });

@@ -1,6 +1,6 @@
 import { registerRussian } from '@ltw/ui';
 
-/** Russian for the first-session guide (docs/adr/0044-online-play.md §9). */
+/** Russian for the first-session guide (docs/adr/0044-online-play.md §8). */
 registerRussian({
   'How to play': 'Как играть',
   'Close the guide': 'Закрыть подсказку',

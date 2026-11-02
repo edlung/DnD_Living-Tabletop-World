@@ -15,6 +15,7 @@ const DM: SessionResponse = {
   actorId: 'dm-ravenford',
   role: 'DM',
   character: null,
+  characters: [],
   campaign: { campaignId: 'ravenford', name: 'The Missing Caravan', language: 'en' },
   perspectives: [{ value: 'DM', label: 'Dungeon Master' }],
 };

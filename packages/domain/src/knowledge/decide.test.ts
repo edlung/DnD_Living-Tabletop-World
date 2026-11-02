@@ -175,7 +175,7 @@ describe('AddKnowledge', () => {
 });
 
 describe('AssignCharacter', () => {
-  it('assigns one character per player, never to the DM', async () => {
+  it('assigns a character to one player, never to the DM; a player may hold several', async () => {
     expectRejected(
       await harness.submit({ type: 'AssignCharacter', characterId: 'npc', playerActorId: 'p1' }),
       'INVALID_ASSIGNMENT',
@@ -200,11 +200,16 @@ describe('AssignCharacter', () => {
         existsSince: null,
       }),
     );
-    expectRejected(
+    // A second character for the same player (docs/adr/0044-online-play.md §6).
+    expectAccepted(
       await harness.submit({ type: 'AssignCharacter', characterId: 'hero2', playerActorId: 'p1' }),
-      'ALREADY_ASSIGNED',
     );
-    expect((await harness.state()).roster).toEqual(new Map([['hero', 'p1']]));
+    expect((await harness.state()).roster).toEqual(
+      new Map([
+        ['hero', 'p1'],
+        ['hero2', 'p1'],
+      ]),
+    );
   });
 });
 

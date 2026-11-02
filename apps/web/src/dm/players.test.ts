@@ -30,7 +30,13 @@ const invitation = (invitationId: string, status: InvitationView['status']): Inv
 describe('the Players sheet', () => {
   it('offers only characters nobody plays, never NPCs or places, by name', () => {
     const members = [
-      { characterId: 'elowen-starwhisper', activeSessions: 1, lastSeenAt: null, login: null },
+      {
+        characterId: 'elowen-starwhisper',
+        activeSessions: 1,
+        lastSeenAt: null,
+        login: null,
+        alsoPlays: [],
+      },
     ];
     expect(freeCharacters(DIRECTORY, members).map((character) => character.name)).toEqual([
       'Bram Holt',

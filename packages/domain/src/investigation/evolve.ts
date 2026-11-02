@@ -1,3 +1,4 @@
+import { commanderOf } from '../kernel/authorization.ts';
 import { isPartyMember } from '../knowledge/party.ts';
 import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
@@ -132,6 +133,11 @@ export function applyPremisesRecorded(
         return state.memories.has(premise.memoryId);
       case 'controller':
         return state.roster.get(characterId) === premise.playerActorId;
+      case 'commander':
+        return (
+          state.roster.get(premise.characterId) === premise.playerActorId &&
+          commanderOf(state, characterId) === premise.characterId
+        );
       case 'attitude':
         return state.entities.has(premise.npcId);
       case 'considered':

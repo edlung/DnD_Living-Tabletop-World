@@ -51,6 +51,8 @@
   box-shadow: var(--shadow);
 }
 .initiative {
+  /* The pane its words for screen readers sit in: they never lengthen the page beyond it. */
+  position: relative;
   display: flex;
   gap: 0.15rem;
   min-width: 0;

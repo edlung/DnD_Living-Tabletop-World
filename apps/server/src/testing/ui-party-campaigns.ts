@@ -22,6 +22,8 @@ export const UI_PARTY_CAMPAIGNS = {
   ownDice: 'ui-own-dice',
   /** Handouts (Stage 630). */
   handouts: 'ui-handouts',
+  /** A creature a player commands (Stage 630). */
+  commanded: 'ui-commanded',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -37,6 +39,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.companion, 'en'],
     [UI_PARTY_CAMPAIGNS.ownDice, 'en'],
     [UI_PARTY_CAMPAIGNS.handouts, 'en'],
+    [UI_PARTY_CAMPAIGNS.commanded, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

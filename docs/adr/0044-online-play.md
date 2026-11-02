@@ -1,7 +1,9 @@
 # 0044. Online play and the player's companion
 
 - Status: Accepted (owner-delegated product decision 2026-11-02; `docs/FULL_GAME_PLAN.md` Stage 630,
-  decisions 4, 10, 13 and 14, owner approval `reviews/OWNER_FULL_GAME_2026-11-02.json`).
+  decisions 4, 10, 13 and 14, owner approval `reviews/OWNER_FULL_GAME_2026-11-02.json`). Amends ADR
+  0008 (one character per player) and ADR 0041 §4 (§6), ADR 0015 (a player runs a creature, §7),
+  ADR 0040 (one's own dice, a private roll, §4) and ADR 0042 §5 (the join card is the TV's, §5).
 - Context: a table plays in one room with phones beside the TV, or online with everyone remote. The
   same game needs a way to talk (the table, a word to the DM, the DM's word to one player), the
   player's phone as a companion that tells them when the table waits for them, and the rest of the
@@ -70,3 +72,47 @@
    follows the DM — a picture, a title card or the Chronicle cast opens it when no other sheet or
    dialog is open — and a battlefield cast is named, not drawn twice. The join card is a table
    display's only: below the DM, anyone else reads a dark screen (ADR 0042 §5).
+6. **One player, several characters** (plan decision 14; amends ADR 0008's "one character per
+   player" and ADR 0041 §4). A character still has one player; a player may hold several — a
+   child sharing a tablet, a spare hero. `AssignCharacter` no longer refuses a player who already
+   plays, and neither the fold nor the integrity check does. The PLAYER perspective is the first
+   character's, in assignment order; `CHARACTER:<id>` resolves for each of the player's own
+   characters and for no one else's, so each keeps its own knowledge. The session lists
+   `characters` and offers a perspective for each: the companion switches between them in the
+   perspective control, and acts as the one chosen. The DM gives a member another character, one
+   nobody plays, on the Players sheet (`POST …/members/:characterId/characters`, as the DM through
+   the World Engine; the player's actor never leaves the server); the members list says what
+   else each plays; revoking a member releases every character the player holds.
+7. **A creature a player commands.** The DM hands a creature in the fight — a summoned beast, a
+   hireling, a companion, a charmed foe — to a party character in that fight, and takes it back
+   (`CommandCreature`, a DM fight change; the combatant's optional `commandedBy`, recorded as
+   `CombatantUpdated`). That character's player may then do the creature's turn's acts (move,
+   attack, cast, end its turn, its reactions) through the World Engine, authorized as its
+   `commander` and recorded with a `commander` premise (the commander's seat and the fight), so
+   undo sees the dependency; nobody else's creature, and nothing outside its fight. The party
+   sees who commands it and its hit points. On its turn the player's tray offers the rules'
+   suggested act — read from the DM's suggestion route, without the DM's words (the client words
+   it from its own view, so no unknown creature is named) — with Do it and End its turn, and the
+   turn waits for them like their own. A commanded creature's suggested acts are against the
+   party's foes. No new spell summons one: the DM adds the creature (`AddCombatant`) and hands it.
+8. **The first-session guide.** "How to play" in the top bar (on a phone, on the title's row)
+   opens five short pages for a new player: the screens, exploring, a turn, the dice, talking. It
+   holds nothing of the world.
+
+## Consequences
+
+- Contracts: `chat/`, `play/handouts.ts`, the roll request's `faces`, `private` and `shownTo`, the
+  roll entry's `entered`, `confirmed` and `private`, a private check request, the hit die's
+  `face`, the lobby's `dice`, the session's `characters`, the member's `alsoPlays`,
+  `CommandCreature`, the combatant view's `commandedBy`. Domain: several characters per player,
+  the `commander` authority and premise, `commandedBy`. Combat: `commanded.ts`, the suggestion for
+  a commanded creature. Server: `src/chat/`, `src/handouts/`, entered and private rolls and the
+  DM's confirmation, the players' dice, the members' second character, the commander's
+  suggestion. Client: `chat/`, `alerts/`, `handouts/`, `online/`, `guide/`, `dice/own-dice.tsx`,
+  `combat/commanded-turn.tsx`, the dock's More (ADR 0043 §3).
+- Migrations 0030 (chat), 0031 (the players' dice, private rolls, confirmations) and 0032
+  (handouts) are additive: an older build ignores them (it shows a private roll to the whole table
+  and an entered roll as an ordinary one, and knows no chat or handouts).
+- Not here: voice (Stage 695); a handout library and handouts cast to the TV (Stage 680); spells
+  that summon (Stage 650); free choice of a commanded creature's every act (the suggestion, or
+  the DM).

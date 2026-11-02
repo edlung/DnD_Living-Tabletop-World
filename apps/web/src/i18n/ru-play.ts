@@ -405,6 +405,7 @@ registerRussian({
   'change hit points': 'изменить хиты',
   'set a condition': 'наложить или снять состояние',
   'set Heroic Inspiration': 'дать или снять героическое вдохновение',
+  'handed a creature to a player': 'передать существо игроку',
   'add a combatant': 'добавить участника боя',
   'remove a combatant': 'убрать участника боя',
   'delay a turn': 'отложить ход',

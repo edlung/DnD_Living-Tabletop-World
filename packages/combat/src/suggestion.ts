@@ -58,8 +58,12 @@ function chooseTurn(state: WorldState): MonsterTurnSuggestion | null {
   });
   if (!isAlive(state, self) || incapacitated(vitals)) return endTurn('it cannot act');
 
+  // A creature a party character commands (ADR 0044 §7) fights the party's foes.
+  const side = (current.commandedBy ?? null) === null ? current.side : 'party';
   const hostiles = encounter.combatants
-    .filter((c) => ENEMIES[current.side].includes(c.side) && isAlive(state, c.entityId))
+    .filter(
+      (c) => c.entityId !== self && ENEMIES[side].includes(c.side) && isAlive(state, c.entityId),
+    )
     .map((record) => ({ record, distanceFt: squareDistanceFt(current.position, record.position) }))
     .sort((a, b) => a.distanceFt - b.distanceFt);
   const [nearest] = hostiles;

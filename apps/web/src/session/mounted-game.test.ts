@@ -8,6 +8,7 @@ const identity = (actorId: string, campaignId = 'ravenford'): SessionResponse =>
   role: 'DM',
   campaign: { campaignId, name: 'The river', language: 'en' },
   character: null,
+  characters: [],
   perspectives: [],
 });
 

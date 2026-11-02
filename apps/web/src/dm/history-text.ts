@@ -84,6 +84,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   AdjustHitPoints: 'change hit points',
   SetCondition: 'set a condition',
   SetInspiration: 'set Heroic Inspiration',
+  CommandCreature: 'handed a creature to a player',
   AddCombatant: 'add a combatant',
   RemoveCombatant: 'remove a combatant',
   DelayTurn: 'delay a turn',

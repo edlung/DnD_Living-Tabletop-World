@@ -14,6 +14,7 @@ export type DmTableCommand = KernelCommandOf<
   | 'RemoveCombatant'
   | 'DelayTurn'
   | 'SetInitiative'
+  | 'CommandCreature'
   | 'StartSession'
   | 'EndSession'
 >;

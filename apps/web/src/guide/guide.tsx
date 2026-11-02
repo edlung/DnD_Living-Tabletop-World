@@ -6,7 +6,7 @@ import { IconButton } from '../visual/icon-button.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 
 /**
- * The first-session guide (docs/adr/0044-online-play.md §9): what the screens are, how the world
+ * The first-session guide (docs/adr/0044-online-play.md §8): what the screens are, how the world
  * is explored, how a turn goes, how to roll and how to talk — five short pages for a new player,
  * from "How to play" in the top bar. A native modal dialog: focus stays inside, Escape closes it
  * and focus returns to the button. Nothing of the world is in it.

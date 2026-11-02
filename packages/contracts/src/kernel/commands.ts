@@ -48,6 +48,7 @@ import {
   addCombatantCommandSchema,
   adjustHitPointsCommandSchema,
   attackCommandSchema,
+  commandCreatureCommandSchema,
   delayTurnCommandSchema,
   removeCombatantCommandSchema,
   setInitiativeCommandSchema,
@@ -190,6 +191,7 @@ export const kernelCommandSchema = z
     removeCombatantCommandSchema,
     delayTurnCommandSchema,
     setInitiativeCommandSchema,
+    commandCreatureCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -262,6 +264,7 @@ export const KERNEL_COMMAND_TYPES = [
   'RemoveCombatant',
   'DelayTurn',
   'SetInitiative',
+  'CommandCreature',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

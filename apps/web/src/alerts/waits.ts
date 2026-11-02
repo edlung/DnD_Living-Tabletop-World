@@ -42,6 +42,16 @@ export function waitsOf({
   if (encounter && fighting && encounter.currentCombatantId === actorId) {
     waits.push({ key: `turn:${encounter.encounterId}:${String(encounter.round)}`, kind: 'turn' });
   }
+  // The turn of a creature this player's character commands (§7) waits for them too.
+  const current = encounter?.combatants.find(
+    (entry) => entry.entity.entityId === encounter.currentCombatantId,
+  );
+  if (encounter && current?.commandedBy?.entityId === actorId) {
+    waits.push({
+      key: `turn:${encounter.encounterId}:${String(encounter.round)}:${encounter.currentCombatantId}`,
+      kind: 'turn',
+    });
+  }
   for (const request of requests) {
     if (request.status === 'open' && request.characterId === actorId) {
       waits.push({ key: `check:${request.requestId}`, kind: 'check' });
