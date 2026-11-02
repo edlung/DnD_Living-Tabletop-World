@@ -1,0 +1,167 @@
+/*
+ * The turn tray (docs/STAGE_320_DESIGN.md §5.5): only while the viewer may act. Its options, End
+ * turn, the notes it echoes from the side panel below 1200 px, and what an action asks first
+ * (docs/adr/0045-conditions-and-actions.md §5). Where the tray sits per width: battle-layout.css.
+ */
+.turn-tray {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.4rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background:
+    linear-gradient(var(--glass-raised), var(--glass-raised)),
+    url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--teal) 25%, transparent),
+    var(--shadow);
+}
+.tray-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+/* What the side panel says of the options, at hand in the tray while the panel is out of view */
+.tray-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0 0.3rem;
+  color: var(--hp-low);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.tray-warning .glyph {
+  flex: none;
+  margin-top: 0.1rem;
+}
+.tray-note {
+  max-width: 6.5rem;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  line-height: 1.15;
+}
+@media (min-width: 1200px) {
+  .tray-warning,
+  .tray-note {
+    display: none;
+  }
+}
+.tray-hint {
+  align-self: center;
+  max-width: 17rem;
+  margin: 0 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+.tray-action,
+.tray-end {
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 4.6rem;
+  min-height: 4.2rem;
+  padding: 0.35rem 0.5rem 0.3rem;
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+  text-align: center;
+}
+.tray-action:hover:enabled {
+  border-color: var(--teal);
+  box-shadow: 0 0 12px var(--teal-glow);
+}
+.tray-art {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.tray-glyph {
+  width: 1.9rem;
+  height: 1.9rem;
+  color: var(--teal);
+}
+.tray-words {
+  max-width: 6.5rem;
+  font-size: 0.8rem;
+  line-height: 1.15;
+}
+.tray-end {
+  border-color: color-mix(in srgb, var(--gold) 60%, transparent);
+  margin-left: 0.4rem;
+}
+.tray-end .tray-glyph {
+  color: var(--gold-bright);
+}
+/* What an action asks first, under the tray's row: Search's skill, Ready's attack and trigger */
+.action-choice {
+  display: grid;
+  gap: 0.5rem;
+  justify-self: center;
+  width: min(100%, 40rem);
+  padding: 0.5rem 0.5rem 0.25rem;
+  border-top: 1px solid var(--line);
+}
+.action-choice-title {
+  margin: 0;
+  font-weight: 700;
+}
+/* Fields side by side split the row, and the buttons line up with the fields' foot */
+.action-choice-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+.action-choice-field {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+.action-choice-field select {
+  width: 100%;
+}
+.action-choice .action-row {
+  flex: none;
+  margin: 0;
+}
+
+/* A phone: one row that scrolls sideways, each option as wide as its words */
+@media (max-width: 767px) {
+  .tray-row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+  /* A squeezed button lets its word run into the next one: options keep their width and scroll. */
+  .tray-action,
+  .tray-end {
+    flex-shrink: 0;
+    min-width: 4rem;
+    padding-inline: 0.3rem;
+  }
+  .tray-art {
+    width: 2rem;
+    height: 2rem;
+  }
+  /* More options beyond an edge: that edge fades (the row scrolls sideways on a phone). */
+  .tray-row[data-more-after] {
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  }
+  .tray-row[data-more-before] {
+    mask-image: linear-gradient(to right, transparent, #000 28px);
+  }
+  .tray-row[data-more-before][data-more-after] {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 28px,
+      #000 calc(100% - 28px),
+      transparent
+    );
+  }
+}

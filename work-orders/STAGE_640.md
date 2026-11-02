@@ -17,12 +17,17 @@ each further SRD rule needs an entry or an ADR before it is implemented).
   for the new conditions by GPT (the art rule) or words only until Stage 650's art.
 - 640b — Actions: Dash, Disengage, Dodge, Help, Hide (Stealth vs DC 15 → Invisible while hidden),
   Ready (an action held for a trigger, spends the Reaction), Search, Study, Utilize, Influence;
-  opportunity attacks (leaving reach without Disengage); surprise (Disadvantage on initiative);
-  Heroic Inspiration spent to reroll a die.
-- 640c — Reactions beyond Counterspell: Shield (+5 AC to the start of the next turn, the triggering
-  attack included), Uncanny Dodge (halve an attack's damage), Hellish Rebuke (2d10 fire, Dex save
-  for half, after damage), Feather Fall (a fall), a readied action's trigger. The reaction window
-  (ADR 0016) grows attack, damage, movement and fall triggers.
+  surprise (Disadvantage on initiative).
+- 640c — Reactions beyond Counterspell: opportunity attacks (leaving reach without Disengage),
+  Shield (+5 AC to the start of the next turn, the triggering attack included), Uncanny Dodge
+  (halve an attack's damage), Hellish Rebuke (2d10 fire, Dex save for half, after damage), Feather
+  Fall (a fall), a readied action's trigger; Heroic Inspiration spent to reroll a die. The reaction
+  window (ADR 0016) grows attack, damage, movement and fall triggers.
+
+  Moved here from 640b (2026-11-02): opportunity attacks and the Heroic Inspiration reroll. Both
+  are a decision after a trigger — a creature leaving reach, a die just rolled — that the encounter
+  waits for, which is the reaction window this part builds; 640b records Disengage's mark and the
+  readied attack for them.
 - 640d — Weapons: properties (Ammunition, Finesse, Heavy, Light, Loading, Range, Reach, Thrown,
   Two-Handed, Versatile); the 8 masteries (Cleave, Graze, Nick, Push, Sap, Slow, Topple, Vex);
   Unarmed Strike (damage, grapple, shove: DC 8 + Str + PB, Str or Dex save); two-weapon fighting

@@ -38,6 +38,7 @@ import './styles/details.css';
 import './styles/tools.css';
 import './styles/dm-tools.css';
 import './styles/combat.css';
+import './styles/turn-tray.css';
 import './styles/combat-panels.css';
 import './styles/board.css';
 import './styles/chronicle.css';

@@ -1,5 +1,6 @@
 import {
   ASSET_WORKER_COMMAND_TYPES,
+  type CombatAction,
   type DmHistoryEntry,
   type DmSubstitutionEntry,
   type DmWorldEntry,
@@ -58,6 +59,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   MoveCombatant: 'move combatant',
   Attack: 'attack',
   CastSpell: 'cast spell',
+  TakeAction: 'take an action',
   EndTurn: 'end turn',
   EndCombat: 'end combat',
   UseReaction: 'use reaction',
@@ -90,6 +92,20 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   RemoveCombatant: 'remove a combatant',
   DelayTurn: 'delay a turn',
   SetInitiative: 'set initiative',
+};
+
+/** The actions' names (docs/adr/0045-conditions-and-actions.md §5), English keys. */
+const ACTION_WORDS: Readonly<Record<CombatAction, string>> = {
+  dash: 'Dash',
+  disengage: 'Disengage',
+  dodge: 'Dodge',
+  help: 'Help',
+  hide: 'Hide',
+  influence: 'Influence',
+  ready: 'Ready an action',
+  search: 'Search',
+  study: 'Study',
+  utilize: 'Utilize',
 };
 
 /** What the DM did for the character, in plain words. */
@@ -127,6 +143,13 @@ export function describePlayerAction(
       const last = command.path.at(-1);
       return last ? t('Moved to {x}, {y}', { x: last.x, y: last.y }) : t('Moved');
     }
+    case 'TakeAction':
+      return command.targetId === undefined
+        ? t('Took the {action} action', { action: t(ACTION_WORDS[command.action]) })
+        : t('Took the {action} action at {target}', {
+            action: t(ACTION_WORDS[command.action]),
+            target: name(command.targetId),
+          });
     case 'UseReaction':
       return t('Cast Counterspell as a reaction');
     case 'DeclineReaction':

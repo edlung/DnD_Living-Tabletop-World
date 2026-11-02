@@ -43,7 +43,13 @@ export type IllegalReason =
   /** A Charmed creature's attack or harmful spell at its charmer (ADR 0045 §1). */
   | 'CHARMED_BY_TARGET'
   /** A Frightened creature's move closer to the source of its fear (ADR 0045 §1). */
-  | 'CLOSER_TO_FEAR';
+  | 'CLOSER_TO_FEAR'
+  /** An action's check with a skill that action does not use (ADR 0045 §5). */
+  | 'INVALID_SKILL'
+  /** Help in a fight is against a foe within 5 ft (§5). */
+  | 'NOT_A_FOE'
+  /** Hide from behind Three-Quarters or Total Cover (§5). */
+  | 'NO_COVER_TO_HIDE';
 
 export interface Illegal {
   readonly legal: false;

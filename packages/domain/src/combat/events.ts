@@ -1,8 +1,10 @@
 import {
   ABILITIES,
+  COMBAT_ACTIONS,
   CONDITIONS,
   MAX_COMBATANTS,
   SIDES,
+  SKILL_IDS,
   battlefieldSchema,
   conditionDetailsSchema,
   entityIdSchema,
@@ -31,6 +33,23 @@ export const turnRecordSchema = z
     movementUsedFt: z.number().int().min(0).max(1000),
     slotExpendedThisTurn: z.boolean(),
     attacksRemaining: z.number().int().min(0).max(4),
+    /**
+     * The actions of docs/adr/0045-conditions-and-actions.md §5, until the creature's next turn
+     * starts: Dash's added movement, Disengage, Dodge, the foe its Help is against, the attack it
+     * holds ready. Absent: none.
+     */
+    dashFt: z.number().int().min(0).max(400).optional(),
+    disengaged: z.literal(true).optional(),
+    dodging: z.literal(true).optional(),
+    helping: entityIdSchema.optional(),
+    readied: z
+      .object({
+        attackId: slug,
+        targetId: entityIdSchema,
+        trigger: z.string().min(1).max(120),
+      })
+      .strict()
+      .optional(),
   })
   .strict();
 
@@ -96,6 +115,25 @@ export const combatEventPayloadSchemas = {
     })
     .strict(),
   StatBlockSet: z.object({ entityId: entityIdSchema, statBlock: statBlockSchema }).strict(),
+  /** An action beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5), with its check. */
+  ActionTaken: z
+    .object({
+      combatantId: entityIdSchema,
+      action: z.enum(COMBAT_ACTIONS),
+      targetId: entityIdSchema.optional(),
+      check: z
+        .object({
+          skill: z.enum(SKILL_IDS),
+          rolls,
+          modifier: z.number().int(),
+          total: z.number().int(),
+          /** Hide against its DC 15: whether it hid. Absent for a check the DM reads. */
+          success: z.boolean().optional(),
+        })
+        .strict()
+        .optional(),
+    })
+    .strict(),
   AttackPerformed: z
     .object({
       attackerId: entityIdSchema,

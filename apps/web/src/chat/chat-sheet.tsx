@@ -184,7 +184,7 @@ export function ChatSheet({
                 setChannel(event.target.value);
               }}
             >
-              <option value="table">{t('The table')}</option>
+              <option value="table">{t('Everyone at the table')}</option>
               {isDm ? (
                 characters.map((character) => (
                   <option key={character.entityId} value={`to:${character.entityId}`}>

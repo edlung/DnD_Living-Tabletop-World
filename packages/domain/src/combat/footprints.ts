@@ -13,6 +13,7 @@ type CombatEvent = Extract<
       | 'CombatEnded'
       | 'CombatOrderChanged'
       | 'StatBlockSet'
+      | 'ActionTaken'
       | 'AttackPerformed'
       | 'SpellCast'
       | 'DamageApplied'
@@ -74,6 +75,7 @@ export function combatFootprint(event: CombatEvent): Footprint {
         reads: [clock, facts.encounter(), facts.entity(event.payload.entityId)],
         writes: [facts.statBlock(event.payload.entityId)],
       };
+    case 'ActionTaken':
     case 'AttackPerformed':
     case 'SpellCast':
     case 'DamageApplied':

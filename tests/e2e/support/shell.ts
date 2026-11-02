@@ -114,6 +114,9 @@ export async function expectDockFits(page: Page): Promise<void> {
     .toBeLessThanOrEqual(1);
   for (const button of await dock.locator('.dock-items button, #dock-more').all()) {
     await expectOnTop(button);
+    // Its words stay inside it: a word wider than its button runs into the next one.
+    const spill = await button.evaluate((element) => element.scrollWidth - element.clientWidth);
+    expect(spill, `the words of ${(await button.textContent()) ?? ''}`).toBeLessThanOrEqual(1);
   }
 }
 

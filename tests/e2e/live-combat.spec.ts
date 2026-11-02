@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect as baseExpect, test } from '@playwright/test';
 
 import {
   anchor,
@@ -20,6 +20,12 @@ import {
 } from './support/live.ts';
 import { TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
+
+/**
+ * Steps here wait for another browser to follow the live stream; a laptop running the whole suite
+ * needs more than the default five seconds (as `live-stand-in.spec.ts`).
+ */
+const expect = baseExpect.configure({ timeout: 15_000 });
 
 /**
  * A combat shared live (docs/adr/0033-live-session.md): two browsers on one campaign, and

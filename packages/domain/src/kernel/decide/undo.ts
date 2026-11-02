@@ -317,6 +317,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       }
       case 'PremisesRecorded':
       case 'AuthoringPremisesRecorded':
+      case 'ActionTaken':
       case 'AttackPerformed':
       case 'SpellCast':
       case 'DamageApplied':

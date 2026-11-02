@@ -60,6 +60,7 @@ import {
   setExhaustionCommandSchema,
   setInspirationCommandSchema,
   startCombatCommandSchema,
+  takeActionCommandSchema,
 } from '../combat/commands.ts';
 import {
   closeReactionWindowCommandSchema,
@@ -163,6 +164,7 @@ export const kernelCommandSchema = z
     attackCommandSchema,
     castSpellCommandSchema,
     endTurnCommandSchema,
+    takeActionCommandSchema,
     endCombatCommandSchema,
     useReactionCommandSchema,
     declineReactionCommandSchema,
@@ -237,6 +239,7 @@ export const KERNEL_COMMAND_TYPES = [
   'Attack',
   'CastSpell',
   'EndTurn',
+  'TakeAction',
   'EndCombat',
   'UseReaction',
   'DeclineReaction',

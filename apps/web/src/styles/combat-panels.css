@@ -60,6 +60,10 @@
   color: var(--text-muted);
   font-size: 0.82rem;
 }
+/* What an action does: a sentence, so it keeps a reading line height */
+.option-text .option-effect {
+  line-height: 1.35;
+}
 .ally-warning {
   display: flex;
   align-items: flex-start;

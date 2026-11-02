@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect as baseExpect, test } from '@playwright/test';
 
 import { dmRequest } from './support/authoring.ts';
 import { enterCombat, expectAccepted, submit } from './support/combat.ts';
@@ -11,6 +11,12 @@ import {
 } from './support/live.ts';
 import { TOKENS } from './support/session.ts';
 import { expectOnTop, openChronicle, openSheet, revealDockButton } from './support/shell.ts';
+
+/**
+ * Steps here wait for another browser to follow the live stream; a laptop running the whole suite
+ * needs more than the default five seconds (as `live-stand-in.spec.ts`).
+ */
+const expect = baseExpect.configure({ timeout: 15_000 });
 
 /**
  * A reaction asked while the player reads the Chronicle (docs/STAGE_320_DESIGN.md §5.5–5.6, §7;

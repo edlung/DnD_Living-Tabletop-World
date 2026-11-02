@@ -27,6 +27,16 @@ const ACTIONS: Readonly<Record<ContextActionId, GlyphName>> = {
   enter_location: 'travel',
   fireball: 'cast',
   counterspell: 'counterspell',
+  dash: 'dash',
+  disengage: 'disengage',
+  dodge: 'dodge',
+  help: 'help',
+  hide: 'hide',
+  influence: 'influence',
+  ready: 'ready',
+  search: 'search-area',
+  study: 'study',
+  utilize: 'utilize',
 };
 
 /** The glyph of a server-listed action. */

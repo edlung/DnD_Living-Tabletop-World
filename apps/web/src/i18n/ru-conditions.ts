@@ -6,6 +6,18 @@ import { registerRussian } from '@ltw/ui';
  */
 registerRussian({
   Blinded: 'Ослеплён',
+  // The board's squares name their occupants' conditions in lower case.
+  blinded: 'ослеплён',
+  charmed: 'очарован',
+  deafened: 'оглох',
+  frightened: 'испуган',
+  grappled: 'схвачен',
+  invisible: 'невидим',
+  paralyzed: 'парализован',
+  petrified: 'окаменел',
+  poisoned: 'отравлен',
+  restrained: 'опутан',
+  stunned: 'ошеломлён',
   Charmed: 'Очарован',
   Deafened: 'Оглох',
   Frightened: 'Испуган',
@@ -89,5 +101,49 @@ registerRussian({
   'Your conditions cancel it out: one die.': 'Ваши состояния гасят его: бросается одна кость.',
   'Exhaustion: {penalty} to the roll.': 'Истощение: {penalty} к броску.',
   'charmed by target': 'цель очаровала вас',
-  'closer to fear': 'нельзя приблизиться к источнику страха',
+  Dash: 'Рывок',
+  Disengage: 'Отход',
+  Dodge: 'Уклонение',
+  Help: 'Помощь',
+  Hide: 'Засада',
+  Influence: 'Влияние',
+  'Ready an action': 'Подготовка',
+  'Utilize: use an object': 'Использование: применить предмет',
+  'Help an ally against {target}': 'Помощь союзнику против: {target}',
+  'Ready an action against {target}': 'Подготовка против: {target}',
+  'Influence {target}': 'Влияние: {target}',
+  Search: 'Поиск',
+  Study: 'Изучение',
+  Utilize: 'Использование',
+  'Took the {action} action': 'Действие «{action}»',
+  'Took the {action} action at {target}': 'Действие «{action}»: {target}',
+  'Until your next turn, attacks against you have Disadvantage and your Dexterity saves Advantage.':
+    'До вашего следующего хода атаки по вам совершаются с помехой, а ваши спасброски Ловкости — с преимуществом.',
+  'Move as far again as your Speed this turn.':
+    'В этот ход вы можете пройти ещё столько же, сколько позволяет ваша скорость.',
+  'Your movement provokes no Opportunity Attacks this turn.':
+    'В этот ход ваше перемещение не провоцирует атак.',
+  'From cover, a DC 15 Stealth check: on a success you are Invisible until you attack or are found.':
+    'Из-за укрытия — проверка Скрытности Сл 15: при успехе вы невидимы, пока не атакуете или вас не найдут.',
+  'A Wisdom check to notice what is not obvious: Perception, Insight, Medicine or Survival.':
+    'Проверка Мудрости, чтобы заметить неочевидное: Внимательность, Проницательность, Медицина или Выживание.',
+  'An Intelligence check to recall or work out: Arcana, History, Investigation, Nature or Religion.':
+    'Проверка Интеллекта, чтобы вспомнить или понять: Магия, История, Анализ, Природа или Религия.',
+  'Use an object that takes your action.': 'Применить предмет, которому нужно ваше действие.',
+  'An ally’s next attack on this foe before your next turn has Advantage.':
+    'Следующая атака союзника по этому врагу до вашего следующего хода совершается с преимуществом.',
+  'Hold an attack for a moment you name; when it comes, you make it with your Reaction.':
+    'Придержите атаку до названного вами момента: когда он наступит, вы атакуете реакцией.',
+  'A Charisma or Animal Handling check to sway this creature.':
+    'Проверка Харизмы или Ухода за животными, чтобы склонить это существо на свою сторону.',
+  'Ready an attack': 'Подготовить атаку',
+  'When it happens': 'Когда это случится',
+  'When it steps out of cover': 'Когда он выйдет из-за укрытия',
+  Skill: 'Навык',
+  'Which attack': 'Какой атакой',
+  'Ready the attack': 'Подготовить атаку',
+  'closer to fear': 'ближе к страху нельзя',
+  'invalid skill': 'не тот навык',
+  'not a foe': 'это не враг',
+  'no cover to hide': 'нет укрытия',
 });

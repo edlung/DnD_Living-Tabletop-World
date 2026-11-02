@@ -24,8 +24,9 @@ import {
   weaponModifier,
 } from '@ltw/rules';
 
+import { isDodging } from './actions.ts';
 import { coverAt, isAlive, turnStateOf } from './battlefield.ts';
-import { charmedBy, conditionsAgainst } from './condition-details.ts';
+import { charmedBy, conditionsAgainst, detailOf } from './condition-details.ts';
 import {
   armorClass,
   conditionsOf,
@@ -76,6 +77,10 @@ export interface AttackPlan {
   readonly advantageDamage: Damage | null;
   readonly slow: boolean;
   readonly huntersMark: boolean;
+  /** The ally whose Help gave this attack Advantage: it is spent (ADR 0045 §5). */
+  readonly helpedBy: string | null;
+  /** The attacker was hidden: attacking reveals it (§5). */
+  readonly hidden: boolean;
 }
 
 export function attackPlan(
@@ -121,12 +126,23 @@ export function attackPlan(
   if (distanceFt > limit)
     return refuse('OUT_OF_RANGE', { moveRequiredFt: moveRequiredFt(distanceFt, limit) });
   const longRange = !weapon.melee && distanceFt > weapon.normalRangeFt;
+  // Dodge and Help (docs/adr/0045-conditions-and-actions.md §5): a Dodge holds while the target
+  // can move and act; Help is an ally's, against this target, until the helper's next turn.
+  const helper = encounter.combatants.find(
+    (c) =>
+      c.turn.helping === targetId &&
+      c.entityId !== attackerId &&
+      c.side === attacker.side &&
+      isAlive(state, c.entityId),
+  );
   const circumstances = attackCircumstances({
     attackerConditions: conditionsAgainst(state, encounter, attacker, attackerVitals, targetId),
     targetConditions: conditionsOf(targetVitals),
     melee: weapon.melee,
     distanceFt,
     longRange,
+    targetDodging: isDodging(target, targetVitals),
+    helped: helper !== undefined,
   });
   const marked =
     attackerVitals.kind === 'character' &&
@@ -139,6 +155,8 @@ export function attackPlan(
     attackerVitals,
     targetVitals,
     turn,
+    helpedBy: helper?.entityId ?? null,
+    hidden: detailOf(attacker, 'invisible')?.hidden === true,
     // Exhaustion takes 2 per level from the attack roll (ADR 0045 §3).
     bonus: weapon.bonus + exhaustionPenalty(exhaustionOf(attackerVitals)),
     targetAc: armorClass(targetVitals) + (coverLevel === 'none' ? 0 : COVER_BONUS[coverLevel]),

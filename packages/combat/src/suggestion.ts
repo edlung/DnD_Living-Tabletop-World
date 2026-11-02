@@ -128,7 +128,7 @@ function approach(
   if (!vitals) return null;
   const speed = speedOf(vitals);
   const standUp = has(vitals, 'prone') ? Math.floor(speed / 10) * 5 : 0;
-  const budget = speed - standUp - mover.turn.movementUsedFt;
+  const budget = speed + (mover.turn.dashFt ?? 0) - standUp - mover.turn.movementUsedFt;
   const key = (square: Square) => `${String(square.x)},${String(square.y)}`;
   const start = mover.position;
   const best = new Map<string, { cost: number; path: Square[] }>([

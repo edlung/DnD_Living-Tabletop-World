@@ -17,6 +17,8 @@ export function spellSave(
   dc: number,
   cover: 'half' | 'three-quarters' | 'none',
   purpose: 'spell' | 'counterspell' | 'condition' = 'spell',
+  /** It Dodges (docs/adr/0045-conditions-and-actions.md §5): Advantage on Dexterity saves. */
+  dodging = false,
 ): { success: boolean; event: DraftEvent } {
   const effects = saveEffects(ability, conditionsOf(target), exhaustionOf(target));
   const bonus = ability === 'dex' && cover !== 'none' ? COVER_BONUS[cover] : 0;
@@ -26,7 +28,7 @@ export function spellSave(
     : d20Test(dice, {
         modifier,
         target: dc,
-        advantage: effects.advantage,
+        advantage: effects.advantage || (dodging && ability === 'dex'),
         disadvantage: effects.disadvantage,
       });
   return {

@@ -131,7 +131,7 @@ export function ItemCard({
           )}
           {catalog?.effect && (
             <div>
-              <dt>{t('Effect')}</dt>
+              <dt>{t('What it does')}</dt>
               <dd>{effectText(t, catalog.effect)}</dd>
             </div>
           )}

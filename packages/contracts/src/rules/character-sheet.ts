@@ -36,7 +36,8 @@ export const SKILLS = {
   persuasion: 'cha',
 } as const satisfies Record<string, Ability>;
 export type Skill = keyof typeof SKILLS;
-const skillIds = Object.keys(SKILLS) as [Skill, ...Skill[]];
+export const SKILL_IDS = Object.keys(SKILLS) as [Skill, ...Skill[]];
+const skillIds = SKILL_IDS;
 
 export const SPELL_IDS = [
   'hunters-mark',

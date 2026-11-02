@@ -34,7 +34,7 @@ test('the table talks, whispers to the DM, and the DM answers one player', async
   await expect(chat(player)).toContainText('Nothing said yet.');
   await chat(player).getByRole('button', { name: 'Send', exact: true }).click();
   await expect(chat(player).getByRole('alert')).toHaveText('Write something first.');
-  await say(player, 'We should follow the ruts north.', 'The table', 'My character');
+  await say(player, 'We should follow the ruts north.', 'Everyone at the table', 'My character');
   // The next words, typed while the first are on their way, are kept and sent too.
   await chat(player).getByLabel('Message', { exact: true }).fill('Before the rain comes.');
   await chat(player).getByLabel('Message', { exact: true }).press('Enter');

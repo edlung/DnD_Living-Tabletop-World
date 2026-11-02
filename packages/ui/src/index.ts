@@ -11,6 +11,7 @@ export { StatusPanel, type StatusPanelProps } from './status-panel.tsx';
 export {
   LanguageProvider,
   registerRussian,
+  russianConflicts,
   russianEntry,
   translate,
   useLanguage,

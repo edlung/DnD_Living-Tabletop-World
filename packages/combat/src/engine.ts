@@ -1,5 +1,6 @@
 import type { CombatCommand, CombatPort, Decision, DecisionContext, Dice } from '@ltw/domain';
 
+import { decideTakeAction } from './actions.ts';
 import { decideAttack } from './attack.ts';
 import { decideCommandCreature } from './commanded.ts';
 import {
@@ -40,6 +41,8 @@ export function createCombatEngine(): CombatPort {
           return decideAttack(context, command, dice);
         case 'CastSpell':
           return decideCastSpell(context, command, dice);
+        case 'TakeAction':
+          return decideTakeAction(context, command, dice);
         case 'EndTurn':
           return decideEndTurn(context, command, dice);
         case 'EndCombat':

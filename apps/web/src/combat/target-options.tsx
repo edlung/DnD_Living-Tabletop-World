@@ -14,7 +14,14 @@ import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { HpBar } from './board/token.tsx';
-import { COMBAT_ACTIONS, conditionGlyph, optionArtUrl, optionLabelFor } from './combat-art.ts';
+import {
+  COMBAT_ACTIONS,
+  TURN_ACTIONS,
+  actionEffect,
+  conditionGlyph,
+  optionArtUrl,
+  optionLabelFor,
+} from './combat-art.ts';
 import type { LabelOf } from './labels.ts';
 
 const words = (t: Translate, text: string) => t(text.replaceAll('_', ' ').toLowerCase());
@@ -68,7 +75,9 @@ export function combatOptions(
   resource: Resource<EntityContextResponse | null>,
 ): readonly ContextAction[] | null {
   return resource.status === 'ready' && resource.value
-    ? resource.value.context.actions.filter((action) => COMBAT_ACTIONS.includes(action.id))
+    ? resource.value.context.actions.filter(
+        (action) => COMBAT_ACTIONS.includes(action.id) || TURN_ACTIONS.includes(action.id),
+      )
     : null;
 }
 
@@ -193,6 +202,7 @@ function OptionEntry({
 }) {
   const t = useT();
   const url = optionArtUrl(action);
+  const effect = actionEffect(t, action.id);
   return (
     <li className={`option-entry${action.legal ? '' : ' is-unavailable'}`}>
       {url ? (
@@ -202,6 +212,7 @@ function OptionEntry({
       )}
       <div className="option-text" id={id}>
         <strong>{label}</strong>
+        {effect && <small className="option-effect">{effect}</small>}
         {optionNotes(t, action).map((note) => (
           <small key={note}>{note}</small>
         ))}

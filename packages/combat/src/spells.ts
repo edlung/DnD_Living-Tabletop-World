@@ -23,6 +23,8 @@ import {
 } from '@ltw/rules';
 
 import { combatantEvent, coverAt, withTurn } from './battlefield.ts';
+import { isDodging } from './actions.ts';
+import { isHidden, withDetail } from './condition-details.ts';
 import { applyDamage, applyHealing } from './damage.ts';
 import { isSliceSpell } from './legality.ts';
 import { decideMonsterSpell } from './monster-spells.ts';
@@ -95,8 +97,13 @@ export function castEvents(
   // legality; an encounter the caster is not in changes nothing (G03-H04).
   const encounter = plan.record ? state.encounter : null;
   // Every creature's latest vitals within this command (the caster may be in its own Fireball).
+  // A hidden caster is found by casting (docs/adr/0045-conditions-and-actions.md §5).
+  const hidden = isHidden(plan.record);
+  const sheet = hidden
+    ? { ...plan.sheet, conditions: plan.sheet.conditions.filter((c) => c !== 'invisible') }
+    : plan.sheet;
   const working = new Map<string, Vitals>([
-    [casterId, { kind: 'character', entityId: casterId, sheet: plan.sheet }],
+    [casterId, { kind: 'character', entityId: casterId, sheet }],
   ]);
   const current = (id: string) => working.get(id) ?? vitalsOf(state, id);
   const effects: DraftEvent[] = [];
@@ -104,6 +111,7 @@ export function castEvents(
   const premises: Premise[] = combatPremiseList(state, casterId);
   if (!encounter && plan.target) premises.push({ kind: 'vitals', entityId: plan.target.entityId });
   let record = plan.record ? withTurn(plan.record, plan.turn) : null;
+  if (record && hidden) record = withDetail(record, 'invisible', null);
 
   switch (plan.spellId) {
     case 'healing-word': {
@@ -146,6 +154,8 @@ export function castEvents(
           'dex',
           plan.cast.saveDc,
           cover === 'total' ? 'none' : cover,
+          'spell',
+          isDodging(combatantOf(encounter, affected.entityId), target),
         );
         effects.push(save.event);
         const applied = applyDamage(state, dice, target, {
@@ -199,7 +209,20 @@ export function castEvents(
         point: plan.point ? { ...plan.point } : null,
       },
     },
-    vitalsEvent({ kind: 'character', entityId: casterId, sheet: plan.sheet }),
+    ...(hidden
+      ? [
+          {
+            type: 'ConditionApplied',
+            payload: {
+              targetId: casterId,
+              condition: 'invisible',
+              applied: false,
+              cause: 'revealed',
+            },
+          } as const,
+        ]
+      : []),
+    vitalsEvent({ kind: 'character', entityId: casterId, sheet }),
     ...effects,
   ];
   if (record) events.push(combatantEvent(record));

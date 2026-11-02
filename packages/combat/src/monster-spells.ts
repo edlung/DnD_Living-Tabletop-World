@@ -16,7 +16,8 @@ import {
 } from '@ltw/rules';
 
 import { combatantEvent, encounterOf, onTurn, withTurn } from './battlefield.ts';
-import { conditionsAgainst } from './condition-details.ts';
+import { isDodging } from './actions.ts';
+import { conditionsAgainst, isHidden, revealed, withDetail } from './condition-details.ts';
 import { applyDamage } from './damage.ts';
 import { combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
@@ -102,6 +103,7 @@ export function monsterSpellEvents(
       melee: false,
       distanceFt: plan.distanceFt,
       longRange: false,
+      targetDodging: isDodging(target.record, target.vitals),
     });
     const targetAc =
       armorClass(target.vitals) + (target.cover === 'none' ? 0 : COVER_BONUS[target.cover]);
@@ -142,7 +144,15 @@ export function monsterSpellEvents(
       rolls = damage.rolls;
     }
   } else {
-    const save = spellSave(dice, target.vitals, effect.ability, effect.dc, target.cover);
+    const save = spellSave(
+      dice,
+      target.vitals,
+      effect.ability,
+      effect.dc,
+      target.cover,
+      'spell',
+      isDodging(target.record, target.vitals),
+    );
     events.push(save.event);
     const damage = rollDamage(dice, effect.damage.count, effect.damage.sides, effect.damage.bonus);
     rolls = damage.rolls;
@@ -158,6 +168,12 @@ export function monsterSpellEvents(
     });
     events.push(...applied.events);
   }
-  events.push(combatantEvent(withTurn(plan.record, plan.turn)));
+  // A hidden caster is found by casting (docs/adr/0045-conditions-and-actions.md §5).
+  let record = withTurn(plan.record, plan.turn);
+  if (isHidden(plan.record)) {
+    events.push(...revealed(casterId, plan.caster));
+    record = withDetail(record, 'invisible', null);
+  }
+  events.push(combatantEvent(record));
   return events;
 }

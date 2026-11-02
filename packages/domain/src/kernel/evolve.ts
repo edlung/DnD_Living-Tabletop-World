@@ -218,6 +218,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyCombatOrderChanged(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
+    case 'ActionTaken':
     case 'AttackPerformed':
     case 'SpellCast':
     case 'DamageApplied':

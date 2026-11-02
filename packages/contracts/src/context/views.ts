@@ -27,6 +27,17 @@ export const CONTEXT_ACTION_IDS = [
   'enter_location',
   'fireball',
   'counterspell',
+  /** The actions beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5). */
+  'dash',
+  'disengage',
+  'dodge',
+  'help',
+  'hide',
+  'influence',
+  'ready',
+  'search',
+  'study',
+  'utilize',
 ] as const;
 export type ContextActionId = (typeof CONTEXT_ACTION_IDS)[number];
 
@@ -64,6 +75,9 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'NOT_ENOUGH_MOVEMENT',
   'CHARMED_BY_TARGET',
   'CLOSER_TO_FEAR',
+  'INVALID_SKILL',
+  'NOT_A_FOE',
+  'NO_COVER_TO_HIDE',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;

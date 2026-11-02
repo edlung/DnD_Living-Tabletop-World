@@ -13,6 +13,7 @@ import {
   combatFrame,
   combatSpellVerdict,
   counterspellVerdict,
+  combatActionVerdict,
   fireballVerdict,
 } from './combat.ts';
 import { showableEvidence } from './evidence.ts';
@@ -112,6 +113,28 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       spell('healing-word', true),
       present && alive && wounded ? 'high' : 'low',
     );
+    // The actions beside Attack and Magic (ADR 0045 §5): one's own, and Help or Ready at another.
+    if (frame && self) {
+      for (const own of [
+        'dodge',
+        'dash',
+        'disengage',
+        'hide',
+        'search',
+        'study',
+        'utilize',
+      ] as const)
+        add(own, 'present-alive', () => combatActionVerdict(frame, inputs, own), 'low');
+    }
+    if (frame && !self) {
+      for (const at of ['help', 'ready', 'influence'] as const)
+        add(
+          at,
+          'present-alive',
+          () => combatActionVerdict(frame, inputs, at, target.entityId),
+          'low',
+        );
+    }
     if (!self) {
       add('hunters_mark', 'present-alive', spell('hunters-mark', true), 'low');
       add(

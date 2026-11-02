@@ -1,6 +1,11 @@
 import { registerRussian } from '@ltw/ui';
 
 registerRussian({
+  // Shared with the editor and the activation screens, in their words.
+  Setting: 'Мир и обстановка',
+  Activation: 'Запуск',
+  // A scenario node's effect (an item's is "What it does").
+  Effect: 'Эффект',
   Opening: 'Завязка',
   'Campaign brief': 'Замысел кампании',
   Situations: 'Ситуации',
@@ -17,7 +22,6 @@ registerRussian({
   Carries: 'Несёт',
   'Carried items': 'Вещи в сумке',
   'Starting item': 'Стартовая вещь',
-  Item: 'Вещь',
   'Catalog item': 'Предмет каталога',
   Quantity: 'Количество',
   'First session': 'Первая сессия',
@@ -71,7 +75,6 @@ registerRussian({
   'No preparation findings.': 'Замечаний к подготовке нет.',
   Error: 'Ошибка',
   Warning: 'Предупреждение',
-  Note: 'Примечание',
   'Review the linked object and its references.': 'Проверьте указанный объект и его связи.',
   'AI proposal. Preparation checks will run when it becomes a revision.':
     'Предложение AI. Проверки подготовки будут выполнены при сохранении ревизии.',
@@ -112,7 +115,6 @@ registerRussian({
   Guarded: 'Скрывает',
   'Guarded (default)': 'Скрывает (по умолчанию)',
   'Campaign idea': 'Идея кампании',
-  Setting: 'Сеттинг',
   Tone: 'Тон',
   Duration: 'Продолжительность',
   'Party size': 'Размер группы',
@@ -170,7 +172,6 @@ registerRussian({
   'Damage with advantage': 'Урон с преимуществом',
   'Casting time': 'Время накладывания',
   'Range in feet': 'Дистанция в футах',
-  Effect: 'Эффект',
   'Difficulty class': 'Сложность проверки',
   'Half damage on success': 'Половина урона при успехе',
   'Who knows': 'Кто знает',
@@ -199,7 +200,6 @@ registerRussian({
   Column: 'Столбец',
   Row: 'Строка',
   Combatants: 'Участники боя',
-  Activation: 'Активация',
   Summary: 'Описание',
   Milestones: 'Этапы',
   'After milestone': 'После этапа',
@@ -211,7 +211,6 @@ registerRussian({
   'Character knowledge': 'Знание персонажа',
   'NPC knowledge': 'Знание НПС',
   Active: 'Действует',
-  Destroyed: 'Уничтожен',
   Region: 'Регион',
   Settlement: 'Поселение',
   District: 'Район',
@@ -228,7 +227,6 @@ registerRussian({
   Wary: 'Настороженное',
   Friendly: 'Дружелюбное',
   Trusted: 'Доверительное',
-  Inspect: 'Осмотр',
   Magic: 'Магия',
   Melee: 'Ближний бой',
   Ranged: 'Дальний бой',

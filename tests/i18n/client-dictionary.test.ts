@@ -4,7 +4,7 @@ import {
   CONTEXT_ILLEGAL_REASONS,
   type ContextAction,
 } from '../../packages/contracts/src/index.ts';
-import { russianEntry, type Translate } from '../../packages/ui/src/index.ts';
+import { russianConflicts, russianEntry, type Translate } from '../../packages/ui/src/index.ts';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -49,6 +49,12 @@ const placeholders = (text: string) =>
   [...new Set([...text.matchAll(/\{(\w+)\}/g)].map((m) => m[1]))].sort();
 
 describe('the Russian client dictionary', () => {
+  it('never gives one key two different Russian words', () => {
+    // A key is one English string: two meanings ("Ready" in the lobby and the Ready action) need
+    // two keys, or the file loaded later overwrites the other screen's word.
+    expect(russianConflicts()).toEqual([]);
+  });
+
   const unique = clientKeys();
 
   it('finds the strings the client shows', () => {

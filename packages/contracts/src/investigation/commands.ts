@@ -117,6 +117,7 @@ export const PLAYER_COMMAND_TYPES = [
   'MoveCombatant',
   'Attack',
   'CastSpell',
+  'TakeAction',
   'EndTurn',
   'UseReaction',
   'DeclineReaction',

@@ -89,7 +89,9 @@ export function movePlan(
   const speed = speedOf(vitals);
   const standUpFt = has(vitals, 'prone') ? Math.floor(speed / 10) * 5 : 0;
   const usedFt = mover.turn.movementUsedFt + standUpFt + cost.costFt;
-  if (usedFt > speed) return { legal: false, reason: 'NOT_ENOUGH_MOVEMENT' };
+  // Dash adds the Speed once more this turn (docs/adr/0045-conditions-and-actions.md §5).
+  if (usedFt > speed + (mover.turn.dashFt ?? 0))
+    return { legal: false, reason: 'NOT_ENOUGH_MOVEMENT' };
   return { legal: true, vitals, standUpFt, usedFt };
 }
 

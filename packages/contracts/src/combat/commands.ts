@@ -1,7 +1,13 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
-import { ABILITIES, CONDITIONS, MAX_EXHAUSTION } from '../rules/character-sheet.ts';
+import {
+  ABILITIES,
+  CONDITIONS,
+  MAX_EXHAUSTION,
+  SKILL_IDS,
+  type Skill,
+} from '../rules/character-sheet.ts';
 
 /**
  * Combat commands (docs/adr/0015-combat-engine.md). Schemas validate shape
@@ -128,6 +134,57 @@ export const endTurnCommandSchema = z
   .object({ type: z.literal('EndTurn'), combatantId: entityIdSchema })
   .strict();
 
+/**
+ * The actions of SRD 5.2.1 beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5).
+ * Each spends the Action: Dash adds the Speed once more, Disengage keeps opportunity attacks off,
+ * Dodge worsens attacks against the creature until its next turn, Help gives an ally's next attack
+ * on a foe within 5 ft Advantage, Hide is a Stealth check from cover, Influence, Search and Study
+ * are checks the DM reads, Utilize uses an object, Ready holds an attack for a trigger.
+ */
+export const COMBAT_ACTIONS = [
+  'dash',
+  'disengage',
+  'dodge',
+  'help',
+  'hide',
+  'influence',
+  'ready',
+  'search',
+  'study',
+  'utilize',
+] as const;
+export type CombatAction = (typeof COMBAT_ACTIONS)[number];
+
+/** The skills of the actions that are checks (SRD 5.2.1): a player picks one. */
+export const ACTION_SKILLS: Readonly<Partial<Record<CombatAction, readonly Skill[]>>> = {
+  search: ['perception', 'insight', 'medicine', 'survival'],
+  study: ['arcana', 'history', 'investigation', 'nature', 'religion'],
+  influence: ['persuasion', 'deception', 'intimidation', 'performance', 'animal-handling'],
+};
+
+export const takeActionCommandSchema = z
+  .object({
+    type: z.literal('TakeAction'),
+    combatantId: entityIdSchema,
+    action: z.enum(COMBAT_ACTIONS),
+    /** Help: the foe within 5 ft. Ready: the creature the held attack waits for. */
+    targetId: entityIdSchema.optional(),
+    /** Influence, Search, Study: the skill of the check (one of the action's own). */
+    skill: z.enum(SKILL_IDS).optional(),
+    /** Ready: the attack held, and the trigger in the player's words. */
+    readied: z
+      .object({
+        attackId: z
+          .string()
+          .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+          .max(48),
+        trigger: z.string().trim().min(1).max(120),
+      })
+      .strict()
+      .optional(),
+  })
+  .strict();
+
 export const endCombatCommandSchema = z
   .object({ type: z.literal('EndCombat'), encounterId: entityIdSchema })
   .strict();
@@ -172,6 +229,8 @@ export const conditionDetailsSchema = z
       .object({ ability: z.enum(ABILITIES), dc: z.number().int().min(1).max(30) })
       .strict()
       .optional(),
+    /** Invisible from the Hide action (§5): it ends when the creature attacks or casts a spell. */
+    hidden: z.literal(true).optional(),
   })
   .strict();
 export type ConditionDetails = z.infer<typeof conditionDetailsSchema>;
@@ -273,6 +332,7 @@ export const PLAYER_COMBAT_COMMAND_TYPES = [
   'MoveCombatant',
   'Attack',
   'CastSpell',
+  'TakeAction',
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
@@ -283,6 +343,7 @@ export const COMBAT_COMMAND_TYPES = [
   'MoveCombatant',
   'Attack',
   'CastSpell',
+  'TakeAction',
   'EndTurn',
   'EndCombat',
   'UseReaction',

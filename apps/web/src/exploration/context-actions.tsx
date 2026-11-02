@@ -268,6 +268,16 @@ const ACTION_TEXT: Readonly<
   fireball: 'Fireball',
   counterspell: 'Counterspell',
   take_item: 'Pick up',
+  dash: 'Dash',
+  disengage: 'Disengage',
+  dodge: 'Dodge',
+  help: 'Help',
+  hide: 'Hide',
+  influence: 'Influence',
+  ready: 'Ready an action',
+  search: 'Search',
+  study: 'Study',
+  utilize: 'Utilize',
 };
 
 /** Longest evidence wording on a button; the full statement is in the journal and the picker. */

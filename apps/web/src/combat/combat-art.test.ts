@@ -3,12 +3,15 @@ import { translate } from '@ltw/ui';
 import { describe, expect, it } from 'vitest';
 
 import '../i18n/ru.ts';
+import '../i18n/ru-conditions.ts';
 import '../i18n/ru-play.ts';
 import '../i18n/ru-visual.ts';
 import { CATALOG_NAMES, GLYPH_NAMES } from '../visual/ui-kit-names.ts';
 import {
+  actionEffect,
   catalogArtOf,
   COMBAT_ACTIONS,
+  TURN_ACTIONS,
   conditionGlyph,
   optionLabel,
   shortLabelOf,
@@ -65,7 +68,7 @@ describe('combat option pictures and words', () => {
     for (const language of ['en', 'ru'] as const) {
       const t = (key: string, params?: Readonly<Record<string, string | number>>) =>
         translate(language, key, params);
-      for (const action of COMBAT_ACTIONS) {
+      for (const action of [...COMBAT_ACTIONS, ...TURN_ACTIONS]) {
         const full = optionLabel(t, action, 'creature-10fb59d4').toLowerCase();
         expect(full, `${language} ${action}`).toContain(t(shortLabelOf(action)).toLowerCase());
       }
@@ -73,6 +76,17 @@ describe('combat option pictures and words', () => {
     expect(optionLabel((key, params) => translate('en', key, params), 'longbow_attack', 'X')).toBe(
       'Attack X with longbow',
     );
+  });
+
+  it('says what each action beside Attack and Magic does, in both languages', () => {
+    const en = (key: string) => translate('en', key);
+    const ru = (key: string) => translate('ru', key);
+    for (const action of TURN_ACTIONS) {
+      const effect = actionEffect(en, action);
+      expect(effect, action).not.toBeNull();
+      expect(actionEffect(ru, action), action).not.toBe(effect);
+    }
+    expect(actionEffect(en, 'longbow_attack')).toBeNull();
   });
 
   it('marks every condition with its own glyph of the kit, never the general warning', () => {

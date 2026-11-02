@@ -82,7 +82,10 @@ export const sourceOf = (combatant: CombatantRecord | undefined, condition: Cond
   detailOf(combatant, condition)?.sourceId ?? null;
 
 const hasDetails = (details: ConditionDetails) =>
-  details.sourceId !== undefined || details.until !== undefined || details.save !== undefined;
+  details.sourceId !== undefined ||
+  details.until !== undefined ||
+  details.save !== undefined ||
+  details.hidden === true;
 
 /** The combatant with `condition`'s details replaced, or dropped (null, or nothing to keep). */
 export function withDetail(
@@ -212,6 +215,19 @@ export function conditionsAgainst(
     return true;
   });
 }
+
+/** Hidden by the Hide action (§5): Invisible until it attacks or casts a spell. */
+export const isHidden = (combatant: CombatantRecord | null | undefined): boolean =>
+  detailOf(combatant ?? undefined, 'invisible')?.hidden === true;
+
+/** A hidden creature attacked or cast a spell: found. Its record drops the mark separately. */
+export const revealed = (entityId: string, vitals: Vitals): DraftEvent[] => [
+  {
+    type: 'ConditionApplied',
+    payload: { targetId: entityId, condition: 'invisible', applied: false, cause: 'revealed' },
+  },
+  vitalsEvent(withConditions(vitals, [], ['invisible'])),
+];
 
 /** A Charmed creature cannot attack its charmer (§1). */
 export const charmedBy = (combatant: CombatantRecord, vitals: Vitals, targetId: string) =>

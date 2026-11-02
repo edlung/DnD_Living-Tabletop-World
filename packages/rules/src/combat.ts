@@ -46,6 +46,12 @@ export interface AttackCircumstances {
   readonly melee: boolean;
   readonly distanceFt: number;
   readonly longRange: boolean;
+  /**
+   * The actions' marks (docs/adr/0045-conditions-and-actions.md §5): the target Dodges (and may,
+   * neither Incapacitated nor at Speed 0), or an ally of the attacker Helps against it.
+   */
+  readonly targetDodging?: boolean;
+  readonly helped?: boolean;
 }
 
 /**
@@ -65,12 +71,17 @@ export function attackCircumstances(c: AttackCircumstances): {
   const target = targetTilt(c.targetConditions, close);
   const targetProne =
     c.targetConditions.includes('prone') || c.targetConditions.includes('unconscious');
-  const advantage = attacker.advantage || target.advantage || (targetProne && c.melee && close);
+  const advantage =
+    attacker.advantage ||
+    target.advantage ||
+    (targetProne && c.melee && close) ||
+    c.helped === true;
   const disadvantage =
     attacker.disadvantage ||
     target.disadvantage ||
     c.longRange ||
-    (targetProne && !(c.melee && close));
+    (targetProne && !(c.melee && close)) ||
+    c.targetDodging === true;
   return { advantage, disadvantage, criticalOnHit: target.criticalOnHit };
 }
 

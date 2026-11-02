@@ -1,15 +1,23 @@
-import type { ContextAction, EncounterCombatantView, EncounterView } from '@ltw/contracts';
+import type {
+  CombatAction,
+  ContextAction,
+  EncounterCombatantView,
+  EncounterView,
+} from '@ltw/contracts';
 import { useT } from '@ltw/ui';
+import { useEffect, useRef, useState } from 'react';
 
 import type { ExplorationIntent } from '../../exploration/use-action.ts';
 import { useReservedHeight } from '../../shell/reserved-height.ts';
 import { actionGlyph } from '../../visual/glyph-map.ts';
 import { Glyph } from '../../visual/glyph.tsx';
+import { useScrollEdges } from '../../visual/scroll-edges.ts';
 import { optionArtUrl, optionLabelFor, shortLabelFor } from '../combat-art.ts';
-import { combatCommandFor } from '../combat-bindings.ts';
+import { CHOSEN_ACTIONS, combatCommandFor } from '../combat-bindings.ts';
 import { useCombatantLabels } from '../labels.ts';
 import type { PlannedPath } from '../movement.ts';
 import { optionNotes, warnsOfAlly } from '../target-options.tsx';
+import { ActionChoice } from './action-choice.tsx';
 
 /** What the tray offers: the chosen square's move, or the chosen combatant's listed options. */
 export type TrayChoice =
@@ -52,6 +60,18 @@ export function TurnTray({
   const t = useT();
   const labelOf = useCombatantLabels(encounter);
   const tray = useReservedHeight<HTMLElement>('--tray-h', true);
+  // An action that asks more first (ADR 0045 §5), for the creature now chosen.
+  const [choosing, setChoosing] = useState<CombatAction | null>(null);
+  const chosen = choice.kind === 'combatant' ? choice.target.entity.entityId : choice.kind;
+  useEffect(() => {
+    setChoosing(null);
+  }, [chosen]);
+  // On a phone the row scrolls sideways; its edges fade where more options hide.
+  const row = useRef<HTMLDivElement>(null);
+  const edges = useScrollEdges(
+    row,
+    choice.kind === 'combatant' ? `${chosen}:${String(choice.actions?.length ?? -1)}` : chosen,
+  );
   const warned = choice.kind === 'combatant' && (choice.actions?.some(warnsOfAlly) ?? false);
   const hint =
     choice.kind === 'none'
@@ -69,7 +89,12 @@ export function TurnTray({
           {t('Warning: this area includes a party member. You may still cast it.')}
         </p>
       )}
-      <div className="tray-row">
+      <div
+        ref={row}
+        className="tray-row"
+        data-more-before={edges.before || undefined}
+        data-more-after={edges.after || undefined}
+      >
         {hint && <p className="tray-hint">{hint}</p>}
         {choice.kind === 'square' && (
           <button
@@ -104,6 +129,7 @@ export function TurnTray({
             );
             const url = optionArtUrl(action);
             const notes = optionNotes(t, action);
+            const asks = action.legal && CHOSEN_ACTIONS.has(action.id);
             return (
               <button
                 key={`${action.id}:${action.weapon ?? ''}:${String(index)}`}
@@ -111,9 +137,12 @@ export function TurnTray({
                 className="tray-action"
                 aria-label={optionLabelFor(t, action, labelOf(target.entity.entityId))}
                 aria-describedby={detailId(index)}
-                disabled={locked || command === null}
+                aria-expanded={asks ? choosing === action.id : undefined}
+                disabled={locked || (command === null && !asks)}
                 onClick={() => {
-                  if (command) onRun({ kind: 'command', command });
+                  if (asks)
+                    setChoosing(choosing === action.id ? null : (action.id as CombatAction));
+                  else if (command) onRun({ kind: 'command', command });
                 }}
               >
                 {url ? (
@@ -144,6 +173,26 @@ export function TurnTray({
           <span className="tray-words">{t('End turn')}</span>
         </button>
       </div>
+      {choosing !== null && choice.kind === 'combatant' && (
+        <ActionChoice
+          action={choosing}
+          actorId={actorId}
+          targetId={
+            choice.target.entity.entityId === actorId ? null : choice.target.entity.entityId
+          }
+          attacks={(choice.actions ?? []).filter(
+            (option) => option.id === 'longbow_attack' || option.id === 'weapon_attack',
+          )}
+          locked={locked}
+          onRun={(intent) => {
+            setChoosing(null);
+            onRun(intent);
+          }}
+          onCancel={() => {
+            setChoosing(null);
+          }}
+        />
+      )}
     </section>
   );
 }

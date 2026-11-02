@@ -72,6 +72,16 @@ const LABEL: Readonly<Record<ContextActionId, string>> = {
   enter_location: 'Go there',
   fireball: 'Cast Fireball at them',
   counterspell: 'Counterspell their spell',
+  dash: 'Dash: move as far again this turn',
+  disengage: 'Disengage: leave without opportunity attacks',
+  dodge: 'Dodge: attacks against you have Disadvantage',
+  help: 'Help an ally attack this foe',
+  hide: 'Hide (Dexterity (Stealth) check)',
+  influence: 'Influence them (a Charisma check)',
+  ready: 'Ready an attack for a trigger',
+  search: 'Search (a Wisdom check)',
+  study: 'Study (an Intelligence check)',
+  utilize: 'Use an object',
 };
 
 const HINT: Readonly<Record<string, string>> = {

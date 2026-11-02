@@ -1,5 +1,13 @@
-import type { ContextEntityRef, ContextIllegalReason, SpellId, WeaponId } from '@ltw/contracts';
 import {
+  ACTION_SKILLS,
+  type CombatAction,
+  type ContextEntityRef,
+  type ContextIllegalReason,
+  type SpellId,
+  type WeaponId,
+} from '@ltw/contracts';
+import {
+  actionPlan,
   attackPlan,
   characterSpellPlan,
   chooseUsing,
@@ -68,6 +76,27 @@ export function combatAttackVerdict(
   const plan = attackPlan(inputs.state, frame.encounter, frame.actor.entityId, weaponId, targetId);
   if (!plan.legal) return fromRefusal(plan);
   return plan.longRange ? { legal: true, hints: ['LONG_RANGE'] } : { legal: true };
+}
+
+/**
+ * An action beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5), as the World
+ * Engine judges it now. Search, Study and Influence are judged with their first skill and Ready
+ * with a stand-in attack: the player picks the skill, or the attack and its trigger, next.
+ */
+export function combatActionVerdict(
+  frame: CombatFrame,
+  inputs: ContextInputs,
+  action: CombatAction,
+  targetId?: string,
+): Verdict {
+  if (paused(inputs)) return PAUSED;
+  const plan = actionPlan(inputs.state, frame.encounter, frame.actor, {
+    action,
+    targetId,
+    skill: ACTION_SKILLS[action]?.[0],
+    readied: action === 'ready' ? { attackId: 'longbow', trigger: 'ready' } : undefined,
+  });
+  return plan.legal ? { legal: true } : fromRefusal(plan);
 }
 
 export function combatSpellVerdict(

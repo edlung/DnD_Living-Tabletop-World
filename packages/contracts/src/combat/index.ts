@@ -1,5 +1,7 @@
 /** The combat contracts (docs/adr/0015-combat-engine.md, ADR 0045), re-exported by the package index. */
 export {
+  ACTION_SKILLS,
+  COMBAT_ACTIONS,
   COMBAT_COMMAND_TYPES,
   COVER_LEVELS,
   DAMAGE_TYPES,
@@ -13,8 +15,10 @@ export {
   conditionDetailsSchema,
   dmReasonSchema,
   setExhaustionCommandSchema,
+  takeActionCommandSchema,
   squareSchema,
   type Battlefield,
+  type CombatAction,
   type CombatCommandType,
   type ConditionDetails,
   type CoverLevel,

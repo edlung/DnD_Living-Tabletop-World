@@ -86,9 +86,11 @@ export function withTurn(
     slotExpendedThisTurn,
     attacksRemaining,
   } = turn;
+  // The actions' marks (Dash, Dodge, Help…; docs/adr/0045-conditions-and-actions.md §5) stay.
   return {
     ...combatant,
     turn: {
+      ...combatant.turn,
       actionUsed,
       bonusActionUsed,
       reactionAvailable,

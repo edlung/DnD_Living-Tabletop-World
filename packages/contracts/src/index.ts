@@ -170,6 +170,7 @@ export {
   HIT_DIE_SIDES,
   MAX_EXHAUSTION,
   SKILLS,
+  SKILL_IDS,
   SPELL_IDS,
   WEAPON_IDS,
   characterSheetSchema,

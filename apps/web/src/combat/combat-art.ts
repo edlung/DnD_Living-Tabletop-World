@@ -53,8 +53,58 @@ export const COMBAT_ACTIONS: readonly ContextActionId[] = [
   'hunters_mark',
 ];
 
+/** The actions beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5), by glyph. */
+export const TURN_ACTIONS: readonly ContextActionId[] = [
+  'dodge',
+  'dash',
+  'disengage',
+  'hide',
+  'search',
+  'study',
+  'utilize',
+  'help',
+  'ready',
+  'influence',
+];
+
+/**
+ * What each of those actions does, in one line (SRD 5.2.1; ADR 0045 §5): English keys the client
+ * dictionary translates. The rules are the server's; these words only tell the player.
+ */
+const ACTION_EFFECTS: Partial<Record<ContextActionId, string>> = {
+  dodge:
+    'Until your next turn, attacks against you have Disadvantage and your Dexterity saves Advantage.',
+  dash: 'Move as far again as your Speed this turn.',
+  disengage: 'Your movement provokes no Opportunity Attacks this turn.',
+  hide: 'From cover, a DC 15 Stealth check: on a success you are Invisible until you attack or are found.',
+  search:
+    'A Wisdom check to notice what is not obvious: Perception, Insight, Medicine or Survival.',
+  study:
+    'An Intelligence check to recall or work out: Arcana, History, Investigation, Nature or Religion.',
+  utilize: 'Use an object that takes your action.',
+  help: 'An ally’s next attack on this foe before your next turn has Advantage.',
+  ready: 'Hold an attack for a moment you name; when it comes, you make it with your Reaction.',
+  influence: 'A Charisma or Animal Handling check to sway this creature.',
+};
+
+/** What an action beside Attack and Magic does, in the viewer's words; null for any other option. */
+export const actionEffect = (t: Translate, action: ContextActionId): string | null => {
+  const effect = ACTION_EFFECTS[action];
+  return effect === undefined ? null : t(effect);
+};
+
 const LABELS: Partial<Record<ContextActionId, (t: Translate, target: string) => string>> = {
   longbow_attack: (t, target) => t('Attack {target} with longbow', { target }),
+  dodge: (t) => t('Dodge'),
+  dash: (t) => t('Dash'),
+  disengage: (t) => t('Disengage'),
+  hide: (t) => t('Hide'),
+  search: (t) => t('Search'),
+  study: (t) => t('Study'),
+  utilize: (t) => t('Utilize: use an object'),
+  help: (t, target) => t('Help an ally against {target}', { target }),
+  ready: (t, target) => t('Ready an action against {target}', { target }),
+  influence: (t, target) => t('Influence {target}', { target }),
   fireball: (t, target) => t('Cast Fireball at {target}', { target }),
   counterspell: (t) => t('Cast Counterspell'),
   healing_word: (t, target) => t('Cast Healing Word on {target}', { target }),
@@ -73,6 +123,16 @@ const SHORT: Partial<Record<ContextActionId, string>> = {
   healing_word: 'Healing Word',
   hunters_mark: 'Hunter’s Mark',
   detect_magic: 'Detect Magic',
+  dodge: 'Dodge',
+  dash: 'Dash',
+  disengage: 'Disengage',
+  hide: 'Hide',
+  search: 'Search',
+  study: 'Study',
+  utilize: 'Utilize',
+  help: 'Help',
+  ready: 'Ready an action',
+  influence: 'Influence',
 };
 
 /** The tray's short words for an option (a translation key), contained in its full label. */

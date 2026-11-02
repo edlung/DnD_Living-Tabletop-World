@@ -58,6 +58,25 @@
    fight, the duration, the save and the source; every screen that shows conditions shows them
    with their mark and words, and the character sheet adds a line of what each does, in English
    and Russian. The marks of the new conditions are GPT's, as all the art.
+5. **The actions** beside Attack and Magic (640b), one command (`TakeAction`) that spends the
+   Action of the creature whose turn it is, its player's or the DM's: **Dash** adds the creature's
+   Speed (after its conditions) to this turn's movement; **Disengage** marks the turn so no
+   opportunity attack is provoked (640c brings the attacks); **Dodge** gives attacks against the
+   creature Disadvantage and its Dexterity saves Advantage until its next turn, while it can move
+   and act; **Help** in a fight aims at a foe within 5 ft: the next attack an ally of the helper
+   makes against it before the helper's next turn has Advantage, and spends the Help;
+   **Hide** is a Dexterity (Stealth) check against DC 15 from a square of Three-Quarters or Total
+   Cover (light and sight come with 640g) — on a success the creature is Invisible, marked hidden,
+   until it attacks or casts a spell; **Search** (Perception, Insight, Medicine, Survival),
+   **Study** (Arcana, History, Investigation, Nature, Religion) and **Influence** (Persuasion,
+   Deception, Intimidation, Performance, Animal Handling) roll the chosen skill with the
+   creature's conditions and log it at the table for the DM to read; **Utilize** records the use
+   of an object for the DM to narrate; **Ready** holds one of the creature's attacks against a
+   creature with a trigger in the player's words until its next turn (640c lets the reaction
+   fire it). The marks live on the turn record and end when its next turn starts; the context
+   lists the creature's own actions on itself and Help, Ready and Influence on another, each
+   judged by the same rules. A key in the Russian dictionary never carries two words: a test
+   holds that, after "Ready" (the lobby's) nearly became the action's name.
 
 ## Consequences
 

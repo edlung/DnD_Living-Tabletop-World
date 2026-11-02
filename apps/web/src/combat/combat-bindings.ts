@@ -10,7 +10,19 @@ export type CombatUiCommand = KernelCommandOf<
   | 'StartCombat'
   | 'EndCombat'
   | 'CloseReactionWindow'
+  | 'TakeAction'
 >;
+
+/**
+ * The actions that ask the player more before they are sent (docs/adr/0045-conditions-and-actions.md
+ * §5): a check's skill for Search, Study and Influence; the attack and its trigger for Ready.
+ */
+export const CHOSEN_ACTIONS: ReadonlySet<string> = new Set([
+  'search',
+  'study',
+  'influence',
+  'ready',
+]);
 
 /** Spell actions the Context Engine lists that name a single target combatant. */
 const TARGETED_SPELLS = { healing_word: 'healing-word', hunters_mark: 'hunters-mark' } as const;
@@ -78,6 +90,19 @@ export function combatCommandFor(
               : {}),
           }
         : null;
+    case 'dodge':
+    case 'dash':
+    case 'disengage':
+    case 'hide':
+    case 'utilize':
+      return { type: 'TakeAction', combatantId: actorId, action: action.id };
+    case 'help':
+      return {
+        type: 'TakeAction',
+        combatantId: actorId,
+        action: 'help',
+        targetId: target.entityId,
+      };
     default:
       return null;
   }

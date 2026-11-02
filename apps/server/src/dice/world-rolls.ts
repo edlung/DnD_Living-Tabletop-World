@@ -260,6 +260,31 @@ function rollsOf(events: readonly RecordedEvent[], state: WorldState): WorldRoll
         );
         break;
       }
+      case 'ActionTaken': {
+        // An action's check (docs/adr/0045-conditions-and-actions.md §5): Search, Study, Hide…
+        const { combatantId, check } = event.payload;
+        if (!check) break;
+        rolls.push(
+          entry(
+            event,
+            combatantId,
+            { kind: 'skill', skill: check.skill },
+            [
+              {
+                purpose: 'check',
+                dice: check.rolls.map((value) => ({ sides: 20, value })),
+                modifier: check.modifier,
+                total: check.total,
+                ...(check.success === undefined
+                  ? {}
+                  : { result: check.success ? ('success' as const) : ('failure' as const) }),
+              },
+            ],
+            !party(combatantId),
+          ),
+        );
+        break;
+      }
       case 'InsightChecked':
       case 'EvidenceExamined': {
         const roll = event.payload.roll;

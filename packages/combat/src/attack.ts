@@ -1,5 +1,6 @@
 import {
   accept,
+  combatantOf,
   type CombatCommand,
   type Decision,
   type DecisionContext,
@@ -9,6 +10,7 @@ import {
 import { attackRoll, rollDamage } from '@ltw/rules';
 
 import { combatantEvent, encounterOf, onTurn, withTurn } from './battlefield.ts';
+import { revealed, withDetail } from './condition-details.ts';
 import { applyDamage } from './damage.ts';
 import { attackPlan } from './legality.ts';
 import { combatPremises, refused } from './refusal.ts';
@@ -107,10 +109,21 @@ export function decideAttack(
     }
   }
 
-  events.push(
-    combatantEvent(
-      withTurn(plan.attacker, { ...plan.turn, attacksRemaining: plan.turn.attacksRemaining - 1 }),
-    ),
-  );
+  // Help is spent on this attack; a hidden attacker is found by it (ADR 0045 §5).
+  const helper = plan.helpedBy === null ? undefined : combatantOf(encounter.value, plan.helpedBy);
+  if (helper) {
+    const turn = { ...helper.turn };
+    delete turn.helping;
+    events.push(combatantEvent({ ...helper, turn }));
+  }
+  let attacker = withTurn(plan.attacker, {
+    ...plan.turn,
+    attacksRemaining: plan.turn.attacksRemaining - 1,
+  });
+  if (plan.hidden) {
+    events.push(...revealed(command.combatantId, plan.attackerVitals));
+    attacker = withDetail(attacker, 'invisible', null);
+  }
+  events.push(combatantEvent(attacker));
   return accept(...events);
 }

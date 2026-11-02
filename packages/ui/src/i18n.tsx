@@ -12,13 +12,22 @@ export type Params = Readonly<Record<string, string | number>>;
 export type Translate = (key: string, params?: Params) => string;
 
 const russian = new Map<string, string>();
+/** Keys registered twice with different words: the later would silently win (for tests). */
+const conflicts: string[] = [];
 
 export function registerRussian(entries: Readonly<Record<string, string>>): void {
-  for (const [key, value] of Object.entries(entries)) russian.set(key, value);
+  for (const [key, value] of Object.entries(entries)) {
+    const before = russian.get(key);
+    if (before !== undefined && before !== value) conflicts.push(`${key}: ${before} / ${value}`);
+    russian.set(key, value);
+  }
 }
 
 /** The Russian entry for a key, if one is registered (for tests). */
 export const russianEntry = (key: string): string | undefined => russian.get(key);
+
+/** Keys given two different Russian words: one screen's meaning would overwrite another's. */
+export const russianConflicts = (): readonly string[] => [...conflicts];
 
 export function translate(language: Language, key: string, params?: Params): string {
   const text = language === 'ru' ? (russian.get(key) ?? key) : key;
