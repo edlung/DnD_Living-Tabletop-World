@@ -13,8 +13,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - Current program (owner approval 2026-11-02, `reviews/OWNER_FULL_GAME_2026-11-02.json`):
   `docs/FULL_GAME_PLAN.md` — table and online play, Stages 600–699 in four milestones; work orders
   `work-orders/STAGE_6xx.md`; one pull request per milestone. Milestone A on `claude/full-game-a`:
-  Stage 600 (accounts and the hub, ADR 0041), Stage 605 (a party for the table) and Stage 610 (the
-  table display, ADR 0042) complete (`reports/STAGE_6{00,05,10}_COMPLETION.md`).
+  Stage 600 (accounts and the hub, ADR 0041), Stage 605 (a party for the table), Stage 610 (the
+  table display, ADR 0042) and Stage 620 (the DM's screen, ADR 0043) complete
+  (`reports/STAGE_6{00,05,10,20}_COMPLETION.md`).
 
 ## Current request — AI campaigns, 2026-10-30
 

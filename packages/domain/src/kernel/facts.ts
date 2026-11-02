@@ -1,7 +1,7 @@
 import { assetFootprint, assetRestoredFacts } from '../assets/footprints.ts';
+import { combatFootprint } from '../combat/footprints.ts';
 import { itemFootprint } from '../items/footprints.ts';
 import { chronicleFootprint } from '../chronicle/decide.ts';
-import { namedEntityIds } from '../combat/named-entities.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
 import { attemptKey, insightKey, scopedKey, shownKey } from '../investigation/records.ts';
 import { pairKey } from '../contradiction/records.ts';
@@ -282,47 +282,11 @@ export function footprintOf(event: KernelEvent): Footprint {
       };
     }
     case 'CombatStarted':
-      // Every combatant: its existence, status, placement, and its sheet or stat block.
-      return {
-        reads: [
-          clock,
-          facts.encounter(),
-          ...event.payload.combatants.flatMap((c) => [
-            ...entityChecked(c.entityId),
-            facts.entityPlacement(c.entityId),
-            facts.sheet(c.entityId),
-            facts.statBlock(c.entityId),
-          ]),
-        ],
-        writes: [facts.encounter()],
-      };
     case 'TurnStarted':
     case 'CombatantUpdated':
     case 'CombatEnded':
-      // Combat is strictly sequential: undo unwinds it in reverse order (ADR 0015).
-      return { reads: [clock, facts.encounter()], writes: [facts.encounter()] };
     case 'CombatOrderChanged':
-      // The DM's change of a running fight (ADR 0043 §2): every combatant of the new order, as
-      // a fight's start reads them (a joining creature's place, sheet or stat block included).
-      return {
-        reads: [
-          clock,
-          facts.encounter(),
-          ...event.payload.combatants.flatMap((c) => [
-            ...entityChecked(c.entityId),
-            facts.entityPlacement(c.entityId),
-            facts.sheet(c.entityId),
-            facts.statBlock(c.entityId),
-          ]),
-        ],
-        writes: [facts.encounter()],
-      };
     case 'StatBlockSet':
-      // Authoring is refused for a combatant, so it relied on the encounter as it was (Gate 03).
-      return {
-        reads: [clock, facts.encounter(), facts.entity(event.payload.entityId)],
-        writes: [facts.statBlock(event.payload.entityId)],
-      };
     case 'AttackPerformed':
     case 'SpellCast':
     case 'DamageApplied':
@@ -331,11 +295,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'SavingThrowRolled':
     case 'ConditionApplied':
     case 'DeathSaveRolled':
-      // Narrative records: their fold needs every creature they name (G03-H05).
-      return {
-        reads: [clock, facts.encounter(), ...namedEntityIds(event.payload).map(facts.entity)],
-        writes: [],
-      };
+      return combatFootprint(event);
     case 'ReactionWindowOpened': {
       // Eligibility read every considered combatant (ADR 0016 §3): while the window
       // stands, undoing what changed any of them is UNDO_UNSAFE, and the pause rule

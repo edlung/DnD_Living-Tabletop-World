@@ -25,7 +25,15 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    // The DM's screen on an iPad in Safari's engine (docs/adr/0043-dm-screen.md §4, Stage 620).
+    {
+      name: 'ipad',
+      use: { ...devices['iPad Pro 11 landscape'] },
+      testMatch: /dm-screen\.spec\.ts$/,
+    },
+  ],
   webServer: [
     {
       command: 'node --conditions=@ltw/source apps/server/src/testing/ui-server.ts',

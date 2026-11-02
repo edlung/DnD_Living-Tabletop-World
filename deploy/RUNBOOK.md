@@ -531,6 +531,19 @@ dc exec -T postgres psql -U ltw -d ltw -c \
   "UPDATE ltw_displays SET revoked_at = now() WHERE campaign_id = '<campaign>' AND revoked_at IS NULL"
 ```
 
+**Экран мастера / The DM's screen (Stage 620, ADR 0043).** RU: настраивать нечего. Миграция 0029
+только добавляет таблицы заметок и состояния стола и колонку группы у запросов проверки; откат на
+прежнюю сборку их не трогает (прежняя сборка не удерживает ходы игроков на паузе). Если игра
+осталась на паузе без мастера — запрос ниже снимает паузу. EN: nothing to configure. Migration 0029
+only adds the notes and table-state tables and a group column on check requests; a rollback to the
+previous build leaves them alone (that build does not hold players' commands while paused). To lift
+a pause the DM left on, run the statement below.
+
+```bash
+dc exec -T postgres psql -U ltw -d ltw -c \
+  "UPDATE ltw_table_states SET paused = false, updated_at = now() WHERE campaign_id = '<campaign>'"
+```
+
 ## 7. Остановить все расходы на ИИ · Stop all AI spending
 
 **RU.** Сразу: очистите в `deploy/.env` `ANTHROPIC_API_KEY`, `LTW_AI_ROUTES`, `LTW_AI_APPROVAL_ID`

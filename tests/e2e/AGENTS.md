@@ -1,6 +1,8 @@
 # Browser journeys
 
-Start with `playwright.config.ts` and `support/session.ts`, then the one journey.
+Start with `playwright.config.ts` and `support/session.ts`, then the one journey. The `ipad`
+project runs `dm-screen.spec.ts` in WebKit on an iPad (Stage 620); everything else runs in
+Chromium. A journey both projects run takes its campaign by project name.
 Run `pnpm test:e2e` after installing Playwright Chromium. Every server is owned
 by Playwright: Vite on 4310 and the real seeded HTTP application on 4311 (development
 personas), and for production sign-in a second Vite on 4312 in front of the invitation-mode

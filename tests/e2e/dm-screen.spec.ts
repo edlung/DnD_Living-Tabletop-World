@@ -15,7 +15,11 @@ import { openSheet } from './support/shell.ts';
 const expect = baseExpect.configure({ timeout: 15_000 });
 // One campaign for the three, in order: the last one starts a fight.
 test.describe.configure({ mode: 'serial' });
-const CAMPAIGN = UI_PARTY_CAMPAIGNS.dmScreen;
+// Each browser project its own campaign: Chromium on a laptop, WebKit on an iPad.
+const campaignOf = () =>
+  test.info().project.name === 'ipad'
+    ? UI_PARTY_CAMPAIGNS.dmScreenIpad
+    : UI_PARTY_CAMPAIGNS.dmScreen;
 const ELOWEN = 'Elowen Starwhisper';
 
 const party = (page: Page) => page.locator('#sheet-party');
@@ -34,7 +38,7 @@ test('the DM sees the party and changes it by hand, with reasons the history kee
   page,
 }) => {
   test.setTimeout(120_000);
-  await enterWorld(page, TOKENS.dm, CAMPAIGN);
+  await enterWorld(page, TOKENS.dm, campaignOf());
   await openSheet(page, 'Party');
   const elowen = card(page, ELOWEN);
   await expect(party(page).getByRole('listitem')).toHaveCount(4);
@@ -102,7 +106,7 @@ test('the DM sees the party and changes it by hand, with reasons the history kee
 });
 
 test('the DM keeps notes, and a reload comes back to the open sheet', async ({ page }) => {
-  await enterWorld(page, TOKENS.dm, CAMPAIGN);
+  await enterWorld(page, TOKENS.dm, campaignOf());
   await openSheet(page, 'Notes');
   const notes = page.locator('#sheet-notes');
   await notes.getByRole('button', { name: 'New note', exact: true }).click();
@@ -116,7 +120,7 @@ test('the DM keeps notes, and a reload comes back to the open sheet', async ({ p
   // The personas' token lives in memory only: after a reload the DM enters again, and the tab
   // remembers the sheet that was open.
   await page.reload();
-  await enterWorld(page, TOKENS.dm, CAMPAIGN);
+  await enterWorld(page, TOKENS.dm, campaignOf());
   await expect(page.locator('#sheet-notes')).toBeVisible();
   await expect(page.locator('#sheet-notes')).toContainText('Mira lies');
   await page
@@ -128,7 +132,7 @@ test('the DM keeps notes, and a reload comes back to the open sheet', async ({ p
 
 test('the DM changes a running fight’s turn order', async ({ page }) => {
   test.setTimeout(120_000);
-  await enterWorld(page, TOKENS.dm, CAMPAIGN);
+  await enterWorld(page, TOKENS.dm, campaignOf());
   await openSheet(page, 'Encounter');
   const sheet = page.locator('#sheet-encounter');
   await sheet
@@ -158,8 +162,8 @@ test('a session pauses, ends and starts again with the players ready', async ({ 
   test.setTimeout(120_000);
   const dm = await (await browser.newContext()).newPage();
   const player = await (await browser.newContext()).newPage();
-  await enterWorld(dm, TOKENS.dm, CAMPAIGN);
-  await enterWorld(player, TOKENS.player, CAMPAIGN);
+  await enterWorld(dm, TOKENS.dm, campaignOf());
+  await enterWorld(player, TOKENS.player, campaignOf());
   await openSheet(dm, 'Session');
   const sheet = dm.locator('#sheet-session');
   await expect(sheet).toContainText('Session 1: Arrival in Ravenford');

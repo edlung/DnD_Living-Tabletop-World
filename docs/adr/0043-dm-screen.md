@@ -39,7 +39,20 @@
    reload, or an iPad that slept and reloaded, comes back to it; never world data.
 5. **Notes.** The DM's notes (title and text) are descriptive DM data beside the world (migration
    0029), the DM's only, never canonical, at most 200 a campaign.
-6. **A session's lobby and lifecycle** (620d, below).
+6. **A session's lobby and lifecycle.** The session's start and end stay the World Engine's
+   (`StartSession`, `EndSession`). Around them, the table's state is table control beside the world,
+   never canonical (migration 0029, `ltw_table_states`): whether the table plays at the table or
+   online, whether the DM paused the game, and which characters' players are absent. While the table
+   is paused, the commands route answers a player's command with `SESSION_PAUSED` (409) before the
+   World Engine sees it; the DM's commands go on. A player says "ready" for the session to come
+   (in memory: a restart asks again; a session's start makes earlier answers stale). The lobby
+   (`GET …/lobby`) lists the perspective's own characters as presence does, with ready and absent;
+   the live stream covers it. The DM's Session sheet starts a session (title, at the table or
+   online), pauses and resumes it, marks absent players, and ends it — optionally unpairing the
+   table's screens and freeing the seats of players without a login (the members route's own
+   revocation) — then offers the chapter to write. Players see the lobby and the pause in a banner.
+7. **WebKit.** The DM's screen journeys run on an iPad (Playwright's WebKit, iPad Pro 11
+   landscape) as well as in Chromium, locally and in CI; each browser project has its own campaign.
 
 ## Consequences
 
@@ -49,4 +62,10 @@
   history, `dm/note-*`, the check request groups. Client: `dm/party-sheet.tsx`, `party-card.tsx`,
   `hand-forms.tsx`, `notes-sheet.tsx`, `combat/turn-order-controls.tsx`, `styles/dm-screen.css`,
   `i18n/ru-dm-screen.ts`.
-- Migration 0029 is additive: an older build ignores the column and the table.
+- Server: `src/table/` (the table's state, its PostgreSQL store, the lobby routes); the commands
+  route's pause; the live inventory's `lobby`. Client: `dm/session-sheet.tsx`,
+  `session/lobby-banner.tsx`. Contracts: `session/lobby.ts`, `SESSION_PAUSED`.
+- Migration 0029 is additive: an older build ignores the column and the tables (an older build
+  does not hold players' commands while paused).
+- Not here: rewards at a session's end (the existing level and item controls), physical dice a
+  player enters by hand and the DM confirms (Stage 630), the 15 conditions (Stage 640).

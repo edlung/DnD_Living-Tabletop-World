@@ -12,6 +12,8 @@ export const UI_PARTY_CAMPAIGNS = {
   ru: 'ui-party-ru',
   /** The DM's screen (Stage 620): the party panel, the DM's hand, the turn order, notes. */
   dmScreen: 'ui-dm-screen',
+  /** The same journeys on an iPad in WebKit, on a campaign of their own. */
+  dmScreenIpad: 'ui-dm-screen-ipad',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -22,6 +24,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.ambush, 'en'],
     [UI_PARTY_CAMPAIGNS.ru, 'ru'],
     [UI_PARTY_CAMPAIGNS.dmScreen, 'en'],
+    [UI_PARTY_CAMPAIGNS.dmScreenIpad, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {
