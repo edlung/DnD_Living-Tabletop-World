@@ -8,6 +8,11 @@ The model selected in the session does the work. `EFFORT_MATRIX.md` and work-ord
 
 # Living Tabletop World Agent Instructions
 
+Owner request 2026-11-02 (`reviews/OWNER_NATIVE_APPS_2026-11-02.json`): native apps — LTW Player
+(iOS, iPadOS, Android) and LTW DM (iOS, iPadOS) as shells around the server's client (Stage 700,
+`docs/NATIVE_APPS_PLAN.md`, ADR 0070). Native code lives in `apps/ios` and `apps/android`; each has
+its own `AGENTS.md`.
+
 Owner request 2026-11-01 (`reviews/OWNER_PRODUCT_COMPLETION_2026-11-01.json`): finish the product
 (Stages 500–540, `docs/PRODUCT_COMPLETION_PLAN.md`) with minimal interruptions; the owner delegated the
 program's product decisions (recorded in the plan). Technical checkpoints pass autonomously with the usual
