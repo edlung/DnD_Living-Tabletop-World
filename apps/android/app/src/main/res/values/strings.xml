@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LTW Player</string>
+    <string name="start_title">Living Tabletop World</string>
+    <string name="connecting">Connecting to %1$s…</string>
+    <string name="unreachable">%1$s cannot be reached. Check the connection, then try again.</string>
+    <string name="retry">Try again</string>
+    <string name="scan">Scan the table’s code</string>
+    <string name="server">Server…</string>
+    <string name="server_title">The server</string>
+    <string name="server_hint">The address of the server your table plays on, such as ltw.vardahei.tech</string>
+    <string name="server_connect">Connect</string>
+    <string name="server_default">The default server</string>
+    <string name="server_invalid">That is not a server address. It starts with https://</string>
+    <string name="server_recent">Chosen before</string>
+    <string name="cancel">Cancel</string>
+    <string name="switch_title">Connect to another server?</string>
+    <string name="switch_text">This code belongs to another server:\n%1$s\n\nSigning in there is separate from here.</string>
+    <string name="not_a_code">This is not a table’s code.</string>
+    <string name="scan_hint">Point the camera at the table’s QR code</string>
+    <string name="camera_needed">The camera is needed to scan the table’s code. Allow it in the app’s settings.</string>
+    <string name="webview_old">This device’s Android System WebView is too old for the game. Update it in Google Play, then open the app again.</string>
+    <string name="update_webview">Update</string>
+    <string name="channel_name">The table</string>
+    <string name="channel_text">When the table is waiting for you</string>
+    <string name="waits_title">The table is waiting for you</string>
+    <string name="waits_text">Open the game to answer.</string>
+    <string name="close">Close</string>
+</resources>
