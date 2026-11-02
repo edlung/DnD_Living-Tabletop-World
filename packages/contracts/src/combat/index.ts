@@ -13,6 +13,7 @@ export {
   PLAYER_COMBAT_COMMAND_TYPES,
   SIDES,
   battlefieldSchema,
+  pathStepSchema,
   conditionDetailsSchema,
   dmReasonSchema,
   setExhaustionCommandSchema,
@@ -29,6 +30,7 @@ export {
   type DamageType,
   type DmHandCommandType,
   type Side,
+  type PathStep,
   type Square,
 } from './commands.ts';
 export {

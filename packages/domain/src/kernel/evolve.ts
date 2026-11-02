@@ -229,6 +229,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'HealingApplied':
     case 'HitPointsAdjusted':
     case 'SavingThrowRolled':
+    case 'CheckRolled':
     case 'ConditionApplied':
     case 'DeathSaveRolled':
       return applyCombatRecord(state, event);

@@ -68,7 +68,11 @@ export type IllegalReason =
   /** An object, where a grapple, a mastery or a spell names a creature (ADR 0048 §5). */
   | 'NOT_A_CREATURE'
   /** A grapple's or a shove's target more than one size larger (ADR 0049 §3). */
-  | 'TOO_LARGE';
+  | 'TOO_LARGE'
+  /** A move through the air or the earth without the speed for it; a jump beyond its reach (§5–7). */
+  | 'NO_FLY_SPEED'
+  | 'NO_BURROW_SPEED'
+  | 'JUMP_TOO_FAR';
 
 export interface Illegal {
   readonly legal: false;

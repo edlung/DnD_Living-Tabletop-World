@@ -100,3 +100,73 @@ describe('planPath', () => {
     expect(planPath(view, 'a', { x: 5, y: 1 })?.costFt).toBe(40);
   });
 });
+
+describe('planPath over water, heights and in the air (docs/adr/0049-space-and-movement.md §5–6)', () => {
+  const mover = (base: EncounterView, patch: Partial<EncounterView['combatants'][number]>) => {
+    const [first, ...rest] = base.combatants;
+    if (!first) throw new Error('no mover');
+    return { ...base, combatants: [{ ...first, ...patch }, ...rest] };
+  };
+
+  it('swims at an extra foot per foot without a Swim Speed, at its own cost with one', () => {
+    const wet = encounter({ water: [{ x: 0, y: 1 }] });
+    expect(planPath(wet, 'a', { x: 0, y: 1 })?.costFt).toBe(10);
+    expect(planPath(mover(wet, { speeds: { swim: 30 } }), 'a', { x: 0, y: 1 })?.costFt).toBe(5);
+  });
+
+  it('climbs a rise of more than 5 ft at 2 ft a foot, at 1 with a Climb Speed', () => {
+    const ledge = encounter({ ground: [{ x: 0, y: 1, ft: 10 }] });
+    expect(planPath(ledge, 'a', { x: 0, y: 1 })?.costFt).toBe(25);
+    expect(planPath(mover(ledge, { speeds: { climb: 30 } }), 'a', { x: 0, y: 1 })?.costFt).toBe(15);
+    // A step of 5 ft is walked.
+    expect(
+      planPath(encounter({ ground: [{ x: 0, y: 1, ft: 5 }] }), 'a', { x: 0, y: 1 })?.costFt,
+    ).toBe(5);
+  });
+
+  it('crawls at an extra foot per foot', () => {
+    expect(planPath(encounter(), 'a', { x: 0, y: 2 }, true)?.costFt).toBe(20);
+  });
+
+  it('flies at its height over a creature below, onto raised ground at that height', () => {
+    // b, a hostile, stands at (1, 0); a flies 10 ft up from (0, 0).
+    const base = encounter({ ground: [{ x: 3, y: 0, ft: 10 }] });
+    const [a, b, c] = base.combatants;
+    if (!a || !b || !c) throw new Error('no combatants');
+    const view: EncounterView = {
+      ...base,
+      combatants: [{ ...a, altitudeFt: 10, flies: true }, { ...b, side: 'hostile' }, c],
+    };
+    const over = planPath(view, 'a', { x: 2, y: 0 });
+    expect(over?.path).toEqual([
+      { x: 1, y: 0, altitudeFt: 10 },
+      { x: 2, y: 0, altitudeFt: 10 },
+    ]);
+    expect(over?.costFt).toBe(10);
+    // The raised square's ground is at its height: it stands there.
+    expect(planPath(view, 'a', { x: 3, y: 0 })?.path.at(-1)).toEqual({ x: 3, y: 0 });
+    // On the ground it cannot pass the hostile; it goes round.
+    const walking = { ...view, combatants: [{ ...a }, { ...b, side: 'hostile' as const }, c] };
+    expect(planPath(walking, 'a', { x: 2, y: 0 })?.path).toEqual([
+      { x: 1, y: 1 },
+      { x: 2, y: 0 },
+    ]);
+  });
+
+  it('keeps a flyer from flying into ground higher than it is', () => {
+    const base = encounter({
+      ground: [0, 1, 2, 3].map((y) => ({ x: 2, y, ft: 20 })),
+    });
+    const [a, ...rest] = base.combatants;
+    if (!a) throw new Error('no mover');
+    const view = { ...base, combatants: [{ ...a, altitudeFt: 10, flies: true as const }, ...rest] };
+    expect(planPath(view, 'a', { x: 3, y: 0 })).toBeNull();
+  });
+});
+
+describe('planPath down a bank into water', () => {
+  it('pays for the climb and the swim at once, as the rules do', () => {
+    const view = encounter({ ground: [{ x: 0, y: 0, ft: 10 }], water: [{ x: 0, y: 1 }] });
+    expect(planPath(view, 'a', { x: 0, y: 1 })?.costFt).toBe(30);
+  });
+});

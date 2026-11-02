@@ -76,7 +76,7 @@ export function completeSuspended(
   const state = foldDrafts(context, commandType, prior);
   const { trigger } = window;
   // A move out of reach goes on (docs/adr/0046-reactions-beyond-counterspell.md §2).
-  if (trigger.kind === 'move') return continueMove(context, state, trigger, ids);
+  if (trigger.kind === 'move') return continueMove(context, state, trigger, ids, dice);
   // A hit nobody answered lands in full; a miss stays one, which Graze may still make hurt
   // (docs/adr/0047-weapons.md §2); a rebuke's window holds nothing (§3–4).
   if (trigger.kind === 'attack') {

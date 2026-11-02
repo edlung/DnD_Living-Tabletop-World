@@ -103,6 +103,10 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'NOT_A_CREATURE',
   /** A grapple's or a shove's target more than one size larger (ADR 0049 §3). */
   'TOO_LARGE',
+  /** A move through the air or the earth without its speed; a jump beyond its reach (§5–7). */
+  'NO_FLY_SPEED',
+  'NO_BURROW_SPEED',
+  'JUMP_TOO_FAR',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;

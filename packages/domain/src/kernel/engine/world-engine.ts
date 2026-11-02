@@ -278,12 +278,14 @@ export class WorldEngine {
     }
     if (
       command.type === 'AdjustHitPoints' ||
+      command.type === 'SetCondition' ||
       command.type === 'AddCombatant' ||
       command.type === 'RemoveCombatant' ||
       command.type === 'DelayTurn'
     ) {
-      // The DM's damage may call for a Concentration save, a joining creature rolls initiative, and
-      // a turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2).
+      // The DM's damage may call for a Concentration save, a joining creature rolls initiative, a
+      // turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2), and a
+      // flyer made Prone falls (docs/adr/0049-space-and-movement.md §6).
       return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
     }
     if (command.type === 'CloseReactionWindow') {

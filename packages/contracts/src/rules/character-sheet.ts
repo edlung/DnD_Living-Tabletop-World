@@ -175,6 +175,23 @@ const spentDice = z.number().int().min(0).max(20);
 export const CREATURE_SIZES = ['tiny', 'small', 'medium', 'large', 'huge', 'gargantuan'] as const;
 export type CreatureSize = (typeof CREATURE_SIZES)[number];
 
+const feet = z.number().int().min(0).max(200).multipleOf(5);
+
+/**
+ * Speeds beside walking (docs/adr/0049-space-and-movement.md §5), in feet; `hover` keeps a flyer
+ * aloft when it cannot move. Absent: none.
+ */
+export const speedsSchema = z
+  .object({
+    fly: feet.optional(),
+    swim: feet.optional(),
+    climb: feet.optional(),
+    burrow: feet.optional(),
+    hover: z.literal(true).optional(),
+  })
+  .strict();
+export type Speeds = z.infer<typeof speedsSchema>;
+
 /**
  * The SRD 5.2.1 conditions (docs/adr/0045-conditions-and-actions.md §1), Exhaustion apart (a level,
  * §3), and the Slow mastery's Slowed. Paralyzed, Petrified, Stunned and Unconscious include
@@ -248,6 +265,8 @@ export const characterSheetSchema = z
     speedFt: z.number().int().min(0).max(200).multipleOf(5),
     /** Its size (docs/adr/0049-space-and-movement.md §1); absent: Medium. */
     size: z.enum(CREATURE_SIZES).optional(),
+    /** Its speeds beside walking (ADR 0049 §5); absent: none. */
+    speeds: speedsSchema.optional(),
     savingThrows: z.array(z.enum(ABILITIES)),
     skills: z
       .object({ proficient: z.array(z.enum(skillIds)), expertise: z.array(z.enum(skillIds)) })

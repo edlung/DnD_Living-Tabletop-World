@@ -39,7 +39,7 @@ export function createCombatEngine(): CombatPort {
         case 'StartCombat':
           return decideStartCombat(context, command, dice);
         case 'MoveCombatant':
-          return decideMove(context, command);
+          return decideMove(context, command, dice);
         case 'Attack':
           return decideAttack(context, command, dice);
         case 'CastSpell':
@@ -61,7 +61,7 @@ export function createCombatEngine(): CombatPort {
         case 'AdjustHitPoints':
           return decideAdjustHitPoints(context, command, dice);
         case 'SetCondition':
-          return decideSetCondition(context, command);
+          return decideSetCondition(context, command, dice);
         case 'SetExhaustion':
           return decideSetExhaustion(context, command);
         case 'SetInspiration':

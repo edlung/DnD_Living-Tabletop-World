@@ -57,9 +57,49 @@ export const battlefieldSchema = z
       .max(400),
     /** Squares no one stands in or crosses (docs/adr/0049-space-and-movement.md §4). */
     walls: z.array(squareSchema).max(800).optional(),
+    /** Water, swum (§5); deep water immerses who is in it (§11). */
+    water: z
+      .array(
+        z
+          .object({
+            x: squareSchema.shape.x,
+            y: squareSchema.shape.y,
+            deep: z.literal(true).optional(),
+          })
+          .strict(),
+      )
+      .max(800)
+      .optional(),
+    /** The ground's height in feet, raised (a ledge, a roof) or sunk (a pit); absent: 0 (§6). */
+    ground: z
+      .array(
+        z
+          .object({
+            x: squareSchema.shape.x,
+            y: squareSchema.shape.y,
+            ft: z.number().int().min(-200).max(200).multipleOf(5),
+          })
+          .strict(),
+      )
+      .max(800)
+      .optional(),
   })
   .strict();
 export type Battlefield = z.infer<typeof battlefieldSchema>;
+
+/**
+ * One step of a move (docs/adr/0049-space-and-movement.md §5–8): the square entered, its height
+ * above the ground there for a flyer (or below it, burrowing), a long or high jump's step through
+ * the air, and a drop off a ledge or into a pit instead of climbing down — the move's last step.
+ */
+export const pathStepSchema = squareSchema
+  .extend({
+    altitudeFt: z.number().int().min(-50).max(500).multipleOf(5).optional(),
+    jump: z.literal(true).optional(),
+    drop: z.literal(true).optional(),
+  })
+  .strict();
+export type PathStep = z.infer<typeof pathStepSchema>;
 
 export const startCombatCommandSchema = z
   .object({
@@ -89,7 +129,9 @@ export const moveCombatantCommandSchema = z
     type: z.literal('MoveCombatant'),
     combatantId: entityIdSchema,
     /** Squares entered, in order, starting next to the current square. */
-    path: z.array(squareSchema).min(1).max(40),
+    path: z.array(pathStepSchema).min(1).max(40),
+    /** Prone, it crawls instead of standing up: each foot costs an extra foot (ADR 0049 §5). */
+    crawl: z.literal(true).optional(),
   })
   .strict();
 

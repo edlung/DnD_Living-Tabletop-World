@@ -15,7 +15,8 @@ import { HpBar } from '../board/token.tsx';
 import { conditionGlyph } from '../combat-art.ts';
 import { sideWords, stateWords, temporaryWords } from '../hit-point-words.ts';
 import { useCombatantLabels } from '../labels.ts';
-import type { PlannedPath } from '../movement.ts';
+import type { MoveOption } from '../move-options.ts';
+import { moveDetail } from '../move-words.ts';
 
 /**
  * The side panel at rest (docs/STAGE_320_DESIGN.md §5.5): how to read the board — what the
@@ -29,6 +30,19 @@ const WINDOW_WAITS = {
   attack: 'The attack is waiting for a reaction.',
   damage: 'The damage done is waiting for a reaction.',
 } as const;
+
+/** The legend's terrain beyond the usual: only what this battlefield has. */
+function terrainKeys(battlefield: EncounterView['battlefield']) {
+  const water = battlefield.water ?? [];
+  const ground = battlefield.ground ?? [];
+  return [
+    { swatch: 'wall', words: 'Wall', shown: (battlefield.walls?.length ?? 0) > 0 },
+    { swatch: 'water', words: 'Water', shown: water.some((at) => at.deep !== true) },
+    { swatch: 'deep', words: 'Deep water', shown: water.some((at) => at.deep === true) },
+    { swatch: 'raised', words: 'Raised ground', shown: ground.some((at) => at.ft > 0) },
+    { swatch: 'pit', words: 'Pit', shown: ground.some((at) => at.ft < 0) },
+  ].filter((entry) => entry.shown);
+}
 
 export function BoardLegend({
   encounter,
@@ -65,13 +79,13 @@ export function BoardLegend({
           <img src={boardUrl('cover-total')} alt="" />
           {t('Total cover')}
         </li>
-        {/* Walls, when the battlefield has any (docs/adr/0049-space-and-movement.md §4). */}
-        {(encounter.battlefield.walls?.length ?? 0) > 0 && (
-          <li>
-            <span className="legend-swatch legend-swatch--wall" aria-hidden="true" />
-            {t('Wall')}
+        {/* Walls, water, raised ground and pits, when the battlefield has any (ADR 0049 §4–6). */}
+        {terrainKeys(encounter.battlefield).map(({ swatch, words }) => (
+          <li key={swatch}>
+            <span className={`legend-swatch legend-swatch--${swatch}`} aria-hidden="true" />
+            {t(words)}
           </li>
-        )}
+        ))}
         <li>
           <span className="legend-ring legend-ring--party" aria-hidden="true" />
           {t('Party')}
@@ -102,21 +116,29 @@ export function BoardLegend({
   );
 }
 
-/** A chosen empty square: the advisory route the client composed; the rules decide. */
+/**
+ * A chosen empty square: the advisory route the client composed and the other ways there — a
+ * landing, a crawl, a jump, a drop (docs/adr/0049-space-and-movement.md §5–8); the rules decide.
+ */
 export function MoveDetails({
   square,
-  plan,
+  moves,
+  prone,
   myTurn,
   panel,
   onClose,
 }: {
   readonly square: Square;
-  readonly plan: PlannedPath | null;
+  readonly moves: readonly MoveOption[];
+  /** The mover lies Prone: walking stands it up first. */
+  readonly prone: boolean;
   readonly myTurn: boolean;
   readonly panel: Ref<HTMLElement>;
   readonly onClose: () => void;
 }) {
   const t = useT();
+  const plan = moves.find((option) => option.kind === 'move') ?? null;
+  const others = moves.flatMap((option) => moveDetail(t, option) ?? []);
   return (
     <section
       ref={panel}
@@ -144,6 +166,16 @@ export function MoveDetails({
         </p>
       ) : (
         <p className="muted">{t('No open route to this square.')}</p>
+      )}
+      {plan && prone && (
+        <p className="muted">{t('Moving stands you up first, for half your Speed.')}</p>
+      )}
+      {others.length > 0 && (
+        <ul className="side-moves">
+          {others.map((words) => (
+            <li key={words}>{words}</li>
+          ))}
+        </ul>
       )}
     </section>
   );

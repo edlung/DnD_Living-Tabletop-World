@@ -28,6 +28,7 @@ import { combatantEvent, gapBetween, isAlive, turnStateOf } from '../battlefield
 import { applyDamage } from '../damage.ts';
 import type { AttackPlan, Refusal } from '../legality.ts';
 import { applied as masteryApplied, masteryOnHit } from '../masteries.ts';
+import { fallsAfterHarm } from '../falling.ts';
 import { isObject } from '../objects.ts';
 import {
   has,
@@ -445,6 +446,7 @@ export function hitEvents(
   if (spec.mastery && !dead) {
     events.push(...masteryOnHit(state, dice, made, spec.mastery, applied.vitals, amount));
   }
+  if (target) events.push(...fallsAfterHarm(state, dice, events, target, applied.vitals, dead));
   if (!dead) {
     events.push(...rebukeWindow(context, state, ids, made, amount, applied.vitals, nestUnder));
   }

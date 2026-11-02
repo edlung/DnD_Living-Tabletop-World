@@ -23,6 +23,7 @@ import {
 } from './battlefield.ts';
 import { FightWork, endCondition, revealed, sourceOf, withDetail } from './condition-details.ts';
 import { attackPlan, type Refusal } from './legality.ts';
+import { fallEvents } from './falling.ts';
 import { pushedTo } from './masteries.ts';
 import { isObject } from './objects.ts';
 import { combatPremises, refused } from './refusal.ts';
@@ -165,8 +166,10 @@ export function decideUnarmed(
     return accept(...events);
   }
   const to = pushedTo(state, encounter.value, actor, target, 5);
-  if (to.x !== target.position.x || to.y !== target.position.y) {
-    events.push(work.record({ ...target, position: { ...to } }));
+  if (to.square.x !== target.position.x || to.square.y !== target.position.y) {
+    events.push(work.record({ ...target, position: { ...to.square } }));
+    // Shoved off a drop, it falls (docs/adr/0049-space-and-movement.md §8).
+    if (to.fallFt > 0) events.push(...fallEvents(state, dice, targetVitals, to.fallFt).events);
     // Pushed out of a grapple's reach, it is held no longer.
     events.push(...grapplesSweep(work, state));
   }

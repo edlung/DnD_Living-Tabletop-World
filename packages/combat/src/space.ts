@@ -1,8 +1,8 @@
 import type { Square } from '@ltw/contracts';
 import type { CombatantRecord, EncounterState, WorldState } from '@ltw/domain';
-import { sizeRank, spanOf, squaresOf, type Placed } from '@ltw/rules';
+import { fills, heightFt, sizeRank, spanOf, squaresOf, type Placed } from '@ltw/rules';
 
-import { fitsOnField, isDifficult, occupant, placedOf } from './battlefield.ts';
+import { fitsOnField, groundOf, heightOf, isAlive, placedOf } from './battlefield.ts';
 import { isObjectIn } from './objects.ts';
 import { incapacitated, sizeOf, vitalsOf } from './vitals.ts';
 
@@ -34,23 +34,37 @@ function passable(state: WorldState, mover: Placed, moverSide: string, other: Co
   );
 }
 
-/** How the mover's space fits with its north-west square on `square`, or null when it cannot. */
+/**
+ * How the mover's space fits with its north-west square on `square`, `altitudeFt` above the ground
+ * there, or null when it cannot. Another creature is in the way only where their heights meet: a
+ * flyer passes over, a burrower under (docs/adr/0049-space-and-movement.md §6, §9).
+ */
 export function fitAt(
   state: WorldState,
   encounter: EncounterState,
   mover: CombatantRecord,
   square: Square,
   ending: boolean,
+  altitudeFt = 0,
 ): StepFit | null {
   const placed = placedOf(state, mover);
   const ways = spanOf({ ...placed, squeezed: false }) > 1 ? [false, true] : [false];
   for (const squeezed of ways) {
     const space: Placed = { position: square, size: placed.size, squeezed };
     if (!fitsOnField(encounter, space)) continue;
+    const bottom = groundOf(encounter, space) + altitudeFt;
+    const top = bottom + heightFt(placed.size);
+    const others = encounter.combatants.filter((other) => {
+      if (other.entityId === mover.entityId || !isAlive(state, other.entityId)) return false;
+      const vitals = vitalsOf(state, other.entityId);
+      if (!vitals) return false;
+      const below = heightOf(state, encounter, other);
+      return below < top && bottom < below + heightFt(sizeOf(vitals));
+    });
     let through = false;
     let blocked = false;
     for (const at of squaresOf(space)) {
-      const other = occupant(state, encounter, at, mover.entityId);
+      const other = others.find((one) => fills(placedOf(state, one), at));
       if (!other) continue;
       const vitals = vitalsOf(state, other.entityId);
       const tinyTogether = placed.size === 'tiny' && vitals !== null && sizeOf(vitals) === 'tiny';
@@ -63,20 +77,4 @@ export function fitAt(
     if (!blocked) return { squeezed, through };
   }
   return null;
-}
-
-/**
- * Feet one step costs (ADR 0049 §2, §4): 5, another 5 in Difficult Terrain — any square of its
- * space difficult, or another creature's space — and another 5 while squeezing.
- */
-export function stepCostFt(
-  state: WorldState,
-  encounter: EncounterState,
-  mover: CombatantRecord,
-  square: Square,
-  fit: StepFit,
-): number {
-  const space: Placed = { ...placedOf(state, mover), position: square, squeezed: fit.squeezed };
-  const hard = fit.through || squaresOf(space).some((at) => isDifficult(encounter, at));
-  return 5 + (hard ? 5 : 0) + (fit.squeezed ? 5 : 0);
 }

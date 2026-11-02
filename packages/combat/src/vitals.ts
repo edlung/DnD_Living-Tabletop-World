@@ -5,6 +5,7 @@ import {
   type Condition,
   type CreatureSize,
   type HitPoints,
+  type Speeds,
   type StatBlock,
 } from '@ltw/contracts';
 import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
@@ -45,6 +46,26 @@ export const defensesOf = (v: Vitals) => (v.kind === 'character' ? v.sheet : v.b
 /** Its size (docs/adr/0049-space-and-movement.md §1): Medium when its sheet or block names none. */
 export const sizeOf = (v: Vitals): CreatureSize =>
   (v.kind === 'character' ? v.sheet.size : v.block.size) ?? 'medium';
+/** Its speeds beside walking (ADR 0049 §5): none when its sheet or block names none. */
+export const speedsOf = (v: Vitals): Speeds =>
+  (v.kind === 'character' ? v.sheet.speeds : v.block.speeds) ?? {};
+
+/** The ways a creature moves (ADR 0049 §5): on foot, by air, swimming, climbing, underground. */
+export type Way = 'walk' | 'fly' | 'swim' | 'climb' | 'burrow';
+
+/**
+ * Its speed for a way of moving (ADR 0049 §5): the way's own speed, else its walking one (climbing
+ * and swimming at a cost; flying and burrowing not at all), lowered as its walking speed is.
+ */
+export function wayOfSpeed(v: Vitals, way: Way): number {
+  const walking = speedOf(v);
+  if (walking === 0) return 0;
+  const lowered = baseSpeedOf(v) - walking;
+  const speeds = speedsOf(v);
+  const own = way === 'walk' ? baseSpeedOf(v) : speeds[way];
+  if (own === undefined) return way === 'swim' || way === 'climb' ? walking : 0;
+  return Math.max(0, own - lowered);
+}
 export const armorClass = (v: Vitals) =>
   v.kind === 'character' ? v.sheet.armorClass : v.block.armorClass;
 export const conditionsOf = (v: Vitals): readonly Condition[] =>
@@ -86,10 +107,13 @@ export function rollInitiative(
 export const saveModifier = (v: Vitals, ability: Ability) =>
   v.kind === 'character' ? savingThrowModifier(v.sheet, ability) : v.block.savingThrows[ability];
 
+/** Its walking Speed before conditions and Exhaustion. */
+export const baseSpeedOf = (v: Vitals): number =>
+  v.kind === 'character' ? v.sheet.speedFt : v.block.speedFt;
+
 /** Speed after conditions and Exhaustion (ADR 0015; ADR 0045 §1, §3). */
 export function speedOf(v: Vitals): number {
-  const base = v.kind === 'character' ? v.sheet.speedFt : v.block.speedFt;
-  return speedAfterConditions(base, conditionsOf(v), exhaustionOf(v));
+  return speedAfterConditions(baseSpeedOf(v), conditionsOf(v), exhaustionOf(v));
 }
 
 export function withHitPoints(v: Vitals, current: number): Vitals {

@@ -26,6 +26,10 @@ import { CoverPiece, Token } from './token.tsx';
 const key = (square: { readonly x: number; readonly y: number }) =>
   `${String(square.x)},${String(square.y)}`;
 
+/** A raised square's or a pit's mark in its corner: "+10", "−10"; none on level ground. */
+const heightMark = (ft: number): string | undefined =>
+  ft === 0 ? undefined : ft > 0 ? `+${String(ft)}` : `−${String(-ft)}`;
+
 /** The space the board is given, as laid out by the stylesheet for this width. */
 function useSpace(): [React.RefObject<HTMLDivElement | null>, Size | null] {
   const ref = useRef<HTMLDivElement>(null);
@@ -117,6 +121,9 @@ export function Board({
   const layout = boardLayout(grid, cell, tilt);
   const hard = new Set(difficult.map(key));
   const walls = new Set((encounter.battlefield.walls ?? []).map(key));
+  // Water and the ground's heights (docs/adr/0049-space-and-movement.md §5–6).
+  const water = new Map((encounter.battlefield.water ?? []).map((w) => [key(w), w.deep === true]));
+  const heights = new Map((encounter.battlefield.ground ?? []).map((g) => [key(g), g.ft]));
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
   // Every square a combatant fills names it; its figure stands on its north-west square, as big
   // as its space (docs/adr/0049-space-and-movement.md §1).
@@ -184,6 +191,9 @@ export function Board({
         'board-square',
         hard.has(id) ? 'is-difficult' : '',
         walls.has(id) ? 'is-wall' : '',
+        water.has(id) ? (water.get(id) ? 'is-water is-deep' : 'is-water') : '',
+        (heights.get(id) ?? 0) > 0 ? 'is-raised' : '',
+        (heights.get(id) ?? 0) < 0 ? 'is-pit' : '',
         anchor && span > 1 ? 'has-span' : '',
         level ? 'has-cover' : '',
         level && occupant ? 'has-occupant' : '',
@@ -200,12 +210,15 @@ export function Board({
           type="button"
           className={classes.filter(Boolean).join(' ')}
           style={{ '--x': x, '--y': y } as CSSProperties}
+          data-height={heightMark(heights.get(id) ?? 0)}
           aria-label={squareName(t, square, {
             occupant,
             label: occupant ? labelOf(occupant.entity.entityId) : '',
             you: occupant !== null && occupant.entity.entityId === selfId,
             difficult: hard.has(id),
             wall: walls.has(id),
+            water: water.has(id) ? (water.get(id) ? 'deep' : 'shallow') : null,
+            groundFt: heights.get(id) ?? 0,
             cover: level,
             inArea,
           })}
@@ -257,6 +270,8 @@ export function Board({
           cover={coverAt.get(key(looked)) ?? null}
           difficult={hard.has(key(looked))}
           wall={walls.has(key(looked))}
+          water={water.has(key(looked)) ? (water.get(key(looked)) ? 'deep' : 'shallow') : null}
+          groundFt={heights.get(key(looked)) ?? 0}
         />
       )}
       <div

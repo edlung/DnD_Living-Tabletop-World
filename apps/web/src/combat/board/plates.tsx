@@ -1,4 +1,5 @@
 import type { EncounterView, Square } from '@ltw/contracts';
+import { useT } from '@ltw/ui';
 import type { CSSProperties } from 'react';
 
 import type { LabelOf } from '../labels.ts';
@@ -21,7 +22,8 @@ type PlateStyle = CSSProperties & {
  * press chooses that square, as a press on the figure does, and the terrain card reads it —
  * never at the figure or square it is drawn over. Elsewhere the layer lets every press through.
  * Decorative for assistive technology: every square's name carries the label, and the squares
- * are the controls.
+ * are the controls. A flyer's height rides above its plate (docs/adr/0049-space-and-movement.md
+ * §6), where no standing figure covers it.
  */
 export function BoardPlates({
   encounter,
@@ -38,6 +40,7 @@ export function BoardPlates({
   /** The pointer came over (`true`) or left (`false`) the plate of the combatant on a square. */
   readonly onPoint: (square: Square, over: boolean) => void;
 }) {
+  const t = useT();
   const occupied = encounter.combatants.map((entry) => entry.position);
   return (
     <div className="board-plates" aria-hidden="true">
@@ -65,6 +68,12 @@ export function BoardPlates({
               onPoint(combatant.position, false);
             }}
           >
+            {(combatant.altitudeFt ?? 0) !== 0 && (
+              <span className="plate-altitude">
+                {(combatant.altitudeFt ?? 0) > 0 ? '↑' : '↓'}{' '}
+                {t('{feet} ft', { feet: Math.abs(combatant.altitudeFt ?? 0) })}
+              </span>
+            )}
             <TokenPlate
               label={labelOf(combatant.entity.entityId)}
               hitPoints={combatant.hitPoints}

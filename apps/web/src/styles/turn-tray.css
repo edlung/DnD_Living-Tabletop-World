@@ -99,6 +99,10 @@
 .tray-end .tray-glyph {
   color: var(--gold-bright);
 }
+/* A flyer's rise points up: the descent's chevron turned (docs/adr/0049-space-and-movement.md §6) */
+.tray-action[data-move='rise'] .tray-glyph {
+  rotate: 180deg;
+}
 /* The knock-out choice for the melee attacks listed (docs/adr/0048-hit-points.md §4) */
 .tray-toggle {
   display: inline-flex;

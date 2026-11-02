@@ -1,4 +1,4 @@
-import type { Side, Square } from '@ltw/contracts';
+import type { PathStep, Side } from '@ltw/contracts';
 import {
   combatantOf,
   wieldedWeapons,
@@ -6,9 +6,9 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { WEAPONS, gapFt } from '@ltw/rules';
+import { WEAPONS } from '@ltw/rules';
 
-import { isAlive, placedOf, turnStateOf } from '../battlefield.ts';
+import { gapToSpace, isAlive, placedOf, turnStateOf } from '../battlefield.ts';
 import type { Refusal } from '../legality.ts';
 import { UNARMED_STRIKE, reachOfWeapon } from '../weapon-view.ts';
 import { has, incapacitated, vitalsOf, type Vitals } from '../vitals.ts';
@@ -104,7 +104,7 @@ export function firstProvocation(
   state: WorldState,
   encounter: EncounterState,
   mover: CombatantRecord,
-  path: readonly Square[],
+  path: readonly PathStep[],
   /** The first step was already offered (a move going on after its window): only later ones ask. */
   offered = false,
   /** Creatures the mover drags along (docs/adr/0047-weapons.md §3): they never fall behind. */
@@ -112,7 +112,7 @@ export function firstProvocation(
 ): Provocation | null {
   if (mover.turn.disengaged === true) return null;
   const moving = placedOf(state, mover);
-  let from: Square = mover.position;
+  let from: PathStep = { ...mover.position, altitudeFt: mover.altitudeFt ?? 0 };
   for (const [index, to] of path.entries()) {
     if (offered && index === 0) {
       from = to;
@@ -126,11 +126,11 @@ export function firstProvocation(
       const vitals = vitalsOf(state, other.entityId);
       if (!vitals || !isAlive(state, other.entityId)) continue;
       const reach = reachOf(meleeAttacks(state, vitals));
-      // Space to space (docs/adr/0049-space-and-movement.md §1): the mover's at each step.
-      const its = placedOf(state, other);
-      const leaves =
-        gapFt(its, { ...moving, position: from }) <= reach &&
-        gapFt(its, { ...moving, position: to }) > reach;
+      // Space to space and height to height (docs/adr/0049-space-and-movement.md §1, §6): the
+      // mover's at each step.
+      const gap = (step: PathStep) =>
+        gapToSpace(state, encounter, other, { ...moving, position: step }, step.altitudeFt ?? 0);
+      const leaves = gap(from) <= reach && gap(to) > reach;
       if (!leaves) continue;
       const plan = opportunityPlan(state, encounter, other.entityId, mover.entityId);
       if (plan.legal) candidates.push({ entityId: other.entityId });

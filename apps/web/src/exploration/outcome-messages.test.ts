@@ -3,6 +3,7 @@ import { translate } from '@ltw/ui';
 import { describe, expect, it } from 'vitest';
 
 import '../i18n/ru.ts';
+import '../i18n/ru-space.ts';
 import { outcomeMessage, rejectionMessage, toldAbout } from './outcome-messages.ts';
 
 const en = (key: string, params?: Readonly<Record<string, string | number>>) =>
@@ -67,5 +68,34 @@ describe('what a conversation’s result says', () => {
       'Вы показали улику. Поговорите или спросите снова, чтобы узнать, что скажет собеседник.',
     );
     expect(outcomeMessage(en, shown)).not.toMatch(/may have/);
+  });
+});
+
+// docs/adr/0049-space-and-movement.md §6–8: a move says where it took the mover, its height, a
+// landing's check and a fall, not only the square.
+describe('what a move’s result says', () => {
+  const move = (more: Partial<Extract<PlayerOutcome, { kind: 'MoveCombatant' }>>) =>
+    ({ kind: 'MoveCombatant', position: { x: 3, y: 6 }, ...more }) as PlayerOutcome;
+
+  it('says how high a flyer is', () => {
+    expect(outcomeMessage(en, move({ altitudeFt: 10 }))).toBe(
+      'You moved to 3, 6. You are 10 ft up.',
+    );
+    expect(outcomeMessage(ru, move({ altitudeFt: 10 }))).toContain('Вы на высоте 10 фт.');
+  });
+
+  it('tells a fall and the Prone it left', () => {
+    expect(outcomeMessage(en, move({ fell: { feet: 10, damage: 5 }, prone: true }))).toBe(
+      'You moved to 3, 6. You fall 10 ft and take 5 damage. You are Prone.',
+    );
+  });
+
+  it('tells a landing’s check, saying Prone once', () => {
+    expect(outcomeMessage(en, move({ landing: { total: 7, success: false }, prone: true }))).toBe(
+      'You moved to 3, 6. Landing: Acrobatics 7, you fall Prone.',
+    );
+    expect(outcomeMessage(ru, move({ landing: { total: 14, success: true } }))).toContain(
+      'вы устояли на ногах',
+    );
   });
 });

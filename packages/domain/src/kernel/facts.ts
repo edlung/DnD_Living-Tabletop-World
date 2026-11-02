@@ -295,6 +295,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'HealingApplied':
     case 'HitPointsAdjusted':
     case 'SavingThrowRolled':
+    case 'CheckRolled':
     case 'ConditionApplied':
     case 'DeathSaveRolled':
       return combatFootprint(event);

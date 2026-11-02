@@ -15,7 +15,8 @@ import { useScrollEdges } from '../../visual/scroll-edges.ts';
 import { optionArtUrl, optionLabelFor, shortLabelFor } from '../combat-art.ts';
 import { CHOSEN_ACTIONS, combatCommandFor, type CombatUiCommand } from '../combat-bindings.ts';
 import { useCombatantLabels } from '../labels.ts';
-import type { PlannedPath } from '../movement.ts';
+import { flightMoves, type MoveOption } from '../move-options.ts';
+import { moveGlyph, moveLabel, moveNote } from '../move-words.ts';
 import { optionNotes, warnsOfAlly } from '../target-options.tsx';
 import { ActionChoice } from './action-choice.tsx';
 import {
@@ -25,10 +26,13 @@ import {
   type AttackQuestion,
 } from './attack-choice.tsx';
 
-/** What the tray offers: the chosen square's move, or the chosen combatant's listed options. */
+/**
+ * What the tray offers: the ways to the chosen square (docs/adr/0049-space-and-movement.md
+ * §5–8), or the chosen combatant's listed options.
+ */
 export type TrayChoice =
   | { readonly kind: 'none' }
-  | { readonly kind: 'square'; readonly plan: PlannedPath | null }
+  | { readonly kind: 'square'; readonly moves: readonly MoveOption[] }
   | {
       readonly kind: 'combatant';
       readonly target: EncounterCombatantView;
@@ -89,6 +93,13 @@ export function TurnTray({
     choice.kind === 'combatant' ? `${chosen}:${String(choice.actions?.length ?? -1)}` : chosen,
   );
   const warned = choice.kind === 'combatant' && (choice.actions?.some(warnsOfAlly) ?? false);
+  // The ways to the chosen square; with nothing chosen or itself, a flyer's rising and coming
+  // down where it is (docs/adr/0049-space-and-movement.md §6).
+  const itself =
+    choice.kind === 'none' ||
+    (choice.kind === 'combatant' && choice.target.entity.entityId === actorId);
+  const moves =
+    choice.kind === 'square' ? choice.moves : itself ? flightMoves(encounter, actorId) : [];
   const hint =
     choice.kind === 'none'
       ? t('Choose a square to move, or a combatant to act.')
@@ -126,28 +137,40 @@ export function TurnTray({
         data-more-after={edges.after || undefined}
       >
         {hint && <p className="tray-hint">{hint}</p>}
-        {choice.kind === 'square' && (
-          <button
-            type="button"
-            className="tray-action"
-            disabled={locked || choice.plan === null}
-            onClick={() => {
-              if (choice.plan) {
-                onRun({
-                  kind: 'command',
-                  command: {
-                    type: 'MoveCombatant',
-                    combatantId: actorId,
-                    path: [...choice.plan.path],
-                  },
-                });
-              }
-            }}
-          >
+        {choice.kind === 'square' && choice.moves.length === 0 && (
+          <button type="button" className="tray-action" disabled>
             <Glyph name="move" className="tray-glyph" />
             <span className="tray-words">{t('Move here')}</span>
           </button>
         )}
+        {moves.map((option) => (
+          <button
+            key={option.kind}
+            type="button"
+            className="tray-action"
+            data-move={option.kind}
+            disabled={locked}
+            onClick={() => {
+              onRun({
+                kind: 'command',
+                command: {
+                  type: 'MoveCombatant',
+                  combatantId: actorId,
+                  path: [...option.path],
+                  ...(option.crawl ? { crawl: true } : {}),
+                },
+              });
+            }}
+          >
+            <Glyph name={moveGlyph(option)} className="tray-glyph" />
+            <span className="tray-words">{moveLabel(t, option)}</span>
+            {moveNote(t, option) && (
+              <small className="tray-note" aria-hidden="true">
+                {moveNote(t, option)}
+              </small>
+            )}
+          </button>
+        ))}
         {choice.kind === 'combatant' &&
           choice.actions?.map((action, index) => {
             const { target } = choice;

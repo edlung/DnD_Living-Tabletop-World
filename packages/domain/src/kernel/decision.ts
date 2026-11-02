@@ -74,6 +74,7 @@ export type ResolvedCommand =
           | 'StartCombat'
           | 'CloseReactionWindow'
           | 'AdjustHitPoints'
+          | 'SetCondition'
           | 'AddCombatant'
           | 'RemoveCombatant'
           | 'DelayTurn'
@@ -93,6 +94,8 @@ export type ResolvedCommand =
   | (KernelCommandOf<'AdjustHitPoints' | 'AddCombatant' | 'RemoveCombatant' | 'DelayTurn'> & {
       readonly resolution: Resolution;
     })
+  // A condition by hand rolls a grounded flyer's fall since Stage 640f; older ones have none.
+  | (KernelCommandOf<'SetCondition'> & { readonly resolution?: Resolution })
   | (KernelCommandOf<PlayerCommandType> & { readonly resolution: Resolution })
   | (KernelCommandOf<'CreateEntity'> & { readonly entityId: string })
   | (KernelCommandOf<'StartScene'> & { readonly sceneId: string })

@@ -14,6 +14,7 @@ import { rollDeathSave } from '@ltw/rules';
 
 import { encounterOf, isAlive, onTurn } from './battlefield.ts';
 import { durationsAt, FightWork, savesAtEndOfTurn } from './condition-details.ts';
+import { gravitySweep } from './falling.ts';
 import { isObjectIn } from './objects.ts';
 import { grapplesSweep } from './unarmed.ts';
 import { combatPremises } from './refusal.ts';
@@ -164,6 +165,9 @@ function turnStart(
 
   // A grapple its grappler can no longer hold ends (docs/adr/0047-weapons.md §3).
   events.push(...grapplesSweep(work, work.state));
+
+  // A flyer that can no longer stay aloft falls (docs/adr/0049-space-and-movement.md §6).
+  events.push(...gravitySweep(work, work.state, dice));
 
   // What lasts until the start of this combatant's turn ends (ADR 0045 §2).
   events.push(...durationsAt(work, combatant.entityId, 'start'));

@@ -7,6 +7,7 @@ import {
   SPELL_COMPONENTS,
   commandIdSchema,
   entityIdSchema,
+  pathStepSchema,
   squareSchema,
 } from '@ltw/contracts';
 import { z } from 'zod';
@@ -45,7 +46,10 @@ const moveTriggerSchema = z
     kind: z.literal('move'),
     moverId: entityIdSchema,
     at: squareSchema,
-    rest: z.array(squareSchema).min(1).max(40),
+    /** The steps the move has left, as the command named them (ADR 0049 §5–8). */
+    rest: z.array(pathStepSchema).min(1).max(40),
+    /** Crawling, as the move began (ADR 0049 §5). */
+    crawl: z.literal(true).optional(),
   })
   .strict();
 

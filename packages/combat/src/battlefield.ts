@@ -88,9 +88,53 @@ export function coverOf(
   );
 }
 
-/** Feet between the nearest squares of two combatants (ADR 0049 §1). */
-export const gapBetween = (state: WorldState, a: CombatantRecord, b: CombatantRecord): number =>
-  gapFt(placedOf(state, a), placedOf(state, b));
+/** The ground's height of a square in feet (ADR 0049 §6): raised or sunk, 0 when unmarked. */
+export const groundAt = (encounter: EncounterState, square: Square): number =>
+  (encounter.battlefield.ground ?? []).find((g) => sameSquare(g, square))?.ft ?? 0;
+
+/** Water, swum (ADR 0049 §5); deep water immerses (§11). */
+export const isWater = (encounter: EncounterState, square: Square): boolean =>
+  (encounter.battlefield.water ?? []).some((w) => sameSquare(w, square));
+export const isDeepWater = (encounter: EncounterState, square: Square): boolean =>
+  (encounter.battlefield.water ?? []).some((w) => sameSquare(w, square) && w.deep === true);
+
+/** The ground under a space: its highest square's, where it stands. */
+export const groundOf = (encounter: EncounterState, placed: Placed): number =>
+  Math.max(...squaresOf(placed).map((square) => groundAt(encounter, square)));
+
+/** Where a combatant's feet are, in feet: its ground and its height above it (§6). */
+export const heightOf = (
+  state: WorldState,
+  encounter: EncounterState,
+  record: CombatantRecord,
+): number => groundOf(encounter, placedOf(state, record)) + (record.altitudeFt ?? 0);
+
+/** Feet between a combatant and a space `altitudeFt` above its ground (ADR 0049 §1, §6). */
+export function gapToSpace(
+  state: WorldState,
+  encounter: EncounterState,
+  record: CombatantRecord,
+  space: Placed,
+  altitudeFt: number,
+): number {
+  const across = gapFt(placedOf(state, record), space);
+  const up = Math.abs(
+    heightOf(state, encounter, record) - (groundOf(encounter, space) + altitudeFt),
+  );
+  return Math.max(across, up);
+}
+
+/**
+ * Feet between two combatants (ADR 0049 §1, §6): between their nearest squares across, and the
+ * difference of their heights up, the larger counting as the SRD's grid counts a step up.
+ */
+export function gapBetween(state: WorldState, a: CombatantRecord, b: CombatantRecord): number {
+  const across = gapFt(placedOf(state, a), placedOf(state, b));
+  const encounter = state.encounter;
+  if (!encounter) return across;
+  const up = Math.abs(heightOf(state, encounter, a) - heightOf(state, encounter, b));
+  return Math.max(across, up);
+}
 
 /** Whether a space lies on the battlefield, clear of walls. */
 export const fitsOnField = (encounter: EncounterState, placed: Placed): boolean =>

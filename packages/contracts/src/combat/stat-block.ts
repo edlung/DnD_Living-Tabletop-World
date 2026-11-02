@@ -9,6 +9,7 @@ import {
   effectiveMaximum,
   exhaustionSchema,
   hitPointsSchema,
+  speedsSchema,
 } from '../rules/character-sheet.ts';
 
 /** What an object is made of, and how big it is (SRD 5.2.1; ADR 0048 §5). */
@@ -111,6 +112,8 @@ export const statBlockSchema = z
     speedFt: z.number().int().min(0).max(200).multipleOf(5),
     /** Its size (docs/adr/0049-space-and-movement.md §1); absent: Medium. */
     size: z.enum(CREATURE_SIZES).optional(),
+    /** Its speeds beside walking (ADR 0049 §5); absent: none. */
+    speeds: speedsSchema.optional(),
     abilities: z
       .object({ str: score, dex: score, con: score, int: score, wis: score, cha: score })
       .strict(),

@@ -19,5 +19,7 @@
   "offhand": "ui-combat-offhand",
   "grapple": "ui-combat-grapple",
   "hitPoints": "ui-combat-hit-points",
-  "space": "ui-combat-space"
+  "space": "ui-combat-space",
+  "terrain": "ui-combat-terrain",
+  "flight": "ui-combat-flight"
 }

@@ -21,6 +21,7 @@ type CombatEvent = Extract<
       | 'HealingApplied'
       | 'HitPointsAdjusted'
       | 'SavingThrowRolled'
+      | 'CheckRolled'
       | 'ConditionApplied'
       | 'DeathSaveRolled';
   }
@@ -84,6 +85,7 @@ export function combatFootprint(event: CombatEvent): Footprint {
     case 'HealingApplied':
     case 'HitPointsAdjusted':
     case 'SavingThrowRolled':
+    case 'CheckRolled':
     case 'ConditionApplied':
     case 'DeathSaveRolled':
       // Narrative records: their fold needs every creature they name (G03-H05).

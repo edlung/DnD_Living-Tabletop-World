@@ -16,6 +16,10 @@ export interface SquareFacts {
   readonly difficult: boolean;
   /** A wall (docs/adr/0049-space-and-movement.md §4); absent: none. */
   readonly wall?: boolean;
+  /** Water, shallow or deep (§5, §11); absent or null: none. */
+  readonly water?: 'shallow' | 'deep' | null;
+  /** The ground's height in feet: raised, or a pit below 0 (§6); absent: 0. */
+  readonly groundFt?: number;
   readonly cover: CoverLevel | null;
   /** The occupant is among those a previewed area spell would affect (the server's list). */
   readonly inArea: boolean;
@@ -38,6 +42,12 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
       // Its size when not Medium, and a squeeze (ADR 0049 §1, §4).
       ...(occupant.size === undefined ? [] : [t(occupant.size)]),
       ...(occupant.squeezed ? [t('squeezed')] : []),
+      // Flying above its ground, or burrowed below it (ADR 0049 §6, §9).
+      ...((occupant.altitudeFt ?? 0) > 0
+        ? [t('{feet} ft up', { feet: occupant.altitudeFt ?? 0 })]
+        : (occupant.altitudeFt ?? 0) < 0
+          ? [t('underground')]
+          : []),
       ...(occupant.state === 'up' ? [] : [thing ? t('destroyed') : t(occupant.state)]),
       ...occupant.conditions.map((condition) => t(condition)),
       ...(occupant.hitPoints ? [t('{current} / {max} HP', { ...occupant.hitPoints })] : []),
@@ -45,6 +55,11 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
     notes.push(parts.join(', '));
   }
   if (facts.wall === true) notes.push(t('wall'));
+  if (facts.water === 'deep') notes.push(t('deep water'));
+  if (facts.water === 'shallow') notes.push(t('water'));
+  const ground = facts.groundFt ?? 0;
+  if (ground > 0) notes.push(t('raised {feet} ft', { feet: ground }));
+  if (ground < 0) notes.push(t('a pit {feet} ft deep', { feet: -ground }));
   if (facts.difficult) notes.push(t('difficult terrain'));
   if (facts.cover) notes.push(t(COVER[facts.cover]));
   if (occupant && facts.inArea) notes.push(t('in the area'));

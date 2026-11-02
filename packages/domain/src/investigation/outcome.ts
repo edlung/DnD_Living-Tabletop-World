@@ -92,9 +92,30 @@ function combatOutcome(
   switch (commandType) {
     case 'MoveCombatant': {
       const moved = events.findLast((event) => event.type === 'CombatantUpdated');
-      return moved?.type === 'CombatantUpdated'
-        ? { kind: 'MoveCombatant', position: { ...moved.payload.combatant.position } }
-        : undefined;
+      if (moved?.type !== 'CombatantUpdated') return undefined;
+      // Its height, a landing's check, a fall and the Prone they left (ADR 0049 §6–8).
+      const { position, altitudeFt } = moved.payload.combatant;
+      // A move's only check is a landing's.
+      const landing = events.find((event) => event.type === 'CheckRolled');
+      const fall = events.find((event) => event.type === 'DamageApplied' && event.payload.fallFt);
+      const prone = events.some(
+        (event) =>
+          event.type === 'ConditionApplied' &&
+          event.payload.condition === 'prone' &&
+          (event.payload.cause === 'fell' || event.payload.cause === 'landing'),
+      );
+      return {
+        kind: 'MoveCombatant',
+        position: { ...position },
+        ...(altitudeFt ? { altitudeFt } : {}),
+        ...(landing?.type === 'CheckRolled'
+          ? { landing: { total: landing.payload.total, success: landing.payload.success } }
+          : {}),
+        ...(fall?.type === 'DamageApplied' && fall.payload.fallFt
+          ? { fell: { feet: fall.payload.fallFt, damage: fall.payload.amount } }
+          : {}),
+        ...(prone ? { prone: true as const } : {}),
+      };
     }
     // The readied attack is an attack, made with the Reaction (ADR 0046 §5).
     case 'Attack':

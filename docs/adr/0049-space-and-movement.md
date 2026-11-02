@@ -45,10 +45,12 @@
    as the SRD's grid does (a 5-ft step up is 5 ft). A flyer that falls Prone, is held to Speed 0 or
    is Incapacitated falls unless it hovers.
 7. **Jumping** (SRD 5.2.1): a long jump of up to the creature's Strength score in feet after 10 ft
-   on foot in the same move, half that standing, over the squares it does not touch — a pit, a
-   stream, difficult ground; landing in Difficult Terrain asks a DC 10 Dexterity (Acrobatics) check
-   or the creature falls Prone. A high jump of 3 + Strength modifier feet (half standing) lifts it
-   onto ground that high without climbing. Each foot jumped costs a foot of movement.
+   on foot just before — in the same move, or earlier in the turn when the move begins with the
+   jump, so a player may walk to the edge and then jump — half that standing, over the squares it
+   does not touch: a pit, a stream, difficult ground. Landing in Difficult Terrain asks a DC 10
+   Dexterity (Acrobatics) check or the creature falls Prone; landing far below is a fall. A high
+   jump of 3 + Strength modifier feet (half standing) lifts it onto ground that high without
+   climbing. Each foot jumped costs a foot of movement.
 8. **Falling** (SRD 5.2.1): 1d6 Bludgeoning damage per 10 ft fallen, at most 20d6, and Prone
    unless no damage was taken. A creature falls when it walks into a pit or off a drop it does not
    climb down, when a push or a shove sends it there, or when a flyer falls. **Feather Fall**

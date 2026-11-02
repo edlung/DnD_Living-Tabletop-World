@@ -47,9 +47,14 @@ export function decideStartCombat(
   const inside = (s: { x: number; y: number }) =>
     s.x < battlefield.width && s.y < battlefield.height;
   const walls = new Set((battlefield.walls ?? []).map(key));
-  if (
-    ![...battlefield.difficult, ...battlefield.cover, ...(battlefield.walls ?? [])].every(inside)
-  ) {
+  const terrain = [
+    ...battlefield.difficult,
+    ...battlefield.cover,
+    ...(battlefield.walls ?? []),
+    ...(battlefield.water ?? []),
+    ...(battlefield.ground ?? []),
+  ];
+  if (!terrain.every(inside)) {
     return invalid('Terrain lies outside the battlefield');
   }
   const ids = command.combatants.map((c) => c.entityId);

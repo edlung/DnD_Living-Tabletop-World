@@ -148,7 +148,7 @@ export function needsAid(v: Vitals): boolean {
 }
 
 /** A check of the creature's skill, with its conditions' tilt and Exhaustion (ADR 0045 §1). */
-function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC) {
+export function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC) {
   const effects = checkEffects(conditionsOf(vitals), exhaustionOf(vitals));
   const base =
     vitals.kind === 'character'

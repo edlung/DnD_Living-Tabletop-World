@@ -179,6 +179,7 @@ export {
   characterSheetSchema,
   effectiveMaximum,
   hitPointsSchema,
+  speedsSchema,
   type Ability,
   type AmmunitionKind,
   type CharacterSheet,
@@ -190,6 +191,7 @@ export {
   type Skill,
   type SpellId,
   type SpellcastingSource,
+  type Speeds,
   type WeaponId,
   type WeaponMastery,
 } from './rules/character-sheet.ts';

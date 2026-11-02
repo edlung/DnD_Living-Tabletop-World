@@ -89,6 +89,9 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   hitPoints: 'placed',
   // Space (docs/adr/0049-space-and-movement.md): a Large raider, a wall with a gap.
   space: 'placed',
+  // Terrain and flight (ADR 0049 §5–8): a ledge, a stream and a pit; Elowen with wings.
+  terrain: 'placed',
+  flight: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -108,6 +111,45 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedCart(engine, campaigns.hitPoints);
   await seedBesideStart(engine, campaigns.hitPoints);
   await seedSpaceStart(engine, campaigns.space);
+  await seedTerrainStart(engine, campaigns.terrain, false);
+  await seedTerrainStart(engine, campaigns.flight, true);
+}
+
+/**
+ * The terrain journeys (`terrain.spec.ts`, docs/adr/0049-space-and-movement.md §5–8): a stream at
+ * (3, 7)–(4, 7) and a pit 10 ft deep at (5, 6). In the terrain campaign Elowen starts on a ledge
+ * 10 ft high, (2, 5)–(2, 6), above level ground; in the flight one she stands on level ground with
+ * a Fly Speed of 30 ft.
+ */
+async function seedTerrainStart(
+  engine: WorldEngine,
+  campaignId: string,
+  flies: boolean,
+): Promise<void> {
+  const sheet = rulesSeed.commands.find(
+    (command) => command.type === 'SetCharacterSheet' && command.entityId === 'elowen-starwhisper',
+  );
+  if (!sheet || !('sheet' in sheet)) throw new Error('UI combat: Elowen has no sheet to seed');
+  const ledge = flies ? [] : [5, 6].map((y) => ({ x: 2, y, ft: 10 }));
+  const start = {
+    ...ambush.startCombat,
+    battlefield: {
+      ...ambush.startCombat.battlefield,
+      water: [3, 4].map((x) => ({ x, y: 7 })),
+      ground: [...ledge, { x: 5, y: 6, ft: -10 }],
+    },
+  };
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.terrain`,
+    commands: [
+      ...(flies ? [{ ...sheet, sheet: { ...sheet.sheet, speeds: { fly: 30 } } }] : []),
+      start,
+    ],
+  })) {
+    await accept(engine, submission);
+  }
 }
 
 /**

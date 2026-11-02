@@ -1,5 +1,5 @@
 import type { EntityKind, KernelCommandOf } from '../kernel/commands.ts';
-import type { Ability, Condition, CreatureSize } from '../rules/character-sheet.ts';
+import type { Ability, Condition, CreatureSize, Speeds } from '../rules/character-sheet.ts';
 import type { Battlefield, Side } from './commands.ts';
 import type { ReactionId, ReactionResponse, SpellComponent } from './reactions.ts';
 import type { ObjectMaterial, ObjectSize } from './stat-block.ts';
@@ -35,6 +35,12 @@ export interface EncounterCombatantView {
   readonly size?: CreatureSize;
   /** Squeezed through a space a size smaller (ADR 0049 §4): it fills that smaller space. */
   readonly squeezed?: true;
+  /** Feet above the ground of its squares: flying; below it, burrowing (ADR 0049 §6, §9). */
+  readonly altitudeFt?: number;
+  /** It can fly, as anyone sees its wings (ADR 0049 §5): the turn tray offers to rise. */
+  readonly flies?: true;
+  /** Its speeds beside walking, seen as its hit points are: the route's advisory cost uses them. */
+  readonly speeds?: Speeds;
   /** `down`: at 0 HP but alive (a character making death saves). */
   readonly state: 'up' | 'down' | 'dead';
   readonly conditions: readonly Condition[];

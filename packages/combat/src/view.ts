@@ -21,6 +21,7 @@ import {
   hitPoints,
   knockedOutOf,
   sizeOf,
+  speedsOf,
   vitalsOf,
 } from './vitals.ts';
 
@@ -94,6 +95,10 @@ export function encounterView(
       // Its size and a squeeze, as anyone looking sees (docs/adr/0049-space-and-movement.md §1, §4).
       ...(sizeOf(vitals) === 'medium' ? {} : { size: sizeOf(vitals) }),
       ...(combatant.squeezed === true ? { squeezed: true as const } : {}),
+      ...(combatant.altitudeFt === undefined ? {} : { altitudeFt: combatant.altitudeFt }),
+      ...(speedsOf(vitals).fly === undefined ? {} : { flies: true as const }),
+      // Its speeds beside walking, as its hit points: the party's and the DM's to know (§5).
+      ...(showHp && Object.keys(speedsOf(vitals)).length > 0 ? { speeds: speedsOf(vitals) } : {}),
       // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).
       state:
         entity.status !== 'active'
@@ -151,8 +156,21 @@ export function encounterView(
       height: battlefield.height,
       difficult: battlefield.difficult.map(({ x, y }) => ({ x, y })),
       cover: battlefield.cover.map(({ x, y, level }) => ({ x, y, level })),
-      // Walls (docs/adr/0049-space-and-movement.md §4), when the battlefield has any.
+      // Walls, water and the ground's heights (docs/adr/0049-space-and-movement.md §4–6), when the
+      // battlefield has any.
       ...(battlefield.walls ? { walls: battlefield.walls.map(({ x, y }) => ({ x, y })) } : {}),
+      ...(battlefield.water
+        ? {
+            water: battlefield.water.map(({ x, y, deep }) => ({
+              x,
+              y,
+              ...(deep === true ? { deep } : {}),
+            })),
+          }
+        : {}),
+      ...(battlefield.ground
+        ? { ground: battlefield.ground.map(({ x, y, ft }) => ({ x, y, ft })) }
+        : {}),
     },
     combatants,
     reactionWindow: reactionWindowView(state, { dm, holder, known }),

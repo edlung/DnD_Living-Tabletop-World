@@ -124,6 +124,11 @@ export const combatantRecordSchema = z
      * that smaller space until it stands where it fits again. Absent: not squeezed.
      */
     squeezed: z.literal(true).optional(),
+    /**
+     * Feet above the ground of its squares (ADR 0049 §6): a flyer's height, or below it while it
+     * burrows. Absent: on the ground.
+     */
+    altitudeFt: z.number().int().min(-50).max(500).multipleOf(5).optional(),
   })
   .strict();
 
@@ -248,6 +253,8 @@ export const combatEventPayloadSchemas = {
       absorbed: z.number().int().min(1).max(999).optional(),
       /** Knocked out instead of brought to 0 (ADR 0048 §4). */
       knockedOut: z.literal(true).optional(),
+      /** A fall's damage, from this many feet (docs/adr/0049-space-and-movement.md §8). */
+      fallFt: z.number().int().min(5).max(1000).optional(),
     })
     .strict(),
   HealingApplied: z
@@ -269,6 +276,22 @@ export const combatEventPayloadSchemas = {
       damageType: slug.optional(),
       hpBefore: hp,
       hpAfter: hp,
+    })
+    .strict(),
+  /**
+   * An ability check rolled in a fight by its rules (docs/adr/0049-space-and-movement.md §7): a
+   * long jump's landing in Difficult Terrain, DC 10 Dexterity (Acrobatics). A record only.
+   */
+  CheckRolled: z
+    .object({
+      creatureId: entityIdSchema,
+      skill: z.enum(SKILL_IDS),
+      dc: z.number().int().min(1).max(40),
+      rolls,
+      modifier: z.number().int(),
+      total: z.number().int(),
+      success: z.boolean(),
+      purpose: z.enum(['landing']),
     })
     .strict(),
   SavingThrowRolled: z

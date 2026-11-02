@@ -46,6 +46,12 @@ const RESOLVED_TYPES: ReadonlySet<string> = new Set([
 ]);
 
 /**
+ * Commands resolved since a later stage, stored without a resolution before it: a condition by
+ * hand, which rolls a grounded flyer's fall (docs/adr/0049-space-and-movement.md §6, Stage 640f).
+ */
+const LATER_RESOLVED_TYPES: ReadonlySet<string> = new Set(['SetCondition']);
+
+/**
  * A stored command must carry the IDs and draws the engine resolved before
  * deciding. Player commands carry them in `resolution`, which submissions
  * can never contain (the submission schema is strict).
@@ -78,7 +84,10 @@ const resolvedCommandSchema = z.looseObject({ type: z.string() }).transform((raw
     context.addIssue({ code: 'custom', message: 'stored commands must have resolved IDs' });
     return z.NEVER;
   }
-  if (!RESOLVED_TYPES.has(value.type)) {
+  if (LATER_RESOLVED_TYPES.has(value.type) && resolution === undefined) {
+    return value as ResolvedCommand;
+  }
+  if (!RESOLVED_TYPES.has(value.type) && !LATER_RESOLVED_TYPES.has(value.type)) {
     if (resolution !== undefined)
       context.addIssue({ code: 'custom', message: 'unexpected resolution' });
     return value as ResolvedCommand;

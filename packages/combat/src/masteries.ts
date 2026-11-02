@@ -11,7 +11,8 @@ import {
 import { sizeRank, spanOf, squaresOf } from '@ltw/rules';
 
 import type { MadeAttack } from './attack.ts';
-import { combatantEvent, coverAt, placedOf } from './battlefield.ts';
+import { combatantEvent, coverAt, groundOf, placedOf } from './battlefield.ts';
+import { fallEvents } from './falling.ts';
 import type { MasteryUse } from './legality.ts';
 import { isObject } from './objects.ts';
 import { spellSave } from './saves.ts';
@@ -50,7 +51,7 @@ export function pushedTo(
   pusher: CombatantRecord,
   target: CombatantRecord,
   feet: number,
-): Square {
+): { readonly square: Square; readonly fallFt: number } {
   const middle = (record: CombatantRecord) => {
     const half = (spanOf(placedOf(state, record)) - 1) / 2;
     return { x: record.position.x + half, y: record.position.y + half };
@@ -59,20 +60,38 @@ export function pushedTo(
   const dx = Math.sign(b.x - a.x);
   const dy = Math.sign(b.y - a.y);
   let at = target.position;
+  const placed = placedOf(state, target);
   for (let step = 0; step < feet / 5; step += 1) {
     const next = { x: at.x + dx, y: at.y + dy };
     const fit = fitAt(state, encounter, target, next, true);
-    const space = { ...placedOf(state, target), position: next };
+    const space = { ...placed, position: next };
+    // It is not pushed up a rise it would climb; pushed off a drop, it falls there and stops
+    // (docs/adr/0049-space-and-movement.md §6, §8).
+    const drop = groundOf(encounter, { ...placed, position: at }) - groundOf(encounter, space);
     if (
       fit === null ||
       fit.squeezed ||
+      drop < -5 ||
       squaresOf(space).some((square) => coverAt(encounter, square) === 'total')
     ) {
       break;
     }
     at = next;
+    if (drop > 5) return { square: at, fallFt: drop };
   }
-  return at;
+  return { square: at, fallFt: 0 };
+}
+
+/** The events of a creature pushed to `to`, falling there when the push sent it off a drop. */
+export function pushedEvents(
+  state: WorldState,
+  dice: Dice,
+  target: CombatantRecord,
+  vitals: Vitals,
+  to: { readonly square: Square; readonly fallFt: number },
+): DraftEvent[] {
+  const moved = combatantEvent({ ...target, position: { ...to.square } });
+  return to.fallFt > 0 ? [moved, ...fallEvents(state, dice, vitals, to.fallFt).events] : [moved];
 }
 
 /** What a hit's mastery does once its damage is dealt (`amount`, the target alive after it). */
@@ -127,10 +146,10 @@ export function masteryOnHit(
       // A Large or smaller creature (SRD 5.2.1; docs/adr/0049-space-and-movement.md §3).
       if (sizeRank(sizeOf(target)) > sizeRank('large')) return [];
       const to = pushedTo(state, encounter, attacker, record, mastery.pushFt ?? 10);
-      if (to.x === record.position.x && to.y === record.position.y) return [];
+      if (to.square.x === record.position.x && to.square.y === record.position.y) return [];
       return [
-        applied(made, 'push', { from: record.position, to }),
-        combatantEvent({ ...record, position: { ...to } }),
+        applied(made, 'push', { from: record.position, to: to.square }),
+        ...pushedEvents(state, dice, record, target, to),
       ];
     }
     case 'cleave': {

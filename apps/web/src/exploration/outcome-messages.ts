@@ -135,8 +135,29 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       return t('Hypothesis recorded as HYPOTHESIS.');
     case 'Item':
       return t(ITEM_DONE[outcome.action]);
-    case 'MoveCombatant':
-      return t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });
+    case 'MoveCombatant': {
+      // Its height, a landing's check and a fall (docs/adr/0049-space-and-movement.md §6–8).
+      const moved = t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });
+      const aloft = outcome.altitudeFt
+        ? t(outcome.altitudeFt > 0 ? 'You are {feet} ft up.' : 'You are {feet} ft underground.', {
+            feet: Math.abs(outcome.altitudeFt),
+          })
+        : null;
+      const landing = outcome.landing
+        ? t(
+            outcome.landing.success
+              ? 'Landing: Acrobatics {total}, you keep your feet.'
+              : 'Landing: Acrobatics {total}, you fall Prone.',
+            { total: outcome.landing.total },
+          )
+        : null;
+      const fell = outcome.fell
+        ? t('You fall {feet} ft and take {damage} damage.', { ...outcome.fell })
+        : null;
+      const prone =
+        outcome.prone && outcome.landing?.success !== false ? t('You are Prone.') : null;
+      return [moved, aloft, landing, fell, prone].filter((part) => part !== null).join(' ');
+    }
     case 'Attack': {
       if (outcome.awaitingReaction) return t('The attack waits for a reaction.');
       const roll = outcome.hit

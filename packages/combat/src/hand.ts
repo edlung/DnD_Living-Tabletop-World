@@ -14,6 +14,7 @@ import { conditionBlocked, incapacitatedBy } from '@ltw/rules';
 import { combatantEvent } from './battlefield.ts';
 import { detailOf, withDetail } from './condition-details.ts';
 import { applyDamage, applyHealing, statusDead } from './damage.ts';
+import { fallEvents, fallsAfterHarm, grounded, killedIn } from './falling.ts';
 import { isObject } from './objects.ts';
 import {
   ceilingOf,
@@ -81,7 +82,13 @@ export function decideAdjustHitPoints(
       critical: false,
     });
     // The pipeline's first record is a creature's DamageApplied: the DM's own replaces it.
-    const [, ...effects] = applied.events;
+    const [, ...harm] = applied.events;
+    // A flyer the damage leaves unable to stay aloft falls (docs/adr/0049-space-and-movement.md §6).
+    const record = state.encounter?.combatants.find((c) => c.entityId === command.targetId);
+    const dead = killedIn(harm, command.targetId);
+    const effects = record
+      ? [...harm, ...fallsAfterHarm(state, dice, harm, record, applied.vitals, dead)]
+      : harm;
     return accept(
       readsVitals(command.targetId),
       {
@@ -189,6 +196,7 @@ const detailKey = (details: ConditionDetails | undefined): string =>
 export function decideSetCondition(
   context: DecisionContext,
   command: KernelCommandOf<'SetCondition'>,
+  dice: Dice,
 ): Decision {
   const { state } = context;
   const target = living(state, command.targetId);
@@ -261,7 +269,13 @@ export function decideSetCondition(
     const changed =
       after.slowedBy !== combatant.slowedBy ||
       detailKey(detailOf(after, condition)) !== detailKey(detailOf(combatant, condition));
-    if (changed) events.push(combatantEvent(after));
+    // A flyer that can no longer stay aloft falls (docs/adr/0049-space-and-movement.md §6).
+    const height = after.altitudeFt ?? 0;
+    if (height > 0 && grounded(next)) {
+      const landed = { ...after };
+      delete landed.altitudeFt;
+      events.push(combatantEvent(landed), ...fallEvents(state, dice, next, height).events);
+    } else if (changed) events.push(combatantEvent(after));
   }
   return accept(...events);
 }

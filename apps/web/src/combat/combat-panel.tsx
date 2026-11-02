@@ -11,7 +11,7 @@ import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { CommandedTurn } from './commanded-turn.tsx';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
-import { planPath } from './movement.ts';
+import { occupantAt, squareMoves } from './move-options.ts';
 import { useCombatantLabels } from './labels.ts';
 import { combatOptions, TargetDetails, useTargetContext } from './target-options.tsx';
 
@@ -72,10 +72,11 @@ export function CombatPanel({
     focus?.kind === 'combatant'
       ? (encounter.combatants.find((entry) => entry.entity.entityId === focus.id) ?? null)
       : null;
-  const plan =
+  // The ways to a chosen square (docs/adr/0049-space-and-movement.md §5–8); the first is drawn.
+  const moves =
     focus?.kind === 'square' && actorId !== null
-      ? planPath(encounter, actorId, focus.square)
-      : null;
+      ? squareMoves(encounter, actorId, focus.square)
+      : [];
   const { resource, retry } = useTargetContext(
     api,
     picked && actorId !== null ? picked.entity.entityId : null,
@@ -94,9 +95,7 @@ export function CombatPanel({
     if (chosen !== '') panel.current?.focus({ preventScroll: true });
   }, [chosen]);
   const pick = (square: Square) => {
-    const occupant = encounter.combatants.find(
-      (entry) => entry.position.x === square.x && entry.position.y === square.y,
-    );
+    const occupant = occupantAt(encounter, square);
     setFocus(
       occupant ? { kind: 'combatant', id: occupant.entity.entityId } : { kind: 'square', square },
     );
@@ -115,7 +114,7 @@ export function CombatPanel({
   };
   const choice: TrayChoice =
     focus?.kind === 'square'
-      ? { kind: 'square', plan }
+      ? { kind: 'square', moves }
       : picked
         ? { kind: 'combatant', target: picked, actions: options }
         : { kind: 'none' };
@@ -123,7 +122,8 @@ export function CombatPanel({
     focus?.kind === 'square' && actorId !== null ? (
       <MoveDetails
         square={focus.square}
-        plan={plan}
+        moves={moves}
+        prone={self?.conditions.includes('prone') ?? false}
         myTurn={myTurn}
         panel={panel}
         onClose={close}
@@ -167,7 +167,7 @@ export function CombatPanel({
         currentCombatantId={encounter.currentCombatantId}
         selfId={actorId}
         selected={focus?.kind === 'square' ? focus.square : (picked?.position ?? null)}
-        path={plan?.path ?? []}
+        path={moves[0]?.path ?? []}
         affected={affected}
         imageOf={imageOf}
         figureOf={figureOf}

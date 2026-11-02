@@ -44,6 +44,8 @@ export interface DamageInput {
   readonly critical: boolean;
   /** A melee attack's choice: at 0 it is left at 1 and Unconscious (docs/adr/0048-hit-points.md §4). */
   readonly knockOut?: boolean;
+  /** A fall's damage, from this many feet (docs/adr/0049-space-and-movement.md §8). */
+  readonly fallFt?: number;
 }
 
 const condition = (
@@ -134,6 +136,7 @@ export function applyDamage(
       ...(defended.defense === null ? {} : { defense: defended.defense, dealt: input.amount }),
       ...(absorbed > 0 ? { absorbed } : {}),
       ...(knockedOut ? { knockedOut: true as const } : {}),
+      ...(input.fallFt === undefined ? {} : { fallFt: input.fallFt }),
     },
   };
 

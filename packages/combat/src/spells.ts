@@ -25,6 +25,7 @@ import { combatantEvent, coverOf, gapBetween, withTurn } from './battlefield.ts'
 import { isDodging } from './actions.ts';
 import { isHidden, withDetail } from './condition-details.ts';
 import { applyDamage, applyHealing } from './damage.ts';
+import { fallsAfterHarm, killedIn } from './falling.ts';
 import { isSliceSpell } from './legality.ts';
 import { decideMonsterSpell } from './monster-spells.ts';
 import { suspendCast } from './reactions/suspend.ts';
@@ -167,6 +168,9 @@ export function castEvents(
         });
         working.set(target.entityId, applied.vitals);
         effects.push(...applied.events);
+        // A flyer it leaves unable to stay aloft falls (docs/adr/0049-space-and-movement.md §6).
+        const dead = killedIn(applied.events, affected.entityId);
+        effects.push(...fallsAfterHarm(state, dice, effects, affected, applied.vitals, dead));
       }
       break;
     }

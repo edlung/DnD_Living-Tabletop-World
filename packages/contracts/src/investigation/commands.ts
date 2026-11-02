@@ -152,6 +152,14 @@ export type PlayerOutcome =
   | {
       readonly kind: 'MoveCombatant';
       readonly position: { readonly x: number; readonly y: number };
+      /** Feet above the ground where it stopped, flying (docs/adr/0049-space-and-movement.md §6). */
+      readonly altitudeFt?: number;
+      /** A long jump's landing in Difficult Terrain: its Dexterity (Acrobatics) check (§7). */
+      readonly landing?: { readonly total: number; readonly success: boolean };
+      /** A fall at its end (§8): the feet fallen and the damage taken. */
+      readonly fell?: { readonly feet: number; readonly damage: number };
+      /** The landing or the fall left it Prone. */
+      readonly prone?: true;
     }
   | {
       readonly kind: 'Attack';

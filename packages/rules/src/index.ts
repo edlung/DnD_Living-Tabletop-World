@@ -55,6 +55,7 @@ export {
   type LevelUpRefusal,
 } from './rest.ts';
 export { OBJECT_ARMOR_CLASS, OBJECT_HIT_POINTS, objectStatBlock } from './objects.ts';
+export { RUN_UP_FT, fallDice, heightFt, highJumpFt, longJumpFt } from './moving.ts';
 export {
   fills,
   gapFt,
