@@ -267,6 +267,102 @@
   margin: 0.4rem 0 0;
 }
 
+/* The DM's Session sheet: the start, the running session, who is at the table */
+.session-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  align-items: start;
+  gap: 1rem;
+}
+.session-sheet h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.5rem;
+  overflow-wrap: anywhere;
+}
+.session-sheet h3 .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.session-end label,
+.lobby-absent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+}
+.session-ended {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+.session-ended p {
+  margin: 0;
+}
+.lobby-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lobby-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.75rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.lobby-row strong {
+  overflow-wrap: anywhere;
+}
+
+/* A player's lobby: ready for the session to come, or the game paused */
+.lobby-banner-slot {
+  position: fixed;
+  top: calc(var(--topbar-h) + 12px);
+  left: 50%;
+  z-index: 6;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  translate: -50% 0;
+  pointer-events: none;
+}
+.lobby-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+  color: var(--text);
+  pointer-events: auto;
+}
+.lobby-banner > .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold-bright);
+}
+.lobby-banner button {
+  min-height: 36px;
+}
+
+/* A phone's top bar takes two rows: the banner sits above the tab bar and the action's result. */
+@media (max-width: 767px) {
+  .lobby-banner-slot {
+    top: auto;
+    bottom: calc(var(--dock-h) + var(--outcome-h, 0px) + 12px);
+  }
+}
+
 @media (max-width: 900px) {
   .party-sheet {
     grid-template-columns: minmax(0, 1fr);

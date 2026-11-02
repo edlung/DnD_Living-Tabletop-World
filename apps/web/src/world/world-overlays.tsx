@@ -9,6 +9,7 @@ import type { ExplorationIntent } from '../exploration/use-action.ts';
 import type { Recipient } from '../items/inventory-panel.tsx';
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
 import { RestBanner } from '../rest/sheet-rest.tsx';
+import { LobbyBanner } from '../session/lobby-banner.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { WorldHeroDialog } from './hero-dialog-slot.tsx';
 
@@ -52,6 +53,7 @@ export function WorldOverlays({
   const announcer = <RollAnnouncer entry={announced} />;
   return (
     <>
+      {!isDm && <LobbyBanner api={api} actorId={actorId} />}
       <RestBanner
         isDm={isDm}
         actorId={actorId}

@@ -14,6 +14,7 @@ import type { Shell } from '../shell/use-shell.ts';
 import { DmHistory } from './dm-history.tsx';
 import { NotesSheet } from './notes-sheet.tsx';
 import { PartySheet } from './party-sheet.tsx';
+import { SessionSheet } from './session-sheet.tsx';
 import { PlayersSheet } from './players-sheet.tsx';
 import { ScreenSheet } from './screen-sheet.tsx';
 import { DmRestControls } from '../rest/dm-rest-controls.tsx';
@@ -90,6 +91,27 @@ export function DmSheets({
           }}
           onOpenSheet={(entityId) => {
             shell.openHero(entityId);
+          }}
+        />
+      </Sheet>
+      <Sheet
+        id="session"
+        title={t('Session (DM)')}
+        glyph="chapter"
+        open={shell.sheet === 'session'}
+        onClose={shell.closeSheet}
+      >
+        <SessionSheet
+          api={api}
+          open={shell.sheet === 'session'}
+          revision={revision}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
+          }}
+          onWriteChapter={() => {
+            shell.dismissSheet();
+            shell.openChronicle();
           }}
         />
       </Sheet>

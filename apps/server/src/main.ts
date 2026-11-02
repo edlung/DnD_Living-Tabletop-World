@@ -43,6 +43,8 @@ import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
+import { PostgresTableStateStore } from './table/postgres-table-state-store.ts';
+import { ReadyRegistry } from './table/table-state.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
 import { PostgresAccountStore } from './accounts/postgres-account-store.ts';
 import { PostgresRestStore, PostgresTableStore } from './dice/postgres-table-store.ts';
@@ -200,6 +202,11 @@ async function main(): Promise<void> {
       clock: systemClock,
     },
     // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).
+    lobby: {
+      state: new PostgresTableStateStore(pool),
+      ready: new ReadyRegistry(),
+      now: () => new Date().toISOString(),
+    },
     table: {
       store: new PostgresTableStore(pool),
       rests: new PostgresRestStore(pool),

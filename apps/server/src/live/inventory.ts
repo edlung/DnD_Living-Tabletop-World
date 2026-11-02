@@ -44,6 +44,8 @@ const SCOPED = [
   'quests',
   'chronicle',
   'presence',
+  // The table around a session (ADR 0043 §6): ready, absent, a pause.
+  'lobby',
 ];
 
 export function coverageInventory(target: LiveTarget): ViewRequest[] {

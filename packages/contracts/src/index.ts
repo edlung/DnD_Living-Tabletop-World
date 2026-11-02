@@ -472,6 +472,7 @@ export type {
 } from './assets/views.ts';
 export * from './campaign/index.ts';
 export * from './dice/rolls.ts';
+export * from './session/lobby.ts';
 
 export {
   EQUIP_SLOTS,

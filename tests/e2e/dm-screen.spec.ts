@@ -153,3 +153,40 @@ test('the DM changes a running fight’s turn order', async ({ page }) => {
   await expect(rows).toHaveCount(14);
   await expectAccessible(page, 'the turn order tools');
 });
+
+test('a session pauses, ends and starts again with the players ready', async ({ browser }) => {
+  test.setTimeout(120_000);
+  const dm = await (await browser.newContext()).newPage();
+  const player = await (await browser.newContext()).newPage();
+  await enterWorld(dm, TOKENS.dm, CAMPAIGN);
+  await enterWorld(player, TOKENS.player, CAMPAIGN);
+  await openSheet(dm, 'Session');
+  const sheet = dm.locator('#sheet-session');
+  await expect(sheet).toContainText('Session 1: Arrival in Ravenford');
+
+  // A pause holds the players' screen; resuming lets it go.
+  await sheet.getByRole('button', { name: 'Pause the game', exact: true }).click();
+  await expect(
+    player.getByText('The DM paused the game. It waits until they resume.'),
+  ).toBeVisible();
+  await sheet.getByRole('button', { name: 'Resume the game', exact: true }).click();
+  await expect(
+    player.getByText('The DM paused the game. It waits until they resume.'),
+  ).toBeHidden();
+
+  // The end: the chapter to write; the player waits for the next session and says ready.
+  await sheet.getByRole('button', { name: 'End the session', exact: true }).click();
+  await sheet.getByRole('button', { name: 'Yes, end the session', exact: true }).click();
+  await expect(sheet.getByRole('button', { name: 'Write the chapter', exact: true })).toBeVisible();
+  await expect(player.getByText('The session has not started yet.')).toBeVisible();
+  await player.getByRole('button', { name: 'I am ready', exact: true }).click();
+  const lobby = sheet.getByRole('region', { name: 'At the table' });
+  await expect(lobby.getByRole('listitem').filter({ hasText: ELOWEN })).toContainText('Ready');
+  await expectAccessible(dm, 'the Session sheet');
+
+  // The next session starts at the table; the player's banner goes.
+  await expect(sheet.getByLabel('Title', { exact: true })).toHaveValue('Session 2');
+  await sheet.getByRole('button', { name: 'Start the session', exact: true }).click();
+  await expect(sheet.getByRole('button', { name: 'Pause the game', exact: true })).toBeVisible();
+  await expect(player.getByText('The session has not started yet.')).toBeHidden();
+});

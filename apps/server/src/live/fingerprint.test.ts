@@ -91,9 +91,16 @@ describe('fingerprints of the coverage views', () => {
       '/campaigns/ravenford/sessions': [200, 's'],
       '/campaigns/ravenford/display/cast': [404, ''],
       ...Object.fromEntries(
-        ['entities', 'knowledge', 'memories', 'encounter', 'quests', 'chronicle', 'presence'].map(
-          (path) => [`/campaigns/ravenford/${path}?perspective=PARTY`, [200, path] as const],
-        ),
+        [
+          'entities',
+          'knowledge',
+          'memories',
+          'encounter',
+          'quests',
+          'chronicle',
+          'presence',
+          'lobby',
+        ].map((path) => [`/campaigns/ravenford/${path}?perspective=PARTY`, [200, path] as const]),
       ),
     });
     const someoneElse: Authenticator = {

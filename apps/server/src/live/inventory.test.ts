@@ -26,6 +26,8 @@ const ALWAYS = [
   '/campaigns/ravenford/quests',
   '/campaigns/ravenford/chronicle',
   '/campaigns/ravenford/presence',
+  // The table around a session (ADR 0043 §6).
+  '/campaigns/ravenford/lobby',
   // What the table's display shows (ADR 0042).
   '/campaigns/ravenford/display/cast ?',
 ];

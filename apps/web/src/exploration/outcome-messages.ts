@@ -26,6 +26,7 @@ const REJECTIONS: Readonly<Record<string, string>> = {
   TARGET_DEAD: 'That creature is dead.',
   NOT_A_COMBATANT: 'That creature is not in the fight.',
   INVALID_COMMAND: 'The world could not accept this as written.',
+  SESSION_PAUSED: 'The DM paused the game. It waits until they resume.',
 };
 
 /** Changes of a running fight (ADR 0043 §2): a refusal is about the fight, not its start. */

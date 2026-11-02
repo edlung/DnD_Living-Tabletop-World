@@ -19,3 +19,13 @@ CREATE TABLE ltw_dm_notes (
 );
 CREATE INDEX ltw_dm_notes_by_campaign ON ltw_dm_notes (campaign_id, updated_at DESC)
   WHERE deleted_at IS NULL;
+
+-- The table's state around a session: at the table or online, paused or not, the characters whose
+-- players are absent. Table control beside the world, never canonical; one row per campaign.
+CREATE TABLE ltw_table_states (
+  campaign_id text PRIMARY KEY CHECK (campaign_id ~ '^[a-z0-9][a-z0-9_-]{0,63}$'),
+  mode text NOT NULL CHECK (mode IN ('table', 'online')),
+  paused boolean NOT NULL,
+  absent jsonb NOT NULL CHECK (jsonb_typeof(absent) = 'array'),
+  updated_at timestamptz NOT NULL
+);

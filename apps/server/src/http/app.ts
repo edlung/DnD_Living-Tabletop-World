@@ -10,6 +10,8 @@ import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
+import { registerLobbyRoutes } from '../table/lobby-routes.ts';
+import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
 import { registerTableLinkRoutes } from '../display/table-links.ts';
 import { registerAuthRoutes } from '../auth/auth-routes.ts';
@@ -103,6 +105,8 @@ export interface AppDependencies {
   readonly readiness?: ReadinessProbe;
   /** The table's rolls and the DM's check requests (Stage 510); in memory when absent. */
   readonly table?: TableDependencies;
+  /** The table around a session (ADR 0043 §6): mode, pause, ready, absent; in memory when absent. */
+  readonly lobby?: LobbyDependencies;
 }
 
 /** The table's rolls in memory, with the server's dice: for compositions without a database. */
@@ -167,7 +171,9 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerSurroundingsRoutes(app, deps);
   registerEncounterRoutes(app, deps);
   registerPreparedEncounterRoutes(app, deps);
-  registerCommandRoutes(app, deps);
+  // One lobby for the routes that read it: the pause holds players' commands.
+  const lobby = deps.lobby ?? memoryLobby();
+  registerCommandRoutes(app, { ...deps, lobby });
   registerAiRoutes(app, deps);
   registerNpcRoutes(app, deps);
   registerAuthoringRoutes(app, deps);
@@ -176,6 +182,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
+  registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
   const table = deps.table ?? memoryTable();

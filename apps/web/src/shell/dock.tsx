@@ -119,6 +119,7 @@ export function Dock({
     });
   const dm: readonly Item[] = [
     // The DM's screen (ADR 0043 §3): the party at a glance with the DM's hand, and notes.
+    { id: 'session', label: t('Session'), short: t('Session'), glyph: 'chapter' },
     { id: 'party', label: t('Party'), short: t('Party'), glyph: 'party' },
     {
       id: 'add',

@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 
 import { buildApp, credentialHeaderOf, memoryTable, type AppDependencies } from '../http/app.ts';
+import { memoryLobby } from '../table/table-state.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { fingerprintSubscription } from './fingerprint.ts';
 import { LIVE_LIMITS, LiveHub, systemTimers, type LiveLimits, type LiveTimers } from './hub.ts';
@@ -36,6 +37,8 @@ export function buildLiveApp(
   const shared: AppDependencies = {
     ...deps,
     table: deps.table ?? memoryTable(),
+    // And one lobby: a pause or a "ready" signals its viewers too (ADR 0043 §6).
+    lobby: deps.lobby ?? memoryLobby(),
     presence: registry,
   };
   const app = buildApp(shared);
