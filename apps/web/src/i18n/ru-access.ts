@@ -99,8 +99,6 @@ registerRussian({
     'Ссылка-приглашение срабатывает один раз. После входа этот браузер держит вас за столом до {days} дней.',
   'Signed out': 'Выход выполнен',
   'You are signed out': 'Вы вышли',
-  'To come back to the table, open a new invitation link.':
-    'Чтобы вернуться за стол, откройте новую ссылку-приглашение.',
 
   // Signing out
   'Sign out?': 'Выйти?',

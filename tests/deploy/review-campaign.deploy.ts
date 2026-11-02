@@ -202,8 +202,9 @@ test('the review campaign in Russian browsers, through Caddy', async ({ browser 
       });
       const revoked = Date.now();
       await revoke(dm);
+      // Since Stage 600 a signed-out screen offers the login too (ADR 0041).
       await expect(accessState(player, ru.signedOut)).toContainText(
-        'Чтобы вернуться за стол, откройте новую ссылку-приглашение.',
+        'Войдите по логину или откройте новую ссылку-приглашение.',
         { timeout: 10_000 },
       );
       const after = (Date.now() - revoked) / 1000;
