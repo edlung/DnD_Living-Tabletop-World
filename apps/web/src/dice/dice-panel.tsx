@@ -92,7 +92,7 @@ export function DicePanel({
         <div className="dice-panel">
           <div className="dice-panel-main">
             <Requests characters={characters} />
-            <RollBuilder />
+            <RollBuilder characters={characters} />
             <CheckRoller />
             <AskForCheck characters={characters} />
             {table?.error && (

@@ -9,7 +9,6 @@ registerRussian({
   'One d{sides} fewer': 'На один d{sides} меньше',
   'Press a die to add it.': 'Нажмите на кубик, чтобы добавить его.',
   Modifier: 'Модификатор',
-  'Hidden from the players': 'Скрыть от игроков',
   Roll: 'Бросить',
   'Clear the dice': 'Убрать кубики',
   'Roll a check': 'Бросить проверку',

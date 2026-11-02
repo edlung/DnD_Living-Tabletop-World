@@ -2,10 +2,11 @@ import type {
   LobbyResponse,
   MembershipResponse,
   SessionListResponse,
+  TableDice,
   TableMode,
 } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useId, useState, type SubmitEvent } from 'react';
+import { useCallback, useEffect, useId, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -45,6 +46,12 @@ export function SessionSheet({
   const [failed, setFailed] = useState(false);
   // What the end did, and the chapter to write: shown once the session is gone.
   const [ended, setEnded] = useState<string | null>(null);
+  // The campaign's dice as just chosen, shown at once until the table's state reads it back.
+  const [dice, setDice] = useState<TableDice | null>(null);
+  const readDice = lobby.resource.status === 'ready' ? lobby.resource.value.dice : null;
+  useEffect(() => {
+    if (dice !== null && readDice === dice) setDice(null);
+  }, [dice, readDice]);
   if (!open) return null;
   if (lobby.resource.status !== 'ready') {
     return (
@@ -56,13 +63,15 @@ export function SessionSheet({
     );
   }
   const table = lobby.resource.value;
-  const change = async (body: object) => {
+  const change = async (body: object): Promise<boolean> => {
     setFailed(false);
     try {
       // Scoped: the table's changes name the DM perspective, as the route's order asks.
       await api.post('lobby', body, AbortSignal.timeout(20_000), true);
+      return true;
     } catch {
       setFailed(true);
+      return false;
     } finally {
       setRound((value) => value + 1);
     }
@@ -113,6 +122,21 @@ export function SessionSheet({
           <Glyph name="party" />
           {t('At the table')}
         </h3>
+        {/* The campaign's dice (ADR 0044 §4): the players' own, entered, or the app's. */}
+        <label className="lobby-dice">
+          <input
+            type="checkbox"
+            checked={(dice ?? table.dice) === 'physical'}
+            onChange={(event) => {
+              const next = event.target.checked ? 'physical' : 'app';
+              setDice(next);
+              void change({ dice: next }).then((done) => {
+                if (!done) setDice(null);
+              });
+            }}
+          />
+          {t('Players roll their own dice and enter what they show')}
+        </label>
         {table.characters.length === 0 ? (
           <p className="muted">{t('No characters are at the table yet.')}</p>
         ) : (

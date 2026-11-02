@@ -25,18 +25,19 @@ describe('PostgresTableStateStore', () => {
     expect(await store.read('ravenford')).toEqual(FRESH_TABLE);
     await store.write(
       'ravenford',
-      { mode: 'online', paused: true, absent: ['brann-ironvale'] },
+      { mode: 'online', paused: true, absent: ['brann-ironvale'], dice: 'physical' },
       '2026-11-02T10:00:00.000Z',
     );
     await store.write(
       'ravenford',
-      { mode: 'online', paused: false, absent: ['brann-ironvale', 'maren-ashby'] },
+      { mode: 'online', paused: false, absent: ['brann-ironvale', 'maren-ashby'], dice: 'app' },
       '2026-11-02T10:05:00.000Z',
     );
     expect(await store.read('ravenford')).toEqual({
       mode: 'online',
       paused: false,
       absent: ['brann-ironvale', 'maren-ashby'],
+      dice: 'app',
     });
     expect(await store.read('other-table')).toEqual(FRESH_TABLE);
   });

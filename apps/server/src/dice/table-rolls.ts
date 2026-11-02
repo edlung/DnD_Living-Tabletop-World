@@ -18,6 +18,36 @@ export interface DiceSource {
 
 export const serverDice: DiceSource = { roll: (sides) => randomInt(1, sides + 1) };
 
+/** Entered faces that do not fit the roll's dice: too few, too many, or off a die. */
+export class EnteredFacesError extends Error {}
+
+/**
+ * The faces a player read off their own dice (docs/adr/0044-online-play.md §4), given out in the
+ * roll's order; the rules compute every total from them as from the server's. A face that is not
+ * on the die asked for, or one too few, throws; `spent` says no face was left over.
+ */
+export class EnteredDice implements DiceSource {
+  readonly #faces: readonly number[];
+  #next = 0;
+
+  constructor(faces: readonly number[]) {
+    this.#faces = faces;
+  }
+
+  roll(sides: number): number {
+    const face = this.#faces[this.#next];
+    this.#next += 1;
+    if (face === undefined || !Number.isInteger(face) || face < 1 || face > sides) {
+      throw new EnteredFacesError('an entered face does not fit its die');
+    }
+    return face;
+  }
+
+  get spent(): boolean {
+    return this.#next === this.#faces.length;
+  }
+}
+
 /** A free roll: each kind of die its count of times, plus the modifier. */
 export function rollFreeDice(
   dice: DiceSource,

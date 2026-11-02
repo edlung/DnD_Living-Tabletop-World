@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import { checkGroups, checkOf, MODE_WORDS } from './checks.ts';
+import { FaceFields, facesOf, useOwnDice } from './own-dice.tsx';
 import { useDiceTable } from './table.tsx';
 
 function CheckSelect({
@@ -67,31 +68,75 @@ function ModeChoice({
   );
 }
 
-/** A player's own check (Stage 510): any skill, ability or save, with the sheet's bonus. */
+/**
+ * A player's own check (Stage 510): any skill, ability or save, with the sheet's bonus — for the
+ * table or the DM alone, rolled by the app or off one's own d20s (ADR 0044 §4).
+ */
 export function CheckRoller() {
   const t = useT();
   const table = useDiceTable();
+  const own = useOwnDice();
   const ids = useId();
   const [value, setValue] = useState('skill:perception');
   const [mode, setMode] = useState<RollMode>('normal');
+  const [secret, setSecret] = useState(false);
+  const [entering, setEntering] = useState(false);
+  const [entered, setEntered] = useState<string[]>([]);
   if (!table?.characterId) return null;
   const characterId = table.characterId;
   const check = checkOf(value);
+  const dice = mode === 'normal' ? [20] : [20, 20];
+  const faces = entering ? facesOf(dice, entered) : null;
   return (
     <section className="sheet-section dice-check" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Roll a check')}</h3>
       <label htmlFor={`${ids}-check`}>{t('Check')}</label>
       <CheckSelect id={`${ids}-check`} value={value} onChange={setValue} />
       <ModeChoice name={`${ids}-mode`} mode={mode} onChange={setMode} />
+      <label className="dice-own">
+        <input
+          type="checkbox"
+          checked={secret}
+          onChange={(event) => {
+            setSecret(event.target.checked);
+          }}
+        />
+        <span>{t('Only the DM and me')}</span>
+      </label>
+      {own && (
+        <label className="dice-own">
+          <input
+            type="checkbox"
+            checked={entering}
+            onChange={(event) => {
+              setEntering(event.target.checked);
+            }}
+          />
+          <span>{t('I roll my own dice')}</span>
+        </label>
+      )}
+      {entering && <FaceFields dice={dice} entered={entered} onChange={setEntered} />}
       <button
         type="button"
         className="primary-button"
-        disabled={!check || table.busy}
+        disabled={!check || table.busy || (entering && faces === null)}
         onClick={() => {
-          if (check) void table.roll({ kind: 'check', characterId, check, mode });
+          if (!check) return;
+          void table
+            .roll({
+              kind: 'check',
+              characterId,
+              check,
+              mode,
+              ...(secret ? { private: true } : {}),
+              ...(faces ? { faces } : {}),
+            })
+            .then((done) => {
+              if (done) setEntered([]);
+            });
         }}
       >
-        {t('Roll the check')}
+        {entering ? t('Enter the roll') : t('Roll the check')}
       </button>
     </section>
   );
@@ -112,6 +157,7 @@ export function AskForCheck({ characters }: { readonly characters: readonly Enti
   const [value, setValue] = useState('skill:perception');
   const [mode, setMode] = useState<RollMode>('normal');
   const [dc, setDc] = useState('');
+  const [secret, setSecret] = useState(false);
   if (!table?.isDm) return null;
   if (characters.length === 0) {
     return <p className="muted">{t('No characters are at the table to ask.')}</p>;
@@ -160,6 +206,16 @@ export function AskForCheck({ characters }: { readonly characters: readonly Enti
           setDc(event.target.value);
         }}
       />
+      <label className="dice-own">
+        <input
+          type="checkbox"
+          checked={secret}
+          onChange={(event) => {
+            setSecret(event.target.checked);
+          }}
+        />
+        <span>{t('In private: only that player sees the roll')}</span>
+      </label>
       <button
         type="button"
         className="primary-button"
@@ -176,6 +232,7 @@ export function AskForCheck({ characters }: { readonly characters: readonly Enti
               check,
               mode,
               ...(Number.isNaN(difficulty) ? {} : { dc: difficulty }),
+              ...(secret ? { private: true } : {}),
             })
             .then((done) => {
               if (done) setDc('');

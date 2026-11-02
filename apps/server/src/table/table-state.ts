@@ -1,4 +1,4 @@
-import type { TableMode } from '@ltw/contracts';
+import type { TableDice, TableMode } from '@ltw/contracts';
 
 /**
  * The table's state around a session (docs/adr/0043-dm-screen.md §6): whether it plays at the
@@ -12,9 +12,11 @@ export interface TableState {
   readonly mode: TableMode;
   readonly paused: boolean;
   readonly absent: readonly string[];
+  /** The campaign's dice: the app's, or the players' own entered (ADR 0044 §4, migration 0031). */
+  readonly dice: TableDice;
 }
 
-export const FRESH_TABLE: TableState = { mode: 'table', paused: false, absent: [] };
+export const FRESH_TABLE: TableState = { mode: 'table', paused: false, absent: [], dice: 'app' };
 
 export interface TableStateStore {
   read(campaignId: string): Promise<TableState>;

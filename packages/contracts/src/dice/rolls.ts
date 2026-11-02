@@ -71,6 +71,12 @@ export interface RollEntry {
   readonly groups: readonly RollGroup[];
   /** A roll only the DM sees (the DM's hidden rolls, monsters' rolls, initiative). */
   readonly hidden: boolean;
+  /** Its faces were read off a player's own dice (docs/adr/0044-online-play.md §4). */
+  readonly entered?: true;
+  /** The DM confirmed the entered faces are what the dice showed. */
+  readonly confirmed?: true;
+  /** Seen by the DM and one character only: a word between the DM and one player. */
+  readonly private?: true;
   /** ISO time the roll was made (wall clock), for ordering and the log. */
   readonly at: string;
 }
@@ -97,6 +103,13 @@ export type Check = z.infer<typeof checkSchema>;
 export const ROLL_MODES = ['normal', 'advantage', 'disadvantage'] as const;
 export type RollMode = (typeof ROLL_MODES)[number];
 
+/**
+ * The faces a player read off their own dice (docs/adr/0044-online-play.md §4), one per die in the
+ * roll's order — two d20s for a check with Advantage or Disadvantage. The server checks them
+ * against the dice and computes every total from them.
+ */
+export const enteredFacesSchema = z.array(z.number().int().min(1).max(100)).min(1).max(40);
+
 /** POST …/rolls: a free roll or a check, by a character (a player) or the DM. */
 export const tableRollRequestSchema = z.discriminatedUnion('kind', [
   z
@@ -111,6 +124,11 @@ export const tableRollRequestSchema = z.discriminatedUnion('kind', [
       modifier: z.number().int().min(-30).max(30),
       /** The DM only: a roll the players do not see. */
       hidden: z.boolean().optional(),
+      /** A player: a roll only the DM sees with them. */
+      private: z.boolean().optional(),
+      /** The DM only: a roll one character's player sees with the DM. */
+      shownTo: entityIdSchema.optional(),
+      faces: enteredFacesSchema.optional(),
     })
     .strict(),
   z
@@ -121,6 +139,9 @@ export const tableRollRequestSchema = z.discriminatedUnion('kind', [
       mode: z.enum(ROLL_MODES),
       /** Answers this open request of the DM's (its check and mode win). */
       requestId: z.uuid().optional(),
+      /** A roll only the DM sees with this player (a private request's answer always is). */
+      private: z.boolean().optional(),
+      faces: enteredFacesSchema.max(2).optional(),
     })
     .strict(),
 ]);
@@ -134,6 +155,8 @@ const requestedCheck = {
   check: checkSchema,
   mode: z.enum(ROLL_MODES),
   dc: z.number().int().min(1).max(40).optional(),
+  /** Its answer is seen by the DM and that player only, and the table's screen does not list it. */
+  private: z.boolean().optional(),
 };
 export const MAX_GROUP_CHECK = 8;
 export const checkRequestSchema = z.union([
@@ -156,6 +179,8 @@ export interface CheckRequestView {
   readonly mode: RollMode;
   /** The DM's only. */
   readonly dc?: number;
+  /** Asked in private: the answer is the DM's and this player's only. */
+  readonly private?: true;
   readonly status: 'open' | 'rolled' | 'cancelled';
   /** Once rolled: the roll's total, and against the DC (the DM's only). */
   readonly total?: number;

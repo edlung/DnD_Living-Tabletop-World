@@ -24,6 +24,8 @@ export const hitDieRequestSchema = z
     requestId,
     characterId: entityIdSchema,
     sides: z.union([z.literal(6), z.literal(8), z.literal(10), z.literal(12)]),
+    /** The face of the player's own die, where the campaign lets them enter it (ADR 0044 §4). */
+    face: z.number().int().min(1).max(12).optional(),
   })
   .strict();
 export type HitDieRequest = z.infer<typeof hitDieRequestSchema>;

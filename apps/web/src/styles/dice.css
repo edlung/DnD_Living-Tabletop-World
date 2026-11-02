@@ -215,7 +215,7 @@
 .dice-modifier input {
   width: 120px;
 }
-.dice-hidden,
+.dice-own,
 .dice-toggle,
 .dice-mode {
   display: flex !important;
@@ -311,4 +311,53 @@
 .dice-settings input[type='range'] {
   width: 100%;
   max-width: 360px;
+}
+
+/* One's own dice (dice/own-dice.tsx, ADR 0044 §4): a field per die, each its die's faces only. */
+.dice-faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.dice-faces legend {
+  margin-bottom: 4px;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.dice-face {
+  display: grid;
+  gap: 4px;
+  font-size: 0.875rem;
+}
+.dice-face input {
+  width: 88px;
+}
+.dice-audience {
+  display: grid;
+  gap: 4px;
+}
+.dice-audience select {
+  max-width: 100%;
+}
+.answer-check {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+}
+/* What else a roll is: one's own dice, the DM's word on them, a word between the DM and one. */
+.dice-log-mark,
+.dice-plate-mark {
+  padding: 0 8px;
+  border: 1px solid color-mix(in srgb, var(--teal) 55%, transparent);
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+}
+.dice-log-confirm {
+  min-height: 32px;
+  margin-top: 8px;
 }

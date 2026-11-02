@@ -18,6 +18,8 @@ export const UI_PARTY_CAMPAIGNS = {
   chat: 'ui-chat',
   /** The companion's alerts (Stage 630). */
   companion: 'ui-companion',
+  /** The players' own dice and private rolls (Stage 630). */
+  ownDice: 'ui-own-dice',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -31,6 +33,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.dmScreenIpad, 'en'],
     [UI_PARTY_CAMPAIGNS.chat, 'en'],
     [UI_PARTY_CAMPAIGNS.companion, 'en'],
+    [UI_PARTY_CAMPAIGNS.ownDice, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

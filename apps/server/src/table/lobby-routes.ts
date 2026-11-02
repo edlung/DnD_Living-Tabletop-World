@@ -46,6 +46,7 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
       perspective: context.perspective.label,
       mode: table.mode,
       paused: table.paused,
+      dice: table.dice,
       session: session ? { sessionId: session.sessionId, title: session.title } : null,
       characters: here.characters.map(({ character, present }) => ({
         character,
@@ -88,9 +89,10 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
       mode: body.mode ?? before.mode,
       paused: body.paused ?? before.paused,
       absent: [...absent].sort(),
+      dice: body.dice ?? before.dice,
     };
     await lobby.state.write(path.campaignId, next, lobby.now());
-    request.log.info({ mode: next.mode, paused: next.paused }, 'table changed');
+    request.log.info({ mode: next.mode, paused: next.paused, dice: next.dice }, 'table changed');
     return reply.code(204).send();
   });
 }

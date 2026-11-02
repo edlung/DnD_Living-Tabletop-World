@@ -3,6 +3,7 @@ import type {
   ChatMessageRequest,
   CheckRequestInput,
   CheckRequestsResponse,
+  LobbyResponse,
   RestResponse,
   RestView,
   RollEntry,
@@ -35,9 +36,13 @@ export interface DiceTable {
   readonly roll: (body: TableRollRequest) => Promise<boolean>;
   readonly ask: (body: CheckRequestInput) => Promise<boolean>;
   readonly cancel: (requestId: string) => Promise<boolean>;
+  /** The DM's word that an entered roll is what the dice showed (ADR 0044 §4). */
+  readonly confirm: (rollId: string) => Promise<boolean>;
   readonly busy: boolean;
   readonly error: string | null;
   readonly isDm: boolean;
+  /** The campaign's dice are the players' own: faces may be entered (ADR 0044 §4). */
+  readonly physical: boolean;
   /** The character this perspective acts as; null for the DM. */
   readonly characterId: string | null;
   /** Table talk (docs/adr/0044-online-play.md §1), read with the dice. */
@@ -102,6 +107,15 @@ export function useDiceTableState(
     [api, rolling, perspective],
   );
   const chatLog = useResource(`chat:${scope}`, loadChat);
+  // The campaign's dice (ADR 0044 §4), from the table's state; the live stream covers it.
+  const loadLobby = useCallback(
+    (signal: AbortSignal) =>
+      rolling ? api.get<LobbyResponse>('lobby', signal) : Promise.resolve(null),
+    [api, rolling],
+  );
+  const lobby = useResource(`lobby-dice:${scope}`, loadLobby);
+  useRereadOn(revision, lobby.reread);
+  const physical = lobby.resource.status === 'ready' && lobby.resource.value?.dice === 'physical';
   useRereadOn(revision, chatLog.reread);
   // Messages read on this screen: the first read is read, later ones by others wait to be seen.
   const [read, setRead] = useState<{ scope: string; ids: ReadonlySet<string> } | null>(null);
@@ -189,9 +203,12 @@ export function useDiceTableState(
     roll: (body) => write('rolls', body),
     ask: (body) => write('check-requests', body),
     cancel: (requestId) => write(`check-requests/${encodeURIComponent(requestId)}/cancel`, {}),
+    confirm: (rollId) =>
+      write(`rolls/${encodeURIComponent(rollId.replace(/^table:/, ''))}/confirm`, {}),
     busy,
     error,
     isDm,
+    physical,
     characterId,
     chat: {
       log: chatLog.resource,

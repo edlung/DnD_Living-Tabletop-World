@@ -4,8 +4,16 @@ import { useId } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
 import { checkWords } from './checks.ts';
+import { AnswerCheck } from './own-dice.tsx';
 import { useDiceTable } from './table.tsx';
-import { purposeWords, resultWords, rollerWords, subjectWords, sumWords } from './words.ts';
+import {
+  purposeWords,
+  resultWords,
+  rollerWords,
+  rollMarks,
+  subjectWords,
+  sumWords,
+} from './words.ts';
 
 /**
  * The DM's requests (Stage 510): for a player, the checks the DM asks of its character, each with
@@ -27,23 +35,11 @@ export function Requests({ characters }: { readonly characters: readonly EntityR
           {requests.map((request) => (
             <li key={request.requestId} className="dice-request is-open">
               <Glyph name="roll" />
-              <span>{checkWords(t, request.check, request.mode)}</span>
-              <button
-                type="button"
-                className="primary-button"
-                disabled={table.busy}
-                onClick={() =>
-                  void table.roll({
-                    kind: 'check',
-                    characterId,
-                    check: request.check,
-                    mode: request.mode,
-                    requestId: request.requestId,
-                  })
-                }
-              >
-                {t('Roll')}
-              </button>
+              <span>
+                {checkWords(t, request.check, request.mode)}
+                {request.private && <span className="muted">{`\u00a0· ${t('in private')}`}</span>}
+              </span>
+              <AnswerCheck request={request} />
             </li>
           ))}
         </ul>
@@ -128,6 +124,11 @@ export function RollLog() {
                 <strong>{rollerWords(t, entry.roller)}</strong>
                 <span>{subjectWords(t, entry.subject)}</span>
                 {entry.hidden && <span className="dice-log-hidden">{t('Hidden')}</span>}
+                {rollMarks(t, entry, table.isDm).map((mark) => (
+                  <span key={mark} className="dice-log-mark">
+                    {mark}
+                  </span>
+                ))}
               </p>
               {entry.groups.map((group, index) => {
                 const result = resultWords(t, group);
@@ -145,6 +146,16 @@ export function RollLog() {
                   </p>
                 );
               })}
+              {table.isDm && entry.entered && !entry.confirmed && (
+                <button
+                  type="button"
+                  className="dice-log-confirm"
+                  disabled={table.busy}
+                  onClick={() => void table.confirm(entry.rollId)}
+                >
+                  {t('Confirm: the dice showed this')}
+                </button>
+              )}
             </li>
           ))}
         </ol>

@@ -29,6 +29,9 @@ const roll = (rollId: string, changes: Partial<TableRollRecord> = {}): TableRoll
   subject: { kind: 'dice' },
   groups: [{ purpose: 'dice', dice: [{ sides: 20, value: 12 }], modifier: 1, total: 13 }],
   hidden: false,
+  entered: false,
+  audienceId: null,
+  confirmed: false,
   requestId: null,
   at: '2026-11-01T20:00:00.000Z',
   ...changes,
@@ -42,6 +45,7 @@ const request = (requestId: string, groupId: string | null = null): CheckRequest
   check: { kind: 'skill', skill: 'athletics' },
   mode: 'normal',
   dc: 12,
+  private: false,
   status: 'open',
   rollId: null,
   total: null,
@@ -100,5 +104,25 @@ describe('the table rolls tables', () => {
       null,
       group,
     ]);
+  });
+
+  it('keeps entered and private rolls, private requests and the DM’s confirmation once (0031)', async () => {
+    const store = new PostgresTableStore(pool);
+    const id = '40000000-0000-4000-8000-000000000001';
+    await store.addRoll(roll(id, { entered: true, audienceId: 'elowen-starwhisper' }));
+    expect(await store.findRoll('ravenford', id)).toMatchObject({
+      entered: true,
+      audienceId: 'elowen-starwhisper',
+      confirmed: false,
+    });
+    await store.confirmRoll('ravenford', id, '2026-11-02T10:00:00.000Z');
+    await store.confirmRoll('ravenford', id, '2026-11-02T10:01:00.000Z');
+    expect(await store.findRoll('ravenford', id)).toMatchObject({ confirmed: true });
+    expect((await store.recentRolls('ravenford', 5))[0]).toMatchObject({ confirmed: true });
+    await expect(pool.query('DELETE FROM ltw_roll_confirmations')).rejects.toThrow();
+    expect(await store.findRoll('ravenford', '40000000-0000-4000-8000-000000000009')).toBeNull();
+    const asked = '10000000-0000-4000-8000-000000000009';
+    await store.addRequest({ ...request(asked), private: true });
+    expect((await store.findRequest('ravenford', asked))?.private).toBe(true);
   });
 });

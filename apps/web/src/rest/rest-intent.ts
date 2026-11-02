@@ -11,7 +11,13 @@ import { ApiError, type WorldApi } from '../api/client.ts';
 export type RestIntent =
   | { readonly action: 'start'; readonly rest: 'short' | 'long' }
   | { readonly action: 'end' }
-  | { readonly action: 'hit-die'; readonly characterId: string; readonly sides: HitDieSides }
+  | {
+      readonly action: 'hit-die';
+      readonly characterId: string;
+      readonly sides: HitDieSides;
+      /** The face of the player's own die (ADR 0044 §4). */
+      readonly face?: number;
+    }
   | { readonly action: 'level-up'; readonly characterId: string; readonly classId: ClassId };
 
 export interface RestAction {
@@ -46,7 +52,14 @@ const call = (request: RestIntent): [string, object] => {
     case 'end':
       return ['rest/end', {}];
     case 'hit-die':
-      return ['rest/hit-die', { characterId: request.characterId, sides: request.sides }];
+      return [
+        'rest/hit-die',
+        {
+          characterId: request.characterId,
+          sides: request.sides,
+          ...(request.face === undefined ? {} : { face: request.face }),
+        },
+      ];
     case 'level-up':
       return [
         `characters/${encodeURIComponent(request.characterId)}/level-up`,

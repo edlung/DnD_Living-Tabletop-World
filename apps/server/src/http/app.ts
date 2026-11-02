@@ -196,7 +196,11 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
-  const table = deps.table ?? memoryTable();
+  // The roll and rest routes read the campaign's dice from the same table state (ADR 0044 §4).
+  const table: TableDependencies = {
+    ...(deps.table ?? memoryTable()),
+    diceOf: async (campaignId) => (await lobby.state.read(campaignId)).dice,
+  };
   registerRollRoutes(app, { ...deps, table });
   registerRestRoutes(app, { ...deps, table });
   if (deps.signIn) {

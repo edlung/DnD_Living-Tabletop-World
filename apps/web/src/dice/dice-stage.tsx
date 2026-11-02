@@ -6,7 +6,14 @@ import { listenForUnlock, playImpacts, type Impact } from './audio.ts';
 import type { DiceEngine, DieRequest, Landing } from './engine/index.ts';
 import { animates, useDiceSettings, type DiceSettings } from './settings.ts';
 import { useDiceTable } from './table.tsx';
-import { purposeWords, resultWords, rollerWords, subjectWords, sumWords } from './words.ts';
+import {
+  purposeWords,
+  resultWords,
+  rollerWords,
+  rollMarks,
+  subjectWords,
+  sumWords,
+} from './words.ts';
 
 /** A throw without motion still knocks: a short tumble of impacts. */
 const STILL_TUMBLE: readonly Impact[] = [
@@ -112,7 +119,9 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
       element?.showPopover();
       // Who rolled and for what show at once; a hidden page draws no frames, so it throws none.
       setShown({ entry, landed: 0, at: null, leaving: false });
-      const motion = animates(settingsRef.current) && !document.hidden;
+      // Dice already thrown on the table (their faces entered, ADR 0044 §4) are not thrown again.
+      const flies = !(entry.entered ?? false);
+      const motion = flies && animates(settingsRef.current) && !document.hidden;
       const loaded = motion ? await within(loadEngine(), ENGINE_WAIT_MS) : null;
       const set = entry.hidden || entry.roller === null ? 'ivory' : 'obsidian';
       let at: Shown['at'] = null;
@@ -124,7 +133,9 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
           if (sound.sound) playImpacts(thrown.hits, sound.volume);
           at = await within(thrown.landed, LANDING_WAIT_MS);
         } else {
-          if (sound.sound && group.dice.length > 0) playImpacts(STILL_TUMBLE, sound.volume);
+          if (flies && sound.sound && group.dice.length > 0) {
+            playImpacts(STILL_TUMBLE, sound.volume);
+          }
           await wait(450);
         }
         setShown({ entry, landed: index + 1, at, leaving: false });
@@ -162,6 +173,11 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
       <p className="dice-plate-who">
         <span>{rollerWords(t, shown.entry.roller)}</span>
         <span>{subjectWords(t, shown.entry.subject)}</span>
+        {rollMarks(t, shown.entry, table?.isDm ?? false).map((mark) => (
+          <span key={mark} className="dice-plate-mark">
+            {mark}
+          </span>
+        ))}
       </p>
       {shown.entry.groups.slice(0, shown.landed).map((group, index) => {
         const result = resultWords(t, group);

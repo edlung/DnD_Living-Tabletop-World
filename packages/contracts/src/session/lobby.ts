@@ -11,6 +11,10 @@ import type { EntityRef } from '../knowledge/views.ts';
 export const TABLE_MODES = ['table', 'online'] as const;
 export type TableMode = (typeof TABLE_MODES)[number];
 
+/** The campaign's dice (docs/adr/0044-online-play.md §4): the app's, or the players' own entered. */
+export const TABLE_DICE = ['app', 'physical'] as const;
+export type TableDice = (typeof TABLE_DICE)[number];
+
 export interface LobbyCharacter {
   readonly character: EntityRef;
   /** Its player holds a live subscription. */
@@ -26,6 +30,8 @@ export interface LobbyResponse {
   readonly perspective: string;
   readonly mode: TableMode;
   readonly paused: boolean;
+  /** Whether players may enter the faces of their own dice. */
+  readonly dice: TableDice;
   /** The open session; null between sessions. */
   readonly session: { readonly sessionId: string; readonly title: string } | null;
   readonly characters: readonly LobbyCharacter[];
@@ -41,6 +47,7 @@ export const lobbyChangeRequestSchema = z
   .object({
     mode: z.enum(TABLE_MODES).optional(),
     paused: z.boolean().optional(),
+    dice: z.enum(TABLE_DICE).optional(),
     absent: z.object({ characterId: entityIdSchema, absent: z.boolean() }).strict().optional(),
   })
   .strict();

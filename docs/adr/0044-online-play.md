@@ -42,3 +42,17 @@
    rolled; the table's screen shows whom the table waits for over every cast but the dice' own
    (the party's characters only, as the screen reads the party's view). No background push and no
    service worker (plan decision 10).
+4. **One's own dice, and a roll between the DM and one player** (plan decision 13). The DM chooses
+   on the Session sheet whether the players roll their own dice (the table's state, migration
+   0031, `dice` `app` or `physical`). Where they do, a free roll, a check (two d20s with Advantage
+   or Disadvantage), a check the DM asked and a Hit Point Die may carry the faces read off real
+   dice; the DM may always enter faces. The server checks every face against its die and the count
+   against the roll, and computes every total, success and healing from them as from its own dice
+   (`EnteredDice`); a face that does not fit is refused (400), faces where the campaign's dice are
+   the app's too (409). Such a roll is marked "own dice" in the log, the chat and on the plate,
+   and is not thrown again by the 3D dice. The DM may confirm an entered roll ("the dice showed
+   this", append-only `ltw_roll_confirmations`, once), and the log then says so to everyone who
+   sees the roll. A player may roll for the DM alone (`private`), the DM for one character
+   (`shownTo`) as well as hidden; a check the DM asks in private is answered so, and the table's
+   screen does not list it. Such a roll (`audience_id`) is read by the DM and that character only.
+   Attacks, damage and saves in a fight stay the World Engine's dice.

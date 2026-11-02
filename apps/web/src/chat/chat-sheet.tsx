@@ -4,7 +4,7 @@ import { StatusPanel, useLanguage, useT, type Translate } from '@ltw/ui';
 import { useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
 
 import { useDiceTable } from '../dice/table.tsx';
-import { rollSentence } from '../dice/words.ts';
+import { rollMarks, rollSentence } from '../dice/words.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { useScrollEdges } from '../visual/scroll-edges.ts';
@@ -138,7 +138,16 @@ export function ChatSheet({
               line.kind === 'roll' ? (
                 <li key={line.roll.rollId} className="chat-line chat-line--roll">
                   <span className="chat-time">{time(line.at, language)}</span>
-                  <span>{rollSentence(t, line.roll)}</span>
+                  <span>
+                    {rollSentence(t, line.roll)}
+                    {rollMarks(t, line.roll, isDm).map((mark) => (
+                      <span key={mark} className="chat-where">
+                        {/* The dot stays with the words before it (never at a line's start). */}
+                        {'\u00a0· '}
+                        {mark}
+                      </span>
+                    ))}
+                  </span>
                 </li>
               ) : (
                 <li

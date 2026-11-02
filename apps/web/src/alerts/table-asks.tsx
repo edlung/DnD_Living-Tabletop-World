@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { playChime } from '../dice/audio.ts';
 import { checkWords } from '../dice/checks.ts';
+import { AnswerCheck } from '../dice/own-dice.tsx';
 import { useDiceSettings } from '../dice/settings.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
@@ -82,26 +83,15 @@ export function TableAsks({
         characterId !== null &&
         asked.map((request) => (
           <div key={request.requestId} className="rest-banner asked-check">
-            <Glyph name="roll" />
-            <span className="rest-banner-text">
-              {t('The DM asks: {check}', { check: checkWords(t, request.check, request.mode) })}
-            </span>
-            <button
-              type="button"
-              className="primary-button"
-              disabled={table.busy}
-              onClick={() =>
-                void table.roll({
-                  kind: 'check',
-                  characterId,
-                  check: request.check,
-                  mode: request.mode,
-                  requestId: request.requestId,
-                })
-              }
-            >
-              {t('Roll')}
-            </button>
+            {/* The mark stays beside the first line of its words. */}
+            <p className="asked-check-what">
+              <Glyph name="roll" />
+              <span className="rest-banner-text">
+                {t('The DM asks: {check}', { check: checkWords(t, request.check, request.mode) })}
+                {request.private && <span className="muted">{`\u00a0· ${t('in private')}`}</span>}
+              </span>
+            </p>
+            <AnswerCheck request={request} />
           </div>
         ))}
     </div>
