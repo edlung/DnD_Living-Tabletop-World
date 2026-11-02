@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect as baseExpect, test } from '@playwright/test';
 
 import {
   commandAction,
@@ -9,6 +9,12 @@ import {
   playerKnowledge,
   travelTo,
 } from './support/investigation.ts';
+
+/**
+ * After each action the panels re-read in the background; a hosted runner is several times slower
+ * than a laptop, so what an action shows gets the time it needs there (tests/e2e/AGENTS.md).
+ */
+const expect = baseExpect.configure({ timeout: 15_000 });
 
 test('objects lead from Mira to evidence, a hypothesis, contradictory testimony, and Orin recall', async ({
   page,
