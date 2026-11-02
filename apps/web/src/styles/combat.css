@@ -274,7 +274,10 @@
   gap: 0.4rem;
   margin: 0.7rem 0 0;
 }
+/* A label too long for its tile ("Класс доспеха") takes two lines; the figures stay in line. */
 .active-stats > div {
+  display: grid;
+  grid-template-rows: 1fr auto;
   padding: 0.35rem 0.5rem 0.4rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-control);
@@ -282,13 +285,12 @@
 }
 .active-stats dt {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.25rem;
   color: var(--text-muted);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 .active-stats dt .glyph {
   color: var(--gold);
