@@ -6,6 +6,7 @@ export function itemViolations(state: WorldState): string[] {
   const violations: string[] = [];
   const report = (message: string) => violations.push(message);
   const wornSlots = new Set<string>();
+  const attunedBy = new Map<string, number>();
   for (const [itemId, possession] of state.possessions) {
     // A magic one made on a base, with the base's numbers (docs/adr/0054-items-as-data.md §5).
     const entry = entryOf(possession);
@@ -27,9 +28,18 @@ export function itemViolations(state: WorldState): string[] {
       const key = `${possession.holderId ?? ''}:${possession.slot}`;
       if (wornSlots.has(key)) report(`two items share ${key}`);
       wornSlots.add(key);
-    } else if (possession.acDelta !== 0) {
-      report(`unworn item ${itemId} adds armor class`);
+    } else if (possession.acDelta !== 0 || (possession.saveDelta ?? 0) !== 0) {
+      report(`unworn item ${itemId} adds armor class or saves`);
+    }
+    // Attunement (docs/adr/0054-items-as-data.md §5): to what needs it, three at most.
+    if (possession.attuned) {
+      if (entry?.magic?.attunement === undefined || entry.magic.attunement === null)
+        report(`item ${itemId} is attuned but needs no attunement`);
+      const holder = possession.holderId ?? '';
+      attunedBy.set(holder, (attunedBy.get(holder) ?? 0) + 1);
     }
   }
+  for (const [holder, count] of attunedBy)
+    if (count > 3) report(`${holder} is attuned to ${String(count)} items`);
   return violations;
 }

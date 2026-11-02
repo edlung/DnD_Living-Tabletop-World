@@ -36,7 +36,11 @@ export function skillModifier(sheet: CharacterSheet, skill: Skill): number {
 
 export function savingThrowModifier(sheet: CharacterSheet, ability: Ability): number {
   const proficient = sheet.savingThrows.includes(ability);
-  return modifierOf(sheet, ability) + (proficient ? proficiencyBonus(totalLevel(sheet)) : 0);
+  // A Ring of Protection's +1, and the like (docs/adr/0054-items-as-data.md §5).
+  const items = sheet.saveBonus ?? 0;
+  return (
+    modifierOf(sheet, ability) + (proficient ? proficiencyBonus(totalLevel(sheet)) : 0) + items
+  );
 }
 
 export function spellSaveDc(sheet: CharacterSheet, source: SpellcastingSource): number {

@@ -71,7 +71,7 @@ describe('inventory view', () => {
     expect(cloak?.catalog?.name.en).toBe('Caravan cloak');
     expect(body.totalWeightLb).toBeGreaterThanOrEqual(4);
     expect(Object.keys(cloak ?? {}).sort()).toEqual(
-      ['catalog', 'description', 'itemId', 'name', 'quantity', 'slot'].sort(),
+      ['attuned', 'catalog', 'description', 'itemId', 'name', 'quantity', 'slot'].sort(),
     );
   });
 

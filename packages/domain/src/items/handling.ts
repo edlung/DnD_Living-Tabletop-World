@@ -94,3 +94,12 @@ export function withSheet(
     ? events
     : [...events, { type: 'CharacterSheetSet', payload: { entityId: characterId, sheet: next } }];
 }
+
+/** A sheet with `change` added to what worn magic adds to its saves (ADR 0054 §5); none at zero. */
+export function withSaveBonus(sheet: CharacterSheet, change: number): CharacterSheet {
+  if (change === 0) return sheet;
+  const value = (sheet.saveBonus ?? 0) + change;
+  const next: CharacterSheet = { ...sheet, saveBonus: value };
+  if (value === 0) delete next.saveBonus;
+  return next;
+}

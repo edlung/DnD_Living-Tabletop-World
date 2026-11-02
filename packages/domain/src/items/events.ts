@@ -23,6 +23,8 @@ export const itemEquippedPayloadSchema = z
     slot,
     /** Armor class the item adds to the sheet; the sheet changes in the accompanying event. */
     acDelta: z.number().int().min(-40).max(40),
+    /** What it adds to saving throws: a Ring of Protection's +1 (ADR 0054 §5). */
+    saveDelta: z.number().int().min(-10).max(10).optional(),
   })
   .strict();
 
@@ -32,6 +34,23 @@ export const itemUnequippedPayloadSchema = z
     holderId: entityIdSchema,
     slot,
     acDelta: z.number().int().min(-40).max(40),
+    saveDelta: z.number().int().min(-10).max(10).optional(),
+  })
+  .strict();
+
+/**
+ * Attunement begun or ended (docs/adr/0054-items-as-data.md §5): the Armor Class and saves the item
+ * gives its wearer from now on (the sheet changes in the accompanying event).
+ */
+export const itemAttunedPayloadSchema = z
+  .object({
+    itemId: entityIdSchema,
+    holderId: entityIdSchema,
+    attuned: z.boolean(),
+    acDelta: z.number().int().min(-40).max(40),
+    saveDelta: z.number().int().min(-10).max(10),
+    /** Ended on a cursed item: the DM lifted the curse. */
+    liftedCurse: z.literal(true).optional(),
   })
   .strict();
 
@@ -99,6 +118,8 @@ const possessionValue = z
     slot: slot.nullable(),
     acDelta: z.number().int().min(-40).max(40),
     baseCatalogId: itemCatalogIdSchema.optional(),
+    attuned: z.literal(true).optional(),
+    saveDelta: z.number().int().min(-10).max(10).optional(),
   })
   .strict();
 

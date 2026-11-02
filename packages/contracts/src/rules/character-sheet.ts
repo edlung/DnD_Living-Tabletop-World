@@ -291,6 +291,11 @@ export const characterSheetSchema = z
     speeds: speedsSchema.optional(),
     senses: sensesSchema.optional(),
     savingThrows: z.array(z.enum(ABILITIES)),
+    /**
+     * What worn, attuned magic items add to every saving throw: a Ring of Protection's +1
+     * (docs/adr/0054-items-as-data.md §5). Kept by the item rules; absent: none.
+     */
+    saveBonus: z.number().int().min(-10).max(10).optional(),
     skills: z
       .object({ proficient: z.array(z.enum(skillIds)), expertise: z.array(z.enum(skillIds)) })
       .strict(),

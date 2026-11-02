@@ -19,6 +19,10 @@ export interface Possession {
   readonly acDelta: number;
   /** What a magic weapon, armor or shield is made on (docs/adr/0054-items-as-data.md §5). */
   readonly baseCatalogId?: string;
+  /** Its carrier is attuned to it (§5). */
+  readonly attuned?: true;
+  /** What this worn item added to its wearer's saving throws (reversed on removal). */
+  readonly saveDelta?: number;
 }
 
 export const possessionOf = (state: WorldState, itemId: string): Possession | undefined =>
@@ -55,23 +59,35 @@ const abilityModifier = (score: number): number => Math.floor((score - 10) / 2);
  * The armor class a worn item adds to a sheet whose Dexterity score is given:
  * body armor replaces the unarmored base of 10 + Dexterity, a shield adds its bonus.
  */
-export function armorClassDelta(entry: ItemEntry, slot: EquipSlot, dexterity: number): number {
+export function armorClassDelta(
+  entry: ItemEntry,
+  slot: EquipSlot,
+  dexterity: number,
+  attuned = false,
+): number {
   if (slot === 'body' && entry.armor) {
     const dex = abilityModifier(dexterity);
     const capped = entry.armor.dexCap === null ? dex : Math.min(dex, entry.armor.dexCap);
-    return entry.armor.baseAc + capped - (10 + dex) + magicArmorClass(entry);
+    return entry.armor.baseAc + capped - (10 + dex) + magicBonus(entry, attuned).armorClass;
   }
   if (slot === 'offhand' && entry.shieldBonus !== undefined)
-    return entry.shieldBonus + magicArmorClass(entry);
-  return 0;
+    return entry.shieldBonus + magicBonus(entry, attuned).armorClass;
+  // A worn ring's or cloak's: a Ring of Protection's +1.
+  return entry.armor || entry.shieldBonus !== undefined ? 0 : magicBonus(entry, attuned).armorClass;
 }
 
 /**
- * A magic armor's or shield's own bonus to Armor Class — a +1 Plate Armor's (docs/adr/0054-items-as-
- * data.md §5) — when it needs no attunement.
+ * What a magic item worn gives its wearer's Armor Class and saves (docs/adr/0054-items-as-data.md
+ * §5) — a +1 Plate Armor's, a Ring of Protection's — when it needs no attunement or is attuned.
  */
-const magicArmorClass = (entry: ItemEntry): number =>
-  entry.magic?.attunement === null ? (entry.magic.bonus?.armorClass ?? 0) : 0;
+export function magicBonus(
+  entry: ItemEntry,
+  attuned: boolean,
+): { readonly armorClass: number; readonly saves: number } {
+  const magic = entry.magic;
+  if (!magic || (magic.attunement !== null && !attuned)) return { armorClass: 0, saves: 0 };
+  return { armorClass: magic.bonus?.armorClass ?? 0, saves: magic.bonus?.saves ?? 0 };
+}
 
 /**
  * A magic weapon's bonus to attack and damage (docs/adr/0054-items-as-data.md §5): the best a
@@ -86,7 +102,8 @@ export function wieldedBonus(
   for (const itemId of carriedBy(state, holderId)) {
     const possession = state.possessions.get(itemId);
     const entry = possession ? entryOf(possession) : undefined;
-    const bonus = entry?.magic?.attunement === null ? entry.magic.bonus : undefined;
+    const usable = entry?.magic?.attunement === null || possession?.attuned === true;
+    const bonus = usable ? entry?.magic?.bonus : undefined;
     const held = possession?.slot === 'mainhand' || possession?.slot === 'offhand';
     if (!held || entry?.weapon !== weaponId || !bonus) continue;
     if ((bonus.attack ?? 0) > best.attack)

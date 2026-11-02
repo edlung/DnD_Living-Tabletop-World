@@ -11,6 +11,7 @@ Who carries an item entity, whether it is worn, and what using it does. Authorit
 | `GrantItem` (DM/system) and its refusals               | `grant.ts`      |
 | The checks every item decision shares                  | `handling.ts`   |
 | The player commands                                    | `decide.ts`     |
+| Attunement (the DM's, or the table's in a Short Rest)  | `attune.ts`     |
 | Footprints (reads/writes) of the item events           | `footprints.ts` |
 | Structural invariants                                  | `integrity.ts`  |
 | Carrier-only inventory view                            | `view.ts`       |

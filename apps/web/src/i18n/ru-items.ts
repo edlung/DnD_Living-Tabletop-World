@@ -85,4 +85,23 @@ registerRussian({
   '+{bonus} to Armor Class': '+{bonus} к КД',
   '+{bonus} to saving throws': '+{bonus} к спасброскам',
   'You drank it: {count} hit points back.': 'Вы выпили зелье: восстановлено {count} здоровья.',
+  // Attunement (docs/adr/0054-items-as-data.md §5).
+  Attuned: 'Настроен',
+  Cursed: 'Проклят',
+  Attune: 'Настроиться',
+  'Attune in this short rest': 'Настроиться за этот короткий отдых',
+  'End attunement': 'Прервать настройку',
+  'Lift the curse': 'Снять проклятие',
+  'Attuned to {count} of 3 items.': 'Настройка: {count} из 3 предметов.',
+  'Attunement waits for a short rest, out of a fight.':
+    'Настроиться можно во время короткого отдыха, не в бою.',
+  'It cannot be attuned now.': 'Сейчас на него не настроиться.',
+  'You are attuned to three items already: end one first.':
+    'Вы уже настроены на три предмета: сначала прервите одну настройку.',
+  'You are attuned to one of these already.': 'Вы уже настроены на такой предмет.',
+  'A curse holds this attunement.': 'Проклятие держит эту настройку.',
+  'Attuned: its magic is yours.': 'Настройка завершена: его магия ваша.',
+  'The attunement is ended.': 'Настройка прервана.',
+  'Only those the item names may attune to it.':
+    'Настроиться могут только те, кого называет предмет.',
 });

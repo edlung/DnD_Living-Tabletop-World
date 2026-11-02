@@ -1,4 +1,10 @@
-import type { ClassId, HitDieSides, RestResult } from '@ltw/contracts';
+import type {
+  AttunedResponse,
+  ClassId,
+  CommandRejected,
+  HitDieSides,
+  RestResult,
+} from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
@@ -23,7 +29,15 @@ export type RestIntent =
       /** The face of the player's own die (ADR 0044 §4). */
       readonly face?: number;
     }
-  | { readonly action: 'level-up'; readonly characterId: string; readonly classId: ClassId };
+  | { readonly action: 'level-up'; readonly characterId: string; readonly classId: ClassId }
+  | {
+      /** Attunement to an item (docs/adr/0054-items-as-data.md §5): in a Short Rest, or the DM's. */
+      readonly action: 'attune';
+      readonly characterId: string;
+      readonly itemId: string;
+      readonly attuned: boolean;
+      readonly liftCurse?: true;
+    };
 
 export interface RestAction {
   readonly kind: 'rest';
@@ -42,12 +56,22 @@ const CONFLICT: Readonly<Record<RestIntent['action'], string>> = {
   end: 'No short rest is under way.',
   'hit-die': 'The short rest is over, or a fight began.',
   'level-up': 'The level could not be granted. Try again.',
+  attune: 'Attunement waits for a short rest, out of a fight.',
 };
 const REFUSED: Readonly<Record<RestIntent['action'], string>> = {
   start: 'No rest now: a fight is running, or a short rest is already under way.',
   end: 'No short rest is under way.',
   'hit-die': 'No Hit Point Die can be spent now.',
   'level-up': 'That level cannot be granted.',
+  attune: 'It cannot be attuned now.',
+};
+
+/** The World Engine's reasons an attunement is refused (`details.attunement`), in words. */
+const ATTUNE_REFUSALS: Readonly<Record<string, string>> = {
+  full: 'You are attuned to three items already: end one first.',
+  copy: 'You are attuned to one of these already.',
+  who: 'Only those the item names may attune to it.',
+  curse: 'A curse holds this attunement.',
 };
 
 const call = (request: RestIntent): [string, object] => {
@@ -78,6 +102,15 @@ const call = (request: RestIntent): [string, object] => {
         `characters/${encodeURIComponent(request.characterId)}/level-up`,
         { classId: request.classId },
       ];
+    case 'attune':
+      return [
+        `items/${encodeURIComponent(request.itemId)}/attune`,
+        {
+          characterId: request.characterId,
+          attuned: request.attuned,
+          ...(request.liftCurse ? { liftCurse: true } : {}),
+        },
+      ];
   }
 };
 
@@ -90,7 +123,7 @@ export async function runRest(
 ): Promise<string> {
   const [path, body] = call(action.request);
   try {
-    const result = await api.post<RestResult>(
+    const result = await api.post<RestResult | AttunedResponse | CommandRejected>(
       path,
       { requestId: action.requestId, ...body },
       signal,
@@ -124,6 +157,15 @@ export async function runRest(
         return t('A new level is granted.');
       case 'duplicate':
         return t('That was already done.');
+      case 'attuned':
+        return t('Attuned: its magic is yours.');
+      case 'unattuned':
+        return t('The attunement is ended.');
+      case 'rejected': {
+        const reason = result.details?.['attunement'];
+        const words = typeof reason === 'string' ? ATTUNE_REFUSALS[reason] : undefined;
+        return t(words ?? REFUSED[action.request.action]);
+      }
     }
   } catch (error) {
     if (error instanceof ApiError && error.status === 409) {

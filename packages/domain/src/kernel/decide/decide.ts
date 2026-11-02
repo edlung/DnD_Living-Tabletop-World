@@ -37,6 +37,7 @@ import {
   decideDropItem,
   decideEquipItem,
   decideGiveItem,
+  decideAttuneItem,
   decideGrantItem,
   decideTakeItem,
   decideUnequipItem,
@@ -184,6 +185,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideSetRelationship(state, command);
     case 'GrantItem':
       return decideGrantItem(state, command);
+    case 'AttuneItem':
+      return decideAttuneItem(state, command);
     case 'EquipItem':
       return decideEquipItem(state, command);
     case 'UnequipItem':

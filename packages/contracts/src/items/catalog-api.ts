@@ -66,3 +66,21 @@ export interface GivenCatalogItemResponse {
 }
 
 export const catalogItemIdSchema = itemCatalogIdSchema;
+
+/**
+ * Attunement asked at the table (docs/adr/0054-items-as-data.md §5): a player for their own
+ * character during a Short Rest, the DM any time; lifting a curse is the DM's.
+ */
+export const attuneRequestSchema = z
+  .object({
+    requestId: z.uuid(),
+    characterId: entityIdSchema,
+    attuned: z.boolean(),
+    liftCurse: z.literal(true).optional(),
+  })
+  .strict();
+export type AttuneRequest = z.infer<typeof attuneRequestSchema>;
+
+export interface AttunedResponse {
+  readonly status: 'attuned' | 'unattuned';
+}

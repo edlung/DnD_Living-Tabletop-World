@@ -412,6 +412,7 @@ registerRussian({
   'give item': 'передать предмет',
   'drop item': 'бросить предмет',
   'take item': 'поднять предмет',
+  'attune to an item': 'настройка на предмет',
   'change hit points': 'изменить хиты',
   'set a condition': 'наложить или снять состояние',
   'set Exhaustion': 'установить истощение',

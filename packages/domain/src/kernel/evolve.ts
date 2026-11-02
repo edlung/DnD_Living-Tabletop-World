@@ -51,6 +51,7 @@ import { applyWeatherRestore, applyWeatherSet } from '../weather/weather.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
 import {
   applyItemEquipped,
+  applyItemAttuned,
   applyItemGranted,
   applyItemRestore,
   applyItemSplit,
@@ -262,6 +263,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyItemUnequipped(state, event);
     case 'ItemUsed':
       return applyItemUsed(state, event);
+    case 'ItemAttuned':
+      return applyItemAttuned(state, event);
     case 'ItemRecovered':
       return applyItemRecovered(state, event);
     case 'ItemTransferred':

@@ -12,7 +12,8 @@ type ItemEvent = Extract<
       | 'ItemUsed'
       | 'ItemRecovered'
       | 'ItemTransferred'
-      | 'ItemSplit';
+      | 'ItemSplit'
+      | 'ItemAttuned';
   }
 >;
 
@@ -34,8 +35,10 @@ export function itemFootprint(event: ItemEvent): Footprint {
         ],
         writes: [facts.possession(event.payload.itemId)],
       };
+    // Attunement reads and writes the holder's worn and attuned set, and its sheet changes.
     case 'ItemEquipped':
     case 'ItemUnequipped':
+    case 'ItemAttuned':
       return {
         reads: [
           clock,

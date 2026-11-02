@@ -13,6 +13,28 @@ const mustHold = (state: WorldState, itemId: string): Possession => {
   return found;
 };
 
+/**
+ * A possession of its required fields, and its optional ones only when set: the base a magic item
+ * is made on, attunement and what it adds to saves (docs/adr/0054-items-as-data.md §5).
+ */
+const rebuilt = (
+  core: Pick<Possession, 'catalogId' | 'holderId' | 'quantity' | 'slot' | 'acDelta'>,
+  more: {
+    readonly baseCatalogId?: string | undefined;
+    readonly attuned?: boolean | undefined;
+    readonly saveDelta?: number | undefined;
+  },
+): Possession => ({
+  catalogId: core.catalogId,
+  holderId: core.holderId,
+  quantity: core.quantity,
+  slot: core.slot,
+  acDelta: core.acDelta,
+  ...(more.baseCatalogId === undefined ? {} : { baseCatalogId: more.baseCatalogId }),
+  ...(more.attuned === true ? { attuned: true as const } : {}),
+  ...(more.saveDelta ? { saveDelta: more.saveDelta } : {}),
+});
+
 const put = (state: WorldState, itemId: string, value: Possession): WorldState => ({
   ...state,
   possessions: withEntry(state.possessions, itemId, value),
@@ -34,11 +56,20 @@ export function applyItemGranted(state: WorldState, event: Ev<'ItemGranted'>): W
 }
 
 export function applyItemEquipped(state: WorldState, event: Ev<'ItemEquipped'>): WorldState {
-  const { itemId, holderId, slot, acDelta } = event.payload;
+  const { itemId, holderId, slot, acDelta, saveDelta } = event.payload;
   const current = mustHold(state, itemId);
   if (current.holderId !== holderId || current.slot !== null)
     throw new CorruptHistoryError(`item ${itemId} cannot be equipped`);
-  return put(state, itemId, { ...current, slot, acDelta });
+  return put(state, itemId, { ...current, slot, acDelta, ...(saveDelta ? { saveDelta } : {}) });
+}
+
+/** Attunement begun or ended, and what the worn item gives from now on (ADR 0054 §5). */
+export function applyItemAttuned(state: WorldState, event: Ev<'ItemAttuned'>): WorldState {
+  const { itemId, holderId, attuned, acDelta, saveDelta } = event.payload;
+  const current = mustHold(state, itemId);
+  if (current.holderId !== holderId || (current.attuned === true) === attuned)
+    throw new CorruptHistoryError(`item ${itemId} attunement does not follow`);
+  return put(state, itemId, rebuilt({ ...current, acDelta }, { ...current, attuned, saveDelta }));
 }
 
 export function applyItemUnequipped(state: WorldState, event: Ev<'ItemUnequipped'>): WorldState {
@@ -46,7 +77,11 @@ export function applyItemUnequipped(state: WorldState, event: Ev<'ItemUnequipped
   const current = mustHold(state, itemId);
   if (current.holderId !== holderId || current.slot !== slot)
     throw new CorruptHistoryError(`item ${itemId} is not worn in ${slot}`);
-  return put(state, itemId, { ...current, slot: null, acDelta: 0 });
+  return put(
+    state,
+    itemId,
+    rebuilt({ ...current, slot: null, acDelta: 0 }, { ...current, saveDelta: 0 }),
+  );
 }
 
 export function applyItemUsed(state: WorldState, event: Ev<'ItemUsed'>): WorldState {
@@ -102,9 +137,5 @@ export function applyItemRestore(
 ): WorldState {
   if (restore.value === null)
     return { ...state, possessions: withoutEntry(state.possessions, restore.itemId) };
-  const { baseCatalogId, ...value } = restore.value;
-  return put(state, restore.itemId, {
-    ...value,
-    ...(baseCatalogId === undefined ? {} : { baseCatalogId }),
-  });
+  return put(state, restore.itemId, rebuilt(restore.value, restore.value));
 }

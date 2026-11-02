@@ -97,6 +97,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   GiveItem: 'give item',
   DropItem: 'drop item',
   TakeItem: 'take item',
+  AttuneItem: 'attune to an item',
   AdjustHitPoints: 'change hit points',
   SetCondition: 'set a condition',
   SetExhaustion: 'set Exhaustion',

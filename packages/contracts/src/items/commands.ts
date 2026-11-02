@@ -49,6 +49,19 @@ export const dropItemCommandSchema = z
   .strict();
 export const takeItemCommandSchema = z.object({ type: z.literal('TakeItem'), ...acting }).strict();
 
+/**
+ * Attunement to a magic item (docs/adr/0054-items-as-data.md §5): the DM's, or the table's for a
+ * player during a Short Rest. Ending it on a cursed item is the DM's lifting of the curse.
+ */
+export const attuneItemCommandSchema = z
+  .object({
+    type: z.literal('AttuneItem'),
+    ...acting,
+    attuned: z.boolean(),
+    liftCurse: z.literal(true).optional(),
+  })
+  .strict();
+
 /** Player item commands: issued for the actor's own character (or by the DM/system). */
 export const ITEM_PLAYER_COMMAND_TYPES = [
   'EquipItem',

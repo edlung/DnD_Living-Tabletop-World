@@ -29,7 +29,9 @@ export function ItemCard({
   language,
   blocked,
   recipients,
+  attuning,
   onRun,
+  onAttune,
 }: {
   readonly item: InventoryItem;
   /** What is worn now: a slot already taken is said, with a way to free it. */
@@ -39,7 +41,13 @@ export function ItemCard({
   readonly language: Language;
   readonly blocked: boolean;
   readonly recipients: readonly Recipient[];
+  /**
+   * Who may change its attunement now (docs/adr/0054-items-as-data.md §5): its player in a Short
+   * Rest, the DM any time; null: nobody.
+   */
+  readonly attuning: 'rest' | 'dm' | null;
   readonly onRun: (command: ItemCommandBody) => void;
+  readonly onAttune: (attuned: boolean, liftCurse?: true) => void;
 }) {
   const t = useT();
   const id = useId();
@@ -91,7 +99,7 @@ export function ItemCard({
             .filter(Boolean)
             .join(' · ')}
         </p>
-        {catalog?.magic && <MagicLine magic={catalog.magic} />}
+        {catalog?.magic && <MagicLine magic={catalog.magic} attuned={item.attuned} />}
         {/* An SRD entry's own words say more than its line (docs/adr/0054-items-as-data.md §4). */}
         {catalog?.text ? (
           <p className="item-srd-words" lang="en">
@@ -167,7 +175,8 @@ export function ItemCard({
               <dd>{effectText(t, catalog.effect)}</dd>
             </div>
           )}
-          {catalog && (
+          {/* A weight the SRD does not give (most magic items) is not said as nothing. */}
+          {catalog && catalog.weightLb > 0 && (
             <div>
               <dt>{t('Weight')}</dt>
               <dd>
@@ -183,6 +192,16 @@ export function ItemCard({
           )}
         </dl>
         <div className="item-actions">
+          {catalog?.magic?.attunement !== undefined &&
+            catalog.magic.attunement !== null &&
+            attuning !== null && (
+              <AttuneButton
+                attuned={item.attuned}
+                cursed={catalog.magic.cursed}
+                attuning={attuning}
+                onAttune={onAttune}
+              />
+            )}
           {slots.length > 0 && item.slot === null && (
             <>
               {slots.length > 1 && (
@@ -323,8 +342,8 @@ export function ItemCard({
 
 type Magic = NonNullable<NonNullable<InventoryItem['catalog']>['magic']>;
 
-/** A magic item's rarity and attunement (docs/adr/0054-items-as-data.md §5). */
-function MagicLine({ magic }: { readonly magic: Magic }) {
+/** A magic item's rarity and attunement, and the curse the DM is told of (ADR 0054 §5). */
+function MagicLine({ magic, attuned }: { readonly magic: Magic; readonly attuned: boolean }) {
   const t = useT();
   return (
     <p className="item-magic">
@@ -332,11 +351,55 @@ function MagicLine({ magic }: { readonly magic: Magic }) {
       {magic.attunement !== null && (
         <>
           {' · '}
-          {t('Needs attunement')}
-          {magic.attunement !== '' && <span lang="en"> ({magic.attunement})</span>}
+          {attuned ? t('Attuned') : t('Needs attunement')}
+          {!attuned && magic.attunement !== '' && <span lang="en"> ({magic.attunement})</span>}
         </>
       )}
+      {magic.cursed && ` · ${t('Cursed')}`}
     </p>
+  );
+}
+
+/**
+ * Attune or end it: the player in a Short Rest, the DM any time; a cursed item's attunement only
+ * the DM ends, lifting the curse.
+ */
+function AttuneButton({
+  attuned,
+  cursed,
+  attuning,
+  onAttune,
+}: {
+  readonly attuned: boolean;
+  readonly cursed: boolean;
+  readonly attuning: 'rest' | 'dm';
+  readonly onAttune: (attuned: boolean, liftCurse?: true) => void;
+}) {
+  const t = useT();
+  if (attuned && cursed)
+    return (
+      <button
+        type="button"
+        onClick={() => {
+          onAttune(false, true);
+        }}
+      >
+        {t('Lift the curse')}
+      </button>
+    );
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        onAttune(!attuned);
+      }}
+    >
+      {attuned
+        ? t('End attunement')
+        : attuning === 'rest'
+          ? t('Attune in this short rest')
+          : t('Attune')}
+    </button>
   );
 }
 

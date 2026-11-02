@@ -56,6 +56,7 @@ import {
   itemUnequippedPayloadSchema,
   itemRecoveredPayloadSchema,
   itemUsedPayloadSchema,
+  itemAttunedPayloadSchema,
 } from '../items/events.ts';
 import {
   assetAdoptedPayloadSchema,
@@ -276,6 +277,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ItemRecovered', itemRecoveredPayloadSchema),
   event('ItemTransferred', itemTransferredPayloadSchema),
   event('ItemSplit', itemSplitPayloadSchema),
+  // Attunement (docs/adr/0054-items-as-data.md §5).
+  event('ItemAttuned', itemAttunedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

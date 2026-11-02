@@ -6,11 +6,21 @@ import { reject, type Decision, type ResolvedCommandOf } from '../kernel/decisio
 import type { KernelEvent } from '../kernel/events.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { adjacentInEncounter } from './economy.ts';
-import { carrier, item, mayHandle, ownItem, played, SELF, withSheet } from './handling.ts';
+import {
+  carrier,
+  item,
+  mayHandle,
+  ownItem,
+  played,
+  SELF,
+  withSaveBonus,
+  withSheet,
+} from './handling.ts';
 import {
   armorClassDelta,
   clampArmorClass,
   entryOf,
+  magicBonus,
   possessionOf,
   wornIn,
   type Possession,
@@ -23,6 +33,7 @@ import {
  * beside the item event, so undo and replay need no special case. Giving one is
  * `grant.ts`'s; the checks every decision shares, `handling.ts`'s.
  */
+export { decideAttuneItem } from './attune.ts';
 export { decideGrantItem, grantRefusal } from './grant.ts';
 export function decideEquipItem(
   state: WorldState,
@@ -47,8 +58,11 @@ export function decideEquipItem(
   const affectsArmor = entry.armor !== undefined || entry.shieldBonus !== undefined;
   if (affectsArmor && !sheet)
     return reject('NO_CHARACTER_SHEET', "Armor needs the wearer's character sheet");
-  const requested = sheet ? armorClassDelta(entry, command.slot, sheet.abilities.dex) : 0;
+  const attuned = own.possession.attuned === true;
+  const requested = sheet ? armorClassDelta(entry, command.slot, sheet.abilities.dex, attuned) : 0;
   const applied = sheet ? clampArmorClass(sheet.armorClass + requested) - sheet.armorClass : 0;
+  // A Ring of Protection's +1 to saves, worn and attuned (docs/adr/0054-items-as-data.md §5).
+  const saves = sheet ? magicBonus(entry, attuned).saves : 0;
   if (command.slot === 'body' && isCombatant(state, command.characterId))
     return reject('INVALID_ITEM', 'Armor cannot be changed during an encounter');
   return played(
@@ -66,11 +80,15 @@ export function decideEquipItem(
             holderId: command.characterId,
             slot: command.slot,
             acDelta: applied,
+            ...(saves === 0 ? {} : { saveDelta: saves }),
           },
         },
       ],
       (s) => {
-        const armored = applied === 0 ? s : { ...s, armorClass: s.armorClass + applied };
+        const armored = withSaveBonus(
+          applied === 0 ? s : { ...s, armorClass: s.armorClass + applied },
+          saves,
+        );
         // What the rules need of body armor (docs/adr/0050-the-world-around.md §10).
         const armor = command.slot === 'body' ? entry.armor : undefined;
         return armor
@@ -95,7 +113,7 @@ export function decideUnequipItem(
 ): Decision {
   const own = ownItem(state, command.characterId, command.itemId);
   if (!own.ok) return own;
-  const { slot, acDelta } = own.possession;
+  const { slot, acDelta, saveDelta = 0 } = own.possession;
   if (slot === null) return reject('NO_EFFECT', `"${command.itemId}" is not worn`);
   if (slot === 'body' && isCombatant(state, command.characterId))
     return reject('INVALID_ITEM', 'Armor cannot be changed during an encounter');
@@ -109,12 +127,21 @@ export function decideUnequipItem(
       [
         {
           type: 'ItemUnequipped',
-          payload: { itemId: command.itemId, holderId: command.characterId, slot, acDelta },
+          payload: {
+            itemId: command.itemId,
+            holderId: command.characterId,
+            slot,
+            acDelta,
+            ...(saveDelta === 0 ? {} : { saveDelta }),
+          },
         },
       ],
       (s) => {
         const armorClass = clampArmorClass(s.armorClass - acDelta);
-        const next = armorClass === s.armorClass ? s : { ...s, armorClass };
+        const next = withSaveBonus(
+          armorClass === s.armorClass ? s : { ...s, armorClass },
+          -saveDelta,
+        );
         if (slot !== 'body' || next.wornArmor === undefined) return next;
         const bare = { ...next };
         delete bare.wornArmor;

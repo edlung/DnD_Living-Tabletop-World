@@ -11,6 +11,8 @@ export interface InventoryItem {
   readonly quantity: number;
   /** The slot it is worn in, or null. */
   readonly slot: EquipSlot | null;
+  /** Its carrier is attuned to it (docs/adr/0054-items-as-data.md §5). */
+  readonly attuned: boolean;
   /** What it is, when it is an instance of a catalog entry; never a claim about the object. */
   readonly catalog: {
     readonly itemId: string;
@@ -37,6 +39,8 @@ export interface InventoryItem {
       readonly rarity: ItemRarity;
       readonly attunement: string | null;
       readonly bonus: ItemMagic['bonus'] | null;
+      /** A curse, told to the DM alone. */
+      readonly cursed: boolean;
     } | null;
   } | null;
 }

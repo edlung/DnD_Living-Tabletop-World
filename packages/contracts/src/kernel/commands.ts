@@ -13,6 +13,7 @@ import {
 } from '../assets/commands.ts';
 import { languageSchema } from '../language/language.ts';
 import {
+  attuneItemCommandSchema,
   dropItemCommandSchema,
   equipItemCommandSchema,
   giveItemCommandSchema,
@@ -196,6 +197,7 @@ export const kernelCommandSchema = z
     giveItemCommandSchema,
     dropItemCommandSchema,
     takeItemCommandSchema,
+    attuneItemCommandSchema,
     adjustHitPointsCommandSchema,
     setConditionCommandSchema,
     setExhaustionCommandSchema,
@@ -277,6 +279,7 @@ export const KERNEL_COMMAND_TYPES = [
   'GiveItem',
   'DropItem',
   'TakeItem',
+  'AttuneItem',
   'AdjustHitPoints',
   'SetCondition',
   'SetExhaustion',

@@ -389,6 +389,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'ItemUsed':
       case 'ItemRecovered':
       case 'ItemTransferred':
+      case 'ItemAttuned':
         restores.push({
           fact: 'possession',
           itemId: event.payload.itemId,

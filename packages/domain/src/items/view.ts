@@ -34,6 +34,7 @@ export function inventoryView(
       description: entity.description,
       quantity: possession.quantity,
       slot: possession.slot,
+      attuned: possession.attuned === true,
       catalog: entry
         ? {
             itemId: entry.itemId,
@@ -56,6 +57,7 @@ export function inventoryView(
                   rarity: entry.magic.rarity,
                   attunement: entry.magic.attunement,
                   bonus: entry.magic.bonus ? { ...entry.magic.bonus } : null,
+                  cursed: dm && entry.magic.cursed === true,
                 }
               : null,
           }
