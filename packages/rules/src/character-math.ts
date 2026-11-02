@@ -4,7 +4,6 @@ import {
   type CharacterSheet,
   type ClassId,
   type Skill,
-  type SpellId,
   type SpellcastingSource,
 } from '@ltw/contracts';
 
@@ -49,7 +48,7 @@ export function spellAttackBonus(sheet: CharacterSheet, source: SpellcastingSour
 }
 
 /** The casting sources that list a spell (a spell may come from several). */
-export function sourcesFor(sheet: CharacterSheet, spellId: SpellId): SpellcastingSource[] {
+export function sourcesFor(sheet: CharacterSheet, spellId: string): SpellcastingSource[] {
   return sheet.spellcasting.filter((source) => source.spells.includes(spellId));
 }
 

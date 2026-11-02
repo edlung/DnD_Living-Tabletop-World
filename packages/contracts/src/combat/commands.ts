@@ -134,10 +134,20 @@ export const castSpellCommandSchema = z
       .max(48),
     /** Characters: a slot level or a slot-free cast; omitted = free first, then the lowest slot. */
     using: z
-      .union([z.literal('free'), z.object({ slotLevel: z.number().int().min(1).max(9) }).strict()])
+      .union([
+        z.literal('free'),
+        /** A ritual, outside a fight: ten minutes more and no slot (docs/adr/0052 §6). */
+        z.literal('ritual'),
+        z.object({ slotLevel: z.number().int().min(1).max(9) }).strict(),
+      ])
       .optional(),
     targetId: entityIdSchema.optional(),
-    /** Fireball's point, or Misty Step's destination. */
+    /**
+     * A spell cast from its data (docs/adr/0052-spells-as-data.md §5): the creatures it names, one
+     * per attack or dart, which may repeat.
+     */
+    targetIds: z.array(entityIdSchema).min(1).max(12).optional(),
+    /** Fireball's point, Misty Step's destination, or the square an area is aimed at. */
     point: squareSchema.optional(),
   })
   .strict();

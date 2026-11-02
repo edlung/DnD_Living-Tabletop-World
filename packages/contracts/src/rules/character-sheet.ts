@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
+import { srdIdSchema } from '../srd/catalog.ts';
 
 /**
  * Canonical character sheet for the slice (docs/adr/0011-ruleset-srd-5-2.md).
@@ -245,11 +246,12 @@ export const spellcastingSourceSchema = z
     /** Ranger, Wizard and Cleric class casting, or the Magic Initiate (Cleric) feat. */
     source: z.enum(['ranger', 'wizard', 'cleric', 'magic-initiate']),
     ability: z.enum(ABILITIES),
-    spells: z.array(z.enum(SPELL_IDS)).min(1),
+    /** SRD spells by their catalog id (docs/adr/0052-spells-as-data.md §1). */
+    spells: z.array(srdIdSchema).min(1).max(120),
     /** Slot-free casts per Long Rest (Favored Enemy, Magic Initiate). */
     freeCasts: z
       .object({
-        spellId: z.enum(SPELL_IDS),
+        spellId: srdIdSchema,
         perLongRest: z.number().int().min(1).max(9),
         used: z.number().int().min(0).max(9),
       })
@@ -303,7 +305,7 @@ export const characterSheetSchema = z
     exhaustion: exhaustionSchema.optional(),
     concentration: z
       .object({
-        spellId: z.enum(SPELL_IDS),
+        spellId: srdIdSchema,
         /** The creature a targeted Concentration spell (Hunter's Mark) is on. */
         targetId: entityIdSchema.optional(),
       })

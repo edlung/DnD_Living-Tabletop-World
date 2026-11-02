@@ -51,6 +51,7 @@ export interface Mechanics {
     readonly widthFt: number | null;
     readonly origin: 'point' | 'self';
   } | null;
+  readonly seen: boolean;
   readonly targets: number | null;
   readonly duration: { readonly unit: string; readonly amount: number | null };
   readonly concentration: boolean;
@@ -298,6 +299,7 @@ export function deriveMechanics(spell: SrdSpellText): Mechanics {
     castingTime: castingTimeOf(spell.castingTime),
     range: rangeOf(spell.range),
     area,
+    seen: /\byou can see\b/.test(spell.description),
     targets: targetCountOf(spell.description) ?? (single ? 1 : null),
     duration: durationOf(spell.duration),
     concentration: spell.concentration,

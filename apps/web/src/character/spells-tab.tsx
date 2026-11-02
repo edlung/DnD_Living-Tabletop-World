@@ -5,7 +5,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
 import {
   ABILITY_NAMES,
-  SPELL_TEXT,
+  sliceSpellText,
   castingTimeWords,
   rangeWords,
   signed,
@@ -84,7 +84,7 @@ export function SpellsTab({
               <li key={spell.spellId} className="spell-card">
                 <div className="spell-art">{art && <img src={art} alt="" />}</div>
                 <div className="spell-body">
-                  <h4>{spellName(t, spell.spellId)}</h4>
+                  <h4>{spellName(t, spell.spellId, spell.name)}</h4>
                   <p className="spell-meta">
                     {spellLevelWords(t, spell.level)} · {castingTimeWords(t, spell.castingTime)} ·{' '}
                     {rangeWords(t, spell.range)} ·{' '}
@@ -96,7 +96,9 @@ export function SpellsTab({
                       {t('Concentration')}
                     </p>
                   )}
-                  <p className="spell-text">{t(SPELL_TEXT[spell.spellId])}</p>
+                  {sliceSpellText(spell.spellId) !== null && (
+                    <p className="spell-text">{t(sliceSpellText(spell.spellId) ?? '')}</p>
+                  )}
                 </div>
               </li>
             );

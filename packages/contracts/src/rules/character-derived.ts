@@ -2,7 +2,6 @@ import type {
   Ability,
   HitDieSides,
   Skill,
-  SpellId,
   SpellcastingSource,
   WeaponId,
   AmmunitionKind,
@@ -55,9 +54,13 @@ export interface CharacterDerived {
   }[];
   /** Rule data of the spells the sheet lists (the words are the client dictionary's). */
   readonly spells: readonly {
-    readonly spellId: SpellId;
+    /** A slice spell or any SRD spell (docs/adr/0052-spells-as-data.md §1). */
+    readonly spellId: string;
+    /** The SRD's English name. */
+    readonly name: string;
     readonly level: number;
-    readonly castingTime: 'action' | 'bonus' | 'reaction';
+    /** `long`: minutes or hours, outside a fight only. */
+    readonly castingTime: 'action' | 'bonus' | 'reaction' | 'long';
     /** Feet, or 'self'. */
     readonly range: number | 'self';
     readonly components: readonly ('V' | 'S' | 'M')[];

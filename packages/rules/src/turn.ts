@@ -30,6 +30,12 @@ export type IllegalReason =
   | 'NO_SLOT'
   | 'SLOT_TOO_LOW'
   | 'SLOT_ALREADY_USED_THIS_TURN'
+  /** A spell of minutes or hours, cast in a fight (docs/adr/0052-spells-as-data.md §5). */
+  | 'TAKES_TOO_LONG'
+  /** More targets than the spell names at its slot, or one named twice (ADR 0052 §5). */
+  | 'TOO_MANY_TARGETS'
+  /** A ritual cast of a spell that is none (ADR 0052 §6). */
+  | 'NOT_A_RITUAL'
   | 'NO_FREE_CAST'
   | 'OUT_OF_RANGE'
   | 'TARGET_REQUIRED'

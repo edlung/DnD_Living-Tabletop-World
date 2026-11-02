@@ -10,6 +10,8 @@ import {
 } from '@ltw/domain';
 
 import { isAlive } from '../battlefield.ts';
+import { dataSpellEvents } from '../data-spell-effects.ts';
+import { dataSpellPlan, type DataSpellPlan } from '../data-spell-plan.ts';
 import { isSliceSpell, type Refusal } from '../legality.ts';
 import { monsterSpellEvents } from '../monster-spells.ts';
 import { continueMove } from '../movement.ts';
@@ -36,6 +38,7 @@ import { vitalsOf } from '../vitals.ts';
  */
 export type Replanned =
   | { readonly kind: 'character'; readonly plan: CharacterSpellPlan }
+  | { readonly kind: 'data'; readonly plan: DataSpellPlan }
   | { readonly kind: 'creature'; readonly plan: MonsterSpellPlan };
 
 type SpellTrigger = Extract<ReactionWindowRecord['trigger'], { kind: 'spell' }>;
@@ -43,7 +46,20 @@ type SpellTrigger = Extract<ReactionWindowRecord['trigger'], { kind: 'spell' }>;
 /** The suspended cast, planned again on `state` as if its economy were not spent yet. */
 export function replanSuspended(state: WorldState, trigger: SpellTrigger): Replanned | Refusal {
   if (state.entities.get(trigger.casterId)?.kind === 'character') {
-    if (!isSliceSpell(trigger.spellId)) return { legal: false, reason: 'NOT_KNOWN' };
+    if (!isSliceSpell(trigger.spellId)) {
+      const plan = dataSpellPlan(
+        state,
+        trigger.casterId,
+        {
+          spellId: trigger.spellId,
+          ...(trigger.using === null ? {} : { using: trigger.using }),
+          ...(trigger.targetIds ? { targetIds: trigger.targetIds } : {}),
+          ...(trigger.point === null ? {} : { point: trigger.point }),
+        },
+        trigger.economy,
+      );
+      return plan.legal ? { kind: 'data', plan } : plan;
+    }
     const plan = characterSpellPlan(
       state,
       trigger.casterId,
@@ -127,6 +143,7 @@ export function completeSuspended(
   if ('legal' in replanned) {
     throw new Error(`suspended ${trigger.spellId} became illegal (${replanned.reason})`);
   }
+  if (replanned.kind === 'data') return dataSpellEvents(state, casterId, replanned.plan, dice);
   return replanned.kind === 'character'
     ? castEvents(state, casterId, replanned.plan, dice, ids)
     : [

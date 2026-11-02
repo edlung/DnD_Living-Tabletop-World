@@ -16,7 +16,7 @@ export function subjectWords(t: Translate, subject: RollSubject): string {
       return t('{weapon} attack', { weapon });
     }
     case 'spell':
-      return spellName(t, subject.spellId as never);
+      return spellName(t, subject.spellId);
     case 'skill':
       return t('{skill} check', { skill: skillName(t, subject.skill) });
     case 'ability':

@@ -1,8 +1,9 @@
-import type { CharacterSheet, SpellId, SpellcastingSource } from '@ltw/contracts';
+import type { CharacterSheet, SpellcastingSource } from '@ltw/contracts';
 
-import { MISTY_STEP_DISTANCE_FT, SPELLS, type CastingTime } from './catalog.ts';
+import { MISTY_STEP_DISTANCE_FT, type CastingTime } from './catalog.ts';
 import { slotsRemaining, sourcesFor, spellAttackBonus, spellSaveDc } from './character-math.ts';
 import { moveRequiredFt } from './grid.ts';
+import { spellRules } from './spell-rules.ts';
 import { illegal, isIncapacitated, type Illegal, type TurnState } from './turn.ts';
 
 /**
@@ -11,9 +12,12 @@ import { illegal, isIncapacitated, type Illegal, type TurnState } from './turn.t
  * one-slot-per-turn, range/target. Effects are applied by `applyCast`.
  */
 export interface CastRequest {
-  readonly spellId: SpellId;
-  /** A slot level, or a slot-free cast (Favored Enemy, Magic Initiate). */
-  readonly using: { readonly slotLevel: number } | 'free';
+  /** A slice spell, or any SRD spell by its catalog id (docs/adr/0052-spells-as-data.md §1). */
+  readonly spellId: string;
+  /** Cast by a combatant in a running fight, where no spell of minutes or hours fits a turn. */
+  readonly inFight?: boolean;
+  /** A slot level, a slot-free cast (Favored Enemy, Magic Initiate), or a ritual (ADR 0052 §6). */
+  readonly using: { readonly slotLevel: number } | 'free' | 'ritual';
   /** Distance and visibility of the target creature or point, if any. */
   readonly target?: { readonly distanceFt: number; readonly visible: boolean };
   /** Misty Step destination. */
@@ -26,14 +30,16 @@ export interface CastRequest {
 
 export interface CastPlan {
   readonly legal: true;
-  readonly spellId: SpellId;
+  readonly spellId: string;
   readonly source: SpellcastingSource;
-  readonly economy: CastingTime;
+  readonly economy: CastingTime | 'long';
   readonly slotLevel: number | null;
+  /** A slot-free cast (Favored Enemy, Magic Initiate); a cantrip is neither. */
+  readonly free: boolean;
   readonly saveDc: number;
   readonly attackBonus: number;
   /** Concentration spell this cast ends (starting a new Concentration ends the old one). */
-  readonly endsConcentration: SpellId | null;
+  readonly endsConcentration: string | null;
 }
 
 export function checkCast(
@@ -41,10 +47,11 @@ export function checkCast(
   turn: TurnState,
   request: CastRequest,
 ): CastPlan | Illegal {
-  const spell = SPELLS[request.spellId];
+  const spell = spellRules(request.spellId);
   if (isIncapacitated(sheet)) return illegal('INCAPACITATED');
   const sources = sourcesFor(sheet, request.spellId);
-  if (sources.length === 0) return illegal('NOT_KNOWN');
+  if (!spell || sources.length === 0) return illegal('NOT_KNOWN');
+  if (spell.castingTime === 'long' && request.inFight === true) return illegal('TAKES_TOO_LONG');
 
   if (spell.castingTime === 'action' && (!turn.ownTurn || turn.actionUsed)) {
     return illegal(turn.ownTurn ? 'NO_ACTION' : 'NOT_YOUR_TURN');
@@ -56,7 +63,15 @@ export function checkCast(
 
   let source: SpellcastingSource | undefined;
   let slotLevel: number | null = null;
-  if (request.using === 'free') {
+  if (spell.level === 0) {
+    // A cantrip spends no slot and no free cast (docs/adr/0052-spells-as-data.md §5).
+    source = sources[0];
+  } else if (request.using === 'ritual') {
+    // A ritual spends no slot, and takes ten minutes more: no fight's turn holds it.
+    if (!spell.ritual) return illegal('NOT_A_RITUAL');
+    if (request.inFight === true) return illegal('TAKES_TOO_LONG');
+    source = sources[0];
+  } else if (request.using === 'free') {
     source = sources.find(
       (candidate) =>
         candidate.freeCasts?.spellId === request.spellId &&
@@ -73,7 +88,7 @@ export function checkCast(
   }
   if (!source) return illegal('NOT_KNOWN');
 
-  const targetCheck = checkTarget(request);
+  const targetCheck = checkTarget(request, spell);
   if (targetCheck) return targetCheck;
 
   return {
@@ -82,14 +97,17 @@ export function checkCast(
     source,
     economy: spell.castingTime,
     slotLevel,
+    free: spell.level > 0 && request.using === 'free',
     saveDc: spellSaveDc(sheet, source),
     attackBonus: spellAttackBonus(sheet, source),
     endsConcentration: spell.concentration ? (sheet.concentration?.spellId ?? null) : null,
   };
 }
 
-function checkTarget(request: CastRequest): Illegal | null {
-  const spell = SPELLS[request.spellId];
+function checkTarget(
+  request: CastRequest,
+  spell: NonNullable<ReturnType<typeof spellRules>>,
+): Illegal | null {
   if (request.spellId === 'misty-step') {
     const destination = request.destination;
     if (!destination) return illegal('TARGET_REQUIRED');
@@ -126,11 +144,11 @@ export function applyCast(
   if (plan.slotLevel !== null)
     expended[plan.slotLevel - 1] = (expended[plan.slotLevel - 1] ?? 0) + 1;
   const spellcasting = sheet.spellcasting.map((source) =>
-    plan.slotLevel === null && source === plan.source && source.freeCasts
+    plan.free && source === plan.source && source.freeCasts
       ? { ...source, freeCasts: { ...source.freeCasts, used: source.freeCasts.used + 1 } }
       : source,
   );
-  const concentration = SPELLS[plan.spellId].concentration
+  const concentration = spellRules(plan.spellId)?.concentration
     ? { spellId: plan.spellId }
     : sheet.concentration;
   return {

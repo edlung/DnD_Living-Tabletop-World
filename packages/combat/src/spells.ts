@@ -27,6 +27,7 @@ import { isHidden, withDetail } from './condition-details.ts';
 import { applyDamage, applyHealing } from './damage.ts';
 import { fallsAfterHarm, killedIn } from './falling.ts';
 import { isSliceSpell } from './legality.ts';
+import { decideDataSpell } from './data-spells.ts';
 import { decideMonsterSpell } from './monster-spells.ts';
 import { suspendCast } from './reactions/suspend.ts';
 import { combatPremiseList, combatPremises, refused } from './refusal.ts';
@@ -50,7 +51,7 @@ export function decideCastSpell(context: DecisionContext, command: Cast, dice: D
     if (!state.encounter) return refused({ legal: false, reason: 'NOT_IN_COMBAT' });
     return decideMonsterSpell(context, command, dice);
   }
-  if (!isSliceSpell(command.spellId)) return refused({ legal: false, reason: 'NOT_KNOWN' });
+  if (!isSliceSpell(command.spellId)) return decideDataSpell(context, command, dice);
   const plan = characterSpellPlan(state, command.combatantId, {
     spellId: command.spellId,
     ...(command.using === undefined ? {} : { using: command.using }),

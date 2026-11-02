@@ -7,12 +7,12 @@ import {
   type WorldState,
 } from '@ltw/domain';
 import {
-  SPELLS,
   applyCast,
   checkCast,
   gapToSquareFt,
   moveRequiredFt,
   slotsRemaining,
+  spellRules,
   squaresOf,
   startTurn,
   type CastPlan,
@@ -53,7 +53,7 @@ import { incapacitated, vitalsOf, type Vitals } from './vitals.ts';
 const refuse = (reason: CombatReason, resolution?: Refusal['resolution']): Refusal =>
   resolution ? { legal: false, reason, resolution } : { legal: false, reason };
 
-export type Using = 'free' | { readonly slotLevel: number };
+export type Using = 'free' | 'ritual' | { readonly slotLevel: number };
 
 /** What casting spends: a suspended cast already spent it (ADR 0016). */
 export type Economy = 'action' | 'bonus';
@@ -88,12 +88,15 @@ export interface CharacterSpellPlan {
 }
 
 /** Free first, then the lowest slot that can cast it (as the Context Engine shows). */
-export function chooseUsing(sheet: CharacterSheet, spellId: SpellId): Using {
+export function chooseUsing(
+  sheet: CharacterSheet,
+  spellId: string,
+): 'free' | { readonly slotLevel: number } {
   const free = sheet.spellcasting.some(
     (s) => s.freeCasts?.spellId === spellId && s.freeCasts.used < s.freeCasts.perLongRest,
   );
   if (free) return 'free';
-  const level = SPELLS[spellId].level;
+  const level = spellRules(spellId)?.level ?? 1;
   for (let slotLevel = level; slotLevel <= 9; slotLevel += 1) {
     if (slotsRemaining(sheet, slotLevel) > 0) return { slotLevel };
   }

@@ -10,6 +10,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -61,6 +62,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -101,6 +103,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": 3,
     "duration": {
       "unit": "hour",
@@ -132,6 +135,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -158,6 +162,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -184,6 +189,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "hour",
@@ -220,6 +226,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -246,6 +253,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -272,6 +280,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": false,
     "targets": 4,
     "duration": {
       "unit": "instantaneous",
@@ -298,6 +307,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -329,6 +339,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -360,6 +371,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -386,6 +398,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "day",
@@ -412,6 +425,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -438,6 +452,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -464,6 +479,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -490,6 +506,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -516,6 +533,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -542,6 +560,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": false,
     "targets": 8,
     "duration": {
       "unit": "until-dispelled",
@@ -568,6 +587,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -599,6 +619,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -625,6 +646,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -651,6 +673,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 3,
     "duration": {
       "unit": "minute",
@@ -682,6 +705,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -713,6 +737,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -739,6 +764,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -765,6 +791,7 @@
       "amount": 150
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -805,6 +832,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -831,6 +859,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -862,6 +891,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -888,6 +918,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": 3,
     "duration": {
       "unit": "minute",
@@ -919,6 +950,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -968,6 +1000,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -999,6 +1032,7 @@
       "amount": null
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1025,6 +1059,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1056,6 +1091,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1110,6 +1146,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1164,6 +1201,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1190,6 +1228,7 @@
       "amount": 150
     },
     "area": null,
+    "seen": true,
     "targets": 4,
     "duration": {
       "unit": "instantaneous",
@@ -1230,6 +1269,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "hour",
@@ -1266,6 +1306,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "hour",
@@ -1302,6 +1343,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1328,6 +1370,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1368,6 +1411,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1417,6 +1461,7 @@
       "amount": 1
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1443,6 +1488,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1474,6 +1520,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1528,6 +1575,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1559,6 +1607,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1585,6 +1634,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1611,6 +1661,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1637,6 +1688,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -1663,6 +1715,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -1699,6 +1752,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -1753,6 +1807,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1779,6 +1834,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1810,6 +1866,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1836,6 +1893,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1871,6 +1929,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1911,6 +1970,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1951,6 +2011,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -1977,6 +2038,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2003,6 +2065,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "day",
@@ -2043,6 +2106,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "day",
@@ -2069,6 +2133,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -2095,6 +2160,7 @@
       "amount": 300
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2121,6 +2187,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -2147,6 +2214,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2173,6 +2241,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2204,6 +2273,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2230,6 +2300,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": false,
     "targets": 3,
     "duration": {
       "unit": "instantaneous",
@@ -2261,6 +2332,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "special",
@@ -2287,6 +2359,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -2328,6 +2401,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2359,6 +2433,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2385,6 +2460,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -2416,6 +2492,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -2442,6 +2519,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -2473,6 +2551,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2508,6 +2587,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -2534,6 +2614,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2560,6 +2641,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2586,6 +2668,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2612,6 +2695,7 @@
       "amount": null
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2638,6 +2722,7 @@
       "amount": 500
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2664,6 +2749,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -2690,6 +2776,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -2739,6 +2826,7 @@
       "amount": null
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2765,6 +2853,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2791,6 +2880,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2826,6 +2916,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2852,6 +2943,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -2878,6 +2970,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2913,6 +3006,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -2939,6 +3033,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -2970,6 +3065,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "hour",
@@ -3001,6 +3097,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -3037,6 +3134,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3072,6 +3170,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -3103,6 +3202,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3129,6 +3229,7 @@
       "amount": 500
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3155,6 +3256,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -3197,6 +3299,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3223,6 +3326,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -3254,6 +3358,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3280,6 +3385,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -3320,6 +3426,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -3351,6 +3458,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3377,6 +3485,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -3403,6 +3512,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3429,6 +3539,7 @@
       "amount": null
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3460,6 +3571,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3491,6 +3603,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3517,6 +3630,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -3543,6 +3657,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3579,6 +3694,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3610,6 +3726,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3636,6 +3753,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3662,6 +3780,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3688,6 +3807,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "day",
@@ -3714,6 +3834,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3740,6 +3861,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -3780,6 +3902,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -3817,6 +3940,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3848,6 +3972,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3879,6 +4004,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -3928,6 +4054,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -3968,6 +4095,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -4016,6 +4144,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4042,6 +4171,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -4073,6 +4203,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4099,6 +4230,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4135,6 +4267,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4161,6 +4294,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "day",
@@ -4187,6 +4321,7 @@
       "amount": 100
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4213,6 +4348,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4239,6 +4375,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4275,6 +4412,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -4310,6 +4448,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4341,6 +4480,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4367,6 +4507,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "day",
@@ -4398,6 +4539,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "day",
@@ -4424,6 +4566,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4450,6 +4593,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4481,6 +4625,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4512,6 +4657,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -4538,6 +4684,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4569,6 +4716,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4600,6 +4748,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4626,6 +4775,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -4652,6 +4802,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4678,6 +4829,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4704,6 +4856,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4730,6 +4883,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "round",
@@ -4781,6 +4935,7 @@
       "widthFt": 10,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4807,6 +4962,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -4838,6 +4994,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -4864,6 +5021,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -4890,6 +5048,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -4916,6 +5075,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -4942,6 +5102,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -4983,6 +5144,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5018,6 +5180,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -5072,6 +5235,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": 12,
     "duration": {
       "unit": "instantaneous",
@@ -5098,6 +5262,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5129,6 +5294,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -5155,6 +5321,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5186,6 +5353,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -5222,6 +5390,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -5263,6 +5432,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5289,6 +5459,7 @@
       "amount": 90
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -5320,6 +5491,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5351,6 +5523,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -5402,6 +5575,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -5459,6 +5633,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -5485,6 +5660,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "day",
@@ -5511,6 +5687,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -5542,6 +5719,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5582,6 +5760,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -5636,6 +5815,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5685,6 +5865,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -5711,6 +5892,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -5742,6 +5924,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -5773,6 +5956,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5804,6 +5988,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -5830,6 +6015,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -5856,6 +6042,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -5882,6 +6069,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -5908,6 +6096,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -5939,6 +6128,7 @@
       "widthFt": 5,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -5988,6 +6178,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -6014,6 +6205,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6040,6 +6232,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -6066,6 +6259,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6097,6 +6291,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6123,6 +6318,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -6154,6 +6350,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6180,6 +6377,7 @@
       "amount": null
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -6206,6 +6404,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": true,
     "targets": 3,
     "duration": {
       "unit": "instantaneous",
@@ -6246,6 +6445,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -6272,6 +6472,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6303,6 +6504,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6334,6 +6536,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -6365,6 +6568,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": true,
     "targets": 6,
     "duration": {
       "unit": "instantaneous",
@@ -6406,6 +6610,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -6432,6 +6637,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 6,
     "duration": {
       "unit": "instantaneous",
@@ -6473,6 +6679,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "hour",
@@ -6504,6 +6711,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -6530,6 +6738,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6556,6 +6765,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -6582,6 +6792,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "round",
@@ -6613,6 +6824,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -6639,6 +6851,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6665,6 +6878,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "hour",
@@ -6719,6 +6933,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -6745,6 +6960,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "day",
@@ -6771,6 +6987,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -6797,6 +7014,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6823,6 +7041,7 @@
       "amount": null
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -6849,6 +7068,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -6885,6 +7105,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -6934,6 +7155,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6960,6 +7182,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -6991,6 +7214,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7017,6 +7241,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7048,6 +7273,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -7074,6 +7300,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -7123,6 +7350,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7149,6 +7377,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7175,6 +7404,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7201,6 +7431,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": 8,
     "duration": {
       "unit": "instantaneous",
@@ -7232,6 +7463,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7258,6 +7490,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -7295,6 +7528,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7321,6 +7555,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7347,6 +7582,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7373,6 +7609,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7399,6 +7636,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": 5,
     "duration": {
       "unit": "instantaneous",
@@ -7434,6 +7672,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7465,6 +7704,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7491,6 +7731,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -7517,6 +7758,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7543,6 +7785,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -7585,6 +7828,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -7611,6 +7855,7 @@
       "amount": 500
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "day",
@@ -7637,6 +7882,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7663,6 +7909,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -7689,6 +7936,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7720,6 +7968,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7746,6 +7995,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7772,6 +8022,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -7798,6 +8049,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -7835,6 +8087,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -7881,6 +8134,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -7907,6 +8161,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7933,6 +8188,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -7959,6 +8215,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -7985,6 +8242,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8011,6 +8269,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -8037,6 +8296,7 @@
       "amount": 100
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8063,6 +8323,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -8089,6 +8350,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -8115,6 +8377,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -8155,6 +8418,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8181,6 +8445,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": 3,
     "duration": {
       "unit": "instantaneous",
@@ -8223,6 +8488,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8249,6 +8515,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8275,6 +8542,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -8301,6 +8569,7 @@
       "amount": null
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -8327,6 +8596,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -8353,6 +8623,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -8379,6 +8650,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -8405,6 +8677,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -8436,6 +8709,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -8485,6 +8759,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "round",
@@ -8511,6 +8786,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8537,6 +8813,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8563,6 +8840,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8598,6 +8876,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -8640,6 +8919,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8671,6 +8951,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8697,6 +8978,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -8728,6 +9010,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8764,6 +9047,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8795,6 +9079,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": 6,
     "duration": {
       "unit": "minute",
@@ -8821,6 +9106,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -8847,6 +9133,7 @@
       "amount": 15
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -8873,6 +9160,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8899,6 +9187,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8930,6 +9219,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -8956,6 +9246,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -8992,6 +9283,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9023,6 +9315,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9049,6 +9342,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9075,6 +9369,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -9117,6 +9412,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9143,6 +9439,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -9169,6 +9466,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -9195,6 +9493,7 @@
       "amount": 1
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9221,6 +9520,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "hour",
@@ -9252,6 +9552,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -9283,6 +9584,7 @@
       "widthFt": 5,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9328,6 +9630,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -9373,6 +9676,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "until-dispelled",
@@ -9399,6 +9703,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9425,6 +9730,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": 8,
     "duration": {
       "unit": "hour",
@@ -9451,6 +9757,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": true,
     "targets": 8,
     "duration": {
       "unit": "instantaneous",
@@ -9477,6 +9784,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "round",
@@ -9503,6 +9811,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9534,6 +9843,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -9583,6 +9893,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -9614,6 +9925,7 @@
       "widthFt": null,
       "origin": "self"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -9640,6 +9952,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -9666,6 +9979,7 @@
       "amount": 10
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9692,6 +10006,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -9718,6 +10033,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": true,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -9744,6 +10060,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -9770,6 +10087,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -9796,6 +10114,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -9822,6 +10141,7 @@
       "amount": 1
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "round",
@@ -9848,6 +10168,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -9874,6 +10195,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": 1,
     "duration": {
       "unit": "minute",
@@ -9920,6 +10242,7 @@
       "amount": 60
     },
     "area": null,
+    "seen": true,
     "targets": 1,
     "duration": {
       "unit": "instantaneous",
@@ -9965,6 +10288,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "instantaneous",
@@ -10014,6 +10338,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -10040,6 +10365,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -10066,6 +10392,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -10092,6 +10419,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -10118,6 +10446,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -10144,6 +10473,7 @@
       "amount": null
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -10170,6 +10500,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": 10,
     "duration": {
       "unit": "hour",
@@ -10196,6 +10527,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": 10,
     "duration": {
       "unit": "hour",
@@ -10227,6 +10559,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "hour",
@@ -10258,6 +10591,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -10298,6 +10632,7 @@
       "amount": 30
     },
     "area": null,
+    "seen": false,
     "targets": 10,
     "duration": {
       "unit": "hour",
@@ -10324,6 +10659,7 @@
       "amount": 120
     },
     "area": null,
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",
@@ -10350,6 +10686,7 @@
       "amount": null
     },
     "area": null,
+    "seen": true,
     "targets": 10,
     "duration": {
       "unit": "instantaneous",
@@ -10376,6 +10713,7 @@
       "amount": 5
     },
     "area": null,
+    "seen": false,
     "targets": 5,
     "duration": {
       "unit": "instantaneous",
@@ -10407,6 +10745,7 @@
       "widthFt": null,
       "origin": "point"
     },
+    "seen": false,
     "targets": null,
     "duration": {
       "unit": "minute",

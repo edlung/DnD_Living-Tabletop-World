@@ -112,6 +112,8 @@ export const srdSpellMechanicsSchema = z
       })
       .strict()
       .nullable(),
+    /** Its target or point is one the caster can see ("a creature you can see within range"). */
+    seen: z.boolean(),
     /** How many creatures it targets when it names them one by one. */
     targets: z.number().int().min(1).max(12).nullable(),
     duration: z

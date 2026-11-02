@@ -166,3 +166,11 @@ export {
   srdSpell,
   srdSpellMechanics,
 } from './srd/catalog.ts';
+export {
+  FAR_FT,
+  cantripTier,
+  isSliceSpell as isSliceSpellId,
+  spellRules,
+  type SpellRules,
+} from './spell-rules.ts';
+export { inSpellArea, type SpellArea } from './areas.ts';

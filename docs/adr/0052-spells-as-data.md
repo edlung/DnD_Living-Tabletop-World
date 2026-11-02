@@ -39,8 +39,9 @@
    every attack, save and die, applies resistances and immunities, conditions with their
    durations (ADR 0045) and temporary hit points (ADR 0048); a cast someone could counter opens
    the reaction window (ADR 0016).
-6. **Casting outside a fight**: from the sheet, a healing spell on a party member, a ritual (ten
-   minutes more, no slot) or any spell with a slot; what it does beyond healing is the DM's.
+6. **Casting outside a fight**: from the sheet, a healing spell or temporary hit points on a
+   creature the caster perceives, a ritual (ten minutes more, no slot) or any spell of the DM's
+   with a slot; a spell that harms or fills an area waits for a fight, as Fireball does.
 7. **Material components with a cost** are shown with the spell and recorded with each cast;
    until the item catalog holds such components (Stage 650d) the server does not count them.
 
@@ -50,6 +51,10 @@
 - The cast's outcome names its effect for the log, the table's screen and the companion; a
   spell of the DM's shows "The DM decides what this spell does" to its caster and the DM.
 - Old events stay readable: a cast's new fields are optional.
+- A condition a spell brings lasts the spell's duration in the caster's turns, with its save at
+  the end of each of the target's turns where the spell says so; when the caster's Concentration
+  ends early, the DM ends the conditions its spell brought (the DM's hand), until a later part
+  ties them to it.
 
 ## Invariants affected
 

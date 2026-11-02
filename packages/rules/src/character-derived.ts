@@ -10,7 +10,7 @@ import {
 } from '@ltw/contracts';
 
 import { weaponAttackBonus, weaponModifier } from './attacks.ts';
-import { SPELLS, WEAPONS } from './catalog.ts';
+import { WEAPONS } from './catalog.ts';
 import {
   abilityModifier,
   proficiencyBonus,
@@ -21,6 +21,8 @@ import {
   totalLevel,
 } from './character-math.ts';
 import { masteryOf } from './masteries.ts';
+import { spellRules, type SpellRules } from './spell-rules.ts';
+import { srdSpell } from './srd/catalog.ts';
 import { hitDice } from './rest.ts';
 import { effectiveSpeedFt } from './turn.ts';
 
@@ -102,10 +104,15 @@ export function deriveCharacter(
       attackBonus: spellAttackBonus(sheet, source),
     })),
     spells: spellIds
-      .map((spellId) => SPELLS[spellId])
+      .flatMap((spellId) => {
+        const rules = spellRules(spellId);
+        return rules ? [rules] : [];
+      })
       .sort((a, b) => a.level - b.level || a.spellId.localeCompare(b.spellId))
-      .map((spell) => ({
+      .map((spell: SpellRules) => ({
         spellId: spell.spellId,
+        // The SRD's English name; the client's dictionary names the slice's spells.
+        name: srdSpell(spell.spellId)?.name ?? spell.spellId,
         level: spell.level,
         castingTime: spell.castingTime,
         range: spell.range,

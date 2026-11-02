@@ -5,6 +5,7 @@ import { registerRussian } from '@ltw/ui';
  * tabs, abilities, the 18 skills, spellcasting and the spells' own words.
  */
 registerRussian({
+  'Minutes or hours': 'Минуты или часы',
   // Dock, dialog and tabs
   'Character: {name}': 'Персонаж: {name}',
   'Close the character sheet': 'Закрыть лист персонажа',

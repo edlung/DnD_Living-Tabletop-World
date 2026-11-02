@@ -52,7 +52,8 @@ describe('SetCharacterSheet', () => {
       },
       { ...base, skills: { proficient: [], expertise: ['perception'] } },
       { ...base, speedFt: 32 },
-      { ...base, spellcasting: [{ source: 'wizard', ability: 'int', spells: ['wish'] }] },
+      // Any SRD spell by its id (ADR 0052 §1); the cast refuses one the catalog lacks.
+      { ...base, spellcasting: [{ source: 'wizard', ability: 'int', spells: ['Wish!'] }] },
       { ...base, extra: true },
     ]) {
       expectRejected(await harness.submit(setSheet('hero', broken)), 'INVALID_COMMAND');

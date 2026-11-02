@@ -256,6 +256,10 @@ export const combatEventPayloadSchemas = {
       free: z.boolean(),
       targetId: entityIdSchema.nullable(),
       point: squareSchema.nullable(),
+      /** Every creature it names, when it names more than one (docs/adr/0052-spells-as-data.md §5). */
+      targetIds: z.array(entityIdSchema).min(2).max(12).optional(),
+      /** What is the DM's to apply: its whole effect, or what its effect leaves out (§2). */
+      forDm: z.enum(['effect', 'rest']).optional(),
     })
     .strict(),
   DamageApplied: z
