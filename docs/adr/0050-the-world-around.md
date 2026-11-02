@@ -34,8 +34,9 @@
 4. **Hiding** (ADR 0045 §5, completed): a creature may take the Hide action while heavily obscured
    to every enemy that could see it, not only behind Three-Quarters or Total Cover.
 5. **The Long Rest** (SRD 5.2.1): a character benefits from one Long Rest in 24 hours of world
-   time, and only if it has at least 1 Hit Point when the rest begins; the DM's long rest rests
-   those who may and names those who may not.
+   time — another begins at least 24 hours after the last began; the DM's long rest rests those
+   who may and names those who may not. A character at 0 hit points still wakes rested, as Stage
+   530 decided (it comes round inside the eight hours).
 6. **A rest cut short**: the DM ends a Long Rest after the hours that passed. One hour or more
    gives the benefits of a Short Rest — the Short Rest opens, Hit Point Dice to spend — and no
    Long Rest's; less gives nothing. A fight that starts ends an open Short Rest.

@@ -218,3 +218,79 @@ describe('rests and levels at the table (Stage 530)', () => {
     expect((await call('rest/hit-die', die, TOKENS.player, 'PLAYER')).statusCode).toBe(409);
   });
 });
+
+describe('rests by the full rules (docs/adr/0050-the-world-around.md §5–7)', () => {
+  // The fight above ends first: no rest runs in one.
+  beforeAll(async () => {
+    const encounter = (await state())?.encounter;
+    if (encounter) await dmCommand({ type: 'EndCombat', encounterId: encounter.encounterId });
+  });
+  const advance = (hours: number) => dmCommand({ type: 'AdvanceWorldTime', by: hours * 3600 });
+
+  it('gives one long rest in 24 hours, and names whom it gave nothing', async () => {
+    // Her long rest above began less than a day ago.
+    await hurt(50);
+    const again = await call('rest', { requestId: randomUUID(), kind: 'long' }, TOKENS.dm);
+    expect(again.statusCode).toBe(201);
+    // The whole party rested above: each is named, none restored.
+    const body = again.json<{
+      status: string;
+      skipped: { characterId: string; reason: string }[];
+    }>();
+    expect(body.status).toBe('rested');
+    expect(body.skipped).toContainEqual({
+      characterId: ELOWEN,
+      name: 'Elowen Starwhisper',
+      reason: 'RESTED_TODAY',
+    });
+    expect(body.skipped.every((one) => one.reason === 'RESTED_TODAY')).toBe(true);
+    expect((await sheetOf()).hitPoints.current).toBe(50);
+    await advance(24);
+    const later = await call('rest', { requestId: randomUUID(), kind: 'long' }, TOKENS.dm);
+    expect(later.json()).toEqual({ status: 'rested' });
+    // Her maximum, as the level above left it.
+    expect((await sheetOf()).hitPoints.current).toBe((await sheetOf()).hitPoints.max);
+    expect((await sheetOf()).lastLongRestAt).toBe(((await state())?.clock ?? 0) - 8 * 3600);
+  });
+
+  it('cut short after three hours, the long rest is a short one: Hit Point Dice, nothing more', async () => {
+    await advance(24);
+    await hurt(40);
+    const before = (await state())?.clock ?? 0;
+    const cut = await call(
+      'rest',
+      { requestId: randomUUID(), kind: 'long', cutShortAfterHours: 3 },
+      TOKENS.dm,
+    );
+    expect(cut.statusCode).toBe(201);
+    expect(cut.json()).toEqual({ status: 'resting', cutShortAfterHours: 3 });
+    expect((await state())?.clock).toBe(before + 3 * 3600);
+    expect((await sheetOf()).hitPoints.current).toBe(40);
+    expect((await restView()).rest).not.toBeNull();
+    // A short rest cut short is no rest at all to call so.
+    const wrong = { requestId: randomUUID(), kind: 'short', cutShortAfterHours: 3 };
+    expect((await call('rest', wrong, TOKENS.dm)).statusCode).toBe(400);
+    expect((await call('rest/end', { requestId: randomUUID() }, TOKENS.dm)).statusCode).toBe(200);
+  });
+
+  it('the short rest’s end brings the knocked out round', async () => {
+    await hurt(1, { knockedOut: true, conditions: ['unconscious'] });
+    await call('rest', { requestId: randomUUID(), kind: 'short' }, TOKENS.dm);
+    const ended = await call('rest/end', { requestId: randomUUID() }, TOKENS.dm);
+    expect(ended.json()).toEqual({ status: 'ended', woke: ['Elowen Starwhisper'] });
+    const after = await sheetOf();
+    expect(after.knockedOut).toBeUndefined();
+    expect(after.conditions).not.toContain('unconscious');
+    expect(after.hitPoints.current).toBe(1);
+  });
+
+  it('a fight that starts ends the open short rest', async () => {
+    await call('rest', { requestId: randomUUID(), kind: 'short' }, TOKENS.dm);
+    expect((await restView()).rest).not.toBeNull();
+    await dmCommand(ambush.startCombat);
+    expect((await restView()).rest).toBeNull();
+    const encounter = (await state())?.encounter;
+    if (encounter) await dmCommand({ type: 'EndCombat', encounterId: encounter.encounterId });
+    expect((await restView()).rest).toBeNull();
+  });
+});

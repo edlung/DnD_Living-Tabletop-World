@@ -5,12 +5,15 @@ import { deriveCharacter } from './character-derived.ts';
 import { spellSlotsFor } from './character-math.ts';
 import {
   CLASS_HIT_DIE,
+  DAY_SECONDS,
   attacksFor,
   hitDice,
   hitDieRefusal,
   levelUp,
   longRest,
+  longRestRefusal,
   spendHitDie,
+  wakeAfterShortRest,
 } from './rest.ts';
 import { elowen as sheetOfElowen } from './testing/elowen.ts';
 
@@ -174,5 +177,24 @@ describe('the Fighter, the Rogue and the Cleric (Stage 605)', () => {
     if (typeof next === 'string') throw new Error(next);
     expect(next.spellSlots.max).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 1]);
     expect(next.hitPoints.max - sheetOf('cleric', 16).hitPoints.max).toBe(7);
+  });
+});
+
+describe('rests by the full rules (docs/adr/0050-the-world-around.md §5, §7)', () => {
+  const base = elowen;
+  it('allows one long rest in 24 hours, counted from the last one’s start', () => {
+    expect(longRestRefusal(base, 1000)).toBeNull();
+    const rested = longRest(base, 1000);
+    expect(rested.lastLongRestAt).toBe(1000);
+    expect(longRestRefusal(rested, 1000 + DAY_SECONDS - 1)).toBe('RESTED_TODAY');
+    expect(longRestRefusal(rested, 1000 + DAY_SECONDS)).toBeNull();
+  });
+
+  it('wakes one knocked out at a short rest’s end, and no one else', () => {
+    expect(wakeAfterShortRest(base)).toBeNull();
+    const out = { ...base, knockedOut: true as const, conditions: ['unconscious' as const] };
+    const awake = wakeAfterShortRest(out);
+    expect(awake?.knockedOut).toBeUndefined();
+    expect(awake?.conditions).not.toContain('unconscious');
   });
 });

@@ -1,4 +1,5 @@
 import { useT } from '@ltw/ui';
+import { useId, useState } from 'react';
 
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
@@ -21,6 +22,9 @@ export function DmRestControls({
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
+  const ids = useId();
+  // A long rest cut short after its hours (docs/adr/0050-the-world-around.md §6).
+  const [hours, setHours] = useState(4);
   const open = useDiceTable()?.rest ?? null;
   const blocked = locked || fighting;
   const hint = fighting ? 'dm-rest-fighting' : undefined;
@@ -84,6 +88,44 @@ export function DmRestControls({
           {t('Long rest (8 hours)')}
         </button>
       </div>
+      {!open && (
+        <details className="rest-cut-short">
+          <summary>{t('The long rest was cut short')}</summary>
+          <p className="muted">
+            {t(
+              'After an hour or more the party has a short rest instead: Hit Point Dice, no more.',
+            )}
+          </p>
+          <div className="action-row rest-cut-row">
+            <label className="rest-cut-hours" htmlFor={`${ids}-hours`}>
+              {t('Hours rested')}
+            </label>
+            <select
+              id={`${ids}-hours`}
+              value={hours}
+              onChange={(event) => {
+                setHours(Number(event.target.value));
+              }}
+            >
+              {[1, 2, 3, 4, 5, 6, 7].map((count) => (
+                <option key={count} value={count}>
+                  {count}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              disabled={blocked}
+              aria-describedby={hint}
+              onClick={() => {
+                onRun(restAction({ action: 'start', rest: 'long', cutShortAfterHours: hours }));
+              }}
+            >
+              {t('Cut short after {hours} h', { hours })}
+            </button>
+          </div>
+        </details>
+      )}
     </section>
   );
 }

@@ -19,6 +19,7 @@ const CAMPAIGNS = {
   ru: 'ui-rest-ru',
   axe: 'ui-rest-axe',
   notice: 'ui-rest-notice',
+  cut: 'ui-rest-cut',
 } as const;
 
 const banner = (page: Page) => page.locator('.rest-banner');
@@ -100,6 +101,35 @@ test('a long rest restores Elowen, and the DM grants a level the rules compute',
   await expect(page.getByRole('dialog').getByText('A new level is granted.')).toBeVisible();
   await hitPoints(page, 84, 84);
   await expect(page.getByRole('dialog').getByText('Level 16', { exact: true })).toBeVisible();
+});
+
+test('a long rest cut short is a short rest; a second one the same day restores no one', async ({
+  page,
+}) => {
+  // docs/adr/0050-the-world-around.md §5–6.
+  await enterWorld(page, TOKENS.dm, CAMPAIGNS.cut);
+  await openSheet(page, 'Time and weather');
+  const time = page.locator('#sheet-time');
+  await time.getByText('The long rest was cut short').click();
+  await time.getByRole('combobox', { name: 'Hours rested' }).selectOption('3');
+  await time.getByRole('button', { name: 'Cut short after 3 h' }).click();
+  await expect(
+    page.getByText('The long rest is cut short after 3 h', { exact: false }),
+  ).toBeVisible();
+  await expect(banner(page)).toContainText('Short rest: the players spend Hit Point Dice.');
+  await expect(time).toContainText('Day 1 · 13:00');
+  await banner(page).getByRole('button', { name: 'End the short rest' }).click();
+  await expect(banner(page)).toHaveCount(0);
+  // A full long rest now, then another the same day: the second restores no one.
+  await time.getByRole('button', { name: 'Long rest (8 hours)' }).click();
+  await expect(page.getByText('The party rests eight hours', { exact: false })).toBeVisible();
+  await time.getByRole('button', { name: 'Long rest (8 hours)' }).click();
+  await expect(
+    page.getByText('Elowen Starwhisper had a long rest less than 24 hours ago: nothing restored.', {
+      exact: false,
+    }),
+  ).toBeVisible();
+  await expectAccessible(page, 'the DM’s rests with a rest cut short');
 });
 
 test('the Journal tells the party’s quest as it lived it', async ({ page }) => {

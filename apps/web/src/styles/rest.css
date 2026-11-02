@@ -243,3 +243,32 @@
     border-radius: var(--radius-panel);
   }
 }
+
+/*
+ * A long rest cut short (docs/adr/0050-the-world-around.md §6): the hours, labelled above their
+ * choice, and the button on the field's line.
+ */
+.rest-cut-short summary {
+  min-height: 24px;
+  cursor: pointer;
+}
+.rest-cut-row {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    'label .'
+    'select button';
+  align-items: end;
+  justify-content: start;
+  column-gap: 0.75rem;
+  row-gap: 0.25rem;
+}
+.rest-cut-hours {
+  grid-area: label;
+}
+.rest-cut-row select {
+  grid-area: select;
+}
+.rest-cut-row button {
+  grid-area: button;
+}

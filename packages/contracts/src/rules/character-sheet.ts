@@ -312,6 +312,11 @@ export const characterSheetSchema = z
     /** Heroic Inspiration (SRD 5.2.1), granted by the DM (docs/adr/0043-dm-screen.md §1); absent: none. */
     heroicInspiration: z.boolean().optional(),
     /**
+     * World time (seconds) the last Long Rest began: one in 24 hours
+     * (docs/adr/0050-the-world-around.md §5). Absent: none yet.
+     */
+    lastLongRestAt: z.number().int().min(0).optional(),
+    /**
      * Knocked out (docs/adr/0048-hit-points.md §4): Unconscious at 1 hit point until it regains
      * hit points or first aid wakes it; absent otherwise.
      */

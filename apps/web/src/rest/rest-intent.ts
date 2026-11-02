@@ -9,7 +9,12 @@ import { ApiError, type WorldApi } from '../api/client.ts';
  * here say what it answered. A retry sends the same `requestId`, so nothing happens twice.
  */
 export type RestIntent =
-  | { readonly action: 'start'; readonly rest: 'short' | 'long' }
+  | {
+      readonly action: 'start';
+      readonly rest: 'short' | 'long';
+      /** A long rest cut short after these hours (docs/adr/0050-the-world-around.md §6). */
+      readonly cutShortAfterHours?: number;
+    }
   | { readonly action: 'end' }
   | {
       readonly action: 'hit-die';
@@ -48,7 +53,15 @@ const REFUSED: Readonly<Record<RestIntent['action'], string>> = {
 const call = (request: RestIntent): [string, object] => {
   switch (request.action) {
     case 'start':
-      return ['rest', { kind: request.rest }];
+      return [
+        'rest',
+        {
+          kind: request.rest,
+          ...(request.cutShortAfterHours === undefined
+            ? {}
+            : { cutShortAfterHours: request.cutShortAfterHours }),
+        },
+      ];
     case 'end':
       return ['rest/end', {}];
     case 'hit-die':
@@ -87,13 +100,26 @@ export async function runRest(
       case 'healed':
         return t('Regained {count} hit points.', { count: result.healed });
       case 'resting':
-        return t('The party settles for a short rest. Players can spend Hit Point Dice now.');
+        return result.cutShortAfterHours === undefined
+          ? t('The party settles for a short rest. Players can spend Hit Point Dice now.')
+          : t(
+              'The long rest is cut short after {hours} h: the party has a short rest instead. Players can spend Hit Point Dice now.',
+              { hours: result.cutShortAfterHours },
+            );
       case 'rested':
-        return t(
-          'The party rests eight hours: hit points, spell slots and Hit Point Dice are restored.',
-        );
+        // Those it gave nothing, and why (docs/adr/0050-the-world-around.md §5).
+        return [
+          t(
+            'The party rests eight hours: hit points, spell slots and Hit Point Dice are restored.',
+          ),
+          ...(result.skipped ?? []).map(({ name }) =>
+            t('{name} had a long rest less than 24 hours ago: nothing restored.', { name }),
+          ),
+        ].join(' ');
       case 'ended':
-        return t('The short rest is over.');
+        return result.woke === undefined
+          ? t('The short rest is over.')
+          : t('The short rest is over. {names} came round.', { names: result.woke.join(', ') });
       case 'levelled':
         return t('A new level is granted.');
       case 'duplicate':

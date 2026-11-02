@@ -94,6 +94,13 @@ each further SRD rule needs an entry or an ADR before it is implemented).
   the DM's light of a running fight (`SetLight`, event `LightSet`); the board shades dim and dark
   squares and fog, names them, lists them in the legend.
 
+  Second commit done (2026-11-02): one Long Rest in 24 hours of world time (the sheet's
+  `lastLongRestAt`; the DM's long rest names whom it gave nothing), a long rest cut short after its
+  hours opens a short rest instead, a short rest's end wakes the knocked out, a fight ends an open
+  short rest (`apps/server/src/rest/rest-routes.ts`, `@ltw/rules` `longRestRefusal`,
+  `wakeAfterShortRest`); the DM's rest controls offer the cut-short rest. Stage 530's decision
+  stands: a character at 0 hit points wakes rested.
+
 ## Boundaries
 
 No new spells beyond the four reactions (Stage 650 brings the SRD spell list); no monsters' new

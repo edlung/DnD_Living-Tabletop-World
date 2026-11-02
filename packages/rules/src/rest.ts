@@ -52,10 +52,9 @@ export function hitDice(sheet: CharacterSheet): HitDicePool[] {
 }
 
 /** The sheet without one of its optional fields. */
-function without<K extends 'hitDiceSpent' | 'deathSaves' | 'exhaustion' | 'knockedOut'>(
-  sheet: CharacterSheet,
-  key: K,
-): Omit<CharacterSheet, K> {
+function without<
+  K extends 'hitDiceSpent' | 'deathSaves' | 'exhaustion' | 'knockedOut' | 'lastLongRestAt',
+>(sheet: CharacterSheet, key: K): Omit<CharacterSheet, K> {
   return Object.fromEntries(Object.entries(sheet).filter(([name]) => name !== key)) as Omit<
     CharacterSheet,
     K
@@ -120,9 +119,10 @@ export function spendHitDie(
  * and a lowered maximum restored (docs/adr/0048-hit-points.md §1, §2), and one level of Exhaustion
  * fewer (docs/adr/0045-conditions-and-actions.md §3). The rules let a creature at 0 hit
  * points start no long rest; a stable one regains 1 after 1d4 hours, which the product counts
- * inside the eight, so the whole party wakes rested (owner-delegated decision, Stage 530).
+ * inside the eight, so the whole party wakes rested (owner-delegated decision, Stage 530). One
+ * begun at `startedAt` (world time) is the one of these 24 hours (docs/adr/0050 §5).
  */
-export function longRest(sheet: CharacterSheet): CharacterSheet {
+export function longRest(sheet: CharacterSheet, startedAt?: number): CharacterSheet {
   const exhaustion = (sheet.exhaustion ?? 0) - 1;
   return {
     ...without(
@@ -130,11 +130,37 @@ export function longRest(sheet: CharacterSheet): CharacterSheet {
       'knockedOut',
     ),
     ...(exhaustion > 0 ? { exhaustion } : {}),
+    ...(startedAt === undefined ? {} : { lastLongRestAt: startedAt }),
     hitPoints: { max: sheet.hitPoints.max, current: sheet.hitPoints.max },
     spellSlots: { max: [...sheet.spellSlots.max], expended: sheet.spellSlots.max.map(() => 0) },
     spellcasting: sheet.spellcasting.map((source) =>
       source.freeCasts ? { ...source, freeCasts: { ...source.freeCasts, used: 0 } } : source,
     ),
+    conditions: sheet.conditions.filter((condition) => condition !== 'unconscious'),
+  };
+}
+
+/** A day of world time, in seconds. */
+export const DAY_SECONDS = 24 * 60 * 60;
+
+/**
+ * Why a character gains nothing from a Long Rest begun at `now` (SRD 5.2.1; docs/adr/0050 §5): one
+ * began within the last 24 hours. One at 0 hit points comes round inside the eight (Stage 530).
+ */
+export function longRestRefusal(sheet: CharacterSheet, now: number): 'RESTED_TODAY' | null {
+  return sheet.lastLongRestAt !== undefined && now - sheet.lastLongRestAt < DAY_SECONDS
+    ? 'RESTED_TODAY'
+    : null;
+}
+
+/**
+ * A Short Rest's end (docs/adr/0048-hit-points.md §4; ADR 0050 §7): a knocked-out character comes
+ * round with the hit points it has; null when it was not knocked out.
+ */
+export function wakeAfterShortRest(sheet: CharacterSheet): CharacterSheet | null {
+  if (sheet.knockedOut !== true) return null;
+  return {
+    ...without(sheet, 'knockedOut'),
     conditions: sheet.conditions.filter((condition) => condition !== 'unconscious'),
   };
 }

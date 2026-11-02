@@ -63,4 +63,15 @@ registerRussian({
   'In progress': 'В процессе',
   // The Journal's quests on a play screen (the workshop's dictionary words it the same way)
   Quests: 'Задания',
+  // Rests by the full rules (docs/adr/0050-the-world-around.md §5–7)
+  'The long rest is cut short after {hours} h: the party has a short rest instead. Players can spend Hit Point Dice now.':
+    'Долгий отдых прерван через {hours} ч: отряду засчитан короткий отдых. Игроки могут тратить кости хитов.',
+  '{name} had a long rest less than 24 hours ago: nothing restored.':
+    '{name}: долгий отдых был меньше 24 часов назад — ничего не восстановлено.',
+  'The short rest is over. {names} came round.': 'Короткий отдых окончен. В себя пришли: {names}.',
+  'The long rest was cut short': 'Долгий отдых прерван',
+  'After an hour or more the party has a short rest instead: Hit Point Dice, no more.':
+    'Если прошёл хотя бы час, отряду засчитан короткий отдых: только кости хитов.',
+  'Hours rested': 'Часов отдыха',
+  'Cut short after {hours} h': 'Прервать через {hours} ч',
 });

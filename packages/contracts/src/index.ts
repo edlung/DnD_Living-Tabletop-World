@@ -207,6 +207,7 @@ export {
   type RestRequest,
   type RestResponse,
   type RestResult,
+  type RestSkipped,
   type RestView,
 } from './rules/rest.ts';
 export {

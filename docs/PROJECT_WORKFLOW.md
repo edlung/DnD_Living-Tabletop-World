@@ -29,8 +29,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   speeds, water, raised ground and pits, flying, climbing, swimming, crawling, jumping, burrowing
   and falling — and its third — Feather Fall, the reaction to a fall, and underwater combat —
   done, and its fourth, mounted combat, done: Stage 640f is complete. 640g, the world around
-  (ADR 0050), in progress: its first part — light and sight — done; rests by the full rules, then
-  hazards and armor, next.
+  (ADR 0050), in progress: its first part — light and sight — and its second — rests by the full
+  rules — done; hazards and armor next.
 
 ## Current request — AI campaigns, 2026-10-30
 
