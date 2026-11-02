@@ -107,6 +107,18 @@ export default defineConfig(
     files: ['*.js'],
   },
   {
+    // The native apps' shim (docs/adr/0070-native-apps.md §2): a classic script both shells inject,
+    // its config placeholder replaced before it runs; not part of the TypeScript program.
+    ...tseslint.configs.disableTypeChecked,
+    name: 'ltw/native-shim',
+    files: ['apps/native-shim/**/*.js'],
+    languageOptions: {
+      ...tseslint.configs.disableTypeChecked.languageOptions,
+      sourceType: 'script',
+      globals: { ...globals.browser, __LTW_NATIVE_CONFIG__: 'readonly' },
+    },
+  },
+  {
     name: 'ltw/cli-entry-points',
     files: ['scripts/**/cli.ts', 'apps/server/src/**/*-cli.ts', 'apps/server/src/main.ts'],
     rules: { 'no-console': 'off' },

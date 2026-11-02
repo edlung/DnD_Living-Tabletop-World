@@ -26,3 +26,15 @@ test-results/
 
 # Logs
 *.log
+
+# Native apps (docs/adr/0070-native-apps.md §8): tool state and the owner's own signing
+.gradle/
+.kotlin/
+local.properties
+keystore.properties
+*.jks
+*.keystore
+DerivedData/
+xcuserdata/
+*.xcuserstate
+Signing.local.xcconfig

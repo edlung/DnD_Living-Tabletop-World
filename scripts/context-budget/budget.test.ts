@@ -54,6 +54,22 @@ describe('checkContextBudget', () => {
     ]);
   });
 
+  it("counts the native apps' Swift, Kotlin and Gradle scripts, never their tool state", async () => {
+    await put('apps/ios/LTWShell/Sources/Shell.swift', lines(HARD_LIMIT + 1));
+    await put('apps/android/app/src/main/java/Main.kt', lines(HARD_LIMIT + 1));
+    await put('apps/android/app/build.gradle.kts', lines(HARD_LIMIT + 1));
+    await put('apps/android/.gradle/state.kts', lines(HARD_LIMIT + 1));
+    await put('apps/android/.kotlin/session.kt', lines(HARD_LIMIT + 1));
+
+    const report = await checkContextBudget(root);
+
+    expect(report.violations.map((file) => file.path).sort()).toEqual([
+      'apps/android/app/build.gradle.kts',
+      'apps/android/app/src/main/java/Main.kt',
+      'apps/ios/LTWShell/Sources/Shell.swift',
+    ]);
+  });
+
   it('warns above the target size without failing', async () => {
     await put('apps/server/src/target.ts', lines(TARGET_LIMIT));
     await put('apps/server/src/above-target.ts', lines(TARGET_LIMIT + 1));

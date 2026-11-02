@@ -8,7 +8,20 @@ import { createHmac } from 'node:crypto';
  * random value `playwright.config.ts` creates for each run and hands to both: no token is
  * written to a file or a log.
  */
-export const SIGN_IN_PORTS = { web: 4312, api: 4313 } as const;
+const port = (name: string, fallback: number): number => {
+  const value = Number(process.env[name]);
+  return Number.isInteger(value) && value > 0 ? value : fallback;
+};
+
+/**
+ * The browser journeys' ports. The native apps' device journeys (docs/adr/0070-native-apps.md §9)
+ * run this server on other ports (LTW_UI_SIGN_IN_WEB_PORT, LTW_UI_SIGN_IN_API_PORT), so they never
+ * take the browser journeys' own.
+ */
+export const SIGN_IN_PORTS = {
+  web: port('LTW_UI_SIGN_IN_WEB_PORT', 4312),
+  api: port('LTW_UI_SIGN_IN_API_PORT', 4313),
+} as const;
 
 /** The second Vite server's origin: the browser's, so the server's `PUBLIC_ORIGIN`. */
 export const SIGN_IN_ORIGIN = `http://127.0.0.1:${String(SIGN_IN_PORTS.web)}`;

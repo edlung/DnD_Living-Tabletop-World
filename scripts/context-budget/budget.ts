@@ -31,6 +31,10 @@ export const ACTIVE_EXTENSIONS: ReadonlySet<string> = new Set([
   '.less',
   '.sql',
   '.sh',
+  // The native apps (docs/adr/0070-native-apps.md): Swift, Kotlin and Gradle's Kotlin scripts.
+  '.swift',
+  '.kt',
+  '.kts',
 ]);
 
 /** Directory names holding dependency, build, generated, or tool-state output. */
@@ -47,6 +51,10 @@ export const EXCLUDED_DIRECTORIES: ReadonlySet<string> = new Set([
   'coverage',
   'generated',
   '__generated__',
+  // Gradle's, Kotlin's and Xcode's tool state (docs/adr/0070-native-apps.md §8).
+  '.gradle',
+  '.kotlin',
+  'DerivedData',
 ]);
 
 /** File-name suffixes of generated or minified output. */
