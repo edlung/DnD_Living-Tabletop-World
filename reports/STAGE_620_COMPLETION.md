@@ -54,6 +54,15 @@ Work order `work-orders/STAGE_620.md`; program `docs/FULL_GAME_PLAN.md` (Milesto
   fields stretched on an iPad in portrait, the Party sheet too short for a control screen, the
   phone's banner under the two-row top bar. Remaining: none.
 - Lint, typecheck, Prettier and the context budget clean.
+- Found by the full browser suite after the journeys (Stage 620f): with invitations the DM's dock
+  held fifteen items and ran off the screen at 1280 px (English and Russian) and from 834 px
+  down, and two tools shared another's glyph. Measured at 13 widths, then fixed by the dock's fit
+  (full words, short words, More; ADR 0043 §3): `dock-fit.spec.ts` checks 1440 to 320 px with
+  the fifteen tools in English and Russian and a player's phone, with no sideways scroll, nothing
+  over the dock, More opening and closing with Escape, and focus back on More after a sheet
+  opened from it closes; the Stage 360 and sign-in tablet checks count the tools wherever they
+  are. Layout audit of the dock and More at 1440, 1280, 1180, 1024, 820, 768, 390 and 320 px:
+  no findings beyond the known off-scale information items.
 
 ## Adversarial notes
 

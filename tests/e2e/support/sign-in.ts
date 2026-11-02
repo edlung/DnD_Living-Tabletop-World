@@ -118,7 +118,8 @@ export async function joinAsDm(
   words: Words = WORDS.en,
 ): Promise<void> {
   await openInvitation(page, joinPath(dmToken(campaignId, index)), words);
-  await expect(dockButton(page, words.players)).toBeVisible();
+  // On the dock, or under its More where the screen is narrow (docs/adr/0043-dm-screen.md §3).
+  await expect(dockButton(page, words.players)).toBeAttached();
 }
 
 /** The DM invites a player for a character: the link, as the Players sheet shows it once. */

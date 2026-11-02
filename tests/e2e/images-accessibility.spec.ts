@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { IMAGE_CAMPAIGNS, imagesRegion } from './support/images.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { closeSheet, dockButton, openSheet } from './support/shell.ts';
+import { closeSheet, dockButton, openSheet, revealDockButton } from './support/shell.ts';
 
 /**
  * The DM's image controls at the three widths (docs/STAGE_330_DESIGN.md "DM controls"; design
@@ -50,7 +50,7 @@ test('the keyboard reaches every image control in order, and Escape closes the s
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, IMAGE_CAMPAIGNS.review);
-  await dockButton(page, 'Images').focus();
+  await (await revealDockButton(page, 'Images')).focus();
   await page.keyboard.press('Enter');
   const sheet = page.locator('#sheet-images');
   await expect(sheet).toBeVisible();

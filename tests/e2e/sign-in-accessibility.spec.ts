@@ -1,7 +1,7 @@
 import { expect, test, type Browser } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
-import { dockButton, expectOnTop, openSheet } from './support/shell.ts';
+import { dockButton, expectDockFits, openSheet } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -57,10 +57,12 @@ async function scan(
   const dm = await context.newPage();
   await joinAsDm(dm, campaign, index, words);
   if (size.name === 'tablet') {
-    // Every tablet width keeps the whole DM dock, Players included, on screen.
+    // Every tablet width keeps every DM tool, Players included, in reach: on the dock or under its
+    // More (docs/adr/0043-dm-screen.md §3), with nothing over the dock and no sideways scroll.
     for (const width of [768, 1023]) {
       await dm.setViewportSize({ width, height: size.height });
-      for (const button of await dm.locator('nav.dock button').all()) await expectOnTop(button);
+      await expectDockFits(dm);
+      await expect(dockButton(dm, words.players)).toBeAttached();
     }
     await dm.setViewportSize(viewport);
   }
@@ -88,7 +90,7 @@ async function scan(
   await expect(question.getByRole('button', { name: words.replace })).toBeEnabled();
   await expectAccessible(dm, `${where} the question with replacing available`);
   await question.getByRole('button', { name: words.keep }).click();
-  await expect(dockButton(dm, words.players)).toBeVisible();
+  await expect(dockButton(dm, words.players)).toBeAttached();
 
   await dm.getByRole('button', { name: words.signOut, exact: true }).click();
   const dialog = dm.getByRole('dialog', { name: words.signOutQuestion });

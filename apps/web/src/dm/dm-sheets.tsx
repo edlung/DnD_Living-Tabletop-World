@@ -195,7 +195,7 @@ export function DmSheets({
       <Sheet
         id="notes"
         title={t('Notes (DM)')}
-        glyph="journal"
+        glyph="bookmark"
         open={shell.sheet === 'notes'}
         onClose={shell.closeSheet}
       >
@@ -214,7 +214,7 @@ export function DmSheets({
         <Sheet
           id="players"
           title={t('Players (DM)')}
-          glyph="party"
+          glyph="member"
           open={shell.sheet === 'players'}
           onClose={shell.closeSheet}
         >

@@ -16,7 +16,11 @@ const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
 const ELOWEN = 'elowen-starwhisper';
 
 /** The campaigns seeded from the Russian Ravenford; the accessibility scans' campaigns. */
-const RUSSIAN: ReadonlySet<string> = new Set([campaigns.russian, campaigns.a11yRu]);
+const RUSSIAN: ReadonlySet<string> = new Set([
+  campaigns.russian,
+  campaigns.a11yRu,
+  campaigns.dockRu,
+]);
 const SCANNED: ReadonlySet<string> = new Set([campaigns.a11y, campaigns.a11yRu]);
 
 /**

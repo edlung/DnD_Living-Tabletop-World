@@ -14,5 +14,7 @@
   "activationGame": "ui-activation-game",
   "accounts": "ui-accounts",
   "accountsClaim": "ui-accounts-claim",
-  "display": "ui-table-display"
+  "display": "ui-table-display",
+  "dock": "ui-signin-dock",
+  "dockRu": "ui-signin-dock-ru"
 }

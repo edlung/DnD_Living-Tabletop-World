@@ -68,6 +68,8 @@ export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory';
 
 export const sheetElementId = (id: SheetId) => `sheet-${id}`;
 export const dockButtonId = (id: SheetId | 'scene' | 'chronicle' | 'character') => `dock-${id}`;
+/** The dock's More (ADR 0043 §3): where focus goes back for an item that waits under it. */
+export const DOCK_MORE_ID = 'dock-more';
 
 /** Moves focus to an element still on screen, if there is one. */
 export function focusOn(element: HTMLElement | null | undefined): boolean {
@@ -117,10 +119,12 @@ export function useShell(rememberAs?: string) {
       setSheet(id);
       last.current = 'sheet';
     },
-    /** Closes the open sheet and returns focus to its dock button. */
+    /** Closes the open sheet and returns focus to its dock button, or to More that holds it. */
     closeSheet: () => {
       if (sheet === null) return;
-      focusOn(document.getElementById(dockButtonId(sheet)));
+      if (!focusOn(document.getElementById(dockButtonId(sheet)))) {
+        focusOn(document.getElementById(DOCK_MORE_ID));
+      }
       setSheet(null);
     },
     /** Closes the open sheet without moving focus (what was picked in it took focus). */

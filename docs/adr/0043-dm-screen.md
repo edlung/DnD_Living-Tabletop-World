@@ -35,6 +35,14 @@
    slots, death saves) with the DM's hand on each, a check for everyone at the table, and a ruling;
    it takes most of the screen's height on a laptop or an iPad. The Encounter sheet's turn order
    takes the fight's changes. Forms check themselves before sending; the World Engine decides again.
+   The DM's tools are ordered by how often a session needs them (Party, Encounter, Session, Table
+   screen, Notes, Time and weather, Add to the world, Images, History, Players), each with a glyph
+   of its own. The dock fits every screen, measured rather than guessed from the width (words
+   differ by language, tools by campaign): the full words; where they do not fit, the short ones;
+   where those do not fit either, the last items move one by one under More, a list that rises
+   over the dock (More looks chosen while one of its sheets is open, carries the marker of what
+   waits there, and takes focus back when an item under it opens or closes). The dock never
+   scrolls sideways; a phone's DM keeps the world's tabs and More.
 4. **A reload comes back.** The open sheet's name is remembered for the tab (sessionStorage), so a
    reload, or an iPad that slept and reloaded, comes back to it; never world data.
 5. **Notes.** The DM's notes (title and text) are descriptive DM data beside the world (migration
@@ -61,7 +69,7 @@
   `CombatOrderChanged` (footprints, folds, undo). Combat: `hand.ts`, `order.ts`. Server: the DM's
   history, `dm/note-*`, the check request groups. Client: `dm/party-sheet.tsx`, `party-card.tsx`,
   `hand-forms.tsx`, `notes-sheet.tsx`, `combat/turn-order-controls.tsx`, `styles/dm-screen.css`,
-  `i18n/ru-dm-screen.ts`.
+  `i18n/ru-dm-screen.ts`; the dock's fit and More (`shell/use-dock-fit.ts`, `shell/dock-more.tsx`).
 - Server: `src/table/` (the table's state, its PostgreSQL store, the lobby routes); the commands
   route's pause; the live inventory's `lobby`. Client: `dm/session-sheet.tsx`,
   `session/lobby-banner.tsx`. Contracts: `session/lobby.ts`, `SESSION_PAUSED`.

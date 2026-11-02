@@ -170,8 +170,11 @@ registerRussian({
   'The table’s screens are unpaired.': 'Экраны стола отключены.',
   'Seats without a login are free: {count}.': 'Освобождено мест без логина: {count}.',
   'The DM paused the game. It waits until they resume.':
-    'Мастер поставил игру на паузу. Она ждёт, пока он не продолжит.',
+    'Мастер поставил игру на паузу. Игра продолжится, когда мастер её возобновит.',
   'The session has not started yet.': 'Сессия ещё не началась.',
   'Ready — undo': 'Готов — отменить',
   'I am ready': 'Я готов',
+  // The dock's More (ADR 0043 §3)
+  More: 'Ещё',
+  'More tools': 'Другие инструменты',
 });
