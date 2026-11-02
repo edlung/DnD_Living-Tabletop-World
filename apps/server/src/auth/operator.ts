@@ -1,6 +1,7 @@
-import { MAX_INVITATION_HOURS, actorIdSchema, campaignIdSchema } from '@ltw/contracts';
+import { MAX_INVITATION_HOURS, actorIdSchema, campaignIdSchema, loginSchema } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 
+import { issueReset } from '../accounts/accounts.ts';
 import { iso } from './session-authenticator.ts';
 import { issueInvitation, type IssuedInvitation, type SignInDependencies } from './sign-in.ts';
 
@@ -29,7 +30,8 @@ export type AuthOperatorCommand =
       readonly actorId: string;
       readonly authorizationSource: string;
     }
-  | { readonly kind: 'sessions'; readonly campaignId: string };
+  | { readonly kind: 'sessions'; readonly campaignId: string }
+  | { readonly kind: 'reset-password'; readonly login: string };
 
 export class AuthOperatorUsageError extends Error {
   constructor(message: string) {
@@ -38,7 +40,8 @@ export class AuthOperatorUsageError extends Error {
   }
 }
 
-export type AuthOperatorRefusalCode = 'CAMPAIGN_NOT_FOUND' | 'INVITATIONS_MODE_REQUIRED';
+export type AuthOperatorRefusalCode =
+  'CAMPAIGN_NOT_FOUND' | 'INVITATIONS_MODE_REQUIRED' | 'ACCOUNT_NOT_FOUND';
 
 /** A refusal with a fixed code, never echoing input. */
 export class AuthOperatorRefusal extends Error {
@@ -55,6 +58,7 @@ const FLAGS = {
   'revoke-dm': ['campaign', 'authorization-source'],
   'revoke-actor': ['actor', 'authorization-source'],
   sessions: ['campaign'],
+  'reset-password': ['login'],
 } as const satisfies Record<AuthOperatorCommand['kind'], readonly string[]>;
 
 const isKind = (value: string | undefined): value is AuthOperatorCommand['kind'] =>
@@ -138,10 +142,18 @@ export function parseAuthOperatorArgs(argv: readonly string[]): AuthOperatorComm
     }
     case 'sessions':
       return { kind, campaignId: campaignOf(flag('campaign')) };
+    case 'reset-password': {
+      const login = loginSchema.safeParse(flag('login'));
+      if (!login.success) throw new AuthOperatorUsageError('--login must be a login');
+      return { kind, login: login.data };
+    }
   }
 }
 
-type OperatorDependencies = Pick<SignInDependencies, 'credentials' | 'clock' | 'publication'>;
+type OperatorDependencies = Pick<
+  SignInDependencies,
+  'credentials' | 'clock' | 'publication' | 'accounts'
+>;
 type Command<K extends AuthOperatorCommand['kind']> = Extract<AuthOperatorCommand, { kind: K }>;
 
 async function campaignOrRefuse(engine: WorldEngine, campaignId: string) {
@@ -296,5 +308,17 @@ export async function runAuthOperatorCommand(
       return revokeActorEverywhere(deps, command);
     case 'sessions':
       return listLiveSessions(engine, deps, command);
+    case 'reset-password': {
+      // A single-use reset link for an account (ADR 0041 §7), shown this once to the operator.
+      if (deps.publicOrigin === null) throw new AuthOperatorRefusal('INVITATIONS_MODE_REQUIRED');
+      const account = await deps.accounts?.findByLogin(command.login);
+      if (!deps.accounts || !account) throw new AuthOperatorRefusal('ACCOUNT_NOT_FOUND');
+      const reset = await issueReset(
+        { accounts: deps.accounts, clock: deps.clock, publicOrigin: deps.publicOrigin },
+        account.accountId,
+        'operator',
+      );
+      return { login: account.login, ...reset };
+    }
   }
 }

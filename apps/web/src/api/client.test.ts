@@ -135,6 +135,14 @@ describe('a session signed in by invitation', () => {
     expect(onDoubt).not.toHaveBeenCalled();
   });
 
+  it('takes a write the server answers 204 as done, not as an answer lost', async () => {
+    // The table's state and a note's change answer 204 with no body (Stage 620, 630).
+    const api = new WorldApi(connection, 'DM', 'DM', () =>
+      Promise.resolve(new Response(null, { status: 204 })),
+    );
+    await expect(api.post('lobby', { dice: 'physical' }, signal, true)).resolves.toBeUndefined();
+  });
+
   it('never doubts a development persona: its credential is its own', async () => {
     const api = new WorldApi(connection, 'DM', 'DM', answering(403));
     await expect(api.get('entities', signal)).rejects.toMatchObject({ status: 403 });

@@ -22,6 +22,7 @@ import {
 import type { FastifyBaseLogger } from 'fastify';
 
 import { httpCommandId } from '../http/routes/command-routes.ts';
+import { handChange, isHandCommand } from './hand-history.ts';
 import type { SubstitutionRecord, SubstitutionStore } from './substitution-store.ts';
 
 /**
@@ -52,7 +53,8 @@ type Listed =
       readonly summary: string;
     }
   | { readonly kind: 'substitution'; readonly stored: StoredCommand; readonly characterId: string }
-  | { readonly kind: 'world'; readonly stored: StoredCommand };
+  | { readonly kind: 'world'; readonly stored: StoredCommand }
+  | { readonly kind: 'hand'; readonly stored: StoredCommand };
 
 /** A dry decision that threw: the error's name only. */
 interface Undecided {
@@ -139,6 +141,11 @@ function listFrom(snapshot: CampaignSnapshot, log: readonly StoredCommand[]): Li
       }
       continue;
     }
+    // The DM's hand (ADR 0043 §1), at the table too.
+    if (isHandCommand(stored)) {
+      if (stored.commandId.startsWith(httpCommandId(dm, ''))) listed.push({ kind: 'hand', stored });
+      continue;
+    }
     if (!PLAYER_TYPES.has(stored.commandType)) continue;
     // At the table only, as for time and weather: a seed's set-up (the bow Elowen starts with in
     // hand, Stage 520) is not the DM acting for a player.
@@ -217,6 +224,17 @@ function entryOf(
   };
   if (item.kind === 'authoring') {
     return { ...common, kind: 'authoring', proposalId: item.proposalId, summary: item.summary };
+  }
+  if (item.kind === 'hand') {
+    const hand = handChange(snapshot, stored);
+    if (hand === null) {
+      log.warn(
+        { commandId: stored.commandId, commandType: stored.commandType },
+        'dm history change not recorded',
+      );
+      return null;
+    }
+    return { ...common, kind: 'hand', ...hand };
   }
   if (item.kind === 'world') {
     const change = worldChange(snapshot, stored);

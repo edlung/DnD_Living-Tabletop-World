@@ -496,6 +496,54 @@ dc exec -T server node apps/server/dist/auth/operator-cli.js revoke-actor --acto
   --authorization-source '<who asked, where>'
 ```
 
+**Логины / Logins (Stage 600, ADR 0041).** RU: у игроков и мастеров есть логины (без почты);
+логин создаётся только вместе с местом по приглашению. Забытый пароль: мастер кампании выдаёт
+ссылку сброса на листе «Игроки» (кнопка у игрока), а свой собственный — оператор командой ниже.
+Ссылка `<PUBLIC_ORIGIN>/reset#…` срабатывает один раз, живёт 72 часа, показывается один раз —
+передайте её лично, как ссылку-приглашение; новый пароль выводит логин из всех устройств и
+кампаний. Выйти за человека везде — `revoke-actor` выше. EN: players and DMs have logins (no
+e-mail); a login is made only together with a seat from an invitation. A forgotten password: a
+campaign's DM issues a reset link from the Players sheet (a button by the player), the operator
+issues one with the command below (the DM's own, say). The link `<PUBLIC_ORIGIN>/reset#…` works
+once, for 72 hours, and is shown once — hand it over privately, like an invitation; the new
+password signs the login out of every device and campaign. Signing a person out everywhere is
+`revoke-actor` above.
+
+```bash
+dc exec -T server node apps/server/dist/auth/operator-cli.js reset-password --login '<login>'
+```
+
+**Экраны стола / Table screens (Stage 610, ADR 0042).** RU: настраивать нечего. Телевизор
+открывает `<PUBLIC_ORIGIN>/display` и показывает код; мастер вводит его в «Экране стола» и там же
+отключает один экран или все. Экран только читает (взгляд отряда), ничего не пишет; его cookie
+`ltw_display` живёт 30 дней. Ссылка стола (`/table#…`, лист «Игроки») живёт в памяти сервера:
+после перезапуска мастер открывает новую. Миграция 0028 только добавляет таблицы: откат на
+прежнюю сборку их не трогает. Отключить все экраны кампании без мастера — запрос ниже. EN:
+nothing to configure. A TV opens `<PUBLIC_ORIGIN>/display` and shows a code; the DM types it on
+Table screen and unpairs one screen or all there. A screen only reads (the party's view) and
+writes nothing; its `ltw_display` cookie lasts 30 days. The table link (`/table#…`, the Players
+sheet) lives in the server's memory: after a restart the DM opens a new one. Migration 0028 only
+adds tables: a rollback to the previous build leaves them alone. Unpairing every screen of a
+campaign without its DM is the statement below.
+
+```bash
+dc exec -T postgres psql -U ltw -d ltw -c \
+  "UPDATE ltw_displays SET revoked_at = now() WHERE campaign_id = '<campaign>' AND revoked_at IS NULL"
+```
+
+**Экран мастера / The DM's screen (Stage 620, ADR 0043).** RU: настраивать нечего. Миграция 0029
+только добавляет таблицы заметок и состояния стола и колонку группы у запросов проверки; откат на
+прежнюю сборку их не трогает (прежняя сборка не удерживает ходы игроков на паузе). Если игра
+осталась на паузе без мастера — запрос ниже снимает паузу. EN: nothing to configure. Migration 0029
+only adds the notes and table-state tables and a group column on check requests; a rollback to the
+previous build leaves them alone (that build does not hold players' commands while paused). To lift
+a pause the DM left on, run the statement below.
+
+```bash
+dc exec -T postgres psql -U ltw -d ltw -c \
+  "UPDATE ltw_table_states SET paused = false, updated_at = now() WHERE campaign_id = '<campaign>'"
+```
+
 ## 7. Остановить все расходы на ИИ · Stop all AI spending
 
 **RU.** Сразу: очистите в `deploy/.env` `ANTHROPIC_API_KEY`, `LTW_AI_ROUTES`, `LTW_AI_APPROVAL_ID`

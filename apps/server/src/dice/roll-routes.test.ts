@@ -201,6 +201,38 @@ describe('the table rolls (Stage 510)', () => {
     expect(player.requests).toEqual([]);
   });
 
+  it('asks several characters at once as one group (ADR 0043 §1)', async () => {
+    const group = {
+      characterIds: [ELOWEN, 'brann-ironvale'],
+      check: { kind: 'skill', skill: 'perception' },
+      mode: 'normal',
+      dc: 13,
+    };
+    const asked = await post(app, `${BASE}/check-requests?perspective=DM`, group, TOKENS.dm);
+    expect(asked.statusCode).toBe(201);
+    const made = asked.json<{ groupId: string; requests: CheckRequestsResponse['requests'] }>();
+    expect(made.requests.map((request) => [request.characterId, request.groupId])).toEqual([
+      [ELOWEN, made.groupId],
+      ['brann-ironvale', made.groupId],
+    ]);
+    // Elowen's player sees her own request only, without the DC.
+    const mine = (
+      await get(app, `${BASE}/check-requests?perspective=PLAYER`, TOKENS.player)
+    ).json<CheckRequestsResponse>().requests;
+    expect(mine.map((request) => request.characterId)).toEqual([ELOWEN]);
+    expect(mine[0]).not.toHaveProperty('dc');
+    const again = (ids: readonly string[]) =>
+      post(
+        app,
+        `${BASE}/check-requests?perspective=DM`,
+        { ...group, characterIds: ids },
+        TOKENS.dm,
+      );
+    expect((await again([ELOWEN, ELOWEN])).statusCode).toBe(422);
+    expect((await again([ELOWEN, 'mira-vale'])).statusCode).toBe(422);
+    expect((await again(Array.from({ length: 9 }, () => ELOWEN))).statusCode).toBe(400);
+  });
+
   it('keeps requests the DM’s and answers others in the usual order', async () => {
     const body = {
       characterId: ELOWEN,

@@ -19,8 +19,13 @@ export interface EncounterCombatantView {
   /** `down`: at 0 HP but alive (a character making death saves). */
   readonly state: 'up' | 'down' | 'dead';
   readonly conditions: readonly Condition[];
-  /** Party members (and every combatant for the DM). */
+  /** Party members, and a creature the viewer's party commands (and every combatant for the DM). */
   readonly hitPoints?: { readonly current: number; readonly max: number };
+  /**
+   * The party character commanding this creature (docs/adr/0044-online-play.md §7), as the
+   * viewer knows them; absent when none or not known to the viewer.
+   */
+  readonly commandedBy?: { readonly entityId: string; readonly name: string | null };
   /** DM only. */
   readonly initiative?: {
     readonly roll: number;

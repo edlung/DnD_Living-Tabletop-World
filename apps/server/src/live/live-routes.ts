@@ -36,8 +36,8 @@ export function registerLiveRoute(app: FastifyInstance, deps: LiveRouteDependenc
     const ready = await withPerspective(request, reply, deps, { params, query });
     if (!ready) return reply;
     const { context, params: path, query: input } = ready;
-    const dmPreview =
-      campaignRole(context.state, context.actor) === 'DM' && context.perspective.kind !== 'DM';
+    const role = campaignRole(context.state, context.actor);
+    const dmPreview = role === 'DM' && context.perspective.kind !== 'DM';
     reply.hijack();
     const raw = reply.raw;
     raw.writeHead(200, { ...streamHeaders(deps.credentialHeader), 'x-request-id': request.id });
@@ -49,7 +49,9 @@ export function registerLiveRoute(app: FastifyInstance, deps: LiveRouteDependenc
         kind: context.perspective.kind,
         focus: input.focus ?? null,
         place: input.place ?? null,
-        identity: !dmPreview,
+        // A display has no identity view (ADR 0042): it reads its own `/display/session`.
+        identity: !dmPreview && role !== 'DISPLAY',
+        display: role === 'DISPLAY',
       },
       credentials: credentialsOf(request),
       actorId: context.actor.actorId,

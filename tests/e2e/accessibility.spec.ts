@@ -5,7 +5,7 @@ import { dmRequest, TOMAS_REQUEST } from './support/authoring.ts';
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { battlefield, clickSquare, square, turnTray } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { closeSheet, dockButton, openSheet } from './support/shell.ts';
+import { closeSheet, dockButton, openSheet, revealDockButton } from './support/shell.ts';
 
 /**
  * Accessibility at the three widths (docs/STAGE_320_DESIGN.md §6–7): automated axe scans of
@@ -139,7 +139,7 @@ test('the Chronicle book and a flashback pass axe', async ({ page }) => {
   const open = book.getByRole('button', { name: 'Open flashback' }).first();
   for (const size of WIDTHS) {
     await page.setViewportSize({ width: size.width, height: size.height });
-    await dockButton(page, 'Chronicle').click();
+    await (await revealDockButton(page, 'Chronicle')).click();
     await expect(book.getByRole('article')).toBeVisible();
     // A spread on a wide screen, one parchment page below it.
     await expect(page.locator('.book-spread-art')).toBeVisible({

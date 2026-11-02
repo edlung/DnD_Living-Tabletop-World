@@ -1,6 +1,16 @@
 import type { CreatedInvitationResponse } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import type { FastifyInstance, LightMyRequestResponse } from 'fastify';
+import {
+  ACCOUNT_LIMITS,
+  AccountLimits,
+  type AccountLimitSettings,
+} from '../accounts/account-limits.ts';
+import { InMemoryAccountStore } from '../accounts/account-store.ts';
+import { displayAuthenticator, personOrDisplay } from '../display/display-authenticator.ts';
+import { DISPLAY_LIMITS, DisplayLimits } from '../display/display-limits.ts';
+import { InMemoryDisplayStore } from '../display/display-store.ts';
+import { OpenTableLinks } from '../display/table-links.ts';
 
 import { InMemoryCredentialStore, type CredentialStore } from '../auth/credential-store.ts';
 import { RequestLimits, SIGN_IN_LIMITS, type LimitSettings } from '../auth/limits.ts';
@@ -15,6 +25,8 @@ import { createLogger, type Logger } from '../platform/logging/logger.ts';
 import { ManualTimers } from './live.ts';
 import {
   RAVENFORD_QUESTS,
+  RAVENFORD_QUESTS_BY_LANGUAGE,
+  RAVENFORD_PREPARED,
   seededEngine,
   testAiGateway,
   testAssets,
@@ -56,11 +68,13 @@ export interface SignInTable {
   readonly timers: ManualTimers;
   readonly engine: WorldEngine;
   readonly credentials: CredentialStore;
+  readonly accounts: InMemoryAccountStore;
+  readonly displays: InMemoryDisplayStore;
   readonly clock: ManualClock;
   readonly signIn: SignInDependencies;
   /** A request as a browser on the public origin sends it, unless told otherwise. */
   readonly send: (
-    method: 'GET' | 'POST',
+    method: 'GET' | 'POST' | 'PUT',
     url: string,
     caller?: Caller,
     body?: unknown,
@@ -101,6 +115,10 @@ export class FlakyCredentialStore implements CredentialStore {
 
   constructor(inner: CredentialStore) {
     this.#inner = inner;
+  }
+
+  createSession(...args: Parameters<CredentialStore['createSession']>): Promise<void> {
+    return this.#inner.createSession(...args);
   }
 
   async completeRedeem(...args: Parameters<CredentialStore['completeRedeem']>): Promise<boolean> {
@@ -159,6 +177,7 @@ export const tokenOfLink = (link: string): string => link.slice(link.indexOf('#'
 export async function signInTable(
   options: {
     readonly limits?: Partial<LimitSettings>;
+    readonly accountLimits?: Partial<AccountLimitSettings>;
     readonly logger?: Logger;
     readonly credentials?: CredentialStore;
     readonly engine?: WorldEngine;
@@ -173,12 +192,19 @@ export async function signInTable(
   const clock = new ManualClock();
   const timers = new ManualTimers();
   const credentials = options.credentials ?? new InMemoryCredentialStore();
+  const accounts = new InMemoryAccountStore();
+  const displays = new InMemoryDisplayStore();
   const signIn: SignInDependencies = {
     credentials,
     publicOrigin: ORIGIN,
     clock,
     limits: new RequestLimits({ ...SIGN_IN_LIMITS, ...options.limits }, clock.now),
     evidence: evidenceHasher(),
+    accounts,
+    accountLimits: new AccountLimits({ ...ACCOUNT_LIMITS, ...options.accountLimits }, clock.now),
+    displays,
+    displayLimits: new DisplayLimits(DISPLAY_LIMITS, clock.now),
+    openLinks: new OpenTableLinks(),
   };
   const ai = options.ai ?? testAiGateway();
   const { app, hub } = buildLiveApp(
@@ -188,8 +214,13 @@ export async function signInTable(
       dm: testDm(),
       assets: testAssets(),
       quests: RAVENFORD_QUESTS,
+      questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
+      preparedEncounters: RAVENFORD_PREPARED,
       engine,
-      authenticator: sessionAuthenticator(credentials, clock),
+      authenticator: personOrDisplay(
+        sessionAuthenticator(credentials, clock),
+        displayAuthenticator(displays, clock),
+      ),
       logger: options.logger ?? createLogger({ service: 'sign-in-test', level: 'silent' }),
       signIn,
       ...(options.workshop ? { workshop: options.workshop } : {}),
@@ -228,6 +259,8 @@ export async function signInTable(
     timers,
     engine,
     credentials,
+    accounts,
+    displays,
     clock,
     signIn,
     send,

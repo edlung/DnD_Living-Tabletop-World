@@ -165,20 +165,21 @@ jobs:
           test -n "$version"
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
-      - name: Restore Chromium
+      - name: Restore Chromium and WebKit
         id: chromium
         uses: actions/cache/restore@v4
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-chromium-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+          key: playwright-chromium-webkit-${{ runner.os }}-${{ steps.playwright.outputs.version }}
 
-      # Downloads Chromium only when the cache missed; its system packages and fonts (Cyrillic
-      # among them) are installed on every run.
-      - name: Install Chromium for UI journeys
-        run: pnpm exec playwright install --with-deps chromium
+      # Downloads the browsers only when the cache missed; their system packages and fonts
+      # (Cyrillic among them) are installed on every run. WebKit runs the DM's screen on an iPad
+      # (Stage 620).
+      - name: Install Chromium and WebKit for UI journeys
+        run: pnpm exec playwright install --with-deps chromium webkit
 
       # One shard saves the download as soon as it has it, whatever the journeys do.
-      - name: Save Chromium
+      - name: Save Chromium and WebKit
         if: steps.chromium.outputs.cache-hit != 'true' && matrix.shard == 1
         uses: actions/cache/save@v4
         with:

@@ -13,7 +13,7 @@ import { preparedPartyIds, type PartyProjectionContext } from './projection-part
  * the actor's own role only — never from whether the requested target
  * exists. Nothing ever falls back to a broader perspective.
  */
-export type CampaignRole = 'DM' | 'SYSTEM' | 'PLAYER';
+export type CampaignRole = 'DM' | 'SYSTEM' | 'PLAYER' | 'DISPLAY';
 
 export interface ResolvedPerspective {
   /** Effective perspective label, e.g. `PARTY` or `CHARACTER:elowen-starwhisper`. */
@@ -37,15 +37,23 @@ const FORBIDDEN = { ok: false, reason: 'FORBIDDEN' } as const;
 export function campaignRole(state: WorldState | null, actor: Actor): CampaignRole | null {
   if (!state?.campaign) return null;
   if (actor.kind === 'system') return 'SYSTEM';
+  // A display reaches here only for the campaign it is paired to (the server's `actorFor`).
+  if (actor.kind === 'display') return 'DISPLAY';
   if (actor.actorId === state.campaign.dmActorId) return 'DM';
   return controlledCharacter(state, actor.actorId) === null ? null : 'PLAYER';
 }
 
+/** The player's first character, in assignment order (the PLAYER perspective's). */
 export function controlledCharacter(state: WorldState, actorId: string): string | null {
-  for (const [characterId, playerId] of state.roster) {
-    if (playerId === actorId) return characterId;
-  }
-  return null;
+  return controlledCharacters(state, actorId)[0] ?? null;
+}
+
+/**
+ * Every character the player holds, in assignment order (docs/adr/0044-online-play.md §6): the
+ * player may look and act as each, and each keeps its own knowledge.
+ */
+export function controlledCharacters(state: WorldState, actorId: string): string[] {
+  return [...state.roster].filter(([, playerId]) => playerId === actorId).map(([id]) => id);
 }
 
 export function resolvePerspective(
@@ -57,6 +65,13 @@ export function resolvePerspective(
   const role = campaignRole(state, actor);
   if (state === null || role === null) return NOT_FOUND;
 
+  if (role === 'DISPLAY') {
+    // The table's shared screen: what everyone, and what the party, knows; nothing else.
+    return request.kind === 'PUBLIC' || request.kind === 'PARTY'
+      ? granted(state, request.kind, null)
+      : FORBIDDEN;
+  }
+
   if (role === 'PLAYER') {
     const own = controlledCharacter(state, actor.actorId);
     switch (request.kind) {
@@ -66,7 +81,10 @@ export function resolvePerspective(
       case 'PLAYER':
         return own === null ? FORBIDDEN : granted(state, 'CHARACTER', own);
       case 'CHARACTER':
-        return request.characterId === own ? granted(state, 'CHARACTER', own) : FORBIDDEN;
+        // Any of the player's own characters (ADR 0044 §6), never another's.
+        return state.roster.get(request.characterId) === actor.actorId
+          ? granted(state, 'CHARACTER', request.characterId)
+          : FORBIDDEN;
       default:
         return FORBIDDEN;
     }

@@ -12,7 +12,11 @@ import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { DmHistory } from './dm-history.tsx';
+import { NotesSheet } from './notes-sheet.tsx';
+import { PartySheet } from './party-sheet.tsx';
+import { SessionSheet } from './session-sheet.tsx';
 import { PlayersSheet } from './players-sheet.tsx';
+import { ScreenSheet } from './screen-sheet.tsx';
 import { DmRestControls } from '../rest/dm-rest-controls.tsx';
 import { DmWorldControls } from './world-controls.tsx';
 
@@ -70,6 +74,49 @@ export function DmSheets({
   return (
     <>
       <Sheet
+        id="party"
+        title={t('Party (DM)')}
+        glyph="party"
+        open={shell.sheet === 'party'}
+        onClose={shell.closeSheet}
+      >
+        <PartySheet
+          api={api}
+          open={shell.sheet === 'party'}
+          revision={revision}
+          locationId={place?.locationId ?? null}
+          directory={directory}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
+          }}
+          onOpenSheet={(entityId) => {
+            shell.openHero(entityId);
+          }}
+        />
+      </Sheet>
+      <Sheet
+        id="session"
+        title={t('Session (DM)')}
+        glyph="chapter"
+        open={shell.sheet === 'session'}
+        onClose={shell.closeSheet}
+      >
+        <SessionSheet
+          api={api}
+          open={shell.sheet === 'session'}
+          revision={revision}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
+          }}
+          onWriteChapter={() => {
+            shell.dismissSheet();
+            shell.openChronicle();
+          }}
+        />
+      </Sheet>
+      <Sheet
         id="add"
         title={t('Add to the world (DM)')}
         glyph="add-character"
@@ -102,6 +149,7 @@ export function DmSheets({
             locked={locked}
             onRun={onRun}
             onActAs={onActAs}
+            onWorldChanged={onWorldChanged}
           />
         )}
       </Sheet>
@@ -146,6 +194,15 @@ export function DmSheets({
         />
       </Sheet>
       <Sheet
+        id="notes"
+        title={t('Notes (DM)')}
+        glyph="bookmark"
+        open={shell.sheet === 'notes'}
+        onClose={shell.closeSheet}
+      >
+        <NotesSheet api={api} open={shell.sheet === 'notes'} />
+      </Sheet>
+      <Sheet
         id="images"
         title={t('Images (DM)')}
         glyph="picture"
@@ -158,7 +215,7 @@ export function DmSheets({
         <Sheet
           id="players"
           title={t('Players (DM)')}
-          glyph="party"
+          glyph="member"
           open={shell.sheet === 'players'}
           onClose={shell.closeSheet}
         >
@@ -168,6 +225,17 @@ export function DmSheets({
             directory={directory}
             onWorldChanged={onWorldChanged}
           />
+        </Sheet>
+      )}
+      {invitations && (
+        <Sheet
+          id="screen"
+          title={t('Table screen (DM)')}
+          glyph="live"
+          open={shell.sheet === 'screen'}
+          onClose={shell.closeSheet}
+        >
+          <ScreenSheet api={api} open={shell.sheet === 'screen'} directory={directory} />
         </Sheet>
       )}
     </>

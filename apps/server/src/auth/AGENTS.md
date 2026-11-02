@@ -18,6 +18,13 @@ other case, and never appears in a log, trace, error, URL or listing.
 | `composition.ts`                                      | `AUTH_MODE` → authenticator and sign-in dependencies; refuses development personas under `NODE_ENV=production` or off a loopback `HTTP_HOST`; hourly pruning of evidence and long-dead sessions.                                                                                                                                                                                                                                      |
 | `operator.ts`, `operator-cli.ts`                      | `pnpm auth:operator`: `dm-invite` (the only way to DM access in production), `revoke-dm` and `revoke-actor` (with `--authorization-source`, echoed), `sessions` (no token or hash); one JSON line each.                                                                                                                                                                                                                               |
 
+- Stage 600 accounts (ADR 0041, `../accounts/`): a login and a scrypt password hold an account's
+  seats; `/auth/redeem` takes `newAccount` or the signed-in account (`ltw_account`, which opens no
+  campaign route) and checks a taken login or a second seat before the invitation is spent;
+  `createSession` mints a campaign session only from a used invitation of that campaign; a member's
+  revocation removes the account's seat; the DM's `POST …/members/:characterId/reset` and the
+  operator's `reset-password` issue single-use reset links; a new password ends the account's
+  other sessions and every seat's campaign sessions.
 - Never log, trace, store or echo a token, a token hash, a cookie or an address. Evidence rows key
   client groups and token prefixes by an HMAC whose key lives in the process only; log lines
   use `LOG_SERIALIZERS` (`platform/logging/logger.ts`), which drop addresses and headers.

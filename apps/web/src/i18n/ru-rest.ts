@@ -61,4 +61,6 @@ registerRussian({
   'No quest has begun yet.': 'Ни одно задание ещё не началось.',
   Completed: 'Выполнено',
   'In progress': 'В процессе',
+  // The Journal's quests on a play screen (the workshop's dictionary words it the same way)
+  Quests: 'Задания',
 });

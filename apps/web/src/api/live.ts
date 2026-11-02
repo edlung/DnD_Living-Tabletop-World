@@ -117,6 +117,16 @@ export class LiveClient {
     this.#connect();
   }
 
+  /**
+   * The page shows again after a while (a phone unlocked, a tab brought back; ADR 0044 §3): its
+   * stream may have died unseen while the device slept, so a fresh one opens now instead of after
+   * the idle watchdog. It replaces the old once ready, and its `ready` re-reads every view.
+   */
+  resume(): void {
+    if (this.#stopped || this.#desired === null) return;
+    this.#connect(true);
+  }
+
   /** Ends every stream and timer; nothing is reported afterwards. */
   close(): void {
     this.#stopped = true;
@@ -127,14 +137,14 @@ export class LiveClient {
     this.#active = null;
   }
 
-  #connect(): void {
+  #connect(fresh = false): void {
     const params = this.#desired;
     if (this.#stopped || params === null) return;
     this.#clear('retry');
     const replaced = this.#pending;
     this.#pending = null;
     this.#abandon(replaced);
-    if (same(this.#active?.params ?? null, params)) return;
+    if (!fresh && same(this.#active?.params ?? null, params)) return;
     const stream: Stream = {
       params,
       controller: new AbortController(),

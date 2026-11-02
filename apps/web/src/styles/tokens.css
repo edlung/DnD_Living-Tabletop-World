@@ -15,6 +15,8 @@
   --umbra: #000;
   --line: rgb(220 228 236 / 0.16);
   --line-strong: rgb(220 228 236 / 0.3);
+  /* A text field's own edge: 3:1 or better on the glass and the ground (WCAG 1.4.11) */
+  --field-edge: rgb(220 228 236 / 0.46);
 
   /* Text: muted text is at least 4.5:1 on --glass */
   --text: #ece6da;
@@ -94,6 +96,10 @@
   --font-body: 'Alegreya', Georgia, 'Times New Roman', serif;
   --font-hand: 'Bad Script', 'Segoe Script', cursive;
   --tracking-caps: 0.12em;
+
+  /* A QR code: the darkest modules on the lightest plate, in every theme, for any camera */
+  --qr-dark: #000;
+  --qr-light: #fff;
 
   /* Shape, light, motion */
   --radius-panel: 10px;

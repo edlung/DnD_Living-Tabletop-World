@@ -26,6 +26,10 @@ const ALWAYS = [
   '/campaigns/ravenford/quests',
   '/campaigns/ravenford/chronicle',
   '/campaigns/ravenford/presence',
+  // The table around a session (ADR 0043 §6).
+  '/campaigns/ravenford/lobby',
+  // What the table's display shows (ADR 0042).
+  '/campaigns/ravenford/display/cast ?',
 ];
 
 describe('the coverage inventory', () => {
@@ -48,6 +52,9 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/rolls',
       '/campaigns/ravenford/check-requests',
       '/campaigns/ravenford/rest',
+      // Table talk (ADR 0044 §1) and handouts (§5).
+      '/campaigns/ravenford/chat',
+      '/campaigns/ravenford/handouts',
       '/campaigns/ravenford/surroundings',
       '/campaigns/ravenford/undone-actions',
       '/campaigns/ravenford/entities/mira-vale/context ?',
@@ -59,7 +66,8 @@ describe('the coverage inventory', () => {
       const parsed = new URL(view.url, 'http://test');
       // AI ranking never runs for a comparison.
       expect(parsed.searchParams.has('ranking')).toBe(false);
-      if (!/\/sessions?$/.test(parsed.pathname)) {
+      // The identity views and the display's cast take no perspective.
+      if (!/\/(sessions?|display\/cast)$/.test(parsed.pathname)) {
         expect(parsed.searchParams.get('perspective')).toBe('PLAYER');
       }
     }
@@ -72,6 +80,8 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/rolls',
       '/campaigns/ravenford/check-requests',
       '/campaigns/ravenford/rest',
+      '/campaigns/ravenford/chat',
+      '/campaigns/ravenford/handouts',
       '/campaigns/ravenford/chronicle/suggestions',
       '/campaigns/ravenford/dm/history',
       '/campaigns/ravenford/assets',

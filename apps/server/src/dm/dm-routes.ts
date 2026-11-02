@@ -18,6 +18,8 @@ import { sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
 import { httpCommandId } from '../http/routes/command-routes.ts';
 import { dmHistoryPage } from './history.ts';
+import { registerDmNoteRoutes } from './note-routes.ts';
+import type { DmNoteStore } from './note-store.ts';
 import {
   sameSubstitution,
   type SubstitutionRecord,
@@ -33,6 +35,8 @@ import {
  */
 export interface DmDependencies {
   readonly substitutions: SubstitutionStore;
+  /** The DM's notes (ADR 0043 §5). */
+  readonly notes: DmNoteStore;
   readonly clock: WallClock;
 }
 
@@ -57,7 +61,9 @@ export function registerDmRoutes(app: FastifyInstance, deps: DmRouteDependencies
   ): Promise<{ actor: Actor; campaignId: string; snapshot: CampaignSnapshot; input: B } | null> => {
     const actor = await authenticate(request, reply, deps);
     if (!actor) return null;
-    const path = parseInput(params, request.params, request, reply);
+    // The campaign only: a route's own path parameters (a note's ID) are its input's to check.
+    const campaignId = (request.params as { readonly campaignId?: unknown }).campaignId;
+    const path = parseInput(params, { campaignId }, request, reply);
     if (!path) return null;
     const parsed = input(request, reply);
     if (parsed === null) return null;
@@ -146,4 +152,6 @@ export function registerDmRoutes(app: FastifyInstance, deps: DmRouteDependencies
     );
     return reply.send(page);
   });
+
+  registerDmNoteRoutes(app, deps, asDm);
 }

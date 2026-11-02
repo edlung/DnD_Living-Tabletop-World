@@ -1,8 +1,12 @@
+import { join } from 'node:path';
+
 import type pg from 'pg';
 
 import { createPlaceholderImageGenerator, type ImageGenerator } from '@ltw/ai';
 
 import { AccountingTasks } from './ai/accounting-tasks.ts';
+import { loadPreparedEncounterBooks } from './combat/prepared-encounters.ts';
+import { PostgresDisplayStore } from './display/postgres-display-store.ts';
 import {
   PostgresBudgetStore,
   accountingStatus,
@@ -38,7 +42,13 @@ import { loadCuratedSet } from './images/curated-set.ts';
 import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
+import { PostgresChatStore } from './chat/postgres-chat-store.ts';
+import { PostgresHandoutStore } from './handouts/postgres-handout-store.ts';
+import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
+import { PostgresTableStateStore } from './table/postgres-table-state-store.ts';
+import { ReadyRegistry } from './table/table-state.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
+import { PostgresAccountStore } from './accounts/postgres-account-store.ts';
 import { PostgresRestStore, PostgresTableStore } from './dice/postgres-table-store.ts';
 import { serverDice } from './dice/table-rolls.ts';
 import { buildLiveApp } from './live/live-app.ts';
@@ -58,6 +68,10 @@ import {
   randomIds,
   systemClock,
 } from './world-engine/runtime.ts';
+import {
+  RAVENFORD_FIXTURES_DIR,
+  RAVENFORD_RU_FIXTURES_DIR,
+} from './world-engine/ravenford-seed.ts';
 import { storeReadiness } from './world-engine/store-readiness.ts';
 
 /**
@@ -77,6 +91,9 @@ async function main(): Promise<void> {
   const { authenticator, signIn: baseSignIn } = await composeAuthentication(
     config,
     () => new PostgresCredentialStore(pool),
+    undefined,
+    () => new PostgresAccountStore(pool),
+    () => new PostgresDisplayStore(pool),
   );
   const publication = new PostgresCampaignPublication(pool);
   const signIn = baseSignIn ? { ...baseSignIn, publication } : null;
@@ -143,6 +160,12 @@ async function main(): Promise<void> {
     throw error;
   }
   const quests = await loadQuestBook(config.questsFile);
+  // Ravenford in both languages (Stage 605): campaigns from either template read their own.
+  const questsByLanguage = {
+    en: await loadQuestBook(join(RAVENFORD_FIXTURES_DIR, 'quests.json')),
+    ru: await loadQuestBook(join(RAVENFORD_RU_FIXTURES_DIR, 'quests.json')),
+  };
+  const preparedEncounters = await loadPreparedEncounterBooks();
   const draftImageRepository = signIn ? new PostgresDraftImageRepository(pool) : null;
   const draftImages = draftImageRepository
     ? {
@@ -175,8 +198,19 @@ async function main(): Promise<void> {
     ai,
     authoring,
     // The DM's reasons for acting for a player (ADR 0033 §6; migration 0009).
-    dm: { substitutions: new PostgresSubstitutionStore(pool), clock: systemClock },
+    dm: {
+      substitutions: new PostgresSubstitutionStore(pool),
+      notes: new PostgresDmNoteStore(pool),
+      clock: systemClock,
+    },
     // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).
+    chat: { store: new PostgresChatStore(pool), now: () => new Date().toISOString() },
+    handouts: { store: new PostgresHandoutStore(pool), now: () => new Date().toISOString() },
+    lobby: {
+      state: new PostgresTableStateStore(pool),
+      ready: new ReadyRegistry(),
+      now: () => new Date().toISOString(),
+    },
     table: {
       store: new PostgresTableStore(pool),
       rests: new PostgresRestStore(pool),
@@ -185,6 +219,8 @@ async function main(): Promise<void> {
     },
     assets: { contents },
     quests,
+    questsByLanguage,
+    preparedEncounters,
     campaignQuests: createCampaignQuestBooks(initialContent),
     ...(signIn ? { signIn } : {}),
     ...(signIn
@@ -251,7 +287,9 @@ async function main(): Promise<void> {
     generation && generationWorker
       ? startCampaignGenerationLoop(generation.repository, generationWorker, logger)
       : () => Promise.resolve();
-  const stopPruning = signIn ? startCredentialPruning(signIn.credentials, logger) : () => undefined;
+  const stopPruning = signIn
+    ? startCredentialPruning(signIn.credentials, logger, signIn.clock, signIn.displays)
+    : () => undefined;
   const stopActivation =
     activation && activationWorker
       ? startCampaignActivationLoop(activation.repository, activationWorker, logger)

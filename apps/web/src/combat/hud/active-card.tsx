@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 
 import type { WorldApi } from '../../api/client.ts';
 import { useResource } from '../../api/resource.ts';
+import { useReservedHeight } from '../../shell/reserved-height.ts';
 import { Glyph } from '../../visual/glyph.tsx';
 import { Medallion } from '../../visual/medallion.tsx';
 import { HpBar } from '../board/token.tsx';
@@ -50,9 +51,12 @@ export function ActiveCard({
   const own = active !== undefined && actorId !== null && active.entity.entityId === actorId;
   const sheet = useOwnSheet(api, own ? actorId : null)?.sheet ?? null;
   const labelOf = useCombatantLabels(encounter);
+  // Wide, the party rail beneath it keeps clear of it (`battle-layout.css`).
+  const card = useReservedHeight<HTMLElement>('--active-h', active !== undefined);
   if (!active) return null;
   return (
     <section
+      ref={card}
       className={`active-card active-card--${active.side}`}
       aria-label={t('Active combatant')}
     >

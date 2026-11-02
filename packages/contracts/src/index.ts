@@ -125,11 +125,18 @@ export {
   type DmUndoAvailability,
   type DmUndoBlocker,
   type DmWorldEntry,
+  type DmHandEntry,
+  MAX_DM_NOTES,
+  dmNoteRequestSchema,
+  type DmNoteRequest,
+  type DmNoteView,
+  type DmNotesResponse,
   type RecordSubstitutionRequest,
   type RecordSubstitutionResponse,
   type SubstitutionReason,
   type UndoneActionsResponse,
 } from './session/dm.ts';
+export * from './session/accounts.ts';
 export {
   CREDENTIAL_TOKEN_PATTERN,
   DEFAULT_INVITATION_HOURS,
@@ -235,15 +242,21 @@ export {
 export {
   COMBAT_COMMAND_TYPES,
   COVER_LEVELS,
+  DAMAGE_TYPES,
+  DM_HAND_COMMAND_TYPES,
+  FIGHT_CHANGE_COMMAND_TYPES,
   MAX_BATTLEFIELD,
   MAX_COMBATANTS,
   PLAYER_COMBAT_COMMAND_TYPES,
   SIDES,
   battlefieldSchema,
+  dmReasonSchema,
   squareSchema,
   type Battlefield,
   type CombatCommandType,
   type CoverLevel,
+  type DamageType,
+  type DmHandCommandType,
   type Side,
   type Square,
 } from './combat/commands.ts';
@@ -280,6 +293,16 @@ export type {
   MonsterTurnSuggestion,
   ReactionWindowView,
 } from './combat/views.ts';
+export {
+  preparedEncounterBookSchema,
+  preparedEncounterSchema,
+  startPreparedEncounterRequestSchema,
+  type PreparedEncounter,
+  type PreparedEncounterBlock,
+  type PreparedEncounterListResponse,
+  type PreparedEncounterView,
+  type StartedPreparedEncounterResponse,
+} from './combat/prepared.ts';
 export {
   AI_CAPABILITIES,
   INTENT_DECLINE_REASONS,
@@ -449,6 +472,7 @@ export type {
 } from './assets/views.ts';
 export * from './campaign/index.ts';
 export * from './dice/rolls.ts';
+export * from './session/lobby.ts';
 
 export {
   EQUIP_SLOTS,
@@ -473,3 +497,4 @@ export {
   useItemCommandSchema,
 } from './items/commands.ts';
 export type { InventoryItem, InventoryResponse, InventoryWeapon } from './items/views.ts';
+export * from './play/index.ts';

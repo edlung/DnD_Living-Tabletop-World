@@ -23,7 +23,19 @@ const REJECTIONS: Readonly<Record<string, string>> = {
   ILLEGAL_ACTION: 'This action is not available in the current world.',
   NO_EFFECT: 'This action would make no change.',
   INVALID_ITEM: 'That item cannot be handled like this right now.',
+  TARGET_DEAD: 'That creature is dead.',
+  NOT_A_COMBATANT: 'That creature is not in the fight.',
+  INVALID_COMMAND: 'The world could not accept this as written.',
+  SESSION_PAUSED: 'The DM paused the game. It waits until they resume.',
 };
+
+/** Changes of a running fight (ADR 0043 §2): a refusal is about the fight, not its start. */
+const FIGHT_COMMANDS: ReadonlySet<string> = new Set([
+  'AddCombatant',
+  'RemoveCombatant',
+  'DelayTurn',
+  'SetInitiative',
+]);
 
 const ITEM_COMMANDS: ReadonlySet<string> = new Set([
   'EquipItem',
@@ -85,7 +97,10 @@ export function rejectionMessage(
     code === 'COMBAT_ALREADY_ACTIVE'
   )
     return `${t('Items cannot be handled during an encounter.')} ${t('Your view has been refreshed.')}`;
-  const base = t(REJECTIONS[code] ?? 'The world could not accept this action.');
+  const base =
+    commandType !== undefined && FIGHT_COMMANDS.has(commandType) && code === 'INVALID_ENCOUNTER'
+      ? t('The fight cannot be changed like this.')
+      : t(REJECTIONS[code] ?? 'The world could not accept this action.');
   const reason = code === 'ILLEGAL_ACTION' && message ? readableReason(message) : null;
   return `${reason ? `${base} (${t(reason)})` : base} ${t('Your view has been refreshed.')}`;
 }

@@ -79,7 +79,7 @@ export function World({
   const [conversation, setConversation] = useState<Conversation | null>(null);
   const [sceneFor, setSceneFor] = useState<string | null>(null);
   const [dismissed, setDismissed] = useState<Notice | null>(null);
-  const shell = useShell();
+  const shell = useShell(effectivePerspective);
   const details = useRef<HTMLElement>(null);
   const opener = useRef<HTMLElement | null>(null);
   const acting = effectivePerspective.startsWith('CHARACTER:');
@@ -219,10 +219,10 @@ export function World({
   });
   const battlefield = encounter !== null && sceneFor !== encounter.encounterId;
   const view = scene.resource.status === 'ready' ? scene.resource.value : null;
-  const presentImage = (entityId: string) =>
-    view?.present.find((entity) => entity.entityId === entityId)?.image ?? null;
-  const presentFigure = (entityId: string) =>
-    view?.present.find((entity) => entity.entityId === entityId)?.figure ?? null;
+  const presentIds = useMemo(() => new Set(view?.present.map((entity) => entity.entityId)), [view]);
+  const presentOne = (entityId: string) => view?.present.find((one) => one.entityId === entityId);
+  const presentImage = (entityId: string) => presentOne(entityId)?.image ?? null;
+  const presentFigure = (entityId: string) => presentOne(entityId)?.figure ?? null;
   // The battle map is the encounter's place's (ADR 0035 §4): shown while the viewed place is
   // where the fight is — its own presentation lists the combatants standing there.
   const fought =
@@ -384,6 +384,7 @@ export function World({
               onSelect={select}
             />
             <DicePanel
+              api={api}
               shell={shell}
               characters={directory.filter((entity) => entity.kind === 'character')}
             />
@@ -441,6 +442,7 @@ export function World({
             canAct={canAct || standIn !== null}
             locked={action.locked}
             encounter={encounter}
+            sessionOpen={openSession !== undefined}
             recipients={recipientsOf(view, directory, actorId)}
             onRun={run}
             outcome={outcome}
@@ -464,6 +466,7 @@ export function World({
                 effectivePerspective={effectivePerspective}
                 directory={directory}
                 knowledge={data.knowledge.knowledge}
+                presentIds={presentIds}
                 canAct={canAct && encounter === null}
                 locked={action.locked}
                 conversing={speaking && conversation.npcId === shown.entityId}

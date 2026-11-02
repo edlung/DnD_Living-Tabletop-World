@@ -54,6 +54,26 @@ export function applyCombatantUpdated(
   };
 }
 
+/** The DM's change of a running fight (ADR 0043 §2): the whole new order and the turn's place. */
+export function applyCombatOrderChanged(
+  state: WorldState,
+  event: EventOf<'CombatOrderChanged'>,
+): WorldState {
+  const encounter = requireEncounter(state, 'order change');
+  const { combatants, currentIndex } = event.payload;
+  if (!combatants.every((c) => state.entities.has(c.entityId))) {
+    throw new CorruptHistoryError('order with a missing combatant');
+  }
+  if (new Set(combatants.map((c) => c.entityId)).size !== combatants.length) {
+    throw new CorruptHistoryError('a combatant twice in the order');
+  }
+  if (currentIndex >= combatants.length) throw new CorruptHistoryError('turn outside the order');
+  return {
+    ...state,
+    encounter: { ...encounter, combatants: structuredClone(combatants), currentIndex },
+  };
+}
+
 export function applyCombatEnded(state: WorldState, event: EventOf<'CombatEnded'>): WorldState {
   const encounter = requireEncounter(state, 'combat end');
   if (encounter.encounterId !== event.payload.encounterId) {

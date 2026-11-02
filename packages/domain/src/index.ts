@@ -11,6 +11,7 @@
  * Maps: src/kernel/AGENTS.md, src/knowledge/AGENTS.md, src/authoring/AGENTS.md.
  */
 export { actorSchema, type Actor } from './kernel/actor.ts';
+export { commanderOf } from './kernel/authorization.ts';
 export {
   EMPTY_WORLD_STATE,
   PLACEABLE_KINDS,
@@ -92,7 +93,11 @@ export {
   type KnowledgeFilter,
   type ListResult,
 } from './knowledge/queries.ts';
-export { controlledCharacter, holderPerspective } from './knowledge/perspective.ts';
+export {
+  controlledCharacter,
+  controlledCharacters,
+  holderPerspective,
+} from './knowledge/perspective.ts';
 export {
   projectionPartyMemberIds,
   type PartyProjectionContext,

@@ -82,3 +82,16 @@ export function rollSentence(t: Translate, entry: RollEntry): string {
   });
   return `${rollerWords(t, entry.roller)} · ${subjectWords(t, entry.subject)}. ${lines.join('. ')}`;
 }
+
+/**
+ * What else a roll is (docs/adr/0044-online-play.md §4): its faces read off one's own dice, the
+ * DM's word on them, and whether only the DM and one player see it — in the viewer's words.
+ */
+export function rollMarks(t: Translate, entry: RollEntry, isDm: boolean): string[] {
+  const marks: string[] = [];
+  if (entry.entered) {
+    marks.push(entry.confirmed ? t('own dice, confirmed by the DM') : t('own dice'));
+  }
+  if (entry.private) marks.push(isDm ? t('only you and this player') : t('only you and the DM'));
+  return marks;
+}

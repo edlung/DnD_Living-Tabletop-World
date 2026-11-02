@@ -28,6 +28,7 @@ export {
 export { carryingCapacityLb, deriveCharacter, weaponAttack } from './character-derived.ts';
 export {
   CLASS_HIT_DIE,
+  attacksFor,
   hitDice,
   hitDieRefusal,
   levelUp,

@@ -11,5 +11,12 @@
   "tabs": "ui-signin-tabs",
   "gameCookieOld": "ui-game-cookie-old",
   "gameCookieNew": "ui-game-cookie-new",
-  "activationGame": "ui-activation-game"
+  "activationGame": "ui-activation-game",
+  "accounts": "ui-accounts",
+  "accountsClaim": "ui-accounts-claim",
+  "display": "ui-table-display",
+  "dock": "ui-signin-dock",
+  "dockRu": "ui-signin-dock-ru",
+  "online": "ui-signin-online",
+  "characters": "ui-signin-characters"
 }

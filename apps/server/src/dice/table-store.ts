@@ -14,6 +14,12 @@ export interface TableRollRecord {
   readonly groups: readonly RollGroup[];
   /** A DM roll the players do not see. */
   readonly hidden: boolean;
+  /** Its faces were read off a player's own dice (migration 0031). */
+  readonly entered: boolean;
+  /** The one character who sees it besides the DM; null for the table. */
+  readonly audienceId: string | null;
+  /** The DM confirmed its entered faces (read with the roll; written apart, append-only). */
+  readonly confirmed?: boolean;
   readonly requestId: string | null;
   readonly at: string;
 }
@@ -21,10 +27,14 @@ export interface TableRollRecord {
 export interface CheckRequestRecord {
   readonly requestId: string;
   readonly campaignId: string;
+  /** A check asked of several at once shares a group (migration 0029); null alone. */
+  readonly groupId: string | null;
   readonly characterId: string;
   readonly check: Check;
   readonly mode: RollMode;
   readonly dc: number | null;
+  /** Asked in private: the answer is the DM's and this player's only (migration 0031). */
+  readonly private: boolean;
   readonly status: 'open' | 'rolled' | 'cancelled';
   readonly rollId: string | null;
   readonly total: number | null;
@@ -46,11 +56,20 @@ export interface TableStore {
   answerRequest(roll: TableRollRecord, total: number): Promise<boolean>;
   /** Cancels an open request; false when it is not open. */
   cancelRequest(campaignId: string, requestId: string): Promise<boolean>;
+  /** One roll of a campaign, or null. */
+  findRoll(campaignId: string, rollId: string): Promise<TableRollRecord | null>;
+  /** The DM's word that an entered roll is what the dice showed; once is enough. */
+  confirmRoll(campaignId: string, rollId: string, at: string): Promise<void>;
 }
 
 export class InMemoryTableStore implements TableStore {
   readonly #rolls: TableRollRecord[] = [];
   readonly #requests = new Map<string, CheckRequestRecord>();
+  readonly #confirmed = new Set<string>();
+
+  #withConfirmed(roll: TableRollRecord): TableRollRecord {
+    return { ...roll, confirmed: this.#confirmed.has(`${roll.campaignId}\n${roll.rollId}`) };
+  }
 
   addRoll(record: TableRollRecord): Promise<void> {
     this.#rolls.push(record);
@@ -59,8 +78,21 @@ export class InMemoryTableStore implements TableStore {
 
   recentRolls(campaignId: string, limit: number): Promise<readonly TableRollRecord[]> {
     return Promise.resolve(
-      this.#rolls.filter((roll) => roll.campaignId === campaignId).slice(-limit),
+      this.#rolls
+        .filter((roll) => roll.campaignId === campaignId)
+        .slice(-limit)
+        .map((roll) => this.#withConfirmed(roll)),
     );
+  }
+
+  findRoll(campaignId: string, rollId: string): Promise<TableRollRecord | null> {
+    const roll = this.#rolls.find((one) => one.campaignId === campaignId && one.rollId === rollId);
+    return Promise.resolve(roll ? this.#withConfirmed(roll) : null);
+  }
+
+  confirmRoll(campaignId: string, rollId: string): Promise<void> {
+    this.#confirmed.add(`${campaignId}\n${rollId}`);
+    return Promise.resolve();
   }
 
   addRequest(record: CheckRequestRecord): Promise<void> {

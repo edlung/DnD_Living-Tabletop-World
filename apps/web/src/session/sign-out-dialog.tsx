@@ -3,14 +3,17 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
 import type { Connection, GameSignOutGuard } from '../api/client.ts';
+import { signOutAccount } from './account-flow.ts';
+import { useSessionAccount } from './account-menu.tsx';
 import { signOut } from './sign-in-flow.ts';
 
 /**
  * The question before signing out (docs/adr/0036-production-sign-in.md §3): signing out is
- * final here — coming back takes a new invitation link — so it is asked as a native modal
- * dialog that opens on "Stay signed in" (focus stays inside, Escape keeps the session, focus
- * returns where it was). The session ends only when the server says so; if it cannot be
- * reached the person is told they are still signed in.
+ * final here — coming back takes a new invitation link, or the login (docs/adr/0041-accounts.md),
+ * which signs out with the session — so it is asked as a native modal dialog that opens on "Stay
+ * signed in" (focus stays inside, Escape keeps the session, focus returns where it was). The
+ * session ends only when the server says so; if it cannot be reached the person is told they are
+ * still signed in.
  */
 export function SignOutDialog({
   open,
@@ -26,6 +29,8 @@ export function SignOutDialog({
   readonly connection: Extract<Connection, { kind: 'session' }>;
 }) {
   const t = useT();
+  const account = useSessionAccount()?.account ?? 'unknown';
+  const withLogin = account !== 'none' && account !== 'unknown';
   const ref = useRef<HTMLDialogElement>(null);
   const stay = useRef<HTMLButtonElement>(null);
   const [state, setState] = useState<'asking' | 'signing-out' | 'failed'>('asking');
@@ -57,11 +62,17 @@ export function SignOutDialog({
     if (!open || !controller || controller.signal.aborted || sending.current) return;
     sending.current = true;
     setState('signing-out');
-    void signOut(transport, mounted.current, controller.signal).then((result) => {
+    void signOut(transport, mounted.current, controller.signal).then(async (result) => {
       if (controller.signal.aborted || request.current !== controller) return;
+      if (result !== 'signed-out') {
+        sending.current = false;
+        setState('failed');
+        return;
+      }
+      // The login signs out with the session: nothing here stays signed in (best effort).
+      if (withLogin) await signOutAccount(transport);
       sending.current = false;
-      if (result === 'signed-out') onSignedOut();
-      else setState('failed');
+      onSignedOut();
     });
   };
   return (
@@ -84,7 +95,9 @@ export function SignOutDialog({
         {t('Sign out?')}
       </h2>
       <p id="sign-out-text">
-        {t('You will need a new invitation link to come back to this table.')}
+        {withLogin
+          ? t('Your login signs out of this browser too. Sign in with it to come back.')
+          : t('You will need a new invitation link to come back to this table.')}
       </p>
       {state === 'failed' && (
         <p role="alert" className="sign-out-failed">

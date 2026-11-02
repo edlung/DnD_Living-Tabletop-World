@@ -72,6 +72,11 @@ export interface CredentialStore {
    * invitations (its seat is taken). False, changing nothing, when the invitation is not open.
    */
   completeRedeem(invitationId: string, session: NewSession, now: string): Promise<boolean>;
+  /**
+   * A new session for an account's seat (ADR 0041 §2): it descends from the invitation the seat
+   * came from, which must be used.
+   */
+  createSession(session: NewSession): Promise<void>;
   findSession(tokenHash: string): Promise<SessionRecord | null>;
   /** Records use of a session, at most once per granularity (`staleBefore`). */
   touchSession(sessionId: string, now: string, staleBefore: string): Promise<void>;
@@ -169,6 +174,17 @@ export class InMemoryCredentialStore implements CredentialStore {
       }
     }
     return Promise.resolve(true);
+  }
+
+  createSession(session: NewSession): Promise<void> {
+    const invitation = this.#invitations.get(session.invitationId);
+    if (!invitation?.usedAt) return Promise.reject(new Error('a session needs a used invitation'));
+    this.#sessions.set(session.sessionId, {
+      ...session,
+      lastSeenAt: session.createdAt,
+      revokedAt: null,
+    });
+    return Promise.resolve();
   }
 
   findSession(tokenHash: string): Promise<SessionRecord | null> {

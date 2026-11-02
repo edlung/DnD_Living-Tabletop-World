@@ -11,8 +11,10 @@ import { entityRefFor } from './views.ts';
  * knows is consulted, so a topic can never reveal another holder's secret.
  * A subject the acting character's scope has shown the target evidence about
  * ranks high (docs/adr/0020-npc-intelligence.md §1: show the symbol, then ask
- * about it). Order: relevance, then perceived before not perceived, then
- * name, then ID.
+ * about it). A player character is a topic only then: the table talks to its
+ * companions directly, and they would crowd out the places and people worth
+ * asking about (Stage 605). Order: relevance, then perceived before not
+ * perceived, then name, then ID.
  */
 export const MAX_TOPICS = 5;
 
@@ -38,6 +40,11 @@ export function askTopics(inputs: ContextInputs, targetId: string): Topic[] {
             : 'low';
       return { ref: entityRefFor(inputs, entityId), relevance };
     })
+    .filter(
+      (topic) =>
+        topic.relevance === 'high' ||
+        inputs.state.entities.get(topic.ref.entityId)?.kind !== 'character',
+    )
     .sort(
       (a, b) =>
         RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance] ||

@@ -49,7 +49,8 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
       name: 'Пропавший караван',
       language: 'ru',
       duplicate: 0,
-      openSeats: ['elowen-starwhisper'],
+      // Elowen's seat, freed from its persona, and her three companions' (Stage 605).
+      openSeats: ['brann-ironvale', 'elowen-starwhisper', 'maren-ashby', 'tamsin-quickfoot'],
     });
     const state = (await engine.load('ravenford'))?.state;
     // The fixture's party history stands; the seat it gave a persona is free again.
@@ -88,7 +89,7 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
     }
     // The seat is open and the pictures wait for whoever takes it: Elowen's player, once invited,
     // sees the market square's picture and Mira's figure; nothing of the caravan site yet.
-    expect(first.openSeats).toEqual(['elowen-starwhisper']);
+    expect(first.openSeats).toContain('elowen-starwhisper');
     const elowen = holderPerspective(snapshot.state, {
       kind: 'CHARACTER',
       characterId: 'elowen-starwhisper',
@@ -150,7 +151,10 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
 
     const rerun = await seedReviewCampaign(engine);
 
-    expect(rerun).toMatchObject({ accepted: 0, openSeats: [] });
+    expect(rerun).toMatchObject({
+      accepted: 0,
+      openSeats: ['brann-ironvale', 'maren-ashby', 'tamsin-quickfoot'],
+    });
     const state = (await engine.load('ravenford'))?.state;
     expect(state?.roster.get('elowen-starwhisper')).toBe(PLAYER.actorId);
   });

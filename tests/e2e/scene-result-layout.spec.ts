@@ -119,10 +119,11 @@ test('beside an open conversation and a result the scene keeps room for its name
   expect(overlaps).toEqual([]);
 });
 
-/** Dock buttons a pointer at their centre does not reach (something lies over them). */
+/** Dock buttons on screen a pointer at their centre does not reach (something lies over them). */
 async function coveredDockButtons(page: Page): Promise<string[]> {
   return page.locator('nav.dock button').evaluateAll((buttons) =>
     buttons
+      .filter((button) => button.checkVisibility())
       .filter((button) => {
         const box = button.getBoundingClientRect();
         const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
@@ -136,12 +137,13 @@ for (const width of [768, 1024]) {
   test(`with the selection's drawer open every dock item stays reachable at ${String(width)} px (Stage 360)`, async ({
     browser,
   }) => {
-    // The DM's dock holds every tool; the drawer once covered its right half.
+    // The DM's dock holds every tool, on it or under its More (docs/adr/0043-dm-screen.md §3);
+    // the drawer once covered its right half.
     const dm = await browser.newPage({ viewport: { width, height: 1024 } });
     await enterWorld(dm, TOKENS.dm);
     await dm.getByRole('button', { name: 'Mira Vale', exact: true }).click();
     await expect(dm.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
-    await expect(dm.locator('nav.dock button')).toHaveCount(10);
+    await expect(dm.locator('nav.dock button:not(#dock-more)')).toHaveCount(14);
     await expect.poll(() => coveredDockButtons(dm)).toEqual([]);
 
     // A player's result at the drawer's foot keeps clear of the dock too (read-only: talking with

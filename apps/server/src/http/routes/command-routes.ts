@@ -3,6 +3,7 @@ import { campaignRole } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
+import type { LobbyDependencies } from '../../table/table-state.ts';
 import { statusOf } from '../command-status.ts';
 import { sendError } from '../errors.ts';
 import { authenticate, limitKey, parseInput, type RouteDependencies } from '../request-context.ts';
@@ -27,7 +28,13 @@ export function httpCommandId(actorId: string, clientCommandId: string): string 
   return `http:${actorId}:${clientCommandId}`;
 }
 
-export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependencies): void {
+export function registerCommandRoutes(
+  app: FastifyInstance,
+  deps: RouteDependencies & {
+    /** The table around a session (ADR 0043 §6): a paused table holds players' commands. */
+    readonly lobby?: LobbyDependencies;
+  },
+): void {
   app.post('/campaigns/:campaignId/commands', async (request, reply) => {
     const actor = await authenticate(request, reply, deps);
     if (!actor) return reply;
@@ -55,6 +62,16 @@ export function registerCommandRoutes(app: FastifyInstance, deps: RouteDependenc
     // Stream versions are campaign metadata players never see (ADR 0008, ADR 0014 §4).
     if (role === 'PLAYER' && input.expectedVersion !== undefined) {
       return sendError(reply, request, 'INVALID_REQUEST');
+    }
+    // While the DM has paused the table, a player's command waits (docs/adr/0043-dm-screen.md §6).
+    if (role === 'PLAYER' && deps.lobby && (await deps.lobby.state.read(path.campaignId)).paused) {
+      const paused: CommandResult = {
+        status: 'rejected',
+        commandId: httpCommandId(actor.actorId, input.commandId),
+        code: 'SESSION_PAUSED',
+        message: 'The table is paused',
+      };
+      return reply.code(409).send(paused);
     }
     // An image request is limited per actor like AI work (ADR 0036 §6), in invitation mode.
     const slot =

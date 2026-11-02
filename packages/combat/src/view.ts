@@ -16,9 +16,12 @@ import { conditionsOf, hitPoints, vitalsOf } from './vitals.ts';
  * The DM sees everything. A character taking part sees the battlefield, turn
  * order, every combatant's square, side, conditions and whether it is up,
  * down or dead; names only when known; hit points only of the party.
- * Initiative rolls and stat blocks are DM data. Any other perspective
- * (party, public, NPC, a character not in the fight) sees no encounter.
- * Built field by field: canonical objects are never passed through.
+ * Initiative rolls and stat blocks are DM data. The party, while one of its
+ * members takes part, sees what such a member sees with the party's knowledge
+ * and nothing of one character's own: no reaction window (the table's display,
+ * docs/adr/0042-table-display.md §3). Any other perspective (public, NPC, a
+ * character not in the fight) sees no encounter. Built field by field:
+ * canonical objects are never passed through.
  */
 export function encounterView(
   state: WorldState,
@@ -29,19 +32,25 @@ export function encounterView(
   if (!encounter || !current) return null;
   const dm = perspective.kind === 'DM';
   const holder = perspective.kind === 'CHARACTER' ? perspective.holderId : null;
-  if (!dm && (holder === null || !combatantOf(encounter, holder))) return null;
+  const members = projectionPartyMemberIds(state, perspective);
+  const asParty =
+    perspective.kind === 'PARTY' && [...members].some((id) => combatantOf(encounter, id));
+  if (!dm && !asParty && (holder === null || !combatantOf(encounter, holder))) return null;
 
   const known = knownEntityIds(state, perspective);
   const party = new Set<string>(holder === null ? [] : [holder]);
-  const members = projectionPartyMemberIds(state, perspective);
-  if (holder !== null && members.has(holder)) members.forEach((id) => party.add(id));
+  if (asParty || (holder !== null && members.has(holder))) members.forEach((id) => party.add(id));
 
   const combatants = encounter.combatants.map((combatant): EncounterCombatantView => {
     const entity = state.entities.get(combatant.entityId);
     const vitals = vitalsOf(state, combatant.entityId);
     if (!entity || !vitals) throw new Error(`combatant ${combatant.entityId} lacks canonical data`);
     const hp = hitPoints(vitals);
-    const showHp = dm || (vitals.kind === 'character' && party.has(combatant.entityId));
+    // A creature a party character commands (ADR 0044 §7) is the party's to know, as its own.
+    const commander = combatant.commandedBy ?? null;
+    const commanded = commander !== null && (dm || party.has(commander));
+    const showHp =
+      dm || commanded || (vitals.kind === 'character' && party.has(combatant.entityId));
     const { roll, modifier, total } = combatant.initiative;
     return {
       entity: {
@@ -54,6 +63,15 @@ export function encounterView(
       state: entity.status !== 'active' ? 'dead' : hp.current === 0 ? 'down' : 'up',
       conditions: [...conditionsOf(vitals)],
       ...(showHp ? { hitPoints: { current: hp.current, max: hp.max } } : {}),
+      ...(commanded
+        ? {
+            commandedBy: {
+              entityId: commander,
+              name:
+                dm || known.has(commander) ? (state.entities.get(commander)?.name ?? null) : null,
+            },
+          }
+        : {}),
       ...(dm ? { initiative: { roll, modifier, total } } : {}),
     };
   });

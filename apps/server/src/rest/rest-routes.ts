@@ -169,7 +169,16 @@ export function registerRestRoutes(
     }
     // No die is rolled for a character who cannot spend one.
     if (hitDieRefusal(sheet, sides)) return sendError(reply, request, 'UNPROCESSABLE');
-    const roll = deps.table.dice.roll(sides);
+    // The face of the player's own die where the campaign's dice are theirs (ADR 0044 §4); the
+    // DM's always. The rules heal from it as from the server's.
+    const { face } = ready.body;
+    if (face !== undefined) {
+      const mayEnter =
+        perspective.kind === 'DM' || (await deps.table.diceOf?.(campaignId)) === 'physical';
+      if (!mayEnter) return sendError(reply, request, 'CONFLICT');
+      if (face > sides) return sendError(reply, request, 'INVALID_REQUEST');
+    }
+    const roll = face ?? deps.table.dice.roll(sides);
     const spent = spendHitDie(sheet, sides, roll);
     if (typeof spent === 'string') return sendError(reply, request, 'UNPROCESSABLE');
     const command = { type: 'SetCharacterSheet', entityId: characterId, sheet: spent.sheet };
@@ -189,6 +198,8 @@ export function registerRestRoutes(
         },
       ],
       hidden: false,
+      entered: face !== undefined,
+      audienceId: null,
       requestId: null,
       at: deps.table.now(),
     });

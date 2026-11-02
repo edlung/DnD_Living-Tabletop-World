@@ -10,6 +10,7 @@ import {
   joinAsDm,
   joinPath,
   openInvitation,
+  takeSeat,
 } from './support/sign-in.ts';
 
 /**
@@ -29,9 +30,7 @@ test('in Russian, the DM invites, an English browser joins, and is signed out in
   const dmContext = await browser.newContext({ locale: 'ru-RU' });
   const dm = await dmContext.newPage();
   await dm.goto('/');
-  await expect(accessState(dm, ru.none)).toContainText(
-    'Откройте присланную вам ссылку-приглашение',
-  );
+  await expect(accessState(dm, ru.none)).toContainText('Откройте ссылку-приглашение от мастера');
   await joinAsDm(dm, SIGN_IN_CAMPAIGNS.russian, 0, ru);
   const link = await invite(dm, ELOWEN, ru);
   await expect(dm.locator('#sheet-players')).toContainText('Показывается один раз.');
@@ -52,7 +51,7 @@ test('in Russian, the DM invites, an English browser joins, and is signed out in
     `${ELOWEN}: доступ игрока отозван, персонажа можно пригласить снова.`,
   );
   await expect(accessState(player, ru.signedOut)).toContainText(
-    'Чтобы вернуться за стол, откройте новую ссылку-приглашение.',
+    'Войдите по логину или откройте новую ссылку-приглашение.',
     { timeout: 10_000 },
   );
 
@@ -62,7 +61,7 @@ test('in Russian, the DM invites, an English browser joins, and is signed out in
   await expect(accessState(forged, ru.invited)).toContainText(
     'Пока вы не займёте место, приглашение не используется.',
   );
-  await accessState(forged, ru.invited).getByRole('button', { name: ru.takeSeat }).click();
+  await takeSeat(forged, ru);
   await expect(accessState(forged, ru.failed)).toContainText('Попросите новую.');
 
   // Signing out, asked in Russian.

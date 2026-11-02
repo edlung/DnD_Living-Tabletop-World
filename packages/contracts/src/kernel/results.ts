@@ -54,6 +54,8 @@ export const REJECTION_CODES = [
   'SESSION_NOT_FOUND',
   'SESSION_ALREADY_ACTIVE',
   'SESSION_NOT_ACTIVE',
+  /** The DM paused the table (docs/adr/0043-dm-screen.md §6): a player's command waits. */
+  'SESSION_PAUSED',
   /** Investigation (ADR 0013): the acting character is dead. */
   'ACTOR_DEAD',
   /** The acting character is Incapacitated (speech and checks). */

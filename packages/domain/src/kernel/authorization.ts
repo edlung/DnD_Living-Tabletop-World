@@ -1,5 +1,6 @@
 import {
   ASSET_WORKER_COMMAND_TYPES,
+  PLAYER_COMBAT_COMMAND_TYPES,
   PLAYER_COMMAND_TYPES,
   type KernelCommand,
 } from '@ltw/contracts';
@@ -21,7 +22,7 @@ import type { WorldState } from './state.ts';
  * roster records that premise: undoing the assignment while the action
  * stands is then UNDO_UNSAFE (Gate 02, G02-H03).
  */
-export type Authority = 'campaign-creator' | 'system' | 'dm' | 'controller';
+export type Authority = 'campaign-creator' | 'system' | 'dm' | 'controller' | 'commander';
 
 export type Authorization =
   | { readonly ok: true; readonly authority: Authority }
@@ -31,6 +32,8 @@ const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
 const WORKER_TYPES: ReadonlySet<string> = new Set(ASSET_WORKER_COMMAND_TYPES);
 
 export function authorize(state: WorldState, actor: Actor, command: KernelCommand): Authorization {
+  // A table display reads; it never changes the world (docs/adr/0042-table-display.md §2).
+  if (actor.kind === 'display') return forbidden('A display issues no command');
   if (command.type === 'BootstrapCampaign')
     return actor.kind === 'user' && actor.actorId === command.source.ownerId
       ? { ok: true, authority: 'campaign-creator' }
@@ -65,8 +68,19 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
       : 'combatantId' in command
         ? command.combatantId
         : null;
-  const authorization = authorizeActingFor(state, actor, acting);
+  const authorization = authorizeActingFor(state, actor, acting, COMMANDABLE.has(command.type));
   return authorization.ok ? authorization : forbidden(`Not permitted to issue ${command.type}`);
+}
+
+/** What a player may do for a creature their character commands (ADR 0044 §7): its turn's acts. */
+const COMMANDABLE: ReadonlySet<string> = new Set(PLAYER_COMBAT_COMMAND_TYPES);
+
+/** The party character commanding a creature in the running fight, if any (ADR 0044 §7). */
+export function commanderOf(state: WorldState, combatantId: string): string | null {
+  return (
+    state.encounter?.combatants.find((combatant) => combatant.entityId === combatantId)
+      ?.commandedBy ?? null
+  );
 }
 
 /**
@@ -78,11 +92,18 @@ export function authorizeActingFor(
   state: WorldState,
   actor: Actor,
   characterId: string | null,
+  /** A fight's act, which a creature's commander may also do for it. */
+  commandable = false,
 ): Authorization {
+  if (actor.kind === 'display') return forbidden('A display acts for no character');
   if (actor.kind === 'system') return { ok: true, authority: 'system' };
   if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
   if (characterId !== null && state.roster.get(characterId) === actor.actorId) {
     return { ok: true, authority: 'controller' };
+  }
+  const commander = commandable && characterId !== null ? commanderOf(state, characterId) : null;
+  if (commander !== null && state.roster.get(commander) === actor.actorId) {
+    return { ok: true, authority: 'commander' };
   }
   return forbidden('Not permitted to act for this character');
 }

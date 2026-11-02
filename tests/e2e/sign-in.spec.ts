@@ -101,9 +101,12 @@ test('the DM invites, the player joins and plays, and revocation signs the playe
   // so only the live stream can carry the news: no other request reaches the server meanwhile.
   await player.waitForTimeout(3_000);
   let reads = 0;
+  let accountReads = 0;
   player.on('request', (request) => {
     const path = new URL(request.url()).pathname;
-    if (path.startsWith('/api/') && !path.endsWith('/live')) reads += 1;
+    // The signed-out screen asks once whether a login is still signed in here (Stage 600).
+    if (path === '/api/account') accountReads += 1;
+    else if (path.startsWith('/api/') && !path.endsWith('/live')) reads += 1;
   });
   await members.getByRole('button', { name: words.revoke(ELOWEN) }).click();
   await members.getByRole('button', { name: words.revokeYes }).click();
@@ -113,6 +116,7 @@ test('the DM invites, the player joins and plays, and revocation signs the playe
   await expect(accessState(player, words.signedOut)).toBeVisible({ timeout: 10_000 });
   await expect(mira).toHaveCount(0);
   expect(reads, 'reads the player sent before the signed-out screen').toBe(0);
+  expect(accountReads, 'the signed-out screen asks about a login once').toBeLessThanOrEqual(1);
   // The seat is free again.
   await expect(
     players(dm).getByLabel(words.character, { exact: true }).getByRole('option', { name: ELOWEN }),
@@ -303,11 +307,17 @@ test('signing out asks first, ends the session for good, and keeps nothing', asy
 
 test('joining, the Players sheet and signing out work from the keyboard', async ({ browser }) => {
   const page = await browser.newPage();
-  // A link: Tab reaches "Take your seat". It fails: its title takes focus, Tab reaches what next.
+  // A link: Tab reaches the choice of how to come back, arrows choose "Only this browser", Tab
+  // reaches "Take your seat". It fails: its title takes focus, Tab reaches what next.
   await page.goto(joinPath(forgedToken()));
   // The client renders the join page after it loads (slowly on hosted runners): Tab waits for it.
   const takeSeat = page.getByRole('button', { name: words.takeSeat });
   await expect(takeSeat).toBeVisible();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('radio', { name: 'Create a login', exact: true })).toBeFocused();
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  await expect(page.getByRole('radio', { name: words.onlyBrowser, exact: true })).toBeChecked();
   await page.keyboard.press('Tab');
   await expect(takeSeat).toBeFocused();
   await page.keyboard.press('Enter');
@@ -326,6 +336,9 @@ test('joining, the Players sheet and signing out work from the keyboard', async 
   await expect(sheet).toBeFocused();
   const character = sheet.getByLabel(words.character, { exact: true });
   await character.focus();
+  // Her companions' seats are free too (Stage 605): a letter picks Elowen in the list.
+  await page.keyboard.type('E');
+  await expect(character.locator('option:checked')).toHaveText(ELOWEN);
   await page.keyboard.press('Tab');
   await expect(sheet.getByLabel('The link expires after', { exact: true })).toBeFocused();
   await page.keyboard.press('Tab');

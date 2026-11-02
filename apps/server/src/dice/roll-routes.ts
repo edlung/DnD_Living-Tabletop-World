@@ -9,8 +9,9 @@ import {
   type CheckRequestsResponse,
   type RollEntry,
   type RollFeedResponse,
+  type TableDice,
 } from '@ltw/contracts';
-import { knownEntityIds, type ResolvedPerspective } from '@ltw/domain';
+import { knownEntityIds, partyMemberIds, type ResolvedPerspective } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -21,7 +22,13 @@ import {
   type PerspectiveContext,
   type RouteDependencies,
 } from '../http/request-context.ts';
-import { rollCheck, rollFreeDice, type DiceSource } from './table-rolls.ts';
+import {
+  EnteredDice,
+  EnteredFacesError,
+  rollCheck,
+  rollFreeDice,
+  type DiceSource,
+} from './table-rolls.ts';
 import type { CheckRequestRecord, RestStore, TableRollRecord, TableStore } from './table-store.ts';
 import { worldRolls, type WorldRoll } from './world-rolls.ts';
 
@@ -31,10 +38,39 @@ export interface TableDependencies {
   readonly rests: RestStore;
   readonly dice: DiceSource;
   readonly now: () => string;
+  /** The campaign's dice (ADR 0044 §4, the table's state); none: the app's. */
+  readonly diceOf?: (campaignId: string) => Promise<TableDice>;
+}
+
+/**
+ * Whether this perspective may enter the faces of its own dice: the DM always (behind the
+ * screen), a player where the campaign's dice are the players' own (docs/adr/0044-online-play.md
+ * §4).
+ */
+async function mayEnter(
+  table: TableDependencies,
+  perspective: ResolvedPerspective,
+  campaignId: string,
+): Promise<boolean> {
+  if (perspective.kind === 'DM') return true;
+  return (await table.diceOf?.(campaignId)) === 'physical';
+}
+
+/** A roll from entered faces, or null when they do not fit its dice (too few, too many, off a die). */
+function fromFaces<T>(faces: readonly number[], roll: (dice: DiceSource) => T): T | null {
+  const entered = new EnteredDice(faces);
+  try {
+    const result = roll(entered);
+    return entered.spent ? result : null;
+  } catch (error) {
+    if (error instanceof EnteredFacesError) return null;
+    throw error;
+  }
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
 const requestParams = z.object({ campaignId: campaignIdSchema, requestId: z.uuid() }).strict();
+const rollParams = z.object({ campaignId: campaignIdSchema, rollId: z.uuid() }).strict();
 const query = z.object({ perspective: z.string() }).strict();
 /** How many of the DM's requests the DM's list keeps. */
 const REQUEST_LIST = 20;
@@ -55,8 +91,13 @@ function viewer(context: Omit<PerspectiveContext, 'history'>) {
         : { entityId: id, name: sees(id) ? (state.entities.get(id)?.name ?? null) : null },
     world: (roll: WorldRoll) =>
       dm || (!roll.dmOnly && roll.rollerId !== null && roll.rollerId === own),
+    // A roll between the DM and one player is that player's only (ADR 0044 §4).
     table: (roll: TableRollRecord) =>
-      dm || (!roll.hidden && (roll.rollerId === null || sees(roll.rollerId))),
+      dm ||
+      (!roll.hidden &&
+        (roll.audienceId === null
+          ? roll.rollerId === null || sees(roll.rollerId)
+          : roll.audienceId === own)),
   };
 }
 
@@ -67,6 +108,9 @@ const entryOf = (
     readonly subject: RollEntry['subject'];
     readonly groups: RollEntry['groups'];
     readonly hidden: boolean;
+    readonly entered?: boolean;
+    readonly confirmed?: boolean;
+    readonly audienceId?: string | null;
     readonly at: string;
   },
   roller: RollEntry['roller'],
@@ -76,6 +120,9 @@ const entryOf = (
   subject: roll.subject,
   groups: roll.groups,
   hidden: roll.hidden,
+  ...(roll.entered === true ? { entered: true } : {}),
+  ...(roll.entered === true && roll.confirmed === true ? { confirmed: true } : {}),
+  ...(roll.audienceId !== undefined && roll.audienceId !== null ? { private: true } : {}),
   at: roll.at,
 });
 
@@ -85,10 +132,12 @@ const tableEntry = (roll: TableRollRecord, roller: RollEntry['roller']): RollEnt
 function requestView(record: CheckRequestRecord, dm: boolean): CheckRequestView {
   return {
     requestId: record.requestId,
+    groupId: record.groupId,
     characterId: record.characterId,
     check: record.check,
     mode: record.mode,
     ...(dm && record.dc !== null ? { dc: record.dc } : {}),
+    ...(record.private ? { private: true } : {}),
     status: record.status,
     ...(record.total !== null ? { total: record.total } : {}),
     ...(dm && record.dc !== null && record.total !== null
@@ -141,22 +190,41 @@ export function registerRollRoutes(
     }
     const at = deps.table.now();
     const rollId = randomUUID();
+    // Faces off one's own dice (ADR 0044 §4): the DM's always, a player's where the campaign's
+    // dice are the players' own; the server still computes every total from them.
+    if (body.faces !== undefined && !(await mayEnter(deps.table, perspective, path.campaignId))) {
+      return sendError(reply, request, 'CONFLICT');
+    }
     if (body.kind === 'dice') {
-      // A player rolls as its character and never hidden; the DM as the DM, hidden at will.
-      if (perspective.kind === 'CHARACTER' && (body.hidden ?? false)) {
+      // A player rolls as its character, for the table or for the DM alone; the DM as the DM,
+      // hidden at will or shown to one character.
+      const player = perspective.kind === 'CHARACTER';
+      if (
+        (player && ((body.hidden ?? false) || body.shownTo !== undefined)) ||
+        (!player && (body.private ?? false)) ||
+        ((body.hidden ?? false) && body.shownTo !== undefined)
+      ) {
         return sendError(reply, request, 'INVALID_REQUEST');
       }
-      const rollerId = perspective.kind === 'CHARACTER' ? perspective.holderId : null;
+      const rollerId = player ? perspective.holderId : null;
       if (body.characterId !== undefined && body.characterId !== rollerId) {
         return sendError(reply, request, 'FORBIDDEN');
       }
+      if (body.shownTo !== undefined && state.entities.get(body.shownTo)?.kind !== 'character') {
+        return sendError(reply, request, 'UNPROCESSABLE');
+      }
+      const roll = (dice: DiceSource) => rollFreeDice(dice, body.dice, body.modifier);
+      const group = body.faces === undefined ? roll(deps.table.dice) : fromFaces(body.faces, roll);
+      if (group === null) return sendError(reply, request, 'INVALID_REQUEST');
       const record: TableRollRecord = {
         rollId,
         campaignId: path.campaignId,
         rollerId,
         subject: { kind: 'dice' },
-        groups: [rollFreeDice(deps.table.dice, body.dice, body.modifier)],
-        hidden: perspective.kind === 'DM' && (body.hidden ?? false),
+        groups: [group],
+        hidden: !player && (body.hidden ?? false),
+        entered: body.faces !== undefined,
+        audienceId: player ? ((body.private ?? false) ? rollerId : null) : (body.shownTo ?? null),
         requestId: null,
         at,
       };
@@ -180,7 +248,9 @@ export function registerRollRoutes(
     }
     const check = asked?.check ?? body.check;
     const mode = asked?.mode ?? body.mode;
-    const group = rollCheck(deps.table.dice, sheet, check, mode);
+    const roll = (dice: DiceSource) => rollCheck(dice, sheet, check, mode);
+    const group = body.faces === undefined ? roll(deps.table.dice) : fromFaces(body.faces, roll);
+    if (group === null) return sendError(reply, request, 'INVALID_REQUEST');
     const record: TableRollRecord = {
       rollId,
       campaignId: path.campaignId,
@@ -191,6 +261,9 @@ export function registerRollRoutes(
           : { kind: check.kind, ability: check.ability },
       groups: [group],
       hidden: false,
+      entered: body.faces !== undefined,
+      // A private request's answer, or a check rolled for the DM alone, is the two of theirs.
+      audienceId: (asked?.private ?? false) || (body.private ?? false) ? body.characterId : null,
       requestId: asked?.requestId ?? null,
       at,
     };
@@ -212,13 +285,15 @@ export function registerRollRoutes(
     const { perspective } = context;
     const dm = perspective.kind === 'DM';
     const recent = await store.recentRequests(path.campaignId, REQUEST_LIST);
+    // The party (the table's display, ADR 0042) sees whom the DM is waiting on, never a DC.
+    const party = perspective.kind === 'PARTY' ? partyMemberIds(context.state) : null;
     const requests = dm
       ? recent
       : recent.filter(
           (record) =>
-            perspective.kind === 'CHARACTER' &&
-            record.characterId === perspective.holderId &&
-            record.status === 'open',
+            record.status === 'open' &&
+            ((perspective.kind === 'CHARACTER' && record.characterId === perspective.holderId) ||
+              (party?.has(record.characterId) === true && !record.private)),
         );
     const body: CheckRequestsResponse = {
       perspective: perspective.label,
@@ -233,26 +308,37 @@ export function registerRollRoutes(
     const { context, params: path, body } = ready;
     if (context.perspective.kind !== 'DM') return sendError(reply, request, 'FORBIDDEN');
     const { state } = context;
+    // One character, or several at once as a group (ADR 0043 §1): every one a character with a sheet.
+    const asked = 'characterIds' in body ? body.characterIds : [body.characterId];
     if (
-      !state.characterSheets.has(body.characterId) ||
-      state.entities.get(body.characterId)?.kind !== 'character'
+      new Set(asked).size !== asked.length ||
+      asked.some(
+        (id) => !state.characterSheets.has(id) || state.entities.get(id)?.kind !== 'character',
+      )
     ) {
       return sendError(reply, request, 'UNPROCESSABLE');
     }
-    const record: CheckRequestRecord = {
+    const groupId = 'characterIds' in body ? randomUUID() : null;
+    const at = deps.table.now();
+    const records = asked.map((characterId): CheckRequestRecord => ({
       requestId: randomUUID(),
       campaignId: path.campaignId,
-      characterId: body.characterId,
+      groupId,
+      characterId,
       check: body.check,
       mode: body.mode,
       dc: body.dc ?? null,
+      private: body.private ?? false,
       status: 'open',
       rollId: null,
       total: null,
-      at: deps.table.now(),
-    };
-    await store.addRequest(record);
-    return reply.code(201).send({ request: requestView(record, true) });
+      at,
+    }));
+    for (const record of records) await store.addRequest(record);
+    const views = records.map((record) => requestView(record, true));
+    return reply
+      .code(201)
+      .send(groupId === null ? { request: views[0] } : { groupId, requests: views });
   });
 
   app.post('/campaigns/:campaignId/check-requests/:requestId/cancel', async (request, reply) => {
@@ -266,5 +352,21 @@ export function registerRollRoutes(
     const cancelled = await store.cancelRequest(path.campaignId, path.requestId);
     if (!cancelled) return sendError(reply, request, 'CONFLICT');
     return reply.code(200).send({ status: 'cancelled' });
+  });
+
+  // The DM's word that a roll's entered faces are what the dice showed (ADR 0044 §4).
+  app.post('/campaigns/:campaignId/rolls/:rollId/confirm', async (request, reply) => {
+    const ready = await withBody(request, reply, deps, {
+      params: rollParams,
+      body: z.object({}).strict().optional(),
+    });
+    if (!ready) return reply;
+    const { context, params: path } = ready;
+    if (context.perspective.kind !== 'DM') return sendError(reply, request, 'FORBIDDEN');
+    const roll = await store.findRoll(path.campaignId, path.rollId);
+    if (!roll) return sendError(reply, request, 'NOT_FOUND');
+    if (!roll.entered) return sendError(reply, request, 'CONFLICT');
+    await store.confirmRoll(path.campaignId, path.rollId, deps.table.now());
+    return reply.code(200).send({ status: 'confirmed' });
   });
 }

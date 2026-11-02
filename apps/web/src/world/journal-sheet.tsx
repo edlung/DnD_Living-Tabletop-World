@@ -2,6 +2,7 @@ import type { EncounterView, EntityKind, EntityRef, KnowledgeView } from '@ltw/c
 import { EncounterSummary, useT } from '@ltw/ui';
 
 import type { WorldApi } from '../api/client.ts';
+import { HandoutsSection } from '../handouts/handouts.tsx';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
@@ -54,6 +55,7 @@ export function JournalSheet({
       {journal && (
         <div className="journal">
           <JournalQuests api={api} revision={revision} />
+          <HandoutsSection api={api} />
           <section className="sheet-section" aria-labelledby="journal-known">
             <h3 id="journal-known">{t('Known people & places')}</h3>
             <p className="muted">

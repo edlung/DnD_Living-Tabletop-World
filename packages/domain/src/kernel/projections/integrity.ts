@@ -114,7 +114,6 @@ export function checkWorldIntegrity(state: WorldState): string[] {
     }
   }
 
-  const players = new Set<string>();
   let assignedBefore = 0;
   if (state.preparedParty !== undefined && state.bootstrap === undefined)
     report('prepared party exists without bootstrap provenance');
@@ -127,9 +126,7 @@ export function checkWorldIntegrity(state: WorldState): string[] {
     if (state.entities.get(characterId)?.kind !== 'character') {
       report(`roster entry ${characterId} is not a character`);
     }
-    if (players.has(playerId)) report(`player ${playerId} controls several characters`);
     if (playerId === state.campaign?.dmActorId) report('the DM is also a player');
-    players.add(playerId);
     // The roster stays in assignment order (ADR 0036 §4: undoing a release restores it).
     const assignedAt = state.rosterAssignedAt.get(characterId) ?? 0;
     if (assignedAt <= assignedBefore) report(`roster entry ${characterId} is out of order`);

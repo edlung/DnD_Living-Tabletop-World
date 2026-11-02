@@ -32,6 +32,22 @@ export const redeemRequestSchema = z
   .object({
     token: z.string().regex(CREDENTIAL_TOKEN_PATTERN),
     replaceSession: z.boolean().optional(),
+    /**
+     * A new account for the seat (Stage 600, ADR 0041). Without it, a browser signed in to an
+     * account adds the seat to that account; otherwise the seat has a campaign session only.
+     */
+    newAccount: z
+      .object({
+        login: z
+          .string()
+          .trim()
+          .toLowerCase()
+          .regex(/^[a-z0-9._-]{3,32}$/),
+        password: z.string().min(10).max(200),
+        displayName: z.string().trim().min(1).max(60),
+      })
+      .strict()
+      .optional(),
   })
   .strict();
 export type RedeemRequest = z.infer<typeof redeemRequestSchema>;
@@ -88,7 +104,17 @@ export interface MemberView {
   readonly activeSessions: number;
   /** When one of those sessions was last used (coarse, at most every five minutes). */
   readonly lastSeenAt: string | null;
+  /** The login the seat belongs to (ADR 0041; shown to the campaign's DM only), or null. */
+  readonly login: string | null;
+  /** The other characters the same player holds (docs/adr/0044-online-play.md §6). */
+  readonly alsoPlays: readonly string[];
 }
+
+/**
+ * `POST …/members/:characterId/characters` (DM only): the player of that character is given
+ * another character, one nobody plays (docs/adr/0044-online-play.md §6).
+ */
+export const giveCharacterRequestSchema = z.object({ characterId: entityIdSchema }).strict();
 
 /** `GET /campaigns/:campaignId/invitations` (DM only): newest invitations first, then members. */
 export interface MembershipResponse {
@@ -103,7 +129,8 @@ export interface RevokeInvitationResponse {
 
 /**
  * `POST …/members/:characterId/revoke` (DM only): the player's sessions and the character's
- * open invitations are revoked, then `ReleaseCharacter` frees the character for a new invitation.
+ * open invitations are revoked, then `ReleaseCharacter` frees the character — and every other
+ * character the same player holds — for a new invitation.
  */
 export interface RevokeMemberResponse {
   readonly released: boolean;

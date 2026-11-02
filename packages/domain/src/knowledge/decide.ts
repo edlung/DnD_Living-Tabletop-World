@@ -108,9 +108,8 @@ export function decideAssignCharacter(
   if (state.roster.has(command.characterId)) {
     return reject('ALREADY_ASSIGNED', 'The character is already assigned');
   }
-  if ([...state.roster.values()].includes(command.playerActorId)) {
-    return reject('ALREADY_ASSIGNED', 'The player already controls a character');
-  }
+  // A player may hold several characters (docs/adr/0044-online-play.md §6): a child sharing a
+  // tablet, a spare hero. Each keeps its own knowledge; a character has one player.
   return accept({
     type: 'CharacterAssigned',
     payload: { characterId: command.characterId, playerActorId: command.playerActorId },

@@ -125,6 +125,7 @@ test('a workshop and a game sign-in coexist and signing out of the workshop pres
   page,
 }) => {
   await page.goto(`/join#${dmToken(WORKSHOP_CAMPAIGN)}`);
+  await page.getByRole('radio', { name: 'Only this browser', exact: true }).check();
   await page.getByRole('button', { name: 'Take your seat', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Sign out', exact: true })).toBeVisible();
   await enter(page, 'coexist');

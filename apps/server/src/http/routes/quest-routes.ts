@@ -1,4 +1,9 @@
-import { campaignIdSchema, type QuestDefinition, type QuestListResponse } from '@ltw/contracts';
+import {
+  campaignIdSchema,
+  type Language,
+  type QuestDefinition,
+  type QuestListResponse,
+} from '@ltw/contracts';
 import { questLog } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
@@ -15,6 +20,8 @@ import type { CampaignQuestBooks } from '../../campaigns/quest-books.ts';
 export interface QuestRouteDependencies extends RouteDependencies {
   readonly quests: readonly QuestDefinition[];
   readonly campaignQuests?: CampaignQuestBooks;
+  /** Ravenford's books by language (Stage 605); `quests` for a language without one. */
+  readonly questsByLanguage?: Readonly<Partial<Record<Language, readonly QuestDefinition[]>>>;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -30,7 +37,7 @@ export function registerQuestRoutes(app: FastifyInstance, deps: QuestRouteDepend
           ready.params.campaignId,
           context.state.bootstrap.source.questDigest,
         )
-      : deps.quests;
+      : (deps.questsByLanguage?.[context.state.campaign?.language ?? 'en'] ?? deps.quests);
     if (!definitions) return sendError(reply, request, 'INTERNAL');
     const body: QuestListResponse = {
       perspective: context.perspective.label,

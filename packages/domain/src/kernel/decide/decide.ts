@@ -43,6 +43,7 @@ import {
   decideUseItem,
 } from '../../items/decide.ts';
 import { decideSetRelationship } from '../../relationships/decide.ts';
+import { commanderOf } from '../authorization.ts';
 import { accept, type Decision, type DecisionContext, type ResolvedCommand } from '../decision.ts';
 import type { KernelEvent } from '../events.ts';
 import {
@@ -99,14 +100,21 @@ function withAuthorityPremise(
   if (recorded?.type !== 'PremisesRecorded') {
     throw new Error(`${commandType} was accepted without recording its premises`);
   }
-  if (context.authority !== 'controller') return [...events];
+  if (context.authority !== 'controller' && context.authority !== 'commander') return [...events];
+  // A commander acts for a creature their character commands (ADR 0044 §7).
+  const commander =
+    context.authority === 'commander'
+      ? commanderOf(context.state, recorded.payload.characterId)
+      : null;
   const withController: KernelEvent = {
     type: 'PremisesRecorded',
     payload: {
       characterId: recorded.payload.characterId,
       premises: [
         ...recorded.payload.premises,
-        { kind: 'controller', playerActorId: context.actor.actorId },
+        commander === null
+          ? { kind: 'controller', playerActorId: context.actor.actorId }
+          : { kind: 'commander', characterId: commander, playerActorId: context.actor.actorId },
       ],
     },
   };
@@ -214,7 +222,15 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'EndCombat':
     case 'UseReaction':
     case 'DeclineReaction':
-    case 'CloseReactionWindow': {
+    case 'CloseReactionWindow':
+    case 'AdjustHitPoints':
+    case 'SetCondition':
+    case 'SetInspiration':
+    case 'AddCombatant':
+    case 'RemoveCombatant':
+    case 'DelayTurn':
+    case 'SetInitiative':
+    case 'CommandCreature': {
       if (!context.combat) throw new Error(`${command.type} needs the combat engine port`);
       const entropy = 'resolution' in command ? command.resolution.entropy : [];
       return context.combat.decide(context, command, poolDice(entropy));

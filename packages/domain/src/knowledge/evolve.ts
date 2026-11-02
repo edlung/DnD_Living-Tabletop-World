@@ -51,7 +51,7 @@ export function applyCharacterAssigned(
   if (state.entities.get(characterId)?.kind !== 'character') {
     throw new CorruptHistoryError(`assignment of non-character ${characterId}`);
   }
-  if (state.roster.has(characterId) || [...state.roster.values()].includes(playerActorId)) {
+  if (state.roster.has(characterId)) {
     throw new CorruptHistoryError(`duplicate assignment of ${characterId}`);
   }
   return {
@@ -98,7 +98,7 @@ export function restoreReleasedCharacter(
   if (state.entities.get(characterId)?.kind !== 'character') {
     throw new CorruptHistoryError(`restored assignment of non-character ${characterId}`);
   }
-  if (state.roster.has(characterId) || [...state.roster.values()].includes(playerActorId)) {
+  if (state.roster.has(characterId)) {
     throw new CorruptHistoryError(`restored assignment of ${characterId} collides`);
   }
   const since = [...withEntry(state.rosterAssignedAt, characterId, assignedAt)].sort(

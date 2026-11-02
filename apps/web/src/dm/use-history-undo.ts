@@ -20,6 +20,7 @@ const UNDONE: Readonly<Record<DmHistoryEntry['kind'], string>> = {
   authoring: 'Undone. The world no longer holds this.',
   substitution: 'Undone. The world is as it was before this action.',
   world: 'Undone. The world is as it was before this change.',
+  hand: 'Undone. The world is as it was before this change.',
 };
 
 /**

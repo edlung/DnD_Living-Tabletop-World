@@ -28,7 +28,7 @@ export function PersonaForm({
       <p className="muted">
         {t('Connect to your local campaign with the access token supplied by your host.')}
       </p>
-      <form onSubmit={submit}>
+      <form className="persona-form" onSubmit={submit}>
         <label htmlFor="campaign">{t('Campaign')}</label>
         <input
           id="campaign"

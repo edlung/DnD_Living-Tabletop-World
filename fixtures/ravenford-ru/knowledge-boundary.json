@@ -22,7 +22,10 @@
       "pub-caravan-overdue",
       "party-mira-departure",
       "party-goblin-hypothesis",
-      "party-who-attacked"
+      "party-who-attacked",
+      "party-brann-company",
+      "party-tamsin-company",
+      "party-maren-company"
     ],
     "CHARACTER:elowen-starwhisper": [
       "pub-ravenford-town",
@@ -36,6 +39,9 @@
       "party-mira-departure",
       "party-goblin-hypothesis",
       "party-who-attacked",
+      "party-brann-company",
+      "party-tamsin-company",
+      "party-maren-company",
       "elowen-sigil-lore"
     ],
     "NPC:mira-vale": [

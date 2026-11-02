@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
 import type { RelevanceDeps } from '@ltw/ai';
-import type { QuestDefinition } from '@ltw/contracts';
+import type { Language, QuestDefinition } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } from 'fastify';
 
@@ -9,6 +9,15 @@ import type { AssetContentStore } from '../assets/content-store.ts';
 import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
+import { registerAccountRoutes } from '../accounts/account-routes.ts';
+import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
+import { InMemoryChatStore } from '../chat/chat-store.ts';
+import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
+import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
+import { registerLobbyRoutes } from '../table/lobby-routes.ts';
+import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
+import { registerDisplayRoutes } from '../display/display-routes.ts';
+import { registerTableLinkRoutes } from '../display/table-links.ts';
 import { registerAuthRoutes } from '../auth/auth-routes.ts';
 import { registerMemberRoutes } from '../auth/member-routes.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
@@ -31,6 +40,10 @@ import { registerCharacterRoutes } from './routes/character-routes.ts';
 import { registerAuthoringRoutes } from './routes/authoring-routes.ts';
 import { registerCommandRoutes } from './routes/command-routes.ts';
 import { registerContextRoutes } from './routes/context-routes.ts';
+import {
+  registerPreparedEncounterRoutes,
+  type PreparedEncounterBooks,
+} from '../combat/prepared-encounters.ts';
 import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
@@ -67,6 +80,13 @@ export interface AppDependencies {
   /** Immutable per-campaign definitions for bootstrapped campaigns; legacy fallback stays above. */
   readonly campaignQuests?: CampaignQuestBooks;
   /**
+   * Ravenford's quest books by language (Stage 605): a campaign seeded from Ravenford reads the one
+   * in its language, so a campaign started from either template reads its own; `quests` otherwise.
+   */
+  readonly questsByLanguage?: Readonly<Partial<Record<Language, readonly QuestDefinition[]>>>;
+  /** Prepared encounters by language (Stage 605); none when absent. */
+  readonly preparedEncounters?: PreparedEncounterBooks;
+  /**
    * Live subscriptions (docs/adr/0033-live-session.md §5), shared by the application and its
    * silent fingerprint twin (`src/live/live-app.ts`). Without a live session nobody is present.
    */
@@ -89,7 +109,24 @@ export interface AppDependencies {
   readonly readiness?: ReadinessProbe;
   /** The table's rolls and the DM's check requests (Stage 510); in memory when absent. */
   readonly table?: TableDependencies;
+  /** The table around a session (ADR 0043 §6): mode, pause, ready, absent; in memory when absent. */
+  readonly lobby?: LobbyDependencies;
+  /** Table talk (ADR 0044 §1): chat, whispers, the DM's word to one player; in memory when absent. */
+  readonly chat?: ChatDependencies;
+  /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
+  readonly handouts?: HandoutDependencies;
 }
+
+/** Table talk in memory: for compositions without a database. */
+export const memoryChat = (): ChatDependencies => ({
+  store: new InMemoryChatStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryHandouts = (): HandoutDependencies => ({
+  store: new InMemoryHandoutStore(),
+  now: () => new Date().toISOString(),
+});
 
 /** The table's rolls in memory, with the server's dice: for compositions without a database. */
 export const memoryTable = (): TableDependencies => ({
@@ -152,7 +189,10 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerContextRoutes(app, deps);
   registerSurroundingsRoutes(app, deps);
   registerEncounterRoutes(app, deps);
-  registerCommandRoutes(app, deps);
+  registerPreparedEncounterRoutes(app, deps);
+  // One lobby for the routes that read it: the pause holds players' commands.
+  const lobby = deps.lobby ?? memoryLobby();
+  registerCommandRoutes(app, { ...deps, lobby });
   registerAiRoutes(app, deps);
   registerNpcRoutes(app, deps);
   registerAuthoringRoutes(app, deps);
@@ -161,15 +201,34 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
+  registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
+  registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
+  registerHandoutRoutes(app, { ...deps, handouts: deps.handouts ?? memoryHandouts() });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
-  const table = deps.table ?? memoryTable();
+  // The roll and rest routes read the campaign's dice from the same table state (ADR 0044 §4).
+  const table: TableDependencies = {
+    ...(deps.table ?? memoryTable()),
+    diceOf: async (campaignId) => (await lobby.state.read(campaignId)).dice,
+  };
   registerRollRoutes(app, { ...deps, table });
   registerRestRoutes(app, { ...deps, table });
   if (deps.signIn) {
     const signIn = { ...deps, signIn: deps.signIn };
     registerAuthRoutes(app, signIn);
     registerMemberRoutes(app, signIn);
+    const { accounts, accountLimits } = deps.signIn;
+    // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns.
+    if (accounts && accountLimits) {
+      registerAccountRoutes(app, { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } });
+    }
+    // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.
+    const { displays, displayLimits, openLinks } = deps.signIn;
+    if (displays && displayLimits && openLinks) {
+      const display = { ...signIn, displays, displayLimits, openLinks };
+      registerDisplayRoutes(app, display);
+      registerTableLinkRoutes(app, display);
+    }
   }
   if (deps.workshop) registerWorkshopRoutes(app, deps.workshop);
   return app;

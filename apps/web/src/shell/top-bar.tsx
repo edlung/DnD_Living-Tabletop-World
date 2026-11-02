@@ -1,7 +1,9 @@
 import { useT } from '@ltw/ui';
-import type { Ref } from 'react';
+import { useState, type Ref } from 'react';
 
 import type { LiveStatus } from '../api/live.ts';
+import { GuideButton, GuideDialog } from '../guide/guide.tsx';
+import { AccountButton } from '../session/account-menu.tsx';
 import { ConnectionBadge } from '../session/live-status.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
 import { IconButton } from '../visual/icon-button.tsx';
@@ -10,8 +12,9 @@ import { ornamentUrl } from '../visual/ui-kit.ts';
 /**
  * The top bar (docs/STAGE_320_DESIGN.md §5.1): the emblem and wordmark, the campaign and the
  * open play session (written in by the world screen, which owns that view), whether this view
- * follows the world live, the perspective, refresh and leave — signing out, for a browser
- * signed in by invitation (docs/adr/0036-production-sign-in.md §7).
+ * follows the world live, the perspective, refresh, the account (my campaigns, or saving the seat
+ * to a login: docs/adr/0041-accounts.md) and leave — signing out, for a browser signed in by
+ * invitation (docs/adr/0036-production-sign-in.md §7).
  */
 export function TopBar({
   campaignName,
@@ -36,6 +39,12 @@ export function TopBar({
 }) {
   const t = useT();
   const signedIn = useSignInKind() === 'session';
+  // The first-session guide (ADR 0044 §9): on a phone its button sits on the title's row, so the
+  // perspective keeps its room beside the controls.
+  const [guide, setGuide] = useState(false);
+  const openGuide = () => {
+    setGuide(true);
+  };
   return (
     <header className="topbar">
       <div className="topbar-brand">
@@ -45,6 +54,7 @@ export function TopBar({
       <div className="topbar-title">
         <h1>{campaignName}</h1>
         <span className="topbar-session" ref={sessionSlot} />
+        <GuideButton className="guide-button guide-button--title" onOpen={openGuide} />
       </div>
       <div className="session-controls">
         <ConnectionBadge status={status} />
@@ -67,7 +77,9 @@ export function TopBar({
             {dmView ? t('DM view · all knowledge') : t('Scoped perspective')}
           </span>
         </div>
+        <GuideButton className="guide-button guide-button--controls" onOpen={openGuide} />
         <IconButton glyph="refresh" label={t('Refresh world')} labelled onClick={onRefresh} />
+        {signedIn && <AccountButton />}
         <IconButton
           glyph="leave"
           label={signedIn ? t('Sign out') : t('Leave session')}
@@ -76,6 +88,12 @@ export function TopBar({
           onClick={onLeave}
         />
       </div>
+      <GuideDialog
+        open={guide}
+        onClose={() => {
+          setGuide(false);
+        }}
+      />
     </header>
   );
 }

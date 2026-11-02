@@ -1,6 +1,8 @@
 # Browser journeys
 
-Start with `playwright.config.ts` and `support/session.ts`, then the one journey.
+Start with `playwright.config.ts` and `support/session.ts`, then the one journey. The `ipad`
+project runs `dm-screen.spec.ts` in WebKit on an iPad (Stage 620); everything else runs in
+Chromium. A journey both projects run takes its campaign by project name.
 Run `pnpm test:e2e` after installing Playwright Chromium. Every server is owned
 by Playwright: Vite on 4310 and the real seeded HTTP application on 4311 (development
 personas), and for production sign-in a second Vite on 4312 in front of the invitation-mode
@@ -70,6 +72,12 @@ application on 4313.
   language). Role queries skip hidden sheets, label and text queries do not: a hidden draft keeps
   its value, but assert visibility only on an open sheet. An open sheet covers the lower stage, so
   close it before clicking a medallion. Keep journeys' assertions when a control moves.
+  Where the dock does not fit its screen its last items wait under More (ADR 0043 §3):
+  `dockButton` finds an item on the dock or under More (hidden ones too), `revealDockButton`
+  opens More when the item waits there, and `openSheet`, `closeSheet`, `openChronicle` and
+  `openCharacter` do it for you; never click a dock item found with `dockButton` directly. After
+  `setViewportSize` the dock measures itself again: `dockSettled` waits for it, and
+  `expectDockFits` checks no sideways scroll and nothing over the dock (`dock-fit.spec.ts`).
   `expectOnTop` asserts that nothing covers an element (`elementFromPoint` at its centre), for a
   result, a prompt or a Retry that must stay reachable (`outcome-layer.spec.ts`; the DM tool
   campaign `ui-dm-outcome`).
@@ -204,3 +212,9 @@ application on 4313.
   `a-to-z.spec.ts`, the whole Missing Caravan with the DM and the player in one journey (owns
   `ui-a-to-z`, `ui-a-to-z-campaigns.ts`: the ambushers wait on the road; the DM starts the fight from
   the Encounter sheet, so the raiders stand in a file and the journey chooses on the flat board).
+- The companion and online play (Stage 630, ADR 0044): `chat`, `companion` (alerts, a check over
+  the stage, a pause beside it, a reload), `own-dice`, `handouts`, `commanded` and `guide` run on
+  token campaigns of their own (`UI_PARTY_CAMPAIGNS`); `online` (the table's screen on a player's
+  screen) and `several-characters` (a second character for a player) on sign-in campaigns of their
+  own (`sign-in-campaigns.json`). A buzz is counted by replacing `navigator.vibrate` in an init
+  script. A persona sign-in does not survive a reload: re-enter the world after `reload()`.

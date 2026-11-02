@@ -10,7 +10,7 @@ import {
   turnBanner,
 } from './support/live.ts';
 import { TOKENS } from './support/session.ts';
-import { dockButton, expectOnTop, openChronicle, openSheet } from './support/shell.ts';
+import { expectOnTop, openChronicle, openSheet, revealDockButton } from './support/shell.ts';
 
 /**
  * A reaction asked while the player reads the Chronicle (docs/STAGE_320_DESIGN.md §5.5–5.6, §7;
@@ -69,7 +69,7 @@ test('a reaction asked over the open Chronicle closes the book, is told once and
   await expect(turnBanner(player)).toBeFocused();
 
   // The book opens again at the same chapter and the same place on its page.
-  await dockButton(player, 'Chronicle').click();
+  await (await revealDockButton(player, 'Chronicle')).click();
   await expect(chapter).toBeVisible();
   await expect(book.getByRole('button', { name: TITLE })).toHaveAttribute('aria-pressed', 'true');
   await expect.poll(() => page.evaluate((element) => element.scrollTop)).toBe(place);

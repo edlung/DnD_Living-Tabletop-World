@@ -402,6 +402,14 @@ registerRussian({
   'give item': 'передать предмет',
   'drop item': 'бросить предмет',
   'take item': 'поднять предмет',
+  'change hit points': 'изменить хиты',
+  'set a condition': 'наложить или снять состояние',
+  'set Heroic Inspiration': 'дать или снять героическое вдохновение',
+  'handed a creature to a player': 'передать существо игроку',
+  'add a combatant': 'добавить участника боя',
+  'remove a combatant': 'убрать участника боя',
+  'delay a turn': 'отложить ход',
+  'set initiative': 'изменить инициативу',
 
   // Transport and sign-in
   'Your access token was not accepted. Leave the session to reconnect.':

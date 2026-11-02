@@ -76,6 +76,11 @@ export class WorldApi {
     this.transport = transport;
   }
 
+  /** The same connection in another perspective (a player's shared view reads the PARTY's). */
+  as(perspective: string): WorldApi {
+    return new WorldApi(this.connection, perspective, perspective, this.transport);
+  }
+
   private failure(status: number): ApiError {
     return new ApiError(status, this.connection.kind);
   }
@@ -161,6 +166,9 @@ export class WorldApi {
       body,
       acceptedStatuses: [409, 422],
     });
+    // Done, with nothing to say (the table's state, a note changed): no body to read. Reading one
+    // failed, and every such write looked lost although the server had made it.
+    if (response.status === 204) return undefined as T;
     try {
       const data: unknown = await response.json();
       if (typeof data !== 'object' || data === null || 'error' in data)

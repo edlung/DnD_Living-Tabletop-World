@@ -8,12 +8,15 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   Record `reviews/OWNER_PRODUCT_COMPLETION_2026-11-01.json`; program and delegated decisions
   `docs/PRODUCT_COMPLETION_PLAN.md`; current scope `work-orders/STAGE_500.md` onward (500–540).
   One branch and pull request for the program; the owner is asked once at the end to merge and deploy.
-- Status: Stages 500–540 complete on `claude/product-completion` (reports
-  `reports/STAGE_5[0-4]0_COMPLETION.md`); the owner's merge of the pull request and the VPS release
-  remain (Stage 540 §4).
+- Status: Stages 500–540 complete (reports `reports/STAGE_5[0-4]0_COMPLETION.md`), merged with
+  PR 23 and deployed to the VPS on 2026-11-02.
 - Current program (owner approval 2026-11-02, `reviews/OWNER_FULL_GAME_2026-11-02.json`):
   `docs/FULL_GAME_PLAN.md` — table and online play, Stages 600–699 in four milestones; work orders
-  `work-orders/STAGE_6xx.md`; one pull request per milestone.
+  `work-orders/STAGE_6xx.md`; one pull request per milestone. Milestone A on `claude/full-game-a`:
+  Stage 600 (accounts and the hub, ADR 0041), Stage 605 (a party for the table), Stage 610 (the
+  table display, ADR 0042), Stage 620 (the DM's screen, ADR 0043) and Stage 630 (the player's
+  companion and online play, ADR 0044) complete (`reports/STAGE_6{00,05,10,20,30}_COMPLETION.md`):
+  Milestone A is done.
 
 ## Current request — AI campaigns, 2026-10-30
 

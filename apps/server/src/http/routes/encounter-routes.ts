@@ -4,7 +4,7 @@ import {
   type EncounterSuggestionResponse,
 } from '@ltw/contracts';
 import { encounterView, suggestMonsterTurn } from '@ltw/combat';
-import { campaignRole } from '@ltw/domain';
+import { campaignRole, commanderOf, currentCombatant } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -46,8 +46,22 @@ export function registerEncounterRoutes(app: FastifyInstance, deps: RouteDepende
     const state = (await deps.engine.load(path.campaignId))?.state ?? null;
     const role = campaignRole(state, actor);
     if (role === null || !state) return sendError(reply, request, 'NOT_FOUND');
-    if (role !== 'DM') return sendError(reply, request, 'FORBIDDEN');
-    const body: EncounterSuggestionResponse = { suggestion: suggestMonsterTurn(state) };
+    if (role === 'DM') {
+      const body: EncounterSuggestionResponse = { suggestion: suggestMonsterTurn(state) };
+      return reply.send(body);
+    }
+    if (role !== 'PLAYER') return sendError(reply, request, 'FORBIDDEN');
+    // A creature's commander (ADR 0044 §7) reads the suggestion for its turn only — without the
+    // DM's words, which name creatures the player may not know: the client words it from its view.
+    const current = state.encounter ? currentCombatant(state.encounter) : undefined;
+    const commander = current ? commanderOf(state, current.entityId) : null;
+    if (commander === null || state.roster.get(commander) !== actor.actorId) {
+      return sendError(reply, request, 'FORBIDDEN');
+    }
+    const suggestion = suggestMonsterTurn(state);
+    const body: EncounterSuggestionResponse = {
+      suggestion: suggestion === null ? null : { ...suggestion, explanation: '' },
+    };
     return reply.send(body);
   });
 }

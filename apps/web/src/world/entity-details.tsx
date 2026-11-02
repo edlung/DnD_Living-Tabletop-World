@@ -36,6 +36,8 @@ import { distinctNames, unidentifiedName } from './entity-words.ts';
  * The last selection's panel stays mounted while closed, and after the viewer's
  * own action it is read again in the background (`revision`), so drafts in it survive both.
  */
+const NOBODY: ReadonlySet<string> = new Set();
+
 export function EntityDetails({
   api,
   entityId,
@@ -55,6 +57,7 @@ export function EntityDetails({
   onOpenSheet,
   onClose,
   profileEditing = null,
+  presentIds = NOBODY,
 }: {
   readonly api: WorldApi;
   readonly entityId: string;
@@ -66,6 +69,8 @@ export function EntityDetails({
   readonly effectivePerspective: string;
   readonly directory: readonly EntityRef[];
   readonly knowledge: readonly KnowledgeView[];
+  /** Who stands in the viewed place: the DM's performed NPC speaks with one of them first. */
+  readonly presentIds?: ReadonlySet<string>;
   readonly canAct: boolean;
   readonly locked: boolean;
   /** The conversation with this NPC is shown on the stage: its options live there. */
@@ -187,6 +192,7 @@ export function EntityDetails({
               npcId={entityId}
               npcName={name ?? entityId}
               directory={directory}
+              presentIds={presentIds}
             />
           )}
           <EntityImages entityId={entityId} kind={kind} name={name ?? unidentifiedName(t, kind)} />

@@ -105,6 +105,56 @@ describe('revoking an invitation', () => {
   });
 });
 
+describe('a member given another character (docs/adr/0044-online-play.md §6)', () => {
+  it('plays both, each its own perspective, and a revoke frees them both', async () => {
+    const t = await table();
+    const player = await t.signInWith((await t.invite(t.dm, SEREN)).token);
+    const give = (characterId: string, member = SEREN) =>
+      t.send(
+        'POST',
+        `/campaigns/ravenford/members/${member}/characters`,
+        { cookie: t.dm },
+        { characterId },
+      );
+    expect((await give('brann-ironvale')).statusCode).toBe(201);
+    // Nobody plays two characters someone else plays; a character without a player has no member.
+    expect((await give('elowen-starwhisper')).statusCode).toBe(422);
+    expect((await give('maren-ashby', 'tamsin-quickfoot')).statusCode).toBe(404);
+    // Only the DM gives.
+    expect(
+      (
+        await t.send(
+          'POST',
+          `/campaigns/ravenford/members/${SEREN}/characters`,
+          { cookie: player },
+          { characterId: 'maren-ashby' },
+        )
+      ).statusCode,
+    ).toBe(404);
+    const session = await t.send('GET', '/campaigns/ravenford/session', { cookie: player });
+    expect(
+      session.json<{ characters: { entityId: string }[] }>().characters.map((c) => c.entityId),
+    ).toEqual([SEREN, 'brann-ironvale']);
+    const members = (await list(t)).members;
+    expect(members.find((member) => member.characterId === SEREN)?.alsoPlays).toEqual([
+      'brann-ironvale',
+    ]);
+    expect(members.find((member) => member.characterId === 'brann-ironvale')?.alsoPlays).toEqual([
+      SEREN,
+    ]);
+    const revoked = await t.send(
+      'POST',
+      `/campaigns/ravenford/members/${SEREN}/revoke`,
+      { cookie: t.dm },
+      {},
+    );
+    expect(revoked.json<RevokeMemberResponse>().released).toBe(true);
+    expect((await list(t)).members.map((member) => member.characterId)).toEqual([
+      'elowen-starwhisper',
+    ]);
+  });
+});
+
 describe('revoking a member', () => {
   it('signs the player out, frees the seat through ReleaseCharacter, and lets it be offered again', async () => {
     const t = await table();

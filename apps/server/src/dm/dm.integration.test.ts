@@ -16,6 +16,7 @@ import {
 import { createThrowawayDatabase, type ThrowawayDatabase } from '../testing/throwaway-database.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
 import { createWorldEngine } from '../world-engine/runtime.ts';
+import { PostgresDmNoteStore } from './postgres-note-store.ts';
 import { PostgresSubstitutionStore } from './postgres-substitution-store.ts';
 import type { SubstitutionRecord } from './substitution-store.ts';
 
@@ -116,7 +117,11 @@ describe('the DM history on PostgreSQL', () => {
       testAiGateway(),
       { proposals: new PostgresProposalStore(pool), ids: new SequentialIds(namespace), clock },
       testAssets().contents,
-      { substitutions: new PostgresSubstitutionStore(pool), clock },
+      {
+        substitutions: new PostgresSubstitutionStore(pool),
+        notes: new PostgresDmNoteStore(pool),
+        clock,
+      },
     );
     apps.push(app);
     return app;

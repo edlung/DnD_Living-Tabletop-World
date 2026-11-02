@@ -1,0 +1,134 @@
+/*
+ * The table's chat (docs/adr/0044-online-play.md §1): the log with the rolls woven in, then the
+ * compose box. In character reads as speech; a whisper and the DM's word to one player are marked.
+ */
+.chat {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+}
+.chat-empty {
+  flex: 1 1 auto;
+  margin: 0;
+}
+.chat-log {
+  display: grid;
+  flex: 1 1 auto;
+  align-content: start;
+  gap: 0.35rem;
+  min-height: 4rem;
+  margin: 0;
+  padding: 0 0.25rem 0 0;
+  overflow-y: auto;
+  list-style: none;
+  overscroll-behavior: contain;
+}
+/* More above or below the log's edge: a fade says so (ui-layout-audit scroll-edge-cut). */
+.chat-log[data-more-before] {
+  mask-image: linear-gradient(to bottom, transparent, #000 24px);
+}
+.chat-log[data-more-after] {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+}
+.chat-log[data-more-before][data-more-after] {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
+.chat-line {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  column-gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border-left: 2px solid transparent;
+  border-radius: var(--radius-control);
+}
+.chat-line > :not(.chat-time) {
+  grid-column: 2;
+}
+.chat-time {
+  grid-row: span 2;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+.chat-speaker {
+  color: var(--gold-bright);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.chat-where {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.chat-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.chat-line--in-character .chat-text {
+  font-family: var(--font-display);
+  font-style: italic;
+}
+.chat-line--dm,
+.chat-line--player {
+  border-left-color: var(--teal);
+  background: color-mix(in srgb, var(--teal-fill) 35%, transparent);
+}
+.chat-line--roll {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.chat-compose {
+  display: grid;
+  flex: none;
+  gap: 0.4rem;
+}
+.chat-options {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+}
+.chat-options select {
+  min-width: 0;
+}
+.chat-compose textarea {
+  width: 100%;
+  resize: vertical;
+}
+.chat-compose textarea[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.chat-compose .primary-button {
+  justify-self: end;
+}
+@media (max-width: 520px) {
+  .chat-options {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+}
+/*
+ * The Chat sheet: its log scrolls and the compose box stays at its foot. On a tablet or a laptop
+ * it is a column over the stage's right side, so the scene stays in view while the table talks;
+ * on a phone it takes the screen like every sheet.
+ */
+.sheet--chat .sheet-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .sheet--chat {
+    left: auto;
+    width: min(34rem, calc(100% - 24px));
+    height: min(70vh, calc(100% - var(--dock-h) - 40px));
+    max-height: none;
+  }
+}

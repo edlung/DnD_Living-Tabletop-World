@@ -36,4 +36,15 @@ registerRussian({
   'Insight check': 'Проверка проницательности',
   'Longbow attack': 'Атака из длинного лука',
   'long range': 'большая дистанция, с помехой',
+  // Prepared encounters (Stage 605); the workshop's dictionary words the heading the same way
+  'Prepared encounters': 'Подготовленные столкновения',
+  'Foes: {count}': 'Противники: {count}',
+  'Joining: {names}': 'Участвуют: {names}',
+  'The answer was lost on the way. Start again: it will not start twice.':
+    'Ответ потерялся по дороге. Начните ещё раз: дважды не начнётся.',
+  'Start: {title}': 'Начать: {title}',
+  'Starting…': 'Начинаем…',
+  Start: 'Начать',
+  'None of its foes can fight any more.': 'Ни один из её противников уже не может сражаться.',
+  'Nobody of the party is at {place} yet.': '{place}: здесь пока нет никого из отряда.',
 });

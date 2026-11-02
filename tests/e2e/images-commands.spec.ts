@@ -9,7 +9,7 @@ import {
   TOMAS,
 } from './support/images.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { dockButton, openSheet } from './support/shell.ts';
+import { openSheet, revealDockButton } from './support/shell.ts';
 
 /**
  * The DM's image commands after the Stage 330 part B review (docs/STAGE_330_DESIGN.md "DM
@@ -210,7 +210,7 @@ test('the keyboard keeps its place in the Images sheet when a command takes away
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, IMAGE_CAMPAIGNS.keyboard);
-  await dockButton(page, 'Images').focus();
+  await (await revealDockButton(page, 'Images')).focus();
   await page.keyboard.press('Enter');
   const sheet = page.locator('#sheet-images');
   await expect(sheet).toBeVisible();

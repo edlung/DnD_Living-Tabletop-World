@@ -37,6 +37,15 @@
 .hit-die-row .roll-button--text {
   min-height: 32px;
 }
+/* The face of one's own Hit Point Die (ADR 0044 §4). */
+.hit-die-face {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hit-die-face input {
+  width: 72px;
+}
 
 /* The DM's rest card: what is under way */
 .rest-now {
@@ -56,15 +65,40 @@
 
 /* The short rest over the world: centred under the top bar on a wide screen; below the place's
    card and the party rail, at the left edge, where they or an open side panel would meet it. */
+/* The table's questions over the stage (alerts/table-asks.tsx): the short rest, each check asked. */
 .rest-banner-slot {
   position: fixed;
   top: calc(var(--topbar-h) + 12px);
   left: 50%;
   z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
   width: max-content;
-  max-width: calc(100vw - 32px);
+  /* Narrow enough to keep clear of the place's cartouche at the stage's top left. */
+  max-width: min(640px, calc(100vw - 32px));
   translate: -50% 0;
   pointer-events: none;
+}
+/* A check asked: its words with their mark, then its answer; a card once faces are entered. */
+.asked-check-what {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+}
+.asked-check-what > .glyph {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--gold-bright);
+}
+.asked-check:has(.dice-faces) {
+  justify-content: flex-start;
+  border-radius: var(--radius-panel);
+  padding: 12px 16px;
 }
 .rest-banner {
   display: flex;
@@ -189,6 +223,7 @@
     right: 8px;
     bottom: calc(var(--dock-h) + var(--outcome-h, 0px) + 16px);
     left: 8px;
+    align-items: stretch;
     width: auto;
     max-width: none;
     translate: none;

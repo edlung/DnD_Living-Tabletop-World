@@ -30,6 +30,13 @@ export function premiseFacts(characterId: string, premise: RecordedPremise): Fac
       return party;
     case 'controller':
       return [facts.rosterCharacter(characterId), facts.rosterPlayer(premise.playerActorId)];
+    case 'commander':
+      // The commander's seat, and who commands the creature in the fight (ADR 0044 §7).
+      return [
+        facts.rosterCharacter(premise.characterId),
+        facts.rosterPlayer(premise.playerActorId),
+        facts.encounter(),
+      ];
     case 'vitals':
       // Everything a combat decision may read about a creature (Gate 03, G03-H02).
       return [

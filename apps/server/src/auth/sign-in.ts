@@ -8,6 +8,11 @@ import type { RequestLimits } from './limits.ts';
 import { iso, type AuthClock } from './session-authenticator.ts';
 import { hashToken, newToken } from './tokens.ts';
 import type { CampaignPublication } from '../campaigns/publication.ts';
+import type { AccountLimits } from '../accounts/account-limits.ts';
+import type { AccountStore } from '../accounts/account-store.ts';
+import type { DisplayLimits } from '../display/display-limits.ts';
+import type { DisplayStore } from '../display/display-store.ts';
+import type { OpenTableLinks } from '../display/table-links.ts';
 
 /**
  * Invitations and their redemption (docs/adr/0036-production-sign-in.md §1–2;
@@ -17,6 +22,13 @@ import type { CampaignPublication } from '../campaigns/publication.ts';
  */
 export interface SignInDependencies {
   readonly publication?: CampaignPublication;
+  /** Accounts (ADR 0041): absent in compositions that have none. */
+  readonly accounts?: AccountStore;
+  readonly accountLimits?: AccountLimits;
+  /** The table's displays and join links (ADR 0042): absent in compositions that have none. */
+  readonly displays?: DisplayStore;
+  readonly displayLimits?: DisplayLimits;
+  readonly openLinks?: OpenTableLinks;
   readonly credentials: CredentialStore;
   /** `PUBLIC_ORIGIN`: invitation links, the cookie's `Secure` flag, the origin check. */
   readonly publicOrigin: string;
@@ -88,6 +100,8 @@ export type RedeemOutcome =
       readonly purpose: InvitationPurpose;
       readonly sessionToken: string;
       readonly invitationId: string;
+      /** The actor the session is (an account's seat holds it, ADR 0041). */
+      readonly actorId: string;
     }
   | { readonly kind: 'refused'; readonly reason: RefusalReason };
 
@@ -153,7 +167,14 @@ export async function redeemInvitation(
     if (invitation.purpose === 'player') await giveSeatBack(engine, deps, invitation);
     return refused('raced');
   }
-  return { kind: 'redeemed', campaignId, purpose: invitation.purpose, sessionToken, invitationId };
+  return {
+    kind: 'redeemed',
+    campaignId,
+    purpose: invitation.purpose,
+    sessionToken,
+    invitationId,
+    actorId,
+  };
 }
 
 /**

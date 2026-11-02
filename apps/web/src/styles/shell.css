@@ -244,7 +244,8 @@
   color: var(--text);
 }
 .dock-button[aria-expanded='true'],
-.dock-button[aria-pressed='true'] {
+.dock-button[aria-pressed='true'],
+.dock-button.is-current {
   border-color: color-mix(in srgb, var(--teal) 60%, transparent);
   background: color-mix(in srgb, var(--teal-fill) 60%, transparent);
   color: var(--text);
@@ -275,6 +276,90 @@
 }
 .dock-short {
   display: none;
+}
+/*
+ * Where the full words do not fit, the short ones ("Add", "Time"); each button keeps its full name
+ * (shell/use-dock-fit.ts, docs/adr/0043-dm-screen.md §3). A phone's tab bar always has them.
+ */
+@media (min-width: 768px) {
+  .dock[data-words='short'] .dock-label {
+    display: none;
+  }
+  .dock[data-words='short'] .dock-short {
+    display: block;
+  }
+  .dock[data-words='short'] .dock-button {
+    min-width: 48px;
+    padding-inline: 0.45rem;
+  }
+}
+/* More: what does not fit, in a list that rises over the dock (shell/dock-more.tsx). */
+.dock-more {
+  position: relative;
+  display: flex;
+}
+.dock:has(.dock-more-list:not([hidden])) {
+  z-index: 55;
+}
+.dock-more-list {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.6rem);
+  display: grid;
+  gap: 0.15rem;
+  width: max-content;
+  min-width: 14rem;
+  max-width: min(20rem, calc(100vw - 24px));
+  max-height: min(70vh, calc(100vh - var(--dock-h) - 6rem));
+  margin: 0;
+  padding: 0.35rem;
+  overflow-y: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background:
+    linear-gradient(var(--glass-raised), var(--glass-raised)),
+    url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+  box-shadow: var(--shadow);
+  list-style: none;
+}
+.dock-more-list[hidden] {
+  display: none;
+}
+.dock-more-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  border-color: transparent;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.92rem;
+  text-align: start;
+}
+.dock-more-item > .glyph {
+  flex: none;
+  width: 22px;
+  height: 22px;
+}
+.dock-more-item--dm > .glyph {
+  color: var(--gold);
+}
+.dock-more-item:hover:enabled {
+  background: color-mix(in srgb, var(--teal-fill) 40%, transparent);
+}
+.dock-more-item[aria-expanded='true'],
+.dock-more-item[aria-pressed='true'] {
+  border-color: color-mix(in srgb, var(--teal) 60%, transparent);
+  background: color-mix(in srgb, var(--teal-fill) 60%, transparent);
+  box-shadow: inset 3px 0 0 var(--teal);
+}
+.dock-more-item .dock-marker {
+  top: 7px;
+  left: 28px;
 }
 
 /* Sheets: rise over the lower stage from the dock */

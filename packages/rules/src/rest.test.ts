@@ -1,8 +1,17 @@
-import { characterSheetSchema, type CharacterSheet } from '@ltw/contracts';
+import { characterSheetSchema, type CharacterSheet, type ClassId } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { deriveCharacter } from './character-derived.ts';
-import { hitDice, hitDieRefusal, levelUp, longRest, spendHitDie } from './rest.ts';
+import { spellSlotsFor } from './character-math.ts';
+import {
+  CLASS_HIT_DIE,
+  attacksFor,
+  hitDice,
+  hitDieRefusal,
+  levelUp,
+  longRest,
+  spendHitDie,
+} from './rest.ts';
 import { elowen as sheetOfElowen } from './testing/elowen.ts';
 
 const elowen = sheetOfElowen();
@@ -100,5 +109,41 @@ describe('a milestone level', () => {
     const ranger: CharacterSheet = { ...elowen, classes: [{ classId: 'ranger', level: 20 }] };
     expect(levelUp(ranger, 'wizard')).toBe('NOT_A_CLASS_OF_THE_CHARACTER');
     expect(levelUp(ranger, 'ranger')).toBe('MAX_LEVEL');
+  });
+});
+
+describe('the Fighter, the Rogue and the Cleric (Stage 605)', () => {
+  const sheetOf = (classId: ClassId, level: number, con = 14): CharacterSheet => ({
+    ...elowen,
+    classes: [{ classId, level }],
+    abilities: { str: 14, dex: 14, con, int: 10, wis: 14, cha: 10 },
+    attacksPerAction: 1,
+    spellSlots: { max: [0, 0, 0, 0, 0, 0, 0, 0, 0], expended: [0, 0, 0, 0, 0, 0, 0, 0, 0] },
+    spellcasting: [],
+  });
+
+  it('gives each its Hit Point Die', () => {
+    expect([CLASS_HIT_DIE.fighter, CLASS_HIT_DIE.rogue, CLASS_HIT_DIE.cleric]).toEqual([10, 8, 8]);
+    expect(hitDice(sheetOf('cleric', 15))).toEqual([{ sides: 8, total: 15, spent: 0, left: 15 }]);
+  });
+
+  it('gives a Fighter two attacks at 5, three at 11 and four at 20', () => {
+    expect(attacksFor([{ classId: 'fighter', level: 4 }])).toBe(1);
+    expect(attacksFor([{ classId: 'fighter', level: 5 }])).toBe(2);
+    expect(attacksFor([{ classId: 'fighter', level: 11 }])).toBe(3);
+    expect(attacksFor([{ classId: 'fighter', level: 20 }])).toBe(4);
+    expect(attacksFor([{ classId: 'rogue', level: 20 }])).toBe(1);
+    const next = levelUp(sheetOf('fighter', 10), 'fighter');
+    if (typeof next === 'string') throw new Error(next);
+    expect(next.attacksPerAction).toBe(3);
+  });
+
+  it('counts a Cleric as a full caster', () => {
+    expect(spellSlotsFor([{ classId: 'cleric', level: 15 }])).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 0]);
+    // The ninth-level slot comes at caster level 17.
+    const next = levelUp(sheetOf('cleric', 16), 'cleric');
+    if (typeof next === 'string') throw new Error(next);
+    expect(next.spellSlots.max).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 1]);
+    expect(next.hitPoints.max - sheetOf('cleric', 16).hitPoints.max).toBe(7);
   });
 });

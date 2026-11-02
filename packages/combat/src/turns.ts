@@ -45,6 +45,21 @@ export function decideEndTurn(context: DecisionContext, command: EndTurn, dice: 
   );
 }
 
+/**
+ * The turn after `fromIndex` in this order (a new round when it wraps): its start's events. A
+ * running fight the DM changed passes the turn on with it (docs/adr/0043-dm-screen.md §2).
+ */
+export function nextTurn(
+  state: WorldState,
+  encounter: EncounterState,
+  fromIndex: number,
+  dice: Dice,
+): DraftEvent[] {
+  const next = nextLiving(state, encounter, fromIndex);
+  const round = next.wrapped ? encounter.round + 1 : encounter.round;
+  return turnStart(state, encounter, next.combatant, round, dice);
+}
+
 /** The first turn of a new encounter. */
 export function firstTurn(
   context: DecisionContext,

@@ -1,6 +1,12 @@
 import type {
+  ChatLogResponse,
+  ChatMessageRequest,
   CheckRequestInput,
   CheckRequestsResponse,
+  HandoutRequest,
+  HandoutsResponse,
+  HandoutView,
+  LobbyResponse,
   RestResponse,
   RestView,
   RollEntry,
@@ -33,11 +39,34 @@ export interface DiceTable {
   readonly roll: (body: TableRollRequest) => Promise<boolean>;
   readonly ask: (body: CheckRequestInput) => Promise<boolean>;
   readonly cancel: (requestId: string) => Promise<boolean>;
+  /** The DM's word that an entered roll is what the dice showed (ADR 0044 §4). */
+  readonly confirm: (rollId: string) => Promise<boolean>;
   readonly busy: boolean;
   readonly error: string | null;
   readonly isDm: boolean;
+  /** The campaign's dice are the players' own: faces may be entered (ADR 0044 §4). */
+  readonly physical: boolean;
+  /** The session plays online: every screen shows the table's (ADR 0044 §5). */
+  readonly online: boolean;
+  /** Handouts this perspective reads (ADR 0044 §5), oldest first. */
+  readonly handouts: readonly HandoutView[];
+  /** Handouts that arrived since the table was first read here, not yet opened. */
+  readonly unreadHandouts: readonly HandoutView[];
+  readonly readHandout: (handoutId: string) => void;
+  /** The DM gives a handout. */
+  readonly give: (body: HandoutRequest) => Promise<boolean>;
   /** The character this perspective acts as; null for the DM. */
   readonly characterId: string | null;
+  /** Table talk (docs/adr/0044-online-play.md §1), read with the dice. */
+  readonly chat: TableChat;
+}
+
+export interface TableChat {
+  readonly log: Resource<ChatLogResponse>;
+  /** Others' messages since the chat was last read on this screen. */
+  readonly unread: number;
+  readonly markRead: () => void;
+  readonly send: (body: ChatMessageRequest) => Promise<boolean>;
 }
 
 const DiceTableContext = createContext<DiceTable | null>(null);
@@ -57,6 +86,10 @@ export function useDiceTableState(
   const t = useT();
   const isDm = perspective === 'DM';
   const rolling = isDm || characterId !== null;
+  // Until a player's character is known the table reads nothing; the first real reads then start
+  // afresh (a new key shows them loading), so nothing already there passes for news: no old roll
+  // thrown again, no old message unread, no question already waiting rung again.
+  const scope = `${perspective}|${rolling ? (characterId ?? 'dm') : 'none'}`;
   const loadFeed = useCallback(
     (signal: AbortSignal) =>
       rolling
@@ -78,24 +111,83 @@ export function useDiceTableState(
         : Promise.resolve({ perspective, rest: null }),
     [api, rolling, perspective],
   );
-  const feed = useResource('rolls', loadFeed);
-  const requests = useResource('check-requests', loadRequests);
-  const rest = useResource('rest', loadRest);
+  const loadChat = useCallback(
+    (signal: AbortSignal) =>
+      rolling
+        ? api.get<ChatLogResponse>('chat', signal)
+        : Promise.resolve({ perspective, messages: [] }),
+    [api, rolling, perspective],
+  );
+  const chatLog = useResource(`chat:${scope}`, loadChat);
+  // The campaign's dice (ADR 0044 §4), from the table's state; the live stream covers it.
+  const loadLobby = useCallback(
+    (signal: AbortSignal) =>
+      rolling ? api.get<LobbyResponse>('lobby', signal) : Promise.resolve(null),
+    [api, rolling],
+  );
+  const lobby = useResource(`lobby-dice:${scope}`, loadLobby);
+  useRereadOn(revision, lobby.reread);
+  const physical = lobby.resource.status === 'ready' && lobby.resource.value?.dice === 'physical';
+  const online = lobby.resource.status === 'ready' && lobby.resource.value?.mode === 'online';
+  // Handouts (ADR 0044 §5): those there at the first read are read; later ones wait to be opened.
+  const loadHandouts = useCallback(
+    (signal: AbortSignal) =>
+      rolling
+        ? api.get<HandoutsResponse>('handouts', signal)
+        : Promise.resolve({ perspective, handouts: [] }),
+    [api, rolling, perspective],
+  );
+  const handoutLog = useResource(`handouts:${scope}`, loadHandouts);
+  useRereadOn(revision, handoutLog.reread);
+  const handouts =
+    handoutLog.resource.status === 'ready' ? handoutLog.resource.value.handouts : null;
+  const [opened, setOpened] = useState<{ scope: string; ids: ReadonlySet<string> } | null>(null);
+  const openedIds = opened?.scope === scope ? opened.ids : null;
+  useEffect(() => {
+    if (handouts !== null && openedIds === null) {
+      setOpened({ scope, ids: new Set(handouts.map((handout) => handout.handoutId)) });
+    }
+  }, [handouts, openedIds, scope]);
+  const unreadHandouts =
+    handouts === null || openedIds === null || isDm
+      ? []
+      : handouts.filter((handout) => !openedIds.has(handout.handoutId));
+  useRereadOn(revision, chatLog.reread);
+  // Messages read on this screen: the first read is read, later ones by others wait to be seen.
+  const [read, setRead] = useState<{ scope: string; ids: ReadonlySet<string> } | null>(null);
+  const readUpTo = read?.scope === scope ? read.ids : null;
+  const messages = chatLog.resource.status === 'ready' ? chatLog.resource.value.messages : null;
+  useEffect(() => {
+    if (messages !== null && readUpTo === null) {
+      setRead({ scope, ids: new Set(messages.map((message) => message.messageId)) });
+    }
+  }, [messages, readUpTo, scope]);
+  const unread =
+    messages === null || readUpTo === null
+      ? 0
+      : messages.filter(
+          (message) =>
+            !readUpTo.has(message.messageId) &&
+            !(isDm ? message.speaker === null : message.speaker?.entityId === characterId),
+        ).length;
+  const feed = useResource(`rolls:${scope}`, loadFeed);
+  const requests = useResource(`check-requests:${scope}`, loadRequests);
+  const rest = useResource(`rest:${scope}`, loadRest);
   useRereadOn(revision, feed.reread);
   useRereadOn(revision, requests.reread);
   useRereadOn(revision, rest.reread);
   const [fresh, setFresh] = useState<readonly RollEntry[]>([]);
   const [flying, setFlying] = useState<ReadonlySet<string>>(new Set());
-  const seen = useRef<Set<string> | null>(null);
+  const seen = useRef<{ readonly scope: string; readonly ids: Set<string> } | null>(null);
   useEffect(() => {
     if (feed.resource.status !== 'ready') return;
     const rolls = feed.resource.value.rolls;
-    if (seen.current === null) {
+    if (seen.current?.scope !== scope) {
       // The first read is the table as it was: nothing in it is thrown again.
-      seen.current = new Set(rolls.map((roll) => roll.rollId));
+      seen.current = { scope, ids: new Set(rolls.map((roll) => roll.rollId)) };
       return;
     }
-    const known = seen.current;
+    const known = seen.current.ids;
     const arrived = rolls.filter((roll) => !known.has(roll.rollId));
     for (const roll of arrived) known.add(roll.rollId);
     if (arrived.length === 0) return;
@@ -147,9 +239,47 @@ export function useDiceTableState(
     roll: (body) => write('rolls', body),
     ask: (body) => write('check-requests', body),
     cancel: (requestId) => write(`check-requests/${encodeURIComponent(requestId)}/cancel`, {}),
+    confirm: (rollId) =>
+      write(`rolls/${encodeURIComponent(rollId.replace(/^table:/, ''))}/confirm`, {}),
     busy,
     error,
     isDm,
+    physical,
+    online,
+    handouts: handouts ?? [],
+    unreadHandouts,
+    readHandout: (handoutId) => {
+      setOpened((now) =>
+        now?.scope === scope ? { scope, ids: new Set([...now.ids, handoutId]) } : now,
+      );
+    },
+    give: async (body) => {
+      try {
+        await api.post('handouts', body, AbortSignal.timeout(15_000), true);
+        handoutLog.reread();
+        return true;
+      } catch {
+        return false;
+      }
+    },
     characterId,
+    chat: {
+      log: chatLog.resource,
+      unread,
+      markRead: () => {
+        if (messages !== null) {
+          setRead({ scope, ids: new Set(messages.map((message) => message.messageId)) });
+        }
+      },
+      send: async (body) => {
+        try {
+          await api.post('chat', body, AbortSignal.timeout(15_000), true);
+          chatLog.reread();
+          return true;
+        } catch {
+          return false;
+        }
+      },
+    },
   };
 }

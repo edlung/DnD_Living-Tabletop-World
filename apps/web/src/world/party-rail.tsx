@@ -1,11 +1,12 @@
 import type { EncounterView, EntityKind, EntityRef, PresenceResponse } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { Medallion } from '../visual/medallion.tsx';
+import { useScrollEdges } from '../visual/scroll-edges.ts';
 import { usePortrait } from './use-portrait.ts';
 
 type HitPoints = { readonly current: number; readonly max: number };
@@ -91,12 +92,27 @@ export function PartyRail({
     [api],
   );
   const { resource } = useResource('presence', load);
+  // Wide, in a fight, the rail scrolls when the left column has no room for all of it.
+  const rail = useRef<HTMLElement>(null);
+  const edges = useScrollEdges(
+    rail,
+    resource.status === 'ready'
+      ? resource.value.characters.map(({ character }) => character.entityId).join(' ')
+      : '',
+    'y',
+  );
   if (resource.status !== 'ready') return null;
   const { dmConnected, characters } = resource.value;
   const hitPoints = (entityId: string): HitPoints | null =>
     encounter?.combatants.find((entry) => entry.entity.entityId === entityId)?.hitPoints ?? null;
   return (
-    <section className="party-rail" aria-label={t('At the table')}>
+    <section
+      ref={rail}
+      className="party-rail"
+      aria-label={t('At the table')}
+      data-more-before={edges.before ? '' : undefined}
+      data-more-after={edges.after ? '' : undefined}
+    >
       <p className={`rail-dm ${dmConnected ? 'present' : 'away'}`}>
         <Glyph name="game-master" />
         <span>{dmConnected ? t('DM connected') : t('DM not connected')}</span>

@@ -76,12 +76,12 @@
   margin: 0 0 0.35rem;
   font-size: 1.7rem;
 }
-.sign-in-form form {
+.persona-form {
   display: grid;
   gap: 0.3rem;
   margin: 0.8rem 0 0.75rem;
 }
-.sign-in-form label:not(:first-child) {
+.persona-form label:not(:first-child) {
   margin-top: 0.4rem;
 }
 .sign-in-form .primary-button {

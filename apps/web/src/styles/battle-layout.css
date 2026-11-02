@@ -100,6 +100,90 @@
   justify-content: center;
   width: 70px;
 }
+/*
+ * Wide: one compact row each at the foot of the left column, above the dock. The DM's dock spans
+ * nearly the whole stage since Stage 620, so beside it the rail lay under it.
+ */
+@media (min-width: 1200px) {
+  /* Between the dock and the active combatant (`.active-card`, top 150px): it scrolls when short */
+  .stage--battle .party-rail {
+    bottom: calc(var(--dock-h) + 22px);
+    left: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+    width: var(--hud-col);
+    max-width: none;
+    max-height: calc(100% - var(--dock-h) - 22px - 150px - var(--active-h, 0px) - 12px);
+    overflow: hidden auto;
+    overscroll-behavior: contain;
+  }
+  .stage--battle .party-rail[data-more-before] {
+    mask-image: linear-gradient(to bottom, transparent, #000 20px);
+  }
+  .stage--battle .party-rail[data-more-after] {
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 20px), transparent);
+  }
+  .stage--battle .party-rail[data-more-before][data-more-after] {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 20px,
+      #000 calc(100% - 20px),
+      transparent
+    );
+  }
+  .stage--battle .party-rail ul {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .stage--battle .rail-dm,
+  .stage--battle .rail-member {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 32px;
+    padding: 0.15rem 0.6rem 0.15rem 0.4rem;
+    text-align: left;
+  }
+  .stage--battle .rail-dm .glyph {
+    width: 18px;
+    height: 18px;
+  }
+  .stage--battle .rail-member .medallion {
+    --m: 24px;
+  }
+  .stage--battle .rail-text {
+    display: flex;
+    flex: 1;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+  .stage--battle .rail-name {
+    overflow: hidden;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
+  }
+  .stage--battle .rail-member .hp-bar {
+    position: absolute;
+    right: 0.6rem;
+    bottom: 3px;
+    left: calc(0.4rem + 24px + 0.5rem);
+    width: auto;
+    height: 3px;
+  }
+  .stage--battle .rail-member .presence-dot {
+    position: static;
+    flex: none;
+  }
+}
 .encounter-anchor {
   position: absolute;
   top: 14px;
@@ -144,10 +228,15 @@
   max-width: calc(100% - var(--hud-left) - var(--hud-right));
   margin-inline: auto;
 }
+/*
+ * The result: at the board's foot on the left, above the turn tray's row. The left column holds
+ * the place, whose turn it is, the active combatant and who is at the table, so on a laptop's
+ * shorter screen a result there lay over the active combatant.
+ */
 .world-main.has-battle .outcome {
-  bottom: calc(var(--dock-h) + 112px);
-  left: 16px;
-  width: var(--hud-col);
+  bottom: calc(var(--dock-h) + 34px + var(--tray-h, 0px));
+  left: var(--hud-left);
+  width: min(360px, calc(100% - var(--hud-left) - var(--hud-right)));
   translate: none;
 }
 

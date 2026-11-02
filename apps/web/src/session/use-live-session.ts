@@ -4,6 +4,9 @@ import type { Connection } from '../api/client.ts';
 import { LiveClient, type LiveStatus } from '../api/live.ts';
 import type { LiveTargetReporter } from '../api/live-context.ts';
 
+/** A page hidden at least this long starts a fresh live stream when it shows again. */
+const RESUME_AFTER_MS = 10_000;
+
 /**
  * The session screen's one live connection (docs/adr/0033-live-session.md §4): opened with
  * the session, following the perspective and what the world screen shows, and closed when
@@ -37,9 +40,22 @@ export function useLiveSession(
     const wake = () => {
       live.wake();
     };
+    // A page hidden for a while (a locked phone) may have lost its stream unseen: it starts a
+    // fresh one when it shows again, and the open questions come back with the views.
+    let hiddenAt: number | null = null;
+    const shown = () => {
+      if (document.visibilityState === 'hidden') {
+        hiddenAt = Date.now();
+        return;
+      }
+      if (hiddenAt !== null && Date.now() - hiddenAt >= RESUME_AFTER_MS) live.resume();
+      hiddenAt = null;
+    };
     window.addEventListener('online', wake);
+    document.addEventListener('visibilitychange', shown);
     return () => {
       window.removeEventListener('online', wake);
+      document.removeEventListener('visibilitychange', shown);
       live.close();
       client.current = null;
     };

@@ -5,7 +5,10 @@ import type { Language } from '../language/language.ts';
 export interface SessionResponse {
   readonly actorId: string;
   readonly role: 'DM' | 'PLAYER';
+  /** The player's first character (the PLAYER perspective's). */
   readonly character: EntityRef | null;
+  /** Every character the player holds, the first first (docs/adr/0044-online-play.md §6). */
+  readonly characters: readonly EntityRef[];
   readonly campaign: {
     readonly campaignId: string;
     readonly name: string;

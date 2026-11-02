@@ -11,6 +11,7 @@
     "@ltw/contracts": "workspace:*",
     "@ltw/ui": "workspace:*",
     "cannon-es": "0.20.0",
+    "qrcode-generator": "1.4.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "three": "0.186.1",

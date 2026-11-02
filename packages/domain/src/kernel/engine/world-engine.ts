@@ -276,6 +276,16 @@ export class WorldEngine {
         resolution: { ids: [], d20: null, entropy: this.#entropyPool() },
       };
     }
+    if (
+      command.type === 'AdjustHitPoints' ||
+      command.type === 'AddCombatant' ||
+      command.type === 'RemoveCombatant' ||
+      command.type === 'DelayTurn'
+    ) {
+      // The DM's damage may call for a Concentration save, a joining creature rolls initiative, and
+      // a turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2).
+      return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
+    }
     if (command.type === 'CloseReactionWindow') {
       // Closing may resolve the suspended spell (ADR 0016): its records and dice.
       return { ...command, resolution: this.#combatResolution(RESOLVED_ID_POOL) };

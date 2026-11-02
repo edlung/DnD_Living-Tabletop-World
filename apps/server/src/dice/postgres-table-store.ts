@@ -11,9 +11,10 @@ import type {
 } from './table-store.ts';
 
 /**
- * PostgreSQL table rolls and check requests (migration 0025_table_rolls.sql). Rolls are
- * insert-only; a request's answer and its roll are written in one transaction, and only while the
- * request is still open (the row lock makes a second answer wait and then find it answered).
+ * PostgreSQL table rolls and check requests (migration 0025_table_rolls.sql; entered and private
+ * rolls, private requests and the DM's confirmations, 0031). Rolls are insert-only; a request's
+ * answer and its roll are written in one transaction, and only while the request is still open
+ * (the row lock makes a second answer wait and then find it answered).
  */
 interface RollRow {
   readonly campaign_id: string;
@@ -24,6 +25,9 @@ interface RollRow {
   readonly hidden: boolean;
   readonly request_id: string | null;
   readonly created_at: Date;
+  readonly entered: boolean;
+  readonly audience_id: string | null;
+  readonly confirmed: boolean;
 }
 
 interface RequestRow {
@@ -37,12 +41,24 @@ interface RequestRow {
   readonly roll_id: string | null;
   readonly total: number | null;
   readonly created_at: Date;
+  readonly group_id: string | null;
+  readonly is_private: boolean;
 }
 
 const ROLL_COLUMNS =
-  'campaign_id, roll_id, roller_id, subject, groups, hidden, request_id, created_at';
+  'campaign_id, roll_id, roller_id, subject, groups, hidden, request_id, created_at, entered, ' +
+  'audience_id';
+const INSERT_ROLL = `INSERT INTO ltw_table_rolls (${ROLL_COLUMNS})
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
+/** A roll with whether the DM confirmed it. */
+const SELECT_ROLLS = `SELECT ${ROLL_COLUMNS.split(', ')
+  .map((column) => `r.${column}`)
+  .join(', ')}, (c.roll_id IS NOT NULL) AS confirmed
+  FROM ltw_table_rolls r LEFT JOIN ltw_roll_confirmations c
+    ON c.campaign_id = r.campaign_id AND c.roll_id = r.roll_id`;
 const REQUEST_COLUMNS =
-  'campaign_id, request_id, character_id, check_spec, mode, dc, status, roll_id, total, created_at';
+  'campaign_id, request_id, character_id, check_spec, mode, dc, status, roll_id, total, ' +
+  'created_at, group_id, is_private';
 
 const toRoll = (row: RollRow): TableRollRecord => ({
   campaignId: row.campaign_id,
@@ -51,6 +67,9 @@ const toRoll = (row: RollRow): TableRollRecord => ({
   subject: row.subject,
   groups: row.groups,
   hidden: row.hidden,
+  entered: row.entered,
+  audienceId: row.audience_id,
+  confirmed: row.confirmed,
   requestId: row.request_id,
   at: row.created_at.toISOString(),
 });
@@ -66,6 +85,8 @@ const toRequest = (row: RequestRow): CheckRequestRecord => ({
   rollId: row.roll_id,
   total: row.total,
   at: row.created_at.toISOString(),
+  groupId: row.group_id,
+  private: row.is_private,
 });
 
 const rollValues = (record: TableRollRecord) => [
@@ -77,6 +98,8 @@ const rollValues = (record: TableRollRecord) => [
   record.hidden,
   record.requestId,
   record.at,
+  record.entered,
+  record.audienceId,
 ];
 
 export class PostgresTableStore implements TableStore {
@@ -87,25 +110,38 @@ export class PostgresTableStore implements TableStore {
   }
 
   async addRoll(record: TableRollRecord): Promise<void> {
-    await this.#pool.query(
-      `INSERT INTO ltw_table_rolls (${ROLL_COLUMNS}) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-      rollValues(record),
-    );
+    await this.#pool.query(INSERT_ROLL, rollValues(record));
   }
 
   async recentRolls(campaignId: string, limit: number): Promise<readonly TableRollRecord[]> {
     const { rows } = await this.#pool.query<RollRow>(
-      `SELECT ${ROLL_COLUMNS} FROM ltw_table_rolls WHERE campaign_id = $1
-       ORDER BY position DESC LIMIT $2`,
+      `${SELECT_ROLLS} WHERE r.campaign_id = $1 ORDER BY r.position DESC LIMIT $2`,
       [campaignId, limit],
     );
     return rows.map(toRoll).reverse();
   }
 
+  async findRoll(campaignId: string, rollId: string): Promise<TableRollRecord | null> {
+    const { rows } = await this.#pool.query<RollRow>(
+      `${SELECT_ROLLS} WHERE r.campaign_id = $1 AND r.roll_id = $2`,
+      [campaignId, rollId],
+    );
+    const row = rows[0];
+    return row ? toRoll(row) : null;
+  }
+
+  async confirmRoll(campaignId: string, rollId: string, at: string): Promise<void> {
+    await this.#pool.query(
+      `INSERT INTO ltw_roll_confirmations (campaign_id, roll_id, confirmed_at) VALUES ($1, $2, $3)
+       ON CONFLICT DO NOTHING`,
+      [campaignId, rollId, at],
+    );
+  }
+
   async addRequest(record: CheckRequestRecord): Promise<void> {
     await this.#pool.query(
       `INSERT INTO ltw_check_requests (${REQUEST_COLUMNS})
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
       [
         record.campaignId,
         record.requestId,
@@ -117,6 +153,8 @@ export class PostgresTableStore implements TableStore {
         record.rollId,
         record.total,
         record.at,
+        record.groupId,
+        record.private,
       ],
     );
   }
@@ -152,10 +190,7 @@ export class PostgresTableStore implements TableStore {
         await client.query('ROLLBACK');
         return false;
       }
-      await client.query(
-        `INSERT INTO ltw_table_rolls (${ROLL_COLUMNS}) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-        rollValues(roll),
-      );
+      await client.query(INSERT_ROLL, rollValues(roll));
       await client.query('COMMIT');
       return true;
     } catch (error) {

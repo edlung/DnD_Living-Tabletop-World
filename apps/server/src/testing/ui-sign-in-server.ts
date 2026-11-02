@@ -1,4 +1,10 @@
+import { ACCOUNT_LIMITS, AccountLimits } from '../accounts/account-limits.ts';
+import { InMemoryAccountStore } from '../accounts/account-store.ts';
 import { InMemoryCredentialStore } from '../auth/credential-store.ts';
+import { displayAuthenticator, personOrDisplay } from '../display/display-authenticator.ts';
+import { DISPLAY_LIMITS, DisplayLimits } from '../display/display-limits.ts';
+import { InMemoryDisplayStore } from '../display/display-store.ts';
+import { OpenTableLinks } from '../display/table-links.ts';
 import { RequestLimits, SIGN_IN_LIMITS } from '../auth/limits.ts';
 import { sessionAuthenticator, systemAuthClock } from '../auth/session-authenticator.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
@@ -9,6 +15,8 @@ import { buildLiveApp } from '../live/live-app.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import {
   RAVENFORD_QUESTS,
+  RAVENFORD_QUESTS_BY_LANGUAGE,
+  RAVENFORD_PREPARED,
   testAiGateway,
   testAssets,
   testAuthoring,
@@ -22,7 +30,8 @@ import { seedWorkshopAccess } from './ui-workshop-fixtures.ts';
 
 /**
  * Browser-test composition in invitation mode (docs/adr/0036-production-sign-in.md;
- * tests/e2e/AGENTS.md): production sign-in — session cookies, the sign-in and member routes,
+ * tests/e2e/AGENTS.md): production sign-in — session cookies, accounts (ADR 0041, in memory),
+ * the sign-in and member routes,
  * the origin check, limits, the live stream on the cookie — over the real World Engine with
  * in-memory credentials, behind the second Vite server (`SIGN_IN_ORIGIN`, which is therefore
  * the public origin). A test-only scripted workshop worker is composed here; no remote AI.
@@ -34,6 +43,7 @@ const seed = signInSeed();
 const rawStore = new InMemoryEventStore();
 const bootstrap = await seedSignInCampaigns(rawStore);
 const credentials = new InMemoryCredentialStore();
+const displays = new InMemoryDisplayStore();
 await seedDmInvitations(credentials, seed);
 const baseSignIn: SignInDependencies = {
   credentials,
@@ -49,6 +59,30 @@ const baseSignIn: SignInDependencies = {
     () => Date.now(),
   ),
   evidence: evidenceHasher(),
+  // The table's displays and join links (ADR 0042), their limits raised: one loopback client.
+  displays,
+  displayLimits: new DisplayLimits(
+    {
+      ...DISPLAY_LIMITS,
+      pairingsPerMinute: 1_000,
+      dmCodesPerMinute: 1_000,
+      tableFailuresPerMinute: 1_000,
+      tableSeatsPerMinute: 1_000,
+    },
+    () => Date.now(),
+  ),
+  openLinks: new OpenTableLinks(),
+  // Accounts (ADR 0041), their limits raised like the redeem limits: one loopback client.
+  accounts: new InMemoryAccountStore(),
+  accountLimits: new AccountLimits(
+    {
+      ...ACCOUNT_LIMITS,
+      signInPerMinute: 1_000,
+      accountsPerHour: 1_000,
+      campaignsPerHour: 1_000,
+    },
+    () => Date.now(),
+  ),
 };
 const assets = testAssets();
 const { workshop, stopGeneration, activationFixture } = await seedWorkshopAccess(
@@ -73,9 +107,14 @@ const { app } = buildLiveApp({
   dm: testDm(),
   assets,
   quests: RAVENFORD_QUESTS,
+  questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
+  preparedEncounters: RAVENFORD_PREPARED,
   campaignQuests: createCampaignQuestBooks(activationFixture.initialContent),
   engine,
-  authenticator: sessionAuthenticator(credentials, systemAuthClock),
+  authenticator: personOrDisplay(
+    sessionAuthenticator(credentials, systemAuthClock),
+    displayAuthenticator(displays, systemAuthClock),
+  ),
   logger: createLogger({ service: 'ui-sign-in-test', level: 'silent' }),
   signIn,
   workshop: { ...workshop, campaignEntry: { engine, signIn } },

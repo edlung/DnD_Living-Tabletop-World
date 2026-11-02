@@ -17,21 +17,37 @@ import { catalogUrl } from '../visual/ui-kit.ts';
 import { suggestionArt } from './combat-art.ts';
 import type { CombatUiCommand } from './combat-bindings.ts';
 import type { StandIn } from './stand-in.ts';
+import { PreparedEncounters } from './prepared-encounters.tsx';
 import { StandInControls } from './stand-in-controls.tsx';
+import { TurnOrderControls } from './turn-order-controls.tsx';
 
 const FIELD = { width: 16, height: 12 } as const;
 
 type Side = 'party' | 'hostile' | 'neutral';
 
-/** Open ground: party on the left edge, everyone else on the right, one per row. */
+/** Squares one column holds, every other row from the top. */
+const PER_COLUMN = Math.floor((FIELD.height + 1) / 2);
+
+/**
+ * Open ground: party on the left edge, everyone else on the right, one per row, every other row;
+ * a side that fills its column goes on in the next one, away from the middle (Stage 605: the
+ * party's four meet eleven foes).
+ */
 export function openGroundStart(
   chosen: readonly { readonly entityId: string; readonly side: Side }[],
 ): Extract<CombatUiCommand, { type: 'StartCombat' }>['combatants'] {
-  const rows = { party: 0, hostile: 0, neutral: 0 };
+  const placed = { party: 0, hostile: 0, neutral: 0 };
   return chosen.map(({ entityId, side }) => {
-    const row = rows[side];
-    rows[side] += 1;
-    const x = side === 'party' ? 2 : side === 'hostile' ? FIELD.width - 5 : FIELD.width / 2;
+    const index = placed[side];
+    placed[side] += 1;
+    const column = Math.floor(index / PER_COLUMN);
+    const row = index % PER_COLUMN;
+    const x =
+      side === 'party'
+        ? Math.max(0, 2 - column)
+        : side === 'hostile'
+          ? Math.min(FIELD.width - 1, FIELD.width - 5 + column)
+          : FIELD.width / 2 + column;
     return { entityId, side, position: { x, y: 1 + row * 2 } };
   });
 }
@@ -50,6 +66,7 @@ export function DmCombatControls({
   locked,
   onRun,
   onActAs,
+  onWorldChanged,
 }: {
   readonly api: WorldApi;
   readonly encounter: EncounterView | null;
@@ -58,6 +75,8 @@ export function DmCombatControls({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onActAs: (standIn: StandIn) => void;
+  /** The world is read again (a prepared encounter started on the server). */
+  readonly onWorldChanged: () => void;
 }) {
   const t = useT();
   return (
@@ -68,7 +87,14 @@ export function DmCombatControls({
       </h3>
       {encounter ? (
         <>
-          <RunningControls api={api} encounter={encounter} locked={locked} onRun={onRun} />
+          <RunningControls
+            api={api}
+            encounter={encounter}
+            locationId={locationId}
+            directory={directory}
+            locked={locked}
+            onRun={onRun}
+          />
           <StandInControls
             api={api}
             encounter={encounter}
@@ -78,13 +104,16 @@ export function DmCombatControls({
           />
         </>
       ) : (
-        <StartControls
-          api={api}
-          locationId={locationId}
-          directory={directory}
-          locked={locked}
-          onRun={onRun}
-        />
+        <>
+          <PreparedEncounters api={api} locked={locked} onStarted={onWorldChanged} />
+          <StartControls
+            api={api}
+            locationId={locationId}
+            directory={directory}
+            locked={locked}
+            onRun={onRun}
+          />
+        </>
       )}
     </section>
   );
@@ -189,11 +218,15 @@ function StartControls({
 function RunningControls({
   api,
   encounter,
+  locationId,
+  directory,
   locked,
   onRun,
 }: {
   readonly api: WorldApi;
   readonly encounter: EncounterView;
+  readonly locationId: string;
+  readonly directory: readonly EntityRef[];
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
@@ -256,6 +289,18 @@ function RunningControls({
             </button>
           </div>
         </div>
+      )}
+      {!window && (
+        <TurnOrderControls
+          api={api}
+          encounter={encounter}
+          locationId={locationId}
+          directory={directory}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
+          }}
+        />
       )}
       <div className="action-row end-encounter">
         {confirmingEnd ? (

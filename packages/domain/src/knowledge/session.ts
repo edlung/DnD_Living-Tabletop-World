@@ -4,22 +4,26 @@ import type { Actor } from '../kernel/actor.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { languageOf } from '../language/index.ts';
 import { sessionText } from '../language/session-text.ts';
-import { campaignRole, controlledCharacter, resolvePerspective } from './perspective.ts';
+import { campaignRole, controlledCharacters, resolvePerspective } from './perspective.ts';
 import { entityRef } from './projection.ts';
 import { knownEntities } from './queries.ts';
 
 /** Identity is independent of the selected view; no other player's actor ID is exposed. */
 export function campaignSession(state: WorldState, actor: Actor): SessionResponse | null {
   const role = campaignRole(state, actor);
-  if (!state.campaign || role === null || role === 'SYSTEM') return null;
+  if (!state.campaign || role === null || role === 'SYSTEM' || role === 'DISPLAY') return null;
   const words = sessionText(languageOf(state));
-  const ownId = role === 'PLAYER' ? controlledCharacter(state, actor.actorId) : null;
-  const character = ownId === null ? null : entityRef(state, ownId);
+  // A player's characters, the first first (ADR 0044 §6): one perspective each.
+  const characters =
+    role === 'PLAYER'
+      ? controlledCharacters(state, actor.actorId).map((id) => entityRef(state, id))
+      : [];
+  const character = characters[0] ?? null;
   const perspectives =
     role === 'PLAYER' && character
       ? [
           { value: 'PLAYER', label: words.player(character.name) },
-          { value: `CHARACTER:${character.entityId}`, label: character.name },
+          ...characters.map((own) => ({ value: `CHARACTER:${own.entityId}`, label: own.name })),
         ]
       : [{ value: 'DM', label: words.dungeonMaster }];
   perspectives.push(
@@ -39,6 +43,7 @@ export function campaignSession(state: WorldState, actor: Actor): SessionRespons
     actorId: actor.actorId,
     role,
     character,
+    characters,
     campaign: {
       campaignId: state.campaign.campaignId,
       name: state.campaign.name,
