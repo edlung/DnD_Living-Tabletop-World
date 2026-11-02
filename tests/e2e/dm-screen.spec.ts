@@ -128,6 +128,7 @@ test('the DM keeps notes, and a reload comes back to the open sheet', async ({ p
     .getByRole('button', { name: 'Delete: Mira lies', exact: true })
     .click();
   await expect(page.locator('#sheet-notes')).toContainText('No notes yet.');
+  await expect(page.locator('#sheet-notes').getByRole('alert')).toHaveCount(0);
 });
 
 test('the DM changes a running fight’s turn order', async ({ page }) => {
@@ -173,6 +174,8 @@ test('a session pauses, ends and starts again with the players ready', async ({ 
   await expect(
     player.getByText('The DM paused the game. It waits until they resume.'),
   ).toBeVisible();
+  // The change was made, and the DM's sheet does not say it failed (a 204 once read as lost).
+  await expect(sheet.getByRole('alert')).toHaveCount(0);
   await sheet.getByRole('button', { name: 'Resume the game', exact: true }).click();
   await expect(
     player.getByText('The DM paused the game. It waits until they resume.'),
