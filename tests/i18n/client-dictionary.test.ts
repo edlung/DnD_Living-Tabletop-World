@@ -34,6 +34,8 @@ import '../../apps/web/src/i18n/ru-rest.ts';
 import '../../apps/web/src/i18n/ru-accounts.ts';
 import '../../apps/web/src/i18n/ru-display.ts';
 import '../../apps/web/src/i18n/ru-dm-screen.ts';
+import '../../apps/web/src/i18n/ru-chat.ts';
+import '../../apps/web/src/i18n/ru-guide.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the

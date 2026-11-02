@@ -1,4 +1,6 @@
 import type {
+  ChatLogResponse,
+  ChatMessageRequest,
   CheckRequestInput,
   CheckRequestsResponse,
   RestResponse,
@@ -38,6 +40,16 @@ export interface DiceTable {
   readonly isDm: boolean;
   /** The character this perspective acts as; null for the DM. */
   readonly characterId: string | null;
+  /** Table talk (docs/adr/0044-online-play.md §1), read with the dice. */
+  readonly chat: TableChat;
+}
+
+export interface TableChat {
+  readonly log: Resource<ChatLogResponse>;
+  /** Others' messages since the chat was last read on this screen. */
+  readonly unread: number;
+  readonly markRead: () => void;
+  readonly send: (body: ChatMessageRequest) => Promise<boolean>;
 }
 
 const DiceTableContext = createContext<DiceTable | null>(null);
@@ -78,6 +90,31 @@ export function useDiceTableState(
         : Promise.resolve({ perspective, rest: null }),
     [api, rolling, perspective],
   );
+  const loadChat = useCallback(
+    (signal: AbortSignal) =>
+      rolling
+        ? api.get<ChatLogResponse>('chat', signal)
+        : Promise.resolve({ perspective, messages: [] }),
+    [api, rolling, perspective],
+  );
+  const chatLog = useResource('chat', loadChat);
+  useRereadOn(revision, chatLog.reread);
+  // Messages read on this screen: the first read is read, later ones by others wait to be seen.
+  const [readUpTo, setReadUpTo] = useState<ReadonlySet<string> | null>(null);
+  const messages = chatLog.resource.status === 'ready' ? chatLog.resource.value.messages : null;
+  useEffect(() => {
+    if (messages !== null && readUpTo === null) {
+      setReadUpTo(new Set(messages.map((message) => message.messageId)));
+    }
+  }, [messages, readUpTo]);
+  const unread =
+    messages === null || readUpTo === null
+      ? 0
+      : messages.filter(
+          (message) =>
+            !readUpTo.has(message.messageId) &&
+            !(isDm ? message.speaker === null : message.speaker?.entityId === characterId),
+        ).length;
   const feed = useResource('rolls', loadFeed);
   const requests = useResource('check-requests', loadRequests);
   const rest = useResource('rest', loadRest);
@@ -151,5 +188,21 @@ export function useDiceTableState(
     error,
     isDm,
     characterId,
+    chat: {
+      log: chatLog.resource,
+      unread,
+      markRead: () => {
+        if (messages !== null) setReadUpTo(new Set(messages.map((message) => message.messageId)));
+      },
+      send: async (body) => {
+        try {
+          await api.post('chat', body, AbortSignal.timeout(15_000), true);
+          chatLog.reread();
+          return true;
+        } catch {
+          return false;
+        }
+      },
+    },
   };
 }

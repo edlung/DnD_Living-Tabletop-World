@@ -381,8 +381,11 @@
  * The narrowest phones (Stage 510): a player's tabs share the bar's width. What does not fit, the
  * DM's tools first, waits under More (shell/use-dock-fit.ts).
  */
-@media (max-width: 359px) {
-  /* The perspective takes a row of its own, so its chosen name is read whole (Stage 540). */
+/*
+ * Phones up to 419 px: the perspective takes a row of its own, so its chosen name is read whole
+ * ("Player · Elowen Starwhisper" needs about 215 px with its chevron; Stage 540, 630).
+ */
+@media (max-width: 419px) {
   .session-controls {
     flex-wrap: wrap;
   }
@@ -390,6 +393,9 @@
     flex: 1 1 100%;
     order: 1;
   }
+}
+
+@media (max-width: 359px) {
   .dock:not([data-dm]) .dock-items {
     flex: 1;
     gap: 0;

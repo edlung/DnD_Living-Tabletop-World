@@ -66,6 +66,8 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
   // open short rest (Stage 530), when players spend Hit Point Dice.
   if (target.kind === 'CHARACTER' || target.kind === 'DM') {
     views.push(scoped('rolls'), scoped('check-requests'), scoped('rest'));
+    // Table talk (ADR 0044 §1): a message signals whoever may read it.
+    views.push(scoped('chat'));
   }
   if (target.display === true) {
     // A table display (ADR 0042) also follows the table's rolls and the open join link.

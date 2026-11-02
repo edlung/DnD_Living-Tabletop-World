@@ -7,19 +7,20 @@ import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, WORDS, joinAsDm } from './support/si
 /**
  * The dock fits every screen (docs/adr/0043-dm-screen.md §3): full words where they fit, short
  * words where they do not, and the last items under More where those do not fit either. It never
- * scrolls sideways, nothing covers it, and every tool stays in reach — the DM's fifteen with
- * invitations, in English and in Russian, from a wide laptop down to the narrowest phone.
+ * scrolls sideways, nothing covers it, and every tool stays in reach — the DM's sixteen with
+ * invitations and the table's chat, in English and in Russian, from a wide laptop down to the
+ * narrowest phone.
  */
 const expect = baseExpect.configure({ timeout: 15_000 });
 const WIDTHS = [1440, 1280, 1180, 1024, 820, 768, 390, 320] as const;
 
 const DM_EN = [
-  ...['Scene', 'Places', 'Journal', 'Dice', 'Chronicle', 'Party', 'Encounter', 'Session'],
+  ...['Scene', 'Places', 'Journal', 'Dice', 'Chat', 'Chronicle', 'Party', 'Encounter', 'Session'],
   ...['Table screen', 'Notes', 'Time and weather', 'Add to the world', 'Images', 'History'],
   'Players',
 ] as const;
 const DM_RU = [
-  ...['Сцена', 'Места', 'Журнал', 'Кубики', 'Хроника', 'Отряд', 'Схватка', 'Сессия'],
+  ...['Сцена', 'Места', 'Журнал', 'Кубики', 'Чат', 'Хроника', 'Отряд', 'Схватка', 'Сессия'],
   ...['Экран стола', 'Заметки', 'Время и погода', 'Добавить в мир', 'Изображения', 'История'],
   'Игроки',
 ] as const;
@@ -83,7 +84,7 @@ test('a player’s tab bar fits the narrowest phone', async ({ page }) => {
   for (const width of [390, 360, 320]) {
     await page.setViewportSize({ width, height: 740 });
     await expectDockFits(page);
-    for (const name of ['Scene', 'Places', 'Journal', 'Character', 'Dice', 'Chronicle']) {
+    for (const name of ['Scene', 'Places', 'Journal', 'Character', 'Dice', 'Chat', 'Chronicle']) {
       await expect(dockButton(page, name)).toBeAttached();
     }
   }

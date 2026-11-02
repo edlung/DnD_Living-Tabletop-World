@@ -14,6 +14,8 @@ export const UI_PARTY_CAMPAIGNS = {
   dmScreen: 'ui-dm-screen',
   /** The same journeys on an iPad in WebKit, on a campaign of their own. */
   dmScreenIpad: 'ui-dm-screen-ipad',
+  /** The table's chat (Stage 630). */
+  chat: 'ui-chat',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -25,6 +27,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.ru, 'ru'],
     [UI_PARTY_CAMPAIGNS.dmScreen, 'en'],
     [UI_PARTY_CAMPAIGNS.dmScreenIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.chat, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

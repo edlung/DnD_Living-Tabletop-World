@@ -1,6 +1,12 @@
 import type { FastifyInstance } from 'fastify';
 
-import { buildApp, credentialHeaderOf, memoryTable, type AppDependencies } from '../http/app.ts';
+import {
+  buildApp,
+  credentialHeaderOf,
+  memoryChat,
+  memoryTable,
+  type AppDependencies,
+} from '../http/app.ts';
 import { memoryLobby } from '../table/table-state.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { fingerprintSubscription } from './fingerprint.ts';
@@ -39,6 +45,8 @@ export function buildLiveApp(
     table: deps.table ?? memoryTable(),
     // And one lobby: a pause or a "ready" signals its viewers too (ADR 0043 §6).
     lobby: deps.lobby ?? memoryLobby(),
+    // And one chat, so a message signals its readers (ADR 0044 §1).
+    chat: deps.chat ?? memoryChat(),
     presence: registry,
   };
   const app = buildApp(shared);

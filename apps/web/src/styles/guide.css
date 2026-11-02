@@ -1,0 +1,82 @@
+/* The first-session guide (guide/guide.tsx, ADR 0044 §9): a small modal of five pages. */
+.guide-dialog {
+  width: min(32rem, calc(100vw - 2 * var(--gutter)));
+  max-height: calc(100dvh - 2 * var(--gutter));
+  padding: 1.1rem 1.25rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-panel);
+  background:
+    linear-gradient(var(--glass-raised), var(--glass-raised)),
+    url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+.guide-dialog[open] {
+  display: grid;
+  gap: 0.75rem;
+}
+.guide-dialog::backdrop {
+  background: color-mix(in srgb, var(--ink-950) 72%, transparent);
+}
+.guide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.guide-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.guide-page {
+  min-height: 11rem;
+}
+.guide-page h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+}
+.guide-page h3 .glyph {
+  width: 24px;
+  height: 24px;
+  color: var(--gold);
+}
+.guide-page p {
+  max-width: 60ch;
+  margin: 0 0 0.5rem;
+  line-height: 1.5;
+}
+.guide-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.guide-step {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.guide-footer .action-row {
+  margin: 0;
+}
+.guide-footer .glyph {
+  width: 18px;
+  height: 18px;
+}
+/* "How to play" sits beside the controls; on a phone, on the title's row (shell/top-bar.tsx). */
+.topbar .guide-button--title {
+  display: none;
+}
+@media (max-width: 767px) {
+  .topbar .guide-button--title {
+    display: inline-flex;
+    flex: none;
+    margin-left: auto;
+  }
+  .topbar .guide-button--controls {
+    display: none;
+  }
+}

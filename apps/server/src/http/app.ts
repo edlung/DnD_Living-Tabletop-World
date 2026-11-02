@@ -10,6 +10,8 @@ import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
+import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
+import { InMemoryChatStore } from '../chat/chat-store.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
@@ -107,7 +109,15 @@ export interface AppDependencies {
   readonly table?: TableDependencies;
   /** The table around a session (ADR 0043 §6): mode, pause, ready, absent; in memory when absent. */
   readonly lobby?: LobbyDependencies;
+  /** Table talk (ADR 0044 §1): chat, whispers, the DM's word to one player; in memory when absent. */
+  readonly chat?: ChatDependencies;
 }
+
+/** Table talk in memory: for compositions without a database. */
+export const memoryChat = (): ChatDependencies => ({
+  store: new InMemoryChatStore(),
+  now: () => new Date().toISOString(),
+});
 
 /** The table's rolls in memory, with the server's dice: for compositions without a database. */
 export const memoryTable = (): TableDependencies => ({
@@ -183,6 +193,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
+  registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
   const table = deps.table ?? memoryTable();

@@ -2,6 +2,7 @@ import type { EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId } from 'react';
 
+import { ChatSheet } from '../chat/chat-sheet.tsx';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { unlockAudio } from './audio.ts';
@@ -80,30 +81,34 @@ export function DicePanel({
   const t = useT();
   const table = useDiceTable();
   return (
-    <Sheet
-      id="dice"
-      title={t('Dice')}
-      glyph="roll"
-      open={shell.sheet === 'dice'}
-      onClose={shell.closeSheet}
-    >
-      <div className="dice-panel">
-        <div className="dice-panel-main">
-          <Requests characters={characters} />
-          <RollBuilder />
-          <CheckRoller />
-          <AskForCheck characters={characters} />
-          {table?.error && (
-            <p className="field-error" role="alert">
-              {table.error}
-            </p>
-          )}
-          <DiceSettingsForm />
+    <>
+      <Sheet
+        id="dice"
+        title={t('Dice')}
+        glyph="roll"
+        open={shell.sheet === 'dice'}
+        onClose={shell.closeSheet}
+      >
+        <div className="dice-panel">
+          <div className="dice-panel-main">
+            <Requests characters={characters} />
+            <RollBuilder />
+            <CheckRoller />
+            <AskForCheck characters={characters} />
+            {table?.error && (
+              <p className="field-error" role="alert">
+                {table.error}
+              </p>
+            )}
+            <DiceSettingsForm />
+          </div>
+          <div className="dice-panel-log">
+            <RollLog />
+          </div>
         </div>
-        <div className="dice-panel-log">
-          <RollLog />
-        </div>
-      </div>
-    </Sheet>
+      </Sheet>
+      {/* The table's talk beside its dice (ADR 0044 §1): one table, its rolls woven in. */}
+      <ChatSheet shell={shell} characters={characters} />
+    </>
   );
 }

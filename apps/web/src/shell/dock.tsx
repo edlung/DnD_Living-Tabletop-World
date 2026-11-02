@@ -1,6 +1,7 @@
 import { useT } from '@ltw/ui';
 import { useRef, useState } from 'react';
 
+import { useDiceTable } from '../dice/table.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
@@ -124,11 +125,20 @@ export function Dock({
 }) {
   const t = useT();
   const invitations = useSignInKind() === 'session';
+  // Table talk (ADR 0044 §1): marked while others' messages wait to be read.
+  const unread = useDiceTable()?.chat.unread ?? 0;
   const world: Item[] = [
     { id: 'scene', label: t('Scene'), short: t('Scene'), glyph: 'look' },
     { id: 'places', label: t('Places'), short: t('Places'), glyph: 'map' },
     { id: 'journal', label: t('Journal'), short: t('Journal'), glyph: 'journal' },
     { id: 'dice', label: t('Dice'), short: t('Dice'), glyph: 'roll' },
+    {
+      id: 'chat',
+      label: t('Chat'),
+      short: t('Chat'),
+      glyph: 'talk',
+      ...(unread > 0 ? { waiting: t('New messages: {count}', { count: unread }) } : {}),
+    },
     { id: 'chronicle', label: t('Chronicle'), short: t('Chronicle'), glyph: 'chronicle' },
   ];
   // The acting character's sheet and pack (Stage 500). The DM's perspective has no character of
