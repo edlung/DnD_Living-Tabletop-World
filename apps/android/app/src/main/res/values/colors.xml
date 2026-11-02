@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The client's tokens (apps/web/src/styles/tokens.css), so the shell's screens match it. -->
+<resources>
+    <color name="ink">#0A1119</color>
+    <color name="ink_deep">#05090E</color>
+    <color name="glass">#E00B1017</color>
+    <color name="line_strong">#4DDCE4EC</color>
+    <color name="text">#ECE6DA</color>
+    <color name="text_muted">#A9A294</color>
+    <color name="gold">#C9A45C</color>
+    <color name="gold_bright">#E6C784</color>
+    <color name="teal">#46C0DC</color>
+    <color name="teal_fill">#123F56</color>
+    <color name="danger">#E25B45</color>
+    <color name="plain_fill">#0AECE6DA</color>
+</resources>

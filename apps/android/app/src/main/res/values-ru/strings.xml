@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LTW Игрок</string>
+    <string name="start_title">Живой настольный мир</string>
+    <string name="connecting">Соединяюсь с %1$s…</string>
+    <string name="unreachable">%1$s недоступен. Проверьте соединение и попробуйте снова.</string>
+    <string name="retry">Повторить</string>
+    <string name="scan">Сканировать код стола</string>
+    <string name="server">Сервер…</string>
+    <string name="server_title">Сервер</string>
+    <string name="server_hint">Адрес сервера, на котором играет ваш стол, например ltw.vardahei.tech</string>
+    <string name="server_connect">Подключиться</string>
+    <string name="server_default">Сервер по умолчанию</string>
+    <string name="server_invalid">Это не адрес сервера. Он начинается с https://</string>
+    <string name="server_recent">Выбирали раньше</string>
+    <string name="cancel">Отмена</string>
+    <string name="switch_title">Подключиться к другому серверу?</string>
+    <string name="switch_text">Этот код с другого сервера:\n%1$s\n\nВход там отдельный от здешнего.</string>
+    <string name="not_a_code">Это не код стола.</string>
+    <string name="scan_hint">Наведите камеру на QR-код стола</string>
+    <string name="camera_needed">Чтобы сканировать код стола, нужна камера. Разрешите её в настройках приложения.</string>
+    <string name="webview_old">Android System WebView на этом устройстве слишком старый для игры. Обновите его в Google Play и откройте приложение снова.</string>
+    <string name="update_webview">Обновить</string>
+    <string name="channel_name">Стол</string>
+    <string name="channel_text">Когда стол ждёт вас</string>
+    <string name="waits_title">Стол ждёт вас</string>
+    <string name="waits_text">Откройте игру, чтобы ответить.</string>
+    <string name="close">Закрыть</string>
+</resources>

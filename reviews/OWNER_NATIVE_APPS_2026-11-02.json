@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-02",
+  "source": "Direct owner message in this project chat, then four product questions answered in the chat",
+  "ownerInstruction": "Задача - разработать iOS и Android приложение для игроков, чтобы оно мэтчилось с проектом + iOS и iPadOS приложение для DM.",
+  "supersedes": "docs/FULL_GAME_PLAN.md decision 19 ('native store apps' out of scope) for the apps this program builds; decision 10 (no background push) stands",
+  "answers": {
+    "approach": "Нативная оболочка + общий клиент (Recommended): Swift and Kotlin apps whose game screens are the client the server serves; native start, server choice, QR scanner, haptics, keep-awake, sound and notifications; the DM app shows the table display on a TV over AirPlay or HDMI as a screen of its own",
+    "backgroundAlerts": "Без push-сервисов (Recommended): alerts in the open app, a local notification after a short absence, nothing through Apple or Google servers",
+    "tools": "Xcode — вы, Android — я (Recommended): the owner installs Xcode from the App Store and runs its sudo set-up; the session installs JDK 21, the Android SDK and an emulator with Homebrew and accepts the Android SDK license for the owner",
+    "distribution": "Свои устройства, магазины потом (Recommended): installs on the family's own devices (Xcode with the owner's Apple ID, an APK on Android); projects prepared so that store publication is a later step the owner takes"
+  },
+  "authorizedStages": ["700a", "700b", "700c", "700d", "700e"],
+  "plan": "docs/NATIVE_APPS_PLAN.md; ADR 0070; work order work-orders/STAGE_700.md",
+  "delegation": "Product decisions inside the program are delegated to the session and recorded in docs/NATIVE_APPS_PLAN.md and ADR 0070, marked 'Accepted (owner-delegated product decision 2026-11-02)'.",
+  "askedAtTheTime": "Merges into main, deployments, store publication, developer accounts and signing identities are the owner's and are asked in the chat when they come up.",
+  "unchangedBoundaries": [
+    "World Engine authority: every rule outcome is the server's; the apps compute nothing",
+    "knowledge isolation between perspectives, the table display's PARTY perspective included",
+    "credentials only as the session cookie the server sets; no tokens or world data in native storage, logs or notifications",
+    "no third-party SDKs, analytics or push services",
+    "human play acceptance is the owner's and is reported honestly"
+  ]
+}

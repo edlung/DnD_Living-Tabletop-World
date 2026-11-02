@@ -218,3 +218,6 @@ application on 4313.
   screen) and `several-characters` (a second character for a player) on sign-in campaigns of their
   own (`sign-in-campaigns.json`). A buzz is counted by replacing `navigator.vibrate` in an init
   script. A persona sign-in does not survive a reload: re-enter the world after `reload()`.
+- Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
+  records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
+  the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

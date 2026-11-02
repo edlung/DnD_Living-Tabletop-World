@@ -1,0 +1,19 @@
+/* The page's side of the native apps (docs/adr/0070-native-apps.md) */
+
+/* Where a person signs in or picks a campaign: the apps' scanner and server */
+.native-entry {
+  margin-block: 0.75rem;
+}
+
+/* LTW DM's own TV (§6): its code as the TV shows it, smaller */
+.native-tv-code {
+  margin: 0;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-control);
+  color: var(--gold-bright);
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}

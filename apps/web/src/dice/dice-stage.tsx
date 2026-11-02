@@ -2,6 +2,7 @@ import type { RollEntry, RollGroup } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
+import { nativeHaptic } from '../native/signals.ts';
 import { listenForUnlock, playImpacts, type Impact } from './audio.ts';
 import type { DiceEngine, DieRequest, Landing } from './engine/index.ts';
 import { animates, useDiceSettings, type DiceSettings } from './settings.ts';
@@ -138,6 +139,8 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
           }
           await wait(450);
         }
+        // In the apps a thrown group lands with a knock in the hand, as it sounds (ADR 0070 §5).
+        if (flies && sound.sound && group.dice.length > 0) nativeHaptic('dice');
         setShown({ entry, landed: index + 1, at, leaving: false });
         if (index + 1 < entry.groups.length) await wait(900);
       }

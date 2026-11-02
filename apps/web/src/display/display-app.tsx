@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { WorldApi, type Connection } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { useScreenAwake } from '../alerts/screen.ts';
+import { onForgetAsked, reportToHost } from '../native/tv-report.ts';
 import { useLiveSession } from '../session/use-live-session.ts';
 import { ApprovedImages, ApprovedImagesContext } from '../visual/approved-images.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
@@ -96,6 +97,28 @@ export function DisplayApp({ transport = fetch }: { readonly transport?: typeof 
       window.clearInterval(timer);
     };
   }, [waiting, transport, settle]);
+
+  // Hosted by LTW DM on its TV, the screen tells the app its code, or the campaign it is paired
+  // with (docs/adr/0070-native-apps.md §6), so the DM pairs it with one press — and asked to show
+  // another campaign, it forgets its pairing and shows a new code.
+  const code = stage.kind === 'pairing' ? stage.code : null;
+  const campaign = stage.kind === 'paired' ? stage.session.campaignId : null;
+  useEffect(() => {
+    reportToHost(
+      code !== null
+        ? { kind: 'pairing', code }
+        : campaign !== null
+          ? { kind: 'paired', campaign }
+          : null,
+    );
+  }, [code, campaign]);
+  useEffect(
+    () =>
+      onForgetAsked(() => {
+        void forgetDisplay(transport).then(pairAgain);
+      }),
+    [transport, pairAgain],
+  );
 
   if (stage.kind === 'paired') {
     return (

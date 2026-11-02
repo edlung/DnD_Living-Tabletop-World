@@ -61,6 +61,10 @@ export class ApiError extends Error {
 
 export class WorldApi {
   private readonly connection: Connection;
+  /** The campaign this API reads and writes. */
+  get campaignId(): string {
+    return this.connection.campaignId;
+  }
   readonly perspective: string;
   private readonly effectivePerspective: string;
   private readonly transport: typeof fetch;

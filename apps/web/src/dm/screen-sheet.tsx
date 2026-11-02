@@ -4,6 +4,8 @@ import { useCallback, useId, useState, type SubmitEvent } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { TvPanel } from '../native/tv-panel.tsx';
+import { useNativeTv } from '../native/tv.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { CastForm } from './cast-form.tsx';
@@ -45,6 +47,7 @@ export function ScreenSheet({
   };
   return (
     <div className="screen-sheet">
+      <TvPanel api={api} onPaired={changed} />
       <PairForm api={api} onPaired={changed} />
       {displays.resource.status === 'ready' ? (
         <ScreenList api={api} list={displays.resource.value} onChanged={changed} />
@@ -75,6 +78,8 @@ export function ScreenSheet({
 function PairForm({ api, onPaired }: { readonly api: WorldApi; readonly onPaired: () => void }) {
   const t = useT();
   const id = useId();
+  // LTW DM shows its own TV a window of its own, so mirroring is no longer the danger it is here.
+  const ownTv = useNativeTv() !== null;
   const [code, setCode] = useState('');
   const [name, setName] = useState('');
   const [note, setNote] = useState<{ kind: 'error' | 'success'; text: string } | null>(null);
@@ -124,11 +129,13 @@ function PairForm({ api, onPaired }: { readonly api: WorldApi; readonly onPaired
           address: `${window.location.origin}/display`,
         })}
       </p>
-      <p className="muted">
-        {t(
-          'Mirroring this iPad or laptop would show your secrets: pair a separate screen instead.',
-        )}
-      </p>
+      {!ownTv && (
+        <p className="muted">
+          {t(
+            'Mirroring this iPad or laptop would show your secrets: pair a separate screen instead.',
+          )}
+        </p>
+      )}
       <form className="screen-pair-form" noValidate onSubmit={(event) => void pair(event)}>
         <div className="field">
           <label htmlFor={`${id}-code`}>{t('The screen’s code')}</label>
