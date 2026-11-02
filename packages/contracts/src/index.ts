@@ -430,6 +430,7 @@ export * from './session/lobby.ts';
 export {
   EQUIP_SLOTS,
   ITEM_CATEGORIES,
+  armorWeight,
   itemCatalogIdSchema,
   itemEffectSchema,
   itemEntrySchema,

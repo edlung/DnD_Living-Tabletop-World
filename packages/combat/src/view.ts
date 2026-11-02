@@ -111,6 +111,10 @@ export function encounterView(
       ...(combatant.mountedOn === undefined ? {} : { mountedOn: named(combatant.mountedOn) }),
       // Its speeds beside walking, as its hit points: the party's and the DM's to know (§5).
       ...(showHp && Object.keys(speedsOf(vitals)).length > 0 ? { speeds: speedsOf(vitals) } : {}),
+      // Its breath under water, the same way (docs/adr/0050-the-world-around.md §8).
+      ...(showHp && combatant.breath
+        ? { breath: { roundsLeft: combatant.breath.roundsLeft } }
+        : {}),
       // Its senses, the same way (docs/adr/0050-the-world-around.md §2).
       ...(showHp && Object.keys(sensesOf(vitals)).length > 0 ? { senses: sensesOf(vitals) } : {}),
       // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).

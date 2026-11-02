@@ -18,11 +18,20 @@ export function spellSave(
   dc: number,
   cover: 'half' | 'three-quarters' | 'none',
   purpose:
-    'spell' | 'counterspell' | 'condition' | 'topple' | 'grapple' | 'shove' | 'saddle' = 'spell',
+    | 'spell'
+    | 'counterspell'
+    | 'condition'
+    | 'topple'
+    | 'grapple'
+    | 'shove'
+    | 'saddle'
+    | 'hazard' = 'spell',
   /** It Dodges (docs/adr/0045-conditions-and-actions.md §5): Advantage on Dexterity saves. */
   dodging = false,
   /** It squeezes (docs/adr/0049-space-and-movement.md §4): Disadvantage on Dexterity saves. */
   squeezed = false,
+  /** Heat in Medium or Heavy armor (docs/adr/0050-the-world-around.md §8): Disadvantage. */
+  hampered = false,
 ): { success: boolean; event: DraftEvent } {
   const effects = saveEffects(ability, conditionsOf(target), exhaustionOf(target));
   const bonus = ability === 'dex' && cover !== 'none' ? COVER_BONUS[cover] : 0;
@@ -35,7 +44,7 @@ export function spellSave(
           modifier,
           target: dc,
           advantage: effects.advantage || (dodging && ability === 'dex'),
-          disadvantage: effects.disadvantage || (squeezed && ability === 'dex'),
+          disadvantage: effects.disadvantage || (squeezed && ability === 'dex') || hampered,
         });
   return {
     success: save.success,

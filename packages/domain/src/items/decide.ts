@@ -1,4 +1,4 @@
-import { catalogEntry, effectiveMaximum, type CharacterSheet } from '@ltw/contracts';
+import { armorWeight, catalogEntry, effectiveMaximum, type CharacterSheet } from '@ltw/contracts';
 
 import { isCombatant } from '../combat/records.ts';
 import { adjacentInEncounter, spendTurn, type ItemCost } from './economy.ts';
@@ -176,7 +176,21 @@ export function decideEquipItem(
           },
         },
       ],
-      (s) => (applied === 0 ? s : { ...s, armorClass: s.armorClass + applied }),
+      (s) => {
+        const armored = applied === 0 ? s : { ...s, armorClass: s.armorClass + applied };
+        // What the rules need of body armor (docs/adr/0050-the-world-around.md §10).
+        const armor = command.slot === 'body' ? entry.armor : undefined;
+        return armor
+          ? {
+              ...armored,
+              wornArmor: {
+                weight: armorWeight(armor.dexCap),
+                ...(armor.strength === undefined ? {} : { strength: armor.strength }),
+                ...(armor.stealthDisadvantage ? { stealthDisadvantage: true as const } : {}),
+              },
+            }
+          : armored;
+      },
     ),
     command.slot === 'offhand' ? 'action' : 'bonus',
   );
@@ -207,7 +221,11 @@ export function decideUnequipItem(
       ],
       (s) => {
         const armorClass = clampArmorClass(s.armorClass - acDelta);
-        return armorClass === s.armorClass ? s : { ...s, armorClass };
+        const next = armorClass === s.armorClass ? s : { ...s, armorClass };
+        if (slot !== 'body' || next.wornArmor === undefined) return next;
+        const bare = { ...next };
+        delete bare.wornArmor;
+        return bare;
       },
     ),
     slot === 'offhand' ? 'action' : 'bonus',

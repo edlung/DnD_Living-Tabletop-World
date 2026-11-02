@@ -43,6 +43,8 @@ const RESOLVED_TYPES: ReadonlySet<string> = new Set([
   'AddCombatant',
   'RemoveCombatant',
   'DelayTurn',
+  // The hazards of the road roll their saves (docs/adr/0050-the-world-around.md §8).
+  'ExposeToHazard',
 ]);
 
 /**

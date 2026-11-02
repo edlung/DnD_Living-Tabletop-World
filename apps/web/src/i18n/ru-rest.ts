@@ -74,4 +74,21 @@ registerRussian({
     'Если прошёл хотя бы час, отряду засчитан короткий отдых: только кости хитов.',
   'Hours rested': 'Часов отдыха',
   'Cut short after {hours} h': 'Прервать через {hours} ч',
+  // Hazards of the road and poison (docs/adr/0050-the-world-around.md §8–9)
+  'Hazards of the road': 'Опасности в пути',
+  'Each hour every character makes a Constitution save — cold DC 10, heat DC 5 and 1 more each hour — or gains a level of Exhaustion.':
+    'Каждый час каждый персонаж совершает спасбросок Телосложения — холод Сл 10, жара Сл 5 и на 1 больше каждый следующий час — иначе получает уровень истощения.',
+  Hazard: 'Опасность',
+  Hours: 'Часы',
+  'Extreme cold': 'Сильный холод',
+  'Extreme heat': 'Сильная жара',
+  'Expose the party for {hours} h': 'Подвергнуть отряд на {hours} ч',
+  'expose the party to a hazard': 'подвергнуть отряд опасности',
+  'Extreme cold for {hours} h: {failed} saves failed':
+    'Сильный холод, {hours} ч: провалено спасбросков — {failed}',
+  'Extreme heat for {hours} h: {failed} saves failed':
+    'Сильная жара, {hours} ч: провалено спасбросков — {failed}',
+  'A save first: only a failure brings it (a poison, a curse)':
+    'Сначала спасбросок: состояние только при провале (яд, проклятие)',
+  '{name}: resisted being {condition}': '{name}: спасбросок удался, «{condition}» не наложено',
 });

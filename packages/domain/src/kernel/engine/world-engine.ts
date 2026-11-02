@@ -281,7 +281,8 @@ export class WorldEngine {
       command.type === 'SetCondition' ||
       command.type === 'AddCombatant' ||
       command.type === 'RemoveCombatant' ||
-      command.type === 'DelayTurn'
+      command.type === 'DelayTurn' ||
+      command.type === 'ExposeToHazard'
     ) {
       // The DM's damage may call for a Concentration save, a joining creature rolls initiative, a
       // turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2), and a

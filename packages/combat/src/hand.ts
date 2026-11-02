@@ -16,6 +16,7 @@ import { detailOf, withDetail } from './condition-details.ts';
 import { applyDamage, applyHealing, statusDead } from './damage.ts';
 import { fallEvents, fallsAfterHarm, grounded, killedIn } from './falling.ts';
 import { isObject } from './objects.ts';
+import { spellSave } from './saves.ts';
 import {
   ceilingOf,
   conditionsOf,
@@ -193,6 +194,12 @@ const detailKey = (details: ConditionDetails | undefined): string =>
  * brings Prone with it; Incapacitated, and what includes it, ends Concentration; a Petrified
  * creature cannot be Poisoned.
  */
+const resistSave = (
+  dice: Dice,
+  vitals: Vitals,
+  resist: NonNullable<KernelCommandOf<'SetCondition'>['resist']>,
+) => spellSave(dice, vitals, resist.ability, resist.dc, 'none', 'condition');
+
 export function decideSetCondition(
   context: DecisionContext,
   command: KernelCommandOf<'SetCondition'>,
@@ -238,6 +245,10 @@ export function decideSetCondition(
   }
   if (applied && conditionBlocked(condition, conditionsOf(vitals)))
     return reject('NO_EFFECT', 'It cannot take hold');
+  // A save it makes first — a poison's Constitution save — and nothing more on a success
+  // (docs/adr/0050-the-world-around.md §9).
+  const resisted = applied && command.resist ? resistSave(dice, vitals, command.resist) : null;
+  if (resisted?.success === true) return accept(readsVitals(command.targetId), resisted.event);
   // A creature at 0 hit points stays Unconscious until it is healed or stabilised by its rules.
   if (condition === 'unconscious' && !applied && hitPoints(vitals).current === 0)
     return reject('ILLEGAL_ACTION', 'AT_ZERO_HIT_POINTS', { reason: 'AT_ZERO_HIT_POINTS' });
@@ -245,7 +256,11 @@ export function decideSetCondition(
     type: 'ConditionApplied',
     payload: { targetId: command.targetId, condition: name, applied, cause: 'dm' },
   });
-  const events: DraftEvent[] = [readsVitals(command.targetId), record(condition)];
+  const events: DraftEvent[] = [
+    readsVitals(command.targetId),
+    ...(resisted ? [resisted.event] : []),
+    record(condition),
+  ];
   let next = applied
     ? withConditions(vitals, [condition], [])
     : withConditions(vitals, [], [condition]);

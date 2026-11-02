@@ -77,10 +77,19 @@ export function describeHand(t: Translate, change: DmHandEntry['change']): strin
     }
     case 'condition': {
       const words = { name: change.target.name, condition: conditionWord(t, change.condition) };
+      // A save made first that held it off (docs/adr/0050-the-world-around.md §9).
+      if (change.resisted) return t('{name}: resisted being {condition}', words);
       return change.applied
         ? t('{name}: now {condition}', words)
         : t('{name}: no longer {condition}', words);
     }
+    case 'hazard':
+      return t(
+        change.hazard === 'cold'
+          ? 'Extreme cold for {hours} h: {failed} saves failed'
+          : 'Extreme heat for {hours} h: {failed} saves failed',
+        { hours: change.hours, failed: change.failed },
+      );
     case 'exhaustion':
       return change.level === 0
         ? t('{name}: no longer exhausted', { name: change.target.name })

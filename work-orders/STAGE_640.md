@@ -101,6 +101,13 @@ each further SRD rule needs an entry or an ADR before it is implemented).
   `wakeAfterShortRest`); the DM's rest controls offer the cut-short rest. Stage 530's decision
   stands: a character at 0 hit points wakes rested.
 
+  Third commit done (2026-11-02): breath under water counted on the combatant's record and an
+  Exhaustion level each turn out of it (`packages/combat/src/hazards.ts`); the DM's hazards of the
+  road (`ExposeToHazard`: Extreme Cold and Extreme Heat, hourly Constitution saves, Disadvantage in
+  Medium or Heavy armor, Resistance passes); a condition with a save first (`SetCondition.resist`,
+  a poison); armor's Strength (Speed −10 ft) and Stealth (Disadvantage on Hide), kept on the sheet
+  as `wornArmor` while worn. Stage 640 is complete.
+
 ## Boundaries
 
 No new spells beyond the four reactions (Stage 650 brings the SRD spell list); no monsters' new

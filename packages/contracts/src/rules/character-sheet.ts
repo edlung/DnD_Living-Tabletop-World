@@ -312,6 +312,18 @@ export const characterSheetSchema = z
     /** Heroic Inspiration (SRD 5.2.1), granted by the DM (docs/adr/0043-dm-screen.md §1); absent: none. */
     heroicInspiration: z.boolean().optional(),
     /**
+     * The body armor worn, as the rules need it (docs/adr/0050-the-world-around.md §10): light,
+     * medium or heavy; the Strength it asks; Disadvantage on Stealth. Absent: none.
+     */
+    wornArmor: z
+      .object({
+        weight: z.enum(['light', 'medium', 'heavy']),
+        strength: z.number().int().min(1).max(30).optional(),
+        stealthDisadvantage: z.literal(true).optional(),
+      })
+      .strict()
+      .optional(),
+    /**
      * World time (seconds) the last Long Rest began: one in 24 hours
      * (docs/adr/0050-the-world-around.md §5). Absent: none yet.
      */

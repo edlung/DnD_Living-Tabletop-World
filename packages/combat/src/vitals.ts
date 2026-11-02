@@ -10,6 +10,7 @@ import {
 } from '@ltw/contracts';
 import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
 import {
+  armorSlowFt,
   abilityModifier,
   incapacitatedBy,
   initiativeEffects,
@@ -107,9 +108,12 @@ export function rollInitiative(
 export const saveModifier = (v: Vitals, ability: Ability) =>
   v.kind === 'character' ? savingThrowModifier(v.sheet, ability) : v.block.savingThrows[ability];
 
-/** Its walking Speed before conditions and Exhaustion. */
+/**
+ * Its walking Speed before conditions and Exhaustion: 10 ft less in armor too heavy for it
+ * (docs/adr/0050-the-world-around.md §10).
+ */
 export const baseSpeedOf = (v: Vitals): number =>
-  v.kind === 'character' ? v.sheet.speedFt : v.block.speedFt;
+  v.kind === 'character' ? Math.max(0, v.sheet.speedFt - armorSlowFt(v.sheet)) : v.block.speedFt;
 
 /** Speed after conditions and Exhaustion (ADR 0015; ADR 0045 §1, §3). */
 export function speedOf(v: Vitals): number {

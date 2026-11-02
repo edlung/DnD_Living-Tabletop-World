@@ -62,11 +62,16 @@ export const itemEntrySchema = z
     valueCp: z.number().int().min(0).max(10_000_000),
     stackable: z.boolean(),
     slots: z.array(z.enum(EQUIP_SLOTS)).max(2),
-    /** Body armor: AC = baseAc + Dexterity modifier capped at dexCap (null = uncapped). */
+    /**
+     * Body armor: AC = baseAc + Dexterity modifier capped at dexCap (null = uncapped); the Strength
+     * it asks, and Disadvantage on Stealth (docs/adr/0050-the-world-around.md §10).
+     */
     armor: z
       .object({
         baseAc: z.number().int().min(10).max(20),
         dexCap: z.number().int().min(0).max(5).nullable(),
+        strength: z.number().int().min(1).max(30).optional(),
+        stealthDisadvantage: z.literal(true).optional(),
       })
       .strict()
       .optional(),
@@ -107,3 +112,10 @@ export const itemEntrySchema = z
       issue('coins stack and are not worn');
   });
 export type ItemEntry = z.infer<typeof itemEntrySchema>;
+
+/**
+ * Light, medium or heavy body armor, by how much Dexterity it lets count (SRD 5.2.1;
+ * docs/adr/0050-the-world-around.md §8, §10): all of it, some, none.
+ */
+export const armorWeight = (dexCap: number | null): 'light' | 'medium' | 'heavy' =>
+  dexCap === null ? 'light' : dexCap > 0 ? 'medium' : 'heavy';

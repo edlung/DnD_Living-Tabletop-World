@@ -30,6 +30,7 @@ const KIND_GLYPH = {
   ruling: 'game-master',
   fight: 'initiative',
   light: 'day',
+  hazard: 'weather',
 } as const;
 
 const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {

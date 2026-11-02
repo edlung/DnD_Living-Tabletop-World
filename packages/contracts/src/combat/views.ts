@@ -43,6 +43,8 @@ export interface EncounterCombatantView {
   readonly speeds?: Speeds;
   /** Its senses, seen the same way (docs/adr/0050-the-world-around.md §2). */
   readonly senses?: Senses;
+  /** Its breath held under water, seen the same way: the rounds it has left (ADR 0050 §8). */
+  readonly breath?: { readonly roundsLeft: number };
   /** The creature it rides, as anyone sees (ADR 0049 §10); it shares that one's space. */
   readonly mountedOn?: { readonly entityId: string; readonly name: string | null };
   /** `down`: at 0 HP but alive (a character making death saves). */

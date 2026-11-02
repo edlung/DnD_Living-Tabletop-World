@@ -53,6 +53,7 @@ import {
   removeCombatantCommandSchema,
   setInitiativeCommandSchema,
   setLightCommandSchema,
+  exposeToHazardCommandSchema,
   castSpellCommandSchema,
   endCombatCommandSchema,
   endTurnCommandSchema,
@@ -204,6 +205,7 @@ export const kernelCommandSchema = z
     commandCreatureCommandSchema,
     addObjectCommandSchema,
     setLightCommandSchema,
+    exposeToHazardCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -283,6 +285,7 @@ export const KERNEL_COMMAND_TYPES = [
   'CommandCreature',
   'AddObject',
   'SetLight',
+  'ExposeToHazard',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

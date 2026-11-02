@@ -133,6 +133,17 @@ export const combatantRecordSchema = z
      */
     mountedOn: entityIdSchema.optional(),
     /**
+     * Its breath held under water (docs/adr/0050-the-world-around.md §8): the rounds it has left,
+     * and the Exhaustion levels its lost breath gave, which go once it breathes again.
+     */
+    breath: z
+      .object({
+        roundsLeft: z.number().int().min(0).max(1000),
+        gained: z.number().int().min(0).max(6),
+      })
+      .strict()
+      .optional(),
+    /**
      * Feet above the ground of its squares (ADR 0049 §6): a flyer's height, or below it while it
      * burrows. Absent: on the ground.
      */
@@ -328,6 +339,7 @@ export const combatEventPayloadSchemas = {
         'grapple',
         'shove',
         'saddle',
+        'hazard',
       ]),
     })
     .strict(),

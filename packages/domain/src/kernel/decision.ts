@@ -75,6 +75,7 @@ export type ResolvedCommand =
           | 'CloseReactionWindow'
           | 'AdjustHitPoints'
           | 'SetCondition'
+          | 'ExposeToHazard'
           | 'AddCombatant'
           | 'RemoveCombatant'
           | 'DelayTurn'
@@ -91,7 +92,9 @@ export type ResolvedCommand =
       readonly resolution: Resolution;
     })
   | (KernelCommandOf<'CloseReactionWindow'> & { readonly resolution: Resolution })
-  | (KernelCommandOf<'AdjustHitPoints' | 'AddCombatant' | 'RemoveCombatant' | 'DelayTurn'> & {
+  | (KernelCommandOf<
+      'AdjustHitPoints' | 'AddCombatant' | 'RemoveCombatant' | 'DelayTurn' | 'ExposeToHazard'
+    > & {
       readonly resolution: Resolution;
     })
   // A condition by hand rolls a grounded flyer's fall since Stage 640f; older ones have none.

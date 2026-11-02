@@ -14,7 +14,7 @@ export const ARMOR_ITEMS: readonly ItemEntry[] = [
     valueCp: 1000,
     stackable: false,
     slots: ['body'],
-    armor: { baseAc: 11, dexCap: null },
+    armor: { baseAc: 11, dexCap: null, stealthDisadvantage: true },
   },
   {
     itemId: 'traveller-jerkin',
@@ -56,7 +56,7 @@ export const ARMOR_ITEMS: readonly ItemEntry[] = [
     valueCp: 60000,
     stackable: false,
     slots: ['body'],
-    armor: { baseAc: 16, dexCap: 0 },
+    armor: { baseAc: 16, dexCap: 0, strength: 13, stealthDisadvantage: true },
   },
   {
     itemId: 'oak-buckler',

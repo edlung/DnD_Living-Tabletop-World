@@ -59,6 +59,7 @@ export {
 } from './rest.ts';
 export { OBJECT_ARMOR_CLASS, OBJECT_HIT_POINTS, objectStatBlock } from './objects.ts';
 export { lightSeen, obscurementSeen, perceivesWithin, type Obscurement } from './sight.ts';
+export { ARMOR_SLOW_FT, armorHampersStealth, armorSlowFt } from './armor.ts';
 export {
   RUN_UP_FT,
   fallDice,

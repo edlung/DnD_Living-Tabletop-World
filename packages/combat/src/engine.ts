@@ -16,6 +16,7 @@ import {
   decideRemoveCombatant,
   decideSetInitiative,
 } from './order.ts';
+import { decideExposeToHazard } from './hazards.ts';
 import { decideSetLight } from './light.ts';
 import { decideMove } from './movement.ts';
 import { ridersAfter } from './mounts.ts';
@@ -91,5 +92,7 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideAddObject(context, command);
     case 'SetLight':
       return decideSetLight(context, command);
+    case 'ExposeToHazard':
+      return decideExposeToHazard(context, command, dice);
   }
 }

@@ -1,4 +1,4 @@
-import type { LightLevel } from '../combat/commands.ts';
+import type { Hazard, LightLevel } from '../combat/commands.ts';
 import { z } from 'zod';
 
 import type { PlayerCommandType } from '../investigation/commands.ts';
@@ -146,6 +146,8 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly target: EntityRef;
         readonly condition: string;
         readonly applied: boolean;
+        /** Its save made first held it off (docs/adr/0050-the-world-around.md §9). */
+        readonly resisted?: true;
       }
     | { readonly kind: 'inspiration'; readonly target: EntityRef; readonly inspired: boolean }
     /** Exhaustion's level set (docs/adr/0045-conditions-and-actions.md §3); 0 lifted it. */
@@ -163,7 +165,14 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly total: number | null;
       }
     /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
-    | { readonly kind: 'light'; readonly ambient: LightLevel };
+    | { readonly kind: 'light'; readonly ambient: LightLevel }
+    /** The party exposed to the cold or the heat; how many hourly saves failed (§8). */
+    | {
+        readonly kind: 'hazard';
+        readonly hazard: Hazard;
+        readonly hours: number;
+        readonly failed: number;
+      };
   /** The DM's reason; null for a change of the fight that takes none. */
   readonly reason: string | null;
 }

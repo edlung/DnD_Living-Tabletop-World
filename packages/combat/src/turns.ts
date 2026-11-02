@@ -15,6 +15,7 @@ import { rollDeathSave } from '@ltw/rules';
 import { encounterOf, isAlive, onTurn } from './battlefield.ts';
 import { durationsAt, FightWork, savesAtEndOfTurn } from './condition-details.ts';
 import { gravitySweep } from './falling.ts';
+import { breathAtTurnEnd } from './hazards.ts';
 import { isObjectIn } from './objects.ts';
 import { grapplesSweep } from './unarmed.ts';
 import { combatPremises } from './refusal.ts';
@@ -48,6 +49,8 @@ export function decideEndTurn(context: DecisionContext, command: EndTurn, dice: 
     ...savesAtEndOfTurn(work, dice, command.combatantId),
     ...durationsAt(work, command.combatantId, 'end'),
     ...vexCountsDown(work, command.combatantId),
+    // Its breath under water (docs/adr/0050-the-world-around.md §8).
+    ...breathAtTurnEnd(work, state, encounter.value, command.combatantId),
   ];
   const ended = work.encounter(encounter.value);
   const next = nextLiving(state, ended, ended.currentIndex);

@@ -79,6 +79,10 @@ export function ConditionForm({
   const [saving, setSaving] = useState(false);
   const [ability, setAbility] = useState<Ability>('wis');
   const [dc, setDc] = useState('');
+  // A save it makes first — a poison, a curse (docs/adr/0050-the-world-around.md §9).
+  const [resisting, setResisting] = useState(false);
+  const [resistAbility, setResistAbility] = useState<Ability>('con');
+  const [resistDc, setResistDc] = useState('');
   const [attempted, setAttempted] = useState(false);
   const why = useReason();
   const held = choice !== EXHAUSTION && conditions.includes(choice);
@@ -90,6 +94,11 @@ export function ConditionForm({
   const difficulty = Number(dc);
   const dcWrong =
     detailed && saving && !(Number.isInteger(difficulty) && difficulty >= 1 && difficulty <= 30);
+  const firstSave = resisting && choice !== EXHAUSTION && !held;
+  const resistDifficulty = Number(resistDc);
+  const resistWrong =
+    firstSave &&
+    !(Number.isInteger(resistDifficulty) && resistDifficulty >= 1 && resistDifficulty <= 30);
   const others = (fight ?? []).filter((member) => member.entityId !== targetId);
   const sorted = [...CONDITIONS].sort((a, b) =>
     t(CONDITION_WORDS[a]).localeCompare(t(CONDITION_WORDS[b])),
@@ -98,7 +107,7 @@ export function ConditionForm({
   const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setAttempted(true);
-    if (why.reason === '' || countWrong || dcWrong) return;
+    if (why.reason === '' || countWrong || dcWrong || resistWrong) return;
     if (choice === EXHAUSTION) {
       onSend({ type: 'SetExhaustion', targetId, level: Number(level), reason: why.reason });
       return;
@@ -114,6 +123,7 @@ export function ConditionForm({
       condition: choice,
       applied: !held,
       ...(detailed && Object.keys(details).length > 0 ? { details } : {}),
+      ...(firstSave ? { resist: { ability: resistAbility, dc: resistDifficulty } } : {}),
       reason: why.reason,
     });
   };
@@ -292,6 +302,59 @@ export function ConditionForm({
                     value={dc}
                     onChange={(event) => {
                       setDc(event.target.value);
+                    }}
+                  />
+                )}
+              </Field>
+            </div>
+          )}
+        </>
+      )}
+      {choice !== EXHAUSTION && !held && (
+        <>
+          <label className="hand-check">
+            <input
+              type="checkbox"
+              checked={resisting}
+              onChange={(event) => {
+                setResisting(event.target.checked);
+              }}
+            />
+            <span>{t('A save first: only a failure brings it (a poison, a curse)')}</span>
+          </label>
+          {resisting && (
+            <div className="hand-row hand-row--controls">
+              <Field label={t('Saving throw')}>
+                {(control) => (
+                  <select
+                    {...control}
+                    value={resistAbility}
+                    onChange={(event) => {
+                      setResistAbility(event.target.value as Ability);
+                    }}
+                  >
+                    {ABILITIES.map((option) => (
+                      <option key={option} value={option}>
+                        {t(ABILITY_NAMES[option])}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </Field>
+              <Field
+                label={t('Difficulty (DC)')}
+                error={attempted && resistWrong ? t('From 1 to 30.') : null}
+              >
+                {(control) => (
+                  <input
+                    {...control}
+                    type="number"
+                    inputMode="numeric"
+                    min={1}
+                    max={30}
+                    value={resistDc}
+                    onChange={(event) => {
+                      setResistDc(event.target.value);
                     }}
                   />
                 )}

@@ -31,6 +31,7 @@ Decides encounter commands for the World Engine through the domain's `CombatPort
 | Mounted combat: mount, dismount, a carried rider, the seat after a command (§10)        | `src/mounts.ts`                   |
 | Who sees whom: light, fog, senses, Blinded and Invisible (ADR 0050 §1–4)                | `src/sight.ts`                    |
 | The DM's light of a running fight (ADR 0050 §1)                                         | `src/light.ts`                    |
+| Breath under water, the hazards of the road (ADR 0050 §8)                               | `src/hazards.ts`                  |
 | Perspective-scoped encounter view                                                       | `src/view.ts`                     |
 | Reaction matcher and Counterspell eligibility (shared with context)                     | `src/reactions/eligibility.ts`    |
 | Suspending a cast in a reaction window                                                  | `src/reactions/suspend.ts`        |

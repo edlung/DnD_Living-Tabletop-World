@@ -1,3 +1,4 @@
+import { armorSlowFt } from './armor.ts';
 import type { CharacterSheet } from '@ltw/contracts';
 
 import { incapacitatedBy, speedAfterConditions } from './conditions.ts';
@@ -113,9 +114,16 @@ export function startTurn(ownTurn: boolean, previous?: TurnState): TurnState {
 export const isIncapacitated = (sheet: Pick<CharacterSheet, 'conditions'>) =>
   incapacitatedBy(sheet.conditions);
 
-/** Speed after conditions and Exhaustion (ADR 0045 §1, §3); Slowed (Slow mastery) takes 10 ft. */
+/**
+ * Speed after conditions and Exhaustion (ADR 0045 §1, §3); Slowed (Slow mastery) takes 10 ft, and
+ * armor too heavy for its wearer 10 more (docs/adr/0050-the-world-around.md §10).
+ */
 export function effectiveSpeedFt(sheet: CharacterSheet): number {
-  return speedAfterConditions(sheet.speedFt, sheet.conditions, sheet.exhaustion ?? 0);
+  return speedAfterConditions(
+    Math.max(0, sheet.speedFt - armorSlowFt(sheet)),
+    sheet.conditions,
+    sheet.exhaustion ?? 0,
+  );
 }
 
 export type MoveCheck =

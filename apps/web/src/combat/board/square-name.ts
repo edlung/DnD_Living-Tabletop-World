@@ -57,6 +57,12 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
         : (occupant.altitudeFt ?? 0) < 0
           ? [t('underground')]
           : []),
+      // Its breath under water (docs/adr/0050-the-world-around.md §8).
+      ...(occupant.breath === undefined
+        ? []
+        : occupant.breath.roundsLeft > 0
+          ? [t('holding its breath, {rounds} rounds left', { rounds: occupant.breath.roundsLeft })]
+          : [t('out of breath')]),
       ...(occupant.state === 'up' ? [] : [thing ? t('destroyed') : t(occupant.state)]),
       ...occupant.conditions.map((condition) => t(condition)),
       ...(occupant.hitPoints ? [t('{current} / {max} HP', { ...occupant.hitPoints })] : []),

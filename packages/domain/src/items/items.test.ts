@@ -131,6 +131,19 @@ describe('equipment and armor class', () => {
     expectRejected(await act({ type: 'UnequipItem', itemId: 'mail' }), 'NO_EFFECT');
   });
 
+  it('keeps what the rules need of the body armor on the sheet while it is worn', async () => {
+    // docs/adr/0050-the-world-around.md §10: the watch's mail asks Strength 13, and it rustles.
+    await grant('mail', 'watchman-mail');
+    expectAccepted(await act({ type: 'EquipItem', itemId: 'mail', slot: 'body' }));
+    expect((await verified()).characterSheets.get('hero')?.wornArmor).toEqual({
+      weight: 'heavy',
+      strength: 13,
+      stealthDisadvantage: true,
+    });
+    expectAccepted(await act({ type: 'UnequipItem', itemId: 'mail' }));
+    expect((await verified()).characterSheets.get('hero')?.wornArmor).toBeUndefined();
+  });
+
   it('undoing an equip restores both the item and the sheet', async () => {
     await grant('mail', 'watchman-mail');
     const before = (await harness.state()).characterSheets.get('hero');

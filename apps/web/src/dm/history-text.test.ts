@@ -11,6 +11,7 @@ import { describe, expect, it } from 'vitest';
 import '../i18n/ru.ts';
 import '../i18n/ru-hit-points.ts';
 import '../i18n/ru-space.ts';
+import '../i18n/ru-rest.ts';
 import '../i18n/ru-play.ts';
 import '../i18n/ru-visual.ts';
 import {

@@ -116,6 +116,10 @@ registerRussian({
   'The light of the fight: darkness': 'Освещение боя: темнота',
   'set the light of the fight': 'изменить освещение боя',
 
+  // Breath under water (docs/adr/0050-the-world-around.md §8)
+  'holding its breath, {rounds} rounds left': 'задерживает дыхание, осталось раундов: {rounds}',
+  'out of breath': 'задыхается',
+
   // A refusal's reason
   'too large': 'слишком велик',
   'no fly speed': 'не умеет летать',

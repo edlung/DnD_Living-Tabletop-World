@@ -285,6 +285,14 @@ export const setConditionCommandSchema = z
     applied: z.boolean(),
     /** Applying, in a fight: how it ends and its source (§2). */
     details: conditionDetailsSchema.optional(),
+    /**
+     * Applying: a save it makes first — a poison's Constitution save — and the condition only on a
+     * failure (docs/adr/0050-the-world-around.md §9).
+     */
+    resist: z
+      .object({ ability: z.enum(ABILITIES), dc: z.number().int().min(1).max(30) })
+      .strict()
+      .optional(),
     reason: dmReasonSchema,
   })
   .strict();
@@ -295,6 +303,21 @@ export const setExhaustionCommandSchema = z
     type: z.literal('SetExhaustion'),
     targetId: entityIdSchema,
     level: z.number().int().min(0).max(MAX_EXHAUSTION),
+    reason: dmReasonSchema,
+  })
+  .strict();
+
+/**
+ * The hazards of the road (docs/adr/0050-the-world-around.md §8): the party exposed to Extreme
+ * Cold or Extreme Heat for some hours, a Constitution save each hour or a level of Exhaustion.
+ */
+export const HAZARDS = ['cold', 'heat'] as const;
+export type Hazard = (typeof HAZARDS)[number];
+export const exposeToHazardCommandSchema = z
+  .object({
+    type: z.literal('ExposeToHazard'),
+    hazard: z.enum(HAZARDS),
+    hours: z.number().int().min(1).max(24),
     reason: dmReasonSchema,
   })
   .strict();
@@ -336,6 +359,8 @@ export const DM_HAND_COMMAND_TYPES = [
   'SetCondition',
   'SetExhaustion',
   'SetInspiration',
+  /** The hazards of the road (docs/adr/0050-the-world-around.md §8). */
+  'ExposeToHazard',
 ] as const;
 export type DmHandCommandType = (typeof DM_HAND_COMMAND_TYPES)[number];
 

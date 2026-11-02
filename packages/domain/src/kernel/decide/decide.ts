@@ -236,7 +236,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'SetInitiative':
     case 'CommandCreature':
     case 'AddObject':
-    case 'SetLight': {
+    case 'SetLight':
+    case 'ExposeToHazard': {
       if (!context.combat) throw new Error(`${command.type} needs the combat engine port`);
       // A condition by hand stored before Stage 640f carries no resolution.
       const entropy = 'resolution' in command ? command.resolution.entropy : [];

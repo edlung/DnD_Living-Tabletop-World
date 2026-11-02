@@ -20,6 +20,7 @@ const CAMPAIGNS = {
   axe: 'ui-rest-axe',
   notice: 'ui-rest-notice',
   cut: 'ui-rest-cut',
+  hazard: 'ui-rest-hazard',
 } as const;
 
 const banner = (page: Page) => page.locator('.rest-banner');
@@ -130,6 +131,27 @@ test('a long rest cut short is a short rest; a second one the same day restores 
     }),
   ).toBeVisible();
   await expectAccessible(page, 'the DM’s rests with a rest cut short');
+});
+
+test('the DM exposes the party to extreme cold, and the history keeps the failed saves', async ({
+  page,
+}) => {
+  // docs/adr/0050-the-world-around.md §8.
+  await enterWorld(page, TOKENS.dm, CAMPAIGNS.hazard);
+  await openSheet(page, 'Time and weather');
+  const hazards = page.locator('#sheet-time').getByRole('region', { name: 'Hazards of the road' });
+  await hazards.getByRole('combobox', { name: 'Hazard' }).selectOption('cold');
+  await hazards.getByRole('combobox', { name: 'Hours' }).selectOption('2');
+  const answer = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).pathname.endsWith('/commands') &&
+      response.request().method() === 'POST',
+  );
+  await hazards.getByRole('button', { name: 'Expose the party for 2 h' }).click();
+  expect((await (await answer).json()) as { status: string }).toMatchObject({ status: 'accepted' });
+  await openSheet(page, 'History');
+  await expect(page.getByText(/Extreme cold for 2 h: \d+ saves failed/).first()).toBeVisible();
+  await expectAccessible(page, 'the DM history with a hazard');
 });
 
 test('the Journal tells the party’s quest as it lived it', async ({ page }) => {

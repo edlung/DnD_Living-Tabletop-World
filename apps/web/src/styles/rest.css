@@ -272,3 +272,15 @@
 .rest-cut-row button {
   grid-area: button;
 }
+
+/* The hazards of the road (docs/adr/0050-the-world-around.md §8): labelled choices, then the button */
+.hazard-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+.hazard-field {
+  display: grid;
+  gap: 0.25rem;
+}

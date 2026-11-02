@@ -89,7 +89,15 @@ export function DmRestControls({
         </button>
       </div>
       {!open && (
-        <details className="rest-cut-short">
+        <details
+          className="rest-cut-short"
+          onToggle={(event) => {
+            // Opened at the sheet's foot, its choice comes into view (the sheet scrolls).
+            if (event.currentTarget.open) {
+              event.currentTarget.scrollIntoView({ block: 'nearest' });
+            }
+          }}
+        >
           <summary>{t('The long rest was cut short')}</summary>
           <p className="muted">
             {t(

@@ -56,16 +56,34 @@ export function handChange(
         reason: command.reason,
       };
     }
-    case 'SetCondition':
+    case 'SetCondition': {
+      // A save made first that held it off (docs/adr/0050-the-world-around.md §9).
+      const resisted =
+        command.resist !== undefined && !events.some((event) => event.type === 'ConditionApplied');
       return {
         change: {
           kind: 'condition',
           target: ref(command.targetId),
           condition: command.condition,
           applied: command.applied,
+          ...(resisted ? { resisted: true as const } : {}),
         },
         reason: command.reason,
       };
+    }
+    case 'ExposeToHazard': {
+      // Each failed hour a level of Exhaustion (docs/adr/0050-the-world-around.md §8).
+      const failed = events.filter(
+        (event) =>
+          event.type === 'SavingThrowRolled' &&
+          event.payload.purpose === 'hazard' &&
+          !event.payload.success,
+      ).length;
+      return {
+        change: { kind: 'hazard', hazard: command.hazard, hours: command.hours, failed },
+        reason: command.reason,
+      };
+    }
     case 'SetInspiration':
       return {
         change: {

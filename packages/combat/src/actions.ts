@@ -16,7 +16,13 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { abilityModifier, checkEffects, d20Test, skillModifier } from '@ltw/rules';
+import {
+  abilityModifier,
+  armorHampersStealth,
+  checkEffects,
+  d20Test,
+  skillModifier,
+} from '@ltw/rules';
 
 import {
   combatantEvent,
@@ -171,9 +177,14 @@ export function needsAid(v: Vitals): boolean {
   return knockedOutOf(v) && has(v, 'unconscious');
 }
 
-/** A check of the creature's skill, with its conditions' tilt and Exhaustion (ADR 0045 §1). */
+/**
+ * A check of the creature's skill, with its conditions' tilt and Exhaustion (ADR 0045 §1), and
+ * armor that rustles on Stealth (docs/adr/0050-the-world-around.md §10).
+ */
 export function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC) {
   const effects = checkEffects(conditionsOf(vitals), exhaustionOf(vitals));
+  const rustles =
+    skill === 'stealth' && vitals.kind === 'character' && armorHampersStealth(vitals.sheet);
   const base =
     vitals.kind === 'character'
       ? skillModifier(vitals.sheet, skill)
@@ -183,7 +194,7 @@ export function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC
     modifier,
     target: dc,
     advantage: effects.advantage,
-    disadvantage: effects.disadvantage,
+    disadvantage: effects.disadvantage || rustles,
   });
   return { ...roll, modifier };
 }
