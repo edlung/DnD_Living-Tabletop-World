@@ -11,6 +11,8 @@ export const itemGrantedPayloadSchema = z
     holderId: entityIdSchema,
     catalogId: itemCatalogIdSchema.nullable(),
     quantity: quantity.min(1),
+    /** What a magic weapon, armor or shield is made on (docs/adr/0054-items-as-data.md §5). */
+    baseCatalogId: itemCatalogIdSchema.optional(),
   })
   .strict();
 
@@ -35,7 +37,20 @@ export const itemUnequippedPayloadSchema = z
 
 /** One unit of a stack, or a single item, is used up. */
 export const itemUsedPayloadSchema = z
-  .object({ itemId: entityIdSchema, holderId: entityIdSchema, remaining: quantity })
+  .object({
+    itemId: entityIdSchema,
+    holderId: entityIdSchema,
+    remaining: quantity,
+    /** A potion's dice and the hit points they gave (docs/adr/0054-items-as-data.md §5). */
+    healed: z
+      .object({
+        rolls: z.array(z.number().int().min(1).max(12)).min(1).max(20),
+        bonus: z.number().int().min(0).max(40),
+        total: z.number().int().min(1).max(300),
+      })
+      .strict()
+      .optional(),
+  })
   .strict();
 
 /**
@@ -83,6 +98,7 @@ const possessionValue = z
     quantity,
     slot: slot.nullable(),
     acDelta: z.number().int().min(-40).max(40),
+    baseCatalogId: itemCatalogIdSchema.optional(),
   })
   .strict();
 

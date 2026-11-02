@@ -1,5 +1,5 @@
 import type { AmmunitionKind, Damage, WeaponId, WeaponMastery } from '@ltw/contracts';
-import { handsOf, wieldedWeapons, type WorldState } from '@ltw/domain';
+import { handsOf, wieldedBonus, wieldedWeapons, type WorldState } from '@ltw/domain';
 import {
   WEAPONS,
   abilityModifier,
@@ -128,19 +128,21 @@ export function weaponOf(
     const twoHands =
       melee && definition.versatileSides !== undefined && !hands.shield && hands.off === null;
     const modifier = weaponModifier(v.sheet, weapon);
+    // A magic weapon's +1 to attack and damage (docs/adr/0054-items-as-data.md §5).
+    const magic = wieldedBonus(state, v.entityId, weapon);
     return {
       melee,
       reachFt,
       normalRangeFt: range?.normalFt ?? definition.normalRangeFt,
       longRangeFt: range?.longFt ?? definition.longRangeFt,
-      bonus: weaponAttackBonus(v.sheet, weapon),
+      bonus: weaponAttackBonus(v.sheet, weapon) + magic.attack,
       extraDamage: [],
       damage: {
         count: definition.damageDice.count,
         sides: (twoHands
           ? definition.versatileSides
           : definition.damageDice.sides) as Damage['sides'],
-        bonus: modifier + (definition.flatDamage ?? 0),
+        bonus: modifier + (definition.flatDamage ?? 0) + magic.damage,
         type: definition.damageType,
       },
       advantageDamage: null,

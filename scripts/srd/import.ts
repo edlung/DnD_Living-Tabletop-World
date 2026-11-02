@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { parseEquipmentTables } from './equipment.ts';
 import { parseToolsAndGear } from './gear.ts';
 import { catalogEntryOf } from './item-catalog.ts';
+import { magicCatalogEntries } from './magic-catalog.ts';
+import { magicItemRows, parseMagicItems } from './magic-items.ts';
 import { deriveMonsterMechanics } from './monster-mechanics.ts';
 import { parseMonsters } from './monsters.ts';
 import { deriveMechanics } from './spell-mechanics.ts';
@@ -59,6 +61,14 @@ write('monster-blocks.json', bestiary.map(deriveMonsterMechanics));
 const equipment = [...parseEquipmentTables(dir), ...parseToolsAndGear(dir)];
 write('equipment.json', equipment);
 write('equipment.json', equipment.map(catalogEntryOf), 'packages/contracts/src/items/srd');
+// The magic items (§5): their text, and their catalog entries, "+1, +2, or +3" three of them.
+const magicItems = [...parseMagicItems(magicItemRows(dir))].sort(byId('itemId'));
+write('magic-items.json', magicItems);
+write(
+  'magic-items.json',
+  magicItems.flatMap((item) => magicCatalogEntries(item, equipment)),
+  'packages/contracts/src/items/srd',
+);
 process.stdout.write(
-  `spells ${spells.length}, monsters ${monsters.length}, equipment ${equipment.length}\n`,
+  `spells ${spells.length}, monsters ${monsters.length}, equipment ${equipment.length}, magic items ${magicItems.length}\n`,
 );

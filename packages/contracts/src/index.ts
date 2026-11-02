@@ -433,12 +433,16 @@ export {
   ITEM_CATEGORIES,
   armorWeight,
   itemCatalogIdSchema,
+  ITEM_RARITIES,
   itemEffectSchema,
   itemEntrySchema,
+  itemMagicSchema,
   type EquipSlot,
   type ItemCategory,
   type ItemEffect,
   type ItemEntry,
+  type ItemMagic,
+  type ItemRarity,
 } from './items/schema.ts';
 export { ITEM_CATALOG, catalogEntry, isCatalogItemId } from './items/catalog.ts';
 export {

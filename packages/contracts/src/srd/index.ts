@@ -28,6 +28,7 @@ export {
   type SpellEffect,
   type SrdSpellMechanics,
 } from './spell-mechanics.ts';
+export { SRD_MAGIC_CATEGORIES, srdMagicItemSchema, type SrdMagicItem } from './magic-items.ts';
 export {
   SRD_EQUIPMENT_KINDS,
   srdEquipmentSchema,

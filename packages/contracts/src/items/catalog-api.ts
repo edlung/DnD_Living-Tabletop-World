@@ -2,7 +2,13 @@ import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
 import type { SrdEquipment } from '../srd/equipment.ts';
-import { itemCatalogIdSchema, type ItemCategory } from './schema.ts';
+import type { SrdMagicItem } from '../srd/magic-items.ts';
+import {
+  itemCatalogIdSchema,
+  type ItemCategory,
+  type ItemMagic,
+  type ItemRarity,
+} from './schema.ts';
 
 /**
  * The DM's item catalog (docs/adr/0054-items-as-data.md §4): a campaign's entries — Ravenford's
@@ -18,6 +24,12 @@ export interface ItemCatalogListing {
   readonly stackable: boolean;
   readonly source: 'srd' | null;
   readonly untranslated: boolean;
+  /** A magic item's rarity; null for a mundane one (docs/adr/0054-items-as-data.md §5). */
+  readonly rarity: ItemRarity | null;
+  /** Null: none needed; "": anyone; else who may. */
+  readonly attunement: string | null;
+  /** What a magic weapon, armor, shield or ammunition may be made on. */
+  readonly base: NonNullable<ItemMagic['base']> | null;
 }
 
 export interface ItemCatalogResponse {
@@ -30,6 +42,8 @@ export interface ItemCatalogEntryResponse {
   };
   /** The SRD's words and table row for an SRD entry; null for Ravenford's own. */
   readonly srd: SrdEquipment | null;
+  /** The SRD's magic item it follows; null for a mundane one. */
+  readonly magic: SrdMagicItem | null;
 }
 
 export const giveCatalogItemRequestSchema = z
@@ -37,6 +51,8 @@ export const giveCatalogItemRequestSchema = z
     requestId: z.uuid(),
     holderId: entityIdSchema,
     quantity: z.number().int().min(1).max(99).default(1),
+    /** What a magic weapon, armor, shield or ammunition is made on (§5). */
+    baseCatalogId: itemCatalogIdSchema.optional(),
   })
   .strict();
 export type GiveCatalogItemRequest = z.input<typeof giveCatalogItemRequestSchema>;
@@ -45,6 +61,8 @@ export interface GivenCatalogItemResponse {
   readonly status: 'given';
   /** The new item's entity. */
   readonly itemId: string;
+  /** Its name in the campaign: "Longsword, +1" for a +1 weapon made on a longsword. */
+  readonly name: string;
 }
 
 export const catalogItemIdSchema = itemCatalogIdSchema;

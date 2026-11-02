@@ -1,10 +1,12 @@
 # The SRD's item catalog entries (`packages/contracts/src/items/srd/`)
 
-Generated data (docs/adr/0054-items-as-data.md §2). `equipment.json` holds the catalog entries the
-World Engine applies for the SRD's equipment — category, slots, stack, weight, worth, armor,
-shield, weapon, ammunition, effect — written by `scripts/srd/import.ts` (`scripts/srd/item-catalog.ts`)
-beside the text layer in `packages/rules/src/srd/equipment.json`. Never edit it by hand: change the
-derivation and import again.
+Generated data (docs/adr/0054-items-as-data.md §2, §5). `equipment.json` holds the catalog entries
+the World Engine applies for the SRD's equipment — category, slots, stack, weight, worth, armor,
+shield, weapon, ammunition, effect — and `magic-items.json` those of its magic items — rarity and
+worth, attunement, bonuses, charges, a curse, the bases one may be made on — written by
+`scripts/srd/import.ts` (`scripts/srd/item-catalog.ts`, `scripts/srd/magic-catalog.ts`) beside the
+text layer in `packages/rules/src/srd/{equipment,magic-items}.json`. Never edit them by hand: change
+the derivation and import again.
 
 - `catalog.ts` is the reader (`SRD_ITEM_CATALOG`, `srdItemEntry`), reached only through the second
   entry point `@ltw/contracts/srd-items` (docs/adr/0004-module-boundaries.md, 2026-11-02

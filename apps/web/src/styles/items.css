@@ -394,3 +394,9 @@
   align-items: flex-end;
   margin: 0;
 }
+
+/* A magic item's rarity and attunement (ADR 0054 §5). */
+.item-magic {
+  margin: 0 0 8px;
+  color: var(--gold);
+}

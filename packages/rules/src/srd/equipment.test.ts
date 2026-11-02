@@ -95,12 +95,11 @@ describe('the weapon table', () => {
 
 describe('the catalog’s SRD entries', () => {
   it('each have the SRD’s words beside them, and stand for what the text says', () => {
-    expect(SRD_ITEM_CATALOG).toHaveLength(SRD_EQUIPMENT.length);
-    for (const entry of SRD_ITEM_CATALOG) {
-      const text = srdEquipment(entry.itemId.replace(/^srd-/, ''));
-      expect(text, entry.itemId).toBeDefined();
-      expect(entry.name.en).toBe(text?.name);
-    }
+    // The equipment's, one each; the magic items' follow their text (`magic.test.ts`).
+    const equipment = SRD_ITEM_CATALOG.filter((entry) => srdEquipment(entry.itemId.slice(4)));
+    expect(equipment).toHaveLength(SRD_EQUIPMENT.length);
+    for (const entry of equipment)
+      expect(entry.name.en).toBe(srdEquipment(entry.itemId.slice(4))?.name);
     expect(srdItemEntry('srd-chain-mail')).toMatchObject({
       category: 'armor',
       slots: ['body'],

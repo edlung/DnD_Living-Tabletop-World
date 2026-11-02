@@ -160,11 +160,13 @@ export {
 } from './combat.ts';
 export {
   SRD_EQUIPMENT,
+  SRD_MAGIC_ITEMS,
   SRD_MONSTERS,
   SRD_MONSTER_BLOCKS,
   SRD_SPELLS,
   SRD_SPELL_MECHANICS,
   srdEquipment,
+  srdMagicItem,
   srdMonster,
   srdMonsterBlock,
   srdSpell,

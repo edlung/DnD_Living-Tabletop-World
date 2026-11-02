@@ -1,5 +1,6 @@
 import type {
   SrdEquipment,
+  SrdMagicItem,
   SrdMonster,
   SrdSpell,
   SrdSpellMechanics,
@@ -7,6 +8,7 @@ import type {
 } from '@ltw/contracts';
 
 import equipment from './equipment.json' with { type: 'json' };
+import magicItems from './magic-items.json' with { type: 'json' };
 import blocks from './monster-blocks.json' with { type: 'json' };
 import monsters from './monsters.json' with { type: 'json' };
 import mechanics from './spell-mechanics.json' with { type: 'json' };
@@ -55,3 +57,11 @@ export const srdMonsterBlock = (monsterId: string): SrdMonsterBlock | undefined 
 export const SRD_EQUIPMENT: readonly SrdEquipment[] = equipment;
 const equipmentById = new Map(SRD_EQUIPMENT.map((entry) => [entry.itemId, entry]));
 export const srdEquipment = (itemId: string): SrdEquipment | undefined => equipmentById.get(itemId);
+
+/**
+ * The SRD's Magic Items A–Z as it gives them (docs/adr/0054-items-as-data.md §1): a magic catalog
+ * entry names the one it follows (`magic.text`).
+ */
+export const SRD_MAGIC_ITEMS: readonly SrdMagicItem[] = magicItems;
+const magicById = new Map(SRD_MAGIC_ITEMS.map((entry) => [entry.itemId, entry]));
+export const srdMagicItem = (itemId: string): SrdMagicItem | undefined => magicById.get(itemId);

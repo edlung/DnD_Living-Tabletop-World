@@ -16,7 +16,7 @@ import { rejectionMessage } from '../exploration/outcome-messages.ts';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { worthWords } from './inventory/purse.tsx';
-import { categoryName, formatWeight } from './item-text.ts';
+import { categoryName, formatWeight, rarityName } from './item-text.ts';
 
 /**
  * The DM gives an item from the campaign's catalog (docs/adr/0054-items-as-data.md §4): Ravenford's
@@ -71,6 +71,7 @@ function GiveItemFields({
   const [words, setWords] = useState('');
   const [category, setCategory] = useState<ItemCategory | 'all'>('all');
   const [chosen, setChosen] = useState('');
+  const [made, setMade] = useState('');
   const [count, setCount] = useState('1');
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
@@ -87,6 +88,12 @@ function GiveItemFields({
     )
     .slice(0, SHOWN);
   const picked = matches.find((entry) => entry.itemId === chosen) ?? matches[0];
+  // A magic weapon, armor or shield is made on a base the DM names (ADR 0054 §5).
+  const all = catalog.resource.value.items;
+  const bases = (picked?.base?.allowed ?? []).flatMap((id) =>
+    all.filter((entry) => entry.itemId === id),
+  );
+  const base = bases.find((entry) => entry.itemId === made) ?? bases[0];
   const quantity = picked?.stackable ? Number.parseInt(count, 10) : 1;
   const quantityError =
     Number.isInteger(quantity) && quantity >= 1 && quantity <= 99
@@ -99,13 +106,18 @@ function GiveItemFields({
     try {
       const given = await api.post<GivenCatalogItemResponse | CommandRejected>(
         `items/catalog/${encodeURIComponent(picked.itemId)}/give`,
-        { requestId: crypto.randomUUID(), holderId, quantity },
+        {
+          requestId: crypto.randomUUID(),
+          holderId,
+          quantity,
+          ...(base ? { baseCatalogId: base.itemId } : {}),
+        },
         AbortSignal.timeout(20_000),
       );
       setNote(
         given.status === 'rejected'
           ? rejectionMessage(t, given.code, given.message, 'GrantItem')
-          : t('{item} is in the pack.', { item: nameOf(picked) }),
+          : t('{item} is in the pack.', { item: given.name }),
       );
     } catch {
       setNote(t('It could not be given. Try again.'));
@@ -174,13 +186,36 @@ function GiveItemFields({
           </select>
         )}
       </Field>
+      {bases.length > 1 && (
+        <Field label={t('Made on')}>
+          {(control) => (
+            <select
+              {...control}
+              value={base?.itemId ?? ''}
+              onChange={(event) => {
+                setMade(event.target.value);
+              }}
+            >
+              {bases.map((entry) => (
+                <option key={entry.itemId} value={entry.itemId}>
+                  {nameOf(entry)}
+                </option>
+              ))}
+            </select>
+          )}
+        </Field>
+      )}
       {picked && (
         <p className="fine-print">
-          {t('{kind} · {worth} · {weight} lb', {
-            kind: categoryName(t, picked.category),
-            worth: worthWords(t, picked.valueCp),
-            weight: formatWeight(picked.weightLb),
-          })}
+          {[
+            categoryName(t, picked.category),
+            picked.rarity ? rarityName(t, picked.rarity) : null,
+            picked.attunement === null ? null : t('Needs attunement'),
+            worthWords(t, picked.valueCp + (base?.valueCp ?? 0)),
+            t('{weight} lb', { weight: formatWeight(base?.weightLb ?? picked.weightLb) }),
+          ]
+            .filter(Boolean)
+            .join(' · ')}
         </p>
       )}
       <div className="action-row give-item-actions">

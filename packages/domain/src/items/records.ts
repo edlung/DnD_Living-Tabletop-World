@@ -1,7 +1,7 @@
 import type { AmmunitionKind, EquipSlot, ItemEntry, WeaponId } from '@ltw/contracts';
 
 import type { WorldState } from '../kernel/state.ts';
-import { itemEntry } from './catalog.ts';
+import { itemEntry, madeOn } from './catalog.ts';
 
 /**
  * Item possession (docs/adr/0039-item-possession.md): who carries an item
@@ -17,13 +17,20 @@ export interface Possession {
   readonly slot: EquipSlot | null;
   /** Armor class this worn item added to its wearer's sheet (reversed on removal). */
   readonly acDelta: number;
+  /** What a magic weapon, armor or shield is made on (docs/adr/0054-items-as-data.md §5). */
+  readonly baseCatalogId?: string;
 }
 
 export const possessionOf = (state: WorldState, itemId: string): Possession | undefined =>
   state.possessions.get(itemId);
 
-export const entryOf = (possession: Possession): ItemEntry | undefined =>
-  possession.catalogId === null ? undefined : itemEntry(possession.catalogId);
+/** The entry an item follows; a magic one made on a base, with the base's numbers. */
+export function entryOf(possession: Possession): ItemEntry | undefined {
+  const entry = possession.catalogId === null ? undefined : itemEntry(possession.catalogId);
+  const base =
+    possession.baseCatalogId === undefined ? undefined : itemEntry(possession.baseCatalogId);
+  return entry && base ? madeOn(entry, base) : entry;
+}
 
 /** Item IDs a holder carries (worn or not), in ID order. */
 export function carriedBy(state: WorldState, holderId: string): string[] {
@@ -52,10 +59,40 @@ export function armorClassDelta(entry: ItemEntry, slot: EquipSlot, dexterity: nu
   if (slot === 'body' && entry.armor) {
     const dex = abilityModifier(dexterity);
     const capped = entry.armor.dexCap === null ? dex : Math.min(dex, entry.armor.dexCap);
-    return entry.armor.baseAc + capped - (10 + dex);
+    return entry.armor.baseAc + capped - (10 + dex) + magicArmorClass(entry);
   }
-  if (slot === 'offhand' && entry.shieldBonus !== undefined) return entry.shieldBonus;
+  if (slot === 'offhand' && entry.shieldBonus !== undefined)
+    return entry.shieldBonus + magicArmorClass(entry);
   return 0;
+}
+
+/**
+ * A magic armor's or shield's own bonus to Armor Class — a +1 Plate Armor's (docs/adr/0054-items-as-
+ * data.md §5) — when it needs no attunement.
+ */
+const magicArmorClass = (entry: ItemEntry): number =>
+  entry.magic?.attunement === null ? (entry.magic.bonus?.armorClass ?? 0) : 0;
+
+/**
+ * A magic weapon's bonus to attack and damage (docs/adr/0054-items-as-data.md §5): the best a
+ * holder's hands hold of that weapon, when it needs no attunement.
+ */
+export function wieldedBonus(
+  state: WorldState,
+  holderId: string,
+  weaponId: WeaponId,
+): { readonly attack: number; readonly damage: number } {
+  let best = { attack: 0, damage: 0 };
+  for (const itemId of carriedBy(state, holderId)) {
+    const possession = state.possessions.get(itemId);
+    const entry = possession ? entryOf(possession) : undefined;
+    const bonus = entry?.magic?.attunement === null ? entry.magic.bonus : undefined;
+    const held = possession?.slot === 'mainhand' || possession?.slot === 'offhand';
+    if (!held || entry?.weapon !== weaponId || !bonus) continue;
+    if ((bonus.attack ?? 0) > best.attack)
+      best = { attack: bonus.attack ?? 0, damage: bonus.damage ?? 0 };
+  }
+  return best;
 }
 
 export const clampArmorClass = (value: number): number => Math.min(40, Math.max(1, value));

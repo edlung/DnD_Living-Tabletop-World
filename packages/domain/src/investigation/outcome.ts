@@ -66,8 +66,16 @@ export function playerOutcome(
     case 'DropItem':
     case 'TakeItem': {
       const moved = events.find((event) => 'itemId' in event.payload);
+      // A potion's dice: the hit points they gave (docs/adr/0054-items-as-data.md §5).
+      const used = events.find((event) => event.type === 'ItemUsed');
+      const healed = used?.type === 'ItemUsed' ? used.payload.healed?.total : undefined;
       return moved && 'itemId' in moved.payload
-        ? { kind: 'Item', action: ITEM_ACTIONS[commandType], itemId: moved.payload.itemId }
+        ? {
+            kind: 'Item',
+            action: ITEM_ACTIONS[commandType],
+            itemId: moved.payload.itemId,
+            ...(healed === undefined ? {} : { healed }),
+          }
         : undefined;
     }
     case 'FormHypothesis': {

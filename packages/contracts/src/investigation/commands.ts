@@ -232,7 +232,13 @@ export type PlayerOutcome =
       /** What the window was about: a spell, a creature leaving reach, an attack, damage (ADR 0046). */
       readonly trigger: 'spell' | 'move' | 'attack' | 'damage' | 'fall';
     }
-  | { readonly kind: 'Item'; readonly action: ItemAction; readonly itemId: string };
+  | {
+      readonly kind: 'Item';
+      readonly action: ItemAction;
+      readonly itemId: string;
+      /** The hit points a potion gave (docs/adr/0054-items-as-data.md §5). */
+      readonly healed?: number;
+    };
 
 /** What an accepted item command did (docs/adr/0039-item-possession.md). */
 export type ItemAction = 'equip' | 'unequip' | 'use' | 'give' | 'drop' | 'take';

@@ -3,8 +3,7 @@ import type { InventoryItem, InventoryResponse } from '@ltw/contracts';
 import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
 import { entityRef } from '../knowledge/projection.ts';
-import { carriedBy, possessionOf } from './records.ts';
-import { itemEntry } from './catalog.ts';
+import { carriedBy, entryOf, possessionOf } from './records.ts';
 
 /**
  * What a character carries, for the DM or for that character's own perspective
@@ -26,7 +25,8 @@ export function inventoryView(
     const possession = possessionOf(state, itemId);
     const entity = state.entities.get(itemId);
     if (!possession || entity?.status !== 'active') continue;
-    const entry = possession.catalogId === null ? undefined : itemEntry(possession.catalogId);
+    // A magic one made on a base, with the base's numbers (docs/adr/0054-items-as-data.md §5).
+    const entry = entryOf(possession);
     totalWeightLb += (entry?.weightLb ?? 0) * possession.quantity;
     items.push({
       itemId,
@@ -51,6 +51,13 @@ export function inventoryView(
             untranslated: entry.untranslated === true,
             // The SRD's words come from the server (`@ltw/rules`), which the domain cannot read.
             text: null,
+            magic: entry.magic
+              ? {
+                  rarity: entry.magic.rarity,
+                  attunement: entry.magic.attunement,
+                  bonus: entry.magic.bonus ? { ...entry.magic.bonus } : null,
+                }
+              : null,
           }
         : null,
     });

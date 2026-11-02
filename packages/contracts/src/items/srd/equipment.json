@@ -3489,7 +3489,15 @@
     "stackable": true,
     "slots": [],
     "effect": {
-      "kind": "narrative"
+      "kind": "heal-dice",
+      "count": 2,
+      "sides": 4,
+      "bonus": 2
+    },
+    "magic": {
+      "rarity": "common",
+      "attunement": null,
+      "text": "potions-of-healing"
     }
   },
   {

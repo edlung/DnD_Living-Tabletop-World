@@ -13,7 +13,7 @@ import {
   type ItemEntry,
 } from '@ltw/contracts';
 import { SRD_ITEM_CATALOG } from '@ltw/contracts/srd-items';
-import { grantRefusal, itemEntry } from '@ltw/domain';
+import { baseOfGrant, grantRefusal, itemEntry } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -21,7 +21,7 @@ import { statusOf } from '../http/command-status.ts';
 import { dmCampaignState } from '../http/dm-campaign.ts';
 import { sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
-import { srdWordsOf } from './srd-words.ts';
+import { srdMagicOf, srdWordsOf } from './srd-words.ts';
 
 /**
  * The DM's item catalog (docs/adr/0054-items-as-data.md §4): Ravenford's own entries and the
@@ -43,9 +43,28 @@ const listing = (entry: ItemEntry): ItemCatalogListing => ({
   stackable: entry.stackable,
   source: entry.source ?? null,
   untranslated: entry.untranslated === true,
+  rarity: entry.magic?.rarity ?? null,
+  attunement: entry.magic?.attunement ?? null,
+  base: entry.magic?.base ?? null,
 });
 
 const LIST: ItemCatalogResponse = { items: [...ITEM_CATALOG, ...SRD_ITEM_CATALOG].map(listing) };
+
+/**
+ * A given item's name in the campaign's language: a magic weapon, armor or shield made on its base
+ * takes the base's name — "Weapon, +1" on a Longsword is "Longsword, +1", a Flame Tongue on it
+ * "Flame Tongue (Longsword)".
+ */
+function madeName(
+  entry: ItemEntry,
+  base: ItemEntry | null | string,
+  language: 'en' | 'ru',
+): string {
+  const own = entry.name[language];
+  if (base === null || typeof base === 'string') return own;
+  const plus = /^(Weapon|Armor|Shield|Ammunition)(, \+\d)$/.exec(entry.name.en);
+  return plus ? `${base.name[language]}${plus[2] ?? ''}` : `${own} (${base.name[language]})`;
+}
 
 export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDependencies): void {
   // The ADR 0009 order: 401, then 400, then 404 and 403.
@@ -72,6 +91,7 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
         description: { ru: entry.description.ru, en: entry.description.en },
       },
       srd: srdWordsOf(entry.itemId),
+      magic: srdMagicOf(entry.itemId),
     };
     return reply.send(body);
   });
@@ -92,9 +112,10 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
     const prefix = `items.give.${body.requestId}`;
     // A grant the World Engine would refuse is refused before the item is made: none is left
     // behind (the engine checks again).
+    const baseId = body.baseCatalogId ?? null;
     const refused = state.commands.has(`${prefix}.grant`)
       ? null
-      : grantRefusal(state, body.holderId, entry.itemId, body.quantity);
+      : grantRefusal(state, body.holderId, entry.itemId, body.quantity, baseId);
     if (refused) {
       const rejected: CommandRejected = {
         status: 'rejected',
@@ -103,6 +124,7 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
       };
       return reply.code(statusOf(rejected)).send(rejected);
     }
+    const name = madeName(entry, baseOfGrant(entry, baseId), state.campaign?.language ?? 'en');
     const commands = [
       {
         commandId: `${prefix}.create`,
@@ -110,7 +132,7 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
           type: 'CreateEntity' as const,
           entityId: itemId,
           kind: 'item' as const,
-          name: entry.name[state.campaign?.language ?? 'en'],
+          name,
           existsSince: null,
         },
       },
@@ -122,6 +144,7 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
           holderId: body.holderId,
           catalogId: entry.itemId,
           quantity: body.quantity,
+          ...(baseId === null ? {} : { baseCatalogId: baseId }),
         },
       },
     ];
@@ -136,7 +159,7 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
       if (result.status === 'rejected') return reply.code(statusOf(result)).send(result);
     }
     request.log.info({ catalogId: entry.itemId }, 'item given from the catalog');
-    const given: GivenCatalogItemResponse = { status: 'given', itemId };
+    const given: GivenCatalogItemResponse = { status: 'given', itemId, name };
     return reply.send(given);
   });
 }

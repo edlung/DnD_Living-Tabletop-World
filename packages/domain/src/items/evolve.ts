@@ -19,11 +19,18 @@ const put = (state: WorldState, itemId: string, value: Possession): WorldState =
 });
 
 export function applyItemGranted(state: WorldState, event: Ev<'ItemGranted'>): WorldState {
-  const { itemId, holderId, catalogId, quantity } = event.payload;
+  const { itemId, holderId, catalogId, quantity, baseCatalogId } = event.payload;
   if (state.entities.get(itemId)?.kind !== 'item')
     throw new CorruptHistoryError(`${itemId} is no item`);
   if (possessionOf(state, itemId)) throw new CorruptHistoryError(`item ${itemId} already held`);
-  return put(state, itemId, { catalogId, holderId, quantity, slot: null, acDelta: 0 });
+  return put(state, itemId, {
+    catalogId,
+    holderId,
+    quantity,
+    slot: null,
+    acDelta: 0,
+    ...(baseCatalogId === undefined ? {} : { baseCatalogId }),
+  });
 }
 
 export function applyItemEquipped(state: WorldState, event: Ev<'ItemEquipped'>): WorldState {
@@ -93,7 +100,11 @@ export function applyItemRestore(
   state: WorldState,
   restore: Extract<Restore, { fact: 'possession' }>,
 ): WorldState {
-  return restore.value === null
-    ? { ...state, possessions: withoutEntry(state.possessions, restore.itemId) }
-    : put(state, restore.itemId, restore.value);
+  if (restore.value === null)
+    return { ...state, possessions: withoutEntry(state.possessions, restore.itemId) };
+  const { baseCatalogId, ...value } = restore.value;
+  return put(state, restore.itemId, {
+    ...value,
+    ...(baseCatalogId === undefined ? {} : { baseCatalogId }),
+  });
 }

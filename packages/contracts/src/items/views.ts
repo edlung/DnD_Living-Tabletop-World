@@ -1,6 +1,6 @@
 import type { EntityRef } from '../knowledge/views.ts';
 import type { WeaponId } from '../rules/character-sheet.ts';
-import type { EquipSlot, ItemCategory, ItemEffect } from './schema.ts';
+import type { EquipSlot, ItemCategory, ItemEffect, ItemMagic, ItemRarity } from './schema.ts';
 
 /** One carried item as its carrier sees it (docs/adr/0039-item-possession.md). */
 export interface InventoryItem {
@@ -32,6 +32,12 @@ export interface InventoryItem {
     readonly untranslated: boolean;
     /** The SRD's words about it, English, for an SRD entry; null for Ravenford's own. */
     readonly text: string | null;
+    /** A magic item's rarity, attunement and bonuses (docs/adr/0054-items-as-data.md §5). */
+    readonly magic: {
+      readonly rarity: ItemRarity;
+      readonly attunement: string | null;
+      readonly bonus: ItemMagic['bonus'] | null;
+    } | null;
   } | null;
 }
 

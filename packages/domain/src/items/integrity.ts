@@ -1,5 +1,5 @@
 import type { WorldState } from '../kernel/state.ts';
-import { itemEntry } from './catalog.ts';
+import { entryOf } from './records.ts';
 
 /** Structural invariants of item possession (docs/adr/0039-item-possession.md). */
 export function itemViolations(state: WorldState): string[] {
@@ -7,7 +7,8 @@ export function itemViolations(state: WorldState): string[] {
   const report = (message: string) => violations.push(message);
   const wornSlots = new Set<string>();
   for (const [itemId, possession] of state.possessions) {
-    const entry = possession.catalogId === null ? undefined : itemEntry(possession.catalogId);
+    // A magic one made on a base, with the base's numbers (docs/adr/0054-items-as-data.md §5).
+    const entry = entryOf(possession);
     const entity = state.entities.get(itemId);
     if (entity?.kind !== 'item') report(`possession of non-item ${itemId}`);
     if (possession.catalogId !== null && !entry) report(`item ${itemId} has an unknown catalog ID`);

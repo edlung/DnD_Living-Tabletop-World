@@ -15,6 +15,11 @@ export const grantItemCommandSchema = z
     holderId: entityIdSchema,
     /** The catalog entry this item is an instance of; absent for a unique story object. */
     catalogId: itemCatalogIdSchema.optional(),
+    /**
+     * What a magic weapon, armor, shield or ammunition is made on: one of the catalog ids its
+     * entry allows; absent when it allows only one (docs/adr/0054-items-as-data.md §5).
+     */
+    baseCatalogId: itemCatalogIdSchema.optional(),
     quantity: z.number().int().min(1).max(99).default(1),
   })
   .strict();

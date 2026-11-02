@@ -106,12 +106,13 @@ export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
 export { inventoryView } from './items/view.ts';
 export { grantRefusal } from './items/decide.ts';
-export { itemEntry } from './items/catalog.ts';
+export { baseOfGrant, itemEntry, madeOn } from './items/catalog.ts';
 export {
   ammunitionOf,
   carriedBy,
   handsOf,
   possessionOf,
+  wieldedBonus,
   wieldedWeapons,
   type Hands,
   type Possession,

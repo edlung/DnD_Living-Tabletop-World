@@ -38,7 +38,20 @@ describe('the item catalog', () => {
       stackable: false,
       source: 'srd',
       untranslated: true,
+      rarity: null,
+      attunement: null,
+      base: null,
     });
+    // A magic item: its rarity, who attunes, what it may be made on, and its words.
+    expect(listed.items.find((item) => item.itemId === 'srd-berserker-axe')).toMatchObject({
+      rarity: 'rare',
+      attunement: '',
+      base: { kind: 'weapon', allowed: ['srd-battleaxe', 'srd-greataxe', 'srd-halberd'] },
+    });
+    const ring = (
+      await get(app, `${LIST}/srd-ring-of-protection`, TOKENS.dm)
+    ).json<ItemCatalogEntryResponse>();
+    expect(ring.magic?.text).toMatch(/\+1 bonus to Armor Class and saving throws/);
     const rope = (await get(app, `${LIST}/srd-rope`, TOKENS.dm)).json<ItemCatalogEntryResponse>();
     expect(rope.srd?.text).toMatch(/^As a Utilize action, you can tie a knot/);
     const own = (await get(app, `${LIST}/hemp-rope`, TOKENS.dm)).json<ItemCatalogEntryResponse>();
@@ -66,6 +79,19 @@ describe('the item catalog', () => {
       catalog: { source: 'srd', untranslated: true },
     });
     expect(ropes[0]?.catalog?.text).toMatch(/^As a Utilize action/);
+    // A +1 longsword: made on the longsword the DM names, and named so.
+    const sword = await post(
+      app,
+      `${LIST}/srd-weapon-plus-1/give`,
+      { requestId: randomUUID(), holderId: ELOWEN, baseCatalogId: 'srd-longsword' },
+      TOKENS.dm,
+    );
+    expect(sword.statusCode).toBe(200);
+    const swords = (await get(app, INVENTORY, TOKENS.dm))
+      .json<InventoryResponse>()
+      .items.filter((one) => one.catalog?.itemId === 'srd-weapon-plus-1');
+    expect(swords[0]).toMatchObject({ name: 'Longsword, +1', catalog: { weapon: 'longsword' } });
+    expect(swords[0]?.catalog?.text).toMatch(/bonus to attack rolls and damage rolls/);
     // Twenty arrows at once: they stack.
     const arrows = await post(
       app,
@@ -90,6 +116,18 @@ describe('the item catalog', () => {
     );
     expect(many.statusCode).toBe(422);
     expect(many.json()).toMatchObject({ status: 'rejected', code: 'INVALID_ITEM' });
+    // A +1 weapon on nothing named, or on armor, is refused.
+    for (const base of [undefined, 'srd-plate-armor'])
+      expect(
+        (
+          await post(
+            app,
+            `${LIST}/srd-weapon-plus-1/give`,
+            { requestId: randomUUID(), holderId: ELOWEN, ...(base ? { baseCatalogId: base } : {}) },
+            TOKENS.dm,
+          )
+        ).statusCode,
+      ).toBe(422);
     // A place carries nothing.
     const place = await post(
       app,

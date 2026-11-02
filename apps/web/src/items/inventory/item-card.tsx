@@ -1,5 +1,5 @@
 import type { EquipSlot, InventoryItem, InventoryWeapon } from '@ltw/contracts';
-import { readableLabel, useT, type Language } from '@ltw/ui';
+import { readableLabel, useT, type Language, type Translate } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import { diceWords, signed } from '../../character/words.ts';
@@ -13,6 +13,7 @@ import {
   formatWeight,
   kindDescription,
   kindName,
+  rarityName,
   slotName,
 } from '../item-text.ts';
 import { worthWords } from './purse.tsx';
@@ -58,6 +59,14 @@ export function ItemCard({
   const occupantOf = (option: EquipSlot) => worn.find((entry) => entry.slot === option) ?? null;
   const chosenSlot = slot ?? slots.find((option) => !occupantOf(option)) ?? slots[0] ?? null;
   const occupant = chosenSlot && item.slot === null ? occupantOf(chosenSlot) : null;
+  // A magic weapon's +1 counts in its numbers (docs/adr/0054-items-as-data.md §5).
+  const bonus = catalog?.magic?.bonus ?? null;
+  const attack = weapon
+    ? {
+        toHit: weapon.attackBonus + (bonus?.attack ?? 0),
+        damage: { ...weapon.damage, bonus: weapon.damage.bonus + (bonus?.damage ?? 0) },
+      }
+    : null;
   return (
     <article className="item-card" aria-labelledby={`${id}-name`}>
       <div className="item-card-art">
@@ -82,6 +91,7 @@ export function ItemCard({
             .filter(Boolean)
             .join(' · ')}
         </p>
+        {catalog?.magic && <MagicLine magic={catalog.magic} />}
         {/* An SRD entry's own words say more than its line (docs/adr/0054-items-as-data.md §4). */}
         {catalog?.text ? (
           <p className="item-srd-words" lang="en">
@@ -95,12 +105,12 @@ export function ItemCard({
             <>
               <div>
                 <dt>{t('To hit')}</dt>
-                <dd>{signed(weapon.attackBonus)}</dd>
+                <dd>{signed(attack?.toHit ?? weapon.attackBonus)}</dd>
               </div>
               <div>
                 <dt>{t('Damage')}</dt>
                 <dd>
-                  {diceWords(weapon.damage)} {t(readableLabel(weapon.damageType))}
+                  {diceWords(attack?.damage ?? weapon.damage)} {t(readableLabel(weapon.damageType))}
                 </dd>
               </div>
               <div>
@@ -143,6 +153,12 @@ export function ItemCard({
             <div>
               <dt>{t('Armor class')}</dt>
               <dd>{t('+{bonus} while held', { bonus: catalog.shieldBonus })}</dd>
+            </div>
+          )}
+          {bonus && (
+            <div>
+              <dt>{t('Magic')}</dt>
+              <dd>{bonusWords(t, bonus)}</dd>
             </div>
           )}
           {catalog?.effect && (
@@ -303,4 +319,35 @@ export function ItemCard({
       </div>
     </article>
   );
+}
+
+type Magic = NonNullable<NonNullable<InventoryItem['catalog']>['magic']>;
+
+/** A magic item's rarity and attunement (docs/adr/0054-items-as-data.md §5). */
+function MagicLine({ magic }: { readonly magic: Magic }) {
+  const t = useT();
+  return (
+    <p className="item-magic">
+      {rarityName(t, magic.rarity)}
+      {magic.attunement !== null && (
+        <>
+          {' · '}
+          {t('Needs attunement')}
+          {magic.attunement !== '' && <span lang="en"> ({magic.attunement})</span>}
+        </>
+      )}
+    </p>
+  );
+}
+
+/** "+1 to attack and damage", "+1 to Armor Class and saves". */
+function bonusWords(t: Translate, bonus: NonNullable<Magic['bonus']>): string {
+  const parts = [
+    bonus.attack !== undefined ? t('+{bonus} to attack and damage', { bonus: bonus.attack }) : null,
+    bonus.armorClass !== undefined
+      ? t('+{bonus} to Armor Class', { bonus: bonus.armorClass })
+      : null,
+    bonus.saves !== undefined ? t('+{bonus} to saving throws', { bonus: bonus.saves }) : null,
+  ];
+  return parts.filter(Boolean).join(', ');
 }

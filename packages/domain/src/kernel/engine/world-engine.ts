@@ -311,6 +311,10 @@ export class WorldEngine {
           ? 1
           : RESOLVED_ID_POOL;
     const ids = Array.from({ length: count }, () => this.#ids.next());
+    // A potion of healing rolls its dice (docs/adr/0054-items-as-data.md §5), where the engine
+    // has randomness to draw.
+    if (command.type === 'UseItem')
+      return { ids, d20: null, entropy: this.#entropy ? this.#entropyPool() : [] };
     const checked =
       command.type === 'InsightCheck' ||
       (command.type === 'ExamineEntity' && CHECK_METHODS.has(command.method));

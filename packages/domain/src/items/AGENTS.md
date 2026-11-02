@@ -2,15 +2,18 @@
 
 Who carries an item entity, whether it is worn, and what using it does. Authority: `docs/adr/0039-item-possession.md` (Stage 460). The catalog (data, validation) is `@ltw/contracts` `items/`; the rules here only apply it.
 
-| Concern                                               | File            |
-| ----------------------------------------------------- | --------------- |
-| `Possession`, carried/worn queries, armor class delta | `records.ts`    |
-| Event payloads and the `possession` undo restore      | `events.ts`     |
-| Fold and restore                                      | `evolve.ts`     |
-| `GrantItem` (DM/system) and the player commands       | `decide.ts`     |
-| Footprints (reads/writes) of the item events          | `footprints.ts` |
-| Structural invariants                                 | `integrity.ts`  |
-| Carrier-only inventory view                           | `view.ts`       |
+| Concern                                                | File            |
+| ------------------------------------------------------ | --------------- |
+| `Possession`, carried/worn queries, armor class delta  | `records.ts`    |
+| The catalog: Ravenford's and the SRD's, made on a base | `catalog.ts`    |
+| Event payloads and the `possession` undo restore       | `events.ts`     |
+| Fold and restore                                       | `evolve.ts`     |
+| `GrantItem` (DM/system) and its refusals               | `grant.ts`      |
+| The checks every item decision shares                  | `handling.ts`   |
+| The player commands                                    | `decide.ts`     |
+| Footprints (reads/writes) of the item events           | `footprints.ts` |
+| Structural invariants                                  | `integrity.ts`  |
+| Carrier-only inventory view                            | `view.ts`       |
 
 Rules:
 
@@ -19,3 +22,6 @@ Rules:
 - Player commands record premises (`premisesEvent`) and refuse only a combatant during an encounter (`COMBAT_ALREADY_ACTIVE`): someone outside a fight must not learn one runs (Gate 03, G03-H06).
 - Only the DM or a trusted system process may grant. Stacks move whole; weight is never enforced.
 - Catalog IDs are stable; never rename or reuse one after release.
+- Read an entry through `itemEntry` (an id) or `entryOf` (a possession): a magic weapon, armor,
+  shield or ammunition made on a base reads as the base with the magic's name and magic
+  (docs/adr/0054-items-as-data.md §5); never read a possession's catalog id alone.

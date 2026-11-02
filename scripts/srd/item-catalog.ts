@@ -102,6 +102,14 @@ export function catalogEntryOf(item: SrdEquipmentText): ItemEntry {
     case 'tack':
       return plain('gear');
     case 'gear':
+      // The Common one of the Potions of Healing (docs/adr/0054-items-as-data.md §5): 2d4 + 2.
+      if (item.itemId === 'potion-of-healing')
+        return {
+          ...plain('consumable'),
+          stackable: true,
+          effect: { kind: 'heal-dice', count: 2, sides: 4, bonus: 2 },
+          magic: { rarity: 'common', attunement: null, text: 'potions-of-healing' },
+        };
       if (CONSUMABLE.has(item.itemId))
         return { ...plain('consumable'), stackable: true, effect: { kind: 'narrative' } };
       return { ...plain('gear'), stackable: STACKED.has(item.itemId) };
