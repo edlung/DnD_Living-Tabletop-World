@@ -150,4 +150,6 @@ const ACTION_TITLES: Readonly<Record<CombatAction, string>> = {
   search: 'Search',
   study: 'Study',
   utilize: 'Utilize',
+  escape: 'Escape a grapple',
+  release: 'Let go',
 };

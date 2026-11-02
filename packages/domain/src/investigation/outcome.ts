@@ -100,7 +100,7 @@ function combatOutcome(
     case 'Attack':
     case 'MakeReadiedAttack': {
       const attack = attackOf(events);
-      if (!attack) return undefined;
+      if (!attack) return unarmedOf(events);
       // Its window opened: what comes of the roll waits for the answer (ADR 0046 §3).
       const waiting = events.some((event) => event.type === 'ReactionWindowOpened');
       return { kind: 'Attack', ...attack, ...(waiting ? { awaitingReaction: true as const } : {}) };
@@ -263,5 +263,25 @@ function attackOf(events: readonly KernelEvent[]) {
     critical: attack.payload.critical,
     damage: damage?.type === 'DamageApplied' ? damage.payload.amount : null,
     ...(mastery ? { mastery } : {}),
+  };
+}
+
+/** An Unarmed Strike's grapple or shove (docs/adr/0047-weapons.md §3): whether it resisted. */
+function unarmedOf(events: readonly KernelEvent[]): PlayerOutcome | undefined {
+  const save = events.find(
+    (event) =>
+      event.type === 'SavingThrowRolled' &&
+      (event.payload.purpose === 'grapple' || event.payload.purpose === 'shove'),
+  );
+  if (save?.type !== 'SavingThrowRolled') return undefined;
+  const effect = save.payload.purpose === 'grapple' ? 'grapple' : 'shove';
+  const prone = events.some(
+    (event) => event.type === 'ConditionApplied' && event.payload.cause === 'shove',
+  );
+  return {
+    kind: 'UnarmedStrike',
+    effect,
+    saved: save.payload.success,
+    ...(effect === 'shove' && !save.payload.success ? { shove: prone ? 'prone' : 'push' } : {}),
   };
 }

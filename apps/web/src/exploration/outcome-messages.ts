@@ -146,6 +146,17 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       const mastery = outcome.mastery ? masteryWords(t, outcome.mastery, outcome.damage) : null;
       return mastery ? `${roll} ${mastery}` : roll;
     }
+    case 'UnarmedStrike':
+      if (outcome.saved) {
+        return outcome.effect === 'grapple'
+          ? t('Grapple: it slips your grasp.')
+          : t('Shove: it stands its ground.');
+      }
+      return outcome.effect === 'grapple'
+        ? t('Grapple: it is Grappled.')
+        : outcome.shove === 'prone'
+          ? t('Shove: it falls Prone.')
+          : t('Shove: it is pushed 5 ft.');
     case 'CastSpell': {
       const spell = spellName(t, outcome.spellId);
       if (outcome.awaitingReaction) return t('{spell} is waiting for reactions.', { spell });

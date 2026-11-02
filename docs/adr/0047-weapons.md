@@ -57,20 +57,24 @@
      that target before the end of its next turn.
      Push's and Topple's choices are asked before the roll ("on a hit: push 10 ft, 5 ft, or not"),
      so the encounter never pauses for them.
-3. **Unarmed Strike** (SRD 5.2.1), for every creature, with one of three effects chosen with it:
+3. **Unarmed Strike** (SRD 5.2.1), for every character, with one of three effects chosen with it
+   (the turn tray asks, beside the object at hand of §6):
    - **Damage**: an attack roll with Strength + Proficiency Bonus; 1 + Strength modifier
      Bludgeoning (a monk's Martial Arts die waits for Stage 660).
-   - **Grapple**: no attack roll; the target makes a Strength or Dexterity save (the higher bonus,
-     as a creature would choose) against DC 8 + Strength modifier + Proficiency Bonus, or it is
-     Grappled by the attacker. Only against a target at most one size larger (sizes with 640f).
-     The grappled creature escapes with its action: Strength (Athletics) or Dexterity (Acrobatics)
-     against the same DC. The grapple ends if the grappler is Incapacitated, lets go, or the two are
-     no longer within 5 ft; a grappler moving drags the grappled creature, each foot costing an
-     extra foot.
-   - **Shove**: the same save and DC, or the target is pushed 5 ft away or knocked Prone (the
-     attacker's choice, made with the shove).
-     Each is one attack of the Attack action (Extra Attack counts them). A hand is freed as part of
-     the attack, as the rules let a weapon be stowed with an attack.
+   - **Grapple**: no attack roll; the target makes a Strength or Dexterity save (the better, as a
+     creature would choose) against DC 8 + Strength modifier + Proficiency Bonus, or it is
+     Grappled, its grappler named. Sizes come with 640f; until then any target may be held. The
+     grappled creature escapes with its action: Athletics or Acrobatics (its player's choice)
+     against the grappler's DC (a monster grappler's 8 + Strength + 2 until Stage 650's stat blocks).
+     Its grappler lets go at will, with no action. A grapple ends when its grappler is gone from
+     the fight, dead or Incapacitated, or more than 5 ft away: read as each turn starts and after a
+     shove. The grappler drags what it holds: each foot of its move costs another, and the first
+     creature it holds follows into the square it left last.
+   - **Shove**: the same save and DC, or the target is pushed 5 ft straight away (stopping as Push
+     does) or knocked Prone, the attacker's choice made with the shove.
+     Each is one attack of the Attack action (Extra Attack counts them); a grapple or a shove rolls no
+     attack, so Help and Vex wait for an attack roll. A hand is freed as part of the attack, as the
+     rules let a weapon be stowed with one.
 4. **Two weapons**: after the Attack action attacked with a Light weapon, an attack with another
    Light weapon — another kind, or a second of the same kind in the other hand — as a Bonus
    Action, once per turn (Nick: within the Attack action); its damage adds no ability modifier

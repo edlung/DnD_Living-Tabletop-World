@@ -18,6 +18,7 @@ import { revealed, withDetail } from './condition-details.ts';
 import { attackPlan, type AttackPlan } from './legality.ts';
 import { afterRoll, rollAgainst, specOf } from './reactions/attack-windows.ts';
 import { combatPremises, refused } from './refusal.ts';
+import { decideUnarmed } from './unarmed.ts';
 
 /**
  * `Attack` (docs/adr/0015-combat-engine.md §3): one attack of the Attack
@@ -164,6 +165,8 @@ export function decideAttack(
   command: AttackCommand,
   dice: Dice,
 ): Decision {
+  // An Unarmed Strike's grapple or shove rolls no attack (docs/adr/0047-weapons.md §3).
+  if (command.unarmed !== undefined) return decideUnarmed(context, command, dice);
   const { state } = context;
   const encounter = encounterOf(state);
   if (!encounter.ok) return encounter;

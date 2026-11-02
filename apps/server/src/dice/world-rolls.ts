@@ -74,6 +74,8 @@ function attackDamageSides(
       index < base ? monster.damage.sides : (extra?.sides ?? null),
     );
   }
+  // An object at hand rolls a d4 (docs/adr/0047-weapons.md §6).
+  if (attackId === 'improvised') return Array.from({ length: count }, () => 4);
   const weapon = (WEAPONS as Readonly<Record<string, (typeof WEAPONS)[WeaponId] | undefined>>)[
     attackId
   ];

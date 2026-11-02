@@ -30,6 +30,8 @@ export const CONTEXT_ACTION_IDS = [
    */
   'offhand_attack',
   'cleave_attack',
+  /** An Unarmed Strike: its damage, a grapple or a shove, or an object at hand (ADR 0047 §3, §6). */
+  'unarmed_strike',
   'enter_location',
   'fireball',
   'counterspell',
@@ -44,6 +46,8 @@ export const CONTEXT_ACTION_IDS = [
   'search',
   'study',
   'utilize',
+  'escape',
+  'release',
 ] as const;
 export type ContextActionId = (typeof CONTEXT_ACTION_IDS)[number];
 
@@ -89,6 +93,9 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'HANDS_FULL',
   'LOADING',
   'NO_EXTRA_ATTACK',
+  'ALREADY_GRAPPLED',
+  'NOT_GRAPPLED',
+  'NOT_GRAPPLING',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;

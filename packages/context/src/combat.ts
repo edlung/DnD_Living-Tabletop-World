@@ -16,6 +16,7 @@ import {
   counterspellPlan,
   fireballArea,
   type Refusal,
+  UNARMED_STRIKE,
 } from '@ltw/combat';
 import {
   combatantOf,
@@ -98,6 +99,23 @@ export function combatAttackVerdict(
     ...(hints.length > 0 ? { hints } : {}),
     ...(plan.weapon.mastery !== null ? { mastery: plan.weapon.mastery } : {}),
   };
+}
+
+/** An Unarmed Strike at the target (docs/adr/0047-weapons.md §3): its reach and the turn's attacks. */
+export function unarmedVerdict(
+  frame: CombatFrame,
+  inputs: ContextInputs,
+  targetId: string,
+): Verdict {
+  if (paused(inputs)) return PAUSED;
+  const plan = attackPlan(
+    inputs.state,
+    frame.encounter,
+    frame.actor.entityId,
+    UNARMED_STRIKE,
+    targetId,
+  );
+  return plan.legal ? { legal: true } : fromRefusal(plan);
 }
 
 /**

@@ -83,6 +83,7 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   // The weapons' journeys (docs/adr/0047-weapons.md): Raider 1 beside Elowen.
   weapons: 'placed',
   offhand: 'placed',
+  grapple: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -98,6 +99,7 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedBesideStart(engine, campaigns.shield);
   await seedBesideStart(engine, campaigns.weapons);
   await seedBesideStart(engine, campaigns.offhand);
+  await seedBesideStart(engine, campaigns.grapple);
 }
 
 /**

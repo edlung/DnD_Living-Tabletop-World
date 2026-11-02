@@ -14,6 +14,7 @@ import { rollDeathSave } from '@ltw/rules';
 
 import { encounterOf, isAlive, onTurn } from './battlefield.ts';
 import { durationsAt, FightWork, savesAtEndOfTurn } from './condition-details.ts';
+import { grapplesSweep } from './unarmed.ts';
 import { combatPremises } from './refusal.ts';
 import {
   hitPoints,
@@ -158,6 +159,9 @@ function turnStart(
     delete unsapped.sappedBy;
     events.push(work.record(unsapped));
   }
+
+  // A grapple its grappler can no longer hold ends (docs/adr/0047-weapons.md §3).
+  events.push(...grapplesSweep(work, work.state));
 
   // What lasts until the start of this combatant's turn ends (ADR 0045 §2).
   events.push(...durationsAt(work, combatant.entityId, 'start'));

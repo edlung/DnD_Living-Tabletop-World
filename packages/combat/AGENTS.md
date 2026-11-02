@@ -16,6 +16,7 @@ Decides encounter commands for the World Engine through the domain's `CombatPort
 | A weapon at a distance: reach, thrown, grip, Heavy, hands, ammunition (ADR 0047)     | `src/weapon-view.ts`              |
 | `Attack` resolution (crits, Hunter's Mark, Slow, goblin die, ammunition spent)       | `src/attack.ts`                   |
 | The masteries on a hit: Sap, Vex, Topple, Push, Cleave's offer (ADR 0047 §2)         | `src/masteries.ts`                |
+| Grapple and shove, letting go, dragging, a grapple read as turns start (ADR 0047 §3) | `src/unarmed.ts`                  |
 | An attack's windows, its hit, Slow, Graze on a miss (ADR 0046 §3–4)                  | `src/reactions/attack-windows.ts` |
 | Spell legality: character slice spells and stat-block spells                         | `src/spell-legality.ts`           |
 | Character spell resolution (Fireball, Healing Word, Detect Magic)                    | `src/spells.ts`                   |

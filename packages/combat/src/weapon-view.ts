@@ -24,6 +24,12 @@ export interface AttackDamage {
 export const UNARMED_STRIKE = 'unarmed-strike';
 
 /**
+ * An object at hand wielded as a weapon (SRD 5.2.1; docs/adr/0047-weapons.md §6): no Proficiency
+ * Bonus, 1d4 Bludgeoning, thrown 20/60 at a target beyond 5 ft.
+ */
+export const IMPROVISED = 'improvised';
+
+/**
  * An attack as its weapon makes it at a distance (docs/adr/0047-weapons.md §1, §7): a melee weapon
  * within its reach (10 ft with Reach), thrown beyond it when it has Thrown; a Versatile weapon in two
  * hands while nothing else is held; a Two-Handed one refused while a shield is; a Heavy one too
@@ -83,6 +89,21 @@ export function weaponOf(
       bonus: strength + proficiencyBonus(totalLevel(v.sheet)),
       damage: { count: 0, sides: 4, bonus: 1 + strength, type: 'bludgeoning' },
       abilityModifier: strength,
+    };
+  }
+  if (v.kind === 'character' && attackId === IMPROVISED) {
+    const strength = abilityModifier(v.sheet.abilities.str);
+    const thrown = distanceFt > 5;
+    return {
+      ...plain,
+      melee: !thrown,
+      reachFt: 5,
+      normalRangeFt: thrown ? 20 : 0,
+      longRangeFt: thrown ? 60 : 0,
+      bonus: strength,
+      damage: { count: 1, sides: 4, bonus: strength, type: 'bludgeoning' },
+      abilityModifier: strength,
+      thrown,
     };
   }
   if (v.kind === 'character') {

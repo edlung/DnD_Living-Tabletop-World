@@ -289,6 +289,9 @@ const ACTION_TEXT: Readonly<
   search: 'Search',
   study: 'Study',
   utilize: 'Utilize',
+  unarmed_strike: 'Unarmed Strike',
+  escape: 'Escape a grapple',
+  release: 'Let go',
 };
 
 /** Longest evidence wording on a button; the full statement is in the journal and the picker. */

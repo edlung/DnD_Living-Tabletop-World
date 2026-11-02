@@ -16,5 +16,6 @@
   "opportunityRu": "ui-combat-opportunity-ru",
   "shield": "ui-combat-shield",
   "weapons": "ui-combat-weapons",
-  "offhand": "ui-combat-offhand"
+  "offhand": "ui-combat-offhand",
+  "grapple": "ui-combat-grapple"
 }

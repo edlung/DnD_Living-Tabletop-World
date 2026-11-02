@@ -49,6 +49,7 @@ export const COMBAT_ACTIONS: readonly ContextActionId[] = [
   'cleave_attack',
   'offhand_attack',
   'weapon_attack',
+  'unarmed_strike',
   'fireball',
   'counterspell',
   'healing_word',
@@ -67,6 +68,8 @@ export const TURN_ACTIONS: readonly ContextActionId[] = [
   'help',
   'ready',
   'influence',
+  'escape',
+  'release',
 ];
 
 /**
@@ -87,6 +90,10 @@ const ACTION_EFFECTS: Partial<Record<ContextActionId, string>> = {
   help: 'An ally’s next attack on this foe before your next turn has Advantage.',
   ready: 'Hold an attack for a moment you name; when it comes, you make it with your Reaction.',
   influence: 'A Charisma or Animal Handling check to sway this creature.',
+  escape: 'Athletics or Acrobatics against the grapple’s DC: on a success you are free.',
+  release: 'Let go of the creature you hold. It takes no action.',
+  unarmed_strike:
+    'A punch, a grapple or a shove, or a blow with an object at hand: you choose before it lands.',
 };
 
 /** What an action beside Attack and Magic does, in the viewer's words; null for any other option. */
@@ -107,6 +114,9 @@ const LABELS: Partial<Record<ContextActionId, (t: Translate, target: string) => 
   help: (t, target) => t('Help an ally against {target}', { target }),
   ready: (t, target) => t('Ready an action against {target}', { target }),
   influence: (t, target) => t('Influence {target}', { target }),
+  unarmed_strike: (t, target) => t('Unarmed Strike at {target}', { target }),
+  escape: (t) => t('Escape a grapple'),
+  release: (t) => t('Let go'),
   fireball: (t, target) => t('Cast Fireball at {target}', { target }),
   counterspell: (t) => t('Cast Counterspell'),
   healing_word: (t, target) => t('Cast Healing Word on {target}', { target }),
@@ -135,6 +145,9 @@ const SHORT: Partial<Record<ContextActionId, string>> = {
   help: 'Help',
   ready: 'Ready an action',
   influence: 'Influence',
+  unarmed_strike: 'Unarmed Strike',
+  escape: 'Escape a grapple',
+  release: 'Let go',
 };
 
 /** The tray's short words for an option (a translation key), contained in its full label. */

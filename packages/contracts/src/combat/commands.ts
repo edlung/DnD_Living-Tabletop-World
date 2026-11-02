@@ -128,6 +128,12 @@ export const attackCommandSchema = z
      */
     push: z.union([z.literal(0), z.literal(5), z.literal(10)]).optional(),
     topple: z.boolean().optional(),
+    /**
+     * An Unarmed Strike's effect (ADR 0047 §3): a grapple or a shove instead of its damage, and the
+     * shove's choice — 5 ft away or knocked Prone (absent: away).
+     */
+    unarmed: z.enum(['grapple', 'shove']).optional(),
+    shove: z.enum(['push', 'prone']).optional(),
   })
   .strict();
 
@@ -172,6 +178,9 @@ export const COMBAT_ACTIONS = [
   'search',
   'study',
   'utilize',
+  /** A grapple's (docs/adr/0047-weapons.md §3): breaking free with the action, letting go freely. */
+  'escape',
+  'release',
 ] as const;
 export type CombatAction = (typeof COMBAT_ACTIONS)[number];
 
@@ -180,6 +189,7 @@ export const ACTION_SKILLS: Readonly<Partial<Record<CombatAction, readonly Skill
   search: ['perception', 'insight', 'medicine', 'survival'],
   study: ['arcana', 'history', 'investigation', 'nature', 'religion'],
   influence: ['persuasion', 'deception', 'intimidation', 'performance', 'animal-handling'],
+  escape: ['athletics', 'acrobatics'],
 };
 
 export const takeActionCommandSchema = z

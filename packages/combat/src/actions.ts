@@ -32,11 +32,13 @@ import {
   turnStateOf,
 } from './battlefield.ts';
 import { withDetail } from './condition-details.ts';
+import { decideRelease, escapeDcOf, heldBy } from './unarmed.ts';
 import type { Refusal } from './legality.ts';
 import { combatPremises, refused } from './refusal.ts';
 import {
   conditionsOf,
   exhaustionOf,
+  has,
   incapacitated,
   speedOf,
   vitalsEvent,
@@ -86,8 +88,15 @@ export function actionPlan(
   if (incapacitated(vitals)) return refuse('INCAPACITATED');
   const turn = turnStateOf(encounter, actor);
   if (!turn.ownTurn) return refuse('NOT_YOUR_TURN');
-  if (turn.actionUsed) return refuse('NO_ACTION');
   const { action } = request;
+  // Letting go takes no action (docs/adr/0047-weapons.md §3).
+  if (action === 'release') {
+    return heldBy(state, encounter, actor.entityId).length > 0
+      ? { legal: true, actor, vitals, skill: null }
+      : refuse('NOT_GRAPPLING');
+  }
+  if (turn.actionUsed) return refuse('NO_ACTION');
+  if (action === 'escape' && !has(vitals, 'grappled')) return refuse('NOT_GRAPPLED');
   const skills = ACTION_SKILLS[action];
   if (skills) {
     if (request.skill === undefined || !skills.includes(request.skill)) {
@@ -118,7 +127,7 @@ export function actionPlan(
 }
 
 /** A check of the creature's skill, with its conditions' tilt and Exhaustion (ADR 0045 §1). */
-function rollSkill(dice: Dice, vitals: Vitals, skill: Skill) {
+function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC) {
   const effects = checkEffects(conditionsOf(vitals), exhaustionOf(vitals));
   const base =
     vitals.kind === 'character'
@@ -127,7 +136,7 @@ function rollSkill(dice: Dice, vitals: Vitals, skill: Skill) {
   const modifier = base + effects.penalty;
   const roll = d20Test(dice, {
     modifier,
-    target: HIDE_DC,
+    target: dc,
     advantage: effects.advantage,
     disadvantage: effects.disadvantage,
   });
@@ -146,6 +155,7 @@ export function decideTakeAction(
   if (!current.ok) return current;
   const plan = actionPlan(state, encounter.value, current.value, command);
   if (!plan.legal) return refused(plan);
+  if (command.action === 'release') return decideRelease(context, command);
   const { actor, vitals, skill } = plan;
   const turn = { ...actor.turn, actionUsed: true };
   let record: CombatantRecord;
@@ -180,8 +190,11 @@ export function decideTakeAction(
       record = { ...actor, turn };
   }
   const events: DraftEvent[] = [combatPremises(state, command.combatantId)];
-  const check = skill === null ? null : rollSkill(dice, vitals, skill);
+  // Escape: Athletics or Acrobatics against the grapple's DC, when its grappler is known.
+  const escapeDc = command.action === 'escape' ? escapeDcOf(state, actor) : null;
+  const check = skill === null ? null : rollSkill(dice, vitals, skill, escapeDc ?? HIDE_DC);
   const hidden = command.action === 'hide' && check !== null && check.success;
+  const escaped = escapeDc !== null && check !== null && check.success;
   events.push({
     type: 'ActionTaken',
     payload: {
@@ -196,7 +209,7 @@ export function decideTakeAction(
               rolls: [...check.rolls],
               modifier: check.modifier,
               total: check.total,
-              ...(command.action === 'hide' ? { success: check.success } : {}),
+              ...(command.action === 'hide' || escapeDc !== null ? { success: check.success } : {}),
             },
           }),
     },
@@ -216,6 +229,22 @@ export function decideTakeAction(
       vitalsEvent(withConditions(vitals, ['invisible'], [])),
     );
     record = withDetail(record, 'invisible', { hidden: true });
+  }
+  if (escaped) {
+    // Free of the grapple (docs/adr/0047-weapons.md §3).
+    events.push(
+      {
+        type: 'ConditionApplied',
+        payload: {
+          targetId: command.combatantId,
+          condition: 'grappled',
+          applied: false,
+          cause: 'escaped',
+        },
+      },
+      vitalsEvent(withConditions(vitals, [], ['grappled'])),
+    );
+    record = withDetail(record, 'grappled', null);
   }
   events.push(combatantEvent(record));
   return accept(...events);

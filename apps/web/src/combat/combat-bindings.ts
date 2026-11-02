@@ -23,6 +23,7 @@ export const CHOSEN_ACTIONS: ReadonlySet<string> = new Set([
   'study',
   'influence',
   'ready',
+  'escape',
 ]);
 
 /** Spell actions the Context Engine lists that name a single target combatant. */
@@ -109,7 +110,16 @@ export function combatCommandFor(
     case 'disengage':
     case 'hide':
     case 'utilize':
+    case 'release':
       return { type: 'TakeAction', combatantId: actorId, action: action.id };
+    // A strike without a weapon: its punch, which its question turns into another way (ADR 0047 §3).
+    case 'unarmed_strike':
+      return {
+        type: 'Attack',
+        combatantId: actorId,
+        attackId: 'unarmed-strike',
+        targetId: target.entityId,
+      };
     case 'help':
       return {
         type: 'TakeAction',

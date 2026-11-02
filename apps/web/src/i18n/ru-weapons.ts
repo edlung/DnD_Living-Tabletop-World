@@ -84,6 +84,36 @@ registerRussian({
   'Attacked {target} with the other hand': 'Атаковал второй рукой: {target}',
   'Cleaved through to {target}': 'Рассёк и достал: {target}',
 
+  // Without a weapon: a punch, a grapple, a shove, an object at hand (ADR 0047 §3, §6)
+  'Without a weapon': 'Без оружия',
+  'A grapple or a shove: it resists with Strength or Dexterity against your DC.':
+    'Захват или толчок: цель сопротивляется Силой или Ловкостью против вашей Сл.',
+  'Punch: 1 + Strength': 'Удар: 1 + Сила',
+  Grapple: 'Захват',
+  'Shove 5 ft away': 'Оттолкнуть на 5 фт',
+  'Shove it Prone': 'Сбить с ног',
+  'Strike with an object at hand': 'Ударить подручным предметом',
+  Improvised: 'Подручный предмет',
+  'Unarmed Strike at {target}': 'Безоружный удар: {target}',
+  'A punch, a grapple or a shove, or a blow with an object at hand: you choose before it lands.':
+    'Удар, захват или толчок — или удар подручным предметом: вы выбираете до удара.',
+  'Escape a grapple': 'Вырваться из захвата',
+  'Let go': 'Отпустить',
+  'Athletics or Acrobatics against the grapple’s DC: on a success you are free.':
+    'Атлетика или Акробатика против Сл захвата: при успехе вы свободны.',
+  'Let go of the creature you hold. It takes no action.':
+    'Отпустить существо, которое вы держите. Это не тратит действие.',
+  'Grapple: it slips your grasp.': 'Захват: цель вывернулась.',
+  'Shove: it stands its ground.': 'Толчок: цель устояла.',
+  'Grapple: it is Grappled.': 'Захват: цель схвачена.',
+  'Shove: it falls Prone.': 'Толчок: цель сбита с ног.',
+  'Shove: it is pushed 5 ft.': 'Толчок: цель отброшена на 5 фт.',
+  'already grappled': 'уже в вашем захвате',
+  'not grappled': 'вас никто не держит',
+  'not grappling': 'вы никого не держите',
+  'Tried to grapple {target}': 'Пытался схватить: {target}',
+  'Tried to shove {target}': 'Пытался толкнуть: {target}',
+
   // What a mastery did, after an attack's words
   'Sap: its next attack has Disadvantage.': 'Ослабление: у него помеха на следующую атаку.',
   'Vex: your next attack against it has Advantage.':

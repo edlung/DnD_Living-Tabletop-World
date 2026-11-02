@@ -6,6 +6,7 @@ import '../i18n/ru.ts';
 import '../i18n/ru-conditions.ts';
 import '../i18n/ru-play.ts';
 import '../i18n/ru-visual.ts';
+import '../i18n/ru-weapons.ts';
 import { CATALOG_NAMES, GLYPH_NAMES } from '../visual/ui-kit-names.ts';
 import {
   actionEffect,
@@ -26,8 +27,13 @@ const glyphs = new Set<string>(GLYPH_NAMES);
 describe('combat option pictures and words', () => {
   it('shows each battlefield option with the catalog art of the entry its command uses', () => {
     // A weapon attack's picture is its weapon's (`optionArtUrl`), checked below; so is an extra
-    // attack's (docs/adr/0047-weapons.md).
-    const weaponOptions = new Set(['weapon_attack', 'offhand_attack', 'cleave_attack']);
+    // attack's (docs/adr/0047-weapons.md); a strike without a weapon shows its glyph.
+    const weaponOptions = new Set([
+      'weapon_attack',
+      'offhand_attack',
+      'cleave_attack',
+      'unarmed_strike',
+    ]);
     for (const action of COMBAT_ACTIONS.filter((id) => !weaponOptions.has(id))) {
       const art = catalogArtOf(action);
       expect(art, action).not.toBeNull();

@@ -18,7 +18,12 @@ import { useCombatantLabels } from '../labels.ts';
 import type { PlannedPath } from '../movement.ts';
 import { optionNotes, warnsOfAlly } from '../target-options.tsx';
 import { ActionChoice } from './action-choice.tsx';
-import { AttackChoice } from './attack-choice.tsx';
+import {
+  AttackChoice,
+  masteryQuestion,
+  unarmedQuestion,
+  type AttackQuestion,
+} from './attack-choice.tsx';
 
 /** What the tray offers: the chosen square's move, or the chosen combatant's listed options. */
 export type TrayChoice =
@@ -63,10 +68,11 @@ export function TurnTray({
   const tray = useReservedHeight<HTMLElement>('--tray-h', true);
   // An action that asks more first (ADR 0045 §5), for the creature now chosen.
   const [choosing, setChoosing] = useState<CombatAction | null>(null);
-  // An attack whose mastery asks first (docs/adr/0047-weapons.md §2): Push's feet, Topple.
+  // An attack that asks first (docs/adr/0047-weapons.md): Push's feet, Topple, a strike without
+  // a weapon's way.
   const [aiming, setAiming] = useState<{
     readonly key: string;
-    readonly mastery: 'push' | 'topple';
+    readonly question: AttackQuestion;
     readonly command: Extract<CombatUiCommand, { type: 'Attack' }>;
   } | null>(null);
   const chosen = choice.kind === 'combatant' ? choice.target.entity.entityId : choice.kind;
@@ -139,12 +145,16 @@ export function TurnTray({
             const notes = optionNotes(t, action);
             const asks = action.legal && CHOSEN_ACTIONS.has(action.id);
             const key = `${action.id}:${action.weapon ?? ''}:${String(index)}`;
-            // Push and Topple ask their choice first (docs/adr/0047-weapons.md §2).
+            // Push and Topple ask their choice first, and a strike without a weapon its way.
+            const question =
+              action.id === 'unarmed_strike'
+                ? unarmedQuestion(t)
+                : action.mastery === 'push' || action.mastery === 'topple'
+                  ? masteryQuestion(t, action.mastery)
+                  : null;
             const aim =
-              action.legal &&
-              command?.type === 'Attack' &&
-              (action.mastery === 'push' || action.mastery === 'topple')
-                ? { key, mastery: action.mastery, command }
+              action.legal && command?.type === 'Attack' && question !== null
+                ? { key, question, command }
                 : null;
             return (
               <button
@@ -197,7 +207,7 @@ export function TurnTray({
       </div>
       {aiming !== null && (
         <AttackChoice
-          mastery={aiming.mastery}
+          question={aiming.question}
           command={aiming.command}
           locked={locked}
           onRun={(intent) => {

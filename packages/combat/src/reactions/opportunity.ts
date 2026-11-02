@@ -107,6 +107,8 @@ export function firstProvocation(
   path: readonly Square[],
   /** The first step was already offered (a move going on after its window): only later ones ask. */
   offered = false,
+  /** Creatures the mover drags along (docs/adr/0047-weapons.md §3): they never fall behind. */
+  along: ReadonlySet<string> = new Set(),
 ): Provocation | null {
   if (mover.turn.disengaged === true) return null;
   let from: Square = mover.position;
@@ -119,6 +121,7 @@ export function firstProvocation(
     const ineligible: { entityId: string; reason: string }[] = [];
     for (const other of encounter.combatants) {
       if (other.entityId === mover.entityId || !hostileSides(other.side, mover.side)) continue;
+      if (along.has(other.entityId)) continue;
       const vitals = vitalsOf(state, other.entityId);
       if (!vitals || !isAlive(state, other.entityId)) continue;
       const reach = reachOf(meleeAttacks(state, vitals));

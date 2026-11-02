@@ -58,7 +58,11 @@ export type IllegalReason =
   | 'NO_AMMUNITION'
   | 'HANDS_FULL'
   | 'LOADING'
-  | 'NO_EXTRA_ATTACK';
+  | 'NO_EXTRA_ATTACK'
+  /** A grapple's (ADR 0047 §3): it holds the target already; nothing holds it; it holds no one. */
+  | 'ALREADY_GRAPPLED'
+  | 'NOT_GRAPPLED'
+  | 'NOT_GRAPPLING';
 
 export interface Illegal {
   readonly legal: false;

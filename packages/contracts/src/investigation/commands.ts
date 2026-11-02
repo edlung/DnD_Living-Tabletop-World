@@ -186,6 +186,13 @@ export type PlayerOutcome =
       /** The spell is suspended in a reaction window (docs/adr/0016-reaction-engine.md). */
       readonly awaitingReaction?: true;
     }
+  /** An Unarmed Strike's grapple or shove (docs/adr/0047-weapons.md §3): whether it resisted. */
+  | {
+      readonly kind: 'UnarmedStrike';
+      readonly effect: 'grapple' | 'shove';
+      readonly saved: boolean;
+      readonly shove?: 'push' | 'prone';
+    }
   | { readonly kind: 'EndTurn'; readonly nextCombatantId: string; readonly round: number }
   | {
       readonly kind: 'UseReaction';

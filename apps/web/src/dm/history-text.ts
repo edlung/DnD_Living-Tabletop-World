@@ -119,6 +119,8 @@ const ACTION_WORDS: Readonly<Record<CombatAction, string>> = {
   search: 'Search',
   study: 'Study',
   utilize: 'Utilize',
+  escape: 'Escape a grapple',
+  release: 'Let go',
 };
 
 /** What the DM did for the character, in plain words. */
@@ -145,6 +147,11 @@ export function describePlayerAction(
       return t('Ended the turn');
     case 'Attack':
       // The extra attacks (docs/adr/0047-weapons.md §2, §4) say which they were.
+      if (command.unarmed !== undefined) {
+        return command.unarmed === 'grapple'
+          ? t('Tried to grapple {target}', { target: name(command.targetId) })
+          : t('Tried to shove {target}', { target: name(command.targetId) });
+      }
       return command.extra === 'offhand'
         ? t('Attacked {target} with the other hand', { target: name(command.targetId) })
         : command.extra === 'cleave'

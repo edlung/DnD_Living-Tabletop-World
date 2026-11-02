@@ -1,50 +1,90 @@
 import type { WeaponMastery } from '@ltw/contracts';
-import { useT } from '@ltw/ui';
+import { useT, type Translate } from '@ltw/ui';
 import { useId } from 'react';
 
 import type { ExplorationIntent } from '../../exploration/use-action.ts';
 import type { CombatUiCommand } from '../combat-bindings.ts';
 import { masteryEffect } from '../weapon-words.ts';
 
+type AttackCommand = Extract<CombatUiCommand, { type: 'Attack' }>;
+
+/** One way to make the attack: its words and what it changes of the command. */
+export interface AttackOption {
+  readonly label: string;
+  readonly change: Partial<AttackCommand>;
+}
+
+/** What an attack asks before it is made: its title, a line of what it does, its ways. */
+export interface AttackQuestion {
+  readonly title: string;
+  readonly note: string;
+  readonly options: readonly AttackOption[];
+}
+
+/** Push's feet or Topple's try, asked before the roll (docs/adr/0047-weapons.md §2). */
+export function masteryQuestion(
+  t: Translate,
+  mastery: Extract<WeaponMastery, 'push' | 'topple'>,
+): AttackQuestion {
+  return {
+    title: t('On a hit'),
+    note: masteryEffect(t, mastery),
+    options:
+      mastery === 'push'
+        ? [
+            { label: t('Push 10 ft'), change: { push: 10 } },
+            { label: t('Push 5 ft'), change: { push: 5 } },
+            { label: t('Do not push'), change: { push: 0 } },
+          ]
+        : [
+            { label: t('Try to topple'), change: { topple: true } },
+            { label: t('Do not topple'), change: { topple: false } },
+          ],
+  };
+}
+
+/** What a strike without a weapon does (docs/adr/0047-weapons.md §3, §6). */
+export function unarmedQuestion(t: Translate): AttackQuestion {
+  return {
+    title: t('Without a weapon'),
+    note: t('A grapple or a shove: it resists with Strength or Dexterity against your DC.'),
+    options: [
+      { label: t('Punch: 1 + Strength'), change: {} },
+      { label: t('Grapple'), change: { unarmed: 'grapple' } },
+      { label: t('Shove 5 ft away'), change: { unarmed: 'shove', shove: 'push' } },
+      { label: t('Shove it Prone'), change: { unarmed: 'shove', shove: 'prone' } },
+      { label: t('Strike with an object at hand'), change: { attackId: 'improvised' } },
+    ],
+  };
+}
+
 /**
- * A mastery's choice before the attack (docs/adr/0047-weapons.md §2): how far Push moves the
- * creature it hits, or whether Topple tries to knock it down. The attack goes with the choice;
- * the World Engine rolls everything. The full use comes first.
+ * An attack's question in the turn tray: the attack goes with the way chosen, the first of them
+ * the full one; the World Engine rolls everything.
  */
 export function AttackChoice({
-  mastery,
+  question,
   command,
   locked,
   onRun,
   onCancel,
 }: {
-  readonly mastery: Extract<WeaponMastery, 'push' | 'topple'>;
-  readonly command: Extract<CombatUiCommand, { type: 'Attack' }>;
+  readonly question: AttackQuestion;
+  readonly command: AttackCommand;
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onCancel: () => void;
 }) {
   const t = useT();
   const ids = useId();
-  const options =
-    mastery === 'push'
-      ? [
-          { label: t('Push 10 ft'), change: { push: 10 as const } },
-          { label: t('Push 5 ft'), change: { push: 5 as const } },
-          { label: t('Do not push'), change: { push: 0 as const } },
-        ]
-      : [
-          { label: t('Try to topple'), change: { topple: true } },
-          { label: t('Do not topple'), change: { topple: false } },
-        ];
   return (
     <div className="action-choice" role="group" aria-labelledby={`${ids}-title`}>
       <p id={`${ids}-title`} className="action-choice-title">
-        {t('On a hit')}
+        {question.title}
       </p>
-      <small className="action-choice-note">{masteryEffect(t, mastery)}</small>
+      <small className="action-choice-note">{question.note}</small>
       <div className="action-row">
-        {options.map((option, index) => (
+        {question.options.map((option, index) => (
           <button
             key={option.label}
             type="button"

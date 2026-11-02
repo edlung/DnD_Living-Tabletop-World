@@ -16,6 +16,7 @@ import { WEAPONS } from '@ltw/rules';
 
 import {
   combatAttackVerdict,
+  unarmedVerdict,
   combatFrame,
   combatSpellVerdict,
   counterspellVerdict,
@@ -150,6 +151,22 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
         'utilize',
       ] as const)
         add(own, 'present-alive', () => combatActionVerdict(frame, inputs, own), 'low');
+      // A grapple's own actions while one holds (docs/adr/0047-weapons.md §3): breaking free,
+      // letting go.
+      const id = inputs.actor.entityId;
+      const conditions =
+        inputs.state.characterSheets.get(id)?.conditions ??
+        inputs.state.statBlocks.get(id)?.conditions ??
+        [];
+      if (conditions.includes('grappled')) {
+        add('escape', 'present-alive', () => combatActionVerdict(frame, inputs, 'escape'), 'high');
+      }
+      const holds = frame.encounter.combatants.some((c) =>
+        c.conditionDetails?.some((d) => d.condition === 'grappled' && d.sourceId === id),
+      );
+      if (holds) {
+        add('release', 'present-alive', () => combatActionVerdict(frame, inputs, 'release'), 'low');
+      }
     }
     if (frame && !self) {
       for (const at of ['help', 'ready', 'influence'] as const)
@@ -273,6 +290,15 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
           ]
         : [];
     actions.splice(after, 0, ...cleave, ...offhand, ...strikes);
+    // Without a weapon, last, as it is seldom first: a punch, a grapple, a shove, or an object at
+    // hand (ADR 0047 §3, §6).
+    actions.push(
+      toAction(
+        'unarmed_strike',
+        judge('present-alive', () => unarmedVerdict(frame, inputs, target.entityId)),
+        'low',
+      ),
+    );
   }
   // Stable: equal relevance keeps catalog order.
   return actions.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);

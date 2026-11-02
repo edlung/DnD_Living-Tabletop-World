@@ -28,6 +28,7 @@ import { sourceOf } from './condition-details.ts';
 import type { Refusal } from './legality.ts';
 import { firstProvocation } from './reactions/opportunity.ts';
 import { refused, combatPremises } from './refusal.ts';
+import { dragged, heldBy } from './unarmed.ts';
 import {
   has,
   incapacitated,
@@ -93,7 +94,9 @@ export function movePlan(
   if (!cost.valid) return { legal: false, reason: 'INVALID_PATH' };
   const speed = speedOf(vitals);
   const standUpFt = has(vitals, 'prone') ? Math.floor(speed / 10) * 5 : 0;
-  const usedFt = mover.turn.movementUsedFt + standUpFt + cost.costFt;
+  // Dragging a creature it grapples, each foot costs another (docs/adr/0047-weapons.md §3).
+  const drag = heldBy(state, encounter, mover.entityId).length > 0 ? 2 : 1;
+  const usedFt = mover.turn.movementUsedFt + standUpFt + cost.costFt * drag;
   // Dash adds the Speed once more this turn (docs/adr/0045-conditions-and-actions.md §5).
   if (usedFt > speed + (mover.turn.dashFt ?? 0))
     return { legal: false, reason: 'NOT_ENOUGH_MOVEMENT' };
@@ -146,7 +149,8 @@ function walk(
       vitalsEvent(withConditions(whole.vitals, [], ['prone'])),
     );
   }
-  const stop = firstProvocation(state, encounter, mover, path, offered);
+  const along = new Set(heldBy(state, encounter, mover.entityId).map((c) => c.entityId));
+  const stop = firstProvocation(state, encounter, mover, path, offered, along);
   const walked = stop === null ? path : path.slice(0, stop.walked);
   let usedFt = mover.turn.movementUsedFt + whole.standUpFt;
   if (walked.length > 0) {
@@ -160,6 +164,8 @@ function walk(
       ...withTurn(mover, { ...mover.turn, movementUsedFt: usedFt }),
       position: { ...at },
     }),
+    // The creature it grapples comes along behind it.
+    ...dragged(state, encounter, mover.entityId, [mover.position, ...walked]),
   );
   if (stop === null) return events;
   const windowId = ids[REACTION_WINDOW_ID_INDEX];

@@ -93,3 +93,26 @@ test('after the scimitar, the other hand’s shortsword follows with the Bonus A
   await expect(player.getByRole('status').filter({ hasText: 'Hit: 4 damage' })).toBeVisible();
   await expect(tray.getByRole('button', { name: /^Other hand:/ })).toHaveCount(0);
 });
+
+test('without a weapon she grapples the raider, then lets it go', async ({ browser }) => {
+  const campaign = COMBAT_CAMPAIGNS.grapple;
+  const player = await browser.newPage();
+  await enterCombat(player, campaign);
+  await armElowen(player, campaign, ['longsword']);
+
+  await clickWhereShown(player, square(player, 3, 6));
+  const tray = turnTray(player);
+  await tray.getByRole('button', { name: /^Unarmed Strike at/ }).click();
+  const choice = tray.getByRole('group', { name: 'Without a weapon' });
+  await expectAccessible(player, 'the unarmed choice');
+  // The raider's Dexterity save, 11 + 2, falls short of her DC 14.
+  expectAccepted(await submit(player, choice.getByRole('button', { name: 'Grapple' })));
+  await expect(
+    player.getByRole('status').filter({ hasText: 'Grapple: it is Grappled.' }),
+  ).toBeVisible();
+
+  await clickWhereShown(player, square(player, 2, 6));
+  expectAccepted(await submit(player, tray.getByRole('button', { name: 'Let go' })));
+  await clickWhereShown(player, square(player, 3, 6));
+  await expect(player.getByRole('complementary').getByText('Grappled')).toHaveCount(0);
+});
