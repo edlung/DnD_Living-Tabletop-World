@@ -195,10 +195,15 @@ test('the review campaign in Russian browsers, through Caddy', async ({ browser 
       // Quiet: the player's reads after acting are over; from now on only the live stream may
       // tell the player's screen anything.
       await player.waitForTimeout(3_000);
+      // Since Stage 600 the signed-out screen itself asks `/api/account` whether a login is still
+      // signed in here, to offer its other campaigns: that read follows the screen, it does not
+      // bring it.
       let reads = 0;
       player.on('request', (request) => {
         const path = new URL(request.url()).pathname;
-        if (path.startsWith('/api/') && !path.endsWith('/live')) reads += 1;
+        if (path.startsWith('/api/') && !path.endsWith('/live') && path !== '/api/account') {
+          reads += 1;
+        }
       });
       const revoked = Date.now();
       await revoke(dm);
