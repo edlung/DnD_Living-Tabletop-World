@@ -51,6 +51,17 @@ registerRussian({
   '{name} joins the fight.': '{name} вступает в бой.',
   '{name} was added to the campaign.': '{name}: добавлено в кампанию.',
   'It could not be added. Try again.': 'Не удалось добавить. Попробуйте ещё раз.',
+  // A creature's actions with a save (docs/adr/0053-monsters-as-data.md §2).
+  '{name}: actions with a save': '{name}: действия со спасброском',
+  'Aimed at': 'Цель',
+  '{name}: {count} left today': '{name}: осталось сегодня {count}',
+  '{name}: ready': '{name}: готово',
+  '{name}: spent, back on a d6 of {recharge} or more':
+    '{name}: потрачено, вернётся на d6 от {recharge}',
+  '{name}: used up today': '{name}: на сегодня исчерпано',
+  'use a creature’s action': 'применить действие существа',
+  'not recharged': 'ещё не перезарядилось',
+  'no uses left': 'использований не осталось',
   What: 'Что',
   'Made of': 'Из чего',
   Size: 'Размер',

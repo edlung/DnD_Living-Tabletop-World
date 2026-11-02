@@ -241,6 +241,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('HitPointsAdjusted', combatEventPayloadSchemas.HitPointsAdjusted),
   event('SavingThrowRolled', combatEventPayloadSchemas.SavingThrowRolled),
   event('CheckRolled', combatEventPayloadSchemas.CheckRolled),
+  event('RechargeRolled', combatEventPayloadSchemas.RechargeRolled),
+  event('CreatureActionUsed', combatEventPayloadSchemas.CreatureActionUsed),
   event('ConditionApplied', combatEventPayloadSchemas.ConditionApplied),
   event('DeathSaveRolled', combatEventPayloadSchemas.DeathSaveRolled),
   event('ReactionWindowOpened', reactionEventPayloadSchemas.ReactionWindowOpened),

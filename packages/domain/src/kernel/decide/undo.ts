@@ -326,6 +326,8 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'HitPointsAdjusted':
       case 'SavingThrowRolled':
       case 'CheckRolled':
+      case 'RechargeRolled':
+      case 'CreatureActionUsed':
       case 'ConditionApplied':
       case 'DeathSaveRolled':
         // Reads only: nothing to restore.

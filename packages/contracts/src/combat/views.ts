@@ -45,6 +45,18 @@ export interface EncounterCombatantView {
   readonly senses?: Senses;
   /** Its breath held under water, seen the same way: the rounds it has left (ADR 0050 §8). */
   readonly breath?: { readonly roundsLeft: number };
+  /**
+   * A creature's actions with a save, for the DM alone (docs/adr/0053-monsters-as-data.md §2):
+   * whether each is ready, aimed at a square (a breath) or a creature, its Recharge and uses.
+   */
+  readonly creatureActions?: readonly {
+    readonly actionId: string;
+    readonly name: string;
+    readonly ready: boolean;
+    readonly aim: 'square' | 'creature';
+    readonly recharge?: number;
+    readonly usesLeft?: number;
+  }[];
   /** The creature it rides, as anyone sees (ADR 0049 §10); it shares that one's space. */
   readonly mountedOn?: { readonly entityId: string; readonly name: string | null };
   /** `down`: at 0 HP but alive (a character making death saves). */

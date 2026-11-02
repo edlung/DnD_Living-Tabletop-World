@@ -25,7 +25,8 @@ export function spellSave(
     | 'grapple'
     | 'shove'
     | 'saddle'
-    | 'hazard' = 'spell',
+    | 'hazard'
+    | 'creature-action' = 'spell',
   /** It Dodges (docs/adr/0045-conditions-and-actions.md §5): Advantage on Dexterity saves. */
   dodging = false,
   /** It squeezes (docs/adr/0049-space-and-movement.md §4): Disadvantage on Dexterity saves. */

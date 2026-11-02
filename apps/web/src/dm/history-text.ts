@@ -109,6 +109,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   AddObject: 'bring an object into the fight',
   SetLight: 'set the light of the fight',
   ExposeToHazard: 'expose the party to a hazard',
+  UseCreatureAction: 'use a creature’s action',
 };
 
 /** The actions' names (docs/adr/0045-conditions-and-actions.md §5), English keys. */

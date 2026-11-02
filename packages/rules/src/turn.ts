@@ -36,6 +36,9 @@ export type IllegalReason =
   | 'TOO_MANY_TARGETS'
   /** A ritual cast of a spell that is none (ADR 0052 §6). */
   | 'NOT_A_RITUAL'
+  /** A creature's action spent until its Recharge comes up, or used up for the day (ADR 0053 §2). */
+  | 'NOT_RECHARGED'
+  | 'NO_USES_LEFT'
   | 'NO_FREE_CAST'
   | 'OUT_OF_RANGE'
   | 'TARGET_REQUIRED'

@@ -15,6 +15,7 @@ export type DmTableCommand = KernelCommandOf<
   | 'AddObject'
   | 'SetLight'
   | 'ExposeToHazard'
+  | 'UseCreatureAction'
   | 'RemoveCombatant'
   | 'DelayTurn'
   | 'SetInitiative'

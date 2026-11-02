@@ -65,6 +65,7 @@ import {
   setInspirationCommandSchema,
   startCombatCommandSchema,
   takeActionCommandSchema,
+  useCreatureActionCommandSchema,
 } from '../combat/commands.ts';
 import {
   closeReactionWindowCommandSchema,
@@ -170,6 +171,7 @@ export const kernelCommandSchema = z
     castSpellCommandSchema,
     endTurnCommandSchema,
     takeActionCommandSchema,
+    useCreatureActionCommandSchema,
     makeReadiedAttackCommandSchema,
     spendInspirationCommandSchema,
     endCombatCommandSchema,
@@ -248,6 +250,7 @@ export const KERNEL_COMMAND_TYPES = [
   'MoveCombatant',
   'Attack',
   'CastSpell',
+  'UseCreatureAction',
   'EndTurn',
   'TakeAction',
   'MakeReadiedAttack',

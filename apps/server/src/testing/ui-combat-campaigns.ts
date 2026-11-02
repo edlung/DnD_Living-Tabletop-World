@@ -102,6 +102,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   spells: 'placed',
   // The bestiary (ADR 0053 §3): the DM adds a creature to the running fight.
   bestiary: 'started',
+  // A breath (ADR 0053 §2): Raider 1 breathes fire on its turn; started below.
+  breath: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -126,6 +128,7 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedFeatherFallStart(engine, campaigns.featherFall);
   await seedMountStart(engine, campaigns.mount);
   await seedSpellsStart(engine, campaigns.spells);
+  await seedBreathStart(engine, campaigns.breath);
 }
 
 /**
@@ -357,6 +360,43 @@ async function seedSpellsStart(engine: WorldEngine, campaignId: string): Promise
     actor: DM,
     commandIdPrefix: `${campaignId}.spells`,
     commands: [{ ...sheet, sheet: studied }, ambush.startCombat],
+  })) {
+    await accept(engine, submission);
+  }
+}
+
+/**
+ * The breath's journey (`breath.spec.ts`, docs/adr/0053-monsters-as-data.md §2): Raider 1 can
+ * breathe fire in a 30-foot cone (DC 13, 4d6 Fire, Recharge 5–6); the ambush starts and Elowen
+ * ends her turn, so it is Raider 1's.
+ */
+async function seedBreathStart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const raider = combatSeed.commands.find(
+    (command) => command.type === 'SetStatBlock' && command.entityId === 'creature-10fb59d4',
+  );
+  if (!raider || !('statBlock' in raider)) throw new Error('UI combat: Raider 1 has no stat block');
+  const breath = {
+    actionId: 'fire-breath',
+    name: 'Fire Breath',
+    ability: 'dex',
+    dc: 13,
+    area: { shape: 'cone', sizeFt: 30, widthFt: null, origin: 'self' },
+    reachFt: null,
+    rangeFt: null,
+    damage: [{ count: 4, sides: 6, bonus: 0, type: 'fire' }],
+    onSuccess: 'half',
+    recharge: 5,
+    perDay: null,
+  };
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.breath`,
+    commands: [
+      { ...raider, statBlock: { ...raider.statBlock, saveActions: [breath] } },
+      ambush.startCombat,
+      { type: 'EndTurn', combatantId: 'elowen-starwhisper' },
+    ],
   })) {
     await accept(engine, submission);
   }

@@ -15,6 +15,7 @@ export {
   LIGHT_LEVELS,
   HAZARDS,
   exposeToHazardCommandSchema,
+  useCreatureActionCommandSchema,
   setLightCommandSchema,
   battlefieldSchema,
   pathStepSchema,

@@ -26,5 +26,6 @@
   "mount": "ui-combat-mount",
   "light": "ui-combat-light",
   "spells": "ui-combat-spells",
-  "bestiary": "ui-combat-bestiary"
+  "bestiary": "ui-combat-bestiary",
+  "breath": "ui-combat-breath"
 }

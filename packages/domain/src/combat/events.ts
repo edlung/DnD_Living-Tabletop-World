@@ -144,6 +144,17 @@ export const combatantRecordSchema = z
       .strict()
       .optional(),
     /**
+     * Its actions with a Recharge spent, waiting for their d6 at the start of its turn
+     * (docs/adr/0053-monsters-as-data.md §2); absent: none.
+     */
+    spent: z.array(slug).min(1).max(6).optional(),
+    /** Its per-day actions' uses in this fight (§2); absent: none. */
+    used: z
+      .array(z.object({ actionId: slug, count: z.number().int().min(1).max(9) }).strict())
+      .min(1)
+      .max(6)
+      .optional(),
+    /**
      * Feet above the ground of its squares (ADR 0049 §6): a flyer's height, or below it while it
      * burrows. Absent: on the ground.
      */
@@ -308,6 +319,25 @@ export const combatEventPayloadSchemas = {
    * An ability check rolled in a fight by its rules (docs/adr/0049-space-and-movement.md §7): a
    * long jump's landing in Difficult Terrain, DC 10 Dexterity (Acrobatics). A record only.
    */
+  /** A creature's action with a save, where it was aimed (docs/adr/0053-monsters-as-data.md §2). */
+  CreatureActionUsed: z
+    .object({
+      creatureId: entityIdSchema,
+      /** Its stat block's action (an id of the block's, not an entity's). */
+      action: slug,
+      point: squareSchema.nullable(),
+      targetId: entityIdSchema.nullable(),
+    })
+    .strict(),
+  /** A spent action's d6 at the start of its creature's turn (docs/adr/0053 §2). */
+  RechargeRolled: z
+    .object({
+      creatureId: entityIdSchema,
+      action: slug,
+      roll: z.number().int().min(1).max(6),
+      recharged: z.boolean(),
+    })
+    .strict(),
   CheckRolled: z
     .object({
       creatureId: entityIdSchema,
@@ -344,6 +374,8 @@ export const combatEventPayloadSchemas = {
         'shove',
         'saddle',
         'hazard',
+        /** A creature's action with a save: a breath (docs/adr/0053-monsters-as-data.md §2). */
+        'creature-action',
       ]),
     })
     .strict(),

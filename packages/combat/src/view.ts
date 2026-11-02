@@ -115,6 +115,24 @@ export function encounterView(
       ...(showHp && combatant.breath
         ? { breath: { roundsLeft: combatant.breath.roundsLeft } }
         : {}),
+      // Its actions with a save, the DM's to run (docs/adr/0053-monsters-as-data.md §2).
+      ...(dm && vitals.kind === 'creature' && vitals.block.saveActions
+        ? {
+            creatureActions: vitals.block.saveActions.map((action) => {
+              const used = combatant.used?.find((one) => one.actionId === action.actionId);
+              return {
+                actionId: action.actionId,
+                name: action.name,
+                ready:
+                  !(combatant.spent ?? []).includes(action.actionId) &&
+                  (action.perDay === null || (used?.count ?? 0) < action.perDay),
+                aim: action.area === null ? ('creature' as const) : ('square' as const),
+                ...(action.recharge === null ? {} : { recharge: action.recharge }),
+                ...(action.perDay === null ? {} : { usesLeft: action.perDay - (used?.count ?? 0) }),
+              };
+            }),
+          }
+        : {}),
       // Its senses, the same way (docs/adr/0050-the-world-around.md §2).
       ...(showHp && Object.keys(sensesOf(vitals)).length > 0 ? { senses: sensesOf(vitals) } : {}),
       // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).

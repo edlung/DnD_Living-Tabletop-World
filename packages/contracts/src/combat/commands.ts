@@ -152,6 +152,25 @@ export const castSpellCommandSchema = z
   })
   .strict();
 
+/**
+ * A creature's action with a save (docs/adr/0053-monsters-as-data.md §2): a breath sent toward a
+ * square, an area on a point, or one creature within its reach. The DM's, on the creature's turn.
+ */
+export const useCreatureActionCommandSchema = z
+  .object({
+    type: z.literal('UseCreatureAction'),
+    combatantId: entityIdSchema,
+    actionId: z
+      .string()
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+      .max(48),
+    /** The square a cone or line is sent toward, or a sphere's centre. */
+    point: squareSchema.optional(),
+    /** The creature an action without an area reaches. */
+    targetId: entityIdSchema.optional(),
+  })
+  .strict();
+
 export const endTurnCommandSchema = z
   .object({ type: z.literal('EndTurn'), combatantId: entityIdSchema })
   .strict();
@@ -443,6 +462,7 @@ export const COMBAT_COMMAND_TYPES = [
   'MoveCombatant',
   'Attack',
   'CastSpell',
+  'UseCreatureAction',
   'TakeAction',
   'MakeReadiedAttack',
   'SpendInspiration',

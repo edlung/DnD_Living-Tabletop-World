@@ -16,6 +16,7 @@ import { LightControl } from './light-control.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
 import { suggestionArt } from './combat-art.ts';
+import { CreatureActionsCard } from './creature-actions-card.tsx';
 import type { CombatUiCommand } from './combat-bindings.ts';
 import { DmReactionWindow, DmReadiedList } from './dm-reaction-window.tsx';
 import type { StandIn } from './stand-in.ts';
@@ -279,6 +280,7 @@ function RunningControls({
           </div>
         </div>
       )}
+      {!window && <CreatureActionsCard encounter={encounter} locked={locked} onRun={onRun} />}
       {!window && <DmReadiedList encounter={encounter} locked={locked} onRun={onRun} />}
       {!window && (
         <TurnOrderControls

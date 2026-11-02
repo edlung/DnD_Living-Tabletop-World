@@ -15,6 +15,7 @@ import { rollDeathSave } from '@ltw/rules';
 import { encounterOf, isAlive, onTurn } from './battlefield.ts';
 import { durationsAt, FightWork, savesAtEndOfTurn } from './condition-details.ts';
 import { gravitySweep } from './falling.ts';
+import { rechargeAtStart } from './creature-actions.ts';
 import { breathAtTurnEnd } from './hazards.ts';
 import { isObjectIn } from './objects.ts';
 import { grapplesSweep } from './unarmed.ts';
@@ -174,6 +175,8 @@ function turnStart(
 
   // What lasts until the start of this combatant's turn ends (ADR 0045 §2).
   events.push(...durationsAt(work, combatant.entityId, 'start'));
+  // A spent breath may come back (docs/adr/0053-monsters-as-data.md §2).
+  events.push(...rechargeAtStart(work, dice, combatant.entityId));
 
   // A dying character rolls its death saving throw (SRD 5.2.1).
   const vitals = work.vitalsOf(combatant.entityId);

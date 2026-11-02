@@ -45,6 +45,8 @@ const RESOLVED_TYPES: ReadonlySet<string> = new Set([
   'DelayTurn',
   // The hazards of the road roll their saves (docs/adr/0050-the-world-around.md §8).
   'ExposeToHazard',
+  // A creature's breath rolls its damage and the saves (docs/adr/0053-monsters-as-data.md §2).
+  'UseCreatureAction',
 ]);
 
 /**

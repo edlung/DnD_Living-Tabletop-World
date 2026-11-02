@@ -16,6 +16,7 @@ import {
   decideRemoveCombatant,
   decideSetInitiative,
 } from './order.ts';
+import { decideUseCreatureAction } from './creature-actions.ts';
 import { decideExposeToHazard } from './hazards.ts';
 import { decideSetLight } from './light.ts';
 import { decideMove } from './movement.ts';
@@ -54,6 +55,8 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideAttack(context, command, dice);
     case 'CastSpell':
       return decideCastSpell(context, command, dice);
+    case 'UseCreatureAction':
+      return decideUseCreatureAction(context, command, dice);
     case 'TakeAction':
       return decideTakeAction(context, command, dice);
     case 'MakeReadiedAttack':

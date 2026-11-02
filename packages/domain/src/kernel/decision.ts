@@ -76,6 +76,7 @@ export type ResolvedCommand =
           | 'AdjustHitPoints'
           | 'SetCondition'
           | 'ExposeToHazard'
+          | 'UseCreatureAction'
           | 'AddCombatant'
           | 'RemoveCombatant'
           | 'DelayTurn'
@@ -93,7 +94,12 @@ export type ResolvedCommand =
     })
   | (KernelCommandOf<'CloseReactionWindow'> & { readonly resolution: Resolution })
   | (KernelCommandOf<
-      'AdjustHitPoints' | 'AddCombatant' | 'RemoveCombatant' | 'DelayTurn' | 'ExposeToHazard'
+      | 'AdjustHitPoints'
+      | 'AddCombatant'
+      | 'RemoveCombatant'
+      | 'DelayTurn'
+      | 'ExposeToHazard'
+      | 'UseCreatureAction'
     > & {
       readonly resolution: Resolution;
     })
