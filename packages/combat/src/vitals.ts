@@ -49,11 +49,20 @@ export const initiativeModifier = (v: Vitals) =>
  * Initiative (SRD 5.2.1; docs/adr/0045-conditions-and-actions.md §1): an Invisible creature rolls
  * twice and keeps the higher, an Incapacitated one the lower; Exhaustion lowers the modifier.
  */
-export function rollInitiative(dice: Dice, v: Vitals): { roll: number; modifier: number } {
+/**
+ * Initiative with the creature's conditions and Exhaustion (ADR 0045 §1, §3); a creature surprised
+ * as the fight starts rolls it with Disadvantage (§5, SRD 5.2.1).
+ */
+export function rollInitiative(
+  dice: Dice,
+  v: Vitals,
+  surprised = false,
+): { roll: number; modifier: number } {
   const effects = initiativeEffects(conditionsOf(v), exhaustionOf(v));
+  const disadvantage = effects.disadvantage || surprised;
   const first = dice.roll(20);
   let roll = first;
-  if (effects.advantage !== effects.disadvantage) {
+  if (effects.advantage !== disadvantage) {
     const second = dice.roll(20);
     roll = effects.advantage ? Math.max(first, second) : Math.min(first, second);
   }

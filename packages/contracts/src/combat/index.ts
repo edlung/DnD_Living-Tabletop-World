@@ -62,9 +62,11 @@ export type {
   ReactionWindowView,
 } from './views.ts';
 export {
+  SURPRISED_SIDES,
   preparedEncounterBookSchema,
   preparedEncounterSchema,
   startPreparedEncounterRequestSchema,
+  type SurprisedSide,
   type PreparedEncounter,
   type PreparedEncounterBlock,
   type PreparedEncounterListResponse,

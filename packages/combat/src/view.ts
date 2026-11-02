@@ -68,7 +68,7 @@ export function encounterView(
     const commanded = commander !== null && (dm || party.has(commander));
     const showHp =
       dm || commanded || (vitals.kind === 'character' && party.has(combatant.entityId));
-    const { roll, modifier, total } = combatant.initiative;
+    const { roll, modifier, total, surprised } = combatant.initiative;
     return {
       entity: {
         entityId: entity.entityId,
@@ -91,7 +91,7 @@ export function encounterView(
             },
           }
         : {}),
-      ...(dm ? { initiative: { roll, modifier, total } } : {}),
+      ...(dm ? { initiative: { roll, modifier, total, ...(surprised ? { surprised } : {}) } } : {}),
     };
   });
   const { battlefield } = encounter;

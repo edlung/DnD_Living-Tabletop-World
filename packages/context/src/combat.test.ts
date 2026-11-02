@@ -112,6 +112,29 @@ describe('context in combat', () => {
     expect(action(waiting, 'hunters_mark')).toMatchObject({ reason: 'NOT_YOUR_TURN' });
   });
 
+  it('lists the actions beside Attack and Magic after them, judged as the engine judges', async () => {
+    const world = await inCombat();
+    // On herself: her own actions; Hide wants cover she lacks (ADR 0045 §5).
+    const self = await contextOf(world, ELOWEN);
+    for (const own of ['dodge', 'dash', 'disengage', 'search', 'study', 'utilize'] as const) {
+      expect(action(self, own).legal, own).toBe(true);
+    }
+    expect(action(self, 'hide')).toMatchObject({ legal: false, reason: 'NO_COVER_TO_HIDE' });
+    expect(self.actions.some((a) => a.id === 'help')).toBe(false);
+    // On a raider 30 ft away: Ready and Influence, Help only from 5 ft — and all after the attacks
+    // and spells, so a narrow tray shows those first.
+    const raider = await contextOf(world, 'creature-10fb59d4');
+    expect(action(raider, 'help')).toMatchObject({ legal: false, reason: 'OUT_OF_RANGE' });
+    expect(action(raider, 'ready').legal).toBe(true);
+    expect(action(raider, 'influence').legal).toBe(true);
+    const order: readonly string[] = raider.actions.map((a) => a.id);
+    const last = (list: readonly string[]) => Math.max(...list.map((id) => order.indexOf(id)));
+    expect(last(['hunters_mark', 'longbow_attack', 'fireball'])).toBeLessThan(
+      order.indexOf('help'),
+    );
+    expect(raider.actions.some((a) => a.id === 'dodge')).toBe(false);
+  });
+
   it('keeps legal actions aligned with the World Engine', async () => {
     const world = await inCombat();
     const context = await contextOf(world, 'creature-10fb59d4');

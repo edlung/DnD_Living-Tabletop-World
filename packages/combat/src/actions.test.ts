@@ -180,3 +180,22 @@ describe('the actions', () => {
     expect(taken?.type === 'ActionTaken' && taken.payload.check).not.toHaveProperty('success');
   });
 });
+
+describe('surprise (ADR 0045 §5)', () => {
+  it('a creature surprised as the fight starts rolls Initiative with Disadvantage', async () => {
+    const world = await roadWorld();
+    // Elowen is surprised: her 17 meets a 4, and the lower one counts.
+    await startAmbush(world, [17, 4, 3, 2, 1, 15], (command) => ({
+      ...command,
+      combatants: command.combatants.map((c) =>
+        c.entityId === ELOWEN ? { ...c, surprised: true } : c,
+      ),
+    }));
+    const encounter = await world.encounter();
+    const elowen = encounter.combatants.find((c) => c.entityId === ELOWEN);
+    expect(elowen?.initiative).toMatchObject({ roll: 4, surprised: true });
+    expect(encounter.combatants.find((c) => c.entityId === SHAMAN)?.initiative).not.toHaveProperty(
+      'surprised',
+    );
+  });
+});

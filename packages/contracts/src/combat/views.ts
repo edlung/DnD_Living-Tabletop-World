@@ -48,6 +48,8 @@ export interface EncounterCombatantView {
     readonly roll: number;
     readonly modifier: number;
     readonly total: number;
+    /** Surprised as the fight started: rolled with Disadvantage (ADR 0045 §5). */
+    readonly surprised?: true;
   };
 }
 

@@ -19,6 +19,7 @@ import type { CombatUiCommand } from './combat-bindings.ts';
 import type { StandIn } from './stand-in.ts';
 import { PreparedEncounters } from './prepared-encounters.tsx';
 import { StandInControls } from './stand-in-controls.tsx';
+import { SurpriseChoice, type SurpriseValue } from './surprise-choice.tsx';
 import { TurnOrderControls } from './turn-order-controls.tsx';
 
 const FIELD = { width: 16, height: 12 } as const;
@@ -142,6 +143,7 @@ function StartControls({
   );
   const { resource, retry } = useResource(locationId, load);
   const [skipped, setSkipped] = useState<ReadonlySet<string>>(new Set());
+  const [surprised, setSurprised] = useState<SurpriseValue>('none');
   if (resource.status !== 'ready')
     return (
       <StatusPanel
@@ -193,17 +195,22 @@ function StartControls({
           );
         })}
       </ul>
+      <SurpriseChoice value={surprised} disabled={locked} onChange={setSurprised} />
       <button
         className="primary-button"
         disabled={locked || chosen.length < 2}
         onClick={() => {
+          // The side the DM names is surprised: its Initiative has Disadvantage (ADR 0045 §5).
+          const side = surprised === 'foes' ? 'hostile' : surprised;
           onRun({
             kind: 'command',
             command: {
               type: 'StartCombat',
               locationId,
               battlefield: { ...FIELD, difficult: [], cover: [] },
-              combatants: openGroundStart(chosen),
+              combatants: openGroundStart(chosen).map((combatant) =>
+                combatant.side === side ? { ...combatant, surprised: true } : combatant,
+              ),
             },
           });
         }}

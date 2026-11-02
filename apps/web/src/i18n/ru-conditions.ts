@@ -136,6 +136,14 @@ registerRussian({
     'Придержите атаку до названного вами момента: когда он наступит, вы атакуете реакцией.',
   'A Charisma or Animal Handling check to sway this creature.':
     'Проверка Харизмы или Ухода за животными, чтобы склонить это существо на свою сторону.',
+  Surprise: 'Внезапность',
+  'No one is surprised': 'Никто не застигнут врасплох',
+  'The party is surprised': 'Отряд застигнут врасплох',
+  'The foes are surprised': 'Противники застигнуты врасплох',
+  'The surprised roll Initiative with Disadvantage.':
+    'Застигнутые врасплох бросают инициативу с помехой.',
+  surprised: 'застигнут врасплох',
+  'Surprised: rolled with Disadvantage.': 'Застигнут врасплох: бросок с помехой.',
   'Ready an attack': 'Подготовить атаку',
   'When it happens': 'Когда это случится',
   'When it steps out of cover': 'Когда он выйдет из-за укрытия',

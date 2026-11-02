@@ -55,6 +55,10 @@ test('the DM starts the prepared ambush for the party of four in one step', asyn
   await expect(row).toContainText(
     'Joining: Brann Ironvale, Elowen Starwhisper, Maren Ashby, Tamsin Quickfoot',
   );
+  // The ambush takes the raiders by surprise this time (ADR 0045 §5).
+  await row
+    .getByLabel('Surprise', { exact: true })
+    .selectOption({ label: 'The foes are surprised' });
   await expectAccessible(dm, 'the prepared ambush');
   await row
     .getByRole('button', { name: 'Start: Ambush on the Old Trade Road', exact: true })
@@ -63,6 +67,11 @@ test('the DM starts the prepared ambush for the party of four in one step', asyn
     encounterSheet(dm).getByRole('heading', { name: 'Encounter controls (DM)' }),
   ).toBeVisible();
   await expect(turnOrder(dm).getByRole('listitem')).toHaveCount(15);
+  // Each of the eleven rolled Initiative with Disadvantage, and the DM's order says so.
+  const rows = encounterSheet(dm)
+    .getByRole('region', { name: 'Turn order' })
+    .locator('ol.turn-order > li');
+  await expect(rows.filter({ hasText: 'surprised' })).toHaveCount(11);
   // Her player's screen follows: the battlefield, with Elowen and her companions in the order.
   await expect(turnOrder(player).getByRole('listitem')).toHaveCount(15);
   await expect(turnOrder(player)).toContainText('Maren Ashby');

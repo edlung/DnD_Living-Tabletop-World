@@ -249,3 +249,19 @@
 .prepared-row .primary-button {
   justify-self: start;
 }
+/* Who is surprised as the fight starts (docs/adr/0045-conditions-and-actions.md §5) */
+.surprise-choice {
+  display: grid;
+  gap: 0.25rem;
+  max-width: 22rem;
+}
+.surprise-choice label {
+  margin: 0;
+}
+.surprise-choice small {
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.encounter-start .surprise-choice {
+  margin-bottom: 0.75rem;
+}

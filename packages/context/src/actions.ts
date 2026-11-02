@@ -113,7 +113,26 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       spell('healing-word', true),
       present && alive && wounded ? 'high' : 'low',
     );
-    // The actions beside Attack and Magic (ADR 0045 §5): one's own, and Help or Ready at another.
+    if (!self) {
+      add('hunters_mark', 'present-alive', spell('hunters-mark', true), 'low');
+      add(
+        'longbow_attack',
+        'present-alive',
+        frame
+          ? () => combatAttackVerdict(frame, inputs, target.entityId)
+          : () => longbowVerdict(sheet),
+        'low',
+      );
+      if (frame)
+        add(
+          'fireball',
+          'present',
+          () => fireballVerdict(frame, inputs, target.entityId, (id) => entityRefFor(inputs, id)),
+          'low',
+        );
+    }
+    // The actions beside Attack and Magic (ADR 0045 §5), after them: one's own, and Help, Ready
+    // or Influence at another.
     if (frame && self) {
       for (const own of [
         'dodge',
@@ -132,24 +151,6 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
           at,
           'present-alive',
           () => combatActionVerdict(frame, inputs, at, target.entityId),
-          'low',
-        );
-    }
-    if (!self) {
-      add('hunters_mark', 'present-alive', spell('hunters-mark', true), 'low');
-      add(
-        'longbow_attack',
-        'present-alive',
-        frame
-          ? () => combatAttackVerdict(frame, inputs, target.entityId)
-          : () => longbowVerdict(sheet),
-        'low',
-      );
-      if (frame)
-        add(
-          'fireball',
-          'present',
-          () => fireballVerdict(frame, inputs, target.entityId, (id) => entityRefFor(inputs, id)),
           'low',
         );
     }

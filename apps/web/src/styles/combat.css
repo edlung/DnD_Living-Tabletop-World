@@ -347,3 +347,8 @@
   color: var(--text);
   font-weight: 600;
 }
+/* Surprised as the fight started: under the initiative it explains */
+.side-initiative small {
+  flex-basis: 100%;
+  font-size: 0.82rem;
+}

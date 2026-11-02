@@ -56,8 +56,17 @@ export interface PreparedEncounterListResponse {
   readonly encounters: readonly PreparedEncounterView[];
 }
 
-/** `POST /campaigns/:campaignId/encounters/prepared/:encounterId/start` (DM only). */
-export const startPreparedEncounterRequestSchema = z.object({ requestId: z.uuid() }).strict();
+/** Who is surprised as a fight starts (docs/adr/0045-conditions-and-actions.md §5). */
+export const SURPRISED_SIDES = ['party', 'foes'] as const;
+export type SurprisedSide = (typeof SURPRISED_SIDES)[number];
+
+/**
+ * `POST /campaigns/:campaignId/encounters/prepared/:encounterId/start` (DM only); `surprised`:
+ * that side rolls Initiative with Disadvantage.
+ */
+export const startPreparedEncounterRequestSchema = z
+  .object({ requestId: z.uuid(), surprised: z.enum(SURPRISED_SIDES).optional() })
+  .strict();
 
 export interface StartedPreparedEncounterResponse {
   readonly status: 'started';

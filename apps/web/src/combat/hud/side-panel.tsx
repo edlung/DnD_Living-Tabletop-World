@@ -175,7 +175,14 @@ export function CombatantCard({
       {combatant.initiative && (
         <p className="side-initiative">
           <Glyph name="initiative" />
-          {t('Initiative {total} (roll {roll}, modifier {modifier})', { ...combatant.initiative })}
+          {t('Initiative {total} (roll {roll}, modifier {modifier})', {
+            total: combatant.initiative.total,
+            roll: combatant.initiative.roll,
+            modifier: combatant.initiative.modifier,
+          })}
+          {combatant.initiative.surprised && (
+            <small className="muted">{t('Surprised: rolled with Disadvantage.')}</small>
+          )}
         </p>
       )}
       {combatant.conditions.length > 0 && (

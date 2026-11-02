@@ -12,6 +12,7 @@ import { useLiveRefresh } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { SurpriseChoice, type SurpriseValue } from './surprise-choice.tsx';
 
 /**
  * The adventure's prepared encounters, in the DM's Encounter sheet (Stage 605): each with its
@@ -85,6 +86,7 @@ function PreparedRow({
   const t = useT();
   const [busy, setBusy] = useState(false);
   const [lost, setLost] = useState(false);
+  const [surprised, setSurprised] = useState<SurpriseValue>('none');
   // The request a lost answer is retried under: the server starts nothing twice for it.
   const request = useRef<string | null>(null);
   const start = async () => {
@@ -94,7 +96,10 @@ function PreparedRow({
     try {
       await api.post<StartedPreparedEncounterResponse>(
         `encounters/prepared/${encodeURIComponent(encounter.encounterId)}/start`,
-        { requestId: request.current },
+        {
+          requestId: request.current,
+          ...(surprised === 'none' ? {} : { surprised }),
+        },
         AbortSignal.timeout(30_000),
       );
       request.current = null;
@@ -131,6 +136,9 @@ function PreparedRow({
         <p className="authoring-notice error" role="alert">
           {t('The answer was lost on the way. Start again: it will not start twice.')}
         </p>
+      )}
+      {encounter.blocked === null && (
+        <SurpriseChoice value={surprised} disabled={locked || busy} onChange={setSurprised} />
       )}
       <button
         className="primary-button"

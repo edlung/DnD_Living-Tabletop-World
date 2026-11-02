@@ -81,7 +81,13 @@ export const startCombatCommandSchema = z
     combatants: z
       .array(
         z
-          .object({ entityId: entityIdSchema, side: z.enum(SIDES), position: squareSchema })
+          .object({
+            entityId: entityIdSchema,
+            side: z.enum(SIDES),
+            position: squareSchema,
+            /** Surprised as the fight starts: Initiative with Disadvantage (ADR 0045 §5). */
+            surprised: z.literal(true).optional(),
+          })
           .strict(),
       )
       .min(2)

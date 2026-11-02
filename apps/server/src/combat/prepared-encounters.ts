@@ -203,10 +203,14 @@ export function registerPreparedEncounterRoutes(
         });
         if (placed.status === 'rejected') return reply.code(statusOf(placed)).send(placed);
       }
+      // A side surprised as the fight starts rolls Initiative with Disadvantage (ADR 0045 §5).
+      const surprised = (side: 'party' | 'foes') =>
+        body.surprised === side ? { surprised: true as const } : {};
       const party = view.party.map((character, index) => ({
         entityId: entityIdSchema.parse(character.entityId),
         side: 'party' as const,
         position: encounter.partyStart[index] ?? encounter.partyStart[0],
+        ...surprised('party'),
       }));
       const started = await deps.engine.execute({
         commandId: `${prefix}.start`,
@@ -222,6 +226,7 @@ export function registerPreparedEncounterRoutes(
               entityId: foe.entityId,
               side: 'hostile' as const,
               position: foe.position,
+              ...surprised('foes'),
             })),
           ],
         },

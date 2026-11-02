@@ -78,12 +78,19 @@
    judged by the same rules. A key in the Russian dictionary never carries two words: a test
    holds that, after "Ready" (the lobby's) nearly became the action's name.
 
+   **Surprise.** As the DM starts a fight they may name a side that is surprised — the party or
+   the foes, for a prepared encounter and for one started from the scene: each of its creatures
+   rolls Initiative with Disadvantage (SRD 5.2.1), and its initiative record keeps `surprised`
+   for the DM's turn order and side panel. A creature that joins a running fight is never
+   surprised. Opportunity attacks and spending Heroic Inspiration to reroll a die are decisions
+   after a trigger the encounter waits for, so they come with 640c's reaction windows.
+
 ## Consequences
 
 - Stored events stay readable: the conditions' list only grows, and the new fields (a combatant's
   condition details, Exhaustion, a check's automatic failure) are optional.
 - A build from before Stage 640 cannot read a sheet with a new condition; rolling back across
   640 needs the recovery of `deploy/RUNBOOK.md` §3, as every forward-only change.
-- Later parts of Stage 640 add the actions (Dash, Disengage, Dodge, Help, Hide, Ready, Search,
-  Study, Utilize, Influence), opportunity attacks, reactions, weapons, hit points, space and
-  movement, and the world around; each adds its section here before it is built.
+- Later parts of Stage 640 add opportunity attacks, reactions and the Heroic Inspiration reroll,
+  weapons, hit points, space and movement, and the world around; each adds its section here
+  before it is built.

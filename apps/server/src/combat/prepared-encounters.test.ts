@@ -83,6 +83,29 @@ describe('prepared encounters', () => {
     ).toBe('in-combat');
   });
 
+  it('surprises the side the DM names: its Initiative is rolled with Disadvantage', async () => {
+    const engine = await seededEngine();
+    const app = await ravenfordApp(engine);
+    await partyOnTheRoad(engine);
+    const odd = await post(app, START, { requestId: randomUUID(), surprised: 'all' }, TOKENS.dm);
+    expect(odd.statusCode).toBe(400);
+    const started = await post(
+      app,
+      START,
+      { requestId: randomUUID(), surprised: 'foes' },
+      TOKENS.dm,
+    );
+    expect(started.statusCode).toBe(200);
+    const encounter = (
+      await get(app, `${BASE}/encounter?perspective=DM`, TOKENS.dm)
+    ).json<EncounterResponse>().encounter;
+    for (const combatant of encounter?.combatants ?? []) {
+      expect(combatant.initiative?.surprised === true, combatant.entity.entityId).toBe(
+        combatant.side === 'hostile',
+      );
+    }
+  });
+
   it('starts with whoever of the party is there', async () => {
     const engine = await seededEngine();
     const app = await ravenfordApp(engine);

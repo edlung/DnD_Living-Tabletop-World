@@ -60,7 +60,7 @@ export function decideStartCombat(
     if (!inside(combatant.position)) return invalid('A combatant stands outside the battlefield');
     const vitals = vitalsOf(state, combatant.entityId);
     if (!vitals) return reject('NO_STAT_BLOCK', 'Every combatant needs a sheet or a stat block');
-    const { roll, modifier } = rollInitiative(dice, vitals);
+    const { roll, modifier } = rollInitiative(dice, vitals, combatant.surprised === true);
     entries.push({
       id: combatant.entityId,
       total: roll + modifier,
@@ -74,7 +74,12 @@ export function decideStartCombat(
     entityId: e.id,
     side: e.combatant.side,
     position: { ...e.combatant.position },
-    initiative: { roll: e.roll, modifier: e.modifier, total: e.total },
+    initiative: {
+      roll: e.roll,
+      modifier: e.modifier,
+      total: e.total,
+      ...(e.combatant.surprised === true ? { surprised: true as const } : {}),
+    },
     turn: { ...FRESH_TURN },
     slowedBy: null,
   }));

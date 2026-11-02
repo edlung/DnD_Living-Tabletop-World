@@ -78,6 +78,9 @@ export function TurnOrderControls({
                 <span className="turn-order-name">
                   {name}
                   {current && <span className="status-pill">{t('Now')}</span>}
+                  {combatant.initiative?.surprised && (
+                    <small className="turn-order-note">{t('surprised')}</small>
+                  )}
                 </span>
                 <span className="action-row">
                   <button

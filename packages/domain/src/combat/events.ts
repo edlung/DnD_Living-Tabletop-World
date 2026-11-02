@@ -60,7 +60,13 @@ export const combatantRecordSchema = z
     position: squareSchema,
     initiative: z
       // Exhaustion lowers the modifier (ADR 0045 §3): it reaches below a Dexterity of 1's −5.
-      .object({ roll, modifier: z.number().int().min(-30).max(30), total: z.number().int() })
+      .object({
+        roll,
+        modifier: z.number().int().min(-30).max(30),
+        total: z.number().int(),
+        /** Surprised as the fight started: rolled with Disadvantage (ADR 0045 §5). */
+        surprised: z.literal(true).optional(),
+      })
       .strict(),
     turn: turnRecordSchema,
     slowedBy: entityIdSchema.nullable(),
