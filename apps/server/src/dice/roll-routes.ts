@@ -85,6 +85,7 @@ const tableEntry = (roll: TableRollRecord, roller: RollEntry['roller']): RollEnt
 function requestView(record: CheckRequestRecord, dm: boolean): CheckRequestView {
   return {
     requestId: record.requestId,
+    groupId: record.groupId,
     characterId: record.characterId,
     check: record.check,
     mode: record.mode,
@@ -235,26 +236,36 @@ export function registerRollRoutes(
     const { context, params: path, body } = ready;
     if (context.perspective.kind !== 'DM') return sendError(reply, request, 'FORBIDDEN');
     const { state } = context;
+    // One character, or several at once as a group (ADR 0043 §1): every one a character with a sheet.
+    const asked = 'characterIds' in body ? body.characterIds : [body.characterId];
     if (
-      !state.characterSheets.has(body.characterId) ||
-      state.entities.get(body.characterId)?.kind !== 'character'
+      new Set(asked).size !== asked.length ||
+      asked.some(
+        (id) => !state.characterSheets.has(id) || state.entities.get(id)?.kind !== 'character',
+      )
     ) {
       return sendError(reply, request, 'UNPROCESSABLE');
     }
-    const record: CheckRequestRecord = {
+    const groupId = 'characterIds' in body ? randomUUID() : null;
+    const at = deps.table.now();
+    const records = asked.map((characterId): CheckRequestRecord => ({
       requestId: randomUUID(),
       campaignId: path.campaignId,
-      characterId: body.characterId,
+      groupId,
+      characterId,
       check: body.check,
       mode: body.mode,
       dc: body.dc ?? null,
       status: 'open',
       rollId: null,
       total: null,
-      at: deps.table.now(),
-    };
-    await store.addRequest(record);
-    return reply.code(201).send({ request: requestView(record, true) });
+      at,
+    }));
+    for (const record of records) await store.addRequest(record);
+    const views = records.map((record) => requestView(record, true));
+    return reply
+      .code(201)
+      .send(groupId === null ? { request: views[0] } : { groupId, requests: views });
   });
 
   app.post('/campaigns/:campaignId/check-requests/:requestId/cancel', async (request, reply) => {

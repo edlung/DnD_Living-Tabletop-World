@@ -321,6 +321,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'SpellCast':
       case 'DamageApplied':
       case 'HealingApplied':
+      case 'HitPointsAdjusted':
       case 'SavingThrowRolled':
       case 'ConditionApplied':
       case 'DeathSaveRolled':

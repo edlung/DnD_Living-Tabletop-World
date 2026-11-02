@@ -34,9 +34,10 @@ const roll = (rollId: string, changes: Partial<TableRollRecord> = {}): TableRoll
   ...changes,
 });
 
-const request = (requestId: string): CheckRequestRecord => ({
+const request = (requestId: string, groupId: string | null = null): CheckRequestRecord => ({
   requestId,
   campaignId: 'ravenford',
+  groupId,
   characterId: 'elowen-starwhisper',
   check: { kind: 'skill', skill: 'athletics' },
   mode: 'normal',
@@ -87,6 +88,17 @@ describe('the table rolls tables', () => {
     expect((await store.recentRequests('ravenford', 5)).map((entry) => entry.status)).toEqual([
       'cancelled',
       'rolled',
+    ]);
+  });
+
+  it('keeps the group of a check asked of several at once (migration 0029)', async () => {
+    const store = new PostgresTableStore(pool);
+    const group = '30000000-0000-4000-8000-000000000001';
+    await store.addRequest(request('10000000-0000-4000-8000-000000000003', group));
+    await store.addRequest(request('10000000-0000-4000-8000-000000000004'));
+    expect((await store.recentRequests('ravenford', 5)).map((entry) => entry.groupId)).toEqual([
+      null,
+      group,
     ]);
   });
 });

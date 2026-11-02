@@ -219,6 +219,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'SpellCast':
     case 'DamageApplied':
     case 'HealingApplied':
+    case 'HitPointsAdjusted':
     case 'SavingThrowRolled':
     case 'ConditionApplied':
     case 'DeathSaveRolled':

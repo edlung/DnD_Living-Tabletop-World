@@ -33,6 +33,7 @@ import '../../apps/web/src/i18n/ru-inventory.ts';
 import '../../apps/web/src/i18n/ru-rest.ts';
 import '../../apps/web/src/i18n/ru-accounts.ts';
 import '../../apps/web/src/i18n/ru-display.ts';
+import '../../apps/web/src/i18n/ru-dm-screen.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the

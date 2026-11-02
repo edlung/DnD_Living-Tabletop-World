@@ -23,12 +23,17 @@ const KIND_GLYPH = {
   substitution: 'perform',
   time: 'time',
   weather: 'weather',
+  'hit-points': 'hit-points',
+  condition: 'incapacitated',
+  inspiration: 'blessing',
+  ruling: 'game-master',
 } as const;
 
 const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {
   authoring: 'Undo this addition',
   substitution: 'Undo this action',
   world: 'Undo this change',
+  hand: 'Undo this change',
 };
 
 /**
@@ -192,7 +197,11 @@ export function HistoryEntry({
   return (
     <li className={`dm-history-entry dm-history-entry--${entry.status.toLowerCase()}`}>
       <Glyph
-        name={KIND_GLYPH[entry.kind === 'world' ? entry.change.kind : entry.kind]}
+        name={
+          KIND_GLYPH[
+            entry.kind === 'world' || entry.kind === 'hand' ? entry.change.kind : entry.kind
+          ]
+        }
         className="history-kind"
       />
       <div className="history-body">

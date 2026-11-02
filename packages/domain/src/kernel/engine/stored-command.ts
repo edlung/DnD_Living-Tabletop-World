@@ -31,11 +31,15 @@ const resolutionSchema = z
       .default([]),
   })
   .strict();
-/** Commands that carry an engine resolution: player commands, StartCombat, and closing a reaction window. */
+/**
+ * Commands that carry an engine resolution: player commands, StartCombat, closing a reaction
+ * window, and the DM's damage or healing.
+ */
 const RESOLVED_TYPES: ReadonlySet<string> = new Set([
   ...PLAYER_COMMAND_TYPES,
   'StartCombat',
   'CloseReactionWindow',
+  'AdjustHitPoints',
 ]);
 
 /**

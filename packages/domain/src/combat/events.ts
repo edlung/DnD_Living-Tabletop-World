@@ -108,6 +108,17 @@ export const combatEventPayloadSchemas = {
       hpAfter: hp,
     })
     .strict(),
+  /** The DM's damage or healing by hand (docs/adr/0043-dm-screen.md §1); the reason is the command's. */
+  HitPointsAdjusted: z
+    .object({
+      targetId: entityIdSchema,
+      change: z.enum(['damage', 'healing']),
+      amount: z.number().int().min(0),
+      damageType: slug.optional(),
+      hpBefore: hp,
+      hpAfter: hp,
+    })
+    .strict(),
   SavingThrowRolled: z
     .object({
       creatureId: entityIdSchema,

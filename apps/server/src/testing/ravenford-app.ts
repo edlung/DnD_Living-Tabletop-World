@@ -34,6 +34,7 @@ import { InMemoryAssetContentStore, type AssetContentStore } from '../assets/con
 import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import type { DmDependencies } from '../dm/dm-routes.ts';
+import { InMemoryDmNoteStore } from '../dm/note-store.ts';
 import { InMemorySubstitutionStore } from '../dm/substitution-store.ts';
 import type { TableDependencies } from '../dice/roll-routes.ts';
 import type { AccountingDiagnostics } from '../http/routes/ai-routes.ts';
@@ -171,7 +172,11 @@ export function testAuthoring(): AuthoringDependencies & {
 /** The DM's table tools (ADR 0033 §6–7) with in-memory substitution reasons. */
 export function testDm(): DmDependencies & { readonly substitutions: InMemorySubstitutionStore } {
   const clock = new SteppingClock();
-  return { substitutions: new InMemorySubstitutionStore(), clock: { now: () => clock.now() } };
+  return {
+    substitutions: new InMemorySubstitutionStore(),
+    notes: new InMemoryDmNoteStore(),
+    clock: { now: () => clock.now() },
+  };
 }
 
 /** Ravenford's quest definitions (`fixtures/ravenford/quests.json`), validated. */

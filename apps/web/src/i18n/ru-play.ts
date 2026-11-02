@@ -402,6 +402,9 @@ registerRussian({
   'give item': 'передать предмет',
   'drop item': 'бросить предмет',
   'take item': 'поднять предмет',
+  'change hit points': 'изменить хиты',
+  'set a condition': 'наложить или снять состояние',
+  'set Heroic Inspiration': 'дать или снять героическое вдохновение',
 
   // Transport and sign-in
   'Your access token was not accepted. Leave the session to reconnect.':

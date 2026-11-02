@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
+import { CONDITIONS } from '../rules/character-sheet.ts';
 
 /**
  * Combat commands (docs/adr/0015-combat-engine.md). Schemas validate shape
@@ -13,6 +14,24 @@ export type Side = (typeof SIDES)[number];
 
 export const MAX_BATTLEFIELD = 40;
 export const MAX_COMBATANTS = 16;
+
+/** The SRD's damage types (SRD 5.2.1). */
+export const DAMAGE_TYPES = [
+  'acid',
+  'bludgeoning',
+  'cold',
+  'fire',
+  'force',
+  'lightning',
+  'necrotic',
+  'piercing',
+  'poison',
+  'psychic',
+  'radiant',
+  'slashing',
+  'thunder',
+] as const;
+export type DamageType = (typeof DAMAGE_TYPES)[number];
 
 export const squareSchema = z
   .object({
@@ -112,6 +131,48 @@ export const endCombatCommandSchema = z
   .object({ type: z.literal('EndCombat'), encounterId: entityIdSchema })
   .strict();
 
+/**
+ * The DM's hand (docs/adr/0043-dm-screen.md §1): what the table decides outside the rules engine's
+ * own actions — damage or healing, a condition, Heroic Inspiration — through the World Engine, each
+ * with the DM's reason. The reason is DM data, kept with the stored command for the DM's history.
+ */
+export const dmReasonSchema = z.string().trim().min(1).max(200);
+
+export const adjustHitPointsCommandSchema = z
+  .object({
+    type: z.literal('AdjustHitPoints'),
+    targetId: entityIdSchema,
+    change: z.enum(['damage', 'healing']),
+    amount: z.number().int().min(1).max(999),
+    /** Damage only, and then required (the World Engine refuses otherwise). */
+    damageType: z.enum(DAMAGE_TYPES).optional(),
+    reason: dmReasonSchema,
+  })
+  .strict();
+
+export const setConditionCommandSchema = z
+  .object({
+    type: z.literal('SetCondition'),
+    targetId: entityIdSchema,
+    condition: z.enum(CONDITIONS),
+    applied: z.boolean(),
+    reason: dmReasonSchema,
+  })
+  .strict();
+
+export const setInspirationCommandSchema = z
+  .object({
+    type: z.literal('SetInspiration'),
+    characterId: entityIdSchema,
+    inspired: z.boolean(),
+    reason: dmReasonSchema,
+  })
+  .strict();
+
+/** The DM's hand commands, listed with their reasons in the DM's history. */
+export const DM_HAND_COMMAND_TYPES = ['AdjustHitPoints', 'SetCondition', 'SetInspiration'] as const;
+export type DmHandCommandType = (typeof DM_HAND_COMMAND_TYPES)[number];
+
 /** Combat commands a player may issue for their own character. */
 export const PLAYER_COMBAT_COMMAND_TYPES = [
   'MoveCombatant',
@@ -132,5 +193,6 @@ export const COMBAT_COMMAND_TYPES = [
   'UseReaction',
   'DeclineReaction',
   'CloseReactionWindow',
+  ...DM_HAND_COMMAND_TYPES,
 ] as const;
 export type CombatCommandType = (typeof COMBAT_COMMAND_TYPES)[number];

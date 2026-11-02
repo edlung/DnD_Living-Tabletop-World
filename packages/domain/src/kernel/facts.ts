@@ -311,6 +311,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'SpellCast':
     case 'DamageApplied':
     case 'HealingApplied':
+    case 'HitPointsAdjusted':
     case 'SavingThrowRolled':
     case 'ConditionApplied':
     case 'DeathSaveRolled':

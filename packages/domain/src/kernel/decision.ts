@@ -73,6 +73,7 @@ export type ResolvedCommand =
           | 'AddClue'
           | 'StartCombat'
           | 'CloseReactionWindow'
+          | 'AdjustHitPoints'
           | 'ApplyAuthoring'
           | PlayerCommandType;
       }
@@ -86,6 +87,7 @@ export type ResolvedCommand =
       readonly resolution: Resolution;
     })
   | (KernelCommandOf<'CloseReactionWindow'> & { readonly resolution: Resolution })
+  | (KernelCommandOf<'AdjustHitPoints'> & { readonly resolution: Resolution })
   | (KernelCommandOf<PlayerCommandType> & { readonly resolution: Resolution })
   | (KernelCommandOf<'CreateEntity'> & { readonly entityId: string })
   | (KernelCommandOf<'StartScene'> & { readonly sceneId: string })

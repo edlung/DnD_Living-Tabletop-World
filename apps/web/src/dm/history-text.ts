@@ -11,6 +11,7 @@ import type { Translate } from '@ltw/ui';
 
 import { nameFor } from '../authoring/command-text.ts';
 import { spellName } from '../exploration/outcome-messages.ts';
+import { describeHand } from './hand-words.ts';
 import { formatWorldTime } from './world-time.ts';
 
 /**
@@ -80,6 +81,9 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   GiveItem: 'give item',
   DropItem: 'drop item',
   TakeItem: 'take item',
+  AdjustHitPoints: 'change hit points',
+  SetCondition: 'set a condition',
+  SetInspiration: 'set Heroic Inspiration',
 };
 
 /** What the DM did for the character, in plain words. */
@@ -202,6 +206,8 @@ export function entryTitle(
         name: entry.character.name,
         action: describeSubstitution(t, entry.command, directory),
       });
+    case 'hand':
+      return describeHand(t, entry.change);
   }
 }
 
@@ -212,14 +218,16 @@ export function entryDetails(t: Translate, entry: DmHistoryEntry): string {
       ? t('Authoring')
       : entry.kind === 'world'
         ? t(entry.change.kind === 'time' ? 'World time' : 'Weather')
-        : entry.reason === null
-          ? t('No reason was recorded')
-          : entry.reason.note === null
-            ? t(REASON_TEXT[entry.reason.reason])
-            : t('{reason}: “{note}”', {
-                reason: t(REASON_TEXT[entry.reason.reason]),
-                note: entry.reason.note,
-              });
+        : entry.kind === 'hand'
+          ? t('By hand: “{reason}”', { reason: entry.reason })
+          : entry.reason === null
+            ? t('No reason was recorded')
+            : entry.reason.note === null
+              ? t(REASON_TEXT[entry.reason.reason])
+              : t('{reason}: “{note}”', {
+                  reason: t(REASON_TEXT[entry.reason.reason]),
+                  note: entry.reason.note,
+                });
   return `${kind} · ${formatWorldTime(entry.worldTime, t)}`;
 }
 

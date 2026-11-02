@@ -45,11 +45,14 @@ import {
   setDisclosureCommandSchema,
 } from '../investigation/commands.ts';
 import {
+  adjustHitPointsCommandSchema,
   attackCommandSchema,
   castSpellCommandSchema,
   endCombatCommandSchema,
   endTurnCommandSchema,
   moveCombatantCommandSchema,
+  setConditionCommandSchema,
+  setInspirationCommandSchema,
   startCombatCommandSchema,
 } from '../combat/commands.ts';
 import {
@@ -176,6 +179,9 @@ export const kernelCommandSchema = z
     giveItemCommandSchema,
     dropItemCommandSchema,
     takeItemCommandSchema,
+    adjustHitPointsCommandSchema,
+    setConditionCommandSchema,
+    setInspirationCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -241,6 +247,9 @@ export const KERNEL_COMMAND_TYPES = [
   'GiveItem',
   'DropItem',
   'TakeItem',
+  'AdjustHitPoints',
+  'SetCondition',
+  'SetInspiration',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

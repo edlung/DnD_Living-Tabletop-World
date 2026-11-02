@@ -45,6 +45,11 @@ export const recordMemoryCommandSchema = z
     /** Memories that caused this one (CONSEQUENCE only). */
     causedBy: z.array(memoryIdSchema).max(16).optional(),
     salience: z.number().int().min(1).max(5).optional(),
+    /**
+     * A ruling's reason (docs/adr/0043-dm-screen.md §1): the DM's own, kept with the stored command
+     * for the DM's history; never part of the memory.
+     */
+    reason: z.string().trim().min(1).max(200).optional(),
   })
   .strict();
 

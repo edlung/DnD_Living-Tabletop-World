@@ -1,6 +1,7 @@
 import type { CombatCommand, CombatPort, Decision, DecisionContext, Dice } from '@ltw/domain';
 
 import { decideAttack } from './attack.ts';
+import { decideAdjustHitPoints, decideSetCondition, decideSetInspiration } from './hand.ts';
 import { decideMove } from './movement.ts';
 import {
   decideCloseReactionWindow,
@@ -37,6 +38,12 @@ export function createCombatEngine(): CombatPort {
           return decideDeclineReaction(context, command, dice);
         case 'CloseReactionWindow':
           return decideCloseReactionWindow(context, command, dice);
+        case 'AdjustHitPoints':
+          return decideAdjustHitPoints(context, command, dice);
+        case 'SetCondition':
+          return decideSetCondition(context, command);
+        case 'SetInspiration':
+          return decideSetInspiration(context, command);
       }
     },
   };

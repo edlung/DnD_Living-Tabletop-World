@@ -276,6 +276,10 @@ export class WorldEngine {
         resolution: { ids: [], d20: null, entropy: this.#entropyPool() },
       };
     }
+    if (command.type === 'AdjustHitPoints') {
+      // The DM's damage may call for a Concentration save (docs/adr/0043-dm-screen.md §1).
+      return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
+    }
     if (command.type === 'CloseReactionWindow') {
       // Closing may resolve the suspended spell (ADR 0016): its records and dice.
       return { ...command, resolution: this.#combatResolution(RESOLVED_ID_POOL) };

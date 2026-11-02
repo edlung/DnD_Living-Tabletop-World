@@ -147,6 +147,8 @@ export const characterSheetSchema = z
       })
       .strict()
       .nullable(),
+    /** Heroic Inspiration (SRD 5.2.1), granted by the DM (docs/adr/0043-dm-screen.md §1); absent: none. */
+    heroicInspiration: z.boolean().optional(),
     /** Death saving throws while at 0 HP (ADR 0015 §4); absent when not dying. */
     deathSaves: z
       .object({

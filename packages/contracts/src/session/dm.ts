@@ -122,7 +122,39 @@ export interface DmWorldEntry extends DmHistoryCommon {
       };
 }
 
-export type DmHistoryEntry = DmAuthoringEntry | DmSubstitutionEntry | DmWorldEntry;
+/**
+ * A change the DM made by hand at the table (docs/adr/0043-dm-screen.md §1): damage or healing as
+ * the World Engine recorded it, a condition, Heroic Inspiration, or a ruling (a party memory),
+ * each with the DM's reason; undone as `UndoCommand`.
+ */
+export interface DmHandEntry extends DmHistoryCommon {
+  readonly kind: 'hand';
+  readonly change:
+    | {
+        readonly kind: 'hit-points';
+        readonly target: EntityRef;
+        readonly change: 'damage' | 'healing';
+        readonly amount: number;
+        readonly damageType: string | null;
+        readonly hpBefore: number;
+        readonly hpAfter: number;
+      }
+    | {
+        readonly kind: 'condition';
+        readonly target: EntityRef;
+        readonly condition: string;
+        readonly applied: boolean;
+      }
+    | { readonly kind: 'inspiration'; readonly target: EntityRef; readonly inspired: boolean }
+    | {
+        readonly kind: 'ruling';
+        readonly summary: string;
+        readonly characters: readonly EntityRef[];
+      };
+  readonly reason: string;
+}
+
+export type DmHistoryEntry = DmAuthoringEntry | DmSubstitutionEntry | DmWorldEntry | DmHandEntry;
 
 /** `GET /campaigns/:campaignId/dm/history?perspective=DM[&before=<sequence>]` (DM only). */
 export interface DmHistoryResponse {
@@ -149,4 +181,29 @@ export interface UndoneActionsResponse {
     readonly commandId: string;
     readonly command: KernelCommandOf<PlayerCommandType>;
   }[];
+}
+
+/**
+ * The DM's notes (docs/adr/0043-dm-screen.md §5; migration 0029): a campaign's notes, each a title
+ * and text, the DM's only — descriptive DM data beside the world, never canonical.
+ */
+export const MAX_DM_NOTES = 200;
+export const dmNoteRequestSchema = z
+  .object({
+    title: z.string().trim().min(1).max(120),
+    body: z.string().max(8000),
+  })
+  .strict();
+export type DmNoteRequest = z.infer<typeof dmNoteRequestSchema>;
+
+export interface DmNoteView {
+  readonly noteId: string;
+  readonly title: string;
+  readonly body: string;
+  readonly updatedAt: string;
+}
+
+/** `GET /campaigns/:campaignId/dm/notes` (DM only), newest change first. */
+export interface DmNotesResponse {
+  readonly notes: readonly DmNoteView[];
 }

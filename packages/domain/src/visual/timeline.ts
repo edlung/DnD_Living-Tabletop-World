@@ -75,7 +75,8 @@ export function visualTimelineAt(
         break;
       }
       case 'DamageApplied':
-      case 'HealingApplied': {
+      case 'HealingApplied':
+      case 'HitPointsAdjusted': {
         const { hpAfter } = event.payload;
         withVitals(event.payload.targetId, (before) => ({
           ...before,

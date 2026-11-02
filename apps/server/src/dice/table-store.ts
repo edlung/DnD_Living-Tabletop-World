@@ -21,6 +21,8 @@ export interface TableRollRecord {
 export interface CheckRequestRecord {
   readonly requestId: string;
   readonly campaignId: string;
+  /** A check asked of several at once shares a group (migration 0029); null alone. */
+  readonly groupId: string | null;
   readonly characterId: string;
   readonly check: Check;
   readonly mode: RollMode;

@@ -37,12 +37,14 @@ interface RequestRow {
   readonly roll_id: string | null;
   readonly total: number | null;
   readonly created_at: Date;
+  readonly group_id: string | null;
 }
 
 const ROLL_COLUMNS =
   'campaign_id, roll_id, roller_id, subject, groups, hidden, request_id, created_at';
 const REQUEST_COLUMNS =
-  'campaign_id, request_id, character_id, check_spec, mode, dc, status, roll_id, total, created_at';
+  'campaign_id, request_id, character_id, check_spec, mode, dc, status, roll_id, total, ' +
+  'created_at, group_id';
 
 const toRoll = (row: RollRow): TableRollRecord => ({
   campaignId: row.campaign_id,
@@ -66,6 +68,7 @@ const toRequest = (row: RequestRow): CheckRequestRecord => ({
   rollId: row.roll_id,
   total: row.total,
   at: row.created_at.toISOString(),
+  groupId: row.group_id,
 });
 
 const rollValues = (record: TableRollRecord) => [
@@ -105,7 +108,7 @@ export class PostgresTableStore implements TableStore {
   async addRequest(record: CheckRequestRecord): Promise<void> {
     await this.#pool.query(
       `INSERT INTO ltw_check_requests (${REQUEST_COLUMNS})
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
       [
         record.campaignId,
         record.requestId,
@@ -117,6 +120,7 @@ export class PostgresTableStore implements TableStore {
         record.rollId,
         record.total,
         record.at,
+        record.groupId,
       ],
     );
   }

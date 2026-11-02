@@ -126,19 +126,31 @@ export const tableRollRequestSchema = z.discriminatedUnion('kind', [
 ]);
 export type TableRollRequest = z.infer<typeof tableRollRequestSchema>;
 
-/** POST …/check-requests (DM): ask a character for a check, with an optional hidden DC. */
-export const checkRequestSchema = z
-  .object({
-    characterId: entityIdSchema,
-    check: checkSchema,
-    mode: z.enum(ROLL_MODES),
-    dc: z.number().int().min(1).max(40).optional(),
-  })
-  .strict();
+/**
+ * POST …/check-requests (DM): ask a character for a check, with an optional hidden DC — or ask
+ * several at once (docs/adr/0043-dm-screen.md §1): one request each, sharing a group.
+ */
+const requestedCheck = {
+  check: checkSchema,
+  mode: z.enum(ROLL_MODES),
+  dc: z.number().int().min(1).max(40).optional(),
+};
+export const MAX_GROUP_CHECK = 8;
+export const checkRequestSchema = z.union([
+  z.object({ characterId: entityIdSchema, ...requestedCheck }).strict(),
+  z
+    .object({
+      characterIds: z.array(entityIdSchema).min(2).max(MAX_GROUP_CHECK),
+      ...requestedCheck,
+    })
+    .strict(),
+]);
 export type CheckRequestInput = z.infer<typeof checkRequestSchema>;
 
 export interface CheckRequestView {
   readonly requestId: string;
+  /** The group of a check asked of several at once; null for one alone. */
+  readonly groupId: string | null;
   readonly characterId: string;
   readonly check: Check;
   readonly mode: RollMode;

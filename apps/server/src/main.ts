@@ -42,6 +42,7 @@ import { loadCuratedSet } from './images/curated-set.ts';
 import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
+import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
 import { PostgresAccountStore } from './accounts/postgres-account-store.ts';
 import { PostgresRestStore, PostgresTableStore } from './dice/postgres-table-store.ts';
@@ -193,7 +194,11 @@ async function main(): Promise<void> {
     ai,
     authoring,
     // The DM's reasons for acting for a player (ADR 0033 §6; migration 0009).
-    dm: { substitutions: new PostgresSubstitutionStore(pool), clock: systemClock },
+    dm: {
+      substitutions: new PostgresSubstitutionStore(pool),
+      notes: new PostgresDmNoteStore(pool),
+      clock: systemClock,
+    },
     // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).
     table: {
       store: new PostgresTableStore(pool),

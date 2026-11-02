@@ -17,6 +17,7 @@ import './i18n/ru-inventory.ts';
 import './i18n/ru-rest.ts';
 import './i18n/ru-accounts.ts';
 import './i18n/ru-display.ts';
+import './i18n/ru-dm-screen.ts';
 import { DisplayApp } from './display/display-app.tsx';
 import { App } from './session/app.tsx';
 import { WorkshopApp } from './workshop/app.tsx';
