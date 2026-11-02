@@ -54,6 +54,7 @@ export const COMBAT_ACTIONS: readonly ContextActionId[] = [
   'counterspell',
   'healing_word',
   'hunters_mark',
+  'cast_spell',
 ];
 
 /** The actions beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5), by glyph. */
@@ -204,12 +205,21 @@ const WEAPON_OPTIONS: ReadonlySet<ContextActionId> = new Set([
 /** An option's picture: its weapon's for a weapon attack (Stage 520), else its catalog entry's. */
 export function optionArtUrl(action: ContextAction): string | null {
   if (WEAPON_OPTIONS.has(action.id)) return action.weapon ? weaponArtUrl(action.weapon) : null;
+  if (action.id === 'cast_spell')
+    return action.spell ? catalogUrl('spells', action.spell.spellId) : null;
   const art = catalogArtOf(action.id);
   return art ? catalogUrl(art.kind, art.id) : null;
 }
 
 /** An option's full words, naming its weapon; each holds the tray's short words. */
 export function optionLabelFor(t: Translate, action: ContextAction, target: string): string {
+  // Any other SRD spell (docs/adr/0052-spells-as-data.md §5): at the creature, or its square.
+  if (action.id === 'cast_spell' && action.spell) {
+    const spell = t(action.spell.name);
+    return action.spell.aim
+      ? t('Cast {spell} at {target}’s square', { spell, target })
+      : t('Cast {spell} at {target}', { spell, target });
+  }
   if (action.weapon && WEAPON_OPTIONS.has(action.id)) {
     const weapon = weaponWords(t, action.weapon);
     if (action.id === 'offhand_attack')
@@ -222,6 +232,7 @@ export function optionLabelFor(t: Translate, action: ContextAction, target: stri
 
 /** The tray's short words for an option: a weapon attack shows the weapon. */
 export function shortLabelFor(t: Translate, action: ContextAction): string {
+  if (action.id === 'cast_spell' && action.spell) return t(action.spell.name);
   if (!action.weapon || !WEAPON_OPTIONS.has(action.id)) return t(shortLabelOf(action.id));
   const weapon = weaponWords(t, action.weapon);
   if (action.id === 'offhand_attack') return t('Other hand: {weapon}', { weapon });

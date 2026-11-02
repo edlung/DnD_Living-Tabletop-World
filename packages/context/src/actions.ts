@@ -26,6 +26,7 @@ import {
 } from './combat.ts';
 import { showableEvidence } from './evidence.ts';
 import type { ContextInputs } from './inputs.ts';
+import { spellOptions } from './spell-options.ts';
 import {
   LEGAL,
   capableVerdict,
@@ -350,6 +351,11 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       ),
     );
   }
+  // In a fight, the spells the character casts from their data (docs/adr/0052-spells-as-data.md).
+  if (frame && CREATURE_KINDS.has(target.kind))
+    actions.push(
+      ...spellOptions(frame, inputs, target.entityId, judge, (id) => entityRefFor(inputs, id)),
+    );
   // Stable: equal relevance keeps catalog order.
   return actions.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);
 }

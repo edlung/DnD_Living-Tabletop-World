@@ -6,6 +6,10 @@ import { registerRussian } from '@ltw/ui';
  */
 registerRussian({
   'Minutes or hours': 'Минуты или часы',
+  'Ritual: no slot, outside a fight': 'Ритуал: без ячейки, вне боя',
+  'The DM decides what this spell does.': 'Что делает это заклинание, решает Мастер.',
+  'The server rolls its dice; the DM applies the rest.':
+    'Сервер бросает его кости; остальное применяет Мастер.',
   // Dock, dialog and tabs
   'Character: {name}': 'Персонаж: {name}',
   'Close the character sheet': 'Закрыть лист персонажа',

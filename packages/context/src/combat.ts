@@ -38,8 +38,8 @@ import type { Verdict } from './legality.ts';
  * a reaction window is open the encounter waits (ADR 0016 §4): combat
  * actions are `REACTION_PENDING`, and a pending candidate may counter.
  */
-const PAUSED: Verdict = { legal: false, reason: 'REACTION_PENDING' };
-const paused = (inputs: ContextInputs) => openReactionWindow(inputs.state) !== null;
+export const PAUSED: Verdict = { legal: false, reason: 'REACTION_PENDING' };
+export const paused = (inputs: ContextInputs) => openReactionWindow(inputs.state) !== null;
 export interface CombatFrame {
   readonly encounter: EncounterState;
   readonly actor: CombatantRecord;
@@ -61,7 +61,7 @@ export function distanceTo(inputs: ContextInputs, entityId: string): number | un
 }
 
 /** A combatant that is not part of the encounter cannot be fought there. */
-function fromRefusal(refusal: Refusal): Verdict {
+export function fromRefusal(refusal: Refusal): Verdict {
   const reason: ContextIllegalReason =
     refusal.reason === 'NOT_A_COMBATANT' ? 'NOT_IN_COMBAT' : refusal.reason;
   return {

@@ -35,6 +35,8 @@ export const CONTEXT_ACTION_IDS = [
   'enter_location',
   'fireball',
   'counterspell',
+  /** Any other SRD spell, cast from its data (docs/adr/0052-spells-as-data.md §5); `spell` names it. */
+  'cast_spell',
   /** The actions beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5). */
   'dash',
   'disengage',
@@ -173,6 +175,26 @@ export interface ContextVisibleState {
 export type ContextActionCost =
   { readonly kind: 'free' } | { readonly kind: 'slot'; readonly slotLevel: number };
 
+/** The spell of `cast_spell` (docs/adr/0052-spells-as-data.md §5) and how it reaches its target. */
+export interface ContextSpell {
+  readonly spellId: string;
+  /** The SRD's English name, a translation key. */
+  readonly name: string;
+  readonly level: number;
+  /** The target named this many times at the spell's own level: one per attack or dart. */
+  readonly times: number;
+  /** Names more for each slot level above the spell's: Magic Missile's dart, Scorching Ray's ray. */
+  readonly perSlot?: number;
+  /** It names the creature (as many times as `times`); else only its area reaches it. */
+  readonly names: boolean;
+  /** Its area centered on the target's square, or sent from the caster toward it; absent: at it. */
+  readonly aim?: 'point' | 'toward';
+  /** What is the DM's to apply: its whole effect, or what its effect leaves out. */
+  readonly forDm?: 'effect' | 'rest';
+  /** The slot levels the caster could spend on it, lowest first; none for a cantrip. */
+  readonly slots: readonly number[];
+}
+
 export interface ContextAction {
   readonly id: ContextActionId;
   /** The subject of `ask_about`; always an entity the perspective knows. */
@@ -194,6 +216,8 @@ export interface ContextAction {
   readonly hints?: readonly ContextHint[];
   /** Area spells: the combatants the area would affect (ADR 0015 §6). */
   readonly area?: { readonly affected: readonly ContextEntityRef[] };
+  /** The spell of `cast_spell`. */
+  readonly spell?: ContextSpell;
 }
 
 export interface EntityContextView {

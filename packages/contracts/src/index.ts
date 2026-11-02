@@ -218,6 +218,7 @@ export {
   RELEVANCE_LEVELS,
   type ContextAction,
   type ContextActionCost,
+  type ContextSpell,
   type ContextActionId,
   type ContextEntityRef,
   type ContextHint,

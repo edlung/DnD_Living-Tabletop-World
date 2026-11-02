@@ -53,7 +53,8 @@ export function skillName(t: Translate, skill: Skill): string {
 export const spellName = (t: Translate, spellId: string, name?: string): string =>
   isSliceSpellId(spellId) || name === undefined ? readableLabel(spellId, t) : t(name);
 
-const isSliceSpellId = (spellId: string): spellId is SpellId => Object.hasOwn(SPELL_TEXT, spellId);
+export const isSliceSpellId = (spellId: string): spellId is SpellId =>
+  Object.hasOwn(SPELL_TEXT, spellId);
 
 export const className = (t: Translate, classId: string): string => readableLabel(classId, t);
 

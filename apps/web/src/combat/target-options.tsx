@@ -67,6 +67,12 @@ export function optionNotes(t: Translate, action: ContextAction): readonly strin
     ...(action.hints?.includes('LONG_RANGE') ? [t('long range: disadvantage')] : []),
     ...(action.hints?.includes('DISADVANTAGE') ? [t('with disadvantage')] : []),
     ...(action.hints?.includes('ADVANTAGE') ? [t('with advantage')] : []),
+    // What the server does not compute of a spell (docs/adr/0052-spells-as-data.md §2).
+    ...(action.spell?.forDm === 'effect'
+      ? [t('the DM decides its effect')]
+      : action.spell?.forDm === 'rest'
+        ? [t('the DM applies the rest')]
+        : []),
   ];
 }
 

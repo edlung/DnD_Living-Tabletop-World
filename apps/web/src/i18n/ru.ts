@@ -222,6 +222,19 @@ registerRussian({
   'takes too long': 'в бою на это заклинание нет времени',
   'too many targets': 'слишком много целей',
   'not a ritual': 'это заклинание не проводится как ритуал',
+  // Any SRD spell in a fight (docs/adr/0052-spells-as-data.md §5).
+  'a spell': 'заклинание',
+  'Cast {spell} at {target}': 'Сотворить {spell}: {target}',
+  'Cast {spell} at {target}’s square': 'Сотворить {spell} на клетку {target}',
+  'the DM decides its effect': 'эффект решает Мастер',
+  'the DM applies the rest': 'остальное — Мастер',
+  '{spell}: which slot?': '{spell}: какая ячейка?',
+  'Each level above {level} adds {count} more.':
+    'Каждый уровень выше {level} добавляет ещё {count}.',
+  'A higher slot adds what the spell says for it.':
+    'Ячейка выше добавляет то, что сказано в заклинании.',
+  ' The DM decides what it does.': ' Что оно делает, решает Мастер.',
+  ' The DM applies the rest.': ' Остальное применяет Мастер.',
   'no free cast': 'нет бесплатных использований',
   'target required': 'нужна цель',
   'target not visible': 'цель не видна',

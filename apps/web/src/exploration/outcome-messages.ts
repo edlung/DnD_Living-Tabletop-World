@@ -1,5 +1,7 @@
 import type { KnowledgeView, PlayerOutcome } from '@ltw/contracts';
-import type { Translate } from '@ltw/ui';
+import { readableLabel, type Translate } from '@ltw/ui';
+
+import { isSliceSpellId } from '../character/words.ts';
 
 /**
  * The words of what happened. Every sentence is an English key the client dictionary
@@ -113,7 +115,9 @@ export function rejectionMessage(
 }
 
 /** A spell by its ID, in the form the dictionary keys it ("detect magic"). */
-export const spellName = (t: Translate, id: string) => t(id.replaceAll('-', ' '));
+/** A slice spell's name in a sentence; any other SRD spell's, read from its id (ADR 0052). */
+export const spellName = (t: Translate, id: string) =>
+  isSliceSpellId(id) ? t(id.replaceAll('-', ' ')) : readableLabel(id, t);
 
 export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined): string {
   switch (outcome?.kind) {
@@ -194,6 +198,13 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
     case 'CastSpell': {
       const spell = spellName(t, outcome.spellId);
       if (outcome.awaitingReaction) return t('{spell} is waiting for reactions.', { spell });
+      // What the server does not compute of it (docs/adr/0052-spells-as-data.md §2).
+      const forDm =
+        outcome.forDm === 'effect'
+          ? t(' The DM decides what it does.')
+          : outcome.forDm === 'rest'
+            ? t(' The DM applies the rest.')
+            : '';
       if (outcome.results.length > 0) {
         const total = outcome.results.reduce((sum, entry) => sum + (entry.damage ?? 0), 0);
         const healed = outcome.results.reduce((sum, entry) => sum + (entry.healed ?? 0), 0);
@@ -213,12 +224,13 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
           total > 0 ? t(': {total} damage in all', { total }) : '',
           healed > 0 ? t(': {healed} healed', { healed }) : '',
           '.',
+          forDm,
         ].join('');
       }
       if (outcome.discovered.length) return t('Magic revealed new evidence.');
       return outcome.spellId === 'detect-magic'
         ? t('Nothing magical was found.')
-        : t('You cast {spell}.', { spell });
+        : `${t('You cast {spell}.', { spell })}${forDm}`;
     }
     case 'EndTurn':
       return t('Turn ended. Round {round}.', { round: outcome.round });

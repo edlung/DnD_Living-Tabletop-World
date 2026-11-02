@@ -65,6 +65,12 @@ export interface CharacterDerived {
     readonly range: number | 'self';
     readonly components: readonly ('V' | 'S' | 'M')[];
     readonly concentration: boolean;
+    /** Cast as a ritual outside a fight: no slot (docs/adr/0052-spells-as-data.md §6). */
+    readonly ritual: boolean;
+    /** The SRD's text of a spell outside the slice (whose own words are the client's). */
+    readonly text?: string;
+    /** What is the DM's to apply (docs/adr/0052-spells-as-data.md §2): its effect, or the rest. */
+    readonly forDm?: 'effect' | 'rest';
   }[];
   /** Weapon attacks the sheet can make: bonus to hit and damage (dice plus the ability modifier). */
   readonly attacks: readonly {

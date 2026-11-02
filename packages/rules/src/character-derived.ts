@@ -118,6 +118,8 @@ export function deriveCharacter(
         range: spell.range,
         components: [...spell.components],
         concentration: spell.concentration,
+        ritual: spell.ritual,
+        ...(spell.mechanics ? srdWords(spell) : {}),
       })),
     attacks: [...new Set([...sheet.weapons, ...wielded])].map((weaponId) => {
       const attack = weaponAttack(sheet, weaponId);
@@ -138,5 +140,17 @@ export function deriveCharacter(
     }),
     carryingCapacityLb: carryingCapacityLb(sheet),
     hitDice: hitDice(sheet).map(({ sides, total, left }) => ({ sides, total, left })),
+  };
+}
+
+/** An SRD spell's text, with what the server leaves to the DM (docs/adr/0052-spells-as-data.md). */
+function srdWords(spell: SpellRules): { text?: string; forDm?: 'effect' | 'rest' } {
+  const entry = srdSpell(spell.spellId);
+  const higher = entry?.higherLevels ? `\n${entry.higherLevels}` : '';
+  const forDm =
+    spell.mechanics?.effect.kind === 'dm' ? 'effect' : spell.mechanics?.complete ? null : 'rest';
+  return {
+    ...(entry ? { text: `${entry.description}${higher}` } : {}),
+    ...(forDm ? { forDm } : {}),
   };
 }

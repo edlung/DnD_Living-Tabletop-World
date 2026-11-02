@@ -199,6 +199,8 @@ export type PlayerOutcome =
       readonly discovered: readonly string[];
       /** The spell is suspended in a reaction window (docs/adr/0016-reaction-engine.md). */
       readonly awaitingReaction?: true;
+      /** What is the DM's to apply (docs/adr/0052-spells-as-data.md §2): its effect, or the rest. */
+      readonly forDm?: 'effect' | 'rest';
     }
   /** An Unarmed Strike's grapple or shove (docs/adr/0047-weapons.md §3): whether it resisted. */
   | {

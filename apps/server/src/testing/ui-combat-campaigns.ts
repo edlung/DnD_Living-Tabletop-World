@@ -98,6 +98,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   mount: 'placed',
   // Light (ADR 0050 §1): the DM puts out the light of a running fight.
   light: 'started',
+  // SRD spells (ADR 0052): Elowen also studies as a wizard; started below.
+  spells: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -121,6 +123,7 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedTerrainStart(engine, campaigns.flight, true);
   await seedFeatherFallStart(engine, campaigns.featherFall);
   await seedMountStart(engine, campaigns.mount);
+  await seedSpellsStart(engine, campaigns.spells);
 }
 
 /**
@@ -325,4 +328,34 @@ async function seedProneStart(engine: WorldEngine, campaignId: string): Promise<
 async function accept(engine: WorldEngine, submission: unknown): Promise<void> {
   const result = await engine.execute(submission);
   if (result.status !== 'accepted') throw new Error('UI combat campaign seed was not accepted');
+}
+
+/**
+ * The SRD spells' journey (`spells.spec.ts`, docs/adr/0052-spells-as-data.md): Elowen also studies
+ * as a wizard (Intelligence 16) — Fire Bolt, Magic Missile, Shatter, Cure Wounds — and the ambush
+ * starts.
+ */
+async function seedSpellsStart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const sheet = rulesSeed.commands.find(
+    (command) => command.type === 'SetCharacterSheet' && command.entityId === 'elowen-starwhisper',
+  );
+  if (!sheet || !('sheet' in sheet)) throw new Error('UI combat: Elowen has no sheet to seed');
+  const wizard = {
+    source: 'wizard',
+    ability: 'int',
+    spells: ['fire-bolt', 'magic-missile', 'shatter', 'cure-wounds'],
+  };
+  const studied = {
+    ...sheet.sheet,
+    abilities: { ...sheet.sheet.abilities, int: 16 },
+    spellcasting: [...sheet.sheet.spellcasting, wizard],
+  };
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.spells`,
+    commands: [{ ...sheet, sheet: studied }, ambush.startCombat],
+  })) {
+    await accept(engine, submission);
+  }
 }

@@ -168,6 +168,13 @@
   height: 100%;
   object-fit: cover;
 }
+.spell-art .glyph {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 15px;
+  color: var(--magic);
+}
 .spell-body h4 {
   margin: 0;
   color: var(--gold-bright);
@@ -193,6 +200,19 @@
 .spell-tag .glyph {
   width: 14px;
   height: 14px;
+}
+/* What the server leaves to the DM (docs/adr/0052-spells-as-data.md §2). */
+.spell-note {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+.spell-text + .spell-text {
+  margin-top: 6px;
+}
+.spell-body .spell-text {
+  max-width: 70ch;
 }
 
 /* Below 900 px the card becomes a band above the tabs */

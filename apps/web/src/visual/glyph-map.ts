@@ -34,6 +34,7 @@ const ACTIONS: Readonly<Record<ContextActionId, GlyphName>> = {
   dismount: 'move',
   enter_location: 'travel',
   fireball: 'cast',
+  cast_spell: 'cast',
   counterspell: 'counterspell',
   dash: 'dash',
   disengage: 'disengage',

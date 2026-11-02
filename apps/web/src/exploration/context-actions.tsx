@@ -228,6 +228,8 @@ export function actionLabel(
       return t('Recall memories');
     case 'talk':
       return t('Talk');
+    case 'cast_spell':
+      return t('Cast {spell}', { spell: t(action.spell?.name ?? 'a spell') });
     case 'weapon_attack':
       return t('Attack with {weapon}', {
         weapon: action.weapon ? readableLabel(action.weapon, t) : t('a weapon'),
@@ -267,6 +269,7 @@ const ACTION_TEXT: Readonly<
       | 'weapon_attack'
       | 'offhand_attack'
       | 'cleave_attack'
+      | 'cast_spell'
     >,
     string
   >

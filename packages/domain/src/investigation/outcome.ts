@@ -170,19 +170,25 @@ function combatOutcome(
               e.payload.creatureId === targetId,
           );
           const attack = find('AttackPerformed', targetId, 'targetId');
-          const damage = find('DamageApplied', targetId, 'targetId');
+          // Every dart's, ray's and damage type's (docs/adr/0052-spells-as-data.md §5).
+          const damages = events.flatMap((event) =>
+            event.type === 'DamageApplied' && event.payload.targetId === targetId
+              ? [event.payload.amount]
+              : [],
+          );
           const healing = find('HealingApplied', targetId, 'targetId');
           return {
             targetId,
             saved: save?.type === 'SavingThrowRolled' ? save.payload.success : null,
             hit: attack ? attack.payload.hit : null,
-            damage: damage ? damage.payload.amount : null,
+            damage: damages.length > 0 ? damages.reduce((sum, amount) => sum + amount, 0) : null,
             healed: healing ? healing.payload.amount : null,
           };
         }),
         discovered: events.flatMap((event) =>
           event.type === 'EvidenceExamined' ? event.payload.revealed.map((r) => r.knowledgeId) : [],
         ),
+        ...(cast.payload.forDm ? { forDm: cast.payload.forDm } : {}),
       };
     }
     case 'EndTurn': {

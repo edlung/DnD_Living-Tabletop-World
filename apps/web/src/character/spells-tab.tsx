@@ -82,7 +82,10 @@ export function SpellsTab({
             const art = catalogUrl('spells', spell.spellId);
             return (
               <li key={spell.spellId} className="spell-card">
-                <div className="spell-art">{art && <img src={art} alt="" />}</div>
+                <div className="spell-art">
+                  {/* An SRD spell's GPT picture comes with Stage 650e; its glyph until then. */}
+                  {art ? <img src={art} alt="" /> : <Glyph name="cast" />}
+                </div>
                 <div className="spell-body">
                   <h4>{spellName(t, spell.spellId, spell.name)}</h4>
                   <p className="spell-meta">
@@ -96,8 +99,23 @@ export function SpellsTab({
                       {t('Concentration')}
                     </p>
                   )}
+                  {spell.ritual && (
+                    <p className="spell-tag">{t('Ritual: no slot, outside a fight')}</p>
+                  )}
                   {sliceSpellText(spell.spellId) !== null && (
                     <p className="spell-text">{t(sliceSpellText(spell.spellId) ?? '')}</p>
+                  )}
+                  {spell.text?.split('\n').map((paragraph) => (
+                    <p key={paragraph} className="spell-text" lang="en">
+                      {paragraph}
+                    </p>
+                  ))}
+                  {spell.forDm && (
+                    <p className="spell-note">
+                      {spell.forDm === 'effect'
+                        ? t('The DM decides what this spell does.')
+                        : t('The server rolls its dice; the DM applies the rest.')}
+                    </p>
                   )}
                 </div>
               </li>

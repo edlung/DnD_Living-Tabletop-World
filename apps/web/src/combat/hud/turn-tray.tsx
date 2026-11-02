@@ -1,6 +1,7 @@
 import type {
   CombatAction,
   ContextAction,
+  ContextSpell,
   EncounterCombatantView,
   EncounterView,
 } from '@ltw/contracts';
@@ -19,6 +20,7 @@ import { flightMoves, type MoveOption } from '../move-options.ts';
 import { moveGlyph, moveLabel, moveNote } from '../move-words.ts';
 import { optionNotes, warnsOfAlly } from '../target-options.tsx';
 import { ActionChoice } from './action-choice.tsx';
+import { SpellChoice } from './spell-choice.tsx';
 import {
   AttackChoice,
   masteryQuestion,
@@ -79,12 +81,18 @@ export function TurnTray({
     readonly question: AttackQuestion;
     readonly command: Extract<CombatUiCommand, { type: 'Attack' }>;
   } | null>(null);
+  // A spell that more than one slot could pay for asks which (docs/adr/0052-spells-as-data.md §3).
+  const [slotting, setSlotting] = useState<{
+    readonly key: string;
+    readonly spell: ContextSpell;
+  } | null>(null);
   // Melee attacks knock out instead of killing while this is on (docs/adr/0048-hit-points.md §4).
   const [sparing, setSparing] = useState(false);
   const chosen = choice.kind === 'combatant' ? choice.target.entity.entityId : choice.kind;
   useEffect(() => {
     setChoosing(null);
     setAiming(null);
+    setSlotting(null);
   }, [chosen]);
   // On a phone the row scrolls sideways; its edges fade where more options hide.
   const row = useRef<HTMLDivElement>(null);
@@ -209,6 +217,8 @@ export function TurnTray({
               action.legal && command?.type === 'Attack' && question !== null
                 ? { key, question, command }
                 : null;
+            const slots =
+              action.legal && action.spell && action.spell.slots.length > 1 ? action.spell : null;
             return (
               <button
                 key={key}
@@ -217,7 +227,13 @@ export function TurnTray({
                 aria-label={optionLabelFor(t, action, labelOf(target.entity.entityId))}
                 aria-describedby={detailId(index)}
                 aria-expanded={
-                  asks ? choosing === action.id : aim ? aiming?.key === key : undefined
+                  asks
+                    ? choosing === action.id
+                    : aim
+                      ? aiming?.key === key
+                      : slots
+                        ? slotting?.key === key
+                        : undefined
                 }
                 disabled={locked || (command === null && !asks)}
                 onClick={() => {
@@ -227,6 +243,10 @@ export function TurnTray({
                   } else if (aim) {
                     setChoosing(null);
                     setAiming(aiming?.key === key ? null : aim);
+                  } else if (slots) {
+                    setChoosing(null);
+                    setAiming(null);
+                    setSlotting(slotting?.key === key ? null : { key, spell: slots });
                   } else if (command) onRun({ kind: 'command', command });
                 }}
               >
@@ -269,6 +289,21 @@ export function TurnTray({
           }}
           onCancel={() => {
             setAiming(null);
+          }}
+        />
+      )}
+      {slotting !== null && choice.kind === 'combatant' && (
+        <SpellChoice
+          spell={slotting.spell}
+          actorId={actorId}
+          target={{ entityId: choice.target.entity.entityId, position: choice.target.position }}
+          locked={locked}
+          onRun={(intent) => {
+            setSlotting(null);
+            onRun(intent);
+          }}
+          onCancel={() => {
+            setSlotting(null);
           }}
         />
       )}

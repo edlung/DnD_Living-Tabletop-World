@@ -79,6 +79,7 @@ const LABEL: Readonly<Record<ContextActionId, string>> = {
   dismount: 'Get down from the creature you ride',
   enter_location: 'Go there',
   fireball: 'Cast Fireball at them',
+  cast_spell: 'Cast a spell on them, or on their square',
   counterspell: 'Counterspell their spell',
   dash: 'Dash: move as far again this turn',
   disengage: 'Disengage: leave without opportunity attacks',

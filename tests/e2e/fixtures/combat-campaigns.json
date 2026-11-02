@@ -24,5 +24,6 @@
   "flight": "ui-combat-flight",
   "featherFall": "ui-combat-feather-fall",
   "mount": "ui-combat-mount",
-  "light": "ui-combat-light"
+  "light": "ui-combat-light",
+  "spells": "ui-combat-spells"
 }

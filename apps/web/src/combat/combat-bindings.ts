@@ -1,4 +1,10 @@
-import type { ContextAction, EncounterView, KernelCommandOf, Square } from '@ltw/contracts';
+import type {
+  ContextAction,
+  ContextSpell,
+  EncounterView,
+  KernelCommandOf,
+  Square,
+} from '@ltw/contracts';
 
 export type CombatUiCommand = KernelCommandOf<
   | 'MoveCombatant'
@@ -92,6 +98,10 @@ export function combatCommandFor(
         ...(using === undefined ? {} : { using }),
         targetId: target.entityId,
       };
+    // Any other SRD spell (docs/adr/0052-spells-as-data.md §5): the target named once per attack
+    // or dart, its square for an area.
+    case 'cast_spell':
+      return action.spell ? castSpellCommand(action.spell, actorId, target, using) : null;
     case 'counterspell':
       return encounter.reactionWindow?.trigger.kind === 'spell' &&
         encounter.reactionWindow.trigger.caster.entityId === target.entityId
@@ -168,5 +178,27 @@ export function opportunityAttack(
     windowId,
     reaction: 'opportunity-attack',
     attackId,
+  };
+}
+
+/**
+ * A spell cast from its data (docs/adr/0052-spells-as-data.md §5), as the Context Engine judged it:
+ * the target named once per attack or dart — more with a higher slot — and its square for an area.
+ */
+export function castSpellCommand(
+  spell: ContextSpell,
+  actorId: string,
+  target: { readonly entityId: string; readonly position: Square },
+  using: 'free' | { readonly slotLevel: number } | undefined,
+): Extract<CombatUiCommand, { type: 'CastSpell' }> {
+  const above = using === undefined || using === 'free' ? 0 : using.slotLevel - spell.level;
+  const times = spell.times + (spell.perSlot ?? 0) * Math.max(0, above);
+  return {
+    type: 'CastSpell',
+    combatantId: actorId,
+    spellId: spell.spellId,
+    ...(using === undefined ? {} : { using }),
+    ...(spell.names ? { targetIds: Array.from({ length: times }, () => target.entityId) } : {}),
+    ...(spell.aim ? { point: { x: target.position.x, y: target.position.y } } : {}),
   };
 }

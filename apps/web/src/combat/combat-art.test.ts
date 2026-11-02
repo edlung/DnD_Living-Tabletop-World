@@ -29,12 +29,14 @@ const glyphs = new Set<string>(GLYPH_NAMES);
 describe('combat option pictures and words', () => {
   it('shows each battlefield option with the catalog art of the entry its command uses', () => {
     // A weapon attack's picture is its weapon's (`optionArtUrl`), checked below; so is an extra
-    // attack's (docs/adr/0047-weapons.md); a strike without a weapon shows its glyph.
+    // attack's (docs/adr/0047-weapons.md); a strike without a weapon shows its glyph, and an SRD
+    // spell its own picture where it has one (docs/adr/0052-spells-as-data.md), else its glyph.
     const weaponOptions = new Set([
       'weapon_attack',
       'offhand_attack',
       'cleave_attack',
       'unarmed_strike',
+      'cast_spell',
     ]);
     for (const action of COMBAT_ACTIONS.filter((id) => !weaponOptions.has(id))) {
       const art = catalogArtOf(action);

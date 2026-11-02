@@ -18,6 +18,7 @@ export {
   type CombatReason,
   type Refusal,
 } from './legality.ts';
+export { dataSpellPlan, targetCount, type DataSpellPlan } from './data-spell-plan.ts';
 export {
   chooseUsing,
   characterSpellPlan,
