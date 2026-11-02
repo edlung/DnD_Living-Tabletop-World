@@ -104,6 +104,8 @@ export function monsterSpellEvents(
       distanceFt: plan.distanceFt,
       longRange: false,
       targetDodging: isDodging(target.record, target.vitals),
+      attackerSqueezed: plan.record.squeezed === true,
+      targetSqueezed: target.record.squeezed === true,
     });
     const targetAc =
       armorClass(target.vitals) + (target.cover === 'none' ? 0 : COVER_BONUS[target.cover]);
@@ -152,6 +154,7 @@ export function monsterSpellEvents(
       target.cover,
       'spell',
       isDodging(target.record, target.vitals),
+      target.record.squeezed === true,
     );
     events.push(save.event);
     const damage = rollDamage(dice, effect.damage.count, effect.damage.sides, effect.damage.bonus);

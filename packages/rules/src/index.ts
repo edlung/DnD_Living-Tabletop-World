@@ -56,6 +56,17 @@ export {
 } from './rest.ts';
 export { OBJECT_ARMOR_CLASS, OBJECT_HIT_POINTS, objectStatBlock } from './objects.ts';
 export {
+  fills,
+  gapFt,
+  gapToSquareFt,
+  sizeRank,
+  smallerSize,
+  spanOf,
+  spanOfSize,
+  squaresOf,
+  type Placed,
+} from './space.ts';
+export {
   attackRoll,
   d20Test,
   rollDamage,

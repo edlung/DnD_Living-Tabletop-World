@@ -55,4 +55,48 @@ describe('planPath', () => {
     expect(planPath(encounter(), 'a', { x: 6, y: 0 })).toBeNull();
     expect(planPath(encounter(), 'zzz', { x: 1, y: 1 })).toBeNull();
   });
+
+  it('passes through an ally’s square at double cost, never ending there, and never a wall', () => {
+    // With (0, 1) and (1, 1) walled, the way east runs through b at (1, 0): 10 ft, then 5.
+    const plan = planPath(
+      encounter({
+        walls: [
+          { x: 0, y: 1 },
+          { x: 1, y: 1 },
+        ],
+      }),
+      'a',
+      { x: 2, y: 0 },
+    );
+    expect(plan?.path).toEqual([
+      { x: 1, y: 0 },
+      { x: 2, y: 0 },
+    ]);
+    expect(plan?.costFt).toBe(15);
+    expect(planPath(encounter({ walls: [{ x: 4, y: 2 }] }), 'a', { x: 4, y: 2 })).toBeNull();
+  });
+
+  it('keeps a Large mover’s whole space clear, squeezing through a gap a square wide', () => {
+    // docs/adr/0049-space-and-movement.md §1, §4: walls at x = 3 but for (3, 1).
+    const base = encounter({
+      walls: [
+        { x: 3, y: 0 },
+        { x: 3, y: 2 },
+        { x: 3, y: 3 },
+      ],
+    });
+    const [first] = base.combatants;
+    if (!first) throw new Error('no mover');
+    const view: EncounterView = {
+      ...base,
+      combatants: [{ ...first, size: 'large', position: { x: 0, y: 1 } }],
+    };
+    const plan = planPath(view, 'a', { x: 4, y: 1 });
+    // Whole, squeezed twice through the gap at (3, 1), whole again: 5 + 10 + 10 + 5.
+    expect(plan?.path.map((s) => `${String(s.x)},${String(s.y)}`)).toContain('3,1');
+    expect(plan?.path.at(-1)).toEqual({ x: 4, y: 1 });
+    expect(plan?.costFt).toBe(30);
+    // At (5, 1) its space would hang past the edge: it squeezes there, 10 ft more.
+    expect(planPath(view, 'a', { x: 5, y: 1 })?.costFt).toBe(40);
+  });
 });

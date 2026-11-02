@@ -161,7 +161,16 @@ export function savesAtEndOfTurn(work: FightWork, dice: Dice, entityId: string):
     if (!detail.save) continue;
     const vitals = work.vitalsOf(entityId);
     if (!vitals || !has(vitals, detail.condition)) continue;
-    const save = spellSave(dice, vitals, detail.save.ability, detail.save.dc, 'none', 'condition');
+    const save = spellSave(
+      dice,
+      vitals,
+      detail.save.ability,
+      detail.save.dc,
+      'none',
+      'condition',
+      false,
+      work.combatant(entityId)?.squeezed === true,
+    );
     events.push(save.event);
     if (save.success) events.push(...endCondition(work, entityId, detail.condition, 'save'));
   }

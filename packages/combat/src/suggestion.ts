@@ -6,9 +6,16 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { onGround, pathCostFt, squareDistanceFt } from '@ltw/rules';
+import { gapFt, onGround, pathCostFt, squaresOf } from '@ltw/rules';
 
-import { inBounds, isAlive, isDifficult, occupant } from './battlefield.ts';
+import {
+  fitsOnField,
+  gapBetween,
+  isAlive,
+  isDifficult,
+  occupant,
+  placedOf,
+} from './battlefield.ts';
 import { attackPlan } from './legality.ts';
 import { movePlan } from './movement.ts';
 import { monsterSpellPlan } from './spell-legality.ts';
@@ -64,7 +71,7 @@ function chooseTurn(state: WorldState): MonsterTurnSuggestion | null {
     .filter(
       (c) => c.entityId !== self && ENEMIES[side].includes(c.side) && isAlive(state, c.entityId),
     )
-    .map((record) => ({ record, distanceFt: squareDistanceFt(current.position, record.position) }))
+    .map((record) => ({ record, distanceFt: gapBetween(state, current, record) }))
     .sort((a, b) => a.distanceFt - b.distanceFt);
   const [nearest] = hostiles;
   if (!nearest) return endTurn('no hostile is left standing');
@@ -131,6 +138,9 @@ function approach(
   const budget = speed + (mover.turn.dashFt ?? 0) - standUp - mover.turn.movementUsedFt;
   const key = (square: Square) => `${String(square.x)},${String(square.y)}`;
   const start = mover.position;
+  // Its whole space at a square (docs/adr/0049-space-and-movement.md §1).
+  const here = (square: Square) => ({ ...placedOf(state, mover), position: square });
+  const there = placedOf(state, target);
   const best = new Map<string, { cost: number; path: Square[] }>([
     [key(start), { cost: 0, path: [] }],
   ]);
@@ -145,7 +155,10 @@ function approach(
       for (const dx of [-1, 0, 1]) {
         const square = { x: next.square.x + dx, y: next.square.y + dy };
         if ((dx === 0 && dy === 0) || square.x < 0 || square.y < 0) continue;
-        if (!inBounds(encounter, square) || occupant(state, encounter, square, mover.entityId))
+        if (
+          !fitsOnField(encounter, here(square)) ||
+          squaresOf(here(square)).some((at) => occupant(state, encounter, at, mover.entityId))
+        )
           continue;
         const step = pathCostFt([onGround(next.square), onGround(square)], (p) =>
           isDifficult(encounter, p),
@@ -160,12 +173,12 @@ function approach(
       }
     }
   }
-  const from = squareDistanceFt(start, target.position);
+  const from = gapFt(here(start), there);
   const choice = [...best.values()]
     .filter(({ path }) => path.length > 0)
     .map((entry) => ({
       ...entry,
-      distance: squareDistanceFt(entry.path.at(-1) ?? start, target.position),
+      distance: gapFt(here(entry.path.at(-1) ?? start), there),
     }))
     .filter(({ distance }) => distance < from)
     .sort((a, b) => {

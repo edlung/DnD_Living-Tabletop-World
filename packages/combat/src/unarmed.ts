@@ -11,19 +11,28 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { abilityModifier, proficiencyBonus, squareDistanceFt, totalLevel } from '@ltw/rules';
+import { abilityModifier, proficiencyBonus, sizeRank, totalLevel } from '@ltw/rules';
 
-import { combatantEvent, encounterOf, isAlive, onTurn, withTurn } from './battlefield.ts';
+import {
+  combatantEvent,
+  encounterOf,
+  gapBetween,
+  isAlive,
+  onTurn,
+  withTurn,
+} from './battlefield.ts';
 import { FightWork, endCondition, revealed, sourceOf, withDetail } from './condition-details.ts';
 import { attackPlan, type Refusal } from './legality.ts';
 import { pushedTo } from './masteries.ts';
 import { isObject } from './objects.ts';
 import { combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
+import { fitAt } from './space.ts';
 import {
   has,
   incapacitated,
   saveModifier,
+  sizeOf,
   vitalsOf,
   withConditions,
   type Vitals,
@@ -87,6 +96,10 @@ export function decideUnarmed(
   const { target, targetVitals, attackerVitals } = plan;
   // A grapple or a shove takes hold of a creature (docs/adr/0048-hit-points.md §5).
   if (isObject(targetVitals)) return refused({ legal: false, reason: 'NOT_A_CREATURE' });
+  // No more than one size larger than the attacker (docs/adr/0049-space-and-movement.md §3).
+  if (sizeRank(sizeOf(targetVitals)) > sizeRank(sizeOf(attackerVitals)) + 1) {
+    return refused({ legal: false, reason: 'TOO_LARGE' });
+  }
   if (
     effect === 'grapple' &&
     sourceOf(target, 'grappled') === command.combatantId &&
@@ -111,7 +124,16 @@ export function decideUnarmed(
   events.push(work.record(actor));
   const ability =
     saveModifier(targetVitals, 'dex') > saveModifier(targetVitals, 'str') ? 'dex' : 'str';
-  const save = spellSave(dice, targetVitals, ability, grappleDc(attackerVitals), 'none', effect);
+  const save = spellSave(
+    dice,
+    targetVitals,
+    ability,
+    grappleDc(attackerVitals),
+    'none',
+    effect,
+    false,
+    target.squeezed === true,
+  );
   events.push(save.event);
   if (save.success) return accept(...events);
   if (effect === 'grapple') {
@@ -142,7 +164,7 @@ export function decideUnarmed(
     }
     return accept(...events);
   }
-  const to = pushedTo(state, encounter.value, actor.position, target, 5);
+  const to = pushedTo(state, encounter.value, actor, target, 5);
   if (to.x !== target.position.x || to.y !== target.position.y) {
     events.push(work.record({ ...target, position: { ...to } }));
     // Pushed out of a grapple's reach, it is held no longer.
@@ -198,7 +220,7 @@ export function grapplesSweep(work: FightWork, state: WorldState): DraftEvent[] 
       vitals !== null &&
       isAlive(state, grapplerId) &&
       !incapacitated(vitals) &&
-      squareDistanceFt(grappler.position, held.position) <= 5;
+      gapBetween(state, grappler, held) <= 5;
     if (!holds) events.push(...endCondition(work, held.entityId, 'grappled', 'grapple-ended'));
   }
   return events;
@@ -216,8 +238,21 @@ export function dragged(
   trail: readonly { readonly x: number; readonly y: number }[],
 ): DraftEvent[] {
   const behind = trail.at(-2);
+  const last = trail.at(-1);
   const first = heldBy(state, encounter, grapplerId)[0];
-  if (!behind || !first) return [];
+  if (!behind || !last || !first) return [];
   const record = combatantOf(encounter, first.entityId);
-  return record ? [combatantEvent({ ...record, position: { x: behind.x, y: behind.y } })] : [];
+  if (!record) return [];
+  // Its whole space must fit there, beside the grappler where it now stands
+  // (docs/adr/0049-space-and-movement.md §1); else it stays, and the next turn's sweep reads it.
+  const after: EncounterState = {
+    ...encounter,
+    combatants: encounter.combatants.map((c) =>
+      c.entityId === grapplerId ? { ...c, position: { x: last.x, y: last.y } } : c,
+    ),
+  };
+  const fit = fitAt(state, after, record, behind, true);
+  return fit && !fit.squeezed
+    ? [combatantEvent({ ...record, position: { x: behind.x, y: behind.y } })]
+    : [];
 }

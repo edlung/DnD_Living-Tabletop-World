@@ -10,16 +10,26 @@ import {
   SPELLS,
   applyCast,
   checkCast,
+  gapToSquareFt,
   moveRequiredFt,
   slotsRemaining,
-  squareDistanceFt,
+  squaresOf,
   startTurn,
   type CastPlan,
   type CastRequest,
   type TurnState,
 } from '@ltw/rules';
 
-import { coverAt, inBounds, isAlive, occupant, turnStateOf } from './battlefield.ts';
+import {
+  coverAt,
+  fitsOnField,
+  gapBetween,
+  inBounds,
+  isAlive,
+  occupant,
+  placedOf,
+  turnStateOf,
+} from './battlefield.ts';
 import { charmedBy } from './condition-details.ts';
 import { fireballArea, type CombatReason, type Refusal } from './legality.ts';
 import { isObject, isObjectIn } from './objects.ts';
@@ -129,14 +139,21 @@ export function characterSpellPlan(
     if (request.point === undefined) return refuse('TARGET_REQUIRED');
     if (!inBounds(encounter, request.point)) return refuse('DESTINATION_INVALID');
     point = request.point;
-    const distanceFt = squareDistanceFt(record.position, point);
+    // From the caster's nearest square (docs/adr/0049-space-and-movement.md §1).
+    const distanceFt = gapToSquareFt(placedOf(state, record), point);
     if (spellId === 'fireball') {
       castRequest.target = { distanceFt, visible: true };
       area = fireballArea(state, encounter, point);
     } else {
+      // The caster's whole space must fit there (ADR 0049 §1).
+      const there = { ...placedOf(state, record), position: point };
       const blocked =
-        occupant(state, encounter, point, casterId) !== undefined ||
-        coverAt(encounter, point) === 'total';
+        !fitsOnField(encounter, there) ||
+        squaresOf(there).some(
+          (square) =>
+            occupant(state, encounter, square, casterId) !== undefined ||
+            coverAt(encounter, square) === 'total',
+        );
       castRequest.destination = { distanceFt, visible: true, occupied: blocked };
     }
   }
@@ -181,7 +198,7 @@ function locateTarget(
         record: targetRecord,
         cover: cover === 'total' ? 'none' : cover,
       },
-      distanceFt: squareDistanceFt(record.position, targetRecord.position),
+      distanceFt: gapBetween(state, record, targetRecord),
     };
   }
   // Outside combat: a present creature; range is not tracked (ADR 0012).
@@ -231,7 +248,7 @@ export function monsterSpellPlan(
   if (charmedBy(record, caster, targetId)) return refuse('CHARMED_BY_TARGET');
   const cover = coverAt(encounter, targetRecord.position);
   if (cover === 'total') return refuse('TOTAL_COVER');
-  const distanceFt = squareDistanceFt(record.position, targetRecord.position);
+  const distanceFt = gapBetween(state, record, targetRecord);
   if (distanceFt > spell.rangeFt) {
     return refuse('OUT_OF_RANGE', { moveRequiredFt: moveRequiredFt(distanceFt, spell.rangeFt) });
   }

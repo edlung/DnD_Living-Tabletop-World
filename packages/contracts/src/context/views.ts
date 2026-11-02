@@ -101,6 +101,8 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'NEEDS_NO_AID',
   /** An object, where a rule names a creature (docs/adr/0048-hit-points.md §5). */
   'NOT_A_CREATURE',
+  /** A grapple's or a shove's target more than one size larger (ADR 0049 §3). */
+  'TOO_LARGE',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;

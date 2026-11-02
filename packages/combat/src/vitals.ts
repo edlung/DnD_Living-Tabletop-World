@@ -3,6 +3,7 @@ import {
   type Ability,
   type CharacterSheet,
   type Condition,
+  type CreatureSize,
   type HitPoints,
   type StatBlock,
 } from '@ltw/contracts';
@@ -41,6 +42,9 @@ export const hitPoints = (v: Vitals): HitPoints =>
 export const ceilingOf = (v: Vitals): number => effectiveMaximum(hitPoints(v));
 /** Its Resistances, Vulnerabilities and Immunities by damage type (ADR 0048 §3). */
 export const defensesOf = (v: Vitals) => (v.kind === 'character' ? v.sheet : v.block);
+/** Its size (docs/adr/0049-space-and-movement.md §1): Medium when its sheet or block names none. */
+export const sizeOf = (v: Vitals): CreatureSize =>
+  (v.kind === 'character' ? v.sheet.size : v.block.size) ?? 'medium';
 export const armorClass = (v: Vitals) =>
   v.kind === 'character' ? v.sheet.armorClass : v.block.armorClass;
 export const conditionsOf = (v: Vitals): readonly Condition[] =>

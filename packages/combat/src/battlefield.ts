@@ -10,7 +10,9 @@ import {
   type TurnRecord,
   type WorldState,
 } from '@ltw/domain';
-import type { TurnState } from '@ltw/rules';
+import { fills, gapFt, squaresOf, type Placed, type TurnState } from '@ltw/rules';
+
+import { sizeOf, vitalsOf } from './vitals.ts';
 
 /**
  * Encounter lookups shared by the combat decisions and the Context Engine
@@ -54,7 +56,47 @@ export function coverAt(encounter: EncounterState, square: Square): CoverLevel |
 export const isDifficult = (encounter: EncounterState, square: Square) =>
   encounter.battlefield.difficult.some((d) => sameSquare(d, square));
 
-/** A living combatant other than `except` standing on the square (the dead do not block). */
+/** A wall: no one stands in it or crosses it (docs/adr/0049-space-and-movement.md §4). */
+export const isWall = (encounter: EncounterState, square: Square) =>
+  (encounter.battlefield.walls ?? []).some((w) => sameSquare(w, square));
+
+/**
+ * A combatant's place: its north-west square, its size and whether it squeezes
+ * (docs/adr/0049-space-and-movement.md §1, §4).
+ */
+export function placedOf(state: WorldState, record: CombatantRecord): Placed {
+  const vitals = vitalsOf(state, record.entityId);
+  return {
+    position: record.position,
+    size: vitals ? sizeOf(vitals) : 'medium',
+    squeezed: record.squeezed === true,
+  };
+}
+
+const COVER_ORDER: readonly (CoverLevel | 'none')[] = ['none', 'half', 'three-quarters', 'total'];
+
+/** A combatant's cover: the least of its squares', as an attacker aims where it is open (§1). */
+export function coverOf(
+  state: WorldState,
+  encounter: EncounterState,
+  record: CombatantRecord,
+): CoverLevel | 'none' {
+  const levels = squaresOf(placedOf(state, record)).map((square) => coverAt(encounter, square));
+  return levels.reduce(
+    (least, level) => (COVER_ORDER.indexOf(level) < COVER_ORDER.indexOf(least) ? level : least),
+    levels[0] ?? 'none',
+  );
+}
+
+/** Feet between the nearest squares of two combatants (ADR 0049 §1). */
+export const gapBetween = (state: WorldState, a: CombatantRecord, b: CombatantRecord): number =>
+  gapFt(placedOf(state, a), placedOf(state, b));
+
+/** Whether a space lies on the battlefield, clear of walls. */
+export const fitsOnField = (encounter: EncounterState, placed: Placed): boolean =>
+  squaresOf(placed).every((square) => inBounds(encounter, square) && !isWall(encounter, square));
+
+/** A living combatant other than `except` filling the square (the dead do not block). */
 export function occupant(
   state: WorldState,
   encounter: EncounterState,
@@ -62,7 +104,7 @@ export function occupant(
   except: string,
 ): CombatantRecord | undefined {
   return encounter.combatants.find(
-    (c) => c.entityId !== except && sameSquare(c.position, square) && isAlive(state, c.entityId),
+    (c) => c.entityId !== except && isAlive(state, c.entityId) && fills(placedOf(state, c), square),
   );
 }
 

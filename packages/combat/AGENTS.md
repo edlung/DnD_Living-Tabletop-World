@@ -24,6 +24,7 @@ Decides encounter commands for the World Engine through the domain's `CombatPort
 | Spell saving throws (cover, Unconscious auto-fail, an object fails every save)        | `src/saves.ts`                    |
 | Damage: defenses, temporary HP, knocking out, 0 HP, death saves, healing (ADR 0048)   | `src/damage.ts`                   |
 | Objects in a fight: `AddObject`, no turn, no condition, no creature's rule (ADR 0048) | `src/objects.ts`                  |
+| Space: a step's fit, through allies, squeezing, a step's cost (ADR 0049 §1–4)         | `src/space.ts`                    |
 | Perspective-scoped encounter view                                                     | `src/view.ts`                     |
 | Reaction matcher and Counterspell eligibility (shared with context)                   | `src/reactions/eligibility.ts`    |
 | Suspending a cast in a reaction window                                                | `src/reactions/suspend.ts`        |

@@ -12,13 +12,13 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { initiativeOrder } from '@ltw/rules';
+import { initiativeOrder, squaresOf } from '@ltw/rules';
 
 import { encounterOf, isAlive } from './battlefield.ts';
 import { FightWork, fightEnded } from './condition-details.ts';
 import { isObject } from './objects.ts';
 import { firstTurn } from './turns.ts';
-import { dexterity, rollInitiative, vitalsOf, withConditions } from './vitals.ts';
+import { dexterity, rollInitiative, sizeOf, vitalsOf, withConditions } from './vitals.ts';
 
 /**
  * Starting and ending an encounter (docs/adr/0015-combat-engine.md §1–2).
@@ -46,14 +46,17 @@ export function decideStartCombat(
   const { battlefield } = command;
   const inside = (s: { x: number; y: number }) =>
     s.x < battlefield.width && s.y < battlefield.height;
-  if (![...battlefield.difficult, ...battlefield.cover].every(inside)) {
+  const walls = new Set((battlefield.walls ?? []).map(key));
+  if (
+    ![...battlefield.difficult, ...battlefield.cover, ...(battlefield.walls ?? [])].every(inside)
+  ) {
     return invalid('Terrain lies outside the battlefield');
   }
   const ids = command.combatants.map((c) => c.entityId);
   if (new Set(ids).size !== ids.length) return invalid('Each combatant may appear once');
-  if (new Set(command.combatants.map((c) => key(c.position))).size !== ids.length) {
-    return invalid('Two combatants cannot share a square');
-  }
+  // Each one's whole space on the field and clear of walls, none sharing another's — Tiny with
+  // Tiny apart (docs/adr/0049-space-and-movement.md §1).
+  const taken = new Map<string, boolean>();
   const entries = [];
   for (const combatant of command.combatants) {
     const entity = state.entities.get(combatant.entityId);
@@ -61,9 +64,18 @@ export function decideStartCombat(
       return invalid('Combatants must exist and be alive');
     if (entity.placement?.locationId !== command.locationId)
       return invalid('Combatants must be at the location');
-    if (!inside(combatant.position)) return invalid('A combatant stands outside the battlefield');
     const vitals = vitalsOf(state, combatant.entityId);
     if (!vitals) return reject('NO_STAT_BLOCK', 'Every combatant needs a sheet or a stat block');
+    const tiny = sizeOf(vitals) === 'tiny';
+    const space = squaresOf({ position: combatant.position, size: sizeOf(vitals) });
+    if (!space.every((square) => inside(square) && !walls.has(key(square))))
+      return invalid('A combatant stands outside the battlefield');
+    for (const square of space) {
+      const other = taken.get(key(square));
+      if (other !== undefined && !(other && tiny))
+        return invalid('Two combatants cannot share a square');
+      taken.set(key(square), tiny);
+    }
     // An object joins a running fight (docs/adr/0048-hit-points.md §5); it rolls no initiative.
     if (isObject(vitals)) return invalid('An object joins a running fight as an object');
     const { roll, modifier } = rollInitiative(dice, vitals, combatant.surprised === true);

@@ -11,7 +11,7 @@ import {
 } from '@ltw/domain';
 import { objectStatBlock } from '@ltw/rules';
 
-import { encounterOf, inBounds, isAlive, occupant } from './battlefield.ts';
+import { encounterOf, fitsOnField, isAlive, occupant } from './battlefield.ts';
 import type { Vitals } from './vitals.ts';
 
 /**
@@ -49,7 +49,7 @@ export function decideAddObject(
     return invalid('Each combatant may appear once');
   if (entity.placement?.locationId !== encounter.locationId)
     return invalid('Combatants must be at the location');
-  if (!inBounds(encounter, command.position))
+  if (!fitsOnField(encounter, { position: command.position, size: 'medium' }))
     return invalid('A combatant stands outside the battlefield');
   if (occupant(state, encounter, command.position, command.entityId))
     return invalid('Two combatants cannot share a square');

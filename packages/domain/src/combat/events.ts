@@ -119,6 +119,11 @@ export const combatantRecordSchema = z
       .array(z.object({ itemId: entityIdSchema, spent: z.number().int().min(1).max(99) }).strict())
       .max(8)
       .optional(),
+    /**
+     * Squeezed through a space a size smaller (docs/adr/0049-space-and-movement.md §4): it fills
+     * that smaller space until it stands where it fits again. Absent: not squeezed.
+     */
+    squeezed: z.literal(true).optional(),
   })
   .strict();
 

@@ -15,18 +15,13 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import {
-  abilityModifier,
-  checkEffects,
-  d20Test,
-  skillModifier,
-  squareDistanceFt,
-} from '@ltw/rules';
+import { abilityModifier, checkEffects, d20Test, skillModifier } from '@ltw/rules';
 
 import {
   combatantEvent,
-  coverAt,
+  coverOf,
   encounterOf,
+  gapBetween,
   isAlive,
   onTurn,
   turnStateOf,
@@ -107,7 +102,7 @@ export function actionPlan(
     const aided = target ? vitalsOf(state, target.entityId) : null;
     if (!target || !aided) return refuse('TARGET_REQUIRED');
     if (!isAlive(state, target.entityId)) return refuse('TARGET_DEAD');
-    if (squareDistanceFt(actor.position, target.position) > 5) return refuse('OUT_OF_RANGE');
+    if (gapBetween(state, actor, target) > 5) return refuse('OUT_OF_RANGE');
     if (!needsAid(aided)) return refuse('NEEDS_NO_AID');
     if (request.skill !== 'medicine') return refuse('INVALID_SKILL');
     return { legal: true, actor, vitals, skill: 'medicine' };
@@ -128,14 +123,14 @@ export function actionPlan(
       // Help in a fight: an enemy within 5 ft of the helper (SRD 5.2.1) — a creature to distract.
       if (target.side === actor.side) return refuse('NOT_A_FOE');
       if (isObjectIn(state, target.entityId)) return refuse('NOT_A_CREATURE');
-      if (squareDistanceFt(actor.position, target.position) > 5) return refuse('OUT_OF_RANGE');
+      if (gapBetween(state, actor, target) > 5) return refuse('OUT_OF_RANGE');
     }
     if (action === 'ready' && request.readied === undefined) return refuse('TARGET_REQUIRED');
     return { legal: true, actor, vitals, skill: null };
   }
   if (action === 'hide') {
     // Hide from behind Three-Quarters or Total Cover (light and sight are Stage 640g).
-    const cover = coverAt(encounter, actor.position);
+    const cover = coverOf(state, encounter, actor);
     if (cover !== 'three-quarters' && cover !== 'total') return refuse('NO_COVER_TO_HIDE');
     return { legal: true, actor, vitals, skill: 'stealth' };
   }

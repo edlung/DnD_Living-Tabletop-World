@@ -1,5 +1,6 @@
 import type { CoverLevel, EncounterCombatantView, PlayerAssetView } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
+import type { CSSProperties } from 'react';
 
 import { useHeldImage } from '../../visual/approved-images.ts';
 import { Glyph } from '../../visual/glyph.tsx';
@@ -47,6 +48,8 @@ export function Token({
   current,
   selected,
   inArea,
+  span = 1,
+  cell = 0,
 }: {
   readonly combatant: EncounterCombatantView;
   /** Its name, or "Unidentified creature N" (`combat/labels.ts`). */
@@ -61,6 +64,13 @@ export function Token({
   readonly current: boolean;
   readonly selected: boolean;
   readonly inArea: boolean;
+  /**
+   * Squares across its space (docs/adr/0049-space-and-movement.md §1): a Large figure is drawn
+   * over 2×2 squares from the square that holds it, everything in it scaled to the space.
+   */
+  readonly span?: number;
+  /** The board's square in pixels, to scale a spanning figure. */
+  readonly cell?: number;
 }) {
   const t = useT();
   const standing = useHeldImage(figure);
@@ -75,9 +85,11 @@ export function Token({
     current ? 'is-current' : '',
     selected ? 'is-selected' : '',
     inArea ? 'in-area' : '',
+    span > 1 ? 'is-spanning' : '',
   ];
+  const style = span > 1 ? ({ '--cell': `${String(cell * span)}px` } as CSSProperties) : undefined;
   return (
-    <span className={classes.filter(Boolean).join(' ')} aria-hidden="true">
+    <span className={classes.filter(Boolean).join(' ')} style={style} aria-hidden="true">
       <span className="token-ring" />
       <span className="token-figure">
         {(combatant.conditions.length > 0 || combatant.exhaustion !== undefined) && (

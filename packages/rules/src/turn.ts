@@ -66,7 +66,9 @@ export type IllegalReason =
   /** First aid for a creature neither dying nor knocked out (docs/adr/0048-hit-points.md §4). */
   | 'NEEDS_NO_AID'
   /** An object, where a grapple, a mastery or a spell names a creature (ADR 0048 §5). */
-  | 'NOT_A_CREATURE';
+  | 'NOT_A_CREATURE'
+  /** A grapple's or a shove's target more than one size larger (ADR 0049 §3). */
+  | 'TOO_LARGE';
 
 export interface Illegal {
   readonly legal: false;

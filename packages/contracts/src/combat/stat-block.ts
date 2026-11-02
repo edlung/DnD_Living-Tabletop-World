@@ -4,6 +4,7 @@ import { entityIdSchema } from '../kernel/identifiers.ts';
 import {
   ABILITIES,
   CONDITIONS,
+  CREATURE_SIZES,
   damageDefensesShape,
   effectiveMaximum,
   exhaustionSchema,
@@ -108,6 +109,8 @@ export const statBlockSchema = z
     ),
     ...damageDefensesShape,
     speedFt: z.number().int().min(0).max(200).multipleOf(5),
+    /** Its size (docs/adr/0049-space-and-movement.md §1); absent: Medium. */
+    size: z.enum(CREATURE_SIZES).optional(),
     abilities: z
       .object({ str: score, dex: score, con: score, int: score, wis: score, cha: score })
       .strict(),

@@ -25,7 +25,7 @@ import {
   exhaustionPenalty,
   moveRequiredFt,
   proficiencyBonus,
-  squareDistanceFt,
+  squaresOf,
   totalLevel,
   withinArea,
   type Illegal,
@@ -34,7 +34,7 @@ import {
 } from '@ltw/rules';
 
 import { isDodging } from './actions.ts';
-import { coverAt, isAlive, turnStateOf } from './battlefield.ts';
+import { coverOf, gapBetween, isAlive, placedOf, turnStateOf } from './battlefield.ts';
 import { charmedBy, conditionsAgainst, detailOf } from './condition-details.ts';
 import { isObjectIn } from './objects.ts';
 import { hostileSides } from './reactions/opportunity.ts';
@@ -175,7 +175,7 @@ function foeClose(state: WorldState, encounter: EncounterState, attacker: Combat
   const self = vitalsOf(state, attacker.entityId);
   return encounter.combatants.some((other) => {
     if (!hostileSides(other.side, attacker.side) || !isAlive(state, other.entityId)) return false;
-    if (squareDistanceFt(other.position, attacker.position) > 5) return false;
+    if (gapBetween(state, other, attacker) > 5) return false;
     // An object sees no one (docs/adr/0048-hit-points.md §5).
     if (isObjectIn(state, other.entityId)) return false;
     const vitals = vitalsOf(state, other.entityId);
@@ -214,7 +214,7 @@ function extraTurn(
     // Its second target is a creature, as the first was (docs/adr/0048-hit-points.md §5).
     if (isObjectIn(state, target.entityId)) return refuse('NOT_A_CREATURE');
     const first = combatantOf(encounter, offer.targetId);
-    if (!first || squareDistanceFt(first.position, target.position) > 5) {
+    if (!first || gapBetween(state, first, target) > 5) {
       return refuse('OUT_OF_RANGE');
     }
     return turn;
@@ -278,8 +278,9 @@ export function attackPlan(
     }
   }
 
-  const distanceFt = squareDistanceFt(attacker.position, target.position);
-  const coverLevel = coverAt(encounter, target.position);
+  // From nearest square to nearest square (docs/adr/0049-space-and-movement.md §1).
+  const distanceFt = gapBetween(state, attacker, target);
+  const coverLevel = coverOf(state, encounter, target);
   if (coverLevel === 'total') return refuse('TOTAL_COVER');
   const weapon = weaponOf(state, attackerVitals, attackId, distanceFt);
   if (typeof weapon === 'string') return refuse(weapon);
@@ -328,6 +329,8 @@ export function attackPlan(
     tooHeavy: weapon.tooHeavy,
     vexing: vexed,
     sapped,
+    attackerSqueezed: attacker.squeezed === true,
+    targetSqueezed: target.squeezed === true,
   });
   const marked =
     attackerVitals.kind === 'character' &&
@@ -403,8 +406,10 @@ export function fireballArea(
     (c) =>
       isAlive(state, c.entityId) &&
       !isObjectIn(state, c.entityId) &&
-      withinArea(point, c.position, FIREBALL_RADIUS_FT) &&
-      coverAt(encounter, c.position) !== 'total',
+      squaresOf(placedOf(state, c)).some((square) =>
+        withinArea(point, square, FIREBALL_RADIUS_FT),
+      ) &&
+      coverOf(state, encounter, c) !== 'total',
   );
 }
 

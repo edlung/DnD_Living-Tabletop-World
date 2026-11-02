@@ -2,6 +2,7 @@ import type { EncounterView, Square } from '@ltw/contracts';
 import type { CSSProperties } from 'react';
 
 import type { LabelOf } from '../labels.ts';
+import { spanOf } from './footprint.ts';
 import { plateAnchor, plateRoom, type BoardLayout } from './geometry.ts';
 import { TokenPlate } from './token.tsx';
 
@@ -41,7 +42,8 @@ export function BoardPlates({
   return (
     <div className="board-plates" aria-hidden="true">
       {encounter.combatants.map((combatant) => {
-        const anchor = plateAnchor(layout, combatant.position);
+        // Under the middle of its space (docs/adr/0049-space-and-movement.md §1).
+        const anchor = plateAnchor(layout, combatant.position, spanOf(combatant));
         const style: PlateStyle = {
           left: anchor.x,
           top: anchor.y,

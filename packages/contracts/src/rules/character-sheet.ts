@@ -169,6 +169,13 @@ export type HitDieSides = (typeof HIT_DIE_SIDES)[number];
 const spentDice = z.number().int().min(0).max(20);
 
 /**
+ * Creature sizes (SRD 5.2.1; docs/adr/0049-space-and-movement.md §1): a Large creature fills 2×2
+ * squares, a Huge one 3×3, a Gargantuan one 4×4; a Tiny one shares its square with other Tiny ones.
+ */
+export const CREATURE_SIZES = ['tiny', 'small', 'medium', 'large', 'huge', 'gargantuan'] as const;
+export type CreatureSize = (typeof CREATURE_SIZES)[number];
+
+/**
  * The SRD 5.2.1 conditions (docs/adr/0045-conditions-and-actions.md §1), Exhaustion apart (a level,
  * §3), and the Slow mastery's Slowed. Paralyzed, Petrified, Stunned and Unconscious include
  * Incapacitated; Unconscious (a character at 0 HP, ADR 0015 §4) brings Prone with it. The list only
@@ -239,6 +246,8 @@ export const characterSheetSchema = z
     ...damageDefensesShape,
     armorClass: z.number().int().min(1).max(40),
     speedFt: z.number().int().min(0).max(200).multipleOf(5),
+    /** Its size (docs/adr/0049-space-and-movement.md §1); absent: Medium. */
+    size: z.enum(CREATURE_SIZES).optional(),
     savingThrows: z.array(z.enum(ABILITIES)),
     skills: z
       .object({ proficient: z.array(z.enum(skillIds)), expertise: z.array(z.enum(skillIds)) })

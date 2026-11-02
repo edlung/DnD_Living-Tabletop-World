@@ -20,6 +20,8 @@ export function spellSave(
   purpose: 'spell' | 'counterspell' | 'condition' | 'topple' | 'grapple' | 'shove' = 'spell',
   /** It Dodges (docs/adr/0045-conditions-and-actions.md §5): Advantage on Dexterity saves. */
   dodging = false,
+  /** It squeezes (docs/adr/0049-space-and-movement.md §4): Disadvantage on Dexterity saves. */
+  squeezed = false,
 ): { success: boolean; event: DraftEvent } {
   const effects = saveEffects(ability, conditionsOf(target), exhaustionOf(target));
   const bonus = ability === 'dex' && cover !== 'none' ? COVER_BONUS[cover] : 0;
@@ -32,7 +34,7 @@ export function spellSave(
           modifier,
           target: dc,
           advantage: effects.advantage || (dodging && ability === 'dex'),
-          disadvantage: effects.disadvantage,
+          disadvantage: effects.disadvantage || (squeezed && ability === 'dex'),
         });
   return {
     success: save.success,

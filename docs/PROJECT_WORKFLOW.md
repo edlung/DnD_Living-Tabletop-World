@@ -24,8 +24,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   and on table checks; ADR 0046), done; 640d, the weapons (ADR 0047: properties, masteries, the
   other hand, ammunition; Unarmed Strike's grapple and shove, the object at hand), done; 640e,
   hit points (ADR 0048: temporary hit points, a lowered maximum, resistance, vulnerability and
-  immunity, knocking out and first aid, objects to break), done; 640f, space and movement, next.
-  Feather Fall waits for falling (640f).
+  immunity, knocking out and first aid, objects to break), done; 640f, space and movement (ADR
+  0049), in progress: its first part — size and space, walls, squeezing — done. Feather Fall waits
+  for falling (640f, its second part).
 
 ## Current request — AI campaigns, 2026-10-30
 

@@ -65,6 +65,13 @@ export function BoardLegend({
           <img src={boardUrl('cover-total')} alt="" />
           {t('Total cover')}
         </li>
+        {/* Walls, when the battlefield has any (docs/adr/0049-space-and-movement.md §4). */}
+        {(encounter.battlefield.walls?.length ?? 0) > 0 && (
+          <li>
+            <span className="legend-swatch legend-swatch--wall" aria-hidden="true" />
+            {t('Wall')}
+          </li>
+        )}
         <li>
           <span className="legend-ring legend-ring--party" aria-hidden="true" />
           {t('Party')}

@@ -6,9 +6,9 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { WEAPONS, squareDistanceFt } from '@ltw/rules';
+import { WEAPONS, gapFt } from '@ltw/rules';
 
-import { isAlive, turnStateOf } from '../battlefield.ts';
+import { isAlive, placedOf, turnStateOf } from '../battlefield.ts';
 import type { Refusal } from '../legality.ts';
 import { UNARMED_STRIKE, reachOfWeapon } from '../weapon-view.ts';
 import { has, incapacitated, vitalsOf, type Vitals } from '../vitals.ts';
@@ -111,6 +111,7 @@ export function firstProvocation(
   along: ReadonlySet<string> = new Set(),
 ): Provocation | null {
   if (mover.turn.disengaged === true) return null;
+  const moving = placedOf(state, mover);
   let from: Square = mover.position;
   for (const [index, to] of path.entries()) {
     if (offered && index === 0) {
@@ -125,9 +126,11 @@ export function firstProvocation(
       const vitals = vitalsOf(state, other.entityId);
       if (!vitals || !isAlive(state, other.entityId)) continue;
       const reach = reachOf(meleeAttacks(state, vitals));
+      // Space to space (docs/adr/0049-space-and-movement.md §1): the mover's at each step.
+      const its = placedOf(state, other);
       const leaves =
-        squareDistanceFt(other.position, from) <= reach &&
-        squareDistanceFt(other.position, to) > reach;
+        gapFt(its, { ...moving, position: from }) <= reach &&
+        gapFt(its, { ...moving, position: to }) > reach;
       if (!leaves) continue;
       const plan = opportunityPlan(state, encounter, other.entityId, mover.entityId);
       if (plan.legal) candidates.push({ entityId: other.entityId });

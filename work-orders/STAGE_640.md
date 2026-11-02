@@ -51,6 +51,12 @@ each further SRD rule needs an entry or an ADR before it is implemented).
 - 640f — Space and movement: creature size and space, squeezing; speeds (walk, fly, swim, climb,
   burrow), climbing and swimming without a speed, jumping (long and high), elevation and falling
   (1d6 per 10 ft, Prone); mounted combat; underwater combat.
+
+  ADR 0049 first. Three commits: size and space (footprints, distances between nearest squares,
+  moving around creatures, walls and squeezing, size limits); speeds, terrain and height (water,
+  raised ground, pits, flying, climbing, swimming, crawling, jumping, burrowing, falling and Feather
+  Fall); mounted and underwater combat. The DM paints walls, water and heights with Stage 670's map
+  tools; until then they come with an encounter's battlefield.
 - 640g — The world around: vision and light (bright, dim, darkness; lightly and heavily obscured;
   Darkvision, Blindsight, Truesight), hazards (falling, suffocation, cold, heat), poisons, rests by
   the full rules (one long rest in 24 hours, an interrupted rest and its partial benefits), armor's

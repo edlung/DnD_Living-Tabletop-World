@@ -1,5 +1,5 @@
 import type { EntityKind, KernelCommandOf } from '../kernel/commands.ts';
-import type { Ability, Condition } from '../rules/character-sheet.ts';
+import type { Ability, Condition, CreatureSize } from '../rules/character-sheet.ts';
 import type { Battlefield, Side } from './commands.ts';
 import type { ReactionId, ReactionResponse, SpellComponent } from './reactions.ts';
 import type { ObjectMaterial, ObjectSize } from './stat-block.ts';
@@ -29,7 +29,12 @@ export interface EncounterCombatantView {
     readonly name: string | null;
   };
   readonly side: Side;
+  /** Its north-west square (docs/adr/0049-space-and-movement.md §1). */
   readonly position: { readonly x: number; readonly y: number };
+  /** Its size when not Medium: a Large creature fills 2×2 squares, and so on (ADR 0049 §1). */
+  readonly size?: CreatureSize;
+  /** Squeezed through a space a size smaller (ADR 0049 §4): it fills that smaller space. */
+  readonly squeezed?: true;
   /** `down`: at 0 HP but alive (a character making death saves). */
   readonly state: 'up' | 'down' | 'dead';
   readonly conditions: readonly Condition[];

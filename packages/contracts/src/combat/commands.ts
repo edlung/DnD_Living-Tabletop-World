@@ -55,6 +55,8 @@ export const battlefieldSchema = z
           .strict(),
       )
       .max(400),
+    /** Squares no one stands in or crosses (docs/adr/0049-space-and-movement.md §4). */
+    walls: z.array(squareSchema).max(800).optional(),
   })
   .strict();
 export type Battlefield = z.infer<typeof battlefieldSchema>;

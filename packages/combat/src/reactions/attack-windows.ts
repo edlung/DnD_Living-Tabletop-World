@@ -20,12 +20,11 @@ import {
   hasUncannyDodge,
   rollDamage,
   slotsRemaining,
-  squareDistanceFt,
   type TurnState,
 } from '@ltw/rules';
 
 import type { MadeAttack } from '../attack.ts';
-import { combatantEvent, isAlive, turnStateOf } from '../battlefield.ts';
+import { combatantEvent, gapBetween, isAlive, turnStateOf } from '../battlefield.ts';
 import { applyDamage } from '../damage.ts';
 import type { AttackPlan, Refusal } from '../legality.ts';
 import { applied as masteryApplied, masteryOnHit } from '../masteries.ts';
@@ -206,7 +205,7 @@ export function rebukePlan(
   if (!record || !source || !seen || !isAlive(state, sourceId)) return refuse('NOT_A_COMBATANT');
   const visible = !(vitals && has(vitals, 'blinded')) && !has(seen, 'invisible');
   return castReaction(encounter, vitals, record, 'hellish-rebuke', {
-    distanceFt: squareDistanceFt(record.position, source.position),
+    distanceFt: gapBetween(state, record, source),
     visible,
   });
 }

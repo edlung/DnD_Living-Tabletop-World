@@ -12,22 +12,14 @@ import {
   type ReactionWindowRecord,
   type WorldState,
 } from '@ltw/domain';
-import { onGround, pathCostFt, squareDistanceFt } from '@ltw/rules';
+import { gapFt } from '@ltw/rules';
 
-import {
-  combatantEvent,
-  encounterOf,
-  inBounds,
-  isAlive,
-  isDifficult,
-  occupant,
-  onTurn,
-  withTurn,
-} from './battlefield.ts';
+import { combatantEvent, encounterOf, isAlive, onTurn, placedOf, withTurn } from './battlefield.ts';
 import { sourceOf } from './condition-details.ts';
 import type { Refusal } from './legality.ts';
 import { firstProvocation } from './reactions/opportunity.ts';
 import { refused, combatPremises } from './refusal.ts';
+import { fitAt, stepCostFt } from './space.ts';
 import { dragged, heldBy } from './unarmed.ts';
 import {
   has,
@@ -40,12 +32,14 @@ import {
 } from './vitals.ts';
 
 /**
- * `MoveCombatant` (docs/adr/0015-combat-engine.md §3): square by square from
- * the current square, within the battlefield, never through or onto another
- * living combatant; difficult terrain costs double; standing up from Prone
- * costs half Speed. Leaving a hostile creature's reach provokes an opportunity
- * attack (docs/adr/0046-reactions-beyond-counterspell.md §2): the move stops
- * there while the window is open, and goes on after.
+ * `MoveCombatant` (docs/adr/0015-combat-engine.md §3): square by square from the current square,
+ * its whole space within the battlefield and clear of walls; through an ally's space, an
+ * Incapacitated creature's, a Tiny one's or one two sizes apart as Difficult Terrain, never ending
+ * in another's; squeezing where a Large or larger creature fits only a size smaller
+ * (docs/adr/0049-space-and-movement.md §1–4). Difficult terrain costs double; standing up from
+ * Prone costs half Speed. Leaving a hostile creature's reach provokes an opportunity attack
+ * (docs/adr/0046-reactions-beyond-counterspell.md §2): the move stops there while the window is
+ * open, and goes on after.
  */
 type Move = Extract<CombatCommand, { type: 'MoveCombatant' }>;
 
@@ -56,6 +50,8 @@ export interface MovePlan {
   readonly standUpFt: number;
   /** Movement used this turn once the move is made. */
   readonly usedFt: number;
+  /** Squeezed into a space a size smaller where the move ends (ADR 0049 §4). */
+  readonly squeezed: boolean;
 }
 
 /**
@@ -72,35 +68,41 @@ export function movePlan(
   if (!vitals) return { legal: false, reason: 'NOT_A_COMBATANT' };
   if (!isAlive(state, mover.entityId)) return { legal: false, reason: 'ACTOR_DEAD' };
   if (incapacitated(vitals)) return { legal: false, reason: 'INCAPACITATED' };
-  for (const square of path) {
-    if (!inBounds(encounter, square) || occupant(state, encounter, square, mover.entityId)) {
-      return { legal: false, reason: 'INVALID_PATH' };
-    }
+  let costFt = 0;
+  let squeezed = mover.squeezed === true;
+  let from = mover.position;
+  for (const [index, square] of path.entries()) {
+    const step = Math.max(Math.abs(square.x - from.x), Math.abs(square.y - from.y));
+    const fit =
+      step === 1 ? fitAt(state, encounter, mover, square, index === path.length - 1) : null;
+    if (!fit) return { legal: false, reason: 'INVALID_PATH' };
+    costFt += stepCostFt(state, encounter, mover, square, fit);
+    squeezed = fit.squeezed;
+    from = square;
   }
   // A Frightened creature cannot move closer to the source of its fear, at any step
   // (docs/adr/0045-conditions-and-actions.md §1).
   const fear = has(vitals, 'frightened') ? sourceOf(mover, 'frightened') : null;
   const source = fear === null ? undefined : combatantOf(encounter, fear);
   if (source && isAlive(state, source.entityId)) {
-    let distance = squareDistanceFt(mover.position, source.position);
+    const its = placedOf(state, source);
+    const here = (square: Square) => ({ ...placedOf(state, mover), position: square });
+    let distance = gapFt(here(mover.position), its);
     for (const square of path) {
-      const next = squareDistanceFt(square, source.position);
+      const next = gapFt(here(square), its);
       if (next < distance) return { legal: false, reason: 'CLOSER_TO_FEAR' };
       distance = next;
     }
   }
-  const walked = [mover.position, ...path].map(onGround);
-  const cost = pathCostFt(walked, (p) => isDifficult(encounter, p));
-  if (!cost.valid) return { legal: false, reason: 'INVALID_PATH' };
   const speed = speedOf(vitals);
   const standUpFt = has(vitals, 'prone') ? Math.floor(speed / 10) * 5 : 0;
   // Dragging a creature it grapples, each foot costs another (docs/adr/0047-weapons.md §3).
   const drag = heldBy(state, encounter, mover.entityId).length > 0 ? 2 : 1;
-  const usedFt = mover.turn.movementUsedFt + standUpFt + cost.costFt * drag;
+  const usedFt = mover.turn.movementUsedFt + standUpFt + costFt * drag;
   // Dash adds the Speed once more this turn (docs/adr/0045-conditions-and-actions.md §5).
   if (usedFt > speed + (mover.turn.dashFt ?? 0))
     return { legal: false, reason: 'NOT_ENOUGH_MOVEMENT' };
-  return { legal: true, vitals, standUpFt, usedFt };
+  return { legal: true, vitals, standUpFt, usedFt, squeezed };
 }
 
 export function decideMove(context: DecisionContext, command: Move): Decision {
@@ -153,17 +155,22 @@ function walk(
   const stop = firstProvocation(state, encounter, mover, path, offered, along);
   const walked = stop === null ? path : path.slice(0, stop.walked);
   let usedFt = mover.turn.movementUsedFt + whole.standUpFt;
+  let squeezed = mover.squeezed === true;
   if (walked.length > 0) {
     const part = movePlan(state, encounter, mover, walked);
     if (!part.legal) throw new Error(`a walked part became illegal (${part.reason})`);
     usedFt = part.usedFt;
+    squeezed = part.squeezed;
   }
   const at = walked[walked.length - 1] ?? mover.position;
+  // Squeezed where it stands, or whole again (docs/adr/0049-space-and-movement.md §4).
+  const moved: CombatantRecord = {
+    ...withTurn(mover, { ...mover.turn, movementUsedFt: usedFt }),
+    position: { ...at },
+  };
+  delete moved.squeezed;
   events.push(
-    combatantEvent({
-      ...withTurn(mover, { ...mover.turn, movementUsedFt: usedFt }),
-      position: { ...at },
-    }),
+    combatantEvent(squeezed ? { ...moved, squeezed: true } : moved),
     // The creature it grapples comes along behind it.
     ...dragged(state, encounter, mover.entityId, [mover.position, ...walked]),
   );

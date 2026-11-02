@@ -15,6 +15,7 @@ import {
   chooseUsing,
   counterspellPlan,
   fireballArea,
+  gapBetween,
   isObjectIn,
   type Refusal,
   UNARMED_STRIKE,
@@ -25,7 +26,6 @@ import {
   type CombatantRecord,
   type EncounterState,
 } from '@ltw/domain';
-import { squareDistanceFt } from '@ltw/rules';
 
 import type { ContextInputs } from './inputs.ts';
 import type { Verdict } from './legality.ts';
@@ -56,7 +56,8 @@ export function distanceTo(inputs: ContextInputs, entityId: string): number | un
   const frame = combatFrame(inputs);
   const target = frame ? combatantOf(frame.encounter, entityId) : undefined;
   if (!frame || !target || !inputs.perceived.has(entityId)) return undefined;
-  return squareDistanceFt(frame.actor.position, target.position);
+  // From nearest square to nearest square (docs/adr/0049-space-and-movement.md §1).
+  return gapBetween(inputs.state, frame.actor, target);
 }
 
 /** A combatant that is not part of the encounter cannot be fought there. */

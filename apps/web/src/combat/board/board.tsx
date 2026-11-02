@@ -20,6 +20,7 @@ import { BoardGround } from './board-ground.tsx';
 import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
+import { footprint, spanOf } from './footprint.ts';
 import { CoverPiece, Token } from './token.tsx';
 
 const key = (square: { readonly x: number; readonly y: number }) =>
@@ -115,8 +116,15 @@ export function Board({
   const cell = Math.round(fitted * view.zoom);
   const layout = boardLayout(grid, cell, tilt);
   const hard = new Set(difficult.map(key));
+  const walls = new Set((encounter.battlefield.walls ?? []).map(key));
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
-  const occupants = new Map(encounter.combatants.map((entry) => [key(entry.position), entry]));
+  // Every square a combatant fills names it; its figure stands on its north-west square, as big
+  // as its space (docs/adr/0049-space-and-movement.md §1).
+  const occupants = new Map(
+    encounter.combatants.flatMap((entry) =>
+      footprint(entry).map((square) => [key(square), entry] as const),
+    ),
+  );
   const walk = new Set(path.map(key));
   const destination = path.at(-1);
   const mover = encounter.combatants.find((entry) => entry.entity.entityId === selfId);
@@ -167,12 +175,16 @@ export function Board({
       const square = { x, y };
       const id = key(square);
       const occupant = occupants.get(id) ?? null;
+      const anchor = occupant !== null && key(occupant.position) === id;
+      const span = occupant ? spanOf(occupant) : 1;
       const level = coverAt.get(id) ?? null;
       const isSelected = selected !== null && key(selected) === id;
       const inArea = occupant !== null && affected.has(occupant.entity.entityId);
       const classes = [
         'board-square',
         hard.has(id) ? 'is-difficult' : '',
+        walls.has(id) ? 'is-wall' : '',
+        anchor && span > 1 ? 'has-span' : '',
         level ? 'has-cover' : '',
         level && occupant ? 'has-occupant' : '',
         walk.has(id) ? 'on-path' : '',
@@ -193,6 +205,7 @@ export function Board({
             label: occupant ? labelOf(occupant.entity.entityId) : '',
             you: occupant !== null && occupant.entity.entityId === selfId,
             difficult: hard.has(id),
+            wall: walls.has(id),
             cover: level,
             inArea,
           })}
@@ -214,8 +227,10 @@ export function Board({
           }}
         >
           {level && <CoverPiece level={level} />}
-          {occupant && (
+          {occupant && anchor && (
             <Token
+              span={span}
+              cell={cell}
               combatant={occupant}
               label={labelOf(occupant.entity.entityId)}
               cover={level}
@@ -241,6 +256,7 @@ export function Board({
           square={looked}
           cover={coverAt.get(key(looked)) ?? null}
           difficult={hard.has(key(looked))}
+          wall={walls.has(key(looked))}
         />
       )}
       <div

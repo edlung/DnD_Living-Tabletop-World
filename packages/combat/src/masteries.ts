@@ -8,13 +8,15 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
+import { sizeRank, spanOf, squaresOf } from '@ltw/rules';
 
 import type { MadeAttack } from './attack.ts';
-import { combatantEvent, coverAt, inBounds, occupant } from './battlefield.ts';
+import { combatantEvent, coverAt, placedOf } from './battlefield.ts';
 import type { MasteryUse } from './legality.ts';
 import { isObject } from './objects.ts';
 import { spellSave } from './saves.ts';
-import { has, vitalsEvent, withConditions, type Vitals } from './vitals.ts';
+import { fitAt } from './space.ts';
+import { has, sizeOf, vitalsEvent, withConditions, type Vitals } from './vitals.ts';
 
 /**
  * The weapon masteries at work (docs/adr/0047-weapons.md §2), after a hit's damage: Sap, Vex,
@@ -36,25 +38,35 @@ export const applied = (
     },
   }) as const;
 
-/** The square a push of `feet` straight away from `from` ends on: it stops at an edge, a wall or a creature. */
+/**
+ * The square a push of `feet` straight away from the pusher ends on: it stops at an edge, a wall,
+ * total cover or another creature (docs/adr/0047-weapons.md §2). Away runs from the middle of the
+ * pusher's space to the middle of the target's, whatever their sizes
+ * (docs/adr/0049-space-and-movement.md §1).
+ */
 export function pushedTo(
   state: WorldState,
   encounter: EncounterState,
-  from: Square,
+  pusher: CombatantRecord,
   target: CombatantRecord,
   feet: number,
 ): Square {
-  const dx = Math.sign(target.position.x - from.x);
-  const dy = Math.sign(target.position.y - from.y);
+  const middle = (record: CombatantRecord) => {
+    const half = (spanOf(placedOf(state, record)) - 1) / 2;
+    return { x: record.position.x + half, y: record.position.y + half };
+  };
+  const [a, b] = [middle(pusher), middle(target)];
+  const dx = Math.sign(b.x - a.x);
+  const dy = Math.sign(b.y - a.y);
   let at = target.position;
   for (let step = 0; step < feet / 5; step += 1) {
     const next = { x: at.x + dx, y: at.y + dy };
+    const fit = fitAt(state, encounter, target, next, true);
+    const space = { ...placedOf(state, target), position: next };
     if (
-      next.x < 0 ||
-      next.y < 0 ||
-      !inBounds(encounter, next) ||
-      coverAt(encounter, next) === 'total' ||
-      occupant(state, encounter, next, target.entityId)
+      fit === null ||
+      fit.squeezed ||
+      squaresOf(space).some((square) => coverAt(encounter, square) === 'total')
     ) {
       break;
     }
@@ -112,7 +124,9 @@ export function masteryOnHit(
       ];
     }
     case 'push': {
-      const to = pushedTo(state, encounter, attacker.position, record, mastery.pushFt ?? 10);
+      // A Large or smaller creature (SRD 5.2.1; docs/adr/0049-space-and-movement.md §3).
+      if (sizeRank(sizeOf(target)) > sizeRank('large')) return [];
+      const to = pushedTo(state, encounter, attacker, record, mastery.pushFt ?? 10);
       if (to.x === record.position.x && to.y === record.position.y) return [];
       return [
         applied(made, 'push', { from: record.position, to }),

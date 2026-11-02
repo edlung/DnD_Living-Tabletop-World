@@ -14,6 +14,8 @@ export interface SquareFacts {
   readonly label: string;
   readonly you: boolean;
   readonly difficult: boolean;
+  /** A wall (docs/adr/0049-space-and-movement.md §4); absent: none. */
+  readonly wall?: boolean;
   readonly cover: CoverLevel | null;
   /** The occupant is among those a previewed area spell would affect (the server's list). */
   readonly inArea: boolean;
@@ -33,12 +35,16 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
     const parts = [
       facts.you ? t('{name} (you)', { name: facts.label }) : facts.label,
       thing ? t('object') : t(occupant.side),
+      // Its size when not Medium, and a squeeze (ADR 0049 §1, §4).
+      ...(occupant.size === undefined ? [] : [t(occupant.size)]),
+      ...(occupant.squeezed ? [t('squeezed')] : []),
       ...(occupant.state === 'up' ? [] : [thing ? t('destroyed') : t(occupant.state)]),
       ...occupant.conditions.map((condition) => t(condition)),
       ...(occupant.hitPoints ? [t('{current} / {max} HP', { ...occupant.hitPoints })] : []),
     ];
     notes.push(parts.join(', '));
   }
+  if (facts.wall === true) notes.push(t('wall'));
   if (facts.difficult) notes.push(t('difficult terrain'));
   if (facts.cover) notes.push(t(COVER[facts.cover]));
   if (occupant && facts.inArea) notes.push(t('in the area'));

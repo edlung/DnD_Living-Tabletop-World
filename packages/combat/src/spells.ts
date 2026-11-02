@@ -19,10 +19,9 @@ import {
   abilityModifier,
   rollDamage,
   rollHealingWord,
-  squareDistanceFt,
 } from '@ltw/rules';
 
-import { combatantEvent, coverAt, withTurn } from './battlefield.ts';
+import { combatantEvent, coverOf, gapBetween, withTurn } from './battlefield.ts';
 import { isDodging } from './actions.ts';
 import { isHidden, withDetail } from './condition-details.ts';
 import { applyDamage, applyHealing } from './damage.ts';
@@ -147,7 +146,7 @@ export function castEvents(
       for (const affected of plan.area) {
         const target = current(affected.entityId);
         if (!target || !encounter) continue;
-        const cover = coverAt(encounter, affected.position);
+        const cover = coverOf(state, encounter, affected);
         const save = spellSave(
           dice,
           target,
@@ -156,6 +155,7 @@ export function castEvents(
           cover === 'total' ? 'none' : cover,
           'spell',
           isDodging(combatantOf(encounter, affected.entityId), target),
+          affected.squeezed === true,
         );
         effects.push(save.event);
         const applied = applyDamage(state, dice, target, {
@@ -177,10 +177,7 @@ export function castEvents(
       const sensed = (entityId: string) => {
         if (!encounter || !caster) return true;
         const other = combatantOf(encounter, entityId);
-        return (
-          other !== undefined &&
-          squareDistanceFt(caster.position, other.position) <= DETECT_MAGIC_RADIUS_FT
-        );
+        return other !== undefined && gapBetween(state, caster, other) <= DETECT_MAGIC_RADIUS_FT;
       };
       const discovered = magicDiscoveryEvents(state, casterId, ids, sensed);
       premises.push(...magicSensingPremises(state, casterId, sensed));

@@ -1,5 +1,6 @@
 import { commandSubmissionSchema, submissionsFromScript, type WorldEngine } from '@ltw/domain';
 
+import combatSeed from '../../../../fixtures/ravenford/combat-seed.json' with { type: 'json' };
 import ambush from '../../../../fixtures/ravenford/road-ambush.json' with { type: 'json' };
 import rulesSeed from '../../../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import campaigns from '../../../../tests/e2e/fixtures/combat-campaigns.json' with { type: 'json' };
@@ -86,6 +87,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   grapple: 'placed',
   // The hit points' journey (docs/adr/0048-hit-points.md): beside her, and a cart on the road.
   hitPoints: 'placed',
+  // Space (docs/adr/0049-space-and-movement.md): a Large raider, a wall with a gap.
+  space: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -104,6 +107,38 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedBesideStart(engine, campaigns.grapple);
   await seedCart(engine, campaigns.hitPoints);
   await seedBesideStart(engine, campaigns.hitPoints);
+  await seedSpaceStart(engine, campaigns.space);
+}
+
+/**
+ * The space journey (`space.spec.ts`, docs/adr/0049-space-and-movement.md): Raider 1 made Large at
+ * (6, 5), filling four squares, and a wall along x = 4 with a gap at (4, 6), in front of Elowen.
+ */
+async function seedSpaceStart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const raider = combatSeed.commands.find(
+    (command) => command.type === 'SetStatBlock' && command.entityId === 'creature-10fb59d4',
+  );
+  if (!raider || !('statBlock' in raider)) throw new Error('UI combat: Raider 1 has no stat block');
+  const start = {
+    ...ambush.startCombat,
+    battlefield: {
+      ...ambush.startCombat.battlefield,
+      walls: [3, 4, 5, 7, 8].map((y) => ({ x: 4, y })),
+    },
+    combatants: ambush.startCombat.combatants.map((combatant) =>
+      combatant.entityId === 'creature-10fb59d4'
+        ? { ...combatant, position: { x: 6, y: 5 } }
+        : combatant,
+    ),
+  };
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.space`,
+    commands: [{ ...raider, statBlock: { ...raider.statBlock, size: 'large' } }, start],
+  })) {
+    await accept(engine, submission);
+  }
 }
 
 /** An overturned cart on the Old Trade Road, for the DM to bring into the fight as an object. */

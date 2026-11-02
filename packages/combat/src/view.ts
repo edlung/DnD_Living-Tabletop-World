@@ -14,7 +14,15 @@ import {
 } from '@ltw/domain';
 
 import { reactionWindowView } from './reactions/view.ts';
-import { conditionsOf, exhaustionOf, has, hitPoints, knockedOutOf, vitalsOf } from './vitals.ts';
+import {
+  conditionsOf,
+  exhaustionOf,
+  has,
+  hitPoints,
+  knockedOutOf,
+  sizeOf,
+  vitalsOf,
+} from './vitals.ts';
 
 /**
  * The encounter as a perspective sees it (docs/adr/0015-combat-engine.md §6).
@@ -83,6 +91,9 @@ export function encounterView(
       },
       side: combatant.side,
       position: { x: combatant.position.x, y: combatant.position.y },
+      // Its size and a squeeze, as anyone looking sees (docs/adr/0049-space-and-movement.md §1, §4).
+      ...(sizeOf(vitals) === 'medium' ? {} : { size: sizeOf(vitals) }),
+      ...(combatant.squeezed === true ? { squeezed: true as const } : {}),
       // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).
       state:
         entity.status !== 'active'
@@ -140,6 +151,8 @@ export function encounterView(
       height: battlefield.height,
       difficult: battlefield.difficult.map(({ x, y }) => ({ x, y })),
       cover: battlefield.cover.map(({ x, y, level }) => ({ x, y, level })),
+      // Walls (docs/adr/0049-space-and-movement.md §4), when the battlefield has any.
+      ...(battlefield.walls ? { walls: battlefield.walls.map(({ x, y }) => ({ x, y })) } : {}),
     },
     combatants,
     reactionWindow: reactionWindowView(state, { dm, holder, known }),

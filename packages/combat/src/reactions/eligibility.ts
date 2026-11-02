@@ -5,15 +5,9 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import {
-  applyCast,
-  checkCounterspell,
-  slotsRemaining,
-  squareDistanceFt,
-  type TurnState,
-} from '@ltw/rules';
+import { applyCast, checkCounterspell, slotsRemaining, type TurnState } from '@ltw/rules';
 
-import { coverAt, isAlive, turnStateOf } from '../battlefield.ts';
+import { coverOf, gapBetween, isAlive, turnStateOf } from '../battlefield.ts';
 import type { CombatReason, Refusal } from '../legality.ts';
 import { vitalsOf } from '../vitals.ts';
 
@@ -66,8 +60,8 @@ export function counterspellPlan(
     vitals.sheet,
     turn,
     {
-      casterDistanceFt: squareDistanceFt(record.position, caster.position),
-      casterVisible: coverAt(encounter, caster.position) !== 'total',
+      casterDistanceFt: gapBetween(state, record, caster),
+      casterVisible: coverOf(state, encounter, caster) !== 'total',
       components,
     },
     slotLevel,

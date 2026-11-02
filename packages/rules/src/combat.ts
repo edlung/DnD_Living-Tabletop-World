@@ -61,6 +61,12 @@ export interface AttackCircumstances {
   readonly tooHeavy?: boolean;
   readonly vexing?: boolean;
   readonly sapped?: boolean;
+  /**
+   * Squeezed into a space a size smaller (docs/adr/0049-space-and-movement.md §4): the attacker's
+   * rolls have Disadvantage, and rolls against the target Advantage.
+   */
+  readonly attackerSqueezed?: boolean;
+  readonly targetSqueezed?: boolean;
 }
 
 /**
@@ -85,7 +91,8 @@ export function attackCircumstances(c: AttackCircumstances): {
     target.advantage ||
     (targetProne && c.melee && close) ||
     c.helped === true ||
-    c.vexing === true;
+    c.vexing === true ||
+    c.targetSqueezed === true;
   const disadvantage =
     attacker.disadvantage ||
     target.disadvantage ||
@@ -94,7 +101,8 @@ export function attackCircumstances(c: AttackCircumstances): {
     c.targetDodging === true ||
     (!c.melee && c.foeClose === true) ||
     c.tooHeavy === true ||
-    c.sapped === true;
+    c.sapped === true ||
+    c.attackerSqueezed === true;
   return { advantage, disadvantage, criticalOnHit: target.criticalOnHit };
 }
 

@@ -12,7 +12,7 @@ import {
 import { HELLISH_REBUKE_DICE, rollDamage } from '@ltw/rules';
 
 import { resolveAttack } from '../attack.ts';
-import { combatantEvent, coverAt, turnStateOf, withTurn } from '../battlefield.ts';
+import { combatantEvent, coverOf, turnStateOf, withTurn } from '../battlefield.ts';
 import { applyDamage } from '../damage.ts';
 import { attackPlan } from '../legality.ts';
 import { combatPremises, refused } from '../refusal.ts';
@@ -295,8 +295,17 @@ export function answerRebuke(
   if (!source || !sourceRecord) return noTrigger();
   const count = HELLISH_REBUKE_DICE.count + (pay.slotLevel - 1) * HELLISH_REBUKE_DICE.perLevel;
   const fire = rollDamage(dice, count, HELLISH_REBUKE_DICE.sides, 0);
-  const cover = coverAt(encounter, sourceRecord.position);
-  const save = spellSave(dice, source, 'dex', pay.saveDc, cover === 'total' ? 'none' : cover);
+  const cover = coverOf(state, encounter, sourceRecord);
+  const save = spellSave(
+    dice,
+    source,
+    'dex',
+    pay.saveDc,
+    cover === 'total' ? 'none' : cover,
+    'spell',
+    false,
+    sourceRecord.squeezed === true,
+  );
   const amount = save.success ? Math.floor(fire.total / 2) : fire.total;
   const applied = applyDamage(state, dice, source, {
     sourceId: command.combatantId,

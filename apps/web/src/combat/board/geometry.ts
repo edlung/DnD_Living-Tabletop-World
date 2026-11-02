@@ -161,17 +161,18 @@ export interface PlateAnchor extends Point {
   readonly edge: 'bottom' | 'top';
 }
 
-export function plateAnchor(layout: BoardLayout, square: Square): PlateAnchor {
-  const x = (square.x + 0.5) * layout.cell;
+export function plateAnchor(layout: BoardLayout, square: Square, span = 1): PlateAnchor {
+  // A figure spanning several squares stands in the middle of them (ADR 0049 §1).
+  const x = (square.x + span / 2) * layout.cell;
   if (!layout.tilt) {
     return {
       x,
-      y: layout.planeTop + (square.y + MEDALLION_FOOT) * layout.cell,
+      y: layout.planeTop + (square.y + MEDALLION_FOOT * span) * layout.cell,
       scale: 1,
       edge: 'top',
     };
   }
-  const base = projectPoint(layout, { x, y: (square.y + FIGURE_BASE) * layout.cell });
+  const base = projectPoint(layout, { x, y: (square.y + FIGURE_BASE * span) * layout.cell });
   return { x: base.x, y: base.y, scale: base.scale, edge: 'bottom' };
 }
 
