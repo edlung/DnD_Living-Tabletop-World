@@ -28,7 +28,8 @@ export const askedWindowOf = (
 
 /**
  * The question of the open window, by what set it off: a spell, a creature leaving reach, an
- * attack or the damage it did (docs/adr/0046-reactions-beyond-counterspell.md).
+ * attack or the damage it did (docs/adr/0046-reactions-beyond-counterspell.md), a fall
+ * (docs/adr/0049-space-and-movement.md §8).
  */
 export function ReactionPrompt(props: ReactionPromptProps) {
   switch (props.encounter.reactionWindow?.trigger.kind) {
@@ -36,6 +37,7 @@ export function ReactionPrompt(props: ReactionPromptProps) {
       return <OpportunityPrompt {...props} />;
     case 'attack':
     case 'damage':
+    case 'fall':
       return <AttackPrompt {...props} />;
     default:
       return <SpellPrompt {...props} />;

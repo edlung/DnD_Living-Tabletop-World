@@ -161,6 +161,14 @@ export interface ReactionWindowView {
         readonly source: WindowActor;
         readonly target: WindowActor;
         readonly amount: number;
+      }
+    | {
+        /**
+         * Creatures falling (docs/adr/0049-space-and-movement.md §8): a caster may slow them with
+         * Feather Fall before they land. How far each falls.
+         */
+        readonly kind: 'fall';
+        readonly fallers: readonly { readonly creature: WindowActor; readonly feet: number }[];
       };
   /** The DM: every candidate. A player: only their own character, if it is one. */
   readonly candidates: readonly ReactionCandidateView[];

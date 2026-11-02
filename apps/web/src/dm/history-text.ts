@@ -35,6 +35,7 @@ const REACTION_WORDS: Readonly<Record<KernelCommandOf<'UseReaction'>['reaction']
   shield: 'Cast Shield as a reaction',
   'uncanny-dodge': 'Used Uncanny Dodge',
   'hellish-rebuke': 'Cast Hellish Rebuke as a reaction',
+  'feather-fall': 'Cast Feather Fall as a reaction',
 };
 
 /** A command type as a step the DM can name: blockers and undo actions. */

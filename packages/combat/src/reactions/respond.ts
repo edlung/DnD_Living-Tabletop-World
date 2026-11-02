@@ -18,6 +18,7 @@ import {
   answerCounterspell,
   answerDodge,
   answerOpportunity,
+  answerFeatherFall,
   answerRebuke,
   answerReroll,
   answerShield,
@@ -93,6 +94,8 @@ export function decideUseReaction(context: DecisionContext, command: Use, dice: 
       return answerDodge(context, command, window, encounter, dice);
     case 'hellish-rebuke':
       return answerRebuke(context, command, window, encounter, dice);
+    case 'feather-fall':
+      return answerFeatherFall(context, command, window, encounter, dice);
   }
 }
 

@@ -341,6 +341,7 @@ registerRussian({
   'Cast Shield as a reaction': 'Реакция: щит',
   'Used Uncanny Dodge': 'Реакция: невероятное уклонение',
   'Cast Hellish Rebuke as a reaction': 'Реакция: адское возмездие',
+  'Cast Feather Fall as a reaction': 'Реакция: падение пёрышком',
   'Made the readied attack': 'Подготовленная атака',
   'make the readied attack': 'совершить подготовленную атаку',
   'spend heroic inspiration': 'потратить героическое вдохновение',

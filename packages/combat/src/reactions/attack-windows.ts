@@ -29,6 +29,7 @@ import { applyDamage } from '../damage.ts';
 import type { AttackPlan, Refusal } from '../legality.ts';
 import { applied as masteryApplied, masteryOnHit } from '../masteries.ts';
 import { fallsAfterHarm } from '../falling.ts';
+import { fallMoment, type Faller } from './fall-window.ts';
 import { isObject } from '../objects.ts';
 import {
   has,
@@ -119,11 +120,12 @@ export interface Payment {
 
 const refuse = (reason: Refusal['reason']): Refusal => ({ legal: false, reason });
 
-function castReaction(
+/** A reaction spell cast and paid for: its slot, the sheet and turn after (ADR 0046 §3–4). */
+export function castReaction(
   encounter: EncounterState,
   vitals: Vitals | null,
   record: CombatantRecord | undefined,
-  spellId: 'shield' | 'hellish-rebuke',
+  spellId: 'shield' | 'hellish-rebuke' | 'feather-fall',
   target?: { readonly distanceFt: number; readonly visible: boolean },
 ): Payment | Refusal {
   if (vitals?.kind !== 'character' || !record) return refuse('NOT_KNOWN');
@@ -346,6 +348,8 @@ function rebukeWindow(
   amount: number,
   struck: Vitals,
   nestUnder?: string,
+  /** The hit's falls, which wait for the answer (docs/adr/0049-space-and-movement.md §8). */
+  falls: readonly Faller[] = [],
 ): DraftEvent[] {
   const encounter = state.encounter;
   if (!encounter || amount <= 0) return [];
@@ -354,6 +358,9 @@ function rebukeWindow(
     kind: 'damage',
     sourceId: made.attackerId,
     damaged: [{ entityId: made.targetId, amount }],
+    ...(falls.length > 0
+      ? { falling: falls.map(({ record, feet }) => ({ entityId: record.entityId, feet })) }
+      : {}),
   };
   const asked = [{ entityId: made.targetId, reactions: ['hellish-rebuke'] as ReactionId[] }];
   return openWindow(context, state, trigger, asked, ids, nestUnder);
@@ -443,12 +450,21 @@ export function hitEvents(
       combatantEvent({ ...target, slowedBy: made.attackerId }),
     );
   }
+  // A push off a ledge, a flyer struck down: their falls wait for the end of the hit.
+  const falls: Faller[] = [];
   if (spec.mastery && !dead) {
-    events.push(...masteryOnHit(state, dice, made, spec.mastery, applied.vitals, amount));
+    events.push(...masteryOnHit(state, dice, made, spec.mastery, applied.vitals, amount, falls));
   }
-  if (target) events.push(...fallsAfterHarm(state, dice, events, target, applied.vitals, dead));
-  if (!dead) {
-    events.push(...rebukeWindow(context, state, ids, made, amount, applied.vitals, nestUnder));
+  if (target) {
+    events.push(...fallsAfterHarm(state, dice, events, target, applied.vitals, dead, falls));
   }
+  // The creature struck may rebuke first, the falls waiting for its answer; then Feather Fall's
+  // moment (docs/adr/0049-space-and-movement.md §8).
+  const rebuke = dead
+    ? []
+    : rebukeWindow(context, state, ids, made, amount, applied.vitals, nestUnder, falls);
+  events.push(
+    ...(rebuke.length > 0 ? rebuke : fallMoment(context, state, dice, ids, falls, nestUnder)),
+  );
   return events;
 }

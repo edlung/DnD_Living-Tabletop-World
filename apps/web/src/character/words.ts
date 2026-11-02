@@ -91,4 +91,6 @@ export const SPELL_TEXT: Readonly<Record<SpellId, string>> = {
     'As a reaction when an attack would hit you, a ward gives you +5 Armor Class until the start of your next turn, against that attack too.',
   'hellish-rebuke':
     'As a reaction when a creature you can see within 60 feet damages you, it takes 2d10 Fire damage, half on a Dexterity save; more with a higher slot.',
+  'feather-fall':
+    'As a reaction when you or a creature you can see within 60 feet falls, up to five falling creatures there drift down and land on their feet, taking no damage from the fall.',
 };

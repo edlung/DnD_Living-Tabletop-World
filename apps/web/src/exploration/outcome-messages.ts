@@ -156,7 +156,10 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
         : null;
       const prone =
         outcome.prone && outcome.landing?.success !== false ? t('You are Prone.') : null;
-      return [moved, aloft, landing, fell, prone].filter((part) => part !== null).join(' ');
+      const falling = outcome.falling ? t('You fall; a reaction may slow you.') : null;
+      return [moved, aloft, landing, fell, prone, falling]
+        .filter((part) => part !== null)
+        .join(' ');
     }
     case 'Attack': {
       if (outcome.awaitingReaction) return t('The attack waits for a reaction.');
@@ -244,6 +247,8 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
           return t('Uncanny Dodge: you take {damage} damage.', { damage: outcome.damage ?? 0 });
         case 'hellish-rebuke':
           return t('Hellish Rebuke: {damage} fire damage.', { damage: outcome.damage ?? 0 });
+        case 'feather-fall':
+          return t('Feather Fall: the falling drift down and land on their feet, unharmed.');
         default:
           return outcome.countered
             ? t('Counterspell stopped the spell.')

@@ -44,6 +44,9 @@ export function triggerActor(trigger: ReactionTrigger): string {
       return trigger.attackerId;
     case 'damage':
       return trigger.sourceId;
+    // The first to fall (docs/adr/0049-space-and-movement.md §8).
+    case 'fall':
+      return trigger.fallers[0]?.entityId ?? '';
   }
 }
 
@@ -59,6 +62,7 @@ export const candidateReactions = (candidate: ReactionWindowRecord['candidates']
 const triggerOthers = (trigger: ReactionTrigger): string[] => {
   if (trigger.kind === 'attack') return [trigger.targetId];
   if (trigger.kind === 'damage') return trigger.damaged.map((entry) => entry.entityId);
+  if (trigger.kind === 'fall') return trigger.fallers.map((entry) => entry.entityId);
   return [];
 };
 

@@ -115,6 +115,12 @@ function combatOutcome(
           ? { fell: { feet: fall.payload.fallFt, damage: fall.payload.amount } }
           : {}),
         ...(prone ? { prone: true as const } : {}),
+        ...(events.some(
+          (event) =>
+            event.type === 'ReactionWindowOpened' && event.payload.window.trigger.kind === 'fall',
+        )
+          ? { falling: true as const }
+          : {}),
       };
     }
     // The readied attack is an attack, made with the Reaction (ADR 0046 §5).
@@ -122,8 +128,12 @@ function combatOutcome(
     case 'MakeReadiedAttack': {
       const attack = attackOf(events);
       if (!attack) return unarmedOf(events);
-      // Its window opened: what comes of the roll waits for the answer (ADR 0046 §3).
-      const waiting = events.some((event) => event.type === 'ReactionWindowOpened');
+      // Its window opened: what comes of the roll waits for the answer (ADR 0046 §3). A fall's
+      // window waits for the fall alone: the hit is done (ADR 0049 §8).
+      const waiting = events.some(
+        (event) =>
+          event.type === 'ReactionWindowOpened' && event.payload.window.trigger.kind !== 'fall',
+      );
       return { kind: 'Attack', ...attack, ...(waiting ? { awaitingReaction: true as const } : {}) };
     }
     case 'CastSpell': {

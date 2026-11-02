@@ -55,7 +55,14 @@ export {
   type LevelUpRefusal,
 } from './rest.ts';
 export { OBJECT_ARMOR_CLASS, OBJECT_HIT_POINTS, objectStatBlock } from './objects.ts';
-export { RUN_UP_FT, fallDice, heightFt, highJumpFt, longJumpFt } from './moving.ts';
+export {
+  RUN_UP_FT,
+  fallDice,
+  heightFt,
+  highJumpFt,
+  longJumpFt,
+  underwaterDisadvantage,
+} from './moving.ts';
 export {
   fills,
   gapFt,
@@ -82,6 +89,7 @@ export {
   SPELLS,
   SHIELD_AC_BONUS,
   HELLISH_REBUKE_DICE,
+  FEATHER_FALL,
   hasUncannyDodge,
   hasProperty,
   WEAPONS,

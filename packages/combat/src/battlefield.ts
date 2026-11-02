@@ -98,6 +98,18 @@ export const isWater = (encounter: EncounterState, square: Square): boolean =>
 export const isDeepWater = (encounter: EncounterState, square: Square): boolean =>
   (encounter.battlefield.water ?? []).some((w) => sameSquare(w, square) && w.deep === true);
 
+/**
+ * Fully under water (docs/adr/0049-space-and-movement.md §11): every square of its space deep
+ * water, and it not flying above.
+ */
+export const immersed = (
+  state: WorldState,
+  encounter: EncounterState,
+  record: CombatantRecord,
+): boolean =>
+  (record.altitudeFt ?? 0) <= 0 &&
+  squaresOf(placedOf(state, record)).every((square) => isDeepWater(encounter, square));
+
 /** The ground under a space: its highest square's, where it stands. */
 export const groundOf = (encounter: EncounterState, placed: Placed): number =>
   Math.max(...squaresOf(placed).map((square) => groundAt(encounter, square)));

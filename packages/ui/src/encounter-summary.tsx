@@ -14,6 +14,7 @@ const WAITING: Readonly<Record<ReactionWindowView['trigger']['kind'], string>> =
   move: 'The move is waiting for opportunity attacks.',
   attack: 'The attack is waiting for a reaction.',
   damage: 'The damage done is waiting for a reaction.',
+  fall: 'The fall is waiting for a reaction.',
 };
 
 function ReactionSummary({
@@ -69,6 +70,15 @@ function ReactionSummary({
           <div>
             <dt>{t('Moving')}</dt>
             <dd>{trigger.mover.name ?? nameOf(trigger.mover.entityId)}</dd>
+          </div>
+        ) : trigger.kind === 'fall' ? (
+          <div>
+            <dt>{t('Falling')}</dt>
+            <dd>
+              {trigger.fallers
+                .map(({ creature }) => creature.name ?? nameOf(creature.entityId))
+                .join(', ')}
+            </dd>
           </div>
         ) : (
           <div>

@@ -4,6 +4,7 @@ import { fallDice, rollDamage } from '@ltw/rules';
 import { rollSkill } from './actions.ts';
 import { combatantEvent, isAlive } from './battlefield.ts';
 import type { FightWork } from './condition-details.ts';
+import type { Faller } from './reactions/fall-window.ts';
 import { applyDamage, type Applied } from './damage.ts';
 import {
   has,
@@ -121,6 +122,8 @@ export function fallsAfterHarm(
   target: CombatantRecord,
   vitals: Vitals,
   dead: boolean,
+  /** Its fall, left for the hit's fall moment (§8); absent: it lands now. */
+  falls?: Faller[],
 ): DraftEvent[] {
   const latest =
     events
@@ -139,5 +142,10 @@ export function fallsAfterHarm(
   if (height <= 0 || !(dead || grounded(now))) return [];
   const landed = { ...latest };
   delete landed.altitudeFt;
-  return [combatantEvent(landed), ...(dead ? [] : fallEvents(state, dice, now, height).events)];
+  if (dead) return [combatantEvent(landed)];
+  if (falls) {
+    falls.push({ record: landed, vitals: now, feet: height });
+    return [combatantEvent(landed)];
+  }
+  return [combatantEvent(landed), ...fallEvents(state, dice, now, height).events];
 }

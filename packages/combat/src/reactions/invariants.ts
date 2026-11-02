@@ -1,9 +1,10 @@
-import { openReactionWindow, pendingCandidates, type WorldState } from '@ltw/domain';
+import { combatantOf, openReactionWindow, pendingCandidates, type WorldState } from '@ltw/domain';
 
 import { replanSuspended } from './complete.ts';
 import { counterspellPlan } from './eligibility.ts';
 import { opportunityPlan } from './opportunity.ts';
 import { dodgePlan, mayReroll, rebukePlan, shieldPlan } from './attack-windows.ts';
+import { featherFallPlan } from './fall-window.ts';
 
 /**
  * What an open reaction window needs the Rules for (docs/adr/0016-reaction-engine.md;
@@ -48,6 +49,13 @@ export function reactionWindowViolations(state: WorldState): string[] {
     case 'damage':
       for (const id of pending) report(id, rebukePlan(state, encounter, id, trigger.sourceId));
       return violations;
+    case 'fall': {
+      const fallers = trigger.fallers.flatMap(
+        ({ entityId }) => combatantOf(encounter, entityId) ?? [],
+      );
+      for (const id of pending) report(id, featherFallPlan(state, encounter, id, fallers));
+      return violations;
+    }
     case 'spell': {
       const replanned = replanSuspended(state, trigger);
       if ('legal' in replanned) {

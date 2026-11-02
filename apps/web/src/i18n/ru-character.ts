@@ -105,6 +105,8 @@ registerRussian({
     'Реакцией, когда атака должна попасть по вам, щит даёт +5 к Классу Доспеха до начала вашего следующего хода — и против этой атаки.',
   'As a reaction when a creature you can see within 60 feet damages you, it takes 2d10 Fire damage, half on a Dexterity save; more with a higher slot.':
     'Реакцией, когда видимое вами существо в пределах 60 футов наносит вам урон, оно получает 2к10 урона огнём, половину при успешном спасброске Ловкости; больше с ячейкой выше.',
+  'As a reaction when you or a creature you can see within 60 feet falls, up to five falling creatures there drift down and land on their feet, taking no damage from the fall.':
+    'Реакцией, когда вы или видимое вами существо в пределах 60 футов падает: до пяти падающих там существ плавно опускаются и приземляются на ноги, не получая урона от падения.',
   'As a reaction you interrupt a creature casting a spell within 60 feet: it makes a Constitution save or the spell fails.':
     'Реакцией вы прерываете существо, творящее заклинание в пределах 60 футов: оно совершает спасбросок Телосложения, иначе заклинание не срабатывает.',
 });

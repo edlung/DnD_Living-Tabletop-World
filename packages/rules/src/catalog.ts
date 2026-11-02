@@ -93,7 +93,20 @@ export const SPELLS: Readonly<Record<SpellId, SpellDefinition>> = {
     concentration: false,
     needsVisibleTarget: true,
   },
+  // A fall slowed (docs/adr/0049-space-and-movement.md §8).
+  'feather-fall': {
+    spellId: 'feather-fall',
+    level: 1,
+    castingTime: 'reaction',
+    range: 60,
+    components: ['V', 'M'],
+    concentration: false,
+    needsVisibleTarget: true,
+  },
 };
+
+/** Feather Fall: up to five falling creatures within 60 ft land on their feet, unharmed. */
+export const FEATHER_FALL = { rangeFt: 60, creatures: 5 } as const;
 
 /** Shield's bonus to Armor Class until the start of the caster's next turn (ADR 0046 §3). */
 export const SHIELD_AC_BONUS = 5;

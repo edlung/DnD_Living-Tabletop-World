@@ -27,8 +27,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   immunity, knocking out and first aid, objects to break), done; 640f, space and movement (ADR
   0049), in progress: its first part — size and space, walls, squeezing — and its second —
   speeds, water, raised ground and pits, flying, climbing, swimming, crawling, jumping, burrowing
-  and falling — done. Feather Fall, the reaction to a fall, comes with the third part beside
-  mounted and underwater combat.
+  and falling — and its third — Feather Fall, the reaction to a fall, and underwater combat —
+  done; mounted combat comes in its fourth.
 
 ## Current request — AI campaigns, 2026-10-30
 

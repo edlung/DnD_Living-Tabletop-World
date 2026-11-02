@@ -100,6 +100,15 @@ export function reactionWindowView(
           amount: struck?.amount ?? 0,
         };
       }
+      // Who falls and how far, as anyone watching sees it (docs/adr/0049-space-and-movement.md §8).
+      case 'fall':
+        return {
+          kind: 'fall',
+          fallers: trigger.fallers.map(({ entityId, feet }) => ({
+            creature: actorOf(entityId),
+            feet,
+          })),
+        };
     }
   };
 

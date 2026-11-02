@@ -119,7 +119,15 @@ const attackTriggerSchema = z
   })
   .strict();
 
-/** Damage done by a creature (ADR 0046 §4): those it damaged may rebuke it. */
+/** A fall waiting to land: who and how far (docs/adr/0049-space-and-movement.md §8). */
+const fallerSchema = z
+  .object({ entityId: entityIdSchema, feet: z.number().int().min(10).max(1000) })
+  .strict();
+
+/**
+ * Damage done by a creature (ADR 0046 §4): those it damaged may rebuke it. The falls the same hit
+ * caused (a push off a ledge, a flyer struck down) wait for the answer (ADR 0049 §8).
+ */
 const damageTriggerSchema = z
   .object({
     kind: z.literal('damage'),
@@ -130,6 +138,18 @@ const damageTriggerSchema = z
       )
       .min(1)
       .max(MAX_COMBATANTS),
+    falling: z.array(fallerSchema).min(1).max(MAX_COMBATANTS).optional(),
+  })
+  .strict();
+
+/**
+ * Creatures falling (docs/adr/0049-space-and-movement.md §8), already where they land: the fall's
+ * damage and Prone wait for Feather Fall's answer.
+ */
+const fallTriggerSchema = z
+  .object({
+    kind: z.literal('fall'),
+    fallers: z.array(fallerSchema).min(1).max(MAX_COMBATANTS),
   })
   .strict();
 
@@ -138,6 +158,7 @@ export const reactionTriggerSchema = z.discriminatedUnion('kind', [
   moveTriggerSchema,
   attackTriggerSchema,
   damageTriggerSchema,
+  fallTriggerSchema,
 ]);
 
 export const reactionWindowSchema = z
@@ -193,7 +214,7 @@ export const reactionEventPayloadSchemas = {
       windowId: entityIdSchema,
       reactorId: entityIdSchema,
       /** What the window was about (ADR 0046); absent on windows of before: a spell. */
-      trigger: z.enum(['spell', 'move', 'attack', 'damage']).optional(),
+      trigger: z.enum(['spell', 'move', 'attack', 'damage', 'fall']).optional(),
     })
     .strict(),
   ReactionWindowExpired: z

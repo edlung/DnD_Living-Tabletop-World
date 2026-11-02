@@ -1,4 +1,4 @@
-import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
+import { combatantOf, type Dice, type DraftEvent, type WorldState } from '@ltw/domain';
 import {
   concentrationSaveDc,
   d20Test,
@@ -7,6 +7,7 @@ import {
   exhaustionPenalty,
 } from '@ltw/rules';
 
+import { immersed } from './battlefield.ts';
 import { isObject, isObjectIn } from './objects.ts';
 import {
   ceilingOf,
@@ -106,10 +107,17 @@ export function applyDamage(
   const max = ceilingOf(target);
   // Its defenses first, Petrified's Resistance among them (docs/adr/0048-hit-points.md §3; ADR
   // 0045 §1); then its temporary hit points take what they can (ADR 0048 §1).
+  // Fully under water, fire is resisted (docs/adr/0049-space-and-movement.md §11).
+  const standing = state.encounter ? combatantOf(state.encounter, target.entityId) : undefined;
+  const wet =
+    state.encounter !== null &&
+    standing !== undefined &&
+    immersed(state, state.encounter, standing);
+  const defenses = defensesOf(target);
   const defended = damageAfterDefenses(
     Math.max(0, input.amount),
     input.damageType,
-    defensesOf(target),
+    wet ? { ...defenses, resistances: [...(defenses.resistances ?? []), 'fire'] } : defenses,
     has(target, 'petrified'),
   );
   const amount = defended.amount;

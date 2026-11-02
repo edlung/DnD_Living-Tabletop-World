@@ -5,7 +5,7 @@
   (each further SRD rule needs an ADR before it is implemented), ADR 0015 §3 (the battlefield's
   squares, difficult terrain, cover), ADR 0046 (Feather Fall, the reaction 640c left for a fall)
   and ADR 0047 (sizes for a grapple, a shove and Push). Stage 640f: §1–§4 in its first part, §5–§9
-  in its second, §10–§11 in its third.
+  in its second, Feather Fall (§8) and §11 in its third, §10 in its fourth.
 - Context: every creature filled one 5-ft square and walked; the battlefield knew difficult
   terrain and cover. A table meets an ogre that fills four squares, a corridor too narrow for it,
   a harpy overhead, a stream to swim, a ledge to climb, a pit to jump, a fall, a knight on a horse
@@ -55,7 +55,11 @@
    unless no damage was taken. A creature falls when it walks into a pit or off a drop it does not
    climb down, when a push or a shove sends it there, or when a flyer falls. **Feather Fall**
    (ADR 0046's reaction) answers a fall in a window: the caster within 60 ft slows up to five
-   falling creatures, who land on their feet and take no damage.
+   falling creatures, who land on their feet and take no damage. A move's fall and an attack's (a
+   shove, Push, a flyer struck down) open the window when a character could cast it; the window
+   holds the fall's damage and Prone until it closes. A hit that lets its target rebuke and makes
+   a creature fall asks the rebuke first, the fall waiting for its answer. A fall from a spell, a
+   DM's ruling or a turn's start lands at once: the DM rules Feather Fall there by hand.
 9. **Burrowing**: a creature with a Burrow Speed may move underground through earth (not walls):
    while there it has total cover from those above and stops nothing on the surface; it surfaces
    with its move.
@@ -67,7 +71,9 @@
     or who is knocked Prone, makes a DC 10 Dexterity save or falls off Prone within 5 ft; a mount
     knocked Prone throws its rider, who lands on their feet with their Reaction or Prone without.
 11. **Underwater combat** (SRD 5.2.1): the battlefield may mark deep water, where creatures and
-    objects are fully immersed. There a melee weapon attack by a creature without a Swim Speed has
+    objects are fully immersed — every square of the space deep water, nothing flying above it. The
+    melee rule below asks of an immersed attacker; the ranged one of an attacker or a target
+    immersed. There a melee weapon attack by a creature without a Swim Speed has
     Disadvantage unless the weapon is a dagger, javelin, shortsword, spear or trident; a ranged
     weapon attack misses beyond its normal range and has Disadvantage within it unless the weapon
     is a crossbow, a net, or one thrown like a javelin (javelin, spear, trident, dart); the immersed

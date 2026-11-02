@@ -21,5 +21,6 @@
   "hitPoints": "ui-combat-hit-points",
   "space": "ui-combat-space",
   "terrain": "ui-combat-terrain",
-  "flight": "ui-combat-flight"
+  "flight": "ui-combat-flight",
+  "featherFall": "ui-combat-feather-fall"
 }

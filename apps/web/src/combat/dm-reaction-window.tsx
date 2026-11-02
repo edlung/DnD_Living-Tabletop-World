@@ -44,10 +44,14 @@ export function DmReactionWindow({
               attacker: nameOf(trigger.attacker),
               target: nameOf(trigger.target),
             })
-          : t('{target} may rebuke {source}.', {
-              target: nameOf(trigger.target),
-              source: nameOf(trigger.source),
-            });
+          : trigger.kind === 'fall'
+            ? t('{names} falling: Feather Fall may slow the fall.', {
+                names: trigger.fallers.map(({ creature }) => nameOf(creature)).join(', '),
+              })
+            : t('{target} may rebuke {source}.', {
+                target: nameOf(trigger.target),
+                source: nameOf(trigger.source),
+              });
   return (
     <div className="tool-card tool-card--reaction">
       <p>

@@ -49,6 +49,8 @@ export const SPELL_IDS = [
   /** Reactions (docs/adr/0046-reactions-beyond-counterspell.md §3–4). */
   'shield',
   'hellish-rebuke',
+  /** The reaction to a fall (docs/adr/0049-space-and-movement.md §8). */
+  'feather-fall',
 ] as const;
 export type SpellId = (typeof SPELL_IDS)[number];
 

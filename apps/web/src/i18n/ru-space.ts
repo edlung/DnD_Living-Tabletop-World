@@ -72,6 +72,19 @@ registerRussian({
     'Вы падаете с {feet} фт и получаете {damage} урона.',
   'You are Prone.': 'Вы сбиты с ног.',
 
+  // Feather Fall, the reaction to a fall
+  '{name} falls {feet} ft.': '{name} падает с высоты {feet} фт.',
+  'Feather Fall slows up to five of them within 60 ft: they land on their feet, unharmed.':
+    'Падение пёрышком замедляет до пяти из них в пределах 60 фт: они приземляются на ноги без урона.',
+  'Feather Fall spends your Reaction and a level 1 slot or higher.':
+    'Падение пёрышком тратит вашу реакцию и ячейку 1-го круга или выше.',
+  'Let them fall': 'Не вмешиваться',
+  'Feather Fall: the falling drift down and land on their feet, unharmed.':
+    'Падение пёрышком: падающие плавно опускаются и приземляются на ноги без урона.',
+  'You fall; a reaction may slow you.': 'Вы падаете; чья-то реакция может замедлить падение.',
+  '{names} falling: Feather Fall may slow the fall.':
+    'Падают: {names}. Падение пёрышком может замедлить падение.',
+
   // A refusal's reason
   'too large': 'слишком велик',
   'no fly speed': 'не умеет летать',

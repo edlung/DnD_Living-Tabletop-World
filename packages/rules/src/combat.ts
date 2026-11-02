@@ -67,6 +67,8 @@ export interface AttackCircumstances {
    */
   readonly attackerSqueezed?: boolean;
   readonly targetSqueezed?: boolean;
+  /** A weapon that drags under water (`underwaterDisadvantage`, ADR 0049 §11). */
+  readonly underwater?: boolean;
 }
 
 /**
@@ -102,7 +104,8 @@ export function attackCircumstances(c: AttackCircumstances): {
     (!c.melee && c.foeClose === true) ||
     c.tooHeavy === true ||
     c.sapped === true ||
-    c.attackerSqueezed === true;
+    c.attackerSqueezed === true ||
+    c.underwater === true;
   return { advantage, disadvantage, criticalOnHit: target.criticalOnHit };
 }
 

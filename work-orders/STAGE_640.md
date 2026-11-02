@@ -54,11 +54,11 @@ each further SRD rule needs an entry or an ADR before it is implemented).
 
   ADR 0049 first. Three commits: size and space (footprints, distances between nearest squares,
   moving around creatures, walls and squeezing, size limits); speeds, terrain and height (water,
-  raised ground, pits, flying, climbing, swimming, crawling, jumping, burrowing, falling); mounted
-  and underwater combat with Feather Fall, the reaction to a fall (moved from the second commit,
-  which carries enough: a window on a fall is a reaction of its own kind). The DM paints walls,
-  water and heights with Stage 670's map tools; until then they come with an encounter's
-  battlefield.
+  raised ground, pits, flying, climbing, swimming, crawling, jumping, burrowing, falling); Feather
+  Fall, the reaction to a fall, with underwater combat (moved from the second commit, which carries
+  enough: a window on a fall is a reaction of its own kind); mounted combat in a fourth. The DM
+  paints walls, water and heights with Stage 670's map tools; until then they come with an
+  encounter's battlefield.
 
   Second commit done (2026-11-02): the sheet's and stat block's speeds; the battlefield's water and
   ground heights; a path's steps with their height, a jump or a drop; a move's ways and costs on
@@ -66,6 +66,13 @@ each further SRD rule needs an entry or an ADR before it is implemented).
   (`falling.ts`); the turn tray's ways to a square — walk, land, crawl, jump, drop — and a flyer's
   rise and descent (`apps/web/src/combat/move-options.ts`); the move's outcome tells a height, a
   landing and a fall. Burrowing works through the rules; the tray offers it with the map tools.
+
+  Third commit done (2026-11-02): Feather Fall answers a fall in a window of its own
+  (`packages/combat/src/reactions/fall-window.ts`): a move's fall, a shove's, Push's, a flyer
+  struck down; a rebuke's window carries the hit's falls and lets them land after its answer. The
+  reaction prompt asks the caster; the DM's window says who falls. Under water
+  (`battlefield.ts` `immersed`): weapons that drag (`@ltw/rules` `underwaterDisadvantage`), a
+  ranged weapon held to its normal range, fire resisted.
 - 640g — The world around: vision and light (bright, dim, darkness; lightly and heavily obscured;
   Darkvision, Blindsight, Truesight), hazards (falling, suffocation, cold, heat), poisons, rests by
   the full rules (one long rest in 24 hours, an interrupted rest and its partial benefits), armor's

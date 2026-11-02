@@ -17,7 +17,8 @@ import { gapFt } from '@ltw/rules';
 
 import { combatantEvent, encounterOf, isAlive, onTurn, placedOf, withTurn } from './battlefield.ts';
 import { sourceOf } from './condition-details.ts';
-import { fallEvents, landingEvents } from './falling.ts';
+import { landingEvents } from './falling.ts';
+import { fallMoment } from './reactions/fall-window.ts';
 import type { Refusal } from './legality.ts';
 import { firstProvocation } from './reactions/opportunity.ts';
 import { refused, combatPremises } from './refusal.ts';
@@ -211,7 +212,11 @@ function walk(
     vitals = landed.vitals;
   }
   if (stop === null && whole.fallFt > 0) {
-    events.push(...fallEvents(state, dice, vitals, whole.fallFt).events);
+    // Feather Fall's moment, or the ground now (§8).
+    const landed = { ...moved, ...(squeezed ? { squeezed: true as const } : {}) };
+    events.push(
+      ...fallMoment(context, state, dice, ids, [{ record: landed, vitals, feet: whole.fallFt }]),
+    );
   }
   if (stop === null) return events;
   const windowId = ids[REACTION_WINDOW_ID_INDEX];

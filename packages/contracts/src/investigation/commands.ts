@@ -160,6 +160,8 @@ export type PlayerOutcome =
       readonly fell?: { readonly feet: number; readonly damage: number };
       /** The landing or the fall left it Prone. */
       readonly prone?: true;
+      /** It falls, and a reaction may slow the fall before it lands (§8). */
+      readonly falling?: true;
     }
   | {
       readonly kind: 'Attack';
@@ -226,7 +228,7 @@ export type PlayerOutcome =
       readonly kind: 'DeclineReaction';
       readonly windowId: string;
       /** What the window was about: a spell, a creature leaving reach, an attack, damage (ADR 0046). */
-      readonly trigger: 'spell' | 'move' | 'attack' | 'damage';
+      readonly trigger: 'spell' | 'move' | 'attack' | 'damage' | 'fall';
     }
   | { readonly kind: 'Item'; readonly action: ItemAction; readonly itemId: string };
 

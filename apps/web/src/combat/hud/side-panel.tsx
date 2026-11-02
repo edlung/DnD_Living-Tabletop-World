@@ -29,6 +29,7 @@ const WINDOW_WAITS = {
   move: 'The move is waiting for opportunity attacks.',
   attack: 'The attack is waiting for a reaction.',
   damage: 'The damage done is waiting for a reaction.',
+  fall: 'The fall is waiting for a reaction.',
 } as const;
 
 /** The legend's terrain beyond the usual: only what this battlefield has. */

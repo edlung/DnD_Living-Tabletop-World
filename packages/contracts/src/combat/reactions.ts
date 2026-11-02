@@ -16,6 +16,8 @@ export const REACTION_IDS = [
   'shield',
   'uncanny-dodge',
   'hellish-rebuke',
+  /** A fall slowed (docs/adr/0049-space-and-movement.md §8). */
+  'feather-fall',
 ] as const;
 export type ReactionId = (typeof REACTION_IDS)[number];
 

@@ -7,6 +7,7 @@ import {
   clickSquare,
   enterCombat,
   expectAccepted,
+  playerHp,
   square,
   submit,
   turnTray,
@@ -15,8 +16,9 @@ import {
 /**
  * Terrain and flight on the board (docs/adr/0049-space-and-movement.md §5–8): a stream at
  * (3, 7)–(4, 7), a pit 10 ft deep at (5, 6). In the terrain campaign Elowen starts on a ledge
- * 10 ft high at (2, 5)–(2, 6); in the flight one she has a Fly Speed of 30 ft. The e2e server's
- * dice roll the middle: a d6 is 4.
+ * 10 ft high at (2, 5)–(2, 6); in the flight one she has a Fly Speed of 30 ft; in the Feather Fall
+ * one she knows the spell, beside a pit 20 ft deep at (3, 6). The e2e server's dice roll the
+ * middle: a d6 is 4.
  */
 const expect = baseExpect.configure({ timeout: 15_000 });
 
@@ -75,4 +77,26 @@ test('Elowen flies up 10 ft and lands on the square beyond', async ({ page }) =>
   await expect(square(page, 3, 6)).toHaveAccessibleName(/Elowen Starwhisper \(you\)/);
   await expect(square(page, 3, 6)).not.toHaveAccessibleName(/ft up/);
   await expect(battlefield(page).locator('.plate-altitude')).toHaveCount(0);
+});
+
+test('dropping into a pit, Elowen slows her own fall with Feather Fall', async ({ page }) => {
+  await enterCombat(page, COMBAT_CAMPAIGNS.featherFall);
+  const before = await playerHp(page);
+  await clickSquare(page, 3, 6);
+  const tray = turnTray(page);
+  expectAccepted(await submit(page, tray.getByRole('button', { name: 'Drop down here' })));
+  await expect(
+    page.getByRole('status').filter({ hasText: 'You fall; a reaction may slow you.' }),
+  ).toBeVisible();
+  // Her own fall asks her (docs/adr/0049-space-and-movement.md §8).
+  const prompt = page.getByRole('alertdialog', { name: 'Reaction: Feather Fall' });
+  await expect(prompt).toContainText('Elowen Starwhisper falls 20 ft.');
+  await expectAccessible(page, 'the Feather Fall prompt');
+  expectAccepted(await submit(page, prompt.getByRole('button', { name: 'Feather Fall' })));
+  await expect(
+    page.getByRole('status').filter({ hasText: 'Feather Fall: the falling drift down' }),
+  ).toBeVisible();
+  await expect(prompt).toHaveCount(0);
+  expect(await playerHp(page)).toBe(before);
+  await expect(square(page, 3, 6)).not.toHaveAccessibleName(/prone/);
 });

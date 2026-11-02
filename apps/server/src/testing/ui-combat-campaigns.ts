@@ -92,6 +92,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   // Terrain and flight (ADR 0049 §5–8): a ledge, a stream and a pit; Elowen with wings.
   terrain: 'placed',
   flight: 'placed',
+  // Feather Fall (ADR 0049 §8): Elowen knows it, a pit 20 ft deep beside her.
+  featherFall: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -113,6 +115,7 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedSpaceStart(engine, campaigns.space);
   await seedTerrainStart(engine, campaigns.terrain, false);
   await seedTerrainStart(engine, campaigns.flight, true);
+  await seedFeatherFallStart(engine, campaigns.featherFall);
 }
 
 /**
@@ -178,6 +181,32 @@ async function seedSpaceStart(engine: WorldEngine, campaignId: string): Promise<
     actor: DM,
     commandIdPrefix: `${campaignId}.space`,
     commands: [{ ...raider, statBlock: { ...raider.statBlock, size: 'large' } }, start],
+  })) {
+    await accept(engine, submission);
+  }
+}
+
+/**
+ * The Feather Fall journey (`terrain.spec.ts`, docs/adr/0049-space-and-movement.md §8): Elowen knows
+ * the spell, and a pit 20 ft deep lies beside her at (3, 6).
+ */
+async function seedFeatherFallStart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const sheet = rulesSeed.commands.find(
+    (command) => command.type === 'SetCharacterSheet' && command.entityId === 'elowen-starwhisper',
+  );
+  if (!sheet || !('sheet' in sheet)) throw new Error('UI combat: Elowen has no sheet to seed');
+  const spellcasting = sheet.sheet.spellcasting.map((source, index) =>
+    index === 0 ? { ...source, spells: [...source.spells, 'feather-fall'] } : source,
+  );
+  const start = {
+    ...ambush.startCombat,
+    battlefield: { ...ambush.startCombat.battlefield, ground: [{ x: 3, y: 6, ft: -20 }] },
+  };
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.feather`,
+    commands: [{ ...sheet, sheet: { ...sheet.sheet, spellcasting } }, start],
   })) {
     await accept(engine, submission);
   }

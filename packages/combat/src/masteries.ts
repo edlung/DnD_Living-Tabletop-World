@@ -13,6 +13,7 @@ import { sizeRank, spanOf, squaresOf } from '@ltw/rules';
 import type { MadeAttack } from './attack.ts';
 import { combatantEvent, coverAt, groundOf, placedOf } from './battlefield.ts';
 import { fallEvents } from './falling.ts';
+import type { Faller } from './reactions/fall-window.ts';
 import type { MasteryUse } from './legality.ts';
 import { isObject } from './objects.ts';
 import { spellSave } from './saves.ts';
@@ -82,16 +83,26 @@ export function pushedTo(
   return { square: at, fallFt: 0 };
 }
 
-/** The events of a creature pushed to `to`, falling there when the push sent it off a drop. */
+/**
+ * The events of a creature pushed to `to`, falling there when the push sent it off a drop: at once,
+ * or — given `falls` — left for the hit's fall moment (docs/adr/0049-space-and-movement.md §8).
+ */
 export function pushedEvents(
   state: WorldState,
   dice: Dice,
   target: CombatantRecord,
   vitals: Vitals,
   to: { readonly square: Square; readonly fallFt: number },
+  falls?: Faller[],
 ): DraftEvent[] {
-  const moved = combatantEvent({ ...target, position: { ...to.square } });
-  return to.fallFt > 0 ? [moved, ...fallEvents(state, dice, vitals, to.fallFt).events] : [moved];
+  const record = { ...target, position: { ...to.square } };
+  const moved = combatantEvent(record);
+  if (to.fallFt <= 0) return [moved];
+  if (falls) {
+    falls.push({ record, vitals, feet: to.fallFt });
+    return [moved];
+  }
+  return [moved, ...fallEvents(state, dice, vitals, to.fallFt).events];
 }
 
 /** What a hit's mastery does once its damage is dealt (`amount`, the target alive after it). */
@@ -102,6 +113,8 @@ export function masteryOnHit(
   mastery: MasteryUse,
   target: Vitals,
   amount: number,
+  /** Push's fall, left for the hit's fall moment. */
+  falls?: Faller[],
 ): DraftEvent[] {
   const encounter = state.encounter;
   const record = encounter ? combatantOf(encounter, made.targetId) : undefined;
@@ -149,7 +162,7 @@ export function masteryOnHit(
       if (to.square.x === record.position.x && to.square.y === record.position.y) return [];
       return [
         applied(made, 'push', { from: record.position, to: to.square }),
-        ...pushedEvents(state, dice, record, target, to),
+        ...pushedEvents(state, dice, record, target, to, falls),
       ];
     }
     case 'cleave': {

@@ -28,6 +28,7 @@ import {
   shieldPlan,
 } from './attack-windows.ts';
 import { counterspellPlan } from './eligibility.ts';
+import { featherFallPlan } from './fall-window.ts';
 import { opportunityPlan } from './opportunity.ts';
 import { finish } from './settle.ts';
 
@@ -322,6 +323,34 @@ export function answerRebuke(
     combatantEvent(withTurn(pay.record, pay.turn)),
     save.event,
     ...applied.events,
+  ];
+  const ids = command.resolution?.ids ?? [];
+  return accept(...finish(context, command.type, window, [command.combatantId], events, dice, ids));
+}
+
+/**
+ * Feather Fall (docs/adr/0049-space-and-movement.md §8): up to five of the falling within 60 ft
+ * land on their feet, unharmed, once the window closes.
+ */
+export function answerFeatherFall(
+  context: DecisionContext,
+  command: Use,
+  window: ReactionWindowRecord,
+  encounter: EncounterState,
+  dice: Dice,
+): Decision {
+  const { state } = context;
+  const { trigger } = window;
+  if (trigger.kind !== 'fall') return noTrigger();
+  const fallers = trigger.fallers.flatMap(({ entityId }) => combatantOf(encounter, entityId) ?? []);
+  const pay = featherFallPlan(state, encounter, command.combatantId, fallers);
+  if (!pay.legal) return refused(pay);
+  const events: DraftEvent[] = [
+    combatPremises(state, command.combatantId),
+    used(window, command, pay.slotLevel),
+    cast(command.combatantId, 'feather-fall', pay.slotLevel, null),
+    vitalsEvent({ kind: 'character', entityId: command.combatantId, sheet: pay.sheet }),
+    combatantEvent(withTurn(pay.record, pay.turn)),
   ];
   const ids = command.resolution?.ids ?? [];
   return accept(...finish(context, command.type, window, [command.combatantId], events, dice, ids));

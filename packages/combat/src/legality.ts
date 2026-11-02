@@ -27,6 +27,7 @@ import {
   proficiencyBonus,
   squaresOf,
   totalLevel,
+  underwaterDisadvantage,
   withinArea,
   type Illegal,
   type IllegalReason,
@@ -34,7 +35,7 @@ import {
 } from '@ltw/rules';
 
 import { isDodging } from './actions.ts';
-import { coverOf, gapBetween, isAlive, placedOf, turnStateOf } from './battlefield.ts';
+import { coverOf, gapBetween, immersed, isAlive, placedOf, turnStateOf } from './battlefield.ts';
 import { charmedBy, conditionsAgainst, detailOf } from './condition-details.ts';
 import { isObjectIn } from './objects.ts';
 import { hostileSides } from './reactions/opportunity.ts';
@@ -44,6 +45,7 @@ import {
   exhaustionOf,
   has,
   incapacitated,
+  speedsOf,
   vitalsOf,
   type Vitals,
 } from './vitals.ts';
@@ -292,7 +294,11 @@ export function attackPlan(
   // A Loading weapon fires once an action, whatever Extra Attack allows (ADR 0047 §1).
   const firesLoading = weapon.loading && economy === 'action' && extra === null;
   if (firesLoading && attacker.turn.loadingFired === true) return refuse('LOADING');
-  const limit = weapon.melee ? weapon.reachFt : weapon.longRangeFt;
+  // Under water a ranged weapon reaches its normal range only (docs/adr/0049-space-and-movement.md
+  // §11): the attacker fully in deep water, or a shot into it.
+  const wetAttacker = immersed(state, encounter, attacker);
+  const wet = wetAttacker || (!weapon.melee && immersed(state, encounter, target));
+  const limit = weapon.melee ? weapon.reachFt : wet ? weapon.normalRangeFt : weapon.longRangeFt;
   if (distanceFt > limit)
     return refuse('OUT_OF_RANGE', { moveRequiredFt: moveRequiredFt(distanceFt, limit) });
   // Counted ammunition: a shot needs a piece of its kind (ADR 0047 §5).
@@ -331,6 +337,13 @@ export function attackPlan(
     sapped,
     attackerSqueezed: attacker.squeezed === true,
     targetSqueezed: target.squeezed === true,
+    underwater:
+      (weapon.melee ? wetAttacker : wet) &&
+      underwaterDisadvantage({
+        melee: weapon.melee,
+        weapon: weapon.weaponId ?? attackId,
+        swims: speedsOf(attackerVitals).swim !== undefined,
+      }),
   });
   const marked =
     attackerVitals.kind === 'character' &&
