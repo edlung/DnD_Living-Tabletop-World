@@ -225,6 +225,7 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'CloseReactionWindow':
     case 'AdjustHitPoints':
     case 'SetCondition':
+    case 'SetExhaustion':
     case 'SetInspiration':
     case 'AddCombatant':
     case 'RemoveCombatant':

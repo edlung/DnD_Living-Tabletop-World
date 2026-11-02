@@ -4,6 +4,7 @@ import {
   MAX_COMBATANTS,
   SIDES,
   battlefieldSchema,
+  conditionDetailsSchema,
   entityIdSchema,
   squareSchema,
   statBlockSchema,
@@ -39,12 +40,22 @@ export const combatantRecordSchema = z
     side: z.enum(SIDES),
     position: squareSchema,
     initiative: z
-      .object({ roll, modifier: z.number().int().min(-10).max(30), total: z.number().int() })
+      // Exhaustion lowers the modifier (ADR 0045 §3): it reaches below a Dexterity of 1's −5.
+      .object({ roll, modifier: z.number().int().min(-30).max(30), total: z.number().int() })
       .strict(),
     turn: turnRecordSchema,
     slowedBy: entityIdSchema.nullable(),
     /** The party character whose player runs this creature (ADR 0044 §7); absent or null: none. */
     commandedBy: entityIdSchema.nullable().optional(),
+    /**
+     * How its conditions in this fight end and their sources (docs/adr/0045-conditions-and-actions.md
+     * §2): one entry per condition that has any; `until.turns` counts down at the named point of the
+     * named combatant's turns. Absent: none.
+     */
+    conditionDetails: z
+      .array(conditionDetailsSchema.extend({ condition: z.enum(CONDITIONS) }).strict())
+      .max(CONDITIONS.length)
+      .optional(),
   })
   .strict();
 
@@ -151,7 +162,8 @@ export const combatEventPayloadSchemas = {
       modifier: z.number().int(),
       total: z.number().int(),
       success: z.boolean(),
-      purpose: z.enum(['spell', 'concentration', 'counterspell']),
+      /** `condition`: the save at the end of a turn that ends a condition (ADR 0045 §2). */
+      purpose: z.enum(['spell', 'concentration', 'counterspell', 'condition']),
     })
     .strict(),
   ConditionApplied: z

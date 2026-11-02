@@ -20,6 +20,7 @@ import {
   totalLevel,
 } from './character-math.ts';
 import { hitDice } from './rest.ts';
+import { effectiveSpeedFt } from './turn.ts';
 
 /** Strength score × 15 lb (SRD 5.2.1 carrying capacity, Medium size). */
 const CAPACITY_PER_STRENGTH_LB = 15;
@@ -83,6 +84,8 @@ export function deriveCharacter(
     abilities,
     skills,
     initiative: abilityModifier(sheet.abilities.dex),
+    // Speed after conditions and Exhaustion (docs/adr/0045-conditions-and-actions.md §1, §3).
+    speedFt: effectiveSpeedFt(sheet),
     passive: {
       perception: 10 + skills.perception.total,
       investigation: 10 + skills.investigation.total,

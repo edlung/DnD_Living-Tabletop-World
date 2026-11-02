@@ -20,6 +20,7 @@ import {
 } from '@ltw/rules';
 
 import { coverAt, inBounds, isAlive, occupant, turnStateOf } from './battlefield.ts';
+import { charmedBy } from './condition-details.ts';
 import { fireballArea, type CombatReason, type Refusal } from './legality.ts';
 import { incapacitated, vitalsOf, type Vitals } from './vitals.ts';
 
@@ -140,6 +141,10 @@ export function characterSpellPlan(
   }
 
   if (incapacitated(caster)) return refuse('INCAPACITATED');
+  // A Charmed caster aims no spell at its charmer (docs/adr/0045-conditions-and-actions.md §1).
+  if (record && target && charmedBy(record, caster, target.entityId)) {
+    return refuse('CHARMED_BY_TARGET');
+  }
   const cast = checkCast(caster.sheet, turn, castRequest);
   if (!cast.legal) return refuse(cast.reason, cast.resolution);
   if (!record && target && encounter && combatantOf(encounter, target.entityId)) {
@@ -219,6 +224,7 @@ export function monsterSpellPlan(
   const targetVitals = vitalsOf(state, targetId);
   if (!targetRecord || !targetVitals) return refuse('NOT_A_COMBATANT');
   if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
+  if (charmedBy(record, caster, targetId)) return refuse('CHARMED_BY_TARGET');
   const cover = coverAt(encounter, targetRecord.position);
   if (cover === 'total') return refuse('TOTAL_COVER');
   const distanceFt = squareDistanceFt(record.position, targetRecord.position);

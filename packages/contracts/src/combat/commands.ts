@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
-import { CONDITIONS } from '../rules/character-sheet.ts';
+import { ABILITIES, CONDITIONS, MAX_EXHAUSTION } from '../rules/character-sheet.ts';
 
 /**
  * Combat commands (docs/adr/0015-combat-engine.md). Schemas validate shape
@@ -151,12 +151,49 @@ export const adjustHitPointsCommandSchema = z
   })
   .strict();
 
+/**
+ * How a condition in a fight ends (docs/adr/0045-conditions-and-actions.md §2): at the start or the
+ * end of a named combatant's turn, after that many of its turns; on a successful save at the end of
+ * each of the affected creature's turns; or both. The source is the charmer, the one it fears, the
+ * grappler.
+ */
+export const conditionDetailsSchema = z
+  .object({
+    sourceId: entityIdSchema.optional(),
+    until: z
+      .object({
+        turnOf: entityIdSchema,
+        at: z.enum(['start', 'end']),
+        turns: z.number().int().min(1).max(100),
+      })
+      .strict()
+      .optional(),
+    save: z
+      .object({ ability: z.enum(ABILITIES), dc: z.number().int().min(1).max(30) })
+      .strict()
+      .optional(),
+  })
+  .strict();
+export type ConditionDetails = z.infer<typeof conditionDetailsSchema>;
+
 export const setConditionCommandSchema = z
   .object({
     type: z.literal('SetCondition'),
     targetId: entityIdSchema,
     condition: z.enum(CONDITIONS),
     applied: z.boolean(),
+    /** Applying, in a fight: how it ends and its source (§2). */
+    details: conditionDetailsSchema.optional(),
+    reason: dmReasonSchema,
+  })
+  .strict();
+
+/** Exhaustion's level set by the DM (§3): 0 lifts it; 6 kills. */
+export const setExhaustionCommandSchema = z
+  .object({
+    type: z.literal('SetExhaustion'),
+    targetId: entityIdSchema,
+    level: z.number().int().min(0).max(MAX_EXHAUSTION),
     reason: dmReasonSchema,
   })
   .strict();
@@ -184,7 +221,12 @@ export const commandCreatureCommandSchema = z
   })
   .strict();
 
-export const DM_HAND_COMMAND_TYPES = ['AdjustHitPoints', 'SetCondition', 'SetInspiration'] as const;
+export const DM_HAND_COMMAND_TYPES = [
+  'AdjustHitPoints',
+  'SetCondition',
+  'SetExhaustion',
+  'SetInspiration',
+] as const;
 export type DmHandCommandType = (typeof DM_HAND_COMMAND_TYPES)[number];
 
 /**

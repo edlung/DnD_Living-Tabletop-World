@@ -10,7 +10,8 @@ import { Glyph } from '../visual/glyph.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { usePortrait } from '../world/use-portrait.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
-import { ConditionForm, HitPointsForm, InspirationForm, type HandForm } from './hand-forms.tsx';
+import { ConditionForm, useFightRoster } from './condition-form.tsx';
+import { HitPointsForm, InspirationForm, type HandForm } from './hand-forms.tsx';
 import { CONDITION_WORDS } from './hand-words.ts';
 import type { DmTableCommand } from './table-commands.ts';
 
@@ -128,9 +129,14 @@ export function PartyCard({
             </span>
           </div>
           <p className="party-conditions">
-            {sheet.conditions.length === 0
+            {sheet.conditions.length === 0 && sheet.exhaustion === undefined
               ? t('No conditions')
-              : sheet.conditions.map((condition) => t(CONDITION_WORDS[condition])).join(' · ')}
+              : [
+                  ...sheet.conditions.map((condition) => t(CONDITION_WORDS[condition])),
+                  ...(sheet.exhaustion === undefined
+                    ? []
+                    : [t('Exhaustion {level}', { level: sheet.exhaustion })]),
+                ].join(' · ')}
           </p>
           {sheet.deathSaves && (
             <p className="party-dying" role="status">
@@ -192,6 +198,7 @@ export function PartyCard({
       {sheet && form !== null && (
         <FormFor
           form={form}
+          api={api}
           characterId={character.entityId}
           name={character.name}
           sheet={sheet}
@@ -208,14 +215,41 @@ export function PartyCard({
 
 function FormFor({
   form,
+  api,
   ...props
-}: { readonly form: HandForm } & Parameters<typeof HitPointsForm>[0]) {
+}: { readonly form: HandForm; readonly api: WorldApi } & Parameters<typeof HitPointsForm>[0]) {
   switch (form) {
     case 'hit-points':
       return <HitPointsForm {...props} />;
     case 'condition':
-      return <ConditionForm {...props} />;
+      return <CharacterConditionForm api={api} {...props} />;
     case 'inspiration':
       return <InspirationForm {...props} />;
   }
+}
+
+/** A character's condition: in a fight it may name a source and say how it ends (ADR 0045 §2). */
+function CharacterConditionForm({
+  api,
+  characterId,
+  name,
+  sheet,
+  locked,
+  onSend,
+  onCancel,
+}: { readonly api: WorldApi } & Parameters<typeof HitPointsForm>[0]) {
+  const roster = useFightRoster(api);
+  const inFight = roster?.some((member) => member.entityId === characterId) ?? false;
+  return (
+    <ConditionForm
+      targetId={characterId}
+      name={name}
+      conditions={sheet.conditions}
+      exhaustion={sheet.exhaustion ?? 0}
+      fight={inFight ? roster : null}
+      locked={locked}
+      onSend={onSend}
+      onCancel={onCancel}
+    />
+  );
 }

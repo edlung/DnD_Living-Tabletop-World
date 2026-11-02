@@ -1,6 +1,7 @@
 import type { Square } from '@ltw/contracts';
 import {
   accept,
+  combatantOf,
   type CombatantRecord,
   type CombatCommand,
   type Decision,
@@ -9,7 +10,7 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { onGround, pathCostFt } from '@ltw/rules';
+import { onGround, pathCostFt, squareDistanceFt } from '@ltw/rules';
 
 import {
   combatantEvent,
@@ -21,6 +22,7 @@ import {
   onTurn,
   withTurn,
 } from './battlefield.ts';
+import { sourceOf } from './condition-details.ts';
 import type { Refusal } from './legality.ts';
 import { refused, combatPremises } from './refusal.ts';
 import {
@@ -67,6 +69,18 @@ export function movePlan(
   for (const square of path) {
     if (!inBounds(encounter, square) || occupant(state, encounter, square, mover.entityId)) {
       return { legal: false, reason: 'INVALID_PATH' };
+    }
+  }
+  // A Frightened creature cannot move closer to the source of its fear, at any step
+  // (docs/adr/0045-conditions-and-actions.md §1).
+  const fear = has(vitals, 'frightened') ? sourceOf(mover, 'frightened') : null;
+  const source = fear === null ? undefined : combatantOf(encounter, fear);
+  if (source && isAlive(state, source.entityId)) {
+    let distance = squareDistanceFt(mover.position, source.position);
+    for (const square of path) {
+      const next = squareDistanceFt(square, source.position);
+      if (next < distance) return { legal: false, reason: 'CLOSER_TO_FEAR' };
+      distance = next;
     }
   }
   const walked = [mover.position, ...path].map(onGround);

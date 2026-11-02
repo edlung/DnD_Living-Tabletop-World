@@ -13,7 +13,12 @@ import {
 import { resolvePerspective } from '../knowledge/perspective.ts';
 import { characterSheetView } from './view.ts';
 
-const canonical = characterSheetSchema.parse(rulesSeed.commands[0]?.sheet);
+// Optional statistics set too, so a field the view forgets to copy fails here (Exhaustion did).
+const canonical = characterSheetSchema.parse({
+  ...rulesSeed.commands[0]?.sheet,
+  exhaustion: 2,
+  heroicInspiration: true,
+});
 let state: WorldState;
 
 beforeAll(async () => {

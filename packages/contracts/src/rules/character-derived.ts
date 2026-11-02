@@ -38,6 +38,8 @@ export interface CharacterDerived {
     >
   >;
   readonly initiative: number;
+  /** Speed after the character's conditions and Exhaustion (ADR 0045 §1, §3). */
+  readonly speedFt: number;
   readonly passive: {
     readonly perception: number;
     readonly investigation: number;

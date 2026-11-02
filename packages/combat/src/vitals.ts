@@ -1,6 +1,12 @@
 import type { Ability, CharacterSheet, Condition, StatBlock } from '@ltw/contracts';
-import type { DraftEvent, WorldState } from '@ltw/domain';
-import { abilityModifier, effectiveSpeedFt, savingThrowModifier } from '@ltw/rules';
+import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
+import {
+  abilityModifier,
+  incapacitatedBy,
+  initiativeEffects,
+  savingThrowModifier,
+  speedAfterConditions,
+} from '@ltw/rules';
 
 /**
  * One view of a combatant's statistics and current vitals, whether a
@@ -29,20 +35,37 @@ export const armorClass = (v: Vitals) =>
 export const conditionsOf = (v: Vitals): readonly Condition[] =>
   v.kind === 'character' ? v.sheet.conditions : v.block.conditions;
 export const has = (v: Vitals, condition: Condition) => conditionsOf(v).includes(condition);
-export const incapacitated = (v: Vitals) => has(v, 'incapacitated') || has(v, 'unconscious');
+/** Incapacitated, or a condition that includes it (docs/adr/0045-conditions-and-actions.md §1). */
+export const incapacitated = (v: Vitals) => incapacitatedBy(conditionsOf(v));
+/** Exhaustion's level (ADR 0045 §3); 0 when none. */
+export const exhaustionOf = (v: Vitals): number =>
+  (v.kind === 'character' ? v.sheet.exhaustion : v.block.exhaustion) ?? 0;
 export const dexterity = (v: Vitals) =>
   v.kind === 'character' ? v.sheet.abilities.dex : v.block.abilities.dex;
 export const initiativeModifier = (v: Vitals) =>
   v.kind === 'character' ? abilityModifier(v.sheet.abilities.dex) : v.block.initiativeBonus;
+
+/**
+ * Initiative (SRD 5.2.1; docs/adr/0045-conditions-and-actions.md §1): an Invisible creature rolls
+ * twice and keeps the higher, an Incapacitated one the lower; Exhaustion lowers the modifier.
+ */
+export function rollInitiative(dice: Dice, v: Vitals): { roll: number; modifier: number } {
+  const effects = initiativeEffects(conditionsOf(v), exhaustionOf(v));
+  const first = dice.roll(20);
+  let roll = first;
+  if (effects.advantage !== effects.disadvantage) {
+    const second = dice.roll(20);
+    roll = effects.advantage ? Math.max(first, second) : Math.min(first, second);
+  }
+  return { roll, modifier: initiativeModifier(v) + effects.penalty };
+}
 export const saveModifier = (v: Vitals, ability: Ability) =>
   v.kind === 'character' ? savingThrowModifier(v.sheet, ability) : v.block.savingThrows[ability];
 
-/** Speed after conditions: Unconscious is 0, Slowed is 10 ft less (ADR 0011, ADR 0015). */
+/** Speed after conditions and Exhaustion (ADR 0015; ADR 0045 §1, §3). */
 export function speedOf(v: Vitals): number {
-  if (has(v, 'unconscious')) return 0;
-  return v.kind === 'character'
-    ? effectiveSpeedFt(v.sheet)
-    : Math.max(0, v.block.speedFt - (has(v, 'slowed') ? 10 : 0));
+  const base = v.kind === 'character' ? v.sheet.speedFt : v.block.speedFt;
+  return speedAfterConditions(base, conditionsOf(v), exhaustionOf(v));
 }
 
 export function withHitPoints(v: Vitals, current: number): Vitals {
@@ -60,6 +83,20 @@ export function withConditions(
   return v.kind === 'character'
     ? { ...v, sheet: { ...v.sheet, conditions: next } }
     : { ...v, block: { ...v.block, conditions: next } };
+}
+
+/** Exhaustion's level set; 0 leaves the field absent, as on a sheet that never had it. */
+export function withExhaustion(v: Vitals, level: number): Vitals {
+  if (v.kind === 'character') {
+    const sheet = { ...v.sheet };
+    if (level > 0) sheet.exhaustion = level;
+    else delete sheet.exhaustion;
+    return { ...v, sheet };
+  }
+  const block = { ...v.block };
+  if (level > 0) block.exhaustion = level;
+  else delete block.exhaustion;
+  return { ...v, block };
 }
 
 export function withSheet(v: Vitals, change: (sheet: CharacterSheet) => CharacterSheet): Vitals {

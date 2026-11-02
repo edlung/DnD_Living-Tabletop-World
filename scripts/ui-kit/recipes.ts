@@ -3,7 +3,8 @@
  * mechanical; the picture itself is the image model's.
  */
 export type Recipe =
-  | { readonly kind: 'glyphs'; readonly names: readonly string[]; readonly size: number }
+  /** A 4x4 sheet's cells in reading order; null leaves a cell out (an icon the kit already has). */
+  | { readonly kind: 'glyphs'; readonly names: readonly (string | null)[]; readonly size: number }
   | { readonly kind: 'unscreen'; readonly out: string; readonly width: number }
   | {
       readonly kind: 'flood';
@@ -22,7 +23,7 @@ export type Recipe =
 import { ITEM_CATALOG } from '../../packages/contracts/src/items/catalog.ts';
 
 const ITEM_CATALOG_IDS = ITEM_CATALOG.map((entry) => entry.itemId);
-const glyphs = (...names: string[]): Recipe => ({ kind: 'glyphs', names, size: 128 });
+const glyphs = (...names: (string | null)[]): Recipe => ({ kind: 'glyphs', names, size: 128 });
 
 export const RECIPES: Readonly<Record<string, Recipe>> = {
   'icons-world': glyphs(
@@ -60,6 +61,46 @@ export const RECIPES: Readonly<Record<string, Recipe>> = {
     'difficult',
     'target',
     'initiative',
+  ),
+  /*
+   * Stage 640 (docs/adr/0045-conditions-and-actions.md): the conditions, then the actions and
+   * reactions. Dodge, Help, Hide and Ready keep the Stage 320 kit's own icons.
+   */
+  'icons-conditions': glyphs(
+    'blinded',
+    'charmed',
+    'deafened',
+    'exhaustion',
+    'frightened',
+    'grappled',
+    'invisible',
+    'paralyzed',
+    'petrified',
+    'poisoned',
+    'restrained',
+    'stunned',
+    'dash',
+    'disengage',
+    null,
+    null,
+  ),
+  'icons-actions': glyphs(
+    null,
+    null,
+    'search-area',
+    'study',
+    'utilize',
+    'influence',
+    'opportunity-attack',
+    'shield-spell',
+    'uncanny-dodge',
+    'hellish-rebuke',
+    'feather-fall',
+    'grapple',
+    'shove',
+    'two-weapons',
+    'temporary-hit-points',
+    'falling',
   ),
   'icons-dm': glyphs(
     'game-master',

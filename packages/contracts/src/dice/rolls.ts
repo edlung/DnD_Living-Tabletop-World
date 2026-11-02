@@ -48,6 +48,11 @@ export interface RollGroup {
   readonly critical?: true;
   /** Hit or miss, success or failure, where the viewer may know it. */
   readonly result?: 'hit' | 'miss' | 'success' | 'failure';
+  /**
+   * Failed without a die counting: a condition fails the save outright (docs/adr/0045-conditions-
+   * and-actions.md §1). A table roll keeps its die for the log; a world save records none.
+   */
+  readonly autoFail?: true;
 }
 
 /** What a roll was for, in tokens the client words (never free text, never a target's ID). */
@@ -188,8 +193,23 @@ export interface CheckRequestView {
   readonly at: string;
 }
 
+/**
+ * How a character's d20 rolls come out under its conditions (docs/adr/0045-conditions-and-actions.md
+ * §1, §3): for each asked mode, the one an ability check and each saving throw take; the saves its
+ * conditions fail outright; Exhaustion's penalty. The server computes them; the client looks them
+ * up (how many of a player's own dice to read, what to tell them).
+ */
+export interface D20Modes {
+  readonly checks: Readonly<Record<RollMode, RollMode>>;
+  readonly saves: Readonly<Record<Ability, Readonly<Record<RollMode, RollMode>>>>;
+  readonly autoFail: readonly Ability[];
+  readonly penalty: number;
+}
+
 /** GET …/check-requests: open requests for the viewer's character; for the DM all recent ones. */
 export interface CheckRequestsResponse {
   readonly perspective: string;
   readonly requests: readonly CheckRequestView[];
+  /** The viewer's character's d20 rolls under its conditions; absent for the DM and the party. */
+  readonly d20?: D20Modes;
 }

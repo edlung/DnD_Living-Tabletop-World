@@ -8,6 +8,7 @@ import type { KernelCommandOf } from '@ltw/contracts';
 export type DmTableCommand = KernelCommandOf<
   | 'AdjustHitPoints'
   | 'SetCondition'
+  | 'SetExhaustion'
   | 'SetInspiration'
   | 'RecordMemory'
   | 'AddCombatant'

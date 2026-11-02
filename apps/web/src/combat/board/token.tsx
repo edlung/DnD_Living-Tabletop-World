@@ -80,13 +80,21 @@ export function Token({
     <span className={classes.filter(Boolean).join(' ')} aria-hidden="true">
       <span className="token-ring" />
       <span className="token-figure">
-        {combatant.conditions.length > 0 && (
+        {(combatant.conditions.length > 0 || combatant.exhaustion !== undefined) && (
           <span className="token-pips">
             {combatant.conditions.map((condition) => (
               <span key={condition} className="token-pip" title={t(readableLabel(condition))}>
                 <Glyph name={conditionGlyph(condition)} />
               </span>
             ))}
+            {combatant.exhaustion !== undefined && (
+              <span
+                className="token-pip"
+                title={t('Exhaustion {level}', { level: combatant.exhaustion })}
+              >
+                <Glyph name="exhaustion" />
+              </span>
+            )}
           </span>
         )}
         {upright ? (

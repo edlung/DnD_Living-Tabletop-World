@@ -8,7 +8,14 @@ import type {
   RolledDie,
   RollMode,
 } from '@ltw/contracts';
-import { abilityModifier, savingThrowModifier, skillModifier } from '@ltw/rules';
+import {
+  abilityModifier,
+  checkEffects,
+  modeAfter,
+  saveEffects,
+  savingThrowModifier,
+  skillModifier,
+} from '@ltw/rules';
 
 /** Where the table's dice come from: the server's random numbers (tests script them). */
 export interface DiceSource {
@@ -81,9 +88,17 @@ export function rollCheck(
   dice: DiceSource,
   sheet: CharacterSheet,
   check: Check,
-  mode: RollMode,
+  asked: RollMode,
 ): RollGroup {
-  const modifier = checkModifier(sheet, check);
+  // The character's conditions (docs/adr/0045-conditions-and-actions.md §1, §3): their Advantage
+  // or Disadvantage joins the asked one and cancels as ADR 0011 says; Exhaustion lowers the total;
+  // a save its conditions fail outright is said so, its die kept for the log.
+  const effects =
+    check.kind === 'save'
+      ? saveEffects(check.ability, sheet.conditions, sheet.exhaustion ?? 0)
+      : checkEffects(sheet.conditions, sheet.exhaustion ?? 0);
+  const mode = modeAfter(asked, effects);
+  const modifier = checkModifier(sheet, check) + effects.penalty;
   const first = dice.roll(20);
   const dieOf = (value: number): RolledDie => ({ sides: 20, value });
   let rolled: RolledDie[] = [dieOf(first)];
@@ -101,5 +116,6 @@ export function rollCheck(
     dice: rolled,
     modifier,
     total: kept + modifier,
+    ...(effects.autoFail ? { result: 'failure' as const, autoFail: true as const } : {}),
   };
 }

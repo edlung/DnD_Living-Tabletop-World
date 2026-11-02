@@ -11,6 +11,7 @@ import { useCallback, useId, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { ConditionForm } from '../dm/condition-form.tsx';
 import type { DmTableCommand } from '../dm/table-commands.ts';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
@@ -18,12 +19,12 @@ import { useCombatantLabels } from './labels.ts';
 
 /**
  * The DM's hand on a running fight (docs/adr/0043-dm-screen.md §2): the turn order with each
- * combatant's initiative to set and a way out of the fight; the one whose turn it is can wait
+ * combatant's initiative to set, its conditions (ADR 0045) and a way out of the fight; the one whose turn it is can wait
  * until after another this round; someone at the place joins on a free square with a rolled or
  * named initiative. The World Engine decides each, as the DM.
  */
 type Editing = {
-  readonly kind: 'initiative' | 'remove' | 'delay';
+  readonly kind: 'initiative' | 'remove' | 'delay' | 'conditions';
   readonly entityId: string;
 } | null;
 
@@ -124,6 +125,17 @@ export function TurnOrderControls({
                       ))}
                     </select>
                   )}
+                  {/* Any combatant's conditions, by the DM's hand (ADR 0045 §1–2). */}
+                  <button
+                    type="button"
+                    aria-expanded={open === 'conditions'}
+                    aria-label={t('Conditions of {name}', { name })}
+                    onClick={() => {
+                      setEditing(open === 'conditions' ? null : { kind: 'conditions', entityId });
+                    }}
+                  >
+                    {t('Conditions')}
+                  </button>
                   <button
                     type="button"
                     className="quiet-button"
@@ -138,7 +150,21 @@ export function TurnOrderControls({
                   </button>
                 </span>
               </div>
-              {open && (
+              {open === 'conditions' && (
+                <ConditionForm
+                  targetId={entityId}
+                  name={name}
+                  conditions={combatant.conditions}
+                  exhaustion={combatant.exhaustion ?? 0}
+                  fight={encounter.order.map((id) => ({ entityId: id, name: labelOf(id) }))}
+                  locked={locked}
+                  onSend={send}
+                  onCancel={() => {
+                    setEditing(null);
+                  }}
+                />
+              )}
+              {open && open !== 'conditions' && (
                 <RowForm
                   kind={open}
                   name={name}

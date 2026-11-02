@@ -16,7 +16,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   Stage 600 (accounts and the hub, ADR 0041), Stage 605 (a party for the table), Stage 610 (the
   table display, ADR 0042), Stage 620 (the DM's screen, ADR 0043) and Stage 630 (the player's
   companion and online play, ADR 0044) complete (`reports/STAGE_6{00,05,10,20,30}_COMPLETION.md`):
-  Milestone A is done.
+  Milestone A is done, on PR 24 (the owner chose to merge it on green CI, no deploy yet).
+  Milestone B on `claude/full-game-b`: Stage 640 (conditions and actions, ADR 0045,
+  `work-orders/STAGE_640.md`) in progress — 640a, the 15 conditions and Exhaustion, done.
 
 ## Current request — AI campaigns, 2026-10-30
 

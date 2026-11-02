@@ -1,4 +1,4 @@
-import type { EncounterCombatantView, EncounterView } from '@ltw/contracts';
+import type { ConditionNoteView, EncounterCombatantView, EncounterView } from '@ltw/contracts';
 import {
   combatantOf,
   currentCombatant,
@@ -9,13 +9,14 @@ import {
 } from '@ltw/domain';
 
 import { reactionWindowView } from './reactions/view.ts';
-import { conditionsOf, hitPoints, vitalsOf } from './vitals.ts';
+import { conditionsOf, exhaustionOf, hitPoints, vitalsOf } from './vitals.ts';
 
 /**
  * The encounter as a perspective sees it (docs/adr/0015-combat-engine.md §6).
  * The DM sees everything. A character taking part sees the battlefield, turn
- * order, every combatant's square, side, conditions and whether it is up,
- * down or dead; names only when known; hit points only of the party.
+ * order, every combatant's square, side, conditions (with Exhaustion's level and
+ * how each ends, ADR 0045) and whether it is up, down or dead; names only when
+ * known; hit points only of the party.
  * Initiative rolls and stat blocks are DM data. The party, while one of its
  * members takes part, sees what such a member sees with the party's knowledge
  * and nothing of one character's own: no reaction window (the table's display,
@@ -41,6 +42,22 @@ export function encounterView(
   const party = new Set<string>(holder === null ? [] : [holder]);
   if (asParty || (holder !== null && members.has(holder))) members.forEach((id) => party.add(id));
 
+  // A creature named in a condition's details (its source, whose turn ends it), as the viewer
+  // knows it (docs/adr/0045-conditions-and-actions.md §2).
+  const named = (entityId: string) => ({
+    entityId,
+    name: dm || known.has(entityId) ? (state.entities.get(entityId)?.name ?? null) : null,
+  });
+  const notesOf = (combatant: (typeof encounter.combatants)[number]): ConditionNoteView[] =>
+    (combatant.conditionDetails ?? []).map(({ condition, sourceId, until, save }) => ({
+      condition,
+      ...(sourceId === undefined ? {} : { source: named(sourceId) }),
+      ...(until
+        ? { until: { turnOf: named(until.turnOf), at: until.at, turns: until.turns } }
+        : {}),
+      ...(save ? { save: { ability: save.ability, dc: save.dc } } : {}),
+    }));
+
   const combatants = encounter.combatants.map((combatant): EncounterCombatantView => {
     const entity = state.entities.get(combatant.entityId);
     const vitals = vitalsOf(state, combatant.entityId);
@@ -62,6 +79,8 @@ export function encounterView(
       position: { x: combatant.position.x, y: combatant.position.y },
       state: entity.status !== 'active' ? 'dead' : hp.current === 0 ? 'down' : 'up',
       conditions: [...conditionsOf(vitals)],
+      ...(exhaustionOf(vitals) > 0 ? { exhaustion: exhaustionOf(vitals) } : {}),
+      ...(notesOf(combatant).length > 0 ? { conditionNotes: notesOf(combatant) } : {}),
       ...(showHp ? { hitPoints: { current: hp.current, max: hp.max } } : {}),
       ...(commanded
         ? {

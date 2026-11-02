@@ -404,6 +404,7 @@ registerRussian({
   'take item': 'поднять предмет',
   'change hit points': 'изменить хиты',
   'set a condition': 'наложить или снять состояние',
+  'set Exhaustion': 'установить истощение',
   'set Heroic Inspiration': 'дать или снять героическое вдохновение',
   'handed a creature to a player': 'передать существо игроку',
   'add a combatant': 'добавить участника боя',

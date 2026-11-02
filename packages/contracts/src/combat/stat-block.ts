@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
-import { ABILITIES, CONDITIONS } from '../rules/character-sheet.ts';
+import { ABILITIES, CONDITIONS, exhaustionSchema } from '../rules/character-sheet.ts';
 
 /**
  * Stat blocks for non-character combatants (docs/adr/0015-combat-engine.md §5).
@@ -105,6 +105,8 @@ export const statBlockSchema = z
     attacks: z.array(monsterAttackSchema).max(8),
     spells: z.array(monsterSpellSchema).max(8),
     conditions: z.array(z.enum(CONDITIONS)),
+    /** Exhaustion's level (docs/adr/0045-conditions-and-actions.md §3); absent: none. */
+    exhaustion: exhaustionSchema.optional(),
   })
   .strict();
 export type StatBlock = z.infer<typeof statBlockSchema>;

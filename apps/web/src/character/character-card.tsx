@@ -1,6 +1,7 @@
 import type { CharacterDerived, CharacterSheet, EntityKind, PlayerAssetView } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
 
+import { CONDITION_EFFECTS, exhaustionWords } from '../combat/condition-words.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
@@ -99,7 +100,11 @@ export function CharacterCard({
       </div>
       <dl className="hero-vitals">
         <Vital glyph="armor-class" label={t('Armor class')} value={String(sheet.armorClass)} />
-        <Vital glyph="speed" label={t('Speed')} value={t('{feet} ft', { feet: sheet.speedFt })} />
+        <Vital
+          glyph="speed"
+          label={t('Speed')}
+          value={t('{feet} ft', { feet: derived?.speedFt ?? sheet.speedFt })}
+        />
         {derived && (
           <>
             <Vital glyph="initiative" label={t('Initiative')} value={signed(derived.initiative)} />
@@ -107,7 +112,7 @@ export function CharacterCard({
           </>
         )}
       </dl>
-      {(sheet.conditions.length > 0 || sheet.concentration) && (
+      {(sheet.conditions.length > 0 || sheet.concentration || sheet.exhaustion !== undefined) && (
         <ul className="hero-states" aria-label={t('Conditions')}>
           {sheet.conditions.map((condition) => (
             <li key={condition} className="hero-state hero-state--condition">
@@ -115,6 +120,12 @@ export function CharacterCard({
               {readableLabel(condition, t)}
             </li>
           ))}
+          {sheet.exhaustion !== undefined && (
+            <li className="hero-state hero-state--condition">
+              <Glyph name="exhaustion" />
+              {t('Exhaustion {level}', { level: sheet.exhaustion })}
+            </li>
+          )}
           {sheet.concentration && (
             <li className="hero-state hero-state--concentration">
               <Glyph name="concentration" />
@@ -123,6 +134,17 @@ export function CharacterCard({
               })}
             </li>
           )}
+        </ul>
+      )}
+      {/* What each does, in a line (docs/adr/0045-conditions-and-actions.md §4). */}
+      {(sheet.conditions.length > 0 || sheet.exhaustion !== undefined) && (
+        <ul className="hero-state-effects" aria-label={t('What they do')}>
+          {sheet.conditions.map((condition) => (
+            <li key={condition}>
+              <strong>{readableLabel(condition, t)}:</strong> {t(CONDITION_EFFECTS[condition])}
+            </li>
+          ))}
+          {sheet.exhaustion !== undefined && <li>{exhaustionWords(t, sheet.exhaustion)}</li>}
         </ul>
       )}
     </header>

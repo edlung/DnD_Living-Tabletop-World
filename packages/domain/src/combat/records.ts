@@ -14,6 +14,8 @@ import type { combatantRecordSchema, encounterSchema, turnRecordSchema } from '.
  */
 export type TurnRecord = z.infer<typeof turnRecordSchema>;
 export type CombatantRecord = z.infer<typeof combatantRecordSchema>;
+/** How one of a combatant's conditions ends and its source (docs/adr/0045-conditions-and-actions.md §2). */
+export type ConditionDetailRecord = NonNullable<CombatantRecord['conditionDetails']>[number];
 export type EncounterState = z.infer<typeof encounterSchema>;
 
 export const FRESH_TURN: TurnRecord = {

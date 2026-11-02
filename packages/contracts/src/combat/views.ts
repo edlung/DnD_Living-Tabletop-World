@@ -1,7 +1,20 @@
 import type { EntityKind, KernelCommandOf } from '../kernel/commands.ts';
-import type { Condition } from '../rules/character-sheet.ts';
+import type { Ability, Condition } from '../rules/character-sheet.ts';
 import type { Battlefield, Side } from './commands.ts';
 import type { ReactionResponse, SpellComponent } from './reactions.ts';
+
+/** A condition's end and source in a fight (docs/adr/0045-conditions-and-actions.md §2). */
+export interface ConditionNoteView {
+  readonly condition: Condition;
+  /** As the viewer knows it; absent when none is named. */
+  readonly source?: { readonly entityId: string; readonly name: string | null };
+  readonly until?: {
+    readonly turnOf: { readonly entityId: string; readonly name: string | null };
+    readonly at: 'start' | 'end';
+    readonly turns: number;
+  };
+  readonly save?: { readonly ability: Ability; readonly dc: number };
+}
 
 /**
  * Perspective-scoped encounter view (docs/adr/0015-combat-engine.md §6).
@@ -19,6 +32,10 @@ export interface EncounterCombatantView {
   /** `down`: at 0 HP but alive (a character making death saves). */
   readonly state: 'up' | 'down' | 'dead';
   readonly conditions: readonly Condition[];
+  /** Exhaustion's level (ADR 0045 §3); absent: none. */
+  readonly exhaustion?: number;
+  /** How its conditions in this fight end and their sources (§2); absent when none has any. */
+  readonly conditionNotes?: readonly ConditionNoteView[];
   /** Party members, and a creature the viewer's party commands (and every combatant for the DM). */
   readonly hitPoints?: { readonly current: number; readonly max: number };
   /**

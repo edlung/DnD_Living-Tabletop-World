@@ -12,6 +12,7 @@ import {
   type TableDice,
 } from '@ltw/contracts';
 import { knownEntityIds, partyMemberIds, type ResolvedPerspective } from '@ltw/domain';
+import { d20Modes } from '@ltw/rules';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -295,9 +296,15 @@ export function registerRollRoutes(
             ((perspective.kind === 'CHARACTER' && record.characterId === perspective.holderId) ||
               (party?.has(record.characterId) === true && !record.private)),
         );
+    // The viewer's character's d20 rolls under its conditions (ADR 0045 §1, §3).
+    const sheet =
+      perspective.kind === 'CHARACTER' && perspective.holderId !== null
+        ? context.state.characterSheets.get(perspective.holderId)
+        : undefined;
     const body: CheckRequestsResponse = {
       perspective: perspective.label,
       requests: requests.map((record) => requestView(record, dm)),
+      ...(sheet ? { d20: d20Modes(sheet.conditions, sheet.exhaustion ?? 0) } : {}),
     };
     return reply.send(body);
   });

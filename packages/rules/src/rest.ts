@@ -47,7 +47,7 @@ export function hitDice(sheet: CharacterSheet): HitDicePool[] {
 }
 
 /** The sheet without one of its optional fields. */
-function without<K extends 'hitDiceSpent' | 'deathSaves'>(
+function without<K extends 'hitDiceSpent' | 'deathSaves' | 'exhaustion'>(
   sheet: CharacterSheet,
   key: K,
 ): Omit<CharacterSheet, K> {
@@ -103,13 +103,16 @@ export function spendHitDie(
 
 /**
  * A long rest (SRD 5.2.1): all hit points and all spent Hit Point Dice back, every spell slot and
- * free cast, death saves cleared and the Unconscious condition with them. The rules let a creature
- * at 0 hit points start no long rest; a stable one regains 1 after 1d4 hours, which the product
- * counts inside the eight, so the whole party wakes rested (owner-delegated decision, Stage 530).
+ * free cast, death saves cleared and the Unconscious condition with them, and one level of
+ * Exhaustion fewer (docs/adr/0045-conditions-and-actions.md §3). The rules let a creature at 0 hit
+ * points start no long rest; a stable one regains 1 after 1d4 hours, which the product counts
+ * inside the eight, so the whole party wakes rested (owner-delegated decision, Stage 530).
  */
 export function longRest(sheet: CharacterSheet): CharacterSheet {
+  const exhaustion = (sheet.exhaustion ?? 0) - 1;
   return {
-    ...without(without(sheet, 'deathSaves'), 'hitDiceSpent'),
+    ...without(without(without(sheet, 'deathSaves'), 'hitDiceSpent'), 'exhaustion'),
+    ...(exhaustion > 0 ? { exhaustion } : {}),
     hitPoints: { max: sheet.hitPoints.max, current: sheet.hitPoints.max },
     spellSlots: { max: [...sheet.spellSlots.max], expended: sheet.spellSlots.max.map(() => 0) },
     spellcasting: sheet.spellcasting.map((source) =>

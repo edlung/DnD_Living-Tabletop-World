@@ -1,6 +1,7 @@
 import type { CharacterSheet } from '@ltw/contracts';
 
 import { savingThrowModifier } from './character-math.ts';
+import { incapacitatedBy } from './conditions.ts';
 import { d20Test, type D20Result } from './d20.ts';
 import type { Dice } from './dice.ts';
 
@@ -33,10 +34,10 @@ export function checkConcentrationAfterDamage(
   return { required: true, dc, save, maintained: save.success };
 }
 
-/** Concentration that survives the sheet's current conditions and HP. */
+/** Concentration that survives the sheet's current conditions and HP (ADR 0045 §1). */
 export function concentrationAfterConditions(
   sheet: CharacterSheet,
 ): CharacterSheet['concentration'] {
-  if (sheet.conditions.includes('incapacitated') || sheet.hitPoints.current === 0) return null;
+  if (incapacitatedBy(sheet.conditions) || sheet.hitPoints.current === 0) return null;
   return sheet.concentration;
 }

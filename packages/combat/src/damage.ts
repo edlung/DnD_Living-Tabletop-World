@@ -1,7 +1,15 @@
 import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
-import { concentrationSaveDc, d20Test, damageAtZero } from '@ltw/rules';
+import {
+  concentrationSaveDc,
+  d20Test,
+  damageAfterConditions,
+  damageAtZero,
+  exhaustionPenalty,
+} from '@ltw/rules';
 
 import {
+  conditionsOf,
+  exhaustionOf,
   has,
   hitPoints,
   saveModifier,
@@ -41,7 +49,8 @@ const condition = (
   payload: { targetId, condition: name, applied, cause },
 });
 
-const statusDead = (state: WorldState, entityId: string): DraftEvent[] => {
+/** The creature's death, unless it is dead already. */
+export const statusDead = (state: WorldState, entityId: string): DraftEvent[] => {
   const from = state.entities.get(entityId)?.status ?? 'active';
   return from === 'dead'
     ? []
@@ -53,7 +62,8 @@ function concentrationAfterDamage(dice: Dice, v: Vitals, damage: number): Applie
   if (v.kind !== 'character' || v.sheet.concentration === null || damage <= 0)
     return { vitals: v, events: [] };
   const dc = concentrationSaveDc(damage);
-  const modifier = saveModifier(v, 'con');
+  // Exhaustion takes 2 per level from the save (docs/adr/0045-conditions-and-actions.md §3).
+  const modifier = saveModifier(v, 'con') + exhaustionPenalty(exhaustionOf(v));
   const save = d20Test(dice, { modifier, target: dc });
   const record: DraftEvent = {
     type: 'SavingThrowRolled',
@@ -80,7 +90,8 @@ export function applyDamage(
 ): Applied {
   const before = hitPoints(target).current;
   const max = hitPoints(target).max;
-  const amount = Math.max(0, input.amount);
+  // A Petrified creature has Resistance to all damage (ADR 0045 §1).
+  const amount = damageAfterConditions(Math.max(0, input.amount), conditionsOf(target));
   const record: DraftEvent = {
     type: 'DamageApplied',
     payload: {

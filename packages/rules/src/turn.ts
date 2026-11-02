@@ -1,5 +1,6 @@
 import type { CharacterSheet } from '@ltw/contracts';
 
+import { incapacitatedBy, speedAfterConditions } from './conditions.ts';
 import { pathCostFt, type Position } from './grid.ts';
 
 /**
@@ -38,7 +39,11 @@ export type IllegalReason =
   | 'TOTAL_COVER'
   | 'NO_ATTACKS_LEFT'
   | 'INVALID_PATH'
-  | 'NOT_ENOUGH_MOVEMENT';
+  | 'NOT_ENOUGH_MOVEMENT'
+  /** A Charmed creature's attack or harmful spell at its charmer (ADR 0045 §1). */
+  | 'CHARMED_BY_TARGET'
+  /** A Frightened creature's move closer to the source of its fear (ADR 0045 §1). */
+  | 'CLOSER_TO_FEAR';
 
 export interface Illegal {
   readonly legal: false;
@@ -63,13 +68,13 @@ export function startTurn(ownTurn: boolean, previous?: TurnState): TurnState {
   };
 }
 
-/** Incapacitated, or Unconscious, which includes it (ADR 0015 §4). */
+/** Incapacitated, or a condition that includes it (docs/adr/0045-conditions-and-actions.md §1). */
 export const isIncapacitated = (sheet: Pick<CharacterSheet, 'conditions'>) =>
-  sheet.conditions.some((c) => c === 'incapacitated' || c === 'unconscious');
+  incapacitatedBy(sheet.conditions);
 
-/** Speed after conditions; Slowed (Slow mastery) reduces Speed by 10 ft. */
+/** Speed after conditions and Exhaustion (ADR 0045 §1, §3); Slowed (Slow mastery) takes 10 ft. */
 export function effectiveSpeedFt(sheet: CharacterSheet): number {
-  return Math.max(0, sheet.speedFt - (sheet.conditions.includes('slowed') ? 10 : 0));
+  return speedAfterConditions(sheet.speedFt, sheet.conditions, sheet.exhaustion ?? 0);
 }
 
 export type MoveCheck =

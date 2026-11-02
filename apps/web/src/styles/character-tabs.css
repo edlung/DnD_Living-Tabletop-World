@@ -233,7 +233,8 @@
   }
   .hero-hp,
   .hero-vitals,
-  .hero-states {
+  .hero-states,
+  .hero-state-effects {
     grid-column: 1 / -1;
   }
   .hero-vitals {
@@ -323,6 +324,17 @@
   }
   .slot-count {
     grid-column: 2;
+  }
+}
+/*
+ * The smallest phones: four tabs share the row by their words, which a quarter each did not hold
+ * in Russian ("Заклинания", "Снаряжение" ran into each other at 320 px).
+ */
+@media (max-width: 359px) {
+  .hero-tab {
+    flex: 1 1 auto;
+    padding: 8px 2px;
+    font-size: 0.9rem;
   }
 }
 

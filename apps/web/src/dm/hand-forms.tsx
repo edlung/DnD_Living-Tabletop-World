@@ -1,20 +1,14 @@
-import {
-  CONDITIONS,
-  DAMAGE_TYPES,
-  type CharacterSheet,
-  type Condition,
-  type DamageType,
-} from '@ltw/contracts';
+import { DAMAGE_TYPES, type CharacterSheet, type DamageType } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId, useState, type SubmitEvent } from 'react';
 
 import { Field } from '../session/account-forms.tsx';
-import { CONDITION_WORDS, DAMAGE_WORDS } from './hand-words.ts';
+import { DAMAGE_WORDS } from './hand-words.ts';
 import type { DmTableCommand } from './table-commands.ts';
 
 /**
- * The DM's hand on one character (docs/adr/0043-dm-screen.md §1): damage or healing, a condition,
- * Heroic Inspiration — each with the DM's reason, checked here before it is sent (the World
+ * The DM's hand on one character (docs/adr/0043-dm-screen.md §1): damage or healing, a condition
+ * (`condition-form.tsx`), Heroic Inspiration — each with the DM's reason, checked here before it is sent (the World
  * Engine decides again). A form sends one command and closes; what the world did shows in the
  * action's notice and the card's next read.
  */
@@ -32,7 +26,7 @@ interface FormProps {
 const REASON_MAX = 200;
 
 /** The reason every change by hand carries: required, at most 200 characters. */
-function useReason() {
+export function useReason() {
   const [reason, setReason] = useState('');
   return {
     reason: reason.trim(),
@@ -56,7 +50,7 @@ function useReason() {
   };
 }
 
-function Actions({
+export function Actions({
   label,
   locked,
   onCancel,
@@ -160,57 +154,6 @@ export function HitPointsForm({ characterId, name, locked, onSend, onCancel }: F
       {why.field(t, attempted)}
       <Actions
         label={change === 'damage' ? t('Deal the damage') : t('Heal')}
-        locked={locked}
-        onCancel={onCancel}
-      />
-    </form>
-  );
-}
-
-export function ConditionForm({ characterId, name, sheet, locked, onSend, onCancel }: FormProps) {
-  const t = useT();
-  const ids = useId();
-  const [condition, setCondition] = useState<Condition>(CONDITIONS[0]);
-  const [attempted, setAttempted] = useState(false);
-  const why = useReason();
-  const held = sheet.conditions.includes(condition);
-  const submit = (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setAttempted(true);
-    if (why.reason === '') return;
-    onSend({
-      type: 'SetCondition',
-      targetId: characterId,
-      condition,
-      applied: !held,
-      reason: why.reason,
-    });
-  };
-  return (
-    <form className="hand-form" noValidate onSubmit={submit} aria-labelledby={`${ids}-title`}>
-      <h4 id={`${ids}-title`}>{t('A condition of {name}', { name })}</h4>
-      <Field label={t('Condition')}>
-        {(control) => (
-          <select
-            {...control}
-            value={condition}
-            onChange={(event) => {
-              setCondition(event.target.value as Condition);
-            }}
-          >
-            {CONDITIONS.map((option) => (
-              <option key={option} value={option}>
-                {sheet.conditions.includes(option)
-                  ? t('{condition} (now)', { condition: t(CONDITION_WORDS[option]) })
-                  : t(CONDITION_WORDS[option])}
-              </option>
-            ))}
-          </select>
-        )}
-      </Field>
-      {why.field(t, attempted)}
-      <Actions
-        label={held ? t('Lift the condition') : t('Apply the condition')}
         locked={locked}
         onCancel={onCancel}
       />

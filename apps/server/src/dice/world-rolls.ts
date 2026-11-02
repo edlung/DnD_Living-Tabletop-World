@@ -230,6 +230,8 @@ function rollsOf(events: readonly RecordedEvent[], state: WorldState): WorldRoll
                 modifier,
                 total,
                 result: success ? 'success' : 'failure',
+                // A condition failed it outright: no die was rolled (ADR 0045 §1).
+                ...(d20.length === 0 ? { autoFail: true as const } : {}),
               },
             ],
             !party(creatureId),

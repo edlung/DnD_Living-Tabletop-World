@@ -13,6 +13,7 @@ import {
   WEAPONS,
   attackCircumstances,
   beginAttackAction,
+  exhaustionPenalty,
   moveRequiredFt,
   squareDistanceFt,
   withinArea,
@@ -24,7 +25,15 @@ import {
 } from '@ltw/rules';
 
 import { coverAt, isAlive, turnStateOf } from './battlefield.ts';
-import { armorClass, conditionsOf, incapacitated, vitalsOf, type Vitals } from './vitals.ts';
+import { charmedBy, conditionsAgainst } from './condition-details.ts';
+import {
+  armorClass,
+  conditionsOf,
+  exhaustionOf,
+  incapacitated,
+  vitalsOf,
+  type Vitals,
+} from './vitals.ts';
 
 /**
  * Attack legality (docs/adr/0015-combat-engine.md §3), shared by the combat
@@ -87,6 +96,8 @@ export function attackPlan(
   if (attackerId === targetId) return refuse('TARGET_REQUIRED');
   if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
   if (incapacitated(attackerVitals)) return refuse('INCAPACITATED');
+  // A Charmed creature cannot attack its charmer (docs/adr/0045-conditions-and-actions.md §1).
+  if (charmedBy(attacker, attackerVitals, targetId)) return refuse('CHARMED_BY_TARGET');
 
   let turn = turnStateOf(encounter, attacker);
   if (!turn.ownTurn) return refuse('NOT_YOUR_TURN');
@@ -111,7 +122,7 @@ export function attackPlan(
     return refuse('OUT_OF_RANGE', { moveRequiredFt: moveRequiredFt(distanceFt, limit) });
   const longRange = !weapon.melee && distanceFt > weapon.normalRangeFt;
   const circumstances = attackCircumstances({
-    attackerConditions: conditionsOf(attackerVitals),
+    attackerConditions: conditionsAgainst(state, encounter, attacker, attackerVitals, targetId),
     targetConditions: conditionsOf(targetVitals),
     melee: weapon.melee,
     distanceFt,
@@ -128,7 +139,8 @@ export function attackPlan(
     attackerVitals,
     targetVitals,
     turn,
-    bonus: weapon.bonus,
+    // Exhaustion takes 2 per level from the attack roll (ADR 0045 §3).
+    bonus: weapon.bonus + exhaustionPenalty(exhaustionOf(attackerVitals)),
     targetAc: armorClass(targetVitals) + (coverLevel === 'none' ? 0 : COVER_BONUS[coverLevel]),
     cover: coverLevel,
     distanceFt,

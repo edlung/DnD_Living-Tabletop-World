@@ -62,6 +62,8 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'NO_ATTACKS_LEFT',
   'INVALID_PATH',
   'NOT_ENOUGH_MOVEMENT',
+  'CHARMED_BY_TARGET',
+  'CLOSER_TO_FEAR',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;

@@ -13,11 +13,12 @@ import {
 } from '@ltw/domain';
 
 import { encounterOf, inBounds, isAlive, occupant } from './battlefield.ts';
+import { FightWork, leftTheFight } from './condition-details.ts';
 import { nextTurn } from './turns.ts';
 import {
   incapacitated,
   initiativeModifier,
-  vitalsEvent,
+  rollInitiative,
   vitalsOf,
   withConditions,
 } from './vitals.ts';
@@ -91,12 +92,11 @@ export function decideAddCombatant(
     return invalid('The fight holds as many combatants as it can');
   const vitals = vitalsOf(state, command.entityId);
   if (!vitals) return reject('NO_STAT_BLOCK', 'Every combatant needs a sheet or a stat block');
-  const modifier = initiativeModifier(vitals);
-  const rolled = command.initiative === undefined ? dice.roll(20) : null;
+  const rolled = command.initiative === undefined ? rollInitiative(dice, vitals) : null;
   const initiative =
     rolled === null
-      ? namedInitiative(command.initiative ?? 0, modifier)
-      : { roll: rolled, modifier, total: rolled + modifier };
+      ? namedInitiative(command.initiative ?? 0, initiativeModifier(vitals))
+      : { ...rolled, total: rolled.roll + rolled.modifier };
   const record: CombatantRecord = {
     entityId: command.entityId,
     side: command.side,
@@ -123,23 +123,28 @@ export function decideRemoveCombatant(
   if (leaving === -1) return reject('NOT_A_COMBATANT', 'NOT_A_COMBATANT');
   if (encounter.combatants.length <= 2) return invalid('End the fight instead');
   const events: DraftEvent[] = [];
-  // Slowed by the one who leaves ends now: its turn will not come to end it.
-  const order = encounter.combatants
-    .filter((c) => c.entityId !== command.entityId)
-    .map((c) => {
-      if (c.slowedBy !== command.entityId) return c;
-      const slowed = vitalsOf(state, c.entityId);
-      if (slowed) {
-        events.push(
-          {
-            type: 'ConditionApplied',
-            payload: { targetId: c.entityId, condition: 'slowed', applied: false, cause: 'left' },
-          },
-          vitalsEvent(withConditions(slowed, [], ['slowed'])),
-        );
-      }
-      return { ...c, slowedBy: null };
-    });
+  // Slowed by the one who leaves ends now: its turn will not come to end it. Nor will a condition
+  // that lasts until its turn (docs/adr/0045-conditions-and-actions.md §2).
+  const work = new FightWork(
+    state,
+    encounter.combatants.filter((c) => c.entityId !== command.entityId),
+  );
+  for (const c of [...work.combatants]) {
+    if (c.slowedBy !== command.entityId) continue;
+    const slowed = work.vitalsOf(c.entityId);
+    if (slowed) {
+      events.push(
+        {
+          type: 'ConditionApplied',
+          payload: { targetId: c.entityId, condition: 'slowed', applied: false, cause: 'left' },
+        },
+        work.vitals(withConditions(slowed, [], ['slowed'])),
+      );
+    }
+    work.record({ ...c, slowedBy: null });
+  }
+  events.push(...leftTheFight(work, command.entityId));
+  const order = [...work.combatants];
   if (!order.some((c) => isAlive(state, c.entityId))) return invalid('End the fight instead');
   if (leaving !== encounter.currentIndex) {
     const current = currentCombatant(encounter)?.entityId;

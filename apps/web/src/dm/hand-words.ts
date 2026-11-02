@@ -22,9 +22,20 @@ export const DAMAGE_WORDS: Readonly<Record<DamageType, string>> = {
 };
 
 export const CONDITION_WORDS: Readonly<Record<Condition, string>> = {
+  blinded: 'Blinded',
+  charmed: 'Charmed',
+  deafened: 'Deafened',
+  frightened: 'Frightened',
+  grappled: 'Grappled',
   incapacitated: 'Incapacitated',
+  invisible: 'Invisible',
+  paralyzed: 'Paralyzed',
+  petrified: 'Petrified',
+  poisoned: 'Poisoned',
   prone: 'Prone',
+  restrained: 'Restrained',
   slowed: 'Slowed',
+  stunned: 'Stunned',
   unconscious: 'Unconscious',
 };
 
@@ -57,6 +68,10 @@ export function describeHand(t: Translate, change: DmHandEntry['change']): strin
         ? t('{name}: now {condition}', words)
         : t('{name}: no longer {condition}', words);
     }
+    case 'exhaustion':
+      return change.level === 0
+        ? t('{name}: no longer exhausted', { name: change.target.name })
+        : t('{name}: Exhaustion {level}', { name: change.target.name, level: change.level });
     case 'inspiration':
       return change.inspired
         ? t('{name}: Heroic Inspiration granted', { name: change.target.name })

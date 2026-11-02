@@ -84,9 +84,20 @@ export const shortLabelOf = (action: ContextActionId): string =>
  * the condition's word always accompanies it (the square's name, the cards).
  */
 const CONDITIONS: Readonly<Record<Condition, GlyphName>> = {
+  blinded: 'blinded',
+  charmed: 'charmed',
+  deafened: 'deafened',
+  frightened: 'frightened',
+  grappled: 'grappled',
   incapacitated: 'incapacitated',
+  invisible: 'invisible',
+  paralyzed: 'paralyzed',
+  petrified: 'petrified',
+  poisoned: 'poisoned',
   prone: 'prone',
+  restrained: 'restrained',
   slowed: 'slowed',
+  stunned: 'stunned',
   unconscious: 'unconscious',
 };
 

@@ -151,6 +151,7 @@ export {
   encounterAfterTurnStart,
   isCombatant,
   type CombatantRecord,
+  type ConditionDetailRecord,
   type EncounterState,
   type TurnRecord,
 } from './combat/records.ts';

@@ -25,6 +25,7 @@ const KIND_GLYPH = {
   weather: 'weather',
   'hit-points': 'hit-points',
   condition: 'incapacitated',
+  exhaustion: 'exhaustion',
   inspiration: 'blessing',
   ruling: 'game-master',
   fight: 'initiative',

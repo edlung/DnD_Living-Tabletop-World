@@ -9,6 +9,7 @@ import { Glyph } from '../../visual/glyph.tsx';
 import { Medallion } from '../../visual/medallion.tsx';
 import { HpBar } from '../board/token.tsx';
 import { conditionGlyph } from '../combat-art.ts';
+import { CONDITION_EFFECTS, conditionNoteWords, exhaustionWords } from '../condition-words.ts';
 import { useCombatantLabels } from '../labels.ts';
 
 /** The viewer's own sheet, read only while the active combatant is the viewer's character. */
@@ -49,7 +50,8 @@ export function ActiveCard({
     (entry) => entry.entity.entityId === encounter.currentCombatantId,
   );
   const own = active !== undefined && actorId !== null && active.entity.entityId === actorId;
-  const sheet = useOwnSheet(api, own ? actorId : null)?.sheet ?? null;
+  const ownSheet = useOwnSheet(api, own ? actorId : null);
+  const sheet = ownSheet?.sheet ?? null;
   const labelOf = useCombatantLabels(encounter);
   // Wide, the party rail beneath it keeps clear of it (`battle-layout.css`).
   const card = useReservedHeight<HTMLElement>('--active-h', active !== undefined);
@@ -107,7 +109,7 @@ export function ActiveCard({
               <Glyph name="speed" />
               {t('Speed')}
             </dt>
-            <dd>{t('{feet} ft', { feet: sheet.speedFt })}</dd>
+            <dd>{t('{feet} ft', { feet: ownSheet?.derived?.speedFt ?? sheet.speedFt })}</dd>
           </div>
           {sheet.concentration && (
             <div className="active-concentration">
@@ -120,12 +122,28 @@ export function ActiveCard({
           )}
         </dl>
       )}
-      {active.conditions.length > 0 && (
+      {(active.conditions.length > 0 || active.exhaustion !== undefined) && (
         <ul className="active-conditions" aria-label={t('Conditions')}>
           {active.conditions.map((condition) => (
-            <li key={condition}>
+            <li key={condition} title={t(CONDITION_EFFECTS[condition])}>
               <Glyph name={conditionGlyph(condition)} />
               {t(readableLabel(condition))}
+            </li>
+          ))}
+          {active.exhaustion !== undefined && (
+            <li title={exhaustionWords(t, active.exhaustion)}>
+              <Glyph name="exhaustion" />
+              {t('Exhaustion {level}', { level: active.exhaustion })}
+            </li>
+          )}
+        </ul>
+      )}
+      {/* How each ends and its source, as the viewer knows them (ADR 0045 §2). */}
+      {(active.conditionNotes ?? []).length > 0 && (
+        <ul className="active-condition-notes" aria-label={t('How they end')}>
+          {(active.conditionNotes ?? []).map((note) => (
+            <li key={note.condition}>
+              <strong>{t(readableLabel(note.condition))}:</strong> {conditionNoteWords(t, note)}
             </li>
           ))}
         </ul>

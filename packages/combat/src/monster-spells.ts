@@ -7,15 +7,22 @@ import {
   type DraftEvent,
   type WorldState,
 } from '@ltw/domain';
-import { COVER_BONUS, attackCircumstances, attackRoll, rollDamage } from '@ltw/rules';
+import {
+  COVER_BONUS,
+  attackCircumstances,
+  attackRoll,
+  exhaustionPenalty,
+  rollDamage,
+} from '@ltw/rules';
 
 import { combatantEvent, encounterOf, onTurn, withTurn } from './battlefield.ts';
+import { conditionsAgainst } from './condition-details.ts';
 import { applyDamage } from './damage.ts';
 import { combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { suspendCast } from './reactions/suspend.ts';
 import { monsterSpellPlan, type MonsterSpellPlan } from './spell-legality.ts';
-import { armorClass, conditionsOf } from './vitals.ts';
+import { armorClass, conditionsOf, exhaustionOf } from './vitals.ts';
 
 /**
  * A creature's stat-block spell (docs/adr/0015-combat-engine.md §3): a spell
@@ -86,8 +93,11 @@ export function monsterSpellEvents(
   let critical = false;
   let rolls: readonly number[] = [];
   if (effect.kind === 'attack') {
+    const encounter = state.encounter;
     const circumstances = attackCircumstances({
-      attackerConditions: conditionsOf(plan.caster),
+      attackerConditions: encounter
+        ? conditionsAgainst(state, encounter, plan.record, plan.caster, target.entityId)
+        : conditionsOf(plan.caster),
       targetConditions: conditionsOf(target.vitals),
       melee: false,
       distanceFt: plan.distanceFt,
@@ -95,8 +105,10 @@ export function monsterSpellEvents(
     });
     const targetAc =
       armorClass(target.vitals) + (target.cover === 'none' ? 0 : COVER_BONUS[target.cover]);
+    // Exhaustion takes 2 per level from the attack roll (ADR 0045 §3).
+    const modifier = effect.bonus + exhaustionPenalty(exhaustionOf(plan.caster));
     const roll = attackRoll(dice, {
-      modifier: effect.bonus,
+      modifier,
       target: targetAc,
       advantage: circumstances.advantage,
       disadvantage: circumstances.disadvantage,
@@ -109,7 +121,7 @@ export function monsterSpellEvents(
         targetId: target.entityId,
         attackId: spell.spellId,
         rolls: [...roll.rolls],
-        modifier: effect.bonus,
+        modifier,
         total: roll.total,
         advantage: circumstances.advantage,
         disadvantage: circumstances.disadvantage,

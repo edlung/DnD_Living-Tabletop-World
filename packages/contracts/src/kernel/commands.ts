@@ -57,6 +57,7 @@ import {
   endTurnCommandSchema,
   moveCombatantCommandSchema,
   setConditionCommandSchema,
+  setExhaustionCommandSchema,
   setInspirationCommandSchema,
   startCombatCommandSchema,
 } from '../combat/commands.ts';
@@ -186,6 +187,7 @@ export const kernelCommandSchema = z
     takeItemCommandSchema,
     adjustHitPointsCommandSchema,
     setConditionCommandSchema,
+    setExhaustionCommandSchema,
     setInspirationCommandSchema,
     addCombatantCommandSchema,
     removeCombatantCommandSchema,
@@ -259,6 +261,7 @@ export const KERNEL_COMMAND_TYPES = [
   'TakeItem',
   'AdjustHitPoints',
   'SetCondition',
+  'SetExhaustion',
   'SetInspiration',
   'AddCombatant',
   'RemoveCombatant',

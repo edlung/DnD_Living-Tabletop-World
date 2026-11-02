@@ -66,7 +66,8 @@ async function build(name: string, recipe: Recipe): Promise<string[]> {
       const files: string[] = [];
       for (const [index, glyph] of recipe.names.entries()) {
         const cell = cells[index];
-        if (!cell) throw new Error(`${name}: glyph ${glyph} not found`);
+        if (!cell) throw new Error(`${name}: glyph ${glyph ?? String(index)} not found`);
+        if (glyph === null) continue;
         const file = `glyphs/${glyph}.png`;
         await write(join(root, file), await glyphMask(image, cell, recipe.size));
         files.push(file);

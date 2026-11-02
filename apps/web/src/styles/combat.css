@@ -333,6 +333,20 @@
 .side-conditions .glyph {
   color: var(--hp-low);
 }
+/* How each condition ends in this fight (docs/adr/0045-conditions-and-actions.md §2). */
+.active-condition-notes {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  list-style: none;
+}
+.active-condition-notes strong {
+  color: var(--text);
+  font-weight: 600;
+}
 
 /* The turn tray: only while the viewer may act */
 .turn-tray {

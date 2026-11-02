@@ -1,5 +1,6 @@
 import type { Condition, CoverLevel, MonsterAttack } from '@ltw/contracts';
 
+import { attackerTilt, targetTilt } from './conditions.ts';
 import type { Dice } from './dice.ts';
 import { distanceFt, moveRequiredFt, type Position } from './grid.ts';
 import { illegal, type Illegal } from './turn.ts';
@@ -36,6 +37,10 @@ export const withinArea = (
 ): boolean => squareDistanceFt(point, square) <= radiusFt;
 
 export interface AttackCircumstances {
+  /**
+   * The attacker's conditions as they bear on this attack: Grappled left out against its grappler,
+   * Frightened left out while its source is away (docs/adr/0045-conditions-and-actions.md §1).
+   */
   readonly attackerConditions: readonly Condition[];
   readonly targetConditions: readonly Condition[];
   readonly melee: boolean;
@@ -44,11 +49,11 @@ export interface AttackCircumstances {
 }
 
 /**
- * Advantage and Disadvantage from position and conditions (SRD 5.2.1):
- * a prone attacker has Disadvantage; a prone target gives melee attacks
- * within 5 ft Advantage and other attacks Disadvantage; an unconscious target
- * gives Advantage, and a hit from within 5 ft is a Critical Hit; long range
- * gives Disadvantage. Both cancel when both apply (d20Test does that).
+ * Advantage and Disadvantage from position and conditions (SRD 5.2.1, ADR 0045 §1): the
+ * attacker's own conditions (`attackerTilt`), the target's (`targetTilt`, a hit from within 5 ft
+ * on a Paralyzed or Unconscious target a Critical Hit), a prone target — melee attacks within
+ * 5 ft have Advantage, other attacks Disadvantage — and long range's Disadvantage. Both cancel
+ * when both apply (d20Test does that).
  */
 export function attackCircumstances(c: AttackCircumstances): {
   advantage: boolean;
@@ -56,13 +61,17 @@ export function attackCircumstances(c: AttackCircumstances): {
   criticalOnHit: boolean;
 } {
   const close = c.distanceFt <= 5;
+  const attacker = attackerTilt(c.attackerConditions);
+  const target = targetTilt(c.targetConditions, close);
   const targetProne =
     c.targetConditions.includes('prone') || c.targetConditions.includes('unconscious');
-  const targetUnconscious = c.targetConditions.includes('unconscious');
-  const advantage = targetUnconscious || (targetProne && c.melee && close);
+  const advantage = attacker.advantage || target.advantage || (targetProne && c.melee && close);
   const disadvantage =
-    c.attackerConditions.includes('prone') || c.longRange || (targetProne && !(c.melee && close));
-  return { advantage, disadvantage, criticalOnHit: targetUnconscious && close };
+    attacker.disadvantage ||
+    target.disadvantage ||
+    c.longRange ||
+    (targetProne && !(c.melee && close));
+  return { advantage, disadvantage, criticalOnHit: target.criticalOnHit };
 }
 
 /** Legality of a stat-block attack at a distance (reach, or range bands with long-range Disadvantage). */

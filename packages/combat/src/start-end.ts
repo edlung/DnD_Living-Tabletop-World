@@ -11,9 +11,10 @@ import {
 } from '@ltw/domain';
 import { initiativeOrder } from '@ltw/rules';
 
-import { combatantEvent, encounterOf, isAlive } from './battlefield.ts';
+import { encounterOf, isAlive } from './battlefield.ts';
+import { FightWork, fightEnded } from './condition-details.ts';
 import { firstTurn } from './turns.ts';
-import { dexterity, initiativeModifier, vitalsEvent, vitalsOf, withConditions } from './vitals.ts';
+import { dexterity, rollInitiative, vitalsOf, withConditions } from './vitals.ts';
 
 /**
  * Starting and ending an encounter (docs/adr/0015-combat-engine.md §1–2).
@@ -59,8 +60,7 @@ export function decideStartCombat(
     if (!inside(combatant.position)) return invalid('A combatant stands outside the battlefield');
     const vitals = vitalsOf(state, combatant.entityId);
     if (!vitals) return reject('NO_STAT_BLOCK', 'Every combatant needs a sheet or a stat block');
-    const roll = dice.roll(20);
-    const modifier = initiativeModifier(vitals);
+    const { roll, modifier } = rollInitiative(dice, vitals);
     entries.push({
       id: combatant.entityId,
       total: roll + modifier,
@@ -98,11 +98,13 @@ export function decideEndCombat(context: DecisionContext, command: EndCombat): D
   if (!encounter.ok) return encounter;
   if (encounter.value.encounterId !== command.encounterId)
     return reject('NOT_IN_COMBAT', 'No such encounter');
-  // Slowed lasts only until a turn that will no longer come.
+  // Slowed lasts only until a turn that will no longer come; a condition with a duration or a
+  // save ends with the fight (docs/adr/0045-conditions-and-actions.md §2).
+  const work = new FightWork(state, encounter.value.combatants);
   const events: DraftEvent[] = [];
   for (const combatant of encounter.value.combatants) {
     if (combatant.slowedBy === null) continue;
-    const vitals = vitalsOf(state, combatant.entityId);
+    const vitals = work.vitalsOf(combatant.entityId);
     if (vitals) {
       events.push(
         {
@@ -114,10 +116,11 @@ export function decideEndCombat(context: DecisionContext, command: EndCombat): D
             cause: 'combat-ended',
           },
         },
-        vitalsEvent(withConditions(vitals, [], ['slowed'])),
+        work.vitals(withConditions(vitals, [], ['slowed'])),
       );
     }
-    events.push(combatantEvent({ ...combatant, slowedBy: null }));
+    events.push(work.record({ ...combatant, slowedBy: null }));
   }
+  events.push(...fightEnded(work));
   return accept(...events, { type: 'CombatEnded', payload: { encounterId: command.encounterId } });
 }

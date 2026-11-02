@@ -199,6 +199,28 @@
 .hand-form .action-row {
   margin: 0.2rem 0 0;
 }
+/* A condition's end: the turn and the count under the choice (docs/adr/0045-conditions-and-actions.md §2). */
+.hand-choice .hand-row {
+  flex-basis: 100%;
+}
+/* In a turn order row the hand stays a form's width, not the row's. */
+.turn-order .hand-form {
+  max-width: 40rem;
+}
+/* Fields side by side keep to their cells and line their controls up at the foot. */
+.hand-row > * {
+  min-width: 0;
+}
+.hand-row--controls {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  align-items: end;
+}
+.hand-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+}
 
 /* The turn order the DM changes (Encounter sheet) */
 .turn-order-tools h4 {

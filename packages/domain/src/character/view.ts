@@ -70,6 +70,7 @@ function copySheet(sheet: CharacterSheet, visible: (id: string) => boolean): Cha
           }),
     })),
     conditions: [...sheet.conditions],
+    ...(sheet.exhaustion === undefined ? {} : { exhaustion: sheet.exhaustion }),
     concentration:
       concentration === null
         ? null

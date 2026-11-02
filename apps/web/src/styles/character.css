@@ -205,6 +205,22 @@
 .hero-state--concentration .glyph {
   color: var(--magic);
 }
+/* What each condition does, in a line (docs/adr/0045-conditions-and-actions.md §4). */
+.hero-state-effects {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  max-width: 65ch;
+  margin: 0;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  list-style: none;
+}
+.hero-state-effects strong {
+  color: var(--text);
+  font-weight: 600;
+}
 
 /* Tabs and the panel */
 .hero-main {
@@ -324,6 +340,12 @@
 @container (min-width: 720px) {
   .ability-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+/* A panel narrower than a small phone's: two a row, so "Спасбросок" stays inside its tile. */
+@container (max-width: 319px) {
+  .ability-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

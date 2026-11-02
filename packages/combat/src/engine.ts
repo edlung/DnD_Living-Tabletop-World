@@ -2,7 +2,12 @@ import type { CombatCommand, CombatPort, Decision, DecisionContext, Dice } from 
 
 import { decideAttack } from './attack.ts';
 import { decideCommandCreature } from './commanded.ts';
-import { decideAdjustHitPoints, decideSetCondition, decideSetInspiration } from './hand.ts';
+import {
+  decideAdjustHitPoints,
+  decideSetCondition,
+  decideSetExhaustion,
+  decideSetInspiration,
+} from './hand.ts';
 import {
   decideAddCombatant,
   decideDelayTurn,
@@ -49,6 +54,8 @@ export function createCombatEngine(): CombatPort {
           return decideAdjustHitPoints(context, command, dice);
         case 'SetCondition':
           return decideSetCondition(context, command);
+        case 'SetExhaustion':
+          return decideSetExhaustion(context, command);
         case 'SetInspiration':
           return decideSetInspiration(context, command);
         case 'AddCombatant':

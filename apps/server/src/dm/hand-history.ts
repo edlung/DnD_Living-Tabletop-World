@@ -75,6 +75,11 @@ export function handChange(
         },
         reason: command.reason,
       };
+    case 'SetExhaustion':
+      return {
+        change: { kind: 'exhaustion', target: ref(command.targetId), level: command.level },
+        reason: command.reason,
+      };
     case 'AddCombatant':
     case 'RemoveCombatant':
     case 'DelayTurn':

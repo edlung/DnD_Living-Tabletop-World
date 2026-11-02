@@ -349,6 +349,12 @@
   align-items: flex-end;
   gap: 8px;
 }
+/* What the character's conditions do to the roll (docs/adr/0045-conditions-and-actions.md §1). */
+.roll-note {
+  flex-basis: 100%;
+  color: var(--gold-bright);
+  font-size: 0.8rem;
+}
 /* What else a roll is: one's own dice, the DM's word on them, a word between the DM and one. */
 .dice-log-mark,
 .dice-plate-mark {

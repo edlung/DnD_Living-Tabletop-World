@@ -27,6 +27,21 @@ export {
 } from './character-math.ts';
 export { carryingCapacityLb, deriveCharacter, weaponAttack } from './character-derived.ts';
 export {
+  attackerTilt,
+  checkEffects,
+  conditionBlocked,
+  d20Modes,
+  damageAfterConditions,
+  exhaustionPenalty,
+  incapacitatedBy,
+  initiativeEffects,
+  modeAfter,
+  saveEffects,
+  speedAfterConditions,
+  targetTilt,
+  type RollEffects,
+} from './conditions.ts';
+export {
   CLASS_HIT_DIE,
   attacksFor,
   hitDice,

@@ -3,7 +3,8 @@ import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import { checkGroups, checkOf, MODE_WORDS } from './checks.ts';
-import { FaceFields, facesOf, useOwnDice } from './own-dice.tsx';
+import { d20sFor, rolledMode } from './modes.ts';
+import { ConditionsNote, FaceFields, facesOf, useOwnDice } from './own-dice.tsx';
 import { useDiceTable } from './table.tsx';
 
 function CheckSelect({
@@ -85,7 +86,8 @@ export function CheckRoller() {
   if (!table?.characterId) return null;
   const characterId = table.characterId;
   const check = checkOf(value);
-  const dice = mode === 'normal' ? [20] : [20, 20];
+  const d20 = table.requests.status === 'ready' ? table.requests.value.d20 : undefined;
+  const dice = d20sFor(check ? rolledMode(d20, check, mode) : mode);
   const faces = entering ? facesOf(dice, entered) : null;
   return (
     <section className="sheet-section dice-check" aria-labelledby={`${ids}-title`}>
@@ -93,6 +95,7 @@ export function CheckRoller() {
       <label htmlFor={`${ids}-check`}>{t('Check')}</label>
       <CheckSelect id={`${ids}-check`} value={value} onChange={setValue} />
       <ModeChoice name={`${ids}-mode`} mode={mode} onChange={setMode} />
+      {check && <ConditionsNote check={check} asked={mode} />}
       <label className="dice-own">
         <input
           type="checkbox"

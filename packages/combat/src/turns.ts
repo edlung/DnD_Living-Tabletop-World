@@ -12,12 +12,11 @@ import {
 } from '@ltw/domain';
 import { rollDeathSave } from '@ltw/rules';
 
-import { combatantEvent, encounterOf, isAlive, onTurn } from './battlefield.ts';
+import { encounterOf, isAlive, onTurn } from './battlefield.ts';
+import { durationsAt, FightWork, savesAtEndOfTurn } from './condition-details.ts';
 import { combatPremises } from './refusal.ts';
 import {
   hitPoints,
-  vitalsEvent,
-  vitalsOf,
   withConditions,
   withHitPoints,
   withSheet,
@@ -27,7 +26,9 @@ import {
 /**
  * Turn order and the start of a turn (docs/adr/0015-combat-engine.md §2, §4):
  * the dead are skipped; Slowed set by the creature whose turn starts ends;
- * a dying character makes its death saving throw.
+ * a dying character makes its death saving throw. A condition's own save and
+ * its duration count at the end and the start of turns
+ * (docs/adr/0045-conditions-and-actions.md §2).
  */
 type EndTurn = Extract<CombatCommand, { type: 'EndTurn' }>;
 
@@ -37,11 +38,20 @@ export function decideEndTurn(context: DecisionContext, command: EndTurn, dice: 
   if (!encounter.ok) return encounter;
   const current = onTurn(encounter.value, command.combatantId);
   if (!current.ok) return current;
-  const next = nextLiving(state, encounter.value, encounter.value.currentIndex);
-  const round = next.wrapped ? encounter.value.round + 1 : encounter.value.round;
+  // The end of its turn: its saves against its conditions, then what lasts until the end of its
+  // turn ends (docs/adr/0045-conditions-and-actions.md §2).
+  const work = new FightWork(state, encounter.value.combatants);
+  const ending = [
+    ...savesAtEndOfTurn(work, dice, command.combatantId),
+    ...durationsAt(work, command.combatantId, 'end'),
+  ];
+  const ended = work.encounter(encounter.value);
+  const next = nextLiving(state, ended, ended.currentIndex);
+  const round = next.wrapped ? ended.round + 1 : ended.round;
   return accept(
     combatPremises(state, command.combatantId),
-    ...turnStart(state, encounter.value, next.combatant, round, dice),
+    ...ending,
+    ...turnStart(work, ended, next.combatant, round, dice),
   );
 }
 
@@ -57,7 +67,13 @@ export function nextTurn(
 ): DraftEvent[] {
   const next = nextLiving(state, encounter, fromIndex);
   const round = next.wrapped ? encounter.round + 1 : encounter.round;
-  return turnStart(state, encounter, next.combatant, round, dice);
+  return turnStart(
+    new FightWork(state, encounter.combatants),
+    encounter,
+    next.combatant,
+    round,
+    dice,
+  );
 }
 
 /** The first turn of a new encounter. */
@@ -67,7 +83,8 @@ export function firstTurn(
   dice: Dice,
 ): DraftEvent[] {
   const first = nextLiving(context.state, encounter, -1);
-  return turnStart(context.state, encounter, first.combatant, 1, dice);
+  const work = new FightWork(context.state, encounter.combatants);
+  return turnStart(work, encounter, first.combatant, 1, dice);
 }
 
 function nextLiving(
@@ -87,7 +104,7 @@ function nextLiving(
 }
 
 function turnStart(
-  state: WorldState,
+  work: FightWork,
   encounter: EncounterState,
   combatant: CombatantRecord,
   round: number,
@@ -95,14 +112,15 @@ function turnStart(
 ): DraftEvent[] {
   const after = encounterAfterTurnStart(encounter, combatant.entityId, round);
   if (!after) throw new Error('turn of a non-combatant');
+  work.rebase(after.combatants);
   const events: DraftEvent[] = [
     { type: 'TurnStarted', payload: { combatantId: combatant.entityId, round } },
   ];
 
   // Slowed (Longbow mastery) ends at the start of the slowing creature's turn.
-  for (const other of after.combatants) {
+  for (const other of [...work.combatants]) {
     if (other.slowedBy !== combatant.entityId) continue;
-    const vitals = vitalsOf(state, other.entityId);
+    const vitals = work.vitalsOf(other.entityId);
     if (vitals) {
       events.push(
         {
@@ -114,14 +132,17 @@ function turnStart(
             cause: 'slow-ended',
           },
         },
-        vitalsEvent(withConditions(vitals, [], ['slowed'])),
+        work.vitals(withConditions(vitals, [], ['slowed'])),
       );
     }
-    events.push(combatantEvent({ ...other, slowedBy: null }));
+    events.push(work.record({ ...(work.combatant(other.entityId) ?? other), slowedBy: null }));
   }
 
+  // What lasts until the start of this combatant's turn ends (ADR 0045 §2).
+  events.push(...durationsAt(work, combatant.entityId, 'start'));
+
   // A dying character rolls its death saving throw (SRD 5.2.1).
-  const vitals = vitalsOf(state, combatant.entityId);
+  const vitals = work.vitalsOf(combatant.entityId);
   if (vitals?.kind === 'character' && hitPoints(vitals).current === 0) {
     const saves = vitals.sheet.deathSaves ?? { successes: 0, failures: 0 };
     if (saves.successes < 3) {
@@ -149,11 +170,11 @@ function turnStart(
               cause: 'death-save',
             },
           },
-          vitalsEvent(revived),
+          work.vitals(revived),
         );
       } else {
         events.push(
-          vitalsEvent(withSheet(vitals, (sheet) => ({ ...sheet, deathSaves: result.saves }))),
+          work.vitals(withSheet(vitals, (sheet) => ({ ...sheet, deathSaves: result.saves }))),
         );
         if (result.outcome === 'dead') {
           events.push({

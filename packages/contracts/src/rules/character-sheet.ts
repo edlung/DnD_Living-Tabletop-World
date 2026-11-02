@@ -80,11 +80,33 @@ export type HitDieSides = (typeof HIT_DIE_SIDES)[number];
 const spentDice = z.number().int().min(0).max(20);
 
 /**
- * Slice conditions. Incapacitated ends Concentration and blocks actions;
- * Unconscious (a character at 0 HP, ADR 0015 §4) includes Incapacitated and Prone.
+ * The SRD 5.2.1 conditions (docs/adr/0045-conditions-and-actions.md §1), Exhaustion apart (a level,
+ * §3), and the Slow mastery's Slowed. Paralyzed, Petrified, Stunned and Unconscious include
+ * Incapacitated; Unconscious (a character at 0 HP, ADR 0015 §4) brings Prone with it. The list only
+ * grows, so stored events stay readable.
  */
-export const CONDITIONS = ['incapacitated', 'prone', 'slowed', 'unconscious'] as const;
+export const CONDITIONS = [
+  'incapacitated',
+  'prone',
+  'slowed',
+  'unconscious',
+  'blinded',
+  'charmed',
+  'deafened',
+  'frightened',
+  'grappled',
+  'invisible',
+  'paralyzed',
+  'petrified',
+  'poisoned',
+  'restrained',
+  'stunned',
+] as const;
 export type Condition = (typeof CONDITIONS)[number];
+
+/** Exhaustion's levels (§3): each takes 2 from every D20 Test and 5 ft from Speed; 6 kills. */
+export const MAX_EXHAUSTION = 6;
+export const exhaustionSchema = z.number().int().min(1).max(MAX_EXHAUSTION);
 
 const score = z.number().int().min(1).max(30);
 const slotRow = z.array(z.number().int().min(0).max(4)).length(9);
@@ -139,6 +161,8 @@ export const characterSheetSchema = z
     spellSlots: z.object({ max: slotRow, expended: slotRow }).strict(),
     spellcasting: z.array(spellcastingSourceSchema),
     conditions: z.array(z.enum(CONDITIONS)),
+    /** Exhaustion's level (ADR 0045 §3); absent: none. */
+    exhaustion: exhaustionSchema.optional(),
     concentration: z
       .object({
         spellId: z.enum(SPELL_IDS),

@@ -146,6 +146,8 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly applied: boolean;
       }
     | { readonly kind: 'inspiration'; readonly target: EntityRef; readonly inspired: boolean }
+    /** Exhaustion's level set (docs/adr/0045-conditions-and-actions.md §3); 0 lifted it. */
+    | { readonly kind: 'exhaustion'; readonly target: EntityRef; readonly level: number }
     | {
         readonly kind: 'ruling';
         readonly summary: string;
