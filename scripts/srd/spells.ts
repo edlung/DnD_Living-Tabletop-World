@@ -129,14 +129,40 @@ function readSpell(lines: readonly string[]): SrdSpellText {
 
 /**
  * Running text kept in paragraphs where the SRD starts one with a bold run-in heading ("Audible
- * Alarm. …") or a list line; otherwise wrapped lines join.
+ * Alarm. …") or a list line, after a line that ended its sentence; otherwise wrapped lines join.
  */
 export function paragraphs(lines: readonly string[]): string {
   const blocks: string[][] = [];
   for (const line of lines) {
-    const heading = /^[A-Z][A-Za-z’' -]{1,40}\. [A-Z]/.test(line) || /^•/.test(line);
-    if (heading || blocks.length === 0) blocks.push([line]);
-    else blocks[blocks.length - 1]?.push(line);
+    const last = blocks[blocks.length - 1];
+    const ended = last === undefined || /[.:!?)”]$/.test(last[last.length - 1] ?? '');
+    // A list line always opens one; a run-in heading only after a sentence's end.
+    if (last === undefined || /^•/.test(line) || (ended && runInHeading(line))) blocks.push([line]);
+    else last.push(line);
   }
   return blocks.map((block) => joinLines(block)).join('\n');
+}
+
+const SMALL_WORDS = new Set([
+  'a',
+  'an',
+  'and',
+  'by',
+  'for',
+  'from',
+  'in',
+  'of',
+  'on',
+  'or',
+  'the',
+  'to',
+  'with',
+]);
+
+/** "Audible Alarm. The…": a few capitalized words, a period, then a sentence. */
+function runInHeading(line: string): boolean {
+  const match = /^([A-Z][A-Za-z’' -]{1,40})\. [A-Z]/.exec(line);
+  if (!match) return false;
+  const words = (match[1] ?? '').split(/[ -]/);
+  return words.length <= 5 && words.every((word) => /^[A-Z]/.test(word) || SMALL_WORDS.has(word));
 }

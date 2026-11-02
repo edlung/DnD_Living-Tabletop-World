@@ -2,6 +2,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { parseMonsters } from './monsters.ts';
+import { deriveMechanics } from './spell-mechanics.ts';
 import { parseSpells } from './spells.ts';
 import { pageLines, pageRows, srdLine } from './text.ts';
 
@@ -43,6 +44,8 @@ const byId =
   <T>(key: keyof T) =>
   (a: T, b: T) =>
     String(a[key]).localeCompare(String(b[key]));
-write('spells.json', [...spells].sort(byId('spellId')));
+const sorted = [...spells].sort(byId('spellId'));
+write('spells.json', sorted);
+write('spell-mechanics.json', sorted.map(deriveMechanics));
 write('monsters.json', [...monsters].sort(byId('monsterId')));
 process.stdout.write(`spells ${spells.length}, monsters ${monsters.length}\n`);

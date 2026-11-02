@@ -1,0 +1,10425 @@
+[
+  {
+    "spellId": "acid-arrow",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 4,
+            "sides": 4,
+            "bonus": 0
+          },
+          "type": "acid"
+        }
+      ]
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 4,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "acid-splash",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "acid"
+        }
+      ],
+      "onSuccess": "none",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "aid",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 3,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "alarm",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "alter-self",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "animal-friendship",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "animal-messenger",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "animal-shapes",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "animate-dead",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": 4,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "animate-objects",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "antilife-shell",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "antimagic-field",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "antipathy-sympathy",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "day",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "arcane-eye",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "arcane-hand",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "arcane-lock",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "arcane-sword",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "arcanists-magic-aura",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "astral-projection",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": 8,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "augury",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "aura-of-life",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "awaken",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "bane",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 3,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "banishment",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "barkskin",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "beacon-of-hope",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "befuddlement",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "int",
+      "damage": [
+        {
+          "dice": {
+            "count": 10,
+            "sides": 12,
+            "bonus": 0
+          },
+          "type": "psychic"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "bestow-curse",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "black-tentacles",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "str",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "restrained",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "blade-barrier",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "bless",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 3,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "blight",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 8,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "necrotic"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "blindness-deafness",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "blink",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "blur",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "burning-hands",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "cone",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 3,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "fire"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "call-lightning",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 3,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "lightning"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 10,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "calm-emotions",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "chain-lightning",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": null,
+    "targets": 4,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 10,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "lightning"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "charm-monster",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "charm-person",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "chill-touch",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "chromatic-orb",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "circle-of-death",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 60,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 8,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "necrotic"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 2,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "clairvoyance",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "miles",
+      "amount": 1
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "clone",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "cloudkill",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 5,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "poison"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "color-spray",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "cone",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "blinded",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "command",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "commune",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "commune-with-nature",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "comprehend-languages",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "compulsion",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "cone-of-cold",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "cone",
+      "sizeFt": 60,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 8,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "cold"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "confusion",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "conjure-animals",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "conjure-celestial",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": {
+      "shape": "cylinder",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "conjure-elemental",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "conjure-fey",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 12,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "conjure-minor-elementals",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "conjure-woodland-beings",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "contact-other-plane",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "contagion",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "day",
+      "amount": 7
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 11,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "necrotic"
+        }
+      ],
+      "onSuccess": "none",
+      "condition": "poisoned",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "contingency",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "day",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "continual-flame",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "control-water",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 300
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "control-weather",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "counterspell",
+    "castingTime": {
+      "unit": "reaction",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "create-food-and-water",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "create-or-destroy-water",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "create-undead",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": 3,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "creation",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "special",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "cure-wounds",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "heal",
+      "dice": {
+        "count": 2,
+        "sides": 8,
+        "bonus": 0
+      },
+      "modifier": true
+    },
+    "upcast": {
+      "dice": {
+        "count": 2,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "dancing-lights",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "darkness",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "darkvision",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "daylight",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 60,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "death-ward",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "delayed-blast-fireball",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "demiplane",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "detect-evil-and-good",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "detect-magic",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "detect-poison-and-disease",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "detect-thoughts",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dimension-door",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 500
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "disguise-self",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "disintegrate",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 10,
+            "sides": 6,
+            "bonus": 40
+          },
+          "type": "force"
+        }
+      ],
+      "onSuccess": "none",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 3,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dispel-evil-and-good",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dispel-magic",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dissonant-whispers",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "divination",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "divine-favor",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "divine-smite",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "divine-word",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dominate-beast",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dominate-monster",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dominate-person",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dragons-breath",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": {
+      "shape": "cone",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "dream",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "special",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "druidcraft",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "earthquake",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 500
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "eldritch-blast",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "force"
+        }
+      ]
+    },
+    "upcast": null,
+    "cantrip": "beams",
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "elementalism",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "enhance-ability",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "enlarge-reduce",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "ensnaring-strike",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "str",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "restrained",
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "entangle",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "str",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "restrained",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "enthrall",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "etherealness",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "expeditious-retreat",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "eyebite",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "fabricate",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "faerie-fire",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "faithful-hound",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "false-life",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "temp-hp",
+      "dice": {
+        "count": 2,
+        "sides": 4,
+        "bonus": 4
+      }
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "fear",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "cone",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "frightened",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "feather-fall",
+    "castingTime": {
+      "unit": "reaction",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "find-familiar",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "find-steed",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "find-the-path",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "day",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "find-traps",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "finger-of-death",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 7,
+            "sides": 8,
+            "bonus": 30
+          },
+          "type": "necrotic"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "fire-bolt",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "fire"
+        }
+      ]
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "fire-shield",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "fire-storm",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "fireball",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 8,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "fire"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "flame-blade",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "flame-strike",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "cylinder",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 5,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "fire"
+        },
+        {
+          "dice": {
+            "count": 5,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "radiant"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "flaming-sphere",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "flesh-to-stone",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "restrained",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "floating-disk",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "fly",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "fog-cloud",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "forbiddance",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "day",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "forcecage",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 100
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "foresight",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "freedom-of-movement",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "freezing-sphere",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 300
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 60,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "gaseous-form",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "gate",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "geas",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "day",
+      "amount": 30
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "gentle-repose",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "day",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "giant-insect",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "glibness",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "globe-of-invulnerability",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "glyph-of-warding",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "goodberry",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "grease",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "prone",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "greater-invisibility",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "greater-restoration",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "guardian-of-faith",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "guards-and-wards",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "guidance",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "guiding-bolt",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "round",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 4,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "radiant"
+        }
+      ]
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "gust-of-wind",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "line",
+      "sizeFt": 60,
+      "widthFt": 10,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "hallow",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "hallucinatory-terrain",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 300
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 150,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "harm",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "haste",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "heal",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "healing-word",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "heal",
+      "dice": {
+        "count": 2,
+        "sides": 4,
+        "bonus": 0
+      },
+      "modifier": true
+    },
+    "upcast": {
+      "dice": {
+        "count": 2,
+        "sides": 4,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "heat-metal",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "hellish-rebuke",
+    "castingTime": {
+      "unit": "reaction",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 2,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "fire"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 10,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "heroes-feast",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": 12,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "heroism",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "hex",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "hideous-laughter",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "hold-monster",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "paralyzed",
+      "repeatSave": true
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "hold-person",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "paralyzed",
+      "repeatSave": true
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "holy-aura",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "hunters-mark",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "hypnotic-pattern",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "ice-knife",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "piercing"
+        }
+      ]
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": "cold",
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "ice-storm",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 300
+    },
+    "area": {
+      "shape": "cylinder",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 2,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "bludgeoning"
+        },
+        {
+          "dice": {
+            "count": 4,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "cold"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 10,
+        "bonus": 0
+      },
+      "damageType": "bludgeoning",
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "identify",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "illusory-script",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "day",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "imprisonment",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "incendiary-cloud",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 10,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "fire"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "inflict-wounds",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 2,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "necrotic"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 10,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "insect-plague",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 300
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 4,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "piercing"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 10,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "instant-summons",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "invisibility",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "irresistible-dance",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "jump",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "knock",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "legend-lore",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "lesser-restoration",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "levitate",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "light",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "lightning-bolt",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "line",
+      "sizeFt": 100,
+      "widthFt": 5,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 8,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "lightning"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "locate-animals-or-plants",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "locate-creature",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "locate-object",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "longstrider",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mage-armor",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mage-hand",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "magic-circle",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": {
+      "shape": "cylinder",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "magic-jar",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "magic-missile",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": 3,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "auto",
+      "darts": 3,
+      "damage": {
+        "dice": {
+          "count": 1,
+          "sides": 4,
+          "bonus": 1
+        },
+        "type": "force"
+      }
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": null,
+      "darts": 1
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "magic-mouth",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "magic-weapon",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "magnificent-mansion",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 300
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "major-image",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mass-cure-wounds",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": 6,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "heal",
+      "dice": {
+        "count": 5,
+        "sides": 8,
+        "bonus": 0
+      },
+      "modifier": true
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "mass-heal",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mass-healing-word",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 6,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "heal",
+      "dice": {
+        "count": 2,
+        "sides": 4,
+        "bonus": 0
+      },
+      "modifier": true
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 4,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "mass-suggestion",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "maze",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "meld-into-stone",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mending",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "message",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "round",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "meteor-swarm",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "miles",
+      "amount": 1
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 40,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mind-blank",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mind-spike",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [
+        {
+          "dice": {
+            "count": 3,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "psychic"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "minor-illusion",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mirage-arcane",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "sight",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "day",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mirror-image",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "mislead",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "misty-step",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "modify-memory",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "moonbeam",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "cylinder",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 2,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "radiant"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 10,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "move-earth",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 2
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "nondetection",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "pass-without-trace",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "passwall",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "phantasmal-force",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "phantasmal-killer",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [
+        {
+          "dice": {
+            "count": 4,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "psychic"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 10,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "phantom-steed",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "planar-ally",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "planar-binding",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "plane-shift",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": 8,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "plant-growth",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 100,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "poison-spray",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 12,
+            "bonus": 0
+          },
+          "type": "poison"
+        }
+      ]
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "polymorph",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "power-word-heal",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "power-word-kill",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "power-word-stun",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "prayer-of-healing",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 5,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "prestidigitation",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "prismatic-spray",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "cone",
+      "sizeFt": 60,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "prismatic-wall",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "private-sanctum",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "produce-flame",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "fire"
+        }
+      ]
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "programmed-illusion",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "project-image",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "miles",
+      "amount": 500
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "day",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "protection-from-energy",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "protection-from-evil-and-good",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "protection-from-poison",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "purify-food-and-drink",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "raise-dead",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "ray-of-enfeeblement",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "ray-of-frost",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "cold"
+        }
+      ]
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "ray-of-sickness",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 2,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "poison"
+        }
+      ]
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "regenerate",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "reincarnate",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "remove-curse",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "resilient-sphere",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "resistance",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "resurrection",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "reverse-gravity",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 100
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "revivify",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "rope-trick",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sacred-flame",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "radiant"
+        }
+      ],
+      "onSuccess": "none",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sanctuary",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "scorching-ray",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": 3,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 2,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "fire"
+        }
+      ]
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": true
+  },
+  {
+    "spellId": "scrying",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "searing-smite",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "secret-chest",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "see-invisibility",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "seeming",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sending",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "unlimited",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sequester",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "shapechange",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "shatter",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 3,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "thunder"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "shield",
+    "castingTime": {
+      "unit": "reaction",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "round",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": true,
+    "complete": false
+  },
+  {
+    "spellId": "shield-of-faith",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "shillelagh",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "shining-smite",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "shocking-grasp",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "melee",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "lightning"
+        }
+      ]
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "silence",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "silent-image",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "simulacrum",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 12
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sleep",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 5,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "incapacitated",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sleet-storm",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "cylinder",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "slow",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 40,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": 6,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sorcerous-burst",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "spare-the-dying",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 15
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "speak-with-animals",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "speak-with-dead",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "speak-with-plants",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "spider-climb",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": {
+      "dice": null,
+      "damageType": null,
+      "targets": 1,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "spike-growth",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "spirit-guardians",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "spiritual-weapon",
+    "castingTime": {
+      "unit": "bonus",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "starry-wisp",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "ranged",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "radiant"
+        }
+      ]
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "stinking-cloud",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 90
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "stone-shape",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "stoneskin",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "storm-of-vengeance",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "miles",
+      "amount": 1
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "suggestion",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [],
+      "onSuccess": "none",
+      "condition": "charmed",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "summon-dragon",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sunbeam",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "line",
+      "sizeFt": 60,
+      "widthFt": 5,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 6,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "radiant"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": "blinded",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "sunburst",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 60,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 12,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "radiant"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": "blinded",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "symbol",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 60,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "until-dispelled",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "telekinesis",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "telepathic-bond",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 8,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "teleport",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": 8,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "teleportation-circle",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "round",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "thaumaturgy",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "thunderwave",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "con",
+      "damage": [
+        {
+          "dice": {
+            "count": 2,
+            "sides": 8,
+            "bonus": 0
+          },
+          "type": "thunder"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 8,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "time-stop",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "tiny-hut",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": {
+      "shape": "emanation",
+      "sizeFt": 10,
+      "widthFt": null,
+      "origin": "self"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "tongues",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "transport-via-plants",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 10
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "tree-stride",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "true-polymorph",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "true-resurrection",
+    "castingTime": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "true-seeing",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "true-strike",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "tsunami",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "miles",
+      "amount": 1
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "round",
+      "amount": 6
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "unseen-servant",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "vampiric-touch",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "attack",
+      "attack": "melee",
+      "damage": [
+        {
+          "dice": {
+            "count": 3,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "necrotic"
+        }
+      ]
+    },
+    "upcast": {
+      "dice": {
+        "count": 1,
+        "sides": 6,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "vicious-mockery",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": null,
+    "targets": 1,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [
+        {
+          "dice": {
+            "count": 1,
+            "sides": 6,
+            "bonus": 0
+          },
+          "type": "psychic"
+        }
+      ],
+      "onSuccess": "none",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": "dice",
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "vitriolic-sphere",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 150
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "dex",
+      "damage": [
+        {
+          "dice": {
+            "count": 10,
+            "sides": 4,
+            "bonus": 0
+          },
+          "type": "acid"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": null,
+      "repeatSave": false
+    },
+    "upcast": {
+      "dice": {
+        "count": 2,
+        "sides": 4,
+        "bonus": 0
+      },
+      "damageType": null,
+      "targets": null,
+      "darts": null
+    },
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "wall-of-fire",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "wall-of-force",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "wall-of-ice",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "wall-of-stone",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "wall-of-thorns",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "warding-bond",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "touch",
+      "amount": null
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "water-breathing",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 10,
+    "duration": {
+      "unit": "hour",
+      "amount": 24
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "water-walk",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 10,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": false,
+    "ritual": true,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "web",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "cube",
+      "sizeFt": 20,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "hour",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "weird",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 30,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "save",
+      "ability": "wis",
+      "damage": [
+        {
+          "dice": {
+            "count": 10,
+            "sides": 10,
+            "bonus": 0
+          },
+          "type": "psychic"
+        }
+      ],
+      "onSuccess": "half",
+      "condition": "frightened",
+      "repeatSave": false
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "wind-walk",
+    "castingTime": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 30
+    },
+    "area": null,
+    "targets": 10,
+    "duration": {
+      "unit": "hour",
+      "amount": 8
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "wind-wall",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 120
+    },
+    "area": null,
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 1
+    },
+    "concentration": true,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "wish",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "self",
+      "amount": null
+    },
+    "area": null,
+    "targets": 10,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "word-of-recall",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 5
+    },
+    "area": null,
+    "targets": 5,
+    "duration": {
+      "unit": "instantaneous",
+      "amount": null
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  },
+  {
+    "spellId": "zone-of-truth",
+    "castingTime": {
+      "unit": "action",
+      "amount": 1
+    },
+    "range": {
+      "kind": "feet",
+      "amount": 60
+    },
+    "area": {
+      "shape": "sphere",
+      "sizeFt": 15,
+      "widthFt": null,
+      "origin": "point"
+    },
+    "targets": null,
+    "duration": {
+      "unit": "minute",
+      "amount": 10
+    },
+    "concentration": false,
+    "ritual": false,
+    "effect": {
+      "kind": "dm"
+    },
+    "upcast": null,
+    "cantrip": null,
+    "slice": false,
+    "complete": false
+  }
+]

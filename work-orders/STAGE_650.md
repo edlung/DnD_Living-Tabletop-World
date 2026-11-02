@@ -22,7 +22,11 @@ chat (2026-11-02); it stays outside the repository.
   temporary hit points, lasting zones, pushes and pulls), derived from the text where its wording
   is regular and curated where it is not; casting an SRD spell in a fight and outside it; upcasting
   for every spell, cantrips by level, rituals, material components with a cost (consumed or not).
-  What the vocabulary cannot say is the DM's to resolve, and the UI says so.
+  What the vocabulary cannot say is the DM's to resolve, and the UI says so. ADR 0052; in three
+  commits: the mechanics layer (derived from the text, curated, tested against the text); the
+  engine (any SRD spell by id, targets and areas, attack, save, healing, temporary hit points,
+  darts, conditions, concentration, higher slots, cantrips' growth); the screens (the spell list,
+  casting with a slot, a target or an area, outside a fight; "the DM decides" where it is so).
 - 650c — Monsters' mechanics: the DM adds a stat block from the catalog (search by name, type and
   CR); speeds, senses, resistances, immunities and condition immunities from the text; Recharge,
   per-day uses, bonus actions, reactions, traits (Pack Tactics, Magic and Legendary Resistance),

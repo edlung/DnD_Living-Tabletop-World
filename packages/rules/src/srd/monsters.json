@@ -198,7 +198,7 @@
       },
       {
         "name": "Acid Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 18, each creature in a 60-foot-long, 5-footwide Line. Failure: 54 (12d8) Acid damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 18, each creature in a 60-foot-long, 5-foot-wide Line. Failure: 54 (12d8) Acid damage. Success: Half damage."
       },
       {
         "name": "Spellcasting",
@@ -303,7 +303,7 @@
       },
       {
         "name": "Lightning Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 19, each creature in a 90-foot-long, 5-footwide Line. Failure: 60 (11d10) Lightning damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 19, each creature in a 90-foot-long, 5-foot-wide Line. Failure: 60 (11d10) Lightning damage. Success: Half damage."
       },
       {
         "name": "Spellcasting",
@@ -408,7 +408,7 @@
       },
       {
         "name": "Fire Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 18, each creature in a 60-foot-long, 5-footwide Line. Failure: 45 (10d8) Fire damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 18, each creature in a 60-foot-long, 5-foot-wide Line. Failure: 45 (10d8) Fire damage. Success: Half damage."
       },
       {
         "name": "Sleep Breath",
@@ -521,7 +521,7 @@
       },
       {
         "name": "Lightning Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 19, each creature in a 90-foot-long, 5-footwide Line. Failure: 55 (10d10) Lightning damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 19, each creature in a 90-foot-long, 5-foot-wide Line. Failure: 55 (10d10) Lightning damage. Success: Half damage."
       },
       {
         "name": "Repulsion Breath",
@@ -630,7 +630,7 @@
       },
       {
         "name": "Acid Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 18, each creature in an 60-foot-long, 5-footwide Line. Failure: 54 (12d8) Acid damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 18, each creature in an 60-foot-long, 5-foot-wide Line. Failure: 54 (12d8) Acid damage. Success: Half damage."
       },
       {
         "name": "Slowing Breath",
@@ -1445,7 +1445,7 @@
       },
       {
         "name": "Acid Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 22, each creature in a 90-foot-long, 10-footwide Line. Failure: 67 (15d8) Acid damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 22, each creature in a 90-foot-long, 10-foot-wide Line. Failure: 67 (15d8) Acid damage. Success: Half damage."
       },
       {
         "name": "Spellcasting",
@@ -1655,7 +1655,7 @@
       },
       {
         "name": "Fire Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 21, each creature in a 90-foot-long, 5-footwide Line. Failure: 58 (13d8) Fire damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 21, each creature in a 90-foot-long, 5-foot-wide Line. Failure: 58 (13d8) Fire damage. Success: Half damage."
       },
       {
         "name": "Sleep Breath",
@@ -1877,7 +1877,7 @@
       },
       {
         "name": "Acid Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 22, each creature in an 90-foot-long, 10-footwide Line. Failure: 63 (14d8) Acid damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 22, each creature in an 90-foot-long, 10-foot-wide Line. Failure: 63 (14d8) Acid damage. Success: Half damage."
       },
       {
         "name": "Slowing Breath",
@@ -4289,7 +4289,7 @@
       },
       {
         "name": "Lightning Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 16, each creature in a 90-foot-long, 5-footwide Line. Failure: 66 (12d10) Lightning damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 16, each creature in a 90-foot-long, 5-foot-wide Line. Failure: 66 (12d10) Lightning damage. Success: Half damage."
       }
     ],
     "bonusActions": [
@@ -4532,7 +4532,7 @@
       },
       {
         "name": "Acid Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 11, each creature in a 15-foot-long, 5-footwide Line. Failure: 22 (5d8) Acid damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 11, each creature in a 15-foot-long, 5-foot-wide Line. Failure: 22 (5d8) Acid damage. Success: Half damage."
       }
     ],
     "bonusActions": [],
@@ -4856,7 +4856,7 @@
       },
       {
         "name": "Lightning Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 12, each creature in a 30-foot-long, 5-footwide Line. Failure: 21 (6d6) Lightning damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 12, each creature in a 30-foot-long, 5-foot-wide Line. Failure: 21 (6d6) Lightning damage. Success: Half damage."
       }
     ],
     "bonusActions": [],
@@ -5098,7 +5098,7 @@
       },
       {
         "name": "Fire Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 11, each creature in a 20-foot-long, 5-footwide Line. Failure: 14 (4d6) Fire damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 11, each creature in a 20-foot-long, 5-foot-wide Line. Failure: 14 (4d6) Fire damage. Success: Half damage."
       },
       {
         "name": "Sleep Breath",
@@ -5187,7 +5187,7 @@
       },
       {
         "name": "Lightning Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 12, each creature in a 40-foot-long, 5-footwide Line. Failure: 16 (3d10) Lightning damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 12, each creature in a 40-foot-long, 5-foot-wide Line. Failure: 16 (3d10) Lightning damage. Success: Half damage."
       },
       {
         "name": "Repulsion Breath",
@@ -6614,7 +6614,7 @@
       },
       {
         "name": "Acid Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 11, each creature in a 20-foot-long, 5-footwide Line. Failure: 18 (4d8) Acid damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 11, each creature in a 20-foot-long, 5-foot-wide Line. Failure: 18 (4d8) Acid damage. Success: Half damage."
       },
       {
         "name": "Slowing Breath",
@@ -27286,7 +27286,7 @@
       },
       {
         "name": "Acid Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 14, each creature in a 30-foot-long, 5-footwide Line. Failure: 49 (14d6) Acid damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 14, each creature in a 30-foot-long, 5-foot-wide Line. Failure: 49 (14d6) Acid damage. Success: Half damage."
       }
     ],
     "bonusActions": [],
@@ -27366,7 +27366,7 @@
       },
       {
         "name": "Lightning Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 16, each creature in a 60-foot-long, 5-footwide Line. Failure: 55 (10d10) Lightning damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 16, each creature in a 60-foot-long, 5-foot-wide Line. Failure: 55 (10d10) Lightning damage. Success: Half damage."
       }
     ],
     "bonusActions": [],
@@ -27446,7 +27446,7 @@
       },
       {
         "name": "Fire Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 14, each creature in a 40-foot-long, 5-footwide Line. Failure: 38 (11d6) Fire damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 14, each creature in a 40-foot-long, 5-foot-wide Line. Failure: 38 (11d6) Fire damage. Success: Half damage."
       },
       {
         "name": "Sleep Breath",
@@ -27535,7 +27535,7 @@
       },
       {
         "name": "Lightning Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 15, each creature in a 60-foot-long, 5-footwide Line. Failure: 49 (9d10) Lightning damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 15, each creature in a 60-foot-long, 5-foot-wide Line. Failure: 49 (9d10) Lightning damage. Success: Half damage."
       },
       {
         "name": "Repulsion Breath",
@@ -27619,7 +27619,7 @@
       },
       {
         "name": "Acid Breath (Recharge 5–6)",
-        "text": "Dexterity Saving Throw: DC 14, each creature in a 40-foot-long, 5-footwide Line. Failure: 40 (9d8) Acid damage. Success: Half damage."
+        "text": "Dexterity Saving Throw: DC 14, each creature in a 40-foot-long, 5-foot-wide Line. Failure: 40 (9d8) Acid damage. Success: Half damage."
       },
       {
         "name": "Slowing Breath",

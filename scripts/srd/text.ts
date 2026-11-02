@@ -162,6 +162,8 @@ export function joinLines(lines: readonly string[]): string {
   let text = '';
   for (const line of lines) {
     if (text === '') text = line;
+    // A number's compound keeps its hyphens ("40-foot-" + "high").
+    else if (/\d-[a-z]+-$/.test(text)) text += line;
     else if (/[A-Za-z]-$/.test(text) && /^[a-z]/.test(line)) text = text.slice(0, -1) + line;
     else if (/-$/.test(text)) text += line;
     else text += ` ${line}`;

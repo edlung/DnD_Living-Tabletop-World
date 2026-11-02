@@ -1,8 +1,21 @@
-import { srdMonsterSchema, srdSpellSchema, type SrdMonster } from '@ltw/contracts';
+import {
+  srdMonsterSchema,
+  srdSpellMechanicsSchema,
+  srdSpellSchema,
+  type SpellDice,
+  type SrdMonster,
+} from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { SPELLS } from '../catalog.ts';
-import { SRD_MONSTERS, SRD_SPELLS, srdMonster, srdSpell } from './catalog.ts';
+import {
+  SRD_MONSTERS,
+  SRD_SPELLS,
+  SRD_SPELL_MECHANICS,
+  srdMonster,
+  srdSpell,
+  srdSpellMechanics,
+} from './catalog.ts';
 
 /**
  * The SRD 5.2.1 catalogs as imported (docs/adr/0051-srd-data.md §2): each entry holds to its
@@ -42,6 +55,58 @@ describe('the spells', () => {
     expect(srdSpell('alarm')).toMatchObject({ ritual: true, castingTime: '1 minute' });
     expect(srdSpell('revivify')?.components).toMatchObject({ costGp: 300, consumed: true });
     expect(srdSpell('rope-trick')?.description).toContain('extradimensional space');
+  });
+});
+
+/** "8d6", "1d4 + 1": dice as the SRD writes them. */
+const written = (dice: SpellDice) =>
+  `${dice.count}d${dice.sides}${dice.bonus === 0 ? '' : ` ${dice.bonus > 0 ? '+' : '−'} ${Math.abs(dice.bonus)}`}`;
+
+describe('the spells’ mechanics', () => {
+  it('give each spell its layer, to the schema, in the catalog’s order', () => {
+    expect(SRD_SPELL_MECHANICS.map((entry) => entry.spellId)).toEqual(
+      SRD_SPELLS.map((spell) => spell.spellId),
+    );
+    for (const entry of SRD_SPELL_MECHANICS)
+      expect(srdSpellMechanicsSchema.safeParse(entry).error).toBeUndefined();
+  });
+
+  it('take every number from the spell’s own text', () => {
+    for (const entry of SRD_SPELL_MECHANICS) {
+      const spell = srdSpell(entry.spellId);
+      const text = `${spell?.description ?? ''} ${spell?.higherLevels ?? ''}`.replace(/\n/g, ' ');
+      const { effect } = entry;
+      const dice =
+        effect.kind === 'attack' || effect.kind === 'save'
+          ? effect.damage.map((damage) => damage.dice)
+          : effect.kind === 'heal' || effect.kind === 'temp-hp'
+            ? [effect.dice]
+            : effect.kind === 'auto'
+              ? [effect.damage.dice]
+              : [];
+      for (const one of [...dice, ...(entry.upcast?.dice ? [entry.upcast.dice] : [])])
+        expect(text, entry.spellId).toContain(written(one));
+      if (entry.area)
+        expect(text, entry.spellId).toMatch(new RegExp(`${entry.area.sizeFt}(-foot| feet)`));
+    }
+  });
+
+  it('resolve the slice’s and the complete spells, and leave the rest to the DM', () => {
+    const counts = SRD_SPELL_MECHANICS.reduce<Record<string, number>>((all, entry) => {
+      all[entry.effect.kind] = (all[entry.effect.kind] ?? 0) + 1;
+      return all;
+    }, {});
+    expect(counts['dm']).toBeLessThan(280);
+    expect(SRD_SPELL_MECHANICS.filter((entry) => entry.slice)).toHaveLength(9);
+    for (const entry of SRD_SPELL_MECHANICS.filter((one) => one.complete))
+      expect(entry.effect.kind, entry.spellId).not.toBe('dm');
+    expect(srdSpellMechanics('fireball')).toMatchObject({
+      area: { shape: 'sphere', sizeFt: 20, origin: 'point' },
+      effect: { kind: 'save', ability: 'dex', onSuccess: 'half' },
+      upcast: { dice: { count: 1, sides: 6, bonus: 0 } },
+    });
+    expect(srdSpellMechanics('fire-bolt')).toMatchObject({ cantrip: 'dice', complete: true });
+    expect(srdSpellMechanics('bless')?.effect.kind).toBe('dm');
   });
 });
 
