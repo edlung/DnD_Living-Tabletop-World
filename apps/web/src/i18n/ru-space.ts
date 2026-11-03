@@ -111,6 +111,7 @@ registerRussian({
   darkness: 'темнота',
   'lightly obscured': 'слабая заслонённость',
   'heavily obscured': 'сильная заслонённость',
+  'in the fog of war': 'в тумане войны',
   // The DM's brush (docs/adr/0057-encounters-maps-loot.md §2): what it lays, in the history too
   'Raised {feet} ft': 'Возвышение {feet} фт',
   'A pit {feet} ft deep': 'Яма глубиной {feet} фт',
@@ -127,6 +128,11 @@ registerRussian({
   // The DM's hand (docs/adr/0057-encounters-maps-loot.md §2), named beside the light in the history
   'set a combatant down': 'переставить участника боя',
   'paint the ground of the fight': 'изменить местность боя',
+  'hide or reveal squares in the fog of war': 'скрыть или открыть клетки в тумане войны',
+  'One square hidden in the fog': 'Одна клетка скрыта туманом',
+  'One square revealed': 'Одна клетка открыта',
+  '{count} squares hidden in the fog': 'Скрыто туманом клеток: {count}',
+  '{count} squares revealed': 'Открыто клеток: {count}',
 
   // Breath under water (docs/adr/0050-the-world-around.md §8)
   'holding its breath, {rounds} rounds left': 'задерживает дыхание, осталось раундов: {rounds}',

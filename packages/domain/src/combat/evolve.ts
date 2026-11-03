@@ -1,4 +1,4 @@
-import { paintBattlefield } from '@ltw/contracts';
+import { fogBattlefield, paintBattlefield } from '@ltw/contracts';
 
 import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
@@ -72,14 +72,26 @@ export function applyLightSet(state: WorldState, event: EventOf<'LightSet'>): Wo
   };
 }
 
-/** The fight's light and ground as the DM sets them (ADR 0050 §1; ADR 0057 §2). */
+/** The fight's light, ground and fog as the DM sets them (ADR 0050 §1; ADR 0057 §2, §4). */
 export function applyBattlefieldEvent(
   state: WorldState,
-  event: EventOf<'LightSet' | 'TerrainPainted'>,
+  event: EventOf<'LightSet' | 'TerrainPainted' | 'FogSet'>,
 ): WorldState {
-  return event.type === 'LightSet'
-    ? applyLightSet(state, event)
-    : applyTerrainPainted(state, event);
+  if (event.type === 'LightSet') return applyLightSet(state, event);
+  if (event.type === 'TerrainPainted') return applyTerrainPainted(state, event);
+  // The fog of war laid or lifted (docs/adr/0057-encounters-maps-loot.md §4).
+  const encounter = requireEncounter(state, 'fog');
+  if (encounter.encounterId !== event.payload.encounterId) {
+    throw new CorruptHistoryError('fog for another fight');
+  }
+  const { squares, hidden } = event.payload;
+  return {
+    ...state,
+    encounter: {
+      ...encounter,
+      battlefield: fogBattlefield(encounter.battlefield, squares, hidden),
+    },
+  };
 }
 
 /** The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */

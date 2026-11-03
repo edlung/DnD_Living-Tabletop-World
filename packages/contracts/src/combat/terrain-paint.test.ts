@@ -1,7 +1,7 @@
 import type { Battlefield } from './battlefield.ts';
 import { describe, expect, it } from 'vitest';
 
-import { paintBattlefield, sameGround } from './terrain-paint.ts';
+import { fogBattlefield, paintBattlefield, sameGround } from './terrain-paint.ts';
 
 /**
  * The DM's brush (docs/adr/0057-encounters-maps-loot.md §2): each paint replaces its own kind on
@@ -111,5 +111,25 @@ describe('a stroke of the DM’s brush', () => {
     expect(
       sameGround(paintBattlefield(field, [{ x: 0, y: 0 }], { kind: 'difficult' }), field),
     ).toBe(false);
+  });
+
+  it('lays the fog of war on squares and lifts it, leaving the ground as it lay', () => {
+    const fogged = fogBattlefield(
+      field,
+      [
+        { x: 3, y: 3 },
+        { x: 2, y: 2 },
+        { x: 3, y: 3 },
+      ],
+      true,
+    );
+    expect(fogged.fog).toEqual([
+      { x: 2, y: 2 },
+      { x: 3, y: 3 },
+    ]);
+    expect(fogged.water).toEqual(field.water);
+    const lifted = fogBattlefield(fogged, [{ x: 2, y: 2 }], false);
+    expect(lifted.fog).toEqual([{ x: 3, y: 3 }]);
+    expect(fogBattlefield(lifted, [{ x: 3, y: 3 }], false).fog).toBeUndefined();
   });
 });

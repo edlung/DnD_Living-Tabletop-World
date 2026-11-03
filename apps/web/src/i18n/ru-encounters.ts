@@ -71,6 +71,9 @@ registerRussian({
   'Choose a brush, then press a square or drag across several.':
     'Выберите кисть, затем нажмите на клетку или проведите по нескольким.',
   Brush: 'Кисть',
+  'Hide in the fog of war': 'Скрыть в тумане войны',
+  'Reveal from the fog': 'Открыть из тумана',
+  'The DM’s turn': 'Ход мастера',
   Height: 'Высота',
   // The DM's own battle map and its grid (Stage 670b)
   'Your own battle map': 'Своя боевая карта',

@@ -29,6 +29,8 @@ export interface SquareFacts {
   /** Its light and its fog (docs/adr/0050-the-world-around.md §1); absent: bright and clear. */
   readonly light?: LightLevel;
   readonly obscured?: 'none' | 'light' | 'heavy';
+  /** Hidden in the DM's fog of war (docs/adr/0057-encounters-maps-loot.md §4). */
+  readonly fogged?: boolean;
   readonly cover: CoverLevel | null;
   /** The occupant is among those a previewed area spell would affect (the server's list). */
   readonly inArea: boolean;
@@ -92,6 +94,7 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
   if (facts.light === 'dark') notes.push(t('darkness'));
   if (facts.obscured === 'light') notes.push(t('lightly obscured'));
   if (facts.obscured === 'heavy') notes.push(t('heavily obscured'));
+  if (facts.fogged) notes.push(t('in the fog of war'));
   if (facts.difficult) notes.push(t('difficult terrain'));
   if (facts.cover) notes.push(t(COVER[facts.cover]));
   if (occupant && facts.inArea) notes.push(t('in the area'));

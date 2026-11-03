@@ -113,3 +113,22 @@ export function sameGround(a: Battlefield, b: Battlefield): boolean {
       .join('/');
   return norm(a) === norm(b);
 }
+
+/** The battlefield with squares hidden in the fog of war, or revealed (ADR 0057 §4). */
+export function fogBattlefield(
+  field: Battlefield,
+  squares: readonly Square[],
+  hidden: boolean,
+): Battlefield {
+  const hit = new Set(squares.map(key));
+  const kept = (field.fog ?? []).filter((square) => !hit.has(key(square)));
+  const laid = hidden
+    ? [...new Map(squares.map((square) => [key(square), { x: square.x, y: square.y }]))].map(
+        ([, square]) => square,
+      )
+    : [];
+  const fog = [...kept, ...laid].sort(byPlace);
+  const rest: Battlefield = { ...field };
+  delete rest.fog;
+  return fog.length > 0 ? { ...rest, fog } : rest;
+}

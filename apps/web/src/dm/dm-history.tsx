@@ -32,6 +32,7 @@ const KIND_GLYPH = {
   fight: 'initiative',
   light: 'day',
   terrain: 'map',
+  fog: 'fog',
   trap: 'falling',
   'mental-stress': 'thought',
   contagion: 'poisoned',

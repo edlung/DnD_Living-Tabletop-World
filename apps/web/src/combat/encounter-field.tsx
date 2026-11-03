@@ -1,9 +1,9 @@
 import {
+  fogBattlefield,
   paintBattlefield,
   type Battlefield,
   type EncounterCombatantView,
   type Square,
-  type TerrainPaint,
 } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId, useRef, useState } from 'react';
@@ -11,7 +11,7 @@ import { useId, useRef, useState } from 'react';
 import { Board } from './board/board.tsx';
 import { useBoardView } from './board/board-view.ts';
 import { spaceOf, type LaidToken } from './encounter-layout.ts';
-import { PaintCard } from './paint-card.tsx';
+import { PaintCard, type Brush } from './paint-card.tsx';
 
 /**
  * The builder's battlefield (docs/adr/0057-encounters-maps-loot.md §1–2): the foes and the
@@ -38,7 +38,7 @@ export function EncounterField({
   const view = useBoardView('flat');
   const panel = useRef<HTMLElement>(null);
   const [painting, setPainting] = useState(false);
-  const [brush, setBrush] = useState<TerrainPaint>({ kind: 'wall' });
+  const [brush, setBrush] = useState<Brush>({ kind: 'wall' });
   // The token chosen to move, and the square last chosen.
   const [held, setHeld] = useState<string | null>(null);
   const [selected, setSelected] = useState<Square | null>(null);
@@ -91,6 +91,7 @@ export function EncounterField({
           figureOf={() => null}
           battleMap={null}
           view={view}
+          fogView="veil"
           onPick={pick}
           onDropToken={(key, square) => {
             setHeld(null);
@@ -104,7 +105,11 @@ export function EncounterField({
               setPainting((on) => !on);
             },
             onStroke: (squares) => {
-              onGround(paintBattlefield(ground, squares, brush));
+              onGround(
+                brush.kind === 'fog'
+                  ? fogBattlefield(ground, squares, brush.hidden)
+                  : paintBattlefield(ground, squares, brush),
+              );
             },
           }}
         />

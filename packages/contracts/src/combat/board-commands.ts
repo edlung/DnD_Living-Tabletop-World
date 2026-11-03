@@ -58,3 +58,12 @@ export const paintTerrainCommandSchema = z
     paint: terrainPaintSchema,
   })
   .strict();
+
+/** The DM hides squares of a running fight from the players, or reveals them (ADR 0057 §4). */
+export const setFogCommandSchema = z
+  .object({
+    type: z.literal('SetFog'),
+    squares: z.array(squareSchema).min(1).max(MAX_PAINTED_SQUARES),
+    hidden: z.boolean(),
+  })
+  .strict();

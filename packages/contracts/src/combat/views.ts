@@ -215,11 +215,18 @@ export interface ReactionWindowView {
   readonly attacks?: readonly ReactionAttackOption[];
 }
 
+/**
+ * Whose turn it is when the fog hides the creature from this perspective (docs/adr/0057-encounters-
+ * maps-loot.md §4): the DM's, as far as the table can tell.
+ */
+export const HIDDEN_TURN = 'hidden-turn';
+
 export interface EncounterView {
   readonly encounterId: string;
   /** The place of the fight, where every combatant stands: the DM's hand adds from it. */
   readonly locationId: string;
   readonly round: number;
+  /** The combatant whose turn it is, or `HIDDEN_TURN` for one the fog hides from this viewer. */
   readonly currentCombatantId: string;
   /** Combatant entity IDs in turn order. */
   readonly order: readonly string[];

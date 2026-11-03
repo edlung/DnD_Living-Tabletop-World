@@ -87,6 +87,7 @@ export function Board({
   onPick,
   onDropToken,
   paint,
+  fogView = 'hidden',
   centreOn = null,
   moverId = selfId,
 }: {
@@ -116,6 +117,11 @@ export function Board({
   readonly onDropToken?: (entityId: string, square: Square) => void;
   /** The DM's brush (ADR 0057 §2): its toggle, and squares pressed or stroked while it is on. */
   readonly paint?: BoardPaint;
+  /**
+   * How the fog of war shows (ADR 0057 §4): as a veil the DM sees through, or as darkness — the
+   * players' and the display's, whose view leaves out what lies under it.
+   */
+  readonly fogView?: 'veil' | 'hidden';
   /** A square to keep in view when the board scrolls (the table's screen follows the fight). */
   readonly centreOn?: Square | null;
 }) {
@@ -153,6 +159,8 @@ export function Board({
   const fog = new Map(
     (encounter.battlefield.obscured ?? []).map((o) => [key(o), o.heavy === true] as const),
   );
+  // The fog of war (ADR 0057 §4), apart from the fog that obscures (ADR 0050 §1).
+  const warFog = new Set((encounter.battlefield.fog ?? []).map(key));
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
   // Every square a combatant fills names it; its figure stands on its north-west square, as big
   // as its space (docs/adr/0049-space-and-movement.md §1).
@@ -274,6 +282,7 @@ export function Board({
             groundFt: heights.get(id) ?? 0,
             light: lit.get(id) ?? ambient,
             obscured: fog.has(id) ? (fog.get(id) ? 'heavy' : 'light') : 'none',
+            fogged: warFog.has(id),
             cover: level,
             inArea,
           })}
@@ -311,6 +320,9 @@ export function Board({
                 .join(' ')}
               aria-hidden="true"
             />
+          )}
+          {warFog.has(id) && (
+            <span className={`square-war-fog square-war-fog--${fogView}`} aria-hidden="true" />
           )}
           {level && <CoverPiece level={level} />}
           {occupant && anchor && (

@@ -23,7 +23,7 @@ import { decideUseFeature } from './features.ts';
 import { decideInflictMentalStress, decideSpringTrap } from './toolbox.ts';
 import { decideContagionCourse, decideInfectWithContagion } from './contagions.ts';
 import { decideSetLight } from './light.ts';
-import { decidePaintTerrain } from './terrain-paint.ts';
+import { decidePaintTerrain, decideSetFog } from './terrain-paint.ts';
 import { decideMove } from './movement.ts';
 import { ridersAfter } from './mounts.ts';
 import { decideAddObject } from './objects.ts';
@@ -115,6 +115,8 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideSetLight(context, command);
     case 'PaintTerrain':
       return decidePaintTerrain(context, command);
+    case 'SetFog':
+      return decideSetFog(context, command);
     case 'ExposeToHazard':
       return decideExposeToHazard(context, command, dice);
     case 'SpringTrap':

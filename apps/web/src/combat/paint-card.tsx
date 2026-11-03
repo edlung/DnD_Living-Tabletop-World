@@ -11,7 +11,10 @@ import { paintName } from './terrain-words.ts';
  * board lays — a wall, difficult ground, cover, water, a height, obscurement — or clears. The World
  * Engine decides each stroke; a wall never rises where someone stands.
  */
-const BRUSHES: readonly TerrainPaint[] = [
+/** What the DM's brush lays: the ground, or the fog of war hiding or revealing (ADR 0057 §4). */
+export type Brush = TerrainPaint | { readonly kind: 'fog'; readonly hidden: boolean };
+
+const BRUSHES: readonly Brush[] = [
   { kind: 'wall' },
   { kind: 'difficult' },
   { kind: 'cover', level: 'half' },
@@ -23,6 +26,8 @@ const BRUSHES: readonly TerrainPaint[] = [
   { kind: 'obscured', heavy: false },
   { kind: 'obscured', heavy: true },
   { kind: 'clear' },
+  { kind: 'fog', hidden: true },
+  { kind: 'fog', hidden: false },
 ];
 /**
  * The brush in the DM's hand: on or off, what it lays, and the square it touched last. It lives
@@ -31,7 +36,7 @@ const BRUSHES: readonly TerrainPaint[] = [
  */
 export interface BrushState {
   readonly painting: boolean;
-  readonly brush: TerrainPaint;
+  readonly brush: Brush;
   readonly last: Square | null;
 }
 export type BrushHand = readonly [BrushState, Dispatch<SetStateAction<BrushState>>];
@@ -44,14 +49,16 @@ export function useBrush(): BrushHand {
 const HEIGHTS = [30, 25, 20, 15, 10, 5, 0, -5, -10, -15, -20, -25, -30] as const;
 
 /** One brush's place in the list: a height is one brush whatever its feet. */
-const brushKey = (paint: TerrainPaint) =>
-  paint.kind === 'cover'
-    ? `cover-${paint.level}`
-    : paint.kind === 'water'
-      ? `water-${paint.deep ? 'deep' : 'shallow'}`
-      : paint.kind === 'obscured'
-        ? `obscured-${paint.heavy ? 'heavy' : 'light'}`
-        : paint.kind;
+const brushKey = (paint: Brush) =>
+  paint.kind === 'fog'
+    ? `fog-${paint.hidden ? 'hide' : 'reveal'}`
+    : paint.kind === 'cover'
+      ? `cover-${paint.level}`
+      : paint.kind === 'water'
+        ? `water-${paint.deep ? 'deep' : 'shallow'}`
+        : paint.kind === 'obscured'
+          ? `obscured-${paint.heavy ? 'heavy' : 'light'}`
+          : paint.kind;
 
 export function PaintCard({
   brush,
@@ -60,10 +67,10 @@ export function PaintCard({
   onBrush,
   onClose,
 }: {
-  readonly brush: TerrainPaint;
+  readonly brush: Brush;
   readonly locked: boolean;
   readonly panel: Ref<HTMLElement>;
-  readonly onBrush: (brush: TerrainPaint) => void;
+  readonly onBrush: (brush: Brush) => void;
   readonly onClose: () => void;
 }) {
   const t = useT();
@@ -102,7 +109,11 @@ export function PaintCard({
                 }}
               />
               <label htmlFor={id}>
-                {option.kind === 'ground' ? t('Height') : paintName(t, option)}
+                {option.kind === 'ground'
+                  ? t('Height')
+                  : option.kind === 'fog'
+                    ? t(option.hidden ? 'Hide in the fog of war' : 'Reveal from the fog')
+                    : paintName(t, option)}
               </label>
               {option.kind === 'ground' && (
                 <select

@@ -84,6 +84,7 @@ export type {
   ReactionChoice,
   ReactionWindowView,
 } from './views.ts';
+export { HIDDEN_TURN } from './views.ts';
 export {
   SURPRISED_SIDES,
   preparedEncounterBookSchema,
@@ -115,10 +116,18 @@ export {
   TERRAIN_PAINT_KINDS,
   paintTerrainCommandSchema,
   placeCombatantCommandSchema,
+  setFogCommandSchema,
   terrainPaintSchema,
   type TerrainPaint,
 } from './board-commands.ts';
-export { paintBattlefield, sameGround } from './terrain-paint.ts';
+export { fogBattlefield, paintBattlefield, sameGround } from './terrain-paint.ts';
+export {
+  SQUARE_FT,
+  inSpellArea,
+  squareDistanceFt,
+  squaresInArea,
+  type SpellArea,
+} from './geometry.ts';
 export {
   CONTAGION_STEPS,
   TOOLBOX_COMMAND_TYPES,

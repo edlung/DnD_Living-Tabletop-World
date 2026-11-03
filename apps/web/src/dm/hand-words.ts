@@ -113,6 +113,13 @@ export function describeHand(t: Translate, change: DmHandEntry['change']): strin
       return t('Ruling: {summary}', { summary: change.summary });
     case 'light':
       return t(LIGHT_WORDS[change.ambient]);
+    // The fog of war laid or lifted (docs/adr/0057-encounters-maps-loot.md §4).
+    case 'fog':
+      return change.squares === 1
+        ? t(change.hidden ? 'One square hidden in the fog' : 'One square revealed')
+        : t(change.hidden ? '{count} squares hidden in the fog' : '{count} squares revealed', {
+            count: change.squares,
+          });
     // The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2).
     case 'terrain':
       return change.squares === 1

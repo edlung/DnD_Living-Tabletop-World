@@ -3,7 +3,6 @@ import {
   type EncounterView,
   type PlayerAssetView,
   type Square,
-  type TerrainPaint,
 } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
@@ -17,7 +16,7 @@ import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { CommandedTurn } from './commanded-turn.tsx';
 import { DmSquareCard } from './dm-hand.tsx';
-import { PaintCard, type BrushHand } from './paint-card.tsx';
+import { PaintCard, type Brush, type BrushHand } from './paint-card.tsx';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
 import { occupantAt, squareMoves } from './move-options.ts';
 import { useCombatantLabels } from './labels.ts';
@@ -78,7 +77,7 @@ export function CombatPanel({
   // The DM's brush (ADR 0057 §2), kept by the stage across the board's fresh starts.
   const [brushState, setBrushState] = hand;
   const { painting, brush } = brushState;
-  const setBrush = (next: TerrainPaint) => {
+  const setBrush = (next: Brush) => {
     setBrushState((state) => ({ ...state, brush: next }));
   };
   const section = useRef<HTMLElement>(null);
@@ -167,14 +166,14 @@ export function CombatPanel({
   };
   const stroke = (squares: readonly Square[]) => {
     setBrushState((state) => ({ ...state, last: squares.at(-1) ?? state.last }));
+    const stroked = squares.slice(0, MAX_PAINTED_SQUARES).map((square) => ({ ...square }));
     onRun({
       kind: 'command',
       quiet: true,
-      command: {
-        type: 'PaintTerrain',
-        squares: squares.slice(0, MAX_PAINTED_SQUARES).map((square) => ({ ...square })),
-        paint: brush,
-      },
+      command:
+        brush.kind === 'fog'
+          ? { type: 'SetFog', squares: stroked, hidden: brush.hidden }
+          : { type: 'PaintTerrain', squares: stroked, paint: brush },
     });
   };
   const brushOff = () => {
@@ -276,6 +275,7 @@ export function CombatPanel({
         battleMap={battleMap}
         view={view}
         onPick={pick}
+        fogView={dm ? 'veil' : 'hidden'}
         {...(dm
           ? {
               onDropToken: place,

@@ -195,6 +195,14 @@ export const combatEventPayloadSchemas = {
   CombatEnded: z.object({ encounterId: entityIdSchema }).strict(),
   /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
   LightSet: z.object({ encounterId: entityIdSchema, ambient: z.enum(LIGHT_LEVELS) }).strict(),
+  /** The fog of war laid on squares or lifted (docs/adr/0057-encounters-maps-loot.md §4). */
+  FogSet: z
+    .object({
+      encounterId: entityIdSchema,
+      squares: z.array(squareSchema).min(1).max(MAX_PAINTED_SQUARES),
+      hidden: z.boolean(),
+    })
+    .strict(),
   /** The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
   TerrainPainted: z
     .object({

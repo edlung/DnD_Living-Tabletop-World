@@ -177,6 +177,8 @@ export interface DmHandEntry extends DmHistoryCommon {
     | { readonly kind: 'light'; readonly ambient: LightLevel }
     /** The DM's brush on the running fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
     | { readonly kind: 'terrain'; readonly paint: TerrainPaint; readonly squares: number }
+    /** The fog of war laid or lifted (ADR 0057 §4). */
+    | { readonly kind: 'fog'; readonly hidden: boolean; readonly squares: number }
     /** The party exposed to the cold or the heat; how many hourly saves failed (§8). */
     | {
         readonly kind: 'hazard';

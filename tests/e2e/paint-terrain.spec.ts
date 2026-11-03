@@ -12,8 +12,8 @@ import { enterWorld, TOKENS } from './support/session.ts';
  * The DM's brush (Stage 670b, docs/adr/0057-encounters-maps-loot.md §2): in a fight on the Old
  * Trade Road — the party on the left edge, two goblins and an ogre on the right — the DM raises a
  * wall with a press, drags difficult ground across three squares, raises the ground, clears the
- * wall again, and is refused a wall on a goblin. Elowen's player sees the ground change without a
- * refresh, and the DM's history names each stroke.
+ * wall again, is refused a wall on a goblin, and hides a goblin in the fog of war and reveals it.
+ * Elowen's player sees the ground change without a refresh, and the DM's history names each stroke.
  */
 const expect = baseExpect.configure({ timeout: 15_000 });
 const CAMPAIGN = UI_PARTY_CAMPAIGNS.terrain;
@@ -110,6 +110,22 @@ test('the DM paints the running fight’s ground, and the player sees it', async
   expect(refused.body.status).toBe('rejected');
   await expect(square(dm, 15, 2)).not.toHaveAccessibleName(/wall/);
 
+  // The fog of war (ADR 0057 §4): Goblin Warrior 1 hidden from the player, the DM seeing through.
+  const goblin = dm
+    .locator('.board-plate', { hasText: 'Goblin Warrior 1' })
+    .locator('.token-plate');
+  await brush(dm).getByLabel('Hide in the fog of war', { exact: true }).check();
+  expectAccepted(await submit(dm, goblin));
+  await expect(square(dm, 15, 0).locator('.square-war-fog--veil')).toHaveCount(1);
+  await expect(square(dm, 15, 0)).toHaveAccessibleName(/Goblin Warrior 1.*in the fog of war/);
+  await expect(square(player, 15, 0)).toHaveAccessibleName(/in the fog of war/);
+  await expect(square(player, 15, 0)).not.toHaveAccessibleName(/Unidentified|Goblin/);
+  await expect(square(player, 15, 0).locator('.square-war-fog--hidden')).toHaveCount(1);
+  await brush(dm).getByLabel('Reveal from the fog', { exact: true }).check();
+  expectAccepted(await submit(dm, goblin));
+  await expect(square(player, 15, 0)).not.toHaveAccessibleName(/in the fog of war/);
+  await expect(square(player, 15, 0)).toHaveAccessibleName(/Unidentified creature/);
+
   // Done: the brush is put down, and a press chooses a square again.
   await dm.keyboard.press('Escape');
   await expect(brush(dm)).toHaveCount(0);
@@ -123,4 +139,6 @@ test('the DM paints the running fight’s ground, and the player sees it', async
   await expect(historyEntry(dm, 'Difficult terrain: 3 squares')).toBeVisible();
   await expect(historyEntry(dm, 'Raised 10 ft: one square')).toBeVisible();
   await expect(historyEntry(dm, 'Bare ground: one square')).toBeVisible();
+  await expect(historyEntry(dm, 'One square hidden in the fog')).toBeVisible();
+  await expect(historyEntry(dm, 'One square revealed')).toBeVisible();
 });

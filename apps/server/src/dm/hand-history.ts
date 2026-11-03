@@ -101,6 +101,17 @@ export function handChange(
       };
     case 'SetLight':
       return { change: { kind: 'light', ambient: command.ambient }, reason: null };
+    case 'SetFog':
+      return {
+        change: {
+          kind: 'fog',
+          hidden: command.hidden,
+          squares: new Set(
+            command.squares.map((square) => `${String(square.x)},${String(square.y)}`),
+          ).size,
+        },
+        reason: null,
+      };
     case 'PaintTerrain':
       return {
         change: {

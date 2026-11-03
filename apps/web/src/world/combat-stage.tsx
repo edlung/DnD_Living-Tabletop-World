@@ -1,4 +1,4 @@
-import type { EncounterView, PlayerAssetView } from '@ltw/contracts';
+import { HIDDEN_TURN, type EncounterView, type PlayerAssetView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useRef } from 'react';
 
@@ -68,9 +68,12 @@ export function CombatStage({
     encounter.currentCombatantId === actorId &&
     encounter.combatants.some((entry) => entry.entity.entityId === actorId);
   const labelOf = useCombatantLabels(encounter);
+  // A creature the fog of war hides takes the DM's turn, as far as the table can tell (ADR 0057 §4).
   const turn = myTurn
     ? t('Your turn')
-    : t("{name}'s turn", { name: labelOf(encounter.currentCombatantId) });
+    : encounter.currentCombatantId === HIDDEN_TURN
+      ? t('The DM’s turn')
+      : t("{name}'s turn", { name: labelOf(encounter.currentCombatantId) });
   const banner = useRef<HTMLParagraphElement>(null);
   const asking = useRef(asked);
   useEffect(() => {

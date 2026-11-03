@@ -56,3 +56,27 @@
   flex: 1 1 100%;
   min-width: 0;
 }
+
+/* The fog of war (ADR 0057 §4): darkness on the players' and the display's boards, whose view leaves
+   out what lies under it; a veil the DM sees through, its figures above it. */
+.square-war-fog {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.square-war-fog--hidden {
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      color-mix(in srgb, var(--ink-700, #2a3138) 55%, transparent),
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--ink-950) 94%, transparent);
+}
+.square-war-fog--veil {
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--ink-950) 55%, transparent) 0 5px,
+    color-mix(in srgb, var(--ink-950) 30%, transparent) 5px 10px
+  );
+}

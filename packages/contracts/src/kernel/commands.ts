@@ -54,6 +54,7 @@ import {
 import {
   paintTerrainCommandSchema,
   placeCombatantCommandSchema,
+  setFogCommandSchema,
 } from '../combat/board-commands.ts';
 import {
   addCombatantCommandSchema,
@@ -230,6 +231,7 @@ export const kernelCommandSchema = z
     setInitiativeCommandSchema,
     placeCombatantCommandSchema,
     paintTerrainCommandSchema,
+    setFogCommandSchema,
     commandCreatureCommandSchema,
     addObjectCommandSchema,
     setLightCommandSchema,
@@ -324,6 +326,7 @@ export const KERNEL_COMMAND_TYPES = [
   'SetInitiative',
   'PlaceCombatant',
   'PaintTerrain',
+  'SetFog',
   'CommandCreature',
   'AddObject',
   'SetLight',

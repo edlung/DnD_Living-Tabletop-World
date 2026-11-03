@@ -166,6 +166,7 @@ export {
   type EncounterState,
   type TurnRecord,
 } from './combat/records.ts';
+export { hiddenByFog } from './combat/fog.ts';
 export {
   REACTION_WINDOW_ID_INDEX,
   candidateReactions,

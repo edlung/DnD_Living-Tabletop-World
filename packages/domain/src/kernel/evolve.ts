@@ -238,6 +238,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyCombatOrderChanged(state, event);
     case 'LightSet':
     case 'TerrainPainted':
+    case 'FogSet':
       return applyBattlefieldEvent(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);

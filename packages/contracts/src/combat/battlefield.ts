@@ -103,6 +103,14 @@ export const battlefieldSchema = z
       )
       .max(800)
       .optional(),
+    /**
+     * The fog of war (docs/adr/0057-encounters-maps-loot.md §4): squares the DM hides from the
+     * players and the table's display — what stands there and its ground — except the party's own.
+     */
+    fog: z
+      .array(squareSchema)
+      .max(MAX_BATTLEFIELD * MAX_BATTLEFIELD)
+      .optional(),
   })
   .strict();
 export type Battlefield = z.infer<typeof battlefieldSchema>;

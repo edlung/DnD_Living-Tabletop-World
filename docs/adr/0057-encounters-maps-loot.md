@@ -161,6 +161,27 @@
   every event type (`never` in `packages/domain/src/kernel/decide/undo.ts`), so an event left out
   fails to compile instead of undoing silently.
 
+## Notes from the implementation (Stage 670c, part 1, 2026-11-03)
+
+- `SetFog` (DM; `packages/combat/src/terrain-paint.ts` `decideSetFog`) lays the fog of war on
+  squares of the running fight or lifts it (`FogSet`, the battlefield's `fog`, replayed by
+  `fogBattlefield` in contracts; undone with the fight). The builder lays it before the fight with
+  the same brush ("Hide in the fog of war", "Reveal from the fog"), and a saved encounter starts
+  with it.
+- What it hides is decided once, in the domain (`packages/domain/src/combat/fog.ts`
+  `hiddenByFog`): a combatant not of the party's side and commanded by no one whose whole space
+  lies in fogged squares. Perception leaves such a creature out (`perceivedEntityIds`), so every
+  view built on it — targets, area previews, the scene — leaves it out too; the encounter view of a
+  player, the party and the display leaves out the creature, its place in the order (its turn shows
+  as `HIDDEN_TURN`, "The DM's turn") and the ground under the fog, and keeps where the fog lies.
+- On the board the players and the display see the fog as darkness ("in the fog of war" in the
+  square's name); the DM sees a veil with the figures above it.
+- The fog only ever takes perception away, so a command legal under it is legal without it. Fight
+  commands read the fight (`facts.encounter()`), so undoing a reveal that a later attack relied on
+  is refused; an out-of-fight command's perception premise does not read the fog — undoing a reveal
+  is not refused by a later inspection of the revealed creature at the same place (an accepted
+  limit: inspections during a fight are rare, and the DM sees the history).
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

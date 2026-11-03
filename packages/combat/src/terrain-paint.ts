@@ -52,3 +52,35 @@ export function decidePaintTerrain(
     },
   });
 }
+
+/**
+ * The DM hides squares of a running fight in the fog of war, or reveals them (docs/adr/0057-
+ * encounters-maps-loot.md §4). Every square lies on the field; a stroke that changes nothing is
+ * refused. What stands under the fog is the DM's to see.
+ */
+export function decideSetFog(
+  context: DecisionContext,
+  command: KernelCommandOf<'SetFog'>,
+): Decision {
+  const found = encounterOf(context.state);
+  if (!found.ok) return found;
+  const encounter = found.value;
+  if (!command.squares.every((square) => inBounds(encounter, square)))
+    return invalid('A square lies outside the battlefield');
+  const before = new Set(
+    (encounter.battlefield.fog ?? []).map(({ x, y }) => `${String(x)},${String(y)}`),
+  );
+  const changes = command.squares.some(
+    ({ x, y }) => before.has(`${String(x)},${String(y)}`) !== command.hidden,
+  );
+  if (!changes)
+    return reject('NO_EFFECT', command.hidden ? 'It is hidden already' : 'It is seen already');
+  return accept({
+    type: 'FogSet',
+    payload: {
+      encounterId: encounter.encounterId,
+      squares: command.squares.map(({ x, y }) => ({ x, y })),
+      hidden: command.hidden,
+    },
+  });
+}
