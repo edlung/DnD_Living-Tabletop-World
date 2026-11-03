@@ -50,6 +50,7 @@ import { registerAttuneRoutes } from '../items/attune-routes.ts';
 import { registerItemCatalogRoutes } from '../items/item-catalog-routes.ts';
 import { registerRulesReferenceRoutes } from '../rules/reference-routes.ts';
 import { registerAdvancementRoutes } from '../characters/advancement-routes.ts';
+import { registerCopyRoutes } from '../characters/copy-routes.ts';
 import { registerFeatureRoutes } from '../characters/feature-routes.ts';
 import { registerCharacterCreationRoutes } from '../characters/creation-routes.ts';
 import { registerEncounterRoutes } from './routes/encounter-routes.ts';
@@ -233,6 +234,8 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     registerAuthRoutes(app, signIn);
     registerMemberRoutes(app, signIn);
     const { accounts, accountLimits } = deps.signIn;
+    // A character from another campaign of the same login (docs/FULL_GAME_PLAN.md decision 15).
+    if (accounts) registerCopyRoutes(app, { ...deps, accounts });
     // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns.
     if (accounts && accountLimits) {
       registerAccountRoutes(app, { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } });

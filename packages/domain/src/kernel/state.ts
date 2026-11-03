@@ -137,6 +137,8 @@ export interface WorldState {
   readonly possessions: ReadonlyMap<string, Possession>;
   /** A dead creature's ID → when it died (docs/adr/0056-characters-from-the-srd.md §5). */
   readonly deaths: ReadonlyMap<string, DeathRecord>;
+  /** A character's ID → the portrait its player asked for, until the DM requests one (§5). */
+  readonly portraitWishes: ReadonlyMap<string, string>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -166,6 +168,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   chronicles: new Map(),
   possessions: new Map(),
   deaths: new Map(),
+  portraitWishes: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

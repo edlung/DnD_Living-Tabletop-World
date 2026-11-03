@@ -65,6 +65,14 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
       ? { ok: true, authority: 'controller' }
       : forbidden('A player makes only their own character');
   }
+  if (command.type === 'AskPortrait') {
+    // A player asks for their own character's portrait; the DM may for anyone (ADR 0056 §5).
+    if (actor.kind !== 'user') return forbidden('A portrait is asked for by a person');
+    if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
+    return state.roster.get(command.characterId) === actor.actorId
+      ? { ok: true, authority: 'controller' }
+      : forbidden('A player asks only for their own character’s portrait');
+  }
   if (WORKER_TYPES.has(command.type)) {
     // Only the asset worker reports what external work did (ADR 0022 §4).
     return actor.kind === 'system'

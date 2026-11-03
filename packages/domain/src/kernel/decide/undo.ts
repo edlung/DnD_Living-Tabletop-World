@@ -424,8 +424,22 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: before.statBlocks.get(event.payload.entityId) ?? null,
         });
         break;
-      case 'AssetRequested':
+      case 'AssetRequested': {
         restores.push({ fact: 'assetRequest', requestId: event.payload.requestId, value: null });
+        // The wish it may have answered comes back (docs/adr/0056-characters-from-the-srd.md §5).
+        restores.push({
+          fact: 'portraitWish',
+          characterId: event.payload.entityId,
+          value: before.portraitWishes.get(event.payload.entityId) ?? null,
+        });
+        break;
+      }
+      case 'PortraitAsked':
+        restores.push({
+          fact: 'portraitWish',
+          characterId: event.payload.characterId,
+          value: before.portraitWishes.get(event.payload.characterId) ?? null,
+        });
         break;
       case 'AssetApproved': {
         const { assetId, entityId, previous, supersedes = [] } = event.payload;

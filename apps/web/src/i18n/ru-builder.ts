@@ -263,4 +263,12 @@ registerRussian({
   'Two of them from the standard languages': 'Два из них — из стандартных языков',
   'This level gives no language': 'Этот уровень не даёт языков',
   'A language the character knows already': 'Этот язык персонаж уже знает',
+  // A character from another campaign (docs/FULL_GAME_PLAN.md decision 15)
+  'From your other campaigns': 'Из ваших других кампаний',
+  'Bring a character you play elsewhere: the sheet comes, not what they knew or carried.':
+    'Приведите персонажа из другой кампании: придёт его лист, но не то, что он знал или нёс.',
+  'Bring {name}': 'Привести: {name}',
+  '{name} is here: the sheet came, not what they knew or carried.':
+    '{name} здесь: пришёл лист, но не то, что персонаж знал или нёс.',
+  '{name} could not be brought. Try again.': 'Не удалось привести: {name}. Попробуйте ещё раз.',
 });

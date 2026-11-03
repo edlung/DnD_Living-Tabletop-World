@@ -406,6 +406,7 @@ registerRussian({
   'approve asset': 'одобрение изображения',
   'set weather': 'погода',
   'set campaign options': 'параметры кампании',
+  'ask for a portrait': 'просьба о портрете',
   'generate chronicle': 'глава хроники',
   'grant item': 'выдача предмета',
   'equip item': 'надеть предмет',

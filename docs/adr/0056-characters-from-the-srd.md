@@ -224,6 +224,23 @@ curated.ts`): Revivify (dead within a minute, 1 Hit Point), Raise Dead (10 days,
   `styles/print.css`): vitals, abilities and saves, skills, attacks, spellcasting, class features,
   origin, tools and languages, equipment. On the screen it never shows.
 
+## Notes from the implementation (Stage 660e, part 3b, 2026-11-03)
+
+- A character in another campaign (decision 15; `apps/server/src/characters/copy-routes.ts`): a
+  login holds seats in several campaigns; at one of them its player is offered the characters it
+  plays at the others (`GET …/characters/copyable`) and brings one (`POST …/characters/copy`). The
+  server reads that sheet from the other campaign itself, makes it fresh (`copiedSheet`: as after a
+  long rest, with no condition, Exhaustion, ordeal, contagion, Concentration, inspiration or time of
+  the other campaign; levels, choices and experience kept) and records the new character with the
+  table's own commands — its ID and theirs follow from the request, so a retry makes it once. What
+  it knew and what it carried stay behind. Without logins (persona play) nothing is offered.
+- A portrait for one's own character (`packages/domain/src/assets/portrait-wishes.ts`): the player
+  describes their character (`AskPortrait`, theirs only); the wish is a world fact the DM sees on
+  the Images sheet, where "Make the portrait" sends the DM's own `RequestAsset` with the player's
+  words as the note — the image model is asked only then, under the owner's key, and the picture
+  shows once the DM approves it. The request answers the wish; undoing the request brings it back.
+  The player's Overview says what they asked while it waits.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

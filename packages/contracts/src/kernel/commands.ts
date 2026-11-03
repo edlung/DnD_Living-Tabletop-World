@@ -6,6 +6,7 @@ import { setCampaignOptionsCommandSchema } from '../campaign/options.ts';
 
 import {
   approveAssetCommandSchema,
+  askPortraitCommandSchema,
   cancelAssetRequestCommandSchema,
   completeAssetJobCommandSchema,
   failAssetJobCommandSchema,
@@ -194,6 +195,7 @@ export const kernelCommandSchema = z
     applyAuthoringCommandSchema,
     setRelationshipCommandSchema,
     requestAssetCommandSchema,
+    askPortraitCommandSchema,
     startAssetJobCommandSchema,
     completeAssetJobCommandSchema,
     failAssetJobCommandSchema,
@@ -321,6 +323,7 @@ export const KERNEL_COMMAND_TYPES = [
   'ContagionCourse',
   'CreateCharacter',
   'SetCampaignOptions',
+  'AskPortrait',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

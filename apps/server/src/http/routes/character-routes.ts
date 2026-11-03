@@ -48,9 +48,15 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     // An SRD spell's words in the campaign's language (docs/adr/0055-rules-reference-and-toolbox.md §5).
     const language = context.state.campaign?.language === 'ru' ? 'ru' : 'en';
     const load = loadOf(context.state, path.entityId, body.sheet);
+    // A portrait asked for: the DM's and its own player's to know (docs/adr/0056-…md §5).
+    const wish = context.state.portraitWishes.get(path.entityId);
+    const own =
+      context.perspective.kind === 'DM' ||
+      (context.perspective.kind === 'CHARACTER' && context.perspective.holderId === path.entityId);
     return reply.send({
       ...body,
       derived: deriveCharacter(body.sheet, wielded, ammunition, language, load),
+      ...(wish !== undefined && own ? { portraitWish: wish } : {}),
     });
   });
 

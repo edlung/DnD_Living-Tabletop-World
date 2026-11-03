@@ -142,6 +142,21 @@ export interface CharacterOptionsResponse {
   readonly startingLevel: number;
 }
 
+/**
+ * GET …/characters/copyable: the characters a player's login plays in its other campaigns, to bring
+ * here as a sheet only (docs/FULL_GAME_PLAN.md decision 15).
+ */
+export interface CopyableCharactersResponse {
+  readonly characters: readonly {
+    readonly campaignId: string;
+    readonly campaignName: string;
+    readonly characterId: string;
+    readonly name: string;
+    readonly level: number;
+    readonly classes: readonly { readonly classId: ClassId; readonly level: number }[];
+  }[];
+}
+
 /** POST …/characters/preview: what the choices make, or what does not hold. */
 export interface CharacterPreviewResponse {
   readonly problems: readonly ChoiceProblem[];

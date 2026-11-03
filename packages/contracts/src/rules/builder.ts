@@ -16,6 +16,7 @@ export type {
   CharacterOptionsResponse,
   CharacterPreviewResponse,
   ClassOptions,
+  CopyableCharactersResponse,
   LevelAsksView,
   LevelOptionsResponse,
   LevelUpResponse,

@@ -134,6 +134,8 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   ItemSplit: DEPENDENCY_CONTRACT,
   // Stage 660e (ADR 0056 §3): the campaign's options.
   CampaignOptionsSet: DEPENDENCY_CONTRACT,
+  // Stage 660e (ADR 0056 §5): a player's wish for a portrait.
+  PortraitAsked: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>

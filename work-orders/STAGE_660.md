@@ -40,7 +40,8 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   milestone, carrying shown or enforced) and a new character at the campaign's starting level. Part 2
   done: death's time and the four spells that return the dead, the ordeal after them, and the
   helping spells cast outside a fight. Part 3a done: languages, the Skills tab's origin, tools and
-  languages, and the printable sheet.
+  languages, and the printable sheet. Part 3b done: a character copied from another campaign as a
+  sheet, and a player's wish for a portrait the DM makes.
 
 ## Checks at each sub-stage
 

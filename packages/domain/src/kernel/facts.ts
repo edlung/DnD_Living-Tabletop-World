@@ -9,6 +9,7 @@ import { holderOf, scopeKey } from '../knowledge/records.ts';
 import type { KernelEvent, Restore } from './events.ts';
 import { allEntityFacts, entityChecked, facts, type FactKey } from './fact-keys.ts';
 import { premiseFacts } from './premise-facts.ts';
+import { tableFootprint } from './table-footprints.ts';
 
 /**
  * Fact footprints (docs/adr/0007-world-kernel-model-and-event-store.md,
@@ -365,21 +366,11 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ChronicleGenerated':
       // A chapter rests on everything it tells (ADR 0024 §4).
       return chronicleFootprint(event.payload);
+    case 'PortraitAsked':
     case 'CampaignOptionsSet':
-      // The campaign's options (docs/adr/0056-characters-from-the-srd.md §3).
-      return { reads: [facts.campaign()], writes: [facts.campaignOptions()] };
     case 'WeatherSet':
-      // A location's own weather, from now on (ADR 0023 §1).
-      return {
-        reads: [clock, ...entityChecked(event.payload.locationId)],
-        writes: [facts.weather(event.payload.locationId)],
-      };
     case 'RelationshipChanged':
-      // A living NPC's attitude (ADR 0019 §3).
-      return {
-        reads: [clock, ...entityChecked(event.payload.npcId)],
-        writes: [facts.relationship(event.payload.npcId)],
-      };
+      return tableFootprint(event, clock);
     case 'ItemGranted':
     case 'ItemEquipped':
     case 'ItemUnequipped':
@@ -475,6 +466,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.campaignOptions()];
     case 'death':
       return [facts.death(restore.entityId)];
+    case 'portraitWish':
+      return [facts.portraitWish(restore.characterId)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
     case 'possession':

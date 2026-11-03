@@ -34,6 +34,7 @@ export {
 export { hitPointsAllowed, levelReady, startingAt } from './builder/campaign-levels.ts';
 export { languageName, languageOptions, proficienciesOf } from './proficiencies.ts';
 export { languagesOpen, languagesToChoose } from './builder/languages.ts';
+export { copiedSheet } from './builder/copy.ts';
 export {
   attackerTilt,
   checkEffects,

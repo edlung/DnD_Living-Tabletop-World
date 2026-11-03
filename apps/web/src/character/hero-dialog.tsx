@@ -33,6 +33,8 @@ export type OverviewSections = (shown: {
   readonly derived: CharacterDerived;
   /** Reads the sheet again: a change made here shows without waiting for the live signal. */
   readonly reread: () => void;
+  /** The portrait its player asked for, while the DM has not requested it (ADR 0056 §5). */
+  readonly portraitWish: string | null;
 }) => ReactNode;
 
 const TABS: readonly { readonly id: HeroTab; readonly label: string }[] = [
@@ -274,6 +276,7 @@ function HeroContent({
                       sheet: value.sheet,
                       derived: value.derived,
                       reread,
+                      portraitWish: value.portraitWish ?? null,
                     })}
                   />
                   {/* The sheet on paper (docs/adr/0056-characters-from-the-srd.md §5). */}

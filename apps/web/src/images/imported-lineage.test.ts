@@ -39,6 +39,7 @@ const lineage: AssetLineageResponse = {
   requests: [],
   canonical: [{ entityId: 'ferryman', assetId: imported.assetId }],
   descriptions: [],
+  wishes: [],
 };
 const context: Context = {
   name: 'Arden',

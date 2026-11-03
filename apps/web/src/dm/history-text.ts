@@ -93,6 +93,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   ApproveAsset: 'approve asset',
   SetWeather: 'set weather',
   SetCampaignOptions: 'set campaign options',
+  AskPortrait: 'ask for a portrait',
   GenerateChronicle: 'generate chronicle',
   GrantItem: 'grant item',
   EquipItem: 'equip item',

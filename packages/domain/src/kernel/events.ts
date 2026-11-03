@@ -78,6 +78,10 @@ import {
   campaignOptionsSetPayloadSchema,
 } from '../campaign/options.ts';
 import { deathRestoreSchemas } from '../character/deaths.ts';
+import {
+  portraitAskedPayloadSchema,
+  portraitWishRestoreSchemas,
+} from '../assets/portrait-wishes.ts';
 import { chronicleGeneratedPayloadSchema, chronicleRestoreSchemas } from '../chronicle/records.ts';
 import {
   preparedPartyEstablishedPayloadSchema,
@@ -145,6 +149,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...weatherRestoreSchemas,
   ...campaignOptionsRestoreSchemas,
   ...deathRestoreSchemas,
+  ...portraitWishRestoreSchemas,
   ...chronicleRestoreSchemas,
   ...itemRestoreSchemas,
 ]);
@@ -280,6 +285,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AssetApproved', assetApprovedPayloadSchema),
   event('WeatherSet', weatherSetPayloadSchema),
   event('CampaignOptionsSet', campaignOptionsSetPayloadSchema),
+  event('PortraitAsked', portraitAskedPayloadSchema),
   event('ChronicleGenerated', chronicleGeneratedPayloadSchema),
   event('CharacterReleased', characterReleasedPayloadSchema),
   event('ItemGranted', itemGrantedPayloadSchema),

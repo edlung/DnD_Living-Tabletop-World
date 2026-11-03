@@ -49,6 +49,8 @@ export const facts = {
   weather: (locationId: string): FactKey => `weather:${locationId}`,
   /** When a creature died (docs/adr/0056-characters-from-the-srd.md §5). */
   death: (entityId: string): FactKey => `death:${entityId}`,
+  /** A player's wish for their character's portrait (docs/adr/0056-…md §5). */
+  portraitWish: (characterId: string): FactKey => `portraitwish:${characterId}`,
   chronicle: (chronicleId: string): FactKey => `chronicle:${chronicleId}`,
   possession: (itemId: string): FactKey => `possession:${itemId}`,
   /** A holder's worn set: slot occupancy is a premise of every equip (ADR 0039). */

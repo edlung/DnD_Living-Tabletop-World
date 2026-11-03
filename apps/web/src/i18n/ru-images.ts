@@ -150,4 +150,18 @@ registerRussian({
     'Ответ на «{subject}» прервался. Изменение могло быть внесено. Повторите, чтобы проверить.',
   'Retry the change': 'Повторить изменение',
   'Retry the change: {subject}': 'Повторить изменение: {subject}',
+  // A player's wish for a portrait (docs/adr/0056-characters-from-the-srd.md §5)
+  'A portrait': 'Портрет',
+  'How does {name} look?': 'Как выглядит {name}?',
+  'The DM asks the image model for it; the portrait shows once the DM approves it.':
+    'Мастер закажет портрет у модели изображений; он появится, когда мастер его одобрит.',
+  'Ask for a portrait': 'Попросить портрет',
+  'Change the wish': 'Изменить просьбу',
+  'Asked for: «{look}». The DM makes the picture.': 'Просьба: «{look}». Портрет делает мастер.',
+  'That portrait is asked for already.': 'Такой портрет уже попросили.',
+  'The wish could not be sent. Try again.': 'Не удалось отправить просьбу. Попробуйте ещё раз.',
+  'Portraits players asked for': 'Портреты, о которых просят игроки',
+  'Make the portrait of {name}': 'Заказать портрет: {name}',
+  'Requested: the portrait of {name}. The candidate will appear for your approval.':
+    'Заказано: портрет ({name}). Вариант появится для вашего одобрения.',
 });

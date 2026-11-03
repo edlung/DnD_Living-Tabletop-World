@@ -18,7 +18,13 @@ import {
  * the list still shows the card the DM pressed — and an interrupted command keeps them until the
  * DM retries it, from wherever the DM is.
  */
-const empty: AssetLineageResponse = { requests: [], assets: [], canonical: [], descriptions: [] };
+const empty: AssetLineageResponse = {
+  requests: [],
+  assets: [],
+  canonical: [],
+  descriptions: [],
+  wishes: [],
+};
 const later: AssetLineageResponse = { ...empty, canonical: [{ entityId: 'x', assetId: 'y' }] };
 const approve = { place: 'sheet', subject: 'Approve: At night of North Gate', target: 'a~asset' };
 const success = (lineage: AssetLineageResponse) =>

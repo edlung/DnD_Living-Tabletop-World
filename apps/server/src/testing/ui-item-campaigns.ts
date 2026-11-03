@@ -42,6 +42,8 @@ export const UI_ITEM_CAMPAIGNS = {
   /** The spells that return the dead (docs/adr/0056-…md §5): Elowen also knows them. */
   raising: 'ui-raising',
   raisingRu: 'ui-raising-ru',
+  /** A player's wish for a portrait, made by the DM (docs/adr/0056-…md §5). */
+  portrait: 'ui-portrait',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -103,6 +105,7 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.optionsRu, 'ru'],
     [UI_ITEM_CAMPAIGNS.raising, 'en'],
     [UI_ITEM_CAMPAIGNS.raisingRu, 'ru'],
+    [UI_ITEM_CAMPAIGNS.portrait, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

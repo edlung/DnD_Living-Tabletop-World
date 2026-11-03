@@ -104,5 +104,7 @@ export function assetLineage(state: WorldState): AssetLineageResponse {
     descriptions: [...state.entities.values()].flatMap(({ entityId, description }) =>
       description.trim() === '' ? [] : [{ entityId, description: description.trim() }],
     ),
+    // The portraits players asked for, not yet requested (docs/adr/0056-…md §5).
+    wishes: [...state.portraitWishes].map(([characterId, look]) => ({ characterId, look })),
   };
 }

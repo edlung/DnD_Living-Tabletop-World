@@ -3,6 +3,8 @@ import { useT } from '@ltw/ui';
 import type { ReactNode } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { BringCharacter } from '../builder/bring-character.tsx';
+import { PortraitWish } from '../character/portrait-wish.tsx';
 import { LevelSection } from '../builder/level-section.tsx';
 import { MakeCharacter } from '../builder/make-character.tsx';
 import { FeatureSection } from '../character/feature-section.tsx';
@@ -46,6 +48,7 @@ export function WorldHeroDialog({
   const t = useT();
   const isDm = useDiceTable()?.isDm ?? false;
   const shown = directory.find((entity) => entity.entityId === shell.hero);
+  const heroName = shown?.name ?? t('Character');
   const party = directory.filter((entity) => entity.kind === 'character');
   return (
     <HeroDialog
@@ -86,6 +89,18 @@ export function WorldHeroDialog({
               api={api}
               onMade={() => undefined}
               intro="Make another character of your own: a spare hero, or one for someone who shares your screen."
+            />
+          )}
+          {/* One the player's login plays elsewhere, as a sheet only (decision 15). */}
+          {shown.entityId === actorId && <BringCharacter api={api} onBrought={() => undefined} />}
+          {/* Their portrait, asked of the DM (docs/adr/0056-…md §5). */}
+          {shown.entityId === actorId && (
+            <PortraitWish
+              api={api}
+              characterId={shown.entityId}
+              name={heroName}
+              asked={shown.portraitWish}
+              onAsked={shown.reread}
             />
           )}
         </>

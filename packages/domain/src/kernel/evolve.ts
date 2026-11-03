@@ -50,6 +50,11 @@ import { applyAssetEvent, applyAssetRestore } from '../assets/evolve.ts';
 import { applyWeatherRestore, applyWeatherSet } from '../weather/weather.ts';
 import { applyCampaignOptionsRestore, applyCampaignOptionsSet } from '../campaign/options.ts';
 import { applyDeathRestore, withDeath } from '../character/deaths.ts';
+import {
+  applyPortraitAsked,
+  applyPortraitWishRestore,
+  withoutAnsweredWish,
+} from '../assets/portrait-wishes.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
 import {
   applyItemEquipped,
@@ -298,8 +303,12 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyEvidenceShown(state, event);
     case 'InsightChecked':
       return applyInsightChecked(state, event);
-    case 'AssetAdopted':
     case 'AssetRequested':
+      // The DM's request for a character's picture answers its player's wish (ADR 0056 §5).
+      return withoutAnsweredWish(applyAssetEvent(state, event), event);
+    case 'PortraitAsked':
+      return applyPortraitAsked(state, event);
+    case 'AssetAdopted':
     case 'AssetJobStarted':
     case 'AssetGenerated':
     case 'AssetJobFailed':
@@ -435,6 +444,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyCampaignOptionsRestore(state, restore);
     case 'death':
       return applyDeathRestore(state, restore);
+    case 'portraitWish':
+      return applyPortraitWishRestore(state, restore);
     case 'chronicle':
       return applyChronicleRestore(state, restore);
   }
