@@ -10,6 +10,7 @@ import { useDiceSettings } from '../dice/settings.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { RestBanner } from '../rest/sheet-rest.tsx';
+import { nativeHaptic } from '../native/signals.ts';
 import { LobbyBanner } from '../session/lobby-banner.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useScreenAwake, useTitleCount } from './screen.ts';
@@ -144,6 +145,7 @@ function useWaitSignals(waits: readonly Wait[], ready: boolean, scope: string | 
     seen.current = { scope, keys: new Set(waits.map((wait) => wait.key)) };
     if (before === null || newWaits(before, waits).length === 0) return;
     if (settings.sound) playChime(settings.volume);
-    if ('vibrate' in navigator) navigator.vibrate([160, 80, 160]);
+    // The apps vibrate an iPhone too (docs/adr/0070-native-apps.md §5).
+    if (!nativeHaptic('alert') && 'vibrate' in navigator) navigator.vibrate([160, 80, 160]);
   }, [keys, ready, scope]);
 }

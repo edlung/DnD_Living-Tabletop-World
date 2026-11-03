@@ -29,7 +29,9 @@ import './i18n/ru-conditions.ts';
 import './i18n/ru-weapons.ts';
 import './i18n/ru-hit-points.ts';
 import './i18n/ru-space.ts';
+import './i18n/ru-native.ts';
 import { DisplayApp } from './display/display-app.tsx';
+import { startNative } from './native/start.ts';
 import { App } from './session/app.tsx';
 import { WorkshopApp } from './workshop/app.tsx';
 import { isWorkshopPath, workshopStart } from './workshop/start.ts';
@@ -62,6 +64,7 @@ import './styles/builder.css';
 import './styles/features.css';
 import './styles/summons.css';
 import './styles/shared-screen.css';
+import './styles/native.css';
 import './styles/responsive.css';
 import './styles/battle-layout.css';
 import './styles/figures.css';
@@ -107,3 +110,5 @@ if (window.location.pathname === '/display' || window.location.pathname === '/di
     </StrictMode>,
   );
 }
+// In LTW Player or LTW DM, the page's side of the bridge (docs/adr/0070-native-apps.md §2).
+startNative();

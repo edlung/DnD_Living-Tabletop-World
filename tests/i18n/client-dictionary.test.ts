@@ -50,6 +50,7 @@ import '../../apps/web/src/i18n/ru-space.ts';
 import '../../apps/web/src/i18n/ru-builder.ts';
 import '../../apps/web/src/i18n/ru-features.ts';
 import '../../apps/web/src/i18n/ru-summons.ts';
+import '../../apps/web/src/i18n/ru-native.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the

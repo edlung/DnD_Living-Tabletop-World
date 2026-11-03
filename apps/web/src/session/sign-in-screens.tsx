@@ -3,6 +3,7 @@ import { StatusPanel, useT } from '@ltw/ui';
 import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from 'react';
 
 import { AboutButton } from '../guide/about.tsx';
+import { NativeEntry } from '../native/native-entry.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
@@ -310,6 +311,7 @@ export function SignInScreens({
               </p>
             )}
             <AccountSignInForm onSignIn={onSignInAccount} />
+            <NativeEntry />
             <p className="fine-print">
               {t(
                 'New at the table? Open the invitation link your DM sent you: it seats you and makes your login.',

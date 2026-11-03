@@ -3,6 +3,7 @@ import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useEffect, useId, useState, type SubmitEvent } from 'react';
 
 import { AboutButton } from '../guide/about.tsx';
+import { NativeEntry } from '../native/native-entry.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { changePassword, readAccount, renameAccount, type EnterAnswer } from './account-flow.ts';
@@ -133,6 +134,7 @@ export function Hub({
           ))}
         </ul>
       )}
+      <NativeEntry />
       <section className="hub-section" aria-labelledby="hub-new">
         <h3 id="hub-new">{t('Lead a new campaign')}</h3>
         <p className="muted">

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The GPT emblem inside the splash icon's safe circle (2/3 of its 240dp). -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/emblem"
+    android:inset="56dp" />

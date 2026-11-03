@@ -1,0 +1,3 @@
+// Copy to Signing.local.xcconfig (ignored by git) to run the apps on your own iPhone and iPad.
+// The team ID is under Xcode → Settings → Accounts → your Apple ID → Team.
+DEVELOPMENT_TEAM = ABCDE12345

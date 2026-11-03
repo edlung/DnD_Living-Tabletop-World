@@ -1,0 +1,565 @@
+{
+  "$comment": "The bridge's contract as cases (docs/adr/0070-native-apps.md §2–4, §9), read by the web client's tests (shellMessages), the Swift package's and the Android app's tests (origins, scans, pageMessages). A case's build is 'debug' or 'release'; 'any' holds for both. TOKEN stands for a well-formed 43-character token.",
+  "token": "AbCdEfGhIjKlMnOpQrStUvWxYz0123456789_-AbCde",
+  "origins": [
+    {
+      "input": "https://ltw.vardahei.tech",
+      "debug": "https://ltw.vardahei.tech",
+      "release": "https://ltw.vardahei.tech"
+    },
+    {
+      "input": "ltw.vardahei.tech",
+      "debug": "https://ltw.vardahei.tech",
+      "release": "https://ltw.vardahei.tech"
+    },
+    {
+      "input": "  https://LTW.Vardahei.TECH/  ",
+      "debug": "https://ltw.vardahei.tech",
+      "release": "https://ltw.vardahei.tech"
+    },
+    {
+      "input": "HTTPS://Example.COM/path?q=1",
+      "debug": "https://example.com",
+      "release": "https://example.com"
+    },
+    {
+      "input": "https://ltw.vardahei.tech/table#TOKEN",
+      "debug": "https://ltw.vardahei.tech",
+      "release": "https://ltw.vardahei.tech"
+    },
+    {
+      "input": "https://ltw.vardahei.tech:443",
+      "debug": "https://ltw.vardahei.tech",
+      "release": "https://ltw.vardahei.tech"
+    },
+    {
+      "input": "https://192.168.1.20:8443",
+      "debug": "https://192.168.1.20:8443",
+      "release": "https://192.168.1.20:8443"
+    },
+    {
+      "input": "https://dm-laptop.local:8443/",
+      "debug": "https://dm-laptop.local:8443",
+      "release": "https://dm-laptop.local:8443"
+    },
+    {
+      "input": "http://ltw.vardahei.tech",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "http://localhost:8080",
+      "debug": "http://localhost:8080",
+      "release": null
+    },
+    {
+      "input": "http://127.0.0.1:3000/",
+      "debug": "http://127.0.0.1:3000",
+      "release": null
+    },
+    {
+      "input": "http://localhost",
+      "debug": "http://localhost",
+      "release": null
+    },
+    {
+      "input": "http://10.0.2.2:8080",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "ftp://example.com",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "javascript:alert(1)",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "https://user:secret@example.com",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "https://exa mple.com",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "https://",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "https://ltw.vardahei.tech:8443",
+      "debug": "https://ltw.vardahei.tech:8443",
+      "release": "https://ltw.vardahei.tech:8443"
+    },
+    {
+      "input": "https://ltw.vardahei.tech:65536",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "https://ltw.vardahei.tech:0",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "https://ltw.vardahei.tech:",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "https://ltw.vardahei.tech.",
+      "debug": null,
+      "release": null
+    },
+    {
+      "input": "https://[::1]:8443",
+      "debug": null,
+      "release": null
+    }
+  ],
+  "scans": [
+    {
+      "text": "https://ltw.vardahei.tech/table#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/table#TOKEN"
+    },
+    {
+      "text": "  https://ltw.vardahei.tech/table#TOKEN\n",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/table#TOKEN"
+    },
+    {
+      "text": "https://LTW.VARDAHEI.TECH/table/#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/table/#TOKEN"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/table",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/table"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/join#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/join#TOKEN"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/reset#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/reset#TOKEN"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/"
+    },
+    {
+      "text": "https://ltw.vardahei.tech",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/"
+    },
+    {
+      "text": "https://dm-laptop.local:8443/table#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "switch",
+      "origin": "https://dm-laptop.local:8443",
+      "url": "https://dm-laptop.local:8443/table#TOKEN"
+    },
+    {
+      "text": "https://dm-laptop.local:8443",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "switch",
+      "origin": "https://dm-laptop.local:8443",
+      "url": "https://dm-laptop.local:8443/"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/join",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/join#short",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/table#short",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/display",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/table?x=1#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "http://ltw.vardahei.tech/table#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://user:pw@ltw.vardahei.tech/table#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "Hello, world",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "WIFI:S:home;T:WPA;P:secret;;",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "http://localhost:5173/table#TOKEN",
+      "current": "http://localhost:5173",
+      "build": "debug",
+      "outcome": "open",
+      "url": "http://localhost:5173/table#TOKEN"
+    },
+    {
+      "text": "http://localhost:9999/table#TOKEN",
+      "current": "http://localhost:5173",
+      "build": "debug",
+      "outcome": "switch",
+      "origin": "http://localhost:9999",
+      "url": "http://localhost:9999/table#TOKEN"
+    },
+    {
+      "text": "http://localhost:5173/table#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "release",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech:65536/table#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech\\@evil.example/table#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    }
+  ],
+  "pageMessages": [
+    {
+      "json": "{\"type\":\"ready\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"haptic\",\"kind\":\"alert\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"haptic\",\"kind\":\"dice\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"haptic\",\"kind\":\"boom\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"haptic\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"awake\",\"on\":true}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"awake\",\"on\":false}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"awake\",\"on\":\"yes\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"waiting\",\"count\":0}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"waiting\",\"count\":3}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"waiting\",\"count\":99}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"waiting\",\"count\":100}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"waiting\",\"count\":-1}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"waiting\",\"count\":2.5}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"waiting\",\"count\":\"3\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"scan\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"scan\",\"later\":\"ignored\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"server\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"back-result\",\"handled\":true}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"back-result\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-code\",\"code\":\"AB2CD3EF\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"tv-code\",\"code\":\"AB2CD3E\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-code\",\"code\":\"AB0CD1EF\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-code\",\"code\":\"<script>\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-paired\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"tv-unpaired\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"eval\",\"code\":\"alert(1)\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"kind\":\"alert\"}",
+      "valid": false
+    },
+    {
+      "json": "[\"haptic\"]",
+      "valid": false
+    },
+    {
+      "json": "\"haptic\"",
+      "valid": false
+    },
+    {
+      "json": "not json",
+      "valid": false
+    },
+    {
+      "json": "",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"back-result\",\"handled\":false,\"id\":7}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"back-result\",\"handled\":true,\"id\":\"7\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"back-result\",\"handled\":true,\"id\":-1}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-paired\",\"campaign\":\"ravenford-ru-1\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"tv-paired\",\"campaign\":\"<b>\"}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-forget\"}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"scan\"} trailing",
+      "valid": false
+    }
+  ],
+  "shellMessages": [
+    {
+      "message": {
+        "type": "back"
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "absent"
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "connected"
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "pairing",
+        "code": "AB2CD3EF"
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "paired"
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "pairing"
+      },
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "pairing",
+        "code": "nope"
+      },
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "broken"
+      },
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "unknown"
+      },
+      "valid": false
+    },
+    {
+      "message": "back",
+      "valid": false
+    },
+    {
+      "message": null,
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "back",
+        "id": 3
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "back",
+        "id": "3"
+      },
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "paired",
+        "campaign": "ravenford-ru-1"
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "tv",
+        "state": "paired",
+        "campaign": "<b>"
+      },
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "forget"
+      },
+      "valid": true
+    }
+  ]
+}

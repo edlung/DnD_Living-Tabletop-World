@@ -1,0 +1,71 @@
+{
+  "note": "All art by GPT (owner rule); see scripts/native-art/cli.ts.",
+  "assets": {
+    "apps/ios/Player/Assets.xcassets/AppIcon.appiconset/AppIcon.png": {
+      "source": "art archive app-icons-2026-11-02/out/app-icon-player.png",
+      "sourceSha256": "eab07617cfcadda466356f92722d0c9cb5946bfd0aad00303c423162ef1c715e",
+      "recipe": "resize 1024x1024 lanczos3, no alpha",
+      "sha256": "7032abb7423b363b471170d2b46de8de98e2b043874af79ab4405d00bffc4d1d",
+      "channel": "Codex CLI image generation, owner ChatGPT subscription (2026-11-02)",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A square 1:1 app icon artwork for iPhone and Android, full bleed: the painting fills the whole square, no rounded corners, no border, no frame, no transparency. One single bold subject, centred, kept inside the central 60 percent of the square so it survives circular and rounded masks; the rest is a calm deep night-blue background with a soft vignette. Strong silhouette and contrast so it still reads at 60 pixels wide; no small details at the edges. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe subject, for the players' app: a single large twenty-sided die carved from dark obsidian with burnished antique gold edges, its upper face glowing with luminous teal-cyan light, resting in an open leather-gloved palm seen from slightly above, warm amber rim light. It must sit beside the attached gold emblem as one family: the same burnished gold, the same painterly finish."
+    },
+    "apps/ios/DM/Assets.xcassets/AppIcon.appiconset/AppIcon.png": {
+      "source": "art archive app-icons-2026-11-02/out/app-icon-dm.png",
+      "sourceSha256": "710e12896e1485a9679aed9dc5965531d9532873d64d908d70c71e87d836f28d",
+      "recipe": "resize 1024x1024 lanczos3, no alpha",
+      "sha256": "fe3408e6e8e08481d69dffa0c9199c9b055bc5a83ccdf1af857c9a513600d78f",
+      "channel": "Codex CLI image generation, owner ChatGPT subscription (2026-11-02)",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A square 1:1 app icon artwork for iPhone and Android, full bleed: the painting fills the whole square, no rounded corners, no border, no frame, no transparency. One single bold subject, centred, kept inside the central 60 percent of the square so it survives circular and rounded masks; the rest is a calm deep night-blue background with a soft vignette. Strong silhouette and contrast so it still reads at 60 pixels wide; no small details at the edges. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe subject, for the game master's app: an ornate antique gold crown resting on a closed leather-bound tome with gold corner fittings, one lit candle behind them casting warm amber light, faint teal-cyan magical glints on the crown's gems. It must sit beside the attached gold emblem as one family: the same burnished gold, the same painterly finish."
+    },
+    "apps/android/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png": {
+      "source": "art archive app-icons-2026-11-02/out/app-icon-player.png",
+      "sourceSha256": "eab07617cfcadda466356f92722d0c9cb5946bfd0aad00303c423162ef1c715e",
+      "recipe": "resize 344x344 lanczos3, centred on a clear 432x432 square (adaptive foreground)",
+      "sha256": "5581d4e1e086a1c3659eb8de23f4d5341f8ea5a3b1a0a1bc9bfef91c5449ad5a",
+      "channel": "Codex CLI image generation, owner ChatGPT subscription (2026-11-02)",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A square 1:1 app icon artwork for iPhone and Android, full bleed: the painting fills the whole square, no rounded corners, no border, no frame, no transparency. One single bold subject, centred, kept inside the central 60 percent of the square so it survives circular and rounded masks; the rest is a calm deep night-blue background with a soft vignette. Strong silhouette and contrast so it still reads at 60 pixels wide; no small details at the edges. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe subject, for the players' app: a single large twenty-sided die carved from dark obsidian with burnished antique gold edges, its upper face glowing with luminous teal-cyan light, resting in an open leather-gloved palm seen from slightly above, warm amber rim light. It must sit beside the attached gold emblem as one family: the same burnished gold, the same painterly finish."
+    },
+    "apps/ios/Player/Assets.xcassets/LaunchEmblem.imageset/LaunchEmblem.png": {
+      "source": "apps/web/src/assets/ui-kit/ornaments/emblem.webp",
+      "sourceSha256": "4ff59912f626aa7fe1271c059111bff5332fc961fa0bdf4b8db29d691dae84a5",
+      "recipe": "resize 240x252 lanczos3",
+      "sha256": "13bbdd1b2d8371a62318a9e54a5a462964c61d323f5d60135738cca8cb4d8470"
+    },
+    "apps/ios/DM/Assets.xcassets/LaunchEmblem.imageset/LaunchEmblem.png": {
+      "source": "apps/web/src/assets/ui-kit/ornaments/emblem.webp",
+      "sourceSha256": "4ff59912f626aa7fe1271c059111bff5332fc961fa0bdf4b8db29d691dae84a5",
+      "recipe": "resize 240x252 lanczos3",
+      "sha256": "13bbdd1b2d8371a62318a9e54a5a462964c61d323f5d60135738cca8cb4d8470"
+    },
+    "apps/android/app/src/main/res/drawable-xxxhdpi/ic_notification.png": {
+      "source": "apps/web/src/assets/ui-kit/glyphs/roll.png",
+      "sourceSha256": "20e9683c7dcb34affbe8cb653ceb7fa4733e855c89d9ad094235d0b524580ced",
+      "recipe": "the glyph's alpha in white, 80x80 inside 96x96",
+      "sha256": "fd40ec749302c2fabd7b3264809a1777f773b874748121309d01729d632fbb35"
+    },
+    "apps/android/app/src/main/res/drawable-nodpi/brand_keyart.webp": {
+      "source": "apps/web/src/assets/ui-kit/textures/brand-keyart.webp",
+      "sourceSha256": "61d7a8b0fd1a2310aabac9004d88ce205217c895f0453eb7465795afadd7580b",
+      "recipe": "byte copy",
+      "sha256": "61d7a8b0fd1a2310aabac9004d88ce205217c895f0453eb7465795afadd7580b"
+    },
+    "apps/android/app/src/main/res/drawable-nodpi/emblem.webp": {
+      "source": "apps/web/src/assets/ui-kit/ornaments/emblem.webp",
+      "sourceSha256": "4ff59912f626aa7fe1271c059111bff5332fc961fa0bdf4b8db29d691dae84a5",
+      "recipe": "byte copy",
+      "sha256": "4ff59912f626aa7fe1271c059111bff5332fc961fa0bdf4b8db29d691dae84a5"
+    },
+    "apps/ios/LTWShell/Sources/LTWShell/Resources/brand-keyart.webp": {
+      "source": "apps/web/src/assets/ui-kit/textures/brand-keyart.webp",
+      "sourceSha256": "61d7a8b0fd1a2310aabac9004d88ce205217c895f0453eb7465795afadd7580b",
+      "recipe": "byte copy",
+      "sha256": "61d7a8b0fd1a2310aabac9004d88ce205217c895f0453eb7465795afadd7580b"
+    },
+    "apps/ios/LTWShell/Sources/LTWShell/Resources/emblem.webp": {
+      "source": "apps/web/src/assets/ui-kit/ornaments/emblem.webp",
+      "sourceSha256": "4ff59912f626aa7fe1271c059111bff5332fc961fa0bdf4b8db29d691dae84a5",
+      "recipe": "byte copy",
+      "sha256": "4ff59912f626aa7fe1271c059111bff5332fc961fa0bdf4b8db29d691dae84a5"
+    }
+  }
+}

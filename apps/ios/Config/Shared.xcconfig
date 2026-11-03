@@ -1,0 +1,3 @@
+// The owner's signing team stays out of the repository (docs/adr/0070-native-apps.md §8): copy
+// Signing.local.xcconfig.example to Signing.local.xcconfig (ignored) and set DEVELOPMENT_TEAM there.
+#include? "Signing.local.xcconfig"

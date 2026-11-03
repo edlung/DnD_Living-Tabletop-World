@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="24dp">
+
+    <TextView
+        android:id="@+id/server_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/server_field"
+        android:text="@string/server_hint"
+        android:textColor="@color/text_muted"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/server_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autofillHints="url"
+        android:importantForAutofill="no"
+        android:inputType="textUri"
+        android:minHeight="48dp"
+        android:singleLine="true"
+        android:textColor="@color/text" />
+
+    <TextView
+        android:id="@+id/server_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:accessibilityLiveRegion="assertive"
+        android:text="@string/server_invalid"
+        android:textColor="@color/danger"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/server_recent_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/server_recent"
+        android:textColor="@color/text_muted"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/server_recent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+</LinearLayout>

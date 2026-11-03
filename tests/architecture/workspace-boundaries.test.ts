@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -41,6 +42,8 @@ const readJson = async <T>(path: string): Promise<T> =>
 const boundaries = await readJson<Boundaries>('workspace-boundaries.json');
 const entries = Object.entries(boundaries.packages);
 
+// As pnpm counts them: a directory with a package.json. The native apps' projects (`apps/ios`,
+// `apps/android`, `apps/native-shim`; docs/adr/0070-native-apps.md) have none and import nothing.
 const workspaceDirs = (
   await Promise.all(
     ['apps', 'packages'].map(async (parent) =>
@@ -49,7 +52,9 @@ const workspaceDirs = (
         .map((entry) => `${parent}/${entry.name}`),
     ),
   )
-).flat();
+)
+  .flat()
+  .filter((dir) => existsSync(join(ROOT, dir, 'package.json')));
 
 const manifests = new Map(
   await Promise.all(
