@@ -10,6 +10,7 @@ import {
   metamagicSchema,
   pathStepSchema,
   squareSchema,
+  summonChoiceSchema,
 } from '@ltw/contracts';
 import { z } from 'zod';
 
@@ -39,6 +40,8 @@ const spellTriggerSchema = z
     targetIds: z.array(entityIdSchema).min(1).max(12).optional(),
     /** Its Metamagic, spent when it goes on (docs/adr/0056-characters-from-the-srd.md §4). */
     metamagic: metamagicSchema.optional(),
+    /** What a summoning spell calls up when it goes on (§5). */
+    summon: summonChoiceSchema.optional(),
   })
   .strict();
 

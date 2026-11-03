@@ -216,6 +216,8 @@ export function optionLabelFor(t: Translate, action: ContextAction, target: stri
   // Any other SRD spell (docs/adr/0052-spells-as-data.md §5): at the creature, or its square.
   if (action.id === 'cast_spell' && action.spell) {
     const spell = t(action.spell.name);
+    // A summoning spell's creature appears beside the caster (docs/adr/0056-…md §5).
+    if (action.spell.summon) return t('Cast {spell} beside you', { spell });
     return action.spell.aim
       ? t('Cast {spell} at {target}’s square', { spell, target })
       : t('Cast {spell} at {target}', { spell, target });

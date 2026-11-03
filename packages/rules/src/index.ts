@@ -33,6 +33,15 @@ export {
 } from './character-derived.ts';
 export { hitPointsAllowed, levelReady, startingAt } from './builder/campaign-levels.ts';
 export { languageName, languageOptions, proficienciesOf } from './proficiencies.ts';
+export {
+  MAX_SUMMONED,
+  animatedSizes,
+  summonName,
+  summonProblem,
+  summonedBodies,
+  type SummonCaster,
+  type SummonedBody,
+} from './summons.ts';
 export { languagesOpen, languagesToChoose } from './builder/languages.ts';
 export { copiedSheet } from './builder/copy.ts';
 export {

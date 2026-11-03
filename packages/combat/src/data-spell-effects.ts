@@ -34,6 +34,7 @@ import { savedDamage } from './evasion.ts';
 import { pushedEvents, pushedTo } from './masteries.ts';
 import { empower, metamagicEffects, transmute } from './metamagic-effects.ts';
 import { revivalEvents, revivedVitals } from './revive.ts';
+import { summonEvents } from './summons.ts';
 import {
   conditionImmune,
   armorClass,
@@ -63,6 +64,8 @@ export function dataSpellEvents(
   casterId: string,
   plan: DataSpellPlan,
   dice: Dice,
+  /** The command's resolved IDs: a summoning spell's creatures take theirs from them. */
+  ids: readonly string[] = [],
 ): DraftEvent[] {
   const encounter = plan.record ? state.encounter : null;
   const hidden = isHidden(plan.record);
@@ -281,6 +284,9 @@ export function dataSpellEvents(
       if (back) working.set(target.entityId, back);
       effects.push(...revivalEvents(target.entityId, vitals, back));
     }
+  } else if (effect.kind === 'summon') {
+    // The creatures it calls up (docs/adr/0056-characters-from-the-srd.md §5).
+    effects.push(...summonEvents(state, casterId, plan.summons, ids));
   } else if (effect.kind === 'auto') {
     const rolled = damageRoll(effect.damage, false);
     for (const target of plan.targets) {

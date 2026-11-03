@@ -43,6 +43,8 @@ export function knownEntityIds(state: WorldState, perspective: ResolvedPerspecti
 export type KnowledgeBasis =
   | { readonly kind: 'self' }
   | { readonly kind: 'party-member'; readonly characterId: string }
+  /** A creature the holder or a party member summoned (docs/adr/0056-…md §5): theirs to know. */
+  | { readonly kind: 'summoned'; readonly entityId: string; readonly characterId: string }
   | { readonly kind: 'knowledge'; readonly knowledgeId: string; readonly viaParty: boolean }
   | { readonly kind: 'memory'; readonly memoryId: string; readonly viaParty: boolean };
 
@@ -56,10 +58,17 @@ export function knownEntityBases(
     if (!bases.has(entityId) && state.entities.has(entityId)) bases.set(entityId, basis);
   };
   if (perspective.holderId !== null) offer(perspective.holderId, { kind: 'self' });
+  const summoners = new Set(perspective.holderId === null ? [] : [perspective.holderId]);
   if (perspective.scopes === 'ALL' || perspective.scopes.has('PARTY')) {
     for (const characterId of projectionPartyMemberIds(state, perspective)) {
       offer(characterId, { kind: 'party-member', characterId });
+      summoners.add(characterId);
     }
+  }
+  for (const [entityId, block] of state.statBlocks) {
+    const by = block.summoned?.by;
+    if (by !== undefined && summoners.has(by))
+      offer(entityId, { kind: 'summoned', entityId, characterId: by });
   }
   const sources = [
     ...visibleRecords(state, perspective).map((record) => ({

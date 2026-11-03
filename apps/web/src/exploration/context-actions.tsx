@@ -15,6 +15,7 @@ import { commandFor } from './action-bindings.ts';
 import { ConversationOptions } from './conversation-options.tsx';
 import { Hypothesis } from './hypothesis.tsx';
 import { Recall } from './recall.tsx';
+import { SummonCast } from './summon-cast.tsx';
 import type { ExplorationIntent } from './use-action.ts';
 import { readableLabel, useT, type Translate } from '@ltw/ui';
 import { distinctNames, unidentifiedName } from '../world/entity-words.ts';
@@ -72,6 +73,8 @@ export function ContextActions({
   const t = useT();
   const ids = useId();
   const [recall, setRecall] = useState(false);
+  // A summoning spell asks what it calls up before it is cast (docs/adr/0056-…md §5).
+  const [summoning, setSummoning] = useState<string | null>(null);
   const { entity, actions } = context.context;
   const actor = context.actingCharacterId;
   const name = entity.name ?? unidentifiedName(t, entity.kind);
@@ -118,9 +121,15 @@ export function ContextActions({
               <button
                 disabled={!available}
                 aria-describedby={action.legal ? undefined : reasonId}
+                aria-expanded={
+                  action.spell?.summon ? summoning === action.spell.spellId : undefined
+                }
                 onClick={() => {
                   if (isRecall) setRecall((open) => !open);
-                  else if (action.id === 'talk')
+                  else if (action.spell?.summon) {
+                    const spellId = action.spell.spellId;
+                    setSummoning((open) => (open === spellId ? null : spellId));
+                  } else if (action.id === 'talk')
                     onRun({ kind: 'talk', characterId: actor, npcId: entity.entityId });
                   else if (command) onRun({ kind: 'command', command });
                 }}
@@ -136,6 +145,22 @@ export function ContextActions({
                     : t('Level {level} slot', { level: action.cost.slotLevel })}
                 </small>
               )}
+              {action.spell?.summon &&
+                summoning === action.spell.spellId &&
+                command?.type === 'CastSpell' && (
+                  <SummonCast
+                    spell={{ ...action.spell, summon: action.spell.summon }}
+                    command={command}
+                    locked={locked}
+                    onRun={(intent) => {
+                      setSummoning(null);
+                      onRun(intent);
+                    }}
+                    onCancel={() => {
+                      setSummoning(null);
+                    }}
+                  />
+                )}
             </div>
           );
         })}

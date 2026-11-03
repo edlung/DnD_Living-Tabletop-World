@@ -201,6 +201,7 @@ function combatOutcome(
         ),
         ...(cast.payload.forDm ? { forDm: cast.payload.forDm } : {}),
         ...revivedBy(events),
+        ...summonedBy(events),
       };
     }
     case 'UseFeature': {
@@ -353,6 +354,14 @@ function unarmedOf(events: readonly KernelEvent[]): PlayerOutcome | undefined {
     saved: save.payload.success,
     ...(effect === 'shove' && !save.payload.success ? { shove: prone ? 'prone' : 'push' } : {}),
   };
+}
+
+/** The creatures a cast called up, by name (docs/adr/0056-characters-from-the-srd.md §5). */
+function summonedBy(events: readonly KernelEvent[]): { summoned?: string[] } {
+  const summoned = events.flatMap((event) =>
+    event.type === 'EntityCreated' && event.payload.kind === 'creature' ? [event.payload.name] : [],
+  );
+  return summoned.length > 0 ? { summoned } : {};
 }
 
 /** Those a cast returned to life (docs/adr/0056-characters-from-the-srd.md §5), if any. */

@@ -5,6 +5,7 @@ import type {
   KernelCommandOf,
   MetamagicChoice,
   Square,
+  SummonChoice,
 } from '@ltw/contracts';
 
 export type CombatUiCommand = KernelCommandOf<
@@ -194,6 +195,8 @@ export function castSpellCommand(
   using: 'free' | { readonly slotLevel: number } | undefined,
   /** A Sorcerer's Metamagic (docs/adr/0056-characters-from-the-srd.md §4). */
   metamagic?: MetamagicChoice,
+  /** What a summoning spell calls up, beside the target's square — the caster's own (§5). */
+  summon?: SummonChoice,
 ): Extract<CombatUiCommand, { type: 'CastSpell' }> {
   const above = using === undefined || using === 'free' ? 0 : using.slotLevel - spell.level;
   const times = spell.times + (spell.perSlot ?? 0) * Math.max(0, above);
@@ -203,7 +206,8 @@ export function castSpellCommand(
     spellId: spell.spellId,
     ...(using === undefined ? {} : { using }),
     ...(spell.names ? { targetIds: Array.from({ length: times }, () => target.entityId) } : {}),
-    ...(spell.aim ? { point: { x: target.position.x, y: target.position.y } } : {}),
+    ...(spell.aim || spell.summon ? { point: { x: target.position.x, y: target.position.y } } : {}),
     ...(metamagic ? { metamagic } : {}),
+    ...(summon ? { summon } : {}),
   };
 }

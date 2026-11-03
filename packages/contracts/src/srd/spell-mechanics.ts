@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { ABILITIES, CONDITIONS, DAMAGE_TYPES } from '../rules/character-sheet.ts';
 import { srdIdSchema } from './catalog.ts';
+import { SUMMONED_CREATURES } from './summons.ts';
 
 /**
  * A spell's mechanics layer (docs/adr/0052-spells-as-data.md §2): what the server computes from,
@@ -97,6 +98,8 @@ export const spellEffectSchema = z.discriminatedUnion('kind', [
       cures: z.enum(['none', 'poison', 'poison-contagion']),
     })
     .strict(),
+  /** A creature summoned with its stat block scaled by the spell's level (ADR 0056 §5). */
+  z.object({ kind: z.literal('summon'), creature: z.enum(SUMMONED_CREATURES) }).strict(),
   z.object({ kind: z.literal('dm') }).strict(),
 ]);
 export type SpellEffect = z.infer<typeof spellEffectSchema>;

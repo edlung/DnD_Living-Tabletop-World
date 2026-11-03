@@ -316,7 +316,8 @@
     "concentration": true,
     "ritual": false,
     "effect": {
-      "kind": "dm"
+      "kind": "summon",
+      "creature": "animated-object"
     },
     "upcast": null,
     "cantrip": null,
@@ -3789,7 +3790,8 @@
     "concentration": false,
     "ritual": false,
     "effect": {
-      "kind": "dm"
+      "kind": "summon",
+      "creature": "otherworldly-steed"
     },
     "upcast": null,
     "cantrip": null,
@@ -4575,7 +4577,8 @@
     "concentration": true,
     "ritual": false,
     "effect": {
-      "kind": "dm"
+      "kind": "summon",
+      "creature": "giant-insect"
     },
     "upcast": null,
     "cantrip": null,
@@ -9573,7 +9576,8 @@
     "concentration": true,
     "ritual": false,
     "effect": {
-      "kind": "dm"
+      "kind": "summon",
+      "creature": "draconic-spirit"
     },
     "upcast": null,
     "cantrip": null,

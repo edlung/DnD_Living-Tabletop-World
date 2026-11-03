@@ -205,6 +205,8 @@ export type PlayerOutcome =
       readonly forDm?: 'effect' | 'rest';
       /** Those it returned to life (docs/adr/0056-characters-from-the-srd.md §5). */
       readonly revived?: readonly string[];
+      /** The creatures it called up, by name (§5). */
+      readonly summoned?: readonly string[];
       /** An SRD spell's name in the campaign's language, the server's (ADR 0055 §5). */
       readonly spellName?: string;
     }

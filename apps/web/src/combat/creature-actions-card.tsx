@@ -8,10 +8,11 @@ import { Glyph } from '../visual/glyph.tsx';
 import { useCombatantLabels } from './labels.ts';
 
 /**
- * The creature whose turn it is: its actions with a save, for the DM to run
- * (docs/adr/0053-monsters-as-data.md §2). A breath goes toward a chosen creature's square, a
- * single-target action at that creature; one spent until its Recharge comes up, or used up for the
- * day, says so. The World Engine rolls the damage and every save.
+ * The creature whose turn it is: its actions with a save, for the DM to run, or the player whose
+ * character commands it (docs/adr/0053-monsters-as-data.md §2; ADR 0056 §5). A breath goes toward
+ * a chosen creature's square, a single-target action at that creature; one spent until its
+ * Recharge comes up, used up for the day, or used with this turn's attacks, says so. The World
+ * Engine rolls the damage and every save.
  */
 export function CreatureActionsCard({
   encounter,
@@ -91,12 +92,14 @@ export function CreatureActionsCard({
               ? action.usesLeft !== undefined
                 ? t('{name}: {count} left today', { name: t(action.name), count: action.usesLeft })
                 : t('{name}: ready', { name: t(action.name) })
-              : action.recharge !== undefined
-                ? t('{name}: spent, back on a d6 of {recharge} or more', {
-                    name: t(action.name),
-                    recharge: action.recharge,
-                  })
-                : t('{name}: used up today', { name: t(action.name) })}
+              : action.inMultiattack
+                ? t('{name}: used this turn, with the attacks', { name: t(action.name) })
+                : action.recharge !== undefined
+                  ? t('{name}: spent, back on a d6 of {recharge} or more', {
+                      name: t(action.name),
+                      recharge: action.recharge,
+                    })
+                  : t('{name}: used up today', { name: t(action.name) })}
           </li>
         ))}
       </ul>

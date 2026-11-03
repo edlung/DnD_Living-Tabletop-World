@@ -56,6 +56,7 @@ export function replanSuspended(state: WorldState, trigger: SpellTrigger): Repla
           ...(trigger.targetIds ? { targetIds: trigger.targetIds } : {}),
           ...(trigger.point === null ? {} : { point: trigger.point }),
           ...(trigger.metamagic ? { metamagic: trigger.metamagic } : {}),
+          ...(trigger.summon ? { summon: trigger.summon } : {}),
         },
         trigger.economy,
       );
@@ -145,7 +146,7 @@ export function completeSuspended(
   if ('legal' in replanned) {
     throw new Error(`suspended ${trigger.spellId} became illegal (${replanned.reason})`);
   }
-  if (replanned.kind === 'data') return dataSpellEvents(state, casterId, replanned.plan, dice);
+  if (replanned.kind === 'data') return dataSpellEvents(state, casterId, replanned.plan, dice, ids);
   return replanned.kind === 'character'
     ? castEvents(state, casterId, replanned.plan, dice, ids)
     : [

@@ -127,6 +127,8 @@ export function applyPremisesRecorded(
         );
       case 'party-member':
         return isPartyMember(state, premise.characterId);
+      case 'summoned':
+        return state.statBlocks.get(premise.entityId)?.summoned?.by === premise.characterId;
       case 'knowledge':
         return state.knowledge.has(premise.knowledgeId);
       case 'memory':

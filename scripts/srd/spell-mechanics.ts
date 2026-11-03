@@ -39,6 +39,8 @@ export type Effect =
       readonly ordeal: boolean;
       readonly cures: 'none' | 'poison' | 'poison-contagion';
     }
+  /** A creature summoned with its block (docs/adr/0056-characters-from-the-srd.md §5). */
+  | { readonly kind: 'summon'; readonly creature: string }
   | { readonly kind: 'dm' };
 
 export interface Upcast {

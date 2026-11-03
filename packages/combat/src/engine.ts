@@ -33,6 +33,7 @@ import {
 } from './reactions/respond.ts';
 import { decideCastSpell } from './spells.ts';
 import { decideEndCombat, decideStartCombat } from './start-end.ts';
+import { summonsAfter } from './summons.ts';
 import { decideEndTurn } from './turns.ts';
 
 /**
@@ -42,8 +43,15 @@ import { decideEndTurn } from './turns.ts';
 export function createCombatEngine(): CombatPort {
   return {
     decide(context: DecisionContext, command: CombatCommand, dice: Dice): Decision {
-      // The riders' seats after what the command did (docs/adr/0049-space-and-movement.md §10).
-      return ridersAfter(context, command.type, decideCommand(context, command, dice), dice);
+      // The summoned creatures that go (docs/adr/0056-characters-from-the-srd.md §5), then the
+      // riders' seats after what the command did (docs/adr/0049-space-and-movement.md §10).
+      const decided = summonsAfter(
+        context,
+        command.type,
+        decideCommand(context, command, dice),
+        dice,
+      );
+      return ridersAfter(context, command.type, decided, dice);
     },
   };
 }

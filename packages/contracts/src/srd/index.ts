@@ -28,6 +28,22 @@ export {
   type SpellEffect,
   type SrdSpellMechanics,
 } from './spell-mechanics.ts';
+export {
+  ANIMATED_SIZES,
+  ANIMATED_WEIGHT,
+  DRAGON_BREATHS,
+  INSECT_FORMS,
+  STEED_TYPES,
+  SUMMONED_CREATURES,
+  SUMMON_OPTIONS,
+  summonChoiceSchema,
+  summonedSchema,
+  type AnimatedSize,
+  type SummonChoice,
+  type SummonOption,
+  type Summoned,
+  type SummonedCreature,
+} from './summons.ts';
 export { SRD_MAGIC_CATEGORIES, srdMagicItemSchema, type SrdMagicItem } from './magic-items.ts';
 export {
   SRD_EQUIPMENT_KINDS,

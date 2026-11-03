@@ -106,6 +106,8 @@ export interface WeaponMarks {
   readonly offhandAttacked?: true;
   readonly cleaved?: true;
   readonly loadingFired?: true;
+  /** A creature's Attack action begun: its Multiattack's breath may still come (ADR 0056 §5). */
+  readonly attackAction?: true;
 }
 
 export interface AttackPlan {
@@ -266,6 +268,7 @@ export function attackPlan(
 
   const extra = options.extra ?? null;
   let turn = turnStateOf(encounter, attacker);
+  let multiattack = false;
   if (economy === 'reaction') {
     // Off its own turn, paid with the Reaction (ADR 0046 §2, §5).
     if (extra !== null) return refuse('NO_EXTRA_ATTACK');
@@ -285,6 +288,7 @@ export function attackPlan(
     } else {
       if (turn.actionUsed) return refuse('NO_ACTION');
       turn = { ...turn, actionUsed: true, attacksRemaining: attackerVitals.block.attacksPerAction };
+      multiattack = attackerVitals.block.saveActions?.some((one) => one.inMultiattack) === true;
     }
   }
 
@@ -416,6 +420,7 @@ export function attackPlan(
     ...(extra === 'offhand' ? { offhandAttacked: true as const } : {}),
     ...(extra === 'cleave' ? { cleaved: true as const } : {}),
     ...(firesLoading ? { loadingFired: true as const } : {}),
+    ...(multiattack ? { attackAction: true as const } : {}),
   };
   return {
     legal: true,

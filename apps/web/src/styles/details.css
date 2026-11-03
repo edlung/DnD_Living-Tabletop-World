@@ -63,22 +63,22 @@
   display: grid;
   gap: 0.15rem;
 }
-.context-option button {
+.context-option > button {
   justify-content: flex-start;
   width: 100%;
   min-height: 42px;
   border-color: var(--line);
   background: color-mix(in srgb, var(--ink-950) 45%, transparent);
 }
-.context-option button > .glyph {
+.context-option > button > .glyph {
   width: 20px;
   height: 20px;
   color: var(--teal);
 }
-.context-option button:disabled > .glyph {
+.context-option > button:disabled > .glyph {
   color: var(--text-muted);
 }
-.context-option small {
+.context-option > small {
   padding-left: 2.3rem;
   color: var(--text-muted);
   font-size: 0.82rem;

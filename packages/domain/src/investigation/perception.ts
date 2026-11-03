@@ -23,6 +23,8 @@ export function perceivedEntityIds(state: WorldState, actingCharacterId: string)
   }
   for (const entity of state.entities.values()) {
     if (!exists(entity)) continue;
+    // A summoned creature that went leaves nothing behind (docs/adr/0056-…md §5).
+    if (entity.status !== 'active' && state.statBlocks.get(entity.entityId)?.summoned) continue;
     // A carried item is seen only by its carrier (ADR 0039 §9): its old placement says nothing.
     const carrier = state.possessions.get(entity.entityId)?.holderId ?? null;
     if (carrier !== null) {

@@ -45,15 +45,25 @@ export interface EncounterCombatantView {
   readonly senses?: Senses;
   /** Its breath held under water, seen the same way: the rounds it has left (ADR 0050 §8). */
   readonly breath?: { readonly roundsLeft: number };
-  /**
-   * A creature's actions with a save, for the DM alone (docs/adr/0053-monsters-as-data.md §2):
-   * whether each is ready, aimed at a square (a breath) or a creature, its Recharge and uses.
-   */
   /** Its legendary actions' attacks and the uses left this round, for the DM (ADR 0053 §4). */
   readonly legendary?: {
     readonly usesLeft: number;
     readonly attacks: readonly { readonly attackId: string; readonly name: string }[];
   };
+  /**
+   * A creature's attacks, for the DM and the player whose character commands it (docs/adr/
+   * 0056-characters-from-the-srd.md §5): that player picks one and its target on its turn.
+   */
+  readonly attacks?: readonly {
+    readonly attackId: string;
+    readonly name: string;
+    readonly kind: 'melee' | 'ranged';
+  }[];
+  /**
+   * A creature's actions with a save, for the DM and its commander's player (docs/adr/0053-
+   * monsters-as-data.md §2): whether each is ready, aimed at a square (a breath) or a creature,
+   * its Recharge and uses.
+   */
   readonly creatureActions?: readonly {
     readonly actionId: string;
     readonly name: string;
@@ -61,6 +71,8 @@ export interface EncounterCombatantView {
     readonly aim: 'square' | 'creature';
     readonly recharge?: number;
     readonly usesLeft?: number;
+    /** Part of its Multiattack: once a turn, with its attacks (ADR 0056 §5). */
+    readonly inMultiattack?: true;
   }[];
   /** The creature it rides, as anyone sees (ADR 0049 §10); it shares that one's space. */
   readonly mountedOn?: { readonly entityId: string; readonly name: string | null };

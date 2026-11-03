@@ -230,6 +230,14 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       // The dead returned to life (docs/adr/0056-characters-from-the-srd.md §5).
       if (outcome.revived && outcome.revived.length > 0)
         return `${t('{spell} returns the dead to life.', { spell })}${forDm}`;
+      // The creatures it called up (§5), their names as the server gave them.
+      if (outcome.summoned && outcome.summoned.length > 0)
+        return `${t(
+          outcome.summoned.length === 1
+            ? '{spell}: {names} appears at your call.'
+            : '{spell}: {names} appear at your call.',
+          { spell, names: outcome.summoned.join(', ') },
+        )}${forDm}`;
       if (outcome.results.length > 0) {
         const total = outcome.results.reduce((sum, entry) => sum + (entry.damage ?? 0), 0);
         const healed = outcome.results.reduce((sum, entry) => sum + (entry.healed ?? 0), 0);

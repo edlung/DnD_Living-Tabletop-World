@@ -10,6 +10,7 @@ import {
   type Dice,
   type DraftEvent,
   type EncounterState,
+  type WorldState,
 } from '@ltw/domain';
 import { JOIN_REFUSALS, encounterOf, isAlive, joinRefusal } from './battlefield.ts';
 import { FightWork, leftTheFight } from './condition-details.ts';
@@ -121,18 +122,35 @@ export function decideRemoveCombatant(
   const found = encounterOf(state);
   if (!found.ok) return found;
   const encounter = found.value;
-  const leaving = encounter.combatants.findIndex((c) => c.entityId === command.entityId);
-  if (leaving === -1) return reject('NOT_A_COMBATANT', 'NOT_A_COMBATANT');
-  if (encounter.combatants.length <= 2) return invalid('End the fight instead');
+  if (!encounter.combatants.some((c) => c.entityId === command.entityId))
+    return reject('NOT_A_COMBATANT', 'NOT_A_COMBATANT');
+  const events = departureEvents(state, encounter, command.entityId, dice);
+  return events === null ? invalid('End the fight instead') : accept(...events);
+}
+
+/**
+ * A combatant leaving the running fight, or null when the fight could not go on without it (two
+ * left, or none of the rest alive): the DM's removal, a summoned creature gone (docs/adr/0056-…md
+ * §5). Its conditions on others end, and a turn that was its own passes on.
+ */
+export function departureEvents(
+  state: WorldState,
+  encounter: EncounterState,
+  entityId: string,
+  dice: Dice,
+): DraftEvent[] | null {
+  const leaving = encounter.combatants.findIndex((c) => c.entityId === entityId);
+  if (leaving === -1) return [];
+  if (encounter.combatants.length <= 2) return null;
   const events: DraftEvent[] = [];
   // Slowed by the one who leaves ends now: its turn will not come to end it. Nor will a condition
   // that lasts until its turn (docs/adr/0045-conditions-and-actions.md §2).
   const work = new FightWork(
     state,
-    encounter.combatants.filter((c) => c.entityId !== command.entityId),
+    encounter.combatants.filter((c) => c.entityId !== entityId),
   );
   for (const c of [...work.combatants]) {
-    if (c.slowedBy !== command.entityId) continue;
+    if (c.slowedBy !== entityId) continue;
     const slowed = work.vitalsOf(c.entityId);
     if (slowed) {
       events.push(
@@ -147,26 +165,26 @@ export function decideRemoveCombatant(
   }
   // Nor will the turn that ends its Sap, and Vex against it has no one left to hit (ADR 0047 §2).
   for (const c of [...work.combatants]) {
-    if (c.sappedBy !== command.entityId && c.vexing?.targetId !== command.entityId) continue;
+    if (c.sappedBy !== entityId && c.vexing?.targetId !== entityId) continue;
     const kept = { ...c };
-    if (kept.sappedBy === command.entityId) delete kept.sappedBy;
-    if (kept.vexing?.targetId === command.entityId) delete kept.vexing;
+    if (kept.sappedBy === entityId) delete kept.sappedBy;
+    if (kept.vexing?.targetId === entityId) delete kept.vexing;
     work.record(kept);
   }
-  events.push(...leftTheFight(work, command.entityId));
+  events.push(...leftTheFight(work, entityId));
   const order = [...work.combatants];
-  if (!order.some((c) => isAlive(state, c.entityId))) return invalid('End the fight instead');
+  if (!order.some((c) => isAlive(state, c.entityId))) return null;
   if (leaving !== encounter.currentIndex) {
     const current = currentCombatant(encounter)?.entityId;
-    return accept(...events, orderEvent('left', command.entityId, order, indexOf(order, current)));
+    return [...events, orderEvent('left', entityId, order, indexOf(order, current))];
   }
   // The one whose turn it was leaves: the turn passes to whoever followed.
   const changed: EncounterState = { ...encounter, combatants: order, currentIndex: leaving - 1 };
-  return accept(
+  return [
     ...events,
-    orderEvent('left', command.entityId, order, leaving - 1),
+    orderEvent('left', entityId, order, leaving - 1),
     ...nextTurn(state, changed, leaving - 1, dice),
-  );
+  ];
 }
 
 export function decideDelayTurn(

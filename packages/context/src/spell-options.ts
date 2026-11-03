@@ -1,7 +1,15 @@
-import type { ContextAction, ContextEntityRef, ContextSpell, Relevance } from '@ltw/contracts';
+import {
+  SUMMON_OPTIONS,
+  type ContextAction,
+  type ContextEntityRef,
+  type ContextSpell,
+  type Relevance,
+  type SummonChoice,
+} from '@ltw/contracts';
 import { chooseUsing, dataSpellPlan, targetCount } from '@ltw/combat';
 import { combatantOf } from '@ltw/domain';
 import {
+  abilityModifier,
   cantripTier,
   isSliceSpellId,
   metamagicFor,
@@ -22,8 +30,10 @@ import type { Verdict } from './legality.ts';
  * creature in the fight: at it; at its square, for an area centred on a point; toward it, for an
  * area sent from the caster; and on oneself, a spell of one's own. Outside a fight, those that name
  * a creature and harm no one: healing, temporary hit points and the spells that return the dead,
- * an hour's casting among them (docs/adr/0056-characters-from-the-srd.md §5). A spell that returns
- * the dead is offered on the dead alone, every other on the living. Legality is the World Engine's
+ * an hour's casting among them (docs/adr/0056-characters-from-the-srd.md §5). A summoning spell is
+ * offered on oneself, in a fight and out of one: its creature appears beside the caster, the
+ * option its player chooses judged again by the World Engine. A spell that returns the dead is
+ * offered on the dead alone, every other on the living. Legality is the World Engine's
  * own plan; each option names its spell, how often the target is named, and the slots it could
  * spend. The command the client builds from it is the one judged here (`castRequest`).
  */
@@ -32,11 +42,13 @@ export interface CastRequest {
   readonly using?: 'free' | { readonly slotLevel: number };
   readonly targetIds?: readonly string[];
   readonly point?: { readonly x: number; readonly y: number };
+  /** A summoning spell's choice: judged with its first option (docs/adr/0056-…md §5). */
+  readonly summon?: SummonChoice;
 }
 
 /** The command an option stands for, as the client builds it from the option alone. */
 export function castRequest(
-  spell: Pick<ContextSpell, 'spellId' | 'level' | 'times' | 'perSlot' | 'names' | 'aim'>,
+  spell: Pick<ContextSpell, 'spellId' | 'level' | 'times' | 'perSlot' | 'names' | 'aim' | 'summon'>,
   using: CastRequest['using'],
   target: {
     readonly entityId: string;
@@ -50,10 +62,17 @@ export function castRequest(
     spellId: spell.spellId,
     ...(using === undefined ? {} : { using }),
     ...(spell.names ? { targetIds: Array.from({ length: times }, () => target.entityId) } : {}),
-    ...(spell.aim && target.position
+    ...((spell.aim || spell.summon) && target.position
       ? { point: { x: target.position.x, y: target.position.y } }
       : {}),
+    ...(spell.summon ? { summon: firstChoice(spell.summon) } : {}),
   };
+}
+
+/** A summoning spell's first choice: its first option, or one Medium object. */
+export function firstChoice(summon: NonNullable<ContextSpell['summon']>): SummonChoice {
+  const option = summon.options[0];
+  return option === undefined ? { objects: { medium: 1, large: 0, huge: 0 } } : { option };
 }
 
 type Judge = (requires: 'present' | 'present-alive', verdict: () => Verdict) => Verdict;
@@ -93,10 +112,22 @@ export function spellOptions(
       ? ((mechanics.effect.kind === 'auto' ? mechanics.upcast?.darts : mechanics.upcast?.targets) ??
         0)
       : 0;
+    // A summoning spell's options, and the objects a caster's modifier animates (ADR 0056 §5).
+    const summon =
+      mechanics.effect.kind === 'summon'
+        ? {
+            creature: mechanics.effect.creature,
+            options: [...SUMMON_OPTIONS[mechanics.effect.creature]],
+            ...(mechanics.effect.creature === 'animated-object'
+              ? { objects: { budget: Math.max(1, castingModifier(sheet, spellId)) } }
+              : {}),
+          }
+        : null;
     const named: Omit<ContextSpell, 'slots'> = {
       ...spell,
       times,
       ...(perSlot > 0 ? { perSlot } : {}),
+      ...(summon ? { summon } : {}),
     };
     const request = castRequest(named, using, target);
     const metamagic = metamagicFor(sheet, rules);
@@ -163,6 +194,17 @@ function describe(
   if (!mechanics || rules.castingTime === 'reaction') return null;
   if (fighting && rules.castingTime === 'long') return null;
   const { effect, area } = mechanics;
+  // A summoning spell on oneself, in a fight or out of one: its creature appears beside the caster.
+  if (effect.kind === 'summon')
+    return self
+      ? {
+          spellId: rules.spellId,
+          name: nameIn(rules.spellId, language),
+          level: rules.level,
+          names: false,
+          ...(mechanics.complete ? {} : { forDm: 'rest' as const }),
+        }
+      : null;
   const helps = effect.kind === 'heal' || effect.kind === 'temp-hp' || effect.kind === 'revive';
   if (!fighting && (!helps || area !== null)) return null;
   const own = rules.range === 'self' && (area === null || area.shape === 'emanation');
@@ -183,6 +225,12 @@ function describe(
         ? {}
         : { forDm: 'rest' as const }),
   };
+}
+
+/** The modifier of the ability the character casts the spell with. */
+function castingModifier(sheet: NonNullable<ContextInputs['sheet']>, spellId: string): number {
+  const source = sheet.spellcasting.find((one) => one.spells.includes(spellId));
+  return source ? abilityModifier(sheet.abilities[source.ability]) : 0;
 }
 
 function slotsFor(sheet: NonNullable<ContextInputs['sheet']>, level: number): number[] {

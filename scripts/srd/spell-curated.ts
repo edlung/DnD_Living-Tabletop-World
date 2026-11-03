@@ -87,6 +87,12 @@ export const CURATED: Readonly<Record<string, Partial<Mechanics>>> = {
       cures: 'poison-contagion',
     },
   },
+  // The four summons a slot's level scales (docs/adr/0056-characters-from-the-srd.md §5): the
+  // creature's stat block from `packages/rules/src/summons.ts`; its other traits the DM's.
+  'find-steed': { effect: { kind: 'summon', creature: 'otherworldly-steed' }, targets: null },
+  'giant-insect': { effect: { kind: 'summon', creature: 'giant-insect' }, targets: null },
+  'summon-dragon': { effect: { kind: 'summon', creature: 'draconic-spirit' }, targets: null },
+  'animate-objects': { effect: { kind: 'summon', creature: 'animated-object' }, targets: null },
   // Lasting zones, walls and summons whose cast harms no one at once, areas the board cannot lay
   // out (Fire Storm's ten cubes, Meteor Swarm's four spheres) and a summoned hand: the DM's.
   ...Object.fromEntries(

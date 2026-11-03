@@ -1,4 +1,9 @@
-import { TRANSMUTABLE, type ContextSpell, type MetamagicId } from '@ltw/contracts';
+import {
+  TRANSMUTABLE,
+  type ContextSpell,
+  type MetamagicId,
+  type SummonChoice,
+} from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
@@ -6,13 +11,14 @@ import { METAMAGIC_NAMES } from '../../character/feature-words.ts';
 import { DAMAGE_WORDS } from '../../dm/hand-words.ts';
 import type { ExplorationIntent } from '../../exploration/use-action.ts';
 import { castSpellCommand } from '../combat-bindings.ts';
+import { SummonFields, firstSummon, summonReady } from './summon-fields.tsx';
 
 /**
  * A spell's slot, asked in the turn tray when more than one could pay for it
  * (docs/adr/0052-spells-as-data.md §3): the lowest first; a higher one adds what the spell names.
  * A Sorcerer chooses the Metamagic it spends on it here too, and Transmuted Spell's damage type
- * (docs/adr/0056-characters-from-the-srd.md §4). The World Engine judges the cast again and rolls
- * everything.
+ * (docs/adr/0056-characters-from-the-srd.md §4), and what a summoning spell calls up (§5). The
+ * World Engine judges the cast again and rolls everything.
  */
 export function SpellChoice({
   spell,
@@ -33,6 +39,10 @@ export function SpellChoice({
   const ids = useId();
   const [option, setOption] = useState<MetamagicId | ''>('');
   const [type, setType] = useState<(typeof TRANSMUTABLE)[number]>('fire');
+  const [summon, setSummon] = useState<SummonChoice | null>(
+    spell.summon ? firstSummon(spell.summon) : null,
+  );
+  const ready = !spell.summon || (summon !== null && summonReady(spell.summon, summon));
   const offered = spell.metamagic ?? [];
   const metamagic =
     option === ''
@@ -41,7 +51,7 @@ export function SpellChoice({
   const cast = (using: { readonly slotLevel: number } | undefined) => {
     onRun({
       kind: 'command',
-      command: castSpellCommand(spell, actorId, target, using, metamagic),
+      command: castSpellCommand(spell, actorId, target, using, metamagic, summon ?? undefined),
     });
   };
   return (
@@ -60,6 +70,9 @@ export function SpellChoice({
               })
             : t('A higher slot adds what the spell says for it.')}
         </small>
+      )}
+      {spell.summon && summon && (
+        <SummonFields summon={spell.summon} value={summon} onChange={setSummon} />
       )}
       {offered.length > 0 && (
         <div className="action-choice-fields">
@@ -111,7 +124,7 @@ export function SpellChoice({
           <button
             type="button"
             className="primary-button"
-            disabled={locked}
+            disabled={locked || !ready}
             onClick={() => {
               cast(undefined);
             }}
@@ -124,7 +137,7 @@ export function SpellChoice({
               key={slotLevel}
               type="button"
               className={index === 0 ? 'primary-button' : undefined}
-              disabled={locked}
+              disabled={locked || !ready}
               onClick={() => {
                 cast({ slotLevel });
               }}

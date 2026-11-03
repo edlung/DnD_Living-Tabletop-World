@@ -20,6 +20,14 @@ export function premiseFacts(characterId: string, premise: RecordedPremise): Fac
       return [];
     case 'party-member':
       return [facts.rosterCharacter(premise.characterId), ...party];
+    case 'summoned':
+      // Its mark names its summoner, the holder or one of the party (ADR 0056 §5).
+      return [
+        facts.entity(premise.entityId),
+        facts.statBlock(premise.entityId),
+        facts.rosterCharacter(premise.characterId),
+        ...party,
+      ];
     case 'knowledge':
       return [facts.knowledge(premise.knowledgeId), ...(premise.viaParty ? party : [])];
     case 'memory':

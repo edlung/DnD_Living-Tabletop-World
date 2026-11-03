@@ -56,6 +56,8 @@ export const turnRecordSchema = z
       .optional(),
     /** Shield's +5 AC until its next turn starts (docs/adr/0046-reactions-beyond-counterspell.md §3). */
     shielded: z.literal(true).optional(),
+    /** Its Attack action taken: its Multiattack's breath may still come (docs/adr/0056-…md §5). */
+    attackAction: z.literal(true).optional(),
     /**
      * The weapons' rules this turn (docs/adr/0047-weapons.md): the Light weapon the Attack action
      * attacked with, which the other hand may follow; that extra attack made; a Cleave hit's second

@@ -17,6 +17,7 @@ import { initiativeOrder, squaresOf } from '@ltw/rules';
 import { encounterOf, isAlive } from './battlefield.ts';
 import { FightWork, fightEnded } from './condition-details.ts';
 import { isObject } from './objects.ts';
+import { withSummoners } from './summons.ts';
 import { firstTurn } from './turns.ts';
 import { dexterity, rollInitiative, sizeOf, vitalsOf, withConditions } from './vitals.ts';
 
@@ -93,7 +94,8 @@ export function decideStartCombat(
       modifier,
     });
   }
-  const combatants: CombatantRecord[] = initiativeOrder(entries).map((e) => ({
+  // A summoned creature acts right after its caster, who commands it (docs/adr/0056-…md §5).
+  const rolled: CombatantRecord[] = initiativeOrder(entries).map((e) => ({
     entityId: e.id,
     side: e.combatant.side,
     position: { ...e.combatant.position },
@@ -106,6 +108,7 @@ export function decideStartCombat(
     turn: { ...FRESH_TURN },
     slowedBy: null,
   }));
+  const combatants = withSummoners(state, rolled);
   const encounter = {
     encounterId,
     locationId: command.locationId,

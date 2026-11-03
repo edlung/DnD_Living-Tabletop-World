@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
 import { metamagicSchema } from './features.ts';
+import { summonChoiceSchema } from '../srd/summons.ts';
 import { TOOLBOX_COMMAND_TYPES } from './toolbox.ts';
 import {
   ABILITIES,
@@ -158,6 +159,8 @@ export const castSpellCommandSchema = z
     point: squareSchema.optional(),
     /** A Sorcerer's Metamagic (docs/adr/0056-characters-from-the-srd.md §4). */
     metamagic: metamagicSchema.optional(),
+    /** What a summoning spell calls up, beside `point` (ADR 0056 §5). */
+    summon: summonChoiceSchema.optional(),
   })
   .strict();
 

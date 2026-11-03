@@ -57,9 +57,17 @@ export function decideUseCreatureAction(
   if (!vitals || !action) return refused({ legal: false, reason: 'NOT_KNOWN' });
   if (incapacitated(vitals)) return refused({ legal: false, reason: 'INCAPACITATED' });
   const turn = turnStateOf(encounter.value, record);
-  if (turn.actionUsed) return refused({ legal: false, reason: 'NO_ACTION' });
+  // Part of its Multiattack (a Draconic Spirit's breath; docs/adr/0056-…md §5): once a turn, with
+  // the Attack action's attacks — before them it begins that action.
+  const withAttacks =
+    action.inMultiattack === true &&
+    (turn.attacksRemaining > 0 || record.turn.attackAction === true);
+  if (turn.actionUsed && !withAttacks) return refused({ legal: false, reason: 'NO_ACTION' });
   if (record.spent?.includes(action.actionId))
-    return refused({ legal: false, reason: 'NOT_RECHARGED' });
+    return refused({
+      legal: false,
+      reason: action.inMultiattack === true ? 'USED_THIS_TURN' : 'NOT_RECHARGED',
+    });
   const used = record.used?.find((one) => one.actionId === action.actionId)?.count ?? 0;
   if (action.perDay !== null && used >= action.perDay)
     return refused({ legal: false, reason: 'NO_USES_LEFT' });
@@ -145,8 +153,19 @@ export function decideUseCreatureAction(
     working.set(one.entityId, latest);
   }
 
-  let next: CombatantRecord = withTurn(record, { ...turn, actionUsed: true });
-  if (action.recharge !== null)
+  let next: CombatantRecord = withTurn(
+    record,
+    action.inMultiattack === true && !turn.actionUsed
+      ? {
+          ...turn,
+          actionUsed: true,
+          attacksRemaining: vitals.kind === 'creature' ? vitals.block.attacksPerAction : 1,
+        }
+      : { ...turn, actionUsed: true },
+  );
+  if (action.inMultiattack === true) next = { ...next, turn: { ...next.turn, attackAction: true } };
+  // Spent until it recharges; a Multiattack's part until the creature's next turn.
+  if (action.recharge !== null || action.inMultiattack === true)
     next = { ...next, spent: [...(record.spent ?? []), action.actionId] };
   if (action.perDay !== null) {
     const others = (record.used ?? []).filter((one) => one.actionId !== action.actionId);

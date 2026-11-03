@@ -217,11 +217,14 @@ export function TurnTray({
               action.legal && command?.type === 'Attack' && question !== null
                 ? { key, question, command }
                 : null;
-            // A choice first: its slot, or the Metamagic a Sorcerer could spend on it (ADR 0056 §4).
+            // A choice first: its slot, the Metamagic a Sorcerer could spend on it (ADR 0056 §4),
+            // or what a summoning spell calls up (§5).
             const slots =
               action.legal &&
               action.spell &&
-              (action.spell.slots.length > 1 || (action.spell.metamagic?.length ?? 0) > 0)
+              (action.spell.slots.length > 1 ||
+                (action.spell.metamagic?.length ?? 0) > 0 ||
+                action.spell.summon !== undefined)
                 ? action.spell
                 : null;
             return (

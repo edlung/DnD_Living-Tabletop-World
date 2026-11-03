@@ -241,6 +241,35 @@ curated.ts`): Revivify (dead within a minute, 1 Hit Point), Raise Dead (10 days,
   shows once the DM approves it. The request answers the wish; undoing the request brings it back.
   The player's Overview says what they asked while it waits.
 
+## Notes from the implementation (Stage 660e, part 4a, 2026-11-03)
+
+- The four summons a slot's level scales (`packages/rules/src/summons.ts`; the spells' data curates
+  a `summon` effect): Find Steed's Otherworldly Steed (Celestial, Fey or Fiend: its Slam radiant,
+  psychic or necrotic; flying from a 4th-level slot), Giant Insect's (centipede, spider or wasp:
+  Web Bolt for a spider, flight for a wasp), Summon Dragon's Draconic Spirit (its Breath Weapon's
+  type), and Animate Objects' Animated Objects, as many as the caster's spellcasting modifier with a
+  Large one counting two and a Huge one three, each its own creature. Each block takes the SRD's
+  numbers at the slot cast, the caster's spell attack and save DC; its name is in the campaign's
+  language. A choice its creature has not, or too many objects, is refused (`SUMMON_CHOICE`).
+- In a fight the creature appears in the free space nearest the caster (`NO_ROOM` when none lies
+  within the spell's range), joins the order right after its caster with the caster's initiative,
+  and its player commands it (ADR 0044 §7). Outside a fight it waits at the caster's place; a fight
+  that starts with it puts it after its caster in the same way. The party knows its name (a
+  `summoned` knowledge basis), in a fight and out of one.
+- A summoned creature goes — dead, out of the fight and out of sight, never to be brought back —
+  when it drops to 0 Hit Points, its caster dies, its caster's Concentration on its spell ends, or
+  the caster calls up another with the same spell (`packages/combat/src/summons.ts`, a sweep after
+  every fight command as the riders' is). A ridden steed that goes throws its rider.
+- The player whose character commands a creature now picks its attack and target on its turn, and
+  uses its actions with a save (`UseCreatureAction` is a commander's act too). A Draconic Spirit's
+  Breath Weapon is part of its Multiattack (`inMultiattack`): once a turn, before, between or after
+  its Rends; the Attack action begun leaves a mark (`attackAction`) for it.
+- The DM's still: the steed's Life Bond and bonus actions (Fell Glare, Fey Step, Healing Touch), a
+  Web Bolt's Speed of 0, a centipede's Venomous Spew, the spirit's Shared Resistances, an animated
+  object's damage carried over to its object, the Bonus Action that commands animated objects, and
+  their Exhaustion immunity (Exhaustion is a level here, not a condition). The spell's words show
+  them, and its cast says the DM applies the rest.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

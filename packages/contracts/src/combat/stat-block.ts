@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
+import { summonedSchema } from '../srd/summons.ts';
 import {
   ABILITIES,
   CONDITIONS,
@@ -133,6 +134,11 @@ export const monsterSaveActionSchema = z
     onSuccess: z.enum(['half', 'none']),
     recharge: z.number().int().min(2).max(6).nullable(),
     perDay: z.number().int().min(1).max(9).nullable(),
+    /**
+     * Part of its Multiattack, beside the attacks (a Draconic Spirit's Breath Weapon; docs/adr/
+     * 0056-characters-from-the-srd.md §5): once a turn, before, between or after them.
+     */
+    inMultiattack: z.literal(true).optional(),
   })
   .strict();
 export type MonsterSaveAction = z.infer<typeof monsterSaveActionSchema>;
@@ -218,6 +224,8 @@ export const statBlockSchema = z
       })
       .strict()
       .optional(),
+    /** A creature a spell summoned (docs/adr/0056-characters-from-the-srd.md §5): whose, and how. */
+    summoned: summonedSchema.optional(),
   })
   .strict();
 export type StatBlock = z.infer<typeof statBlockSchema>;

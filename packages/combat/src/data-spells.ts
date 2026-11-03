@@ -28,6 +28,7 @@ export function decideDataSpell(context: DecisionContext, command: Cast, dice: D
     ...(targetIds === undefined ? {} : { targetIds }),
     ...(command.point === undefined ? {} : { point: command.point }),
     ...(command.metamagic === undefined ? {} : { metamagic: command.metamagic }),
+    ...(command.summon === undefined ? {} : { summon: command.summon }),
   });
   if (!plan.legal) return refused(plan);
   // Subtle Spell: no components to see, so nothing to counter (docs/adr/0056-…md §4).
@@ -54,12 +55,15 @@ export function decideDataSpell(context: DecisionContext, command: Cast, dice: D
             : { slotLevel: plan.cast.slotLevel },
         targetId: plan.targets[0]?.entityId ?? null,
         ...(plan.targets.length > 0 ? { targetIds: plan.targets.map((one) => one.entityId) } : {}),
-        point: plan.point ? { ...plan.point } : null,
+        point: plan.point ? { ...plan.point } : (command.point ?? null),
         ...(command.metamagic === undefined ? {} : { metamagic: command.metamagic }),
+        ...(command.summon === undefined ? {} : { summon: command.summon }),
       },
       command.resolution?.ids ?? [],
     );
     if (suspended) return accept(combatPremises(state, command.combatantId), ...suspended);
   }
-  return accept(...dataSpellEvents(state, command.combatantId, plan, dice));
+  return accept(
+    ...dataSpellEvents(state, command.combatantId, plan, dice, command.resolution?.ids ?? []),
+  );
 }

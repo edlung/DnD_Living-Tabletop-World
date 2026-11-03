@@ -1,4 +1,10 @@
-import type { CharacterSheet, MetamagicChoice, Square, SrdSpellMechanics } from '@ltw/contracts';
+import type {
+  CharacterSheet,
+  MetamagicChoice,
+  Square,
+  SrdSpellMechanics,
+  SummonChoice,
+} from '@ltw/contracts';
 import {
   deadForSeconds,
   combatantOf,
@@ -36,6 +42,7 @@ import {
   type TargetInfo,
   type Using,
 } from './spell-legality.ts';
+import { summonPlan, type PlacedSummon } from './summons.ts';
 import { incapacitated, vitalsOf } from './vitals.ts';
 
 /**
@@ -65,6 +72,8 @@ export interface DataSpellPlan {
   readonly point: Square | null;
   /** The Metamagic spent on it; null for none. */
   readonly metamagic: MetamagicChoice | null;
+  /** What a summoning spell calls up, and where (docs/adr/0056-characters-from-the-srd.md §5). */
+  readonly summons: readonly PlacedSummon[];
 }
 
 export interface DataSpellRequest {
@@ -74,6 +83,8 @@ export interface DataSpellRequest {
   readonly point?: Square;
   /** A Sorcerer's Metamagic (docs/adr/0056-characters-from-the-srd.md §4). */
   readonly metamagic?: MetamagicChoice;
+  /** A summoning spell's choice (§5). */
+  readonly summon?: SummonChoice;
 }
 
 const refuse = (reason: CombatReason, resolution?: Refusal['resolution']): Refusal =>
@@ -147,7 +158,9 @@ export function dataSpellPlan(
   const count = targetCount(mechanics, above + (twinned ? 1 : 0), tier);
   const repeats = effect.kind === 'attack' || effect.kind === 'auto';
   const takesTargets =
-    effect.kind !== 'dm' && (!shape || effect.kind === 'heal' || effect.kind === 'temp-hp');
+    effect.kind !== 'dm' &&
+    effect.kind !== 'summon' &&
+    (!shape || effect.kind === 'heal' || effect.kind === 'temp-hp');
   if (takesTargets && named.length === 0) return refuse('TARGET_REQUIRED');
   if (named.length > count || (!repeats && new Set(named).size !== named.length))
     return refuse('TOO_MANY_TARGETS');
@@ -194,6 +207,25 @@ export function dataSpellPlan(
     return refuse('SELF_ONLY');
   if (!record && encounter && targets.some((one) => combatantOf(encounter, one.entityId)))
     return refuse('TARGET_IN_COMBAT');
+  // A summoning spell's creatures, and their places in the fight (§5).
+  const summons =
+    effect.kind === 'summon'
+      ? summonPlan(
+          state,
+          { entityId: casterId, record: fighting ? record : null },
+          {
+            spellId: request.spellId,
+            creature: effect.creature,
+            rangeFt: mechanics.range.kind === 'feet' ? mechanics.range.amount : null,
+            level: castLevel,
+          },
+          cast,
+          caster.sheet.abilities,
+          request.summon,
+          request.point ?? null,
+        )
+      : [];
+  if ('legal' in summons) return summons;
   const applied = applyCast(caster.sheet, turn, cast);
   // Extended Spell: Advantage on saves to keep its Concentration (§4).
   const extended =
@@ -223,6 +255,7 @@ export function dataSpellPlan(
     area,
     point,
     metamagic: request.metamagic ?? null,
+    summons,
   };
 }
 

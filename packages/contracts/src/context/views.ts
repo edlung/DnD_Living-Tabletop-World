@@ -1,6 +1,7 @@
 import type { EntityKind, EntityStatus } from '../kernel/commands.ts';
 import type { MetamagicId } from '../combat/features.ts';
 import type { WeaponId, WeaponMastery } from '../rules/character-sheet.ts';
+import type { SummonOption, SummonedCreature } from '../srd/summons.ts';
 
 /**
  * Critical Context Contract (docs/adr/0012-context-engine.md, RAVENFORD_SPEC.md).
@@ -153,6 +154,14 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'SELF_ONLY',
   'ONE_METAMAGIC',
   'NOT_FOR_THIS_SPELL',
+  /**
+   * Summons (docs/adr/0056-characters-from-the-srd.md §5): no option chosen, or one its creature
+   * has not, or more objects than the caster animates; no room for it near its square; a
+   * Multiattack's breath used already this turn.
+   */
+  'SUMMON_CHOICE',
+  'NO_ROOM',
+  'USED_THIS_TURN',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;
@@ -224,6 +233,15 @@ export interface ContextSpell {
    * (docs/adr/0056-characters-from-the-srd.md §4); absent: none.
    */
   readonly metamagic?: readonly { readonly optionId: MetamagicId; readonly cost: number }[];
+  /**
+   * A summoning spell (docs/adr/0056-characters-from-the-srd.md §5): the creature it calls up
+   * beside the caster, the options to choose from, or the weight of objects it animates.
+   */
+  readonly summon?: {
+    readonly creature: SummonedCreature;
+    readonly options: readonly SummonOption[];
+    readonly objects?: { readonly budget: number };
+  };
 }
 
 export interface ContextAction {

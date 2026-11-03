@@ -131,8 +131,19 @@ export function encounterView(
             },
           }
         : {}),
-      // Its actions with a save, the DM's to run (docs/adr/0053-monsters-as-data.md §2).
-      ...(dm && vitals.kind === 'creature' && vitals.block.saveActions
+      // Its attacks, for the player whose character commands it to pick (docs/adr/0056-…md §5).
+      ...(commanded && vitals.kind === 'creature' && vitals.block.attacks.length > 0
+        ? {
+            attacks: vitals.block.attacks.map(({ attackId, name, kind }) => ({
+              attackId,
+              name,
+              kind,
+            })),
+          }
+        : {}),
+      // Its actions with a save, the DM's to run (docs/adr/0053-monsters-as-data.md §2), and its
+      // commander's player's.
+      ...((dm || commanded) && vitals.kind === 'creature' && vitals.block.saveActions
         ? {
             creatureActions: vitals.block.saveActions.map((action) => {
               const used = combatant.used?.find((one) => one.actionId === action.actionId);
@@ -144,6 +155,7 @@ export function encounterView(
                   (action.perDay === null || (used?.count ?? 0) < action.perDay),
                 aim: action.area === null ? ('creature' as const) : ('square' as const),
                 ...(action.recharge === null ? {} : { recharge: action.recharge }),
+                ...(action.inMultiattack === true ? { inMultiattack: true as const } : {}),
                 ...(action.perDay === null ? {} : { usesLeft: action.perDay - (used?.count ?? 0) }),
               };
             }),

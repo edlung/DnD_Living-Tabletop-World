@@ -129,7 +129,14 @@ export type IllegalReason =
   | 'SELF_ONLY'
   /** Metamagic: two options that do not stack; one this spell cannot take (Quickened on a Bonus Action spell). */
   | 'ONE_METAMAGIC'
-  | 'NOT_FOR_THIS_SPELL';
+  | 'NOT_FOR_THIS_SPELL'
+  /**
+   * Summons (docs/adr/0056-characters-from-the-srd.md §5): no option or one the creature has not,
+   * more objects than the caster animates; no room near the square; a breath used this turn.
+   */
+  | 'SUMMON_CHOICE'
+  | 'NO_ROOM'
+  | 'USED_THIS_TURN';
 
 export interface Illegal {
   readonly legal: false;
