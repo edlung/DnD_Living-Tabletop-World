@@ -7,7 +7,8 @@ import { ABILITY_NAMES, ABILITY_ORDER, signed, skillName } from '../character/wo
 import { IconButton } from '../visual/icon-button.tsx';
 import { EquipmentStep, SkillsStep } from './builder-choices.tsx';
 import { SpellsStep } from './builder-spells.tsx';
-import { AbilitiesStep, ClassStep, Field, OriginStep, Problems } from './builder-steps.tsx';
+import { AbilitiesStep } from './builder-abilities.tsx';
+import { ClassStep, Field, OriginStep, Problems } from './builder-steps.tsx';
 import { useBuilder, type Builder } from './use-builder.ts';
 
 /**

@@ -237,11 +237,12 @@ export function buildCharacter(choices: CharacterChoices, d6: () => number): Bui
     },
     feats,
     tools,
-    ...(order || invocations
+    ...(order || invocations || choices.classId === 'wizard'
       ? {
           classChoices: {
             ...(order && (CLASS_ORDERS as readonly string[]).includes(order) ? { order } : {}),
             ...(invocations ? { invocations: [...choices.invocations] } : {}),
+            ...(choices.classId === 'wizard' ? { spellbook: [...choices.spellbook] } : {}),
           },
         }
       : {}),

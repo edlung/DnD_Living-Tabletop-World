@@ -2,9 +2,7 @@ import { randomUUID } from 'node:crypto';
 
 import {
   campaignIdSchema,
-  entityIdSchema,
   hitDieRequestSchema,
-  levelUpRequestSchema,
   restEndRequestSchema,
   restRequestSchema,
   type RestResponse,
@@ -14,7 +12,6 @@ import {
 import type { Actor, WorldState } from '@ltw/domain';
 import {
   hitDieRefusal,
-  levelUp,
   longRest,
   longRestRefusal,
   spendHitDie,
@@ -28,10 +25,10 @@ import { sendError } from '../http/errors.ts';
 import { withBody, withPerspective, type RouteDependencies } from '../http/request-context.ts';
 
 /**
- * Rests and milestone levels at the table (Stage 530, docs/PRODUCT_COMPLETION_PLAN.md decision 9).
- * The DM calls a long rest (hit points, spell slots, free casts and Hit Point Dice back; eight hours
- * pass) or opens a short one (an hour passes; players spend Hit Point Dice, rolled by the server,
- * until the DM ends it), and grants levels. The rules (`@ltw/rules`) compute every sheet and the
+ * Rests at the table (Stage 530, docs/PRODUCT_COMPLETION_PLAN.md decision 9). The DM calls a long
+ * rest (hit points, spell slots, free casts and Hit Point Dice back; eight hours pass) or opens a
+ * short one (an hour passes; players spend Hit Point Dice, rolled by the server, until the DM ends
+ * it); levels are advancement's (`characters/advancement-routes.ts`, Stage 660). The rules (`@ltw/rules`) compute every sheet and the
  * table's system actor records it through the World Engine, as sign-in records a seat (ADR 0036
  * §4): nothing the client sends becomes a number. Each request's commands carry its `requestId`, so
  * a retry after a lost answer is `duplicate`, never a second rest.
@@ -39,13 +36,10 @@ import { withBody, withPerspective, type RouteDependencies } from '../http/reque
 export const TABLE_ACTOR: Actor = Object.freeze({ actorId: 'table', kind: 'system' });
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
-const characterParams = z
-  .object({ campaignId: campaignIdSchema, characterId: entityIdSchema })
-  .strict();
 const query = z.object({ perspective: z.string() }).strict();
 const HOUR = 3600;
 
-const commandIdOf = (kind: 'rest' | 'hit-die' | 'level', requestId: string, part: string) =>
+const commandIdOf = (kind: 'rest' | 'hit-die', requestId: string, part: string) =>
   `${kind}:${requestId}:${part}`;
 
 /** The party's characters with a sheet: who rests. */
@@ -57,7 +51,7 @@ const restingCharacters = (state: WorldState) =>
       state.characterSheets.has(entity.entityId),
   );
 
-const answer = (status: 'resting' | 'rested' | 'ended' | 'levelled' | 'duplicate'): RestResult => ({
+const answer = (status: 'resting' | 'rested' | 'ended' | 'duplicate'): RestResult => ({
   status,
 });
 
@@ -249,26 +243,5 @@ export function registerRestRoutes(
     });
     const body: RestResult = { status: 'healed', healed: spent.healed };
     return reply.code(201).send(body);
-  });
-
-  app.post('/campaigns/:campaignId/characters/:characterId/level-up', async (request, reply) => {
-    const ready = await dmOnly(request, reply, {
-      params: characterParams,
-      body: levelUpRequestSchema,
-    });
-    if (!ready) return reply;
-    const { state } = ready.context;
-    const { campaignId, characterId } = ready.params;
-    const id = commandIdOf('level', ready.body.requestId, characterId);
-    if (state.commands.has(id)) return reply.send(answer('duplicate'));
-    const sheet = state.characterSheets.get(characterId);
-    if (!sheet || state.entities.get(characterId)?.kind !== 'character') {
-      return sendError(reply, request, 'UNPROCESSABLE');
-    }
-    const next = levelUp(sheet, ready.body.classId);
-    if (typeof next === 'string') return sendError(reply, request, 'UNPROCESSABLE');
-    const command = { type: 'SetCharacterSheet', entityId: characterId, sheet: next };
-    if (!(await record(campaignId, id, command))) return sendError(reply, request, 'CONFLICT');
-    return reply.code(201).send(answer('levelled'));
   });
 }

@@ -24,7 +24,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   dialog; the DM's editors and the workshop take it with 680's editors.
 - 660c — Advancement: experience awarded by the DM and divided among those present, or milestones
   (decision 16); a level's hit points (fixed or rolled), features and choices (a subclass, an
-  ability increase or a feat, new spells); multiclassing with its prerequisites.
+  ability increase or a feat, new spells); multiclassing with its prerequisites. Done: the
+  experience table, the DM's award and granted levels, the level dialog for the player or the DM;
+  Stage 530's milestone level gives way to it.
 - 660d — Features in play: resources counted and restored at rests, the features that change
   numbers, the options chosen (Metamagic, invocations); what the engine cannot apply shows its words
   and is the DM's.

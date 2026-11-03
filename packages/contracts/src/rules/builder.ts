@@ -16,6 +16,9 @@ export type {
   CharacterOptionsResponse,
   CharacterPreviewResponse,
   ClassOptions,
+  LevelAsksView,
+  LevelOptionsResponse,
+  LevelUpResponse,
   NamedItem,
   OptionEquipment,
   OptionPick,
@@ -23,3 +26,9 @@ export type {
   SpeciesOptions,
   SpellOption,
 } from './character-options.ts';
+export {
+  awardExperienceRequestSchema,
+  levelUpChoicesSchema,
+  type AwardExperienceRequest,
+  type LevelUpChoices,
+} from './level-choices.ts';

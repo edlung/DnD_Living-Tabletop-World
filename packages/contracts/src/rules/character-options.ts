@@ -63,6 +63,12 @@ export interface ClassOptions {
   readonly masteries: number;
   /** The invocations a level 1 Warlock may take. */
   readonly invocations: readonly { readonly optionId: string; readonly name: string }[];
+  /** Every option its features choose among (invocations, Metamagic), with its prerequisite. */
+  readonly allOptions: readonly {
+    readonly optionId: string;
+    readonly name: string;
+    readonly prerequisite: string | null;
+  }[];
   /** Its level 1 features' names. */
   readonly features: readonly string[];
 }
@@ -114,7 +120,14 @@ export interface CharacterOptionsResponse {
     readonly repeatable: boolean;
   }[];
   readonly fightingStyles: readonly { readonly featId: FightingStyle; readonly name: string }[];
-  /** Cantrips and level 1 spells of every list. */
+  /** The feats a level's improvement may take: General feats, and Epic Boons at level 19. */
+  readonly levelFeats: readonly {
+    readonly featId: string;
+    readonly name: string;
+    readonly category: 'General' | 'Epic Boon';
+    readonly prerequisite: string | null;
+  }[];
+  /** Every spell of every list, by level. */
   readonly spells: readonly SpellOption[];
   readonly weapons: readonly { readonly weaponId: WeaponId; readonly name: string }[];
 }
@@ -130,4 +143,47 @@ export interface CharacterPreviewResponse {
 /** POST …/characters: the character made. */
 export interface CharacterCreatedResponse {
   readonly characterId: string;
+}
+
+/** What a level in a class asks (docs/adr/0056-characters-from-the-srd.md §3). */
+export interface LevelAsksView {
+  readonly classId: ClassId;
+  readonly classLevel: number;
+  readonly newClass: boolean;
+  readonly features: readonly string[];
+  readonly subclass: string | null;
+  readonly improvement: boolean;
+  readonly epicBoon: boolean;
+  readonly cantrips: number;
+  readonly spells: number;
+  readonly spellbook: number;
+  readonly maxSpellLevel: number;
+  readonly fightingStyle: boolean;
+  readonly expertise: number;
+  readonly invocations: number;
+  readonly metamagic: number;
+  readonly weaponMasteries: number;
+  readonly multiclassSkill: readonly Skill[] | null;
+}
+
+/** GET …/characters/:id/level-options: whether a level may be taken, and what each class asks. */
+export interface LevelOptionsResponse {
+  /** The perspective it was read from: the client refuses another's (a scoped read). */
+  readonly perspective: string;
+  readonly ready: boolean;
+  readonly level: number;
+  readonly experience: number;
+  /** The experience the next level needs. */
+  readonly nextAt: number;
+  readonly pendingLevels: number;
+  readonly classes: readonly (
+    | { readonly classId: ClassId; readonly asks: LevelAsksView }
+    | { readonly classId: ClassId; readonly refused: string }
+  )[];
+}
+
+/** POST …/characters/:id/advance. */
+export interface LevelUpResponse {
+  readonly status: 'levelled' | 'duplicate' | 'refused';
+  readonly problems: readonly ChoiceProblem[];
 }

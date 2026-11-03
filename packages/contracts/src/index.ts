@@ -210,11 +210,9 @@ export {
 } from './rules/contagions.ts';
 export {
   hitDieRequestSchema,
-  levelUpRequestSchema,
   restEndRequestSchema,
   restRequestSchema,
   type HitDieRequest,
-  type LevelUpRequest,
   type RestRequest,
   type RestResponse,
   type RestResult,

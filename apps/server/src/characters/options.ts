@@ -109,6 +109,11 @@ function optionsIn(language: ReferenceLanguage): CharacterOptionsResponse {
                   .map((one) => ({ optionId: one.optionId, name: one.name }))
               : [],
           features: cls.features.filter((one) => one.level === 1).map((one) => one.name),
+          allOptions: (cls.options?.entries ?? []).map((one) => ({
+            optionId: one.optionId,
+            name: one.name,
+            prerequisite: one.prerequisite,
+          })),
         },
       ];
     }),
@@ -157,7 +162,19 @@ function optionsIn(language: ReferenceLanguage): CharacterOptionsResponse {
       featId,
       name: feat(featId)?.name ?? featId,
     })),
-    spells: SRD_SPELLS.filter((spell) => spell.level <= 1).map((spell) => ({
+    levelFeats: SRD_FEATS.flatMap((one) =>
+      one.category === 'General' || one.category === 'Epic Boon'
+        ? [
+            {
+              featId: one.featId,
+              name: featIn(one, language).value.name,
+              category: one.category,
+              prerequisite: featIn(one, language).value.prerequisite,
+            },
+          ]
+        : [],
+    ),
+    spells: SRD_SPELLS.map((spell) => ({
       spellId: spell.spellId,
       name: spellIn(spell, language).value.name,
       level: spell.level,

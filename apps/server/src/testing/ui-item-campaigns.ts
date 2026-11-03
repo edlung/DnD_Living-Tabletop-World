@@ -24,6 +24,8 @@ export const UI_ITEM_CAMPAIGNS = {
   catalogRu: 'ui-items-catalog-ru',
   /** A player makes a character of their own (docs/adr/0056-…md §2). */
   builder: 'ui-builder-player',
+  /** The DM grants a level and a player takes it (docs/adr/0056-…md §3). */
+  levels: 'ui-builder-levels',
   /** A player attunes in a Short Rest (docs/adr/0054-items-as-data.md §5). */
   attune: 'ui-items-attune',
   /** Charges, dawn, and a potion known by a taste (§5). */
@@ -78,6 +80,7 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.catalog, 'en'],
     [UI_ITEM_CAMPAIGNS.catalogRu, 'ru'],
     [UI_ITEM_CAMPAIGNS.builder, 'en'],
+    [UI_ITEM_CAMPAIGNS.levels, 'en'],
     [UI_ITEM_CAMPAIGNS.attune, 'en'],
     [UI_ITEM_CAMPAIGNS.charges, 'en'],
   ] as const) {

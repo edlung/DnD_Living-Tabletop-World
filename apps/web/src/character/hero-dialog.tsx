@@ -30,6 +30,8 @@ export type OverviewSections = (shown: {
   readonly entityId: string;
   readonly sheet: CharacterSheet;
   readonly derived: CharacterDerived;
+  /** Reads the sheet again: a change made here shows without waiting for the live signal. */
+  readonly reread: () => void;
 }) => ReactNode;
 
 const TABS: readonly { readonly id: HeroTab; readonly label: string }[] = [
@@ -265,7 +267,12 @@ function HeroContent({
                   entityId={entityId}
                   sheet={value.sheet}
                   derived={value.derived}
-                  table={overview?.({ entityId, sheet: value.sheet, derived: value.derived })}
+                  table={overview?.({
+                    entityId,
+                    sheet: value.sheet,
+                    derived: value.derived,
+                    reread,
+                  })}
                 />
               ) : tab === 'skills' ? (
                 <SkillsTab entityId={entityId} derived={value.derived} />

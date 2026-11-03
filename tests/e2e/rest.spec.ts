@@ -1,6 +1,7 @@
 import { expect as baseExpect, test, type Page } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
+import { takeWizardLevel } from './support/levels.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openCharacter, openSheet } from './support/shell.ts';
 
@@ -8,9 +9,9 @@ import { openCharacter, openSheet } from './support/shell.ts';
 const expect = baseExpect.configure({ timeout: 15_000 });
 
 /**
- * Rests, Hit Point Dice, milestone levels and the quest log (Stage 530, work-orders/STAGE_530.md):
- * the DM calls a rest from Time and weather, the player spends a Hit Point Die the server rolls, the
- * DM grants a level; the Journal tells the party's quest. Elowen starts each campaign at 30 of 78
+ * Rests, Hit Point Dice, levels and the quest log (Stage 530, work-orders/STAGE_530.md): the DM
+ * calls a rest from Time and weather, the player spends a Hit Point Die the server rolls, the DM
+ * takes a level for a character (Stage 660); the Journal tells the party's quest. Elowen starts each campaign at 30 of 78
  * hit points (`ui-rest-campaigns.ts`); each journey owns its campaign.
  */
 const CAMPAIGNS = {
@@ -82,7 +83,7 @@ test('the DM’s short rest lets the player spend a Hit Point Die the server rol
   ).toBeVisible();
 });
 
-test('a long rest restores Elowen, and the DM grants a level the rules compute', async ({
+test('a long rest restores Elowen, and the DM takes a level for her by the rules', async ({
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, CAMPAIGNS.long);
@@ -94,12 +95,7 @@ test('a long rest restores Elowen, and the DM grants a level the rules compute',
   await page.getByRole('button', { name: 'Full character sheet' }).click();
   const dialog = await openCharacter(page, 'Overview');
   await hitPoints(page, 78, 78);
-  await dialog
-    .getByRole('combobox', { name: 'Class to level' })
-    .selectOption({ label: 'Wizard 8 → 9' });
-  await dialog.getByRole('button', { name: 'Grant a level' }).click();
-  await dialog.getByRole('button', { name: 'Grant Wizard 8 → 9' }).click();
-  await expect(page.getByRole('dialog').getByText('A new level is granted.')).toBeVisible();
+  await takeWizardLevel(page, dialog);
   await hitPoints(page, 84, 84);
   await expect(page.getByRole('dialog').getByText('Level 16', { exact: true })).toBeVisible();
 });

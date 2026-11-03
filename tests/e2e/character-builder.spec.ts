@@ -132,3 +132,47 @@ test('a player makes another character of their own from the character dialog', 
   const perspective = page.getByLabel('Perspective', { exact: true });
   await expect(perspective.locator('option', { hasText: 'Pip Underbough' })).toHaveCount(1);
 });
+
+test('the DM awards experience and grants a level; the player takes it with an improvement', async ({
+  browser,
+}) => {
+  test.setTimeout(120_000);
+  const dm = await (await browser.newContext()).newPage();
+  await enterWorld(dm, TOKENS.dm, 'ui-builder-levels');
+  await openSheet(dm, 'Party');
+  const award = dm.getByRole('region', { name: 'Experience' });
+  await award.getByLabel('Experience points', { exact: true }).fill('600');
+  await award.getByRole('button', { name: 'Award, divided evenly' }).click();
+  await expect(award.getByRole('status')).toContainText('XP to each.');
+  // Her card on the Party sheet opens her sheet.
+  await dm
+    .locator('.party-list > li')
+    .filter({ hasText: 'Elowen Starwhisper' })
+    .getByRole('button', { name: 'Sheet' })
+    .click();
+  const dmOverview = await openCharacter(dm, 'Overview');
+  await dmOverview.getByRole('button', { name: 'Grant a level to take' }).click();
+  await expect(dmOverview.getByText('A level is granted to take.')).toBeVisible();
+
+  const player = await (await browser.newContext()).newPage();
+  await enterWorld(player, TOKENS.player, 'ui-builder-levels');
+  const overview = await openCharacter(player, 'Overview');
+  const levels = overview.getByRole('region', { name: 'Experience and levels' });
+  // 600 among the four: 150 each; her next level at the table's 195,000.
+  await expect(levels).toContainText('150 XP; level 16 at 195,000 XP.');
+  await expect(levels).toContainText('Levels granted by the DM to take: 1.');
+  await levels.getByRole('button', { name: 'Take level 16' }).click();
+  const dialog = player.getByRole('dialog', { name: 'Level 16' });
+  await expect(dialog.getByLabel('Class', { exact: true })).toHaveValue('ranger');
+  await expect(dialog).toContainText('This level gives: Ability Score Improvement.');
+  await dialog
+    .getByLabel('Take', { exact: true })
+    .selectOption({ label: 'Ability Score Improvement' });
+  const scores = dialog.getByRole('group', { name: /^\+2 to one, or \+1 to two/ });
+  await scores.getByLabel('Wisdom', { exact: true }).check();
+  await scores.getByLabel('Constitution', { exact: true }).check();
+  await expectAccessible(player, 'taking a level');
+  await dialog.getByRole('button', { name: 'Take the level' }).click();
+  await expect(levels.getByText('Level 16 is taken.')).toBeVisible();
+  await expect(player.getByRole('dialog').first()).toContainText('Ranger 8');
+});

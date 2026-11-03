@@ -9,7 +9,6 @@ import {
   attacksFor,
   hitDice,
   hitDieRefusal,
-  levelUp,
   longRest,
   longRestRefusal,
   spendHitDie,
@@ -103,47 +102,6 @@ describe('Hit Point Dice (SRD 5.2.1)', () => {
   });
 });
 
-describe('a milestone level', () => {
-  it('adds the class die’s fixed hit points and Constitution, and the new spell slots', () => {
-    const next = levelUp(elowen, 'wizard');
-    if (typeof next === 'string') throw new Error(next);
-    expect(next.classes).toContainEqual(expect.objectContaining({ classId: 'wizard', level: 9 }));
-    expect(next.hitPoints).toEqual({ max: 84, current: 84 });
-    expect(next.spellSlots.max).toEqual([4, 3, 3, 3, 2, 1, 1, 0, 0]);
-    expect(deriveCharacter(next).proficiencyBonus).toBe(5);
-    expect(characterSheetSchema.safeParse(next).success).toBe(true);
-    // Temporary hit points and a lowered maximum stay through it (docs/adr/0048-hit-points.md).
-    const drained = levelUp(
-      { ...elowen, hitPoints: { max: 78, current: 40, reducedBy: 30, temporary: 4 } },
-      'wizard',
-    );
-    if (typeof drained === 'string') throw new Error(drained);
-    expect(drained.hitPoints).toEqual({ max: 84, current: 46, reducedBy: 30, temporary: 4 });
-  });
-
-  it('gives a Ranger Extra Attack at level 5', () => {
-    const young: CharacterSheet = {
-      ...elowen,
-      classes: [{ classId: 'ranger', level: 4 }],
-      attacksPerAction: 1,
-      spellSlots: { max: [3, 0, 0, 0, 0, 0, 0, 0, 0], expended: [1, 0, 0, 0, 0, 0, 0, 0, 0] },
-    };
-    const next = levelUp(young, 'ranger');
-    if (typeof next === 'string') throw new Error(next);
-    expect(next.attacksPerAction).toBe(2);
-    expect(next.spellSlots).toEqual({
-      max: [4, 2, 0, 0, 0, 0, 0, 0, 0],
-      expended: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    });
-  });
-
-  it('refuses a class the character lacks and a level past 20', () => {
-    const ranger: CharacterSheet = { ...elowen, classes: [{ classId: 'ranger', level: 20 }] };
-    expect(levelUp(ranger, 'wizard')).toBe('NOT_A_CLASS_OF_THE_CHARACTER');
-    expect(levelUp(ranger, 'ranger')).toBe('MAX_LEVEL');
-  });
-});
-
 describe('the Fighter, the Rogue and the Cleric (Stage 605)', () => {
   const sheetOf = (classId: ClassId, level: number, con = 14): CharacterSheet => ({
     ...elowen,
@@ -165,18 +123,12 @@ describe('the Fighter, the Rogue and the Cleric (Stage 605)', () => {
     expect(attacksFor([{ classId: 'fighter', level: 11 }])).toBe(3);
     expect(attacksFor([{ classId: 'fighter', level: 20 }])).toBe(4);
     expect(attacksFor([{ classId: 'rogue', level: 20 }])).toBe(1);
-    const next = levelUp(sheetOf('fighter', 10), 'fighter');
-    if (typeof next === 'string') throw new Error(next);
-    expect(next.attacksPerAction).toBe(3);
   });
 
   it('counts a Cleric as a full caster', () => {
     expect(spellSlotsFor([{ classId: 'cleric', level: 15 }])).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 0]);
-    // The ninth-level slot comes at caster level 17.
-    const next = levelUp(sheetOf('cleric', 16), 'cleric');
-    if (typeof next === 'string') throw new Error(next);
-    expect(next.spellSlots.max).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 1]);
-    expect(next.hitPoints.max - sheetOf('cleric', 16).hitPoints.max).toBe(7);
+    // The ninth-level slot comes at caster level 17 (a level taken: builder/level-up.test.ts).
+    expect(spellSlotsFor([{ classId: 'cleric', level: 17 }])).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 1]);
   });
 });
 

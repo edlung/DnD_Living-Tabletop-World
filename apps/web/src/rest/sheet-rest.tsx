@@ -1,10 +1,5 @@
-import {
-  effectiveMaximum,
-  type CharacterDerived,
-  type CharacterSheet,
-  type ClassId,
-} from '@ltw/contracts';
-import { readableLabel, useT } from '@ltw/ui';
+import { effectiveMaximum, type CharacterDerived, type CharacterSheet } from '@ltw/contracts';
+import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import { facesOf, useOwnDice } from '../dice/own-dice.tsx';
@@ -121,92 +116,6 @@ export function HitDice({ entityId, sheet, derived, locked, onRun }: SheetRestPr
         <p id={`${id}-why`} className="muted">
           {reason}
         </p>
-      )}
-    </section>
-  );
-}
-
-/**
- * A milestone level, for the DM (Stage 530): the class to level, then a second, deliberate press,
- * since the rules' new hit points and spell slots are recorded at once.
- */
-export function GrantLevel({ entityId, sheet, locked, onRun }: Omit<SheetRestProps, 'derived'>) {
-  const t = useT();
-  const id = useId();
-  const isDm = useDiceTable()?.isDm ?? false;
-  const [chosen, setChosen] = useState<ClassId | null>(null);
-  const [asking, setAsking] = useState(false);
-  if (!isDm) return null;
-  const level = sheet.classes.reduce((sum, entry) => sum + entry.level, 0);
-  const classId = chosen ?? sheet.classes[0]?.classId ?? null;
-  const entry = sheet.classes.find((option) => option.classId === classId);
-  const step = (option: { classId: ClassId; level: number }) =>
-    t('{class} {from} → {to}', {
-      class: readableLabel(option.classId, t),
-      from: option.level,
-      to: option.level + 1,
-    });
-  return (
-    <section className="hero-section" aria-labelledby={`${id}-title`}>
-      <h3 id={`${id}-title`}>{t('Level (DM)')}</h3>
-      <p className="muted">
-        {t('Level {level}. A milestone level adds hit points and spell slots by the rules.', {
-          level,
-        })}
-      </p>
-      {level >= 20 || !entry || classId === null ? (
-        <p className="muted">{t('The highest level is reached.')}</p>
-      ) : asking ? (
-        <div className="action-row">
-          <button
-            type="button"
-            className="primary-button"
-            disabled={locked}
-            onClick={() => {
-              setAsking(false);
-              onRun(restAction({ action: 'level-up', characterId: entityId, classId }));
-            }}
-          >
-            <Glyph name="confirm" />
-            {t('Grant {step}', { step: step(entry) })}
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setAsking(false);
-            }}
-          >
-            {t('Cancel')}
-          </button>
-        </div>
-      ) : (
-        <div className="inline-field">
-          {sheet.classes.length > 1 && (
-            <select
-              aria-label={t('Class to level')}
-              value={classId}
-              onChange={(event) => {
-                setChosen(event.target.value as ClassId);
-              }}
-            >
-              {sheet.classes.map((option) => (
-                <option key={option.classId} value={option.classId}>
-                  {step(option)}
-                </option>
-              ))}
-            </select>
-          )}
-          <button
-            type="button"
-            disabled={locked}
-            onClick={() => {
-              setAsking(true);
-            }}
-          >
-            <Glyph name="blessing" />
-            {t('Grant a level')}
-          </button>
-        </div>
       )}
     </section>
   );

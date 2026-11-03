@@ -9,6 +9,7 @@ import { magicItemRows, parseMagicItems } from './magic-items.ts';
 import { deriveMonsterMechanics } from './monster-mechanics.ts';
 import { parseMonsters } from './monsters.ts';
 import { parseGlossary, parseRulesSections } from './reference.ts';
+import { parseAdvancement } from './advancement.ts';
 import { parseClasses } from './classes.ts';
 import { parseOrigins } from './origins.ts';
 import { deriveMechanics } from './spell-mechanics.ts';
@@ -85,6 +86,7 @@ const origins = parseOrigins(dir, equipmentCatalog);
 write('backgrounds.json', origins.backgrounds);
 write('species.json', origins.species);
 write('feats.json', origins.feats);
+write('advancement.json', parseAdvancement(dir));
 process.stdout.write(
   `spells ${spells.length}, monsters ${monsters.length}, equipment ${equipment.length}, magic items ${magicItems.length}, glossary ${glossary.entries.length}, rules sections ${rulesSections.length}, classes ${classes.length}, backgrounds ${origins.backgrounds.length}, species ${origins.species.length}, feats ${origins.feats.length}\n`,
 );

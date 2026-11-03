@@ -47,7 +47,6 @@ export {
   attacksFor,
   hitDice,
   hitDieRefusal,
-  levelUp,
   longRest,
   longRestRefusal,
   wakeAfterShortRest,
@@ -55,7 +54,6 @@ export {
   spendHitDie,
   type HitDicePool,
   type HitDieRefusal,
-  type LevelUpRefusal,
 } from './rest.ts';
 export { OBJECT_ARMOR_CLASS, OBJECT_HIT_POINTS, objectStatBlock } from './objects.ts';
 export { lightSeen, obscurementSeen, perceivesWithin, type Obscurement } from './sight.ts';
@@ -247,3 +245,13 @@ export {
   featIn,
   speciesIn,
 } from './srd/russian-characters.ts';
+export {
+  experienceFor,
+  levelAsks,
+  levelFeatures,
+  levelForExperience,
+  levelUpCharacter,
+  primaryAbilities,
+  type LevelAsks,
+  type LevelUpResult,
+} from './builder/level-up.ts';

@@ -13,6 +13,12 @@ const levelSpells = (title: string, level: string): TableSpec => ({
 });
 
 export const CHARACTER_TABLE_SPECS: readonly TableSpec[] = [
+  {
+    title: 'Character Advancement',
+    header: 'Level Experience Points Proficiency Bonus',
+    columns: ['Level', 'Experience Points', 'Proficiency Bonus'],
+    row: /^(\d+) ([\d,]+) (\+\d)$/,
+  },
   { ...levelSpells('Life Domain Spells', 'Cleric Level'), header: 'Cleric Prepared Spells Level' },
   ...['Arid Land', 'Polar Land', 'Temperate Land', 'Tropical Land'].map((title) => ({
     ...levelSpells(title, 'Druid Level'),

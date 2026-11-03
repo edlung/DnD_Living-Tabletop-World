@@ -190,22 +190,6 @@ describe('rests and levels at the table (Stage 530)', () => {
     expect(after.hitDiceSpent).toBeUndefined();
   });
 
-  it('grants a milestone level the rules compute, at the DM’s word only', async () => {
-    const body = { requestId: randomUUID(), classId: 'wizard' };
-    const path = `characters/${ELOWEN}/level-up`;
-    expect((await call(path, body, TOKENS.player, 'PLAYER')).statusCode).toBe(403);
-    expect((await call(path, body, TOKENS.dm)).json()).toEqual({ status: 'levelled' });
-    expect((await call(path, body, TOKENS.dm)).json()).toEqual({ status: 'duplicate' });
-    const after = await sheetOf();
-    expect(after.classes).toContainEqual(expect.objectContaining({ classId: 'wizard', level: 9 }));
-    // A d6 level: 4 plus Constitution +2.
-    expect(after.hitPoints).toEqual({ max: 84, current: 84 });
-    // Caster level 13 (wizard 9 + ranger 7 halved, rounded up): a 7th-level slot.
-    expect(after.spellSlots.max).toEqual([4, 3, 3, 3, 2, 1, 1, 0, 0]);
-    const wrong = { requestId: randomUUID(), classId: 'ranger', extra: true };
-    expect((await call(path, wrong, TOKENS.dm)).statusCode).toBe(400);
-  });
-
   it('rests no one in a fight, and shows no open rest while one runs', async () => {
     await call('rest', { requestId: randomUUID(), kind: 'short' }, TOKENS.dm);
     for (const command of ambush.place) await dmCommand(command);

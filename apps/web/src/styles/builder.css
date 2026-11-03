@@ -97,6 +97,12 @@
   gap: 0.3rem;
   max-width: 28rem;
 }
+/* A select is as wide as its longest option unless held: it would push a narrow dialog. */
+.builder-field select,
+.builder-field input {
+  width: 100%;
+  min-width: 0;
+}
 .builder-row,
 .builder-scores {
   display: grid;
@@ -171,6 +177,27 @@
 .builder-footer-actions {
   display: flex;
   gap: 0.5rem;
+}
+/* A level taken (builder/level-dialog.tsx): as tall as its choices, the way to take it below them. */
+.level-dialog {
+  height: auto;
+  max-height: min(48rem, calc(100dvh - 2 * var(--gutter)));
+}
+.level-dialog[open] {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+.level-dialog .guide-footer {
+  justify-content: flex-end;
+}
+.level-dialog .guide-footer > [role='status'] {
+  flex: 1 1 100%;
+  max-height: 8rem;
+  overflow-y: auto;
+}
+.builder-inline .builder-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 0.9rem;
 }
 /* The step's title shows on a narrow screen, where the steps keep only their numbers. */
 .builder-step-title {

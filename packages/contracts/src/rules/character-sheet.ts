@@ -364,9 +364,17 @@ export const characterSheetSchema = z
       .object({
         order: z.enum(CLASS_ORDERS).optional(),
         invocations: z.array(srdIdSchema).max(10).optional(),
+        /** A Sorcerer's Metamagic options. */
+        metamagic: z.array(srdIdSchema).max(10).optional(),
+        /** A Wizard's spellbook: the level 1+ spells it may prepare. */
+        spellbook: z.array(srdIdSchema).max(80).optional(),
       })
       .strict()
       .optional(),
+    /** Its experience points (docs/adr/0056-…md §3); absent: none counted. */
+    experience: z.number().int().min(0).max(10_000_000).optional(),
+    /** Levels the DM granted that its player has yet to take (a milestone); absent: none. */
+    pendingLevels: z.number().int().min(1).max(19).optional(),
     attacksPerAction: z.number().int().min(1).max(4),
     weapons: z.array(z.enum(WEAPON_IDS)),
     /**

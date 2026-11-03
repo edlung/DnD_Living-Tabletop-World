@@ -55,7 +55,8 @@ describe('the character builder’s routes', () => {
       'Soldier',
     ]);
     expect(options.originFeats).toHaveLength(4);
-    expect(options.spells.every((spell) => spell.level <= 1)).toBe(true);
+    expect(options.spells).toHaveLength(339);
+    expect(options.levelFeats.map((one) => one.category)).toContain('Epic Boon');
     const wizard = options.classes.find((one) => one.classId === 'wizard');
     expect(wizard?.casting).toEqual({ ability: 'int', cantrips: 3, prepared: 4, slots: 2 });
     expect((await get(app, `${BASE}/character-options`, TOKENS.outsider)).statusCode).toBe(404);

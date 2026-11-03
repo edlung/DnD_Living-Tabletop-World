@@ -5,12 +5,13 @@ import {
   type HitDieSides,
 } from '@ltw/contracts';
 
-import { abilityModifier, spellSlotsFor, totalLevel } from './character-math.ts';
+import { abilityModifier } from './character-math.ts';
 
 /**
- * Rest and progression (SRD 5.2.1; Stage 530, docs/PRODUCT_COMPLETION_PLAN.md decision 9): Hit Point
- * Dice, spending them in a short rest, the long rest, and a milestone level the DM grants. Pure
- * functions over sheets; the server rolls the dice and the World Engine records the sheets.
+ * Rest (SRD 5.2.1; Stage 530, docs/PRODUCT_COMPLETION_PLAN.md decision 9): Hit Point Dice,
+ * spending them in a short rest, and the long rest; a level is the builder's (`builder/level-up.ts`,
+ * Stage 660). Pure functions over sheets; the server rolls the dice and the World Engine records the
+ * sheets.
  */
 export const CLASS_HIT_DIE: Readonly<Record<ClassId, HitDieSides>> = {
   ranger: 10,
@@ -26,9 +27,6 @@ export const CLASS_HIT_DIE: Readonly<Record<ClassId, HitDieSides>> = {
   sorcerer: 6,
   warlock: 8,
 };
-
-/** A level's fixed hit points: the die's average rounded up (4, 5, 6, 7). */
-const LEVEL_HP: Readonly<Record<HitDieSides, number>> = { 6: 4, 8: 5, 10: 6, 12: 7 };
 
 type Spent = NonNullable<CharacterSheet['hitDiceSpent']>;
 const KEY = { 6: 'd6', 8: 'd8', 10: 'd10', 12: 'd12' } as const satisfies Record<
@@ -172,14 +170,16 @@ export function wakeAfterShortRest(sheet: CharacterSheet): CharacterSheet | null
   };
 }
 
-export type LevelUpRefusal = 'NOT_A_CLASS_OF_THE_CHARACTER' | 'MAX_LEVEL';
-
 /**
  * Attacks per Attack action by class level (SRD 5.2.1): a Ranger's Extra Attack at 5; a Fighter's
  * at 5, Two Extra Attacks at 11, Three at 20. Several classes do not add up: the best counts.
  */
 const EXTRA_ATTACKS: Partial<Record<ClassId, readonly (readonly [number, number])[]>> = {
   ranger: [[5, 2]],
+  // Stage 660 (docs/adr/0056-characters-from-the-srd.md §3): the other martial classes' at 5.
+  barbarian: [[5, 2]],
+  monk: [[5, 2]],
+  paladin: [[5, 2]],
   fighter: [
     [5, 2],
     [11, 3],
@@ -195,39 +195,4 @@ export function attacksFor(classes: CharacterSheet['classes']): number {
     }
   }
   return attacks;
-}
-
-/**
- * A milestone level in one of the character's classes: the level's fixed hit points plus the
- * Constitution modifier (at least 1), the spell slots for the new levels, and Extra Attack where the
- * class gains it (`attacksFor`). The proficiency bonus and every number that follows from the level are derived,
- * so they follow too. Features beyond these (new spells, subclass features) are the DM's to add.
- */
-export function levelUp(sheet: CharacterSheet, classId: ClassId): CharacterSheet | LevelUpRefusal {
-  if (!sheet.classes.some((entry) => entry.classId === classId)) {
-    return 'NOT_A_CLASS_OF_THE_CHARACTER';
-  }
-  if (totalLevel(sheet) >= 20) return 'MAX_LEVEL';
-  const classes = sheet.classes.map((entry) =>
-    entry.classId === classId ? { ...entry, level: entry.level + 1 } : entry,
-  );
-  const gained = Math.max(
-    1,
-    LEVEL_HP[CLASS_HIT_DIE[classId]] + abilityModifier(sheet.abilities.con),
-  );
-  const slots = spellSlotsFor(classes);
-  return {
-    ...sheet,
-    classes,
-    hitPoints: {
-      ...sheet.hitPoints,
-      max: sheet.hitPoints.max + gained,
-      current: sheet.hitPoints.current + gained,
-    },
-    spellSlots: {
-      max: slots,
-      expended: slots.map((max, index) => Math.min(max, sheet.spellSlots.expended[index] ?? 0)),
-    },
-    attacksPerAction: Math.max(sheet.attacksPerAction, attacksFor(classes)),
-  };
 }

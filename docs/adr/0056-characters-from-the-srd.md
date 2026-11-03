@@ -74,6 +74,27 @@ backgrounds,species,feats}.json`, held to the SRD by tests (a features table's p
   English changed reads in English until made again. A species' options keep their English values
   in the choices and show their words from the table in the campaign's language.
 
+## Notes from the implementation (Stage 660c, 2026-11-03)
+
+- The SRD's Character Advancement table (experience and proficiency bonus by level) is read with
+  the classes (`scripts/srd/advancement.ts`, `packages/rules/src/srd/advancement.json`). The sheet
+  keeps its experience and the levels the DM granted to take (`experience`, `pendingLevels`).
+- The DM awards experience on the Party sheet, divided evenly among the characters ticked, what
+  does not divide left over; or grants a level to take (a milestone). A character with its next
+  level's experience, or a level granted, takes it from its Overview: the class (a new one only
+  with 13 in the primary abilities of every class it would have, and the skill it gives where its
+  "As a Multiclass Character" names one), the hit points fixed or rolled by the World Engine, and
+  what the level asks — read from the class's features table: an Ability Score Improvement or a
+  General feat (an Epic Boon at 19), the subclass at 3, a Fighting Style, Expertise, Eldritch
+  Invocations, Metamagic, Weapon Mastery, cantrips, prepared spells and a Wizard's spellbook. The
+  rules build the next sheet (`packages/rules/src/builder/level-up.ts`), a raised Constitution
+  adding its hit point to every level before, and the World Engine records it; the DM may take a
+  level for any character.
+- A level's features are named in the campaign's language from the translated features table.
+- Stage 530's milestone level — the DM's "Grant a level", which added the hit points and spell
+  slots and left the level's choices to the DM — gives way to this: one way to a level, with its
+  choices made and checked.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

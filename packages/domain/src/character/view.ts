@@ -64,6 +64,8 @@ function copySheet(
     // A built character's origin, feats, tools and level 1 choices (docs/adr/0056-…md §2).
     ...(sheet.origin === undefined ? {} : { origin: { ...sheet.origin } }),
     ...(sheet.feats === undefined ? {} : { feats: [...sheet.feats] }),
+    ...(sheet.experience === undefined ? {} : { experience: sheet.experience }),
+    ...(sheet.pendingLevels === undefined ? {} : { pendingLevels: sheet.pendingLevels }),
     ...(sheet.tools === undefined ? {} : { tools: [...sheet.tools] }),
     ...(sheet.classChoices === undefined
       ? {}
@@ -73,6 +75,12 @@ function copySheet(
             ...(sheet.classChoices.invocations === undefined
               ? {}
               : { invocations: [...sheet.classChoices.invocations] }),
+            ...(sheet.classChoices.metamagic === undefined
+              ? {}
+              : { metamagic: [...sheet.classChoices.metamagic] }),
+            ...(sheet.classChoices.spellbook === undefined
+              ? {}
+              : { spellbook: [...sheet.classChoices.spellbook] }),
           },
         }),
     attacksPerAction: sheet.attacksPerAction,

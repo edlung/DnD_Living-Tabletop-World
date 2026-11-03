@@ -8,6 +8,7 @@ import { AskForCheck } from '../dice/check-forms.tsx';
 import { GiveHandout } from '../handouts/handouts.tsx';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { AwardExperience } from '../builder/level-section.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { PartyCard } from './party-card.tsx';
 import { ToolboxForms } from './toolbox-forms.tsx';
@@ -88,6 +89,7 @@ export function PartySheet({
         )}
       </section>
       <div className="party-tools">
+        <AwardExperience api={api} characters={characters.map((entry) => entry.character)} />
         <AskForCheck characters={characters.map((entry) => entry.character)} />
         <ToolboxForms
           characters={characters.map((entry) => entry.character)}

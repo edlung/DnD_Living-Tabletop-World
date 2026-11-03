@@ -1,6 +1,5 @@
 import type {
   AttunedResponse,
-  ClassId,
   CommandRejected,
   HitDieSides,
   IdentifiedResponse,
@@ -11,8 +10,8 @@ import type { Translate } from '@ltw/ui';
 import { ApiError, type WorldApi } from '../api/client.ts';
 
 /**
- * Rests and levels as the table asks for them (Stage 530): the DM calls a rest, ends a short one or
- * grants a level; a player spends a Hit Point Die. The server's rules decide every number; the words
+ * Rests as the table asks for them (Stage 530): the DM calls a rest or ends a short one; a player
+ * spends a Hit Point Die; attunement and study wait for a short rest. The server's rules decide every number; the words
  * here say what it answered. A retry sends the same `requestId`, so nothing happens twice.
  */
 export type RestIntent =
@@ -30,7 +29,6 @@ export type RestIntent =
       /** The face of the player's own die (ADR 0044 §4). */
       readonly face?: number;
     }
-  | { readonly action: 'level-up'; readonly characterId: string; readonly classId: ClassId }
   | {
       /** Attunement to an item (docs/adr/0054-items-as-data.md §5): in a Short Rest, or the DM's. */
       readonly action: 'attune';
@@ -62,7 +60,6 @@ const CONFLICT: Readonly<Record<RestIntent['action'], string>> = {
   start: 'No rest now: a fight is running, or a short rest is already under way.',
   end: 'No short rest is under way.',
   'hit-die': 'The short rest is over, or a fight began.',
-  'level-up': 'The level could not be granted. Try again.',
   attune: 'Attunement waits for a short rest, out of a fight.',
   identify: 'Studying an item waits for a short rest, out of a fight.',
 };
@@ -70,7 +67,6 @@ const REFUSED: Readonly<Record<RestIntent['action'], string>> = {
   start: 'No rest now: a fight is running, or a short rest is already under way.',
   end: 'No short rest is under way.',
   'hit-die': 'No Hit Point Die can be spent now.',
-  'level-up': 'That level cannot be granted.',
   attune: 'It cannot be attuned now.',
   identify: 'It cannot be studied now.',
 };
@@ -105,11 +101,6 @@ const call = (request: RestIntent): [string, object] => {
           sides: request.sides,
           ...(request.face === undefined ? {} : { face: request.face }),
         },
-      ];
-    case 'level-up':
-      return [
-        `characters/${encodeURIComponent(request.characterId)}/level-up`,
-        { classId: request.classId },
       ];
     case 'identify':
       return [
@@ -164,8 +155,6 @@ export async function runRest(
         return result.woke === undefined
           ? t('The short rest is over.')
           : t('The short rest is over. {names} came round.', { names: result.woke.join(', ') });
-      case 'levelled':
-        return t('A new level is granted.');
       case 'duplicate':
         return t('That was already done.');
       case 'attuned':
