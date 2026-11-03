@@ -18,6 +18,13 @@ export const CLASS_HIT_DIE: Readonly<Record<ClassId, HitDieSides>> = {
   fighter: 10,
   rogue: 8,
   cleric: 8,
+  barbarian: 12,
+  bard: 8,
+  druid: 8,
+  monk: 8,
+  paladin: 10,
+  sorcerer: 6,
+  warlock: 8,
 };
 
 /** A level's fixed hit points: the die's average rounded up (4, 5, 6, 7). */

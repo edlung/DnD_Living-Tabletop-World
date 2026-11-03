@@ -14,7 +14,55 @@
       "religion"
     ],
     "tool": "Calligrapher’s Supplies",
-    "equipment": "Choose A or B: (A) Calligrapher’s Supplies, Book (prayers), Holy Symbol, Parchment (10 sheets), Robe, 8 GP; or (B) 50 GP"
+    "equipment": "Choose A or B: (A) Calligrapher’s Supplies, Book (prayers), Holy Symbol, Parchment (10 sheets), Robe, 8 GP; or (B) 50 GP",
+    "creation": {
+      "tools": {
+        "fixed": [
+          "srd-calligraphers-supplies"
+        ],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-calligraphers-supplies",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-book",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-parchment",
+              "quantity": 10
+            },
+            {
+              "catalogId": "srd-robe",
+              "quantity": 1
+            }
+          ],
+          "picks": [
+            {
+              "kind": "holy-symbol",
+              "from": [
+                "srd-amulet-holy-symbol",
+                "srd-emblem-holy-symbol",
+                "srd-reliquary-holy-symbol"
+              ]
+            }
+          ],
+          "gp": 8
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 50
+        }
+      ]
+    }
   },
   {
     "backgroundId": "criminal",
@@ -31,7 +79,50 @@
       "stealth"
     ],
     "tool": "Thieves’ Tools",
-    "equipment": "Choose A or B: (A) 2 Daggers, Thieves’ Tools, Crowbar, 2 Pouches, Traveler’s Clothes, 16 GP; or (B) 50 GP"
+    "equipment": "Choose A or B: (A) 2 Daggers, Thieves’ Tools, Crowbar, 2 Pouches, Traveler’s Clothes, 16 GP; or (B) 50 GP",
+    "creation": {
+      "tools": {
+        "fixed": [
+          "srd-thieves-tools"
+        ],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-dagger",
+              "quantity": 2
+            },
+            {
+              "catalogId": "srd-thieves-tools",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-crowbar",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-pouch",
+              "quantity": 2
+            },
+            {
+              "catalogId": "srd-clothes-travelers",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 16
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 50
+        }
+      ]
+    }
   },
   {
     "backgroundId": "sage",
@@ -48,7 +139,50 @@
       "history"
     ],
     "tool": "Calligrapher’s Supplies",
-    "equipment": "Choose A or B: (A) Quarterstaff, Calligrapher’s Supplies, Book (history), Parchment (8 sheets), Robe, 8 GP; or (B) 50 GP"
+    "equipment": "Choose A or B: (A) Quarterstaff, Calligrapher’s Supplies, Book (history), Parchment (8 sheets), Robe, 8 GP; or (B) 50 GP",
+    "creation": {
+      "tools": {
+        "fixed": [
+          "srd-calligraphers-supplies"
+        ],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-quarterstaff",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-calligraphers-supplies",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-book",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-parchment",
+              "quantity": 8
+            },
+            {
+              "catalogId": "srd-robe",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 8
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 50
+        }
+      ]
+    }
   },
   {
     "backgroundId": "soldier",
@@ -65,6 +199,70 @@
       "intimidation"
     ],
     "tool": "Choose one kind of Gaming Set (see “Equipment”)",
-    "equipment": "Choose A or B: (A) Spear, Shortbow, 20 Arrows, Gaming Set (same as above), Healer’s Kit, Quiver, Traveler’s Clothes, 14 GP; or (B) 50 GP"
+    "equipment": "Choose A or B: (A) Spear, Shortbow, 20 Arrows, Gaming Set (same as above), Healer’s Kit, Quiver, Traveler’s Clothes, 14 GP; or (B) 50 GP",
+    "creation": {
+      "tools": {
+        "fixed": [],
+        "pick": {
+          "kind": "gaming-set",
+          "from": [
+            "srd-dice-gaming-set",
+            "srd-dragonchess-gaming-set",
+            "srd-playing-cards-gaming-set",
+            "srd-three-dragon-ante-gaming-set"
+          ],
+          "count": 1
+        }
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-spear",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-shortbow",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-arrow",
+              "quantity": 20
+            },
+            {
+              "catalogId": "srd-healers-kit",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-quiver",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-clothes-travelers",
+              "quantity": 1
+            }
+          ],
+          "picks": [
+            {
+              "kind": "gaming-set",
+              "from": [
+                "srd-dice-gaming-set",
+                "srd-dragonchess-gaming-set",
+                "srd-playing-cards-gaming-set",
+                "srd-three-dragon-ante-gaming-set"
+              ]
+            }
+          ],
+          "gp": 14
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 50
+        }
+      ]
+    }
   }
 ]

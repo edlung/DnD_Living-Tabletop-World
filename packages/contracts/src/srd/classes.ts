@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { srdIdSchema } from './catalog.ts';
+import { srdClassCreationSchema } from './creation.ts';
 import { srdBlockSchema } from './reference.ts';
 
 /**
@@ -47,6 +48,8 @@ export const srdClassSchema = z
     name: words(40),
     /** "Primary Ability", "Hit Point Die", "Saving Throw", "Skill Proficiencies", … as written. */
     core: z.record(words(40), z.string().max(400)),
+    /** What a new character of it starts with, as data (docs/adr/0056-…md §2). */
+    creation: srdClassCreationSchema,
     /** What a character taking it as another class gains ("As a Multiclass Character"). */
     multiclass: z.array(srdBlockSchema).min(1).max(6),
     /** The features table's own columns after Level, Proficiency Bonus and Class Features. */

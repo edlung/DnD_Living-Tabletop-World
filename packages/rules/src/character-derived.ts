@@ -170,9 +170,7 @@ function srdWords(
   const forDm =
     spell.mechanics?.effect.kind === 'dm' ? 'effect' : spell.mechanics?.complete ? null : 'rest';
   return {
-    ...(words
-      ? { text: `${words.value.description}${higher}`, textLanguage: words.language }
-      : {}),
+    ...(words ? { text: `${words.value.description}${higher}`, textLanguage: words.language } : {}),
     ...(forDm ? { forDm } : {}),
   };
 }

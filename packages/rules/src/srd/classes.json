@@ -11,6 +11,55 @@
       "Armor Training": "Light and Medium armor and Shields",
       "Starting Equipment": "Choose A or B: (A) Greataxe, 4 Handaxes, Explorer’s Pack, and 15 GP; or (B) 75 GP"
     },
+    "creation": {
+      "hitDie": 12,
+      "savingThrows": [
+        "str",
+        "con"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "animal-handling",
+          "athletics",
+          "intimidation",
+          "nature",
+          "perception",
+          "survival"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-greataxe",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-handaxe",
+              "quantity": 4
+            },
+            {
+              "catalogId": "srd-explorers-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 15
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 75
+        }
+      ]
+    },
     "multiclass": [
       {
         "kind": "item",
@@ -670,6 +719,98 @@
       "Tool Proficiencies": "Choose 3 Musical Instruments (see “Equipment”)",
       "Armor Training": "Light armor",
       "Starting Equipment": "Choose A or B: (A) Leather Armor, 2 Daggers, Musical Instrument of your choice, Entertainer’s Pack, and 19 GP; or (B) 90 GP"
+    },
+    "creation": {
+      "hitDie": 8,
+      "savingThrows": [
+        "dex",
+        "cha"
+      ],
+      "skills": {
+        "choose": 3,
+        "from": [
+          "perception",
+          "investigation",
+          "insight",
+          "survival",
+          "arcana",
+          "stealth",
+          "athletics",
+          "acrobatics",
+          "sleight-of-hand",
+          "history",
+          "nature",
+          "religion",
+          "animal-handling",
+          "medicine",
+          "deception",
+          "intimidation",
+          "performance",
+          "persuasion"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": {
+          "kind": "musical-instrument",
+          "from": [
+            "srd-bagpipes-musical-instrument",
+            "srd-drum-musical-instrument",
+            "srd-dulcimer-musical-instrument",
+            "srd-flute-musical-instrument",
+            "srd-horn-musical-instrument",
+            "srd-lute-musical-instrument",
+            "srd-lyre-musical-instrument",
+            "srd-pan-flute-musical-instrument",
+            "srd-shawm-musical-instrument",
+            "srd-viol-musical-instrument"
+          ],
+          "count": 3
+        }
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-leather-armor",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-dagger",
+              "quantity": 2
+            },
+            {
+              "catalogId": "srd-entertainers-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [
+            {
+              "kind": "musical-instrument",
+              "from": [
+                "srd-bagpipes-musical-instrument",
+                "srd-drum-musical-instrument",
+                "srd-dulcimer-musical-instrument",
+                "srd-flute-musical-instrument",
+                "srd-horn-musical-instrument",
+                "srd-lute-musical-instrument",
+                "srd-lyre-musical-instrument",
+                "srd-pan-flute-musical-instrument",
+                "srd-shawm-musical-instrument",
+                "srd-viol-musical-instrument"
+              ]
+            }
+          ],
+          "gp": 19
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 90
+        }
+      ]
     },
     "multiclass": [
       {
@@ -1408,6 +1549,67 @@
       "Weapon Proficiencies": "Simple weapons",
       "Armor Training": "Light and Medium armor and Shields",
       "Starting Equipment": "Choose A or B: (A) Chain Shirt, Shield, Mace, Holy Symbol, Priest’s Pack, and 7 GP; or (B) 110 GP"
+    },
+    "creation": {
+      "hitDie": 8,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "history",
+          "insight",
+          "medicine",
+          "persuasion",
+          "religion"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-chain-shirt",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-shield",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-mace",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-priests-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [
+            {
+              "kind": "holy-symbol",
+              "from": [
+                "srd-amulet-holy-symbol",
+                "srd-emblem-holy-symbol",
+                "srd-reliquary-holy-symbol"
+              ]
+            }
+          ],
+          "gp": 7
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 110
+        }
+      ]
     },
     "multiclass": [
       {
@@ -2191,6 +2393,71 @@
       "Tool Proficiencies": "Herbalism Kit",
       "Armor Training": "Light armor and Shields",
       "Starting Equipment": "Choose A or B: (A) Leather Armor, Shield, Sickle, Druidic Focus (Quarterstaff), Explorer’s Pack, Herbalism Kit, and 9 GP; or (B) 50 GP"
+    },
+    "creation": {
+      "hitDie": 8,
+      "savingThrows": [
+        "int",
+        "wis"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "animal-handling",
+          "arcana",
+          "insight",
+          "medicine",
+          "nature",
+          "perception",
+          "religion",
+          "survival"
+        ]
+      },
+      "tools": {
+        "fixed": [
+          "srd-herbalism-kit"
+        ],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-leather-armor",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-shield",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-sickle",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-wooden-staff-druidic-focus",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-explorers-pack",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-herbalism-kit",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 9
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 50
+        }
+      ]
     },
     "multiclass": [
       {
@@ -3204,6 +3471,101 @@
       "Armor Training": "Light, Medium, and Heavy armor and Shields",
       "Starting Equipment": "Choose A, B, or C: (A) Chain Mail, Greatsword, Flail, 8 Javelins, Dungeoneer’s Pack, and 4 GP; (B) Studded Leather Armor, Scimitar, Shortsword, Longbow, 20 Arrows, Quiver, Dungeoneer’s Pack, and 11 GP; or (C) 155 GP"
     },
+    "creation": {
+      "hitDie": 10,
+      "savingThrows": [
+        "str",
+        "con"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "acrobatics",
+          "animal-handling",
+          "athletics",
+          "history",
+          "insight",
+          "intimidation",
+          "persuasion",
+          "perception",
+          "survival"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-chain-mail",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-greatsword",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-flail",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-javelin",
+              "quantity": 8
+            },
+            {
+              "catalogId": "srd-dungeoneers-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 4
+        },
+        {
+          "label": "B",
+          "items": [
+            {
+              "catalogId": "srd-studded-leather-armor",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-scimitar",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-shortsword",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-longbow",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-arrow",
+              "quantity": 20
+            },
+            {
+              "catalogId": "srd-quiver",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-dungeoneers-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 11
+        },
+        {
+          "label": "C",
+          "items": [],
+          "picks": [],
+          "gp": 155
+        }
+      ]
+    },
     "multiclass": [
       {
         "kind": "item",
@@ -3755,6 +4117,120 @@
       "Tool Proficiencies": "Choose one type of Artisan’s Tools or Musical Instrument (see “Equipment”)",
       "Armor Training": "None",
       "Starting Equipment": "Choose A or B: (A) Spear, 5 Daggers, Artisan’s Tools or Musical Instrument chosen for the tool proficiency above, Explorer’s Pack, and 11 GP; or (B) 50 GP"
+    },
+    "creation": {
+      "hitDie": 8,
+      "savingThrows": [
+        "str",
+        "dex"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "acrobatics",
+          "athletics",
+          "history",
+          "insight",
+          "religion",
+          "stealth"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": {
+          "kind": "artisans-tools-or-musical-instrument",
+          "from": [
+            "srd-alchemists-supplies",
+            "srd-brewers-supplies",
+            "srd-calligraphers-supplies",
+            "srd-carpenters-tools",
+            "srd-cartographers-tools",
+            "srd-cobblers-tools",
+            "srd-cooks-utensils",
+            "srd-glassblowers-tools",
+            "srd-jewelers-tools",
+            "srd-leatherworkers-tools",
+            "srd-masons-tools",
+            "srd-painters-supplies",
+            "srd-potters-tools",
+            "srd-smiths-tools",
+            "srd-tinkers-tools",
+            "srd-weavers-tools",
+            "srd-woodcarvers-tools",
+            "srd-bagpipes-musical-instrument",
+            "srd-drum-musical-instrument",
+            "srd-dulcimer-musical-instrument",
+            "srd-flute-musical-instrument",
+            "srd-horn-musical-instrument",
+            "srd-lute-musical-instrument",
+            "srd-lyre-musical-instrument",
+            "srd-pan-flute-musical-instrument",
+            "srd-shawm-musical-instrument",
+            "srd-viol-musical-instrument"
+          ],
+          "count": 1
+        }
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-spear",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-dagger",
+              "quantity": 5
+            },
+            {
+              "catalogId": "srd-explorers-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [
+            {
+              "kind": "artisans-tools-or-musical-instrument",
+              "from": [
+                "srd-alchemists-supplies",
+                "srd-brewers-supplies",
+                "srd-calligraphers-supplies",
+                "srd-carpenters-tools",
+                "srd-cartographers-tools",
+                "srd-cobblers-tools",
+                "srd-cooks-utensils",
+                "srd-glassblowers-tools",
+                "srd-jewelers-tools",
+                "srd-leatherworkers-tools",
+                "srd-masons-tools",
+                "srd-painters-supplies",
+                "srd-potters-tools",
+                "srd-smiths-tools",
+                "srd-tinkers-tools",
+                "srd-weavers-tools",
+                "srd-woodcarvers-tools",
+                "srd-bagpipes-musical-instrument",
+                "srd-drum-musical-instrument",
+                "srd-dulcimer-musical-instrument",
+                "srd-flute-musical-instrument",
+                "srd-horn-musical-instrument",
+                "srd-lute-musical-instrument",
+                "srd-lyre-musical-instrument",
+                "srd-pan-flute-musical-instrument",
+                "srd-shawm-musical-instrument",
+                "srd-viol-musical-instrument"
+              ]
+            }
+          ],
+          "gp": 11
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 50
+        }
+      ]
     },
     "multiclass": [
       {
@@ -4463,6 +4939,72 @@
       "Weapon Proficiencies": "Simple and Martial weapons",
       "Armor Training": "Light, Medium, and Heavy armor and Shields",
       "Starting Equipment": "Choose A or B: (A) Chain Mail, Shield, Longsword, 6 Javelins, Holy Symbol, Priest’s Pack, and 9 GP; or (B) 150 GP"
+    },
+    "creation": {
+      "hitDie": 10,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "athletics",
+          "insight",
+          "intimidation",
+          "medicine",
+          "persuasion",
+          "religion"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-chain-mail",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-shield",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-longsword",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-javelin",
+              "quantity": 6
+            },
+            {
+              "catalogId": "srd-priests-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [
+            {
+              "kind": "holy-symbol",
+              "from": [
+                "srd-amulet-holy-symbol",
+                "srd-emblem-holy-symbol",
+                "srd-reliquary-holy-symbol"
+              ]
+            }
+          ],
+          "gp": 9
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 150
+        }
+      ]
     },
     "multiclass": [
       {
@@ -5267,6 +5809,77 @@
       "Armor Training": "Light and Medium armor and Shields",
       "Starting Equipment": "Choose A or B: (A) Studded Leather Armor, Scimitar, Shortsword, Longbow, 20 Arrows, Quiver, Druidic Focus (sprig of mistletoe), Explorer’s Pack, and 7 GP; or (B) 150 GP"
     },
+    "creation": {
+      "hitDie": 10,
+      "savingThrows": [
+        "str",
+        "dex"
+      ],
+      "skills": {
+        "choose": 3,
+        "from": [
+          "animal-handling",
+          "athletics",
+          "insight",
+          "investigation",
+          "nature",
+          "perception",
+          "stealth",
+          "survival"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-studded-leather-armor",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-scimitar",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-shortsword",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-longbow",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-arrow",
+              "quantity": 20
+            },
+            {
+              "catalogId": "srd-quiver",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-sprig-of-mistletoe-druidic-focus",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-explorers-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 7
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 150
+        }
+      ]
+    },
     "multiclass": [
       {
         "kind": "item",
@@ -5981,6 +6594,81 @@
       "Armor Training": "Light armor",
       "Starting Equipment": "Choose A or B: (A) Leather Armor, 2 Daggers, Shortsword, Shortbow, 20 Arrows, Quiver, Thieves’ Tools, Burglar’s Pack, and 8 GP; or (B) 100 GP"
     },
+    "creation": {
+      "hitDie": 8,
+      "savingThrows": [
+        "dex",
+        "int"
+      ],
+      "skills": {
+        "choose": 4,
+        "from": [
+          "acrobatics",
+          "athletics",
+          "deception",
+          "insight",
+          "intimidation",
+          "investigation",
+          "perception",
+          "persuasion",
+          "sleight-of-hand",
+          "stealth"
+        ]
+      },
+      "tools": {
+        "fixed": [
+          "srd-thieves-tools"
+        ],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-leather-armor",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-dagger",
+              "quantity": 2
+            },
+            {
+              "catalogId": "srd-shortsword",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-shortbow",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-arrow",
+              "quantity": 20
+            },
+            {
+              "catalogId": "srd-quiver",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-thieves-tools",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-burglars-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 8
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 100
+        }
+      ]
+    },
     "multiclass": [
       {
         "kind": "item",
@@ -6591,6 +7279,59 @@
       "Weapon Proficiencies": "Simple weapons",
       "Armor Training": "None",
       "Starting Equipment": "Choose A or B: (A) Spear, 2 Daggers, Arcane Focus (crystal), Dungeoneer’s Pack, and 28 GP; or (B) 50 GP"
+    },
+    "creation": {
+      "hitDie": 6,
+      "savingThrows": [
+        "con",
+        "cha"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "arcana",
+          "deception",
+          "insight",
+          "intimidation",
+          "persuasion",
+          "religion"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-spear",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-dagger",
+              "quantity": 2
+            },
+            {
+              "catalogId": "srd-crystal-arcane-focus",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-dungeoneers-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 28
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 50
+        }
+      ]
     },
     "multiclass": [
       {
@@ -7578,6 +8319,68 @@
       "Weapon Proficiencies": "Simple weapons",
       "Armor Training": "Light armor",
       "Starting Equipment": "Choose A or B: (A) Leather Armor, Sickle, 2 Daggers, Arcane Focus (orb), Book (occult lore), Scholar’s Pack, and 15 GP; or (B) 100 GP"
+    },
+    "creation": {
+      "hitDie": 8,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "arcana",
+          "deception",
+          "history",
+          "intimidation",
+          "investigation",
+          "nature",
+          "religion"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-leather-armor",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-sickle",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-dagger",
+              "quantity": 2
+            },
+            {
+              "catalogId": "srd-orb-arcane-focus",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-book",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-scholars-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 15
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 100
+        }
+      ]
     },
     "multiclass": [
       {
@@ -8683,6 +9486,64 @@
       "Weapon Proficiencies": "Simple weapons",
       "Armor Training": "None",
       "Starting Equipment": "Choose A or B: (A) 2 Daggers, Arcane Focus (Quarterstaff), Robe, Spellbook, Scholar’s Pack, and 5 GP; or (B) 55 GP"
+    },
+    "creation": {
+      "hitDie": 6,
+      "savingThrows": [
+        "int",
+        "wis"
+      ],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "arcana",
+          "history",
+          "insight",
+          "investigation",
+          "medicine",
+          "nature",
+          "religion"
+        ]
+      },
+      "tools": {
+        "fixed": [],
+        "pick": null
+      },
+      "equipment": [
+        {
+          "label": "A",
+          "items": [
+            {
+              "catalogId": "srd-dagger",
+              "quantity": 2
+            },
+            {
+              "catalogId": "srd-staff-arcane-focus",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-robe",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-book",
+              "quantity": 1
+            },
+            {
+              "catalogId": "srd-scholars-pack",
+              "quantity": 1
+            }
+          ],
+          "picks": [],
+          "gp": 5
+        },
+        {
+          "label": "B",
+          "items": [],
+          "picks": [],
+          "gp": 55
+        }
+      ]
     },
     "multiclass": [
       {

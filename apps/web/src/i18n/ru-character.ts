@@ -58,6 +58,14 @@ registerRussian({
   'Fighting style: {style}': 'Боевой стиль: {style}',
   Archery: 'Стрельба',
   '+2 to ranged weapon attacks': '+2 к броскам атаки дальнобойным оружием',
+  Defense: 'Оборона',
+  '+1 to Armor Class while wearing armor': '+1 к КД, пока на вас доспех',
+  'Great Weapon Fighting': 'Сражение большим оружием',
+  'damage dice of 1 or 2 count as 3 with a two-handed melee weapon':
+    'выпавшие 1 и 2 на костях урона двуручного рукопашного оружия считаются тройкой',
+  'Two Weapon Fighting': 'Сражение двумя оружиями',
+  'your ability modifier added to the extra Light weapon attack':
+    'модификатор характеристики добавляется к урону дополнительной атаки лёгким оружием',
   'Extra Attack: {count} attacks with the Attack action':
     'Дополнительная атака: {count} атаки действием «Атака»',
   '{spell} without a slot: {left} of {total} until a long rest':

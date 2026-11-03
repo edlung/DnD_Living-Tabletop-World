@@ -88,3 +88,17 @@ export {
   type SrdSpecies,
   type SrdTrait,
 } from './origins.ts';
+export {
+  SRD_PICK_KINDS,
+  srdBackgroundCreationSchema,
+  srdClassCreationSchema,
+  srdPickSchema,
+  srdStartingOptionSchema,
+  srdToolsSchema,
+  type SrdBackgroundCreation,
+  type SrdClassCreation,
+  type SrdPick,
+  type SrdPickKind,
+  type SrdStartingOption,
+  type SrdTools,
+} from './creation.ts';

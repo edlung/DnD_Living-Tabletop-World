@@ -8,6 +8,8 @@ import type {
   Skill,
 } from '@ltw/contracts';
 
+import type { CharacterBuilderPort } from '../character/create.ts';
+
 import type { BootstrapConsentRequirement } from '../campaign/bootstrap-consent.ts';
 import type { ConsentRequirement } from '../authoring/consent.ts';
 import type { Actor } from './actor.ts';
@@ -86,6 +88,7 @@ export type ResolvedCommand =
           | 'RemoveCombatant'
           | 'DelayTurn'
           | 'ApplyAuthoring'
+          | 'CreateCharacter'
           | PlayerCommandType;
       }
     >
@@ -110,6 +113,7 @@ export type ResolvedCommand =
       | 'ContagionCourse'
       | 'UseCreatureAction'
       | 'DawnRecharge'
+      | 'CreateCharacter'
     > & {
       readonly resolution: Resolution;
     })
@@ -137,6 +141,8 @@ export interface DecisionContext {
   readonly authority: Authority;
   /** Combat engine (ADR 0015); required only by combat commands. */
   readonly combat?: CombatPort;
+  /** The character builder (ADR 0056 §2); required only by CreateCharacter. */
+  readonly characters?: CharacterBuilderPort;
   /** Rules-provided skill modifier (ADR 0013); required only by skill checks. */
   readonly skillModifier?: (sheet: CharacterSheet, skill: Skill) => number;
 }

@@ -5,6 +5,7 @@ import type {
   SrdClassOption,
 } from '../../packages/contracts/src/index.ts';
 import { bold, closer, joined, near, openingLines } from './character-text.ts';
+import { classCreation, type Catalog } from './creation.ts';
 import { freshReading, isSidebarTitle, readBlocks, type ReadingSoFar } from './reference-blocks.ts';
 import { inReadingOrder, pageLinesAt, slugOf, type PdfLine } from './text.ts';
 
@@ -246,7 +247,11 @@ function optionOf(
   };
 }
 
-export function parseClass(dir: string, entry: (typeof CLASSES)[number]): SrdClassText {
+export function parseClass(
+  dir: string,
+  entry: (typeof CLASSES)[number],
+  catalog: Catalog,
+): SrdClassText {
   const { name, pages, columns } = entry;
   const table = featuresTable(dir, name, pages, columns.length);
   // Its lines from its own heading (18 pt) to the next class's, or to the next chapter.
@@ -354,6 +359,7 @@ export function parseClass(dir: string, entry: (typeof CLASSES)[number]): SrdCla
     classId: slugOf(name),
     name,
     core,
+    creation: classCreation(name, core, catalog),
     multiclass: readBlocks(dir, flow.slice(multiclassAt + 1, start), reading),
     columns: [...columns],
     levels: table.levels,
@@ -373,5 +379,5 @@ export function parseClass(dir: string, entry: (typeof CLASSES)[number]): SrdCla
   };
 }
 
-export const parseClasses = (dir: string): SrdClassText[] =>
-  CLASSES.map((entry) => parseClass(dir, entry));
+export const parseClasses = (dir: string, catalog: Catalog): SrdClassText[] =>
+  CLASSES.map((entry) => parseClass(dir, entry, catalog));

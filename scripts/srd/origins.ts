@@ -9,6 +9,7 @@ import {
   type SrdTrait,
 } from '../../packages/contracts/src/index.ts';
 import { bold, near, openingLines } from './character-text.ts';
+import { backgroundCreation, type Catalog } from './creation.ts';
 import { freshReading, isSidebarTitle, readBlocks, type ReadingSoFar } from './reference-blocks.ts';
 import { inReadingOrder, pageLinesAt, slugOf, type PdfLine } from './text.ts';
 
@@ -82,7 +83,7 @@ const ABILITY_OF: Readonly<Record<string, Ability>> = {
 };
 const listOf = (words: string) => words.split(/, and |, | and /);
 
-function background(entry: Entry): SrdBackground {
+function background(entry: Entry, catalog: Catalog): SrdBackground {
   const { name, rows } = entry;
   const { field, rest } = labelled(name, rows, [
     'Ability Scores',
@@ -110,6 +111,7 @@ function background(entry: Entry): SrdBackground {
     }),
     tool: field('Tool Proficiency'),
     equipment: field('Equipment'),
+    creation: backgroundCreation(field('Tool Proficiency'), field('Equipment'), catalog),
   };
 }
 
@@ -185,7 +187,10 @@ function withTablesInPlace(all: SrdSpecies[]): SrdSpecies[] {
   return all;
 }
 
-export function parseOrigins(dir: string): {
+export function parseOrigins(
+  dir: string,
+  catalog: Catalog,
+): {
   backgrounds: SrdBackground[];
   species: SrdSpecies[];
   feats: SrdFeat[];
@@ -196,7 +201,7 @@ export function parseOrigins(dir: string): {
     origins,
     'Background Descriptions',
     (line) => near(line.size, 18) && line.text === 'Character Species',
-  ).map(background);
+  ).map((one) => background(one, catalog));
   const all = withTablesInPlace(
     entriesAfter(origins, 'Species Descriptions', () => false).map((one) =>
       species(dir, one, reading),

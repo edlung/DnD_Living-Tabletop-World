@@ -44,6 +44,7 @@ import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
 import { memoryDiagnose } from './memory-journal.ts';
+import { characterBuilder } from '../characters/builder-port.ts';
 
 /** Test support (excluded from builds): the HTTP app over a seeded Ravenford. */
 export const TOKENS = {
@@ -75,6 +76,7 @@ export async function seededEngine(
     clock: new SteppingClock(),
     checks: skillCheckPort(dice),
     combat: createCombatEngine(),
+    characters: characterBuilder,
     entropy,
   });
   const seed = await loadRavenfordSeed(fixturesDir);

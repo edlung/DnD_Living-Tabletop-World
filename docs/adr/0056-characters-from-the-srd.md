@@ -46,6 +46,30 @@ backgrounds,species,feats}.json`, held to the SRD by tests (a features table's p
    sheet; a portrait made by GPT where the owner's image key allows it. Summons and Wild Shape take
    their forms' stat blocks, the four that a spell's level scales among them.
 
+## Notes from the implementation (Stage 660b, 2026-11-03)
+
+- The import reads what a class and a background give a new character into their `creation`
+  data (`scripts/srd/creation.ts`): the Hit Point Die, saving throws, the skills to choose, tools,
+  and each starting equipment option as catalog items found by name, gold, and the picks the words
+  leave to the player (an instrument, a holy symbol, a gaming set). A wizard's spellbook is the
+  SRD's Book; the SRD's gear names no other.
+- The client sends only the builder's choices (`characterChoicesSchema`); the rules build the
+  level 1 sheet (`packages/rules/src/builder/`) and the World Engine records `CreateCharacter`
+  through a port, as combat's: the character, its sheet, its starting items (what does not stack
+  one at a time, gold as crowns in stacks of at most 99), the body armor and shield worn through
+  `EquipItem` from the unarmored Armor Class (Unarmored Defense's for a Barbarian or a Monk), and
+  its player — all or nothing. The species' gains come from its traits' words (size, Speed,
+  Darkvision, resistances, a lineage's cantrips and spells).
+- The World Engine rolls the scores of the "rolled" method from the command's own dice (4d6, the
+  lowest dropped, six times), the highest to the ability the player ranked first: no roll waits
+  between two commands. A preview uses average dice and draws none.
+- The DM makes a character on the Players sheet, for the player of a character or nobody's yet
+  (an invitation then seats a player); a seated player makes one of their own from the character
+  dialog. A player's actor never leaves the server. Each problem the builder finds is a sentence
+  with its parameters, worded by the client; a test holds every one to its Russian.
+- The classes', species', backgrounds' and feats' words are English in a Russian campaign until
+  their translation pass; items and spells already read in Russian.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

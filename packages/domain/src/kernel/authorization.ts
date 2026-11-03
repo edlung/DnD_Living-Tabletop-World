@@ -55,6 +55,16 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
       ? { ok: true, authority: 'dm' }
       : forbidden('Only the DM can release a character');
   }
+  if (command.type === 'CreateCharacter') {
+    // The DM makes a character for anyone or to invite a player to; a seated player makes one
+    // of their own (docs/adr/0056-characters-from-the-srd.md §2).
+    if (actor.kind !== 'user') return forbidden('A character is made by a person');
+    if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
+    const seated = [...state.roster.values()].includes(actor.actorId);
+    return seated && command.playerActorId === actor.actorId
+      ? { ok: true, authority: 'controller' }
+      : forbidden('A player makes only their own character');
+  }
   if (WORKER_TYPES.has(command.type)) {
     // Only the asset worker reports what external work did (ADR 0022 §4).
     return actor.kind === 'system'

@@ -56,8 +56,16 @@ export function sourcesFor(sheet: CharacterSheet, spellId: string): Spellcasting
   return sheet.spellcasting.filter((source) => source.spells.includes(spellId));
 }
 
-const FULL_CASTERS: ReadonlySet<ClassId> = new Set(['wizard', 'cleric']);
-const HALF_CASTERS: ReadonlySet<ClassId> = new Set(['ranger']);
+/** The SRD's Multiclass Spellcaster rule: full casters' levels, half casters' halved; the
+ * Warlock's Pact Magic apart (docs/adr/0056-characters-from-the-srd.md §3). */
+const FULL_CASTERS: ReadonlySet<ClassId> = new Set([
+  'wizard',
+  'cleric',
+  'bard',
+  'druid',
+  'sorcerer',
+]);
+const HALF_CASTERS: ReadonlySet<ClassId> = new Set(['ranger', 'paladin']);
 
 /** SRD 5.2.1 Multiclass Spellcaster table, levels 1-20, slot levels 1-9. */
 const MULTICLASS_SLOTS: readonly (readonly number[])[] = [

@@ -245,3 +245,5 @@ export {
 } from './campaign/bootstrap-plan.ts';
 
 export { partyMemberIds, isPartyMember } from './knowledge/party.ts';
+export { decideCreateCharacter, type CharacterBuilderPort } from './character/create.ts';
+export { CREATE_CHARACTER_IDS } from './character/limits.ts';

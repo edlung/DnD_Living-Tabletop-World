@@ -109,6 +109,8 @@ export const REJECTION_CODES = [
   'INVALID_CHRONICLE',
   /** Items (ADR 0039): not an item, not carried, wrong slot, or not usable now. */
   'INVALID_ITEM',
+  /** Characters (ADR 0056): choices that do not make a character; `details.problems` lists each. */
+  'INVALID_CHARACTER',
 ] as const;
 
 export type RejectionCode = (typeof REJECTION_CODES)[number];

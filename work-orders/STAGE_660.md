@@ -14,11 +14,13 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   contracts' schemas, accessors in `@ltw/rules`, tests that hold them to the SRD (proficiency
   bonus, the full casters' slots, every feature its table names described, a background's Origin
   feat, a lineage's table beside its trait). Their Russian through the translation pass (ADR 0055
-  §5), held complete by the test.
+  §5), held complete by the test. Done: the data; the Russian pass follows the builder.
 - 660b — Creation: the wizard for a player or the DM (species, class, background with its +2/+1 or
   +1/+1/+1 and its origin feat, abilities by the standard array, point buy or the World Engine's
   rolls, skills, equipment or gold, cantrips and spells); `CreateCharacter` validated by the World
-  Engine from the SRD's numbers; the DM's editors and the workshop use the same builder.
+  Engine from the SRD's numbers; the DM's editors and the workshop use the same builder. Done: the
+  builder and its routes, the DM's way in on the Players sheet and a player's in the character
+  dialog; the DM's editors and the workshop take it with 680's editors.
 - 660c — Advancement: experience awarded by the DM and divided among those present, or milestones
   (decision 16); a level's hit points (fixed or rolled), features and choices (a subclass, an
   ability increase or a feat, new spells); multiclassing with its prerequisites.

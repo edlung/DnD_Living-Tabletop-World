@@ -116,6 +116,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   InflictMentalStress: 'mental stress',
   InfectWithContagion: 'infect with a contagion',
   ContagionCourse: 'a contagion’s course',
+  CreateCharacter: 'make a character',
   UseCreatureAction: 'use a creature’s action',
 };
 

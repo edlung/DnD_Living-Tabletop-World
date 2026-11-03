@@ -63,7 +63,8 @@ write('monster-blocks.json', bestiary.map(deriveMonsterMechanics));
 // The equipment (docs/adr/0054-items-as-data.md §1–2): its text, and the catalog's entries.
 const equipment = [...parseEquipmentTables(dir), ...parseToolsAndGear(dir)];
 write('equipment.json', equipment);
-write('equipment.json', equipment.map(catalogEntryOf), 'packages/contracts/src/items/srd');
+const equipmentCatalog = equipment.map(catalogEntryOf);
+write('equipment.json', equipmentCatalog, 'packages/contracts/src/items/srd');
 // The magic items (§5): their text, and their catalog entries, "+1, +2, or +3" three of them.
 const magicItems = [...parseMagicItems(magicItemRows(dir))].sort(byId('itemId'));
 write('magic-items.json', magicItems);
@@ -78,9 +79,9 @@ write('glossary.json', glossary);
 const rulesSections = parseRulesSections(dir);
 write('rules-sections.json', rulesSections);
 // The classes, origins and feats (docs/adr/0056-characters-from-the-srd.md §1).
-const classes = parseClasses(dir);
+const classes = parseClasses(dir, equipmentCatalog);
 write('classes.json', classes);
-const origins = parseOrigins(dir);
+const origins = parseOrigins(dir, equipmentCatalog);
 write('backgrounds.json', origins.backgrounds);
 write('species.json', origins.species);
 write('feats.json', origins.feats);

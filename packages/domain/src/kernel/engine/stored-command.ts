@@ -9,6 +9,7 @@ import {
 import { z } from 'zod';
 
 import { actorSchema } from '../actor.ts';
+import { CREATE_CHARACTER_IDS } from '../../character/limits.ts';
 import { ENTROPY_POOL } from '../../combat/port.ts';
 import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { ResolvedCommand } from '../decision.ts';
@@ -16,7 +17,9 @@ import type { StoredCommand } from './event-store.ts';
 
 const resolutionSchema = z
   .object({
-    ids: z.array(z.string().regex(OBJECT_ID_PATTERN)).max(MAX_RESOLVED_IDS),
+    ids: z
+      .array(z.string().regex(OBJECT_ID_PATTERN))
+      .max(Math.max(MAX_RESOLVED_IDS, CREATE_CHARACTER_IDS)),
     d20: z.number().int().min(1).max(20).nullable(),
     /** Absent in commands stored before combat existed (Stage 60). */
     entropy: z
@@ -53,6 +56,8 @@ const RESOLVED_TYPES: ReadonlySet<string> = new Set([
   'UseCreatureAction',
   // At dawn magic items roll the charges they regain (docs/adr/0054-items-as-data.md §5).
   'DawnRecharge',
+  // A new character's rolled scores and its records' IDs (docs/adr/0056-…md §2).
+  'CreateCharacter',
 ]);
 
 /**

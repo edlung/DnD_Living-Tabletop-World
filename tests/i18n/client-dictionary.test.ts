@@ -47,6 +47,7 @@ import '../../apps/web/src/i18n/ru-conditions.ts';
 import '../../apps/web/src/i18n/ru-weapons.ts';
 import '../../apps/web/src/i18n/ru-hit-points.ts';
 import '../../apps/web/src/i18n/ru-space.ts';
+import '../../apps/web/src/i18n/ru-builder.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the

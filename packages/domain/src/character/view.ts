@@ -61,6 +61,20 @@ function copySheet(
     savingThrows: [...sheet.savingThrows],
     skills: { proficient: [...sheet.skills.proficient], expertise: [...sheet.skills.expertise] },
     ...(sheet.fightingStyle === undefined ? {} : { fightingStyle: sheet.fightingStyle }),
+    // A built character's origin, feats, tools and level 1 choices (docs/adr/0056-…md §2).
+    ...(sheet.origin === undefined ? {} : { origin: { ...sheet.origin } }),
+    ...(sheet.feats === undefined ? {} : { feats: [...sheet.feats] }),
+    ...(sheet.tools === undefined ? {} : { tools: [...sheet.tools] }),
+    ...(sheet.classChoices === undefined
+      ? {}
+      : {
+          classChoices: {
+            ...(sheet.classChoices.order === undefined ? {} : { order: sheet.classChoices.order }),
+            ...(sheet.classChoices.invocations === undefined
+              ? {}
+              : { invocations: [...sheet.classChoices.invocations] }),
+          },
+        }),
     attacksPerAction: sheet.attacksPerAction,
     weapons: [...sheet.weapons],
     spellSlots: { max: [...sheet.spellSlots.max], expended: [...sheet.spellSlots.expended] },

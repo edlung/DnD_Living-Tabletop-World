@@ -420,6 +420,7 @@ registerRussian({
   'mental stress': 'ментальный стресс',
   'infect with a contagion': 'заразить болезнью',
   'a contagion’s course': 'течение болезни',
+  'make a character': 'создать персонажа',
   'change hit points': 'изменить хиты',
   'set a condition': 'наложить или снять состояние',
   'set Exhaustion': 'установить истощение',

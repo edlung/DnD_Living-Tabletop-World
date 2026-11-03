@@ -16,6 +16,8 @@ import { ENTROPY_POOL, type CombatPort, type EntropySource } from '../../combat/
 import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
 import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
+import type { CharacterBuilderPort } from '../../character/create.ts';
+import { CREATE_CHARACTER_IDS } from '../../character/limits.ts';
 
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
@@ -58,6 +60,8 @@ export interface WorldEngineOptions {
   readonly checks?: SkillCheckPort;
   /** Combat engine (ADR 0015); required to decide combat commands. */
   readonly combat?: CombatPort;
+  /** The character builder (ADR 0056 §2); required to decide CreateCharacter. */
+  readonly characters?: CharacterBuilderPort;
   /** Uniform 32-bit randomness for combat, drawn at resolution and recorded. */
   readonly entropy?: EntropySource;
 }
@@ -78,6 +82,7 @@ export class WorldEngine {
   readonly #backoff: (attempt: number) => Promise<void>;
   readonly #checks: SkillCheckPort | undefined;
   readonly #combat: CombatPort | undefined;
+  readonly #characters: CharacterBuilderPort | undefined;
   readonly #entropy: EntropySource | undefined;
   readonly #mutex = new KeyedMutex();
   readonly #cache = new Map<string, CampaignSnapshot>();
@@ -90,6 +95,7 @@ export class WorldEngine {
     this.#backoff = options.backoff ?? jitteredBackoff;
     this.#checks = options.checks;
     this.#combat = options.combat;
+    this.#characters = options.characters;
     this.#entropy = options.entropy;
   }
 
@@ -182,6 +188,7 @@ export class WorldEngine {
           actor,
           authority: authorization.authority,
           ...(this.#combat ? { combat: this.#combat } : {}),
+          ...(this.#characters ? { characters: this.#characters } : {}),
           ...(this.#checks ? { skillModifier: this.#checks.skillModifier.bind(this.#checks) } : {}),
         },
         command,
@@ -294,6 +301,11 @@ export class WorldEngine {
       // turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2), and a
       // flyer made Prone falls (docs/adr/0049-space-and-movement.md §6).
       return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
+    }
+    if (command.type === 'CreateCharacter') {
+      // Its records' IDs and the dice of rolled scores (docs/adr/0056-…md §2).
+      const ids = Array.from({ length: CREATE_CHARACTER_IDS }, () => this.#ids.next());
+      return { ...command, resolution: { ids, d20: null, entropy: this.#entropyPool() } };
     }
     if (command.type === 'CloseReactionWindow') {
       // Closing may resolve the suspended spell (ADR 0016) — its records and dice — or let a

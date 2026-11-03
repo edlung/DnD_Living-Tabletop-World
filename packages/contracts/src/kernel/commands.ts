@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { bootstrapCampaignCommandSchema } from '../campaign/bootstrap.ts';
+import { createCharacterCommandSchema } from '../rules/character-choices.ts';
 
 import {
   approveAssetCommandSchema,
@@ -224,6 +225,7 @@ export const kernelCommandSchema = z
     inflictMentalStressCommandSchema,
     infectWithContagionCommandSchema,
     contagionCourseCommandSchema,
+    createCharacterCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -312,6 +314,7 @@ export const KERNEL_COMMAND_TYPES = [
   'InflictMentalStress',
   'InfectWithContagion',
   'ContagionCourse',
+  'CreateCharacter',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

@@ -86,6 +86,9 @@ function Abilities({
 /** What each fighting style does, in words. */
 const STYLE_EFFECT: Readonly<Record<NonNullable<CharacterSheet['fightingStyle']>, string>> = {
   archery: '+2 to ranged weapon attacks',
+  defense: '+1 to Armor Class while wearing armor',
+  'great-weapon-fighting': 'damage dice of 1 or 2 count as 3 with a two-handed melee weapon',
+  'two-weapon-fighting': 'your ability modifier added to the extra Light weapon attack',
 };
 
 const featureLines = (t: Translate, sheet: CharacterSheet): string[] => {

@@ -162,13 +162,16 @@ export {
 export { DEFAULT_LANGUAGE, LANGUAGES, languageSchema, type Language } from './language/language.ts';
 export type { CharacterSheetResponse } from './rules/character-view.ts';
 export type { CharacterDerived } from './rules/character-derived.ts';
+export * from './rules/builder.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';
 export {
   ABILITIES,
   AMMUNITION_KINDS,
   CLASS_IDS,
+  CLASS_ORDERS,
   CONDITIONS,
   CREATURE_SIZES,
+  FIGHTING_STYLES,
   HIT_DIE_SIDES,
   MAX_EXHAUSTION,
   SKILLS,
@@ -185,8 +188,10 @@ export {
   type AmmunitionKind,
   type CharacterSheet,
   type ClassId,
+  type ClassOrder,
   type Condition,
   type CreatureSize,
+  type FightingStyle,
   type HitDieSides,
   type HitPoints,
   type Skill,

@@ -167,9 +167,38 @@ export const damageDefensesShape = {
 export const AMMUNITION_KINDS = ['arrow', 'bolt', 'bullet', 'needle', 'firearm-bullet'] as const;
 export type AmmunitionKind = (typeof AMMUNITION_KINDS)[number];
 
-/** The classes sheets may hold (Stage 605 added the Fighter, the Rogue and the Cleric). */
-export const CLASS_IDS = ['ranger', 'wizard', 'fighter', 'rogue', 'cleric'] as const;
+/**
+ * The classes sheets may hold: Stage 605 added the Fighter, the Rogue and the Cleric, Stage 660 the
+ * SRD's other seven (docs/adr/0056-characters-from-the-srd.md). The list only grows.
+ */
+export const CLASS_IDS = [
+  'ranger',
+  'wizard',
+  'fighter',
+  'rogue',
+  'cleric',
+  'barbarian',
+  'bard',
+  'druid',
+  'monk',
+  'paladin',
+  'sorcerer',
+  'warlock',
+] as const;
 export type ClassId = (typeof CLASS_IDS)[number];
+
+/** The SRD's Fighting Style feats; the list only grows. */
+export const FIGHTING_STYLES = [
+  'archery',
+  'defense',
+  'great-weapon-fighting',
+  'two-weapon-fighting',
+] as const;
+export type FightingStyle = (typeof FIGHTING_STYLES)[number];
+
+/** The orders a Cleric or a Druid chooses at level 1: the Divine and the Primal Orders. */
+export const CLASS_ORDERS = ['protector', 'thaumaturge', 'magician', 'warden'] as const;
+export type ClassOrder = (typeof CLASS_ORDERS)[number];
 
 /** Hit Point Dice by size (SRD 5.2.1); each class has one (Stage 530, `@ltw/rules`). */
 export const HIT_DIE_SIDES = [6, 8, 10, 12] as const;
@@ -248,8 +277,20 @@ const slotRow = z.array(z.number().int().min(0).max(4)).length(9);
 
 export const spellcastingSourceSchema = z
   .object({
-    /** Ranger, Wizard and Cleric class casting, or the Magic Initiate (Cleric) feat. */
-    source: z.enum(['ranger', 'wizard', 'cleric', 'magic-initiate']),
+    /** A class's casting (the Warlock's Pact Magic), or the Magic Initiate feat. */
+    source: z.enum([
+      'ranger',
+      'wizard',
+      'cleric',
+      'magic-initiate',
+      'bard',
+      'druid',
+      'paladin',
+      'sorcerer',
+      'warlock',
+      // A species' lineage or legacy (an Elf's, a Gnome's, a Tiefling's).
+      'species',
+    ]),
     ability: z.enum(ABILITIES),
     /** SRD spells by their catalog id (docs/adr/0052-spells-as-data.md §1). */
     spells: z.array(srdIdSchema).min(1).max(120),
@@ -300,7 +341,32 @@ export const characterSheetSchema = z
     skills: z
       .object({ proficient: z.array(z.enum(skillIds)), expertise: z.array(z.enum(skillIds)) })
       .strict(),
-    fightingStyle: z.enum(['archery']).optional(),
+    /** Its Fighting Style feat (docs/adr/0056-…md §2); absent: none. */
+    fightingStyle: z.enum(FIGHTING_STYLES).optional(),
+    /** Its species and background (docs/adr/0056-…md §2); absent on a sheet written by hand. */
+    origin: z
+      .object({
+        speciesId: srdIdSchema,
+        speciesOption: z.string().min(1).max(40).optional(),
+        backgroundId: srdIdSchema,
+      })
+      .strict()
+      .optional(),
+    /** Its feats by SRD id (an Origin feat, a Fighting Style feat…); absent: none recorded. */
+    feats: z.array(srdIdSchema).max(30).optional(),
+    /** The tools it is proficient with, by catalog id; absent: none recorded. */
+    tools: z
+      .array(z.string().regex(/^srd-[a-z0-9-]+$/))
+      .max(20)
+      .optional(),
+    /** A Cleric's or a Druid's order and a Warlock's invocations; absent: none. */
+    classChoices: z
+      .object({
+        order: z.enum(CLASS_ORDERS).optional(),
+        invocations: z.array(srdIdSchema).max(10).optional(),
+      })
+      .strict()
+      .optional(),
     attacksPerAction: z.number().int().min(1).max(4),
     weapons: z.array(z.enum(WEAPON_IDS)),
     /**

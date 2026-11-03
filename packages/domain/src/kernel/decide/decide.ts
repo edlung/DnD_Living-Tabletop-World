@@ -1,5 +1,6 @@
 import { PLAYER_COMMAND_TYPES } from '@ltw/contracts';
 
+import { decideCreateCharacter } from '../../character/create.ts';
 import { decideBootstrapCampaign } from '../../campaign/bootstrap.ts';
 import { decideApplyAuthoring } from '../../authoring/decide.ts';
 import { decideSetCharacterSheet } from '../../character/character.ts';
@@ -185,6 +186,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideApplyAuthoring(context, command);
     case 'SetRelationship':
       return decideSetRelationship(state, command);
+    case 'CreateCharacter':
+      return decideCreateCharacter(context, command);
     case 'GrantItem':
       return decideGrantItem(state, command);
     case 'AttuneItem':

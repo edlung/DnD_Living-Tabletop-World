@@ -24,6 +24,7 @@ import { activationMemoryFixture, activationRequest } from '../activation-fixtur
 import { finishImage, imageRequestFor } from '../draft-image-fixture.ts';
 import { testAiGateway, testAuthoring, testDm } from '../ravenford-app.ts';
 import { sessionCookieOf, tokenOfLink } from '../sign-in.ts';
+import { characterBuilder } from '../../characters/builder-port.ts';
 
 const ORIGIN = 'https://table.example';
 export interface PlayExchange {
@@ -63,6 +64,7 @@ export async function campaignPlayFixture(pictures = true) {
     clock: new SteppingClock(),
     checks: skillCheckPort(scriptedDice(Array<number>(64).fill(15))),
     combat: createCombatEngine(),
+    characters: characterBuilder,
     entropy: { next: () => queuedEntropy.shift() ?? 2 ** 31 },
   });
   const credentials = new InMemoryCredentialStore(),

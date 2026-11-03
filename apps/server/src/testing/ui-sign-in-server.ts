@@ -97,6 +97,7 @@ const engine = new WorldEngine({
   ids: new SequentialIds(500000),
   clock: new SteppingClock(),
   combat: createCombatEngine(),
+  characters: characterBuilder,
   checks: skillCheckPort(scriptedDice(Array<number>(1024).fill(15))),
   entropy: MIDDLE_ENTROPY,
 });
@@ -150,3 +151,4 @@ for (const signal of ['SIGINT', 'SIGTERM'] as const) {
 import { createCombatEngine } from '@ltw/combat';
 import { InMemoryEventStore, WorldEngine, SequentialIds, SteppingClock } from '@ltw/domain';
 import { scriptedDice, skillCheckPort } from '@ltw/rules';
+import { characterBuilder } from '../characters/builder-port.ts';

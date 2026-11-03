@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { ABILITIES, SKILL_IDS } from '../rules/character-sheet.ts';
 import { srdIdSchema } from './catalog.ts';
+import { srdBackgroundCreationSchema } from './creation.ts';
 import { srdBlockSchema } from './reference.ts';
 
 /**
@@ -24,6 +25,8 @@ export const srdBackgroundSchema = z
     skills: z.array(z.enum(SKILL_IDS)).length(2),
     tool: words(120),
     equipment: words(400),
+    /** Its tool and equipment as data (docs/adr/0056-…md §2). */
+    creation: srdBackgroundCreationSchema,
   })
   .strict();
 export type SrdBackground = z.infer<typeof srdBackgroundSchema>;

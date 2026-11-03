@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import type { ReactNode } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { MakeCharacter } from '../builder/make-character.tsx';
 import { HeroDialog } from '../character/hero-dialog.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { InventoryPanel, type Recipient } from '../items/inventory-panel.tsx';
@@ -56,6 +57,14 @@ export function WorldHeroDialog({
         <>
           <HitDice {...shown} locked={locked} onRun={onRun} />
           <GrantLevel {...shown} locked={locked} onRun={onRun} />
+          {/* A player makes another character of their own (docs/adr/0056-…md §2). */}
+          {shown.entityId === actorId && (
+            <MakeCharacter
+              api={api}
+              onMade={() => undefined}
+              intro="Make another character of your own: a spare hero, or one for someone who shares your screen."
+            />
+          )}
         </>
       )}
       inventory={

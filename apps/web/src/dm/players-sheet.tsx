@@ -10,6 +10,7 @@ import { useCallback, useEffect, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { MakeCharacter } from '../builder/make-character.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { freeCharacters, nameOf } from './players.ts';
 import { InvitationList, MemberList } from './players-lists.tsx';
@@ -134,6 +135,15 @@ function Membership({
   const chosen = free.find((character) => character.entityId === characterId) ?? free[0];
   return (
     <div className="players-grid">
+      <MakeCharacter
+        api={api}
+        players={listing.members.map((member) => ({
+          characterId: member.characterId,
+          name: nameOf(directory, member.characterId) ?? t('a character'),
+        }))}
+        onMade={reread}
+        intro="Build a level 1 character from the SRD: for a player who plays here, or nobody’s yet, to invite a player to."
+      />
       <section className="tool-group players-invite" aria-labelledby="players-invite-title">
         <h3 id="players-invite-title">
           <Glyph name="invitation" />
