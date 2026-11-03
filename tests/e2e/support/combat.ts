@@ -34,6 +34,12 @@ export async function clickSquare(page: Page, x: number, y: number): Promise<voi
  * ground beside it, never on another square.
  */
 export async function clickWhereShown(page: Page, target: Locator): Promise<void> {
+  const point = await shownPoint(target);
+  await page.mouse.click(point.x, point.y);
+}
+
+/** A point of a square still in view on the board, as `clickWhereShown` presses it. */
+export async function shownPoint(target: Locator): Promise<{ x: number; y: number }> {
   await target.scrollIntoViewIfNeeded();
   const point = await target.evaluate((button) => {
     const box = button.getBoundingClientRect();
@@ -51,7 +57,7 @@ export async function clickWhereShown(page: Page, target: Locator): Promise<void
     const name = (await target.getAttribute('aria-label')) ?? 'The square';
     throw new Error(`${name} shows nowhere to point at`);
   }
-  await page.mouse.click(point.x, point.y);
+  return point;
 }
 
 export const anchor = (page: Page) => page.getByRole('status', { name: 'Encounter anchor' });

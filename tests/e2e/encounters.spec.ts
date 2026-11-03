@@ -1,8 +1,8 @@
-import { expect as baseExpect, test, type Locator, type Page } from '@playwright/test';
+import { expect as baseExpect, test, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
 import { expectAccessible } from './support/axe.ts';
-import { clickSquare, expectAccepted, square, submit } from './support/combat.ts';
+import { clickSquare, expectAccepted, shownPoint, square, submit } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 
@@ -39,25 +39,6 @@ async function encounterNow(page: Page): Promise<EncounterRead['encounter']> {
   });
   expect(response.status()).toBe(200);
   return ((await response.json()) as EncounterRead).encounter;
-}
-
-/** A point of a square still in view on the tilted board, as `clickSquare` finds it. */
-async function shownPoint(target: Locator): Promise<{ x: number; y: number }> {
-  await target.scrollIntoViewIfNeeded();
-  const point = await target.evaluate((button) => {
-    const box = button.getBoundingClientRect();
-    const steps = [0.5, 0.35, 0.65, 0.2, 0.8];
-    for (const fy of steps) {
-      for (const fx of steps) {
-        const at = { x: box.left + box.width * fx, y: box.top + box.height * fy };
-        const hit = document.elementFromPoint(at.x, at.y);
-        if (hit && button.contains(hit)) return at;
-      }
-    }
-    return null;
-  });
-  if (!point) throw new Error('the square shows nowhere to point at');
-  return point;
 }
 
 test('the DM builds, saves and starts an encounter, then sets its foes down', async ({ page }) => {

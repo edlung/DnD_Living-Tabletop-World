@@ -288,6 +288,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'CombatEnded':
     case 'CombatOrderChanged':
     case 'LightSet':
+    case 'TerrainPainted':
     case 'StatBlockSet':
     case 'ActionTaken':
     case 'FeatureUsed':

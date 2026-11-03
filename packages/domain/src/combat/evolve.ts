@@ -5,6 +5,7 @@ import type { WorldState } from '../kernel/state.ts';
 import { namedEntityIds } from './named-entities.ts';
 import { openReactionWindow } from './reactions.ts';
 import { encounterAfterTurnStart, type EncounterState } from './records.ts';
+import { paintBattlefield } from './terrain.ts';
 
 /** Fold cases for combat events (called from kernel/evolve.ts). */
 type EventOf<T extends RecordedEvent['type']> = Extract<RecordedEvent, { type: T }>;
@@ -66,6 +67,25 @@ export function applyLightSet(state: WorldState, event: EventOf<'LightSet'>): Wo
     encounter: {
       ...encounter,
       battlefield: { ...encounter.battlefield, ambient: event.payload.ambient },
+    },
+  };
+}
+
+/** The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
+export function applyTerrainPainted(
+  state: WorldState,
+  event: EventOf<'TerrainPainted'>,
+): WorldState {
+  const encounter = requireEncounter(state, 'terrain');
+  if (encounter.encounterId !== event.payload.encounterId) {
+    throw new CorruptHistoryError('terrain for another fight');
+  }
+  const { squares, paint } = event.payload;
+  return {
+    ...state,
+    encounter: {
+      ...encounter,
+      battlefield: paintBattlefield(encounter.battlefield, squares, paint),
     },
   };
 }

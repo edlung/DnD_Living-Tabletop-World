@@ -16,7 +16,8 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
 - 670b — Terrain and battle maps: `PaintTerrain` on the running battlefield and in the builder
   (walls, difficult ground, cover, water, heights, obscured squares, clear); a battle map uploaded
   by the DM, re-encoded and approved as the location's; `AlignBattleMap` (a cell's size and the
-  origin in pixels) and a fight there taking the map's columns and rows.
+  origin in pixels) and a fight there taking the map's columns and rows. Part 1 done: `PaintTerrain` on the
+  running battlefield and the DM's brush on the board.
 - 670c — Fog of war and shared marks: `SetFog` hides and reveals squares; the players' and the
   display's views leave out what lies hidden; the DM sees a veil. A ruler and spell-area templates
   on every board (the geometry moved into contracts, shared with the rules); pings, the DM's

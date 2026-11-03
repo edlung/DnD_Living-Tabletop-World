@@ -1,5 +1,6 @@
 import {
   LIGHT_LEVELS,
+  MAX_PAINTED_SQUARES,
   ABILITIES,
   COMBAT_ACTIONS,
   CONDITIONS,
@@ -14,6 +15,7 @@ import {
   entityIdSchema,
   squareSchema,
   statBlockSchema,
+  terrainPaintSchema,
 } from '@ltw/contracts';
 import { z } from 'zod';
 
@@ -193,6 +195,14 @@ export const combatEventPayloadSchemas = {
   CombatEnded: z.object({ encounterId: entityIdSchema }).strict(),
   /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
   LightSet: z.object({ encounterId: entityIdSchema, ambient: z.enum(LIGHT_LEVELS) }).strict(),
+  /** The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
+  TerrainPainted: z
+    .object({
+      encounterId: entityIdSchema,
+      squares: z.array(squareSchema).min(1).max(MAX_PAINTED_SQUARES),
+      paint: terrainPaintSchema,
+    })
+    .strict(),
   /**
    * The DM changed a running fight (docs/adr/0043-dm-screen.md §2): who joined, left, delayed or
    * had initiative set, and the whole order after it, with the current turn's place.

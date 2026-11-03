@@ -255,6 +255,7 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'DelayTurn':
     case 'SetInitiative':
     case 'PlaceCombatant':
+    case 'PaintTerrain':
     case 'CommandCreature':
     case 'AddObject':
     case 'SetLight':

@@ -53,4 +53,11 @@ registerRussian({
     'Так перемещение не тратится и провоцированной атаки нет.',
   '{name} set down on another square': '{name} — теперь на другой клетке',
   '{name} stands here.': 'Здесь стоит: {name}.',
+  // The DM's brush on the board
+  'Paint the ground': 'Рисовать местность',
+  'Done painting': 'Готово',
+  'Choose a brush, then press a square or drag across several.':
+    'Выберите кисть, затем нажмите на клетку или проведите по нескольким.',
+  Brush: 'Кисть',
+  Height: 'Высота',
 });

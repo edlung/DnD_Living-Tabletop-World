@@ -453,6 +453,7 @@ export const FIGHT_CHANGE_COMMAND_TYPES = [
   'SetInitiative',
   /** The DM's hand on the board (docs/adr/0057-encounters-maps-loot.md §2). */
   'PlaceCombatant',
+  'PaintTerrain',
   'CommandCreature',
   /** An object the party attacks (docs/adr/0048-hit-points.md §5; `combat/objects.ts`). */
   'AddObject',

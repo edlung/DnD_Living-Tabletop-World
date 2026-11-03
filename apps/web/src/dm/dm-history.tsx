@@ -31,6 +31,7 @@ const KIND_GLYPH = {
   ruling: 'game-master',
   fight: 'initiative',
   light: 'day',
+  terrain: 'map',
   trap: 'falling',
   'mental-stress': 'thought',
   contagion: 'poisoned',

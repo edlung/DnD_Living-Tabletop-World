@@ -1,4 +1,10 @@
-import type { EncounterView, PlayerAssetView, Square } from '@ltw/contracts';
+import {
+  MAX_PAINTED_SQUARES,
+  type EncounterView,
+  type PlayerAssetView,
+  type Square,
+  type TerrainPaint,
+} from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 
@@ -11,6 +17,7 @@ import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { CommandedTurn } from './commanded-turn.tsx';
 import { DmSquareCard } from './dm-hand.tsx';
+import { PaintCard, type BrushHand } from './paint-card.tsx';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
 import { occupantAt, squareMoves } from './move-options.ts';
 import { useCombatantLabels } from './labels.ts';
@@ -45,6 +52,7 @@ export function CombatPanel({
   imageOf,
   figureOf,
   battleMap,
+  hand,
   onRun,
 }: {
   readonly api: WorldApi;
@@ -58,6 +66,8 @@ export function CombatPanel({
   readonly imageOf: (entityId: string) => PlayerAssetView | null;
   readonly figureOf: (entityId: string) => PlayerAssetView | null;
   readonly battleMap: PlayerAssetView | null;
+  /** The DM's brush, kept by the stage (ADR 0057 §2). */
+  readonly hand: BrushHand;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
@@ -65,6 +75,12 @@ export function CombatPanel({
   // The DM's hand (docs/adr/0057-…md §2): the combatant chosen last, set down on a square next.
   const dm = actorId === null;
   const [held, setHeld] = useState<string | null>(null);
+  // The DM's brush (ADR 0057 §2), kept by the stage across the board's fresh starts.
+  const [brushState, setBrushState] = hand;
+  const { painting, brush } = brushState;
+  const setBrush = (next: TerrainPaint) => {
+    setBrushState((state) => ({ ...state, brush: next }));
+  };
   const section = useRef<HTMLElement>(null);
   const panel = useRef<HTMLElement>(null);
   const ids = useId();
@@ -124,6 +140,17 @@ export function CombatPanel({
   useEffect(() => {
     if (chosen !== '') panel.current?.focus({ preventScroll: true });
   }, [chosen]);
+  // The board starts afresh after each stroke: the keyboard is back on the square it painted.
+  useEffect(() => {
+    const { last } = brushState;
+    if (!brushState.painting || !last) return;
+    section.current
+      ?.querySelector<HTMLElement>(
+        `.board-square[data-x="${String(last.x)}"][data-y="${String(last.y)}"]`,
+      )
+      ?.focus({ preventScroll: true });
+    // Only as the board mounts: later strokes keep focus where the DM put it.
+  }, []);
   const pick = (square: Square) => {
     const occupant = occupantAt(encounter, square);
     if (dm && occupant) setHeld(occupant.entity.entityId);
@@ -138,8 +165,30 @@ export function CombatPanel({
     setFocus(null);
     square?.focus({ preventScroll: true });
   };
+  const stroke = (squares: readonly Square[]) => {
+    setBrushState((state) => ({ ...state, last: squares.at(-1) ?? state.last }));
+    onRun({
+      kind: 'command',
+      quiet: true,
+      command: {
+        type: 'PaintTerrain',
+        squares: squares.slice(0, MAX_PAINTED_SQUARES).map((square) => ({ ...square })),
+        paint: brush,
+      },
+    });
+  };
+  const brushOff = () => {
+    setBrushState((state) => ({ ...state, painting: false }));
+    section.current?.querySelector<HTMLElement>('.board-controls [aria-pressed="true"]')?.focus();
+  };
   const onKeyDown = (event: KeyboardEvent) => {
-    if (event.key !== 'Escape' || focus === null || event.defaultPrevented) return;
+    if (event.key !== 'Escape' || event.defaultPrevented) return;
+    if (painting) {
+      event.preventDefault();
+      brushOff();
+      return;
+    }
+    if (focus === null) return;
     event.preventDefault();
     close();
   };
@@ -150,7 +199,15 @@ export function CombatPanel({
         ? { kind: 'combatant', target: picked, actions: options }
         : { kind: 'none' };
   const side =
-    focus?.kind === 'square' && dm ? (
+    dm && painting ? (
+      <PaintCard
+        brush={brush}
+        locked={locked}
+        panel={panel}
+        onBrush={setBrush}
+        onClose={brushOff}
+      />
+    ) : focus?.kind === 'square' && dm ? (
       <DmSquareCard
         encounter={encounter}
         square={focus.square}
@@ -219,7 +276,19 @@ export function CombatPanel({
         battleMap={battleMap}
         view={view}
         onPick={pick}
-        {...(dm ? { onDropToken: place } : {})}
+        {...(dm
+          ? {
+              onDropToken: place,
+              paint: {
+                on: painting,
+                onToggle: () => {
+                  setFocus(null);
+                  setBrushState((state) => ({ ...state, painting: !state.painting }));
+                },
+                onStroke: stroke,
+              },
+            }
+          : {})}
       />
       <div className="combat-side">{side}</div>
       {mayAct && (

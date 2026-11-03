@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useBoardView } from '../combat/board/board-view.ts';
 import { CombatPanel } from '../combat/combat-panel.tsx';
+import { useBrush } from '../combat/paint-card.tsx';
 import { useCombatantLabels } from '../combat/labels.ts';
 import { askedWindowOf, ReactionPrompt } from '../combat/reaction-prompt.tsx';
 import { ReadiedCard } from '../combat/readied-card.tsx';
@@ -58,6 +59,8 @@ export function CombatStage({
 }) {
   const t = useT();
   const view = useBoardView();
+  // The DM's brush outlasts the battlefield's fresh start after each stroke (ADR 0057 §2).
+  const hand = useBrush();
   const window = encounter.reactionWindow;
   const asked = askedWindowOf(encounter, actorId) !== null;
   const myTurn =
@@ -152,6 +155,7 @@ export function CombatStage({
           imageOf={imageOf}
           figureOf={figureOf}
           battleMap={battleMap}
+          hand={hand}
           onRun={onRun}
         />
       </div>

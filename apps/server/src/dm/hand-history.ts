@@ -101,6 +101,17 @@ export function handChange(
       };
     case 'SetLight':
       return { change: { kind: 'light', ambient: command.ambient }, reason: null };
+    case 'PaintTerrain':
+      return {
+        change: {
+          kind: 'terrain',
+          paint: command.paint,
+          squares: new Set(
+            command.squares.map((square) => `${String(square.x)},${String(square.y)}`),
+          ).size,
+        },
+        reason: null,
+      };
     // The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4): no reason asked.
     case 'SpringTrap':
       return {

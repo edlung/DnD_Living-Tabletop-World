@@ -2,7 +2,7 @@ import type { EncounterView, PlayerAssetView, Square } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 
-import { BoardControls } from './board-controls.tsx';
+import { BoardControls, type BoardPaint } from './board-controls.tsx';
 import type { BoardView } from './board-view.ts';
 import {
   boardLayout,
@@ -22,6 +22,7 @@ import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
 import { footprint, spanOf } from './footprint.ts';
 import { CoverPiece, Token } from './token.tsx';
+import { usePaintStroke } from './paint-stroke.ts';
 import { useTokenDrag } from './token-drag.ts';
 
 const key = (square: { readonly x: number; readonly y: number }) =>
@@ -85,6 +86,7 @@ export function Board({
   view,
   onPick,
   onDropToken,
+  paint,
   centreOn = null,
   moverId = selfId,
 }: {
@@ -112,6 +114,8 @@ export function Board({
   readonly onPick: (square: Square) => void;
   /** A combatant's token dragged to a square: the DM's hand (docs/adr/0057-…md §2). */
   readonly onDropToken?: (entityId: string, square: Square) => void;
+  /** The DM's brush (ADR 0057 §2): its toggle, and squares pressed or stroked while it is on. */
+  readonly paint?: BoardPaint;
   /** A square to keep in view when the board scrolls (the table's screen follows the fight). */
   readonly centreOn?: Square | null;
 }) {
@@ -121,7 +125,15 @@ export function Board({
   // The square the pointer is over and the one keyboard focus is on: the terrain card reads it.
   const [pointed, setPointed] = useState<Square | null>(null);
   const [focused, setFocused] = useState<Square | null>(null);
-  const drag = useTokenDrag(onDropToken);
+  const painting = paint?.on === true;
+  const drag = useTokenDrag(painting ? undefined : onDropToken);
+  const stroke = usePaintStroke(painting ? paint.onStroke : undefined);
+  // While the brush is on, a press paints its square instead of choosing it.
+  const press = painting
+    ? (square: Square) => {
+        paint.onStroke([square]);
+      }
+    : onPick;
   const { width, height, difficult, cover } = encounter.battlefield;
   const grid = { width, height };
   const tilt = view.mode === 'tilted' ? TILT : null;
@@ -232,6 +244,9 @@ export function Board({
         // The DM drags tokens: a square with one is grabbed, the square under the drag lit.
         drag.enabled && occupant ? 'is-draggable' : '',
         drag.target !== null && key(drag.target) === id ? 'is-drop-target' : '',
+        // The DM's brush: every square takes it, the stroke under way lit.
+        painting ? 'is-paintable' : '',
+        stroke.isLit(square) ? 'is-stroke' : '',
       ];
       squares.push(
         <button
@@ -264,11 +279,12 @@ export function Board({
           })}
           aria-pressed={isSelected}
           onClick={() => {
-            onPick(square);
+            press(square);
           }}
           onPointerDown={(event) => {
+            if (painting) stroke.start(square, event);
             // A mount's square drags the mount, its rider carried (ADR 0049 §10).
-            if (occupant) drag.start(occupant.entity.entityId, event);
+            else if (occupant) drag.start(occupant.entity.entityId, event);
           }}
           onPointerEnter={() => {
             point(square, true);
@@ -334,7 +350,7 @@ export function Board({
   const looked = pointed ?? focused ?? selected;
   return (
     <div className={`board board--${view.mode}`} ref={area}>
-      <BoardControls view={view} />
+      <BoardControls view={view} {...(paint ? { paint } : {})} />
       {looked && (
         <TerrainCard
           square={looked}
@@ -386,7 +402,7 @@ export function Board({
             encounter={encounter}
             layout={layout}
             labelOf={labelOf}
-            onPick={onPick}
+            onPick={press}
             onPoint={point}
             {...(drag.enabled ? { onPress: drag.start } : {})}
           />

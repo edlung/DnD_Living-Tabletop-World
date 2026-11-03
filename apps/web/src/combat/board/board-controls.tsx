@@ -1,16 +1,40 @@
+import type { Square } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 
 import { IconButton } from '../../visual/icon-button.tsx';
 import type { BoardView } from './board-view.ts';
 
+/** The DM's brush on the board (docs/adr/0057-encounters-maps-loot.md §2). */
+export interface BoardPaint {
+  readonly on: boolean;
+  readonly onToggle: () => void;
+  /** Squares pressed or stroked while the brush is on, in the order the pointer passed them. */
+  readonly onStroke: (squares: readonly Square[]) => void;
+}
+
 /**
  * How to look at the board (docs/STAGE_320_DESIGN.md §5.5–6): flat or tilted like a table, and
- * on a phone, closer or further. Glyph controls with their words as name and tooltip.
+ * on a phone, closer or further; for the DM, the brush that paints the ground. Glyph controls with
+ * their words as name and tooltip.
  */
-export function BoardControls({ view }: { readonly view: BoardView }) {
+export function BoardControls({
+  view,
+  paint,
+}: {
+  readonly view: BoardView;
+  readonly paint?: BoardPaint;
+}) {
   const t = useT();
   return (
     <div className="board-controls" role="group" aria-label={t('Board view')}>
+      {paint && (
+        <IconButton
+          glyph="map"
+          label={t('Paint the ground')}
+          aria-pressed={paint.on}
+          onClick={paint.onToggle}
+        />
+      )}
       <IconButton
         glyph="flat"
         label={t('Flat board')}

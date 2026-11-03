@@ -10,3 +10,49 @@
   background: color-mix(in srgb, var(--gold) 30%, transparent);
   box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gold) 80%, transparent);
 }
+
+/* The DM's brush (combat/board/paint-stroke.ts, combat/paint-card.tsx; ADR 0057 §2): every square
+   takes it — a press paints one, a drag paints its stroke, lit as it goes. */
+.board-square.is-paintable {
+  cursor: crosshair;
+  touch-action: none;
+}
+.board-square.is-stroke::before {
+  background: color-mix(in srgb, var(--gold) 22%, transparent);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gold) 70%, transparent);
+}
+.paint-brushes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+  gap: 0.35rem 0.75rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.paint-brushes > legend {
+  margin: 0 0 0.35rem;
+  padding: 0;
+  font-weight: 700;
+}
+/* Control first, its words after it: every radio on one left edge. */
+.paint-brush {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+  min-height: 32px;
+}
+.paint-brush label {
+  margin: 0;
+}
+.paint-brush input[type='radio'] {
+  /* A pointer target of its own of at least 24 px (WCAG 2.5.8). */
+  width: 24px;
+  height: 24px;
+  margin: 0;
+}
+.paint-brush select {
+  flex: 1 1 100%;
+  min-width: 0;
+}

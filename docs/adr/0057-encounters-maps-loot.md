@@ -109,6 +109,25 @@
 - The turn order keeps a numbered combatant's number beside its Initiative total: two Goblin
   Warriors are told apart by the DM too.
 
+## Notes from the implementation (Stage 670b, part 1, 2026-11-03)
+
+- `PaintTerrain` (`packages/combat/src/terrain-paint.ts`) is the DM's: squares (at most 400 a
+  stroke) and one paint — a wall, difficult ground, a cover level, water shallow or deep, the
+  ground's height (0 lays it level), light or heavy obscurement, or a clear. The event
+  `TerrainPainted` carries the stroke, and the history replays it through one pure function
+  (`packages/domain/src/combat/terrain.ts` `paintBattlefield`): a paint replaces its own kind on
+  its squares, a wall replaces everything there, anything else takes a wall away, a clear leaves
+  the squares bare; a square's light is the fight's and stays. Every square lies on the field; no
+  wall rises where a creature or an object stands; a stroke that changes nothing (`NO_EFFECT`), or
+  would pass a battlefield's lists, is refused. The rules read the painted ground at once (a wall
+  stops a move); players see it as the DM does.
+- The brush on the board (`apps/web/src/combat/paint-card.tsx`, `board/paint-stroke.ts`): the
+  DM's "Paint the ground" beside the board's view controls opens the brush card; a press paints a
+  square (Enter or Space on a focused one too), a press that moves 8 px paints every square the
+  pointer passes as one stroke, and Escape or Done puts the brush down. While it is on, a press
+  chooses nothing and no token is dragged. The DM's history names each stroke ("Difficult
+  terrain: 3 squares").
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

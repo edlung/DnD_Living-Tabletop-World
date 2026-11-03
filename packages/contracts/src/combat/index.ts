@@ -110,7 +110,14 @@ export {
   type SavedFoe,
   type SavedFoeView,
 } from './saved-encounters.ts';
-export { placeCombatantCommandSchema } from './board-commands.ts';
+export {
+  MAX_PAINTED_SQUARES,
+  TERRAIN_PAINT_KINDS,
+  paintTerrainCommandSchema,
+  placeCombatantCommandSchema,
+  terrainPaintSchema,
+  type TerrainPaint,
+} from './board-commands.ts';
 export {
   CONTAGION_STEPS,
   TOOLBOX_COMMAND_TYPES,

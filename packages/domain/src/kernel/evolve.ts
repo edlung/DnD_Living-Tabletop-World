@@ -6,6 +6,7 @@ import {
   applyCombatEnded,
   applyCombatOrderChanged,
   applyLightSet,
+  applyTerrainPainted,
   applyCombatRecord,
   applyCombatRestore,
   applyCombatStarted,
@@ -238,6 +239,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyCombatOrderChanged(state, event);
     case 'LightSet':
       return applyLightSet(state, event);
+    case 'TerrainPainted':
+      return applyTerrainPainted(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
     case 'ActionTaken':

@@ -1,6 +1,7 @@
 import type { Condition, DamageType, DmHandEntry } from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
+import { paintName } from '../combat/terrain-words.ts';
 import { CONTAGION_WORDS, TRAP_WORDS, trapTiers } from '../rules/toolbox-words.ts';
 
 /** A contagion's step in the DM's history (docs/adr/0055-rules-reference-and-toolbox.md §4). */
@@ -112,6 +113,14 @@ export function describeHand(t: Translate, change: DmHandEntry['change']): strin
       return t('Ruling: {summary}', { summary: change.summary });
     case 'light':
       return t(LIGHT_WORDS[change.ambient]);
+    // The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2).
+    case 'terrain':
+      return change.squares === 1
+        ? t('{terrain}: one square', { terrain: paintName(t, change.paint) })
+        : t('{terrain}: {count} squares', {
+            terrain: paintName(t, change.paint),
+            count: change.squares,
+          });
     // The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4).
     case 'trap':
       return t('{trap} (levels {range}) sprung on {names}', {

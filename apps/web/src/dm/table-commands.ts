@@ -15,6 +15,7 @@ export type DmTableCommand = KernelCommandOf<
   | 'AddCombatant'
   | 'AddObject'
   | 'SetLight'
+  | 'PaintTerrain'
   | 'ExposeToHazard'
   | 'SpringTrap'
   | 'InflictMentalStress'

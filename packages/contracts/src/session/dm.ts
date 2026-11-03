@@ -1,3 +1,4 @@
+import type { TerrainPaint } from '../combat/board-commands.ts';
 import type { Hazard, LightLevel } from '../combat/commands.ts';
 import type { ContagionStep, TrapId } from '../combat/toolbox.ts';
 import type { ContagionId } from '../rules/contagions.ts';
@@ -174,6 +175,8 @@ export interface DmHandEntry extends DmHistoryCommon {
       }
     /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
     | { readonly kind: 'light'; readonly ambient: LightLevel }
+    /** The DM's brush on the running fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
+    | { readonly kind: 'terrain'; readonly paint: TerrainPaint; readonly squares: number }
     /** The party exposed to the cold or the heat; how many hourly saves failed (§8). */
     | {
         readonly kind: 'hazard';

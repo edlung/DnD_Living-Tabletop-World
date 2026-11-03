@@ -222,7 +222,9 @@ application on 4313.
   an encounter, sets a goblin down by its plate and a square, drags another by its plate, and moves
   a foe on its turn (owns `ui-encounters`; the characters' turns end by commands sent through
   `page.request`). An occupied square at the board's far edge lies under its own plate: press the
-  plate (`.board-plate`), as a person does, rather than the square.
+  plate (`.board-plate`), as a person does, rather than the square. `paint-terrain.spec.ts` (owns
+  `ui-terrain`) starts its fight through the saved-encounter routes with `page.request`, then paints
+  by presses, a stroke and the brush card, and reads the DM's history.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
